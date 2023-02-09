@@ -10,6 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![check-release](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/check-release.yaml/badge.svg)](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/check-release.yaml)
 [![test-coverage](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/test-coverage.yaml)
 [![lint](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/lint.yaml/badge.svg)](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/lint.yaml)
+[![R-CMD-check](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of simulomicsr is to …
