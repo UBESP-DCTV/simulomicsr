@@ -1,55 +1,40 @@
-Package: laims.analysis
+Package: simulomicsr
 Title: What the Package Does (One Line, Title Case)
-Version: 0.1.1
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+Version: 0.0.0.9001
+Authors@R: c(
+    person("Corrado", "Lanera", , "corrado.lanera@ubep.unipd.it", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-0520-7428")),
+    person("Luca", "Vedovelli", , "luca.vedovelli@ubep.unipd.it", role = "aut",
+           comment = c(ORCID = "0000-0003-4847-2333"))
+  )
 Description: What the package does (one paragraph).
 License: file LICENSE
-Imports: 
-    fs,
-    purrr,
-    readr,
-    stringr
 Suggests: 
-    blogdown,
     checkmate,
     covr,
-    depigner,
     devtools,
     distill,
-    gitcreds,
+    fs,
     here,
     htmltools,
-    igraph,
-    janitor,
     knitr,
     lintr,
-    magick,
-    markdown,
-    metathis,
-    mice,
-    miniUI,
-    naniar,
+    purrr,
     qs,
-    rms,
+    readr,
     rstudioapi,
-    shiny,
     spelling,
+    stringr,
     tarchetypes,
     targets,
     testthat (>= 3.0.0),
-    unheadr,
     usethis,
-    visNetwork,
-    webshot,
     withr,
     xaringan,
     xaringanExtra,
-    xaringanthemer,
-    yaml
+    xaringanthemer
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
