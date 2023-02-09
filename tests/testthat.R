@@ -1,4 +1,4 @@
 library(testthat)
-library(laims.analysis)
+library(simulomicsr)
 
-test_check("laims.analysis")
+test_check("simulomicsr")

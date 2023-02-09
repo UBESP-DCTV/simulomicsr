@@ -14,11 +14,23 @@ stopifnot(
 
 if (interactive()) {
   suppressPackageStartupMessages(suppressWarnings({
-    library(devtools)
+    usethis::ui_todo(
+      "Interactive session detected. Attaching dev packages."
+    )
     library(usethis)
+    ui_info("package {ui_value('usethis')} attached.")
+    library(devtools)
+    ui_info("package {ui_value('devtools')} attached.")
     library(checkmate)
+    ui_info("package {ui_value('checkmate')} attached.")
     library(testthat)
+    ui_info("package {ui_value('testthat')} attached.")
     library(targets)
+    ui_info("package {ui_value('targets')} attached.")
+    ui_done("Dev packages attached.")
+    ui_info(
+      "Note: This will not be done in any non-interactive session!"
+      )
   }))
 }
 

@@ -61,8 +61,11 @@ usethis::use_github_actions_badge("test-coverage")
 usethis::use_github_actions_badge("lint")
 
 # put your email here, i.e. usethis::use_code_of_conduct("me@org.com")
-usethis::use_code_of_conduct()
+usethis::use_code_of_conduct("corrado.lanera@ubep.unipd.it")
 devtools::build_readme()
+
+usethis::use_news_md()
+
 
 ## So you can put this very file in the `dev/` folder, where you can
 ## find another useful file 02-dev_cycle.R
