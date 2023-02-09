@@ -16,7 +16,7 @@
     usethis::use_dev_package(package_name, remote = .x)
   })
 
-  dev_pkgs <- c("fs", "readr", "stringr", "purrr", "igraph")
+  dev_pkgs <- c("fs", "readr", "stringr", "purrr", "igraph", "curl")
   renv::install(dev_pkgs)
   purrr::walk(dev_pkgs, usethis::use_package, type = "Suggests")
 
