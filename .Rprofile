@@ -1,5 +1,5 @@
 source("renv/activate.R")
-if (!interactive()) renv::restore()
+if (!interactive()) renv::restore(rebuild = "igraph")
 
 options(
   tidyverse.quiet = TRUE
