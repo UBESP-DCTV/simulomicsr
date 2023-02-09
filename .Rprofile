@@ -53,7 +53,7 @@ if (
 
 if (Sys.getenv("PRJ_SHARED_PATH") == "") {
 
-  usethis::ui_warn(paste0(
+  usethis::ui_info(paste0(
     "Environmental variable {usethis::ui_field('PRJ_SHARED_PATH')} ",
     "is not set."
   ))
@@ -66,7 +66,7 @@ if (Sys.getenv("PRJ_SHARED_PATH") == "") {
   ))
 
   Sys.setenv(PRJ_SHARED_PATH = normalizePath(here::here()))
-  usethis::ui_todo(paste0(
+  usethis::ui_done(paste0(
     "Default path is set to the current project folder; ",
     "i.e., the {usethis::ui_value('_targets/')} folder is not shared."
   ))
