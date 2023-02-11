@@ -39,13 +39,7 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: igraph-dependencies
-        run: |
-             if [ "$RUNNER_OS" == "ubuntu-latest" ]; then
-               sudo apt-get -y install libglpk-dev
-
-             fi
-        shell: bash
+      - uses: r-lib/actions/setup-renv@v2
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:

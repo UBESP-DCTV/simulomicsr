@@ -21,12 +21,7 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: igraph-dependencies
-        run: |
-             if [ "$RUNNER_OS" == "ubuntu-latest" ]; then
-                  sudo apt-get -y install libzmq3-dev libcurl4-openssl-dev libglpk-dev libharfbuzz-dev libfribidi-dev
-             fi
-        shell: bash
+      - uses: r-lib/actions/setup-renv@v2
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
