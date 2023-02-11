@@ -40,7 +40,11 @@ jobs:
           use-public-rspm: true
 
       - name: igraph-dependencies
-        run: sudo apt-get -y install libglpk-dev
+        run: |
+             if [ "$RUNNER_OS" == "Linux" ]; then
+                  sudo apt-get -y install libzmq3-dev libcurl4-openssl-dev libglpk-dev
+             fi
+        shell: bash
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
