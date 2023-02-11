@@ -41,8 +41,9 @@ jobs:
 
       - name: igraph-dependencies
         run: |
-             if [ "$RUNNER_OS" == "Linux" ]; then
-                  sudo apt-get -y install libzmq3-dev libcurl4-openssl-dev libglpk-dev
+             if [ "$RUNNER_OS" == "ubuntu-latest" ]; then
+               sudo apt-get -y install libglpk-dev
+
              fi
         shell: bash
 
