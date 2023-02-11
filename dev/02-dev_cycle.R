@@ -5,7 +5,7 @@
   meta_pkgs <- c("tidyverse")
   renv::install(meta_pkgs)
 
-  prj_pkgs <- c()
+  prj_pkgs <- c("igraph")
   renv::install(prj_pkgs)
   purrr::walk(prj_pkgs, usethis::use_package)
 
@@ -16,7 +16,7 @@
     usethis::use_dev_package(package_name, remote = .x)
   })
 
-  dev_pkgs <- c("fs", "readr", "stringr", "purrr", "igraph", "curl")
+  dev_pkgs <- c("fs", "readr", "stringr", "purrr", "curl")
   renv::install(dev_pkgs)
   purrr::walk(dev_pkgs, usethis::use_package, type = "Suggests")
 
