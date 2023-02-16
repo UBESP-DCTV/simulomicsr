@@ -4,11 +4,11 @@
 \name{simulomicsr-package}
 \alias{simulomicsr}
 \alias{simulomicsr-package}
-\title{simulomicsr: What the Package Does (One Line, Title Case)}
+\title{simulomicsr: Easy simulator of OMICS data in R}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-What the package does (one paragraph).
+Simulate OMICS data in a simple way (i.e., without any parameter specification), for a quick models prototyping and tests. PROS: works out-of-the-box without setting (quite) any additional parameter. CONS: not suitable for complex designs.
 }
 \author{
 \strong{Maintainer}: Corrado Lanera \email{corrado.lanera@ubep.unipd.it} (\href{https://orcid.org/0000-0002-0520-7428}{ORCID})

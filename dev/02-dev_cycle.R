@@ -25,6 +25,12 @@
   renv::install(dev_pkgs)
   purrr::walk(dev_pkgs, usethis::use_package, type = "Suggests")
 
+
+  bioc_dev_pkgs <- c("rhdf5", "rpx")
+  renv::install(paste0("bioc::", bioc_dev_pkgs))
+  purrr::walk(bioc_dev_pkgs, usethis::use_package, type = "Suggests")
+
+
   usethis::use_tidy_description()
   devtools::document()
   renv::status()
