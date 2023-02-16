@@ -5,9 +5,17 @@
   meta_pkgs <- c()  # e.g., tidyverse, tidymodels, ...
   renv::install(meta_pkgs)
 
-  prj_pkgs <- c("fs", "readr", "stringr", "purrr")
+
+  prj_pkgs <- c(
+    "dplyr", "fs", "purrr", "readr", "rhdf5", "stringr", "tibble",
+    "tidyr", "tidyselect", "usethis"
+  )
   renv::install(prj_pkgs)
   purrr::walk(prj_pkgs, usethis::use_package)
+
+  bioc_pkgs <- c("rhdf5")
+  renv::install(paste0("bioc::", bioc_pkgs))
+  purrr::walk(bioc_pkgs, usethis::use_package)
 
   gh_prj_pkgs <- c()  # e.g. CorradoLanera/autotestthat
   renv::install(gh_prj_pkgs)
@@ -17,16 +25,15 @@
   })
 
   dev_pkgs <- c(
-    "checkmate", "covr", "devtools", "distill", "fs", "here",
-    "htmltools", "knitr", "lintr", "purrr", "qs", "rstudioapi",
-    "spelling", "stringr", "targets", "tarchetypes", "testthat",
-    "usethis", "withr"
+    "checkmate", "covr", "devtools", "distill", "here",
+    "htmltools", "knitr", "lintr", "qs", "rstudioapi",
+    "spelling", "targets", "tarchetypes", "testthat", "withr"
   )
   renv::install(dev_pkgs)
   purrr::walk(dev_pkgs, usethis::use_package, type = "Suggests")
 
 
-  bioc_dev_pkgs <- c("rhdf5", "rpx")
+  bioc_dev_pkgs <- c("rpx")
   renv::install(paste0("bioc::", bioc_dev_pkgs))
   purrr::walk(bioc_dev_pkgs, usethis::use_package, type = "Suggests")
 

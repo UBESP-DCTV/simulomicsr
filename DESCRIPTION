@@ -13,11 +13,17 @@ Description: Simulate OMICS data in a simple way (i.e., without any
     parameter. CONS: not suitable for complex designs.
 License: file LICENSE
 Imports: 
+    dplyr,
     fs,
     purrr,
     readr,
+    rhdf5,
     rlang (>= 0.4.11),
-    stringr
+    stringr,
+    tibble,
+    tidyr,
+    tidyselect,
+    usethis
 Suggests: 
     checkmate,
     covr,
@@ -28,7 +34,6 @@ Suggests:
     knitr,
     lintr,
     qs,
-    rhdf5,
     roxygen2,
     rpx,
     rstudioapi,
@@ -36,7 +41,6 @@ Suggests:
     tarchetypes,
     targets,
     testthat (>= 3.0.0),
-    usethis,
     withr
 Config/testthat/edition: 3
 Encoding: UTF-8
