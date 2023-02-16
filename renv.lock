@@ -17,6 +17,26 @@
       "Hash": "68122010f01c4dcfbe58ce7112f2433d",
       "Requirements": []
     },
+    "BiocFileCache": {
+      "Package": "BiocFileCache",
+      "Version": "2.6.0",
+      "Source": "Bioconductor",
+      "git_url": "https://git.bioconductor.org/packages/BiocFileCache",
+      "git_branch": "RELEASE_3_16",
+      "git_last_commit": "f5b8368",
+      "git_last_commit_date": "2022-11-01",
+      "Hash": "8b60888c1fbfd442b5443c3bae264c8c",
+      "Requirements": [
+        "DBI",
+        "RSQLite",
+        "curl",
+        "dbplyr",
+        "dplyr",
+        "filelock",
+        "httr",
+        "rappdirs"
+      ]
+    },
     "BiocManager": {
       "Package": "BiocManager",
       "Version": "1.30.19",
@@ -75,6 +95,32 @@
       "Hash": "45f0398006e83a5b10b72a90663d8d8c",
       "Requirements": []
     },
+    "RCurl": {
+      "Package": "RCurl",
+      "Version": "1.98-1.10",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "35136c52e39f2679ebbe7bf448e3bd5a",
+      "Requirements": [
+        "bitops"
+      ]
+    },
+    "RSQLite": {
+      "Package": "RSQLite",
+      "Version": "2.2.20",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "b5df65015a2d74c144a1419dab6ffd3b",
+      "Requirements": [
+        "DBI",
+        "Rcpp",
+        "bit64",
+        "blob",
+        "memoise",
+        "pkgconfig",
+        "plogr"
+      ]
+    },
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.10",
@@ -89,6 +135,17 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "9d930f5e12e075d57965f46503a1f9b1",
+      "Requirements": []
+    },
+    "Rhdf5lib": {
+      "Package": "Rhdf5lib",
+      "Version": "1.20.0",
+      "Source": "Bioconductor",
+      "git_url": "https://git.bioconductor.org/packages/Rhdf5lib",
+      "git_branch": "RELEASE_3_16",
+      "git_last_commit": "7606799",
+      "git_last_commit_date": "2022-11-01",
+      "Hash": "66fbe0c49a27fe0a17182554f14f7fbc",
       "Requirements": []
     },
     "V8": {
@@ -674,6 +731,14 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "77bd60a6157420d4ffa93b27cf6a58b8",
+      "Requirements": []
+    },
+    "filelock": {
+      "Package": "filelock",
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "38ec653c2613bed60052ba3787bd8a2c",
       "Requirements": []
     },
     "fontawesome": {
@@ -1457,6 +1522,14 @@
         "withr"
       ]
     },
+    "plogr": {
+      "Package": "plogr",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "09eb987710984fc2905c7129c7d85e65",
+      "Requirements": []
+    },
     "png": {
       "Package": "png",
       "Version": "0.1-8",
@@ -1701,6 +1774,33 @@
         "lazyeval"
       ]
     },
+    "rhdf5": {
+      "Package": "rhdf5",
+      "Version": "2.42.0",
+      "Source": "Bioconductor",
+      "git_url": "https://git.bioconductor.org/packages/rhdf5",
+      "git_branch": "RELEASE_3_16",
+      "git_last_commit": "fa26027",
+      "git_last_commit_date": "2022-11-01",
+      "Hash": "c8e6ccb6a12e31508547a05b0d59cdf0",
+      "Requirements": [
+        "Rhdf5lib",
+        "rhdf5filters"
+      ]
+    },
+    "rhdf5filters": {
+      "Package": "rhdf5filters",
+      "Version": "1.10.0",
+      "Source": "Bioconductor",
+      "git_url": "https://git.bioconductor.org/packages/rhdf5filters",
+      "git_branch": "RELEASE_3_16",
+      "git_last_commit": "6131538",
+      "git_last_commit_date": "2022-11-01",
+      "Hash": "951d29eff795d56ce7157db29d72f3a2",
+      "Requirements": [
+        "Rhdf5lib"
+      ]
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "1.0.6",
@@ -1758,6 +1858,23 @@
       "Repository": "CRAN",
       "Hash": "1de7ab598047a87bba48434ba35d497d",
       "Requirements": []
+    },
+    "rpx": {
+      "Package": "rpx",
+      "Version": "2.6.0",
+      "Source": "Bioconductor",
+      "git_url": "https://git.bioconductor.org/packages/rpx",
+      "git_branch": "RELEASE_3_16",
+      "git_last_commit": "55175cf",
+      "git_last_commit_date": "2022-11-01",
+      "Hash": "35affbc69ad64e1283263e8aadc44d4d",
+      "Requirements": [
+        "BiocFileCache",
+        "RCurl",
+        "curl",
+        "jsonlite",
+        "xml2"
+      ]
     },
     "rstudioapi": {
       "Package": "rstudioapi",
