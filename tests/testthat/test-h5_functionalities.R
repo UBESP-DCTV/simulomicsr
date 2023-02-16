@@ -18,13 +18,17 @@ test_that("h5_gene_names works", {
   skip_on_cran()
 
   # setup
-  h5_samplepath <- ""
+  h5_sample_test_path <- targets::tar_read(h5TestPath)
+  h5_sample_path <- targets::tar_read(h5DataPath)
 
   # eval
-  res <- h5_gene_names(h5_samplepath)
+  res_test <- h5_gene_names(h5_sample_test_path)
+  res <- h5_gene_names(h5_sample_path)
 
   # test
+  expect_error(res_test, "HDF5. File accessibility")
   expect_character(res, min.chars = 62548)
+
 })
 
 
