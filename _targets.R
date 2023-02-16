@@ -24,14 +24,8 @@ tar_option_set(
 list(
 
   tar_target(
-    h5TestPath,
-    file.path(get_input_data_path("RNAseq/archs4_gene_human_test.h5")),
-    format = "file"
-  ),
-
-  tar_target(
-    h5TestPath,
-    file.path(get_input_data_path("RNAseq/archs4_gene_human.h5")),
+    h5DataPath,
+    get_input_data_path("RNAseq/archs4_gene_human_v2.1.2.h5"),
     format = "file"
   ),
 
