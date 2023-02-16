@@ -9,7 +9,7 @@ test_that("dim_string_to_int works", {
   )
 
   expected <- tibble::tribble(
-    ~var, ~n_dataset, ~n_genes,
+    ~var, ~n_datasets, ~n_genes,
      1, 620825L, 62548L,
      2, NA_integer_,  62548L,
      3, 620825L, NA_integer_,

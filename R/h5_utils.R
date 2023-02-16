@@ -4,23 +4,23 @@ separate_h5_summary_dims <- function(x) {
       all_of("dim"),
       delim = " x ",
       too_few = "align_start",
-      names = c("n_dataset", "n_genes")
+      names = c("n_datasets", "n_genes")
     ) |>
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("n_dataset", "n_genes")),
+        dplyr::all_of(c("n_datasets", "n_genes")),
         as.integer
       ),
       n_genes = dplyr::if_else(
         is.na(.data[["n_genes"]]) &
-          .data[["n_dataset"]] == max(.data[["n_genes"]], na.rm = TRUE),
-        .data[["n_dataset"]],
+          .data[["n_datasets"]] == max(.data[["n_genes"]], na.rm = TRUE),
+        .data[["n_datasets"]],
         .data[["n_genes"]]
       ),
-      n_dataset = dplyr::if_else(
-        .data[["n_dataset"]] < max(.data[["n_dataset"]], na.rm = TRUE),
+      n_datasets = dplyr::if_else(
+        .data[["n_datasets"]] < max(.data[["n_datasets"]], na.rm = TRUE),
         NA_integer_,
-        .data[["n_dataset"]]
+        .data[["n_datasets"]]
       )
     )
 }

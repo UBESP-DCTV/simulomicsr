@@ -30,7 +30,9 @@ list(
   ),
 
   tar_target(h5GeneNames, h5_gene_names(h5DataPath)),
-  tar_target(h5Summary, h5_summary(h5DataPath))
+  tar_target(h5Summary, h5_summary(h5DataPath)),
+  tar_target(h5Expression50Rand1, h5_expression_data(h5DataPath)),
+  tar_target(h5Expression50Rand2, h5_expression_data(h5DataPath))
 
   # # compile yor report
   # tar_render(report, here::here("reports/report.Rmd")),

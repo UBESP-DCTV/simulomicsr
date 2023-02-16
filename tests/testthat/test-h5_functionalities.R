@@ -49,8 +49,12 @@ test_that("h5_expression_data works", {
   h5_samplepath <- targets::tar_read(h5DataPath)
 
   # eval
-  res <- h5_expression_data(h5_samplepath)
+  res_default_50 <- h5_expression_data(h5_samplepath)
+  res_100 <- h5_expression_data(h5_samplepath, 100)
 
   # test
-  expect_tibble(res)
+  h5_expression_data(h5_samplepath, 1e9) |>
+    expect_error("provide a lower")
+  expect_tibble(res_default_50, nrows = 50, ncols = 62548)
+  expect_tibble(res_100, nrows = 100, ncols = 62548)
 })
