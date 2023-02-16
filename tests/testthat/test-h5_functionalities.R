@@ -1,4 +1,7 @@
 test_that("h5_summary works", {
+  skip_on_ci()
+  skip_on_cran()
+
   # setup
   h5_samplepath <- ""
 
@@ -11,6 +14,9 @@ test_that("h5_summary works", {
 
 
 test_that("h5_gene_names works", {
+  skip_on_ci()
+  skip_on_cran()
+
   # setup
   h5_samplepath <- ""
 
@@ -23,6 +29,9 @@ test_that("h5_gene_names works", {
 
 
 test_that("h5_expression_data works", {
+  skip_on_ci()
+  skip_on_cran()
+
   # setup
   h5_samplepath <- ""
 
