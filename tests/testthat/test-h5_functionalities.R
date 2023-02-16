@@ -1,11 +1,11 @@
 test_that("h5_summary works", {
+  skip_on_ci()
+  skip_on_cran()
+  skip_on_covr()
   skip_if(!any(
     c("h5DataPath", "h5_summary") %in%
       targets::tar_outdated(targets_only = FALSE)
   ), "Anything relevant for this test changed since last run.")
-  skip_on_ci()
-  skip_on_cran()
-  skip_on_covr()
 
   # setup
   h5_samplepath <- targets::tar_read(h5DataPath)
@@ -22,13 +22,13 @@ test_that("h5_summary works", {
 })
 
 test_that("h5_gene_names works", {
+  skip_on_ci()
+  skip_on_cran()
+  skip_on_covr()
   skip_if(!any(
     c("h5DataPath", "h5_gene_names") %in%
       targets::tar_outdated(targets_only = FALSE)
   ), "Anything relevant for this test changed since last run.")
-  skip_on_ci()
-  skip_on_cran()
-  skip_on_covr()
 
   # setup
   h5_sample_path <- targets::tar_read(h5DataPath)
@@ -44,13 +44,13 @@ test_that("h5_gene_names works", {
 
 
 test_that("h5_expression_data works", {
+  skip_on_ci()
+  skip_on_cran()
+  skip_on_covr()
   skip_if(!any(
     c("h5DataPath", "h5_expression_data") %in%
       targets::tar_outdated(targets_only = FALSE)
   ), "Anything relevant for this test changed since last run.")
-  skip_on_ci()
-  skip_on_cran()
-  skip_on_covr()
 
   # setup
   h5_samplepath <- targets::tar_read(h5DataPath)
