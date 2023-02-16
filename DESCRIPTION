@@ -1,5 +1,5 @@
 Package: simulomicsr
-Title: What the Package Does (One Line, Title Case)
+Title: Easy simulator of OMICS data in R
 Version: 0.0.0.9001
 Authors@R: c(
     person("Corrado", "Lanera", , "corrado.lanera@ubep.unipd.it", role = c("aut", "cre"),
@@ -7,7 +7,10 @@ Authors@R: c(
     person("Luca", "Vedovelli", , "luca.vedovelli@ubep.unipd.it", role = "aut",
            comment = c(ORCID = "0000-0003-4847-2333"))
   )
-Description: What the package does (one paragraph).
+Description: Simulate OMICS data in a simple way (i.e., without any
+    parameter specification), for a quick models prototyping and tests.
+    PROS: works out-of-the-box without setting (quite) any additional
+    parameter. CONS: not suitable for complex designs.
 License: file LICENSE
 Imports: 
     fs,
