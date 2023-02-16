@@ -29,9 +29,8 @@ list(
     format = "file"
   ),
 
-  tar_target(h5GeneNames, h5_gene_names(h5DataPath))
-
-
+  tar_target(h5GeneNames, h5_gene_names(h5DataPath)),
+  tar_target(h5Summary, h5_summary(h5DataPath))
 
   # # compile yor report
   # tar_render(report, here::here("reports/report.Rmd")),

@@ -1,5 +1,7 @@
 h5_summary <- function(h5_filepath) {
-  NULL
+  rhdf5::h5ls(h5_filepath) |>
+    tibble::as_tibble() |>
+    separate_h5_summary_dims()
 }
 
 h5_gene_names <- function(h5_filepath) {

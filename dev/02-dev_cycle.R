@@ -49,7 +49,7 @@ renv::snapshot()
   basename() |>
   usethis::use_r()
 
-# "<my_fun>" |>
-#   usethis::use_test() |>
-#   basename() |>
-#   usethis::use_r()
+"h5_utils" |>
+  usethis::use_test() |>
+  basename() |>
+  usethis::use_r()

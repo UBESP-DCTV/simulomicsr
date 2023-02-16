@@ -17,3 +17,4 @@ list.files(here("R"), pattern = "\\.R$", full.names = TRUE) |>
 # `target_name` is NOT quoted!)
 
 tar_read(h5GeneNames)
+tar_read(h5Summary) |>
