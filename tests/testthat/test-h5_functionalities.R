@@ -62,6 +62,6 @@ test_that("h5_expression_data works", {
   # test
   h5_expression_data(h5_samplepath, 1e9) |>
     expect_error("provide a lower")
-  expect_tibble(res_default_50, nrows = 50, ncols = 62548)
-  expect_tibble(res_100, nrows = 100, ncols = 62548)
+  expect_tibble(res_default_50, nrows = 62548, ncols = 51)
+  expect_tibble(res_100, nrows = 62548, ncols = 101)
 })

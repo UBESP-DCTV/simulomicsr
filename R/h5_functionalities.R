@@ -36,5 +36,7 @@ h5_expression_data <- function(
       index = list(datasets, seq_len(n_genes))
     ) |>
     tibble::as_tibble(.name_repair = "minimal") |>
-    purrr::set_names(gene_names)
+    purrr::set_names(gene_names) |>
+    t() |>
+    tibble::as_tibble(rownames = 'genes', .name_repair = 'unique')
 }
