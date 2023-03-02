@@ -1,4 +1,5 @@
 # simulomicsr (development version)
+* h5 implemented
 
 # simulomicsr 0.0.0.9000
 

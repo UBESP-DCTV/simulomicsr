@@ -51,12 +51,16 @@ renv::snapshot()
 ## `R/functions.R`, you can create other couple of test/function-script
 ## by running the following lines of code as needed.
 
-"h5_functionalities" |>
-  usethis::use_test() |>
-  basename() |>
-  usethis::use_r()
+setup_func <- function(name) {
+  usethis::use_test(name) |>
+    basename() |>
+    usethis::use_r()
+}
 
-"h5_utils" |>
-  usethis::use_test() |>
-  basename() |>
-  usethis::use_r()
+setup_func("h5_functionalities")
+setup_func("h5_utils")
+setup_func("prot_func")
+setup_func("prot_utils")
+
+
+

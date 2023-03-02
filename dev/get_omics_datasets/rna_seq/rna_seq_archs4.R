@@ -13,25 +13,25 @@ library('rhdf5')
 h5ls('C:/archs4_gene_human_v2.1.2.h5')
 
 # Gene names to use as annotation
-genes_names <- h5read('C:/archs4_gene_human_v2.1.2.h5', 
+genes_names <- h5read('C:/archs4_gene_human_v2.1.2.h5',
                                     'meta/genes')[["gene_symbol"]]
 
 # The actual expression data.
 ### WARNING!###
-# Do not try do get them all in a single step. Use `index` to subset the file
+# Do not try do get them all in a single step. Use `index` to subset the
+# file.
 # the first argument are the rows (genes) and the second the expression datasets
 seq_db <- as.data.frame(h5read('C:/archs4_gene_human_v2.1.2.h5',
-                  
+
                   'data/expression', index = list(1:62548, c(1:50))))
 
 # add the genes to the dataset
 seq_db$genes <- genes_names
 
 # if you need you can get the metadata for every single file-run used
-samples <- h5read('C:/archs4_gene_human_v2.1.2.h5', 
+samples <- h5read('C:/archs4_gene_human_v2.1.2.h5',
                   'meta/samples')
 
 
 
 
-                  

@@ -1,10 +1,10 @@
 BiocManager::install("lgatto/rpx")
 
 library(rpx)
-id <- "PXD000001"
-px <- PXDataset(id)
-
-txt <- pxfiles(px) |> as.data.frame()
+# id <- "PXD000001"
+# px <- PXDataset(id)
+#
+# txt <- pxfiles(px) |> as.data.frame()
 
 # FILTRARE PER SPECIES!
 
