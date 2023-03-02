@@ -16,27 +16,24 @@ list.files(here::here("R"), pattern = "\\.R$", full.names = TRUE) |>
 # Set target-specific options such as packages.
 tar_option_set(
   error = "continue",
-  workspace_on_error = TRUE
+  workspace_on_error = TRUE,
+  format = "qs"
 )
 
 # End this file with a list of target objects.
 list(
 
-  # # Import your file from custom (shared) location, and preprocess them
-  # tar_target(
-  #   db_raw_path,
-  #   file.path(get_input_data_path("db_raw.csv")),
-  #   format = "file"
-  # ),
-  #
-  # # Use {qs} in {targets} to save space and time in save/load objects
-  # tar_target(db_raw, import_data(db_raw_path), format = "qs"),
-  # tar_target(db, preprocess(db_raw), format = "qs"),
-  #
-  #
-  # # Call your custom functions as needed.
-  # tar_target(relevantResult, relevant_computation(db), format = "qs"),
-  #
+  tar_target(
+    h5DataPath,
+    get_input_data_path("RNAseq/archs4_gene_human_v2.1.2.h5"),
+    format = "file"
+  ),
+
+  tar_target(h5GeneNames, h5_gene_names(h5DataPath)),
+  tar_target(h5Summary, h5_summary(h5DataPath)),
+  tar_target(h5Expression50Rand1, h5_expression_data(h5DataPath)),
+  tar_target(h5Expression50Rand2, h5_expression_data(h5DataPath))
+
   # # compile yor report
   # tar_render(report, here::here("reports/report.Rmd")),
   #

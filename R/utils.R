@@ -52,3 +52,15 @@ share_objects <- function(obj_list) {
   purrr::walk2(obj_list, obj_paths, readr::write_rds)
   obj_paths
 }
+
+
+`%||%` <- function(x, y) if (is.null(x)) y else x
+
+
+
+
+
+
+
+
+
