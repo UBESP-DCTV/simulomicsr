@@ -32,7 +32,7 @@ h5_expression_data <- function(
 
   h5_filepath |>
     rhdf5:::h5read(
-      'data/expression',
+      "data/expression",
       index = list(datasets, seq_len(n_genes))
     ) |>
     tibble::as_tibble(.name_repair = "minimal") |>
