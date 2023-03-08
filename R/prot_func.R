@@ -10,10 +10,13 @@ pull_pxd_listfile <- function(pdxs) {
 
 have_proteingroups <- function(pxd_list) {
   are_to_retain <- pxd_list |>
-    purrr::map_lgl(~any(stringr::str_detect(.x, "proteinGroups\\.txt")))
+    purrr::map_lgl(~{
+      any(stringr::str_detect(.x, "proteinGroups\\.txt"), na.rm = TRUE)
+    })
 }
 
 extract_with_proteins <- function(pxd_list) {
+
   names(pxd_list[have_proteingroups(pxd_list)])
 }
 

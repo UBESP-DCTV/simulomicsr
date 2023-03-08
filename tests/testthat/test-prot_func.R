@@ -22,13 +22,20 @@ test_that("extract_with_proteins works", {
   no_prot <- compose_pxds(c(1, 4))
   some_pdxs <- c(with_prot, no_prot)
 
+  pxd_NA <- compose_pxds(c(2, 22))
+
   # eval
   res <- pull_pxd_listfile(some_pdxs) |>
     extract_with_proteins() |>
     suppressMessages()
 
+  res_NA <- pull_pxd_listfile(pxd_NA) |> # PXD2 returns NA
+    extract_with_proteins() |>
+    suppressMessages()
+
   # test
   expect_character(res, len = 1L)
+  expect_character(res_NA, len = 1L)
   expect_equal(res, with_prot)
 })
 
