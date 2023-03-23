@@ -30,13 +30,20 @@ sample_db[, seq_len(5^2)] |>
 r <- rhdf5::h5read(
   tar_read(h5DataPath),
   "meta/samples"
-)[["characteristics_ch1"]]
+)
+
+to_use <- str_detect(r[["characteristics_ch1"]], "treatment")
 
 res <- tibble(
-  string = str_subset(r, "treatment"),
-  treat = extract_treatment(string)
+  string = r[["characteristics_ch1"]][to_use],
+  geo_accession = r[["geo_accession"]][to_use],
+  series_id = r[["series_id"]][to_use],
+  treat = extract_treatment(string),
+  trtctr = trt2casecontrol(treat)
 ) |>
   remove_missing()
+
+
 
 slice_head(res, n = 98) |> print(n = Inf)
 
