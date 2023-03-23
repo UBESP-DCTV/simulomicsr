@@ -12,6 +12,10 @@ view_in_excel <- function(.data) {
 }
 
 
+extract_treatment <- function(string) {
+  stringr::str_extract(string, "(?<=treatment: )[^,]+(?=,?)")
+}
+
 extract_fct_names <- function(path) {
   readr::read_lines(path) |>
     stringr::str_extract_all("^.*(?=`? ?<- ?function)") |>

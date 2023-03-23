@@ -4,6 +4,7 @@
 
 # setup -----------------------------------------------------------
 
+library(tidyverse)
 library(targets)
 library(here)
 
@@ -16,10 +17,24 @@ list.files(here("R"), pattern = "\\.R$", full.names = TRUE) |>
 # use `tar_read(target_name)` to load a target anywhere (note that
 # `target_name` is NOT quoted!)
 
-tar_read(h5GeneNames)
-
-tar_read(h5Summary)
+sample_db <- tar_read(h5Expression50Rand1)
 
 
-tar_read(h5Summary)[["n_datasets"]] |>
-  max(na.rm = TRUE)
+sample_db[, seq_len(5^2)] |>
+  pivot_longer(everything()) |>
+  ggplot(aes(value)) +
+  geom_histogram() +
+  facet_wrap(~name, scales = "free")
+
+
+r <- rhdf5::h5read(
+  tar_read(h5DataPath),
+  "meta/samples"
+)[["characteristics_ch1"]]
+
+res <- tibble(
+  string = str_subset(r, "treatment"),
+  treat =
+)
+
+slice_head(res, n = 98) |> print(n = Inf)

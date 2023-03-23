@@ -17,3 +17,22 @@ test_that("extract_fct_names works", {
   # expectation
   expect_equal(res, c("a", "c", "d", "%||%"))
 })
+
+
+test_that("extract_treatment works", {
+  # setup
+  first <- "treatment: siNT,cell line: OCI-LY1"
+  last <- "cell type: NTera2/D1,treatment: none"
+  spaces <-
+    "cell line: MDA-MB-231,treatment: CXCL12 (0ng/mL) + IGF1 (0ng/mL)"
+
+  # eval
+  res_first <- extract_treatment(first)
+  res_last <- extract_treatment(last)
+  res_spaces <- extract_treatment(spaces)
+
+  # test
+  expect_equal(res_first, "siNT")
+  expect_equal(res_last, "none")
+  expect_equal(res_spaces, "CXCL12 (0ng/mL) + IGF1 (0ng/mL)")
+})
