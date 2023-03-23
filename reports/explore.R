@@ -34,7 +34,12 @@ r <- rhdf5::h5read(
 
 res <- tibble(
   string = str_subset(r, "treatment"),
-  treat =
-)
+  treat = extract_treatment(string)
+) |>
+  remove_missing()
 
 slice_head(res, n = 98) |> print(n = Inf)
+
+res$treat |>
+  trt2casecontrol() |>
+  unique()

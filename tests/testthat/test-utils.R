@@ -36,3 +36,32 @@ test_that("extract_treatment works", {
   expect_equal(res_last, "none")
   expect_equal(res_spaces, "CXCL12 (0ng/mL) + IGF1 (0ng/mL)")
 })
+
+test_that("trt2casecontrol works", {
+  # setup
+  ctr <- "none"
+  ctr_upper <- "None"
+  none <- "foo"
+  none_upper <- "Foo"
+  all <- c(ctr, none)
+  zero <- "0 mg/ml"
+  ten <- "10 mg/ml"
+
+  # eval
+  res_ctr <- trt2casecontrol(ctr)
+  res_ctr_upper <- trt2casecontrol(ctr_upper)
+  res_none <- trt2casecontrol(none)
+  res_none_upper <- trt2casecontrol(none_upper)
+  res_all <- trt2casecontrol(all)
+  res_zero <- trt2casecontrol(zero)
+  res_ten <- trt2casecontrol(ten)
+
+  # test
+  expect_equal(res_ctr, "control")
+  expect_equal(res_ctr_upper, "control")
+  expect_equal(res_none, "foo")
+  expect_equal(res_none_upper, "Foo")
+  expect_equal(res_all, c("control", "foo"))
+  expect_equal(res_zero, "control")
+  expect_equal(res_ten, "treated")
+})
