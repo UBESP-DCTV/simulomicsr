@@ -43,7 +43,7 @@ res <- tibble(
 ) |>
   remove_missing()
 
-
+readr::write_rds(res, file = "relevant_sample.rds")
 
 slice_head(res, n = 98) |> print(n = Inf)
 
