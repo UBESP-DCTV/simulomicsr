@@ -41,7 +41,15 @@ res <- tibble(
   treat = extract_treatment(string),
   trtctr = trt2casecontrol(treat)
 ) |>
-  remove_missing()
+  map_dfc(as.character) |>
+  remove_missing() |>
+  with_groups(series_id, dplyr::filter, any(trtctr == "control")) |>
+  mutate(trtctr = if_else(trtctr != "control", "treated", trtctr)) |>
+  with_groups(series_id, dplyr::filter, any(trtctr == "treated")) |>
+  depigner::view_in_excel()
+
+
+
 
 readr::write_rds(res, file = "relevant_sample.rds")
 

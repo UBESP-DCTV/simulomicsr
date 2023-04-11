@@ -18,18 +18,21 @@ trt2casecontrol <- function(string) {
     paste0(
       "(",
       c(
-        "none", "control", "non-treated", "vehicle", "dmso", "demso",
-        "dmem", "dsmo", "dpbs", "na", "no[ _]treat", "untreated", "^no$",
-        "^normal$", "ctrl", "mock", "no *drug", "normoxia", "placebo",
-        "Unstimulated", "empty *vector", "^0$", "Media", "medium",
-        "without", "Non-stimulated", "((\\s|^)0 ?../.?l)",
-        "((\\s|^)0 ?..(\\s|$))", "No *treatment", "Empty", "ctr",
-        "No \\S+ treatment", "health *individual", "healthy *donor",
-        "GFP only", "FBS", "EtOH", "ethonol", "^et$", "^doxy?-$",
-        "distilled water", "dmo[gs]", "MethodBlank_0", "pbs", "ctl",
-        "^nt$", "(pre|un)[ -_]?treat(ment|ed)?", "Uninfected", "NO Dox",
-        "no_treament", "no .+ treatment", "^pre$", "pre-guadecitabine",
-        "baseline", "normal growing"
+        "\\bnone\\b", "control", "non-treated", "vehicle", "\\bdmso\\b", "\\bdemso\\b",
+        "\\bdmem\\b", "\\bdsmo\\b", "\\bdpbs\\b", "\\bna\\b", "no[ _]treat", "untreated", "^no$",
+        "^normal$", "\\bctrl\\b", "\\bmock\\b", "no *drug", "normoxia", "placebo",
+        "Unstimulated", "empty *vector", "Non-stimulated", "\\bEtOH\\b",
+        "ethonol", "distilled water", "no_treament", "no .+ treatment",
+        "\\bpbs\\b", "\\bctl\\b", "baseline", "\\bdmem\\b"
+        # "^0$", "Media", "medium",
+        # "without", "((\\s|^)0 ?../.?l)",
+        # "((\\s|^)0 ?..(\\s|$))", "No *treatment", "Empty", "ctr",
+        # "No \\S+ treatment", "health *individual", "healthy *donor",
+        # "GFP only", "FBS", "^et$", "^doxy?-$",
+        # "dmo[gs]", "MethodBlank_0",
+        # "^nt$", "(pre|un)[ -_]?treat(ment|ed)?", "Uninfected", "NO Dox",
+        # "^pre$", "pre-guadecitabine",
+        # "normal growing"
 
       ),
       ")",
@@ -39,6 +42,7 @@ trt2casecontrol <- function(string) {
     collapse = "|"
   ) |>
     stringr::str_to_lower()
+
   trts <- paste(
     paste0("(^",
       c(

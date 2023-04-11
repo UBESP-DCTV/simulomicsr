@@ -44,8 +44,15 @@ test_that("trt2casecontrol works", {
   none <- "foo"
   none_upper <- "Foo"
   all <- c(ctr, none)
-  zero <- "0 mg/ml"
+  # zero <- "0 mg/ml"
   ten <- "10 mg/ml"
+  wrong_ctr <- c(
+    "cell type: OCI-Ly7 cell line,treatment: transduced with anti-EZH2 shRNA #2 for EZH2 for 7 days",
+    "cell line: HeLa S3,treatment: siRNA against SFMBT1 (#1) + LSD1 (#2) + CoREST (#1),internal reference: 120123_lane7_VLB4"
+  )
+  wrong_trt <- c(
+    "strain: C57Bl6/J,cell type: human pancreatic adenocarcinoma cell line,condition/treatment: DMEM"
+  )
 
   # eval
   res_ctr <- trt2casecontrol(ctr)
@@ -53,8 +60,10 @@ test_that("trt2casecontrol works", {
   res_none <- trt2casecontrol(none)
   res_none_upper <- trt2casecontrol(none_upper)
   res_all <- trt2casecontrol(all)
-  res_zero <- trt2casecontrol(zero)
+  # res_zero <- trt2casecontrol(zero)
   res_ten <- trt2casecontrol(ten)
+  res_wrong_ctrl <- trt2casecontrol(wrong_ctr)
+  res_wrong_trt <- trt2casecontrol(wrong_trt)
 
   # test
   expect_equal(res_ctr, "control")
@@ -62,6 +71,8 @@ test_that("trt2casecontrol works", {
   expect_equal(res_none, "foo")
   expect_equal(res_none_upper, "Foo")
   expect_equal(res_all, c("control", "foo"))
-  expect_equal(res_zero, "control")
+  # expect_equal(res_zero, "control")
   expect_equal(res_ten, "treated")
+  expect_false(any(res_wrong_ctrl == "control"))
+  expect_false(any(res_wrong_trt == "treated"))
 })
