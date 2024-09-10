@@ -18,22 +18,26 @@ trt2casecontrol <- function(string) {
     paste0(
       "(",
       c(
-        "\\bnone\\b", "control", "non-treated", "vehicle", "\\bdmso\\b", "\\bdemso\\b",
-        "\\bdmem\\b", "\\bdsmo\\b", "\\bdpbs\\b", "\\bna\\b", "no[ _]treat", "untreated", "^no$",
-        "^normal$", "\\bctrl\\b", "\\bmock\\b", "no *drug", "normoxia", "placebo",
-        "Unstimulated", "empty *vector", "Non-stimulated", "\\bEtOH\\b",
-        "ethonol", "distilled water", "no_treament", "no .+ treatment",
-        "\\bpbs\\b", "\\bctl\\b", "baseline", "\\bdmem\\b"
-        # "^0$", "Media", "medium",
-        # "without", "((\\s|^)0 ?../.?l)",
-        # "((\\s|^)0 ?..(\\s|$))", "No *treatment", "Empty", "ctr",
-        # "No \\S+ treatment", "health *individual", "healthy *donor",
-        # "GFP only", "FBS", "^et$", "^doxy?-$",
-        # "dmo[gs]", "MethodBlank_0",
-        # "^nt$", "(pre|un)[ -_]?treat(ment|ed)?", "Uninfected", "NO Dox",
-        # "^pre$", "pre-guadecitabine",
-        # "normal growing"
+        "control", "vehicle", "baseline", "placebo", "no.*treat",
+        "untreated", "^no$", "^normal$", "ctrl", "ctl",
+        "Unstimulated", "empty *vector(?!.*inib)", "Non-stimulated", "\\bnone\\b",
+        "^-+$", "no *drug", "scramble", "^medium$",
 
+        "^dmso \\d+h(ours)?$", "^[^a-zA-Z]*dmso[^a-zA-Z]*$", "\\bdemso\\b",
+        "\\bdsmo\\b", "treated with dmso for \\d+h",
+        "^\\d+ *hr *0.05% *dmso$", "dmso[ -]*treat",
+
+        "\\bdmem\\b",
+        "\\bdpbs\\b", "(?<!inib \\+ )\\bpbs\\b",
+        "\\bna\\b",
+        "\\bmock\\b",
+        "normoxia",
+
+        "rpmi *1640",
+
+        "distilled water",
+
+        "\\bEtOH\\b", "^ethonol$", "^ethanol$"
       ),
       ")",
       collapse = "|"
@@ -44,12 +48,13 @@ trt2casecontrol <- function(string) {
     stringr::str_to_lower()
 
   trts <- paste(
-    paste0("(^",
+    paste0(
       c(
         "yes", "treatment", "treated", "treat", "exercise", "Drug.*",
-        "infected", "flu-infected", "^\\w+mab$"
+        "infected", "flu-infected", "^\\w+mab$", "imab"
       ),
-    "$)", collapse = "|"),
+      collapse = "|"
+    ),
     "Compound",
     "([123456789]\\d*)",
     "([123456789]\\d* ?../.?l)",

@@ -39,7 +39,16 @@ test_that("extract_treatment works", {
 
 test_that("trt2casecontrol works", {
   # setup
-  ctr <- "none"
+  ctr <- c(
+    "none",
+    "no  treatment",
+    "treated with PBS-1086",
+    "infected with empty vector & treated with DMSO"
+  )
+  trt <- c(
+    "treated with erlotinib + PBS-1086",
+    "infected with empty vector & treated with erlotinib"
+  )
   ctr_upper <- "None"
   none <- "foo"
   none_upper <- "Foo"
@@ -53,9 +62,10 @@ test_that("trt2casecontrol works", {
   wrong_trt <- c(
     "strain: C57Bl6/J,cell type: human pancreatic adenocarcinoma cell line,condition/treatment: DMEM"
   )
+  dmso_ctr <- c("DMSO (0.005%)", "(DMSO)")
+  dmso_trt <- c("500 nM JQ1 (DMSO)")
 
   # eval
-  res_ctr <- trt2casecontrol(ctr)
   res_ctr_upper <- trt2casecontrol(ctr_upper)
   res_none <- trt2casecontrol(none)
   res_none_upper <- trt2casecontrol(none_upper)
@@ -65,14 +75,25 @@ test_that("trt2casecontrol works", {
   res_wrong_ctrl <- trt2casecontrol(wrong_ctr)
   res_wrong_trt <- trt2casecontrol(wrong_trt)
 
+  res_ctr <- trt2casecontrol(ctr)
+  res_trt <- trt2casecontrol(trt)
+
+  res_dmso_ctr <- trt2casecontrol(dmso_ctr)
+  res_dmso_trt <- trt2casecontrol(dmso_trt)
+
   # test
-  expect_equal(res_ctr, "control")
+  expect_true(all(res_ctr == "control"))
+  expect_true(all(res_trt == "treated"))
+
   expect_equal(res_ctr_upper, "control")
   expect_equal(res_none, "foo")
   expect_equal(res_none_upper, "Foo")
-  expect_equal(res_all, c("control", "foo"))
+  expect_equal(res_all, c(rep("control", 4), "foo"))
   # expect_equal(res_zero, "control")
   expect_equal(res_ten, "treated")
   expect_false(any(res_wrong_ctrl == "control"))
   expect_false(any(res_wrong_trt == "treated"))
+
+  expect_true(all(res_dmso_ctr == "control"))
+  expect_false(any(res_dmso_trt == "control"))
 })
