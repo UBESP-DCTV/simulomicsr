@@ -31,3 +31,4 @@ Sezioni standard:
 | ID | Titolo | Status | Data |
 |----|--------|--------|------|
 | [0001](0001-sistema-tracking.md) | Sistema di tracking decisioni | Accepted | 2026-04-29 |
+| [0002](0002-struttura-research-compendium.md) | Struttura repo come research compendium | Accepted | 2026-04-29 |
