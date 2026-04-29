@@ -24,7 +24,7 @@ la valutazione del classificatore LLM treated/control.
 | `series_id` | GSE ID dello studio di provenienza |
 | `treat` | Label di trattamento estratto (es. `"siNT"`, `"VEGF"`) |
 | `trtctr` | **Baseline shallow.** Classificazione automatica precedente basata su keyword (control / dmso / water / ...) |
-| `gold` | **(Da chiarire con l'autore)** Probabile colonna di consenso/decisione finale |
+| `gold` | **Ricontrollo di un terzo revisore** sulla classificazione treated/control (oltre EP). Utilizzabile come gold standard di seconda generazione |
 
 ## Politica
 

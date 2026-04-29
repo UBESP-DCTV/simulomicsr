@@ -1,7 +1,7 @@
 # Design — Classificatore LLM meta-analytics-aware (Stadio 2 della pipeline simulomicsr)
 
-- **Data:** 2026-04-29
-- **Stato:** Draft (in attesa di review utente)
+- **Data:** 2026-04-29 (v2 — dopo prima review utente)
+- **Stato:** Draft (iterato, in attesa di review v2 + decisione su §9.4 vocabolari e §9.5 disease_vs_normal)
 - **Ambito:** Stadio 2 della pipeline complessiva (vedi ADR-0002 e visione progetto)
 - **ADR collegati:** ADR-0001 (tracking), ADR-0002 (struttura repo)
 - **Skill upstream:** brainstorming
@@ -91,7 +91,7 @@ Output JSON per ogni GSM. Campi `null` quando il dato non è ricavabile dalla st
   },
   "extraction": {
     "schema_version": "stage1.v1",
-    "model": "claude-haiku-4-5",
+    "model": "openai:gpt-4o-mini",                          // provider:modello — astratto, vedi §5.3
     "confidence": 0.78,                                    // 0..1
     "ambiguity_flags": [                                   // *enum
       "missing_dose",
@@ -173,7 +173,7 @@ Un oggetto JSON per ogni GSE, prodotto dall'LLM dopo aver letto: (a) lista dei `
   ],
   "extraction": {
     "schema_version": "stage2.v1",
-    "model": "claude-sonnet-4-6",
+    "model": "openai:gpt-5",                                // provider:modello — astratto, vedi §5.3
     "confidence": 0.81,
     "ambiguity_flags": ["nonstandard_baseline_choice"],
     "input_sample_count": 12,
@@ -253,14 +253,48 @@ Target principali (in ordine di dipendenza):
 8. `eval_against_gold` — confronto contro `trtctr_EP` del xlsx, metriche aggregate e per-strato
 9. `eval_report` — Quarto report con confusion matrix, calibrazione confidence, casi di disaccordo
 
-### 5.3 Modelli e costi
+### 5.3 Provider LLM e modelli
 
-- **Stadio 1: Claude Haiku 4.5.** Throughput alto, schema rigido, output breve. Prompt caching aggressivo: il system prompt + lo schema JSON + i few-shot example sono cachati (TTL 5 min). Quando possibile, **batch API** (sconto 50%) per il run massivo.
-- **Stadio 2: Claude Sonnet 4.6.** Ragionamento sul design, schema più ricco, contesto dello studio. Prompt caching su system + schema + esempi. Online (non batch) perché lo stadio 2 viene tipicamente lanciato a follow-up dello stadio 1 e il volume è ~10× più piccolo.
-- **Opus 4.7** non viene usato come default ma resta disponibile per: re-processing di GSE con `extraction.confidence < 0.5` dello stadio 2; arbitraggio su sample contesi durante la valutazione.
-- **Locale (es. Llama 3.1 8B/70B)** è considerato out of scope per questo design ma non escluso: il `R/llm-client.R` dovrà essere astratto sui provider per lasciare la porta aperta.
+**Provider primario: OpenAI** (vincolo organizzativo: pagamento via università). L'`R/llm-client.R` è progettato come strato astratto per consentire swap futuro a Anthropic (preferenza dell'utente quando il vincolo cambia) o provider locale.
 
-Stima costi indicativa (da raffinare): ~$200-500 per il run completo sui 130k sample del xlsx, con prompt caching e batch API. **Vincolo finale di budget da confermare con l'utente.**
+#### 5.3.1 Modelli proposti (placeholder concreti, decisione finale in ADR-modelli separato)
+
+- **Stadio 1: modello OpenAI veloce/economico** (es. `gpt-4o-mini` o equivalente "nano" della serie 5 quando disponibile). Schema rigido, output JSON breve.
+- **Stadio 2: modello OpenAI capace** (es. `gpt-5` o `gpt-4o`). Ragionamento sul design dello studio, schema più ricco.
+- **Modello arbitro**: `gpt-5` (o Opus equivalente se torniamo a Anthropic) per re-processing di GSE con `confidence < 0.5` allo Stadio 2.
+
+#### 5.3.2 Feature OpenAI da sfruttare
+
+- **Structured Outputs** (`response_format: {type: "json_schema", strict: true}`) — garantisce conformità 100% allo schema JSON dichiarato. Riduce a zero gli errori di parsing.
+- **Batch API** (`/v1/batches`) — sconto 50%, latenza fino a 24h, ideale per lo Stadio 1 sui 700k+ sample ARCHS4.
+- **Automatic Prompt Caching** — sui prompt > 1024 token cachati ricarichi pagano ~50% in meno; nessuna gestione manuale, ma TTL ~5-10 min: serve raggruppare le chiamate dello stesso template entro la finestra.
+
+#### 5.3.3 Costi indicativi (tutto ARCHS4 ≈ 700k+ sample)
+
+Ordine di grandezza (da raffinare con benchmark sul dev set):
+- Stadio 1 (700k chiamate, GPT-4o-mini, batch API + caching): ~$300-700
+- Stadio 2 (~50k GSE univoci stimati, GPT-5/4o, real-time + caching): ~$500-1500
+- Eval set + iterazioni di sviluppo: ~$100-300
+- **Totale stimato: $1000-2500** sull'intero ARCHS4
+
+Vincolo budget: **nessun problema operativo dichiarato dall'utente** (copertura università). I numeri restano da verificare con un benchmark sui primi 1000 sample.
+
+#### 5.3.4 Astrazione del client
+
+```r
+# R/llm-client.R (firma indicativa)
+llm_call(
+  provider   = "openai",                  # "openai" | "anthropic" | "local" — swap-friendly
+  model      = "gpt-4o-mini",
+  messages   = list(...),
+  response_schema = json_schema_obj,      # se provider lo supporta
+  cache_key  = NULL,                      # bypass cache se NULL
+  batch      = FALSE,                     # se TRUE accumula in batch file
+  ...
+)
+```
+
+Adapter per ogni provider: `R/llm-client-openai.R`, `R/llm-client-anthropic.R` (già pronto per il futuro). Schema → format-string mapping per Structured Outputs (OpenAI) e Tool Use (Anthropic).
 
 ### 5.4 Idempotenza e cache
 
@@ -324,16 +358,51 @@ Dimensione iniziale: 1000 sample (validazione veloce). Espansione successiva: tu
 
 Ambiente: l'ambiente attuale `renv` è disallineato (R 4.2.2 lockfile vs 4.5.2 system) — la riconciliazione è ADR separato (vedi task #12). Non blocca il design, blocca l'esecuzione del prototipo.
 
-## 9. Decisioni rinviate / da chiarire con l'utente
+## 9. Decisioni — stato dopo prima review utente (2026-04-29)
 
-1. **Colonna `gold` nel xlsx.** Significato esatto (consenso EP+altro? revisione successiva?). Va chiarito prima di usarla in valutazione.
-2. **Sorgente sample finale.** Si lavora solo sui 130k del xlsx, oppure si scala in futuro a tutto ARCHS4 (~700k+)? Il design regge a entrambi i casi; cambia solo il piano d'esecuzione.
-3. **Vincolo budget LLM.** Stima $200-500 per run completo. Tetto da confermare.
-4. **Vocabolari controllati esterni.** Mappare a HGNC/UniProt/DrugBank/Cellosaurus richiede risorse di lookup: si fa subito (Stadio 1 prova a normalizzare) o ex-post deterministicamente? Default proposto: l'LLM tenta nello Stadio 1 ma lo schema accetta `null`; in parallelo, una funzione R deterministica `R/normalize.R` può raffinare.
-5. **Gestione di sample `disease_vs_normal`.** Lo schema li copre, ma la meta-analisi differential expression su questo sub-design ha statistica diversa (case-control invece di treated-vs-control). Va deciso se includerli come prima classe o trattarli come scope separato della meta-analisi.
-6. **Schema versioning policy.** Bumping di `schema_version` invalida la cache → ricalcolo costoso. Conviene definire una policy (deprecation window, migration script) prima del primo run sui 130k.
-7. **Multi-organism.** Lo schema accetta organism free; se la pipeline scala oltre human/mouse, vocabolari di gene ID divergono. Proposta: per ora ristringere a human + mouse nei criteri di inclusione meta-analisi, e flaggare gli altri.
-8. **Costruzione di un gold "design-aware".** Per misurare davvero la qualità dello Stadio 2 serve un sub-set etichettato direttamente come `design_role` (vedi caveat in §6.2). Dimensione minima proposta: 200-300 sample, stratificati per `design_kind` e per cell context. Costo: lavoro umano. Da decidere: chi etichetta? In quanto tempo?
+| # | Tema | Stato | Decisione / Note |
+|---|---|---|---|
+| 1 | Colonna `gold` nel xlsx | **Risolto** | È il ricontrollo di un terzo revisore sulla classificazione treated/control (oltre EP). Utilizzabile come gold di seconda generazione. Documentato anche in `data-raw/README.md` |
+| 2 | Sorgente sample finale | **Risolto** | Tutto ARCHS4 (~700k+ sample). Il xlsx 130k è il sotto-insieme già etichettato e resta il primo eval set. Implicazione: serve uno stadio upstream (acquisizione + filtraggio rilevanza) prima del classificatore — *spec separata* |
+| 3 | Budget LLM e provider | **Risolto** | Provider: OpenAI (vincolo università). Nessun blocco di budget dichiarato. Astrazione del client per swap futuro |
+| 4 | Vocabolari controllati (HGNC/DrugBank/Cellosaurus/...) | **In discussione** | Utente non li conosce. Proposta default: ibrido — l'LLM produce nome canonico + id_candidate; lookup deterministico R verifica e corregge (vedi §9.A) |
+| 5 | `disease_vs_normal` come prima classe | **In discussione** | Da decidere se includere in meta-analisi o come scope separato (vedi §9.B) |
+| 6 | Schema versioning policy | **Risolto** | Procediamo come da §5.4 con `schema_version` esplicito. Migration script in `R/migrate.R` quando serve un bump |
+| 7 | Multi-organism | **Risolto — aperto** | Manteniamo lo schema agnostico sull'organism. Nessuna restrizione a human+mouse |
+| 8 | Gold design-aware | **Pianificato** | L'utente lo costruirà quando saremo "a buon punto" (prototipo Stadio 2 funzionante su un subset, prima del run massivo) |
+
+### §9.A — Vocabolari controllati (riferimento)
+
+Sono dizionari ufficiali che assegnano un ID univoco a un'entità biologica. Servono perché due studi possono dire la stessa cosa con nomi diversi (es. `VEGFA` vs `VEGF` vs `Vascular Endothelial Growth Factor A` → tutti `HGNC:12680`). Senza ID canonico, il raggruppamento cross-studio è inaffidabile.
+
+| Vocabolario | Cosa contiene | Esempio | Lookup |
+|---|---|---|---|
+| **HGNC** | Gene umani | `HGNC:1100` = BRCA1 | dump TSV pubblico, free |
+| **MGI** | Gene mouse | `MGI:104537` = Brca1 | dump TSV pubblico, free |
+| **UniProt** | Proteine | `P38398` = BRCA1 | API + dump |
+| **Cellosaurus** | Linee cellulari | `CVCL_8800` = OCI-LY1 | dump XML, free |
+| **DrugBank** | Farmaci approvati | `DB00997` = Doxorubicin | dump XML, accademico free con licenza |
+| **ChEMBL** | Composti chimici (ampio) | `CHEMBL53463` | dump SQLite, free |
+| **MeSH** | Termini medici | `D001943` = Breast Neoplasms | dump XML, free |
+| **NCBI Taxonomy** | Specie | `9606` = Homo sapiens | dump TSV, free |
+
+**Strategia ibrida proposta** (default): nello Stadio 1 l'LLM compila `agent_normalized.preferred_name` (es. `"VEGFA"`) e tenta `id_candidate` (es. `"HGNC:12680"`). Una funzione R deterministica `normalize_agent()` esegue lookup nei dump locali (`R/lookup.R`, dati cached in `inst/extdata/` o scaricati on-demand) e o conferma o sostituisce con il match corretto. Conseguenze: l'LLM può sbagliare ID e veniamo coperti; se l'agente è ambiguo (es. `"control"`), l'ID resta `null` e il sample viene classificato senza anchor canonico.
+
+### §9.B — Studi `disease_vs_normal`
+
+Sono studi che confrontano sample da pazienti/tessuti patologici vs sample sani (es. tumore vs adiacente normale, paziente vs donatore). Sono comuni nei dataset GEO (TCGA-style, oncologia, autoimmuni, neuro).
+
+In ottica meta-analisi:
+- **Statistica**: simile a treated-vs-control formalmente (DESeq2/limma, contrasto fra due gruppi), ma il "trattamento" non è applicato → è uno stato. La direzione del fold change è "case − comparison".
+- **Comparability anchor**: diverso. La chiave canonica diventa `disease_vs_normal | MeSH_disease_term | tissue | organism`. Non c'è dose, durata, agent.
+- **Volume**: significativo. Escludendoli si perde una grande fetta di GEO.
+
+Tre opzioni:
+- **(B1)** Includere come prima classe nel design del classificatore E nella meta-analisi finale. Il classificatore già copre `design_kind=case_control_disease` e `design_role ∈ {case, comparison}`. Comparability anchor adattato.
+- **(B2)** Includere nel classificatore (lo schema li copre comunque) ma escludere dalla meta-analisi statistica (li raccogliamo, non li poolliamo).
+- **(B3)** Escludere dal classificatore (filtro pre-Stadio 2). Solo studi `treatment_vs_*` e `time_course` proseguono.
+
+**Default proposto:** (B1) includere. Motivazione: il filtro è semplice e separabile downstream (gli anchor di tipo `disease_vs_normal|...` non si confondono con `small_molecule|...`); la copertura del corpus aumenta. La meta-analisi statistica può applicare modelli leggermente diversi senza che il classificatore cambi.
 
 ## 10. Out of scope (esplicitamente)
 
@@ -354,14 +423,12 @@ Ambiente: l'ambiente attuale `renv` è disallineato (R 4.2.2 lockfile vs 4.5.2 s
 | Costi LLM esplodono su long-tail di GSE grandi (centinaia di sample) | Media | Medio | Truncation policy nello Stadio 2; chunking se sample > 50; flag `input_truncated` |
 | Mismatch fra semantica gold xlsx (`trtctr_EP`) e semantica design-aware del classificatore | Alta | Medio | Esplicitato in §6.2 caveat; affiancare un gold "design-aware" rifatto su subset (vedi §9.8); usare il xlsx come test di non-regressione, non come gold primario per lo Stadio 2 |
 
-## 12. Open questions for review
+## 12. Punti chiusi dopo seconda review utente
 
-L'utente è invitato a verificare in particolare:
+- **§3 schema Stadio 1** — i campi proposti (perturbation kind/agent, dose, time, cell context, organism, confidence, ambiguity flags) sono il candidato di partenza; nessun campo aggiunto/rimosso in questa iterazione. Possibili aggiunte future come ADR separato.
+- **§4.2 `design_role`** — la lista (perturbed, vehicle_control, untreated_control, negative_genetic_control, positive_control, baseline_t0, case, comparison, secondary_arm, excluded, unclear) è il candidato di partenza.
+- **§6.2 proxy `design_role → trtctr_predicted`** — è il "ponte tecnico" tra le metriche del nostro schema design-aware e il vecchio gold xlsx (che etichetta solo treated/control). Accettato come strumento di non-regressione, NON come gold di valutazione primaria. Il gold primario sarà il design-aware da costruire (§9.8).
+- **§9.1 colonna `gold`** — risolto: ricontrollo di un terzo revisore (vedi §9 tabella).
+- **§9.5 `disease_vs_normal`** — proposta default: includere come prima classe (B1). In attesa di conferma utente — vedi §9.B.
 
-- §3 schema Stadio 1: campi mancanti? campi superflui?
-- §4.2 vocabolario `design_role`: serve aggiungere `dose_response_arm`, `differentiation_endpoint`, altro?
-- §6.2 metriche: il proxy "design_role → trtctr_predicted" è accettabile come ponte al gold xlsx?
-- §9 punto 1: cosa è `gold`?
-- §9 punto 5: includere `disease_vs_normal` come prima classe?
-
-Una volta approvata la spec, si passa alla skill `writing-plans` per il piano di implementazione (target-by-target, con checkpoint di review).
+Una volta che l'utente approva questa versione della spec, si passa alla skill `writing-plans` per il piano di implementazione (target-by-target, con checkpoint di review).
