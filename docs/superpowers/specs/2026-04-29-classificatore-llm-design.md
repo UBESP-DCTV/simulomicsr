@@ -1,7 +1,8 @@
 # Design — Classificatore LLM meta-analytics-aware (Stadio 2 della pipeline simulomicsr)
 
-- **Data:** 2026-04-29 (v3 — dopo seconda review utente, tutti i punti aperti chiusi)
-- **Stato:** Stable, pronta per `writing-plans` (in attesa di approvazione finale utente)
+- **Data:** 2026-04-29 (v4 — applicate 7 revisioni R1-R7 emerse dal dry-run su sample reali)
+- **Stato:** Stable v2 schema, pronta per `writing-plans` (in attesa di approvazione finale utente)
+- **Allegato:** `2026-04-29-classificatore-llm-design.dry-run.md` (prove e motivazioni delle revisioni R1-R7)
 - **Ambito:** Stadio 2 della pipeline complessiva (vedi ADR-0002 e visione progetto)
 - **ADR collegati:** ADR-0001 (tracking), ADR-0002 (struttura repo)
 - **Skill upstream:** brainstorming
@@ -54,9 +55,13 @@ Vincoli di progettazione che giustificano la separazione in due stadi:
 - Lo Stadio 2 è *interpretativo del design* (relazione fra sample dentro lo studio) → richiede contesto allargato e ragionamento; ma riceve dati già strutturati, non testo grezzo, quindi il context window basta.
 - I due stadi falliscono in modo diverso e si validano in modo diverso (vedi §6).
 
-## 3. Schema dati — Stadio 1 (sample_facts)
+## 3. Schema dati — Stadio 1 (sample_facts) — versione v2 (post dry-run)
 
 Output JSON per ogni GSM. Campi `null` quando il dato non è ricavabile dalla stringa di metadati. Vocabolari controllati segnalati con asterisco; gli altri campi sono stringhe libere ma normalizzate (lowercase, trim).
+
+> **Storia revisioni schema:**
+> - **stage1.v1** — schema iniziale (commit 64984d2)
+> - **stage1.v2** — applicato dopo dry-run su 10 sample reali (commit 1520caa). Cambiamenti R1-R7: `perturbations` come array, aggiunto `disease_state`, `cell_context.engineered_modifications`, `cell_context.context_kind`, `technical_treatments`, ampliato vocabolario `kind` e `ambiguity_flags`. Vedi `2026-04-29-classificatore-llm-design.dry-run.md` per le motivazioni.
 
 ```json
 {
@@ -67,72 +72,113 @@ Output JSON per ogni GSM. Campi `null` quando il dato non è ricavabile dalla st
     "cell_type_or_line_raw": "Primary Human Umbilical Vein Endothelial Cells",
     "cell_line_cellosaurus_candidate": null,               // ID Cellosaurus se identificabile, altrimenti null
     "tissue": "vascular endothelium",                      // free text
-    "passage_or_state": "P3-6"
+    "passage_or_state": "P3-6",
+    "context_kind": "primary_culture",                     // *enum: vedi §3.5
+    "engineered_modifications": []                         // baseline genetica/farmacologica della linea (R2)
   },
-  "perturbation": {
-    "kind": "cytokine_stimulation",                        // *enum: vedi §3.1
-    "agent_raw": "VEGF",
-    "agent_normalized": {
-      "type": "gene_or_protein",                           // *enum: vedi §3.2
-      "id_database": "HGNC",                               // *enum: HGNC | UniProt | DrugBank | ChEMBL | MeSH | CHEBI | null
-      "id": "HGNC:12680",                                  // null se non risolvibile dalla sola stringa
-      "preferred_name": "VEGFA"
-    },
-    "dose": {                                              // null se non riportato
-      "value_raw": null,
-      "value_numeric": null,
-      "unit": null
-    },
-    "duration": {                                          // null se non riportato
-      "value_raw": "0h",
-      "value_hours": 0,
-      "is_zero_timepoint": true                            // flag esplicito: t=0 in time-course
+  "disease_state": {                                       // R3: separato dalle perturbazioni attive
+    "term_raw": null,                                      // testo grezzo se presente, es. "ME/CFS", "NEPC"
+    "mesh_id_candidate": null,                             // MeSH ID candidate (verificato ex-post in R/lookup.R)
+    "status": "none"                                       // *enum: vedi §3.6
+  },
+  "perturbations": [                                       // R1: ARRAY (era oggetto singolo)
+    {
+      "kind": "cytokine_stimulation",                      // *enum: vedi §3.1
+      "agent_raw": "VEGF",
+      "agent_normalized": {
+        "type": "gene_or_protein",                         // *enum: vedi §3.2
+        "id_database": "HGNC",                             // *enum: HGNC | UniProt | DrugBank | ChEMBL | MeSH | CHEBI | null
+        "id": "HGNC:12680",                                // null se non risolvibile dalla sola stringa
+        "preferred_name": "VEGFA"
+      },
+      "dose": {"value_raw": null, "value_numeric": null, "unit": null},
+      "duration": {"value_raw": "0h", "value_hours": 0, "is_zero_timepoint": true},
+      "is_negative_control": false                         // true per siNT/scrambled/empty vector/vehicle-only
     }
-  },
+  ],
+  "technical_treatments": [],                              // R4: matrici cultura, fractionation, batch, etc.
   "extraction": {
-    "schema_version": "stage1.v1",
-    "model": "openai:gpt-4o-mini",                          // provider:modello — astratto, vedi §5.3
+    "schema_version": "stage1.v2",
+    "model": "openai:gpt-5.4-mini",                         // default per Stadio 1; vedi §5.3
     "confidence": 0.78,                                    // 0..1
-    "ambiguity_flags": [                                   // *enum
-      "missing_dose",
-      "time_zero_timepoint"
-    ],
+    "ambiguity_flags": ["missing_dose", "time_zero_timepoint"],   // *enum: vedi §3.3
     "raw_input_hash": "sha256:..."                         // dello string GEO usato in input
   }
 }
 ```
 
-### 3.1 Vocabolario `perturbation.kind`
+### 3.1 Vocabolario `perturbation.kind` (v2)
 
-- `small_molecule` — drug/compound (es. doxorubicin, dmso, tamoxifen)
+- `small_molecule` — drug/compound (doxorubicin, tamoxifen, ecc.)
+- `vehicle_only` — solo veicolo dichiarato (DMSO, PBS, water, ethanol, mock); R1/R7
 - `genetic_knockdown` — siRNA, shRNA, antisense
 - `genetic_knockout` — CRISPR, gene deletion
 - `genetic_overexpression` — transgene, vector overexpression
 - `cytokine_stimulation` — recombinant proteins (VEGF, TNF, IL6, EGF, …)
-- `pathogen_exposure` — viral/bacterial infection
-- `environmental` — hypoxia, starvation, irradiation, heat shock
-- `disease_vs_normal` — sample da paziente o tessuto patologico vs sano (no intervention attiva)
+- `pathogen_or_aggregate_exposure` — viral/bacterial infection, **misfolded aggregate exposure (alpha-syn PFF, Aβ, ecc.)** (R6)
+- `environmental` — hypoxia, starvation, irradiation, heat shock, exercise
 - `differentiation` — protocollo di differenziamento cellulare
 - `mechanical_or_physical` — strain, shear, electroporation
 - `none` — nessuna perturbazione esplicita riportata
 - `unclear` — riportato qualcosa di non riconducibile a nessun kind sopra
 
+> Nota: `disease_vs_normal` come `kind` è stato **rimosso** in v2 perché lo stato di malattia non è più una perturbazione: è ora rappresentato in `disease_state` (R3).
+
 ### 3.2 Vocabolario `agent_normalized.type`
 
-- `gene_or_protein` (HGNC / UniProt) — per knockdown, knockout, overexpression, cytokine, recombinant protein
+- `gene_or_protein` (HGNC / UniProt) — knockdown, knockout, overexpression, cytokine, recombinant protein
 - `small_molecule` (DrugBank / ChEMBL / CHEBI) — drug, compound
 - `vehicle` — DMSO, PBS, water, ethanol, mock
-- `disease_term` (MeSH) — quando `kind=disease_vs_normal`
+- `disease_term` (MeSH) — usato in `disease_state.mesh_id_candidate`, non più in `perturbation`
+- `genotype` — varianti germline, copy-number, ecc. (es. `SNCA_4COPY`)
 - `none`
 - `other`
 
-### 3.3 Vocabolario `ambiguity_flags`
+### 3.3 Vocabolario `ambiguity_flags` (v2)
 
-`missing_dose`, `missing_duration`, `time_zero_timepoint`, `multi_factor_in_string`, `compound_unmapped`, `cell_line_ambiguous`, `vehicle_only`, `description_too_short`, `mixed_organism_terms`, `study_specific_jargon`.
+`missing_dose`, `missing_duration`, `time_zero_timepoint`, `multi_factor_in_string`, `compound_unmapped`, `cell_line_ambiguous`, `vehicle_only`, `description_too_short`, `mixed_organism_terms`, `study_specific_jargon`, **`multiple_perturbations`** (R7), **`engineered_cell_line`** (R7), **`technical_treatment_only`** (R7), **`disease_state_present`** (R7), **`control_unspecified`** (R7), **`post_treatment_ambiguous`** (R7).
+
+### 3.4 Vocabolario `technical_treatments[].kind` (R4, nuovo)
+
+- `culture_matrix` — Matrigel, collagen, fibronectin, ecc.
+- `electroporation_method` — protocollo di trasfezione fisico
+- `rna_fractionation` — xPAP, total RNA, polyA selection
+- `cell_synchronization` — serum starvation, double thymidine, nocodazole
+- `chip_or_clip_setup` — antibody, crosslinking method
+- `batch_or_processing` — annotazione di batch nominale (`batch: 2`)
+- `other_technical`
+
+### 3.5 Vocabolario `cell_context.context_kind` (R5, nuovo)
+
+- `cell_line_in_vitro` — linea cellulare immortalizzata in coltura standard
+- `primary_culture` — cellule primarie freschamente isolate (HUVEC, hMSC, ecc.)
+- `iPSC_derived` — cellule differenziate da iPSC
+- `organoid` — coltura 3D / sferoide / organoide
+- `xenograft` — tessuto in vivo da xenotrapianto in topo immunodeficiente
+- `primary_tissue` — biopsia/tessuto da paziente o donatore (whole blood, biopsy)
+- `pdx_derived_cell_line` — linea ricavata da PDX
+- `co_culture` — più tipi cellulari conviventi
+- `unclear`
+
+### 3.6 Vocabolario `disease_state.status` (R3, nuovo)
+
+- `case` — sample da paziente o tessuto/cellula patologica nel design caso/controllo
+- `comparison` — sample sano/normale comparativo nel design caso/controllo
+- `disease_model` — modello in vitro/in vivo della malattia (linea con genotipo patologico, iPSC paziente-derivato senza comparison sano nello stesso GSE)
+- `none` — sample non riferito a stato di malattia
+
+### 3.7 Vocabolario `cell_context.engineered_modifications[].kind` (R2, nuovo)
+
+- `germline_genotype` — variante stabile (es. `SNCA_4COPY`, `BRCA1_5382insC`)
+- `crispr_stable` — knockout/knockin/CRISPRi/CRISPRa stabilizzato (es. `dCas9-KRAB-MeCP2` linea)
+- `transgene_stable` — vettore di overexpression integrato in modo stabile
+- `drug_adapted` — linea cronicamente esposta a un farmaco/condizione (es. `MCF-7/AC-1` AI-adapted)
+- `reporter_stable` — reporter fluorescenti/luminescenti integrati
+- `other`
 
 ## 4. Schema dati — Stadio 2 (study_design)
 
-Un oggetto JSON per ogni GSE, prodotto dall'LLM dopo aver letto: (a) lista dei `sample_facts` dello stadio 1, (b) `study_title` + `study_summary` + `study_overall_design` da GEO API per quel GSE.
+Un oggetto JSON per ogni GSE, prodotto dall'LLM dopo aver letto: (a) lista dei `sample_facts` dello stadio 1 (schema v2), (b) `study_title` + `study_summary` + `study_overall_design` da GEO API per quel GSE.
 
 ```json
 {
@@ -173,7 +219,7 @@ Un oggetto JSON per ogni GSE, prodotto dall'LLM dopo aver letto: (a) lista dei `
   ],
   "extraction": {
     "schema_version": "stage2.v1",
-    "model": "openai:gpt-5",                                // provider:modello — astratto, vedi §5.3
+    "model": "openai:gpt-5.5",                              // default per Stadio 2; vedi §5.3
     "confidence": 0.81,
     "ambiguity_flags": ["nonstandard_baseline_choice"],
     "input_sample_count": 12,
@@ -209,20 +255,29 @@ Un oggetto JSON per ogni GSE, prodotto dall'LLM dopo aver letto: (a) lista dei `
 - `excluded` — sample che il LLM segnala come inadatto al design (QC fallito, outlier dichiarato)
 - `unclear` — ruolo non ricostruibile
 
-### 4.3 Definizione di `comparability_anchor`
+### 4.3 Definizione di `comparability_anchor` (v2 con schema esteso)
 
-Stringa canonica deterministica per cross-studio matching, prodotta da una funzione R pura `make_anchor(stage1_facts, stage2_role)` (NON dall'LLM). Schema concatenato con `|`:
+Stringa canonica deterministica per cross-studio matching, prodotta da una funzione R pura `make_anchor(stage1_facts, stage2_role)` (NON dall'LLM). Per ciascun confronto si genera l'anchor PRENDENDO LA PERTURBAZIONE DI INTERESSE (selezionata dallo Stadio 2 fra le `perturbations[]` del sample) e fattorizzando le altre dimensioni rilevanti.
+
+Formato (concatenato con `|`):
 
 ```
-{perturbation.kind}|{agent_normalized.id_or_preferred_name}|{dose_canonical}|{duration_hours_or_NA}|{cell_canonical}|{tissue_canonical}
+{kind_di_interesse}|{agent_id_or_name}|{dose_canonical}|{duration_hours_or_NA}|
+{cell_id}|{context_kind}|{tissue_canonical}|{disease_status_or_none}|
+{has_engineered_baseline:bool}
 ```
 
 Esempi:
-- `cytokine_stim|HGNC:12680|nodose|1h|HUVEC|vascular_endothelium`
-- `small_molecule|DB00997|10nM|24h|MCF7|breast`
-- `genetic_knockdown|HGNC:1001|nodose|72h|OCI-LY1|lymphoid`
+- `cytokine_stim|HGNC:12680|nodose|1h|HUVEC|primary_culture|vascular_endothelium|none|false`
+- `small_molecule|DB00997|10nM|24h|MCF-7|cell_line_in_vitro|breast|none|false`
+- `genetic_knockdown|HGNC:1001|nodose|72h|OCI-LY1|cell_line_in_vitro|lymphoid|none|false`
+- `disease_vs_normal|MeSH:D010300|nodose|na|iPSC_neurons|iPSC_derived|brain|case|true`  *(PD model con genotype)*
+- `pathogen_or_aggregate_exposure|HGNC:11138|nodose|3h|iPSC_neurons|iPSC_derived|brain|disease_model|true`  *(PFF su SNCA_4COPY)*
 
-L'anchor è **versionato** (`anchor_version`) per poter cambiare la regola senza dover re-classificare i sample (basta ricalcolare la funzione deterministica).
+Note:
+- I sample con `has_engineered_baseline=true` (linee modificate stabilmente) vengono raggruppati separatamente da quelli con baseline wild-type, anche se la perturbazione attiva è la stessa. Evita confonders cross-studio.
+- Per gli studi `disease_vs_normal`, l'anchor distingue `case` da `comparison` perché il fold-change atteso è `case − comparison`, non viceversa.
+- L'anchor è **versionato** (`anchor_version`) per poter cambiare la regola senza dover re-classificare i sample (basta ricalcolare la funzione deterministica).
 
 ## 5. Pipeline tecnica (R + targets)
 
@@ -259,9 +314,12 @@ Target principali (in ordine di dipendenza):
 
 #### 5.3.1 Modelli proposti (placeholder concreti, decisione finale in ADR-modelli separato)
 
-- **Stadio 1: modello OpenAI veloce/economico** (es. `gpt-4o-mini` o equivalente "nano" della serie 5 quando disponibile). Schema rigido, output JSON breve.
-- **Stadio 2: modello OpenAI capace** (es. `gpt-5` o `gpt-4o`). Ragionamento sul design dello studio, schema più ricco.
-- **Modello arbitro**: `gpt-5` (o Opus equivalente se torniamo a Anthropic) per re-processing di GSE con `confidence < 0.5` allo Stadio 2.
+- **Stadio 1 (default): `gpt-5.4-mini`** — modello OpenAI veloce/economico, schema rigido, output JSON breve. Eseguito in batch API per il run massivo.
+- **Stadio 2 (default): `gpt-5.5`** — modello OpenAI capace, ragionamento sul design dello studio, schema più ricco. Real-time per default; batch se il volume di GSE giustifica la latenza.
+- **Sviluppo iniziale**: `gpt-5.5` ANCHE per lo Stadio 1 nei primi 100-200 sample del dev set, per non confondere "errore di schema" con "limite del modello piccolo". Switch a `gpt-5.4-mini` solo quando il prompt è stabile e gli errori dipendono dal modello.
+- **Modello arbitro**: `gpt-5.5` per re-processing di GSE con `confidence < 0.5` allo Stadio 2.
+
+**A/B opzionale (consigliato sul dev set)**: validare il prompt anche con un modello Anthropic (Claude Haiku 4.5 / Sonnet 4.6) sul medesimo dev set di 100-200 sample. Confronto di disagreement rate tra provider de-risca le scelte di prompt e mette un secondo paio di occhi sui casi ambigui. Costo aggiuntivo limitato. *Vincolo*: necessita di crediti API Anthropic separati dal piano Claude Max (i piani Max non includono crediti API — vanno acquistati su `console.anthropic.com`).
 
 #### 5.3.2 Feature OpenAI da sfruttare
 
