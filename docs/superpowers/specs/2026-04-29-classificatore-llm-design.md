@@ -1,7 +1,7 @@
 # Design — Classificatore LLM meta-analytics-aware (Stadio 2 della pipeline simulomicsr)
 
 - **Data:** 2026-04-29 (v5 — applicate TUTTE le 17 revisioni strutturali + 14 incrementali emerse dai 4 dry-run su 190 sample)
-- **Stato:** Stable v3 schema, pronta per `writing-plans` (in attesa di approvazione finale utente)
+- **Stato:** **APPROVED 2026-04-29 dall'utente.** Pronta per `writing-plans` da invocare in **nuova sessione** Claude Code (sessione corrente troppo densa per pianificare bene).
 - **Allegati dry-run** (prove e motivazioni di ogni revisione):
   - `2026-04-29-classificatore-llm-design.dry-run.md` — 10 sample, R1-R7
   - `2026-04-29-classificatore-llm-design.dry-run-2.md` — 30 sample, R8-R20
