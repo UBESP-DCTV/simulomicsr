@@ -1,7 +1,7 @@
 # Design — Classificatore LLM meta-analytics-aware (Stadio 2 della pipeline simulomicsr)
 
-- **Data:** 2026-04-29 (v2 — dopo prima review utente)
-- **Stato:** Draft (iterato, in attesa di review v2 + decisione su §9.4 vocabolari e §9.5 disease_vs_normal)
+- **Data:** 2026-04-29 (v3 — dopo seconda review utente, tutti i punti aperti chiusi)
+- **Stato:** Stable, pronta per `writing-plans` (in attesa di approvazione finale utente)
 - **Ambito:** Stadio 2 della pipeline complessiva (vedi ADR-0002 e visione progetto)
 - **ADR collegati:** ADR-0001 (tracking), ADR-0002 (struttura repo)
 - **Skill upstream:** brainstorming
@@ -365,8 +365,8 @@ Ambiente: l'ambiente attuale `renv` è disallineato (R 4.2.2 lockfile vs 4.5.2 s
 | 1 | Colonna `gold` nel xlsx | **Risolto** | È il ricontrollo di un terzo revisore sulla classificazione treated/control (oltre EP). Utilizzabile come gold di seconda generazione. Documentato anche in `data-raw/README.md` |
 | 2 | Sorgente sample finale | **Risolto** | Tutto ARCHS4 (~700k+ sample). Il xlsx 130k è il sotto-insieme già etichettato e resta il primo eval set. Implicazione: serve uno stadio upstream (acquisizione + filtraggio rilevanza) prima del classificatore — *spec separata* |
 | 3 | Budget LLM e provider | **Risolto** | Provider: OpenAI (vincolo università). Nessun blocco di budget dichiarato. Astrazione del client per swap futuro |
-| 4 | Vocabolari controllati (HGNC/DrugBank/Cellosaurus/...) | **In discussione** | Utente non li conosce. Proposta default: ibrido — l'LLM produce nome canonico + id_candidate; lookup deterministico R verifica e corregge (vedi §9.A) |
-| 5 | `disease_vs_normal` come prima classe | **In discussione** | Da decidere se includere in meta-analisi o come scope separato (vedi §9.B) |
+| 4 | Vocabolari controllati (HGNC/DrugBank/Cellosaurus/...) | **Risolto** | Strategia ibrida: LLM produce nome canonico + id_candidate nello Stadio 1; funzione R deterministica `R/lookup.R` verifica/corregge tramite dump locali. Dettagli §9.A |
+| 5 | `disease_vs_normal` come prima classe | **Risolto** | Inclusi come prima classe (opzione B1 in §9.B). Lo Stadio 2 li annota; la meta-analisi li poolia separatamente con anchor disease-based |
 | 6 | Schema versioning policy | **Risolto** | Procediamo come da §5.4 con `schema_version` esplicito. Migration script in `R/migrate.R` quando serve un bump |
 | 7 | Multi-organism | **Risolto — aperto** | Manteniamo lo schema agnostico sull'organism. Nessuna restrizione a human+mouse |
 | 8 | Gold design-aware | **Pianificato** | L'utente lo costruirà quando saremo "a buon punto" (prototipo Stadio 2 funzionante su un subset, prima del run massivo) |
@@ -402,7 +402,7 @@ Tre opzioni:
 - **(B2)** Includere nel classificatore (lo schema li copre comunque) ma escludere dalla meta-analisi statistica (li raccogliamo, non li poolliamo).
 - **(B3)** Escludere dal classificatore (filtro pre-Stadio 2). Solo studi `treatment_vs_*` e `time_course` proseguono.
 
-**Default proposto:** (B1) includere. Motivazione: il filtro è semplice e separabile downstream (gli anchor di tipo `disease_vs_normal|...` non si confondono con `small_molecule|...`); la copertura del corpus aumenta. La meta-analisi statistica può applicare modelli leggermente diversi senza che il classificatore cambi.
+**Decisione (2026-04-29 v3):** **(B1) inclusi come prima classe.** Motivazione: il filtro è semplice e separabile downstream (gli anchor di tipo `disease_vs_normal|...` non si confondono con `small_molecule|...`); la copertura del corpus aumenta. La meta-analisi statistica può applicare modelli leggermente diversi senza che il classificatore cambi.
 
 ## 10. Out of scope (esplicitamente)
 
@@ -429,6 +429,7 @@ Tre opzioni:
 - **§4.2 `design_role`** — la lista (perturbed, vehicle_control, untreated_control, negative_genetic_control, positive_control, baseline_t0, case, comparison, secondary_arm, excluded, unclear) è il candidato di partenza.
 - **§6.2 proxy `design_role → trtctr_predicted`** — è il "ponte tecnico" tra le metriche del nostro schema design-aware e il vecchio gold xlsx (che etichetta solo treated/control). Accettato come strumento di non-regressione, NON come gold di valutazione primaria. Il gold primario sarà il design-aware da costruire (§9.8).
 - **§9.1 colonna `gold`** — risolto: ricontrollo di un terzo revisore (vedi §9 tabella).
-- **§9.5 `disease_vs_normal`** — proposta default: includere come prima classe (B1). In attesa di conferma utente — vedi §9.B.
+- **§9.4 vocabolari controllati** — risolto: strategia ibrida LLM + lookup R deterministico (vedi §9.A).
+- **§9.5 `disease_vs_normal`** — risolto: inclusi come prima classe (B1) (vedi §9.B).
 
 Una volta che l'utente approva questa versione della spec, si passa alla skill `writing-plans` per il piano di implementazione (target-by-target, con checkpoint di review).
