@@ -4,17 +4,18 @@
 \name{simulomicsr-package}
 \alias{simulomicsr}
 \alias{simulomicsr-package}
-\title{simulomicsr: What the Package Does (One Line, Title Case)}
+\title{simulomicsr: Pipeline di classificazione LLM per RNAseq da repository pubblici}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-What the package does (one paragraph).
+Pipeline R per scaricare metadati di sample RNAseq da GEO/ARCHS4, classificarli via LLM in fatti strutturati e ruoli di design study-level, e produrre confronti per meta-analisi cross-studio.
 }
 \author{
 \strong{Maintainer}: Corrado Lanera \email{corrado.lanera@ubep.unipd.it} (\href{https://orcid.org/0000-0002-0520-7428}{ORCID})
 
 Authors:
 \itemize{
+  \item Corrado Lanera \email{corrado.lanera@ubep.unipd.it} (\href{https://orcid.org/0000-0002-0520-7428}{ORCID})
   \item Luca Vedovelli \email{luca.vedovelli@ubep.unipd.it} (\href{https://orcid.org/0000-0003-4847-2333}{ORCID})
 }
 
