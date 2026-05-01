@@ -43,6 +43,13 @@ cache_init <- function(dir, namespace = "default") {
   )
 }
 
+#' Inserisce un valore nella cache (append-only su JSONL + indice SQLite)
+#'
+#' Note: i valori `NA` in `value` vengono serializzati come `null` JSON e
+#' tornano come `NULL` al `cache_get()`. Se l'identità tipologica di `NA`
+#' è importante per il chiamante, evitare di mettere `NA` direttamente
+#' nei `value` cacheati o convertirli in stringhe come `"NA"` prima del put.
+#'
 #' @keywords internal
 cache_put <- function(cache, key, value, metadata = list()) {
   stopifnot(inherits(cache, "simulomicsr_cache"))
@@ -54,10 +61,7 @@ cache_put <- function(cache, key, value, metadata = list()) {
     metadata = metadata,
     put_at   = format(Sys.time(), "%Y-%m-%dT%H:%M:%OS3Z", tz = "UTC")
   )
-  # serializeJSON garantisce round-trip fedele dei tipi R (NA, NULL, ecc.).
-  # Resta JSON una-riga-per-record e rimane leggibile per audit, anche
-  # se più verboso di toJSON.
-  line <- jsonlite::serializeJSON(record, digits = 8, pretty = FALSE)
+  line <- jsonlite::toJSON(record, auto_unbox = TRUE, null = "null", na = "null")
   line <- paste0(line, "\n")
 
   # Determina offset e size PRIMA di scrivere
@@ -111,7 +115,7 @@ cache_get <- function(cache, key) {
   seek(con, where = res$offset, origin = "start")
   raw <- readBin(con, what = "raw", n = res$byte_size)
   json_line <- rawToChar(raw)
-  jsonlite::unserializeJSON(json_line)
+  jsonlite::fromJSON(json_line, simplifyVector = FALSE)
 }
 
 #' @keywords internal
