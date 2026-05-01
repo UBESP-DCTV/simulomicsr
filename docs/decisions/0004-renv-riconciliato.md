@@ -24,9 +24,18 @@ Imports runtime aggiunti per P1:
 `cli`, `DBI`, `digest`, `fs`, `glue`, `httr2`, `jsonlite`, `jsonvalidate`,
 `purrr`, `readr`, `rlang`, `RSQLite`, `stringr`, `tibble`.
 
-Suggests aggiunti per test/dev:
-`httptest2` (mock httr2), `withr` (env vars in test), oltre al pre-esistente
-testthat/devtools/knitr/rmarkdown.
+Suggests aggiunti per test/dev: `httptest2` (mock httr2 nei test
+adapter OpenAI), `rmarkdown` (build vignette `01-llm-client.Rmd` in
+P1 Task 8). Pre-esistenti mantenuti: `testthat`, `devtools`, `knitr`,
+`withr`, `usethis`, `here`, `lintr`, `qs`, `spelling`, `tarchetypes`,
+`targets`, `covr`, `checkmate`.
+
+Suggests rimossi: `distill`, `htmltools`, `rstudioapi`. I primi due
+servivano al template `reports/report.Rmd` (cancellato dalla pulizia
+pre-P1 perché residuo di altro progetto). `rstudioapi` era usato nel
+blocco di auto-apertura `01-FIRST_RUN.R` di `.Rprofile`: il fallback
+`requireNamespace()` resta graceful, quindi il `.Rprofile` non rompe
+per chi non ha `rstudioapi` installato globalmente.
 
 `Depends: R (>= 4.4)` — compromesso fra modernità (httr2 e jsonvalidate
 recenti funzionano bene su 4.4+) e portabilità.
