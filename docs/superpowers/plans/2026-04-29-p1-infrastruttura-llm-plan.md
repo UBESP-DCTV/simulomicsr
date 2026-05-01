@@ -27,7 +27,7 @@ Ogni file ha una responsabilità precisa, file piccoli e focalizzati:
 
 I file `R/llm-stage1.R`, `R/llm-stage2.R`, `R/anchors.R`, `R/geo-fetch.R`, `R/eval-metrics.R`, `R/migrate.R` sono **NON** in scope di P1 — vengono creati in P2 e P3.
 
-`R/utils.R` esistente non viene toccato (contiene helper legacy non collegati alla pipeline LLM).
+Pre-pulizia (eseguita prima dell'inizio del plan, vedi git log "P1: pulizia residui template..."): rimossi `R/utils.R`, `tests/testthat/test-utils.R`, `reports/`, `tests/testthat/_targets.yaml` e `analysis/_targets_packages.R` ripulito dai residui shiny.
 
 ---
 
@@ -150,7 +150,11 @@ OUTPUT_DATA_FOLDER="output"
 
 - [ ] **Step 0.6: Aggiorna `.gitignore`**
 
-Aggiungere alla fine del file `.gitignore`:
+Due modifiche:
+
+(a) Rimuovere la riga `inst/extdata` (blocca il commit della fixture HGNC che Task 6 introduce; `inst/extdata` è la convenzione R per le fixture distribuite col pacchetto, e va versionato).
+
+(b) Aggiungere alla fine del file:
 
 ```
 # Local secrets — NEVER commit API keys
