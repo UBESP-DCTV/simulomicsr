@@ -109,12 +109,8 @@ llm_call_structured <- function(provider,
   )
 }
 
-# Forward declaration: l'adapter reale vive in R/llm-client-openai.R (Task 5).
-# Questa stub fa fallire in modo chiaro se qualcuno invoca provider="openai"
-# prima che Task 5 sia atterrato.
-.openai_chat_structured <- function(...) {
-  rlang::abort(
-    "Adapter OpenAI non ancora caricato (verra' implementato in Task 5).",
-    class = "simulomicsr_adapter_not_loaded"
-  )
-}
+# Nota: l'adapter reale `.openai_chat_structured` vive in
+# `R/llm-client-openai.R` (Task 5). La forward declaration stub e' stata
+# rimossa perche' R sourcea i file in ordine alfabetico
+# (`llm-client-openai.R` < `llm-client.R`), quindi la stub avrebbe
+# sovrascritto l'adapter reale.
