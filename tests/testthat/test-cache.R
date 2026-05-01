@@ -18,7 +18,7 @@ test_that("cache_put + cache_get fanno round-trip su strutture R complesse", {
   payload <- list(
     geo_accession = "GSM1009635",
     perturbations = list(
-      list(kind = "cytokine_stimulation", agent = "VEGFA", dose = NA)
+      list(kind = "cytokine_stimulation", agent = "VEGFA", dose = "1uM")
     ),
     confidence = 0.81
   )
