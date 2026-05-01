@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-inst/extdata
 
 
 .Renviron
@@ -23,3 +22,9 @@ analysis/output/
 # Git worktrees (isolated workspaces per feature)
 .worktrees/
 
+# Local secrets — NEVER commit API keys
+.Renviron.local
+
+# LLM cache locale del progetto
+analysis/cache/
+inst/cache-test/
