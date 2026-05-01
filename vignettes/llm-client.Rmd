@@ -1,0 +1,144 @@
+---
+title: "Client LLM strutturato"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Client LLM strutturato}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+# Tutti i chunk sono `eval = FALSE` perche' richiederebbero una chiave
+# OPENAI_API_KEY valida e/o file di lookup non disponibili in fase di
+# build del pacchetto. La vignette serve come manuale d'uso.
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  eval     = FALSE
+)
+```
+
+Questa vignette mostra come usare `llm_call_structured()` per ottenere
+output JSON validato da un LLM, con cache locale append-only e
+normalizzazione di simboli genici via dump HGNC.
+
+## Setup
+
+Imposta la chiave API in `.Renviron.local` (gitignored, NON committata):
+
+```r
+# .Renviron.local
+OPENAI_API_KEY=sk-...
+```
+
+E carica il pacchetto:
+
+```r
+library(simulomicsr)
+```
+
+## Chiamata base
+
+`llm_call_structured()` accetta un provider, un modello, una lista di
+messaggi nel formato OpenAI e un path a un JSON Schema. La risposta
+viene validata strutturalmente prima di essere ritornata.
+
+```r
+schema <- system.file(
+  "schemas", "llm-call-envelope.v1.json",
+  package = "simulomicsr"
+)
+
+res <- llm_call_structured(
+  provider        = "openai",
+  model           = "gpt-5.4-mini",
+  messages        = list(
+    list(role = "system", content = "Rispondi in JSON conforme allo schema."),
+    list(role = "user",   content = "Qual e' la capitale d'Italia?")
+  ),
+  response_schema = schema
+)
+
+res$value
+#> $question   "Qual e' la capitale d'Italia?"
+#> $answer     "Roma"
+#> $confidence 0.99
+
+res$validated
+#> [1] TRUE
+
+res$cache_hit
+#> [1] FALSE
+```
+
+## Cache locale
+
+La cache e' append-only: ogni chiamata serializza `provider + model +
+messages` in una cache key SHA-256 e salva il valore in un JSONL con
+indice SQLite per-namespace. Una seconda chiamata identica e' un hit
+senza traffico di rete.
+
+```r
+cache <- cache_init(
+  path      = tempfile("llm-cache-"),
+  namespace = "stage1"
+)
+
+# Prima chiamata: hit la rete, persiste in cache
+res1 <- llm_call_structured(
+  provider                = "openai",
+  model                   = "gpt-5.4-mini",
+  messages                = list(
+    list(role = "user", content = "Qual e' la capitale d'Italia?")
+  ),
+  response_schema         = schema,
+  cache                   = cache,
+  cache_namespace_version = "stage1.v3"
+)
+res1$cache_hit
+#> [1] FALSE
+
+# Seconda chiamata identica: cache hit, nessuna chiamata API
+res2 <- llm_call_structured(
+  provider                = "openai",
+  model                   = "gpt-5.4-mini",
+  messages                = list(
+    list(role = "user", content = "Qual e' la capitale d'Italia?")
+  ),
+  response_schema         = schema,
+  cache                   = cache,
+  cache_namespace_version = "stage1.v3"
+)
+res2$cache_hit
+#> [1] TRUE
+```
+
+Cambiare `cache_namespace_version` invalida la cache: utile quando
+si itera sul prompt di sistema o sullo schema.
+
+## Normalizzazione gene HGNC
+
+`normalize_gene()` risolve un simbolo o alias genico al record HGNC
+canonico (HGNC ID + symbol approvato) usando un dump HGNC locale.
+Il dump e' un TSV con colonne `hgnc_id`, `symbol`, `alias_symbol`,
+`prev_symbol`.
+
+```r
+# Path al dump (utente lo piazza in tools::R_user_dir("simulomicsr"))
+dump <- hgnc_dump_path()
+
+normalize_gene("VEGF", dump_path = dump)
+#> $hgnc_id        "HGNC:12680"
+#> $symbol         "VEGFA"
+#> $match_type     "alias"
+#> $input          "VEGF"
+```
+
+`match_type` puo' essere `"symbol"` (match esatto sul simbolo
+approvato), `"alias"` (alias riconosciuto), `"prev"` (simbolo
+deprecato), o `"unknown"` (nessun match).
+
+> **Nota P1:** in questa fase il dump HGNC va piazzato manualmente
+> nella directory ritornata da `tools::R_user_dir("simulomicsr",
+> which = "data")`. Un plan futuro automatizzera' il download
+> e l'aggiornamento periodico.

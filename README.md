@@ -13,7 +13,35 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of simulomicsr is to …
+## Stato
+
+simulomicsr è una pipeline R per:
+
+1.  scaricare metadati di sample RNAseq da repository pubblici (GEO,
+    ARCHS4)
+2.  classificarli via LLM in fatti strutturati a livello sample (Stadio
+    1)
+3.  ricostruire il design dello studio e i confronti meta-analizzabili
+    (Stadio 2)
+4.  produrre tabelle di confronto cross-studio per `metafor` / `DESeq2`
+    / `limma`
+
+**Plan attivo (2026-04-29):** P1 — Infrastruttura LLM (cache, validator,
+client OpenAI Structured Outputs, lookup gene HGNC). Vedi
+`docs/superpowers/plans/`.
+
+## Quickstart developer
+
+``` r
+# 1) Restore environment
+renv::restore()
+
+# 2) Set OpenAI key (in .Renviron.local — gitignored)
+# OPENAI_API_KEY=sk-...
+
+# 3) Run tests
+devtools::test()
+```
 
 ## Installation
 
