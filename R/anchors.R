@@ -230,3 +230,31 @@ make_anchor <- function(stage1_facts, stage2_role) {
   if (status == "comparison")     return("comparison")
   "none"
 }
+
+#' Audit log degli inducenti per perturbazioni mediated_effect (R8)
+#'
+#' Per ogni perturbazione con mediated_effect != null, registra l'inducente
+#' che make_anchor() perde (es. Dox per sistemi Tet-On). Utile per audit
+#' a valle e per QC manuale.
+#'
+#' @param stage1_facts list (un sample_fact validato stage1.v3)
+#' @return list di entries, una per perturbazione mediated. Vuota se nessuna.
+#'   Ogni entry ha campi: inducer_kind, inducer_name, mediated_kind, mediated_target.
+#' @export
+make_inducer_log <- function(stage1_facts) {
+  perts <- stage1_facts$perturbations %||% list()
+  out <- list()
+  for (p in perts) {
+    if (is.null(p$mediated_effect) || length(p$mediated_effect) == 0L) next
+    # Schema stage1.v3: mediated_effect ha campo `targets` (array), non `target`
+    targets <- p$mediated_effect$targets %||% list()
+    target_str <- if (length(targets) >= 1L) targets[[1L]] else "unknown"
+    out[[length(out) + 1L]] <- list(
+      inducer_kind = p$kind %||% "unknown",
+      inducer_name = p$agent_normalized$preferred_name %||% (p$agent_raw %||% "unknown"),
+      mediated_kind = p$mediated_effect$kind %||% "unknown",
+      mediated_target = target_str
+    )
+  }
+  out
+}
