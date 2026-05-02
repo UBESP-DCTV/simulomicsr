@@ -1,0 +1,101 @@
+---
+title: "Stadio 2: study_design + comparability_anchor"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Stadio 2: study_design + comparability_anchor}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+Lo Stadio 2 di simulomicsr trasforma una lista di `sample_facts.stage1.v3`
+(prodotti dallo Stadio 1 sulle stringhe di metadati GEO) in un record
+`study_design.stage2.v1` per ogni GSE: replicate groups, design_role,
+factor matrix, comparisons appaiate, e — cruciale per la meta-analisi
+cross-studio — `comparability_anchor` v3 calcolato deterministicamente.
+
+## Setup
+
+```{r setup, eval = FALSE}
+library(simulomicsr)
+library(jsonlite)
+
+facts_list <- fromJSON(
+  system.file("extdata/stage2-fixtures-mini/GSE145941-sample-facts.json",
+              package = "simulomicsr"),
+  simplifyVector = FALSE
+)
+study_summary <- fromJSON(
+  system.file("extdata/stage2-fixtures-mini/GSE145941-study-summary.json",
+              package = "simulomicsr"),
+  simplifyVector = FALSE
+)
+cache <- cache_init(tempfile(), namespace = "stage2-vignette")
+```
+
+GSE145941 e' uno studio di irradiazione (0 Gy vs 10 Gy) su astrociti
+primari umani — 8 sample, design semplice `treatment_vs_untreated`.
+
+## Classifica lo studio (richiede `OPENAI_API_KEY`)
+
+```{r classify, eval = FALSE}
+design <- classify_study(
+  series_id = "GSE145941",
+  sample_facts_list = facts_list,
+  study_summary = study_summary,
+  provider = "openai", model = "gpt-5.5",
+  cache = cache
+)
+str(design, max.level = 2)
+```
+
+Output atteso: oggetto `study_design.stage2.v1` con `design_kind`,
+`replicate_groups`, `comparisons` e `extraction` arricchita
+deterministicamente. Per GSE145941 produce tipicamente 2 replicate_groups
+(irradiated vs control), 1 comparison.
+
+## Calcola l'anchor per una comparison
+
+`make_anchor()` e' R puro (no LLM): prende il sample_facts del gruppo
+treated e ritorna l'anchor canonico v3 a 13 segmenti.
+
+```{r anchor, eval = FALSE}
+treated_facts <- facts_list[[1]]  # uno dei sample irradiati
+anchor <- make_anchor(treated_facts, stage2_role = "perturbed")
+anchor
+```
+
+Output esempio:
+`mechanical|ionizing radiation|wt|10Gy|na|exposure|primary_human_astrocytes|primary_culture|proliferating|whole_cell|brain|none|false`
+
+I 13 segmenti permettono il cross-studio matching: due studi diversi che
+misurano "10Gy ionizing radiation on primary astrocytes" producono lo
+stesso anchor → si poolia con metafor REM (Stadio 5).
+
+## Audit log per perturbazioni mediated_effect (R8)
+
+Per perturbazioni inducibili (Tet-On, AID, 4-OHT), `make_anchor()` perde
+l'inducente (es. Dox) per privilegiare il target biologico
+(`mediated_effect.targets`). L'inducente sopravvive in `make_inducer_log()`
+per audit:
+
+```{r inducer, eval = FALSE}
+make_inducer_log(treated_facts)  # vuoto se nessun mediated_effect
+```
+
+## Pipeline targets
+
+Nel `analysis/_targets.R`, lo Stadio 2 e' orchestrato da:
+`study_summaries` (fetch GEO summary cached) → `study_designs_raw`
+(classify_study per GSE su 15 fixture curate) → `study_designs_validated`
+(schema partition) → `comparisons_table` (con anchor precalcolato per
+ogni comparison, 13 segmenti).
+
+Il benchmark P3 usa 15 GSE stratificati per design_kind + edge case
+(factorial, large N, R8 mediated_effect, tumor+drug, metadata povero).
+Vedi ADR-0006 e `data-raw/build-stage2-fixtures.R` per i dettagli.
+
+Vedi `targets::tar_visnetwork()` per il DAG.
