@@ -7,13 +7,21 @@ list.files(here::here("R"), pattern = "\\.R$", full.names = TRUE) |>
   invisible()
 
 tar_option_set(
-  error = "continue",
+  packages = c("tibble", "dplyr", "readxl"),
+  format   = "qs",
+  error    = "continue",
   workspace_on_error = TRUE
 )
 
-# Pipeline reale popolata in P3 (vedi
-# docs/superpowers/specs/2026-04-29-classificatore-llm-design.md §5.2 e
-# il futuro plan P3). In P1 questo file è uno scheletro per non rompere
-# `targets::tar_make()` quando viene invocato durante setup.
 list(
+  tar_target(
+    samples_input_path,
+    here::here("data-raw", "relevant_sample_classified.xlsx"),
+    format = "file"
+  ),
+
+  tar_target(
+    samples_input,
+    read_samples_input(samples_input_path)
+  )
 )
