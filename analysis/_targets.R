@@ -424,7 +424,18 @@ list(
     }
   ),
 
-  # NOTE: eval_p35_report target sara' aggiunto in Task 8 (Rmd ancora da creare).
+  # Quarto report finale P3.5-B (Task 8)
+  tarchetypes::tar_render(
+    eval_p35_report,
+    here::here("analysis", "eval", "p35-benchmark.Rmd"),
+    output_dir = here::here("analysis", "eval"),
+    params = list(
+      stage2_metrics   = eval_stage2_metrics,
+      rummageo_metrics = rummageo_metrics,
+      comparisons_table = comparisons_table,
+      curated_gse      = curated_stage2_gse
+    )
+  ),
 
   # ---------------------------------------------------------------------------
   tar_target(
