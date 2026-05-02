@@ -96,7 +96,7 @@
   }
 
   parsed <- tryCatch(
-    jsonlite::fromJSON(content, simplifyVector = TRUE),
+    jsonlite::fromJSON(content, simplifyVector = FALSE),
     error = function(e) {
       rlang::abort(
         glue::glue("OpenAI ha ritornato content non-JSON: {conditionMessage(e)}"),
