@@ -100,6 +100,39 @@ list(
     }
   ),
 
+  # Cache filesystem dei summary GEO (uno per GSE)
+  tar_target(
+    geo_summary_cache_dir,
+    fs::dir_create(here::here("analysis", "cache", "geo-summary")),
+    format = "file"
+  ),
+
+  # Estrai gli unique series_id dei sample_facts validati
+  # Filtra a SINGLE-GSE pattern (alcuni records hanno series_id come
+  # "GSEX,GSEY" SuperSeries — non supportati da fetch_study_summary).
+  tar_target(
+    study_series_ids,
+    {
+      ids <- vapply(sample_facts_validated, function(f) f$series_id %||% NA_character_,
+                    character(1))
+      ids <- unique(ids[!is.na(ids)])
+      single_gse <- ids[grepl("^GSE[0-9]+$", ids)]
+      n_dropped <- length(ids) - length(single_gse)
+      if (n_dropped > 0L) {
+        message("study_series_ids: dropped ", n_dropped, " multi-GSE entries (SuperSeries)")
+      }
+      single_gse
+    }
+  ),
+
+  # Dynamic branching: una invocazione per series_id
+  tar_target(
+    study_summaries,
+    fetch_study_summary(study_series_ids, cache_dir = geo_summary_cache_dir),
+    pattern = map(study_series_ids),
+    iteration = "list"
+  ),
+
   tar_target(
     eval_stage1_metrics,
     {
