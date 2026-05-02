@@ -257,3 +257,44 @@ parse_rummageo_labels <- function(data) {
   out <- out[!duplicated(out$geo_accession), ]
   out
 }
+
+# Keyword di control per il fallback K-means+keyword (per Marino 2024)
+.RUMMAGEO_CONTROL_KEYWORDS <- c(
+  "ctrl", "control", "wildtype", "wild-type", "wild type", "wt",
+  "dmso", "vehicle", "untreated", "mock", "uninfected", "naive",
+  "non-targeting", "scrambled", "sint", "sineg", "shnt",
+  "empty vector", "ev", "parental"
+)
+
+#' Replica fallback dell'algoritmo RummaGEO (Marino 2024)
+#'
+#' Quando l'API ufficiale non e' disponibile (es. GSE non indicizzato in
+#' RummaGEO), applichiamo internamente lo stesso algoritmo di base:
+#' keyword matching su control terms + default "treated" per il resto.
+#' Questo NON e' equivalente al benchmark "vs RummaGEO ufficiale" —
+#' controlliamo noi il metodo. Documentato come baseline interno nel
+#' report.
+#'
+#' Differenza vs Marino 2024: NON facciamo K-means (non ha senso su
+#' subset di 15 GSE; Marino lo usa per gestire studi grandi). Solo
+#' keyword matching word-boundary per evitare match parziali.
+#'
+#' @param samples tibble con colonne geo_accession, string
+#' @return tibble con colonne geo_accession, rummageo_label (treated/control)
+#' @export
+rummageo_baseline_internal <- function(samples) {
+  stopifnot(all(c("geo_accession", "string") %in% names(samples)))
+  rows <- lapply(seq_len(nrow(samples)), function(i) {
+    s <- tolower(samples$string[i])
+    is_ctrl <- any(vapply(
+      .RUMMAGEO_CONTROL_KEYWORDS,
+      function(kw) grepl(paste0("\\b", kw, "\\b"), s, fixed = FALSE),
+      logical(1)
+    ))
+    tibble::tibble(
+      geo_accession = samples$geo_accession[i],
+      rummageo_label = if (is_ctrl) "control" else "treated"
+    )
+  })
+  dplyr::bind_rows(rows)
+}
