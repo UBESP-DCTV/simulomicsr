@@ -98,5 +98,25 @@ list(
       }, logical(1))
       sample_facts_raw[drop]
     }
+  ),
+
+  tar_target(
+    eval_stage1_metrics,
+    {
+      validity <- stage1_schema_validity_rate(
+        sample_facts_validated, sample_facts_invalid
+      )
+      recall <- stage1_recall_key_fields(sample_facts_validated)
+      tibble::tibble(
+        n_total              = validity$n_total,
+        n_validated          = validity$n_validated,
+        n_invalid            = validity$n_invalid,
+        validity_rate        = validity$validity_rate,
+        n_with_perturbation  = recall$n_with_perturbation,
+        n_with_cell_type     = recall$n_with_cell_type,
+        recall_perturbation  = recall$recall_perturbation,
+        recall_cell_type     = recall$recall_cell_type
+      )
+    }
   )
 )
