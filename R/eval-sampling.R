@@ -78,7 +78,7 @@ build_dev_set <- function(samples, n = 100L, seed = 1812L) {
   )
   if (nrow(pool_disag) < n_disag) rlang::abort(
     glue::glue("Strato disagree_ep_vs_shallow insufficiente: {nrow(pool_disag)} < {n_disag}"),
-    class = "simulomicsr_eval_sampling_thin_stratum", stratum = "disagree"
+    class = "simulomicsr_eval_sampling_thin_stratum", stratum = "disagree_ep_vs_shallow"
   )
   if (nrow(pool_short) < n_short) rlang::abort(
     glue::glue("Strato short_ambiguous insufficiente: {nrow(pool_short)} < {n_short}"),
