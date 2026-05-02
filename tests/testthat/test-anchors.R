@@ -131,3 +131,21 @@ test_that("make_anchor anchor ha sempre 13 segmenti", {
     expect_length(segments, 13L)
   }
 })
+
+# make_inducer_log: audit per R8 mediated_effect -----
+
+test_that("make_inducer_log: ritorna lista vuota se nessun mediated_effect", {
+  facts <- read_fact("vegf-huvec")
+  log <- make_inducer_log(facts)
+  expect_length(log, 0L)
+})
+
+test_that("make_inducer_log: cattura inducente Dox per Tet-On", {
+  facts <- read_fact("dox-teto-sox17")
+  log <- make_inducer_log(facts)
+  expect_length(log, 1L)
+  expect_equal(log[[1L]]$inducer_kind, "small_molecule")
+  expect_match(log[[1L]]$inducer_name, "Dox|doxycycline", ignore.case = TRUE)
+  expect_equal(log[[1L]]$mediated_kind, "genetic_overexpression")
+  expect_match(log[[1L]]$mediated_target, "SOX17")
+})
