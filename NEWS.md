@@ -1,3 +1,64 @@
+# simulomicsr 0.0.0.9004
+
+## Stadio 2 (P3) — study_design + comparability_anchor + benchmark robusto
+
+- Schema strict `inst/schemas/study_design.stage2.v1.json` per OpenAI Structured
+  Outputs (vocab `design_kind` 10 valori, `design_role` 13 valori). Strict-mode
+  fix: `factor_levels`/`fixed_factors` come array di `{key, value}` invece di
+  dict (OpenAI rifiuta `additionalProperties:{type:string}` nested).
+- `R/llm-stage2.R`: `build_prompt_stage2()` (internal), `parse_stage2_response()`
+  (internal), **`classify_study()`** (export pubblico).
+- `R/geo-fetch.R`: **`fetch_study_summary()`** (export) wrapper su
+  `rentrez::entrez_summary(db="gds")` con cache filesystem JSONL.
+- `R/anchors.R`: helpers privati `.normalize_dose()`, `.normalize_duration()`,
+  `.normalize_cell_id()`; **`make_anchor()`** (export, 13 segmenti v3, regole
+  R8/R9/R24/R25/R31 + disease_vs_normal override solo se NO perturbazione
+  attiva); **`make_inducer_log()`** (export, audit per perturbazioni
+  mediated_effect).
+- `analysis/_targets.R`: target `geo_summary_cache_dir`, `study_series_ids`,
+  `study_summaries`, `curated_stage2_gse`, `stage2_cache_dir`,
+  `study_designs_raw`, `study_designs_validator`, `study_designs_validated`,
+  `study_designs_invalid`, `comparisons_table`. Stadio 2 driven da 15 fixture
+  curate (non dal P2 dev set, che ha 1 sample/GSE).
+- `vignettes/stage2-classify.Rmd`: vignette utente con esempio GSE145941
+  end-to-end + fixture mini (offline buildable).
+- `inst/extdata/stage2-fixtures-mini/`: 15 GSE benchmark stratificati per
+  diversita design_kind + edge case (R8 Dox-inducible KD, factorial
+  multi-axis, tumor+drug disease conflict, metadata povero, large N n=30/40,
+  multi-donor batch). 197/197 sample stage1-validated.
+
+## Run reale Task 13 (15 GSE x gpt-5.5 Stadio 2)
+
+| Metrica | Risultato |
+|---|---|
+| Validity rate | 15/15 = 100% (0 schema violation) |
+| design_kind diversity | 7/10 (treatment_vs_untreated, treatment_vs_vehicle, dose_response, time_course, multi_arm_treatment, factorial, knockdown_panel) |
+| Confidence range | 0.72-0.93 (mediana ~0.87) |
+| Comparisons cross-GSE | 55 in `comparisons_table` |
+| Anchor v3 ben formati | 55/55 = 100% (tutti 13 segmenti) |
+| Anchor unici | 44 (11 collisioni intra-studio == match attesi) |
+
+## Hotfix correlati
+
+- `R/validate.R`: `compile_schema()` e `validate_json()` re-esportati (P1
+  oversight; CLAUDE.md li dichiarava esportati ma erano `@keywords internal`).
+- `data-raw/build-stage2-fixtures.R`: unwrap `res$value` da
+  `classify_sample()` envelope (Task 10 hotfix).
+- `inst/schemas/study_design.stage2.v1.json`: dict -> array di key/value
+  per `factor_levels`/`fixed_factors` (Task 11 hotfix per OpenAI strict).
+- `R/anchors.R` `make_anchor()`: disease_vs_normal override fires solo
+  quando NO perturbazione attiva (Task 14 fix; ridotto disease anchor
+  da 36/55 a 2/55).
+
+## Convenzioni
+
+- Cache LLM partizionata per Stadio: namespace `stage2` (separato da `stage1`).
+- Anchor v3 versionato: future iterazioni (v4+) richiedono solo ricalcolo
+  deterministico (no re-LLM).
+- `comparability_anchor` NON e' nello schema LLM: viene calcolato a valle
+  da `make_anchor()` e aggiunto come colonna a `comparisons_table`.
+- Stadio 2 P3 driven da 15 fixture curate, non dal P2 dev set.
+
 # simulomicsr 0.0.0.9003
 
 * P2 — Stadio 1 sample_facts:
