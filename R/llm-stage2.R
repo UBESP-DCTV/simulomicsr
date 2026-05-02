@@ -109,3 +109,39 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
     facts_json
   )
 }
+
+#' Enrichi la risposta stage2 con metadata deterministici dal chiamante
+#'
+#' Forza `series_id`, `schema_version`, `model` e `input_sample_count` dal
+#' contesto del caller. Non siamo mai completamente fiduciosi che l'LLM abbia
+#' interpretato correttamente questi campi.
+#'
+#' @param raw Risposta parsed JSON (list), già validata contro stage2.v1
+#' @param series_id GSE accession (forzato)
+#' @param sample_count numero intero di sample input (forzato come input_sample_count)
+#' @param model string modello usato (forzato come model)
+#'
+#' @return raw (list) con `series_id`, `extraction$schema_version='stage2.v1'`,
+#'   `extraction$model`, `extraction$input_sample_count` sovrascritti.
+#'   Se `extraction` non esiste, viene creato come lista vuota.
+#'
+#' @keywords internal
+parse_stage2_response <- function(raw, series_id, sample_count, model) {
+  if (!is.list(raw)) {
+    rlang::abort(
+      "parse_stage2_response: raw deve essere lista (parsed JSON)",
+      class = "simulomicsr_stage2_parse_error"
+    )
+  }
+  raw$series_id <- series_id
+  if (is.null(raw$extraction) || !is.list(raw$extraction)) {
+    raw$extraction <- list()
+  }
+  raw$extraction$schema_version <- "stage2.v1"
+  raw$extraction$model <- model
+  raw$extraction$input_sample_count <- as.integer(sample_count)
+  if (is.null(raw$extraction$input_truncated)) {
+    raw$extraction$input_truncated <- FALSE
+  }
+  raw
+}
