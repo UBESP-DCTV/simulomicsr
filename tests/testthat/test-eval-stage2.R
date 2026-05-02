@@ -85,3 +85,42 @@ test_that("eval_per_design_kind: breakdown per kind", {
   expect_equal(fc_row$n, 2L)
   expect_equal(fc_row$accuracy, 0.5)
 })
+
+test_that("flag_granularity_disagreement: enumera negative_inducer_control", {
+  df <- tibble::tibble(
+    geo_accession = c("GSM1", "GSM2", "GSM3"),
+    series_id = c("GSE1", "GSE1", "GSE1"),
+    design_role = c("perturbed", "negative_inducer_control", "vehicle_control"),
+    gold_binary = c("treated", "control", "control"),
+    predicted_binary = c("treated", "control", "control")
+  )
+  res <- flag_granularity_disagreement(df)
+  expect_equal(nrow(res), 1L)
+  expect_equal(res$geo_accession, "GSM2")
+  expect_equal(res$granularity_kind, "negative_inducer_control")
+})
+
+test_that("flag_granularity_disagreement: enumera baseline_t0, secondary_arm, bystander", {
+  df <- tibble::tibble(
+    geo_accession = paste0("GSM", 1:5),
+    series_id = rep("GSE1", 5),
+    design_role = c("perturbed", "baseline_t0", "secondary_arm", "bystander", "vehicle_control"),
+    gold_binary = c("treated", "control", "treated", NA_character_, "control"),
+    predicted_binary = c("treated", "control", "treated", NA_character_, "control")
+  )
+  res <- flag_granularity_disagreement(df)
+  expect_setequal(res$granularity_kind,
+                  c("baseline_t0", "secondary_arm", "bystander"))
+})
+
+test_that("flag_granularity_disagreement: ritorna 0 righe se nessuna granularita'", {
+  df <- tibble::tibble(
+    geo_accession = c("GSM1", "GSM2"),
+    series_id = rep("GSE1", 2),
+    design_role = c("perturbed", "vehicle_control"),
+    gold_binary = c("treated", "control"),
+    predicted_binary = c("treated", "control")
+  )
+  res <- flag_granularity_disagreement(df)
+  expect_equal(nrow(res), 0L)
+})
