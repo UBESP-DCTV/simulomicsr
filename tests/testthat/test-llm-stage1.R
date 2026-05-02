@@ -187,3 +187,29 @@ test_that("classify_sample propaga simulomicsr_schema_error se LLM ritorna rispo
     class = "simulomicsr_schema_error"
   )
 })
+
+test_that("classify_sample_row accetta una riga tibble e ritorna sample_fact valido", {
+  fake <- .fake_raw_v3()
+  fake_adapter <- function(...) fake
+
+  row <- tibble::tibble(
+    geo_accession = "GSM1009635",
+    series_id     = "GSE41166",
+    string        = "treatment: VEGF, cell line: HUVEC, time: 0h",
+    trtctr_EP     = "control",
+    trtctr        = "control",
+    treat         = NA_character_,
+    gold          = NA_character_,
+    stratum       = "easy_agree"
+  )
+
+  fact <- classify_sample_row(
+    row,
+    provider = "mock", model = "gpt-5.5", cache = NULL,
+    .mock_adapter = fake_adapter
+  )
+
+  expect_type(fact, "list")
+  expect_equal(fact$geo_accession, "GSM1009635")
+  expect_equal(fact$extraction$schema_version, "stage1.v3")
+})
