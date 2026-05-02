@@ -1,1658 +1,794 @@
 [
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.9,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:aee746340c5bee2f2e2342701856c60fcc91cc2df8b59a37d8587ac6fe180722",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304562",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": null,
-            "type": "none"
-          },
-          "agent_raw": "non-targeting shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": true,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": null,
-          "temporal_order": null
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.9,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304562",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": null,
-            "type": "none"
-          },
-          "agent_raw": "non-targeting shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": true,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": null,
-          "temporal_order": null
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:aee746340c5bee2f2e2342701856c60fcc91cc2df8b59a37d8587ac6fe180722",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304562",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "non-targeting shRNA",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.89,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:aee746340c5bee2f2e2342701856c60fcc91cc2df8b59a37d8587ac6fe180722",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304563",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "non-targeting shRNA",
-            "type": "other"
-          },
-          "agent_raw": "non-targeting shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": true,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.89,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304563",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "non-targeting shRNA",
-            "type": "other"
-          },
-          "agent_raw": "non-targeting shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": true,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.89,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:aee746340c5bee2f2e2342701856c60fcc91cc2df8b59a37d8587ac6fe180722",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304563",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "non-targeting shRNA",
+          "type": "other"
+        },
+        "agent_raw": "non-targeting shRNA",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_duration",
-          "engineered_cell_line",
-          "disease_state_present"
-        ],
-        "confidence": 0.92,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:e907f56b2c86f5a5d28f6f2a810d3ba6c93110f7063f505a665b5f81b9c4f51f",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304564",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": "HGNC",
-            "preferred_name": "ASXL3",
-            "type": "gene_or_protein"
-          },
-          "agent_raw": "ASXL3 shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_duration",
-          "engineered_cell_line",
-          "disease_state_present"
-        ],
-        "confidence": 0.92,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304564",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": "HGNC",
-            "preferred_name": "ASXL3",
-            "type": "gene_or_protein"
-          },
-          "agent_raw": "ASXL3 shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "engineered_cell_line",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:e907f56b2c86f5a5d28f6f2a810d3ba6c93110f7063f505a665b5f81b9c4f51f",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304564",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "ASXL3",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "ASXL3 shRNA",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.88,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:e907f56b2c86f5a5d28f6f2a810d3ba6c93110f7063f505a665b5f81b9c4f51f",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304565",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": "HGNC",
-            "preferred_name": "ASXL3",
-            "type": "gene_or_protein"
-          },
-          "agent_raw": "ASXL3 shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": null
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.88,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304565",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": "HGNC",
-            "preferred_name": "ASXL3",
-            "type": "gene_or_protein"
-          },
-          "agent_raw": "ASXL3 shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": null
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:e907f56b2c86f5a5d28f6f2a810d3ba6c93110f7063f505a665b5f81b9c4f51f",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304565",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "ASXL3",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "ASXL3 shRNA",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.93,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:e907f56b2c86f5a5d28f6f2a810d3ba6c93110f7063f505a665b5f81b9c4f51f",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304566",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": "HGNC",
-            "preferred_name": "ASXL3",
-            "type": "gene_or_protein"
-          },
-          "agent_raw": "ASXL3 shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.93,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304566",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": "HGNC",
-            "preferred_name": "ASXL3",
-            "type": "gene_or_protein"
-          },
-          "agent_raw": "ASXL3 shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:e907f56b2c86f5a5d28f6f2a810d3ba6c93110f7063f505a665b5f81b9c4f51f",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304566",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "ASXL3",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "ASXL3 shRNA",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.91,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:e907f56b2c86f5a5d28f6f2a810d3ba6c93110f7063f505a665b5f81b9c4f51f",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304567",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": "HGNC",
-            "preferred_name": "ASXL3",
-            "type": "gene_or_protein"
-          },
-          "agent_raw": "ASXL3 shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.91,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304567",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": "HGNC",
-            "preferred_name": "ASXL3",
-            "type": "gene_or_protein"
-          },
-          "agent_raw": "ASXL3 shRNA",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "genetic_knockdown",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.91,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:e907f56b2c86f5a5d28f6f2a810d3ba6c93110f7063f505a665b5f81b9c4f51f",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304567",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "ASXL3",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "ASXL3 shRNA",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "case",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "vehicle_only",
-          "disease_state_present"
-        ],
-        "confidence": 0.93,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:b2e80ebf390115a76eeac5eb62d1aa211c19e76d9b22382bba899da3f2f48dab",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304568",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "DMSO",
-            "type": "vehicle"
-          },
-          "agent_raw": "DMSO",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": true,
-          "kind": "vehicle_only",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": null
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "case",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "vehicle_only",
-          "disease_state_present"
-        ],
-        "confidence": 0.93,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304568",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "DMSO",
-            "type": "vehicle"
-          },
-          "agent_raw": "DMSO",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": true,
-          "kind": "vehicle_only",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": null
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "case",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "vehicle_only",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:b2e80ebf390115a76eeac5eb62d1aa211c19e76d9b22382bba899da3f2f48dab",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304568",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "vehicle_only",
-          "disease_state_present"
-        ],
-        "confidence": 0.95,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:b2e80ebf390115a76eeac5eb62d1aa211c19e76d9b22382bba899da3f2f48dab",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304569",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": "CHEBI:28262",
-            "id_database": "CHEBI",
-            "preferred_name": "dimethyl sulfoxide",
-            "type": "vehicle"
-          },
-          "agent_raw": "DMSO",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": true,
-          "kind": "vehicle_only",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "vehicle_only",
-          "disease_state_present"
-        ],
-        "confidence": 0.95,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304569",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": "CHEBI:28262",
-            "id_database": "CHEBI",
-            "preferred_name": "dimethyl sulfoxide",
-            "type": "vehicle"
-          },
-          "agent_raw": "DMSO",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": true,
-          "kind": "vehicle_only",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "vehicle_only",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:b2e80ebf390115a76eeac5eb62d1aa211c19e76d9b22382bba899da3f2f48dab",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304569",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:28262",
+          "id_database": "CHEBI",
+          "preferred_name": "dimethyl sulfoxide",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.92,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:0b9de9889cc8d3afbf1a6bfcebb8cf68d30d186bbec858f9bb8533c6d087010b",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304570",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "dBET6",
-            "type": "small_molecule"
-          },
-          "agent_raw": "dBET6",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "small_molecule",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.92,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304570",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "dBET6",
-            "type": "small_molecule"
-          },
-          "agent_raw": "dBET6",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "small_molecule",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:0b9de9889cc8d3afbf1a6bfcebb8cf68d30d186bbec858f9bb8533c6d087010b",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304570",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "dBET6",
+          "type": "small_molecule"
+        },
+        "agent_raw": "dBET6",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.92,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:0b9de9889cc8d3afbf1a6bfcebb8cf68d30d186bbec858f9bb8533c6d087010b",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304571",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "dBET6",
-            "type": "small_molecule"
-          },
-          "agent_raw": "dBET6",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "small_molecule",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.92,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304571",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "dBET6",
-            "type": "small_molecule"
-          },
-          "agent_raw": "dBET6",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "small_molecule",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:0b9de9889cc8d3afbf1a6bfcebb8cf68d30d186bbec858f9bb8533c6d087010b",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304571",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "dBET6",
+          "type": "small_molecule"
+        },
+        "agent_raw": "dBET6",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": "CVCL_1512",
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.92,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:d7bba462879639724e5f6d6a1a98dc365daa0a34bf4f075e3bfdfaf43ba54920",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304572",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "JQ1",
-            "type": "small_molecule"
-          },
-          "agent_raw": "JQ1",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "small_molecule",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": null
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_1512",
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": "CVCL_1512",
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.92,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304572",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "JQ1",
-            "type": "small_molecule"
-          },
-          "agent_raw": "JQ1",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "small_molecule",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": null
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d7bba462879639724e5f6d6a1a98dc365daa0a34bf4f075e3bfdfaf43ba54920",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304572",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "JQ1",
+          "type": "small_molecule"
+        },
+        "agent_raw": "JQ1",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   },
   {
-    "value": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.9,
-        "model": "openai:gpt-5.5",
-        "raw_input_hash": "sha256:d7bba462879639724e5f6d6a1a98dc365daa0a34bf4f075e3bfdfaf43ba54920",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304573",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "JQ1",
-            "type": "small_molecule"
-          },
-          "agent_raw": "JQ1",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "small_molecule",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
-      ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "NCI-H1963",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": "Low passages (6-10)",
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "small cell lung cancer",
+      "tissue_segment": null
     },
-    "provider": "openai",
-    "model": "gpt-5.5",
-    "validated": true,
-    "cache_hit": false,
-    "raw_response": {
-      "cell_context": {
-        "cell_composition_estimates": [],
-        "cell_line_cellosaurus_candidate": null,
-        "cell_state": null,
-        "cell_type_or_line_raw": "NCI-H1963",
-        "co_culture_partners": [],
-        "context_kind": "cell_line_in_vitro",
-        "developmental_stage": null,
-        "engineered_modifications": [],
-        "passage_or_state": "Low passages (6-10)",
-        "sort_markers": [],
-        "subcellular_fraction": null,
-        "tissue": "small cell lung cancer",
-        "tissue_segment": null
-      },
-      "disease_state": {
-        "mesh_id_candidate": null,
-        "status": "disease_model",
-        "term_raw": "small cell lung cancer"
-      },
-      "extraction": {
-        "ambiguity_flags": [
-          "missing_dose",
-          "missing_duration",
-          "disease_state_present"
-        ],
-        "confidence": 0.9,
-        "model": "__unset__",
-        "raw_input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "schema_version": "stage1.v3"
-      },
-      "geo_accession": "GSM4304573",
-      "host_organism": null,
-      "organism": null,
-      "patient_metadata": null,
-      "perturbations": [
-        {
-          "agent_normalized": {
-            "collection": null,
-            "id": null,
-            "id_database": null,
-            "preferred_name": "JQ1",
-            "type": "small_molecule"
-          },
-          "agent_raw": "JQ1",
-          "dose": {
-            "unit": null,
-            "value_numeric": null,
-            "value_raw": null
-          },
-          "duration": {
-            "is_zero_timepoint": false,
-            "value_hours": null,
-            "value_raw": null
-          },
-          "is_negative_control": false,
-          "kind": "small_molecule",
-          "mediated_effect": null,
-          "phase": "exposure",
-          "temporal_order": 1
-        }
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "small cell lung cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "disease_state_present"
       ],
-      "series_id": "GSE145028",
-      "technical_treatments": []
-    }
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d7bba462879639724e5f6d6a1a98dc365daa0a34bf4f075e3bfdfaf43ba54920",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4304573",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "JQ1",
+          "type": "small_molecule"
+        },
+        "agent_raw": "JQ1",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE145028",
+    "technical_treatments": []
   }
 ]

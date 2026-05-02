@@ -36,13 +36,14 @@ for (gse in candidate_gse) {
   }
   message("=== ", gse, " (n=", nrow(rows), ") ===")
   facts_list <- lapply(seq_len(nrow(rows)), function(i) {
-    classify_sample(
+    res <- classify_sample(
       sample_string = rows$string[[i]],
       geo_accession = rows$geo_accession[[i]],
       series_id = rows$series_id[[i]],
       provider = "openai", model = "gpt-5.5",
       cache = cache
     )
+    res$value
   })
   validity <- vapply(facts_list, function(f) is.null(f$.invalid_reason), logical(1))
   message("  validated: ", sum(validity), "/", nrow(rows))
