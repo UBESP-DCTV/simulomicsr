@@ -551,3 +551,36 @@ Tre opzioni:
 - **§9.5 `disease_vs_normal`** — risolto: inclusi come prima classe (B1) (vedi §9.B).
 
 Una volta che l'utente approva questa versione della spec, si passa alla skill `writing-plans` per il piano di implementazione (target-by-target, con checkpoint di review).
+
+## 13. References — stato dell'arte e prior art
+
+Aggiunto post-hoc (2026-05-02) sulla base della due-diligence riassunta in
+[ADR-0006](../../decisions/0006-stato-arte-vs-simulomicsr.md). Per la
+discussione del positioning di simulomicsr rispetto a questi tool e per il
+benchmark integrale vs RummaGEO previsto in P3.5 eval, vedere ADR-0006.
+
+### Sample/study annotation tools (prior art per Stadio 1)
+
+- **ARCHS4 v9 / v2.x.** Lachmann A. et al. *Massive mining of publicly available RNA-seq data from human and mouse.* Nat. Commun. 2018; piattaforma e tooling [maayanlab.cloud/archs4](https://maayanlab.cloud/archs4/). Fornisce conteggi Kallisto + metadati GEO grezzi + predizioni funzionali di gene set. Non risolve treated/control né estrae perturbazioni con dose/time.
+
+- **MetaSRA.** Bernstein M.N. et al. *MetaSRA: normalized human sample-specific metadata for the Sequence Read Archive.* Bioinformatics 2017; 33(18):2914–2923. [doi:10.1093/bioinformatics/btx334](https://doi.org/10.1093/bioinformatics/btx334). First-mover su metadata harmonization SRA. Pipeline Python in `deweylab/MetaSRA-pipeline` (ultimo update 2020, dormant). Ontology terms per-sample (Cell Ontology, Uberon, EFO, Cellosaurus, DO).
+
+- **MetaHQ.** Hicks P. et al. *MetaHQ: Harmonized, high-quality metadata annotations of public omics samples and studies.* arXiv 2602.07805 (marzo 2026). [arxiv.org/abs/2602.07805](https://arxiv.org/abs/2602.07805). Aggregatore harmonizzato di 13 fonti curate (Gemma, ALE, Bgee, CellO, CREEDS, DiSignAtlas, URSA, ecc.) per tissue + disease + sex + age su 188k sample × 11.7k studi GEO. CLI Python (`pip install metahq-cli`). Ortogonale a simulomicsr — possibile upstream per `normalize_tissue()` in Stadio 2.
+
+- **Multi-agent metadata curation.** Mondal R. et al. *Multi-agent AI System for High Quality Metadata Curation at Scale.* bioRxiv [2025.06.10.658658](https://www.biorxiv.org/content/10.1101/2025.06.10.658658v1) (giugno 2025). Architettura agentic LLM (orchestratore + sub-agenti) per estrazione di 23 campi GEO inclusi tissue, disease, treatment, donor info. Recall medio 93%. Non risolve `design_role` né anchor cross-studio; nessun codebase pubblico noto. Prior art più rilevante per Stadio 1.
+
+- **Ardigen LLM annotation.** [ardigen.com blog 2025](https://ardigen.com/harnessing-large-language-models-llms-for-metadata-annotation-to-accelerate-biotech-and-pharma-research/). Pipeline commerciale closed: 4 campi base (tissue, condition, drug, intervention) > 80% strict accuracy.
+
+### End-to-end pipelines (prior art per Stadio 2-5 e benchmark obbligato)
+
+- **RummaGEO.** Marino G.B. et al. *RummaGEO: Automatic Mining of Human and Mouse Gene Sets from GEO.* Patterns 2024; [PMC11030343](https://pmc.ncbi.nlm.nih.gov/articles/PMC11030343/). Pipeline auto su ARCHS4: K-means + keyword matching (`ctrl`, `wildtype`, `DMSO`, `vehicle`) per identificare control group; computa DEG via limma-voom; pubblica gene set UP/DOWN per studio. 135k human + 158k mouse signatures da 23k+ studi. **Competitor end-to-end più vicino** — benchmark vs RummaGEO è deliverable integrale di simulomicsr (vedi ADR-0006 §"Deliverable integrale: benchmark vs RummaGEO"). Limiti per la meta-analisi proper: niente effect-size, niente anchor canonico, fragile su factorial/time-course/mediated_effect.
+
+- **metaRNASeq.** Rau A. et al. *Differential meta-analysis of RNA-seq data from multiple studies.* BMC Bioinformatics 2014; 15:91. Pacchetto R che implementa p-value combination (inverse normal, Fisher) per meta-analisi differenziale RNAseq. Consuma comparisons già appaiate (l'utente fornisce il design); non infera né anchor canonico. Per simulomicsr resta un possibile baseline meta-analitico (Stadio 5) accanto a `metafor` REM.
+
+- **metaseqR2** (Bioconductor). Pipeline parametrizzata per DE + p-value pooling. Stesso bucket metodologico di metaRNASeq (consume design); non infera.
+
+- **GREIN.** [Mahi N.A. et al., Sci Rep 2019](https://www.nature.com/articles/s41598-019-43935-8). Re-processing UI per GEO RNAseq con DE e visualizzazione interattiva. Manuale (l'utente sceglie i sample e il design). Non meta-analisi né anchor.
+
+### Posizionamento simulomicsr rispetto allo stato dell'arte
+
+simulomicsr **non ricalca** ARCHS4/MetaHQ/MetaSRA/Ardigen/Mondal (sample annotators) — quel campo è coperto. Il valore unico è la pipeline end-to-end **design-aware** dal metadato testuale all'effect-size pooled cross-studio: LLM `design_role` inference (Stadio 2) + canonical `comparability_anchor` v3 + `metafor` REM pooling (Stadio 5). Il competitor che condivide questa ambizione end-to-end è solo RummaGEO, da cui simulomicsr si differenzia sul (a) metodo di design inference (LLM ricco vs K-means+keyword), (b) granularità output (effect-size vs gene-set), (c) anchor canonico cross-studio (presente vs assente). Vedi ADR-0006 per la discussione completa e il piano del benchmark integrale.

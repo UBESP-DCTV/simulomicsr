@@ -6,7 +6,9 @@
 
 ## Visione del progetto
 
-`simulomicsr` è una **pipeline R per meta-analisi RNAseq cross-studio** basata su classificazione LLM dei metadati. Il nome è legacy — il pacchetto NON simula nulla.
+`simulomicsr` è una **pipeline R per meta-analisi RNAseq cross-studio design-aware** basata su classificazione LLM dei metadati. Il nome è legacy — il pacchetto NON simula nulla.
+
+**Positioning (ADR-0006, 2026-05-02).** simulomicsr **non** è un altro annotatore di GEO/SRA — quel campo è coperto da ARCHS4, MetaHQ (Hicks 2026), MetaSRA, e dal multi-agent metadata curation di Mondal et al. 2025. Il valore unico è la pipeline end-to-end **design-aware**: dal metadato testuale alle comparisons appaiate (`design_role` LLM-driven entro lo studio) → canonical `comparability_anchor` v3 cross-studio → pooling effect-size random-effects (`metafor` REM). L'unico competitor end-to-end vicino è RummaGEO (Maayan 2024), che però resta a livello di gene-set per-studio senza anchor canonico né effect size. **Benchmark testa-a-testa vs RummaGEO è deliverable integrale di P3.5 eval** (non aggiunta opzionale post-hoc). Vedi ADR-0006 per l'analisi competitiva completa.
 
 Pipeline complessiva (5 stadi):
 1. **Acquisizione** — bulk RNAseq da ARCHS4-like (HDF5, ~700k+ sample da GEO).
@@ -105,7 +107,8 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 
 - **ADR-0003 — rinome pacchetto.** "simulomicsr" non riflette la pipeline. Da affrontare prima del primo `install_github` pubblico.
 - **Vocabolari extra** (Cellosaurus, DrugBank, ChEMBL, MeSH, CAS, NCBITaxonomy, MGI). Necessari per Stadio 2 (P3) o plan separato.
-- **Gold "design-aware"** su 200-300 sample. P3 mid-stage, quando il prototipo Stadio 2 funziona.
+- **Gold "design-aware"** su 200-300 sample. Costruzione integrata in P3.5 eval insieme al benchmark vs RummaGEO (vedi ADR-0006).
+- **Integrazione MetaHQ** come upstream per `normalize_tissue()` / `normalize_disease()` in Stadio 2. ADR-0006: 188k sample annotati expert-level con propagazione UBERON/MONDO. Decisione rimandata al primo task di P3 in cui serve la normalizzazione tissue/disease robusta.
 - **Migrazione a `ellmer`** come client LLM (multi-provider, batch API più ergonomico). Discussa fine 2026-05-02, rimandata a P3+ come ADR separato. P1 attuale (`R/llm-client.R` + adapter) è già pronta per essere sostituita.
 - **Cache cross-modello.** P1 attuale partiziona per `(provider, model, messages)` (deviazione consapevole dalla spec §5.4). Se P3 vorrà cache cross-modello, ADR dedicato.
 - **Migrazione su server con più spazio.** ADR-0005 documenta il trigger (prima di P4 — run massivo ARCHS4) e la procedura.
@@ -123,17 +126,21 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 
 ## Next step (per la prossima sessione)
 
-1. **Confermare scope di P3.** Default: Stadio 2 (study_design, comparability_anchor, fetch metadati GEO).
-2. P3 toccherà: `R/llm-stage2.R` (prompt + classify per GSE), `R/anchors.R` (`make_anchor()`), `R/geo-fetch.R` (study_summary da NCBI), schema `inst/schemas/study_design.stage2.v1.json`, target `study_designs`/`comparisons_table` in `analysis/_targets.R`.
-3. P3 può girare interamente in locale. Server-switch è programmato per P4 — vedi ADR-0005.
-4. Considerare il rename del pacchetto (ADR-0003) prima di P3 se si vuole evitare confusione downstream.
-5. Se P3 si avvicina al run massivo, valutare migrazione a `ellmer` come ADR separato.
+1. **Scope P3 confermato (2026-05-02, ADR-0006):** P3-B split — **P3** ingegneria Stadio 2 (schema + prompt + GEO fetch + classify_study + make_anchor + comparisons_table); **P3.5** eval (gold design-aware su 200-300 sample + benchmark integrale vs RummaGEO).
+2. **P3 toccherà:** `R/llm-stage2.R` (prompt + classify per GSE), `R/anchors.R` (`make_anchor()`), `R/geo-fetch.R` (study_summary da NCBI), schema `inst/schemas/study_design.stage2.v1.json`, target `study_designs`/`comparisons_table` in `analysis/_targets.R`.
+3. **P3.5 toccherà:** `R/eval-rummageo.R` (loader + matching), `R/eval-design-gold.R` (gold design-aware), target `eval_rummageo_benchmark` + `eval_stage2_metrics`, report Quarto in `analysis/eval/rummageo-benchmark.Rmd`. Specifiche del benchmark in ADR-0006 §"Deliverable integrale: benchmark vs RummaGEO".
+4. P3 può girare interamente in locale. Server-switch è programmato per P4 — vedi ADR-0005.
+5. Considerare il rename del pacchetto (ADR-0003) prima di P3 se si vuole evitare confusione downstream.
+6. Se P3 si avvicina al run massivo, valutare migrazione a `ellmer` come ADR separato.
+7. **Prossimo step concreto:** invocare `superpowers:writing-plans` per scrivere il plan dettagliato di P3 (e successivamente di P3.5).
 
 ## Riferimenti chiave
 
-- Spec classificatore: `docs/superpowers/specs/2026-04-29-classificatore-llm-design.md` (v5 approvata 2026-04-29).
+- Spec classificatore: `docs/superpowers/specs/2026-04-29-classificatore-llm-design.md` (v5 approvata 2026-04-29; §13 References aggiunta 2026-05-02).
 - Plan P1: `docs/superpowers/plans/2026-04-29-p1-infrastruttura-llm-plan.md` + HUMANE.
 - Plan P2: `docs/superpowers/plans/2026-05-02-p2-stadio1-sample-facts-plan.md` + HUMANE.
-- ADR: `docs/decisions/`.
+- **ADR-0006 stato dell'arte:** `docs/decisions/0006-stato-arte-vs-simulomicsr.md` — analisi competitor 2024-2026 + benchmark RummaGEO integrale + decisione P3-B confermata.
+- ADR-0005 server migration: `docs/decisions/0005-server-migration-trigger.md`.
+- ADR generali: `docs/decisions/`.
 - README utente: `README.md`.
 - News versioni: `NEWS.md`.
