@@ -23,5 +23,10 @@ list(
   tar_target(
     samples_input,
     read_samples_input(samples_input_path)
+  ),
+
+  tar_target(
+    samples_dev_set,
+    build_dev_set(samples_input, n = 100L, seed = 1812L)
   )
 )
