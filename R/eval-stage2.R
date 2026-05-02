@@ -41,3 +41,83 @@ design_role_to_binary <- function(role) {
     )
   )
 }
+
+#' Calcola binary accuracy per un vettore di predicted vs gold
+#'
+#' Coppie con NA in gold OR predicted vengono escluse dal calcolo.
+#' Sensitivity/specificity calcolate considerando "treated" come la classe
+#' positiva, "control" come la classe negativa.
+#'
+#' @param gold character vector (treated/control/NA)
+#' @param predicted character vector (treated/control/NA), stessa lunghezza
+#' @return list con campi n, accuracy, sensitivity, specificity, f1,
+#'   confusion_matrix
+#' @export
+eval_binary_accuracy <- function(gold, predicted) {
+  stopifnot(length(gold) == length(predicted))
+  keep <- !is.na(gold) & !is.na(predicted)
+  g <- gold[keep]
+  p <- predicted[keep]
+  n <- length(g)
+  if (n == 0L) {
+    return(list(
+      n = 0L, accuracy = NA_real_, sensitivity = NA_real_,
+      specificity = NA_real_, f1 = NA_real_,
+      confusion_matrix = .empty_confusion_matrix()
+    ))
+  }
+  g_f <- factor(g, levels = c("control", "treated"))
+  p_f <- factor(p, levels = c("control", "treated"))
+  cm <- table(predicted = p_f, gold = g_f)
+
+  tp <- cm["treated", "treated"]
+  tn <- cm["control", "control"]
+  fp <- cm["treated", "control"]
+  fn <- cm["control", "treated"]
+  accuracy <- (tp + tn) / n
+  sensitivity <- if (tp + fn > 0) tp / (tp + fn) else NA_real_
+  specificity <- if (tn + fp > 0) tn / (tn + fp) else NA_real_
+  precision <- if (tp + fp > 0) tp / (tp + fp) else NA_real_
+  f1 <- if (!is.na(precision) && !is.na(sensitivity) &&
+            (precision + sensitivity) > 0) {
+    2 * precision * sensitivity / (precision + sensitivity)
+  } else NA_real_
+
+  list(
+    n = n, accuracy = accuracy,
+    sensitivity = sensitivity, specificity = specificity, f1 = f1,
+    confusion_matrix = cm
+  )
+}
+
+#' @noRd
+.empty_confusion_matrix <- function() {
+  m <- matrix(0L, nrow = 2, ncol = 2,
+              dimnames = list(predicted = c("control", "treated"),
+                              gold = c("control", "treated")))
+  as.table(m)
+}
+
+#' Breakdown binary accuracy per design_kind
+#'
+#' @param df tibble con colonne gold_binary, predicted_binary, design_kind
+#' @return tibble con una riga per design_kind: design_kind, n, accuracy,
+#'   sensitivity, specificity, f1
+#' @export
+eval_per_design_kind <- function(df) {
+  stopifnot(all(c("gold_binary", "predicted_binary", "design_kind") %in% names(df)))
+  kinds <- unique(df$design_kind)
+  rows <- lapply(kinds, function(k) {
+    sub <- df[df$design_kind == k, ]
+    metrics <- eval_binary_accuracy(sub$gold_binary, sub$predicted_binary)
+    tibble::tibble(
+      design_kind = k,
+      n = metrics$n,
+      accuracy = metrics$accuracy,
+      sensitivity = metrics$sensitivity,
+      specificity = metrics$specificity,
+      f1 = metrics$f1
+    )
+  })
+  dplyr::bind_rows(rows)
+}
