@@ -78,6 +78,31 @@ test_that("missing OPENAI_API_KEY -> errore tipizzato", {
   )
 })
 
+test_that(".openai_build_request OMETTE temperature dal body se non specificata (default NULL)", {
+  # I modelli reasoning gpt-5.5+ rifiutano qualunque temperature esplicita;
+  # il default deve essere "non inviare il campo".
+  req <- .openai_build_request(
+    model = "gpt-5.5",
+    messages = list(list(role = "user", content = "x")),
+    response_schema = system.file("schemas/llm-call-envelope.v1.json", package = "simulomicsr"),
+    schema_name = "x"
+  )
+  body <- jsonlite::fromJSON(rawToChar(req$body$data), simplifyVector = FALSE)
+  expect_null(body$temperature)
+})
+
+test_that(".openai_build_request INCLUDE temperature se passata esplicitamente", {
+  req <- .openai_build_request(
+    model = "gpt-5.4-mini",
+    messages = list(list(role = "user", content = "x")),
+    response_schema = system.file("schemas/llm-call-envelope.v1.json", package = "simulomicsr"),
+    schema_name = "x",
+    temperature = 0
+  )
+  body <- jsonlite::fromJSON(rawToChar(req$body$data), simplifyVector = FALSE)
+  expect_equal(body$temperature, 0)
+})
+
 test_that("llm_call_structured(provider='openai') intercetta tramite .mock_adapter", {
   schema <- system.file("schemas/llm-call-envelope.v1.json", package = "simulomicsr")
   withr::local_envvar(OPENAI_API_KEY = "sk-fake")
