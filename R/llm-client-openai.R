@@ -9,7 +9,7 @@
                                   messages,
                                   response_schema,
                                   schema_name,
-                                  temperature = 0,
+                                  temperature = NULL,
                                   max_tokens = NULL,
                                   api_key = NULL) {
   api_key <- api_key %||% Sys.getenv("OPENAI_API_KEY", unset = "")
@@ -25,10 +25,13 @@
     simplifyVector = FALSE
   )
 
+  # `temperature` e' opzionale: i modelli "reasoning" (gpt-5.5+) accettano
+  # solo il default API (1) e ritornano 400 se inviato qualunque valore
+  # esplicito. Per i modelli storici (gpt-4o, gpt-5.4-mini) il chiamante
+  # puo' passare `temperature = 0` per output deterministici.
   body <- list(
     model = model,
     messages = messages,
-    temperature = temperature,
     response_format = list(
       type = "json_schema",
       json_schema = list(
@@ -38,6 +41,7 @@
       )
     )
   )
+  if (!is.null(temperature)) body$temperature <- temperature
   if (!is.null(max_tokens)) body$max_tokens <- max_tokens
 
   httr2::request(.OPENAI_CHAT_URL) |>
@@ -113,7 +117,7 @@
                                     messages,
                                     response_schema,
                                     schema_name = "response",
-                                    temperature = 0,
+                                    temperature = NULL,
                                     max_tokens = NULL,
                                     api_key = NULL,
                                     ...) {
