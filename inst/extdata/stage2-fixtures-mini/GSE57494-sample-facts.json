@@ -1,0 +1,3942 @@
+[
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "vehicle_only"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:0f8e79839bc0ecdf8835442a13ba1a67ef6b463c1c71408c14b7204529ba83b5",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383738",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2735",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:ca3e1589c0dabb802a2f3f4dbda1bdbe70b03a68ce9ff1c938865102d80025fd",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383739",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2736",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:7011a0834845437f03aaa10d39f3e452a76ead01f908f83829e45b0de96c15bc",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383740",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2737",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": "24hr"
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "dimethyl sulfoxide",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 3
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:0cdafda7c8edd68d000382d0ae8139c9c5f28b82e777d1bbe251c46b3ee47e21",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383741",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2775",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:4e1b4145eedcb6757f7d7a44e5e5311c00f07a9bf3fd2907b9ac206ab2a1e57a",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383742",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2824",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "dimethyl sulfoxide",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 3
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:5d67056aa4d0623b8010e9a90c85cba773fd66f265602867545b41c54438f9ee",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383743",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2735",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": "blood",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:2e625355bb46b7b6fa974962bf7966dd65825eb56d0036bb18787876b70e6ed8",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383744",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2736",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "HGNC:5438",
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "MeSH",
+          "preferred_name": "Lipopolysaccharides",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:b23db9ec96dce5e6cb0901b95e0232058acd56a41c32d9c45a6f771b4b30655d",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383745",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2737",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "D008070",
+          "id_database": "MeSH",
+          "preferred_name": "Lipopolysaccharides",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations",
+        "multi_factor_in_string",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:57f19e8f9abd3c5abcb3c080163ac589abdd87f94dc9c116da23e98af4288cef",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383746",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2775",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": "24hr"
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.87,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d8514140ec9bf24fb9c36f04a5849b0492fa1dbbeac0a3005d6575589112ca2a",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383747",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2824",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code"
+      ],
+      "confidence": 0.85,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:5df3c708b7cc79aa9b75048b5fc194b68b5794047eed04fc195558554f0e3e3e",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383748",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2735",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "EX00000246; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:314202f84b2672a6f07ef42d25f6487af4e361e7d8d5af746fce16d1a8c8d349",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383749",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2736",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": {
+            "id_in_collection": "EX00000246",
+            "name": "agent"
+          },
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "EX00000246; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code",
+        "study_specific_jargon"
+      ],
+      "confidence": 0.85,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:608a870dbd22ab527ea63838dd46705b8cc4b993521d31666c40c2528d33f829",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383750",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2737",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "EX00000246; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code",
+        "post_treatment_ambiguous"
+      ],
+      "confidence": 0.83,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:796e1d2007a3ebd2ca5e1832def3999b8b14fdf993f8fa6dbad9a05936466f3c",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383751",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2775",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": "24hr"
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": {
+            "id_in_collection": "EX00000246",
+            "name": "agent"
+          },
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "unstimulated; EX00000246",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code",
+        "vehicle_only"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:f4bc35ca4ea63ec81e1632f21747870bc4afcd74ac2ce70ce44606aacbf283e8",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383752",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2824",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": "24hr"
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": {
+            "id_in_collection": "EX00000246",
+            "name": "study-specific agent code"
+          },
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "EX00000246; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "protocol_only_no_perturbation"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:8c20e107ae708fd20587cfdeb596a0d5163c5bde215b86f34fdcba4a6202a05a",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383753",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2735",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": [
+      {
+        "agent_raw": "Media",
+        "kind": "culture_media"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:3463b8fee3e035897e983c4c25f5e323ea3061535ce7577290a6ade488297eb9",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383754",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2736",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:77ade3ca3e3a733c5012e9ab29a51941bf41ec13a5b258d987b40722977936d4",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383755",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2737",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "vehicle_only"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:49ce48e317aeab09bfe2d0d1e6f903690e95b38ec34d1c1cb5be41238f9780af",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383756",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2775",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "Media",
+          "type": "vehicle"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "technical_treatment_only"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:da22e51c7201ae4cb4637b36912977776ed94cf2df4799507c152d03e52e7c1c",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383757",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2824",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": [
+      {
+        "agent_raw": "Media",
+        "kind": "culture_media"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "vehicle_only"
+      ],
+      "confidence": 0.87,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:09792c69cdeccaecb66ee56d29d1973610669f497703225d3c2bd264678ad156",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383758",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2735",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16412",
+          "id_database": "CHEBI",
+          "preferred_name": "lipopolysaccharide",
+          "type": "small_molecule"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "vehicle_only",
+        "multiple_perturbations"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:f535476dc2423d5a86498800ad99b102986a7a03b23bd62c97a845e98b284a19",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383759",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2736",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "dimethyl sulfoxide",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "lipopolysaccharide",
+          "type": "small_molecule"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "vehicle_only"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:ba348e60427f8cee0775cb0f16e709fd26f7f8659059704d6d96b6e494c2680d",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383760",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2737",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:28262",
+          "id_database": "CHEBI",
+          "preferred_name": "dimethyl sulfoxide",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 3
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:df43911b48fa615b6034ab3329c9dc3f384d514dfb2b1131dc2f05c517f263a6",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383761",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2775",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "dimethyl sulfoxide",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": "blood",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:cf6cbd7b855d047d8966345a1cb4b40404ace117f5b983640b54c5e6a19313ff",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383762",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2824",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d60594ca3d0450a989169e992020339126d9568c778edd32d97267e57af84762",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383763",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2735",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "HGNC:5438",
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16412",
+          "id_database": "CHEBI",
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:44b3f32f18d7f7c6f8c9b450dbec600ddfacafb56196c0f2b4c57904b467c488",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383764",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2736",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "HGNC:5438",
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "lipopolysaccharide",
+          "type": "small_molecule"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:e6bd22e1699f4ab24336ddf5ee6fe6b602d1e371a50d135a9983bf9189d35307",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383765",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2737",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "EX00000246; interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "LPS",
+          "type": "other"
+        },
+        "agent_raw": "EX00000246; LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": "blood",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:c09f0c3b091acd0706570c3aff0dbc2a5dcd1f54983e4159a027471c71a3f508",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383766",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2775",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "lipopolysaccharide",
+          "type": "small_molecule"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "activated",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:1a09ba3df3378f5119268225e624ef891fa1cff9f28d47afa2e2125aaecdd740",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383767",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2824",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "IFNG",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "interferon gamma",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16412",
+          "id_database": "CHEBI",
+          "preferred_name": "lipopolysaccharide",
+          "type": "other"
+        },
+        "agent_raw": "LPS",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": false,
+        "kind": "pathogen_or_aggregate_exposure",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code",
+        "metadata_inconsistency"
+      ],
+      "confidence": 0.82,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:756acc2c06e94c606a29b26d3071415973277becd19578866d6205543ec2fe11",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383768",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2735",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "EX00000246; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:2d018ccdb9252bb8e898421ee2104e220561c3c43615bd817a36be239d3ecf29",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383769",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2736",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "EX00000246; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code",
+        "metadata_inconsistency"
+      ],
+      "confidence": 0.82,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:10a81aa73134220067c02de48d1644b9746387265874d929d67b29570022c856",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383770",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2737",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "EX00000246; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:2007c7f6c18c4ba3ac356345e73d4bddd293def42a94088b327c191b946c9570",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383771",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2775",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "unstimulated; EX00000246",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "opaque_compound_code"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:63080d6d86ad7fa615f94f8411692b84148b3e4e83dce84a72dca571629f0f12",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383772",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2824",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:93bc24d7039f4e5741e9bcc132fcfc0d6a9351cce7a532631d4a3dc1bd99cca6",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383773",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2735",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": "6hr"
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": [
+      {
+        "agent_raw": "Media",
+        "kind": "culture_media"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:1f400706bbbae81bb4751a7450a5a40d4459880926728299b2bda911911f4b45",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383774",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2736",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:33c799f4b2c131c8e0643850e2674a3d467f8f3b4328bd46575885fee7d32879",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383775",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2737",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": [
+      {
+        "agent_raw": "Media",
+        "kind": "culture_media"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:95444de6f0ecb7ac89f682fad43e0f70a269542e7b62125218a30d9611635e95",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383776",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2775",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "Primary CD14+/CD16+ monocytes",
+      "co_culture_partners": [],
+      "context_kind": "primary_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [
+        "CD14+",
+        "CD16+"
+      ],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:edf6eaaa81e37dab3a88ebdbe9c3ac48b94e0f2e5a2efa64c9546927b02e00c1",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM1383777",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": "A2824",
+      "sex": null,
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "Media; unstimulated",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 6,
+          "value_raw": "6hr"
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE57494",
+    "technical_treatments": []
+  }
+]

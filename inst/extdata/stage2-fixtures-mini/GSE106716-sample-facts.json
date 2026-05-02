@@ -1,0 +1,653 @@
+[
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVISE",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SYK-WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "SYK-WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "case",
+      "term_raw": "ovarian carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:fb87f6dbad5d7fb030170e5aae5472a62648541af87c844ed22cf55ec3c2206c",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2849292",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "No treatment",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE106716",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "OVISE",
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVISE",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "transgene_stable",
+          "label": "SYK",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "SYK-WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:fb87f6dbad5d7fb030170e5aae5472a62648541af87c844ed22cf55ec3c2206c",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2849293",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "No treatment",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE106716",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "OVISE",
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVISE",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "other",
+          "label": "SYK-KO",
+          "variant": {
+            "description": "SYK-KO",
+            "is_wildtype": false,
+            "label": "SYK-KO"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:bffed4fadde7ef89f7006ba48a26b2f9e078eb7a4dca8fe97ee1887091bc80cf",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2849294",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "SYK",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "SYK-KO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockout",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE106716",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_3116",
+      "cell_state": "none",
+      "cell_type_or_line_raw": "OVISE",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "crispr_stable",
+          "label": "SYK-KO",
+          "variant": {
+            "description": "SYK-KO",
+            "is_wildtype": false,
+            "label": "SYK-KO"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:bffed4fadde7ef89f7006ba48a26b2f9e078eb7a4dca8fe97ee1887091bc80cf",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2849295",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "SYK",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "SYK-KO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockout",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE106716",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVISE",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SYK-WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "SYK-WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d556b8c607338d9514d5548c80e05d3573c6a98fed8b6073c0dc33979b4c7cf8",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2849296",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "EGF",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "EGF",
+        "dose": {
+          "unit": "ng/ml",
+          "value_numeric": 50,
+          "value_raw": "50 ng/ml"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE106716",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVISE",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "transgene_stable",
+          "label": "SYK-WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "SYK-WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d556b8c607338d9514d5548c80e05d3573c6a98fed8b6073c0dc33979b4c7cf8",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2849297",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "EGF",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "EGF",
+        "dose": {
+          "unit": "ng/ml",
+          "value_numeric": 50,
+          "value_raw": "50 ng/ml"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE106716",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVISE",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "other",
+          "label": "SYK-KO",
+          "variant": {
+            "description": "SYK knockout",
+            "is_wildtype": false,
+            "label": "SYK-KO"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "multiple_perturbations",
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:637643c1e21d39dc491b7e9763adf4f7ba57998907bdb00b7b4e6462112b2468",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2849298",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "SYK",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "SYK-KO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockout",
+        "mediated_effect": null,
+        "phase": "persistence",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "EGF",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "EGF",
+        "dose": {
+          "unit": "ng/ml",
+          "value_numeric": 50,
+          "value_raw": "50 ng/ml"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE106716",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_3114",
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVISE",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "crispr_stable",
+          "label": "SYK-KO",
+          "variant": {
+            "description": "SYK knockout",
+            "is_wildtype": false,
+            "label": "SYK-KO"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "multiple_perturbations",
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:637643c1e21d39dc491b7e9763adf4f7ba57998907bdb00b7b4e6462112b2468",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2849299",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "SYK",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "SYK-KO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockout",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "EGF",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "EGF",
+        "dose": {
+          "unit": "ng/ml",
+          "value_numeric": 50,
+          "value_raw": "50 ng/ml"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "cytokine_stimulation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE106716",
+    "technical_treatments": []
+  }
+]
