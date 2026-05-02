@@ -68,8 +68,16 @@
             ]
           },
           "factor_levels": {
-            "type": "object",
-            "additionalProperties": {"type": "string"}
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "value"],
+              "properties": {
+                "key":   {"type": "string"},
+                "value": {"type": "string"}
+              }
+            }
           }
         }
       }
@@ -86,8 +94,16 @@
           "control_group": {"type": "string"},
           "varying_factor": {"type": "string"},
           "fixed_factors": {
-            "type": "object",
-            "additionalProperties": {"type": "string"}
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "value"],
+              "properties": {
+                "key":   {"type": "string"},
+                "value": {"type": "string"}
+              }
+            }
           },
           "study_internal_score": {"type": "number", "minimum": 0, "maximum": 1}
         }

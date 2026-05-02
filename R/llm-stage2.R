@@ -91,7 +91,9 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
     "ambiguity_flags spiega il motivo.\n",
     "- comparison_id formato: '<series_id>__<treated>_vs_<control>'.\n",
     "- study_internal_score: 0..1, qualita' del confronto (n_replicates, balance).\n",
-    "- input_truncated: true se hai dovuto omettere sample_facts per limiti di token.\n\n",
+    "- input_truncated: true se hai dovuto omettere sample_facts per limiti di token.\n",
+    "- factor_levels e fixed_factors sono ARRAY di oggetti {\"key\": \"...\", \"value\": \"...\"} ",
+    "(NON oggetti con chiavi libere — schema strict lo richiede).\n\n",
     "Modello: ", model
   )
 }
