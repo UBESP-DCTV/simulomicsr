@@ -110,6 +110,103 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
   )
 }
 
+#' Classifica il design di uno studio GSE in study_design.stage2.v1
+#'
+#' Pipeline: build_prompt_stage2() -> llm_call_structured() -> parse_stage2_response().
+#' Cache trasparente via P1 (la chiave include i messages, separa naturalmente
+#' le invocazioni Stadio 1 da Stadio 2). In caso di errore LLM, ritorna un
+#' record con .invalid_reason e .invalid_detail (non solleva: il chiamante
+#' filtra a valle in study_designs_validated/invalid).
+#'
+#' @param series_id GSE accession
+#' @param sample_facts_list lista di sample_facts validati (stage1.v3)
+#' @param study_summary list con title/summary/overall_design (da fetch_study_summary)
+#' @param provider "openai" (default) o futuri provider
+#' @param model "gpt-5.5" (default), "gpt-5.4-mini" per batch, ecc.
+#' @param cache cache object da cache_init()
+#' @param ... args passati a llm_call_structured
+#'
+#' @return list (study_design valido stage2.v1) oppure list con
+#'   campi .invalid_reason/.invalid_detail in caso di failure LLM.
+#' @export
+classify_study <- function(series_id, sample_facts_list, study_summary,
+                           provider = "openai",
+                           model = "gpt-5.5",
+                           cache,
+                           ...) {
+  prompt <- build_prompt_stage2(
+    series_id = series_id,
+    sample_facts_list = sample_facts_list,
+    study_summary = study_summary,
+    model = paste0(provider, ":", model)
+  )
+
+  res <- tryCatch(
+    llm_call_structured(
+      provider                = provider,
+      model                   = model,
+      messages                = prompt$messages,
+      response_schema         = prompt$schema_path,
+      cache                   = cache,
+      cache_namespace_version = "stage2.v1",
+      ...
+    ),
+    simulomicsr_schema_error = function(e) {
+      list(
+        .llm_error        = TRUE,
+        .error_reason     = "schema_validation_failed",
+        .error_detail     = paste(e$errors %||% conditionMessage(e), collapse = " | ")
+      )
+    },
+    error = function(e) {
+      list(
+        .llm_error    = TRUE,
+        .error_reason = "llm_call_failed",
+        .error_detail = conditionMessage(e)
+      )
+    }
+  )
+
+  if (isTRUE(res$.llm_error)) {
+    return(.stage2_invalid_record(
+      series_id    = series_id,
+      reason       = res$.error_reason,
+      detail       = res$.error_detail %||% NA_character_,
+      sample_count = length(sample_facts_list),
+      provider     = provider,
+      model        = model
+    ))
+  }
+
+  parse_stage2_response(
+    raw          = res$value,
+    series_id    = series_id,
+    sample_count = length(sample_facts_list),
+    model        = paste0(provider, ":", model)
+  )
+}
+
+#' Crea un record stage2 invalido per segnalare fallimenti LLM senza
+#' interrompere la pipeline
+#'
+#' @keywords internal
+.stage2_invalid_record <- function(series_id, reason, detail, sample_count,
+                                   provider, model) {
+  list(
+    series_id = series_id,
+    .invalid_reason = reason,
+    .invalid_detail = detail,
+    extraction = list(
+      schema_version    = "stage2.v1",
+      model             = paste0(provider, ":", model),
+      confidence        = 0,
+      ambiguity_flags   = list(),
+      input_sample_count = as.integer(sample_count),
+      input_truncated   = FALSE
+    )
+  )
+}
+
 #' Enrichi la risposta stage2 con metadata deterministici dal chiamante
 #'
 #' Forza `series_id`, `schema_version`, `model` e `input_sample_count` dal
