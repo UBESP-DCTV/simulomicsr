@@ -1,0 +1,306 @@
+---
+title: "P3.5-B Benchmark: Stage 2 vs gold + RummaGEO head-to-head"
+output: html_document
+params:
+  stage2_metrics: NA
+  rummageo_metrics: NA
+  comparisons_table: NA
+  curated_gse: NA
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(scales)
+
+# Operatore null-coalesce: non sempre disponibile senza importare rlang
+`%||%` <- function(x, y) if (is.null(x) || (length(x) == 1L && is.na(x))) y else x
+
+m       <- params$stage2_metrics
+rm_data <- params$rummageo_metrics
+ct      <- params$comparisons_table
+gse_list <- params$curated_gse
+```
+
+# P3.5-B benchmark report
+
+Subset: 15 GSE curati (P3 fixture mini), classificati Stage 1+2 con
+gpt-5.5. Gold: `trtctr_EP` xlsx (binary normalizzato: treated/control/NA).
+
+## 1. Stage 2 binary accuracy
+
+```{r overall, results = "asis"}
+ov <- m$overall
+cat(sprintf(
+  "**N (escluso NA): %d** | accuracy: **%.1f%%** | sensitivity: %.1f%% | specificity: %.1f%% | F1: %.3f\n\n",
+  ov$n,
+  100 * ov$accuracy,
+  100 * ov$sensitivity,
+  100 * ov$specificity,
+  ov$f1
+))
+```
+
+### Confusion matrix (rows = simulomicsr predicted, cols = gold)
+
+```{r cm}
+print(ov$confusion_matrix)
+```
+
+### Breakdown per design_kind
+
+```{r per_kind, results = "asis"}
+knitr::kable(
+  m$per_kind |>
+    mutate(across(c(accuracy, sensitivity, specificity, f1),
+                  ~ round(.x, 3))) |>
+    arrange(desc(accuracy)),
+  caption = "Binary accuracy per design_kind (ordinata per accuracy)"
+)
+```
+
+```{r per_kind_plot, fig.width = 8, fig.height = 4.5}
+ggplot(m$per_kind, aes(x = reorder(design_kind, accuracy),
+                        y = accuracy, fill = design_kind)) +
+  geom_col() +
+  geom_text(aes(label = sprintf("n=%d", n)), vjust = -0.3, size = 3) +
+  scale_y_continuous(labels = percent_format(), limits = c(0, 1.05)) +
+  labs(x = NULL, y = "Binary accuracy",
+       title = "Stage 2 binary accuracy per design_kind",
+       subtitle = sprintf("Overall: %.1f%% su n = %d sample",
+                          100 * ov$accuracy, ov$n)) +
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 30, hjust = 1))
+```
+
+### Note investigative
+
+```{r investigate, results = "asis"}
+low_acc <- m$per_kind |> filter(accuracy < 0.5) |> arrange(accuracy)
+if (nrow(low_acc) > 0L) {
+  cat("**ATTENZIONE: design_kind con accuracy < 50%:**\n\n")
+  for (i in seq_len(nrow(low_acc))) {
+    cat(sprintf(
+      "- `%s` (n=%d, accuracy=%.1f%%) -- sotto il casuale, possibile role inversion. Da investigare in P3.5-A scaled benchmark.\n",
+      low_acc$design_kind[i], low_acc$n[i], 100 * low_acc$accuracy[i]
+    ))
+  }
+} else {
+  cat("Tutti i design_kind hanno accuracy >= 50%.\n")
+}
+```
+
+## 2. Granularity disagreement enumeration
+
+simulomicsr produce `design_role` valori che il gold binary non distingue.
+Questi NON sono errori -- sono valore aggiunto del classificatore design-aware.
+
+```{r granularity_count, results = "asis"}
+gr <- m$granularity
+n_granular <- nrow(gr)
+n_total_join <- ov$n + n_granular
+cat(sprintf(
+  "**Granularity flagged: %d sample** su %d totali nel join (%.1f%% del subset)\n\n",
+  n_granular, n_total_join,
+  100 * n_granular / max(n_total_join, 1L)
+))
+```
+
+```{r granularity_table, results = "asis"}
+if (nrow(gr) > 0L) {
+  granularity_summary <- gr |>
+    count(granularity_kind, name = "n") |>
+    arrange(desc(n))
+  knitr::kable(
+    granularity_summary,
+    caption = "Distribuzione granularity per kind"
+  )
+  cat("\n### Esempi rappresentativi\n\n")
+  examples <- gr |>
+    group_by(granularity_kind) |>
+    slice_head(n = 1L) |>
+    ungroup() |>
+    select(series_id, geo_accession, design_role,
+           predicted_binary, gold_binary, granularity_kind)
+  knitr::kable(examples, caption = "Un esempio per granularity_kind")
+} else {
+  cat("Nessun caso di granularity nel subset 15 GSE.\n")
+}
+```
+
+## 3. Anchor coverage cross-studio (intra-15)
+
+```{r anchor_coverage, results = "asis"}
+anchor_counts <- ct |>
+  group_by(comparability_anchor) |>
+  summarise(n_studies = length(unique(series_id)),
+            n_comparisons = dplyr::n(),
+            .groups = "drop") |>
+  arrange(desc(n_studies))
+
+multi_studio <- anchor_counts |> filter(n_studies >= 2L)
+
+cat(sprintf(
+  "**Anchor unici totali:** %d. **Anchor in N>=2 GSE:** %d. **Comparisons totali:** %d.\n\n",
+  nrow(anchor_counts), nrow(multi_studio), nrow(ct)
+))
+
+if (nrow(multi_studio) > 0L) {
+  knitr::kable(
+    head(multi_studio, 20),
+    caption = "Top anchor con N>=2 studi (potential meta-analyses)"
+  )
+} else {
+  cat("Nessun anchor cross-studio nel subset di 15 GSE -- atteso, scaling a 50-100 GSE in P3.5-A produrra collisioni.\n")
+}
+```
+
+```{r anchor_dist, fig.width = 6.5, fig.height = 4}
+max_x <- max(10L, max(anchor_counts$n_studies, na.rm = TRUE))
+ggplot(anchor_counts, aes(x = n_studies)) +
+  geom_histogram(binwidth = 1L, fill = "steelblue", color = "white") +
+  scale_x_continuous(breaks = seq_len(max_x)) +
+  labs(x = "N GSE per anchor", y = "Frequenza",
+       title = "Distribuzione studi-per-anchor (intra-15)",
+       subtitle = sprintf("%d anchor unici, %d comparisons totali",
+                          nrow(anchor_counts), nrow(ct))) +
+  theme_minimal()
+```
+
+## 4. RummaGEO head-to-head
+
+```{r rummageo_summary, results = "asis"}
+joined <- rm_data$joined_table
+n_total    <- nrow(joined)
+n_with_rg  <- sum(!is.na(joined$rummageo_label))
+n_with_gold <- sum(!is.na(joined$gold_binary))
+
+cat(sprintf(
+  "**Coverage:** %d sample con label RummaGEO su %d totali (%.0f%%). %d con gold.\n\n",
+  n_with_rg, n_total, 100 * n_with_rg / max(n_total, 1L), n_with_gold
+))
+
+rg_acc   <- rm_data$rummageo_vs_gold$accuracy %||% NA_real_
+sim_acc  <- rm_data$simulomicsr_vs_gold$accuracy %||% NA_real_
+agr_acc  <- rm_data$rummageo_vs_simulomicsr$accuracy %||% NA_real_
+
+cat(sprintf(
+  "**RummaGEO vs gold:** accuracy = %.1f%% (n = %d)\n\n",
+  100 * rg_acc,
+  rm_data$rummageo_vs_gold$n %||% NA_integer_
+))
+cat(sprintf(
+  "**simulomicsr vs gold:** accuracy = %.1f%% (n = %d)\n\n",
+  100 * sim_acc,
+  rm_data$simulomicsr_vs_gold$n %||% NA_integer_
+))
+cat(sprintf(
+  "**simulomicsr vs RummaGEO** (agreement): %.1f%% (n = %d)\n\n",
+  100 * agr_acc,
+  rm_data$rummageo_vs_simulomicsr$n %||% NA_integer_
+))
+
+delta_pp <- 100 * (sim_acc - rg_acc)
+if (!is.na(delta_pp)) {
+  if (delta_pp >= 0) {
+    cat(sprintf("\n**Delta:** simulomicsr batte RummaGEO di %.1f punti percentuali.\n", delta_pp))
+  } else {
+    cat(sprintf("\n**Delta:** RummaGEO batte simulomicsr di %.1f punti percentuali.\n", abs(delta_pp)))
+  }
+}
+```
+
+### Source distribution (RummaGEO official vs internal fallback)
+
+```{r source_dist, results = "asis"}
+if (!is.null(rm_data$source_summary)) {
+  knitr::kable(
+    as.data.frame(rm_data$source_summary),
+    col.names = c("Source", "Count"),
+    caption = "RummaGEO data source per sample"
+  )
+}
+```
+
+### Confusion matrix RummaGEO x gold
+
+```{r rg_cm}
+print(rm_data$rummageo_vs_gold$confusion_matrix)
+```
+
+### McNemar test sui disagreement
+
+```{r mcnemar, results = "asis"}
+joined_clean <- joined |>
+  filter(!is.na(gold_binary), !is.na(predicted_binary), !is.na(rummageo_label))
+
+if (nrow(joined_clean) >= 25L) {
+  sim_correct <- joined_clean$predicted_binary == joined_clean$gold_binary
+  rg_correct  <- joined_clean$rummageo_label   == joined_clean$gold_binary
+  ct_table <- table(simulomicsr = sim_correct, rummageo = rg_correct)
+  cat("Cross-tab (TRUE = correct vs gold):\n\n")
+  knitr::kable(as.data.frame.matrix(ct_table))
+  if (all(c(2L, 2L) == dim(ct_table))) {
+    mc <- mcnemar.test(ct_table, correct = TRUE)
+    cat(sprintf("\nMcNemar test: chi^2 = %.2f, p = %.4f\n",
+                mc$statistic, mc$p.value))
+    if (mc$p.value < 0.05) {
+      cat("\n**P < 0.05: differenza accuracy statisticamente significativa.**\n")
+    } else {
+      cat("\n**P >= 0.05: differenza non significativa al test McNemar.**\n")
+    }
+  }
+} else {
+  cat(sprintf("n = %d sample, troppo pochi per McNemar test (richiesti >= 25)\n",
+              nrow(joined_clean)))
+}
+```
+
+### Per-design_kind: simulomicsr vs RummaGEO
+
+```{r per_kind_h2h, results = "asis"}
+if (nrow(joined_clean) > 0L) {
+  per_kind_h2h <- joined_clean |>
+    group_by(design_kind) |>
+    summarise(
+      n = dplyr::n(),
+      simulomicsr_acc = mean(predicted_binary == gold_binary),
+      rummageo_acc    = mean(rummageo_label    == gold_binary),
+      delta = simulomicsr_acc - rummageo_acc,
+      .groups = "drop"
+    ) |>
+    arrange(desc(delta))
+  knitr::kable(
+    per_kind_h2h |>
+      mutate(across(c(simulomicsr_acc, rummageo_acc, delta),
+                    ~ round(.x, 3))),
+    caption = "Head-to-head per design_kind (delta = simulomicsr - rummageo, ordinato)"
+  )
+} else {
+  cat("Nessun sample con coverage completo per head-to-head per-design_kind.\n")
+}
+```
+
+## Conclusioni P3.5-B
+
+```{r conclusioni, results = "asis"}
+ov_acc       <- 100 * (m$overall$accuracy %||% NA_real_)
+n_granular   <- nrow(m$granularity)
+n_anchor_multi <- if (nrow(anchor_counts) > 0L) sum(anchor_counts$n_studies >= 2L) else 0L
+sim_acc      <- rm_data$simulomicsr_vs_gold$accuracy %||% 0
+rg_acc       <- rm_data$rummageo_vs_gold$accuracy    %||% 0
+delta_pp     <- 100 * (sim_acc - rg_acc)
+
+cat(sprintf("- **Stage 2 binary accuracy: %.1f%%** su n = %d sample\n",
+            ov_acc, m$overall$n))
+cat(sprintf("- **Granularity flagged: %d sample** con design_role piu' granulare del binary gold\n",
+            n_granular))
+cat(sprintf("- **Anchor cross-studio: %d anchor** in N>=2 GSE su un subset di 15\n",
+            n_anchor_multi))
+cat(sprintf("- **simulomicsr vs RummaGEO: %+.1f pp accuracy** (delta vs internal fallback su 15 GSE non in RummaGEO official)\n",
+            delta_pp))
+cat("\n**Prossimo step:** P3.5-A scaled benchmark su 50-100 GSE per evidenza paper-ready.\n")
+```
