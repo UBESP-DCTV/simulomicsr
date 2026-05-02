@@ -208,6 +208,84 @@ list(
     }
   ),
 
+  # Tabella piatta (una riga per comparison) arricchita con comparability_anchor v3.
+  # Per ogni comparison, il sample_fact rappresentativo e' il primo sample_id del
+  # treated_group (o del gruppo con design_role primario). I sample_facts vengono
+  # caricati dalle fixture mini di Stadio 2, non dal dev set P2.
+  tar_target(
+    comparisons_table,
+    {
+      rows <- list()
+      fixture_dir <- system.file("extdata/stage2-fixtures-mini",
+                                 package = "simulomicsr")
+      # Cache lazy delle fixture sample_facts per GSE
+      facts_cache <- list()
+      load_facts <- function(gse) {
+        if (!is.null(facts_cache[[gse]])) return(facts_cache[[gse]])
+        path <- file.path(fixture_dir, paste0(gse, "-sample-facts.json"))
+        facts <- jsonlite::read_json(path, simplifyVector = FALSE)
+        # Indicizza per geo_accession
+        idx <- list()
+        for (f in facts) {
+          if (!is.null(f$geo_accession)) idx[[f$geo_accession]] <- f
+        }
+        facts_cache[[gse]] <<- idx
+        idx
+      }
+
+      for (design in study_designs_validated) {
+        sid <- design$series_id
+        facts_idx <- load_facts(sid)
+        groups_idx <- list()
+        for (g in design$replicate_groups) {
+          groups_idx[[g$group_id]] <- g
+        }
+        for (cmp in design$comparisons) {
+          treated_grp <- groups_idx[[cmp$treated_group]]
+          if (is.null(treated_grp) || length(treated_grp$sample_ids) == 0L) next
+          repr_id <- treated_grp$sample_ids[[1L]]
+          repr_facts <- facts_idx[[repr_id]]
+          if (is.null(repr_facts)) next
+          anchor <- tryCatch(
+            make_anchor(repr_facts, stage2_role = treated_grp$design_role),
+            error = function(e) NA_character_
+          )
+          control_grp <- groups_idx[[cmp$control_group]]
+          n_ctrl <- if (is.null(control_grp)) 0L else length(control_grp$sample_ids)
+          rows[[length(rows) + 1L]] <- tibble::tibble(
+            series_id             = sid,
+            comparison_id         = cmp$comparison_id,
+            treated_group         = cmp$treated_group,
+            control_group         = cmp$control_group,
+            varying_factor        = cmp$varying_factor %||% NA_character_,
+            study_internal_score  = cmp$study_internal_score %||% NA_real_,
+            comparability_anchor  = anchor,
+            anchor_version        = "v3",
+            design_kind           = design$design_kind,
+            n_samples_treated     = length(treated_grp$sample_ids),
+            n_samples_control     = n_ctrl
+          )
+        }
+      }
+      if (length(rows) == 0L) {
+        return(tibble::tibble(
+          series_id            = character(0),
+          comparison_id        = character(0),
+          treated_group        = character(0),
+          control_group        = character(0),
+          varying_factor       = character(0),
+          study_internal_score = numeric(0),
+          comparability_anchor = character(0),
+          anchor_version       = character(0),
+          design_kind          = character(0),
+          n_samples_treated    = integer(0),
+          n_samples_control    = integer(0)
+        ))
+      }
+      dplyr::bind_rows(rows)
+    }
+  ),
+
   # ---------------------------------------------------------------------------
   tar_target(
     eval_stage1_metrics,
