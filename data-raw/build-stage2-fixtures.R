@@ -1,11 +1,31 @@
-# Build fixture mini Stadio 2: 3 GSE stratificati per design_kind.
-# 3 GSE confermati con utente 2026-05-02:
-#   - GSE145028 (n=12, knockdown_panel — shRNA non-targeting / targeting)
-#   - GSE145941 (n=8,  treatment_vs_untreated — 10 Gy irradiation vs 0 Gy)
-#   - GSE191240 (n=9,  treatment_vs_untreated — A. fumigatus stim su HUVEC)
+# Build fixture mini Stadio 2: 15 GSE stratificati per design_kind e casi limite.
+#
+# Selezione approvata utente 2026-05-02 (estensione da 3 a 15 GSE):
+#
+# BASE (3 GSE — Task 10, cache gia` calda):
+#   - GSE145028 (n=12, knockdown_panel       — NCI-H1963 + shRNA)
+#   - GSE145941 (n=8,  treatment_vs_untreated — irradiazione 0Gy/10Gy)
+#   - GSE191240 (n=9,  pathogen_or_aggregate_exposure — HUVEC + A.fumigatus)
+#
+# ROUND 2 — diversita` di design (5 GSE nuovi):
+#   - GSE155528 (n=12, dose_response          — C4-2 + R1881)
+#   - GSE200037 (n=12, differentiation_course — iPSC microglia)
+#   - GSE104149 (n=12, case_control + time + multi-donor — BCG + monocyte)
+#   - GSE106966 (n=12, factorial              — HEK293T + WT/CRAF- + serum/EGF)
+#   - GSE114781 (n=12, time_course            — HEK293T + transcription block)
+#
+# ROUND 3 — casi limite (7 GSE nuovi):
+#   - GSE57494  (n=40, LARGE N + factorial    — CD14+CD16+ + IFNg + LPS + multi-donor)
+#   - GSE143441 (n=30, LARGE N + tumor + drug — MCF7 + EtOH + 4sU)
+#   - GSE128771 (n=4,  mediated_effect        — AML + Dox-inducible CBFB-MYH11 KD)
+#   - GSE101708 (n=9,  tumor + drug + disease_vs_normal conflict — HCT116 + DMSO/largazole)
+#   - GSE102908 (n=12, factorial cancer       — SCCOHT1 + SMARCA4 LoF + OTX015 time)
+#   - GSE106716 (n=8,  factorial 2x2          — OVISE + SYK-WT/KO + EGF)
+#   - GSE100261 (n=5,  metadata povero        — string "treatment: control")
 #
 # Source: full xlsx (NON P2 dev set, che ha 1 sample/GSE).
 # Idempotente: cache LLM riusa i risultati esistenti.
+# ~30 sample con cache calda (base 3 GSE), ~125 fresh per 12 GSE nuovi.
 #
 # Run: source("data-raw/build-stage2-fixtures.R")
 # Pre-req: OPENAI_API_KEY in .Renviron.local
@@ -16,7 +36,28 @@ library(dplyr)
 
 `%||%` <- function(x, y) if (is.null(x)) y else x
 
-candidate_gse <- c("GSE145028", "GSE145941", "GSE191240")
+candidate_gse <- c(
+  # Base 3 (Task 10, cache gia` calda)
+  "GSE145028",  # n=12  knockdown_panel
+  "GSE145941",  # n=8   treatment_vs_untreated
+  "GSE191240",  # n=9   pathogen_or_aggregate_exposure
+
+  # Round 2 -- diversita` di design (5 nuovi)
+  "GSE155528",  # n=12  dose_response
+  "GSE200037",  # n=12  differentiation_course
+  "GSE104149",  # n=12  case_control + time + multi-donor
+  "GSE106966",  # n=12  factorial
+  "GSE114781",  # n=12  time_course
+
+  # Round 3 -- casi limite (7 nuovi)
+  "GSE57494",   # n=40  LARGE N + factorial
+  "GSE143441",  # n=30  LARGE N + tumor + drug
+  "GSE128771",  # n=4   mediated_effect
+  "GSE101708",  # n=9   tumor + drug + disease_vs_normal conflict
+  "GSE102908",  # n=12  factorial cancer
+  "GSE106716",  # n=8   factorial 2x2
+  "GSE100261"   # n=5   metadata povero
+)
 
 samples <- simulomicsr:::read_samples_input(
   here("data-raw", "relevant_sample_classified.xlsx")

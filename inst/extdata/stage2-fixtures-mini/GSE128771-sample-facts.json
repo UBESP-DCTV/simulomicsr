@@ -1,0 +1,305 @@
+[
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "ME-1",
+      "cell_state": null,
+      "cell_type_or_line_raw": "ME-1",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "inducible_transgene",
+          "label": "dox inducible CBFB-MYH11 knockdown construct",
+          "variant": null
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "acute myeloid leukemia (AML)"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:4adb7448caaccd64a0a2217ae288c418f49702ce3f36fc5a180dba2154c8fea5",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM3684773",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "CBFB-MYH11",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "doxycycline-induced CBFB-MYH11 knockdown",
+        "dose": {
+          "unit": "ng/ml",
+          "value_numeric": 600,
+          "value_raw": "600 ng/ml doxycycline"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE128771",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "ME-1",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "inducible_transgene",
+          "label": "dox inducible CBFB-MYH11 knockdown construct",
+          "variant": {
+            "description": "CBFB-MYH11 knockdown construct",
+            "is_wildtype": false,
+            "label": "CBFB-MYH11 knockdown"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "acute myeloid leukemia (AML)"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.91,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:93a2cbfc9d5fdb0ac009525ac5210b21e5ead6fed1d459184fd55e7fd7347de2",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM3684774",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "no dox",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE128771",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "ME-1",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "inducible_transgene",
+          "label": "dox inducible CBFB-MYH11 knockdown construct",
+          "variant": {
+            "description": "harbouring a dox inducible CBFB-MYH11 knockdown construct",
+            "is_wildtype": false,
+            "label": "CBFB-MYH11 knockdown construct"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "acute myeloid leukemia (AML)"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:4adb7448caaccd64a0a2217ae288c418f49702ce3f36fc5a180dba2154c8fea5",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM3684775",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "doxycycline",
+          "type": "small_molecule"
+        },
+        "agent_raw": "600 ng/ml doxycycline",
+        "dose": {
+          "unit": "ng/ml",
+          "value_numeric": 600,
+          "value_raw": "600 ng/ml"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": {
+          "kind": "genetic_knockdown",
+          "targets": [
+            "CBFB-MYH11"
+          ]
+        },
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE128771",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "ME-1",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "inducible_transgene",
+          "label": "dox inducible CBFB-MYH11 knockdown construct",
+          "variant": {
+            "description": "CBFB-MYH11 knockdown construct",
+            "is_wildtype": false,
+            "label": "CBFB-MYH11 knockdown"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "acute myeloid leukemia (AML)"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "engineered_cell_line",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:93a2cbfc9d5fdb0ac009525ac5210b21e5ead6fed1d459184fd55e7fd7347de2",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM3684776",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "no dox",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE128771",
+    "technical_treatments": []
+  }
+]
