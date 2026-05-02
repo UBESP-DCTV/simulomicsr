@@ -13,7 +13,7 @@
 Pipeline complessiva (5 stadi):
 1. **Acquisizione** — bulk RNAseq da ARCHS4-like (HDF5, ~700k+ sample da GEO).
 2. **Stadio 1 sample-level** (P2 ✅) — classificare ogni sample dalla stringa di metadati GEO in un record JSON `sample_facts.stage1.v3` (cell context, perturbazioni, dose, tempo, ambiguity flags). LLM: OpenAI gpt-5.5 in dev, batch API in run massivo.
-3. **Stadio 2 study-level** (P3 — next) — interpretare il design sperimentale dello studio: replicate groups, design_role per sample, comparisons con `comparability_anchor` canonicalizzato per cross-studio matching.
+3. **Stadio 2 study-level** (P3 ✅) — interpretare il design sperimentale dello studio: replicate groups, design_role per sample, comparisons con `comparability_anchor` canonicalizzato per cross-studio matching.
 4. **Stadio 3 raggruppamento** — cluster cross-studio sui `comparability_anchor`.
 5. **Stadio 4 DE per-studio + Stadio 5 meta-analisi** (`DESeq2`/`limma` + `metafor` REM).
 
@@ -25,13 +25,13 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-02 fine sessione `simulimicsr_p2`)
+## Stato corrente (2026-05-02 fine sessione `simulomicsr_P3`)
 
-- **Master HEAD:** `9d131c9` (P2 Task 13: bump 0.0.0.9003 + NEWS aggiornati).
-- **Tag:** `p1-infra-llm-complete` (P1), `p2-stage1-complete` (P2).
+- **Master HEAD:** `0c9e4f5` (P3 Task 17 pre-merge: fix non-ASCII + .Rbuildignore).
+- **Tag:** `p1-infra-llm-complete` (P1), `p2-stage1-complete` (P2), `p3-stage2-complete` (P3).
 - **Master locale è ahead di `origin/master`** — l'utente fa il push lui (mai automaticamente).
-- **R CMD check:** 0E / 0W / 2N (note pre-esistenti, no regressioni).
-- **Test suite:** 157 PASS / 2 SKIP / 0 FAIL (i 2 SKIP sono smoke E2E gated su `OPENAI_API_KEY`).
+- **R CMD check:** 0E / 0W / 2N (note pre-esistenti: `doc` top-level generato da devtools; `cli`/`purrr`/`stringr` imports non usati da P1).
+- **Test suite:** 277 PASS / 0 SKIP / 0 FAIL (i smoke E2E gated su `OPENAI_API_KEY` sono passati con key presente).
 
 ### Cosa P1 ha consegnato (infrastruttura LLM)
 
@@ -39,27 +39,32 @@ API esportate: `llm_call_structured()`, `cache_init()`, `cache_put`, `cache_has`
 
 ### Cosa P2 ha consegnato (Stadio 1 sample_facts)
 
-- `inst/schemas/sample_facts.stage1.v3.json` — schema strict per OpenAI Structured Outputs (`additionalProperties:false` ovunque, tutti `required`, optionals come union null, vocab spec §3.1-§3.12).
-- `R/llm-stage1.R`: `read_sample_fixtures_mini()`, `build_prompt_stage1()`, `parse_stage1_response()`, `classify_sample_row()`, `.stage1_invalid_record()` (internal); **`classify_sample()`** export pubblico.
+- `inst/schemas/sample_facts.stage1.v3.json` — schema strict per OpenAI Structured Outputs.
+- `R/llm-stage1.R`: `read_sample_fixtures_mini()`, `build_prompt_stage1()`, `parse_stage1_response()`, `classify_sample_row()` (internal); **`classify_sample()`** export pubblico.
 - `R/eval-sampling.R`: `read_samples_input()`, `build_dev_set()` (60/30/10, seed=1812).
 - `R/eval-metrics.R`: `stage1_schema_validity_rate()`, `stage1_recall_key_fields()`.
-- `inst/extdata/sample-fixtures-mini.tsv` (8 sample stratificati, seed=20260502).
-- `analysis/_targets.R`: 10 target fino a `eval_stage1_report` HTML via `tar_render`.
-- Vignette `vignettes/stage1-classify.Rmd`.
-- Eval Quarto `analysis/eval/stage1-eval.Rmd`.
+- 100 sample dev set classificati su gpt-5.5: validity 1.0, recall_pert 0.7, recall_cell 0.8.
 
-### Risultati run reale Task 11 (100 sample gpt-5.5)
+### Cosa P3 ha consegnato (Stadio 2 study_design + anchor v3 + benchmark 15 GSE)
 
-| Metrica | Osservato | Soglia | Status |
-|---|---|---|---|
-| `validity_rate` | 1.000 | > 0.95 | ✅ |
-| `recall_perturbation` | 0.700 | > 0.7 | ✅ |
-| `recall_cell_type` | 0.800 | > 0.85 | ⚠️ -0.05 (17 sample con `context_kind=unclear` legittimi) |
+- `inst/schemas/study_design.stage2.v1.json` — schema strict (`factor_levels`/`fixed_factors` come array di {key, value} per OpenAI strict).
+- `R/llm-stage2.R`: `build_prompt_stage2()` (internal), `parse_stage2_response()` (internal); **`classify_study()`** export pubblico.
+- `R/geo-fetch.R`: **`fetch_study_summary()`** export su rentrez con cache JSONL.
+- `R/anchors.R`: helpers privati `.normalize_dose/duration/cell_id`; **`make_anchor()`** v3 13 segmenti (R8/R9/R24/R25/R31 + disease override condizionato); **`make_inducer_log()`** export.
+- `analysis/_targets.R`: target completi Stadio 2 driven da 15 fixture curate (`curated_stage2_gse`).
+- `vignettes/stage2-classify.Rmd`: vignette user-facing offline buildable.
+- `inst/extdata/stage2-fixtures-mini/`: 15 GSE benchmark stratificato (197/197 sample stage1-valid).
 
-- elapsed 19 min, costo cumulativo P2 ~$3.09 (su tetto $500).
-- Distribuzione kind: 32 small_molecule, 17 none, 10 knockdown, 10 vehicle_only, 9 unclear, 8 cytokine, 4 (none-array), 4 pathogen, 3 overexpression, 2 knockout, 1 environmental.
-- Distribuzione context: 54 cell_line_in_vitro, 17 unclear, 11 primary_culture, 10 primary_tissue, 2 co_culture, 2 iPSC, 2 tumor_extracted, 1 organoid, 1 xenograft.
-- Confidence median 0.88 (range 0.52-0.97).
+### Risultati run reale 15 GSE (Task 13)
+
+| Metrica | Risultato |
+|---|---|
+| Validity rate | 15/15 = 100% |
+| design_kind coperti | 7/10 |
+| Confidence range | 0.72-0.93 (median ~0.87) |
+| Comparisons cross-GSE | 55 |
+| Anchor unici | 44 (11 collisioni cross-studio attese) |
+| Costo cumulativo P3 | ~$5-7 (su tetto $500) |
 
 ## Hotfix P1 emersi durante P2 (importanti per supportare gpt-5.5+)
 
@@ -124,15 +129,15 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione)
+## Next step (per la prossima sessione — P3.5 eval)
 
-1. **Scope P3 confermato (2026-05-02, ADR-0006):** P3-B split — **P3** ingegneria Stadio 2 (schema + prompt + GEO fetch + classify_study + make_anchor + comparisons_table); **P3.5** eval (gold design-aware su 200-300 sample + benchmark integrale vs RummaGEO).
-2. **P3 toccherà:** `R/llm-stage2.R` (prompt + classify per GSE), `R/anchors.R` (`make_anchor()`), `R/geo-fetch.R` (study_summary da NCBI), schema `inst/schemas/study_design.stage2.v1.json`, target `study_designs`/`comparisons_table` in `analysis/_targets.R`.
-3. **P3.5 toccherà:** `R/eval-rummageo.R` (loader + matching), `R/eval-design-gold.R` (gold design-aware), target `eval_rummageo_benchmark` + `eval_stage2_metrics`, report Quarto in `analysis/eval/rummageo-benchmark.Rmd`. Specifiche del benchmark in ADR-0006 §"Deliverable integrale: benchmark vs RummaGEO".
-4. P3 può girare interamente in locale. Server-switch è programmato per P4 — vedi ADR-0005.
-5. Considerare il rename del pacchetto (ADR-0003) prima di P3 se si vuole evitare confusione downstream.
-6. Se P3 si avvicina al run massivo, valutare migrazione a `ellmer` come ADR separato.
-7. **Prossimo step concreto:** invocare `superpowers:writing-plans` per scrivere il plan dettagliato di P3 (e successivamente di P3.5).
+**P3 completato (2026-05-02).** Prossima fase: **P3.5** — eval Stadio 2 + benchmark vs RummaGEO.
+
+1. **P3.5 toccherà:** `R/eval-rummageo.R` (loader + matching), `R/eval-design-gold.R` (gold design-aware su 200-300 sample), target `eval_rummageo_benchmark` + `eval_stage2_metrics`, report Quarto in `analysis/eval/rummageo-benchmark.Rmd`. Specifiche del benchmark in ADR-0006 §"Deliverable integrale: benchmark vs RummaGEO".
+2. **Server-switch** programmato per P4 (run massivo ARCHS4) — vedi ADR-0005.
+3. Considerare il rename del pacchetto (ADR-0003) prima del primo `install_github` pubblico.
+4. Se P3.5/P4 si avvicina al run massivo, valutare migrazione a `ellmer` come ADR separato.
+5. **Prossimo step concreto:** invocare `superpowers:writing-plans` per scrivere il plan dettagliato di P3.5.
 
 ## Riferimenti chiave
 
