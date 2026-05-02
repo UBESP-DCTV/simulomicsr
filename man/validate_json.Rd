@@ -17,4 +17,3 @@ lista con \code{valid} (logico) e \code{errors} (character vector, vuoto se vali
 \description{
 Valida un oggetto R o una stringa JSON contro un validatore compilato
 }
-\keyword{internal}

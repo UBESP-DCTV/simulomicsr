@@ -17,4 +17,3 @@ Wrapper su \code{jsonvalidate::json_validator()} con backend Ajv. Il validatore
 ritornato è una funzione che accetta una stringa JSON e ritorna TRUE/FALSE
 (con attribute \code{errors} se invalido).
 }
-\keyword{internal}
