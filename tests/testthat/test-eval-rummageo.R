@@ -33,3 +33,41 @@ test_that("fetch_rummageo_signatures errors on input invalido", {
     class = "simulomicsr_invalid_series_id"
   )
 })
+
+test_that("rummageo_baseline_internal: 2-cluster split su metadati semplici", {
+  samples <- tibble::tibble(
+    geo_accession = paste0("GSM", 1:6),
+    series_id = rep("GSE1", 6),
+    string = c(
+      "treatment: DMSO",
+      "treatment: DMSO",
+      "treatment: DMSO",
+      "treatment: drug X 10nM",
+      "treatment: drug X 10nM",
+      "treatment: drug X 10nM"
+    )
+  )
+  out <- rummageo_baseline_internal(samples)
+  expect_true(tibble::is_tibble(out))
+  expect_setequal(colnames(out), c("geo_accession", "rummageo_label"))
+  dmso_labels <- out$rummageo_label[out$geo_accession %in% paste0("GSM", 1:3)]
+  expect_true(all(dmso_labels == "control"))
+  drug_labels <- out$rummageo_label[out$geo_accession %in% paste0("GSM", 4:6)]
+  expect_true(all(drug_labels == "treated"))
+})
+
+test_that("rummageo_baseline_internal: keyword 'control' in metadata", {
+  samples <- tibble::tibble(
+    geo_accession = paste0("GSM", 1:4),
+    series_id = rep("GSE1", 4),
+    string = c(
+      "treatment: control siRNA",
+      "treatment: control siRNA",
+      "treatment: shGAPDH",
+      "treatment: shKRAS"
+    )
+  )
+  out <- rummageo_baseline_internal(samples)
+  expect_equal(out$rummageo_label[1:2], rep("control", 2))
+  expect_true(all(out$rummageo_label[3:4] == "treated"))
+})
