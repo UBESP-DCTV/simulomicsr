@@ -1,0 +1,93 @@
+---
+title: "Classificare un sample RNAseq con classify_sample() (Stadio 1)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Classificare un sample RNAseq con classify_sample() (Stadio 1)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(simulomicsr)
+```
+
+## Cos'e' lo Stadio 1?
+
+Lo Stadio 1 della pipeline `simulomicsr` trasforma la stringa testuale di metadati di un sample RNAseq da GEO in un **record JSON strutturato** (`sample_facts.stage1.v3`). Il record cattura:
+
+- chi e' il sample (tipo cellulare, tessuto, organismo, contesto sperimentale);
+- cosa e' stato fatto al sample (perturbazioni: drug, knockdown, citochine, eccetera);
+- cosa NON e' ricavabile dalla stringa (campi `null`, flag di ambiguita').
+
+Lo Stadio 1 NON decide treated vs control — quella decisione vive nello Stadio 2 (per studio).
+
+## Esempio: 1 sample dalla fixture mini
+
+```{r}
+# Fixture stabile bundled nel pacchetto (8 sample dal xlsx)
+fix <- simulomicsr:::read_sample_fixtures_mini()
+row <- fix[fix$stratum == "easy_treated", , drop = FALSE][1, ]
+str(as.list(row))
+```
+
+## Classificazione con provider mock (no API call)
+
+A scopo dimostrativo, usiamo `provider = "mock"` con una risposta finta gia' valida:
+
+```{r}
+fake_response <- jsonlite::fromJSON(
+  readr::read_file(system.file(
+    "schemas/sample_facts.stage1.v3.json", package = "simulomicsr"
+  )),
+  simplifyVector = FALSE
+)
+# (in un caso reale, useremmo provider="openai" — vedi sotto)
+```
+
+```{r eval=FALSE}
+# Esempio reale (richiede OPENAI_API_KEY in .Renviron.local)
+res <- classify_sample(
+  sample_string = row$string,
+  geo_accession = row$geo_accession,
+  series_id     = row$series_id,
+  provider = "openai",
+  model    = "gpt-5.5"
+)
+str(res$value, max.level = 2)
+```
+
+## Cache su disco
+
+Per evitare di pagare due volte la stessa chiamata, passare un oggetto `cache`:
+
+```{r eval=FALSE}
+cache <- cache_init(tempfile(), namespace = "stage1")
+
+r1 <- classify_sample(
+  sample_string = row$string,
+  geo_accession = row$geo_accession,
+  series_id     = row$series_id,
+  cache         = cache
+)
+r1$cache_hit  # FALSE — prima chiamata
+
+r2 <- classify_sample(
+  sample_string = row$string,
+  geo_accession = row$geo_accession,
+  series_id     = row$series_id,
+  cache         = cache
+)
+r2$cache_hit  # TRUE — risposta servita dalla cache
+```
+
+## Schema di output
+
+Lo schema completo e' in `inst/schemas/sample_facts.stage1.v3.json`. La spec del design vive in `docs/superpowers/specs/2026-04-29-classificatore-llm-design.md` §3.
+
+## Quando lo Stadio 1 NON basta
+
+Lo Stadio 1 non sa:
+- Quali sample sono replicate biologiche dello stesso gruppo (e' Stadio 2).
+- Qual e' il "control" del confronto (e' Stadio 2).
+- Se una lente di trattamento e' veicolo (DMSO/PBS) o farmaco attivo (Stadio 1 lo flagga come `vehicle_only` o `small_molecule`, ma il ruolo nel design e' Stadio 2).
