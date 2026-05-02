@@ -286,6 +286,146 @@ list(
     }
   ),
 
+  # ============================================================
+  # P3.5-B eval benchmark sui 15 GSE curated
+  # ============================================================
+
+  tar_target(
+    gold_table_subset,
+    {
+      curated <- curated_stage2_gse
+      full_xlsx <- read_samples_input(
+        here::here("data-raw", "relevant_sample_classified.xlsx")
+      )
+      full_xlsx %>%
+        dplyr::filter(series_id %in% curated) %>%
+        dplyr::transmute(
+          geo_accession = geo_accession,
+          series_id = series_id,
+          string = string,
+          gold_raw = trtctr_EP,
+          gold_binary = dplyr::case_when(
+            tolower(trtctr_EP) %in% c("treated") ~ "treated",
+            tolower(trtctr_EP) %in% c("control") ~ "control",
+            TRUE ~ NA_character_  # outlier non binari (es. specific drug names)
+          )
+        )
+    }
+  ),
+
+  tar_target(
+    eval_stage2_gold_join,
+    {
+      rows <- list()
+      for (design in study_designs_validated) {
+        sid <- design$series_id
+        for (g in design$replicate_groups) {
+          for (gsm in g$sample_ids) {
+            rows[[length(rows) + 1L]] <- tibble::tibble(
+              series_id = sid,
+              geo_accession = gsm,
+              design_role = g$design_role,
+              design_kind = design$design_kind,
+              predicted_binary = design_role_to_binary(g$design_role)
+            )
+          }
+        }
+      }
+      pred_df <- dplyr::bind_rows(rows)
+      out <- dplyr::left_join(
+        pred_df,
+        gold_table_subset[, c("geo_accession", "series_id",
+                              "string", "gold_raw", "gold_binary")],
+        by = c("geo_accession", "series_id")
+      )
+      out
+    }
+  ),
+
+  tar_target(
+    eval_stage2_metrics,
+    {
+      list(
+        overall = eval_binary_accuracy(
+          eval_stage2_gold_join$gold_binary,
+          eval_stage2_gold_join$predicted_binary
+        ),
+        per_kind = eval_per_design_kind(eval_stage2_gold_join),
+        granularity = flag_granularity_disagreement(eval_stage2_gold_join)
+      )
+    }
+  ),
+
+  tar_target(
+    rummageo_cache_dir,
+    fs::dir_create(here::here("analysis", "cache", "rummageo")),
+    format = "file"
+  ),
+
+  tar_target(
+    rummageo_signatures,
+    {
+      out_per_gse <- lapply(curated_stage2_gse, function(gse) {
+        sub <- gold_table_subset[gold_table_subset$series_id == gse, ]
+        if (nrow(sub) == 0L) return(NULL)
+        labels <- tryCatch({
+          data <- fetch_rummageo_signatures(gse, cache_dir = rummageo_cache_dir)
+          parsed <- parse_rummageo_labels(data)
+          if (nrow(parsed) == 0L) {
+            # GSE in API ma signatures vuote -> fallback
+            parsed <- rummageo_baseline_internal(sub)
+            attr(parsed, "source") <- "internal_fallback_empty_signatures"
+          } else {
+            attr(parsed, "source") <- "rummageo_official"
+          }
+          parsed
+        }, simulomicsr_rummageo_unavailable = function(e) {
+          # GSE non indicizzato in RummaGEO -> fallback interno
+          parsed <- rummageo_baseline_internal(sub)
+          attr(parsed, "source") <- "internal_fallback_unavailable"
+          parsed
+        }, error = function(e) {
+          # Errore inatteso -> fallback interno
+          parsed <- rummageo_baseline_internal(sub)
+          attr(parsed, "source") <- "internal_fallback_error"
+          parsed
+        })
+        labels$series_id <- gse
+        labels$source <- attr(labels, "source") %||% "unknown"
+        labels
+      })
+      out <- dplyr::bind_rows(Filter(Negate(is.null), out_per_gse))
+      out
+    }
+  ),
+
+  tar_target(
+    rummageo_metrics,
+    {
+      joined <- dplyr::left_join(
+        eval_stage2_gold_join,
+        rummageo_signatures[, c("geo_accession", "series_id",
+                                "rummageo_label", "source")],
+        by = c("geo_accession", "series_id")
+      )
+      list(
+        rummageo_vs_gold = eval_binary_accuracy(
+          joined$gold_binary, joined$rummageo_label
+        ),
+        simulomicsr_vs_gold = eval_binary_accuracy(
+          joined$gold_binary, joined$predicted_binary
+        ),
+        rummageo_vs_simulomicsr = eval_binary_accuracy(
+          joined$predicted_binary, joined$rummageo_label
+        ),
+        joined_table = joined,
+        source_summary = table(joined$source, useNA = "ifany")
+      )
+    }
+  ),
+
+  # NOTE: eval_p35_report target sara' aggiunto in Task 8 (Rmd ancora da creare).
+
   # ---------------------------------------------------------------------------
   tar_target(
     eval_stage1_metrics,
