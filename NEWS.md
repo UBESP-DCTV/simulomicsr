@@ -1,3 +1,46 @@
+# simulomicsr 0.0.0.9005
+
+## P3.5-B — eval benchmark Stadio 2 sui 15 GSE (prototipo)
+
+- `R/eval-stage2.R`: `design_role_to_binary()` (mapping 13->3 esteso vs spec
+  v5 §6.2), `eval_binary_accuracy()`, `eval_per_design_kind()`,
+  `flag_granularity_disagreement()`. Tutti export pubblici.
+- `R/eval-rummageo.R`: `fetch_rummageo_signatures()` (cache filesystem JSONL,
+  retry exponential backoff, abort `simulomicsr_rummageo_unavailable` se
+  GSE non in RummaGEO), `parse_rummageo_labels()`,
+  `rummageo_baseline_internal()` (replica K-means+keyword, fallback per
+  GSE non indicizzati).
+- `analysis/_targets.R`: 7 nuovi target (gold_table_subset,
+  eval_stage2_gold_join, eval_stage2_metrics, rummageo_cache_dir,
+  rummageo_signatures, rummageo_metrics, eval_p35_report).
+- `analysis/eval/p35-benchmark.Rmd`: Quarto report 4 sezioni (binary
+  accuracy, granularity, anchor coverage, RummaGEO head-to-head).
+
+## Risultati run reale 15 GSE (197 sample)
+
+| Metrica | Valore |
+|---|---|
+| Stage 2 binary accuracy globale | 75.1% (n=197) |
+| time_course / treatment_vs_vehicle / knockdown_panel | 100% |
+| dose_response | 85.7% |
+| factorial | 78.1% |
+| treatment_vs_untreated | 41.7% (sotto casuale, da investigare in P3.5-A) |
+| multi_arm_treatment | 66.0% |
+| Granularity flagged | 22 sample |
+| simulomicsr vs gold | 0.751 (n=197) |
+| RummaGEO vs gold | 0.696 (n=184) |
+| **Delta simulomicsr - RummaGEO** | **+5.5 pp** |
+
+Costo P3.5-B: $0 (riuso totale cache P3, no LLM call).
+
+## Discoveries Task 5 (RummaGEO API)
+
+- GraphQL endpoint /graphql funzionante; REST /api/signatures non usabile
+- 12/15 GSE NON indicizzati in RummaGEO official -> fallback interno
+  K-means+keyword. 39/197 sample hanno match RummaGEO ufficiale.
+- RummaGEO `sampleGroups` schema: titles {1: "ko label", 2: "control label"},
+  samples {1: [...], 2: [...]}. Indice numerico minore = trattato.
+
 # simulomicsr 0.0.0.9004
 
 ## Stadio 2 (P3) — study_design + comparability_anchor + benchmark robusto

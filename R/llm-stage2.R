@@ -215,7 +215,7 @@ classify_study <- function(series_id, sample_facts_list, study_summary,
 #' contesto del caller. Non siamo mai completamente fiduciosi che l'LLM abbia
 #' interpretato correttamente questi campi.
 #'
-#' @param raw Risposta parsed JSON (list), gi\u00e0 validata contro stage2.v1
+#' @param raw Risposta parsed JSON (list), gia' validata contro stage2.v1
 #' @param series_id GSE accession (forzato)
 #' @param sample_count numero intero di sample input (forzato come input_sample_count)
 #' @param model string modello usato (forzato come model)
