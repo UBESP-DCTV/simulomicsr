@@ -85,9 +85,25 @@
 make_anchor <- function(stage1_facts, stage2_role) {
   pert <- .select_primary_perturbation(stage1_facts$perturbations, stage2_role)
 
-  # Verifica se si tratta di un design disease_vs_normal (R spec sec.4.3)
+  # Verifica se si tratta di un design disease_vs_normal (R spec sec.4.3).
+  # Override fires solo quando:
+  #   (a) stage2_role e' esplicitamente "case"/"comparison" (Stadio 2 ha
+  #       assegnato il ruolo disease cohort), OPPURE
+  #   (b) c'e' un disease state ma NON una perturbazione attiva
+  #       (cell line disease model SENZA drug/KD/cytokine: la malattia stessa
+  #       e' il design)
+  # Se c'e' una perturbazione attiva su un disease model, vince la perturbazione
+  # (segmento 1 = kind_effective della perturbazione, segmento 12 conserva
+  # disease_status=disease_model). Coerente con spec sec.4.3 esempio PFF.
+  has_active_perturbation <- length(stage1_facts$perturbations) > 0L &&
+    !is.null(pert$kind) &&
+    !identical(pert$kind, "none") &&
+    !identical(pert$kind, "vehicle_only") &&
+    !identical(pert$kind, "unclear")
+
   is_disease_design <- stage2_role %in% c("case", "comparison") ||
-    isTRUE(stage1_facts$disease_state$status %in% c("case", "comparison", "disease_model"))
+    (isTRUE(stage1_facts$disease_state$status %in% c("case", "comparison", "disease_model")) &&
+     !has_active_perturbation)
 
   if (is_disease_design) {
     # Per disease_vs_normal: kind_effective fisso + agente = MeSH ID malattia
