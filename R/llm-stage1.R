@@ -230,3 +230,81 @@ classify_sample <- function(sample_string,
   )
   res
 }
+
+#' Wrapper per dynamic branching `targets`: prende una riga tibble e ritorna
+#' direttamente il `sample_fact` (senza l'envelope di `classify_sample()`).
+#'
+#' Errori (`simulomicsr_schema_error`, `simulomicsr_openai_*`) sono catturati
+#' e tradotti in un sample_fact "minimo invalido" con `extraction.confidence=0`
+#' e `ambiguity_flags = ["metadata_inconsistency"]` — il filtro di validazione
+#' a valle li separera' in `sample_facts_invalid`.
+#'
+#' @keywords internal
+classify_sample_row <- function(row,
+                                provider = "openai",
+                                model    = "gpt-5.5",
+                                cache    = NULL,
+                                ...) {
+  stopifnot(nrow(row) == 1L)
+
+  tryCatch(
+    {
+      res <- classify_sample(
+        sample_string = row$string,
+        geo_accession = row$geo_accession,
+        series_id     = row$series_id,
+        provider      = provider,
+        model         = model,
+        cache         = cache,
+        ...
+      )
+      res$value
+    },
+    simulomicsr_schema_error = function(e) {
+      .stage1_invalid_record(row, model, reason = "schema_error",
+                             detail = paste(e$errors, collapse = " | "))
+    },
+    simulomicsr_openai_truncated = function(e) {
+      .stage1_invalid_record(row, model, reason = "openai_truncated",
+                             detail = e$finish_reason)
+    },
+    simulomicsr_openai_bad_json = function(e) {
+      .stage1_invalid_record(row, model, reason = "openai_bad_json",
+                             detail = "")
+    }
+  )
+}
+
+#' Sample fact "scheletro" usato per registrare un fallimento del classificatore
+#' senza rompere la pipeline. Schema-conforme (passa il validator) ma con
+#' segnali chiari nei campi `extraction` e `ambiguity_flags`.
+#' @keywords internal
+.stage1_invalid_record <- function(row, model, reason, detail) {
+  list(
+    geo_accession = row$geo_accession,
+    series_id     = row$series_id,
+    organism      = NULL,
+    host_organism = NULL,
+    cell_context  = list(
+      cell_type_or_line_raw = NULL, cell_line_cellosaurus_candidate = NULL,
+      tissue = NULL, tissue_segment = NULL, passage_or_state = NULL,
+      context_kind = "unclear", developmental_stage = NULL, cell_state = NULL,
+      subcellular_fraction = NULL, engineered_modifications = list(),
+      co_culture_partners = list(), sort_markers = list(),
+      cell_composition_estimates = list()
+    ),
+    disease_state = list(term_raw = NULL, mesh_id_candidate = NULL, status = "none"),
+    perturbations = list(),
+    technical_treatments = list(),
+    patient_metadata = NULL,
+    extraction = list(
+      schema_version = "stage1.v3",
+      model          = paste0("openai:", model),
+      confidence     = 0,
+      ambiguity_flags = list("metadata_inconsistency"),
+      raw_input_hash = paste0("sha256:", sha256_text(row$string))
+    ),
+    .invalid_reason = reason,   # campo extra non in schema; usato dal partition
+    .invalid_detail = detail
+  )
+}
