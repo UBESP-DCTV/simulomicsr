@@ -93,7 +93,7 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
     "- study_internal_score: 0..1, qualita' del confronto (n_replicates, balance).\n",
     "- input_truncated: true se hai dovuto omettere sample_facts per limiti di token.\n",
     "- factor_levels e fixed_factors sono ARRAY di oggetti {\"key\": \"...\", \"value\": \"...\"} ",
-    "(NON oggetti con chiavi libere — schema strict lo richiede).\n\n",
+    "(NON oggetti con chiavi libere \u2014 schema strict lo richiede).\n\n",
     "Modello: ", model
   )
 }
@@ -215,7 +215,7 @@ classify_study <- function(series_id, sample_facts_list, study_summary,
 #' contesto del caller. Non siamo mai completamente fiduciosi che l'LLM abbia
 #' interpretato correttamente questi campi.
 #'
-#' @param raw Risposta parsed JSON (list), già validata contro stage2.v1
+#' @param raw Risposta parsed JSON (list), gi\u00e0 validata contro stage2.v1
 #' @param series_id GSE accession (forzato)
 #' @param sample_count numero intero di sample input (forzato come input_sample_count)
 #' @param model string modello usato (forzato come model)
