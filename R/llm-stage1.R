@@ -23,8 +23,8 @@ read_sample_fixtures_mini <- function() {
   )
 }
 
-# Vocabolari controllati elencati nel system prompt (spec §3.1, §3.5, §3.6,
-# §3.8, §3.9). Tenuti come stringhe esplicite per facilitare audit/diff
+# Vocabolari controllati elencati nel system prompt (spec \u00a73.1, \u00a73.5, \u00a73.6,
+# \u00a73.8, \u00a73.9). Tenuti come stringhe esplicite per facilitare audit/diff
 # rispetto alla spec.
 .STAGE1_KINDS <- paste(
   "- small_molecule",
@@ -79,8 +79,8 @@ read_sample_fixtures_mini <- function() {
     "5. Set `extraction.confidence` to your honest 0..1 estimate that the ",
     "extracted facts faithfully reflect the input string.\n",
     "6. Set `extraction.schema_version` to exactly the string 'stage1.v3'.\n",
-    "7. Leave `extraction.raw_input_hash` as 'sha256:0000000000000000000000000000000000000000000000000000000000000000' — the R caller will overwrite it deterministically.\n",
-    "8. Leave `extraction.model` as the empty-meaningful default '__unset__' — the R caller will overwrite it.\n\n",
+    "7. Leave `extraction.raw_input_hash` as 'sha256:0000000000000000000000000000000000000000000000000000000000000000' \u2014 the R caller will overwrite it deterministically.\n",
+    "8. Leave `extraction.model` as the empty-meaningful default '__unset__' \u2014 the R caller will overwrite it.\n\n",
     "PERTURBATION KINDS (`perturbations[].kind`):\n{.STAGE1_KINDS}\n\n",
     "CELL CONTEXT KINDS (`cell_context.context_kind`):\n{.STAGE1_CONTEXT_KINDS}\n\n",
     "DISEASE STATE STATUS (`disease_state.status`):\n{.STAGE1_DISEASE_STATUS}\n\n",
@@ -176,7 +176,7 @@ build_prompt_stage1 <- function(sample_string,
 #' @param geo_accession GSM id
 #' @param series_id GSE id
 #' @param provider `"openai"` (default) o `"mock"` (test)
-#' @param model nome del modello (default `"gpt-5.5"` — spec §5.3.1 dev set)
+#' @param model nome del modello (default `"gpt-5.5"` -- spec sec.5.3.1 dev set)
 #' @param cache oggetto `cache` (`cache_init()`), oppure `NULL` per bypass
 #' @param organism_hint hint opzionale per lo user message
 #' @param ... inoltrato all'adapter (es. `temperature`, `max_tokens`,
@@ -236,7 +236,7 @@ classify_sample <- function(sample_string,
 #'
 #' Errori (`simulomicsr_schema_error`, `simulomicsr_openai_*`) sono catturati
 #' e tradotti in un sample_fact "minimo invalido" con `extraction.confidence=0`
-#' e `ambiguity_flags = ["metadata_inconsistency"]` — il filtro di validazione
+#' e `ambiguity_flags = ["metadata_inconsistency"]` -- il filtro di validazione
 #' a valle li separera' in `sample_facts_invalid`.
 #'
 #' @keywords internal

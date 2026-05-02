@@ -31,7 +31,7 @@ stage1_schema_validity_rate <- function(facts_validated, facts_invalid) {
 
 #' Recall di campi chiave nei sample_fact validati
 #'
-#' - "with_perturbation" = `perturbations[1].kind` non in {none, unclear, NA}
+#' - "with_perturbation" = `perturbations[1].kind` non in \{none, unclear, NA\}
 #' - "with_cell_type"    = `cell_context.cell_type_or_line_raw` non NULL
 #'
 #' @param facts_validated lista di sample_fact validati
