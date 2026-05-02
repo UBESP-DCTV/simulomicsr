@@ -121,3 +121,33 @@ eval_per_design_kind <- function(df) {
   })
   dplyr::bind_rows(rows)
 }
+
+# Vocabolario design_role che e' "piu' granulare del binary":
+# il binary mapping non perde solo informazione (treated/control), ma il
+# design_role originale dice qualcosa che il gold non distingue.
+.GRANULAR_DESIGN_ROLES <- c(
+  "negative_inducer_control",
+  "baseline_t0",
+  "secondary_arm",
+  "bystander"
+)
+
+#' Enumera i sample dove simulomicsr ha prodotto un design_role piu'
+#' granulare del binary gold xlsx
+#'
+#' Sample con design_role in negative_inducer_control / baseline_t0 /
+#' secondary_arm / bystander forniscono informazione che il binary gold
+#' non puo' rappresentare. Questi NON sono errori — sono valore aggiunto.
+#'
+#' @param df tibble con colonne geo_accession, series_id, design_role,
+#'   gold_binary, predicted_binary
+#' @return tibble con righe filtrate ai casi granulari, piu' colonna
+#'   `granularity_kind` (= design_role)
+#' @export
+flag_granularity_disagreement <- function(df) {
+  stopifnot(all(c("geo_accession", "series_id", "design_role",
+                  "gold_binary", "predicted_binary") %in% names(df)))
+  out <- df[df$design_role %in% .GRANULAR_DESIGN_ROLES, ]
+  out$granularity_kind <- out$design_role
+  out
+}
