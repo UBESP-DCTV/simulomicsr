@@ -133,6 +133,82 @@ list(
     iteration = "list"
   ),
 
+  # ---------------------------------------------------------------------------
+  # Stadio 2 — usa le 15 fixture curate (vedi commit 2976006), non il
+  # pipeline study_series_ids dal P2 dev set (che ha 1 sample/GSE).
+  # Le 15 GSE coprono diversi design_kind + edge case mirati.
+  tar_target(
+    curated_stage2_gse,
+    c("GSE145028", "GSE145941", "GSE191240", "GSE155528", "GSE200037",
+      "GSE104149", "GSE106966", "GSE114781", "GSE57494",  "GSE143441",
+      "GSE128771", "GSE101708", "GSE102908", "GSE106716", "GSE100261")
+  ),
+
+  tar_target(
+    stage2_cache_dir,
+    fs::dir_create(here::here("analysis", "cache")),
+    format = "file"
+  ),
+
+  # Dynamic branching: una invocazione classify_study per GSE curato.
+  # Carica sample_facts e study_summary dalla fixture mini.
+  tar_target(
+    study_designs_raw,
+    {
+      gse <- curated_stage2_gse
+      fixture_dir <- system.file("extdata/stage2-fixtures-mini",
+                                 package = "simulomicsr")
+      facts_path <- file.path(fixture_dir, paste0(gse, "-sample-facts.json"))
+      summary_path <- file.path(fixture_dir, paste0(gse, "-study-summary.json"))
+      facts_list <- jsonlite::read_json(facts_path, simplifyVector = FALSE)
+      summary_obj <- jsonlite::read_json(summary_path, simplifyVector = FALSE)
+      classify_study(
+        series_id = gse,
+        sample_facts_list = facts_list,
+        study_summary = summary_obj,
+        provider = "openai", model = "gpt-5.5",
+        cache = cache_init(stage2_cache_dir, namespace = "stage2")
+      )
+    },
+    pattern = map(curated_stage2_gse),
+    iteration = "list"
+  ),
+
+  tar_target(
+    study_designs_validator,
+    system.file("schemas/study_design.stage2.v1.json", package = "simulomicsr"),
+    format = "file"
+  ),
+
+  tar_target(
+    study_designs_validated,
+    {
+      validator <- compile_schema(study_designs_validator)
+      keep <- vapply(study_designs_raw, function(d) {
+        if (!is.null(d$.invalid_reason)) return(FALSE)
+        d$.invalid_reason <- NULL
+        d$.invalid_detail <- NULL
+        validate_json(d, validator = validator)$valid
+      }, logical(1))
+      study_designs_raw[keep]
+    }
+  ),
+
+  tar_target(
+    study_designs_invalid,
+    {
+      validator <- compile_schema(study_designs_validator)
+      drop <- vapply(study_designs_raw, function(d) {
+        if (!is.null(d$.invalid_reason)) return(TRUE)
+        d$.invalid_reason <- NULL
+        d$.invalid_detail <- NULL
+        !validate_json(d, validator = validator)$valid
+      }, logical(1))
+      study_designs_raw[drop]
+    }
+  ),
+
+  # ---------------------------------------------------------------------------
   tar_target(
     eval_stage1_metrics,
     {
