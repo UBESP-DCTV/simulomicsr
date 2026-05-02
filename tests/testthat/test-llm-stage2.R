@@ -86,3 +86,76 @@ test_that("parse_stage2_response garantisce schema_version='stage2.v1'", {
   )
   expect_equal(parsed$extraction$schema_version, "stage2.v1")
 })
+
+test_that("classify_study orchestratore: chiama llm_call_structured con messages stage2", {
+  facts_a <- jsonlite::read_json(testthat::test_path("fixtures/sample-facts-vegf-huvec.json"))
+  expected_design <- jsonlite::read_json(testthat::test_path("fixtures/stage2-valid-vegf-huvec.json"))
+
+  cache <- cache_init(withr::local_tempdir(), namespace = "stage2")
+
+  # Mock llm_call_structured: cattura input, ritorna fixture con shape reale
+  captured <- list(messages = NULL)
+  out <- withr::with_envvar(
+    c(SIMULOMICSR_LLM_PROVIDER_FORCE_MOCK = "1"),
+    {
+      local_mocked_bindings(
+        llm_call_structured = function(provider, model, messages, response_schema,
+                                       cache = NULL, ...) {
+          captured$messages <<- messages
+          list(
+            value     = expected_design,
+            provider  = provider,
+            model     = model,
+            validated = TRUE,
+            cache_hit = FALSE,
+            raw_response = expected_design
+          )
+        },
+        .package = "simulomicsr"
+      )
+      classify_study(
+        series_id = "GSE41166",
+        sample_facts_list = list(facts_a),
+        study_summary = list(series_id = "GSE41166", title = "t", summary = "s",
+                             overall_design = NA),
+        provider = "openai",
+        model = "gpt-5.5",
+        cache = cache
+      )
+    }
+  )
+  expect_equal(out$series_id, "GSE41166")
+  expect_equal(out$extraction$schema_version, "stage2.v1")
+  expect_equal(out$extraction$input_sample_count, 1L)
+  expect_match(out$extraction$model, "gpt-5.5")
+  expect_equal(captured$messages[[1L]]$role, "system")
+})
+
+test_that("classify_study propaga errore LLM con .invalid_reason", {
+  facts_a <- jsonlite::read_json(testthat::test_path("fixtures/sample-facts-vegf-huvec.json"))
+  cache <- cache_init(withr::local_tempdir(), namespace = "stage2")
+  out <- withr::with_envvar(
+    c(SIMULOMICSR_LLM_PROVIDER_FORCE_MOCK = "1"),
+    {
+      local_mocked_bindings(
+        llm_call_structured = function(...) {
+          rlang::abort(
+            "schema_validation_failed: design_kind not in enum",
+            class = "simulomicsr_schema_error",
+            errors = "design_kind not in enum"
+          )
+        },
+        .package = "simulomicsr"
+      )
+      classify_study(
+        series_id = "GSE41166",
+        sample_facts_list = list(facts_a),
+        study_summary = list(series_id = "GSE41166", title = "t", summary = "s",
+                             overall_design = NA),
+        provider = "openai", model = "gpt-5.5", cache = cache
+      )
+    }
+  )
+  expect_equal(out$series_id, "GSE41166")
+  expect_match(out$.invalid_reason, "schema_validation_failed|llm_call_failed")
+})
