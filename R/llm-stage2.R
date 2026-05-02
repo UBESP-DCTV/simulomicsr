@@ -1,0 +1,111 @@
+#' Costruisci il prompt Stadio 2 (study_design) per un GSE
+#'
+#' Crea i messages OpenAI-shape (system + user) e il path allo schema strict.
+#' Pronto da passare a llm_call_structured().
+#'
+#' @param series_id GSE accession
+#' @param sample_facts_list lista di sample_facts validati (stage1.v3) per
+#'   tutti i GSM dello studio
+#' @param study_summary list con campi series_id/title/summary/overall_design
+#' @param model string (es. "openai:gpt-5.5"), inserito nel system per audit
+#'
+#' @return list con campi `messages` (list di 2 messages role=system/user)
+#'   e `schema_path` (path al JSON Schema stage2.v1)
+#' @keywords internal
+build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
+                                model = "openai:gpt-5.5") {
+  schema_path <- system.file("schemas/study_design.stage2.v1.json",
+                             package = "simulomicsr")
+  if (!nzchar(schema_path)) {
+    rlang::abort(
+      "Schema study_design.stage2.v1.json non trovato",
+      class = "simulomicsr_schema_missing"
+    )
+  }
+
+  list(
+    messages = list(
+      list(role = "system", content = .stage2_system_prompt(model)),
+      list(role = "user", content = .stage2_user_prompt(
+        series_id = series_id,
+        sample_facts_list = sample_facts_list,
+        study_summary = study_summary
+      ))
+    ),
+    schema_path = schema_path
+  )
+}
+
+#' @noRd
+.STAGE2_DESIGN_KINDS <- paste(
+  "- case_control_disease",
+  "- treatment_vs_vehicle",
+  "- treatment_vs_untreated",
+  "- time_course",
+  "- dose_response",
+  "- knockdown_panel",
+  "- factorial",
+  "- differentiation_course",
+  "- multi_arm_treatment",
+  "- unclear",
+  sep = "\n"
+)
+
+#' @noRd
+.STAGE2_DESIGN_ROLES <- paste(
+  "- perturbed",
+  "- vehicle_control",
+  "- untreated_control",
+  "- negative_genetic_control",
+  "- negative_inducer_control",
+  "- positive_control",
+  "- baseline_t0",
+  "- case",
+  "- comparison",
+  "- bystander",
+  "- secondary_arm",
+  "- excluded",
+  "- unclear",
+  sep = "\n"
+)
+
+#' @noRd
+.stage2_system_prompt <- function(model) {
+  paste0(
+    "Sei un esperto di design sperimentale RNA-seq. Devi ricostruire il design ",
+    "di uno studio GSE a partire da: (a) i sample_facts gia' classificati di ",
+    "tutti i GSM dello studio, (b) il titolo + summary GEO. Produci un oggetto ",
+    "JSON conforme allo schema study_design.stage2.v1 (strict).\n\n",
+    "## design_kind (scegli UNO)\n",
+    .STAGE2_DESIGN_KINDS, "\n\n",
+    "## design_role (per ogni replicate_group)\n",
+    .STAGE2_DESIGN_ROLES, "\n\n",
+    "## Linee guida\n",
+    "- Raggruppa i sample in replicate_groups in base a fattori condivisi ",
+    "(stesso trattamento, stessa dose, stesso tempo, stesso controllo).\n",
+    "- Identifica ESPLICITAMENTE i fattori manipolati nel design (factors[]).\n",
+    "- Costruisci comparisons solo dove c'e' un control_group ben identificabile ",
+    "(vehicle_control, baseline_t0, untreated_control, comparison, negative_genetic_control).\n",
+    "- Per design factorial: una comparison per ogni varying_factor.\n",
+    "- Se il design non e' ricostruibile, design_kind='unclear', comparisons=[], ",
+    "ambiguity_flags spiega il motivo.\n",
+    "- comparison_id formato: '<series_id>__<treated>_vs_<control>'.\n",
+    "- study_internal_score: 0..1, qualita' del confronto (n_replicates, balance).\n",
+    "- input_truncated: true se hai dovuto omettere sample_facts per limiti di token.\n\n",
+    "Modello: ", model
+  )
+}
+
+#' @noRd
+.stage2_user_prompt <- function(series_id, sample_facts_list, study_summary) {
+  facts_json <- jsonlite::toJSON(sample_facts_list, auto_unbox = TRUE,
+                                 null = "null", pretty = TRUE)
+  paste0(
+    "## series_id\n", series_id, "\n\n",
+    "## study_title\n", study_summary$title %||% "(missing)", "\n\n",
+    "## study_summary\n", study_summary$summary %||% "(missing)", "\n\n",
+    "## overall_design\n", study_summary$overall_design %||% "(missing)", "\n\n",
+    "## sample_facts (n=", length(sample_facts_list), ")\n",
+    facts_json
+  )
+}
