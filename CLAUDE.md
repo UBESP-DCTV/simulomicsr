@@ -142,19 +142,38 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 
 ## Next step (per la prossima sessione — P3.5-A o P4)
 
-**P3.5-B completato (2026-05-02).** Prossima fase: **P3.5-A** (investigare treatment_vs_untreated 41.7% accuracy) o **P4** (run massivo ARCHS4).
+**P3.5-B completato (2026-05-02).** Prossima fase logica: **P3.5-A** scaled benchmark (50-100 GSE) per evidence base paper-ready, oppure **P4** run massivo ARCHS4.
 
-1. **P3.5-A candidati:** analisi failure mode `treatment_vs_untreated` (12 sample, 41.7% — sotto casuale); potenziale fix al prompt Stadio 2 o alla mappatura gold.
+### Findings critici da P3.5-B per P3.5-A
+
+1. **Anomalia `treatment_vs_untreated` 41.7% accuracy localizzata su GSE145941.** Deep dive (post-Task 9):
+   - GSE128771 (Dox-inducible KD, n=4): 100% ✓
+   - **GSE145941 (irradiazione 0Gy/10Gy, n=8): 12.5%** ⚠
+   - Pattern gold xlsx GSE145941 bizzarro: 5 treated (GSM4340018, 19, 21, 23, 25) + 3 control (GSM4340020, 22, 24) — alternato, non 4+4 come ci si aspetterebbe.
+   - Smoke E2E Task 11 (Task P3) aveva confermato che gpt-5.5 ricostruiva 4 perturbed (10Gy) + 4 untreated_control (0Gy) per questo studio.
+   - **Possibili cause:** (A) gold xlsx labels errate per questi 8 sample, (B) gpt-5.5 ha sbagliato l'assegnazione GSM→group, (C) i metadati testuali del xlsx vs ARCHS4 sono diversi. **Da investigare in P3.5-A Task 1** prima di scalare.
+
+2. **RummaGEO official coverage finale: 2/15 GSE** (GSE102908 + GSE57494 = 39 sample). Gli altri 13 GSE usano fallback interno keyword-matching. Per P3.5-A scaled, considerare di **selezionare GSE che SONO in RummaGEO** per avere head-to-head pulito su più sample.
+
+3. **Granularity flagged: 22 sample** dal gpt-5.5 producono `design_role` più granulare del binary gold (negative_inducer_control, baseline_t0, secondary_arm, bystander) — conferma value-add del classificatore design-aware.
+
+### Roadmap
+
+1. **P3.5-A scaled benchmark** (~$10-30 LLM): brainstorm + plan + scaling 50-100 GSE selezionati per (a) RummaGEO-coverage e (b) design_kind diversity; investigation GSE145941 anomalia integrata come prima task.
 2. **Server-switch** programmato per P4 (run massivo ARCHS4) — vedi ADR-0005.
-3. Considerare il rename del pacchetto (ADR-0003) prima del primo `install_github` pubblico.
-4. Se P4 si avvicina al run massivo, valutare migrazione a `ellmer` come ADR separato.
-5. **Prossimo step concreto:** invocare `superpowers:writing-plans` per scrivere il plan di P3.5-A o P4.
+3. Rename pacchetto (ADR-0003) prima del primo `install_github` pubblico.
+4. Migrazione a `ellmer` come ADR separato prima di P4.
+5. **Next concrete step:** invocare `superpowers:brainstorming` per definire scope P3.5-A.
 
 ## Riferimenti chiave
 
 - Spec classificatore: `docs/superpowers/specs/2026-04-29-classificatore-llm-design.md` (v5 approvata 2026-04-29; §13 References aggiunta 2026-05-02).
 - Plan P1: `docs/superpowers/plans/2026-04-29-p1-infrastruttura-llm-plan.md` + HUMANE.
 - Plan P2: `docs/superpowers/plans/2026-05-02-p2-stadio1-sample-facts-plan.md` + HUMANE.
+- Plan P3: `docs/superpowers/plans/2026-05-02-p3-stadio2-study-design-plan.md` + HUMANE.
+- **Spec P3.5-B:** `docs/superpowers/specs/2026-05-02-p3.5-eval-benchmark-design.md`.
+- Plan P3.5-B: `docs/superpowers/plans/2026-05-02-p3.5b-eval-benchmark-plan.md` + HUMANE.
+- **Report P3.5-B:** `analysis/eval/p35-benchmark.html` (838KB, 4 sezioni con grafici e tabelle).
 - **ADR-0006 stato dell'arte:** `docs/decisions/0006-stato-arte-vs-simulomicsr.md` — analisi competitor 2024-2026 + benchmark RummaGEO integrale + decisione P3-B confermata.
 - ADR-0005 server migration: `docs/decisions/0005-server-migration-trigger.md`.
 - ADR generali: `docs/decisions/`.
