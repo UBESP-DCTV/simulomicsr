@@ -54,3 +54,35 @@ test_that("build_prompt_stage2 user prompt contiene tutti i sample_ids forniti",
   expect_match(out$messages[[2L]]$content, "GSM1009636")
   expect_match(out$messages[[2L]]$content, "GSM1009638")
 })
+
+test_that("parse_stage2_response forza series_id da input (no trust LLM)", {
+  raw <- jsonlite::read_json(testthat::test_path("fixtures/stage2-valid-vegf-huvec.json"))
+  raw$series_id <- "GSE99999"  # LLM ha sbagliato
+  parsed <- simulomicsr:::parse_stage2_response(
+    raw, series_id = "GSE41166", sample_count = 4L,
+    model = "openai:gpt-5.5"
+  )
+  expect_equal(parsed$series_id, "GSE41166")  # forzato dal chiamante
+})
+
+test_that("parse_stage2_response imposta input_sample_count e model", {
+  raw <- jsonlite::read_json(testthat::test_path("fixtures/stage2-valid-vegf-huvec.json"))
+  raw$extraction$input_sample_count <- 0L  # LLM ha sbagliato
+  raw$extraction$model <- "wrong-model"
+  parsed <- simulomicsr:::parse_stage2_response(
+    raw, series_id = "GSE41166", sample_count = 12L,
+    model = "openai:gpt-5.5"
+  )
+  expect_equal(parsed$extraction$input_sample_count, 12L)
+  expect_equal(parsed$extraction$model, "openai:gpt-5.5")
+})
+
+test_that("parse_stage2_response garantisce schema_version='stage2.v1'", {
+  raw <- jsonlite::read_json(testthat::test_path("fixtures/stage2-valid-vegf-huvec.json"))
+  raw$extraction$schema_version <- "stage2.v0"
+  parsed <- simulomicsr:::parse_stage2_response(
+    raw, series_id = "GSE41166", sample_count = 4L,
+    model = "openai:gpt-5.5"
+  )
+  expect_equal(parsed$extraction$schema_version, "stage2.v1")
+})
