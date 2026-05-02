@@ -97,6 +97,43 @@ read_sample_fixtures_mini <- function() {
   )
 }
 
+#' Enrichment deterministico della risposta LLM Stadio 1
+#'
+#' Forza i campi che NON devono dipendere dall'LLM:
+#' - `geo_accession` e `series_id` ricopiati dall'input (anti-allucinazione)
+#' - `extraction.schema_version = "stage1.v3"`
+#' - `extraction.model` settato dal caller R (non dal contenuto LLM)
+#' - `extraction.raw_input_hash` calcolato deterministicamente da
+#'   sha256(sample_string)
+#'
+#' Tutti gli altri campi sono lasciati al modello (Structured Outputs ne ha
+#' gia' verificato la conformita' allo schema).
+#'
+#' @param raw lista R parsed dal JSON di risposta LLM
+#' @param sample_string testo originale del sample
+#' @param geo_accession GSM id originale
+#' @param series_id GSE id originale
+#' @param model nome del modello (es. "gpt-5.5"); verra' prefissato con
+#'   "openai:" nell'output
+#' @return lista R con i campi forzati
+#' @keywords internal
+parse_stage1_response <- function(raw,
+                                  sample_string,
+                                  geo_accession,
+                                  series_id,
+                                  model) {
+  stopifnot(is.list(raw), is.list(raw$extraction))
+
+  raw$geo_accession <- geo_accession
+  raw$series_id     <- series_id
+
+  raw$extraction$schema_version <- "stage1.v3"
+  raw$extraction$model          <- paste0("openai:", model)
+  raw$extraction$raw_input_hash <- paste0("sha256:", sha256_text(sample_string))
+
+  raw
+}
+
 #' Costruisce i messages per la chiamata Stadio 1
 #'
 #' @param sample_string testo concatenato dei metadati del sample
@@ -128,4 +165,68 @@ build_prompt_stage1 <- function(sample_string,
     list(role = "system", content = .stage1_system_prompt()),
     list(role = "user",   content = paste(user_lines, collapse = "\n"))
   )
+}
+
+#' Classifica un sample RNAseq nello Stadio 1 (sample_facts schema v3)
+#'
+#' Orchestra: build_prompt_stage1 -> llm_call_structured (con cache + Structured
+#' Outputs strict) -> parse_stage1_response (enrichment deterministico).
+#'
+#' @param sample_string stringa di metadati GEO concatenati (input)
+#' @param geo_accession GSM id
+#' @param series_id GSE id
+#' @param provider `"openai"` (default) o `"mock"` (test)
+#' @param model nome del modello (default `"gpt-5.5"` — spec §5.3.1 dev set)
+#' @param cache oggetto `cache` (`cache_init()`), oppure `NULL` per bypass
+#' @param organism_hint hint opzionale per lo user message
+#' @param ... inoltrato all'adapter (es. `temperature`, `max_tokens`,
+#'   `.mock_adapter` per test)
+#'
+#' @return lista come da `llm_call_structured()`: `value` (sample_fact post
+#'   enrichment), `provider`, `model`, `validated`, `cache_hit`, `raw_response`.
+#' @export
+classify_sample <- function(sample_string,
+                            geo_accession,
+                            series_id,
+                            provider = "openai",
+                            model    = "gpt-5.5",
+                            cache    = NULL,
+                            organism_hint = NULL,
+                            ...) {
+  schema_path <- system.file(
+    "schemas/sample_facts.stage1.v3.json",
+    package = "simulomicsr"
+  )
+  if (!nzchar(schema_path)) {
+    rlang::abort(
+      "Schema sample_facts.stage1.v3.json non trovato nel pacchetto installato.",
+      class = "simulomicsr_schema_missing"
+    )
+  }
+
+  messages <- build_prompt_stage1(
+    sample_string = sample_string,
+    geo_accession = geo_accession,
+    series_id     = series_id,
+    organism_hint = organism_hint
+  )
+
+  res <- llm_call_structured(
+    provider                = provider,
+    model                   = model,
+    messages                = messages,
+    response_schema         = schema_path,
+    cache                   = cache,
+    cache_namespace_version = "stage1.v3",
+    ...
+  )
+
+  res$value <- parse_stage1_response(
+    res$value,
+    sample_string = sample_string,
+    geo_accession = geo_accession,
+    series_id     = series_id,
+    model         = model
+  )
+  res
 }
