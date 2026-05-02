@@ -6,7 +6,7 @@
 #'
 #' @param schema_path path a un file `.json` con lo schema
 #' @return funzione validatrice
-#' @keywords internal
+#' @export
 compile_schema <- function(schema_path) {
   stopifnot(fs::file_exists(schema_path))
   jsonvalidate::json_validator(
@@ -20,7 +20,7 @@ compile_schema <- function(schema_path) {
 #' @param x lista R (verrà serializzata) oppure stringa JSON
 #' @param validator funzione ritornata da `compile_schema()`
 #' @return lista con `valid` (logico) e `errors` (character vector, vuoto se valid)
-#' @keywords internal
+#' @export
 validate_json <- function(x, validator) {
   stopifnot(is.function(validator))
   json <- if (is.character(x) && length(x) == 1L) {

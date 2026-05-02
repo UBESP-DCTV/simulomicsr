@@ -1,0 +1,43 @@
+{
+  "series_id": "GSE41166",
+  "design_summary": "Time-course of VEGF stimulation in primary HUVEC: t=0h baseline followed by 1h, 6h, 24h post-VEGF (50 ng/ml). 3 biological replicates per timepoint.",
+  "design_kind": "time_course",
+  "factors": [
+    {"name": "VEGF stimulation", "type": "stimulation", "levels": ["unstimulated", "VEGF"]},
+    {"name": "time", "type": "time", "levels": ["0h", "1h", "6h", "24h"]}
+  ],
+  "replicate_groups": [
+    {
+      "group_id": "baseline_t0",
+      "label_human": "HUVEC, t=0h baseline",
+      "sample_ids": ["GSM1009635"],
+      "design_role": "baseline_t0",
+      "factor_levels": {"VEGF stimulation": "VEGF", "time": "0h"}
+    },
+    {
+      "group_id": "VEGF_1h",
+      "label_human": "HUVEC + VEGF, 1h",
+      "sample_ids": ["GSM1009636", "GSM1009637", "GSM1009638"],
+      "design_role": "perturbed",
+      "factor_levels": {"VEGF stimulation": "VEGF", "time": "1h"}
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison_id": "GSE41166__VEGF_1h_vs_baseline",
+      "treated_group": "VEGF_1h",
+      "control_group": "baseline_t0",
+      "varying_factor": "time",
+      "fixed_factors": {"VEGF stimulation": "VEGF", "cell": "HUVEC"},
+      "study_internal_score": 0.84
+    }
+  ],
+  "extraction": {
+    "schema_version": "stage2.v1",
+    "model": "openai:gpt-5.5",
+    "confidence": 0.81,
+    "ambiguity_flags": ["nonstandard_baseline_choice"],
+    "input_sample_count": 4,
+    "input_truncated": false
+  }
+}
