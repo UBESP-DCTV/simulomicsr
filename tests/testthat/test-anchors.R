@@ -132,6 +132,32 @@ test_that("make_anchor anchor ha sempre 13 segmenti", {
   }
 })
 
+# make_anchor: disease_model + perturbazione attiva (fix bug override) --------
+
+test_that("make_anchor: perturbazione attiva su disease_model NON triggera override (spec sec.4.3)", {
+  facts <- read_fact("vegf-huvec")  # base con perturbation = cytokine_stimulation VEGF
+  # Aggiungi disease_model status (es. cell line tumor + cytokine treatment)
+  facts$disease_state <- list(
+    term_raw = "Acute Myeloid Leukemia",
+    mesh_id_candidate = "MeSH:D015470",
+    status = "disease_model"
+  )
+  anchor <- make_anchor(facts, stage2_role = "perturbed")
+  segments <- strsplit(anchor, "[|]")[[1L]]
+  # Segmento 1: la perturbazione vince (cytokine_stim), NON disease_vs_normal
+  expect_equal(segments[[1L]], "cytokine_stim")
+  # Segmento 12: disease_model si conserva nel disease_status
+  expect_equal(segments[[12L]], "disease_model")
+})
+
+test_that("make_anchor: disease_state senza perturbazione attiva DOES trigger override", {
+  facts <- read_fact("pd-ipsc-neurons")  # disease_state.status="case", perturbations=[]
+  anchor <- make_anchor(facts, stage2_role = "perturbed")
+  segments <- strsplit(anchor, "[|]")[[1L]]
+  # Senza pert attiva: disease_vs_normal vince
+  expect_equal(segments[[1L]], "disease_vs_normal")
+})
+
 # make_inducer_log: audit per R8 mediated_effect -----
 
 test_that("make_inducer_log: ritorna lista vuota se nessun mediated_effect", {
