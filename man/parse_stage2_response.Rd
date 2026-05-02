@@ -7,7 +7,7 @@
 parse_stage2_response(raw, series_id, sample_count, model)
 }
 \arguments{
-\item{raw}{Risposta parsed JSON (list), già validata contro stage2.v1}
+\item{raw}{Risposta parsed JSON (list), gi\u00e0 validata contro stage2.v1}
 
 \item{series_id}{GSE accession (forzato)}
 
