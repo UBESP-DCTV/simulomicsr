@@ -1,0 +1,77 @@
+---
+title: "Stage 1 — Eval su dev set"
+output: html_document
+params:
+  metrics: !r NULL
+  validated: !r NULL
+  invalid: !r NULL
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(tibble)
+library(knitr)
+# %||% non e' esportato dal pacchetto: lo ridefiniamo in scope locale
+`%||%` <- function(a, b) if (is.null(a) || (length(a) == 1L && is.na(a))) b else a
+metrics    <- params$metrics
+validated  <- params$validated
+invalid    <- params$invalid
+```
+
+# Sintesi numerica
+
+```{r}
+metrics |>
+  tidyr::pivot_longer(everything(), names_to = "metric", values_to = "value") |>
+  knitr::kable(digits = 3)
+```
+
+# Sample invalidati (motivo)
+
+```{r}
+if (length(invalid) == 0L) {
+  cat("_Nessun sample invalidato._")
+} else {
+  tibble(
+    geo_accession = vapply(invalid, function(f) f$geo_accession %||% NA_character_, character(1)),
+    series_id     = vapply(invalid, function(f) f$series_id     %||% NA_character_, character(1)),
+    reason        = vapply(invalid, function(f) f$.invalid_reason %||% NA_character_, character(1)),
+    detail        = vapply(invalid, function(f) f$.invalid_detail %||% NA_character_, character(1))
+  ) |>
+    head(50) |>
+    knitr::kable()
+}
+```
+
+# Distribuzione `perturbations[1].kind` nei validati
+
+```{r}
+kinds <- vapply(validated, function(f) {
+  p <- f$perturbations
+  if (length(p) == 0L) return("(none-array)")
+  p[[1]]$kind %||% "(null)"
+}, character(1))
+
+tibble(kind = kinds) |>
+  count(kind, sort = TRUE) |>
+  knitr::kable()
+```
+
+# Distribuzione `cell_context.context_kind` nei validati
+
+```{r}
+ctx <- vapply(validated, function(f) f$cell_context$context_kind %||% "(null)",
+              character(1))
+tibble(context_kind = ctx) |>
+  count(context_kind, sort = TRUE) |>
+  knitr::kable()
+```
+
+# Confidence calibration (placeholder testuale)
+
+```{r}
+conf <- vapply(validated, function(f) f$extraction$confidence %||% NA_real_,
+               numeric(1))
+summary(conf)
+```

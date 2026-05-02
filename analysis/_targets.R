@@ -118,5 +118,16 @@ list(
         recall_cell_type     = recall$recall_cell_type
       )
     }
+  ),
+
+  tarchetypes::tar_render(
+    eval_stage1_report,
+    here::here("analysis", "eval", "stage1-eval.Rmd"),
+    output_dir = here::here("analysis", "eval"),
+    params = list(
+      metrics   = eval_stage1_metrics,
+      validated = sample_facts_validated,
+      invalid   = sample_facts_invalid
+    )
   )
 )
