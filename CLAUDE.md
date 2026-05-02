@@ -25,13 +25,13 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-02 fine sessione `simulomicsr_P3`)
+## Stato corrente (2026-05-02 fine sessione `simulomicsr_P3` esteso a P3.5-B)
 
-- **Master HEAD:** `0c9e4f5` (P3 Task 17 pre-merge: fix non-ASCII + .Rbuildignore).
-- **Tag:** `p1-infra-llm-complete` (P1), `p2-stage1-complete` (P2), `p3-stage2-complete` (P3).
+- **Master HEAD:** `32c3b3f` (P3.5b Task 9: bump 0.0.0.9005 + NEWS aggiornato con risultati benchmark).
+- **Tag:** `p1-infra-llm-complete` (P1), `p2-stage1-complete` (P2), `p3-stage2-complete` (P3), `p3.5b-eval-complete` (P3.5-B).
 - **Master locale è ahead di `origin/master`** — l'utente fa il push lui (mai automaticamente).
-- **R CMD check:** 0E / 0W / 2N (note pre-esistenti: `doc` top-level generato da devtools; `cli`/`purrr`/`stringr` imports non usati da P1).
-- **Test suite:** 277 PASS / 0 SKIP / 0 FAIL (i smoke E2E gated su `OPENAI_API_KEY` sono passati con key presente).
+- **R CMD check:** 0E / 0W / 2N (note pre-esistenti).
+- **Test suite:** 328 PASS / 0 FAIL.
 
 ### Cosa P1 ha consegnato (infrastruttura LLM)
 
@@ -55,16 +55,27 @@ API esportate: `llm_call_structured()`, `cache_init()`, `cache_put`, `cache_has`
 - `vignettes/stage2-classify.Rmd`: vignette user-facing offline buildable.
 - `inst/extdata/stage2-fixtures-mini/`: 15 GSE benchmark stratificato (197/197 sample stage1-valid).
 
-### Risultati run reale 15 GSE (Task 13)
+### Cosa P3.5-B ha consegnato (eval benchmark prototipo)
 
-| Metrica | Risultato |
+- `R/eval-stage2.R`: **`design_role_to_binary()`**, **`eval_binary_accuracy()`**, **`eval_per_design_kind()`**, **`flag_granularity_disagreement()`** — tutte export pubbliche.
+- `R/eval-rummageo.R`: **`fetch_rummageo_signatures()`** (cache + retry, abort se GSE non in RummaGEO official), **`parse_rummageo_labels()`**, **`rummageo_baseline_internal()`** (fallback K-means+keyword).
+- `analysis/_targets.R`: 7 nuovi target eval pipeline.
+- `analysis/eval/p35-benchmark.Rmd` + report HTML 838KB con 4 sezioni: binary accuracy, granularity, anchor coverage, RummaGEO head-to-head.
+
+### Risultati P3.5-B benchmark (15 GSE, 197 sample)
+
+| Metrica | Valore |
 |---|---|
-| Validity rate | 15/15 = 100% |
-| design_kind coperti | 7/10 |
-| Confidence range | 0.72-0.93 (median ~0.87) |
-| Comparisons cross-GSE | 55 |
-| Anchor unici | 44 (11 collisioni cross-studio attese) |
-| Costo cumulativo P3 | ~$5-7 (su tetto $500) |
+| Stage 2 binary accuracy globale | **75.1%** |
+| 100% accuracy su | time_course / treatment_vs_vehicle / knockdown_panel |
+| 41.7% (sotto casuale, da investigare) | treatment_vs_untreated (n=12) |
+| Granularity flagged (informativo, non errore) | 22 sample |
+| simulomicsr vs gold | 0.751 |
+| RummaGEO (mostly internal_fallback) vs gold | 0.696 |
+| **Delta** | **+5.5 pp simulomicsr beats RummaGEO** |
+| Costo cumulativo P1+P2+P3+P3.5-B | ~$5-7 (P3.5-B aggiunge $0) |
+
+12/15 GSE non indicizzati in RummaGEO official -> 145/197 sample usano fallback interno keyword-matching. 39 sample hanno label RummaGEO ufficiale.
 
 ## Hotfix P1 emersi durante P2 (importanti per supportare gpt-5.5+)
 
@@ -129,15 +140,15 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — P3.5 eval)
+## Next step (per la prossima sessione — P3.5-A o P4)
 
-**P3 completato (2026-05-02).** Prossima fase: **P3.5** — eval Stadio 2 + benchmark vs RummaGEO.
+**P3.5-B completato (2026-05-02).** Prossima fase: **P3.5-A** (investigare treatment_vs_untreated 41.7% accuracy) o **P4** (run massivo ARCHS4).
 
-1. **P3.5 toccherà:** `R/eval-rummageo.R` (loader + matching), `R/eval-design-gold.R` (gold design-aware su 200-300 sample), target `eval_rummageo_benchmark` + `eval_stage2_metrics`, report Quarto in `analysis/eval/rummageo-benchmark.Rmd`. Specifiche del benchmark in ADR-0006 §"Deliverable integrale: benchmark vs RummaGEO".
+1. **P3.5-A candidati:** analisi failure mode `treatment_vs_untreated` (12 sample, 41.7% — sotto casuale); potenziale fix al prompt Stadio 2 o alla mappatura gold.
 2. **Server-switch** programmato per P4 (run massivo ARCHS4) — vedi ADR-0005.
 3. Considerare il rename del pacchetto (ADR-0003) prima del primo `install_github` pubblico.
-4. Se P3.5/P4 si avvicina al run massivo, valutare migrazione a `ellmer` come ADR separato.
-5. **Prossimo step concreto:** invocare `superpowers:writing-plans` per scrivere il plan dettagliato di P3.5.
+4. Se P4 si avvicina al run massivo, valutare migrazione a `ellmer` come ADR separato.
+5. **Prossimo step concreto:** invocare `superpowers:writing-plans` per scrivere il plan di P3.5-A o P4.
 
 ## Riferimenti chiave
 
