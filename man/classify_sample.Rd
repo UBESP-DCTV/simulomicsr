@@ -24,7 +24,7 @@ classify_sample(
 
 \item{provider}{\code{"openai"} (default) o \code{"mock"} (test)}
 
-\item{model}{nome del modello (default \code{"gpt-5.5"} — spec §5.3.1 dev set)}
+\item{model}{nome del modello (default \code{"gpt-5.5"} -- spec sec.5.3.1 dev set)}
 
 \item{cache}{oggetto \code{cache} (\code{cache_init()}), oppure \code{NULL} per bypass}
 

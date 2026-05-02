@@ -9,7 +9,7 @@
   messages,
   response_schema,
   schema_name = "response",
-  temperature = 0,
+  temperature = NULL,
   max_tokens = NULL,
   api_key = NULL,
   ...
