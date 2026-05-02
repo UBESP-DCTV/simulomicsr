@@ -11,7 +11,7 @@
   if (is.null(dose) || length(dose) == 0L) return("nodose")
   if (is.na(dose) || !nzchar(dose)) return("nodose")
   d <- gsub("\\s+", "", dose)
-  d <- gsub("µ", "u", d)  # micro symbol -> u
+  d <- gsub("\u00b5", "u", d)  # micro symbol -> u
   d
 }
 
