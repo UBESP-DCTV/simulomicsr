@@ -11,6 +11,7 @@ classify_study(
   provider = "openai",
   model = "gpt-5.5",
   cache,
+  extra_instruction = NULL,
   ...
 )
 }
@@ -26,6 +27,9 @@ classify_study(
 \item{model}{"gpt-5.5" (default), "gpt-5.4-mini" per batch, ecc.}
 
 \item{cache}{cache object da cache_init()}
+
+\item{extra_instruction}{string opzionale (default NULL) appesa al prompt
+user. Usata da reclassify_verbose() per richiedere chain-of-thought.}
 
 \item{...}{args passati a llm_call_structured}
 }

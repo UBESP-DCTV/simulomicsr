@@ -8,7 +8,8 @@ build_prompt_stage2(
   series_id,
   sample_facts_list,
   study_summary,
-  model = "openai:gpt-5.5"
+  model = "openai:gpt-5.5",
+  extra_instruction = NULL
 )
 }
 \arguments{
@@ -20,6 +21,9 @@ tutti i GSM dello studio}
 \item{study_summary}{list con campi series_id/title/summary/overall_design}
 
 \item{model}{string (es. "openai:gpt-5.5"), inserito nel system per audit}
+
+\item{extra_instruction}{string opzionale (default NULL) appesa al messaggio
+user come paragrafo finale. Usata p.es. per investigation verbose-reasoning.}
 }
 \value{
 list con campi \code{messages} (list di 2 messages role=system/user)

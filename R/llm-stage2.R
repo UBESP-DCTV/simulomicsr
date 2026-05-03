@@ -8,12 +8,15 @@
 #'   tutti i GSM dello studio
 #' @param study_summary list con campi series_id/title/summary/overall_design
 #' @param model string (es. "openai:gpt-5.5"), inserito nel system per audit
+#' @param extra_instruction string opzionale (default NULL) appesa al messaggio
+#'   user come paragrafo finale. Usata p.es. per investigation verbose-reasoning.
 #'
 #' @return list con campi `messages` (list di 2 messages role=system/user)
 #'   e `schema_path` (path al JSON Schema stage2.v1)
 #' @keywords internal
 build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
-                                model = "openai:gpt-5.5") {
+                                model = "openai:gpt-5.5",
+                                extra_instruction = NULL) {
   schema_path <- system.file("schemas/study_design.stage2.v1.json",
                              package = "simulomicsr")
   if (!nzchar(schema_path)) {
@@ -23,14 +26,19 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
     )
   }
 
+  user_content <- .stage2_user_prompt(
+    series_id = series_id,
+    sample_facts_list = sample_facts_list,
+    study_summary = study_summary
+  )
+  if (!is.null(extra_instruction) && nzchar(extra_instruction)) {
+    user_content <- paste0(user_content, "\n\n", extra_instruction)
+  }
+
   list(
     messages = list(
       list(role = "system", content = .stage2_system_prompt(model)),
-      list(role = "user", content = .stage2_user_prompt(
-        series_id = series_id,
-        sample_facts_list = sample_facts_list,
-        study_summary = study_summary
-      ))
+      list(role = "user", content = user_content)
     ),
     schema_path = schema_path
   )
@@ -126,6 +134,8 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
 #' @param provider "openai" (default) o futuri provider
 #' @param model "gpt-5.5" (default), "gpt-5.4-mini" per batch, ecc.
 #' @param cache cache object da cache_init()
+#' @param extra_instruction string opzionale (default NULL) appesa al prompt
+#'   user. Usata da reclassify_verbose() per richiedere chain-of-thought.
 #' @param ... args passati a llm_call_structured
 #'
 #' @return list (study_design valido stage2.v1) oppure list con
@@ -135,12 +145,14 @@ classify_study <- function(series_id, sample_facts_list, study_summary,
                            provider = "openai",
                            model = "gpt-5.5",
                            cache,
+                           extra_instruction = NULL,
                            ...) {
   prompt <- build_prompt_stage2(
     series_id = series_id,
     sample_facts_list = sample_facts_list,
     study_summary = study_summary,
-    model = paste0(provider, ":", model)
+    model = paste0(provider, ":", model),
+    extra_instruction = extra_instruction
   )
 
   res <- tryCatch(
