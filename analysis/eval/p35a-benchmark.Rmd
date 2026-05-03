@@ -269,23 +269,35 @@ cat("\n```\n")
 
 ```{r sec5-table}
 v_designs <- targets::tar_read(study_designs_validated)
-original <- Filter(function(d) d$series_id == "GSE145941", v_designs)[[1]]
-cmp <- compare_with_gold(verbose, gold_145941, original)
-knitr::kable(cmp, caption = "GSE145941 side-by-side")
+matches <- Filter(function(d) d$series_id == "GSE145941", v_designs)
+if (length(matches) == 0L) {
+  original <- list(series_id = "GSE145941", replicate_groups = list())
+  cmp <- compare_with_gold(verbose, gold_145941, original)
+  knitr::kable(cmp, caption = "GSE145941 side-by-side (P3 originale non disponibile)")
+} else {
+  original <- matches[[1]]
+  cmp <- compare_with_gold(verbose, gold_145941, original)
+  knitr::kable(cmp, caption = "GSE145941 side-by-side")
+}
 ```
 
 ## Conclusione
 
 ```{r sec5-conclusion, results='asis'}
-agreement_rate <- mean(cmp$agreement, na.rm = TRUE)
-cat(sprintf("- **Agreement rate reclassify vs gold**: %.1f%%  \n",
-            100 * agreement_rate))
-if (agreement_rate >= 0.85) {
-  cat("- **Diagnosi**: il P3 originale ha sbagliato; il modello con verbose-reasoning ricostruisce correttamente. Probabile **`llm_inference_error`** sul run originale (deterministico solo dopo cache miss).\n")
-} else if (agreement_rate < 0.50) {
-  cat("- **Diagnosi**: anche il reclassify non concorda. Probabile **`gold_xlsx_error`** o **`metadata_mismatch`**: il gold xlsx ha labels controintuitive, oppure i metadati testuali divergono da ARCHS4. Verifica manuale richiesta.\n")
+agreement_rate <- if (nrow(cmp) > 0L) mean(cmp$agreement, na.rm = TRUE) else NA_real_
+if (is.nan(agreement_rate) || is.na(agreement_rate)) {
+  cat("- **Agreement rate**: non calcolabile (cmp vuoto o tutti NA)  \n")
+  cat("- **Diagnosi**: dati insufficienti per concludere. Verifica manuale richiesta.\n")
 } else {
-  cat("- **Diagnosi**: agreement parziale. Probabile **`ambiguous_design`**: il dataset ha caratteristiche border-line che ammettono multiple interpretazioni legittime.\n")
+  cat(sprintf("- **Agreement rate reclassify vs gold**: %.1f%%  \n",
+              100 * agreement_rate))
+  if (agreement_rate >= 0.85) {
+    cat("- **Diagnosi**: il P3 originale ha sbagliato; il modello con verbose-reasoning ricostruisce correttamente. Probabile **`llm_inference_error`** sul run originale (deterministico solo dopo cache miss).\n")
+  } else if (agreement_rate < 0.50) {
+    cat("- **Diagnosi**: anche il reclassify non concorda. Probabile **`gold_xlsx_error`** o **`metadata_mismatch`**: il gold xlsx ha labels controintuitive, oppure i metadati testuali divergono da ARCHS4. Verifica manuale richiesta.\n")
+  } else {
+    cat("- **Diagnosi**: agreement parziale. Probabile **`ambiguous_design`**: il dataset ha caratteristiche border-line che ammettono multiple interpretazioni legittime.\n")
+  }
 }
 ```
 
