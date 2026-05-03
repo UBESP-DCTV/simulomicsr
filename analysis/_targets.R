@@ -354,6 +354,65 @@ list(
     }
   ),
 
+  # Stadio 2 P3.5-A: dynamic-branch su curated_p35a_gse, fetch summary +
+  # classify_study insieme (fetch_study_summary cache su disco).
+  tar_target(
+    study_designs_p35a_raw,
+    {
+      gse <- curated_p35a_gse
+      summary_obj <- fetch_study_summary(
+        gse, cache_dir = geo_summary_cache_dir
+      )
+      facts_list <- Filter(
+        function(f) (f$series_id %||% NA_character_) == gse,
+        sample_facts_p35a_validated
+      )
+      if (length(facts_list) == 0L) {
+        return(list(
+          .invalid_reason = "no_validated_sample_facts",
+          series_id = gse
+        ))
+      }
+      classify_study(
+        series_id = gse,
+        sample_facts_list = facts_list,
+        study_summary = summary_obj,
+        provider = "openai", model = "gpt-5.5",
+        cache = cache_init(stage2_cache_dir, namespace = "stage2")
+      )
+    },
+    pattern = map(curated_p35a_gse),
+    iteration = "list"
+  ),
+
+  tar_target(
+    study_designs_p35a_validated,
+    {
+      validator <- compile_schema(study_designs_validator)
+      keep <- vapply(study_designs_p35a_raw, function(d) {
+        if (!is.null(d$.invalid_reason)) return(FALSE)
+        d$.invalid_reason <- NULL
+        d$.invalid_detail <- NULL
+        validate_json(d, validator = validator)$valid
+      }, logical(1))
+      study_designs_p35a_raw[keep]
+    }
+  ),
+
+  tar_target(
+    study_designs_p35a_invalid,
+    {
+      validator <- compile_schema(study_designs_validator)
+      drop <- vapply(study_designs_p35a_raw, function(d) {
+        if (!is.null(d$.invalid_reason)) return(TRUE)
+        d$.invalid_reason <- NULL
+        d$.invalid_detail <- NULL
+        !validate_json(d, validator = validator)$valid
+      }, logical(1))
+      study_designs_p35a_raw[drop]
+    }
+  ),
+
   # ============================================================
   # P3.5-B eval benchmark sui 15 GSE curated
   # ============================================================
