@@ -25,13 +25,13 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-02 fine sessione `simulomicsr_P3` esteso a P3.5-B)
+## Stato corrente (2026-05-03 fine sessione `simulomicsr_p3_2`)
 
-- **Master HEAD:** `32c3b3f` (P3.5b Task 9: bump 0.0.0.9005 + NEWS aggiornato con risultati benchmark).
-- **Tag:** `p1-infra-llm-complete` (P1), `p2-stage1-complete` (P2), `p3-stage2-complete` (P3), `p3.5b-eval-complete` (P3.5-B).
+- **Master HEAD:** `8623c35` (P3.5a Task 11: bump 0.0.0.9006 + NEWS aggiornato + R CMD check).
+- **Tag:** `p1-infra-llm-complete` (P1), `p2-stage1-complete` (P2), `p3-stage2-complete` (P3), `p3.5b-eval-complete` (P3.5-B), **`p3.5a-eval-complete` (P3.5-A)**.
 - **Master locale è ahead di `origin/master`** — l'utente fa il push lui (mai automaticamente).
 - **R CMD check:** 0E / 0W / 2N (note pre-esistenti).
-- **Test suite:** 328 PASS / 0 FAIL.
+- **Test suite:** 364 PASS / 0 FAIL.
 
 ### Cosa P1 ha consegnato (infrastruttura LLM)
 
@@ -77,6 +77,42 @@ API esportate: `llm_call_structured()`, `cache_init()`, `cache_put`, `cache_has`
 
 12/15 GSE non indicizzati in RummaGEO official -> 145/197 sample usano fallback interno keyword-matching. 39 sample hanno label RummaGEO ufficiale.
 
+### Cosa P3.5-A ha consegnato (scaled benchmark paper-ready)
+
+- `R/eval-stats.R`: **`wilson_ci()`**, **`mcnemar_paired()`**, **`bootstrap_delta_ci()`**, **`holm_adjust()`** — statistica inferenziale paper-grade (tutti export, base R, no nuove deps).
+- `R/p35a-select-gse.R`: **`load_rummageo_index()`** (GraphQL paginated + cache), **`keyword_design_kind_proxy()`**, **`intersect_with_xlsx_and_archs4()`**, **`stratified_sample_gse()`** (seed 1812 deterministico).
+- `R/p35a-investigate-gse145941.R`: **`reclassify_verbose()`** (chain-of-thought via prompt extension), **`compare_with_gold()`** (tabella side-by-side).
+- Estensione `classify_study()` + `build_prompt_stage2()` con parametro opzionale `extra_instruction` (backward compatible).
+- `inst/extdata/p35a-gse-selected.csv`: 100 GSE finali con design_kind_proxy (riproducibilità set test).
+- `analysis/_targets.R` esteso con ~14 nuovi target P3.5-A (suffisso `_p35a`), pipeline P3.5-B intatta per riferimento storico.
+- **`analysis/eval/p35a-benchmark.html`** (980 KB): report Quarto 5 sezioni paper-ready con Wilson CI + McNemar + bootstrap delta + Holm correction + investigation GSE145941.
+
+### Risultati P3.5-A benchmark (100 GSE, 1507 sample, gpt-5.5)
+
+Pool candidato: 2591 GSE (RummaGEO official 34690 ∩ xlsx 5367 GSE). Selezione stratificata hybrid (seed 1812).
+
+| Metrica | Valore | Soglia plan | Pass |
+|---|---|---|---|
+| **Stage 2 binary accuracy globale** | **83.7%** (n=1489) | ≥80% | ✅ |
+| **simulomicsr vs RummaGEO** | **+12 pp** (83.7% vs 71.8%) | — | ✅ Big win |
+| Stadio 1 validity | 100% (1507/1507) | — | ✅ |
+| Stadio 2 validity | 100% (100/100) | — | ✅ |
+| treatment_vs_vehicle | 94.6% (n=166) | ≥85% | ✅ |
+| dose_response | 95.6% (n=45) | ≥70% | ✅ |
+| multi_arm_treatment | 87.2% (n=531) | ≥70% | ✅ |
+| knockdown_panel | 85.5% (n=69) | ≥70% | ✅ |
+| factorial | 83.6% (n=408) | ≥70% | ✅ |
+| treatment_vs_untreated | 77.3% (n=141) | ≥85% | ⚠️ -7.7 |
+| time_course | 59.3% (n=54) | ≥70% | ⚠️ |
+| case_control_disease | 49.1% (n=57) | ≥70% | ⚠️ sotto casuale |
+| Granularity flagged | 88 sample (~4x P3.5-B) | ≥1 | ✅ |
+| RummaGEO official coverage | 209/1492 paired | — | low |
+| **Costo gpt-5.5 P3.5-A** | **~$68.70** (utente OpenAI billing 2026-05-03) | — | misurato |
+
+Distribuzione `design_kind` LLM-inferita differente dal keyword_proxy (LLM ha vocabolario più ricco: aggiunge `multi_arm_treatment`, `dose_response`, `case_control_disease`, `unclear`).
+
+**Limitations note**: `treatment_vs_untreated`, `time_course`, `case_control_disease` sotto soglia → potenziale prompt iter (P3.5-A2 separato, non scope P3.5-A).
+
 ## Hotfix P1 emersi durante P2 (importanti per supportare gpt-5.5+)
 
 1. **`temperature` opzionale** (`R/llm-client-openai.R`, commit `7fcba3c`). Default cambiato da `0` a `NULL`; il body include `temperature` solo se non-NULL. Causa: gpt-5.5 (reasoning model) ritorna 400 `unsupported_value` su qualunque temperature esplicita.
@@ -118,6 +154,8 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 - **`callr_function = NULL` per `tar_make`:** indispensabile quando i target di Stadio 1 chiamano OpenAI. callr crea sub-process R che NON ereditano la API key dal parent. Senza `callr_function = NULL`, fallisce con `simulomicsr_openai_missing_key`.
 - **`format = "qs"` non disponibile su CRAN per R 4.5.2** → P2 usa `format = "rds"` per `tar_option_set`.
 - **`sample_facts_validator` storizza un PATH allo schema, non il validator compilato** — i contesti V8 di `jsonvalidate` non sono serializzabili in RDS. `compile_schema()` viene chiamato inline nei target di partition (`sample_facts_validated`/`sample_facts_invalid`).
+- **MAI fare `git checkout -- analysis/_targets/meta/meta` MENTRE un `tar_make` è in corso** (lesson learned P3.5-A 2026-05-03): il meta viene aggiornato in tempo reale, un checkout lo riporta a stato pre-run e il job successivo non riconosce più gli oggetti già calcolati anche se i file sono ancora su disco. Recovery: rilancia `tar_make` (cache hit dei branch è veloce, ma serve lo step). Se ritorni il meta DOPO il tar_make completato, OK. La convenzione "ripristina meta prima del commit" vale solo quando NESSUN tar_make sta girando in background.
+- **Hang HTTP transitorio iniziale** (lesson P3.5-A 2026-05-03): la prima call OpenAI dopo network glitch può essere catturata in I/O wait su socket (CPU 0%, processo S, TCP ESTABLISHED) senza timeout effettivo del `req_timeout(120s)` di httr2 (rare edge case). Workaround: kill + retry. Se sistemico, fix di `R/llm-client-openai.R` per timeout TCP-level più aggressivo. Vedi P1 hotfix `temperature` per altro pattern correlato.
 
 ## Decisioni rinviate (da considerare quando matureranno)
 
@@ -140,30 +178,38 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — P3.5-A o P4)
+## Next step (per la prossima sessione — P3.5-A2 cost validation o P4)
 
-**P3.5-B completato (2026-05-02).** Prossima fase logica: **P3.5-A** scaled benchmark (50-100 GSE) per evidence base paper-ready, oppure **P4** run massivo ARCHS4.
+**P3.5-A completato (2026-05-03).** Risultati paper-ready: 83.7% accuracy globale (n=1489), +12 pp vs RummaGEO. Costo gpt-5.5: **$68.70**.
 
-### Findings critici da P3.5-B per P3.5-A
+### Decisione condizionale post-P3.5-A
 
-1. **Anomalia `treatment_vs_untreated` 41.7% accuracy localizzata su GSE145941.** Deep dive (post-Task 9):
-   - GSE128771 (Dox-inducible KD, n=4): 100% ✓
-   - **GSE145941 (irradiazione 0Gy/10Gy, n=8): 12.5%** ⚠
-   - Pattern gold xlsx GSE145941 bizzarro: 5 treated (GSM4340018, 19, 21, 23, 25) + 3 control (GSM4340020, 22, 24) — alternato, non 4+4 come ci si aspetterebbe.
-   - Smoke E2E Task 11 (Task P3) aveva confermato che gpt-5.5 ricostruiva 4 perturbed (10Gy) + 4 untreated_control (0Gy) per questo studio.
-   - **Possibili cause:** (A) gold xlsx labels errate per questi 8 sample, (B) gpt-5.5 ha sbagliato l'assegnazione GSM→group, (C) i metadati testuali del xlsx vs ARCHS4 sono diversi. **Da investigare in P3.5-A Task 1** prima di scalare.
+**OBBLIGATORIO prima di P4:** **P3.5-A2 cost/quality validation** (idea utente 2026-05-03). Razionale: il costo P3.5-A su 100 GSE / 1507 sample è $68.70 → estrapolazione P4 (run massivo ARCHS4 700k+ sample) ≈ $30k a parità di modello gpt-5.5. Se un modello cheaper a parità di accuracy esiste, P4 può costare una frazione.
 
-2. **RummaGEO official coverage finale: 2/15 GSE** (GSE102908 + GSE57494 = 39 sample). Gli altri 13 GSE usano fallback interno keyword-matching. Per P3.5-A scaled, considerare di **selezionare GSE che SONO in RummaGEO** per avere head-to-head pulito su più sample.
+Scope P3.5-A2:
+- Sottogruppo (~50-100 sample) da `sample_facts_p35a_validated` o `study_designs_p35a_validated` come ground truth (gpt-5.5 + gold xlsx).
+- Modelli da provare: cheap OpenAI (`gpt-5.5-mini`, `gpt-5.4-mini`), Anthropic (`claude-haiku-4-5`), eventualmente open-source (Llama 3.x, Qwen, DeepSeek via Together/Groq) — l'utente li menziona "tentativamente, qualche prova".
+- Output: tabella accuracy × cost per modello, decisione su quale usare in P4.
+- Implementazione: nuovo phase P3.5-A2 con plan dedicato. Riusa l'eval pipeline P3.5-A esistente.
+- Pre-requisito: la cache LLM è partizionata per `(provider, model, messages)` — cambiare modello scatena re-classify automatico.
 
-3. **Granularity flagged: 22 sample** dal gpt-5.5 producono `design_role` più granulare del binary gold (negative_inducer_control, baseline_t0, secondary_arm, bystander) — conferma value-add del classificatore design-aware.
+### Findings sotto-soglia P3.5-A (da considerare per P3.5-A2 o P3.5-A3)
 
-### Roadmap
+1. **`treatment_vs_untreated` 77.3%** (sotto soglia plan 85%, n=141): non più un singolo GSE outlier come P3.5-B ma sotto soglia diffusa.
+2. **`time_course` 59.3%** (n=54): basso su task hard.
+3. **`case_control_disease` 49.1%** (n=57): sotto casuale, anomalia da investigare. Probabile bug nel mapping `design_role → trtctr_predicted` per design malattia/normale (case → treated, comparison → control), o gold xlsx semantica differente per disease.
+4. **GSE145941 reclassify_verbose** 408 byte di reasoning (vedi report Sezione 5).
 
-1. **P3.5-A scaled benchmark** (~$10-30 LLM): brainstorm + plan + scaling 50-100 GSE selezionati per (a) RummaGEO-coverage e (b) design_kind diversity; investigation GSE145941 anomalia integrata come prima task.
-2. **Server-switch** programmato per P4 (run massivo ARCHS4) — vedi ADR-0005.
-3. Rename pacchetto (ADR-0003) prima del primo `install_github` pubblico.
-4. Migrazione a `ellmer` come ADR separato prima di P4.
-5. **Next concrete step:** invocare `superpowers:brainstorming` per definire scope P3.5-A.
+### Roadmap aggiornata
+
+1. **P3.5-A2 cost/quality validation** (priorita' alta, $5-15 stimati su sub-set 50-100 sample × 3-5 modelli): brainstorm + plan + run + report.
+2. **Server-switch + P4 run massivo ARCHS4** (ADR-0005, $30k a gpt-5.5 oppure frazione con modello da P3.5-A2).
+3. **Migrazione a `ellmer`** come ADR separato pre-P4 (multi-provider + batch API ergonomic — necessario per P3.5-A2 multi-modello).
+4. **Eventuale P3.5-A3 prompt iter** se sub-soglia `treatment_vs_untreated` / `time_course` / `case_control_disease` sono sistemici (P3.5-A2 lo decide).
+5. **Rename pacchetto** (ADR-0003) prima del primo `install_github` pubblico.
+6. **P5 Stadio 4+5: DE per-studio (DESeq2/limma) + meta-analisi REM (`metafor`)** — Output 3 ADR-0006.
+
+**Next concrete step:** invocare `superpowers:brainstorming` per scope P3.5-A2 (modelli da testare, sub-set rappresentativo, criteri di selezione "good enough").
 
 ## Riferimenti chiave
 
@@ -174,6 +220,9 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 - **Spec P3.5-B:** `docs/superpowers/specs/2026-05-02-p3.5-eval-benchmark-design.md`.
 - Plan P3.5-B: `docs/superpowers/plans/2026-05-02-p3.5b-eval-benchmark-plan.md` + HUMANE.
 - **Report P3.5-B:** `analysis/eval/p35-benchmark.html` (838KB, 4 sezioni con grafici e tabelle).
+- **Spec P3.5-A:** `docs/superpowers/specs/2026-05-02-p3.5a-scaled-benchmark-design.md`.
+- Plan P3.5-A: `docs/superpowers/plans/2026-05-02-p3.5a-scaled-benchmark-plan.md` + HUMANE.
+- **Report P3.5-A:** `analysis/eval/p35a-benchmark.html` (980 KB, 5 sezioni con Wilson CI + McNemar + bootstrap + Holm + investigation GSE145941).
 - **ADR-0006 stato dell'arte:** `docs/decisions/0006-stato-arte-vs-simulomicsr.md` — analisi competitor 2024-2026 + benchmark RummaGEO integrale + decisione P3-B confermata.
 - ADR-0005 server migration: `docs/decisions/0005-server-migration-trigger.md`.
 - ADR generali: `docs/decisions/`.
