@@ -49,10 +49,15 @@
 
 ### Cost LLM
 
-* Stadio 1 (1507 sample gpt-5.5): ~$2-3 (prima volta cache miss, run completato 2026-05-03)
-* Stadio 2 (100 GSE gpt-5.5): ~$2-4
-* Reclassify GSE145941 verbose: ~$0.50
-* Totale P3.5-A: ~$5-8
+* **Totale P3.5-A: ~$68.70** (OpenAI gpt-5.5 cumulativo per Stadio 1 + Stadio 2
+  + reclassify GSE145941). Misurato dall'utente sul billing OpenAI 2026-05-03,
+  non stimato.
+* Implica ~$0.043/call media su 1608 chiamate (1507 Stage 1 + 100 Stage 2 + 1
+  reclassify verbose). Estrapolando a P4 run massivo ARCHS4 (~700k+ sample),
+  atteso ~$30k a parita' di modello.
+* Questa cifra rende **prioritario** il P3.5-A2 cost/quality validation
+  (vedi CLAUDE.md "Next step"): se un modello cheaper a parita' di accuracy
+  esiste, P4 costerebbe una frazione del proiettato.
 
 # simulomicsr 0.0.0.9005
 
