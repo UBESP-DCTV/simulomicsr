@@ -99,3 +99,144 @@ load_rummageo_index <- function(cache_dir = NULL,
   }
   out
 }
+
+# Pattern regex per keyword proxy. Ordine = priorita' (top wins).
+# Ogni pattern e' una list(pattern = ..., ignore_case = TRUE/FALSE):
+# pattern di keyword inglesi -> ignore_case=TRUE; pattern di gene-symbol
+# (siGAPDH, shTP53) richiedono case-sensitive per non collidere con parole
+# comuni (es. "sham" matcherebbe falsamente sh[A-Z][A-Z0-9]+ in ignore.case).
+.DESIGN_KIND_PATTERNS <- list(
+  factorial = list(
+    list(pattern = "factorial", ignore_case = TRUE),
+    list(pattern = "\\+\\w+\\s+\\+\\w+", ignore_case = TRUE),
+    list(pattern = "\\+\\w+\\s+-\\w+", ignore_case = TRUE)
+  ),
+  mediated_effect = list(
+    list(pattern = "conditioned\\s+media", ignore_case = TRUE),
+    list(pattern = "transwell", ignore_case = TRUE),
+    list(pattern = "co-?culture", ignore_case = TRUE),
+    list(pattern = "paracrine", ignore_case = TRUE),
+    list(pattern = "bystander\\s+effect", ignore_case = TRUE)
+  ),
+  treatment_vs_untreated = list(
+    list(pattern = "(\\d+\\s*[Gg]y\\b.*){2,}", ignore_case = FALSE),
+    list(pattern = "(0\\s*[Gg]y).*(\\d+\\s*[Gg]y)", ignore_case = FALSE),
+    list(pattern = "irradiat", ignore_case = TRUE),
+    list(pattern = "untreated.*treated", ignore_case = TRUE),
+    list(pattern = "sham.*irradiat", ignore_case = TRUE)
+  ),
+  time_course = list(
+    list(pattern = "(\\d+\\s*[hd]\\b.*){2,}", ignore_case = TRUE),
+    list(pattern = "time\\s*course", ignore_case = TRUE),
+    list(pattern = "kinetic", ignore_case = TRUE)
+  ),
+  knockdown_panel = list(
+    list(pattern = "\\bsiRNA\\b", ignore_case = TRUE),
+    list(pattern = "\\bshRNA\\b", ignore_case = TRUE),
+    list(pattern = "knockdown", ignore_case = TRUE),
+    list(pattern = "knock-?down", ignore_case = TRUE),
+    # gene-symbol: case-sensitive per evitare false positive (es. "sham")
+    list(pattern = "\\bsi-?[A-Z][A-Z0-9]+\\b", ignore_case = FALSE),
+    list(pattern = "\\bsh-?[A-Z][A-Z0-9]+\\b", ignore_case = FALSE),
+    list(pattern = "[+-]\\s*[Dd]ox\\b", ignore_case = FALSE),
+    list(pattern = "inducible.*[Dd]ox", ignore_case = TRUE),
+    list(pattern = "[Dd]ox.*induc", ignore_case = TRUE),
+    list(pattern = "tetracycline.*induc", ignore_case = TRUE)
+  ),
+  knockout_vs_wt = list(
+    list(pattern = "\\bknockout\\b", ignore_case = TRUE),
+    list(pattern = "\\bKO\\b", ignore_case = FALSE),
+    list(pattern = "-/-", ignore_case = FALSE),
+    list(pattern = "\\+/\\+", ignore_case = FALSE),
+    list(pattern = "\\bWT\\b", ignore_case = FALSE),
+    list(pattern = "wild-?type", ignore_case = TRUE)
+  ),
+  disease_vs_normal = list(
+    list(pattern = "\\bdisease\\b", ignore_case = TRUE),
+    list(pattern = "\\bcancer\\b", ignore_case = TRUE),
+    list(pattern = "\\btumor\\b", ignore_case = TRUE),
+    list(pattern = "\\btumour\\b", ignore_case = TRUE),
+    list(pattern = "patient", ignore_case = TRUE),
+    list(pattern = "carcinoma", ignore_case = TRUE),
+    list(pattern = "glioblastoma", ignore_case = TRUE),
+    list(pattern = "leukemia", ignore_case = TRUE),
+    list(pattern = "lymphoma", ignore_case = TRUE),
+    list(pattern = "(healthy|normal).*(control|tissue|cortex|donor)",
+         ignore_case = TRUE)
+  ),
+  treatment_vs_vehicle = list(
+    list(pattern = "\\bDMSO\\b", ignore_case = TRUE),
+    list(pattern = "\\bvehicle\\b", ignore_case = TRUE),
+    list(pattern = "\\bdrug\\b", ignore_case = TRUE),
+    list(pattern = "compound", ignore_case = TRUE),
+    list(pattern = "\\b\\d+\\s*[uM]M\\b", ignore_case = FALSE),
+    list(pattern = "\\b\\d+\\s*nM\\b", ignore_case = FALSE)
+  )
+)
+
+#' @noRd
+.match_one_kind <- function(s) {
+  for (kind in names(.DESIGN_KIND_PATTERNS)) {
+    patterns <- .DESIGN_KIND_PATTERNS[[kind]]
+    for (p in patterns) {
+      if (grepl(p$pattern, s, perl = TRUE, ignore.case = p$ignore_case)) {
+        return(kind)
+      }
+    }
+  }
+  "unknown"
+}
+
+#' Inferisce un design_kind candidato da metadata strings via keyword proxy
+#'
+#' Applica regex con priorita' fissa (factorial -- mediated_effect --
+#' treatment_vs_untreated -- time_course -- knockdown_panel -- knockout_vs_wt
+#' -- disease_vs_normal -- treatment_vs_vehicle -- unknown). Usato SOLO per
+#' stratificazione del pool; la classificazione vera e' Stage 2 LLM
+#' downstream.
+#'
+#' @param strings character vector (tipicamente concatenazione dei `string`
+#'   xlsx dei sample di un GSE)
+#' @return character vector di design_kind con stessa lunghezza
+#' @export
+keyword_design_kind_proxy <- function(strings) {
+  vapply(strings, .match_one_kind, character(1), USE.NAMES = FALSE)
+}
+
+#' Intersezione tre-vie GSE: RummaGEO official, xlsx gold, ARCHS4 studies
+#'
+#' Produce il pool candidato per la selezione. Ogni GSE deve essere presente
+#' in tutti e tre. Se archs4_studies = NULL, salta il filtro ARCHS4 (utile
+#' per dev offline; la prod imposta ARCHS4 path).
+#'
+#' @param rummageo_index tibble da load_rummageo_index() (col: gse, n_signatures)
+#' @param xlsx_df tibble da read_samples_input() (col: geo_accession,
+#'   series_id, string, trtctr_EP)
+#' @param archs4_studies character vector di GSE in ARCHS4 (NULL = no filter)
+#' @return tibble con colonne gse, n_signatures, n_samples_xlsx,
+#'   in_archs4 (TRUE/FALSE/NA), concat_strings (concatenazione dei string
+#'   xlsx per il GSE, usata downstream da keyword_design_kind_proxy)
+#' @export
+intersect_with_xlsx_and_archs4 <- function(rummageo_index, xlsx_df,
+                                            archs4_studies = NULL) {
+  stopifnot("gse" %in% names(rummageo_index),
+            all(c("series_id", "string") %in% names(xlsx_df)))
+  xlsx_per_gse <- xlsx_df |>
+    dplyr::group_by(.data$series_id) |>
+    dplyr::summarise(
+      n_samples_xlsx = dplyr::n(),
+      concat_strings = paste(.data$string, collapse = " || "),
+      .groups = "drop"
+    ) |>
+    dplyr::rename(gse = "series_id")
+  joined <- dplyr::inner_join(rummageo_index, xlsx_per_gse, by = "gse")
+  joined$in_archs4 <- if (is.null(archs4_studies)) {
+    NA
+  } else {
+    joined$gse %in% archs4_studies
+  }
+  if (!is.null(archs4_studies)) {
+    joined <- joined[joined$in_archs4, ]
+  }
+  tibble::as_tibble(joined)
+}
