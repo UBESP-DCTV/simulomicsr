@@ -287,6 +287,74 @@ list(
   ),
 
   # ============================================================
+  # P3.5-A scaled benchmark (100 GSE freschi paper-ready)
+  # ============================================================
+
+  tar_target(
+    p35a_gse_csv,
+    system.file("extdata", "p35a-gse-selected.csv", package = "simulomicsr"),
+    format = "file"
+  ),
+
+  tar_target(
+    curated_p35a_gse,
+    {
+      df <- utils::read.csv(p35a_gse_csv, stringsAsFactors = FALSE)
+      sort(unique(df$gse_id))
+    }
+  ),
+
+  tar_target(
+    samples_input_p35a,
+    {
+      full <- read_samples_input(samples_input_path)
+      full[full$series_id %in% curated_p35a_gse, ]
+    }
+  ),
+
+  # Dynamic branching: una invocazione per riga (classify_sample_row riceve
+  # tibble di 1 riga). Riusa cache namespace "stage1" per max share.
+  tar_target(
+    sample_facts_p35a_raw,
+    classify_sample_row(
+      samples_input_p35a,
+      provider = "openai",
+      model    = "gpt-5.5",
+      cache    = cache_init(stage1_cache_dir, namespace = "stage1")
+    ),
+    pattern   = map(samples_input_p35a),
+    iteration = "list"
+  ),
+
+  tar_target(
+    sample_facts_p35a_validated,
+    {
+      validator <- compile_schema(sample_facts_validator)
+      keep <- vapply(sample_facts_p35a_raw, function(f) {
+        if (!is.null(f$.invalid_reason)) return(FALSE)
+        f$.invalid_reason <- NULL
+        f$.invalid_detail <- NULL
+        validate_json(f, validator = validator)$valid
+      }, logical(1))
+      sample_facts_p35a_raw[keep]
+    }
+  ),
+
+  tar_target(
+    sample_facts_p35a_invalid,
+    {
+      validator <- compile_schema(sample_facts_validator)
+      drop <- vapply(sample_facts_p35a_raw, function(f) {
+        if (!is.null(f$.invalid_reason)) return(TRUE)
+        f$.invalid_reason <- NULL
+        f$.invalid_detail <- NULL
+        !validate_json(f, validator = validator)$valid
+      }, logical(1))
+      sample_facts_p35a_raw[drop]
+    }
+  ),
+
+  # ============================================================
   # P3.5-B eval benchmark sui 15 GSE curated
   # ============================================================
 
