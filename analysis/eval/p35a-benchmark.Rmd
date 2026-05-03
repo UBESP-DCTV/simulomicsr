@@ -1,0 +1,293 @@
+---
+title: "P3.5-A — Scaled benchmark Stadio 2 (100 GSE paper-ready)"
+author: "simulomicsr"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: cosmo
+    code_folding: hide
+params:
+  stage2_metrics: NULL
+  rummageo_metrics: NULL
+  comparisons_table: NULL
+  curated_gse: NULL
+  gse145941_reclassify: NULL
+  gold_table_subset: NULL
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(simulomicsr)
+```
+
+# Executive summary
+
+Benchmark scaled del classificatore Stadio 2 di simulomicsr su **100 GSE freschi** selezionati da `RummaGEO official inter xlsx gold`, stratificati per `design_kind` con oversampling delle categorie rare (factorial, time_course, mediated_effect). Test set indipendente dai 15 GSE di P3.
+
+```{r exec-summary, results='asis'}
+m <- params$stage2_metrics
+r <- params$rummageo_metrics
+overall_ci <- wilson_ci(
+  successes = round(m$overall$accuracy * m$overall$n),
+  n = m$overall$n
+)
+rumma_ci <- wilson_ci(
+  successes = round(r$rummageo_vs_gold$accuracy * r$rummageo_vs_gold$n),
+  n = r$rummageo_vs_gold$n
+)
+cat(sprintf(
+  "- **n GSE**: %d  \n- **n sample valutati**: %d  \n- **simulomicsr accuracy**: %.1f%% (95%% Wilson CI [%.1f%%, %.1f%%])  \n- **RummaGEO accuracy**: %.1f%% (95%% Wilson CI [%.1f%%, %.1f%%])  \n",
+  length(params$curated_gse), m$overall$n,
+  100 * overall_ci$estimate, 100 * overall_ci$lower, 100 * overall_ci$upper,
+  100 * rumma_ci$estimate, 100 * rumma_ci$lower, 100 * rumma_ci$upper
+))
+```
+
+# Sezione 1 — Stage 2 binary accuracy
+
+## Overall
+
+```{r sec1-overall}
+m <- params$stage2_metrics
+ci <- wilson_ci(
+  successes = round(m$overall$accuracy * m$overall$n),
+  n = m$overall$n
+)
+tibble::tibble(
+  n = m$overall$n,
+  accuracy = sprintf("%.3f", m$overall$accuracy),
+  wilson_ci = sprintf("[%.3f, %.3f]", ci$lower, ci$upper),
+  sensitivity = sprintf("%.3f", m$overall$sensitivity),
+  specificity = sprintf("%.3f", m$overall$specificity),
+  f1 = sprintf("%.3f", m$overall$f1)
+) |> knitr::kable(caption = "Overall binary accuracy con Wilson 95% CI")
+```
+
+## Confusion matrix
+
+```{r sec1-cm}
+print(m$overall$confusion_matrix)
+```
+
+## Breakdown per design_kind
+
+```{r sec1-per-kind}
+per_kind <- m$per_kind
+per_kind$wilson_lower <- vapply(seq_len(nrow(per_kind)), function(i) {
+  ci <- wilson_ci(round(per_kind$accuracy[i] * per_kind$n[i]),
+                  per_kind$n[i])
+  ci$lower
+}, numeric(1))
+per_kind$wilson_upper <- vapply(seq_len(nrow(per_kind)), function(i) {
+  ci <- wilson_ci(round(per_kind$accuracy[i] * per_kind$n[i]),
+                  per_kind$n[i])
+  ci$upper
+}, numeric(1))
+per_kind |>
+  dplyr::mutate(
+    accuracy_ci = sprintf("%.3f [%.3f, %.3f]",
+                          accuracy, wilson_lower, wilson_upper)
+  ) |>
+  dplyr::select(design_kind, n, accuracy_ci, sensitivity, specificity, f1) |>
+  knitr::kable(caption = "Per design_kind con Wilson CI")
+```
+
+```{r sec1-plot, fig.width=8, fig.height=5}
+ggplot(per_kind, aes(x = reorder(design_kind, accuracy), y = accuracy)) +
+  geom_col(fill = "steelblue") +
+  geom_errorbar(aes(ymin = wilson_lower, ymax = wilson_upper),
+                width = 0.2) +
+  geom_hline(yintercept = 0.85, linetype = "dashed", colour = "red") +
+  geom_hline(yintercept = 0.80, linetype = "dashed", colour = "darkgreen") +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 1), labels = scales::percent) +
+  labs(x = NULL, y = "Accuracy",
+       title = "Stage 2 accuracy per design_kind con Wilson 95% CI",
+       subtitle = "Soglie: 80% globale (verde), 85% binari semplici (rosso)")
+```
+
+# Sezione 2 — Granularity disagreement enumeration
+
+```{r sec2}
+gran <- params$stage2_metrics$granularity
+if (nrow(gran) == 0L) {
+  cat("Nessun caso granulare nei 100 GSE.")
+} else {
+  gran |>
+    dplyr::count(granularity_kind, sort = TRUE) |>
+    knitr::kable(caption = "Conteggi per granularity_kind")
+  cat("\n\n**Esempi rappresentativi (max 2 per categoria):**\n")
+  gran |>
+    dplyr::group_by(granularity_kind) |>
+    dplyr::slice_head(n = 2L) |>
+    dplyr::ungroup() |>
+    dplyr::select(geo_accession, series_id, granularity_kind, string) |>
+    knitr::kable()
+}
+```
+
+# Sezione 3 — Anchor coverage cross-studio (intra-100)
+
+```{r sec3}
+ct <- params$comparisons_table
+if (is.null(ct) || nrow(ct) == 0L) {
+  cat("Nessuna comparison nei 100 GSE.")
+} else {
+  by_anchor <- ct |>
+    dplyr::group_by(comparability_anchor) |>
+    dplyr::summarise(
+      n_gse = dplyr::n_distinct(series_id),
+      n_comparisons = dplyr::n(),
+      .groups = "drop"
+    ) |>
+    dplyr::arrange(dplyr::desc(n_gse))
+  multi_gse <- by_anchor |> dplyr::filter(n_gse >= 2L)
+  cat(sprintf("- **Anchor unici**: %d  \n", nrow(by_anchor)))
+  cat(sprintf("- **Anchor con N >= 2 GSE**: %d  \n", nrow(multi_gse)))
+  cat(sprintf("- **Comparison totali**: %d  \n", nrow(ct)))
+  if (nrow(multi_gse) > 0L) {
+    knitr::kable(head(multi_gse, 30L),
+                 caption = "Top anchor cross-GSE (potential meta-analyses)")
+  }
+
+  print(ggplot(by_anchor, aes(x = n_gse)) +
+    geom_histogram(binwidth = 1L, fill = "darkgreen") +
+    labs(x = "N GSE per anchor", y = "Conteggio anchor",
+         title = "Distribuzione anchor cross-studio (intra-100)"))
+}
+```
+
+# Sezione 4 — RummaGEO head-to-head
+
+## Source summary (RummaGEO official vs fallback interno)
+
+```{r sec4-source}
+print(params$rummageo_metrics$source_summary)
+```
+
+## Confusion matrices
+
+### simulomicsr x gold
+```{r sec4-cm-sim}
+print(params$rummageo_metrics$simulomicsr_vs_gold$confusion_matrix)
+```
+
+### RummaGEO x gold
+```{r sec4-cm-rumma}
+print(params$rummageo_metrics$rummageo_vs_gold$confusion_matrix)
+```
+
+## Test inferenziale: McNemar + bootstrap delta
+
+```{r sec4-stats}
+joined <- params$rummageo_metrics$joined_table
+sim_correct <- ifelse(is.na(joined$gold_binary) | is.na(joined$predicted_binary),
+                      NA,
+                      ifelse(joined$predicted_binary == joined$gold_binary,
+                             "correct", "wrong"))
+rumma_correct <- ifelse(is.na(joined$gold_binary) | is.na(joined$rummageo_label),
+                        NA,
+                        ifelse(joined$rummageo_label == joined$gold_binary,
+                               "correct", "wrong"))
+mc <- mcnemar_paired(sim_correct, rumma_correct, continuity = FALSE)
+boot <- bootstrap_delta_ci(sim_correct, rumma_correct,
+                            n_iter = 1000L, seed = 1812L)
+tibble::tibble(
+  metric = c("McNemar chi^2", "McNemar p-value",
+             "Bootstrap delta (sim - rumma)",
+             "Bootstrap CI lower", "Bootstrap CI upper",
+             "n paired"),
+  value = c(sprintf("%.3f", mc$statistic),
+            sprintf("%.4f", mc$p_value),
+            sprintf("%.3f", boot$delta),
+            sprintf("%.3f", boot$lower),
+            sprintf("%.3f", boot$upper),
+            mc$n)
+) |> knitr::kable(caption = "Statistica inferenziale globale")
+```
+
+## Per design_kind con Holm correction
+
+```{r sec4-perkind}
+per_kind_stats <- joined |>
+  dplyr::filter(!is.na(gold_binary), !is.na(predicted_binary),
+                !is.na(rummageo_label)) |>
+  dplyr::group_by(design_kind) |>
+  dplyr::summarise(
+    n = dplyr::n(),
+    sim_acc = mean(predicted_binary == gold_binary),
+    rumma_acc = mean(rummageo_label == gold_binary),
+    .groups = "drop"
+  )
+mc_per <- joined |>
+  dplyr::filter(!is.na(gold_binary), !is.na(predicted_binary),
+                !is.na(rummageo_label)) |>
+  dplyr::group_by(design_kind) |>
+  dplyr::summarise(
+    n = dplyr::n(),
+    p_value = {
+      sa <- ifelse(predicted_binary == gold_binary, "correct", "wrong")
+      ra <- ifelse(rummageo_label == gold_binary, "correct", "wrong")
+      mcnemar_paired(sa, ra, continuity = FALSE)$p_value
+    },
+    .groups = "drop"
+  )
+mc_per$p_holm <- holm_adjust(mc_per$p_value)
+out <- dplyr::left_join(per_kind_stats, mc_per, by = c("design_kind", "n"))
+out |>
+  dplyr::mutate(
+    delta = sprintf("%+.3f", sim_acc - rumma_acc),
+    p_value = sprintf("%.4f", p_value),
+    p_holm = sprintf("%.4f", p_holm)
+  ) |>
+  dplyr::select(design_kind, n, sim_acc, rumma_acc, delta, p_value, p_holm) |>
+  knitr::kable(caption = "Per design_kind: McNemar p-value + Holm-corrected")
+```
+
+# Sezione 5 — Investigation GSE145941
+
+```{r sec5-data}
+verbose <- params$gse145941_reclassify
+gold <- params$gold_table_subset
+gold_145941 <- gold[gold$series_id == "GSE145941", ]
+```
+
+## Re-classify chain-of-thought (gpt-5.5 verbose-reasoning)
+
+```{r sec5-cot, results='asis'}
+cat("```\n")
+cat(verbose$.reasoning %||% "(no reasoning emitted)")
+cat("\n```\n")
+```
+
+## Side-by-side: gold xlsx vs P3 originale vs reclassify verbose
+
+```{r sec5-table}
+v_designs <- targets::tar_read(study_designs_validated)
+original <- Filter(function(d) d$series_id == "GSE145941", v_designs)[[1]]
+cmp <- compare_with_gold(verbose, gold_145941, original)
+knitr::kable(cmp, caption = "GSE145941 side-by-side")
+```
+
+## Conclusione
+
+```{r sec5-conclusion, results='asis'}
+agreement_rate <- mean(cmp$agreement, na.rm = TRUE)
+cat(sprintf("- **Agreement rate reclassify vs gold**: %.1f%%  \n",
+            100 * agreement_rate))
+if (agreement_rate >= 0.85) {
+  cat("- **Diagnosi**: il P3 originale ha sbagliato; il modello con verbose-reasoning ricostruisce correttamente. Probabile **`llm_inference_error`** sul run originale (deterministico solo dopo cache miss).\n")
+} else if (agreement_rate < 0.50) {
+  cat("- **Diagnosi**: anche il reclassify non concorda. Probabile **`gold_xlsx_error`** o **`metadata_mismatch`**: il gold xlsx ha labels controintuitive, oppure i metadati testuali divergono da ARCHS4. Verifica manuale richiesta.\n")
+} else {
+  cat("- **Diagnosi**: agreement parziale. Probabile **`ambiguous_design`**: il dataset ha caratteristiche border-line che ammettono multiple interpretazioni legittime.\n")
+}
+```
+
+---
+*Generato con `tar_make(eval_p35a_report)`. RUN reproducibility seed = 1812.*
