@@ -88,3 +88,47 @@ test_that("intersect_with_xlsx_and_archs4 con archs4_studies = NULL ammette tutt
   expect_setequal(pool$gse, c("GSE_A", "GSE_B"))
   expect_true(all(is.na(pool$in_archs4)))
 })
+
+test_that("stratified_sample_gse rispetta target distribution con seed", {
+  set.seed(NULL)
+  pool <- tibble::tibble(
+    gse = sprintf("GSE%05d", 1:200),
+    design_kind_proxy = c(
+      rep("factorial", 20),
+      rep("time_course", 20),
+      rep("mediated_effect", 5),
+      rep("treatment_vs_vehicle", 50),
+      rep("knockdown_panel", 30),
+      rep("disease_vs_normal", 30),
+      rep("treatment_vs_untreated", 25),
+      rep("unknown", 20)
+    ),
+    n_signatures = sample.int(20L, 200L, replace = TRUE),
+    n_samples_xlsx = sample.int(40L, 200L, replace = TRUE)
+  )
+  target <- c(
+    factorial = 15L, time_course = 15L, mediated_effect = 10L,
+    treatment_vs_vehicle = 20L, knockdown_panel = 15L,
+    disease_vs_normal = 15L, treatment_vs_untreated = 10L
+  )
+  result_1 <- stratified_sample_gse(pool, target, seed = 1812L)
+  result_2 <- stratified_sample_gse(pool, target, seed = 1812L)
+  expect_equal(result_1$gse, result_2$gse)
+  expect_equal(nrow(result_1), 100L)
+  expect_equal(sum(result_1$design_kind_proxy == "factorial"), 15L)
+  expect_equal(sum(result_1$design_kind_proxy == "mediated_effect"), 5L)
+  expect_equal(sum(result_1$design_kind_proxy == "treatment_vs_vehicle"), 25L)
+})
+
+test_that("stratified_sample_gse non usa unknown nella stratificazione", {
+  pool <- tibble::tibble(
+    gse = sprintf("GSE%05d", 1:50),
+    design_kind_proxy = c(rep("factorial", 30), rep("unknown", 20)),
+    n_signatures = 10L,
+    n_samples_xlsx = 10L
+  )
+  target <- c(factorial = 10L)
+  result <- stratified_sample_gse(pool, target, seed = 1812L)
+  expect_equal(nrow(result), 10L)
+  expect_true(all(result$design_kind_proxy == "factorial"))
+})
