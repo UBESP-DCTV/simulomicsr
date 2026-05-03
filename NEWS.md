@@ -1,3 +1,59 @@
+# simulomicsr 0.0.0.9006
+
+## P3.5-A — Scaled benchmark Stadio 2 (100 GSE paper-ready)
+
+### Funzionalita' nuove
+
+* `wilson_ci()`, `mcnemar_paired()`, `bootstrap_delta_ci()`, `holm_adjust()` —
+  statistica inferenziale paper-grade in `R/eval-stats.R`.
+* `load_rummageo_index()` — scarica indice completo GSE da RummaGEO via
+  GraphQL paginated con cache filesystem.
+* `keyword_design_kind_proxy()` — inferisce design_kind candidato da metadata
+  strings via regex per stratificazione del pool di selezione.
+* `intersect_with_xlsx_and_archs4()` — intersezione tre-vie GSE.
+* `stratified_sample_gse()` — campionamento stratificato deterministico
+  (seed 1812) con fallback su categoria abbondante per categorie povere.
+* `reclassify_verbose()` — re-classify Stadio 2 con prompt verbose-reasoning
+  per investigation casi specifici (introdotto per GSE145941).
+* `compare_with_gold()` — tabella side-by-side gold xlsx vs run P3 vs reclassify.
+* `classify_study()` e `build_prompt_stage2()` accettano ora il parametro
+  opzionale `extra_instruction` (backward compatible).
+
+### Artefatti committati
+
+* `inst/extdata/p35a-gse-selected.csv` — lista 100 GSE finali per
+  riproducibilita' del set di test (seed 1812).
+* `analysis/eval/p35a-benchmark.html` — report Quarto 5 sezioni
+  (binary accuracy + Wilson CI, granularity, anchor coverage,
+  RummaGEO head-to-head con McNemar + bootstrap + Holm,
+  investigation GSE145941).
+
+### Risultati run live (1507 sample, 100 GSE)
+
+| Metrica | Valore |
+|---|---|
+| Stadio 1 validity rate | 100% (1507/1507) |
+| Stadio 2 validity rate | 100% (100/100) |
+| Stage 2 binary accuracy globale | 83.7% (n=1489) |
+| RummaGEO vs gold | 71.8% (n=1492) |
+| Delta simulomicsr - RummaGEO | +12 pp (in favore di simulomicsr) |
+| treatment_vs_vehicle accuracy | 94.6% |
+| treatment_vs_untreated accuracy | 77.3% (sotto soglia 85%) |
+| case_control_disease accuracy | 49.1% (anomalia, da investigare) |
+| dose_response accuracy | 95.6% |
+| factorial accuracy | 83.6% |
+| multi_arm_treatment accuracy | 87.2% |
+| time_course accuracy | 59.3% |
+| Granularity flagged | 88 sample |
+| RummaGEO official coverage | 209 sample / 1492 paired |
+
+### Cost LLM
+
+* Stadio 1 (1507 sample gpt-5.5): ~$2-3 (prima volta cache miss, run completato 2026-05-03)
+* Stadio 2 (100 GSE gpt-5.5): ~$2-4
+* Reclassify GSE145941 verbose: ~$0.50
+* Totale P3.5-A: ~$5-8
+
 # simulomicsr 0.0.0.9005
 
 ## P3.5-B — eval benchmark Stadio 2 sui 15 GSE (prototipo)
