@@ -240,3 +240,57 @@ intersect_with_xlsx_and_archs4 <- function(rummageo_index, xlsx_df,
   }
   tibble::as_tibble(joined)
 }
+
+#' Stratified sampling deterministico dal pool candidato
+#'
+#' Per ogni categoria k in target, prende min(target\[k\], n_disponibili) GSE
+#' (random uniform su quelli con design_kind_proxy == k). Categoria povera
+#' (n_disponibili < target) -> prendi tutti, deficit ridistribuito su
+#' treatment_vs_vehicle. GSE con design_kind_proxy = "unknown" sono
+#' esclusi dalla selezione (non aggiungono diversita' nota).
+#'
+#' Determinismo garantito da seed esplicito (default 1812 per consistenza
+#' con P2/P3).
+#'
+#' @param pool tibble con colonne gse, design_kind_proxy, n_signatures,
+#'   n_samples_xlsx, in_archs4 (opzionale)
+#' @param target named integer vector (es.
+#'   c(factorial = 15, time_course = 15, ...)); somma = N totale desiderato
+#' @param seed seed RNG (default 1812)
+#' @return tibble con stessi campi di pool filtrato ai GSE selezionati
+#' @export
+stratified_sample_gse <- function(pool, target, seed = 1812L) {
+  stopifnot(all(c("gse", "design_kind_proxy") %in% names(pool)),
+            length(target) > 0L,
+            !is.null(names(target)))
+  pool <- pool[pool$design_kind_proxy != "unknown", ]
+  set.seed(seed)
+  selected <- list()
+  deficit_total <- 0L
+  for (kind in names(target)) {
+    avail <- pool$gse[pool$design_kind_proxy == kind]
+    want <- as.integer(target[[kind]])
+    n_take <- min(want, length(avail))
+    if (n_take > 0L) {
+      take <- sample(avail, n_take)
+      selected[[kind]] <- take
+    }
+    deficit_total <- deficit_total + max(0L, want - n_take)
+  }
+  if (deficit_total > 0L) {
+    fallback_kind <- "treatment_vs_vehicle"
+    already_taken <- unlist(selected, use.names = FALSE)
+    extra_avail <- setdiff(
+      pool$gse[pool$design_kind_proxy == fallback_kind],
+      already_taken
+    )
+    if (length(extra_avail) > 0L) {
+      n_extra <- min(deficit_total, length(extra_avail))
+      selected[[paste0(fallback_kind, "_fallback")]] <-
+        sample(extra_avail, n_extra)
+    }
+  }
+  selected_gse <- unlist(selected, use.names = FALSE)
+  out <- pool[pool$gse %in% selected_gse, ]
+  out
+}
