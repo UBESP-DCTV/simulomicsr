@@ -413,6 +413,131 @@ list(
     }
   ),
 
+  # Eval P3.5-A: gold join + metrics + RummaGEO
+
+  tar_target(
+    gold_table_subset_p35a,
+    {
+      curated <- curated_p35a_gse
+      full_xlsx <- read_samples_input(samples_input_path)
+      full_xlsx |>
+        dplyr::filter(.data$series_id %in% curated) |>
+        dplyr::transmute(
+          geo_accession = .data$geo_accession,
+          series_id = .data$series_id,
+          string = .data$string,
+          gold_raw = .data$trtctr_EP,
+          gold_binary = dplyr::case_when(
+            tolower(.data$trtctr_EP) %in% c("treated") ~ "treated",
+            tolower(.data$trtctr_EP) %in% c("control") ~ "control",
+            TRUE ~ NA_character_
+          )
+        )
+    }
+  ),
+
+  tar_target(
+    eval_stage2_p35a_gold_join,
+    {
+      rows <- list()
+      for (design in study_designs_p35a_validated) {
+        sid <- design$series_id
+        for (g in design$replicate_groups) {
+          for (gsm in g$sample_ids) {
+            rows[[length(rows) + 1L]] <- tibble::tibble(
+              series_id = sid,
+              geo_accession = gsm,
+              design_role = g$design_role,
+              design_kind = design$design_kind,
+              predicted_binary = design_role_to_binary(g$design_role)
+            )
+          }
+        }
+      }
+      pred_df <- dplyr::bind_rows(rows)
+      out <- dplyr::left_join(
+        pred_df,
+        gold_table_subset_p35a[, c("geo_accession", "series_id",
+                                    "string", "gold_raw", "gold_binary")],
+        by = c("geo_accession", "series_id")
+      )
+      out
+    }
+  ),
+
+  tar_target(
+    eval_stage2_p35a_metrics,
+    {
+      list(
+        overall = eval_binary_accuracy(
+          eval_stage2_p35a_gold_join$gold_binary,
+          eval_stage2_p35a_gold_join$predicted_binary
+        ),
+        per_kind = eval_per_design_kind(eval_stage2_p35a_gold_join),
+        granularity = flag_granularity_disagreement(eval_stage2_p35a_gold_join)
+      )
+    }
+  ),
+
+  tar_target(
+    rummageo_p35a_signatures,
+    {
+      out_per_gse <- lapply(curated_p35a_gse, function(gse) {
+        sub <- gold_table_subset_p35a[
+          gold_table_subset_p35a$series_id == gse, ]
+        if (nrow(sub) == 0L) return(NULL)
+        labels <- tryCatch({
+          data <- fetch_rummageo_signatures(gse, cache_dir = rummageo_cache_dir)
+          parsed <- parse_rummageo_labels(data)
+          if (nrow(parsed) == 0L) {
+            parsed <- rummageo_baseline_internal(sub)
+            attr(parsed, "source") <- "internal_fallback_empty_signatures"
+          } else {
+            attr(parsed, "source") <- "rummageo_official"
+          }
+          parsed
+        }, simulomicsr_rummageo_unavailable = function(e) {
+          parsed <- rummageo_baseline_internal(sub)
+          attr(parsed, "source") <- "internal_fallback_unavailable"
+          parsed
+        }, error = function(e) {
+          parsed <- rummageo_baseline_internal(sub)
+          attr(parsed, "source") <- "internal_fallback_error"
+          parsed
+        })
+        labels$series_id <- gse
+        labels$source <- attr(labels, "source") %||% "unknown"
+        labels
+      })
+      dplyr::bind_rows(Filter(Negate(is.null), out_per_gse))
+    }
+  ),
+
+  tar_target(
+    rummageo_p35a_metrics,
+    {
+      joined <- dplyr::left_join(
+        eval_stage2_p35a_gold_join,
+        rummageo_p35a_signatures[, c("geo_accession", "series_id",
+                                      "rummageo_label", "source")],
+        by = c("geo_accession", "series_id")
+      )
+      list(
+        rummageo_vs_gold = eval_binary_accuracy(
+          joined$gold_binary, joined$rummageo_label
+        ),
+        simulomicsr_vs_gold = eval_binary_accuracy(
+          joined$gold_binary, joined$predicted_binary
+        ),
+        rummageo_vs_simulomicsr = eval_binary_accuracy(
+          joined$predicted_binary, joined$rummageo_label
+        ),
+        joined_table = joined,
+        source_summary = table(joined$source, useNA = "ifany")
+      )
+    }
+  ),
+
   # ============================================================
   # P3.5-B eval benchmark sui 15 GSE curated
   # ============================================================
