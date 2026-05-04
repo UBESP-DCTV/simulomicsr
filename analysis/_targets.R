@@ -904,4 +904,70 @@ list(
     },
     cue = targets::tar_cue(mode = "thorough")
   )
+  ,
+
+  tar_target(
+    confidence_scores_p35c,
+    {
+      out_rows <- list()
+      for (sid in names(multi_classify_outputs_p35c)) {
+        designs <- multi_classify_outputs_p35c[[sid]]
+        pa <- compute_pairwise_agreement(designs)
+        score <- aggregate_confidence_score(pa)
+        tier  <- assign_difficulty_tier(score)
+        out_rows[[sid]] <- tibble::tibble(
+          series_id = sid,
+          n_pairs = nrow(pa),
+          confidence_score = score,
+          tier = tier
+        )
+      }
+      dplyr::bind_rows(out_rows)
+    }
+  ),
+
+  tar_target(
+    samples_table_p35c,
+    {
+      curated <- curated_p35c_gse
+      full_xlsx <- read_samples_input(samples_input_path)
+      full_xlsx |>
+        dplyr::filter(.data$series_id %in% curated) |>
+        dplyr::transmute(
+          geo_accession = .data$geo_accession,
+          series_id = .data$series_id,
+          string = .data$string
+        )
+    }
+  ),
+
+  tar_target(
+    minigold_pool_p35c,
+    {
+      set.seed(1812)
+      sample_minigold_stratified(
+        gse_tiers = confidence_scores_p35c,
+        samples_table = samples_table_p35c,
+        target_n = 100L,
+        min_gse_per_tier = 15L
+      )
+    }
+  ),
+
+  tar_target(
+    minigold_template_csv_p35c,
+    {
+      dest <- here::here("analysis", "eval", "p35c-minigold-template.csv")
+      summaries <- study_summaries_p35c
+      names(summaries) <- curated_p35c_gse
+      export_minigold_csv(
+        minigold_pool          = minigold_pool_p35c,
+        study_summaries        = summaries,
+        multi_classify_outputs = multi_classify_outputs_p35c,
+        dest_path              = dest
+      )
+      dest
+    },
+    format = "file"
+  )
 )
