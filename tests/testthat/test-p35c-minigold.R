@@ -113,6 +113,7 @@ test_that("export_minigold_csv produce file con header atteso e righe per ogni s
   expect_setequal(
     colnames(csv),
     c("geo_accession","series_id","string","study_title","study_summary",
+      "study_overview",
       "design_role_proposed_models","design_kind_proposed_models",
       "design_role_gold","design_kind_gold","comment_optional","tier")
   )
@@ -120,6 +121,12 @@ test_that("export_minigold_csv produce file con header atteso e righe per ogni s
   expect_match(csv$design_role_proposed_models[1], "model_a=perturbed")
   expect_match(csv$design_role_proposed_models[1], "model_b=case")
   expect_true(all(is.na(csv$design_role_gold)))
+  # study_overview: per-studio, mostra TUTTI i sample con i ruoli proposti
+  # da ogni modello (multi-line stringa)
+  expect_match(csv$study_overview[1], "GSE1_GSM1: model_a=perturbed; model_b=case")
+  expect_match(csv$study_overview[1], "GSE1_GSM2: model_a=vehicle_control; model_b=comparison")
+  # Ordinamento: righe ordinate per (series_id, geo_accession)
+  expect_equal(csv$geo_accession, sort(csv$geo_accession))
 })
 
 test_that("import_minigold_reviewed valida colonne richieste e tipi", {
@@ -129,6 +136,7 @@ test_that("import_minigold_reviewed valida colonne richieste e tipi", {
     string        = c("a", "b"),
     study_title   = c("T", "T"),
     study_summary = c("S", "S"),
+    study_overview = c("X1: a=x", "X2: a=x"),
     design_role_proposed_models = c("a=x", "b=y"),
     design_kind_proposed_models = c("a=x", "b=y"),
     design_role_gold = c("perturbed", "vehicle_control"),
@@ -148,6 +156,7 @@ test_that("import_minigold_reviewed solleva se design_role_gold contiene un valo
   bad <- tibble::tibble(
     geo_accession = "X", series_id = "S", string = "s",
     study_title = "t", study_summary = "u",
+    study_overview = "",
     design_role_proposed_models = "", design_kind_proposed_models = "",
     design_role_gold = "perturbatore_inventato",  # NON nei 13 valori
     design_kind_gold = "treatment_vs_vehicle",
@@ -165,6 +174,7 @@ test_that("import_minigold_reviewed accetta righe con design_kind_gold NA (revie
   partial <- tibble::tibble(
     geo_accession = c("X1"), series_id = c("S1"), string = "s",
     study_title = "t", study_summary = "u",
+    study_overview = "",
     design_role_proposed_models = "", design_kind_proposed_models = "",
     design_role_gold = "perturbed",
     design_kind_gold = NA_character_,

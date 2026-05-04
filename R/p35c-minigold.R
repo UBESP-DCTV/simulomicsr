@@ -73,6 +73,7 @@ sample_minigold_stratified <- function(gse_tiers,
 
 .MINIGOLD_CSV_COLS <- c(
   "geo_accession", "series_id", "string", "study_title", "study_summary",
+  "study_overview",
   "design_role_proposed_models", "design_kind_proposed_models",
   "design_role_gold", "design_kind_gold", "comment_optional", "tier"
 )
@@ -113,6 +114,41 @@ sample_minigold_stratified <- function(gse_tiers,
   NULL
 }
 
+#' Costruisce il riepilogo per-studio dei sample con i ruoli proposti
+#'
+#' Per uno studio (lista nominata per modello), enumera TUTTI i sample
+#' presenti almeno in un classificazione valida e per ognuno mostra il
+#' design_role assegnato da ogni modello. Output: stringa multi-line, una
+#' riga per sample. Serve a dare contesto al revisore umano nel CSV
+#' (vede tutto lo studio in una cella, non solo il sample della riga).
+#'
+#' @noRd
+.build_study_overview <- function(multi_outputs_for_study) {
+  sample_to_roles <- list()
+  for (label in names(multi_outputs_for_study)) {
+    d <- multi_outputs_for_study[[label]]
+    if (.is_invalid_design(d)) next
+    for (g in d$replicate_groups %||% list()) {
+      for (sid in unlist(g$sample_ids %||% list())) {
+        sid <- as.character(sid)
+        if (is.null(sample_to_roles[[sid]])) sample_to_roles[[sid]] <- list()
+        sample_to_roles[[sid]][[label]] <- g$design_role
+      }
+    }
+  }
+  if (length(sample_to_roles) == 0L) return("(no valid classifications)")
+
+  sample_ids_sorted <- sort(names(sample_to_roles))
+  lines <- vapply(sample_ids_sorted, function(sid) {
+    roles <- sample_to_roles[[sid]]
+    role_strs <- vapply(names(roles), function(label) {
+      paste0(label, "=", roles[[label]] %||% "NA")
+    }, character(1))
+    paste0(sid, ": ", paste(role_strs, collapse = "; "))
+  }, character(1))
+  paste(lines, collapse = "\n")
+}
+
 # ---------------------------------------------------------------------------
 # export_minigold_csv
 # ---------------------------------------------------------------------------
@@ -136,6 +172,16 @@ export_minigold_csv <- function(minigold_pool,
                                 study_summaries,
                                 multi_classify_outputs,
                                 dest_path) {
+  # Pre-computa lo study_overview per ogni studio coinvolto (riusato su tutte
+  # le righe dello stesso GSE)
+  unique_sids <- unique(minigold_pool$series_id)
+  overview_per_gse <- stats::setNames(
+    lapply(unique_sids, function(sid) {
+      .build_study_overview(multi_classify_outputs[[sid]] %||% list())
+    }),
+    unique_sids
+  )
+
   rows <- lapply(seq_len(nrow(minigold_pool)), function(i) {
     row <- minigold_pool[i, ]
     sid <- row$series_id
@@ -162,6 +208,7 @@ export_minigold_csv <- function(minigold_pool,
       string = row$string %||% "",
       study_title = sumr$title %||% "",
       study_summary = sumr$summary %||% "",
+      study_overview = overview_per_gse[[sid]] %||% "",
       design_role_proposed_models = paste(role_per_model, collapse = "; "),
       design_kind_proposed_models = paste(kind_per_model, collapse = "; "),
       design_role_gold = NA_character_,
@@ -170,7 +217,8 @@ export_minigold_csv <- function(minigold_pool,
       tier = row$tier %||% NA_character_
     )
   })
-  out <- dplyr::bind_rows(rows)
+  out <- dplyr::bind_rows(rows) |>
+    dplyr::arrange(.data$series_id, .data$geo_accession)
   readr::write_csv(out, dest_path, na = "")
   invisible(dest_path)
 }
