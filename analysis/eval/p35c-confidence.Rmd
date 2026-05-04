@@ -1,0 +1,227 @@
+---
+title: "P3.5-C Confidence-aware classification — multi-model + mini-gold"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    df_print: paged
+params:
+  eval_metrics: NULL
+  confidence_scores: NULL
+  multi_outputs: NULL
+  minigold_reviewed: NULL
+  curated_gse: NULL
+  model_specs: NULL
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(knitr)
+
+m  <- params$eval_metrics
+cs <- params$confidence_scores
+mc <- params$multi_outputs
+mg <- params$minigold_reviewed
+specs <- params$model_specs
+```
+
+# Sommario esecutivo
+
+P3.5-C valida 5 modelli LLM (`r length(specs)`) su `r length(params$curated_gse)` GSE selezionati da P3.5-A, con un mini-gold design-aware di `r m$n_reviewed` sample reviewati a mano.
+
+**Domande risposte in questo report:**
+1. Quale modello e' P4-ready? (sec.1)
+2. La cross-model agreement predice la difficolta'? (sec.2)
+3. Quali sono gli errori sistematici per modello? (sec.3)
+4. Decisione P4 + raccomandazione tier-aware filtering. (sec.4)
+
+# 1. Cost-quality validation
+
+```{r sec1-table}
+acc_overall <- m$accuracy_table |>
+  dplyr::filter(tier == "overall") |>
+  dplyr::arrange(dplyr::desc(accuracy))
+
+# Costi sub-set noti (Task 10 actual). Aggiornare se misurati diversi.
+costs_subset <- tibble::tribble(
+  ~model,                ~cost_usd,
+  "gpt_5_5",              0.0,    # cache hit
+  "gpt_5_4_mini",         3.0,    # placeholder, da aggiornare con valore reale
+  "gpt_5_4_nano",         1.0,
+  "claude_haiku_4_5",     5.0,
+  "claude_sonnet_4_6",   17.0
+)
+
+acc_overall |>
+  dplyr::left_join(costs_subset, by = "model") |>
+  dplyr::mutate(
+    cost_per_p4_estimate_usd = cost_usd / 50 * 700000  # 50 GSE -> 700k sample (P4)
+  ) |>
+  knitr::kable(digits = 3, caption = "Accuracy globale + costo sub-set + estrapolazione P4")
+```
+
+```{r sec1-wilson}
+# Wilson 95% CI per ogni modello
+acc_with_ci <- acc_overall |>
+  dplyr::rowwise() |>
+  dplyr::mutate(
+    ci_low  = simulomicsr::wilson_ci(n_correct, n)$lower,
+    ci_high = simulomicsr::wilson_ci(n_correct, n)$upper
+  ) |>
+  dplyr::ungroup()
+
+ggplot(acc_with_ci, aes(x = reorder(model, accuracy), y = accuracy)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = ci_low, ymax = ci_high), width = 0.2) +
+  geom_hline(yintercept = max(acc_with_ci$accuracy), linetype = "dashed", alpha = 0.5) +
+  labs(x = NULL, y = "Accuracy (Wilson 95% CI)",
+       title = "Accuracy per modello sul mini-gold") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r sec1-mcnemar}
+# McNemar paired test: ogni modello vs gpt-5.5
+baseline_label <- "gpt_5_5"
+labels <- setdiff(unique(m$accuracy_table$model), baseline_label)
+
+mcnemar_rows <- lapply(labels, function(other) {
+  per_sample_a <- m$accuracy_table[FALSE, ]  # placeholder, ricalcolo da minigold
+  # Ricostruisco i correct flag per (sample, model) dal eval_against_minigold
+  # gold_per_sample indicizzato per geo_accession + model
+  rows <- list()
+  for (i in seq_len(nrow(mg))) {
+    row <- mg[i, ]
+    d_a <- mc[[row$series_id]][[baseline_label]]
+    d_b <- mc[[row$series_id]][[other]]
+    pred_a <- simulomicsr:::.lookup_role_for_sample(d_a, row$geo_accession)
+    pred_b <- simulomicsr:::.lookup_role_for_sample(d_b, row$geo_accession)
+    rows[[i]] <- tibble::tibble(
+      a_correct = identical(pred_a, row$design_role_gold),
+      b_correct = identical(pred_b, row$design_role_gold)
+    )
+  }
+  df <- dplyr::bind_rows(rows)
+  res <- simulomicsr::mcnemar_paired(df$a_correct, df$b_correct)
+  tibble::tibble(
+    other_model = other,
+    n           = nrow(df),
+    a_only_correct = sum(df$a_correct & !df$b_correct),
+    b_only_correct = sum(!df$a_correct & df$b_correct),
+    pvalue       = res$p_value,
+    significant_05 = res$p_value < 0.05
+  )
+})
+mcnemar_tbl <- dplyr::bind_rows(mcnemar_rows)
+
+knitr::kable(mcnemar_tbl, digits = 4,
+             caption = "McNemar paired test: ogni modello vs gpt-5.5")
+```
+
+**Bottom line — modello raccomandato per P4:** [da scrivere a mano dopo aver visto i risultati: il modello con accuracy non significativamente diversa da gpt-5.5 e costo P4 minimo].
+
+# 2. Confidence calibration
+
+```{r sec2-distribution}
+ggplot(cs, aes(x = confidence_score, fill = tier)) +
+  geom_histogram(binwidth = 0.05, alpha = 0.7) +
+  labs(x = "Confidence score (cross-model agreement)",
+       y = "N GSE",
+       title = "Distribuzione confidence_score sul sub-set") +
+  theme_minimal()
+```
+
+```{r sec2-tier-table}
+cs |>
+  dplyr::group_by(tier) |>
+  dplyr::summarise(n = dplyr::n(), .groups = "drop") |>
+  knitr::kable(caption = "Numero GSE per tier")
+```
+
+```{r sec2-calibration}
+# Calibration plot: per ogni modello, accuracy vs tier
+acc_by_tier <- m$accuracy_table |>
+  dplyr::filter(tier %in% c("easy", "hard"))
+
+ggplot(acc_by_tier, aes(x = tier, y = accuracy, color = model, group = model)) +
+  geom_point(size = 3) +
+  geom_line() +
+  ylim(0, 1) +
+  labs(x = "Tier (cross-model agreement)",
+       y = "Accuracy vs mini-gold",
+       title = "Calibrazione: accuracy ~ confidence tier",
+       color = "Modello") +
+  theme_minimal()
+```
+
+Lettura attesa: linee monotone discendenti (easy > hard). Se piatte -> il difficulty score non discrimina.
+
+# 3. Pattern di errore sistematici
+
+```{r sec3-confusion}
+m$confusion |>
+  dplyr::group_by(model, kind_gold, kind_pred) |>
+  dplyr::summarise(n = dplyr::n(), .groups = "drop") |>
+  dplyr::filter(kind_gold != kind_pred) |>
+  dplyr::arrange(model, dplyr::desc(n)) |>
+  dplyr::group_by(model) |>
+  dplyr::slice_head(n = 5) |>
+  knitr::kable(caption = "Top-5 errori design_kind per modello (gold vs pred)")
+```
+
+```{r sec3-disagreement}
+# Sample dove i modelli sono massimamente in disaccordo: quante volte il
+# mini-gold coincide con la maggioranza?
+disagreement_rows <- list()
+for (i in seq_len(nrow(mg))) {
+  row <- mg[i, ]
+  preds <- vapply(names(mc[[row$series_id]]), function(label) {
+    d <- mc[[row$series_id]][[label]]
+    simulomicsr:::.lookup_role_for_sample(d, row$geo_accession) %||% NA_character_
+  }, character(1))
+  unique_preds <- unique(preds[!is.na(preds)])
+  if (length(unique_preds) >= 3L) {
+    majority <- names(sort(table(preds), decreasing = TRUE))[1]
+    disagreement_rows[[length(disagreement_rows) + 1L]] <- tibble::tibble(
+      geo_accession = row$geo_accession,
+      gold = row$design_role_gold,
+      majority_pred = majority,
+      gold_eq_majority = identical(majority, row$design_role_gold),
+      n_distinct_preds = length(unique_preds)
+    )
+  }
+}
+disagreement_tbl <- dplyr::bind_rows(disagreement_rows)
+
+if (nrow(disagreement_tbl) > 0L) {
+  cat(sprintf("\nSample con disaccordo forte (%d+ predizioni distinte): %d totali\n",
+              3L, nrow(disagreement_tbl)))
+  cat(sprintf("Gold = majority: %d (%.1f%%)\n",
+              sum(disagreement_tbl$gold_eq_majority),
+              100 * mean(disagreement_tbl$gold_eq_majority)))
+  knitr::kable(head(disagreement_tbl, 10),
+               caption = "Esempi (primi 10) di disaccordo forte")
+}
+```
+
+# 4. Decisione P4-ready + limitations
+
+**Modello scelto per P4:** [scrivere dopo aver visto sec.1].
+
+**Soglia di confidence raccomandata per P5 meta-analisi:** [scrivere dopo aver visto sec.2 calibration plot].
+
+**Budget aggiornato P4:** [estrapolazione costo sub-set × scaling factor].
+
+## Limitations
+
+- **Stage 1 fissato** a gpt-5.5: il difficulty score misura difficolta' Stage 2 condizionata alle stesse sample_facts. Stage 1 multi-modello e' fuori scope P3.5-C.
+- **Mini-gold ridotto** (`r m$n_reviewed` sample, target ideale 100): statistica meno potente su slice rare.
+- **Soglie tier preliminari** (0.85 / 0.6): da rivedere in caso di calibrazione piatta.
+- **Cache hit di gpt-5.5** dal P3.5-A: nessuna re-classificazione del baseline (assunzione: il modello si comporta uguale a 1 settimana di distanza).
+
+## Next step
+
+P4 server-switch con modello scelto, tier-aware filtering integrato in P5 meta-analisi pipeline.
