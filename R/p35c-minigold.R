@@ -205,7 +205,7 @@ import_minigold_reviewed <- function(csv_path) {
   }
 
   reviewed <- reviewed[!is.na(reviewed$design_role_gold), ]
-  bad_roles <- setdiff(unique(reviewed$design_role_gold), .VALID_DESIGN_ROLES)
+  bad_roles <- setdiff(stats::na.omit(unique(reviewed$design_role_gold)), .VALID_DESIGN_ROLES)
   if (length(bad_roles) > 0L) {
     rlang::abort(
       sprintf("design_role_gold ha valori fuori vocabolario: %s",
@@ -214,7 +214,7 @@ import_minigold_reviewed <- function(csv_path) {
       bad_values = bad_roles
     )
   }
-  bad_kinds <- setdiff(unique(reviewed$design_kind_gold), .VALID_DESIGN_KINDS)
+  bad_kinds <- setdiff(stats::na.omit(unique(reviewed$design_kind_gold)), .VALID_DESIGN_KINDS)
   if (length(bad_kinds) > 0L) {
     rlang::abort(
       sprintf("design_kind_gold ha valori fuori vocabolario: %s",
@@ -244,6 +244,15 @@ import_minigold_reviewed <- function(csv_path) {
 #' @export
 eval_against_minigold <- function(reviewed, multi_classify_outputs) {
   model_labels <- unique(unlist(lapply(multi_classify_outputs, names)))
+  if (length(model_labels) == 0L) {
+    return(tibble::tibble(
+      model = character(),
+      tier = character(),
+      n = integer(),
+      n_correct = integer(),
+      accuracy = double()
+    ))
+  }
 
   per_sample_rows <- lapply(seq_len(nrow(reviewed)), function(i) {
     row <- reviewed[i, ]

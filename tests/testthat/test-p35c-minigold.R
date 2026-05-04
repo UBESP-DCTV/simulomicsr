@@ -161,6 +161,32 @@ test_that("import_minigold_reviewed solleva se design_role_gold contiene un valo
   )
 })
 
+test_that("import_minigold_reviewed accetta righe con design_kind_gold NA (review parziale)", {
+  partial <- tibble::tibble(
+    geo_accession = c("X1"), series_id = c("S1"), string = "s",
+    study_title = "t", study_summary = "u",
+    design_role_proposed_models = "", design_kind_proposed_models = "",
+    design_role_gold = "perturbed",
+    design_kind_gold = NA_character_,
+    comment_optional = "", tier = "easy"
+  )
+  csv_path <- tempfile(fileext = ".csv")
+  readr::write_csv(partial, csv_path)
+  expect_no_error(out <- import_minigold_reviewed(csv_path))
+  expect_equal(nrow(out), 1L)
+})
+
+test_that("eval_against_minigold ritorna tibble vuoto se multi_classify_outputs e' vuoto", {
+  reviewed <- tibble::tibble(
+    geo_accession = "X1", series_id = "S1",
+    design_role_gold = "perturbed", tier = "easy"
+  )
+  out <- eval_against_minigold(reviewed, multi_classify_outputs = list())
+  expect_s3_class(out, "tbl_df")
+  expect_equal(nrow(out), 0L)
+  expect_setequal(colnames(out), c("model", "tier", "n", "n_correct", "accuracy"))
+})
+
 test_that("eval_against_minigold calcola accuracy per modello e per tier", {
   reviewed <- tibble::tibble(
     geo_accession = c("X1", "X2", "X3", "X4"),
