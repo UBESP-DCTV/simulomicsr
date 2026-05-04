@@ -91,7 +91,10 @@ test_that(".anthropic_build_request setta max_tokens (Anthropic richiede sempre 
     schema_name = "x"
   )
   body <- jsonlite::fromJSON(rawToChar(req$body$data), simplifyVector = FALSE)
-  expect_true(body$max_tokens >= 1024L)
+  # Default 8192L: piu' alto di 4096L per coprire studi con molti sample
+  # senza truncation. Il run P3.5-C iniziale aveva 12/250 invalid per
+  # truncation con default 4096.
+  expect_true(body$max_tokens >= 8192L)
 })
 
 test_that(".anthropic_build_request separa system messages dal body messages array", {
