@@ -813,5 +813,95 @@ list(
       validated = sample_facts_validated,
       invalid   = sample_facts_invalid
     )
+  ),
+
+  # ===========================================================================
+  # P3.5-C: Confidence-aware classification (multi-model + mini-gold)
+  # Spec: docs/superpowers/specs/2026-05-04-p3.5c-confidence-aware-design.md
+  # ===========================================================================
+
+  tar_target(
+    curated_p35c_gse,
+    {
+      validated <- study_designs_p35a_validated
+      kinds <- vapply(validated, function(d) d$design_kind %||% "unclear",
+                      character(1))
+      sids  <- vapply(validated, function(d) d$series_id, character(1))
+      tab <- tibble::tibble(series_id = sids, design_kind = kinds)
+
+      easy_kinds <- c("treatment_vs_vehicle", "dose_response")
+      hard_kinds <- c("case_control_disease", "time_course",
+                      "treatment_vs_untreated")
+      mid_kinds  <- c("factorial", "multi_arm_treatment")
+
+      set.seed(1812)
+      take <- function(sub_kinds, n_target) {
+        pool <- tab[tab$design_kind %in% sub_kinds, ]
+        if (nrow(pool) <= n_target) return(pool$series_id)
+        pool$series_id[sample.int(nrow(pool), n_target)]
+      }
+      selected <- unique(c(
+        take(easy_kinds, 15L),
+        take(hard_kinds, 15L),
+        take(mid_kinds, 10L)
+      ))
+      remaining <- setdiff(tab$series_id, selected)
+      pad_n <- max(0L, 50L - length(selected))
+      if (pad_n > 0L && length(remaining) > 0L) {
+        pad <- remaining[sample.int(length(remaining), min(pad_n, length(remaining)))]
+        selected <- c(selected, pad)
+      }
+      selected[seq_len(min(50L, length(selected)))]
+    }
+  ),
+
+  tar_target(
+    model_specs_p35c,
+    list(
+      list(provider = "openai",    model = "gpt-5.5",            label = "gpt_5_5"),
+      list(provider = "openai",    model = "gpt-5.4-mini",       label = "gpt_5_4_mini"),
+      list(provider = "openai",    model = "gpt-5.4-nano",       label = "gpt_5_4_nano"),
+      list(provider = "anthropic", model = "claude-haiku-4-5",   label = "claude_haiku_4_5"),
+      list(provider = "anthropic", model = "claude-sonnet-4-6",  label = "claude_sonnet_4_6")
+    )
+  ),
+
+  # Dynamic branching: fetch study summary per ogni GSE selezionato
+  tar_target(
+    study_summaries_p35c,
+    fetch_study_summary(curated_p35c_gse, cache_dir = geo_summary_cache_dir),
+    pattern = map(curated_p35c_gse),
+    iteration = "list"
+  ),
+
+  tar_target(
+    multi_classify_outputs_p35c,
+    {
+      sids <- curated_p35c_gse
+      summaries <- study_summaries_p35c
+      names(summaries) <- sids
+      sample_facts_by_gse <- split(
+        sample_facts_p35a_validated,
+        vapply(sample_facts_p35a_validated,
+               function(s) s$series_id %||% NA_character_, character(1))
+      )
+
+      out <- list()
+      for (sid in sids) {
+        sf <- sample_facts_by_gse[[sid]] %||% list()
+        if (length(sf) == 0L) next
+        summary_obj <- summaries[[sid]] %||%
+          list(title = "", summary = "", overall_design = "")
+        out[[sid]] <- multi_classify_study(
+          series_id         = sid,
+          sample_facts_list = sf,
+          study_summary     = summary_obj,
+          model_specs       = model_specs_p35c,
+          cache             = cache_init(stage2_cache_dir, namespace = "stage2")
+        )
+      }
+      out
+    },
+    cue = targets::tar_cue(mode = "thorough")
   )
 )
