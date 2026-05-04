@@ -66,3 +66,224 @@ sample_minigold_stratified <- function(gse_tiers,
   }
   dplyr::bind_rows(out)
 }
+
+# ---------------------------------------------------------------------------
+# Costanti private per il mini-gold CSV
+# ---------------------------------------------------------------------------
+
+.MINIGOLD_CSV_COLS <- c(
+  "geo_accession", "series_id", "string", "study_title", "study_summary",
+  "design_role_proposed_models", "design_kind_proposed_models",
+  "design_role_gold", "design_kind_gold", "comment_optional", "tier"
+)
+
+# Vocabolario design_role v3 (13 valori) - duplica spec stage2.v1 per
+# uso runtime senza dipendenza da schema JSON (validazione human-friendly).
+.VALID_DESIGN_ROLES <- c(
+  "perturbed", "vehicle_control", "untreated_control",
+  "negative_genetic_control", "negative_inducer_control",
+  "positive_control", "baseline_t0", "case", "comparison",
+  "bystander", "secondary_arm", "excluded", "unclear"
+)
+
+.VALID_DESIGN_KINDS <- c(
+  "case_control_disease", "treatment_vs_vehicle", "treatment_vs_untreated",
+  "time_course", "dose_response", "knockdown_panel", "factorial",
+  "differentiation_course", "multi_arm_treatment", "unclear"
+)
+
+# ---------------------------------------------------------------------------
+# Helper interno: cerca il design_role di un sample nello studio
+# ---------------------------------------------------------------------------
+
+#' Cerca il design_role di un sample in un study_design
+#'
+#' Itera sui replicate_groups e ritorna il design_role del gruppo che contiene
+#' il sample identificato da geo_accession. Ritorna NULL se non trovato o se
+#' il design e' invalido.
+#'
+#' @noRd
+.lookup_role_for_sample <- function(design, geo_accession) {
+  if (is.null(design) || .is_invalid_design(design)) return(NULL)
+  for (g in design$replicate_groups %||% list()) {
+    if (geo_accession %in% unlist(g$sample_ids %||% list())) {
+      return(g$design_role)
+    }
+  }
+  NULL
+}
+
+# ---------------------------------------------------------------------------
+# export_minigold_csv
+# ---------------------------------------------------------------------------
+
+#' Esporta il template CSV per la review umana del mini-gold
+#'
+#' Per ogni sample del pool, pre-popola: stringa GEO, study title/summary,
+#' role/kind proposti dai modelli (concatenati), tier. Lascia vuote
+#' design_role_gold e design_kind_gold (la review umana le compila).
+#'
+#' @param minigold_pool tibble da `sample_minigold_stratified()`
+#' @param study_summaries lista nominata per series_id con title/summary
+#' @param multi_classify_outputs lista nominata per series_id, ogni elemento
+#'   e' la lista nominata per modello (output di `multi_classify_study()`)
+#' @param dest_path path del CSV di destinazione
+#'
+#' @return invisible(dest_path)
+#'
+#' @export
+export_minigold_csv <- function(minigold_pool,
+                                study_summaries,
+                                multi_classify_outputs,
+                                dest_path) {
+  rows <- lapply(seq_len(nrow(minigold_pool)), function(i) {
+    row <- minigold_pool[i, ]
+    sid <- row$series_id
+    gsm <- row$geo_accession
+    sumr <- study_summaries[[sid]] %||% list(title = "", summary = "")
+    multi <- multi_classify_outputs[[sid]] %||% list()
+
+    role_per_model <- vapply(names(multi), function(label) {
+      d <- multi[[label]]
+      if (.is_invalid_design(d)) return(paste0(label, "=ERROR"))
+      role <- .lookup_role_for_sample(d, gsm)
+      paste0(label, "=", role %||% "NA")
+    }, character(1))
+
+    kind_per_model <- vapply(names(multi), function(label) {
+      d <- multi[[label]]
+      if (.is_invalid_design(d)) return(paste0(label, "=ERROR"))
+      paste0(label, "=", d$design_kind %||% "NA")
+    }, character(1))
+
+    tibble::tibble(
+      geo_accession = gsm,
+      series_id = sid,
+      string = row$string %||% "",
+      study_title = sumr$title %||% "",
+      study_summary = sumr$summary %||% "",
+      design_role_proposed_models = paste(role_per_model, collapse = "; "),
+      design_kind_proposed_models = paste(kind_per_model, collapse = "; "),
+      design_role_gold = NA_character_,
+      design_kind_gold = NA_character_,
+      comment_optional = NA_character_,
+      tier = row$tier %||% NA_character_
+    )
+  })
+  out <- dplyr::bind_rows(rows)
+  readr::write_csv(out, dest_path, na = "")
+  invisible(dest_path)
+}
+
+# ---------------------------------------------------------------------------
+# import_minigold_reviewed
+# ---------------------------------------------------------------------------
+
+#' Importa il CSV reviewato dall'utente e valida i valori gold
+#'
+#' Errori tipizzati:
+#' - `simulomicsr_minigold_missing_cols` se mancano colonne obbligatorie
+#' - `simulomicsr_minigold_invalid_value` se design_role_gold o design_kind_gold
+#'   contengono valori fuori dal vocabolario v3.
+#'
+#' @param csv_path path del CSV reviewato
+#' @return tibble con tutte le colonne del template, righe filtrate alle
+#'   sole con design_role_gold non NA (la review puo' lasciare in bianco
+#'   sample non review-abili).
+#'
+#' @export
+import_minigold_reviewed <- function(csv_path) {
+  reviewed <- readr::read_csv(csv_path, show_col_types = FALSE,
+                              progress = FALSE)
+  missing_cols <- setdiff(.MINIGOLD_CSV_COLS, colnames(reviewed))
+  if (length(missing_cols) > 0L) {
+    rlang::abort(
+      sprintf("CSV reviewato manca delle colonne: %s",
+              paste(missing_cols, collapse = ", ")),
+      class = "simulomicsr_minigold_missing_cols"
+    )
+  }
+
+  reviewed <- reviewed[!is.na(reviewed$design_role_gold), ]
+  bad_roles <- setdiff(unique(reviewed$design_role_gold), .VALID_DESIGN_ROLES)
+  if (length(bad_roles) > 0L) {
+    rlang::abort(
+      sprintf("design_role_gold ha valori fuori vocabolario: %s",
+              paste(bad_roles, collapse = ", ")),
+      class = "simulomicsr_minigold_invalid_value",
+      bad_values = bad_roles
+    )
+  }
+  bad_kinds <- setdiff(unique(reviewed$design_kind_gold), .VALID_DESIGN_KINDS)
+  if (length(bad_kinds) > 0L) {
+    rlang::abort(
+      sprintf("design_kind_gold ha valori fuori vocabolario: %s",
+              paste(bad_kinds, collapse = ", ")),
+      class = "simulomicsr_minigold_invalid_value",
+      bad_values = bad_kinds
+    )
+  }
+  reviewed
+}
+
+# ---------------------------------------------------------------------------
+# eval_against_minigold
+# ---------------------------------------------------------------------------
+
+#' Calcola accuracy di ogni modello vs mini-gold reviewato
+#'
+#' Per ogni (model, tier in {overall, easy, hard}), restituisce accuracy
+#' del design_role predetto vs design_role_gold.
+#'
+#' @param reviewed tibble da `import_minigold_reviewed()`
+#' @param multi_classify_outputs lista nominata per series_id (come in
+#'   `export_minigold_csv()`)
+#'
+#' @return tibble con colonne model, tier, n, n_correct, accuracy
+#'
+#' @export
+eval_against_minigold <- function(reviewed, multi_classify_outputs) {
+  model_labels <- unique(unlist(lapply(multi_classify_outputs, names)))
+
+  per_sample_rows <- lapply(seq_len(nrow(reviewed)), function(i) {
+    row <- reviewed[i, ]
+    sid <- row$series_id
+    gsm <- row$geo_accession
+    multi <- multi_classify_outputs[[sid]] %||% list()
+    do.call(rbind, lapply(model_labels, function(label) {
+      pred <- .lookup_role_for_sample(multi[[label]], gsm)
+      tibble::tibble(
+        geo_accession = gsm,
+        tier = row$tier,
+        model = label,
+        gold = row$design_role_gold,
+        pred = pred %||% NA_character_,
+        correct = identical(pred, row$design_role_gold)
+      )
+    }))
+  })
+  per_sample <- dplyr::bind_rows(per_sample_rows)
+
+  by_groups <- dplyr::bind_rows(
+    per_sample |>
+      dplyr::group_by(.data$model) |>
+      dplyr::summarise(
+        tier = "overall",
+        n = dplyr::n(),
+        n_correct = sum(.data$correct),
+        accuracy = mean(.data$correct),
+        .groups = "drop"
+      ),
+    per_sample |>
+      dplyr::group_by(.data$model, tier = .data$tier) |>
+      dplyr::summarise(
+        n = dplyr::n(),
+        n_correct = sum(.data$correct),
+        accuracy = mean(.data$correct),
+        .groups = "drop"
+      )
+  )
+  by_groups |>
+    dplyr::select("model", "tier", "n", "n_correct", "accuracy") |>
+    dplyr::arrange(.data$model, .data$tier)
+}

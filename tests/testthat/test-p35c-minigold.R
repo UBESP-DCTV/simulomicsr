@@ -80,3 +80,115 @@ test_that("sample_minigold_stratified: solleva se non ci sono abbastanza GSE per
     class = "simulomicsr_minigold_insufficient_gse"
   )
 })
+
+test_that("export_minigold_csv produce file con header atteso e righe per ogni sample", {
+  pool <- tibble::tibble(
+    geo_accession = c("GSE1_GSM1", "GSE1_GSM2"),
+    series_id     = c("GSE1", "GSE1"),
+    string        = c("s1", "s2"),
+    tier          = c("easy", "easy"),
+    confidence_score = c(0.95, 0.95)
+  )
+  study_summaries <- list(GSE1 = list(title = "T1", summary = "S1"))
+  multi_outputs <- list(GSE1 = list(
+    model_a = list(
+      design_kind = "treatment_vs_vehicle",
+      replicate_groups = list(
+        list(group_id = "g1", design_role = "perturbed",  sample_ids = list("GSE1_GSM1")),
+        list(group_id = "g2", design_role = "vehicle_control", sample_ids = list("GSE1_GSM2"))
+      )
+    ),
+    model_b = list(
+      design_kind = "case_control_disease",
+      replicate_groups = list(
+        list(group_id = "g1", design_role = "case", sample_ids = list("GSE1_GSM1")),
+        list(group_id = "g2", design_role = "comparison", sample_ids = list("GSE1_GSM2"))
+      )
+    )
+  ))
+  dest <- tempfile(fileext = ".csv")
+  export_minigold_csv(pool, study_summaries, multi_outputs, dest)
+
+  csv <- readr::read_csv(dest, show_col_types = FALSE)
+  expect_setequal(
+    colnames(csv),
+    c("geo_accession","series_id","string","study_title","study_summary",
+      "design_role_proposed_models","design_kind_proposed_models",
+      "design_role_gold","design_kind_gold","comment_optional","tier")
+  )
+  expect_equal(nrow(csv), 2L)
+  expect_match(csv$design_role_proposed_models[1], "model_a=perturbed")
+  expect_match(csv$design_role_proposed_models[1], "model_b=case")
+  expect_true(all(is.na(csv$design_role_gold)))
+})
+
+test_that("import_minigold_reviewed valida colonne richieste e tipi", {
+  good <- tibble::tibble(
+    geo_accession = c("X1", "X2"),
+    series_id     = c("S1", "S1"),
+    string        = c("a", "b"),
+    study_title   = c("T", "T"),
+    study_summary = c("S", "S"),
+    design_role_proposed_models = c("a=x", "b=y"),
+    design_kind_proposed_models = c("a=x", "b=y"),
+    design_role_gold = c("perturbed", "vehicle_control"),
+    design_kind_gold = c("treatment_vs_vehicle", "treatment_vs_vehicle"),
+    comment_optional = c("", ""),
+    tier = c("easy", "easy")
+  )
+  csv_path <- tempfile(fileext = ".csv")
+  readr::write_csv(good, csv_path)
+
+  out <- import_minigold_reviewed(csv_path)
+  expect_equal(nrow(out), 2L)
+  expect_true("design_role_gold" %in% colnames(out))
+})
+
+test_that("import_minigold_reviewed solleva se design_role_gold contiene un valore fuori vocabolario", {
+  bad <- tibble::tibble(
+    geo_accession = "X", series_id = "S", string = "s",
+    study_title = "t", study_summary = "u",
+    design_role_proposed_models = "", design_kind_proposed_models = "",
+    design_role_gold = "perturbatore_inventato",  # NON nei 13 valori
+    design_kind_gold = "treatment_vs_vehicle",
+    comment_optional = "", tier = "easy"
+  )
+  csv_path <- tempfile(fileext = ".csv")
+  readr::write_csv(bad, csv_path)
+  expect_error(
+    import_minigold_reviewed(csv_path),
+    class = "simulomicsr_minigold_invalid_value"
+  )
+})
+
+test_that("eval_against_minigold calcola accuracy per modello e per tier", {
+  reviewed <- tibble::tibble(
+    geo_accession = c("X1", "X2", "X3", "X4"),
+    series_id     = c("S1", "S1", "S2", "S2"),
+    design_role_gold = c("perturbed", "vehicle_control", "case", "comparison"),
+    tier = c("easy", "easy", "hard", "hard")
+  )
+  multi_outputs <- list(
+    S1 = list(
+      model_a = list(replicate_groups = list(
+        list(design_role = "perturbed",       sample_ids = list("X1")),
+        list(design_role = "vehicle_control", sample_ids = list("X2"))
+      ))
+    ),
+    S2 = list(
+      model_a = list(replicate_groups = list(
+        list(design_role = "perturbed",       sample_ids = list("X3")),  # WRONG (gold=case)
+        list(design_role = "comparison",      sample_ids = list("X4"))
+      ))
+    )
+  )
+
+  acc <- eval_against_minigold(reviewed, multi_outputs)
+  # Per model_a: 3/4 corretti -> accuracy 0.75; easy 2/2; hard 1/2
+  row_overall <- acc[acc$model == "model_a" & acc$tier == "overall", ]
+  expect_equal(row_overall$accuracy, 0.75)
+  row_easy <- acc[acc$model == "model_a" & acc$tier == "easy", ]
+  expect_equal(row_easy$accuracy, 1.0)
+  row_hard <- acc[acc$model == "model_a" & acc$tier == "hard", ]
+  expect_equal(row_hard$accuracy, 0.5)
+})
