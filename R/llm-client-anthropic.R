@@ -10,7 +10,7 @@
                                      messages,
                                      response_schema,
                                      schema_name,
-                                     max_tokens = 4096L,
+                                     max_tokens = 8192L,
                                      api_key = NULL) {
   api_key <- api_key %||% Sys.getenv("ANTHROPIC_API_KEY", unset = "")
   if (!nzchar(api_key)) {
@@ -117,7 +117,7 @@
                                        messages,
                                        response_schema,
                                        schema_name = "response",
-                                       max_tokens = 4096L,
+                                       max_tokens = 8192L,
                                        api_key = NULL,
                                        ...) {
   req <- .anthropic_build_request(
