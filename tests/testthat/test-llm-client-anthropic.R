@@ -1,6 +1,6 @@
 withr::local_envvar(ANTHROPIC_API_KEY = "sk-ant-fake-for-tests")
 
-test_that(".anthropic_chat_structured costruisce request con tool_use forzato", {
+test_that(".anthropic_build_request costruisce request con tool_use forzato", {
   req <- .anthropic_build_request(
     model = "claude-haiku-4-5",
     messages = list(list(role = "user", content = "Say pong as JSON.")),
@@ -92,4 +92,20 @@ test_that(".anthropic_build_request setta max_tokens (Anthropic richiede sempre 
   )
   body <- jsonlite::fromJSON(rawToChar(req$body$data), simplifyVector = FALSE)
   expect_true(body$max_tokens >= 1024L)
+})
+
+test_that(".anthropic_build_request separa system messages dal body messages array", {
+  req <- .anthropic_build_request(
+    model = "claude-haiku-4-5",
+    messages = list(
+      list(role = "system", content = "Sei un assistente."),
+      list(role = "user",   content = "Dimmi pong.")
+    ),
+    response_schema = system.file("schemas/llm-call-envelope.v1.json", package = "simulomicsr"),
+    schema_name = "x"
+  )
+  body <- jsonlite::fromJSON(rawToChar(req$body$data), simplifyVector = FALSE)
+  expect_equal(body$system, "Sei un assistente.")
+  expect_equal(length(body$messages), 1L)
+  expect_equal(body$messages[[1]]$role, "user")
 })
