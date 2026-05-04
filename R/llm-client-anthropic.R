@@ -28,9 +28,17 @@
   # Anthropic supporta solo messages role=user/assistant. Eventuali system
   # messages OpenAI-style vengono separati nel campo top-level `system`.
   sys_blocks <- vapply(messages, function(m) identical(m$role, "system"), logical(1))
-  system_text <- if (any(sys_blocks)) {
-    paste(vapply(messages[sys_blocks], function(m) m$content, character(1)),
-          collapse = "\n\n")
+  sys_contents <- vapply(messages[sys_blocks], function(m) {
+    if (!is.character(m$content) || length(m$content) != 1L) {
+      rlang::abort(
+        "Anthropic: system message content deve essere una singola stringa.",
+        class = "simulomicsr_anthropic_bad_system_content"
+      )
+    }
+    m$content
+  }, character(1))
+  system_text <- if (length(sys_contents) > 0L) {
+    paste(sys_contents, collapse = "\n\n")
   } else NULL
   user_messages <- messages[!sys_blocks]
 
