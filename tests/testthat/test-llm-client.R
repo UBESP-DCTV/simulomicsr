@@ -75,3 +75,22 @@ test_that("llm_call_structured rifiuta provider sconosciuti con errore tipizzato
     class = "simulomicsr_unknown_provider"
   )
 })
+
+test_that("llm_call_structured(provider='anthropic') intercetta tramite .mock_adapter", {
+  schema <- system.file("schemas/llm-call-envelope.v1.json", package = "simulomicsr")
+  withr::local_envvar(ANTHROPIC_API_KEY = "sk-ant-fake")
+
+  res <- llm_call_structured(
+    provider = "anthropic",
+    model = "claude-haiku-4-5",
+    messages = list(list(role = "user", content = "Say pong.")),
+    response_schema = schema,
+    .mock_adapter = function(model, messages, response_schema, ...) {
+      list(question = "Say pong.", answer = "pong", confidence = 0.95)
+    }
+  )
+
+  expect_true(res$validated)
+  expect_equal(res$value$answer, "pong")
+  expect_equal(res$provider, "anthropic")
+})

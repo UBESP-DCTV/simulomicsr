@@ -4,8 +4,7 @@
 #' valida la risposta contro `response_schema`, e (se `cache` e' fornita)
 #' serve dalla cache su hit.
 #'
-#' @param provider stringa: `"openai"` o `"mock"` (per i test). Altri provider
-#'   in plan futuri.
+#' @param provider stringa: `"openai"`, `"anthropic"`, o `"mock"` (per i test).
 #' @param model nome del modello (es. `"gpt-5.4-mini"`)
 #' @param messages lista di messaggi nello schema OpenAI (`role` + `content`)
 #' @param response_schema path a un file JSON Schema; la risposta dell'LLM
@@ -73,9 +72,12 @@ llm_call_structured <- function(provider,
   } else if (provider == "openai") {
     .openai_chat_structured(model = model, messages = messages,
                             response_schema = response_schema, ...)
+  } else if (provider == "anthropic") {
+    .anthropic_chat_structured(model = model, messages = messages,
+                               response_schema = response_schema, ...)
   } else {
     rlang::abort(
-      glue::glue("Provider sconosciuto: '{provider}'. Supportati: 'openai', 'mock'."),
+      glue::glue("Provider sconosciuto: '{provider}'. Supportati: 'openai', 'anthropic', 'mock'."),
       class = "simulomicsr_unknown_provider"
     )
   }
