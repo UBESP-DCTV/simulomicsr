@@ -17,8 +17,7 @@ llm_call_structured(
 )
 }
 \arguments{
-\item{provider}{stringa: \code{"openai"} o \code{"mock"} (per i test). Altri provider
-in plan futuri.}
+\item{provider}{stringa: \code{"openai"}, \code{"anthropic"}, o \code{"mock"} (per i test).}
 
 \item{model}{nome del modello (es. \code{"gpt-5.4-mini"})}
 
