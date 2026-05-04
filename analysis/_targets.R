@@ -949,7 +949,9 @@ list(
         gse_tiers = confidence_scores_p35c,
         samples_table = samples_table_p35c,
         target_n = 100L,
-        min_gse_per_tier = 15L
+        # min_gse_per_tier abbassato da 15 a 8: la distribuzione empirica
+        # post-run e' easy=9, medium=22, hard=19. 15 era troppo alto per tier easy.
+        min_gse_per_tier = 8L
       )
     }
   ),
