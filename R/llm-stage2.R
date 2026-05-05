@@ -71,7 +71,7 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
 
 #' @noRd
 .STAGE2_CONTROL_TYPES <- paste(
-  "- vehicle           (DMSO, PBS, mock — solo veicolo del trattamento)",
+  "- vehicle           (DMSO, PBS, mock - solo veicolo del trattamento)",
   "- untreated         (nessun trattamento e nessun vehicle dichiarato)",
   "- genetic_negative  (siNT, scrambled, empty vector, non-targeting)",
   "- inducer_off       (sistema inducibile NON indotto: no-Dox, no-IPTG, no-4OHT)",

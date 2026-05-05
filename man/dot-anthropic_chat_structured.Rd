@@ -9,7 +9,7 @@
   messages,
   response_schema,
   schema_name = "response",
-  max_tokens = 4096L,
+  max_tokens = 8192L,
   api_key = NULL,
   ...
 )

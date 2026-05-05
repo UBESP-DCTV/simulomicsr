@@ -2,26 +2,28 @@
 % Please edit documentation in R/eval-stage2.R
 \name{design_role_to_binary}
 \alias{design_role_to_binary}
-\title{Mappa design_role v3 (13 valori) al binary trtctr_predicted}
+\title{Mappa primary_role v5 (5 valori) al binary trtctr_predicted}
 \usage{
 design_role_to_binary(role)
 }
 \arguments{
-\item{role}{character vector di design_role values}
+\item{role}{character vector di primary_role values (v5) o design_role v3}
 }
 \value{
 character vector con valori "treated", "control" o NA_character_
 }
 \description{
-Implementa la tabella di mapping spec sec.6.2 estesa ai 13 valori
-del vocabolario design_role. NA = sample escluso dal calcolo accuracy
-(non un errore, e' una scelta esplicita).
+v5 vocabolario semplificato (vs v3 con 13 valori): il primary_role del
+replicate_group e' uno tra 5 valori (treated/control/bystander/excluded/unclear).
+Il mapping al binary e' 1:1 banale. La specificita' del controllo (vehicle,
+untreated, genetic_negative, inducer_off, disease_normal, time_zero,
+secondary_arm) NON e' piu' sul sample ma sul comparison (control_type).
 }
 \details{
-Estensione vs spec sec.6.2 originale:
-\itemize{
-\item bystander -> NA (paracrine, non-direttamente perturbed)
-\item negative_inducer_control -> control (no-Dox arm di sistema inducibile)
-\item secondary_arm -> treated (trattamento alternativo)
-}
+Comportamento: bystander/excluded/unclear -> NA (sample escluso da
+calcolo accuracy, scelta esplicita).
+
+Backward compatibility v3 (per riconversione mini-gold v3 -> v5 e per
+eval su artefatti vecchi): i 13 valori v3 vengono mappati al binary
+come prima, cosi' i numeri restano confrontabili.
 }
