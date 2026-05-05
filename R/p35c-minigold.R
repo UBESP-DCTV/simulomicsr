@@ -78,19 +78,28 @@ sample_minigold_stratified <- function(gse_tiers,
   "design_role_gold", "design_kind_gold", "comment_optional", "tier"
 )
 
-# Vocabolario design_role v3 (13 valori) - duplica spec stage2.v1 per
-# uso runtime senza dipendenza da schema JSON (validazione human-friendly).
+# Vocabolario primary_role v5 (5 valori) - duplica spec stage2.v2 per
+# uso runtime. Backward-compat: i 13 valori v3 sono accettati per
+# riconvertire artefatti pre-v5.
 .VALID_DESIGN_ROLES <- c(
+  # v5 canonici
+  "treated", "control", "bystander", "excluded", "unclear",
+  # v3 backward-compat (riconversione mini-gold)
   "perturbed", "vehicle_control", "untreated_control",
   "negative_genetic_control", "negative_inducer_control",
   "positive_control", "baseline_t0", "case", "comparison",
-  "bystander", "secondary_arm", "excluded", "unclear"
+  "secondary_arm"
 )
 
 .VALID_DESIGN_KINDS <- c(
   "case_control_disease", "treatment_vs_vehicle", "treatment_vs_untreated",
   "time_course", "dose_response", "knockdown_panel", "factorial",
   "differentiation_course", "multi_arm_treatment", "unclear"
+)
+
+.VALID_CONTROL_TYPES <- c(
+  "vehicle", "untreated", "genetic_negative", "inducer_off",
+  "disease_normal", "time_zero", "secondary_arm"
 )
 
 # ---------------------------------------------------------------------------
@@ -108,7 +117,9 @@ sample_minigold_stratified <- function(gse_tiers,
   if (is.null(design) || .is_invalid_design(design)) return(NULL)
   for (g in design$replicate_groups %||% list()) {
     if (geo_accession %in% unlist(g$sample_ids %||% list())) {
-      return(g$design_role)
+      # v5 usa primary_role; v3 usava design_role - leggiamo entrambi per
+      # backward compatibility con artefatti pre-v5.
+      return(g$primary_role %||% g$design_role)
     }
   }
   NULL
@@ -132,7 +143,8 @@ sample_minigold_stratified <- function(gse_tiers,
       for (sid in unlist(g$sample_ids %||% list())) {
         sid <- as.character(sid)
         if (is.null(sample_to_roles[[sid]])) sample_to_roles[[sid]] <- list()
-        sample_to_roles[[sid]][[label]] <- g$design_role
+        # v5 primary_role; v3 fallback design_role
+        sample_to_roles[[sid]][[label]] <- g$primary_role %||% g$design_role
       }
     }
   }

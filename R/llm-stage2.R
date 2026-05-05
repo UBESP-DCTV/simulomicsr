@@ -17,11 +17,11 @@
 build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
                                 model = "openai:gpt-5.5",
                                 extra_instruction = NULL) {
-  schema_path <- system.file("schemas/study_design.stage2.v1.json",
+  schema_path <- system.file("schemas/study_design.stage2.v2.json",
                              package = "simulomicsr")
   if (!nzchar(schema_path)) {
     rlang::abort(
-      "Schema study_design.stage2.v1.json non trovato",
+      "Schema study_design.stage2.v2.json non trovato",
       class = "simulomicsr_schema_missing"
     )
   }
@@ -60,20 +60,24 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
 )
 
 #' @noRd
-.STAGE2_DESIGN_ROLES <- paste(
-  "- perturbed",
-  "- vehicle_control",
-  "- untreated_control",
-  "- negative_genetic_control",
-  "- negative_inducer_control",
-  "- positive_control",
-  "- baseline_t0",
-  "- case",
-  "- comparison",
-  "- bystander",
-  "- secondary_arm",
-  "- excluded",
-  "- unclear",
+.STAGE2_PRIMARY_ROLES <- paste(
+  "- treated  (riceve trattamento/perturbazione attiva nel confronto MAIN dello studio)",
+  "- control  (gruppo di riferimento del confronto MAIN; il TIPO di controllo va su comparisons[].control_type)",
+  "- bystander  (cellule non-direttamente perturbed che condividono coltura/tessuto)",
+  "- excluded  (sample inadatto: QC fallito, outlier dichiarato)",
+  "- unclear  (ruolo non ricostruibile dai metadati)",
+  sep = "\n"
+)
+
+#' @noRd
+.STAGE2_CONTROL_TYPES <- paste(
+  "- vehicle           (DMSO, PBS, mock — solo veicolo del trattamento)",
+  "- untreated         (nessun trattamento e nessun vehicle dichiarato)",
+  "- genetic_negative  (siNT, scrambled, empty vector, non-targeting)",
+  "- inducer_off       (sistema inducibile NON indotto: no-Dox, no-IPTG, no-4OHT)",
+  "- disease_normal    (sample sano in un disegno disease vs normal)",
+  "- time_zero         (t=0 in time-course usato come riferimento)",
+  "- secondary_arm     (controllo = altro braccio del trattamento, non assenza)",
   sep = "\n"
 )
 
@@ -83,25 +87,49 @@ build_prompt_stage2 <- function(series_id, sample_facts_list, study_summary,
     "Sei un esperto di design sperimentale RNA-seq. Devi ricostruire il design ",
     "di uno studio GSE a partire da: (a) i sample_facts gia' classificati di ",
     "tutti i GSM dello studio, (b) il titolo + summary GEO. Produci un oggetto ",
-    "JSON conforme allo schema study_design.stage2.v1 (strict).\n\n",
-    "## design_kind (scegli UNO)\n",
+    "JSON conforme allo schema study_design.stage2.v2 (strict).\n\n",
+    "## Filosofia v2 (importante)\n",
+    "Un controllo NON esiste come categoria autonoma: esiste solo IN RELAZIONE ",
+    "al trattato di cui e' riferimento. Quindi:\n",
+    "- Sul replicate_group: assegna SOLO un primary_role tra 5 valori semplici ",
+    "(treated/control/bystander/excluded/unclear). Il primary_role descrive il ",
+    "ruolo del gruppo nel confronto MAIN dello studio.\n",
+    "- Sul comparison: il TIPO di controllo (vehicle, untreated, genetic_negative, ",
+    "inducer_off, disease_normal, time_zero, secondary_arm) e' una property della ",
+    "RELAZIONE, non del sample. Lo stesso sample puo' avere control_type diversi ",
+    "in comparisons diverse.\n\n",
+    "## design_kind dello studio (scegli UNO; per multi_arm_treatment e' OK ",
+    "che i singoli comparison abbiano design_kind specifico diverso)\n",
     .STAGE2_DESIGN_KINDS, "\n\n",
-    "## design_role (per ogni replicate_group)\n",
-    .STAGE2_DESIGN_ROLES, "\n\n",
-    "## Linee guida\n",
-    "- Raggruppa i sample in replicate_groups in base a fattori condivisi ",
-    "(stesso trattamento, stessa dose, stesso tempo, stesso controllo).\n",
-    "- Identifica ESPLICITAMENTE i fattori manipolati nel design (factors[]).\n",
-    "- Costruisci comparisons solo dove c'e' un control_group ben identificabile ",
-    "(vehicle_control, baseline_t0, untreated_control, comparison, negative_genetic_control).\n",
+    "## primary_role del replicate_group (5 valori)\n",
+    .STAGE2_PRIMARY_ROLES, "\n\n",
+    "## control_type del comparison (7 valori)\n",
+    .STAGE2_CONTROL_TYPES, "\n\n",
+    "## Linee guida raggruppamento (rigoroso)\n",
+    "- Raggruppa nello STESSO replicate_group SOLO sample con condizioni ",
+    "IDENTICHE (stesso trattamento, dose, tempo, linea cellulare, genotype). ",
+    "Sample con anche una sola differenza vanno in gruppi distinti.\n",
+    "- Replicati biologici/tecnici stesso gruppo. Non perdere granularita': ",
+    "se due sample sembrano identici, mettili nello stesso group con ",
+    "n_replicates >= 2 (la lunghezza di sample_ids).\n\n",
+    "## Linee guida comparisons (importante per la meta-analisi)\n",
+    "- Crea comparisons solo dove c'e' un control_group ben identificabile.\n",
+    "- Ogni comparison ha treated_group + control_group + control_type + ",
+    "design_kind specifico. Il control_type e' DEDOTTO dalla natura del ",
+    "control_group: se i sample del control_group hanno perturbation kind=vehicle, ",
+    "control_type=vehicle; se kind=null e nessuna perturbation, control_type=untreated; ",
+    "se l'unica differenza dal treated e' il timepoint=0, control_type=time_zero; ecc.\n",
+    "- LO STESSO replicate_group puo' apparire come control_group in piu' ",
+    "comparisons con control_type diversi (es. uno studio factoriale).\n",
     "- Per design factorial: una comparison per ogni varying_factor.\n",
-    "- Se il design non e' ricostruibile, design_kind='unclear', comparisons=[], ",
+    "- Se nessun confronto e' ricostruibile, comparisons=[], design_kind='unclear', ",
     "ambiguity_flags spiega il motivo.\n",
     "- comparison_id formato: '<series_id>__<treated>_vs_<control>'.\n",
     "- study_internal_score: 0..1, qualita' del confronto (n_replicates, balance).\n",
     "- input_truncated: true se hai dovuto omettere sample_facts per limiti di token.\n",
-    "- factor_levels e fixed_factors sono ARRAY di oggetti {\"key\": \"...\", \"value\": \"...\"} ",
-    "(NON oggetti con chiavi libere \u2014 schema strict lo richiede).\n\n",
+    "- factor_levels e fixed_factors sono ARRAY di oggetti ",
+    "{\"key\": \"...\", \"value\": \"...\"} (NON oggetti con chiavi libere \u2014 ",
+    "schema strict lo richiede).\n\n",
     "Modello: ", model
   )
 }
@@ -162,7 +190,7 @@ classify_study <- function(series_id, sample_facts_list, study_summary,
       messages                = prompt$messages,
       response_schema         = prompt$schema_path,
       cache                   = cache,
-      cache_namespace_version = "stage2.v1",
+      cache_namespace_version = "stage2.v2",
       ...
     ),
     simulomicsr_schema_error = function(e) {
@@ -211,7 +239,7 @@ classify_study <- function(series_id, sample_facts_list, study_summary,
     .invalid_reason = reason,
     .invalid_detail = detail,
     extraction = list(
-      schema_version    = "stage2.v1",
+      schema_version    = "stage2.v2",
       model             = paste0(provider, ":", model),
       confidence        = 0,
       ambiguity_flags   = list(),
@@ -248,7 +276,7 @@ parse_stage2_response <- function(raw, series_id, sample_count, model) {
   if (is.null(raw$extraction) || !is.list(raw$extraction)) {
     raw$extraction <- list()
   }
-  raw$extraction$schema_version <- "stage2.v1"
+  raw$extraction$schema_version <- "stage2.v2"
   raw$extraction$model <- model
   raw$extraction$input_sample_count <- as.integer(sample_count)
   if (is.null(raw$extraction$input_truncated)) {

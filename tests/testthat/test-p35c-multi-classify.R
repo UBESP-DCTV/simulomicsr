@@ -8,7 +8,7 @@ test_that("multi_classify_study itera su tutti i model_specs e ritorna lista nam
     series_id = "GSE0001",
     design_summary = "Fake study with treatment vs vehicle design for unit test.",
     extraction = list(
-      schema_version = "stage2.v1",
+      schema_version = "stage2.v2",
       model = "mock:m1",
       confidence = 0.5,
       ambiguity_flags = list(),
@@ -20,7 +20,7 @@ test_that("multi_classify_study itera su tutti i model_specs e ritorna lista nam
       list(
         group_id = "g1",
         label_human = "treated group",
-        design_role = "perturbed",
+        primary_role = "treated",
         sample_ids = list("GSM1", "GSM2"),
         factor_levels = list()
       )
@@ -66,7 +66,7 @@ test_that("multi_classify_study ritorna invalid_record per il modello che fallis
           series_id = "GSE0002",
           design_summary = "Fake study with treatment vs vehicle design for unit test.",
           extraction = list(
-            schema_version = "stage2.v1", model = "mock:m_ok",
+            schema_version = "stage2.v2", model = "mock:m_ok",
             confidence = 0.5, ambiguity_flags = list(),
             input_sample_count = 1L, input_truncated = FALSE
           ),
@@ -74,7 +74,7 @@ test_that("multi_classify_study ritorna invalid_record per il modello che fallis
           replicate_groups = list(list(
             group_id = "g1",
             label_human = "treated group",
-            design_role = "perturbed",
+            primary_role = "treated",
             sample_ids = list("GSM1"),
             factor_levels = list()
           )),

@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://simulomicsr/schemas/study_design.stage2.v2.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["series_id", "design_summary", "design_kind", "factors", "replicate_groups", "comparisons", "extraction"],
+  "properties": {
+    "series_id": {"type": "string", "pattern": "^GSE[0-9]+$"},
+    "design_summary": {"type": "string", "minLength": 10},
+    "design_kind": {
+      "type": "string",
+      "enum": [
+        "case_control_disease",
+        "treatment_vs_vehicle",
+        "treatment_vs_untreated",
+        "time_course",
+        "dose_response",
+        "knockdown_panel",
+        "factorial",
+        "differentiation_course",
+        "multi_arm_treatment",
+        "unclear"
+      ]
+    },
+    "factors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "type", "levels"],
+        "properties": {
+          "name": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["stimulation", "small_molecule", "genetic", "time", "dose", "cell_line", "donor", "condition", "other"]
+          },
+          "levels": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+        }
+      }
+    },
+    "replicate_groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["group_id", "label_human", "sample_ids", "primary_role", "factor_levels"],
+        "properties": {
+          "group_id": {"type": "string"},
+          "label_human": {"type": "string"},
+          "sample_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "primary_role": {
+            "type": "string",
+            "description": "Ruolo principale del gruppo nel confronto MAIN dello studio. Solo informativo: il vero ruolo per DE/meta-analisi e' definito dai comparisons. 5 valori v5: treated/control/bystander/excluded/unclear.",
+            "enum": [
+              "treated",
+              "control",
+              "bystander",
+              "excluded",
+              "unclear"
+            ]
+          },
+          "factor_levels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "value"],
+              "properties": {
+                "key":   {"type": "string"},
+                "value": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "comparisons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["comparison_id", "treated_group", "control_group", "control_type", "design_kind", "varying_factor", "fixed_factors", "study_internal_score"],
+        "properties": {
+          "comparison_id": {"type": "string"},
+          "treated_group": {"type": "string", "description": "group_id del replicate_group con ruolo treated in QUESTO confronto"},
+          "control_group": {"type": "string", "description": "group_id del replicate_group con ruolo control in QUESTO confronto"},
+          "control_type": {
+            "type": "string",
+            "description": "Tipo del controllo IN QUESTO COMPARISON. Property relazionale: lo stesso sample puo' avere control_type diversi in comparisons diversi.",
+            "enum": [
+              "vehicle",
+              "untreated",
+              "genetic_negative",
+              "inducer_off",
+              "disease_normal",
+              "time_zero",
+              "secondary_arm"
+            ]
+          },
+          "design_kind": {
+            "type": "string",
+            "description": "design_kind specifico di QUESTO comparison (puo' differire dal design_kind dello studio per studi multi_arm_treatment con sub-experiments eterogenei).",
+            "enum": [
+              "case_control_disease",
+              "treatment_vs_vehicle",
+              "treatment_vs_untreated",
+              "time_course",
+              "dose_response",
+              "knockdown_panel",
+              "factorial",
+              "differentiation_course",
+              "multi_arm_treatment",
+              "unclear"
+            ]
+          },
+          "varying_factor": {"type": "string"},
+          "fixed_factors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "value"],
+              "properties": {
+                "key":   {"type": "string"},
+                "value": {"type": "string"}
+              }
+            }
+          },
+          "study_internal_score": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "extraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "model", "confidence", "ambiguity_flags", "input_sample_count", "input_truncated"],
+      "properties": {
+        "schema_version": {"type": "string", "const": "stage2.v2"},
+        "model": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "ambiguity_flags": {"type": "array", "items": {"type": "string"}},
+        "input_sample_count": {"type": "integer", "minimum": 1},
+        "input_truncated": {"type": "boolean"}
+      }
+    }
+  }
+}
