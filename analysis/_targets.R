@@ -176,7 +176,7 @@ list(
 
   tar_target(
     study_designs_validator,
-    system.file("schemas/study_design.stage2.v1.json", package = "simulomicsr"),
+    system.file("schemas/study_design.stage2.v2.json", package = "simulomicsr"),
     format = "file"
   ),
 
@@ -829,28 +829,46 @@ list(
       sids  <- vapply(validated, function(d) d$series_id, character(1))
       tab <- tibble::tibble(series_id = sids, design_kind = kinds)
 
+      # Pin: i 16 GSE del mini-gold v3 reviewato dall'utente DEVONO essere
+      # in curated_p35c_gse (altrimenti il mini-gold ha sample che non
+      # risultano in alcun replicate_group post-classify -> NA spuri nell'eval).
+      # Lista derivata da inst/extdata/p35c-minigold-reviewed.csv (v3 originale).
+      mini_gold_gse <- c(
+        "GSE76425", "GSE95297", "GSE109870", "GSE137170", "GSE158065",
+        "GSE165960", "GSE169241", "GSE176441", "GSE178702", "GSE183194",
+        "GSE183551", "GSE189186", "GSE192903", "GSE201084", "GSE202755",
+        "GSE205363"
+      )
+      pinned <- intersect(mini_gold_gse, tab$series_id)
+
       easy_kinds <- c("treatment_vs_vehicle", "dose_response")
       hard_kinds <- c("case_control_disease", "time_course",
                       "treatment_vs_untreated")
       mid_kinds  <- c("factorial", "multi_arm_treatment")
 
       set.seed(1812)
-      take <- function(sub_kinds, n_target) {
-        pool <- tab[tab$design_kind %in% sub_kinds, ]
+      take <- function(sub_kinds, n_target, exclude = character()) {
+        pool <- tab[tab$design_kind %in% sub_kinds &
+                    !tab$series_id %in% exclude, ]
         if (nrow(pool) <= n_target) return(pool$series_id)
         pool$series_id[sample.int(nrow(pool), n_target)]
       }
-      selected <- unique(c(
-        take(easy_kinds, 15L),
-        take(hard_kinds, 15L),
-        take(mid_kinds, 10L)
+      # Riserviamo i 16 pinned, poi stratifichiamo i restanti 34 sui non-pinned.
+      n_extra <- max(0L, 50L - length(pinned))
+      strat <- unique(c(
+        take(easy_kinds, 10L, exclude = pinned),
+        take(hard_kinds, 10L, exclude = pinned),
+        take(mid_kinds,   8L, exclude = pinned)
       ))
-      remaining <- setdiff(tab$series_id, selected)
-      pad_n <- max(0L, 50L - length(selected))
+      strat <- strat[seq_len(min(n_extra, length(strat)))]
+      remaining <- setdiff(tab$series_id, c(pinned, strat))
+      pad_n <- max(0L, n_extra - length(strat))
       if (pad_n > 0L && length(remaining) > 0L) {
-        pad <- remaining[sample.int(length(remaining), min(pad_n, length(remaining)))]
-        selected <- c(selected, pad)
+        pad <- remaining[sample.int(length(remaining),
+                                    min(pad_n, length(remaining)))]
+        strat <- c(strat, pad)
       }
+      selected <- unique(c(pinned, strat))
       selected[seq_len(min(50L, length(selected)))]
     }
   ),
@@ -949,9 +967,9 @@ list(
         gse_tiers = confidence_scores_p35c,
         samples_table = samples_table_p35c,
         target_n = 100L,
-        # min_gse_per_tier abbassato da 15 a 8: la distribuzione empirica
-        # post-run e' easy=9, medium=22, hard=19. 15 era troppo alto per tier easy.
-        min_gse_per_tier = 8L
+        # min_gse_per_tier 5 (era 15→8 in v3, ridotto in v5 per la
+        # distribuzione tier piu' compressa post-recalibrazione soglie).
+        min_gse_per_tier = 5L
       )
     }
   ),

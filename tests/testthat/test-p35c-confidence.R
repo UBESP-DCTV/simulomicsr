@@ -70,12 +70,12 @@ test_that("aggregate_confidence_score: media tra le coppie quando ce ne sono 3",
   expect_equal(aggregate_confidence_score(pa), mean(pair_scores))
 })
 
-test_that("assign_difficulty_tier: rispetta soglie 0.85 / 0.6", {
+test_that("assign_difficulty_tier: rispetta soglie 0.60 / 0.45 (calibrate v5)", {
   expect_equal(assign_difficulty_tier(0.95), "easy")
-  expect_equal(assign_difficulty_tier(0.85), "easy")
-  expect_equal(assign_difficulty_tier(0.84), "medium")
-  expect_equal(assign_difficulty_tier(0.6), "medium")
-  expect_equal(assign_difficulty_tier(0.59), "hard")
+  expect_equal(assign_difficulty_tier(0.60), "easy")
+  expect_equal(assign_difficulty_tier(0.59), "medium")
+  expect_equal(assign_difficulty_tier(0.45), "medium")
+  expect_equal(assign_difficulty_tier(0.44), "hard")
   expect_equal(assign_difficulty_tier(0.0), "hard")
 })
 
