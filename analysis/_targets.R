@@ -971,5 +971,52 @@ list(
       dest
     },
     format = "file"
+  ),
+
+  # Task 12: import del mini-gold reviewato + metriche per modello
+
+  tar_target(
+    minigold_reviewed_csv_path_p35c,
+    here::here("inst", "extdata", "p35c-minigold-reviewed.csv"),
+    format = "file"
+  ),
+
+  tar_target(
+    minigold_reviewed_p35c,
+    import_minigold_reviewed(minigold_reviewed_csv_path_p35c)
+  ),
+
+  tar_target(
+    eval_p35c_metrics,
+    {
+      acc <- eval_against_minigold(
+        reviewed = minigold_reviewed_p35c,
+        multi_classify_outputs = multi_classify_outputs_p35c
+      )
+
+      cm_per_model <- lapply(unique(acc$model), function(label) {
+        per_sample <- list()
+        for (i in seq_len(nrow(minigold_reviewed_p35c))) {
+          row <- minigold_reviewed_p35c[i, ]
+          d <- multi_classify_outputs_p35c[[row$series_id]][[label]]
+          if (is.null(d) || isTRUE(!is.null(d$.invalid_reason))) next
+          per_sample[[length(per_sample) + 1L]] <- tibble::tibble(
+            kind_gold = row$design_kind_gold,
+            kind_pred = d$design_kind %||% NA_character_,
+            tier = row$tier,
+            correct_kind = identical(d$design_kind, row$design_kind_gold)
+          )
+        }
+        df <- dplyr::bind_rows(per_sample)
+        df$model <- label
+        df
+      })
+
+      list(
+        accuracy_table = acc,
+        confusion = dplyr::bind_rows(cm_per_model),
+        n_reviewed = nrow(minigold_reviewed_p35c)
+      )
+    }
   )
 )
