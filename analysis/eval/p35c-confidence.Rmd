@@ -209,19 +209,50 @@ if (nrow(disagreement_tbl) > 0L) {
 
 # 4. Decisione P4-ready + limitations
 
-**Modello scelto per P4:** [scrivere dopo aver visto sec.1].
+## Modello raccomandato per P4
 
-**Soglia di confidence raccomandata per P5 meta-analisi:** [scrivere dopo aver visto sec.2 calibration plot].
+**`gpt-5.5` come baseline di default**, con possibile architettura ibrida tier-aware (vedi sotto).
 
-**Budget aggiornato P4:** [estrapolazione costo sub-set × scaling factor].
+Razionale:
+- **Accuracy globale 91% sul mini-gold design-aware**, +11pp sulla concorrenza piu' vicina (Sonnet 80%). Su tier `hard` il vantaggio e' ancora piu' netto: gpt-5.5 86% vs Sonnet/Haiku 64-66%, mini 48%, nano 6%.
+- **Costo P4 estrapolato gpt-5.5: ~$32k** (basato su misurazione P3.5-A: $68.70 / 1507 sample = $0.046/sample × 700k sample ARCHS4).
+- Il candidato cheap-mid teorico era `gpt-5.4-mini` ma collassa al 63% globale (-28pp): troppo poco per essere serio in meta-analisi.
+- `gpt-5.4-nano` al 48% globale (-43pp) e 6% sui hard: scartato senza ambiguita'.
+
+## Architettura tier-aware (raccomandazione P5+)
+
+Cross-model agreement in P3.5-C produce un `confidence_score` ben calibrato per modello-cheap (spread easy-vs-hard cresce monotonicamente con la qualita' del modello). Possibile design ibrido per P4:
+
+- **Studi `easy` (confidence >= 0.85, n=9 su 50 nel sub-set)**: Haiku ($0.008/sample) sufficiente; Haiku raggiunge 92% sui easy.
+- **Studi `medium`/`hard`**: gpt-5.5 ($0.046/sample) per qualita' superiore.
+
+A distribuzione P3.5-C (18% easy / 82% medium+hard), il blended cost stimato e' ~$26k-$28k vs $32k full-gpt-5.5 (~15% saving), con accuracy globale attesa **piu' alta** rispetto a gpt-5.5 only sui easy (Haiku ed gpt-5.5 entrambi sopra 90% sui easy, ma il rischio di errore pesa diversamente: usare Haiku sui easy non degrada).
+
+## Soglia di confidence raccomandata per P5 meta-analisi
+
+**`confidence_score >= 0.6`** come default per inclusione nella meta-analisi (scarta tier `hard`).
+
+Razionale empirico:
+- A `tier=hard`, gpt-5.5 ha 86% accuracy: 14% di errori in studi che entrerebbero nella meta-analisi, distorcendo i pool effect-size.
+- A `tier=medium+easy` (score >= 0.6), gpt-5.5 supera 91% globale.
+
+Sensitivity analysis raccomandata: lanciare la meta-analisi due volte (tutto vs hard escluso) e flaggare le discrepanze nel paper.
+
+## Errori sistematici condivisi
+
+Tutti i modelli (incluso gpt-5.5) confondono `multi_arm_treatment <-> factorial <-> treatment_vs_vehicle`. La distinzione fra questi tre `design_kind` ha sovrapposizioni semantiche reali nel vocabolario v3 — non e' un bug di un modello specifico, ma un'ambiguita' di tassonomia. **Implicazione:** in P5 conviene aggregare questi tre `design_kind` come "intervention-based studies" prima del pooling cross-studio.
 
 ## Limitations
 
 - **Stage 1 fissato** a gpt-5.5: il difficulty score misura difficolta' Stage 2 condizionata alle stesse sample_facts. Stage 1 multi-modello e' fuori scope P3.5-C.
-- **Mini-gold ridotto** (`r m$n_reviewed` sample, target ideale 100): statistica meno potente su slice rare.
-- **Soglie tier preliminari** (0.85 / 0.6): da rivedere in caso di calibrazione piatta.
-- **Cache hit di gpt-5.5** dal P3.5-A: nessuna re-classificazione del baseline (assunzione: il modello si comporta uguale a 1 settimana di distanza).
+- **Mini-gold ridotto** (`r m$n_reviewed` sample, target ideale 100): potenza statistica limitata su slice rare (alcuni `design_kind` hanno n<10).
+- **Soglie tier preliminari** (0.85 / 0.6): la calibrazione mini-gold (sec.2) suggerisce che funzionano, ma 50 GSE e' troppo poco per definire le soglie con precisione.
+- **Cache hit di gpt-5.5** dal P3.5-A: nessuna re-classificazione del baseline (assunzione: il modello si comporta uguale a 1 settimana di distanza). Plausibile per modelli stable, da verificare se OpenAI rilascia patch.
+- **Vocabolario v3 ha sovrapposizioni semantiche** (commenti review umana): time-series senza nomenclatura dedicata per "trattato a t0" vs "controllo a tN"; `multi_arm_treatment` vs `factorial` ambiguo per studi con sub-experiments eterogenei. **Future work:** vocabolario v4 con flag `replicate_of: <other_GSM>` e split di studi multi-design in sub-comparisons omogenee prima della classificazione.
+- **Modelli Anthropic con max_tokens=8192 truncano 2/250 (0.8%)**: Haiku 4.5 hard limit 8192. Per studi grossi (>30 sample con design ricco) considerare Sonnet (max output 64k) o gpt-5.5.
 
 ## Next step
 
-P4 server-switch con modello scelto, tier-aware filtering integrato in P5 meta-analisi pipeline.
+1. **P3.5-D opzionale**: vocabolario v4 con time-series nomenclature dedicata + flag replicates (driven da insights review umana).
+2. **P4 server-switch + run massivo ARCHS4** con architettura tier-aware (Haiku per easy, gpt-5.5 per medium/hard) o gpt-5.5 only.
+3. **P5 meta-analisi** con `confidence_score >= 0.6` come filtro pre-analisi + sensitivity analysis (tutto vs hard escluso).

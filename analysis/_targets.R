@@ -1018,5 +1018,21 @@ list(
         n_reviewed = nrow(minigold_reviewed_p35c)
       )
     }
+  ),
+
+  # Task 13: Quarto report finale 4 sezioni
+
+  tarchetypes::tar_render(
+    eval_p35c_report,
+    here::here("analysis", "eval", "p35c-confidence.Rmd"),
+    output_dir = here::here("analysis", "eval"),
+    params = list(
+      eval_metrics      = eval_p35c_metrics,
+      confidence_scores = confidence_scores_p35c,
+      multi_outputs     = multi_classify_outputs_p35c,
+      minigold_reviewed = minigold_reviewed_p35c,
+      curated_gse       = curated_p35c_gse,
+      model_specs       = model_specs_p35c
+    )
   )
 )
