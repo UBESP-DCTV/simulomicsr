@@ -129,14 +129,22 @@ aggregate_confidence_score <- function(pairwise_agreements) {
 
 #' Assegna tier di difficolta' a un confidence score
 #'
-#' Soglie preliminari (spec sec.6.1): easy ge 0.85, medium 0.6-0.85, hard lt 0.6.
+#' Soglie v5 (calibrate empiricamente sul run P3.5-C): easy ge 0.60,
+#' medium 0.45-0.60, hard lt 0.45.
+#'
+#' Storia: la spec sec.6.1 prevedeva soglie 0.85/0.60 (per v3 dove
+#' `.anchor_match_rate` ritornava sempre 1 perche' il campo non era nello
+#' schema). In v5 l'anchor_match_rate misura agreement vero su
+#' control_type|design_kind|varying_factor, riducendo i confidence_score
+#' di ~0.20 in media. Le soglie sono state abbassate per mantenere una
+#' distribuzione tier sensata (~30/30/40 easy/medium/hard).
 #'
 #' @param score numeric in \[0, 1\]
 #' @return character: "easy", "medium" o "hard"
 #' @export
 assign_difficulty_tier <- function(score) {
   if (is.na(score)) return(NA_character_)
-  if (score >= 0.85) return("easy")
-  if (score >= 0.6)  return("medium")
+  if (score >= 0.60) return("easy")
+  if (score >= 0.45) return("medium")
   "hard"
 }
