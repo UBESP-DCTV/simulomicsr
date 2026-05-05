@@ -1,15 +1,19 @@
-#' Mappa design_role v3 (13 valori) al binary trtctr_predicted
+#' Mappa primary_role v5 (5 valori) al binary trtctr_predicted
 #'
-#' Implementa la tabella di mapping spec sec.6.2 estesa ai 13 valori
-#' del vocabolario design_role. NA = sample escluso dal calcolo accuracy
-#' (non un errore, e' una scelta esplicita).
+#' v5 vocabolario semplificato (vs v3 con 13 valori): il primary_role del
+#' replicate_group e' uno tra 5 valori (treated/control/bystander/excluded/unclear).
+#' Il mapping al binary e' 1:1 banale. La specificita' del controllo (vehicle,
+#' untreated, genetic_negative, inducer_off, disease_normal, time_zero,
+#' secondary_arm) NON e' piu' sul sample ma sul comparison (control_type).
 #'
-#' Estensione vs spec sec.6.2 originale:
-#' - bystander -> NA (paracrine, non-direttamente perturbed)
-#' - negative_inducer_control -> control (no-Dox arm di sistema inducibile)
-#' - secondary_arm -> treated (trattamento alternativo)
+#' Comportamento: bystander/excluded/unclear -> NA (sample escluso da
+#' calcolo accuracy, scelta esplicita).
 #'
-#' @param role character vector di design_role values
+#' Backward compatibility v3 (per riconversione mini-gold v3 -> v5 e per
+#' eval su artefatti vecchi): i 13 valori v3 vengono mappati al binary
+#' come prima, cosi' i numeri restano confrontabili.
+#'
+#' @param role character vector di primary_role values (v5) o design_role v3
 #' @return character vector con valori "treated", "control" o NA_character_
 #' @export
 design_role_to_binary <- function(role) {
@@ -22,6 +26,13 @@ design_role_to_binary <- function(role) {
   if (is.na(r)) return(NA_character_)
   switch(
     r,
+    # v5 (5 valori canonici)
+    treated = "treated",
+    control = "control",
+    bystander = NA_character_,
+    excluded = NA_character_,
+    unclear = NA_character_,
+    # v3 backward-compat (13 valori; usati per eval di artefatti pre-v5)
     perturbed = "treated",
     case = "treated",
     secondary_arm = "treated",
@@ -31,10 +42,7 @@ design_role_to_binary <- function(role) {
     negative_inducer_control = "control",
     baseline_t0 = "control",
     comparison = "control",
-    bystander = NA_character_,
     positive_control = NA_character_,
-    excluded = NA_character_,
-    unclear = NA_character_,
     rlang::abort(
       sprintf("design_role non riconosciuto: '%s'", r),
       class = "simulomicsr_invalid_design_role"

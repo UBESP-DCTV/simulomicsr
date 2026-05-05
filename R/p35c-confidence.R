@@ -58,7 +58,8 @@ compute_pairwise_agreement <- function(study_designs_per_model) {
 .role_per_sample <- function(design) {
   out <- list()
   for (g in design$replicate_groups %||% list()) {
-    role <- g$design_role
+    # v5 primary_role; v3 fallback design_role per backward-compat
+    role <- g$primary_role %||% g$design_role
     for (sid in g$sample_ids %||% list()) {
       out[[as.character(sid)]] <- role
     }
@@ -79,12 +80,25 @@ compute_pairwise_agreement <- function(study_designs_per_model) {
 
 #' @noRd
 .anchor_match_rate <- function(a, b) {
-  anchors_a <- vapply(a$comparisons %||% list(),
-                      function(c) as.character(c$comparability_anchor %||% NA),
-                      character(1))
-  anchors_b <- vapply(b$comparisons %||% list(),
-                      function(c) as.character(c$comparability_anchor %||% NA),
-                      character(1))
+  # In v5 l'anchor canonicalizzato per cross-studio matching e' computato
+  # post-Stage 2 da una funzione R deterministica. Per il confidence score
+  # cross-modello dello STESSO studio usiamo come anchor proxy la tupla
+  # (control_type | design_kind | varying_factor) per ogni comparison:
+  # cattura il "tipo di confronto" senza dipendere dall'anchor canonico
+  # full-format. In v3 (backward compat) usa comparability_anchor se presente.
+  comp_signature <- function(c) {
+    if (!is.null(c$comparability_anchor)) {
+      return(as.character(c$comparability_anchor))
+    }
+    paste(
+      c$control_type %||% "NA",
+      c$design_kind %||% "NA",
+      c$varying_factor %||% "NA",
+      sep = "|"
+    )
+  }
+  anchors_a <- vapply(a$comparisons %||% list(), comp_signature, character(1))
+  anchors_b <- vapply(b$comparisons %||% list(), comp_signature, character(1))
   if (length(anchors_a) == 0L && length(anchors_b) == 0L) return(1)
   union_n <- length(union(anchors_a, anchors_b))
   inter_n <- length(intersect(anchors_a, anchors_b))

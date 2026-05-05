@@ -37,8 +37,13 @@ test_that("build_prompt_stage2 system prompt contiene vocabolari sec.4.1+sec.4.2
                  "factorial", "case_control_disease")) {
     expect_match(sys, kind, fixed = TRUE)
   }
-  for (role in c("perturbed", "vehicle_control", "baseline_t0", "case", "comparison")) {
+  # v5: primary_role 5 valori sample-level + control_type 7 valori comparison
+  for (role in c("treated", "control", "bystander", "excluded", "unclear")) {
     expect_match(sys, role, fixed = TRUE)
+  }
+  for (ct in c("vehicle", "untreated", "genetic_negative", "inducer_off",
+               "disease_normal", "time_zero", "secondary_arm")) {
+    expect_match(sys, ct, fixed = TRUE)
   }
 })
 
@@ -77,14 +82,14 @@ test_that("parse_stage2_response imposta input_sample_count e model", {
   expect_equal(parsed$extraction$model, "openai:gpt-5.5")
 })
 
-test_that("parse_stage2_response garantisce schema_version='stage2.v1'", {
+test_that("parse_stage2_response garantisce schema_version='stage2.v2'", {
   raw <- jsonlite::read_json(testthat::test_path("fixtures/stage2-valid-vegf-huvec.json"))
   raw$extraction$schema_version <- "stage2.v0"
   parsed <- simulomicsr:::parse_stage2_response(
     raw, series_id = "GSE41166", sample_count = 4L,
     model = "openai:gpt-5.5"
   )
-  expect_equal(parsed$extraction$schema_version, "stage2.v1")
+  expect_equal(parsed$extraction$schema_version, "stage2.v2")
 })
 
 test_that("classify_study orchestratore: chiama llm_call_structured con messages stage2", {
@@ -125,7 +130,7 @@ test_that("classify_study orchestratore: chiama llm_call_structured con messages
     }
   )
   expect_equal(out$series_id, "GSE41166")
-  expect_equal(out$extraction$schema_version, "stage2.v1")
+  expect_equal(out$extraction$schema_version, "stage2.v2")
   expect_equal(out$extraction$input_sample_count, 1L)
   expect_match(out$extraction$model, "gpt-5.5")
   expect_equal(captured$messages[[1L]]$role, "system")
