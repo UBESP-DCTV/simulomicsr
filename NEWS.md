@@ -1,3 +1,81 @@
+# simulomicsr 0.0.0.9007
+
+## P3.5-C — Confidence-aware classification (multi-model + mini-gold design-aware)
+
+### Funzionalita' nuove
+
+* `R/llm-client-anthropic.R` — adapter Anthropic Messages API con structured
+  output via tool_use forzato. Supporta `claude-haiku-4-5` e `claude-sonnet-4-6`.
+  Funzioni private: `.anthropic_build_request()`, `.anthropic_parse_response()`,
+  `.anthropic_chat_structured()`. Errori tipizzati:
+  `simulomicsr_anthropic_missing_key`, `simulomicsr_anthropic_truncated`,
+  `simulomicsr_anthropic_no_tool_use`, `simulomicsr_anthropic_bad_system_content`.
+* Dispatch `provider="anthropic"` in `llm_call_structured()`.
+* `multi_classify_study()` — wrapper su `classify_study()` che itera su una
+  lista di `model_specs` e ritorna una lista nominata per modello.
+* `compute_pairwise_agreement()` — agreement cross-modello su `design_kind`,
+  `design_role`, `comparability_anchor` (Jaccard sugli anchor).
+* `aggregate_confidence_score()` — media pesata 0.3/0.5/0.2 sulle coppie.
+* `assign_difficulty_tier()` — tier `easy` (>=0.85), `medium` (>=0.6), `hard`.
+* `sample_minigold_stratified()` — sampling stratificato 50/50 easy/hard
+  con almeno K GSE distinti per tier.
+* `export_minigold_csv()` — pre-popolazione CSV per review umana, ordinata
+  per `series_id` e con colonna `study_overview` (riassunto multi-line dei
+  sample dello studio + ruoli proposti dai N modelli).
+* `import_minigold_reviewed()` — import + validazione vocabolari design_role/kind.
+* `eval_against_minigold()` — accuracy per modello x tier (overall/easy/hard).
+
+### Pipeline targets
+
+* `analysis/_targets.R` esteso con suffisso `_p35c`: `curated_p35c_gse`,
+  `model_specs_p35c`, `study_summaries_p35c`, `multi_classify_outputs_p35c`,
+  `confidence_scores_p35c`, `samples_table_p35c`, `minigold_pool_p35c`,
+  `minigold_template_csv_p35c`, `minigold_reviewed_p35c`, `eval_p35c_metrics`,
+  `eval_p35c_report`.
+
+### Risultati P3.5-C (50 GSE x 5 modelli, mini-gold n=100 reviewato)
+
+| Modello             | Easy | Hard | Overall |
+|---------------------|------|------|---------|
+| **gpt-5.5**         | 96%  | **86%** | **91%** |
+| claude-sonnet-4-6   | 96%  | 64%  | 80%     |
+| claude-haiku-4-5    | 92%  | 66%  | 79%     |
+| gpt-5.4-mini        | 78%  | 48%  | 63%     |
+| gpt-5.4-nano        | 90%  | 6%   | 48%     |
+
+* Distribuzione tier su 50 GSE: 9 easy / 22 medium / 19 hard.
+* Confidence score perfettamente calibrato (spread easy-vs-hard cresce
+  monotonicamente con il declino del modello).
+* Invalid rate Anthropic: 2/250 (0.8%) - Haiku hard-limit max_tokens 8192,
+  irrisolvibile via codice.
+* Costo run sub-set: ~$25-35 (50 GSE x 4 modelli nuovi; gpt-5.5 cache hit
+  da P3.5-A). Estrapolazione P4 gpt-5.5: ~$32k.
+
+### Decisione P4 + P5
+
+* **gpt-5.5 baseline** (91% accuracy globale, 86% sui hard).
+* Architettura **tier-aware ibrida** raccomandata per saving costi: Haiku
+  ($0.008/sample) per studi `easy`, gpt-5.5 ($0.046) per medium/hard.
+* Soglia P5 meta-analisi: `confidence_score >= 0.6` (esclude hard).
+
+### Hotfix
+
+* `R/llm-client-anthropic.R` default `max_tokens` da 4096 a 8192: il run
+  iniziale aveva 12/250 invalid (4.8%) per truncation, post-fix 2/250 (0.8%).
+
+### Insight da review umana (16 commenti su 100 sample)
+
+* Vocabolario v3 ha sovrapposizioni semantiche per time-series (manca
+  nomenclatura per "trattato a t0" vs "controllo a tN").
+* `multi_arm_treatment` vs `factorial` ambiguo per studi con sub-experiments
+  eterogenei.
+* Manca flag `replicate_of: <other_GSM>` per replicati biologici/tecnici.
+* Future work: vocabolario v4 + split studies pre-classificazione (P3.5-D).
+
+### Tag: `p3.5c-confidence-complete`
+
+---
+
 # simulomicsr 0.0.0.9006
 
 ## P3.5-A — Scaled benchmark Stadio 2 (100 GSE paper-ready)
