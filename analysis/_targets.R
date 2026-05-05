@@ -977,7 +977,9 @@ list(
 
   tar_target(
     minigold_reviewed_csv_path_p35c,
-    here::here("inst", "extdata", "p35c-minigold-reviewed.csv"),
+    # Mini-gold v5 (riconvertito deterministicamente da v3 reviewato dall'utente).
+    # File originale v3: inst/extdata/p35c-minigold-reviewed.csv (committato per audit).
+    here::here("inst", "extdata", "p35c-minigold-reviewed-v5.csv"),
     format = "file"
   ),
 
