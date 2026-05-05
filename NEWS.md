@@ -14,9 +14,11 @@
 * `multi_classify_study()` — wrapper su `classify_study()` che itera su una
   lista di `model_specs` e ritorna una lista nominata per modello.
 * `compute_pairwise_agreement()` — agreement cross-modello su `design_kind`,
-  `design_role`, `comparability_anchor` (Jaccard sugli anchor).
+  `primary_role` (per sample), `control_type|design_kind|varying_factor`
+  (per comparison).
 * `aggregate_confidence_score()` — media pesata 0.3/0.5/0.2 sulle coppie.
-* `assign_difficulty_tier()` — tier `easy` (>=0.85), `medium` (>=0.6), `hard`.
+* `assign_difficulty_tier()` — tier `easy` (>=0.60), `medium` (>=0.45), `hard`
+  (calibrato empiricamente sul sub-set v5).
 * `sample_minigold_stratified()` — sampling stratificato 50/50 easy/hard
   con almeno K GSE distinti per tier.
 * `export_minigold_csv()` — pre-popolazione CSV per review umana, ordinata
@@ -33,44 +35,80 @@
   `minigold_template_csv_p35c`, `minigold_reviewed_p35c`, `eval_p35c_metrics`,
   `eval_p35c_report`.
 
-### Risultati P3.5-C (50 GSE x 5 modelli, mini-gold n=100 reviewato)
+### Schema v5 — design-aware-relational (insight chiave del progetto)
 
-| Modello             | Easy | Hard | Overall |
-|---------------------|------|------|---------|
-| **gpt-5.5**         | 96%  | **86%** | **91%** |
-| claude-sonnet-4-6   | 96%  | 64%  | 80%     |
-| claude-haiku-4-5    | 92%  | 66%  | 79%     |
-| gpt-5.4-mini        | 78%  | 48%  | 63%     |
-| gpt-5.4-nano        | 90%  | 6%   | 48%     |
+Il salto a vocabolario v5 e' stato scelto sulla base degli insights della
+review umana (16 commenti utente su 100 sample): un controllo non e' una
+categoria autonoma, esiste solo IN RELAZIONE a un trattato.
 
-* Distribuzione tier su 50 GSE: 9 easy / 22 medium / 19 hard.
-* Confidence score perfettamente calibrato (spread easy-vs-hard cresce
-  monotonicamente con il declino del modello).
-* Invalid rate Anthropic: 2/250 (0.8%) - Haiku hard-limit max_tokens 8192,
-  irrisolvibile via codice.
-* Costo run sub-set: ~$25-35 (50 GSE x 4 modelli nuovi; gpt-5.5 cache hit
-  da P3.5-A). Estrapolazione P4 gpt-5.5: ~$32k.
+* **Sample-level `primary_role`** (5 valori, era 13 in v3):
+  `treated`, `control`, `bystander`, `excluded`, `unclear`. Solo informativo
+  ("ruolo nel confronto MAIN dello studio"); il vero ruolo per DE e
+  meta-analisi sta sui comparisons.
+* **Comparison-level `control_type`** (7 valori, NUOVO in v5): property
+  RELAZIONALE del confronto. `vehicle`, `untreated`, `genetic_negative`,
+  `inducer_off`, `disease_normal`, `time_zero`, `secondary_arm`. Lo stesso
+  sample puo' apparire come `control` con `control_type` diversi in
+  comparisons differenti (factoriali, multi-design, time-course).
+* **Comparison-level `design_kind`**: design specifico del comparison
+  (per studi `multi_arm_treatment` con sub-experiments eterogenei).
+* Nuovo schema `inst/schemas/study_design.stage2.v2.json`.
+* Mini-gold v3 reviewato dall'utente riconvertito DETERMINISTICAMENTE a v5
+  (mapping 1:1, ZERO re-review umana richiesta).
+
+### Risultati P3.5-C v5 (50 GSE x 5 modelli, mini-gold n=100)
+
+| Modello              | Easy | Hard | Overall | vs v3 |
+|----------------------|------|------|---------|-------|
+| **gpt-5.5**          | 96%  | **92%** | **94%** |  +3pp |
+| **gpt-5.4-mini**     | 96%  |  90% |    93%  | **+30pp** |
+| claude-sonnet-4-6    | 96%  |  86% |    91%  | +11pp |
+| claude-haiku-4-5     | 100% |  60% |    80%  |  +1pp |
+| gpt-5.4-nano         | 42%  |   6% |    24%  | -24pp |
+
+* Distribuzione tier 50 GSE: 14 easy / 17 medium / 19 hard (soglie v5
+  ricalibrate: easy>=0.60, medium 0.45-0.60, hard<0.45).
+* `gpt-5.4-mini sblocca` un saving radicale: da 63% (v3, 13 valori) a
+  93% (v5, 5 valori). Drop-in candidate per P4.
+* Invalid rate: 3/250 (1.2%) - principalmente Anthropic Haiku per
+  truncation max_tokens (hard limit 8192) o schema validation.
+* Costo run cumulativo P3.5-C: ~$50-60 (run v3 + run v5 dopo cache miss).
 
 ### Decisione P4 + P5
 
-* **gpt-5.5 baseline** (91% accuracy globale, 86% sui hard).
-* Architettura **tier-aware ibrida** raccomandata per saving costi: Haiku
-  ($0.008/sample) per studi `easy`, gpt-5.5 ($0.046) per medium/hard.
-* Soglia P5 meta-analisi: `confidence_score >= 0.6` (esclude hard).
+* **gpt-5.4-mini come modello cheap-mid principale** (P4 stimato ~$5-7k
+  vs $32k full-gpt-5.5, saving ~80%).
+* **Architettura tier-aware ibrida**: Haiku ($0.008/sample, 100% accuracy
+  sui easy) per tier `easy`, gpt-5.4-mini per medium/hard. Costo P4
+  blended: ~$4-5k (saving ~85% vs full-gpt-5.5).
+* Soglia P5 meta-analisi: `confidence_score >= 0.45` (esclude tier hard).
+* Stratificazione meta-analisi per `control_type` come nuova dimensione
+  per detection vehicle/untreated bias.
 
 ### Hotfix
 
 * `R/llm-client-anthropic.R` default `max_tokens` da 4096 a 8192: il run
-  iniziale aveva 12/250 invalid (4.8%) per truncation, post-fix 2/250 (0.8%).
+  iniziale v3 aveva 12/250 invalid (4.8%) per truncation, post-fix 2/250.
+* `study_designs_validator` aggiornato a `stage2.v2.json` (era v1, rifiutava
+  output v2).
+* `curated_p35c_gse` con pin esplicito dei 16 GSE del mini-gold (per
+  garantire riusabilita' del gold cross-version).
+* Soglie tier ricalibrate empiricamente: 0.60/0.45 (era 0.85/0.60 in v3,
+  troppo alte per v5 dove `.anchor_match_rate` ora misura agreement vero
+  invece di ritornare sempre 1).
 
 ### Insight da review umana (16 commenti su 100 sample)
 
-* Vocabolario v3 ha sovrapposizioni semantiche per time-series (manca
-  nomenclatura per "trattato a t0" vs "controllo a tN").
-* `multi_arm_treatment` vs `factorial` ambiguo per studi con sub-experiments
-  eterogenei.
-* Manca flag `replicate_of: <other_GSM>` per replicati biologici/tecnici.
-* Future work: vocabolario v4 + split studies pre-classificazione (P3.5-D).
+* Time-series ambiguity: vocabolario v3 non distingueva "trattato a t0"
+  vs "controllo a tN" → risolto naturalmente in v5 (control_type=time_zero
+  e' una property del comparison, non del sample).
+* Multi-design experiments con sub-experiments eterogenei → risolto da
+  comparison-level `design_kind` v2.
+* Replicati biologici/tecnici: pattern coperto da `replicate_groups`
+  esistente, miglior visualizzazione nel CSV (colonna `study_overview`).
+* Multi-label ambiguity (stesso sample in piu' ruoli): risolto
+  STRUTTURALMENTE in v5 (ruolo come property della relazione, non del
+  sample → no scelte forzate).
 
 ### Tag: `p3.5c-confidence-complete`
 

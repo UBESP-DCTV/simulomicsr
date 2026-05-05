@@ -25,13 +25,51 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-03 fine sessione `simulomicsr_p3_2`)
+## Stato corrente (2026-05-05 fine sessione `simulomicsr_brain2`)
 
-- **Master HEAD:** `8623c35` (P3.5a Task 11: bump 0.0.0.9006 + NEWS aggiornato + R CMD check).
-- **Tag:** `p1-infra-llm-complete` (P1), `p2-stage1-complete` (P2), `p3-stage2-complete` (P3), `p3.5b-eval-complete` (P3.5-B), **`p3.5a-eval-complete` (P3.5-A)**.
-- **Master locale è ahead di `origin/master`** — l'utente fa il push lui (mai automaticamente).
-- **R CMD check:** 0E / 0W / 2N (note pre-esistenti).
-- **Test suite:** 364 PASS / 0 FAIL.
+- **Branch:** `p3.5c-confidence` (master HEAD invariato a `8623c35`).
+- **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, **`p3.5c-confidence-complete` (P3.5-C v5)**.
+- **Branch locale è ahead di master** — l'utente fa il merge + push lui.
+- **R CMD check:** 0E / 0W / note pre-esistenti.
+- **Test suite:** 444 PASS / 0 FAIL.
+
+### Cosa P3.5-C v5 ha consegnato (vocabolario design-aware-relational)
+
+Salto a vocabolario v5 sample-level (insight discusso in brainstorming
+2026-05-05): un controllo non e' una categoria autonoma, esiste solo IN
+RELAZIONE a un trattato. Schema v2 (`study_design.stage2.v2.json`):
+
+- **Sample-level `primary_role`** (5 valori): treated, control, bystander,
+  excluded, unclear. Solo informativo.
+- **Comparison-level `control_type`** (7 valori): vehicle, untreated,
+  genetic_negative, inducer_off, disease_normal, time_zero, secondary_arm.
+  Property RELAZIONALE.
+- **Comparison-level `design_kind`**: design specifico per ogni comparison
+  (per studi multi_arm_treatment con sub-experiments eterogenei).
+
+Adapter Anthropic Messages API + dispatch llm_call_structured. Multi-model
+classifier (5 modelli: gpt-5.5, gpt-5.4-mini, gpt-5.4-nano, claude-haiku-4-5,
+claude-sonnet-4-6). Confidence score via cross-model agreement, mini-gold
+v3 reviewato dall'utente (100 sample) riconvertito v5 deterministicamente.
+
+### Risultati P3.5-C v5
+
+| Modello              | Easy | Hard | Overall | vs v3 |
+|----------------------|------|------|---------|-------|
+| **gpt-5.5**          | 96%  | 92%  | **94%** |  +3pp |
+| **gpt-5.4-mini**     | 96%  | 90%  |   93%   | **+30pp** |
+| claude-sonnet-4-6    | 96%  | 86%  |   91%   | +11pp |
+| claude-haiku-4-5     | 100% | 60%  |   80%   |  +1pp |
+| gpt-5.4-nano         | 42%  | 6%   |   24%   | -24pp |
+
+| Metrica | Valore |
+|---|---|
+| Modello P4-ready scelto | **gpt-5.4-mini** (drop -1pp vs gpt-5.5, costo ~5-10x cheaper) |
+| Estrapolazione P4 gpt-5.4-mini | ~$5-7k vs $32k full-gpt-5.5 (saving ~80%) |
+| Architettura tier-aware ibrida | Haiku per `easy` + gpt-5.4-mini per medium/hard, P4 ~$4-5k |
+| Soglia confidence raccomandata P5 | >= 0.45 (esclude tier hard) |
+| Costo P3.5-C cumulativo (v3 + v5) | ~$50-60 |
+| Invalid rate v5 | 3/250 (1.2%) |
 
 ### Cosa P1 ha consegnato (infrastruttura LLM)
 

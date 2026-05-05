@@ -13,5 +13,14 @@ assign_difficulty_tier(score)
 character: "easy", "medium" o "hard"
 }
 \description{
-Soglie preliminari (spec sec.6.1): easy ge 0.85, medium 0.6-0.85, hard lt 0.6.
+Soglie v5 (calibrate empiricamente sul run P3.5-C): easy ge 0.60,
+medium 0.45-0.60, hard lt 0.45.
+}
+\details{
+Storia: la spec sec.6.1 prevedeva soglie 0.85/0.60 (per v3 dove
+\code{.anchor_match_rate} ritornava sempre 1 perche' il campo non era nello
+schema). In v5 l'anchor_match_rate misura agreement vero su
+control_type|design_kind|varying_factor, riducendo i confidence_score
+di ~0.20 in media. Le soglie sono state abbassate per mantenere una
+distribuzione tier sensata (~30/30/40 easy/medium/hard).
 }
