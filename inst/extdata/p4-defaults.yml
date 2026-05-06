@@ -1,0 +1,32 @@
+# Defaults P4 self-hosted vLLM su DGX UniPD HPC.
+# Caricati da R (yaml::read_yaml) e Python (yaml.safe_load).
+
+model_id: "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+dtype: "bfloat16"
+gpu_memory_utilization: 0.90
+tensor_parallel_size: 1
+data_parallel_workers: 4
+
+stages:
+  stage1:
+    schema_file: "sample_facts.stage1.v3.json"
+    max_tokens: 1024
+    temperature: 0.0
+    schema_version: "stage1.v3"
+    model_prefix: "vllm-mistral-3.2"
+  stage2:
+    schema_file: "study_design.stage2.v2.json"
+    max_tokens: 4096
+    temperature: 0.0
+    schema_version: "stage2.v2"
+    model_prefix: "vllm-mistral-3.2"
+
+slurm_defaults:
+  partition: "dgx12cluster"
+  account: "dctv_dgx"
+  nodelist: "poddgx02"
+  cpus_per_task: 32
+  mem: "200G"
+  gpus: 4
+  time_alpha: "12:00:00"
+  time_beta: "7-00:00:00"
