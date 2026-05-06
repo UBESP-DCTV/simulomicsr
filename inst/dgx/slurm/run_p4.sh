@@ -4,7 +4,6 @@
 #SBATCH --job-name=simulomicsr-p4-__RUN_ID_SHORT__
 #SBATCH --partition=dgx12cluster
 #SBATCH --account=dctv_dgx
-#SBATCH --nodelist=poddgx02
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32

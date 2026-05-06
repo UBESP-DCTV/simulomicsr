@@ -6,8 +6,15 @@ test_that("dgx_config() default usa profilo UniPD HPC u0044", {
   expect_identical(cfg$mail_user,  "luca.vedovelli@unipd.it")
   expect_identical(cfg$partition,  "dgx12cluster")
   expect_identical(cfg$account,    "dctv_dgx")
-  expect_identical(cfg$nodelist,   "poddgx02")
+  expect_null(cfg$nodelist)
   expect_identical(cfg$remote_root, "/mnt/home/u0044/simulomicsr-dgx")
+})
+
+test_that("dgx_config() valida nodelist opzionale", {
+  expect_null(dgx_config()$nodelist)
+  expect_identical(dgx_config(nodelist = "poddgx01")$nodelist, "poddgx01")
+  expect_error(dgx_config(nodelist = 42), class = "simulomicsr_dgx_config_invalid")
+  expect_error(dgx_config(nodelist = ""), class = "simulomicsr_dgx_config_invalid")
 })
 
 test_that("dgx_config() override singolo campo lascia altri intatti", {
@@ -33,7 +40,7 @@ test_that("dgx_config() print method mostra campi chiave", {
   cfg <- dgx_config()
   out <- capture.output(print(cfg))
   expect_true(any(grepl("u0044", out)))
-  expect_true(any(grepl("poddgx02", out)))
+  expect_true(any(grepl("dgx12cluster", out)))
 })
 
 test_that("dgx_config() valida ssh_key_path opzionale", {
