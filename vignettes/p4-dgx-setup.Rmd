@@ -60,21 +60,48 @@ Tempo: ~3-5 min con cache layer hit.
 
 ## 4. Pull come SIF sul cluster + pre-download modello
 
+Stesso pattern di `2026.scRNA_DGX/Makefile`: i target `pull-singularity` e
+`predownload-model` sono pensati per girare **sul login DGX** dopo SSH,
+non sono SSH-wrappati dal laptop. Hai due strade equivalenti.
+
+**Opzione A — clona il repo sul DGX**:
+
 ```sh
-make -C inst/dgx pull-cluster        # singularity pull docker://lucavd/simulomicsr-vllm:latest
-make -C inst/dgx predownload-model   # huggingface-cli download ~50 GB
+ssh u0044@logindgx.hpc.ict.unipd.it
+cd ~/simulomicsr     # supponendo repo gia' clonato
+git pull
+mkdir -p ~/simulomicsr-dgx/runtime/
+cd ~/simulomicsr-dgx/runtime/
+module load singularity/4.2.0
+make -f ~/simulomicsr/inst/dgx/Makefile pull-singularity   # produce simulomicsr-vllm.sif
+make -f ~/simulomicsr/inst/dgx/Makefile predownload-model  # huggingface-cli, ~50 GB
 ```
 
-Dopo questi due step, i job SLURM partono **senza** rete e **senza**
-HF\_TOKEN in runtime.
+**Opzione B — copia solo il Makefile sul DGX** (se non vuoi clonare il repo):
+
+```sh
+scp inst/dgx/Makefile u0044@logindgx.hpc.ict.unipd.it:~/simulomicsr-dgx/runtime/
+ssh u0044@logindgx.hpc.ict.unipd.it
+cd ~/simulomicsr-dgx/runtime/
+module load singularity/4.2.0
+make pull-singularity
+make predownload-model
+```
+
+Dopo questi due step:
+
+- `~/simulomicsr-dgx/runtime/simulomicsr-vllm.sif` (~6-8 GB) e'
+  pronto per `srun singularity exec` (vedi `slurm/run_p4.sh`).
+- `~/simulomicsr-dgx/models/HF_HOME/` contiene i pesi del modello
+  (~50 GB) — i job SLURM partono **senza** rete e **senza** `HF_TOKEN`.
 
 ## 5. Rebuild quando cambiano gli asset
 
 Quando modifichi `inst/dgx/python/`, `inst/dgx/Dockerfile`, o
 `inst/dgx/slurm/run_p4.sh`:
 
-- Cambi a `python/` o `Dockerfile` → `make build push pull-cluster`
-  (ricostruisce + ridistribuisce l'immagine SIF sul cluster).
+- Cambi a `python/` o `Dockerfile` → laptop: `make build push`. Cluster:
+  ri-`make pull-singularity` (rifa' il pull dell'immagine).
 - Cambi solo a `slurm/run_p4.sh` → niente rebuild (il template viene
   letto al submit-time da `dgx_p4_submit()`).
 

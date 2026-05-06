@@ -202,27 +202,25 @@ ENV PYTHONUNBUFFERED=1 \
 ENTRYPOINT ["python", "/opt/simulomicsr/runtime/python/run_p4_vllm.py"]
 ```
 
-**Build & deploy workflow** (operazioni manuali, una volta + ad ogni cambio):
+**Build & deploy workflow** (allineato 1:1 a `2026.scRNA_DGX/Makefile` — niente SSH wrapping nel Makefile, target separati per laptop e cluster):
 
 ```sh
-# Su laptop, dalla radice del pacchetto
+# === LAPTOP, dalla radice del pacchetto ===
 cd inst/dgx
-docker build -t lucavd/simulomicsr-vllm:v1 .
-docker tag  lucavd/simulomicsr-vllm:v1 lucavd/simulomicsr-vllm:latest
-docker push lucavd/simulomicsr-vllm:v1
-docker push lucavd/simulomicsr-vllm:latest
+make build         # docker build -t lucavd/simulomicsr-vllm:latest .
+make push          # docker push lucavd/simulomicsr-vllm:latest
 
-# Su login node DGX
+# === LOGIN NODE DGX (dopo SSH) ===
 ssh u0044@logindgx.hpc.ict.unipd.it
-cd /mnt/home/u0044/simulomicsr-dgx/runtime/
+cd ~/simulomicsr-dgx/runtime/
 module load singularity/4.2.0
-singularity pull --force current.sif docker://lucavd/simulomicsr-vllm:latest
-ls -lh current.sif    # ~6-8 GB
+make -f /path/al/repo/inst/dgx/Makefile pull-singularity     # produce simulomicsr-vllm.sif
+make -f /path/al/repo/inst/dgx/Makefile predownload-model    # huggingface-cli, ~50 GB
 ```
 
-Tempo: docker build locale ~3-5 min (cache hit per layer vllm), push DockerHub 1-2 min, singularity pull cluster 2-5 min. Totale 5-12 min vs 15-20 min apptainer build remote.
+Tempo: docker build locale ~3-5 min (cache hit per layer vllm), push DockerHub 1-2 min, singularity pull cluster 2-5 min, predownload modello 10-15 min.
 
-**Versioning**: tag `:v1`, `:v2`, ... per snapshot riproducibili; `:latest` per ultimo. Il SLURM job referenzia sempre `current.sif` (link/copia dell'ultima pull).
+**Versioning**: il SLURM job referenzia `simulomicsr-vllm.sif` (filename consistente con `$(IMAGE_NAME).sif` del Makefile). Cambio di immagine = nuovo `make pull-singularity`.
 
 **Driver caveat**: i driver NVIDIA su `poddgx02` potrebbero non essere all'ultima major. Se vLLM 0.6.4 fallisce con `CUDA driver too old`, fallback documentati:
 - `vllm/vllm-openai:v0.5.5` (CUDA 11.8 compat)
