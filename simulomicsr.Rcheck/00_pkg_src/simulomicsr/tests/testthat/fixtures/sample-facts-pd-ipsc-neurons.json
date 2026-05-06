@@ -1,0 +1,46 @@
+{
+  "geo_accession": "GSM2000004",
+  "series_id": "GSE100004",
+  "organism": "Homo sapiens",
+  "host_organism": null,
+  "cell_context": {
+    "cell_type_or_line_raw": "iPSC_neurons",
+    "cell_line_cellosaurus_candidate": null,
+    "tissue": "brain",
+    "tissue_segment": null,
+    "passage_or_state": null,
+    "context_kind": "iPSC_derived",
+    "developmental_stage": "differentiated",
+    "cell_state": "differentiated",
+    "subcellular_fraction": null,
+    "engineered_modifications": [
+      {
+        "kind": "germline_genotype",
+        "label": "SNCA_familial_mutation",
+        "variant": {
+          "label": "SNCA_mut",
+          "description": "Familial Parkinson SNCA point mutation (patient-derived iPSC)",
+          "is_wildtype": false
+        }
+      }
+    ],
+    "co_culture_partners": [],
+    "sort_markers": [],
+    "cell_composition_estimates": []
+  },
+  "disease_state": {
+    "term_raw": "Parkinson's disease",
+    "mesh_id_candidate": "MeSH:D010300",
+    "status": "case"
+  },
+  "perturbations": [],
+  "technical_treatments": [],
+  "patient_metadata": null,
+  "extraction": {
+    "schema_version": "stage1.v3",
+    "model": "openai:gpt-5.5",
+    "confidence": 0.91,
+    "ambiguity_flags": ["disease_state_present"],
+    "raw_input_hash": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+  }
+}

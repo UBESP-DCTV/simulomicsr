@@ -1,0 +1,2752 @@
+[
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "vehicle_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:f693b9c2e10949213e1417dcd76efb68d0487bf2abd16fb50bc7eb434e50b747",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259508",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "ethanol",
+          "type": "vehicle"
+        },
+        "agent_raw": "EtOH",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations",
+        "technical_treatment_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:8024490b353fdfbe7bcd41d0e0fa72b938fcb3b71303f4b1f21c15eb34c39ac7",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259509",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "ethanol",
+          "type": "vehicle"
+        },
+        "agent_raw": "EtOH",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "4-thiouridine",
+          "type": "small_molecule"
+        },
+        "agent_raw": "4sU",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 0.25,
+          "value_raw": "15 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "anti-m6A antibodies (202003, SYSY)",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": "D001943",
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:1e23a7073f41794d12e12fd4b8eeeda732485c2c565c3d5d496e5e08001c93d1",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259510",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17beta-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:e29f7621c92e4452522a73265f9077fa2a36d947bf35c4054afa5d73ecbbbd3a",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259511",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "Estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "4-thiouridine",
+          "type": "small_molecule"
+        },
+        "agent_raw": "4sU",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 0.25,
+          "value_raw": "15 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "anti-m6A antibodies (202003, SYSY)",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": "proliferating",
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations",
+        "vehicle_only",
+        "technical_treatment_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:f693b9c2e10949213e1417dcd76efb68d0487bf2abd16fb50bc7eb434e50b747",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259512",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "ethanol",
+          "type": "vehicle"
+        },
+        "agent_raw": "EtOH",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "technical_treatment_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:8024490b353fdfbe7bcd41d0e0fa72b938fcb3b71303f4b1f21c15eb34c39ac7",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259513",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "ethanol",
+          "type": "vehicle"
+        },
+        "agent_raw": "EtOH",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "4-thiouridine",
+          "type": "small_molecule"
+        },
+        "agent_raw": "4sU",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 0.25,
+          "value_raw": "15 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      },
+      {
+        "agent_raw": "anti-m6A antibodies (202003, SYSY)",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "disease_state_present"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:1e23a7073f41794d12e12fd4b8eeeda732485c2c565c3d5d496e5e08001c93d1",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259514",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "technical_treatment_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:e29f7621c92e4452522a73265f9077fa2a36d947bf35c4054afa5d73ecbbbd3a",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259515",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      },
+      {
+        "agent_raw": "anti-m6A antibodies (202003, SYSY)",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": "proliferating",
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "technical_treatment_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:61b44701fc4fcdf0802502f7d8ec69e0c868d53b00fa93a12ad544382c2a9b00",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259516",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "ethanol",
+          "type": "vehicle"
+        },
+        "agent_raw": "EtOH",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "4-thiouridine",
+          "type": "small_molecule"
+        },
+        "agent_raw": "4sU",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 0.0833,
+          "value_raw": "5 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "siCTL",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 3
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 5 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "disease_state_present",
+        "technical_treatment_only"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:0155cb63dc2680b87fac3451ab594fd5c6b2c3075c545ae7487bc22a6f69b239",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259517",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17beta-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "CHEBI",
+          "preferred_name": "4-thiouridine",
+          "type": "small_molecule"
+        },
+        "agent_raw": "4sU",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 0.0833,
+          "value_raw": "5 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "control siRNA",
+          "type": "other"
+        },
+        "agent_raw": "siCTL",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 5 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "MCF7",
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:3ce94b6a6b001c742d144cc451f3483bb9f0999330ed56852fe50d1532a9f31e",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259518",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17beta-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "YTHDC1",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "siYTHDC1",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 5 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multiple_perturbations",
+        "vehicle_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:80a0737bb87208b7f65be53862d66845b5f60c23f0be61e489e153a503d80bd4",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259519",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16236",
+          "id_database": "CHEBI",
+          "preferred_name": "ethanol",
+          "type": "vehicle"
+        },
+        "agent_raw": "EtOH",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "other"
+        },
+        "agent_raw": "siCTL",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "disease_state_present"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:7d827d9ef8d71ac8b92b1f525c357a7e90789d1583c021c5ecd41ebd1157b294",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259520",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "control siRNA",
+          "type": "other"
+        },
+        "agent_raw": "siCTL",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0031",
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:6b4b832210a0a93a975c08702eca4389e5c72afba6dce27db541133cea5abc1c",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259521",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17beta-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": "HGNC",
+          "preferred_name": "YTHDC1",
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "siYTHDC1",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:bf0b1b1007866738f11d0e6e4ec96d7b4f13007975d8e15b191671df10ba1ce1",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259522",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17β-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "disease_state_present"
+      ],
+      "confidence": 0.94,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:bf0b1b1007866738f11d0e6e4ec96d7b4f13007975d8e15b191671df10ba1ce1",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4259523",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "Estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": {
+        "kind": "nuclear",
+        "raw": "nuclear RNA"
+      },
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "vehicle_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.82,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:1d0a0fdd29cdf7bd5eb6f8f933a94a86616970914690ea139d68ccb195c3f987",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4729633",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "vehicle",
+          "type": "vehicle"
+        },
+        "agent_raw": "Vehice",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "MCF7",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": {
+        "kind": "nuclear",
+        "raw": "nuclear RNA"
+      },
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "human breast cancer cell line"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "compound_unmapped",
+        "multiple_perturbations",
+        "disease_state_present",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:5328a5f675058a2aa3e0eb781bd477a54707f721d1d74e195910edff2abf8139",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM4729634",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "17beta-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "PROTAC3",
+          "type": "small_molecule"
+        },
+        "agent_raw": "PROTAC3",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24 hour"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "nuclear RNA",
+        "kind": "rna_fractionation"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "cell_line_ambiguous",
+        "disease_state_present"
+      ],
+      "confidence": 0.91,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:92c28e20384f7590df8df9508a54fce43ec97e9c99c07a018f075a08d17be779",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135064",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "disease_state_present",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:9dc1cdc46f93dd620c401ac69d7527b0e2cc0be5bd0d7b4a30f3302995ac5cb9",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135065",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17β-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "small_molecule"
+        },
+        "agent_raw": "PROTAC3",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "cell_line_ambiguous",
+        "disease_state_present"
+      ],
+      "confidence": 0.82,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:dad3b731c4f03b4877003a84183eced515d4cf4b5b17f9c4b203b46fee153cca",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135066",
+    "host_organism": null,
+    "organism": "human",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "ethanol",
+          "type": "vehicle"
+        },
+        "agent_raw": "EtOH",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "control siRNA",
+          "type": "other"
+        },
+        "agent_raw": "siCTL",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multiple_perturbations",
+        "cell_line_ambiguous",
+        "disease_state_present",
+        "technical_treatment_only"
+      ],
+      "confidence": 0.84,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:83a2381f8591e4627a8cac031274f5a159c6a51c77eb252b9a20c7dbd8b26624",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135067",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17beta-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": "siCTL",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      },
+      {
+        "agent_raw": "antibody: NA",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:6e7966bb6a985d89eaf111c82ea5ff8e3746644cad85d095c8074c8f532f75d5",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135068",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "siMETTL3/14",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": {
+          "kind": "genetic_knockdown",
+          "targets": [
+            "METTL3",
+            "METTL14"
+          ]
+        },
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "4sU 15 mins",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multiple_perturbations",
+        "cell_line_ambiguous",
+        "disease_state_present"
+      ],
+      "confidence": 0.82,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:0fcb013be3cc1f704d26380510b64548deb7ca654651596d00c1880eb8a56e5b",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135069",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "other"
+        },
+        "agent_raw": "siCTL",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "cell_line_ambiguous",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:5cf532a5fc2e9cab39769e5b8f84f2c6517687f096cafccce2062a489fe6b8d5",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135070",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "siMETTL3/14",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": {
+          "kind": "genetic_knockdown",
+          "targets": [
+            "METTL3",
+            "METTL14"
+          ]
+        },
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multiple_perturbations",
+        "cell_line_ambiguous",
+        "disease_state_present"
+      ],
+      "confidence": 0.82,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:30bd9e1f91a7f93e6104b547fe977d346c059208cdcd9b6714665997ff6d4721",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135071",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "control siRNA",
+          "type": "other"
+        },
+        "agent_raw": "siCTL",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "genetic_knockdown",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "anti-m6A antibodies (202003, SYSY)",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "multi_factor_in_string",
+        "multiple_perturbations",
+        "cell_line_ambiguous",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:8659b75bcebc89b1f9972567d4515e66dd0f81754e4d0084fe4eae5a9bc7af00",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135072",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17beta-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": {
+            "id_in_collection": "METTL3;METTL14",
+            "name": "METTL3/METTL14"
+          },
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "gene_or_protein"
+        },
+        "agent_raw": "siMETTL3/14",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "genetic_knockdown",
+        "mediated_effect": {
+          "kind": "genetic_knockdown",
+          "targets": [
+            "METTL3",
+            "METTL14"
+          ]
+        },
+        "phase": null,
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": [
+      {
+        "agent_raw": "anti-m6A antibodies (202003, SYSY)",
+        "kind": "chip_or_clip_setup"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations",
+        "cell_line_ambiguous",
+        "disease_state_present"
+      ],
+      "confidence": 0.86,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:93b7c0c57f771e0d0ec1404b15d655e7863eb57e933ed8c6177ec403517d9d69",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135073",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multi_factor_in_string",
+        "compound_unmapped",
+        "cell_line_ambiguous",
+        "multiple_perturbations",
+        "disease_state_present",
+        "opaque_compound_code"
+      ],
+      "confidence": 0.83,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:2db55c1345a7fbf0865575111fd00b97fe46eee5cd2ccbbc9002068841b7f14b",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135074",
+    "host_organism": null,
+    "organism": "human",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "small_molecule"
+        },
+        "agent_raw": "PROTAC3",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 8,
+          "value_raw": "8h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "human breast cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "breast",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "breast cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "multiple_perturbations",
+        "opaque_compound_code",
+        "disease_state_present"
+      ],
+      "confidence": 0.85,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:cb7c52a0b32c1afa9b27909a20f12f7aa735081990c34ea0a9714d69b966ea61",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM5135075",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:16469",
+          "id_database": "CHEBI",
+          "preferred_name": "17beta-estradiol",
+          "type": "small_molecule"
+        },
+        "agent_raw": "E2",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 1,
+          "value_raw": "60 mins"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      },
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "PROTAC3",
+          "type": "small_molecule"
+        },
+        "agent_raw": "PROTAC3",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 2
+      }
+    ],
+    "series_id": "GSE143441",
+    "technical_treatments": []
+  }
+]

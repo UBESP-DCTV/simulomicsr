@@ -1,0 +1,1040 @@
+[
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "transitional",
+      "cell_type_or_line_raw": "840-03-03 iPSC macrophage precursors",
+      "co_culture_partners": [],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "technical_treatment_only",
+        "protocol_only_no_perturbation"
+      ],
+      "confidence": 0.87,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:ee631ccd3b69c3199e83cf735897da5ffebe3a4efedac99ef7e81c3439bf571b",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005152",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "F",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": null,
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": [
+      {
+        "agent_raw": "directly lysed after harvest from differentiation factories",
+        "kind": "batch_or_processing"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "840-03-03; iPSC microglia in monoculture",
+      "co_culture_partners": [],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:c38c390d681555bfad104df47c228165b1fdee4da45f29c7109337563a0c112a",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005153",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "F",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "other"
+        },
+        "agent_raw": "differentiation in monoculture",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 336,
+          "value_raw": "14 days"
+        },
+        "is_negative_control": false,
+        "kind": "differentiation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "840-03-03 iPSC microglia extracted from co-culture with motor neurons",
+      "co_culture_partners": [
+        {
+          "cell_type": "motor neurons",
+          "modifications": [],
+          "role": "partner",
+          "source_organism": null
+        }
+      ],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "multi_factor_in_string"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:25a382734a10fdbbec1b0c58ed653d2aca85588ae2a7dab9a279ee70712871e9",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005154",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "F",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "co-culture with motor neurons",
+          "type": "other"
+        },
+        "agent_raw": "differentiation in co-culture with motor neurons",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 336,
+          "value_raw": "14 days"
+        },
+        "is_negative_control": false,
+        "kind": "differentiation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "iPSC macrophage precursors",
+      "co_culture_partners": [],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "technical_treatment_only",
+        "protocol_only_no_perturbation"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:02c0d0fe03478369dd400ae9f237b71b9e166f97c49f24c670b35e1bdf39b631",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005155",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "M",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": null,
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": [
+      {
+        "agent_raw": "directly lysed after harvest from differentiation factories",
+        "kind": "other_technical"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "841-03-01; iPSC microglia in monoculture",
+      "co_culture_partners": [],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:a3ce3c12449080572e8e31f51ea24ea3313db9a776444ccdd7c3541736729199",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005156",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "M",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "differentiation",
+          "type": "other"
+        },
+        "agent_raw": "differentiation in monoculture",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 336,
+          "value_raw": "14 days"
+        },
+        "is_negative_control": false,
+        "kind": "differentiation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "iPSC microglia extracted from co-culture with motor neurons",
+      "co_culture_partners": [
+        {
+          "cell_type": "motor neurons",
+          "modifications": [],
+          "role": "partner",
+          "source_organism": null
+        }
+      ],
+      "context_kind": "co_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:38c517d7d74e92745a87723e29de8d6a208a629ff11f8935b2b7975c71eeba13",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005157",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "M",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "other"
+        },
+        "agent_raw": "differentiation in co-culture with motor neurons",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 336,
+          "value_raw": "14 days"
+        },
+        "is_negative_control": false,
+        "kind": "differentiation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "unclear",
+      "cell_type_or_line_raw": "856-03-04 iPSC macrophage precursors",
+      "co_culture_partners": [],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": "precursor",
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "protocol_only_no_perturbation"
+      ],
+      "confidence": 0.91,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d708d7169dc351d54fc531f32c88f83652f6da88f546cdfaa412da12b0381f3a",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005158",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "F",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": null,
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": [
+      {
+        "agent_raw": "directly lysed after harvest from differentiation factories",
+        "kind": "batch_or_processing"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "856-03-04; iPSC microglia in monoculture",
+      "co_culture_partners": [],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:fdafc6dd6ca7d8f8700bbd15be40620abe3c4dba7dc94b0ff2bae1dd70713b11",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005159",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "F",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "differentiation",
+          "type": "other"
+        },
+        "agent_raw": "differentiation in monoculture",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 336,
+          "value_raw": "14 days"
+        },
+        "is_negative_control": false,
+        "kind": "differentiation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "iPSC microglia extracted from co-culture with motor neurons",
+      "co_culture_partners": [
+        {
+          "cell_type": "motor neurons",
+          "modifications": [],
+          "role": "partner",
+          "source_organism": null
+        }
+      ],
+      "context_kind": "co_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "multi_factor_in_string"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:2bc4dec9a94532b5320cab82b64253a38d360262ecb682303bbadd36e4cb8229",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005160",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "F",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "differentiation",
+          "type": "other"
+        },
+        "agent_raw": "differentiation in co-culture with motor neurons",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 336,
+          "value_raw": "14 days"
+        },
+        "is_negative_control": false,
+        "kind": "differentiation",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "OX3-06; iPSC macrophage precursors",
+      "co_culture_partners": [],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "protocol_only_no_perturbation"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:f02feb21c2dadbb68f09ede5dc99249131150e695d39392d476ce6a10ef922c6",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005161",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "M",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "none"
+        },
+        "agent_raw": null,
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "none",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": [
+      {
+        "agent_raw": "directly lysed after harvest from differentiation factories",
+        "kind": "batch_or_processing"
+      }
+    ]
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "OX3-06; iPSC microglia in monoculture",
+      "co_culture_partners": [],
+      "context_kind": "iPSC_derived",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.91,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:b7febdf2c7d056866c2c9beb7a8f7824960f51602929744cd9b29ab2534d87f7",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005162",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "M",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": null,
+          "type": "other"
+        },
+        "agent_raw": "differentiation in monoculture",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 336,
+          "value_raw": "14 days"
+        },
+        "is_negative_control": false,
+        "kind": "differentiation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "differentiated",
+      "cell_type_or_line_raw": "OX3-06; iPSC microglia extracted from co-culture with motor neurons",
+      "co_culture_partners": [
+        {
+          "cell_type": "motor neurons",
+          "modifications": [],
+          "role": "partner",
+          "source_organism": null
+        }
+      ],
+      "context_kind": "co_culture",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "WT",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "none",
+      "term_raw": null
+    },
+    "extraction": {
+      "ambiguity_flags": [],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:cd0c54da5b221efd582f59799808be57f15e331809bd4e65ede16c4077804238",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM6005163",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": {
+      "age": null,
+      "ancestry_admixture": null,
+      "ancestry_or_population": null,
+      "clinical_response": null,
+      "condition": null,
+      "donor_id": null,
+      "sex": "M",
+      "stage": null,
+      "survival_group": null,
+      "visit_or_timepoint": null
+    },
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "differentiation",
+          "type": "other"
+        },
+        "agent_raw": "differentiation in co-culture with motor neurons",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 336,
+          "value_raw": "14 days"
+        },
+        "is_negative_control": false,
+        "kind": "differentiation",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE200037",
+    "technical_treatments": []
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "geo_accession": "GSM2000002",
+  "series_id": "GSE100002",
+  "organism": "Homo sapiens",
+  "host_organism": null,
+  "cell_context": {
+    "cell_type_or_line_raw": "585B1",
+    "cell_line_cellosaurus_candidate": null,
+    "tissue": "pluripotent",
+    "tissue_segment": null,
+    "passage_or_state": null,
+    "context_kind": "iPSC_derived",
+    "developmental_stage": "undifferentiated",
+    "cell_state": "undifferentiated",
+    "subcellular_fraction": null,
+    "engineered_modifications": [
+      {
+        "kind": "inducible_transgene",
+        "label": "tet_on_SOX17",
+        "variant": {
+          "label": "SOX17",
+          "description": "Tet-On inducible SOX17 overexpression",
+          "is_wildtype": true
+        }
+      }
+    ],
+    "co_culture_partners": [],
+    "sort_markers": [],
+    "cell_composition_estimates": []
+  },
+  "disease_state": {
+    "term_raw": null,
+    "mesh_id_candidate": null,
+    "status": "none"
+  },
+  "perturbations": [
+    {
+      "kind": "small_molecule",
+      "agent_raw": "doxycycline",
+      "agent_normalized": {
+        "type": "small_molecule",
+        "id_database": "DrugBank",
+        "id": "DB00254",
+        "preferred_name": "doxycycline",
+        "collection": null
+      },
+      "dose": { "value_raw": "1 ug/ml", "value_numeric": 1, "unit": "ug/ml" },
+      "duration": { "value_raw": "6d", "value_hours": 144, "is_zero_timepoint": false },
+      "phase": null,
+      "temporal_order": null,
+      "is_negative_control": false,
+      "mediated_effect": {
+        "kind": "genetic_overexpression",
+        "targets": ["SOX17"]
+      }
+    }
+  ],
+  "technical_treatments": [],
+  "patient_metadata": null,
+  "extraction": {
+    "schema_version": "stage1.v3",
+    "model": "openai:gpt-5.5",
+    "confidence": 0.92,
+    "ambiguity_flags": [],
+    "raw_input_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

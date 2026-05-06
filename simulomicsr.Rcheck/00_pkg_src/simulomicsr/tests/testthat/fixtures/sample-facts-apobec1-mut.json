@@ -1,0 +1,64 @@
+{
+  "geo_accession": "GSM2000003",
+  "series_id": "GSE100003",
+  "organism": "Homo sapiens",
+  "host_organism": null,
+  "cell_context": {
+    "cell_type_or_line_raw": "HEK293T",
+    "cell_line_cellosaurus_candidate": null,
+    "tissue": "kidney_embryonic",
+    "tissue_segment": null,
+    "passage_or_state": null,
+    "context_kind": "cell_line_in_vitro",
+    "developmental_stage": null,
+    "cell_state": null,
+    "subcellular_fraction": null,
+    "engineered_modifications": [
+      {
+        "kind": "transgene_stable",
+        "label": "APOBEC1_YTHmut",
+        "variant": {
+          "label": "YTHmut",
+          "description": "YTH domain mutant of APOBEC1",
+          "is_wildtype": false
+        }
+      }
+    ],
+    "co_culture_partners": [],
+    "sort_markers": [],
+    "cell_composition_estimates": []
+  },
+  "disease_state": {
+    "term_raw": null,
+    "mesh_id_candidate": null,
+    "status": "none"
+  },
+  "perturbations": [
+    {
+      "kind": "genetic_overexpression",
+      "agent_raw": "APOBEC1",
+      "agent_normalized": {
+        "type": "gene_or_protein",
+        "id_database": "HGNC",
+        "id": "HGNC:APOBEC1",
+        "preferred_name": "APOBEC1",
+        "collection": null
+      },
+      "dose": { "value_raw": null, "value_numeric": null, "unit": null },
+      "duration": { "value_raw": "24h", "value_hours": 24, "is_zero_timepoint": false },
+      "phase": null,
+      "temporal_order": null,
+      "is_negative_control": false,
+      "mediated_effect": null
+    }
+  ],
+  "technical_treatments": [],
+  "patient_metadata": null,
+  "extraction": {
+    "schema_version": "stage1.v3",
+    "model": "openai:gpt-5.5",
+    "confidence": 0.85,
+    "ambiguity_flags": [],
+    "raw_input_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+  }
+}
