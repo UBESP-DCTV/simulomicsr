@@ -1,0 +1,29 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.6.0-cuda12.6-cudnn9-runtime
+
+%labels
+    Maintainer laimsdgxllm
+    RuntimeContract first-pass-managed
+
+%files
+    python /opt/laims/runtime/python
+    bin/run-batch /opt/laims/runtime/bin/run-batch
+    requirements.txt /opt/laims/runtime/requirements.txt
+
+%post
+    set -eu
+    python -m pip install --no-cache-dir --upgrade pip setuptools wheel
+    python -m pip install --no-cache-dir -r /opt/laims/runtime/requirements.txt
+    chmod -R a+rX /opt/laims/runtime/python
+    chmod 0755 /opt/laims/runtime/bin/run-batch
+    mkdir -p /opt/laims/cache/huggingface
+    ln -sf /opt/laims/runtime/bin/run-batch /usr/local/bin/laims-run-batch
+
+%environment
+    export PYTHONUNBUFFERED=1
+    export PYTHONPATH=/opt/laims/runtime/python:${PYTHONPATH}
+    export HF_HOME=${HF_HOME:-/opt/laims/cache/huggingface}
+    export TRANSFORMERS_CACHE=${TRANSFORMERS_CACHE:-$HF_HOME}
+
+%runscript
+    exec python /opt/laims/runtime/python/laims_runtime/run_batch.py "$@"

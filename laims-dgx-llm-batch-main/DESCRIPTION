@@ -1,0 +1,35 @@
+Package: laimsdgxllm
+Type: Package
+Title: R Interface for Batch LLM Extraction on DGX via SLURM
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Corrado",
+           family = "Team",
+           role = c("aut", "cre"),
+           email = "corrado@example.org")
+Author: Corrado Team [aut, cre]
+Maintainer: Corrado Team <corrado@example.org>
+Description: User-facing R package scaffold for reproducible batch LLM
+    inference on a remote DGX environment reachable only through a login
+    node, SSH, SLURM jobs, and Singularity/Apptainer containers. The
+    package is designed for structured extraction workflows where many
+    records share the same prompt template and output schema, while the
+    client remains on the user's workstation and persists run metadata in a
+    local SQLite registry.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    cli,
+    DBI,
+    fs,
+    jsonlite,
+    processx,
+    RSQLite,
+    yaml
+Suggests:
+    checkmate,
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
