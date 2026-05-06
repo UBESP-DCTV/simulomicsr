@@ -1,0 +1,135 @@
+---
+title: "P4 DGX setup — one-time guide"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{P4 DGX setup — one-time guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+Questa vignette guida il setup iniziale (one-time) per usare il control
+plane P4 verso la DGX UniPD HPC. Va eseguita UNA VOLTA per machine.
+
+## 1. Prerequisiti
+
+- Accesso SSH a `logindgx.hpc.ict.unipd.it` con user `u0044` (o tuo).
+  Assicurati che `ssh u0044@logindgx.hpc.ict.unipd.it 'hostname'` funzioni
+  senza password (key-based auth).
+- Account HuggingFace con EULA del modello accettata. Apri
+  https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506,
+  clicca "Agree and access" se non l'hai gia' fatto. Genera un access
+  token in https://huggingface.co/settings/tokens (read scope basta).
+- `simulomicsr` installato/loaded localmente.
+
+## 2. Store HF\_TOKEN sul login node
+
+Una sola volta:
+
+```sh
+ssh u0044@logindgx.hpc.ict.unipd.it
+cat > ~/.simulomicsr-dgx.env <<'EOF'
+export HF_TOKEN="hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+EOF
+chmod 600 ~/.simulomicsr-dgx.env
+exit
+```
+
+Sostituisci `hf_xxx...` con il tuo token vero. `dgx_p4_submit()` fara'
+sourcing di questo file prima di sbatch.
+
+## 3. Build + push immagine Docker (laptop)
+
+Dalla radice del pacchetto:
+
+```sh
+cd inst/dgx
+make build         # docker build -t lucavd/simulomicsr-vllm:latest .
+make push          # docker push (richiede docker login una volta)
+cd ../..
+```
+
+Tempo: ~3-5 min con cache layer hit.
+
+## 4. Pull come SIF sul cluster + pre-download modello
+
+```sh
+make -C inst/dgx pull-cluster        # singularity pull docker://lucavd/simulomicsr-vllm:latest
+make -C inst/dgx predownload-model   # huggingface-cli download ~50 GB
+```
+
+Dopo questi due step, i job SLURM partono **senza** rete e **senza**
+HF\_TOKEN in runtime.
+
+## 5. Rebuild quando cambiano gli asset
+
+Quando modifichi `inst/dgx/python/`, `inst/dgx/Dockerfile`, o
+`inst/dgx/slurm/run_p4.sh`:
+
+- Cambi a `python/` o `Dockerfile` → `make build push pull-cluster`
+  (ricostruisce + ridistribuisce l'immagine SIF sul cluster).
+- Cambi solo a `slurm/run_p4.sh` → niente rebuild (il template viene
+  letto al submit-time da `dgx_p4_submit()`).
+
+## 6. Smoke test 1 GPU, 100 record
+
+Prepara un input mini (es. 100 sample dal xlsx):
+
+```{r}
+library(simulomicsr)
+library(readxl)
+library(dplyr)
+
+xlsx <- read_xlsx("data-raw/relevant_sample_classified.xlsx",
+                  sheet = "relevant_sample")
+mini <- xlsx |>
+  dplyr::slice_head(n = 100) |>
+  dplyr::transmute(
+    record_id     = geo_accession,
+    geo_accession = geo_accession,
+    series_id     = series_id,
+    string        = string
+  )
+
+dir.create("data-raw", showWarnings = FALSE)
+input_path <- "data-raw/p4-smoke-stage1.jsonl"
+con <- file(input_path, "w")
+for (i in seq_len(nrow(mini))) {
+  cat(jsonlite::toJSON(as.list(mini[i, ]), auto_unbox = TRUE), "\n",
+      sep = "", file = con)
+}
+close(con)
+```
+
+Submit (il default usa 4 GPU; per smoke test con 1 GPU modifica
+manualmente `<bundle_dir>/run_p4.rendered.sh` se necessario):
+
+```{r}
+cfg    <- dgx_config()
+bundle <- dgx_p4_build_bundle(input_path, "stage1", cfg,
+                              metadata = list(slug = "smoke-1gpu"))
+job    <- dgx_p4_submit(bundle, time = "00:30:00", config = cfg)
+dgx_p4_status(job, watch = TRUE, interval = 30)
+result <- dgx_p4_collect(job)
+result$summary
+head(result$predictions)
+```
+
+## 7. Troubleshooting
+
+- **SSH timeout**: verifica `ssh -v u0044@logindgx.hpc.ict.unipd.it 'hostname'`.
+  Se il cluster e' lento, aumenta il timeout in `dgx_config(ssh_timeout = 60)`.
+- **HF gated model 401**: EULA non accettata o token scaduto. Ri-fai
+  il passo 2 con un token aggiornato.
+- **OOM su 24B in 80 GB H100**: abbassa `gpu_memory_utilization` da 0.90
+  a 0.85 in `inst/extdata/p4-defaults.yml` e ricostruisci il bundle.
+- **Resume non riparte da fine**: verifica che `predictions.worker_*.jsonl`
+  siano nel run dir sul cluster (NON solo `predictions.jsonl` mergeato).
+  `dgx_p4_collect()` deduplica per `record_id`, quindi re-submit e' sicuro.
