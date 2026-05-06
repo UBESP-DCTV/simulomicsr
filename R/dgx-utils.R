@@ -12,7 +12,7 @@
   slug_clean <- gsub("[^A-Za-z0-9]+", "-", slug)
   slug_clean <- gsub("^-+|-+$", "", slug_clean)
   slug_clean <- tolower(slug_clean)
-  rand_hex <- substring(digest::digest(paste0(ts, slug_clean, runif(1)), algo = "md5"), 1, 6)
+  rand_hex <- substring(digest::digest(paste0(ts, slug_clean, stats::runif(1)), algo = "md5"), 1, 6)
   paste(ts, slug_clean, rand_hex, sep = "-")
 }
 

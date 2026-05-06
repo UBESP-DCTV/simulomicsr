@@ -36,6 +36,9 @@ Default \code{"luca.vedovelli@unipd.it"}.}
 
 \item{ssh_key_path}{path opzionale a private key SSH. \code{NULL} significa
 usa la default (id_rsa o ssh-agent).}
+
+\item{...}{interno, intercetta argomenti non riconosciuti per
+produrre un errore esplicito invece del default R "argument unused".}
 }
 \value{
 oggetto \code{simulomicsr_dgx_config}.
