@@ -23,8 +23,9 @@
 | `R/dgx-utils.R` | NUOVO | helper interni `.dgx_run_id()` UUID, `.dgx_ssh()`, `.dgx_rsync()`, `.dgx_render_slurm_template()` | ~100 |
 | `R/dgx-bundle.R` | NUOVO | `dgx_p4_build_bundle(input_jsonl, stage, config, ...)` | ~100 |
 | `R/dgx-submit.R` | NUOVO | `dgx_p4_submit()`, `dgx_p4_status()`, `dgx_p4_collect()`, `dgx_p4_recover()` | ~150 |
-| `inst/dgx/runtime.def` | NUOVO | Apptainer definition, base `vllm/vllm-openai:v0.6.4` | ~25 |
-| `inst/dgx/build-runtime.sh` | NUOVO | wrapper sh per `apptainer build current.sif runtime.def` | ~20 |
+| `inst/dgx/Dockerfile` | NUOVO | FROM vllm/vllm-openai:v0.6.4, COPY python/, ENTRYPOINT run_p4_vllm.py | ~20 |
+| `inst/dgx/Makefile` | NUOVO | target docker build / push / pull-cluster / predownload-model | ~40 |
+| `inst/dgx/.dockerignore` | NUOVO | escludi __pycache__, .pyc dal build context | ~5 |
 | `inst/dgx/slurm/run_p4.sh` | NUOVO | template SLURM con placeholder `__RUN_ID__`/`__USER__`/`__TIME__`/`__MAIL_USER__` | ~50 |
 | `inst/dgx/python/run_p4_vllm.py` | NUOVO | entry: 4 worker DP, vLLM offline batch, guided JSON, append JSONL | ~150 |
 | `inst/dgx/python/prompts.py` | NUOVO | `render_user_message_stage1(record)`, `render_user_message_stage2(record)` | ~50 |
@@ -1559,99 +1560,140 @@ EOF
 
 ---
 
-## Task 10: `inst/dgx/runtime.def` + `build-runtime.sh` Apptainer
+## Task 10: `inst/dgx/Dockerfile` + `Makefile` per workflow docker→DockerHub→Singularity
 
 **Files:**
-- Crea: `inst/dgx/runtime.def`
-- Crea: `inst/dgx/build-runtime.sh`
+- Crea: `inst/dgx/Dockerfile`
+- Crea: `inst/dgx/Makefile`
+- Crea: `inst/dgx/.dockerignore`
 
-- [ ] **Step 10.1: Crea `inst/dgx/runtime.def`**
+Pattern allineato a `2026.scRNA_DGX/Makefile` dell'utente. Build locale + push DockerHub + `singularity pull` sul cluster (no `--fakeroot` remoto).
 
-```
-Bootstrap: docker
-From: vllm/vllm-openai:v0.6.4
+- [ ] **Step 10.1: Crea `inst/dgx/Dockerfile`**
 
-%labels
-    Maintainer simulomicsr
-    Model mistralai/Mistral-Small-3.2-24B-Instruct-2506
-    Purpose P4 batch classification stage1+stage2
+```dockerfile
+# CUDA 12.1+ richiesto da vLLM 0.6.x.
+# Driver DGX UniPD HPC (poddgx02) compatibile CUDA 12 (verificato dal
+# progetto 2026.scRNA_DGX che gira su nvcr.io/nvidia/rapidsai/base con
+# CUDA 12.x sullo stesso nodo).
+FROM vllm/vllm-openai:v0.6.4
 
-%files
-    python /opt/simulomicsr/runtime/python
+LABEL maintainer="simulomicsr" \
+      model="mistralai/Mistral-Small-3.2-24B-Instruct-2506" \
+      purpose="P4 batch classification stage1+stage2"
 
-%post
-    set -eu
-    python -m pip install --no-cache-dir jsonschema orjson pyyaml
-    chmod -R a+rX /opt/simulomicsr/runtime/python
-    mkdir -p /opt/simulomicsr/cache /work
+# Dipendenze extra rispetto al base vllm/vllm-openai
+RUN pip install --no-cache-dir jsonschema orjson pyyaml
 
-%environment
-    export PYTHONUNBUFFERED=1
-    export PYTHONPATH=/opt/simulomicsr/runtime/python:${PYTHONPATH:-}
-    export HF_HOME=${HF_HOME:-/work/models/HF_HOME}
-    export TRANSFORMERS_CACHE=${TRANSFORMERS_CACHE:-$HF_HOME}
+# Copia gli script Python custom in una location stabile
+COPY python /opt/simulomicsr/runtime/python
 
-%runscript
-    exec python /opt/simulomicsr/runtime/python/run_p4_vllm.py "$@"
-```
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/opt/simulomicsr/runtime/python \
+    HF_HOME=/work/models/HF_HOME \
+    TRANSFORMERS_CACHE=/work/models/HF_HOME
 
-- [ ] **Step 10.2: Crea `inst/dgx/build-runtime.sh`**
-
-```sh
-#!/bin/sh
-# Build script per il container Apptainer P4. Da eseguire sul login
-# node DGX UNA VOLTA (e ogni volta che cambiamo runtime.def o gli script
-# python in inst/dgx/python/).
-#
-# Uso (dal login node, dopo `rsync inst/dgx/ remote:simulomicsr-dgx/runtime/`):
-#   cd ~/simulomicsr-dgx/runtime/
-#   module load singularity/4.2.0
-#   sh build-runtime.sh
-set -eu
-
-DEF_FILE="${DEF_FILE:-runtime.def}"
-SIF_OUT="${SIF_OUT:-current.sif}"
-
-if ! command -v apptainer >/dev/null 2>&1; then
-    if [ -x /cm/shared/apps/singularity/4.2.0/bin/singularity ]; then
-        BIN="/cm/shared/apps/singularity/4.2.0/bin/singularity"
-        ARGS="build --force --fakeroot"
-    else
-        echo "ERRORE: ne apptainer ne singularity disponibili." >&2
-        exit 1
-    fi
-else
-    BIN="apptainer"
-    ARGS="build --force --fakeroot"
-fi
-
-echo "[INFO] Building $SIF_OUT da $DEF_FILE con $BIN $ARGS"
-$BIN $ARGS "$SIF_OUT" "$DEF_FILE"
-echo "[INFO] Done: $(ls -lh $SIF_OUT)"
+# vllm/vllm-openai default ENTRYPOINT lancia il server HTTP. Lo
+# sovrascriviamo col nostro batch runner.
+ENTRYPOINT ["python", "/opt/simulomicsr/runtime/python/run_p4_vllm.py"]
 ```
 
-- [ ] **Step 10.3: chmod su build-runtime.sh per consistenza**
+- [ ] **Step 10.2: Crea `inst/dgx/Makefile`**
+
+```makefile
+# Makefile per build e deploy del container P4.
+# Pattern: docker build locale -> push DockerHub -> singularity pull sul cluster.
+# Allineato a 2026.scRNA_DGX/Makefile.
+
+DOCKER_USER ?= lucavd
+IMAGE_NAME  ?= simulomicsr-vllm
+TAG         ?= latest
+FULL_IMAGE  := $(DOCKER_USER)/$(IMAGE_NAME):$(TAG)
+
+LOGIN_HOST  ?= logindgx.hpc.ict.unipd.it
+LOGIN_USER  ?= u0044
+RUNTIME_DIR ?= /mnt/home/$(LOGIN_USER)/simulomicsr-dgx/runtime
+
+.PHONY: build push pull-cluster predownload-model deploy
+
+# Build locale
+build:
+	docker build -t $(FULL_IMAGE) .
+
+# Push a DockerHub (richiede `docker login` una volta)
+push: build
+	docker push $(FULL_IMAGE)
+
+# Pull come SIF sul login node DGX (richiede SSH key valida)
+pull-cluster:
+	ssh $(LOGIN_USER)@$(LOGIN_HOST) \
+		"mkdir -p $(RUNTIME_DIR) && \
+		 cd $(RUNTIME_DIR) && \
+		 module load singularity/4.2.0 && \
+		 singularity pull --force current.sif docker://$(FULL_IMAGE) && \
+		 ls -lh current.sif"
+
+# Pre-download del modello UNA VOLTA (uso HF_TOKEN dal login)
+# Richiede current.sif gia' presente (eseguire `make pull-cluster` prima).
+predownload-model:
+	ssh $(LOGIN_USER)@$(LOGIN_HOST) \
+		". ~/.simulomicsr-dgx.env && \
+		 module load singularity/4.2.0 && \
+		 mkdir -p /mnt/home/$(LOGIN_USER)/simulomicsr-dgx/models/HF_HOME && \
+		 singularity exec \
+		   --bind /mnt/home/$(LOGIN_USER)/simulomicsr-dgx/models/HF_HOME:/work/models/HF_HOME \
+		   $(RUNTIME_DIR)/current.sif \
+		   huggingface-cli download mistralai/Mistral-Small-3.2-24B-Instruct-2506 \
+		   --token \$$HF_TOKEN"
+
+# Pipeline completa
+deploy: push pull-cluster
+	@echo "Container deployed. Esegui 'make predownload-model' per popolare HF cache."
+```
+
+- [ ] **Step 10.3: Crea `inst/dgx/.dockerignore`**
+
+```
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.git/
+*.md
+```
+
+- [ ] **Step 10.4: Verifica sintassi Dockerfile (locally, no build)**
 
 ```bash
-chmod +x inst/dgx/build-runtime.sh
+docker --version
+# Se docker presente:
+docker build --dry-run -t test inst/dgx/ 2>&1 | head -5 || echo "dry-run non supportato, skip"
+# Verifica almeno parsing Dockerfile:
+hadolint inst/dgx/Dockerfile 2>&1 | head -10 || echo "hadolint non disponibile, skip lint"
 ```
 
-- [ ] **Step 10.4: Commit**
+Best-effort. Se docker non installato sul laptop di sviluppo, lascia che l'utente verifichi al momento del build.
+
+- [ ] **Step 10.5: Commit**
 
 ```bash
-git add inst/dgx/runtime.def inst/dgx/build-runtime.sh
+git add inst/dgx/Dockerfile inst/dgx/Makefile inst/dgx/.dockerignore
 git commit -m "$(cat <<'EOF'
-P4 Task 10: runtime.def + build-runtime.sh Apptainer
+P4 Task 10: Dockerfile + Makefile per workflow docker -> DockerHub -> Singularity
 
-runtime.def basato su vllm/vllm-openai:v0.6.4 (CUDA 12 + PyTorch +
-vLLM gia' presenti), aggiunge solo jsonschema/orjson/pyyaml. Copia
-inst/dgx/python/ in /opt/simulomicsr/runtime/python e setta
-PYTHONPATH + HF_HOME default. Runscript = python run_p4_vllm.py "$@".
+Pattern allineato a 2026.scRNA_DGX (lucavd/sc-benchmark): docker build
+locale -> DockerHub -> singularity pull sul cluster, niente apptainer
+build --fakeroot remoto.
 
-build-runtime.sh: wrapper sh per `apptainer build` (con fallback a
-/cm/shared/apps/singularity/4.2.0/bin/singularity --fakeroot se
-apptainer non e' nel PATH del login node UniPD). Da girare manualmente
-sul login una volta (~15-20 min).
+Dockerfile: FROM vllm/vllm-openai:v0.6.4 (CUDA 12.1+, vLLM gia' incluso),
+aggiunge jsonschema/orjson/pyyaml, COPY python/ in /opt/simulomicsr/
+runtime/, ENTRYPOINT = run_p4_vllm.py.
+
+Makefile target: build, push, pull-cluster (ssh + singularity pull),
+predownload-model (one-time HF download via huggingface-cli dentro
+container con HF_TOKEN). deploy = push + pull-cluster.
+
+.dockerignore esclude __pycache__/.pyc dal build context.
 
 Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
@@ -2575,33 +2617,35 @@ exit
 Sostituisci `hf_xxx...` con il tuo token vero. `dgx_p4_submit()` fara'
 sourcing di questo file prima di sbatch.
 
-## 3. Push degli asset al cluster
+## 3. Build + push immagine Docker (laptop)
 
-Dal laptop, dentro la directory del pacchetto:
-
-```sh
-RUNTIME_DIR=/mnt/home/u0044/simulomicsr-dgx/runtime
-ssh u0044@logindgx.hpc.ict.unipd.it "mkdir -p $RUNTIME_DIR"
-rsync -az inst/dgx/ u0044@logindgx.hpc.ict.unipd.it:$RUNTIME_DIR/
-```
-
-Sul cluster:
+Dalla radice del pacchetto:
 
 ```sh
-ssh u0044@logindgx.hpc.ict.unipd.it
-cd /mnt/home/u0044/simulomicsr-dgx/runtime/
-module load singularity/4.2.0
-sh build-runtime.sh
-# Aspetta ~15-20 min, ottieni current.sif (~6-8GB)
-ls -lh current.sif
+cd inst/dgx
+make build         # docker build -t lucavd/simulomicsr-vllm:latest .
+make push          # docker push (richiede docker login una volta)
+cd ../..
 ```
 
-## 4. Rebuild quando cambiano gli asset
+Tempo: ~3-5 min con cache layer hit.
 
-Quando modifichi `inst/dgx/python/`, `inst/dgx/runtime.def`, o
-`inst/dgx/slurm/run_p4.sh`, rifai Step 3. Il container va ribuildato
-solo se cambia `runtime.def` o file Python copiati dentro; il SLURM
-template viene letto al submit-time, non serve rebuild per quello.
+## 4. Pull come SIF sul cluster + pre-download modello
+
+```sh
+make -C inst/dgx pull-cluster        # singularity pull docker://...:latest
+make -C inst/dgx predownload-model   # huggingface-cli download ~50GB
+```
+
+Dopo questi due step, i job SLURM partono **senza** rete e **senza**
+HF_TOKEN.
+
+## 5. Rebuild quando cambiano gli asset
+
+Quando modifichi `inst/dgx/python/`, `inst/dgx/Dockerfile`, o
+`inst/dgx/slurm/run_p4.sh`:
+- Cambi a `python/` o `Dockerfile` → `make build push pull-cluster` (ricostruisce + ridistribuisce)
+- Cambi solo a `slurm/run_p4.sh` → niente rebuild (il template viene letto al submit-time da `dgx_p4_submit()`)
 
 ## 5. Smoke test 1 GPU 100 record
 
@@ -2700,22 +2744,21 @@ EOF
 ## Task 17: Cluster setup one-time (manuale)
 
 **Files:**
-- Nessuna modifica al repo (operazioni remote sul login node).
+- Nessuna modifica al repo (operazioni docker locali + remote sul login node).
 
-⚠️ Questo task richiede accesso SSH al cluster e EULA HuggingFace
-accettata. Se non disponibile, skip e segnala.
+⚠️ Questo task richiede:
+- `docker` installato e funzionante sul laptop
+- Account DockerHub `lucavd` (`docker login` già fatto)
+- Account HuggingFace con EULA Mistral 3.2 accettata
+- Accesso SSH a `logindgx.hpc.ict.unipd.it`
 
-- [ ] **Step 17.1: Verifica HF EULA accettata**
+- [ ] **Step 17.1: Verifica HF EULA accettata e crea HF_TOKEN**
 
-Apri in browser https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506
-con il tuo account, conferma "You have been granted access".
+Apri in browser https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506,
+conferma "You have been granted access". Crea token "read" su
+https://huggingface.co/settings/tokens.
 
-- [ ] **Step 17.2: Genera HF_TOKEN se non gia' fatto**
-
-Apri https://huggingface.co/settings/tokens, crea token di tipo "read"
-(scope minimo).
-
-- [ ] **Step 17.3: Push HF_TOKEN sul login node**
+- [ ] **Step 17.2: Push HF_TOKEN sul login node**
 
 ```bash
 ssh u0044@logindgx.hpc.ict.unipd.it 'cat > ~/.simulomicsr-dgx.env' <<'EOF'
@@ -2727,35 +2770,90 @@ ssh u0044@logindgx.hpc.ict.unipd.it 'ls -l ~/.simulomicsr-dgx.env'
 
 Expected: `-rw------- 1 u0044 ... ~/.simulomicsr-dgx.env`.
 
-- [ ] **Step 17.4: rsync degli asset DGX al login node**
+- [ ] **Step 17.3: Verifica docker login DockerHub**
 
 ```bash
-RUNTIME_DIR=/mnt/home/u0044/simulomicsr-dgx/runtime
-ssh u0044@logindgx.hpc.ict.unipd.it "mkdir -p $RUNTIME_DIR /mnt/home/u0044/simulomicsr-dgx/{bundles,runs,models/HF_HOME}"
-rsync -az --info=progress2 inst/dgx/ u0044@logindgx.hpc.ict.unipd.it:$RUNTIME_DIR/
+docker info 2>&1 | grep -i username || echo "Non loggato"
+# Se non loggato:
+docker login -u lucavd
 ```
 
-Expected: trasferimento di runtime.def, build-runtime.sh, slurm/run_p4.sh, python/*.
+Expected: `Username: lucavd`.
 
-- [ ] **Step 17.5: Build SIF sul login (~15-20 min)**
+- [ ] **Step 17.4: Build + push immagine Docker (laptop, ~3-5 min cache hit)**
+
+Dalla radice del pacchetto:
 
 ```bash
-ssh u0044@logindgx.hpc.ict.unipd.it "cd /mnt/home/u0044/simulomicsr-dgx/runtime/ && module load singularity/4.2.0 && sh build-runtime.sh" 2>&1 | tail -20
+cd inst/dgx
+make build
+docker images | grep simulomicsr-vllm
+make push
+cd ../..
 ```
 
-Expected: ultimo output `[INFO] Done: -rwxr-xr-x ... current.sif (~6-8G)`.
+Expected:
+- `make build` produce immagine `lucavd/simulomicsr-vllm:latest` (~6-8 GB)
+- `make push` la spinge su DockerHub
 
-- [ ] **Step 17.6: Verifica current.sif esiste**
+- [ ] **Step 17.5: Pre-create directory remote sul cluster**
 
 ```bash
-ssh u0044@logindgx.hpc.ict.unipd.it 'ls -lh /mnt/home/u0044/simulomicsr-dgx/runtime/current.sif'
+ssh u0044@logindgx.hpc.ict.unipd.it "mkdir -p /mnt/home/u0044/simulomicsr-dgx/{runtime,bundles,runs,models/HF_HOME}"
 ```
 
-Expected: file ~6-8GB.
+- [ ] **Step 17.6: Pull immagine come SIF sul cluster (~3-5 min)**
 
-- [ ] **Step 17.7: Annota in CLAUDE.md / TODO che setup è completato**
+```bash
+make -C inst/dgx pull-cluster
+```
 
-Niente commit di codice — questo è uno step operativo. Annotazione manuale opzionale in TODO.md o memoria personale.
+Expected: ultimo output `-rw-r--r-- ... current.sif (~6-8G)`.
+
+In alternativa manuale:
+
+```bash
+ssh u0044@logindgx.hpc.ict.unipd.it "cd /mnt/home/u0044/simulomicsr-dgx/runtime/ && module load singularity/4.2.0 && singularity pull --force current.sif docker://lucavd/simulomicsr-vllm:latest && ls -lh current.sif"
+```
+
+- [ ] **Step 17.7: Pre-download del modello sul login (~10-15 min)**
+
+```bash
+make -C inst/dgx predownload-model
+```
+
+Expected: `huggingface-cli download` scarica ~50 GB in
+`/mnt/home/u0044/simulomicsr-dgx/models/HF_HOME/`. Dopo questo step,
+i job SLURM partono con cache hit e non richiedono `HF_TOKEN`.
+
+Verifica:
+
+```bash
+ssh u0044@logindgx.hpc.ict.unipd.it "du -sh /mnt/home/u0044/simulomicsr-dgx/models/HF_HOME/"
+```
+
+Expected: ~50 GB.
+
+- [ ] **Step 17.8: Sanity check container caricabile su una GPU**
+
+Submit un job interattivo brevissimo (no input vero, solo verifica avvio container):
+
+```bash
+ssh u0044@logindgx.hpc.ict.unipd.it "module load singularity/4.2.0 && singularity exec --nv /mnt/home/u0044/simulomicsr-dgx/runtime/current.sif python -c 'import torch; print(\"CUDA:\", torch.cuda.is_available(), \"device count:\", torch.cuda.device_count())'"
+```
+
+⚠️ NOTA: questo va in foreground sul login senza GPU bound; testa solo che
+il container Python carica e PyTorch e' presente. Il vero test GPU arriva
+con Task 18 (smoke 1 GPU 100 record dentro un job SLURM).
+
+Expected: `CUDA: False device count: 0` (nessuna GPU sul login node).
+Se l'output e' un crash CUDA driver-related, segnale di alert: il
+driver del login potrebbe essere troppo vecchio per CUDA 12.1.
+Fallback: rebuild con `vllm/vllm-openai:v0.5.5` (CUDA 11.8) e ripeti.
+
+- [ ] **Step 17.9: Annota completamento setup**
+
+Niente commit di codice — operazioni remote/locali. Opzionale: aggiungi a TODO.md una riga "P4 cluster setup completato YYYY-MM-DD, image lucavd/simulomicsr-vllm:vN".
 
 ---
 
