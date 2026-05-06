@@ -20,5 +20,6 @@ ENV PYTHONUNBUFFERED=1 \
     TRANSFORMERS_CACHE=/work/models/HF_HOME
 
 # vllm/vllm-openai default ENTRYPOINT lancia il server HTTP. Lo
-# sovrascriviamo col nostro batch runner.
-ENTRYPOINT ["python", "/opt/simulomicsr/runtime/python/run_p4_vllm.py"]
+# sovrascriviamo col nostro batch runner. NB: l'immagine espone python3,
+# NON python — verificato sul cluster il 2026-05-06.
+ENTRYPOINT ["python3", "/opt/simulomicsr/runtime/python/run_p4_vllm.py"]
