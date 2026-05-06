@@ -10,6 +10,10 @@ IMAGE_NAME  ?= simulomicsr-vllm
 TAG         ?= latest
 FULL_IMAGE  := $(DOCKER_USER)/$(IMAGE_NAME):$(TAG)
 
+# Path persistente sul cluster UniPD (allineato a scRNA_DGX: usa /mnt/home/<u>
+# perche' compute node poddgx02 vede storage qui, NON in /home/<u>).
+WORKDIR ?= /mnt/home/u0044/simulomicsr-dgx
+
 .PHONY: build push pull-singularity predownload-model
 
 # ===== LAPTOP =====
@@ -23,7 +27,7 @@ push:
 # ===== CLUSTER (run dopo SSH al login node) =====
 # Esempio:
 #   ssh u0044@logindgx.hpc.ict.unipd.it
-#   cd ~/simulomicsr-dgx/runtime/
+#   cd /mnt/home/u0044/simulomicsr-dgx/runtime/
 #   module load singularity/4.2.0
 #   make -f /path/al/repo/inst/dgx/Makefile pull-singularity
 
@@ -33,9 +37,9 @@ pull-singularity:
 
 predownload-model:
 	. ~/.simulomicsr-dgx.env && \
-	mkdir -p ~/simulomicsr-dgx/models/HF_HOME && \
+	mkdir -p $(WORKDIR)/models/HF_HOME && \
 	singularity exec \
-	  --bind ~/simulomicsr-dgx/models/HF_HOME:/work/models/HF_HOME \
+	  --bind $(WORKDIR)/models/HF_HOME:/work/models/HF_HOME \
 	  $(IMAGE_NAME).sif \
 	  huggingface-cli download mistralai/Mistral-Small-3.2-24B-Instruct-2506 \
 	  --token $$HF_TOKEN
