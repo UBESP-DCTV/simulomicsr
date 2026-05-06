@@ -1,0 +1,329 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "sample_facts.stage1.v3",
+  "description": "Output JSON per ogni sample RNAseq dello Stadio 1 — spec v5 §3 (post 4 dry-run, 190 sample). Strict-friendly per OpenAI Structured Outputs: additionalProperties:false ovunque, tutti i campi required, optionals come union null.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "geo_accession", "series_id", "organism", "host_organism",
+    "cell_context", "disease_state", "perturbations",
+    "technical_treatments", "patient_metadata", "extraction"
+  ],
+  "properties": {
+    "geo_accession": { "type": "string", "minLength": 1 },
+    "series_id":     { "type": "string", "minLength": 1 },
+    "organism":      { "type": ["string", "null"] },
+    "host_organism": { "type": ["string", "null"] },
+    "cell_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cell_type_or_line_raw", "cell_line_cellosaurus_candidate",
+        "tissue", "tissue_segment", "passage_or_state",
+        "context_kind", "developmental_stage", "cell_state",
+        "subcellular_fraction", "engineered_modifications",
+        "co_culture_partners", "sort_markers", "cell_composition_estimates"
+      ],
+      "properties": {
+        "cell_type_or_line_raw":           { "type": ["string", "null"] },
+        "cell_line_cellosaurus_candidate": { "type": ["string", "null"] },
+        "tissue":                          { "type": ["string", "null"] },
+        "tissue_segment":                  { "type": ["string", "null"] },
+        "passage_or_state":                { "type": ["string", "null"] },
+        "context_kind": {
+          "type": "string",
+          "enum": [
+            "cell_line_in_vitro", "primary_culture", "iPSC_derived",
+            "organoid", "xenograft", "primary_tissue",
+            "pdx_derived_cell_line", "co_culture",
+            "tumor_extracted_cells", "unclear"
+          ]
+        },
+        "developmental_stage": { "type": ["string", "null"] },
+        "cell_state": {
+          "type": ["string", "null"],
+          "enum": [
+            "proliferating", "senescent", "quiescent", "dormant",
+            "activated", "anergic", "exhausted", "naive", "memory",
+            "differentiated", "dedifferentiated", "undifferentiated",
+            "transitional", "apoptotic", "stressed", "recovering",
+            "unclear", "none", null
+          ]
+        },
+        "subcellular_fraction": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["kind", "raw"],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "ER", "nuclear", "cytoplasmic", "chromatin",
+                "mitochondrial", "membrane", "polysome", "monosome",
+                "ribosome_associated", "exosome", "total_rna", "other"
+              ]
+            },
+            "raw": { "type": "string" }
+          }
+        },
+        "engineered_modifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "label", "variant"],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "germline_genotype", "crispr_stable",
+                  "transgene_stable", "inducible_transgene",
+                  "drug_adapted", "reporter_stable", "other"
+                ]
+              },
+              "label": { "type": ["string", "null"] },
+              "variant": {
+                "type": ["object", "null"],
+                "additionalProperties": false,
+                "required": ["label", "description", "is_wildtype"],
+                "properties": {
+                  "label":        { "type": ["string", "null"] },
+                  "description":  { "type": ["string", "null"] },
+                  "is_wildtype":  { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "co_culture_partners": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["cell_type", "source_organism", "modifications", "role"],
+            "properties": {
+              "cell_type":       { "type": "string" },
+              "source_organism": { "type": ["string", "null"] },
+              "modifications":   { "type": "array", "items": { "type": "string" } },
+              "role": {
+                "type": "string",
+                "enum": ["feeder", "partner", "target", "stromal"]
+              }
+            }
+          }
+        },
+        "sort_markers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "cell_composition_estimates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["marker", "proportion", "method"],
+            "properties": {
+              "marker":     { "type": "string" },
+              "proportion": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+              "method":     { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "disease_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["term_raw", "mesh_id_candidate", "status"],
+      "properties": {
+        "term_raw":          { "type": ["string", "null"] },
+        "mesh_id_candidate": { "type": ["string", "null"] },
+        "status": {
+          "type": "string",
+          "enum": ["case", "comparison", "disease_model", "none"]
+        }
+      }
+    },
+    "perturbations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind", "agent_raw", "agent_normalized",
+          "dose", "duration", "phase", "temporal_order",
+          "is_negative_control", "mediated_effect"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "small_molecule", "vehicle_only",
+              "genetic_knockdown", "genetic_knockout",
+              "genetic_overexpression",
+              "crispra_activation", "crispri_repression",
+              "cytokine_stimulation",
+              "pathogen_or_aggregate_exposure",
+              "environmental_or_behavioral",
+              "differentiation",
+              "mechanical_or_physical",
+              "none", "unclear"
+            ]
+          },
+          "agent_raw": { "type": ["string", "null"] },
+          "agent_normalized": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "id_database", "id", "preferred_name", "collection"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "gene_or_protein", "small_molecule", "vehicle",
+                  "disease_term", "genotype", "none", "other"
+                ]
+              },
+              "id_database": {
+                "type": ["string", "null"],
+                "enum": [
+                  "HGNC", "MGI", "UniProt", "DrugBank", "ChEMBL",
+                  "CHEBI", "MeSH", "CAS", "Cellosaurus",
+                  "Ensembl", "NCBITaxonomy", null
+                ]
+              },
+              "id":             { "type": ["string", "null"] },
+              "preferred_name": { "type": ["string", "null"] },
+              "collection": {
+                "type": ["object", "null"],
+                "additionalProperties": false,
+                "required": ["name", "id_in_collection"],
+                "properties": {
+                  "name":             { "type": "string" },
+                  "id_in_collection": { "type": "string" }
+                }
+              }
+            }
+          },
+          "dose": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value_raw", "value_numeric", "unit"],
+            "properties": {
+              "value_raw":     { "type": ["string", "null"] },
+              "value_numeric": { "type": ["number", "null"] },
+              "unit":          { "type": ["string", "null"] }
+            }
+          },
+          "duration": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value_raw", "value_hours", "is_zero_timepoint"],
+            "properties": {
+              "value_raw":         { "type": ["string", "null"] },
+              "value_hours":       { "type": ["number", "null"] },
+              "is_zero_timepoint": { "type": "boolean" }
+            }
+          },
+          "phase": {
+            "type": ["string", "null"],
+            "enum": ["exposure", "washout", "recovery", "persistence", "rebound", null]
+          },
+          "temporal_order":      { "type": ["integer", "null"], "minimum": 1 },
+          "is_negative_control": { "type": "boolean" },
+          "mediated_effect": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["kind", "targets"],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "genetic_overexpression", "genetic_knockdown",
+                  "genetic_knockout", "crispra_activation",
+                  "crispri_repression", "small_molecule", "other"
+                ]
+              },
+              "targets": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "technical_treatments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "agent_raw"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "culture_matrix", "culture_media",
+              "electroporation_method", "rna_fractionation",
+              "subcellular_isolation", "cell_synchronization",
+              "chip_or_clip_setup", "batch_or_processing",
+              "other_technical"
+            ]
+          },
+          "agent_raw": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "patient_metadata": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": [
+        "donor_id", "age", "sex", "ancestry_or_population",
+        "ancestry_admixture", "clinical_response", "survival_group",
+        "stage", "condition", "visit_or_timepoint"
+      ],
+      "properties": {
+        "donor_id":              { "type": ["string", "null"] },
+        "age":                   { "type": ["number", "null"] },
+        "sex":                   { "type": ["string", "null"], "enum": ["M", "F", "other", null] },
+        "ancestry_or_population":{ "type": ["string", "null"] },
+        "ancestry_admixture":    { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "clinical_response":     { "type": ["string", "null"] },
+        "survival_group":        { "type": ["string", "null"] },
+        "stage":                 { "type": ["string", "null"] },
+        "condition":             { "type": ["string", "null"] },
+        "visit_or_timepoint":    { "type": ["string", "null"] }
+      }
+    },
+    "extraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "model", "confidence",
+        "ambiguity_flags", "raw_input_hash"
+      ],
+      "properties": {
+        "schema_version": { "type": "string", "const": "stage1.v3" },
+        "model":          { "type": "string", "minLength": 1 },
+        "confidence":     { "type": "number", "minimum": 0, "maximum": 1 },
+        "ambiguity_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "missing_dose", "missing_duration", "time_zero_timepoint",
+              "multi_factor_in_string", "compound_unmapped",
+              "cell_line_ambiguous", "vehicle_only",
+              "description_too_short", "mixed_organism_terms",
+              "study_specific_jargon", "multiple_perturbations",
+              "engineered_cell_line", "technical_treatment_only",
+              "disease_state_present", "control_unspecified",
+              "post_treatment_ambiguous", "protocol_only_no_perturbation",
+              "metadata_inconsistency", "opaque_compound_code"
+            ]
+          }
+        },
+        "raw_input_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

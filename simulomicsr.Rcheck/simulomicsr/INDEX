@@ -1,0 +1,54 @@
+bootstrap_delta_ci      Bootstrap CI sul delta accuracy tra due
+                        classificatori
+classify_sample         Classifica un sample RNAseq nello Stadio 1
+                        (sample_facts schema v3)
+classify_study          Classifica il design di uno studio GSE in
+                        study_design.stage2.v1
+compare_with_gold       Tabella side-by-side gold xlsx vs simulomicsr
+                        P3 vs reclassify verbose
+compile_schema          Compila uno schema JSON Schema (draft-07) in un
+                        validatore richiamabile
+design_role_to_binary   Mappa design_role v3 (13 valori) al binary
+                        trtctr_predicted
+eval_binary_accuracy    Calcola binary accuracy per un vettore di
+                        predicted vs gold
+eval_per_design_kind    Breakdown binary accuracy per design_kind
+fetch_rummageo_signatures
+                        Recupera le signature group RummaGEO per un GSE
+                        con cache filesystem
+fetch_study_summary     Recupera il summary di uno studio GEO (GSE)
+flag_granularity_disagreement
+                        Enumera i sample dove simulomicsr ha prodotto
+                        un design_role piu' granulare del binary gold
+                        xlsx
+hgnc_dump_path          Path canonico al dump HGNC nella cache utente
+holm_adjust             Holm correction per p-values multipli
+intersect_with_xlsx_and_archs4
+                        Intersezione tre-vie GSE: RummaGEO official,
+                        xlsx gold, ARCHS4 studies
+keyword_design_kind_proxy
+                        Inferisce un design_kind candidato da metadata
+                        strings via keyword proxy
+llm_call_structured     Chiama un LLM con output strutturato validato e
+                        cache opzionale
+load_rummageo_index     Scarica indice completo GSE da RummaGEO con
+                        cache filesystem
+make_anchor             Costruisci comparability_anchor v3 (13
+                        segmenti) per un sample fact
+make_inducer_log        Audit log degli inducenti per perturbazioni
+                        mediated_effect (R8)
+mcnemar_paired          McNemar test paired su due classificatori
+normalize_gene          Normalizza un nome di gene human a un record
+                        canonico HGNC
+parse_rummageo_labels   Estrae assegnazione control/treated per GSM dai
+                        sampleGroups RummaGEO
+reclassify_verbose      Re-classify uno studio con prompt
+                        verbose-reasoning
+rummageo_baseline_internal
+                        Replica fallback dell'algoritmo RummaGEO
+                        (Marino 2024)
+stratified_sample_gse   Stratified sampling deterministico dal pool
+                        candidato
+validate_json           Valida un oggetto R o una stringa JSON contro
+                        un validatore compilato
+wilson_ci               Wilson 95% CI per proporzione

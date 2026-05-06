@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head><title>R: Pipeline di classificazione LLM per RNAseq da repository
+pubblici</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container">
+<h1> Pipeline di classificazione LLM per RNAseq da repository
+pubblici
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]">
+</h1>
+<hr>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]"></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]"></a>
+</div><h2>Documentation for package &lsquo;simulomicsr&rsquo; version 0.0.0.9006</h2>
+
+<ul><li><a href="../DESCRIPTION" type="text/plain; charset=utf-8">DESCRIPTION file</a>.</li>
+<li><a href="../NEWS.md">Package NEWS</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table style="width: 100%;">
+<tr><td style="width: 25%;"><a href="bootstrap_delta_ci.html">bootstrap_delta_ci</a></td>
+<td>Bootstrap CI sul delta accuracy tra due classificatori</td></tr>
+<tr><td style="width: 25%;"><a href="classify_sample.html">classify_sample</a></td>
+<td>Classifica un sample RNAseq nello Stadio 1 (sample_facts schema v3)</td></tr>
+<tr><td style="width: 25%;"><a href="classify_study.html">classify_study</a></td>
+<td>Classifica il design di uno studio GSE in study_design.stage2.v1</td></tr>
+<tr><td style="width: 25%;"><a href="compare_with_gold.html">compare_with_gold</a></td>
+<td>Tabella side-by-side gold xlsx vs simulomicsr P3 vs reclassify verbose</td></tr>
+<tr><td style="width: 25%;"><a href="compile_schema.html">compile_schema</a></td>
+<td>Compila uno schema JSON Schema (draft-07) in un validatore richiamabile</td></tr>
+<tr><td style="width: 25%;"><a href="design_role_to_binary.html">design_role_to_binary</a></td>
+<td>Mappa design_role v3 (13 valori) al binary trtctr_predicted</td></tr>
+<tr><td style="width: 25%;"><a href="eval_binary_accuracy.html">eval_binary_accuracy</a></td>
+<td>Calcola binary accuracy per un vettore di predicted vs gold</td></tr>
+<tr><td style="width: 25%;"><a href="eval_per_design_kind.html">eval_per_design_kind</a></td>
+<td>Breakdown binary accuracy per design_kind</td></tr>
+<tr><td style="width: 25%;"><a href="fetch_rummageo_signatures.html">fetch_rummageo_signatures</a></td>
+<td>Recupera le signature group RummaGEO per un GSE con cache filesystem</td></tr>
+<tr><td style="width: 25%;"><a href="fetch_study_summary.html">fetch_study_summary</a></td>
+<td>Recupera il summary di uno studio GEO (GSE)</td></tr>
+<tr><td style="width: 25%;"><a href="flag_granularity_disagreement.html">flag_granularity_disagreement</a></td>
+<td>Enumera i sample dove simulomicsr ha prodotto un design_role piu' granulare del binary gold xlsx</td></tr>
+<tr><td style="width: 25%;"><a href="hgnc_dump_path.html">hgnc_dump_path</a></td>
+<td>Path canonico al dump HGNC nella cache utente</td></tr>
+<tr><td style="width: 25%;"><a href="holm_adjust.html">holm_adjust</a></td>
+<td>Holm correction per p-values multipli</td></tr>
+<tr><td style="width: 25%;"><a href="intersect_with_xlsx_and_archs4.html">intersect_with_xlsx_and_archs4</a></td>
+<td>Intersezione tre-vie GSE: RummaGEO official, xlsx gold, ARCHS4 studies</td></tr>
+<tr><td style="width: 25%;"><a href="keyword_design_kind_proxy.html">keyword_design_kind_proxy</a></td>
+<td>Inferisce un design_kind candidato da metadata strings via keyword proxy</td></tr>
+<tr><td style="width: 25%;"><a href="llm_call_structured.html">llm_call_structured</a></td>
+<td>Chiama un LLM con output strutturato validato e cache opzionale</td></tr>
+<tr><td style="width: 25%;"><a href="load_rummageo_index.html">load_rummageo_index</a></td>
+<td>Scarica indice completo GSE da RummaGEO con cache filesystem</td></tr>
+<tr><td style="width: 25%;"><a href="make_anchor.html">make_anchor</a></td>
+<td>Costruisci comparability_anchor v3 (13 segmenti) per un sample fact</td></tr>
+<tr><td style="width: 25%;"><a href="make_inducer_log.html">make_inducer_log</a></td>
+<td>Audit log degli inducenti per perturbazioni mediated_effect (R8)</td></tr>
+<tr><td style="width: 25%;"><a href="mcnemar_paired.html">mcnemar_paired</a></td>
+<td>McNemar test paired su due classificatori</td></tr>
+<tr><td style="width: 25%;"><a href="normalize_gene.html">normalize_gene</a></td>
+<td>Normalizza un nome di gene human a un record canonico HGNC</td></tr>
+<tr><td style="width: 25%;"><a href="parse_rummageo_labels.html">parse_rummageo_labels</a></td>
+<td>Estrae assegnazione control/treated per GSM dai sampleGroups RummaGEO</td></tr>
+<tr><td style="width: 25%;"><a href="reclassify_verbose.html">reclassify_verbose</a></td>
+<td>Re-classify uno studio con prompt verbose-reasoning</td></tr>
+<tr><td style="width: 25%;"><a href="rummageo_baseline_internal.html">rummageo_baseline_internal</a></td>
+<td>Replica fallback dell'algoritmo RummaGEO (Marino 2024)</td></tr>
+<tr><td style="width: 25%;"><a href="stratified_sample_gse.html">stratified_sample_gse</a></td>
+<td>Stratified sampling deterministico dal pool candidato</td></tr>
+<tr><td style="width: 25%;"><a href="validate_json.html">validate_json</a></td>
+<td>Valida un oggetto R o una stringa JSON contro un validatore compilato</td></tr>
+<tr><td style="width: 25%;"><a href="wilson_ci.html">wilson_ci</a></td>
+<td>Wilson 95% CI per proporzione</td></tr>
+</table>
+</div></body></html>

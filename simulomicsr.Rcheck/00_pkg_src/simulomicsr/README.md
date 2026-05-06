@@ -1,0 +1,87 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# simulomicsr
+
+<!-- badges: start -->
+
+[![check-release](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/check-release.yaml/badge.svg)](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/check-release.yaml)
+[![R-CMD-check](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/test-coverage.yaml)
+[![lint](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/lint.yaml/badge.svg)](https://github.com/UBESP-DCTV/simulomicsr/actions/workflows/lint.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+## Cosa fa simulomicsr
+
+`simulomicsr` è una **pipeline R per meta-analisi RNAseq cross-studio
+design-aware**: dal metadato GEO testuale produce comparisons appaiate
+treated/control entro ogni studio, sintetizza una chiave canonica
+`comparability_anchor` per raggruppare confronti equivalenti (stesso
+agente, dose, durata, contesto cellulare) cross-studio, e ne pooling gli
+effect size con random-effects meta-analysis (`metafor` REM).
+
+Pipeline complessiva (5 stadi):
+
+1.  **Acquisizione** — bulk RNAseq da ARCHS4 (HDF5, ~700k+ sample GEO).
+2.  **Stadio 1 sample-level** (P2 chiuso) — classificazione LLM dei
+    metadati testuali in `sample_facts.stage1.v3` (perturbazioni, dose,
+    durata, veicolo, cell context, ambiguity flags).
+3.  **Stadio 2 study-level** (P3, prossimo) — design inference:
+    `design_role` per sample, `comparisons_table`, `comparability_anchor`
+    v3 canonical.
+4.  **Stadio 3-4** — raggruppamento cross-studio + DE per studio
+    (`DESeq2`/`limma`).
+5.  **Stadio 5** — meta-analisi REM via `metafor` per anchor.
+
+## Cosa NON è simulomicsr
+
+`simulomicsr` non è un altro **annotatore di GEO/SRA**. Quel campo è
+coperto da [MetaHQ](https://arxiv.org/abs/2602.07805),
+[ARCHS4](https://maayanlab.cloud/archs4/),
+[MetaSRA](https://academic.oup.com/bioinformatics/article/33/18/2914/3848915)
+e dal recente [multi-agent metadata curation di Mondal et al.
+2025](https://www.biorxiv.org/content/10.1101/2025.06.10.658658v1). Il
+valore unico di `simulomicsr` è il passaggio successivo: dalle
+annotazioni per-sample alle **comparisons appaiate raggruppabili
+cross-studio per pooling effect-size REM**. Il competitor end-to-end più
+vicino è [RummaGEO](https://rummageo.com), che però produce gene set
+per-studio senza anchor canonico né effect size. Un benchmark
+testa-a-testa vs RummaGEO è parte integrante del progetto (deliverable
+di P3.5 eval). Per l'analisi competitiva completa vedi
+[`docs/decisions/0006-stato-arte-vs-simulomicsr.md`](docs/decisions/0006-stato-arte-vs-simulomicsr.md).
+
+**Stato attuale:** P1 (infrastruttura LLM) e P2 (Stadio 1) chiusi e
+mergeati su master. **Prossima fase:** P3 — Stadio 2. Vedi
+`docs/superpowers/plans/` e `NEWS.md`.
+
+## Quickstart developer
+
+``` r
+# 1) Restore environment
+renv::restore()
+
+# 2) Set OpenAI key (in .Renviron.local — gitignored)
+# OPENAI_API_KEY=sk-...
+
+# 3) Run tests
+devtools::test()
+```
+
+## Installation
+
+You can install the development version of simulomicsr from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("UBESP-DCTV/simulomicsr")
+```
+
+## Code of Conduct
+
+Please note that the simulomicsr project is released with a [Contributor
+Code of
+Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.

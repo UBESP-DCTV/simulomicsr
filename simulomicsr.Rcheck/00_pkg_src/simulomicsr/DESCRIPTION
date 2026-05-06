@@ -1,0 +1,31 @@
+Package: simulomicsr
+Title: Pipeline di classificazione LLM per RNAseq da repository
+        pubblici
+Version: 0.0.0.9006
+Authors@R: c(
+    person("Corrado", "Lanera", , "corrado.lanera@ubep.unipd.it", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-0520-7428")),
+    person("Luca", "Vedovelli", , "luca.vedovelli@ubep.unipd.it", role = "aut",
+           comment = c(ORCID = "0000-0003-4847-2333"))
+  )
+Description: Pipeline R per scaricare metadati di sample RNAseq da GEO/ARCHS4, classificarli via LLM in fatti strutturati e ruoli di design study-level, e produrre confronti per meta-analisi cross-studio.
+License: file LICENSE
+Depends: R (>= 4.4)
+Imports: cli, DBI, digest, fs, glue, httr2, jsonlite, jsonvalidate,
+        purrr, readr, rentrez, rlang, RSQLite, stringr, tibble
+Suggests: checkmate, covr, devtools, dplyr, ggplot2, here, httptest2,
+        knitr, lintr, qs, readxl, rmarkdown, scales, spelling,
+        tarchetypes, targets, testthat (>= 3.0.0), tidyr, usethis,
+        withr
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0
+VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2026-05-04 10:12:56 UTC; utente
+Author: Corrado Lanera [aut, cre] (ORCID:
+    <https://orcid.org/0000-0002-0520-7428>),
+  Luca Vedovelli [aut] (ORCID: <https://orcid.org/0000-0003-4847-2333>)
+Maintainer: Corrado Lanera <corrado.lanera@ubep.unipd.it>

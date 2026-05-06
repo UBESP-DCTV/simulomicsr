@@ -1,0 +1,879 @@
+[
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "SCCOHT1 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "vehicle_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.91,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:07e7e05a720b0b9f25e221b84dd5fb6dfaa737f4e2edba0b43f65161432a2f1d",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748144",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": "%",
+          "value_numeric": 0.01,
+          "value_raw": "0.01%"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": "control"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "SCCOHT1 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer; SMARCA4 loss of function mutation"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "vehicle_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:07e7e05a720b0b9f25e221b84dd5fb6dfaa737f4e2edba0b43f65161432a2f1d",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748145",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": "%",
+          "value_numeric": 0.01,
+          "value_raw": "0.01%"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": "control"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "SCCOHT1 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SMARCA4",
+          "variant": {
+            "description": "loss of function mutation",
+            "is_wildtype": false,
+            "label": null
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.88,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:4cbabf0b7671436f249c1f228aaaadf39ec75a548ba955e9e7318d8b999899f7",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748146",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "OTX015",
+          "type": "small_molecule"
+        },
+        "agent_raw": "OTX015",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 100,
+          "value_raw": "100nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 4,
+          "value_raw": "4h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "SCCOHT1 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SMARCA4",
+          "variant": {
+            "description": "loss of function mutation",
+            "is_wildtype": false,
+            "label": "SMARCA4 loss of function mutation"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.94,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:4cbabf0b7671436f249c1f228aaaadf39ec75a548ba955e9e7318d8b999899f7",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748147",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "birabresib",
+          "type": "small_molecule"
+        },
+        "agent_raw": "OTX015",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 100,
+          "value_raw": "100nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 4,
+          "value_raw": "4h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "SCCOHT1 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "other",
+          "label": "SMARCA4 loss of function mutation",
+          "variant": {
+            "description": "SMARCA4 loss of function mutation",
+            "is_wildtype": false,
+            "label": "SMARCA4 loss of function mutation"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "case",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "multi_factor_in_string",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:c4870a735805f89d42c59fb9223ebba86e66db99d541890ab5414715f3fc7555",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748148",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "birabresib",
+          "type": "small_molecule"
+        },
+        "agent_raw": "OTX015",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 100,
+          "value_raw": "100nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "SCCOHT-1",
+      "cell_state": null,
+      "cell_type_or_line_raw": "SCCOHT1 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "other",
+          "label": "SMARCA4 loss of function mutation",
+          "variant": {
+            "description": "loss of function mutation",
+            "is_wildtype": false,
+            "label": "SMARCA4"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:c4870a735805f89d42c59fb9223ebba86e66db99d541890ab5414715f3fc7555",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748149",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "OTX015",
+          "type": "small_molecule"
+        },
+        "agent_raw": "OTX015",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 100,
+          "value_raw": "100nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "OVCAR-8",
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVCAR8 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SMARCA4",
+          "variant": {
+            "description": null,
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "vehicle_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.94,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:2d87344e31869c472ef7bf68f7c27df6d958d2b337615d7cabe56d9516345e47",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748150",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:28262",
+          "id_database": "CHEBI",
+          "preferred_name": "dimethyl sulfoxide",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": "%",
+          "value_numeric": 0.01,
+          "value_raw": "0.01%"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": "control"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": "none",
+      "cell_type_or_line_raw": "OVCAR8 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SMARCA4",
+          "variant": {
+            "description": "SMARCA4 WT",
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "vehicle_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.9,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:2d87344e31869c472ef7bf68f7c27df6d958d2b337615d7cabe56d9516345e47",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748151",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": "CHEBI:28262",
+          "id_database": "CHEBI",
+          "preferred_name": "dimethyl sulfoxide",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO 0.01%",
+        "dose": {
+          "unit": "%",
+          "value_numeric": 0.01,
+          "value_raw": "0.01%"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": "control"
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVCAR8 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SMARCA4 WT",
+          "variant": {
+            "description": "SMARCA4 WT",
+            "is_wildtype": true,
+            "label": "SMARCA4 WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d13e8a863724b3f1d4cc0b0381e947787079702b4bc4e89f0e116f5264f1fbeb",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748152",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "Birabresib",
+          "type": "small_molecule"
+        },
+        "agent_raw": "OTX015",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 100,
+          "value_raw": "100nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 4,
+          "value_raw": "4h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVCAR8 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SMARCA4 WT",
+          "variant": {
+            "description": "SMARCA4 WT",
+            "is_wildtype": true,
+            "label": "SMARCA4"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d13e8a863724b3f1d4cc0b0381e947787079702b4bc4e89f0e116f5264f1fbeb",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748153",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "birabresib",
+          "type": "small_molecule"
+        },
+        "agent_raw": "OTX015",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 100,
+          "value_raw": "100nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 4,
+          "value_raw": "4h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_1629",
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVCAR8 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SMARCA4",
+          "variant": {
+            "description": "SMARCA4 WT",
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:15083292d3554b8972de487439065348e0e69273a36c63d5f71309c4b570ce22",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748154",
+    "host_organism": null,
+    "organism": "Homo sapiens",
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "birabresib",
+          "type": "small_molecule"
+        },
+        "agent_raw": "OTX015",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 100,
+          "value_raw": "100nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "OVCAR-8",
+      "cell_state": null,
+      "cell_type_or_line_raw": "OVCAR8 ovarian cancer cell line",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [
+        {
+          "kind": "germline_genotype",
+          "label": "SMARCA4",
+          "variant": {
+            "description": "SMARCA4 WT",
+            "is_wildtype": true,
+            "label": "WT"
+          }
+        }
+      ],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": "ovary",
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "ovarian cancer"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "disease_state_present"
+      ],
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:15083292d3554b8972de487439065348e0e69273a36c63d5f71309c4b570ce22",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2748155",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "OTX015",
+          "type": "small_molecule"
+        },
+        "agent_raw": "OTX015",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 100,
+          "value_raw": "100nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": 24,
+          "value_raw": "24h"
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE102908",
+    "technical_treatments": []
+  }
+]

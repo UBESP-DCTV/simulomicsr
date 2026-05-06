@@ -1,0 +1,589 @@
+[
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0291",
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_dose",
+        "missing_duration",
+        "vehicle_only",
+        "disease_state_present"
+      ],
+      "confidence": 0.95,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:f86afe00fb1d89427faa7a36f6a7cc40912fc94aaa30b1e1a9458143545a2a16",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712773",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "DMSO",
+          "type": "vehicle"
+        },
+        "agent_raw": "DMSO",
+        "dose": {
+          "unit": null,
+          "value_numeric": null,
+          "value_raw": null
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": true,
+        "kind": "vehicle_only",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "HCT116",
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:5a03aba46311561c1885e61fc1c73c415fc40fc3cbd34edb304438e86ee37486",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712774",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "largazole",
+          "type": "small_molecule"
+        },
+        "agent_raw": "largazole",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 4.68,
+          "value_raw": "4.68nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0291",
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:67a6a81b0018d4922c9a36a5958f63e1f1f2bcfb39efeae0966a1a60ad280ca4",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712775",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "largazole",
+          "type": "small_molecule"
+        },
+        "agent_raw": "largazole",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 9.37,
+          "value_raw": "9.37nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
+      ],
+      "confidence": 0.92,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:e87e0efda7fbda393e1649c2ddd5516cd06c2347f990e6a6b701fe4c38059d6f",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712776",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "largazole",
+          "type": "small_molecule"
+        },
+        "agent_raw": "largazole",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 18.75,
+          "value_raw": "18.75nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:bebb0dc7b9e680cb19527e9ac3ab4f2868d428202ec554c01320ae90f26c229d",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712777",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "largazole",
+          "type": "small_molecule"
+        },
+        "agent_raw": "largazole",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 30,
+          "value_raw": "30nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": null,
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0291",
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:1ceebd635f617d379983eec8a7f45acdb7f441ee94a34a1d6f15e34af93dca2e",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712778",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "largazole",
+          "type": "small_molecule"
+        },
+        "agent_raw": "largazole",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 37.5,
+          "value_raw": "37.5nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0291",
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "case",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:6cc2462a00ac52bce5351a1bf221bb5c1ae9a251a94a3585787d033e0b25e2d0",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712779",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "largazole",
+          "type": "small_molecule"
+        },
+        "agent_raw": "largazole",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 75,
+          "value_raw": "75nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": null
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": "CVCL_0291",
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "case",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:d2dcd15546e22cab5dc22c3c9839780286674a51fd941f9959436bbf30b51446",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712780",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "largazole",
+          "type": "small_molecule"
+        },
+        "agent_raw": "largazole",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 150,
+          "value_raw": "150nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  },
+  {
+    "cell_context": {
+      "cell_composition_estimates": [],
+      "cell_line_cellosaurus_candidate": null,
+      "cell_state": null,
+      "cell_type_or_line_raw": "HCT116",
+      "co_culture_partners": [],
+      "context_kind": "cell_line_in_vitro",
+      "developmental_stage": null,
+      "engineered_modifications": [],
+      "passage_or_state": null,
+      "sort_markers": [],
+      "subcellular_fraction": null,
+      "tissue": null,
+      "tissue_segment": null
+    },
+    "disease_state": {
+      "mesh_id_candidate": null,
+      "status": "disease_model",
+      "term_raw": "colorectal carcinoma"
+    },
+    "extraction": {
+      "ambiguity_flags": [
+        "missing_duration",
+        "disease_state_present"
+      ],
+      "confidence": 0.93,
+      "model": "openai:gpt-5.5",
+      "raw_input_hash": "sha256:3757c09462af6d2fcad3a3b3c8f1efca32ee5ff611a4432e6074c2d04654c351",
+      "schema_version": "stage1.v3"
+    },
+    "geo_accession": "GSM2712781",
+    "host_organism": null,
+    "organism": null,
+    "patient_metadata": null,
+    "perturbations": [
+      {
+        "agent_normalized": {
+          "collection": null,
+          "id": null,
+          "id_database": null,
+          "preferred_name": "largazole",
+          "type": "small_molecule"
+        },
+        "agent_raw": "largazole",
+        "dose": {
+          "unit": "nM",
+          "value_numeric": 300,
+          "value_raw": "300nM"
+        },
+        "duration": {
+          "is_zero_timepoint": false,
+          "value_hours": null,
+          "value_raw": null
+        },
+        "is_negative_control": false,
+        "kind": "small_molecule",
+        "mediated_effect": null,
+        "phase": "exposure",
+        "temporal_order": 1
+      }
+    ],
+    "series_id": "GSE101708",
+    "technical_treatments": []
+  }
+]
