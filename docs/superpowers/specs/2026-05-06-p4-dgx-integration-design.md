@@ -112,8 +112,8 @@ Il bundle accetta `input.jsonl` con righe `{record_id, string}` (Stadio 1) o `{r
 | `R/dgx-bundle.R` | NUOVO | `dgx_p4_build_bundle(input_jsonl, stage, config, ...)`: genera `manifest.json`, `prompt.txt`, `schema.json`, `generation.json`, `status.json`, copia `input.jsonl` | ~100 |
 | `R/dgx-submit.R` | NUOVO | `dgx_p4_submit()`, `dgx_p4_status()` (con watch), `dgx_p4_collect()`, `dgx_p4_recover()` | ~150 |
 | `R/dgx-utils.R` | NUOVO | helpers privati `.dgx_ssh()`, `.dgx_rsync()` via `processx`, `.dgx_run_id()` (UUID), `.dgx_render_slurm_template()` | ~80 |
-| `inst/dgx/runtime.def` | NUOVO | Apptainer definition: base `vllm/vllm-openai:v0.6.x`, copia `inst/dgx/python/`, env HF_HOME/PYTHONPATH | ~25 |
-| `inst/dgx/build-runtime.sh` | NUOVO | script remoto per `apptainer build current.sif runtime.def`, documentato come "run once on login node" | ~15 |
+| `inst/dgx/Dockerfile` | NUOVO | Dockerfile FROM `vllm/vllm-openai:v0.6.4`, COPY python/, ENTRYPOINT run_p4_vllm.py | ~20 |
+| `inst/dgx/Makefile` | NUOVO | target `build`/`push`/`pull-cluster` per workflow docker→DockerHub→singularity | ~30 |
 | `inst/dgx/slurm/run_p4.sh` | NUOVO | template SLURM con placeholder `__RUN_ID__`, `__USER__`, `__TIME__`, `__MAIL_USER__`, partition/account/nodelist hardcoded; bind mount bundle/run/HF_HOME, srun apptainer exec | ~50 |
 | `inst/dgx/python/run_p4_vllm.py` | NUOVO | entry: parse args, load schema, init 4 worker `multiprocessing.Process` con `CUDA_VISIBLE_DEVICES`, shard input, concat output | ~120 |
 | `inst/dgx/python/prompts.py` | NUOVO | `render_prompt_stage1(template, record)`, `render_prompt_stage2(...)`, port 1:1 dei prompt R esistenti | ~60 |
@@ -167,44 +167,83 @@ Schema riga `predictions.jsonl`:
 }
 ```
 
-## 6. Container Apptainer
+## 6. Container — Docker build locale + DockerHub + Singularity pull
 
+**Pattern adottato (allineato a `2026.scRNA_DGX`)**: docker build locale → push DockerHub → `singularity pull` sul login node DGX. Niente `apptainer build --fakeroot` remoto. Razionale:
+
+- Evita `--fakeroot` (può non essere abilitato su tutti i cluster).
+- Build su laptop e' tipicamente piu' rapida del compile su login node.
+- DockerHub fornisce versioning + immutabilita' delle immagini.
+- Stesso flusso che l'utente gia' usa per `lucavd/sc-benchmark` su `poddgx02`.
+
+**`inst/dgx/Dockerfile`**:
+
+```dockerfile
+# CUDA 12.1+ richiesto da vLLM 0.6.x. Driver DGX UniPD HPC (poddgx02)
+# verificato compatibile con CUDA 12 dal progetto 2026.scRNA_DGX.
+FROM vllm/vllm-openai:v0.6.4
+
+LABEL maintainer="simulomicsr" \
+      model="mistralai/Mistral-Small-3.2-24B-Instruct-2506" \
+      purpose="P4 batch classification stage1+stage2"
+
+# Dependencies extra per il nostro runtime
+RUN pip install --no-cache-dir jsonschema orjson pyyaml
+
+# Copia gli script Python custom
+COPY python /opt/simulomicsr/runtime/python
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/opt/simulomicsr/runtime/python \
+    HF_HOME=/work/models/HF_HOME \
+    TRANSFORMERS_CACHE=/work/models/HF_HOME
+
+# Override l'entrypoint vllm/vllm-openai (api_server) con il nostro batch runner
+ENTRYPOINT ["python", "/opt/simulomicsr/runtime/python/run_p4_vllm.py"]
 ```
-Bootstrap: docker
-From: vllm/vllm-openai:v0.6.4
 
-%labels
-    Maintainer simulomicsr
-    Model mistralai/Mistral-Small-3.2-24B-Instruct-2506
-
-%files
-    python /opt/simulomicsr/runtime/python
-
-%post
-    python -m pip install --no-cache-dir jsonschema orjson
-
-%environment
-    export PYTHONUNBUFFERED=1
-    export PYTHONPATH=/opt/simulomicsr/runtime/python:${PYTHONPATH}
-    export HF_HOME=/work/models/HF_HOME
-    export TRANSFORMERS_CACHE=$HF_HOME
-
-%runscript
-    exec python /opt/simulomicsr/runtime/python/run_p4_vllm.py "$@"
-```
-
-**Build**: una sola volta sul login node, manuale, documentato in vignette:
+**Build & deploy workflow** (operazioni manuali, una volta + ad ogni cambio):
 
 ```sh
+# Su laptop, dalla radice del pacchetto
+cd inst/dgx
+docker build -t lucavd/simulomicsr-vllm:v1 .
+docker tag  lucavd/simulomicsr-vllm:v1 lucavd/simulomicsr-vllm:latest
+docker push lucavd/simulomicsr-vllm:v1
+docker push lucavd/simulomicsr-vllm:latest
+
+# Su login node DGX
 ssh u0044@logindgx.hpc.ict.unipd.it
 cd /mnt/home/u0044/simulomicsr-dgx/runtime/
 module load singularity/4.2.0
-apptainer build --fakeroot current.sif runtime.def
+singularity pull --force current.sif docker://lucavd/simulomicsr-vllm:latest
+ls -lh current.sif    # ~6-8 GB
 ```
 
-Tempo build: ~15-20 min. Non riprodotto automaticamente: rebuild solo a cambio versione vLLM o def.
+Tempo: docker build locale ~3-5 min (cache hit per layer vllm), push DockerHub 1-2 min, singularity pull cluster 2-5 min. Totale 5-12 min vs 15-20 min apptainer build remote.
 
-**Pesi modello fuori dal SIF**: HF_HOME è bind-mounted da `/mnt/home/u0044/simulomicsr-dgx/models/HF_HOME`. Primo run: download da HF (~50GB FP16, 10-15 min con `HF_TOKEN`). Run successivi: cache hit, cold load del modello ~30-60 s.
+**Versioning**: tag `:v1`, `:v2`, ... per snapshot riproducibili; `:latest` per ultimo. Il SLURM job referenzia sempre `current.sif` (link/copia dell'ultima pull).
+
+**Driver caveat**: i driver NVIDIA su `poddgx02` potrebbero non essere all'ultima major. Se vLLM 0.6.4 fallisce con `CUDA driver too old`, fallback documentati:
+- `vllm/vllm-openai:v0.5.5` (CUDA 11.8 compat)
+- Self-build da `nvidia/cuda:12.1-runtime` + `pip install vllm==0.6.4`
+
+Il test smoke 1 GPU (Plan Task 18) e' lo screening: se carica e genera senza errori CUDA, siamo allineati.
+
+**Pesi modello fuori dal SIF**: `HF_HOME` bind-mounted da `/mnt/home/u0044/simulomicsr-dgx/models/HF_HOME`. **Pre-download UNA VOLTA** sul login node:
+
+```sh
+# Su login node, con HF_TOKEN esportato (~/.simulomicsr-dgx.env)
+. ~/.simulomicsr-dgx.env
+singularity exec \
+  --bind /mnt/home/u0044/simulomicsr-dgx/models/HF_HOME:/work/models/HF_HOME \
+  /mnt/home/u0044/simulomicsr-dgx/runtime/current.sif \
+  huggingface-cli download mistralai/Mistral-Small-3.2-24B-Instruct-2506 \
+  --token "$HF_TOKEN"
+# Aspetta ~10-15 min, ~50GB scaricati una volta sola.
+```
+
+Dopo questo step, i job SLURM partono con cache hit (cold load ~30-60s) e **non hanno bisogno di rete o `HF_TOKEN`** a runtime.
 
 ## 7. SLURM template
 
@@ -320,8 +359,12 @@ result <- dgx_p4_collect(job, dest = "analysis/p4-output/")
 | Asset | Location | Setup |
 |---|---|---|
 | SSH key login DGX | `~/.ssh/id_rsa` (o agent-loaded) | già esistente, uso quotidiano |
-| `HF_TOKEN` (Mistral 3.2 gated) | login node `~/.simulomicsr-dgx.env` chmod 600 | one-time: `ssh u0044@... ; echo 'export HF_TOKEN=hf_xxx' > ~/.simulomicsr-dgx.env` |
+| Docker login | laptop `~/.docker/config.json` | one-time: `docker login` con account `lucavd` |
+| `HF_TOKEN` (Mistral 3.2 gated) | login node `~/.simulomicsr-dgx.env` chmod 600 | one-time: `ssh u0044@... ; echo 'export HF_TOKEN=hf_xxx' > ~/.simulomicsr-dgx.env`. Usato SOLO durante il pre-download del modello (Step setup 17.5 nel plan). I job SLURM successivi pescano da cache HF_HOME e non lo richiedono. |
 | EULA HF Mistral 3.2 | accettata su huggingface.co | one-time, account web |
+| Modello in HF cache | login node `/mnt/home/u0044/simulomicsr-dgx/models/HF_HOME/` | one-time: `singularity exec ... huggingface-cli download mistralai/Mistral-Small-3.2-24B-Instruct-2506`. ~50GB, 10-15 min. Dopo: zero rete, zero token a runtime. |
+| Docker image | DockerHub `lucavd/simulomicsr-vllm:latest` (+ `:v1`, `:v2`, ...) | `make -C inst/dgx build push` da laptop |
+| Singularity SIF | login node `/mnt/home/u0044/simulomicsr-dgx/runtime/current.sif` | `singularity pull --force current.sif docker://lucavd/simulomicsr-vllm:latest` (~6-8 GB) |
 | `dgx_config()` defaults | hardcoded nel pacchetto | `login_user="u0044"`, `mail_user="luca.vedovelli@unipd.it"`, root path `/mnt/home/u0044/simulomicsr-dgx/`, partition/account/nodelist UniPD HPC |
 
 **Niente** `OPENAI_API_KEY` necessaria per P4 (abbandoniamo OpenAI).
@@ -380,8 +423,8 @@ simulomicsr/
 │
 ├── inst/
 │   ├── dgx/                   # NEW — payload remoto
-│   │   ├── runtime.def
-│   │   ├── build-runtime.sh
+│   │   ├── Dockerfile         # docker build context (FROM vllm/vllm-openai:v0.6.4)
+│   │   ├── Makefile           # build / push / pull-cluster targets
 │   │   ├── slurm/
 │   │   │   └── run_p4.sh
 │   │   └── python/
