@@ -35,3 +35,11 @@ test_that("dgx_config() print method mostra campi chiave", {
   expect_true(any(grepl("u0044", out)))
   expect_true(any(grepl("poddgx02", out)))
 })
+
+test_that("dgx_config() valida ssh_key_path opzionale", {
+  expect_no_error(dgx_config(ssh_key_path = NULL))
+  expect_no_error(dgx_config(ssh_key_path = "/home/user/.ssh/id_rsa"))
+  expect_error(dgx_config(ssh_key_path = 42), class = "simulomicsr_dgx_config_invalid")
+  expect_error(dgx_config(ssh_key_path = ""), class = "simulomicsr_dgx_config_invalid")
+  expect_error(dgx_config(ssh_key_path = c("a", "b")), class = "simulomicsr_dgx_config_invalid")
+})

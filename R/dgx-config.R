@@ -58,6 +58,15 @@ dgx_config <- function(login_user  = "u0044",
     }
   }
 
+  if (!is.null(ssh_key_path)) {
+    if (!is.character(ssh_key_path) || length(ssh_key_path) != 1L || !nzchar(ssh_key_path)) {
+      cli::cli_abort(
+        "{.field ssh_key_path} deve essere NULL oppure una singola stringa non vuota.",
+        class = "simulomicsr_dgx_config_invalid"
+      )
+    }
+  }
+
   if (is.null(remote_root)) {
     remote_root <- paste0("/mnt/home/", login_user, "/simulomicsr-dgx")
   }
