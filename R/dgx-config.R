@@ -18,6 +18,8 @@
 #'   `"/mnt/home/<login_user>/simulomicsr-dgx"`.
 #' @param ssh_key_path path opzionale a private key SSH. `NULL` significa
 #'   usa la default (id_rsa o ssh-agent).
+#' @param ... interno, intercetta argomenti non riconosciuti per
+#'   produrre un errore esplicito invece del default R "argument unused".
 #' @return oggetto `simulomicsr_dgx_config`.
 #' @export
 dgx_config <- function(login_user  = "u0044",

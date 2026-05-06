@@ -250,13 +250,13 @@ dgx_p4_collect <- function(job, dest = "analysis/p4-output") {
   if (job$stage == "stage1") {
     inp_lines  <- readLines(fs::path(job$bundle_dir, "input.jsonl"))
     inp        <- lapply(inp_lines, jsonlite::fromJSON, simplifyVector = FALSE)
-    inp_lookup <- setNames(inp, vapply(inp, function(r) r$record_id, character(1)))
+    inp_lookup <- stats::setNames(inp, vapply(inp, function(r) r$record_id, character(1)))
     df$parsed_json <- mapply(function(parsed, rid) {
       if (is.null(parsed)) return(NULL)
       orig <- inp_lookup[[rid]]
       if (is.null(orig)) return(parsed)
       tryCatch(
-        simulomicsr:::parse_stage1_response(
+        parse_stage1_response(
           raw           = parsed,
           sample_string = orig$string,
           geo_accession = orig$geo_accession,
@@ -272,12 +272,12 @@ dgx_p4_collect <- function(job, dest = "analysis/p4-output") {
     if (exists("parse_stage2_response", envir = asNamespace("simulomicsr"))) {
       inp_lines  <- readLines(fs::path(job$bundle_dir, "input.jsonl"))
       inp        <- lapply(inp_lines, jsonlite::fromJSON, simplifyVector = FALSE)
-      inp_lookup <- setNames(inp, vapply(inp, function(r) r$record_id, character(1)))
+      inp_lookup <- stats::setNames(inp, vapply(inp, function(r) r$record_id, character(1)))
       df$parsed_json <- mapply(function(parsed, rid) {
         if (is.null(parsed)) return(NULL)
         orig <- inp_lookup[[rid]]
         tryCatch(
-          simulomicsr:::parse_stage2_response(
+          parse_stage2_response(
             raw          = parsed,
             series_id    = rid,
             sample_count = if (!is.null(orig)) length(orig) else 1L,
