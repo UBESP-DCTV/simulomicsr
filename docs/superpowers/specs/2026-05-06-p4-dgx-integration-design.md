@@ -357,14 +357,16 @@ result <- dgx_p4_collect(job, dest = "analysis/p4-output/")
 
 **Acceptance per chiusura P4 setup**:
 
-- Stadio 1 accuracy ≥ 95% su mini-gold v5 (n=100 reviewati)
-- Stadio 2 binary accuracy ≥ 80% su sub-set sovrapponibile a P3.5-A
+- **Stadio 1 accuracy ≥ 95%** su mini-gold v5 (n=100 reviewati). Riferimento P3.5-D: mistral-small-3.2 ha fatto 96% sul mini-gold v5 — soglia 95% è quel risultato meno 1pp di tolleranza per varianza cross-run.
+- **Stadio 2 accuracy ≥ 95%** (target aspirazionale) su sub-set sovrapponibile a P3.5-A. Riferimento doppio: P3.5-D mistral-small-3.2 mini-gold = 96%, ma P3.5-A gpt-5.5 su 1489 sample = 83.7% (più diversità → numeri più bassi). Soglia 95% è ambiziosa: se non raggiunta, **fallback investigativo** prima di promuovere a β:
+  - Se accuracy ∈ [80%, 95%): setup tecnico OK, ma quality gap richiede prompt iter / test ulteriore. Documentare in addendum spec, decidere se bloccare β o accettare con riserva.
+  - Se accuracy < 80%: probabile bug (prompt rendering Python ≠ R, schema parsing, guided JSON edge case). Debug obbligatorio prima di β.
 - Throughput stage 1: ≥ 50 record/min/GPU (target ~14h per 130k su 4 GPU)
 - Throughput stage 2: ≥ 10 record/min/GPU (target ~30 min per 5.4k su 4 GPU)
 - 0 crash di worker su run α completo
 - Resume verificato manualmente
 
-Se sotto soglia: debug del prompt rendering o del guided JSON prima di promuovere a β. β è fuori scope di questo design.
+β è fuori scope di questo design.
 
 ## 13. Layout file
 
