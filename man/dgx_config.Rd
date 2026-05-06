@@ -10,7 +10,7 @@ dgx_config(
   mail_user = "luca.vedovelli@unipd.it",
   partition = "dgx12cluster",
   account = "dctv_dgx",
-  nodelist = "poddgx02",
+  nodelist = NULL,
   remote_root = NULL,
   ssh_key_path = NULL,
   ...
@@ -29,7 +29,10 @@ Default \code{"luca.vedovelli@unipd.it"}.}
 
 \item{account}{account SLURM. Default \code{"dctv_dgx"}.}
 
-\item{nodelist}{nodelist SLURM. Default \code{"poddgx02"}.}
+\item{nodelist}{nodelist SLURM opzionale. Default \code{NULL} (lo scheduler
+sceglie automaticamente uno dei nodi della partition; raccomandato
+perche' nodi specifici possono essere DRAIN/DOWN). Pass una stringa
+come \code{"poddgx02"} solo se devi forzare un nodo specifico.}
 
 \item{remote_root}{root remoto del workspace P4. Default
 \code{"/mnt/home/<login_user>/simulomicsr-dgx"}.}

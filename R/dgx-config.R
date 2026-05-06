@@ -13,7 +13,10 @@
 #'   Default `"luca.vedovelli@unipd.it"`.
 #' @param partition partizione SLURM. Default `"dgx12cluster"`.
 #' @param account account SLURM. Default `"dctv_dgx"`.
-#' @param nodelist nodelist SLURM. Default `"poddgx02"`.
+#' @param nodelist nodelist SLURM opzionale. Default `NULL` (lo scheduler
+#'   sceglie automaticamente uno dei nodi della partition; raccomandato
+#'   perche' nodi specifici possono essere DRAIN/DOWN). Pass una stringa
+#'   come `"poddgx02"` solo se devi forzare un nodo specifico.
 #' @param remote_root root remoto del workspace P4. Default
 #'   `"/mnt/home/<login_user>/simulomicsr-dgx"`.
 #' @param ssh_key_path path opzionale a private key SSH. `NULL` significa
@@ -27,7 +30,7 @@ dgx_config <- function(login_user  = "u0044",
                        mail_user   = "luca.vedovelli@unipd.it",
                        partition   = "dgx12cluster",
                        account     = "dctv_dgx",
-                       nodelist    = "poddgx02",
+                       nodelist    = NULL,
                        remote_root = NULL,
                        ssh_key_path = NULL,
                        ...) {
@@ -50,7 +53,7 @@ dgx_config <- function(login_user  = "u0044",
   }
 
   for (nm in c("login_user", "login_host", "mail_user",
-               "partition", "account", "nodelist")) {
+               "partition", "account")) {
     val <- args[[nm]]
     if (!is.character(val) || length(val) != 1L || !nzchar(val)) {
       cli::cli_abort(
@@ -58,6 +61,14 @@ dgx_config <- function(login_user  = "u0044",
         class = "simulomicsr_dgx_config_invalid"
       )
     }
+  }
+  # nodelist e' opzionale: se non NULL, deve essere stringa singola non-empty
+  if (!is.null(nodelist) &&
+      (!is.character(nodelist) || length(nodelist) != 1L || !nzchar(nodelist))) {
+    cli::cli_abort(
+      "{.field nodelist} deve essere NULL o una singola stringa non vuota.",
+      class = "simulomicsr_dgx_config_invalid"
+    )
   }
 
   if (!is.null(ssh_key_path)) {
@@ -97,7 +108,8 @@ print.simulomicsr_dgx_config <- function(x, ...) {
   cat("Mail: ", x$mail_user, "\n")
   cat("SLURM: partition=", x$partition,
       " account=", x$account,
-      " nodelist=", x$nodelist, "\n", sep = "")
+      " nodelist=", if (is.null(x$nodelist)) "<auto>" else x$nodelist,
+      "\n", sep = "")
   cat("Remote root:", x$remote_root, "\n")
   if (!is.null(x$ssh_key_path))
     cat("SSH key:", x$ssh_key_path, "\n")
