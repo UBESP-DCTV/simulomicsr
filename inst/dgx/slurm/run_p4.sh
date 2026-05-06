@@ -1,6 +1,6 @@
 #!/bin/bash
-# Template SLURM per run P4. R sostituisce __VAR__ tramite
-# .dgx_render_slurm_template().
+# Template SLURM per run P4. I placeholder della forma "doppio-underscore-NOME-doppio-underscore"
+# vengono sostituiti da R tramite .dgx_render_slurm_template().
 #SBATCH --job-name=simulomicsr-p4-__RUN_ID_SHORT__
 #SBATCH --partition=dgx12cluster
 #SBATCH --account=dctv_dgx
