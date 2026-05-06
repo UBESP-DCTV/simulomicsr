@@ -47,6 +47,7 @@ srun "$SINGULARITY_BIN" exec \
   --bind "$REMOTE_ROOT/models/HF_HOME:/work/models/HF_HOME" \
   --env "HF_TOKEN=${HF_TOKEN:-}" \
   "$REMOTE_ROOT/runtime/simulomicsr-vllm.sif" \
-  --bundle /work/bundle --output /work/run --workers 4
+  python3 /opt/simulomicsr/runtime/python/run_p4_vllm.py \
+    --bundle /work/bundle --output /work/run --workers 4
 
 echo "[INFO] Job completed"
