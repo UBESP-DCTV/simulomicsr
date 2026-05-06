@@ -1,0 +1,60 @@
+# R
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+.Rproj
+*.Rproj
+
+# Package build
+*.tar.gz
+/Meta/
+
+# Dependency managers
+renv/library/
+renv/staging/
+packrat/lib*/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Python / container build leftovers
+__pycache__/
+*.pyc
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# Containers / images
+*.sif
+*.simg
+*.sqsh
+*.img
+container/build/
+container/dist/
+
+# Runtime outputs
+outputs/
+results/
+runs/
+logs/
+cache/
+tmp/
+*.log
+slurm-*.out
+slurm-*.err
+
+# Model caches
+.huggingface/
+.cache/
+
+# Bundles and generated data
+bundles/
+*.jsonl
+*.ndjson

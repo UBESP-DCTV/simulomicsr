@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname "$0")" && pwd)"
+RUNTIME_ROOT="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
+
+export PYTHONPATH="$RUNTIME_ROOT/python${PYTHONPATH:+:$PYTHONPATH}"
+
+exec python "$RUNTIME_ROOT/python/laims_runtime/run_batch.py" "$@"

@@ -1,0 +1,68 @@
+# Canonical model catalog for LAIMS DGX batch extraction.
+#
+# Public story:
+# - users choose only `20B` or `120B`
+# - DGX hardware is fixed to H100 80GB GPUs
+# - managed runtime selection resolves automatically to the official runtime
+#   identity for the selected model
+
+models:
+  "20B":
+    label: "Official GPT-OSS 20B runtime"
+    model_id: "openai/gpt-oss-20b"
+    runtime:
+      managed_id: "official-20b"
+      image_name: "laims-gpt-oss-20b"
+      path_hint: "official-20b/current.sif"
+      max_context_tokens: 16384
+    recommended_slurm:
+      partition: "dgx12cluster"
+      account: "dctv_dgx"
+      nodelist: "poddgx02"
+      nodes: 1
+      mail_type: "ALL"
+      gpus: 1
+      cpus: 4
+      mem: "32G"
+      time: "00:05:00"
+    chunking:
+      token_estimator: "bytes_div_4"
+      chars_per_token_fallback: 4
+      target_context_fraction: 0.70
+      prompt_overhead_tokens: 700
+      output_reserve_per_record: 350
+      max_records_per_chunk: 64
+      oversized_record_policy: "single-record-chunk"
+
+  "120B":
+    label: "Official GPT-OSS 120B runtime"
+    model_id: "openai/gpt-oss-120b"
+    runtime:
+      managed_id: "official-120b"
+      image_name: "laims-gpt-oss-120b"
+      path_hint: "official-120b/current.sif"
+      max_context_tokens: 16384
+    recommended_slurm:
+      partition: "dgx12cluster"
+      account: "dctv_dgx"
+      nodelist: "poddgx02"
+      nodes: 1
+      mail_type: "ALL"
+      gpus: 1
+      cpus: 4
+      mem: "32G"
+      time: "00:05:00"
+    chunking:
+      token_estimator: "bytes_div_4"
+      chars_per_token_fallback: 4
+      target_context_fraction: 0.65
+      prompt_overhead_tokens: 900
+      output_reserve_per_record: 450
+      max_records_per_chunk: 96
+      oversized_record_policy: "single-record-chunk"
+
+aliases:
+  "20b": "20B"
+  "120b": "120B"
+  "openai/gpt-oss-20b": "20B"
+  "openai/gpt-oss-120b": "120B"
