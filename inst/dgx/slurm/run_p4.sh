@@ -46,7 +46,7 @@ srun "$SINGULARITY_BIN" exec \
   --bind "$REMOTE_ROOT/runs/$RUN_ID:/work/run" \
   --bind "$REMOTE_ROOT/models/HF_HOME:/work/models/HF_HOME" \
   --env "HF_TOKEN=${HF_TOKEN:-}" \
-  "$REMOTE_ROOT/runtime/current.sif" \
+  "$REMOTE_ROOT/runtime/simulomicsr-vllm.sif" \
   --bundle /work/bundle --output /work/run --workers 4
 
 echo "[INFO] Job completed"

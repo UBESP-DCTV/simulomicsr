@@ -1,48 +1,41 @@
 # Makefile per build e deploy del container P4.
-# Pattern: docker build locale -> push DockerHub -> singularity pull sul cluster.
-# Allineato a 2026.scRNA_DGX/Makefile.
+# Allineato 1:1 al pattern di 2026.scRNA_DGX/Makefile (lucavd/sc-benchmark):
+# - target laptop: build, push (docker)
+# - target cluster (run dopo SSH): pull-singularity, predownload-model
+# Niente SSH wrapping nel Makefile: pattern semplice, esegui il target dove
+# ti serve, decidi tu dove SSH-are.
 
 DOCKER_USER ?= lucavd
 IMAGE_NAME  ?= simulomicsr-vllm
 TAG         ?= latest
 FULL_IMAGE  := $(DOCKER_USER)/$(IMAGE_NAME):$(TAG)
 
-LOGIN_HOST  ?= logindgx.hpc.ict.unipd.it
-LOGIN_USER  ?= u0044
-RUNTIME_DIR ?= /mnt/home/$(LOGIN_USER)/simulomicsr-dgx/runtime
+.PHONY: build push pull-singularity predownload-model
 
-.PHONY: build push pull-cluster predownload-model deploy
+# ===== LAPTOP =====
 
-# Build locale
 build:
 	docker build -t $(FULL_IMAGE) .
 
-# Push a DockerHub (richiede `docker login` una volta)
-push: build
+push:
 	docker push $(FULL_IMAGE)
 
-# Pull come SIF sul login node DGX (richiede SSH key valida)
-pull-cluster:
-	ssh $(LOGIN_USER)@$(LOGIN_HOST) \
-		"mkdir -p $(RUNTIME_DIR) && \
-		 cd $(RUNTIME_DIR) && \
-		 module load singularity/4.2.0 && \
-		 singularity pull --force current.sif docker://$(FULL_IMAGE) && \
-		 ls -lh current.sif"
+# ===== CLUSTER (run dopo SSH al login node) =====
+# Esempio:
+#   ssh u0044@logindgx.hpc.ict.unipd.it
+#   cd ~/simulomicsr-dgx/runtime/
+#   module load singularity/4.2.0
+#   make -f /path/al/repo/inst/dgx/Makefile pull-singularity
 
-# Pre-download del modello UNA VOLTA (uso HF_TOKEN dal login)
-# Richiede current.sif gia' presente (eseguire `make pull-cluster` prima).
+pull-singularity:
+	singularity pull --force $(IMAGE_NAME).sif docker://$(FULL_IMAGE)
+	singularity cache clean
+
 predownload-model:
-	ssh $(LOGIN_USER)@$(LOGIN_HOST) \
-		". ~/.simulomicsr-dgx.env && \
-		 module load singularity/4.2.0 && \
-		 mkdir -p /mnt/home/$(LOGIN_USER)/simulomicsr-dgx/models/HF_HOME && \
-		 singularity exec \
-		   --bind /mnt/home/$(LOGIN_USER)/simulomicsr-dgx/models/HF_HOME:/work/models/HF_HOME \
-		   $(RUNTIME_DIR)/current.sif \
-		   huggingface-cli download mistralai/Mistral-Small-3.2-24B-Instruct-2506 \
-		   --token \$$HF_TOKEN"
-
-# Pipeline completa
-deploy: push pull-cluster
-	@echo "Container deployed. Esegui 'make predownload-model' per popolare HF cache."
+	. ~/.simulomicsr-dgx.env && \
+	mkdir -p ~/simulomicsr-dgx/models/HF_HOME && \
+	singularity exec \
+	  --bind ~/simulomicsr-dgx/models/HF_HOME:/work/models/HF_HOME \
+	  $(IMAGE_NAME).sif \
+	  huggingface-cli download mistralai/Mistral-Small-3.2-24B-Instruct-2506 \
+	  --token $$HF_TOKEN
