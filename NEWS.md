@@ -1,3 +1,96 @@
+# simulomicsr 0.0.0.9008 (P3.5-D — cheap models exploration)
+
+## Funzionalita' nuove
+
+* `R/llm-client-openrouter.R` - adapter OpenRouter (OpenAI-compatible).
+  Usa `response_format: json_object` (universale, supportato da tutti i
+  modelli backend) + schema injection nel prompt + post-validation
+  client-side (riusa `validate_json()` esistente). Funzioni private:
+  `.openrouter_build_request()`, `.openrouter_parse_response()`,
+  `.openrouter_chat_structured()`. Errori tipizzati:
+  `simulomicsr_openrouter_missing_key`, `..._truncated`, `..._no_content`,
+  `..._bad_json`. Strip automatico dei fence markdown ```json...```.
+* Dispatch `provider="openrouter"` in `llm_call_structured()`.
+* `analysis/run_openrouter_p35c.R` - script multi-modello sequenziale
+  con resume + salvataggio incrementale.
+* `analysis/run_openrouter_single.R` - script single-model per
+  parallelizzazione cross-modello (8 processi paralleli, ognuno gestisce
+  un modello su 50 GSE).
+
+## Risultati P3.5-D — esplorazione 14 modelli su mini-gold v5 (n=100)
+
+| Modello                              | Overall | $/sample  | License |
+|--------------------------------------|---------|-----------|---------|
+| **gemini-2.5-flash**                 | **97%** | $0.0035   | closed  |
+| **mistral-small-3.2-24b-instruct**   | **96%** | $0.0004   | Apache 2.0 ★ |
+| qwen3-30b-a3b-instruct-2507          | 95%     | $0.0006   | Apache 2.0 |
+| gpt-5.5                              | 94%     | $0.046    | closed  |
+| gpt-5.4-mini                         | 93%     | $0.005    | closed  |
+| claude-sonnet-4-6                    | 91%     | $0.025    | closed  |
+| mistral-medium-3-5                   | 90%     | $0.0035   | closed  |
+| ~google/gemini-flash-latest          | 89%     | $0.0005   | closed  |
+| mistral-small-2603                   | 86%     | $0.00015  | Apache 2.0 |
+| claude-haiku-4-5                     | 80%     | $0.008    | closed  |
+| deepseek-v4-flash                    | 80%     | $0.0003   | DeepSeek |
+| qwen3-max                            | 76%     | $0.0105   | Apache 2.0 |
+| deepseek-chat-v3.1                   | 71%     | $0.0009   | DeepSeek |
+| llama-4-maverick                     | 61%     | $0.001    | Llama 4 |
+| deepseek-v3.2-speciale               | 60%     | $0.004    | DeepSeek |
+| llama-3.3-70b-instruct               | 58%     | $0.0006   | Llama 3 |
+| qwen3.6-flash                        | 58%     | $0.001    | Apache 2.0 |
+| hermes-3-llama-3.1-405b              | 49%     | $0.015    | Apache 2.0 |
+| deepseek-v4-pro                      | 48%     | $0.004    | DeepSeek |
+| qwen3.6-max-preview                  | 42%*    | $0.0156   | Apache 2.0 (parziale 30/50) |
+| gpt-5.4-nano                         | 24%     | $0.0014   | closed  |
+
+*REPLICA mistral-small-3.2 confermato 96% (anti-variance check OK).*
+
+## Pattern strutturali
+
+1. **Mid-size mature (24-30B) batte flagship latest (70-405B)** sul nostro
+   task. Mistral Small 3.2 24B supera Llama 3.3/4 70-405B, Qwen 3 max,
+   Hermes 405B, DeepSeek V3.2/V4 di 35-50pp. Per JSON-structured output
+   con tassonomia controllata, il bottleneck e' strict instruction
+   following + schema conformance, NON capability scalata.
+2. **"Latest" peggiore del predecessore stabile**: gemini-flash-latest
+   (89%) < gemini-2.5-flash (97%); mistral-small-2603 (86%) <
+   mistral-small-3.2 (96%); qwen3.6-flash (58%) << qwen3-30b-a3b (95%).
+3. **Big open-weights con alto invalid rate** (14-46% schema fail).
+   CAVEAT possibile: OpenRouter potrebbe servirli quantizzati Q3-Q4
+   vendor-side. Hypothesis non testata: in FP16 self-hosted potrebbero
+   recuperare alcuni pp (decisione utente: non testare, restiamo
+   mistral-small-3.2).
+
+## Decisione P4 (definitiva)
+
+* **Modello P4**: `mistralai/mistral-small-3.2-24b-instruct` (Apache 2.0).
+* **Hardware P4**: self-hosted in **FP16 nativo su DGX H100** (1 sola H100,
+  ~48 GB VRAM su 80 GB).
+* **Costo P4**: $0 (solo elettricita').
+* **Tempo P4**: ~30 min su 1 H100 con vLLM continuous batching.
+* **Quality attesa**: ~96-97% accuracy (no degrado quantizzazione).
+
+## Hardware self-hosting confermato
+
+- RTX 4090 24 GB: gestibile in Q8 (al limite, 24 GB) o Q4 (14 GB).
+  Stima P4: 3-6h, $0.
+- DGX H100 8×80GB: gestibile in FP16 nativo. Stima P4: ~30 min, $0.
+- Decisione: P4 default su DGX FP16.
+
+## Costo P3.5-D cumulativo
+
+~$5-15 (5 round su OpenRouter + replica). Tutti i 14 modelli testati
+contro mini-gold v5.
+
+## Tag: `p3.5d-cheap-models-complete`
+
+## Next phase: P3.5-E (DGX setup + P4 dispatch)
+
+Setup vLLM su DGX, smoke test FP16 mistral-small-3.2 (replica 96%),
+poi P4 run massivo ARCHS4. NUOVA SESSIONE, accesso SSH alla DGX richiesto.
+
+---
+
 # simulomicsr 0.0.0.9007
 
 ## P3.5-C — Confidence-aware classification (multi-model + mini-gold design-aware)

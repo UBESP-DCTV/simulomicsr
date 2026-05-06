@@ -75,9 +75,12 @@ llm_call_structured <- function(provider,
   } else if (provider == "anthropic") {
     .anthropic_chat_structured(model = model, messages = messages,
                                response_schema = response_schema, ...)
+  } else if (provider == "openrouter") {
+    .openrouter_chat_structured(model = model, messages = messages,
+                                response_schema = response_schema, ...)
   } else {
     rlang::abort(
-      glue::glue("Provider sconosciuto: '{provider}'. Supportati: 'openai', 'anthropic', 'mock'."),
+      glue::glue("Provider sconosciuto: '{provider}'. Supportati: 'openai', 'anthropic', 'openrouter', 'mock'."),
       class = "simulomicsr_unknown_provider"
     )
   }

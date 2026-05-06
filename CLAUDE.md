@@ -25,13 +25,114 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-05 fine sessione `simulomicsr_brain2`)
+## Stato corrente (2026-05-06 fine sessione `simulomicsr_brain2`)
 
 - **Branch:** `p3.5c-confidence` (master HEAD invariato a `8623c35`).
 - **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, **`p3.5c-confidence-complete` (P3.5-C v5)**.
 - **Branch locale è ahead di master** — l'utente fa il merge + push lui.
 - **R CMD check:** 0E / 0W / note pre-esistenti.
 - **Test suite:** 444 PASS / 0 FAIL.
+
+### P3.5-D in corso (2026-05-06): cheap models exploration via OpenRouter
+
+Adapter `R/llm-client-openrouter.R` aggiunto. Provider `openrouter` nel
+dispatch. Testati 14 modelli su 50 GSE × mini-gold v5 (n=100).
+
+**Risultati conclusivi P3.5-D:**
+
+| Modello                              | Provider     | Overall | $/sample  | Note                                     |
+|--------------------------------------|--------------|---------|-----------|------------------------------------------|
+| **gemini-2.5-flash**                 | OpenRouter   | **97%** | $0.0035   | Closed                                   |
+| **mistral-small-3.2-24b-instruct**   | OpenRouter   | **96%** | **$0.0004** | Apache 2.0 ✓ ★ VINCITORE                |
+| qwen3-30b-a3b-instruct-2507          | OpenRouter   | 95%     | $0.0006   | Apache 2.0 ✓                             |
+| gpt-5.5                              | OpenAI       | 94%     | $0.046    | Closed                                   |
+| gpt-5.4-mini                         | OpenAI       | 93%     | $0.005    | Closed                                   |
+| claude-sonnet-4-6                    | Anthropic    | 91%     | $0.025    | Closed                                   |
+| mistral-medium-3-5                   | OpenRouter   | 90%     | $0.0035   | Closed-ish                               |
+| ~google/gemini-flash-latest          | OpenRouter   | 89%     | $0.0005   | Closed (alias dinamico, tilde required)  |
+| mistral-small-2603                   | OpenRouter   | 86%     | $0.00015  | Apache 2.0 (più recente di 3.2 ma peggio)|
+| claude-haiku-4-5                     | Anthropic    | 80%     | $0.008    | Closed                                   |
+| deepseek-v4-flash                    | OpenRouter   | 80%     | $0.0003   | DeepSeek License                         |
+| qwen3-max                            | OpenRouter   | 76%     | $0.0105   | Apache 2.0                               |
+| deepseek-chat-v3.1                   | OpenRouter   | 71%     | $0.0009   | DeepSeek License                         |
+| llama-4-maverick (MoE)               | OpenRouter   | 61%     | $0.001    | Llama 4 Community                        |
+| deepseek-v3.2-speciale               | OpenRouter   | 60%     | $0.004    | DeepSeek License (32% invalid)           |
+| qwen3.6-flash                        | OpenRouter   | 58%     | $0.001    | Apache 2.0                               |
+| llama-3.3-70b-instruct               | OpenRouter   | 58%     | $0.0006   | Llama 3 Community                        |
+| hermes-3-llama-3.1-405b              | OpenRouter   | 49%     | $0.015    | Apache 2.0 fine-tune (405B)              |
+| deepseek-v4-pro                      | OpenRouter   | 48%     | $0.004    | DeepSeek License (46% invalid)           |
+| qwen3.6-max-preview                  | OpenRouter   | 42%*    | $0.0156   | Apache 2.0 (parziale 30/50)              |
+| gpt-5.4-nano                         | OpenAI       | 24%     | $0.0014   | Closed                                   |
+
+**Pattern strutturali emersi:**
+
+1. **mid-size mature (24-30B) > flagship latest** (70-405B). Mistral
+   Small 3.2 24B batte Llama 3.3 70B, Llama 4 Maverick, Qwen 3 max,
+   Hermes 405B, DeepSeek V3.2/V4. Per task di JSON-structured output con
+   tassonomia controllata, il bottleneck NON e' capability scalata ma
+   strict instruction following + schema conformance.
+
+2. **Latest peggio del predecessore stabile**: gemini-flash-latest (89%)
+   < gemini-2.5-flash (97%); mistral-small-2603 (86%) < mistral-small-3.2
+   (96%); qwen3.6-flash (58%) << qwen3-30b-a3b-instruct-2507 (95%).
+   I modelli piu' recenti sono ottimizzati su capability che il nostro
+   task non richiede.
+
+3. **Big open-weights (70B+) hanno alto invalid rate** (14-46%) per
+   schema conformance. CAVEAT: **OpenRouter potrebbe servirli in
+   quantizzazione aggressiva (Q3-Q4) vendor-side**, degradando la
+   qualita'. In FP16 self-hosted potrebbero recuperare 5-15pp - da
+   verificare.
+
+4. **REPLICA mistral-small-3.2 → 96% (idem run originale)**.
+   Anti-variance check OK, valore stabile.
+
+### Decisione P4 aggiornata da P3.5-D
+
+- **Modello scelto**: `mistral-small-3.2-24b-instruct` (Apache 2.0).
+- **Hardware**: self-hosted in **FP16 nativo su DGX H100** (1 sola H100
+  basta, ~48 GB VRAM, sotto i 80 GB disponibili).
+- **Costo P4**: $0 (solo elettricita').
+- **Tempo P4**: ~30 min su H100 con vLLM continuous batching.
+- **Quality**: ~96-97% accuracy attesa (no degrado quantizzazione).
+
+### Hardware self-hosting confermato (2026-05-06)
+
+- **RTX 4090 (24 GB VRAM)**: gestibile per Mistral Small 3.2 in Q8 (al
+  limite) o Q4. Stima P4: 3-6h. Costo $0.
+- **DGX H100 (8× H100 80GB)**: gestibile in FP16/FP8 nativo. Sblocca
+  rivalidazione modelli big in FP16 puro. Stima P4 mistral-small-3.2 in
+  FP16: ~30 min. Costo $0.
+- Decisione: P4 default su DGX FP16 (max qualita', tempo trascurabile).
+
+### Next session: setup DGX + P4
+
+Da fare nella prossima sessione (server linux DGX H100, NUOVA SESSIONE):
+
+1. **Setup vLLM** sulla DGX (Ubuntu, CUDA 12.x, vLLM ≥0.6.x).
+2. **Smoke test mistral-small-3.2 in FP16** (1 GSE, conferma replica
+   del 96% sul mini-gold v5).
+3. **P4**: run massivo ARCHS4 (~22k studi) con
+   `mistralai/mistral-small-3.2-24b-instruct` in FP16 su 1 H100,
+   tempo stimato ~30 min, costo $0.
+
+NOTA: la rivalidazione dei big in FP16 NON e' nello scope (decisione
+utente 2026-05-06). Mistral Small 3.2 24B e' la scelta finale.
+
+**Riusabilita' del codice**: `R/llm-client-openrouter.R` e' compatibile
+con vLLM locale: vLLM espone un endpoint OpenAI-compatible. Per
+puntarlo al server locale, basta passare `model = "..."` con il path
+locale e riconfigurare `.OPENROUTER_CHAT_URL` a `http://<dgx>:8000/v1/chat/completions`
+(o creare un adapter `R/llm-client-vllm.R` mirror con URL parametrico).
+
+Riferimenti:
+- `analysis/run_openrouter_p35c.R` - script multi-modello sequenziale
+- `analysis/run_openrouter_single.R` - script parallel single-model
+- `analysis/openrouter_*.rds` - artefatti P3.5-D (non committati,
+  ricostruibili da OpenRouter cache se serve)
+- `R/llm-client-openrouter.R` - adapter base per vLLM local
+- `inst/extdata/p35c-minigold-reviewed-v5.csv` - mini-gold riconvertito,
+  100 sample reviewati per validare smoke test FP16
 
 ### Cosa P3.5-C v5 ha consegnato (vocabolario design-aware-relational)
 
@@ -266,3 +367,28 @@ Scope P3.5-A2:
 - ADR generali: `docs/decisions/`.
 - README utente: `README.md`.
 - News versioni: `NEWS.md`.
+
+## Hardware self-hosting disponibile (annotazione 2026-05-06)
+
+Per fasi successive (post-P3.5-D, prima di P4 server-switch ADR-0005)
+considerare alternative self-host invece/oltre OpenRouter:
+
+- **RTX 4090 (24 GB VRAM, server Linux)**: gestibile per modelli ≤30B in
+  Q4-Q8 via vLLM. Mistral Small 3.2 24B su 4090 con continuous batching:
+  stima 3-6h per ARCHS4 (22k studi). Costo $0, privacy totale, niente
+  rate limit.
+- **DGX H100 (8× H100 80GB = 640GB VRAM)**: sblocca modelli da 70B-400B+
+  in FP16 con tensor parallel. Candidati per benchmark futuro:
+  - Qwen 2.5 72B Instruct
+  - Llama 3.3 70B Instruct
+  - Mistral Large 2 (123B)
+  - Mixtral 8x22B (141B MoE)
+  - DeepSeek-V3 (671B MoE) -- gestibile su 8×H100
+  Stima P4 con 70B su DGX: ~30 min totali. Sblocca anche multi-modello
+  consensus cross-family senza dipendenze API.
+
+Se vogliamo testare modelli > 70B prima di P4, andare diretti su DGX.
+Se vogliamo replicare il vincitore OpenRouter (mistral-small-3.2) a costo
+zero, andare su 4090.
+
+Decisione rimandata a chiusura P3.5-D.
