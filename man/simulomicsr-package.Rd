@@ -11,12 +11,12 @@
 Pipeline R per scaricare metadati di sample RNAseq da GEO/ARCHS4, classificarli via LLM in fatti strutturati e ruoli di design study-level, e produrre confronti per meta-analisi cross-studio.
 }
 \author{
-\strong{Maintainer}: Corrado Lanera \email{corrado.lanera@ubep.unipd.it} (\href{https://orcid.org/0000-0002-0520-7428}{ORCID})
+\strong{Maintainer}: Luca Vedovelli \email{luca.vedovelli@ubep.unipd.it} (\href{https://orcid.org/0000-0003-4847-2333}{ORCID})
 
 Authors:
 \itemize{
-  \item Corrado Lanera \email{corrado.lanera@ubep.unipd.it} (\href{https://orcid.org/0000-0002-0520-7428}{ORCID})
   \item Luca Vedovelli \email{luca.vedovelli@ubep.unipd.it} (\href{https://orcid.org/0000-0003-4847-2333}{ORCID})
+  \item Corrado Lanera \email{corrado.lanera@ubep.unipd.it} (\href{https://orcid.org/0000-0002-0520-7428}{ORCID})
 }
 
 }
