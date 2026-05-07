@@ -25,13 +25,15 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-07 fine sessione P4 — smoke verde end-to-end)
+## Stato corrente (2026-05-07 fine sessione P4 — Task 18+19 verde, Task 20 next)
 
-- **Branch:** `p4-dgx-integration` (16+ commit ahead di master, **non pushato**).
+- **Branch:** `p4-dgx-integration` (18+ commit ahead di master, **non pushato**).
 - **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, `p3.5c-confidence-complete`. P4 NON taggato (in corso).
 - **R CMD check:** 0E / 1W (pre-esistente non-P4 in `dot-openrouter_parse_response.Rd`) / 3 NOTE.
 - **Test suite:** 520 PASS / 0 FAIL / 3 SKIP (skip per OPENAI_API_KEY non impostata, pre-esistente).
 - **Smoke DGX end-to-end VERDE** (job 19723 su poddgx03, 2026-05-07): Mistral-Small-3.2 caricato in 125s (44.7 GiB GPU), 1 prompt JSON-strict generato in 1.44s con `parsed={'ack':'ok','n':42}`. Pipeline confermata: container → torch+CUDA → vLLM → mistral_common tokenizer → guided decoding → output JSON valido.
+- **Plan Task 18 VERDE** (job 19725 poddgx02, 2026-05-07): smoke 1-GPU 100 record reali, COMPLETED in **1:35** (32s load cache hit + 31.6s gen), 100/100 schema valid, mediana confidence 0.80. Pipeline `bundle → run_p4_vllm.py → resume.py → predictions.jsonl` validata su record reali (xlsx head 100). Submit manuale (rsync+sbatch) per gpu:1/workers 1.
+- **Plan Task 19 VERDE** (job 19726 poddgx02, 2026-05-07): smoke 4-GPU 100 record via `dgx_p4_submit()` non-dry-run (R-only workflow end-to-end), COMPLETED in **1:56**, 4 worker stripe 25/25/25/25, 100/100 schema valid. Per 100 record 4-GPU è leggermente più lento di 1-GPU (overhead 4× cold load > saving shard 4×); parity break a centinaia di record. Per α run (~5400 GSE / 130k sample) il 4-GPU dominerà nettamente.
 - **Server di sviluppo cambiato**: ora R 4.6.0 (era 4.5.2 sul laptop). Dev tools nella renv project lib (`~/.cache/R/renv/library/simulomicsr-ba33d608/.../R-4.6/`). **Usare `Rscript -e '...'` SENZA `--vanilla`** — su questo server `--vanilla` perde la libpath di renv. CLAUDE.md storico era allineato al laptop, l'operational note va invertita su questo server.
 
 ### P4 implementation completata localmente (Plan Task 1-16)
@@ -75,6 +77,7 @@ Sul DGX UniPD HPC (`logindgx.hpc.ict.unipd.it`, login `podhead1`, user `u0044`):
 7. **`runs/<run_id>/` deve esistere PRIMA del sbatch** — SLURM `--output`/`--error` puntano li' e fallisce con stesso signal 53 se la dir non c'e'. `dgx_p4_submit()` fa `mkdir -p` per `bundles/`, `runs/`, `runtime/python/` prima del sbatch.
 8. **Esecuzione singularity diretta, NO `srun`** — `srun singularity` non e' supportato/affidabile su questo cluster. Usare `singularity exec --nv ...` direttamente come scRNA_DGX/smoke_test.sh (validato).
 9. **`runtime/python/` bind-mounted, non dentro la SIF** — gli script Python (`run_p4_vllm.py`, `prompts.py`, `resume.py`) sono rsync-ati a ogni submit e bind-mountati su `/opt/simulomicsr/runtime/python` nel container. Aggiornamenti senza rebuild dell'immagine.
+10. **ssh non-interattivo NON sourca `/etc/profile.d/*.sh`** (lesson Task 18-19 2026-05-07) — sintomo: `bash: line 1: sbatch: command not found` o (con path assoluto a sbatch) `sbatch: fatal: Could not establish a configuration source`. Causa: `SLURM_CONF`, modules e `PATH` SLURM sono settati solo dai profile script che il login shell carica. Fix in `R/dgx-utils.R::.dgx_ssh()`: wrap del comando remoto con `bash -lc <cmd>` per forzare login shell. Validato sul cluster reale via `dgx_p4_submit()` job 19726.
 
 ### P3.5-D (2026-05-06): cheap models exploration via OpenRouter
 
@@ -360,9 +363,9 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — Plan Task 18 con bundle reale)
+## Next step (per la prossima sessione — Plan Task 20 resume verification)
 
-**P4 implementation completa + smoke verde.** Cluster setup completo (immagine v0.10.0, SIF, modello, runtime/python rsync-ato). Smoke 1-GPU passato (job 19723). Pronto per bundle reale.
+**P4 implementation completa + Task 18+19 verdi.** Pipeline R-only end-to-end validata (job 19726 via `dgx_p4_submit()` non-dry-run). Pronto per Task 20.
 
 ### File chiave verificati (snapshot 2026-05-07)
 
@@ -373,19 +376,16 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 - **Production SLURM template**: `inst/dgx/slurm/run_p4.sh` (path `/home/u0044/...`, no `srun`).
 - **R submit**: `R/dgx-submit.R` ora rsync-a anche `runtime/python/` automaticamente (oltre al bundle), e fa mkdir `runs/<run_id>/` prima del sbatch.
 
-### Per ripartire (Plan Task 18+)
+### Per ripartire (Plan Task 20+)
 
-1. **Verifica nodelist scelto**: `dgx_config()` default `nodelist=NULL` (scheduler sceglie). Se vuoi forzare poddgx02 (nodo dell'utente), passa `nodelist="poddgx02"`. Se poddgx02 e' DRAIN/DOWN, il job resta PD e va switchato a NULL.
-2. **Plan Task 18: smoke 1 GPU 100 record reali** (sezione "## Task 18" in `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md`). Step:
-   - Genera `data-raw/p4-smoke-stage1.jsonl` (100 sample da xlsx).
-   - `bundle <- dgx_p4_build_bundle(input, "stage1", cfg)` → `dgx_p4_submit(bundle)`.
-   - Verifica accuracy ≥ 95% su mini-gold v5.
-   - Per smoke 1 GPU: editare il rendered SLURM in `bundle$bundle_dir/run_p4.rendered.sh` cambiando `--gres=gpu:4` a `--gres=gpu:1` e `--workers 4` a `--workers 1`, oppure usare uno script `smoke_1gpu.sh` ad-hoc puntando al bundle.
-3. **Plan Task 19: smoke 4 GPU 100 record** (template default).
-4. **Plan Task 20: resume verification** (kill job a meta', re-sbatch).
-5. **Plan Task 21: run α stage1 130k** (input completo xlsx, ~3-4h su 4 H100).
-6. **Plan Task 22: run α stage2 ~5.4k** (~30 min).
-7. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con i risultati finali.
+1. **Plan Task 20: resume verification** (sezione "## Task 20" in `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md`). Step:
+   - `bundle <- dgx_p4_build_bundle(...)` + `dgx_p4_submit(bundle)`.
+   - Watch fino a metà generazione, poi `scancel <slurm_job_id>`.
+   - Re-submit dello stesso bundle (stesso `run_id`) — `resume.py` deve skippare i record già completati.
+   - Verifica `predictions.jsonl` finale = 100 unique record_id.
+2. **Plan Task 21: run α stage1 130k** (input completo xlsx, ~3-4h su 4 H100).
+3. **Plan Task 22: run α stage2 ~5.4k** (~30 min).
+4. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con i risultati finali.
 
 ### Roadmap post-P4 (deferred fino a chiusura α)
 
