@@ -1,3 +1,92 @@
+# simulomicsr 0.0.0.9009 (P4 — DGX integration, smoke E2E verde)
+
+## Funzionalita' nuove
+
+* **Control plane DGX** (5 funzioni esportate):
+  - `dgx_config()` — profilo cluster (login, partition, account, nodelist,
+    remote_root, ssh_key_path). Default cuciti per UniPD HPC u0044
+    (`logindgx.hpc.ict.unipd.it`, partition `dgx12cluster`, account
+    `dctv_dgx`, **`nodelist="poddgx02"`** validato 2026-05-07,
+    **`remote_root="/home/u0044/simulomicsr-dgx"`**).
+  - `dgx_p4_build_bundle(input_jsonl, stage, config)` — costruisce un
+    bundle locale (manifest + input + prompt + schema + generation.json
+    + status iniziale) in `analysis/p4-bundles/<run_id>/`.
+  - `dgx_p4_submit(bundle, time, config)` — render template SLURM,
+    rsync bundle + `runtime/python/` su DGX, mkdir runs/, sbatch via
+    SSH. Restituisce `simulomicsr_dgx_job` con SLURM job id.
+  - `dgx_p4_status(job, watch)` — polling `squeue` + opzionale snapshot
+    `status.json` dal cluster.
+  - `dgx_p4_collect(job, dest)` — rsync `runs/<run_id>/` -> locale,
+    parse `predictions.jsonl` + post-processing R-side via
+    `parse_stage1_response()` / `parse_stage2_response()`.
+  - `dgx_p4_recover(run_id, config)` — ricostruisce job da bundle locale
+    dopo restart R (slurm_job_id manca, recover manuale via squeue).
+
+* **Payload remoto** (`inst/dgx/`):
+  - `Dockerfile` FROM `vllm/vllm-openai:v0.10.0` (vLLM ≥ 0.8.x richiesto
+    per `Mistral3Config`/multimodale; v0.6.4 dava `KeyError 'mistral3'`).
+  - `Makefile` allineato 1:1 a scRNA_DGX (`build`/`push` da laptop,
+    `pull-singularity`/`predownload-model` da login DGX, no SSH wrapping).
+  - `slurm/run_p4.sh` template (path `/home/u0044/...`, `--export=NONE`,
+    `--chdir=/home/<user>`, esecuzione `singularity exec` diretta — NO
+    `srun` — bind `/home/<user>` + bundle + run + HF_HOME + runtime/python).
+  - `slurm/smoke_1gpu.sh` + `smoke_1gpu_poddgx02.sh` (smoke isolati 1 GPU).
+  - `slurm/probe_mounts.sh` (diagnostica filesystem dal compute).
+  - `python/run_p4_vllm.py` (4 worker DP via `multiprocessing`, vLLM
+    `LLM(tokenizer_mode="mistral", config_format="mistral", load_format="mistral")`,
+    `llm.chat(messages=...)`, `GuidedDecodingParams(json=schema)`).
+  - `python/prompts.py` (port 1:1 user message R per stage1/stage2).
+  - `python/resume.py` (idempotenza JSONL: scansiona output dir per
+    record_id gia' completati e li toglie dall'input).
+  - `python/smoke_vllm.py` (test isolato Mistral-3.2 + 1 prompt JSON).
+
+## Validazione end-to-end (2026-05-07)
+
+* **Job 19720** (probe mount poddgx03) — diagnosticato che i compute UniPD
+  non montano `/mnt/home/`, solo `/home/`. Sintomo del bug: ExitCode 0:53
+  in 2 secondi senza log files.
+* **Job 19723** (smoke 1-GPU poddgx03) — `=== SMOKE OK ===` in 2:41 min.
+  Modello caricato in 125s (44.7 GiB GPU bfloat16), 1 prompt JSON-strict
+  in 1.44s con `parsed={'ack':'ok','n':42}`.
+* **Job 19724** (smoke 1-GPU poddgx02, nodo dell'utente) — load 89.9s,
+  gen 0.75s. Confermato che il default `nodelist="poddgx02"` funziona.
+
+## Lessons learned chiave
+
+1. **Path `/home/u0044/` NON `/mnt/home/u0044/`** sui compute (autofs
+   sul login mostra entrambi, ma compute monta solo `/home/`).
+2. **vLLM ≥ 0.8.x** per Mistral-Small-3.2 (`mistral3` model_type).
+3. **`tokenizer_mode="mistral"`** + `llm.chat()` (Tekken non supporta
+   `apply_chat_template`).
+4. **`runs/<run_id>/` mkdir prima del sbatch** (SLURM `--output` fallisce
+   signal 53 senza dir).
+5. **Singularity diretto, NO `srun`** (allineato a scRNA_DGX validato).
+
+## Documentazione
+
+* `vignettes/p4-dgx-setup.Rmd` — one-time setup guide aggiornata con
+  path `/home/u0044/...` e sezione 5b "Smoke isolato".
+* `docs/decisions/0007-dgx-self-host-vllm.md` — ADR con sezione
+  "Update 2026-05-07" che documenta i delta vs design originale.
+* `docs/superpowers/specs/2026-05-06-p4-dgx-integration-design.md` —
+  design originale conservato come snapshot, header con tabella diff
+  rispetto all'implementato.
+
+## Tag: `p4-dgx-complete` (da applicare dopo Plan Task 18-22)
+
+## Next phase: Plan Task 18 — bundle reale 100 record stage1
+
+Pre-requisito: smoke isolato passato (job 19723/19724). Step:
+
+1. Genera `data-raw/p4-smoke-stage1.jsonl` (100 sample dal xlsx).
+2. `bundle <- dgx_p4_build_bundle(input, "stage1", cfg)`.
+3. `job <- dgx_p4_submit(bundle, time = "00:30:00")`.
+4. `dgx_p4_status(job, watch = TRUE)`.
+5. `result <- dgx_p4_collect(job)`.
+6. Verifica accuracy ≥ 95% su mini-gold v5.
+
+---
+
 # simulomicsr 0.0.0.9008 (P3.5-D — cheap models exploration)
 
 ## Funzionalita' nuove

@@ -1,6 +1,6 @@
 # P4 — Integrazione DGX UniPD HPC per run massivo Stadio 1+2
 
-- **Status:** Approved (2026-05-06)
+- **Status:** Approved (2026-05-06), implementato + smoke E2E validato (2026-05-07)
 - **Phase:** P4 (run massivo classificazione LLM)
 - **Approvals:** Luca Vedovelli (utente)
 - **Riferimenti:**
@@ -9,6 +9,29 @@
   - ADR-0005 server-migration trigger
   - Esempio collega `laims-dgx-llm-batch-main/` (riferimento, non importato)
   - Esempio interno `2026.scRNA_DGX/` (stesso cluster, stesso pattern Apptainer + 8 GPU)
+
+## ⚠️ Update 2026-05-07 — Diff rispetto al design originale
+
+Smoke E2E validato (job 19723 su poddgx03 + 19724 su poddgx02). Le sezioni
+sotto descrivono il design originale; la realta' implementata diverge in
+alcuni punti chiave. **Per stato corrente, vedi:**
+
+- [`docs/decisions/0007-dgx-self-host-vllm.md`](../../decisions/0007-dgx-self-host-vllm.md) — sezione "Update 2026-05-07"
+- `CLAUDE.md` — sezione "Lessons learned operative durante P4 setup"
+
+**Delta principali** rispetto a quanto scritto nelle sezioni 3-7 di questa
+spec:
+
+| Aspetto | Design (questa spec) | Implementato 2026-05-07 |
+|---|---|---|
+| Image base | `vllm/vllm-openai:v0.6.4` | **`v0.10.0`** (v0.6.4 dava `KeyError 'mistral3'`) |
+| Path remoto | `/mnt/home/u0044/...` | **`/home/u0044/...`** (compute non monta `/mnt/home/`) |
+| Esecuzione singularity | `srun singularity exec` | **`singularity exec` diretto** (no srun) |
+| Init vLLM | `LLM(model=..., dtype=bfloat16, trust_remote_code=True)` | aggiunge **`tokenizer_mode="mistral"`** + `config_format="mistral"` + `load_format="mistral"` (Mistral-3.2 e' multimodale) |
+| Sampling | `SamplingParams(guided_json=schema)` | **`GuidedDecodingParams(json=schema)`** (API v1 vLLM 0.10) |
+| Generazione | `llm.generate(prompts)` con `apply_chat_template` | **`llm.chat(messages=...)`** (Tekken tokenizer non supporta apply_chat_template) |
+| `nodelist` default | `poddgx02` hardcoded nel design | `dgx_config()` con default `"poddgx02"`, override a `NULL` per scheduler-pick |
+| `runs/<run_id>/` | atteso pre-esistente | `dgx_p4_submit()` fa `mkdir -p` esplicito (SLURM `--output` fallisce signal 53 senza dir) |
 
 ## 1. Obiettivo
 

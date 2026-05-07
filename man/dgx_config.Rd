@@ -10,7 +10,7 @@ dgx_config(
   mail_user = "luca.vedovelli@unipd.it",
   partition = "dgx12cluster",
   account = "dctv_dgx",
-  nodelist = NULL,
+  nodelist = "poddgx02",
   remote_root = NULL,
   ssh_key_path = NULL,
   ...
@@ -29,13 +29,17 @@ Default \code{"luca.vedovelli@unipd.it"}.}
 
 \item{account}{account SLURM. Default \code{"dctv_dgx"}.}
 
-\item{nodelist}{nodelist SLURM opzionale. Default \code{NULL} (lo scheduler
-sceglie automaticamente uno dei nodi della partition; raccomandato
-perche' nodi specifici possono essere DRAIN/DOWN). Pass una stringa
-come \code{"poddgx02"} solo se devi forzare un nodo specifico.}
+\item{nodelist}{nodelist SLURM. Default \code{"poddgx02"} (nodo dell'utente
+nel pool \code{dgx12cluster}). Validato col job 19724 il 2026-05-07.
+Pass \code{NULL} se vuoi che lo scheduler scelga automaticamente
+(utile se poddgx02 e' DRAIN/DOWN; gli altri nodi del pool sono
+poddgx01 e poddgx03).}
 
 \item{remote_root}{root remoto del workspace P4. Default
-\code{"/mnt/home/<login_user>/simulomicsr-dgx"}.}
+\code{"/home/<login_user>/simulomicsr-dgx"}. NOTA: \verb{/home/<user>/} (NON
+\verb{/mnt/home/<user>/}) perche' i compute node UniPD HPC non montano
+\verb{/mnt/home/}. Verificato col probe job 19720 il 2026-05-07 su
+poddgx03: \verb{/mnt/home/u0044/} non esiste lato compute.}
 
 \item{ssh_key_path}{path opzionale a private key SSH. \code{NULL} significa
 usa la default (id_rsa o ssh-agent).}
