@@ -1,8 +1,9 @@
-# CUDA 12.1+ richiesto da vLLM 0.6.x.
-# Driver DGX UniPD HPC (poddgx02) compatibile CUDA 12 (verificato dal
-# progetto 2026.scRNA_DGX che gira su nvcr.io/nvidia/rapidsai/base con
-# CUDA 12.x sullo stesso nodo).
-FROM vllm/vllm-openai:v0.6.4
+# vLLM >= 0.8.x richiesto per Mistral-Small-3.2 (model_type "mistral3"
+# introdotto in transformers 4.49 a inizio 2025; vLLM 0.6.4 di Nov 2024
+# non lo conosce -> KeyError 'mistral3' al load).
+# Verificato sul cluster il 2026-05-07 con job 19721: smoke fallisce a
+# Step 5 con questo errore esatto su v0.6.4. Bumpato a v0.10.0 stable.
+FROM vllm/vllm-openai:v0.10.0
 
 LABEL maintainer="simulomicsr" \
       model="mistralai/Mistral-Small-3.2-24B-Instruct-2506" \
