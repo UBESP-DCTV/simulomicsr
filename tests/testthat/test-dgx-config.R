@@ -7,7 +7,7 @@ test_that("dgx_config() default usa profilo UniPD HPC u0044", {
   expect_identical(cfg$partition,  "dgx12cluster")
   expect_identical(cfg$account,    "dctv_dgx")
   expect_null(cfg$nodelist)
-  expect_identical(cfg$remote_root, "/mnt/home/u0044/simulomicsr-dgx")
+  expect_identical(cfg$remote_root, "/home/u0044/simulomicsr-dgx")
 })
 
 test_that("dgx_config() valida nodelist opzionale", {
@@ -21,7 +21,7 @@ test_that("dgx_config() override singolo campo lascia altri intatti", {
   cfg <- dgx_config(login_user = "altro")
   expect_identical(cfg$login_user, "altro")
   expect_identical(cfg$mail_user,  "luca.vedovelli@unipd.it")
-  expect_identical(cfg$remote_root, "/mnt/home/altro/simulomicsr-dgx")
+  expect_identical(cfg$remote_root, "/home/altro/simulomicsr-dgx")
 })
 
 test_that("dgx_config() rifiuta campi non noti", {
