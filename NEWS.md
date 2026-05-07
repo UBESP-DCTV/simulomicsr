@@ -50,6 +50,32 @@
   in 1.44s con `parsed={'ack':'ok','n':42}`.
 * **Job 19724** (smoke 1-GPU poddgx02, nodo dell'utente) — load 89.9s,
   gen 0.75s. Confermato che il default `nodelist="poddgx02"` funziona.
+* **Job 19725** (Plan Task 18: smoke 1-GPU 100 record reali) —
+  COMPLETED in **1:35** (32s load cache hit + 31.6s generation).
+  100/100 schema valid, 100/100 con `cell_context`+`perturbations`+
+  `extraction.confidence`, mediana confidence 0.80. Pipeline reale
+  bundle -> SLURM -> run_p4_vllm.py -> resume.py -> predictions.jsonl
+  validata end-to-end via `dgx_p4_build_bundle()` + manuale rsync/sbatch
+  con gpu:1/workers 1.
+* **Job 19726** (Plan Task 19: smoke 4-GPU 100 record reali) —
+  COMPLETED in **1:56** via `dgx_p4_submit()` non-dry-run (workflow
+  R-only end-to-end). 4 worker stripe perfetto (25/25/25/25), 100/100
+  schema valid, generation 28-33s parallela. Per 100 record l'overhead
+  4× cold load > saving del shard, parity break a centinaia di record.
+
+## Bug fix: `.dgx_ssh()` wrap login shell
+
+`R/dgx-utils.R::.dgx_ssh()` ora wrappa il comando remoto con
+`bash -lc <cmd>`. Sintomo prima del fix:
+
+* `sbatch ...` -> `bash: line 1: sbatch: command not found`
+* `/cm/shared/apps/slurm/current/bin/sbatch ...` -> `sbatch: fatal:
+  Could not establish a configuration source` (no `SLURM_CONF`)
+
+Causa: ssh non-interattivo non sourca `/etc/profile.d/*.sh`, quindi
+modules + PATH SLURM + `SLURM_CONF` non sono settati. Fix: `bash -lc`
+forza login shell che carica i profile. Validato via `dgx_p4_submit()`
+(sbatch) e `dgx_p4_status()` (squeue) end-to-end con job 19726.
 
 ## Lessons learned chiave
 
@@ -61,6 +87,8 @@
 4. **`runs/<run_id>/` mkdir prima del sbatch** (SLURM `--output` fallisce
    signal 53 senza dir).
 5. **Singularity diretto, NO `srun`** (allineato a scRNA_DGX validato).
+6. **ssh non-interattivo NON sourca `/etc/profile.d/`** — wrap con
+   `bash -lc` per ottenere SLURM env (PATH+`SLURM_CONF`+modules).
 
 ## Documentazione
 
@@ -72,18 +100,17 @@
   design originale conservato come snapshot, header con tabella diff
   rispetto all'implementato.
 
-## Tag: `p4-dgx-complete` (da applicare dopo Plan Task 18-22)
+## Tag: `p4-dgx-complete` (da applicare dopo Plan Task 20-22)
 
-## Next phase: Plan Task 18 — bundle reale 100 record stage1
+## Next phase: Plan Task 20 — resume verification
 
-Pre-requisito: smoke isolato passato (job 19723/19724). Step:
+Pre-requisito: Task 18+19 passati (job 19725/19726). Step:
 
-1. Genera `data-raw/p4-smoke-stage1.jsonl` (100 sample dal xlsx).
-2. `bundle <- dgx_p4_build_bundle(input, "stage1", cfg)`.
-3. `job <- dgx_p4_submit(bundle, time = "00:30:00")`.
-4. `dgx_p4_status(job, watch = TRUE)`.
-5. `result <- dgx_p4_collect(job)`.
-6. Verifica accuracy ≥ 95% su mini-gold v5.
+1. Submit job 4 GPU su 100 record con `time = "00:30:00"`.
+2. `scancel` a meta' generazione (~10s dentro la fase generation).
+3. Re-submit dello stesso bundle (stesso `run_id`) — `resume.py` deve
+   skippare i record gia' completati.
+4. Verifica `predictions.jsonl` finale = 100 unique record_id.
 
 ---
 
