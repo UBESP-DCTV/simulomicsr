@@ -25,15 +25,16 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-07 fine sessione P4 — Task 18+19 verde, Task 20 next)
+## Stato corrente (2026-05-07 fine sessione P4 — Task 18+19+20 verdi, Task 21 next)
 
-- **Branch:** `p4-dgx-integration` (18+ commit ahead di master, **non pushato**).
-- **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, `p3.5c-confidence-complete`. P4 NON taggato (in corso).
+- **Branch:** `p4-dgx-integration` (19+ commit ahead di master, **non pushato**).
+- **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, `p3.5c-confidence-complete`, **`p4-smoke-complete`** (Task 18+19+20 superati). P4 ancora NON `p4-dgx-complete` (mancano α run Task 21+22).
 - **R CMD check:** 0E / 1W (pre-esistente non-P4 in `dot-openrouter_parse_response.Rd`) / 3 NOTE.
 - **Test suite:** 520 PASS / 0 FAIL / 3 SKIP (skip per OPENAI_API_KEY non impostata, pre-esistente).
 - **Smoke DGX end-to-end VERDE** (job 19723 su poddgx03, 2026-05-07): Mistral-Small-3.2 caricato in 125s (44.7 GiB GPU), 1 prompt JSON-strict generato in 1.44s con `parsed={'ack':'ok','n':42}`. Pipeline confermata: container → torch+CUDA → vLLM → mistral_common tokenizer → guided decoding → output JSON valido.
 - **Plan Task 18 VERDE** (job 19725 poddgx02, 2026-05-07): smoke 1-GPU 100 record reali, COMPLETED in **1:35** (32s load cache hit + 31.6s gen), 100/100 schema valid, mediana confidence 0.80. Pipeline `bundle → run_p4_vllm.py → resume.py → predictions.jsonl` validata su record reali (xlsx head 100). Submit manuale (rsync+sbatch) per gpu:1/workers 1.
 - **Plan Task 19 VERDE** (job 19726 poddgx02, 2026-05-07): smoke 4-GPU 100 record via `dgx_p4_submit()` non-dry-run (R-only workflow end-to-end), COMPLETED in **1:56**, 4 worker stripe 25/25/25/25, 100/100 schema valid. Per 100 record 4-GPU è leggermente più lento di 1-GPU (overhead 4× cold load > saving shard 4×); parity break a centinaia di record. Per α run (~5400 GSE / 130k sample) il 4-GPU dominerà nettamente.
+- **Plan Task 20 VERDE** (job 19727 + 19728, 2026-05-07): resume verification end-to-end. Run 1 scancel a t=87s con count=2 worker file → 75 record committati, 25 todo (worker 1 killed prima di scrivere). Run 2 re-submit stesso bundle via `dgx_p4_submit(bundle, ...)`: `[main] totale=100 done=75 todo=25`, sharding 25 su 4 worker (7+6+6+6), COMPLETED in 1:54, predictions.jsonl finale = 100 unique record_id. Pattern: per riprendere basta richiamare `dgx_p4_submit()` con lo stesso bundle (run_id stabile, bundle rsync idempotente, `runs/<run_id>/` su cluster preserva worker file partial).
 - **Server di sviluppo cambiato**: ora R 4.6.0 (era 4.5.2 sul laptop). Dev tools nella renv project lib (`~/.cache/R/renv/library/simulomicsr-ba33d608/.../R-4.6/`). **Usare `Rscript -e '...'` SENZA `--vanilla`** — su questo server `--vanilla` perde la libpath di renv. CLAUDE.md storico era allineato al laptop, l'operational note va invertita su questo server.
 
 ### P4 implementation completata localmente (Plan Task 1-16)
@@ -363,9 +364,9 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — Plan Task 20 resume verification)
+## Next step (per la prossima sessione — Plan Task 21 run α stage1 130k)
 
-**P4 implementation completa + Task 18+19 verdi.** Pipeline R-only end-to-end validata (job 19726 via `dgx_p4_submit()` non-dry-run). Pronto per Task 20.
+**Tag `p4-smoke-complete` applicato.** Smoke completi: 1-GPU (Task 18), 4-GPU (Task 19), resume (Task 20). Pipeline R-only validata. Tutto pronto per il run α massivo su 130k sample.
 
 ### File chiave verificati (snapshot 2026-05-07)
 
@@ -376,16 +377,16 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 - **Production SLURM template**: `inst/dgx/slurm/run_p4.sh` (path `/home/u0044/...`, no `srun`).
 - **R submit**: `R/dgx-submit.R` ora rsync-a anche `runtime/python/` automaticamente (oltre al bundle), e fa mkdir `runs/<run_id>/` prima del sbatch.
 
-### Per ripartire (Plan Task 20+)
+### Per ripartire (Plan Task 21+)
 
-1. **Plan Task 20: resume verification** (sezione "## Task 20" in `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md`). Step:
-   - `bundle <- dgx_p4_build_bundle(...)` + `dgx_p4_submit(bundle)`.
-   - Watch fino a metà generazione, poi `scancel <slurm_job_id>`.
-   - Re-submit dello stesso bundle (stesso `run_id`) — `resume.py` deve skippare i record già completati.
-   - Verifica `predictions.jsonl` finale = 100 unique record_id.
-2. **Plan Task 21: run α stage1 130k** (input completo xlsx, ~3-4h su 4 H100).
-3. **Plan Task 22: run α stage2 ~5.4k** (~30 min).
-4. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con i risultati finali.
+1. **Plan Task 21: run α stage1 130k** (input completo xlsx). Step:
+   - Generare `data-raw/p4-alpha-stage1.jsonl` (tutto `relevant_sample` ~130784 record).
+   - `bundle <- dgx_p4_build_bundle(input, "stage1", cfg, metadata=list(slug="alpha-stage1"))`.
+   - `dgx_p4_submit(bundle, time = "06:00:00", config = cfg)`.
+   - Polling con `dgx_p4_status(job, watch = TRUE, interval = 60)` o passive.
+   - Stima: 4 H100, ~3-4h end-to-end (130k record / 4 worker = 32k records/worker, generation rate vista a ~25 record/s/GPU = ~22 min/worker pure gen + load).
+2. **Plan Task 22: run α stage2 ~5.4k** (~30 min, dopo Task 21 finito).
+3. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con i risultati finali.
 
 ### Roadmap post-P4 (deferred fino a chiusura α)
 
