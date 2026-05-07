@@ -13,10 +13,11 @@
 #'   Default `"luca.vedovelli@unipd.it"`.
 #' @param partition partizione SLURM. Default `"dgx12cluster"`.
 #' @param account account SLURM. Default `"dctv_dgx"`.
-#' @param nodelist nodelist SLURM opzionale. Default `NULL` (lo scheduler
-#'   sceglie automaticamente uno dei nodi della partition; raccomandato
-#'   perche' nodi specifici possono essere DRAIN/DOWN). Pass una stringa
-#'   come `"poddgx02"` solo se devi forzare un nodo specifico.
+#' @param nodelist nodelist SLURM. Default `"poddgx02"` (nodo dell'utente
+#'   nel pool `dgx12cluster`). Validato col job 19724 il 2026-05-07.
+#'   Pass `NULL` se vuoi che lo scheduler scelga automaticamente
+#'   (utile se poddgx02 e' DRAIN/DOWN; gli altri nodi del pool sono
+#'   poddgx01 e poddgx03).
 #' @param remote_root root remoto del workspace P4. Default
 #'   `"/home/<login_user>/simulomicsr-dgx"`. NOTA: `/home/<user>/` (NON
 #'   `/mnt/home/<user>/`) perche' i compute node UniPD HPC non montano
@@ -33,7 +34,7 @@ dgx_config <- function(login_user  = "u0044",
                        mail_user   = "luca.vedovelli@unipd.it",
                        partition   = "dgx12cluster",
                        account     = "dctv_dgx",
-                       nodelist    = NULL,
+                       nodelist    = "poddgx02",
                        remote_root = NULL,
                        ssh_key_path = NULL,
                        ...) {
