@@ -1,10 +1,35 @@
 # ADR-0007: DGX self-host vLLM mistral-small-3.2 per P4
 
-- **Status:** Accepted
-- **Date:** 2026-05-06
+- **Status:** Accepted (smoke E2E verde 2026-05-07, job 19723)
+- **Date:** 2026-05-06 (decisione), 2026-05-07 (validazione end-to-end)
 - **Deciders:** Luca Vedovelli
 - **Supersedes:** —
 - **Superseded by:** —
+
+## Update 2026-05-07 (smoke verde)
+
+Smoke 1-GPU end-to-end passato (job 19723 su poddgx03, 2:41 min totali):
+modello caricato in 125s (44.7 GiB GPU), 1 prompt JSON-strict generato
+in 1.44s con `parsed={'ack':'ok','n':42}`. Cambiamenti rispetto al
+design originale del 2026-05-06:
+
+- **Image base bumpata**: `vllm/vllm-openai:v0.6.4` → **`v0.10.0`**.
+  v0.6.4 dava `KeyError 'mistral3'` perche' transformers 4.45 non
+  conosce `Mistral3Config` (multimodale, introdotto in 4.49).
+- **vLLM API mistral-specific**: `tokenizer_mode="mistral"` +
+  `config_format="mistral"` + `load_format="mistral"` + `llm.chat()`
+  (NO `apply_chat_template` perche' Tekken/`mistral_common`).
+- **`GuidedDecodingParams(json=schema)`** sostituisce `guided_json=schema`
+  (API v1 vLLM 0.10).
+- **Path remoti**: `/home/u0044/...` NON `/mnt/home/u0044/...`. I compute
+  node UniPD HPC (poddgx01/02/03) non montano `/mnt/home/`. Verificato
+  col probe job 19720 su poddgx03.
+- **Esecuzione singularity**: diretta (NO `srun singularity`), come
+  scRNA_DGX/smoke_test.sh validato. Bind: `/home/u0044`, `bundles/`,
+  `runs/`, `models/HF_HOME`, `runtime/python` (script Python rsync-ati
+  a ogni submit, no rebuild SIF).
+- **`runs/<run_id>/` mkdir prima del sbatch**: SLURM `--output`/`--error`
+  puntano li' e fallisce con signal 53 senza log se la dir non c'e'.
 
 ## Context and Problem Statement
 

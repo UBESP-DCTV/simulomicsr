@@ -25,12 +25,13 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-07 fine sessione P4 setup, parzialmente bloccato)
+## Stato corrente (2026-05-07 fine sessione P4 — smoke verde end-to-end)
 
-- **Branch:** `p4-dgx-integration` (15 commit ahead di master, **non pushato**).
+- **Branch:** `p4-dgx-integration` (16+ commit ahead di master, **non pushato**).
 - **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, `p3.5c-confidence-complete`. P4 NON taggato (in corso).
 - **R CMD check:** 0E / 1W (pre-esistente non-P4 in `dot-openrouter_parse_response.Rd`) / 3 NOTE.
 - **Test suite:** 520 PASS / 0 FAIL / 3 SKIP (skip per OPENAI_API_KEY non impostata, pre-esistente).
+- **Smoke DGX end-to-end VERDE** (job 19723 su poddgx03, 2026-05-07): Mistral-Small-3.2 caricato in 125s (44.7 GiB GPU), 1 prompt JSON-strict generato in 1.44s con `parsed={'ack':'ok','n':42}`. Pipeline confermata: container → torch+CUDA → vLLM → mistral_common tokenizer → guided decoding → output JSON valido.
 - **Server di sviluppo cambiato**: ora R 4.6.0 (era 4.5.2 sul laptop). Dev tools nella renv project lib (`~/.cache/R/renv/library/simulomicsr-ba33d608/.../R-4.6/`). **Usare `Rscript -e '...'` SENZA `--vanilla`** — su questo server `--vanilla` perde la libpath di renv. CLAUDE.md storico era allineato al laptop, l'operational note va invertita su questo server.
 
 ### P4 implementation completata localmente (Plan Task 1-16)
@@ -52,25 +53,28 @@ Pipeline complessiva (5 stadi):
 
 **5 funzioni esportate**: `dgx_config()`, `dgx_p4_build_bundle()`, `dgx_p4_submit()`, `dgx_p4_status()`, `dgx_p4_collect()` + `dgx_p4_recover()` di servizio.
 
-### P4 cluster setup (parzialmente fatto, ⚠️ bloccato)
+### P4 cluster setup — operativo
 
 Sul DGX UniPD HPC (`logindgx.hpc.ict.unipd.it`, login `podhead1`, user `u0044`):
 
 - ✅ `~/.simulomicsr-dgx.env` con HF_TOKEN.
-- ✅ Directory `/mnt/home/u0044/simulomicsr-dgx/{runtime,bundles,runs,models/HF_HOME}`.
-- ✅ Image `lucavd/simulomicsr-vllm:latest` su DockerHub (FROM `vllm/vllm-openai:v0.6.4`, torch 2.5.1+cu124).
-- ✅ SIF `simulomicsr-vllm.sif` (5.3 GB) via `make pull-singularity`.
-- ✅ Modello `mistralai/Mistral-Small-3.2-24B-Instruct-2506` in HF cache (~103 GB) via `make predownload-model`.
-- ✅ Sanity check torch nel container: `torch: 2.5.1+cu124 CUDA build: 12.4` (su login senza GPU, OK come parsing).
-
-**🔴 BLOCKER**: `sbatch --partition=dgx12cluster --account=dctv_dgx ...` viene **rerouted** in `defaultAllResouces` con `Reason=uid_648700542_not_in_group_permitted_to_use_this_partition_(defaultAllResouces)._groups_allowed:_allworkloads`. Il portal web mostra `dgx12cluster + dctv_dgx` come accessibile, ma slurmctld non riconosce l'association. Test job 19701/19702/19704 tutti finiti in PENDING `defaultAllResouces` con stesso errore. Mail all'admin HPC da fare/inviata.
+- ✅ Directory `/home/u0044/simulomicsr-dgx/{runtime,bundles,runs,models/HF_HOME,logs}`. **NB: `/home/u0044/`, NON `/mnt/home/u0044/`** (vedi lessons learned).
+- ✅ Image `lucavd/simulomicsr-vllm:latest` su DockerHub. **FROM `vllm/vllm-openai:v0.10.0`** (era v0.6.4 — bumpato 2026-05-07 per supporto `Mistral3Config`/mistral3 — vLLM 0.6.4 dava KeyError 'mistral3'). Torch 2.7.1+cu128.
+- ✅ SIF `simulomicsr-vllm.sif` (~6 GB) via `singularity pull --force`.
+- ✅ Modello `mistralai/Mistral-Small-3.2-24B-Instruct-2506` in HF cache (~50 GB pesi su disco, 44.7 GiB caricato in GPU bfloat16) via `make predownload-model`.
+- ✅ **Smoke 1-GPU verde** (job 19723, 2:41 min end-to-end): nvidia-smi → torch → vLLM → mistral tokenizer → 1 prompt JSON-strict. Vedi `inst/dgx/slurm/smoke_1gpu.sh` e `inst/dgx/python/smoke_vllm.py`.
 
 ### Lessons learned operative durante P4 setup
 
-1. **`vllm/vllm-openai:v0.6.4` espone `python3`, NON `python`** — Dockerfile ENTRYPOINT corretto a `python3`, SLURM template chiama `python3 /opt/.../run_p4_vllm.py` esplicitamente (cfr. commit `1bc68f6`).
-2. **`--nodelist=poddgx02` NON deve essere hardcoded** — sia poddgx01 che poddgx02 sono in `dgx12cluster`, e uno dei due puo' essere in stato `planned`/`drain`. Lasciare che lo scheduler scelga (`nodelist=NULL` di default in `dgx_config()`, cfr. commit `3df50fa`).
-3. **Workflow Docker → DockerHub → Singularity allineato a scRNA_DGX**: NO SSH wrapping nel Makefile; target `pull-singularity`/`predownload-model` girano *sul login DGX dopo SSH*, non SSH-wrappati dal laptop. Cfr. commit `5823d9d`.
-4. **WORKDIR `/mnt/home/u0044/`** non `~`: il compute node poddgx02 monta lo storage qui, non in `/home/u0044/`. Fissato in commit `1f36f3c`.
+1. **Path `/home/u0044/` NON `/mnt/home/u0044/`** — i compute node UniPD HPC (poddgx01/02/03) **non montano** `/mnt/home/`. Verificato col probe job 19720 su poddgx03 (`/mnt/home/u0044: No such file or directory`). Sul login (podhead1) entrambi i path puntano allo stesso dato, ma SLURM `--output`/`--error`/`--chdir` e i bind singularity DEVONO usare `/home/u0044/`. `dgx_config()` default `remote_root="/home/<user>/simulomicsr-dgx"`. Sintomo del bug: ExitCode `0:53` con job FAILED in 2 secondi senza log files (SLURM non riesce a creare `.out`/`.err`).
+2. **vLLM ≥ 0.8.x richiesto per Mistral-Small-3.2** — `model_type "mistral3"` (multimodale) introdotto in transformers 4.49 a inizio 2025; vLLM v0.6.4 di Nov 2024 non lo conosce → `KeyError 'mistral3'` al load. Bumpato Dockerfile a `v0.10.0`. Inoltre il `Mistral3Config` non e' nel `TOKENIZER_MAPPING` HF: serve `tokenizer_mode="mistral"` (Tekken/`mistral_common`) e `llm.chat()` (no `apply_chat_template`).
+3. **`vllm/vllm-openai:v0.6.4+` espone `python3`, NON `python`** — Dockerfile ENTRYPOINT corretto a `python3`, SLURM template chiama `python3 /opt/.../run_p4_vllm.py` esplicitamente.
+4. **`--nodelist=poddgxNN` NON hardcoded** — `dgx12cluster` ha 3 nodi (poddgx01/02/03), uno puo' essere `planned`/`drain`. Lasciare che lo scheduler scelga (`nodelist=NULL` di default in `dgx_config()`).
+5. **Workflow Docker → DockerHub → Singularity allineato a scRNA_DGX**: NO SSH wrapping nel Makefile; target `pull-singularity`/`predownload-model` girano *sul login DGX dopo SSH*, non SSH-wrappati dal laptop.
+6. **`--export=NONE` + `--chdir`** nelle directives SLURM — blocca env inheritance dal login (es. `SBATCH_PARTITION` dal `.bashrc`) che altrimenti override la partition. Source `~/.simulomicsr-dgx.env` esplicito *dentro* lo script.
+7. **`runs/<run_id>/` deve esistere PRIMA del sbatch** — SLURM `--output`/`--error` puntano li' e fallisce con stesso signal 53 se la dir non c'e'. `dgx_p4_submit()` fa `mkdir -p` per `bundles/`, `runs/`, `runtime/python/` prima del sbatch.
+8. **Esecuzione singularity diretta, NO `srun`** — `srun singularity` non e' supportato/affidabile su questo cluster. Usare `singularity exec --nv ...` direttamente come scRNA_DGX/smoke_test.sh (validato).
+9. **`runtime/python/` bind-mounted, non dentro la SIF** — gli script Python (`run_p4_vllm.py`, `prompts.py`, `resume.py`) sono rsync-ati a ogni submit e bind-mountati su `/opt/simulomicsr/runtime/python` nel container. Aggiornamenti senza rebuild dell'immagine.
 
 ### P3.5-D (2026-05-06): cheap models exploration via OpenRouter
 
@@ -356,18 +360,28 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — sblocco DGX + Plan Task 18 smoke)
+## Next step (per la prossima sessione — Plan Task 18 con bundle reale)
 
-**P4 implementation 100% locale (Plan Task 1-16 completati).** 15 commit su `p4-dgx-integration`, **non pushati**, working tree pulito al commit `3df50fa`. Cluster setup parzialmente fatto (image, SIF, modello), ma run bloccato da problema di accesso slurm (vedi sezione "Stato corrente").
+**P4 implementation completa + smoke verde.** Cluster setup completo (immagine v0.10.0, SIF, modello, runtime/python rsync-ato). Smoke 1-GPU passato (job 19723). Pronto per bundle reale.
 
-### Per ripartire (quando l'admin HPC sblocca l'accesso a `dgx12cluster`)
+### File chiave verificati (snapshot 2026-05-07)
 
-1. **Verifica accesso ripristinato**: ssh u0044@logindgx, lancia un sbatch minimale (`/mnt/home/u0044/simulomicsr-dgx/runtime/cuda-check.sh` esiste gia' dalla sessione 2026-05-06). Se il job parte e finisce con `CUDA avail: True / Device: NVIDIA H100 80GB HBM3` → setup pronto.
-2. **Plan Task 18: smoke 1 GPU 100 record** (sezione "## Task 18" in `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md`). Step:
+- **Smoke SLURM**: `inst/dgx/slurm/smoke_1gpu.sh` + `smoke_1gpu_poddgx02.sh` (variante con nodelist forzato).
+- **Smoke Python**: `inst/dgx/python/smoke_vllm.py` (test isolato vLLM + Mistral-3.2 + 1 prompt JSON-strict).
+- **Probe diagnostica**: `inst/dgx/slurm/probe_mounts.sh` (mappa filesystem visibili dal compute, usato per diagnosticare il bug `/mnt/home` vs `/home`).
+- **Production runner**: `inst/dgx/python/run_p4_vllm.py` (4 worker DP, mistral mode, llm.chat, GuidedDecodingParams).
+- **Production SLURM template**: `inst/dgx/slurm/run_p4.sh` (path `/home/u0044/...`, no `srun`).
+- **R submit**: `R/dgx-submit.R` ora rsync-a anche `runtime/python/` automaticamente (oltre al bundle), e fa mkdir `runs/<run_id>/` prima del sbatch.
+
+### Per ripartire (Plan Task 18+)
+
+1. **Verifica nodelist scelto**: `dgx_config()` default `nodelist=NULL` (scheduler sceglie). Se vuoi forzare poddgx02 (nodo dell'utente), passa `nodelist="poddgx02"`. Se poddgx02 e' DRAIN/DOWN, il job resta PD e va switchato a NULL.
+2. **Plan Task 18: smoke 1 GPU 100 record reali** (sezione "## Task 18" in `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md`). Step:
    - Genera `data-raw/p4-smoke-stage1.jsonl` (100 sample da xlsx).
-   - `dgx_p4_build_bundle(input, "stage1", cfg)` → `dgx_p4_submit()` con override 1 GPU manuale.
+   - `bundle <- dgx_p4_build_bundle(input, "stage1", cfg)` → `dgx_p4_submit(bundle)`.
    - Verifica accuracy ≥ 95% su mini-gold v5.
-3. **Plan Task 19: smoke 4 GPU 100 record** (no override).
+   - Per smoke 1 GPU: editare il rendered SLURM in `bundle$bundle_dir/run_p4.rendered.sh` cambiando `--gres=gpu:4` a `--gres=gpu:1` e `--workers 4` a `--workers 1`, oppure usare uno script `smoke_1gpu.sh` ad-hoc puntando al bundle.
+3. **Plan Task 19: smoke 4 GPU 100 record** (template default).
 4. **Plan Task 20: resume verification** (kill job a meta', re-sbatch).
 5. **Plan Task 21: run α stage1 130k** (input completo xlsx, ~3-4h su 4 H100).
 6. **Plan Task 22: run α stage2 ~5.4k** (~30 min).
