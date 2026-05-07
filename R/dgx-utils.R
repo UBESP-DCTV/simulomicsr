@@ -69,7 +69,13 @@
     env_prefix <- paste(paste0(names(env), "=", shQuote(env)), collapse = " ")
     cmd <- paste(env_prefix, cmd)
   }
-  ssh_args <- c(ssh_args, cmd)
+  # Force login shell sul remoto: ssh non-interattivo NON sourca
+  # /etc/profile.d/* per default, quindi `module`, PATH SLURM e
+  # SLURM_CONF non sono settati. Senza login shell `sbatch`/`squeue`
+  # falliscono con "command not found" o "Could not establish a
+  # configuration source". Validato sul cluster UniPD HPC il 2026-05-07.
+  remote_cmd <- paste0("bash -lc ", shQuote(cmd))
+  ssh_args <- c(ssh_args, remote_cmd)
 
   res <- processx::run("ssh", ssh_args, error_on_status = FALSE)
   list(stdout = res$stdout, stderr = res$stderr, status = res$status)
