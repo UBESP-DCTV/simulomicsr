@@ -4,6 +4,8 @@
 #SBATCH --job-name=simulomicsr-p4-__RUN_ID_SHORT__
 #SBATCH --partition=dgx12cluster
 #SBATCH --account=dctv_dgx
+#SBATCH --export=NONE
+#SBATCH --chdir=/mnt/home/__USER__
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32
@@ -20,16 +22,20 @@ set -euo pipefail
 module load singularity/4.2.0
 module load slurm/slurm/23.02.7
 
+# --export=NONE blocca env inheritance dal login (necessario per evitare
+# che SBATCH_PARTITION del login override la partition richiesta). Quindi
+# HF_TOKEN va sourcato esplicitamente qui.
+if [ -f ~/.simulomicsr-dgx.env ]; then
+    . ~/.simulomicsr-dgx.env
+fi
+
 REMOTE_ROOT=/mnt/home/__USER__/simulomicsr-dgx
 RUN_ID=__RUN_ID__
 
 mkdir -p "$REMOTE_ROOT/runs/$RUN_ID" "$REMOTE_ROOT/models/HF_HOME"
 
-# HF_TOKEN deve essere nell'environment (esportato da .simulomicsr-dgx.env
-# o passato da R via sbatch --export=HF_TOKEN). Il sentinel check evita
-# crash silenziosi al primo download del modello.
 if [ -z "${HF_TOKEN:-}" ]; then
-    echo "[WARN] HF_TOKEN non settato. Modelli gated potrebbero fallire al download." >&2
+    echo "[WARN] HF_TOKEN non settato. Modelli gated potrebbero fallire al download (a meno che HF cache non sia gia' popolata)." >&2
 fi
 
 echo "[INFO] Run ID: $RUN_ID"
