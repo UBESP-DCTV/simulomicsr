@@ -7,9 +7,13 @@ Architettura:
   - Resume: scansiona output dir per record_id gia' completati
   - Sharding round-robin su N worker
   - Ogni worker: multiprocessing.Process con CUDA_VISIBLE_DEVICES=<i>
-    - carica vLLM LLM(model=..., dtype=bfloat16, gpu_memory_utilization=0.90, tensor_parallel_size=1)
-    - SamplingParams(max_tokens=..., temperature=0, guided_json=schema)
-    - genera in batch, scrive predictions.worker_<i>.jsonl append-only
+    - carica vLLM LLM(model=..., tokenizer_mode="mistral",
+      config_format="mistral", load_format="mistral", dtype=bfloat16, ...)
+    - SamplingParams(max_tokens=..., temperature=0,
+      guided_decoding=GuidedDecodingParams(json=schema))
+    - llm.chat(messages=[[sys, user] per record]) — Mistral-3.2 NON supporta
+      apply_chat_template (Tekken tokenizer).
+    - scrive predictions.worker_<i>.jsonl append-only
   - Main: aspetta tutti, fa concat predictions.worker_*.jsonl -> predictions.jsonl,
     scrive run_summary.json
 """
@@ -97,33 +101,42 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     llm = LLM(
         model=gen["model_id"],
         dtype=gen["dtype"],
+        tokenizer_mode=gen.get("tokenizer_mode", "mistral"),
+        config_format=gen.get("config_format", "mistral"),
+        load_format=gen.get("load_format", "mistral"),
         gpu_memory_utilization=float(gen["gpu_memory_utilization"]),
         tensor_parallel_size=int(gen["tensor_parallel_size"]),
-        trust_remote_code=True,
+        max_model_len=int(gen.get("max_model_len", 4096)),
     )
 
-    sampling = SamplingParams(
-        max_tokens=int(gen["max_tokens"]),
-        temperature=float(gen["temperature"]),
-        guided_json=schema,
-    )
+    # Guided decoding: API nuova vLLM v1 (GuidedDecodingParams). Fallback
+    # a guided_json scalare se la versione installata e' piu' vecchia.
+    try:
+        from vllm.sampling_params import GuidedDecodingParams
+        sampling = SamplingParams(
+            max_tokens=int(gen["max_tokens"]),
+            temperature=float(gen["temperature"]),
+            guided_decoding=GuidedDecodingParams(json=schema),
+        )
+    except Exception:
+        sampling = SamplingParams(
+            max_tokens=int(gen["max_tokens"]),
+            temperature=float(gen["temperature"]),
+            guided_json=schema,
+        )
 
-    # Costruisci tutti i prompt e tieni allineato con record_id
-    prompts = []
+    # Mistral tokenizer non supporta apply_chat_template. Usiamo llm.chat()
+    # che accetta una lista di liste di messages e formatta internamente.
+    conversations = []
     record_ids = []
     for r in records:
         user_msg = render_user_for_stage(stage, r)
-        # vLLM accetta sia string raw sia messages -- usiamo apply_chat_template via tokenizer
-        messages = build_messages(system_prompt, user_msg)
-        text = llm.get_tokenizer().apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
-        )
-        prompts.append(text)
+        conversations.append(build_messages(system_prompt, user_msg))
         record_ids.append(str(r["record_id"]))
 
-    print(f"[worker {worker_id}] generazione su {len(prompts)} record...", flush=True)
+    print(f"[worker {worker_id}] generazione su {len(conversations)} record...", flush=True)
     t0 = time.time()
-    outputs = llm.generate(prompts, sampling)
+    outputs = llm.chat(messages=conversations, sampling_params=sampling)
     elapsed = time.time() - t0
     print(f"[worker {worker_id}] generazione completata in {elapsed:.1f}s", flush=True)
 
