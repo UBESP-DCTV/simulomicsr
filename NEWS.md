@@ -1,3 +1,50 @@
+# simulomicsr 0.0.0.9011 (P4 — α stage1 100.00% valid, 211 residual cracked)
+
+## Investigation 211 residual fails (2026-05-07, jobs 19748+19749)
+
+Phase 1 — caratterizzazione binaria dei 211 residual fails post temp00 +
+rep_pen 1.1:
+
+* **Mode B (205 / 211, 97%)**: legitimate truncation a `max_tokens=1024`.
+  Median raw_output 3231 char vs 1748 char per OK con stesso config (zero
+  overlap). Input clusterati su 43 series con multi-perturbazione (es.
+  "BMP4, VEGF, SCF, ACTIVIN A, FGF2, CHIR99012") che producono JSON
+  ~1000 token, oltre il cap 1024.
+* **Mode A (6 / 211, 3%)**: decoder loop sul boundary
+  `engineered_modifications[].variant ["object","null"]`. Tutti 6
+  raw_output stallano *esattamente* dopo `"label": "..."` con tab flood.
+
+Phase 2-3-4 — single-variable hypothesis test:
+
+* **Mode B fix**: `max_tokens 1024 -> 2048` su 211 -> recover 205/205 =
+  100% (job 19748).
+* **Mode A fix**: `repetition_penalty 1.1 -> 1.2` sui 6 residual ->
+  recover 6/6 = 100%, content quality verificata (engineered_modifications
+  corretti, perturbazioni coerenti, confidence 0.8-0.9, zero garbage)
+  (job 19749).
+
+**Risultato finale α stage1: 130,784 / 130,784 = 100.00000% valid**
+(124,979 originali + 2,308 propagated + 1,132 rep_pen 1.1 + 205 max_tokens
+2048 + 6 rep_pen 1.2). 0 residui irrecuperabili.
+
+## Cambiamenti default vLLM SamplingParams
+
+* `inst/extdata/p4-defaults.yml`: stage1 `max_tokens 1024 -> 2048`.
+  Stage2 invariato (`max_tokens 4096`). Costo trascurabile per OK normali
+  (median ~500 token output, vs cap 2048). `repetition_penalty=1.1`
+  resta default; `1.2` documentato nel commento yaml come escape hatch
+  per Mode A residual (non default per rischio drift sui 130k normali).
+
+## File aggiunti
+
+* `analysis/p4-bundles/residual-211-maxtok2048.R` — test Mode B fix.
+* `analysis/p4-bundles/residual-6-rep12.R` — test Mode A fix.
+* `analysis/p4-bundles/residual-211-collect-merge.R` — collect+merge v1->v2.
+* `analysis/p4-bundles/residual-6-collect-merge.R` — collect+merge v2->v3.
+* `analysis/p4-output/alpha-stage1-final.rds` aggiornato (130,784 valid,
+  0 errors, `rescue_source` traccia provenienza completa: `replicate_<GSM>`
+  / `rep11_maxtok2048` / `rep12_maxtok2048` / NA).
+
 # simulomicsr 0.0.0.9010 (P4 — α stage1 130k complete, 99.84% valid)
 
 ## Run α stage1 (2026-05-07, job 19730 + investigation jobs 19735-19740)

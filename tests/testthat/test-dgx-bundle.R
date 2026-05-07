@@ -39,10 +39,13 @@ test_that("dgx_p4_build_bundle() stage1 crea bundle valido", {
   lines <- readLines(fs::path(bundle$bundle_dir, "input.jsonl"))
   expect_length(lines, 5L)
 
-  # Generation config max_tokens 1024 per stage1
+  # Generation config max_tokens 2048 per stage1 (bumpato da 1024 dopo
+  # investigation 211 residual fails 2026-05-07 — vedi ADR-0008 addendum).
   gen <- jsonlite::read_json(fs::path(bundle$bundle_dir, "generation.json"))
-  expect_identical(gen$max_tokens, 1024L)
+  expect_identical(gen$max_tokens, 2048L)
   expect_identical(gen$temperature, 0)
+  # repetition_penalty 1.1 e' il default da 0.0.0.9010.
+  expect_identical(gen$repetition_penalty, 1.1)
 
   # Status iniziale
   st <- jsonlite::read_json(fs::path(bundle$bundle_dir, "status.json"))

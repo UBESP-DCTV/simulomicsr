@@ -25,11 +25,11 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-07 fine sessione P4 — α stage1 99.84% valid, Task 22 next, error investigation in nuova sessione)
+## Stato corrente (2026-05-07 fine sessione P4 — α stage1 100.00% valid, Task 22 next)
 
 - **Branch:** `p4-dgx-integration` (19+ commit ahead di master, **non pushato**).
 - **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, `p3.5c-confidence-complete`, **`p4-smoke-complete`** (Task 18+19+20 superati). P4 ancora NON `p4-dgx-complete` (manca α run Task 22 stage2).
-- **Default vLLM SamplingParams aggiornato 2026-05-07**: `temperature=0.0 + repetition_penalty=1.1` per stage1 e stage2 in `inst/extdata/p4-defaults.yml`. Ablation 5 setting paralleli su 1343 hard cases ha provato che rep_pen e' IL fix (0% → 84% recovery) e temperature ha contributo marginale (+1.8 pp da 0.0 a 0.4) ma porta drift contenutistico (concordance pert.kind 88% a temp 0.4 vs 100% a temp 0.0). Vedi sezione "Ablation P4 stage1 sampling params" sotto.
+- **Default vLLM SamplingParams aggiornato 2026-05-07**: `temperature=0.0 + repetition_penalty=1.1 + max_tokens=2048` per stage1 in `inst/extdata/p4-defaults.yml` (era max_tokens 1024). Stage2 invariato (`max_tokens=4096`). Ablation 5 setting paralleli su 1343 hard cases ha provato che rep_pen e' IL fix (0% → 84% recovery) e temperature ha contributo marginale (+1.8 pp da 0.0 a 0.4) ma porta drift contenutistico (concordance pert.kind 88% a temp 0.4 vs 100% a temp 0.0). Successiva investigation 211 residual fails (jobs 19748+19749, +5 min) ha mostrato che il vero collo di bottiglia residuo era `max_tokens=1024` per Mode B (97% dei residui = legit truncation su input multi-perturbazione) e `repetition_penalty=1.2` come escape hatch per Mode A (3% = decoder loop su `engineered_modifications[].variant`). Vedi sezioni "Ablation" + "Investigation 211 residual fails" sotto.
 - **R CMD check:** 0E / 1W (pre-esistente non-P4 in `dot-openrouter_parse_response.Rd`) / 3 NOTE.
 - **Test suite:** 520 PASS / 0 FAIL / 3 SKIP (skip per OPENAI_API_KEY non impostata, pre-esistente).
 - **Smoke DGX end-to-end VERDE** (job 19723 su poddgx03, 2026-05-07): Mistral-Small-3.2 caricato in 125s (44.7 GiB GPU), 1 prompt JSON-strict generato in 1.44s con `parsed={'ack':'ok','n':42}`. Pipeline confermata: container → torch+CUDA → vLLM → mistral_common tokenizer → guided decoding → output JSON valido.
@@ -38,7 +38,8 @@ Pipeline complessiva (5 stadi):
 - **Plan Task 20 VERDE** (job 19727 + 19728, 2026-05-07): resume verification end-to-end. Run 1 scancel a t=87s con count=2 worker file → 75 record committati, 25 todo (worker 1 killed prima di scrivere). Run 2 re-submit stesso bundle via `dgx_p4_submit(bundle, ...)`: `[main] totale=100 done=75 todo=25`, sharding 25 su 4 worker (7+6+6+6), COMPLETED in 1:54, predictions.jsonl finale = 100 unique record_id. Pattern: per riprendere basta richiamare `dgx_p4_submit()` con lo stesso bundle (run_id stabile, bundle rsync idempotente, `runs/<run_id>/` su cluster preserva worker file partial).
 - **Plan Task 21 VERDE** (job 19730 poddgx02, 2026-05-07): run α stage1 130784 record xlsx, COMPLETED in **1h 18min** wall clock (09:34→10:52 UTC), molto sotto stima 3-4h. **124,979 schema valid (95.56%)** + 5,805 invalid + 0 missing (req plan ≥ 95% PASS). Throughput stabile ~5040 toks/s/worker output, 4× H100 in parallelo. Costo: $0 (DGX self-host). Coverage mini-gold v5: 100/100 (98 valid, 2 invalid). Vedi sezione "Risultati P4 α stage1" sotto.
 - **Plan Task 21 retry temp 0.1** (job 19735 poddgx02, 2026-05-07): re-run dei 5805 invalid con `temperature: 0.1` (era `0.0`), COMPLETED in **7:08**. Recuperati **2,154 / 5,805 (37.1%)** → totale finale **127,133 / 130,784 = 97.21% valid** (+1.65 pp vs run originale). I 3,651 record ancora fail hanno richiesto investigation strutturata e fix vero (vedi sezione "Ablation P4 stage1 sampling params" + "Propagation rescue strategy" sotto).
-- **Investigation errori 2026-05-07 + fix definitivo** (jobs 19737-19740 paralleli): trovato che il **53% degli errori clusters in 73 series** (GSE180954 da sola = 79.6% fail rate) e che **63% dei FAIL hanno duplicato OK byte-identical** in altre repliche dello stesso studio → conferma forte di non-determinismo fp16/bf16 nel guided decoder. **Strategia rescue in due fasi**: (a) propagation di parsed_json da OK sibling con stessa stringa (recupera 2308/3651 con zero rischio semantico); (b) re-run sui 1343 unique-fail con `repetition_penalty=1.1` (il fix vero che rompe il whitespace flood). Default approvato: **`temperature=0.0 + repetition_penalty=1.1`**. **Risultato finale α stage1: 130,573 / 130,784 = 99.84% valid** (124,979 originali + 2,308 propagati + 1,132 recuperati LLM con rep_pen). Restano 211 record (0.16%) irrecuperabili anche con tutti i 5 setting testati — analisi rinviata a nuova sessione.
+- **Investigation errori 2026-05-07 + fix definitivo** (jobs 19737-19740 paralleli): trovato che il **53% degli errori clusters in 73 series** (GSE180954 da sola = 79.6% fail rate) e che **63% dei FAIL hanno duplicato OK byte-identical** in altre repliche dello stesso studio → conferma forte di non-determinismo fp16/bf16 nel guided decoder. **Strategia rescue in due fasi**: (a) propagation di parsed_json da OK sibling con stessa stringa (recupera 2308/3651 con zero rischio semantico); (b) re-run sui 1343 unique-fail con `repetition_penalty=1.1` (il fix vero che rompe il whitespace flood). Default approvato: **`temperature=0.0 + repetition_penalty=1.1`**.
+- **Investigation 211 residual fails 2026-05-07** (jobs 19748+19749, +5 min DGX): caratterizzazione binaria → **Mode B (205, 97%)** = legitimate truncation a `max_tokens=1024` su input multi-perturbazione (median raw_output 3231 char vs 1748 OK con stesso config); **Mode A (6, 3%)** = decoder loop sul boundary `engineered_modifications[].variant ["object","null"]`. **Fix Mode B**: `max_tokens 1024 → 2048` (single change, recover 205/205 = 100%). **Fix Mode A**: `repetition_penalty 1.1 → 1.2` (single change, applicato solo ai 6 residual, recover 6/6 = 100%, content quality verificata). **Risultato finale α stage1: 130,784 / 130,784 = 100.00000% valid** (124,979 originali + 2,308 propagati + 1,132 recuperati rep_pen 1.1 + 205 max_tokens 2048 + 6 rep_pen 1.2). Default `p4-defaults.yml` stage1 aggiornato a `max_tokens=2048` (rep_pen 1.1 resta default; rep_pen 1.2 documentato come escape hatch). Vedi sezione "Investigation 211 residual fails" sotto.
 - **Server di sviluppo cambiato**: ora R 4.6.0 (era 4.5.2 sul laptop). Dev tools nella renv project lib (`~/.cache/R/renv/library/simulomicsr-ba33d608/.../R-4.6/`). **Usare `Rscript -e '...'` SENZA `--vanilla`** — su questo server `--vanilla` perde la libpath di renv. CLAUDE.md storico era allineato al laptop, l'operational note va invertita su questo server.
 
 ### P4 implementation completata localmente (Plan Task 1-16)
@@ -165,16 +166,44 @@ Validita' semantica: stessa stringa di input → stesse `cell_context`, `perturb
 
 Helper: `analysis/p4-output/alpha-stage1-rescue-map.rds` contiene `fail_with_ok_map` (4 col: FAIL geo_accession, series_id, string, OK ok_geo_accession) + `unique_fail_ids` (1343 record senza sibling). Lo script di rescue e' inline (~50 righe Rscript), ricostruibile in qualunque sessione futura in pochi minuti.
 
+### Investigation 211 residual fails (2026-05-07, jobs 19748+19749, +5 min DGX)
+
+Phase 1 — caratterizzazione binaria dei 211 (post temp00 + rep_pen 1.1):
+
+| Mode | n | Pattern | Diagnosi |
+|---|---|---|---|
+| **B — truncation** | 205 (97%) | raw_output ~3231 char, 3-5 `agent_normalized` blocks, mid-JSON cut | hit `max_tokens=1024` cap |
+| **A — tab flood** | 6 (3%) | raw_output ~1410 char, 0 agent blocks, terminal tab flood | decoder loop su `engineered_modifications[].variant` boundary |
+
+Evidence rock-solid: stesso config (temp 0.0 + rep_pen 1.1) ha prodotto OK con median raw_output 1748 char e fail con median 3231 char. Distribuzione *zero overlap*. Le 211 input string median 150 char (~1.7x le OK 92 char), heavy clustering in 43 series con ricche treatment combinations (es. "BMP4, VEGF, SCF, ACTIVIN A, FGF2, CHIR99012 plus d2 LSD1 Inhbitor" → 6 perturbazioni JSON-espanse).
+
+Phase 2-3 — single-variable hypothesis test:
+
+| Run | Change vs baseline | Records | Recovery |
+|---|---|---|---|
+| 19748: `max_tokens 1024 → 2048` | +1024 token output budget | 211 | **205/211 (97%)** ← Mode B 100% |
+| 19749: `repetition_penalty 1.1 → 1.2` | rep_pen +0.1 (sui 6 residual) | 6 | **6/6 (100%)** ← Mode A 100% |
+
+Phase 4 — verification: tutti 6 + 205 schema-valid; content quality dei 6 (rep_pen 1.2) verificata: `context_kind` corretto, `engineered_modifications[]` correttamente compilato (kind=transgene_stable/other, label coerente con input), perturbations corrette (etoposide, Nocodazole, DMSO, None), confidence 0.8-0.9. **Zero garbage**.
+
+Mode A pinpoint architettonico: tutti 6 raw_output stallano *esattamente* dopo `"label": "..."` dentro il primo `engineered_modifications[].` Schema definisce `variant: ["object","null"]` con required nested `{label, description, is_wildtype}` se non null. Guided decoder collassa al field-boundary scegliendo tra `null`/`{`/`}`. rep_pen 1.1 insufficiente; rep_pen 1.2 rompe il loop deterministicamente.
+
+Default policy:
+- **`max_tokens=2048`** stage1 = nuovo default (era 1024). Costo trascurabile per OK normali (median 500 token, vs cap 2048).
+- **`repetition_penalty=1.1`** resta default. 1.2 documentato come escape hatch nel comment yaml (potenziale content drift su 130k normali non testato).
+
 ### Riassunto recovery completo α stage1
 
 | Fase | Records | Cumulativo | % |
 |---|---|---|---|
 | α stage1 originale (temp 0.0, no rep_pen) | 124,979 | 124,979 | 95.56% |
 | Propagation rescue (sibling OK) | +2,308 | 127,287 | 97.33% |
-| Re-run uniqfail (temp 0.0 + rep_pen 1.1, job 19739) | +1,132 | **130,573** | **99.84%** |
-| Residui irrecuperabili | 211 | (= 130,784 - 130,573) | 0.16% |
+| Re-run uniqfail (temp 0.0 + rep_pen 1.1, job 19739) | +1,132 | 130,573 | 99.84% |
+| Re-run residual Mode B (max_tokens 2048, rep_pen 1.1, job 19748) | +205 | 130,778 | 99.99% |
+| Re-run residual Mode A (max_tokens 2048, rep_pen 1.2, job 19749) | +6 | **130,784** | **100.00%** |
+| Residui irrecuperabili | 0 | — | 0.00% |
 
-Output finale: `analysis/p4-output/alpha-stage1-final.rds` (oggetto `list(predictions, errors, summary)` con colonna `rescue_source` traccia provenienza). Dimensione predictions: 130,573 × 7 col.
+Output finale: `analysis/p4-output/alpha-stage1-final.rds` (oggetto `list(predictions, errors, summary)` con colonna `rescue_source` traccia provenienza completa: `replicate_<GSM>` / `rep11_maxtok2048` / `rep12_maxtok2048` / NA per OK originali). Dimensione predictions: 130,784 × 7 col, errors 0 × 7.
 
 ### P3.5-D (2026-05-06): cheap models exploration via OpenRouter
 
@@ -460,11 +489,9 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — error investigation + Plan Task 22 stage2)
+## Next step (per la prossima sessione — Plan Task 22 stage2)
 
-**Task 21 α stage1 chiuso 2026-05-07** in 1h 18min run + ~10 min investigation/rescue pipeline = **130,573 / 130,784 (99.84%) valid**. Default sampling vLLM aggiornato a `temperature=0.0 + repetition_penalty=1.1` (vedi sezione "Ablation P4 stage1 sampling params"). Strategia rescue **propagation OK-sibling + re-run con rep_pen** documentata e applicata.
-
-**La nuova sessione si apre per investigation dei 211 fail residui** (record_id in `analysis/p4-output/alpha-stage1-final.rds$errors`): cluster "totalmente irrecuperabile" anche con 5 setting diversi (greedy/temp 0.0-0.4 × rep_pen 0/1.1). Ipotesi da testare: pattern strutturali nelle stringhe input (encoding speciale, lunghezza, caratteri unicode rari, jargon medico molto specifico, doppi `,,`, virgolette interne, ecc.). Workflow suggerito: caratterizzare stringhe input dei 211 vs un random sample di OK, vedere se emergono pattern.
+**Task 21 α stage1 CHIUSO 2026-05-07** = **130,784 / 130,784 (100.00000%) valid**. Default sampling vLLM finale: `temperature=0.0 + repetition_penalty=1.1 + max_tokens=2048` per stage1 (era 1024). I 211 residual sono stati cracked da single-variable test: 205 con max_tokens 2048 (Mode B = legit truncation), 6 con rep_pen 1.2 (Mode A = decoder loop su `engineered_modifications[].variant`). Strategia rescue completa: **propagation OK-sibling + re-run con rep_pen 1.1 + re-run residual con max_tokens 2048 + re-run Mode A con rep_pen 1.2** documentata e applicata.
 
 ### File chiave verificati (snapshot 2026-05-07)
 
@@ -478,17 +505,13 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 
 ### Per ripartire
 
-1. **(nuova sessione) Investigation 211 fail residui**:
-   - `errs <- readRDS("analysis/p4-output/alpha-stage1-final.rds")$errors` — 211 record_id + raw_output con dettaglio truncation.
-   - Caratterizzare strings input vs un random sample di OK su: lunghezza, char non-ASCII, pattern di formattazione (es. `,,` `;;` ` `, doppi spazi), tokenizer bf16 anomalies.
-   - Provare alternative: `top_p=0.95`, `min_p=0.05`, schema modification (rimuovere `null` da campi `["string","null"]` e usare sentinel "unknown"), prompt patch ("If unknown, write null IMMEDIATELY after colon").
-   - Se emerge cluster: fix mirato. Se completamente random: accettare 211 / 130,784 = 0.16% loss e procedere.
-2. **Plan Task 22: run α stage2 ~5.4k GSE** (~30 min stimato), default ora temp 0.0 + rep_pen 1.1 (allineato α stage1 finale). Step:
-   - Generare input stage2 dai 130,573 `sample_facts` validi (groupby `series_id`, concat sample strings → ~5.4k GSE record).
+1. **Plan Task 22: run α stage2 ~5.4k GSE** (~30 min stimato), default `temp 0.0 + rep_pen 1.1 + max_tokens 4096` (stage2 invariato vs alpha stage1 fix). Step:
+   - Generare input stage2 dai 130,784 `sample_facts` validi (groupby `series_id`, concat sample strings → ~5.4k GSE record).
    - `bundle <- dgx_p4_build_bundle(input, "stage2", cfg, metadata=list(slug="alpha-stage2"))`.
    - `dgx_p4_submit(bundle, time = "02:00:00", config = cfg)`.
    - Collect + eval vs mini-gold v5 (confronto diretto: gold = `design_role_gold`/`design_kind_gold`).
-3. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con risultati finali Task 22.
+   - Se emergono fail-mode analoghi a Mode A/B di stage1: applicare la stessa diagnostic recipe (caratterizzare per length/cluster, single-variable test su max_tokens o rep_pen).
+2. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con risultati finali Task 22.
 
 ### Roadmap post-P4 (deferred fino a chiusura α)
 
