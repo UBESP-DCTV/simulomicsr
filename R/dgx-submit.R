@@ -41,13 +41,19 @@ dgx_p4_submit <- function(bundle,
     )
 
   tmpl <- paste(readLines(tmpl_path, warn = FALSE), collapse = "\n")
+  nodelist_directive <- if (is.null(config$nodelist)) {
+    ""  # SLURM commenta la riga vuota; nessuna direttiva nodelist.
+  } else {
+    paste0("#SBATCH --nodelist=", config$nodelist)
+  }
   rendered <- .dgx_render_slurm_template(
     tmpl,
-    run_id       = bundle$run_id,
-    run_id_short = .dgx_run_id_short(bundle$run_id),
-    user         = config$login_user,
-    time         = time,
-    mail_user    = config$mail_user
+    run_id              = bundle$run_id,
+    run_id_short        = .dgx_run_id_short(bundle$run_id),
+    user                = config$login_user,
+    time                = time,
+    mail_user           = config$mail_user,
+    nodelist_directive  = nodelist_directive
   )
   rendered_path <- fs::path(bundle$bundle_dir, "run_p4.rendered.sh")
   writeLines(rendered, rendered_path)

@@ -12,6 +12,7 @@
 #SBATCH --job-name=simulomicsr-p4-__RUN_ID_SHORT__
 #SBATCH --partition=dgx12cluster
 #SBATCH --account=dctv_dgx
+__NODELIST_DIRECTIVE__
 #SBATCH --export=NONE
 #SBATCH --chdir=/home/__USER__
 #SBATCH --nodes=1
