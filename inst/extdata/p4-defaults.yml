@@ -3,6 +3,14 @@
 
 model_id: "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
 dtype: "bfloat16"
+
+# Mistral-3.2 e' multimodale (Mistral3Config). vLLM richiede tokenizer/config/
+# load mode "mistral" (Tekken / mistral_common, NON HF AutoTokenizer).
+# Verificato col smoke job 19723 il 2026-05-07 con vLLM 0.10.0.
+tokenizer_mode: "mistral"
+config_format:  "mistral"
+load_format:    "mistral"
+
 gpu_memory_utilization: 0.90
 tensor_parallel_size: 1
 data_parallel_workers: 4
@@ -11,12 +19,14 @@ stages:
   stage1:
     schema_file: "sample_facts.stage1.v3.json"
     max_tokens: 1024
+    max_model_len: 4096       # input ~2-3K + output 1K rientra
     temperature: 0.0
     schema_version: "stage1.v3"
     model_prefix: "vllm-mistral-3.2"
   stage2:
     schema_file: "study_design.stage2.v2.json"
     max_tokens: 4096
+    max_model_len: 16384      # input multi-sample puo' essere lungo
     temperature: 0.0
     schema_version: "stage2.v2"
     model_prefix: "vllm-mistral-3.2"
@@ -25,8 +35,8 @@ slurm_defaults:
   partition: "dgx12cluster"
   account: "dctv_dgx"
   # nodelist: NON specificato di default — lo scheduler sceglie il nodo
-  # disponibile della partition (poddgx01 o poddgx02). Specificare un
-  # nodelist esplicito puo' bloccare il job se quel nodo e' DRAIN/DOWN.
+  # disponibile della partition (poddgx01, poddgx02 o poddgx03). Specificare
+  # un nodelist esplicito puo' bloccare il job se quel nodo e' DRAIN/DOWN.
   cpus_per_task: 32
   mem: "200G"
   gpus: 4
