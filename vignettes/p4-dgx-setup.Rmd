@@ -64,14 +64,19 @@ Stesso pattern di `2026.scRNA_DGX/Makefile`: i target `pull-singularity` e
 `predownload-model` sono pensati per girare **sul login DGX** dopo SSH,
 non sono SSH-wrappati dal laptop. Hai due strade equivalenti.
 
+**ATTENZIONE: usa `/home/u0044/...` NON `/mnt/home/u0044/...`**. I compute
+node UniPD HPC (poddgx01/02/03) non montano `/mnt/home/`. Sul login (podhead1)
+entrambi i path puntano allo stesso dato, ma SLURM e singularity bind dal
+compute lo cercano sotto `/home/`. Verificato col probe job 19720 il 2026-05-07.
+
 **Opzione A — clona il repo sul DGX**:
 
 ```sh
 ssh u0044@logindgx.hpc.ict.unipd.it
 cd ~/simulomicsr     # supponendo repo gia' clonato
 git pull
-mkdir -p ~/simulomicsr-dgx/runtime/
-cd ~/simulomicsr-dgx/runtime/
+mkdir -p /home/u0044/simulomicsr-dgx/runtime/
+cd /home/u0044/simulomicsr-dgx/runtime/
 module load singularity/4.2.0
 make -f ~/simulomicsr/inst/dgx/Makefile pull-singularity   # produce simulomicsr-vllm.sif
 make -f ~/simulomicsr/inst/dgx/Makefile predownload-model  # huggingface-cli, ~50 GB
@@ -80,9 +85,9 @@ make -f ~/simulomicsr/inst/dgx/Makefile predownload-model  # huggingface-cli, ~5
 **Opzione B — copia solo il Makefile sul DGX** (se non vuoi clonare il repo):
 
 ```sh
-scp inst/dgx/Makefile u0044@logindgx.hpc.ict.unipd.it:~/simulomicsr-dgx/runtime/
+scp inst/dgx/Makefile u0044@logindgx.hpc.ict.unipd.it:/home/u0044/simulomicsr-dgx/runtime/
 ssh u0044@logindgx.hpc.ict.unipd.it
-cd ~/simulomicsr-dgx/runtime/
+cd /home/u0044/simulomicsr-dgx/runtime/
 module load singularity/4.2.0
 make pull-singularity
 make predownload-model
@@ -90,10 +95,10 @@ make predownload-model
 
 Dopo questi due step:
 
-- `~/simulomicsr-dgx/runtime/simulomicsr-vllm.sif` (~6-8 GB) e'
-  pronto per `srun singularity exec` (vedi `slurm/run_p4.sh`).
-- `~/simulomicsr-dgx/models/HF_HOME/` contiene i pesi del modello
-  (~50 GB) — i job SLURM partono **senza** rete e **senza** `HF_TOKEN`.
+- `/home/u0044/simulomicsr-dgx/runtime/simulomicsr-vllm.sif` (~6-8 GB)
+  e' pronto. Esecuzione: `singularity exec --nv ...` diretta (NO `srun`).
+- `/home/u0044/simulomicsr-dgx/models/HF_HOME/` contiene i pesi del
+  modello (~50 GB) — i job SLURM partono **senza** rete e **senza** `HF_TOKEN`.
 
 ## 5. Rebuild quando cambiano gli asset
 
@@ -105,7 +110,32 @@ Quando modifichi `inst/dgx/python/`, `inst/dgx/Dockerfile`, o
 - Cambi solo a `slurm/run_p4.sh` → niente rebuild (il template viene
   letto al submit-time da `dgx_p4_submit()`).
 
-## 6. Smoke test 1 GPU, 100 record
+## 5b. Smoke isolato 1 GPU (verificato 2026-05-07, job 19723)
+
+Prima di passare a un bundle reale, conviene verificare end-to-end che
+container + GPU + vLLM + Mistral-3.2 girano. C'e' lo script
+`inst/dgx/slurm/smoke_1gpu.sh` (auto-contenuto, niente bundle):
+
+```sh
+# Da laptop:
+rsync -av inst/dgx/slurm/smoke_1gpu.sh \
+  u0044@logindgx.hpc.ict.unipd.it:/home/u0044/simulomicsr-dgx/runtime/
+rsync -av --exclude=__pycache__ inst/dgx/python/ \
+  u0044@logindgx.hpc.ict.unipd.it:/home/u0044/simulomicsr-dgx/runtime/python/
+
+# Su DGX:
+mkdir -p /home/u0044/simulomicsr-dgx/logs
+sbatch /home/u0044/simulomicsr-dgx/runtime/smoke_1gpu.sh
+squeue -u u0044
+# A job finito (~2-3 min):
+cat /home/u0044/simulomicsr-dgx/logs/slurm-simulomicsr_smoke_*.out | tail -20
+```
+
+Output atteso: `=== SMOKE OK ===` con `parsed={'ack':'ok','n':42}`.
+Se hai `KeyError 'mistral3'`, l'image base e' troppo vecchia: il
+Dockerfile deve usare `vllm/vllm-openai:v0.10.0` o piu' recente.
+
+## 6. Smoke test 1 GPU, 100 record (Plan Task 18)
 
 Prepara un input mini (es. 100 sample dal xlsx):
 
