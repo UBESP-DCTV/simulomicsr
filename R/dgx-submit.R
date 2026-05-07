@@ -73,13 +73,11 @@ dgx_p4_submit <- function(bundle,
              remote_path = remote_bundle,
              direction   = "push")
 
-  # 3. sbatch via SSH (HF_TOKEN viene letto da .simulomicsr-dgx.env nel login)
+  # 3. sbatch via SSH. Il SLURM script ha #SBATCH --export=NONE (blocca
+  # env inheritance per evitare SBATCH_PARTITION del login che override
+  # la partition richiesta) e source ~/.simulomicsr-dgx.env internamente.
   remote_script <- paste0(remote_bundle, "run_p4.rendered.sh")
-  sbatch_cmd <- paste0(
-    "set -e; ",
-    "if [ -f ~/.simulomicsr-dgx.env ]; then . ~/.simulomicsr-dgx.env; fi; ",
-    "sbatch --export=HF_TOKEN ", shQuote(remote_script)
-  )
+  sbatch_cmd <- paste0("sbatch ", shQuote(remote_script))
   ssh_res <- .dgx_ssh(config, sbatch_cmd)
   if (ssh_res$status != 0L)
     cli::cli_abort(
