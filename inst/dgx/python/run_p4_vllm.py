@@ -109,6 +109,15 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
         max_model_len=int(gen.get("max_model_len", 4096)),
     )
 
+    # Param opzionali (presenti solo se override del default yaml).
+    extra_kwargs: dict[str, Any] = {}
+    if "repetition_penalty" in gen and gen["repetition_penalty"] is not None:
+        extra_kwargs["repetition_penalty"] = float(gen["repetition_penalty"])
+    if "top_p" in gen and gen["top_p"] is not None:
+        extra_kwargs["top_p"] = float(gen["top_p"])
+    if "min_p" in gen and gen["min_p"] is not None:
+        extra_kwargs["min_p"] = float(gen["min_p"])
+
     # Guided decoding: API nuova vLLM v1 (GuidedDecodingParams). Fallback
     # a guided_json scalare se la versione installata e' piu' vecchia.
     try:
@@ -117,12 +126,14 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
             max_tokens=int(gen["max_tokens"]),
             temperature=float(gen["temperature"]),
             guided_decoding=GuidedDecodingParams(json=schema),
+            **extra_kwargs,
         )
     except Exception:
         sampling = SamplingParams(
             max_tokens=int(gen["max_tokens"]),
             temperature=float(gen["temperature"]),
             guided_json=schema,
+            **extra_kwargs,
         )
 
     # Mistral tokenizer non supporta apply_chat_template. Usiamo llm.chat()

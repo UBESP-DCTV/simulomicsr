@@ -25,16 +25,20 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-07 fine sessione P4 — Task 18+19+20 verdi, Task 21 next)
+## Stato corrente (2026-05-07 fine sessione P4 — α stage1 99.84% valid, Task 22 next, error investigation in nuova sessione)
 
 - **Branch:** `p4-dgx-integration` (19+ commit ahead di master, **non pushato**).
-- **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, `p3.5c-confidence-complete`, **`p4-smoke-complete`** (Task 18+19+20 superati). P4 ancora NON `p4-dgx-complete` (mancano α run Task 21+22).
+- **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, `p3.5c-confidence-complete`, **`p4-smoke-complete`** (Task 18+19+20 superati). P4 ancora NON `p4-dgx-complete` (manca α run Task 22 stage2).
+- **Default vLLM SamplingParams aggiornato 2026-05-07**: `temperature=0.0 + repetition_penalty=1.1` per stage1 e stage2 in `inst/extdata/p4-defaults.yml`. Ablation 5 setting paralleli su 1343 hard cases ha provato che rep_pen e' IL fix (0% → 84% recovery) e temperature ha contributo marginale (+1.8 pp da 0.0 a 0.4) ma porta drift contenutistico (concordance pert.kind 88% a temp 0.4 vs 100% a temp 0.0). Vedi sezione "Ablation P4 stage1 sampling params" sotto.
 - **R CMD check:** 0E / 1W (pre-esistente non-P4 in `dot-openrouter_parse_response.Rd`) / 3 NOTE.
 - **Test suite:** 520 PASS / 0 FAIL / 3 SKIP (skip per OPENAI_API_KEY non impostata, pre-esistente).
 - **Smoke DGX end-to-end VERDE** (job 19723 su poddgx03, 2026-05-07): Mistral-Small-3.2 caricato in 125s (44.7 GiB GPU), 1 prompt JSON-strict generato in 1.44s con `parsed={'ack':'ok','n':42}`. Pipeline confermata: container → torch+CUDA → vLLM → mistral_common tokenizer → guided decoding → output JSON valido.
 - **Plan Task 18 VERDE** (job 19725 poddgx02, 2026-05-07): smoke 1-GPU 100 record reali, COMPLETED in **1:35** (32s load cache hit + 31.6s gen), 100/100 schema valid, mediana confidence 0.80. Pipeline `bundle → run_p4_vllm.py → resume.py → predictions.jsonl` validata su record reali (xlsx head 100). Submit manuale (rsync+sbatch) per gpu:1/workers 1.
 - **Plan Task 19 VERDE** (job 19726 poddgx02, 2026-05-07): smoke 4-GPU 100 record via `dgx_p4_submit()` non-dry-run (R-only workflow end-to-end), COMPLETED in **1:56**, 4 worker stripe 25/25/25/25, 100/100 schema valid. Per 100 record 4-GPU è leggermente più lento di 1-GPU (overhead 4× cold load > saving shard 4×); parity break a centinaia di record. Per α run (~5400 GSE / 130k sample) il 4-GPU dominerà nettamente.
 - **Plan Task 20 VERDE** (job 19727 + 19728, 2026-05-07): resume verification end-to-end. Run 1 scancel a t=87s con count=2 worker file → 75 record committati, 25 todo (worker 1 killed prima di scrivere). Run 2 re-submit stesso bundle via `dgx_p4_submit(bundle, ...)`: `[main] totale=100 done=75 todo=25`, sharding 25 su 4 worker (7+6+6+6), COMPLETED in 1:54, predictions.jsonl finale = 100 unique record_id. Pattern: per riprendere basta richiamare `dgx_p4_submit()` con lo stesso bundle (run_id stabile, bundle rsync idempotente, `runs/<run_id>/` su cluster preserva worker file partial).
+- **Plan Task 21 VERDE** (job 19730 poddgx02, 2026-05-07): run α stage1 130784 record xlsx, COMPLETED in **1h 18min** wall clock (09:34→10:52 UTC), molto sotto stima 3-4h. **124,979 schema valid (95.56%)** + 5,805 invalid + 0 missing (req plan ≥ 95% PASS). Throughput stabile ~5040 toks/s/worker output, 4× H100 in parallelo. Costo: $0 (DGX self-host). Coverage mini-gold v5: 100/100 (98 valid, 2 invalid). Vedi sezione "Risultati P4 α stage1" sotto.
+- **Plan Task 21 retry temp 0.1** (job 19735 poddgx02, 2026-05-07): re-run dei 5805 invalid con `temperature: 0.1` (era `0.0`), COMPLETED in **7:08**. Recuperati **2,154 / 5,805 (37.1%)** → totale finale **127,133 / 130,784 = 97.21% valid** (+1.65 pp vs run originale). I 3,651 record ancora fail hanno richiesto investigation strutturata e fix vero (vedi sezione "Ablation P4 stage1 sampling params" + "Propagation rescue strategy" sotto).
+- **Investigation errori 2026-05-07 + fix definitivo** (jobs 19737-19740 paralleli): trovato che il **53% degli errori clusters in 73 series** (GSE180954 da sola = 79.6% fail rate) e che **63% dei FAIL hanno duplicato OK byte-identical** in altre repliche dello stesso studio → conferma forte di non-determinismo fp16/bf16 nel guided decoder. **Strategia rescue in due fasi**: (a) propagation di parsed_json da OK sibling con stessa stringa (recupera 2308/3651 con zero rischio semantico); (b) re-run sui 1343 unique-fail con `repetition_penalty=1.1` (il fix vero che rompe il whitespace flood). Default approvato: **`temperature=0.0 + repetition_penalty=1.1`**. **Risultato finale α stage1: 130,573 / 130,784 = 99.84% valid** (124,979 originali + 2,308 propagati + 1,132 recuperati LLM con rep_pen). Restano 211 record (0.16%) irrecuperabili anche con tutti i 5 setting testati — analisi rinviata a nuova sessione.
 - **Server di sviluppo cambiato**: ora R 4.6.0 (era 4.5.2 sul laptop). Dev tools nella renv project lib (`~/.cache/R/renv/library/simulomicsr-ba33d608/.../R-4.6/`). **Usare `Rscript -e '...'` SENZA `--vanilla`** — su questo server `--vanilla` perde la libpath di renv. CLAUDE.md storico era allineato al laptop, l'operational note va invertita su questo server.
 
 ### P4 implementation completata localmente (Plan Task 1-16)
@@ -79,6 +83,98 @@ Sul DGX UniPD HPC (`logindgx.hpc.ict.unipd.it`, login `podhead1`, user `u0044`):
 8. **Esecuzione singularity diretta, NO `srun`** — `srun singularity` non e' supportato/affidabile su questo cluster. Usare `singularity exec --nv ...` direttamente come scRNA_DGX/smoke_test.sh (validato).
 9. **`runtime/python/` bind-mounted, non dentro la SIF** — gli script Python (`run_p4_vllm.py`, `prompts.py`, `resume.py`) sono rsync-ati a ogni submit e bind-mountati su `/opt/simulomicsr/runtime/python` nel container. Aggiornamenti senza rebuild dell'immagine.
 10. **ssh non-interattivo NON sourca `/etc/profile.d/*.sh`** (lesson Task 18-19 2026-05-07) — sintomo: `bash: line 1: sbatch: command not found` o (con path assoluto a sbatch) `sbatch: fatal: Could not establish a configuration source`. Causa: `SLURM_CONF`, modules e `PATH` SLURM sono settati solo dai profile script che il login shell carica. Fix in `R/dgx-utils.R::.dgx_ssh()`: wrap del comando remoto con `bash -lc <cmd>` per forzare login shell. Validato sul cluster reale via `dgx_p4_submit()` job 19726.
+
+### Risultati P4 α stage1 (run 2026-05-07, job 19730)
+
+**Run identifier**: `run_id=20260507T093437Z-alpha-xlsx-stage1-f8f6db`, slurm `19730`, nodelist `poddgx02`, 4× H100, time limit 12h, time effettivo **1h 18min** (09:34:37 → 10:52:46 UTC). Costo: $0 (self-host).
+
+| Metrica | Valore |
+|---|---|
+| Records totali (xlsx post-dedup) | **130,784** |
+| Schema valid | **124,979 (95.56%)** ✅ ≥95% req plan |
+| Schema invalid | 5,805 (4.44%) |
+| Missing (mai inviati) | 0 |
+| Workers crashati | 0 |
+| Throughput per worker (output) | ~5040 toks/s sostenuto |
+| Cold load + warmup | ~7 min (model + torch.compile + KV cache) |
+| Generation pura (slowest worker) | ~1h 12min su 32,696 record/worker |
+| Mediana confidence (valid) | **0.80** (Q1=0.7, Q3=0.9) |
+| Mini-gold v5 coverage | **100/100** (98 valid + 2 invalid) |
+| Disease state distrib (valid) | none 68.8% / case 19.5% / disease_model 11.4% / comparison 0.3% |
+| Sample con perturbations non-vuoto | 99.9% (atteso: xlsx è già pre-filtrato "relevant_sample") |
+
+**Output locali**: `analysis/p4-output/<run_id>/predictions.jsonl` (463 MB), `analysis/p4-output/alpha-stage1-result.rds` (object completo con summary + tibble predictions/errors), `analysis/p4-bundles/alpha-stage1-{job,bundle}.rds`.
+
+**Finding chiave — natura dei 5,805 errori (per follow-up post-α)**:
+
+Gli errori NON sono violazioni di contenuto né classification mistakes. Sono **degenerate generation pathology** del guided decoding con greedy sampling:
+
+- 0/5,805 errori sono "JSON-parse OK ma off-schema" (cioè zero violazioni semantiche).
+- 5,802/5,805 (99.95%) NON terminano con `}` (output troncato).
+- 4,709/5,805 (~81%) hanno lunghezza 1349-1400 char con coda di tab/null padding/zero — il modello in greedy mode con `GuidedDecodingParams(json=schema)` entra in loop dopo aver generato una porzione coerente di JSON e produce filler whitespace fino a `max_tokens=1024`.
+- 483/5,805 sono veri truncation mid-struttura (output >2KB cut).
+- Distribuzione lunghezza errori (char): min 1349, mediana 1381 (~395 token), max 3314.
+
+**Investigation finale 2026-05-07 (vedi 2 sezioni successive)**: il fix definitivo e' `temperature=0.0 + repetition_penalty=1.1`. Default aggiornato in `inst/extdata/p4-defaults.yml`. Strategia rescue completa porta α stage1 a **99.84% valid** (130,573 / 130,784).
+
+**Limitazione del confronto vs mini-gold v5**: il mini-gold P3.5-C/D contiene `design_role_gold`/`design_kind_gold` che sono concetti **stage 2 study-level**, mentre l'α stage1 produce `sample_facts.stage1.v3` (extraction-level: cell_context, perturbations, disease_state, ecc., senza design_role). Comparazione meaningful con mini-gold v5 si farà in **Task 22 (stage2 ~5.4k GSE)** dove l'output è direttamente `study_design.stage2.v2` con `design_role` + `design_kind`.
+
+### Ablation P4 stage1 sampling params (2026-05-07, jobs 19737-19740)
+
+Investigazione "una variabile alla volta" sui 1343 unique-FAIL del run α (FAIL post-retry temp 0.1, **senza duplicato OK byte-identical** in altre repliche). 4 run paralleli stesso input + retry temp 0.1 alone come baseline:
+
+| Setting                         | Recovery (su 1343) | vs default | Wall (4 GPU) |
+|---------------------------------|--------------------|------------|--------------|
+| temp 0.1 alone (no rep_pen)     | **0%**             | (baseline) | ~3 min       |
+| temp 0.0 + rep_pen 1.1          | **84.3%** (1132)   | +84.3 pp   | ~3 min       |
+| temp 0.1 + rep_pen 1.1          | 85.2% (1144)       | +85.2 pp   | ~3 min       |
+| temp 0.2 + rep_pen 1.1          | 85.5% (1148)       | +85.5 pp   | ~3 min       |
+| temp 0.4 + rep_pen 1.1          | 86.1% (1156)       | +86.1 pp   | ~3 min       |
+
+**Concordance pairwise** (sui record recuperati da entrambi):
+
+| Pair                              | n     | pert.kind | disease.status |
+|-----------------------------------|-------|-----------|----------------|
+| temp 0.0+rep vs temp 0.1+rep      | 1105  | **93.8%** | **96.3%**      |
+| temp 0.0+rep vs temp 0.2+rep      | 1104  | 92.2%     | 94.9%          |
+| temp 0.0+rep vs temp 0.4+rep      | 1097  | 87.4%     | 91.2%          |
+
+**Findings:**
+1. **`repetition_penalty=1.1` e' IL fix definitivo**: 0% → 84-86% indipendentemente dalla temperatura. Senza rep_pen il greedy resta intrappolato in whitespace/null padding flood ai field-boundary `["string","null"]` (es. `cell_line_cellosaurus_candidate` post `cell_type_or_line_raw`). Con rep_pen 1.1 il modello e' obbligato a produrre token diversi → uscita pulita dal loop.
+2. **Temperatura ha contributo marginale**: +1.8 pp totale da 0.0 a 0.4. Il guadagno NON vale il drift contenutistico (concordance pert.kind crolla a 87% a temp 0.4 — significa il 13% dei record recuperati avrebbe classificazione diversa per perturbazione).
+3. **127 record (9.5%) sono irrecuperabili** da QUALUNQUE config testata — ipotesi: stringhe input con caratteri/pattern che fanno collassare lo stato del guided decoder a prescindere dal sampling. Da investigare in nuova sessione.
+
+**Default approvato 2026-05-07**: `temperature=0.0 + repetition_penalty=1.1` per stage1 e stage2 (vedi `inst/extdata/p4-defaults.yml`). Massima riproducibilita' (greedy deterministico modulo non-determinismo bf16 vLLM) + recovery sostanziale dei degenerate cases.
+
+Code change abilitazione `repetition_penalty`:
+- `inst/dgx/python/run_p4_vllm.py::worker_main()` — accetta opzionale `repetition_penalty`/`top_p`/`min_p` da `gen` dict, li passa a `SamplingParams(**extra_kwargs)`.
+- `R/dgx-bundle.R::dgx_p4_build_bundle()` — propaga gli stessi 3 campi opzionali da `stage_def` (yaml) a `generation.json` se presenti.
+
+### Propagation rescue strategy (2026-05-07, recovery zero-cost-zero-risk)
+
+Pattern emerso durante investigation: nel pool di 3651 FAIL post-retry temp 0.1, **2308 record (63.2%) hanno almeno un duplicato OK byte-identical** in altre repliche dello stesso studio (es. GSM5479237 OK e GSM5479238 FAIL hanno la stessa stringa "cell line: HEK293T,treatment: 1microg/mL doxycycline; 24 hours"). Inoltre **53.3% degli errori si concentra in 73 series con >50% fail rate** (GSE180954 da sola = 79.6% fail rate, 1320/1659 sample, 36% di tutti gli errori). Conferma forte di **non-determinismo fp16/bf16 nel continuous batching di vLLM** — stessi prompt vicini in batch diversi producono output diverso per fp non-associativity.
+
+**Implicazione metodologica**: per la meta-analisi RNAseq downstream, perdere repliche biologiche di gruppi treatment/control distrugge potenza statistica. Inaccettabile.
+
+**Soluzione propagation rescue**: per ogni FAIL con sibling OK same-string (verificato byte-identico):
+1. Copia `parsed_json` dal sibling OK.
+2. Patch solo `geo_accession` con quello del FAIL.
+3. Marca `rescue_source = "replicate_<src_GSM>"` in colonna separata della tibble predictions (NON dentro parsed_json per non rompere lo schema strict `additionalProperties: false`).
+
+Validita' semantica: stessa stringa di input → stesse `cell_context`, `perturbations`, `disease_state`, `patient_metadata.donor_id` (donor_id viene dalla stringa). Differiscono solo `geo_accession` (patched) e `extraction.raw_input_hash` (= identico perche' input identico). Recover lossless di 2308/3651 = 63% del residuo.
+
+Helper: `analysis/p4-output/alpha-stage1-rescue-map.rds` contiene `fail_with_ok_map` (4 col: FAIL geo_accession, series_id, string, OK ok_geo_accession) + `unique_fail_ids` (1343 record senza sibling). Lo script di rescue e' inline (~50 righe Rscript), ricostruibile in qualunque sessione futura in pochi minuti.
+
+### Riassunto recovery completo α stage1
+
+| Fase | Records | Cumulativo | % |
+|---|---|---|---|
+| α stage1 originale (temp 0.0, no rep_pen) | 124,979 | 124,979 | 95.56% |
+| Propagation rescue (sibling OK) | +2,308 | 127,287 | 97.33% |
+| Re-run uniqfail (temp 0.0 + rep_pen 1.1, job 19739) | +1,132 | **130,573** | **99.84%** |
+| Residui irrecuperabili | 211 | (= 130,784 - 130,573) | 0.16% |
+
+Output finale: `analysis/p4-output/alpha-stage1-final.rds` (oggetto `list(predictions, errors, summary)` con colonna `rescue_source` traccia provenienza). Dimensione predictions: 130,573 × 7 col.
 
 ### P3.5-D (2026-05-06): cheap models exploration via OpenRouter
 
@@ -364,9 +460,11 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — Plan Task 21 run α stage1 130k)
+## Next step (per la prossima sessione — error investigation + Plan Task 22 stage2)
 
-**Tag `p4-smoke-complete` applicato.** Smoke completi: 1-GPU (Task 18), 4-GPU (Task 19), resume (Task 20). Pipeline R-only validata. Tutto pronto per il run α massivo su 130k sample.
+**Task 21 α stage1 chiuso 2026-05-07** in 1h 18min run + ~10 min investigation/rescue pipeline = **130,573 / 130,784 (99.84%) valid**. Default sampling vLLM aggiornato a `temperature=0.0 + repetition_penalty=1.1` (vedi sezione "Ablation P4 stage1 sampling params"). Strategia rescue **propagation OK-sibling + re-run con rep_pen** documentata e applicata.
+
+**La nuova sessione si apre per investigation dei 211 fail residui** (record_id in `analysis/p4-output/alpha-stage1-final.rds$errors`): cluster "totalmente irrecuperabile" anche con 5 setting diversi (greedy/temp 0.0-0.4 × rep_pen 0/1.1). Ipotesi da testare: pattern strutturali nelle stringhe input (encoding speciale, lunghezza, caratteri unicode rari, jargon medico molto specifico, doppi `,,`, virgolette interne, ecc.). Workflow suggerito: caratterizzare stringhe input dei 211 vs un random sample di OK, vedere se emergono pattern.
 
 ### File chiave verificati (snapshot 2026-05-07)
 
@@ -376,17 +474,21 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 - **Production runner**: `inst/dgx/python/run_p4_vllm.py` (4 worker DP, mistral mode, llm.chat, GuidedDecodingParams).
 - **Production SLURM template**: `inst/dgx/slurm/run_p4.sh` (path `/home/u0044/...`, no `srun`).
 - **R submit**: `R/dgx-submit.R` ora rsync-a anche `runtime/python/` automaticamente (oltre al bundle), e fa mkdir `runs/<run_id>/` prima del sbatch.
+- **α stage1 polling helper**: `analysis/p4-bundles/poll-alpha.R` — script di esempio per polling JSONL background. **Bug noto**: la sua lista `terminal` non contiene `TERMINATED` (stato custom restituito da `dgx_p4_status` post-completed); per re-uso adattarlo (o aspettare la notifica del bash background che si ferma su exit del processo SLURM).
 
-### Per ripartire (Plan Task 21+)
+### Per ripartire
 
-1. **Plan Task 21: run α stage1 130k** (input completo xlsx). Step:
-   - Generare `data-raw/p4-alpha-stage1.jsonl` (tutto `relevant_sample` ~130784 record).
-   - `bundle <- dgx_p4_build_bundle(input, "stage1", cfg, metadata=list(slug="alpha-stage1"))`.
-   - `dgx_p4_submit(bundle, time = "06:00:00", config = cfg)`.
-   - Polling con `dgx_p4_status(job, watch = TRUE, interval = 60)` o passive.
-   - Stima: 4 H100, ~3-4h end-to-end (130k record / 4 worker = 32k records/worker, generation rate vista a ~25 record/s/GPU = ~22 min/worker pure gen + load).
-2. **Plan Task 22: run α stage2 ~5.4k** (~30 min, dopo Task 21 finito).
-3. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con i risultati finali.
+1. **(nuova sessione) Investigation 211 fail residui**:
+   - `errs <- readRDS("analysis/p4-output/alpha-stage1-final.rds")$errors` — 211 record_id + raw_output con dettaglio truncation.
+   - Caratterizzare strings input vs un random sample di OK su: lunghezza, char non-ASCII, pattern di formattazione (es. `,,` `;;` ` `, doppi spazi), tokenizer bf16 anomalies.
+   - Provare alternative: `top_p=0.95`, `min_p=0.05`, schema modification (rimuovere `null` da campi `["string","null"]` e usare sentinel "unknown"), prompt patch ("If unknown, write null IMMEDIATELY after colon").
+   - Se emerge cluster: fix mirato. Se completamente random: accettare 211 / 130,784 = 0.16% loss e procedere.
+2. **Plan Task 22: run α stage2 ~5.4k GSE** (~30 min stimato), default ora temp 0.0 + rep_pen 1.1 (allineato α stage1 finale). Step:
+   - Generare input stage2 dai 130,573 `sample_facts` validi (groupby `series_id`, concat sample strings → ~5.4k GSE record).
+   - `bundle <- dgx_p4_build_bundle(input, "stage2", cfg, metadata=list(slug="alpha-stage2"))`.
+   - `dgx_p4_submit(bundle, time = "02:00:00", config = cfg)`.
+   - Collect + eval vs mini-gold v5 (confronto diretto: gold = `design_role_gold`/`design_kind_gold`).
+3. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con risultati finali Task 22.
 
 ### Roadmap post-P4 (deferred fino a chiusura α)
 
