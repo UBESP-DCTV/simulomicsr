@@ -18,8 +18,15 @@ data_parallel_workers: 4
 stages:
   stage1:
     schema_file: "sample_facts.stage1.v3.json"
-    max_tokens: 1024
-    max_model_len: 4096       # input ~2-3K + output 1K rientra
+    # max_tokens 2048 (era 1024 nell'alpha originale): l'investigation
+    # 2026-05-07 sui 211 residual fails post-rep_pen ha mostrato che 205
+    # (97%) erano *legittime* truncation di sample con 4-5 perturbazioni
+    # multiple (es. "BMP4, VEGF, SCF, ACTIVIN A, FGF2, CHIR99012") che
+    # producono JSON ~3200-3500 char (~1000 token) e vanno oltre 1024.
+    # Bumpando a 2048 → 100% recovery di Mode B. Vedi sezione
+    # "Investigation 211 residual fails" in CLAUDE.md e ADR-0008.
+    max_tokens: 2048
+    max_model_len: 4096       # prompt ~600-800 tok + output 2048 rientra
     # `temperature: 0.0` (greedy) + `repetition_penalty: 1.1` e' il default
     # validato da ablation 2026-05-07 sui 1343 unique-FAIL del run alpha
     # (vedi CLAUDE.md "Risultati P4 alpha stage1").
@@ -29,7 +36,11 @@ stages:
     # - Aumentare la temp da 0.0 a 0.4 alza recovery solo da 84.3% a 86.1%
     #   (+1.8 pp) ma porta concordance da 100% a ~87% sui contenuti
     #   (drift su `perturbations[].kind` e `disease_state.status`).
-    # → rep_pen e' IL fix; temp marginale, non vale il drift.
+    # - Bumpare rep_pen 1.1 → 1.2 cracca i Mode A residuali (decoder loop
+    #   sul boundary `engineered_modifications[].variant ["object","null"]`)
+    #   ma non e' default per rischio drift sui 130k normali. Usare come
+    #   escape hatch su residuals dopo max_tokens bump.
+    # → rep_pen 1.1 e' IL fix; temp marginale, non vale il drift.
     temperature: 0.0
     repetition_penalty: 1.1
     schema_version: "stage1.v3"

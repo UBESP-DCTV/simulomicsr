@@ -52,10 +52,57 @@ Motivazione: rep_pen 1.1 e' IL fix definitivo dimostrato dall'ablation 2026-05-0
   - Default sicuro per run β massivi su ARCHS4 (700k sample) — non vogliamo scoprire drift dopo aver bruciato 10h di compute.
   - Soluzione applicata anche a stage2 by symmetry (stage2 ha schemi piu' complessi, anche piu' a rischio di degenerate).
 - **Negative:**
-  - 211 record (0.16%) restano irrecuperabili anche con rep_pen 1.1 + temp 0.0-0.4 — irrecuperabili da CIASCUNO dei 5 setting testati. Questi vanno investigati separatamente (next session).
+  - 211 record (0.16%) restano irrecuperabili con rep_pen 1.1 alone — investigation successiva ha rivelato due failure mode separabili (vedi addendum sotto).
   - Marginale CPU/latency overhead di rep_pen tracking nel decoder vLLM (trascurabile a fronte del gain).
 - **Neutral:**
   - I run α retry e ablation sono rimasti sul cluster per debugging (~250 MB total nei `runs/<run_id>/`). Cleanup quando si chiude P4.
+
+## Addendum 2026-05-07 P.M. — Investigation 211 residual fails
+
+Phase 1 ha caratterizzato i 211 residual fails (post temp 0.0 + rep_pen 1.1)
+in due failure mode binariamente separabili:
+
+- **Mode B (205, 97%)** — *legitimate truncation*. `raw_output` median 3231 char
+  vs 1748 char per OK con stesso config (zero distribution overlap). Input
+  cluster su 43 series con multi-perturbazione (es. "BMP4, VEGF, SCF,
+  ACTIVIN A, FGF2, CHIR99012") che producono JSON ~1000 token, oltre
+  `max_tokens=1024`. NON e' una pathology — il modello sta scrivendo JSON
+  corretto e finisce semplicemente il budget.
+- **Mode A (6, 3%)** — *decoder loop*. Tutti 6 raw_output stallano
+  *esattamente* dopo `"label": "..."` dentro il primo
+  `engineered_modifications[].`. Schema definisce `variant: ["object","null"]`
+  con required nested `{label, description, is_wildtype}` se non null.
+  Guided decoder collassa al field-boundary scegliendo tra `null`/`{`/`}`,
+  in tab flood. rep_pen 1.1 insufficiente.
+
+### Single-variable hypothesis tests (5 min DGX totale)
+
+- **Job 19748**: `max_tokens 1024 → 2048` (single change vs default) sui 211 →
+  **205/205 Mode B recuperati (100%)**, 6 Mode A residui invariati.
+- **Job 19749**: `repetition_penalty 1.1 → 1.2` (single change) sui 6 Mode A →
+  **6/6 recuperati (100%)** con content quality verificata
+  (`engineered_modifications` corretti, perturbazioni coerenti, confidence
+  0.8-0.9, zero garbage).
+
+### Default policy aggiornata
+
+- `inst/extdata/p4-defaults.yml`: stage1 `max_tokens 1024 → 2048` (nuovo
+  default). Costo trascurabile: median raw_output OK ~500 token vs cap 2048.
+  Fix architettonico per multi-perturbazione (downstream-critical: studi
+  con cocktail terapeutici/fattori di differenziazione sono comuni).
+- `repetition_penalty: 1.1` resta default. **`1.2` documentato nel commento
+  yaml come escape hatch** per casi residual su altri schema con boundary
+  loop simili — NON default per rischio drift contenutistico sui 130k
+  normali (non testato a tappeto, solo sui 6 specifici dove ha funzionato).
+- Stage2 `max_tokens=4096` rimane invariato (gia' generoso per output
+  multi-comparison study-level).
+
+### Risultato finale α stage1
+
+**130,784 / 130,784 = 100.00000% valid**, 0 residui irrecuperabili. Tracking
+provenienza in colonna `rescue_source`: `replicate_<GSM>` (2308 propagati) /
+`uniqfail_temp00_rep11` (1132 rep_pen 1.1) / `rep11_maxtok2048` (205 Mode B
+fix) / `rep12_maxtok2048` (6 Mode A fix) / NA (124,979 originali).
 
 ## Pros and Cons of the Options
 
