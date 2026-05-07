@@ -96,6 +96,13 @@ dgx_p4_build_bundle <- function(input_jsonl,
     tensor_parallel_size   = defaults$tensor_parallel_size,
     workers                = defaults$data_parallel_workers
   )
+  # Param opzionali sampling (passati al runner Python solo se presenti
+  # nel yaml; vedi inst/dgx/python/run_p4_vllm.py worker_main).
+  for (opt in c("repetition_penalty", "top_p", "min_p")) {
+    if (!is.null(stage_def[[opt]])) {
+      gen[[opt]] <- as.double(stage_def[[opt]])
+    }
+  }
   .dgx_write_generation_json(gen, fs::path(bundle_dir, "generation.json"))
 
   # --- 5. Manifest ---

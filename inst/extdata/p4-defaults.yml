@@ -20,14 +20,27 @@ stages:
     schema_file: "sample_facts.stage1.v3.json"
     max_tokens: 1024
     max_model_len: 4096       # input ~2-3K + output 1K rientra
+    # `temperature: 0.0` (greedy) + `repetition_penalty: 1.1` e' il default
+    # validato da ablation 2026-05-07 sui 1343 unique-FAIL del run alpha
+    # (vedi CLAUDE.md "Risultati P4 alpha stage1").
+    # - SENZA rep_pen, greedy entra in loop whitespace/null padding al
+    #   90+% dei field-boundary "string|null" → 0% recovery sui hard.
+    # - CON rep_pen 1.1 a temp 0.0: 84.3% recovery, full determinismo.
+    # - Aumentare la temp da 0.0 a 0.4 alza recovery solo da 84.3% a 86.1%
+    #   (+1.8 pp) ma porta concordance da 100% a ~87% sui contenuti
+    #   (drift su `perturbations[].kind` e `disease_state.status`).
+    # → rep_pen e' IL fix; temp marginale, non vale il drift.
     temperature: 0.0
+    repetition_penalty: 1.1
     schema_version: "stage1.v3"
     model_prefix: "vllm-mistral-3.2"
   stage2:
     schema_file: "study_design.stage2.v2.json"
     max_tokens: 4096
     max_model_len: 16384      # input multi-sample puo' essere lungo
+    # Stesso ragionamento di stage1 (vedi sopra).
     temperature: 0.0
+    repetition_penalty: 1.1
     schema_version: "stage2.v2"
     model_prefix: "vllm-mistral-3.2"
 

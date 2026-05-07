@@ -1,3 +1,45 @@
+# simulomicsr 0.0.0.9010 (P4 — α stage1 130k complete, 99.84% valid)
+
+## Run α stage1 (2026-05-07, job 19730 + investigation jobs 19735-19740)
+
+* Run completo su 130,784 sample dal `relevant_sample_classified.xlsx`,
+  4× H100 in 1h 18min wall clock, costo $0 (DGX self-host).
+  Output finale `analysis/p4-output/alpha-stage1-final.rds`:
+  **130,573 / 130,784 = 99.84% valid** (124,979 originali + 2,308
+  propagated da OK-sibling + 1,132 recuperati con `temperature=0.0 +
+  repetition_penalty=1.1`).
+
+## Cambiamenti default vLLM SamplingParams
+
+* `inst/extdata/p4-defaults.yml`: aggiunto `repetition_penalty: 1.1`
+  per stage1 e stage2 (era assente, default vLLM 1.0). `temperature`
+  resta 0.0 (greedy). **Il fix vero e' rep_pen** — ablation su 1343
+  hard cases ha provato che da 0% (no rep_pen) a 84% (rep_pen 1.1)
+  indipendentemente dalla temp, mentre incrementi di temp portano
+  drift contenutistico (concordance pert.kind crolla a 87% a temp
+  0.4 vs 100% a temp 0.0).
+
+## Funzionalita' nuove
+
+* `inst/dgx/python/run_p4_vllm.py::worker_main()` — accetta
+  `repetition_penalty` / `top_p` / `min_p` opzionali da `gen` dict
+  (passati a `vllm.SamplingParams(**extra_kwargs)` se presenti).
+* `R/dgx-bundle.R::dgx_p4_build_bundle()` — propaga gli stessi 3
+  campi opzionali da yaml a `generation.json`.
+
+## Strategia di rescue per non-determinismo bf16 vLLM
+
+Documentata in CLAUDE.md sezione "Propagation rescue strategy":
+
+* Pattern emerso: 63.2% dei FAIL post-retry hanno duplicato OK
+  byte-identical in altre repliche dello stesso studio (es. stesso
+  cell_line+treatment+time), confermando non-determinismo del
+  continuous batching fp16/bf16 in vLLM.
+* Per evitare di perdere repliche biologiche (downstream-critical
+  per RNAseq meta-analisi), copia parsed_json dal sibling OK,
+  patch geo_accession, marca `rescue_source = "replicate_<src>"`
+  in colonna separata. Recover lossless di 2308/3651 hard cases.
+
 # simulomicsr 0.0.0.9009 (P4 — DGX integration, smoke E2E verde)
 
 ## Funzionalita' nuove
