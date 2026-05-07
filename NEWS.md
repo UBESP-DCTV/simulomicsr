@@ -62,6 +62,15 @@
   R-only end-to-end). 4 worker stripe perfetto (25/25/25/25), 100/100
   schema valid, generation 28-33s parallela. Per 100 record l'overhead
   4× cold load > saving del shard, parity break a centinaia di record.
+* **Job 19727 + 19728** (Plan Task 20: resume verification) —
+  Run 1 scancel a t=87s con 2 worker file scritti (75 record committati,
+  worker 1 killed prima di scrivere). Run 2 re-submit dello stesso bundle
+  via `dgx_p4_submit(bundle, ...)`: log `[main] totale=100 done=75 todo=25`,
+  sharding round-robin 25 su 4 worker (7+6+6+6), COMPLETED in 1:54.
+  predictions.jsonl finale = 100 unique record_id, 0 errors. Pattern
+  resume zero-effort: per riprendere basta ri-chiamare `dgx_p4_submit()`
+  sullo stesso bundle (run_id stabile, rsync idempotente, `runs/<run_id>/`
+  su cluster preserva i worker file partial).
 
 ## Bug fix: `.dgx_ssh()` wrap login shell
 
@@ -100,17 +109,22 @@ forza login shell che carica i profile. Validato via `dgx_p4_submit()`
   design originale conservato come snapshot, header con tabella diff
   rispetto all'implementato.
 
-## Tag: `p4-dgx-complete` (da applicare dopo Plan Task 20-22)
+## Tag applicato: `p4-smoke-complete` (Task 18+19+20 superati)
 
-## Next phase: Plan Task 20 — resume verification
+`p4-dgx-complete` da applicare dopo Plan Task 21+22 (run α massivo).
 
-Pre-requisito: Task 18+19 passati (job 19725/19726). Step:
+## Next phase: Plan Task 21 — run α stage1 130k
 
-1. Submit job 4 GPU su 100 record con `time = "00:30:00"`.
-2. `scancel` a meta' generazione (~10s dentro la fase generation).
-3. Re-submit dello stesso bundle (stesso `run_id`) — `resume.py` deve
-   skippare i record gia' completati.
-4. Verifica `predictions.jsonl` finale = 100 unique record_id.
+Pre-requisito: Task 18+19+20 passati (job 19725/19726/19727+19728). Step:
+
+1. Generare `data-raw/p4-alpha-stage1.jsonl` (tutto `relevant_sample`
+   xlsx ~130784 record).
+2. `bundle <- dgx_p4_build_bundle(...)` + `dgx_p4_submit(bundle,
+   time = "06:00:00")`.
+3. Polling con `dgx_p4_status(job, watch = TRUE, interval = 60)`.
+4. Stima: 4 H100, ~3-4h end-to-end con cache HF e torch.compile gia'
+   popolata.
+5. `dgx_p4_collect()` -> 130k predictions.
 
 ---
 
