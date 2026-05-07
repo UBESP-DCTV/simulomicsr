@@ -25,15 +25,54 @@ Pipeline complessiva (5 stadi):
 - Colonne: `Column1`, `string` (input metadata), `trtctr_EP` (gold manuale autore), `geo_accession`, `series_id`, `treat`, `trtctr` (baseline shallow), `gold` (ricontrollo terzo revisore).
 - Da spec §6.2: `trtctr_EP` riflette una semantica "qualunque intervento esplicito" che diverge da `design_role` — il gold "design-aware" sarà costruito a P3 mid-stage su 200-300 sample.
 
-## Stato corrente (2026-05-06 fine sessione `simulomicsr_brain2`)
+## Stato corrente (2026-05-07 fine sessione P4 setup, parzialmente bloccato)
 
-- **Branch:** `p3.5c-confidence` (master HEAD invariato a `8623c35`).
-- **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, **`p3.5c-confidence-complete` (P3.5-C v5)**.
-- **Branch locale è ahead di master** — l'utente fa il merge + push lui.
-- **R CMD check:** 0E / 0W / note pre-esistenti.
-- **Test suite:** 444 PASS / 0 FAIL.
+- **Branch:** `p4-dgx-integration` (15 commit ahead di master, **non pushato**).
+- **Tag:** `p1-infra-llm-complete`, `p2-stage1-complete`, `p3-stage2-complete`, `p3.5b-eval-complete`, `p3.5a-eval-complete`, `p3.5c-confidence-complete`. P4 NON taggato (in corso).
+- **R CMD check:** 0E / 1W (pre-esistente non-P4 in `dot-openrouter_parse_response.Rd`) / 3 NOTE.
+- **Test suite:** 520 PASS / 0 FAIL / 3 SKIP (skip per OPENAI_API_KEY non impostata, pre-esistente).
+- **Server di sviluppo cambiato**: ora R 4.6.0 (era 4.5.2 sul laptop). Dev tools nella renv project lib (`~/.cache/R/renv/library/simulomicsr-ba33d608/.../R-4.6/`). **Usare `Rscript -e '...'` SENZA `--vanilla`** — su questo server `--vanilla` perde la libpath di renv. CLAUDE.md storico era allineato al laptop, l'operational note va invertita su questo server.
 
-### P3.5-D in corso (2026-05-06): cheap models exploration via OpenRouter
+### P4 implementation completata localmente (Plan Task 1-16)
+
+15 commit P4 sul branch:
+
+- Task 1-2: DESCRIPTION (`processx`, `yaml`) + `.gitignore` (`analysis/p4-output/`, `analysis/p4-bundles/`, `inst/dgx/python/__pycache__/`).
+- Task 3-4: `R/dgx-config.R` + `R/dgx-utils.R` (helpers `.dgx_run_id`, `.dgx_render_slurm_template`, `.dgx_ssh`, `.dgx_rsync`).
+- Task 5: `inst/extdata/p4-defaults.yml` (model_id, sampling per stage, slurm_defaults).
+- Task 6: `R/dgx-bundle.R` (`dgx_p4_build_bundle()` stage1+stage2) + fixtures.
+- Task 7-8: `inst/dgx/python/{prompts.py,resume.py,__init__.py}` (port 1:1 user message R, idempotenza JSONL).
+- Task 9: `inst/dgx/python/run_p4_vllm.py` (4 worker DP via multiprocessing, vLLM offline batch + guided JSON).
+- Task 10: `inst/dgx/{Dockerfile,Makefile,.dockerignore}` (workflow allineato 1:1 a `2026.scRNA_DGX/Makefile`: docker build locale → push DockerHub → singularity pull cluster, NO SSH wrapping nel Makefile, NO apptainer build remote).
+- Task 11: `inst/dgx/slurm/run_p4.sh` template SLURM.
+- Task 12-13: `R/dgx-submit.R` (`dgx_p4_submit/status/collect/recover`) + tests mocked processx via `testthat::local_mocked_bindings`.
+- Task 14: NAMESPACE rigenerato + R CMD check cleanup (rimossi `:::` interni, `stats::` prefix per `runif`/`setNames`, `.Rbuildignore` aggiornato per laims-dgx-llm-batch-main + Makefile + .dockerignore).
+- Task 15: `docs/decisions/0007-dgx-self-host-vllm.md` (ADR).
+- Task 16: `vignettes/p4-dgx-setup.Rmd` (one-time guide).
+
+**5 funzioni esportate**: `dgx_config()`, `dgx_p4_build_bundle()`, `dgx_p4_submit()`, `dgx_p4_status()`, `dgx_p4_collect()` + `dgx_p4_recover()` di servizio.
+
+### P4 cluster setup (parzialmente fatto, ⚠️ bloccato)
+
+Sul DGX UniPD HPC (`logindgx.hpc.ict.unipd.it`, login `podhead1`, user `u0044`):
+
+- ✅ `~/.simulomicsr-dgx.env` con HF_TOKEN.
+- ✅ Directory `/mnt/home/u0044/simulomicsr-dgx/{runtime,bundles,runs,models/HF_HOME}`.
+- ✅ Image `lucavd/simulomicsr-vllm:latest` su DockerHub (FROM `vllm/vllm-openai:v0.6.4`, torch 2.5.1+cu124).
+- ✅ SIF `simulomicsr-vllm.sif` (5.3 GB) via `make pull-singularity`.
+- ✅ Modello `mistralai/Mistral-Small-3.2-24B-Instruct-2506` in HF cache (~103 GB) via `make predownload-model`.
+- ✅ Sanity check torch nel container: `torch: 2.5.1+cu124 CUDA build: 12.4` (su login senza GPU, OK come parsing).
+
+**🔴 BLOCKER**: `sbatch --partition=dgx12cluster --account=dctv_dgx ...` viene **rerouted** in `defaultAllResouces` con `Reason=uid_648700542_not_in_group_permitted_to_use_this_partition_(defaultAllResouces)._groups_allowed:_allworkloads`. Il portal web mostra `dgx12cluster + dctv_dgx` come accessibile, ma slurmctld non riconosce l'association. Test job 19701/19702/19704 tutti finiti in PENDING `defaultAllResouces` con stesso errore. Mail all'admin HPC da fare/inviata.
+
+### Lessons learned operative durante P4 setup
+
+1. **`vllm/vllm-openai:v0.6.4` espone `python3`, NON `python`** — Dockerfile ENTRYPOINT corretto a `python3`, SLURM template chiama `python3 /opt/.../run_p4_vllm.py` esplicitamente (cfr. commit `1bc68f6`).
+2. **`--nodelist=poddgx02` NON deve essere hardcoded** — sia poddgx01 che poddgx02 sono in `dgx12cluster`, e uno dei due puo' essere in stato `planned`/`drain`. Lasciare che lo scheduler scelga (`nodelist=NULL` di default in `dgx_config()`, cfr. commit `3df50fa`).
+3. **Workflow Docker → DockerHub → Singularity allineato a scRNA_DGX**: NO SSH wrapping nel Makefile; target `pull-singularity`/`predownload-model` girano *sul login DGX dopo SSH*, non SSH-wrappati dal laptop. Cfr. commit `5823d9d`.
+4. **WORKDIR `/mnt/home/u0044/`** non `~`: il compute node poddgx02 monta lo storage qui, non in `/home/u0044/`. Fissato in commit `1f36f3c`.
+
+### P3.5-D (2026-05-06): cheap models exploration via OpenRouter
 
 Adapter `R/llm-client-openrouter.R` aggiunto. Provider `openrouter` nel
 dispatch. Testati 14 modelli su 50 GSE × mini-gold v5 (n=100).
@@ -317,38 +356,37 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — P3.5-A2 cost validation o P4)
+## Next step (per la prossima sessione — sblocco DGX + Plan Task 18 smoke)
 
-**P3.5-A completato (2026-05-03).** Risultati paper-ready: 83.7% accuracy globale (n=1489), +12 pp vs RummaGEO. Costo gpt-5.5: **$68.70**.
+**P4 implementation 100% locale (Plan Task 1-16 completati).** 15 commit su `p4-dgx-integration`, **non pushati**, working tree pulito al commit `3df50fa`. Cluster setup parzialmente fatto (image, SIF, modello), ma run bloccato da problema di accesso slurm (vedi sezione "Stato corrente").
 
-### Decisione condizionale post-P3.5-A
+### Per ripartire (quando l'admin HPC sblocca l'accesso a `dgx12cluster`)
 
-**OBBLIGATORIO prima di P4:** **P3.5-A2 cost/quality validation** (idea utente 2026-05-03). Razionale: il costo P3.5-A su 100 GSE / 1507 sample è $68.70 → estrapolazione P4 (run massivo ARCHS4 700k+ sample) ≈ $30k a parità di modello gpt-5.5. Se un modello cheaper a parità di accuracy esiste, P4 può costare una frazione.
+1. **Verifica accesso ripristinato**: ssh u0044@logindgx, lancia un sbatch minimale (`/mnt/home/u0044/simulomicsr-dgx/runtime/cuda-check.sh` esiste gia' dalla sessione 2026-05-06). Se il job parte e finisce con `CUDA avail: True / Device: NVIDIA H100 80GB HBM3` → setup pronto.
+2. **Plan Task 18: smoke 1 GPU 100 record** (sezione "## Task 18" in `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md`). Step:
+   - Genera `data-raw/p4-smoke-stage1.jsonl` (100 sample da xlsx).
+   - `dgx_p4_build_bundle(input, "stage1", cfg)` → `dgx_p4_submit()` con override 1 GPU manuale.
+   - Verifica accuracy ≥ 95% su mini-gold v5.
+3. **Plan Task 19: smoke 4 GPU 100 record** (no override).
+4. **Plan Task 20: resume verification** (kill job a meta', re-sbatch).
+5. **Plan Task 21: run α stage1 130k** (input completo xlsx, ~3-4h su 4 H100).
+6. **Plan Task 22: run α stage2 ~5.4k** (~30 min).
+7. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con i risultati finali.
 
-Scope P3.5-A2:
-- Sottogruppo (~50-100 sample) da `sample_facts_p35a_validated` o `study_designs_p35a_validated` come ground truth (gpt-5.5 + gold xlsx).
-- Modelli da provare: cheap OpenAI (`gpt-5.5-mini`, `gpt-5.4-mini`), Anthropic (`claude-haiku-4-5`), eventualmente open-source (Llama 3.x, Qwen, DeepSeek via Together/Groq) — l'utente li menziona "tentativamente, qualche prova".
-- Output: tabella accuracy × cost per modello, decisione su quale usare in P4.
-- Implementazione: nuovo phase P3.5-A2 con plan dedicato. Riusa l'eval pipeline P3.5-A esistente.
-- Pre-requisito: la cache LLM è partizionata per `(provider, model, messages)` — cambiare modello scatena re-classify automatico.
+### Roadmap post-P4 (deferred fino a chiusura α)
 
-### Findings sotto-soglia P3.5-A (da considerare per P3.5-A2 o P3.5-A3)
+1. **P4 β: ETL ARCHS4 H5 → JSONL** (700k sample / 22k studi). Plan separato.
+2. **Output 3 ADR-0006**: P5 Stadio 4+5 (DESeq2/limma + metafor REM).
+3. **Rename pacchetto** (ADR-0003) prima del primo `install_github` pubblico.
+4. **Migrazione a `ellmer`** come ADR separato (multi-provider + batch API).
+5. **P3.5-A2 cost/quality validation** ridiventerebbe rilevante solo se decidiamo di NON usare mistral-small-3.2 self-host; al momento abbandonato (P4 self-host = $0).
 
-1. **`treatment_vs_untreated` 77.3%** (sotto soglia plan 85%, n=141): non più un singolo GSE outlier come P3.5-B ma sotto soglia diffusa.
-2. **`time_course` 59.3%** (n=54): basso su task hard.
-3. **`case_control_disease` 49.1%** (n=57): sotto casuale, anomalia da investigare. Probabile bug nel mapping `design_role → trtctr_predicted` per design malattia/normale (case → treated, comparison → control), o gold xlsx semantica differente per disease.
-4. **GSE145941 reclassify_verbose** 408 byte di reasoning (vedi report Sezione 5).
+### Findings sotto-soglia P3.5-A (da considerare in eventuale prompt iter post-α)
 
-### Roadmap aggiornata
-
-1. **P3.5-A2 cost/quality validation** (priorita' alta, $5-15 stimati su sub-set 50-100 sample × 3-5 modelli): brainstorm + plan + run + report.
-2. **Server-switch + P4 run massivo ARCHS4** (ADR-0005, $30k a gpt-5.5 oppure frazione con modello da P3.5-A2).
-3. **Migrazione a `ellmer`** come ADR separato pre-P4 (multi-provider + batch API ergonomic — necessario per P3.5-A2 multi-modello).
-4. **Eventuale P3.5-A3 prompt iter** se sub-soglia `treatment_vs_untreated` / `time_course` / `case_control_disease` sono sistemici (P3.5-A2 lo decide).
-5. **Rename pacchetto** (ADR-0003) prima del primo `install_github` pubblico.
-6. **P5 Stadio 4+5: DE per-studio (DESeq2/limma) + meta-analisi REM (`metafor`)** — Output 3 ADR-0006.
-
-**Next concrete step:** invocare `superpowers:brainstorming` per scope P3.5-A2 (modelli da testare, sub-set rappresentativo, criteri di selezione "good enough").
+1. `treatment_vs_untreated` 77.3% gpt-5.5 (sotto soglia plan 85%, n=141).
+2. `time_course` 59.3% (n=54).
+3. `case_control_disease` 49.1% (n=57): sotto casuale, anomalia da investigare. Probabile bug nel mapping `design_role → trtctr_predicted` per design malattia/normale.
+4. GSE145941 `reclassify_verbose` 408 byte di reasoning (vedi report Sezione 5).
 
 ## Riferimenti chiave
 
@@ -363,6 +401,10 @@ Scope P3.5-A2:
 - Plan P3.5-A: `docs/superpowers/plans/2026-05-02-p3.5a-scaled-benchmark-plan.md` + HUMANE.
 - **Report P3.5-A:** `analysis/eval/p35a-benchmark.html` (980 KB, 5 sezioni con Wilson CI + McNemar + bootstrap + Holm + investigation GSE145941).
 - **ADR-0006 stato dell'arte:** `docs/decisions/0006-stato-arte-vs-simulomicsr.md` — analisi competitor 2024-2026 + benchmark RummaGEO integrale + decisione P3-B confermata.
+- **ADR-0007 DGX self-host vLLM:** `docs/decisions/0007-dgx-self-host-vllm.md` — decisione bespoke minimale dentro simulomicsr (no fork laimsdgxllm) + workflow Docker→DockerHub→Singularity.
+- **Spec P4:** `docs/superpowers/specs/2026-05-06-p4-dgx-integration-design.md`.
+- **Plan P4:** `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md` (23 task, 16 completati locale).
+- **Vignette P4 setup:** `vignettes/p4-dgx-setup.Rmd` (one-time guide utente).
 - ADR-0005 server migration: `docs/decisions/0005-server-migration-trigger.md`.
 - ADR generali: `docs/decisions/`.
 - README utente: `README.md`.
