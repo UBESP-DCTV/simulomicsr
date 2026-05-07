@@ -18,7 +18,10 @@
 #'   perche' nodi specifici possono essere DRAIN/DOWN). Pass una stringa
 #'   come `"poddgx02"` solo se devi forzare un nodo specifico.
 #' @param remote_root root remoto del workspace P4. Default
-#'   `"/mnt/home/<login_user>/simulomicsr-dgx"`.
+#'   `"/home/<login_user>/simulomicsr-dgx"`. NOTA: `/home/<user>/` (NON
+#'   `/mnt/home/<user>/`) perche' i compute node UniPD HPC non montano
+#'   `/mnt/home/`. Verificato col probe job 19720 il 2026-05-07 su
+#'   poddgx03: `/mnt/home/u0044/` non esiste lato compute.
 #' @param ssh_key_path path opzionale a private key SSH. `NULL` significa
 #'   usa la default (id_rsa o ssh-agent).
 #' @param ... interno, intercetta argomenti non riconosciuti per
@@ -81,7 +84,7 @@ dgx_config <- function(login_user  = "u0044",
   }
 
   if (is.null(remote_root)) {
-    remote_root <- paste0("/mnt/home/", login_user, "/simulomicsr-dgx")
+    remote_root <- paste0("/home/", login_user, "/simulomicsr-dgx")
   }
 
   cfg <- structure(

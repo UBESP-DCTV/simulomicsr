@@ -65,13 +65,30 @@ dgx_p4_submit <- function(bundle,
     ))
   }
 
-  # 2. rsync bundle -> remoto
-  remote_bundle <- paste0(config$remote_root, "/bundles/", bundle$run_id, "/")
-  .dgx_ssh(config, paste0("mkdir -p ", shQuote(remote_bundle)))
+  # 2. rsync bundle -> remoto. Creiamo anche runs/<run_id>/ in anticipo
+  # perche' SLURM --output/--error puntano li' e fallisce con signal 53
+  # se la dir non esiste al momento dello scheduling.
+  remote_bundle  <- paste0(config$remote_root, "/bundles/", bundle$run_id, "/")
+  remote_run     <- paste0(config$remote_root, "/runs/",    bundle$run_id, "/")
+  remote_runtime <- paste0(config$remote_root, "/runtime/python/")
+  .dgx_ssh(config, paste0("mkdir -p ", shQuote(remote_bundle), " ",
+                                       shQuote(remote_run), " ",
+                                       shQuote(remote_runtime)))
   .dgx_rsync(config,
              local_path  = paste0(bundle$bundle_dir, "/"),
              remote_path = remote_bundle,
              direction   = "push")
+  # Sincronizza il runtime Python (run_p4_vllm.py + prompts.py + resume.py).
+  # E' bind-mounted dal SLURM template, non dentro la SIF: cosi' aggiornamenti
+  # sono possibili senza rebuild dell'immagine.
+  py_local <- system.file("dgx", "python", package = "simulomicsr")
+  if (nzchar(py_local)) {
+    .dgx_rsync(config,
+               local_path  = paste0(py_local, "/"),
+               remote_path = remote_runtime,
+               direction   = "push",
+               flags       = c("-az", "--exclude=__pycache__"))
+  }
 
   # 3. sbatch via SSH. Il SLURM script ha #SBATCH --export=NONE (blocca
   # env inheritance per evitare SBATCH_PARTITION del login che override
