@@ -103,6 +103,28 @@ dgx_p4_build_bundle <- function(input_jsonl,
       gen[[opt]] <- as.double(stage_def[[opt]])
     }
   }
+  # Flag opzionale per disabilitare guided decoding (es. stage2 alpha
+  # 2026-05-08 dopo stall xgrammar). Se assente, default = guided abilitato.
+  if (!is.null(stage_def$disable_guided_decoding)) {
+    gen$disable_guided_decoding <- as.logical(stage_def$disable_guided_decoding)
+  }
+  # microbatch opzionale: numero di record per llm.chat() chiamata; default
+  # batch unico (None lato Python) = stage1; stage2 usa 25 per evitare KV
+  # cache slot leak (vedi p4-defaults.yml stage2.microbatch e job 19801).
+  if (!is.null(stage_def$microbatch)) {
+    gen$microbatch <- as.integer(stage_def$microbatch)
+  }
+  # enforce_eager (Task 22 stage2 v5 mitigazione 2026-05-08).
+  # enable_prefix_caching / enable_chunked_prefill / scheduler_reserve_full_isl:
+  # flag aggiunti durante investigation Task 22 (resolved 2026-05-08). Vedi
+  # p4-defaults.yml + run_p4_vllm.py per dettagli.
+  for (opt in c("enforce_eager", "enable_prefix_caching",
+                "enable_chunked_prefill", "scheduler_reserve_full_isl")) {
+    if (!is.null(stage_def[[opt]])) gen[[opt]] <- as.logical(stage_def[[opt]])
+  }
+  if (!is.null(stage_def$max_num_seqs)) {
+    gen$max_num_seqs <- as.integer(stage_def$max_num_seqs)
+  }
   .dgx_write_generation_json(gen, fs::path(bundle_dir, "generation.json"))
 
   # --- 5. Manifest ---

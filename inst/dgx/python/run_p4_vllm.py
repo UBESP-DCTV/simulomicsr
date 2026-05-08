@@ -89,6 +89,20 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     """Funzione eseguita in subprocess. Carica vLLM su una sola GPU e
     genera in batch sui record assegnati."""
     os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_index)
+    # Mitigazione xgrammar guided-decoding stall (Task 22 stage2 stall
+    # 2026-05-08, job 19778). Il default torch._dynamo cache_size_limit=8 e'
+    # troppo basso per le shape variants del kernel
+    # apply_token_bitmask_inplace_kernel_indices_torch_compile di xgrammar:
+    # quando viene saturato, il kernel compilato viene evitto e xgrammar
+    # ricade su un Python loop (CPU 99%, GPU 0%). Bumpando i due limit a
+    # 256/1024 il fast path resta attivo per molte piu' shape variants.
+    # NB: env vars vanno settate PRIMA di import torch.
+    os.environ.setdefault("TORCHDYNAMO_CACHE_SIZE_LIMIT", "256")
+    os.environ.setdefault("TORCHDYNAMO_ACCUMULATED_CACHE_SIZE_LIMIT", "1024")
+    import torch._dynamo
+    torch._dynamo.config.cache_size_limit = 256
+    torch._dynamo.config.accumulated_cache_size_limit = 1024
+
     # Import vLLM solo qui (per non caricarlo nel main process)
     from vllm import LLM, SamplingParams
 
@@ -98,7 +112,19 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     system_prompt = bundle["prompt"]
 
     print(f"[worker {worker_id}] caricamento vLLM su GPU {gpu_index}...", flush=True)
-    llm = LLM(
+    # backend di guided decoding: default vLLM e' xgrammar (ok per stage1).
+    # Per stage2 in alpha 2026-05-08 si disabilita guided decoding via
+    # gen["disable_guided_decoding"]=true (vedi sotto) perche' xgrammar
+    # entra in stall del torch._dynamo cache_size_limit per le shape
+    # variants del kernel apply_token_bitmask_inplace_kernel_indices
+    # (job 19778+19800 stalli, GPU 0% / CPU 99%). outlines/lm-format-enforcer
+    # NON sono installati nel container vllm/vllm-openai:v0.10.0, quindi
+    # niente backend swap qui (eventuale rebuild Docker e' un follow-up).
+    # Costruzione args con flag opzionali (enforce_eager, max_num_seqs):
+    # enforce_eager=True disabilita CUDA graph capture (piu' lento ma piu'
+    # stabile su sequenze lunghe — Task 22 v5 mitigazione 2026-05-08, dopo
+    # stall ricorrente di vLLM scheduler dopo ~25-30 min di gen healthy).
+    llm_kwargs = dict(
         model=gen["model_id"],
         dtype=gen["dtype"],
         tokenizer_mode=gen.get("tokenizer_mode", "mistral"),
@@ -108,6 +134,34 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
         tensor_parallel_size=int(gen["tensor_parallel_size"]),
         max_model_len=int(gen.get("max_model_len", 4096)),
     )
+    if bool(gen.get("enforce_eager", False)):
+        llm_kwargs["enforce_eager"] = True
+        print(f"[worker {worker_id}] enforce_eager=True (no CUDA graphs)", flush=True)
+    if "max_num_seqs" in gen and gen["max_num_seqs"] is not None:
+        llm_kwargs["max_num_seqs"] = int(gen["max_num_seqs"])
+        print(f"[worker {worker_id}] max_num_seqs={llm_kwargs['max_num_seqs']}", flush=True)
+    # Task 22 stage2 follow-up 2026-05-08 (next session triage): flag opzionali
+    # per testare hypotheses sulla causa del deadlock vLLM scheduler dopo
+    # ~325 record/worker con prompt 20K+ token.
+    # H1: enable_prefix_caching (default v1=true) si corrompe su prompt
+    #     eterogenei lunghi → spiega "resume immediate stall" pattern.
+    # H2: enable_chunked_prefill gestisce prompt 20K+ in chunked prefill
+    #     incrementale → riduce KV pressure picco.
+    # Solo settati se PRESENTI nel gen dict (default vLLM altrimenti).
+    if "enable_prefix_caching" in gen and gen["enable_prefix_caching"] is not None:
+        llm_kwargs["enable_prefix_caching"] = bool(gen["enable_prefix_caching"])
+        print(f"[worker {worker_id}] enable_prefix_caching={llm_kwargs['enable_prefix_caching']}", flush=True)
+    if "enable_chunked_prefill" in gen and gen["enable_chunked_prefill"] is not None:
+        llm_kwargs["enable_chunked_prefill"] = bool(gen["enable_chunked_prefill"])
+        print(f"[worker {worker_id}] enable_chunked_prefill={llm_kwargs['enable_chunked_prefill']}", flush=True)
+    # scheduler_reserve_full_isl=False: workaround per vLLM Issue #39734
+    # (scheduler v1 deadlock head-of-line per request entro max_model_len ma
+    # > KV capacity disponibile). Bug ancora presente in vLLM 0.19.x. Path C
+    # (chunk_size=25) evita gia' la zona-bug; questo flag e' defense-in-depth.
+    if "scheduler_reserve_full_isl" in gen and gen["scheduler_reserve_full_isl"] is not None:
+        llm_kwargs["scheduler_reserve_full_isl"] = bool(gen["scheduler_reserve_full_isl"])
+        print(f"[worker {worker_id}] scheduler_reserve_full_isl={llm_kwargs['scheduler_reserve_full_isl']}", flush=True)
+    llm = LLM(**llm_kwargs)
 
     # Param opzionali (presenti solo se override del default yaml).
     extra_kwargs: dict[str, Any] = {}
@@ -120,21 +174,35 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
 
     # Guided decoding: API nuova vLLM v1 (GuidedDecodingParams). Fallback
     # a guided_json scalare se la versione installata e' piu' vecchia.
-    try:
-        from vllm.sampling_params import GuidedDecodingParams
+    # Se gen["disable_guided_decoding"]=true (es. stage2 alpha 2026-05-08
+    # dove xgrammar entra in stall di torch._dynamo cache_size_limit per
+    # le shape variants del kernel apply_token_bitmask_inplace), la genera-
+    # zione e' liberamente JSON-shaped (Mistral-3.2 produce JSON parsabile
+    # nel ~95-99% dei casi senza enforcement; validazione schema avviene
+    # post-hoc R-side).
+    if gen.get("disable_guided_decoding", False):
+        print(f"[worker {worker_id}] guided decoding DISABILITATO (free JSON, validate post-hoc)", flush=True)
         sampling = SamplingParams(
             max_tokens=int(gen["max_tokens"]),
             temperature=float(gen["temperature"]),
-            guided_decoding=GuidedDecodingParams(json=schema),
             **extra_kwargs,
         )
-    except Exception:
-        sampling = SamplingParams(
-            max_tokens=int(gen["max_tokens"]),
-            temperature=float(gen["temperature"]),
-            guided_json=schema,
-            **extra_kwargs,
-        )
+    else:
+        try:
+            from vllm.sampling_params import GuidedDecodingParams
+            sampling = SamplingParams(
+                max_tokens=int(gen["max_tokens"]),
+                temperature=float(gen["temperature"]),
+                guided_decoding=GuidedDecodingParams(json=schema),
+                **extra_kwargs,
+            )
+        except Exception:
+            sampling = SamplingParams(
+                max_tokens=int(gen["max_tokens"]),
+                temperature=float(gen["temperature"]),
+                guided_json=schema,
+                **extra_kwargs,
+            )
 
     # Mistral tokenizer non supporta apply_chat_template. Usiamo llm.chat()
     # che accetta una lista di liste di messages e formatta internamente.
@@ -145,33 +213,72 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
         conversations.append(build_messages(system_prompt, user_msg))
         record_ids.append(str(r["record_id"]))
 
-    print(f"[worker {worker_id}] generazione su {len(conversations)} record...", flush=True)
+    # Micro-batch llm.chat (Task 22 stage2 mitigazione 2026-05-08, job 19801
+    # stallato dopo 20 min di gen healthy). Un singolo llm.chat con tutti i
+    # 1663 record / 20K prefill ciascuno entra in stato indeterminato dopo
+    # qualche minuto (workers in futex_wait, GPU 0%, CPU 0%). Processandoli
+    # a chunks di MICROBATCH la KV cache si drena tra un chunk e l'altro,
+    # vediamo progress incrementale, e se un record specifico triggera un
+    # bug vLLM lo isoliamo. Per stage1 (record corti) usa batch grande.
+    MICROBATCH = int(gen.get("microbatch", 0)) or (None if stage == "stage1" else 50)
+    print(f"[worker {worker_id}] generazione su {len(conversations)} record "
+          f"(microbatch={MICROBATCH or 'all'})...", flush=True)
     t0 = time.time()
-    outputs = llm.chat(messages=conversations, sampling_params=sampling)
+
+    def _strip_md_fences(s: str) -> str:
+        # Mistral-3.2 free-gen (disable_guided_decoding=true) spesso wrappa
+        # l'output in ```json ... ``` markdown fences. Strip difensivo per
+        # rendere `json.loads` permissivo. NB: mantenere il raw originale
+        # in `raw_output` per debug/audit; solo `parsed_json` usa la versione
+        # stripped.
+        s = s.strip()
+        if s.startswith("```json"):
+            s = s[7:].lstrip()
+        elif s.startswith("```"):
+            s = s[3:].lstrip()
+        if s.endswith("```"):
+            s = s[:-3].rstrip()
+        return s
+
+    def _write_batch(rids, outs):
+        with predictions_path.open("a", encoding="utf-8") as fh:
+            for rid, out in zip(rids, outs):
+                raw = out.outputs[0].text if out.outputs else ""
+                cleaned = _strip_md_fences(raw)
+                try:
+                    parsed = json.loads(cleaned)
+                    valid = True
+                except json.JSONDecodeError:
+                    parsed = None
+                    valid = False
+                row = {
+                    "record_id": rid,
+                    "raw_output": raw,
+                    "parsed_json": parsed,
+                    "valid_schema": valid,
+                    "worker_id": worker_id,
+                    "ts": now_utc_iso(),
+                }
+                fh.write(json.dumps(row) + "\n")
+            fh.flush()
+
+    if MICROBATCH is None:
+        outputs = llm.chat(messages=conversations, sampling_params=sampling)
+        _write_batch(record_ids, outputs)
+    else:
+        n_total = len(conversations)
+        for i in range(0, n_total, MICROBATCH):
+            j = min(i + MICROBATCH, n_total)
+            t_b = time.time()
+            outs = llm.chat(messages=conversations[i:j], sampling_params=sampling)
+            _write_batch(record_ids[i:j], outs)
+            print(f"[worker {worker_id}] microbatch {i+1}-{j}/{n_total} "
+                  f"in {time.time()-t_b:.1f}s (cum {time.time()-t0:.1f}s)",
+                  flush=True)
+
     elapsed = time.time() - t0
-    print(f"[worker {worker_id}] generazione completata in {elapsed:.1f}s", flush=True)
-
-    # Scrittura predictions append-only
-    with predictions_path.open("a", encoding="utf-8") as fh:
-        for rid, out in zip(record_ids, outputs):
-            raw = out.outputs[0].text if out.outputs else ""
-            try:
-                parsed = json.loads(raw)
-                valid = True
-            except json.JSONDecodeError:
-                parsed = None
-                valid = False
-            row = {
-                "record_id": rid,
-                "raw_output": raw,
-                "parsed_json": parsed,
-                "valid_schema": valid,
-                "worker_id": worker_id,
-                "ts": now_utc_iso(),
-            }
-            fh.write(json.dumps(row) + "\n")
-
-    print(f"[worker {worker_id}] scritti {len(record_ids)} record in {predictions_path}", flush=True)
+    print(f"[worker {worker_id}] generazione completata in {elapsed:.1f}s "
+          f"({len(record_ids)} record)", flush=True)
 
 
 def main() -> int:
