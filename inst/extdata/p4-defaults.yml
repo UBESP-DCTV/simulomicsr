@@ -47,8 +47,58 @@ stages:
     model_prefix: "vllm-mistral-3.2"
   stage2:
     schema_file: "study_design.stage2.v2.json"
+    # === max_tokens: 4096 (Task 22 RESOLVED 2026-05-08) ===
+    # Storico:
+    #  - P3 dev: 4096 (online API, nessun problema)
+    #  - Task 22 v4 (2026-05-07): 2048 → meno di 1024 a 1024 cercando di limitare
+    #    il tempo per slot KV cache durante l'investigation degli stalli vLLM.
+    #  - 1024 produceva 40% truncation (validato sul T5g 2000 record cs25:
+    #    1201/2000 = 60% schema valid, 787 truncated con raw_output median 3021
+    #    char ≈ 860 token, p99 3472 ≈ 990 token, vicino al cap 1024).
+    #  - 4096 (default attuale): T5h 500 record cs25 → 485/500 = 97% schema
+    #    valid. I residual 3% sono record con output 3300-3800 token (record
+    #    cs25 fortemente strutturati con molti comparison + factor_levels).
+    #  - Per residual rescue, riprovare quei record con max_tokens=8192 (pattern
+    #    seguito da stage1 alpha 2026-05-07: 211 residual → max_tokens 1024→2048
+    #    recovered 100%).
     max_tokens: 4096
-    max_model_len: 16384      # input multi-sample puo' essere lungo
+    # max_model_len 32768: Mistral-Small-3.2 contesto nativo 32K. Stage2
+    # input cs25 (chunk_size=25 in analysis/p4-stage2-build-input.R) ha
+    # record max ~14K token (47KB JSON) + system prompt 2K + max_tokens 4K
+    # = ~20K, ben sotto 32K cap.
+    max_model_len: 32768
+    # disable_guided_decoding: TRUE — xgrammar (unico backend installato in
+    # vllm/vllm-openai:v0.10.0) stalla sul kernel
+    # apply_token_bitmask_inplace_kernel_indices per il volume di shape
+    # variants stage2 (Task 22 jobs 19778+19800). La generazione free-JSON
+    # di Mistral-3.2 con system-prompt strutturato (vedi llm-stage2.R con
+    # hint anti-markdown 2026-05-08) produce JSON parsabile ~97% dei casi
+    # (T5h 485/500). Fence-strip difensivo applicato in
+    # inst/dgx/python/run_p4_vllm.py per gestire ```json wrappers
+    # eventuali. Validazione schema strict avviene post-hoc R-side via
+    # parse_stage2_response().
+    disable_guided_decoding: true
+    # microbatch: 5 — write incrementale predictions.worker_*.jsonl ogni 5
+    # record (resume granularity, progress visibility).
+    microbatch: 5
+    # enforce_eager: TRUE — disabilita CUDA graph capture. NB: con cs25
+    # input non causa rallentamento misurabile (verificato T5g 2000
+    # record).
+    enforce_eager: true
+    # max_num_seqs: 4 — max sequenze concorrenti per worker. Con cs25 e
+    # max_model_len=32K la max concurrency disponibile è 4.56x (vLLM
+    # log "Maximum concurrency for 32,768 tokens per request: 4.56x").
+    max_num_seqs: 4
+    # === scheduler_reserve_full_isl: FALSE (defense-in-depth) ===
+    # vLLM Issue #39734: scheduler v1 deadlock head-of-line per request
+    # entro max_model_len ma sopra KV cache capacity available — bug
+    # ancora presente in vLLM 0.19.x (verificato 2026-05-08 via web ricerca).
+    # Trigger Task 22: record stage2 da ~28K token con default chunk_size=50
+    # (= 101KB JSON). Workaround documentato dall'issue: disabilitare reserve
+    # full ISL bypassa il pattern bug-trigger.
+    # NB: Path C (chunk_size=25 in analysis/p4-stage2-build-input.R) gia'
+    # evita di rientrare nella zona-bug — questo flag è defense-in-depth.
+    scheduler_reserve_full_isl: false
     # Stesso ragionamento di stage1 (vedi sopra).
     temperature: 0.0
     repetition_penalty: 1.1

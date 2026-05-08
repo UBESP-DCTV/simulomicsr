@@ -67,7 +67,14 @@ test_that("dgx_p4_build_bundle() stage2 usa schema e max_tokens corretti", {
   expect_identical(schema$title, "study_design.stage2.v2")
 
   gen <- jsonlite::read_json(fs::path(bundle$bundle_dir, "generation.json"))
+  # max_tokens 4096 (Task 22 RESOLVED 2026-05-08): smoke T5h 500 record cs25
+  # → 97% schema validity con 4096 vs 60% con 1024 (40% truncation a 1024).
+  # I 3% residui hanno output >3000 token, rescue post-hoc con max_tokens=8192.
   expect_identical(gen$max_tokens, 4096L)
+  # scheduler_reserve_full_isl=false: workaround vLLM Issue #39734 (Task 22
+  # RESOLVED 2026-05-08). Defense-in-depth — Path C (chunk_size=25) gia'
+  # evita la zona-bug.
+  expect_identical(gen$scheduler_reserve_full_isl, FALSE)
 
   m <- jsonlite::read_json(fs::path(bundle$bundle_dir, "manifest.json"))
   expect_identical(m$stage, "stage2")
