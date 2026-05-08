@@ -489,29 +489,93 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 | Pipeline state | `analysis/_targets/` (gitignored) | Auto-popolato da `tar_make`. Trasferibile via `rsync`. |
 | ARCHS4 H5, matrici espressione | `analysis/input/` (gitignored) | Download diretto sul server da NCBI/ARCHS4 (non transitano da locale). |
 
-## Next step (per la prossima sessione — Plan Task 22 stage2)
+## Stato corrente (2026-05-08 sera — Task 22 stage2 RESOLVED, full run pronto per nuova sessione)
 
-**Task 21 α stage1 CHIUSO 2026-05-07** = **130,784 / 130,784 (100.00000%) valid**. Default sampling vLLM finale: `temperature=0.0 + repetition_penalty=1.1 + max_tokens=2048` per stage1 (era 1024). I 211 residual sono stati cracked da single-variable test: 205 con max_tokens 2048 (Mode B = legit truncation), 6 con rep_pen 1.2 (Mode A = decoder loop su `engineered_modifications[].variant`). Strategia rescue completa: **propagation OK-sibling + re-run con rep_pen 1.1 + re-run residual con max_tokens 2048 + re-run Mode A con rep_pen 1.2** documentata e applicata.
+**Task 21 α stage1 CHIUSO 2026-05-07** = **130,784 / 130,784 (100.00000%) valid** (vedi sezione "Risultati P4 α stage1" sopra).
 
-### File chiave verificati (snapshot 2026-05-07)
+**Task 22 α stage2 RESOLVED 2026-05-08** — root cause identificato, fix validati su scaled smoke, full run **DEFERRED a NUOVA SESSIONE** per handoff pulito (preferenza utente).
 
-- **Smoke SLURM**: `inst/dgx/slurm/smoke_1gpu.sh` + `smoke_1gpu_poddgx02.sh` (variante con nodelist forzato).
-- **Smoke Python**: `inst/dgx/python/smoke_vllm.py` (test isolato vLLM + Mistral-3.2 + 1 prompt JSON-strict).
-- **Probe diagnostica**: `inst/dgx/slurm/probe_mounts.sh` (mappa filesystem visibili dal compute, usato per diagnosticare il bug `/mnt/home` vs `/home`).
-- **Production runner**: `inst/dgx/python/run_p4_vllm.py` (4 worker DP, mistral mode, llm.chat, GuidedDecodingParams).
-- **Production SLURM template**: `inst/dgx/slurm/run_p4.sh` (path `/home/u0044/...`, no `srun`).
-- **R submit**: `R/dgx-submit.R` ora rsync-a anche `runtime/python/` automaticamente (oltre al bundle), e fa mkdir `runs/<run_id>/` prima del sbatch.
-- **α stage1 polling helper**: `analysis/p4-bundles/poll-alpha.R` — script di esempio per polling JSONL background. **Bug noto**: la sua lista `terminal` non contiene `TERMINATED` (stato custom restituito da `dgx_p4_status` post-completed); per re-uso adattarlo (o aspettare la notifica del bash background che si ferma su exit del processo SLURM).
+### Root cause Task 22
 
-### Per ripartire
+**vLLM Issue #39734** ([github](https://github.com/vllm-project/vllm/issues/39734)): scheduler v1 deadlock head-of-line per request che eccedono la KV cache disponibile pur essendo dentro `max_model_len`. Trigger nel nostro setup: record stage2 con chunk_size=50 (max ~28K token, 88% di max_model_len=32768) saturano lo scheduler che entra in loop di break-without-pop. Bug ancora presente in vLLM 0.19.x — **upgrade del container NON aiuta** (Path A obsoleto).
 
-1. **Plan Task 22: run α stage2 ~5.4k GSE** (~30 min stimato), default `temp 0.0 + rep_pen 1.1 + max_tokens 4096` (stage2 invariato vs alpha stage1 fix). Step:
-   - Generare input stage2 dai 130,784 `sample_facts` validi (groupby `series_id`, concat sample strings → ~5.4k GSE record).
-   - `bundle <- dgx_p4_build_bundle(input, "stage2", cfg, metadata=list(slug="alpha-stage2"))`.
-   - `dgx_p4_submit(bundle, time = "02:00:00", config = cfg)`.
-   - Collect + eval vs mini-gold v5 (confronto diretto: gold = `design_role_gold`/`design_kind_gold`).
-   - Se emergono fail-mode analoghi a Mode A/B di stage1: applicare la stessa diagnostic recipe (caratterizzare per length/cluster, single-variable test su max_tokens o rep_pen).
-2. **Plan Task 23: tag `p4-dgx-complete`** + update CLAUDE.md con risultati finali Task 22.
+Riproduzione a config-grade: 1 record da 101KB su 1 GPU + `max_num_seqs=1` + `microbatch=1` STALLA immediatamente (T5e + T5f, 2026-05-08).
+
+### Fix applicati (2026-05-08, branch `p4-dgx-integration`, NON committati)
+
+1. **Path C — chunk_size 50→25** in `analysis/p4-stage2-build-input.R`:
+   - Output: `data-raw/p4-alpha-stage2-cs25.jsonl`, **8546 record** (vs 6652 cs50), 130,784 sample preservati (zero loss).
+   - Tutti record sotto ~14K token (50KB max), mai vicino al cap.
+   - Validato T5g (2000 record / 4 GPU): 4/4 worker completano 500/500 (worker 3 supera 485 = 140 record oltre la danger zone v5).
+
+2. **max_tokens 1024→4096** in `inst/extdata/p4-defaults.yml` stage2:
+   - 1024 produceva 40% truncation (T5g: 1201/2000 schema valid).
+   - 4096 produce **97% schema validity** (T5h 485/500 mini500 cs25).
+   - I 3% residui hanno output >3K token; rescue post-hoc con `max_tokens=8192` (pattern noto da stage1 alpha 2026-05-07).
+
+3. **`scheduler_reserve_full_isl=false`** in yaml + propagato via `R/dgx-bundle.R` + `inst/dgx/python/run_p4_vllm.py`. Defense-in-depth (Path C già evita la zona-bug).
+
+4. **Fence-strip post-processing** in `inst/dgx/python/run_p4_vllm.py::_strip_md_fences()`. Mistral-3.2 free-gen wrappa output in ` ```json ... ``` ` markdown; senza strip avevamo `valid_schema=False` per tutti.
+
+5. **System prompt anti-markdown** in `R/llm-stage2.R::.stage2_system_prompt`: blocco "OUTPUT FORMAT (CRITICAL)" che ribadisce JSON nudo.
+
+R CMD `devtools::test()`: **527 PASS / 0 FAIL / 3 SKIP** (skip pre-esistenti OPENAI_API_KEY).
+
+### Hypothesis investigation (sintesi T2-T5h, vedi spec per dettagli)
+
+| Hypothesis | Test | Result |
+|---|---|---|
+| H1 — `enable_prefix_caching=False` | T5b vs T5a | RIGETTATA (stesso stall) |
+| H2 — `enable_chunked_prefill=True` | T5c vs T5a | RIGETTATA (stesso stall) |
+| H3 — Scheduler concurrency (max_num_seqs) | T5e (max_num_seqs=1) | RIGETTATA (stalla anche solo) |
+| **H4 — Record specifico (101KB) + vLLM Issue #39734** | T5e + T5f | **CONFERMATA** |
+| **H5 — Path C (chunk_size=25)** | T5g | **CONFERMATA** (4/4 worker complete) |
+| **H6 — max_tokens=4096** | T5h | **CONFERMATA** (97% schema valid mini500) |
+
+### Modifiche locali NON committate al handoff (branch `p4-dgx-integration`)
+
+```
+M  CLAUDE.md                              # questa sezione + handoff
+M  R/dgx-bundle.R                         # propaga scheduler_reserve_full_isl + chunked_prefill + prefix_caching
+M  R/llm-stage2.R                         # system prompt anti-markdown
+M  inst/dgx/python/run_p4_vllm.py         # fence-strip + scheduler_reserve_full_isl + chunked_prefill + prefix_caching kwargs
+M  inst/extdata/p4-defaults.yml           # stage2: max_tokens 4096, scheduler_reserve_full_isl=false
+M  analysis/p4-stage2-build-input.R       # CHUNK_SIZE=25, output -cs25.jsonl
+M  analysis/p4-stage2-build-mini2000.R    # env-var override input/output
+M  tests/testthat/test-dgx-bundle.R       # assert max_tokens=4096 + scheduler_reserve_full_isl
+?? analysis/p4-bundles/run-smoke-stage2.R    # parametrized smoke wrapper (nuovo)
+?? analysis/p4-bundles/poll-smoke-stage2.R   # smoke poll helper (nuovo)
+?? analysis/p4-bundles/analyze-smoke-stage2.R # smoke analyze (nuovo)
+?? analysis/p4-bundles/smoke-stage2-template.sh # SLURM template parametrizzato (nuovo)
+?? analysis/p4-stage2-build-mini50.R         # mini50 builder (nuovo)
+?? data-raw/p4-alpha-stage2-cs25.jsonl       # 8546 record, ~190MB, gitignored
+?? data-raw/p4-stage2-mini2000-cs25.jsonl    # mini scale test input (nuovo)
+?? data-raw/p4-stage2-mini500-cs25.jsonl     # smoke max_tokens test input (nuovo)
+?? data-raw/p4-stage2-mini50.jsonl           # smoke 1 GPU input (nuovo)
+?? data-raw/p4-stage2-toxic-{single,mb5}.jsonl # toxic isolation test inputs (nuovi)
+```
+
+### Per ripartire (NUOVA SESSIONE — full alpha stage2-cs25 run)
+
+1. **Triage iniziale** (5 min): verifica branch + cluster pulito.
+2. **Build bundle full**: `data-raw/p4-alpha-stage2-cs25.jsonl` (8546 record).
+3. **Submit** con `time = "06:00:00"` (margine vs stima 5-6h wall).
+4. **Polling** progressivo via `dgx_p4_status(job, watch=TRUE)`.
+5. **Eval**: `dgx_p4_collect()` + post-hoc schema validity (atteso ≥95%) + binary accuracy vs `inst/extdata/p35c-minigold-reviewed-v5.csv`.
+6. **Rescue residual**: re-submit dei record `valid_schema=FALSE` con `max_tokens=8192` (atteso ~3%).
+
+Comando ready-to-go (vedi spec investigation per dettagli):
+```r
+devtools::load_all()
+b <- dgx_p4_build_bundle("data-raw/p4-alpha-stage2-cs25.jsonl",
+                         stage = "stage2",
+                         config = dgx_config(),
+                         metadata = list(slug = "alpha-stage2-cs25"))
+job <- dgx_p4_submit(b, time = "06:00:00")
+saveRDS(job, "analysis/p4-bundles/alpha-stage2-cs25-job.rds")
+```
+
+Acceptance Plan Task 22 invariato: schema valid ≥95%, binary accuracy ≥95% target / [80,95) investigativo / <80% debug.
 
 ### Roadmap post-P4 (deferred fino a chiusura α)
 
@@ -544,6 +608,7 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 - **ADR-0007 DGX self-host vLLM:** `docs/decisions/0007-dgx-self-host-vllm.md` — decisione bespoke minimale dentro simulomicsr (no fork laimsdgxllm) + workflow Docker→DockerHub→Singularity.
 - **Spec P4:** `docs/superpowers/specs/2026-05-06-p4-dgx-integration-design.md`.
 - **Plan P4:** `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md` (23 task, 16 completati locale).
+- **Investigation Task 22 stalls (RESOLVED 2026-05-08):** `docs/superpowers/specs/2026-05-08-task22-stage2-vllm-stalls-investigation.md` — root cause vLLM Issue #39734, fix Path C (chunk_size=25) + max_tokens=4096 + scheduler_reserve_full_isl=False + fence-strip post-proc, validato T5g/T5h.
 - **Vignette P4 setup:** `vignettes/p4-dgx-setup.Rmd` (one-time guide utente).
 - ADR-0005 server migration: `docs/decisions/0005-server-migration-trigger.md`.
 - ADR generali: `docs/decisions/`.
