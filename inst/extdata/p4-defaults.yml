@@ -89,16 +89,19 @@ stages:
     # max_model_len=32K la max concurrency disponibile è 4.56x (vLLM
     # log "Maximum concurrency for 32,768 tokens per request: 4.56x").
     max_num_seqs: 4
-    # === scheduler_reserve_full_isl: FALSE (defense-in-depth) ===
-    # vLLM Issue #39734: scheduler v1 deadlock head-of-line per request
-    # entro max_model_len ma sopra KV cache capacity available — bug
-    # ancora presente in vLLM 0.19.x (verificato 2026-05-08 via web ricerca).
-    # Trigger Task 22: record stage2 da ~28K token con default chunk_size=50
-    # (= 101KB JSON). Workaround documentato dall'issue: disabilitare reserve
-    # full ISL bypassa il pattern bug-trigger.
-    # NB: Path C (chunk_size=25 in analysis/p4-stage2-build-input.R) gia'
-    # evita di rientrare nella zona-bug — questo flag è defense-in-depth.
-    scheduler_reserve_full_isl: false
+    # === scheduler_reserve_full_isl NON SETTATO (bootstrap fail job 19879) ===
+    # vLLM 0.10.0 (container vllm/vllm-openai:v0.10.0) NON accetta
+    # `scheduler_reserve_full_isl` come kwarg Python di EngineArgs/LLM():
+    # il flag e' documentato nell'Issue #39734 come CLI option
+    # (`--no-scheduler-reserve-full-isl` per vllm serve), ma non e' esposto
+    # nell'API Python di questa versione. Tentativo di passarlo via
+    # llm_kwargs causa TypeError in tutti i worker (job 19879 crashato
+    # in 26s). Path C (chunk_size=25 in analysis/p4-stage2-build-input.R)
+    # resta il primary defense ed e' sufficiente da solo per evitare la
+    # zona-bug Issue #39734 (validato T5g 4/4 worker complete 500/500).
+    # La propagazione in R/dgx-bundle.R e run_p4_vllm.py resta nel codice
+    # (guarded da "if in gen and not None") per supportare future versioni
+    # vLLM che dovessero esporre l'API; semplicemente non si setta nel yaml.
     # Stesso ragionamento di stage1 (vedi sopra).
     temperature: 0.0
     repetition_penalty: 1.1
