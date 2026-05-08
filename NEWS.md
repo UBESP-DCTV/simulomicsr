@@ -1,3 +1,105 @@
+# simulomicsr 0.0.0.9012 (P4 — Task 22 stage2 RESOLVED, vLLM stalls fix)
+
+## Task 22 α stage2 RESOLVED 2026-05-08
+
+Investigazione completata e fix validati su scaled smoke. **Full run α
+stage2 deferito a nuova sessione** per handoff pulito (preferenza utente).
+La pipeline R/Python/SLURM e' funzionalmente corretta (stage1 ha chiuso
+al 100% con la stessa infrastruttura) — il bug e' nel runtime vLLM
+0.10.1.dev1 (immagine `vllm/vllm-openai:v0.10.0`) sui prompt vicini a
+`max_model_len`.
+
+### Root cause
+
+**vLLM Issue #39734**: scheduler v1 deadlock head-of-line per request
+entro `max_model_len` ma sopra KV cache capacity disponibile. Bug ancora
+presente in vLLM 0.19.x — **upgrade del container NON aiuta** (Path A
+obsoleto). Trigger Task 22: record stage2 con chunk_size=50 (max ~28K
+token, 88% di max_model_len=32768) saturano lo scheduler che entra in
+loop di break-without-pop. Riproduzione a config-grade: 1 record da 101KB
+su 1 GPU + `max_num_seqs=1` + `microbatch=1` STALLA immediatamente
+(T5e + T5f).
+
+### Fix applicati (5 mitigazioni indipendenti, defense-in-depth)
+
+1. **Path C — chunk_size 50→25** (`analysis/p4-stage2-build-input.R`):
+   8546 record (vs 6652 cs50), 130,784 sample preservati zero-loss, max
+   ~14K token (50KB) mai vicino al cap. **T5g (2000 record / 4 GPU): 4/4
+   worker completano 500/500** (worker 3 supera la danger zone v5 di 345
+   in 51 min).
+2. **max_tokens 1024→4096** (`inst/extdata/p4-defaults.yml` stage2):
+   1024 produceva 40% truncation; 4096 produce **97% schema validity**
+   (T5h 485/500 mini500 cs25). I 3% residui hanno output >3K token,
+   rescue post-hoc con `max_tokens=8192` (pattern noto da stage1 alpha
+   2026-05-07).
+3. **`scheduler_reserve_full_isl=false`** (yaml + `R/dgx-bundle.R` +
+   `inst/dgx/python/run_p4_vllm.py`): defense-in-depth contro Issue
+   #39734, anche se Path C gia' evita la zona-bug.
+4. **Fence-strip post-processing** (`run_p4_vllm.py::_strip_md_fences()`):
+   Mistral-3.2 free-gen wrappa output in ` ```json ... ``` `; senza
+   strip avevamo `valid_schema=False` per tutti.
+5. **System prompt anti-markdown** (`R/llm-stage2.R::.stage2_system_prompt`):
+   blocco "OUTPUT FORMAT (CRITICAL)" che ribadisce JSON nudo + addendum
+   `input_truncated`/`partial_chunk` per chunked input.
+
+### Hypothesis investigation (T2-T5h)
+
+| Hypothesis | Test | Result |
+|---|---|---|
+| H1 — `enable_prefix_caching=False` | T5b vs T5a | RIGETTATA (stesso stall) |
+| H2 — `enable_chunked_prefill=True` | T5c vs T5a | RIGETTATA (stesso stall) |
+| H3 — Scheduler concurrency (max_num_seqs) | T5e (max_num_seqs=1) | RIGETTATA (stalla anche solo) |
+| **H4 — Record specifico (101KB) + Issue #39734** | T5e + T5f | **CONFERMATA** |
+| **H5 — Path C (chunk_size=25)** | T5g | **CONFERMATA** (4/4 worker complete) |
+| **H6 — max_tokens=4096** | T5h | **CONFERMATA** (97% schema valid mini500) |
+
+### Modifiche file
+
+* `inst/extdata/p4-defaults.yml` — stage2 v6 defaults: max_tokens=4096,
+  max_model_len=32768, microbatch=5, enforce_eager=true, max_num_seqs=4,
+  disable_guided_decoding=true, scheduler_reserve_full_isl=false
+* `R/dgx-bundle.R` — propagazione opzionale `disable_guided_decoding` /
+  `microbatch` / `enforce_eager` / `max_num_seqs` / `enable_prefix_caching`
+  / `enable_chunked_prefill` / `scheduler_reserve_full_isl` in
+  generation.json
+* `R/llm-stage2.R` — system prompt anti-markdown + addendum chunk
+* `inst/dgx/python/run_p4_vllm.py` — microbatch loop con write
+  incrementale, switch `disable_guided_decoding`, kwargs scheduler
+  optional, fence-strip difensivo, dynamo cache_size_limit bump
+* `inst/dgx/python/prompts.py` — compact JSON, chunk_metadata rendering,
+  `record["series_id"]` distinct from `record_id`
+* `tests/testthat/test-dgx-bundle.R` — assert max_tokens=4096 +
+  scheduler_reserve_full_isl=false
+* `analysis/p4-stage2-build-input.R` (nuovo) — CHUNK_SIZE=25 deterministico
+* `analysis/p4-stage2-build-mini50.R`, `analysis/p4-stage2-build-mini2000.R`
+  (nuovi) — mini-input builder per smoke / scale test
+* `analysis/p4-stage2-eval.R` (nuovo) — eval skeleton post-hoc validation
+  contro mini-gold v5
+
+**Test suite**: 527 PASS / 0 FAIL / 3 SKIP (skip pre-esistenti per
+OPENAI_API_KEY).
+
+### Per ripartire (nuova sessione — full alpha stage2-cs25 run)
+
+```r
+b <- dgx_p4_build_bundle("data-raw/p4-alpha-stage2-cs25.jsonl",
+                         stage = "stage2",
+                         config = dgx_config(),
+                         metadata = list(slug = "alpha-stage2-cs25"))
+job <- dgx_p4_submit(b, time = "06:00:00")
+```
+
+Atteso: 5-6h wall clock, ≥95% schema validity (T5h 97% mini500), rescue
+residual ~3% post-hoc con `max_tokens=8192`. Acceptance Plan Task 22
+invariato: schema valid ≥95%, binary accuracy ≥95% target / [80,95)
+investigativo / <80% debug.
+
+**Doc dettagliata**: `docs/superpowers/specs/2026-05-08-task22-stage2-vllm-stalls-investigation.md`
+contiene ricostruzione completa di ogni job (T2-T5h), root cause
+investigation, e sezione "Resolution 2026-05-08" con comando ready-to-go
+full run.
+
+
 # simulomicsr 0.0.0.9011 (P4 — α stage1 100.00% valid, 211 residual cracked)
 
 ## Investigation 211 residual fails (2026-05-07, jobs 19748+19749)
