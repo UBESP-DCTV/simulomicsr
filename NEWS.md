@@ -1,3 +1,28 @@
+# simulomicsr 0.0.0.9013 (P4 — stage2 safe-mode default per deadlock-proof vLLM)
+
+## Safe-mode stage2 (ADR-0009)
+
+Durante il run α stage2 cs25 (job 19948 resume, 2026-05-08) il **worker 1 si e' stallato per 30+ min con zero microbatch processati** mentre gli altri 3 progredivano. Il record tossico (GSE186121#37of238, ~32 KB / 8K token) era ben dentro `max_model_len` e dentro la soglia Path C cs25 dichiarata. La diagnosi conferma che **vLLM Issue #39734 e' strutturalmente non-deterministico**: il deadlock non dipende solo dalla dimensione del prompt ma dallo stato concorrente del KV cache. Path C era mitigazione probabilistica, non garantita.
+
+**Cambio default stage2** in `inst/extdata/p4-defaults.yml`:
+
+* `max_num_seqs: 4 -> 1` — vLLM scheduler ammette una sola sequenza in flight per worker
+* `microbatch: 5 -> 1` — `llm.chat()` processa un record alla volta
+
+Risultato: pipeline stage2 **deadlock-proof per costruzione** su qualsiasi dataset futuro. Tradeoff accettato: ~1.5-2x slowdown per worker (perdita continuous batching). I 4 worker continuano a girare in parallelo su 4 GPU, quindi il parallelismo cross-GPU resta intatto.
+
+**Stage1 INVARIATO**: i record sample-level non triggerano il bug (~1-2K token, validato 100% su 130k record run α stage1 2026-05-07).
+
+**Test**: 528 PASS / 0 FAIL / 3 SKIP. Aggiornati assert in `tests/testthat/test-dgx-bundle.R` per `max_num_seqs=1` + `microbatch=1`.
+
+**Documentazione**: `docs/decisions/0009-stage2-safe-mode-vllm-deadlock.md` con analisi completa delle 6 opzioni considerate (A safe-mode, B filtro size, C watchdog, D cambio runtime, E upgrade vLLM, F riduce max_model_len) e rationale per A.
+
+## Live progress mid-run in `dgx_p4_status()`
+
+Aggiunto helper interno `.dgx_live_progress(cfg, run_id)` in `R/dgx-utils.R` che via SSH lancia `wc -l` su `predictions.worker_*.jsonl` nella run dir remota. `dgx_p4_status()` ora restituisce un nuovo campo `live` (records_done aggregato + per_worker tibble + last_modified). Necessario perche' `status.json` viene aggiornato solo a inizio/fine run; durante la generation lo snapshot resta a `state="starting"` con `records_already_done=0` fino al termine.
+
+Validato sul job 19886 in corso 2026-05-08: dopo 17 min di generation lo snapshot diceva "starting / 0", live diceva 470/8546 records (per_worker 120/115/115/120).
+
 # simulomicsr 0.0.0.9012 (P4 — Task 22 stage2 RESOLVED, vLLM stalls fix)
 
 ## Task 22 α stage2 RESOLVED 2026-05-08
