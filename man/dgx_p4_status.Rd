@@ -4,13 +4,26 @@
 \alias{dgx_p4_status}
 \title{Stato corrente di un job P4}
 \usage{
-dgx_p4_status(job, fetch_status_json = TRUE, watch = FALSE, interval = 30L)
+dgx_p4_status(
+  job,
+  fetch_status_json = TRUE,
+  fetch_live = TRUE,
+  watch = FALSE,
+  interval = 30L
+)
 }
 \arguments{
 \item{job}{\code{simulomicsr_dgx_job}.}
 
 \item{fetch_status_json}{se TRUE, rsync di status.json dal remoto e
 ritorna anche il contenuto.}
+
+\item{fetch_live}{se TRUE (default), conta le righe di
+\code{predictions.worker_*.jsonl} sul remoto via \code{wc -l} e ritorna
+un blocco \code{live} con il progress reale mid-run. Necessario perche'
+\code{status.json} viene aggiornato solo a inizio e fine run; durante
+la generation lo snapshot resta a \code{state="starting"} con
+\code{records_already_done=0} fino al termine.}
 
 \item{watch}{se TRUE, polling ogni \code{interval} secondi fino a stato
 terminale (COMPLETED, FAILED, CANCELLED, TIMEOUT, TERMINATED).
@@ -20,7 +33,10 @@ Stampa progress via cli.}
 }
 \value{
 list con \code{slurm_state}, \code{remote_status_present},
-\code{snapshot} (contenuto status.json se fetched, altrimenti NULL).
+\code{snapshot} (contenuto status.json se fetched, altrimenti NULL),
+\code{live} (list con \code{records_done}, \code{per_worker} tibble,
+\code{last_modified} timestamp UTC del file piu' recente; NULL se
+\code{fetch_live=FALSE} o nessun predictions.worker_*.jsonl).
 }
 \description{
 Esegue \code{squeue -j <slurm_job_id> -h -o "\%T"} via SSH e (opzionalmente)
