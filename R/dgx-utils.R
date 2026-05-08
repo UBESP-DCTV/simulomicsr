@@ -111,3 +111,55 @@
     )
   invisible(list(stdout = res$stdout, stderr = res$stderr, status = res$status))
 }
+
+#' Live progress di un run P4 (mid-run reale)
+#'
+#' Conta via SSH le righe dei file `predictions.worker_*.jsonl` nella run
+#' dir remota e restituisce il progress aggregato + per-worker. Usato come
+#' fallback affidabile quando `status.json` e' fermo a `state="starting"`
+#' (run_p4_vllm.py aggiorna status.json solo a inizio/fine, non per
+#' microbatch). Se nessun file `predictions.worker_*.jsonl` esiste ancora
+#' (fase boot pre-prima-microbatch), ritorna NULL.
+#'
+#' @param cfg `simulomicsr_dgx_config`.
+#' @param run_id stringa run id.
+#' @return list con `records_done` (intero), `per_worker` (data.frame
+#'   con colonne worker_id, n_records), `last_modified` (POSIXct UTC,
+#'   timestamp dell'ultimo file modificato) o NULL.
+#' @keywords internal
+.dgx_live_progress <- function(cfg, run_id) {
+  run_dir <- paste0(cfg$remote_root, "/runs/", run_id)
+  # `wc -l` su glob inesistente fa 'No such file': sopprimo via 2>/dev/null,
+  # `stat -c '%Y %n'` per mtime epoch + path. Stampa una riga per file.
+  cmd <- paste0(
+    "cd ", shQuote(run_dir), " 2>/dev/null && ",
+    "for f in predictions.worker_*.jsonl; do ",
+    "  [ -f \"$f\" ] || continue; ",
+    "  printf '%s\\t%s\\t%s\\n' \"$(stat -c '%Y' \"$f\")\" \"$(wc -l < \"$f\")\" \"$f\"; ",
+    "done"
+  )
+  res <- .dgx_ssh(cfg, cmd)
+  if (res$status != 0L || !nzchar(trimws(res$stdout))) return(NULL)
+
+  raw <- strsplit(trimws(res$stdout), "\n", fixed = TRUE)[[1]]
+  parts <- strsplit(raw, "\t", fixed = TRUE)
+  ok <- vapply(parts, function(p) length(p) == 3L, logical(1))
+  if (!any(ok)) return(NULL)
+  parts <- parts[ok]
+
+  mtimes <- as.numeric(vapply(parts, `[`, character(1), 1))
+  counts <- as.integer(vapply(parts, `[`, character(1), 2))
+  fnames <- vapply(parts, `[`, character(1), 3)
+  worker_ids <- as.integer(sub(".*predictions\\.worker_(\\d+)\\.jsonl$",
+                               "\\1", fnames))
+
+  list(
+    records_done  = sum(counts),
+    per_worker    = data.frame(
+      worker_id = worker_ids,
+      n_records = counts,
+      stringsAsFactors = FALSE
+    )[order(worker_ids), , drop = FALSE],
+    last_modified = as.POSIXct(max(mtimes), origin = "1970-01-01", tz = "UTC")
+  )
+}

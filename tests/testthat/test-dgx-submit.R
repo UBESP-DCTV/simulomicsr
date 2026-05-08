@@ -91,10 +91,11 @@ test_that("dgx_p4_status() ritorna struttura con campi required", {
     status = 0L
   )
 
-  st <- dgx_p4_status(job, fetch_status_json = FALSE)
-  expect_named(st, c("slurm_state", "remote_status_present", "snapshot"),
+  st <- dgx_p4_status(job, fetch_status_json = FALSE, fetch_live = FALSE)
+  expect_named(st, c("slurm_state", "remote_status_present", "snapshot", "live"),
                ignore.order = TRUE)
   expect_identical(st$slurm_state, "RUNNING")
+  expect_null(st$live)
 })
 
 test_that("dgx_p4_recover() ricostruisce job da bundle locale", {

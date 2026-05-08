@@ -157,11 +157,21 @@ print.simulomicsr_dgx_job <- function(x, ...) {
 #'   terminale (COMPLETED, FAILED, CANCELLED, TIMEOUT, TERMINATED).
 #'   Stampa progress via cli.
 #' @param interval secondi tra polling (default 30).
+#' @param fetch_live se TRUE (default), conta le righe di
+#'   \code{predictions.worker_*.jsonl} sul remoto via \code{wc -l} e ritorna
+#'   un blocco \code{live} con il progress reale mid-run. Necessario perche'
+#'   \code{status.json} viene aggiornato solo a inizio e fine run; durante
+#'   la generation lo snapshot resta a \code{state="starting"} con
+#'   \code{records_already_done=0} fino al termine.
 #' @return list con \code{slurm_state}, \code{remote_status_present},
-#'   \code{snapshot} (contenuto status.json se fetched, altrimenti NULL).
+#'   \code{snapshot} (contenuto status.json se fetched, altrimenti NULL),
+#'   \code{live} (list con \code{records_done}, \code{per_worker} tibble,
+#'   \code{last_modified} timestamp UTC del file piu' recente; NULL se
+#'   \code{fetch_live=FALSE} o nessun predictions.worker_*.jsonl).
 #' @export
 dgx_p4_status <- function(job,
                           fetch_status_json = TRUE,
+                          fetch_live = TRUE,
                           watch = FALSE,
                           interval = 30L) {
   stopifnot(inherits(job, "simulomicsr_dgx_job"))
@@ -194,9 +204,18 @@ dgx_p4_status <- function(job,
       }
     }
 
+    live <- NULL
+    if (fetch_live) {
+      live <- tryCatch(
+        .dgx_live_progress(cfg, job$run_id),
+        error = function(e) NULL
+      )
+    }
+
     list(slurm_state           = state,
          remote_status_present = remote_status_present,
-         snapshot              = snapshot)
+         snapshot              = snapshot,
+         live                  = live)
   }
 
   if (!watch) return(poll_once())
@@ -210,9 +229,12 @@ dgx_p4_status <- function(job,
     snap <- st$snapshot
     msg <- paste0("[", format(Sys.time(), "%H:%M:%S"), "] state=", st$slurm_state)
     if (!is.null(snap)) {
-      pct <- snap$records_completed %||% snap$records_completed_total %||% 0L
+      # Live ha priorita' sullo status.json mid-run (status.json e' fermo a
+      # records_already_done=0 fino al termine — vedi run_p4_vllm.py).
+      done <- if (!is.null(st$live)) st$live$records_done
+              else (snap$records_completed %||% snap$records_completed_total %||% 0L)
       msg <- paste0(msg, " | runtime=", snap$state %||% "?",
-                    " (", pct, "/", snap$records_total %||% "?", ")")
+                    " (", done, "/", snap$records_total %||% "?", ")")
     }
     cli::cli_text(msg)
     if (st$slurm_state %in% terminal) return(invisible(st))
