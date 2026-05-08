@@ -34,24 +34,42 @@ def render_user_message_stage1(record: dict[str, Any]) -> str:
 def render_user_message_stage2(record: dict[str, Any]) -> str:
     """Costruisce lo user message per Stadio 2 (study-level).
 
-    Layout identico a R/llm-stage2.R::build_prompt_stage2():
-        series_id: <sid>
+    Layout (alpha P4 2026-05-07, support chunking):
+        series_id: <sid>             # GSE canonico — record["series_id"] o record_id
+        [chunk: X/Y]                 # opzionale: presente solo se input splittato
+        [study_total_samples: N]     # opzionale: presente con chunk
         study_summary: <summary>
         samples:
-        <JSON dei sample_facts dei sample dello studio>
+        <compact JSON dei sample_facts dei sample del chunk>
+
+    record["record_id"] e' la chiave unica per chunk (es. "GSE12345#1of3");
+    record["series_id"] (se presente) e' il GSE canonico mostrato al modello
+    e atteso nell'output. Per back-compat, se "series_id" manca si usa
+    record_id.
+
+    JSON compact (no indent) per ridurre i token consumati: i sample_facts
+    pretty-printed gonfiavano del ~30% un input gia' al limite di 32K ctx.
     """
-    sid = str(record["record_id"])  # GSE id
+    sid = str(record.get("series_id") or record["record_id"])
     summary = str(record.get("study_summary", ""))
     samples = record.get("samples", [])
 
-    samples_json = json.dumps(samples, indent=2, sort_keys=False)
+    samples_json = json.dumps(samples, sort_keys=False, separators=(",", ":"))
 
-    return (
-        f"series_id: {sid}\n"
-        f"study_summary: {summary}\n"
-        "samples:\n"
-        f"{samples_json}"
-    )
+    lines = [f"series_id: {sid}"]
+    chunk_meta = record.get("chunk_metadata")
+    if chunk_meta:
+        part = chunk_meta.get("part")
+        total_parts = chunk_meta.get("total_parts")
+        total_samples = chunk_meta.get("study_total_samples")
+        if part is not None and total_parts is not None:
+            lines.append(f"chunk: {part}/{total_parts}")
+        if total_samples is not None:
+            lines.append(f"study_total_samples: {total_samples}")
+    lines.append(f"study_summary: {summary}")
+    lines.append("samples:")
+    lines.append(samples_json)
+    return "\n".join(lines)
 
 
 def build_messages(system_prompt: str, user_message: str) -> list[dict[str, str]]:
