@@ -76,6 +76,12 @@ test_that("dgx_p4_build_bundle() stage2 usa schema e max_tokens corretti", {
   # (chunk_size=25) resta il primary defense Issue #39734. La propagazione
   # resta nel codice (per future versioni vLLM) ma il default non la include.
   expect_null(gen$scheduler_reserve_full_isl)
+  # SAFE-MODE 2026-05-08 (ADR-0009): max_num_seqs=1 + microbatch=1 →
+  # elimina concorrenza inter-request → deadlock-proof per costruzione.
+  # Sostituisce Path C come primary defense Issue #39734 (Path C era
+  # probabilistico, vedi worker 1 stall job 19948 alpha-stage2-cs25).
+  expect_identical(gen$max_num_seqs, 1L)
+  expect_identical(gen$microbatch, 1L)
 
   m <- jsonlite::read_json(fs::path(bundle$bundle_dir, "manifest.json"))
   expect_identical(m$stage, "stage2")

@@ -78,17 +78,35 @@ stages:
     # eventuali. Validazione schema strict avviene post-hoc R-side via
     # parse_stage2_response().
     disable_guided_decoding: true
-    # microbatch: 5 — write incrementale predictions.worker_*.jsonl ogni 5
-    # record (resume granularity, progress visibility).
-    microbatch: 5
+    # === SAFE-MODE 2026-05-08: max_num_seqs=1 + microbatch=1 ===
+    # vLLM Issue #39734 e' strutturalmente non-deterministico: lo scheduler
+    # entra in deadlock head-of-line quando una richiesta richiede piu' KV
+    # cache di quella attualmente disponibile, anche se entra in
+    # max_model_len. Trigger non e' solo dimensione del prompt: dipende
+    # dallo stato concorrente del KV cache. Path C (chunk_size=25) era
+    # mitigazione probabilistica, non garantita: la run α 19886 ha mostrato
+    # che chunk uniformi da ~32 KB di GSE186121 (5933 sample / 238 chunks)
+    # possono ancora deadlock-are quando assegnati come primo job di un
+    # worker su KV cache fresca. Risultato: worker 1 stallato per 30+ min,
+    # zero microbatch processati.
+    #
+    # Soluzione strutturale: ELIMINARE LA CONCORRENZA tra richieste su
+    # ogni singolo worker. Una richiesta alla volta = niente scheduling
+    # inter-request = niente deadlock. Tradeoff: ~1.5-2x slowdown su
+    # ogni worker (perdiamo continuous batching). I 4 worker continuano
+    # comunque a girare in parallelo su 4 GPU = parallelismo cross-GPU
+    # preservato.
+    #
+    # Vedi ADR-0009 per analisi opzioni A-F e rationale completo.
+    # microbatch=1: ogni llm.chat() processa 1 record alla volta;
+    # max_num_seqs=1: vLLM scheduler ammette 1 sola sequenza in flight
+    # alla volta su quel worker.
+    microbatch: 1
     # enforce_eager: TRUE — disabilita CUDA graph capture. NB: con cs25
     # input non causa rallentamento misurabile (verificato T5g 2000
     # record).
     enforce_eager: true
-    # max_num_seqs: 4 — max sequenze concorrenti per worker. Con cs25 e
-    # max_model_len=32K la max concurrency disponibile è 4.56x (vLLM
-    # log "Maximum concurrency for 32,768 tokens per request: 4.56x").
-    max_num_seqs: 4
+    max_num_seqs: 1
     # === scheduler_reserve_full_isl NON SETTATO (bootstrap fail job 19879) ===
     # vLLM 0.10.0 (container vllm/vllm-openai:v0.10.0) NON accetta
     # `scheduler_reserve_full_isl` come kwarg Python di EngineArgs/LLM():

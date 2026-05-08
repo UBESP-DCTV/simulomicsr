@@ -495,6 +495,8 @@ A fine milestone: raccogliere materiale da ADR/spec per generare/aggiornare vign
 
 **Task 22 α stage2 RESOLVED 2026-05-08** — root cause identificato, fix validati su scaled smoke, full run **DEFERRED a NUOVA SESSIONE** per handoff pulito (preferenza utente).
 
+> **AGGIORNAMENTO 2026-05-08 sera (post-investigation worker 1 stall):** Path C cs25 da solo si e' rivelato **insufficiente** durante il resume del run α (job 19948): worker 1 stallato per 30+ min su `GSE186121#37of238` (32 KB / 8K token, ben sotto la soglia Path C). La diagnosi conferma che Issue #39734 e' **strutturalmente non-deterministico** (dipende dallo stato concorrente del KV cache, non solo dalla dimensione del prompt). **Nuovo primary defense: SAFE-MODE** (`max_num_seqs=1, microbatch=1` in `inst/extdata/p4-defaults.yml` stage2) — elimina la concorrenza inter-request → deadlock-proof per costruzione. Path C resta come secondary mitigation. Dettaglio in **ADR-0009**. Tradeoff accettato: ~1.5-2x slowdown per worker (parallelismo cross-GPU preservato). Stage1 invariato (i record sample-level non triggerano il bug).
+
 ### Root cause Task 22
 
 **vLLM Issue #39734** ([github](https://github.com/vllm-project/vllm/issues/39734)): scheduler v1 deadlock head-of-line per request che eccedono la KV cache disponibile pur essendo dentro `max_model_len`. Trigger nel nostro setup: record stage2 con chunk_size=50 (max ~28K token, 88% di max_model_len=32768) saturano lo scheduler che entra in loop di break-without-pop. Bug ancora presente in vLLM 0.19.x — **upgrade del container NON aiuta** (Path A obsoleto).
@@ -606,9 +608,11 @@ Acceptance Plan Task 22 invariato: schema valid ≥95%, binary accuracy ≥95% t
 - **Report P3.5-A:** `analysis/eval/p35a-benchmark.html` (980 KB, 5 sezioni con Wilson CI + McNemar + bootstrap + Holm + investigation GSE145941).
 - **ADR-0006 stato dell'arte:** `docs/decisions/0006-stato-arte-vs-simulomicsr.md` — analisi competitor 2024-2026 + benchmark RummaGEO integrale + decisione P3-B confermata.
 - **ADR-0007 DGX self-host vLLM:** `docs/decisions/0007-dgx-self-host-vllm.md` — decisione bespoke minimale dentro simulomicsr (no fork laimsdgxllm) + workflow Docker→DockerHub→Singularity.
+- **ADR-0008 vLLM SamplingParams:** `docs/decisions/0008-vllm-sampling-defaults.md` — temperature=0.0, repetition_penalty=1.1 default stage1+stage2.
+- **ADR-0009 stage2 safe-mode:** `docs/decisions/0009-stage2-safe-mode-vllm-deadlock.md` — `max_num_seqs=1, microbatch=1` stage2 per deadlock-proof Issue #39734 (Path C cs25 era probabilistico, validato fallimento job 19948).
 - **Spec P4:** `docs/superpowers/specs/2026-05-06-p4-dgx-integration-design.md`.
 - **Plan P4:** `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md` (23 task, 16 completati locale).
-- **Investigation Task 22 stalls (RESOLVED 2026-05-08):** `docs/superpowers/specs/2026-05-08-task22-stage2-vllm-stalls-investigation.md` — root cause vLLM Issue #39734, fix Path C (chunk_size=25) + max_tokens=4096 + scheduler_reserve_full_isl=False + fence-strip post-proc, validato T5g/T5h.
+- **Investigation Task 22 stalls (RESOLVED 2026-05-08):** `docs/superpowers/specs/2026-05-08-task22-stage2-vllm-stalls-investigation.md` — root cause vLLM Issue #39734, fix Path C (chunk_size=25) + max_tokens=4096 + fence-strip post-proc, validato T5g/T5h. **NB**: postscript 2026-05-08 sera in ADR-0009 — Path C insufficiente, safe-mode supersedes.
 - **Vignette P4 setup:** `vignettes/p4-dgx-setup.Rmd` (one-time guide utente).
 - ADR-0005 server migration: `docs/decisions/0005-server-migration-trigger.md`.
 - ADR generali: `docs/decisions/`.
