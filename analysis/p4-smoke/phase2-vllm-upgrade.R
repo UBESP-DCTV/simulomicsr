@@ -46,8 +46,8 @@ parse_cli <- function() {
 }
 
 opts <- parse_cli()
-if (is.null(opts$config) || !opts$config %in% c("2a", "2b", "2c")) {
-  stop("--config deve essere uno tra: 2a, 2b, 2c")
+if (is.null(opts$config) || !opts$config %in% c("2a", "2b", "2c", "2d", "2e")) {
+  stop("--config deve essere uno tra: 2a, 2b, 2c, 2d, 2e")
 }
 
 # Mapping config -> (slug, gen_overrides)
@@ -74,6 +74,26 @@ config_specs <- list(
       # disable_guided_decoding rimane true (default yaml) per isolare W2
     ),
     desc = "CONCURRENCY restored (W2 test): max_num_seqs=4 + microbatch=50, free-gen"
+  ),
+  # Bonus configs per Phase 5 cleanup tuning (post-gate ADR-0010).
+  # Misurano se push oltre max_num_seqs=4 funziona safe + dato perf per
+  # scegliere default β.
+  `2d` = list(
+    slug = "p2-2d-concurrency6",
+    overrides = list(
+      max_num_seqs = 6L,
+      microbatch = 50L
+    ),
+    desc = "BONUS concurrency=6: push oltre 2c, KV pressure check su XL tier"
+  ),
+  `2e` = list(
+    slug = "p2-2e-combo-outlines-conc4",
+    overrides = list(
+      max_num_seqs = 4L,
+      microbatch = 50L,
+      disable_guided_decoding = FALSE
+    ),
+    desc = "BONUS combo outlines+concurrency4: la combinazione target per beta"
   )
 )
 
