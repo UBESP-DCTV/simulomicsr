@@ -1,10 +1,35 @@
 # ADR-0009: Safe-mode stage2 (max_num_seqs=1, microbatch=1) per deadlock-proof vLLM
 
-- **Status:** Accepted
+- **Status:** Accepted (parzialmente superato — vedi Update 2026-05-10)
 - **Date:** 2026-05-08
 - **Deciders:** Luca Vedovelli
 - **Supersedes:** parte dell'investigation Task 22 (Path C cs25 come primary defense)
-- **Superseded by:** —
+- **Superseded by:** ADR-0010 (vLLM upgrade v0.20.2 con PR #40946 fix upstream)
+
+## Update 2026-05-10 (post ADR-0010 upgrade)
+
+Il workaround safe-mode (`max_num_seqs=1, microbatch=1`) **NON è più il
+default operativo** dal 2026-05-10. ADR-0010 ha validato l'upgrade a
+vLLM v0.20.2-cu129 che include PR #40946 (fix upstream per Issue
+#39734). Phase 5 cleanup ha sostituito il default con `max_num_seqs=6`
++ `microbatch=50` (vincitore Phase 2 config 2d, +267% throughput vs
+safe-mode).
+
+Questo ADR resta `Accepted` come **record storico della decisione del
+2026-05-08**: la scelta era corretta per l'engine vLLM v0.10.0 e
+permise di chiudere α stage2 con 99.84% schema validity senza intervento
+manuale. Il problema strutturale identificato (Issue #39734) è stato
+fixato upstream 14 giorni dopo (PR #40946 mergiata 2026-04-27, rilasciata
+in v0.20.0 2026-04-27).
+
+**Safe-mode resta richiamabile manualmente come fallback contingency**
+per dataset patologici futuri o se un nuovo bug vLLM emerge: i flag
+`max_num_seqs` e `microbatch` restano nel codice (`R/dgx-bundle.R`,
+`inst/dgx/python/run_p4_vllm.py`), basta override yaml o gen-override
+runtime per riattivarli. Path C (`chunk_size=25` in
+`analysis/p4-stage2-build-input.R`) resta default conservativo.
+
+
 
 ## Context and Problem Statement
 

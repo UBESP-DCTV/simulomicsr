@@ -1,11 +1,29 @@
 # ADR-0011: Tier-based per-record max_tokens (single-pass strategy)
 
-- **Status:** Accepted
+- **Status:** Accepted (invariato dopo ADR-0010)
 - **Date:** 2026-05-10
 - **Deciders:** Luca Vedovelli
 - **Supersedes:** —
 - **Superseded by:** —
-- **Relates to:** ADR-0009 (safe-mode stage2), ADR-0008 (sampling defaults)
+- **Relates to:** ADR-0009 (safe-mode stage2 — superato da ADR-0010), ADR-0008 (sampling defaults), ADR-0010 (vLLM v0.20.2 upgrade)
+
+## Update 2026-05-10 (post ADR-0010 upgrade)
+
+Tier strategy **resta valida e attiva** dopo l'upgrade vLLM v0.20.2.
+Single-pass goal raggiunto: Phase 2 config 2a baseline (tier ON + safe-
+mode 0.10.0 traslato) ha dato 100.00% schema validity (vs 99.84% alpha
+3-pass canonical merge). Compatibile con concurrency restored (W2,
+`max_num_seqs=6`).
+
+Tier S/M/L/XL boundaries (15/25/35 KB) **invariati**: calibrazione α
+ancora rappresentativa. Per β (ARCHS4 700k sample) ri-valutare le soglie
+dopo prime osservazioni di distribuzione effettiva.
+
+Nessun cambiamento sostanziale richiesto al codice (`R/dgx-bundle.R::
+dgx_p4_build_bundle(tiered_max_tokens=TRUE)` + per-record annotation in
+input.jsonl + `inst/dgx/python/run_p4_vllm.py::_make_sampling` lettura
+`r.get("max_tokens")` per-record).
+
 
 ## Context and Problem Statement
 
