@@ -1,9 +1,13 @@
-# vLLM >= 0.8.x richiesto per Mistral-Small-3.2 (model_type "mistral3"
-# introdotto in transformers 4.49 a inizio 2025; vLLM 0.6.4 di Nov 2024
-# non lo conosce -> KeyError 'mistral3' al load).
-# Verificato sul cluster il 2026-05-07 con job 19721: smoke fallisce a
-# Step 5 con questo errore esatto su v0.6.4. Bumpato a v0.10.0 stable.
-FROM vllm/vllm-openai:v0.10.0
+# vLLM v0.20.2 (release 2026-05-10): include PR #40946 fix per Issue #39734
+# (scheduler v1 deadlock head-of-line) merged 2026-04-27 in v0.20.0 milestone.
+# Vedi ADR-0010 per validation plan + gate hierarchical.
+#
+# API breaking change rispetto a 0.10.0: GuidedDecodingParams rimosso in
+# v0.12.0 -> sostituito da StructuredOutputsParams. Il run_p4_vllm.py e'
+# stato migrato (vedi commit di Phase 1 ADR-0010). Mistral-Small-3.2
+# kwargs (tokenizer_mode/config_format/load_format = "mistral") invariati,
+# verificato in examples/offline_inference/mistral-small.py @ v0.20.2.
+FROM vllm/vllm-openai:v0.20.2
 
 LABEL maintainer="simulomicsr" \
       model="mistralai/Mistral-Small-3.2-24B-Instruct-2506" \

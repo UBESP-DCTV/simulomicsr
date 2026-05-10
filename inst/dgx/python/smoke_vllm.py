@@ -52,21 +52,14 @@ def main() -> int:
         "additionalProperties": False,
     }
 
-    # Guided decoding: API nuova vLLM v1 (GuidedDecodingParams). Fallback
-    # legacy (guided_json scalare) se la versione e' piu' vecchia.
-    try:
-        from vllm.sampling_params import GuidedDecodingParams
-        sampling = SamplingParams(
-            max_tokens=64,
-            temperature=0.0,
-            guided_decoding=GuidedDecodingParams(json=schema),
-        )
-    except Exception:
-        sampling = SamplingParams(
-            max_tokens=64,
-            temperature=0.0,
-            guided_json=schema,
-        )
+    # Structured outputs: vLLM 0.20+ usa StructuredOutputsParams
+    # (GuidedDecodingParams rimosso in v0.12.0). Backend selection auto.
+    from vllm.sampling_params import StructuredOutputsParams
+    sampling = SamplingParams(
+        max_tokens=64,
+        temperature=0.0,
+        structured_outputs=StructuredOutputsParams(json=schema),
+    )
 
     messages = [
         {"role": "system", "content": "Rispondi sempre solo in JSON valido conforme allo schema."},
