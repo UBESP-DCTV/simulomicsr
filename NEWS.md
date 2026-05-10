@@ -1,3 +1,76 @@
+# simulomicsr 0.0.0.9015 (ADR-0010 vLLM upgrade v0.10.0 -> v0.20.2-cu129 + Phase 5 cleanup)
+
+## ADR-0010 vLLM upgrade — gate PASS, upgrade SI committato (2026-05-10)
+
+Bump container `vllm/vllm-openai:v0.10.0` -> `:v0.20.2-cu129-ubuntu2404`.
+PR #40946 (fix upstream Issue #39734 scheduler v1 deadlock head-of-line)
+mergiata 2026-04-27 in v0.20.0; cu129 variant richiesta per compatibilita'
+driver NVIDIA 535.x del DGX poddgx02 (variante default cu130 richiederebbe
+driver >= 545).
+
+**Hierarchical gate Phase 2 (smoke mini500 cs25) + Phase 3 (mini-gold v5):**
+- HARD H1 mini-gold binary accuracy: **93.7%** (vs threshold 93%, vs
+  baseline alpha 93.3% -> upgrade migliora marginalmente).
+- HARD H2 schema validity smoke 500: **100.00%** (vs threshold 98%).
+- HARD H3 4/4 worker no deadlock: 4/4.
+- SOFT W1 outlines strict-schema = 100%: **100.00%** (Mistral-3.2 +
+  StructuredOutputsParams backend auto = xgrammar->outlines fallback).
+- SOFT W2 concurrency throughput >= +20%: **+217%** (config 2c wall
+  20:57 vs config 2a 1:06:31). Config 2d bonus max_num_seqs=6 ulteriormente
+  +22% sopra 2c.
+
+Decision matrix: HARD all PASS + SOFT both PASS -> UPGRADE SI.
+
+## Phase 5 cleanup — rimozione workaround stack v0.10.0
+
+Net -220 righe codice (heuristic recovery + commenti storici rimossi).
+
+API migration (mandatoria per v0.12.0+):
+- `GuidedDecodingParams` rimosso upstream -> `StructuredOutputsParams`.
+- `SamplingParams(guided_decoding=...)` -> `SamplingParams(structured_outputs=...)`.
+
+p4-defaults.yml stage2 default operativo post-upgrade:
+- max_num_seqs: 1 -> **6** (continuous batching restored).
+- microbatch: 1 -> **50** (write incrementale ogni 50 record).
+- disable_guided_decoding: true -> **rimosso** (structured_outputs auto).
+- enforce_eager: true -> **rimosso** (CUDA graph capture stabile).
+- scheduler_reserve_full_isl ref obsoleta -> **rimossa**.
+- max_model_len: 32768 -> **65536** (margine outlines + cs50 futuro).
+
+Heuristic recovery rimossa (outlines = parser-grade by construction):
+- inst/dgx/python/run_p4_vllm.py: `_strip_md_fences()`, `_RX_MISSING_VALUE`,
+  `_try_parse()` + `applied_patches` field nel JSON output.
+- R/llm-stage2.R: `.try_recover_stage2_json()` function.
+- R/dgx-submit.R: blocco "Recovery R-side heuristic" in dgx_p4_collect.
+- Backward compat preservata: `applied_patches` letta dal JSON predictions
+  se presente (per ri-leggere alpha runs vecchi senza errori).
+
+ADR aggiornati:
+- ADR-0009 (safe-mode): Status invariato `Accepted` ma con sezione
+  "Update 2026-05-10" che indica deprecation parziale post-PR #40946.
+  Safe-mode resta richiamabile manualmente come fallback contingency.
+- ADR-0011 (tier strategy): invariata. Tier S/M/L/XL ancora attiva e
+  compatibile con concurrency restored. Da ri-calibrare per beta su dati
+  reali ARCHS4.
+- ADR-0010 (questa decisione): Status Proposed -> Accepted con outcome
+  numerico finale + 5 fasi validation documentate.
+
+## Smoke runners promossi a tracked (analysis/p4-smoke/)
+
+Spostati da `analysis/p4-bundles/` (gitignored, scratch):
+- run-smoke-stage2.R, smoke-stage2-template.sh
+- analyze-smoke-stage2.R, poll-smoke-stage2.R
+- phase2-vllm-upgrade.R (driver Phase 2 ADR-0010 con config 2a-e)
+- phase3-h1-eval.R (focused eval H1 mini-gold)
+
+Test suite: 544/544 PASS / 3 SKIP (pre-existing OPENAI_API_KEY).
+
+## TODO post-cleanup (opzionali, fuori scope ADR-0010)
+- chunk_size cs25 -> cs50 evaluation smoke comparativo.
+- Final regression run alpha 8546 record con pipeline pulita.
+
+---
+
 # simulomicsr 0.0.0.9014 (P4 α stage2 CHIUSA — eval mini-gold v5 + tier strategy + recovery + paper limitations)
 
 ## P4 Task 22 / α stage2 cs25 CLOSED 2026-05-10
