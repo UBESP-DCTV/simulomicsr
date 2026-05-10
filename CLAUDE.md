@@ -610,6 +610,7 @@ Acceptance Plan Task 22 invariato: schema valid ≥95%, binary accuracy ≥95% t
 - **ADR-0007 DGX self-host vLLM:** `docs/decisions/0007-dgx-self-host-vllm.md` — decisione bespoke minimale dentro simulomicsr (no fork laimsdgxllm) + workflow Docker→DockerHub→Singularity.
 - **ADR-0008 vLLM SamplingParams:** `docs/decisions/0008-vllm-sampling-defaults.md` — temperature=0.0, repetition_penalty=1.1 default stage1+stage2.
 - **ADR-0009 stage2 safe-mode:** `docs/decisions/0009-stage2-safe-mode-vllm-deadlock.md` — `max_num_seqs=1, microbatch=1` stage2 per deadlock-proof Issue #39734 (Path C cs25 era probabilistico, validato fallimento job 19948).
+- **ADR-0011 tier-based max_tokens:** `docs/decisions/0011-tier-based-max-tokens.md` — single-pass strategy per stage2 con per-record max_tokens proporzionato a input size (S/M/L/XL → 4K/8K/16K/32K). Validato smoke 100 balanced 100% validity (job 20009). Da usare per future α/β stage2.
 - **Spec P4:** `docs/superpowers/specs/2026-05-06-p4-dgx-integration-design.md`.
 - **Plan P4:** `docs/superpowers/plans/2026-05-06-p4-dgx-integration-plan.md` (23 task, 16 completati locale).
 - **Investigation Task 22 stalls (RESOLVED 2026-05-08):** `docs/superpowers/specs/2026-05-08-task22-stage2-vllm-stalls-investigation.md` — root cause vLLM Issue #39734, fix Path C (chunk_size=25) + max_tokens=4096 + fence-strip post-proc, validato T5g/T5h. **NB**: postscript 2026-05-08 sera in ADR-0009 — Path C insufficiente, safe-mode supersedes.

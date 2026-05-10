@@ -350,10 +350,17 @@ dgx_p4_collect <- function(job, dest = "analysis/p4-output") {
       df$parsed_json <- mapply(function(parsed, rid) {
         if (is.null(parsed)) return(NULL)
         orig <- inp_lookup[[rid]]
+        # Per chunked records, series_id canonico (es. "GSE183194") e' nel
+        # field dedicato dell'input; record_id (es. "GSE183194#1of2") include
+        # il chunk suffix che viola lo schema regex `^GSE[0-9]+$`. Bug
+        # identificato 2026-05-10 dopo eval mini-gold v5: 28 sample mancavano
+        # perche' parsed_json$series_id era stato sovrascritto col record_id.
+        canonical_sid <- if (!is.null(orig) && !is.null(orig$series_id))
+                           orig$series_id else rid
         tryCatch(
           parse_stage2_response(
             raw          = parsed,
-            series_id    = rid,
+            series_id    = canonical_sid,
             sample_count = if (!is.null(orig)) length(orig) else 1L,
             model        = "vllm-mistral-3.2-24b"
           ),
