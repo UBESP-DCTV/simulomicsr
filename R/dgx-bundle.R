@@ -16,14 +16,23 @@
 #'   manifest e usata per costruire il \code{run_id}.
 #' @param bundle_dir_root directory parent in cui creare il bundle. Default
 #'   \code{"analysis/p4-bundles/"}.
+#' @param tiered_max_tokens se TRUE (default FALSE), assegna `max_tokens`
+#'   per-record in base alla dimensione in byte dell input JSONL line via
+#'   `.dgx_tier_max_tokens()`. Tier S/M/L/XL → 4096/8192/16384/32768. Il
+#'   `gen$max_tokens` globale resta il fallback default (max_tokens dello
+#'   yaml stage2). Il `gen$max_model_len` viene auto-bumpato a 65536 se
+#'   qualche record è L/XL. Strategy mira a single-pass coverage senza
+#'   rescue cycles. Solo per stage2.
 #' @return oggetto \code{simulomicsr_dgx_bundle} con campi \code{run_id},
-#'   \code{bundle_dir}, \code{stage}, \code{config}, \code{record_count}.
+#'   \code{bundle_dir}, \code{stage}, \code{config}, \code{record_count},
+#'   e (se `tiered_max_tokens=TRUE`) \code{tier_summary} con count per tier.
 #' @export
 dgx_p4_build_bundle <- function(input_jsonl,
                                 stage,
                                 config,
-                                metadata        = list(),
-                                bundle_dir_root = "analysis/p4-bundles") {
+                                metadata           = list(),
+                                bundle_dir_root    = "analysis/p4-bundles",
+                                tiered_max_tokens  = FALSE) {
 
   # --- Validazione argomenti ---
   if (!stage %in% c("stage1", "stage2"))
@@ -62,6 +71,35 @@ dgx_p4_build_bundle <- function(input_jsonl,
   fs::file_copy(input_jsonl, dest_input)
   record_count <- length(readLines(dest_input, warn = FALSE))
 
+  # --- 1b. Tiered max_tokens (solo stage2): annota per-record max_tokens nel
+  # JSONL in base alla dimensione bytes della riga. Default OFF.
+  tier_summary <- NULL
+  if (isTRUE(tiered_max_tokens)) {
+    if (stage != "stage2")
+      cli::cli_abort(
+        "tiered_max_tokens=TRUE supportato solo per stage2 (stage1 record sono uniformemente piccoli).",
+        class = "simulomicsr_dgx_tiered_stage1_unsupported"
+      )
+    in_lines <- readLines(dest_input, warn = FALSE)
+    line_bytes <- nchar(in_lines, type = "bytes")
+    tier_info  <- .dgx_tier_max_tokens(line_bytes)
+    out_lines  <- vapply(seq_along(in_lines), function(i) {
+      rec <- jsonlite::fromJSON(in_lines[i], simplifyVector = FALSE)
+      rec$max_tokens <- tier_info$max_tokens[i]
+      jsonlite::toJSON(rec, auto_unbox = TRUE, null = "null")
+    }, character(1))
+    writeLines(out_lines, dest_input)
+    tier_summary <- as.list(table(factor(tier_info$tier,
+                                         levels = c("S", "M", "L", "XL"))))
+    cli::cli_alert_info(
+      paste0("tiered_max_tokens: S=", tier_summary$S,
+             " M=", tier_summary$M,
+             " L=", tier_summary$L,
+             " XL=", tier_summary$XL,
+             " (max=", max(tier_info$max_tokens), ")")
+    )
+  }
+
   # --- 2. System prompt ---
   # .stage1_system_prompt() non ha argomenti.
   # .stage2_system_prompt(model) richiede il nome modello (informativo).
@@ -83,14 +121,30 @@ dgx_p4_build_bundle <- function(input_jsonl,
   fs::file_copy(schema_src, fs::path(bundle_dir, "schema.json"))
 
   # --- 4. Generation config ---
+  # max_tokens globale = fallback per record privi del field per-record.
+  # Quando tiered_max_tokens=TRUE alziamo a max(tier_max) cosi vLLM accetta
+  # request con quel max_tokens. max_model_len va bumpato a 65536 se ci sono
+  # record L/XL (max_tokens >= 16384) per fare spazio a input grandi + output.
+  yaml_max_tokens    <- as.integer(stage_def$max_tokens)
+  yaml_max_model_len <- as.integer(stage_def$max_model_len)
+  if (isTRUE(tiered_max_tokens) && !is.null(tier_summary)) {
+    tier_max <- max(c(
+      if (tier_summary$S  > 0) 4096L,
+      if (tier_summary$M  > 0) 8192L,
+      if (tier_summary$L  > 0) 16384L,
+      if (tier_summary$XL > 0) 32768L
+    ))
+    yaml_max_tokens <- max(yaml_max_tokens, tier_max)
+    if (tier_max >= 16384L) yaml_max_model_len <- max(yaml_max_model_len, 65536L)
+  }
   gen <- list(
     model_id               = defaults$model_id,
     dtype                  = defaults$dtype,
     tokenizer_mode         = defaults$tokenizer_mode,
     config_format          = defaults$config_format,
     load_format            = defaults$load_format,
-    max_tokens             = as.integer(stage_def$max_tokens),
-    max_model_len          = as.integer(stage_def$max_model_len),
+    max_tokens             = yaml_max_tokens,
+    max_model_len          = yaml_max_model_len,
     temperature            = as.double(stage_def$temperature),
     gpu_memory_utilization = defaults$gpu_memory_utilization,
     tensor_parallel_size   = defaults$tensor_parallel_size,
@@ -135,6 +189,8 @@ dgx_p4_build_bundle <- function(input_jsonl,
     schema_version = stage_def$schema_version,
     model_id       = defaults$model_id,
     record_count   = record_count,
+    tiered_max_tokens = isTRUE(tiered_max_tokens),
+    tier_summary   = tier_summary,
     created_at     = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
     metadata       = metadata
   )
@@ -159,7 +215,8 @@ dgx_p4_build_bundle <- function(input_jsonl,
       bundle_dir   = bundle_dir,
       stage        = stage,
       config       = config,
-      record_count = record_count
+      record_count = record_count,
+      tier_summary = tier_summary
     ),
     class = "simulomicsr_dgx_bundle"
   )

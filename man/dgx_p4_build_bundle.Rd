@@ -9,7 +9,8 @@ dgx_p4_build_bundle(
   stage,
   config,
   metadata = list(),
-  bundle_dir_root = "analysis/p4-bundles"
+  bundle_dir_root = "analysis/p4-bundles",
+  tiered_max_tokens = FALSE
 )
 }
 \arguments{
@@ -28,10 +29,19 @@ manifest e usata per costruire il \code{run_id}.}
 
 \item{bundle_dir_root}{directory parent in cui creare il bundle. Default
 \code{"analysis/p4-bundles/"}.}
+
+\item{tiered_max_tokens}{se TRUE (default FALSE), assegna \code{max_tokens}
+per-record in base alla dimensione in byte dell input JSONL line via
+\code{.dgx_tier_max_tokens()}. Tier S/M/L/XL → 4096/8192/16384/32768. Il
+\code{gen$max_tokens} globale resta il fallback default (max_tokens dello
+yaml stage2). Il \code{gen$max_model_len} viene auto-bumpato a 65536 se
+qualche record è L/XL. Strategy mira a single-pass coverage senza
+rescue cycles. Solo per stage2.}
 }
 \value{
 oggetto \code{simulomicsr_dgx_bundle} con campi \code{run_id},
-\code{bundle_dir}, \code{stage}, \code{config}, \code{record_count}.
+\code{bundle_dir}, \code{stage}, \code{config}, \code{record_count},
+e (se \code{tiered_max_tokens=TRUE}) \code{tier_summary} con count per tier.
 }
 \description{
 Un bundle e' una directory autocontenuta che raccoglie tutto cio' che

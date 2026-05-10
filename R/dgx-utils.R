@@ -163,3 +163,38 @@
     last_modified = as.POSIXct(max(mtimes), origin = "1970-01-01", tz = "UTC")
   )
 }
+
+#' Tier mapping size-based per `max_tokens` per-record
+#'
+#' Ritorna il `max_tokens` appropriato per un record stage2 in base alla
+#' dimensione in byte della sua riga JSONL (input record). Le soglie sono
+#' calibrate sull'osservazione α stage2 cs25 (2026-05-09): 90.6% pass a
+#' 4096, 9.4% truncation a 4096 (di cui 95.5% recovery a 8192), 0.4%
+#' truncation a 8192 (recovery parziale a 32768). Tier mapping mira a
+#' coprire ~99% dei record in single pass evitando rescue cycle.
+#'
+#' Tier:
+#' - `S`  — input < 15 KB → max_tokens = 4096  (~70% atteso, 90%+ valid)
+#' - `M`  — 15 ≤ input < 25 KB → max_tokens = 8192  (~20% atteso, 95%+ valid)
+#' - `L`  — 25 ≤ input < 35 KB → max_tokens = 16384 (~8% atteso)
+#' - `XL` — input ≥ 35 KB → max_tokens = 32768 (~2% atteso)
+#'
+#' Soglie hard-coded nel codice (non parametrizzate) — se servono altri
+#' mapping in futuro creare un secondo helper o estendere con `breakpoints`
+#' arg. Mantenuto semplice per chiarezza ADR-0011 (da scrivere).
+#'
+#' @param input_bytes intero (numero di byte della riga JSONL).
+#' @return list con `max_tokens` (intero) e `tier` (character "S","M","L","XL").
+#' @keywords internal
+.dgx_tier_max_tokens <- function(input_bytes) {
+  stopifnot(is.numeric(input_bytes), length(input_bytes) >= 1L)
+  KB <- 1024L
+  cuts <- c(15L * KB, 25L * KB, 35L * KB)
+  max_tokens <- c(4096L, 8192L, 16384L, 32768L)
+  tiers      <- c("S", "M", "L", "XL")
+  idx <- findInterval(input_bytes, cuts) + 1L  # 1-indexed
+  list(
+    max_tokens = max_tokens[idx],
+    tier       = tiers[idx]
+  )
+}
