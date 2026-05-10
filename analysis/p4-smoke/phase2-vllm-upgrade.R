@@ -105,7 +105,9 @@ sys_call <- c(
   "--mem", "200G",
   "--time", "02:00:00",
   "--input", "data-raw/p4-stage2-mini500-cs25.jsonl",
-  "--gen-overrides", overrides_json,
+  # shQuote difensivo: system2 args passano via sh -c, le " del JSON
+  # vengono strippate dalla shell. shQuote('{"k":false}') protegge.
+  "--gen-overrides", shQuote(overrides_json),
   "--nodelist", "poddgx02",
   "--tiered", "TRUE"  # ADR-0011 tier strategy: status quo alpha
 )
