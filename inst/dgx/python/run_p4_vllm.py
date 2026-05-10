@@ -180,38 +180,56 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     # zione e' liberamente JSON-shaped (Mistral-3.2 produce JSON parsabile
     # nel ~95-99% dei casi senza enforcement; validazione schema avviene
     # post-hoc R-side).
-    if gen.get("disable_guided_decoding", False):
+    use_guided = not gen.get("disable_guided_decoding", False)
+    if not use_guided:
         print(f"[worker {worker_id}] guided decoding DISABILITATO (free JSON, validate post-hoc)", flush=True)
-        sampling = SamplingParams(
-            max_tokens=int(gen["max_tokens"]),
-            temperature=float(gen["temperature"]),
-            **extra_kwargs,
-        )
-    else:
+    guided_params = None
+    if use_guided:
         try:
             from vllm.sampling_params import GuidedDecodingParams
-            sampling = SamplingParams(
-                max_tokens=int(gen["max_tokens"]),
-                temperature=float(gen["temperature"]),
-                guided_decoding=GuidedDecodingParams(json=schema),
-                **extra_kwargs,
-            )
+            guided_params = GuidedDecodingParams(json=schema)
         except Exception:
-            sampling = SamplingParams(
-                max_tokens=int(gen["max_tokens"]),
-                temperature=float(gen["temperature"]),
-                guided_json=schema,
-                **extra_kwargs,
-            )
+            guided_params = "guided_json_legacy"  # fallback marker
+
+    default_max_tokens = int(gen["max_tokens"])
+
+    def _make_sampling(max_tok: int) -> SamplingParams:
+        """Build SamplingParams per request. max_tok puo' essere per-record
+        (tier-based, vedi `tiered_max_tokens=TRUE` in dgx_p4_build_bundle()) o
+        il default globale gen[max_tokens]."""
+        kw = dict(extra_kwargs)
+        kw["max_tokens"]  = int(max_tok)
+        kw["temperature"] = float(gen["temperature"])
+        if use_guided:
+            if guided_params == "guided_json_legacy":
+                kw["guided_json"] = schema
+            else:
+                kw["guided_decoding"] = guided_params
+        return SamplingParams(**kw)
 
     # Mistral tokenizer non supporta apply_chat_template. Usiamo llm.chat()
     # che accetta una lista di liste di messages e formatta internamente.
-    conversations = []
-    record_ids = []
+    # Per tiered max_tokens, costruiamo per-record SamplingParams (vLLM accetta
+    # sampling_params come lista parallela a messages).
+    conversations: list = []
+    record_ids: list = []
+    samplings: list = []  # one per conversation
+    n_per_record_max_tokens = 0
     for r in records:
         user_msg = render_user_for_stage(stage, r)
         conversations.append(build_messages(system_prompt, user_msg))
         record_ids.append(str(r["record_id"]))
+        rec_mt = r.get("max_tokens")
+        if rec_mt is not None:
+            n_per_record_max_tokens += 1
+            samplings.append(_make_sampling(int(rec_mt)))
+        else:
+            samplings.append(_make_sampling(default_max_tokens))
+    if n_per_record_max_tokens > 0:
+        unique_mts = sorted({s.max_tokens for s in samplings})
+        print(f"[worker {worker_id}] per-record max_tokens: "
+              f"{n_per_record_max_tokens}/{len(samplings)} record con override, "
+              f"valori distinti={unique_mts}", flush=True)
 
     # Micro-batch llm.chat (Task 22 stage2 mitigazione 2026-05-08, job 19801
     # stallato dopo 20 min di gen healthy). Un singolo llm.chat con tutti i
@@ -263,14 +281,15 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
             fh.flush()
 
     if MICROBATCH is None:
-        outputs = llm.chat(messages=conversations, sampling_params=sampling)
+        outputs = llm.chat(messages=conversations, sampling_params=samplings)
         _write_batch(record_ids, outputs)
     else:
         n_total = len(conversations)
         for i in range(0, n_total, MICROBATCH):
             j = min(i + MICROBATCH, n_total)
             t_b = time.time()
-            outs = llm.chat(messages=conversations[i:j], sampling_params=sampling)
+            outs = llm.chat(messages=conversations[i:j],
+                            sampling_params=samplings[i:j])
             _write_batch(record_ids[i:j], outs)
             print(f"[worker {worker_id}] microbatch {i+1}-{j}/{n_total} "
                   f"in {time.time()-t_b:.1f}s (cum {time.time()-t0:.1f}s)",
