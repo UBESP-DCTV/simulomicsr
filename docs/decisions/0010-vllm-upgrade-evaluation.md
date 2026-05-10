@@ -174,8 +174,8 @@ L'upgrade non è completato al merge del Dockerfile bump. È completato solo dop
   - Phase 5 richiede 1-2 giornate operatore + 4-8h DGX. Non automatizzabile.
 
 - **Neutral:**
-  - Issue #39734 mitigations restano documentate per posterità (importante per il paper Methods come "early infrastructure friction").
   - Final regression run α stage2 con pipeline pulita produce `alpha-stage2-cs25-v0.20.2-clean.rds` come baseline-of-record.
+  - ADR-0009 e spec investigation Task 22 restano nel repo come record storico interno; non vanno citati nel paper (audience bioinformatica, non CS).
 
 ### Consequences (FAIL path — stay 0.10.0)
 
