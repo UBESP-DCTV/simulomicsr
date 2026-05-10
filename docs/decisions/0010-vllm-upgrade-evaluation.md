@@ -1,11 +1,34 @@
 # ADR-0010: vLLM upgrade evaluation — gated decision verso v0.20.2
 
-- **Status:** Proposed (validation pending)
-- **Date:** 2026-05-10
+- **Status:** Accepted (validation completata 2026-05-10 → UPGRADE SÌ)
+- **Date:** 2026-05-10 (apertura + chiusura same-day)
 - **Deciders:** Luca Vedovelli
 - **Supersedes:** —
 - **Superseded by:** —
-- **Relates to:** ADR-0007 (DGX self-host), ADR-0008 (sampling defaults), ADR-0009 (safe-mode stage2), ADR-0011 (tier max_tokens)
+- **Relates to:** ADR-0007 (DGX self-host), ADR-0008 (sampling defaults), ADR-0009 (safe-mode stage2 — parzialmente superseded), ADR-0011 (tier max_tokens — invariato)
+
+## Outcome 2026-05-10 (gated validation → UPGRADE SÌ)
+
+Tutte le 5 fasi di validation completate. Hierarchical gate result:
+
+| Gate | Threshold | Risultato | Status |
+|---|---|---|---|
+| HARD H1 mini-gold v5 binary accuracy | ≥ 93% | **93.7%** (n=95, sens 93.2%, spec 94.4%, F1 94.8%) | ✅ PASS |
+| HARD H2 schema validity smoke 500 | ≥ 98% | **100.00%** (500/500) | ✅ PASS |
+| HARD H3 4/4 worker no deadlock baseline | 4/4 | 4/4 ✅ | ✅ PASS |
+| SOFT W1 outlines strict-schema = 100% | 100% | **100.00%** (500/500 parser-grade) | ✅ PASS |
+| SOFT W2 concurrency restored throughput | ≥ +20% vs 2a | **+217%** (1:06:31 → 0:20:57) | ✅ PASS |
+
+**Decision matrix: HARD all PASS + SOFT both PASS (non solo any) → UPGRADE SÌ a `vllm/vllm-openai:v0.20.2-cu129-ubuntu2404`.**
+
+Note operative emerse durante la validation:
+
+- Container base bumpato da `:v0.20.2` (CUDA 13.0/PyTorch 2.11, richiede driver NVIDIA ≥ 545) a `:v0.20.2-cu129-ubuntu2404` (CUDA 12.9 + Forward Compatibility libs) perché poddgx02 ha driver 535.183.01 (max CUDA 12.2 nativo). Verificato sul smoke job 20039 → 20047 (PASS dopo bump variante).
+- `GuidedDecodingParams` rimosso in vLLM v0.12.0 → migrato a `StructuredOutputsParams` in `inst/dgx/python/{run_p4_vllm.py,smoke_vllm.py}`. Mistral kwargs (`tokenizer_mode/config_format/load_format="mistral"`) invariati.
+- **H1 mini-gold accuracy migliora marginalmente** (93.7% v0.20.2 outlines vs 93.3% v0.10.0 free-gen + heuristic recovery): outlines parser-grade evita errori che heuristic recovery non aggiusta del tutto.
+- **Bonus config 2d (max_num_seqs=6)**: 17:11 (+22% vs 2c max_num_seqs=4). KV cache non saturata sui mix tier S/M/L/XL → margine ulteriore per Phase 5 tuning.
+
+Wall time validation totale: ~3.5h DGX (Phase 1 sanity 2min + 2a/2b/2c/2d ≈ 3h + 2 rebuild Docker + Phase 3 mini-gold 3min).
 
 ## Context and Problem Statement
 
