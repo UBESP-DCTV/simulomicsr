@@ -284,9 +284,40 @@ dgx_p4_collect <- function(job, dest = "analysis/p4-output") {
     raw_output   = vapply(rows, function(r) r$raw_output %||% NA_character_, character(1)),
     parsed_json  = lapply(rows, function(r) r$parsed_json),
     valid_schema = vapply(rows, function(r) isTRUE(r$valid_schema),          logical(1)),
+    applied_patches = lapply(rows, function(r) {
+      ap <- r$applied_patches
+      if (is.null(ap)) character(0) else as.character(unlist(ap))
+    }),
     worker_id    = vapply(rows, function(r) as.integer(r$worker_id %||% NA), integer(1)),
     ts           = vapply(rows, function(r) r$ts         %||% NA_character_, character(1))
   )
+
+  # Recovery R-side per record con valid_schema=FALSE: applica heuristic
+  # (markdown strip + missing-value patch). Identifica casi recuperabili
+  # senza re-running il modello. Per stage2 only (stage1 ha pattern diversi
+  # gia' coperti dal Python rescue cycle 2026-05-07).
+  if (job$stage == "stage2" && any(!df$valid_schema)) {
+    fail_idx <- which(!df$valid_schema)
+    n_recovered <- 0L
+    for (i in fail_idx) {
+      raw <- df$raw_output[i]
+      rec <- .try_recover_stage2_json(raw)
+      if (!is.null(rec$parsed_json)) {
+        df$parsed_json[[i]]   <- rec$parsed_json
+        df$valid_schema[i]    <- TRUE
+        df$applied_patches[[i]] <- c(df$applied_patches[[i]],
+                                     rec$applied_patches,
+                                     "r_side_recovery")
+        n_recovered <- n_recovered + 1L
+      }
+    }
+    if (n_recovered > 0L) {
+      cli::cli_alert_success(
+        paste0("R-side recovery: ", n_recovered, "/", length(fail_idx),
+               " record recuperati post-hoc (markdown strip + missing-value patch)")
+      )
+    }
+  }
 
   # Post-processing R-side: arricchimento deterministico del JSON parsed
   # recuperando i campi originali da input.jsonl del bundle.

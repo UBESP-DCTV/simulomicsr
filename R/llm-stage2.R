@@ -292,3 +292,54 @@ parse_stage2_response <- function(raw, series_id, sample_count, model) {
   }
   raw
 }
+
+#' Recovery heuristic per output stage2 JSON-parse fallito
+#'
+#' Tenta di parsare un raw_output stage2 che inizialmente ha fallito
+#' \code{json.loads} applicando patch noti del modello Mistral-3.2:
+#'
+#' 1. **markdown fence strip**: rimuove ` ```json ... ``` ` wrapper se presente.
+#' 2. **missing "value": patch**: regex re-inserisce il token \code{"value":}
+#'    nei pattern \code{\{"key": "X", "RAWVAL"\}} -> \code{\{"key": "X", "value": "RAWVAL"\}}.
+#'    Mistral-3.2 occasionalmente droppa quel token nei \code{factor_levels}
+#'    array; pattern identificato 2026-05-10 nei 17 residual α stage2 (3/17
+#'    recoverable lossless con questo patch).
+#'
+#' Heuristic safe: applica il patch SOLO dove il pattern e' inequivocabile
+#' (key+scalar value, niente nested objects). Se il parse continua a
+#' fallire, ritorna NULL.
+#'
+#' @param raw_output stringa raw output dal modello.
+#' @return list con \code{parsed_json} (NULL se irrecuperabile),
+#'   \code{applied_patches} (character vector dei patch applicati).
+#' @keywords internal
+.try_recover_stage2_json <- function(raw_output) {
+  if (is.null(raw_output) || !nzchar(raw_output))
+    return(list(parsed_json = NULL, applied_patches = character(0)))
+  s <- raw_output
+  # Markdown fence strip
+  s <- sub("^```(json)?\\s*", "", s)
+  s <- sub("\\s*```\\s*$", "", s)
+  # Tentativo 1: parse diretto post-strip
+  parsed <- tryCatch(
+    jsonlite::fromJSON(s, simplifyVector = FALSE),
+    error = function(e) NULL
+  )
+  if (!is.null(parsed))
+    return(list(parsed_json = parsed, applied_patches = character(0)))
+  # Tentativo 2: missing-value patch
+  s2 <- gsub(
+    '(\\{\\s*"key"\\s*:\\s*"[^"]+"\\s*,\\s*)("[^"]+")(\\s*\\})',
+    '\\1"value": \\2\\3', s, perl = TRUE
+  )
+  if (!identical(s2, s)) {
+    parsed <- tryCatch(
+      jsonlite::fromJSON(s2, simplifyVector = FALSE),
+      error = function(e) NULL
+    )
+    if (!is.null(parsed))
+      return(list(parsed_json = parsed,
+                  applied_patches = "missing_value"))
+  }
+  list(parsed_json = NULL, applied_patches = character(0))
+}
