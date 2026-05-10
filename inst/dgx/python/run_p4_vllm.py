@@ -24,6 +24,7 @@ import argparse
 import json
 import multiprocessing as mp
 import os
+import re
 import sys
 import time
 import traceback
@@ -258,22 +259,46 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
             s = s[:-3].rstrip()
         return s
 
+    # Pattern recovery heuristic identificato 2026-05-10 nei 17 residual α
+    # stage2: Mistral-3.2 occasionalmente droppa il token "value": dentro
+    # array factor_levels, producendo `{"key": "X", "RAWVAL"}` invece di
+    # `{"key": "X", "value": "RAWVAL"}`. Il regex sotto re-inserisce "value":
+    # solo dove il pattern e' inequivocabile (key + scalar value secondo
+    # campo, niente piu' chiavi o oggetti). Su 17 residual recover 3/17 senza
+    # alcun rischio semantico.
+    _RX_MISSING_VALUE = re.compile(
+        r'(\{\s*"key"\s*:\s*"[^"]+"\s*,\s*)("[^"]+")(\s*\})'
+    )
+
+    def _try_parse(s: str):
+        """Restituisce (parsed_dict_or_None, applied_patches_list)."""
+        applied = []
+        try:
+            return json.loads(s), applied
+        except json.JSONDecodeError:
+            pass
+        # Tentativo 1: missing-value patch
+        s2 = _RX_MISSING_VALUE.sub(r'\1"value": \2\3', s)
+        if s2 != s:
+            try:
+                return json.loads(s2), ["missing_value"]
+            except json.JSONDecodeError:
+                pass
+        return None, applied
+
     def _write_batch(rids, outs):
         with predictions_path.open("a", encoding="utf-8") as fh:
             for rid, out in zip(rids, outs):
                 raw = out.outputs[0].text if out.outputs else ""
                 cleaned = _strip_md_fences(raw)
-                try:
-                    parsed = json.loads(cleaned)
-                    valid = True
-                except json.JSONDecodeError:
-                    parsed = None
-                    valid = False
+                parsed, patches = _try_parse(cleaned)
+                valid = parsed is not None
                 row = {
                     "record_id": rid,
                     "raw_output": raw,
                     "parsed_json": parsed,
                     "valid_schema": valid,
+                    "applied_patches": patches,
                     "worker_id": worker_id,
                     "ts": now_utc_iso(),
                 }
