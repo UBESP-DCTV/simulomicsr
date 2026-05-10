@@ -24,7 +24,6 @@ import argparse
 import json
 import multiprocessing as mp
 import os
-import re
 import sys
 import time
 import traceback
@@ -90,21 +89,7 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     """Funzione eseguita in subprocess. Carica vLLM su una sola GPU e
     genera in batch sui record assegnati."""
     os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_index)
-    # Mitigazione xgrammar guided-decoding stall (Task 22 stage2 stall
-    # 2026-05-08, job 19778). Il default torch._dynamo cache_size_limit=8 e'
-    # troppo basso per le shape variants del kernel
-    # apply_token_bitmask_inplace_kernel_indices_torch_compile di xgrammar:
-    # quando viene saturato, il kernel compilato viene evitto e xgrammar
-    # ricade su un Python loop (CPU 99%, GPU 0%). Bumpando i due limit a
-    # 256/1024 il fast path resta attivo per molte piu' shape variants.
-    # NB: env vars vanno settate PRIMA di import torch.
-    os.environ.setdefault("TORCHDYNAMO_CACHE_SIZE_LIMIT", "256")
-    os.environ.setdefault("TORCHDYNAMO_ACCUMULATED_CACHE_SIZE_LIMIT", "1024")
-    import torch._dynamo
-    torch._dynamo.config.cache_size_limit = 256
-    torch._dynamo.config.accumulated_cache_size_limit = 1024
 
-    # Import vLLM solo qui (per non caricarlo nel main process)
     from vllm import LLM, SamplingParams
 
     gen = bundle["generation"]
@@ -113,17 +98,6 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     system_prompt = bundle["prompt"]
 
     print(f"[worker {worker_id}] caricamento vLLM su GPU {gpu_index}...", flush=True)
-    # Backend di structured outputs in vLLM 0.20.2: default "auto"
-    # (xgrammar con fallback automatico a outlines/guidance per casi non
-    # supportati). Storico Task 22 (vLLM 0.10.0): xgrammar saturava
-    # torch._dynamo cache_size_limit su stage2 (jobs 19778, 19800 stallo
-    # GPU 0% / CPU 99%) e disable_guided_decoding=true era l'unica via.
-    # Con v0.20.2 il fallback su outlines puo' rendere strict-schema viable
-    # — ADR-0010 Phase 2 config 2b verifichera' su mini500-cs25.
-    # Costruzione args con flag opzionali (enforce_eager, max_num_seqs):
-    # enforce_eager=True disabilita CUDA graph capture (piu' lento ma piu'
-    # stabile su sequenze lunghe — Task 22 v5 mitigazione 2026-05-08, dopo
-    # stall ricorrente di vLLM scheduler dopo ~25-30 min di gen healthy).
     llm_kwargs = dict(
         model=gen["model_id"],
         dtype=gen["dtype"],
@@ -134,33 +108,9 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
         tensor_parallel_size=int(gen["tensor_parallel_size"]),
         max_model_len=int(gen.get("max_model_len", 4096)),
     )
-    if bool(gen.get("enforce_eager", False)):
-        llm_kwargs["enforce_eager"] = True
-        print(f"[worker {worker_id}] enforce_eager=True (no CUDA graphs)", flush=True)
     if "max_num_seqs" in gen and gen["max_num_seqs"] is not None:
         llm_kwargs["max_num_seqs"] = int(gen["max_num_seqs"])
         print(f"[worker {worker_id}] max_num_seqs={llm_kwargs['max_num_seqs']}", flush=True)
-    # Task 22 stage2 follow-up 2026-05-08 (next session triage): flag opzionali
-    # per testare hypotheses sulla causa del deadlock vLLM scheduler dopo
-    # ~325 record/worker con prompt 20K+ token.
-    # H1: enable_prefix_caching (default v1=true) si corrompe su prompt
-    #     eterogenei lunghi → spiega "resume immediate stall" pattern.
-    # H2: enable_chunked_prefill gestisce prompt 20K+ in chunked prefill
-    #     incrementale → riduce KV pressure picco.
-    # Solo settati se PRESENTI nel gen dict (default vLLM altrimenti).
-    if "enable_prefix_caching" in gen and gen["enable_prefix_caching"] is not None:
-        llm_kwargs["enable_prefix_caching"] = bool(gen["enable_prefix_caching"])
-        print(f"[worker {worker_id}] enable_prefix_caching={llm_kwargs['enable_prefix_caching']}", flush=True)
-    if "enable_chunked_prefill" in gen and gen["enable_chunked_prefill"] is not None:
-        llm_kwargs["enable_chunked_prefill"] = bool(gen["enable_chunked_prefill"])
-        print(f"[worker {worker_id}] enable_chunked_prefill={llm_kwargs['enable_chunked_prefill']}", flush=True)
-    # scheduler_reserve_full_isl=False: workaround per vLLM Issue #39734
-    # (scheduler v1 deadlock head-of-line per request entro max_model_len ma
-    # > KV capacity disponibile). Bug ancora presente in vLLM 0.19.x. Path C
-    # (chunk_size=25) evita gia' la zona-bug; questo flag e' defense-in-depth.
-    if "scheduler_reserve_full_isl" in gen and gen["scheduler_reserve_full_isl"] is not None:
-        llm_kwargs["scheduler_reserve_full_isl"] = bool(gen["scheduler_reserve_full_isl"])
-        print(f"[worker {worker_id}] scheduler_reserve_full_isl={llm_kwargs['scheduler_reserve_full_isl']}", flush=True)
     llm = LLM(**llm_kwargs)
 
     # Param opzionali (presenti solo se override del default yaml).
@@ -172,17 +122,13 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     if "min_p" in gen and gen["min_p"] is not None:
         extra_kwargs["min_p"] = float(gen["min_p"])
 
-    # Guided decoding: API vLLM v0.20+ usa StructuredOutputsParams (rimpiazza
-    # GuidedDecodingParams rimosso in v0.12.0). Backend selection automatica
-    # (xgrammar default con fallback a outlines/guidance) — ADR-0010 Phase 2
-    # config 2b verifichera' se outlines strict-schema raggiunge 100% validity
-    # su Mistral-3.2.
-    # Se gen["disable_guided_decoding"]=true (status quo stage2 da Task 22
-    # 2026-05-08 per evitare xgrammar torch._dynamo saturation in 0.10.0), la
-    # generazione e' free-JSON e la validazione schema avviene post-hoc.
+    # Structured outputs vLLM 0.20+: backend "auto" (xgrammar -> outlines
+    # fallback). Output parser-grade per construction. Emergency escape:
+    # gen["disable_guided_decoding"]=true cade su free-gen + json.loads
+    # best-effort (utile per debug, no path operativo).
     use_guided = not gen.get("disable_guided_decoding", False)
     if not use_guided:
-        print(f"[worker {worker_id}] guided decoding DISABILITATO (free JSON, validate post-hoc)", flush=True)
+        print(f"[worker {worker_id}] guided decoding DISABILITATO (debug only)", flush=True)
     structured_params = None
     if use_guided:
         from vllm.sampling_params import StructuredOutputsParams
@@ -192,8 +138,8 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
 
     def _make_sampling(max_tok: int) -> SamplingParams:
         """Build SamplingParams per request. max_tok puo' essere per-record
-        (tier-based, vedi `tiered_max_tokens=TRUE` in dgx_p4_build_bundle()) o
-        il default globale gen[max_tokens]."""
+        (tier-based via dgx_p4_build_bundle(tiered_max_tokens=TRUE), ADR-0011)
+        o il default globale gen[max_tokens]."""
         kw = dict(extra_kwargs)
         kw["max_tokens"]  = int(max_tok)
         kw["temperature"] = float(gen["temperature"])
@@ -225,73 +171,34 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
               f"{n_per_record_max_tokens}/{len(samplings)} record con override, "
               f"valori distinti={unique_mts}", flush=True)
 
-    # Micro-batch llm.chat (Task 22 stage2 mitigazione 2026-05-08, job 19801
-    # stallato dopo 20 min di gen healthy). Un singolo llm.chat con tutti i
-    # 1663 record / 20K prefill ciascuno entra in stato indeterminato dopo
-    # qualche minuto (workers in futex_wait, GPU 0%, CPU 0%). Processandoli
-    # a chunks di MICROBATCH la KV cache si drena tra un chunk e l'altro,
-    # vediamo progress incrementale, e se un record specifico triggera un
-    # bug vLLM lo isoliamo. Per stage1 (record corti) usa batch grande.
+    # Micro-batch llm.chat: divide il workload in chunks per write incrementale
+    # a predictions.jsonl (visibility progress + crash safety). Per stage1
+    # record corti, batch grande (None = all-in-one). Per stage2, default 50.
     MICROBATCH = int(gen.get("microbatch", 0)) or (None if stage == "stage1" else 50)
     print(f"[worker {worker_id}] generazione su {len(conversations)} record "
           f"(microbatch={MICROBATCH or 'all'})...", flush=True)
     t0 = time.time()
 
-    def _strip_md_fences(s: str) -> str:
-        # Mistral-3.2 free-gen (disable_guided_decoding=true) spesso wrappa
-        # l'output in ```json ... ``` markdown fences. Strip difensivo per
-        # rendere `json.loads` permissivo. NB: mantenere il raw originale
-        # in `raw_output` per debug/audit; solo `parsed_json` usa la versione
-        # stripped.
-        s = s.strip()
-        if s.startswith("```json"):
-            s = s[7:].lstrip()
-        elif s.startswith("```"):
-            s = s[3:].lstrip()
-        if s.endswith("```"):
-            s = s[:-3].rstrip()
-        return s
-
-    # Pattern recovery heuristic identificato 2026-05-10 nei 17 residual α
-    # stage2: Mistral-3.2 occasionalmente droppa il token "value": dentro
-    # array factor_levels, producendo `{"key": "X", "RAWVAL"}` invece di
-    # `{"key": "X", "value": "RAWVAL"}`. Il regex sotto re-inserisce "value":
-    # solo dove il pattern e' inequivocabile (key + scalar value secondo
-    # campo, niente piu' chiavi o oggetti). Su 17 residual recover 3/17 senza
-    # alcun rischio semantico.
-    _RX_MISSING_VALUE = re.compile(
-        r'(\{\s*"key"\s*:\s*"[^"]+"\s*,\s*)("[^"]+")(\s*\})'
-    )
-
-    def _try_parse(s: str):
-        """Restituisce (parsed_dict_or_None, applied_patches_list)."""
-        applied = []
-        try:
-            return json.loads(s), applied
-        except json.JSONDecodeError:
-            pass
-        # Tentativo 1: missing-value patch
-        s2 = _RX_MISSING_VALUE.sub(r'\1"value": \2\3', s)
-        if s2 != s:
-            try:
-                return json.loads(s2), ["missing_value"]
-            except json.JSONDecodeError:
-                pass
-        return None, applied
-
     def _write_batch(rids, outs):
+        # Con vLLM 0.20+ e structured_outputs backend (xgrammar->outlines
+        # fallback automatico) l'output e' parser-grade per construction.
+        # Pre-ADR-0010 c'erano _strip_md_fences + _try_parse(missing-value
+        # regex) come heuristic recovery contro free-gen Mistral-3.2;
+        # rimossi in Phase 5 cleanup (ADR-0010 Outcome 2026-05-10).
         with predictions_path.open("a", encoding="utf-8") as fh:
             for rid, out in zip(rids, outs):
                 raw = out.outputs[0].text if out.outputs else ""
-                cleaned = _strip_md_fences(raw)
-                parsed, patches = _try_parse(cleaned)
-                valid = parsed is not None
+                try:
+                    parsed = json.loads(raw)
+                    valid = True
+                except json.JSONDecodeError:
+                    parsed = None
+                    valid = False
                 row = {
                     "record_id": rid,
                     "raw_output": raw,
                     "parsed_json": parsed,
                     "valid_schema": valid,
-                    "applied_patches": patches,
                     "worker_id": worker_id,
                     "ts": now_utc_iso(),
                 }

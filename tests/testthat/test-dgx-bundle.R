@@ -67,21 +67,14 @@ test_that("dgx_p4_build_bundle() stage2 usa schema e max_tokens corretti", {
   expect_identical(schema$title, "study_design.stage2.v2")
 
   gen <- jsonlite::read_json(fs::path(bundle$bundle_dir, "generation.json"))
-  # max_tokens 4096 (Task 22 RESOLVED 2026-05-08): smoke T5h 500 record cs25
-  # → 97% schema validity con 4096 vs 60% con 1024 (40% truncation a 1024).
-  # I 3% residui hanno output >3000 token, rescue post-hoc con max_tokens=8192.
+  # max_tokens 4096 (default, fallback per tier strategy).
   expect_identical(gen$max_tokens, 4096L)
-  # scheduler_reserve_full_isl: rimosso dal yaml 2026-05-08 dopo bootstrap
-  # fail job 19879 (vLLM 0.10.0 non accetta il kwarg Python). Path C
-  # (chunk_size=25) resta il primary defense Issue #39734. La propagazione
-  # resta nel codice (per future versioni vLLM) ma il default non la include.
-  expect_null(gen$scheduler_reserve_full_isl)
-  # SAFE-MODE 2026-05-08 (ADR-0009): max_num_seqs=1 + microbatch=1 →
-  # elimina concorrenza inter-request → deadlock-proof per costruzione.
-  # Sostituisce Path C come primary defense Issue #39734 (Path C era
-  # probabilistico, vedi worker 1 stall job 19948 alpha-stage2-cs25).
-  expect_identical(gen$max_num_seqs, 1L)
-  expect_identical(gen$microbatch, 1L)
+  # Post ADR-0010 (v0.20.2 upgrade): safe-mode rimosso, concurrency
+  # restored. max_num_seqs=6 vincitore Phase 2 bonus config 2d (+22%
+  # vs config 2c=4, +267% vs safe-mode v0.10.0). microbatch=50 per
+  # write incrementale a predictions.jsonl.
+  expect_identical(gen$max_num_seqs, 6L)
+  expect_identical(gen$microbatch, 50L)
 
   m <- jsonlite::read_json(fs::path(bundle$bundle_dir, "manifest.json"))
   expect_identical(m$stage, "stage2")
