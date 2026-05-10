@@ -1,3 +1,40 @@
+# simulomicsr 0.0.0.9014 (P4 α stage2 CHIUSA — eval mini-gold v5 + tier strategy + recovery + paper limitations)
+
+## P4 Task 22 / α stage2 cs25 CLOSED 2026-05-10
+
+Schema validity finale (3-pass + R-side recovery): **8532 / 8546 = 99.84%**
+(PASS req >=95%). Binary accuracy mini-gold v5: **93.3%** post bug-fix
+series_id chunked (banda **INVESTIGATIVO** [80, 95) plan Task 22).
+
+Tier-based per-record max_tokens (ADR-0011) validato 100% schema validity
+sul smoke 100 record bilanciati (S/M/L/XL × 25). Resta come default future
+(non re-runnata α full per ragioni costo/beneficio: gain atteso solo +3pp).
+
+Heuristic recovery JSON post-hoc (commit 7113755): pattern Mistral-3.2
+"missing value" recuperato +8 record sui 3 result α (main +2, rescue1 +3,
+rescue2 +3). Schema validity 99.801% -> 99.836% canonical.
+
+Limitazione documentata (ADR-0012): schema v2 `primary_role` mono-axis
+non cattura design factoriali multi-asse (~5-7% binary disagreement con
+gold). Documentazione Methods/Limitations paper-grade.
+
+Modifiche locali:
+
+* R/llm-stage2.R: prompt aggiornato con regole RIGIDE primary_role
+  (vehicle/baseline/time-zero/factorial/no-omit). Validato sul rerun
+  18 chunks dei 16 GSE mini-gold v5 (job 20035): recovered 7/16 dei
+  problematici nel baseline. Restanti 9 sono ambiguità multi-axis
+  (limit ADR-0012) o omissioni rare (L5).
+* R/dgx-submit.R::dgx_p4_collect: bug fix `series_id = orig$series_id`
+  per chunked records (era `series_id = rid` con suffix `#NofM`). Coverage
+  mini-gold 64 -> 90 sample post-fix.
+* docs/decisions/0012-stage2-schema-multi-axis-limitation.md: ADR sulla
+  limit. Paper-ready note.
+* analysis/p4-stage2-eval-final.R: script eval canonical merge + binary
+  acc + design_kind acc + acceptance check Task 22 + diagnostic coverage.
+
+Test: 545 PASS / 0 FAIL / 3 SKIP (invariato).
+
 # simulomicsr 0.0.0.9013 (P4 — stage2 safe-mode default per deadlock-proof vLLM)
 
 ## Safe-mode stage2 (ADR-0009)
