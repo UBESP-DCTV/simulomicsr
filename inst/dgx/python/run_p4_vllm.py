@@ -10,7 +10,7 @@ Architettura:
     - carica vLLM LLM(model=..., tokenizer_mode="mistral",
       config_format="mistral", load_format="mistral", dtype=bfloat16, ...)
     - SamplingParams(max_tokens=..., temperature=0,
-      guided_decoding=GuidedDecodingParams(json=schema))
+      structured_outputs=StructuredOutputsParams(json=schema))  # vLLM 0.20+
     - llm.chat(messages=[[sys, user] per record]) — Mistral-3.2 NON supporta
       apply_chat_template (Tekken tokenizer).
     - scrive predictions.worker_<i>.jsonl append-only
@@ -113,14 +113,13 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     system_prompt = bundle["prompt"]
 
     print(f"[worker {worker_id}] caricamento vLLM su GPU {gpu_index}...", flush=True)
-    # backend di guided decoding: default vLLM e' xgrammar (ok per stage1).
-    # Per stage2 in alpha 2026-05-08 si disabilita guided decoding via
-    # gen["disable_guided_decoding"]=true (vedi sotto) perche' xgrammar
-    # entra in stall del torch._dynamo cache_size_limit per le shape
-    # variants del kernel apply_token_bitmask_inplace_kernel_indices
-    # (job 19778+19800 stalli, GPU 0% / CPU 99%). outlines/lm-format-enforcer
-    # NON sono installati nel container vllm/vllm-openai:v0.10.0, quindi
-    # niente backend swap qui (eventuale rebuild Docker e' un follow-up).
+    # Backend di structured outputs in vLLM 0.20.2: default "auto"
+    # (xgrammar con fallback automatico a outlines/guidance per casi non
+    # supportati). Storico Task 22 (vLLM 0.10.0): xgrammar saturava
+    # torch._dynamo cache_size_limit su stage2 (jobs 19778, 19800 stallo
+    # GPU 0% / CPU 99%) e disable_guided_decoding=true era l'unica via.
+    # Con v0.20.2 il fallback su outlines puo' rendere strict-schema viable
+    # — ADR-0010 Phase 2 config 2b verifichera' su mini500-cs25.
     # Costruzione args con flag opzionali (enforce_eager, max_num_seqs):
     # enforce_eager=True disabilita CUDA graph capture (piu' lento ma piu'
     # stabile su sequenze lunghe — Task 22 v5 mitigazione 2026-05-08, dopo
@@ -173,24 +172,21 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     if "min_p" in gen and gen["min_p"] is not None:
         extra_kwargs["min_p"] = float(gen["min_p"])
 
-    # Guided decoding: API nuova vLLM v1 (GuidedDecodingParams). Fallback
-    # a guided_json scalare se la versione installata e' piu' vecchia.
-    # Se gen["disable_guided_decoding"]=true (es. stage2 alpha 2026-05-08
-    # dove xgrammar entra in stall di torch._dynamo cache_size_limit per
-    # le shape variants del kernel apply_token_bitmask_inplace), la genera-
-    # zione e' liberamente JSON-shaped (Mistral-3.2 produce JSON parsabile
-    # nel ~95-99% dei casi senza enforcement; validazione schema avviene
-    # post-hoc R-side).
+    # Guided decoding: API vLLM v0.20+ usa StructuredOutputsParams (rimpiazza
+    # GuidedDecodingParams rimosso in v0.12.0). Backend selection automatica
+    # (xgrammar default con fallback a outlines/guidance) — ADR-0010 Phase 2
+    # config 2b verifichera' se outlines strict-schema raggiunge 100% validity
+    # su Mistral-3.2.
+    # Se gen["disable_guided_decoding"]=true (status quo stage2 da Task 22
+    # 2026-05-08 per evitare xgrammar torch._dynamo saturation in 0.10.0), la
+    # generazione e' free-JSON e la validazione schema avviene post-hoc.
     use_guided = not gen.get("disable_guided_decoding", False)
     if not use_guided:
         print(f"[worker {worker_id}] guided decoding DISABILITATO (free JSON, validate post-hoc)", flush=True)
-    guided_params = None
+    structured_params = None
     if use_guided:
-        try:
-            from vllm.sampling_params import GuidedDecodingParams
-            guided_params = GuidedDecodingParams(json=schema)
-        except Exception:
-            guided_params = "guided_json_legacy"  # fallback marker
+        from vllm.sampling_params import StructuredOutputsParams
+        structured_params = StructuredOutputsParams(json=schema)
 
     default_max_tokens = int(gen["max_tokens"])
 
@@ -202,10 +198,7 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
         kw["max_tokens"]  = int(max_tok)
         kw["temperature"] = float(gen["temperature"])
         if use_guided:
-            if guided_params == "guided_json_legacy":
-                kw["guided_json"] = schema
-            else:
-                kw["guided_decoding"] = guided_params
+            kw["structured_outputs"] = structured_params
         return SamplingParams(**kw)
 
     # Mistral tokenizer non supporta apply_chat_template. Usiamo llm.chat()
