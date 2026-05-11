@@ -30,6 +30,14 @@ Note operative emerse durante la validation:
 
 Wall time validation totale: ~3.5h DGX (Phase 1 sanity 2min + 2a/2b/2c/2d ≈ 3h + 2 rebuild Docker + Phase 3 mini-gold 3min).
 
+## Addendum 2026-05-11 (post-merge cs50 evaluation)
+
+Eseguita TODO opzionale "cs50 vs cs25" durante session autonomous notturna. Full alpha cs50 (jobs 20087+20088 continuation per TIMEOUT 6h, resume idempotent zero data loss):
+- Schema validity single-pass **99.96%** (vs baseline cs25 v0.10.0 3-pass+heuristic 99.84%).
+- H1 mini-gold v5: **96.7%** (n=91, F1 97.4%, sens 98.3%, spec 93.9%) → **+3.4pp vs baseline 93.3%**.
+
+**Default flipped cs25 → cs50** in `analysis/p4-stage2-build-input.R`: l'accuracy gain giustifica la maggior variance operativa (solvable con time=72h+ e resume idempotent). Token math conferma cs50 come sweet spot: ~17% headroom su max_model_len=65536; cs75 al limite, cs100 satura.
+
 ## Context and Problem Statement
 
 L'α P4 è chiusa il 2026-05-10 (tag `p4-dgx-complete` su `ab5e9ff`) con un'infrastruttura LLM funzionante ma carica di workaround. Il container in produzione è `vllm/vllm-openai:v0.10.0` (engine `0.10.1.dev1+gbcc0a3cbe`). Sopra a questa base abbiamo accumulato cinque mitigation:
