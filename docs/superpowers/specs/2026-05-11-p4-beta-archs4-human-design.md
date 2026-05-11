@@ -150,34 +150,46 @@ Buttare 793 studi DE-able è ~+20% del power potenziale di REM Stadio 5. Incompa
    ```
    https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gds&id=<GSE_uid>
    ```
-   Restituisce campo `entrytype` con valori `"GSE"`, `"SuperSeries"`, o (per sub-series) il campo `subseriesof` punta al super-series parent. Rate-limit Entrez senza API key: 3 req/s. Con API key (`NCBI_API_KEY` in `.Renviron.local`): 10 req/s. Stima tempo: 35 min senza key, 10 min con.
+   Restituisce campo `entrytype` con valori `"GSE"`, `"SuperSeries"`, o (per sub-series) il campo `subseriesof` punta al super-series parent.
+   **Rate-limit + API key:** Entrez senza API key permette 3 req/s; con API key 10 req/s. **L'utente fornisce `NCBI_API_KEY` in `.Renviron.local`** (variabile letta da `Sys.getenv("NCBI_API_KEY")` nel resolver). Stima tempo full run: ~10 min con key, ~35 min senza fallback.
 3. **Step 3 — Cache on-disk.** Salva mapping in `tools::R_user_dir("simulomicsr", "cache")/geo-series-types.rds` formato `data.frame(gse, entrytype, subseriesof, fetched_at)`. Riusabile cross-session.
-4. **Step 4 — Resolver function.** `resolve_series_id(series_id_multipli)`:
-   - Se 1 solo GSE: tienilo.
-   - Se >1 GSE: scarta i `SuperSeries`. Se rimane 1 → usalo. Se rimangono ≥2 sub-series (raro), scegli quello con meno sample (tipicamente il più specifico) e logga in `series-id-resolver-ambiguous.tsv`.
-   - Se TUTTI sono SuperSeries (caso patologico): scegli primary[0], logga in `series-id-resolver-fallback.tsv`.
+4. **Step 4 — Resolver function.** `resolve_series_id(series_id_multipli)` — output: `series_id_resolved` (singolo GSE) o `NA_unresolvable`.
+   - **Caso clean** (1 GSE in input): tienilo invariato.
+   - **Caso clean** (>1 GSE, dopo scarto dei `SuperSeries` rimane esattamente 1 SubSeries o GSE standalone): usalo.
+   - **Caso ambiguous** (>1 GSE, dopo scarto SuperSeries rimangono ≥2 SubSeries veri): il sample è in più esperimenti indipendenti legittimi. Output `NA_unresolvable`, logga in `series-id-resolver-unresolvable.tsv`. Il sample viene **droppato** dall'analisi P4 β (skip in ETL, contato in coverage report come `unresolvable_multiseries`).
+   - **Caso patologico** (tutti i GSE sono SuperSeries): output `NA_unresolvable`, logga in `series-id-resolver-fallback.tsv`. Sample droppato.
+
+**Razionale dello skip vs tie-breaker arbitrario:**
+- Tra due SubSeries entrambi legittimi (es. lo stesso sample è control sia in "Drug X experiment" che "Drug Y experiment"), non esiste una scelta non-arbitraria. Euristiche tipo "scegli quello con meno sample" o "scegli alfabetico" introducono bias non motivato nel pooling REM Stadio 5.
+- Skip ha effetto tracciabile (coverage report) e neutralità statistica.
+- Aspettativa: il caso ambiguous dovrebbe essere raro (< 1-2% dei multi-series, da quantificare empiricamente nello smoke 35.748 sample). Se > 1% nel run reale, escalation a ADR P4 γ per gestione manuale o policy esplicita.
 
 **Test obbligatori prima del deploy (gate pre-ETL):**
 
 1. **Unit tests** in `tests/testthat/test-etl-series-resolver.R`:
    - Caso 1 GSE → input echoed.
    - Caso 1 SuperSeries + 1 SubSeries → SubSeries scelto.
-   - Caso 2 SubSeries → quello con minor sample count scelto, logged ambiguous.
-   - Caso 2 SuperSeries (patologico) → primary fallback, logged.
+   - Caso 2 SubSeries (entrambi sub-series legittimi) → `NA_unresolvable`, logged in `unresolvable.tsv`.
+   - Caso 2 SuperSeries (patologico) → `NA_unresolvable`, logged in `fallback.tsv`.
+   - Caso 3 GSE = 2 SuperSeries + 1 SubSeries → SubSeries scelto.
    - Cache hit / cache miss correct behavior.
    - Rate-limit respect (mock).
-2. **Validation su sample noto manualmente curato**: scegli 20 sample multi-series random dal gold, ispeziona manualmente su GEO web (`geo/query/acc.cgi?acc=GSEx`) qual è la sub-series effettiva, costruisci ground-truth, esegui resolver e verifica match 100% (o ≥95%).
+   - API key presence detected → 10 req/s; assente → 3 req/s.
+2. **Validation su sample noto manualmente curato**: scegli 20 sample multi-series random dal gold-standard 130k, ispeziona manualmente su GEO web (`https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSEx`) qual è la sub-series effettiva o se è caso ambiguous, costruisci ground-truth, esegui resolver e verifica match ≥95%.
 3. **Smoke run** sul gold-standard 130k: resolver su tutti i 35.748 sample multi-series, log distribuzione decisioni:
-   - % sample con SubSeries scelto pulitamente
-   - % ambiguous
-   - % fallback patologico
+   - % sample con SubSeries scelto pulitamente (atteso > 95%)
+   - % unresolvable (caso 2 SubSeries+) — atteso < 1-2%
+   - % fallback patologico (caso tutti SuperSeries) — atteso < 0.5%
    - % cache hit rate post-prima-passata
-   - Verifica che il numero atteso di studi recuperati sia ~793 ± 100 (dai numeri della analysis 130k).
+   - Numero studi recuperati ricostruito da `series_id_resolved` unico vs `series_id[0]` primary: atteso ~793 ± 100 in più rispetto a primary-only (dal calcolo sul gold).
 
-**Gate decision** (questi 3 test passano prima di lanciare ETL del full ARCHS4):
+**Gate decision** (i 3 test passano prima di lanciare ETL del full ARCHS4):
 - 100% unit test pass
 - ≥95% accuracy su validation manuale 20 sample
-- < 5% fallback patologico nello smoke 35.748 sample
+- < 2% unresolvable + < 0.5% fallback patologico nello smoke 35.748 sample (totale < 2.5% drop)
+- Numero studi DE-able recuperati ≥ 600 (di quei 793 attesi)
+
+Se il gate FAIL su "% unresolvable > 1%": escalation a sessione conversazionale per decidere se accettare il drop (≤2%) o investigare policy specifiche.
 
 Tracking: ETL log per ogni multi-series sample salva `geo_accession, series_id_input, series_id_resolved, resolver_path (clean/ambiguous/fallback)` in `analysis/p4-output/p4-beta-etl-multiseries.tsv` per audit completo nel coverage report.
 
