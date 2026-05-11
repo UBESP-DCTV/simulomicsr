@@ -35,17 +35,21 @@ suppressPackageStartupMessages({
 })
 
 # CHUNK_SIZE: numero di sample per record stage2.
-# - 50 (alpha originale 2026-05-07): produce record fino a ~101KB (~28K token)
-#   che triggerano deadlock vLLM 0.10 sul processing di prompt vicini al cap
-#   max_model_len=32768. Investigation 2026-05-08 jobs 19839-19840 ha
-#   confermato: SINGOLO record da 101KB su 1 GPU + max_num_seqs=1 stalla
-#   immediatamente dopo "generazione su 1 record", nessuna progress in 12 min.
-# - 25 (post-investigation 2026-05-08): tutti i record sotto ~50KB (~14K token),
-#   ampia soglia di sicurezza vs cap.
-CHUNK_SIZE <- 25L
+# - 50 (alpha originale + DEFAULT POST ADR-0010, 2026-05-11): record fino a
+#   ~101KB. Con vLLM v0.20.2 (PR #40946 fix Issue #39734) il deadlock e'
+#   risolto upstream e tier max_tokens (ADR-0011) + concurrency restored
+#   (max_num_seqs=6) lo gestiscono. Full alpha cs50 v0.20.2: 99.96% schema
+#   validity single-pass, mini-gold H1 96.7% (+3.4pp vs cs25 baseline).
+#   max_model_len yaml bumpato a 65536 per accomodare cs50 prompt + 32K
+#   output (vedi inst/extdata/p4-defaults.yml).
+# - 25 (pre-ADR-0010 default 2026-05-08 -> 2026-05-11): mitigazione cs25
+#   per evitare deadlock vLLM v0.10.0 Issue #39734. Storico Task 22.
+#   Restored come fallback se cs50 mostra TIMEOUT su nuovi dataset
+#   (basta cambiare a 25L qui).
+CHUNK_SIZE <- 50L
 SEED       <- 1812L
 INPUT_RDS  <- "analysis/p4-output/alpha-stage1-final.rds"
-OUT_JSONL  <- "data-raw/p4-alpha-stage2-cs25.jsonl"
+OUT_JSONL  <- "data-raw/p4-alpha-stage2.jsonl"
 
 stopifnot(file.exists(INPUT_RDS))
 

@@ -90,12 +90,14 @@ significativamente migliore di cs25, anche se wall time piu' variabile
 piu' grandi danno al modello piu' contesto per inferenza dei
 replicate_groups.
 
-**Default cs25 mantenuto in `analysis/p4-stage2-build-input.R`** per
-ora: l'utente puo' optare per cs50 esplicitamente quando il vantaggio
-accuracy giustifica il maggior variance operativo. Plot twist: il
-dato sembra giustificarlo, ma la decisione di flip default e' lasciata
-all'utente al risveglio (modifica banale: CHUNK_SIZE <- 50L + rerun
-input build).
+**Default flipped a cs50 in `analysis/p4-stage2-build-input.R`** post
+review utente: +3.4pp accuracy giustifica variance operativa (solvable
+con time=72h+ e resume idempotent). cs25 resta opzione fallback.
+
+Token math chunk_size sweet spot: cs50 lascia ~17% headroom su
+max_model_len 65536. cs75/cs100 lo saturerebbero (TIMEOUT certo o KV
+saturation forzando max_num_seqs=1 = perdiamo W2). cs50 e' il
+massimo sicuro.
 
 ---
 
