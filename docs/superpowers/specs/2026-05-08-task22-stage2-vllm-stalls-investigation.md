@@ -1,6 +1,21 @@
-# Task 22 stage2 — investigation stall vLLM (RESOLVED 2026-05-08)
+# Task 22 stage2 — investigation stall vLLM (CLOSED 2026-05-11)
 
-**Stato**: **RESOLVED 2026-05-08**. Root cause identificato: vLLM **Issue #39734** (scheduler v1 deadlock head-of-line per request entro `max_model_len` ma sopra KV cache capacity disponibile). Bug ancora presente in vLLM 0.19.x — upgrade del container NON aiuta. **Path C (chunk_size=25 in `analysis/p4-stage2-build-input.R`) confermato come fix operativo** via T5g (2000 record / 4 GPU completati 100%, worker 3 supera la danger zone). Ulteriore fix richiesto: bump `max_tokens` 1024→4096 per ottenere 97% schema validity (validato T5h, 485/500). Fix `scheduler_reserve_full_isl=False` aggiunto come defense-in-depth.
+**Stato**: **CLOSED 2026-05-11, superseded by ADR-0010 vLLM upgrade.**
+
+Root cause (Issue #39734 vLLM scheduler v1 deadlock) e' stata fixata
+upstream da PR #40946 (mergiata 2026-04-27, in v0.20.0+). ADR-0010
+(2026-05-10) ha validato l'upgrade a v0.20.2-cu129 con gate hierarchical
+PASS (HARD+SOFT entrambi). Phase 5 cleanup ha rimosso lo stack di
+workaround documentato qui (safe-mode, disable_guided_decoding,
+chunk_size=25, fence-strip, heuristic recovery). ADR-0013 ha re-flippato
+default a cs50 dopo evidence H1 (96.7% vs 93.3% baseline, +3.4pp).
+
+Questo doc resta come **record storico** dell'investigation, utile per:
+- Riferimento al modus operandi diagnostic (T5a-T5h matrix smoke).
+- Documentazione del bug pattern per future regressioni vLLM.
+- Audit della catena decisioni 2026-05-08 → 2026-05-11.
+
+**Stato originale 2026-05-08**: Root cause identificato vLLM **Issue #39734**. Bug ancora presente in vLLM 0.19.x — upgrade del container NON aiuta. **Path C (chunk_size=25 in `analysis/p4-stage2-build-input.R`) confermato come fix operativo** via T5g (2000 record / 4 GPU completati 100%, worker 3 supera la danger zone). Ulteriore fix richiesto: bump `max_tokens` 1024→4096 per ottenere 97% schema validity (validato T5h, 485/500). Fix `scheduler_reserve_full_isl=False` aggiunto come defense-in-depth.
 
 **Branch**: `p4-dgx-integration` (modifiche committate? — verificare prima di nuova sessione).
 
