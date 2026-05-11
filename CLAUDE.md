@@ -53,36 +53,32 @@ Pipeline complessiva (5 stadi):
   che diverge da `design_role` — il gold "design-aware" è in
   `inst/extdata/p35c-minigold-reviewed-v5.csv` (100 sample, P3.5-C/D).
 
-## Stato corrente (2026-05-10 — P4 α stage2 CHIUSO)
+## Stato corrente (2026-05-11 — P4 α stage2 CHIUSO + ADR-0010 vLLM upgrade complete)
 
-Pipeline classification stage1 + stage2 **completa e validata** sul
-dataset xlsx (130.784 sample / 8.546 GSE chunked):
+Pipeline classification stage1 + stage2 **completa e validata + upgraded**:
 
-- **α stage1** (Task 21, 2026-05-07) → 130.784 / 130.784 = **100.00%**
-  schema valid (recovery multi-pass: 124,979 originali + 2,308
-  propagation + 1,132 rep_pen 1.1 + 205 max_tokens 2048 + 6 rep_pen 1.2).
-  Dettagli in NEWS.md 0.0.0.9009-0.0.0.9011 e ADR-0008.
-- **α stage2** (Task 22, 2026-05-10) → 8.532 / 8.546 = **99.84%** schema
-  valid (3-pass canonical merge + R-side recovery). Binary accuracy
-  mini-gold v5 = **93.3%** (banda INVESTIGATIVO [80, 95) plan).
-  Dettagli in NEWS.md 0.0.0.9013-0.0.0.9014 e ADR-0009/0011/0012.
+- **α stage1** (Task 21, 2026-05-07) → 130.784 / 130.784 = **100.00%** schema. Dettagli NEWS 0.0.0.9009-0.0.0.9011 + ADR-0008.
+- **α stage2** original (Task 22, 2026-05-10, v0.10.0 + workaround stack) → 8.532 / 8.546 cs25 = 99.84% schema, mini-gold 93.3%.
+- **α stage2 re-run cs50** (ADR-0010, 2026-05-11, v0.20.2-cu129 + clean stack) → **6.649 / 6.652 cs50 = 99.96%** schema single-pass, **mini-gold 96.7%** (+3.4pp). Default flipped cs25→cs50.
 
-**Pipeline running config (default attuale)**:
+**Pipeline running config (post ADR-0010, 2026-05-11)**:
 
+- **Container**: `vllm/vllm-openai:v0.20.2-cu129-ubuntu2404` (cu129 per driver 535 DGX compat).
 - **Modello**: `mistralai/Mistral-Small-3.2-24B-Instruct-2506` self-hosted FP16 su DGX H100. Costo $0.
-- **vLLM SamplingParams** (ADR-0008): `temperature=0.0, repetition_penalty=1.1` stage1+stage2; `max_tokens=2048` stage1; tier-based per-record max_tokens stage2 (S/M/L/XL → 4K/8K/16K/32K, ADR-0011).
-- **Stage2 safe-mode** (ADR-0009): `max_num_seqs=1, microbatch=1` per evitare deadlock vLLM Issue #39734. Trade-off ~1.5-2× per worker, parallelismo cross-GPU preservato.
-- **Stage2 chunking**: `chunk_size=25` in `analysis/p4-stage2-build-input.R::CHUNK_SIZE` (ADR-0009 fallback Path C).
-- **Heuristic recovery JSON** post-hoc (commit 7113755) per pattern Mistral-3.2 "missing value" + markdown-fence strip.
-- **Tag**: `p1-infra-llm-complete` ... `p3.5c-confidence-complete`,
-  `p4-smoke-complete`, `p4-dgx-complete` (TBD a chiusura branch).
-- **Branch attivo**: `p4-dgx-integration`. **Test**: 545 PASS / 0 FAIL / 3 SKIP (skip pre-esistenti OPENAI_API_KEY).
+- **vLLM API**: `StructuredOutputsParams` (backend auto = xgrammar→outlines fallback). `GuidedDecodingParams` rimosso in vLLM v0.12.0.
+- **Sampling** (ADR-0008): `temperature=0.0, repetition_penalty=1.1` stage1+stage2. Tier-based per-record max_tokens stage2 (S/M/L/XL → 4K/8K/16K/32K, ADR-0011).
+- **Concurrency restored** (post PR #40946): `max_num_seqs=6, microbatch=50` stage2. Safe-mode (ADR-0009) declassato a fallback contingency.
+- **Stage2 chunking**: `chunk_size=50` in `analysis/p4-stage2-build-input.R::CHUNK_SIZE` (default cs50 dopo H1 evidence +3.4pp, ADR-0010 addendum + ADR-0013). cs25 fallback se variance dataset diverso.
+- **Schema validation**: structured_outputs = parser-grade by construction. Heuristic recovery Python+R **rimossa** (Phase 5 cleanup ADR-0010).
+- **Tag attivo**: `p4-vllm-upgrade-v0.20.2-complete` (commit 31c676a, addendum 89ca20e per cs50 flip).
+- **Branch attivo**: `master`. **Test**: 544 PASS / 0 FAIL / 3 SKIP (skip pre-esistenti OPENAI_API_KEY).
 
 **File risultato α**:
 
 - `analysis/p4-output/alpha-stage1-final.rds` (130.784 × 7, colonna `rescue_source` traccia provenienza)
-- `analysis/p4-output/alpha-stage2-cs25-final.rds` (8.532 valid + 14 errors canonical merge 3-pass)
-- `analysis/p4-output/alpha-stage2-cs25-eval.rds` (binary acc + design_kind + minigold table)
+- `analysis/p4-output/alpha-stage2-cs25-final.rds` (legacy v0.10.0 alpha, conservato per audit storico)
+- `analysis/p4-output/20260510T215308Z-p5-alpha-cs50-final-8db4c0/predictions.jsonl` (cs50 v0.20.2 alpha, 6649/6652 valid)
+- `analysis/p4-output/phase3-h1-eval-20088.rds` (H1 mini-gold cs50 eval)
 
 ## Convenzioni operative dell'utente
 
