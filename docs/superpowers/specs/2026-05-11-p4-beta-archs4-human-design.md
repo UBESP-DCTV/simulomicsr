@@ -48,18 +48,24 @@ Filtri legittimi pre-stage1:
 ### 4.1 Pipeline complessiva
 
 ```
-ARCHS4 human_gene_v2.X.h5  (~50-100 GB)
+ARCHS4 human_gene_v2.5.h5  (45 GB)
     │
     ▼  [4.2 ETL H5 → JSONL]
 analysis/input/archs4-human-stage1-input.jsonl  (~500k record)
     │
-    ▼  [4.4 Stage1 classification, single SLURM job, vLLM v0.20.2-cu129]
+    ▼  [4.3 GATE #1 mini-gold format B re-eval (100 sample)]
+analysis/p4-output/<TS>-p4-beta-minigold-formatB/  + metriche
+    │
+    ▼  [4.3-bis GATE #2 smoke test stratificato (1000 sample casuali)]
+analysis/p4-output/<TS>-p4-beta-smoke1000/  + metriche
+    │
+    ▼  [4.4 Stage1 full run, single SLURM job, vLLM v0.20.2-cu129]
 analysis/p4-output/<TS>-p4-beta-stage1/predictions.jsonl  (~500k record)
     │
-    ▼  [4.5 Stage1 → stage2 aggregation per series_id, cs50 chunks]
+    ▼  [4.5 Stage1 → stage2 aggregation per primary series_id, cs50 chunks]
 analysis/input/archs4-human-stage2-input/  (chunked JSON files)
     │
-    ▼  [4.6 Stage2 classification, single SLURM job, vLLM v0.20.2-cu129]
+    ▼  [4.6 Stage2 full run, single SLURM job, vLLM v0.20.2-cu129]
 analysis/p4-output/<TS>-p4-beta-stage2/predictions.jsonl  (~10k studi × records)
     │
     ▼  [4.7 Aggregation + coverage report]
@@ -68,7 +74,15 @@ analysis/p4-output/p4-beta-coverage.rds  +  p4-beta-coverage.html
 
 ### 4.2 ETL HDF5 → JSONL transform
 
-**Source.** ARCHS4 human dump dalla pagina download ufficiale (`https://maayanlab.cloud/archs4/download.html`). Versione: ultima stabile al momento del download (probabile `v2.6` o successiva). Versione esatta + SHA256 → committati in `analysis/p4-output/p4-beta-archs4-source.json` come provenance record.
+**Source.** ARCHS4 human gene-level dump dalla pagina download ufficiale (`https://maayanlab.cloud/archs4/download.html`):
+
+- **File:** `human_gene_v2.5.h5`
+- **Versione:** v2.5
+- **Size:** 45 GB
+- **Last update:** 2024-08-24
+- **Razionale**: ultima versione gene-level stabile pubblicata da Maayan Lab al 2026-05-11. Le versioni più recenti pubbliche sono solo transcript-level (`human_transcript_v2.5.h5` 136 GB) e TPM (`human_tpm_v2.2.h5` 218 GB), non utili per noi: P4 β usa solo metadata, Stadio 4 (DE) richiede gene-level counts.
+
+SHA256 calcolato al download e committato in `analysis/p4-output/p4-beta-archs4-source.json` come provenance record.
 
 **Lettura.** Pacchetto R `rhdf5` (BioC) o `hdf5r`. Campi target da `/meta/samples/`:
 - `geo_accession` (sample-level GSM ID)
@@ -113,6 +127,17 @@ Una riga per sample. Atteso ~500k righe / ~150-200 MB compresso.
 
 **Provenance log** per ogni sample escluso: `analysis/p4-output/p4-beta-etl-skipped.tsv` con colonne `geo_accession, series_id, skip_reason`.
 
+**Gestione `series_id` multipli.** In ARCHS4 il campo `series_id` può contenere più GSE separati da virgola (es. `"GSE145668,GSE145669"`), tipicamente per relazioni super-series ↔ sub-series in GEO, multi-paper publication, o resubmission. Stage2 lavora a livello di studio, quindi serve una policy.
+
+**Decisione: Primary only (opzione A).** Aggrega per `series_id[0]` (il primo elemento della lista). Lo stesso `geo_accession` appartiene a un solo studio in stage2 e contribuisce a un solo cluster Stadio 3.
+
+**Rationale:**
+- Opzione "Replicate" (sample in ogni series_id) è matematicamente scorretta per REM in `metafor`: violerebbe l'indipendenza degli effect-size con double-counting.
+- Opzione "Smart selection via GEO API" (chiama NCBI Entrez, scarta `SuperSeries` tieni `SubSeries`) è la più corretta ma sproporzionata per P4 β (~5k chiamate API extra, codice ad hoc).
+- Primary è pragmatica: nella maggior parte dei casi `series_id[0]` è la sub-series specifica o il sole accession; se è una super-series multi-omics, perdiamo specificità ma non correttezza statistica.
+
+**Tracking.** ETL log: per ogni sample con `series_id` multipli, salva `geo_accession, series_id_primary, series_id_secondary` in `analysis/p4-output/p4-beta-etl-multiseries.tsv`. Coverage report (sez. 4.7) mostra la distribuzione percentuale — se > 5%, considerare migrazione a opzione C in P4 γ.
+
 ### 4.3 Pre-flight: mini-gold re-eval format B (GATING)
 
 **Necessario prima di qualunque full-run stage1.** Format B è off-distribution rispetto al gold P3.5-A su cui Mistral-Small-3.2 ha registrato 96.7% mini-gold.
@@ -124,10 +149,32 @@ Una riga per sample. Atteso ~500k righe / ~150-200 MB compresso.
 3. Calcolare metriche: schema valid rate (target ≥ 99.5%), mini-gold accuracy (target ≥ 96.7%, threshold blocco < 95%), n_overflow per tier (target = 0 per tier_XL).
 
 **Gate decision:**
-- PASS (≥ 96.7% acc, 0 overflow): full-run stage1 partito.
+- PASS (≥ 96.7% acc, 0 overflow): procedi a smoke test 1000 sample (sez. 4.3-bis) prima del full-run.
 - PASS borderline (95-96.7% acc): nuova sessione conversazionale per decidere se accettare il leggero drop o iterare prompt stage1 con esempi B.
 - FAIL accuracy < 95%: investigare causa (off-distribution stage1 vs degradazione stage2). Format B potrebbe richiedere prompt tuning.
 - FAIL overflow stage2 osservato: scaling cs50 → cs45 → cs40 in step, MAI cs25 senza altra evidence.
+
+### 4.3-bis Smoke test 1000 sample casuali (pre-full-run sanity)
+
+Secondo gate dopo mini-gold PASS, prima di sottomettere il job 35h+ di stage1 full. Validazione su volume reale (1000 sample) per catturare problemi di scale che mini-gold (100 sample) non vede.
+
+**Procedura:**
+1. Da `archs4-human-stage1-input.jsonl` (output ETL completo, ~500k record), sample casuale stratificato N=1000 con `set.seed(42)`: stratificazione per quantile di `nchar(string)` (Q1/Q2/Q3/Q4) per coprire la distribuzione di lunghezza input.
+2. Sottomettere job DGX stage1+stage2 sul subset N=1000 con config **identica al full-run**: vLLM v0.20.2-cu129, structured outputs, temperature 0.0, repetition 1.1, max_num_seqs=6, microbatch=50, cs50, tier max_tokens. Stima wall ~1-1.5h.
+3. Calcolare metriche:
+   - Stage1 schema valid rate (target ≥ 99.5%)
+   - Stage2 schema valid rate (target ≥ 99.5%, parity α cs50 99.96%)
+   - n_overflow per tier S/M/L/XL (target = 0 per XL)
+   - Throughput effettivo rec/min (per refinare la stima 35h+50-70h del full-run)
+   - Distribuzione `design_role` plausibile (no anomalie ovvie, es. > 50% `unclassifiable`)
+   - Distribuzione tier S/M/L/XL coerente con α (~70% S, ~25% M, ~4% L, ~1% XL)
+4. Output dump in `analysis/p4-output/<TS>-p4-beta-smoke1000/` per audit.
+
+**Gate decision:**
+- PASS: lancia full-run stage1 con confidence calibrata.
+- FAIL throughput < 50% stima: rivedi stima totale (potrebbe essere 200h+ wall invece di 100h), valuta se procedere.
+- FAIL schema valid < 99%: investigare (probabile bug ETL o config drift), NON procedere a full-run.
+- FAIL distribuzione anomala: investigare (potrebbe essere format B effetto su distribution dei `design_role` da gold P3.5-A).
 
 ### 4.4 Stage1 full-run
 
@@ -180,22 +227,25 @@ Single long SLURM job per stadio + cache LLM idempotent. Re-submit manuale in ca
 
 ### 5.2 Cron monitoring (proattivo, NON background script)
 
-Da setupare sul laptop dell'utente con `crontab -e`:
+L'utente monitora via app Claude (no Telegram bot, no notifiche push). Lo script di monitoring genera un log strutturato che l'utente legge a discrezione (o che Claude può ispezionare on-demand all'inizio di sessione successiva).
+
+Cron sul laptop dell'utente:
 
 ```cron
-# Ogni 2h, ssh DGX per check job + tail logs
+# Ogni 2h, ssh DGX per snapshot stato job + tail logs ultimi 50 righe
 0 */2 * * * /home/user/simulomicsr/scripts/p4-beta-monitor.sh >> /home/user/simulomicsr/analysis/p4-beta-monitor.log 2>&1
 ```
 
 Lo script `scripts/p4-beta-monitor.sh` fa:
-1. `ssh dgx 'squeue -u u0044'` → lista job attivi.
-2. Per ogni job attivo, `ssh dgx 'tail -50 ~/p4-beta/slurm-*.out'`.
-3. Se `0` job attivi e last job NON è `COMPLETED`: invia notifica (Telegram via bot configurato? email locale? `notify-send`?).
-4. Append timestamp + status sintetico a log.
+1. `ssh dgx 'squeue -u u0044 --format="%A %j %T %M %l"'` → lista job attivi con state + elapsed + time-limit.
+2. Per ogni job RUNNING, `ssh dgx 'tail -50 ~/p4-beta/slurm-*.out'` → snapshot progress.
+3. Conta record processati nel JSONL output corrente per stimare throughput live (es. `wc -l predictions.jsonl`).
+4. Append a `analysis/p4-beta-monitor.log` con header chiaro per ogni snapshot: timestamp ISO, job_state, elapsed, n_records, n_overflow, n_cache_hit.
+5. Se `0` job attivi E last logged state ≠ `COMPLETED`: scrive una riga `[ATTENTION]` a inizio log per renderla evidente quando l'utente apre il file.
 
-**NON** background bash con `until ... ; do sleep ...` (memoria utente `feedback_bash_background_notifications.md`).
+**NON** background bash con `until ... ; do sleep ...` (memoria `feedback_bash_background_notifications.md`).
 
-Setup cron è task del plan di implementazione, non di questa spec.
+Setup cron + script è task del plan di implementazione, non di questa spec di design.
 
 ## 6. Output destinations & storage
 
@@ -215,13 +265,15 @@ Setup cron è task del plan di implementazione, non di questa spec.
 
 | Stadio | Wall time stimato | Costo monetario | Costo GPU-time |
 |---|---|---|---|
+| ARCHS4 H5 download (`human_gene_v2.5.h5` 45 GB) | 1-3 h (dipende da banda) | $0 | 0 |
 | ETL H5 → JSONL | 1-2 h | $0 | 0 (CPU-only su DGX node) |
-| Pre-eval mini-gold format B | ~1 h | $0 | 4 GPU × 1 h = 4 GPU-h |
+| Pre-eval mini-gold format B (gate #1) | ~1 h | $0 | 4 GPU × 1 h = 4 GPU-h |
+| Smoke test 1000 sample (gate #2) | ~1.5 h | $0 | 4 GPU × 1.5 h = 6 GPU-h |
 | Stage1 full run (500k sample) | ~35 h | $0 | 4 GPU × 35 h = 140 GPU-h |
 | Aggregation stage1→stage2 | < 30 min | $0 | 0 (CPU) |
 | Stage2 full run (~10k studi) | ~50-70 h | $0 | 4 GPU × 60 h = 240 GPU-h |
 | Coverage report | < 30 min | $0 | 0 |
-| **Totale** | **~90-110 h wall (~4-5 gg)** | **$0** | **~385 GPU-h** |
+| **Totale** | **~92-115 h wall (~4-5 gg)** | **$0** | **~390 GPU-h** |
 
 Costo monetario zero perché DGX self-hosted con vLLM (ADR-0007). GPU-time va contabilizzato per progetto UniPD HPC ma non finanziario.
 
@@ -242,13 +294,12 @@ Costo monetario zero perché DGX self-hosted con vLLM (ADR-0007). GPU-time va co
 - **P4 γ — mouse + ortholog mapping.** Stesso pattern di P4 β su `mouse_gene_v2.X.h5`. Ortholog pooling mouse→human via HGNC homologene / MGI: ADR separato post P4 β.
 - **Stadio 3 — clustering cross-studio.** P5 dopo P4 β chiusa.
 - **Stadio 4+5 — DE + meta-analisi REM.** P5 / P6.
-- **Smoke test su 1000 sample casuali** — può essere utile come ultimo sanity check pre-full-run dopo che mini-gold passa il gate. Decisione: lo includo nel plan di implementazione, non in questa spec di design (decisione tattica, non architetturale).
 - **Rebrand pacchetto** (ADR-0003) — pre-publish.
 - **Migrazione ellmer** — ADR separato post-α.
 
-## 10. Open questions per la review
+## 10. Open questions — risolte 2026-05-11
 
-1. Versione ARCHS4 H5 specifica: ultima stabile al momento del download, oppure versione precisa congelata in advance? (Default: ultima al download, registrata in provenance.)
-2. `series_id` multipli (es. `GSE145668,GSE145669`): aggregare per primario (primo elemento), oppure replicare il sample in stage2 una volta per series_id? (Default proposta: primario per evitare duplicati nel pooling Stadio 3.)
-3. Telegram bot per notifiche cron: utente vuole usare il bot configurato (vedo skill `telegram:configure` disponibile) o sufficiente log + check manuale? (Default proposta: log only, controllo manuale ogni 2-4h è già il flow utente.)
-4. Smoke test su 1000 sample casuali pre-full-run: utile o eccessivo dato che mini-gold format B copre già il gating? (Default proposta: skip, mini-gold sufficient.)
+1. ~~Versione ARCHS4 H5~~ → **`human_gene_v2.5.h5` v2.5** (45 GB, 2024-08-24). Sez. 4.2.
+2. ~~`series_id` multipli~~ → **Primary only (opzione A)**, con tracking dei secondary in log per coverage report. Sez. 4.2.
+3. ~~Telegram bot~~ → **No notifiche push, monitoring via app Claude**. Cron genera log strutturato leggibile on-demand. Sez. 5.2.
+4. ~~Smoke test 1000 sample~~ → **Aggiunto come gate #2 dopo mini-gold gate #1**. Sez. 4.3-bis.
