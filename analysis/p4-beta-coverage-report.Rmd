@@ -1,0 +1,73 @@
+---
+title: "P4 β — ARCHS4 human coverage report"
+date: "`r Sys.Date()`"
+output:
+  quarto::html_document:
+    toc: true
+    theme: cosmo
+---
+
+# Pipeline coverage P4 β
+
+```{r setup, include=FALSE}
+library(jsonlite)
+library(dplyr)
+library(ggplot2)
+recs1 <- stream_in(file("analysis/p4-output/<stage1-run-id>/predictions.jsonl"), verbose = FALSE)
+recs2 <- stream_in(file("analysis/p4-output/<stage2-run-id>/predictions.jsonl"), verbose = FALSE)
+multi <- read.table("analysis/p4-output/p4-beta-etl-multiseries.tsv",
+                    sep = "\t", header = TRUE)
+skipped <- read.table("analysis/p4-output/p4-beta-etl-skipped.tsv",
+                      sep = "\t", header = TRUE)
+```
+
+## 1. ETL coverage
+
+- Total sample in ARCHS4 v2.5 H5: TODO_FROM_LOG
+- Sample includibili (filtri organism + library + length): `r nrow(recs1) + nrow(skipped)`
+- Sample skippati per reason:
+```{r}
+table(skipped$skip_reason)
+```
+
+## 2. Series-id-resolver coverage
+
+- Sample multi-series totali: `r nrow(multi)`
+- Branch distribution:
+```{r}
+table(multi$resolver_branch)
+```
+- Tiebreak (`tiebreak_both_srp`) sample count: `r sum(multi$resolver_branch == "tiebreak_both_srp")`
+- Fallback (`fallback_no_srp`) sample count: `r sum(multi$resolver_branch == "fallback_no_srp")`
+
+## 3. Stage1 classification coverage
+
+```{r}
+schema_valid_rate <- mean(!is.na(recs1$primary_role))
+cat(sprintf("Schema valid: %.2f%%\n", 100 * schema_valid_rate))
+table(recs1$primary_role)
+```
+
+## 4. Stage2 study-level coverage
+
+- Studi unici classificati: `r length(unique(recs2$series_id_resolved))`
+- Distribuzione `design_role`:
+```{r}
+table(recs2$design_role)
+```
+
+## 5. Comparability_anchor distribution (top-20)
+
+```{r}
+recs2 |>
+  count(comparability_anchor, sort = TRUE) |>
+  slice_head(n = 20) |>
+  knitr::kable()
+```
+
+## 6. Comparison vs P4 α
+
+α stage1 cs50: 130.784 sample → 6649 record stage2 cs50.
+β stage1: `r nrow(recs1)` sample → ? record stage2.
+
+(da popolare con dati reali post-run)
