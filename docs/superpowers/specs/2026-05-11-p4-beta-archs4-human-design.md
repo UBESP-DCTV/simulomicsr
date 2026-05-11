@@ -41,6 +41,7 @@ Filtri legittimi pre-stage1:
 | Organism | Human-only (P4 β) | Match diretto col benchmark RummaGEO + rischio scaling ridotto |
 | Resume strategy | A per entrambi stadi: single long job + cache LLM idempotent + cron monitoring proattivo | Coerenza scientifica (no mixed config tra stadi) |
 | Format stringa stage1 | B: `characteristics_ch1 + title + source_name_ch1` con pre-eval mini-gold gating | Più contesto LLM, ma format diverso dal gold-standard → re-eval obbligatoria |
+| `series_id` multipli | C — Smart selection via NCBI Entrez API (SubSeries > SuperSeries) | A perderebbe 793 studi DE-able (~+20% power Stadio 5) misurati sul gold-standard. Inaccettabile per USP (sez. 2). |
 | cs50 vs cs25 | cs50 confermato, scaling solo data-driven | ADR-0013 + nessuna evidence pre-empirica per cs45/cs40 |
 
 ## 4. Architettura
@@ -50,8 +51,11 @@ Filtri legittimi pre-stage1:
 ```
 ARCHS4 human_gene_v2.5.h5  (45 GB)
     │
-    ▼  [4.2 ETL H5 → JSONL]
-analysis/input/archs4-human-stage1-input.jsonl  (~500k record)
+    ▼  [4.2a ETL H5 → JSONL raw]
+analysis/input/archs4-human-stage1-input-raw.jsonl  (~500k record con series_id multipli)
+    │
+    ▼  [4.2b GATE #0 series-id-resolver (GEO Entrez API + cache, 3 test sub-gate)]
+analysis/input/archs4-human-stage1-input.jsonl  (~500k record con series_id_resolved)
     │
     ▼  [4.3 GATE #1 mini-gold format B re-eval (100 sample)]
 analysis/p4-output/<TS>-p4-beta-minigold-formatB/  + metriche
@@ -127,16 +131,55 @@ Una riga per sample. Atteso ~500k righe / ~150-200 MB compresso.
 
 **Provenance log** per ogni sample escluso: `analysis/p4-output/p4-beta-etl-skipped.tsv` con colonne `geo_accession, series_id, skip_reason`.
 
-**Gestione `series_id` multipli.** In ARCHS4 il campo `series_id` può contenere più GSE separati da virgola (es. `"GSE145668,GSE145669"`), tipicamente per relazioni super-series ↔ sub-series in GEO, multi-paper publication, o resubmission. Stage2 lavora a livello di studio, quindi serve una policy.
+**Gestione `series_id` multipli.** In ARCHS4 il campo `series_id` può contenere più GSE separati da virgola (es. `"GSE145668,GSE145669"`), tipicamente per relazioni super-series ↔ sub-series in GEO, multi-paper publication, o resubmission.
 
-**Decisione: Primary only (opzione A).** Aggrega per `series_id[0]` (il primo elemento della lista). Lo stesso `geo_accession` appartiene a un solo studio in stage2 e contribuisce a un solo cluster Stadio 3.
+**Quanto pesa il fenomeno (misurato sul gold-standard 130k sample):**
+- 27.33% sample hanno multi-series (35.748 / 130.784)
+- 15.35% GSE persi se aggreghiamo per primary only (970 / 6321 GSE unici)
+- 81.8% di quei 970 GSE persi (= 793) avrebbero ≥6 sample come studi a sé stanti → **DE-able studies persi**
+- Per i sample multi-series: 23.9% casi hanno primary > secondary (primary è probabilmente super-series, "primary only" perderebbe il sub-series RNA-seq specifico)
 
-**Rationale:**
-- Opzione "Replicate" (sample in ogni series_id) è matematicamente scorretta per REM in `metafor`: violerebbe l'indipendenza degli effect-size con double-counting.
-- Opzione "Smart selection via GEO API" (chiama NCBI Entrez, scarta `SuperSeries` tieni `SubSeries`) è la più corretta ma sproporzionata per P4 β (~5k chiamate API extra, codice ad hoc).
-- Primary è pragmatica: nella maggior parte dei casi `series_id[0]` è la sub-series specifica o il sole accession; se è una super-series multi-omics, perdiamo specificità ma non correttezza statistica.
+Buttare 793 studi DE-able è ~+20% del power potenziale di REM Stadio 5. Incompatibile con la USP del progetto (valorizzare studies piccoli, sez. 2).
 
-**Tracking.** ETL log: per ogni sample con `series_id` multipli, salva `geo_accession, series_id_primary, series_id_secondary` in `analysis/p4-output/p4-beta-etl-multiseries.tsv`. Coverage report (sez. 4.7) mostra la distribuzione percentuale — se > 5%, considerare migrazione a opzione C in P4 γ.
+**Decisione: Smart selection via GEO API (opzione C).** Per ogni `geo_accession` con `series_id` multipli, identifica quale GSE è il `SubSeries` (o GSE standalone) e usalo come "studio del sample" per stage2. Lo `SuperSeries` viene scartato perché aggrega trasversalmente (es. progetto multi-omics) e non rappresenta un design experimental coerente da pooling.
+
+**Implementazione (modulo dedicato `R/etl-series-resolver.R`):**
+
+1. **Step 1 — Inventory.** Estrai dall'output ETL stage1 (sez. 4.2 sopra) l'unione di tutti i GSE che appaiono in qualunque `series_id` (sia primary che secondary). Atteso ~6.3k GSE unici.
+2. **Step 2 — GEO Entrez lookup.** Per ogni GSE, chiamata `esummary` a NCBI Entrez sul database `gds`:
+   ```
+   https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gds&id=<GSE_uid>
+   ```
+   Restituisce campo `entrytype` con valori `"GSE"`, `"SuperSeries"`, o (per sub-series) il campo `subseriesof` punta al super-series parent. Rate-limit Entrez senza API key: 3 req/s. Con API key (`NCBI_API_KEY` in `.Renviron.local`): 10 req/s. Stima tempo: 35 min senza key, 10 min con.
+3. **Step 3 — Cache on-disk.** Salva mapping in `tools::R_user_dir("simulomicsr", "cache")/geo-series-types.rds` formato `data.frame(gse, entrytype, subseriesof, fetched_at)`. Riusabile cross-session.
+4. **Step 4 — Resolver function.** `resolve_series_id(series_id_multipli)`:
+   - Se 1 solo GSE: tienilo.
+   - Se >1 GSE: scarta i `SuperSeries`. Se rimane 1 → usalo. Se rimangono ≥2 sub-series (raro), scegli quello con meno sample (tipicamente il più specifico) e logga in `series-id-resolver-ambiguous.tsv`.
+   - Se TUTTI sono SuperSeries (caso patologico): scegli primary[0], logga in `series-id-resolver-fallback.tsv`.
+
+**Test obbligatori prima del deploy (gate pre-ETL):**
+
+1. **Unit tests** in `tests/testthat/test-etl-series-resolver.R`:
+   - Caso 1 GSE → input echoed.
+   - Caso 1 SuperSeries + 1 SubSeries → SubSeries scelto.
+   - Caso 2 SubSeries → quello con minor sample count scelto, logged ambiguous.
+   - Caso 2 SuperSeries (patologico) → primary fallback, logged.
+   - Cache hit / cache miss correct behavior.
+   - Rate-limit respect (mock).
+2. **Validation su sample noto manualmente curato**: scegli 20 sample multi-series random dal gold, ispeziona manualmente su GEO web (`geo/query/acc.cgi?acc=GSEx`) qual è la sub-series effettiva, costruisci ground-truth, esegui resolver e verifica match 100% (o ≥95%).
+3. **Smoke run** sul gold-standard 130k: resolver su tutti i 35.748 sample multi-series, log distribuzione decisioni:
+   - % sample con SubSeries scelto pulitamente
+   - % ambiguous
+   - % fallback patologico
+   - % cache hit rate post-prima-passata
+   - Verifica che il numero atteso di studi recuperati sia ~793 ± 100 (dai numeri della analysis 130k).
+
+**Gate decision** (questi 3 test passano prima di lanciare ETL del full ARCHS4):
+- 100% unit test pass
+- ≥95% accuracy su validation manuale 20 sample
+- < 5% fallback patologico nello smoke 35.748 sample
+
+Tracking: ETL log per ogni multi-series sample salva `geo_accession, series_id_input, series_id_resolved, resolver_path (clean/ambiguous/fallback)` in `analysis/p4-output/p4-beta-etl-multiseries.tsv` per audit completo nel coverage report.
 
 ### 4.3 Pre-flight: mini-gold re-eval format B (GATING)
 
@@ -266,14 +309,18 @@ Setup cron + script è task del plan di implementazione, non di questa spec di d
 | Stadio | Wall time stimato | Costo monetario | Costo GPU-time |
 |---|---|---|---|
 | ARCHS4 H5 download (`human_gene_v2.5.h5` 45 GB) | 1-3 h (dipende da banda) | $0 | 0 |
-| ETL H5 → JSONL | 1-2 h | $0 | 0 (CPU-only su DGX node) |
+| ETL H5 → JSONL raw | 1-2 h | $0 | 0 (CPU-only su DGX node) |
+| **Series-id-resolver dev + test** (gate #0) | ~3-4 h dev + 1h test | $0 | 0 |
+| Series-id-resolver execution (Entrez API ~6.3k GSE) | ~10-35 min (key vs no-key) | $0 | 0 |
 | Pre-eval mini-gold format B (gate #1) | ~1 h | $0 | 4 GPU × 1 h = 4 GPU-h |
 | Smoke test 1000 sample (gate #2) | ~1.5 h | $0 | 4 GPU × 1.5 h = 6 GPU-h |
 | Stage1 full run (500k sample) | ~35 h | $0 | 4 GPU × 35 h = 140 GPU-h |
 | Aggregation stage1→stage2 | < 30 min | $0 | 0 (CPU) |
-| Stage2 full run (~10k studi) | ~50-70 h | $0 | 4 GPU × 60 h = 240 GPU-h |
+| Stage2 full run (~10k studi recovered con resolver) | ~55-75 h | $0 | 4 GPU × 65 h = 260 GPU-h |
 | Coverage report | < 30 min | $0 | 0 |
-| **Totale** | **~92-115 h wall (~4-5 gg)** | **$0** | **~390 GPU-h** |
+| **Totale** | **~98-125 h wall (~4-5.5 gg) + 4-5h dev resolver** | **$0** | **~410 GPU-h** |
+
+Nota: stage2 wall time aumentato leggermente (~+5h) perché ~793 studi recuperati con resolver = +20% studies da classificare in stage2 vs A.
 
 Costo monetario zero perché DGX self-hosted con vLLM (ADR-0007). GPU-time va contabilizzato per progetto UniPD HPC ma non finanziario.
 
@@ -286,7 +333,8 @@ Costo monetario zero perché DGX self-hosted con vLLM (ADR-0007). GPU-time va co
 | Node DGX failure mid-job 70h+ | bassa | medio | Cache LLM idempotent, re-submit recovery procedure |
 | Network glitch I/O hang (rare edge) | bassa | basso | Cron monitor cattura entro 2h; kill+retry |
 | ARCHS4 dump version cambia mid-run | molto bassa | basso | Provenance record fissa SHA256, dump committato |
-| Sample con `series_id` multipli (es. GSEx,GSEy) | media | basso | Stage2 aggregation per `series_id` primario; secondary tracked ma non riprocessato |
+| Series-id-resolver fallisce su Entrez API down | bassa | medio | Cache on-disk persistente. Se Entrez down mid-resolution, retry exponential backoff. Worst-case: usa cache parziale + tag missing come `unresolved` per ETL log. |
+| Series-id-resolver classifica male sub vs super | bassa | medio | Gate #0 validation 20 sample manual + smoke 35.748 sample. Se accuracy < 95% su validation, halt e investiga. |
 | Library strategy mislabel (sample scRNA dichiarato `RNA-Seq`) | media | basso | Stage1/2 catturano via `ambiguity_flags`; coverage report mostra outlier |
 
 ## 9. Out of scope (deferred)
@@ -300,6 +348,6 @@ Costo monetario zero perché DGX self-hosted con vLLM (ADR-0007). GPU-time va co
 ## 10. Open questions — risolte 2026-05-11
 
 1. ~~Versione ARCHS4 H5~~ → **`human_gene_v2.5.h5` v2.5** (45 GB, 2024-08-24). Sez. 4.2.
-2. ~~`series_id` multipli~~ → **Primary only (opzione A)**, con tracking dei secondary in log per coverage report. Sez. 4.2.
+2. ~~`series_id` multipli~~ → **Smart selection via NCBI Entrez (opzione C)**, dopo aver misurato che A perderebbe 793 studi DE-able (~+20% power Stadio 5) sul gold-standard 130k. Implementazione + 3 sub-test gating dettagliata in sez. 4.2.
 3. ~~Telegram bot~~ → **No notifiche push, monitoring via app Claude**. Cron genera log strutturato leggibile on-demand. Sez. 5.2.
 4. ~~Smoke test 1000 sample~~ → **Aggiunto come gate #2 dopo mini-gold gate #1**. Sez. 4.3-bis.
