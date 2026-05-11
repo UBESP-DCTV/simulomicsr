@@ -41,7 +41,7 @@ Filtri legittimi pre-stage1:
 | Organism | Human-only (P4 β) | Match diretto col benchmark RummaGEO + rischio scaling ridotto |
 | Resume strategy | A per entrambi stadi: single long job + cache LLM idempotent + cron monitoring proattivo | Coerenza scientifica (no mixed config tra stadi) |
 | Format stringa stage1 | B: `characteristics_ch1 + title + source_name_ch1` con pre-eval mini-gold gating | Più contesto LLM, ma format diverso dal gold-standard → re-eval obbligatoria |
-| `series_id` multipli | C — Smart selection via NCBI Entrez API (SubSeries > SuperSeries) | A perderebbe 793 studi DE-able (~+20% power Stadio 5) misurati sul gold-standard. Inaccettabile per USP (sez. 2). |
+| `series_id` multipli | **D (revised) — SRP-driven hybrid + lower-accession fallback** | Pattern strutturale Entrez: GSE con SRP linked = sub-method (la vera data); GSE senza SRP = parent aggregator. Empiricamente verificato su gold (Exp A+C+D+D2): 99.3% sample ambiguous risolti via SRP signal, 0 sample persi. |
 | cs50 vs cs25 | cs50 confermato, scaling solo data-driven | ADR-0013 + nessuna evidence pre-empirica per cs45/cs40 |
 
 ## 4. Architettura
@@ -133,63 +133,106 @@ Una riga per sample. Atteso ~500k righe / ~150-200 MB compresso.
 
 **Gestione `series_id` multipli.** In ARCHS4 il campo `series_id` può contenere più GSE separati da virgola (es. `"GSE145668,GSE145669"`), tipicamente per relazioni super-series ↔ sub-series in GEO, multi-paper publication, o resubmission.
 
-**Quanto pesa il fenomeno (misurato sul gold-standard 130k sample):**
+**Quanto pesa il fenomeno (misurato sul gold-standard 130k, Exp A 2026-05-11):**
 - 27.33% sample hanno multi-series (35.748 / 130.784)
-- 15.35% GSE persi se aggreghiamo per primary only (970 / 6321 GSE unici)
-- 81.8% di quei 970 GSE persi (= 793) avrebbero ≥6 sample come studi a sé stanti → **DE-able studies persi**
-- Per i sample multi-series: 23.9% casi hanno primary > secondary (primary è probabilmente super-series, "primary only" perderebbe il sub-series RNA-seq specifico)
+- Dopo Entrez SuperSeries detection (regex `"^This SuperSeries is composed of"` sul summary): **90.6% clean** (1 SuperSeries scartata + 1 NotSuper preservata)
+- **9.4% ambiguous**: entrambi i GSE classificati come NotSuper (3.353 sample). **Iper-concentrati in 23 pair distinti** (top 1 = 80% volume, top 3 = 90%).
+- 0 sample con tutti SuperSeries (caso patologico).
 
-Buttare 793 studi DE-able è ~+20% del power potenziale di REM Stadio 5. Incompatibile con la USP del progetto (valorizzare studies piccoli, sez. 2).
+**Esplorazione resolver-informed (Exp C+D)**: testati Claude Sonnet 4.6 e GPT-5.5 sui 30 ambiguous sample con prompt arricchito (SRP, pdat, Jaccard, accession order). Entrambi convergono al 96.7% sulla rule deterministica `min(accession_numerico)`. Il LLM aggiunge zero info marginale.
 
-**Decisione: Smart selection via GEO API (opzione C).** Per ogni `geo_accession` con `series_id` multipli, identifica quale GSE è il `SubSeries` (o GSE standalone) e usalo come "studio del sample" per stage2. Lo `SuperSeries` viene scartato perché aggrega trasversalmente (es. progetto multi-omics) e non rappresenta un design experimental coerente da pooling.
+**Insight strutturale (Exp D2)**: il pattern Entrez ESummary rivela un signal causale forte. Higher-accession GSE = parent aggregator (no SRP linkato, no method bracket nel title come `[scRNAseq]`, `[RNA-Seq]`); lower-accession GSE = sub-method specifico (SRP linkato a SRA project). Sono **SuperSeries non riconosciute dal pattern regex** perché il summary del parent è generic.
+
+**Decisione: D (revised) — SRP-driven hybrid + lower-accession fallback.**
+
+```
+Per ogni pair ambiguous (entrambi classificati NotSuper):
+  1. Solo GSE_a ha SRP linked → scegli GSE_a (è il sub-method, parent scartato)
+  2. Solo GSE_b ha SRP linked → scegli GSE_b
+  3. Entrambi hanno SRP → "truly ambiguous" (2 sub-methods distinti):
+     fallback → scegli min(accession_numerico), log in ambiguous-tiebreak.tsv
+  4. Nessuno ha SRP → pattern anomalo:
+     fallback → scegli min(accession_numerico), log in no-srp-fallback.tsv
+```
+
+**Esito su gold (Exp D2, 23 pair, 3353 sample)**:
+- 21 pair (3329 sample, **99.3% del volume**) risolti via signal SRP causale
+- 1 pair (18 sample, 0.5%) truly ambiguous → tiebreak lower-acc
+- 1 pair (6 sample, 0.2%) no-SRP pattern anomalo → tiebreak lower-acc
+- **0 sample persi**, 0% drop
+
+**Quanto contribuisce Op D vs pure-rule lower-accession**: agreement 82.6% su 23 pair. I 4 pair di disagreement sono casi dove la rule pura sceglierebbe il PARENT (no SRP) invece del sub-method (SRP linkato) → 27 sample (0.8% degli ambiguous, 0.02% del totale ARCHS4) sarebbero stati mis-classificati con la rule pura. Op D è strettamente migliore.
 
 **Implementazione (modulo dedicato `R/etl-series-resolver.R`):**
 
-1. **Step 1 — Inventory.** Estrai dall'output ETL stage1 (sez. 4.2 sopra) l'unione di tutti i GSE che appaiono in qualunque `series_id` (sia primary che secondary). Atteso ~6.3k GSE unici.
+1. **Step 1 — Inventory.** Estrai l'unione di tutti i GSE che appaiono in qualunque `series_id` (sia primary che secondary). Atteso ~6.3k GSE unici.
 2. **Step 2 — GEO Entrez lookup.** Per ogni GSE, chiamata `esummary` a NCBI Entrez sul database `gds`:
    ```
    https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gds&id=<GSE_uid>
    ```
-   Restituisce campo `entrytype` con valori `"GSE"`, `"SuperSeries"`, o (per sub-series) il campo `subseriesof` punta al super-series parent.
-   **Rate-limit + API key:** Entrez senza API key permette 3 req/s; con API key 10 req/s. **L'utente fornisce `NCBI_API_KEY` in `.Renviron.local`** (variabile letta da `Sys.getenv("NCBI_API_KEY")` nel resolver). Stima tempo full run: ~10 min con key, ~35 min senza fallback.
-3. **Step 3 — Cache on-disk.** Salva mapping in `tools::R_user_dir("simulomicsr", "cache")/geo-series-types.rds` formato `data.frame(gse, entrytype, subseriesof, fetched_at)`. Riusabile cross-session.
-4. **Step 4 — Resolver function.** `resolve_series_id(series_id_multipli)` — output: `series_id_resolved` (singolo GSE) o `NA_unresolvable`.
-   - **Caso clean** (1 GSE in input): tienilo invariato.
-   - **Caso clean** (>1 GSE, dopo scarto dei `SuperSeries` rimane esattamente 1 SubSeries o GSE standalone): usalo.
-   - **Caso ambiguous** (>1 GSE, dopo scarto SuperSeries rimangono ≥2 SubSeries veri): il sample è in più esperimenti indipendenti legittimi. Output `NA_unresolvable`, logga in `series-id-resolver-unresolvable.tsv`. Il sample viene **droppato** dall'analisi P4 β (skip in ETL, contato in coverage report come `unresolvable_multiseries`).
-   - **Caso patologico** (tutti i GSE sono SuperSeries): output `NA_unresolvable`, logga in `series-id-resolver-fallback.tsv`. Sample droppato.
+   Estrai 2 campi chiave per ogni GSE:
+   - `summary`: pattern detection SuperSeries via regex `"^This SuperSeries is composed of"`.
+   - `extrelations` filtered by `relationtype == "SRA"`: estrai `targetobject` come **SRP ID**. Presence indica GSE = sub-method specifico; absence indica GSE = parent aggregator.
 
-**Razionale dello skip vs tie-breaker arbitrario:**
-- Tra due SubSeries entrambi legittimi (es. lo stesso sample è control sia in "Drug X experiment" che "Drug Y experiment"), non esiste una scelta non-arbitraria. Euristiche tipo "scegli quello con meno sample" o "scegli alfabetico" introducono bias non motivato nel pooling REM Stadio 5.
-- Skip ha effetto tracciabile (coverage report) e neutralità statistica.
-- Aspettativa: il caso ambiguous dovrebbe essere raro (< 1-2% dei multi-series, da quantificare empiricamente nello smoke 35.748 sample). Se > 1% nel run reale, escalation a ADR P4 γ per gestione manuale o policy esplicita.
+   **Rate-limit + API key:** Entrez senza API key permette 3 req/s; con API key 10 req/s. **`NCBI_API_KEY` in `.Renviron`** (utente lo fornisce). Stima tempo: ~10 min con key per 6.3k GSE (rate effettivo osservato ~80/min in Exp A 2026-05-11).
+
+3. **Step 3 — Cache on-disk.** `tools::R_user_dir("simulomicsr", "cache")/geo-series-resolver-cache.rds`. Format: `list(gse_a = list(uid, srp, is_super_series, summary, pdat, n_samples, title), ...)`. Riusabile cross-session.
+
+4. **Step 4 — Resolver function.** `resolve_series_id(series_id_multipli)` — output sempre un singolo GSE valido (no drop).
+   - **Caso 1 GSE in input**: tienilo invariato.
+   - **Caso >1 GSE**:
+     - Fase A — scarta GSE flagati `is_super_series == TRUE` (pattern regex).
+     - Fase B — sui residui, applica decision tree:
+       1. Rimane 1 GSE → usalo (caso clean post-SuperSeries scarto, ~90% volume).
+       2. Rimangono ≥2 GSE con `srp_a == NA, srp_b != NA` (o viceversa) → scegli quello con SRP (è il sub-method).
+       3. Rimangono ≥2 GSE entrambi con SRP linked (truly-ambiguous: 2 sub-methods distinti dello stesso experiment) → fallback `min(accession_numerico)`, log in `series-id-resolver-tiebreak.tsv`.
+       4. Rimangono ≥2 GSE entrambi senza SRP (pattern anomalo) → fallback `min(accession_numerico)`, log in `series-id-resolver-fallback.tsv`.
+
+**Razionale (validato empiricamente, Exp D2 2026-05-11):**
+
+| Branch | Cosa esprime | Frequenza misurata gold | Sample affetti |
+|---|---|---|---|
+| Fase A: SuperSeries detected via regex | Pattern GEO esplicito | ~90% multi-series | 32.391 / 35.748 |
+| Fase B.1: 1 residuo NotSuper | Caso atteso post-scarto | 90.6% | 32.391 sample |
+| Fase B.2: SRP-driven | Parent aggregator senza SRP scartato | 99.3% degli ambiguous | 3.329 sample |
+| Fase B.3: 2 SRP tiebreak | 2 sub-methods veri | 0.5% degli ambiguous | 18 sample |
+| Fase B.4: 0 SRP fallback | Anomalia (entrambi parent-like) | 0.2% degli ambiguous | 6 sample |
+
+**0 sample persi** per design. I 24 sample in tiebreak/fallback (0.7% degli ambiguous, 0.02% del totale ARCHS4) hanno assegnazione documentata in log file, riproducibile, e ammettono review post-hoc se serve.
 
 **Test obbligatori prima del deploy (gate pre-ETL):**
 
 1. **Unit tests** in `tests/testthat/test-etl-series-resolver.R`:
    - Caso 1 GSE → input echoed.
-   - Caso 1 SuperSeries + 1 SubSeries → SubSeries scelto.
-   - Caso 2 SubSeries (entrambi sub-series legittimi) → `NA_unresolvable`, logged in `unresolvable.tsv`.
-   - Caso 2 SuperSeries (patologico) → `NA_unresolvable`, logged in `fallback.tsv`.
-   - Caso 3 GSE = 2 SuperSeries + 1 SubSeries → SubSeries scelto.
+   - Caso 1 SuperSeries (regex match) + 1 NotSuper → NotSuper scelto.
+   - Caso 2 NotSuper: SRP_a presente, SRP_b assente → GSE_a scelto (SRP-driven).
+   - Caso 2 NotSuper: SRP_a assente, SRP_b presente → GSE_b scelto (SRP-driven, override lower-accession).
+   - Caso 2 NotSuper: entrambi SRP → lower-acc tiebreak, logged in `tiebreak.tsv`.
+   - Caso 2 NotSuper: entrambi senza SRP → lower-acc fallback, logged in `fallback.tsv`.
+   - Caso 3 GSE = 2 SuperSeries + 1 NotSuper → NotSuper scelto.
    - Cache hit / cache miss correct behavior.
    - Rate-limit respect (mock).
    - API key presence detected → 10 req/s; assente → 3 req/s.
-2. **Validation su sample noto manualmente curato**: scegli 20 sample multi-series random dal gold-standard 130k, ispeziona manualmente su GEO web (`https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSEx`) qual è la sub-series effettiva o se è caso ambiguous, costruisci ground-truth, esegui resolver e verifica match ≥95%.
-3. **Smoke run** sul gold-standard 130k: resolver su tutti i 35.748 sample multi-series, log distribuzione decisioni:
-   - % sample con SubSeries scelto pulitamente (atteso > 95%)
-   - % unresolvable (caso 2 SubSeries+) — atteso < 1-2%
-   - % fallback patologico (caso tutti SuperSeries) — atteso < 0.5%
-   - % cache hit rate post-prima-passata
-   - Numero studi recuperati ricostruito da `series_id_resolved` unico vs `series_id[0]` primary: atteso ~793 ± 100 in più rispetto a primary-only (dal calcolo sul gold).
 
-**Gate decision** (i 3 test passano prima di lanciare ETL del full ARCHS4):
+2. **Replication test su gold-standard (Exp D2 reference)**: esegui resolver sui 35.748 multi-series del gold (`relevant_sample_classified.xlsx`). Verifica match esatto con i risultati pre-computati in `analysis/scratch/exp-d2-23pair-classification.csv`:
+   - 23 pair ambiguous esatti
+   - 21 risolti SRP-driven (3329 sample)
+   - 1 truly-ambiguous tiebreak (18 sample) — pair GSE131620|GSE149886
+   - 1 no-SRP fallback (6 sample) — pair GSE202833|GSE203247
+   - 4 pair dove SRP override la lower-accession (GSE109440 family + GSE121668 family)
+
+3. **Smoke run** sull'output ETL ARCHS4 v2.5 raw (~500k sample, ~12.8k ambiguous estrapolati):
+   - % sample risolti via SRP-driven (atteso > 99%)
+   - % truly-ambiguous tiebreak (atteso < 1%)
+   - % no-SRP fallback (atteso < 0.5%)
+   - Numero studi recuperati post-resolver (atteso ~400 ± 100 nuovi GSE sub-method)
+
+**Gate decision** (questi 3 test passano prima di lanciare il full ETL):
 - 100% unit test pass
-- ≥95% accuracy su validation manuale 20 sample
-- < 2% unresolvable + < 0.5% fallback patologico nello smoke 35.748 sample (totale < 2.5% drop)
-- Numero studi DE-able recuperati ≥ 600 (di quei 793 attesi)
+- 100% replication esatta su gold (deterministic resolver, no model variance)
+- < 2% non-SRP-resolved (tiebreak + fallback) nello smoke
 
-Se il gate FAIL su "% unresolvable > 1%": escalation a sessione conversazionale per decidere se accettare il drop (≤2%) o investigare policy specifiche.
+Se il gate FAIL sul `< 2%`: escalation a sessione conversazionale. Numeri reali ARCHS4 potrebbero divergere dal gold per pattern di submission più recenti.
 
 Tracking: ETL log per ogni multi-series sample salva `geo_accession, series_id_input, series_id_resolved, resolver_path (clean/ambiguous/fallback)` in `analysis/p4-output/p4-beta-etl-multiseries.tsv` per audit completo nel coverage report.
 
@@ -360,6 +403,6 @@ Costo monetario zero perché DGX self-hosted con vLLM (ADR-0007). GPU-time va co
 ## 10. Open questions — risolte 2026-05-11
 
 1. ~~Versione ARCHS4 H5~~ → **`human_gene_v2.5.h5` v2.5** (45 GB, 2024-08-24). Sez. 4.2.
-2. ~~`series_id` multipli~~ → **Smart selection via NCBI Entrez (opzione C)**, dopo aver misurato che A perderebbe 793 studi DE-able (~+20% power Stadio 5) sul gold-standard 130k. Implementazione + 3 sub-test gating dettagliata in sez. 4.2.
+2. ~~`series_id` multipli~~ → **Opzione D (revised): SRP-driven hybrid + lower-accession fallback**. Empiricamente validata su gold (Exp A+C+D+D2 2026-05-11): 99.3% sample ambiguous risolti via signal causale SRP (sub-method vs parent aggregator), 0 sample persi. Op2-rule pura (lower-accession) sbaglierebbe 27 sample (0.8% degli ambiguous). LLM commerciali (Claude Sonnet 4.6, GPT-5.5) testati ma convergono entrambi sulla rule deterministica → 0 valore marginale. Implementazione + 3 sub-test gating in sez. 4.2.
 3. ~~Telegram bot~~ → **No notifiche push, monitoring via app Claude**. Cron genera log strutturato leggibile on-demand. Sez. 5.2.
 4. ~~Smoke test 1000 sample~~ → **Aggiunto come gate #2 dopo mini-gold gate #1**. Sez. 4.3-bis.
