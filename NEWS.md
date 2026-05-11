@@ -65,9 +65,37 @@ Spostati da `analysis/p4-bundles/` (gitignored, scratch):
 
 Test suite: 544/544 PASS / 3 SKIP (pre-existing OPENAI_API_KEY).
 
-## TODO post-cleanup (opzionali, fuori scope ADR-0010)
-- chunk_size cs25 -> cs50 evaluation smoke comparativo.
-- Final regression run alpha 8546 record con pipeline pulita.
+## Final regression run alpha cs50 (2026-05-11, autonomous overnight)
+
+Eseguito durante session autonomous notturna come "se cs50 va meglio
+ed e' safe, la final regression run la farei con cs50":
+
+- **Smoke 500 cs50** (job 20086): 100% schema validity, wall 17:56,
+  +14% throughput vs cs25 mini500 (config 2c 20:57). PASS.
+- **Full alpha cs50** (jobs 20087 + 20088 continuation): 6652/6652
+  records, **99.96% schema validity single-pass** (3 invalid, 6649
+  valid), wall totale 7:16:13. Job 20087 ha TIMEOUT a 06:00:01 (time
+  limit troppo stretto, violazione `feedback_dgx_time_limit_default`
+  che suggerisce 72h+). Resume mechanism preservato: re-sbatch
+  continuation 20088 ha completato 1402 records residui in 1:16:12,
+  ZERO data loss.
+- **Phase 3 H1 mini-gold v5 su cs50**: binary accuracy **96.7%**
+  (n=91, sens 98.3%, spec 93.9%, F1 97.4%), vs baseline alpha cs25
+  v0.10.0+3-pass = 93.3% -> **+3.4pp**. Per tier: easy 100%, hard
+  93.3%. Coverage 91/100 (9 sample omessi, L4 limit).
+
+**Insight emerso**: cs50 + concurrency restored + outlines da' accuracy
+significativamente migliore di cs25, anche se wall time piu' variabile
+(record XL singoli possono prendere 70+ min in microbatch). I chunk
+piu' grandi danno al modello piu' contesto per inferenza dei
+replicate_groups.
+
+**Default cs25 mantenuto in `analysis/p4-stage2-build-input.R`** per
+ora: l'utente puo' optare per cs50 esplicitamente quando il vantaggio
+accuracy giustifica il maggior variance operativo. Plot twist: il
+dato sembra giustificarlo, ma la decisione di flip default e' lasciata
+all'utente al risveglio (modifica banale: CHUNK_SIZE <- 50L + rerun
+input build).
 
 ---
 
