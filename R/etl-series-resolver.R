@@ -6,37 +6,52 @@
 #'   `"^This SuperSeries is composed of"`.
 #'
 #' @param gse Accession GEO (es. "GSE177616").
+#' @param max_retries Tentativi su errori HTTP transient (default 5).
+#' @param base_delay Delay base in secondi per backoff esponenziale (default 2 -> 2,4,8,16,32s).
 #' @return Lista con campi `uid, srp, is_super_series, title, pdat, n_samples, summary`.
 #' @keywords internal
-entrez_lookup_gse_metadata <- function(gse) {
+entrez_lookup_gse_metadata <- function(gse, max_retries = 5L, base_delay = 2) {
   if (nzchar(Sys.getenv("NCBI_API_KEY"))) {
     rentrez::set_entrez_key(Sys.getenv("NCBI_API_KEY"))
   }
-  s <- rentrez::entrez_search(db = "gds", term = paste0(gse, "[Accession]"))
-  if (length(s$ids) == 0L) {
-    return(list(uid = NA, srp = NA, is_super_series = FALSE,
-                title = NA, pdat = NA, n_samples = NA, summary = NA))
+  attempt <- 1L
+  repeat {
+    res <- tryCatch({
+      s <- rentrez::entrez_search(db = "gds", term = paste0(gse, "[Accession]"))
+      if (length(s$ids) == 0L) {
+        return(list(uid = NA, srp = NA, is_super_series = FALSE,
+                    title = NA, pdat = NA, n_samples = NA, summary = NA))
+      }
+      # Preferisce UID che inizia con "2" (tipo GEO DataSet = GSE)
+      gse_uids <- s$ids[grepl("^2[0-9]+$", s$ids)]
+      uid <- if (length(gse_uids) > 0L) gse_uids[1L] else s$ids[1L]
+      info <- rentrez::entrez_summary(db = "gds", id = uid)
+      srp <- NA
+      if (length(info$extrelations) > 0L && is.data.frame(info$extrelations)) {
+        sra_row <- info$extrelations[info$extrelations$relationtype == "SRA", ]
+        if (nrow(sra_row) > 0L) srp <- sra_row$targetobject[1L]
+      }
+      summary_text <- as.character(info$summary %||% "")
+      is_super <- grepl("^This SuperSeries is composed of", summary_text)
+      list(
+        uid         = uid,
+        srp         = srp,
+        is_super_series = is_super,
+        title       = info$title %||% NA,
+        pdat        = info$pdat %||% NA,
+        n_samples   = info$n_samples %||% NA,
+        summary     = substr(summary_text, 1L, 300L)
+      )
+    }, error = function(e) e)
+    if (!inherits(res, "error")) return(res)
+    # Retry su errori HTTP transient (502 bad gateway, 503, timeout, connection)
+    msg <- conditionMessage(res)
+    is_transient <- grepl("HTTP failure: 5|timeout|gateway|connection|temporary|reset",
+                          msg, ignore.case = TRUE)
+    if (!is_transient || attempt >= max_retries) stop(res)
+    Sys.sleep(base_delay * (2^(attempt - 1L)))
+    attempt <- attempt + 1L
   }
-  # Preferisce UID che inizia con "2" (tipo GEO DataSet = GSE)
-  gse_uids <- s$ids[grepl("^2[0-9]+$", s$ids)]
-  uid <- if (length(gse_uids) > 0L) gse_uids[1L] else s$ids[1L]
-  info <- rentrez::entrez_summary(db = "gds", id = uid)
-  srp <- NA
-  if (length(info$extrelations) > 0L && is.data.frame(info$extrelations)) {
-    sra_row <- info$extrelations[info$extrelations$relationtype == "SRA", ]
-    if (nrow(sra_row) > 0L) srp <- sra_row$targetobject[1L]
-  }
-  summary_text <- as.character(info$summary %||% "")
-  is_super <- grepl("^This SuperSeries is composed of", summary_text)
-  list(
-    uid         = uid,
-    srp         = srp,
-    is_super_series = is_super,
-    title       = info$title %||% NA,
-    pdat        = info$pdat %||% NA,
-    n_samples   = info$n_samples %||% NA,
-    summary     = substr(summary_text, 1L, 300L)
-  )
 }
 
 #' Resolver SRP-driven per series_id multipli (Op D revised, spec P4 beta sez. 4.2).
