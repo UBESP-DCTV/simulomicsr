@@ -46,13 +46,21 @@ SEED       <- as.integer(Sys.getenv("SEED",       unset = "1812"))
 dir.create(dirname(OUT_JSONL), recursive = TRUE, showWarnings = FALSE)
 
 cat("Loading", STAGE1_PREDS_PATH, "...\n")
-preds <- jsonlite::stream_in(file(STAGE1_PREDS_PATH), verbose = FALSE)
-cat("Loaded", nrow(preds), "stage1 predictions\n")
+# simplifyVector=FALSE: jsonlite default semplifica parsed_json a nested
+# data.frame, qui invece serve list-of-lists per accesso uniforme a campi
+# heterogenei (es. perturbations[] vuoto/popolato per record diversi).
+preds <- jsonlite::stream_in(file(STAGE1_PREDS_PATH),
+                              verbose = FALSE,
+                              simplifyVector = FALSE)
+n_preds <- length(preds)
+cat("Loaded", n_preds, "stage1 predictions\n")
 
 # Estrai series_id da parsed_json. In beta il resolver pre-stage1 produce un
 # singolo GSE canonico (non comma-string), quindi NO canonical_gse heuristic.
-sids <- vapply(preds$parsed_json, function(p) {
-  s <- p$series_id
+sids <- vapply(preds, function(rec) {
+  pj <- rec$parsed_json
+  if (is.null(pj)) return(NA_character_)
+  s <- pj$series_id
   if (is.null(s) || length(s) == 0L) NA_character_ else as.character(s)
 }, character(1))
 n_na <- sum(is.na(sids))
@@ -74,11 +82,12 @@ if (length(bad)) {
 unique_sids <- unique(sids)
 cat("Unique series_id (studi):", length(unique_sids), "\n")
 
-# Costruzione record stage2: chunking deterministico per-studio
+# Costruzione record stage2: chunking deterministico per-studio.
+# NB: accumula linee in memoria + writeLines finale invece di file
+# connection persistente (evita "invalid connection" quando il file e'
+# sourced da un altro script con env multipli).
 set.seed(SEED)
-con <- file(OUT_JSONL, open = "w")
-on.exit(close(con), add = TRUE)
-
+output_buf        <- vector("list", 0L)
 n_records         <- 0L
 n_chunks          <- 0L
 n_chunked_studies <- 0L
@@ -106,8 +115,8 @@ for (key in unique_sids) {
 
     samples <- lapply(chunk_idx, function(i) {
       list(
-        geo_accession = unbox(preds$record_id[i]),
-        sample_facts  = preds$parsed_json[[i]]
+        geo_accession = unbox(preds[[i]]$record_id),
+        sample_facts  = preds[[i]]$parsed_json
       )
     })
 
@@ -133,8 +142,8 @@ for (key in unique_sids) {
     if (!is.null(chunk_meta)) rec$chunk_metadata <- chunk_meta
 
     line <- jsonlite::toJSON(rec, auto_unbox = FALSE, null = "null", na = "null")
-    cat(line, "\n", sep = "", file = con)
     n_records <- n_records + 1L
+    output_buf[[n_records]] <- as.character(line)
     n_chunks  <- n_chunks  + (total_parts > 1L)
   }
   if (total_parts > 1L) {
@@ -144,6 +153,9 @@ for (key in unique_sids) {
     )
   }
 }
+
+# Scrive tutto in una writeLines (single connection, niente on.exit issue)
+writeLines(unlist(output_buf), OUT_JSONL)
 
 cat("\n=== Done ===\n")
 cat("Output:           ", OUT_JSONL, "\n")
@@ -173,12 +185,12 @@ cat("  last record_id: ", last$record_id,
     " series_id: ", last$series_id,
     " n_samples: ", length(last$samples), "\n")
 
-# Verifica: count samples in JSONL == nrow(preds) (no sample lost)
+# Verifica: count samples in JSONL == n_preds (no sample lost)
 total_samples_in_jsonl <- sum(vapply(lines, function(L) {
   rec <- jsonlite::fromJSON(L, simplifyVector = FALSE)
   length(rec$samples)
 }, integer(1L)))
 cat("Total samples emitted:", total_samples_in_jsonl,
-    "(expected", nrow(preds), ")\n")
-stopifnot(total_samples_in_jsonl == nrow(preds))
+    "(expected", n_preds, ")\n")
+stopifnot(total_samples_in_jsonl == n_preds)
 cat("OK -- nessun sample perso\n")
