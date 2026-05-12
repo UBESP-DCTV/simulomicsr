@@ -65,18 +65,29 @@ sids <- vapply(preds, function(rec) {
 }, character(1))
 n_na <- sum(is.na(sids))
 if (n_na > 0L) {
-  stop(sprintf("Stage1 predictions con series_id mancante: %d / %d. ",
-               n_na, length(sids)),
-       "Richiede consolidamento upstream (retry/uniqfail rounds) prima di stage2.",
-       call. = FALSE)
+  warning(sprintf("Stage1 predictions con series_id mancante (LLM fail): %d / %d (%.2f%%). ",
+                  n_na, length(sids), 100 * n_na / length(sids)),
+          "Sample droppati da stage2 input. Per recovery completo: ",
+          "retry/uniqfail rounds upstream + re-run.", call. = FALSE)
+  # Drop failed: filtra preds + sids alle posizioni valide
+  keep_idx <- !is.na(sids)
+  preds <- preds[keep_idx]
+  sids  <- sids[keep_idx]
+  n_preds <- length(preds)
+  cat(sprintf("Dropped %d records; %d valid records rimangono.\n",
+              n_na, n_preds))
 }
 
-# Validazione: tutti i sid matchano ^GSE[0-9]+$ (post-resolver = single GSE)
+# Validazione: tutti i sid validi matchano ^GSE[0-9]+$ (post-resolver = single GSE)
 bad <- unique(sids[!grepl("^GSE[0-9]+$", sids)])
 if (length(bad)) {
-  stop("series_id non-canonico (atteso ^GSE[0-9]+$ post-resolver): ",
-       paste(head(bad, 5), collapse = ", "),
-       call. = FALSE)
+  warning("series_id non-canonico trovato (atteso ^GSE[0-9]+$ post-resolver): ",
+          paste(head(bad, 5), collapse = ", "),
+          ". Records droppati.", call. = FALSE)
+  keep_idx <- grepl("^GSE[0-9]+$", sids)
+  preds <- preds[keep_idx]
+  sids  <- sids[keep_idx]
+  n_preds <- length(preds)
 }
 
 unique_sids <- unique(sids)
