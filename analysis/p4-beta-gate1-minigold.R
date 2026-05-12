@@ -165,19 +165,22 @@ cat("Stage2 predictions:", preds2_path, "\n")
 
 # === EVAL ===
 cat("\n=== EVAL: primary_role vs design_role_gold_v3_original ===\n")
-preds2 <- jsonlite::stream_in(file(preds2_path), verbose = FALSE)
+# simplifyVector=FALSE per accesso list-of-lists (parsed_json e' nested heterogeneo)
+preds1 <- jsonlite::stream_in(file(preds1_path), verbose = FALSE,
+                               simplifyVector = FALSE)
+preds2 <- jsonlite::stream_in(file(preds2_path), verbose = FALSE,
+                               simplifyVector = FALSE)
 
-# Schema validity stage1 + stage2
-preds1 <- jsonlite::stream_in(file(preds1_path), verbose = FALSE)
-schema_s1 <- mean(vapply(preds1$parsed_json, function(p) !is.null(p),
+# Schema validity
+schema_s1 <- mean(vapply(preds1, function(r) !is.null(r$parsed_json),
                           logical(1L)), na.rm = TRUE)
-schema_s2 <- mean(vapply(preds2$parsed_json, function(p) !is.null(p),
+schema_s2 <- mean(vapply(preds2, function(r) !is.null(r$parsed_json),
                           logical(1L)), na.rm = TRUE)
 
 # Map sample -> primary_role via replicate_groups
 sample_to_role <- list()
-for (i in seq_len(nrow(preds2))) {
-  pj <- preds2$parsed_json[[i]]
+for (rec in preds2) {
+  pj <- rec$parsed_json
   if (is.null(pj) || is.null(pj$replicate_groups)) next
   for (rg in pj$replicate_groups) {
     role <- as.character(rg$primary_role %||% NA_character_)
@@ -186,35 +189,51 @@ for (i in seq_len(nrow(preds2))) {
   }
 }
 
-# Merge con gold
+# Merge con gold + binarizza tramite design_role_to_binary del package.
+# Gold v3 e' fine-grained (perturbed/vehicle_control/...); schema stage2
+# primary_role e' binario (treated/control). Mapping v3 -> binario via
+# R/eval-stage2.R::design_role_to_binary (L1 known limitation, CLAUDE.md).
 mg$primary_role_pred <- vapply(mg$geo_accession, function(g) {
   v <- sample_to_role[[as.character(g)]]
   if (is.null(v)) NA_character_ else v
 }, character(1L))
+mg$gold_binary <- design_role_to_binary(mg$design_role_gold_v3_original)
+mg$pred_binary <- design_role_to_binary(mg$primary_role_pred)
 
-n_total       <- nrow(mg)
-n_predicted   <- sum(!is.na(mg$primary_role_pred))
-n_gold_match  <- sum(mg$primary_role_pred == mg$design_role_gold_v3_original,
-                     na.rm = TRUE)
-acc           <- n_gold_match / n_total
-acc_predicted <- if (n_predicted > 0) n_gold_match / n_predicted else NA_real_
+n_total          <- nrow(mg)
+n_predicted      <- sum(!is.na(mg$pred_binary))
+n_gold_present   <- sum(!is.na(mg$gold_binary))
+n_evaluable      <- sum(!is.na(mg$gold_binary) & !is.na(mg$pred_binary))
+n_correct        <- sum(mg$gold_binary == mg$pred_binary, na.rm = TRUE)
+acc_evaluable    <- if (n_evaluable > 0) n_correct / n_evaluable else NA_real_
+acc_total        <- n_correct / n_total
+
+# Metriche dettagliate via eval_binary_accuracy
+bin_metrics <- eval_binary_accuracy(mg$gold_binary, mg$pred_binary)
 
 cat(sprintf("Schema validity stage1: %.2f%% (%d / %d)\n",
-            100 * schema_s1, round(schema_s1 * nrow(preds1)), nrow(preds1)))
+            100 * schema_s1, round(schema_s1 * length(preds1)), length(preds1)))
 cat(sprintf("Schema validity stage2: %.2f%% (%d / %d)\n",
-            100 * schema_s2, round(schema_s2 * nrow(preds2)), nrow(preds2)))
-cat(sprintf("Sample predetti su gold: %d / %d (%.1f%%)\n",
+            100 * schema_s2, round(schema_s2 * length(preds2)), length(preds2)))
+cat(sprintf("Sample con pred binarizzata: %d / %d (%.1f%%)\n",
             n_predicted, n_total, 100 * n_predicted / n_total))
-cat(sprintf("Accuracy primary_role vs gold (su totale): %.2f%% (%d / %d)\n",
-            100 * acc, n_gold_match, n_total))
-cat(sprintf("Accuracy condizionata sui predetti: %.2f%% (%d / %d)\n",
-            100 * acc_predicted, n_gold_match, n_predicted))
+cat(sprintf("Sample con gold binarizzato (NA su positive_control/bystander/excluded/unclear): %d / %d\n",
+            n_gold_present, n_total))
+cat(sprintf("Sample evaluable (gold+pred non-NA): %d\n", n_evaluable))
+cat(sprintf("Accuracy binaria (evaluable): %.2f%% (%d / %d)\n",
+            100 * acc_evaluable, n_correct, n_evaluable))
+cat(sprintf("Sensitivity (treated correctly identified): %.2f%%\n",
+            100 * bin_metrics$sensitivity))
+cat(sprintf("Specificity (control correctly identified): %.2f%%\n",
+            100 * bin_metrics$specificity))
 
-# Confusion matrix per categoria
-cat("\nConfusion table (gold vs pred):\n")
+# Confusion matrix raw + binaria
+cat("\nConfusion table RAW (gold v3 fine-grained vs pred binario):\n")
 print(table(gold = mg$design_role_gold_v3_original,
             pred = mg$primary_role_pred,
             useNA = "ifany"))
+cat("\nConfusion table BINARIA (gold mappato vs pred):\n")
+print(table(gold = mg$gold_binary, pred = mg$pred_binary, useNA = "ifany"))
 
 # Save eval RDS per audit
 eval_rds <- file.path(OUTPUT_DIR,
@@ -225,11 +244,12 @@ saveRDS(list(
   stage2_run_id  = job2$run_id,
   schema_s1      = schema_s1,
   schema_s2      = schema_s2,
-  acc_total      = acc,
-  acc_predicted  = acc_predicted,
+  acc_evaluable  = acc_evaluable,
+  bin_metrics    = bin_metrics,
   n_total        = n_total,
   n_predicted    = n_predicted,
-  n_gold_match   = n_gold_match,
+  n_evaluable    = n_evaluable,
+  n_correct      = n_correct,
   mg_with_pred   = mg,
   sample_to_role = sample_to_role
 ), eval_rds)
@@ -237,12 +257,13 @@ cat("\nEval RDS:", eval_rds, "\n")
 
 # === GATE DECISION ===
 cat("\n=== GATE #1 DECISION ===\n")
-gate_pass <- schema_s1 >= 0.995 && schema_s2 >= 0.995 && acc >= 0.95
+gate_pass <- schema_s1 >= 0.995 && schema_s2 >= 0.995 && acc_evaluable >= 0.95
 if (gate_pass) {
-  cat("✓ PASS - procedi a smoke 1000 (Task 9)\n")
-} else if (acc >= 0.85) {
-  cat("BORDERLINE - acc=%.2f%%, schema_s1=%.2f%%, schema_s2=%.2f%%. ",
-      "Nuova sessione per decidere se procedere o iter prompt.\n")
+  cat(sprintf("PASS - acc=%.2f%%, schema_s1=%.2f%%, schema_s2=%.2f%% >= soglia. Procedi smoke 1000 (Task 9).\n",
+              100 * acc_evaluable, 100 * schema_s1, 100 * schema_s2))
+} else if (acc_evaluable >= 0.85) {
+  cat(sprintf("BORDERLINE - acc=%.2f%%, schema_s1=%.2f%%, schema_s2=%.2f%%. Nuova sessione per decidere.\n",
+              100 * acc_evaluable, 100 * schema_s1, 100 * schema_s2))
 } else {
-  cat(sprintf("✗ FAIL - acc=%.2f%% < 85%% soglia. Investigare.\n", 100 * acc))
+  cat(sprintf("FAIL - acc=%.2f%% < 85%% soglia. Investigare.\n", 100 * acc_evaluable))
 }
