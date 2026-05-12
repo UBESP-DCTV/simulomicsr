@@ -123,9 +123,21 @@ if (any(is_multi)) {
 }
 
 # ---- Write final JSONL via stream_out (NDJSON, batch buffer) ----
+# Schema-compat con DGX stage1 input contract:
+#   - record_id (unique key per record, qui = GSM accession)
+#   - series_id (GSE canonico atteso da prompts.py:render_user_message_stage1)
+# Per audit storico, il series_id raw pre-resolver e' preservato nel JSONL raw
+# (archs4-human-stage1-input-raw.jsonl) + in p4-beta-etl-multiseries.tsv.
 t_write <- Sys.time()
-final_df <- recs[, c("geo_accession", "series_id_resolved", "string",
-                     "library_strategy", "organism")]
+final_df <- data.frame(
+  record_id        = recs$geo_accession,
+  geo_accession    = recs$geo_accession,
+  series_id        = recs$series_id_resolved,
+  string           = recs$string,
+  library_strategy = recs$library_strategy,
+  organism         = recs$organism,
+  stringsAsFactors = FALSE
+)
 con_out <- file(STAGE1_INPUT_FINAL, "w")
 jsonlite::stream_out(final_df, con_out, verbose = FALSE)
 close(con_out)
