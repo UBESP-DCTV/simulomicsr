@@ -23,13 +23,15 @@ dir_create(dirname(c(STAGE1_INPUT_RAW, PROVENANCE_PATH, ENTREZ_CACHE)))
 
 # ---- 1. Provenance record ----
 stopifnot(file.exists(H5_PATH))
-sha256 <- tools::md5sum(H5_PATH)  # quick check; SHA256 vero via openssl in step seguente
+md5 <- tools::md5sum(H5_PATH)
+# size_bytes as.numeric per evitare int32 overflow su file > 2GB (47.86GB qui).
+# SHA256 va calcolato esternamente via `sha256sum` se serve audit cryptografico.
 writeLines(jsonlite::toJSON(list(
   file = H5_PATH,
-  size_bytes = as.integer(file.info(H5_PATH)$size),
-  md5 = unname(sha256),
+  size_bytes = as.numeric(file.info(H5_PATH)$size),
+  md5 = unname(md5),
   fetched_at = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ"),
-  source_url = "https://maayanlab.cloud/archs4/download.html",
+  source_url = "https://mssm-data.s3.amazonaws.com/human_gene_v2.5.h5",
   version_label = "human_gene_v2.5.h5"
 ), pretty = TRUE, auto_unbox = TRUE), PROVENANCE_PATH)
 cat("Provenance saved:", PROVENANCE_PATH, "\n")
