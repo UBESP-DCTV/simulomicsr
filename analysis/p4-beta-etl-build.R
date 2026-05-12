@@ -67,62 +67,74 @@ saveRDS(entrez_cache, ENTREZ_CACHE)
 cat(sprintf("Entrez done in %.1f min\n",
             as.numeric(difftime(Sys.time(), t0, units = "mins"))))
 
-# ---- 4. Apply resolver per sample, write final JSONL ----
-tiebreak_rows <- list()
-fallback_rows <- list()
-multi_rows <- list()
-recs$series_id_resolved <- NA_character_
-recs$resolver_branch <- NA_character_
+# ---- 4. Apply resolver per sample (vectorized: unique-string + match lookup) ----
+# Risolvi solo le ~32k stringhe series_id uniche invece di 888k sample-level calls.
+unique_sids <- unique(recs$series_id)
+cat(sprintf("Unique series_id strings da risolvere: %d (vs %d sample-level)\n",
+            length(unique_sids), nrow(recs)))
+t_resolve <- Sys.time()
+resolved_decision <- character(length(unique_sids))
+resolved_branch   <- character(length(unique_sids))
+for (i in seq_along(unique_sids)) {
+  out <- simulomicsr:::resolve_series_id(unique_sids[i], entrez_cache)
+  resolved_decision[i] <- as.character(out$decision)
+  resolved_branch[i]   <- as.character(out$branch)
+}
+cat(sprintf("Resolver unique done in %.1f sec\n",
+            as.numeric(difftime(Sys.time(), t_resolve, units = "secs"))))
 
-for (i in seq_len(nrow(recs))) {
-  out <- simulomicsr:::resolve_series_id(recs$series_id[i], entrez_cache)
-  recs$series_id_resolved[i] <- out$decision
-  recs$resolver_branch[i] <- out$branch
-  if (out$branch == "tiebreak_both_srp") {
-    tiebreak_rows[[length(tiebreak_rows) + 1L]] <-
-      data.frame(geo_accession = recs$geo_accession[i],
-                 series_id_input = recs$series_id[i],
-                 series_id_resolved = out$decision,
-                 stringsAsFactors = FALSE)
-  } else if (out$branch == "fallback_no_srp" || out$branch == "all_super_pathological") {
-    fallback_rows[[length(fallback_rows) + 1L]] <-
-      data.frame(geo_accession = recs$geo_accession[i],
-                 series_id_input = recs$series_id[i],
-                 series_id_resolved = out$decision,
-                 branch = out$branch,
-                 stringsAsFactors = FALSE)
-  }
-  if (grepl(",", recs$series_id[i])) {
-    multi_rows[[length(multi_rows) + 1L]] <-
-      data.frame(geo_accession = recs$geo_accession[i],
-                 series_id_input = recs$series_id[i],
-                 series_id_resolved = out$decision,
-                 resolver_branch = out$branch,
-                 stringsAsFactors = FALSE)
-  }
+# Map back ai 888k sample via match (hash-based, O(N))
+idx <- match(recs$series_id, unique_sids)
+recs$series_id_resolved <- resolved_decision[idx]
+recs$resolver_branch    <- resolved_branch[idx]
+
+# ---- Vectorized log filters ----
+is_multi    <- grepl(",", recs$series_id, fixed = TRUE)
+is_tiebreak <- recs$resolver_branch == "tiebreak_both_srp"
+is_fallback <- recs$resolver_branch %in% c("fallback_no_srp", "all_super_pathological")
+
+if (any(is_tiebreak)) {
+  write.table(
+    data.frame(geo_accession      = recs$geo_accession[is_tiebreak],
+               series_id_input    = recs$series_id[is_tiebreak],
+               series_id_resolved = recs$series_id_resolved[is_tiebreak],
+               stringsAsFactors = FALSE),
+    TIEBREAK_LOG, sep = "\t", row.names = FALSE, quote = FALSE)
+}
+if (any(is_fallback)) {
+  write.table(
+    data.frame(geo_accession      = recs$geo_accession[is_fallback],
+               series_id_input    = recs$series_id[is_fallback],
+               series_id_resolved = recs$series_id_resolved[is_fallback],
+               branch             = recs$resolver_branch[is_fallback],
+               stringsAsFactors = FALSE),
+    FALLBACK_LOG, sep = "\t", row.names = FALSE, quote = FALSE)
+}
+if (any(is_multi)) {
+  write.table(
+    data.frame(geo_accession      = recs$geo_accession[is_multi],
+               series_id_input    = recs$series_id[is_multi],
+               series_id_resolved = recs$series_id_resolved[is_multi],
+               resolver_branch    = recs$resolver_branch[is_multi],
+               stringsAsFactors = FALSE),
+    MULTISERIES_LOG, sep = "\t", row.names = FALSE, quote = FALSE)
 }
 
-write_jsonl <- function(df, path) {
-  lines <- vapply(seq_len(nrow(df)),
-                  function(i) jsonlite::toJSON(as.list(df[i, ]), auto_unbox = TRUE),
-                  character(1L))
-  writeLines(lines, path)
-}
-write_jsonl(recs[, c("geo_accession", "series_id_resolved", "string",
-                     "library_strategy", "organism")], STAGE1_INPUT_FINAL)
-
-if (length(tiebreak_rows) > 0) write.table(do.call(rbind, tiebreak_rows), TIEBREAK_LOG,
-                                            sep = "\t", row.names = FALSE, quote = FALSE)
-if (length(fallback_rows) > 0) write.table(do.call(rbind, fallback_rows), FALLBACK_LOG,
-                                            sep = "\t", row.names = FALSE, quote = FALSE)
-if (length(multi_rows) > 0) write.table(do.call(rbind, multi_rows), MULTISERIES_LOG,
-                                         sep = "\t", row.names = FALSE, quote = FALSE)
+# ---- Write final JSONL via stream_out (NDJSON, batch buffer) ----
+t_write <- Sys.time()
+final_df <- recs[, c("geo_accession", "series_id_resolved", "string",
+                     "library_strategy", "organism")]
+con_out <- file(STAGE1_INPUT_FINAL, "w")
+jsonlite::stream_out(final_df, con_out, verbose = FALSE)
+close(con_out)
+cat(sprintf("Final JSONL written in %.1f sec\n",
+            as.numeric(difftime(Sys.time(), t_write, units = "secs"))))
 
 cat("\n=== ETL complete ===\n")
 cat(sprintf("Final JSONL: %s\n", STAGE1_INPUT_FINAL))
 cat(sprintf("N records included: %d\n", nrow(recs)))
-cat(sprintf("Multi-series tracked: %d\n", length(multi_rows)))
-cat(sprintf("Tiebreak log: %d\n", length(tiebreak_rows)))
-cat(sprintf("Fallback log: %d\n", length(fallback_rows)))
+cat(sprintf("Multi-series tracked: %d\n", sum(is_multi)))
+cat(sprintf("Tiebreak log: %d\n", sum(is_tiebreak)))
+cat(sprintf("Fallback log: %d\n", sum(is_fallback)))
 cat("\nBranch distribution:\n")
 print(table(recs$resolver_branch))
