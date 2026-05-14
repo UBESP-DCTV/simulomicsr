@@ -45,6 +45,16 @@ stages:
     repetition_penalty: 1.1
     schema_version: "stage1.v3"
     model_prefix: "vllm-mistral-3.2"
+    # microbatch: 500 = limite superiore di records per llm.chat() call.
+    # In alpha stage1 (130k record, ~32k per worker) era assente (None ==
+    # all-in-one). In beta (888k record, ~222k per worker, ~7x scale) il
+    # single-batch innesca un vLLM scheduler hang scoperto nel job 20416
+    # del 2026-05-14: 4 GPU a 0% util per 3h+, slurm.err frozen al
+    # rendering tqdm a 939/222k. Variante di Issue #39734 non coperta dal
+    # fix PR #40946 in v0.20.2 a questa scala. Microbatch=500 mantiene la
+    # coda vLLM sotto la soglia, scrive predictions per batch (visibility
+    # + crash-safety), e replica il pattern gia' validato di stage2.
+    microbatch: 500
   stage2:
     schema_file: "study_design.stage2.v2.json"
     # max_tokens: default 4096. Combinato con tier strategy (ADR-0011) in

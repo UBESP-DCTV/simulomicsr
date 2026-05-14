@@ -1,25 +1,19 @@
 #!/bin/bash
-# P4 β cron monitor — generates log file readable on-demand.
-# Setup: crontab -e
+# P4 β cron monitor — wrapper sottile, logica in scripts/p4-beta-monitor.R.
+# Setup crontab:
 #   0 */2 * * * /home/user/simulomicsr/scripts/p4-beta-monitor.sh >> /home/user/simulomicsr/analysis/p4-beta-monitor.log 2>&1
+# Log file (gitignored) accresce con un blocco ogni 2h.
+#
+# Nota SSH: la chiave ~/.ssh/id_ed25519 e' passphrase-protected, cron non ha
+# accesso allo ssh-agent della sessione utente. Workaround: punta a
+# /run/user/1000/keyring/ssh (socket di gnome-keyring) che persiste finche'
+# l'utente e' loggato graficamente. Se l'utente fa logout / reboot, il monitor
+# fallisce su `Permission denied (publickey)` finche' non si rilogga.
+# Alternativa permanente: `loginctl enable-linger user` (richiede sudo).
 
 set -uo pipefail
-TS=$(date -u "+%Y-%m-%dT%H:%M:%SZ")
-echo "==== [$TS] P4 β monitor ===="
+PROJECT_DIR="/home/user/simulomicsr"
+export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:-/run/user/1000/keyring/ssh}"
 
-# squeue snapshot
-echo "-- SLURM jobs --"
-ssh -o BatchMode=yes dgx 'bash -lc "squeue -u u0044 --format=\"%A %j %T %M %l\""' 2>&1 || \
-  echo "[ATTENTION] ssh failed"
-
-# Latest slurm.out tail per job attivo
-echo "-- Last slurm.out tail (50 lines) --"
-ssh -o BatchMode=yes dgx 'bash -lc "tail -50 ~/p4-beta/slurm-*.out 2>/dev/null | head -200"' 2>&1 || \
-  echo "[no slurm.out yet]"
-
-# Conta record nei JSONL output corrente (live throughput)
-echo "-- Output JSONL line count --"
-ssh -o BatchMode=yes dgx 'bash -lc "for f in ~/p4-beta/output/*/predictions.jsonl; do echo \"\$f: \$(wc -l < \$f) lines\"; done"' 2>&1 || \
-  echo "[no output yet]"
-
-echo ""
+cd "$PROJECT_DIR" || exit 1
+Rscript scripts/p4-beta-monitor.R
