@@ -17,8 +17,8 @@ suppressPackageStartupMessages({
 })
 
 OUTPUT_DIR <- "analysis/p4-output"
-INPUT_FULL <- "analysis/input/archs4-human-stage1-input.jsonl"
-SLUG       <- "beta-stage1-fullrun"
+INPUT_FULL <- Sys.getenv("FULLRUN_INPUT", "analysis/input/archs4-human-stage1-input.jsonl")
+SLUG       <- Sys.getenv("FULLRUN_SLUG", "beta-stage1-fullrun")
 fs::dir_create(OUTPUT_DIR, recurse = TRUE)
 
 stopifnot(file.exists(INPUT_FULL))

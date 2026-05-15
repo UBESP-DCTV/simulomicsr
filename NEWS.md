@@ -1,3 +1,68 @@
+# simulomicsr 0.0.0.9016 (β Task 10 + 10b: stage1 fullrun 888.821/888.821 record COMPLETE)
+
+## β Task 10 stage1 fullrun via chunked orchestrator (2026-05-14/15)
+
+Stage1 LLM classification completata sul dataset ARCHS4 v2.5 human bulk
+RNA-seq (888.821 sample, 32.905 GSE unique post-resolver). Strategia:
+**chunked orchestrator** con cron tick autonomo + **filter outlier
+preventivo** per evitare vLLM Issue #39734 silent stall.
+
+**Fix root cause stall vLLM (decisivo per sbloccare il task)**: due fullrun
+monolitici consecutivi (`caeb67` 2026-05-14 mattina, `cc1383` 2026-05-14
+14:24 UTC) si erano stallati silenziosamente entro 5 minuti dall'avvio
+generazione — GPU 0% util, processo S/futex_wait, nessun errore loggato. La
+config era bit-identical allo smoke 10k che PASSAVA. Investigazione
+sistematica ha isolato il trigger: **26 record (0.003%) con `nchar > 3500`
+contengono prompt token > `max_model_len=4096` e triggerano scheduler
+HoL stall (Issue #39734)**. Esempio canonico: `GSM1219408` (MGC reference
+library, ~1000 BC accession ids, nchar=9831).
+
+**Mitigazione due-stadi**:
+
+- **Mainstream 89 chunks**: shuf seed=42 del JSONL globale, filter `nchar
+  > 3500` (26 outliers in side-file), split in 89 chunks da ~10k record
+  (= replica smoke10k validato). Cron `*/3 * * * *` invoca
+  `scripts/p4-beta-stage1-chunked-tick.sh` con state machine in
+  `analysis/p4-beta-chunked-state.txt`. Orchestrator idempotente: cascade
+  COMPLETED -> advance + submit prossimo chunk in stessa esecuzione, lock
+  flock-protected, resume-safe.
+
+  - Start 2026-05-14 20:07 UTC (chunk-00) -> end 2026-05-15 14:00 UTC
+    (chunk-88). Wall **17h53min** per 888.795 record.
+  - Throughput stabile: ~12.1 min/chunk (4 worker x 2500 record x 5
+    microbatch da 500). Zero stall, zero HALT/FAILED.
+
+- **Outliers (Task 10b) `max_model_len=32768`**: i 26 record outlier
+  processati separatamente. Strategy A1 (`max_model_len=8192`) ha
+  riprodotto lo stall sul job 20705 (max_model_len doppio insufficiente
+  per record fino a ~12.7k token worst case). Strategy A2 con
+  `max_model_len=32768` (3-4x headroom, modello supporta 128k context) ha
+  completato 26/26 record in **2m23s wall** (worker 0 26.3s con record
+  nchar~9800, workers 1/2/3 15-26s).
+
+**Master output**: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl`
+(888.821 righe, 3.23 GB, gitignored), concatenazione di 90 run dirs DGX
+(89 chunks + 1 outliers run). Match esatto col conteggio atteso.
+
+**Artefatti committati**:
+
+- `analysis/p4-beta-stage1-fullrun.R` — patch lieve: accetta env vars
+  `FULLRUN_INPUT` + `FULLRUN_SLUG` per riuso multi-chunk (default
+  retro-compatibili).
+- `analysis/p4-beta-stage1-outliers.R` — script outliers strategy A2.
+- `analysis/p4-beta-stage1-merge.R` — concat remoto + rsync master.
+- `scripts/p4-beta-stage1-chunked-tick.sh` — cron tick state machine.
+- `scripts/p4-beta-stage1-chunked-orchestrator.sh` — orchestrator
+  alternative foreground (non usato in produzione, mantenuto per backup).
+
+**Documentation update**:
+
+- Memoria `project_vllm_scheduler_deadlock` aggiornata con il pattern
+  stage1: trigger nchar > 3500, diagnostic signature, mitigazioni A1/A2,
+  statistica dataset (p99 633 / p99.9 1717 / 26 outliers).
+- CLAUDE.md roadmap: Task 10 + 10b marcati DONE, prossimi step (Task 11
+  stage2-input + Task 12 stage2 + Task 15 closing).
+
 # simulomicsr 0.0.0.9015 (ADR-0010 vLLM upgrade v0.10.0 -> v0.20.2-cu129 + Phase 5 cleanup)
 
 ## ADR-0010 vLLM upgrade — gate PASS, upgrade SI committato (2026-05-10)
