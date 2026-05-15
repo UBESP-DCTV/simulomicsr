@@ -53,7 +53,7 @@ Pipeline complessiva (5 stadi):
   che diverge da `design_role` — il gold "design-aware" è in
   `inst/extdata/p35c-minigold-reviewed-v5.csv` (100 sample, P3.5-C/D).
 
-## Stato corrente (2026-05-12 — P4 β ARCHS4 ETL + gates 1+2 PASS, pending full run)
+## Stato corrente (2026-05-15 — P4 β stage1 fullrun 888.821/888.821 COMPLETE)
 
 ### α (consolidato, riproducibile)
 
@@ -63,14 +63,17 @@ Pipeline classification stage1 + stage2 sul gold-standard XLSX 130.784 sample:
 - **α stage2** original (Task 22, 2026-05-10, v0.10.0 + workaround stack) → 8.532 / 8.546 cs25 = 99.84% schema, mini-gold 93.3%.
 - **α stage2 re-run cs50** (ADR-0010, 2026-05-11, v0.20.2-cu129 + clean stack) → **6.649 / 6.652 cs50 = 99.96%** schema single-pass, **mini-gold 96.7%** (+3.4pp). Default flipped cs25→cs50.
 
-### β (in corso, gates 1+2 PASS 2026-05-12)
+### β (stage1 fullrun COMPLETE 2026-05-15, pending stage2)
 
 Pipeline scalata su ARCHS4 v2.5 human bulk RNA-seq (~10x α):
 
 - **β ETL** (Task β-1..β-6, 2026-05-12) → **888.821 sample** human + RNA-Seq, 32.905 unique GSE pre-resolver, **193.097 multi-series** risolti. Output JSONL `analysis/input/archs4-human-stage1-input.jsonl` (262 MB, gitignored).
 - **β series-id-resolver SRP-driven Op D revised** (`R/etl-series-resolver.R`, Task β-4): 99.86% resolti via signal (`clean_super_scarted` 183.041 + `srp_a_only/b_only` 9.011 + minor branches), 0.54% heuristic tiebreak/fallback (1.041 sample), 0 sample droppati. Test 23-pair gold replication PASS (Exp D2).
 - **β GATE #1** mini-gold format B (Task β-8, 2026-05-12): stage1+stage2 end-to-end su 100 mini-gold → schema 100% s1 + 100% s2, **accuracy binaria 98.00%** (mappato design_role_v3 → control/treated via `R/eval-stage2.R::design_role_to_binary`). +1.3pp vs α 96.7%. Wall DGX 4 min totali.
-- **β GATE #2** smoke 1000 stratificato per nchar quartile (Task β-9, 2026-05-12): schema **99.50% s1 + 100% s2**, 5 LLM fail droppati lenient (0.5%), tier S=718 M=3 L=0 XL=0 (no overflow), design_kind distribution sana (case_control 40%, treatment_vs_vehicle 18%, multi_arm 17%). Stage1 wall reale ~3.5 min → **ETA stage1 full ~59h** (più alto del plan 35h ma fattibile, partition `dgx12cluster` infinite). Stage2 wall 6.6 min per 721 record → ETA stage2 full ~2.5h.
+- **β GATE #2** smoke 1000 stratificato per nchar quartile (Task β-9, 2026-05-12): schema **99.50% s1 + 100% s2**, 5 LLM fail droppati lenient (0.5%), tier S=718 M=3 L=0 XL=0 (no overflow), design_kind distribution sana (case_control 40%, treatment_vs_vehicle 18%, multi_arm 17%).
+- **β Task 10 stage1 fullrun via chunked orchestrator** (2026-05-14/15): wall **17h53min** (20:07 UTC 2026-05-14 → 14:00 UTC 2026-05-15) per 888.795 record mainstream. 89 chunks da 10k, cron `*/3 * * * *` autonomous + cascade COMPLETED→submit-next. Throughput stabile ~12.1 min/chunk. **Zero stall**. State machine: `scripts/p4-beta-stage1-chunked-tick.sh` + `analysis/p4-beta-chunked-state.txt`.
+- **β Task 10b stage1 outliers** (2026-05-15): 26 record con `nchar > 3500` (0.003%) processati separatamente con `max_model_len=32768` (Strategy A2). Strategy A1 (`max_model_len=8192`) aveva riprodotto stall su job 20705. Wall **2m23s** per 26/26 record. Strategia documentata in memoria `project_vllm_scheduler_deadlock`.
+- **β Master output**: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl` (888.821 righe, 3.23 GB, gitignored), concat di 90 run dirs DGX (89 chunks + 1 outliers).
 
 **Pipeline running config (invariata da α)**:
 
@@ -99,6 +102,13 @@ Pipeline scalata su ARCHS4 v2.5 human bulk RNA-seq (~10x α):
 - β cache Entrez resolver: `tools::R_user_dir("simulomicsr","cache")/geo-series-resolver-cache.rds` (~25 MB, 32.905 GSE)
 - β GATE #1 eval: `analysis/p4-output/20260512T142323Z-p4-beta-gate1-minigold-eval.rds` (force-add committato)
 - β GATE #2 eval: `analysis/p4-output/20260512T150505Z-p4-beta-gate2-smoke1000-eval.rds` (force-add committato)
+- β stage1 chunked input shuffled: `analysis/input/archs4-human-stage1-input-shuffled.jsonl` (gitignored, 262 MB; seed=42 globale, output di `shuf --random-source=<(yes 42)`)
+- β stage1 chunked input filtered (`nchar <= 3500`): `analysis/input/archs4-human-stage1-input-shuffled-filtered.jsonl` (gitignored, 262 MB, 888.795 record)
+- β stage1 outliers (`nchar > 3500`): `analysis/input/archs4-human-stage1-outliers.jsonl` (gitignored, 26 record, ~140 KB)
+- β stage1 chunks (89 file): `analysis/input/chunks/chunk-00.jsonl` .. `chunk-88.jsonl` (gitignored, ~2.9 MB ciascuno)
+- β stage1 master predictions: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl` (gitignored, **888.821 righe, 3.23 GB**, concat di 89 chunks + 1 outliers)
+- β stage1 state machine: `analysis/p4-beta-chunked-state.txt` (gitignored, ultimo valore `89` = orchestrator idle)
+- β stage1 orchestrator log: `analysis/p4-beta-chunked-orchestrator.log` (gitignored, ~70 KB, log cron tick ogni 3min)
 
 ## Convenzioni operative dell'utente
 
@@ -164,11 +174,13 @@ aggiornare vignette o capitoli del futuro manuale.
 
 ## Roadmap
 
-### Immediato (post β gates 2026-05-12)
+### Immediato (post β stage1 fullrun 2026-05-15)
 
-1. **β Task 10 stage1 full run** ~50-60h DGX wall. **NUOVA SESSIONE** per `validate-before-fullrun` memory rule. Input: `analysis/input/archs4-human-stage1-input.jsonl` (888.821 sample).
-2. **β Task 12 stage2 full run** ~2.5-3h DGX wall (post stage1 output + Task 11 stage2-input). Input: chunked stage2 records (~17k attesi).
-3. **β Task 15 closing** — NEWS bump 0.0.0.9016, tag `p4-beta-archs4-human-complete`, ff-merge → master.
+1. ~~**β Task 10 stage1 full run**~~ **DONE** 2026-05-14/15. 888.795 record mainstream + 26 outliers = 888.821 totali. Wall 17h53min mainstream + 2m23s outliers. Master output: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl`.
+2. ~~**β Task 10b stage1 outliers**~~ **DONE** 2026-05-15. Strategy A2 (`max_model_len=32768`) ha completato 26/26 record in 2m23s wall. Strategy A1 (`max_model_len=8192`) aveva riprodotto stall — A1 insufficiente per record fino a ~12.7k token worst case.
+3. **β Task 11 stage2-input** — costruzione input stage2 (chunking dei record per series_id) dal master predictions stage1. Stima ~17k stage2 records attesi (da gate2 extrapolation).
+4. **β Task 12 stage2 full run** ~2.5-3h DGX wall (post stage1 output + Task 11 stage2-input). Vigilare anche qui sugli outlier (record extra-lunghi nei chunk stage2 con tier strategy XL).
+5. **β Task 15 closing** — tag `p4-beta-archs4-human-complete`, ff-merge → master.
 
 ### Post-β
 
