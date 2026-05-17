@@ -53,7 +53,7 @@ Pipeline complessiva (5 stadi):
   che diverge da `design_role` — il gold "design-aware" è in
   `inst/extdata/p35c-minigold-reviewed-v5.csv` (100 sample, P3.5-C/D).
 
-## Stato corrente (2026-05-15 — P4 β stage1 fullrun 888.821/888.821 COMPLETE)
+## Stato corrente (2026-05-17 — P4 β ARCHS4 human full pipeline COMPLETE, tag p4-beta-archs4-human-complete)
 
 ### α (consolidato, riproducibile)
 
@@ -63,7 +63,7 @@ Pipeline classification stage1 + stage2 sul gold-standard XLSX 130.784 sample:
 - **α stage2** original (Task 22, 2026-05-10, v0.10.0 + workaround stack) → 8.532 / 8.546 cs25 = 99.84% schema, mini-gold 93.3%.
 - **α stage2 re-run cs50** (ADR-0010, 2026-05-11, v0.20.2-cu129 + clean stack) → **6.649 / 6.652 cs50 = 99.96%** schema single-pass, **mini-gold 96.7%** (+3.4pp). Default flipped cs25→cs50.
 
-### β (stage1 fullrun COMPLETE 2026-05-15, pending stage2)
+### β (stage1 + stage2 fullrun COMPLETE 2026-05-15/17, tag p4-beta-archs4-human-complete)
 
 Pipeline scalata su ARCHS4 v2.5 human bulk RNA-seq (~10x α):
 
@@ -73,7 +73,9 @@ Pipeline scalata su ARCHS4 v2.5 human bulk RNA-seq (~10x α):
 - **β GATE #2** smoke 1000 stratificato per nchar quartile (Task β-9, 2026-05-12): schema **99.50% s1 + 100% s2**, 5 LLM fail droppati lenient (0.5%), tier S=718 M=3 L=0 XL=0 (no overflow), design_kind distribution sana (case_control 40%, treatment_vs_vehicle 18%, multi_arm 17%).
 - **β Task 10 stage1 fullrun via chunked orchestrator** (2026-05-14/15): wall **17h53min** (20:07 UTC 2026-05-14 → 14:00 UTC 2026-05-15) per 888.795 record mainstream. 89 chunks da 10k, cron `*/3 * * * *` autonomous + cascade COMPLETED→submit-next. Throughput stabile ~12.1 min/chunk. **Zero stall**. State machine: `scripts/p4-beta-stage1-chunked-tick.sh` + `analysis/p4-beta-chunked-state.txt`.
 - **β Task 10b stage1 outliers** (2026-05-15): 26 record con `nchar > 3500` (0.003%) processati separatamente con `max_model_len=32768` (Strategy A2). Strategy A1 (`max_model_len=8192`) aveva riprodotto stall su job 20705. Wall **2m23s** per 26/26 record. Strategia documentata in memoria `project_vllm_scheduler_deadlock`.
-- **β Master output**: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl` (888.821 righe, 3.23 GB, gitignored), concat di 90 run dirs DGX (89 chunks + 1 outliers).
+- **β Master output stage1**: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl` (888.821 righe, 3.23 GB, gitignored), concat di 90 run dirs DGX (89 chunks + 1 outliers).
+- **β Task 11 stage2-input build** (2026-05-15): 887.250 sample validi (1.571 droppati lenient per LLM fail) / 28.479 GSE → **39.205 record stage2** (12.989 chunked in 2.263 studi multi-chunk + 26.216 unsplit). Output `analysis/input/archs4-human-stage2-input.jsonl` (1.2 GB, gitignored). Wall 18m46s local.
+- **β Task 12 stage2 fullrun** (2026-05-15/17): job slurm **20710**, run_id `20260515T175712Z-beta-stage2-fullrun-a275b0`, wall reale **1d 18h 29m 42s** (~42.5h DGX), ExitCode 0:0 COMPLETED. Schema validity **99.89%** (39.162/39.205, 43 errori). Tier S=16.493 / M=5.626 / L=2.605 / **XL=14.481** (37%). Throughput steady ~12-14 rec/min aggregato (4 worker H100, microbatch 50 cs50 ADR-0010/0013). Output 4 worker file merged in `predictions.jsonl` 403 MB sul DGX, collected localmente.
 
 **Pipeline running config (invariata da α)**:
 
@@ -88,7 +90,7 @@ Pipeline scalata su ARCHS4 v2.5 human bulk RNA-seq (~10x α):
 **Tag/branch attivi**:
 
 - Tag α: `p4-vllm-upgrade-v0.20.2-complete` (commit 31c676a, addendum 89ca20e per cs50 flip).
-- Branch β attivo: `p4-beta-archs4-human` (HEAD ~20 commit ahead di `master`). Tag finale `p4-beta-archs4-human-complete` post Task β-15 closing.
+- Tag β: **`p4-beta-archs4-human-complete`** (2026-05-17, closing Task β-15). Branch `p4-beta-archs4-human` ff-merged in `master` locale. Push remote rimane all'utente.
 - **Test**: 544 PASS / 0 FAIL / 3 SKIP α-level (skip pre-esistenti OPENAI_API_KEY) + 41 PASS β resolver = 585 total tests.
 
 **File risultato α + β attualmente sul disco**:
@@ -109,6 +111,8 @@ Pipeline scalata su ARCHS4 v2.5 human bulk RNA-seq (~10x α):
 - β stage1 master predictions: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl` (gitignored, **888.821 righe, 3.23 GB**, concat di 89 chunks + 1 outliers)
 - β stage1 state machine: `analysis/p4-beta-chunked-state.txt` (gitignored, ultimo valore `89` = orchestrator idle)
 - β stage1 orchestrator log: `analysis/p4-beta-chunked-orchestrator.log` (gitignored, ~70 KB, log cron tick ogni 3min)
+- β stage2 input cs50: `analysis/input/archs4-human-stage2-input.jsonl` (gitignored, **39.205 record, 1.2 GB**, output di `analysis/p4-beta-stage2-build-input.R`)
+- β stage2 fullrun output (collect dir): `analysis/p4-output/20260515T175712Z-beta-stage2-fullrun-a275b0/` (gitignored, contiene `predictions.jsonl` 403 MB merged + 4 worker file + `run_summary.json` + `collect.rds`)
 
 ## Convenzioni operative dell'utente
 
@@ -174,20 +178,21 @@ aggiornare vignette o capitoli del futuro manuale.
 
 ## Roadmap
 
-### Immediato (post β stage1 fullrun 2026-05-15)
+### β tutti i task DONE (chiusura 2026-05-17)
 
 1. ~~**β Task 10 stage1 full run**~~ **DONE** 2026-05-14/15. 888.795 record mainstream + 26 outliers = 888.821 totali. Wall 17h53min mainstream + 2m23s outliers. Master output: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl`.
-2. ~~**β Task 10b stage1 outliers**~~ **DONE** 2026-05-15. Strategy A2 (`max_model_len=32768`) ha completato 26/26 record in 2m23s wall. Strategy A1 (`max_model_len=8192`) aveva riprodotto stall — A1 insufficiente per record fino a ~12.7k token worst case.
-3. **β Task 11 stage2-input** — costruzione input stage2 (chunking dei record per series_id) dal master predictions stage1. Stima ~17k stage2 records attesi (da gate2 extrapolation).
-4. **β Task 12 stage2 full run** ~2.5-3h DGX wall (post stage1 output + Task 11 stage2-input). Vigilare anche qui sugli outlier (record extra-lunghi nei chunk stage2 con tier strategy XL).
-5. **β Task 15 closing** — tag `p4-beta-archs4-human-complete`, ff-merge → master.
+2. ~~**β Task 10b stage1 outliers**~~ **DONE** 2026-05-15. Strategy A2 (`max_model_len=32768`) ha completato 26/26 record in 2m23s wall.
+3. ~~**β Task 11 stage2-input**~~ **DONE** 2026-05-15. 39.205 record stage2 (vs ~17k stima gate2). Output `analysis/input/archs4-human-stage2-input.jsonl` (1.2 GB).
+4. ~~**β Task 12 stage2 full run**~~ **DONE** 2026-05-15/17. Wall reale ~42.5h (vs stima iniziale 6-8h sbagliata per via di 37% tier XL e cold-start). Schema validity 99.89% (39.162/39.205). Job slurm 20710 ExitCode 0:0.
+5. ~~**β Task 15 closing**~~ **DONE** 2026-05-17. NEWS 0.0.0.9016 esteso, tag `p4-beta-archs4-human-complete`, ff-merge → master locale. Push remote rimane all'utente.
 
-### Post-β
+### Post-β (immediato)
 
-1. **Output 3 ADR-0006**: P5 Stadio 4+5 (DESeq2/limma + metafor REM) sui β results.
-2. **Rename pacchetto** (ADR-0003) prima del primo `install_github` pubblico.
-3. **Migrazione a `ellmer`** come ADR separato.
-4. **γ ARCHS4 mouse** (post-human consolidato; "alla fine di tutto quando human funziona"). NO γ in pianificazione attiva — gestito come variante futura.
+1. **Output 3 ADR-0006**: P5 Stadio 4+5 (DESeq2/limma + metafor REM) sui β results (39.162 stage2 valid predictions su 28k+ studi). Spec design da scrivere.
+2. **Stadio 3 raggruppamento cross-studio** sui `comparability_anchor` v3 dei 39.162 record stage2 (prerequisito per P5).
+3. **Rename pacchetto** (ADR-0003) prima del primo `install_github` pubblico.
+4. **Migrazione a `ellmer`** come ADR separato.
+5. **γ ARCHS4 mouse** (post-human consolidato). NO γ in pianificazione attiva — gestito come variante futura.
 
 ## Dove vivere i dati che il repo NON contiene
 

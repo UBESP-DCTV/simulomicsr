@@ -1,4 +1,4 @@
-# simulomicsr 0.0.0.9016 (β Task 10 + 10b: stage1 fullrun 888.821/888.821 record COMPLETE)
+# simulomicsr 0.0.0.9016 (β P4 ARCHS4 human full pipeline COMPLETE — Task 10 stage1 + Task 11/12 stage2 + Task 15 closing)
 
 ## β Task 10 stage1 fullrun via chunked orchestrator (2026-05-14/15)
 
@@ -62,6 +62,60 @@ library, ~1000 BC accession ids, nchar=9831).
   statistica dataset (p99 633 / p99.9 1717 / 26 outliers).
 - CLAUDE.md roadmap: Task 10 + 10b marcati DONE, prossimi step (Task 11
   stage2-input + Task 12 stage2 + Task 15 closing).
+
+## β Task 11 stage2-input build (2026-05-15)
+
+Costruzione input stage2 JSONL via `analysis/p4-beta-stage2-build-input.R`
+dal master predictions stage1 (888.821 record). Chunking deterministico
+per series_id, chunk_size=50 (ADR-0013 cs50 default).
+
+- 1.571 / 888.821 sample (0.18%) droppati per LLM fail stage1
+  (`series_id` mancante in `parsed_json`) — lenient drop, retry/uniqfail
+  rounds upstream deferred (vedi CLAUDE.md "Decisioni rinviate").
+- 887.250 sample validi su 28.479 GSE unique post-resolver.
+- **39.205 record stage2 totali**: 12.989 chunked records (in 2.263 studi
+  multi-chunk, top study GSE116672 con 13.126 sample → 263 chunk) +
+  26.216 unsplit records.
+- Sanity check: total samples in JSONL == n_preds (887.250), nessun sample
+  perso nel chunking.
+- Wall 18m46s su workstation locale. Output 1.2 GB
+  `analysis/input/archs4-human-stage2-input.jsonl` (gitignored).
+
+## β Task 12 stage2 fullrun (2026-05-15/17) — 39.205 record, schema 99.89%
+
+Stage2 LLM study-design interpretation completata sui 39.205 record stage2
+beta. Submit-only via `analysis/p4-beta-stage2-fullrun.R` (resume-safe
+come stage1 fullrun).
+
+- **Job slurm 20710**, run_id `20260515T175712Z-beta-stage2-fullrun-a275b0`,
+  wall reale **1d 18h 29m 42s** (~42.5h DGX) start 2026-05-15 17:57 UTC
+  → end 2026-05-17 12:36 UTC, ExitCode 0:0 COMPLETED.
+- **Schema validity 99.89%** (39.162 / 39.205) — in linea con α stage2 cs50
+  99.96% (6649/6652) nonostante 6x più record e 37% tier XL.
+- Tier distribution input: S=16.493 / M=5.626 / L=2.605 / **XL=14.481**
+  (`tiered_max_tokens=TRUE` ADR-0011: 4096/8192/16384/32768).
+- Throughput steady-state ~12-14 record/min aggregato (4 worker GPU H100,
+  ~3 rec/min per worker), con varianza alta dovuta a chunks XL pesanti
+  e batch favorevoli. Cold-start del primo microbatch ~75-88 min, batch
+  successivi ~25-30 min per 50 record.
+- Config invariante vs gate2 + α stage2 cs50: `max_num_seqs=6,
+  microbatch=50, temperature=0.0, repetition_penalty=1.1,
+  StructuredOutputsParams` (vLLM v0.20.2-cu129).
+- 4 worker file mergiati in `predictions.jsonl` finale (403 MB sul DGX).
+- Output collect locale: `analysis/p4-output/20260515T175712Z-beta-stage2-
+  fullrun-a275b0/{predictions.jsonl, run_summary.json, collect.rds}`.
+- Errata sub-ottimale `time = "72:00:00"` su `dgx_p4_submit`: il plan β-12
+  specificava `time = "168:00:00"`. Fix in memoria
+  `feedback_dgx_respect_plan_time.md`. Job in pratica ha completato bene
+  entro 72h (margine ~29h), ma TIMEOUT-resume era pianificato come safety.
+
+## β Task 15 closing (2026-05-17)
+
+- NEWS.md sezione 0.0.0.9016 estesa con β-11 + β-12 + closing notes.
+- DESCRIPTION Version invariata a 0.0.0.9016 (assegnata in β-10).
+- Tag `p4-beta-archs4-human-complete` posizionato sul commit closing.
+- Fast-forward merge `p4-beta-archs4-human` → `master`.
+- Branch β archiviato. Push remote rimane all'utente.
 
 # simulomicsr 0.0.0.9015 (ADR-0010 vLLM upgrade v0.10.0 -> v0.20.2-cu129 + Phase 5 cleanup)
 
