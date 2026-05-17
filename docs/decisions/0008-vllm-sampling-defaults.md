@@ -104,6 +104,73 @@ provenienza in colonna `rescue_source`: `replicate_<GSM>` (2308 propagati) /
 `uniqfail_temp00_rep11` (1132 rep_pen 1.1) / `rep11_maxtok2048` (205 Mode B
 fix) / `rep12_maxtok2048` (6 Mode A fix) / NA (124,979 originali).
 
+## Addendum 2026-05-17 — β rescue cascade (H1+H3 retry strategies)
+
+Il fullrun β stage1 (888.821 sample ARCHS4 v2.5 human) e stage2 (39.205
+record cs50) ha prodotto **1.571 stage1 fails** (0.18%) + **43 stage2
+fails** (0.11%). Phase 1 systematic classification dei fails per failure
+mode ha rivelato tre famiglie distinguibili (analoghe a α post-investigation
+Mode A/B + nuovo modo C):
+
+- **Mode A whitespace** (660 fails) — decoder loop su field-boundary,
+  rep_pen 1.1 insufficiente. Analogo Mode A α.
+- **Mode B legit truncation** (147 fails) — JSON parziale corretto, max_tokens
+  2048 stage1 esaurito. Analogo Mode B α (ma su record stage1 con metadata
+  più ricchi della distribuzione α).
+- **OTHER degeneration** (15 fails) — pattern misti (es. tag formatting,
+  rare token loops).
+- **ETL_LEAK_NONHUMAN** (749 fails) — degenerazione metadata mouse-specific
+  che causa stallo decoder; tutti concentrati nei 72 GSE
+  mouse-mislabeled-as-human in ARCHS4/GEO upstream (signal indiretto della
+  discovery H2, drop GSE-level cleanup — vedi
+  `docs/findings/2026-05-17-llm-detected-archs4-geo-organism-mislabeling.md`).
+
+Per i 43 stage2 fails: tutti cs50 stalls residuati post-pipeline
+(ADR-0009 safe-mode disabilitato a favore di max_num_seqs=6, microbatch=50
+post-PR #40946) concentrati su tier XL (max_tokens=32768).
+
+### Strategia rescue H1 — stage1 LLM-failure cascade
+
+Per i 822 fails non-ETL (Mode A + Mode B + OTHER), single-shot rescue config:
+
+- `repetition_penalty = 1.2` (vs default 1.1)
+- `max_tokens = 4096` (vs default stage1 2048)
+- `max_model_len = 8192` (vs default 4096)
+
+**Razionale**: la combinazione triplo-override estende sia il budget token
+(Mode B fix) sia il rep_pen (Mode A fix) sia il context per record verbose,
+senza richiedere multi-round retry. Smoke20 → **20/20 = 100% recovery**.
+Full retry 822 → **802/822 = 97.6% recovery** (20 residual irrecuperabili,
+0.0023% del master cleaned).
+
+**Decisione**: H1 config NON propagato come default `p4-defaults.yml`
+(memoria `feedback_pipeline_config_uniformity` → uniformità config su tutti
+gli stadi). È override puntuale come per α Mode A/B rescue rounds.
+
+### Strategia rescue H3 — stage2 stall via cs25 re-split
+
+Per i 43 stage2 cs50 fails (tutti cs50 tier XL stuck):
+
+- Re-split cs50 → **cs25** (chunk_size 50→25, 85 cs25 chunks da 43 cs50)
+- `tiered_max_tokens = TRUE` con tier XL = **32768** (default vLLM v0.20.2)
+- Sampling invariato (`temperature=0.0, repetition_penalty=1.1`)
+- max_model_len invariato (32k default tier XL)
+
+**Razionale**: dimezzamento chunk_size riduce KV cache pressure per
+request, evitando scheduler HoL su request grandi (Issue #39734 residual
+edge case). Smoke5 → **5/5 = 100% recovery**. Full retry 85 cs25 →
+**85/85 chunks valid → 43/43 original keys fully rescued, 0 residual,
+stage2 validity 100.000%**.
+
+### Risultato finale β post-rescue cascade
+
+- **Stage1 LLM-only validity**: 99.998% (878.398 / 878.418 LLM_attempted,
+  escludendo 749 ETL leak ridroppati nei 72 GSE H2 cleanup — vedi
+  `feedback_etl_leak_not_llm_failure.md` per formula corretta).
+- **Stage2 schema validity**: **100.000%** (39.247 valid, 0 residual).
+- `rescue_source` annotation: `h1_rep12_maxtok4096` (802 record stage1),
+  `h3_cs25_resplit` (85 cs25 chunks stage2), NA per gli originali.
+
 ## Pros and Cons of the Options
 
 ### Opzione 3 (vincente)

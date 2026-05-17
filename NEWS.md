@@ -1,3 +1,105 @@
+# simulomicsr 0.0.0.9017 (β P4 rescue cascade COMPLETE — H1 stage1 + H2 mouse-mislabel + H3 stage2 → 99.998% stage1 + 100.000% stage2)
+
+## β rescue cascade (2026-05-17, branch `p4-beta-rescue`)
+
+Phase post-fullrun β (v0.0.0.9016) ha lasciato 1.571 stage1 fails (0.18%)
++ 43 stage2 fails (0.11%). Cascade di tre strategie indipendenti ha
+portato il dataset a piena validity LLM-only.
+
+### Phase 1 classification (Task 2)
+
+Classificazione sistematica dei 1.571 stage1 fails per failure mode:
+
+- **MODE_A_WHITESPACE** (660 fails) — decoder loop su field-boundary
+- **MODE_B_LEGIT_TRUNC** (147 fails) — truncation per max_tokens stage1
+  esaurito su record verbose
+- **OTHER_DEGEN** (15 fails) — pattern misti rari
+- **ETL_LEAK_NONHUMAN** (749 fails) — degenerazione metadata mouse-specific
+  concentrata nei 72 GSE mouse-mislabeled-as-human in ARCHS4 upstream
+  (vedi H2 below)
+
+CSV salvato in `analysis/p4-output/p4-beta-rescue-stage1-fails-classified.csv`.
+
+### H1 — Stage1 LLM-failure rescue (Task 4-8)
+
+Per 822 fails non-ETL (Mode A + Mode B + OTHER), single-shot rescue
+config: `repetition_penalty = 1.2`, `max_tokens = 4096`, `max_model_len
+= 8192` (vs default stage1 1.1 / 2048 / 4096).
+
+- Smoke20 (slurm 21008): **20/20 = 100% recovery** in 1m39s wall.
+- Full retry 822 (slurm 21103): **802/822 = 97.6% recovery** in 3m21s
+  wall. 20 residual irrecuperabili (0.0023% del master cleaned).
+
+Master output: `analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl`
+(879.167 record), colonna `rescue_source = "h1_rep12_maxtok4096"` su 802
+record.
+
+### H2 — Discovery: mouse-mislabeled-as-human GSE in ARCHS4/GEO upstream (Task 3+3b)
+
+**Paper-grade finding metodologico**. Phase 1+2 debugging ha rivelato
+che 72 studi ARCHS4 v2.5 hanno `organism_ch1 = "Homo sapiens"` upstream
+ma contengono campioni murini. Mistral-Small-3.2-24B ha classificato
+correttamente come Mus musculus leggendo metadata raw (es. GSE86977 con
+`cre line: DCX+` = mouse-only transgene).
+
+Threshold flagging: ≥5 sample non-human + ≥50% non-human/studio.
+
+| Categoria | N sample |
+|---|---|
+| Classificati non-human dall'LLM (discovery diretta) | 8.398 |
+| Human-classified collaterali in GSE mixed (drop conservativo) | 1.256 |
+| **Drop GSE-level effettivo (Stage1: 888.821 → 879.167)** | **9.654** |
+| LLM JSON failures su metadata mouse-specific (signal indiretto, GSE86977: 746) | 749 |
+| **Totale signal mouse-mislabel** | **10.403** (1.17% dataset β) |
+
+Stage2-input correlato: 39.205 → **38.963 record** (−242).
+
+Discovery doc completo: `docs/findings/2026-05-17-llm-detected-archs4-geo-organism-mislabeling.md`.
+Lista 72 GSE: `analysis/p4-output/p4-beta-rescue-h2-suspects.rds`.
+
+### H3 — Stage2 stall rescue via cs25 re-split (Task 9-13)
+
+Per 43 stage2 cs50 fails (tutti tier XL stuck, edge case residual vLLM
+Issue #39734 post-PR #40946): re-split cs50 → cs25 + `tiered_max_tokens
+= TRUE` con tier XL = 32768.
+
+- Smoke5 (slurm 21129): **5/5 = 100% recovery** in 2m35s wall.
+- Full retry 85 cs25 chunks (slurm 21132): **85/85 valid, 0 residual,
+  43/43 original keys fully rescued** in 8min wall.
+
+Master output: `analysis/p4-output/p4-beta-stage2-master-rescued-collect.rds`
+(39.247 predictions, 0 errors). Colonna `rescue_source = "h3_cs25_resplit"`
+su 85 cs25 chunks.
+
+### Risultato finale β post-rescue cascade
+
+- **Stage1 LLM-only validity**: **99.998%** (878.398 / 878.418
+  LLM_attempted, escludendo 749 ETL leak ridroppati nei 72 GSE H2 cleanup;
+  formula in `feedback_etl_leak_not_llm_failure.md`).
+- **Stage2 schema validity**: **100.000%** (39.247 valid, 0 residual).
+- Dataset post-cleanup: **879.167 sample stage1** + **38.963 record
+  stage2** (vs pre-rescue 888.821 + 39.205 = drop H2 GSE-level).
+- Discovery byproduct H2: 72 GSE flagged per re-annotation upstream
+  GEO/ARCHS4, salvati come paper-grade contribution.
+
+### Artefatti
+
+- `analysis/p4-beta-rescue-*.R` — script pipeline rescue (input build,
+  smoke, full, merge per H1+H3, cleanup per H2).
+- `docs/superpowers/plans/2026-05-17-p4-beta-rescue-cascade-plan.md` —
+  plan completo cascade.
+- `docs/decisions/0008-vllm-sampling-defaults.md` — Addendum 2026-05-17
+  con strategie H1+H3 documentate.
+- `docs/findings/2026-05-17-llm-detected-archs4-geo-organism-mislabeling.md`
+  — discovery H2 paper-grade.
+- `docs/findings/2026-05-17-p4-beta-rescue-strategies.md` — riassunto
+  consolidato strategie rescue per paper Methods/Results.
+
+### Tag
+
+`p4-beta-rescue-complete` (ff-merge `p4-beta-rescue` → `master`,
+push remoto a cura utente).
+
 # simulomicsr 0.0.0.9016 (β P4 ARCHS4 human full pipeline COMPLETE — Task 10 stage1 + Task 11/12 stage2 + Task 15 closing)
 
 ## β Task 10 stage1 fullrun via chunked orchestrator (2026-05-14/15)
