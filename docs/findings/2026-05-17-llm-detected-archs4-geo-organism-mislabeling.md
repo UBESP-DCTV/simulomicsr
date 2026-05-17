@@ -2,11 +2,43 @@
 
 > **Status:** Discovery, 2026-05-17
 > **Discovered during:** P4 β rescue cascade (Phase 1+2 systematic debugging dei 1.571 stage1 fails)
-> **Methodological contribution:** la pipeline `simulomicsr` (Mistral-Small-3.2-24B LLM + structured outputs) ha identificato **72 studi GEO** etichettati come `organism_ch1 = "Homo sapiens"` in ARCHS4 v2.5 ma che in realtà contengono campioni murini, per un totale di **~9.147 campioni mislabeled**.
+> **Methodological contribution:** la pipeline `simulomicsr` (Mistral-Small-3.2-24B LLM + structured outputs) ha identificato **72 studi GEO** etichettati come `organism_ch1 = "Homo sapiens"` in ARCHS4 v2.5 ma che in realtà contengono campioni murini. Cleanup GSE-level: **9.654 sample droppati** (1.09% del dataset β di 888.821), oltre a **749 sample con LLM JSON failure** concentrati negli stessi GSE (signal indiretto del mislabeling).
 
-## Summary
+## Numeri canonici (paper-grade — riportare in Methods/Results)
 
-Eseguendo `simulomicsr` stage1 classification sul dataset ARCHS4 v2.5 human bulk RNA-seq (888.821 sample post-filtri `organism_ch1 = "Homo sapiens"` + `library_strategy = "RNA-Seq"` + non-trivial metadata), il modello Mistral-Small-3.2-24B ha classificato **8.398 campioni come `Mus musculus`** + **749 campioni hanno fallito la generazione JSON con degenerazione legata a metadata mouse-specific** (totale ~9.147 sample). Questi sample si concentrano in **72 studi GEO** (>=5 sample non-human + >=50% non-human della classificazione valid per studio).
+Dataset di partenza: **888.821 sample** ARCHS4 v2.5 human bulk RNA-seq filtered (`organism_ch1 = "Homo sapiens"` + `library_strategy = "RNA-Seq"` + non-trivial metadata).
+
+| Categoria | N sample | Fonte |
+|---|---|---|
+| **Sample classificati non-human dall'LLM (Mistral-Small-3.2-24B)** — discovery diretta | **8.398** | `suspects$nonhuman` su 72 GSE |
+| Sample classificati human dall'LLM ma in GSE mixed — drop collaterale GSE-level conservativo | 1.256 | `suspects$total − suspects$nonhuman` |
+| **Subtotale drop GSE-level effettivo (Stage1: 888.821 → 879.167)** | **9.654** | `sum(suspects$total)` |
+| Sample con LLM JSON failure su metadata mouse-specific (signal indiretto, tutti nei 72 GSE flagged) | 749 | `fails$fail_mode == "ETL_LEAK_NONHUMAN"` |
+| Di cui solo in GSE86977 | 746 | Concentrazione 99.6% |
+| **Totale segnale mouse-mislabel raccolto dalla pipeline** | **10.403** | 9.654 + 749 |
+
+Stage2-input cleanup correlato: 39.205 → **38.963 record** (−242 stage2 record GSE-level droppati).
+
+**Criterio threshold per flagging studio**: ≥5 sample classificati non-human dall'LLM + ≥50% non-human del totale classificato per studio. 72 studi soddisfano il criterio.
+
+Top studi affetti:
+
+| Series | Sample classificati validi | Non-human classificati | % non-human | LLM JSON fails extra |
+|---|---|---|---|---|
+| GSE202695 | 2.973 | 2.973 | 100.0% | 0 |
+| GSE86977  | 1.938 | 1.810 | 93.4% | **746** (degenerazione mouse-specific) |
+| GSE86982  | 1.846 | 1.476 | 80.0% | 0 |
+| GSE93593  | 1.732 | 1.162 | 67.1% | 1 |
+| GSE213896 | 70    | 66    | 94.3% | 0 |
+| GSE242202 | 59    | 59    | 100.0% | 0 |
+| GSE189518 | 52    | 52    | 100.0% | 0 |
+| GSE93801  | 39    | 34    | 87.2% | 1 |
+| GSE217260 | 36    | 33    | 91.7% | 0 |
+| GSE98183  | 46    | 33    | 71.7% | 0 |
+| GSE126753 | (vario) | (vario) | (≥50%) | 1 |
+| ... (62 altri studi, ≥5 sample + ≥50% non-human) | | | | |
+
+Lista completa salvata in `analysis/p4-output/p4-beta-rescue-h2-suspects.rds` (72 righe × 4 colonne: `series_id`, `total`, `nonhuman`, `pct_nonhuman`).
 
 Top studi affetti:
 
@@ -61,8 +93,8 @@ Per confronto, gli annotatori GEO/SRA esistenti (citati in ADR-0006 stato-arte: 
 
 ## Action items per la pipeline `simulomicsr`
 
-1. **H2 cleanup esteso (GSE-level)**: i 72 studi sospetti sono droppati interamente dal master stage1 e dal stage2-input pre-stadio 3 (raggruppamento). Drop totale ~9.147 sample / 888.821 = **1.03%** del dataset β.
-2. **Master stage1 post-H2-v2**: ~879.674 sample (888.821 - 749 fails - ~8.398 valid non-human classifications).
+1. **H2 cleanup esteso (GSE-level)**: i 72 studi sospetti sono droppati interamente dal master stage1 e dal stage2-input pre-stadio 3 (raggruppamento). Drop GSE-level: **9.654 sample / 888.821 = 1.09%** del dataset β (+ 749 LLM JSON failures concentrati negli stessi GSE come signal indiretto).
+2. **Master stage1 post-H2-v2**: **879.167 sample** (888.821 − 9.654).
 3. **Documentazione finding nel paper**: sezione dedicata in Methods / Results (non Limitations — è un contributo metodologico positivo).
 4. **Lista dei 72 studi mislabeled** come supplementary material per riproducibilità + per consenting a future re-annotation effort upstream.
 
@@ -74,8 +106,11 @@ Method: simulomicsr stage1 (Mistral-Small-3.2-24B) classification disagreement
         vs ARCHS4 v2.5 organism_ch1
 Threshold criterion: >=5 sample classified non-human + >=50% non-human per study
 Affected studies: 72
-Total mislabeled samples: ~9.147 (8.398 valid non-human + 749 LLM fails with non-human metadata signal)
-Dataset fraction: 1.03% of 888.821 ARCHS4 human bulk RNA-seq filtered
+Drop GSE-level effettivo: 9.654 sample (8.398 LLM-non-human + 1.256 human-classified collaterali)
+Signal indiretto aggiuntivo: 749 LLM JSON failures su metadata mouse-specific (tutti nei 72 GSE, soprattutto GSE86977: 746)
+Totale signal mouse-mislabel raccolto: 10.403 sample
+Stage1 master post-cleanup: 888.821 -> 879.167 (1.09% drop)
+Stage2-input post-cleanup: 39.205 -> 38.963 record (-242 record GSE-level)
 ```
 
 ## References

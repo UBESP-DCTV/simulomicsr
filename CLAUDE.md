@@ -53,7 +53,7 @@ Pipeline complessiva (5 stadi):
   che diverge da `design_role` — il gold "design-aware" è in
   `inst/extdata/p35c-minigold-reviewed-v5.csv` (100 sample, P3.5-C/D).
 
-## Stato corrente (2026-05-17 — P4 β ARCHS4 human full pipeline COMPLETE, tag p4-beta-archs4-human-complete)
+## Stato corrente (2026-05-17 — P4 β rescue cascade COMPLETE, tag p4-beta-rescue-complete pending)
 
 ### α (consolidato, riproducibile)
 
@@ -76,6 +76,28 @@ Pipeline scalata su ARCHS4 v2.5 human bulk RNA-seq (~10x α):
 - **β Master output stage1**: `analysis/p4-output/p4-beta-stage1-master-predictions.jsonl` (888.821 righe, 3.23 GB, gitignored), concat di 90 run dirs DGX (89 chunks + 1 outliers).
 - **β Task 11 stage2-input build** (2026-05-15): 887.250 sample validi (1.571 droppati lenient per LLM fail) / 28.479 GSE → **39.205 record stage2** (12.989 chunked in 2.263 studi multi-chunk + 26.216 unsplit). Output `analysis/input/archs4-human-stage2-input.jsonl` (1.2 GB, gitignored). Wall 18m46s local.
 - **β Task 12 stage2 fullrun** (2026-05-15/17): job slurm **20710**, run_id `20260515T175712Z-beta-stage2-fullrun-a275b0`, wall reale **1d 18h 29m 42s** (~42.5h DGX), ExitCode 0:0 COMPLETED. Schema validity **99.89%** (39.162/39.205, 43 errori). Tier S=16.493 / M=5.626 / L=2.605 / **XL=14.481** (37%). Throughput steady ~12-14 rec/min aggregato (4 worker H100, microbatch 50 cs50 ADR-0010/0013). Output 4 worker file merged in `predictions.jsonl` 403 MB sul DGX, collected localmente.
+
+### β rescue cascade (Task 1-15, 2026-05-17, branch `p4-beta-rescue`)
+
+Post-fullrun cleanup di 1.571 stage1 fails + 43 stage2 fails + discovery
+paper-grade mouse-mislabeled GSE. Cascade tre strategie:
+
+- **Phase 1 classification** (Task 2): 1.571 stage1 fails decomposti in MODE_A_WHITESPACE (660), MODE_B_LEGIT_TRUNC (147), OTHER_DEGEN (15), ETL_LEAK_NONHUMAN (749). CSV `analysis/p4-output/p4-beta-rescue-stage1-fails-classified.csv`.
+- **H2 — mouse-mislabeled GSE discovery + GSE-level drop** (Task 3+3b): 72 GSE ARCHS4 v2.5 `organism_ch1="Homo sapiens"` ma contenuti murini → 9.654 sample droppati GSE-level (8.398 LLM-non-human + 1.256 human collaterali) + 749 LLM JSON failure signal indiretto. Stage1 master cleaned: 888.821 → **879.167**. Stage2-input: 39.205 → **38.963**. Discovery doc paper-grade: `docs/findings/2026-05-17-llm-detected-archs4-geo-organism-mislabeling.md`.
+- **H1 — Stage1 LLM-failure rescue** (Task 4-8): single-shot config `rep_pen=1.2 + max_tokens=4096 + max_model_len=8192` sui 822 Mode A/B/OTHER fails. Smoke20 21008 = 20/20 = 100%. Full retry 21103 = **802/822 = 97.6%** in 3m21s. Master rescued: `analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl` (879.167 record, colonna `rescue_source = "h1_rep12_maxtok4096"` su 802).
+- **H3 — Stage2 stall rescue cs25** (Task 9-13): cs50→cs25 re-split sui 43 stage2 fails (tier XL stuck post-PR #40946) + `tiered_max_tokens=TRUE` con XL=32768. 85 cs25 chunks generati. Smoke5 21129 = 5/5 = 100% in 2m35s. Full retry 21132 = **85/85 valid, 0 residual, 43/43 original keys fully rescued** in 8min. Master rescued: `analysis/p4-output/p4-beta-stage2-master-rescued-collect.rds` (39.247 predictions, 0 errors).
+
+**Risultato finale β post-rescue**:
+
+| Metric | Pre-rescue | Post-rescue cascade |
+|---|---|---|
+| Stage1 master records | 888.821 | **879.167** (H2 drop −9.654) |
+| Stage1 LLM-only validity | 99.82% | **99.998%** (878.398 / 878.418 LLM_attempted; escludi 749 ETL leak ridroppati per H2) |
+| Stage2 records | 39.205 | **38.963** (post H2) → **39.247 predictions** (post H3 con cs25 splits) |
+| Stage2 schema validity | 99.89% | **100.000%** (0 residual) |
+| Mouse contamination upstream | 9.147 latent | **0** (72 GSE dropped + 72 candidati re-annotation GEO/ARCHS4) |
+
+Strategie consolidate documentate per paper Methods/Results: `docs/findings/2026-05-17-p4-beta-rescue-strategies.md`. ADR-0008 Addendum 2026-05-17 con H1+H3 config. NEWS 0.0.0.9017.
 
 **Pipeline running config (invariata da α)**:
 
@@ -113,6 +135,14 @@ Pipeline scalata su ARCHS4 v2.5 human bulk RNA-seq (~10x α):
 - β stage1 orchestrator log: `analysis/p4-beta-chunked-orchestrator.log` (gitignored, ~70 KB, log cron tick ogni 3min)
 - β stage2 input cs50: `analysis/input/archs4-human-stage2-input.jsonl` (gitignored, **39.205 record, 1.2 GB**, output di `analysis/p4-beta-stage2-build-input.R`)
 - β stage2 fullrun output (collect dir): `analysis/p4-output/20260515T175712Z-beta-stage2-fullrun-a275b0/` (gitignored, contiene `predictions.jsonl` 403 MB merged + 4 worker file + `run_summary.json` + `collect.rds`)
+- β rescue stage1 fails classified: `analysis/p4-output/p4-beta-rescue-stage1-fails-classified.csv` (committato, 1.571 fails × 5 colonne)
+- β rescue H2 suspects (72 GSE flagged): `analysis/p4-output/p4-beta-rescue-h2-suspects.rds` (committato, 72 × 4 colonne)
+- β rescue stage1 cleaned (post H2): `analysis/p4-output/p4-beta-stage1-master-predictions-cleaned.jsonl` (gitignored, **879.167 righe, 2.97 GB**)
+- β rescue stage2-input cleaned (post H2): `analysis/input/archs4-human-stage2-input-cleaned.jsonl` (gitignored, **38.963 record, 1.18 GB**)
+- β rescue H1 input: `analysis/input/archs4-human-stage1-rescue.jsonl` (gitignored, 822 record, 296 KB)
+- β rescue stage1 master rescued (post H1): `analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl` (gitignored, **879.167 righe, 2.97 GB**, colonna `rescue_source = "h1_rep12_maxtok4096"` su 802)
+- β rescue H3 input cs25: `analysis/input/archs4-human-stage2-rescue-cs25.jsonl` (gitignored, **85 chunks, 3.2 MB**)
+- β rescue stage2 master rescued (post H3): `analysis/p4-output/p4-beta-stage2-master-rescued-collect.rds` (gitignored, 39.247 predictions + 0 errors, colonna `rescue_source = "h3_cs25_resplit"` su 85 cs25 chunks)
 
 ## Convenzioni operative dell'utente
 
@@ -173,7 +203,7 @@ aggiornare vignette o capitoli del futuro manuale.
 - **Cache cross-modello.** P1 attuale partiziona per `(provider, model, messages)`. Se servisse cache cross-modello, ADR dedicato.
 - **Migrazione su server con più spazio.** ADR-0005 documenta trigger e procedura.
 - **Findings sotto-soglia P3.5-A** (eventuale prompt iter post-α): `treatment_vs_untreated` 77.3% (n=141), `time_course` 59.3% (n=54), `case_control_disease` 49.1% (n=57, sotto casuale).
-- **β retry/uniqfail infrastructure pre full run.** Smoke 1000 mostra ~0.5% LLM fail rate (5/1000 sample con `parsed_json$series_id` NULL). Su 888k sample = ~4.500 sample droppati. Per pareggiare α (100% schema post-recovery) servirebbe replicare il pattern α retry-rep11/temp00/uniqfail rounds anche per β stage1. Attualmente β stage2-input è lenient (warning + drop). Acceptable per gate ma da formalizzare in Task post β-15.
+- ~~**β retry/uniqfail infrastructure pre full run**~~ **DONE 2026-05-17 con β rescue cascade**. Risolto via Phase 1 classification + H1 single-shot rep_pen=1.2/max_tokens=4096 + H3 cs50→cs25 invece di multi-round retry. Risultato: stage1 LLM-only 99.998% + stage2 100.000%. Cascade documentato in ADR-0008 addendum 2026-05-17 + `docs/findings/2026-05-17-p4-beta-rescue-strategies.md`.
 - **β gate2 throughput measurement bug** (cosmetico, gate-decision non impattata). Lo script `analysis/p4-beta-gate2-smoke.R` misura wall come `Sys.time()` pre/post `poll_until_done`, ma resume da job COMPLETED restituisce ~5 sec → "throughput 9996 rec/min" artefatto. Fix corretto: pull `sacct -j JID --format=Elapsed` e usare quello come wall reale. ETA stage1 full corretta calcolata a mano dal log poll iniziale: ~59h.
 
 ## Roadmap
@@ -185,6 +215,7 @@ aggiornare vignette o capitoli del futuro manuale.
 3. ~~**β Task 11 stage2-input**~~ **DONE** 2026-05-15. 39.205 record stage2 (vs ~17k stima gate2). Output `analysis/input/archs4-human-stage2-input.jsonl` (1.2 GB).
 4. ~~**β Task 12 stage2 full run**~~ **DONE** 2026-05-15/17. Wall reale ~42.5h (vs stima iniziale 6-8h sbagliata per via di 37% tier XL e cold-start). Schema validity 99.89% (39.162/39.205). Job slurm 20710 ExitCode 0:0.
 5. ~~**β Task 15 closing**~~ **DONE** 2026-05-17. NEWS 0.0.0.9016 esteso, tag `p4-beta-archs4-human-complete`, ff-merge → master locale. Push remote rimane all'utente.
+6. ~~**β rescue cascade Task 1-15**~~ **DONE** 2026-05-17. Stage1 99.998% LLM-only + stage2 100.000%. NEWS 0.0.0.9017 esteso, tag `p4-beta-rescue-complete` (pending Task 15 close), ff-merge → master locale. Discovery paper-grade H2 (72 mouse-mislabeled GSE) + strategie rescue consolidate in `docs/findings/2026-05-17-p4-beta-rescue-strategies.md`.
 
 ### Post-β (immediato)
 
