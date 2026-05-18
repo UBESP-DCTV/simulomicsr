@@ -69,7 +69,7 @@ load_stage3 <- function(dir) {
       non_clusterable = readRDS(file.path(dir, "non_clusterable.rds")),
       run_metadata    = jsonlite::fromJSON(
         file.path(dir, "run_metadata.json"),
-        simplifyVector = FALSE
+        simplifyVector = TRUE
       )
     ),
     class = "stage3_result"
