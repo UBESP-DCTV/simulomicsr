@@ -24,22 +24,30 @@ build_stage3_clusters <- function(stage1_master,
                                    archs4_metadata = NULL) {
   ta         <- config$tier_assignment
   thresholds <- config$thresholds
+  cli::cli_inform("[stage3] START build_stage3_clusters at {format(Sys.time())}")
 
   # 1. Caricamento input se path
   if (is.character(stage1_master)) {
+    cli::cli_inform("[stage3] Phase 1a: load stage1_master from {stage1_master}")
     stage1_master <- .load_stage1_master(stage1_master)
   }
   if (is.character(stage2_master)) {
+    cli::cli_inform("[stage3] Phase 1b: load stage2_master from {stage2_master}")
     stage2_master <- .load_stage2_master(stage2_master)
   }
+  cli::cli_inform("[stage3] Phase 1 done: {length(stage1_master)} stage1 + {length(stage2_master)} stage2 records loaded")
 
   # 2. Costruzione records dual-mode
+  cli::cli_inform("[stage3] Phase 2: build pair+group records")
   records_pair  <- .build_pair_records(stage2_master, stage1_master, ta)
   records_group <- .build_group_records(stage2_master, stage1_master, ta)
+  cli::cli_inform("[stage3] Phase 2 done: {length(records_pair)} pair + {length(records_group)} group records")
 
   # 3. Eligibility filter
+  cli::cli_inform("[stage3] Phase 3: eligibility filter")
   pair_filt  <- .filter_eligible_records(records_pair)
   group_filt <- .filter_eligible_records(records_group)
+  cli::cli_inform("[stage3] Phase 3 done: pair eligible={length(pair_filt$eligible)} non_clust={length(pair_filt$non_clusterable)}; group eligible={length(group_filt$eligible)} non_clust={length(group_filt$non_clusterable)}")
 
   # 4. Direction check (pair only) + scarta ambiguous/indeterminate
   if (length(pair_filt$eligible) > 0L) {
@@ -61,12 +69,15 @@ build_stage3_clusters <- function(stage1_master,
   }
 
   # 5. Hard filter partition + clustering per L0..L4 per mode
+  cli::cli_inform("[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)")
   assignments_all <- list()
   for (mode in c("pair", "group")) {
     eligible <- if (identical(mode, "pair")) pair_filt$eligible else group_filt$eligible
     if (length(eligible) == 0L) next
     parts <- .partition_by_hard_filters(eligible)
+    cli::cli_inform("[stage3]   mode={mode}: {length(eligible)} eligible records in {length(parts)} hard-filter partitions")
     for (L in 0L:4L) {
+      L_start <- Sys.time()
       for (part in parts) {
         if (length(part) == 0L) next
         # Aggiungi anchor_key per ogni record della partizione al livello L
@@ -91,10 +102,12 @@ build_stage3_clusters <- function(stage1_master,
         asg <- .assign_records_to_clusters(part_with_keys, mode, L)
         assignments_all[[length(assignments_all) + 1L]] <- asg
       }
+      cli::cli_inform("[stage3]   mode={mode} L{L} done in {round(as.numeric(difftime(Sys.time(), L_start, units = 'secs')), 1)}s")
     }
   }
 
   # Unione assignments (base R: do.call(rbind, ...) su tibble)
+  cli::cli_inform("[stage3] Phase 5 done: combining {length(assignments_all)} assignment chunks")
   assignments <- if (length(assignments_all) > 0L) {
     do.call(rbind, assignments_all)
   } else {
@@ -112,6 +125,7 @@ build_stage3_clusters <- function(stage1_master,
   }
 
   # 6. Per ogni cluster_id, calcola summary (k, n_total, safety, metadata, usability)
+  cli::cli_inform("[stage3] Phase 6: summarize_clusters ({nrow(assignments)} assignments -> ~clusters)")
   clusters <- .summarize_clusters(
     assignments     = assignments,
     eligible_pair   = pair_filt$eligible,
@@ -119,9 +133,12 @@ build_stage3_clusters <- function(stage1_master,
     config          = config,
     archs4_metadata = archs4_metadata
   )
+  cli::cli_inform("[stage3] Phase 6 done: {nrow(clusters)} clusters summarized")
 
   # 7. Record summary
+  cli::cli_inform("[stage3] Phase 7: build_record_summary")
   record_summary <- .build_record_summary(assignments, clusters)
+  cli::cli_inform("[stage3] Phase 7 done: {nrow(record_summary)} record_summary rows")
 
   # 8. Non clusterable (consolidata: pair + group)
   nc_items <- c(pair_filt$non_clusterable, group_filt$non_clusterable)
@@ -374,12 +391,22 @@ build_stage3_clusters <- function(stage1_master,
   # di archs4_metadata in ogni iterazione del loop su cluster.
   gpl_lookup <- .build_gpl_lookup(archs4_metadata)
 
-  unique_clids <- unique(assignments$cluster_id)
+  # Pre-split assignments per cluster_id UNA volta (split su row index): evita
+  # O(N) scan di assignments per ogni cluster nel loop (era O(N^2) globale).
+  # Con ~390k cluster x ~390k row scan = ~150 miliardi di confronti.
+  cluster_row_idx <- split(seq_len(nrow(assignments)), assignments$cluster_id)
+  unique_clids <- names(cluster_row_idx)
+
+  cli::cli_inform(
+    "Summarizing {.val {length(unique_clids)}} clusters at {format(Sys.time())}"
+  )
+  progress_every <- max(1L, length(unique_clids) %/% 20L)  # ~5% steps
+
   rows <- vector("list", length(unique_clids))
 
   for (i in seq_along(unique_clids)) {
     cl_id   <- unique_clids[i]
-    cl_rows <- assignments[assignments$cluster_id == cl_id, ]
+    cl_rows <- assignments[cluster_row_idx[[cl_id]], , drop = FALSE]
     mode       <- cl_rows$mode[1L]
     level      <- cl_rows$level[1L]
     anchor_key <- cl_rows$anchor_key[1L]
@@ -463,8 +490,15 @@ build_stage3_clusters <- function(stage1_master,
       studies_in_cluster  = list(meta$studies_in_cluster),
       n_studies           = meta$n_studies
     )
+
+    if (i %% progress_every == 0L || i == length(unique_clids)) {
+      cli::cli_inform(
+        "  ...cluster {i}/{length(unique_clids)} ({round(100*i/length(unique_clids))}%) at {format(Sys.time())}"
+      )
+    }
   }
 
+  cli::cli_inform("Combining {.val {length(rows)}} cluster rows at {format(Sys.time())}")
   result <- do.call(rbind, rows)
   if (is.null(result)) return(empty_clusters)
   if (!inherits(result, "tbl_df")) result <- tibble::as_tibble(result)
