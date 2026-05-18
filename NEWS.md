@@ -1,3 +1,17 @@
+# simulomicsr 0.0.0.9018 (development)
+
+## P5 -- Stadio 3 raggruppamento cross-studio
+
+* Nuovo modulo: cluster cross-studio sui `comparability_anchor` v3 con 5 livelli di
+  strictness (L0..L4), hard filters biologici (subcellular, context_kind), dual-mode
+  output (anchor-pair per REM + anchor-group per mega-analisi), canonical directionality
+  detection per REM, pooling safety quantitativo. Dettagli in
+  `docs/decisions/0014-stage3-tiered-anchor-dual-mode.md` e
+  `docs/superpowers/specs/2026-05-18-p4-stadio3-raggruppamento-design.md`.
+* API: `build_stage3_clusters()`, `stage3_default_config()`, `write_stage3_to_dir()`,
+  `load_stage3()`, `filter_clusters()`, `cluster_records()`.
+* Nuova dipendenza opzionale: `arrow` (per parquet `assignments` output).
+
 # simulomicsr 0.0.0.9017 (β P4 rescue cascade COMPLETE — H1+H1.2 stage1 + H2 mouse-mislabel + H3 stage2 → 99.9999% stage1 + 100.000% stage2)
 
 ## β rescue cascade (2026-05-17, branch `p4-beta-rescue`)
