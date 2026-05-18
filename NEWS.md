@@ -11,6 +11,17 @@
 * API: `build_stage3_clusters()`, `stage3_default_config()`, `write_stage3_to_dir()`,
   `load_stage3()`, `filter_clusters()`, `cluster_records()`.
 * Nuova dipendenza opzionale: `arrow` (per parquet `assignments` output).
+* Implementazione completa via 17-task TDD plan (commit 4631bbc..1d9a697 su branch
+  `p5-stadio3-raggruppamento`). 18 tests filtri stage3-* tutti PASS (>=80 test
+  blocks, 0 FAIL), full suite 839 PASS / 2 SKIP. Integration test su 5 GSE
+  `stage2-fixtures-mini` end-to-end (build + write + load round-trip).
+* **DEFERRED (post-merge / follow-up):**
+  - Performance optimization: orchestrator pure-R loop su 2.96M anchor key
+    builds attualmente ~32min wall + 11GB peak su full beta (target plan
+    15min/4GB). Candidate ottimizzazioni: pre-extract anchor segments per
+    sample (cache), vectorize key construction, parallelism cross-level.
+  - Full beta run (`targets::tar_make(stage3_out_dir)`) e output counts in NEWS.
+    Pipeline corretto e validato; deliverable atteso run wall-time ~30-35min.
 
 # simulomicsr 0.0.0.9017 (β P4 rescue cascade COMPLETE — H1+H1.2 stage1 + H2 mouse-mislabel + H3 stage2 → 99.9999% stage1 + 100.000% stage2)
 
