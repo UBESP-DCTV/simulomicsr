@@ -85,7 +85,8 @@ paper-grade mouse-mislabeled GSE. Cascade tre strategie:
 - **Phase 1 classification** (Task 2): 1.571 stage1 fails decomposti in MODE_A_WHITESPACE (660), MODE_B_LEGIT_TRUNC (147), OTHER_DEGEN (15), ETL_LEAK_NONHUMAN (749). CSV `analysis/p4-output/p4-beta-rescue-stage1-fails-classified.csv`.
 - **H2 — mouse-mislabeled GSE discovery + GSE-level drop** (Task 3+3b): 72 GSE ARCHS4 v2.5 `organism_ch1="Homo sapiens"` ma contenuti murini → 9.654 sample droppati GSE-level (8.398 LLM-non-human + 1.256 human collaterali) + 749 LLM JSON failure signal indiretto. Stage1 master cleaned: 888.821 → **879.167**. Stage2-input: 39.205 → **38.963**. Discovery doc paper-grade: `docs/findings/2026-05-17-llm-detected-archs4-geo-organism-mislabeling.md`.
 - **H1 — Stage1 LLM-failure rescue** (Task 4-8): single-shot config `rep_pen=1.2 + max_tokens=4096 + max_model_len=8192` sui 822 Mode A/B/OTHER fails. Smoke20 21008 = 20/20 = 100%. Full retry 21103 = **802/822 = 97.6%** in 3m21s. Master rescued: `analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl` (879.167 record, colonna `rescue_source = "h1_rep12_maxtok4096"` su 802).
-- **H1.2 — Stage1 strong cascade su H1 residual** (post-Task 15, 2026-05-18): single-shot strong `rep_pen=1.3 + max_tokens=8192 + max_model_len=16384` sui 20 H1 residual (18 Mode A + 2 Mode B). Full retry 21136 = **19/20 = 95%** in 4m03s. 1 residual GSM6005198. Master aggiornato in-place; colonna `rescue_source = "h12_rep13_maxtok8192"` su 19 record. Branch `p4-beta-rescue-h12` ff-merge → master, tag `p4-beta-rescue-complete` retagged su nuovo HEAD.
+- **H1.2 — Stage1 strong cascade su H1 residual** (post-Task 15, 2026-05-18): single-shot strong `rep_pen=1.3 + max_tokens=8192 + max_model_len=16384` sui 20 H1 residual (18 Mode A + 2 Mode B). Full retry 21136 = **19/20 = 95%** in 4m03s. 1 residual GSM6005198. Master aggiornato in-place; colonna `rescue_source = "h12_rep13_maxtok8192"` su 19 record.
+- **H1.3 — Manual curation single-record** (post-H1.2, 2026-05-18): GSM6005198 (whitespace flood profondo non cedevole a rep_pen=1.3) curato a mano leggendo i metadata input, validato contro `sample_facts.stage1.v3` schema e iniettato nel master. Colonna `rescue_source = "manual_curation_2026-05-18"` su 1 record. Script `analysis/p4-beta-rescue-h13-manual-gsm6005198.R`. Branch `p4-beta-rescue-h12` ff-merge → master, tag `p4-beta-rescue-complete` retagged su nuovo HEAD.
 - **H3 — Stage2 stall rescue cs25** (Task 9-13): cs50→cs25 re-split sui 43 stage2 fails (tier XL stuck post-PR #40946) + `tiered_max_tokens=TRUE` con XL=32768. 85 cs25 chunks generati. Smoke5 21129 = 5/5 = 100% in 2m35s. Full retry 21132 = **85/85 valid, 0 residual, 43/43 original keys fully rescued** in 8min. Master rescued: `analysis/p4-output/p4-beta-stage2-master-rescued-collect.rds` (39.247 predictions, 0 errors).
 
 **Risultato finale β post-rescue**:
@@ -93,7 +94,7 @@ paper-grade mouse-mislabeled GSE. Cascade tre strategie:
 | Metric | Pre-rescue | Post-rescue cascade |
 |---|---|---|
 | Stage1 master records | 888.821 | **879.167** (H2 drop −9.654) |
-| Stage1 LLM-only validity | 99.82% | **99.9999%** (878.417 / 878.418 LLM_attempted, 1 residual GSM6005198; escludi 749 ETL leak ridroppati per H2) |
+| Stage1 LLM+manual validity | 99.82% | **100.000%** (878.418 / 878.418, 0 residual, 1 manual curation GSM6005198; escludi 749 ETL leak ridroppati per H2) |
 | Stage2 records | 39.205 | **38.963** (post H2) → **39.247 predictions** (post H3 con cs25 splits) |
 | Stage2 schema validity | 99.89% | **100.000%** (0 residual) |
 | Mouse contamination upstream | 9.147 latent | **0** (72 GSE dropped + 72 candidati re-annotation GEO/ARCHS4) |

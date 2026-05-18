@@ -160,8 +160,15 @@ profondi (boundary collapse non risolto da rep_pen 1.2) e i Mode B oltre
 budget H1 (4096 token). Temperature invariato.
 
 **Risultato**: full 20 record (slurm 21136, 4m03s wall) → **19/20 = 95%
-recovery**. 1 residual (GSM6005198 = 0.000114% del master). Annotazione
-`rescue_source = "h12_rep13_maxtok8192"`.
+recovery**. 1 residual (GSM6005198) recuperato successivamente via H1.3
+manual curation. Annotazione `rescue_source = "h12_rep13_maxtok8192"` (19).
+
+### Strategia rescue H1.3 — manual curation single-record
+
+L'unico residual post-H1.2 (GSM6005198, whitespace flood profondo
+non cedevole a rep_pen=1.3) è stato curato a mano leggendo i metadata
+input, validato contro lo schema sample_facts.stage1.v3 e iniettato nel
+master. Annotazione `rescue_source = "manual_curation_2026-05-18"` (1).
 
 ### Strategia rescue H3 — stage2 stall via cs25 re-split
 
@@ -178,15 +185,16 @@ edge case). Smoke5 → **5/5 = 100% recovery**. Full retry 85 cs25 →
 **85/85 chunks valid → 43/43 original keys fully rescued, 0 residual,
 stage2 validity 100.000%**.
 
-### Risultato finale β post-rescue cascade (H1+H1.2+H2+H3)
+### Risultato finale β post-rescue cascade (H1+H1.2+H1.3+H2+H3)
 
-- **Stage1 LLM-only validity**: **99.9999%** (878.417 / 878.418
-  LLM_attempted, 1 residual; escludendo 749 ETL leak ridroppati nei 72
+- **Stage1 LLM+manual validity**: **100.000%** (878.418 / 878.418, 0
+  residual, 1 manual curation; escludendo 749 ETL leak ridroppati nei 72
   GSE H2 cleanup — vedi `feedback_etl_leak_not_llm_failure.md` per
   formula corretta).
 - **Stage2 schema validity**: **100.000%** (39.247 valid, 0 residual).
 - `rescue_source` annotation: `h1_rep12_maxtok4096` (802 record stage1),
   `h12_rep13_maxtok8192` (19 record stage1 cascade su H1 residual),
+  `manual_curation_2026-05-18` (1 record stage1 ultimo residual),
   `h3_cs25_resplit` (85 cs25 chunks stage2), NA per gli originali.
 
 ## Pros and Cons of the Options
