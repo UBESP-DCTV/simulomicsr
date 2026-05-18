@@ -237,8 +237,8 @@ build_stage3_clusters <- function(stage1_master,
       cg <- rg_lookup[[cmp$control_group]]
       if (is.null(tg) || is.null(cg)) next  # comparison malformata: skip
 
-      tg_sample <- tg$sample_ids[1L]
-      cg_sample <- cg$sample_ids[1L]
+      tg_sample <- tg$sample_ids[[1L]]
+      cg_sample <- cg$sample_ids[[1L]]
 
       tg_facts <- stage1_master[[tg_sample]]
       cg_facts <- stage1_master[[cg_sample]]
@@ -281,7 +281,7 @@ build_stage3_clusters <- function(stage1_master,
     sid <- study$series_id
     for (rg in study$replicate_groups) {
       if (length(rg$sample_ids) == 0L) next
-      first_sample <- rg$sample_ids[1L]
+      first_sample <- rg$sample_ids[[1L]]
       facts <- stage1_master[[first_sample]]
       if (is.null(facts)) next
 
@@ -508,8 +508,13 @@ build_stage3_clusters <- function(stage1_master,
 .load_stage1_master <- function(path) {
   if (!file.exists(path)) stop("stage1_master path non esiste: ", path)
   lines  <- readLines(path, warn = FALSE)
-  parsed <- lapply(lines, jsonlite::fromJSON, simplifyVector = FALSE)
-  keys   <- vapply(parsed, function(p) {
+  rows   <- lapply(lines, jsonlite::fromJSON, simplifyVector = FALSE)
+  # Ogni riga JSONL e' list(record_id=..., parsed_json=list(geo_accession=..., ...), ...)
+  # Estraiamo il parsed_json (sample_facts.stage1.v3) indicizzato per GSM
+  parsed <- lapply(rows, function(r) {
+    if (!is.null(r$parsed_json)) r$parsed_json else r
+  })
+  keys <- vapply(parsed, function(p) {
     p$geo_accession %||% p$sample_id %||% p$key %||% NA_character_
   }, character(1L))
   setNames(parsed, keys)
@@ -520,9 +525,28 @@ build_stage3_clusters <- function(stage1_master,
 .load_stage2_master <- function(path) {
   if (!file.exists(path)) stop("stage2_master path non esiste: ", path)
   if (grepl("\\.rds$", path, ignore.case = TRUE)) {
-    readRDS(path)
+    obj <- readRDS(path)
+    # Gestione collect-wrapper (output di dgx_collect_stage2):
+    # list(predictions = tibble(record_id, parsed_json, ...), errors = ..., summary = ...)
+    # Estraiamo i parsed_json dei record validi (valid_schema = TRUE o non NA)
+    if (is.list(obj) && !is.null(obj$predictions) && is.data.frame(obj$predictions)) {
+      preds <- obj$predictions
+      valid_mask <- if (!is.null(preds$valid_schema)) {
+        !is.na(preds$valid_schema) & preds$valid_schema
+      } else {
+        rep(TRUE, nrow(preds))
+      }
+      return(preds$parsed_json[valid_mask])
+    }
+    # Formato nativo: lista di study records (passato direttamente)
+    obj
   } else {
+    # JSONL: ogni riga e' list(record_id=..., parsed_json=list(series_id=..., ...), ...)
+    # Estraiamo solo il parsed_json dei record con valid_schema=TRUE (o mancante)
     lines <- readLines(path, warn = FALSE)
-    lapply(lines, jsonlite::fromJSON, simplifyVector = FALSE)
+    rows <- lapply(lines, jsonlite::fromJSON, simplifyVector = FALSE)
+    lapply(rows, function(r) {
+      if (!is.null(r$parsed_json)) r$parsed_json else r
+    })
   }
 }
