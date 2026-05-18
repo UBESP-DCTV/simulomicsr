@@ -1062,22 +1062,23 @@ list(
 
   tar_target(stage3_config, simulomicsr::stage3_default_config()),
 
+  # Path relativi alla cwd di tar_make (analysis/); non includere prefisso "analysis/".
   tar_target(
     stage1_master_path_p5,
-    "analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl",
+    "p4-output/p4-beta-stage1-master-predictions-rescued.jsonl",
     format = "file"
   ),
 
   tar_target(
     stage2_master_path_p5,
-    "analysis/p4-output/p4-beta-stage2-master-rescued-collect.rds",
+    "p4-output/p4-beta-stage2-master-rescued-collect.rds",
     format = "file"
   ),
 
   tar_target(
     archs4_metadata_p5,
     simulomicsr::load_archs4_metadata(
-      h5_path = "analysis/input/human_gene_v2.5.h5"
+      h5_path = "input/human_gene_v2.5.h5"
     ),
     format = "rds"
   ),
@@ -1097,7 +1098,7 @@ list(
     stage3_out_dir,
     {
       dir <- file.path(
-        "analysis/p4-output",
+        "p4-output",
         sprintf(
           "%s-stage3-%s",
           format(Sys.time(), "%Y%m%dT%H%M%SZ", tz = "UTC"),
