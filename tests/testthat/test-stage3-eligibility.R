@@ -95,3 +95,33 @@ test_that("multiple records: separati corretti tra eligible e non_clusterable", 
   expect_length(result$eligible, 2L)
   expect_length(result$non_clusterable, 2L)
 })
+
+test_that("vehicle_only + agent=unknown e' eligible (control records legitimi)", {
+  rec <- make_test_record(
+    kind_control = "vehicle_only",
+    agent_control = "unknown"
+  )
+  result <- simulomicsr:::.filter_eligible_records(list(rec))
+  expect_length(result$eligible, 1L)
+  expect_length(result$non_clusterable, 0L)
+})
+
+test_that("none + agent=unknown e' eligible (baseline records legitimi)", {
+  # Group mode con kind=none deve passare (baseline pool per mega-analisi)
+  rec <- make_test_record(
+    mode = "group",
+    kind_treated = "none",
+    agent_treated = "unknown"
+  )
+  result <- simulomicsr:::.filter_eligible_records(list(rec))
+  expect_length(result$eligible, 1L)
+})
+
+test_that("small_molecule + agent=unknown rimane non_clusterable (perturbazione non risolta)", {
+  rec <- make_test_record(
+    kind_treated = "small_molecule",
+    agent_treated = "unknown"
+  )
+  result <- simulomicsr:::.filter_eligible_records(list(rec))
+  expect_equal(result$non_clusterable[[1]]$reason, "tier_s_incomplete")
+})

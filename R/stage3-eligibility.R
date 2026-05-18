@@ -3,16 +3,37 @@
 #' Tier S = kind_effective, agent_id, tissue. Se uno qualunque e' "unclear",
 #' "unknown" o "na", il record non puo' essere clusterizzato a nessun L.
 #'
+#' Nota: agent_id="unknown" e' accettabile quando kind_effective e' un baseline
+#' (none, vehicle_only): per definizione i baseline records non hanno agente.
+#' Coerente con .check_direction_canonical::tier_s_missing (stage3-direction.R).
+#'
 #' @keywords internal
 .has_complete_tier_s <- function(anchor_segments) {
-  k <- anchor_segments$kind_effective
-  a <- anchor_segments$agent_id
-  t <- anchor_segments$tissue
+  kind_val   <- anchor_segments$kind_effective
+  agent_val  <- anchor_segments$agent_id
+  tissue_val <- anchor_segments$tissue
 
-  !(is.null(k) || identical(k, "unclear") || identical(k, "unknown") || is.na(k)) &&
-    !(is.null(a) || identical(a, "unknown") || identical(a, "unclear") || is.na(a)) &&
-    !(is.null(t) || identical(t, "na") || identical(t, "unknown") ||
-        identical(t, "unclear") || is.na(t))
+  # kind_effective deve essere risolto (non unclear / null / NA).
+  # Nota: "none" e "vehicle_only" sono kind validi (rappresentano baselines
+  # legitimi per group mode + control_group di pair mode).
+  kind_ok <- !is.null(kind_val) && !is.na(kind_val) &&
+    !identical(kind_val, "unclear")
+
+  # agent_id: "unknown" e' accettabile SOLO quando kind e' un baseline
+  # (none, vehicle_only): per definizione baseline records non hanno agent.
+  # Coerente con .check_direction_canonical::tier_s_missing (stage3-direction.R).
+  baseline_kinds <- c("none", "vehicle_only")
+  agent_ok <- !is.null(agent_val) && !is.na(agent_val) &&
+    !identical(agent_val, "unclear") &&
+    (!identical(agent_val, "unknown") || isTRUE(kind_val %in% baseline_kinds))
+
+  # tissue: deve essere risolto. "na" e "unknown" sono sentinel di mancato resolve.
+  tissue_ok <- !is.null(tissue_val) && !is.na(tissue_val) &&
+    !identical(tissue_val, "na") &&
+    !identical(tissue_val, "unknown") &&
+    !identical(tissue_val, "unclear")
+
+  kind_ok && agent_ok && tissue_ok
 }
 
 #' Filtra records eligible per Stage 3 clustering
