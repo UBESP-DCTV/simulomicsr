@@ -16,11 +16,11 @@ valid / 1.571 fails** (0.18%). Output stage2 single-pass cs50: **39.162
 valid / 43 fails** (0.11%).
 
 Sopra il fullrun originale abbiamo applicato una cascade di **tre
-strategie di rescue indipendenti** (H1, H2, H3) + un quarto step
-incrementale (H1.2 strong, cascade su H1 residual), che insieme hanno
-portato il dataset a:
+strategie di rescue indipendenti** (H1, H2, H3) + due step incrementali
+(H1.2 strong cascade su H1 residual + H1.3 manual curation single-record
+sull'ultimo residual), che insieme hanno portato il dataset a:
 
-- Stage1 LLM-only validity: **99.9999%** (878.417 / 878.418 LLM_attempted, 1 residual)
+- Stage1 LLM+manual validity: **100.000%** (878.418 / 878.418, 1 manual curation post-H1.2)
 - Stage2 schema validity: **100.000%** (39.247 valid, 0 residual)
 - 72 GSE mouse-mislabeled-as-human identificati upstream come byproduct
   metodologico (discovery indipendente, contributo positivo).
@@ -123,6 +123,16 @@ da H1 round principale).
 - Submit: `analysis/p4-beta-rescue-h12-stage1.R`
 - Merge: `analysis/p4-beta-rescue-h12-merge.R`
 - ADR: `docs/decisions/0008-vllm-sampling-defaults.md` — Addendum 2026-05-17
+
+## H1.3 — Manual curation single-record
+
+L'unico residual post-H1.2 (GSM6005198, GSE200039) ha whitespace flood
+talmente profondo da non cedere neanche a `rep_pen=1.3` (raw_output 283 KB
+di tab/spazi dopo `co_culture_partners[0]`). Curato a mano dai metadata
+input (cell line 697 / CVCL_0079, B-ALL, co-coltura hTERT-BMSC,
+non-adherent fraction), validato contro `sample_facts.stage1.v3` schema e
+iniettato nel master. Annotazione `rescue_source =
+"manual_curation_2026-05-18"`. Script: `analysis/p4-beta-rescue-h13-manual-gsm6005198.R`.
 
 ## H2 — Mouse-mislabeled-as-human GSE detection + GSE-level drop (discovery)
 
@@ -254,8 +264,8 @@ univoco e i sample sono distintamente etichettati in
 | Metric | Pre-rescue (NEWS 0.0.0.9016) | Post-rescue (NEWS 0.0.0.9017) |
 |---|---|---|
 | Stage1 master records | 888.821 | **879.167** (−9.654 H2 GSE-level drop) |
-| Stage1 LLM-only validity | 99.82% | **99.9999%** (1 residual su 878.418 LLM_attempted) |
-| Stage1 records con `rescue_source` annotation | 0 | 821 (802 h1_rep12_maxtok4096 + 19 h12_rep13_maxtok8192) |
+| Stage1 LLM+manual validity | 99.82% | **100.000%** (0 residual, 1 manual curation) |
+| Stage1 records con `rescue_source` annotation | 0 | 822 (802 h1_rep12_maxtok4096 + 19 h12_rep13_maxtok8192 + 1 manual_curation_2026-05-18) |
 | Stage2 input records (post H2 cleanup) | 39.205 | **38.963** (−242 H2 GSE-level) |
 | Stage2 predictions valid | 39.162 | **39.247** (39.162 cs50 + 85 cs25 rescued) |
 | Stage2 schema validity | 99.89% | **100.000%** (0 residual) |

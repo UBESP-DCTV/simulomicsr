@@ -41,10 +41,17 @@ Per i 20 H1 residual (18 Mode A + 2 Mode B): single-shot strong
 (extension monotona di H1).
 
 - Full retry 20 (slurm 21136): **19/20 = 95% recovery** in 4m03s wall.
-- 1 residual irrecuperabile: GSM6005198 (0.000114% del master cleaned).
+- 1 residual: GSM6005198 (recuperato successivamente via H1.3 manual).
 - Annotazione `rescue_source = "h12_rep13_maxtok8192"` su 19 record.
-- Branch: `p4-beta-rescue-h12` (ff-merge → master, retag
-  `p4-beta-rescue-complete` su nuovo HEAD).
+
+### H1.3 — Manual curation single-record (post-H1.2)
+
+GSM6005198 (whitespace flood profondo non cedevole a rep_pen=1.3)
+curato a mano leggendo i metadata input, validato contro lo schema
+sample_facts.stage1.v3 e iniettato nel master. Annotazione
+`rescue_source = "manual_curation_2026-05-18"`. Branch:
+`p4-beta-rescue-h12` (ff-merge → master, retag
+`p4-beta-rescue-complete` su nuovo HEAD).
 
 ### H2 — Discovery: mouse-mislabeled-as-human GSE in ARCHS4/GEO upstream (Task 3+3b)
 
@@ -85,9 +92,9 @@ su 85 cs25 chunks.
 
 ### Risultato finale β post-rescue cascade
 
-- **Stage1 LLM-only validity**: **99.9999%** (878.417 / 878.418
-  LLM_attempted, 1 residual; escludendo 749 ETL leak ridroppati nei 72
-  GSE H2 cleanup; formula in `feedback_etl_leak_not_llm_failure.md`).
+- **Stage1 LLM+manual validity**: **100.000%** (878.418 / 878.418, 0
+  residual, 1 manual curation; escludendo 749 ETL leak ridroppati nei
+  72 GSE H2 cleanup; formula in `feedback_etl_leak_not_llm_failure.md`).
 - **Stage2 schema validity**: **100.000%** (39.247 valid, 0 residual).
 - Dataset post-cleanup: **879.167 sample stage1** + **38.963 record
   stage2** (vs pre-rescue 888.821 + 39.205 = drop H2 GSE-level).
