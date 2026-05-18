@@ -1054,5 +1054,59 @@ list(
       curated_gse       = curated_p35c_gse,
       model_specs       = model_specs_p35c
     )
+  ),
+
+  # ============================================================
+  # P5 Stadio 3 — Raggruppamento cross-studio
+  # ============================================================
+
+  tar_target(stage3_config, simulomicsr::stage3_default_config()),
+
+  tar_target(
+    stage1_master_path_p5,
+    "analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl",
+    format = "file"
+  ),
+
+  tar_target(
+    stage2_master_path_p5,
+    "analysis/p4-output/p4-beta-stage2-master-rescued-collect.rds",
+    format = "file"
+  ),
+
+  tar_target(
+    archs4_metadata_p5,
+    simulomicsr::load_archs4_metadata(
+      h5_path = "analysis/input/human_gene_v2.5.h5"
+    ),
+    format = "rds"
+  ),
+
+  tar_target(
+    stage3_run,
+    simulomicsr::build_stage3_clusters(
+      stage1_master   = stage1_master_path_p5,
+      stage2_master   = stage2_master_path_p5,
+      config          = stage3_config,
+      archs4_metadata = archs4_metadata_p5
+    ),
+    format = "rds"
+  ),
+
+  tar_target(
+    stage3_out_dir,
+    {
+      dir <- file.path(
+        "analysis/p4-output",
+        sprintf(
+          "%s-stage3-%s",
+          format(Sys.time(), "%Y%m%dT%H%M%SZ", tz = "UTC"),
+          stage3_run$run_metadata$run_id
+        )
+      )
+      simulomicsr::write_stage3_to_dir(stage3_run, dir)
+      dir
+    },
+    format = "file"
   )
 )
