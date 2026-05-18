@@ -5,14 +5,23 @@
 \title{Arricchisce cluster metadata con gpl_platforms, studies_in_cluster,
 n_distinct_donors derivati dai records del cluster.}
 \usage{
-.enrich_cluster_metadata(cluster_records, archs4_metadata = NULL)
+.enrich_cluster_metadata(
+  cluster_records,
+  archs4_metadata = NULL,
+  gpl_lookup = NULL
+)
 }
 \arguments{
 \item{cluster_records}{list of records nel cluster (each con \code{$series_id},
 \code{$stage1_facts}).}
 
 \item{archs4_metadata}{tibble (series_id, gpl, library_strategy opzionale) opzionale.
-Se NULL, \code{gpl_platforms = character(0)} e \code{n_gpl_distinct = NA}.}
+Se NULL, \code{gpl_platforms = character(0)} e \code{n_gpl_distinct = NA}.
+IGNORATO se \code{gpl_lookup} e' fornito.}
+
+\item{gpl_lookup}{named list pre-costruita series_id -> character(gpl) (output di
+\code{.build_gpl_lookup()}). Preferito per performance quando chiamato in loop
+su molti cluster: evita di ri-scannerare archs4_metadata ad ogni chiamata.}
 }
 \value{
 list con \code{studies_in_cluster}, \code{n_studies}, \code{gpl_platforms},
