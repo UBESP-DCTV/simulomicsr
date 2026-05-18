@@ -1,4 +1,4 @@
-# simulomicsr 0.0.0.9017 (β P4 rescue cascade COMPLETE — H1 stage1 + H2 mouse-mislabel + H3 stage2 → 99.998% stage1 + 100.000% stage2)
+# simulomicsr 0.0.0.9017 (β P4 rescue cascade COMPLETE — H1+H1.2 stage1 + H2 mouse-mislabel + H3 stage2 → 99.9999% stage1 + 100.000% stage2)
 
 ## β rescue cascade (2026-05-17, branch `p4-beta-rescue`)
 
@@ -28,11 +28,23 @@ config: `repetition_penalty = 1.2`, `max_tokens = 4096`, `max_model_len
 
 - Smoke20 (slurm 21008): **20/20 = 100% recovery** in 1m39s wall.
 - Full retry 822 (slurm 21103): **802/822 = 97.6% recovery** in 3m21s
-  wall. 20 residual irrecuperabili (0.0023% del master cleaned).
+  wall. 20 residual.
 
 Master output: `analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl`
 (879.167 record), colonna `rescue_source = "h1_rep12_maxtok4096"` su 802
 record.
+
+### H1.2 — Stage1 strong cascade su H1 residual (post-Task 15)
+
+Per i 20 H1 residual (18 Mode A + 2 Mode B): single-shot strong
+`repetition_penalty = 1.3`, `max_tokens = 8192`, `max_model_len = 16384`
+(extension monotona di H1).
+
+- Full retry 20 (slurm 21136): **19/20 = 95% recovery** in 4m03s wall.
+- 1 residual irrecuperabile: GSM6005198 (0.000114% del master cleaned).
+- Annotazione `rescue_source = "h12_rep13_maxtok8192"` su 19 record.
+- Branch: `p4-beta-rescue-h12` (ff-merge → master, retag
+  `p4-beta-rescue-complete` su nuovo HEAD).
 
 ### H2 — Discovery: mouse-mislabeled-as-human GSE in ARCHS4/GEO upstream (Task 3+3b)
 
@@ -73,9 +85,9 @@ su 85 cs25 chunks.
 
 ### Risultato finale β post-rescue cascade
 
-- **Stage1 LLM-only validity**: **99.998%** (878.398 / 878.418
-  LLM_attempted, escludendo 749 ETL leak ridroppati nei 72 GSE H2 cleanup;
-  formula in `feedback_etl_leak_not_llm_failure.md`).
+- **Stage1 LLM-only validity**: **99.9999%** (878.417 / 878.418
+  LLM_attempted, 1 residual; escludendo 749 ETL leak ridroppati nei 72
+  GSE H2 cleanup; formula in `feedback_etl_leak_not_llm_failure.md`).
 - **Stage2 schema validity**: **100.000%** (39.247 valid, 0 residual).
 - Dataset post-cleanup: **879.167 sample stage1** + **38.963 record
   stage2** (vs pre-rescue 888.821 + 39.205 = drop H2 GSE-level).
