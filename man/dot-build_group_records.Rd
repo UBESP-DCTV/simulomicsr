@@ -4,7 +4,15 @@
 \alias{.build_group_records}
 \title{Costruisce records group-mode da stage2 replicate_groups}
 \usage{
-.build_group_records(stage2_master, stage1_master, tier_assignment)
+.build_group_records(
+  stage2_master,
+  stage1_master,
+  tier_assignment,
+  cache = NULL
+)
+}
+\arguments{
+\item{cache}{opzionale: output di \code{.precompute_anchor_cache()}.}
 }
 \description{
 Un record per ogni replicate_group. usa il primo sample come rappresentativo.

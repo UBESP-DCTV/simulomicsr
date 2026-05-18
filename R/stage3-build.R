@@ -37,10 +37,17 @@ build_stage3_clusters <- function(stage1_master,
   }
   cli::cli_inform("[stage3] Phase 1 done: {length(stage1_master)} stage1 + {length(stage2_master)} stage2 records loaded")
 
+  # 2.0 Pre-compute anchor cache per i sample_id referenziati in stage2_master.
+  # FIX perf: senza cache .extract_anchor_segments() viene chiamata ~1M volte
+  # (heavy function). Con cache, una sola estrazione per (sample_id, role).
+  cli::cli_inform("[stage3] Phase 2.0: pre-compute anchor cache")
+  cache <- .precompute_anchor_cache(stage2_master, stage1_master, ta)
+  cli::cli_inform("[stage3] Phase 2.0 done: cached {length(cache$anchors)} (sample_id, role) anchors + {length(cache$hard_filters)} hard_filters")
+
   # 2. Costruzione records dual-mode
   cli::cli_inform("[stage3] Phase 2: build pair+group records")
-  records_pair  <- .build_pair_records(stage2_master, stage1_master, ta)
-  records_group <- .build_group_records(stage2_master, stage1_master, ta)
+  records_pair  <- .build_pair_records(stage2_master, stage1_master, ta, cache)
+  records_group <- .build_group_records(stage2_master, stage1_master, ta, cache)
   cli::cli_inform("[stage3] Phase 2 done: {length(records_pair)} pair + {length(records_group)} group records")
 
   # 3. Eligibility filter
@@ -233,6 +240,101 @@ build_stage3_clusters <- function(stage1_master,
   setNames(as.integer(tbl), sprintf("L%d", 0L:4L))
 }
 
+#' Pre-computa cache di anchor segments + hard_filters per sample_id referenziati
+#'
+#' Visita stage2_master, raccoglie tutti i (sample_id, role) tuple necessari
+#' (sample = first di ogni replicate_group; role = "treated"/"control" per
+#' comparisons, role per primary_role per group records), e pre-computa ogni
+#' anchor segments UNA volta sola.
+#'
+#' Senza cache, build_pair_records + build_group_records chiamano
+#' \code{.extract_anchor_segments()} ~1M volte (la stessa funzione, sugli
+#' stessi sample). La cache riduce a ~unique(sample_id) chiamate.
+#'
+#' @return list con \code{anchors} (named list: key "sample_id|role" -> segments)
+#'   e \code{hard_filters} (named list: key sample_id -> {subcellular, context_kind})
+#' @keywords internal
+.precompute_anchor_cache <- function(stage2_master, stage1_master, tier_assignment) {
+  # Raccoglie tuple (sample_id, role) e sample_id per hard_filters
+  tuples_to_cache <- list()
+  hf_samples <- character()
+
+  for (study in stage2_master) {
+    rg_lookup <- setNames(
+      study$replicate_groups,
+      vapply(study$replicate_groups, function(g) g$group_id, character(1L))
+    )
+
+    # group records: usa role surrogate da primary_role
+    for (rg in study$replicate_groups) {
+      if (length(rg$sample_ids) == 0L) next
+      sid_sample <- rg$sample_ids[[1L]]
+      role_for_anchor <- switch(
+        rg$primary_role %||% "unclear",
+        treated   = "treated",
+        control   = "control",
+        bystander = "treated",
+        excluded  = "treated",
+        unclear   = "treated",
+        "treated"
+      )
+      tuples_to_cache[[length(tuples_to_cache) + 1L]] <- list(
+        sample_id = sid_sample, role = role_for_anchor
+      )
+      hf_samples <- c(hf_samples, sid_sample)
+    }
+
+    # pair records: treated + control samples
+    for (cmp in study$comparisons) {
+      tg <- rg_lookup[[cmp$treated_group]]
+      cg <- rg_lookup[[cmp$control_group]]
+      if (is.null(tg) || is.null(cg)) next
+      tg_sample <- tg$sample_ids[[1L]]
+      cg_sample <- cg$sample_ids[[1L]]
+      tuples_to_cache[[length(tuples_to_cache) + 1L]] <- list(
+        sample_id = tg_sample, role = "treated"
+      )
+      tuples_to_cache[[length(tuples_to_cache) + 1L]] <- list(
+        sample_id = cg_sample, role = "control"
+      )
+      hf_samples <- c(hf_samples, tg_sample)
+    }
+  }
+
+  # Dedup (sample_id, role) tuples
+  tuple_keys <- vapply(tuples_to_cache, function(t) {
+    sprintf("%s|%s", t$sample_id, t$role)
+  }, character(1L))
+  unique_keys <- unique(tuple_keys)
+  unique_tuples <- tuples_to_cache[!duplicated(tuple_keys)]
+
+  # Estrai anchor segments per ogni unique (sample_id, role)
+  anchors <- setNames(
+    vector("list", length(unique_tuples)),
+    unique_keys
+  )
+  for (i in seq_along(unique_tuples)) {
+    t <- unique_tuples[[i]]
+    facts <- stage1_master[[t$sample_id]]
+    if (is.null(facts)) next  # GSM non in stage1: lascia NULL
+    anchors[[i]] <- .extract_anchor_segments(facts, stage2_role = t$role)
+  }
+
+  # Hard filters per ogni unique sample_id (no dipendenza da role)
+  unique_hf_samples <- unique(hf_samples)
+  hard_filters <- setNames(
+    vector("list", length(unique_hf_samples)),
+    unique_hf_samples
+  )
+  for (i in seq_along(unique_hf_samples)) {
+    facts <- stage1_master[[unique_hf_samples[i]]]
+    if (is.null(facts)) next
+    hard_filters[[i]] <- .extract_hard_filters(facts, tier_assignment)
+  }
+
+  list(anchors = anchors, hard_filters = hard_filters)
+}
+
 #' Costruisce records pair-mode da stage2 comparisons
 #'
 #' Per ogni comparison nello stage2_master, cerca i replicate_groups corrispondenti
@@ -240,8 +342,11 @@ build_stage3_clusters <- function(stage1_master,
 #' Usa il primo sample di ogni group come rappresentativo per l'estrazione dell'anchor
 #' (future v2: validazione omogeneita' intra-group).
 #'
+#' @param cache opzionale: output di \code{.precompute_anchor_cache()}. Se fornito,
+#'   evita chiamate ripetute a \code{.extract_anchor_segments()} per sample
+#'   gia' visti. Big perf win.
 #' @keywords internal
-.build_pair_records <- function(stage2_master, stage1_master, tier_assignment) {
+.build_pair_records <- function(stage2_master, stage1_master, tier_assignment, cache = NULL) {
   records <- list()
   for (study in stage2_master) {
     sid <- study$series_id
@@ -261,11 +366,15 @@ build_stage3_clusters <- function(stage1_master,
       cg_facts <- stage1_master[[cg_sample]]
       if (is.null(tg_facts) || is.null(cg_facts)) next  # GSM non in stage1: skip
 
-      t_segs <- .extract_anchor_segments(tg_facts, stage2_role = "treated")
-      c_segs <- .extract_anchor_segments(cg_facts, stage2_role = "control")
+      # Usa cache se disponibile, altrimenti fallback a estrazione live
+      t_segs <- if (!is.null(cache)) cache$anchors[[sprintf("%s|treated", tg_sample)]]
+                else .extract_anchor_segments(tg_facts, stage2_role = "treated")
+      c_segs <- if (!is.null(cache)) cache$anchors[[sprintf("%s|control", cg_sample)]]
+                else .extract_anchor_segments(cg_facts, stage2_role = "control")
 
       # Hard filters: estratti dal treated group (canonical per la partizione)
-      hf <- .extract_hard_filters(tg_facts, tier_assignment)
+      hf <- if (!is.null(cache)) cache$hard_filters[[tg_sample]]
+            else .extract_hard_filters(tg_facts, tier_assignment)
 
       records[[length(records) + 1L]] <- list(
         record_id               = sprintf("%s__%s", sid, cmp$comparison_id),
@@ -291,8 +400,9 @@ build_stage3_clusters <- function(stage1_master,
 #' I record group-mode espongono \code{treated_anchor_segments} (come pair-mode)
 #' per compatibilita' con \code{.filter_eligible_records()}.
 #'
+#' @param cache opzionale: output di \code{.precompute_anchor_cache()}.
 #' @keywords internal
-.build_group_records <- function(stage2_master, stage1_master, tier_assignment) {
+.build_group_records <- function(stage2_master, stage1_master, tier_assignment, cache = NULL) {
   records <- list()
   for (study in stage2_master) {
     sid <- study$series_id
@@ -312,8 +422,12 @@ build_stage3_clusters <- function(stage1_master,
         unclear    = "treated",
         "treated"
       )
-      segs <- .extract_anchor_segments(facts, stage2_role = role_for_anchor)
-      hf   <- .extract_hard_filters(facts, tier_assignment)
+      segs <- if (!is.null(cache))
+                cache$anchors[[sprintf("%s|%s", first_sample, role_for_anchor)]]
+              else
+                .extract_anchor_segments(facts, stage2_role = role_for_anchor)
+      hf <- if (!is.null(cache)) cache$hard_filters[[first_sample]]
+            else .extract_hard_filters(facts, tier_assignment)
 
       records[[length(records) + 1L]] <- list(
         record_id               = sprintf("%s__%s", sid, rg$group_id),
