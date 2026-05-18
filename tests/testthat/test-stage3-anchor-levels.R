@@ -36,6 +36,18 @@ test_that(".build_anchor_for_level a L0 equivale a make_anchor() (13 segmenti)",
   expect_equal(length(strsplit(anchor_l0, "\\|")[[1]]), 13L)
 })
 
+test_that(".build_anchor_for_level L0 e' value-identical a make_anchor()", {
+  fact <- make_test_sample_fact()
+  cfg <- stage3_default_config()
+
+  anchor_l0 <- simulomicsr:::.build_anchor_for_level(
+    fact, "treated", 0L, cfg$tier_assignment
+  )
+  anchor_make <- make_anchor(fact, "treated")
+
+  expect_identical(anchor_l0, anchor_make)
+})
+
 test_that(".build_anchor_for_level L1 ha 12 segmenti (drop has_engineered)", {
   fact <- make_test_sample_fact()
   cfg <- stage3_default_config()

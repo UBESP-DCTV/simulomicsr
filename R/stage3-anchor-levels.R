@@ -114,10 +114,14 @@
   segs <- .extract_anchor_segments(stage1_facts, stage2_role)
 
   if (level == 4L) {
-    # L4: solo Tier S -- hard_filters e tier A/B/C/D esclusi
-    kept_names <- tier_assignment$S
+    # L4: solo Tier S -- hard_filters e tier A/B/C/D esclusi.
+    # Usa names(segs) %in% per preservare l'ordine canonical di segs
+    # indipendentemente dall'ordine in cui tier_assignment$S e' definito in config.
+    kept_names <- names(segs)[names(segs) %in% tier_assignment$S]
   } else {
-    # L0-L3: tutti i 13 segmenti meno quelli droppati per il livello
+    # L0-L3: tutti i 13 segmenti (inclusi hard_filters subcellular+context_kind) meno
+    # quelli droppati per livello. I hard_filters restano nell'anchor key fino a L3
+    # incluso; vengono esclusi solo a L4 dove l'anchor si riduce al solo Tier S.
     dropped <- .dropped_segments_at_level(tier_assignment, level)
     # Mantieni l'ordine canonical (names(segs)) sottraendo i droppati
     kept_names <- names(segs)[!names(segs) %in% dropped]
