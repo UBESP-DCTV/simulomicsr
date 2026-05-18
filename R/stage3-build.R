@@ -370,6 +370,10 @@ build_stage3_clusters <- function(stage1_master,
   group_lookup <- setNames(eligible_group,
                            vapply(eligible_group, function(r) r$record_id, character(1L)))
 
+  # Pre-build GPL lookup UNA volta (split su series_id) per evitare O(N) scan
+  # di archs4_metadata in ogni iterazione del loop su cluster.
+  gpl_lookup <- .build_gpl_lookup(archs4_metadata)
+
   unique_clids <- unique(assignments$cluster_id)
   rows <- vector("list", length(unique_clids))
 
@@ -413,7 +417,11 @@ build_stage3_clusters <- function(stage1_master,
     safety        <- .compute_pooling_safety(safety_inputs, dropped_segs)
 
     # Metadata enrichment (GPL + donors + studies)
-    meta <- .enrich_cluster_metadata(member_records, archs4_metadata)
+    meta <- .enrich_cluster_metadata(
+      member_records,
+      archs4_metadata = NULL,  # ignorato a favore di gpl_lookup pre-built
+      gpl_lookup = gpl_lookup
+    )
 
     # Direction check (pair only: primo record, tutti gli eligibili sono omogenei)
     direction_check <- if (identical(mode, "pair") && length(member_records) > 0L)
