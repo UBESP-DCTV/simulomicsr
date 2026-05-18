@@ -144,9 +144,19 @@
 #' @return named list con elementi \code{subcellular} e \code{context_kind}
 #' @keywords internal
 .extract_hard_filters <- function(stage1_facts, tier_assignment) {
-  # Usa stage2_role "treated" (generico) per estrarre cell context; i hard filters
-  # non dipendono dal role (subcellular e context_kind sono proprieta' del campione)
-  segs <- .extract_anchor_segments(stage1_facts, stage2_role = "treated")
-  hf_keys <- tier_assignment$hard_filters
-  segs[hf_keys]
+  # FIX perf: i hard filters (subcellular + context_kind) sono SOLO 2 campi.
+  # Implementazione precedente chiamava .extract_anchor_segments() (heavy:
+  # estrae tutti i 13 segmenti) per poi sottoselezionare 2: spreco ~10x.
+  # Qui accesso diretto ai 2 campi rilevanti (logica identica a quella di
+  # .extract_anchor_segments per quei due campi).
+  context_kind <- stage1_facts$cell_context$context_kind %||% "unclear"
+  subcellular  <- if (!is.null(stage1_facts$cell_context$subcellular_fraction) &&
+                       length(stage1_facts$cell_context$subcellular_fraction) > 0L)
+                    stage1_facts$cell_context$subcellular_fraction$kind %||% "whole_cell"
+                  else
+                    "whole_cell"
+  list(
+    subcellular  = subcellular,
+    context_kind = context_kind
+  )
 }

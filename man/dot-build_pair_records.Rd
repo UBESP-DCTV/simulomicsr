@@ -4,7 +4,17 @@
 \alias{.build_pair_records}
 \title{Costruisce records pair-mode da stage2 comparisons}
 \usage{
-.build_pair_records(stage2_master, stage1_master, tier_assignment)
+.build_pair_records(
+  stage2_master,
+  stage1_master,
+  tier_assignment,
+  cache = NULL
+)
+}
+\arguments{
+\item{cache}{opzionale: output di \code{.precompute_anchor_cache()}. Se fornito,
+evita chiamate ripetute a \code{.extract_anchor_segments()} per sample
+gia' visti. Big perf win.}
 }
 \description{
 Per ogni comparison nello stage2_master, cerca i replicate_groups corrispondenti
