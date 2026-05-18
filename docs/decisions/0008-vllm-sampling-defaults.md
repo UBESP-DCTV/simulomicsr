@@ -147,6 +147,22 @@ Full retry 822 → **802/822 = 97.6% recovery** (20 residual irrecuperabili,
 (memoria `feedback_pipeline_config_uniformity` → uniformità config su tutti
 gli stadi). È override puntuale come per α Mode A/B rescue rounds.
 
+### Strategia rescue H1.2 — stage1 cascade su H1 residual (strong)
+
+Per i 20 H1 residual (18 Mode A + 2 Mode B): single-shot strong:
+
+- `repetition_penalty = 1.3` (vs H1 1.2)
+- `max_tokens = 8192` (vs H1 4096)
+- `max_model_len = 16384` (vs H1 8192)
+
+**Razionale**: extension monotona di H1 per coprire i Mode A edge-case più
+profondi (boundary collapse non risolto da rep_pen 1.2) e i Mode B oltre
+budget H1 (4096 token). Temperature invariato.
+
+**Risultato**: full 20 record (slurm 21136, 4m03s wall) → **19/20 = 95%
+recovery**. 1 residual (GSM6005198 = 0.000114% del master). Annotazione
+`rescue_source = "h12_rep13_maxtok8192"`.
+
 ### Strategia rescue H3 — stage2 stall via cs25 re-split
 
 Per i 43 stage2 cs50 fails (tutti cs50 tier XL stuck):
@@ -162,13 +178,15 @@ edge case). Smoke5 → **5/5 = 100% recovery**. Full retry 85 cs25 →
 **85/85 chunks valid → 43/43 original keys fully rescued, 0 residual,
 stage2 validity 100.000%**.
 
-### Risultato finale β post-rescue cascade
+### Risultato finale β post-rescue cascade (H1+H1.2+H2+H3)
 
-- **Stage1 LLM-only validity**: 99.998% (878.398 / 878.418 LLM_attempted,
-  escludendo 749 ETL leak ridroppati nei 72 GSE H2 cleanup — vedi
-  `feedback_etl_leak_not_llm_failure.md` per formula corretta).
+- **Stage1 LLM-only validity**: **99.9999%** (878.417 / 878.418
+  LLM_attempted, 1 residual; escludendo 749 ETL leak ridroppati nei 72
+  GSE H2 cleanup — vedi `feedback_etl_leak_not_llm_failure.md` per
+  formula corretta).
 - **Stage2 schema validity**: **100.000%** (39.247 valid, 0 residual).
 - `rescue_source` annotation: `h1_rep12_maxtok4096` (802 record stage1),
+  `h12_rep13_maxtok8192` (19 record stage1 cascade su H1 residual),
   `h3_cs25_resplit` (85 cs25 chunks stage2), NA per gli originali.
 
 ## Pros and Cons of the Options

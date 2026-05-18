@@ -16,10 +16,11 @@ valid / 1.571 fails** (0.18%). Output stage2 single-pass cs50: **39.162
 valid / 43 fails** (0.11%).
 
 Sopra il fullrun originale abbiamo applicato una cascade di **tre
-strategie di rescue indipendenti**, che insieme hanno portato il dataset
-a:
+strategie di rescue indipendenti** (H1, H2, H3) + un quarto step
+incrementale (H1.2 strong, cascade su H1 residual), che insieme hanno
+portato il dataset a:
 
-- Stage1 LLM-only validity: **99.998%** (878.398 / 878.418 LLM_attempted)
+- Stage1 LLM-only validity: **99.9999%** (878.417 / 878.418 LLM_attempted, 1 residual)
 - Stage2 schema validity: **100.000%** (39.247 valid, 0 residual)
 - 72 GSE mouse-mislabeled-as-human identificati upstream come byproduct
   metodologico (discovery indipendente, contributo positivo).
@@ -73,7 +74,7 @@ sottomissione, riducendo overhead di submit/collect.
 **Tracking.** Master output `analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl`
 (879.167 record, gitignored). Colonna `rescue_source = "h1_rep12_maxtok4096"`
 su 802 record rescued (NA sui 878.345 originali clean + sui 20 fail
-residual).
+residual pre-H1.2).
 
 **Riferimenti codice.**
 
@@ -81,6 +82,46 @@ residual).
 - Submit smoke: `analysis/p4-beta-rescue-h1-stage1-smoke.R`
 - Submit full: `analysis/p4-beta-rescue-h1-stage1-full.R`
 - Merge: `analysis/p4-beta-rescue-h1-merge.R`
+- ADR: `docs/decisions/0008-vllm-sampling-defaults.md` — Addendum 2026-05-17
+
+## H1.2 — Stage1 LLM JSON-failure rescue strong (cascade su H1 residual)
+
+**Trigger.** 20 H1 residual fails (18 MODE_A_WHITESPACE + 2 MODE_B_LEGIT_TRUNC)
+non recuperati da H1: boundary collapse profondo o truncation oltre budget
+H1 (4096 token).
+
+**Configurazione rescue.** Single-shot override più aggressivo di H1:
+
+| Parametro | Default pipeline | H1 rescue | **H1.2 rescue** |
+|---|---|---|---|
+| `repetition_penalty` | 1.1 | 1.2 | **1.3** |
+| `max_tokens` | 2048 (stage1) | 4096 | **8192** |
+| `max_model_len` | 4096 | 8192 | **16384** |
+| `temperature` | 0.0 | 0.0 | 0.0 (invariato) |
+
+**Razionale.** Estensione monotona dei tre parametri H1: rep_pen alza di
+un altro step (1.2→1.3) per i Mode A più profondi; max_tokens raddoppia
+(4096→8192) per coprire Mode B oltre il budget H1; max_model_len allineato
+per record con prompt+output complessivamente più lunghi. Sampling
+invariato (`temperature=0.0`) per zero drift contenutistico. Applicato
+solo ai 20 record specifici, NON propagato al pipeline default
+(coerente con `feedback_pipeline_config_uniformity`).
+
+**Risultato.**
+
+- Full retry 20 record (slurm 21136, **4m03s wall**): **19/20 = 95%
+  recovery**. 1 residual irrecuperabile (GSM6005198), 0.000114% del
+  master cleaned.
+
+**Tracking.** Master stage1 aggiornato in-place. Colonna
+`rescue_source = "h12_rep13_maxtok8192"` su 19 record rescued (sovrapposto
+alla baseline H1; tracking H1 originale rimane su 802 record già rescued
+da H1 round principale).
+
+**Riferimenti codice.**
+
+- Submit: `analysis/p4-beta-rescue-h12-stage1.R`
+- Merge: `analysis/p4-beta-rescue-h12-merge.R`
 - ADR: `docs/decisions/0008-vllm-sampling-defaults.md` — Addendum 2026-05-17
 
 ## H2 — Mouse-mislabeled-as-human GSE detection + GSE-level drop (discovery)
@@ -213,8 +254,8 @@ univoco e i sample sono distintamente etichettati in
 | Metric | Pre-rescue (NEWS 0.0.0.9016) | Post-rescue (NEWS 0.0.0.9017) |
 |---|---|---|
 | Stage1 master records | 888.821 | **879.167** (−9.654 H2 GSE-level drop) |
-| Stage1 LLM-only validity | 99.82% | **99.998%** |
-| Stage1 records con `rescue_source` annotation | 0 | 802 (h1_rep12_maxtok4096) |
+| Stage1 LLM-only validity | 99.82% | **99.9999%** (1 residual su 878.418 LLM_attempted) |
+| Stage1 records con `rescue_source` annotation | 0 | 821 (802 h1_rep12_maxtok4096 + 19 h12_rep13_maxtok8192) |
 | Stage2 input records (post H2 cleanup) | 39.205 | **38.963** (−242 H2 GSE-level) |
 | Stage2 predictions valid | 39.162 | **39.247** (39.162 cs50 + 85 cs25 rescued) |
 | Stage2 schema validity | 99.89% | **100.000%** (0 residual) |
