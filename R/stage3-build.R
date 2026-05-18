@@ -255,21 +255,22 @@ build_stage3_clusters <- function(stage1_master,
 #'   e \code{hard_filters} (named list: key sample_id -> {subcellular, context_kind})
 #' @keywords internal
 .precompute_anchor_cache <- function(stage2_master, stage1_master, tier_assignment) {
-  # Raccoglie tuple (sample_id, role) e sample_id per hard_filters
-  tuples_to_cache <- list()
-  hf_samples <- character()
+  # FIX perf v2: usa lapply/unlist (no list growth O(N^2)). Collect tutte le
+  # tuple via lapply per-study, poi flatten + dedup vettorialmente.
 
-  for (study in stage2_master) {
+  # Per ogni study, costruisce vettore character "sample_id|role" per tutti i
+  # tuple necessari (group records + pair records treated + pair records control).
+  per_study_keys <- lapply(stage2_master, function(study) {
     rg_lookup <- setNames(
       study$replicate_groups,
       vapply(study$replicate_groups, function(g) g$group_id, character(1L))
     )
 
-    # group records: usa role surrogate da primary_role
-    for (rg in study$replicate_groups) {
-      if (length(rg$sample_ids) == 0L) next
+    # Group keys (uno per replicate_group con sample_ids non vuoto)
+    group_keys <- vapply(study$replicate_groups, function(rg) {
+      if (length(rg$sample_ids) == 0L) return(NA_character_)
       sid_sample <- rg$sample_ids[[1L]]
-      role_for_anchor <- switch(
+      role <- switch(
         rg$primary_role %||% "unclear",
         treated   = "treated",
         control   = "control",
@@ -278,59 +279,56 @@ build_stage3_clusters <- function(stage1_master,
         unclear   = "treated",
         "treated"
       )
-      tuples_to_cache[[length(tuples_to_cache) + 1L]] <- list(
-        sample_id = sid_sample, role = role_for_anchor
-      )
-      hf_samples <- c(hf_samples, sid_sample)
-    }
+      sprintf("%s|%s", sid_sample, role)
+    }, character(1L))
+    group_keys <- group_keys[!is.na(group_keys)]
 
-    # pair records: treated + control samples
-    for (cmp in study$comparisons) {
+    # Pair keys (due per comparison: treated + control)
+    pair_keys <- unlist(lapply(study$comparisons, function(cmp) {
       tg <- rg_lookup[[cmp$treated_group]]
       cg <- rg_lookup[[cmp$control_group]]
-      if (is.null(tg) || is.null(cg)) next
-      tg_sample <- tg$sample_ids[[1L]]
-      cg_sample <- cg$sample_ids[[1L]]
-      tuples_to_cache[[length(tuples_to_cache) + 1L]] <- list(
-        sample_id = tg_sample, role = "treated"
+      if (is.null(tg) || is.null(cg)) return(character())
+      c(
+        sprintf("%s|treated", tg$sample_ids[[1L]]),
+        sprintf("%s|control", cg$sample_ids[[1L]])
       )
-      tuples_to_cache[[length(tuples_to_cache) + 1L]] <- list(
-        sample_id = cg_sample, role = "control"
-      )
-      hf_samples <- c(hf_samples, tg_sample)
-    }
-  }
+    }), use.names = FALSE)
+    if (is.null(pair_keys)) pair_keys <- character()
 
-  # Dedup (sample_id, role) tuples
-  tuple_keys <- vapply(tuples_to_cache, function(t) {
-    sprintf("%s|%s", t$sample_id, t$role)
-  }, character(1L))
-  unique_keys <- unique(tuple_keys)
-  unique_tuples <- tuples_to_cache[!duplicated(tuple_keys)]
+    c(group_keys, pair_keys)
+  })
+
+  all_keys <- unlist(per_study_keys, use.names = FALSE)
+  if (is.null(all_keys)) all_keys <- character()
+  unique_keys <- unique(all_keys)
+  if (length(unique_keys) == 0L) {
+    return(list(anchors = list(), hard_filters = list()))
+  }
 
   # Estrai anchor segments per ogni unique (sample_id, role)
   anchors <- setNames(
-    vector("list", length(unique_tuples)),
+    lapply(unique_keys, function(key) {
+      parts <- strsplit(key, "|", fixed = TRUE)[[1L]]
+      sid   <- parts[1L]
+      role  <- parts[2L]
+      facts <- stage1_master[[sid]]
+      if (is.null(facts)) return(NULL)
+      .extract_anchor_segments(facts, stage2_role = role)
+    }),
     unique_keys
   )
-  for (i in seq_along(unique_tuples)) {
-    t <- unique_tuples[[i]]
-    facts <- stage1_master[[t$sample_id]]
-    if (is.null(facts)) next  # GSM non in stage1: lascia NULL
-    anchors[[i]] <- .extract_anchor_segments(facts, stage2_role = t$role)
-  }
 
   # Hard filters per ogni unique sample_id (no dipendenza da role)
-  unique_hf_samples <- unique(hf_samples)
+  unique_sample_ids <- unique(vapply(strsplit(unique_keys, "|", fixed = TRUE),
+                                       function(p) p[1L], character(1L)))
   hard_filters <- setNames(
-    vector("list", length(unique_hf_samples)),
-    unique_hf_samples
+    lapply(unique_sample_ids, function(sid) {
+      facts <- stage1_master[[sid]]
+      if (is.null(facts)) return(NULL)
+      .extract_hard_filters(facts, tier_assignment)
+    }),
+    unique_sample_ids
   )
-  for (i in seq_along(unique_hf_samples)) {
-    facts <- stage1_master[[unique_hf_samples[i]]]
-    if (is.null(facts)) next
-    hard_filters[[i]] <- .extract_hard_filters(facts, tier_assignment)
-  }
 
   list(anchors = anchors, hard_filters = hard_filters)
 }
