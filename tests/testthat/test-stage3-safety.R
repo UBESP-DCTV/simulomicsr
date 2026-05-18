@@ -78,3 +78,28 @@ test_that("safety con cluster di 1 record sempre 1.0 (no eterogeneita' possibile
   expect_equal(result$safety_min, 1.0)
   expect_equal(result$safety_per_segment$dose_canonical, 1.0)
 })
+
+test_that("safety con cluster_records vuoto: NaN per ogni segment, no -Inf", {
+  result <- simulomicsr:::.compute_pooling_safety(
+    cluster_records = list(),
+    dropped_segments = c("dose_canonical", "duration_canonical")
+  )
+  expect_true(is.nan(result$safety_min))
+  expect_true(is.nan(result$safety_geom_mean))
+  expect_true(is.nan(result$safety_per_segment$dose_canonical))
+  expect_true(is.nan(result$safety_per_segment$duration_canonical))
+})
+
+test_that("dropped_segments duplicati sono normalizzati a unique", {
+  cluster_records <- list(
+    list(dose_canonical = "10nM"),
+    list(dose_canonical = "10nM")
+  )
+  result <- simulomicsr:::.compute_pooling_safety(
+    cluster_records = cluster_records,
+    dropped_segments = c("dose_canonical", "dose_canonical")  # duplicato
+  )
+  # Output deve avere 1 entry, non 2
+  expect_length(result$safety_per_segment, 1L)
+  expect_equal(result$safety_per_segment$dose_canonical, 1.0)
+})

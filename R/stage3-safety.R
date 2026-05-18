@@ -20,6 +20,19 @@
     ))
   }
 
+  # Fix: cluster vuoto → NaN esplicito invece di silent -Inf da max() su table()
+  if (length(cluster_records) == 0L) {
+    return(list(
+      safety_min         = NaN,
+      safety_geom_mean   = NaN,
+      safety_per_segment = as.list(setNames(rep(NaN, length(dropped_segments)),
+                                            dropped_segments))
+    ))
+  }
+
+  # Fix: normalizza duplicati in dropped_segments prima di processare
+  dropped_segments <- unique(dropped_segments)
+
   per_segment <- vapply(dropped_segments, function(seg) {
     values <- vapply(cluster_records, function(r) {
       v <- r[[seg]]
