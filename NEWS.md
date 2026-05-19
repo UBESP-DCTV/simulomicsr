@@ -15,27 +15,34 @@
   `p5-stadio3-raggruppamento`). 18 tests filtri stage3-* tutti PASS (>=80 test
   blocks, 0 FAIL), full suite 839 PASS / 2 SKIP. Integration test su 5 GSE
   `stage2-fixtures-mini` end-to-end (build + write + load round-trip).
-* **Run beta INTENTATO, NON COMPLETATO** (2026-05-18/19, sessione notturna).
-  Cinque tentativi separati con escalation perf fix; tutti hanno superato 1h
-  senza completare. Vedi commit `94d3ecb`, `273574c`, `37d4dc3`, `fdc7ba3` per
-  i 4 fix applicati:
-  - #1 GPL lookup O(K) via .build_gpl_lookup pre-split (era O(N) per cluster).
-  - #2 split assignments by cluster_id (era O(N^2) in .summarize_clusters loop).
-  - #3 anchor cache via .precompute_anchor_cache + .extract_hard_filters direct
-    field access (eliminava chiamate ripetute a .extract_anchor_segments).
-  - #4 cache build vettoriale lapply/unlist (era O(N^2) per list growth).
-  - Phase logging via cli::cli_inform (Phase 1-7) + progress 5% in .summarize_clusters.
-  - Direct script /tmp/stage3-direct*.log usato in luogo di targets::tar_make
-    (overkill per orchestrator monolitico).
-  - Conclusione: `.extract_anchor_segments` e' fondamentalmente lento in pure R
-    e il dataset richiede ~300-500k chiamate uniche (post-cache). Necessario
-    ottimizzazione ulteriore (parallelismo via parallel::mclapply, data.table,
-    o refactor della funzione anchor extraction). Test su fixture mini
-    (5 GSE) tutti verdi: la pipeline funziona, e' solo l'extraction-loop
-    su full beta che non scala in single-thread R.
-* **DEFERRED (post-merge / follow-up):**
-  - Optimization sprint richiesto per full beta run. Tag attuale
-    `p5-stadio3-impl-complete` segna l'implementazione code-complete pre-run.
+* **Run beta COMPLETATO** in **32.3 min wall** (2026-05-19, 07:23:33 UTC start).
+  Output in `analysis/p4-output/20260519T055547Z-stage3-2153addc/` (run_id `2153addc`,
+  5 file: assignments.parquet 21 MB + clusters.rds 8.9 MB + record_summary.rds 2.0 MB +
+  non_clusterable.rds 2.7 MB + run_metadata.json).
+  - **Output counts** (su 39.247 stage2 + 879.167 stage1 records input):
+    - **267.056 cluster totali** (8.926+8.903+8.011+7.545+7.255 = 40.640 pair L0..L4;
+      59.657+58.988+50.563+30.495+26.713 = 226.416 group L0..L4).
+    - 10.488 records clusterable pair (post direction + n>=2 filter) +
+      131.031 records clusterable group.
+    - 707.595 assignment totali (record x level x mode).
+    - 302.414 non_clusterable (~76% pair n=1 + 24% tier_s_incomplete / direction
+      ambiguous; vedi `non_clusterable.rds` per breakdown reason).
+  - **6 perf fix** richiesti per ottenere il deliverable. Vedi commit
+    `94d3ecb`, `273574c`, `37d4dc3`, `fdc7ba3`, `6f2a620`, `a2a5d94`:
+    - #1 GPL lookup O(K) via `.build_gpl_lookup` pre-split.
+    - #2 split assignments by cluster_id (era O(N^2) in `.summarize_clusters` loop).
+    - #3 anchor cache via `.precompute_anchor_cache` + `.extract_hard_filters` direct
+      field access (eliminava chiamate ripetute a `.extract_anchor_segments`).
+    - #4 cache build vettoriale `lapply/unlist` (era O(N^2) per list growth).
+    - **#5 stage1_master `list` -> `environment`** per O(1) hash lookup (era O(N)
+      scan: 4.6ms/lookup su 879k entries, 0.05ms/lookup via env hash, 80x speedup).
+    - **#6 cache.anchors + pair/group_lookup `list` -> `environment`** stesso motivo.
+  - Phase logging via `cli::cli_inform` (Phase 1-7) + progress 5% in `.summarize_clusters`.
+  - Direct script `/tmp/stage3-direct-v5.log` usato in luogo di `targets::tar_make`
+    (targets overkill per orchestrator monolitico).
+  - Benchmark `/tmp/bench-stage3*.R` ha identificato che il bottleneck non era
+    `.extract_anchor_segments` (heavy ma 0.05ms/call warm) ma R's list
+    `[[name]]` semantics su list > ~100k entries che diventa O(N) scan.
 
 # simulomicsr 0.0.0.9017 (β P4 rescue cascade COMPLETE — H1+H1.2 stage1 + H2 mouse-mislabel + H3 stage2 → 99.9999% stage1 + 100.000% stage2)
 
