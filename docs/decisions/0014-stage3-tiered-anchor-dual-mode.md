@@ -1,6 +1,6 @@
 # ADR-0014 -- Stadio 3 tiered anchor + dual-mode + canonical directionality
 
-**Status:** Accepted (2026-05-18, implementation complete su branch p5-stadio3-raggruppamento; merge a master tramite ff-merge dopo ottimizzazione perf)
+**Status:** Accepted (2026-05-19, run beta completato 32.3 min wall, ff-merge a master, tag p5-stadio3-complete)
 **Decisori:** lucavd
 **Predecessori:** ADR-0006 (positioning), ADR-0012 (stage2 schema multi-axis limitation)
 **Sostituisce:** --
