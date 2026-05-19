@@ -68,9 +68,11 @@
                  paste(sample_ids[is.na(idx)], collapse = ", ")))
   }
 
-  # Read counts subset (genes are all rows; samples are subset cols)
+  # ARCHS4 v2.5 expression e' (samples x genes): leggi righe per i sample
+  # richiesti, poi traspone a (genes x samples) per downstream limma/edgeR.
   counts <- rhdf5::h5read(h5_path, "data/expression",
-                          index = list(NULL, idx))
+                          index = list(idx, NULL))
+  counts <- t(counts)
   storage.mode(counts) <- "integer"
 
   # Rownames = HGNC symbol; colnames = GSM
