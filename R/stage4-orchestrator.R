@@ -148,11 +148,17 @@
       out_list[[length(out_list) + 1L]] <- pool
 
     } else if (method == "mega_aug") {
+      # Parsa anchor_key del pair-cluster in treated/control (vedi
+      # .parse_pair_anchor_key + Stage 3 encoding "<tk>__VS__<ck>__CT_<ct>")
+      parsed_key <- .parse_pair_anchor_key(
+        eligible_clusters$anchor_key[i],
+        level = eligible_clusters$level[i]
+      )
       pair_cluster_struct <- list(
         cluster_id = cid,
         level = eligible_clusters$level[i],
-        treated_anchor_key = NA_character_,  # TODO: popolare via lookup Task 11
-        control_anchor_key = NA_character_,  # TODO: popolare via lookup Task 11
+        treated_anchor_key = parsed_key$treated,
+        control_anchor_key = parsed_key$control,
         studies_in_cluster = eligible_clusters$studies_in_cluster[[i]],
         treated_samples = list(unlist(lapply(dispatch[[cid]],
                                               function(d) d$treated))),
@@ -182,8 +188,14 @@
         m[common_genes, , drop = FALSE]
       }))
 
+      # Riallinea metadata all'ordine di colnames(counts) per coerenza dream
+      # (variancePartition::filterInputData richiede ordine + nomi identici).
+      meta_ord <- assembled$metadata[
+        match(colnames(counts), assembled$metadata$sample_id), , drop = FALSE
+      ]
+
       pool <- .run_dream_mega(
-        counts, assembled$metadata, cid,
+        counts, meta_ord, cid,
         workers = min(workers, dream_workers_cap),
         n_baseline_studies_augmented = assembled$n_baseline_studies_augmented,
         method_label = "mega_aug"
