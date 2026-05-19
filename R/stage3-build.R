@@ -315,33 +315,32 @@ build_stage3_clusters <- function(stage1_master,
   if (is.null(all_keys)) all_keys <- character()
   unique_keys <- unique(all_keys)
   if (length(unique_keys) == 0L) {
-    return(list(anchors = list(), hard_filters = list()))
+    return(list(anchors = new.env(hash = TRUE, parent = emptyenv()),
+                hard_filters = new.env(hash = TRUE, parent = emptyenv())))
   }
 
-  # Estrai anchor segments per ogni unique (sample_id, role)
-  anchors <- setNames(
-    lapply(unique_keys, function(key) {
-      parts <- strsplit(key, "|", fixed = TRUE)[[1L]]
-      sid   <- parts[1L]
-      role  <- parts[2L]
-      facts <- stage1_master[[sid]]
-      if (is.null(facts)) return(NULL)
-      .extract_anchor_segments(facts, stage2_role = role)
-    }),
-    unique_keys
-  )
+  # Anchors come ENVIRONMENT per O(1) lookup downstream (~315k entries).
+  # Stesso motivo del fix stage1_master env: list[[name]] su 300k+ entries = O(N).
+  anchors <- new.env(hash = TRUE, size = length(unique_keys), parent = emptyenv())
+  for (key in unique_keys) {
+    parts <- strsplit(key, "|", fixed = TRUE)[[1L]]
+    sid   <- parts[1L]
+    role  <- parts[2L]
+    facts <- stage1_master[[sid]]
+    if (is.null(facts)) next
+    assign(key, .extract_anchor_segments(facts, stage2_role = role), envir = anchors)
+  }
 
-  # Hard filters per ogni unique sample_id (no dipendenza da role)
+  # Hard filters per ogni unique sample_id (no dipendenza da role) come ENV.
   unique_sample_ids <- unique(vapply(strsplit(unique_keys, "|", fixed = TRUE),
                                        function(p) p[1L], character(1L)))
-  hard_filters <- setNames(
-    lapply(unique_sample_ids, function(sid) {
-      facts <- stage1_master[[sid]]
-      if (is.null(facts)) return(NULL)
-      .extract_hard_filters(facts, tier_assignment)
-    }),
-    unique_sample_ids
-  )
+  hard_filters <- new.env(hash = TRUE, size = length(unique_sample_ids),
+                          parent = emptyenv())
+  for (sid in unique_sample_ids) {
+    facts <- stage1_master[[sid]]
+    if (is.null(facts)) next
+    assign(sid, .extract_hard_filters(facts, tier_assignment), envir = hard_filters)
+  }
 
   list(anchors = anchors, hard_filters = hard_filters)
 }
@@ -506,11 +505,17 @@ build_stage3_clusters <- function(stage1_master,
 
   ta <- config$tier_assignment
 
-  # Lookup veloce record_id -> record list
-  pair_lookup  <- setNames(eligible_pair,
-                           vapply(eligible_pair,  function(r) r$record_id, character(1L)))
-  group_lookup <- setNames(eligible_group,
-                           vapply(eligible_group, function(r) r$record_id, character(1L)))
+  # Lookup veloce record_id -> record. Usa environment per O(1) hash lookup
+  # (record_id list potrebbe avere ~40k+ entries; list[[name]] su 40k = ~0.2ms,
+  # su 400k+ = ~2ms; env e' costante <0.05ms).
+  pair_lookup  <- new.env(hash = TRUE,
+                          size = max(1L, length(eligible_pair)),
+                          parent = emptyenv())
+  for (r in eligible_pair) assign(r$record_id, r, envir = pair_lookup)
+  group_lookup <- new.env(hash = TRUE,
+                          size = max(1L, length(eligible_group)),
+                          parent = emptyenv())
+  for (r in eligible_group) assign(r$record_id, r, envir = group_lookup)
 
   # Pre-build GPL lookup UNA volta (split su series_id) per evitare O(N) scan
   # di archs4_metadata in ogni iterazione del loop su cluster.
@@ -537,9 +542,9 @@ build_stage3_clusters <- function(stage1_master,
     anchor_key <- cl_rows$anchor_key[1L]
 
     member_records <- if (identical(mode, "pair")) {
-      pair_lookup[cl_rows$record_id]
+      mget(cl_rows$record_id, envir = pair_lookup, ifnotfound = list(NULL))
     } else {
-      group_lookup[cl_rows$record_id]
+      mget(cl_rows$record_id, envir = group_lookup, ifnotfound = list(NULL))
     }
     # Rimuove NULL (record non trovati nel lookup -- non dovrebbe accadere)
     member_records <- member_records[!vapply(member_records, is.null, logical(1L))]
