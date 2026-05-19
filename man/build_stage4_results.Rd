@@ -12,6 +12,8 @@ build_stage4_results(
   h5_path = NULL,
   stage3_run_id = NULL,
   h5_path_for_hash = NULL,
+  stage3_assignments = NULL,
+  stage2_master = NULL,
   dry_run_inputs_only = FALSE
 )
 }
@@ -32,6 +34,14 @@ counts. Default chiama \code{.fetch_counts_cached} con \code{h5_path}.}
 
 \item{h5_path_for_hash}{path al H5 per il calcolo sha256 (NULL se non si
 vuole hashare il H5; in tal caso usa placeholder "unknown").}
+
+\item{stage3_assignments}{tibble \code{assignments.parquet} Stadio 3
+(richiesto quando \code{dry_run_inputs_only = FALSE} per costruire i
+dispatch per-cluster).}
+
+\item{stage2_master}{list di study records (output di
+\code{.load_stage2_master} o equivalente). Richiesto quando
+\code{dry_run_inputs_only = FALSE}.}
 
 \item{dry_run_inputs_only}{logical: se TRUE, restituisce solo
 eligible_clusters + run_metadata + scaffold vuoti (skip DE/pooling)
