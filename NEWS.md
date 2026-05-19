@@ -15,13 +15,27 @@
   `p5-stadio3-raggruppamento`). 18 tests filtri stage3-* tutti PASS (>=80 test
   blocks, 0 FAIL), full suite 839 PASS / 2 SKIP. Integration test su 5 GSE
   `stage2-fixtures-mini` end-to-end (build + write + load round-trip).
+* **Run beta INTENTATO, NON COMPLETATO** (2026-05-18/19, sessione notturna).
+  Cinque tentativi separati con escalation perf fix; tutti hanno superato 1h
+  senza completare. Vedi commit `94d3ecb`, `273574c`, `37d4dc3`, `fdc7ba3` per
+  i 4 fix applicati:
+  - #1 GPL lookup O(K) via .build_gpl_lookup pre-split (era O(N) per cluster).
+  - #2 split assignments by cluster_id (era O(N^2) in .summarize_clusters loop).
+  - #3 anchor cache via .precompute_anchor_cache + .extract_hard_filters direct
+    field access (eliminava chiamate ripetute a .extract_anchor_segments).
+  - #4 cache build vettoriale lapply/unlist (era O(N^2) per list growth).
+  - Phase logging via cli::cli_inform (Phase 1-7) + progress 5% in .summarize_clusters.
+  - Direct script /tmp/stage3-direct*.log usato in luogo di targets::tar_make
+    (overkill per orchestrator monolitico).
+  - Conclusione: `.extract_anchor_segments` e' fondamentalmente lento in pure R
+    e il dataset richiede ~300-500k chiamate uniche (post-cache). Necessario
+    ottimizzazione ulteriore (parallelismo via parallel::mclapply, data.table,
+    o refactor della funzione anchor extraction). Test su fixture mini
+    (5 GSE) tutti verdi: la pipeline funziona, e' solo l'extraction-loop
+    su full beta che non scala in single-thread R.
 * **DEFERRED (post-merge / follow-up):**
-  - Performance optimization: orchestrator pure-R loop su 2.96M anchor key
-    builds attualmente ~32min wall + 11GB peak su full beta (target plan
-    15min/4GB). Candidate ottimizzazioni: pre-extract anchor segments per
-    sample (cache), vectorize key construction, parallelism cross-level.
-  - Full beta run (`targets::tar_make(stage3_out_dir)`) e output counts in NEWS.
-    Pipeline corretto e validato; deliverable atteso run wall-time ~30-35min.
+  - Optimization sprint richiesto per full beta run. Tag attuale
+    `p5-stadio3-impl-complete` segna l'implementazione code-complete pre-run.
 
 # simulomicsr 0.0.0.9017 (β P4 rescue cascade COMPLETE — H1+H1.2 stage1 + H2 mouse-mislabel + H3 stage2 → 99.9999% stage1 + 100.000% stage2)
 
