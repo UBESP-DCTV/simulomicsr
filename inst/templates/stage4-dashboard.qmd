@@ -1,0 +1,138 @@
+---
+title: "Stadio 4 Diagnostic Dashboard"
+subtitle: "simulomicsr — DE per-studio + MEGA cross-study (Layer A)"
+date: today
+format:
+  html:
+    self-contained: true
+    toc: true
+    code-fold: true
+    code-tools: true
+params:
+  stage4_dir: ""
+execute:
+  echo: false
+  warning: false
+---
+
+```{r setup}
+library(simulomicsr)
+library(DT)
+library(plotly)
+library(dplyr)
+library(tidyr)
+
+s4 <- load_stage4(params$stage4_dir)
+```
+
+## 1. Overview Layer A
+
+```{r overview-cards}
+n_clusters_processed <- length(unique(s4$cluster_pooled$cluster_id))
+n_clusters_non_proc  <- nrow(s4$non_processable)
+n_genes_total <- length(unique(s4$cluster_pooled$gene))
+n_sig <- sum(s4$cluster_pooled$FDR_BH_within_cluster < 0.05, na.rm = TRUE)
+
+knitr::kable(tibble::tibble(
+  Metric = c("Clusters processed", "Clusters non-processable",
+              "Unique genes total", "Significant gene-cluster (FDR<0.05)"),
+  Value = c(n_clusters_processed, n_clusters_non_proc, n_genes_total, n_sig)
+))
+```
+
+```{r overview-by-method}
+by_method <- s4$cluster_pooled |>
+  group_by(method) |>
+  summarise(n_clusters = n_distinct(cluster_id),
+            n_significant = sum(FDR_BH_within_cluster < 0.05, na.rm = TRUE),
+            .groups = "drop")
+DT::datatable(by_method, options = list(dom = 't'))
+```
+
+## 2. Cluster browser
+
+```{r cluster-browser}
+cluster_summary <- s4$cluster_pooled |>
+  group_by(cluster_id, method) |>
+  summarise(
+    n_genes = n(),
+    n_sig_fdr05 = sum(FDR_BH_within_cluster < 0.05, na.rm = TRUE),
+    median_tau2 = median(tau2, na.rm = TRUE),
+    median_I2 = median(I2, na.rm = TRUE),
+    k_effective = max(k_effective),
+    n_baseline_aug = max(n_baseline_studies_augmented, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+DT::datatable(
+  cluster_summary,
+  filter = "top",
+  options = list(pageLength = 25, scrollX = TRUE)
+)
+```
+
+## 3. Volcano plot (filterable by cluster)
+
+```{r volcano-overall}
+# Mostra distribuzione overall: 1 punto per gene-cluster, color by method
+plot_data <- s4$cluster_pooled |>
+  mutate(neg_log10_p = -log10(p_value_pool),
+         sig = FDR_BH_within_cluster < 0.05)
+
+plotly::plot_ly(plot_data, x = ~logFC_pool, y = ~neg_log10_p,
+                color = ~method, symbol = ~sig,
+                type = "scatter", mode = "markers",
+                opacity = 0.3, marker = list(size = 4),
+                text = ~paste("Cluster:", cluster_id, "<br>Gene:", gene)) |>
+  layout(title = "Volcano plot — all gene-cluster (Layer A)",
+         xaxis = list(title = "logFC_pool"),
+         yaxis = list(title = "-log10(p_value_pool)"))
+```
+
+## 4. Heterogeneity panel (REM only)
+
+```{r heterogeneity}
+rem_data <- s4$cluster_pooled |>
+  filter(method == "rem", !is.na(tau2), !is.na(I2))
+
+if (nrow(rem_data) > 0) {
+  plotly::plot_ly(rem_data, x = ~tau2, y = ~I2,
+                  type = "scatter", mode = "markers",
+                  marker = list(size = 4, opacity = 0.3),
+                  text = ~paste("Cluster:", cluster_id, "<br>Gene:", gene)) |>
+    layout(title = "tau^2 vs I^2 distribution (REM cluster)",
+           xaxis = list(title = "tau^2"),
+           yaxis = list(title = "I^2 (%)"))
+}
+```
+
+## 5. Layer B candidate picker
+
+```{r layer-b-picker}
+candidates <- cluster_summary |>
+  mutate(score = n_sig_fdr05 * log(k_effective + 1) /
+                 (1 + ifelse(is.na(median_tau2), 0, median_tau2))) |>
+  arrange(desc(score))
+
+DT::datatable(
+  candidates |> head(50),
+  filter = "top",
+  options = list(pageLength = 20)
+)
+```
+
+**Top 20 first-pick suggestions:** copia gli `cluster_id` evidenziati sopra
+in un follow-up curation script. No state persistence interattiva in v1.
+
+## 6. Methods snapshot (config)
+
+```{r methods}
+config_yaml <- yaml::as.yaml(s4$config)
+cat("```yaml\n", config_yaml, "\n```", sep = "")
+```
+
+**Run metadata:**
+
+- run_id: `r s4$run_metadata$run_id`
+- timestamp: `r s4$run_metadata$timestamp`
+- Schema versions: anchor=`r s4$config$schema_versions$anchor`, stage3=`r s4$config$schema_versions$stage3_algorithm`, stage4=`r s4$config$schema_versions$stage4_algorithm`
