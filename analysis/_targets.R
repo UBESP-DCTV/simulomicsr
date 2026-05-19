@@ -6,6 +6,15 @@ list.files(here::here("R"), pattern = "\\.R$", full.names = TRUE) |>
   lapply(source) |>
   invisible()
 
+# Parallel backend setup per Stadio 4 (multisession future)
+# Riserva 10 core al sistema; la pipeline Stadio 4 usa future::future_lapply
+# per il fan-out DE per-studio.
+if (requireNamespace("future", quietly = TRUE) &&
+    requireNamespace("parallelly", quietly = TRUE)) {
+  future::plan(future::multisession,
+               workers = max(1L, parallelly::availableCores() - 10L))
+}
+
 tar_option_set(
   packages = c("tibble", "dplyr", "readxl"),
   format   = "rds",
@@ -1106,6 +1115,67 @@ list(
         )
       )
       simulomicsr::write_stage3_to_dir(stage3_run, dir)
+      dir
+    },
+    format = "file"
+  ),
+
+  # ============================================================
+  # P5 Stadio 4 — DE per-studio (limma-voom) + pooling cluster (REM)
+  # ============================================================
+  # Path relativi alla cwd di tar_make (analysis/), come Stadio 3.
+
+  tar_target(stage4_config, simulomicsr::stage4_default_config()),
+
+  # Punta a uno specifico run Stadio 3 (frozen). Per ri-eseguire Stadio 4
+  # su un run diverso di Stadio 3, aggiornare questa stringa.
+  tar_target(
+    stage3_dir_for_stage4,
+    "p4-output/20260519T055547Z-stage3-2153addc",
+    format = "file"
+  ),
+
+  tar_target(
+    h5_for_stage4,
+    "input/human_gene_v2.5.h5",
+    format = "file"
+  ),
+
+  tar_target(
+    stage4_h5_metadata,
+    simulomicsr::load_archs4_metadata(h5_path = h5_for_stage4)
+  ),
+
+  tar_target(
+    stage4_stage3_loaded,
+    simulomicsr::load_stage3(stage3_dir_for_stage4)
+  ),
+
+  tar_target(
+    stage4_result,
+    simulomicsr::build_stage4_results(
+      stage3_clusters  = stage4_stage3_loaded$clusters,
+      h5_metadata      = stage4_h5_metadata,
+      config           = stage4_config,
+      h5_path          = h5_for_stage4,
+      stage3_run_id    = stage4_stage3_loaded$run_metadata$run_id,
+      h5_path_for_hash = h5_for_stage4
+    ),
+    format = "rds"
+  ),
+
+  tar_target(
+    stage4_out_dir,
+    {
+      dir <- file.path(
+        "p4-output",
+        sprintf(
+          "%s-stage4-%s",
+          format(Sys.time(), "%Y%m%dT%H%M%SZ", tz = "UTC"),
+          stage4_result$run_metadata$run_id
+        )
+      )
+      simulomicsr::write_stage4_to_dir(stage4_result, dir)
       dir
     },
     format = "file"
