@@ -38,7 +38,9 @@
   )
 
   # Allinea rownames(metadata) a colnames(counts) per silenziare warning
-  # variancePartition::filterInputData (sample names check).
+  # variancePartition::filterInputData (sample names check). I tibble non
+  # supportano rownames persistenti -> coerce a base data.frame.
+  metadata <- as.data.frame(metadata, stringsAsFactors = FALSE)
   rownames(metadata) <- metadata$sample_id
 
   # Pipeline counts: DGEList -> filterByExpr -> TMM
