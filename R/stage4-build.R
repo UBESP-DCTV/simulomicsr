@@ -123,16 +123,22 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     dream_workers_cap = config$compute$dream_workers_cap
   )
 
-  # Step 7: QC report aggregato
+  # Step 7: QC report aggregato. Merge cluster non_processable da QC + dal
+  # pool stage (cluster MEGA rank-deficient skippati per scientific validity).
   qc_report <- .build_qc_report(qc$eligible_clusters, per_study_de,
                                  cluster_pooled)
+  pool_non_proc <- attr(cluster_pooled, "non_processable_in_pool")
+  if (!is.null(pool_non_proc) && nrow(pool_non_proc) > 0L) {
+    qc$qc_drops_cluster <- rbind(qc$qc_drops_cluster, pool_non_proc)
+    qc_report$qc_drops_cluster <- qc$qc_drops_cluster
+  }
 
   structure(list(
     per_study_de      = per_study_de,
     cluster_pooled    = cluster_pooled,
     eligible_clusters = qc$eligible_clusters,
     qc_report         = qc_report,
-    non_processable   = qc$qc_drops_cluster,
+    non_processable   = qc_report$qc_drops_cluster,
     config            = config,
     run_metadata      = list(run_id = run_id, timestamp = Sys.time())
   ), class = "stage4_result")
