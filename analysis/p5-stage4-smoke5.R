@@ -56,6 +56,27 @@ s3 <- load_stage3(stage3_dir)
 stage2_master <- simulomicsr:::.load_stage2_master(stage2_path)
 cli_alert_success("stage3: {.val {nrow(s3$clusters)}} clusters / {.val {nrow(s3$assignments)}} assignments; stage2_master: {.val {length(stage2_master)}} studies")
 
+# Pre-filter stage2_master vs ARCHS4 H5 sample axis (vedi fullrun script per
+# razionale; ~698 sample 0.09% di stage2 non presenti in ARCHS4 v2.5).
+cli_alert_info("Pre-filter stage2_master vs ARCHS4 H5 sample axis...")
+h5_samples_axis <- as.character(rhdf5::h5read(h5_path, "meta/samples/geo_accession"))
+h5_set <- new.env(hash = TRUE, parent = emptyenv())
+for (s in h5_samples_axis) assign(s, TRUE, envir = h5_set)
+n_dropped <- 0L; n_total <- 0L
+for (st_i in seq_along(stage2_master)) {
+  rgs <- stage2_master[[st_i]]$replicate_groups
+  for (rg_i in seq_along(rgs)) {
+    sids <- as.character(unlist(rgs[[rg_i]]$sample_ids))
+    n_total <- n_total + length(sids)
+    valid <- sids[vapply(sids, exists, logical(1L), envir = h5_set,
+                            inherits = FALSE)]
+    n_dropped <- n_dropped + (length(sids) - length(valid))
+    stage2_master[[st_i]]$replicate_groups[[rg_i]]$sample_ids <- as.list(valid)
+  }
+}
+cli_alert_info("Pre-filter: {n_dropped}/{n_total} sample droppati ({sprintf('%.3f%%', 100*n_dropped/n_total)}) non in ARCHS4 H5")
+rm(h5_samples_axis, h5_set); invisible(gc(verbose = FALSE))
+
 # ---- Cluster picks ---------------------------------------------------------
 
 cl <- s3$clusters

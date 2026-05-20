@@ -51,6 +51,52 @@ cli_alert_success(
   "Loaded: {nrow(s3$clusters)} clusters / {nrow(s3$assignments)} assignments / {length(stage2_master)} stage2 studies (wall {round(as.numeric(difftime(Sys.time(), t0, units='secs')), 1)} sec)"
 )
 
+# ---- Pre-filter stage2_master vs ARCHS4 H5 sample axis --------------------
+# Discovery 2026-05-20 fullrun crash: ~698 sample (0.09%) di stage2_master
+# non sono presenti nell'H5 ARCHS4 v2.5 (es. GSM6401594 in GSE209828, sample
+# aggiunti a GEO post-snapshot ARCHS4 o rinominati/dropped da ARCHS4 stesso).
+# Quando un sample mancante capita in un baseline pool o pair MEGA, il pool
+# crasha con "Sample IDs not found in H5: ...".
+# Fix difensivo: rimuovi i sample non in H5 dai replicate_groups$sample_ids
+# di stage2_master PRIMA di build_stage4_results. Side effect: replicate_group
+# che si riducono a 0 sample rendono i cluster MEGA rank-deficient -> skip
+# pattern fix #2 (2026-05-20) li gestisce gracefully.
+cli_alert_info("Pre-filter stage2_master vs ARCHS4 H5 sample axis...")
+t_filt <- Sys.time()
+h5_samples_axis <- as.character(rhdf5::h5read(h5_path, "meta/samples/geo_accession"))
+cli_alert_info("H5 sample axis: {.val {length(h5_samples_axis)}} sample")
+
+.filter_stage2_master_to_h5 <- function(stage2_master, h5_samples) {
+  h5_set <- new.env(hash = TRUE, parent = emptyenv())
+  for (s in h5_samples) assign(s, TRUE, envir = h5_set)
+  n_dropped <- 0L
+  n_total <- 0L
+  for (st_i in seq_along(stage2_master)) {
+    rgs <- stage2_master[[st_i]]$replicate_groups
+    for (rg_i in seq_along(rgs)) {
+      sids <- as.character(unlist(rgs[[rg_i]]$sample_ids))
+      n_total <- n_total + length(sids)
+      valid <- sids[vapply(sids, exists, logical(1L), envir = h5_set,
+                              inherits = FALSE)]
+      n_dropped <- n_dropped + (length(sids) - length(valid))
+      stage2_master[[st_i]]$replicate_groups[[rg_i]]$sample_ids <- as.list(valid)
+    }
+  }
+  attr(stage2_master, "h5_filter_stats") <- list(
+    n_total = n_total, n_dropped = n_dropped,
+    pct_dropped = 100 * n_dropped / max(1L, n_total)
+  )
+  stage2_master
+}
+
+stage2_master <- .filter_stage2_master_to_h5(stage2_master, h5_samples_axis)
+filt_stats <- attr(stage2_master, "h5_filter_stats")
+cli_alert_success(
+  "Pre-filter done in {round(as.numeric(difftime(Sys.time(), t_filt, units='secs')), 1)} sec: {.val {filt_stats$n_dropped}}/{.val {filt_stats$n_total}} sample droppati ({.val {sprintf('%.3f%%', filt_stats$pct_dropped)}}) — non in ARCHS4 H5 v2.5"
+)
+rm(h5_samples_axis)
+gc(verbose = FALSE)
+
 # ---- h5_metadata: placeholder lib_size ------------------------------------
 # Stage 4 QC richiede colonne (sample_id, gsm, gse, lib_size). load_archs4_metadata
 # non calcola lib_size (richiederebbe colSums sull'intero H5 47 GB). Per Layer A
