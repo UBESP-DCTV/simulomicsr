@@ -69,30 +69,83 @@ Il MEGA-AUG monodirezionale (`R/stage4-mega-aug.R::.assemble_mega_aug_metadata`)
 
 ## 4. Anchor matching: parsing + policy
 
-L'anchor canonico v3 è una stringa `"<perturbation>|<dose>|<time>|<exposure_route>|<cell_context>|<tissue>|<disease_state>|<genetic_background>|<readout>|<replicate_phase>"` (separatore `|`, 10 campi, ordine fissato da Stadio 2 schema). Per il matching dobbiamo parsarla in struttura.
+### 4.1 Struttura reale dell'anchor v3 (verificata empiricamente 2026-05-20)
 
-**`parse_anchor_canonical(anchor_key)`** → tibble 1-riga con 10 colonne, una per campo.
+L'anchor canonico v3 è una stringa **a 13 segmenti tier-based level-aware**, prodotta da `R/stage3-anchor-levels.R::.extract_anchor_segments()`. Schema concatenato con `|`, ordine canonical:
 
-**Policy `strict`**: due anchor matchano sse tutti i 10 campi sono uguali (== string equality dopo parsing).
+| # | Segmento | Tier | Esempio |
+|---:|---|---|---|
+| 1 | `kind_effective` | **S** | `small_molecule`, `genetic_overexpression`, `disease_vs_normal`, `none`, `vehicle_only` |
+| 2 | `agent_id` | **S** | `Parthenolide`, `HGNC:MRTFB`, `11203`, `unknown` |
+| 3 | `variant_label` | **A** | `wt`, `engineered` |
+| 4 | `dose_canonical` | **C** | `nodose`, `1uM`, `10mg/kg` |
+| 5 | `duration_canonical` | **C** | `na`, `3h`, `7d` |
+| 6 | `phase_canonical` | **A** | `exposure`, `recovery` |
+| 7 | `cell_id` | **B** | `HaCaT`, `A2780 WT`, `MCF-10A` |
+| 8 | `context_kind` | **hard_filter** | `cell_line_in_vitro`, `primary_tissue` |
+| 9 | `cell_state` | **B** | `proliferating`, `quiescent` |
+| 10 | `subcellular` | **hard_filter** | `whole_cell`, `nuclear` |
+| 11 | `tissue` | **S** | `stomach`, `skin`, `large intestine` |
+| 12 | `disease_status` | **A** | `none`, `case`, `disease_model` |
+| 13 | `has_engineered` | **D** | `true`, `false` |
+
+**Level dropping (Stadio 3 tier-based clustering, ADR-0014)**:
+
+| Level | Segmenti presenti | Conteggio |
+|---|---|---:|
+| L0 | tutti i 13 | 13 |
+| L1 | drop tier D | 12 |
+| L2 | drop tier D + C | 10 |
+| L3 | drop tier D + C + B | 8 |
+| L4 | solo tier S (e drop hard_filters) | 3 |
+
+**Convenzione di matching**: due anchor possono essere confrontati **solo se sono allo stesso `level`** (già garantito dall'orchestrator Stadio 4 che filtra `group_baseline$level == pair_cluster$level`).
+
+### 4.2 Pair cluster anchor (forma composta)
+
+I `cluster_id` con `mode = "pair"` hanno `anchor_key` nella forma:
+
+```
+<treated_anchor>__VS__<control_anchor>__CT_<comparison_type>
+```
+
+dove `<comparison_type>` è uno di `untreated`, `vehicle`, `genetic_negative`, `case_vs_control_disease`, ecc. (suffisso opzionale). Esempi reali:
+
+```
+small_molecule|Parthenolide|stomach__VS__vehicle_only|Dimethyl sulfoxide|stomach
+genetic_knockdown|11203|wt|nodose|na|exposure|HaCaT|...__VS__none|unknown|wt|nodose|na|exposure|HaCaT keratinocytes|...__CT_genetic_negative
+```
+
+Parsing: split su `__CT_` (se presente) per estrarre il `comparison_type`; split su `__VS__` per ottenere `treated_anchor` e `control_anchor`; ciascuno parsato come group anchor del medesimo level.
+
+### 4.3 Parsing API
+
+**`parse_anchor_canonical(anchor_key, level)`** → named list con i segmenti presenti a quel level (3-13 chiavi). Argomento `level` richiesto perché lo schema posizionale dipende dal level.
+
+**`parse_pair_anchor_key(pair_anchor_key, level)`** → list con `treated`, `control` (parsed via `parse_anchor_canonical`) e `comparison_type` (string o `NULL`).
+
+### 4.4 Policy di matching
+
+**Policy `strict`**: due anchor parsati matchano sse tutti i segmenti presenti al loro level sono uguali (== string equality, case-sensitive).
 
 **Policy `relaxed`** (default proposto):
 
-| Campo | Match policy |
+| Tier | Default match policy in `relaxed` |
 |---|---|
-| `perturbation_category` | **strict** |
-| `cell_context` | **strict** |
-| `tissue` | **strict** |
-| `disease_state` | **strict** |
-| `genetic_background` | **strict** |
-| `dose` | **tolerated** (qualunque valore matcha, incluso `na/none/unknown`) |
-| `time` | **tolerated** |
-| `exposure_route` | **tolerated** |
-| `readout` | **strict** |
-| `replicate_phase` | **strict** |
+| **S** (`kind_effective`, `agent_id`, `tissue`) | **strict** (sempre — sono il backbone biologico) |
+| **A** (`variant_label`, `disease_status`, `phase_canonical`) | **strict** |
+| **hard_filters** (`context_kind`, `subcellular`) | **strict** |
+| **B** (`cell_state`, `cell_id`) | **strict** (decisione data-driven: `cell_id` differente = cell line diversa) |
+| **C** (`dose_canonical`, `duration_canonical`) | **tolerated** (default) |
+| **D** (`has_engineered`) | **tolerated** |
 
-Razionale dettagliato nel findings sez. 4 Nodo 1. La policy esatta su quali campi sono `tolerated` è negoziabile via config (`mega_aug$relaxed_fields`).
+Configurabile via `mega_aug$relaxed_segments` (named character vector). Default proposto: `c("dose_canonical", "duration_canonical", "has_engineered")`. Il test 5.1 (anchor matching hand-curated) deciderà se anche `cell_state` o `phase_canonical` vanno aggiunti.
 
-**`make_anchor_matcher(policy)`** ritorna una chiusura `function(a, b) → bool` che incapsula la regola scelta. Usata da `find_baseline_for_pair` nel ranking.
+**Note importanti**:
+- A **L2, L3, L4** i segmenti del tier C/B sono già droppati: a quei level, la policy `relaxed` ↔ `strict` produce lo **stesso identico risultato**.
+- La policy ha effetto reale solo a **L0, L1** (dove C/D sono ancora presenti).
+
+**`make_anchor_matcher(policy, relaxed_segments)`** ritorna una chiusura `function(parsed_a, parsed_b) → bool`. Usata da `find_baseline_for_pair` nel ranking.
 
 ## 5. Configurazione
 
@@ -102,7 +155,7 @@ Aggiunta a `stage4_default_config()`:
 mega_aug = list(
   direction         = "both",                    # "control_only" | "treated_only" | "both"
   anchor_policy     = "relaxed",                 # "strict" | "relaxed"
-  relaxed_fields    = c("dose", "time", "exposure_route"),
+  relaxed_segments  = c("dose_canonical", "duration_canonical", "has_engineered"),
   disjoint_policy   = "permissive",              # "permissive" | "strict"
                                                   # "permissive" ammette n_studies_overlap == 0;
                                                   # "strict" scarta il candidato e logga.
@@ -218,7 +271,7 @@ Gancio diretto al findings paper-grade sez. 5:
 - **Q1**: ranking dei candidate baseline pool quando ce ne sono > 1 per uno stesso braccio. Strategia v0.1: prendi il pool con più studi (`n_studies` max), tiebreaker su `n_total` max. Alternative: prendere tutti e poolare gerarchicamente (più complesso, future work).
 - **Q2**: `disjoint_policy = "permissive"` default vs `"strict"` default. Decisione: lanciamo `permissive` come prima validation, e in 5.2 simulation vediamo se la degradation curve giustifica un downgrade a `strict`.
 - **Q3**: `max_baseline_pool_reuse` cap. Default `NA` (nessun cap) — la correzione Franchini lo gestisce statisticamente. Da rivedere se i Results 6.4 mostrano patologie.
-- **Q4**: `relaxed_fields` set definitivo. Default proposto `c("dose", "time", "exposure_route")` — ma si potrebbe tollerare anche `replicate_phase` per cluster proliferating-vs-quiescent. Da decidere con test 5.1.
+- **Q4**: `relaxed_segments` set definitivo. Default proposto `c("dose_canonical", "duration_canonical", "has_engineered")` — ma si potrebbe tollerare anche `cell_state` (per accettare proliferating-vs-quiescent come baseline compatibile) o `phase_canonical` (per accettare exposure-vs-recovery). Da decidere con test 5.1 hand-curated.
 
 ## 12. Sequenza implementativa proposta
 
