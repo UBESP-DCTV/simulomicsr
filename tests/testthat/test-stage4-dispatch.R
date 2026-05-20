@@ -211,7 +211,9 @@ test_that(".pool_all_clusters mega_aug usa control_anchor_key parsato + sample_i
                    "BASELINE_C|y"),
     studies_in_cluster = list(c("GSE_a", "GSE_b"), c("GSE_baseline_1")),
     sample_ids = list(character(0L),
-                       c("GSM_bl1", "GSM_bl2", "GSM_bl3", "GSM_bl4"))
+                       c("GSM_bl1", "GSM_bl2", "GSM_bl3", "GSM_bl4")),
+    sample_studies = list(character(0L),
+                           rep("GSE_baseline_1", 4L))
   )
 
   # Pre-popola un per_study_de vuoto: mega_aug branch usa fetch_fn fresh.
@@ -245,7 +247,7 @@ test_that(".pool_all_clusters mega_aug usa control_anchor_key parsato + sample_i
   expect_true(all(pooled$n_baseline_studies_augmented >= 1L))
 })
 
-test_that(".enrich_group_baseline_sample_ids aggiunge sample_ids list-column", {
+test_that(".enrich_group_baseline_sample_ids aggiunge sample_ids + sample_studies list-columns parallele", {
   # Stage 3 clusters (replicate Stage 3 output schema minimo)
   stage3_clusters <- tibble::tibble(
     cluster_id = c("group_g1", "group_g2", "pair_p1"),
@@ -271,15 +273,28 @@ test_that(".enrich_group_baseline_sample_ids aggiunge sample_ids list-column", {
   # Solo group rows hanno sample_ids; pair row sample_ids = list()
   g1 <- enriched[enriched$cluster_id == "group_g1", ]
   expect_equal(sort(g1$sample_ids[[1L]]), sort(c("GSM_a1", "GSM_a2")))
+  # sample_studies parallel array (stesso ordine di sample_ids)
+  expect_equal(g1$sample_studies[[1L]][match(c("GSM_a1","GSM_a2"),
+                                             g1$sample_ids[[1L]])],
+                c("GSE_a","GSE_a"))
 
   g2 <- enriched[enriched$cluster_id == "group_g2", ]
   expect_equal(
     sort(g2$sample_ids[[1L]]),
     sort(c("GSM_b1", "GSM_b2", "GSM_c1", "GSM_c2"))
   )
+  # Per ogni sample, study deve essere quello del proprio replicate group
+  expected_studies <- c(GSM_b1 = "GSE_b", GSM_b2 = "GSE_b",
+                         GSM_c1 = "GSE_c", GSM_c2 = "GSE_c")
+  for (sid in g2$sample_ids[[1L]]) {
+    expect_equal(g2$sample_studies[[1L]][which(g2$sample_ids[[1L]] == sid)],
+                  unname(expected_studies[sid]))
+  }
 
   # Pair row: sample_ids vuoto (non group)
   p1 <- enriched[enriched$cluster_id == "pair_p1", ]
   expect_true(length(p1$sample_ids[[1L]]) == 0L ||
                 is.null(p1$sample_ids[[1L]]))
+  expect_true(length(p1$sample_studies[[1L]]) == 0L ||
+                is.null(p1$sample_studies[[1L]]))
 })
