@@ -107,13 +107,19 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     workers           = 1L
   )
 
-  # Step 6: pooling cluster-level (REM metafor o MEGA-AUG dream)
+  # Step 6: pooling cluster-level (REM metafor o MEGA-AUG dream).
+  # Workers risolti via .resolve_dream_workers (auto-detect availableCores -
+  # offset, cap a dream_workers_cap). Per workers > 1, .run_dream_mega usa
+  # BiocParallel::MulticoreParam. NOTE: OPENBLAS_NUM_THREADS=1 raccomandato
+  # nell'ambiente prima di lanciare R, per evitare oversubscription dei worker
+  # forkati (vedi ADR-0015).
+  dream_workers <- .resolve_dream_workers(config)
   cluster_pooled <- .pool_all_clusters(
     per_study_de      = per_study_de,
     eligible_clusters = qc$eligible_clusters,
     fetch_fn          = fetch_fn,
     stage3_clusters   = stage3_clusters_enriched,
-    workers           = 1L,
+    workers           = dream_workers,
     dream_workers_cap = config$compute$dream_workers_cap
   )
 

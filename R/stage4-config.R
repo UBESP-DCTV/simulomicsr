@@ -25,8 +25,12 @@ stage4_default_config <- function() {
       fdr          = "BH_within_cluster"
     ),
     compute = list(
-      workers_offset = 10L,
-      dream_workers_cap = 8L
+      workers_offset   = 10L,
+      dream_workers_cap = 100L,
+      dream_workers    = NA_integer_  # NA = auto-detect (availableCores -
+                                       # workers_offset, capped a
+                                       # dream_workers_cap). Vedi
+                                       # .resolve_dream_workers + ADR-0015.
     ),
     schema_versions = list(
       anchor             = "v3",
@@ -34,4 +38,34 @@ stage4_default_config <- function() {
       stage4_algorithm   = "v1"
     )
   )
+}
+
+#' Risolve il numero di worker BiocParallel da config (auto-detect se NA)
+#'
+#' Logica:
+#' \itemize{
+#'   \item Se \code{config$compute$dream_workers} e' un integer, usa quello
+#'         (cap a \code{dream_workers_cap}).
+#'   \item Se \code{NA} (default), auto-detect via
+#'         \code{parallelly::availableCores() - workers_offset}, cap a
+#'         \code{dream_workers_cap}, floor a 1.
+#' }
+#'
+#' @param config output di \code{stage4_default_config()}.
+#' @return integer numero di worker per \code{BiocParallel::MulticoreParam}.
+#' @keywords internal
+.resolve_dream_workers <- function(config) {
+  cap <- as.integer(config$compute$dream_workers_cap %||% 100L)
+  w   <- config$compute$dream_workers
+  if (is.null(w) || (length(w) == 1L && is.na(w))) {
+    offset <- as.integer(config$compute$workers_offset %||% 10L)
+    cores  <- if (requireNamespace("parallelly", quietly = TRUE)) {
+      parallelly::availableCores()
+    } else {
+      parallel::detectCores(logical = TRUE)
+    }
+    w <- max(1L, as.integer(cores) - offset)
+  }
+  w <- as.integer(w)
+  min(w, cap)
 }
