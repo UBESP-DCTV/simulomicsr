@@ -89,7 +89,7 @@ Il test simulation (sez. 5.2) ci dirà se Modalità A è accettabile in pratica 
 - Franchini et al. 2012 [9]: dimostra che ignorare la correlazione tra contrasti che condividono un control arm produce standard error sottostimati e p-value gonfiati. Fornisce **la formula esplicita** per la matrice di covarianza dei contrasti correlati.
 - Tseng et al. 2020 [10]: Bayesian latent hierarchical transcriptomic meta-analysis — pattern di "borrow strength across studies" applicabile in alternativa frequentista.
 
-**Policy adottata (Draft v0.1)**: ogni baseline pool che viene utilizzato in ≥ 2 contrasti aumentati introduce la correzione di covarianza Franchini 2012 nel pooling REM (`metafor::rma.mv` con matrice V esplicita). Il count di reuse è documentato in output (`baseline_reuse_count`).
+**Policy adottata (Draft v0.1)**: ogni baseline pool utilizzato in ≥ 2 contrasti aumentati introduce la correzione di covarianza Franchini 2012 nel pooling **cross-cluster post-hoc** (NON dentro il REM pooling del singolo cluster). La correzione produce un output secondario `cluster_pooled_franchini` con SE / p-value corretti, da confrontare contro il `cluster_pooled` base nel sensitivity analysis 6.4. Approssimazione adottata: correlation factor `rho = 0.5` uniforme (limite paper-grade documentato — Franchini 2012 esatta richiederebbe le component variances within-arm che dream non espone direttamente). Il count di reuse è documentato in `mega_aug_diagnostics` (`baseline_pool_id_control`, `baseline_pool_id_treated`).
 
 ## 5. Validation plan
 

@@ -182,20 +182,35 @@ Tutti i contrasti `indirect_*` sono dichiarati esplicitamente in `cluster_pooled
 
 ## 7. Shared baseline correction (Franchini 2012)
 
-Quando ≥ 2 cluster MEGA-AUG aumentati condividono **lo stesso baseline pool** (medesimo `cluster_id` group), i loro standard error nel pooling REM sono correlati.
+### 7.1 Dove si applica (chiarimento 2026-05-20)
 
-**Tracking**: `attr(cluster_pooled, "baseline_pool_usage")` = list `pool_id → vector di cluster_id che lo usano`.
+La correzione Franchini 2012 **NON** è parte del REM pooling base di Stadio 4 (`.pool_rem_cluster()` opera su un singolo cluster REM con k studi indipendenti — nessuno shared baseline interno). La correzione si applica a livello **cross-cluster post-hoc**, quando ≥ 2 cluster MEGA-AUG bidirezionali condividono lo stesso baseline pool (stesso `cluster_id` del group baseline).
 
-**Pooling**: per ogni gene, `.pool_rem_cluster()` riceve `baseline_pool_usage` e:
+L'output base di Stadio 4 (`cluster_pooled`) rimane invariato. La correzione produce un **secondo output** opzionale `cluster_pooled_franchini` che fa cross-cluster meta-analysis per-gene con matrice V à la Franchini 2012.
 
-- Se nessun pool è riusato: standard REM `metafor::rma(yi, vi, method = "REML")`.
-- Se ≥ 1 pool riusato: costruisce matrice V di covarianza esplicita à la Franchini 2012, chiama `metafor::rma.mv(yi, V, random = ~ 1 | cluster_id, method = "REML")`.
+### 7.2 Building block (T6, implementato)
 
-**Formula V (semplificata)**: per coppia di contrasti $i$, $j$ che condividono il braccio baseline pool $B$:
-$$V_{ij} = \frac{\sigma^2_B}{n_B}$$
-dove $\sigma^2_B$ è la varianza intra-baseline-pool e $n_B$ il numero di sample del pool. La derivazione completa è in `R/stage4-franchini-correction.R::.build_franchini_V_matrix()`.
+`R/stage4-franchini-correction.R`:
 
-**Toggle**: `mega_aug$franchini_correction = FALSE` disabilita per ablation study (Results sez. 6.4 findings).
+- `.has_shared_baseline(pool_ids)`: ritorna TRUE se almeno un `baseline_pool_id` non-NA è duplicato tra contrasti.
+- `.build_franchini_V_matrix(yi, vi, baseline_pool_ids, rho = 0.5)`: matrice V quadrata `length(vi) x length(vi)`.
+  - Diagonale `V[i,i] = vi`.
+  - Off-diagonal `V[i,j] = rho * sqrt(vi * vj)` se `baseline_pool_ids[i] == baseline_pool_ids[j]` (non-NA), altrimenti 0.
+
+**Approssimazione**: Franchini 2012 derivano la covarianza esatta dalle component variances within-arm. Dream non espone le component variances del baseline pool direttamente; usiamo un correlation factor `rho` unico (default 0.5). E' un'approssimazione conservativa che evita gli SE sottostimati del naive pooling REM ma sottostima la potenza statistica reale. Documentato come limitazione paper-grade.
+
+### 7.3 Post-processing cross-cluster (T7, future work)
+
+Funzione `pool_meta_across_clusters_franchini(cluster_pooled, baseline_pool_usage, rho)`:
+
+- Per ogni gene, raggruppa i contrasti che condividono baseline pool.
+- Costruisce V matrix via `.build_franchini_V_matrix`.
+- Chiama `metafor::rma.mv(yi, V, random = ~ 1 | cluster_id, method = "REML")` per il sub-set di contrasti correlati.
+- Ritorna `cluster_pooled_franchini` con stessi gene/cluster ma SE/p-value corretti.
+
+**Stato T7**: NON implementato nel primo fullrun. Pianificato come post-hoc step T13/T14 (post-fullrun) per il sensitivity analysis dei Results 6.4 findings.
+
+**Toggle config**: `mega_aug$franchini_correction = TRUE` (default) attiva la propagazione dei `baseline_pool_id_*` in `mega_aug_diagnostics` (già implementato T5). Il vero post-processing (T7) avrà il proprio entry point.
 
 ## 8. Data flow
 
