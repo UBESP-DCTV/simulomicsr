@@ -1,3 +1,80 @@
+# simulomicsr 0.0.0.9019 (development) — P5 Stadio 4 DE per-studio + MEGA + MEGA-AUG
+
+## P5 -- Stadio 4 DE per-studio + MEGA cross-study + MEGA-augmentation
+
+* Nuovo modulo: pipeline end-to-end per Differential Expression per-studio
+  (REM via `limma-voom`) + cross-study cluster pooling (MEGA via `dream`
+  `~ treatment + (1|study)`) + MEGA-augmentation (pair k=2 con baseline
+  pool aumentato da group cluster con stesso `control_anchor_key`).
+  Architettura three-path per Layer A (~622 cluster nel Stage 3 build
+  `2153addc`).
+* API: `build_stage4_results()`, `stage4_default_config()`,
+  `write_stage4_to_dir()`, `load_stage4()`, `render_stage4_dashboard()`.
+  Output S3 `stage4_result`: `per_study_de.parquet`, `cluster_pooled.parquet`,
+  `qc_report`, `non_processable`, `run_metadata.json`.
+* Implementazione 16+5 task TDD plan (commits `29494e7..7a883f8` su branch
+  `p5-stadio4-de-perstudio`). 122 PASS / 0 FAIL / 1 SKIP Stadio 4 suite
+  (Quarto SKIP pre-esistente).
+
+## Task 16b/c/d — gap del plan emerso durante Task 17 smoke
+
+Il plan originale aveva tre lacune scoperte solo a tempo di smoke con
+dati reali:
+
+* **`.build_study_dispatch_from_stage3()` + `.build_group_dispatch_from_stage3()`**
+  (`R/stage4-dispatch.R`): orchestrator/pool richiedevano
+  `attr(eligible_clusters, "study_dispatch")` + `"group_dispatch"` ma
+  nessuna funzione li costruiva. Risolto: 2 builder per-cluster che
+  consumano `stage3_assignments` + `stage2_master` per dedurre
+  `{study_id, treated, control}` per REM/MEGA-AUG e
+  `{study_id, sample_ids, treatment}` per MEGA. Helper companion:
+  `.parse_pair_anchor_key()` (inverte la codifica
+  `<tk>__VS__<ck>__CT_<ct>` di Stage 3) e
+  `.enrich_group_baseline_sample_ids()` (aggiunge `sample_ids`
+  list-column richiesto da `.assemble_mega_aug_metadata`).
+* **Fix `mega_aug` `control_anchor_key` wiring** (`R/stage4-orchestrator.R`):
+  branch MEGA-AUG aveva `control_anchor_key = NA` stub → mega_aug
+  silently degenerato (nessun augment). Ora parsa l'`anchor_key` del
+  pair-cluster + riallinea `metadata` a `colnames(counts)` per coerenza
+  `variancePartition::filterInputData`.
+* **`build_stage4_results()` signature extended** con `stage3_assignments`
+  e `stage2_master` (richiesti quando `dry_run_inputs_only = FALSE`).
+
+## Task 17 prereq — fix ARCHS4 v2.5 H5 sample-axis
+
+* `.fetch_counts_from_h5()` (`R/stage4-counts-cache.R`) leggeva
+  `data/expression` come `(genes × samples)` ma ARCHS4 v2.5 H5 e' in
+  realta' `(samples × genes)`. Sintomo: `index exceeds HDF5-array
+  dimension`. Fix: `index = list(idx, NULL)` (sample-axis) + `t()`.
+
+## ADR-0015 — `dream` default + parallel BiocParallel (workers=auto)
+
+Dopo bench seriale + parallelo + validazione k=11 su `pair_L0_96ddb249`,
+`group_L0_c62104eb`, `group_L0_c5aacc5f`:
+
+* `dream` per-gene LMM `lme4::lmer` e' il bottleneck (~85% del wall).
+  M3 `limma+duplicateCorrelation` e' 20-63x piu' veloce ma:
+  - concordanza logFC degrada con k (ρ=0.999 k=2, 0.993 k=5, **0.947
+    k=11**).
+  - benchmark FDR-calibration dell'utente (figura non pubblicata)
+    mostra `limma-voom` standard rotto su "Hidden conf." (n=20 ratio
+    2.09) e "Zero-infl." (n=3 ratio 8.17); `dream` < 0.64 in tutte le
+    celle riportate.
+* Decisione: mantenere `dream` come default, attivare parallelismo via
+  `compute$dream_workers = NA_integer_` (auto-detect
+  `availableCores() - workers_offset`, capped a
+  `dream_workers_cap = 100L`).
+* Bench parallel dgx 128-core `workers=100` + `OPENBLAS_NUM_THREADS=1`:
+  speedup **12-18x** wall (e.g., mega_aug k=2: 35 min → 2.2 min; mega
+  k=11: 60 sec).
+* Determinismo verificato: `.run_dream_mega(workers=4)` ==
+  `.run_dream_mega(workers=1)` a tolerance 1e-10.
+* limma+dupCor resta fallback automatico in `.run_dream_mega` su errore
+  convergenza dream.
+* Layer A full run stimato ~17h overnight.
+* Dettagli: `docs/decisions/0015-stage4-dream-default-parallel.md`,
+  `docs/findings/2026-05-20-stage4-de-method-bench.md`.
+
 # simulomicsr 0.0.0.9018 (development)
 
 ## P5 -- Stadio 3 raggruppamento cross-studio
