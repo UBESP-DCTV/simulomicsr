@@ -196,6 +196,29 @@ test_that("bidir dedup: sample del pair NON inclusi nel baseline rows", {
   expect_equal(sum(res$metadata$sample_id == "GSM_C1"), 1L)
 })
 
+test_that("bidir: baseline completamente sovrapposto al pair -> no augmentation effettiva (NA kinds, NULL pool_ids)", {
+  # Smoke 5-pick 2026-05-20 ha esposto questo caso: pair piccoli (k=2 entro
+  # 2 studi) hanno baseline pool group derivato dallo stesso replicate_group
+  # del pair -> 100% overlap sample-level -> dedup elimina TUTTI i baseline
+  # sample. Devo riportare kind=NA e baseline_pool_id=NULL, non
+  # indirect_disjoint con n_aug=0 (semanticamente sbagliato).
+  pair_cluster <- make_pair_cluster_list()
+  group_baseline <- make_group_baseline()
+  # Forziamo overlap totale: il baseline control ha SOLO i sample del pair
+  group_baseline$sample_ids[[1L]]     <- c("GSM_C1", "GSM_C2")  # = pair_control_samples
+  group_baseline$sample_studies[[1L]] <- c("GSE002", "GSE002")  # = pair_control_studies
+  matcher <- make_anchor_matcher("strict")
+  res <- .assemble_mega_aug_metadata_bidir(
+    pair_cluster, group_baseline, matcher, direction = "control"
+  )
+  # Metadata = solo pair rows (nessun baseline aggiunto post-dedup)
+  expect_equal(nrow(res$metadata), 4L)
+  expect_equal(res$n_baseline_studies_augmented_control, 0L)
+  expect_true(is.na(res$comparison_kind_control))
+  expect_true(is.na(res$comparison_kind_overall))
+  expect_null(res$baseline_pool_ids$control)
+})
+
 test_that("bidir senza candidate ritorna solo le pair rows + NA kinds", {
   pair_cluster <- make_pair_cluster_list()
   group_baseline <- make_group_baseline()

@@ -196,6 +196,12 @@ stopifnot(!anyNA(h5_metadata$gse))
 # ---- Build Stage 4 results -------------------------------------------------
 
 config <- stage4_default_config()
+# Attiva MEGA-AUG bidirezionale (T5/T21). Override del default conservativo
+# legacy_monodirectional=TRUE finche' il flip a FALSE non viene fatto post-
+# smoke verde. Il smoke serve proprio a validare end-to-end il bidir flow.
+config$mega_aug$legacy_monodirectional <- FALSE
+cli_alert_info("MEGA-AUG mode: bidirezionale (anchor_policy={config$mega_aug$anchor_policy}, direction={config$mega_aug$direction})")
+
 cli_alert_info("Building Stage 4 results...")
 t0 <- Sys.time()
 result <- build_stage4_results(
@@ -226,11 +232,54 @@ cli_li("methods observed: {paste(methods_observed, collapse=', ')}")
 if (n_picks >= 1L) stopifnot("mega_aug" %in% methods_observed)
 if (n_picks >= 4L) stopifnot("mega" %in% methods_observed)
 
-# Verifica ogni pick ha almeno 1 riga in cluster_pooled
+# Verifica ogni pick e' (a) in cluster_pooled con n_rows>0 OPPURE (b) in
+# qc_drops_cluster con un motivo valido (mega_rank_deficient,
+# mega_aug_disjoint_strict_skipped, ...). Issue #1 handoff rilassato:
+# il fix #2 fullrun introduce skip intenzionale di cluster rank-deficient
+# e il bidir disjoint_policy="strict" introduce un nuovo skip.
+qc_drops_cluster <- result$qc_report$qc_drops_cluster %||% tibble::tibble()
+mega_aug_diag    <- result$qc_report$mega_aug_diagnostics %||% tibble::tibble()
+
+n_processed <- 0L; n_skipped <- 0L
 for (cid in pick_ids) {
   n_rows <- sum(result$cluster_pooled$cluster_id == cid)
-  cli_li("{cid}: {n_rows} gene rows in cluster_pooled")
-  stopifnot(n_rows > 0L)
+  if (n_rows > 0L) {
+    cli_li("{cid}: {n_rows} gene rows in cluster_pooled (processed)")
+    n_processed <- n_processed + 1L
+  } else {
+    # Cerca in qc_drops_cluster
+    drop_row <- qc_drops_cluster[qc_drops_cluster$cluster_id == cid, ]
+    if (nrow(drop_row) >= 1L) {
+      cli_li("{cid}: SKIPPED with reason '{drop_row$reason[1L]}'")
+      stopifnot(grepl("^(mega_rank_deficient|mega_aug_disjoint_strict_skipped)",
+                       drop_row$reason[1L]))
+      n_skipped <- n_skipped + 1L
+    } else {
+      stop(sprintf("Pick %s NON e' in cluster_pooled NE' in qc_drops_cluster", cid))
+    }
+  }
+}
+cli_alert_info("Picks summary: processed={n_processed} / skipped={n_skipped} / total={length(pick_ids)}")
+stopifnot(n_processed >= 1L)  # almeno 1 cluster deve essere processato per gate validation
+
+# Diagnostica bidir per pair pick (MEGA-AUG)
+if (nrow(mega_aug_diag) > 0L) {
+  cli_alert_info("MEGA-AUG bidir diagnostics ({nrow(mega_aug_diag)} cluster):")
+  for (i in seq_len(nrow(mega_aug_diag))) {
+    cli_li(sprintf(
+      "  %s: overall=%s | ctrl=%s (n_aug=%d, pool=%s) | trt=%s (n_aug=%d, pool=%s)",
+      mega_aug_diag$cluster_id[i],
+      mega_aug_diag$comparison_kind_overall[i],
+      mega_aug_diag$comparison_kind_control[i] %||% "NA",
+      mega_aug_diag$n_baseline_studies_augmented_control[i],
+      mega_aug_diag$baseline_pool_id_control[i],
+      mega_aug_diag$comparison_kind_treated[i] %||% "NA",
+      mega_aug_diag$n_baseline_studies_augmented_treated[i],
+      mega_aug_diag$baseline_pool_id_treated[i]
+    ))
+  }
+} else {
+  cli_alert_warning("MEGA-AUG bidir diagnostics VUOTO -- atteso non vuoto in bidir mode con pair picks")
 }
 
 # ---- Write smoke output + dashboard ---------------------------------------
