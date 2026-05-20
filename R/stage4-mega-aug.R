@@ -240,12 +240,24 @@
   if (!is.null(treated_block$rows)) metadata <- rbind(metadata, treated_block$rows)
   metadata$study <- as.factor(metadata$study)
 
-  # 5. Classify comparison_kind per arm
-  kind_ctrl <- if (!is.null(top_control)) {
+  # 5. Effective augmentation flags: se il baseline pool e' completamente
+  #    sovrapposto al pair (tutti i sample erano gia' nel pair_all e la dedup
+  #    li ha rimossi), baseline_studies post-dedup e' vuoto -> trattiamo come
+  #    "no augmentation effettivo" (kind = NA, baseline_pool_id = NULL).
+  #    Discovery 2026-05-20 smoke 5-pick: pair piccoli (k=2 entro 2 studi) hanno
+  #    spesso baseline pool group derivato dallo stesso replicate_group del
+  #    pair stesso -> 100% overlap sample-level.
+  ctrl_effective <- !is.null(top_control) &&
+    length(control_block$baseline_studies) > 0L
+  trt_effective  <- !is.null(top_treated) &&
+    length(treated_block$baseline_studies) > 0L
+
+  # 6. Classify comparison_kind per arm (solo se augmentation effettiva)
+  kind_ctrl <- if (ctrl_effective) {
     .classify_comparison_kind(pair_cluster$studies_in_cluster,
                                 control_block$baseline_studies)
   } else NA_character_
-  kind_trt <- if (!is.null(top_treated)) {
+  kind_trt <- if (trt_effective) {
     .classify_comparison_kind(pair_cluster$studies_in_cluster,
                                 treated_block$baseline_studies)
   } else NA_character_
@@ -269,8 +281,8 @@
     comparison_kind_treated               = kind_trt,
     comparison_kind_overall               = kind_overall,
     baseline_pool_ids                     = list(
-      control = if (!is.null(top_control)) top_control$baseline_cluster_id else NULL,
-      treated = if (!is.null(top_treated)) top_treated$baseline_cluster_id else NULL
+      control = if (ctrl_effective) top_control$baseline_cluster_id else NULL,
+      treated = if (trt_effective) top_treated$baseline_cluster_id else NULL
     )
   )
 }
