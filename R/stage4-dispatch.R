@@ -213,22 +213,21 @@
   dispatch
 }
 
-#' Arricchisce stage3_clusters con sample_ids list-column per group-mode rows
+#' Arricchisce stage3_clusters con sample_ids + sample_studies list-columns
 #'
-#' Stage 3 clusters.rds non contiene \code{sample_ids} (i sample IDs vivono in
-#' assignments+stage2_master). Per il pool MEGA-AUG, \code{.assemble_mega_aug_metadata}
-#' necessita di \code{group_baseline$sample_ids} (list-column) per costruire il
-#' baseline pool: questa helper aggiunge la list-column iterando le assignments
-#' di ogni cluster group-mode e raccogliendo i sample_ids dei replicate_groups
-#' referenziati.
+#' Stage 3 clusters.rds non contiene il mapping sample -> series_id (i sample
+#' IDs vivono in assignments+stage2_master). Per il pool MEGA-AUG,
+#' \code{.assemble_mega_aug_metadata} necessita sia di \code{sample_ids} (per
+#' costruire il baseline pool) sia di \code{sample_studies} (per assegnare ogni
+#' baseline sample al suo studio reale invece di una rep ciclica su
+#' \code{studies_in_cluster}). Le due list-columns sono PARALLELE per indice.
 #'
-#' Per pair-mode rows la list-column e' set a \code{list(character(0L))} per
-#' rispettare il vincolo di tipo unico della list-column tibble.
+#' Per pair-mode rows entrambe sono \code{character(0L)} (placeholder typed).
 #'
 #' @inheritParams .build_study_dispatch_from_stage3
 #' @param stage3_clusters tibble \code{clusters.rds} Stage 3.
-#' @return tibble identica a \code{stage3_clusters} con extra list-column
-#'   \code{sample_ids}.
+#' @return tibble identica a \code{stage3_clusters} con extra list-columns
+#'   \code{sample_ids} + \code{sample_studies} (parallele).
 #' @keywords internal
 .enrich_group_baseline_sample_ids <- function(stage3_clusters,
                                                 stage3_assignments,
@@ -237,19 +236,24 @@
   asg_by_clid <- split(stage3_assignments$record_id,
                        stage3_assignments$cluster_id)
 
-  sample_ids_col <- vector("list", nrow(stage3_clusters))
-  for (i in seq_len(nrow(stage3_clusters))) {
+  n <- nrow(stage3_clusters)
+  sample_ids_col     <- vector("list", n)
+  sample_studies_col <- vector("list", n)
+  for (i in seq_len(n)) {
     if (!identical(as.character(stage3_clusters$mode[i]), "group")) {
-      sample_ids_col[[i]] <- character(0L)
+      sample_ids_col[[i]]     <- character(0L)
+      sample_studies_col[[i]] <- character(0L)
       next
     }
     cid <- stage3_clusters$cluster_id[i]
     rids <- asg_by_clid[[cid]]
     if (is.null(rids)) {
-      sample_ids_col[[i]] <- character(0L)
+      sample_ids_col[[i]]     <- character(0L)
+      sample_studies_col[[i]] <- character(0L)
       next
     }
-    sids_all <- character(0L)
+    sids_all    <- character(0L)
+    studies_all <- character(0L)
     for (rid in rids) {
       parsed <- .split_record_id(rid)
       if (is.na(parsed$series_id)) next
@@ -257,10 +261,16 @@
       study <- get(parsed$series_id, envir = s2_idx, inherits = FALSE)
       rg <- .lookup_rg(study, parsed$suffix)
       if (is.null(rg)) next
-      sids_all <- c(sids_all, as.character(unlist(rg$sample_ids)))
+      these_sids <- as.character(unlist(rg$sample_ids))
+      sids_all    <- c(sids_all, these_sids)
+      studies_all <- c(studies_all, rep(parsed$series_id, length(these_sids)))
     }
-    sample_ids_col[[i]] <- unique(sids_all)
+    # Dedup parallel: first occurrence wins per (sample_id, study_id) pair
+    keep <- !duplicated(sids_all)
+    sample_ids_col[[i]]     <- sids_all[keep]
+    sample_studies_col[[i]] <- studies_all[keep]
   }
-  stage3_clusters$sample_ids <- sample_ids_col
+  stage3_clusters$sample_ids     <- sample_ids_col
+  stage3_clusters$sample_studies <- sample_studies_col
   stage3_clusters
 }

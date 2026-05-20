@@ -154,16 +154,35 @@
         eligible_clusters$anchor_key[i],
         level = eligible_clusters$level[i]
       )
+
+      # Costruisci vettori paralleli (sample, study) iterando dispatch entries.
+      # Ogni dispatch entry e' un record_id = (series_id, comparison_id) e
+      # carica i sample_ids del replicate_group dello stesso studio. Se piu'
+      # comparison-record nello stesso cluster condividono treated_group o
+      # control_group, i sample appaiono in piu' entry: dedup downstream in
+      # .assemble_mega_aug_metadata mantenendo la prima occorrenza.
+      dispatch_entries <- dispatch[[cid]]
+      treated_samples_flat <- unlist(lapply(dispatch_entries,
+                                              function(d) d$treated))
+      control_samples_flat <- unlist(lapply(dispatch_entries,
+                                              function(d) d$control))
+      treated_studies_flat <- unlist(lapply(dispatch_entries, function(d) {
+        rep(d$study_id, length(d$treated))
+      }))
+      control_studies_flat <- unlist(lapply(dispatch_entries, function(d) {
+        rep(d$study_id, length(d$control))
+      }))
+
       pair_cluster_struct <- list(
         cluster_id = cid,
         level = eligible_clusters$level[i],
         treated_anchor_key = parsed_key$treated,
         control_anchor_key = parsed_key$control,
         studies_in_cluster = eligible_clusters$studies_in_cluster[[i]],
-        treated_samples = list(unlist(lapply(dispatch[[cid]],
-                                              function(d) d$treated))),
-        control_samples = list(unlist(lapply(dispatch[[cid]],
-                                              function(d) d$control)))
+        treated_samples = list(treated_samples_flat),
+        control_samples = list(control_samples_flat),
+        treated_sample_studies = list(treated_studies_flat),
+        control_sample_studies = list(control_studies_flat)
       )
 
       # Subset Stage 3 group clusters allo stesso level.

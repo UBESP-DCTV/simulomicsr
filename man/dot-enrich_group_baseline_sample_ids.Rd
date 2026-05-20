@@ -2,7 +2,7 @@
 % Please edit documentation in R/stage4-dispatch.R
 \name{.enrich_group_baseline_sample_ids}
 \alias{.enrich_group_baseline_sample_ids}
-\title{Arricchisce stage3_clusters con sample_ids list-column per group-mode rows}
+\title{Arricchisce stage3_clusters con sample_ids + sample_studies list-columns}
 \usage{
 .enrich_group_baseline_sample_ids(
   stage3_clusters,
@@ -19,19 +19,18 @@
 \code{.load_stage2_master}).}
 }
 \value{
-tibble identica a \code{stage3_clusters} con extra list-column
-\code{sample_ids}.
+tibble identica a \code{stage3_clusters} con extra list-columns
+\code{sample_ids} + \code{sample_studies} (parallele).
 }
 \description{
-Stage 3 clusters.rds non contiene \code{sample_ids} (i sample IDs vivono in
-assignments+stage2_master). Per il pool MEGA-AUG, \code{.assemble_mega_aug_metadata}
-necessita di \code{group_baseline$sample_ids} (list-column) per costruire il
-baseline pool: questa helper aggiunge la list-column iterando le assignments
-di ogni cluster group-mode e raccogliendo i sample_ids dei replicate_groups
-referenziati.
+Stage 3 clusters.rds non contiene il mapping sample -> series_id (i sample
+IDs vivono in assignments+stage2_master). Per il pool MEGA-AUG,
+\code{.assemble_mega_aug_metadata} necessita sia di \code{sample_ids} (per
+costruire il baseline pool) sia di \code{sample_studies} (per assegnare ogni
+baseline sample al suo studio reale invece di una rep ciclica su
+\code{studies_in_cluster}). Le due list-columns sono PARALLELE per indice.
 }
 \details{
-Per pair-mode rows la list-column e' set a \code{list(character(0L))} per
-rispettare il vincolo di tipo unico della list-column tibble.
+Per pair-mode rows entrambe sono \code{character(0L)} (placeholder typed).
 }
 \keyword{internal}

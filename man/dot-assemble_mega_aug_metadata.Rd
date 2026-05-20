@@ -9,11 +9,13 @@
 \arguments{
 \item{pair_cluster}{list con \code{cluster_id}, \code{treated_anchor_key},
 \code{control_anchor_key}, \code{level}, \code{studies_in_cluster}, \code{treated_samples},
-\code{control_samples}.}
+\code{control_samples}, \code{treated_sample_studies}, \code{control_sample_studies}.
+Le due \verb{*_sample_studies} sono vettori paralleli ai rispettivi
+\verb{*_samples} (per ogni sample il suo \code{series_id} reale).}
 
 \item{group_baseline}{tibble di s3$clusters filtrato \code{mode = "group"}; deve
 avere colonne \code{mode}, \code{anchor_key}, \code{level}, \code{studies_in_cluster},
-\code{sample_ids}.}
+\code{sample_ids}, \code{sample_studies} (list-columns parallele).}
 }
 \value{
 list con \code{metadata} (tibble \code{sample_id}, \code{study}, \code{treatment}) e
@@ -23,6 +25,11 @@ list con \code{metadata} (tibble \code{sample_id}, \code{study}, \code{treatment
 Combina sample del pair cluster (treated + control) con sample del baseline
 pool (cluster group con stesso \code{control_anchor_key} allo stesso \code{level}),
 deduplicando per \code{sample_id} per evitare double-counting di sample gia'
-presenti nel pair.
+presenti nel pair, e usando mapping sample->study esplicito (NO rep ciclica
+su \code{studies_in_cluster} — bug fix 2026-05-20 fullrun crash GSM4556584).
+}
+\details{
+Dedup priority: pair_treated > pair_control > baseline. Se un sample appare
+in piu' contesti, vince il piu' alto in lista (treated > control > baseline).
 }
 \keyword{internal}
