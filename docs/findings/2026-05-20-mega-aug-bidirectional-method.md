@@ -6,7 +6,7 @@
 
 ## 1. Contesto e problema
 
-`simulomicsr` è una pipeline R per meta-analisi RNA-seq cross-studio "design-aware". Stadio 1 e 2 classificano i campioni GEO via LLM (Mistral-Small-3.2-24B self-hosted) in una rappresentazione strutturata che include un `comparability_anchor` canonico — una stringa semantica che cattura `cell_context | perturbation | dose | time | exposure_route | tissue | ...` e che permette di appaiare campioni biologicamente comparabili tra studi diversi senza dipendere da curation manuale.
+`simulomicsr` è una pipeline R per meta-analisi RNA-seq cross-studio "design-aware". Stadio 1 e 2 classificano i campioni GEO via LLM (Mistral-Small-3.2-24B self-hosted) in una rappresentazione strutturata che include un `comparability_anchor` canonico v3 — una stringa semantica a 13 segmenti tier-based (`kind_effective`, `agent_id`, `variant_label`, `dose_canonical`, `duration_canonical`, `phase_canonical`, `cell_id`, `context_kind`, `cell_state`, `subcellular`, `tissue`, `disease_status`, `has_engineered`) che permette di appaiare campioni biologicamente comparabili tra studi diversi senza dipendere da curation manuale. L'anchor è disponibile a 5 livelli di granularità (L0..L4): L0 contiene tutti i 13 segmenti, L4 solo i 3 segmenti del tier S (`kind_effective`, `agent_id`, `tissue`).
 
 Stadio 3 raggruppa i campioni cross-studio sull'anchor, producendo **267.056 cluster** complessivi su ~879k sample umani ARCHS4. Di questi, **4508 sono "Layer A"** — cluster con potenza statistica e bilanciamento sufficienti per differential expression a valle.
 
@@ -51,11 +51,12 @@ In nessuno dei tre, un **baseline pool single-arm aggregato cross-studio** viene
 
 **Letteratura**. MetaSRA (Bernstein 2017) [2] e i lavori successivi legittimano il match ontology-based relaxed: due record matchano se cell type, tessuto e perturbazione (categorical) coincidono, anche se differiscono su dose o tempo (continuous). Nessun paper quantifica formalmente il trade-off strict-vs-relaxed sui campi periferici.
 
-**Policy adottata (Draft v0.1)**:
+**Policy adottata (Draft v0.1)** — applicata sull'anchor v3 a 13 segmenti tier-based:
 
-- **Strict (obbligatorio)**: `cell_context`, `perturbation_category`, `tissue`, `disease_state`, `genetic_background`.
-- **Relaxed (tollerato)**: `dose`, `time`, `exposure_route`.
-- **Sensitivity reportata**: il pipeline produce un secondo run con tutti i campi strict, e il diff in numero di contrasti recuperati + concordanza di logFC è riportato nei Results come quantificazione del trade-off.
+- **Strict (obbligatorio)**: tier **S** (`kind_effective`, `agent_id`, `tissue`), tier **A** (`variant_label`, `disease_status`, `phase_canonical`), tier **B** (`cell_state`, `cell_id`), hard_filters (`context_kind`, `subcellular`).
+- **Relaxed (tollerato in `relaxed` policy)**: tier **C** (`dose_canonical`, `duration_canonical`), tier **D** (`has_engineered`).
+- **Effetto pratico**: a L2/L3/L4 i segmenti tollerati sono già droppati, quindi `relaxed` ≡ `strict` a quei livelli. La policy ha impatto reale solo a **L0 e L1**.
+- **Sensitivity reportata**: il pipeline produce un secondo run con `anchor_policy = "strict"`, e il diff in numero di contrasti recuperati + concordanza di logFC è riportato nei Results come quantificazione del trade-off.
 
 ### Nodo 2 — Studi disgiunti tra baseline e pair (il nodo critico)
 
