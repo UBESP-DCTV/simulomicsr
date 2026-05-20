@@ -171,9 +171,63 @@ Tradeoff onesti:
 
 ## Output
 
-- `analysis/p5-stage4-dream-perf-bench.R` — bench script (committed).
+- `analysis/p5-stage4-dream-perf-bench.R` — bench script seriale (committed).
+- `analysis/p5-stage4-dream-parallel-bench.R` — bench script parallelo
+  workers=100 (committed).
 - `analysis/p4-output/p5-stage4-bench-20260520T054044Z/` — risultati raw
-  (gitignored).
-  - `bench_results.rds` — full timings + coef vectors per metodo per
-    cluster.
-  - `bench_summary.csv` — tabella comparativa.
+  seriali (gitignored).
+- `analysis/p4-output/p5-stage4-bench-parallel-20260520T080004Z/` —
+  risultati raw paralleli (gitignored).
+  - `bench_(parallel_)results.rds` — full timings + coef vectors per
+    metodo per cluster.
+  - `bench_(parallel_)summary.csv` — tabella comparativa.
+
+## Addendum 2026-05-20: parallel run M1/M2 con workers=100
+
+Su richiesta utente (128-core dgx disponibile), re-bench M1 + M2 con
+`BiocParallel::MulticoreParam(100)` + `OPENBLAS_NUM_THREADS=1` (no
+oversubscription dei worker forkati). Stessi cluster, stesso codice
+pipeline.
+
+| Cluster | Method | wall_voom (s) | wall_dream (s) | wall_total (s) | Speedup vs seriale |
+|---|---|---|---|---|---|
+| **C1** mega_aug k=2 | M1par(w=100) | 20.96 | 109.60 | **130.67** | **16.2×** (era 2119 s) |
+| | M2par(w=100) | 0.11 | 102.96 | **103.15** | **17.6×** (era 1811 s) |
+| **C2** mega k=5 | M1par(w=100) | 21.44 | 90.64 | **112.20** | **13.3×** (era 1495 s) |
+| | M2par(w=100) | 0.18 | 89.16 | **89.45** | **12.3×** (era 1100 s) |
+
+**Findings parallel run**:
+
+- Speedup wall reale 12-18× (vs ideale 100× su 100 worker). Bottleneck
+  residuo: BiocParallel fork/serialize overhead + scheduler contention
+  + qualche fase di dream che non parallelizza (es. setup + eBayes).
+- voomWithDreamWeights phase: 19× speedup (300→21 sec C1; 402→21 sec C2).
+  Quasi ideale. Vale la pena solo se M1 e' il metodo scelto; M2 lo
+  bypassa con voom seriale a 0.1 sec.
+- dream phase: 12-17× speedup (1819→110 sec C1; 1093→91 sec C2).
+- M1par per Layer A full (~412 clusters per plan, ~622 per stage3
+  attuale): wall stimato 14-21 hours overnight. Tollerabile.
+- M3 limma+dupCor resta ~3-4× piu' veloce di M1par (33-77 sec vs 112-131
+  sec) **e non scala con workers** (e' gia' single-pass su tutti i geni).
+
+## Decisione
+
+Tre opzioni concrete per il default `.run_dream_mega`:
+
+| Opzione | Default mega/mega_aug | Layer A wall (stima ~622 cl) | RAM peak | Fidelity vs M1 |
+|---|---|---|---|---|
+| **A** | M1 parallel w=100 | ~14-21h | ~3 GB × 100 = ~50 GB (COW) | 1.0 (identico) |
+| **B** | M3 limma+dupCor (no parallel) | ~10-12h | ~3 GB | ρ > 0.993 |
+| **C** | Hybrid: M3 per k≤4, M1par per k≥5 | ~10-15h | varia | k≤4 ρ>0.993, k≥5 identico |
+
+Preferenza biologica: **B (M3)** — concordanza con M1 ottima, costo
+operativo minore, allineato al benchmark FDR-calibration dell'utente,
+gia' validato come fallback in `.run_dream_mega`.
+
+Preferenza "no compromessi": **A** — fedele alla letteratura
+variancePartition.
+
+**TODO prima del Layer A full**:
+- Validare scelta su 1 cluster MEGA strict k>10 (es.
+  `group_L0_c5aacc5f` MCF7, k=11) per confermare che ρ M3-vs-M1par resta
+  >0.99 in casi piu' eterogenei.
