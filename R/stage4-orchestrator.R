@@ -108,6 +108,8 @@
                                 stage3_clusters, workers = 1L,
                                 dream_workers_cap = 8L) {
   out_list <- vector("list", 0L)
+  pooling_warnings_list <- vector("list", 0L)
+  non_processable_list  <- vector("list", 0L)
 
   dispatch <- attr(eligible_clusters, "study_dispatch")
   group_dispatch <- attr(eligible_clusters, "group_dispatch")
@@ -126,22 +128,46 @@
       grp <- group_dispatch[[cid]]
       if (is.null(grp)) next
 
-      counts_list <- lapply(grp, function(d) fetch_fn(d$study_id, d$sample_ids))
+      # Safe metadata: dedup + role-conflict detection.
+      # Conflicts: stesso GSM con ruoli divergenti tra rg -> sample droppato
+      # (paper-grade: non assumere ruolo arbitrario). Cross-study same-role:
+      # tenuto una sola volta + flagged.
+      safe <- .build_mega_metadata_safe(grp, cid)
+      metadata <- safe$metadata
+      if (nrow(safe$conflicts) > 0L) {
+        pooling_warnings_list[[length(pooling_warnings_list) + 1L]] <-
+          safe$conflicts
+      }
+
+      # Skip cluster rank-deficient (< 2 treatment levels o < n_min per livello)
+      rank_check <- .check_mega_rank(metadata)
+      if (rank_check$rank_deficient) {
+        non_processable_list[[length(non_processable_list) + 1L]] <-
+          tibble::tibble(
+            cluster_id         = cid,
+            original_k         = NA_integer_,
+            qc_final_k         = NA_integer_,
+            original_n_studies = NA_integer_,
+            qc_final_n_studies = NA_integer_,
+            reason             = paste0("mega_rank_deficient: ", rank_check$reason)
+          )
+        next
+      }
+
+      # Fetch counts per studio, in ordine deterministico
+      all_studies <- unique(as.character(metadata$study))
+      counts_list <- lapply(all_studies, function(s) {
+        sids_s <- metadata$sample_id[metadata$study == s]
+        fetch_fn(s, sids_s)
+      })
       common_genes <- Reduce(intersect, lapply(counts_list, rownames))
       counts <- do.call(cbind, lapply(counts_list, function(m) {
         m[common_genes, , drop = FALSE]
       }))
 
-      metadata <- data.frame(
-        sample_id = unlist(lapply(grp, function(d) d$sample_ids)),
-        study = factor(unlist(lapply(grp, function(d) {
-          rep(d$study_id, length(d$sample_ids))
-        }))),
-        treatment = factor(
-          unlist(lapply(grp, function(d) d$treatment)),
-          levels = c("control", "treated")
-        )
-      )
+      # Reorder metadata per matchare colnames(counts) (dream/voom check rigido)
+      metadata <- metadata[match(colnames(counts), metadata$sample_id), ,
+                            drop = FALSE]
 
       pool <- .run_dream_mega(counts, metadata, cid,
                                workers = min(workers, dream_workers_cap))
@@ -223,8 +249,31 @@
     }
   }
 
-  if (length(out_list) == 0L) return(.empty_pooled_rem())
-  do.call(rbind, out_list)
+  # Aggrega pooling_warnings (sample droppati per conflict/cross-study dup)
+  pooling_warnings <- if (length(pooling_warnings_list) > 0L) {
+    do.call(rbind, pooling_warnings_list)
+  } else {
+    tibble::tibble(cluster_id = character(0L), sample_id = character(0L),
+                    studies = character(0L), roles = character(0L),
+                    conflict_type = character(0L))
+  }
+  non_processable <- if (length(non_processable_list) > 0L) {
+    do.call(rbind, non_processable_list)
+  } else {
+    tibble::tibble(cluster_id = character(0L), original_k = integer(0L),
+                    qc_final_k = integer(0L), original_n_studies = integer(0L),
+                    qc_final_n_studies = integer(0L), reason = character(0L))
+  }
+
+  cluster_pooled <- if (length(out_list) == 0L) {
+    .empty_pooled_rem()
+  } else {
+    do.call(rbind, out_list)
+  }
+
+  attr(cluster_pooled, "pooling_warnings")          <- pooling_warnings
+  attr(cluster_pooled, "non_processable_in_pool")   <- non_processable
+  cluster_pooled
 }
 
 #' Costruisce qc_report list per output write

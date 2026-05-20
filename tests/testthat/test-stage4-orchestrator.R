@@ -1,3 +1,95 @@
+test_that(".pool_all_clusters MEGA dedupa sample condivisi tra rg + skippa cluster rank-deficient", {
+  # Regression del 2026-05-20 fullrun: due rg dello stesso cluster MEGA
+  # condividevano GSM4556584 -> unlist produce duplicati -> dream crash
+  # con duplicate row.names. Anche MEGA con solo treated o solo control
+  # (design rank-deficient) deve essere skippato senza crash.
+  skip_if_not_installed("variancePartition")
+  skip_if_not_installed("BiocParallel")
+
+  eligible <- tibble::tibble(
+    cluster_id = c("mega_dup", "mega_singleton", "mega_ok"),
+    method     = c("mega", "mega", "mega"),
+    level      = c(0L, 0L, 0L),
+    mode       = factor("group", levels = c("pair", "group")),
+    anchor_key = c("KEY1", "KEY2", "KEY3"),
+    direction_check = factor(rep("na", 3L),
+                              levels = c("canonical", "swapped", "ambiguous",
+                                         "indeterminate", "na")),
+    studies_in_cluster = list(c("GSE_a", "GSE_b"),
+                                c("GSE_c"),
+                                c("GSE_d", "GSE_e"))
+  )
+
+  attr(eligible, "group_dispatch") <- list(
+    # mega_dup: 2 rg condividono GSM_shared1 (same study)
+    mega_dup = list(
+      list(study_id = "GSE_a",
+           sample_ids = c("GSM_a1", "GSM_shared1", "GSM_a3"),
+           treatment = rep("treated", 3L)),
+      list(study_id = "GSE_a",
+           sample_ids = c("GSM_shared1", "GSM_a4"),  # GSM_shared1 dup
+           treatment = rep("treated", 2L)),
+      list(study_id = "GSE_b",
+           sample_ids = c("GSM_b1", "GSM_b2"),
+           treatment = rep("control", 2L))
+    ),
+    # mega_singleton: solo "treated" rgs -> rank deficient -> skip
+    mega_singleton = list(
+      list(study_id = "GSE_c",
+           sample_ids = c("GSM_c1", "GSM_c2"),
+           treatment = rep("treated", 2L))
+    ),
+    # mega_ok: well-balanced
+    mega_ok = list(
+      list(study_id = "GSE_d",
+           sample_ids = c("GSM_d1", "GSM_d2"),
+           treatment = rep("treated", 2L)),
+      list(study_id = "GSE_e",
+           sample_ids = c("GSM_e1", "GSM_e2"),
+           treatment = rep("control", 2L))
+    )
+  )
+  attr(eligible, "study_dispatch") <- list()
+
+  mock_fetch <- function(gse, sample_ids) {
+    set.seed(nchar(gse) * 100 + length(sample_ids))
+    m <- matrix(rnbinom(60 * length(sample_ids), size = 5, mu = 200),
+                nrow = 60, ncol = length(sample_ids))
+    rownames(m) <- paste0("GENE_", sprintf("%03d", 1:60))
+    colnames(m) <- sample_ids
+    m
+  }
+
+  # stage3_clusters minimo per mega_aug (non usato qui ma richiesto da signature)
+  stage3_clusters <- tibble::tibble(
+    cluster_id = character(0L),
+    mode = factor(character(0L), levels = c("pair", "group")),
+    level = integer(0L),
+    anchor_key = character(0L),
+    studies_in_cluster = list(),
+    sample_ids = list(),
+    sample_studies = list()
+  )
+
+  expect_no_error(
+    pooled <- .pool_all_clusters(
+      per_study_de = .empty_per_study_de(),
+      eligible_clusters = eligible,
+      fetch_fn = mock_fetch,
+      stage3_clusters = stage3_clusters,
+      workers = 1L,
+      dream_workers_cap = 2L
+    )
+  )
+
+  # mega_dup deve produrre output (dedup ha salvato il run)
+  expect_true("mega_dup" %in% pooled$cluster_id)
+  # mega_singleton skippato (rank deficient): NO righe in pooled
+  expect_false("mega_singleton" %in% pooled$cluster_id)
+  # mega_ok ok
+  expect_true("mega_ok" %in% pooled$cluster_id)
+})
+
 test_that(".run_per_study_de_all itera su REM + MEGA-AUG pair-side", {
   skip_if_not_installed("limma")
 
