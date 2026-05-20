@@ -142,15 +142,32 @@ I test riportati qui sotto sono il payload empirico per validare le tre policy. 
 
 ## 6. Results
 
-**TBD pending validation tests 5.1 – 5.5.** Le sezioni di questo documento verranno aggiornate in-place con tabelle, figure (paths a `analysis/p4-output/...`) e narrativa man mano che i test producono risultati.
+**Test 5.1 completato 2026-05-20** (vedi sez. 6.1 sotto). Test 5.2 – 5.5 ancora pending.
 
-Sezioni attese:
+### 6.1 Anchor matching accuracy on hand-curated set (2026-05-20)
 
-- 6.1 Anchor matching accuracy on hand-curated set
-- 6.2 Batch confounding simulation: degradation curve
-- 6.3 Strict-vs-relaxed sensitivity
-- 6.4 Augmentation gain over pair-only baseline
-- 6.5 RummaGEO comparison
+Validation completata sul mini-gold 29 candidati (`inst/extdata/p5-mega-aug-anchor-matching-gold.csv`) stratificato in 10 strict_ok + 9 relaxed_only + 10 mismatch. Annotation biologica caso-per-caso: 19 match + 8 no_match + 2 dubbio.
+
+I 2 candidati `dubbio` emergono come limiti del current schema v3:
+
+- Row 11: pair con `has_engineered = TRUE` (cell MCF-7 con modifiche genetiche) augmentato con baseline `has_engineered = FALSE` (MCF-7 wt). Engineered cells possono avere baseline transcriptome distinto da wt. Valido solo per modificazioni "non-target" (reporter fluorescenti); rischioso per knockdown/knockout di target gene.
+- Row 26: pair su "Plasma cell-free RNA" augmentato con baseline "Plasma" generico. cf-RNA è un molecular fraction (extracellular vesicles) con read distribution diversa dal whole-plasma RNA.
+
+**Confusion matrix sui 27 candidati non-dubbio**:
+
+| Policy | Sensitivity | Specificity |
+|---|---:|---:|
+| `strict` | 52.6% (10/19) | 100% (8/8) |
+| `relaxed` (default `c(dose_canonical, duration_canonical, has_engineered)`) | **94.7%** (18/19) | **100%** (8/8) |
+
+**Lettura**. La policy `relaxed` produce un boost di sensitivity di +42pp rispetto a `strict` senza perdere niente in specificity — conferma robusta della scelta default. L'unico false negative residuo (row 23) è un mismatch case-sensitive su `cell_id` (`"Plasma"` vs `"plasma"` come stessa entità biologica), che suggerisce come future work la normalizzazione upstream del `cell_id` in Stadio 1/2 o un matcher case-insensitive per nomi tessuto generici. Decisione Q4 (estensione `relaxed_segments` a `cell_state` o `phase_canonical`): non necessaria — i risultati attuali non lasciano sensitivity da recuperare nel mini-gold.
+
+**Caveat**. L'annotation è stata svolta da Claude Opus 4.7 in delegation dell'utente (lucavd, "annotalo tu il minigold, io intervengo se hai dubbi"). Per il paper il gold andrà re-validato da un secondo annotator umano in-blind, e potenzialmente esteso a 100+ candidati per ridurre l'IC sui numeri sopra (Wilson 95% CI sensitivity relaxed = 75.4-99.1%, specificity = 67.6-100%).
+
+### 6.2 Batch confounding simulation: degradation curve (TBD)
+### 6.3 Strict-vs-relaxed sensitivity full Layer A run (TBD)
+### 6.4 Augmentation gain over pair-only baseline (TBD)
+### 6.5 RummaGEO comparison (TBD)
 
 ## 7. Discussione (TBD)
 
@@ -195,3 +212,4 @@ Codice principale atteso: `R/stage4-mega-aug-bidirectional.R`, `R/stage4-anchor-
 ## Changelog
 
 - **2026-05-20 — Draft v0.1**. Letteratura raccolta (11 reference), ipotesi formulate, policy proposte, test plan pianificato. Results pending validation tests 5.1–5.5.
+- **2026-05-20 — Draft v0.2**. Test 5.1 anchor matching accuracy completato sul mini-gold 29 candidati. Confusion matrix: relaxed sensitivity 94.7%, specificity 100% (vs strict 52.6%/100%). Decisione Q4 risolta (relaxed_segments default OK, no estensione necessaria). Annotation delegata, da re-validare per paper.
