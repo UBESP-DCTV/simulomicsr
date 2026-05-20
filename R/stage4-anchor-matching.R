@@ -143,6 +143,38 @@ parse_pair_anchor_key <- function(pair_anchor_key, level,
   all(unlist(a[to_check]) == unlist(b[to_check]))
 }
 
+#' Classifica un contrasto MEGA-AUG in funzione dell'overlap di studi
+#'
+#' Tre categorie (spec sez. 6 del design MEGA-AUG bidirezionale):
+#' \itemize{
+#'   \item \code{"direct_overlap"}: almeno uno studio compare in entrambi
+#'         i set (pair e baseline). E' il caso piu' robusto: il random
+#'         effect \code{study} di dream puo' separare batch da treatment.
+#'   \item \code{"indirect_partial"}: zero studi in comune, ma entrambi
+#'         i set sono multi-studio (\code{|pair| >= 2} e
+#'         \code{|baseline| >= 3}). E' un \emph{indirect comparison} NMA
+#'         con buona transitivita' (sez. 4 Nodo 2 findings).
+#'   \item \code{"indirect_disjoint"}: zero studi in comune E almeno uno
+#'         dei due set ha un singolo studio (o baseline ha < 3 studi).
+#'         Il contrasto e' formalmente indirect ma con poca robustezza
+#'         alle differenze di batch tra studi.
+#' }
+#'
+#' @param pair_studies character: identificativi studi (es. GSE accession)
+#'   coinvolti nel pair cluster (treated + control samples).
+#' @param baseline_studies character: identificativi studi del baseline pool
+#'   aggiunto.
+#' @return character(1) in \code{c("direct_overlap", "indirect_partial",
+#'   "indirect_disjoint")}.
+#' @keywords internal
+.classify_comparison_kind <- function(pair_studies, baseline_studies) {
+  ps <- unique(pair_studies)
+  bs <- unique(baseline_studies)
+  if (length(intersect(ps, bs)) >= 1L) return("direct_overlap")
+  if (length(ps) >= 2L && length(bs) >= 3L) return("indirect_partial")
+  "indirect_disjoint"
+}
+
 #' Crea una chiusura matcher per la policy scelta
 #'
 #' Factory che incapsula la policy (\code{strict} o \code{relaxed}) e
