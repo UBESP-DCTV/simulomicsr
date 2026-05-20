@@ -120,7 +120,8 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     fetch_fn          = fetch_fn,
     stage3_clusters   = stage3_clusters_enriched,
     workers           = dream_workers,
-    dream_workers_cap = config$compute$dream_workers_cap
+    dream_workers_cap = config$compute$dream_workers_cap,
+    mega_aug_config   = config$mega_aug
   )
 
   # Step 7: QC report aggregato. Merge cluster non_processable da QC + dal

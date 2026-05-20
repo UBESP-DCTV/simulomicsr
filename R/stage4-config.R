@@ -32,6 +32,25 @@ stage4_default_config <- function() {
                                        # dream_workers_cap). Vedi
                                        # .resolve_dream_workers + ADR-0015.
     ),
+    mega_aug = list(
+      # Default conservativo: legacy = TRUE -> orchestrator usa
+      # .assemble_mega_aug_metadata (monodirectional, strict string equality
+      # su control_anchor). Bidir flow (.assemble_mega_aug_metadata_bidir)
+      # va abilitato esplicitamente con legacy_monodirectional = FALSE.
+      # Flip a FALSE come default e' pianificato dopo smoke 5-pick + simulation
+      # batch confounding (Test 5.2 spec). Vedi
+      # docs/superpowers/specs/2026-05-20-p5-stadio4-mega-aug-bidirezionale-design.md.
+      legacy_monodirectional = TRUE,
+      direction              = "both",         # "control" | "treated" | "both"
+      anchor_policy          = "relaxed",      # "strict" | "relaxed"
+      relaxed_segments       = c("dose_canonical", "duration_canonical",
+                                   "has_engineered"),
+      disjoint_policy        = "permissive",   # "permissive" | "strict"
+      min_baseline_studies   = 2L,
+      max_baseline_pool_reuse = NA_integer_,    # NA = nessun cap
+      franchini_correction   = TRUE             # attiva correzione shared-baseline
+                                                 # nel REM pooling (T6/T7).
+    ),
     schema_versions = list(
       anchor             = "v3",
       stage3_algorithm   = "v1",
