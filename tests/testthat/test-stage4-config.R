@@ -2,8 +2,20 @@ test_that("stage4_default_config restituisce list con campi essenziali", {
   cfg <- stage4_default_config()
 
   expect_type(cfg, "list")
-  expect_named(cfg, c("qc", "de_engine", "pooling", "compute", "schema_versions"),
+  expect_named(cfg, c("qc", "de_engine", "pooling", "compute", "mega_aug",
+                       "schema_versions"),
                ignore.order = TRUE)
+})
+
+test_that("mega_aug default e' legacy_monodirectional = TRUE (zero impact on existing tests)", {
+  cfg <- stage4_default_config()
+  expect_true(cfg$mega_aug$legacy_monodirectional)
+  expect_equal(cfg$mega_aug$direction, "both")
+  expect_equal(cfg$mega_aug$anchor_policy, "relaxed")
+  expect_setequal(cfg$mega_aug$relaxed_segments,
+                   c("dose_canonical", "duration_canonical", "has_engineered"))
+  expect_equal(cfg$mega_aug$disjoint_policy, "permissive")
+  expect_equal(cfg$mega_aug$min_baseline_studies, 2L)
 })
 
 test_that("qc threshold lib_size_min e' 500000 di default", {

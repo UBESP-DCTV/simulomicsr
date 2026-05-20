@@ -101,15 +101,36 @@
 #' @param workers integer numero di worker (default 1L).
 #' @param dream_workers_cap integer cap workers BiocParallel passato a dream
 #'   (default 8L).
+#' @param mega_aug_config list (default NULL = legacy monodirectional). Se
+#'   non-NULL e \code{legacy_monodirectional = FALSE}, attiva il dispatch
+#'   bidirezionale via \code{.assemble_mega_aug_metadata_bidir} con anchor
+#'   policy + direction + disjoint_policy specificati (vedi
+#'   \code{stage4_default_config()$mega_aug}).
 #' @return tibble \code{cluster_pooled.parquet} schema; vuoto se nessun
 #'   cluster.
 #' @keywords internal
 .pool_all_clusters <- function(per_study_de, eligible_clusters, fetch_fn,
                                 stage3_clusters, workers = 1L,
-                                dream_workers_cap = 8L) {
+                                dream_workers_cap = 8L,
+                                mega_aug_config = NULL) {
   out_list <- vector("list", 0L)
   pooling_warnings_list <- vector("list", 0L)
   non_processable_list  <- vector("list", 0L)
+  mega_aug_diagnostics_list <- vector("list", 0L)
+
+  # Risolvi bidir mode + matcher una volta sola
+  use_bidir <- !is.null(mega_aug_config) &&
+    isFALSE(mega_aug_config$legacy_monodirectional)
+  bidir_matcher <- if (use_bidir) {
+    make_anchor_matcher(
+      policy            = mega_aug_config$anchor_policy %||% "relaxed",
+      relaxed_segments  = mega_aug_config$relaxed_segments %||%
+        c("dose_canonical", "duration_canonical", "has_engineered")
+    )
+  } else NULL
+  bidir_direction <- mega_aug_config$direction %||% "both"
+  bidir_disjoint  <- mega_aug_config$disjoint_policy %||% "permissive"
+  bidir_min_baseline <- mega_aug_config$min_baseline_studies %||% 2L
 
   dispatch <- attr(eligible_clusters, "study_dispatch")
   group_dispatch <- attr(eligible_clusters, "group_dispatch")
@@ -202,6 +223,8 @@
       pair_cluster_struct <- list(
         cluster_id = cid,
         level = eligible_clusters$level[i],
+        # anchor_key originale: necessario al bidir flow (parse interno).
+        anchor_key = eligible_clusters$anchor_key[i],
         treated_anchor_key = parsed_key$treated,
         control_anchor_key = parsed_key$control,
         studies_in_cluster = eligible_clusters$studies_in_cluster[[i]],
@@ -217,8 +240,53 @@
         stage3_clusters$level == eligible_clusters$level[i],
       ]
 
-      assembled <- .assemble_mega_aug_metadata(pair_cluster_struct,
-                                                 group_baseline)
+      # Dispatch legacy vs bidirezionale
+      if (use_bidir) {
+        assembled <- .assemble_mega_aug_metadata_bidir(
+          pair_cluster_struct, group_baseline,
+          matcher = bidir_matcher,
+          direction = bidir_direction,
+          min_baseline_studies = bidir_min_baseline
+        )
+
+        # disjoint_policy = "strict": scarta cluster con
+        # comparison_kind_overall = "indirect_disjoint".
+        if (identical(bidir_disjoint, "strict") &&
+            isTRUE(assembled$comparison_kind_overall == "indirect_disjoint")) {
+          non_processable_list[[length(non_processable_list) + 1L]] <-
+            tibble::tibble(
+              cluster_id         = cid,
+              original_k         = NA_integer_,
+              qc_final_k         = NA_integer_,
+              original_n_studies = NA_integer_,
+              qc_final_n_studies = NA_integer_,
+              reason             = "mega_aug_disjoint_strict_skipped"
+            )
+          next
+        }
+
+        # Diagnostic row per cluster bidir
+        mega_aug_diagnostics_list[[length(mega_aug_diagnostics_list) + 1L]] <-
+          tibble::tibble(
+            cluster_id                          = cid,
+            comparison_kind_control             = assembled$comparison_kind_control,
+            comparison_kind_treated             = assembled$comparison_kind_treated,
+            comparison_kind_overall             = assembled$comparison_kind_overall,
+            n_baseline_studies_augmented_control = assembled$n_baseline_studies_augmented_control,
+            n_baseline_studies_augmented_treated = assembled$n_baseline_studies_augmented_treated,
+            baseline_pool_id_control            = assembled$baseline_pool_ids$control %||% NA_character_,
+            baseline_pool_id_treated            = assembled$baseline_pool_ids$treated %||% NA_character_
+          )
+
+        # Backward-compat per .run_dream_mega: somma dei n augmented totali.
+        n_aug_total <- assembled$n_baseline_studies_augmented_control +
+          assembled$n_baseline_studies_augmented_treated
+        assembled$n_baseline_studies_augmented <- n_aug_total
+      } else {
+        # Legacy monodirectional flow (invariato).
+        assembled <- .assemble_mega_aug_metadata(pair_cluster_struct,
+                                                   group_baseline)
+      }
 
       # Fetch counts per ciascuno studio coinvolto + intersect rownames.
       all_studies <- unique(as.character(assembled$metadata$study))
@@ -245,6 +313,18 @@
         n_baseline_studies_augmented = assembled$n_baseline_studies_augmented,
         method_label = "mega_aug"
       )
+      # Propaga metadata bidir come attributi (aggregati post-loop in
+      # qc_report e in cluster_pooled). Solo se bidir mode.
+      if (use_bidir) {
+        attr(pool, "mega_aug_bidir") <- list(
+          comparison_kind_control              = assembled$comparison_kind_control,
+          comparison_kind_treated              = assembled$comparison_kind_treated,
+          comparison_kind_overall              = assembled$comparison_kind_overall,
+          n_baseline_studies_augmented_control = assembled$n_baseline_studies_augmented_control,
+          n_baseline_studies_augmented_treated = assembled$n_baseline_studies_augmented_treated,
+          baseline_pool_ids                    = assembled$baseline_pool_ids
+        )
+      }
       out_list[[length(out_list) + 1L]] <- pool
     }
   }
@@ -271,8 +351,25 @@
     do.call(rbind, out_list)
   }
 
+  # Aggrega mega_aug_diagnostics (vuoto se legacy / nessun cluster bidir)
+  mega_aug_diagnostics <- if (length(mega_aug_diagnostics_list) > 0L) {
+    do.call(rbind, mega_aug_diagnostics_list)
+  } else {
+    tibble::tibble(
+      cluster_id                          = character(0L),
+      comparison_kind_control             = character(0L),
+      comparison_kind_treated             = character(0L),
+      comparison_kind_overall             = character(0L),
+      n_baseline_studies_augmented_control = integer(0L),
+      n_baseline_studies_augmented_treated = integer(0L),
+      baseline_pool_id_control            = character(0L),
+      baseline_pool_id_treated            = character(0L)
+    )
+  }
+
   attr(cluster_pooled, "pooling_warnings")          <- pooling_warnings
   attr(cluster_pooled, "non_processable_in_pool")   <- non_processable
+  attr(cluster_pooled, "mega_aug_diagnostics")      <- mega_aug_diagnostics
   cluster_pooled
 }
 
@@ -297,6 +394,8 @@
     qc_drops_cluster = attr(eligible_clusters, "qc_drops_cluster") %||%
       tibble::tibble(),
     pooling_warnings = attr(cluster_pooled, "pooling_warnings") %||%
+      tibble::tibble(),
+    mega_aug_diagnostics = attr(cluster_pooled, "mega_aug_diagnostics") %||%
       tibble::tibble()
   )
 }
