@@ -61,6 +61,15 @@ cli_alert_info("Building h5_metadata (placeholder lib_size for Layer A samples).
 
 # Identifica Layer A clusters + i sample referenziati via assignments+stage2.
 config <- stage4_default_config()
+# Override per Task 21: MEGA-AUG bidirezionale attivato (default conservativo
+# resta legacy_monodirectional=TRUE, sara' flipped a FALSE come default solo
+# post-fullrun verde). Coverage analysis 2026-05-20 ha confermato: 92% dei
+# pair Layer A hanno augmentation effettiva (median 143 extra sample, vedi
+# docs/findings/2026-05-20-mega-aug-bidirectional-method.md sez. 6.2).
+config$mega_aug$legacy_monodirectional <- FALSE
+cli_alert_info(
+  "MEGA-AUG mode: BIDIREZIONALE (anchor_policy={config$mega_aug$anchor_policy}, direction={config$mega_aug$direction}, disjoint_policy={config$mega_aug$disjoint_policy})"
+)
 layer_a <- simulomicsr:::.identify_layer_a_clusters(s3$clusters, config)
 cli_alert_info(
   "Layer A: {nrow(layer_a)} clusters (rem={sum(layer_a$method=='rem')}, mega={sum(layer_a$method=='mega')}, mega_aug={sum(layer_a$method=='mega_aug')})"
