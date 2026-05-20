@@ -164,7 +164,27 @@ I 2 candidati `dubbio` emergono come limiti del current schema v3:
 
 **Caveat**. L'annotation è stata svolta da Claude Opus 4.7 in delegation dell'utente (lucavd, "annotalo tu il minigold, io intervengo se hai dubbi"). Per il paper il gold andrà re-validato da un secondo annotator umano in-blind, e potenzialmente esteso a 100+ candidati per ridurre l'IC sui numeri sopra (Wilson 95% CI sensitivity relaxed = 75.4-99.1%, specificity = 67.6-100%).
 
-### 6.2 Batch confounding simulation: degradation curve (TBD)
+### 6.2 Pre-fullrun coverage analysis (2026-05-20)
+
+Esplorazione del cluster registry per quantificare il "gain atteso" del bidir prima di consumare il fullrun. Random sample di 50 pair Layer A (seed=42, su 310 totali), top baseline candidate per ciascuno con `anchor_policy = "relaxed"`, count di sample extra post-dedup contro il pair.
+
+**Distribuzione `extra_sids` (sample baseline non sovrapposti al pair)**:
+
+| Range | n | % |
+|---|---:|---:|
+| 0 (100% sovrapposto) | 4 | 8% |
+| 1-5 | 2 | 4% |
+| 6-20 | 6 | 12% |
+| 21-100 | 11 | 22% |
+| **>100** | **27** | **54%** |
+
+Median = 143 extra sample, mean = 820 (skewed da casi estremi come `pair_L3_0a500a99` con 1443 extra sample da 229 studi extra). **92% dei pair Layer A hanno augmentation cross-studio effettiva** (≥1 studio extra rispetto al pair).
+
+**Lettura**. Lo smoke 5-pick 2026-05-20 aveva selezionato i 3 pair smallest-n_total, che casualmente erano gli edge case con baseline pool 100% sovrapposto. Sul registry reale, il bidir aggiunge tipicamente 143+ sample per pair — boost di potenza statistica significativo. Proiettato su 310 Layer A pair: ~257-314 contrasti con augmentation effettiva.
+
+Output salvato: `analysis/p4-output/p5-mega-aug-coverage-explore.rds`.
+
+### 6.3 Batch confounding simulation: degradation curve (TBD)
 ### 6.3 Strict-vs-relaxed sensitivity full Layer A run (TBD)
 ### 6.4 Augmentation gain over pair-only baseline (TBD)
 ### 6.5 RummaGEO comparison (TBD)
