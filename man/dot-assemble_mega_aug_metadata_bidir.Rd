@@ -9,7 +9,8 @@
   group_baseline,
   matcher,
   direction = c("both", "control", "treated"),
-  min_baseline_studies = 2L
+  min_baseline_studies = 2L,
+  max_baseline_per_arm = NA_integer_
 )
 }
 \arguments{
@@ -30,6 +31,11 @@
 
 \item{min_baseline_studies}{integer(1): default \code{2L}. Forwarded a
 \code{find_baseline_for_pair}.}
+
+\item{max_baseline_per_arm}{integer(1) o \code{NA}: cap sul numero di
+sample baseline aggiunti per braccio (Problema B). Se un baseline pool
+augmenterebbe il braccio con piu' di N sample, viene sotto-campionato a
+N (deterministico). \code{NA} (default) = nessun cap.}
 }
 \value{
 list con 8 componenti:

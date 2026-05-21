@@ -131,13 +131,21 @@
   bidir_direction <- mega_aug_config$direction %||% "both"
   bidir_disjoint  <- mega_aug_config$disjoint_policy %||% "permissive"
   bidir_min_baseline <- mega_aug_config$min_baseline_studies %||% 2L
+  bidir_max_baseline <- mega_aug_config$max_baseline_per_arm %||% NA_integer_
 
   dispatch <- attr(eligible_clusters, "study_dispatch")
   group_dispatch <- attr(eligible_clusters, "group_dispatch")
 
-  for (i in seq_len(nrow(eligible_clusters))) {
+  n_clusters <- nrow(eligible_clusters)
+  for (i in seq_len(n_clusters)) {
     cid <- eligible_clusters$cluster_id[i]
     method <- eligible_clusters$method[i]
+
+    # Progress logging per-cluster (Problema B): senza, un fullrun da centinaia
+    # di cluster non dice QUALE cluster e' lento/pesante o ha ucciso il run.
+    # message() -> stderr, finisce nel log via `2>&1 | tee`, innocuo ai test.
+    t_cluster <- Sys.time()
+    message(sprintf("[cluster %d/%d] %s (method=%s)", i, n_clusters, cid, method))
 
     # Wrap intero body con tryCatch: cluster failed -> registrato in
     # non_processable + continue al successivo, invece di crashare l'intero
@@ -273,7 +281,8 @@
           pair_cluster_struct, group_baseline,
           matcher = bidir_matcher,
           direction = bidir_direction,
-          min_baseline_studies = bidir_min_baseline
+          min_baseline_studies = bidir_min_baseline,
+          max_baseline_per_arm = bidir_max_baseline
         )
 
         # disjoint_policy = "strict": scarta cluster con
@@ -371,7 +380,12 @@
       )
       crashed_in_cluster <<- TRUE
     })
-    # crashed_in_cluster e' solo per audit nei log dei test, niente da fare oltre
+    # Progress: wall + RSS per-cluster. Permette di individuare nel log il
+    # cluster lento o memory-heavy senza dover ispezionare l'intero run.
+    message(sprintf("  -> %s %s | wall %.1fs | RSS %.1f GB",
+                     cid, if (crashed_in_cluster) "FALLITO" else "ok",
+                     as.numeric(difftime(Sys.time(), t_cluster, units = "secs")),
+                     .proc_rss_gb()))
   }
 
   # Aggrega pooling_warnings (sample droppati per conflict/cross-study dup)
@@ -452,3 +466,20 @@
 #'
 #' @keywords internal
 `%||%` <- function(x, y) if (is.null(x)) y else x
+
+#' RSS del processo corrente in GB (Linux)
+#'
+#' Legge \code{VmRSS} da \code{/proc/self/status}. Usato dal progress logging
+#' per-cluster di \code{.pool_all_clusters} (Problema B). Ritorna \code{NA}
+#' su piattaforme senza \code{/proc} (la pipeline gira su Linux).
+#'
+#' @return numeric(1) RSS in GB, o \code{NA_real_}.
+#' @keywords internal
+.proc_rss_gb <- function() {
+  st <- tryCatch(readLines("/proc/self/status", warn = FALSE),
+                  error = function(e) character(0L))
+  ln <- grep("^VmRSS:", st, value = TRUE)
+  if (length(ln) == 0L) return(NA_real_)
+  kb <- suppressWarnings(as.numeric(sub("^VmRSS:\\s*(\\d+).*$", "\\1", ln[1L])))
+  kb / 1048576
+}

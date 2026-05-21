@@ -48,6 +48,15 @@ stage4_default_config <- function() {
       disjoint_policy        = "permissive",   # "permissive" | "strict"
       min_baseline_studies   = 2L,
       max_baseline_pool_reuse = NA_integer_,    # NA = nessun cap
+      # Cap dimensione baseline pool per braccio (Problema B, 2026-05-21). I
+      # cluster mega_aug augmentati arrivano a 7000+ sample / 945 studi: la DE
+      # (dream o limma) esplode in memoria/tempo. Oltre il punto di saturazione
+      # l'augmentation non aggiunge potenza (rendimenti decrescenti: il
+      # contrasto e' limitato dal braccio del pair, n_aug >> n_pair non aiuta).
+      # Se il braccio augmentato avrebbe > N sample baseline, si sotto-campiona
+      # a N (seeded, riproducibile). NA = nessun cap. Valore calibrato dalla
+      # curva di saturazione: analysis/p5-stage4-debug-problemB-saturation.R.
+      max_baseline_per_arm   = NA_integer_,
       franchini_correction   = TRUE             # attiva correzione shared-baseline
                                                  # nel REM pooling (T6/T7).
     ),
