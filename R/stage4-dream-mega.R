@@ -37,6 +37,31 @@
     ncol(counts) == nrow(metadata)
   )
 
+  # Guardia difensiva (defense-in-depth): sample_id duplicati in metadata
+  # crashano `rownames(metadata) <-` con il criptico ".rowNamesDF<-: duplicate
+  # 'row.names'". Qualunque path di assembly upstream che producesse duplicati
+  # (es. lo stesso group baseline pool su entrambi i bracci MEGA-AUG, vedi
+  # .assemble_mega_aug_metadata_bidir sez. 3b) deve fallire QUI con un errore
+  # esplicito e cluster-named, intercettabile dal tryCatch dell'orchestrator.
+  dup_i <- anyDuplicated(metadata$sample_id)
+  if (dup_i > 0L) {
+    stop(sprintf(
+      "metadata$sample_id contiene duplicati (es. '%s') per cluster %s: bug di assembly upstream, il pooling non puo' procedere",
+      metadata$sample_id[dup_i], cluster_id
+    ))
+  }
+
+  # Guardia difensiva sui gene rownames: dream/variancePartition crashano con
+  # "duplicate 'row.names'" se la count matrix ha rownames duplicati. ARCHS4
+  # v2.5 ha 4638 simboli HGNC non unici; .fetch_counts_from_h5 li disambigua
+  # gia' con make.unique, ma se un fetch_fn alternativo (mock, override) non lo
+  # facesse, dream fallirebbe e .run_dream_mega ripiegherebbe SILENZIOSAMENTE
+  # sul fallback limma. make.unique qui rende la funzione robusta a qualunque
+  # fonte di counts. Idempotente su rownames gia' unici.
+  if (anyDuplicated(rownames(counts)) > 0L) {
+    rownames(counts) <- make.unique(rownames(counts))
+  }
+
   # Allinea rownames(metadata) a colnames(counts) per silenziare warning
   # variancePartition::filterInputData (sample names check). I tibble non
   # supportano rownames persistenti -> coerce a base data.frame.

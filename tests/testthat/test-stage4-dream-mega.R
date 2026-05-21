@@ -74,3 +74,38 @@ test_that(".run_dream_mega workers=4 produce risultati identici a workers=1", {
   expect_equal(res1$FDR_BH_within_cluster, res4$FDR_BH_within_cluster,
                 tolerance = 1e-10)
 })
+
+test_that(".run_dream_mega gestisce rownames gene duplicati senza crash", {
+  # Discovery 2026-05-21: ARCHS4 v2.5 ha 4638/67186 simboli HGNC duplicati.
+  # Rownames duplicati fanno fallire dream con "duplicate 'row.names'", e il
+  # fallback silenzioso a limma maschererebbe il problema. .run_dream_mega
+  # deve disambiguare i rownames (make.unique) e completare normalmente.
+  skip_if_not_installed("variancePartition")
+
+  set.seed(42)
+  n_genes <- 50; n_samples <- 24
+  counts <- matrix(rnbinom(n_genes * n_samples, size = 5, mu = 200),
+                   nrow = n_genes, ncol = n_samples)
+  # Inietta simboli duplicati: i primi 6 geni condividono 3 simboli (x2),
+  # come accade per i simboli HGNC non unici di ARCHS4.
+  gsym <- paste0("GENE_", sprintf("%03d", seq_len(n_genes)))
+  gsym[2] <- gsym[1]; gsym[4] <- gsym[3]; gsym[6] <- gsym[5]
+  rownames(counts) <- gsym
+  colnames(counts) <- paste0("GSM", sprintf("%06d", seq_len(n_samples)))
+  metadata <- data.frame(
+    sample_id = colnames(counts),
+    study = factor(rep(paste0("GSE00", 1:4), each = 6)),
+    treatment = factor(rep(c("treated", "treated", "treated",
+                              "control", "control", "control"), 4),
+                        levels = c("control", "treated"))
+  )
+
+  expect_no_error(
+    res <- .run_dream_mega(counts, metadata, cluster_id = "TEST_DUPGENE",
+                            workers = 1L)
+  )
+  expect_s3_class(res, "tbl_df")
+  # i gene nell'output sono unici (make.unique applicato)
+  expect_equal(anyDuplicated(res$gene), 0L)
+  expect_true(all(is.finite(res$logFC_pool)))
+})
