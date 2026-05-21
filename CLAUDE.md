@@ -53,25 +53,26 @@ Pipeline complessiva (5 stadi):
   che diverge da `design_role` — il gold "design-aware" è in
   `inst/extdata/p35c-minigold-reviewed-v5.csv` (100 sample, P3.5-C/D).
 
-## Stato corrente (2026-05-20 — P5 Stadio 4 IN PROGRESS — fullrun bloccato pending decisione cluster baseline-pool)
+## Stato corrente (2026-05-21 — P5 Stadio 4 Task 21 MEGA-AUG bidir IMPLEMENTATO — fullrun bloccato, NUOVA SESSIONE = SOLO DEBUGGING)
 
-### P5 Stadio 4 (branch `p5-stadio4-de-perstudio`, HEAD `699dc49`, 2026-05-19/20)
+### P5 Stadio 4 Task 21 (branch `p5-stadio4-de-perstudio`, HEAD `f3d194c`, 2026-05-20/21)
 
-- **17 commits** oltre `9d918a1` (regen Rd Task 1-16): bench, ADR-0015, Task 19 fullrun script, 2 fix critici dopo crash fullrun.
-- **Suite Stadio 4**: 145 PASS / 0 FAIL / 1 SKIP.
-- **ADR-0015 Accepted**: `dream` parallel default + `compute$dream_workers` auto-detect. Speedup 12-18x. Stima Layer A wall ~17-28h overnight.
-- **Bench DE methods**: M3 limma+dupCor 20-63x piu' veloce di dream ma ρ logFC scende a 0.947 a k=11. dream mantenuto come default scientificamente.
-- **Fix #1** (`b5bd59f`): MEGA-AUG dedup samples + per-sample study map (cyclic bug latente).
-- **Fix #2** (`699dc49`): MEGA path dedup + rank-deficient skip + pooling_warnings.
+- **Task 21 MEGA-AUG bidirezionale** implementato (B della decisione baseline-pool): findings paper-grade + spec + T1-T8 + T11 + 2 hotfix. 13 commit oltre `facfc0c`.
+- **Suite Stadio 4**: 288 PASS / 0 FAIL / 1 SKIP.
+- **Doc**: `docs/findings/2026-05-20-mega-aug-bidirectional-method.md` (paper-grade) + `docs/superpowers/specs/2026-05-20-p5-stadio4-mega-aug-bidirezionale-design.md` (spec implementativa).
+- **Test 5.1 anchor matching**: relaxed policy sensitivity 94.7% / specificity 100% (mini-gold 29 candidati). Coverage analysis: 92% pair Layer A hanno augmentation effettiva.
 
-**Fullrun bloccato (2 tentativi falliti)**:
-- Tentativo 1 (43 min, exit=1): `duplicate row.names GSM4556584` path MEGA-AUG → fix #1.
-- Tentativo 2 (29 min, exit=1): STESSO errore path MEGA → fix #2.
-- Tentativo 3 NON eseguito. Smoke 5-pick post-fix#2 mostra che il fix tecnico funziona MA solleva decisione scientifica aperta sui cluster baseline-pool (es. `group_L0_c62104eb` ha 19 control + 1 treated, anchor "untreated CD4+ T cells"). 
+**Fullrun Layer A bloccato — 4 tentativi falliti (2026-05-20/21)**:
+- #1 (1h 11m): `Sample IDs not found in H5` → hotfix #1 `081fde6` (pre-filter stage2 vs H5) — verificato OK.
+- #2 (6h 49m): `duplicate row.names` path non coperto → hotfix #2 `f3d194c` (tryCatch wrap) — parziale.
+- #3 (39 min): OOM da orphan workers → cleanup procedurale.
+- #4 (8h 6m): OOM da cluster MEGA grande × 100 dream worker su 251 GB.
 
-**Decisione scientifica aperta**: vedi `docs/superpowers/specs/2026-05-20-p5-stadio4-fullrun-handoff.md` open issue #2 — gli all-same-role cluster sono baseline-pool, non MEGA-contrast. 3 opzioni (A/B/C) da discutere con utente prima di chiudere il fullrun.
+**2 problemi APERTI** (da debuggare sistematicamente, NON con altri fullrun):
+- **A**: 3 cluster `mega_aug` falliscono con `duplicate row.names` (skippati dal tryCatch ma bug reale).
+- **B**: OOM su cluster MEGA grande — serve worker cap (ridotto/dinamico) o switch DGX (2 TB RAM).
 
-**Handoff doc**: `docs/superpowers/specs/2026-05-20-p5-stadio4-fullrun-handoff.md` — riepilogo completo + tasks per la nuova sessione.
+**Handoff doc**: `docs/superpowers/specs/2026-05-21-p5-stadio4-debugging-handoff.md` — la nuova sessione è **SOLO debugging**: isolare A e B con test minimali riproducibili, validare, POI ri-tentare il fullrun. NO whack-a-mole.
 
 ---
 
