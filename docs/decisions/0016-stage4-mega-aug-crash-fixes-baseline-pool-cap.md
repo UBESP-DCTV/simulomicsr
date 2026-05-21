@@ -114,10 +114,25 @@ augmentato `k` volte il braccio del pair e' `1 - 1/k`: k=5 → 80%, k=20 →
 beneficio costa 125 GB e un'ora.
 
 Quindi: cap il numero di sample baseline aggiunti per braccio a `N`. Oltre
-`N` si sotto-campiona (deterministico, seed dal cluster_id). Bounding la
-dimensione del cluster, il problema memoria e' risolto a monte — **un cap
-worker dinamico NON serve** (un cluster cappato a poche centinaia di sample
-gira a 100 worker entro pochi GB).
+`N` si sotto-campiona (deterministico, seed dal cluster_id). Questo bound-a
+la dimensione di OGNI cluster Layer A a poche centinaia di sample.
+
+### Decisione 3b: cap statico sui dream worker
+
+Il solo pool cap NON basta. Misura empirica 2026-05-22
+(`analysis/p5-stage4-debug-dream-workers-mem.R`) su un cluster cappato
+(~510 sample): `dream` consuma **~1 GB di RAM per worker** —
+16 worker -> 27 GB, 32 worker -> 43 GB, ~100 worker -> ~115 GB. La
+memcurve citata da ADR-0015 ("~10-15 GB con 100 worker") misurava di fatto
+il **fallback limma**, non `dream` (vedi Decisione 2: `dream` non girava).
+`dream` reale a 100 worker e' molto piu' pesante.
+
+Poiche' il pool cap rende tutti i cluster ~uniformi (≤ ~550 sample), un
+cap **statico** sui worker basta (niente cap dinamico). Scelto
+`dream_workers_cap = 32` (ADR-0015 era 100): picco ~43 GB per cluster,
+margine ampio sotto i 251 GB del laptop anche con overlap di worker
+orfani tra cluster consecutivi. Wall ~100s/cluster sul cluster cappato
+piu' grande. Revisione di ADR-0015 limitatamente a `dream_workers_cap`.
 
 ### Calibrazione del valore N — curva di saturazione
 
@@ -173,7 +188,8 @@ footprint memoria e' largamente sotto i limiti del laptop.
 - `R/stage4-dream-mega.R`: guardie difensive `anyDuplicated` (sample) +
   `make.unique` (gene).
 - `R/stage4-counts-cache.R`: `make.unique` sui simboli gene.
-- `R/stage4-config.R`: `mega_aug$max_baseline_per_arm`.
+- `R/stage4-config.R`: `mega_aug$max_baseline_per_arm = 350` +
+  `compute$dream_workers_cap` 100 -> 32.
 - Commit: `25c158d` (Problema A), `f3ce3af` (gene symbols), `d5f6040`
   (Problema B).
 
