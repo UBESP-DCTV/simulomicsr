@@ -54,9 +54,12 @@ stage4_default_config <- function() {
       # l'augmentation non aggiunge potenza (rendimenti decrescenti: il
       # contrasto e' limitato dal braccio del pair, n_aug >> n_pair non aiuta).
       # Se il braccio augmentato avrebbe > N sample baseline, si sotto-campiona
-      # a N (seeded, riproducibile). NA = nessun cap. Valore calibrato dalla
-      # curva di saturazione: analysis/p5-stage4-debug-problemB-saturation.R.
-      max_baseline_per_arm   = NA_integer_,
+      # a N (seeded, riproducibile). NA = nessun cap. Valore N = 350 calibrato
+      # dalla curva di saturazione (analysis/p5-stage4-debug-problemB-saturation.R,
+      # ADR-0016): a cap 350 la correlazione logFC col pool pieno e' 0.997 e il
+      # n. geni significativi e' al picco; oltre 350 il risultato non migliora
+      # (a cap 600 n_sig cala — sample baseline extra aggiungono rumore).
+      max_baseline_per_arm   = 350L,
       franchini_correction   = TRUE             # attiva correzione shared-baseline
                                                  # nel REM pooling (T6/T7).
     ),

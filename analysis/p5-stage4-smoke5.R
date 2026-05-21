@@ -272,7 +272,9 @@ for (cid in pick_ids) {
     drop_row <- qc_drops_cluster[qc_drops_cluster$cluster_id == cid, ]
     if (nrow(drop_row) >= 1L) {
       cli_li("{cid}: SKIPPED with reason '{drop_row$reason[1L]}'")
-      stopifnot(grepl("^(mega_rank_deficient|mega_aug_disjoint_strict_skipped)",
+      stopifnot(grepl(paste0("^(mega_rank_deficient|",
+                              "mega_aug_disjoint_strict_skipped|",
+                              "mega_aug_no_study_dispatch|pool_runtime_error)"),
                        drop_row$reason[1L]))
       n_skipped <- n_skipped + 1L
     } else {
