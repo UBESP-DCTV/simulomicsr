@@ -344,3 +344,50 @@ test_that("bidir senza candidate ritorna solo le pair rows + NA kinds", {
   expect_null(res$baseline_pool_ids$control)
   expect_null(res$baseline_pool_ids$treated)
 })
+
+test_that("bidir: max_baseline_per_arm cappa il baseline pool per braccio", {
+  # Problema B: cap dimensione baseline pool. Con cap=3, ogni braccio
+  # augmentato tiene al massimo 3 sample baseline (sotto-campionati).
+  pair_cluster <- make_pair_cluster_list()
+  group_baseline <- make_group_baseline()
+  matcher <- make_anchor_matcher("strict")
+  res <- .assemble_mega_aug_metadata_bidir(
+    pair_cluster, group_baseline, matcher, direction = "both",
+    max_baseline_per_arm = 3L
+  )
+  bl_c <- sum(res$metadata$sample_id %in% paste0("GSM_BC_", 1:8))
+  bl_t <- sum(res$metadata$sample_id %in% paste0("GSM_BT_", 1:6))
+  expect_equal(bl_c, 3L)
+  expect_equal(bl_t, 3L)
+  # 4 pair + 3 control + 3 treated = 10
+  expect_equal(nrow(res$metadata), 10L)
+  expect_equal(anyDuplicated(res$metadata$sample_id), 0L)
+})
+
+test_that("bidir: max_baseline_per_arm = NA (default) non cappa", {
+  pair_cluster <- make_pair_cluster_list()
+  group_baseline <- make_group_baseline()
+  matcher <- make_anchor_matcher("strict")
+  res <- .assemble_mega_aug_metadata_bidir(
+    pair_cluster, group_baseline, matcher, direction = "both"
+  )
+  # 4 pair + 8 control + 6 treated = 18 (pool pieni)
+  expect_equal(nrow(res$metadata), 18L)
+})
+
+test_that(".seeded_subsample e' deterministico e non inquina il RNG globale", {
+  s1 <- .seeded_subsample(100L, 10L, "poolX")
+  s2 <- .seeded_subsample(100L, 10L, "poolX")
+  expect_identical(s1, s2)                       # deterministico
+  expect_length(s1, 10L)
+  expect_true(all(s1 %in% 1:100))
+  expect_identical(s1, sort(s1))                 # ordinato
+  expect_identical(.seeded_subsample(5L, 10L, "x"), 1:5)  # k>=n -> tutti
+  # RNG globale ripristinato: la sequenza esterna prosegue come se la
+  # funzione non fosse mai stata chiamata.
+  set.seed(123); a <- runif(3)
+  set.seed(123); b1 <- runif(1)
+  invisible(.seeded_subsample(100L, 10L, "poolY"))
+  b2 <- runif(2)
+  expect_equal(c(b1, b2), a)
+})

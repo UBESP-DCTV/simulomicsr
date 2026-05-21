@@ -124,6 +124,10 @@
 #'   \code{"both"}. Default \code{"both"}.
 #' @param min_baseline_studies integer(1): default \code{2L}. Forwarded a
 #'   \code{find_baseline_for_pair}.
+#' @param max_baseline_per_arm integer(1) o \code{NA}: cap sul numero di
+#'   sample baseline aggiunti per braccio (Problema B). Se un baseline pool
+#'   augmenterebbe il braccio con piu' di N sample, viene sotto-campionato a
+#'   N (deterministico). \code{NA} (default) = nessun cap.
 #' @return list con 8 componenti:
 #'   \itemize{
 #'     \item \code{metadata}: tibble \code{sample_id|study|treatment}.
@@ -145,7 +149,8 @@
 .assemble_mega_aug_metadata_bidir <- function(pair_cluster, group_baseline,
                                                 matcher,
                                                 direction = c("both", "control", "treated"),
-                                                min_baseline_studies = 2L) {
+                                                min_baseline_studies = 2L,
+                                                max_baseline_per_arm = NA_integer_) {
   direction <- match.arg(direction)
 
   # 1. Pair rows con dedup (logica identica al legacy: vedi
@@ -250,6 +255,23 @@
     )
     bs_set <- unique(unlist(grp$studies_in_cluster))
     augmented <- setdiff(bs_set, pair_cluster$studies_in_cluster)
+
+    # Cap dimensione baseline pool (Problema B). Se questo braccio verrebbe
+    # augmentato con piu' di max_baseline_per_arm sample, sotto-campiona: oltre
+    # il punto di saturazione l'augmentation non aggiunge potenza (rendimenti
+    # decrescenti — il contrasto e' limitato dal braccio del pair) ma fa
+    # esplodere memoria/tempo della DE. Subsample deterministico (seed dal
+    # cluster_id del pool) + ricalcolo di baseline_studies/n_studies_augmented
+    # dal set effettivamente tenuto, cosi' i diagnostics restano onesti.
+    if (!is.na(max_baseline_per_arm) &&
+        nrow(rows) > as.integer(max_baseline_per_arm)) {
+      keep_idx <- .seeded_subsample(nrow(rows), as.integer(max_baseline_per_arm),
+                                     seed_key = top$baseline_cluster_id)
+      rows <- rows[keep_idx, , drop = FALSE]
+      bs_set <- unique(as.character(rows$study))
+      augmented <- setdiff(bs_set, pair_cluster$studies_in_cluster)
+    }
+
     list(
       rows = rows,
       n_studies_augmented = length(augmented),
@@ -335,4 +357,35 @@
     ),
     bidir_collapsed_to_mono               = bidir_collapsed_to_mono
   )
+}
+
+#' Sotto-campiona k indici da n in modo deterministico
+#'
+#' Helper del cap dimensione baseline pool (Problema B,
+#' \code{.assemble_mega_aug_metadata_bidir}). Il seed e' derivato da
+#' \code{seed_key} (il \code{cluster_id} del pool): lo stesso pool produce
+#' sempre lo stesso sotto-campione (riproducibilita'). Lo stato RNG globale
+#' del chiamante e' salvato e ripristinato \emph{via} \code{on.exit}, cosi'
+#' la funzione non altera la sequenza RNG esterna.
+#'
+#' @param n integer: dimensione della popolazione.
+#' @param k integer: dimensione campione desiderata. Se \code{k >= n}
+#'   ritorna tutti gli indici.
+#' @param seed_key character/atomic: chiave da cui derivare il seed.
+#' @return integer vector ordinato di indici, lunghezza \code{min(k, n)}.
+#' @keywords internal
+.seeded_subsample <- function(n, k, seed_key) {
+  if (k >= n) return(seq_len(n))
+  has_old <- exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)
+  old <- if (has_old) get(".Random.seed", envir = .GlobalEnv) else NULL
+  on.exit({
+    if (has_old) {
+      assign(".Random.seed", old, envir = .GlobalEnv)
+    } else if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) {
+      rm(".Random.seed", envir = .GlobalEnv)
+    }
+  })
+  seed <- sum(utf8ToInt(as.character(seed_key))) %% 2147483647L
+  set.seed(seed)
+  sort(sample.int(n, k))
 }
