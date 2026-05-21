@@ -203,6 +203,25 @@
       out_list[[length(out_list) + 1L]] <- pool
 
     } else if (method == "mega_aug") {
+      # Guardia: un cluster mega_aug (mode=pair) senza study_dispatch non ha
+      # record di comparison risolvibili in stage2_master -> nessun pair reale.
+      # Processarlo produrrebbe metadata baseline-only (contrasto spurio
+      # baseline-vs-baseline). Skippato esplicitamente in non_processable.
+      # Discovery scan 2026-05-21: 5 cluster (es. pair_L0_95117985). La causa
+      # upstream (record_id non risolvibili in Stage 2/3) e' un follow-up.
+      if (is.null(dispatch[[cid]]) || length(dispatch[[cid]]) == 0L) {
+        non_processable_list[[length(non_processable_list) + 1L]] <-
+          tibble::tibble(
+            cluster_id         = cid,
+            original_k         = NA_integer_,
+            qc_final_k         = NA_integer_,
+            original_n_studies = NA_integer_,
+            qc_final_n_studies = NA_integer_,
+            reason             = "mega_aug_no_study_dispatch"
+          )
+        next
+      }
+
       # Parsa anchor_key del pair-cluster in treated/control (vedi
       # .parse_pair_anchor_key + Stage 3 encoding "<tk>__VS__<ck>__CT_<ct>")
       parsed_key <- .parse_pair_anchor_key(
@@ -283,7 +302,8 @@
             n_baseline_studies_augmented_control = assembled$n_baseline_studies_augmented_control,
             n_baseline_studies_augmented_treated = assembled$n_baseline_studies_augmented_treated,
             baseline_pool_id_control            = assembled$baseline_pool_ids$control %||% NA_character_,
-            baseline_pool_id_treated            = assembled$baseline_pool_ids$treated %||% NA_character_
+            baseline_pool_id_treated            = assembled$baseline_pool_ids$treated %||% NA_character_,
+            bidir_collapsed_to_mono             = isTRUE(assembled$bidir_collapsed_to_mono)
           )
 
         # Backward-compat per .run_dream_mega: somma dei n augmented totali.
@@ -330,7 +350,8 @@
           comparison_kind_overall              = assembled$comparison_kind_overall,
           n_baseline_studies_augmented_control = assembled$n_baseline_studies_augmented_control,
           n_baseline_studies_augmented_treated = assembled$n_baseline_studies_augmented_treated,
-          baseline_pool_ids                    = assembled$baseline_pool_ids
+          baseline_pool_ids                    = assembled$baseline_pool_ids,
+          bidir_collapsed_to_mono              = isTRUE(assembled$bidir_collapsed_to_mono)
         )
       }
       out_list[[length(out_list) + 1L]] <- pool
@@ -387,7 +408,8 @@
       n_baseline_studies_augmented_control = integer(0L),
       n_baseline_studies_augmented_treated = integer(0L),
       baseline_pool_id_control            = character(0L),
-      baseline_pool_id_treated            = character(0L)
+      baseline_pool_id_treated            = character(0L),
+      bidir_collapsed_to_mono             = logical(0L)
     )
   }
 
