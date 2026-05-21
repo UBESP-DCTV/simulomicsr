@@ -51,6 +51,38 @@
   counts
 }
 
+#' Memo degli assi H5 (sample axis + gene axis)
+#'
+#' \code{.fetch_counts_from_h5} e' chiamato migliaia di volte in un fullrun
+#' (una per studio per cluster). Ri-leggere ad ogni chiamata i ~888k
+#' \code{geo_accession} e i ~67k \code{genes/symbol} dominava il wall.
+#' Gli assi sono immutabili per un dato file H5: memoizzati nel namespace.
+#'
+#' @keywords internal
+.h5_axis_memo <- new.env(parent = emptyenv())
+
+#' Sample axis (geo_accession) di un H5, memoizzato
+#' @keywords internal
+.h5_sample_axis <- function(h5_path) {
+  k <- paste0("samples::", h5_path)
+  if (is.null(.h5_axis_memo[[k]])) {
+    .h5_axis_memo[[k]] <- as.character(
+      rhdf5::h5read(h5_path, "meta/samples/geo_accession"))
+  }
+  .h5_axis_memo[[k]]
+}
+
+#' Gene axis (HGNC symbol, make.unique) di un H5, memoizzato
+#' @keywords internal
+.h5_gene_axis <- function(h5_path) {
+  k <- paste0("genes::", h5_path)
+  if (is.null(.h5_axis_memo[[k]])) {
+    .h5_axis_memo[[k]] <- make.unique(as.character(
+      rhdf5::h5read(h5_path, "meta/genes/symbol")))
+  }
+  .h5_axis_memo[[k]]
+}
+
 #' Fetch counts da ARCHS4 H5 (low-level, no cache)
 #'
 #' @param gse string GSE accession
@@ -60,8 +92,8 @@
 #'   colnames GSM accession.
 #' @keywords internal
 .fetch_counts_from_h5 <- function(gse, sample_ids, h5_path) {
-  # Read sample index from h5 meta
-  all_gsm <- rhdf5::h5read(h5_path, "meta/samples/geo_accession")
+  # Sample index dall'asse H5 memoizzato (vedi .h5_sample_axis)
+  all_gsm <- .h5_sample_axis(h5_path)
   idx <- match(sample_ids, all_gsm)
   if (any(is.na(idx))) {
     stop(sprintf("Sample IDs not found in H5: %s",
@@ -75,17 +107,15 @@
   counts <- t(counts)
   storage.mode(counts) <- "integer"
 
-  # Rownames = HGNC symbol; colnames = GSM.
-  # ARCHS4 v2.5 meta/genes/symbol NON e' unico: 4638/67186 simboli sono
-  # duplicati (es. KIR3DL2 compare 43 volte — piu' gene Ensembl mappati allo
-  # stesso simbolo HGNC). Rownames duplicati fanno fallire dream con
-  # "duplicate 'row.names' are not allowed" -> .run_dream_mega ripiega
-  # silenziosamente sul fallback limma. make.unique disambigua (KIR3DL2,
-  # KIR3DL2.1, ...) senza perdere righe ed e' deterministico: ogni fetch
-  # produce gli stessi rownames -> il concat cross-study dell'orchestrator
-  # (intersect rownames) resta coerente. Discovery 2026-05-21.
-  genes <- make.unique(as.character(rhdf5::h5read(h5_path, "meta/genes/symbol")))
-  rownames(counts) <- genes
+  # Rownames = HGNC symbol (gene axis memoizzato, vedi .h5_gene_axis); colnames
+  # = GSM. ARCHS4 v2.5 meta/genes/symbol NON e' unico: 4638/67186 simboli sono
+  # duplicati (es. KIR3DL2 x43 — piu' gene Ensembl sullo stesso simbolo HGNC).
+  # Rownames duplicati fanno fallire dream con "duplicate 'row.names'" ->
+  # .run_dream_mega ripiega silenziosamente sul fallback limma. .h5_gene_axis
+  # applica make.unique (KIR3DL2, KIR3DL2.1, ...), deterministico: ogni fetch
+  # produce gli stessi rownames -> concat cross-study coerente. Discovery
+  # 2026-05-21.
+  rownames(counts) <- .h5_gene_axis(h5_path)
   colnames(counts) <- sample_ids
 
   counts
