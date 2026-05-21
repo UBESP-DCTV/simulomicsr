@@ -26,14 +26,15 @@ stage4_default_config <- function() {
     ),
     compute = list(
       workers_offset   = 10L,
-      # dream_workers_cap 100 -> 32 (ADR-0016, 2026-05-22). Misura empirica:
-      # dream su un cluster cappato (~510 sample) usa ~1 GB di RAM per worker
-      # (16w->27GB, 32w->43GB, ~100w->~115GB). La memcurve di ADR-0015 (10-15
-      # GB) misurava di fatto il fallback limma, NON dream (vedi ADR-0016
-      # sub-finding simboli gene). A 32 worker il picco per-cluster e' ~43 GB:
-      # margine ampio anche con overlap di worker orfani tra cluster, sicuro
-      # per il fullrun unattended sul laptop 251 GB.
-      dream_workers_cap = 32L,
+      # dream_workers_cap 100 -> 16 (ADR-0016, 2026-05-22). Misura in
+      # ISOLAMENTO: dream su cluster cappato (~510 sample) ~1 GB/worker
+      # (16w->27GB, 32w->43GB). Ma nel contesto reale build_stage4_results
+      # il processo R tiene in memoria stage2_master + stato accumulato:
+      # ogni worker forkato ne fa una copia COW -> nel fullrun dream@32 ha
+      # toccato ~127 GB per cluster (validate-cap 2026-05-22). Costo reale
+      # ~3.4 GB/worker. A 16 worker il picco per-cluster e' ~75 GB: margine
+      # sicuro sotto i 251 GB del laptop per il fullrun unattended.
+      dream_workers_cap = 16L,
       dream_workers    = NA_integer_  # NA = auto-detect (availableCores -
                                        # workers_offset, capped a
                                        # dream_workers_cap). Vedi

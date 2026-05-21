@@ -128,11 +128,28 @@ il **fallback limma**, non `dream` (vedi Decisione 2: `dream` non girava).
 `dream` reale a 100 worker e' molto piu' pesante.
 
 Poiche' il pool cap rende tutti i cluster ~uniformi (≤ ~550 sample), un
-cap **statico** sui worker basta (niente cap dinamico). Scelto
-`dream_workers_cap = 32` (ADR-0015 era 100): picco ~43 GB per cluster,
-margine ampio sotto i 251 GB del laptop anche con overlap di worker
-orfani tra cluster consecutivi. Wall ~100s/cluster sul cluster cappato
-piu' grande. Revisione di ADR-0015 limitatamente a `dream_workers_cap`.
+cap **statico** sui worker basta (niente cap dinamico).
+
+**Misura in contesto reale.** La memcurve isolata (dream@32 -> 43 GB) ha
+sottostimato: nel pipeline reale `build_stage4_results` il processo R
+tiene in memoria `stage2_master` + stato accumulato, e ogni worker forkato
+ne fa una copia COW. Validazione end-to-end 2026-05-22: dream@32 su un
+cluster cappato ha toccato **~127 GB**. Costo reale ~3.4 GB/worker (vs
+~1 GB/worker in isolamento).
+
+Scelto **`dream_workers_cap = 16`** (ADR-0015 era 100): picco per-cluster
+~75 GB nel contesto reale — margine sicuro sotto i 251 GB del laptop per
+un fullrun unattended. I worker SONO reciclati tra cluster (verificato:
+32 figli = un solo cluster, nessun accumulo di orfani). Revisione di
+ADR-0015 limitatamente a `dream_workers_cap`.
+
+### Decisione 3c: memoization assi H5
+
+`.fetch_counts_from_h5` ri-leggeva i ~888k `geo_accession` + ~67k
+`genes/symbol` ad OGNI chiamata (una per studio per cluster, migliaia di
+volte). Dominava il wall del fullrun (~⅔ del tempo per-cluster). Gli assi
+H5 sono immutabili: memoizzati nel namespace (`.h5_sample_axis`,
+`.h5_gene_axis`). Riduce il fullrun stimato da ~60h a ~30h.
 
 ### Calibrazione del valore N — curva di saturazione
 

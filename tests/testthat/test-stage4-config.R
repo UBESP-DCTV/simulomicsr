@@ -46,9 +46,10 @@ test_that("compute$workers usa availableCores - 10 di default", {
 test_that("compute$dream_workers default e' NA (auto-detect)", {
   cfg <- stage4_default_config()
   expect_true(is.na(cfg$compute$dream_workers))
-  # dream_workers_cap 100 -> 32 (ADR-0016): dream usa ~1 GB RAM/worker su
-  # cluster cappato; 32 worker = ~43 GB picco, sicuro per il fullrun.
-  expect_equal(cfg$compute$dream_workers_cap, 32L)
+  # dream_workers_cap 100 -> 16 (ADR-0016): nel contesto build_stage4_results
+  # dream costa ~3.4 GB/worker (fork COW dello stato pesante); 16 worker =
+  # ~75 GB picco per-cluster, sicuro per il fullrun unattended.
+  expect_equal(cfg$compute$dream_workers_cap, 16L)
 })
 
 test_that(".resolve_dream_workers auto-detect cap a dream_workers_cap", {
