@@ -75,8 +75,16 @@
   counts <- t(counts)
   storage.mode(counts) <- "integer"
 
-  # Rownames = HGNC symbol; colnames = GSM
-  genes <- rhdf5::h5read(h5_path, "meta/genes/symbol")
+  # Rownames = HGNC symbol; colnames = GSM.
+  # ARCHS4 v2.5 meta/genes/symbol NON e' unico: 4638/67186 simboli sono
+  # duplicati (es. KIR3DL2 compare 43 volte — piu' gene Ensembl mappati allo
+  # stesso simbolo HGNC). Rownames duplicati fanno fallire dream con
+  # "duplicate 'row.names' are not allowed" -> .run_dream_mega ripiega
+  # silenziosamente sul fallback limma. make.unique disambigua (KIR3DL2,
+  # KIR3DL2.1, ...) senza perdere righe ed e' deterministico: ogni fetch
+  # produce gli stessi rownames -> il concat cross-study dell'orchestrator
+  # (intersect rownames) resta coerente. Discovery 2026-05-21.
+  genes <- make.unique(as.character(rhdf5::h5read(h5_path, "meta/genes/symbol")))
   rownames(counts) <- genes
   colnames(counts) <- sample_ids
 
