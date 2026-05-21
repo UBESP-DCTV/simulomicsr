@@ -124,7 +124,7 @@
 #'   \code{"both"}. Default \code{"both"}.
 #' @param min_baseline_studies integer(1): default \code{2L}. Forwarded a
 #'   \code{find_baseline_for_pair}.
-#' @return list con 7 componenti:
+#' @return list con 8 componenti:
 #'   \itemize{
 #'     \item \code{metadata}: tibble \code{sample_id|study|treatment}.
 #'     \item \code{n_baseline_studies_augmented_control}: integer.
@@ -136,6 +136,10 @@
 #'           indirect_disjoint), \code{NA} se nessun augmentation.
 #'     \item \code{baseline_pool_ids}: named list con \code{control} e
 #'           \code{treated}, ciascuno cluster_id (character) o \code{NULL}.
+#'     \item \code{bidir_collapsed_to_mono}: logical(1). \code{TRUE} se lo
+#'           stesso group baseline pool matchava entrambi i bracci e il
+#'           dispatch e' stato collassato a monodirezionale (augmenta solo
+#'           \code{control}). Vedi sez. 3b del corpo funzione.
 #'   }
 #' @keywords internal
 .assemble_mega_aug_metadata_bidir <- function(pair_cluster, group_baseline,
@@ -194,6 +198,28 @@
     if (cnd$arm == "treated" && is.null(top_treated)) top_treated <- cnd
   }
 
+  # 3b. Collision guard: se lo STESSO group baseline pool e' selezionato per
+  # entrambi i bracci, aggiungerlo sia a control sia a treated duplica i
+  # sample_id (crash "duplicate 'row.names'" in .run_dream_mega) e produce un
+  # contrasto scientificamente nullo (gli stessi sample come reference E come
+  # treated). Accade quando treated_anchor e control_anchor del pair sono
+  # indistinguibili: identici ai level >= 2 (dove i tier C/D sono gia'
+  # droppati), oppure differenti solo nei relaxed_segments (dose/duration/
+  # has_engineered) a L0/L1 -> ogni pool che matcha un braccio matcha anche
+  # l'altro. Fix Opzione 1 (decisione utente 2026-05-21): collassa a
+  # monodirezionale augmentando SOLO il braccio control (= comportamento
+  # legacy validato, bias eventuale conservativo verso il nulla) e marca il
+  # cluster con bidir_collapsed_to_mono. Discovery: fullrun #4 2026-05-21,
+  # cluster pair_L0_e45151a4 / pair_L1_37c75531 / pair_L2_a28b250f (vedi
+  # docs/superpowers/specs/2026-05-21-p5-stadio4-debugging-handoff.md).
+  bidir_collapsed_to_mono <- FALSE
+  if (!is.null(top_control) && !is.null(top_treated) &&
+      identical(top_control$baseline_cluster_id,
+                top_treated$baseline_cluster_id)) {
+    top_treated <- NULL
+    bidir_collapsed_to_mono <- TRUE
+  }
+
   # Helper interno: estrae baseline rows dedup-late da un cluster_id.
   build_baseline_rows <- function(top, treatment_label) {
     if (is.null(top)) {
@@ -233,6 +259,29 @@
 
   control_block <- build_baseline_rows(top_control, "control")
   treated_block <- build_baseline_rows(top_treated, "treated")
+
+  # 3c. Cross-pool conflict drop. Anche con due baseline pool DIVERSI
+  # (cluster_id distinti), uno stesso GSM puo' comparire in entrambi quando e'
+  # presente in replicate_group assegnati a group cluster diversi (duplicazione
+  # ARCHS4 super-series: identico GSM in piu' GSE). Comparire come control E
+  # treated lo duplicherebbe (crash) + gli assegnerebbe un ruolo ambiguo. Il
+  # sample condiviso e' rimosso da ENTRAMBI i blocchi baseline — coerente con
+  # .build_mega_metadata_safe (role_conflict_dropped): paper-grade, non si
+  # assume un ruolo arbitrario. I sample del pair sono gia' esclusi a monte
+  # (pair_all) e hanno priorita'. Discovery: scan 2026-05-21, 7 cluster (es.
+  # pair_L3_9e9a4909 13 sample, pair_L4_6155f541 13 sample).
+  if (!is.null(control_block$rows) && !is.null(treated_block$rows)) {
+    shared_baseline <- intersect(control_block$rows$sample_id,
+                                  treated_block$rows$sample_id)
+    if (length(shared_baseline) > 0L) {
+      control_block$rows <- control_block$rows[
+        !control_block$rows$sample_id %in% shared_baseline, , drop = FALSE]
+      treated_block$rows <- treated_block$rows[
+        !treated_block$rows$sample_id %in% shared_baseline, , drop = FALSE]
+      if (nrow(control_block$rows) == 0L) control_block$rows <- NULL
+      if (nrow(treated_block$rows) == 0L) treated_block$rows <- NULL
+    }
+  }
 
   # 4. Assemble metadata
   metadata <- pair_rows
@@ -283,6 +332,7 @@
     baseline_pool_ids                     = list(
       control = if (ctrl_effective) top_control$baseline_cluster_id else NULL,
       treated = if (trt_effective) top_treated$baseline_cluster_id else NULL
-    )
+    ),
+    bidir_collapsed_to_mono               = bidir_collapsed_to_mono
   )
 }

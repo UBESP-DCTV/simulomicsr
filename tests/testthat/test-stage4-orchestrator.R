@@ -141,3 +141,48 @@ test_that(".run_per_study_de_all itera su REM + MEGA-AUG pair-side", {
   expect_true(any(result$cluster_id == "mega_aug_k2"))
   expect_equal(length(unique(result$study_id[result$cluster_id == "rem_k3"])), 3L)
 })
+
+test_that(".pool_all_clusters skippa mega_aug senza study_dispatch (no_dispatch)", {
+  # Discovery scan 2026-05-21: 5 cluster mega_aug hanno study_dispatch NULL
+  # (record_id di comparison non risolvibili in stage2_master -> nessun pair
+  # reale). Devono finire in non_processable con reason esplicito, NON
+  # produrre un contrasto spurio baseline-only ne' crashare.
+  eligible <- tibble::tibble(
+    cluster_id = "mega_aug_nodisp",
+    method     = "mega_aug",
+    level      = 4L,
+    mode       = factor("pair", levels = c("pair", "group")),
+    anchor_key = "small_molecule|X|stomach__VS__vehicle_only|Y|stomach",
+    direction_check = factor("na",
+                              levels = c("canonical", "swapped", "ambiguous",
+                                         "indeterminate", "na")),
+    studies_in_cluster = list(c("GSE_a", "GSE_b"))
+  )
+  # study_dispatch NON contiene il cluster -> dispatch[[cid]] e' NULL.
+  attr(eligible, "study_dispatch") <- list()
+  attr(eligible, "group_dispatch") <- list()
+
+  stage3_clusters <- tibble::tibble(
+    cluster_id = character(0L),
+    mode = factor(character(0L), levels = c("pair", "group")),
+    level = integer(0L), anchor_key = character(0L),
+    studies_in_cluster = list(), sample_ids = list(), sample_studies = list()
+  )
+
+  pooled <- .pool_all_clusters(
+    per_study_de = .empty_per_study_de(),
+    eligible_clusters = eligible,
+    # fetch_fn errerebbe se la guardia non scattasse PRIMA del fetch.
+    fetch_fn = function(g, s) stop("fetch_fn non deve essere chiamato"),
+    stage3_clusters = stage3_clusters,
+    workers = 1L, dream_workers_cap = 2L
+  )
+
+  # Nessun output per quel cluster.
+  expect_false("mega_aug_nodisp" %in% pooled$cluster_id)
+  # Registrato in non_processable con reason esplicito.
+  np <- attr(pooled, "non_processable_in_pool")
+  expect_true("mega_aug_nodisp" %in% np$cluster_id)
+  expect_equal(np$reason[np$cluster_id == "mega_aug_nodisp"],
+               "mega_aug_no_study_dispatch")
+})

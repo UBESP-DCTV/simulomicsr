@@ -10,7 +10,8 @@
   fetch_fn,
   stage3_clusters,
   workers = 1L,
-  dream_workers_cap = 8L
+  dream_workers_cap = 8L,
+  mega_aug_config = NULL
 )
 }
 \arguments{
@@ -27,6 +28,12 @@
 
 \item{dream_workers_cap}{integer cap workers BiocParallel passato a dream
 (default 8L).}
+
+\item{mega_aug_config}{list (default NULL = legacy monodirectional). Se
+non-NULL e \code{legacy_monodirectional = FALSE}, attiva il dispatch
+bidirezionale via \code{.assemble_mega_aug_metadata_bidir} con anchor
+policy + direction + disjoint_policy specificati (vedi
+\code{stage4_default_config()$mega_aug}).}
 }
 \value{
 tibble \code{cluster_pooled.parquet} schema; vuoto se nessun
