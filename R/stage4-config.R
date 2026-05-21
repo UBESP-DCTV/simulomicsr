@@ -26,11 +26,18 @@ stage4_default_config <- function() {
     ),
     compute = list(
       workers_offset   = 10L,
-      dream_workers_cap = 100L,
+      # dream_workers_cap 100 -> 32 (ADR-0016, 2026-05-22). Misura empirica:
+      # dream su un cluster cappato (~510 sample) usa ~1 GB di RAM per worker
+      # (16w->27GB, 32w->43GB, ~100w->~115GB). La memcurve di ADR-0015 (10-15
+      # GB) misurava di fatto il fallback limma, NON dream (vedi ADR-0016
+      # sub-finding simboli gene). A 32 worker il picco per-cluster e' ~43 GB:
+      # margine ampio anche con overlap di worker orfani tra cluster, sicuro
+      # per il fullrun unattended sul laptop 251 GB.
+      dream_workers_cap = 32L,
       dream_workers    = NA_integer_  # NA = auto-detect (availableCores -
                                        # workers_offset, capped a
                                        # dream_workers_cap). Vedi
-                                       # .resolve_dream_workers + ADR-0015.
+                                       # .resolve_dream_workers + ADR-0015/0016.
     ),
     mega_aug = list(
       # Default conservativo: legacy = TRUE -> orchestrator usa
