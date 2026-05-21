@@ -139,6 +139,14 @@
     cid <- eligible_clusters$cluster_id[i]
     method <- eligible_clusters$method[i]
 
+    # Wrap intero body con tryCatch: cluster failed -> registrato in
+    # non_processable + continue al successivo, invece di crashare l'intero
+    # pool. Discovery 2026-05-20 fullrun #2 (END=06:03:44, EXIT=1):
+    # "duplicate 'row.names' are not allowed" da un cluster non coperto
+    # dai fix #1+#2. Hotfix difensivo per produrre output parziale + diagnose
+    # in post-mortem invece di total fail.
+    crashed_in_cluster <- FALSE
+    tryCatch({
     if (method == "rem") {
       subset <- per_study_de[per_study_de$cluster_id == cid, ]
       pool <- .pool_rem_cluster(subset)
@@ -327,6 +335,22 @@
       }
       out_list[[length(out_list) + 1L]] <- pool
     }
+    }, error = function(e) {
+      msg <- conditionMessage(e)
+      message(sprintf("[pool_runtime_error] cluster %s (method=%s): %s",
+                       cid, method, msg))
+      non_processable_list[[length(non_processable_list) + 1L]] <<- tibble::tibble(
+        cluster_id         = cid,
+        original_k         = NA_integer_,
+        qc_final_k         = NA_integer_,
+        original_n_studies = NA_integer_,
+        qc_final_n_studies = NA_integer_,
+        reason             = sprintf("pool_runtime_error: %s",
+                                      substr(msg, 1L, 200L))
+      )
+      crashed_in_cluster <<- TRUE
+    })
+    # crashed_in_cluster e' solo per audit nei log dei test, niente da fare oltre
   }
 
   # Aggrega pooling_warnings (sample droppati per conflict/cross-study dup)
