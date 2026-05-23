@@ -53,26 +53,31 @@ Pipeline complessiva (5 stadi):
   che diverge da `design_role` — il gold "design-aware" è in
   `inst/extdata/p35c-minigold-reviewed-v5.csv` (100 sample, P3.5-C/D).
 
-## Stato corrente (2026-05-21 — P5 Stadio 4 Task 21 MEGA-AUG bidir IMPLEMENTATO — fullrun bloccato, NUOVA SESSIONE = SOLO DEBUGGING)
+## Stato corrente (2026-05-23 — P5 Stadio 4 Layer A fullrun COMPLETE, tag `p5-stadio4-complete`)
 
-### P5 Stadio 4 Task 21 (branch `p5-stadio4-de-perstudio`, HEAD `f3d194c`, 2026-05-20/21)
+### P5 Stadio 4 Task 21 chiusura — debugging sistematico + fullrun (branch `p5-stadio4-de-perstudio` ff-merged in master, 2026-05-22/23)
 
-- **Task 21 MEGA-AUG bidirezionale** implementato (B della decisione baseline-pool): findings paper-grade + spec + T1-T8 + T11 + 2 hotfix. 13 commit oltre `facfc0c`.
-- **Suite Stadio 4**: 288 PASS / 0 FAIL / 1 SKIP.
-- **Doc**: `docs/findings/2026-05-20-mega-aug-bidirectional-method.md` (paper-grade) + `docs/superpowers/specs/2026-05-20-p5-stadio4-mega-aug-bidirezionale-design.md` (spec implementativa).
-- **Test 5.1 anchor matching**: relaxed policy sensitivity 94.7% / specificity 100% (mini-gold 29 candidati). Coverage analysis: 92% pair Layer A hanno augmentation effettiva.
+Sessione di debugging sistematico post-handoff: 5 bug distinti isolati con riproduzione minimale + fix mirati (no whack-a-mole). 8 commit + 1 commit doc. Suite Stadio 4 finale: **322 PASS / 0 FAIL / 1 SKIP** (+34 vs handoff 288).
 
-**Fullrun Layer A bloccato — 4 tentativi falliti (2026-05-20/21)**:
-- #1 (1h 11m): `Sample IDs not found in H5` → hotfix #1 `081fde6` (pre-filter stage2 vs H5) — verificato OK.
-- #2 (6h 49m): `duplicate row.names` path non coperto → hotfix #2 `f3d194c` (tryCatch wrap) — parziale.
-- #3 (39 min): OOM da orphan workers → cleanup procedurale.
-- #4 (8h 6m): OOM da cluster MEGA grande × 100 dream worker su 251 GB.
+**Bug fixati questa sessione**:
 
-**2 problemi APERTI** (da debuggare sistematicamente, NON con altri fullrun):
-- **A**: 3 cluster `mega_aug` falliscono con `duplicate row.names` (skippati dal tryCatch ma bug reale).
-- **B**: OOM su cluster MEGA grande — serve worker cap (ridotto/dinamico) o switch DGX (2 TB RAM).
+- **Problema A — `duplicate row.names` MEGA-AUG bidir** (`25c158d`): 3 sotto-cause emerse dallo scan dei 310 cluster `mega_aug`. (a) 13 cluster con stesso baseline pool su entrambi i bracci → mono-fallback (Opzione 1: augmenta solo il braccio control, marca `bidir_collapsed_to_mono=TRUE` nelle diagnostiche). (b) 7 cluster con pool distinti ma GSM condivisi (super-series ARCHS4) → drop role-conflict da entrambi i bracci. (c) 5 cluster `mega_aug` senza pair risolvibile → skip-guard esplicito `mega_aug_no_study_dispatch`. Scan post-fix: 0/310 duplicati.
+- **Scoperta paper-grade: dream non aveva mai girato sui dati reali** (`f3ce3af`, ADR-0016 §Decision 2). ARCHS4 v2.5 `meta/genes/symbol` ha 4638/67186 simboli duplicati (paralogi PAR/KIR/HLA: più Ensembl ID legittimi mappano sullo stesso HGNC symbol). `dream` rifiuta rownames non unici → `.run_dream_mega` ripiegava silenziosamente sul fallback limma. Nessun risultato scientifico prodotto da questa pipeline è stato impattato (i 4 fullrun precedenti erano falliti prima del completamento; smoke test usavano fixture con simboli già unici). Fix: `make.unique()` deterministico in `.h5_gene_axis` (KIR3DL2, KIR3DL2.1, …) — cross-study coerente, niente perdita di informazione, niente aggregazione biased ante-test.
+- **Problema B — OOM su cluster MEGA-AUG grandi** (`d5f6040` + `f8fab2e` + `22a5a0f` + `8c6eba9`, ADR-0016). Due fix complementari:
+  - Cap dimensione baseline pool: `max_baseline_per_arm = 350` (calibrato da curva di saturazione su dati veri — `analysis/p5-stage4-debug-problemB-saturation.R`: a 350 correlazione logFC col pool pieno = 0.997, n. geni significativi al picco; oltre 350 il risultato non migliora).
+  - Worker cap: `dream_workers_cap` 100 → 16 (in isolamento dream costa ~1 GB/worker, ma in contesto reale `build_stage4_results` fork-COW dello state alza il costo a ~3.4 GB/worker — a 32 worker il picco era 127 GB; a 16 worker il picco per-cluster è ~71 GB, validato end-to-end sui 3 cluster `mega_aug` più grandi).
+  - Bonus: per-cluster progress logging + memoization assi H5 (`.h5_sample_axis` + `.h5_gene_axis` in env `.h5_axis_memo`).
+- **Dashboard render — volcano subsample** (`858d9bb`): a 13.7M righe il chunk `volcano-overall` produceva una stringa che eccedeva R max length nel post-process knitr (`gsub`). Sub-campionamento deterministico a max 100k punti (tutti i sig + sample dei non-sig, seed=42).
 
-**Handoff doc**: `docs/superpowers/specs/2026-05-21-p5-stadio4-debugging-handoff.md` — la nuova sessione è **SOLO debugging**: isolare A e B con test minimali riproducibili, validare, POI ri-tentare il fullrun. NO whack-a-mole.
+### Layer A fullrun COMPLETE (run_id `96c43acb`, 2026-05-22T23:10Z → 2026-05-23T03:26Z)
+
+- **622/622 cluster OK, 0 errori, watchdog mai triggered.** Wall 1682 min (~28h) su laptop 251 GB. **Dream-based** con il fix gene-symbol applicato.
+- **Output** `analysis/p4-output/20260523T032601Z-stage4-96c43acb/` (gitignored):
+  - `cluster_pooled.parquet` 375 MB — **13.691.756 righe** (mega 4.506.781 + mega_aug 9.184.975 by_method).
+  - `per_study_de.parquet` 383 MB — 12.009.646 righe.
+  - `stage4_dashboard.html` 77 MB.
+  - `run_metadata.json` (config completa registrata) + `qc_report.rds` + `non_processable.rds`.
+- **Config registrata**: `max_baseline_per_arm=350`, `dream_workers_cap=16`, `legacy_monodirectional=FALSE` (bidir on), `franchini_correction=TRUE`, `de_engine.mega=dream`, `de_engine.mega_aug=dream`.
 
 ---
 
@@ -242,13 +247,14 @@ aggiornare vignette o capitoli del futuro manuale.
 5. ~~**β Task 15 closing**~~ **DONE** 2026-05-17. NEWS 0.0.0.9016 esteso, tag `p4-beta-archs4-human-complete`, ff-merge → master locale. Push remote rimane all'utente.
 6. ~~**β rescue cascade Task 1-15**~~ **DONE** 2026-05-17. Stage1 99.998% LLM-only + stage2 100.000%. NEWS 0.0.0.9017 esteso, tag `p4-beta-rescue-complete` (pending Task 15 close), ff-merge → master locale. Discovery paper-grade H2 (72 mouse-mislabeled GSE) + strategie rescue consolidate in `docs/findings/2026-05-17-p4-beta-rescue-strategies.md`.
 
-### Post-β (immediato)
+### Post-β + P5 Stadio 4 Layer A (immediato)
 
-1. **Output 3 ADR-0006**: P5 Stadio 4+5 (DESeq2/limma + metafor REM) sui β results (39.162 stage2 valid predictions su 28k+ studi). Spec design da scrivere.
-2. **Stadio 3 raggruppamento cross-studio** sui `comparability_anchor` v3 dei 39.162 record stage2 (prerequisito per P5).
-3. **Rename pacchetto** (ADR-0003) prima del primo `install_github` pubblico.
-4. **Migrazione a `ellmer`** come ADR separato.
-5. **γ ARCHS4 mouse** (post-human consolidato). NO γ in pianificazione attiva — gestito come variante futura.
+1. ~~**Stadio 3 raggruppamento cross-studio**~~ **DONE** pre-fullrun (Stage 3 build `2153addc` da cui parte il fullrun: 267.056 cluster, 707.595 assignment, 39.247 stage2 studies).
+2. ~~**Stadio 4 Layer A** (`build_stage4_results`)~~ **DONE 2026-05-23** (run_id `96c43acb`, 622/622 cluster OK).
+3. **Stadio 4 Layer B** + **Stadio 5 meta-analisi**: prossimo step su `cluster_pooled.parquet` (13.7M righe). Spec design da scrivere.
+4. **Rename pacchetto** (ADR-0003) prima del primo `install_github` pubblico.
+5. **Migrazione a `ellmer`** come ADR separato.
+6. **γ ARCHS4 mouse** (post-human consolidato). NO γ in pianificazione attiva — gestito come variante futura.
 
 ## Dove vivere i dati che il repo NON contiene
 
