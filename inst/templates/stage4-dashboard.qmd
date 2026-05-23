@@ -74,17 +74,32 @@ DT::datatable(
 ## 3. Volcano plot (filterable by cluster)
 
 ```{r volcano-overall}
-# Mostra distribuzione overall: 1 punto per gene-cluster, color by method
-plot_data <- s4$cluster_pooled |>
+# Sub-campionamento per scala: a 13M+ righe il knitr post-process (gsub) supera
+# il max string length R. Manteniamo TUTTI i significativi + sample dei non-sig
+# fino a max ~100k punti. Seed fisso -> deterministico (ADR-0016 follow-up).
+.MAX_POINTS_VOLCANO <- 100000L
+plot_data_full <- s4$cluster_pooled |>
   mutate(neg_log10_p = -log10(p_value_pool),
          sig = FDR_BH_within_cluster < 0.05)
+sig_df <- plot_data_full |> filter(sig)
+nonsig_df <- plot_data_full |> filter(!sig)
+n_nonsig_keep <- max(0L, .MAX_POINTS_VOLCANO - nrow(sig_df))
+if (nrow(nonsig_df) > n_nonsig_keep) {
+  set.seed(42L)
+  nonsig_df <- nonsig_df[sample.int(nrow(nonsig_df), n_nonsig_keep), , drop = FALSE]
+}
+plot_data <- dplyr::bind_rows(sig_df, nonsig_df)
+plot_caption <- if (nrow(plot_data_full) > nrow(plot_data)) {
+  sprintf("Volcano plot — Layer A (subsample %s / %s; tutti i significativi + non-sig sampled)",
+          format(nrow(plot_data), big.mark="."), format(nrow(plot_data_full), big.mark="."))
+} else "Volcano plot — all gene-cluster (Layer A)"
 
 plotly::plot_ly(plot_data, x = ~logFC_pool, y = ~neg_log10_p,
                 color = ~method, symbol = ~sig,
                 type = "scatter", mode = "markers",
                 opacity = 0.3, marker = list(size = 4),
                 text = ~paste("Cluster:", cluster_id, "<br>Gene:", gene)) |>
-  layout(title = "Volcano plot — all gene-cluster (Layer A)",
+  layout(title = plot_caption,
          xaxis = list(title = "logFC_pool"),
          yaxis = list(title = "-log10(p_value_pool)"))
 ```
