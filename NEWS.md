@@ -1,3 +1,86 @@
+# simulomicsr 0.0.0.9020 (development) — P5 Stadio 4 Layer A fullrun COMPLETE (run_id 96c43acb)
+
+## Layer A fullrun completato (2026-05-23, tag `p5-stadio4-complete`)
+
+* Fullrun Layer A end-to-end: **622/622 cluster OK** in 28h wall (1682 min)
+  su laptop 251 GB, 0 errori, watchdog memoria mai triggered. Dream-based
+  (`~ treatment + (1|study)`) con fix gene-symbol applicato. Output
+  `analysis/p4-output/20260523T032601Z-stage4-96c43acb/` (gitignored):
+  - `cluster_pooled.parquet` 375 MB / **13.691.756 righe** (mega 4.506.781 +
+    mega_aug 9.184.975).
+  - `per_study_de.parquet` 383 MB / 12.009.646 righe.
+  - `stage4_dashboard.html` 77 MB.
+  - `run_metadata.json` con config completa registrata.
+* **Config registrata**: `max_baseline_per_arm=350`, `dream_workers_cap=16`,
+  `legacy_monodirectional=FALSE` (bidir on), `franchini_correction=TRUE`.
+
+## Bug fixati pre-fullrun (sessione 2026-05-22/23, debugging sistematico)
+
+### Problema A — duplicate row.names MEGA-AUG bidir (3 sotto-cause)
+
+Scan dei 310 cluster `mega_aug` ha rivelato 3 sorgenti distinte di
+`sample_id` duplicati nel dispatch bidirezionale:
+
+* **same-pool-both-arms** (13 cluster) — quando treated/control anchor del
+  pair sono indistinguibili e si risolve allo stesso baseline pool. Fix:
+  mono-fallback (Opzione 1: augmenta solo il braccio control, marca
+  `bidir_collapsed_to_mono=TRUE` nelle diagnostiche).
+* **cross-pool shared GSMs** (7 cluster) — pool distinti ma con GSM
+  condivisi (super-series ARCHS4). Fix: drop role-conflict da entrambi i
+  bracci.
+* **no_dispatch** (5 cluster) — `mega_aug` senza pair risolvibile. Fix:
+  skip-guard esplicito `mega_aug_no_study_dispatch`.
+
+Scan post-fix: 0/310 duplicati. Commit `25c158d`.
+
+### Scoperta paper-grade: dream non aveva mai girato sui dati reali
+
+ARCHS4 v2.5 `meta/genes/symbol` ha 4638/67186 simboli duplicati
+(paralogi PAR/KIR/HLA: più Ensembl ID legittimi mappano sullo stesso
+HGNC symbol). `dream` rifiuta rownames non unici → `.run_dream_mega`
+ripiegava silenziosamente sul fallback limma. Per tutto il tempo prima
+del fix dream non aveva mai girato sui dati reali; nessun risultato
+scientifico prodotto da questa pipeline è stato impattato (i 4 fullrun
+precedenti erano falliti prima del completamento; smoke test usavano
+fixture con simboli già unici). Fix: `make.unique()` deterministico in
+`.h5_gene_axis` (KIR3DL2, KIR3DL2.1, …) — cross-study coerente, niente
+perdita di informazione, niente aggregazione biased ante-test. Commit
+`f3ce3af`. Documentato in ADR-0016 §Decision 2.
+
+### Problema B — OOM su cluster MEGA-AUG grandi (pool cap + worker cap)
+
+* **`max_baseline_per_arm = 350`** (commit `d5f6040` + `f8fab2e`):
+  cluster `mega_aug` augmentati arrivavano a 7122 sample. Calibrato da
+  curva di saturazione su dati veri
+  (`analysis/p5-stage4-debug-problemB-saturation.R`): a 350 correlazione
+  logFC col pool pieno = 0.997 e n. geni significativi al picco; oltre
+  350 il risultato non migliora.
+* **`dream_workers_cap` 100 → 16** (commit `22a5a0f` + `8c6eba9`):
+  isolando dream costa ~1 GB/worker, ma in contesto reale
+  `build_stage4_results` fork-COW dello state alza il costo a ~3.4
+  GB/worker. A 16 worker il picco per-cluster è ~71 GB; validato
+  end-to-end sui 3 cluster `mega_aug` più grandi.
+* Bonus: per-cluster progress logging + memoization assi H5
+  (`.h5_sample_axis` + `.h5_gene_axis` in env `.h5_axis_memo`).
+
+Documentato in ADR-0016.
+
+### Dashboard render — volcano subsample (commit `858d9bb`)
+
+A 13.7M righe il chunk `volcano-overall` produceva una stringa che
+eccedeva R max length nel post-process knitr (`gsub`).
+Sub-campionamento deterministico a max 100k punti (tutti i sig +
+sample dei non-sig, seed=42, title del plot indica `subsample X/Y`
+quando attivo).
+
+## Test e tag
+
+* **Suite Stadio 4 finale**: 322 PASS / 0 FAIL / 1 SKIP (+34 vs handoff 288).
+* **Tag**: `p5-stadio4-complete`.
+* **Branch**: `p5-stadio4-de-perstudio` ff-merged in master e cancellato.
+
+---
+
 # simulomicsr 0.0.0.9019 (development) — P5 Stadio 4 DE per-studio + MEGA + MEGA-AUG
 
 ## P5 -- Stadio 4 DE per-studio + MEGA cross-study + MEGA-augmentation
