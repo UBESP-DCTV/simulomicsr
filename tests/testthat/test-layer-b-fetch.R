@@ -74,3 +74,50 @@ test_that(".fetch_layer_a_subset error if stage4_dir missing files", {
     "cluster_pooled.parquet not found"
   )
 })
+
+test_that(".assemble_cluster_counts builds matrix + metadata for a cluster", {
+  skip_if_not_installed("rhdf5")
+
+  # Create synthetic counts matrix: 50 genes × 6 samples
+  set.seed(42)
+  counts <- matrix(rpois(50 * 6, lambda = 100), nrow = 50,
+                   dimnames = list(paste0("G", 1:50), paste0("GSM", 1:6)))
+
+  # Cluster assignment: 2 studies × 3 sample × (treatment | control)
+  cluster_id <- "test_cl"
+  per_cluster_samples <- tibble::tibble(
+    sample_id = paste0("GSM", 1:6),
+    study_id  = c("GSE1", "GSE1", "GSE1", "GSE2", "GSE2", "GSE2"),
+    treatment = c("treated", "treated", "control", "treated", "control", "control")
+  )
+
+  # Fake counts cache: pre-saved RDS keyed by study
+  cache_dir <- tempfile("counts_cache_")
+  dir.create(cache_dir)
+  on.exit(unlink(cache_dir, recursive = TRUE))
+
+  # Save counts per (cluster, study) — mimic Stage 4 cache structure
+  cache_manifest <- list(
+    test_cl = list(
+      GSE1 = file.path(cache_dir, "test_cl_GSE1.rds"),
+      GSE2 = file.path(cache_dir, "test_cl_GSE2.rds")
+    )
+  )
+  saveRDS(counts[, 1:3], cache_manifest$test_cl$GSE1)
+  saveRDS(counts[, 4:6], cache_manifest$test_cl$GSE2)
+
+  result <- simulomicsr:::.assemble_cluster_counts(
+    cluster_id = "test_cl",
+    per_cluster_samples = per_cluster_samples,
+    cache_manifest = cache_manifest
+  )
+
+  expect_named(result, c("counts", "metadata"), ignore.order = TRUE)
+  expect_equal(dim(result$counts), c(50L, 6L))
+  expect_equal(colnames(result$counts), paste0("GSM", 1:6))
+  expect_equal(rownames(result$counts), paste0("G", 1:50))
+  expect_s3_class(result$metadata, "tbl_df")
+  expect_equal(nrow(result$metadata), 6L)
+  expect_equal(result$metadata$treatment,
+               c("treated", "treated", "control", "treated", "control", "control"))
+})
