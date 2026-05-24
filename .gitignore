@@ -67,5 +67,20 @@ analysis/scratch/
 # Spec rendered HTML (sorgente .md è il canonical)
 docs/superpowers/specs/*.html
 
+# Findings rendered HTML (sorgente .md è il canonical)
+docs/findings/*.html
+
+# P5 Stadio 4 — fullrun log/state + debug artefatti (riproducibili dagli script .R)
+analysis/p5-stage4-layer-a-fullrun.log*
+analysis/p5-stage4-layer-a-fullrun.state*
+analysis/p5-stage4-layer-a-fullrun.watchdog.log
+analysis/p5-stage4-debug-*.rds
+analysis/p5-stage4-debug-*.mem
+analysis/p5-stage4-debug-*.out
+analysis/p5-stage4-debug-*.run
+
+# targets config root (variante per cwd=root; canonico è analysis/_targets.yaml)
+/_targets.yaml
+
 # Local Claude Code project state (settings, scheduled tasks)
 .claude/
