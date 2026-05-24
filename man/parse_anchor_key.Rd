@@ -4,18 +4,23 @@
 \alias{parse_anchor_key}
 \title{Parse anchor_key v3 in named list dei 13 segmenti canonical}
 \usage{
-parse_anchor_key(anchor_key, level, tier_assignment = NULL)
+parse_anchor_key(anchor_key, level, mode = "group", tier_assignment = NULL)
 }
 \arguments{
-\item{anchor_key}{character(1): stringa pipe-delimited.}
+\item{anchor_key}{character(1): stringa pipe-delimited (group) o
+\code{<treated>__VS__<control>[__CT_<type>]} (pair).}
 
 \item{level}{integer(1) in \code{0:4}.}
+
+\item{mode}{character(1) in \code{c("group", "pair")} (default
+\code{"group"}). Determina la forma dell'output.}
 
 \item{tier_assignment}{list (default = \code{stage3_default_config()$tier_assignment}).}
 }
 \value{
-named list di 13 elementi character (\code{NA_character_} se
-droppato a quel livello), nell'ordine canonical.
+Named list di 13 elementi character (\code{NA_character_} se
+droppato), nell'ordine canonical, se \code{mode = "group"}. List nested
+\code{list(treated, control, comparison_type)} se \code{mode = "pair"}.
 }
 \description{
 Data una stringa \code{anchor_key} pipe-delimited prodotta da
@@ -32,11 +37,26 @@ I segmenti droppati per il \code{level} corrente (vedi
 per L4) sono \code{NA_character_} nell'output, in modo che il consumer
 possa indicizzare per nome senza preoccuparsi del livello.
 
+Supporta entrambi i mode dei cluster Stadio 3:
+\itemize{
+\item \strong{group} (\code{mode = "group"}, default): l'\code{anchor_key}
+e' un singolo set di segmenti. Restituisce un named list piatto di 13
+elementi.
+\item \strong{pair} (\code{mode = "pair"}): l'\code{anchor_key} e' nella
+forma \code{<treated>__VS__<control>[__CT_<comparison_type>]} (vedi
+\code{R/stage3-build.R}). Restituisce una lista nested
+\code{list(treated = <named list 13>, control = <named list 13>,
+    comparison_type = character(1) o NULL)}.
+}
+
+Per i pair cluster di Layer B (typicamente \code{mega_aug}) il consumer
+tipicamente legge il lato \code{treated} per popolare summary card
+(\code{kind_effective}, \code{agent_id}, \code{tissue}).
+
 Inverso di \code{.build_anchor_key_from_segments()} /
 \code{.build_anchor_for_level()} -- usato per esporre metadata anchor
-leggibile (es. nelle summary card di Layer B per cluster a qualunque level,
-dove l'indicizzazione positional L0 lascerebbe pair_L2/L3/L4 con
-\code{kind_effective}, \code{agent_id} e \code{tissue} sbagliati o NA).
+leggibile (es. nelle summary card di Layer B per cluster a qualunque level
+e qualunque mode).
 
 La differenza con \code{parse_anchor_canonical()} (internal, modulo
 Stage 4) e' che quest'ultima restituisce solo i segmenti presenti al
@@ -46,5 +66,6 @@ per i droppati: piu' ergonomico per uso downstream.
 \seealso{
 \code{\link{stage3_default_config}},
 \code{R/stage3-anchor-levels.R::.build_anchor_for_level},
-\code{R/stage4-anchor-matching.R::parse_anchor_canonical}.
+\code{R/stage4-anchor-matching.R::parse_anchor_canonical} /
+\code{parse_pair_anchor_key}.
 }
