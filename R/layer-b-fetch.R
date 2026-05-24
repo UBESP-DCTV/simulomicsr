@@ -62,36 +62,45 @@
 
 #' Assembla counts + metadata per un cluster
 #'
-#' Combina counts matrix dai file cache per ogni studio del cluster + metadata
-#' tibble con sample_id, study_id, treatment. Cache hit assunto (Layer B
-#' consuma il cache di Stage 4 gia' popolato).
+#' Combina counts matrix recuperate via `fetch_counts_fn` per ogni studio del
+#' cluster + metadata tibble con sample_id, study_id, treatment.
+#'
+#' Allineato al pattern Layer A (dependency injection): Layer A invoca
+#' `.fetch_counts_cached(g, s, h5_path = h5_path)` che usa cache keyed
+#' su xxhash32(gse + sorted(sample_ids)). Layer B riusa lo stesso contratto
+#' via `fetch_counts_fn(study_id, sample_ids) -> integer matrix`.
 #'
 #' @param cluster_id character (1).
 #' @param per_cluster_samples tibble con `sample_id, study_id, treatment` per
 #'   il cluster (assemblata upstream dal caller, tipicamente dal join di Stage 3
 #'   assignment + Stage 2 design_role).
-#' @param cache_manifest list nested `cache_manifest[[cluster_id]][[study_id]]`
-#'   = path al file .rds con counts matrix integer (genes x samples_of_study).
+#' @param fetch_counts_fn function(study_id, sample_ids) -> integer matrix
+#'   (genes x samples_of_study) con rownames HGNC symbol e colnames GSM
+#'   accession. Tipicamente wrappa \code{.fetch_counts_cached()}.
 #'
 #' @return list con `counts` (integer matrix genes x all_samples) e `metadata`
 #'   (tibble sample_id, study_id, treatment in colonna-order).
 #' @keywords internal
-.assemble_cluster_counts <- function(cluster_id, per_cluster_samples, cache_manifest) {
-  if (is.null(cache_manifest[[cluster_id]])) {
+.assemble_cluster_counts <- function(cluster_id, per_cluster_samples, fetch_counts_fn) {
+  if (!is.function(fetch_counts_fn)) {
     cli::cli_abort(
-      "Cache manifest missing for cluster {.field {cluster_id}}"
+      "fetch_counts_fn deve essere una funzione per cluster {.field {cluster_id}}"
     )
   }
 
   studies <- unique(per_cluster_samples$study_id)
   counts_list <- lapply(studies, function(s) {
-    path <- cache_manifest[[cluster_id]][[s]]
-    if (is.null(path) || !file.exists(path)) {
-      cli::cli_abort(
-        "Counts cache missing for cluster {.field {cluster_id}} / study {.field {s}}"
-      )
-    }
-    readRDS(path)
+    sample_ids_s <- per_cluster_samples$sample_id[per_cluster_samples$study_id == s]
+    m <- tryCatch(
+      fetch_counts_fn(s, sample_ids_s),
+      error = function(e) {
+        cli::cli_abort(c(
+          "Counts fetch failed for cluster {.field {cluster_id}} / study {.field {s}}",
+          "i" = "{conditionMessage(e)}"
+        ))
+      }
+    )
+    m
   })
   names(counts_list) <- studies
 
@@ -109,10 +118,10 @@
   combined <- do.call(cbind, counts_list)
 
   # Reorder columns to match per_cluster_samples$sample_id
-  missing_in_cache <- setdiff(per_cluster_samples$sample_id, colnames(combined))
-  if (length(missing_in_cache) > 0L) {
+  missing_in_fetch <- setdiff(per_cluster_samples$sample_id, colnames(combined))
+  if (length(missing_in_fetch) > 0L) {
     cli::cli_abort(
-      "Samples missing from cache for cluster {.field {cluster_id}}: {.field {missing_in_cache}}"
+      "Samples missing from fetch for cluster {.field {cluster_id}}: {.field {missing_in_fetch}}"
     )
   }
   combined <- combined[, per_cluster_samples$sample_id, drop = FALSE]

@@ -7,12 +7,12 @@
 build_layer_b_results(
   stage4_dir,
   selection,
-  counts_cache_manifest,
+  h5_path,
   per_cluster_samples_provider,
   stage3_metadata = NULL,
   config = layer_b_default_config(),
   out_dir = NULL,
-  h5_path = NULL
+  fetch_counts_fn = NULL
 )
 }
 \arguments{
@@ -20,8 +20,8 @@ build_layer_b_results(
 
 \item{selection}{character path-to-CSV o data.frame.}
 
-\item{counts_cache_manifest}{list nested \code{cache[[cluster_id]][[study_id]] = path}.
-Tipicamente derivato dal counts cache di Stage 4.}
+\item{h5_path}{character path al H5 ARCHS4 (per default fetch via
+\code{.fetch_counts_cached()}). Required quando \code{fetch_counts_fn} e' NULL.}
 
 \item{per_cluster_samples_provider}{function(cluster_id) -> tibble
 \verb{sample_id, study_id, treatment} per il cluster (assemblata upstream
@@ -35,8 +35,10 @@ senza Stage 3 fields.}
 \item{out_dir}{character path output dir. Se NULL, genera dir versionata
 in \verb{analysis/p4-output/<ts>-layer-b-<run_id>/}.}
 
-\item{h5_path}{character path al H5 ARCHS4 (per re-fetch counts in caso
-di cache miss; NULL = nessun fetch fallback).}
+\item{fetch_counts_fn}{opzionale function(study_id, sample_ids) -> integer
+matrix (genes x samples). Se NULL, viene creato un wrapper di
+\code{.fetch_counts_cached(g, s, h5_path = h5_path)} che riusa la cache
+xxhash32 condivisa con Layer A. Override utile per test/fixture.}
 }
 \value{
 Oggetto S3 \code{layer_b_result} (list con \code{cluster_bundles},

@@ -76,40 +76,30 @@ test_that(".fetch_layer_a_subset error if stage4_dir missing files", {
 })
 
 test_that(".assemble_cluster_counts builds matrix + metadata for a cluster", {
-  skip_if_not_installed("rhdf5")
-
   # Create synthetic counts matrix: 50 genes × 6 samples
   set.seed(42)
   counts <- matrix(rpois(50 * 6, lambda = 100), nrow = 50,
                    dimnames = list(paste0("G", 1:50), paste0("GSM", 1:6)))
 
   # Cluster assignment: 2 studies × 3 sample × (treatment | control)
-  cluster_id <- "test_cl"
   per_cluster_samples <- tibble::tibble(
     sample_id = paste0("GSM", 1:6),
     study_id  = c("GSE1", "GSE1", "GSE1", "GSE2", "GSE2", "GSE2"),
     treatment = c("treated", "treated", "control", "treated", "control", "control")
   )
 
-  # Fake counts cache: pre-saved RDS keyed by study
-  cache_dir <- tempfile("counts_cache_")
-  dir.create(cache_dir)
-  on.exit(unlink(cache_dir, recursive = TRUE))
-
-  # Save counts per (cluster, study) — mimic Stage 4 cache structure
-  cache_manifest <- list(
-    test_cl = list(
-      GSE1 = file.path(cache_dir, "test_cl_GSE1.rds"),
-      GSE2 = file.path(cache_dir, "test_cl_GSE2.rds")
-    )
-  )
-  saveRDS(counts[, 1:3], cache_manifest$test_cl$GSE1)
-  saveRDS(counts[, 4:6], cache_manifest$test_cl$GSE2)
+  # fetch_counts_fn fake: ritorna sotto-matrice per (gse, sample_ids)
+  per_study <- list(GSE1 = counts[, 1:3], GSE2 = counts[, 4:6])
+  fetch_counts_fn <- function(gse, sample_ids) {
+    m <- per_study[[gse]]
+    if (is.null(m)) stop(sprintf("No counts for gse=%s", gse))
+    m[, sample_ids, drop = FALSE]
+  }
 
   result <- simulomicsr:::.assemble_cluster_counts(
     cluster_id = "test_cl",
     per_cluster_samples = per_cluster_samples,
-    cache_manifest = cache_manifest
+    fetch_counts_fn = fetch_counts_fn
   )
 
   expect_named(result, c("counts", "metadata"), ignore.order = TRUE)
@@ -120,4 +110,20 @@ test_that(".assemble_cluster_counts builds matrix + metadata for a cluster", {
   expect_equal(nrow(result$metadata), 6L)
   expect_equal(result$metadata$treatment,
                c("treated", "treated", "control", "treated", "control", "control"))
+})
+
+test_that(".assemble_cluster_counts errors when fetch_counts_fn is not a function", {
+  per_cluster_samples <- tibble::tibble(
+    sample_id = paste0("GSM", 1:3),
+    study_id  = "GSE1",
+    treatment = c("treated", "treated", "control")
+  )
+  expect_error(
+    simulomicsr:::.assemble_cluster_counts(
+      cluster_id = "test_cl",
+      per_cluster_samples = per_cluster_samples,
+      fetch_counts_fn = "not_a_function"
+    ),
+    "fetch_counts_fn"
+  )
 })

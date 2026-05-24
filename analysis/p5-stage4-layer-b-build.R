@@ -8,7 +8,7 @@
 #     analysis/p4-output/20260523T032601Z-stage4-96c43acb/
 #   - Stage 4 counts cache in
 #     tools::R_user_dir("simulomicsr","cache")/stage4-counts/
-#     (pattern file: <cluster_id>__<study_id>.rds)
+#     (pattern file: <xxhash32_key>.rds, gestito da .fetch_counts_cached)
 #
 # Usage:
 #   nohup Rscript analysis/p5-stage4-layer-b-build.R \
@@ -70,8 +70,9 @@ cli_alert_success(sprintf(
 ))
 
 # -----------------------------------------------------------------------------
-# Counts cache manifest (riusato dal Layer A)
-# Pattern: <cache_dir>/<cluster_id>__<study_id>.rds
+# Counts cache (riusata dal Layer A) — accesso via .fetch_counts_cached,
+# keyed su xxhash32(gse + sorted(sample_ids)). build_layer_b_results costruisce
+# internamente la fetch_counts_fn default a partire da h5_path.
 # -----------------------------------------------------------------------------
 counts_cache_dir <- file.path(
   tools::R_user_dir("simulomicsr", "cache"), "stage4-counts"
@@ -79,19 +80,6 @@ counts_cache_dir <- file.path(
 if (!dir.exists(counts_cache_dir)) {
   cli_abort("Stage 4 counts cache mancante: {.path {counts_cache_dir}}")
 }
-
-build_manifest <- function(cache_dir, cluster_ids) {
-  out <- list()
-  for (cl_id in cluster_ids) {
-    pat <- sprintf("^%s__.+\\.rds$", cl_id)
-    files <- list.files(cache_dir, pattern = pat, full.names = TRUE)
-    studies <- sub(sprintf("^%s__", cl_id), "",
-                   sub("\\.rds$", "", basename(files)))
-    out[[cl_id]] <- setNames(as.list(files), studies)
-  }
-  out
-}
-counts_cache_manifest <- build_manifest(counts_cache_dir, val$cluster_id)
 
 # -----------------------------------------------------------------------------
 # per_cluster_samples_provider: join Stage 3 assignment + Stage 2 design_role
@@ -125,11 +113,10 @@ t0 <- Sys.time()
 result <- build_layer_b_results(
   stage4_dir                   = stage4_dir,
   selection                    = selection_csv,
-  counts_cache_manifest        = counts_cache_manifest,
+  h5_path                      = h5_path,
   per_cluster_samples_provider = per_cluster_samples_provider,
   stage3_metadata              = stage3_metadata,
-  config                       = layer_b_default_config(),
-  h5_path                      = h5_path
+  config                       = layer_b_default_config()
 )
 wall <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
 

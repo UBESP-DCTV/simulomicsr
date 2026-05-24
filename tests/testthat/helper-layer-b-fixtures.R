@@ -110,27 +110,41 @@ make_fake_layer_a_dir <- function() {
   d
 }
 
-make_fake_counts_cache <- function(cluster_ids, samples_per_study = 6L) {
-  cache_dir <- tempfile("counts_cache_")
-  dir.create(cache_dir)
-
-  manifest <- list()
-  for (cl_id in cluster_ids) {
-    studies <- c("GSE_PAIR_A", "GSE_PAIR_B")
-    manifest[[cl_id]] <- list()
-    for (s in studies) {
-      counts <- matrix(
-        rpois(100 * samples_per_study, lambda = 100),
-        nrow = 100,
-        dimnames = list(
-          paste0("HGNC", 1:100),
-          paste0(s, "_GSM", 1:samples_per_study)
-        )
+#' Genera una `fetch_counts_fn` fake per i test layer-b
+#'
+#' Pre-calcola counts matrix dummy per ogni studio nel fixture e ritorna
+#' una funzione `(gse, sample_ids) -> matrix` compatibile con il contratto
+#' di `fetch_counts_fn` (DI). Sostituisce il vecchio manifest-based cache.
+make_fake_counts_cache <- function(cluster_ids, samples_per_study = 6L, n_genes = 100L) {
+  # Studi di test (identici cross-cluster nel fixture mini)
+  studies <- c("GSE_PAIR_A", "GSE_PAIR_B")
+  # Pre-build di una matrice per studio (deterministica via set.seed)
+  set.seed(123L)
+  studies_map <- list()
+  for (s in studies) {
+    counts <- matrix(
+      rpois(n_genes * samples_per_study, lambda = 100),
+      nrow = n_genes,
+      dimnames = list(
+        paste0("HGNC", seq_len(n_genes)),
+        paste0(s, "_GSM", seq_len(samples_per_study))
       )
-      path <- file.path(cache_dir, sprintf("%s_%s.rds", cl_id, s))
-      saveRDS(counts, path)
-      manifest[[cl_id]][[s]] <- path
-    }
+    )
+    studies_map[[s]] <- counts
   }
-  list(dir = cache_dir, manifest = manifest)
+
+  fetch_counts_fn <- function(gse, sample_ids) {
+    m <- studies_map[[gse]]
+    if (is.null(m)) {
+      stop(sprintf("No fake counts for gse=%s", gse))
+    }
+    missing <- setdiff(sample_ids, colnames(m))
+    if (length(missing) > 0L) {
+      stop(sprintf("Missing samples for gse=%s: %s",
+                   gse, paste(missing, collapse = ",")))
+    }
+    m[, sample_ids, drop = FALSE]
+  }
+
+  list(fetch_counts_fn = fetch_counts_fn, studies_map = studies_map)
 }

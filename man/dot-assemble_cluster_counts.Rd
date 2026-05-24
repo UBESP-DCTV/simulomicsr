@@ -4,7 +4,7 @@
 \alias{.assemble_cluster_counts}
 \title{Assembla counts + metadata per un cluster}
 \usage{
-.assemble_cluster_counts(cluster_id, per_cluster_samples, cache_manifest)
+.assemble_cluster_counts(cluster_id, per_cluster_samples, fetch_counts_fn)
 }
 \arguments{
 \item{cluster_id}{character (1).}
@@ -13,16 +13,22 @@
 il cluster (assemblata upstream dal caller, tipicamente dal join di Stage 3
 assignment + Stage 2 design_role).}
 
-\item{cache_manifest}{list nested \code{cache_manifest[[cluster_id]][[study_id]]}
-= path al file .rds con counts matrix integer (genes x samples_of_study).}
+\item{fetch_counts_fn}{function(study_id, sample_ids) -> integer matrix
+(genes x samples_of_study) con rownames HGNC symbol e colnames GSM
+accession. Tipicamente wrappa \code{.fetch_counts_cached()}.}
 }
 \value{
 list con \code{counts} (integer matrix genes x all_samples) e \code{metadata}
 (tibble sample_id, study_id, treatment in colonna-order).
 }
 \description{
-Combina counts matrix dai file cache per ogni studio del cluster + metadata
-tibble con sample_id, study_id, treatment. Cache hit assunto (Layer B
-consuma il cache di Stage 4 gia' popolato).
+Combina counts matrix recuperate via \code{fetch_counts_fn} per ogni studio del
+cluster + metadata tibble con sample_id, study_id, treatment.
+}
+\details{
+Allineato al pattern Layer A (dependency injection): Layer A invoca
+\code{.fetch_counts_cached(g, s, h5_path = h5_path)} che usa cache keyed
+su xxhash32(gse + sorted(sample_ids)). Layer B riusa lo stesso contratto
+via \verb{fetch_counts_fn(study_id, sample_ids) -> integer matrix}.
 }
 \keyword{internal}
