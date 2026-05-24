@@ -1,0 +1,90 @@
+---
+title: "Layer B Case Studies"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 2
+    code-fold: true
+    fig-cap-location: bottom
+params:
+  layer_b_dir: ""
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(simulomicsr)
+lb <- load_layer_b(params$layer_b_dir)
+```
+
+# Overview
+
+Run id: ``r lb$run_metadata$run_id``
+Generated: ``r lb$run_metadata$timestamp``
+Package version: ``r lb$run_metadata$package_version``
+
+## Selection
+
+```{r selection-table}
+DT::datatable(lb$selection_resolved, options = list(pageLength = 25))
+```
+
+## Methods note
+
+Config used:
+
+```{r config-print}
+yaml::as.yaml(lb$run_metadata$config) |> cat()
+```
+
+# Case studies
+
+```{r case-studies, results = "asis"}
+for (cl_id in names(lb$cluster_bundles)) {
+  bundle <- lb$cluster_bundles[[cl_id]]
+  label_paper <- lb$selection_resolved$label_paper[lb$selection_resolved$cluster_id == cl_id]
+
+  cat(sprintf("\n\n## %s — %s\n\n", label_paper, cl_id))
+
+  # Summary card
+  smc_path <- file.path(bundle$cluster_dir, "summary_card.md")
+  if (file.exists(smc_path)) {
+    cat(paste(readLines(smc_path), collapse = "\n"), "\n\n")
+  }
+
+  # Plots (PNG embeds)
+  for (plot_name in c("volcano", "forest", "ma", "heatmap", "go_enrichment", "heterogeneity")) {
+    png_path <- file.path(bundle$cluster_dir, sprintf("%s.png", plot_name))
+    caption <- bundle$captions[[plot_name]] %||% sprintf("%s (no caption)", plot_name)
+    if (file.exists(png_path)) {
+      cat(sprintf("\n![%s](%s)\n\n", caption, png_path))
+    }
+  }
+
+  # Top-gene table
+  tg_csv <- file.path(bundle$cluster_dir, "top_genes.csv")
+  if (file.exists(tg_csv) && file.info(tg_csv)$size > 0L) {
+    df <- readr::read_csv(tg_csv, show_col_types = FALSE)
+    if (nrow(df) > 0L) {
+      cat("\n### Top-gene table\n\n")
+      print(knitr::kable(df, format = "html", digits = 3))
+    }
+  }
+
+  # Narrative
+  narr_path <- file.path(bundle$cluster_dir, "narrative.qmd")
+  if (file.exists(narr_path)) {
+    cat("\n### Narrative\n\n")
+    narr_lines <- readLines(narr_path)
+    # Strip frontmatter
+    body_start <- which(narr_lines == "---")
+    if (length(body_start) >= 2L) {
+      narr_lines <- narr_lines[(body_start[2L] + 1L):length(narr_lines)]
+    }
+    cat(paste(narr_lines, collapse = "\n"), "\n")
+  }
+}
+```
