@@ -24,7 +24,9 @@ Layer B (selection table, config snapshot, per-cluster summary card +
 PNG plots + top-gene table + narrative).
 }
 \details{
-Quarto richiede una working directory locale: il template viene copiato
-in una tmpdir, renderizzato la, e l'HTML risultante viene copiato al
-\code{out_path} finale.
+Quarto viene eseguito con \code{execute_dir = lb$dir} in modo che le immagini
+referenziate nel template via path relative \code{cluster_id/plot.png}
+vengano risolte da Pandoc e correttamente base64-embeddate
+(\code{embed-resources: true}). Path assoluti farebbero scattare l'auto-prepend
+\verb{./} di Pandoc, generando \verb{<img src="./home/user/...">} non risolvibili.
 }
