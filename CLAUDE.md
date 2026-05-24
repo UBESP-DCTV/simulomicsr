@@ -120,11 +120,43 @@ extract_anchor_summary public helper (era duplicato inline negli script).
 
 Branch p5-stadio4-layer-b 31 commit ff-merged. Push remote rimane all'utente.
 
+### Layer B selection + batch 15 case study (2026-05-24, branch `p5-stadio4-layer-b-selection`)
+
+Curation paper-grade della selection.csv tramite shortlist data-driven sul
+`cluster_pooled.parquet` (13.7M righe) + dedup gerarchia anchor v3 (487 cluster
+Layer A → 293 unici). Script riproducibile `analysis/p5-stage4-layer-b-shortlist.R`
+con criteri documentati: hard gates (k_effective≥4, n_sig_05≥50, max_logFC≥1.5,
+kind_effective non-degenere; relaxed per mega coarse-anchor) + score composito
+4-dim equipesi (magnitude/effect/power/precision) + stratified pick con cap
+diversità biologica + smoke pin garantiti.
+
+Shortlist 31 candidati → selection finale **15 case study** publication-grade:
+- 13 mega_aug biology-driven: pathogen exposure × 3 (TLR ligands in blood,
+  Resiquimod TLR7/8, polyI:C TLR3), small_molecule × 2 (ChEBI:17236 lung +
+  smoke), cytokine × 2 (IFN-β kidney, ChEBI:16236 skin), environmental × 2
+  (Hypoxia HUVEC, contact inhibition lung), genetic_overexpression × 1
+  (miR-9/9*-124 neural reprog skin), disease_vs_normal × 1 (MeSH:D011279
+  Prostatic Neoplasms), differentiation × 1 (Mesendoderm hESC)
+- 2 mega smoke-validated: group_L0_a6f8c0e9 (transversal blood) +
+  group_L0_1a0673ae (transversal skin)
+- Coverage 11 kind_effective × 8 tessuti, mix level L0-L4.
+
+Batch eseguito su laptop (wall **9.3 min**, run_id `56b911e6`):
+- Output `analysis/p4-output/20260524T192649Z-layer-b-56b911e6/` (gitignored):
+  15 bundle dir-per-cluster + `layer_b_report.html` 33 MB standalone con
+  **88 plot base64-embedded** (no reference esterne) + `run_metadata.json`
+  con bioc_versions + selection_sha256 + `selection_resolved.csv`.
+- n_plots_generated/skipped: 88 / 17 (forest skip-graceful per i 2 mega
+  non-REM; heterogeneity sempre generato).
+- Warnings: 31 generici (ComBat mean.only su single-sample batch, pattern noto).
+
 Next steps user-driven:
-- Curare `analysis/layer-b-selection.csv` con 10-20 cluster_id dalla dashboard Layer A
-- Lanciare `Rscript analysis/p5-stage4-layer-b-build.R` per batch finale
-- Compilare narrative.qmd per ogni case study (sezioni TODO: Biological context,
-  Findings, Discussion) -> integrazione nel paper Results.
+- Aprire `layer_b_report.html` per review visiva delle 15 case study
+- Compilare `narrative.qmd` per ogni bundle (sezioni TODO: Biological context,
+  Findings, Discussion) → integrazione nel paper Results
+- ChEBI ID lookup per le 4 label "CHEBI:xxxxx" generiche (es. CHEBI:17126,
+  CHEBI:17199, CHEBI:17236, CHEBI:16236) per arricchire le label paper
+- Eventuale Stadio 5 meta-analisi (spec design da scrivere)
 
 ---
 
