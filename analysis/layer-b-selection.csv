@@ -1,7 +1,16 @@
 cluster_id,label_paper,priority,notes
-# Sostituire le righe sotto con i cluster_id curati a mano dalla dashboard Layer A.
-# Sfoglia analysis/p4-output/20260523T032601Z-stage4-96c43acb/stage4_dashboard.html,
-# Sezione 5 (Layer B candidate picker), copia 10-20 cluster_id rilevanti.
-# Esempio (rimuovere dopo aver compilato):
-pair_L0_PLACEHOLDER1,REPLACE_LABEL_PAPER,1,"motivazione biologica breve"
-pair_L0_PLACEHOLDER2,REPLACE_LABEL_PAPER,2,""
+pair_L4_25ee1af1,Pathogen_or_aggregate_exposure_blood_CHEBI17126,1,"Pathogen exposure in blood; k_eff=291, n_sig_strong=6894, anchor_L4. ChEBI agent ID da risolvere (TLR ligand?)."
+pair_L3_d8550b3f,Resiquimod_TLR7_8_agonist_blood,1,"Resiquimod (TLR7/8 agonist) signature in blood; k_eff=191, n_sig_strong=9637, max_logFC=11.5. Drug-target showcase."
+pair_L4_605808b4,miR_9_9star_124_neural_reprogramming_skin,1,"miR-9/9*-124 overexpression (direct neural reprogramming, Yoo et al.) in skin; k_eff=203, n_sig_strong=7235. Genetic perturbation showcase."
+pair_L4_17e4a563,polyIC_TLR3_agonist_blood,1,"Polyinosinic-polycytidylic acid (TLR3 agonist) in blood; k_eff=244, n_sig_strong=2421. Pathogen/innate-immunity case."
+pair_L4_875da822,Pathogen_exposure_blood_CHEBI17199,2,"Pathogen exposure in blood (ChEBI agent ID da risolvere); k_eff=245, n_sig_strong=3554. Companion al pathogen showcase."
+pair_L2_3ce85e50,Smoke_aug_validated_CHEBI17236_small_molecule_lung,1,"SMOKE-VALIDATED case (bundle gia generato). Small molecule (ChEBI:17236) in lung; k_eff=96 augmented, n_sig_strong=12863. Mega-aug primary showcase."
+pair_L4_0d451fc0,Hypoxia_HIF1a_endothelium_umbilical_vein,1,"Hypoxia in HUVEC (umbilical vein endothelium); k_eff=93, n_sig_strong=5747, max_logFC=9.9. Canonical HIF-1alpha case."
+pair_L4_6a3ba59f,Prostate_neoplasm_vs_normal_MeSH_D011279,1,"Disease_vs_normal: MeSH:D011279 (Prostatic Neoplasms) in prostate tissue; k_eff=95, n_sig_strong=4658. Cancer transcriptome case."
+pair_L4_8dacf4ca,Contact_inhibition_proliferation_arrest_lung,2,"Contact inhibition (proliferation arrest) in lung; k_eff=224, n_sig_strong=1900. Cell-cycle environmental case."
+pair_L4_8feddd0d,Cytokine_stim_CHEBI16236_skin,2,"Cytokine stimulation (ChEBI:16236) in skin; k_eff=201, n_sig_strong=1147. Inflammatory dermatology."
+pair_L4_e89dff76,Small_molecule_CHEBI17236_lung,2,"Small molecule (ChEBI:17236) in lung; k_eff=241, n_sig_strong=813. Companion al smoke case (CHEBI:17236)."
+pair_L4_06cee1fa,Interferon_beta_kidney,1,"IFN-beta stimulation in kidney; k_eff=159, n_sig_strong=900, max_logFC=9.4. Cytokine signaling case (nephropathy-relevant)."
+pair_L4_b5c447d0,Mesendoderm_differentiation_hESC,2,"Mesendoderm differentiation in human ESC; k_eff=25, n_sig_strong=3826. Developmental case study."
+group_L0_a6f8c0e9,Smoke_big_validated_transversal_blood,1,"SMOKE-VALIDATED case (bundle gia generato). Transversal pattern in blood across 18 studies (group-mode coarse anchor); k_eff=18, n_sig_strong=13434, max_logFC=13.0. Mega-big primary showcase."
+group_L0_1a0673ae,Smoke_small_validated_transversal_skin,2,"SMOKE-VALIDATED case (bundle gia generato). Transversal pattern in skin (group-mode coarse anchor); k_eff=6, n_sig_strong=3553. Mega-small low-power baseline."
