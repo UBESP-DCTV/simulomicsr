@@ -158,6 +158,46 @@ Next steps user-driven:
   CHEBI:17199, CHEBI:17236, CHEBI:16236) per arricchire le label paper
 - Eventuale Stadio 5 meta-analisi (spec design da scrivere)
 
+### ⚠️ AUDIT LLM ANCHOR CLASSIFICATION (2026-05-24, branch `p5-llm-anchor-classification-audit`, NON MERGIATO)
+
+Durante il ChEBI lookup richiesto dall'utente per arricchire le label Layer B
+è emerso un finding paper-grade gravissimo che bloccca l'integrazione Layer B
+nel paper finché non si decide una mitigation. Audit cross-validation degli
+`agent_id` LLM-emitted (Mistral-Small-3.2) contro ontologie controllate ChEBI
+(205k compounds), HGNC (45k genes), MeSH 2025 (31k descriptors):
+
+| Metrica | Valore | Cosa dice |
+|---|---:|---|
+| Field-swap rate `<DB>:<num>` | **23.87%** (63738/267056) | ID numerico nel campo `preferred_name` invece di `id`. Recuperabile post-hoc via lookup. |
+| Pure hallucination rate | 0.97% (2587/267056) | Bassissimo. |
+| `kind_effective` accuracy vs ChEBI has_role | cytokine_stim **0.7%** match, pathogen **2.4%** match, vehicle_only 93.5% match | **Disastroso** per cytokine/pathogen. |
+| Fragmentation L0G (compound, kind, level, mode fissati) | 34.4% | 1/3 compounds split in piu' cluster. |
+
+**Su 15 case study Layer B**:
+- 7 scientificamente validi (poly(I:C), Resiquimod, IFN-β, Hypoxia, miR-9, contact inhibition, Mesendoderm)
+- 2 transversal ambigui (smoke `group_L0_*`)
+- 2 con compound LLM-oscuro CHEBI:17236 (probable consistent hallucination)
+- **4 critically wrong**: Carnitine-as-pathogen, Ethanol-as-cytokine, dihydroxyphthalic-as-pathogen, Pregnanetriol-as-disease
+
+**Impatto**:
+- Pooling DE Stage 4 algoritmicamente VALIDO (anchor stringa deterministica)
+- Interpretazione BIOLOGICA INVALIDA per migliaia di cluster (label numerica + kind wrong)
+- L2 paper limitation va espansa drasticamente
+
+**4 opzioni mitigation in attesa di decisione utente** (vedi
+`docs/findings/2026-05-24-llm-anchor-classification-audit.md` per dettaglio):
+
+1. Layer B patch-only (1-2h): drop 4 wrong, label fix, rebuild parziale Layer B
+2. **Post-hoc ChEBI override + rebuild Stage 3+4+B** (4-6h DGX o 28h laptop) ← raccomandazione
+3. Stage 2 re-prompt mirato + rebuild downstream (6h+28h)
+4. Stage 1 prompt fix + full rerun (4-5 giorni)
+
+Branch isolato `p5-llm-anchor-classification-audit` (commit `7a0e20c`).
+Master ancora a `p5-stadio4-layer-b-batch-15` — Layer B selection corrente
+e' SUBOPTIMALE finché non si applica una mitigation.
+
+Memoria: [[project_llm_anchor_classification_audit]].
+
 ---
 
 ## Stato precedente (2026-05-17 — P4 β rescue cascade COMPLETE, tag p4-beta-rescue-complete pending)
