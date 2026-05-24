@@ -1,9 +1,15 @@
 # ADR-0017 — Layer B case study generator architecture
 
-**Stato:** Proposed
+**Stato:** Accepted (2026-05-24, post-implementation + smoke 3-cluster validato)
 **Data:** 2026-05-24
-**Branch:** `p5-stadio4-layer-b`
+**Branch:** `p5-stadio4-layer-b` (31 commit, ff-merged a master)
+**Tag:** `p5-stadio4-layer-b-complete`
 **Spec di riferimento:** `docs/superpowers/specs/2026-05-24-p5-stadio4-layer-b-design.md`
+**Plan di riferimento:** `docs/superpowers/plans/2026-05-24-p5-stadio4-layer-b-plan.md`
+**Smoke validation:** `analysis/p4-output/20260524T145030Z-layer-b-smoke-fc13af22/layer_b_report.html`
+  (3 cluster: `group_L0_1a0673ae` mega-small, `group_L0_a6f8c0e9` mega-big, `pair_L2_3ce85e50` mega_aug. Wall 2.8 min.)
+
+**Test suite Layer B:** 142+ PASS / 0 FAIL su filter `^layer-b`. 269 cumulative su intera suite simulomicsr.
 
 ## Contesto
 

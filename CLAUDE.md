@@ -95,12 +95,36 @@ Decisioni chiave (vedi ADR-0017 + spec 2026-05-24):
 - NO targets integration (script standalone primary)
 - Smoke 3-cluster gate obbligatorio pre-batch
 
-Test suite Layer B: 125 PASS / 0 FAIL.
+Test suite Layer B: 142+ PASS / 0 FAIL su filter `^layer-b` (269 cumulative
+suite intera). Wall smoke 3-cluster: 2.8 min.
 
-DESCRIPTION delta: +9 Imports Bioc/CRAN + 2 mossi da Suggests + 1 Suggests nuovo.
+DESCRIPTION delta paper-grade: clusterProfiler, ComplexHeatmap, DESeq2, dplyr,
+ggplot2, ggrepel, kableExtra, org.Hs.eg.db, patchwork, quarto, sva in `Imports`;
+ReactomePA, ggrastr in `Suggests`.
 
-Status: implementazione DONE (Task 0-18 commits). Pending: smoke gate (Task 19)
-+ batch user curation + ff-merge to master + tag `p5-stadio4-layer-b-complete`.
+**Status: COMPLETE 2026-05-24, tag `p5-stadio4-layer-b-complete`, ADR-0017 Accepted.**
+
+Smoke validation (2026-05-24): 3 cluster pick (mega_big group_L0_a6f8c0e9,
+mega_aug pair_L2_3ce85e50, mega_small group_L0_1a0673ae) → bundle dir-per-cluster
++ layer_b_report.html standalone 8 MB con 16/16 immagini base64-embedded +
+caption english paper-ready + run_metadata.json con bioc_versions +
+n_plots_generated/skipped + summary card con anchor risolto (treated side per
+pair, level-aware per group L0..L4).
+
+Cleanup paper-grade post-implementation: ggplot2 4.0 deprecations rimosse, SVG
+size -66% to -90% (raster body via ggrastr + ComplexHeatmap::use_raster), HTML
+embed-resources fix (era 0 base64 -> 16), parse_anchor_key gestisce mode='pair'
+(treated__VS__control), ComBat guard su single-level treatment, summary_card
+n_total_samples threading via per_cluster_samples (era N/A per mega-strict),
+extract_anchor_summary public helper (era duplicato inline negli script).
+
+Branch p5-stadio4-layer-b 31 commit ff-merged. Push remote rimane all'utente.
+
+Next steps user-driven:
+- Curare `analysis/layer-b-selection.csv` con 10-20 cluster_id dalla dashboard Layer A
+- Lanciare `Rscript analysis/p5-stage4-layer-b-build.R` per batch finale
+- Compilare narrative.qmd per ogni case study (sezioni TODO: Biological context,
+  Findings, Discussion) -> integrazione nel paper Results.
 
 ---
 
