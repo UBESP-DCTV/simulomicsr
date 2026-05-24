@@ -58,9 +58,29 @@ if (any(!val$exists_in_stage4)) {
 cli_alert_info("Loading Stage 3 metadata + Stage 2 master...")
 t_load <- Sys.time()
 s3 <- load_stage3(stage3_dir)
-stage3_metadata <- s3$clusters[, c(
-  "cluster_id", "kind_effective", "agent_id", "tissue", "safety_min"
-)]
+# Stage 3 metadata: clusters.rds tiene `anchor_key` pipe-delimited (13 segmenti
+# canonical anchor v3, vedi R/stage3-anchor-levels.R::.extract_anchor_segments)
+# invece di colonne kind_effective/agent_id/tissue separate. Parsing positional
+# per L0 (13 segmenti completi); per altri level i segmenti vengono droppati e
+# il parsing diventa level-aware (TODO v2 — per ora best-effort solo su L0).
+parse_anchor_segments <- function(key, level) {
+  if (is.na(level) || level != 0L) {
+    return(list(kind_effective = NA_character_, agent_id = NA_character_, tissue = NA_character_))
+  }
+  segs <- strsplit(key, "|", fixed = TRUE)[[1L]]
+  if (length(segs) != 13L) {
+    return(list(kind_effective = NA_character_, agent_id = NA_character_, tissue = NA_character_))
+  }
+  list(kind_effective = segs[1L], agent_id = segs[2L], tissue = segs[11L])
+}
+parsed_segs <- Map(parse_anchor_segments, s3$clusters$anchor_key, s3$clusters$level)
+stage3_metadata <- tibble::tibble(
+  cluster_id     = s3$clusters$cluster_id,
+  kind_effective = vapply(parsed_segs, function(x) x$kind_effective, character(1L)),
+  agent_id       = vapply(parsed_segs, function(x) x$agent_id, character(1L)),
+  tissue         = vapply(parsed_segs, function(x) x$tissue, character(1L)),
+  safety_min     = s3$clusters$safety_min
+)
 stage2_master <- simulomicsr:::.load_stage2_master(stage2_path)
 assignments <- s3$assignments
 cli_alert_success(sprintf(
@@ -82,27 +102,64 @@ if (!dir.exists(counts_cache_dir)) {
 }
 
 # -----------------------------------------------------------------------------
-# per_cluster_samples_provider: join Stage 3 assignment + Stage 2 design_role
-# (signature contrattuale: function(cluster_id) -> tibble {sample_id, study_id, treatment})
+# per_cluster_samples_provider: usa i dispatch builder di Layer A
+# (.build_study_dispatch_from_stage3 + .build_group_dispatch_from_stage3) per
+# risolvere cluster_id -> {sample_id, study_id, treatment}. Stage 3 assignments
+# tiene record_id (formato <series>_<suffix>) non sample_id direttamente: i
+# dispatch builder fanno il join con stage2_master per estrarre i sample_ids
+# dei replicate_group treated/control per ogni studio del cluster.
+#
+# NOTA (limitazione MEGA-AUG): per cluster mega_aug, study_dispatch contiene
+# solo i sample del pair (2 studi); il baseline pool augmentation samples non
+# sono inclusi. La heatmap del case study mostrera' pair-only samples
+# (acceptable: volcano/forest/top-gene-table/GO usano cluster_pooled che e' il
+# risultato POST-pooling con augmentation, quindi e' completo).
 # -----------------------------------------------------------------------------
+cli_alert_info("Building study/group dispatch per la selection...")
+selection_csv_loaded <- simulomicsr:::.load_layer_b_selection(selection_csv)
+selected_cluster_meta <- s3$clusters[
+  s3$clusters$cluster_id %in% selection_csv_loaded$cluster_id, ]
+cp_sub_meta <- arrow::open_dataset(file.path(stage4_dir, "cluster_pooled.parquet")) |>
+  dplyr::filter(cluster_id %in% selection_csv_loaded$cluster_id) |>
+  dplyr::select(cluster_id, method) |>
+  dplyr::collect() |>
+  dplyr::distinct(cluster_id, method)
+selected_cluster_meta$method <- cp_sub_meta$method[
+  match(selected_cluster_meta$cluster_id, cp_sub_meta$cluster_id)
+]
+
+study_dispatch <- simulomicsr:::.build_study_dispatch_from_stage3(
+  selected_cluster_meta, assignments, stage2_master
+)
+group_dispatch <- simulomicsr:::.build_group_dispatch_from_stage3(
+  selected_cluster_meta, assignments, stage2_master
+)
+
 per_cluster_samples_provider <- function(cluster_id) {
-  asg <- assignments[
-    assignments$cluster_id == cluster_id,
-    c("sample_id", "study_id"),
-    drop = FALSE
-  ]
-  s2_rows <- stage2_master[
-    stage2_master$gsm %in% asg$sample_id,
-    c("gsm", "design_role"),
-    drop = FALSE
-  ]
-  role <- s2_rows$design_role[match(asg$sample_id, s2_rows$gsm)]
-  asg$treatment <- ifelse(
-    role %in% c("control", "vehicle", "untreated"),
-    "control",
-    "treated"
-  )
-  asg
+  if (cluster_id %in% names(study_dispatch)) {
+    items <- study_dispatch[[cluster_id]]
+    do.call(rbind, lapply(items, function(it) {
+      data.frame(
+        sample_id = c(it$treated, it$control),
+        study_id  = it$study_id,
+        treatment = c(rep("treated", length(it$treated)),
+                      rep("control", length(it$control))),
+        stringsAsFactors = FALSE
+      )
+    }))
+  } else if (cluster_id %in% names(group_dispatch)) {
+    items <- group_dispatch[[cluster_id]]
+    do.call(rbind, lapply(items, function(it) {
+      data.frame(
+        sample_id = it$sample_ids,
+        study_id  = it$study_id,
+        treatment = it$treatment,
+        stringsAsFactors = FALSE
+      )
+    }))
+  } else {
+    stop(sprintf("Cluster %s non risolto in study/group dispatch", cluster_id))
+  }
 }
 
 # -----------------------------------------------------------------------------
