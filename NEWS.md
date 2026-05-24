@@ -1,3 +1,33 @@
+# simulomicsr 0.0.0.9020
+
+## Stadio 4 Layer B — case study generator (2026-05-24)
+
+Pipeline semi-automatica per produrre asset publication-grade per 10-20
+"showcase case study" curati a mano. Input: CSV `analysis/layer-b-selection.csv`
+con `cluster_id, label_paper, priority, notes`. Output: bundle dir-per-cluster
+con 8 plot publication-grade (volcano, forest [REM/MEGA-AUG], MA, top-gene
+table, heatmap, GO/Reactome enrichment, heterogeneity [REM only], summary card)
++ aggregate report HTML standalone via Quarto.
+
+### Public API
+
+- `build_layer_b_results()` — orchestrator end-to-end
+- `layer_b_default_config()` — config defaults
+- `layer_b_validate_selection()` — pre-check smoke (typo, drift Stage 4)
+- `write_layer_b_to_dir()`, `load_layer_b()` — bundle persistence
+- `render_layer_b_report()` — Quarto aggregate report
+
+### Spec + ADR
+
+- Spec: `docs/superpowers/specs/2026-05-24-p5-stadio4-layer-b-design.md`
+- ADR-0017 (Proposed): `docs/decisions/0017-layer-b-case-study-generator.md`
+
+### DESCRIPTION delta
+
+- Imports nuovi: clusterProfiler, ComplexHeatmap, DESeq2, ggrepel, kableExtra, org.Hs.eg.db, sva, circlize, viridisLite
+- Mossi da Suggests a Imports: ggplot2, quarto
+- Suggests nuovo: ReactomePA (opt-in skip-graceful)
+
 # simulomicsr 0.0.0.9020 (development) — P5 Stadio 4 Layer A fullrun COMPLETE (run_id 96c43acb)
 
 ## Layer A fullrun completato (2026-05-23, tag `p5-stadio4-complete`)
