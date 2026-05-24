@@ -22,6 +22,30 @@ test_that(".build_top_gene_table writes CSV + LaTeX", {
   expect_true(any(grepl("booktabs|toprule|tabular", tex)))
 })
 
+test_that(".build_top_gene_table LaTeX caption uses single backslash log_2 FC (no double-escape)", {
+  cp <- make_fake_cluster_pooled(n_genes = 100, n_sig = 40)
+  out_dir <- tempfile("tgt_tex_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  cfg <- layer_b_default_config()
+  result <- simulomicsr:::.build_top_gene_table(cp, out_dir = out_dir, config = cfg)
+
+  # Legge il .tex come stringa raw (no escape interpretation)
+  tex_raw <- paste(readLines(result$tex_path), collapse = "\n")
+
+  # Deve contenere "\log_2 FC" (1 backslash literal nel file)
+  expect_true(
+    grepl("\\\\log_2 FC", tex_raw),
+    info = "Expected '\\log_2 FC' (1 backslash literal) nel .tex"
+  )
+  # NON deve contenere "\\\\log" (4 backslash literal nel file = bug pre-fix)
+  expect_false(
+    grepl("\\\\\\\\log", tex_raw),
+    info = "Expected NO '\\\\log' (4 backslash literal) nel .tex post-fix"
+  )
+})
+
 test_that(".build_top_gene_table handles 0 sig genes", {
   cp <- make_fake_cluster_pooled(n_genes = 50, n_sig = 0)
   out_dir <- tempfile("tgt_zero_")

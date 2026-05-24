@@ -84,12 +84,8 @@
     ggplot2::theme(panel.grid.minor = ggplot2::element_blank()) +
     ggplot2::expand_limits(y = max(split_summary$pct_sig, na.rm = TRUE) * 1.15)
 
-  # Combine 2x1 via patchwork se disponibile, fallback single panel
-  combined <- if (requireNamespace("patchwork", quietly = TRUE)) {
-    patchwork::wrap_plots(p_hist, p_split, ncol = 2L)
-  } else {
-    p_hist
-  }
+  # Combine 2x1 via patchwork (hard dep, vedi DESCRIPTION Imports)
+  combined <- patchwork::wrap_plots(p_hist, p_split, ncol = 2L)
 
   ggplot2::ggsave(png_path, combined, width = 8, height = 4, dpi = config$dpi)
   if (isTRUE(config$save_svg)) {

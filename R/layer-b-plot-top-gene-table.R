@@ -52,7 +52,7 @@
     format = "latex",
     booktabs = TRUE,
     digits = c(NA, 3, 3, -2, -2, 0, 3, 1, NA),
-    caption = sprintf("Top %d differentially expressed genes for cluster %s (FDR<%g, ranked by $|\\\\log_2 FC|$).",
+    caption = sprintf("Top %d differentially expressed genes for cluster %s (FDR<%g, ranked by $|\\log_2 FC|$).",
                       nrow(top_out), cluster_id_str, fdr_thr),
     label = sprintf("tab:top-genes-%s", gsub("[^a-zA-Z0-9]", "-", cluster_id_str))
   )
