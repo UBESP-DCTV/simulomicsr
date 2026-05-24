@@ -27,8 +27,18 @@
 
   cp_plot <- cp[!is.na(cp$baseMean), , drop = FALSE]
 
+  # Rasterizza il layer di punti nel SVG (axis/labels/legend restano vector).
+  # ggrastr e' in Suggests: fallback skip-graceful se non installato.
+  use_rasterize <- requireNamespace("ggrastr", quietly = TRUE)
+  point_layer <- ggplot2::geom_point(
+    ggplot2::aes(color = is_sig), alpha = 0.5, size = 1.2
+  )
+  if (use_rasterize) {
+    point_layer <- ggrastr::rasterise(point_layer, dpi = config$dpi)
+  }
+
   p <- ggplot2::ggplot(cp_plot, ggplot2::aes(x = baseMean, y = logFC_pool)) +
-    ggplot2::geom_point(ggplot2::aes(color = is_sig), alpha = 0.5, size = 1.2) +
+    point_layer +
     ggplot2::scale_color_manual(
       values = c(`TRUE` = "#CC3333", `FALSE` = "#BBBBBB"),
       labels = c(`TRUE` = sprintf("FDR<%g", fdr_thr), `FALSE` = "not sig"),

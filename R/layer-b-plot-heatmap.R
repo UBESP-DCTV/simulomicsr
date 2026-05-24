@@ -135,6 +135,10 @@
     annotation_height = grid::unit(c(4, 4), "mm")
   )
 
+  # use_raster=TRUE: body della heatmap rasterizzato (PNG-embedded nel SVG)
+  # mentre axis/labels/annotation restano vettoriali. Riduce SVG da ~5MB a
+  # ~200-500KB mantenendo qualita di stampa paper-grade (raster_quality=5 =
+  # high-DPI equivalent).
   hm <- ComplexHeatmap::Heatmap(
     z_mat,
     name = "z-score",
@@ -144,7 +148,9 @@
     row_names_gp = grid::gpar(fontsize = 8),
     cluster_columns = TRUE,
     cluster_rows = TRUE,
-    col = circlize::colorRamp2(c(-2, 0, 2), c("#3050a0", "white", "#c04040"))
+    col = circlize::colorRamp2(c(-2, 0, 2), c("#3050a0", "white", "#c04040")),
+    use_raster = TRUE,
+    raster_quality = 5
   )
 
   png_path <- file.path(out_dir, "heatmap.png")

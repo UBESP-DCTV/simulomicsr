@@ -32,8 +32,20 @@
     cp$label <- NA_character_
   }
 
+  # Rasterizza il layer di punti nel SVG (axis/labels/legend restano vector).
+  # ggrastr e' in Suggests: fallback skip-graceful se non installato (SVG resta
+  # full vector e quindi piu' grande, ma plot e' identico). Per N~28k geni la
+  # rasterizzazione porta volcano.svg da ~5MB a ~150-300KB.
+  use_rasterize <- requireNamespace("ggrastr", quietly = TRUE)
+  point_layer <- ggplot2::geom_point(
+    ggplot2::aes(color = is_sig), alpha = 0.6, size = 1.5
+  )
+  if (use_rasterize) {
+    point_layer <- ggrastr::rasterise(point_layer, dpi = config$dpi)
+  }
+
   p <- ggplot2::ggplot(cp, ggplot2::aes(x = logFC_pool, y = neg_log10_p)) +
-    ggplot2::geom_point(ggplot2::aes(color = is_sig), alpha = 0.6, size = 1.5) +
+    point_layer +
     ggplot2::scale_color_manual(
       values = c(`TRUE` = "#CC3333", `FALSE` = "#BBBBBB"),
       labels = c(`TRUE` = sprintf("FDR<%g", fdr_thr), `FALSE` = "not sig"),
