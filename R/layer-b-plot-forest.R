@@ -116,14 +116,19 @@
 
   } else if (method == "rem") {
     # REM path via metafor::forest per ogni gene. Build matrix of yi, vi per gene.
+    # Rispetta config$top_n_forest (era hard-coded 4 cap).
+    top_n_actual <- min(nrow(top_genes), top_n)
+
     png_path <- file.path(out_dir, "forest.png")
     svg_path <- file.path(out_dir, "forest.svg")
 
-    grDevices::png(png_path, width = 8 * config$dpi, height = max(3, nrow(top_genes) * 0.5) * config$dpi,
+    h_inch <- max(3, top_n_actual * 0.6)
+    grDevices::png(png_path, width = 8 * config$dpi, height = h_inch * config$dpi,
                    res = config$dpi)
-    on.exit(grDevices::dev.off(), add = TRUE)
-    graphics::par(mfrow = c(min(nrow(top_genes), 4L), 1L), mar = c(3, 1, 2, 1))
-    for (g in top_genes$gene[seq_len(min(nrow(top_genes), 4L))]) {
+    # Device-safe: chiude solo se ancora aperto (gestisce crash mid-loop senza leak).
+    on.exit(if (grDevices::dev.cur() != 1L) grDevices::dev.off(), add = TRUE)
+    graphics::par(mfrow = c(min(top_n_actual, 4L), 1L), mar = c(3, 1, 2, 1))
+    for (g in top_genes$gene[seq_len(top_n_actual)]) {
       ps_g <- ps[ps$gene == g, , drop = FALSE]
       if (nrow(ps_g) < 2L) next
       tryCatch({
@@ -131,13 +136,16 @@
         metafor::forest(res, slab = ps_g$study_id, header = g)
       }, error = function(e) NULL)
     }
-    grDevices::dev.off()
-    on.exit()
+    grDevices::dev.off()  # chiusura esplicita post-loop; on.exit copre crash
 
     svg_path <- NA_character_  # metafor::forest base graphics non SVG-trivial
+
+    # Defensive: k_effective puo' essere NA/empty -> evita NA in caption.
+    k_values <- unique(top_genes$k_effective)
+    k_str <- if (length(k_values) > 0L && !is.na(k_values[1L])) as.character(k_values[1L]) else "?"
     caption <- sprintf(
-      "Forest plots for top %d significantly DE genes (FDR<%g). Each panel: per-study logFC +- 95%% CI and REML-pooled summary (k=%d).",
-      min(nrow(top_genes), 4L), fdr_thr, unique(top_genes$k_effective)[1L]
+      "Forest plots for top %d significantly DE genes (FDR<%g). Each panel: per-study logFC +- 95%% CI and REML-pooled summary (k=%s).",
+      top_n_actual, fdr_thr, k_str
     )
 
   } else {

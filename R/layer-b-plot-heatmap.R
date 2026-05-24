@@ -92,19 +92,40 @@
   })
   vst_sub <- vst_mat[rownames(vst_mat) %in% top_genes, , drop = FALSE]
 
-  # ComBat batch correction per study_id (cosmetico)
-  combat_mat <- tryCatch({
-    n_studies <- length(unique(metadata$study_id))
-    if (n_studies < 2L) {
-      vst_sub
-    } else {
-      sva::ComBat(
+  # ComBat batch correction per study_id (cosmetico).
+  # Guard: serve almeno 2 studi e 2 livelli di treatment (mod matrix non rank-deficient).
+  n_studies <- length(unique(metadata$study_id))
+  n_treat_levels <- length(unique(metadata$treatment))
+  cluster_id_str <- unique(cp$cluster_id)[1L]
+  combat_applied <- FALSE
+  combat_skip_reason <- NA_character_
+
+  combat_mat <- if (n_studies < 2L) {
+    combat_skip_reason <- "single_study"
+    vst_sub
+  } else if (n_treat_levels < 2L) {
+    cli::cli_warn(
+      "ComBat skipped per cluster {.field {cluster_id_str}}: single treatment level"
+    )
+    combat_skip_reason <- "single_treatment"
+    vst_sub
+  } else {
+    tryCatch({
+      out <- sva::ComBat(
         dat = vst_sub,
         batch = metadata$study_id,
         mod = stats::model.matrix(~ treatment, data = metadata)
       )
-    }
-  }, error = function(e) vst_sub)
+      combat_applied <- TRUE
+      out
+    }, error = function(e) {
+      cli::cli_warn(
+        "ComBat failed per cluster {.field {cluster_id_str}}: {conditionMessage(e)}"
+      )
+      combat_skip_reason <<- "combat_error"
+      vst_sub
+    })
+  }
 
   # Row-wise z-score (riduce a 0 righe a varianza nulla)
   z_mat <- t(scale(t(combat_mat)))
@@ -169,12 +190,22 @@
     svg_path <- NA_character_
   }
 
+  combat_note <- if (!combat_applied && !is.na(combat_skip_reason)) {
+    switch(
+      combat_skip_reason,
+      single_treatment = " ComBat skipped (single treatment level).",
+      combat_error     = " ComBat failed, fallback to vst-only (see warnings).",
+      single_study     = " ComBat skipped (single study, no batch effect to correct).",
+      ""
+    )
+  } else ""
+
   caption <- sprintf(
     paste0("Heatmap of top %d DE genes (rows) across samples (columns). ",
            "vst + ComBat batch correction applied for visual cross-study ",
            "coherence; effect-size statistics in pooled output are NOT ",
-           "batch-corrected.%s"),
-    length(top_genes), subsample_note
+           "batch-corrected.%s%s"),
+    length(top_genes), combat_note, subsample_note
   )
 
   list(png_path = png_path, svg_path = svg_path, caption = caption)
