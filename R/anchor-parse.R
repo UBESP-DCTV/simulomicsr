@@ -13,34 +13,82 @@
 #' per L4) sono \code{NA_character_} nell'output, in modo che il consumer
 #' possa indicizzare per nome senza preoccuparsi del livello.
 #'
+#' Supporta entrambi i mode dei cluster Stadio 3:
+#' \itemize{
+#'   \item \strong{group} (\code{mode = "group"}, default): l'\code{anchor_key}
+#'     e' un singolo set di segmenti. Restituisce un named list piatto di 13
+#'     elementi.
+#'   \item \strong{pair} (\code{mode = "pair"}): l'\code{anchor_key} e' nella
+#'     forma \code{<treated>__VS__<control>[__CT_<comparison_type>]} (vedi
+#'     \code{R/stage3-build.R}). Restituisce una lista nested
+#'     \code{list(treated = <named list 13>, control = <named list 13>,
+#'     comparison_type = character(1) o NULL)}.
+#' }
+#'
+#' Per i pair cluster di Layer B (typicamente \code{mega_aug}) il consumer
+#' tipicamente legge il lato \code{treated} per popolare summary card
+#' (\code{kind_effective}, \code{agent_id}, \code{tissue}).
+#'
 #' Inverso di \code{.build_anchor_key_from_segments()} /
 #' \code{.build_anchor_for_level()} -- usato per esporre metadata anchor
-#' leggibile (es. nelle summary card di Layer B per cluster a qualunque level,
-#' dove l'indicizzazione positional L0 lascerebbe pair_L2/L3/L4 con
-#' \code{kind_effective}, \code{agent_id} e \code{tissue} sbagliati o NA).
+#' leggibile (es. nelle summary card di Layer B per cluster a qualunque level
+#' e qualunque mode).
 #'
 #' La differenza con \code{parse_anchor_canonical()} (internal, modulo
 #' Stage 4) e' che quest'ultima restituisce solo i segmenti presenti al
 #' livello, mentre \code{parse_anchor_key()} restituisce sempre i 13 con NA
 #' per i droppati: piu' ergonomico per uso downstream.
 #'
-#' @param anchor_key character(1): stringa pipe-delimited.
+#' @param anchor_key character(1): stringa pipe-delimited (group) o
+#'   \code{<treated>__VS__<control>[__CT_<type>]} (pair).
 #' @param level integer(1) in \code{0:4}.
+#' @param mode character(1) in \code{c("group", "pair")} (default
+#'   \code{"group"}). Determina la forma dell'output.
 #' @param tier_assignment list (default = \code{stage3_default_config()$tier_assignment}).
-#' @return named list di 13 elementi character (\code{NA_character_} se
-#'   droppato a quel livello), nell'ordine canonical.
+#' @return Named list di 13 elementi character (\code{NA_character_} se
+#'   droppato), nell'ordine canonical, se \code{mode = "group"}. List nested
+#'   \code{list(treated, control, comparison_type)} se \code{mode = "pair"}.
 #' @seealso \code{\link{stage3_default_config}},
 #'   \code{R/stage3-anchor-levels.R::.build_anchor_for_level},
-#'   \code{R/stage4-anchor-matching.R::parse_anchor_canonical}.
+#'   \code{R/stage4-anchor-matching.R::parse_anchor_canonical} /
+#'   \code{parse_pair_anchor_key}.
 #' @export
-parse_anchor_key <- function(anchor_key, level, tier_assignment = NULL) {
+parse_anchor_key <- function(anchor_key, level, mode = "group",
+                              tier_assignment = NULL) {
   stopifnot(
     is.character(anchor_key), length(anchor_key) == 1L, !is.na(anchor_key),
-    length(level) == 1L, level %in% 0L:4L
+    length(level) == 1L, level %in% 0L:4L,
+    is.character(mode), length(mode) == 1L, mode %in% c("group", "pair")
   )
   if (is.null(tier_assignment)) {
     tier_assignment <- stage3_default_config()$tier_assignment
   }
+
+  if (mode == "pair") {
+    # Estrai suffisso opzionale __CT_<comparison_type>
+    comparison_type <- NULL
+    ak <- anchor_key
+    ct_match <- regmatches(ak, regexec("__CT_(.+)$", ak))[[1L]]
+    if (length(ct_match) == 2L) {
+      comparison_type <- ct_match[2L]
+      ak <- sub("__CT_.+$", "", ak)
+    }
+    vs_parts <- strsplit(ak, "__VS__", fixed = TRUE)[[1L]]
+    if (length(vs_parts) != 2L) {
+      stop("anchor_key pair-mode deve contenere esattamente un '__VS__'")
+    }
+    treated <- parse_anchor_key(vs_parts[1L], level, mode = "group",
+                                 tier_assignment = tier_assignment)
+    control <- parse_anchor_key(vs_parts[2L], level, mode = "group",
+                                 tier_assignment = tier_assignment)
+    return(list(
+      treated         = treated,
+      control         = control,
+      comparison_type = comparison_type
+    ))
+  }
+
+  # group-mode: parsing flat
 
   # Ordine canonical dei 13 segmenti, identico a .extract_anchor_segments()
   # in R/stage3-anchor-levels.R.
@@ -64,7 +112,7 @@ parse_anchor_key <- function(anchor_key, level, tier_assignment = NULL) {
   segs <- strsplit(anchor_key, "|", fixed = TRUE)[[1L]]
   if (length(segs) != length(kept_names)) {
     stop(sprintf(
-      "anchor_key ha %d segmenti, atteso %d a level %d",
+      "anchor_key ha %d segmenti, atteso %d a level %d (mode=group)",
       length(segs), length(kept_names), level
     ))
   }

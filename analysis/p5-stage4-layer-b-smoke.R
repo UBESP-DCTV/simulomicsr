@@ -90,18 +90,28 @@ s3 <- load_stage3(stage3_dir)
 # tier_assignment (default stage3_default_config()$tier_assignment), restituendo
 # NA_character_ per i segmenti droppati a quel livello. Vedi R/anchor-parse.R.
 `%||%` <- function(a, b) if (is.null(a) || (length(a) == 1L && is.na(a))) b else a
-parse_anchor_segments <- function(key, level) {
+# parse_anchor_segments: per pair-mode cluster l'anchor_key e'
+# <treated>__VS__<control>[__CT_<type>]; per group-mode e' un singolo set.
+# Auto-dispatch via mode + estrae kind_effective/agent_id/tissue dal lato
+# treated (rilevante per il summary card del case study).
+parse_anchor_segments <- function(key, level, mode) {
   res <- tryCatch(
-    parse_anchor_key(key, level),
+    parse_anchor_key(key, level, mode = mode),
     error = function(e) list()
   )
+  # Per pair-mode, l'output e' list(treated, control, comparison_type)
+  # con treated = named list 13 segmenti. Per group-mode, output piatto.
+  flat <- if (!is.null(res$treated)) res$treated else res
   list(
-    kind_effective = res$kind_effective %||% NA_character_,
-    agent_id       = res$agent_id %||% NA_character_,
-    tissue         = res$tissue %||% NA_character_
+    kind_effective = flat$kind_effective %||% NA_character_,
+    agent_id       = flat$agent_id %||% NA_character_,
+    tissue         = flat$tissue %||% NA_character_
   )
 }
-parsed_segs <- Map(parse_anchor_segments, s3$clusters$anchor_key, s3$clusters$level)
+parsed_segs <- Map(
+  parse_anchor_segments,
+  s3$clusters$anchor_key, s3$clusters$level, s3$clusters$mode
+)
 stage3_metadata <- tibble::tibble(
   cluster_id     = s3$clusters$cluster_id,
   kind_effective = vapply(parsed_segs, function(x) x$kind_effective, character(1L)),

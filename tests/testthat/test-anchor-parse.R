@@ -213,3 +213,74 @@ test_that("parse_anchor_key usa stage3_default_config() se tier_assignment NULL"
                                    tier_assignment = cfg$tier_assignment)
   expect_identical(res_default, res_explicit)
 })
+
+# ===========================================================================
+# Pair-mode: anchor_key = treated__VS__control[__CT_type]
+# ===========================================================================
+
+test_that("parse_anchor_key mode='pair' splits treated/control + ritorna 13 named", {
+  fact_t <- make_full_sample_fact()
+  fact_c <- make_full_sample_fact()
+  # Modifica il control per distinguere visualmente
+  fact_c$perturbations <- list(list(kind = "vehicle_only", phase = "exposure"))
+  cfg <- stage3_default_config()
+
+  key_t <- simulomicsr:::.build_anchor_for_level(fact_t, "treated", 2L,
+                                                  cfg$tier_assignment)
+  key_c <- simulomicsr:::.build_anchor_for_level(fact_c, "control", 2L,
+                                                  cfg$tier_assignment)
+  pair_key <- sprintf("%s__VS__%s", key_t, key_c)
+
+  res <- parse_anchor_key(pair_key, level = 2L, mode = "pair")
+
+  expect_type(res, "list")
+  expect_named(res, c("treated", "control", "comparison_type"),
+               ignore.order = TRUE)
+  expect_null(res$comparison_type)
+  # treated lato: 13 named list con valori del treated original
+  expect_length(res$treated, 13L)
+  expect_identical(res$treated$kind_effective, "small_molecule")
+  expect_identical(res$treated$tissue, "endothelium")
+  # control lato: vehicle_only
+  expect_identical(res$control$kind_effective, "vehicle_only")
+})
+
+test_that("parse_anchor_key mode='pair' estrae comparison_type da __CT_<type>", {
+  fact <- make_full_sample_fact()
+  cfg  <- stage3_default_config()
+  key_t <- simulomicsr:::.build_anchor_for_level(fact, "treated", 0L,
+                                                  cfg$tier_assignment)
+  key_c <- simulomicsr:::.build_anchor_for_level(fact, "control", 0L,
+                                                  cfg$tier_assignment)
+  pair_key_ct <- sprintf("%s__VS__%s__CT_vehicle", key_t, key_c)
+
+  res <- parse_anchor_key(pair_key_ct, level = 0L, mode = "pair")
+  expect_identical(res$comparison_type, "vehicle")
+  expect_identical(res$treated$kind_effective, "small_molecule")
+})
+
+test_that("parse_anchor_key mode='pair' solleva errore su missing __VS__", {
+  fact <- make_full_sample_fact()
+  cfg  <- stage3_default_config()
+  key <- simulomicsr:::.build_anchor_for_level(fact, "treated", 0L,
+                                                cfg$tier_assignment)
+  # Manca __VS__: non e' pair
+  expect_error(
+    parse_anchor_key(key, level = 0L, mode = "pair"),
+    "deve contenere esattamente un '__VS__'"
+  )
+})
+
+test_that("parse_anchor_key mode='group' (default) e 'pair' sono distinte", {
+  fact <- make_full_sample_fact()
+  cfg  <- stage3_default_config()
+  key  <- simulomicsr:::.build_anchor_for_level(fact, "treated", 0L,
+                                                cfg$tier_assignment)
+  # mode='group' default ritorna 13 names piatti
+  res_group <- parse_anchor_key(key, level = 0L)
+  expect_length(res_group, 13L)
+  expect_false("treated" %in% names(res_group))
+
+  # mode='pair' su SAME key (senza __VS__) fallisce
+  expect_error(parse_anchor_key(key, level = 0L, mode = "pair"))
+})
