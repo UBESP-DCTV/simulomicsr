@@ -33,6 +33,41 @@ test_that(".build_heatmap writes PNG with vst+ComBat + annotation rows", {
   expect_match(result$caption, "vst", ignore.case = TRUE)
 })
 
+test_that(".build_heatmap skips ComBat con caption esplicativa su single treatment", {
+  skip_if_not_installed("ComplexHeatmap")
+  skip_if_not_installed("DESeq2")
+  skip_if_not_installed("sva")
+  set.seed(1)
+  n_genes <- 100
+  n_samples <- 12
+
+  cp <- make_fake_cluster_pooled(n_genes = n_genes, n_sig = 20, cluster_id = "cl_single_treat")
+  counts <- matrix(rpois(n_genes * n_samples, lambda = 100), nrow = n_genes,
+                   dimnames = list(cp$gene, paste0("GSM", seq_len(n_samples))))
+  # Tutti control: single treatment level
+  metadata <- tibble::tibble(
+    sample_id = paste0("GSM", seq_len(n_samples)),
+    study_id  = rep(paste0("GSE", 1:2), each = 6),
+    treatment = rep("control", n_samples)
+  )
+
+  out_dir <- tempfile("hm_single_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  cfg <- layer_b_default_config()
+  expect_warning(
+    result <- simulomicsr:::.build_heatmap(
+      counts = counts, metadata = metadata,
+      cluster_pooled_subset = cp,
+      out_dir = out_dir, config = cfg
+    ),
+    "single treatment"
+  )
+  expect_true(file.exists(result$png_path))
+  expect_match(result$caption, "ComBat skipped")
+})
+
 test_that(".build_heatmap subsamples to max_heatmap_samples", {
   skip_if_not_installed("ComplexHeatmap")
   skip_if_not_installed("DESeq2")
