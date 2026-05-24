@@ -85,19 +85,21 @@ cli_alert_info("Loading Stage 3 metadata + Stage 2 master...")
 s3 <- load_stage3(stage3_dir)
 # Stage 3 metadata: clusters.rds tiene `anchor_key` pipe-delimited (13 segmenti
 # canonical anchor v3, vedi R/stage3-anchor-levels.R::.extract_anchor_segments)
-# invece di colonne kind_effective/agent_id/tissue separate. Parsing positional
-# per L0 (13 segmenti completi). Per altri level (1..4) i segmenti vengono
-# droppati e il parsing diventa level-aware; per ora best-effort solo su L0.
+# invece di colonne kind_effective/agent_id/tissue separate. parse_anchor_key()
+# e' level-aware: ricostruisce i 13 segmenti canonical da anchor_key + level +
+# tier_assignment (default stage3_default_config()$tier_assignment), restituendo
+# NA_character_ per i segmenti droppati a quel livello. Vedi R/anchor-parse.R.
+`%||%` <- function(a, b) if (is.null(a) || (length(a) == 1L && is.na(a))) b else a
 parse_anchor_segments <- function(key, level) {
-  if (is.na(level) || level != 0L) {
-    return(list(kind_effective = NA_character_, agent_id = NA_character_, tissue = NA_character_))
-  }
-  segs <- strsplit(key, "|", fixed = TRUE)[[1L]]
-  if (length(segs) != 13L) {
-    return(list(kind_effective = NA_character_, agent_id = NA_character_, tissue = NA_character_))
-  }
-  # Ordine canonical: kind_effective[1], agent_id[2], ..., tissue[11], ...
-  list(kind_effective = segs[1L], agent_id = segs[2L], tissue = segs[11L])
+  res <- tryCatch(
+    parse_anchor_key(key, level),
+    error = function(e) list()
+  )
+  list(
+    kind_effective = res$kind_effective %||% NA_character_,
+    agent_id       = res$agent_id %||% NA_character_,
+    tissue         = res$tissue %||% NA_character_
+  )
 }
 parsed_segs <- Map(parse_anchor_segments, s3$clusters$anchor_key, s3$clusters$level)
 stage3_metadata <- tibble::tibble(
