@@ -163,12 +163,13 @@ build_layer_b_results <- function(stage4_dir, selection,
       drop = FALSE
     ]
     summary_card <- .build_summary_card(
-      cluster_id      = cl_id,
-      layer_a_subset  = layer_a_subset,
-      stage3_metadata = stage3_metadata,
-      selection_row   = selection_row,
-      config          = config,
-      out_dir         = cl_dir
+      cluster_id          = cl_id,
+      layer_a_subset      = layer_a_subset,
+      stage3_metadata     = stage3_metadata,
+      selection_row       = selection_row,
+      config              = config,
+      out_dir             = cl_dir,
+      per_cluster_samples = counts_meta$metadata
     )
     narrative_path <- .write_narrative_template(
       cluster_id          = cl_id,
@@ -189,12 +190,39 @@ build_layer_b_results <- function(stage4_dir, selection,
 
   wall <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
 
+  # Bioc versions (6 hard deps Layer B) -- per riproducibilita paper
+  bioc_pkgs <- c("clusterProfiler", "ComplexHeatmap", "DESeq2",
+                 "org.Hs.eg.db", "sva", "ReactomePA")
+  bioc_versions <- stats::setNames(
+    vapply(bioc_pkgs, function(p) {
+      if (requireNamespace(p, quietly = TRUE)) {
+        as.character(utils::packageVersion(p))
+      } else {
+        NA_character_
+      }
+    }, character(1L)),
+    bioc_pkgs
+  )
+
+  # Conta plot generati vs skipped (path NA = skip)
+  n_plots_generated <- sum(vapply(cluster_bundles, function(b) {
+    sum(vapply(b$plots, function(p) {
+      !is.null(p$png_path) && !is.na(p$png_path)
+    }, logical(1L)))
+  }, integer(1L)))
+  n_plots_skipped <- sum(vapply(cluster_bundles, function(b) {
+    sum(vapply(b$plots, function(p) {
+      is.null(p$png_path) || is.na(p$png_path)
+    }, logical(1L)))
+  }, integer(1L)))
+
   run_metadata <- list(
     run_id          = run_id,
     timestamp       = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
     schema_versions = schema_versions,
     package_version = as.character(utils::packageVersion("simulomicsr")),
     r_version       = R.version.string,
+    bioc_versions   = as.list(bioc_versions),
     input_files     = list(
       stage4_dir       = list(path = stage4_dir, run_id = layer_a_subset$stage4_run_id),
       selection_sha256 = sel_sha
@@ -202,9 +230,20 @@ build_layer_b_results <- function(stage4_dir, selection,
     config          = config,
     output_counts   = list(
       n_clusters_processed = length(cluster_ids),
-      by_method            = as.list(table(sel_resolved$method))
+      by_method            = as.list(table(sel_resolved$method)),
+      n_plots_generated    = n_plots_generated,
+      n_plots_skipped      = n_plots_skipped,
+      # bundle_size_mb / report_size_mb: computed post-write via du(1) -- non
+      # disponibili a questo punto (out_dir popolata sotto da write_layer_b_to_dir)
+      bundle_size_mb       = NA_real_,
+      report_size_mb       = NA_real_
     ),
-    compute_summary = list(wall_seconds = wall)
+    # peak_mem_mb richiederebbe Rprof o pryr::mem_used -- non aggiungiamo
+    # dipendenze runtime per un metric meramente informativo
+    compute_summary = list(
+      wall_seconds = wall,
+      peak_mem_mb  = NA_real_
+    )
   )
 
   result <- structure(

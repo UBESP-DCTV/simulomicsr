@@ -14,11 +14,18 @@
 #'   notes`.
 #' @param config list.
 #' @param out_dir character; se NULL, usa `tempdir()`.
+#' @param per_cluster_samples tibble opzionale (sample_id, study_id, treatment)
+#'   per il cluster, usata per ricavare \code{n_total_samples} direttamente.
+#'   Quando NULL (default backward-compat), cade sul pattern legacy via
+#'   \code{layer_a_subset$per_study_de} (popolato solo per mega_aug). Passare
+#'   questo argomento permette di mostrare il sample count anche per cluster
+#'   mega-strict (n_studies>=5, k>=5) dove \code{per_study_de} e' vuoto.
 #'
 #' @return list `md_path`.
 #' @keywords internal
 .build_summary_card <- function(cluster_id, layer_a_subset, stage3_metadata,
-                                selection_row, config, out_dir = tempdir()) {
+                                selection_row, config, out_dir = tempdir(),
+                                per_cluster_samples = NULL) {
   cp <- layer_a_subset$cluster_pooled
   cp_c <- cp[cp$cluster_id == cluster_id, , drop = FALSE]
   if (nrow(cp_c) == 0L) {
@@ -83,16 +90,23 @@
     "N/A (non-MEGA-AUG)"
   }
 
-  # n_total_samples: da layer_a_subset$per_study_de quando presente
+  # n_total_samples: priorita' al per_cluster_samples passato esplicito (path
+  # nuovo per mega-strict, dove `per_study_de` e' vuoto); fallback al pattern
+  # legacy via per_study_de per backward-compat (caller non passa
+  # per_cluster_samples).
   n_total_samples_str <- "N/A"
-  ps <- layer_a_subset$per_study_de
-  if (!is.null(ps) && nrow(ps) > 0L) {
-    ps_c <- ps[ps$cluster_id == cluster_id, , drop = FALSE]
-    if (nrow(ps_c) > 0L) {
-      uniq <- unique(ps_c[, c("study_id", "n_treated", "n_control")])
-      n_total_samples_str <- as.character(
-        sum(uniq$n_treated + uniq$n_control)
-      )
+  if (!is.null(per_cluster_samples) && nrow(per_cluster_samples) > 0L) {
+    n_total_samples_str <- as.character(nrow(per_cluster_samples))
+  } else {
+    ps <- layer_a_subset$per_study_de
+    if (!is.null(ps) && nrow(ps) > 0L) {
+      ps_c <- ps[ps$cluster_id == cluster_id, , drop = FALSE]
+      if (nrow(ps_c) > 0L) {
+        uniq <- unique(ps_c[, c("study_id", "n_treated", "n_control")])
+        n_total_samples_str <- as.character(
+          sum(uniq$n_treated + uniq$n_control)
+        )
+      }
     }
   }
 

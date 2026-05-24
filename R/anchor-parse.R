@@ -124,3 +124,54 @@ parse_anchor_key <- function(anchor_key, level, mode = "group",
   out[kept_names] <- as.list(segs)
   out
 }
+
+#' Estrae i 3 segmenti chiave (kind_effective, agent_id, tissue) dall'anchor_key
+#'
+#' Wrapper convenience attorno a [parse_anchor_key()] che ritorna una named
+#' list piatta con i 3 segmenti piu' usati per i summary card / report di
+#' Layer B (kind_effective, agent_id, tissue). Per cluster pair-mode
+#' (anchor_key con \code{__VS__}), estrae dal lato treated.
+#' Skip-graceful: ritorna NA su qualsiasi error (anchor_key malformato,
+#' mismatch length, etc).
+#'
+#' Promosso da inline parse_anchor_segments in
+#' \code{analysis/p5-stage4-layer-b-{build,smoke}.R} per riuso DRY e
+#' audit-trail reproducibility (single source of truth).
+#'
+#' @param anchor_key character(1) pipe-delimited (group) o
+#'   \code{<treated>__VS__<control>[__CT_<type>]} (pair).
+#' @param level integer(1) in \code{0:4}.
+#' @param mode character(1) "group" (default) o "pair".
+#' @param tier_assignment list (default = \code{stage3_default_config()$tier_assignment}).
+#' @return named list di 3 elementi character (kind_effective, agent_id,
+#'   tissue). \code{NA_character_} su error o segment droppato a quel level.
+#' @seealso [parse_anchor_key()].
+#' @export
+#' @examples
+#' \dontrun{
+#' extract_anchor_summary(
+#'   "small_molecule|CHEMBL941|NA|10nM|24h|exposure|CVCL_2959|cell_line|proliferating|NA|endothelium|healthy|false",
+#'   level = 0L
+#' )
+#' }
+extract_anchor_summary <- function(anchor_key, level, mode = "group",
+                                    tier_assignment = NULL) {
+  res <- tryCatch(
+    parse_anchor_key(anchor_key, level, mode = mode,
+                      tier_assignment = tier_assignment),
+    error = function(e) list()
+  )
+  flat <- if (!is.null(res$treated)) res$treated else res
+  to_str <- function(x) {
+    if (is.null(x) || (length(x) == 1L && is.na(x))) {
+      NA_character_
+    } else {
+      as.character(x)
+    }
+  }
+  list(
+    kind_effective = to_str(flat$kind_effective),
+    agent_id       = to_str(flat$agent_id),
+    tissue         = to_str(flat$tissue)
+  )
+}

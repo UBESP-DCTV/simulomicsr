@@ -60,29 +60,13 @@ t_load <- Sys.time()
 s3 <- load_stage3(stage3_dir)
 # Stage 3 metadata: clusters.rds tiene `anchor_key` pipe-delimited (13 segmenti
 # canonical anchor v3, vedi R/stage3-anchor-levels.R::.extract_anchor_segments)
-# invece di colonne kind_effective/agent_id/tissue separate. parse_anchor_key()
-# e' level-aware: ricostruisce i 13 segmenti canonical da anchor_key + level +
-# tier_assignment (default stage3_default_config()$tier_assignment), restituendo
-# NA_character_ per i segmenti droppati a quel livello. Vedi R/anchor-parse.R.
-`%||%` <- function(a, b) if (is.null(a) || (length(a) == 1L && is.na(a))) b else a
-# parse_anchor_segments: per pair-mode cluster l'anchor_key e'
-# <treated>__VS__<control>[__CT_<type>]; per group-mode e' un singolo set.
-# Auto-dispatch via mode + estrae kind_effective/agent_id/tissue dal lato
-# treated (rilevante per il summary card del case study).
-parse_anchor_segments <- function(key, level, mode) {
-  res <- tryCatch(
-    parse_anchor_key(key, level, mode = mode),
-    error = function(e) list()
-  )
-  flat <- if (!is.null(res$treated)) res$treated else res
-  list(
-    kind_effective = flat$kind_effective %||% NA_character_,
-    agent_id       = flat$agent_id %||% NA_character_,
-    tissue         = flat$tissue %||% NA_character_
-  )
-}
+# invece di colonne kind_effective/agent_id/tissue separate.
+# extract_anchor_summary() (R/anchor-parse.R) e' wrapper public di
+# parse_anchor_key() che ritorna i 3 segmenti chiave per summary card
+# (kind_effective, agent_id, tissue), skip-graceful + auto-dispatch pair-mode
+# (estrae lato treated).
 parsed_segs <- Map(
-  parse_anchor_segments,
+  extract_anchor_summary,
   s3$clusters$anchor_key, s3$clusters$level, s3$clusters$mode
 )
 stage3_metadata <- tibble::tibble(
