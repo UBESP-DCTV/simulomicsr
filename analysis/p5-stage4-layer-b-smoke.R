@@ -89,18 +89,8 @@ stage3_metadata <- s3$clusters[, c(
 stage2_master <- simulomicsr:::.load_stage2_master(stage2_path)
 assignments <- s3$assignments
 
-build_manifest <- function(cache_dir, cluster_ids) {
-  out <- list()
-  for (cl_id in cluster_ids) {
-    pat <- sprintf("^%s__.+\\.rds$", cl_id)
-    f   <- list.files(cache_dir, pattern = pat, full.names = TRUE)
-    sd  <- sub(sprintf("^%s__", cl_id), "", sub("\\.rds$", "", basename(f)))
-    out[[cl_id]] <- setNames(as.list(f), sd)
-  }
-  out
-}
-counts_cache_manifest <- build_manifest(counts_cache_dir, selection$cluster_id)
-
+# Counts cache: accesso via .fetch_counts_cached (xxhash32 key), wrappata
+# internamente da build_layer_b_results a partire da h5_path.
 per_cluster_samples_provider <- function(cluster_id) {
   asg <- assignments[
     assignments$cluster_id == cluster_id,
@@ -137,12 +127,11 @@ out_dir <- file.path(
 result <- build_layer_b_results(
   stage4_dir                   = stage4_dir,
   selection                    = selection,
-  counts_cache_manifest        = counts_cache_manifest,
+  h5_path                      = h5_path,
   per_cluster_samples_provider = per_cluster_samples_provider,
   stage3_metadata              = stage3_metadata,
   config                       = layer_b_default_config(),
-  out_dir                      = out_dir,
-  h5_path                      = h5_path
+  out_dir                      = out_dir
 )
 wall <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
 

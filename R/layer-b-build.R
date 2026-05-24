@@ -8,8 +8,8 @@
 #'
 #' @param stage4_dir character path al dir Layer A output.
 #' @param selection character path-to-CSV o data.frame.
-#' @param counts_cache_manifest list nested `cache[[cluster_id]][[study_id]] = path`.
-#'   Tipicamente derivato dal counts cache di Stage 4.
+#' @param h5_path character path al H5 ARCHS4 (per default fetch via
+#'   \code{.fetch_counts_cached()}). Required quando `fetch_counts_fn` e' NULL.
 #' @param per_cluster_samples_provider function(cluster_id) -> tibble
 #'   `sample_id, study_id, treatment` per il cluster (assemblata upstream
 #'   dal join Stage 3 assignment + Stage 2 design_role).
@@ -19,21 +19,32 @@
 #' @param config list (vedi [layer_b_default_config()]).
 #' @param out_dir character path output dir. Se NULL, genera dir versionata
 #'   in `analysis/p4-output/<ts>-layer-b-<run_id>/`.
-#' @param h5_path character path al H5 ARCHS4 (per re-fetch counts in caso
-#'   di cache miss; NULL = nessun fetch fallback).
+#' @param fetch_counts_fn opzionale function(study_id, sample_ids) -> integer
+#'   matrix (genes x samples). Se NULL, viene creato un wrapper di
+#'   \code{.fetch_counts_cached(g, s, h5_path = h5_path)} che riusa la cache
+#'   xxhash32 condivisa con Layer A. Override utile per test/fixture.
 #'
 #' @return Oggetto S3 `layer_b_result` (list con `cluster_bundles`,
 #'   `selection_resolved`, `run_metadata`, `dir`).
 #' @export
 build_layer_b_results <- function(stage4_dir, selection,
-                                  counts_cache_manifest,
+                                  h5_path,
                                   per_cluster_samples_provider,
                                   stage3_metadata = NULL,
                                   config = layer_b_default_config(),
                                   out_dir = NULL,
-                                  h5_path = NULL) {
+                                  fetch_counts_fn = NULL) {
   cli::cli_h1("Layer B build")
   t0 <- Sys.time()
+
+  # Default fetch_counts_fn: wrappa .fetch_counts_cached (riusa cache xxhash32
+  # condivisa con Layer A). Richiede h5_path non-NULL.
+  if (is.null(fetch_counts_fn)) {
+    if (is.null(h5_path)) {
+      cli::cli_abort("h5_path required when fetch_counts_fn is NULL")
+    }
+    fetch_counts_fn <- function(g, s) .fetch_counts_cached(g, s, h5_path = h5_path)
+  }
 
   # B.1 Loader + QC
   cli::cli_alert_info("B.1 Loader + validation")
@@ -99,12 +110,12 @@ build_layer_b_results <- function(stage4_dir, selection,
     ]
     method <- unique(cp_sub$method)[1L]
 
-    # Counts assembly (per_cluster_samples + cache manifest)
+    # Counts assembly (per_cluster_samples + fetch_counts_fn DI)
     per_cluster_samples <- per_cluster_samples_provider(cl_id)
     counts_meta <- .assemble_cluster_counts(
       cluster_id          = cl_id,
       per_cluster_samples = per_cluster_samples,
-      cache_manifest      = counts_cache_manifest
+      fetch_counts_fn     = fetch_counts_fn
     )
 
     plots <- list()

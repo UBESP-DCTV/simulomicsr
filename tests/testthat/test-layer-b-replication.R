@@ -10,7 +10,6 @@ test_that("build_layer_b_results twice on same input yields same run_id", {
   on.exit(unlink(stage4_dir, recursive = TRUE), add = TRUE)
 
   cache <- make_fake_counts_cache(c("cl_mega_1"))
-  on.exit(unlink(cache$dir, recursive = TRUE), add = TRUE)
 
   per_cluster_samples_provider <- function(cluster_id) {
     tibble::tibble(
@@ -30,13 +29,15 @@ test_that("build_layer_b_results twice on same input yields same run_id", {
 
   r1 <- build_layer_b_results(
     stage4_dir = stage4_dir, selection = selection,
-    counts_cache_manifest = cache$manifest,
+    h5_path = NULL,
+    fetch_counts_fn = cache$fetch_counts_fn,
     per_cluster_samples_provider = per_cluster_samples_provider,
     config = cfg, out_dir = tempfile("lb_rep1_")
   )
   r2 <- build_layer_b_results(
     stage4_dir = stage4_dir, selection = selection,
-    counts_cache_manifest = cache$manifest,
+    h5_path = NULL,
+    fetch_counts_fn = cache$fetch_counts_fn,
     per_cluster_samples_provider = per_cluster_samples_provider,
     config = cfg, out_dir = tempfile("lb_rep2_")
   )

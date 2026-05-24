@@ -11,7 +11,6 @@ test_that("build + write + load + report end-to-end on mini fixture", {
   on.exit(unlink(stage4_dir, recursive = TRUE), add = TRUE)
 
   cache <- make_fake_counts_cache(c("cl_mega_1", "cl_aug_1"))
-  on.exit(unlink(cache$dir, recursive = TRUE), add = TRUE)
 
   per_cluster_samples_provider <- function(cluster_id) {
     tibble::tibble(
@@ -33,7 +32,8 @@ test_that("build + write + load + report end-to-end on mini fixture", {
 
   result <- build_layer_b_results(
     stage4_dir = stage4_dir, selection = selection,
-    counts_cache_manifest = cache$manifest,
+    h5_path = NULL,
+    fetch_counts_fn = cache$fetch_counts_fn,
     per_cluster_samples_provider = per_cluster_samples_provider,
     config = cfg,
     out_dir = tempfile("lb_mini_")
