@@ -10,7 +10,8 @@
   stage3_metadata,
   selection_row,
   config,
-  out_dir = tempdir()
+  out_dir = tempdir(),
+  per_cluster_samples = NULL
 )
 }
 \arguments{
@@ -26,6 +27,13 @@ tissue, safety_min, ...).}
 \item{config}{list.}
 
 \item{out_dir}{character; se NULL, usa \code{tempdir()}.}
+
+\item{per_cluster_samples}{tibble opzionale (sample_id, study_id, treatment)
+per il cluster, usata per ricavare \code{n_total_samples} direttamente.
+Quando NULL (default backward-compat), cade sul pattern legacy via
+\code{layer_a_subset$per_study_de} (popolato solo per mega_aug). Passare
+questo argomento permette di mostrare il sample count anche per cluster
+mega-strict (n_studies>=5, k>=5) dove \code{per_study_de} e' vuoto.}
 }
 \value{
 list \code{md_path}.

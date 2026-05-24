@@ -271,6 +271,57 @@ test_that("parse_anchor_key mode='pair' solleva errore su missing __VS__", {
   )
 })
 
+# ===========================================================================
+# extract_anchor_summary: wrapper convenience per summary card Layer B
+# ===========================================================================
+
+test_that("extract_anchor_summary group L0 ritorna 3 segmenti popolati", {
+  fact <- make_full_sample_fact()
+  cfg  <- stage3_default_config()
+  key  <- simulomicsr:::.build_anchor_for_level(fact, "treated", 0L,
+                                                cfg$tier_assignment)
+
+  res <- extract_anchor_summary(key, level = 0L)
+
+  expect_type(res, "list")
+  expect_named(res, c("kind_effective", "agent_id", "tissue"))
+  expect_identical(res$kind_effective, "small_molecule")
+  expect_identical(res$agent_id, "CHEMBL941")
+  expect_identical(res$tissue, "endothelium")
+})
+
+test_that("extract_anchor_summary pair L2 estrae dal lato treated", {
+  fact_t <- make_full_sample_fact()
+  fact_c <- make_full_sample_fact()
+  fact_c$perturbations <- list(list(kind = "vehicle_only", phase = "exposure"))
+  cfg <- stage3_default_config()
+
+  key_t <- simulomicsr:::.build_anchor_for_level(fact_t, "treated", 2L,
+                                                  cfg$tier_assignment)
+  key_c <- simulomicsr:::.build_anchor_for_level(fact_c, "control", 2L,
+                                                  cfg$tier_assignment)
+  pair_key <- sprintf("%s__VS__%s__CT_vehicle", key_t, key_c)
+
+  res <- extract_anchor_summary(pair_key, level = 2L, mode = "pair")
+
+  expect_named(res, c("kind_effective", "agent_id", "tissue"))
+  # Lato treated: small_molecule, CHEMBL941, endothelium
+  expect_identical(res$kind_effective, "small_molecule")
+  expect_identical(res$agent_id, "CHEMBL941")
+  expect_identical(res$tissue, "endothelium")
+})
+
+test_that("extract_anchor_summary fallback NA su anchor_key malformato (skip-graceful)", {
+  # anchor_key con count mismatch vs level -> parse_anchor_key error, tryCatch
+  # ritorna list() -> 3 segmenti NA_character_
+  res <- extract_anchor_summary("bad|key", level = 0L)
+
+  expect_named(res, c("kind_effective", "agent_id", "tissue"))
+  expect_true(is.na(res$kind_effective))
+  expect_true(is.na(res$agent_id))
+  expect_true(is.na(res$tissue))
+})
+
 test_that("parse_anchor_key mode='group' (default) e 'pair' sono distinte", {
   fact <- make_full_sample_fact()
   cfg  <- stage3_default_config()
