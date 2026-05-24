@@ -19,6 +19,7 @@
         priority    = readr::col_integer(),
         notes       = readr::col_character()
       ),
+      comment = "#",
       progress = FALSE
     )
   } else if (is.data.frame(selection)) {

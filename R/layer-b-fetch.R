@@ -33,11 +33,18 @@
     dplyr::collect()
 
   qc_full <- readRDS(qc_path)
+  # Guard nrow()==0: filtering by `$cluster_id %in% ...` su tibble vuote (0 righe,
+  # 0 colonne) emette warning "Unknown column: cluster_id" — il caso si verifica
+  # sui fixture di test e su run produttivi senza drop/warning di un certo tipo.
+  .filter_qc_table <- function(tb) {
+    if (is.null(tb) || nrow(tb) == 0L) tibble::tibble()
+    else tb[tb$cluster_id %in% cluster_ids, , drop = FALSE]
+  }
   qc_sub <- list(
-    qc_drops_sample = qc_full$qc_drops_sample,  # global, no filter
-    qc_drops_study = qc_full$qc_drops_study[qc_full$qc_drops_study$cluster_id %in% cluster_ids, , drop = FALSE],
-    qc_drops_cluster = qc_full$qc_drops_cluster[qc_full$qc_drops_cluster$cluster_id %in% cluster_ids, , drop = FALSE],
-    pooling_warnings = qc_full$pooling_warnings[qc_full$pooling_warnings$cluster_id %in% cluster_ids, , drop = FALSE]
+    qc_drops_sample  = qc_full$qc_drops_sample,  # global, no filter
+    qc_drops_study   = .filter_qc_table(qc_full$qc_drops_study),
+    qc_drops_cluster = .filter_qc_table(qc_full$qc_drops_cluster),
+    pooling_warnings = .filter_qc_table(qc_full$pooling_warnings)
   )
 
   mega_aug_diag <- if (!is.null(qc_full$mega_aug_diagnostics) && nrow(qc_full$mega_aug_diagnostics) > 0L) {
