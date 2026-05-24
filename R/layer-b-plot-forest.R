@@ -70,20 +70,22 @@
 
     p <- ggplot2::ggplot() +
       ggplot2::geom_vline(xintercept = 0, linetype = "dashed", color = "#666666") +
-      ggplot2::geom_errorbarh(
+      ggplot2::geom_errorbar(
         data = df_plot,
         ggplot2::aes(y = gene, xmin = ci_lo, xmax = ci_hi, color = study_id),
-        height = 0.2
+        width = 0.2,
+        orientation = "y"
       ) +
       ggplot2::geom_point(
         data = df_plot,
         ggplot2::aes(y = gene, x = logFC, color = study_id),
         size = 2
       ) +
-      ggplot2::geom_errorbarh(
+      ggplot2::geom_errorbar(
         data = pooled_df,
         ggplot2::aes(y = gene, xmin = ci_lo, xmax = ci_hi),
-        color = "#CC3333", height = 0.3, size = 0.8
+        color = "#CC3333", width = 0.3, linewidth = 0.8,
+        orientation = "y"
       ) +
       ggplot2::geom_point(
         data = pooled_df,
