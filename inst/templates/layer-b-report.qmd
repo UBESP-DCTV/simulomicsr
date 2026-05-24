@@ -43,6 +43,11 @@ yaml::as.yaml(lb$run_metadata$config) |> cat()
 # Case studies
 
 ```{r case-studies, results = "asis"}
+# NB: `execute_dir` del render e' impostato a params$layer_b_dir, quindi le
+# immagini possono essere referenziate via path RELATIVE `cluster_id/plot.png`
+# e Pandoc le base64-embedda correttamente (embed-resources: true).
+# Path assolute farebbero scattare l'auto-prepend `./` di Pandoc
+# (`<img src="./home/user/...">`), che non e' risolvibile.
 for (cl_id in names(lb$cluster_bundles)) {
   bundle <- lb$cluster_bundles[[cl_id]]
   label_paper <- lb$selection_resolved$label_paper[lb$selection_resolved$cluster_id == cl_id]
@@ -55,12 +60,16 @@ for (cl_id in names(lb$cluster_bundles)) {
     cat(paste(readLines(smc_path), collapse = "\n"), "\n\n")
   }
 
-  # Plots (PNG embeds)
-  for (plot_name in c("volcano", "forest", "ma", "heatmap", "go_enrichment", "heterogeneity")) {
-    png_path <- file.path(bundle$cluster_dir, sprintf("%s.png", plot_name))
+  # Plots (PNG embeds). Path relative `cluster_id/plot.png` rispetto a
+  # execute_dir (== params$layer_b_dir); l'esistenza si verifica via
+  # path assoluta `bundle$cluster_dir`.
+  for (plot_name in c("volcano", "forest", "ma", "heatmap",
+                      "go_enrichment", "heterogeneity")) {
+    abs_path <- file.path(bundle$cluster_dir, sprintf("%s.png", plot_name))
+    rel_path <- sprintf("%s/%s.png", cl_id, plot_name)
     caption <- bundle$captions[[plot_name]] %||% sprintf("%s (no caption)", plot_name)
-    if (file.exists(png_path)) {
-      cat(sprintf("\n![%s](%s)\n\n", caption, png_path))
+    if (file.exists(abs_path)) {
+      cat(sprintf("\n![%s](%s)\n\n", caption, rel_path))
     }
   }
 
