@@ -79,6 +79,29 @@ Sessione di debugging sistematico post-handoff: 5 bug distinti isolati con ripro
   - `run_metadata.json` (config completa registrata) + `qc_report.rds` + `non_processable.rds`.
 - **Config registrata**: `max_baseline_per_arm=350`, `dream_workers_cap=16`, `legacy_monodirectional=FALSE` (bidir on), `franchini_correction=TRUE`, `de_engine.mega=dream`, `de_engine.mega_aug=dream`.
 
+## Stadio 4 Layer B (2026-05-24, branch `p5-stadio4-layer-b`)
+
+Pipeline semi-automatica generator di "showcase case study" publication-grade.
+Input: `analysis/layer-b-selection.csv` (10-20 cluster_id curati a mano dalla
+dashboard Layer A). Output: bundle dir-per-cluster + Quarto HTML aggregate.
+
+Decisioni chiave (vedi ADR-0017 + spec 2026-05-24):
+- Workflow: semi-automatico CSV-driven (no Shiny, no dashboard button)
+- 8 plot per cluster con dispatch conditional (forest = REM+MEGA-AUG,
+  heterogeneity = REM only)
+- Drop-into-paper polished (PNG @300 DPI + SVG, caption inglese paper-ready)
+- Top-N: 10 forest / 30 heatmap / 30 table / 15 volcano labels
+- HTML standalone aggregate (NO PDF)
+- NO targets integration (script standalone primary)
+- Smoke 3-cluster gate obbligatorio pre-batch
+
+Test suite Layer B: 125 PASS / 0 FAIL.
+
+DESCRIPTION delta: +9 Imports Bioc/CRAN + 2 mossi da Suggests + 1 Suggests nuovo.
+
+Status: implementazione DONE (Task 0-18 commits). Pending: smoke gate (Task 19)
++ batch user curation + ff-merge to master + tag `p5-stadio4-layer-b-complete`.
+
 ---
 
 ## Stato precedente (2026-05-17 — P4 β rescue cascade COMPLETE, tag p4-beta-rescue-complete pending)
