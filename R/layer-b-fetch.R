@@ -59,3 +59,66 @@
 }
 
 `%||%` <- function(x, y) if (is.null(x)) y else x
+
+#' Assembla counts + metadata per un cluster
+#'
+#' Combina counts matrix dai file cache per ogni studio del cluster + metadata
+#' tibble con sample_id, study_id, treatment. Cache hit assunto (Layer B
+#' consuma il cache di Stage 4 gia' popolato).
+#'
+#' @param cluster_id character (1).
+#' @param per_cluster_samples tibble con `sample_id, study_id, treatment` per
+#'   il cluster (assemblata upstream dal caller, tipicamente dal join di Stage 3
+#'   assignment + Stage 2 design_role).
+#' @param cache_manifest list nested `cache_manifest[[cluster_id]][[study_id]]`
+#'   = path al file .rds con counts matrix integer (genes x samples_of_study).
+#'
+#' @return list con `counts` (integer matrix genes x all_samples) e `metadata`
+#'   (tibble sample_id, study_id, treatment in colonna-order).
+#' @keywords internal
+.assemble_cluster_counts <- function(cluster_id, per_cluster_samples, cache_manifest) {
+  if (is.null(cache_manifest[[cluster_id]])) {
+    cli::cli_abort(
+      "Cache manifest missing for cluster {.field {cluster_id}}"
+    )
+  }
+
+  studies <- unique(per_cluster_samples$study_id)
+  counts_list <- lapply(studies, function(s) {
+    path <- cache_manifest[[cluster_id]][[s]]
+    if (is.null(path) || !file.exists(path)) {
+      cli::cli_abort(
+        "Counts cache missing for cluster {.field {cluster_id}} / study {.field {s}}"
+      )
+    }
+    readRDS(path)
+  })
+  names(counts_list) <- studies
+
+  # Rownames consistency check
+  ref_genes <- rownames(counts_list[[1L]])
+  for (s in studies[-1L]) {
+    if (!identical(rownames(counts_list[[s]]), ref_genes)) {
+      cli::cli_abort(
+        "Gene axis mismatch between studies {.field {studies[1L]}} and {.field {s}} for cluster {.field {cluster_id}}"
+      )
+    }
+  }
+
+  # Combine cbind in study order, ensure column order matches per_cluster_samples
+  combined <- do.call(cbind, counts_list)
+
+  # Reorder columns to match per_cluster_samples$sample_id
+  missing_in_cache <- setdiff(per_cluster_samples$sample_id, colnames(combined))
+  if (length(missing_in_cache) > 0L) {
+    cli::cli_abort(
+      "Samples missing from cache for cluster {.field {cluster_id}}: {.field {missing_in_cache}}"
+    )
+  }
+  combined <- combined[, per_cluster_samples$sample_id, drop = FALSE]
+
+  list(
+    counts = combined,
+    metadata = per_cluster_samples
+  )
+}
