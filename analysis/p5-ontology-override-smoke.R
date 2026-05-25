@@ -2,20 +2,24 @@
 # p5-ontology-override-smoke.R --- Smoke isolato per anchor v3.1 (ADR-0018).
 #
 # Esegue resolve_agent_canonical() + infer_kind_with_override() +
-# .extract_anchor_segments() su 6 case paradigmatici (4 + 2) che riproducono
-# i pattern critici dell'audit 2026-05-24:
+# .extract_anchor_segments() su 8 case paradigmatici (6 v3.1 + 2 v3.1.1 audit fix)
+# che riproducono i pattern critici dell'audit 2026-05-24 + S1bis 2026-05-25:
 #
 #   1. Carnitine field-swap LLM=pathogen --> CHEBI:17126 + override LLM_CONTRADICTION
 #   2. Ethanol LLM=cytokine_stim    --> CHEBI:16236 + STRONG vehicle_only override
 #   3. DMSO LLM=vehicle_only         --> STR:dmso (LLM_VEHICLE_LITERAL, no override)
-#   4. Resiquimod LLM=pathogen       --> CHEBI:36706 + LLM preserved (0 roles)
+#   4. Resiquimod LLM=pathogen       --> CHEBI:36706 + LLM preserved + kind_chebi_zero_roles
 #   5. poly(I:C) LLM=pathogen        --> CHEBI:84491 + STRONG match (adjuvant)
-#   6. Disease MeSH:D011471 + case   --> MeSH:D011471 disease_vs_normal
+#   6. Disease MeSH:D011471 + case   --> MeSH:D011471 disease_vs_normal (tree C STRONG)
+#   7. v3.1.1 Pregnanetriol MeSH:D011279 + case  --> OVERRIDE small_molecule
+#                                                    (DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY)
+#   8. v3.1.1 dihydroxyphthalic CHEBI:17199 + LLM=pathogen --> preserved + flag
+#                                                    kind_chebi_zero_roles=TRUE
 #
 # Output: console + log analysis/p5-ontology-override-smoke.log.
 # Wall: ~3 sec (carica fixture mini-dict, no full ChEBI/HGNC/MeSH dict).
 #
-# Gate utente S1 -> S2: review qui che l'override funziona sui paradigmi.
+# Gate utente S1bis -> S2bis: review qui che le 2 nuove rule chiudono il 4/4 audit.
 
 suppressMessages({
   devtools::load_all(".")
@@ -136,26 +140,56 @@ fact5 <- make_fact(agent5, kind = "pathogen_or_aggregate_exposure")
 segs5 <- .extract_anchor_segments(fact5, "treated", ontology_env = env)
 print_case("5: poly(I:C) LLM=pathogen STRONG match (adjuvant)", segs5)
 
-# --- Case 6: Disease MeSH:D011471 (Prostatic Neoplasms) --------------------
+# --- Case 6: Disease MeSH:D011471 (Prostatic Neoplasms, tree C) -----------
 fact6 <- make_disease_fact("D011471")
 segs6 <- .extract_anchor_segments(fact6, "case", ontology_env = env)
-print_case("6: Disease MeSH:D011471 + role=case", segs6)
+print_case("6: Disease MeSH:D011471 (tree C) + role=case (STRONG match)", segs6)
+
+# --- v3.1.1 Case 7: Pregnanetriol MeSH:D011279 (tree D sterol) -----------
+# Audit case 4/4: MeSH D04 sterol con role=case (LLM=disease_vs_normal).
+# Atteso: DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY override a small_molecule.
+fact7 <- make_disease_fact("D011279")
+segs7 <- .extract_anchor_segments(fact7, "case", ontology_env = env)
+print_case("7 [v3.1.1]: Pregnanetriol MeSH:D011279 (tree D sterol) + role=case", segs7)
+
+# --- v3.1.1 Case 8: dihydroxyphthalic CHEBI:17199 LLM=pathogen ------------
+# Audit case 2/4: ChEBI compound esiste ma 0 roles. NON distinguibile da
+# Resiquimod (Case 4) via ChEBI alone. Atteso: LLM preserved + flag
+# kind_chebi_zero_roles=TRUE per Layer B shortlist filter.
+agent8 <- list(id_database = "CHEBI", id = "17199",
+               preferred_name = "4,5-dihydroxyphthalic acid",
+               type = "small_molecule")
+fact8 <- make_fact(agent8, kind = "pathogen_or_aggregate_exposure")
+segs8 <- .extract_anchor_segments(fact8, "treated", ontology_env = env)
+print_case("8 [v3.1.1]: dihydroxyphthalic CHEBI:17199 (0 roles) + LLM=pathogen", segs8)
 
 # --- Summary --------------------------------------------------------------
 cat("=== Summary ===\n")
 all_cases <- list(
-  list(name = "1 Carnitine field-swap",   segs = segs1,
-       expect_override = TRUE,  expect_resolution = "CHEBI_FIELDSWAP"),
-  list(name = "2 Ethanol cytokine wrong",  segs = segs2,
-       expect_override = TRUE,  expect_resolution = "CHEBI_DIRECT"),
-  list(name = "3 DMSO vehicle",            segs = segs3,
-       expect_override = FALSE, expect_resolution = "LLM_VEHICLE_LITERAL"),
-  list(name = "4 Resiquimod 0 roles",      segs = segs4,
-       expect_override = FALSE, expect_resolution = "CHEBI_DIRECT"),
-  list(name = "5 poly(I:C) STRONG match",  segs = segs5,
-       expect_override = FALSE, expect_resolution = "CHEBI_DIRECT"),
-  list(name = "6 Disease MeSH",            segs = segs6,
-       expect_override = FALSE, expect_resolution = "MESH_DIRECT")
+  list(name = "1 Carnitine field-swap",         segs = segs1,
+       expect_override = TRUE,  expect_resolution = "CHEBI_FIELDSWAP",
+       expect_chebi_zero_roles = FALSE),
+  list(name = "2 Ethanol cytokine wrong",       segs = segs2,
+       expect_override = TRUE,  expect_resolution = "CHEBI_DIRECT",
+       expect_chebi_zero_roles = FALSE),
+  list(name = "3 DMSO vehicle",                 segs = segs3,
+       expect_override = FALSE, expect_resolution = "LLM_VEHICLE_LITERAL",
+       expect_chebi_zero_roles = FALSE),
+  list(name = "4 Resiquimod 0 roles",           segs = segs4,
+       expect_override = FALSE, expect_resolution = "CHEBI_DIRECT",
+       expect_chebi_zero_roles = TRUE),
+  list(name = "5 poly(I:C) STRONG match",       segs = segs5,
+       expect_override = FALSE, expect_resolution = "CHEBI_DIRECT",
+       expect_chebi_zero_roles = FALSE),
+  list(name = "6 Disease MeSH tree C",          segs = segs6,
+       expect_override = FALSE, expect_resolution = "MESH_DIRECT",
+       expect_chebi_zero_roles = FALSE),
+  list(name = "7 [v3.1.1] Pregnanetriol tree D",segs = segs7,
+       expect_override = TRUE,  expect_resolution = "MESH_DIRECT",
+       expect_chebi_zero_roles = FALSE),
+  list(name = "8 [v3.1.1] dihydroxyphthalic",   segs = segs8,
+       expect_override = FALSE, expect_resolution = "CHEBI_DIRECT",
+       expect_chebi_zero_roles = TRUE)
 )
 
 n_pass <- 0L
@@ -163,13 +197,15 @@ for (case in all_cases) {
   tm <- attr(case$segs, "tracking_meta")
   ok_resolution <- identical(tm$resolution_source, case$expect_resolution)
   ok_override   <- identical(isTRUE(tm$kind_overridden), case$expect_override)
-  status <- if (ok_resolution && ok_override) "OK" else "FAIL"
-  if (ok_resolution && ok_override) n_pass <- n_pass + 1L
-  cat(sprintf("  [%s] Case %-30s : source=%-30s override=%s (expected=%s)\n",
+  ok_zero_roles <- identical(isTRUE(tm$kind_chebi_zero_roles),
+                              isTRUE(case$expect_chebi_zero_roles))
+  status <- if (ok_resolution && ok_override && ok_zero_roles) "OK" else "FAIL"
+  if (ok_resolution && ok_override && ok_zero_roles) n_pass <- n_pass + 1L
+  cat(sprintf("  [%s] Case %-32s : src=%-22s ovr=%-5s zero_roles=%-5s\n",
               status, case$name,
               tm$resolution_source,
               as.character(isTRUE(tm$kind_overridden)),
-              as.character(case$expect_override)))
+              as.character(isTRUE(tm$kind_chebi_zero_roles))))
 }
 cat(sprintf("\n%d/%d cases PASS\n", n_pass, length(all_cases)))
 

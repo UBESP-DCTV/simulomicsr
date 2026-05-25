@@ -75,15 +75,31 @@
       canonical_name    <- NA_character_
     }
 
-    # Per disease_vs_normal il kind_effective e' una design assertion: non
-    # applichiamo kind override (NG: il MeSH tree puo' essere wrong-tree ma non
-    # forziamo cambio). Preserva LLM + flag se MESH tree mismatch.
-    kind_effective       <- kind_effective_llm
-    kind_overridden      <- FALSE
-    kind_override_reason <- NA_character_
-    kind_role_evidence   <- NA_character_
-    kind_confidence      <- "STRONG"
-    kind_unvalidatable   <- FALSE
+    # v3.1.1 (S1bis 2026-05-25, audit case Pregnanetriol): applica override
+    # se MeSH UI risolto + tree_top != C/F (cioe' onto infers non-disease
+    # kind). Rule DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY in infer_kind_with_override.
+    # Pre-S1bis: kind sempre preserved = disease_vs_normal (design assertion).
+    # Post-S1bis: MeSH tree D (chemicals/sterols) smentisce disease_vs_normal LLM.
+    if (.is_mesh_ui(mesh_raw) && identical(resolution_source, "MESH_DIRECT")) {
+      ovr <- infer_kind_with_override(agent_id, kind_effective_llm,
+                                       env = ontology_env)
+      kind_effective        <- ovr$kind_resolved
+      kind_overridden       <- ovr$kind_overridden
+      kind_override_reason  <- ovr$override_reason
+      kind_role_evidence    <- ovr$role_evidence
+      kind_confidence       <- ovr$confidence
+      kind_unvalidatable    <- ovr$kind_unvalidatable
+      kind_chebi_zero_roles <- isTRUE(ovr$kind_chebi_zero_roles)
+    } else {
+      # No MeSH UI risolto: preserve LLM design assertion (backward-compat).
+      kind_effective        <- kind_effective_llm
+      kind_overridden       <- FALSE
+      kind_override_reason  <- NA_character_
+      kind_role_evidence    <- NA_character_
+      kind_confidence       <- "STRONG"
+      kind_unvalidatable    <- FALSE
+      kind_chebi_zero_roles <- FALSE
+    }
     agent_id_raw         <- mesh_raw
 
   } else if (!is.null(pert$mediated_effect) && length(pert$mediated_effect) > 0L) {
@@ -121,12 +137,13 @@
     # da gene HGNC alone.
     ovr <- infer_kind_with_override(agent_id, kind_effective_llm,
                                     env = ontology_env)
-    kind_effective       <- ovr$kind_resolved
-    kind_overridden      <- ovr$kind_overridden
-    kind_override_reason <- ovr$override_reason
-    kind_role_evidence   <- ovr$role_evidence
-    kind_confidence      <- ovr$confidence
-    kind_unvalidatable   <- ovr$kind_unvalidatable
+    kind_effective        <- ovr$kind_resolved
+    kind_overridden       <- ovr$kind_overridden
+    kind_override_reason  <- ovr$override_reason
+    kind_role_evidence    <- ovr$role_evidence
+    kind_confidence       <- ovr$confidence
+    kind_unvalidatable    <- ovr$kind_unvalidatable
+    kind_chebi_zero_roles <- isTRUE(ovr$kind_chebi_zero_roles)
 
   } else {
     kind_effective_llm <- .map_kind_to_anchor(pert$kind %||% "unclear")
@@ -142,12 +159,13 @@
     # Override kind via ontology evidence
     ovr <- infer_kind_with_override(agent_id, kind_effective_llm,
                                     env = ontology_env)
-    kind_effective       <- ovr$kind_resolved
-    kind_overridden      <- ovr$kind_overridden
-    kind_override_reason <- ovr$override_reason
-    kind_role_evidence   <- ovr$role_evidence
-    kind_confidence      <- ovr$confidence
-    kind_unvalidatable   <- ovr$kind_unvalidatable
+    kind_effective        <- ovr$kind_resolved
+    kind_overridden       <- ovr$kind_overridden
+    kind_override_reason  <- ovr$override_reason
+    kind_role_evidence    <- ovr$role_evidence
+    kind_confidence       <- ovr$confidence
+    kind_unvalidatable    <- ovr$kind_unvalidatable
+    kind_chebi_zero_roles <- isTRUE(ovr$kind_chebi_zero_roles)
   }
 
   dose_canonical     <- .normalize_dose(pert$dose$value_raw %||% NULL)
@@ -206,7 +224,9 @@
     kind_override_reason        = kind_override_reason,
     kind_role_evidence          = kind_role_evidence,
     kind_confidence             = kind_confidence,
-    kind_unvalidatable          = kind_unvalidatable
+    kind_unvalidatable          = kind_unvalidatable,
+    # v3.1.1 (S1bis): 12a tracking column propagata downstream
+    kind_chebi_zero_roles       = kind_chebi_zero_roles
   )
 
   segs

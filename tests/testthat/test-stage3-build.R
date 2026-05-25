@@ -35,8 +35,8 @@ test_that("run_metadata contiene run_id + schema_versions + output_counts", {
   expect_named(rm$schema_versions,
                c("anchor", "stage3_algorithm", "sample_facts", "study_design", "resolver"),
                ignore.order = TRUE)
-  expect_equal(rm$schema_versions$anchor, "v3.1")
-  expect_equal(rm$schema_versions$resolver, "v1.0.0")
+  expect_equal(rm$schema_versions$anchor, "v3.1.1")
+  expect_equal(rm$schema_versions$resolver, "v1.1.0")
   expect_true("output_counts" %in% names(rm))
   # Anchor v3.1: ontology_releases registrato per riproducibilita' paper-grade
   expect_true("ontology_releases" %in% names(rm))

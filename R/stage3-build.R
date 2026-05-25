@@ -477,10 +477,9 @@ build_stage3_clusters <- function(stage1_master,
 .summarize_clusters <- function(assignments, eligible_pair, eligible_group,
                                  config, archs4_metadata) {
   # Schema vuoto canonico per cluster tibble. Anchor v3.1 (ADR-0018) aggiunge
-  # 11 colonne tracking: 7 main (agent_id_llm_original, agent_id_resolved,
-  # resolution_source, kind_effective_llm_original, kind_effective_resolved,
-  # kind_overridden, kind_override_reason) + 4 diagnostic (canonical_name,
-  # kind_role_evidence, kind_confidence, kind_unvalidatable).
+  # 11 colonne tracking + v3.1.1 (S1bis 2026-05-25) aggiunge 12a colonna
+  # kind_chebi_zero_roles per Layer B shortlist filter (CHEBI compound esiste
+  # ma 0 has_role: legit Resiquimod/poly(I:C) vs ambiguo dihydroxyphthalic).
   empty_clusters <- tibble::tibble(
     cluster_id                  = character(),
     mode                        = character(),
@@ -514,7 +513,9 @@ build_stage3_clusters <- function(stage1_master,
     kind_override_reason        = character(),
     kind_role_evidence          = character(),
     kind_confidence             = character(),
-    kind_unvalidatable          = logical()
+    kind_unvalidatable          = logical(),
+    # Anchor v3.1.1 tracking column (S1bis ADR-0018 addendum)
+    kind_chebi_zero_roles       = logical()
   )
 
   if (nrow(assignments) == 0L) return(empty_clusters)
@@ -669,7 +670,8 @@ build_stage3_clusters <- function(stage1_master,
       kind_override_reason        = tm_chr("kind_override_reason"),
       kind_role_evidence          = tm_chr("kind_role_evidence"),
       kind_confidence             = tm_chr("kind_confidence"),
-      kind_unvalidatable          = tm_lgl("kind_unvalidatable")
+      kind_unvalidatable          = tm_lgl("kind_unvalidatable"),
+      kind_chebi_zero_roles       = tm_lgl("kind_chebi_zero_roles")
     )
 
     if (i %% progress_every == 0L || i == length(unique_clids)) {

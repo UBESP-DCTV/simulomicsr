@@ -123,7 +123,11 @@ test_that("Resiquimod CHEBI:36706 (0 roles) + LLM=pathogen --> preserved + kind_
   expect_equal(segs$kind_effective, "pathogen_or_aggregate_exposure")
   expect_false(tm$kind_overridden)
   expect_true(tm$kind_unvalidatable)
-  expect_equal(tm$kind_confidence, "NONE")
+  # v3.1.1: ZERO_ROLES emesso al posto di NONE quando compound esiste in ChEBI
+  # ma ha 0 has_role (case Resiquimod TLR agonist legit). Tracking column
+  # kind_chebi_zero_roles=TRUE consumato da Layer B shortlist filter.
+  expect_equal(tm$kind_confidence, "ZERO_ROLES")
+  expect_true(isTRUE(tm$kind_chebi_zero_roles))
 })
 
 # --- Caso paradigmatico 5: poly(I:C) STRONG match LLM=pathogen --------------
@@ -177,6 +181,59 @@ test_that("disease MeSH UI valido ma assente nella release --> MESH_NAKED_NOLOOK
 
   expect_equal(segs$agent_id, "MeSH:D003920")
   expect_equal(tm$resolution_source, "MESH_NAKED_NOLOOKUP")
+})
+
+# --- Caso paradigmatico 6bis (v3.1.1): Pregnanetriol MeSH D04 sterol --------
+
+test_that("v3.1.1 audit fix: Pregnanetriol MeSH:D011279 tree D + LLM=disease --> OVERRIDE small_molecule", {
+  # Audit case 4/4 (S1bis 2026-05-25): MeSH D011279 e' uno sterol (tree D04),
+  # NON una disease (tree C). LLM assertava disease_vs_normal via role=case;
+  # rule DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY (anchor v3.1.1) demote a
+  # small_molecule per chiudere l'audit set.
+  env <- .fixt_env()
+  fact <- .make_fact_with_perturbation(agent_normalized = NULL, kind = "none")
+  fact$disease_state$status <- "case"
+  fact$disease_state$mesh_id_candidate <- "D011279"
+
+  segs <- simulomicsr:::.extract_anchor_segments(fact, stage2_role = "case",
+                                                 ontology_env = env)
+  tm <- attr(segs, "tracking_meta")
+
+  expect_equal(segs$agent_id, "MeSH:D011279")
+  expect_equal(tm$resolution_source, "MESH_DIRECT")
+  expect_equal(tm$canonical_name, "Pregnanetriol")
+  expect_equal(segs$kind_effective, "small_molecule")
+  expect_true(tm$kind_overridden)
+  expect_equal(tm$kind_override_reason, "DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY")
+  expect_false(isTRUE(tm$kind_chebi_zero_roles))
+})
+
+# --- Caso paradigmatico 4bis (v3.1.1): dihydroxyphthalic CHEBI 0 roles ------
+
+test_that("v3.1.1 audit fix: dihydroxyphthalic CHEBI:17199 LLM=pathogen --> preserved + kind_chebi_zero_roles", {
+  # Audit case 2/4 (S1bis 2026-05-25): CHEBI:17199 esiste ma ha 0 has_role
+  # in ChEBI (acido organico senza role annotation). NOT distinguibile da
+  # Resiquimod CHEBI:36706 (TLR7/8 agonist legit con 0 roles ChEBI) via
+  # ChEBI alone. Soluzione: flag kind_chebi_zero_roles=TRUE (LLM preserved)
+  # per Layer B shortlist filter, no override deterministico.
+  env <- .fixt_env()
+  agent <- list(id_database = "CHEBI", id = "17199",
+                preferred_name = "4,5-dihydroxyphthalic acid",
+                type = "small_molecule")
+  fact <- .make_fact_with_perturbation(agent,
+                                       kind = "pathogen_or_aggregate_exposure")
+
+  segs <- simulomicsr:::.extract_anchor_segments(fact, stage2_role = "treated",
+                                                 ontology_env = env)
+  tm <- attr(segs, "tracking_meta")
+
+  expect_equal(segs$agent_id, "CHEBI:17199")
+  expect_equal(tm$resolution_source, "CHEBI_DIRECT")
+  expect_equal(segs$kind_effective, "pathogen_or_aggregate_exposure")  # preserved
+  expect_false(tm$kind_overridden)
+  expect_true(isTRUE(tm$kind_chebi_zero_roles))
+  expect_equal(tm$kind_confidence, "ZERO_ROLES")
+  expect_true(isTRUE(tm$kind_unvalidatable))
 })
 
 # --- Caso paradigmatico 7: mediated_effect HGNC ------------------------------
@@ -274,13 +331,14 @@ test_that("Output e' un named list di 13 segmenti (no pollution da tracking_meta
   # tracking_meta NON e' un name di segs (e' un attribute)
   expect_false("tracking_meta" %in% names(segs))
   expect_true(!is.null(attr(segs, "tracking_meta")))
-  # tracking_meta ha 11 campi attesi
+  # tracking_meta ha 12 campi attesi (v3.1.1 aggiunge kind_chebi_zero_roles)
   tm <- attr(segs, "tracking_meta")
   expect_named(tm, c(
     "agent_id_llm_original", "agent_id_resolved", "resolution_source",
     "canonical_name",
     "kind_effective_llm_original", "kind_effective_resolved",
     "kind_overridden", "kind_override_reason",
-    "kind_role_evidence", "kind_confidence", "kind_unvalidatable"
+    "kind_role_evidence", "kind_confidence", "kind_unvalidatable",
+    "kind_chebi_zero_roles"
   ))
 })

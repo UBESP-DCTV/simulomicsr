@@ -48,11 +48,11 @@ stage3_default_config <- function() {
       )
     ),
     schema_versions = list(
-      anchor             = "v3.1",
+      anchor             = "v3.1.1",
       stage3_algorithm   = "v1",
       sample_facts       = "stage1.v3",
       study_design       = "stage2.v2",
-      resolver           = "v1.0.0"
+      resolver           = "v1.1.0"
     )
   )
 }

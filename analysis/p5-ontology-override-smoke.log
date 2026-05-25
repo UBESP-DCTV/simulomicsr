@@ -1,6 +1,4 @@
 - The project is out-of-sync -- use `renv::status()` for details.
-Warning message:
-replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
 === P5 ontology override smoke (anchor v3.1, ADR-0018) ===
 Loading mini-fixture dictionaries from inst/extdata/ontology-fixtures-mini/
   ChEBI compounds in fixture: 14
@@ -55,8 +53,8 @@ Loading mini-fixture dictionaries from inst/extdata/ontology-fixtures-mini/
   kind_effective_resolved: pathogen_or_aggregate_exposure
   kind_overridden        : FALSE
   kind_override_reason   : <NA>
-  kind_confidence        : NONE
-  kind_role_evidence     : <NA>
+  kind_confidence        : ZERO_ROLES
+  kind_role_evidence     : CHEBI_COMPOUND_EXISTS_NO_ROLES
   kind_unvalidatable     : TRUE
 
 >>> Case 5: poly(I:C) LLM=pathogen STRONG match (adjuvant) <<<
@@ -72,7 +70,7 @@ Loading mini-fixture dictionaries from inst/extdata/ontology-fixtures-mini/
   kind_role_evidence     : immunological adjuvant
   kind_unvalidatable     : FALSE
 
->>> Case 6: Disease MeSH:D011471 + role=case <<<
+>>> Case 6: Disease MeSH:D011471 (tree C) + role=case (STRONG match) <<<
   agent_id_llm_original  : D011471
   agent_id_resolved      : MeSH:D011471
   resolution_source      : MESH_DIRECT
@@ -82,15 +80,45 @@ Loading mini-fixture dictionaries from inst/extdata/ontology-fixtures-mini/
   kind_overridden        : FALSE
   kind_override_reason   : <NA>
   kind_confidence        : STRONG
-  kind_role_evidence     : <NA>
+  kind_role_evidence     : MeSH tree branch:C04.588.945.440.770;C12.100.500.260.750;C12.100.500.565.625;C12.200.294.260.750;C12.200.294.565.625;C12.200.758.409.750;C12.900.619.750
   kind_unvalidatable     : FALSE
 
-=== Summary ===
-  [OK] Case 1 Carnitine field-swap         : source=CHEBI_FIELDSWAP                override=TRUE (expected=TRUE)
-  [OK] Case 2 Ethanol cytokine wrong       : source=CHEBI_DIRECT                   override=TRUE (expected=TRUE)
-  [OK] Case 3 DMSO vehicle                 : source=LLM_VEHICLE_LITERAL            override=FALSE (expected=FALSE)
-  [OK] Case 4 Resiquimod 0 roles           : source=CHEBI_DIRECT                   override=FALSE (expected=FALSE)
-  [OK] Case 5 poly(I:C) STRONG match       : source=CHEBI_DIRECT                   override=FALSE (expected=FALSE)
-  [OK] Case 6 Disease MeSH                 : source=MESH_DIRECT                    override=FALSE (expected=FALSE)
+>>> Case 7 [v3.1.1]: Pregnanetriol MeSH:D011279 (tree D sterol) + role=case <<<
+  agent_id_llm_original  : D011279
+  agent_id_resolved      : MeSH:D011279
+  resolution_source      : MESH_DIRECT
+  canonical_name         : Pregnanetriol
+  kind_effective_llm     : disease_vs_normal
+  kind_effective_resolved: small_molecule
+  kind_overridden        : TRUE
+  kind_override_reason   : DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY
+  kind_confidence        : MEDIUM
+  kind_role_evidence     : MeSH tree branch:D04.210.500.745.620;D06.472.334.851.687.750.478.400.500
+  kind_unvalidatable     : FALSE
 
-6/6 cases PASS
+>>> Case 8 [v3.1.1]: dihydroxyphthalic CHEBI:17199 (0 roles) + LLM=pathogen <<<
+  agent_id_llm_original  : 17199
+  agent_id_resolved      : CHEBI:17199
+  resolution_source      : CHEBI_DIRECT
+  canonical_name         : 4,5-dihydroxyphthalic acid
+  kind_effective_llm     : pathogen_or_aggregate_exposure
+  kind_effective_resolved: pathogen_or_aggregate_exposure
+  kind_overridden        : FALSE
+  kind_override_reason   : <NA>
+  kind_confidence        : ZERO_ROLES
+  kind_role_evidence     : CHEBI_COMPOUND_EXISTS_NO_ROLES
+  kind_unvalidatable     : TRUE
+
+=== Summary ===
+  [OK] Case 1 Carnitine field-swap           : src=CHEBI_FIELDSWAP        ovr=TRUE  zero_roles=FALSE
+  [OK] Case 2 Ethanol cytokine wrong         : src=CHEBI_DIRECT           ovr=TRUE  zero_roles=FALSE
+  [OK] Case 3 DMSO vehicle                   : src=LLM_VEHICLE_LITERAL    ovr=FALSE zero_roles=FALSE
+  [OK] Case 4 Resiquimod 0 roles             : src=CHEBI_DIRECT           ovr=FALSE zero_roles=TRUE 
+  [OK] Case 5 poly(I:C) STRONG match         : src=CHEBI_DIRECT           ovr=FALSE zero_roles=FALSE
+  [OK] Case 6 Disease MeSH tree C            : src=MESH_DIRECT            ovr=FALSE zero_roles=FALSE
+  [OK] Case 7 [v3.1.1] Pregnanetriol tree D  : src=MESH_DIRECT            ovr=TRUE  zero_roles=FALSE
+  [OK] Case 8 [v3.1.1] dihydroxyphthalic     : src=CHEBI_DIRECT           ovr=FALSE zero_roles=TRUE 
+
+8/8 cases PASS
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 

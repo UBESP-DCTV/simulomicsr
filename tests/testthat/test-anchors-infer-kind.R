@@ -66,9 +66,29 @@ test_that("Heparin CHEBI:28304 ('anticoagulant' only) --> small_molecule MEDIUM 
   expect_equal(res$confidence, "MEDIUM")
 })
 
-test_that("Resiquimod CHEBI:36706 (0 roles) --> NONE confidence", {
+test_that("Resiquimod CHEBI:36706 (0 roles, compound exists) --> ZERO_ROLES confidence (v3.1.1)", {
+  # Resolver v3.1.1 (S1bis 2026-05-25): distinguere compound-non-existent (NONE)
+  # da compound-exists-with-zero-roles (ZERO_ROLES). Quest'ultimo flag e' consumato
+  # da infer_kind_with_override per emettere kind_chebi_zero_roles=TRUE su
+  # tracking columns, senza override deterministico (sarebbe sbagliato per casi
+  # legit come Resiquimod TLR7/8 agonist o poly(I:C) immunological adjuvant
+  # che hanno annotazione role minima ma sono genuine pathogen/cytokine).
   env <- .fixt()
   res <- infer_kind_from_ontology("CHEBI:36706", env = env)
+  expect_equal(res$confidence, "ZERO_ROLES")
+  expect_true(is.na(res$kind_resolved))
+})
+
+test_that("dihydroxyphthalic CHEBI:17199 (0 roles) --> ZERO_ROLES confidence (v3.1.1)", {
+  env <- .fixt()
+  res <- infer_kind_from_ontology("CHEBI:17199", env = env)
+  expect_equal(res$confidence, "ZERO_ROLES")
+  expect_true(is.na(res$kind_resolved))
+})
+
+test_that("CHEBI:99999999 (compound non-existent) --> NONE (v3.1.1: NONE != ZERO_ROLES)", {
+  env <- .fixt()
+  res <- infer_kind_from_ontology("CHEBI:99999999", env = env)
   expect_equal(res$confidence, "NONE")
   expect_true(is.na(res$kind_resolved))
 })
@@ -223,15 +243,55 @@ test_that("Heparin LLM=differentiation + MEDIUM small_molecule --> no override (
 
 # --- NONE confidence: LLM preserved + kind_unvalidatable --------------------
 
-test_that("Resiquimod (0 roles) LLM=pathogen --> preserved, kind_unvalidatable=TRUE", {
+test_that("Resiquimod (0 roles) LLM=pathogen --> preserved + kind_chebi_zero_roles=TRUE (v3.1.1)", {
+  # v3.1.1: ZERO_ROLES NON triggera override (sarebbe sbagliato per Resiquimod
+  # TLR agonist legit). LLM preserved. Flag kind_chebi_zero_roles=TRUE consumato
+  # da Layer B shortlist per esclusione candidati a rischio.
   env <- .fixt()
   res <- infer_kind_with_override("CHEBI:36706",
                                   llm_kind = "pathogen_or_aggregate_exposure",
                                   env = env)
   expect_false(res$kind_overridden)
   expect_equal(res$kind_resolved, "pathogen_or_aggregate_exposure")
-  expect_equal(res$confidence, "NONE")
+  expect_equal(res$confidence, "ZERO_ROLES")
+  expect_true(isTRUE(res$kind_chebi_zero_roles))
   expect_true(isTRUE(res$kind_unvalidatable))
+})
+
+test_that("dihydroxyphthalic (0 roles) LLM=pathogen --> preserved + flag kind_chebi_zero_roles (v3.1.1)", {
+  # v3.1.1: stesso treatment di Resiquimod ma per compound chimico semplice
+  # (acid). Layer B shortlist usera' il flag per escludere se altre evidence
+  # mancano. Non distinguibile da Resiquimod via ChEBI alone (entrambi 0 roles).
+  env <- .fixt()
+  res <- infer_kind_with_override("CHEBI:17199",
+                                  llm_kind = "pathogen_or_aggregate_exposure",
+                                  env = env)
+  expect_false(res$kind_overridden)
+  expect_equal(res$kind_resolved, "pathogen_or_aggregate_exposure")
+  expect_equal(res$confidence, "ZERO_ROLES")
+  expect_true(isTRUE(res$kind_chebi_zero_roles))
+})
+
+test_that("Resiquimod LLM=small_molecule + 0 roles --> preserved + flag (compatible)", {
+  env <- .fixt()
+  res <- infer_kind_with_override("CHEBI:36706",
+                                  llm_kind = "small_molecule", env = env)
+  expect_false(res$kind_overridden)
+  expect_equal(res$kind_resolved, "small_molecule")
+  expect_true(isTRUE(res$kind_chebi_zero_roles))
+})
+
+test_that("CHEBI compound non-existent (no by_id hit) LLM=pathogen --> preserved + kind_chebi_zero_roles=FALSE", {
+  # NONE != ZERO_ROLES. Compound non in ChEBI dict = HALLUCINATED prima
+  # (gestito in resolve_agent_canonical), o solo prefix CHEBI: senza match.
+  # infer_kind si limita a riportare NONE senza flag chebi_zero_roles.
+  env <- .fixt()
+  res <- infer_kind_with_override("CHEBI:99999999",
+                                  llm_kind = "pathogen_or_aggregate_exposure",
+                                  env = env)
+  expect_false(res$kind_overridden)
+  expect_equal(res$confidence, "NONE")
+  expect_false(isTRUE(res$kind_chebi_zero_roles))
 })
 
 test_that("HGNC:11998 (gene) LLM=genetic_overexpression --> preserved (gene kind_unvalidatable)", {
@@ -254,16 +314,41 @@ test_that("MeSH:D011471 (tree C) + LLM=disease_vs_normal --> MATCH", {
   expect_equal(res$confidence, "STRONG")
 })
 
-test_that("MeSH:D011279 (tree D chemical) + LLM=disease_vs_normal --> no override (LLM non-strong-assertion)", {
+test_that("MeSH:D011279 Pregnanetriol (tree D) + LLM=disease_vs_normal --> OVERRIDE a small_molecule (v3.1.1)", {
+  # v3.1.1 (S1bis 2026-05-25, audit case Pregnanetriol):
+  # MeSH tree D = chemicals/drugs branch. Se LLM dichiara disease_vs_normal
+  # ma MeSH tree_top indica chemicals (non disease), e' una contraddizione
+  # paper-grade riconoscibile deterministicamente. OVERRIDE a kind ontology
+  # con reason DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY.
   env <- .fixt()
-  # LLM dice disease_vs_normal ma MeSH tree D = chemical: LLM non e' cytokine/pathogen
-  # quindi non triggera LLM_CONTRADICTION. Conservative: LLM preserved + confidence MEDIUM
-  # registrato (Layer B audit visualizzera' la disambiguazione manualmente).
   res <- infer_kind_with_override("MeSH:D011279",
                                   llm_kind = "disease_vs_normal", env = env)
-  expect_false(res$kind_overridden)
-  expect_equal(res$kind_resolved, "disease_vs_normal")
+  expect_true(res$kind_overridden)
+  expect_equal(res$kind_resolved, "small_molecule")
+  expect_equal(res$override_reason, "DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY")
   expect_equal(res$confidence, "MEDIUM")
+})
+
+test_that("MeSH:D016899 Interferon-beta (tree D) + LLM=cytokine_stim --> no override (LLM non disease)", {
+  # Regression: la nuova rule DISEASE_KIND_CONTRADICTED triggera SOLO quando
+  # LLM=disease_vs_normal. Per altri LLM kinds, behavior invariato.
+  env <- .fixt()
+  res <- infer_kind_with_override("MeSH:D016899",
+                                  llm_kind = "cytokine_stim", env = env)
+  expect_false(res$kind_overridden)
+  expect_equal(res$kind_resolved, "cytokine_stim")
+})
+
+test_that("CHEBI:17126 Carnitine + LLM=disease_vs_normal --> OVERRIDE small_molecule (drug pattern hits)", {
+  # Carnitine ha 2 ChEBI roles: human metabolite, mouse metabolite --> WEAK
+  # small_molecule. La rule DISEASE_KIND_CONTRADICTED triggera anche per CHEBI
+  # (non solo MeSH) quando LLM=disease_vs_normal e onto inferisce kind diverso.
+  env <- .fixt()
+  res <- infer_kind_with_override("CHEBI:17126",
+                                  llm_kind = "disease_vs_normal", env = env)
+  expect_true(res$kind_overridden)
+  expect_equal(res$kind_resolved, "small_molecule")
+  expect_equal(res$override_reason, "DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY")
 })
 
 # --- STR / UNK input --------------------------------------------------------

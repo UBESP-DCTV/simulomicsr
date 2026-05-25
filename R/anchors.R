@@ -528,7 +528,7 @@ resolve_agent_canonical <- function(agent_normalized,
 #' @noRd
 .kind_none <- function() {
   list(kind_resolved = NA_character_, role_evidence = NA_character_,
-       confidence = "NONE")
+       confidence = "NONE", source = NA_character_)
 }
 
 #' Inferisce kind_effective dalle role ChEBI (pattern-based)
@@ -541,7 +541,11 @@ resolve_agent_canonical <- function(agent_normalized,
 #' @return named list con \code{kind_resolved}, \code{role_evidence}, \code{confidence}.
 #' @noRd
 .infer_kind_from_chebi_roles <- function(roles) {
-  if (length(roles) == 0L) return(.kind_none())
+  if (length(roles) == 0L) {
+    # v3.1.1: caller (.infer_kind_from_chebi) gestisce esistenza vs zero-roles.
+    # Qui assumiamo caller-already-checked: roles vuoto = NONE generico.
+    return(.kind_none())
+  }
   roles_lower <- tolower(roles)
 
   # STRONG: cytokine_stim
@@ -550,7 +554,8 @@ resolve_agent_canonical <- function(agent_normalized,
   if (any(m)) {
     return(list(kind_resolved = "cytokine_stim",
                 role_evidence = paste(roles[m], collapse = "; "),
-                confidence = "STRONG"))
+                confidence    = "STRONG",
+                source        = "CHEBI_ROLES"))
   }
 
   # STRONG: pathogen_or_aggregate_exposure
@@ -563,7 +568,8 @@ resolve_agent_canonical <- function(agent_normalized,
   if (any(m)) {
     return(list(kind_resolved = "pathogen_or_aggregate_exposure",
                 role_evidence = paste(roles[m], collapse = "; "),
-                confidence = "STRONG"))
+                confidence    = "STRONG",
+                source        = "CHEBI_ROLES"))
   }
 
   # STRONG: vehicle_only
@@ -572,7 +578,8 @@ resolve_agent_canonical <- function(agent_normalized,
   if (any(m)) {
     return(list(kind_resolved = "vehicle_only",
                 role_evidence = paste(roles[m], collapse = "; "),
-                confidence = "STRONG"))
+                confidence    = "STRONG",
+                source        = "CHEBI_ROLES"))
   }
 
   # MEDIUM: pathogen via anti-pathogen drug (NB: spec sez 4.3)
@@ -584,7 +591,8 @@ resolve_agent_canonical <- function(agent_normalized,
   if (any(m)) {
     return(list(kind_resolved = "pathogen_or_aggregate_exposure",
                 role_evidence = paste(roles[m], collapse = "; "),
-                confidence = "MEDIUM"))
+                confidence    = "MEDIUM",
+                source        = "CHEBI_ROLES"))
   }
 
   # MEDIUM: small_molecule via drug-like roles
@@ -598,7 +606,8 @@ resolve_agent_canonical <- function(agent_normalized,
   if (any(m)) {
     return(list(kind_resolved = "small_molecule",
                 role_evidence = paste(roles[m], collapse = "; "),
-                confidence = "MEDIUM"))
+                confidence    = "MEDIUM",
+                source        = "CHEBI_ROLES"))
   }
 
   # WEAK: small_molecule via metabolite
@@ -607,7 +616,8 @@ resolve_agent_canonical <- function(agent_normalized,
   if (any(m)) {
     return(list(kind_resolved = "small_molecule",
                 role_evidence = paste(roles[m], collapse = "; "),
-                confidence = "WEAK"))
+                confidence    = "WEAK",
+                source        = "CHEBI_ROLES"))
   }
 
   .kind_none()
@@ -629,12 +639,19 @@ resolve_agent_canonical <- function(agent_normalized,
   if (tree_top == "C") {
     return(list(kind_resolved = "disease_vs_normal",
                 role_evidence = sprintf("MeSH tree branch:%s", tree_branches %||% "C"),
-                confidence = "STRONG"))
+                confidence    = "STRONG",
+                source        = "MESH_TREE_C"))
   }
   if (tree_top == "D") {
+    # v3.1.1: MeSH tree D include tutte le proteine immunitarie (D12) + chemicals
+    # (D02-D27). small_molecule MEDIUM e' fallback coarse: il caller (override)
+    # NON deve usarlo per smentire LLM=cytokine/pathogen specifici (Interferon-beta
+    # MeSH:D016899 tree D non smentisce LLM=cytokine_stim). PUO' invece smentire
+    # LLM=disease_vs_normal via rule DISEASE_KIND_CONTRADICTED.
     return(list(kind_resolved = "small_molecule",
                 role_evidence = sprintf("MeSH tree branch:%s", tree_branches %||% "D"),
-                confidence = "MEDIUM"))
+                confidence    = "MEDIUM",
+                source        = "MESH_TREE_D"))
   }
   .kind_none()
 }
@@ -663,7 +680,18 @@ infer_kind_from_ontology <- function(canonical_id,
   if (prefix == "CHEBI") {
     int_val <- suppressWarnings(as.integer(id_str))
     if (is.na(int_val)) return(.kind_none())
+    # v3.1.1: distingui compound-non-esistente (NONE) da compound-esiste-0-roles
+    # (ZERO_ROLES). Quest'ultimo emesso come flag distinto per Layer B shortlist
+    # senza override deterministico (Resiquimod/poly(I:C)-like falsi positivi).
+    cmpd <- .chebi_lookup_id(int_val, env = env)
+    if (is.null(cmpd)) return(.kind_none())
     roles <- .chebi_roles(int_val, env = env)
+    if (length(roles) == 0L) {
+      return(list(kind_resolved = NA_character_,
+                  role_evidence = "CHEBI_COMPOUND_EXISTS_NO_ROLES",
+                  confidence    = "ZERO_ROLES",
+                  source        = "CHEBI_ZERO_ROLES"))
+    }
     return(.infer_kind_from_chebi_roles(roles))
   }
   if (prefix == "MeSH") {
@@ -718,63 +746,114 @@ infer_kind_with_override <- function(canonical_id, llm_kind,
            else if (is.na(llm_kind)) NA_character_
            else llm_kind
 
+  # ZERO_ROLES (v3.1.1): ChEBI compound esiste ma 0 has_role. NON override:
+  # casi legit (Resiquimod TLR agonist, poly(I:C) adjuvant) hanno role
+  # annotation minima ma sono genuine pathogen/cytokine. Emetti flag
+  # kind_chebi_zero_roles=TRUE per Layer B shortlist filter; LLM preserved.
+  if (ont$confidence == "ZERO_ROLES") {
+    return(list(
+      kind_resolved          = llm_v,
+      kind_overridden        = FALSE,
+      override_reason        = NA_character_,
+      role_evidence          = ont$role_evidence,
+      confidence             = "ZERO_ROLES",
+      kind_unvalidatable     = TRUE,
+      kind_chebi_zero_roles  = TRUE
+    ))
+  }
+
   if (ont$confidence == "NONE") {
     return(list(
-      kind_resolved      = llm_v,
-      kind_overridden    = FALSE,
-      override_reason    = NA_character_,
-      role_evidence      = NA_character_,
-      confidence         = "NONE",
-      kind_unvalidatable = TRUE
+      kind_resolved          = llm_v,
+      kind_overridden        = FALSE,
+      override_reason        = NA_character_,
+      role_evidence          = NA_character_,
+      confidence             = "NONE",
+      kind_unvalidatable     = TRUE,
+      kind_chebi_zero_roles  = FALSE
     ))
   }
 
   # STRONG match LLM
   if (ont$confidence == "STRONG" && identical(ont$kind_resolved, llm_v)) {
     return(list(
-      kind_resolved      = llm_v,
-      kind_overridden    = FALSE,
-      override_reason    = NA_character_,
-      role_evidence      = ont$role_evidence,
-      confidence         = "STRONG",
-      kind_unvalidatable = FALSE
+      kind_resolved          = llm_v,
+      kind_overridden        = FALSE,
+      override_reason        = NA_character_,
+      role_evidence          = ont$role_evidence,
+      confidence             = "STRONG",
+      kind_unvalidatable     = FALSE,
+      kind_chebi_zero_roles  = FALSE
     ))
   }
 
   # STRONG differ LLM --> override
   if (ont$confidence == "STRONG") {
     return(list(
-      kind_resolved      = ont$kind_resolved,
-      kind_overridden    = TRUE,
-      override_reason    = "ONTOLOGY_OVERRIDE_STRONG",
-      role_evidence      = ont$role_evidence,
-      confidence         = "STRONG",
-      kind_unvalidatable = FALSE
+      kind_resolved          = ont$kind_resolved,
+      kind_overridden        = TRUE,
+      override_reason        = "ONTOLOGY_OVERRIDE_STRONG",
+      role_evidence          = ont$role_evidence,
+      confidence             = "STRONG",
+      kind_unvalidatable     = FALSE,
+      kind_chebi_zero_roles  = FALSE
     ))
   }
 
-  # MEDIUM/WEAK: contradiction detection
+  # DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY (v3.1.1): se LLM dichiara
+  # disease_vs_normal ma ontology infers un non-disease kind (small_molecule
+  # via MeSH tree D, o CHEBI drug pattern), e' contraddizione deterministica
+  # paper-grade (audit case Pregnanetriol MeSH D04 sterol). Override anche
+  # con confidence MEDIUM/WEAK perche' la classe MeSH tree D = chemical e'
+  # ortogonale a disease (anchor v3.1.1 strict).
+  if (identical(llm_v, "disease_vs_normal") &&
+      !is.null(ont$kind_resolved) && !is.na(ont$kind_resolved) &&
+      nzchar(ont$kind_resolved) &&
+      !identical(ont$kind_resolved, "disease_vs_normal") &&
+      ont$confidence %in% c("STRONG", "MEDIUM", "WEAK")) {
+    return(list(
+      kind_resolved          = ont$kind_resolved,
+      kind_overridden        = TRUE,
+      override_reason        = "DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY",
+      role_evidence          = ont$role_evidence,
+      confidence             = ont$confidence,
+      kind_unvalidatable     = FALSE,
+      kind_chebi_zero_roles  = FALSE
+    ))
+  }
+
+  # MEDIUM/WEAK: contradiction detection (LLM strong-assertion). v3.1.1:
+  # asymmetric trust su source. MESH_TREE_D = chemicals/drugs/proteins (D02-D27
+  # + D12 proteine immunitarie) e' classificazione coarse: include cytokine
+  # (Interferon-beta MeSH:D016899) e small molecule (Aspirin). MEDIUM
+  # small_molecule via MeSH tree D NON deve smentire LLM=cytokine_stim/pathogen
+  # specifici (Interferon-beta cytokine_stim resta cytokine_stim). PUO' invece
+  # smentire LLM=disease_vs_normal via rule DISEASE_KIND_CONTRADICTED (gestita
+  # sopra).
   is_strong_llm_assertion <- isTRUE(llm_v %in%
                                     c("cytokine_stim", "pathogen_or_aggregate_exposure"))
-  if (is_strong_llm_assertion &&
+  is_source_authoritative <- !identical(ont$source %||% NA_character_, "MESH_TREE_D")
+  if (is_strong_llm_assertion && is_source_authoritative &&
       !.kinds_compatible(llm_v, ont$kind_resolved)) {
     return(list(
-      kind_resolved      = ont$kind_resolved,
-      kind_overridden    = TRUE,
-      override_reason    = "LLM_CONTRADICTION_DETECTED",
-      role_evidence      = ont$role_evidence,
-      confidence         = ont$confidence,
-      kind_unvalidatable = FALSE
+      kind_resolved          = ont$kind_resolved,
+      kind_overridden        = TRUE,
+      override_reason        = "LLM_CONTRADICTION_DETECTED",
+      role_evidence          = ont$role_evidence,
+      confidence             = ont$confidence,
+      kind_unvalidatable     = FALSE,
+      kind_chebi_zero_roles  = FALSE
     ))
   }
 
   # MEDIUM/WEAK senza contraddizione --> LLM preserved
   list(
-    kind_resolved      = llm_v,
-    kind_overridden    = FALSE,
-    override_reason    = NA_character_,
-    role_evidence      = ont$role_evidence,
-    confidence         = ont$confidence,
-    kind_unvalidatable = FALSE
+    kind_resolved          = llm_v,
+    kind_overridden        = FALSE,
+    override_reason        = NA_character_,
+    role_evidence          = ont$role_evidence,
+    confidence             = ont$confidence,
+    kind_unvalidatable     = FALSE,
+    kind_chebi_zero_roles  = FALSE
   )
 }
