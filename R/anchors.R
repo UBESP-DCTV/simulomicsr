@@ -274,3 +274,310 @@ make_inducer_log <- function(stage1_facts) {
   }
   out
 }
+
+# --- Anchor v3.1: post-hoc ontology resolver (ADR-0018) ----------------------
+#
+# resolve_agent_canonical() risolve l'agent LLM-emitted contro le 3 dictionary
+# (ChEBI/HGNC/MeSH) restituendo un canonical_id deterministico + source enum.
+# Sostituisce concettualmente .resolve_agent_id() per Stage 3 v3.1 (Task 4
+# integration); .resolve_agent_id() resta per backward-compat su make_anchor().
+#
+# Vedi spec docs/superpowers/specs/2026-05-25-p5-llm-anchor-ontology-override-design.md
+# sezione 4.2 per la decision table completa.
+
+#' @noRd
+.is_digit_only <- function(s) {
+  if (is.null(s) || length(s) == 0L) return(FALSE)
+  if (is.na(s) || !nzchar(s)) return(FALSE)
+  grepl("^[0-9]+$", s)
+}
+
+#' @noRd
+.is_mesh_ui <- function(s) {
+  if (is.null(s) || length(s) == 0L) return(FALSE)
+  if (is.na(s) || !nzchar(s)) return(FALSE)
+  grepl("^D[0-9]{6}$", s)
+}
+
+#' @noRd
+.strip_db_prefix <- function(value, db_prefix) {
+  if (is.null(value) || !nzchar(value)) return(value)
+  if (startsWith(toupper(value), toupper(db_prefix))) {
+    return(substring(value, nchar(db_prefix) + 1L))
+  }
+  value
+}
+
+#' Risolve un intero ChEBI (anche secondary) contro la dictionary
+#'
+#' Ritorna \code{list(chebi_id, primary_name, redirected)} su hit,
+#' \code{NULL} altrimenti.
+#' @noRd
+.try_chebi_int <- function(value_str, env) {
+  if (!.is_digit_only(value_str)) return(NULL)
+  int_val <- suppressWarnings(as.integer(value_str))
+  if (is.na(int_val)) return(NULL)
+  hit <- .chebi_lookup_id(int_val, env = env)
+  if (!is.null(hit)) {
+    return(list(chebi_id = hit$chebi_id, primary_name = hit$primary_name,
+                redirected = FALSE))
+  }
+  primary <- .chebi_secondary_redirect(int_val, env = env)
+  if (!is.null(primary)) {
+    hit2 <- .chebi_lookup_id(primary, env = env)
+    if (!is.null(hit2)) {
+      return(list(chebi_id = hit2$chebi_id, primary_name = hit2$primary_name,
+                  redirected = TRUE))
+    }
+  }
+  NULL
+}
+
+#' Risolve un intero HGNC (hgnc_int OR entrez_int) contro la dictionary
+#'
+#' Tenta prima \code{by_hgnc_int} poi \code{by_entrez_int}. Ritorna
+#' \code{list(hgnc_int, symbol, source)} con \code{source} in
+#' \code{"HGNC"} o \code{"ENTREZ"}; \code{NULL} su miss.
+#' @noRd
+.try_hgnc_int <- function(value_str, env) {
+  if (!.is_digit_only(value_str)) return(NULL)
+  int_val <- suppressWarnings(as.integer(value_str))
+  if (is.na(int_val)) return(NULL)
+  hit <- .hgnc_lookup_hgnc(int_val, env = env)
+  if (!is.null(hit)) {
+    return(list(hgnc_int = hit$hgnc_int, symbol = hit$symbol, source = "HGNC"))
+  }
+  hit2 <- .hgnc_lookup_entrez(int_val, env = env)
+  if (!is.null(hit2)) {
+    return(list(hgnc_int = hit2$hgnc_int, symbol = hit2$symbol, source = "ENTREZ"))
+  }
+  NULL
+}
+
+#' @noRd
+.canonical_noagent <- function() {
+  list(canonical_id = "UNK", canonical_name = NA_character_,
+       resolution_source = "NO_AGENT")
+}
+
+#' Risolve agent_normalized contro ChEBI/HGNC/MeSH per anchor v3.1
+#'
+#' Decision table completa in spec sezione 4.2. Restituisce \code{canonical_id}
+#' deterministico (prefix \code{CHEBI:}, \code{HGNC:}, \code{MeSH:},
+#' \code{ChEMBL:}, \code{STR:}, o \code{UNK}) + \code{resolution_source} enum +
+#' \code{canonical_name} leggibile.
+#'
+#' Source enum: \code{CHEBI_DIRECT}, \code{CHEBI_FIELDSWAP},
+#' \code{CHEBI_SECONDARY_REDIRECT}, \code{CHEBI_FIELDSWAP_SECONDARY_REDIRECT},
+#' \code{WRONG_DB_to_HGNC}, \code{HGNC_DIRECT}, \code{HGNC_FIELDSWAP},
+#' \code{HGNC_ENTREZ_MAPPED}, \code{HGNC_ENTREZ_MAPPED_FIELDSWAP},
+#' \code{MESH_DIRECT}, \code{MESH_FIELDSWAP}, \code{MESH_NAKED},
+#' \code{STRING_ALIAS_CHEBI}, \code{STRING_ALIAS_HGNC}, \code{STRING_ALIAS_MESH},
+#' \code{LLM_VEHICLE_LITERAL}, \code{CHEMBL_NAKED_NOLOOKUP},
+#' \code{HALLUCINATED_OR_FALLBACK}, \code{STRING_NO_ALIAS_MATCH},
+#' \code{NO_AGENT}.
+#'
+#' @param agent_normalized list (sample_facts.stage1.v3 perturbation
+#'   agent_normalized) o NULL. Campi attesi: \code{id_database}, \code{id},
+#'   \code{preferred_name}, \code{type}.
+#' @param env environment caricato da \code{.load_ontology_dicts()}.
+#' @return named list con \code{canonical_id}, \code{canonical_name},
+#'   \code{resolution_source}.
+#' @keywords internal
+resolve_agent_canonical <- function(agent_normalized,
+                                    env = .load_ontology_dicts()) {
+  if (is.null(agent_normalized)) return(.canonical_noagent())
+
+  type_v  <- agent_normalized$type           %||% ""
+  id_db_v <- agent_normalized$id_database    %||% ""
+  id_v    <- agent_normalized$id             %||% ""
+  pref_v  <- agent_normalized$preferred_name %||% ""
+
+  # NA -> ""
+  if (length(type_v)  == 0L || is.na(type_v))  type_v  <- ""
+  if (length(id_db_v) == 0L || is.na(id_db_v)) id_db_v <- ""
+  if (length(id_v)    == 0L || is.na(id_v))    id_v    <- ""
+  if (length(pref_v)  == 0L || is.na(pref_v))  pref_v  <- ""
+
+  if (!nzchar(type_v) && !nzchar(id_db_v) && !nzchar(id_v) && !nzchar(pref_v)) {
+    return(.canonical_noagent())
+  }
+  if (identical(type_v, "none")) return(.canonical_noagent())
+
+  # Vehicle literal: preserva LLM intent (DMSO/PBS as-is)
+  if (identical(type_v, "vehicle") && nzchar(pref_v)) {
+    return(list(
+      canonical_id      = paste0("STR:", tolower(pref_v)),
+      canonical_name    = pref_v,
+      resolution_source = "LLM_VEHICLE_LITERAL"
+    ))
+  }
+
+  id_db_norm <- toupper(id_db_v)
+
+  # ChEMBL: accept as opaque (no ChEMBL dictionary loaded)
+  if (id_db_norm == "CHEMBL") {
+    chembl_val <- if (nzchar(id_v)) id_v else pref_v
+    if (nzchar(chembl_val)) {
+      return(list(
+        canonical_id      = paste0("ChEMBL:", chembl_val),
+        canonical_name    = if (nzchar(pref_v)) pref_v else NA_character_,
+        resolution_source = "CHEMBL_NAKED_NOLOOKUP"
+      ))
+    }
+  }
+
+  # CHEBI path
+  if (id_db_norm == "CHEBI") {
+    id_clean   <- .strip_db_prefix(id_v, "CHEBI:")
+    pref_clean <- .strip_db_prefix(pref_v, "CHEBI:")
+
+    # 1. id field numerico in ChEBI primary/secondary
+    hit <- .try_chebi_int(id_clean, env = env)
+    if (!is.null(hit)) {
+      src <- if (hit$redirected) "CHEBI_SECONDARY_REDIRECT" else "CHEBI_DIRECT"
+      return(list(canonical_id      = paste0("CHEBI:", hit$chebi_id),
+                  canonical_name    = hit$primary_name,
+                  resolution_source = src))
+    }
+    # 2. preferred_name numerico (field-swap)
+    hit2 <- .try_chebi_int(pref_clean, env = env)
+    if (!is.null(hit2)) {
+      src <- if (hit2$redirected) "CHEBI_FIELDSWAP_SECONDARY_REDIRECT" else "CHEBI_FIELDSWAP"
+      return(list(canonical_id      = paste0("CHEBI:", hit2$chebi_id),
+                  canonical_name    = hit2$primary_name,
+                  resolution_source = src))
+    }
+    # 3. id field numerico in HGNC (wrong DB)
+    hit3 <- .try_hgnc_int(id_clean, env = env)
+    if (!is.null(hit3)) {
+      return(list(canonical_id      = paste0("HGNC:", hit3$hgnc_int),
+                  canonical_name    = hit3$symbol,
+                  resolution_source = "WRONG_DB_to_HGNC"))
+    }
+    # 4. preferred_name come ChEBI alias
+    hit4 <- .chebi_lookup_alias(pref_v, env = env)
+    if (!is.null(hit4)) {
+      hit_full <- .chebi_lookup_id(hit4$chebi_id, env = env)
+      cname <- if (!is.null(hit_full)) hit_full$primary_name else pref_v
+      return(list(canonical_id      = paste0("CHEBI:", hit4$chebi_id),
+                  canonical_name    = cname,
+                  resolution_source = "STRING_ALIAS_CHEBI"))
+    }
+    # Falltrough --> HALLUCINATED_OR_FALLBACK
+  }
+
+  # HGNC path
+  if (id_db_norm == "HGNC") {
+    id_clean   <- .strip_db_prefix(id_v, "HGNC:")
+    pref_clean <- .strip_db_prefix(pref_v, "HGNC:")
+
+    hit <- .try_hgnc_int(id_clean, env = env)
+    if (!is.null(hit)) {
+      src <- if (hit$source == "ENTREZ") "HGNC_ENTREZ_MAPPED" else "HGNC_DIRECT"
+      return(list(canonical_id      = paste0("HGNC:", hit$hgnc_int),
+                  canonical_name    = hit$symbol,
+                  resolution_source = src))
+    }
+    hit2 <- .try_hgnc_int(pref_clean, env = env)
+    if (!is.null(hit2)) {
+      src <- if (hit2$source == "ENTREZ") "HGNC_ENTREZ_MAPPED_FIELDSWAP" else "HGNC_FIELDSWAP"
+      return(list(canonical_id      = paste0("HGNC:", hit2$hgnc_int),
+                  canonical_name    = hit2$symbol,
+                  resolution_source = src))
+    }
+    hit3 <- .hgnc_lookup_symbol(pref_v, env = env)
+    if (!is.null(hit3)) {
+      return(list(canonical_id      = paste0("HGNC:", hit3$hgnc_int),
+                  canonical_name    = hit3$primary_symbol,
+                  resolution_source = "STRING_ALIAS_HGNC"))
+    }
+  }
+
+  # MeSH path
+  if (id_db_norm == "MESH") {
+    id_clean   <- .strip_db_prefix(id_v, "MESH:")
+    pref_clean <- .strip_db_prefix(pref_v, "MESH:")
+
+    if (.is_mesh_ui(id_clean)) {
+      hit <- .mesh_lookup_ui(id_clean, env = env)
+      if (!is.null(hit)) {
+        return(list(canonical_id      = paste0("MeSH:", hit$ui),
+                    canonical_name    = hit$mh,
+                    resolution_source = "MESH_DIRECT"))
+      }
+    }
+    if (.is_mesh_ui(pref_clean)) {
+      hit2 <- .mesh_lookup_ui(pref_clean, env = env)
+      if (!is.null(hit2)) {
+        return(list(canonical_id      = paste0("MeSH:", hit2$ui),
+                    canonical_name    = hit2$mh,
+                    resolution_source = "MESH_FIELDSWAP"))
+      }
+    }
+    hit3 <- .mesh_lookup_term(pref_v, env = env)
+    if (!is.null(hit3)) {
+      ui_full <- .mesh_lookup_ui(hit3$ui, env = env)
+      cname <- if (!is.null(ui_full)) ui_full$mh else pref_v
+      return(list(canonical_id      = paste0("MeSH:", hit3$ui),
+                  canonical_name    = cname,
+                  resolution_source = "STRING_ALIAS_MESH"))
+    }
+  }
+
+  # Database NULL / non riconosciuto OR primary path fallito: alias discovery
+  if (nzchar(pref_v)) {
+    # ChEBI alias
+    hit <- .chebi_lookup_alias(pref_v, env = env)
+    if (!is.null(hit)) {
+      hit_full <- .chebi_lookup_id(hit$chebi_id, env = env)
+      cname <- if (!is.null(hit_full)) hit_full$primary_name else pref_v
+      return(list(canonical_id      = paste0("CHEBI:", hit$chebi_id),
+                  canonical_name    = cname,
+                  resolution_source = "STRING_ALIAS_CHEBI"))
+    }
+    # HGNC symbol/alias
+    hit2 <- .hgnc_lookup_symbol(pref_v, env = env)
+    if (!is.null(hit2)) {
+      return(list(canonical_id      = paste0("HGNC:", hit2$hgnc_int),
+                  canonical_name    = hit2$primary_symbol,
+                  resolution_source = "STRING_ALIAS_HGNC"))
+    }
+    # MeSH entry term
+    hit3 <- .mesh_lookup_term(pref_v, env = env)
+    if (!is.null(hit3)) {
+      ui_full <- .mesh_lookup_ui(hit3$ui, env = env)
+      cname <- if (!is.null(ui_full)) ui_full$mh else pref_v
+      return(list(canonical_id      = paste0("MeSH:", hit3$ui),
+                  canonical_name    = cname,
+                  resolution_source = "STRING_ALIAS_MESH"))
+    }
+    # MeSH naked UI
+    if (.is_mesh_ui(pref_v)) {
+      hit4 <- .mesh_lookup_ui(pref_v, env = env)
+      if (!is.null(hit4)) {
+        return(list(canonical_id      = paste0("MeSH:", hit4$ui),
+                    canonical_name    = hit4$mh,
+                    resolution_source = "MESH_NAKED"))
+      }
+    }
+  }
+
+  # Hallucinated o non-risolvibile
+  # - id_database set ma tutti i lookup failed --> HALLUCINATED_OR_FALLBACK
+  # - id_database vuoto + preferred_name non-alias --> STRING_NO_ALIAS_MATCH
+  if (nzchar(id_db_v)) {
+    fall_str <- if (nzchar(pref_v)) tolower(pref_v)
+                else if (nzchar(id_v)) tolower(id_v)
+                else "unknown"
+    return(list(canonical_id      = paste0("STR:", fall_str),
+                canonical_name    = if (nzchar(pref_v)) pref_v else NA_character_,
+                resolution_source = "HALLUCINATED_OR_FALLBACK"))
+  }
+  if (nzchar(pref_v)) {
+    return(list(canonical_id      = paste0("STR:", tolower(pref_v)),
+                canonical_name    = pref_v,
+                resolution_source = "STRING_NO_ALIAS_MATCH"))
+  }
+  .canonical_noagent()
+}
