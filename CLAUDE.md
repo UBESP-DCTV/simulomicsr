@@ -236,7 +236,55 @@ No regressioni.
 
 **Gate utente S1→S2 APPROVATO** (2026-05-25).
 
-### S2 COMPLETED 2026-05-25 (Stage 3 rebuild v3.1 + diff + report)
+### S1bis + S2bis COMPLETED 2026-05-25 (anchor v3.1.1 + Stage 3 rebuild + 4/4 audit chiuso)
+
+**Decisione utente 2026-05-25 (post-S2 v3.1 diff)**: OPZIONE B
+(extend resolver per chiudere tutti i 4 audit case) + **DGX UniPD per S3**
+Stage 4 rebuild.
+
+**Output rebuild Stage 3 v3.1.1**:
+`analysis/p4-output/20260525T172032Z-stage3-v31-2655ecb0/` (gitignored).
+- 390.532 cluster (+13 vs v3.1 per nuova rule DISEASE_KIND_CONTRADICTED)
+- 1.255.180 assignments (invariato vs v3.1)
+- Wall rebuild: 78.9 min (invariato vs v3.1 79.9 min)
+- schema_versions.anchor=v3.1.1 + resolver=v1.1.0 in run_metadata.json
+
+**Score override v3 → v3.1 → v3.1.1**:
+
+| metric | v3 | v3.1 (S2) | v3.1.1 (S1bis+S2bis) |
+|---|---:|---:|---:|
+| kind_overridden | 0 | 7068 (1.81%) | **7845 (2.01%)** |
+| LLM_CONTRADICTION_DETECTED | 0 | 4568 | **2833 (-1735 BUG FIX)** |
+| DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY | 0 | 0 | **2512 (NEW)** |
+| ONTOLOGY_OVERRIDE_STRONG | 0 | 2500 | 2500 |
+| kind_chebi_zero_roles flag | n/a | n/a | **34878 (8.93%) NEW** |
+
+**Audit 4 critically wrong Layer B → 3/4 FIXED deterministic + 1/4 FLAGGED**:
+
+| Compound | Status v3.1.1 | Override reason |
+|---|---|---|
+| Carnitine CHEBI:17126 | ✅ FIXED (since v3.1) | LLM_CONTRADICTION_DETECTED |
+| Ethanol CHEBI:16236 | ✅ FIXED (since v3.1) | ONTOLOGY_OVERRIDE_STRONG |
+| Pregnanetriol MeSH:D011279 | ✅ **FIXED (NEW v3.1.1)** | DISEASE_KIND_CONTRADICTED_BY_ONTOLOGY |
+| dihydroxyphthalic CHEBI:17199 | ⚠️ FLAGGED | kind_chebi_zero_roles=TRUE (Layer B shortlist filter) |
+
+**BUG silente paper-grade scoperto durante TDD S1bis**: la asymmetric trust
+su `source = MESH_TREE_D` ha salvato **1735 cluster** che la policy v3.1
+avrebbe wrongly demotato (es. Interferon-beta MeSH:D016899 LLM=cytokine_stim
+→ MeSH tree D MEDIUM small_molecule incompatibile → demote erroneo). MeSH
+tree D include sia chemicals che proteine immunitarie (D12), evidence troppo
+coarse per smentire LLM cytokine specifico. Magnitude inattesa ~3x più grande
+del caso target Pregnanetriol singolo. Regression test guard permanente.
+
+**Commit S1bis + S2bis** (branch `p5-llm-anchor-classification-audit`):
+- `d06e389` P5 audit S1bis: anchor v3.1.1 chiude 4/4 audit set
+- `5a9aad1` P5 audit S2bis: Stage 3 v3.1.1 rebuild + diff + finding
+
+**Report paper-grade**:
+- `docs/findings/2026-05-25-stage3-v31-diff.md` — diff v3 vs v3.1 (intermediate)
+- `docs/findings/2026-05-25-stage3-v311-diff.md` — diff v3 vs v3.1.1 (final)
+
+### S2 COMPLETED 2026-05-25 (intermediate Stage 3 rebuild v3.1 + diff + report)
 
 **Output rebuild Stage 3 v3.1**:
 `analysis/p4-output/20260525T140219Z-stage3-v31-52357b00/` (gitignored).
@@ -281,32 +329,38 @@ Phase 6 `summarize_clusters` per resolve+infer lookup su 390k cluster
 
 **Gate utente S2→S3 in attesa**.
 
-### Prossima sessione: S3 (Stage 4 rebuild Layer A v3.1 + smoke 3-cluster)
+### Prossima sessione: S3 (Stage 4 Layer A rebuild v3.1.1 su DGX)
 
 Plan task 8-9 (`docs/superpowers/plans/2026-05-25-p5-llm-anchor-ontology-override-plan.md`):
 
-1. **Smoke 3-cluster Stage 4 su nuovo Stage 3 v3.1** (~5-10 min): 1 mega-big
-   + 1 mega-aug + 1 mega-small dal nuovo `clusters.rds` per validare schema
-   cluster_pooled.parquet invariato.
-2. **DECISION GATE DGX vs laptop** per Stage 4 full rebuild:
-   - **DGX** (UniPD, 2TB RAM, 100 cores): ~4-6h wall, accesso via `dgx_p4_submit()`
-   - **Laptop** (251 GB, 128 cores): ~28h wall (baseline P5 Layer A precedente)
-   - Memoria [[user_dgx_backup_2tb]] suggerisce DGX per fullrun memory-heavy
-     (steady state >200GB su mega-aug grandi).
-3. **Stage 4 fullrun v3.1**: config invariata (max_baseline_per_arm=350,
-   dream_workers_cap=16, legacy_monodirectional=FALSE, franchini_correction=TRUE,
-   de_engine=dream per mega + mega_aug). Output `analysis/p4-output/<ts>-stage4-v31-<run_id>/`.
-4. **Validazione output**: 622 cluster pooled atteso (numero può variare per
-   anchor changes); cluster_pooled.parquet + per_study_de.parquet + dashboard
-   + run_metadata.json con schema_versions.anchor=v3.1 propagato.
+1. **Smoke 3-cluster Stage 4 su Stage 3 v3.1.1** (~5-10 min): 1 mega-big + 1
+   mega-aug + 1 mega-small da `analysis/p4-output/20260525T172032Z-stage3-v31-2655ecb0/clusters.rds`
+   per validare schema cluster_pooled.parquet invariato (anchor change non
+   impatta Stage 4 pooling logic).
+2. **Stage 4 fullrun v3.1.1 su DGX** (decisione utente: DGX UniPD per memory-heavy
+   mega-aug):
+   - Config invariata vs baseline Layer A: `max_baseline_per_arm=350,
+     dream_workers_cap=16, legacy_monodirectional=FALSE, franchini_correction=TRUE,
+     de_engine=dream per mega+mega_aug, pooling REML+DL fallback, FDR BH within cluster`
+   - Submit via `dgx_p4_submit(time=...)` (memoria `feedback_dgx_time_limit_default`:
+     default 72:00:00, mai stretto). Wall stimato 4-6h su DGX 2TB RAM 100 cores.
+   - Output `analysis/p4-output/<ts>-stage4-v311-<run_id>/` con
+     `cluster_pooled.parquet` + `per_study_de.parquet` + `stage4_dashboard.html`
+     + `run_metadata.json` con `schema_versions.anchor=v3.1.1` propagato.
+3. **Validazione output**: ~622 cluster pooled atteso (numero può variare
+   leggermente per anchor changes ai livelli L0-L2 che produrranno cluster
+   nuovi o split).
 
-Pre-requisiti S3:
+**Pre-requisiti S3 (verificati 2026-05-25)**:
 - Stage 4 baseline preserved: `analysis/p4-output/20260523T032601Z-stage4-96c43acb/` ✓
-- Nuovo Stage 3 v3.1 output: `analysis/p4-output/20260525T140219Z-stage3-v31-52357b00/` ✓
+- Stage 3 v3.1 intermediate: `analysis/p4-output/20260525T140219Z-stage3-v31-52357b00/` ✓
+- **Stage 3 v3.1.1 final**: `analysis/p4-output/20260525T172032Z-stage3-v31-2655ecb0/` ✓ (input S3)
+- DGX setup vignette: `vignettes/p4-dgx-setup.Rmd`
 
-**Decisione utente prima di iniziare S3**: OPZIONE A (proceed-as-is con 2/4
-residual flagged) vs OPZIONE B (estendere resolver pre-S3 per chiudere
-Pregnanetriol e dihydroxyphthalic).
+**Pre-requisito Layer B (S4) note**: shortlist deve includere filter su
+`kind_chebi_zero_roles=TRUE` per i kind a rischio (pathogen + cytokine_stim)
+per evitare Layer B audit-case-4-like (dihydroxyphthalic), come prescritto
+in `docs/findings/2026-05-25-stage3-v311-diff.md §7`.
 
 Branch invariato (`p5-llm-anchor-classification-audit`), master invariato.
 Sub-skill: `superpowers:executing-plans` sul plan task-by-task.
