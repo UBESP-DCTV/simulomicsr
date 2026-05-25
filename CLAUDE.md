@@ -184,17 +184,25 @@ nel paper finché non si decide una mitigation. Audit cross-validation degli
 - Interpretazione BIOLOGICA INVALIDA per migliaia di cluster (label numerica + kind wrong)
 - L2 paper limitation va espansa drasticamente
 
-**4 opzioni mitigation in attesa di decisione utente** (vedi
-`docs/findings/2026-05-24-llm-anchor-classification-audit.md` per dettaglio):
+**Decisione utente 2026-05-25**: OPZIONE 2 — post-hoc ontology override
++ rebuild Stage 3 + Stage 4 + Layer B. ADR-0018 Proposed.
 
-1. Layer B patch-only (1-2h): drop 4 wrong, label fix, rebuild parziale Layer B
-2. **Post-hoc ChEBI override + rebuild Stage 3+4+B** (4-6h DGX o 28h laptop) ← raccomandazione
-3. Stage 2 re-prompt mirato + rebuild downstream (6h+28h)
-4. Stage 1 prompt fix + full rerun (4-5 giorni)
+Documentazione completa pronta su branch `p5-llm-anchor-classification-audit`:
+- **ADR-0018**: `docs/decisions/0018-llm-anchor-ontology-override.md` (decisione architetturale)
+- **Spec**: `docs/superpowers/specs/2026-05-25-p5-llm-anchor-ontology-override-design.md`
+  (design tecnico: decision tables, edge cases, versioning, validation strategy)
+- **Plan**: `docs/superpowers/plans/2026-05-25-p5-llm-anchor-ontology-override-plan.md`
+  (task-by-task implementation, 5 sessioni S1-S5 con gate utente)
+- **HUMANE**: `docs/superpowers/plans/2026-05-25-p5-llm-anchor-ontology-override-HUMANE.md`
+  (versione leggibile + decisioni rinviate + cosa NON fa + stima tempo)
+- **Audit drive**: `docs/findings/2026-05-24-llm-anchor-classification-audit.md`
 
-Branch isolato `p5-llm-anchor-classification-audit` (commit `7a0e20c`).
-Master ancora a `p5-stadio4-layer-b-batch-15` — Layer B selection corrente
-e' SUBOPTIMALE finché non si applica una mitigation.
+**Prossima sessione**: aprire HUMANE per orientamento, poi sub-skill
+`superpowers:executing-plans` sul plan task-by-task. Branch invariato
+(p5-llm-anchor-classification-audit), master invariato.
+
+Wall stimato totale: **1-2 giorni** distribuiti su 5 sessioni con gate
+utente tra ogni sessione (vedi plan §SESSIONE 1..5).
 
 Memoria: [[project_llm_anchor_classification_audit]].
 
