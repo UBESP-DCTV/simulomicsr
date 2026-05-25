@@ -1,0 +1,96 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+=== P5 ontology override smoke (anchor v3.1, ADR-0018) ===
+Loading mini-fixture dictionaries from inst/extdata/ontology-fixtures-mini/
+  ChEBI compounds in fixture: 14
+  HGNC genes in fixture:      10
+  MeSH descriptors in fixture: 5
+
+>>> Case 1: Carnitine field-swap LLM=pathogen <<<
+  agent_id_llm_original  : CHEBI:17126
+  agent_id_resolved      : CHEBI:17126
+  resolution_source      : CHEBI_FIELDSWAP
+  canonical_name         : carnitine
+  kind_effective_llm     : pathogen_or_aggregate_exposure
+  kind_effective_resolved: small_molecule
+  kind_overridden        : TRUE
+  kind_override_reason   : LLM_CONTRADICTION_DETECTED
+  kind_confidence        : WEAK
+  kind_role_evidence     : human metabolite; mouse metabolite
+  kind_unvalidatable     : FALSE
+
+>>> Case 2: Ethanol LLM=cytokine_stim <<<
+  agent_id_llm_original  : 16236
+  agent_id_resolved      : CHEBI:16236
+  resolution_source      : CHEBI_DIRECT
+  canonical_name         : ethanol
+  kind_effective_llm     : cytokine_stim
+  kind_effective_resolved: vehicle_only
+  kind_overridden        : TRUE
+  kind_override_reason   : ONTOLOGY_OVERRIDE_STRONG
+  kind_confidence        : STRONG
+  kind_role_evidence     : polar solvent
+  kind_unvalidatable     : FALSE
+
+>>> Case 3: DMSO LLM=vehicle (LLM_VEHICLE_LITERAL preserva intent) <<<
+  agent_id_llm_original  : 28262
+  agent_id_resolved      : STR:dmso
+  resolution_source      : LLM_VEHICLE_LITERAL
+  canonical_name         : DMSO
+  kind_effective_llm     : vehicle_only
+  kind_effective_resolved: vehicle_only
+  kind_overridden        : FALSE
+  kind_override_reason   : <NA>
+  kind_confidence        : NONE
+  kind_role_evidence     : <NA>
+  kind_unvalidatable     : TRUE
+
+>>> Case 4: Resiquimod 0 roles LLM=pathogen (kind_unvalidatable) <<<
+  agent_id_llm_original  : 36706
+  agent_id_resolved      : CHEBI:36706
+  resolution_source      : CHEBI_DIRECT
+  canonical_name         : resiquimod
+  kind_effective_llm     : pathogen_or_aggregate_exposure
+  kind_effective_resolved: pathogen_or_aggregate_exposure
+  kind_overridden        : FALSE
+  kind_override_reason   : <NA>
+  kind_confidence        : NONE
+  kind_role_evidence     : <NA>
+  kind_unvalidatable     : TRUE
+
+>>> Case 5: poly(I:C) LLM=pathogen STRONG match (adjuvant) <<<
+  agent_id_llm_original  : 84491
+  agent_id_resolved      : CHEBI:84491
+  resolution_source      : CHEBI_DIRECT
+  canonical_name         : poly(I:C)
+  kind_effective_llm     : pathogen_or_aggregate_exposure
+  kind_effective_resolved: pathogen_or_aggregate_exposure
+  kind_overridden        : FALSE
+  kind_override_reason   : <NA>
+  kind_confidence        : STRONG
+  kind_role_evidence     : immunological adjuvant
+  kind_unvalidatable     : FALSE
+
+>>> Case 6: Disease MeSH:D011471 + role=case <<<
+  agent_id_llm_original  : D011471
+  agent_id_resolved      : MeSH:D011471
+  resolution_source      : MESH_DIRECT
+  canonical_name         : Prostatic Neoplasms
+  kind_effective_llm     : disease_vs_normal
+  kind_effective_resolved: disease_vs_normal
+  kind_overridden        : FALSE
+  kind_override_reason   : <NA>
+  kind_confidence        : STRONG
+  kind_role_evidence     : <NA>
+  kind_unvalidatable     : FALSE
+
+=== Summary ===
+  [OK] Case 1 Carnitine field-swap         : source=CHEBI_FIELDSWAP                override=TRUE (expected=TRUE)
+  [OK] Case 2 Ethanol cytokine wrong       : source=CHEBI_DIRECT                   override=TRUE (expected=TRUE)
+  [OK] Case 3 DMSO vehicle                 : source=LLM_VEHICLE_LITERAL            override=FALSE (expected=FALSE)
+  [OK] Case 4 Resiquimod 0 roles           : source=CHEBI_DIRECT                   override=FALSE (expected=FALSE)
+  [OK] Case 5 poly(I:C) STRONG match       : source=CHEBI_DIRECT                   override=FALSE (expected=FALSE)
+  [OK] Case 6 Disease MeSH                 : source=MESH_DIRECT                    override=FALSE (expected=FALSE)
+
+6/6 cases PASS
