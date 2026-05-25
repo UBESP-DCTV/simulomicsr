@@ -236,25 +236,77 @@ No regressioni.
 
 **Gate utente S1→S2 APPROVATO** (2026-05-25).
 
-### Prossima sessione: S2 (Stage 3 rebuild full + diff)
+### S2 COMPLETED 2026-05-25 (Stage 3 rebuild v3.1 + diff + report)
 
-Plan task 6-7 (`docs/superpowers/plans/2026-05-25-p5-llm-anchor-ontology-override-plan.md`):
+**Output rebuild Stage 3 v3.1**:
+`analysis/p4-output/20260525T140219Z-stage3-v31-52357b00/` (gitignored).
+- 390.519 cluster (+46.2% vs baseline v3 267.056)
+- 1.255.180 assignments (+77.3% vs 707.595)
+- 192.897 non_clusterable
+- Wall rebuild: 79.9 min laptop 251 GB
+- schema_versions.anchor=v3.1 + resolver=v1.0.0 + ontology_releases
+  (ChEBI 205k compound + HGNC 45k + MeSH 31k) in run_metadata.json
 
-1. **PRIMO STEP S2**: ri-eseguire `test-stage3-perf-budget.R` per smoke perf
-   end-to-end (precedente attempt killed da quirk bg tasks bash-tail-pipe).
-   Budget storico: 15 min wall + 4 GB delta memory su 879k stage1 + 39k stage2 records.
-   Verifica che ChEBI/HGNC/MeSH index build + resolver lookup non sfori budget.
-2. **Stage 3 rebuild full** via `build_stage3_clusters()` su master rescued.
-   Output: `analysis/p4-output/<ts>-stage3-v31/` con `clusters.rds` (nuove 11
-   tracking columns) + `run_metadata.json` (schema_versions.anchor=v3.1 +
-   ontology_releases). Wall stimato ~1h laptop.
-3. **Diff comparison**: nuovo script `analysis/p5-stage3-diff.R` vs old
-   `analysis/p4-output/20260519T055547Z-stage3-2153addc/clusters.rds`. Stats per
-   resolution_source bucket, kind_overridden percentage, audit dei 4 critically
-   wrong Layer B (Carnitine/Ethanol/dihydroxyphthalic/Pregnanetriol).
-4. **Output report**: `docs/findings/2026-05-XX-stage3-v31-diff.md` paper-grade.
-5. **Gate utente S2→S3**: review diff stats + decisione DGX (4-6h) vs laptop
-   (28h) per Stage 4 rebuild.
+**Override conservativo**: kind_overridden 7068 (1.81%):
+- 64.6% LLM_CONTRADICTION_DETECTED (4568)
+- 35.4% ONTOLOGY_OVERRIDE_STRONG (2500)
+
+Override per kind_effective_resolved:
+- 4558 → small_molecule (Carnitine-like, LLM diceva pathogen)
+- 1670 → vehicle_only (Ethanol/DMSO-like, LLM diceva cytokine_stim)
+- 440 → cytokine_stim (Resiquimod-like, LLM diceva small_molecule)
+- 316 → disease_vs_normal (MeSH disease descriptors missed)
+- 84 → pathogen_or_aggregate_exposure (poly(I:C)/TLR agonists)
+
+**Audit 4 critically wrong Layer B (vedi `docs/findings/2026-05-25-stage3-v31-diff.md`)**:
+
+| Compound | Old kind | New kind | Status |
+|---|---|---|---|
+| Carnitine CHEBI:17126 | pathogen | small_molecule | ✅ FIXED |
+| Ethanol CHEBI:16236 | cytokine_stim | vehicle_only | ✅ FIXED |
+| Pregnanetriol MeSH:D011279 | disease_vs_normal | disease_vs_normal | ⚠️ RESIDUAL |
+| dihydroxyphthalic CHEBI:17199 | pathogen | pathogen | ⚠️ RESIDUAL |
+
+2/4 risolti, 2/4 residual (policy attuale conservativa: no MeSH tree_top
+check, no override per ChEBI compound con 0 roles annotation).
+
+**Perf budget v3.1** (test aggiornato): 90 min wall + 8 GB memory delta
+(cushion ~15-18% sui valori reali 76.6 min / 6.75 GB). Overhead +60 min su
+Phase 6 `summarize_clusters` per resolve+infer lookup su 390k cluster
+(atteso per design ADR-0018).
+
+**Commit S2**:
+- `74dcad4` P5 audit S2 Task 6: Stage 3 v3.1 rebuild + perf budget v3.1
+- `f16de37` P5 audit S2 Task 7: diff Stage 3 v3 -> v3.1 + finding report
+
+**Gate utente S2→S3 in attesa**.
+
+### Prossima sessione: S3 (Stage 4 rebuild Layer A v3.1 + smoke 3-cluster)
+
+Plan task 8-9 (`docs/superpowers/plans/2026-05-25-p5-llm-anchor-ontology-override-plan.md`):
+
+1. **Smoke 3-cluster Stage 4 su nuovo Stage 3 v3.1** (~5-10 min): 1 mega-big
+   + 1 mega-aug + 1 mega-small dal nuovo `clusters.rds` per validare schema
+   cluster_pooled.parquet invariato.
+2. **DECISION GATE DGX vs laptop** per Stage 4 full rebuild:
+   - **DGX** (UniPD, 2TB RAM, 100 cores): ~4-6h wall, accesso via `dgx_p4_submit()`
+   - **Laptop** (251 GB, 128 cores): ~28h wall (baseline P5 Layer A precedente)
+   - Memoria [[user_dgx_backup_2tb]] suggerisce DGX per fullrun memory-heavy
+     (steady state >200GB su mega-aug grandi).
+3. **Stage 4 fullrun v3.1**: config invariata (max_baseline_per_arm=350,
+   dream_workers_cap=16, legacy_monodirectional=FALSE, franchini_correction=TRUE,
+   de_engine=dream per mega + mega_aug). Output `analysis/p4-output/<ts>-stage4-v31-<run_id>/`.
+4. **Validazione output**: 622 cluster pooled atteso (numero può variare per
+   anchor changes); cluster_pooled.parquet + per_study_de.parquet + dashboard
+   + run_metadata.json con schema_versions.anchor=v3.1 propagato.
+
+Pre-requisiti S3:
+- Stage 4 baseline preserved: `analysis/p4-output/20260523T032601Z-stage4-96c43acb/` ✓
+- Nuovo Stage 3 v3.1 output: `analysis/p4-output/20260525T140219Z-stage3-v31-52357b00/` ✓
+
+**Decisione utente prima di iniziare S3**: OPZIONE A (proceed-as-is con 2/4
+residual flagged) vs OPZIONE B (estendere resolver pre-S3 per chiudere
+Pregnanetriol e dihydroxyphthalic).
 
 Branch invariato (`p5-llm-anchor-classification-audit`), master invariato.
 Sub-skill: `superpowers:executing-plans` sul plan task-by-task.
