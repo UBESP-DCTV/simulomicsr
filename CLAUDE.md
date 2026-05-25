@@ -197,12 +197,67 @@ Documentazione completa pronta su branch `p5-llm-anchor-classification-audit`:
   (versione leggibile + decisioni rinviate + cosa NON fa + stima tempo)
 - **Audit drive**: `docs/findings/2026-05-24-llm-anchor-classification-audit.md`
 
-**Prossima sessione**: aprire HUMANE per orientamento, poi sub-skill
-`superpowers:executing-plans` sul plan task-by-task. Branch invariato
-(p5-llm-anchor-classification-audit), master invariato.
-
 Wall stimato totale: **1-2 giorni** distribuiti su 5 sessioni con gate
 utente tra ogni sessione (vedi plan §SESSIONE 1..5).
+
+### S1 COMPLETED 2026-05-25 (impl + tests + smoke isolato)
+
+**5 commit incrementali su `p5-llm-anchor-classification-audit`** (master invariato):
+
+- `5ea32c7` T1: `R/ontology-lookup.R` + mini fixtures + tests TDD (28 test, 56 expect_*).
+  Loader singleton + 9 accessor O(1) hash-env per ~315k lookup downstream.
+- `a91764d` T2: `resolve_agent_canonical()` in `R/anchors.R` + tests (28 test, 70 expect_*).
+  Decision table 16+ branch spec §4.2.
+- `7aad2e2` T3: `infer_kind_from_ontology` + `infer_kind_with_override` + tests
+  (28 test, 51 expect_*). Override policy paper-grade conservativa: STRONG match
+  registrato senza override; STRONG differ → ONTOLOGY_OVERRIDE_STRONG;
+  MEDIUM/WEAK + LLM in {cytokine_stim, pathogen} kind incompatibile →
+  LLM_CONTRADICTION_DETECTED; NONE → LLM preservato + kind_unvalidatable=TRUE.
+- `afac917` T4: integrazione `.extract_anchor_segments` v3.1 + `make_anchor` thin
+  wrapper + `.summarize_clusters` 11 tracking columns + `ontology_releases`
+  in `run_metadata` + schema_versions anchor=v3.1 + resolver=v1.0.0.
+  **9 nuovi test integration** (test-stage3-anchor-v31.R). Defensive
+  `.coerce_chr1` + `.normalize_key_chr` per LLM real-world input
+  character(0)/array/NA (critico: previene crash exists() in ~315k lookup).
+- `45459f2` T5: smoke isolato `analysis/p5-ontology-override-smoke.R` 6 case
+  paradigmatici, 6/6 PASS (log `analysis/p5-ontology-override-smoke.log`).
+
+**Test result globale S1**: 1703 PASS / 0 FAIL / 3 SKIP (full suite escluso
+perf-budget). Anchor-related: 443 PASS. Stage 3 (mocked): 268 PASS.
+No regressioni.
+
+**Smoke validato** sui 6 paradigmi dell'audit:
+1. Carnitine field-swap LLM=pathogen → CHEBI:17126 + override LLM_CONTRADICTION_DETECTED
+2. Ethanol LLM=cytokine_stim → CHEBI:16236 + override ONTOLOGY_OVERRIDE_STRONG → vehicle_only
+3. DMSO type=vehicle → STR:dmso LLM_VEHICLE_LITERAL (preserva intent)
+4. Resiquimod (0 ChEBI roles) LLM=pathogen → preservato + kind_unvalidatable=TRUE
+5. poly(I:C) LLM=pathogen → CHEBI:84491 STRONG match (adjuvant)
+6. Disease role=case D011471 → MeSH:D011471 STRONG disease_vs_normal
+
+**Gate utente S1→S2 APPROVATO** (2026-05-25).
+
+### Prossima sessione: S2 (Stage 3 rebuild full + diff)
+
+Plan task 6-7 (`docs/superpowers/plans/2026-05-25-p5-llm-anchor-ontology-override-plan.md`):
+
+1. **PRIMO STEP S2**: ri-eseguire `test-stage3-perf-budget.R` per smoke perf
+   end-to-end (precedente attempt killed da quirk bg tasks bash-tail-pipe).
+   Budget storico: 15 min wall + 4 GB delta memory su 879k stage1 + 39k stage2 records.
+   Verifica che ChEBI/HGNC/MeSH index build + resolver lookup non sfori budget.
+2. **Stage 3 rebuild full** via `build_stage3_clusters()` su master rescued.
+   Output: `analysis/p4-output/<ts>-stage3-v31/` con `clusters.rds` (nuove 11
+   tracking columns) + `run_metadata.json` (schema_versions.anchor=v3.1 +
+   ontology_releases). Wall stimato ~1h laptop.
+3. **Diff comparison**: nuovo script `analysis/p5-stage3-diff.R` vs old
+   `analysis/p4-output/20260519T055547Z-stage3-2153addc/clusters.rds`. Stats per
+   resolution_source bucket, kind_overridden percentage, audit dei 4 critically
+   wrong Layer B (Carnitine/Ethanol/dihydroxyphthalic/Pregnanetriol).
+4. **Output report**: `docs/findings/2026-05-XX-stage3-v31-diff.md` paper-grade.
+5. **Gate utente S2→S3**: review diff stats + decisione DGX (4-6h) vs laptop
+   (28h) per Stage 4 rebuild.
+
+Branch invariato (`p5-llm-anchor-classification-audit`), master invariato.
+Sub-skill: `superpowers:executing-plans` sul plan task-by-task.
 
 Memoria: [[project_llm_anchor_classification_audit]].
 
