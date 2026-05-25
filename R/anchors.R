@@ -581,3 +581,263 @@ resolve_agent_canonical <- function(agent_normalized,
   }
   .canonical_noagent()
 }
+
+# --- Anchor v3.1: kind inference + override policy (ADR-0018 sez 4.3) --------
+#
+# infer_kind_from_ontology(canonical_id) suggerisce un kind_effective
+# basato sui has_role ChEBI o tree MeSH. infer_kind_with_override() applica
+# la policy conservativa di override (vedi spec sez 4.3).
+
+#' @noRd
+.kind_none <- function() {
+  list(kind_resolved = NA_character_, role_evidence = NA_character_,
+       confidence = "NONE")
+}
+
+#' Inferisce kind_effective dalle role ChEBI (pattern-based)
+#'
+#' Ordine di precedenza: STRONG (cytokine_stim, pathogen, vehicle_only) ->
+#' MEDIUM (drug small_molecule, anti-pathogen pathogen) -> WEAK (metabolite).
+#' Restituisce \code{.kind_none()} se nessun pattern match.
+#'
+#' @param roles character vector dei role_name ChEBI per il compound.
+#' @return named list con \code{kind_resolved}, \code{role_evidence}, \code{confidence}.
+#' @noRd
+.infer_kind_from_chebi_roles <- function(roles) {
+  if (length(roles) == 0L) return(.kind_none())
+  roles_lower <- tolower(roles)
+
+  # STRONG: cytokine_stim
+  cyto_pattern <- "\\b(cytokine|interleukin|interferon inducer|interferon|chemokine|growth factor)\\b"
+  m <- grepl(cyto_pattern, roles_lower)
+  if (any(m)) {
+    return(list(kind_resolved = "cytokine_stim",
+                role_evidence = paste(roles[m], collapse = "; "),
+                confidence = "STRONG"))
+  }
+
+  # STRONG: pathogen_or_aggregate_exposure
+  pathogen_pattern <- paste0(
+    "\\b(immunological adjuvant|tlr [0-9]+ agonist|tlr agonist|",
+    "lipopolysaccharide|pathogen|bacterial toxin|virion|viral protein|",
+    "pamp|pathogen-associated)\\b"
+  )
+  m <- grepl(pathogen_pattern, roles_lower)
+  if (any(m)) {
+    return(list(kind_resolved = "pathogen_or_aggregate_exposure",
+                role_evidence = paste(roles[m], collapse = "; "),
+                confidence = "STRONG"))
+  }
+
+  # STRONG: vehicle_only
+  vehicle_pattern <- "\\b(solvent|vehicle)\\b"
+  m <- grepl(vehicle_pattern, roles_lower)
+  if (any(m)) {
+    return(list(kind_resolved = "vehicle_only",
+                role_evidence = paste(roles[m], collapse = "; "),
+                confidence = "STRONG"))
+  }
+
+  # MEDIUM: pathogen via anti-pathogen drug (NB: spec sez 4.3)
+  anti_path_pattern <- paste0(
+    "\\b(antibacterial|antibiotic|antimicrobial|antiviral|antifungal|",
+    "antimalarial|antimycobacterial|anticoronaviral)\\b"
+  )
+  m <- grepl(anti_path_pattern, roles_lower)
+  if (any(m)) {
+    return(list(kind_resolved = "pathogen_or_aggregate_exposure",
+                role_evidence = paste(roles[m], collapse = "; "),
+                confidence = "MEDIUM"))
+  }
+
+  # MEDIUM: small_molecule via drug-like roles
+  drug_pattern <- paste0(
+    "\\b(drug|pharmaceutical|antineoplastic|antitumor|anticoagulant|",
+    "antioxidant|antiseptic|analgesic|anaesthetic|antihistamine|",
+    "anti-?inflammatory|antihypertensive|hormone|vitamin|antidote|",
+    "geroprotector|radical scavenger|chelator|alkylating agent)\\b"
+  )
+  m <- grepl(drug_pattern, roles_lower)
+  if (any(m)) {
+    return(list(kind_resolved = "small_molecule",
+                role_evidence = paste(roles[m], collapse = "; "),
+                confidence = "MEDIUM"))
+  }
+
+  # WEAK: small_molecule via metabolite
+  metab_pattern <- "\\bmetabolite\\b"
+  m <- grepl(metab_pattern, roles_lower)
+  if (any(m)) {
+    return(list(kind_resolved = "small_molecule",
+                role_evidence = paste(roles[m], collapse = "; "),
+                confidence = "WEAK"))
+  }
+
+  .kind_none()
+}
+
+#' Inferisce kind_effective dal tree MeSH del descriptor
+#'
+#' Tree C (Diseases) --> disease_vs_normal STRONG. Tree D (Chemicals and Drugs)
+#' --> small_molecule MEDIUM. Altri tree --> NONE.
+#'
+#' @param tree_top character(1): primo carattere del tree branch (es. "C", "D", "G").
+#' @param tree_branches character(1): full branch string (per role_evidence).
+#' @noRd
+.infer_kind_from_mesh <- function(tree_top, tree_branches) {
+  if (is.null(tree_top) || length(tree_top) == 0L || is.na(tree_top) ||
+      !nzchar(tree_top)) {
+    return(.kind_none())
+  }
+  if (tree_top == "C") {
+    return(list(kind_resolved = "disease_vs_normal",
+                role_evidence = sprintf("MeSH tree branch:%s", tree_branches %||% "C"),
+                confidence = "STRONG"))
+  }
+  if (tree_top == "D") {
+    return(list(kind_resolved = "small_molecule",
+                role_evidence = sprintf("MeSH tree branch:%s", tree_branches %||% "D"),
+                confidence = "MEDIUM"))
+  }
+  .kind_none()
+}
+
+#' Inferisce kind_effective dal canonical_id contro le 3 dictionary
+#'
+#' Dispatch per prefix: \code{CHEBI:} --> roles, \code{MeSH:} --> tree,
+#' \code{HGNC:}/\code{STR:}/\code{UNK}/altro --> NONE.
+#'
+#' @param canonical_id character(1) o NULL. Output di
+#'   \code{resolve_agent_canonical()$canonical_id}.
+#' @param env environment caricato da \code{.load_ontology_dicts()}.
+#' @return named list \code{list(kind_resolved, role_evidence, confidence)}.
+#' @keywords internal
+infer_kind_from_ontology <- function(canonical_id,
+                                     env = .load_ontology_dicts()) {
+  if (is.null(canonical_id) || length(canonical_id) == 0L) return(.kind_none())
+  if (is.na(canonical_id) || !nzchar(canonical_id)) return(.kind_none())
+  if (identical(canonical_id, "UNK")) return(.kind_none())
+
+  parts <- strsplit(canonical_id, ":", fixed = TRUE)[[1L]]
+  if (length(parts) < 2L) return(.kind_none())
+  prefix <- parts[1L]
+  id_str <- paste(parts[-1L], collapse = ":")  # rejoin se ID contiene ":"
+
+  if (prefix == "CHEBI") {
+    int_val <- suppressWarnings(as.integer(id_str))
+    if (is.na(int_val)) return(.kind_none())
+    roles <- .chebi_roles(int_val, env = env)
+    return(.infer_kind_from_chebi_roles(roles))
+  }
+  if (prefix == "MeSH") {
+    hit <- .mesh_lookup_ui(id_str, env = env)
+    if (is.null(hit)) return(.kind_none())
+    return(.infer_kind_from_mesh(hit$tree_top, hit$tree_branches))
+  }
+
+  # HGNC, ChEMBL, STR, e prefix ignoti --> NONE
+  .kind_none()
+}
+
+#' Compatibilita' kind_effective per detection di LLM_CONTRADICTION
+#'
+#' Definisce coppie compatibili LLM-vs-ontology. Coppia identica -> compatibile.
+#' \code{vehicle_only} e \code{small_molecule} sono considerati famiglia
+#' compatibile (vehicle e' un tipo di small molecule). Tutte le altre coppie
+#' diverse sono incompatibili.
+#'
+#' @noRd
+.kinds_compatible <- function(llm_kind, onto_kind) {
+  if (is.null(llm_kind) || is.na(llm_kind) || !nzchar(llm_kind)) return(TRUE)
+  if (is.null(onto_kind) || is.na(onto_kind) || !nzchar(onto_kind)) return(TRUE)
+  if (identical(llm_kind, onto_kind)) return(TRUE)
+  # vehicle <-> small_molecule (vehicle e' tipo di small molecule)
+  if (llm_kind == "vehicle_only" && onto_kind == "small_molecule") return(TRUE)
+  if (llm_kind == "small_molecule" && onto_kind == "vehicle_only") return(TRUE)
+  FALSE
+}
+
+#' Applica override policy: combine LLM kind + ontology evidence
+#'
+#' Decision logic (spec sez 4.3):
+#' - STRONG ontology che matcha LLM --> no override, kind_overridden=FALSE
+#' - STRONG ontology che differisce da LLM --> OVERRIDE, reason ONTOLOGY_OVERRIDE_STRONG
+#' - MEDIUM/WEAK ontology con LLM in {cytokine_stim, pathogen} ma kind incompatibile
+#'   --> OVERRIDE, reason LLM_CONTRADICTION_DETECTED
+#' - Tutti gli altri casi --> LLM preserved
+#' - confidence=NONE --> LLM preserved, kind_unvalidatable=TRUE
+#'
+#' @param canonical_id character(1) o NULL.
+#' @param llm_kind character(1) o NULL/NA. LLM-emitted kind_effective.
+#' @param env environment caricato da \code{.load_ontology_dicts()}.
+#' @return named list con \code{kind_resolved}, \code{kind_overridden},
+#'   \code{override_reason}, \code{role_evidence}, \code{confidence},
+#'   \code{kind_unvalidatable}.
+#' @keywords internal
+infer_kind_with_override <- function(canonical_id, llm_kind,
+                                     env = .load_ontology_dicts()) {
+  ont <- infer_kind_from_ontology(canonical_id, env = env)
+  llm_v <- if (is.null(llm_kind) || length(llm_kind) == 0L) NA_character_
+           else if (is.na(llm_kind)) NA_character_
+           else llm_kind
+
+  if (ont$confidence == "NONE") {
+    return(list(
+      kind_resolved      = llm_v,
+      kind_overridden    = FALSE,
+      override_reason    = NA_character_,
+      role_evidence      = NA_character_,
+      confidence         = "NONE",
+      kind_unvalidatable = TRUE
+    ))
+  }
+
+  # STRONG match LLM
+  if (ont$confidence == "STRONG" && identical(ont$kind_resolved, llm_v)) {
+    return(list(
+      kind_resolved      = llm_v,
+      kind_overridden    = FALSE,
+      override_reason    = NA_character_,
+      role_evidence      = ont$role_evidence,
+      confidence         = "STRONG",
+      kind_unvalidatable = FALSE
+    ))
+  }
+
+  # STRONG differ LLM --> override
+  if (ont$confidence == "STRONG") {
+    return(list(
+      kind_resolved      = ont$kind_resolved,
+      kind_overridden    = TRUE,
+      override_reason    = "ONTOLOGY_OVERRIDE_STRONG",
+      role_evidence      = ont$role_evidence,
+      confidence         = "STRONG",
+      kind_unvalidatable = FALSE
+    ))
+  }
+
+  # MEDIUM/WEAK: contradiction detection
+  is_strong_llm_assertion <- isTRUE(llm_v %in%
+                                    c("cytokine_stim", "pathogen_or_aggregate_exposure"))
+  if (is_strong_llm_assertion &&
+      !.kinds_compatible(llm_v, ont$kind_resolved)) {
+    return(list(
+      kind_resolved      = ont$kind_resolved,
+      kind_overridden    = TRUE,
+      override_reason    = "LLM_CONTRADICTION_DETECTED",
+      role_evidence      = ont$role_evidence,
+      confidence         = ont$confidence,
+      kind_unvalidatable = FALSE
+    ))
+  }
+
+  # MEDIUM/WEAK senza contraddizione --> LLM preserved
+  list(
+    kind_resolved      = llm_v,
+    kind_overridden    = FALSE,
+    override_reason    = NA_character_,
+    role_evidence      = ont$role_evidence,
+    confidence         = ont$confidence,
+    kind_unvalidatable = FALSE
+  )
+}
