@@ -329,43 +329,56 @@ Phase 6 `summarize_clusters` per resolve+infer lookup su 390k cluster
 
 **Gate utente S2→S3 in attesa**.
 
-### Prossima sessione: S3 (Stage 4 Layer A rebuild v3.1.1 su DGX)
+### ⚠️ GATE PAUSE 2026-05-25 (utente richiede audit completo pipeline pre-S3)
 
-Plan task 8-9 (`docs/superpowers/plans/2026-05-25-p5-llm-anchor-ontology-override-plan.md`):
+A fine sessione S2bis l'utente ha espresso preoccupazione paper-grade per il
+pattern emerso: **3 bug paper-grade scoperti in sequenza durante S2 + S1bis**
+(Pregnanetriol mancato override, dihydroxyphthalic mancato flag, bug silente
+Interferon-beta-like con 1735 cluster impatto). Conclude: "non mi fido più
+di tutta la pipeline. Ripercorrila tutta. Audit completo dalla prossima
+sessione".
 
-1. **Smoke 3-cluster Stage 4 su Stage 3 v3.1.1** (~5-10 min): 1 mega-big + 1
-   mega-aug + 1 mega-small da `analysis/p4-output/20260525T172032Z-stage3-v31-2655ecb0/clusters.rds`
-   per validare schema cluster_pooled.parquet invariato (anchor change non
-   impatta Stage 4 pooling logic).
-2. **Stage 4 fullrun v3.1.1 su DGX** (decisione utente: DGX UniPD per memory-heavy
-   mega-aug):
-   - Config invariata vs baseline Layer A: `max_baseline_per_arm=350,
-     dream_workers_cap=16, legacy_monodirectional=FALSE, franchini_correction=TRUE,
-     de_engine=dream per mega+mega_aug, pooling REML+DL fallback, FDR BH within cluster`
-   - Submit via `dgx_p4_submit(time=...)` (memoria `feedback_dgx_time_limit_default`:
-     default 72:00:00, mai stretto). Wall stimato 4-6h su DGX 2TB RAM 100 cores.
-   - Output `analysis/p4-output/<ts>-stage4-v311-<run_id>/` con
-     `cluster_pooled.parquet` + `per_study_de.parquet` + `stage4_dashboard.html`
-     + `run_metadata.json` con `schema_versions.anchor=v3.1.1` propagato.
-3. **Validazione output**: ~622 cluster pooled atteso (numero può variare
-   leggermente per anchor changes ai livelli L0-L2 che produrranno cluster
-   nuovi o split).
+**Decisione utente 2026-05-25 sera**:
+- S3 Stage 4 rebuild su DGX → **SOSPESO**
+- S4 Layer B re-shortlist + batch → **SOSPESO**
+- S5 close ADR-0018 → **SOSPESO** (ADR resta `Proposed`)
+- Merge `p5-llm-anchor-classification-audit` → master → **SOSPESO**
 
-**Pre-requisiti S3 (verificati 2026-05-25)**:
-- Stage 4 baseline preserved: `analysis/p4-output/20260523T032601Z-stage4-96c43acb/` ✓
-- Stage 3 v3.1 intermediate: `analysis/p4-output/20260525T140219Z-stage3-v31-52357b00/` ✓
-- **Stage 3 v3.1.1 final**: `analysis/p4-output/20260525T172032Z-stage3-v31-2655ecb0/` ✓ (input S3)
-- DGX setup vignette: `vignettes/p4-dgx-setup.Rmd`
+**Handoff completo audit pipeline**: vedi
+`docs/superpowers/specs/2026-05-25-pipeline-trust-audit-handoff.md`.
 
-**Pre-requisito Layer B (S4) note**: shortlist deve includere filter su
-`kind_chebi_zero_roles=TRUE` per i kind a rischio (pathogen + cytokine_stim)
-per evitare Layer B audit-case-4-like (dihydroxyphthalic), come prescritto
-in `docs/findings/2026-05-25-stage3-v311-diff.md §7`.
+Scope proposto (5 stadi × ~2-4h = 10-20h totali su 2-3 sessioni):
+1. Stage 1 LLM sample-level (879k record)
+2. Stage 2 LLM study-level (39k record)
+3. Stage 3 anchor v3.1.1 + resolver v1.1.0 (390k cluster)
+4. Stage 4 Layer A pooling DE (96c43acb baseline)
+5. Layer B existing selection (56b911e6, 15 case study)
+
+Workflow next session: gate utente tra ogni stadio. Output = 5 trust report
+paper-grade in `docs/findings/<date>-stage<N>-trust-audit.md`.
+
+Sub-skill da usare: `superpowers:systematic-debugging` come framework.
+
+### Prossima sessione: AUDIT COMPLETO PIPELINE (PAUSED prima di S3)
+
+**Pipeline freeze (in attesa audit)**:
+- Stage 1 master rescued: `analysis/p4-output/p4-beta-stage1-master-predictions-rescued.jsonl` (879k record, gitignored)
+- Stage 2 master rescued: `analysis/p4-output/p4-beta-stage2-master-rescued-collect.rds` (39247 predictions)
+- Stage 3 v3 baseline: `analysis/p4-output/20260519T055547Z-stage3-2153addc/` (267k cluster, committed)
+- Stage 3 v3.1 intermediate: `analysis/p4-output/20260525T140219Z-stage3-v31-52357b00/` (gitignored, 390519 cluster)
+- **Stage 3 v3.1.1 final**: `analysis/p4-output/20260525T172032Z-stage3-v31-2655ecb0/` (gitignored, 390532 cluster)
+- Stage 4 Layer A baseline: `analysis/p4-output/20260523T032601Z-stage4-96c43acb/` (gitignored, 622 cluster pooled)
+- Layer B existing: `analysis/p4-output/20260524T192649Z-layer-b-56b911e6/` (gitignored, 15 case study + 88 plot)
+
+**Sub-skill da invocare next session**: `superpowers:systematic-debugging`
+come framework di audit (NON `executing-plans` perché non c'è un plan ancora
+scritto — il plan è il handoff stesso).
 
 Branch invariato (`p5-llm-anchor-classification-audit`), master invariato.
-Sub-skill: `superpowers:executing-plans` sul plan task-by-task.
 
-Memoria: [[project_llm_anchor_classification_audit]].
+Memorie correlate: [[project_llm_anchor_classification_audit]] (status PAUSED) +
+[[no-whack-a-mole-debugging-sistematico-dopo-crash-ripetuti]] +
+[[feedback-no-fretta-paper-grade]] + [[feedback-explain-then-decide]].
 
 ---
 
