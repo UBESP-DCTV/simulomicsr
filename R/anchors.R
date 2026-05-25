@@ -82,95 +82,14 @@
 #'   per role case/comparison, kind_effective diventa "disease_vs_normal".
 #' @return string a 13 segmenti separati da "|"
 #' @export
-make_anchor <- function(stage1_facts, stage2_role) {
-  pert <- .select_primary_perturbation(stage1_facts$perturbations, stage2_role)
-
-  # Verifica se si tratta di un design disease_vs_normal (R spec sec.4.3).
-  # Override fires solo quando:
-  #   (a) stage2_role e' esplicitamente "case"/"comparison" (Stadio 2 ha
-  #       assegnato il ruolo disease cohort), OPPURE
-  #   (b) c'e' un disease state ma NON una perturbazione attiva
-  #       (cell line disease model SENZA drug/KD/cytokine: la malattia stessa
-  #       e' il design)
-  # Se c'e' una perturbazione attiva su un disease model, vince la perturbazione
-  # (segmento 1 = kind_effective della perturbazione, segmento 12 conserva
-  # disease_status=disease_model). Coerente con spec sec.4.3 esempio PFF.
-  has_active_perturbation <- length(stage1_facts$perturbations) > 0L &&
-    !is.null(pert$kind) &&
-    !identical(pert$kind, "none") &&
-    !identical(pert$kind, "vehicle_only") &&
-    !identical(pert$kind, "unclear")
-
-  is_disease_design <- stage2_role %in% c("case", "comparison") ||
-    (isTRUE(stage1_facts$disease_state$status %in% c("case", "comparison", "disease_model")) &&
-     !has_active_perturbation)
-
-  if (is_disease_design) {
-    # Per disease_vs_normal: kind_effective fisso + agente = MeSH ID malattia
-    kind_effective <- "disease_vs_normal"
-    agent_id       <- stage1_facts$disease_state$mesh_id_candidate %||% "unknown"
-    variant_label  <- "wt"
-  } else if (!is.null(pert$mediated_effect) && length(pert$mediated_effect) > 0L) {
-    # R8: il Tet-On/AID inducente cede il passo al target biologico
-    kind_effective <- .map_kind_to_anchor(pert$mediated_effect$kind %||% pert$kind %||% "unclear")
-    target_name    <- if (length(pert$mediated_effect$targets) > 0L)
-                        pert$mediated_effect$targets[[1L]]
-                      else
-                        "unknown"
-    agent_id       <- paste0("HGNC:", target_name)
-    # R9: per l'agente mediato, variant da engineered_modifications se non-wt
-    variant_label  <- .resolve_variant_label(stage1_facts$cell_context$engineered_modifications)
-  } else {
-    kind_effective <- .map_kind_to_anchor(pert$kind %||% "unclear")
-    agent_id       <- .resolve_agent_id(pert$agent_normalized)
-    # R9: variant da engineered_modifications se non-wt
-    variant_label  <- .resolve_variant_label(stage1_facts$cell_context$engineered_modifications)
-  }
-
-  # Dose e durata: i campi perturbation sono oggetti {value_raw, ...}
-  dose_raw         <- pert$dose$value_raw %||% NULL
-  dose_canonical   <- .normalize_dose(dose_raw)
-
-  duration_raw     <- pert$duration$value_raw %||% NULL
-  duration_canonical <- .normalize_duration(duration_raw)
-
-  phase_canonical  <- pert$phase %||% "exposure"
-
-  # Contesto cellulare
-  cell_id    <- .normalize_cell_id(
-    stage1_facts$cell_context$cell_line_cellosaurus_candidate,
-    stage1_facts$cell_context$cell_type_or_line_raw
-  )
-  context_kind <- stage1_facts$cell_context$context_kind %||% "unclear"
-  # R31: default proliferating se cell_state assente
-  cell_state   <- stage1_facts$cell_context$cell_state %||% "proliferating"
-  # R25: subcellular_fraction e' un oggetto {kind, raw} oppure null
-  subcellular  <- if (!is.null(stage1_facts$cell_context$subcellular_fraction) &&
-                       length(stage1_facts$cell_context$subcellular_fraction) > 0L)
-                    stage1_facts$cell_context$subcellular_fraction$kind %||% "whole_cell"
-                  else
-                    "whole_cell"
-  tissue       <- stage1_facts$cell_context$tissue %||% "na"
-
-  disease_status  <- .resolve_disease_status(stage1_facts$disease_state, stage2_role)
-  has_engineered  <- length(stage1_facts$cell_context$engineered_modifications) > 0L
-
-  paste(
-    kind_effective,
-    agent_id,
-    variant_label,
-    dose_canonical,
-    duration_canonical,
-    phase_canonical,
-    cell_id,
-    context_kind,
-    cell_state,
-    subcellular,
-    tissue,
-    disease_status,
-    tolower(as.character(has_engineered)),
-    sep = "|"
-  )
+make_anchor <- function(stage1_facts, stage2_role, ontology_env = NULL) {
+  # Anchor v3.1 (ADR-0018): make_anchor delega a .extract_anchor_segments()
+  # che applica il resolver canonicalizzato (ChEBI/HGNC/MeSH) + kind override.
+  # Output backwards-compat in formato 13-segment "|"-concatenato; i nuovi
+  # canonical_id prefissi (es. "CHEBI:17126") sostituiscono i raw LLM emits.
+  segs <- .extract_anchor_segments(stage1_facts, stage2_role,
+                                   ontology_env = ontology_env)
+  paste(unlist(segs, use.names = FALSE), collapse = "|")
 }
 
 #' @noRd
@@ -285,6 +204,27 @@ make_inducer_log <- function(stage1_facts) {
 # Vedi spec docs/superpowers/specs/2026-05-25-p5-llm-anchor-ontology-override-design.md
 # sezione 4.2 per la decision table completa.
 
+#' Coerce qualunque input a character(1), default "" su valori non-validi
+#'
+#' Real-world LLM JSON puo' produrre campi che sono NULL, character(0),
+#' liste/vettori di lunghezza > 1, NA, o tipi non-character. Questa funzione
+#' uniforma a character(1) per uso sicuro in \code{exists()}, \code{nzchar()},
+#' e altri accessor R che richiedono scalari.
+#'
+#' @noRd
+.coerce_chr1 <- function(x) {
+  if (is.null(x)) return("")
+  if (length(x) == 0L) return("")
+  if (length(x) > 1L) x <- x[[1L]]
+  if (is.null(x)) return("")
+  if (length(x) == 0L) return("")
+  if (is.na(x)) return("")
+  if (!is.character(x)) x <- tryCatch(as.character(x), error = function(e) "")
+  if (length(x) != 1L) return("")
+  if (is.na(x) || !nzchar(x)) return("")
+  x
+}
+
 #' @noRd
 .is_digit_only <- function(s) {
   if (is.null(s) || length(s) == 0L) return(FALSE)
@@ -388,16 +328,13 @@ resolve_agent_canonical <- function(agent_normalized,
                                     env = .load_ontology_dicts()) {
   if (is.null(agent_normalized)) return(.canonical_noagent())
 
-  type_v  <- agent_normalized$type           %||% ""
-  id_db_v <- agent_normalized$id_database    %||% ""
-  id_v    <- agent_normalized$id             %||% ""
-  pref_v  <- agent_normalized$preferred_name %||% ""
-
-  # NA -> ""
-  if (length(type_v)  == 0L || is.na(type_v))  type_v  <- ""
-  if (length(id_db_v) == 0L || is.na(id_db_v)) id_db_v <- ""
-  if (length(id_v)    == 0L || is.na(id_v))    id_v    <- ""
-  if (length(pref_v)  == 0L || is.na(pref_v))  pref_v  <- ""
+  # Defensive coercion: real-world LLM output puo' avere campi character(0),
+  # array di lunghezza >1, NA, NULL, o tipi non-character. Normalizziamo a
+  # character(1) (eventualmente "") prima di tutti i lookup downstream.
+  type_v  <- .coerce_chr1(agent_normalized$type)
+  id_db_v <- .coerce_chr1(agent_normalized$id_database)
+  id_v    <- .coerce_chr1(agent_normalized$id)
+  pref_v  <- .coerce_chr1(agent_normalized$preferred_name)
 
   if (!nzchar(type_v) && !nzchar(id_db_v) && !nzchar(id_v) && !nzchar(pref_v)) {
     return(.canonical_noagent())

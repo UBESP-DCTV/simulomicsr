@@ -476,29 +476,45 @@ build_stage3_clusters <- function(stage1_master,
 #' @keywords internal
 .summarize_clusters <- function(assignments, eligible_pair, eligible_group,
                                  config, archs4_metadata) {
-  # Schema vuoto canonico per cluster tibble
+  # Schema vuoto canonico per cluster tibble. Anchor v3.1 (ADR-0018) aggiunge
+  # 11 colonne tracking: 7 main (agent_id_llm_original, agent_id_resolved,
+  # resolution_source, kind_effective_llm_original, kind_effective_resolved,
+  # kind_overridden, kind_override_reason) + 4 diagnostic (canonical_name,
+  # kind_role_evidence, kind_confidence, kind_unvalidatable).
   empty_clusters <- tibble::tibble(
-    cluster_id           = character(),
-    mode                 = character(),
-    level                = integer(),
-    anchor_key           = character(),
-    k                    = integer(),
-    n_total              = integer(),
-    n_treated            = integer(),
-    n_control            = integer(),
-    safety_min           = numeric(),
-    safety_geom_mean     = numeric(),
-    safety_per_segment   = list(),
-    usable_rem_strict    = logical(),
-    usable_rem_relaxed   = logical(),
-    usable_mega_strict   = logical(),
-    usable_mega_relaxed  = logical(),
-    direction_check      = character(),
-    gpl_platforms        = list(),
-    n_gpl_distinct       = integer(),
-    n_distinct_donors    = integer(),
-    studies_in_cluster   = list(),
-    n_studies            = integer()
+    cluster_id                  = character(),
+    mode                        = character(),
+    level                       = integer(),
+    anchor_key                  = character(),
+    k                           = integer(),
+    n_total                     = integer(),
+    n_treated                   = integer(),
+    n_control                   = integer(),
+    safety_min                  = numeric(),
+    safety_geom_mean            = numeric(),
+    safety_per_segment          = list(),
+    usable_rem_strict           = logical(),
+    usable_rem_relaxed          = logical(),
+    usable_mega_strict          = logical(),
+    usable_mega_relaxed         = logical(),
+    direction_check             = character(),
+    gpl_platforms               = list(),
+    n_gpl_distinct              = integer(),
+    n_distinct_donors           = integer(),
+    studies_in_cluster          = list(),
+    n_studies                   = integer(),
+    # Anchor v3.1 tracking columns
+    agent_id_llm_original       = character(),
+    agent_id_resolved           = character(),
+    resolution_source           = character(),
+    canonical_name              = character(),
+    kind_effective_llm_original = character(),
+    kind_effective_resolved     = character(),
+    kind_overridden             = logical(),
+    kind_override_reason        = character(),
+    kind_role_evidence          = character(),
+    kind_confidence             = character(),
+    kind_unvalidatable          = logical()
   )
 
   if (nrow(assignments) == 0L) return(empty_clusters)
@@ -597,28 +613,63 @@ build_stage3_clusters <- function(stage1_master,
     )
     usability <- .tag_cluster_usability(cluster_row_for_usability, config$thresholds)
 
+    # Anchor v3.1 tracking (ADR-0018): estrai dal primo member record.
+    # I record nello stesso cluster condividono lo stesso agent_id_resolved e
+    # kind_effective_resolved per costruzione dell'anchor_key; l'agent_id_llm_original
+    # puo' variare leggermente tra LLM emits che canonicalizzano al medesimo
+    # canonical_id -- preserviamo il primo per audit deterministico.
+    first_tracking <- if (length(member_records) > 0L) {
+      attr(member_records[[1L]]$treated_anchor_segments, "tracking_meta")
+    } else NULL
+    tm_chr <- function(name, default = NA_character_) {
+      if (is.null(first_tracking)) return(default)
+      v <- first_tracking[[name]]
+      if (is.null(v) || length(v) == 0L) return(default)
+      if (is.na(v)) return(default)
+      as.character(v)
+    }
+    tm_lgl <- function(name) {
+      if (is.null(first_tracking)) return(NA)
+      v <- first_tracking[[name]]
+      if (is.null(v) || length(v) == 0L) return(NA)
+      if (is.na(v)) return(NA)
+      isTRUE(as.logical(v))
+    }
+
     rows[[i]] <- tibble::tibble(
-      cluster_id          = cl_id,
-      mode                = mode,
-      level               = level,
-      anchor_key          = anchor_key,
-      k                   = k,
-      n_total             = n_total,
-      n_treated           = n_treated,
-      n_control           = n_control,
-      safety_min          = safety$safety_min,
-      safety_geom_mean    = safety$safety_geom_mean,
-      safety_per_segment  = list(safety$safety_per_segment),
-      usable_rem_strict   = usability$usable_rem_strict,
-      usable_rem_relaxed  = usability$usable_rem_relaxed,
-      usable_mega_strict  = usability$usable_mega_strict,
-      usable_mega_relaxed = usability$usable_mega_relaxed,
-      direction_check     = direction_check,
-      gpl_platforms       = list(meta$gpl_platforms),
-      n_gpl_distinct      = meta$n_gpl_distinct,
-      n_distinct_donors   = meta$n_distinct_donors,
-      studies_in_cluster  = list(meta$studies_in_cluster),
-      n_studies           = meta$n_studies
+      cluster_id                  = cl_id,
+      mode                        = mode,
+      level                       = level,
+      anchor_key                  = anchor_key,
+      k                           = k,
+      n_total                     = n_total,
+      n_treated                   = n_treated,
+      n_control                   = n_control,
+      safety_min                  = safety$safety_min,
+      safety_geom_mean            = safety$safety_geom_mean,
+      safety_per_segment          = list(safety$safety_per_segment),
+      usable_rem_strict           = usability$usable_rem_strict,
+      usable_rem_relaxed          = usability$usable_rem_relaxed,
+      usable_mega_strict          = usability$usable_mega_strict,
+      usable_mega_relaxed         = usability$usable_mega_relaxed,
+      direction_check             = direction_check,
+      gpl_platforms               = list(meta$gpl_platforms),
+      n_gpl_distinct              = meta$n_gpl_distinct,
+      n_distinct_donors           = meta$n_distinct_donors,
+      studies_in_cluster          = list(meta$studies_in_cluster),
+      n_studies                   = meta$n_studies,
+      # Anchor v3.1 tracking columns (paper-grade audit, ADR-0018)
+      agent_id_llm_original       = tm_chr("agent_id_llm_original"),
+      agent_id_resolved           = tm_chr("agent_id_resolved"),
+      resolution_source           = tm_chr("resolution_source"),
+      canonical_name              = tm_chr("canonical_name"),
+      kind_effective_llm_original = tm_chr("kind_effective_llm_original"),
+      kind_effective_resolved     = tm_chr("kind_effective_resolved"),
+      kind_overridden             = tm_lgl("kind_overridden"),
+      kind_override_reason        = tm_chr("kind_override_reason"),
+      kind_role_evidence          = tm_chr("kind_role_evidence"),
+      kind_confidence             = tm_chr("kind_confidence"),
+      kind_unvalidatable          = tm_lgl("kind_unvalidatable")
     )
 
     if (i %% progress_every == 0L || i == length(unique_clids)) {
@@ -643,6 +694,14 @@ build_stage3_clusters <- function(stage1_master,
 #' @keywords internal
 .build_run_metadata <- function(stage1_master_summary, stage2_master_summary,
                                  config, output_counts) {
+  # Anchor v3.1 (ADR-0018): registra ontology_releases meta nel run_metadata
+  # per riproducibilita' paper-grade. Lookup safe (NULL se ontology env non
+  # ancora caricato -- improbabile dopo build_stage3_clusters ma defensive).
+  ontology_releases <- tryCatch(
+    .ontology_release_meta(),
+    error = function(e) NULL
+  )
+
   # Forma canonica deterministica: JSON dei parametri chiave
   canon <- jsonlite::toJSON(
     list(
@@ -657,17 +716,18 @@ build_stage3_clusters <- function(stage1_master,
   run_id <- substr(digest::digest(as.character(canon), algo = "xxhash32"), 1L, 8L)
 
   list(
-    run_id          = run_id,
-    timestamp       = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
-    schema_versions = config$schema_versions,
-    package_version = as.character(utils::packageVersion("simulomicsr")),
-    r_version       = R.version.string,
-    input_files     = list(
+    run_id            = run_id,
+    timestamp         = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
+    schema_versions   = config$schema_versions,
+    package_version   = as.character(utils::packageVersion("simulomicsr")),
+    r_version         = R.version.string,
+    input_files       = list(
       stage1_master = stage1_master_summary,
       stage2_master = stage2_master_summary
     ),
-    config          = config,
-    output_counts   = output_counts
+    config            = config,
+    output_counts     = output_counts,
+    ontology_releases = ontology_releases
   )
 }
 

@@ -1,8 +1,16 @@
-#' Estrae i 13 segmenti dell'anchor v3 come named list
+#' Estrae i 13 segmenti dell'anchor v3.1 come named list + tracking_meta attr
 #'
 #' Replica internamente la logica di \code{make_anchor()} ma restituisce un
 #' named list con i 13 valori invece della stringa concatenata. Usato come
 #' basis per costruire anchor a livelli L0..L4 droppando segmenti.
+#'
+#' **Anchor v3.1 (ADR-0018):** i segmenti \code{kind_effective} e \code{agent_id}
+#' passano attraverso il resolver \code{resolve_agent_canonical()} +
+#' \code{infer_kind_with_override()}; l'output canonicalizzato (es.
+#' \code{CHEBI:17126} invece di \code{17126}, \code{vehicle_only} invece del LLM
+#' \code{cytokine_stim} per Ethanol) viene usato per costruire l'anchor_key.
+#' I valori LLM-original sono preservati in \code{attr(result, "tracking_meta")}
+#' per audit paper-grade.
 #'
 #' L'ordine dei nomi e' canonical e identico all'output di \code{make_anchor()}:
 #' kind_effective, agent_id, variant_label, dose_canonical, duration_canonical,
@@ -12,10 +20,19 @@
 #' @param stage1_facts list (un sample_fact validato stage1.v3)
 #' @param stage2_role character: design_role assegnato dallo Stadio 2 al sample
 #'   (es. "treated", "case", "comparison"). Influenza disease_vs_normal override.
-#' @return named list di 13 elementi carattere
+#' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
+#'   Default = lazy-load dalla cache; passare un env esplicito (es. caricato da
+#'   fixture) per test deterministici.
+#' @return named list di 13 elementi carattere con attribute \code{tracking_meta}
+#'   contenente 11 campi (agent_id_llm_original, agent_id_resolved,
+#'   resolution_source, canonical_name, kind_effective_llm_original,
+#'   kind_effective_resolved, kind_overridden, kind_override_reason,
+#'   kind_role_evidence, kind_confidence, kind_unvalidatable).
 #' @keywords internal
-.extract_anchor_segments <- function(stage1_facts, stage2_role) {
-  # Riusa le funzioni helper esistenti da R/anchors.R
+.extract_anchor_segments <- function(stage1_facts, stage2_role,
+                                     ontology_env = NULL) {
+  if (is.null(ontology_env)) ontology_env <- .load_ontology_dicts()
+
   pert <- .select_primary_perturbation(stage1_facts$perturbations, stage2_role)
 
   # Stessa logica di make_anchor(): verifica perturbazione attiva e design disease
@@ -31,22 +48,106 @@
        !has_active_perturbation)
 
   if (is_disease_design) {
-    kind_effective <- "disease_vs_normal"
-    agent_id       <- stage1_facts$disease_state$mesh_id_candidate %||% "unknown"
-    variant_label  <- "wt"
+    kind_effective_llm <- "disease_vs_normal"
+    mesh_raw           <- stage1_facts$disease_state$mesh_id_candidate %||% "unknown"
+    variant_label      <- "wt"
+
+    # Canonicalizza il MeSH ID se valido D\d{6}; altrimenti STR fallback
+    if (.is_mesh_ui(mesh_raw)) {
+      hit <- .mesh_lookup_ui(mesh_raw, env = ontology_env)
+      agent_id          <- paste0("MeSH:", mesh_raw)
+      if (!is.null(hit)) {
+        resolution_source <- "MESH_DIRECT"
+        canonical_name    <- hit$mh
+      } else {
+        # Pattern valido ma assente nella release MeSH corrente -> preserva ma
+        # marca come hallucinated/missing per audit.
+        resolution_source <- "MESH_NAKED_NOLOOKUP"
+        canonical_name    <- NA_character_
+      }
+    } else if (.nzchar_safe(mesh_raw) && !identical(mesh_raw, "unknown")) {
+      agent_id          <- paste0("STR:", tolower(mesh_raw))
+      resolution_source <- "DISEASE_NO_MESH_UI"
+      canonical_name    <- NA_character_
+    } else {
+      agent_id          <- "UNK"
+      resolution_source <- "NO_AGENT"
+      canonical_name    <- NA_character_
+    }
+
+    # Per disease_vs_normal il kind_effective e' una design assertion: non
+    # applichiamo kind override (NG: il MeSH tree puo' essere wrong-tree ma non
+    # forziamo cambio). Preserva LLM + flag se MESH tree mismatch.
+    kind_effective       <- kind_effective_llm
+    kind_overridden      <- FALSE
+    kind_override_reason <- NA_character_
+    kind_role_evidence   <- NA_character_
+    kind_confidence      <- "STRONG"
+    kind_unvalidatable   <- FALSE
+    agent_id_raw         <- mesh_raw
+
   } else if (!is.null(pert$mediated_effect) && length(pert$mediated_effect) > 0L) {
     # R8: il Tet-On/AID inducente cede il passo al target biologico
-    kind_effective <- .map_kind_to_anchor(pert$mediated_effect$kind %||% pert$kind %||% "unclear")
-    target_name    <- if (length(pert$mediated_effect$targets) > 0L)
-                        pert$mediated_effect$targets[[1L]]
-                      else
-                        "unknown"
-    agent_id       <- paste0("HGNC:", target_name)
-    variant_label  <- .resolve_variant_label(stage1_facts$cell_context$engineered_modifications)
+    kind_effective_llm <- .map_kind_to_anchor(pert$mediated_effect$kind %||% pert$kind %||% "unclear")
+    target_name        <- if (length(pert$mediated_effect$targets) > 0L)
+                            pert$mediated_effect$targets[[1L]]
+                          else
+                            "unknown"
+    agent_id_raw       <- paste0("HGNC:", target_name)
+    variant_label      <- .resolve_variant_label(stage1_facts$cell_context$engineered_modifications)
+
+    # Canonicalizza target via HGNC symbol/alias lookup
+    synth_agent <- list(
+      id_database    = "HGNC",
+      id             = "",
+      preferred_name = target_name,
+      type           = "mediated_target"
+    )
+    ar <- resolve_agent_canonical(synth_agent, env = ontology_env)
+    if (identical(ar$resolution_source, "HALLUCINATED_OR_FALLBACK") ||
+        identical(ar$resolution_source, "NO_AGENT")) {
+      # Target sconosciuto a HGNC: preserva forma HGNC:<symbol_raw>
+      agent_id          <- paste0("HGNC:", target_name)
+      resolution_source <- "MEDIATED_HGNC_NO_LOOKUP"
+      canonical_name    <- target_name
+    } else {
+      agent_id          <- ar$canonical_id
+      resolution_source <- ar$resolution_source
+      canonical_name    <- ar$canonical_name
+    }
+
+    # Override kind via ontology (per gene HGNC la confidence e' NONE, quindi LLM
+    # preservato + kind_unvalidatable=TRUE). E' corretto: non si infera kind
+    # da gene HGNC alone.
+    ovr <- infer_kind_with_override(agent_id, kind_effective_llm,
+                                    env = ontology_env)
+    kind_effective       <- ovr$kind_resolved
+    kind_overridden      <- ovr$kind_overridden
+    kind_override_reason <- ovr$override_reason
+    kind_role_evidence   <- ovr$role_evidence
+    kind_confidence      <- ovr$confidence
+    kind_unvalidatable   <- ovr$kind_unvalidatable
+
   } else {
-    kind_effective <- .map_kind_to_anchor(pert$kind %||% "unclear")
-    agent_id       <- .resolve_agent_id(pert$agent_normalized)
-    variant_label  <- .resolve_variant_label(stage1_facts$cell_context$engineered_modifications)
+    kind_effective_llm <- .map_kind_to_anchor(pert$kind %||% "unclear")
+    agent_id_raw       <- .resolve_agent_id(pert$agent_normalized)
+    variant_label      <- .resolve_variant_label(stage1_facts$cell_context$engineered_modifications)
+
+    # Resolver downstream: canonicalize via ChEBI/HGNC/MeSH
+    ar <- resolve_agent_canonical(pert$agent_normalized, env = ontology_env)
+    agent_id          <- ar$canonical_id
+    resolution_source <- ar$resolution_source
+    canonical_name    <- ar$canonical_name
+
+    # Override kind via ontology evidence
+    ovr <- infer_kind_with_override(agent_id, kind_effective_llm,
+                                    env = ontology_env)
+    kind_effective       <- ovr$kind_resolved
+    kind_overridden      <- ovr$kind_overridden
+    kind_override_reason <- ovr$override_reason
+    kind_role_evidence   <- ovr$role_evidence
+    kind_confidence      <- ovr$confidence
+    kind_unvalidatable   <- ovr$kind_unvalidatable
   }
 
   dose_canonical     <- .normalize_dose(pert$dose$value_raw %||% NULL)
@@ -74,7 +175,7 @@
   ))
 
   # Ordine canonical identico a make_anchor() (13 segmenti)
-  list(
+  segs <- list(
     kind_effective     = kind_effective,
     agent_id           = agent_id,
     variant_label      = variant_label,
@@ -89,6 +190,26 @@
     disease_status     = disease_status,
     has_engineered     = has_engineered
   )
+
+  # Tracking metadata (anchor v3.1, ADR-0018): paper-grade audit columns,
+  # propagate downstream a .summarize_clusters() che le converte in 7 cluster
+  # columns + 4 di diagnostica (canonical_name, kind_role_evidence,
+  # kind_confidence, kind_unvalidatable).
+  attr(segs, "tracking_meta") <- list(
+    agent_id_llm_original       = agent_id_raw,
+    agent_id_resolved           = agent_id,
+    resolution_source           = resolution_source,
+    canonical_name              = canonical_name,
+    kind_effective_llm_original = kind_effective_llm,
+    kind_effective_resolved     = kind_effective,
+    kind_overridden             = kind_overridden,
+    kind_override_reason        = kind_override_reason,
+    kind_role_evidence          = kind_role_evidence,
+    kind_confidence             = kind_confidence,
+    kind_unvalidatable          = kind_unvalidatable
+  )
+
+  segs
 }
 
 #' Costruisce l'anchor a un dato livello L (droppando segmenti per tier)
@@ -106,12 +227,16 @@
 #' @param level integer(1): livello 0..4. L0 = completo, L4 = solo Tier S.
 #' @param tier_assignment list: componente \code{tier_assignment} della config
 #'   restituita da \code{stage3_default_config()}.
+#' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
+#'   Forwardato a \code{.extract_anchor_segments()}.
 #' @return character(1) chiave concatenata con "|"
 #' @keywords internal
-.build_anchor_for_level <- function(stage1_facts, stage2_role, level, tier_assignment) {
+.build_anchor_for_level <- function(stage1_facts, stage2_role, level,
+                                    tier_assignment, ontology_env = NULL) {
   stopifnot(level %in% 0L:4L)
 
-  segs <- .extract_anchor_segments(stage1_facts, stage2_role)
+  segs <- .extract_anchor_segments(stage1_facts, stage2_role,
+                                   ontology_env = ontology_env)
 
   if (level == 4L) {
     # L4: solo Tier S -- hard_filters e tier A/B/C/D esclusi.

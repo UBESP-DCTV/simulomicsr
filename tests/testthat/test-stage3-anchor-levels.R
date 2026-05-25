@@ -1,9 +1,14 @@
 # Helper per costruire un sample_fact fixture
+# Nota: helper-stage3-fixtures.R ne definisce uno SHARED che ha lo stesso nome.
+# Questo locale lo sovrascrive intenzionalmente (id_database="ChEMBL" per
+# triggerare CHEMBL_NAKED_NOLOOKUP -> "ChEMBL:CHEMBL941" deterministico).
 make_test_sample_fact <- function() {
   list(
     perturbations = list(list(
       kind = "small_molecule",
-      agent_normalized = list(id = "CHEMBL941", preferred_name = "imatinib"),
+      agent_normalized = list(id_database = "ChEMBL", id = "CHEMBL941",
+                              preferred_name = "imatinib",
+                              type = "small_molecule"),
       dose = list(value_raw = "10nM"),
       duration = list(value_raw = "24h"),
       phase = "exposure"
@@ -67,10 +72,10 @@ test_that(".build_anchor_for_level L4 ha 3 segmenti (solo Tier S)", {
   )
   segs <- strsplit(anchor_l4, "\\|")[[1]]
   expect_equal(length(segs), 3L)
-  # Tier S: kind_effective, agent_id, tissue
-  expect_equal(segs[1], "small_molecule")     # kind_effective
-  expect_equal(segs[2], "CHEMBL941")          # agent_id
-  expect_equal(segs[3], "endothelium")        # tissue
+  # Tier S: kind_effective, agent_id, tissue (anchor v3.1 canonical)
+  expect_equal(segs[1], "small_molecule")        # kind_effective (LLM preserved, NONE confidence)
+  expect_equal(segs[2], "ChEMBL:CHEMBL941")      # agent_id canonical via CHEMBL_NAKED_NOLOOKUP
+  expect_equal(segs[3], "endothelium")           # tissue
 })
 
 test_that(".build_anchor_for_level e' deterministico (stesso input -> stesso output)", {
@@ -102,7 +107,21 @@ test_that(".extract_anchor_segments restituisce 13 segmenti named", {
     "cell_state", "subcellular", "tissue", "disease_status", "has_engineered"
   ))
   expect_equal(segs$kind_effective, "small_molecule")
+  expect_equal(segs$agent_id, "ChEMBL:CHEMBL941")  # v3.1 canonical
   expect_equal(segs$tissue, "endothelium")
+})
+
+test_that(".extract_anchor_segments anchor v3.1: tracking_meta attr presente", {
+  fact <- make_test_sample_fact()
+  segs <- simulomicsr:::.extract_anchor_segments(fact, stage2_role = "treated")
+  tm <- attr(segs, "tracking_meta")
+  expect_true(is.list(tm))
+  expect_equal(tm$resolution_source, "CHEMBL_NAKED_NOLOOKUP")
+  expect_equal(tm$agent_id_resolved, "ChEMBL:CHEMBL941")
+  expect_equal(tm$kind_effective_llm_original, "small_molecule")
+  expect_equal(tm$kind_effective_resolved, "small_molecule")
+  expect_false(tm$kind_overridden)
+  expect_true(tm$kind_unvalidatable)  # ChEMBL non ha kind inference -> NONE
 })
 
 test_that("monotonicity: anchor a L_high e' subset di anchor a L_low (lessicalmente)", {
@@ -126,5 +145,6 @@ test_that("disease_vs_normal override: stage2_role=case produce kind_effective=d
   cfg <- stage3_default_config()
   segs <- simulomicsr:::.extract_anchor_segments(fact, stage2_role = "case")
   expect_equal(segs$kind_effective, "disease_vs_normal")
-  expect_equal(segs$agent_id, "D003920")
+  # Anchor v3.1: MeSH UI canonicalizzato con prefix "MeSH:"
+  expect_equal(segs$agent_id, "MeSH:D003920")
 })

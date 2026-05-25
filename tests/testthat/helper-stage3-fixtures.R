@@ -4,12 +4,18 @@
 # Contiene helper per costruire sample_facts e stage2 records mock.
 
 #' Costruisce un sample_fact fixture minimale per i test Stage 3
+#'
+#' Anchor v3.1 (ADR-0018): \code{agent_normalized$id_database = "ChEMBL"} per
+#' triggerare CHEMBL_NAKED_NOLOOKUP nel resolver (deterministico, no dict
+#' lookup). Canonical id risultante: "ChEMBL:CHEMBL941".
 #' @keywords internal
 make_test_sample_fact <- function() {
   list(
     perturbations = list(list(
       kind = "small_molecule",
-      agent_normalized = list(id = "CHEMBL941", preferred_name = "imatinib"),
+      agent_normalized = list(id_database = "ChEMBL", id = "CHEMBL941",
+                              preferred_name = "imatinib",
+                              type = "small_molecule"),
       dose = list(value_raw = "10nM"),
       duration = list(value_raw = "24h"),
       phase = "exposure"
@@ -40,8 +46,11 @@ make_mock_stage3_input <- function() {
   # GSM3: sample con dose diversa -> anchor diverso dal trattato
   gsm3_fact <- make_test_sample_fact()
   gsm3_fact$perturbations[[1]]$kind <- "none"
+  # Vehicle literal: id_database=NULL, type="vehicle" -> LLM_VEHICLE_LITERAL
+  # canonical = "STR:vehicle"
   gsm3_fact$perturbations[[1]]$agent_normalized <- list(id = "unknown",
-                                                         preferred_name = "vehicle")
+                                                         preferred_name = "vehicle",
+                                                         type = "vehicle")
   gsm3_fact$perturbations[[1]]$dose <- list(value_raw = "nodose")
 
   # GSM5: sample per group-mode separato (stesso trattamento di GSM1)

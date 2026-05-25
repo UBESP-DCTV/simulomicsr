@@ -80,45 +80,66 @@
 
 #' @noRd
 .build_chebi_index <- function(chebi_raw) {
-  # by_id: hash env chebi_int (as character) -> named list compound metadata
-  by_id_env <- new.env(hash = TRUE, parent = emptyenv(), size = max(nrow(chebi_raw$by_id), 1L))
-  for (i in seq_len(nrow(chebi_raw$by_id))) {
-    row <- chebi_raw$by_id[i, ]
-    assign(
-      as.character(row$chebi_id),
-      list(
-        chebi_id     = as.integer(row$chebi_id),
-        primary_name = row$primary_name,
-        ascii_name   = row$ascii_name,
-        stars        = as.integer(row$stars),
-        definition   = row$definition,
-        is_obsolete  = isTRUE(row$is_obsolete),
-        parent_id    = if (is.na(row$parent_id)) NA_integer_ else as.integer(row$parent_id)
-      ),
-      envir = by_id_env
-    )
+  # by_id: hash env chebi_int (as character) -> named list compound metadata.
+  # PERF: pre-estraggo vettori una volta (la per-row tibble subset e' ~10-20x
+  # piu' lenta su 205k rows).
+  by_id_env <- new.env(hash = TRUE, parent = emptyenv(),
+                       size = max(nrow(chebi_raw$by_id), 1L))
+  if (nrow(chebi_raw$by_id) > 0L) {
+    bi <- chebi_raw$by_id
+    ids <- as.integer(bi$chebi_id)
+    pn  <- bi$primary_name
+    an  <- bi$ascii_name
+    st  <- as.integer(bi$stars)
+    de  <- bi$definition
+    ob  <- bi$is_obsolete
+    pa  <- bi$parent_id
+    ns  <- length(ids)
+    for (i in seq_len(ns)) {
+      assign(
+        as.character(ids[i]),
+        list(
+          chebi_id     = ids[i],
+          primary_name = pn[i],
+          ascii_name   = an[i],
+          stars        = st[i],
+          definition   = de[i],
+          is_obsolete  = isTRUE(ob[i]),
+          parent_id    = if (is.na(pa[i])) NA_integer_ else as.integer(pa[i])
+        ),
+        envir = by_id_env
+      )
+    }
   }
 
   # aliases: hash env alias_lower -> named list (chebi_id, type). Prima vittoria
-  # vince (rare duplicates dove un alias mappa a piu' compound — accettiamo).
+  # vince (rare duplicates dove un alias mappa a piu' compound -- accettiamo).
   aliases_env <- new.env(hash = TRUE, parent = emptyenv(),
                          size = max(nrow(chebi_raw$aliases), 1L))
-  for (i in seq_len(nrow(chebi_raw$aliases))) {
-    row <- chebi_raw$aliases[i, ]
-    key <- row$alias_lower
-    if (!exists(key, envir = aliases_env, inherits = FALSE)) {
-      assign(key, list(chebi_id = as.integer(row$chebi_id), type = row$type),
-             envir = aliases_env)
+  if (nrow(chebi_raw$aliases) > 0L) {
+    al <- chebi_raw$aliases
+    keys <- al$alias_lower
+    cids <- as.integer(al$chebi_id)
+    types <- al$type
+    for (i in seq_along(keys)) {
+      k <- keys[i]
+      if (!exists(k, envir = aliases_env, inherits = FALSE)) {
+        assign(k, list(chebi_id = cids[i], type = types[i]),
+               envir = aliases_env)
+      }
     }
   }
 
   # secondary: hash env secondary_id (as character) -> primary_id integer
   secondary_env <- new.env(hash = TRUE, parent = emptyenv(),
                            size = max(nrow(chebi_raw$secondary), 1L))
-  for (i in seq_len(nrow(chebi_raw$secondary))) {
-    row <- chebi_raw$secondary[i, ]
-    assign(as.character(row$secondary_id), as.integer(row$primary_id),
-           envir = secondary_env)
+  if (nrow(chebi_raw$secondary) > 0L) {
+    se <- chebi_raw$secondary
+    sids <- as.character(se$secondary_id)
+    pids <- as.integer(se$primary_id)
+    for (i in seq_along(sids)) {
+      assign(sids[i], pids[i], envir = secondary_env)
+    }
   }
 
   # has_role: hash env chebi_int (as character) -> character vector role_name.
@@ -142,43 +163,61 @@
 
 #' @noRd
 .build_hgnc_index <- function(hgnc_raw) {
-  # by_hgnc_int: chr(hgnc_int) -> named list gene metadata
+  # by_hgnc_int: chr(hgnc_int) -> named list gene metadata. Pre-extract vectors.
   by_hgnc_env <- new.env(hash = TRUE, parent = emptyenv(),
                          size = max(nrow(hgnc_raw$by_hgnc_int), 1L))
-  for (i in seq_len(nrow(hgnc_raw$by_hgnc_int))) {
-    row <- hgnc_raw$by_hgnc_int[i, ]
-    assign(
-      as.character(row$hgnc_int),
-      list(
-        hgnc_int        = as.integer(row$hgnc_int),
-        hgnc_id         = row$hgnc_id,
-        symbol          = row$symbol,
-        name            = row$name,
-        locus_group     = row$locus_group,
-        locus_type      = row$locus_type,
-        status          = row$status,
-        entrez_int      = if (is.na(row$entrez_int)) NA_integer_ else as.integer(row$entrez_int),
-        ensembl_gene_id = row$ensembl_gene_id
-      ),
-      envir = by_hgnc_env
-    )
+  if (nrow(hgnc_raw$by_hgnc_int) > 0L) {
+    bh <- hgnc_raw$by_hgnc_int
+    h_int  <- as.integer(bh$hgnc_int)
+    h_id   <- bh$hgnc_id
+    h_sym  <- bh$symbol
+    h_nm   <- bh$name
+    h_lg   <- bh$locus_group
+    h_lt   <- bh$locus_type
+    h_st   <- bh$status
+    h_ent  <- bh$entrez_int
+    h_ens  <- bh$ensembl_gene_id
+    ns <- length(h_int)
+    for (i in seq_len(ns)) {
+      assign(
+        as.character(h_int[i]),
+        list(
+          hgnc_int        = h_int[i],
+          hgnc_id         = h_id[i],
+          symbol          = h_sym[i],
+          name            = h_nm[i],
+          locus_group     = h_lg[i],
+          locus_type      = h_lt[i],
+          status          = h_st[i],
+          entrez_int      = if (is.na(h_ent[i])) NA_integer_ else as.integer(h_ent[i]),
+          ensembl_gene_id = h_ens[i]
+        ),
+        envir = by_hgnc_env
+      )
+    }
   }
 
   # by_entrez_int: chr(entrez_int) -> named list (hgnc_int, symbol)
   by_entrez_env <- new.env(hash = TRUE, parent = emptyenv(),
                            size = max(nrow(hgnc_raw$by_entrez_int), 1L))
-  for (i in seq_len(nrow(hgnc_raw$by_entrez_int))) {
-    row <- hgnc_raw$by_entrez_int[i, ]
-    assign(
-      as.character(row$entrez_int),
-      list(
-        entrez_int = as.integer(row$entrez_int),
-        hgnc_int   = as.integer(row$hgnc_int),
-        symbol     = row$symbol,
-        name       = row$name
-      ),
-      envir = by_entrez_env
-    )
+  if (nrow(hgnc_raw$by_entrez_int) > 0L) {
+    be <- hgnc_raw$by_entrez_int
+    e_int <- as.integer(be$entrez_int)
+    e_h   <- as.integer(be$hgnc_int)
+    e_sym <- be$symbol
+    e_nm  <- be$name
+    for (i in seq_along(e_int)) {
+      assign(
+        as.character(e_int[i]),
+        list(
+          entrez_int = e_int[i],
+          hgnc_int   = e_h[i],
+          symbol     = e_sym[i],
+          name       = e_nm[i]
+        ),
+        envir = by_entrez_env
+      )
+    }
   }
 
   # by_symbol_lower: chr(symbol_lower) -> named list (hgnc_int, primary_symbol)
@@ -186,31 +225,34 @@
   by_symbol_env <- new.env(hash = TRUE, parent = emptyenv(),
                            size = max(nrow(hgnc_raw$by_symbol_lower) +
                                       nrow(hgnc_raw$aliases_long), 1L))
-  for (i in seq_len(nrow(hgnc_raw$by_symbol_lower))) {
-    row <- hgnc_raw$by_symbol_lower[i, ]
-    assign(
-      row$symbol_lower,
-      list(
-        hgnc_int       = as.integer(row$hgnc_int),
-        primary_symbol = row$symbol,
-        match_type     = "PRIMARY"
-      ),
-      envir = by_symbol_env
-    )
-  }
-  # Aliases (non-conflicting: primary wins se collision)
-  for (i in seq_len(nrow(hgnc_raw$aliases_long))) {
-    row <- hgnc_raw$aliases_long[i, ]
-    if (!exists(row$alias_lower, envir = by_symbol_env, inherits = FALSE)) {
+  if (nrow(hgnc_raw$by_symbol_lower) > 0L) {
+    bs <- hgnc_raw$by_symbol_lower
+    s_low <- bs$symbol_lower
+    s_h   <- as.integer(bs$hgnc_int)
+    s_sym <- bs$symbol
+    for (i in seq_along(s_low)) {
       assign(
-        row$alias_lower,
-        list(
-          hgnc_int       = as.integer(row$hgnc_int),
-          primary_symbol = row$primary_symbol,
-          match_type     = "ALIAS"
-        ),
+        s_low[i],
+        list(hgnc_int = s_h[i], primary_symbol = s_sym[i], match_type = "PRIMARY"),
         envir = by_symbol_env
       )
+    }
+  }
+  # Aliases (non-conflicting: primary wins se collision)
+  if (nrow(hgnc_raw$aliases_long) > 0L) {
+    al <- hgnc_raw$aliases_long
+    a_low <- al$alias_lower
+    a_h   <- as.integer(al$hgnc_int)
+    a_sym <- al$primary_symbol
+    for (i in seq_along(a_low)) {
+      k <- a_low[i]
+      if (!exists(k, envir = by_symbol_env, inherits = FALSE)) {
+        assign(
+          k,
+          list(hgnc_int = a_h[i], primary_symbol = a_sym[i], match_type = "ALIAS"),
+          envir = by_symbol_env
+        )
+      }
     }
   }
 
@@ -224,30 +266,37 @@
 
 #' @noRd
 .build_mesh_index <- function(mesh_raw) {
-  # by_ui: chr(ui) -> named list (mh, tree_top, tree_branches)
+  # by_ui: chr(ui) -> named list (mh, tree_top, tree_branches). Pre-extract.
   by_ui_env <- new.env(hash = TRUE, parent = emptyenv(),
                        size = max(nrow(mesh_raw$by_ui), 1L))
-  for (i in seq_len(nrow(mesh_raw$by_ui))) {
-    row <- mesh_raw$by_ui[i, ]
-    assign(
-      row$ui,
-      list(
-        ui            = row$ui,
-        mh            = row$mh,
-        tree_top      = row$tree_top,
-        tree_branches = row$tree_branches
-      ),
-      envir = by_ui_env
-    )
+  if (nrow(mesh_raw$by_ui) > 0L) {
+    bu <- mesh_raw$by_ui
+    u_ui <- bu$ui
+    u_mh <- bu$mh
+    u_tt <- bu$tree_top
+    u_tb <- bu$tree_branches
+    for (i in seq_along(u_ui)) {
+      assign(
+        u_ui[i],
+        list(ui = u_ui[i], mh = u_mh[i], tree_top = u_tt[i],
+             tree_branches = u_tb[i]),
+        envir = by_ui_env
+      )
+    }
   }
 
   # by_entry_lower: chr(entry_lower) -> named list (ui)
   by_entry_env <- new.env(hash = TRUE, parent = emptyenv(),
                           size = max(nrow(mesh_raw$by_entry_lower), 1L))
-  for (i in seq_len(nrow(mesh_raw$by_entry_lower))) {
-    row <- mesh_raw$by_entry_lower[i, ]
-    if (!exists(row$entry_lower, envir = by_entry_env, inherits = FALSE)) {
-      assign(row$entry_lower, list(ui = row$ui), envir = by_entry_env)
+  if (nrow(mesh_raw$by_entry_lower) > 0L) {
+    be <- mesh_raw$by_entry_lower
+    e_low <- be$entry_lower
+    e_ui  <- be$ui
+    for (i in seq_along(e_low)) {
+      k <- e_low[i]
+      if (!exists(k, envir = by_entry_env, inherits = FALSE)) {
+        assign(k, list(ui = e_ui[i]), envir = by_entry_env)
+      }
     }
   }
 
@@ -259,31 +308,54 @@
 }
 
 # --- ChEBI accessor ----------------------------------------------------------
+#
+# Tutti gli accessor sono defensive: gestiscono input NULL, NA, character(0),
+# vettori multi-elem, tipi non-character. Real-world LLM JSON puo' produrre
+# ognuno di questi; il safe-path e' tornare NULL/character(0) invece di
+# propagare un errore dentro un loop di clustering.
+
+#' @noRd
+.normalize_key_chr <- function(x) {
+  if (is.null(x)) return(NA_character_)
+  if (length(x) == 0L) return(NA_character_)
+  if (length(x) > 1L) x <- x[[1L]]
+  if (is.null(x) || length(x) == 0L) return(NA_character_)
+  if (is.na(x)) return(NA_character_)
+  if (!is.character(x)) x <- tryCatch(as.character(x), error = function(e) NA_character_)
+  if (length(x) != 1L) return(NA_character_)
+  if (is.na(x) || !nzchar(x)) return(NA_character_)
+  x
+}
 
 #' @noRd
 .chebi_lookup_id <- function(chebi_int, env = .load_ontology_dicts()) {
-  key <- as.character(chebi_int)
+  key <- .normalize_key_chr(chebi_int)
+  if (is.na(key)) return(NULL)
   if (!exists(key, envir = env$chebi$by_id, inherits = FALSE)) return(NULL)
   get(key, envir = env$chebi$by_id, inherits = FALSE)
 }
 
 #' @noRd
 .chebi_lookup_alias <- function(alias, env = .load_ontology_dicts()) {
-  key <- tolower(alias)
+  raw <- .normalize_key_chr(alias)
+  if (is.na(raw)) return(NULL)
+  key <- tolower(raw)
   if (!exists(key, envir = env$chebi$aliases, inherits = FALSE)) return(NULL)
   get(key, envir = env$chebi$aliases, inherits = FALSE)
 }
 
 #' @noRd
 .chebi_roles <- function(chebi_int, env = .load_ontology_dicts()) {
-  key <- as.character(chebi_int)
+  key <- .normalize_key_chr(chebi_int)
+  if (is.na(key)) return(character(0))
   if (!exists(key, envir = env$chebi$has_role, inherits = FALSE)) return(character(0))
   get(key, envir = env$chebi$has_role, inherits = FALSE)
 }
 
 #' @noRd
 .chebi_secondary_redirect <- function(chebi_int, env = .load_ontology_dicts()) {
-  key <- as.character(chebi_int)
+  key <- .normalize_key_chr(chebi_int)
+  if (is.na(key)) return(NULL)
   if (!exists(key, envir = env$chebi$secondary, inherits = FALSE)) return(NULL)
   get(key, envir = env$chebi$secondary, inherits = FALSE)
 }
@@ -292,21 +364,25 @@
 
 #' @noRd
 .hgnc_lookup_hgnc <- function(hgnc_int, env = .load_ontology_dicts()) {
-  key <- as.character(hgnc_int)
+  key <- .normalize_key_chr(hgnc_int)
+  if (is.na(key)) return(NULL)
   if (!exists(key, envir = env$hgnc$by_hgnc_int, inherits = FALSE)) return(NULL)
   get(key, envir = env$hgnc$by_hgnc_int, inherits = FALSE)
 }
 
 #' @noRd
 .hgnc_lookup_entrez <- function(entrez_int, env = .load_ontology_dicts()) {
-  key <- as.character(entrez_int)
+  key <- .normalize_key_chr(entrez_int)
+  if (is.na(key)) return(NULL)
   if (!exists(key, envir = env$hgnc$by_entrez_int, inherits = FALSE)) return(NULL)
   get(key, envir = env$hgnc$by_entrez_int, inherits = FALSE)
 }
 
 #' @noRd
 .hgnc_lookup_symbol <- function(symbol, env = .load_ontology_dicts()) {
-  key <- tolower(symbol)
+  raw <- .normalize_key_chr(symbol)
+  if (is.na(raw)) return(NULL)
+  key <- tolower(raw)
   if (!exists(key, envir = env$hgnc$by_symbol_lower, inherits = FALSE)) return(NULL)
   get(key, envir = env$hgnc$by_symbol_lower, inherits = FALSE)
 }
@@ -315,13 +391,17 @@
 
 #' @noRd
 .mesh_lookup_ui <- function(ui_str, env = .load_ontology_dicts()) {
-  if (!exists(ui_str, envir = env$mesh$by_ui, inherits = FALSE)) return(NULL)
-  get(ui_str, envir = env$mesh$by_ui, inherits = FALSE)
+  key <- .normalize_key_chr(ui_str)
+  if (is.na(key)) return(NULL)
+  if (!exists(key, envir = env$mesh$by_ui, inherits = FALSE)) return(NULL)
+  get(key, envir = env$mesh$by_ui, inherits = FALSE)
 }
 
 #' @noRd
 .mesh_lookup_term <- function(term, env = .load_ontology_dicts()) {
-  key <- tolower(term)
+  raw <- .normalize_key_chr(term)
+  if (is.na(raw)) return(NULL)
+  key <- tolower(raw)
   if (!exists(key, envir = env$mesh$by_entry_lower, inherits = FALSE)) return(NULL)
   get(key, envir = env$mesh$by_entry_lower, inherits = FALSE)
 }
