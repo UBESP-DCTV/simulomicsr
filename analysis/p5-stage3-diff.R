@@ -81,6 +81,24 @@ if (!"kind_overridden" %in% names(new)) {
   print(ovr_rs)
 }
 
+# ----------------- v3.1.1: kind_chebi_zero_roles flag -------------------
+if ("kind_chebi_zero_roles" %in% names(new)) {
+  cli_h2("v3.1.1 flag: kind_chebi_zero_roles distribution")
+  zr_summary <- new |>
+    summarise(
+      n_total = n(),
+      n_zero_roles = sum(kind_chebi_zero_roles, na.rm = TRUE),
+      pct_zero_roles = round(100 * sum(kind_chebi_zero_roles, na.rm = TRUE) / n(), 2)
+    )
+  print(zr_summary)
+
+  cli_alert_info("Top kind_effective per flag kind_chebi_zero_roles=TRUE:")
+  zr_kinds <- new |>
+    filter(kind_chebi_zero_roles) |>
+    count(kind_effective_resolved, sort = TRUE)
+  print(head(zr_kinds, 10))
+}
+
 # ----------------- Audit 4 critically wrong Layer B cases -----------------
 cli_h2("Audit 4 critically wrong Layer B cases (old -> new)")
 
