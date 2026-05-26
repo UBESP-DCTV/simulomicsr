@@ -13,18 +13,63 @@ build_sample_string_format_B <- function(title, source_name_ch1, characteristics
   paste(parts, collapse = ",")
 }
 
-#' Filtra un sample per inclusione nella pipeline P4 beta (human, bulk RNA-seq, metadata non-trivial).
+#' Filtra un sample per inclusione nella pipeline P4 beta (firma v2, ADR-0019).
 #'
-#' @param organism Organism da ARCHS4 (`organism_ch1`).
-#' @param library_strategy Library strategy (`library_strategy`).
-#' @param string Stringa format B ricostruita.
-#' @return Logical TRUE se passa i filtri.
+#' Implementa il filtro Stadio 0 v2 secondo ADR-0019 D1+D2+D3+D4: 7 check in
+#' sequenza (organism, library_strategy, library_source, string length, regex
+#' SC protocollo, lib_size, singlecellprobability). Ordine deterministico:
+#' al primo fallimento esce con il reason code corrispondente.
+#'
+#' @param organism_ch1 Organism da ARCHS4 (`meta/samples/organism_ch1`).
+#' @param library_strategy Library strategy (`meta/samples/library_strategy`).
+#' @param library_source Library source (`meta/samples/library_source`).
+#'   Whitelist `transcriptomic` (D1).
+#' @param extract_protocol_ch1 Testo libero protocollo
+#'   (`meta/samples/extract_protocol_ch1`). Passato a `is_single_cell_protocol`
+#'   per il check D2.
+#' @param title Title (`meta/samples/title`). Per title-bulk rescue D2.
+#' @param source_name_ch1 Source name (`meta/samples/source_name_ch1`).
+#'   Aggiunto al target del check D2.
+#' @param string Stringa format B ricostruita (input prompt LLM Stadio 1).
+#' @param singlecellprobability Predizione ML ARCHS4 0-1
+#'   (`meta/samples/singlecellprobability`). NA semantica "unknown" → no drop.
+#' @param lib_size Somma reads del sample (somma colonna `/data/expression`).
+#'   Tipicamente pre-calcolato in `build_archs4_metadata_v2()` (FASE C3).
+#' @param lib_size_min Soglia minima lib_size (default 500.000, ADR-0019 D4).
+#' @return Lista con due elementi:
+#'   - `keep` (logical): TRUE se il sample passa tutti i filtri.
+#'   - `reason` (character): NA se keep=TRUE, altrimenti il primo reason code
+#'      che ha fatto fallire il sample. Valori possibili: `not_human`,
+#'      `not_bulk_rnaseq`, `library_source_not_transcriptomic`,
+#'      `string_too_short`, `single_cell_protocol_match`,
+#'      `lib_size_too_small`, `single_cell_probability_high`.
 #' @keywords internal
-is_sample_classifiable <- function(organism, library_strategy, string) {
-  if (is.na(organism) || organism != "Homo sapiens") return(FALSE)
-  if (is.na(library_strategy) || library_strategy != "RNA-Seq") return(FALSE)
-  if (is.na(string) || nchar(string) < 20) return(FALSE)
-  TRUE
+is_sample_classifiable <- function(organism_ch1, library_strategy, library_source,
+                                    extract_protocol_ch1, title, source_name_ch1,
+                                    string, singlecellprobability, lib_size,
+                                    lib_size_min = 500000L) {
+  if (is.na(organism_ch1) || organism_ch1 != "Homo sapiens") {
+    return(list(keep = FALSE, reason = "not_human"))
+  }
+  if (is.na(library_strategy) || library_strategy != "RNA-Seq") {
+    return(list(keep = FALSE, reason = "not_bulk_rnaseq"))
+  }
+  if (is.na(library_source) || library_source != "transcriptomic") {
+    return(list(keep = FALSE, reason = "library_source_not_transcriptomic"))
+  }
+  if (is.na(string) || nchar(string) < 20) {
+    return(list(keep = FALSE, reason = "string_too_short"))
+  }
+  if (isTRUE(is_single_cell_protocol(extract_protocol_ch1, title, source_name_ch1))) {
+    return(list(keep = FALSE, reason = "single_cell_protocol_match"))
+  }
+  if (!is.na(lib_size) && lib_size < lib_size_min) {
+    return(list(keep = FALSE, reason = "lib_size_too_small"))
+  }
+  if (!is.na(singlecellprobability) && singlecellprobability >= 0.9) {
+    return(list(keep = FALSE, reason = "single_cell_probability_high"))
+  }
+  list(keep = TRUE, reason = NA_character_)
 }
 
 # ============================================================================

@@ -36,32 +36,53 @@ read_archs4_metadata <- function(h5_path) {
   data.frame(c(cols_chr, cols_num), stringsAsFactors = FALSE)
 }
 
-#' Trasforma ARCHS4 H5 in JSONL raw input per stage1 (formato B, filtri applicati).
+#' Trasforma ARCHS4 H5 in JSONL raw input per stage1 (formato B, filtri ADR-0019).
 #'
-#' Applica i filtri di inclusione (human, bulk RNA-Seq, stringa >= 20 caratteri)
-#' e serializza ogni sample accettato come riga JSONL pronta per la pipeline stage1.
+#' Applica il filtro Stadio 0 v2 (ADR-0019 D1-D4) chiamando
+#' \code{is_sample_classifiable()} firma v2. Serializza ogni sample accettato
+#' come riga JSONL pronta per la pipeline stage1.
+#'
+#' Il check D4 (\code{lib_size >= 500.000}) richiede il vettore lib_size
+#' pre-calcolato (somma reads per sample). Se non fornito (\code{lib_size_vec
+#' = NULL}), D4 viene saltato (\code{is_sample_classifiable} riceve NA →
+#' check `is.na(lib_size)` non scatta). FASE C3
+#' (\code{build_archs4_metadata_v2()}) costruira' il vettore lib_size una
+#' volta sola materializzato in RDS; FASE F1 (re-ETL produttivo) lo
+#' passera' a questa funzione.
 #'
 #' @param h5_path Path ARCHS4 H5.
 #' @param out_jsonl_path Path di output JSONL (una riga per sample).
 #' @param skip_log_path Path di output TSV con sample skippati e ragione (default NULL).
+#' @param lib_size_vec Vettore numeric lib_size per sample (named per
+#'   geo_accession opzionale). Default NULL = D4 saltato. Se passato deve
+#'   avere length = nrow(meta H5).
 #' @return Lista con \code{included} (int), \code{skipped} (int), \code{total} (int).
 #' @keywords internal
-archs4_to_stage1_jsonl <- function(h5_path, out_jsonl_path, skip_log_path = NULL) {
+archs4_to_stage1_jsonl <- function(h5_path, out_jsonl_path,
+                                    skip_log_path = NULL,
+                                    lib_size_vec = NULL) {
   meta <- read_archs4_metadata(h5_path)
   meta$string <- mapply(
     build_sample_string_format_B,
     meta$title, meta$source_name_ch1, meta$characteristics_ch1
   )
-  meta$keep <- mapply(
-    is_sample_classifiable,
-    meta$organism_ch1, meta$library_strategy, meta$string
-  )
-  meta$skip_reason <- ifelse(
-    meta$keep, NA_character_,
-    ifelse(meta$organism_ch1 != "Homo sapiens", "not_human",
-    ifelse(meta$library_strategy != "RNA-Seq", "not_bulk_rnaseq",
-    ifelse(nchar(meta$string) < 20, "string_too_short", "unknown")))
-  )
+  if (is.null(lib_size_vec)) {
+    lib_size_vec <- rep(NA_real_, nrow(meta))
+  } else {
+    stopifnot(length(lib_size_vec) == nrow(meta))
+  }
+  results <- Map(is_sample_classifiable,
+                  organism_ch1          = meta$organism_ch1,
+                  library_strategy      = meta$library_strategy,
+                  library_source        = meta$library_source,
+                  extract_protocol_ch1  = meta$extract_protocol_ch1,
+                  title                 = meta$title,
+                  source_name_ch1       = meta$source_name_ch1,
+                  string                = meta$string,
+                  singlecellprobability = meta$singlecellprobability,
+                  lib_size              = lib_size_vec)
+  meta$keep        <- vapply(results, function(r) r$keep,   logical(1L))
+  meta$skip_reason <- vapply(results, function(r) r$reason, character(1L))
   if (!is.null(skip_log_path)) {
     skipped <- meta[!meta$keep, c("geo_accession", "series_id", "skip_reason")]
     write.table(skipped, skip_log_path, sep = "\t", row.names = FALSE, quote = FALSE)
@@ -69,11 +90,11 @@ archs4_to_stage1_jsonl <- function(h5_path, out_jsonl_path, skip_log_path = NULL
   kept <- meta[meta$keep, ]
   recs <- lapply(seq_len(nrow(kept)), function(i) {
     list(
-      geo_accession = kept$geo_accession[i],
-      series_id = kept$series_id[i],
-      string = kept$string[i],
+      geo_accession    = kept$geo_accession[i],
+      series_id        = kept$series_id[i],
+      string           = kept$string[i],
       library_strategy = kept$library_strategy[i],
-      organism = kept$organism_ch1[i]
+      organism         = kept$organism_ch1[i]
     )
   })
   out_lines <- vapply(recs, jsonlite::toJSON, character(1L), auto_unbox = TRUE)

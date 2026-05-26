@@ -25,11 +25,132 @@ test_that("build_sample_string_format_B gestisce NA/empty graceful", {
   )
 })
 
-test_that("is_sample_classifiable filtra organism, library_strategy, string length", {
-  expect_true(is_sample_classifiable("Homo sapiens", "RNA-Seq", "title: x,key: very long enough metadata"))
-  expect_false(is_sample_classifiable("Mus musculus", "RNA-Seq", "title: x,key: y val"))
-  expect_false(is_sample_classifiable("Homo sapiens", "scRNA-seq", "title: x,key: very long metadata"))
-  expect_false(is_sample_classifiable("Homo sapiens", "RNA-Seq", "short"))
+# ============================================================================
+# is_sample_classifiable() — P5 audit RED_ALERT C2 firma v2 (ADR-0019 D1-D4)
+# ============================================================================
+# Firma B3 esatta: 9 argomenti + lib_size_min default 500k.
+# Return: list(keep = logical, reason = character_or_NA).
+# Reason codes (ordine check): not_human, not_bulk_rnaseq,
+# library_source_not_transcriptomic, string_too_short,
+# single_cell_protocol_match, lib_size_too_small, single_cell_probability_high.
+
+# Helper: produce un sample VALIDO (passa tutti i check). Test sostituiscono
+# il singolo campo per esercitare ogni reason code.
+.valid_sample <- function(...) {
+  base <- list(
+    organism_ch1         = "Homo sapiens",
+    library_strategy     = "RNA-Seq",
+    library_source       = "transcriptomic",
+    extract_protocol_ch1 = "TRIzol total RNA + TruSeq Stranded mRNA Library Prep Kit",
+    title                = "MCF7 tamoxifen 24h replicate 1",
+    source_name_ch1      = "MCF7",
+    string               = "title: MCF7 tam 24h,source: MCF7,cell: MCF7,trt: tam",
+    singlecellprobability = 0.02,
+    lib_size             = 1e7
+  )
+  modifyList(base, list(...))
+}
+
+test_that("is_sample_classifiable keep = TRUE quando tutti i check passano", {
+  res <- do.call(is_sample_classifiable, .valid_sample())
+  expect_true(res$keep)
+  expect_true(is.na(res$reason))
+})
+
+test_that("is_sample_classifiable reason = not_human", {
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(organism_ch1 = "Mus musculus"))
+  expect_false(res$keep)
+  expect_equal(res$reason, "not_human")
+})
+
+test_that("is_sample_classifiable reason = not_bulk_rnaseq", {
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(library_strategy = "ChIP-Seq"))
+  expect_false(res$keep)
+  expect_equal(res$reason, "not_bulk_rnaseq")
+})
+
+test_that("is_sample_classifiable reason = library_source_not_transcriptomic", {
+  # ADR-0019 D1: whitelist transcriptomic. SC esplicito drop.
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(library_source = "transcriptomic single cell"))
+  expect_false(res$keep)
+  expect_equal(res$reason, "library_source_not_transcriptomic")
+  # Anche genomic single cell drop.
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(library_source = "genomic single cell"))
+  expect_false(res$keep)
+  expect_equal(res$reason, "library_source_not_transcriptomic")
+})
+
+test_that("is_sample_classifiable reason = string_too_short", {
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(string = "short"))
+  expect_false(res$keep)
+  expect_equal(res$reason, "string_too_short")
+})
+
+test_that("is_sample_classifiable reason = single_cell_protocol_match", {
+  # ADR-0019 D2: regex SC kit-specific intercetta SC mascherato come transcriptomic.
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(extract_protocol_ch1 = "10x Genomics Chromium Single Cell 3' v3 Kit"))
+  expect_false(res$keep)
+  expect_equal(res$reason, "single_cell_protocol_match")
+})
+
+test_that("is_sample_classifiable reason = lib_size_too_small", {
+  # ADR-0019 D4: QC sequencing depth >= 500k reads.
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(lib_size = 100000L))
+  expect_false(res$keep)
+  expect_equal(res$reason, "lib_size_too_small")
+})
+
+test_that("is_sample_classifiable reason = single_cell_probability_high", {
+  # ADR-0019 D3: scprob >= 0.9 safety net per SC residui.
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(singlecellprobability = 0.95))
+  expect_false(res$keep)
+  expect_equal(res$reason, "single_cell_probability_high")
+})
+
+test_that("is_sample_classifiable singlecellprobability NA non blocca keep", {
+  # ARCHS4 v2.5 in teoria popola sempre scprob, ma defensive: NA semantica
+  # "scprob unknown" -> non scatta D3.
+  res <- do.call(is_sample_classifiable,
+                  .valid_sample(singlecellprobability = NA_real_))
+  expect_true(res$keep)
+})
+
+test_that("is_sample_classifiable rispetta lib_size_min override", {
+  res <- is_sample_classifiable(
+    organism_ch1         = "Homo sapiens",
+    library_strategy     = "RNA-Seq",
+    library_source       = "transcriptomic",
+    extract_protocol_ch1 = "TRIzol total RNA",
+    title                = "Bulk sample 1 valid",
+    source_name_ch1      = "MCF7",
+    string               = "title: x,source: MCF7,cell: MCF7,trt: tam very long",
+    singlecellprobability = 0.02,
+    lib_size             = 300000L,
+    lib_size_min         = 100000L
+  )
+  expect_true(res$keep)
+})
+
+test_that("is_sample_classifiable ordine reason - organism prevale su tutti", {
+  # Multi-fail: sample mouse + scRNA-Seq + SC kit + lib_size piccolo.
+  # Deve restituire il primo reason che fallisce (organism).
+  res <- do.call(is_sample_classifiable, .valid_sample(
+    organism_ch1         = "Mus musculus",
+    library_strategy     = "scRNA-Seq",
+    library_source       = "transcriptomic single cell",
+    extract_protocol_ch1 = "10x Genomics Chromium",
+    lib_size             = 100L
+  ))
+  expect_false(res$keep)
+  expect_equal(res$reason, "not_human")
 })
 
 # ============================================================================
