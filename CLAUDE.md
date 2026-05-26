@@ -19,18 +19,19 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
-> **Stato 2026-05-26 fine sessione 3**: ✅ FASE A audit completata
-> (7/7: A1+A2+A3+A4+A5+A6+A7) + ✅ FASE B spec (3/3: B1 ADR-0019 +
-> B2 aligner_class + B3 is_single_cell_protocol). Drop totale Stage 0
-> v2: 371.707 / 879.167 = **42.28%**. Bacino finale candidati bulk:
-> **507.460 sample**. Decisione data-driven: **REBUILD obbligatorio**
-> (A4 30.8% cluster contaminati). 7 sintesi A1-A7 + ADR-0019 +
-> 2 mini-spec B2/B3 + RED_ALERT aggiornato. Branch ahead di master
-> di 7 commit (`bdbe879`, `bb30a2e`, `f967b28`, `e49ea28`, `db0ebce`,
-> `ce8d0b9`, prossimo commit B2+B3). Prossimo step (nuova sessione):
-> FASE C (codice pre-LLM: C1 extend read_archs4_metadata, C2
-> is_sample_classifiable v2, C3 build metadata RDS v2, C4 update JSONL
-> Stage 1 input, C5 tests TDD).
+> **Stato 2026-05-26 sessione 4 in corso**: ✅ FASE A+B chiuse (10/10)
+> + ✅ C1 chiuso (commit `5e45671` read_archs4_metadata 14 campi) +
+> 🟡 C2 in progress (sub-step 1 `is_single_cell_protocol()` GREEN, segue
+> sub-step 2-3). **Fix regex audit underscore-aware applicato in sessione 4**:
+> bug paper-grade scoperto su title-bulk rescue + pattern S, rerun A2
+> + update A3 lib_size + A3c FPR curve. Drop Stage 0 v2 ricalcolato:
+> **371.129 / 879.167 = 42.21%** (vs 42.28% pre-fix). Bacino finale
+> candidati bulk: **507.838 sample** (+378 vs pre-fix). Decisione
+> data-driven REBUILD obbligatorio invariata (A4 30.8% cluster
+> contaminati). Branch ahead di master di 8 commit (`bdbe879`, `bb30a2e`,
+> `f967b28`, `e49ea28`, `db0ebce`, `ce8d0b9`, `f992cd7`, `5e45671`).
+> Prossimo step in questa sessione: completare C2 sub-step 2+3 + commit
+> fix audit + commit C2.
 
 ---
 

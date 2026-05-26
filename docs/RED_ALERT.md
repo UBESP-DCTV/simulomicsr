@@ -852,6 +852,15 @@ ALERT per Stadio 1 audit nella sessione successiva.
   `relation` in scope (A7 + E0), splittato D1 in D1a/D1b come gate
   prompt, chiarito che scope è solo Stadio 0 dell'audit completo a
   5 stadi. CLAUDE.md banner aggiornato. Sessione chiusa qui.
+- 2026-05-26 sessione 4 (in corso): ✅ C1 chiuso (commit `5e45671`,
+  `read_archs4_metadata` legge 14 campi H5). **Fix regex audit
+  underscore-aware** applicato (ultrathink 2026-05-26): bug paper-grade
+  scoperto su title-bulk rescue + pattern S Gruppo (perl `_` word-char
+  → no boundary). Rerun A2 + update mirato A3 lib_size + A3c FPR curve.
+  Drop Stage 0 v2 ricalcolato: **371.129 / 879.167 = 42.21%** (vs 42.28%
+  pre-fix). Bacino finale: **507.838 sample** (+378). Pattern K (kit)
+  invariati (chiusura strict avrebbe creato 3.568 FN su CelSeq2,
+  FluidigmTM, FluidigmC1 — scartata). C2 in progress.
 - 2026-05-26 sessione 3: ✅ A1 chiusa (commit `bdbe879`). Decisione
   whitelist `library_source == "transcriptomic"` con drop 28.942/879.167
   = 3.29% motivato puntualmente per 4 valori esclusi (sintesi in

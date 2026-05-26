@@ -77,12 +77,16 @@ patterns_K <- c(
   "snDrop"              = "(?i)snDrop"
 )
 
-# Gruppo S: semantica single-cell, da validare per false positive
+# Gruppo S: semantica single-cell, da validare per false positive.
+# Underscore-aware (fix paper-grade 2026-05-26): catch su single_cell, scRNA_seq,
+# sn_RNA, ecc. La vecchia regex `\bsingle[- ]?cell\b` perdeva ~3.668 SC FN per
+# via di underscore (perl `_` e' word-char → no boundary). Dettagli ultrathink:
+# Bug 2 nella sessione 4 RED_ALERT, prima del rerun A2 corretto.
 patterns_S <- c(
-  "single_cell_literal" = "(?i)\\bsingle[- ]?cell\\b",
-  "single_nucle"        = "(?i)\\bsingle[- ]?nucle[ari]+\\b",
-  "snRNA"               = "(?i)\\bsn[- ]?RNA(-?seq)?\\b|\\bNuc[- ]?seq\\b",
-  "scRNA"               = "(?i)\\bsc[- ]?RNA(-?seq)?\\b"
+  "single_cell_literal" = "(?i)(^|[^a-z0-9])single[- _]?cell(?![a-z0-9])",
+  "single_nucle"        = "(?i)(^|[^a-z0-9])single[- _]?nucle[ari]+(?![a-z0-9])",
+  "snRNA"               = "(?i)(^|[^a-z0-9])sn[- _]?RNA(-?seq[23]?)?(?![a-z0-9])|(^|[^a-z0-9])Nuc[- _]?seq(?![a-z0-9])",
+  "scRNA"               = "(?i)(^|[^a-z0-9])sc[- _]?RNA(-?seq[23]?)?(?![a-z0-9])"
 )
 
 # Search target: extract_protocol_ch1 + title + source_name_ch1
@@ -124,7 +128,11 @@ cat(sprintf("  Totale catch (K OR S)   : %d / %d (%.2f%%)\n",
 # Razionale FPR cluster validation: ~70-80% dei FP osservati avevano
 # title con "bulk" esplicito.
 # ============================================================
-title_bulk_rescue <- grepl("(?i)\\bbulk\\b|\\bbulkRNA", df$title, perl = TRUE)
+# Underscore-aware (fix paper-grade 2026-05-26): rescue corretto su title con
+# underscore-form (es. `Bulk_RNA-Seq_NSCLC_12_TIL`, `Bulk_24h_C1`). Vecchia
+# regex `\bbulk\b` perdeva ~1.517 sample bulk-low-input multi-modality che
+# erano stati droppati a torto da A2 baseline.
+title_bulk_rescue <- grepl("(?i)(^|[^a-z0-9])bulk([^a-z0-9]|$)|(^|[^a-z0-9])bulkRNA(?![a-z0-9])", df$title, perl = TRUE)
 rescued_mask <- any_either & title_bulk_rescue
 drop_mask    <- any_either & !title_bulk_rescue
 

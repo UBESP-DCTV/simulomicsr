@@ -153,14 +153,42 @@ Sample che matchano regex SC ma il cui `title` contiene `bulk`
 esplicito → **escluso dal drop**, marcato `title_bulk_rescue = TRUE`.
 
 ```
-title_bulk_rescue := grepl("(?i)\\bbulk\\b|\\bbulkRNA", title)
+# Regex underscore-aware (fix sessione 4 RED_ALERT ultrathink 2026-05-26):
+title_bulk_rescue := grepl("(?i)(^|[^a-z0-9])bulk([^a-z0-9]|$)|(^|[^a-z0-9])bulkRNA(?![a-z0-9])", title)
 drop_final := (any_K | any_S) & !title_bulk_rescue
 ```
 
-### 6.2 Effetto
+### 6.2 Effetto (fix regex underscore-aware applicato 2026-05-26 sessione 4)
 
-- Sample rescued: **870**
-- Drop A2 finale: **302.694 / 850.225 = 35.60%** (delta −870 vs 35.70%)
+- Sample rescued: **2.017** (vs 870 pre-fix; +1.147 da underscore-form titles).
+- Drop A2 finale: **301.852 / 850.225 = 35.50%** (delta −2.017 vs 35.74%).
+- Δ vs pre-fix: −842 sample droppati (bacino bulk leggermente più grande).
+
+### 6.2bis Fix regex paper-grade (ultrathink 2026-05-26)
+
+Durante implementazione FASE C2 (`is_single_cell_protocol()` produttivo)
+è emersa un'incoerenza spec/codice audit: la regex `\\bbulk\\b|\\bbulkRNA`
+non matchava titoli con underscore (es. `Bulk_RNA-Seq_NSCLC_12_TIL`,
+`Bulk_24h_C1`) perché in perl regex `_` è word-char → no boundary.
+Analoga incoerenza sui pattern Gruppo S (`single_cell`, `scRNA_seq`,
+`sn_RNA`). Fix asimmetrico applicato:
+
+- **Apertura word-bounded** `(^|[^a-z0-9])` (no-prefix-word).
+- **Separator interno** `[- _]?` (gestisce sia space/dash che underscore).
+- **Chiusura** `(?![a-z0-9])` (permette boundary su `_ . - ( )` ma non
+  alphanum — protegge varianti legittime come `CelSeq2`, `FluidigmTM`,
+  `FluidigmC1` che ARCHS4 cita senza separator).
+
+Bilancio numerico vs OLD:
+- Pattern S underscore-aware: +305 nuovi catch (gran parte già in K∩S).
+- Title-bulk rescue underscore-aware: +1.147 rescue addizionali.
+- Net drop A2: −842 sample (più bulk salvati).
+- Pattern K: invariati (chiusura strict avrebbe creato 3.568 FN su
+  CelSeq2/FluidigmTM/FluidigmC1, scartata).
+
+Backup TSV pre-fix:
+- `A2-sc-by-extract-protocol.OLD.tsv` (302.694 GSM drop pre-fix)
+- `A2-rescued-by-title-bulk.OLD.tsv` (870 GSM rescued pre-fix)
 
 ### 6.3 Validazione rescue
 
@@ -194,7 +222,7 @@ FP residuo**.
 | filtro | sample drop | bacino input | drop rate |
 |---|---:|---:|---:|
 | A1 (`library_source != "transcriptomic"`) | 28.942 | 879.167 | 3.29% |
-| A2 (regex SC, rescue post-rescue) | 302.694 | 850.225 | 35.60% |
+| A2 (regex SC, rescue post-rescue, fix underscore) | 301.852 | 850.225 | 35.50% |
 | **Aggregato A1+A2 single-cell drop** | **330.709** | **879.167** | **37.62%** |
 
 Bacino post-A1+A2 (candidati bulk RNA-Seq): **547.588 / 879.167 = 62.27%**.
@@ -235,7 +263,7 @@ drop_A2 := (hit_regex_K | hit_regex_S) & !title_bulk_rescue
 
 ### 8.3 Sample residui flaggati ma non droppati
 
-I 870 rescued non sono droppati ma sono **flaggati** con
+I 2.017 rescued (post-fix underscore-aware) non sono droppati ma sono **flaggati** con
 `title_bulk_rescue = TRUE` per audit-trail (file
 `A2-rescued-by-title-bulk.tsv`). Se in A3 emerge che alcuni di loro
 hanno `singlecellprobability` alta, possono essere ri-droppati in
@@ -259,8 +287,10 @@ fallback title-bulk rescue.
 | file | contenuto |
 |---|---|
 | `A2-extract-protocol-sc.R` | script A2: regex K+S + title-bulk rescue |
-| `A2-sc-by-extract-protocol.tsv` | 302.694 GSM drop finale (post-rescue) |
-| `A2-rescued-by-title-bulk.tsv` | 870 GSM rescued (audit trail) |
+| `A2-sc-by-extract-protocol.tsv` | 301.852 GSM drop finale (post-fix underscore) |
+| `A2-rescued-by-title-bulk.tsv` | 2.017 GSM rescued (audit trail, post-fix) |
+| `A2-sc-by-extract-protocol.OLD.tsv` | backup 302.694 GSM drop pre-fix |
+| `A2-rescued-by-title-bulk.OLD.tsv` | backup 870 GSM rescued pre-fix |
 | `A2b-pattern-fpr-validation.R` | script A2b: 1000-random cluster-based |
 | `A2b-SmartSeq-clusters.tsv` | top 50 cluster SmartSeq |
 | `A2b-single_cell_literal-clusters.tsv` | top 50 cluster single_cell_literal |
@@ -269,7 +299,7 @@ fallback title-bulk rescue.
 
 ## 11. Cosa decide A2
 
-> Drop A2 = 302.694 / 850.225 = **35.60%** dei sopravvissuti ad A1, via
+> Drop A2 = 301.852 / 850.225 = **35.50%** dei sopravvissuti ad A1, via
 > regex SC (gruppo K kit-specific 13 pattern + gruppo S semantica 4
 > pattern) AND NOT title-bulk-rescue. Aggregato A1+A2 = **330.709 /
 > 879.167 = 37.62%** del bacino rescued.

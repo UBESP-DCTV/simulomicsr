@@ -11,16 +11,19 @@
 
 ## 1. Universo analizzato
 
+Numeri aggiornati 2026-05-26 sessione 4 (post-fix regex underscore-aware
+A2 + A3c, vedi `A2-synthesis-protocol-regex.md` §6.2bis).
+
 - Bacino A3: sample rescued ∩ `library_source == "transcriptomic"` ∩
-  NOT in A2 drop = **547.531**.
+  NOT in A2 drop = **548.373** (vs 547.531 pre-fix, +842).
 - Filtro QC lib_size ≥ 500.000 (uguale a Stadio 4):
-  - Sopravvissuti: **508.685 / 547.531 = 92.91%**.
-  - Drop lib_size: 38.846 (7.09%).
+  - Sopravvissuti: **509.262 / 548.373 = 92.87%**.
+  - Drop lib_size: 39.111 (7.13%).
 - I drop lib_size sono **separati** dal drop SC: sono sample
   bulk-RNA-Seq legittimi ma con sequencing depth insufficiente per la
   meta-analisi DE.
 
-## 2. Distribuzione `singlecellprobability` sui 508.685 post-lib_size
+## 2. Distribuzione `singlecellprobability` sui 509.262 post-lib_size
 
 | stat | valore |
 |---|---:|
@@ -42,10 +45,10 @@ bulk-low-input mascherati da ML) su 4 bin di `singlecellprobability`.
 
 | bin | n popolazione | FP manual | FPR | Wilson 95% CI |
 |---|---:|---:|---:|---|
-| > 0.5 (aggregato A3b) | 14.502 | 18/50 | **36%** | [24.1%, 49.9%] |
-| 0.5-0.6 | 3.640 | 18/50 | 36% | [24.1%, 49.9%] |
-| 0.7-0.8 | 3.405 | 7/50 | **14%** | [6.9%, 26.2%] |
-| ≥ 0.9 | 1.225 | 4/50 | **8%** | [3.2%, 18.8%] |
+| > 0.5 (aggregato A3b) | 14.557 | 18/50 | **36%** | [24.1%, 49.9%] |
+| 0.5-0.6 | 3.664 | 18/50 | 36% | [24.1%, 49.9%] |
+| 0.7-0.8 | 3.410 | 7/50 | **14%** | [6.9%, 26.2%] |
+| ≥ 0.9 | 1.224 | 4/50 | **8%** | [3.2%, 18.8%] |
 
 ### 3.1 Curva FPR proxy (regex automatic su tutti i 508.685)
 
@@ -54,18 +57,21 @@ TM3'seq, ScreenSeq, LCM/10-cell, FFPE, RiboSeq, EV/exoRNA, swab COVID,
 HTG EdgeSeq, CAGE, PAXgene Blood, PicoPure, SMARTer Stranded Total Pico,
 Smart-3SEQ, Lexogen 3' mRNA, HTGseq, spatial_trans, embryo blastomere.
 
+Pattern bulk_low_input aggiornati 2026-05-26 sessione 4 (regex
+underscore-aware su 10_cell, 16_cell, Ribo_seq, Smart_3SEQ, ecc.).
+
 | threshold | n_drop | n_bulk_proxy | %_bulk_proxy |
 |---:|---:|---:|---:|
-| 0.50 | 14.502 | 2.942 | 20.29% |
-| 0.55 | 12.634 | 2.231 | 17.66% |
-| 0.60 | 10.862 | 1.665 | 15.33% |
-| 0.65 | 9.002 | 1.136 | 12.62% |
-| 0.70 | 7.184 | 724 | 10.08% |
-| 0.75 | 5.391 | 398 | 7.38% |
-| 0.80 | 3.779 | 217 | 5.74% |
+| 0.50 | 14.557 | 2.971 | 20.41% |
+| 0.55 | 12.682 | 2.250 | 17.74% |
+| 0.60 | 10.893 | 1.677 | 15.40% |
+| 0.65 | 9.024 | 1.146 | 12.70% |
+| 0.70 | 7.194 | 733 | 10.19% |
+| 0.75 | 5.401 | 407 | 7.54% |
+| 0.80 | 3.784 | 218 | 5.76% |
 | 0.85 | 2.355 | 101 | 4.29% |
-| **0.90** | **1.225** | **37** | **3.02%** |
-| 0.95 | 527 | 16 | 3.04% |
+| **0.90** | **1.224** | **37** | **3.02%** |
+| 0.95 | 526 | 16 | 3.04% |
 
 **Plateau a 0.9** (curva si stabilizza ~3% proxy / ~8% manual). Sotto 0.9
 cresce monotonicamente. Ratio manual/proxy = 1.5-2x in tutti i bin
@@ -97,7 +103,7 @@ lib_size 1-3M sovrappone bulk-low-input. Stima ~1.000 FN nella fascia
 
 Razionale data-driven:
 - **Plateau** a 0.9: la curva FPR si stabilizza, sotto cresce monotonicamente.
-- **Drop limitato**: 1.225 / 508.685 = 0.24% del bacino post-lib_size.
+- **Drop limitato**: 1.224 / 509.262 = 0.24% del bacino post-lib_size.
 - **FPR contenuto**: 8% manual (Wilson CI [3-19%]). ~100 FP attesi
   (NanoString DSP residue + casi rari).
 - **Recovery utile**: ~1.125 SC veri droppati che A1+A2 hanno mancato
@@ -122,7 +128,7 @@ Lib_size threshold = stesso QC del Stadio 4 (coerenza pipeline).
   recovery extra modesto vs th=0.9 (~6.000 SC veri in più contro ~900 FP
   extra).
 - **Nessuna soglia**: accetta 2.85% SC residuo nel bacino post-A1+A2.
-  Conservativo ma rinuncia a 1.225 SC catturabili con drop cheap.
+  Conservativo ma rinuncia a 1.224 SC catturabili con drop cheap.
 - **th=0.95**: drop 527 → curva al plateau, riduzione marginale del FP
   ma anche del recovery. Non differisce sostanzialmente da 0.9.
 
@@ -132,11 +138,11 @@ Lib_size threshold = stesso QC del Stadio 4 (coerenza pipeline).
 |---|---:|---:|---:|
 | A1 (`library_source != "transcriptomic"`) | 28.942 | 879.167 | 3.29% |
 | A2 (regex SC + title-bulk rescue) | 302.694 | 850.225 | 35.60% |
-| A3 lib_size < 500k (QC) | 38.846 | 547.531 | 7.09% |
-| A3 singlecellprobability ≥ 0.9 | 1.225 | 508.685 | 0.24% |
-| **TOTALE Stage 0 drop** | **371.707** | **879.167** | **42.28%** |
+| A3 lib_size < 500k (QC) | 39.111 | 548.373 | 7.13% |
+| A3 singlecellprobability ≥ 0.9 | 1.224 | 509.262 | 0.24% |
+| **TOTALE Stage 0 drop** | **371.129** | **879.167** | **42.21%** |
 
-**Bacino finale post-Stage 0 v2**: 879.167 − 371.707 = **507.460**
+**Bacino finale post-Stage 0 v2**: 879.167 − 371.129 = **507.838**
 sample candidati bulk RNA-Seq human steady-state.
 
 > ⚠️ Nota: la riga "A3 lib_size < 500k" rappresenta sample bulk
@@ -153,7 +159,7 @@ predetti come SC con scprob > 0.5 (FPR 36% manual a 0.5, 14% a 0.7-0.8,
 8% a ≥0.9 Wilson 95% CI [3-19%]);
 (b) SC plate-based ad alto coverage → scprob 0.3-0.5 (FN, ~10%
 nella fascia). Filtro adottato th=0.9 al plateau della curva FPR
-(drop +1.225 sample, 0.24% del bacino post-lib_size, FP attesi ~100
+(drop +1.224 sample, 0.24% del bacino post-lib_size, FP attesi ~100
 dominati da NanoString GeoMx DSP spatial transcriptomics).
 
 ## 7. Prospettiva futura — LLM-based quality check post-aggregazione
@@ -191,7 +197,8 @@ chiusura RED_ALERT Stadio 0. Memo per non perderlo.
 | file | contenuto |
 |---|---|
 | `A3-singlecellprobability.R` | script A3: lib_size scan + scprob summary + plot |
-| `A3-libsize-scprob-bacino.tsv` | 547.531 righe (geo, series, lib_size, scprob, passed_libsize_500k) |
+| `A3-libsize-scprob-bacino.tsv` | 548.373 righe (geo, series, lib_size, scprob, passed_libsize_500k) — fix underscore-aware applicato |
+| `A3-libsize-scprob-bacino.OLD.tsv` | backup 547.531 righe pre-fix |
 | `A3-scprob-distribution.png` | istogramma scprob + log10(lib_size) post-lib_size |
 | `A3-run.log` | log fullrun con per-slab progress |
 | `A3b-fp-fn-analysis.R` | script A3b: cross-tab + 50 manual 0.5+, 50 manual 0.3-0.5 |
@@ -207,7 +214,7 @@ chiusura RED_ALERT Stadio 0. Memo per non perderlo.
 ## 9. Cosa decide A3
 
 > Soglia **singlecellprobability ≥ 0.9** come safety net SC residuo.
-> Drop addizionale 1.225 / 508.685 = **0.24%** del bacino post-lib_size.
+> Drop addizionale 1.224 / 509.262 = **0.24%** del bacino post-lib_size.
 > Aggregato A1+A2+A3 (escluso lib_size QC che è filtro condiviso con
 > Stadio 4) = **332.861 / 879.167 = 37.86%** del bacino rescued
 > attribuito al filtro SC Stage 0.

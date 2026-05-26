@@ -43,26 +43,30 @@ rm(h5_geo, h5_title, h5_src, h5_ext); gc(verbose = FALSE)
 # Pattern BULK_LOW_INPUT (derivato dai 18 FP manuali scprob>0.5)
 # Match su extract_protocol_ch1 || title || source_name_ch1
 # ============================================================
+# Underscore-aware (fix paper-grade 2026-05-26): pattern allargati per
+# catturare anche varianti con underscore (es. `10_cell`, `16_cell`,
+# `Ribo_seq`, `Smart_3SEQ`). Impatto sulla soglia A5=0.9 secondario (retta
+# da 18 manual GT), ma allineamento doveroso con i pattern S corretti.
 patterns_bulk <- c(
   QuantSeq      = "(?i)QuantSeq",
-  TM3seq        = "(?i)TM3['_]?seq|TM[- ]?3[- ]?SEQ",
+  TM3seq        = "(?i)TM3['_ -]?seq|TM[- _]?3[- _]?SEQ",
   ScreenSeq     = "(?i)ScreenSeq|Evotec",
-  LCM_10cell    = "(?i)laser capture microdissection|\\b10[- ]?cell\\b|LCM\\b",
+  LCM_10cell    = "(?i)laser capture microdissection|(^|[^a-z0-9])10[- _]?cell(?![a-z0-9])|(^|[^a-z0-9])LCM(?![a-z0-9])",
   FFPE          = "(?i)FFPE",
-  RiboSeq       = "(?i)Ribo[- ]?seq|ribosome profiling|RPF\\b",
-  EV_exoRNA     = "(?i)exoRNeasy|extracellular vesic|\\bEVs?\\b|exosom|cell-free RNA|cfRNA",
-  swab_COVID    = "(?i)\\bswab\\b|oronasophar|nasopharyng",
+  RiboSeq       = "(?i)Ribo[- _]?seq|ribosome profiling|(^|[^a-z0-9])RPF(?![a-z0-9])",
+  EV_exoRNA     = "(?i)exoRNeasy|extracellular vesic|(^|[^a-z0-9])EVs?(?![a-z0-9])|exosom|cell[- _]?free RNA|cfRNA",
+  swab_COVID    = "(?i)(^|[^a-z0-9])swab(?![a-z0-9])|oronasophar|nasopharyng",
   EdgeSeq       = "(?i)HTG EdgeSeq|EdgeSeq",
-  CAGE          = "(?i)\\bCAGE\\b|nAnT[- ]?iCAGE",
+  CAGE          = "(?i)(^|[^a-z0-9])CAGE(?![a-z0-9])|nAnT[- _]?iCAGE",
   PAXgene       = "(?i)PAXgene",
   PicoPure      = "(?i)PicoPure",
   SMARTer_Pico  = "(?i)SMARTer\\s+Stranded\\s+Total\\s+RNA",
-  Smart3SEQ     = "(?i)Smart[- ]?3SEQ",
+  Smart3SEQ     = "(?i)Smart[- _]?3SEQ",
   Lexogen_3mRNA = "(?i)Lexogen.*Quant|Lexogen 3'",
-  HTGseq        = "(?i)\\bHTG\\b",
-  NASCseq       = "(?i)NASC[- ]?seq",  # incluso ma e' SC in realta; flag separato per audit
+  HTGseq        = "(?i)(^|[^a-z0-9])HTG(?![a-z0-9])",
+  NASCseq       = "(?i)NASC[- _]?seq",  # incluso ma e' SC in realta; flag separato per audit
   spatial_trans = "(?i)spatial transcript",
-  embryo_blastomere = "(?i)blastomere|whole[- ]?embryo|16[- ]?cell|8[- ]?cell.*embryo"
+  embryo_blastomere = "(?i)blastomere|whole[- _]?embryo|(^|[^a-z0-9])16[- _]?cell(?![a-z0-9])|(^|[^a-z0-9])8[- _]?cell.*embryo"
 )
 
 target_text <- paste(a3$ext, a3$title, a3$src, sep = " || ")
