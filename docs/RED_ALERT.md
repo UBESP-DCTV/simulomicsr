@@ -420,7 +420,7 @@ asterisco nel paper è razionale.
 
 **Decisione che dipende da A6.** Stop o avanti con FASI B-G.
 
-#### ⬜ A7 — Confronto qualità dedupe: `relation` (BioSample) vs `donor_id` (LLM)
+#### ✅ A7 — Confronto qualità dedupe: `relation` (BioSample) vs `donor_id` (LLM)
 
 **Cosa facciamo.** Andiamo a vedere su un campione reale del nostro
 dataset quale dei due segnali è più affidabile per dire "questi due
@@ -877,7 +877,13 @@ ALERT per Stadio 1 audit nella sessione successiva.
   REBUILD TOTALE OBBLIGATORIO** (filtro post-hoc respinto).
   Run 96c43acb (Layer A) + 56b911e6 (Layer B 15 case study)
   **obsoleti**. Sintesi `analysis/audit/A4-synthesis-cluster-contamination.md`.
-  Prossimo step: A7 (dedupe BioSample vs donor_id) → B1 ADR-0019.
+  ✅ **A7 chiusa**: SAMN coverage 99.98%, 425 GSM (0.048%) duplicati
+  cross-GSE veri. donor_id LLM scartato per cross-studio (9.16%
+  donor_id unique appaiono in >1 series con nomi generici tipo "patient 1"
+  = falsi duplicati). Decisione: **`relation` BioSample SAMN come segnale
+  primario unico, no fallback donor_id**. Sintesi `analysis/audit/A7-synthesis-biosample-dedupe.md`.
+  **FASE A completata (7/7)**. Prossimo step: FASE B (ADR-0019 + mini-spec
+  parsing data_processing + extract_protocol_ch1).
 
 ### Handoff next session
 
