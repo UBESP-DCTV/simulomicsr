@@ -361,7 +361,7 @@ per pescare gli ultimi single-cell mascherati.
 **Decisione che dipende da A3.** Sceglie la soglia
 `singlecellprobability` finale (o l'assenza di soglia, dichiarata).
 
-#### ⬜ A4 — Quanti single-cell sono ATTUALMENTE in `cluster_pooled.parquet`
+#### ✅ A4 — Quanti single-cell sono ATTUALMENTE in `cluster_pooled.parquet`
 
 **Cosa facciamo.** Ribaltiamo l'analisi sul prodotto finale che già
 abbiamo (run 96c43acb). Sui ~13.7M risultati DE in `cluster_pooled.parquet`,
@@ -389,7 +389,7 @@ sono sporcati determina la decisione su A5.
 obbligatorio. Se inquinamento basso (<5% cluster con frac_sc > 0),
 potrebbe essere sufficiente filtro post-hoc. Se alto, rebuild.
 
-#### ⬜ A5 — Soglia `singlecellprobability` finale (decision point)
+#### ✅ A5 — Soglia `singlecellprobability` finale (decision point)
 
 **Cosa facciamo.** Sulla base di A3 + A4, fissiamo la soglia
 `singlecellprobability` per il filtro produttivo (o la non-soglia,
@@ -407,7 +407,7 @@ singlecellprobability = X" oppure "soglia non usata, motivazione: Y".
 **Decisione che dipende da A5.** Determina il codice di C2 (filtro
 Stadio 0 esteso) e l'ADR B1.
 
-#### ⬜ A6 — Decisione binaria rebuild vs filtro post-hoc
+#### ✅ A6 — Decisione binaria rebuild vs filtro post-hoc
 
 **Cosa facciamo.** Sulla base dei numeri A1-A5, decidiamo:
 (a) rebuild totale FASE F (default), oppure
@@ -868,8 +868,16 @@ ALERT per Stadio 1 audit nella sessione successiva.
   = **42.28%** drop. Bacino finale candidati bulk: **507.460 sample**.
   Sintesi `analysis/audit/A3-synthesis-singlecellprobability.md` con
   prospettiva futura "LLM-based quality check post-aggregazione" come
-  task deferred post-FASE F. Prossimo step: commit A3 + A4 (cluster
-  contamination quantification).
+  task deferred post-FASE F.
+  ✅ **A4 + A5 + A6 chiuse**: cluster contamination Layer A baseline
+  (run 96c43acb, 487 cluster). **30.8% cluster contaminati** (150/487,
+  6x sopra soglia 5%); 15.09% sample SC nei pool aggregati; 9.45%
+  cluster con ≥50% SC; 3.9% cluster 100% SC. Pattern: group_mega
+  contaminato 69%, pair_mega_aug 8%. **A6 decisione data-driven:
+  REBUILD TOTALE OBBLIGATORIO** (filtro post-hoc respinto).
+  Run 96c43acb (Layer A) + 56b911e6 (Layer B 15 case study)
+  **obsoleti**. Sintesi `analysis/audit/A4-synthesis-cluster-contamination.md`.
+  Prossimo step: A7 (dedupe BioSample vs donor_id) → B1 ADR-0019.
 
 ### Handoff next session
 
