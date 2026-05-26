@@ -1,0 +1,539 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+[A3b] load ...
+[A3b] A3 rows: 547531, A2 drop: 302694, A2 rescued: 870
+[A3b] post lib_size: 508685
+[A3b] sanity: A3 ∩ A2-drop = 0 (atteso 0)
+
+[A3b] === Cross-tab scprob × A2 title-bulk rescue ===
+         a2_rescued
+scprob     FALSE   TRUE
+  <=0.1   455846    700
+  0.1-0.3  26799    104
+  0.3-0.5  10707     27
+  0.5-0.7   7308     10
+  0.7-0.9   5955      4
+  >0.9      1225      0
+
+[A3b] === scprob distribution sui 870 title-bulk rescued ===
+n rescued in A3 pass: 845 / 870
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.000000 0.007614 0.026572 0.065422 0.059418 0.788856 
+rescued con scprob > 0.5: 14 (1.66%)
+rescued con scprob > 0.9: 0 (0.00%)
+
+[A3b] reading H5 metadata for inspection ...
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2459994 131.4    4084502 218.2  2612020 139.5
+Vcells 18255899 139.3   29390591 224.3 27003118 206.1
+
+[A3b] === Candidati 'high' (scprob > 0.5): 14502 ===
+di cui in A2 title-bulk rescue: 14
+
+[A3b] === 50 RANDOM scprob > 0.5 (manual TP/FP check) ===
+
+#1 [GSM4607045 | GSE152197,GSE152543 | scprob=0.675 | libsize=0.9M]
+  title: 15BTreg93
+  src  : iTreg
+  ext  : PBMCs were isolated from peripheral blood and Treg cells were single sorted into 96-well plates by FACS using CD4+CD25hiCD127lo/neg antibodies. For adipose tissue, we first performed collagenase digestion. Next, the lymp
+
+#2 [GSM5645055 | GSE186341 | scprob=0.524 | libsize=1.3M]
+  title: hf2597_G10_Foretinib_0.15_24 HF2597PS3AS466_TCTAGGGC
+  src  : glioblastoma
+  ext  : Cells are lysed for PLATE-Seq in Buffer TCL (Qiagen) supplemented with 2-mercaptoethanol in 96-well plates. We transfer 30âÎ¼l of cell lysate from each well to a 96-well plate with oligo(dT) grafted to the wells (mRNA 
+
+#3 [GSM2174084 | GSE81547 | scprob=0.609 | libsize=0.8M]
+  title: 54yr_male_cell2203
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#4 [GSM2979897 | GSE110154 | scprob=0.658 | libsize=1.0M]
+  title: Fetal_pancreas_cell_1068
+  src  : 12wks_fetal pancreas cell_endothelial
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#5 [GSM4110633 | GSE138525 | scprob=0.783 | libsize=1.0M]
+  title: AC2_G11
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#6 [GSM2172776 | GSE81547 | scprob=0.732 | libsize=1.4M]
+  title: 1yr_male_cell897
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#7 [GSM3939023 | GSE134216 | scprob=0.823 | libsize=1.0M]
+  title: E-UnTD31
+  src  : ORG
+  ext  : Total cellular RNA was extracted from 15-20 randomly collected intact and re-aggregated organoids, and from a 9 cm2 well for the monolayer culture at TD 2, TD 11 and TD 31 and purified using PicoPure RNA isolation kit (A
+
+#8 [GSM4472565 | GSE148504,GSE148507 | scprob=0.792 | libsize=1.6M]
+  title: Antibody Oligo Capture Library of 6 Calcitonin-Treated and Control ACFs
+  src  : cardiac right atria
+  ext  : 10x droplet capture,The sample exome library was processed to a sequence ready library using the V3 3â Prime Gene Expression kit as per manufacturerâs protocol. The hashing library was processed as per the hashing me
+
+#9 [GSM6284335 | GSE184610 | scprob=0.572 | libsize=2.4M]
+  title: P_4465_20799930898
+  src  : Oronasopharingeal swab
+  ext  : RNA extraction was performed by using either the Maelstrom 9600 (TANBead) or GeneQuality X120 (AbAnalitica) automatic platforms according to manufacturer's specifications.,40-60uL unquantified swab RNA extract (1-5 ng/ul
+
+#10 [GSM6857410 | GSE221264 | scprob=0.739 | libsize=2.2M]
+  title: Smooth Muscle, Nuclear Localization STUB1, Replicate 3
+  src  : Pulmonary Smooth Muscle
+  ext  : Cells were collected using trypsin and RNA was gathered using the Qiagen RNeasy kit (cat. 74004),Libraries were prepared according to Lexogen's instruction accompanying the QuantSeq 3â mRNA-Seq Library Prep Kit FWD for
+
+#11 [GSM7848460 | GSE245748 | scprob=0.594 | libsize=29.6M]
+  title: MIBC35,Low total immune cells
+  src  : muscle invasive bladder cancer biopsy
+  ext  : RNA-seq were extracted following the standard protocol by Cofactor Genomic,20 ng of RNA were used to prepare sequencing library following Cofactor Genomic protocols.
+
+#12 [GSM5507692 | GSE181591 | scprob=0.720 | libsize=0.7M]
+  title: TU [chip6_1851027105_site_43_S93]
+  src  : MDA-MB-231
+  ext  : NA,Libraries were prepared according to Illumina's instructions accompanying the Nextera XT DNA Library Preparation Kit (FC-131-1096), using the cDNA synthetized from total isolated RNA.
+
+#13 [GSM1956443 | GSE75478 | scprob=0.520 | libsize=2.1M]
+  title: I2_plate10_F_11
+  src  : Lin-CD34+CD38+ bone marrow
+  ext  : Fresh bone marrow mononuclear cells were stained with fluorescence labeled antibodies against CD34, CD38, CD45RA, CD90, CD49f, CD135, CD10, CD7 and a lineage cocktail consisting of CD4, CD8, CD11b, CD14, CD19, CD20, CD56
+
+#14 [GSM7796814 | GSE243850 | scprob=0.627 | libsize=7.9M]
+  title: 44
+  src  : Human pancreas
+  ext  : Total RNA was isolated using Trizol reagent.,The construction of library was performed using QuantSeq 3â mRNA-Seq Library Prep Kit
+
+#15 [GSM5943767 | GSE198291 | scprob=0.701 | libsize=0.7M]
+  title: X102_L2_7102
+  src  : PT1_CTC6
+  ext  : RNA libraries were prepared for sequencing using standard Illumina protocols
+
+#16 [GSM3486550 | GSE122827 | scprob=0.693 | libsize=2.3M]
+  title: LPM1E8
+  src  : engineered lateral mesoderm cell
+  ext  : Total RNA was extracted from cultures using RNeasy mini from Qiagen. DNA contamination was removed from the samples using DNA-freeâ¢ DNA Removal Kit from Ambion (Thermofisher).,cDNA synthesis and Illumina libraries were
+
+#17 [GSM2826804 | GSE105452,GSE105454 | scprob=0.839 | libsize=1.0M]
+  title: JLMPL6_6E
+  src  : Peripheral Blood
+  ext  : cDNA libraries were synthetized from single cells using TARGET-seq method,Illumina sequencing libraries were prepared using the Illumina Nextera XT DNA kit, using one forth of the standard volume recommended by Illumina,
+
+#18 [GSM4377928 | GSE145845,GSE146323 | scprob=0.897 | libsize=4.0M]
+  title: C2-C6_S51
+  src  : VCaP
+  ext  : Nextera XT Index Kit v2.
+
+#19 [GSM4110378 | GSE138525 | scprob=0.602 | libsize=1.8M]
+  title: 96ex_F2
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#20 [GSM6269113 | GSE207049 | scprob=0.525 | libsize=1.6M]
+  title: Line113_GARD
+  src  : HG01523_GARD
+  ext  : Zymo Quick-RNA,TM3'seq as in PMCID: PMC6945013
+
+#21 [GSM2980034 | GSE110154 | scprob=0.584 | libsize=1.0M]
+  title: Fetal_pancreas_cell_1205
+  src  : 15wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#22 [GSM2172387 | GSE81547 | scprob=0.893 | libsize=1.4M]
+  title: 38yr_female_cell508
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#23 [GSM4110492 | GSE138525 | scprob=0.587 | libsize=0.5M]
+  title: HDiPSC_B6
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#24 [GSM4426749 | GSE147356 | scprob=0.578 | libsize=4.7M]
+  title: Breast biopsy UVABC2 10-cell sample 22
+  src  : Breast tumor
+  ext  : All samples were cryoembedded and sectioned on to glass slides (8Âµm sections). Cell samples were isolated with laser capture microdissection and poly(A) RNA extracted, reverse transcribed and poly(A) PCR amplified prior
+
+#25 [GSM6269340 | GSE207049 | scprob=0.605 | libsize=2.9M]
+  title: Line130_BAFF
+  src  : GM19377_BAFF
+  ext  : Zymo Quick-RNA,TM3'seq as in PMCID: PMC6945013
+
+#26 [GSM2980280 | GSE110154 | scprob=0.751 | libsize=0.8M]
+  title: Fetal_pancreas_cell_1451
+  src  : 12wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#27 [GSM2826884 | GSE105452,GSE105454 | scprob=0.734 | libsize=3.2M]
+  title: OX2123PL4_8G
+  src  : Bone Marrow
+  ext  : cDNA libraries were synthetized from single cells using TARGET-seq method,Illumina sequencing libraries were prepared using the Illumina Nextera XT DNA kit, using one forth of the standard volume recommended by Illumina,
+
+#28 [GSM4110337 | GSE138525 | scprob=0.549 | libsize=1.7M]
+  title: 96ex_A12
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#29 [GSM5518332 | GSE182085 | scprob=0.504 | libsize=37.9M]
+  title: HEK293T_ALDOBW148X_gACA19_CMC
+  src  : human embryonic kidney cell (HEK293T)
+  ext  : Total RNA was extracted from cells using TRIzol reagent (Life Technologies). The selection of polyA(+) RNA was performed using Dynabeadsâ¢ Oligo(dT)25 (Invitrogen).,RNA-seq of transfected HEK 293T cells were performed w
+
+#30 [GSM1955976 | GSE75478 | scprob=0.666 | libsize=0.9M]
+  title: I2_plate5_G_12
+  src  : Lin-CD34+CD38- bone marrow
+  ext  : Fresh bone marrow mononuclear cells were stained with fluorescence labeled antibodies against CD34, CD38, CD45RA, CD90, CD49f, CD135, CD10, CD7 and a lineage cocktail consisting of CD4, CD8, CD11b, CD14, CD19, CD20, CD56
+
+#31 [GSM2980068 | GSE110154 | scprob=0.608 | libsize=1.1M]
+  title: Fetal_pancreas_cell_1239
+  src  : 15wks_fetal pancreas cell_acinar
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#32 [GSM1975577 | GSE75764 | scprob=0.791 | libsize=15.5M]
+  title: human 16-cell-1-6
+  src  : 16-cell blastomere
+  ext  : RNA was isolated from single cells or single morula embryos and amplified as previously described,Library construction was performed following Illumina manufacturer suggestions.
+
+#33 [GSM6857405 | GSE221264 | scprob=0.743 | libsize=2.8M]
+  title: Smooth Muscle, Control, Replicate 1
+  src  : Pulmonary Smooth Muscle
+  ext  : Cells were collected using trypsin and RNA was gathered using the Qiagen RNeasy kit (cat. 74004),Libraries were prepared according to Lexogen's instruction accompanying the QuantSeq 3â mRNA-Seq Library Prep Kit FWD for
+
+#34 [GSM4426876 | GSE147356 | scprob=0.597 | libsize=4.6M]
+  title: Breast biopsy UVABC5 10-cell sample 5
+  src  : Breast tumor
+  ext  : All samples were cryoembedded and sectioned on to glass slides (8Âµm sections). Cell samples were isolated with laser capture microdissection and poly(A) RNA extracted, reverse transcribed and poly(A) PCR amplified prior
+
+#35 [GSM3239717 | GSE89497 | scprob=0.520 | libsize=27.9M]
+  title: HE8W-STR5
+  src  : Stromal cell of Week 8
+  ext  : Chrion were scraped from human  placenta and the remaining villi were collected and minced into small pieces. The tissue were digested with an enzyme cocktail (0.125% trypsin 0.04% Dnase and 0.05% type â£collagenase) fo
+
+#36 [GSM3731065 | GSE130050 | scprob=0.795 | libsize=2.0M]
+  title: DI-3 (Blastocyst-271)
+  src  : embryo
+  ext  : Human embryos at different stages were treated with Tyrodeâs acidic solution to remove the zona pellucida then seperated by 0.25% typsin digestion. Single blastomeres were washed twice with 1xPBS containing 0.1% BSA an
+
+#37 [GSM5593471 | GSE184610 | scprob=0.831 | libsize=1.8M]
+  title: Covid_20200112340
+  src  : Oronasopharingeal swab
+  ext  : RNA extraction was performed by using either the Maelstrom 9600 (TANBead) or GeneQuality X120 (AbAnalitica) automatic platforms according to manufacturer's specifications.,40-60uL unquantified swab RNA extract (1-5 ng/ul
+
+#38 [GSM2174180 | GSE81547 | scprob=0.913 | libsize=0.9M]
+  title: 22yr_male_cell2299
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#39 [GSM5454092 | GSE180133 | scprob=0.707 | libsize=0.7M]
+  title: J-LatA2+SAHA (P2770_N703-S518)
+  src  : J-Lat A2
+  ext  : Single cells were sorted by FACSAria II (Beckman Courter, CA, USA) to 96-well plates filled with lysis buffer (0.2% Triton X-100, 1 U/ul RNase inhibitors).,Reverse transcription was performed using SuperScript II (Thermo
+
+#40 [GSM6774874 | GSE219162 | scprob=0.579 | libsize=2.8M]
+  title: siMLX_Donor_C_28
+  src  : Primary Human Hepatocytes
+  ext  : Dynabeads mRNA DIRECT Kit,QuantSeq 3âmRNA-Seq Library Prep Kit-FWD
+
+#41 [GSM4110312 | GSE138525 | scprob=0.629 | libsize=1.9M]
+  title: 180CAG_F10
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#42 [GSM4110475 | GSE138525 | scprob=0.709 | libsize=0.7M]
+  title: C116_H8
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#43 [GSM3669645 | GSE128273 | scprob=0.624 | libsize=0.7M]
+  title: P1_C5_exp1_K562_60min4sU
+  src  : K562
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#44 [GSM2980104 | GSE110154 | scprob=0.750 | libsize=0.8M]
+  title: Fetal_pancreas_cell_1275
+  src  : 15wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#45 [GSM3033217 | GSE111543,GSE111546 | scprob=0.919 | libsize=1.1M]
+  title: 6h_Mock_uninfected_206231
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#46 [GSM4332433 | GSE145767 | scprob=0.637 | libsize=2.2M]
+  title: exRNA_fraction_1_03
+  src  : plasma_platelets_cell_debris
+  ext  : RNA was extracted using miRNeasy Micro Kit (Cat. 217084),RNA libraries were prepared for sequencing using CATS RNA-seq Kit (Cat. C05010049)
+
+#47 [GSM2173981 | GSE81547 | scprob=0.778 | libsize=1.1M]
+  title: 54yr_male_cell2100
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#48 [GSM2174292 | GSE81547 | scprob=0.931 | libsize=0.6M]
+  title: 22yr_male_cell2411
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#49 [GSM5282925 | GSE164634 | scprob=0.536 | libsize=19.3M]
+  title: DroshaKO_miR-320a_BR2
+  src  : HCT116 Drosha KO
+  ext  : Total RNA was extracted from cells using TRIzol (Invitrogen) and treated with RQ1 Dnase (Promega).,mRNA is isolated using oligo(dT) beads, fragmented randomly in fragmentation buffer, and reverse-transcribed with mRNA te
+
+#50 [GSM4715388 | GSE155897 | scprob=0.541 | libsize=1.3M]
+  title: Plasmacytoid dendritic cells from healthy donor HD1 (resequenced)
+  src  : Plasmacytoid dendritic cells from peripheral blood
+  ext  : Cells were FACSorted in Lysis Binding Buffer and mRNA was extracted through Dynabeads polyT,RNA was sample-barcodad by a RT reaction. After, cDNA was purified with SPRIselect and amplified using the T7 promotor as templa
+
+
+[A3b] === Candidati 'mid' (scprob 0.3-0.5): 10734 ===
+
+[A3b] === 50 RANDOM scprob 0.3-0.5 (FN-leaning manual check) ===
+
+#1 [GSM3638920 | GSE127792 | scprob=0.354 | libsize=3.0M]
+  title: 44_OPTC_D00_5070: LAIV-Day-0
+  src  : Blood
+  ext  : Total RNA was isolated from PAXgene tubes using the PAXgene Blood RNA Kit following the manufacturerâs protocol. RNA Quality and quantity were assessed by Agilent Tapestation 2200 and Invitrogen Qubit 2.0 fluorometer.,
+
+#2 [GSM5321392 | GSE174647 | scprob=0.379 | libsize=32.2M]
+  title: OX_407_P4B7_015_C2
+  src  : MS brain 3
+  ext  : Fresh-frozen brain tissues from SPMS patients and non-MS controls used in this study were provided by the UK Multiple Sclerosis Society Tissue Bank at Imperial College London,Spatial transcriptomics as previously describ
+
+#3 [GSM7826043 | GSE244740 | scprob=0.496 | libsize=0.6M]
+  title: DMSO, Con0, Optimization plate 3, Well B24 [S4881Nr3_B24]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#4 [GSM2756125 | GSE103147 | scprob=0.343 | libsize=9.4M]
+  title: 140409_I266_FCC4E1TACXX_L7_RHUMuweNZBRAAPEI-89
+  src  : Monocytes
+  ext  : Paxgene RNA,GlobinClear Globin transcript reduction followed by Illumina mRNA-Seq
+
+#5 [GSM7806865 | GSE244107,GSE244110 | scprob=0.329 | libsize=2.3M]
+  title: HepaPlate01_G17
+  src  : Blank
+  ext  : The media and chemicals from the 384-well plates was fully aspirated and replaced with 10 Î¼L/well of 2X lysis buffer. The plates were then shaken using an orbital plate shaker for 10 minutes. The plates were then checke
+
+#6 [GSM7837833 | GSE245162,GSE245163 | scprob=0.305 | libsize=3.3M]
+  title: XG7_KO_clone_1_treated with 2 ÂµM Nutlin3a for 16H_replicate_2
+  src  : XG7
+  ext  : RNA was extracted with RNeasy Mini Kit (Qiagen) and sequenced on 3âends,The libraries are prepared from 10âng of total RNA in 4Âµl. The mRNA poly(A) tails are tagged with universal adapters, well-specific barcodes an
+
+#7 [GSM1955830 | GSE75478 | scprob=0.484 | libsize=1.2M]
+  title: I2_plate4_C_10
+  src  : Lin-CD34+CD38- bone marrow
+  ext  : Fresh bone marrow mononuclear cells were stained with fluorescence labeled antibodies against CD34, CD38, CD45RA, CD90, CD49f, CD135, CD10, CD7 and a lineage cocktail consisting of CD4, CD8, CD11b, CD14, CD19, CD20, CD56
+
+#8 [GSM6274922 | GSE207049 | scprob=0.381 | libsize=2.6M]
+  title: v3.Line547_BPA
+  src  : HG03419_BPA
+  ext  : Zymo Quick-RNA,TM3'seq as in PMCID: PMC6945013
+
+#9 [GSM4553866 | GSE150616 | scprob=0.375 | libsize=8.4M]
+  title: RNA-seq t2iLGoY-P10 rep2
+  src  : human fibroblasts
+  ext  : RNA extraction was performed using the RNeasy micro kit (Qiagen, Cat#74004) from â¼2â20 Ã 104 cells with QIAcube (Qiagen). The concentrations of RNA were measured by a Qubit RNA HS Assay Kit (ThermoFisher, Cat#Q32855
+
+#10 [GSM7828044 | GSE244740 | scprob=0.441 | libsize=0.5M]
+  title: Rofecoxib, Con5, Screening plate 3, Well D20 [S4881Nr8_D20]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#11 [GSM7825601 | GSE244740 | scprob=0.442 | libsize=1.0M]
+  title: Lidocaine, Con4, Optimization plate 2, Well A13 [S4881Nr2_A13]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#12 [GSM5468614 | GSE180707,GSE180709 | scprob=0.380 | libsize=8.8M]
+  title: Nig-treated NLRP3 reconstituted THP-1 macrophages rep 2
+  src  : THP-1 macrophages
+  ext  : RNA was extracted using the RNeasy Plus Micro Kit (Qiagen) according to the manufacturerâs instructions.,RNA libraries were prepared with 50 ng of total cellular RNA or 30 ng of total vesicular RNA using the QuantSeq 3
+
+#13 [GSM2471077 | GSE94149,GSE94152 | scprob=0.335 | libsize=8.1M]
+  title: Naive_d0 Sample 17
+  src  : primary sorted memory CD4+ T cell subsets derived from PBMCs
+  ext  : Qiagen RNeasy Micro KitÂ ,Clontech SMARTer Ultra LowÂ Input RNA Kit for SequencingÂ [converting from RNA to cDNA] and Nextera XT DNA [DNA library prep]
+
+#14 [GSM7825811 | GSE244740 | scprob=0.430 | libsize=0.7M]
+  title: Enalapril, Con6, Optimization plate 2, Well I19 [S4881Nr2_I19]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#15 [GSM7832605 | GSE244957 | scprob=0.444 | libsize=3.7M]
+  title: TAX58 UTUC patient tumor sample
+  src  : Upper tract Urothelial carcinoma
+  ext  : Maxwell RSC RNA FFPE Kit,Lexogen QuantSeq 3â Seq FWD
+
+#16 [GSM5635545 | GSE186121 | scprob=0.325 | libsize=0.6M]
+  title: L12_AA06_MethodBlank_0
+  src  : Neuron
+  ext  : described in https://www.altex.org/index.php/altex/article/view/1994,described in https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178302
+
+#17 [GSM4577051 | GSE151379,GSE151384 | scprob=0.383 | libsize=1.1M]
+  title: IER3IP1_day17-38
+  src  : human cerebral organoids, IER3IP1-KO
+  ext  : Qiagen RNEasy,Lexogen Quantseq kit, UMI inclusion
+
+#18 [GSM7825518 | GSE244740 | scprob=0.495 | libsize=0.5M]
+  title: Imatinib, Con7, Optimization plate 1, Well M10 [S4881Nr1_M10]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#19 [GSM1662772 | GSE68086 | scprob=0.325 | libsize=17.5M]
+  title: Blood_Platelets_Panc-498
+  src  : 498-Pancr-WT
+  ext  : Blood platelets were isolated from whole blood in purple-cap BD Vacutainers containing the EDTA anti-coagulant. The cells and aggregates were removed by centrifugation at room temperature for 20 minutes at 120g, resultin
+
+#20 [GSM5504524 | GSE181525 | scprob=0.425 | libsize=1.3M]
+  title: 999-55 (SID-82)
+  src  : FFPE fixed biopsy of melanoma
+  ext  : HTG EdgeSeq Immuno-Oncology Panel (Tucson, Arizona),Tumor samples were processed by adding HTG Lysis Buffer to lyse and/or permeabilize the RNA available to subsequently bind to corresponding target-specific Nuclease Pro
+
+#21 [GSM2144477 | GSE81198 | scprob=0.366 | libsize=3.9M]
+  title: ArtIEC16
+  src  : epithelial isolates_HIV-infected ART-treated patient
+  ext  : Phenol:Chloroform Extraction, Cleanup with Zymo IC Column,RNA libraries were prepared for sequencing following Illumina protocols.  cDNA libraries were diluted to 0.15ng/ul, fragmented with the Nextera XT DNA kit (Illumi
+
+#22 [GSM7835295 | GSE245049,GSE245163 | scprob=0.409 | libsize=2.6M]
+  title: MM_15
+  src  : CD138+ sorted cells
+  ext  : RNA was extracted with RNeasy Mini Kit (Qiagen) and sequenced on 3âends,The libraries are prepared from 10âng of total RNA in 4Âµl. The mRNA poly(A) tails are tagged with universal adapters, well-specific barcodes an
+
+#23 [GSM6273148 | GSE207049 | scprob=0.324 | libsize=1.5M]
+  title: Line42_IFNg
+  src  : GM20831_IFNG
+  ext  : Zymo Quick-RNA,TM3'seq as in PMCID: PMC6945013
+
+#24 [GSM6969671 | GSE223635 | scprob=0.359 | libsize=11.6M]
+  title: Ect1 cells, IFN epsilon, R1
+  src  : Ect1 ectocervical cell line
+  ext  : Cells were harevested in RLT buffer (Qiagen) with added Î²-mercaptoethanol. Lysates were homogenized by passing through a 20-gauge needle attached to a sterile plastic syringe. Total RNA was extracted from lysates using 
+
+#25 [GSM3669849 | GSE128273 | scprob=0.308 | libsize=1.6M]
+  title: P1_D5_exp2_Jurkat_15min_Unstimulated
+  src  : Jurkat
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#26 [GSM7825435 | GSE244740 | scprob=0.495 | libsize=0.5M]
+  title: Lidocaine, Con3, Optimization plate 1, Well K6 [S4881Nr1_K6]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#27 [GSM7825772 | GSE244740 | scprob=0.356 | libsize=0.7M]
+  title: DMSO, Con0, Optimization plate 2, Well H11 [S4881Nr2_H11]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#28 [GSM6275556 | GSE207049 | scprob=0.400 | libsize=1.2M]
+  title: Line579_DEX
+  src  : GM19139_DEX
+  ext  : Zymo Quick-RNA,TM3'seq as in PMCID: PMC6945013
+
+#29 [GSM5527697 | GSE182371,GSE182377 | scprob=0.347 | libsize=0.6M]
+  title: Fibroblast_28 (RiboSeq)
+  src  : untreated normal human fibroblast
+  ext  : For brain and adipose tissue, 80-100mg of tissue were placed in chilled tubes containing zirconia beads and 1 mL cold lysis buffer supplemented with 0.1 mg/mL cycloheximide (formulation as in TruSeqÂ® Ribo Profile Mammal
+
+#30 [GSM6027351 | GSE200288 | scprob=0.476 | libsize=3.2M]
+  title: MIA24
+  src  : Extracellular vesicles
+  ext  : EVs were purified from 0.5-1 mL serum using the exoRNeasy Midi kit (Qiagen; Cat#77144) according to the manufacturerâs instructions. For RNA extraction, EVs were lysed on column with 1 mL Trizol reagent (Invitrogen; Ca
+
+#31 [GSM7827269 | GSE244740 | scprob=0.358 | libsize=0.8M]
+  title: Enalapril, Con8, Screening plate 1, Well F17 [S4881Nr6_F17]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#32 [GSM3638825 | GSE127792 | scprob=0.354 | libsize=2.3M]
+  title: 086_OPTC_D07_6027: IIV-Day-7
+  src  : Blood
+  ext  : Total RNA was isolated from PAXgene tubes using the PAXgene Blood RNA Kit following the manufacturerâs protocol. RNA Quality and quantity were assessed by Agilent Tapestation 2200 and Invitrogen Qubit 2.0 fluorometer.,
+
+#33 [GSM3672386 | GSE128359 | scprob=0.382 | libsize=2.2M]
+  title: Urine_26
+  src  : Urine
+  ext  : Urine samples from each participant were collected in the morning, stored at 4Â°C until the processing consisting of centrifugation at 3,000g for 10 min. The urine supernatant aliquots were then transferred in tubes and 
+
+#34 [GSM2286723 | GSE78968 | scprob=0.317 | libsize=5.8M]
+  title: avervaged_onefifth_MCF10A_ERCC_spiked_2
+  src  : MCF10A cell line + ERCC spike-in
+  ext  : cDNA libraries were prepared for sequencing using standard Illumina Truseq protocols
+
+#35 [GSM2471111 | GSE94150,GSE94152 | scprob=0.372 | libsize=7.1M]
+  title: TM_Unstimulated Control Sample 18
+  src  : primary sorted memory CD4+ T cell subsets derived from PBMCs
+  ext  : Qiagen RNeasy Micro KitÂ ,Clontech SMARTer Ultra LowÂ Input RNA Kit for SequencingÂ [converting from RNA to cDNA] and Nextera XT DNA [DNA library prep]
+
+#36 [GSM2174369 | GSE81547 | scprob=0.498 | libsize=1.3M]
+  title: 22yr_male_cell2488
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#37 [GSM4607966 | GSE152197,GSE152543 | scprob=0.456 | libsize=1.7M]
+  title: 4FTreg41
+  src  : iTreg
+  ext  : PBMCs were isolated from peripheral blood and Treg cells were single sorted into 96-well plates by FACS using CD4+CD25hiCD127lo/neg antibodies. For adipose tissue, we first performed collagenase digestion. Next, the lymp
+
+#38 [GSM6209846 | GSE205301 | scprob=0.338 | libsize=1.1M]
+  title: EV015
+  src  : Human healthy control plasma
+  ext  : Plasma/Serum Circulating and Exosomal RNA Purification Kit (Slurry Format),SMARTerÂ® Stranded Total RNA-Seq Kit v2 - Pico Input Mammalian
+
+#39 [GSM2909640 | GSE108664,GSE108667 | scprob=0.330 | libsize=9.4M]
+  title: P1061815H08 [saliva RNA-seq]
+  src  : saliva_post-vaccination respons for pneumococcal vaccine (PPSV23)
+  ext  : For RNA-Seq, total RNA was extracted using the Qiagen RNeasy kit (Qiagen) and treated with RNAse-free DNase (Qiagen). RNA integrity was checked on a Bioanalyzer 2100 (Agilent, Santa Clara CA),Libraries were constructed b
+
+#40 [GSM5226057 | GSE171468 | scprob=0.301 | libsize=2.0M]
+  title: H1
+  src  : colorectal tumor adjacent normal tissue
+  ext  : RNA was isolated using the standard TRIzol protocol.,Stand-specific libraries were constructed using the TruSeq RNA sample prepartion kit (Illumina).
+
+#41 [GSM3972210 | GSE134817 | scprob=0.301 | libsize=10.9M]
+  title: CNhi10321.H-Non_0_-6-5_ATG
+  src  : HepG2_Statins_Non_6
+  ext  : After the treatments, total RNA was extracted from the cells using RNeasy kit (Qiagen).,8-plex nAnT-iCAGE protocol (Murata M, et al. Detecting expressed genes using CAGE. Methods Mol. Biol. 2014;1164:67â85. doi: 10.100
+
+#42 [GSM7825841 | GSE244740 | scprob=0.460 | libsize=0.8M]
+  title: Lidocaine, Con4, Optimization plate 2, Well L5 [S4881Nr2_L5]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#43 [GSM2172467 | GSE81547 | scprob=0.475 | libsize=1.7M]
+  title: 38yr_female_cell588
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#44 [GSM6656442 | GSE216028,GSE216030 | scprob=0.461 | libsize=13.9M]
+  title: NAGM, CD4, 02
+  src  : NAGM
+  ext  : Sorted cells were lysed in buffer RLT (QIAGEN) plus 1% Î²-mercaptoethanol and stored at -80Â°C until further processing. Total RNA was isolated with the RNeasy micro kit (QIAGEN) according to the manufacturersâ instruc
+
+#45 [GSM8282464 | GSE267953 | scprob=0.414 | libsize=1.7M]
+  title: Colon cancer EVs, 39T, sEVs
+  src  : Colon cancer tissue
+  ext  : RNA contained in EVs was isolated using the miRNeasy mini kit (QIAGEN, Hilden, Germany), following the manufacturerâs protocol. Small EVs (5 Ã 10^8 particles), large EVs (5 Ã 10^7 particles) were used to extract RNA.
+
+#46 [GSM1326580 | GSE54922 | scprob=0.453 | libsize=0.6M]
+  title: Sample 15_HUCHXP12_CTTGT_L001_R1_001
+  src  : Jurkat cells
+  ext  : Total RNA was extracted with Trizol. Capped RNA was immunoprecipitated with anti-7mG antibody. The antibody used to precipitate the capped mRNAs and then sequence the histone mRNAs in the sample was originally produced b
+
+#47 [GSM5358684 | GSE176156 | scprob=0.311 | libsize=1.3M]
+  title: 5211
+  src  : PBMC
+  ext  : RNA was extracted at the Center for Infectious Disease Research (CIDR, Seattle) using the Promega SV 96 RNA Isolation kit following the manufacturerâs protocol. Samples kept in RNAprotect were centrifuged at 4,000g for
+
+#48 [GSM7892280 | GSE247526 | scprob=0.352 | libsize=1.8M]
+  title: Meso34-M2-MV-pos [28_Meso34-P33-7677-M2-MV-pos]
+  src  : M2
+  ext  : RNA were extracted with Kit Nucleospin RNAPlus MachereyNagel with the prescribed protocol provided with the kit. Quality control was performed with Agilent Bioanalyser.,Libraries were prepared according to NovaSeq 6000 S
+
+#49 [GSM6272185 | GSE207049 | scprob=0.333 | libsize=1.4M]
+  title: Line356_IGF
+  src  : HG00274_IGF
+  ext  : Zymo Quick-RNA,TM3'seq as in PMCID: PMC6945013
+
+#50 [GSM7826830 | GSE244740 | scprob=0.339 | libsize=0.6M]
+  title: DMSO, Con0, Optimization plate 5, Well P5 [S4881Nr5_P5]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+[A3b] DONE

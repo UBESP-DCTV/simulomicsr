@@ -1,0 +1,805 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+[A3c] load A3 TSV ...
+[A3c] post lib_size: 508685
+[A3c] reading H5 metadata for bulk-pattern check ...
+           used (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  1801222 96.2    4093781 218.7  2595261 138.7
+Vcells 11197913 85.5   22777685 173.8 18826390 143.7
+
+[A3c] === Pattern BULK_LOW_INPUT hit counts ===
+  QuantSeq             :   19601
+  TM3seq               :    3664
+  ScreenSeq            :    2543
+  LCM_10cell           :    1324
+  FFPE                 :   14703
+  RiboSeq              :    1905
+  EV_exoRNA            :    3884
+  swab_COVID           :    2220
+  EdgeSeq              :    1739
+  CAGE                 :     919
+  PAXgene              :   24415
+  PicoPure             :    1997
+  SMARTer_Pico         :    6505
+  Smart3SEQ            :     132
+  Lexogen_3mRNA        :   10481
+  HTGseq               :     982
+  NASCseq              :     670
+  spatial_trans        :     238
+  embryo_blastomere    :    1481
+
+  any BULK match (union)  : 81116 / 508685 (15.95%)
+
+[A3c] === Curva FPR proxy ===
+ threshold n_above n_bulk_proxy frac_bulk_proxy
+      0.50   14502         2942      0.20286857
+      0.55   12634         2231      0.17658699
+      0.60   10862         1665      0.15328669
+      0.65    9002         1136      0.12619418
+      0.70    7184          724      0.10077951
+      0.75    5391          398      0.07382675
+      0.80    3779          217      0.05742260
+      0.85    2355          101      0.04288747
+      0.90    1225           37      0.03020408
+      0.95     527           16      0.03036053
+
+[A3c] === manual bin 0.5-0.6, n_available=3640, sampling=50 ===
+
+#1 [GSM5593625 | GSE184610 | scprob=0.575 | libsize=1.8M] [PROXY-BULK]
+  title: Covid_005602D58
+  src  : Oronasopharingeal swab
+  ext  : RNA extraction was performed by using either the Maelstrom 9600 (TANBead) or GeneQuality X120 (AbAnalitica) automatic platforms according to manufacturer's specifications.,40-60uL unquantified swab RNA extract (1-5 ng/ul
+
+#2 [GSM4682452 | GSE154906 | scprob=0.583 | libsize=0.5M]
+  title: PT01_TT_006
+  src  : TT
+  ext  : RNA libraries were prepared for sequencing using standard Illumina protocols
+
+#3 [GSM3669697 | GSE128273 | scprob=0.527 | libsize=1.6M] [PROXY-BULK]
+  title: P1_G9_exp1_K562_60min4sU
+  src  : K562
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#4 [GSM3486332 | GSE122827 | scprob=0.513 | libsize=1.4M] [PROXY-BULK]
+  title: EPI2C11
+  src  : engineered epicardial cell
+  ext  : Total RNA was extracted from cultures using RNeasy mini from Qiagen. DNA contamination was removed from the samples using DNA-freeâ¢ DNA Removal Kit from Ambion (Thermofisher).,cDNA synthesis and Illumina libraries were
+
+#5 [GSM3670013 | GSE128273 | scprob=0.579 | libsize=0.9M] [PROXY-BULK]
+  title: P1_A3_exp3_Jurkat_30min4sU_Unstimulated
+  src  : Jurkat
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#6 [GSM6943518 | GSE223213 | scprob=0.583 | libsize=2.0M]
+  title: Vacc_13
+  src  : whole blood
+  ext  : RNA was harvested using RNAiso Plus (Takra). 1 ug of total RNA was used for the construction of sequencing libraries.,RNA libraries for RNA-seq were prepared using SMARTER mRNA-Seq Library Prep Kit following manufacturer
+
+#7 [GSM2774372 | GSE103568 | scprob=0.565 | libsize=1.8M]
+  title: UHRR_AAACAT
+  src  : universal human reference RNA
+  ext  : Cells were FACS sorted into lysis buffer,The Universal Human Reference RNA was obtained from Agilent (catalog number 740000).,Libraries were constructed using various developments of the SCRB-seq protocol, see sample des
+
+#8 [GSM4606101 | GSE152197,GSE152543 | scprob=0.538 | libsize=0.6M]
+  title: 10FTreg12
+  src  : iTreg
+  ext  : PBMCs were isolated from peripheral blood and Treg cells were single sorted into 96-well plates by FACS using CD4+CD25hiCD127lo/neg antibodies. For adipose tissue, we first performed collagenase digestion. Next, the lymp
+
+#9 [GSM3589742 | GSE126050,GSE126051 | scprob=0.520 | libsize=0.6M]
+  title: P04_Day.41_NoPNK
+  src  : platelet-poor blood plasma
+  ext  : Serial plasma sample from 2 patients undergoing allogeneic bone marrow transplantation were collected in 10-mL K2EDTA plasma tubes (Vacutainer 366643; Becton Dickinson) and processed within one hour of blood draw followi
+
+#10 [GSM3670401 | GSE128273 | scprob=0.535 | libsize=0.7M] [PROXY-BULK]
+  title: P2_H10_exp4_Jurkat_60min4sU_Stimulated
+  src  : Jurkat
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#11 [GSM4544719 | GSE150283 | scprob=0.504 | libsize=2.6M] [PROXY-BULK]
+  title: ProxA_pos_31060
+  src  : Fallopian tube fragment
+  ext  : Trizol-LS,Lexogen Quant-Seq
+
+#12 [GSM2173454 | GSE81547 | scprob=0.589 | libsize=0.7M]
+  title: 5yr_male_cell1575
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#13 [GSM4153713 | GSE126230 | scprob=0.514 | libsize=1.2M] [PROXY-BULK]
+  title: UC47rN20
+  src  : Resting CD4+ T cells following ex vivo PMA/ionomycin activation, Sortseq
+  ext  : Resting CD4+ T cells were sorted by HIV-1 RNA SortSeq into single cells into RNA preserving buffer. RNA was reverse crosslinked with proteinase K and SDS under 50Â°C for 1 hour. RNA was extracted by Quick-RNA Microprep (
+
+#14 [GSM1956770 | GSE75478 | scprob=0.537 | libsize=2.0M]
+  title: I2_plate15_B_2
+  src  : Lin-CD34+CD38- bone marrow
+  ext  : Fresh bone marrow mononuclear cells were stained with fluorescence labeled antibodies against CD34, CD38, CD45RA, CD90, CD49f, CD135, CD10, CD7 and a lineage cocktail consisting of CD4, CD8, CD11b, CD14, CD19, CD20, CD56
+
+#15 [GSM5928259 | GSE197698 | scprob=0.512 | libsize=6.0M]
+  title: HFO_FP_b001_156_cbc
+  src  : UC_monolayer_CNM_BR1
+  ext  : 3âRNA sequencing was performed using linear amplification and pooling followed by paired end sequencing (Hashimshony et al., 2016).
+
+#16 [GSM8023209 | GSE253558,GSE253561 | scprob=0.534 | libsize=9.7M] [PROXY-BULK]
+  title: PC53_Mixed
+  src  : Pancreas
+  ext  : Total RNAs were isolated using Trizol,The construction of the library was performed using QuantSeq 3â mRNA-Seq Library Prep Kit
+
+#17 [GSM5151494 | GSE168626,GSE168634 | scprob=0.564 | libsize=0.6M]
+  title: intestinal stromal cells pre-capture [WTCHG_288196_208203]
+  src  : colonic mucosa
+  ext  : protocol is described in Kinchen et.al., Cell, 2018; PMID: 30270042,Pre-capture libraries were prepared following the 10x droplet-based protocol as described in Kinchen et.al., Cell, 2018; PMID: 30270042. Post-capture li
+
+#18 [GSM4426876 | GSE147356 | scprob=0.597 | libsize=4.6M] [PROXY-BULK]
+  title: Breast biopsy UVABC5 10-cell sample 5
+  src  : Breast tumor
+  ext  : All samples were cryoembedded and sectioned on to glass slides (8Âµm sections). Cell samples were isolated with laser capture microdissection and poly(A) RNA extracted, reverse transcribed and poly(A) PCR amplified prior
+
+#19 [GSM2992107 | GSE110480 | scprob=0.506 | libsize=4.2M] [PROXY-BULK]
+  title: H36_EXP7_1
+  src  : Whole blood
+  ext  : Total RNA was extracted from the Paxgene-blood samples with the Paxgene RNA extraction kit (Qiagen) following the supplier instructions. To concentrate the RNA even more, the clean and concentrator-5 kit (Zymo Research) 
+
+#20 [GSM7825557 | GSE244740 | scprob=0.590 | libsize=0.6M] [PROXY-BULK]
+  title: Sunitinib, Con2, Optimization plate 1, Well M23 [S4881Nr1_M23]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#21 [GSM2653684 | GSE99822 | scprob=0.549 | libsize=2.0M]
+  title: HEK Cell D4
+  src  : cell culture
+  ext  : Cells were FACS sorted into lysis buffer (1/500 Phusion HF reaction buffer),Libraries were constructed according to the SCRB-seq protocol described in Ziegenhain et al., 2017
+
+#22 [GSM3670306 | GSE128273 | scprob=0.535 | libsize=0.8M] [PROXY-BULK]
+  title: P1_H11_exp4_Jurkat_60min4sU_Stimulated
+  src  : Jurkat
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#23 [GSM3032983 | GSE111543,GSE111546 | scprob=0.542 | libsize=1.9M]
+  title: 6h_D23580_BULK_201205
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#24 [GSM3133202 | GSE113616 | scprob=0.502 | libsize=3.9M]
+  title: 30-70_CAF-21
+  src  : immortalized primary pancreatic cancer-associated fibroblast cell line
+  ext  : After 72 hours of culture, cells were trypsinized and resuspended in PBS solution, and micromanipulated. PDAC cells or CAFs were then individually micromanipulated using a 10 Î¼m transfer tip on an Eppendorf TransferMan 
+
+#25 [GSM4488685 | GSE148321,GSE149041 | scprob=0.526 | libsize=0.7M]
+  title: P5_UN4_P2670_N718.S521
+  src  : P5_UN4
+  ext  : Live SCC-25 sorted cells were lysed using lysis buffer (0.2% Triton-100, 1U/ul RNase inhibitor). Reverse transcription was performed using SuperScript II (ThermoFisher Scientific) in the presence of 1 Î¼M oligo-dT30VN (I
+
+#26 [GSM2745802 | GSE102737 | scprob=0.500 | libsize=1.4M]
+  title: 3D/FN Sample 2
+  src  : Mesenchymal stem cell
+  ext  : MSCs specifically within the structures were excised and RNA extracted according to the RNeasy Mini Kit (Qiagen, Germantown, MD).,mRNA library was produced according to the Illumina Nextera XT preparation kitâs manufac
+
+#27 [GSM4110290 | GSE138525 | scprob=0.569 | libsize=1.5M]
+  title: 180CAG_C4
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#28 [GSM7497261 | GSE235223 | scprob=0.555 | libsize=2.8M] [PROXY-BULK]
+  title: HNSCC_LMU_KKG_Sample_074
+  src  : head and squamous cell carcinoma
+  ext  : Simultaneous DNA and total RNA extraction using the AllPrep DNA/RNA FFPE Kit (Qiagen, Hilden, Germany) according to the manufacturer's protocol.,Lexogen QuantSeq 3â mRNA-Seq Library Prep Kit FWD using unique dual index
+
+#29 [GSM2980131 | GSE110154 | scprob=0.536 | libsize=1.2M]
+  title: Fetal_pancreas_cell_1302
+  src  : 15wks_fetal pancreas cell_acinar
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#30 [GSM2172621 | GSE81547 | scprob=0.586 | libsize=0.9M]
+  title: 38yr_female_cell742
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#31 [GSM3688365 | GSE128922 | scprob=0.512 | libsize=2.2M]
+  title: Day 8 (CBRA) [C2]
+  src  : Lung Differentiaton-Based Protocol
+  ext  : Trugrade_96_set3, Digital Gene Expression 3' RNA-seq
+
+#32 [GSM2259870 | GSE85183 | scprob=0.561 | libsize=0.6M]
+  title: Gem2nM54_CGAGGCT-ACTGCAT_L001_RNA-seq
+  src  : CFPAC-1_Gemcitabine (2nM)_Microraft
+  ext  : ClonTech SMARTer kit,Nextera XT
+
+#33 [GSM3670376 | GSE128273 | scprob=0.570 | libsize=1.7M] [PROXY-BULK]
+  title: P2_F1_exp4_Jurkat_unlabelled_Unstimulated
+  src  : Jurkat
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#34 [GSM8263075 | GSE267260 | scprob=0.519 | libsize=2.1M]
+  title: wt_rep1
+  src  : HEK293FT
+  ext  : The OmicsCam enveloping the cells was treated with 100 Î¼L of lysis buffer containing 10 mM Tris-HCl pH 7.4, 10 mM NaCl, 3 mM MgCl2, 0.1% (vol/vol) NP-40, and 1% (vol/vol) BSA, followed by incubation on ice for 5 minutes
+
+#35 [GSM7073592 | GSE226340 | scprob=0.540 | libsize=1.3M]
+  title: Sample group 5
+  src  : Peripheral blood
+  ext  : TARGET-seq (Rodriguez-Meira et al, 2019)
+
+#36 [GSM2172966 | GSE81547 | scprob=0.541 | libsize=2.2M]
+  title: 44yr_female_cell1087
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#37 [GSM5115476 | GSE167918 | scprob=0.599 | libsize=5.1M] [PROXY-BULK]
+  title: Patient MFX225 osteoblasts transfected with control (NC) LNA
+  src  : Patient MFX225 osteoblasts transfected with control (NC) LNA
+  ext  : Qiagen RNeasy columns.,Libraries were prepared using the QuantSeq 3â mRNA-Seq Library Prep Kit FWD for Illumina (#SKU: 015.96).
+
+#38 [GSM4681190 | GSE154829 | scprob=0.504 | libsize=0.8M] [PROXY-BULK]
+  title: Subject_3100261
+  src  : Placenta of infants born at low gestational age
+  ext  : Recruited patients from the ELGAN cohort that were scheduled to give birth at participating institutions between 2002 to 2004. Patients involved in the study comprised of pregnancies that ended in livebirths prior to com
+
+#39 [GSM3670362 | GSE128273 | scprob=0.557 | libsize=1.9M] [PROXY-BULK]
+  title: P2_D8_exp4_Jurkat_60min4sU_Stimulated
+  src  : Jurkat
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#40 [GSM2979958 | GSE110154 | scprob=0.587 | libsize=0.8M]
+  title: Fetal_pancreas_cell_1129
+  src  : 15wks_fetal pancreas cell_alpha
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#41 [GSM3133104 | GSE113616 | scprob=0.565 | libsize=1.8M]
+  title: 30-70_PDAC3-16
+  src  : primary pancreatic ductal adenocarcinoma cell line
+  ext  : After 72 hours of culture, cells were trypsinized and resuspended in PBS solution, and micromanipulated. PDAC cells or CAFs were then individually micromanipulated using a 10 Î¼m transfer tip on an Eppendorf TransferMan 
+
+#42 [GSM4607089 | GSE152197,GSE152543 | scprob=0.567 | libsize=0.6M]
+  title: 15FTreg41
+  src  : iTreg
+  ext  : PBMCs were isolated from peripheral blood and Treg cells were single sorted into 96-well plates by FACS using CD4+CD25hiCD127lo/neg antibodies. For adipose tissue, we first performed collagenase digestion. Next, the lymp
+
+#43 [GSM3730993 | GSE130050 | scprob=0.569 | libsize=1.4M] [PROXY-BULK]
+  title: 11A-6 (11-198)
+  src  : embryo
+  ext  : Human embryos at different stages were treated with Tyrodeâs acidic solution to remove the zona pellucida then seperated by 0.25% typsin digestion. Single blastomeres were washed twice with 1xPBS containing 0.1% BSA an
+
+#44 [GSM4607803 | GSE152197,GSE152543 | scprob=0.516 | libsize=0.6M]
+  title: 3BTreg71
+  src  : iTreg
+  ext  : PBMCs were isolated from peripheral blood and Treg cells were single sorted into 96-well plates by FACS using CD4+CD25hiCD127lo/neg antibodies. For adipose tissue, we first performed collagenase digestion. Next, the lymp
+
+#45 [GSM4110289 | GSE138525 | scprob=0.548 | libsize=1.8M]
+  title: 180CAG_C3
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#46 [GSM4608109 | GSE152197,GSE152543 | scprob=0.589 | libsize=1.0M]
+  title: 5FTreg37
+  src  : iTreg
+  ext  : PBMCs were isolated from peripheral blood and Treg cells were single sorted into 96-well plates by FACS using CD4+CD25hiCD127lo/neg antibodies. For adipose tissue, we first performed collagenase digestion. Next, the lymp
+
+#47 [GSM5420752 | GSE179572 | scprob=0.586 | libsize=428.9M] [PROXY-BULK]
+  title: Spatial transcriptomics of a human brain metastasis (patient 24)
+  src  : tumor
+  ext  : Surgically resected brain metastases were embedded in OCT and flash frozen in a dry ice/5-methylbutane bath.,Libraries were prepared according to the manufacturer's protocols
+
+#48 [GSM7826231 | GSE244740 | scprob=0.578 | libsize=0.7M] [PROXY-BULK]
+  title: Lidocaine, Con2, Optimization plate 3, Well L7 [S4881Nr3_L7]
+  src  : hiPSC-CM
+  ext  : High-throughput transcriptomics was performed using Evotecâs (semi)-automated ScreenSeqTM platform. Cell lysis was performed in a 384-well plate format followed by well-specific labeling of samples.,Plate RNASeq of pol
+
+#49 [GSM6273544 | GSE207049 | scprob=0.517 | libsize=0.6M] [PROXY-BULK]
+  title: v3.Line440_BPA
+  src  : GM19352_BPA
+  ext  : Zymo Quick-RNA,TM3'seq as in PMCID: PMC6945013
+
+#50 [GSM2966475 | GSE109761 | scprob=0.505 | libsize=1.4M]
+  title: Br16_B17
+  src  : Br16_B17
+  ext  : Individual cells from CTC-WBC-clusters were mechanically separated with gentle micromanipulation (CellCelector, ALS). AF488/FITC-positive (or GFP-positive) and BV605-negative CTCs or AF488/FITC-negative and BV605-positiv
+
+[A3c] === manual bin 0.7-0.8, n_available=3405, sampling=50 ===
+
+#1 [GSM2653724 | GSE99822 | scprob=0.752 | libsize=0.7M]
+  title: HEK Cell G8
+  src  : cell culture
+  ext  : Cells were FACS sorted into lysis buffer (1/500 Phusion HF reaction buffer),Libraries were constructed according to the SCRB-seq protocol described in Ziegenhain et al., 2017
+
+#2 [GSM7090050 | GSE181338 | scprob=0.722 | libsize=1.3M]
+  title: K562_library1_rep2_3_gRNA amplification
+  src  : K562 cell line
+  ext  : The enriched PCR procedure was performed as described previously(Hill et al., 2018) with the following modifications. A heminested PCR starting from 40 ng of full-length cDNA was used to enrich for gRNA barcodes. Q5 High
+
+#3 [GSM5454091 | GSE180133 | scprob=0.760 | libsize=0.5M]
+  title: J-LatA2+DMSO (P2770_N703-S517)
+  src  : J-Lat A2
+  ext  : Single cells were sorted by FACSAria II (Beckman Courter, CA, USA) to 96-well plates filled with lysis buffer (0.2% Triton X-100, 1 U/ul RNase inhibitors).,Reverse transcription was performed using SuperScript II (Thermo
+
+#4 [GSM2174024 | GSE81547 | scprob=0.765 | libsize=1.3M]
+  title: 54yr_male_cell2143
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#5 [GSM2172528 | GSE81547 | scprob=0.755 | libsize=1.2M]
+  title: 38yr_female_cell649
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#6 [GSM4110637 | GSE138525 | scprob=0.749 | libsize=1.3M]
+  title: AC2_G7
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#7 [GSM2172050 | GSE81547 | scprob=0.760 | libsize=1.4M]
+  title: 21yr_male_cell171
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#8 [GSM2979839 | GSE110154 | scprob=0.782 | libsize=1.0M]
+  title: Fetal_pancreas_cell_1010
+  src  : 12wks_fetal pancreas cell_blood
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#9 [GSM2826675 | GSE105452,GSE105454 | scprob=0.754 | libsize=0.9M]
+  title: CRKPL2_8A
+  src  : Peripheral Blood
+  ext  : cDNA libraries were synthetized from single cells using TARGET-seq method,Illumina sequencing libraries were prepared using the Illumina Nextera XT DNA kit, using one forth of the standard volume recommended by Illumina,
+
+#10 [GSM2172968 | GSE81547 | scprob=0.775 | libsize=1.1M]
+  title: 5yr_male_cell1089
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#11 [GSM5065080 | GSE166165 | scprob=0.755 | libsize=148.3M]
+  title: GP5A
+  src  : Pancreatic ductal adenocarcinoma cell line
+  ext  : Trizol protocol,1000 ng RNA per sample was processed using the NuGEN Encore Complete strand-specific RNA Library Prep Kits.  Sequencing was performed on an Illumina HiSeq 2000 sequencer.
+
+#12 [GSM2826639 | GSE105452,GSE105454 | scprob=0.761 | libsize=1.5M]
+  title: CRKPL2_3A
+  src  : Peripheral Blood
+  ext  : cDNA libraries were synthetized from single cells using TARGET-seq method,Illumina sequencing libraries were prepared using the Illumina Nextera XT DNA kit, using one forth of the standard volume recommended by Illumina,
+
+#13 [GSM3172293 | GSE115235 | scprob=0.748 | libsize=1.5M]
+  title: D12-1001000358-AK111-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#14 [GSM4607880 | GSE152197,GSE152543 | scprob=0.717 | libsize=0.5M]
+  title: 4BTreg16
+  src  : iTreg
+  ext  : PBMCs were isolated from peripheral blood and Treg cells were single sorted into 96-well plates by FACS using CD4+CD25hiCD127lo/neg antibodies. For adipose tissue, we first performed collagenase digestion. Next, the lymp
+
+#15 [GSM2174082 | GSE81547 | scprob=0.724 | libsize=0.9M]
+  title: 54yr_male_cell2201
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#16 [GSM3670030 | GSE128273 | scprob=0.795 | libsize=2.0M] [PROXY-BULK]
+  title: P1_B8_exp3_Jurkat_30min4sU_Stimulated
+  src  : Jurkat
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#17 [GSM2173622 | GSE81547 | scprob=0.770 | libsize=1.3M]
+  title: 5yr_male_cell1741
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#18 [GSM1955783 | GSE75478 | scprob=0.713 | libsize=2.3M]
+  title: I2_plate3_G_11
+  src  : Lin-CD34+CD38- bone marrow
+  ext  : Fresh bone marrow mononuclear cells were stained with fluorescence labeled antibodies against CD34, CD38, CD45RA, CD90, CD49f, CD135, CD10, CD7 and a lineage cocktail consisting of CD4, CD8, CD11b, CD14, CD19, CD20, CD56
+
+#19 [GSM973671 | GSE24565 | scprob=0.735 | libsize=7.9M]
+  title: CSHL_RnaSeq_IMR90_cytosol_shortTotal
+  src  : IMR90
+  ext  : http://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg19&g=wgEncodeCshlShortRnaSeq
+
+#20 [GSM1975596 | GSE75764 | scprob=0.725 | libsize=16.5M]
+  title: human TE-3-1
+  src  : trophectoderm
+  ext  : RNA was isolated from single cells or single morula embryos and amplified as previously described,Library construction was performed following Illumina manufacturer suggestions.
+
+#21 [GSM2979315 | GSE110154 | scprob=0.730 | libsize=0.9M]
+  title: Fetal_pancreas_cell_486
+  src  : 19wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#22 [GSM3670385 | GSE128273 | scprob=0.701 | libsize=1.6M] [PROXY-BULK]
+  title: P2_F7_exp4_Jurkat_60min4sU_Unstimulated
+  src  : Jurkat
+  ext  : NASC-seq: Cells were distributed to NASC-seq lysis buffer with FACS.,TT-seq: Total RNA was extracted using TRIzol (Life Technologies), 4sU-labeled RNA was extracted according to Dolken et al., RNA, 2008 and fragmented wi
+
+#23 [GSM5507716 | GSE181591 | scprob=0.769 | libsize=0.7M]
+  title: TU [chip8_1851022116_site_19_S116]
+  src  : MDA-MB-231
+  ext  : NA,Libraries were prepared according to Illumina's instructions accompanying the Nextera XT DNA Library Preparation Kit (FC-131-1096), using the cDNA synthetized from total isolated RNA.
+
+#24 [GSM2979663 | GSE110154 | scprob=0.704 | libsize=0.7M]
+  title: Fetal_pancreas_cell_834
+  src  : 12wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#25 [GSM3033105 | GSE111543,GSE111546 | scprob=0.706 | libsize=1.4M]
+  title: 4h_Mock_uninfected_232231
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#26 [GSM1956584 | GSE75478 | scprob=0.710 | libsize=1.1M]
+  title: I2_plate12_B_8
+  src  : Lin-CD34+CD38+CD45RA-CD90+ bone marrow
+  ext  : Fresh bone marrow mononuclear cells were stained with fluorescence labeled antibodies against CD34, CD38, CD45RA, CD90, CD49f, CD135, CD10, CD7 and a lineage cocktail consisting of CD4, CD8, CD11b, CD14, CD19, CD20, CD56
+
+#27 [GSM5507479 | GSE181591 | scprob=0.726 | libsize=0.5M]
+  title: TU-NK [chip2_1851035011_site_24]
+  src  : MDA-MB-231/NK-92MI
+  ext  : NA,Libraries were prepared according to Illumina's instructions accompanying the Nextera XT DNA Library Preparation Kit (FC-131-1096), using the cDNA synthetized from total isolated RNA.
+
+#28 [GSM3171796 | GSE115235 | scprob=0.769 | libsize=0.9M]
+  title: B1-1001000355-AK113-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#29 [GSM2980227 | GSE110154 | scprob=0.760 | libsize=0.7M]
+  title: Fetal_pancreas_cell_1398
+  src  : 19wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#30 [GSM4684671 | GSE154938 | scprob=0.756 | libsize=0.9M] [PROXY-BULK]
+  title: FFPE tissue yoko6
+  src  : FFPE tissue
+  ext  : Total RNA was refined using AllPrep DNA/RNA FFPE Kit (Qiagen) according to the supplierâs instruction.,RNA libraries were prepared for sequencing using standard Illumina protocols.
+
+#31 [GSM1620380 | GSE66357 | scprob=0.777 | libsize=0.9M]
+  title: PS034_R2_0_597
+  src  : U87 human glioma cells
+  ext  : RNA was extracted from individual cells in individual microfluidic chambers following cell lysis by Triton X-100 and freeze-thaw.,mRNA from individual cells was reverse transcribed with a primer containing a cell-identif
+
+#32 [GSM2979757 | GSE110154 | scprob=0.799 | libsize=1.0M]
+  title: Fetal_pancreas_cell_928
+  src  : 13wks_fetal pancreas cell_beta
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#33 [GSM7106346 | GSE227729 | scprob=0.752 | libsize=7.2M] [PROXY-BULK]
+  title: 3442_Striatonigral-medium-spiny-neuron_BEB18117_CTRL
+  src  : Posterior putamen
+  ext  : RNA extraction was carried out with AllPrep DNA/RNA FFPE Kit (Qiagen, #80234).,RNA-seq libraries were prepared with Trio RNA-Seqâ¢ library preparation kit (Tecan, #0506-A01) and pooled for sequencing on NovaSeq6000 (SP 
+
+#34 [GSM5507729 | GSE181591 | scprob=0.738 | libsize=0.9M]
+  title: TU-NK [chip8_1851022116_site_32_S130]
+  src  : MDA-MB-231/NK-92MI
+  ext  : NA,Libraries were prepared according to Illumina's instructions accompanying the Nextera XT DNA Library Preparation Kit (FC-131-1096), using the cDNA synthetized from total isolated RNA.
+
+#35 [GSM2979655 | GSE110154 | scprob=0.724 | libsize=1.3M]
+  title: Fetal_pancreas_cell_826
+  src  : 12wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#36 [GSM2801642 | GSE104490 | scprob=0.714 | libsize=0.6M]
+  title: YU2-A9
+  src  : CD4+ T cell
+  ext  : Single cells were sorted into 96-well plates containing guanidine thiocyanate buffer (Qiagen) supplemented with 1% Î²-mercaptoethanol. RNA was extracted using Ampure RNAClean SPRI beads.,RNA was converted to full-length 
+
+#37 [GSM1956688 | GSE75478 | scprob=0.729 | libsize=0.6M]
+  title: I2_plate14_C_4
+  src  : Lin-CD34+CD38- bone marrow
+  ext  : Fresh bone marrow mononuclear cells were stained with fluorescence labeled antibodies against CD34, CD38, CD45RA, CD90, CD49f, CD135, CD10, CD7 and a lineage cocktail consisting of CD4, CD8, CD11b, CD14, CD19, CD20, CD56
+
+#38 [GSM3486229 | GSE122827 | scprob=0.726 | libsize=2.0M] [PROXY-BULK]
+  title: EPI1A4
+  src  : engineered epicardial cell
+  ext  : Total RNA was extracted from cultures using RNeasy mini from Qiagen. DNA contamination was removed from the samples using DNA-freeâ¢ DNA Removal Kit from Ambion (Thermofisher).,cDNA synthesis and Illumina libraries were
+
+#39 [GSM3172340 | GSE115235 | scprob=0.774 | libsize=3.8M]
+  title: A9-1001000354-AB-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#40 [GSM2574612 | GSE97655 | scprob=0.785 | libsize=5.6M]
+  title: RHG1389_hg19_accepted_hits
+  src  : Pancreatic islet, beta cell
+  ext  : Single cells were processed for RNA-seq using Nextera XT kits (Illumina). Cell lysis, reverse transcription (SMARTer Ultra Low RNA kit, Clontech) and PCR amplification (AdvantageÂ® 2 kit, Clontech) were performed on the 
+
+#41 [GSM2172750 | GSE81547 | scprob=0.796 | libsize=0.8M]
+  title: 38yr_female_cell871
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#42 [GSM3021492 | GSE111065 | scprob=0.758 | libsize=1.4M]
+  title: Br11_18 #2
+  src  : Br11_18
+  ext  : RNA was captured on beads conjugated with oligo-dT primer according to Macauley et al. Separation and parallel sequencing of the genomes and transcriptomes of single cells using G&T-seq. Nat Protoc 11, 2081-2103 (2016).,
+
+#43 [GSM5454208 | GSE180133 | scprob=0.754 | libsize=0.6M]
+  title: Jurkat+DMSO (P2771_N706-S502)
+  src  : Jurkat T cell
+  ext  : Single cells were sorted by FACSAria II (Beckman Courter, CA, USA) to 96-well plates filled with lysis buffer (0.2% Triton X-100, 1 U/ul RNase inhibitors).,Reverse transcription was performed using SuperScript II (Thermo
+
+#44 [GSM4110293 | GSE138525 | scprob=0.746 | libsize=1.9M]
+  title: 180CAG_C7
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+#45 [GSM2172096 | GSE81547 | scprob=0.761 | libsize=0.9M]
+  title: 21yr_male_cell217
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#46 [GSM5507685 | GSE181591 | scprob=0.711 | libsize=0.5M]
+  title: TU-NK [chip6_1851027105_site_36_S70]
+  src  : MDA-MB-231/NK-92MI
+  ext  : NA,Libraries were prepared according to Illumina's instructions accompanying the Nextera XT DNA Library Preparation Kit (FC-131-1096), using the cDNA synthetized from total isolated RNA.
+
+#47 [GSM2980534 | GSE110154 | scprob=0.759 | libsize=1.5M]
+  title: Fetal_pancreas_cell_1705
+  src  : 12wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#48 [GSM1975582 | GSE75764 | scprob=0.753 | libsize=15.1M]
+  title: human ICM-1-5
+  src  : inner cell mass
+  ext  : RNA was isolated from single cells or single morula embryos and amplified as previously described,Library construction was performed following Illumina manufacturer suggestions.
+
+#49 [GSM2826565 | GSE105452,GSE105454 | scprob=0.735 | libsize=2.3M]
+  title: AV12PL3_3B
+  src  : Peripheral Blood
+  ext  : cDNA libraries were synthetized from single cells using TARGET-seq method,Illumina sequencing libraries were prepared using the Illumina Nextera XT DNA kit, using one forth of the standard volume recommended by Illumina,
+
+#50 [GSM4110308 | GSE138525 | scprob=0.733 | libsize=2.0M]
+  title: 180CAG_E5
+  src  : neural progenitor cells
+  ext  : RNA was extracted from neurons using TCL-buffer (Qiagene, cat. 1031576) with 1% 2-Mercaptoethanol for sc-experiments. For bulk samples, DNA/RNA shield (Zymo Research, cat. R1100-50) was used.,library construction was car
+
+[A3c] === manual bin >=0.9, n_available=1225, sampling=50 ===
+
+#1 [GSM2966600 | GSE109761 | scprob=0.957 | libsize=0.9M]
+  title: Br23_15
+  src  : Br23_15
+  ext  : Individual cells from CTC-WBC-clusters were mechanically separated with gentle micromanipulation (CellCelector, ALS). AF488/FITC-positive (or GFP-positive) and BV605-negative CTCs or AF488/FITC-negative and BV605-positiv
+
+#2 [GSM2173042 | GSE81547 | scprob=0.912 | libsize=3.5M]
+  title: 5yr_male_cell1163
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#3 [GSM3033190 | GSE111543,GSE111546 | scprob=0.923 | libsize=1.4M]
+  title: 4h_LT2_exposed_203228
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#4 [GSM7384683 | GSE232853 | scprob=0.992 | libsize=2.0M]
+  title: human_DLBCL_region_101
+  src  : DLBCL
+  ext  : The slides were incubated with blocking Buffer W (200 ?L/slide, NanoString) for 30 min in the humidity chamber at room temperature after hybridization.Each slide was stained with corresponding morophology markers. After 
+
+#5 [GSM5151467 | GSE168626,GSE168634 | scprob=0.960 | libsize=0.6M]
+  title: intestinal stromal cells pre-capture [WTCHG_288196_204207]
+  src  : colonic mucosa
+  ext  : protocol is described in Kinchen et.al., Cell, 2018; PMID: 30270042,Pre-capture libraries were prepared following the 10x droplet-based protocol as described in Kinchen et.al., Cell, 2018; PMID: 30270042. Post-capture li
+
+#6 [GSM3171884 | GSE115235 | scprob=0.907 | libsize=0.9M]
+  title: C9-1001000355-AK113-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#7 [GSM2513602 | GSE95446,GSE95459 | scprob=0.959 | libsize=0.7M]
+  title: 20150702_C55
+  src  : colonic mucosa
+  ext  : Endoscopic forceps biopsies were dissociated using a combined enzymatic and mechanical approach. Depletion of non-stromal cell types was achieved by MACS separation. CD326 (EpCAM), CD45 and CD235a conjugated micro-beads 
+
+#8 [GSM2980583 | GSE110154 | scprob=0.918 | libsize=0.7M]
+  title: Fetal_pancreas_cell_1754
+  src  : 13wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#9 [GSM2172509 | GSE81547 | scprob=0.920 | libsize=2.7M]
+  title: 38yr_female_cell630
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#10 [GSM3171877 | GSE115235 | scprob=1.000 | libsize=1.0M]
+  title: D1-1001000357-TPO_AB-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#11 [GSM3172319 | GSE115235 | scprob=0.912 | libsize=1.2M]
+  title: G11-1001000360-AK119-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#12 [GSM2826596 | GSE105452,GSE105454 | scprob=0.923 | libsize=0.8M]
+  title: CRKPL1_4C
+  src  : Peripheral Blood
+  ext  : cDNA libraries were synthetized from single cells using TARGET-seq method,Illumina sequencing libraries were prepared using the Illumina Nextera XT DNA kit, using one forth of the standard volume recommended by Illumina,
+
+#13 [GSM2979807 | GSE110154 | scprob=0.947 | libsize=0.9M]
+  title: Fetal_pancreas_cell_978
+  src  : 13wks_fetal pancreas cell_endocrine.progenitor
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#14 [GSM2978873 | GSE110154 | scprob=1.000 | libsize=2.2M]
+  title: Fetal_pancreas_cell_44
+  src  : 12wks_fetal pancreas cell_ductal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#15 [GSM2978900 | GSE110154 | scprob=0.994 | libsize=1.4M]
+  title: Fetal_pancreas_cell_71
+  src  : 12wks_fetal pancreas cell_acinar
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#16 [GSM5776048 | GSE193181 | scprob=0.955 | libsize=610.2M]
+  title: CI-H_P5
+  src  : PBMCs
+  ext  : CG000208_ChromiumNextGEMSingleCellV_D_J_ReagentKit_v1.1_FeatureBarcodingtechnology_RevB
+
+#17 [GSM2979222 | GSE110154 | scprob=0.920 | libsize=3.2M]
+  title: Fetal_pancreas_cell_393
+  src  : 17wks_fetal pancreas cell_acinar
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#18 [GSM3172244 | GSE115235 | scprob=0.919 | libsize=1.1M]
+  title: G3-1001000359-AK113_AB-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#19 [GSM6134895 | GSE202874 | scprob=1.000 | libsize=125.2M]
+  title: Ventral E370k COs Day 60
+  src  : Ventral E370k COs Day 60
+  ext  : not provided
+
+#20 [GSM7384728 | GSE232853 | scprob=0.939 | libsize=0.9M]
+  title: human_DLBCL_region_146
+  src  : DLBCL
+  ext  : The slides were incubated with blocking Buffer W (200 ?L/slide, NanoString) for 30 min in the humidity chamber at room temperature after hybridization.Each slide was stained with corresponding morophology markers. After 
+
+#21 [GSM2574505 | GSE97655 | scprob=0.958 | libsize=6.2M]
+  title: RHG1177_hg19_accepted_hits
+  src  : Pancreatic islet, alpha cell
+  ext  : Single cells were processed for RNA-seq using Nextera XT kits (Illumina). Cell lysis, reverse transcription (SMARTer Ultra Low RNA kit, Clontech) and PCR amplification (AdvantageÂ® 2 kit, Clontech) were performed on the 
+
+#22 [GSM3172107 | GSE115235 | scprob=0.916 | libsize=0.8M]
+  title: G6-1001000360-AK119-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#23 [GSM2978957 | GSE110154 | scprob=1.000 | libsize=1.1M]
+  title: Fetal_pancreas_cell_128
+  src  : 12wks_fetal pancreas cell_acinar
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#24 [GSM3071574 | GSE112507 | scprob=0.914 | libsize=0.7M]
+  title: E2_V2_C26
+  src  : human ESC
+  ext  : Full length cDNA libraries were prepared using the Illumina Nextera XT DNA library preparation kit (Illumina). External RNA Control Consortium (ERCC) RNA spike-in MixÂ  (Ambion) was added to each cell sample prior to seq
+
+#25 [GSM2172348 | GSE81547 | scprob=0.929 | libsize=1.5M]
+  title: 21yr_male_cell469
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#26 [GSM3033095 | GSE111543,GSE111546 | scprob=0.981 | libsize=1.7M]
+  title: 6h_LT2_exposed_231229
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#27 [GSM2172246 | GSE81547 | scprob=0.941 | libsize=1.4M]
+  title: 21yr_male_cell367
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#28 [GSM2980466 | GSE110154 | scprob=0.919 | libsize=1.1M]
+  title: Fetal_pancreas_cell_1637
+  src  : 16wks_fetal pancreas cell_alpha
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#29 [GSM2979045 | GSE110154 | scprob=1.000 | libsize=2.8M]
+  title: Fetal_pancreas_cell_216
+  src  : 12wks_fetal pancreas cell_beta
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#30 [GSM2979718 | GSE110154 | scprob=0.908 | libsize=0.8M]
+  title: Fetal_pancreas_cell_889
+  src  : 13wks_fetal pancreas cell_beta
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#31 [GSM2374841 | GSE89503 | scprob=0.920 | libsize=1.3M]
+  title: Sample 80 Day27 neurons
+  src  : Nkx2.1 GFP/W-hESC
+  ext  : Illumina NGS library was constructed with Nextera XT DNA Sample Prep kit (Illumina), according to the manufacturerâs recommendations (Protocol #100-7168 E1).
+
+#32 [GSM3172200 | GSE115235 | scprob=0.959 | libsize=1.2M]
+  title: D3-1001000358-AK111-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#33 [GSM2513765 | GSE95446,GSE95459 | scprob=0.902 | libsize=0.8M]
+  title: 20150708_C23
+  src  : colonic mucosa
+  ext  : Endoscopic forceps biopsies were dissociated using a combined enzymatic and mechanical approach. Depletion of non-stromal cell types was achieved by MACS separation. CD326 (EpCAM), CD45 and CD235a conjugated micro-beads 
+
+#34 [GSM7384736 | GSE232853 | scprob=0.937 | libsize=0.7M]
+  title: human_RLT_region_141
+  src  : reactive lympoid tissues
+  ext  : The slides were incubated with blocking Buffer W (200 ?L/slide, NanoString) for 30 min in the humidity chamber at room temperature after hybridization.Each slide was stained with corresponding morophology markers. After 
+
+#35 [GSM2801581 | GSE104490 | scprob=1.000 | libsize=0.9M]
+  title: B207-2-Pos-F5
+  src  : CD4+ T cell
+  ext  : Single cells were sorted into 96-well plates containing guanidine thiocyanate buffer (Qiagen) supplemented with 1% Î²-mercaptoethanol. RNA was extracted using Ampure RNAClean SPRI beads.,RNA was converted to full-length 
+
+#36 [GSM2979018 | GSE110154 | scprob=0.910 | libsize=2.8M]
+  title: Fetal_pancreas_cell_189
+  src  : 12wks_fetal pancreas cell_endocrine.progenitor
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#37 [GSM3033089 | GSE111543,GSE111546 | scprob=0.918 | libsize=1.4M]
+  title: 4h_Mock_uninfected_230231
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#38 [GSM3033061 | GSE111543,GSE111546 | scprob=0.996 | libsize=1.5M]
+  title: 4h_LT2_infected_227203
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#39 [GSM3033294 | GSE111543,GSE111546 | scprob=0.923 | libsize=1.5M]
+  title: 4h_D23580_exposed_232204
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#40 [GSM3171921 | GSE115235 | scprob=0.973 | libsize=0.9M]
+  title: B6-1001000357-TPO_AB-1
+  src  : CD34+ CD38- CD90+ CD45RA- HSC
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#41 [GSM3033146 | GSE111543,GSE111546 | scprob=0.929 | libsize=1.2M]
+  title: 4h_Mock_uninfected_253232
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#42 [GSM2513661 | GSE95446,GSE95459 | scprob=0.919 | libsize=0.8M]
+  title: 20150708_C26
+  src  : colonic mucosa
+  ext  : Endoscopic forceps biopsies were dissociated using a combined enzymatic and mechanical approach. Depletion of non-stromal cell types was achieved by MACS separation. CD326 (EpCAM), CD45 and CD235a conjugated micro-beads 
+
+#43 [GSM2979524 | GSE110154 | scprob=0.916 | libsize=1.2M]
+  title: Fetal_pancreas_cell_695
+  src  : 12wks_fetal pancreas cell_mesenchymal
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#44 [GSM3033110 | GSE111543,GSE111546 | scprob=0.940 | libsize=1.3M]
+  title: 4h_D23580_infected_249228
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#45 [GSM3033196 | GSE111543,GSE111546 | scprob=0.910 | libsize=1.5M]
+  title: 2h_D23580_exposed_204226
+  src  : Monocyte-derived dendritic cells
+  ext  : Live single cells were sorted into 96-well plates filled with 4uL of lysis buffer (0.4% Triton, 2U/uL RNase inhibitor (Clonotech, Takara), 7.5uM oligo dT (Biomers) and 10mM dNTP [supplemented with ERCC spike-in 1:10,000,
+
+#46 [GSM2979092 | GSE110154 | scprob=0.945 | libsize=4.1M]
+  title: Fetal_pancreas_cell_263
+  src  : 19wks_fetal pancreas cell_acinar
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#47 [GSM2978868 | GSE110154 | scprob=0.987 | libsize=2.3M]
+  title: Fetal_pancreas_cell_39
+  src  : 12wks_fetal pancreas cell_endocrine.progenitor
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#48 [GSM2978954 | GSE110154 | scprob=0.991 | libsize=3.2M]
+  title: Fetal_pancreas_cell_125
+  src  : 12wks_fetal pancreas cell_beta
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#49 [GSM2173793 | GSE81547 | scprob=0.928 | libsize=0.5M]
+  title: 1yr_male_cell1912
+  src  : Pancreatic islet
+  ext  : Single-cells were collected  in lysis buffer in 96-well plates, followed by reverse transcription with template-switch using an LNA-modified template switch oligo to generate cDNA. After 21 cycles of pre-amplification, D
+
+#50 [GSM2374801 | GSE89503 | scprob=0.969 | libsize=0.9M]
+  title: Sample 40 Day27 neurons
+  src  : Nkx2.1 GFP/W-hESC
+  ext  : Illumina NGS library was constructed with Nextera XT DNA Sample Prep kit (Illumina), according to the manufacturerâs recommendations (Protocol #100-7168 E1).
+null device 
+          1 
+
+[A3c] PNG: analysis/audit/A3c-fpr-curve.png
+
+[A3c] DONE

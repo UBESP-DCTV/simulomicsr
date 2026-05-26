@@ -1,0 +1,49 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+[A3] step 1: build bacino A3 ...
+          used (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells 1630825 87.1    3814171  203.7   3814171  203.7
+Vcells 5124036 39.1  528206005 4029.9 396694807 3026.6
+[A3] rescued: 879167, A2 drop: 302694
+[A3] bacino A3 (rescued AND libsrc==trans AND NOT in A2 drop): 547531
+[A3] step 2: lib_size scan in slab da 5000 sample ...
+[A3] slab 20 / 178 done (3.4 min wall, ~11% progress)
+[A3] slab 40 / 178 done (5.8 min wall, ~22% progress)
+[A3] slab 60 / 178 done (8.1 min wall, ~34% progress)
+[A3] slab 80 / 178 done (10.5 min wall, ~45% progress)
+[A3] slab 100 / 178 done (12.9 min wall, ~56% progress)
+[A3] slab 120 / 178 done (15.4 min wall, ~67% progress)
+[A3] slab 140 / 178 done (17.8 min wall, ~79% progress)
+[A3] slab 160 / 178 done (20.3 min wall, ~90% progress)
+[A3] slab 178 / 178 done (22.5 min wall, ~100% progress)
+
+[A3] lib_size scan complete. Wall: 22.5 min
+
+[A3] === lib_size sui sample bacino A3 ===
+  total bacino : 547531
+  >= 500k      : 508685 (92.91%)
+  < 500k       : 38846 (7.09%)
+  summary lib_size:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+1.000e+00 7.042e+06 2.024e+07 2.319e+07 3.203e+07 1.943e+09 
+
+[A3] === singlecellprobability sui 508685 sopravvissuti ===
+  summary:
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.000000 0.002631 0.006438 0.048432 0.019896 1.000000 
+
+  threshold counts:
+    > 0.1 :   52139 (10.25%)
+    > 0.2 :   34005 (6.68%)
+    > 0.3 :   25236 (4.96%)
+    > 0.5 :   14502 (2.85%)
+    > 0.7 :    7184 (1.41%)
+    > 0.9 :    1225 (0.24%)
+  NA count: 0
+
+[A3] TSV scritto: analysis/audit/A3-libsize-scprob-bacino.tsv (547531 righe)
+[A3] step 4: plot ...
+null device 
+          1 
+[A3] PNG: analysis/audit/A3-scprob-distribution.png
+
+[A3] DONE

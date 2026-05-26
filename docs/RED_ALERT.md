@@ -199,7 +199,7 @@ Obiettivo: capire la magnitudine del problema single-cell + fissare la
 soglia `singlecellprobability` empiricamente. Niente codice
 produttivo, solo conta + plot.
 
-#### ⬜ A1 — Conta sample che cadono col filtro `library_source`
+#### ✅ A1 — Conta sample che cadono col filtro `library_source`
 
 **Cosa facciamo.** Andiamo a vedere quanti dei nostri 879.167 sample
 sono etichettati esplicitamente da ARCHS4 come single-cell tramite il
@@ -233,7 +233,7 @@ stima (~30k), procediamo dritti al filtro. Se sono enormemente diversi
 (es. 200k), ci fermiamo a capire perché prima di accettare la
 rimozione.
 
-#### ⬜ A2 — Conta sample aggiuntivi che cadono col parsing di `extract_protocol_ch1`
+#### ✅ A2 — Conta sample aggiuntivi che cadono col parsing di `extract_protocol_ch1`
 
 **Cosa facciamo.** Andiamo a vedere quanti sample, che ARCHS4 non ha
 marcato esplicitamente come single-cell in `library_source`, in realtà
@@ -322,7 +322,7 @@ problematico dalla lista o lo rendiamo più specifico. La lista finale
 dei pattern viene committata nel codice + nell'ADR-0019, così è
 tracciabile.
 
-#### ⬜ A3 — Distribuzione `singlecellprobability` sui sopravvissuti
+#### ✅ A3 — Distribuzione `singlecellprobability` sui sopravvissuti
 
 **Cosa facciamo.** Sui sample che hanno superato A1+A2, applichiamo
 anche il filtro lib_size_min = 500k (lo stesso filtro che usa Stadio 4
@@ -859,8 +859,17 @@ ALERT per Stadio 1 audit nella sessione successiva.
   estesa con 8 kit nuovi + separazione gruppo K (kit-specific) / S
   (semantica). ✅ A2 + A2b FPR validation + title-bulk rescue: drop
   302.694/850.225 = 35.60%. Aggregato A1+A2 = 330.709/879.167 = **37.62%**.
-  FPR osservato 0.70% SmartSeq + 1.00% single_cell_literal. Prossimo
-  step: sintesi A2 + commit + A3 (singlecellprobability).
+  FPR osservato 0.70% SmartSeq + 1.00% single_cell_literal.
+  ✅ **A3 chiusa**: soglia singlecellprobability=0.9 al plateau curva
+  FPR proxy + manuale (150 sample classified, 0.5: 36% FPR, 0.7-0.8:
+  14%, ≥0.9: 8% Wilson 95% CI [3-19%]). Drop A3 addizionale 1.225 /
+  508.685 = 0.24% del bacino post-lib_size + 38.846 drop lib_size <500k
+  (QC condiviso Stadio 4). Aggregato Stage 0 totale: 371.707 / 879.167
+  = **42.28%** drop. Bacino finale candidati bulk: **507.460 sample**.
+  Sintesi `analysis/audit/A3-synthesis-singlecellprobability.md` con
+  prospettiva futura "LLM-based quality check post-aggregazione" come
+  task deferred post-FASE F. Prossimo step: commit A3 + A4 (cluster
+  contamination quantification).
 
 ### Handoff next session
 
