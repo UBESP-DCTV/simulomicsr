@@ -496,7 +496,7 @@ documentata in ADR prima del codice che la riflette (CLAUDE.md §
   porta valore), dedupe solo via relation (escluso se A7 mostra
   copertura insufficiente).
 
-#### ⬜ B2 — Mini-spec parsing `data_processing`
+#### ✅ B2 — Mini-spec parsing `data_processing`
 
 **Cosa facciamo.** Definiamo come trasformare il testo libero di
 `data_processing` (es. "STAR mapping, HTSeq-count 0.7+ gene counting,
@@ -520,7 +520,7 @@ Quale prevale se ne matchano più di uno (è comune: "STAR + RSEM")?
 Proposta: ordine di priorità STAR > HISAT > Salmon > kallisto > RSEM
 > BWA > Bowtie > TopHat. Da discutere.
 
-#### ⬜ B3 — Mini-spec parsing `extract_protocol_ch1` per single-cell
+#### ✅ B3 — Mini-spec parsing `extract_protocol_ch1` per single-cell
 
 **Cosa facciamo.** Formalizziamo il regex single-cell di A2 in una
 funzione riusabile.
@@ -890,8 +890,15 @@ ALERT per Stadio 1 audit nella sessione successiva.
   biotype filter + covariate batch + dedupe SAMN) + macro-decisione
   rebuild data-driven. Counter-fattuali documentati. Validation
   strategy + future work LLM quality check post-aggregazione registrati.
-  Prossimo step: B2 (mini-spec parsing data_processing) + B3 (mini-spec
-  parsing extract_protocol_ch1 SC).
+  ✅ **B2 + B3 chiuse**: mini-spec parsing scritte in
+  `docs/superpowers/specs/2026-05-26-B2-parsing-data-processing.md`
+  (aligner_class regex prioritizzate STAR>HISAT>Salmon>kallisto>RSEM>BWA>Bowtie>TopHat
+  + fallback other/unknown + test fixture) e
+  `docs/superpowers/specs/2026-05-26-B3-parsing-extract-protocol-sc.md`
+  (`is_single_cell_protocol(extract, title, src)` con K+S pattern +
+  title-bulk rescue + test fixture positive/negative + integrazione FASE C2).
+  **FASE B completata (3/3). FASE A+B chiuse (10/10)**.
+  Prossimo step in nuova sessione: FASE C (codice pre-LLM).
 
 ### Handoff next session
 
