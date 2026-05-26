@@ -1,20 +1,39 @@
 #' Legge i metadata sample da un dump ARCHS4 H5.
 #'
-#' Estrae i campi sotto \code{/meta/samples/} necessari per la classificazione P4 beta.
+#' Estrae i campi sotto \code{/meta/samples/} necessari per la classificazione
+#' P4 beta + i campi addizionali introdotti da ADR-0019 (P5 audit RED_ALERT
+#' Stadio 0): filtri pre-LLM single-cell (\code{library_source},
+#' \code{extract_protocol_ch1}, \code{singlecellprobability}), hint LLM
+#' (\code{molecule_ch1}), covariate batch DE (\code{instrument_model},
+#' \code{data_processing}), dedupe BioSample (\code{relation}).
+#'
+#' Schema v2: 13 colonne character + 1 colonna numeric
+#' (\code{singlecellprobability}).
 #'
 #' @param h5_path Path al file \code{human_gene_v2.5.h5} ARCHS4.
-#' @return Data frame con una riga per sample.
+#' @return Data frame con una riga per sample. Le colonne character sono
+#'   coerce-ate con \code{as.character}; \code{singlecellprobability} e'
+#'   numeric (\code{NA_real_} dove mancante).
 #' @keywords internal
 read_archs4_metadata <- function(h5_path) {
   stopifnot(file.exists(h5_path))
-  fields <- c("geo_accession", "series_id", "title", "source_name_ch1",
-              "characteristics_ch1", "organism_ch1", "library_strategy")
-  cols <- lapply(fields, function(f) {
+  # Campi character (storici + ADR-0019 D1/D2/D5/D8/D9).
+  fields_chr <- c("geo_accession", "series_id", "title", "source_name_ch1",
+                  "characteristics_ch1", "organism_ch1", "library_strategy",
+                  "molecule_ch1", "library_source", "extract_protocol_ch1",
+                  "instrument_model", "data_processing", "relation")
+  # Campi numeric (ADR-0019 D3: predizione ARCHS4 0-1).
+  fields_num <- c("singlecellprobability")
+  cols_chr <- lapply(fields_chr, function(f) {
     as.character(rhdf5::h5read(h5_path, paste0("meta/samples/", f)))
   })
-  names(cols) <- fields
+  names(cols_chr) <- fields_chr
+  cols_num <- lapply(fields_num, function(f) {
+    as.numeric(rhdf5::h5read(h5_path, paste0("meta/samples/", f)))
+  })
+  names(cols_num) <- fields_num
   rhdf5::H5close()
-  data.frame(cols, stringsAsFactors = FALSE)
+  data.frame(c(cols_chr, cols_num), stringsAsFactors = FALSE)
 }
 
 #' Trasforma ARCHS4 H5 in JSONL raw input per stage1 (formato B, filtri applicati).

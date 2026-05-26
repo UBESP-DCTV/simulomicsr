@@ -3,11 +3,26 @@ test_that("read_archs4_metadata legge i campi richiesti", {
   meta <- read_archs4_metadata(fix)
   expect_s3_class(meta, "data.frame")
   expect_equal(nrow(meta), 4)
+  # Schema v2 post-ADR-0019: 7 campi storici + 7 nuovi (6 character + 1 numeric).
   expect_named(meta, c("geo_accession", "series_id", "title", "source_name_ch1",
-                        "characteristics_ch1", "organism_ch1", "library_strategy"),
+                        "characteristics_ch1", "organism_ch1", "library_strategy",
+                        "molecule_ch1", "library_source", "extract_protocol_ch1",
+                        "instrument_model", "data_processing", "relation",
+                        "singlecellprobability"),
                ignore.order = TRUE)
   expect_equal(meta$geo_accession[1], "GSM001")
   expect_equal(meta$series_id[2], "GSE100,GSE101")
+  # Campi nuovi character: valori plausibili sui 4 sample fixture.
+  expect_equal(meta$library_source[1], "transcriptomic")
+  expect_equal(meta$library_source[4], "transcriptomic single cell")
+  expect_equal(meta$molecule_ch1[2], "total RNA")
+  expect_true(grepl("STAR", meta$data_processing[1]))
+  expect_true(grepl("10x Genomics", meta$extract_protocol_ch1[4]))
+  expect_true(grepl("^BioSample: ", meta$relation[1]))
+  # Campo nuovo numeric: type-check esplicito + valori.
+  expect_type(meta$singlecellprobability, "double")
+  expect_equal(meta$singlecellprobability[1], 0.02)
+  expect_equal(meta$singlecellprobability[4], 0.95)
 })
 
 test_that("archs4_to_stage1_jsonl emette JSONL con filtri applicati", {
