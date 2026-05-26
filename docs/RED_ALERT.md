@@ -475,7 +475,7 @@ l'altro come fallback. Se sono complementari (`relation` copre 60%,
 
 Obiettivo: scrivere a libro le decisioni prima di toccare codice.
 
-#### ⬜ B1 — ADR-0019 "ARCHS4 metadata exploitation v2"
+#### ✅ B1 — ADR-0019 "ARCHS4 metadata exploitation v2"
 
 **Cosa facciamo.** Scriviamo l'Architectural Decision Record che fissa
 tutte le decisioni di questo RED ALERT in un unico documento durevole.
@@ -882,8 +882,16 @@ ALERT per Stadio 1 audit nella sessione successiva.
   donor_id unique appaiono in >1 series con nomi generici tipo "patient 1"
   = falsi duplicati). Decisione: **`relation` BioSample SAMN come segnale
   primario unico, no fallback donor_id**. Sintesi `analysis/audit/A7-synthesis-biosample-dedupe.md`.
-  **FASE A completata (7/7)**. Prossimo step: FASE B (ADR-0019 + mini-spec
-  parsing data_processing + extract_protocol_ch1).
+  **FASE A completata (7/7)**.
+  ✅ **B1 chiusa**: ADR-0019 "ARCHS4 metadata exploitation v2" scritto
+  in `docs/decisions/0019-archs4-metadata-exploitation-v2.md` (status
+  Proposed, 307 righe). Raccoglie 9 sub-decisioni D1-D9 derivate
+  dall'audit FASE A (4 filtri Stage 0 + LLM input + gene axis Ensembl +
+  biotype filter + covariate batch + dedupe SAMN) + macro-decisione
+  rebuild data-driven. Counter-fattuali documentati. Validation
+  strategy + future work LLM quality check post-aggregazione registrati.
+  Prossimo step: B2 (mini-spec parsing data_processing) + B3 (mini-spec
+  parsing extract_protocol_ch1 SC).
 
 ### Handoff next session
 
