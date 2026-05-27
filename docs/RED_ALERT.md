@@ -537,7 +537,7 @@ fixture sia positive (10 stringhe SC reali del dataset) che negative
 
 ### FASE C — Codice PRE-LLM (Stadio 0)
 
-#### ⬜ C1 — Estendere `read_archs4_metadata()`
+#### ✅ C1 — Estendere `read_archs4_metadata()`
 
 **Cosa facciamo.** La funzione attualmente legge 7 campi. La estendiamo
 a leggerne tutti quelli che servono: aggiungere `molecule_ch1`,
@@ -550,7 +550,7 @@ questa funzione. Se i campi non ci sono, non si può fare niente.
 **Come.** Aggiunta dei nomi alla lista `fields` nella funzione. Update
 del test che verifica i campi letti.
 
-#### ⬜ C2 — Estendere `is_sample_classifiable()` con filtri SC nuovi
+#### ✅ C2 — Estendere `is_sample_classifiable()` con filtri SC nuovi
 
 **Cosa facciamo.** Aggiungiamo al filtro Stadio 0:
 - `library_source` non ∈ {"transcriptomic single cell", "genomic single cell"}
@@ -564,7 +564,7 @@ reason codes: `single_cell_library_source`,
 **Come.** Update di `is_sample_classifiable()` + tests TDD (test
 fixture con sample fake per ogni reason code).
 
-#### ⬜ C3 — Build ARCHS4 metadata RDS esteso
+#### ✅ C3 — Build ARCHS4 metadata RDS esteso
 
 **Cosa facciamo.** Costruiamo
 `analysis/p4-output/p4-beta-archs4-metadata-v2.rds` che contiene tutti
@@ -581,7 +581,7 @@ ma non vogliamo ri-leggere l'HDF5 ogni volta. Un singolo RDS leggibile
 2. parsa data_processing → aligner_class via funzione di B2
 3. salva come RDS
 
-#### ⬜ C4 — Update JSONL input Stadio 1 con `molecule_ch1`
+#### ✅ C4 — Update JSONL input Stadio 1 con `molecule_ch1`
 
 **Cosa facciamo.** Lo JSONL che leggiamo per dare in pasto all'LLM
 attualmente ha `{geo_accession, series_id, string, library_strategy,
@@ -593,7 +593,7 @@ total RNA o di polyA (cambia che geni vede).
 **Come.** Aggiunta del campo in `archs4_to_stage1_jsonl()` + update
 test.
 
-#### ⬜ C5 — Tests TDD per C1-C4
+#### ✅ C5 — Tests TDD per C1-C4
 
 **Cosa facciamo.** Aggiunta dei test che falliscono prima del codice e
 passano dopo. Conferma che i nuovi reason code sono raggiungibili e
@@ -852,15 +852,32 @@ ALERT per Stadio 1 audit nella sessione successiva.
   `relation` in scope (A7 + E0), splittato D1 in D1a/D1b come gate
   prompt, chiarito che scope è solo Stadio 0 dell'audit completo a
   5 stadi. CLAUDE.md banner aggiornato. Sessione chiusa qui.
-- 2026-05-26 sessione 4 (in corso): ✅ C1 chiuso (commit `5e45671`,
-  `read_archs4_metadata` legge 14 campi H5). **Fix regex audit
-  underscore-aware** applicato (ultrathink 2026-05-26): bug paper-grade
-  scoperto su title-bulk rescue + pattern S Gruppo (perl `_` word-char
-  → no boundary). Rerun A2 + update mirato A3 lib_size + A3c FPR curve.
-  Drop Stage 0 v2 ricalcolato: **371.129 / 879.167 = 42.21%** (vs 42.28%
-  pre-fix). Bacino finale: **507.838 sample** (+378). Pattern K (kit)
-  invariati (chiusura strict avrebbe creato 3.568 FN su CelSeq2,
-  FluidigmTM, FluidigmC1 — scartata). C2 in progress.
+- 2026-05-26/27 sessione 4: **FASE C completata (5/5)**.
+  - ✅ C1 (`5e45671`) `read_archs4_metadata` 14 campi H5.
+  - ✅ Fix regex audit underscore-aware (`3bca92c`, ultrathink): bug
+    paper-grade title-bulk rescue + pattern Gruppo S (perl `_` word-char
+    → no boundary). Rerun A2 + update A3 lib_size + A3c FPR curve.
+    Drop Stage 0 v2 ricalcolato: **371.129 / 879.167 = 42.21%** (vs
+    42.28% pre-fix). Bacino finale: **507.838 sample** (+378). Pattern
+    K (kit) invariati (chiusura strict avrebbe creato 3.568 FN su
+    CelSeq2, FluidigmTM, FluidigmC1 — scartata).
+  - ✅ C2 (`cb650e6`) `is_sample_classifiable` v2 firma B3 (10 args,
+    return list(keep, reason)). 7 reason codes esposti per skip log
+    paper-grade. Chiamante `archs4_to_stage1_jsonl` aggiornato.
+  - ✅ C3 (`4aebe80`) `build_archs4_metadata_v2` + `parse_aligner_class`
+    + `parse_biosample_id`. RDS schema 11 colonne (geo, series,
+    library_source, molecule_ch1, instrument_model, data_processing,
+    aligner_class factor, relation, biosample_id SAMN, lib_size,
+    singlecellprobability). Deviazione spec B2 documentata: regex
+    aligner senza chiusura `\b` (perl word-char block su STAR_2.7.10a /
+    STARSOLO).
+  - ✅ C4 (`6963198`) `molecule_ch1` aggiunto al JSONL Stage 1 input
+    (D5 ADR-0019). Prompt LLM Stadio 1 NON toccato in C4 (gate D1a).
+  - ✅ C5 (`8ed4b2c`) test e2e cascade Stage 0 v2 in
+    `tests/testthat/test-stage0-v2-e2e.R` (5 test_that + 17 expect_*).
+  Branch ahead di master di 12 commit. Test suite globale Stage 0 v2:
+  194 PASS / 0 FAIL / 1 SKIP. Prossimo step: FASE D1a gate utente
+  prompt LLM Stadio 1.
 - 2026-05-26 sessione 3: ✅ A1 chiusa (commit `bdbe879`). Decisione
   whitelist `library_source == "transcriptomic"` con drop 28.942/879.167
   = 3.29% motivato puntualmente per 4 valori esclusi (sintesi in
@@ -911,9 +928,10 @@ ALERT per Stadio 1 audit nella sessione successiva.
 
 ### Handoff next session
 
-- Sessione successiva: parte da FASE A1.
-- Branch attivo: `p5-llm-anchor-classification-audit`.
+- Sessione successiva: parte da **FASE D1a (gate utente prompt LLM Stadio 1)**.
+- Branch attivo: `p5-llm-anchor-classification-audit` (12 commit ahead di
+  master, ultimo `8ed4b2c`).
 - Master invariato.
-- Niente da fare prima di A1, solo rilettura di questo doc.
+- FASE C completata (5/5). FASE D, E, F, G TODO.
 - Quando RED ALERT (Stadio 0) chiude: aprire nuovo doc
   `docs/RED_ALERT-stage1.md` per audit Stadio 1.
