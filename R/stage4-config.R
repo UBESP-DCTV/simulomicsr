@@ -74,7 +74,14 @@ stage4_default_config <- function() {
     schema_versions = list(
       anchor             = "v3",
       stage3_algorithm   = "v1",
-      stage4_algorithm   = "v1"
+      stage4_algorithm   = "v1",
+      # FASE E0b ADR-0019 D9 (decisione utente 2026-05-27 su evidence A7b).
+      # Strategia di SAMN dedupe nel pool Stadio 4: per ogni SAMN cross-GSE
+      # con N>=2 GSM, tenuto il GSM con lib_size max; tie-break GSM
+      # alfabetico. Quando i lookup biosample_id + lib_size non sono
+      # disponibili in h5_metadata, il dedupe e' off (warning emesso da
+      # .build_samn_dedupe_lookups). Stringa registrata in run_metadata.json.
+      samn_dedupe_strategy = "max_libsize_alphabetic_tiebreak"
     )
   )
 }
