@@ -45,8 +45,13 @@
                 cp_c$FDR_BH_within_cluster < fdr_thr, , drop = FALSE]
   sig <- sig[order(abs(sig$logFC_pool), decreasing = TRUE), , drop = FALSE]
   top_gene_str <- if (nrow(sig) > 0L) {
+    # FASE E1 ADR-0019 D6: label = HGNC symbol (leggibile) con fallback
+    # all'Ensembl ID se symbol NA.
+    top_label <- if (!is.na(sig$gene_symbol[1L]) && nzchar(sig$gene_symbol[1L])) {
+      sig$gene_symbol[1L]
+    } else sig$gene_id[1L]
     sprintf("%s (logFC=%.2f, FDR=%.2g)",
-            sig$gene[1L], sig$logFC_pool[1L],
+            top_label, sig$logFC_pool[1L],
             sig$FDR_BH_within_cluster[1L])
   } else {
     "(none significant)"

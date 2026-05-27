@@ -20,8 +20,8 @@
   cpm <- t(t(counts) / lib_size) * 1e6
   base_mean <- rowMeans(log2(cpm + 1))
 
-  # Match per gene
-  match_idx <- match(cp$gene, names(base_mean))
+  # FASE E1: Match per gene_id (Ensembl, axis dei counts).
+  match_idx <- match(cp$gene_id, names(base_mean))
   cp$baseMean <- base_mean[match_idx]
   cp$is_sig <- !is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr
 

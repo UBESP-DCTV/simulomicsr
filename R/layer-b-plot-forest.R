@@ -50,18 +50,27 @@
     ))
   }
 
-  ps <- per_study_de_subset[per_study_de_subset$gene %in% top_genes$gene, , drop = FALSE]
+  # FASE E1 ADR-0019 D6: gene_id (Ensembl) come chiave operativa per
+  # join/subset; gene_symbol (HGNC) come label leggibile sull'asse y
+  # del plot. label = symbol non NA, fallback al gene_id raw se symbol NA.
+  top_genes$label <- ifelse(
+    is.na(top_genes$gene_symbol) | top_genes$gene_symbol == "",
+    top_genes$gene_id, top_genes$gene_symbol
+  )
+  ps <- per_study_de_subset[per_study_de_subset$gene_id %in% top_genes$gene_id, , drop = FALSE]
+  # Propaga la label sul ps via lookup per gene_id (mapping 1:1 garantito post-E1)
+  ps$label <- top_genes$label[match(ps$gene_id, top_genes$gene_id)]
 
   if (method == "mega_aug") {
     df_plot <- ps |>
       dplyr::mutate(
         ci_lo = logFC - 1.96 * SE,
         ci_hi = logFC + 1.96 * SE,
-        gene = factor(gene, levels = rev(top_genes$gene))
+        gene = factor(label, levels = rev(top_genes$label))
       )
     pooled_df <- top_genes |>
       dplyr::transmute(
-        gene = factor(gene, levels = rev(top_genes$gene)),
+        gene = factor(label, levels = rev(top_genes$label)),
         study_id = "Pool",
         logFC = logFC_pool,
         ci_lo = logFC_pool - 1.96 * SE_pool,
@@ -128,12 +137,15 @@
     # Device-safe: chiude solo se ancora aperto (gestisce crash mid-loop senza leak).
     on.exit(if (grDevices::dev.cur() != 1L) grDevices::dev.off(), add = TRUE)
     graphics::par(mfrow = c(min(top_n_actual, 4L), 1L), mar = c(3, 1, 2, 1))
-    for (g in top_genes$gene[seq_len(top_n_actual)]) {
-      ps_g <- ps[ps$gene == g, , drop = FALSE]
+    for (i in seq_len(top_n_actual)) {
+      g_id   <- top_genes$gene_id[i]
+      g_lab  <- top_genes$label[i]
+      ps_g <- ps[ps$gene_id == g_id, , drop = FALSE]
       if (nrow(ps_g) < 2L) next
       tryCatch({
         res <- metafor::rma(yi = ps_g$logFC, sei = ps_g$SE, method = "REML")
-        metafor::forest(res, slab = ps_g$study_id, header = g)
+        # FASE E1: header del singolo forest = symbol leggibile (fallback id).
+        metafor::forest(res, slab = ps_g$study_id, header = g_lab)
       }, error = function(e) NULL)
     }
     grDevices::dev.off()  # chiusura esplicita post-loop; on.exit copre crash

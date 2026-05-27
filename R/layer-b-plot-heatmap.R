@@ -29,7 +29,18 @@
 
   sig <- cp[!is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr, , drop = FALSE]
   sig <- sig[order(abs(sig$logFC_pool), decreasing = TRUE), , drop = FALSE]
-  top_genes <- utils::head(sig$gene, top_n)
+  # FASE E1: top_genes_id = chiave Ensembl (per indicizzare counts matrix
+  # post-E1 con rownames = ensembl), top_genes_label = HGNC symbol
+  # (per i row label dell'heatmap, leggibile). Mapping 1:1 per indice.
+  top_sig <- utils::head(sig, top_n)
+  top_genes_id    <- top_sig$gene_id
+  top_genes_label <- ifelse(
+    is.na(top_sig$gene_symbol) | top_sig$gene_symbol == "",
+    top_sig$gene_id, top_sig$gene_symbol
+  )
+  # Retrocompat: top_genes era usato per filtraggio + count length downstream.
+  # Lo manteniamo come gene_id (subset di vst_mat usa Ensembl ID).
+  top_genes <- top_genes_id
 
   if (length(top_genes) == 0L) {
     png_path <- file.path(out_dir, "heatmap.png")
@@ -160,12 +171,18 @@
   # mentre axis/labels/annotation restano vettoriali. Riduce SVG da ~5MB a
   # ~200-500KB mantenendo qualita di stampa paper-grade (raster_quality=5 =
   # high-DPI equivalent).
+  # FASE E1 ADR-0019 D6: row label = HGNC symbol leggibile (fallback
+  # gene_id se symbol NA). z_mat ha rownames = ensembl_gene; rimappiamo
+  # via top_genes_id -> top_genes_label.
+  row_labels_z <- top_genes_label[match(rownames(z_mat), top_genes_id)]
+
   hm <- ComplexHeatmap::Heatmap(
     z_mat,
     name = "z-score",
     top_annotation = ha,
     show_column_names = FALSE,
     show_row_names = TRUE,
+    row_labels = row_labels_z,
     row_names_gp = grid::gpar(fontsize = 8),
     cluster_columns = TRUE,
     cluster_rows = TRUE,

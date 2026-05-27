@@ -16,8 +16,10 @@
   fdr_thr <- config$fdr_threshold
   min_universe <- config$min_genes_for_go_ora
 
-  universe <- unique(cp$gene[!is.na(cp$p_value_pool)])
-  gene_set <- unique(cp$gene[!is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr])
+  # FASE E1 ADR-0019 D6: ORA su gene_id (Ensembl, axis univoco). HGNC
+  # symbol resta come label per i risultati (readable = TRUE).
+  universe <- unique(cp$gene_id[!is.na(cp$p_value_pool)])
+  gene_set <- unique(cp$gene_id[!is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr])
 
   png_path <- file.path(out_dir, "go_enrichment.png")
   svg_path <- file.path(out_dir, "go_enrichment.svg")
@@ -57,11 +59,11 @@
       gene          = gene_set,
       universe      = universe,
       OrgDb         = org.Hs.eg.db::org.Hs.eg.db,
-      keyType       = "SYMBOL",
+      keyType       = "ENSEMBL",
       ont           = "BP",
       pAdjustMethod = "BH",
       qvalueCutoff  = 0.05,
-      readable      = FALSE
+      readable      = TRUE    # FASE E1: rimappa Ensembl -> HGNC nei result
     )
   }, error = function(e) NULL)
 

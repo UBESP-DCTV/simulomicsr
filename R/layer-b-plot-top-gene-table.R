@@ -37,7 +37,8 @@
     ))
   }
 
-  out_cols <- c("gene", "logFC_pool", "SE_pool", "p_value_pool",
+  # FASE E1 ADR-0019 D6: gene_id (Ensembl) + gene_symbol (HGNC label).
+  out_cols <- c("gene_id", "gene_symbol", "logFC_pool", "SE_pool", "p_value_pool",
                 "FDR_BH_within_cluster", "k_effective", "tau2", "I2",
                 "direction_applied")
   out_cols <- intersect(out_cols, names(top))

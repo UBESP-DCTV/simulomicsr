@@ -14,7 +14,8 @@ test_that(".build_top_gene_table writes CSV + LaTeX", {
 
   # CSV content check
   csv_df <- readr::read_csv(result$csv_path, show_col_types = FALSE)
-  expect_true(all(c("gene", "logFC_pool", "SE_pool", "FDR_BH_within_cluster") %in% names(csv_df)))
+  expect_true(all(c("gene_id", "gene_symbol", "logFC_pool", "SE_pool",
+                     "FDR_BH_within_cluster") %in% names(csv_df)))
   expect_lte(nrow(csv_df), cfg$top_n_table)
 
   # LaTeX content check

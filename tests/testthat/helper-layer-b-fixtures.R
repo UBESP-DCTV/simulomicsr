@@ -7,7 +7,8 @@ make_fake_cluster_pooled <- function(n_genes = 100, n_sig = 20, cluster_id = "cl
   p_value <- c(runif(n_sig, 1e-10, 0.01), runif(n_genes - n_sig, 0.05, 1))
   tibble::tibble(
     cluster_id = cluster_id,
-    gene = paste0("G", seq_len(n_genes)),
+    gene_id = paste0("ENSG", sprintf("%011d", seq_len(n_genes))),
+    gene_symbol = paste0("SYM_", seq_len(n_genes)),
     method = "mega",
     logFC_pool = logFC,
     SE_pool = abs(logFC) / 5 + 0.1,
@@ -23,11 +24,13 @@ make_fake_cluster_pooled <- function(n_genes = 100, n_sig = 20, cluster_id = "cl
 make_fake_per_study_de <- function(cluster_id = "cl_aug", n_genes = 50, n_studies = 2) {
   set.seed(42)
   studies <- paste0("GSE", seq_len(n_studies))
-  expand.grid(study_id = studies, gene = paste0("G", seq_len(n_genes)),
+  expand.grid(study_id = studies, gene_id = paste0("ENSG", sprintf("%011d", seq_len(n_genes))),
               KEEP.OUT.ATTRS = FALSE, stringsAsFactors = FALSE) |>
     tibble::as_tibble() |>
     dplyr::mutate(
       cluster_id = cluster_id,
+      gene_symbol = paste0("SYM_",
+                            sub("ENSG0*", "", gene_id)),
       logFC = rnorm(dplyr::n(), 0, 1),
       SE = abs(rnorm(dplyr::n(), 0.3, 0.1)),
       p_value = runif(dplyr::n(), 0, 1),
@@ -35,8 +38,8 @@ make_fake_per_study_de <- function(cluster_id = "cl_aug", n_genes = 50, n_studie
       n_treated = 3L, n_control = 3L,
       direction_applied = "none"
     ) |>
-    dplyr::select(cluster_id, study_id, gene, logFC, SE, p_value, t_stat,
-                  n_treated, n_control, direction_applied)
+    dplyr::select(cluster_id, study_id, gene_id, gene_symbol, logFC, SE, p_value,
+                  t_stat, n_treated, n_control, direction_applied)
 }
 
 # Fixture end-to-end per build_layer_b_results(): finto stage4 dir + counts cache.
@@ -56,7 +59,8 @@ make_fake_layer_a_dir <- function() {
     n_aug_scalar <- if (method == "mega_aug") 8L else NA_integer_
     tibble::tibble(
       cluster_id = cluster_id,
-      gene = paste0("HGNC", seq_len(n_genes)),
+      gene_id = paste0("ENSG", sprintf("%011d", seq_len(n_genes))),
+      gene_symbol = paste0("HGNC", seq_len(n_genes)),
       method = method,
       logFC_pool = logFC,
       SE_pool = abs(logFC) / 5 + 0.1,
@@ -78,7 +82,8 @@ make_fake_layer_a_dir <- function() {
   ps <- tibble::tibble(
     cluster_id = rep("cl_aug_1", 200L),
     study_id   = rep(c("GSE_PAIR_A", "GSE_PAIR_B"), each = 100L),
-    gene       = rep(paste0("HGNC", 1:100), 2L),
+    gene_id    = rep(paste0("ENSG", sprintf("%011d", 1:100)), 2L),
+    gene_symbol = rep(paste0("HGNC", 1:100), 2L),
     logFC      = rnorm(200, 0, 1),
     SE         = abs(rnorm(200, 0.3, 0.1)),
     p_value    = runif(200, 0, 1),
@@ -126,9 +131,15 @@ make_fake_counts_cache <- function(cluster_ids, samples_per_study = 6L, n_genes 
       rpois(n_genes * samples_per_study, lambda = 100),
       nrow = n_genes,
       dimnames = list(
-        paste0("HGNC", seq_len(n_genes)),
+        paste0("ENSG", sprintf("%011d", seq_len(n_genes))),
         paste0(s, "_GSM", seq_len(samples_per_study))
       )
+    )
+    # FASE E1: attacca gene_symbol (HGNC) come attr named per consistenza
+    # con il return contract di .fetch_counts_from_h5.
+    attr(counts, "gene_symbol") <- setNames(
+      paste0("HGNC", seq_len(n_genes)),
+      paste0("ENSG", sprintf("%011d", seq_len(n_genes)))
     )
     studies_map[[s]] <- counts
   }

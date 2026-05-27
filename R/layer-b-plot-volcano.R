@@ -27,7 +27,13 @@
   if (length(sig_idx) > 0L) {
     ranked_sig <- sig_idx[order(cp$label_score[sig_idx], decreasing = TRUE)]
     top_idx <- head(ranked_sig, top_n)
-    cp$label <- ifelse(seq_len(nrow(cp)) %in% top_idx, cp$gene, NA_character_)
+    # FASE E1 ADR-0019 D6: label = HGNC symbol leggibile (fallback gene_id
+    # se symbol NA o stringa vuota).
+    readable_label <- ifelse(
+      is.na(cp$gene_symbol) | cp$gene_symbol == "",
+      cp$gene_id, cp$gene_symbol
+    )
+    cp$label <- ifelse(seq_len(nrow(cp)) %in% top_idx, readable_label, NA_character_)
   } else {
     cp$label <- NA_character_
   }

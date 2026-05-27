@@ -33,11 +33,13 @@ test_that(".build_forest REM branch produces PNG with k panels respecting top_n_
   cp$n_baseline_studies_augmented <- NA_integer_
 
   studies <- paste0("GSE", 1:5)
-  ps <- expand.grid(study_id = studies, gene = cp$gene,
+  ps <- expand.grid(study_id = studies, gene_id = cp$gene_id,
                     KEEP.OUT.ATTRS = FALSE, stringsAsFactors = FALSE) |>
     tibble::as_tibble() |>
     dplyr::mutate(
       cluster_id = "cl_rem",
+      # FASE E1: propaga gene_symbol via lookup gene_id -> gene_symbol
+      gene_symbol = cp$gene_symbol[match(gene_id, cp$gene_id)],
       logFC = rnorm(dplyr::n(), 0, 1),
       SE = abs(rnorm(dplyr::n(), 0.3, 0.1)),
       p_value = runif(dplyr::n(), 0, 1),
