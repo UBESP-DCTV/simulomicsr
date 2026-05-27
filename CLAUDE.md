@@ -19,32 +19,41 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
-> **Stato 2026-05-27 fine sessione 5**: ✅ **FASE A+B+C+D chiuse (19/19)**
-> + scope-extension D3 (Stadio 2 IT->EN) + D4 (fix bug latente
-> organism_hint). Codice LLM Stadio 0+1+2 paper-grade ready per fullrun:
-> - Pre-LLM: `read_archs4_metadata` 14 campi, `is_sample_classifiable` v2
->   firma B3 (7 reason codes), `parse_aligner_class`, `parse_biosample_id`,
->   `build_archs4_metadata_v2` (RDS 11 col), `archs4_to_stage1_jsonl` con
->   molecule_ch1 (D5).
-> - LLM Stadio 1: prompt con ground rule 9 su `molecule_hint` (D1b);
->   `classify_sample_row` legge row$organism + row$molecule_ch1 dal JSONL
->   e li passa come hint al builder; path DGX Python simmetrico
->   (`inst/dgx/python/prompts.py` legge le chiavi ARCHS4-verbatim
->   `organism`+`molecule_ch1` ed emette label `organism_hint`+`molecule_hint`).
-> - LLM Stadio 2: prompt completamente in inglese (D3), schema invariato,
->   4 RULE rigide preserved 1:1 semantica.
-> - Bug latente organism_hint pre-D4 nel Python (mai emesso nel beta
->   fullrun) FIXED simmetrico al pattern D1b.
+> **Stato 2026-05-27 fine sessione 6**: ✅ **FASE A+B+C+D+E0 chiuse
+> (20/19 + 1 task addizionale aperta E0b)**. Sessione 6 ha materializzato
+> ADR-0019 D9 (dedupe BioSample SAMN) nel codice Stadio 3:
+> - Record builders pair/group portano `treated_sample_ids` +
+>   `control_sample_ids` (era solo conteggio).
+> - 2 nuovi helper in `R/stage3-metadata.R`: `.build_biosample_lookup`
+>   (geo_accession -> SAMN) e `.build_donor_lookup` (geo_accession ->
+>   donor_id). Pre-build O(K) per cluster.
+> - `.enrich_cluster_metadata` esteso con i 2 lookup. Nuova colonna
+>   `n_distinct_biosamples` in `clusters.rds`. Policy NA-non-collassante.
+> - **Fix paper-grade `n_distinct_donors`**: pre-E0 sotto-stimava
+>   contando solo donor del primo sample per record. Post-E0 itera
+>   tutti i GSM via donor_lookup. Fallback legacy preservato.
+> - `schema_versions.dedupe_strategy = "biosample_samn_unique"` in
+>   `run_metadata.json` (loggato una volta, non colonna per-cluster).
+> - `load_archs4_metadata` esteso per leggere `meta/samples/relation` +
+>   `parse_biosample_id()`. Cache key bumpata `v2_biosample` invalida
+>   automaticamente cache pre-E0. Fallback graceful su H5 senza
+>   relation.
 >
-> Test suite globale (escluso perf-budget): **92 file, 614 test_that,
-> 1883 expect_* PASS, 0 FAIL, 4 SKIP**. Drop Stage 0 v2 invariato
-> **371.129 / 879.167 = 42.21%**, bacino finale **507.838 sample**.
-> Decisione REBUILD invariata. Branch ahead di master di **17 commit**
-> (last `0409810` D4 organism_hint fix). Prossimo step (nuova sessione):
-> **FASE E (codice POST-LLM Stadio 3 + Stadio 4)** — task E0 dedupe
-> SAMN, E1 gene axis Ensembl, E2 biotype filter, E3 covariate batch
-> instrument_model + aligner_class, E4 tests, E5 Layer B compatibility
-> check. Gate utente fra ciascuna task come da convenzione RED ALERT.
+> **E0b APERTO post-E0**: collasso same-SAMN cross-GSE in pooling
+> Stadio 4 (425 GSM cross-GSE veri dall'A7, 0.048%). Gate utente in
+> apertura sessione 7 fra 3 opzioni: (a) drop duplicate, (b) average
+> counts, (c) declare sotto-noise in ADR-0019 + Limitations paper.
+>
+> Test suite globale (escluso perf-budget): **93 file, 638 test_that,
+> 1931 expect_* PASS, 0 FAIL, 3 SKIP** (+24 nuovi test_that E0).
+> Branch ahead di master di **37 commit** (correzione: il claim "17"
+> nei banner sessioni 4-5 era miscount cumulato). Last commit closing
+> doc sessione 6. Master invariato. Drop Stage 0 v2 invariato **371.129 /
+> 879.167 = 42.21%**, bacino finale **507.838 sample**. Decisione
+> REBUILD invariata. Prossimo step (nuova sessione 7): **decidere E0b
+> + procedere con E1 (gene axis Ensembl, risolve paralogi ADR-0016
+> Decision 2)**. Gate utente fra ciascuna task come da convenzione
+> RED ALERT.
 
 ---
 

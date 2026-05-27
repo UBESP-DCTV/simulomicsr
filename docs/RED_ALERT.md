@@ -708,26 +708,78 @@ D1b crea stato confuso, (b) forward-looking se in futuro multi-organismo,
 
 ### FASE E — Codice POST-LLM (Stadio 3 metadata + Stadio 4 DE)
 
-#### ⬜ E0 — Implementazione dedupe BioSample da A7
+#### ✅ E0 — Implementazione dedupe BioSample da A7 (sessione 6, `cc77faf`)
 
-**Cosa facciamo.** Implementiamo nel codice la strategia dedupe scelta
-in A7 (relation primario / donor_id primario / union). Nuova
-funzione `R/etl-archs4-utils.R::parse_biosample_id(relation)` per
-estrarre SAMN ID da `relation`. Stadio 3 `R/stage3-metadata.R`
-modificato per consumare sia `donor_id` (già esistente) sia il nuovo
-`biosample_id`, e calcolare `n_distinct_biosamples` per cluster.
+**Cosa abbiamo fatto.** Materializzato ADR-0019 D9 in `clusters.rds`:
 
-**Perché serve.** È la materializzazione di A7 nel codice produttivo.
-Senza questa, A7 resta una nota e non cambia niente nella pipeline.
+1. Record builders `R/stage3-build.R::.build_pair_records` +
+   `.build_group_records` ora portano `treated_sample_ids` +
+   `control_sample_ids` (GSM list a livello record, era solo conteggio).
+   Group-mode `control_sample_ids = character(0)` (no control side
+   semantico).
+2. Due nuovi helper in `R/stage3-metadata.R`:
+   - `.build_biosample_lookup(archs4_metadata)` → named char vec
+     `geo_accession → SAMN`. NULL su input incompatibile.
+   - `.build_donor_lookup(stage1_master)` → named char vec
+     `geo_accession → donor_id`. Accetta sia list che environment
+     (post Phase 1.5 di `build_stage3_clusters`).
+3. `.enrich_cluster_metadata()` esteso con parametri `biosample_lookup`
+   + `donor_lookup`. Policy NA-non-collassante (sample senza SAMN/donor
+   = identita' biologica distinta).
+4. Nuova colonna `n_distinct_biosamples` in `clusters.rds`. Schema
+   `empty_clusters` aggiornato.
+5. **Fix paper-grade sotto-stima `n_distinct_donors`**: pre-E0 leggeva
+   solo `stage1_facts$donor$donor_id` del primo sample del record
+   (sotto-stima sistematica per cluster con replicate gruppi multi-donor).
+   Post-E0 itera tutti i `treated_sample_ids` + `control_sample_ids`,
+   lookup via `donor_lookup`. Fallback legacy preservato quando
+   `donor_lookup = NULL` (retrocompat 2 test pre-E0 in
+   `test-stage3-metadata.R`).
+6. `R/stage3-config.R::stage3_default_config()$schema_versions` aggiunge
+   `dedupe_strategy = "biosample_samn_unique"` (loggato una volta in
+   `run_metadata.json`, non colonna ridondante per-cluster).
+7. `R/stage3-archs4-meta.R::load_archs4_metadata` esteso per leggere
+   `meta/samples/relation` da H5 e applicare `parse_biosample_id()`
+   (gia' definita in C3). Tibble output ora ha colonna `biosample_id`.
+   Cache key bumpata con `schema_version = "v2_biosample"` per
+   invalidare automaticamente le cache pre-E0. Fallback graceful
+   (tryCatch) se H5 non ha il dataset `relation` -> tutti NA.
 
-**Come.**
-1. Funzione `parse_biosample_id(relation_text) -> character (SAMN ID o NA)`
-   con tests fixture.
-2. `build_archs4_metadata_v2()` (C3) carica anche il SAMN ID parsato.
-3. `R/stage3-metadata.R::.enrich_cluster_metadata()` aggiunge il calcolo
-   di `n_distinct_biosamples` + `dedupe_strategy` come colonna logged
-   nel cluster summary.
-4. Tests TDD.
+**Out-of-scope esplicito (rimandato a E0b)**: collasso same-SAMN
+cross-GSE in pooling Stadio 4. A7 ha identificato 425 GSM cross-GSE
+duplicati veri (0.048%). E0 espone il numero, NON collassa nel pool.
+
+**Test result E0**: 24 nuovi `test_that` in
+`tests/testthat/test-stage3-e0-biosample-dedupe.R`. Test suite globale
+post-E0 (escluso perf-budget): **1931 PASS / 0 FAIL / 3 SKIP** (vs
+pre-E0 1883 PASS / 0 FAIL / 4 SKIP). +48 expect_*, 0 regressioni.
+
+**Decisione architetturale registrata**: nuovo task **E0b** aperto per
+collasso cross-GSE same-SAMN in pooling Stadio 4. 3 opzioni discusse
+con utente:
+- (a) Drop duplicate: tenere solo il primo GSM per SAMN nel pool.
+- (b) Average counts: mediare counts cross-GSE per stesso SAMN.
+- (c) Lasciare entrambi: dichiarare 0.048% sotto-noise in ADR-0019
+  consequence "neutral".
+
+Gate utente per scelta (a) / (b) / (c) prima del codice.
+
+#### ⬜ E0b — Collasso same-SAMN cross-GSE in pooling Stadio 4 (NEW post-E0)
+
+**Cosa facciamo.** Sulla base della scelta utente:
+- Opzione (a): in `R/stage4-mega-aug.R::.expand_mega_aug_samples` (e
+  caller analoghi), deduplicare per SAMN prima del pooling. Drop GSM
+  ridondanti (primo conservato).
+- Opzione (b): aggregare counts (somma o media) cross-GSE per stesso
+  SAMN prima del DE engine.
+- Opzione (c): nessun codice, dichiarazione in ADR-0019 + Limitations
+  paper.
+
+**Perche' serve.** I 425 GSM cross-GSE veri (0.048% del bacino) sono
+doppia-conta biologica nel pool DE. Senza collasso, la stessa entita'
+biologica viene contata due volte come sample indipendente.
+
+**Decisione che dipende da E0b.** Una delle 3 opzioni + relativi tests.
 
 #### ⬜ E1 — Gene axis a Ensembl ID
 
@@ -1009,23 +1061,63 @@ ALERT per Stadio 1 audit nella sessione successiva.
   0 FAIL, 4 SKIP**. Prossimo step nuova sessione: **FASE E (codice
   post-LLM Stadio 3 + Stadio 4)** — task E0-E5.
 
+- 2026-05-27 sessione 6: **E0 chiusa paper-grade** + decisione design
+  E0b registrata in attesa scelta utente. 1 commit incrementale + 1
+  commit closing (questo doc + CLAUDE.md):
+  - ✅ E0 (`cc77faf`) dedupe BioSample SAMN sample-level in Stadio 3
+    materializza ADR-0019 D9 in `clusters.rds`. Architettura additive:
+    record builders pair/group portano `treated_sample_ids` +
+    `control_sample_ids` (era solo conteggio); 2 nuovi helper
+    `.build_biosample_lookup` + `.build_donor_lookup` pre-built una
+    volta in `.summarize_clusters` (lookup O(1) per cluster);
+    `.enrich_cluster_metadata` esteso con i 2 lookup; nuova colonna
+    `n_distinct_biosamples` nello schema cluster; `schema_versions.dedupe_strategy
+    = "biosample_samn_unique"` loggato in `run_metadata.json` (non
+    colonna ridondante); `load_archs4_metadata` esteso per leggere
+    `meta/samples/relation` con cache key bumpata `v2_biosample`.
+    **Fix paper-grade collaterale**: `n_distinct_donors` pre-E0 leggeva
+    solo donor del primo sample per record (sotto-stima sistematica),
+    post-E0 itera tutti i GSM via `donor_lookup`. Fallback legacy
+    preservato per retrocompat 2 test pre-E0. Policy NA-non-collassante
+    per sample senza SAMN/donor.
+  - ⬜ E0b APERTO post-E0: collasso same-SAMN cross-GSE in pooling
+    Stadio 4 (425 GSM cross-GSE veri dall'A7, 0.048%). 3 opzioni
+    discusse con utente (drop / average counts / sotto-noise). Gate
+    utente per scelta in next session.
+  Branch ahead di master di **37 commit** (correzione: il claim "17"
+  nei banner sessioni 4-5 era miscount cumulato; valore reale verificato
+  con `git rev-list --count master..HEAD`). Master invariato. Test suite
+  globale (escluso perf-budget): **93 file, 638 test_that, 1931 expect_*
+  PASS, 0 FAIL, 3 SKIP**
+  (+24 test_that E0 + 1 file nuovo
+  `tests/testthat/test-stage3-e0-biosample-dedupe.R`).
+  Prossimo step nuova sessione: **decidere E0b + procedere con E1
+  (gene axis Ensembl)**.
+
 ### Handoff next session
 
-- Sessione successiva: parte da **FASE E (codice POST-LLM)**, 5 task
-  da pianificare con gate utente fra ciascuna:
-  - E0 dedupe SAMN cross-studio (R/etl-archs4-utils.R::parse_biosample_id
-    gia' pronto in C3; integrazione Stadio 3 da fare).
-  - E1 gene axis Ensembl ID (risolve paralogi ADR-0016).
+- **Decisione utente in apertura sessione**: opzione E0b (drop dup /
+  average counts / declare sotto-noise). E0b non sblocca E1, ma va
+  fissato per chiusura ADR-0019 e per orchestrare bene F5 (Stadio 4
+  rebuild post-rebuild).
+- Sessione successiva: parte da **E1 (gene axis Ensembl)** + decisione
+  E0b. Task da pianificare con gate utente fra ciascuna:
+  - E0b collasso SAMN cross-GSE (decisione + eventuale impl).
+  - E1 gene axis Ensembl ID (risolve paralogi ADR-0016 Decision 2).
   - E2 filtro biotype == protein_coding (default).
   - E3 covariate batch instrument_model + aligner_class in formula DE.
   - E4 tests E1-E3.
   - E5 verifica Layer B compatibility (smoke 3-cluster post refactor).
-- Branch attivo: `p5-llm-anchor-classification-audit` (17 commit ahead
-  di master, ultimo `0409810`).
+- Branch attivo: `p5-llm-anchor-classification-audit` (37 commit ahead
+  di master verificato git, ultimo commit closing doc sessione 6 sopra
+  E0 `cc77faf`).
 - Master invariato.
-- FASE A+B+C+D completate (15+4 = 19/19 task + 2 scope-extension D3/D4).
-  FASE E, F, G TODO.
-- Bug latente da tracciare separatamente: nessuno noto al momento (D4
-  ha chiuso quello scoperto durante D1b).
+- FASE A+B+C+D+E0 completate (20/19 + 1 task addizionale aperta E0b).
+  FASE F, G TODO.
+- Bug latente da tracciare separatamente: nessuno noto al momento
+  (E0 ha chiuso il fix sotto-stima n_distinct_donors scoperto durante
+  pianificazione).
+- File nuovi in clusters.rds da E0: colonna `n_distinct_biosamples`
+  (integer). Schema run_metadata.json `schema_versions.dedupe_strategy`.
 - Quando RED ALERT (Stadio 0) chiude: aprire nuovo doc
   `docs/RED_ALERT-stage1.md` per audit Stadio 1.
