@@ -43,4 +43,10 @@ test_that("archs4_to_stage1_jsonl emette JSONL con filtri applicati", {
   rec1 <- jsonlite::fromJSON(lines[1])
   expect_equal(rec1$geo_accession, "GSM001")
   expect_true(grepl("^title: MCF7 tam 24h,source: MCF7,", rec1$string))
+  # P5 audit RED_ALERT C4: molecule_ch1 incluso nel JSONL (ADR-0019 D5).
+  # Fixture: GSM001 = "polyA RNA", GSM002 = "total RNA".
+  expect_equal(rec1$molecule_ch1, "polyA RNA")
+  rec2 <- jsonlite::fromJSON(lines[2])
+  expect_equal(rec2$geo_accession, "GSM002")
+  expect_equal(rec2$molecule_ch1, "total RNA")
 })

@@ -94,7 +94,13 @@ archs4_to_stage1_jsonl <- function(h5_path, out_jsonl_path,
       series_id        = kept$series_id[i],
       string           = kept$string[i],
       library_strategy = kept$library_strategy[i],
-      organism         = kept$organism_ch1[i]
+      organism         = kept$organism_ch1[i],
+      # P5 audit RED_ALERT C4 (ADR-0019 D5): molecule_ch1 hint LLM Stadio 1.
+      # Valori GEO controlled vocab: "total RNA", "polyA RNA", "nuclear RNA",
+      # "cytoplasmic RNA", ecc. Cambia che geni il sample "vede" (polyA NON
+      # ha snRNA; total RNA si'). Prompt LLM Stadio 1 aggiornato in D1b
+      # (gate utente in FASE D1a).
+      molecule_ch1     = kept$molecule_ch1[i]
     )
   })
   out_lines <- vapply(recs, jsonlite::toJSON, character(1L), auto_unbox = TRUE)
