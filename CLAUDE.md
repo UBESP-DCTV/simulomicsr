@@ -72,12 +72,35 @@
 > e0b-smoke + delta su mega-aug-bidir). Branch ahead di master di **44
 > commit** (37 pre-sessione 7 + 7 commit E0b T1..T6b). Master invariato.
 >
-> **Prossimo step sessione 8**: gate utente per **E1** (gene axis Ensembl,
-> risolve paralogi ADR-0016 Decision 2 in modo deterministico vs
-> make.unique). Eventuali finding di FASE E0b lookup-aware su h5_metadata
-> attuali sono retrocompat (warning + no dedupe; il rebuild F1-F5 produrra'
-> nuovo h5_metadata con biosample_id + lib_size). Stato pipeline rebuild
-> invariato (FASE F SOSPESA in attesa di completamento E1-E5).
+> **Aggiornamento sessione 7 post-E0b — FASE E1 chiusa (gene axis Ensembl)**:
+> ✅ FASE A+B+C+D+E0+E0b+E1 chiuse (22/19 task). E1 ha sostituito ADR-0016
+> Decision 2 (workaround make.unique) con axis Ensembl ID univoco
+> (67186 ID, 0 NA in H5 v2.5). Schema breaking pulito: colonna `gene`
+> -> `gene_id` (Ensembl) + nuova `gene_symbol` (HGNC label, NA-aware).
+> Layer B aggiornato (7 plot file): label leggibile = symbol con
+> fallback gene_id. GO enrichment switch keyType SYMBOL -> ENSEMBL +
+> readable=TRUE.
+>
+> **Implementazione E1 in 6 commit bite-sized TDD**:
+> - `d9bcc00` T1: helper `.parse_gene_axis` (early-fail su NA, "", duplicati)
+> - `93b8b3e` T2: `.h5_gene_axis` Ensembl + `.attach_gene_annotation` attr named
+> - `13d88a1` T3: DE functions schema gene_id + gene_symbol; rimosso defensive
+>   make.unique sostituito da stop() guardia
+> - `3e486ec` T4: orchestrator cbind cross-study riattacca attr (catturato
+>   durante self-review)
+> - `5ba0786` T5: Layer B compatibility (7 file + helper fixture + 3 test)
+> - `934d156` T6: cache key disk + schema_versions bump v2_ensembl_gene_axis
+>
+> Test perimetro E1 + Layer B: **669 expect_*, 0 fail** (38 file).
+> Self-review paper-grade Opus 4.7 ha confermato integrita' algoritmica.
+> Codex CLI ancora non utilizzabile (auth ChatGPT tier no gpt-5.x-codex,
+> documentato in E0b). ADR-0016 Decision 2 marcato "Superseded by
+> ADR-0019 §D6".
+>
+> **Prossimo step sessione 8**: gate utente per **E2** (filtro
+> `biotype == protein_coding` come default Stadio 4) + **E3** (covariate
+> batch instrument_model + aligner_class nel design DE). Stato pipeline
+> rebuild invariato (FASE F SOSPESA in attesa di E2-E5).
 
 ---
 

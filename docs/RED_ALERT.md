@@ -827,21 +827,56 @@ Razionale paper-grade (sintesi A7b):
 TDD bite-sized prima del codice. Gate utente sul piano prima di toccare
 codice.
 
-#### ⬜ E1 — Gene axis a Ensembl ID
+#### ✅ E1 — Gene axis a Ensembl ID (DONE sessione 7)
 
-**Cosa facciamo.** `.h5_gene_axis()` oggi torna `symbol` con
-`make.unique()`. Cambiamo: torna `ensembl_gene` come rownames
-(univoco), e `symbol` come colonna di annotazione separata.
+**Decisione utente 2026-05-27 (sessione 7)**: ✅ opzione **A breaking
+pulito** — schema cluster_pooled.parquet + per_study_de.parquet: colonna
+`gene` (HGNC make.unique pre-E1) rinominata `gene_id` (Ensembl, univoco
+per costruzione: 67186 ID distinti in H5 v2.5 con 0 NA confermato) +
+nuova colonna `gene_symbol` (HGNC, possibili duplicati cross-paralogi +
+NA-aware). Layer B aggiornato per usare gene_symbol come label
+leggibile nei plot (forest, heatmap, volcano, top-gene table, summary
+card, GO via keyType='ENSEMBL'+readable=TRUE).
 
-**Perché serve.** Risolve il bug paralogi (ADR-0016 Decision 2) in modo
-pulito invece che con la patch make.unique che genera "KIR3DL2.1
-KIR3DL2.2 …" come rownames sintetici. Ensembl ID univoco per design,
-nessuna ambiguità.
+**Implementazione completata sessione 7** — 6 commit bite-sized TDD:
+- `d9bcc00` T1: helper puro `.parse_gene_axis(ensembl, symbol)` in
+  `R/stage4-gene-axis.R` con validazione early-fail (NA, "", duplicati);
+  18 expect_*.
+- `93b8b3e` T2: `.h5_gene_axis` refactor (Ensembl + symbol via
+  `.parse_gene_axis`); `.attach_gene_annotation(counts, gene_axis)`
+  setta rownames + attr('gene_symbol') named (lookup post-filterByExpr);
+  `.fetch_counts_from_h5` rimosso `make.unique()` legacy. Cache key memo
+  bumpata `genes::v2_ensembl::`. 10 expect_*.
+- `13d88a1` T3: DE functions output schema `gene_id` + `gene_symbol`
+  (`.run_limma_voom_de`, `.run_dream_mega`, `.empty_per_study_de`,
+  `.empty_pooled_rem`, `.pool_rem_cluster`); defensive make.unique
+  rimosso da .run_dream_mega + sostituito con guardia stop() esplicita.
+  Test fixture rem-pooling + replication aggiornati. 10 expect_*.
+- `3e486ec` T4: orchestrator riattacca attr('gene_symbol') dopo cbind
+  cross-study (cbind + matrix subscripting perdono attr custom). Fix
+  catturato durante self-review T4.
+- `5ba0786` T5: Layer B compatibility (7 plot file + helper fixture +
+  3 test): gene_id come chiave operativa, gene_symbol come label
+  leggibile con fallback gene_id se symbol NA. GO enrichment switch
+  keyType 'SYMBOL' -> 'ENSEMBL' + readable=TRUE.
+- `934d156` T6: cache key disk `.cache_key_for_fetch` payload bumpato
+  con prefisso 'v2_ensembl::' (invalida cache disk pre-E1
+  automaticamente); schema_versions\$stage4_algorithm bumpato
+  'v1' -> 'v2_ensembl_gene_axis'.
 
-**Come.** Modifica `R/stage4-counts-cache.R::.h5_gene_axis()` per
-leggere `/meta/genes/ensembl_gene`. Tabella di mapping ensembl↔symbol
-diventa output separato che entra in `cluster_pooled.parquet` come
-colonna `gene_symbol`. `make.unique` rimosso.
+Test perimetro E1 + Layer B post-T6: **669 expect_*, 0 fail** su tutti
+i file stage4 + layer-b (38 file). Zero regressioni. Self-review
+paper-grade Opus 4.7 ha confermato l'integrita' algoritmica; nessun
+finding bloccante. Codex CLI non utilizzabile per review esterna (auth
+ChatGPT non supporta i modelli gpt-5.x-codex con quel tier, gia'
+documentato in E0b).
+
+**Effetto su ADR-0016 Decision 2** (sub-finding dream silent fallback):
+risolto alla fonte. La patch make.unique() era un workaround per
+simboli HGNC duplicati; ora Ensembl come axis rende il problema
+inesistente per definizione (67186 unici, 0 NA). Defensive make.unique
+sostituito da guardia stop() per qualunque fetch_fn alternativo che
+producesse rownames duplicati.
 
 #### ⬜ E2 — Filtro `biotype == protein_coding`
 

@@ -1,3 +1,108 @@
+# simulomicsr 0.0.0.9022 (development) — P5 RED ALERT E1: gene axis Ensembl ID (ADR-0019 D6)
+
+## FASE E1 ADR-0019 D6 (2026-05-27, sessione 7)
+
+Decisione utente 2026-05-27 (sessione 7): nel pool Stadio 4 + per-study
+DE + Layer B, la chiave gene cambia da HGNC symbol con `make.unique()`
+(workaround ADR-0016 Decision 2) a `ensembl_gene` ID univoco per
+costruzione (67186 ID distinti in ARCHS4 v2.5, 0 NA confermato). HGNC
+symbol resta come annotation separata (4638 simboli duplicati per
+paralogi reali: KIR3DL2 x43, HLA, ...).
+
+### Razionale paper-grade
+
+- ARCHS4 v2.5 `meta/genes/symbol` contiene 4638/67186 simboli HGNC
+  duplicati (paralogi: piu' Ensembl ID legittimi mappano sullo stesso
+  symbol). Pre-E1 `make.unique()` produceva rownames sintetici
+  (KIR3DL2.1, KIR3DL2.2, ...) che mescolavano Ensembl ID distinti sotto
+  un nome scelto arbitrariamente. Sub-finding ADR-0016 Decision 2: il
+  dream-mega ripiegava silenziosamente al fallback limma quando i
+  rownames duplicati arrivavano alla pipeline.
+- Post-E1 Ensembl ID e' l'axis univoco per costruzione: nessuna
+  ambiguita', nessun bisogno di patch make.unique, dream gira
+  correttamente sui dati reali.
+
+### Schema breaking change
+
+cluster_pooled.parquet + per_study_de.parquet:
+- colonna `gene` (era HGNC symbol con make.unique) RIMOSSA.
+- nuova colonna `gene_id` (Ensembl ID, axis chiave).
+- nuova colonna `gene_symbol` (HGNC symbol, NA-aware, possibili duplicati
+  cross-paralogi).
+
+Layer B aggiornato per usare `gene_symbol` come label leggibile nei
+plot (forest, heatmap, volcano, top-gene table, summary card) con
+fallback `gene_id` se symbol NA. GO enrichment switch
+`keyType = 'SYMBOL'` -> `'ENSEMBL'` + `readable = TRUE` (rimappa
+Ensembl -> HGNC nei risultati clusterProfiler).
+
+### Codice nuovo
+
+- `R/stage4-gene-axis.R`: helper `.parse_gene_axis(ensembl, symbol)`
+  con validazione early-fail (NA, "", duplicati ensembl);
+  `.attach_gene_annotation(counts, gene_axis)` setta rownames + attr
+  `gene_symbol` named (lookup post-filterByExpr).
+
+### Codice modificato
+
+- `R/stage4-counts-cache.R::.h5_gene_axis`: legge ensembl_gene +
+  symbol, ritorna list via `.parse_gene_axis`. Cache key memo bumpata
+  `genes::v2_ensembl::`. `.fetch_counts_from_h5` rimuove make.unique +
+  attacca attr via helper.
+- `R/stage4-counts-cache.R::.cache_key_for_fetch`: payload xxhash32
+  ora include prefisso `v2_ensembl::` -> cache disk pre-E1
+  invalidata automaticamente.
+- `R/stage4-dream-mega.R::.run_dream_mega`: estrae attr gene_symbol
+  PRIMA di edgeR::DGEList (che scarta attr); output schema gene_id +
+  gene_symbol. Defensive make.unique() rimosso (vestigial post-E1)
+  sostituito da guardia stop() esplicita per rownames duplicati.
+- `R/stage4-limma-de.R::.run_limma_voom_de`: stesso pattern, output
+  gene_id + gene_symbol con NA-fallback.
+- `R/stage4-orchestrator.R`: `.empty_per_study_de` schema aggiornato;
+  cbind cross-study (MEGA + MEGA-AUG) riattacca attr gene_symbol da
+  counts_list[[1]] (cbind perde attr).
+- `R/stage4-rem-pooling.R::.pool_rem_cluster`: split per gene_id;
+  propaga gene_symbol cross-studio. `.empty_pooled_rem` schema
+  aggiornato.
+- `R/stage4-config.R`: `schema_versions\$stage4_algorithm` bumpato
+  'v1' -> 'v2_ensembl_gene_axis'.
+- `R/layer-b-*.R` (7 plot file): cp\$gene -> cp\$gene_id (chiave);
+  cp\$gene_symbol (label leggibile, fallback gene_id se NA). GO
+  enrichment Ensembl + readable=TRUE.
+
+### Test (perimetro E1 + Layer B: 669 expect_* PASS / 0 FAIL)
+
+- `tests/testthat/test-stage4-gene-axis.R` (NEW): helper .parse_gene_axis
+  (8 test) + .attach_gene_annotation (3 test). 28 expect_*.
+- `tests/testthat/test-stage4-e1-de-schema.R` (NEW): DE functions schema
+  + empty schemas. 5 test_that, 10 expect_*.
+- `tests/testthat/test-stage4-e1-cache-schema.R` (NEW): cache key bump
+  + schema_versions. 2 test_that, 2 expect_*.
+- Test esistenti aggiornati: test-stage4-limma-de.R, test-stage4-dream-mega.R,
+  test-stage4-rem-pooling.R, test-stage4-replication.R, test-stage4-mega-aug-bidir.R
+  (campo expect_named), test-layer-b-top-gene-table.R, test-layer-b-forest.R,
+  test-layer-b-go-enrichment.R, helper-layer-b-fixtures.R.
+
+### Effetto su ADR-0016 Decision 2
+
+Risolto alla fonte. Il sub-finding "dream silent fallback to limma" e' ora
+diagnosticato: pre-E1, ogni count matrix ARCHS4 reale aveva rownames
+duplicati (HGNC paralogi) -> dream falliva -> tryCatch ripiegava
+silenziosamente al fallback limma+duplicateCorrelation -> ADR-0015
+(dream come default) non era effettivamente in vigore. Post-E1, Ensembl
+come axis rende rownames univoci per costruzione e dream gira sui dati
+reali (gia' validato in Layer A fullrun 96c43acb post-fix ADR-0016
+intermediate make.unique; E1 ora rimuove il workaround alla fonte).
+ADR-0016 Decision 2 e' superato da ADR-0019 D6.
+
+### Doc
+
+- `docs/decisions/0019-archs4-metadata-exploitation-v2.md` §D6 (gia'
+  in tabella Decision Outcome pre-E1; ora implementato).
+- `docs/RED_ALERT.md` §E1 ✅ DONE con 6 commit hashes.
+- `docs/decisions/0016-stage4-mega-aug-crash-fixes-baseline-pool-cap.md`
+  §Decision 2: nota di superamento ADR-0019 D6 (aggiunta in T7).
+
 # simulomicsr 0.0.0.9021 (development) — P5 RED ALERT E0b: SAMN dedupe cross-GSE nel pool Stadio 4
 
 ## FASE E0b ADR-0019 D9 (2026-05-27, sessione 7)

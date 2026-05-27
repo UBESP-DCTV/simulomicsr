@@ -1,11 +1,29 @@
 # ADR-0016: Stadio 4 — fix crash MEGA-AUG bidirezionale + cap dimensione baseline pool
 
-- **Status:** Accepted
+- **Status:** Accepted (Decisione 2 sostituita da ADR-0019 §D6 il 2026-05-27)
 - **Date:** 2026-05-22
 - **Deciders:** lucavd
 - **Supersedes:** —
-- **Superseded by:** —
+- **Superseded by:** **ADR-0019 §D6 (FASE E1, 2026-05-27)** per la
+  Decisione 2 (paralogi HGNC + dream silent fallback). Le Decisioni 1
+  e 3 restano in vigore.
 - **Correlato a:** ADR-0015 (dream default) — vedi sez. "Sub-finding".
+
+> **Update 2026-05-27 (FASE E1 RED ALERT)**: La Decisione 2 di questo
+> ADR (workaround `make.unique()` sui simboli HGNC per evitare il bug
+> paralogi che faceva crashare dream) e' stata **sostituita** dalla
+> scelta architetturale ADR-0019 §D6: il gene axis nel pool Stadio 4 e'
+> ora `ensembl_gene` (univoco per costruzione, 67186 ID distinti in
+> ARCHS4 v2.5 con 0 NA confermato), e l'HGNC symbol resta come
+> annotation separata (`gene_symbol`). `make.unique()` e' stato rimosso
+> da `R/stage4-counts-cache.R::.fetch_counts_from_h5` e
+> `R/stage4-dream-mega.R::.run_dream_mega`. La guardia
+> `anyDuplicated(rownames(counts))` resta in `.run_dream_mega` come
+> errore esplicito (`stop()`) per intercettare fetch_fn alternativi
+> malformati (mock, override) — no piu' silent disambiguation.
+> Vedi `docs/RED_ALERT.md` §E1 e
+> `docs/decisions/0019-archs4-metadata-exploitation-v2.md` §D6 per la
+> storia completa.
 
 ## Context and Problem Statement
 
