@@ -52,7 +52,11 @@ stage3_default_config <- function() {
       stage3_algorithm   = "v1",
       sample_facts       = "stage1.v3",
       study_design       = "stage2.v2",
-      resolver           = "v1.1.0"
+      resolver           = "v1.1.0",
+      # FASE E0 ADR-0019 D9: strategia di dedupe cross-studio costante per
+      # design (relation BioSample SAMN unique). Loggata una sola volta in
+      # run_metadata invece che come colonna ridondante per-cluster.
+      dedupe_strategy    = "biosample_samn_unique"
     )
   )
 }

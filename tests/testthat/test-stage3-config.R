@@ -57,17 +57,19 @@ test_that("thresholds safety strict=0.7 relaxed=0.5", {
   expect_equal(cfg$thresholds$safety$relaxed, 0.5)
 })
 
-test_that("schema_versions documenta tutte le versioni (anchor v3.1.1, ADR-0018 S1bis)", {
+test_that("schema_versions documenta tutte le versioni (anchor v3.1.1 + dedupe_strategy E0)", {
   cfg <- stage3_default_config()
   expect_named(cfg$schema_versions,
                c("anchor", "stage3_algorithm", "sample_facts", "study_design",
-                 "resolver"),
+                 "resolver", "dedupe_strategy"),
                ignore.order = TRUE)
   expect_equal(cfg$schema_versions$anchor, "v3.1.1")
   expect_equal(cfg$schema_versions$stage3_algorithm, "v1")
   expect_equal(cfg$schema_versions$sample_facts, "stage1.v3")
   expect_equal(cfg$schema_versions$study_design, "stage2.v2")
   expect_equal(cfg$schema_versions$resolver, "v1.1.0")
+  # FASE E0 ADR-0019 D9 (RED ALERT sessione 6)
+  expect_equal(cfg$schema_versions$dedupe_strategy, "biosample_samn_unique")
 })
 
 test_that(".dropped_segments_at_level produce drop monotonic", {

@@ -31,12 +31,15 @@ test_that("run_metadata contiene run_id + schema_versions + output_counts", {
 
   rm <- s3$run_metadata
   expect_match(rm$run_id, "^[0-9a-f]{8}$")
-  # Anchor v3.1 (ADR-0018): aggiunge "resolver" alle schema_versions
+  # Anchor v3.1 (ADR-0018): aggiunge "resolver" alle schema_versions.
+  # FASE E0 (ADR-0019 D9): aggiunge "dedupe_strategy" alle schema_versions.
   expect_named(rm$schema_versions,
-               c("anchor", "stage3_algorithm", "sample_facts", "study_design", "resolver"),
+               c("anchor", "stage3_algorithm", "sample_facts", "study_design",
+                 "resolver", "dedupe_strategy"),
                ignore.order = TRUE)
   expect_equal(rm$schema_versions$anchor, "v3.1.1")
   expect_equal(rm$schema_versions$resolver, "v1.1.0")
+  expect_equal(rm$schema_versions$dedupe_strategy, "biosample_samn_unique")
   expect_true("output_counts" %in% names(rm))
   # Anchor v3.1: ontology_releases registrato per riproducibilita' paper-grade
   expect_true("ontology_releases" %in% names(rm))

@@ -151,7 +151,8 @@ build_stage3_clusters <- function(stage1_master,
     eligible_pair   = pair_filt$eligible,
     eligible_group  = group_filt$eligible,
     config          = config,
-    archs4_metadata = archs4_metadata
+    archs4_metadata = archs4_metadata,
+    stage1_master   = stage1_master  # E0: per .build_donor_lookup
   )
   cli::cli_inform("[stage3] Phase 6 done: {nrow(clusters)} clusters summarized")
 
@@ -395,6 +396,11 @@ build_stage3_clusters <- function(stage1_master,
         control_anchor_segments = c_segs,
         n_treated_group         = length(tg$sample_ids),
         n_control_group         = length(cg$sample_ids),
+        # FASE E0 ADR-0019 D9: GSM list esposta a livello record per
+        # consentire sample-level dedupe BioSample SAMN + fix
+        # n_distinct_donors sample-level in .enrich_cluster_metadata().
+        treated_sample_ids      = as.character(tg$sample_ids),
+        control_sample_ids      = as.character(cg$sample_ids),
         control_type            = cmp$control_type,
         hard_filters            = hf,
         stage1_facts            = tg_facts  # per donor extraction in metadata
@@ -447,6 +453,10 @@ build_stage3_clusters <- function(stage1_master,
         treated_anchor_segments = segs,  # nome uniforme per filter_eligible_records
         n_treated_group         = length(rg$sample_ids),
         n_control_group         = length(rg$sample_ids),  # placeholder group
+        # FASE E0 ADR-0019 D9: GSM list esposta a livello record. Per group-mode
+        # non esiste un control side semantico -> character(0), no NA fittizio.
+        treated_sample_ids      = as.character(rg$sample_ids),
+        control_sample_ids      = character(0),
         hard_filters            = hf,
         stage1_facts            = facts
       )
@@ -475,11 +485,13 @@ build_stage3_clusters <- function(stage1_master,
 #'
 #' @keywords internal
 .summarize_clusters <- function(assignments, eligible_pair, eligible_group,
-                                 config, archs4_metadata) {
+                                 config, archs4_metadata,
+                                 stage1_master = NULL) {
   # Schema vuoto canonico per cluster tibble. Anchor v3.1 (ADR-0018) aggiunge
   # 11 colonne tracking + v3.1.1 (S1bis 2026-05-25) aggiunge 12a colonna
   # kind_chebi_zero_roles per Layer B shortlist filter (CHEBI compound esiste
   # ma 0 has_role: legit Resiquimod/poly(I:C) vs ambiguo dihydroxyphthalic).
+  # FASE E0 (ADR-0019 D9) aggiunge n_distinct_biosamples per dedupe SAMN.
   empty_clusters <- tibble::tibble(
     cluster_id                  = character(),
     mode                        = character(),
@@ -500,6 +512,7 @@ build_stage3_clusters <- function(stage1_master,
     gpl_platforms               = list(),
     n_gpl_distinct              = integer(),
     n_distinct_donors           = integer(),
+    n_distinct_biosamples       = integer(),
     studies_in_cluster          = list(),
     n_studies                   = integer(),
     # Anchor v3.1 tracking columns
@@ -537,6 +550,14 @@ build_stage3_clusters <- function(stage1_master,
   # Pre-build GPL lookup UNA volta (split su series_id) per evitare O(N) scan
   # di archs4_metadata in ogni iterazione del loop su cluster.
   gpl_lookup <- .build_gpl_lookup(archs4_metadata)
+
+  # FASE E0 ADR-0019 D9: pre-build BioSample SAMN lookup geo_accession -> SAMN
+  # + donor_id lookup geo_accession -> donor_id, entrambi una sola volta.
+  # Usati da .enrich_cluster_metadata() per (a) calcolo n_distinct_biosamples
+  # sample-level (NEW), (b) fix sotto-stima n_distinct_donors sample-level
+  # (pre-E0 contava primo sample del record).
+  biosample_lookup <- .build_biosample_lookup(archs4_metadata)
+  donor_lookup     <- .build_donor_lookup(stage1_master)
 
   # Pre-split assignments per cluster_id UNA volta (split su row index): evita
   # O(N) scan di assignments per ogni cluster nel loop (era O(N^2) globale).
@@ -590,11 +611,13 @@ build_stage3_clusters <- function(stage1_master,
     safety_inputs <- lapply(member_records, function(r) r$treated_anchor_segments)
     safety        <- .compute_pooling_safety(safety_inputs, dropped_segs)
 
-    # Metadata enrichment (GPL + donors + studies)
+    # Metadata enrichment (GPL + donors + studies + biosamples E0)
     meta <- .enrich_cluster_metadata(
       member_records,
-      archs4_metadata = NULL,  # ignorato a favore di gpl_lookup pre-built
-      gpl_lookup = gpl_lookup
+      archs4_metadata  = NULL,  # ignorato a favore di gpl_lookup pre-built
+      gpl_lookup       = gpl_lookup,
+      biosample_lookup = biosample_lookup,
+      donor_lookup     = donor_lookup
     )
 
     # Direction check (pair only: primo record, tutti gli eligibili sono omogenei)
@@ -657,6 +680,8 @@ build_stage3_clusters <- function(stage1_master,
       gpl_platforms               = list(meta$gpl_platforms),
       n_gpl_distinct              = meta$n_gpl_distinct,
       n_distinct_donors           = meta$n_distinct_donors,
+      # FASE E0 ADR-0019 D9: BioSample SAMN unique sample-level dedupe
+      n_distinct_biosamples       = meta$n_distinct_biosamples,
       studies_in_cluster          = list(meta$studies_in_cluster),
       n_studies                   = meta$n_studies,
       # Anchor v3.1 tracking columns (paper-grade audit, ADR-0018)
