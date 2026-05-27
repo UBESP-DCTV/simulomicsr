@@ -1,3 +1,17 @@
+test_that(".stage2_system_prompt contiene la traduzione inglese (D3 RED_ALERT)", {
+  # P5 audit RED_ALERT D3: prompt Stadio 2 allineato all'inglese come Stadio 1.
+  # Test positivo: la traduzione (BLOCCO 2 in analysis/audit/D3-prompt-stage2-translation.txt)
+  # introduce frasi chiave inglesi. Schema invariato, enum values invariati.
+  sys <- simulomicsr:::.stage2_system_prompt("test-model")
+  expect_match(sys, "expert in RNA-seq experimental design", fixed = TRUE)
+  expect_match(sys, "v2 Philosophy", fixed = TRUE)
+  expect_match(sys, "Grouping guidelines", fixed = TRUE)
+  expect_match(sys, "Comparison guidelines", fixed = TRUE)
+  expect_match(sys, "STRICT rules for primary_role", fixed = TRUE)
+  expect_match(sys, "RULE 1", fixed = TRUE)
+  expect_match(sys, "RULE 4", fixed = TRUE)
+})
+
 test_that("build_prompt_stage2 ritorna shape messages OpenAI", {
   facts_list <- list(
     jsonlite::read_json(testthat::test_path("fixtures/sample-facts-vegf-huvec.json"))
