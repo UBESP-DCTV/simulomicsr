@@ -128,7 +128,14 @@
 #'   sample baseline aggiunti per braccio (Problema B). Se un baseline pool
 #'   augmenterebbe il braccio con piu' di N sample, viene sotto-campionato a
 #'   N (deterministico). \code{NA} (default) = nessun cap.
-#' @return list con 8 componenti:
+#' @param biosample_lookup environment o named char vec \code{GSM -> SAMN}.
+#'   FASE E0b: se fornito insieme a \code{libsize_lookup}, i baseline pool
+#'   subiscono SAMN dedupe cross-GSE (drop max lib_size, tie-break alfabetico)
+#'   + esclusione dei GSM il cui SAMN e' gia' presente nel pair. NULL
+#'   (default) = no dedupe (retrocompat).
+#' @param libsize_lookup environment o named numeric vec
+#'   \code{GSM -> lib_size}. Vedi \code{biosample_lookup}.
+#' @return list con 9 componenti:
 #'   \itemize{
 #'     \item \code{metadata}: tibble \code{sample_id|study|treatment}.
 #'     \item \code{n_baseline_studies_augmented_control}: integer.
@@ -144,13 +151,19 @@
 #'           stesso group baseline pool matchava entrambi i bracci e il
 #'           dispatch e' stato collassato a monodirezionale (augmenta solo
 #'           \code{control}). Vedi sez. 3b del corpo funzione.
+#'     \item \code{samn_dedupe_log}: tibble del log SAMN dedupe baseline
+#'           (FASE E0b). Colonne \code{gsm_dropped, samn, gsm_kept,
+#'           libsize_dropped, libsize_kept, reason, arm}. Empty tibble se
+#'           nessun lookup fornito.
 #'   }
 #' @keywords internal
 .assemble_mega_aug_metadata_bidir <- function(pair_cluster, group_baseline,
                                                 matcher,
                                                 direction = c("both", "control", "treated"),
                                                 min_baseline_studies = 2L,
-                                                max_baseline_per_arm = NA_integer_) {
+                                                max_baseline_per_arm = NA_integer_,
+                                                biosample_lookup = NULL,
+                                                libsize_lookup = NULL) {
   direction <- match.arg(direction)
 
   # 1. Pair rows con dedup (logica identica al legacy: vedi
@@ -180,6 +193,19 @@
     )
   )
   pair_all <- c(pair_treated, pair_control)
+
+  # FASE E0b: SAMN del pair, calcolato una volta. Usato come exclude_samn
+  # nel SAMN dedupe del baseline pool: un baseline GSM che condivide SAMN
+  # con un sample del pair e' la stessa entita' biologica gia' nel pair
+  # -> rimosso completamente dal baseline (cross pair-baseline dedupe).
+  # NULL se lookup non fornito (retrocompat: nessun dedupe SAMN attivo).
+  pair_samn_set <- if (!is.null(biosample_lookup) && length(pair_all) > 0L) {
+    s <- .lookup_chr(pair_all, biosample_lookup)
+    unique(s[!is.na(s)])
+  } else NULL
+
+  # Accumulator log SAMN dedupe (chiusura sopra ai build_baseline_rows arm).
+  samn_dedupe_rows <- list()
 
   # 2. Cerca baseline candidate via find_baseline_for_pair.
   # find_baseline_for_pair vuole un tibble per pair_cluster, ma di fatto
@@ -247,6 +273,36 @@
       return(list(rows = NULL, n_studies_augmented = 0L,
                    baseline_studies = character(0L)))
     }
+
+    # FASE E0b: SAMN dedupe del baseline pool (decisione utente 2026-05-27
+    # su evidence A7b). Applicato DOPO il dedup per GSM literal + exclude
+    # pair_all. exclude_samn = pair_samn_set rimuove baseline GSM che
+    # rappresentano la stessa entita' biologica gia' presente nel pair.
+    # Tra baseline GSM cross-GSE che condividono SAMN, tenuto quello con
+    # lib_size max (tie-break alfabetico). Lookup NULL = no-op (retrocompat).
+    if (!is.null(biosample_lookup) && !is.null(libsize_lookup) &&
+        length(sids) > 0L) {
+      sd <- .dedupe_gsm_by_samn(
+        sids, biosample_lookup, libsize_lookup,
+        exclude_samn = pair_samn_set
+      )
+      if (nrow(sd$dropped) > 0L) {
+        # Filtra sids/sstudies ai soli kept; preserva ordine originale.
+        keep_mask <- sids %in% sd$kept
+        sids     <- sids[keep_mask]
+        sstudies <- sstudies[keep_mask]
+        # Annota il braccio nel log accumulator (chiusura).
+        log_chunk <- sd$dropped
+        log_chunk$arm <- treatment_label
+        samn_dedupe_rows[[length(samn_dedupe_rows) + 1L]] <<- log_chunk
+      }
+    }
+
+    if (length(sids) == 0L) {
+      return(list(rows = NULL, n_studies_augmented = 0L,
+                   baseline_studies = character(0L)))
+    }
+
     rows <- tibble::tibble(
       sample_id = sids,
       study     = sstudies,
@@ -344,6 +400,15 @@
     kind_levels[max(match(kinds_present, kind_levels))]
   }
 
+  # FASE E0b: aggrega log SAMN dedupe baseline (vuoto se lookup NULL).
+  samn_dedupe_log <- if (length(samn_dedupe_rows) > 0L) {
+    dplyr::bind_rows(samn_dedupe_rows)
+  } else {
+    log_empty <- .empty_samn_dedupe_dropped()
+    log_empty$arm <- character(0)
+    log_empty
+  }
+
   list(
     metadata                              = metadata,
     n_baseline_studies_augmented_control  = as.integer(control_block$n_studies_augmented),
@@ -355,7 +420,8 @@
       control = if (ctrl_effective) top_control$baseline_cluster_id else NULL,
       treated = if (trt_effective) top_treated$baseline_cluster_id else NULL
     ),
-    bidir_collapsed_to_mono               = bidir_collapsed_to_mono
+    bidir_collapsed_to_mono               = bidir_collapsed_to_mono,
+    samn_dedupe_log                       = samn_dedupe_log
   )
 }
 

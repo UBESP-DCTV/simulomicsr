@@ -77,7 +77,8 @@ test_that("bidir direction='control' augmenta il braccio control come legacy", {
     "comparison_kind_treated",
     "comparison_kind_overall",
     "baseline_pool_ids",
-    "bidir_collapsed_to_mono"
+    "bidir_collapsed_to_mono",
+    "samn_dedupe_log"   # FASE E0b: log baseline SAMN dedupe (vuoto se lookup NULL)
   ))
 
   # 4 pair rows + 8 baseline rows = 12
