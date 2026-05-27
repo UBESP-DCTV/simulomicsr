@@ -63,6 +63,45 @@ NULL
   }
 }
 
+#' Costruisce i due lookup (biosample, lib_size) dal tibble h5_metadata
+#'
+#' Entry point E0b lato \code{build_stage4_results}: trasforma il tibble
+#' sample-level passato come \code{h5_metadata} in due named vector
+#' compatibili con \code{.dedupe_gsm_by_samn}. Fallback graceful: se
+#' \code{h5_metadata} manca \code{biosample_id} o \code{lib_size}, emette
+#' un \code{warning} e ritorna entrambi NULL (-> dedupe SAMN disabilitato
+#' downstream, comportamento retrocompat pre-E0b).
+#'
+#' @param h5_metadata tibble/data.frame con almeno colonne \code{sample_id},
+#'   \code{biosample_id}, \code{lib_size}. NULL accettato (-> NULL/NULL).
+#' @return list \code{(biosample_lookup, libsize_lookup)}. NULL/NULL se
+#'   colonne necessarie assenti.
+#' @keywords internal
+.build_samn_dedupe_lookups <- function(h5_metadata) {
+  if (is.null(h5_metadata) || !is.data.frame(h5_metadata)) {
+    return(list(biosample_lookup = NULL, libsize_lookup = NULL))
+  }
+  need <- c("sample_id", "biosample_id", "lib_size")
+  miss <- setdiff(need, names(h5_metadata))
+  if (length(miss) > 0L) {
+    warning(sprintf(
+      "h5_metadata manca colonne %s -> SAMN dedupe (FASE E0b) disabilitato",
+      paste(miss, collapse = ", ")
+    ), call. = FALSE)
+    return(list(biosample_lookup = NULL, libsize_lookup = NULL))
+  }
+  biosample_lookup <- setNames(
+    as.character(h5_metadata$biosample_id),
+    as.character(h5_metadata$sample_id)
+  )
+  libsize_lookup <- setNames(
+    as.numeric(h5_metadata$lib_size),
+    as.character(h5_metadata$sample_id)
+  )
+  list(biosample_lookup = biosample_lookup,
+       libsize_lookup   = libsize_lookup)
+}
+
 #' Schema tibble vuoto per il log dei GSM droppati dal dedupe SAMN
 #'
 #' @keywords internal

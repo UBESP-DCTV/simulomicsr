@@ -112,7 +112,9 @@
 .pool_all_clusters <- function(per_study_de, eligible_clusters, fetch_fn,
                                 stage3_clusters, workers = 1L,
                                 dream_workers_cap = 8L,
-                                mega_aug_config = NULL) {
+                                mega_aug_config = NULL,
+                                biosample_lookup = NULL,
+                                libsize_lookup = NULL) {
   out_list <- vector("list", 0L)
   pooling_warnings_list <- vector("list", 0L)
   non_processable_list  <- vector("list", 0L)
@@ -169,7 +171,9 @@
       # Conflicts: stesso GSM con ruoli divergenti tra rg -> sample droppato
       # (paper-grade: non assumere ruolo arbitrario). Cross-study same-role:
       # tenuto una sola volta + flagged.
-      safe <- .build_mega_metadata_safe(grp, cid)
+      safe <- .build_mega_metadata_safe(grp, cid,
+                                          biosample_lookup = biosample_lookup,
+                                          libsize_lookup   = libsize_lookup)
       metadata <- safe$metadata
       if (nrow(safe$conflicts) > 0L) {
         pooling_warnings_list[[length(pooling_warnings_list) + 1L]] <-
@@ -282,7 +286,9 @@
           matcher = bidir_matcher,
           direction = bidir_direction,
           min_baseline_studies = bidir_min_baseline,
-          max_baseline_per_arm = bidir_max_baseline
+          max_baseline_per_arm = bidir_max_baseline,
+          biosample_lookup = biosample_lookup,
+          libsize_lookup   = libsize_lookup
         )
 
         # disjoint_policy = "strict": scarta cluster con

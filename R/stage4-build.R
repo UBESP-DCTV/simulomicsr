@@ -107,6 +107,13 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     workers           = 1L
   )
 
+  # Step 5b: SAMN dedupe lookups (FASE E0b, decisione utente 2026-05-27 su
+  # evidence A7b). Se h5_metadata contiene biosample_id + lib_size, i due
+  # lookup vengono propagati down a .pool_all_clusters per attivare il drop
+  # deterministico cross-GSE same-SAMN (max lib_size winner). Fallback
+  # graceful con warning se colonne assenti (-> retrocompat pre-E0b).
+  samn_lookups <- .build_samn_dedupe_lookups(h5_metadata)
+
   # Step 6: pooling cluster-level (REM metafor o MEGA-AUG dream).
   # Workers risolti via .resolve_dream_workers (auto-detect availableCores -
   # offset, cap a dream_workers_cap). Per workers > 1, .run_dream_mega usa
@@ -121,7 +128,9 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     stage3_clusters   = stage3_clusters_enriched,
     workers           = dream_workers,
     dream_workers_cap = config$compute$dream_workers_cap,
-    mega_aug_config   = config$mega_aug
+    mega_aug_config   = config$mega_aug,
+    biosample_lookup  = samn_lookups$biosample_lookup,
+    libsize_lookup    = samn_lookups$libsize_lookup
   )
 
   # Step 7: QC report aggregato. Merge cluster non_processable da QC + dal
