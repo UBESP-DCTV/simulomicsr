@@ -339,3 +339,74 @@ test_that("classify_sample_row con row senza molecule_ch1 NON aggiunge riga mole
   )
   expect_false(grepl("molecule_hint:", captured[[2]]$content, fixed = TRUE))
 })
+
+# ---------------------------------------------------------------------------
+# P5 audit RED_ALERT D2 — end-to-end cascade JSONL -> classify_sample_row
+# Verifica che il campo molecule_ch1 emesso da archs4_to_stage1_jsonl (C4)
+# arrivi davvero al prompt LLM passando per il round-trip JSON.
+# ---------------------------------------------------------------------------
+
+test_that("E2E D2: JSONL post-C4 con molecule_ch1 valore -> molecule_hint nel prompt", {
+  captured <- NULL
+  fake <- .fake_raw_v3()
+  fake_adapter <- function(model, messages, response_schema, ...) {
+    captured <<- messages
+    fake
+  }
+
+  # Simula una riga JSONL emessa da archs4_to_stage1_jsonl (R/etl-archs4-h5.R)
+  # contenente molecule_ch1 valorizzato (caso comune nel fullrun beta).
+  jsonl_line <- jsonlite::toJSON(list(
+    geo_accession    = "GSM12345",
+    series_id        = "GSE99999",
+    string           = "treatment: VEGF, time: 1h, cell line: HUVEC",
+    library_strategy = "RNA-Seq",
+    organism         = "Homo sapiens",
+    molecule_ch1     = "polyA RNA"
+  ), auto_unbox = TRUE)
+
+  parsed <- jsonlite::fromJSON(jsonl_line, simplifyVector = TRUE)
+  row <- tibble::as_tibble(parsed)
+
+  classify_sample_row(
+    row,
+    provider = "mock", model = "gpt-5.5", cache = NULL,
+    .mock_adapter = fake_adapter
+  )
+  expect_match(captured[[2]]$content, "molecule_hint: polyA RNA", fixed = TRUE)
+})
+
+test_that("E2E D2: JSONL stream_in con molecule_ch1 null produce NA_character_ -> nessuna riga", {
+  captured <- NULL
+  fake <- .fake_raw_v3()
+  fake_adapter <- function(model, messages, response_schema, ...) {
+    captured <<- messages
+    fake
+  }
+
+  # Riproduce il flow reale: jsonlite::stream_in (la convenzione usata dai
+  # consumer R-side) lega le righe JSONL in un data.frame con colonna
+  # character; i field null diventano NA_character_ (non NULL list-element
+  # come in fromJSON simplifyVector). Cosi' la row passata a
+  # classify_sample_row ha row$molecule_ch1 = NA_character_, e il guard
+  # !is.na in build_prompt_stage1 deve scartarlo.
+  tmp <- tempfile(fileext = ".jsonl")
+  on.exit(unlink(tmp), add = TRUE)
+  writeLines(c(
+    '{"geo_accession":"GSM1","series_id":"GSE1","string":"primary fibroblasts","library_strategy":"RNA-Seq","organism":"Homo sapiens","molecule_ch1":"total RNA"}',
+    '{"geo_accession":"GSM2","series_id":"GSE1","string":"baseline cells","library_strategy":"RNA-Seq","organism":"Homo sapiens","molecule_ch1":null}'
+  ), tmp)
+  df <- jsonlite::stream_in(file(tmp), verbose = FALSE)
+
+  # Row 2 ha molecule_ch1 = NA_character_ (proveniente da JSON null in
+  # un column-binding data.frame).
+  expect_true(is.na(df$molecule_ch1[2]))
+
+  row <- tibble::as_tibble(df[2, , drop = FALSE])
+  classify_sample_row(
+    row,
+    provider = "mock", model = "gpt-5.5", cache = NULL,
+    .mock_adapter = fake_adapter
+  )
+  expect_false(grepl("molecule_hint:", captured[[2]]$content, fixed = TRUE))
+})

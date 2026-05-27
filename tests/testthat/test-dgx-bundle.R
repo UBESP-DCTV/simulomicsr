@@ -35,6 +35,15 @@ test_that("dgx_p4_build_bundle() stage1 crea bundle valido", {
   prompt_size <- fs::file_info(fs::path(bundle$bundle_dir, "prompt.txt"))$size
   expect_gt(prompt_size, 500L)
 
+  # P5 audit RED_ALERT D2: il system prompt scritto nel bundle deve contenere
+  # la ground rule 9 su molecule_hint (committata in D1b). Questo verifica
+  # che la pipeline DGX (run_p4_vllm.py legge bundle["prompt"]) riceva il
+  # prompt aggiornato senza dover toccare il codice Python.
+  prompt_txt <- paste(readLines(fs::path(bundle$bundle_dir, "prompt.txt")),
+                      collapse = "\n")
+  expect_match(prompt_txt, "molecule_hint", fixed = TRUE)
+  expect_match(prompt_txt, "not a perturbation", fixed = TRUE)
+
   # input.jsonl ha 5 righe
   lines <- readLines(fs::path(bundle$bundle_dir, "input.jsonl"))
   expect_length(lines, 5L)
