@@ -213,3 +213,129 @@ test_that("classify_sample_row accetta una riga tibble e ritorna sample_fact val
   expect_equal(fact$geo_accession, "GSM1009635")
   expect_equal(fact$extraction$schema_version, "stage1.v3")
 })
+
+# ---------------------------------------------------------------------------
+# P5 audit RED_ALERT D1b — molecule_hint nel prompt Stadio 1
+# Spec: ADR-0019 D5 + analysis/audit/D1a-prompt-stage1-current.txt
+# Gate utente D1a APPROVATO 2026-05-27: strada cauta (system + user message)
+# + naming molecule_hint + valore verbatim + posizione dopo organism_hint.
+# ---------------------------------------------------------------------------
+
+test_that("build_prompt_stage1 con molecule_hint non NULL lo inietta nello user message", {
+  msgs <- build_prompt_stage1(
+    sample_string = "x", geo_accession = "GSM1", series_id = "GSE1",
+    molecule_hint = "polyA RNA"
+  )
+  expect_match(msgs[[2]]$content, "molecule_hint: polyA RNA", fixed = TRUE)
+})
+
+test_that("build_prompt_stage1 con molecule_hint NULL NON inietta riga molecule_hint", {
+  msgs <- build_prompt_stage1(
+    sample_string = "x", geo_accession = "GSM1", series_id = "GSE1",
+    molecule_hint = NULL
+  )
+  expect_false(grepl("molecule_hint:", msgs[[2]]$content, fixed = TRUE))
+})
+
+test_that("build_prompt_stage1 con molecule_hint NA NON inietta riga molecule_hint", {
+  msgs <- build_prompt_stage1(
+    sample_string = "x", geo_accession = "GSM1", series_id = "GSE1",
+    molecule_hint = NA_character_
+  )
+  expect_false(grepl("molecule_hint:", msgs[[2]]$content, fixed = TRUE))
+})
+
+test_that("build_prompt_stage1 con molecule_hint '' (empty string) NON inietta riga", {
+  msgs <- build_prompt_stage1(
+    sample_string = "x", geo_accession = "GSM1", series_id = "GSE1",
+    molecule_hint = ""
+  )
+  expect_false(grepl("molecule_hint:", msgs[[2]]$content, fixed = TRUE))
+})
+
+test_that("build_prompt_stage1 posiziona molecule_hint dopo organism_hint e prima di sample_string", {
+  msgs <- build_prompt_stage1(
+    sample_string = "free text body",
+    geo_accession = "GSM1", series_id = "GSE1",
+    organism_hint = "Homo sapiens",
+    molecule_hint = "total RNA"
+  )
+  user <- msgs[[2]]$content
+  pos_org <- regexpr("organism_hint:", user, fixed = TRUE)
+  pos_mol <- regexpr("molecule_hint:", user, fixed = TRUE)
+  pos_str <- regexpr("sample_string:", user, fixed = TRUE)
+  expect_gt(pos_mol, pos_org)
+  expect_gt(pos_str, pos_mol)
+})
+
+test_that(".stage1_system_prompt cita molecule_hint come metadata di library-prep non-perturbazione", {
+  sys_prompt <- simulomicsr:::.stage1_system_prompt()
+  # Frase corta approvata D1a: identifica la natura library-prep e l'anti-pattern
+  # da evitare (encoding sotto perturbations / technical_treatments).
+  expect_match(sys_prompt, "molecule_hint", fixed = TRUE)
+  expect_match(sys_prompt, "RNA fraction", fixed = TRUE)
+  expect_match(sys_prompt, "not a perturbation", fixed = TRUE)
+})
+
+test_that("classify_sample inoltra molecule_hint a build_prompt_stage1", {
+  captured <- NULL
+  fake <- .fake_raw_v3()
+  fake_adapter <- function(model, messages, response_schema, ...) {
+    captured <<- messages
+    fake
+  }
+
+  classify_sample(
+    sample_string = "x", geo_accession = "GSM1", series_id = "GSE1",
+    provider = "mock", model = "gpt-5.5", cache = NULL,
+    molecule_hint = "nuclear RNA",
+    .mock_adapter = fake_adapter
+  )
+  expect_match(captured[[2]]$content, "molecule_hint: nuclear RNA", fixed = TRUE)
+})
+
+test_that("classify_sample_row legge row$molecule_ch1 e lo passa come molecule_hint", {
+  captured <- NULL
+  fake <- .fake_raw_v3()
+  fake_adapter <- function(model, messages, response_schema, ...) {
+    captured <<- messages
+    fake
+  }
+
+  row <- tibble::tibble(
+    geo_accession = "GSM1",
+    series_id     = "GSE1",
+    string        = "treatment: VEGF, time: 1h, cell line: HUVEC",
+    molecule_ch1  = "polyA RNA"
+  )
+
+  classify_sample_row(
+    row,
+    provider = "mock", model = "gpt-5.5", cache = NULL,
+    .mock_adapter = fake_adapter
+  )
+  expect_match(captured[[2]]$content, "molecule_hint: polyA RNA", fixed = TRUE)
+})
+
+test_that("classify_sample_row con row senza molecule_ch1 NON aggiunge riga molecule_hint", {
+  captured <- NULL
+  fake <- .fake_raw_v3()
+  fake_adapter <- function(model, messages, response_schema, ...) {
+    captured <<- messages
+    fake
+  }
+
+  # Row senza colonna molecule_ch1 (es. samples_dev_set legacy P2 alpha).
+  row <- tibble::tibble(
+    geo_accession = "GSM1",
+    series_id     = "GSE1",
+    string        = "treatment: VEGF, time: 1h, cell line: HUVEC"
+  )
+
+  classify_sample_row(
+    row,
+    provider = "mock", model = "gpt-5.5", cache = NULL,
+    .mock_adapter = fake_adapter
+  )
+  expect_false(grepl("molecule_hint:", captured[[2]]$content, fixed = TRUE))
+})

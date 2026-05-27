@@ -12,13 +12,21 @@ def render_user_message_stage1(record: dict[str, Any]) -> str:
         geo_accession: <ga>
         series_id: <sid>
         [organism_hint: <hint>]    # opzionale, se presente nel record
+        [molecule_hint: <hint>]    # opzionale, ADR-0019 D5 + RED_ALERT D1b
         sample_string:
         <string>
+
+    `molecule_hint` proviene dal campo JSONL `molecule_ch1` introdotto in
+    FASE C4 (commit 6963198). Valori GEO controlled-vocabulary:
+    "total RNA", "polyA RNA", "nuclear RNA", "cytoplasmic RNA", ...
+    Se assente / null / vuoto la riga NON viene emessa (parita' con la
+    versione R).
     """
     geo = str(record["geo_accession"])
     sid = str(record["series_id"])
     sstr = str(record["string"])
     organism_hint = record.get("organism_hint")
+    molecule_hint = record.get("molecule_ch1")
 
     lines = [
         f"geo_accession: {geo}",
@@ -26,6 +34,11 @@ def render_user_message_stage1(record: dict[str, Any]) -> str:
     ]
     if organism_hint:
         lines.append(f"organism_hint: {organism_hint}")
+    # `if molecule_hint` filtra None / "" / valori falsy: stesso semantica del
+    # guard R `!is.null(x) && !is.na(x) && nzchar(x)` (NA serializzato JSON
+    # diventa null Python, gestito da `if`).
+    if molecule_hint:
+        lines.append(f"molecule_hint: {molecule_hint}")
     lines.append("sample_string:")
     lines.append(sstr)
     return "\n".join(lines)

@@ -1,0 +1,246 @@
+===============================================================================
+D1a — Prompt LLM Stadio 1 corrente (verbatim) + proposta integrazione molecule_ch1
+===============================================================================
+
+Sorgente codice:
+  R/llm-stage1.R::.stage1_system_prompt()  (linee 65-98)
+  R/llm-stage1.R::build_prompt_stage1()    (linee 146-168)
+
+Branch: p5-llm-anchor-classification-audit
+Stato repo al momento dell'estrazione: HEAD 3d2d953 (post sessione 4, FASE C
+chiusa 5/5). Nessuna modifica a R/llm-stage1.R prima della firma D1a→D1b.
+
+ADR di riferimento: docs/decisions/0019-archs4-metadata-exploitation-v2.md (D5).
+Razionale D5 ADR-0019 (verbatim):
+  "molecule_ch1 dichiara total RNA vs polyA vs nuclear → cambia geni
+   visibili, importante per cell_context LLM."
+
+===============================================================================
+BLOCCO 1 — SYSTEM PROMPT (rendered, dopo glue::glue interpolation)
+===============================================================================
+
+You are an extraction agent for RNAseq sample metadata. Your task is to produce a strictly schema-conformant JSON record (schema sample_facts.stage1.v3) from a free-text concatenation of GEO sample fields.
+
+GROUND RULES (read carefully):
+1. Copy `geo_accession` and `series_id` VERBATIM from the user message. Do not invent or modify them.
+2. Use ONLY values from the controlled vocabularies listed below for fields that have an enum constraint. Never coin new values.
+3. When a fact is not present in the input string, set the field to null (or empty array for list-valued fields). Do NOT guess.
+4. The schema enforces additionalProperties:false at every level: do not add fields that are not in the schema.
+5. Set `extraction.confidence` to your honest 0..1 estimate that the extracted facts faithfully reflect the input string.
+6. Set `extraction.schema_version` to exactly the string 'stage1.v3'.
+7. Leave `extraction.raw_input_hash` as 'sha256:0000000000000000000000000000000000000000000000000000000000000000' — the R caller will overwrite it deterministically.
+8. Leave `extraction.model` as the empty-meaningful default '__unset__' — the R caller will overwrite it.
+
+PERTURBATION KINDS (`perturbations[].kind`):
+- small_molecule
+- vehicle_only
+- genetic_knockdown
+- genetic_knockout
+- genetic_overexpression
+- crispra_activation
+- crispri_repression
+- cytokine_stimulation
+- pathogen_or_aggregate_exposure
+- environmental_or_behavioral
+- differentiation
+- mechanical_or_physical
+- none
+- unclear
+
+CELL CONTEXT KINDS (`cell_context.context_kind`):
+cell_line_in_vitro, primary_culture, iPSC_derived, organoid, xenograft, primary_tissue, pdx_derived_cell_line, co_culture, tumor_extracted_cells, unclear
+
+DISEASE STATE STATUS (`disease_state.status`):
+case, comparison, disease_model, none
+
+AMBIGUITY FLAGS (`extraction.ambiguity_flags[]`, choose 0+):
+missing_dose, missing_duration, time_zero_timepoint, multi_factor_in_string, compound_unmapped, cell_line_ambiguous, vehicle_only, description_too_short, mixed_organism_terms, study_specific_jargon, multiple_perturbations, engineered_cell_line, technical_treatment_only, disease_state_present, control_unspecified, post_treatment_ambiguous, protocol_only_no_perturbation, metadata_inconsistency, opaque_compound_code
+
+FEW-SHOT EXAMPLE (input -> output):
+INPUT: 'sample: HUVEC, treatment: VEGF, time: 1h'
+geo_accession=GSM1009636, series_id=GSE41166
+EXPECTED `perturbations[0].kind` = 'cytokine_stimulation', `agent_normalized.preferred_name` = 'VEGFA' (HGNC alias resolution), `duration.value_hours` = 1, `cell_context.context_kind` = 'primary_culture', `cell_context.cell_type_or_line_raw` = 'HUVEC', `extraction.ambiguity_flags` = ['missing_dose'].
+
+===============================================================================
+BLOCCO 2 — USER PROMPT TEMPLATE (build_prompt_stage1, R/llm-stage1.R:156-162)
+===============================================================================
+
+# Sorgente R (verbatim):
+  user_lines <- c(
+    paste0("geo_accession: ", geo_accession),
+    paste0("series_id: ", series_id),
+    if (!is.null(organism_hint)) paste0("organism_hint: ", organism_hint),
+    "sample_string:",
+    sample_string
+  )
+
+# Equivalente testuale spedito all'LLM (un sample reale, organism_hint
+# attivo):
+
+geo_accession: GSM1234567
+series_id: GSE7654321
+organism_hint: Homo sapiens
+sample_string:
+<concatenazione GEO: title || source_name_ch1 || characteristics_ch1>
+
+===============================================================================
+PROPOSTA D1b — integrazione molecule_ch1 nel prompt
+===============================================================================
+
+Vincoli di progettazione:
+  P1. Cambio minimo per ridurre rischio drift LLM. La distribuzione delle
+      classificazioni Stadio 1 è il fondamento di tutti i 4 stadi a valle.
+  P2. Hint opzionale: se molecule_ch1 è NA / NULL / "" nell'input, la
+      riga NON deve apparire (parallelo a organism_hint).
+  P3. Field naming coerente con il pattern esistente: `<name>_hint`.
+  P4. Posizione coerente con la "cluster di hint" (organism_hint).
+      Tra geo/series (anti-hallucination locks) e sample_string.
+  P5. Il prompt deve restare verificabile da test deterministico (no
+      cambi alla schema; il campo NON entra in sample_facts.stage1.v3).
+
+Due opzioni alternative. Preferenza Claude: A.
+
+---
+OPZIONE A — solo user message (preferenza Claude, cambio minimo)
+---
+
+Modifica unica: aggiunta riga in `user_lines` di build_prompt_stage1().
+Zero modifiche al system prompt.
+
+Diff atteso (R/llm-stage1.R:146-162):
+
+   build_prompt_stage1 <- function(sample_string,
+                                   geo_accession,
+                                   series_id,
+-                                  organism_hint = NULL) {
++                                  organism_hint = NULL,
++                                  molecule_hint = NULL) {
+     stopifnot(
+       is.character(sample_string), length(sample_string) == 1L, nzchar(sample_string),
+       is.character(geo_accession), length(geo_accession) == 1L, nzchar(geo_accession),
+       is.character(series_id),     length(series_id)     == 1L, nzchar(series_id)
+     )
+
+     user_lines <- c(
+       paste0("geo_accession: ", geo_accession),
+       paste0("series_id: ", series_id),
+       if (!is.null(organism_hint)) paste0("organism_hint: ", organism_hint),
++      if (!is.null(molecule_hint)) paste0("molecule_hint: ", molecule_hint),
+       "sample_string:",
+       sample_string
+     )
+
+Effetto sul prompt user (sample con molecule_ch1 = "polyA RNA"):
+
+   geo_accession: GSM1234567
+   series_id: GSE7654321
+   organism_hint: Homo sapiens
+   molecule_hint: polyA RNA
+   sample_string:
+   <...>
+
+Razionale Opzione A:
+- Cambio chirurgico, 2 righe di codice + 1 arg.
+- Il nome `molecule_hint` parallelo a `organism_hint` segnala all'LLM
+  "campo hint opzionale, non da inventare se assente".
+- Mistral-Small-3.2-24B è capace di interpretare la stringa
+  "polyA RNA" / "total RNA" / "nuclear RNA" come informazione tecnica
+  semza spiegazione esplicita. Non aumenta la superficie del system
+  prompt (zero rischio drift sui ~879k sample non SC).
+- Pass-through verbatim del valore GEO controlled-vocabulary
+  (no normalizzazione lato R): se domani GEO aggiunge un valore nuovo
+  l'LLM lo riceve così com'è.
+
+Costo per call (input tokens, stima):
+  +1 riga ~ +5 token × 507k sample × 1 fullrun = ~2.5M token totali.
+  Trascurabile su Mistral self-hosted DGX (costo $0).
+
+---
+OPZIONE B — user message + 1 ground rule nel system prompt
+---
+
+Come A, più una riga nelle GROUND RULES del system prompt che spiega
+che cosa è molecule_hint (per evitare che il modello la ignori o la
+mappi su `technical_treatments`).
+
+Diff system prompt aggiuntivo (.stage1_system_prompt(), GROUND RULES):
+
+    "8. Leave `extraction.model` as the empty-meaningful default '__unset__' — the R caller will overwrite it.\n\n",
++   "9. The optional `molecule_hint` in the user message reports the RNA fraction profiled (GEO controlled vocabulary, e.g. 'total RNA', 'polyA RNA', 'nuclear RNA', 'cytoplasmic RNA'). It is metadata about library preparation, NOT a perturbation. Do not encode it under `perturbations` or `technical_treatments`. Use it only as context for `cell_context` / `extraction.confidence` reasoning when the sample_string is otherwise ambiguous.\n\n",
+
+Razionale Opzione B:
+- Esplicita all'LLM che molecule_hint NON è una perturbazione.
+  Mitiga il rischio (basso ma non zero) che il modello, vedendo "polyA
+  RNA" come hint, lo classifichi come treatment chimico o lo metta nei
+  technical_treatments (il vocab AMBIGUITY_FLAGS contiene già
+  `technical_treatment_only`, c'è collisione semantica potenziale).
+- Costo: +1 riga di system prompt = ~85 token × 507k sample input.
+  Trascurabile su Mistral DGX.
+
+Contro Opzione B:
+- Cambia un secondo file logico nel prompt (system + user). Più
+  superficie per drift. Più diff cognitivo per chi legge il commit.
+- Mini-gold v5 (100 sample) NON ha sample annotati con divergenza
+  polyA / total su stesso compound → impossibile validare empiricamente
+  che la differenza Opzione A vs B sposti accuracy. Senza evidence
+  empirica, principio di minimum-change favorisce A.
+
+---
+OPZIONE C (status quo, NON raccomandata)
+---
+
+Non aggiungere molecule_hint al prompt. Il campo resta nel JSONL ma
+l'LLM non lo vede. Equivale a buttare il lavoro di C4.
+NON la propongo, citata per completezza.
+
+===============================================================================
+NORMALIZZAZIONE VALORI (questione collaterale, decidi insieme)
+===============================================================================
+
+molecule_ch1 in ARCHS4 v2.5 è il campo GEO controlled-vocabulary
+"Molecule Type for Channel 1". Valori noti (GEO controlled vocab):
+  total RNA, polyA RNA, nuclear RNA, cytoplasmic RNA, genomic DNA,
+  protein, other.
+
+Stadio 0 v2 (post C1+C2) tiene SOLO `library_strategy = "RNA-Seq"` +
+`library_source = "transcriptomic"` (whitelist A1). Quindi i valori
+attesi di molecule_ch1 nel JSONL prodotto sono dominati da:
+  - total RNA
+  - polyA RNA
+  - nuclear RNA
+  - cytoplasmic RNA
+  - other / NA (raro per RNA-Seq human)
+
+Domanda implicita: pass-through verbatim (proposta) o normalizzazione
+lato R prima di iniettarlo? Pass-through è data-driven; normalizzazione
+è arbitraria. Preferenza Claude: pass-through (Opzione A senza normaliz.).
+
+===============================================================================
+TESTS PREVISTI PER D1b (NON applicati, solo proposta)
+===============================================================================
+
+In tests/testthat/test-llm-stage1.R, aggiungere 4 test:
+
+1. build_prompt_stage1(molecule_hint = "polyA RNA") inietta la riga
+   `molecule_hint: polyA RNA` nel user message.
+2. build_prompt_stage1(molecule_hint = NULL) NON inietta nessuna riga
+   molecule_hint (parallelo a organism_hint = NULL).
+3. build_prompt_stage1(molecule_hint = NA_character_) NON inietta riga
+   (NA trattato come missing — comportamento richiesto da P2).
+4. La posizione della riga molecule_hint è dopo organism_hint e prima
+   di sample_string (test su match string ordering).
+
+(Test #3 richiede una piccola guard `!is.null(x) && !is.na(x) && nzchar(x)`.)
+
+===============================================================================
+GATE UTENTE
+===============================================================================
+
+In attesa direttiva utente su:
+  Q1. Opzione A vs B (vs C)?
+  Q2. Field naming: `molecule_hint` vs `molecule_ch1` (verbatim ARCHS4)
+      vs altro?
+  Q3. Pass-through verbatim o normalizzazione lato R?
+  Q4. Posizione: dopo organism_hint (proposta) vs altro?
+
+Non procedere a D1b senza OK esplicito su Q1-Q4.

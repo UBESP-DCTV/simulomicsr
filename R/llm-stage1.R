@@ -80,7 +80,8 @@ read_sample_fixtures_mini <- function() {
     "extracted facts faithfully reflect the input string.\n",
     "6. Set `extraction.schema_version` to exactly the string 'stage1.v3'.\n",
     "7. Leave `extraction.raw_input_hash` as 'sha256:0000000000000000000000000000000000000000000000000000000000000000' \u2014 the R caller will overwrite it deterministically.\n",
-    "8. Leave `extraction.model` as the empty-meaningful default '__unset__' \u2014 the R caller will overwrite it.\n\n",
+    "8. Leave `extraction.model` as the empty-meaningful default '__unset__' \u2014 the R caller will overwrite it.\n",
+    "9. The optional `molecule_hint` in the user message reports the RNA fraction profiled (e.g. 'total RNA', 'polyA RNA', 'nuclear RNA'). It is library-prep metadata, not a perturbation: do not encode it under `perturbations` or `technical_treatments`.\n\n",
     "PERTURBATION KINDS (`perturbations[].kind`):\n{.STAGE1_KINDS}\n\n",
     "CELL CONTEXT KINDS (`cell_context.context_kind`):\n{.STAGE1_CONTEXT_KINDS}\n\n",
     "DISEASE STATE STATUS (`disease_state.status`):\n{.STAGE1_DISEASE_STATUS}\n\n",
@@ -141,22 +142,35 @@ parse_stage1_response <- function(raw,
 #' @param series_id GSE id (idem)
 #' @param organism_hint hint opzionale (es. "Homo sapiens"); incluso nello user
 #'   message solo se non NULL
+#' @param molecule_hint hint opzionale GEO `molecule_ch1` (es. "total RNA",
+#'   "polyA RNA", "nuclear RNA"); incluso nello user message solo se
+#'   non-NULL/NA/"". Spec: ADR-0019 D5 + RED_ALERT FASE D1b.
 #' @return list di 2 messages (`system`, `user`) nel formato OpenAI Chat
 #' @keywords internal
 build_prompt_stage1 <- function(sample_string,
                                 geo_accession,
                                 series_id,
-                                organism_hint = NULL) {
+                                organism_hint = NULL,
+                                molecule_hint = NULL) {
   stopifnot(
     is.character(sample_string), length(sample_string) == 1L, nzchar(sample_string),
     is.character(geo_accession), length(geo_accession) == 1L, nzchar(geo_accession),
     is.character(series_id),     length(series_id)     == 1L, nzchar(series_id)
   )
 
+  # Guard NULL / NA / "" per molecule_hint (parallelo a organism_hint, ma con
+  # tolleranza esplicita per NA perche' jsonlite::fromJSON di un null JSON
+  # produce NA_character_ se la colonna esiste con valori misti).
+  has_molecule_hint <- !is.null(molecule_hint) &&
+    length(molecule_hint) == 1L &&
+    !is.na(molecule_hint) &&
+    nzchar(molecule_hint)
+
   user_lines <- c(
     paste0("geo_accession: ", geo_accession),
     paste0("series_id: ", series_id),
     if (!is.null(organism_hint)) paste0("organism_hint: ", organism_hint),
+    if (has_molecule_hint) paste0("molecule_hint: ", molecule_hint),
     "sample_string:",
     sample_string
   )
@@ -179,6 +193,8 @@ build_prompt_stage1 <- function(sample_string,
 #' @param model nome del modello (default `"gpt-5.5"` -- spec sec.5.3.1 dev set)
 #' @param cache oggetto `cache` (`cache_init()`), oppure `NULL` per bypass
 #' @param organism_hint hint opzionale per lo user message
+#' @param molecule_hint hint opzionale GEO `molecule_ch1` per lo user message
+#'   (ADR-0019 D5).
 #' @param ... inoltrato all'adapter (es. `temperature`, `max_tokens`,
 #'   `.mock_adapter` per test)
 #'
@@ -192,6 +208,7 @@ classify_sample <- function(sample_string,
                             model    = "gpt-5.5",
                             cache    = NULL,
                             organism_hint = NULL,
+                            molecule_hint = NULL,
                             ...) {
   schema_path <- system.file(
     "schemas/sample_facts.stage1.v3.json",
@@ -208,7 +225,8 @@ classify_sample <- function(sample_string,
     sample_string = sample_string,
     geo_accession = geo_accession,
     series_id     = series_id,
-    organism_hint = organism_hint
+    organism_hint = organism_hint,
+    molecule_hint = molecule_hint
   )
 
   res <- llm_call_structured(
@@ -247,6 +265,12 @@ classify_sample_row <- function(row,
                                 ...) {
   stopifnot(nrow(row) == 1L)
 
+  # P5 audit RED_ALERT D1b (ADR-0019 D5): leggi molecule_ch1 dal JSONL (campo
+  # aggiunto in C4 commit 6963198). Row legacy senza la colonna (es.
+  # samples_dev_set alpha P2) torna NULL e build_prompt_stage1 non inietta
+  # nulla — parita' col comportamento pre-C4.
+  molecule_hint <- if ("molecule_ch1" %in% names(row)) row$molecule_ch1 else NULL
+
   tryCatch(
     {
       res <- classify_sample(
@@ -256,6 +280,7 @@ classify_sample_row <- function(row,
         provider      = provider,
         model         = model,
         cache         = cache,
+        molecule_hint = molecule_hint,
         ...
       )
       res$value
