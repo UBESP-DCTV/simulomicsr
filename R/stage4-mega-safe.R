@@ -17,9 +17,22 @@
 #' \code{conflicts} tibble di ritorno, propagato a
 #' \code{qc_report$pooling_warnings}.
 #'
+#' FASE E0b ADR-0019 D9 (decisione utente 2026-05-27 su evidence A7b):
+#' aggiunti i parametri \code{biosample_lookup} + \code{libsize_lookup}.
+#' Quando entrambi sono forniti (non NULL), dopo il dedupe per GSM literal
+#' viene applicato \code{.dedupe_gsm_by_samn} sui sopravvissuti: per ogni
+#' SAMN con N>=2 GSM cross-GSE, tenuto il GSM con \code{lib_size} massimo
+#' (tie-break alfabetico), gli altri registrati come
+#' \code{conflict_type = "cross_gse_samn_dedupe_kept_<gsm_kept>"}. Lookup
+#' NULL = retrocompat (no dedupe SAMN).
+#'
 #' @param grp list di dispatch entries con campi \code{study_id},
 #'   \code{sample_ids}, \code{treatment}.
 #' @param cluster_id chr ID del cluster per logging.
+#' @param biosample_lookup environment o named char vec
+#'   \code{GSM -> SAMN}. NULL (default) = no dedupe SAMN (retrocompat).
+#' @param libsize_lookup environment o named numeric vec
+#'   \code{GSM -> lib_size}. NULL (default) = no dedupe SAMN.
 #' @return list:
 #'   \itemize{
 #'     \item \code{metadata}: data.frame con \code{sample_id} unici, factor
@@ -28,7 +41,9 @@
 #'       roles, conflict_type)} con i sample rimossi o segnalati.
 #'   }
 #' @keywords internal
-.build_mega_metadata_safe <- function(grp, cluster_id) {
+.build_mega_metadata_safe <- function(grp, cluster_id,
+                                       biosample_lookup = NULL,
+                                       libsize_lookup = NULL) {
   empty_meta <- data.frame(
     sample_id = character(0L),
     study     = factor(character(0L)),
@@ -93,6 +108,43 @@
   }
 
   keep <- setdiff(seq_along(all_sids), drop_idx)
+
+  # FASE E0b: SAMN dedupe cross-GSE (decisione utente 2026-05-27 su A7b).
+  # Applicato DOPO il dedupe per GSM literal (role_conflict_dropped +
+  # cross_study_duplicate_kept_first) sopra: il pool corrente contiene gia'
+  # GSM unici a livello accessioned. Resta da collassare GSM diversi che
+  # condividono SAMN cross-GSE -> tenuto quello con lib_size max (tie-break
+  # alfabetico). Lookup NULL = no-op (retrocompat).
+  if (!is.null(biosample_lookup) && !is.null(libsize_lookup) &&
+      length(keep) > 0L) {
+    sids_keep <- all_sids[keep]
+    # Dedup primo per identita' GSM (un GSM potrebbe comparire 2 volte in
+    # keep se cross_study_duplicate_kept_first ha lasciato la prima occorrenza),
+    # poi SAMN dedupe lavora su accessioned unique.
+    sids_unique <- unique(sids_keep)
+    samn_res <- .dedupe_gsm_by_samn(
+      sids_unique, biosample_lookup, libsize_lookup
+    )
+    if (nrow(samn_res$dropped) > 0L) {
+      dropped_gsm <- samn_res$dropped$gsm_dropped
+      # Rimuovi da keep TUTTE le occorrenze dei GSM droppati
+      keep <- keep[!(all_sids[keep] %in% dropped_gsm)]
+      # Registra un conflict per GSM droppato con il GSM kept linkato.
+      for (i in seq_len(nrow(samn_res$dropped))) {
+        gsm_d <- samn_res$dropped$gsm_dropped[i]
+        gsm_k <- samn_res$dropped$gsm_kept[i]
+        idx_d <- which(all_sids == gsm_d)
+        conflicts_rows[[length(conflicts_rows) + 1L]] <- tibble::tibble(
+          cluster_id    = cluster_id,
+          sample_id     = gsm_d,
+          studies       = paste(unique(all_studies[idx_d]), collapse = ";"),
+          roles         = paste(unique(all_treats[idx_d]), collapse = ";"),
+          conflict_type = sprintf("cross_gse_samn_dedupe_kept_%s", gsm_k)
+        )
+      }
+    }
+  }
+
   metadata <- data.frame(
     sample_id = all_sids[keep],
     study     = factor(all_studies[keep]),
