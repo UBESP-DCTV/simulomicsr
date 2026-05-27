@@ -19,19 +19,32 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
-> **Stato 2026-05-27 fine sessione 4**: ✅ FASE A+B+C chiuse (15/15).
-> Codice pre-LLM Stadio 0 v2 pronto: `read_archs4_metadata` 14 campi,
-> `is_sample_classifiable` v2 firma B3 (7 reason codes), `parse_aligner_class`
-> + `parse_biosample_id`, `build_archs4_metadata_v2` (RDS 11 col),
-> `archs4_to_stage1_jsonl` con `molecule_ch1` (D5). Test suite Stage 0 v2:
-> 194 PASS / 0 FAIL / 1 SKIP. **Fix regex audit underscore-aware**
-> applicato in sessione (bug paper-grade title-bulk rescue + pattern S):
-> drop Stage 0 v2 ricalcolato **371.129 / 879.167 = 42.21%** (vs 42.28%
-> pre-fix), bacino finale **507.838 sample** (+378). Decisione data-driven
-> REBUILD obbligatorio invariata. Branch ahead di master di 12 commit
-> (last `8ed4b2c` C5 e2e test). Prossimo step (nuova sessione):
-> **FASE D1a** — gate utente prompt LLM Stadio 1 (estrai prompt corrente
-> verbatim + proponi integrazione molecule_ch1 + aspetta OK).
+> **Stato 2026-05-27 fine sessione 5**: ✅ **FASE A+B+C+D chiuse (19/19)**
+> + scope-extension D3 (Stadio 2 IT->EN) + D4 (fix bug latente
+> organism_hint). Codice LLM Stadio 0+1+2 paper-grade ready per fullrun:
+> - Pre-LLM: `read_archs4_metadata` 14 campi, `is_sample_classifiable` v2
+>   firma B3 (7 reason codes), `parse_aligner_class`, `parse_biosample_id`,
+>   `build_archs4_metadata_v2` (RDS 11 col), `archs4_to_stage1_jsonl` con
+>   molecule_ch1 (D5).
+> - LLM Stadio 1: prompt con ground rule 9 su `molecule_hint` (D1b);
+>   `classify_sample_row` legge row$organism + row$molecule_ch1 dal JSONL
+>   e li passa come hint al builder; path DGX Python simmetrico
+>   (`inst/dgx/python/prompts.py` legge le chiavi ARCHS4-verbatim
+>   `organism`+`molecule_ch1` ed emette label `organism_hint`+`molecule_hint`).
+> - LLM Stadio 2: prompt completamente in inglese (D3), schema invariato,
+>   4 RULE rigide preserved 1:1 semantica.
+> - Bug latente organism_hint pre-D4 nel Python (mai emesso nel beta
+>   fullrun) FIXED simmetrico al pattern D1b.
+>
+> Test suite globale (escluso perf-budget): **92 file, 614 test_that,
+> 1883 expect_* PASS, 0 FAIL, 4 SKIP**. Drop Stage 0 v2 invariato
+> **371.129 / 879.167 = 42.21%**, bacino finale **507.838 sample**.
+> Decisione REBUILD invariata. Branch ahead di master di **17 commit**
+> (last `0409810` D4 organism_hint fix). Prossimo step (nuova sessione):
+> **FASE E (codice POST-LLM Stadio 3 + Stadio 4)** — task E0 dedupe
+> SAMN, E1 gene axis Ensembl, E2 biotype filter, E3 covariate batch
+> instrument_model + aligner_class, E4 tests, E5 Layer B compatibility
+> check. Gate utente fra ciascuna task come da convenzione RED ALERT.
 
 ---
 

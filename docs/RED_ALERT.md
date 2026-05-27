@@ -608,7 +608,7 @@ che il JSONL contiene il nuovo campo.
 > corrente verbatim + propone l'integrazione `molecule_ch1` + aspetta
 > approvazione utente. Solo dopo OK, D1b applica.
 
-#### ⬜ D1a — Mostra prompt Stadio 1 attuale + proponi modifica (gate utente)
+#### ✅ D1a — Mostra prompt Stadio 1 attuale + proponi modifica (gate utente)
 
 **Cosa facciamo.** Andiamo a leggere `R/llm-stage1.R::build_prompt_stage1()`
 + `R/llm-stage1.R::.stage1_system_prompt()` e estraiamo verbatim il
@@ -637,7 +637,7 @@ autorizzare il rerun.
 **Decisione che dipende da D1a.** Approvazione esatta del nuovo prompt,
 o richiesta di modifica.
 
-#### ⬜ D1b — Applica modifica prompt approvata in D1a
+#### ✅ D1b — Applica modifica prompt approvata in D1a
 
 **Cosa facciamo.** Modifica del prompt secondo la versione approvata in
 D1a. Tests che verificano la presenza della riga "RNA selection
@@ -648,7 +648,61 @@ method:" (o equivalente approvata) nel prompt generato.
 **Come.** Edit di `R/llm-stage1.R` + tests TDD + commit dedicato che
 cita D1a come gate utente nel messaggio.
 
-#### ⬜ D2 — Tests D1b
+#### ✅ D2 — Tests D1b
+
+#### ✅ D3 — Traduzione prompt Stadio 2 IT -> EN (scope-extension sessione 5)
+
+**Cosa abbiamo fatto.** Decisione utente sessione 5 2026-05-27: allineare
+la lingua del prompt Stadio 2 a Stadio 1 (entrambi inglese). Estrazione
+verbatim del prompt italiano corrente + proposta traduzione 1:1
+semantica + gate utente approvato (Q1+Q2+Q3 OK, Q4 anti-IT regression
+test escluso esplicitamente).
+
+**Perche' fuori scope FASE D originale.** FASE D nella prima stesura
+(2026-05-26 sessione 2) trattava solo Stadio 1. La decisione utente di
+allineare entrambi gli stadi all'inglese e' arrivata in sessione 5
+durante D1a. Aggiunta come scope-extension.
+
+**Come.** Modifica chirurgica del solo `R/llm-stage2.R`:
+- `.stage2_system_prompt()` ~85 righe IT -> EN (1:1)
+- `.STAGE2_PRIMARY_ROLES` 5 glosse IT -> EN
+- `.STAGE2_CONTROL_TYPES` 7 glosse IT -> EN
+- Enum values, schema fields, termini scientifici (DMSO, PBS, scrambled,
+  siRNA, WT, KO) preservati verbatim.
+
+**Validazione.** Mini-gold v5 ri-misurata come parte di FASE F3 fullrun
+Stadio 2 post-rebuild (validation deferred, documentata in BLOCCO 5 di
+`analysis/audit/D3-prompt-stage2-translation.txt`).
+
+#### ✅ D4 — Fix bug latente Python organism_hint (simmetria D1b)
+
+**Cosa abbiamo fatto.** Durante D1b ho rilevato un bug pre-esistente
+silenzioso: l'ETL R (`R/etl-archs4-h5.R:97`) emette il JSONL con chiave
+`organism` verbatim ARCHS4, ma il Python DGX
+(`inst/dgx/python/prompts.py:28` pre-D4) cercava la chiave
+`organism_hint`. Quindi nel fullrun beta Stadio 1 (888.821 sample, ETA
+~18h), per ogni sample, l'LLM Mistral ha visto user message SENZA la
+riga `organism_hint: Homo sapiens`. Bug silent: nessun crash. R-side
+`classify_sample_row` aveva lo stesso problema (non leggeva `row$organism`).
+
+**Perche' fuori scope FASE D originale.** Bug discovered durante D1b
+investigation. Su richiesta utente sessione 5 ("sistemalo ora poi
+andiamo avanti") -> fix immediato come D4 invece di task posticipata.
+
+**Impatto scientifico basso ma non zero.** Stage 0 v2 filtra a monte
+`organism_ch1 == "Homo sapiens"`, quindi tutti i sample inviati all'LLM
+sono human -> la riga organism_hint mancante e' info ridondante per
+discriminare. Pero': (a) asimmetria con `molecule_hint` sistemata in
+D1b crea stato confuso, (b) forward-looking se in futuro multi-organismo,
+(c) paper-grade discoverability del codice.
+
+**Come.** Fix simmetrico al pattern stabilito in D1b:
+- R/llm-stage1.R::classify_sample_row legge `row$organism` con guard
+  e lo passa come `organism_hint=` a classify_sample.
+- inst/dgx/python/prompts.py::render_user_message_stage1 cambia
+  `record.get("organism_hint")` -> `record.get("organism")`.
+- 2 test_that nuovi (R-positivo + R-row-senza-colonna).
+- Python sanity 4/4 PASS su shape JSONL beta-real.
 
 ---
 
@@ -926,12 +980,52 @@ ALERT per Stadio 1 audit nella sessione successiva.
   **FASE B completata (3/3). FASE A+B chiuse (10/10)**.
   Prossimo step in nuova sessione: FASE C (codice pre-LLM).
 
+- 2026-05-27 sessione 5: **FASE D completata (4/4)** + scope-extension
+  D3+D4 chiusi paper-grade. 4 commit incrementali:
+  - ✅ D1a (file traccia `analysis/audit/D1a-prompt-stage1-current.txt`,
+    gate utente approvato strada cauta + naming molecule_hint + valore
+    verbatim).
+  - ✅ D1b (`de440ce`) molecule_hint nel prompt Stadio 1 (R +
+    inst/dgx/python/prompts.py + 9 test_that, ground rule #9 in system
+    prompt: "molecule_hint indicates the RNA fraction profiled ... not a
+    perturbation").
+  - ✅ D2 (`40a75d8`) tests end-to-end: 2 cascade JSONL stream_in ->
+    classify_sample_row + 1 bundle DGX verify prompt.txt contiene la
+    ground rule 9.
+  - ✅ D3 (`0e20495`) traduzione prompt Stadio 2 IT -> EN. Modifica al
+    solo `R/llm-stage2.R`: system prompt + glosse PRIMARY_ROLES +
+    glosse CONTROL_TYPES. Enum values, schema fields, termini
+    scientifici verbatim. File traccia
+    `analysis/audit/D3-prompt-stage2-translation.txt` (IT verbatim + EN
+    proposed side-by-side).
+  - ✅ D4 (`0409810`) fix bug latente organism_hint discovered durante
+    D1b: Python DGX cercava chiave inesistente, mai emessa nel beta
+    fullrun. Fix simmetrico al pattern D1b (Python legge `organism`
+    verbatim ARCHS4, R legge `row$organism`). 2 test_that R + 4 sanity
+    Python PASS.
+  Branch `p5-llm-anchor-classification-audit` ahead di master di **17
+  commit** (last `0409810`). Master invariato. Test suite globale
+  (escluso perf-budget): **92 file, 614 test_that, 1883 expect_* PASS,
+  0 FAIL, 4 SKIP**. Prossimo step nuova sessione: **FASE E (codice
+  post-LLM Stadio 3 + Stadio 4)** — task E0-E5.
+
 ### Handoff next session
 
-- Sessione successiva: parte da **FASE D1a (gate utente prompt LLM Stadio 1)**.
-- Branch attivo: `p5-llm-anchor-classification-audit` (12 commit ahead di
-  master, ultimo `8ed4b2c`).
+- Sessione successiva: parte da **FASE E (codice POST-LLM)**, 5 task
+  da pianificare con gate utente fra ciascuna:
+  - E0 dedupe SAMN cross-studio (R/etl-archs4-utils.R::parse_biosample_id
+    gia' pronto in C3; integrazione Stadio 3 da fare).
+  - E1 gene axis Ensembl ID (risolve paralogi ADR-0016).
+  - E2 filtro biotype == protein_coding (default).
+  - E3 covariate batch instrument_model + aligner_class in formula DE.
+  - E4 tests E1-E3.
+  - E5 verifica Layer B compatibility (smoke 3-cluster post refactor).
+- Branch attivo: `p5-llm-anchor-classification-audit` (17 commit ahead
+  di master, ultimo `0409810`).
 - Master invariato.
-- FASE C completata (5/5). FASE D, E, F, G TODO.
+- FASE A+B+C+D completate (15+4 = 19/19 task + 2 scope-extension D3/D4).
+  FASE E, F, G TODO.
+- Bug latente da tracciare separatamente: nessuno noto al momento (D4
+  ha chiuso quello scoperto durante D1b).
 - Quando RED ALERT (Stadio 0) chiude: aprire nuovo doc
   `docs/RED_ALERT-stage1.md` per audit Stadio 1.
