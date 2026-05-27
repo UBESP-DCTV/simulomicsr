@@ -16,6 +16,12 @@ def render_user_message_stage1(record: dict[str, Any]) -> str:
         sample_string:
         <string>
 
+    `organism_hint` proviene dal campo JSONL `organism` (R/etl-archs4-h5.R:97
+    emette key "organism" verbatim ARCHS4). Fix RED_ALERT D4: pre-D4 questo
+    reader cercava chiave "organism_hint" non esistente -> riga mai emessa
+    nel fullrun beta (~879k sample). Bug latente paper-grade documentato in
+    docs/RED_ALERT.md FASE D4.
+
     `molecule_hint` proviene dal campo JSONL `molecule_ch1` introdotto in
     FASE C4 (commit 6963198). Valori GEO controlled-vocabulary:
     "total RNA", "polyA RNA", "nuclear RNA", "cytoplasmic RNA", ...
@@ -25,7 +31,10 @@ def render_user_message_stage1(record: dict[str, Any]) -> str:
     geo = str(record["geo_accession"])
     sid = str(record["series_id"])
     sstr = str(record["string"])
-    organism_hint = record.get("organism_hint")
+    # P5 audit RED_ALERT D4: legge "organism" (key JSONL ARCHS4-verbatim), NON
+    # "organism_hint" (mismatch pre-D4 silently no-op). Pattern simmetrico a
+    # molecule_ch1 -> molecule_hint.
+    organism_hint = record.get("organism")
     molecule_hint = record.get("molecule_ch1")
 
     lines = [

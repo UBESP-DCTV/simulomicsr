@@ -410,3 +410,59 @@ test_that("E2E D2: JSONL stream_in con molecule_ch1 null produce NA_character_ -
   )
   expect_false(grepl("molecule_hint:", captured[[2]]$content, fixed = TRUE))
 })
+
+# ---------------------------------------------------------------------------
+# P5 audit RED_ALERT D4 — fix bug latente organism_hint (simmetria D1b)
+# Pre-D4: JSONL ETL emette key "organism" (R/etl-archs4-h5.R:97) ma
+# inst/dgx/python/prompts.py:28 leggeva record.get("organism_hint") -> None
+# sempre -> riga organism_hint: <X> mai emessa. Allineamento al pattern
+# JSONL=ARCHS4-verbatim / label=<thing>_hint stabilito in D1b per
+# molecule_ch1.
+# ---------------------------------------------------------------------------
+
+test_that("classify_sample_row legge row$organism e lo passa come organism_hint", {
+  captured <- NULL
+  fake <- .fake_raw_v3()
+  fake_adapter <- function(model, messages, response_schema, ...) {
+    captured <<- messages
+    fake
+  }
+
+  row <- tibble::tibble(
+    geo_accession = "GSM1",
+    series_id     = "GSE1",
+    string        = "treatment: VEGF, time: 1h, cell line: HUVEC",
+    organism      = "Homo sapiens"
+  )
+
+  classify_sample_row(
+    row,
+    provider = "mock", model = "gpt-5.5", cache = NULL,
+    .mock_adapter = fake_adapter
+  )
+  expect_match(captured[[2]]$content, "organism_hint: Homo sapiens", fixed = TRUE)
+})
+
+test_that("classify_sample_row con row senza colonna organism NON aggiunge riga organism_hint", {
+  captured <- NULL
+  fake <- .fake_raw_v3()
+  fake_adapter <- function(model, messages, response_schema, ...) {
+    captured <<- messages
+    fake
+  }
+
+  # Row legacy senza colonna organism (es. samples_dev_set alpha P2). Parita'
+  # col comportamento pre-D4: nessuna riga organism_hint nel prompt.
+  row <- tibble::tibble(
+    geo_accession = "GSM1",
+    series_id     = "GSE1",
+    string        = "treatment: VEGF, time: 1h, cell line: HUVEC"
+  )
+
+  classify_sample_row(
+    row,
+    provider = "mock", model = "gpt-5.5", cache = NULL,
+    .mock_adapter = fake_adapter
+  )
+  expect_false(grepl("organism_hint:", captured[[2]]$content, fixed = TRUE))
+})

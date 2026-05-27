@@ -271,6 +271,14 @@ classify_sample_row <- function(row,
   # nulla — parita' col comportamento pre-C4.
   molecule_hint <- if ("molecule_ch1" %in% names(row)) row$molecule_ch1 else NULL
 
+  # P5 audit RED_ALERT D4: leggi organism dal JSONL (R/etl-archs4-h5.R:97
+  # emette key "organism" verbatim ARCHS4). Pattern simmetrico a molecule_ch1.
+  # Pre-D4 il path R-side classify_sample_row non leggeva organism del row e il
+  # path Python DGX leggeva chiave "organism_hint" non esistente: in entrambi
+  # i casi la riga organism_hint: <val> non veniva emessa. Fix simmetrico:
+  # R legge row$organism, Python legge record.get("organism").
+  organism_hint <- if ("organism" %in% names(row)) row$organism else NULL
+
   tryCatch(
     {
       res <- classify_sample(
@@ -280,6 +288,7 @@ classify_sample_row <- function(row,
         provider      = provider,
         model         = model,
         cache         = cache,
+        organism_hint = organism_hint,
         molecule_hint = molecule_hint,
         ...
       )
