@@ -31,6 +31,18 @@
     ncol(counts) == length(treatment_vec)
   )
 
+  # FASE E1: estrai mapping Ensembl -> HGNC symbol PRIMA di edgeR::DGEList
+  # (che scarta gli attr aggiuntivi della matrice). Lookup post-filterByExpr
+  # via subscripting per-rownames(fit). Retrocompat: counts senza
+  # attr("gene_symbol") -> tutti NA (pre-E1 path).
+  gene_symbol_lookup <- attr(counts, "gene_symbol")
+  if (is.null(gene_symbol_lookup)) {
+    gene_symbol_lookup <- setNames(
+      rep(NA_character_, nrow(counts)),
+      rownames(counts)
+    )
+  }
+
   n_treated <- sum(treatment_vec == "treated")
   n_control <- sum(treatment_vec == "control")
 
@@ -58,10 +70,12 @@
     direction_applied <- "none"
   }
 
+  fit_genes <- rownames(fit)
   tibble::tibble(
     cluster_id        = cluster_id,
     study_id          = study_id,
-    gene              = rownames(fit),
+    gene_id           = fit_genes,
+    gene_symbol       = unname(gene_symbol_lookup[fit_genes]),
     logFC             = unname(logFC),
     SE                = unname(SE),
     p_value           = unname(p_val),

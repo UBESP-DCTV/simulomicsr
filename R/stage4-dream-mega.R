@@ -51,15 +51,29 @@
     ))
   }
 
-  # Guardia difensiva sui gene rownames: dream/variancePartition crashano con
-  # "duplicate 'row.names'" se la count matrix ha rownames duplicati. ARCHS4
-  # v2.5 ha 4638 simboli HGNC non unici; .fetch_counts_from_h5 li disambigua
-  # gia' con make.unique, ma se un fetch_fn alternativo (mock, override) non lo
-  # facesse, dream fallirebbe e .run_dream_mega ripiegherebbe SILENZIOSAMENTE
-  # sul fallback limma. make.unique qui rende la funzione robusta a qualunque
-  # fonte di counts. Idempotente su rownames gia' unici.
+  # FASE E1 (ADR-0019 D6): defensive make.unique() RIMOSSO. La sorgente del
+  # bug paralogi pre-E1 (ADR-0016 Decision 2 / Discovery 2026-05-21) era
+  # rownames(counts) = HGNC symbol che ARCHS4 ha duplicati. Post-E1
+  # .fetch_counts_from_h5 usa Ensembl come rownames (univoco per
+  # costruzione, 67186 ID distinti, 0 NA). La guardia anyDuplicated()
+  # sotto e' mantenuta come safety net per fetch_fn alternativi (mock,
+  # override) che potrebbero ancora produrre rownames duplicati.
+  #
+  # FASE E1: estrai mapping Ensembl -> HGNC symbol PRIMA di edgeR (che
+  # scarta gli attr della matrice). Retrocompat: counts senza
+  # attr("gene_symbol") -> tutti NA.
+  gene_symbol_lookup <- attr(counts, "gene_symbol")
+  if (is.null(gene_symbol_lookup)) {
+    gene_symbol_lookup <- setNames(
+      rep(NA_character_, nrow(counts)),
+      rownames(counts)
+    )
+  }
   if (anyDuplicated(rownames(counts)) > 0L) {
-    rownames(counts) <- make.unique(rownames(counts))
+    stop(sprintf(
+      "rownames(counts) per cluster %s contiene duplicati: post-E1 attesi rownames Ensembl univoci",
+      cluster_id
+    ), call. = FALSE)
   }
 
   # Allinea rownames(metadata) a colnames(counts) per silenziare warning
@@ -119,9 +133,11 @@
     res <- list(logFC = logFC, SE = SE, p_val = p_val, ok = TRUE)
   }
 
+  out_gene_ids <- names(res$logFC)
   out <- tibble::tibble(
     cluster_id   = cluster_id,
-    gene         = names(res$logFC),
+    gene_id      = out_gene_ids,
+    gene_symbol  = unname(gene_symbol_lookup[out_gene_ids]),
     method       = method_label,
     logFC_pool   = unname(res$logFC),
     SE_pool      = unname(res$SE),

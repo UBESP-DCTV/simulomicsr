@@ -17,9 +17,9 @@ test_that(".run_limma_voom_de produce tibble per-gene con logFC + SE + p", {
                              cluster_id = "TEST", direction_flip = FALSE)
 
   expect_s3_class(res, "tbl_df")
-  expect_named(res, c("cluster_id", "study_id", "gene", "logFC", "SE",
-                       "p_value", "t_stat", "n_treated", "n_control",
-                       "direction_applied"),
+  expect_named(res, c("cluster_id", "study_id", "gene_id", "gene_symbol",
+                       "logFC", "SE", "p_value", "t_stat", "n_treated",
+                       "n_control", "direction_applied"),
                ignore.order = TRUE)
   expect_equal(unique(res$study_id), "GSE001")
   expect_equal(unique(res$n_treated), 3L)

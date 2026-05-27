@@ -68,10 +68,14 @@
 #'
 #' @keywords internal
 .empty_per_study_de <- function() {
+  # FASE E1 ADR-0019 D6: 'gene' (HGNC symbol con make.unique pre-E1)
+  # rinominato 'gene_id' (Ensembl, univoco per costruzione) + nuova
+  # colonna 'gene_symbol' (HGNC label, possibili duplicati cross-paralogi + NA).
   tibble::tibble(
     cluster_id = character(),
     study_id = character(),
-    gene = character(),
+    gene_id = character(),
+    gene_symbol = character(),
     logFC = double(),
     SE = double(),
     p_value = double(),

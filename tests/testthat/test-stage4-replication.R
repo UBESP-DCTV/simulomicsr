@@ -34,7 +34,8 @@ test_that("write_stage4_to_dir produce parquet byte-equal per stesso input", {
 
   s4 <- list(
     per_study_de = tibble::tibble(
-      cluster_id = "c1", study_id = "GSE001", gene = "G1",
+      cluster_id = "c1", study_id = "GSE001",
+      gene_id = "ENSG_TEST_1", gene_symbol = "SYM_TEST_1",
       logFC = 1.0, SE = 0.1, p_value = 0.001, t_stat = 10.0,
       n_treated = 3L, n_control = 3L, direction_applied = "none"
     ),

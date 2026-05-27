@@ -45,13 +45,21 @@
     direction_applied <- "none"
   }
 
-  by_gene <- split(per_study_de_subset, per_study_de_subset$gene)
+  # FASE E1 ADR-0019 D6: pooling per gene_id (Ensembl, univoco). gene_symbol
+  # propagato dall'input per_study_de (coerente cross-studio per stesso
+  # gene_id post-E1).
+  by_gene <- split(per_study_de_subset, per_study_de_subset$gene_id)
 
   out_rows <- vector("list", length(by_gene))
   for (i in seq_along(by_gene)) {
     g <- names(by_gene)[i]
     sub <- by_gene[[i]]
     if (nrow(sub) < 2L) next  # skip geni con < 2 studi
+    gene_symbol_for_g <- if ("gene_symbol" %in% names(sub)) {
+      sym_unique <- unique(sub$gene_symbol)
+      sym_unique <- sym_unique[!is.na(sym_unique)]
+      if (length(sym_unique) > 0L) sym_unique[1L] else NA_character_
+    } else NA_character_
 
     res <- tryCatch(
       metafor::rma(yi = sub$logFC, sei = sub$SE, method = method),
@@ -70,7 +78,8 @@
 
     out_rows[[i]] <- tibble::tibble(
       cluster_id   = cluster_id,
-      gene         = g,
+      gene_id      = g,
+      gene_symbol  = gene_symbol_for_g,
       method       = "rem",
       logFC_pool   = as.numeric(res$b),
       SE_pool      = as.numeric(res$se),
@@ -106,9 +115,11 @@
 #' @return tibble 0 x 14 con schema completo.
 #' @keywords internal
 .empty_pooled_rem <- function() {
+  # FASE E1 ADR-0019 D6: 'gene' -> 'gene_id' (Ensembl) + 'gene_symbol' (HGNC).
   tibble::tibble(
     cluster_id   = character(),
-    gene         = character(),
+    gene_id      = character(),
+    gene_symbol  = character(),
     method       = character(),
     logFC_pool   = double(),
     SE_pool      = double(),
