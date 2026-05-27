@@ -19,41 +19,65 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
-> **Stato 2026-05-27 fine sessione 6**: ✅ **FASE A+B+C+D+E0 chiuse
-> (20/19 + 1 task addizionale aperta E0b)**. Sessione 6 ha materializzato
-> ADR-0019 D9 (dedupe BioSample SAMN) nel codice Stadio 3:
-> - Record builders pair/group portano `treated_sample_ids` +
->   `control_sample_ids` (era solo conteggio).
-> - 2 nuovi helper in `R/stage3-metadata.R`: `.build_biosample_lookup`
->   (geo_accession -> SAMN) e `.build_donor_lookup` (geo_accession ->
->   donor_id). Pre-build O(K) per cluster.
-> - `.enrich_cluster_metadata` esteso con i 2 lookup. Nuova colonna
->   `n_distinct_biosamples` in `clusters.rds`. Policy NA-non-collassante.
-> - **Fix paper-grade `n_distinct_donors`**: pre-E0 sotto-stimava
->   contando solo donor del primo sample per record. Post-E0 itera
->   tutti i GSM via donor_lookup. Fallback legacy preservato.
-> - `schema_versions.dedupe_strategy = "biosample_samn_unique"` in
->   `run_metadata.json` (loggato una volta, non colonna per-cluster).
-> - `load_archs4_metadata` esteso per leggere `meta/samples/relation` +
->   `parse_biosample_id()`. Cache key bumpata `v2_biosample` invalida
->   automaticamente cache pre-E0. Fallback graceful su H5 senza
->   relation.
+> **Stato 2026-05-27 fine sessione 7**: ✅ **FASE A+B+C+D+E0+E0b chiuse
+> (21/19 task)**. Sessione 7 ha chiuso E0b — collasso same-SAMN cross-GSE
+> in pool Stadio 4 — con scelta utente (a) drop deterministico max
+> `lib_size`, tie-break GSM alfabetico:
 >
-> **E0b APERTO post-E0**: collasso same-SAMN cross-GSE in pooling
-> Stadio 4 (425 GSM cross-GSE veri dall'A7, 0.048%). Gate utente in
-> apertura sessione 7 fra 3 opzioni: (a) drop duplicate, (b) average
-> counts, (c) declare sotto-noise in ADR-0019 + Limitations paper.
+> **Evidence pre-implementazione: A7b** in `analysis/audit/A7b-*` —
+> sui 425 GSM cross-GSE: 0% mix per `library_source` / `molecule_ch1` /
+> `data_processing`, 45% mix per `instrument_model`, 95% mix per
+> `extract_protocol_ch1`. Mediana `lib_size_ratio` cross-GSE 2.23×.
+> Counts correlation cross-GSE Pearson(log1p) 0.41-0.75 anche con
+> metadata identico (NON replicati tecnici). Upper bound 128 group
+> cluster colpiti (32.4% dei 176 SAMN duplicati). Opzione (b) average
+> counts scartata (statistica indifendibile cross-pipeline), opzione (c)
+> sotto-noise scartata (non diluito).
 >
-> Test suite globale (escluso perf-budget): **93 file, 638 test_that,
-> 1931 expect_* PASS, 0 FAIL, 3 SKIP** (+24 nuovi test_that E0).
-> Branch ahead di master di **37 commit** (correzione: il claim "17"
-> nei banner sessioni 4-5 era miscount cumulato). Last commit closing
-> doc sessione 6. Master invariato. Drop Stage 0 v2 invariato **371.129 /
-> 879.167 = 42.21%**, bacino finale **507.838 sample**. Decisione
-> REBUILD invariata. Prossimo step (nuova sessione 7): **decidere E0b
-> + procedere con E1 (gene axis Ensembl, risolve paralogi ADR-0016
-> Decision 2)**. Gate utente fra ciascuna task come da convenzione
-> RED ALERT.
+> **Implementazione E0b in 7 commit bite-sized TDD**:
+> - T1 `13d5342`: helper `.dedupe_gsm_by_samn` + `.lookup_chr/_num` +
+>   `.empty_samn_dedupe_dropped` in `R/stage4-samn-dedupe.R` (nuovo file,
+>   38 expect_*). Regola: max libsize, tie-break alfabetico GSM, NA SAMN
+>   preservato (no collapse), `exclude_samn` per cross pair-baseline.
+> - T2 `8fc6491`: integrazione MEGA pure in `.build_mega_metadata_safe`
+>   (signature `biosample_lookup` + `libsize_lookup` default NULL =
+>   retrocompat). `conflict_type = "cross_gse_samn_dedupe_kept_<gsm_kept>"`
+>   in `pooling_warnings`. 14 expect_*.
+> - T3 `5f600e1`: integrazione MEGA-AUG baseline pool in
+>   `.assemble_mega_aug_metadata_bidir` + closure `build_baseline_rows`
+>   con `exclude_samn = pair_samn_set` (cross pair-baseline). Return
+>   list 8 -> 9 campi (`samn_dedupe_log`). 20 expect_*.
+> - T4 `b386144`: `.build_samn_dedupe_lookups(h5_metadata)` helper +
+>   propagazione down via `.pool_all_clusters` parametri lookup. Fallback
+>   graceful (warning) se `biosample_id` o `lib_size` mancanti in
+>   h5_metadata. 18 expect_*.
+> - T5 `88d916c`: `stage4_default_config()$schema_versions$samn_dedupe_strategy
+>   = "max_libsize_alphabetic_tiebreak"`. Registrato in run_metadata.json.
+> - T6 `6ed729d`: smoke integration end-to-end MEGA pure (8 expect_*).
+> - T6b `9fee42c`: **fix paper-grade self-review** — propaga
+>   `assembled$samn_dedupe_log` MEGA-AUG in `pooling_warnings`
+>   dell'orchestrator. Era persa silenziosamente (asimmetria con MEGA
+>   pure). Schema conflicts standard (`cluster_id, sample_id, studies=NA,
+>   roles=arm, conflict_type`). 5 expect_*.
+>
+> **Doc aggiornati**: A7b sintesi (`analysis/audit/A7b-samn-duplicate-analysis.md`),
+> ADR-0019 §D9 con criterio max-libsize, RED_ALERT.md §E0b status ✅.
+> Codex CLI tentato per review esterna: auth ChatGPT non supporta i
+> modelli gpt-5.x-codex con quel tier (errore `400 invalid_request_error`)
+> -> review affidata a Claude Opus 4.7 paper-grade. Self-review ha
+> scoperto il finding T6b. Nessun whack-a-mole.
+>
+> Test suite E0b perimetro: **49 test_that, 202 expect_* PASS, 0 FAIL**
+> (7 file: samn-dedupe, samn-lookups, mega-safe, mega-aug-samn, e0b-schema,
+> e0b-smoke + delta su mega-aug-bidir). Branch ahead di master di **44
+> commit** (37 pre-sessione 7 + 7 commit E0b T1..T6b). Master invariato.
+>
+> **Prossimo step sessione 8**: gate utente per **E1** (gene axis Ensembl,
+> risolve paralogi ADR-0016 Decision 2 in modo deterministico vs
+> make.unique). Eventuali finding di FASE E0b lookup-aware su h5_metadata
+> attuali sono retrocompat (warning + no dedupe; il rebuild F1-F5 produrra'
+> nuovo h5_metadata con biosample_id + lib_size). Stato pipeline rebuild
+> invariato (FASE F SOSPESA in attesa di completamento E1-E5).
 
 ---
 

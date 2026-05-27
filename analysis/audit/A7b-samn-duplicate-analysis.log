@@ -1,0 +1,70 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+==============================================================
+A7b — SAMN cross-GSE duplicate analysis
+==============================================================
+
+A7 coverage TSV: 879167 rows
+GSM cross-GSE: 425
+SAMN duplicati: 176
+
+Fetching metadata extra da H5...
+Written A7b-samn-duplicate-metadata.tsv (425 rows)
+Written A7b-samn-duplicate-pairs.tsv (176 SAMN)
+
+--- Distribuzione n_gsm per SAMN duplicato ---
+
+  2   3   4   5   7   8   9 
+148  13   7   1   1   4   2 
+
+--- Metadata diff cross-GSE (%% SAMN with mix) ---
+instrument_mix:     45.45% (80/176)
+data_processing:     0.00% (0/176)
+molecule_ch1:        0.00% (0/176)
+library_source:      0.00% (0/176)
+extract_protocol:   95.45% (168/176)
+
+--- libsize_ratio quartiles (max/min cross-GSE) ---
+      25%       50%       75%       90%       95%      100% 
+ 1.499114  2.227733  3.318812  4.825238  5.801047 17.175692 
+
+--- Selected SAMN per counts correlation ---
+
+identical_meta instrument_mix 
+             5              5 
+
+Fetching counts pair-wise da H5 (subset)...
+
+--- Counts correlation per stratum ---
+# A tibble: 2 × 6
+  stratum          n median_pearson min_pearson median_spearman median_lib_ratio
+  <chr>        <int>          <dbl>       <dbl>           <dbl>            <dbl>
+1 identical_m…     5          0.753       0.414           0.720            2.06 
+2 instrument_…     5          0.522       0.347           0.515            0.912
+
+clusters.rds v3.1.1 (2655ecb0): 390532 cluster
+Computing cluster overlap (upper bound heuristic)...
+
+--- Cluster impact upper bound ---
+SAMN con >=1 cluster a rischio: 57 / 176
+Cluster_id unique a rischio: 128
+
+By mode:
+
+group 
+  270 
+
+By level:
+
+ 0  1  2  3  4 
+52 52 52 57 57 
+
+Top kind_effective_resolved:
+
+             none disease_vs_normal   differentiation     environmental 
+              190                40                20                20 
+
+Written A7b-samn-cluster-impact.tsv (270 rows)
+
+==============================================================
+A7b DONE
+==============================================================

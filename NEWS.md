@@ -1,3 +1,76 @@
+# simulomicsr 0.0.0.9021 (development) — P5 RED ALERT E0b: SAMN dedupe cross-GSE nel pool Stadio 4
+
+## FASE E0b ADR-0019 D9 (2026-05-27, sessione 7)
+
+Decisione utente 2026-05-27 (su evidence
+`analysis/audit/A7b-samn-duplicate-analysis.md`): nel pool Stadio 4 (MEGA
+pure + MEGA-AUG augmentation) viene applicato un drop deterministico
+cross-GSE per BioSample SAMN. Per ogni SAMN che compare con N>=2 GSM
+cross-GSE, viene tenuto il GSM con `lib_size` massimo (tie-break GSM
+accessioned alfabetico). NA SAMN preservato (identita' biologica ignota
+non collassa).
+
+### Razionale paper-grade
+
+- I 425 GSM cross-GSE nel bacino rescued (0.048%) NON sono replicate
+  tecnici puri: Pearson(log1p) cross-GSE 0.41-0.75 anche con metadata
+  identico (mediana 0.75 vs ~0.99 atteso); mediana `lib_size_ratio`
+  2.23x, max 17x. Mediare counts cross-pipeline (opzione (b)) e'
+  statisticamente indifendibile (contraddice ADR-0019 D8 covariate
+  batch).
+- Upper bound 128 group cluster Stadio 3 v3.1.1 baseline contengono >=2
+  GSM cross-GSE su stesso SAMN (32.4% dei 176 SAMN duplicati). NON e'
+  rumore diluito (opzione (c) scartata).
+- Criterio `max(lib_size)` preserva il GSM piu' profondo per le DE
+  (claim paper-grade: "kept the deepest sequenced GSM per SAMN
+  cross-study").
+
+### Codice nuovo
+
+- `R/stage4-samn-dedupe.R`: helper interni `.dedupe_gsm_by_samn`,
+  `.build_samn_dedupe_lookups`, `.lookup_chr`, `.lookup_num`,
+  `.empty_samn_dedupe_dropped`. Tutti `@keywords internal`, non esportati.
+
+### Codice modificato (signature estese, default NULL = retrocompat)
+
+- `R/stage4-mega-safe.R::.build_mega_metadata_safe`: dopo dedup literal
+  applica SAMN dedupe; conflict_type
+  `cross_gse_samn_dedupe_kept_<gsm_kept>`.
+- `R/stage4-mega-aug.R::.assemble_mega_aug_metadata_bidir`: chiusura
+  `build_baseline_rows` applica SAMN dedupe sul baseline pool con
+  `exclude_samn = pair_samn_set` (cross pair-baseline). Return list
+  include nuovo campo `samn_dedupe_log` (tibble con `arm`).
+- `R/stage4-orchestrator.R::.pool_all_clusters`: parametri
+  `biosample_lookup`, `libsize_lookup` propagati ai 2 callsite del pool.
+  Dopo dispatch MEGA-AUG, propaga `assembled$samn_dedupe_log` nei
+  `pooling_warnings` (T6b fix paper-grade: era persa silenziosamente).
+- `R/stage4-build.R::build_stage4_results`: chiama
+  `.build_samn_dedupe_lookups(h5_metadata)` tra step 5 e 6, propaga
+  lookup a `.pool_all_clusters`. Fallback graceful con `warning()` se
+  `biosample_id` o `lib_size` mancanti dall'h5_metadata.
+- `R/stage4-config.R`: `schema_versions$samn_dedupe_strategy =
+  "max_libsize_alphabetic_tiebreak"`. Registrato in run_metadata.json.
+
+### Test (perimetro E0b: 49 test_that, 202 expect_* PASS / 0 FAIL)
+
+- `tests/testthat/test-stage4-samn-dedupe.R` — helper edge cases
+- `tests/testthat/test-stage4-samn-lookups.R` — lookup builder
+- `tests/testthat/test-stage4-mega-safe.R` — MEGA pure integration
+- `tests/testthat/test-stage4-mega-aug-samn.R` — MEGA-AUG baseline
+- `tests/testthat/test-stage4-mega-aug-bidir.R` riga 72 — `expect_named`
+  aggiornato per `samn_dedupe_log`
+- `tests/testthat/test-stage4-e0b-schema-version.R`
+- `tests/testthat/test-stage4-e0b-smoke.R` — smoke end-to-end
+
+### Doc
+
+- `analysis/audit/A7b-samn-duplicate-analysis.md` + 4 TSV artefatti +
+  script + log: evidence paper-grade della decisione (counts correlation
+  + metadata diff + cluster impact upper bound).
+- `docs/decisions/0019-archs4-metadata-exploitation-v2.md` §D9 esteso
+  con criterio max-libsize + razionale A7b.
+- `docs/RED_ALERT.md` §E0b ✅ DONE con commit hashes T1..T6b.
+
 # simulomicsr 0.0.0.9020
 
 ## Stadio 4 Layer B — case study generator (2026-05-24)

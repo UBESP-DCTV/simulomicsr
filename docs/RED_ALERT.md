@@ -764,22 +764,68 @@ con utente:
 
 Gate utente per scelta (a) / (b) / (c) prima del codice.
 
-#### ⬜ E0b — Collasso same-SAMN cross-GSE in pooling Stadio 4 (NEW post-E0)
+#### ✅ E0b — Collasso same-SAMN cross-GSE in pooling Stadio 4 (DONE sessione 7)
 
-**Cosa facciamo.** Sulla base della scelta utente:
-- Opzione (a): in `R/stage4-mega-aug.R::.expand_mega_aug_samples` (e
-  caller analoghi), deduplicare per SAMN prima del pooling. Drop GSM
-  ridondanti (primo conservato).
-- Opzione (b): aggregare counts (somma o media) cross-GSE per stesso
-  SAMN prima del DE engine.
-- Opzione (c): nessun codice, dichiarazione in ADR-0019 + Limitations
-  paper.
+**Decisione utente 2026-05-27 (sessione 7, su evidence A7b)**: ✅
+opzione **(a) drop deterministico** con criterio **max `lib_size`**
+(tie-break GSM alfabetico). Evidence completa:
+`analysis/audit/A7b-samn-duplicate-analysis.md`.
 
-**Perche' serve.** I 425 GSM cross-GSE veri (0.048% del bacino) sono
-doppia-conta biologica nel pool DE. Senza collasso, la stessa entita'
-biologica viene contata due volte come sample indipendente.
+**Implementazione completata sessione 7** — 7 commit bite-sized TDD:
+- `13d5342` T1: helper `.dedupe_gsm_by_samn` + `.lookup_chr/_num` (38 expect)
+- `8fc6491` T2: integrazione MEGA pure `.build_mega_metadata_safe` (14 expect)
+- `5f600e1` T3: integrazione MEGA-AUG `.assemble_mega_aug_metadata_bidir` +
+  `exclude_samn` cross pair-baseline (20 expect)
+- `b386144` T4: `.build_samn_dedupe_lookups` + propagazione down via
+  `.pool_all_clusters` (18 expect)
+- `88d916c` T5: `schema_versions$samn_dedupe_strategy =
+  "max_libsize_alphabetic_tiebreak"` (2 expect)
+- `6ed729d` T6: smoke integration end-to-end MEGA pure (8 expect)
+- `9fee42c` T6b: fix paper-grade self-review — propaga
+  `assembled$samn_dedupe_log` MEGA-AUG in `pooling_warnings`
+  dell'orchestrator (era persa silenziosamente, asimmetria con MEGA pure)
+  (5 expect)
 
-**Decisione che dipende da E0b.** Una delle 3 opzioni + relativi tests.
+Test suite E0b perimetro: **49 test_that, 202 expect_* PASS / 0 FAIL**.
+Master invariato. Codex CLI tentato per review esterna ma auth ChatGPT
+non supporta i modelli gpt-5.x-codex con quel tier -> self-review
+paper-grade Opus 4.7 ha scoperto il finding T6b.
+
+Razionale paper-grade (sintesi A7b):
+- I 425 GSM cross-GSE NON sono replicate tecnici puri: Pearson(log1p)
+  cor cross-GSE 0.41-0.75 anche con metadata identico, mediana 0.75
+  (vs ~0.99 atteso per replicate tecnici); mediana `lib_size_ratio`
+  cross-GSE 2.23×, max 17×.
+- → opzione (b) average counts scientificamente indifendibile (mediare
+  dati non-omologhi contraddice D8 covariate batch dello stesso ADR-0019).
+- → opzione (c) sotto-noise scartata: upper bound 128 group cluster
+  (32.4% dei 176 SAMN duplicati) impattati direttamente. NON e' rumore
+  diluito su 0.048%.
+- Criterio max `lib_size` preserva il GSM piu' profondo (difendibile nel
+  paper: "kept the deepest sequenced GSM per SAMN cross-study").
+  `lib_size_a3` gia' precalcolato in `analysis/audit/A3-libsize-scprob-bacino.tsv`.
+
+**Cosa facciamo.**
+- Nuovo helper `.dedupe_gsm_by_samn(sample_ids, biosample_lookup,
+  libsize_lookup)` che: (1) raggruppa GSM per SAMN, (2) per SAMN con
+  N>=2 GSM, tiene il GSM con `lib_size` massimo (tie-break alfabetico),
+  (3) restituisce vector filtrato + lista GSM droppati per logging.
+- Applicato nei record builders Stadio 3 (`.build_pair_records`,
+  `.build_group_records`) prima dell'emissione di `treated_sample_ids` /
+  `control_sample_ids`.
+- Applicato in `R/stage4-mega-aug.R::build_baseline_rows` su `sids`
+  augmentation pool (defense-in-depth contro MEGA-AUG cross-cluster
+  duplicates, non catturato da heuristic A7b).
+- Verifica se serve in `R/stage4-mega-safe.R::.build_mega_metadata_safe`
+  (TBD durante implementazione: dipende da come accumula sample MEGA).
+- Logging: nuovo reason code `cross_gse_samn_dedupe` in `qc_drops_sample`
+  + counter in `qc_report`.
+- Cache key Stage 3 bumpata (`v2_biosample` → `v3_samn_dedupe`) per
+  invalidare automaticamente clusters pre-E0b.
+
+**Decisione che dipende da E0b.** Piano implementazione dettagliato +
+TDD bite-sized prima del codice. Gate utente sul piano prima di toccare
+codice.
 
 #### ⬜ E1 — Gene axis a Ensembl ID
 
