@@ -154,6 +154,91 @@ test_that("is_sample_classifiable ordine reason - organism prevale su tutti", {
 })
 
 # ============================================================================
+# parse_aligner_class() — P5 audit RED_ALERT C3, spec B2 (ADR-0019 D8)
+# ============================================================================
+# Regex prioritizzate STAR>HISAT>Salmon>kallisto>RSEM>BWA>Bowtie>TopHat.
+# Fallback: other (non-empty no-match), unknown (empty/NA/whitespace).
+# Test fixture vincolante:
+# docs/superpowers/specs/2026-05-26-B2-parsing-data-processing.md §"Test fixture".
+
+test_that("parse_aligner_class - pattern singoli noti", {
+  expect_equal(as.character(parse_aligner_class("STAR mapping, HTSeq-count gene counting")), "STAR")
+  expect_equal(as.character(parse_aligner_class("Reads were aligned with HISAT2 against hg38")), "HISAT")
+  expect_equal(as.character(parse_aligner_class("kallisto pseudo-alignment to GRCh38 transcriptome")), "kallisto")
+  expect_equal(as.character(parse_aligner_class("Salmon quant in selective alignment mode")), "Salmon")
+  expect_equal(as.character(parse_aligner_class("Bowtie2 with default parameters")), "Bowtie")
+  expect_equal(as.character(parse_aligner_class("TopHat2 v2.1.0")), "TopHat")
+  expect_equal(as.character(parse_aligner_class("BWA-MEM alignment to hg19")), "BWA")
+  expect_equal(as.character(parse_aligner_class("RSEM-only counting")), "RSEM")
+})
+
+test_that("parse_aligner_class - priorita STAR > RSEM su multi-aligner", {
+  # STAR ha priorita 1, RSEM priorita 5. Spec B2 §Edge cases.
+  expect_equal(as.character(parse_aligner_class("STAR aligner + RSEM expression estimation")), "STAR")
+  # HISAT priorita 2 > kallisto priorita 4.
+  expect_equal(as.character(parse_aligner_class("HISAT2 aligned, kallisto for validation")), "HISAT")
+})
+
+test_that("parse_aligner_class - fallback unknown su empty/NA/whitespace", {
+  expect_equal(as.character(parse_aligner_class("")), "unknown")
+  expect_equal(as.character(parse_aligner_class(NA_character_)), "unknown")
+  expect_equal(as.character(parse_aligner_class("   ")), "unknown")
+})
+
+test_that("parse_aligner_class - fallback other su non-empty no-match", {
+  expect_equal(as.character(parse_aligner_class("Custom BBMap pipeline")), "other")
+})
+
+test_that("parse_aligner_class - case insensitive + version suffix", {
+  expect_equal(as.character(parse_aligner_class("STAR_2.7.10a version")), "STAR")
+  expect_equal(as.character(parse_aligner_class("hisat alignment")), "HISAT")
+  # STARSOLO matcha STAR via \bSTAR\b (spec B2 NB: quei sample dovrebbero
+  # gia essere stati droppati da A1/A2).
+  expect_equal(as.character(parse_aligner_class("STARSOLO single-cell quantification")), "STAR")
+})
+
+test_that("parse_aligner_class - vettoriale + factor con livelli ordinati", {
+  out <- parse_aligner_class(c("STAR mapping", "HISAT2", "", NA, "BBMap custom"))
+  expect_length(out, 5L)
+  expect_s3_class(out, "factor")
+  expect_equal(as.character(out), c("STAR", "HISAT", "unknown", "unknown", "other"))
+  expect_equal(levels(out),
+               c("STAR", "HISAT", "Salmon", "kallisto", "RSEM",
+                 "BWA", "Bowtie", "TopHat", "other", "unknown"))
+})
+
+# ============================================================================
+# parse_biosample_id() — P5 audit RED_ALERT C3, ADR-0019 D9 (dedupe SAMN)
+# ============================================================================
+# Estrae SAMN\d+ da ARCHS4 meta/samples/relation. Coverage attesa 99.98%
+# (vedi A7-synthesis-biosample-dedupe.md).
+
+test_that("parse_biosample_id - estrae SAMN da relation BioSample", {
+  expect_equal(parse_biosample_id("BioSample: https://www.ncbi.nlm.nih.gov/biosample/SAMN12340001"),
+               "SAMN12340001")
+  expect_equal(parse_biosample_id("Reanalyzed by: GSE99999, BioSample: SAMN98765432"),
+               "SAMN98765432")
+})
+
+test_that("parse_biosample_id - NA / vuoto / no-SAMN -> NA", {
+  expect_true(is.na(parse_biosample_id(NA_character_)))
+  expect_true(is.na(parse_biosample_id("")))
+  expect_true(is.na(parse_biosample_id("Reanalyzed by GSE99999 (no biosample link)")))
+})
+
+test_that("parse_biosample_id - vettoriale + tipo character", {
+  out <- parse_biosample_id(c(
+    "BioSample: SAMN11111111",
+    "",
+    NA_character_,
+    "Reanalyzed by: GSE99999, BioSample: SAMN22222222"
+  ))
+  expect_length(out, 4L)
+  expect_type(out, "character")
+  expect_equal(out, c("SAMN11111111", NA_character_, NA_character_, "SAMN22222222"))
+})
+
+# ============================================================================
 # is_single_cell_protocol() — P5 audit RED_ALERT C2, spec B3
 # ============================================================================
 # Pattern Gruppo K (kit-specific) + Gruppo S (semantica) + title-bulk rescue.

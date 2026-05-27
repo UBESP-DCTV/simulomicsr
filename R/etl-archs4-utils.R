@@ -115,6 +115,83 @@ is_sample_classifiable <- function(organism_ch1, library_strategy, library_sourc
 # bulk salvati dal drop A2 erroneo.
 .pattern_title_bulk_rescue <- "(?i)(^|[^a-z0-9])bulk([^a-z0-9]|$)|(^|[^a-z0-9])bulkRNA(?![a-z0-9])"
 
+# ============================================================================
+# parse_aligner_class() — P5 audit RED_ALERT C3, ADR-0019 D8, spec B2
+# ============================================================================
+# Regex prioritizzate (ordine 1-8). Quando piu' aligner matchano lo stesso
+# testo (es. "STAR + RSEM"), prevale il primo della lista.
+#
+# Note 2026-05-27 (deviazione da spec B2): la spec dichiara
+# \bSTAR\b dovrebbe matchare "STAR_2.7.10a" e "STARSOLO" ma in perl regex
+# `_` e lettere sono word-char → \b di chiusura blocca. Fix: rimuovo
+# chiusura \b. Apertura \b mantenuta (parola che inizia con il pattern).
+# FP teorici tipo "STARS gazing" accettati: data_processing ARCHS4 descrive
+# pipeline computazionali, l'occorrenza di tali FP e' marginale e l'impatto
+# come covariata batch e' nullo (ADR-0019 D8).
+.aligner_patterns <- list(
+  STAR     = "(?i)\\bSTAR",
+  HISAT    = "(?i)\\bHISAT",
+  Salmon   = "(?i)\\bSalmon",
+  kallisto = "(?i)\\bkallisto",
+  RSEM     = "(?i)\\bRSEM",
+  BWA      = "(?i)\\bBWA",
+  Bowtie   = "(?i)\\bBowtie",
+  TopHat   = "(?i)\\bTop[- ]?Hat"
+)
+
+.aligner_levels <- c(names(.aligner_patterns), "other", "unknown")
+
+#' Parsa data_processing in classe aligner enumerata.
+#'
+#' Trasforma il testo libero ARCHS4 \code{meta/samples/data_processing} in
+#' un factor a livelli ordinati. Usato come covariata batch (D8 ADR-0019)
+#' nei modelli DE limma-voom + dream per controllo drift tecnico
+#' cross-studio.
+#'
+#' @param text character vector (uno o piu' sample) con
+#'   \code{data_processing} ARCHS4 v2.5.
+#' @return factor a 10 livelli ordinati: STAR, HISAT, Salmon, kallisto,
+#'   RSEM, BWA, Bowtie, TopHat, other, unknown.
+#'   - `other`: testo non vuoto ma nessun pattern noto matcha.
+#'   - `unknown`: testo vuoto, NA o solo whitespace.
+#' @keywords internal
+parse_aligner_class <- function(text) {
+  out <- vapply(text, function(x) {
+    if (is.na(x) || !nzchar(trimws(x))) return("unknown")
+    for (nm in names(.aligner_patterns)) {
+      if (grepl(.aligner_patterns[[nm]], x, perl = TRUE)) return(nm)
+    }
+    "other"
+  }, character(1L), USE.NAMES = FALSE)
+  factor(out, levels = .aligner_levels)
+}
+
+# ============================================================================
+# parse_biosample_id() — P5 audit RED_ALERT C3, ADR-0019 D9 (dedupe SAMN)
+# ============================================================================
+
+#' Estrae BioSample SAMN ID da ARCHS4 meta/samples/relation.
+#'
+#' Il campo \code{relation} contiene tipicamente
+#' \code{"Reanalyzed by: GSE<n>, BioSample: https://.../SAMN<id>"}. Il
+#' BioSample SAMN e' la chiave canonica NCBI per "stesso campione" usata
+#' per dedupe cross-studio (D9 ADR-0019). Coverage attesa 99.98% sul
+#' bacino A7 (vedi \code{analysis/audit/A7-synthesis-biosample-dedupe.md}).
+#'
+#' @param relation_text character vector con il campo
+#'   \code{meta/samples/relation} ARCHS4.
+#' @return character vector. Per ogni input: il primo \code{SAMN\\d+}
+#'   matchato, o \code{NA_character_} se relation e' vuoto/NA o non
+#'   contiene SAMN parsable.
+#' @keywords internal
+parse_biosample_id <- function(relation_text) {
+  vapply(relation_text, function(x) {
+    if (is.na(x) || !nzchar(x)) return(NA_character_)
+    m <- regmatches(x, regexpr("SAMN\\d+", x))
+    if (length(m) == 0L) NA_character_ else m
+  }, character(1L), USE.NAMES = FALSE)
+}
+
 #' Verifica se un sample e' single-cell tramite parsing testuale.
 #'
 #' Match su union di `extract_protocol_ch1`, `title`, `source_name_ch1`.

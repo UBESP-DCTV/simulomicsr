@@ -31,16 +31,23 @@ Quando il testo cita più aligner (es. `STAR mapping; RSEM counting`),
 prevale il primo della lista che matcha. L'ordine riflette la
 prevalenza dei pipeline RNA-Seq human bulk 2020-2025:
 
+> Nota tecnica 2026-05-27 (deviazione da spec originale): le regex sono
+> ancorate solo in apertura `\b` (parola che inizia con il pattern), no
+> chiusura. La spec originale `\bSTAR\b` non matcha "STAR_2.7.10a" né
+> "STARSOLO" perché perl tratta `_` e lettere come word-char (boundary
+> bloccato). Implementazione produttiva in `R/etl-archs4-utils.R`
+> usa apertura sola; FP teorici tipo "STARS" accettati come trascurabili.
+
 | ordine | aligner_class | regex (perl=TRUE) | note |
 |---:|---|---|---|
-| 1 | `STAR` | `(?i)\bSTAR\b` | word-bounded, case-insensitive |
-| 2 | `HISAT` | `(?i)\bHISAT[12]?\b` | matcha HISAT, HISAT2 |
-| 3 | `Salmon` | `(?i)\bSalmon\b` | |
-| 4 | `kallisto` | `(?i)\bkallisto\b` | |
-| 5 | `RSEM` | `(?i)\bRSEM\b` | |
-| 6 | `BWA` | `(?i)\bBWA\b` | |
-| 7 | `Bowtie` | `(?i)\bBowtie[12]?\b` | matcha Bowtie, Bowtie2 |
-| 8 | `TopHat` | `(?i)\bTop[- ]?Hat[12]?\b` | matcha TopHat, TopHat2 |
+| 1 | `STAR` | `(?i)\bSTAR` | matcha STAR, STAR_2.7.x, STARSOLO |
+| 2 | `HISAT` | `(?i)\bHISAT` | matcha HISAT, HISAT2, HISAT_v2 |
+| 3 | `Salmon` | `(?i)\bSalmon` | |
+| 4 | `kallisto` | `(?i)\bkallisto` | |
+| 5 | `RSEM` | `(?i)\bRSEM` | |
+| 6 | `BWA` | `(?i)\bBWA` | matcha BWA, BWA-MEM |
+| 7 | `Bowtie` | `(?i)\bBowtie` | matcha Bowtie, Bowtie2 |
+| 8 | `TopHat` | `(?i)\bTop[- ]?Hat` | matcha TopHat, TopHat2 |
 
 Fallback:
 - **`other`**: testo non vuoto ma nessuno dei pattern 1-8 matcha
