@@ -210,6 +210,15 @@
         m[common_genes, , drop = FALSE]
       }))
 
+      # FASE E1: cbind() + matrix subscripting perdono attr custom.
+      # Riattacca gene_symbol prendendolo dal primo counts_list (coerente
+      # cross-study: stesso ensembl_gene -> stesso HGNC symbol per
+      # definizione). Filter ai common_genes presenti.
+      first_gs <- attr(counts_list[[1]], "gene_symbol")
+      if (!is.null(first_gs)) {
+        attr(counts, "gene_symbol") <- first_gs[common_genes]
+      }
+
       # Reorder metadata per matchare colnames(counts) (dream/voom check rigido)
       metadata <- metadata[match(colnames(counts), metadata$sample_id), ,
                             drop = FALSE]
@@ -374,6 +383,13 @@
       counts <- do.call(cbind, lapply(counts_list, function(m) {
         m[common_genes, , drop = FALSE]
       }))
+
+      # FASE E1: stessa preservation di attr come MEGA pure sopra. Vedi
+      # commento omonimo al callsite mega.
+      first_gs <- attr(counts_list[[1]], "gene_symbol")
+      if (!is.null(first_gs)) {
+        attr(counts, "gene_symbol") <- first_gs[common_genes]
+      }
 
       # Riallinea metadata all'ordine di colnames(counts) per coerenza dream
       # (variancePartition::filterInputData richiede ordine + nomi identici).
