@@ -72,13 +72,24 @@
   .h5_axis_memo[[k]]
 }
 
-#' Gene axis (HGNC symbol, make.unique) di un H5, memoizzato
+#' Gene axis (Ensembl ID + HGNC symbol) di un H5, memoizzato
+#'
+#' FASE E1 (ADR-0019 D6): legge sia \code{meta/genes/ensembl_gene} (axis
+#' univoco, 67186 ID distinti in ARCHS4 v2.5) sia \code{meta/genes/symbol}
+#' (annotation, 4638 simboli duplicati per paralogi) e li impacchetta via
+#' \code{.parse_gene_axis()}. Cache key bumpata a \code{v2_ensembl}:
+#' invalida automaticamente la cache pre-E1 che memoizzava
+#' \code{make.unique(symbol)}.
+#'
+#' @return list \code{(ensembl_gene, gene_symbol)} (output di
+#'   \code{.parse_gene_axis}).
 #' @keywords internal
 .h5_gene_axis <- function(h5_path) {
-  k <- paste0("genes::", h5_path)
+  k <- paste0("genes::v2_ensembl::", h5_path)
   if (is.null(.h5_axis_memo[[k]])) {
-    .h5_axis_memo[[k]] <- make.unique(as.character(
-      rhdf5::h5read(h5_path, "meta/genes/symbol")))
+    ens <- as.character(rhdf5::h5read(h5_path, "meta/genes/ensembl_gene"))
+    sym <- as.character(rhdf5::h5read(h5_path, "meta/genes/symbol"))
+    .h5_axis_memo[[k]] <- .parse_gene_axis(ens, sym)
   }
   .h5_axis_memo[[k]]
 }
@@ -107,16 +118,16 @@
   counts <- t(counts)
   storage.mode(counts) <- "integer"
 
-  # Rownames = HGNC symbol (gene axis memoizzato, vedi .h5_gene_axis); colnames
-  # = GSM. ARCHS4 v2.5 meta/genes/symbol NON e' unico: 4638/67186 simboli sono
-  # duplicati (es. KIR3DL2 x43 — piu' gene Ensembl sullo stesso simbolo HGNC).
-  # Rownames duplicati fanno fallire dream con "duplicate 'row.names'" ->
-  # .run_dream_mega ripiega silenziosamente sul fallback limma. .h5_gene_axis
-  # applica make.unique (KIR3DL2, KIR3DL2.1, ...), deterministico: ogni fetch
-  # produce gli stessi rownames -> concat cross-study coerente. Discovery
-  # 2026-05-21.
-  rownames(counts) <- .h5_gene_axis(h5_path)
+  # Rownames = Ensembl gene ID (axis univoco per costruzione, 67186 ID distinti
+  # in ARCHS4 v2.5, 0 NA). HGNC symbol (con 4638 duplicati per paralogi:
+  # KIR3DL2 x43, HLA, ...) e' attaccato come attr(counts, "gene_symbol") named
+  # vec con names=ensembl_gene per consentire lookup post-filterByExpr.
+  # FASE E1 (ADR-0019 D6): rimossa la patch make.unique() che mascherava
+  # paralogi sotto rownames sintetici. Discovery 2026-05-21 (ADR-0016 Decision
+  # 2) era un workaround sotto la diagnosi sbagliata; il refactoring qui
+  # corregge l'axis alla fonte.
   colnames(counts) <- sample_ids
+  counts <- .attach_gene_annotation(counts, .h5_gene_axis(h5_path))
 
   counts
 }

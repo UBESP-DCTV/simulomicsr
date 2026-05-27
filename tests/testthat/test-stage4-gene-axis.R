@@ -135,3 +135,56 @@ test_that("E1 T1.8 factor input: coerced a character", {
   expect_equal(res$ensembl_gene, c("ENSG1", "ENSG2"))
   expect_equal(res$gene_symbol, c("A", "B"))
 })
+
+# ============================================================================
+# T2 — .attach_gene_annotation: setta rownames = ensembl + attr gene_symbol
+# ============================================================================
+
+test_that("E1 T2.1 attach_gene_annotation: rownames = ensembl + attr gene_symbol named", {
+  counts <- matrix(1:12, nrow = 3, ncol = 4)
+  colnames(counts) <- c("GSM1", "GSM2", "GSM3", "GSM4")
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("SYM_A", "SYM_B", "SYM_C")
+  )
+  res <- simulomicsr:::.attach_gene_annotation(counts, axis)
+
+  expect_equal(rownames(res), c("ENSG_A", "ENSG_B", "ENSG_C"))
+  expect_equal(colnames(res), c("GSM1", "GSM2", "GSM3", "GSM4"))
+  expect_equal(res, counts, ignore_attr = TRUE)  # contenuto identico
+
+  gs <- attr(res, "gene_symbol")
+  expect_type(gs, "character")
+  expect_equal(unname(gs), c("SYM_A", "SYM_B", "SYM_C"))
+  expect_equal(names(gs), c("ENSG_A", "ENSG_B", "ENSG_C"))
+})
+
+test_that("E1 T2.2 attach_gene_annotation: lookup subset via attr funziona post-filter", {
+  counts <- matrix(1:9, nrow = 3, ncol = 3)
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("SYM_A", NA_character_, "SYM_C")
+  )
+  res <- simulomicsr:::.attach_gene_annotation(counts, axis)
+
+  # Simula un filterByExpr post-fit che ritorna solo ENSG_A + ENSG_C:
+  filtered <- res[c("ENSG_A", "ENSG_C"), , drop = FALSE]
+  # L'attr non e' propagato dal subset standard di matrici. Devo recuperarlo
+  # dall'originale.
+  gs_orig <- attr(res, "gene_symbol")
+  expect_equal(unname(gs_orig[c("ENSG_A", "ENSG_C")]), c("SYM_A", "SYM_C"))
+  # NA symbol risolto correttamente
+  expect_true(is.na(gs_orig["ENSG_B"]))
+})
+
+test_that("E1 T2.3 attach_gene_annotation: mismatch lunghezza axis vs nrow(counts) -> errore", {
+  counts <- matrix(1:6, nrow = 2, ncol = 3)
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("SYM_A", "SYM_B", "SYM_C")
+  )
+  expect_error(
+    simulomicsr:::.attach_gene_annotation(counts, axis),
+    "nrow"
+  )
+})
