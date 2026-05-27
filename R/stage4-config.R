@@ -74,7 +74,12 @@ stage4_default_config <- function() {
     schema_versions = list(
       anchor             = "v3",
       stage3_algorithm   = "v1",
-      stage4_algorithm   = "v1",
+      # FASE E1 ADR-0019 D6 (decisione utente 2026-05-27): gene axis
+      # cambiato da HGNC make.unique a Ensembl ID univoco; output schema
+      # cluster_pooled.parquet + per_study_de.parquet: colonna 'gene'
+      # rinominata 'gene_id' (Ensembl) + nuova colonna 'gene_symbol' (HGNC).
+      # Cache stage4-counts bumpata internamente (v2_ensembl prefix).
+      stage4_algorithm   = "v2_ensembl_gene_axis",
       # FASE E0b ADR-0019 D9 (decisione utente 2026-05-27 su evidence A7b).
       # Strategia di SAMN dedupe nel pool Stadio 4: per ogni SAMN cross-GSE
       # con N>=2 GSM, tenuto il GSM con lib_size max; tie-break GSM

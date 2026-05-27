@@ -1,11 +1,17 @@
 #' Cache key per fetch counts ARCHS4
 #'
-#' xxhash32 di (gse, sorted(sample_ids)) -> 8-hex stabile.
+#' xxhash32 di (axis_version, gse, sorted(sample_ids)) -> 8-hex stabile.
+#'
+#' FASE E1 ADR-0019 D6: prefisso \code{v2_ensembl::} nel payload bumpa
+#' la chiave rispetto alla cache pre-E1, che memoizzava matrici con
+#' rownames = HGNC symbol \code{make.unique()}. Post-E1 i rownames sono
+#' Ensembl ID e gli attr \code{gene_symbol} sono attaccati: cache stale
+#' produrrebbe row-axis incoerente -> invalidazione automatica.
 #'
 #' @keywords internal
 .cache_key_for_fetch <- function(gse, sample_ids) {
   sorted <- sort(sample_ids)
-  payload <- paste0(gse, "_", paste(sorted, collapse = "|"))
+  payload <- paste0("v2_ensembl::", gse, "_", paste(sorted, collapse = "|"))
   hash <- digest::digest(payload, algo = "xxhash32", serialize = FALSE)
   substr(hash, 1L, 8L)
 }
