@@ -321,6 +321,33 @@
             bidir_collapsed_to_mono             = isTRUE(assembled$bidir_collapsed_to_mono)
           )
 
+        # FASE E0b: propaga i drop SAMN dedupe del baseline pool nei
+        # pooling_warnings. Senza questo passaggio i GSM rimossi cross-GSE
+        # in MEGA-AUG sarebbero persi silenziosamente dal log finale (MEGA
+        # pure invece propaga via safe$conflicts a riga ~179). Il
+        # samn_dedupe_log di .assemble_mega_aug_metadata_bidir ha schema
+        # ricco (libsize_dropped/kept, arm) -> traduco nel formato standard
+        # conflicts (cluster_id, sample_id, studies, roles, conflict_type)
+        # mantenendo il GSM_kept linkato nel conflict_type e l'arm in roles.
+        # excluded_samn = drop perche' SAMN gia' nel pair (no kept counterpart
+        # in baseline) -> conflict_type dedicato cross_gse_samn_excluded_pair.
+        if (nrow(assembled$samn_dedupe_log) > 0L) {
+          sd_log <- assembled$samn_dedupe_log
+          conflict_type_vec <- ifelse(
+            sd_log$reason == "excluded_samn",
+            "cross_gse_samn_excluded_pair_overlap",
+            sprintf("cross_gse_samn_dedupe_kept_%s", sd_log$gsm_kept)
+          )
+          pooling_warnings_list[[length(pooling_warnings_list) + 1L]] <-
+            tibble::tibble(
+              cluster_id    = cid,
+              sample_id     = sd_log$gsm_dropped,
+              studies       = NA_character_,   # studio specifico non tracciato MEGA-AUG
+              roles         = sd_log$arm,
+              conflict_type = conflict_type_vec
+            )
+        }
+
         # Backward-compat per .run_dream_mega: somma dei n augmented totali.
         n_aug_total <- assembled$n_baseline_studies_augmented_control +
           assembled$n_baseline_studies_augmented_treated
