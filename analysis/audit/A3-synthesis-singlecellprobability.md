@@ -137,13 +137,23 @@ Lib_size threshold = stesso QC del Stadio 4 (coerenza pipeline).
 | filtro | sample drop | bacino input | drop rate |
 |---|---:|---:|---:|
 | A1 (`library_source != "transcriptomic"`) | 28.942 | 879.167 | 3.29% |
-| A2 (regex SC + title-bulk rescue) | 302.694 | 850.225 | 35.60% |
+| A2 (regex SC + title-bulk rescue) | 301.852 | 850.225 | 35.50% |
 | A3 lib_size < 500k (QC) | 39.111 | 548.373 | 7.13% |
 | A3 singlecellprobability ≥ 0.9 | 1.224 | 509.262 | 0.24% |
 | **TOTALE Stage 0 drop** | **371.129** | **879.167** | **42.21%** |
 
-**Bacino finale post-Stage 0 v2**: 879.167 − 371.129 = **507.838**
+**Bacino finale post-Stage 0 v2**: 879.167 − 371.129 = **508.038**
 sample candidati bulk RNA-Seq human steady-state.
+
+> ⚠️ **Correzione sessione 8 pre-flight F (2026-05-28)**: in sessione 4
+> ultrathink la riga A2 di questa tabella era stata lasciata col valore
+> pre-fix (302.694, 35.60%), e il bacino finale era stato scritto a mano
+> "507.838" (con delta "+378" vs pre-fix 507.460). La sommatoria reale
+> dei 4 drop post-fix dà 371.129, e 879.167 − 371.129 = **508.038**, non
+> 507.838. Errore di 200 sample, ricalcolato empiricamente sul TSV
+> `A3-libsize-scprob-bacino.tsv`. Tabella aggiornata coerente; lo stesso
+> numero è stato propagato a ADR-0019 + RED_ALERT (corretti nello stesso
+> commit).
 
 > ⚠️ Nota: la riga "A3 lib_size < 500k" rappresenta sample bulk
 > legittimi droppati per insufficient sequencing depth (QC condiviso
@@ -216,8 +226,11 @@ chiusura RED_ALERT Stadio 0. Memo per non perderlo.
 > Soglia **singlecellprobability ≥ 0.9** come safety net SC residuo.
 > Drop addizionale 1.224 / 509.262 = **0.24%** del bacino post-lib_size.
 > Aggregato A1+A2+A3 (escluso lib_size QC che è filtro condiviso con
-> Stadio 4) = **332.861 / 879.167 = 37.86%** del bacino rescued
+> Stadio 4) = **332.018 / 879.167 = 37.77%** del bacino rescued
 > attribuito al filtro SC Stage 0.
+> *Nota correzione sessione 8 pre-flight F: pre-fix numero era 332.861
+> (mix incoerente A2 pre-fix 302.694 + scprob pre-fix 1.225). Post-fix
+> coerente: 28.942 + 301.852 + 1.224 = 332.018.*
 
 ## 10. Cosa NON decide A3
 

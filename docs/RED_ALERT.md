@@ -1167,7 +1167,9 @@ ALERT per Stadio 1 audit nella sessione successiva.
     paper-grade title-bulk rescue + pattern Gruppo S (perl `_` word-char
     → no boundary). Rerun A2 + update A3 lib_size + A3c FPR curve.
     Drop Stage 0 v2 ricalcolato: **371.129 / 879.167 = 42.21%** (vs
-    42.28% pre-fix). Bacino finale: **507.838 sample** (+378). Pattern
+    42.28% pre-fix). Bacino finale: **508.038 sample** (+578, corretto
+    sessione 8 pre-flight F: era scritto a mano "507.838 / +378" in
+    sessione 4, ricalcolato empiricamente). Pattern
     K (kit) invariati (chiusura strict avrebbe creato 3.568 FN su
     CelSeq2, FluidigmTM, FluidigmC1 — scartata).
   - ✅ C2 (`cb650e6`) `is_sample_classifiable` v2 firma B3 (10 args,
