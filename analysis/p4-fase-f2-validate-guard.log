@@ -1,0 +1,105 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+GATE OK: config produzione F2 (stage1 D1b attivo, stage2 EN).
+Loading analysis/p4-output/20260528T202554Z-f2-smoke-minigold-s1-80bedb/predictions.jsonl ...
+Loaded 100 stage1 predictions
+Guard is_zero_timepoint: 7 flag corretti (forzati FALSE, assenza evidenza t=0)
+Unique series_id (studi): 16 
+
+=== Done ===
+Output:            analysis/input/p4-f2-validate-guard-stage2-input.jsonl 
+Total records:     16 
+Chunked records:   0  (in 0 studies)
+Unsplit studies:   16 
+
+Sanity check (first record + last record):
+  first record_id: GSE109870  series_id: GSE109870  n_samples: 3 
+  last record_id:  GSE205363  series_id:  GSE205363  n_samples:  3 
+Total samples emitted: 100 (expected 100 )
+OK -- nessun sample perso
+ℹ tiered_max_tokens: S=14 M=2 L=0 XL=0 (max=8192)
+✔ Submitted: run_id=20260528T212209Z-f2-validate-guard-s2-f8cda3 slurm=22355
+Submitted: slurm=22355 run_id=20260528T212209Z-f2-validate-guard-s2-f8cda3
+  [23:22:19] poll 1 validate-guard-s2 state=RUNNING
+  [23:23:24] poll 2 validate-guard-s2 state=RUNNING
+  [23:24:30] poll 3 validate-guard-s2 state=COMPLETED
+$predictions
+# A tibble: 16 × 7
+   record_id raw_output      parsed_json  valid_schema applied_patches worker_id
+   <chr>     <chr>           <list>       <lgl>        <list>              <int>
+ 1 GSE109870 "{\n  \"series… <named list> TRUE         <chr [0]>               0
+ 2 GSE169241 "{\n  \"series… <named list> TRUE         <chr [0]>               0
+ 3 GSE189186 "{\n  \"series… <named list> TRUE         <chr [0]>               0
+ 4 GSE76425  "{\n  \"series… <named list> TRUE         <chr [0]>               0
+ 5 GSE137170 "{\n  \"series… <named list> TRUE         <chr [0]>               1
+ 6 GSE178702 "{\n  \"series… <named list> TRUE         <chr [0]>               1
+ 7 GSE192903 "{\n  \"series… <named list> TRUE         <chr [0]>               1
+ 8 GSE95297  "{\n  \"series… <named list> TRUE         <chr [0]>               1
+ 9 GSE158065 "{\n  \"series… <named list> TRUE         <chr [0]>               2
+10 GSE183194 "{\n  \"series… <named list> TRUE         <chr [0]>               2
+11 GSE201084 "{\n  \"series… <named list> TRUE         <chr [0]>               2
+12 GSE176441 "{\n  \"series… <named list> TRUE         <chr [0]>               2
+13 GSE165960 "{\n  \"series… <named list> TRUE         <chr [0]>               3
+14 GSE183551 "{\n  \"series… <named list> TRUE         <chr [0]>               3
+15 GSE202755 "{\n  \"series… <named list> TRUE         <chr [0]>               3
+16 GSE205363 "{\n  \"series… <named list> TRUE         <chr [0]>               3
+# ℹ 1 more variable: ts <chr>
+
+$errors
+# A tibble: 0 × 7
+# ℹ 7 variables: record_id <chr>, raw_output <chr>, parsed_json <list>,
+#   valid_schema <lgl>, applied_patches <list>, worker_id <int>, ts <chr>
+
+$summary
+$summary$run_id
+[1] "20260528T212209Z-f2-validate-guard-s2-f8cda3"
+
+$summary$model_id
+[1] "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+
+$summary$stage
+[1] "stage2"
+
+$summary$records_total
+[1] 16
+
+$summary$records_already_done_resume
+[1] 0
+
+$summary$records_todo_this_run
+[1] 16
+
+$summary$records_completed_total
+[1] 16
+
+$summary$records_failed_schema
+[1] 0
+
+$summary$workers_failed_count
+[1] 0
+
+$summary$finished_at
+[1] "2026-05-28T21:24:09Z"
+
+
+$run_dir
+analysis/p4-output/20260528T212209Z-f2-validate-guard-s2-f8cda3
+
+
+=== ACCURACY (stage1 D1b/D4 + GUARD + stage2 EN) ===
+schema_s2 100.0% | accuracy 97.00% (97/100)
+[riferimenti: F2-smoke senza guard 92.93%, beta 98%, isolamento beta-prompt 97.96%]
+GSE183194 (4 sample, atteso treated dopo guard):
+  GSM5553041: pred=treated (bin=treated)
+  GSM5553062: pred=treated (bin=treated)
+  GSM5553064: pred=treated (bin=treated)
+  GSM5553066: pred=treated (bin=treated)
+GSM6050371 (multi-arm, atteso ANCORA control - non e' un bug): pred=control (bin=control)
+
+GSE183194 recuperati: 4/4
+
+=== VERDETTO GUARD ===
+CONFERMATO: guard recupera GSE183194 (4/4) e accuracy 97.00%. Difetto neutralizzato alla sorgente.
+
+=== VALIDAZIONE GUARD COMPLETE ===

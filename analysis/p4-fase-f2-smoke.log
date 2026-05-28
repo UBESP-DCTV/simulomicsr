@@ -1,0 +1,100 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+GATE pre-submit OK: prompts.py include molecule_hint (D1b attivo).
+TRACK minigold input scritto: 100 record
+Caricamento jsonl-v2 per stratificazione...
+Caricati 508037 record dal bacino v2
+nchar quartili: Q1=30 Q2=112 Q3=145 Q4=190 Q5=9831
+Conteggi per stratum:
+
+Q1 Q2 Q3 Q4 
+25 25 25 25 
+molecule_ch1 non-NA nel subset bacino: 100 / 100
+TRACK bacinov2 input scritto: 100 record
+
+========== TRACK minigold ==========
+Stage1 input: analysis/input/p4-f2-smoke-minigold-stage1-input.jsonl (100 record)
+✔ Submitted: run_id=20260528T202554Z-f2-smoke-minigold-s1-80bedb slurm=22347
+Stage1 submitted: slurm=22347 run_id=20260528T202554Z-f2-smoke-minigold-s1-80bedb
+Polling minigold/s1 ogni 60s (max 720 polls)...
+  [22:26:04] poll 1/720 minigold/s1 slurm_state=RUNNING
+  [22:27:09] poll 2/720 minigold/s1 slurm_state=RUNNING
+  [22:28:15] poll 3/720 minigold/s1 slurm_state=COMPLETED
+Loading analysis/p4-output/20260528T202554Z-f2-smoke-minigold-s1-80bedb/predictions.jsonl ...
+Loaded 100 stage1 predictions
+Unique series_id (studi): 16 
+
+=== Done ===
+Output:            analysis/input/p4-f2-smoke-minigold-stage2-input.jsonl 
+Total records:     16 
+Chunked records:   0  (in 0 studies)
+Unsplit studies:   16 
+
+Sanity check (first record + last record):
+  first record_id: GSE109870  series_id: GSE109870  n_samples: 3 
+  last record_id:  GSE205363  series_id:  GSE205363  n_samples:  3 
+Total samples emitted: 100 (expected 100 )
+OK -- nessun sample perso
+ℹ tiered_max_tokens: S=14 M=2 L=0 XL=0 (max=8192)
+✔ Submitted: run_id=20260528T202817Z-f2-smoke-minigold-s2-0c2407 slurm=22348
+Stage2 submitted: slurm=22348 run_id=20260528T202817Z-f2-smoke-minigold-s2-0c2407
+Polling minigold/s2 ogni 60s (max 720 polls)...
+  [22:28:27] poll 1/720 minigold/s2 slurm_state=RUNNING
+  [22:29:32] poll 2/720 minigold/s2 slurm_state=RUNNING
+  [22:30:38] poll 3/720 minigold/s2 slurm_state=COMPLETED
+
+========== TRACK bacinov2 ==========
+Stage1 input: analysis/input/p4-f2-smoke-bacinov2-stage1-input.jsonl (100 record)
+✔ Submitted: run_id=20260528T203039Z-f2-smoke-bacinov2-s1-072da9 slurm=22349
+Stage1 submitted: slurm=22349 run_id=20260528T203039Z-f2-smoke-bacinov2-s1-072da9
+Polling bacinov2/s1 ogni 60s (max 720 polls)...
+  [22:30:48] poll 1/720 bacinov2/s1 slurm_state=RUNNING
+  [22:31:53] poll 2/720 bacinov2/s1 slurm_state=RUNNING
+  [22:32:59] poll 3/720 bacinov2/s1 slurm_state=COMPLETED
+Loading analysis/p4-output/20260528T203039Z-f2-smoke-bacinov2-s1-072da9/predictions.jsonl ...
+Loaded 100 stage1 predictions
+Unique series_id (studi): 98 
+
+=== Done ===
+Output:            analysis/input/p4-f2-smoke-bacinov2-stage2-input.jsonl 
+Total records:     98 
+Chunked records:   0  (in 0 studies)
+Unsplit studies:   98 
+
+Sanity check (first record + last record):
+  first record_id: GSE156830  series_id: GSE156830  n_samples: 1 
+  last record_id:  GSE215865  series_id:  GSE215865  n_samples:  1 
+Total samples emitted: 100 (expected 100 )
+OK -- nessun sample perso
+ℹ tiered_max_tokens: S=98 M=0 L=0 XL=0 (max=4096)
+✔ Submitted: run_id=20260528T203300Z-f2-smoke-bacinov2-s2-173604 slurm=22350
+Stage2 submitted: slurm=22350 run_id=20260528T203300Z-f2-smoke-bacinov2-s2-173604
+Polling bacinov2/s2 ogni 60s (max 720 polls)...
+  [22:33:10] poll 1/720 bacinov2/s2 slurm_state=RUNNING
+  [22:34:15] poll 2/720 bacinov2/s2 slurm_state=RUNNING
+  [22:35:21] poll 3/720 bacinov2/s2 slurm_state=COMPLETED
+
+=== EVAL TRACK 1 (mini-gold): accuracy ===
+schema s1=100.00% s2=100.00% | accuracy=92.93% (92/99) sens=91.8% spec=94.7%
+
+=== EVAL TRACK 2 (bacino v2): schema + design_kind ===
+schema s1=100.00% s2=100.00%
+Distribuzione design_kind:
+             design_kind Freq
+4    multi_arm_treatment   24
+6   treatment_vs_vehicle   24
+1   case_control_disease   23
+5 treatment_vs_untreated    9
+7                unclear    9
+2 differentiation_course    5
+3        knockdown_panel    4
+
+Eval RDS: analysis/p4-output/20260528T222542Z-p4-f2-smoke-eval.rds 
+
+=== F2-SMOKE GATE DECISION ===
+STOP: accuracy 92.93% < 93% -> revisione prompt D1b necessaria. 
+
+Sintesi scritta: analysis/audit/F2-smoke-eval.md
+
+=== F2-SMOKE COMPLETE ===

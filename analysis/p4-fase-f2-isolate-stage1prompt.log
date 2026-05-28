@@ -1,0 +1,173 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+GATE OK: prompt Stadio 1 e' beta-era (no molecule rule).
+Bundle stage1 prompt.txt confermato beta-era.
+✔ Submitted: run_id=20260528T210333Z-f2-isolate-betaprompt-s1-b82094 slurm=22353
+Submitted s1: slurm=22353 run_id=20260528T210333Z-f2-isolate-betaprompt-s1-b82094
+  [23:03:42] poll 1 betaprompt-s1 state=RUNNING
+  [23:04:47] poll 2 betaprompt-s1 state=RUNNING
+  [23:05:54] poll 3 betaprompt-s1 state=COMPLETED
+$predictions
+# A tibble: 100 × 7
+   record_id  raw_output     parsed_json  valid_schema applied_patches worker_id
+   <chr>      <chr>          <list>       <lgl>        <list>              <int>
+ 1 GSM2971863 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+ 2 GSM4072369 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+ 3 GSM4072375 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+ 4 GSM4072381 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+ 5 GSM4789404 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+ 6 GSM5059473 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+ 7 GSM5188292 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+ 8 GSM5396282 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+ 9 GSM5396290 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+10 GSM5553032 "{\n  \"geo_a… <named list> TRUE         <chr [0]>               0
+# ℹ 90 more rows
+# ℹ 1 more variable: ts <chr>
+
+$errors
+# A tibble: 0 × 7
+# ℹ 7 variables: record_id <chr>, raw_output <chr>, parsed_json <list>,
+#   valid_schema <lgl>, applied_patches <list>, worker_id <int>, ts <chr>
+
+$summary
+$summary$run_id
+[1] "20260528T210333Z-f2-isolate-betaprompt-s1-b82094"
+
+$summary$model_id
+[1] "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+
+$summary$stage
+[1] "stage1"
+
+$summary$records_total
+[1] 100
+
+$summary$records_already_done_resume
+[1] 0
+
+$summary$records_todo_this_run
+[1] 100
+
+$summary$records_completed_total
+[1] 100
+
+$summary$records_failed_schema
+[1] 0
+
+$summary$workers_failed_count
+[1] 0
+
+$summary$finished_at
+[1] "2026-05-28T21:05:18Z"
+
+
+$run_dir
+analysis/p4-output/20260528T210333Z-f2-isolate-betaprompt-s1-b82094
+
+
+=== is_zero_timepoint (beta-prompt run) ===
+globale TRUE: 7 su 105 perturbations (beta storico=6, F2-smoke=12)
+GSE183194 (atteso FALSE se prompt e' la causa):
+  GSM5553041: is_zero_timepoint=FALSE
+  GSM5553062: is_zero_timepoint=FALSE
+  GSM5553064: is_zero_timepoint=FALSE
+  GSM5553066: is_zero_timepoint=FALSE
+Loading analysis/p4-output/20260528T210333Z-f2-isolate-betaprompt-s1-b82094/predictions.jsonl ...
+Loaded 100 stage1 predictions
+Unique series_id (studi): 16 
+
+=== Done ===
+Output:            analysis/input/p4-f2-isolate-minigold-stage2-input.jsonl 
+Total records:     16 
+Chunked records:   0  (in 0 studies)
+Unsplit studies:   16 
+
+Sanity check (first record + last record):
+  first record_id: GSE109870  series_id: GSE109870  n_samples: 3 
+  last record_id:  GSE205363  series_id:  GSE205363  n_samples:  3 
+Total samples emitted: 100 (expected 100 )
+OK -- nessun sample perso
+ℹ tiered_max_tokens: S=14 M=2 L=0 XL=0 (max=8192)
+✔ Submitted: run_id=20260528T210556Z-f2-isolate-betaprompt-s2-f10834 slurm=22354
+Submitted s2: slurm=22354 run_id=20260528T210556Z-f2-isolate-betaprompt-s2-f10834
+  [23:06:06] poll 1 betaprompt-s2 state=RUNNING
+  [23:07:11] poll 2 betaprompt-s2 state=RUNNING
+  [23:08:17] poll 3 betaprompt-s2 state=COMPLETED
+$predictions
+# A tibble: 16 × 7
+   record_id raw_output      parsed_json  valid_schema applied_patches worker_id
+   <chr>     <chr>           <list>       <lgl>        <list>              <int>
+ 1 GSE109870 "{\n  \"series… <named list> TRUE         <chr [0]>               0
+ 2 GSE169241 "{\n  \"series… <named list> TRUE         <chr [0]>               0
+ 3 GSE189186 "{\n  \"series… <named list> TRUE         <chr [0]>               0
+ 4 GSE76425  "{\n  \"series… <named list> TRUE         <chr [0]>               0
+ 5 GSE137170 "{\n  \"series… <named list> TRUE         <chr [0]>               1
+ 6 GSE178702 "{\n  \"series… <named list> TRUE         <chr [0]>               1
+ 7 GSE192903 "{\n  \"series… <named list> TRUE         <chr [0]>               1
+ 8 GSE95297  "{\n  \"series… <named list> TRUE         <chr [0]>               1
+ 9 GSE158065 "{\n  \"series… <named list> TRUE         <chr [0]>               2
+10 GSE183194 "{\n  \"series… <named list> TRUE         <chr [0]>               2
+11 GSE201084 "{\n  \"series… <named list> TRUE         <chr [0]>               2
+12 GSE176441 "{\n  \"series… <named list> TRUE         <chr [0]>               2
+13 GSE165960 "{\n  \"series… <named list> TRUE         <chr [0]>               3
+14 GSE183551 "{\n  \"series… <named list> TRUE         <chr [0]>               3
+15 GSE202755 "{\n  \"series… <named list> TRUE         <chr [0]>               3
+16 GSE205363 "{\n  \"series… <named list> TRUE         <chr [0]>               3
+# ℹ 1 more variable: ts <chr>
+
+$errors
+# A tibble: 0 × 7
+# ℹ 7 variables: record_id <chr>, raw_output <chr>, parsed_json <list>,
+#   valid_schema <lgl>, applied_patches <list>, worker_id <int>, ts <chr>
+
+$summary
+$summary$run_id
+[1] "20260528T210556Z-f2-isolate-betaprompt-s2-f10834"
+
+$summary$model_id
+[1] "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+
+$summary$stage
+[1] "stage2"
+
+$summary$records_total
+[1] 16
+
+$summary$records_already_done_resume
+[1] 0
+
+$summary$records_todo_this_run
+[1] 16
+
+$summary$records_completed_total
+[1] 16
+
+$summary$records_failed_schema
+[1] 0
+
+$summary$workers_failed_count
+[1] 0
+
+$summary$finished_at
+[1] "2026-05-28T21:08:06Z"
+
+
+$run_dir
+analysis/p4-output/20260528T210556Z-f2-isolate-betaprompt-s2-f10834
+
+
+=== ACCURACY (stage1 beta-prompt + stage2 EN) ===
+schema_s2 100.0% | accuracy 97.96% (96/98)  [F2-smoke EN era 92.93%, beta era 98%]
+I 5 GSM regrediti (gold=treated):
+  GSM5553041: pred=treated (bin=treated)
+  GSM5553062: pred=treated (bin=treated)
+  GSM5553064: pred=treated (bin=treated)
+  GSM5553066: pred=treated (bin=treated)
+  GSM6050371: pred=treated (bin=treated)
+Dei 5 GSM regrediti, corretti ora: 5/5
+
+=== VERDETTO ISOLAMENTO ===
+CONFERMATO: prompt Stadio 1 (D1b/D4) e' il trigger. Beta-prompt recupera accuracy + is_zero_timepoint.
+
+=== ISOLAMENTO COMPLETE ===
