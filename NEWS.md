@@ -1,3 +1,80 @@
+# simulomicsr 0.0.0.9024 (development) — P5 RED ALERT E3: covariate batch DE (ADR-0019 D8)
+
+## FASE E3 ADR-0019 D8 (2026-05-28, sessione 7)
+
+Il design DE Stadio 4 ora include covariate batch
+(`instrument_model` + `aligner_class` di default) oltre a `treatment`
+e `(1|study)` random per dream. Edge case gestiti paper-grade.
+
+### Razionale paper-grade
+
+- Controllo confondimento batch tecnico cross-study: sequencer
+  (HiSeq2500 vs NovaSeq6000 vs ...) + aligner upstream (STAR vs Salmon
+  vs HISAT vs ...) sono covariate batch ortogonali al treatment di
+  interesse. Senza controllo, drift tecnico viene attribuito al
+  segnale biologico.
+- Per-studio (limma-voom) le covariate sono spesso single-level (un
+  solo strumento per GSE submission) -> auto-droppate da
+  `.augment_de_design`. L'effetto sostanziale e' in `.run_dream_mega`
+  cross-study.
+
+### Codice nuovo
+
+- `R/stage4-de-covariates.R`: helper `.augment_de_design(metadata,
+  covariates, cluster_id)` che valida + costruisce formula_terms da
+  aggiungere a `~ treatment`. 4 edge case:
+  * multi-level -> kept (factor, NA partial -> 'unknown')
+  * single-level -> drop con warning + log `single_level`
+  * missing dal metadata -> skip con warning + log
+    `missing_from_metadata`
+  * confound col treatment (T6a Fix C1 post-Codex) -> drop con log
+    `non_estimable_confounded_with_treatment` via pre-fit `qr(X)$rank`
+- `.join_covariates_to_metadata(pool_metadata, metadata_extra,
+  covariates, cluster_id)` (T6b Fix C2): join sample_id pool ->
+  metadata_extra con warning DEDICATO per sample missing
+  (`join_incomplete`), distinto dal warning `NA biologico`.
+
+### Codice modificato
+
+- `R/stage4-limma-de.R::.run_limma_voom_de`: signature + parametri
+  `metadata_extra` + `covariates`. Costruisce design via
+  `stats::model.matrix(~ treatment + <terms>)` con coef
+  'treatmenttreated' preservato come primo non-intercept.
+- `R/stage4-dream-mega.R::.run_dream_mega`: signature + `covariates`.
+  Formula dinamica `~ treatment + <terms> + (1|study)`.
+- `R/stage4-orchestrator.R::.run_per_study_de_all` +
+  `.pool_all_clusters`: signature + `metadata_extra` + `de_covariates`
+  propagati ai 3 callsite DE (per-studio + mega + mega-aug) via
+  helper `.join_covariates_to_metadata`.
+- `R/stage4-build.R::build_stage4_results`: parametro `de_covariates`
+  default `c("instrument_model", "aligner_class")`. `h5_metadata`
+  riusato come `metadata_extra`.
+- `R/stage4-config.R`: `schema_versions$de_covariates_strategy =
+  "v1_instrument_aligner_drop_single_level"`.
+- `R/stage4-io.R`: meta JSON include top-level field
+  `de_covariates_requested`.
+
+### Audit trace (paper-grade)
+
+Per ogni cluster il drop log entries vengono restituiti dalle DE
+functions come `attr(out, "covariate_drop_log")` (tibble con
+`cluster_id, covariate, reason, detail`). Propagati downstream nel
+qc_report pooling_warnings in caller futuro (TODO).
+
+### Test (perimetro E3: 17 test_that, 66 expect_* PASS / 0 FAIL)
+
+- `tests/testthat/test-stage4-e3-covariates.R` (NEW): copre T1-T6
+  bite-sized (helper edge case + DE integration + signature checks
+  + pre-fit rank check + join_incomplete).
+
+### Codex review post-T5 (auth restored 2026-05-28)
+
+2 finding bloccanti paper-grade -> 2 commit fix prima del closing:
+- **T6a Fix C1** (`02b848a`): pre-fit `qr(X)$rank` check -> drop
+  covariate quando design rank-deficient (confound col treatment).
+- **T6b Fix C2** (`ff037ee`): helper join con warning dedicato per
+  sample missing dal metadata_extra (distinto da `NA biologico`).
+
 # simulomicsr 0.0.0.9023 (development) — P5 RED ALERT E2: filter gene_biotype protein_coding (ADR-0019 D7)
 
 ## FASE E2 ADR-0019 D7 (2026-05-28, sessione 7)

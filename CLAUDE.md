@@ -133,9 +133,34 @@
 > fix sono robustness alla sorgente (errori diagnostici, warning su
 > silent drop, audit trace), no over-engineering API.
 >
-> **Prossimo step sessione 8**: gate utente per **E3** (covariate batch
-> `instrument_model` + `aligner_class` nel design DE). Stato pipeline
-> rebuild invariato (FASE F SOSPESA in attesa di E3-E5).
+> **Aggiornamento sessione 7 post-E2 — FASE E3 chiusa (2026-05-28)**:
+> ✅ FASE A+B+C+D+E0+E0b+E1+E2+E3 chiuse (24/19 task). E3 ha aggiunto
+> covariate batch `instrument_model` + `aligner_class` al design DE
+> Stadio 4 (limma-voom per-studio + dream-mega cross-study). Edge case
+> gestiti: single-level drop | missing skip | NA partial -> 'unknown' |
+> confound col treatment -> drop tutte covariate (pre-fit rank check).
+>
+> **Implementazione E3 in 7 commit bite-sized TDD**:
+> - `225b015` T1: helper `.augment_de_design` (4 edge case base)
+> - `e065db8` T2: `.run_limma_voom_de` integra design
+> - `369b1b8` T3: `.run_dream_mega` integra design
+> - `4e9ee68` T4: orchestrator + build_stage4_results propagano
+> - `3fed578` T5: schema_versions + run_metadata trace
+> - `02b848a` **T6a post-Codex Fix C1**: pre-fit `qr(X)$rank` check ->
+>   drop covariate se design rank-deficient (confound col treatment)
+> - `ff037ee` **T6b post-Codex Fix C2**: helper
+>   `.join_covariates_to_metadata` con warning `join_incomplete`
+>   distinto da `NA biologico`
+>
+> Test perimetro E3: 17 test_that, 66 expect_* PASS / 0 FAIL.
+> Perimetro stage4+layer-b totale post-E3: **810 expect_*, 0 fail**.
+> Self-review Opus 4.7 OK; Codex review eseguibile (auth restored) ->
+> 2 finding bloccanti paper-grade (C1+C2) indirizzati prima del closing.
+>
+> **Prossimo step sessione 8**: gate utente per **E4** (tests aggiuntivi
+> E1-E3 cascade integration + edge case) + **E5** (Stage4 dashboard /
+> Layer B compatibility). Stato pipeline rebuild invariato (FASE F
+> SOSPESA in attesa di E4-E5).
 
 ---
 

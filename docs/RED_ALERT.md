@@ -950,20 +950,56 @@ Convenzione utente paper-grade applicata: "pubblichiamo l'idea delle
 meta-analisi, non la bellezza del codice — ma il codice deve essere
 robusto".
 
-#### ⬜ E3 — Covariate batch `instrument_model` + `aligner_class` nel design
+#### ✅ E3 — Covariate batch `instrument_model` + `aligner_class` nel design (DONE sessione 7 — 2026-05-28)
 
-**Cosa facciamo.** Modifichiamo la formula di limma-voom per-studio e di
-dream-mega aggiungendo `instrument_model` e `aligner_class` come
-covariate fisse (`~ treatment + instrument_model + aligner_class +
-(1|study)` per dream).
+**Decisione utente 2026-05-28**: ✅ implementazione opzione standard
+ADR-0019 D8 (covariate batch nel design DE: `instrument_model` +
+`aligner_class` di default; vector custom override; NULL disabilita).
+Edge case `single-level` / `missing` / `NA partial` gestiti via helper
+`.augment_de_design` (drop covariata + log) con livello `'unknown'`
+per NA partial (preserva sample). Post-Codex review robusta:
+**Fix C1 pre-fit rank check** (drop covariate se design singolare per
+confound col treatment) + **Fix C2 helper join** con warning dedicato
+per sample del cluster non in `metadata_extra`.
 
-**Perché serve.** Controllo per batch tecnici (sequenziatore + aligner
-upstream). Riduce confondimento.
+**Implementazione completata sessione 7** — 7 commit bite-sized TDD:
+- `225b015` T1: helper `.augment_de_design(metadata, covariates,
+  cluster_id)` con 4 edge case (multi-level kept | single-level drop |
+  missing skip | NA partial -> 'unknown'). 26 expect_*.
+- `e065db8` T2: `.run_limma_voom_de` integra `metadata_extra` +
+  `covariates`; design `~ treatment + <terms>` via
+  `stats::model.matrix`. 10 expect_*.
+- `369b1b8` T3: `.run_dream_mega` integra `covariates`; formula
+  `~ treatment + <terms> + (1|study)` dinamica. 4 expect_*.
+- `4e9ee68` T4: `build_stage4_results` parametro `de_covariates`
+  default `c("instrument_model", "aligner_class")` + orchestrator
+  propaga ai 3 callsite DE (per-studio + mega + mega-aug). 5 expect_*.
+- `3fed578` T5: `schema_versions$de_covariates_strategy` +
+  `run_metadata$de_covariates_requested`. 4 expect_*.
+- `02b848a` **T6a post-Codex Fix C1**: pre-fit rank check
+  (`qr(model.matrix)$rank < ncol`) in `.augment_de_design`. Se design
+  rank-deficient (covariata confounded col treatment), drop tutte le
+  covariate kept + log `non_estimable_confounded_with_treatment`.
+  Approccio conservativo: meglio fit treatment-only che modello
+  singolare con coef NA silenziosi. 6 expect_*.
+- `ff037ee` **T6b post-Codex Fix C2**: helper
+  `.join_covariates_to_metadata` con warning DEDICATO per sample del
+  cluster non in `metadata_extra` (`join_incomplete`), distinto dal
+  warning `NA biologico` di `.augment_de_design`. Integrato in 3
+  callsite DE. 11 expect_*.
 
-**Come.** Modifica delle funzioni `.run_limma_voom_de()` e
-`.run_dream_mega()`. Edge case: cluster con un solo livello unico di
-covariata → drop di quella covariata per quel cluster (warning logged
-in qc_report). Tests per entrambi i casi.
+Test perimetro E3: **66 expect_* test_that**, **0 fail** sui file
+E3 + zero regressioni nei 810 expect_* del perimetro stage4+layer-b
+totale.
+
+Codex review eseguita post-T5 (auth ChatGPT restored 2026-05-28): 2
+finding bloccanti paper-grade (C1+C2) indirizzati prima del closing.
+
+**Effetto su rebuild FASE F5** (Stage 4 fullrun): le coefficient
+`treatmenttreated` nel cluster_pooled.parquet saranno calcolati con
+covariate batch attive cross-study (riduzione confondimento
+instrument/aligner). Per-studio limma le covariate sono spesso
+single-level e auto-droppate (warning logged in qc_report).
 
 #### ⬜ E4 — Tests E1-E3
 
