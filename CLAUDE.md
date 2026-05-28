@@ -117,14 +117,21 @@
 >   `run_metadata$gene_biotype_filter` registrato; JSON pretty include
 >   top-level field
 >
-> Test perimetro E2: 18 test_that, 37 expect_* PASS / 0 FAIL. Zero
-> regressioni nel perimetro stage4+layer-b totale (705 expect_*).
-> Self-review paper-grade Opus 4.7 senza finding bloccanti. Codex CLI
-> ancora non utilizzabile (auth ChatGPT tier).
+> Test perimetro E2: 26 test_that, 61 expect_* PASS / 0 FAIL post-T7a+T7b
+> (era 18/37 pre-fix). Perimetro stage4+layer-b totale: 744 expect_*.
 >
-> **Caveat documentato**: fetch_fn esterno (override esplicito) NON
-> riceve il filter automaticamente. Solo il fetch_fn default cacheato
-> propaga.
+> **Codex CLI finalmente eseguibile (2026-05-28 fine pomeriggio, auth
+> restored)** -> review post-T6 ha sollevato 5 finding paper-grade.
+> Indirizzati tutti in 2 commit:
+> - `0f1dd59` T7a: 4 fix (warning fetch_fn esterno + errori distinti
+>   nel .apply_biotype_filter + warning NA biotype + error H5 senza
+>   biotype)
+> - `054fb88` T7b: 1 fix (run_metadata\$gene_axis_summary cardinalita'
+>   pre/post filter per audit paper-grade)
+>
+> Convenzione utente applicata: "codice robusto, non bello". Tutti i
+> fix sono robustness alla sorgente (errori diagnostici, warning su
+> silent drop, audit trace), no over-engineering API.
 >
 > **Prossimo step sessione 8**: gate utente per **E3** (covariate batch
 > `instrument_model` + `aligner_class` nel design DE). Stato pipeline

@@ -920,8 +920,35 @@ filter e' applicato SOLO al fetch_fn default cacheato. Se l'utente
 passa un fetch_fn esterno, deve filtrare lato suo. Default
 'protein_coding' attivo se nessun override.
 
-Self-review paper-grade Opus 4.7: nessun finding bloccante. Codex CLI
-non utilizzabile (auth tier ChatGPT, documentato in E0b/E1).
+Self-review paper-grade Opus 4.7: nessun finding bloccante. **Codex CLI
+finalmente utilizzabile (sessione 7 fine pomeriggio 2026-05-28, auth
+restored)** -> review eseguita e 5 finding paper-grade indirizzati in
+**T7a + T7b** (commit `0f1dd59` + `054fb88`):
+
+- **Fix 5** (T7a): `.h5_gene_axis` errore esplicito su H5 senza
+  `meta/genes/biotype` (ARCHS4 legacy v1). Suggerisce
+  `gene_biotype_filter = NULL` per H5 incompatibili. Test mock H5 in
+  tempfile.
+- **Fix 4** (T7a): `.apply_biotype_filter` warning con count quando
+  gene_axis ha N>0 NA biotype + filter attivo. ARCHS4 v2.5 ha 0 NA
+  (warning non scatta), forward-compat ARCHS4 future + axis alternativi.
+- **Fix 3** (T7a): errori distinti per causa nel `.apply_biotype_filter`:
+  axis senza gene_biotype | filter character(0) | filter typo
+  (mostra biotypes presenti per debugging).
+- **Fix 1** (T7a): `build_stage4_results` warning runtime quando
+  fetch_fn esterno + filter non-NULL. Forza il chiamante a essere
+  esplicito (no piu' "silent half-applied filter" che corromperebbe
+  run_metadata).
+- **Fix 2** (T7b): `run_metadata$gene_axis_summary` registra n_total,
+  n_post_filter, n_biotype_na droppati, biotypes_kept. Trasparenza
+  paper-grade: il revisore vede l'EFFETTO osservato del filter, non
+  solo il valore richiesto. NULL se fetch_fn esterno (non
+  introspettabile).
+
+Test perimetro post-T7a+T7b: **744 expect_*, 0 fail** (era 705 pre-fix).
+Convenzione utente paper-grade applicata: "pubblichiamo l'idea delle
+meta-analisi, non la bellezza del codice — ma il codice deve essere
+robusto".
 
 #### ⬜ E3 — Covariate batch `instrument_model` + `aligner_class` nel design
 
