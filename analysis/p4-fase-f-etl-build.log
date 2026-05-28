@@ -1,0 +1,40 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+== 1. Provenance ==
+  sha256 H5 (47.86 GB, ~3-5 min)...
+  sha256: a1063426cb51986c77574d80d344918a075804c155e9b18c2e551b1077ad5d18 (0.4 min)
+  sha256 == valore noto CLAUDE.md: OK
+  provenance -> analysis/p4-output/p4-fase-f-source.json
+
+== 2. ETL H5 -> raw JSONL (filtro Stage 0 v2 D1-D4) ==
+  lib_size_vec: 888821 sample, 548373 non-NA (3.3 sec)
+  ETL: included 509033 / skipped 379788 (total 888821) in 4.6 min
+  skip reason breakdown:
+
+               lib_size_too_small library_source_not_transcriptomic 
+                            39111                             31915 
+     single_cell_probability_high        single_cell_protocol_match 
+                             1224                            307538 
+
+== 3. Series-id-resolver ==
+  GSE unici: 28429 | non in cache: 0
+  cache completa: nessuna chiamata NCBI necessaria
+  risolti 24470 series uniche -> 24451 series risolte distinte
+
+== 4. Filtro H2 mouse-mislabeled (post-resolver) ==
+  H2 drop: 996 sample (su 72 GSE H2)
+
+== 5. JSONL finale ==
+  scritto analysis/input/archs4-human-stage1-input-v2.jsonl (508037 record)
+
+== 6. Sanity check ex-post ==
+  oracle A3 survivors: 508038 | F1 finale: 508037
+  extra (F1 not oracle): 0  [atteso 0]
+  missing (oracle not F1): 1  [atteso 0 o 1=GSM3612196]
+    missing GSM: GSM3612196 
+  molecule_ch1 non-NA su 20 random: 20/20
+
+== F1 GATE: PASS ==
+Bacino finale Stage 0 v2: 508037 sample
+F1 ETL re-run COMPLETE.
