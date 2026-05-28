@@ -19,6 +19,24 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-05-28/29 fine sessione 9 (+ lavoro autonomo)**: ✅
+> **F2-smoke + root-cause + fix `is_zero_timepoint` + benchmark scalato**.
+> Gate F2-smoke (100 sample) → accuracy mini-gold 92.93% < 93% → STOP.
+> Indagine systematic-debugging (3 run DGX): causa = **fragilità prompt
+> Stadio 1** (D1b `molecule_hint` + D4 `organism_hint` destabilizzano
+> `duration.is_zero_timepoint` → REGOLA 2 stage2 time-zero=control). NON il
+> prompt Stadio 2 (controprova IT identica), NON drift infra (β-prompt
+> recupera 98%). Fix: **guard deterministico** `R/stage1-normalize.R` (TDD 38
+> expect_*) agganciato nel build input Stadio 2; mini-gold 92.93% → **97.00%**
+> senza toccare il prompt. Commit `301bdc8`/`bc40793`/`03abb8b`.
+> **Benchmark design-aware scalato**: gold LLM-assisted 756 sample / 72 studi
+> reali bacino v2 (calibrato 88.2% vs gold umano), binary accuracy **94.14%**
+> (full) / **96.02%** (raffinato). 5/717 plausibili errori pipeline; resto =
+> multi-asse + coverage gap 3.5%. Finding
+> `docs/findings/2026-05-28-f2-stage1-prompt-fragility.md`. **Gate
+> pre-F2-fullrun PASS.** Prossimo step: **F2-fullrun** (508k, ~12-15h DGX) in
+> sessione 10 con gate utente esplicito. Master invariato.
+>
 > **Stato 2026-05-28 fine sessione 8**: ✅ **pre-flight (5/5) + FASE F1
 > chiusi**. Branch ahead master di **84 commit**. Prossimo step:
 > **F2-smoke** (100-sample gate DGX) in sessione 9 separata, poi F2

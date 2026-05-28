@@ -1083,7 +1083,7 @@ helper TDD `.flag_mouse_mislabeled_h2` + `.build_libsize_vec`).
 sample H2 sopravvissuti a D1-D4. Innocuo a F5 (lookup solo su GSM nei
 cluster, post-H2). Da risolvere/documentare a F5.
 
-#### ⬜ F2 — Stadio 1 fullrun DGX
+#### 🟡 F2 — Stadio 1 fullrun DGX (F2-smoke ✅ DONE + fix; fullrun ⬜ TODO sessione 10)
 
 **Cosa facciamo.** Submit del fullrun Stadio 1 sul nuovo input JSONL.
 
@@ -1093,6 +1093,31 @@ cluster, post-H2). Da risolvere/documentare a F5.
 **Come.** Stessa procedura del fullrun precedente: chunked
 orchestrator + cron tick. Sample meno (~30% drop per single-cell) →
 fullrun più breve in proporzione.
+
+**✅ F2-smoke + root-cause + fix (2026-05-28/29, sessione 9 + autonomo).**
+Il gate F2-smoke (100 sample) ha rilevato accuracy mini-gold 92.93% < soglia
+93%. Indagine systematic-debugging (3 run DGX a variabile singola): causa =
+**fragilità del prompt Stadio 1** — D1b `molecule_hint` + D4 `organism_hint`
+destabilizzano `duration.is_zero_timepoint` (campo non correlato), che a valle
+fa scattare la REGOLA 2 di Stadio 2 (time-zero=control). **NON** è il prompt
+Stadio 2 (controprova IT identica) né drift infra (β-prompt oggi recupera 98%).
+
+Fix: **guard deterministico** `R/stage1-normalize.R` (`is_zero_timepoint=TRUE`
+solo con evidenza t=0; TDD 38 expect_*), agganciato nel build input Stadio 2.
+Mini-gold 92.93% → **97.00%** senza toccare il prompt (molecule_hint intatto).
+Commit `301bdc8`, `bc40793`, `03abb8b`.
+
+**Benchmark design-aware scalato** (gold LLM-assisted 756 sample / 72 studi
+reali del bacino v2, `design_role_v3`, calibrato 88.2% vs gold umano autore):
+binary accuracy **94.14%** (full, conservativo) / **96.02%** (raffinato, −2
+studi mal posti). Dei 68 disaccordi: 24 multi-asse difendibile + 26 coverage
+gap (3.5%) + 15 gold mal posto + solo 5 plausibili errori pipeline. Dettaglio:
+`docs/findings/2026-05-28-f2-stage1-prompt-fragility.md`. Gold:
+`analysis/p4-output/f2-eval-gold.csv`.
+
+**Gate pre-fullrun confermato PASS** (schema 100%, accuracy sopra soglia,
+distribuzione design_kind sana). F2-fullrun (508k) resta ⬜ TODO con gate
+utente esplicito in sessione separata.
 
 #### ⬜ F3 — Stadio 2 fullrun DGX
 
@@ -1346,7 +1371,20 @@ ALERT per Stadio 1 audit nella sessione successiva.
   - **Pre-flight 5**: cache purge eseguita.
   Branch ahead master ~84 commit. Master invariato. F1 DONE; F2-F6 TODO.
 
-### Handoff next session (sessione 9 = F2-smoke)
+- 2026-05-28/29 sessione 9 (+ lavoro autonomo notturno): ✅ **F2-smoke +
+  root-cause + fix `is_zero_timepoint` + benchmark design-aware scalato**.
+  - F2-smoke: accuracy mini-gold 92.93% < 93% → STOP. Indagine
+    systematic-debugging (3 run DGX): causa = fragilità prompt Stadio 1
+    (D1b/D4 destabilizzano `is_zero_timepoint` → REGOLA 2 stage2). NON
+    stage2 prompt, NON drift infra. Guard deterministico `R/stage1-normalize.R`
+    (TDD 38 expect_*) → 97.00%. Commit `301bdc8`/`bc40793`/`03abb8b`.
+  - Benchmark scalato: gold LLM-assisted 756 sample / 72 studi (calibrato
+    88.2% vs gold umano). Accuracy **94.14%** (full) / **96.02%** (raffinato).
+    Solo 5/717 plausibili errori pipeline; resto = multi-asse + coverage gap.
+  - Finding `docs/findings/2026-05-28-f2-stage1-prompt-fragility.md`.
+  - Gate pre-F2-fullrun PASS. Master invariato.
+
+### Handoff next session (sessione 10 = F2-fullrun)
 
 - **Deliverable F1 pronto**: `analysis/input/archs4-human-stage1-input-v2.jsonl`
   (169M, **508.037 record**, gitignored). Schema: `record_id,

@@ -1,3 +1,47 @@
+# simulomicsr 0.0.0.9027 (development) — P5 RED ALERT F2-smoke: root-cause is_zero_timepoint + benchmark design-aware scalato
+
+## FASE F2-smoke + fix + benchmark (2026-05-28/29, sessione 9 + autonomo)
+
+Gate F2-smoke (100 sample) prima del fullrun Stadio 1. NIENTE fullrun 508k
+(resta gate utente, sessione 10). Master invariato.
+
+### Root-cause + fix guard is_zero_timepoint
+
+- Gate F2-smoke: accuracy mini-gold 92.93% < soglia 93% → STOP. Indagine
+  systematic-debugging (3 run DGX a variabile singola):
+  - controprova prompt Stadio 2 EN→IT: 92.86% → stage2 NON è la causa;
+  - isolamento prompt Stadio 1 β-era: 97.96% → trigger = prompt Stadio 1.
+  Causa: D1b `molecule_hint` + D4 `organism_hint` destabilizzano
+  `duration.is_zero_timepoint` (campo non correlato); a valle la REGOLA 2 di
+  Stadio 2 (time-zero=control) declassa sample trattati a controllo.
+- `R/stage1-normalize.R` (NEW, TDD 38 expect_*): guard deterministico
+  `.has_zero_timepoint_evidence` / `.normalize_duration_zt` /
+  `normalize_stage1_facts_zt`. `is_zero_timepoint=TRUE` solo con evidenza t=0
+  (value_hours==0 o testo t0/baseline); altrimenti FALSE. Agganciato nel build
+  input Stadio 2 (`analysis/p4-beta-stage2-build-input.R`).
+- Validato DGX: mini-gold 92.93% → **97.00%**, senza toccare il prompt
+  (molecule_hint/D1b/D4 intatti per il fullrun).
+
+### Benchmark design-aware scalato (gold 756 sample)
+
+- Gold LLM-assisted (Claude) `design_role_v3` su 756 sample / 72 studi reali
+  del bacino v2, prior umano `trtctr_EP` raffinato. Calibrazione 88.2% vs gold
+  umano (disaccordi = correzioni design-aware verificate). 743 evaluable.
+- Binary accuracy pipeline (con guard): **94.14%** (full, conservativo) /
+  **96.02%** (raffinato, −2 studi mal posti senza braccio di riferimento).
+  sens 96.9% / spec 90.2→95.0% / f1 0.951→0.966.
+- Tassonomia 68 disaccordi: 24 multi-asse difendibile + 26 coverage gap
+  (Stadio 2 omette 3.5% sample, REGOLA 4) + 15 gold mal posto + 5 plausibili
+  errori pipeline (per lo più difendibili). Nessun guard aggiuntivo
+  giustificato.
+- Finding `docs/findings/2026-05-28-f2-stage1-prompt-fragility.md`.
+
+### Note
+
+- Fallimenti test ambientali pre-esistenti (quarto/ComBat in layer-b/stage4
+  dashboard) verificati su stato pulito: NON introdotti da questo fix.
+- Commit: `301bdc8` (guard+TDD), `bc40793` (hook), `03abb8b` (audit trail).
+
 # simulomicsr 0.0.0.9026 (development) — P5 RED ALERT F1: ETL re-run Stage 0 v2 + pre-flight
 
 ## FASE F1 + pre-flight RED ALERT (2026-05-28, sessione 8)
