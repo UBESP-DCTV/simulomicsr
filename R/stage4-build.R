@@ -47,7 +47,9 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
                                  stage3_assignments = NULL,
                                  stage2_master = NULL,
                                  dry_run_inputs_only = FALSE,
-                                 gene_biotype_filter = "protein_coding") {
+                                 gene_biotype_filter = "protein_coding",
+                                 de_covariates = c("instrument_model",
+                                                    "aligner_class")) {
 
   # T7a Fix 1: warning runtime quando fetch_fn esterno (override
   # esplicito del chiamante) E filter non-NULL. Emesso PRIMA della
@@ -155,10 +157,15 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     stage3_clusters, stage3_assignments, stage2_master
   )
 
-  # Step 5: DE per-studio (limma-voom) su tutti i cluster eligible
+  # Step 5: DE per-studio (limma-voom) su tutti i cluster eligible.
+  # FASE E3 ADR-0019 D8: propaga metadata_extra (h5_metadata subset)
+  # + de_covariates ai limma-voom per-studio (per-studio le covariate
+  # sono spesso single-level e auto-droppate, ma il path resta consistent).
   per_study_de <- .run_per_study_de_all(
     eligible_clusters = qc$eligible_clusters,
     fetch_fn          = fetch_fn,
+    metadata_extra    = h5_metadata,
+    de_covariates     = de_covariates,
     workers           = 1L
   )
 
@@ -185,7 +192,9 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     dream_workers_cap = config$compute$dream_workers_cap,
     mega_aug_config   = config$mega_aug,
     biosample_lookup  = samn_lookups$biosample_lookup,
-    libsize_lookup    = samn_lookups$libsize_lookup
+    libsize_lookup    = samn_lookups$libsize_lookup,
+    metadata_extra    = h5_metadata,    # FASE E3 ADR-0019 D8
+    de_covariates     = de_covariates
   )
 
   # Step 7: QC report aggregato. Merge cluster non_processable da QC + dal

@@ -18,6 +18,8 @@
 #'   eleggibile.
 #' @keywords internal
 .run_per_study_de_all <- function(eligible_clusters, fetch_fn = NULL,
+                                   metadata_extra = NULL,
+                                   de_covariates = character(0),
                                     workers = 1L) {
   dispatch <- attr(eligible_clusters, "study_dispatch")
   if (is.null(dispatch)) {
@@ -52,7 +54,9 @@
 
       counts <- fetch_fn(study_id, samples)
       row_res <- .run_limma_voom_de(counts, treatment, study_id, cid,
-                                      direction_flip = dir_flip)
+                                      direction_flip = dir_flip,
+                                      metadata_extra = metadata_extra,
+                                      covariates = de_covariates)
       out_list[[length(out_list) + 1L]] <- row_res
     }
   }
@@ -118,7 +122,9 @@
                                 dream_workers_cap = 8L,
                                 mega_aug_config = NULL,
                                 biosample_lookup = NULL,
-                                libsize_lookup = NULL) {
+                                libsize_lookup = NULL,
+                                metadata_extra = NULL,
+                                de_covariates = character(0)) {
   out_list <- vector("list", 0L)
   pooling_warnings_list <- vector("list", 0L)
   non_processable_list  <- vector("list", 0L)
@@ -223,8 +229,21 @@
       metadata <- metadata[match(colnames(counts), metadata$sample_id), ,
                             drop = FALSE]
 
+      # FASE E3 ADR-0019 D8: aggiungo covariate batch al metadata pool
+      # via match sample_id su metadata_extra (h5_metadata subset).
+      # .augment_de_design (dentro .run_dream_mega) gestisce
+      # single-level / NA / missing.
+      if (!is.null(metadata_extra) && length(de_covariates) > 0L) {
+        idx <- match(metadata$sample_id, metadata_extra$sample_id)
+        for (cov in de_covariates) {
+          if (cov %in% names(metadata_extra)) {
+            metadata[[cov]] <- metadata_extra[[cov]][idx]
+          }
+        }
+      }
       pool <- .run_dream_mega(counts, metadata, cid,
-                               workers = min(workers, dream_workers_cap))
+                               workers = min(workers, dream_workers_cap),
+                               covariates = de_covariates)
       out_list[[length(out_list) + 1L]] <- pool
 
     } else if (method == "mega_aug") {
@@ -397,11 +416,21 @@
         match(colnames(counts), assembled$metadata$sample_id), , drop = FALSE
       ]
 
+      # FASE E3: stessa propagazione di MEGA pure sopra.
+      if (!is.null(metadata_extra) && length(de_covariates) > 0L) {
+        idx <- match(meta_ord$sample_id, metadata_extra$sample_id)
+        for (cov in de_covariates) {
+          if (cov %in% names(metadata_extra)) {
+            meta_ord[[cov]] <- metadata_extra[[cov]][idx]
+          }
+        }
+      }
       pool <- .run_dream_mega(
         counts, meta_ord, cid,
         workers = min(workers, dream_workers_cap),
         n_baseline_studies_augmented = assembled$n_baseline_studies_augmented,
-        method_label = "mega_aug"
+        method_label = "mega_aug",
+        covariates = de_covariates
       )
       # Propaga metadata bidir come attributi (aggregati post-loop in
       # qc_report e in cluster_pooled). Solo se bidir mode.

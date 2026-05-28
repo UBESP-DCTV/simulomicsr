@@ -276,6 +276,21 @@ test_that("E3 T3.2 .run_dream_mega con covariata cross-study (instrument_model v
   expect_equal(attr(res, "covariates_used"), "instrument_model")
 })
 
+test_that("E3 T4.1 build_stage4_results signature include de_covariates default", {
+  fmls <- formals(simulomicsr::build_stage4_results)
+  expect_true("de_covariates" %in% names(fmls))
+  expect_equal(eval(fmls$de_covariates),
+               c("instrument_model", "aligner_class"))
+})
+
+test_that("E3 T4.2 .pool_all_clusters signature include metadata_extra + de_covariates", {
+  fmls <- formals(simulomicsr:::.pool_all_clusters)
+  expect_true("metadata_extra" %in% names(fmls))
+  expect_true("de_covariates" %in% names(fmls))
+  expect_null(eval(fmls$metadata_extra))
+  expect_equal(eval(fmls$de_covariates), character(0))
+})
+
 test_that("E3 T1.6 .augment_de_design: covariates NULL/empty -> no-op", {
   metadata <- data.frame(
     sample_id = paste0("GSM", 1:4),
