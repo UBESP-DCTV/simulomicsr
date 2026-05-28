@@ -42,14 +42,13 @@
     treatment = treatment_vec,
     stringsAsFactors = FALSE
   )
-  if (!is.null(metadata_extra) && length(covariates) > 0L) {
-    idx <- match(cov_metadata$sample_id, metadata_extra$sample_id)
-    for (cov in covariates) {
-      if (cov %in% names(metadata_extra)) {
-        cov_metadata[[cov]] <- metadata_extra[[cov]][idx]
-      }
-    }
-  }
+  # T6b Fix C2: join helper che emette warning DEDICATO se sample del
+  # pool sono assenti da metadata_extra (join_incomplete), distinto dal
+  # warning 'NA biologico' di .augment_de_design.
+  joined <- .join_covariates_to_metadata(
+    cov_metadata, metadata_extra, covariates, cluster_id
+  )
+  cov_metadata <- joined$metadata
   aug <- .augment_de_design(cov_metadata, covariates, cluster_id)
 
   # FASE E1: estrai mapping Ensembl -> HGNC symbol PRIMA di edgeR::DGEList

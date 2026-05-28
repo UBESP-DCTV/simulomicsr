@@ -49,6 +49,66 @@ NULL
 #'       reason, detail)} per propagazione a qc_report.}
 #'   }
 #' @keywords internal
+#' Join covariate da metadata_extra al metadata del pool con check integrita'
+#'
+#' T6b Fix C2 (Codex review): distingue 'sample del cluster non in
+#' metadata_extra' (join_incomplete, sospetto integrita' dati) da
+#' 'sample presente con field NA' (NA biologico legittimo, gestito
+#' poi da .augment_de_design come livello 'unknown').
+#'
+#' @param pool_metadata data.frame del pool DE con almeno colonna
+#'   \code{sample_id}.
+#' @param metadata_extra data.frame sample-level con \code{sample_id} +
+#'   colonne covariate. NULL -> no-op.
+#' @param covariates character vector di nomi covariate da unire.
+#'   character(0) -> no-op.
+#' @param cluster_id chr per logging.
+#' @return list con \code{metadata} (pool_metadata + colonne covariate) +
+#'   \code{n_missing_from_join} (count sample del pool senza match in
+#'   metadata_extra) + \code{missing_sample_ids}.
+#' @keywords internal
+.join_covariates_to_metadata <- function(pool_metadata, metadata_extra,
+                                           covariates, cluster_id) {
+  if (is.null(metadata_extra) || length(covariates) == 0L) {
+    return(list(
+      metadata             = pool_metadata,
+      n_missing_from_join  = 0L,
+      missing_sample_ids   = character(0)
+    ))
+  }
+
+  idx <- match(pool_metadata$sample_id, metadata_extra$sample_id)
+  missing_mask <- is.na(idx)
+  n_missing <- sum(missing_mask)
+  missing_ids <- pool_metadata$sample_id[missing_mask]
+
+  if (n_missing > 0L) {
+    # Warning DEDICATO per 'join failed' (sample completamente assenti dal
+    # metadata_extra), distinto dal warning 'NA biologico' che emettera'
+    # .augment_de_design downstream sui field NA-as-'unknown'.
+    show_n <- min(n_missing, 10L)
+    warning(sprintf(
+      "cluster %s: %d sample del pool DE non presenti in metadata_extra -> covariate impostate a NA (poi 'unknown' nel design). Primi %d GSM mancanti: %s",
+      cluster_id, n_missing, show_n,
+      paste(missing_ids[seq_len(show_n)], collapse = ", ")
+    ), call. = FALSE)
+  }
+
+  for (cov in covariates) {
+    if (cov %in% names(metadata_extra)) {
+      pool_metadata[[cov]] <- metadata_extra[[cov]][idx]
+    }
+    # Se covariata manca da metadata_extra, NON la aggiunge -> downstream
+    # .augment_de_design la flag come 'missing_from_metadata'.
+  }
+
+  list(
+    metadata             = pool_metadata,
+    n_missing_from_join  = n_missing,
+    missing_sample_ids   = missing_ids
+  )
+}
+
 .augment_de_design <- function(metadata, covariates, cluster_id) {
   empty_log <- tibble::tibble(
     cluster_id = character(0),

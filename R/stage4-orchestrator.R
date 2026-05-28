@@ -229,18 +229,12 @@
       metadata <- metadata[match(colnames(counts), metadata$sample_id), ,
                             drop = FALSE]
 
-      # FASE E3 ADR-0019 D8: aggiungo covariate batch al metadata pool
-      # via match sample_id su metadata_extra (h5_metadata subset).
-      # .augment_de_design (dentro .run_dream_mega) gestisce
-      # single-level / NA / missing.
-      if (!is.null(metadata_extra) && length(de_covariates) > 0L) {
-        idx <- match(metadata$sample_id, metadata_extra$sample_id)
-        for (cov in de_covariates) {
-          if (cov %in% names(metadata_extra)) {
-            metadata[[cov]] <- metadata_extra[[cov]][idx]
-          }
-        }
-      }
+      # FASE E3 ADR-0019 D8 + T6b Fix C2: helper join con warning
+      # join_incomplete distinto dal warning NA biologico.
+      joined <- .join_covariates_to_metadata(
+        metadata, metadata_extra, de_covariates, cid
+      )
+      metadata <- joined$metadata
       pool <- .run_dream_mega(counts, metadata, cid,
                                workers = min(workers, dream_workers_cap),
                                covariates = de_covariates)
@@ -416,15 +410,11 @@
         match(colnames(counts), assembled$metadata$sample_id), , drop = FALSE
       ]
 
-      # FASE E3: stessa propagazione di MEGA pure sopra.
-      if (!is.null(metadata_extra) && length(de_covariates) > 0L) {
-        idx <- match(meta_ord$sample_id, metadata_extra$sample_id)
-        for (cov in de_covariates) {
-          if (cov %in% names(metadata_extra)) {
-            meta_ord[[cov]] <- metadata_extra[[cov]][idx]
-          }
-        }
-      }
+      # FASE E3 + T6b Fix C2: helper join (vedi MEGA pure sopra).
+      joined_aug <- .join_covariates_to_metadata(
+        meta_ord, metadata_extra, de_covariates, cid
+      )
+      meta_ord <- joined_aug$metadata
       pool <- .run_dream_mega(
         counts, meta_ord, cid,
         workers = min(workers, dream_workers_cap),

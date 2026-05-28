@@ -352,6 +352,81 @@ test_that("E3 T6a Fix C1.1 .augment_de_design: covariata perfettamente confounde
                          res$drop_log$reason)))
 })
 
+test_that("E3 T6b Fix C2.1 .join_covariates_to_metadata: tutti i sample presenti -> nessun warning", {
+  pool_meta <- data.frame(
+    sample_id = paste0("GSM", 1:4),
+    treatment = factor(c("treated", "treated", "control", "control"),
+                        levels = c("control", "treated")),
+    stringsAsFactors = FALSE
+  )
+  meta_extra <- data.frame(
+    sample_id = paste0("GSM", 1:6),  # contiene tutti i sample del pool + extra
+    instrument_model = c("HiSeq", "NovaSeq", "HiSeq", "NovaSeq", "HiSeq", "NovaSeq"),
+    aligner_class = c("STAR", "Salmon", "STAR", "Salmon", "STAR", "Salmon"),
+    stringsAsFactors = FALSE
+  )
+  expect_silent(
+    res <- simulomicsr:::.join_covariates_to_metadata(
+      pool_meta, meta_extra,
+      covariates = c("instrument_model", "aligner_class"),
+      cluster_id = "TEST_C2.1"
+    )
+  )
+  expect_equal(nrow(res$metadata), 4L)
+  expect_true(all(c("instrument_model", "aligner_class") %in% names(res$metadata)))
+  expect_equal(res$n_missing_from_join, 0L)
+})
+
+test_that("E3 T6b Fix C2.2 .join_covariates_to_metadata: sample missing da metadata_extra -> warning con count", {
+  pool_meta <- data.frame(
+    sample_id = paste0("GSM", 1:6),
+    treatment = factor(rep(c("treated", "control"), 3),
+                        levels = c("control", "treated")),
+    stringsAsFactors = FALSE
+  )
+  # metadata_extra ha solo 4 sample (GSM1-4); GSM5 + GSM6 missing dal join
+  meta_extra <- data.frame(
+    sample_id = paste0("GSM", 1:4),
+    instrument_model = c("HiSeq", "NovaSeq", "HiSeq", "NovaSeq"),
+    stringsAsFactors = FALSE
+  )
+  expect_warning(
+    res <- simulomicsr:::.join_covariates_to_metadata(
+      pool_meta, meta_extra,
+      covariates = "instrument_model",
+      cluster_id = "TEST_C2.2"
+    ),
+    "2 sample.*non presenti in metadata_extra"
+  )
+  expect_equal(res$n_missing_from_join, 2L)
+  # GSM5 + GSM6 hanno instrument_model = NA (poi .augment_de_design ->
+  # 'unknown')
+  expect_true(is.na(res$metadata$instrument_model[5]))
+  expect_true(is.na(res$metadata$instrument_model[6]))
+})
+
+test_that("E3 T6b Fix C2.3 .join_covariates_to_metadata: metadata_extra NULL o covariates empty -> no-op", {
+  pool_meta <- data.frame(
+    sample_id = paste0("GSM", 1:3),
+    treatment = factor(c("treated", "control", "treated"),
+                        levels = c("control", "treated")),
+    stringsAsFactors = FALSE
+  )
+  res_null <- simulomicsr:::.join_covariates_to_metadata(
+    pool_meta, NULL, c("instrument_model"), "TEST_C2.3"
+  )
+  expect_equal(nrow(res_null$metadata), 3L)
+  expect_equal(res_null$n_missing_from_join, 0L)
+  expect_false("instrument_model" %in% names(res_null$metadata))
+
+  res_empty <- simulomicsr:::.join_covariates_to_metadata(
+    pool_meta,
+    data.frame(sample_id = paste0("GSM", 1:3), foo = 1:3),
+    character(0), "TEST_C2.3"
+  )
+  expect_equal(nrow(res_empty$metadata), 3L)
+})
+
 test_that("E3 T6a Fix C1.2 .augment_de_design: covariata non-confunded -> kept (no false positive)", {
   metadata <- data.frame(
     sample_id = paste0("GSM", 1:8),
