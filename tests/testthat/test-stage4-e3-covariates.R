@@ -220,6 +220,62 @@ test_that("E3 T2.3 .run_limma_voom_de con covariata single-level: drop + behavio
   expect_equal(length(attr(res, "covariates_used")), 0L)
 })
 
+test_that("E3 T3.1 .run_dream_mega senza covariate (default): behavior invariato", {
+  skip_if_not_installed("variancePartition")
+  skip_if_not_installed("BiocParallel")
+
+  set.seed(42)
+  n_genes <- 50; n_samples <- 24
+  counts <- matrix(rnbinom(n_genes * n_samples, size = 5, mu = 200),
+                   nrow = n_genes, ncol = n_samples)
+  rownames(counts) <- paste0("ENSG", sprintf("%05d", 1:n_genes))
+  colnames(counts) <- paste0("GSM", 1:n_samples)
+  metadata <- data.frame(
+    sample_id = colnames(counts),
+    study = factor(rep(paste0("GSE00", 1:4), each = 6)),
+    treatment = factor(rep(c("treated","treated","treated",
+                              "control","control","control"), 4),
+                        levels = c("control", "treated"))
+  )
+
+  res <- simulomicsr:::.run_dream_mega(counts, metadata,
+                                         cluster_id = "TEST_T3.1",
+                                         workers = 1L)
+  expect_true("gene_id" %in% names(res))
+  expect_null(attr(res, "covariates_used"))
+})
+
+test_that("E3 T3.2 .run_dream_mega con covariata cross-study (instrument_model variabile): kept", {
+  skip_if_not_installed("variancePartition")
+  skip_if_not_installed("BiocParallel")
+
+  set.seed(42)
+  n_genes <- 80; n_samples <- 24
+  counts <- matrix(rnbinom(n_genes * n_samples, size = 5, mu = 200),
+                   nrow = n_genes, ncol = n_samples)
+  rownames(counts) <- paste0("ENSG", sprintf("%05d", 1:n_genes))
+  colnames(counts) <- paste0("GSM", 1:n_samples)
+  # 4 studi, 2 instrument (variabile cross-study, non-confunded col treatment)
+  metadata <- data.frame(
+    sample_id = colnames(counts),
+    study = factor(rep(paste0("GSE00", 1:4), each = 6)),
+    treatment = factor(rep(c("treated","treated","treated",
+                              "control","control","control"), 4),
+                        levels = c("control", "treated")),
+    instrument_model = rep(c("HiSeq2500", "NovaSeq6000"), each = 12),
+    stringsAsFactors = FALSE
+  )
+
+  res <- simulomicsr:::.run_dream_mega(
+    counts, metadata,
+    cluster_id = "TEST_T3.2",
+    workers = 1L,
+    covariates = "instrument_model"
+  )
+  expect_true("gene_id" %in% names(res))
+  expect_equal(attr(res, "covariates_used"), "instrument_model")
+})
+
 test_that("E3 T1.6 .augment_de_design: covariates NULL/empty -> no-op", {
   metadata <- data.frame(
     sample_id = paste0("GSM", 1:4),

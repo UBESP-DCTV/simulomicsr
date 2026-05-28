@@ -25,7 +25,8 @@
 #' @keywords internal
 .run_dream_mega <- function(counts, metadata, cluster_id, workers = 1L,
                               n_baseline_studies_augmented = NA_integer_,
-                              method_label = "mega") {
+                              method_label = "mega",
+                              covariates = character(0)) {
   stopifnot(
     is.matrix(counts),
     is.data.frame(metadata),
@@ -88,8 +89,19 @@
   dge <- dge[keep, , keep.lib.sizes = FALSE]
   dge <- edgeR::normLibSizes(dge, method = "TMM")
 
-  # Random-effect su study come blocking
-  formula_mega <- ~ treatment + (1 | study)
+  # FASE E3 ADR-0019 D8: covariate batch nel design (instrument_model +
+  # aligner_class di default se forniti). .augment_de_design gestisce
+  # single-level drop + NA -> 'unknown'. Per dream cross-study le
+  # covariate hanno effetto sostanziale (variano cross-GSE).
+  aug <- .augment_de_design(metadata, covariates, cluster_id)
+  metadata <- aug$metadata_aug
+
+  # Random-effect su study come blocking; fixed effects = treatment + covariate
+  formula_mega <- if (aug$formula_terms == "") {
+    ~ treatment + (1 | study)
+  } else {
+    stats::as.formula(paste("~ treatment +", aug$formula_terms, "+ (1 | study)"))
+  }
 
   # BiocParallel backend: serial se workers == 1, altrimenti multicore
   bpparam <- if (workers > 1L) {
@@ -152,5 +164,11 @@
     direction_applied = "none"
   )
   out$FDR_BH_within_cluster <- stats::p.adjust(out$p_value_pool, method = "BH")
+  # FASE E3: covariate tracking via attr (solo se covariates overridden).
+  if (length(covariates) > 0L) {
+    attr(out, "covariates_used")    <- aug$covariates_used
+    attr(out, "covariates_dropped") <- aug$covariates_dropped
+    attr(out, "covariate_drop_log") <- aug$drop_log
+  }
   out
 }
