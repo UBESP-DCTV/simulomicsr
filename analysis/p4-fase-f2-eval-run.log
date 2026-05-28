@@ -1,0 +1,64 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+✔ Submitted: run_id=20260528T215018Z-f2-eval-s1-d3efbe slurm=22356
+Submitted f2-eval-s1: slurm=22356 run_id=20260528T215018Z-f2-eval-s1-d3efbe
+  [23:50:27] f2-eval-s1 RUNNING
+  [23:51:32] f2-eval-s1 RUNNING
+  [23:52:37] f2-eval-s1 RUNNING
+  [23:53:43] f2-eval-s1 COMPLETED
+Loading analysis/p4-output/20260528T215018Z-f2-eval-s1-d3efbe/predictions.jsonl ...
+Loaded 756 stage1 predictions
+Guard is_zero_timepoint: 25 flag corretti (forzati FALSE, assenza evidenza t=0)
+Dropped 2 records; 754 valid records rimangono.
+Unique series_id (studi): 72 
+
+=== Done ===
+Output:            analysis/input/p4-f2-eval-stage2-input.jsonl 
+Total records:     72 
+Chunked records:   0  (in 0 studies)
+Unsplit studies:   72 
+
+Sanity check (first record + last record):
+  first record_id: GSE53665  series_id: GSE53665  n_samples: 14 
+  last record_id:  GSE203505  series_id:  GSE203505  n_samples:  24 
+Total samples emitted: 754 (expected 754 )
+OK -- nessun sample perso
+Warning message:
+Stage1 predictions con series_id mancante (LLM fail): 2 / 756 (0.26%). Sample droppati da stage2 input. Per recovery completo: retry/uniqfail rounds upstream + re-run. 
+ℹ tiered_max_tokens: S=43 M=21 L=7 XL=1 (max=32768)
+✔ Submitted: run_id=20260528T215347Z-f2-eval-s2-00fa6c slurm=22357
+Submitted f2-eval-s2: slurm=22357 run_id=20260528T215347Z-f2-eval-s2-00fa6c
+  [23:53:57] f2-eval-s2 RUNNING
+  [23:55:02] f2-eval-s2 RUNNING
+  [23:56:07] f2-eval-s2 RUNNING
+  [23:57:12] f2-eval-s2 RUNNING
+  [23:58:18] f2-eval-s2 COMPLETED
+
+=== BENCHMARK SCALATO (n_gold=756) ===
+schema s1=99.7% s2=100.0%
+Binary accuracy: 94.14% (n_eval=717) | sens=96.9% spec=90.2% f1=0.951
+Confusion (gold x pred):
+         pred
+gold      control treated <NA>
+  control     266      29   11
+  treated      13     409   15
+  <NA>          8       5    0
+
+Errori/non-predetti: 68 / 743 evaluable
+Errori per studio (top):
+
+GSE162187 GSE162711 GSE186543 GSE106858 GSE118725 GSE158386 GSE103242 GSE117608 
+        9         6         6         5         4         4         3         3 
+GSE149280 GSE166448  GSE53665 GSE113227 GSE131983 GSE151392  GSE73317 
+        3         3         3         2         2         2         2 
+
+Errori per gold design_role_v3:
+
+               perturbed               comparison negative_genetic_control 
+                      28                       15                       10 
+       untreated_control          vehicle_control 
+                       9                        6 
+
+Salvato eval RDS + f2-eval-errors.csv
+=== EVAL RUN COMPLETE ===
