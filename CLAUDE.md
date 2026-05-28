@@ -97,10 +97,38 @@
 > documentato in E0b). ADR-0016 Decision 2 marcato "Superseded by
 > ADR-0019 §D6".
 >
-> **Prossimo step sessione 8**: gate utente per **E2** (filtro
-> `biotype == protein_coding` come default Stadio 4) + **E3** (covariate
-> batch instrument_model + aligner_class nel design DE). Stato pipeline
-> rebuild invariato (FASE F SOSPESA in attesa di E2-E5).
+> **Aggiornamento sessione 7 post-E1 — FASE E2 chiusa (2026-05-28)**:
+> ✅ FASE A+B+C+D+E0+E0b+E1+E2 chiuse (23/19 task). E2 ha implementato il
+> filter `gene_biotype` di default 'protein_coding' (~23k geni su ~67k)
+> alla sorgente Stadio 4. Parametro `build_stage4_results(gene_biotype_filter)`
+> NULL = no filter, vector = union.
+>
+> **Implementazione E2 in 5 commit bite-sized TDD**:
+> - `605ceb6` T1: `.parse_gene_axis` estende a 3-comp (ensembl + symbol +
+>   biotype); `.attach_gene_annotation` setta attr gene_biotype named
+> - `5f39215` T2: `.h5_gene_axis` legge meta/genes/biotype (cache key
+>   `v3_with_biotype`); `.fetch_counts_from_h5` parametro filter +
+>   helper `.apply_biotype_filter` NA-strict
+> - `b7deb8e` T3: `.cache_key_for_fetch` stratifica per biotype filter
+>   (permutazioni vector normalizzate); `.fetch_counts_cached` propaga
+> - `3536dd4` T4: `build_stage4_results` parametro + closure default
+>   propaga via `with_mocked_bindings`
+> - `84d0ccc` T5: `schema_versions$gene_biotype_filter_strategy` +
+>   `run_metadata$gene_biotype_filter` registrato; JSON pretty include
+>   top-level field
+>
+> Test perimetro E2: 18 test_that, 37 expect_* PASS / 0 FAIL. Zero
+> regressioni nel perimetro stage4+layer-b totale (705 expect_*).
+> Self-review paper-grade Opus 4.7 senza finding bloccanti. Codex CLI
+> ancora non utilizzabile (auth ChatGPT tier).
+>
+> **Caveat documentato**: fetch_fn esterno (override esplicito) NON
+> riceve il filter automaticamente. Solo il fetch_fn default cacheato
+> propaga.
+>
+> **Prossimo step sessione 8**: gate utente per **E3** (covariate batch
+> `instrument_model` + `aligner_class` nel design DE). Stato pipeline
+> rebuild invariato (FASE F SOSPESA in attesa di E3-E5).
 
 ---
 

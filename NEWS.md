@@ -1,3 +1,84 @@
+# simulomicsr 0.0.0.9023 (development) — P5 RED ALERT E2: filter gene_biotype protein_coding (ADR-0019 D7)
+
+## FASE E2 ADR-0019 D7 (2026-05-28, sessione 7)
+
+Decisione utente 2026-05-28: il pool Stadio 4 ora filtra di default ai
+geni `gene_biotype == "protein_coding"` (~23k geni su ~67k totali in
+ARCHS4 v2.5). Il filter e' parametro top-level di
+`build_stage4_results(gene_biotype_filter = "protein_coding")` con
+opzione NULL (no filter) o vector multi-valore (union, es.
+`c("protein_coding", "lncRNA")`).
+
+### Razionale paper-grade
+
+- Riduce multiple-testing burden: 67186 -> 22881 geni protein_coding =
+  34%. Per FDR BH within-cluster, ridurre il numero di hypothesis
+  testato aumenta il segnale dei veri positivi senza compromettere
+  rigor.
+- lncRNA + pseudogene + miRNA + snRNA + snoRNA restano disponibili
+  on-demand (vector multi-valore) ma non popolano i volcano di default
+  con falsi positivi tipo "il top hit e' un lncRNA poco caratterizzato".
+- ARCHS4 v2.5 `meta/genes/biotype` 0 NA confermato: validazione
+  early-fail vincolata.
+
+### Codice nuovo
+
+- `R/stage4-gene-axis.R::.apply_biotype_filter`: helper puro che subset
+  counts + gene_axis al biotype filter. NA biotype droppato (filter
+  NA-strict via `%in%`). Errore esplicito se 0 geni match.
+
+### Codice modificato
+
+- `R/stage4-gene-axis.R::.parse_gene_axis`: 3° parametro `biotype`
+  (default NULL = riempito con NA). Output list 3-componenti:
+  ensembl_gene + gene_symbol + gene_biotype.
+- `R/stage4-gene-axis.R::.attach_gene_annotation`: setta
+  `attr(counts, 'gene_biotype')` named (names=ensembl_gene) quando
+  axis lo contiene.
+- `R/stage4-counts-cache.R::.h5_gene_axis`: legge anche
+  `meta/genes/biotype`. Cache memo key bumpata
+  `genes::v2_ensembl::` -> `genes::v3_with_biotype::`.
+- `R/stage4-counts-cache.R::.fetch_counts_from_h5`: parametro
+  `gene_biotype_filter = "protein_coding"`; applica filter PRE-output.
+- `R/stage4-counts-cache.R::.cache_key_for_fetch`: payload include
+  segmento `biotype::<sort_unique(filter)>::` per stratificare la
+  cache disk. Permutazioni vector filter normalizzate (deterministic).
+- `R/stage4-counts-cache.R::.fetch_counts_cached`: propaga filter sia
+  alla cache key sia alla fetch_fn default.
+- `R/stage4-build.R::build_stage4_results`: parametro
+  `gene_biotype_filter` (default 'protein_coding'). Closure default
+  Step 4 cattura filter; run_metadata\$gene_biotype_filter registra il
+  valore effettivo.
+- `R/stage4-config.R`: `schema_versions\$gene_biotype_filter_strategy =
+  "v1_protein_coding_default"` (contract version).
+- `R/stage4-io.R::write_stage4_to_dir`: meta JSON include top-level
+  field `gene_biotype_filter` con fallback per legacy pre-E2.
+
+### Caveat documentato
+
+`fetch_fn` ESTERNO (override esplicito dal chiamante) non riceve il
+filter automaticamente: filter applicato SOLO al fetch_fn default
+cacheato in `build_stage4_results`. Se il chiamante passa un fetch_fn
+esterno, deve filtrare lato suo.
+
+### Test (perimetro E2: 18 test_that, 37 expect_* PASS / 0 FAIL)
+
+- `tests/testthat/test-stage4-gene-axis.R` (extended): T1 + T2 cases.
+- `tests/testthat/test-stage4-e1-cache-schema.R` (extended): T3 cases.
+- `tests/testthat/test-stage4-e2-biotype-filter.R` (NEW): T4 + T5
+  (signature, propagation via with_mocked_bindings, schema_versions,
+  run_metadata tracciato).
+- `tests/testthat/test-stage4-config.R`: legacy test 'v1' aggiornato
+  a 'v2_ensembl_gene_axis' (post-E1).
+
+### Effetto su rebuild FASE F
+
+Il rebuild Stage 4 (F5) pubblichera' un `cluster_pooled.parquet` con
+solo geni protein_coding (a meno di override esplicito). Layer B
+selection csv resta valido (cluster_id non cambia). Run_metadata.json
+JSON pretty include `gene_biotype_filter` come top-level field per
+tracciabilita' paper-grade.
+
 # simulomicsr 0.0.0.9022 (development) — P5 RED ALERT E1: gene axis Ensembl ID (ADR-0019 D6)
 
 ## FASE E1 ADR-0019 D6 (2026-05-27, sessione 7)

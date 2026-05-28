@@ -878,19 +878,50 @@ inesistente per definizione (67186 unici, 0 NA). Defensive make.unique
 sostituito da guardia stop() per qualunque fetch_fn alternativo che
 producesse rownames duplicati.
 
-#### ⬜ E2 — Filtro `biotype == protein_coding`
+#### ✅ E2 — Filtro `biotype == protein_coding` (DONE sessione 7 — 2026-05-28)
 
-**Cosa facciamo.** Aggiungiamo a `build_stage4_results()` un parametro
-`gene_biotype_filter = "protein_coding"` (default). Solo i geni con
-quel biotype vengono mantenuti per le DE.
+**Decisione utente 2026-05-28**: ✅ implementazione opzione standard
+RED ALERT (default `gene_biotype_filter = "protein_coding"`, NULL
+disabilita, vector multi-valore = union biotype). Riduce ~67k geni →
+~23k (34%) - target ADR-0019 D7. Filter applicato alla SORGENTE
+(`.fetch_counts_from_h5`) pre-cache: DE downstream + Layer B operano
+su counts pre-filtrati senza ulteriore lavoro.
 
-**Perché serve.** Riduce ~67k geni → ~20k geni. Meno multiple testing,
-segnale più forte. lncRNA e pseudogeni rimangono fuori dal volcano di
-default (riducendo falsi positivi tipo "il top hit è un lncRNA poco
-caratterizzato").
+**Implementazione completata sessione 7** — 5 commit bite-sized TDD:
+- `605ceb6` T1: `.parse_gene_axis` esteso a 3-comp (ensembl + symbol +
+  biotype) con retrocompat default NULL biotype → NA. `.attach_gene_annotation`
+  setta `attr(counts, 'gene_biotype')` named se presente in axis.
+  7 nuovi test_that, 11 expect_*.
+- `5f39215` T2: `.h5_gene_axis` legge anche `meta/genes/biotype` (cache
+  memo key bumpata `genes::v3_with_biotype::`). `.fetch_counts_from_h5`
+  parametro `gene_biotype_filter` default 'protein_coding'; helper puro
+  `.apply_biotype_filter` (NA-strict, errore esplicito se 0 geni
+  match). 5 nuovi test_that, 11 expect_*.
+- `b7deb8e` T3: `.cache_key_for_fetch` payload include segmento
+  `biotype::<sort_unique(filter)>::`; `.fetch_counts_cached` propaga
+  filter. Permutazioni vector filter normalizzate (deterministic key).
+  3 nuovi test_that, 6 expect_*.
+- `3536dd4` T4: `build_stage4_results` parametro
+  `gene_biotype_filter = 'protein_coding'`; closure default Step 4
+  cattura filter e lo propaga a `.fetch_counts_cached`. 4 test_that
+  con `with_mocked_bindings`, 6 expect_*.
+- `84d0ccc` T5: `schema_versions$gene_biotype_filter_strategy =
+  "v1_protein_coding_default"` + `run_metadata$gene_biotype_filter` =
+  valore effettivo passato. `write_stage4_to_dir` lo include nel JSON
+  pretty di `run_metadata.json` per tracciabilita' paper-grade.
+  2 nuovi test_that, 3 expect_*.
 
-**Come.** Modifica del config Stadio 4 + opzione di disabilitazione
-(`gene_biotype_filter = NULL` mantiene tutti).
+Test perimetro E2: **18 test_that, 37 expect_* PASS** sui file E2 +
+zero regressioni nei 705 expect_* del perimetro stage4+layer-b totale.
+
+**Caveat documentato**: `fetch_fn` ESTERNO (override esplicito dal
+chiamante) NON riceve il `gene_biotype_filter` automaticamente. Il
+filter e' applicato SOLO al fetch_fn default cacheato. Se l'utente
+passa un fetch_fn esterno, deve filtrare lato suo. Default
+'protein_coding' attivo se nessun override.
+
+Self-review paper-grade Opus 4.7: nessun finding bloccante. Codex CLI
+non utilizzabile (auth tier ChatGPT, documentato in E0b/E1).
 
 #### ⬜ E3 — Covariate batch `instrument_model` + `aligner_class` nel design
 
