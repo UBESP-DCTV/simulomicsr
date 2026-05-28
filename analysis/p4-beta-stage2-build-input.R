@@ -55,6 +55,24 @@ preds <- jsonlite::stream_in(file(STAGE1_PREDS_PATH),
 n_preds <- length(preds)
 cat("Loaded", n_preds, "stage1 predictions\n")
 
+# P5 RED ALERT F2 root-cause (2026-05-28): guard deterministico
+# is_zero_timepoint. Lo Stadio 1 LLM puo' marcare is_zero_timepoint=TRUE
+# su sample senza evidenza temporale (value_raw/value_hours nulli); a valle
+# la REGOLA 2 di Stadio 2 li declassa a control/time_zero, corrompendo il
+# design DE. Riallinea il flag all'evidenza PRIMA di costruire l'input.
+# Vedi R/stage1-normalize.R + tests/testthat/test-stage1-normalize.R.
+.zt_total <- 0L
+for (i in seq_along(preds)) {
+  pj <- preds[[i]]$parsed_json
+  if (!is.null(pj)) {
+    .res <- simulomicsr:::normalize_stage1_facts_zt(pj)
+    preds[[i]]$parsed_json <- .res$facts
+    .zt_total <- .zt_total + .res$n_corrected
+  }
+}
+cat(sprintf("Guard is_zero_timepoint: %d flag corretti (forzati FALSE, assenza evidenza t=0)\n",
+            .zt_total))
+
 # Estrai series_id da parsed_json. In beta il resolver pre-stage1 produce un
 # singolo GSE canonico (non comma-string), quindi NO canonical_gse heuristic.
 sids <- vapply(preds, function(rec) {
