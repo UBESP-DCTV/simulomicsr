@@ -157,10 +157,27 @@
 > Self-review Opus 4.7 OK; Codex review eseguibile (auth restored) ->
 > 2 finding bloccanti paper-grade (C1+C2) indirizzati prima del closing.
 >
-> **Prossimo step sessione 8**: gate utente per **E4** (tests aggiuntivi
-> E1-E3 cascade integration + edge case) + **E5** (Stage4 dashboard /
-> Layer B compatibility). Stato pipeline rebuild invariato (FASE F
-> SOSPESA in attesa di E4-E5).
+> **Aggiornamento sessione 7 post-E3 — FASE E4 + E5 chiuse (2026-05-28)**:
+> ✅ FASE A+B+C+D+E0+E0b+E1+E2+E3+E4+E5 chiuse (26/19 task RED ALERT).
+>
+> - **E4** (`af8a80c`): test cascade integration E1+E2+E3 con mock H5
+>   sintetico. 5 test_that, 23 expect_*. Verifica Ensembl axis +
+>   biotype filter + covariate batch + pre-fit rank check in un flow
+>   end-to-end.
+> - **E5** (commit pending): Layer B compatibility check. Schema_versions
+>   bumpato a v2_ensembl_gene_axis. Test 8 expect_* + script standalone
+>   `analysis/audit/E5-smoke-plots.R` che materializza plot
+>   (volcano/forest/heatmap/MA/top_genes/summary_card) in
+>   `analysis/audit/E5-smoke-plots/` per giudizio visuale.
+>
+> Test perimetro post-E4+E5: **840 expect_*, 0 fail** stage4+layer-b
+> totale.
+>
+> **FASE E del RED ALERT CHIUSA**. Prossimo step utente-driven:
+> **FASE F** (rebuild pipeline F1-F6: F1 ETL re-run, F2 Stadio 1
+> fullrun DGX, F3 Stadio 2 fullrun, F4 Stadio 3 rebuild, F5 Stadio 4
+> Layer A rebuild, F6 Layer B re-selection). FASE F in sessione
+> separata con gate utente esplicito.
 
 ---
 

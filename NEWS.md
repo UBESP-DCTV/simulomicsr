@@ -1,3 +1,46 @@
+# simulomicsr 0.0.0.9025 (development) — P5 RED ALERT E4+E5: integration test + Layer B compatibility
+
+## FASE E4+E5 RED ALERT (2026-05-28, sessione 7)
+
+Chiusura FASE E con due step di verifica e documentazione:
+
+### E4 — Integration test cascade E1-E3 (commit `af8a80c`)
+
+Test paper-grade che gira mock H5 sintetico end-to-end (Ensembl axis +
+biotype filter + covariate batch) per documentare + proteggere da
+regressioni il flow integrato delle 3 FASI principali.
+
+- `tests/testthat/test-stage4-e4-cascade.R` (NEW): 5 test_that, 23
+  expect_*. Mock H5 con 50% protein_coding / 30% lncRNA / 20% miRNA;
+  4 studi x 6 sample. Verifica cascade `.h5_gene_axis` ->
+  `.fetch_counts_from_h5` (filter) -> `.run_dream_mega` (covariate)
+  produce output schema gene_id + gene_symbol con design batch attivo.
+
+### E5 — Layer B compatibility check + smoke plot generator
+
+- `R/layer-b-build.R`: `schema_versions\$stage4_algorithm` bumpato
+  'v1' -> 'v2_ensembl_gene_axis' per riflettere il refactor E1-E3.
+  Tracciato in run_metadata.json.
+- `tests/testthat/test-stage4-e5-layer-b-schema.R` (NEW): 2 test_that,
+  8 expect_*. Verifica schema_versions propagato + top_genes.csv
+  contiene gene_id + gene_symbol.
+- `analysis/audit/E5-smoke-plots.R`: script standalone che gira
+  build_layer_b_results su fixture sintetica (cl_mega_1 + cl_aug_1)
+  e materializza i plot in `analysis/audit/E5-smoke-plots/` per
+  giudizio visuale dell'utente.
+
+### Test perimetro post-E4+E5
+
+**840 expect_*, 0 fail** sull'intero perimetro stage4 + layer-b (38
+file). Era 810 pre-E4+E5; +30 dai test integration nuovi. Zero
+regressioni.
+
+### Chiusura FASE E
+
+FASE E del RED ALERT chiusa per sessione 7 (E0+E0b+E1+E2+E3+E4+E5).
+Prossimo step utente-driven: FASE F (rebuild pipeline F1-F6) in
+sessione separata, dopo gate paper-grade.
+
 # simulomicsr 0.0.0.9024 (development) — P5 RED ALERT E3: covariate batch DE (ADR-0019 D8)
 
 ## FASE E3 ADR-0019 D8 (2026-05-28, sessione 7)

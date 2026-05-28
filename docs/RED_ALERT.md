@@ -1001,9 +1001,37 @@ covariate batch attive cross-study (riduzione confondimento
 instrument/aligner). Per-studio limma le covariate sono spesso
 single-level e auto-droppate (warning logged in qc_report).
 
-#### ⬜ E4 — Tests E1-E3
+#### ✅ E4 — Integration test cascade E1-E3 (DONE sessione 7, 2026-05-28)
 
-#### ⬜ E5 — Stage4 dashboard/Layer B compatibility
+Commit `af8a80c`. Test integration end-to-end (`test-stage4-e4-cascade.R`)
+con mock H5 sintetico (50% protein_coding + 30% lncRNA + 20% miRNA;
+4 studi x 6 sample) che verifica:
+- Ensembl axis univoco (E1)
+- biotype filter protein_coding (E2)
+- covariate batch instrument_model (E3)
+- pre-fit rank check Fix C1 confound col treatment
+
+5 test_that, 23 expect_* PASS. Edge case: H5 senza biotype, covariata
+confunded, axis NA gestiti coerentemente.
+
+#### ✅ E5 — Stage4 dashboard/Layer B compatibility (DONE sessione 7, 2026-05-28)
+
+Commit pending. Verifica end-to-end che Layer B produce bundle
+paper-grade con il nuovo schema E1-E3:
+
+- `R/layer-b-build.R`: `schema_versions$stage4_algorithm` bumpato a
+  `v2_ensembl_gene_axis` (era 'v1' stale). Tracciato in
+  `run_metadata.json` post-write.
+- `tests/testthat/test-stage4-e5-layer-b-schema.R`: 2 test_that,
+  8 expect_*. Verifica schema_versions propagato + top_genes.csv
+  contiene `gene_id` + `gene_symbol` (no 'gene' legacy).
+- `analysis/audit/E5-smoke-plots.R` + output dir: script standalone
+  che materializza i plot di 2 cluster sintetici (cl_mega_1 +
+  cl_aug_1) per giudizio visuale. Output volcano/forest/heatmap/MA/
+  top_genes/summary_card committato in `analysis/audit/E5-smoke-plots/`.
+
+Test perimetro post-E4+E5: **840 expect_*, 0 fail** stage4+layer-b
+totale.
 
 **Cosa facciamo.** Verifichiamo che `cluster_pooled.parquet` con il
 nuovo schema (ensembl_gene + symbol + biotype + covariate logged in
