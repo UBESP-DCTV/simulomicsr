@@ -327,6 +327,50 @@ test_that("E3 T5.2 build_stage4_results run_metadata registra de_covariates_requ
                c("instrument_model", "aligner_class"))
 })
 
+test_that("E3 T6a Fix C1.1 .augment_de_design: covariata perfettamente confounded con treatment -> drop con reason 'non_estimable'", {
+  metadata <- data.frame(
+    sample_id = paste0("GSM", 1:6),
+    treatment = factor(rep(c("treated", "control"), each = 3),
+                        levels = c("control", "treated")),
+    # instrument PERFETTAMENTE confounded col treatment (tutti i treated
+    # su HiSeq, tutti i control su NovaSeq) -> design ~treatment +
+    # instrument e' rank-deficient (1 colonna aliasata).
+    instrument_model = c(rep("HiSeq2500", 3), rep("NovaSeq6000", 3)),
+    stringsAsFactors = FALSE
+  )
+  expect_warning(
+    res <- simulomicsr:::.augment_de_design(
+      metadata,
+      covariates = "instrument_model",
+      cluster_id = "TEST_C1.1"
+    ),
+    "non.estimable|confounded|rank.deficient"
+  )
+  expect_equal(length(res$covariates_used), 0L)
+  expect_equal(res$covariates_dropped, "instrument_model")
+  expect_true(any(grepl("non_estimable|confounded|rank_deficient",
+                         res$drop_log$reason)))
+})
+
+test_that("E3 T6a Fix C1.2 .augment_de_design: covariata non-confunded -> kept (no false positive)", {
+  metadata <- data.frame(
+    sample_id = paste0("GSM", 1:8),
+    treatment = factor(rep(c("treated", "control"), 4),
+                        levels = c("control", "treated")),
+    # instrument distribuito bilanciato cross-treatment (non-confounded)
+    instrument_model = c("HiSeq", "HiSeq", "NovaSeq", "NovaSeq",
+                          "HiSeq", "NovaSeq", "HiSeq", "NovaSeq"),
+    stringsAsFactors = FALSE
+  )
+  res <- simulomicsr:::.augment_de_design(
+    metadata,
+    covariates = "instrument_model",
+    cluster_id = "TEST_C1.2"
+  )
+  expect_equal(res$covariates_used, "instrument_model")
+  expect_equal(length(res$covariates_dropped), 0L)
+})
+
 test_that("E3 T1.6 .augment_de_design: covariates NULL/empty -> no-op", {
   metadata <- data.frame(
     sample_id = paste0("GSM", 1:4),

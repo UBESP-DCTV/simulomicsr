@@ -119,6 +119,55 @@ NULL
     used <- c(used, cov)
   }
 
+  # T6a Fix C1 (Codex review paper-grade): pre-fit rank check del design
+  # ~ treatment + <covariates>. Se model.matrix produce design singolare
+  # (rank < ncol), una o piu' covariate sono confounded con treatment
+  # (es. tutti i treated su HiSeq, tutti i control su NovaSeq) -> il fit
+  # produrra' coefficient NA per il termine aliasato, e il tryCatch
+  # downstream catturerebbe solo l'errore generico senza distinguere
+  # confound strutturale da rank deficiency campionaria.
+  #
+  # Approccio robust-first: se design rank-deficient, drop TUTTE le
+  # covariate kept (conservativo) + log strutturato. Meglio fit
+  # treatment-only che modello singolare con coef silenziosi.
+  # In presenza di treatment factor con 2 livelli garantiti
+  # (constraint del caller), design '~ treatment' senza covariate ha
+  # sempre rank pieno (intercept + treatmenttreated, rank=2).
+  if (length(used) > 0L && "treatment" %in% names(meta_aug)) {
+    test_formula <- stats::as.formula(
+      paste("~ treatment +", paste(used, collapse = " + "))
+    )
+    test_mm <- tryCatch(
+      stats::model.matrix(test_formula, data = meta_aug),
+      error = function(e) NULL
+    )
+    if (!is.null(test_mm) && qr(test_mm)$rank < ncol(test_mm)) {
+      warning(sprintf(
+        "cluster %s: design ~ treatment + %s e' rank-deficient (covariate confounded col treatment) -> drop covariate, fit treatment-only",
+        cluster_id, paste(used, collapse = " + ")
+      ), call. = FALSE)
+      for (cov_drop in used) {
+        log_rows[[length(log_rows) + 1L]] <- tibble::tibble(
+          cluster_id = cluster_id,
+          covariate  = cov_drop,
+          reason     = "non_estimable_confounded_with_treatment",
+          detail     = sprintf("design ~treatment+%s rank %d/%d",
+                                paste(used, collapse = "+"),
+                                qr(test_mm)$rank, ncol(test_mm))
+        )
+      }
+      dropped <- c(dropped, used)
+      used <- character(0)
+      # Rimuovi colonne covariate da metadata_aug per coerenza
+      for (cov_drop in dropped[dropped != ""]) {
+        if (cov_drop %in% names(meta_aug) && cov_drop != "treatment") {
+          # mantengo come char vec (no factor) - tanto non sara' nel design
+          meta_aug[[cov_drop]] <- as.character(meta_aug[[cov_drop]])
+        }
+      }
+    }
+  }
+
   drop_log <- if (length(log_rows) > 0L) {
     dplyr::bind_rows(log_rows)
   } else empty_log
