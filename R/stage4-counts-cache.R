@@ -91,11 +91,15 @@
 #'   \code{.parse_gene_axis}).
 #' @keywords internal
 .h5_gene_axis <- function(h5_path) {
-  k <- paste0("genes::v2_ensembl::", h5_path)
+  # FASE E2 ADR-0019 D7: cache key bumpata v3_with_biotype perche' E1
+  # axis a 2-componenti non includeva gene_biotype. Le run pre-E2
+  # invalidano automaticamente la cache memo.
+  k <- paste0("genes::v3_with_biotype::", h5_path)
   if (is.null(.h5_axis_memo[[k]])) {
     ens <- as.character(rhdf5::h5read(h5_path, "meta/genes/ensembl_gene"))
     sym <- as.character(rhdf5::h5read(h5_path, "meta/genes/symbol"))
-    .h5_axis_memo[[k]] <- .parse_gene_axis(ens, sym)
+    bt  <- as.character(rhdf5::h5read(h5_path, "meta/genes/biotype"))
+    .h5_axis_memo[[k]] <- .parse_gene_axis(ens, sym, bt)
   }
   .h5_axis_memo[[k]]
 }
@@ -105,10 +109,16 @@
 #' @param gse string GSE accession
 #' @param sample_ids character vector di GSM ids
 #' @param h5_path path al H5 ARCHS4
-#' @return integer matrix (genes x samples) con rownames HGNC symbol +
-#'   colnames GSM accession.
+#' @param gene_biotype_filter character vector di biotype Ensembl da
+#'   mantenere (FASE E2 ADR-0019 D7, default \code{"protein_coding"}).
+#'   NULL = no filter (tutti i ~67k geni). Applicato PRE-cache (cache
+#'   key stratifica per filter, vedi \code{.cache_key_for_fetch}).
+#' @return integer matrix (genes x samples) con rownames = ensembl_gene +
+#'   colnames = GSM accession + attr('gene_symbol') named +
+#'   attr('gene_biotype') named.
 #' @keywords internal
-.fetch_counts_from_h5 <- function(gse, sample_ids, h5_path) {
+.fetch_counts_from_h5 <- function(gse, sample_ids, h5_path,
+                                    gene_biotype_filter = "protein_coding") {
   # Sample index dall'asse H5 memoizzato (vedi .h5_sample_axis)
   all_gsm <- .h5_sample_axis(h5_path)
   idx <- match(sample_ids, all_gsm)
@@ -129,11 +139,21 @@
   # KIR3DL2 x43, HLA, ...) e' attaccato come attr(counts, "gene_symbol") named
   # vec con names=ensembl_gene per consentire lookup post-filterByExpr.
   # FASE E1 (ADR-0019 D6): rimossa la patch make.unique() che mascherava
-  # paralogi sotto rownames sintetici. Discovery 2026-05-21 (ADR-0016 Decision
-  # 2) era un workaround sotto la diagnosi sbagliata; il refactoring qui
-  # corregge l'axis alla fonte.
+  # paralogi sotto rownames sintetici.
+  # FASE E2 (ADR-0019 D7): se gene_biotype_filter non NULL, subset di axis +
+  # counts ai soli geni col biotype richiesto (default 'protein_coding',
+  # 22881/67186 = 34%). Filter applicato PRE-cache disk (vedi
+  # .cache_key_for_fetch) -> cache stratifica per filter, e tutto
+  # downstream (.run_dream_mega, .run_limma_voom_de) opera sui geni
+  # filtrati senza ulteriore lavoro.
+  axis <- .h5_gene_axis(h5_path)
+  if (!is.null(gene_biotype_filter)) {
+    filt <- .apply_biotype_filter(counts, axis, gene_biotype_filter)
+    counts <- filt$counts
+    axis   <- filt$gene_axis
+  }
   colnames(counts) <- sample_ids
-  counts <- .attach_gene_annotation(counts, .h5_gene_axis(h5_path))
+  counts <- .attach_gene_annotation(counts, axis)
 
   counts
 }

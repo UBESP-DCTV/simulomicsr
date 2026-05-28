@@ -252,3 +252,81 @@ test_that("E2 T1.5 attach_gene_annotation: setta attr gene_biotype named se pres
   expect_equal(unname(bt), c("protein_coding", "lncRNA", "miRNA"))
   expect_equal(names(bt), c("ENSG_A", "ENSG_B", "ENSG_C"))
 })
+
+# ============================================================================
+# E2 T2 — .apply_biotype_filter: helper puro subset counts + axis
+# ============================================================================
+
+test_that("E2 T2.1 apply_biotype_filter NULL: ritorna invariato (retrocompat)", {
+  counts <- matrix(1:9, nrow = 3, ncol = 3,
+                    dimnames = list(c("ENSG_A", "ENSG_B", "ENSG_C"),
+                                     c("GSM1", "GSM2", "GSM3")))
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("A", "B", "C"),
+    gene_biotype = c("protein_coding", "lncRNA", "miRNA")
+  )
+  res <- simulomicsr:::.apply_biotype_filter(counts, axis, NULL)
+  expect_equal(nrow(res$counts), 3L)
+  expect_equal(res$gene_axis$gene_biotype,
+               c("protein_coding", "lncRNA", "miRNA"))
+})
+
+test_that("E2 T2.2 apply_biotype_filter 'protein_coding' filtra a 1 gene", {
+  counts <- matrix(1:9, nrow = 3, ncol = 3,
+                    dimnames = list(c("ENSG_A", "ENSG_B", "ENSG_C"),
+                                     c("GSM1", "GSM2", "GSM3")))
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("A", "B", "C"),
+    gene_biotype = c("protein_coding", "lncRNA", "miRNA")
+  )
+  res <- simulomicsr:::.apply_biotype_filter(counts, axis, "protein_coding")
+  expect_equal(nrow(res$counts), 1L)
+  expect_equal(res$gene_axis$ensembl_gene, "ENSG_A")
+  expect_equal(res$gene_axis$gene_biotype, "protein_coding")
+  expect_equal(rownames(res$counts), "ENSG_A")
+})
+
+test_that("E2 T2.3 apply_biotype_filter vector c('protein_coding','lncRNA') union", {
+  counts <- matrix(1:9, nrow = 3, ncol = 3,
+                    dimnames = list(c("ENSG_A", "ENSG_B", "ENSG_C"),
+                                     c("GSM1", "GSM2", "GSM3")))
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("A", "B", "C"),
+    gene_biotype = c("protein_coding", "lncRNA", "miRNA")
+  )
+  res <- simulomicsr:::.apply_biotype_filter(counts, axis,
+                                              c("protein_coding", "lncRNA"))
+  expect_equal(nrow(res$counts), 2L)
+  expect_setequal(res$gene_axis$ensembl_gene, c("ENSG_A", "ENSG_B"))
+})
+
+test_that("E2 T2.4 apply_biotype_filter biotype non esistente -> errore", {
+  counts <- matrix(1:9, nrow = 3, ncol = 3)
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("A", "B", "C"),
+    gene_biotype = c("protein_coding", "lncRNA", "miRNA")
+  )
+  expect_error(
+    simulomicsr:::.apply_biotype_filter(counts, axis, "nonexistent_biotype"),
+    "0 geni"
+  )
+})
+
+test_that("E2 T2.5 apply_biotype_filter preserva NA biotype solo se nel filter NA-aware", {
+  counts <- matrix(1:9, nrow = 3, ncol = 3,
+                    dimnames = list(c("ENSG_A", "ENSG_B", "ENSG_C"),
+                                     c("GSM1", "GSM2", "GSM3")))
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("A", "B", "C"),
+    gene_biotype = c("protein_coding", NA_character_, "protein_coding")
+  )
+  # NA biotype non matcha 'protein_coding' di default -> droppato.
+  res <- simulomicsr:::.apply_biotype_filter(counts, axis, "protein_coding")
+  expect_equal(nrow(res$counts), 2L)
+  expect_setequal(res$gene_axis$ensembl_gene, c("ENSG_A", "ENSG_C"))
+})

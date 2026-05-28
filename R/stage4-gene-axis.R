@@ -143,3 +143,38 @@ NULL
   }
   counts
 }
+
+#' Subset counts + gene_axis a un sotto-insieme di biotype
+#'
+#' Helper puro stateless usato da \code{.fetch_counts_from_h5} per applicare
+#' il filtro \code{gene_biotype_filter} (FASE E2 ADR-0019 D7, default
+#' \code{"protein_coding"}). NA biotype non matcha nessun filter -> droppato.
+#'
+#' @param counts matrix (geni x sample) con rownames = ensembl_gene.
+#' @param gene_axis list 3-componenti (output di \code{.parse_gene_axis}).
+#' @param gene_biotype_filter character vector di biotype da mantenere
+#'   (es. \code{"protein_coding"} o \code{c("protein_coding", "lncRNA")}).
+#'   NULL = no filter (ritorna invariato).
+#' @return list \code{(counts, gene_axis)} entrambi subsetati al filter.
+#' @keywords internal
+.apply_biotype_filter <- function(counts, gene_axis, gene_biotype_filter) {
+  if (is.null(gene_biotype_filter)) {
+    return(list(counts = counts, gene_axis = gene_axis))
+  }
+  keep_mask <- gene_axis$gene_biotype %in% gene_biotype_filter
+  # NB: %in% restituisce FALSE su NA -> NA biotype droppato automaticamente.
+  if (!any(keep_mask)) {
+    stop(sprintf(
+      paste0("gene_biotype_filter=c('%s') produce 0 geni: filter troppo ",
+             "restrittivo o gene_axis manca colonna gene_biotype"),
+      paste(gene_biotype_filter, collapse = "','")
+    ), call. = FALSE)
+  }
+  counts_filt <- counts[keep_mask, , drop = FALSE]
+  axis_filt <- list(
+    ensembl_gene = gene_axis$ensembl_gene[keep_mask],
+    gene_symbol  = gene_axis$gene_symbol[keep_mask],
+    gene_biotype = gene_axis$gene_biotype[keep_mask]
+  )
+  list(counts = counts_filt, gene_axis = axis_filt)
+}
