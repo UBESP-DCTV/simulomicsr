@@ -157,6 +157,46 @@ NULL
 #'   NULL = no filter (ritorna invariato).
 #' @return list \code{(counts, gene_axis)} entrambi subsetati al filter.
 #' @keywords internal
+#' Calcola summary cardinalita' gene_axis per audit run_metadata
+#'
+#' T7b Fix 2 (post Codex review): registra in run_metadata.json i numeri
+#' pre/post filter biotype + count NA droppati, in modo che il revisore
+#' del paper possa verificare l'EFFETTO osservato del filter (non solo
+#' il valore richiesto).
+#'
+#' @param gene_axis list output di \code{.parse_gene_axis} (3-componenti
+#'   con \code{gene_biotype} valorizzato).
+#' @param gene_biotype_filter character vector o NULL.
+#' @return list con \code{n_total}, \code{n_post_filter},
+#'   \code{n_biotype_na}, \code{filter_applied} (= valore passato),
+#'   \code{biotypes_kept} (vector ordinato dei biotype distinti
+#'   sopravvissuti, NA esclusi).
+#' @keywords internal
+.compute_gene_axis_summary <- function(gene_axis, gene_biotype_filter) {
+  n_total <- length(gene_axis$ensembl_gene)
+  bt <- gene_axis$gene_biotype
+  n_biotype_na <- if (is.null(bt)) NA_integer_ else sum(is.na(bt))
+
+  if (is.null(gene_biotype_filter)) {
+    n_post_filter <- n_total
+    biotypes_kept <- if (is.null(bt)) character(0) else
+      sort(unique(bt[!is.na(bt)]))
+  } else {
+    keep_mask <- bt %in% gene_biotype_filter
+    n_post_filter <- sum(keep_mask)
+    biotypes_kept <- sort(unique(bt[keep_mask]))
+    biotypes_kept <- biotypes_kept[!is.na(biotypes_kept)]
+  }
+
+  list(
+    n_total         = as.integer(n_total),
+    n_post_filter   = as.integer(n_post_filter),
+    n_biotype_na    = as.integer(n_biotype_na),
+    filter_applied  = gene_biotype_filter,
+    biotypes_kept   = biotypes_kept
+  )
+}
+
 .apply_biotype_filter <- function(counts, gene_axis, gene_biotype_filter) {
   if (is.null(gene_biotype_filter)) {
     return(list(counts = counts, gene_axis = gene_axis))

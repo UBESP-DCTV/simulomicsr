@@ -49,6 +49,12 @@ write_stage4_to_dir <- function(s4, dir) {
     # multi-valore (es. c('protein_coding','lncRNA')).
     gene_biotype_filter = s4$run_metadata$gene_biotype_filter %||%
       "(missing: pre-E2 result)",
+    # T7b Fix 2 paper-grade audit trace (post Codex review): summary
+    # cardinalita' osservata del gene axis post-filter. Documenta
+    # l'EFFETTO del filter (n_total H5, n_post_filter, n_biotype_na
+    # droppati, biotypes_kept). NULL se fetch_fn esterno con h5_path
+    # NULL (non possiamo introspettare).
+    gene_axis_summary = s4$run_metadata$gene_axis_summary,
     package_version = as.character(utils::packageVersion("simulomicsr")),
     r_version = R.version.string,
     config = s4$config,

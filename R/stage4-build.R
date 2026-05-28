@@ -70,6 +70,19 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     )
   }
 
+  # T7b Fix 2: gene_axis_summary calcolato UNA volta dall'H5 axis +
+  # filter, propagato in run_metadata. Permette al revisore del paper di
+  # verificare l'EFFETTO osservato del filter (n_total, n_post_filter,
+  # n_biotype_na droppati) non solo il valore richiesto. Se h5_path e'
+  # NULL (fetch_fn esterno), summary NULL: non sappiamo cosa il fetch_fn
+  # ritorna.
+  gene_axis_summary <- if (!is.null(h5_path)) {
+    .compute_gene_axis_summary(
+      .h5_gene_axis(h5_path),
+      gene_biotype_filter
+    )
+  } else NULL
+
   # Step 1: QC sample + studio + cluster
   qc <- .qc_filter_samples_and_studies(stage3_clusters, h5_metadata, config)
 
@@ -97,7 +110,8 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
       run_metadata      = list(
         run_id = run_id,
         timestamp = Sys.time(),
-        gene_biotype_filter = gene_biotype_filter  # FASE E2 ADR-0019 D7
+        gene_biotype_filter = gene_biotype_filter,  # FASE E2 ADR-0019 D7
+        gene_axis_summary = gene_axis_summary       # T7b Fix 2
       )
     ), class = "stage4_result"))
   }

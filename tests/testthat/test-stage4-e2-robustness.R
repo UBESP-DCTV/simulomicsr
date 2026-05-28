@@ -175,6 +175,69 @@ test_that("E2 T7a Fix 1.1 build_stage4_results warning quando fetch_fn esterno +
                             "| res:", res))
 })
 
+test_that("E2 T7b Fix 2.1 .compute_gene_axis_summary calcola cardinalita' pre/post filter + NA count", {
+  axis <- list(
+    ensembl_gene = c("ENSG1", "ENSG2", "ENSG3", "ENSG4", "ENSG5"),
+    gene_symbol  = c("A", "B", "C", "D", "E"),
+    gene_biotype = c("protein_coding", "lncRNA", "protein_coding",
+                     NA_character_, "miRNA")
+  )
+
+  # Filter protein_coding: 2 keep, 1 NA droppato, 2 altri biotype droppati
+  s1 <- simulomicsr:::.compute_gene_axis_summary(axis, "protein_coding")
+  expect_equal(s1$n_total, 5L)
+  expect_equal(s1$n_post_filter, 2L)
+  expect_equal(s1$n_biotype_na, 1L)
+  expect_equal(s1$filter_applied, "protein_coding")
+  expect_equal(s1$biotypes_kept, "protein_coding")
+
+  # Filter NULL: no filter, NA non droppato (n_biotype_na riportato per audit)
+  s2 <- simulomicsr:::.compute_gene_axis_summary(axis, NULL)
+  expect_equal(s2$n_total, 5L)
+  expect_equal(s2$n_post_filter, 5L)
+  expect_equal(s2$n_biotype_na, 1L)
+  expect_null(s2$filter_applied)
+  expect_setequal(s2$biotypes_kept,
+                   c("protein_coding", "lncRNA", "miRNA"))
+
+  # Filter vector multi: union
+  s3 <- simulomicsr:::.compute_gene_axis_summary(
+    axis, c("protein_coding", "lncRNA")
+  )
+  expect_equal(s3$n_post_filter, 3L)
+  expect_setequal(s3$biotypes_kept, c("protein_coding", "lncRNA"))
+})
+
+test_that("E2 T7b Fix 2.2 build_stage4_results dry-run con h5_path NULL + fetch_fn esterno: gene_axis_summary = NULL", {
+  s3 <- tibble::tibble(
+    cluster_id = character(0),
+    mode = factor(character(0), levels = c("pair", "group")),
+    level = integer(0),
+    method = character(0),
+    anchor_key = character(0),
+    direction_check = factor(character(0),
+      levels = c("canonical", "swapped", "ambiguous", "indeterminate", "na")),
+    studies_in_cluster = list()
+  )
+  h5_meta <- tibble::tibble(
+    sample_id = character(0),
+    gse = character(0),
+    lib_size = numeric(0)
+  )
+
+  res <- suppressWarnings(simulomicsr::build_stage4_results(
+    stage3_clusters = s3,
+    h5_metadata = h5_meta,
+    fetch_fn = function(g, s) matrix(0, 0, 0),
+    dry_run_inputs_only = TRUE,
+    gene_biotype_filter = NULL
+  ))
+
+  expect_true("gene_axis_summary" %in% names(res$run_metadata))
+  # h5_path NULL -> summary NULL (non sappiamo cosa fetch_fn esterno ritorna)
+  expect_null(res$run_metadata$gene_axis_summary)
+})
+
 test_that("E2 T7a Fix 1.2 build_stage4_results NESSUN warning quando fetch_fn esterno + filter NULL", {
   s3 <- tibble::tibble(
     cluster_id = character(0),
