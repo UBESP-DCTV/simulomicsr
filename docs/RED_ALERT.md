@@ -1317,30 +1317,58 @@ ALERT per Stadio 1 audit nella sessione successiva.
   Prossimo step nuova sessione: **decidere E0b + procedere con E1
   (gene axis Ensembl)**.
 
-### Handoff next session
+- 2026-05-28 sessione 7: ✅ **FASE E completata (E0b+E1+E2+E3+E4+E5)**.
+  E0b SAMN dedupe cross-GSE drop max-libsize; E1 gene axis Ensembl
+  (supera ADR-0016 Decision 2); E2 biotype protein_coding default; E3
+  covariate batch instrument_model+aligner_class; E4 integration test
+  cascade; E5 Layer B compatibility. Codex review C1+C2 (E3) + 5 finding
+  (E2) indirizzati. Test stage4+layer-b: 840 expect_* PASS. Dettaglio nei
+  §E sopra (tutti ✅ DONE). FASE A+B+C+D+E chiuse (26/19 task).
 
-- **Decisione utente in apertura sessione**: opzione E0b (drop dup /
-  average counts / declare sotto-noise). E0b non sblocca E1, ma va
-  fissato per chiusura ADR-0019 e per orchestrare bene F5 (Stadio 4
-  rebuild post-rebuild).
-- Sessione successiva: parte da **E1 (gene axis Ensembl)** + decisione
-  E0b. Task da pianificare con gate utente fra ciascuna:
-  - E0b collasso SAMN cross-GSE (decisione + eventuale impl).
-  - E1 gene axis Ensembl ID (risolve paralogi ADR-0016 Decision 2).
-  - E2 filtro biotype == protein_coding (default).
-  - E3 covariate batch instrument_model + aligner_class in formula DE.
-  - E4 tests E1-E3.
-  - E5 verifica Layer B compatibility (smoke 3-cluster post refactor).
-- Branch attivo: `p5-llm-anchor-classification-audit` (37 commit ahead
-  di master verificato git, ultimo commit closing doc sessione 6 sopra
-  E0 `cc77faf`).
-- Master invariato.
-- FASE A+B+C+D+E0 completate (20/19 + 1 task addizionale aperta E0b).
-  FASE F, G TODO.
-- Bug latente da tracciare separatamente: nessuno noto al momento
-  (E0 ha chiuso il fix sotto-stima n_distinct_donors scoperto durante
-  pianificazione).
-- File nuovi in clusters.rds da E0: colonna `n_distinct_biosamples`
-  (integer). Schema run_metadata.json `schema_versions.dedupe_strategy`.
-- Quando RED ALERT (Stadio 0) chiude: aprire nuovo doc
+- 2026-05-28 sessione 8: ✅ **pre-flight (5/5) + FASE F1 chiusi**.
+  - **Fix math error bacino**: 507.838 → 508.038 (oracle audit), errore
+    aritmetico sessione 4, verificato empiricamente su A3 TSV. Propagato
+    ADR-0019 + A3 + RED_ALERT (commit `4434c03`).
+  - **Pre-flight 2**: smoke `is_sample_classifiable` 7/7 reali + 7/7
+    coverage TDD (`0a3024c`). H5 v2.5 pre-filtrato → 3 reason code
+    defensive non triggerabili da reali (coperti da fixture unit).
+  - **F1 ETL re-run**: nuovo `analysis/p4-fase-f-etl-build.R` (β stale
+    pre-FASE-C, 5 problemi). Bacino produzione **508.037** (`fe8121a`).
+    Helper TDD `.flag_mouse_mislabeled_h2` + `.build_libsize_vec`
+    (`5e8295b`). Doc closing `8bf9c5f`.
+  - **Pre-flight 3**: `build_archs4_metadata_v2` full H5 GATE PASS,
+    n_kept 509.033 (= F1 pre-H2), schema F5-compatibile (`8d3d441`).
+  - **Pre-flight 4**: config DGX live OK (.sif v0.20.2, partition
+    infinite, Mistral cached). Finding time default → fix (`1ea1e15`,
+    `938992c`).
+  - **Igiene**: DESCRIPTION 9020→9026, man/*.Rd ×42 rigenerati
+    (`6f6a148`, `f1edbac`), cache stage4-counts purgata −5 GB.
+  - **Pre-flight 5**: cache purge eseguita.
+  Branch ahead master ~84 commit. Master invariato. F1 DONE; F2-F6 TODO.
+
+### Handoff next session (sessione 9 = F2-smoke)
+
+- **Deliverable F1 pronto**: `analysis/input/archs4-human-stage1-input-v2.jsonl`
+  (169M, **508.037 record**, gitignored). Schema: `record_id,
+  geo_accession, series_id (risolto), string, library_strategy, organism,
+  molecule_ch1`. H2-pulito, D1-D4 applicati, molecule preservato.
+- **Prossimo step: F2-smoke** (100-sample gate DGX, ~30 min). NIENTE
+  fullrun (validate-before-fullrun §10). Sotto-task:
+  1. Sub-set 100 sample stratificati per nchar tier (S/M/L/XL) dal
+     jsonl-v2.
+  2. Bundle DGX (`dgx_p4_build_bundle`) + submit (`dgx_p4_submit`, time
+     esplicito dal plan; default ora 72h ma smoke basta meno).
+  3. Eval: schema validity ≥99% (target 100%); mini-gold v5 accuracy
+     ≥96.7% baseline (se <93% → STOP revisione prompt D1b); distribuzione
+     design_kind sana; output `sample_facts.stage1.v3` parser-grade.
+  4. Commit `P5 audit RED_ALERT F2-smoke: 100-sample gate`.
+- **Gate pre-F2-fullrun**: smoke eval + decisione utente. F2 fullrun
+  (~12-15h DGX) in sessione 10 separata.
+- **DGX pronto** (verificato sessione 8): container v0.20.2, partition
+  dgx12cluster infinite, Mistral-Small-3.2 cached. SSH BatchMode OK.
+- **Nota downstream F5**: `build_archs4_metadata_v2` non applica H2 → RDS
+  include 996 sample H2-survived-D1-D4, inerti (lookup solo cluster GSM
+  post-H2). Decidere a F5 se restringere al GSM set F1 o documentare.
+- Branch `p5-llm-anchor-classification-audit`, master invariato. No push.
+- Quando RED ALERT (Stadio 0) chiude (post-F6+G): aprire
   `docs/RED_ALERT-stage1.md` per audit Stadio 1.

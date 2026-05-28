@@ -19,6 +19,36 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-05-28 fine sessione 8**: ✅ **pre-flight (5/5) + FASE F1
+> chiusi**. Branch ahead master di **84 commit**. Prossimo step:
+> **F2-smoke** (100-sample gate DGX) in sessione 9 separata, poi F2
+> fullrun in sessione 10. Highlights sessione 8:
+> - **Fix math error bacino**: 507.838 → **508.038** (oracle audit) era un
+>   errore aritmetico di sessione 4 (+378 invece di +578), verificato
+>   empiricamente su A3 TSV. Propagato in ADR-0019 + A3 + RED_ALERT.
+> - **F1 ETL re-run** (`analysis/p4-fase-f-etl-build.R`, nuovo): bacino
+>   produzione **508.037 sample** (`archs4-human-stage1-input-v2.jsonl`,
+>   gitignored). Set equality vs oracle: extra=0, missing={GSM3612196}.
+>   Lo script β era stale pre-FASE-C (5 problemi: H2 assente, H2-su-raw,
+>   molecule droppato, D4 non applicato, H5_PATH errato) → riscritto.
+> - **H2 mouse-mislabeled come filtro Stadio 0** (opzione A1 + drop pulito
+>   (i) scelte utente): drop dei 72 GSE su series RISOLTO (post-resolver),
+>   non raw H5. Helper `.flag_mouse_mislabeled_h2` + `.build_libsize_vec`
+>   (TDD). GSM3612196 (GSE126753, 78.6% murino, residuo H2 di β) rimosso →
+>   F1 è 1 sample più pulito dell'oracle.
+> - **Pre-flight verificati**: smoke `is_sample_classifiable` 7/7 reali +
+>   7/7 coverage TDD; `build_archs4_metadata_v2` full H5 GATE PASS
+>   (n_kept 509.033 = F1 pre-H2, schema F5-compatibile, biosample SAMN
+>   99.98%); config DGX live OK (.sif v0.20.2 presente, partition
+>   infinite, Mistral cached).
+> - **Igiene**: DESCRIPTION 9020→9026 (allineata + bump F1), man/*.Rd
+>   rigenerati (42 file drift sessioni 5-7, NAMESPACE invariato),
+>   dgx_p4_submit default time 12h→72h (preferenza utente), cache
+>   stage4-counts purgata (−5 GB pre-E1).
+> - **Nota downstream tracciata**: `build_archs4_metadata_v2` non applica
+>   H2 → RDS include i 996 H2-survived-D1-D4, inerti a F5 (lookup solo su
+>   GSM dei cluster post-H2). Da risolvere/documentare a F5.
+>
 > **Stato 2026-05-27 fine sessione 7**: ✅ **FASE A+B+C+D+E0+E0b chiuse
 > (21/19 task)**. Sessione 7 ha chiuso E0b — collasso same-SAMN cross-GSE
 > in pool Stadio 4 — con scelta utente (a) drop deterministico max

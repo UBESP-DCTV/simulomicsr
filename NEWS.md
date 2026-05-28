@@ -1,3 +1,66 @@
+# simulomicsr 0.0.0.9026 (development) — P5 RED ALERT F1: ETL re-run Stage 0 v2 + pre-flight
+
+## FASE F1 + pre-flight RED ALERT (2026-05-28, sessione 8)
+
+Apertura FASE F (rebuild pipeline). Sessione 8 = pre-flight (5 step) + F1
+ETL re-run. NIENTE fullrun (F2 fullrun in sessione 10). Master invariato.
+
+### F1 — ETL re-run Stage 0 v2
+
+- `analysis/p4-fase-f-etl-build.R` (NEW): riscrittura paper-grade dell'ETL
+  che rimpiazza `p4-beta-etl-build.R` (stale pre-FASE-C: H2 assente,
+  H2-su-series-raw, molecule_ch1 droppato nel JSONL finale, D4 lib_size non
+  applicato, H5_PATH errato). Piano:
+  `docs/superpowers/plans/2026-05-28-p5-fase-f1-etl-rebuild-plan.md`.
+- **Bacino produzione 508.037 sample** (`archs4-human-stage1-input-v2.jsonl`,
+  gitignored). Decomposizione drop (su 888.821 full H5): D1 library_source
+  31.915 + D2 protocol 307.538 + D3 scprob 1.224 + D4 lib_size 39.111 →
+  509.033, poi H2 drop 996 → 508.037.
+- Filtro H2 mouse-mislabeled (opzione A1 + drop pulito (i), scelte utente):
+  drop dei 72 GSE `p4-beta-rescue-h2-suspects.rds` sul series_id RISOLTO
+  (post series-id-resolver), NON raw H5 (193k multi-GSE). GSM3612196
+  (GSE126753, 78.6% murino) rimosso → 1 sample più pulito dell'oracle β.
+- Provenance `p4-fase-f-source.json`: sha256 H5 verificato == valore noto
+  CLAUDE.md + git_head + schema_versions E5. Resolver da cache (0 NCBI).
+
+### Helper nuovi (TDD bite-sized)
+
+- `R/etl-archs4-utils.R::.flag_mouse_mislabeled_h2(resolved_series, h2_gse)`:
+  filtro H2 post-resolver, NA-safe. 4 test_that.
+- `R/etl-archs4-utils.R::.build_libsize_vec(geo_all, a3_tsv_path)`: vettore
+  lib_size da A3 TSV precalcolato (no re-scan H5 expression). 2 test_that.
+
+### Fix correttezza + igiene
+
+- **Bacino math error**: 507.838 → **508.038** (oracle audit). Errore
+  aritmetico sessione 4 ("+378" invece di "+578"), verificato empiricamente
+  su `A3-libsize-scprob-bacino.tsv`. Corretto in ADR-0019 + A3-synthesis +
+  RED_ALERT.
+- **DESCRIPTION Version** 9020 → 9026 (era ferma dal Layer B cleanup,
+  sessioni 6-7 avevano aggiunto NEWS 9021-9025 senza bump).
+- **man/*.Rd**: 42 file rigenerati (drift roxygen sessioni 5-7, source
+  committato ma .Rd mai rigenerati). NAMESPACE invariato (tutti interni).
+- **`dgx_p4_submit` default time** 12:00:00 → 72:00:00 (preferenza utente
+  `feedback_dgx_time_limit_default`, partition infinite, footgun fullrun).
+- Cache `stage4-counts` purgata (−5 GB, 16.074 file pre-E1 invalidati).
+
+### Pre-flight verificati (GATE PASS, artefatti in analysis/audit/)
+
+- Step 2 `preflight-F-step2-classifiable-smoke.R`: `is_sample_classifiable`
+  7/7 sample reali + 7/7 reason code coperti TDD. Discovery: H5 v2.5 è
+  pre-filtrato (3 reason code defensive non triggerabili da sample reali).
+- Step 3 `preflight-F-step3-metadata-v2-smoke.R`: `build_archs4_metadata_v2`
+  full H5 GATE PASS (n_kept 509.033 = F1 pre-H2, 11/11 colonne F5, aligner
+  factor, biosample SAMN 99.98%).
+- Step 4 `preflight-F-step4-dgx-config-check.md`: config DGX statica + probe
+  SSH live (container .sif v0.20.2, partition dgx12cluster infinite, modello
+  Mistral cached).
+
+### Nota downstream (tracciata, scope F5)
+
+`build_archs4_metadata_v2` non applica H2 → il suo RDS include i 996 sample
+H2-survived-D1-D4. Inerte a F5 (lookup solo su GSM nei cluster post-H2).
+
 # simulomicsr 0.0.0.9025 (development) — P5 RED ALERT E4+E5: integration test + Layer B compatibility
 
 ## FASE E4+E5 RED ALERT (2026-05-28, sessione 7)
