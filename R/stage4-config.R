@@ -80,6 +80,12 @@ stage4_default_config <- function() {
       # rinominata 'gene_id' (Ensembl) + nuova colonna 'gene_symbol' (HGNC).
       # Cache stage4-counts bumpata internamente (v2_ensembl prefix).
       stage4_algorithm   = "v2_ensembl_gene_axis",
+      # FASE E2 ADR-0019 D7 (decisione utente 2026-05-28): filter
+      # gene_biotype = protein_coding come default; valore effettivamente
+      # passato in build_stage4_results e' registrato in
+      # run_metadata\$gene_biotype_filter (override possibile a NULL = no
+      # filter, o vector multi-valore).
+      gene_biotype_filter_strategy = "v1_protein_coding_default",
       # FASE E0b ADR-0019 D9 (decisione utente 2026-05-27 su evidence A7b).
       # Strategia di SAMN dedupe nel pool Stadio 4: per ogni SAMN cross-GSE
       # con N>=2 GSM, tenuto il GSM con lib_size max; tie-break GSM

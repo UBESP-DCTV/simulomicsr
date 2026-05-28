@@ -73,7 +73,11 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
                                 "qc_drops_cluster")],
       non_processable   = qc$qc_drops_cluster,
       config            = config,
-      run_metadata      = list(run_id = run_id, timestamp = Sys.time())
+      run_metadata      = list(
+        run_id = run_id,
+        timestamp = Sys.time(),
+        gene_biotype_filter = gene_biotype_filter  # FASE E2 ADR-0019 D7
+      )
     ), class = "stage4_result"))
   }
 
@@ -164,6 +168,10 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     qc_report         = qc_report,
     non_processable   = qc_report$qc_drops_cluster,
     config            = config,
-    run_metadata      = list(run_id = run_id, timestamp = Sys.time())
+    run_metadata      = list(
+      run_id = run_id,
+      timestamp = Sys.time(),
+      gene_biotype_filter = gene_biotype_filter  # FASE E2 ADR-0019 D7
+    )
   ), class = "stage4_result")
 }

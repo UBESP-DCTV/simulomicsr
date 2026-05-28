@@ -43,6 +43,12 @@ write_stage4_to_dir <- function(s4, dir) {
     run_id = s4$run_metadata$run_id,
     timestamp = ts_str,
     schema_versions = s4$config$schema_versions,
+    # FASE E2 ADR-0019 D7: filter biotype effettivamente applicato in
+    # questo run. NULL/missing = no filter (~67k geni); default
+    # 'protein_coding' = ~23k geni. Override possibile a vector
+    # multi-valore (es. c('protein_coding','lncRNA')).
+    gene_biotype_filter = s4$run_metadata$gene_biotype_filter %||%
+      "(missing: pre-E2 result)",
     package_version = as.character(utils::packageVersion("simulomicsr")),
     r_version = R.version.string,
     config = s4$config,

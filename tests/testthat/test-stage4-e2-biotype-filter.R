@@ -73,6 +73,49 @@ test_that("E2 T4.3 fetch_fn default propaga NULL filter (no-op)", {
   expect_null(captured$gene_biotype_filter)
 })
 
+test_that("E2 T5.1 stage4_default_config schema_versions include gene_biotype_filter_strategy", {
+  cfg <- simulomicsr::stage4_default_config()
+  expect_true("gene_biotype_filter_strategy" %in% names(cfg$schema_versions))
+  expect_equal(cfg$schema_versions$gene_biotype_filter_strategy,
+               "v1_protein_coding_default")
+})
+
+test_that("E2 T5.2 build_stage4_results run_metadata registra gene_biotype_filter effettivo", {
+  fmls <- formals(simulomicsr::build_stage4_results)
+  expect_true("gene_biotype_filter" %in% names(fmls))
+
+  # Smoke: per la dry-run il run_metadata e' costruito ma il fetch_fn non
+  # viene istanziato. Verifichiamo che il filter passato sia preservato
+  # nell'output run_metadata. Uso un fixture stage3_clusters super-minimal
+  # che passi il QC senza filter di sample (lib_size omesso = niente drop).
+  s3 <- tibble::tibble(
+    cluster_id = character(0),
+    mode = factor(character(0), levels = c("pair", "group")),
+    level = integer(0),
+    method = character(0),
+    anchor_key = character(0),
+    direction_check = factor(character(0),
+      levels = c("canonical", "swapped", "ambiguous", "indeterminate", "na")),
+    studies_in_cluster = list()
+  )
+  h5_meta <- tibble::tibble(
+    sample_id = character(0),
+    gse = character(0),
+    lib_size = numeric(0)
+  )
+
+  res <- simulomicsr::build_stage4_results(
+    stage3_clusters = s3,
+    h5_metadata = h5_meta,
+    dry_run_inputs_only = TRUE,
+    gene_biotype_filter = c("protein_coding", "lncRNA")
+  )
+
+  expect_true("gene_biotype_filter" %in% names(res$run_metadata))
+  expect_equal(res$run_metadata$gene_biotype_filter,
+               c("protein_coding", "lncRNA"))
+})
+
 test_that("E2 T4.4 fetch_fn default propaga vector multi-valore", {
   captured <- list()
   mock_cached <- function(gse, sample_ids, h5_path = NULL,
