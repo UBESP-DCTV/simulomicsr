@@ -112,8 +112,9 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
       run_metadata      = list(
         run_id = run_id,
         timestamp = Sys.time(),
-        gene_biotype_filter = gene_biotype_filter,  # FASE E2 ADR-0019 D7
-        gene_axis_summary = gene_axis_summary       # T7b Fix 2
+        gene_biotype_filter = gene_biotype_filter,    # FASE E2 ADR-0019 D7
+        gene_axis_summary = gene_axis_summary,        # T7b Fix 2
+        de_covariates_requested = de_covariates       # FASE E3 ADR-0019 D8
       )
     ), class = "stage4_result"))
   }

@@ -55,6 +55,11 @@ write_stage4_to_dir <- function(s4, dir) {
     # droppati, biotypes_kept). NULL se fetch_fn esterno con h5_path
     # NULL (non possiamo introspettare).
     gene_axis_summary = s4$run_metadata$gene_axis_summary,
+    # FASE E3 ADR-0019 D8: covariate batch DE richieste a livello run
+    # (valore passato a build_stage4_results). Effetto cluster-per-cluster
+    # (drop log per single-level / missing / NA) e' nei
+    # pooling_warnings se materializzato downstream.
+    de_covariates_requested = s4$run_metadata$de_covariates_requested,
     package_version = as.character(utils::packageVersion("simulomicsr")),
     r_version = R.version.string,
     config = s4$config,

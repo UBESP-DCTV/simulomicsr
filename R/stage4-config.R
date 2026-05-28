@@ -86,6 +86,12 @@ stage4_default_config <- function() {
       # run_metadata\$gene_biotype_filter (override possibile a NULL = no
       # filter, o vector multi-valore).
       gene_biotype_filter_strategy = "v1_protein_coding_default",
+      # FASE E3 ADR-0019 D8 (decisione utente 2026-05-28): covariate
+      # batch nel design DE (instrument_model + aligner_class di
+      # default). Single-level + missing + NA gestiti via
+      # .augment_de_design. Valori richiesti registrati in
+      # run_metadata\$de_covariates_requested.
+      de_covariates_strategy = "v1_instrument_aligner_drop_single_level",
       # FASE E0b ADR-0019 D9 (decisione utente 2026-05-27 su evidence A7b).
       # Strategia di SAMN dedupe nel pool Stadio 4: per ogni SAMN cross-GSE
       # con N>=2 GSM, tenuto il GSM con lib_size max; tie-break GSM

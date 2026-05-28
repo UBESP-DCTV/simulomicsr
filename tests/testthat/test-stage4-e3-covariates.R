@@ -291,6 +291,42 @@ test_that("E3 T4.2 .pool_all_clusters signature include metadata_extra + de_cova
   expect_equal(eval(fmls$de_covariates), character(0))
 })
 
+test_that("E3 T5.1 stage4_default_config schema_versions include de_covariates_strategy", {
+  cfg <- simulomicsr::stage4_default_config()
+  expect_true("de_covariates_strategy" %in% names(cfg$schema_versions))
+  expect_equal(cfg$schema_versions$de_covariates_strategy,
+               "v1_instrument_aligner_drop_single_level")
+})
+
+test_that("E3 T5.2 build_stage4_results run_metadata registra de_covariates_requested", {
+  s3 <- tibble::tibble(
+    cluster_id = character(0),
+    mode = factor(character(0), levels = c("pair", "group")),
+    level = integer(0),
+    method = character(0),
+    anchor_key = character(0),
+    direction_check = factor(character(0),
+      levels = c("canonical", "swapped", "ambiguous", "indeterminate", "na")),
+    studies_in_cluster = list()
+  )
+  h5_meta <- tibble::tibble(
+    sample_id = character(0),
+    gse = character(0),
+    lib_size = numeric(0)
+  )
+  res <- suppressWarnings(simulomicsr::build_stage4_results(
+    stage3_clusters = s3,
+    h5_metadata = h5_meta,
+    fetch_fn = function(g, s) matrix(0, 0, 0),
+    dry_run_inputs_only = TRUE,
+    gene_biotype_filter = NULL,
+    de_covariates = c("instrument_model", "aligner_class")
+  ))
+  expect_true("de_covariates_requested" %in% names(res$run_metadata))
+  expect_equal(res$run_metadata$de_covariates_requested,
+               c("instrument_model", "aligner_class"))
+})
+
 test_that("E3 T1.6 .augment_de_design: covariates NULL/empty -> no-op", {
   metadata <- data.frame(
     sample_id = paste0("GSM", 1:4),
