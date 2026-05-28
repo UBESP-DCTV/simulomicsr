@@ -192,6 +192,55 @@ parse_biosample_id <- function(relation_text) {
   }, character(1L), USE.NAMES = FALSE)
 }
 
+#' Flagga sample mouse-mislabeled-upstream (H2) per series_id risolto.
+#'
+#' Implementa il filtro H2 (P5 audit RED_ALERT F1, opzione A1) come step
+#' POST-resolver dello script ETL. I 72 GSE in
+#' \code{p4-beta-rescue-h2-suspects.rds} sono studi ARCHS4 v2.5 con
+#' \code{organism_ch1 == "Homo sapiens"} ma contenuto murino, scoperti dal
+#' fullrun beta Stadio 1 (vedi
+#' \code{docs/findings/2026-05-17-llm-detected-archs4-geo-organism-mislabeling.md}).
+#' Il match va fatto sul series_id RISOLTO (post series-id-resolver), NON sul
+#' raw H5 \code{meta/samples/series_id} (193.097 multi-GSE: il rds H2 usa il
+#' valore risolto).
+#'
+#' @param resolved_series character vector di series_id risolti (uno per
+#'   sample).
+#' @param h2_gse character vector dei series_id H2 (i 72 GSE
+#'   mouse-mislabeled).
+#' @return Logical vector stessa lunghezza di \code{resolved_series}. TRUE =
+#'   sample in un GSE H2 (drop). NA series → FALSE (conservativo: identita'
+#'   studio ignota non droppata).
+#' @keywords internal
+.flag_mouse_mislabeled_h2 <- function(resolved_series, h2_gse) {
+  out <- resolved_series %in% h2_gse
+  out[is.na(resolved_series)] <- FALSE
+  out
+}
+
+#' Costruisce il vettore lib_size allineato a un set di geo_accession.
+#'
+#' Legge il TSV pre-calcolato in FASE A3
+#' (\code{analysis/audit/A3-libsize-scprob-bacino.tsv}, colonne \code{geo} +
+#' \code{lib_size}) e ritorna un vettore numeric allineato all'ordine di
+#' \code{geo_all}. I geo non presenti nel TSV (sample droppati da D1/D2 a
+#' monte del check D4) ricevono \code{NA_real_}: \code{is_sample_classifiable}
+#' salta D4 quando \code{lib_size} e' NA. Evita di ri-scannare l'H5 expression
+#' per il lib_size (gia' calcolato in A3).
+#'
+#' @param geo_all character vector di geo_accession (ordine output).
+#' @param a3_tsv_path Path al TSV A3 con colonne \code{geo} + \code{lib_size}.
+#' @return numeric vector lunghezza \code{length(geo_all)}, NA per i geo
+#'   assenti dal TSV.
+#' @keywords internal
+.build_libsize_vec <- function(geo_all, a3_tsv_path) {
+  stopifnot(file.exists(a3_tsv_path))
+  a3 <- utils::read.table(a3_tsv_path, sep = "\t", header = TRUE,
+                          stringsAsFactors = FALSE)
+  lookup <- setNames(as.numeric(a3$lib_size), a3$geo)
+  unname(lookup[geo_all])
+}
+
 #' Verifica se un sample e' single-cell tramite parsing testuale.
 #'
 #' Match su union di `extract_protocol_ch1`, `title`, `source_name_ch1`.

@@ -389,3 +389,63 @@ test_that("is_single_cell_protocol vettoriale - input/output stessa lunghezza", 
   expect_true(is.logical(out))
   expect_equal(out, c(TRUE, FALSE, TRUE, FALSE))
 })
+
+# ============================================================================
+# .flag_mouse_mislabeled_h2() — P5 audit RED_ALERT F1 (A1, H2 post-resolver)
+# ============================================================================
+
+test_that(".flag_mouse_mislabeled_h2 - series in lista H2 -> TRUE", {
+  h2 <- c("GSE202695", "GSE86977", "GSE126753")
+  expect_equal(
+    .flag_mouse_mislabeled_h2(c("GSE202695", "GSE99999", "GSE86977"), h2),
+    c(TRUE, FALSE, TRUE)
+  )
+})
+
+test_that(".flag_mouse_mislabeled_h2 - NA series -> FALSE (conservativo)", {
+  h2 <- c("GSE202695", "GSE86977")
+  expect_equal(
+    .flag_mouse_mislabeled_h2(c(NA_character_, "GSE202695", NA_character_), h2),
+    c(FALSE, TRUE, FALSE)
+  )
+})
+
+test_that(".flag_mouse_mislabeled_h2 - h2_gse vuoto -> tutti FALSE", {
+  out <- .flag_mouse_mislabeled_h2(c("GSE1", "GSE2"), character(0))
+  expect_equal(out, c(FALSE, FALSE))
+})
+
+test_that(".flag_mouse_mislabeled_h2 - output logica + lunghezza input", {
+  out <- .flag_mouse_mislabeled_h2(c("GSEa", "GSEb", "GSEc"), c("GSEb"))
+  expect_length(out, 3L)
+  expect_true(is.logical(out))
+  expect_equal(out, c(FALSE, TRUE, FALSE))
+})
+
+# ============================================================================
+# .build_libsize_vec() — P5 audit RED_ALERT F1 (T2, lib_size_vec da A3 TSV)
+# ============================================================================
+
+test_that(".build_libsize_vec - geo tutti presenti nel TSV", {
+  tmp <- tempfile(fileext = ".tsv")
+  write.table(
+    data.frame(geo = c("GSM1", "GSM2", "GSM3"),
+               lib_size = c(100, 200, 300),
+               passed_libsize_500k = c(FALSE, FALSE, FALSE)),
+    tmp, sep = "\t", row.names = FALSE, quote = FALSE)
+  out <- .build_libsize_vec(c("GSM2", "GSM1", "GSM3"), tmp)
+  expect_equal(out, c(200, 100, 300))
+  expect_length(out, 3L)
+})
+
+test_that(".build_libsize_vec - geo parziali -> NA per assenti, ordine preservato", {
+  tmp <- tempfile(fileext = ".tsv")
+  write.table(
+    data.frame(geo = c("GSM1", "GSM3"),
+               lib_size = c(100, 300),
+               passed_libsize_500k = c(FALSE, FALSE)),
+    tmp, sep = "\t", row.names = FALSE, quote = FALSE)
+  out <- .build_libsize_vec(c("GSM1", "GSM2", "GSM3"), tmp)
+  expect_equal(out, c(100, NA, 300))
+  expect_length(out, 3L)
+})
