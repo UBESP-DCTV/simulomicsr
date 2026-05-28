@@ -143,6 +143,83 @@ test_that("E3 T1.5 .augment_de_design: mix single+multi-level -> tiene solo mult
 # T1.6 — covariates = character(0) o NULL: no-op, design treatment-only
 # ============================================================================
 
+test_that("E3 T2.1 .run_limma_voom_de senza covariate (default): behavior invariato", {
+  skip_if_not_installed("limma")
+  skip_if_not_installed("edgeR")
+
+  set.seed(42)
+  counts <- matrix(rnbinom(600, size = 5, mu = 100), nrow = 100, ncol = 6)
+  rownames(counts) <- paste0("ENSG", sprintf("%05d", 1:100))
+  colnames(counts) <- paste0("GSM", 1:6)
+  treatment_vec <- factor(rep(c("treated", "control"), each = 3),
+                          levels = c("control", "treated"))
+
+  res <- simulomicsr:::.run_limma_voom_de(
+    counts, treatment_vec, "GSE001", "TEST_T2.1"
+  )
+  expect_true("gene_id" %in% names(res))
+  # Niente attr di covariate quando covariates default (character(0))
+  expect_null(attr(res, "covariates_used"))
+})
+
+test_that("E3 T2.2 .run_limma_voom_de con covariata multi-level: design include covariata", {
+  skip_if_not_installed("limma")
+  skip_if_not_installed("edgeR")
+
+  set.seed(42)
+  counts <- matrix(rnbinom(600, size = 5, mu = 100), nrow = 100, ncol = 6)
+  rownames(counts) <- paste0("ENSG", sprintf("%05d", 1:100))
+  colnames(counts) <- paste0("GSM", 1:6)
+  treatment_vec <- factor(rep(c("treated", "control"), each = 3),
+                          levels = c("control", "treated"))
+  # Instrument non-confunded col treatment: 2 instrument distribuiti
+  # cross-treatment (entrambi i livelli in entrambe le condizioni)
+  metadata_extra <- data.frame(
+    sample_id = paste0("GSM", 1:6),
+    instrument_model = c("HiSeq2500", "HiSeq2500", "NovaSeq6000",
+                          "HiSeq2500", "NovaSeq6000", "NovaSeq6000"),
+    stringsAsFactors = FALSE
+  )
+
+  res <- simulomicsr:::.run_limma_voom_de(
+    counts, treatment_vec, "GSE001", "TEST_T2.2",
+    metadata_extra = metadata_extra,
+    covariates = "instrument_model"
+  )
+  expect_true("gene_id" %in% names(res))
+  # L'output tracking espone le covariate effettivamente usate
+  expect_equal(attr(res, "covariates_used"), "instrument_model")
+  expect_equal(length(attr(res, "covariates_dropped")), 0L)
+})
+
+test_that("E3 T2.3 .run_limma_voom_de con covariata single-level: drop + behavior invariato", {
+  skip_if_not_installed("limma")
+  skip_if_not_installed("edgeR")
+
+  set.seed(42)
+  counts <- matrix(rnbinom(600, size = 5, mu = 100), nrow = 100, ncol = 6)
+  rownames(counts) <- paste0("ENSG", sprintf("%05d", 1:100))
+  colnames(counts) <- paste0("GSM", 1:6)
+  treatment_vec <- factor(rep(c("treated", "control"), each = 3),
+                          levels = c("control", "treated"))
+  metadata_extra <- data.frame(
+    sample_id = paste0("GSM", 1:6),
+    instrument_model = rep("HiSeq2500", 6),  # single-level (single study)
+    stringsAsFactors = FALSE
+  )
+
+  expect_warning(
+    res <- simulomicsr:::.run_limma_voom_de(
+      counts, treatment_vec, "GSE001", "TEST_T2.3",
+      metadata_extra = metadata_extra,
+      covariates = "instrument_model"
+    ),
+    "single-level"
+  )
+  expect_equal(attr(res, "covariates_dropped"), "instrument_model")
+  expect_equal(length(attr(res, "covariates_used")), 0L)
+})
+
 test_that("E3 T1.6 .augment_de_design: covariates NULL/empty -> no-op", {
   metadata <- data.frame(
     sample_id = paste0("GSM", 1:4),

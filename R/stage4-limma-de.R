@@ -22,7 +22,9 @@
 #'   \code{n_treated}, \code{n_control}, \code{direction_applied}.
 #' @keywords internal
 .run_limma_voom_de <- function(counts, treatment_vec, study_id, cluster_id,
-                                direction_flip = FALSE) {
+                                direction_flip = FALSE,
+                                metadata_extra = NULL,
+                                covariates = character(0)) {
   stopifnot(
     is.matrix(counts) || is.data.frame(counts),
     is.factor(treatment_vec),
@@ -30,6 +32,25 @@
     "treated" %in% levels(treatment_vec),
     ncol(counts) == length(treatment_vec)
   )
+
+  # FASE E3 ADR-0019 D8: costruisco metadata locale per il design DE
+  # con eventuali covariate batch. Per-studio (limma-voom) le covariate
+  # tipiche (instrument_model, aligner_class) sono spesso single-level
+  # entro un singolo GSE -> auto-droppate da .augment_de_design.
+  cov_metadata <- data.frame(
+    sample_id = colnames(counts) %||% paste0("S", seq_len(ncol(counts))),
+    treatment = treatment_vec,
+    stringsAsFactors = FALSE
+  )
+  if (!is.null(metadata_extra) && length(covariates) > 0L) {
+    idx <- match(cov_metadata$sample_id, metadata_extra$sample_id)
+    for (cov in covariates) {
+      if (cov %in% names(metadata_extra)) {
+        cov_metadata[[cov]] <- metadata_extra[[cov]][idx]
+      }
+    }
+  }
+  aug <- .augment_de_design(cov_metadata, covariates, cluster_id)
 
   # FASE E1: estrai mapping Ensembl -> HGNC symbol PRIMA di edgeR::DGEList
   # (che scarta gli attr aggiuntivi della matrice). Lookup post-filterByExpr
@@ -51,8 +72,24 @@
   dge <- dge[keep, , keep.lib.sizes = FALSE]
   dge <- edgeR::normLibSizes(dge, method = "TMM")
 
-  design <- stats::model.matrix(~ treatment_vec)
-  colnames(design) <- c("(Intercept)", "treatmenttreated")
+  # FASE E3: design con eventuali covariate batch (instrument + aligner
+  # se forniti e multi-level). Aggiungo treatment come prima colonna
+  # post-intercept per preservare il pattern di estrazione coef
+  # ('treatmenttreated' sempre presente).
+  if (aug$formula_terms == "") {
+    design <- stats::model.matrix(~ treatment, data = aug$metadata_aug)
+  } else {
+    design <- stats::model.matrix(
+      stats::as.formula(paste("~ treatment +", aug$formula_terms)),
+      data = aug$metadata_aug
+    )
+  }
+  # Rinomina intercept + treatmenttreated per coerenza con il codice
+  # post-fit; le colonne covariate restano col loro nome model.matrix.
+  cn <- colnames(design)
+  cn[cn == "(Intercept)"]    <- "(Intercept)"
+  cn[cn == "treatmenttreated"] <- "treatmenttreated"
+  colnames(design) <- cn
 
   v   <- limma::voom(dge, design)
   fit <- limma::lmFit(v, design)
@@ -71,7 +108,7 @@
   }
 
   fit_genes <- rownames(fit)
-  tibble::tibble(
+  out <- tibble::tibble(
     cluster_id        = cluster_id,
     study_id          = study_id,
     gene_id           = fit_genes,
@@ -84,4 +121,13 @@
     n_control         = n_control,
     direction_applied = direction_applied
   )
+  # FASE E3: covariate tracking come attr. NULL quando covariates default
+  # character(0) (retrocompat) per preservare il check 'is.null' del test
+  # T2.1. Altrimenti char(0) o nome covariate.
+  if (length(covariates) > 0L) {
+    attr(out, "covariates_used")    <- aug$covariates_used
+    attr(out, "covariates_dropped") <- aug$covariates_dropped
+    attr(out, "covariate_drop_log") <- aug$drop_log
+  }
+  out
 }
