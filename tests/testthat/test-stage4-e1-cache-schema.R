@@ -30,3 +30,46 @@ test_that("E1 T6.2 stage4_default_config schema_versions stage4_algorithm bumpat
   cfg <- simulomicsr::stage4_default_config()
   expect_equal(cfg$schema_versions$stage4_algorithm, "v2_ensembl_gene_axis")
 })
+
+# ============================================================================
+# E2 T3 — .cache_key_for_fetch stratifica per gene_biotype_filter
+# ============================================================================
+
+test_that("E2 T3.1 cache_key_for_fetch include biotype_filter -> chiave diversa", {
+  gse <- "GSE12345"
+  sample_ids <- c("GSM_a", "GSM_b", "GSM_c")
+
+  k_default <- simulomicsr:::.cache_key_for_fetch(gse, sample_ids)  # default protein_coding
+  k_null    <- simulomicsr:::.cache_key_for_fetch(gse, sample_ids,
+                                                    gene_biotype_filter = NULL)
+  k_lncrna  <- simulomicsr:::.cache_key_for_fetch(gse, sample_ids,
+                                                    gene_biotype_filter = "lncRNA")
+  k_multi   <- simulomicsr:::.cache_key_for_fetch(gse, sample_ids,
+                                                    gene_biotype_filter = c("protein_coding", "lncRNA"))
+
+  # Chiavi diverse per filter diversi
+  expect_false(identical(k_default, k_null))
+  expect_false(identical(k_default, k_lncrna))
+  expect_false(identical(k_default, k_multi))
+  expect_false(identical(k_null, k_lncrna))
+})
+
+test_that("E2 T3.2 cache_key_for_fetch stesso filter -> stessa chiave (deterministico)", {
+  gse <- "GSE12345"
+  sample_ids <- c("GSM_a", "GSM_b")
+  k1 <- simulomicsr:::.cache_key_for_fetch(gse, sample_ids,
+                                              gene_biotype_filter = "protein_coding")
+  k2 <- simulomicsr:::.cache_key_for_fetch(gse, sample_ids,
+                                              gene_biotype_filter = "protein_coding")
+  expect_identical(k1, k2)
+})
+
+test_that("E2 T3.3 cache_key_for_fetch ordine filter normalizzato (vector permutato -> stessa key)", {
+  gse <- "GSE12345"
+  sample_ids <- c("GSM_a", "GSM_b")
+  k1 <- simulomicsr:::.cache_key_for_fetch(gse, sample_ids,
+                                              gene_biotype_filter = c("protein_coding", "lncRNA"))
+  k2 <- simulomicsr:::.cache_key_for_fetch(gse, sample_ids,
+                                              gene_biotype_filter = c("lncRNA", "protein_coding"))
+  expect_identical(k1, k2)
+})

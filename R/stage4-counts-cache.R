@@ -1,6 +1,7 @@
 #' Cache key per fetch counts ARCHS4
 #'
-#' xxhash32 di (axis_version, gse, sorted(sample_ids)) -> 8-hex stabile.
+#' xxhash32 di (axis_version, biotype_filter, gse, sorted(sample_ids))
+#' -> 8-hex stabile.
 #'
 #' FASE E1 ADR-0019 D6: prefisso \code{v2_ensembl::} nel payload bumpa
 #' la chiave rispetto alla cache pre-E1, che memoizzava matrici con
@@ -8,10 +9,31 @@
 #' Ensembl ID e gli attr \code{gene_symbol} sono attaccati: cache stale
 #' produrrebbe row-axis incoerente -> invalidazione automatica.
 #'
+#' FASE E2 ADR-0019 D7: aggiunto segmento \code{biotype::<filter>}
+#' (ordinato + dedup per neutralizzare permutazioni). Stratifica la
+#' cache per il filter biotype attivo, in modo che una run con
+#' \code{protein_coding} non collida con una run NULL o
+#' \code{c('protein_coding', 'lncRNA')}.
+#'
+#' @param gse string GSE accession
+#' @param sample_ids character vector di GSM ids
+#' @param gene_biotype_filter character vector o NULL (default
+#'   \code{"protein_coding"} per coerenza con \code{.fetch_counts_from_h5}).
 #' @keywords internal
-.cache_key_for_fetch <- function(gse, sample_ids) {
-  sorted <- sort(sample_ids)
-  payload <- paste0("v2_ensembl::", gse, "_", paste(sorted, collapse = "|"))
+.cache_key_for_fetch <- function(gse, sample_ids,
+                                   gene_biotype_filter = "protein_coding") {
+  sorted_samples <- sort(sample_ids)
+  biotype_seg <- if (is.null(gene_biotype_filter)) {
+    "NULL"
+  } else {
+    # Ordinamento + unique normalizzano permutazioni:
+    # c('protein_coding', 'lncRNA') ~ c('lncRNA', 'protein_coding') -> stessa key.
+    paste(sort(unique(as.character(gene_biotype_filter))), collapse = "|")
+  }
+  payload <- paste0(
+    "v2_ensembl::biotype::", biotype_seg, "::",
+    gse, "_", paste(sorted_samples, collapse = "|")
+  )
   hash <- digest::digest(payload, algo = "xxhash32", serialize = FALSE)
   substr(hash, 1L, 8L)
 }
@@ -30,17 +52,24 @@
 #' @param sample_ids character vector di GSM ids
 #' @param h5_path path al H5 ARCHS4 (NULL se fetch_fn override fornito)
 #' @param fetch_fn function (gse, sample_ids) -> matrix; default chiama
-#'   \code{.fetch_counts_from_h5} (per testabilita').
+#'   \code{.fetch_counts_from_h5(gse, sample_ids, h5_path,
+#'   gene_biotype_filter)} (per testabilita').
 #' @param cache_dir cache directory; default \code{.default_stage4_cache_dir()}
-#' @return integer matrix (genes x samples)
+#' @param gene_biotype_filter character vector o NULL (FASE E2 ADR-0019 D7,
+#'   default \code{"protein_coding"}). Propagato a \code{.fetch_counts_from_h5}
+#'   + incluso in \code{.cache_key_for_fetch} per stratificare la cache.
+#' @return integer matrix (genes x samples) post-biotype filter +
+#'   attr('gene_symbol') + attr('gene_biotype').
 #' @keywords internal
 .fetch_counts_cached <- function(gse, sample_ids, h5_path = NULL,
                                   fetch_fn = NULL,
-                                  cache_dir = NULL) {
+                                  cache_dir = NULL,
+                                  gene_biotype_filter = "protein_coding") {
   if (is.null(cache_dir)) cache_dir <- .default_stage4_cache_dir()
   if (!dir.exists(cache_dir)) dir.create(cache_dir, recursive = TRUE)
 
-  key <- .cache_key_for_fetch(gse, sample_ids)
+  key <- .cache_key_for_fetch(gse, sample_ids,
+                                gene_biotype_filter = gene_biotype_filter)
   cache_file <- file.path(cache_dir, paste0(key, ".rds"))
 
   if (file.exists(cache_file)) {
@@ -49,7 +78,9 @@
 
   if (is.null(fetch_fn)) {
     if (is.null(h5_path)) stop("h5_path required when fetch_fn is NULL")
-    fetch_fn <- function(g, s) .fetch_counts_from_h5(g, s, h5_path)
+    fetch_fn <- function(g, s) .fetch_counts_from_h5(
+      g, s, h5_path, gene_biotype_filter = gene_biotype_filter
+    )
   }
 
   counts <- fetch_fn(gse, sample_ids)
