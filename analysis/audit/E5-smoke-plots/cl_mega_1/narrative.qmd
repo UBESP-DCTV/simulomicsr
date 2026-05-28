@@ -1,0 +1,51 @@
+---
+title: "Case study: MEGA test (E5 smoke) (cl_mega_1)"
+---
+
+# Case study: MEGA test (E5 smoke)
+
+## Summary card
+
+# MEGA test (E5 smoke) -- Cluster cl_mega_1
+
+- **Cluster ID:** `cl_mega_1`
+- **Anchor:** (no Stage 3 metadata)
+- **Method:** `mega`
+- **k_effective:** 5
+- **n_total_samples:** 12
+- **n_sig FDR<0.05:** 25 / 100 (25.0%)
+- **Top gene:** HGNC18 (logFC=-7.97, FDR=0.0032)
+- **safety_min (Stage 3):** N/A
+- **tau^2 median:** N/A (non-REM)
+- **n_baseline_studies_augmented:** N/A (non-MEGA-AUG)
+- **direction_applied distribution:** none: 100
+
+**User notes:** Mega pure post-E1-E3 schema
+
+## Biological context
+
+_TODO: write biological narrative (1-2 paragraphs). What is the
+biological intervention/disease? Why is this comparison interesting?
+What known mechanisms apply?_
+
+## Findings
+
+_TODO: interpret top-30 genes table + volcano + GO enrichment.
+Which genes confirm known biology? Are there surprises? Cross-reference
+with literature._
+
+## Discussion
+
+_TODO: discuss heterogeneity (if REM), cross-study consistency (forest),
+caveats (mega_aug baseline-pool), implications for the field._
+
+## Figures
+
+::: {.figure-list}
+- volcano.svg
+- forest.svg (REM/MEGA-AUG only)
+- ma.svg
+- heatmap.svg
+- go_enrichment.svg
+- heterogeneity.svg (REM only)
+:::

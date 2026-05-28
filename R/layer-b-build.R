@@ -74,7 +74,14 @@ build_layer_b_results <- function(stage4_dir, selection,
   ]
   sel_sha <- digest::digest(sel_for_hash, algo = "sha256")
 
-  schema_versions <- list(layer_b_algorithm = "v1", stage4_algorithm = "v1")
+  # FASE E5: bumpa stage4_algorithm a 'v2_ensembl_gene_axis' per riflettere
+  # il refactor E1-E3 (Ensembl axis + gene_symbol + biotype filter +
+  # covariate batch). layer_b_algorithm v1 invariato (template plot
+  # immutato; cambia solo la fonte upstream dati).
+  schema_versions <- list(
+    layer_b_algorithm = "v1",
+    stage4_algorithm  = "v2_ensembl_gene_axis"
+  )
   run_id <- .run_id_for_layer_b(
     stage4_run_id    = layer_a_subset$stage4_run_id,
     selection_sha256 = sel_sha,

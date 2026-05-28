@@ -1,0 +1,55 @@
+{
+  "run_id": "7c16c534",
+  "timestamp": "2026-05-28T11:09:14Z",
+  "schema_versions": {
+    "layer_b_algorithm": "v1",
+    "stage4_algorithm": "v2_ensembl_gene_axis"
+  },
+  "package_version": "0.0.0.9020",
+  "r_version": "R version 4.6.0 (2026-04-24)",
+  "bioc_versions": {
+    "clusterProfiler": "4.20.0",
+    "ComplexHeatmap": "2.28.0",
+    "DESeq2": "1.52.0",
+    "org.Hs.eg.db": "3.23.1",
+    "sva": "3.60.0",
+    "ReactomePA": "1.56.0"
+  },
+  "input_files": {
+    "stage4_dir": {
+      "path": "/tmp/RtmpnHPx6k/stage4_full_1919c611222d90",
+      "run_id": "fakea4ce"
+    },
+    "selection_sha256": "c7da2446a6107c4fc73226453c49ad143c233bb50a16d757dc551604948159fd"
+  },
+  "config": {
+    "top_n_forest": 10,
+    "top_n_heatmap": 30,
+    "top_n_table": 30,
+    "top_n_volcano_labels": 15,
+    "fdr_threshold": 0.05,
+    "palette": "viridis",
+    "language": "en",
+    "heatmap_normalize": true,
+    "go_enrichment": false,
+    "save_svg": true,
+    "dpi": 300,
+    "min_genes_for_go_ora": 200,
+    "max_heatmap_samples": 100
+  },
+  "output_counts": {
+    "n_clusters_processed": 2,
+    "by_method": {
+      "mega": 1,
+      "mega_aug": 1
+    },
+    "n_plots_generated": 9,
+    "n_plots_skipped": 3,
+    "bundle_size_mb": "NA",
+    "report_size_mb": "NA"
+  },
+  "compute_summary": {
+    "wall_seconds": 20.6065,
+    "peak_mem_mb": "NA"
+  }
+}
