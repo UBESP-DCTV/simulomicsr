@@ -1,0 +1,40 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+== lib_size_vec da A3 TSV ==
+  888821 sample, 548373 non-NA
+
+== build_archs4_metadata_v2 (full H5) ==
+  wall: 3.8 min
+
+== conteggi ==
+  n_total:   888821
+  n_kept:    509033  (atteso 509.033 = F1 post-D1-D4 pre-H2)
+  n_skipped: 379788
+  skip_reasons:
+
+               lib_size_too_small library_source_not_transcriptomic 
+                            39111                             31915 
+     single_cell_probability_high        single_cell_protocol_match 
+                             1224                            307538 
+
+== schema RDS (colonne attese da F5) ==
+  colonne: geo_accession, series_id, library_source, molecule_ch1, instrument_model, data_processing, aligner_class, relation, biosample_id, lib_size, singlecellprobability 
+  colonne mancanti vs F5: 0 
+
+== tipi colonne chiave ==
+  aligner_class is factor: TRUE (livelli: STAR, HISAT, Salmon, kallisto, RSEM, BWA, Bowtie, TopHat, other, unknown)
+  lib_size is numeric: TRUE
+  biosample_id: 508936 non-NA / 509033 (100.0% coverage SAMN)
+
+== aligner_class distribution ==
+
+    STAR    HISAT   Salmon kallisto     RSEM      BWA   Bowtie   TopHat 
+  244861    73457    16889    15840    14289     6394    37560    45914 
+   other  unknown 
+   53829        0 
+
+== sanity gate ==
+  GATE: PASS
+OK: build_archs4_metadata_v2 gira full H5, schema F5-compatibile.
+  (RDS verifica scritto in /tmp/claude-1000/RtmpxVHU6c/preflight-step3-metadata-v2-1a4d2139d0923a.rds, NON produzione)
