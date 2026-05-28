@@ -27,13 +27,20 @@ NULL
 #' @param symbol character vector di HGNC symbol parallelo a
 #'   \code{ensembl}. Stessa lunghezza. NA accettato (gene non annotato
 #'   HGNC). Duplicati ammessi (paralogi).
-#' @return list con due componenti character:
+#' @param biotype character vector di Ensembl gene biotype parallelo a
+#'   \code{ensembl} (FASE E2 ADR-0019 D7). Stessa lunghezza. NA accettato.
+#'   Default NULL = riempito con \code{NA_character_} (retrocompat
+#'   pre-E2: i chiamatori che non passano biotype ottengono comunque la
+#'   colonna gene_biotype piena di NA).
+#' @return list con tre componenti character:
 #'   \describe{
 #'     \item{\code{ensembl_gene}}{Ensembl ID, univoco per definizione.}
 #'     \item{\code{gene_symbol}}{HGNC symbol, possibili duplicati + NA.}
+#'     \item{\code{gene_biotype}}{Ensembl biotype (protein_coding,
+#'       lncRNA, miRNA, ...). NA per gene non annotato.}
 #'   }
 #' @keywords internal
-.parse_gene_axis <- function(ensembl, symbol) {
+.parse_gene_axis <- function(ensembl, symbol, biotype = NULL) {
   ensembl <- as.character(ensembl)
   symbol  <- as.character(symbol)
 
@@ -44,8 +51,24 @@ NULL
     ), call. = FALSE)
   }
 
+  if (is.null(biotype)) {
+    biotype <- rep(NA_character_, length(ensembl))
+  } else {
+    biotype <- as.character(biotype)
+    if (length(biotype) != length(ensembl)) {
+      stop(sprintf(
+        "biotype deve avere stessa lunghezza di ensembl (ricevuti %d vs %d)",
+        length(biotype), length(ensembl)
+      ), call. = FALSE)
+    }
+  }
+
   if (length(ensembl) == 0L) {
-    return(list(ensembl_gene = character(0), gene_symbol = character(0)))
+    return(list(
+      ensembl_gene = character(0),
+      gene_symbol  = character(0),
+      gene_biotype = character(0)
+    ))
   }
 
   # Ensembl deve essere axis univoco e popolato (early fail).
@@ -72,7 +95,8 @@ NULL
 
   list(
     ensembl_gene = ensembl,
-    gene_symbol  = symbol
+    gene_symbol  = symbol,
+    gene_biotype = biotype
   )
 }
 
@@ -108,5 +132,14 @@ NULL
     gene_axis$gene_symbol,
     gene_axis$ensembl_gene
   )
+  # FASE E2 ADR-0019 D7: gene_biotype attr named per consentire lookup +
+  # tracciabilita' downstream. Setato solo se presente in axis (post-E2);
+  # pre-E2 axis 2-componenti -> attr non setato (retrocompat).
+  if (!is.null(gene_axis$gene_biotype)) {
+    attr(counts, "gene_biotype") <- setNames(
+      gene_axis$gene_biotype,
+      gene_axis$ensembl_gene
+    )
+  }
   counts
 }

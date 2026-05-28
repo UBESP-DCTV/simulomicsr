@@ -19,28 +19,30 @@
 # T1.1 — input vuoto
 # ============================================================================
 
-test_that("E1 T1.1 input vuoto: list con ensembl/gene_symbol entrambi vuoti", {
+test_that("E1 T1.1 input vuoto: list con 3 componenti vuoti (E2 estende gene_biotype)", {
   res <- simulomicsr:::.parse_gene_axis(
     ensembl = character(0),
     symbol  = character(0)
   )
   expect_type(res, "list")
-  expect_named(res, c("ensembl_gene", "gene_symbol"))
+  expect_named(res, c("ensembl_gene", "gene_symbol", "gene_biotype"))
   expect_equal(res$ensembl_gene, character(0))
   expect_equal(res$gene_symbol, character(0))
+  expect_equal(res$gene_biotype, character(0))
 })
 
 # ============================================================================
 # T1.2 — input semplice singleton
 # ============================================================================
 
-test_that("E1 T1.2 singleton: 1 ensembl + 1 symbol -> impacchettati", {
+test_that("E1 T1.2 singleton: 1 ensembl + 1 symbol -> impacchettati (E2: gene_biotype NA se non fornito)", {
   res <- simulomicsr:::.parse_gene_axis(
     ensembl = "ENSG00000123456",
     symbol  = "MYGENE"
   )
   expect_equal(res$ensembl_gene, "ENSG00000123456")
   expect_equal(res$gene_symbol, "MYGENE")
+  expect_true(is.na(res$gene_biotype))
 })
 
 # ============================================================================
@@ -187,4 +189,66 @@ test_that("E1 T2.3 attach_gene_annotation: mismatch lunghezza axis vs nrow(count
     simulomicsr:::.attach_gene_annotation(counts, axis),
     "nrow"
   )
+})
+
+# ============================================================================
+# E2 T1 — .parse_gene_axis accetta biotype come 3° arg (ADR-0019 D7)
+# ============================================================================
+
+test_that("E2 T1.1 parse_gene_axis include biotype quando fornito", {
+  res <- simulomicsr:::.parse_gene_axis(
+    ensembl = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    symbol  = c("A", "B", "C"),
+    biotype = c("protein_coding", "lncRNA", "protein_coding")
+  )
+  expect_named(res, c("ensembl_gene", "gene_symbol", "gene_biotype"))
+  expect_equal(res$gene_biotype, c("protein_coding", "lncRNA", "protein_coding"))
+})
+
+test_that("E2 T1.2 parse_gene_axis biotype default NULL: gene_biotype = NA cross-row", {
+  # Retrocompat: chiamatori pre-E2 non passano biotype -> tutti NA.
+  res <- simulomicsr:::.parse_gene_axis(
+    ensembl = c("ENSG_A", "ENSG_B"),
+    symbol  = c("A", "B")
+  )
+  expect_named(res, c("ensembl_gene", "gene_symbol", "gene_biotype"))
+  expect_true(all(is.na(res$gene_biotype)))
+})
+
+test_that("E2 T1.3 parse_gene_axis biotype lunghezza mismatch: errore", {
+  expect_error(
+    simulomicsr:::.parse_gene_axis(
+      ensembl = c("ENSG_A", "ENSG_B"),
+      symbol  = c("A", "B"),
+      biotype = "protein_coding"
+    ),
+    "stessa lunghezza"
+  )
+})
+
+test_that("E2 T1.4 parse_gene_axis biotype NA accettato (gene non annotato Ensembl biotype)", {
+  res <- simulomicsr:::.parse_gene_axis(
+    ensembl = c("ENSG_A", "ENSG_B"),
+    symbol  = c("A", "B"),
+    biotype = c("protein_coding", NA_character_)
+  )
+  expect_true(is.na(res$gene_biotype[2]))
+})
+
+# ============================================================================
+# E2 T1.5 — .attach_gene_annotation: attr gene_biotype anche quando presente
+# ============================================================================
+
+test_that("E2 T1.5 attach_gene_annotation: setta attr gene_biotype named se presente in axis", {
+  counts <- matrix(1:9, nrow = 3, ncol = 3)
+  axis <- list(
+    ensembl_gene = c("ENSG_A", "ENSG_B", "ENSG_C"),
+    gene_symbol  = c("A", "B", "C"),
+    gene_biotype = c("protein_coding", "lncRNA", "miRNA")
+  )
+  res <- simulomicsr:::.attach_gene_annotation(counts, axis)
+  bt <- attr(res, "gene_biotype")
+  expect_type(bt, "character")
+  expect_equal(unname(bt), c("protein_coding", "lncRNA", "miRNA"))
+  expect_equal(names(bt), c("ENSG_A", "ENSG_B", "ENSG_C"))
 })
