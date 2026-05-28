@@ -4,13 +4,17 @@
 \alias{dgx_p4_submit}
 \title{Submit di un bundle P4 al cluster DGX via SSH+SLURM}
 \usage{
-dgx_p4_submit(bundle, time = "12:00:00", config = NULL, dry_run = FALSE)
+dgx_p4_submit(bundle, time = "72:00:00", config = NULL, dry_run = FALSE)
 }
 \arguments{
 \item{bundle}{output di \code{dgx_p4_build_bundle()}.}
 
 \item{time}{time limit SLURM (HH:MM:SS o D-HH:MM:SS). Default
-\code{"12:00:00"}.}
+\code{"72:00:00"} (3 giorni). La partition \code{dgx12cluster} e'
+\code{infinite} e la DGX e' dell'utente: nessun cap orario stretto
+come default (vedi preferenza utente). I task con wall noto passano
+\code{time} esplicito dal plan; questo default serve solo da floor
+prudente per evitare TIMEOUT su run lunghi (es. fullrun ~12-15h).}
 
 \item{config}{\code{simulomicsr_dgx_config}. Default = \code{bundle$config}.}
 

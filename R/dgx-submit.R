@@ -16,7 +16,11 @@
 #'
 #' @param bundle output di \code{dgx_p4_build_bundle()}.
 #' @param time time limit SLURM (HH:MM:SS o D-HH:MM:SS). Default
-#'   \code{"12:00:00"}.
+#'   \code{"72:00:00"} (3 giorni). La partition \code{dgx12cluster} e'
+#'   \code{infinite} e la DGX e' dell'utente: nessun cap orario stretto
+#'   come default (vedi preferenza utente). I task con wall noto passano
+#'   \code{time} esplicito dal plan; questo default serve solo da floor
+#'   prudente per evitare TIMEOUT su run lunghi (es. fullrun ~12-15h).
 #' @param config \code{simulomicsr_dgx_config}. Default = \code{bundle$config}.
 #' @param dry_run logical: se TRUE, non chiama ssh/rsync.
 #' @return oggetto \code{simulomicsr_dgx_job} con campi \code{run_id},
@@ -24,7 +28,7 @@
 #'   \code{rendered_slurm}, \code{submitted_at}, \code{config}.
 #' @export
 dgx_p4_submit <- function(bundle,
-                          time = "12:00:00",
+                          time = "72:00:00",
                           config = NULL,
                           dry_run = FALSE) {
 
