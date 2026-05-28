@@ -1,0 +1,54 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+== Phase 1: 7 GSM target dai TSV audit ==
+  A1 SC (lib_source SC)   : 28015 sample
+  A1c (lib_source other)  : 293 sample
+  A1d (lib_source genomic): 634 sample
+  A2 SC protocol          : 301852 sample
+  A3 post-A1+A2 universe  : 548373 sample
+
+  Target GSM:
+    lib_source_SC                    GSM6725090
+    lib_source_other                 GSM7855469
+    lib_source_genomic               GSM2704158
+    single_cell_protocol_match       GSM1197324
+    lib_size_too_small               GSM1002540
+    single_cell_probability_high     GSM1087883
+    KEEP                             GSM1000981
+
+== Phase 2: read_archs4_metadata() full + select ==
+  full read 14 colonne x 888821 sample: 12.2 sec
+  select 7 righe: 7 sample x 14 colonne
+
+== Phase 3: is_sample_classifiable + verifica reason ==
+  geo_accession        reason_expected_label              reason_expected_code
+1    GSM6725090                lib_source_SC library_source_not_transcriptomic
+2    GSM7855469             lib_source_other library_source_not_transcriptomic
+3    GSM2704158           lib_source_genomic library_source_not_transcriptomic
+4    GSM1197324   single_cell_protocol_match        single_cell_protocol_match
+5    GSM1002540           lib_size_too_small                lib_size_too_small
+6    GSM1087883 single_cell_probability_high      single_cell_probability_high
+7    GSM1000981                         KEEP                              KEEP
+                             reason pass
+1 library_source_not_transcriptomic TRUE
+2 library_source_not_transcriptomic TRUE
+3 library_source_not_transcriptomic TRUE
+4        single_cell_protocol_match TRUE
+5                lib_size_too_small TRUE
+6      single_cell_probability_high TRUE
+7                              KEEP TRUE
+
+== Smoke runtime: 7/7 PASS ==
+
+== Phase 4: coverage statica 7 reason code in tests/testthat/ ==
+  library_source_not_transcriptomic        test-etl-archs4-utils.R:79,84
+  single_cell_protocol_match               test-etl-archs4-utils.R:99
+  lib_size_too_small                       test-etl-archs4-metadata-v2.R:76 | test-etl-archs4-utils.R:107
+  single_cell_probability_high             test-etl-archs4-utils.R:115
+  not_human                                test-etl-archs4-metadata-v2.R:64 | test-etl-archs4-utils.R:64,153 | test-stage0-v2-e2e.R:102,112
+  not_bulk_rnaseq                          test-etl-archs4-metadata-v2.R:65 | test-etl-archs4-utils.R:71 | test-stage0-v2-e2e.R:103,112
+  string_too_short                         test-etl-archs4-utils.R:91
+
+OK: 4 reason code triggerabili PASS runtime smoke; 3 defensive guards
+    + 4 triggerabili tutti coperti da test unit fixture (vedi righe).
