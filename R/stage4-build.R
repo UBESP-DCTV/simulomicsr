@@ -27,6 +27,13 @@
 #' @param dry_run_inputs_only logical: se TRUE, restituisce solo
 #'   eligible_clusters + run_metadata + scaffold vuoti (skip DE/pooling)
 #'   per debug rapido o test di integrazione minimi.
+#' @param gene_biotype_filter character vector o NULL (FASE E2 ADR-0019
+#'   D7). Default \code{"protein_coding"}: il pool DE lavora sui ~23k
+#'   geni protein_coding (vs ~67k totali in ARCHS4 v2.5). NULL =
+#'   nessun filter (tutti i geni); vector multi-valore = union (es.
+#'   \code{c("protein_coding", "lncRNA")} per ~42k geni). Propagato al
+#'   fetch_fn default \code{.fetch_counts_cached} + a
+#'   \code{.fetch_counts_from_h5}.
 #' @return oggetto S3 \code{stage4_result} (list) con campi:
 #'   \code{per_study_de}, \code{cluster_pooled}, \code{eligible_clusters},
 #'   \code{qc_report}, \code{non_processable}, \code{config},
@@ -39,7 +46,8 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
                                  h5_path_for_hash = NULL,
                                  stage3_assignments = NULL,
                                  stage2_master = NULL,
-                                 dry_run_inputs_only = FALSE) {
+                                 dry_run_inputs_only = FALSE,
+                                 gene_biotype_filter = "protein_coding") {
 
   # Step 1: QC sample + studio + cluster
   qc <- .qc_filter_samples_and_studies(stage3_clusters, h5_metadata, config)
@@ -69,12 +77,18 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     ), class = "stage4_result"))
   }
 
-  # Step 4: default fetch_fn cacheato su disco se non specificato
+  # Step 4: default fetch_fn cacheato su disco se non specificato.
+  # FASE E2 ADR-0019 D7: la closure cattura gene_biotype_filter e lo
+  # propaga a .fetch_counts_cached -> .fetch_counts_from_h5. Cache key
+  # disk stratificata per filter via .cache_key_for_fetch.
   if (is.null(fetch_fn)) {
     if (is.null(h5_path)) {
       stop("h5_path e' richiesto quando fetch_fn e' NULL")
     }
-    fetch_fn <- function(g, s) .fetch_counts_cached(g, s, h5_path = h5_path)
+    fetch_fn <- function(g, s) .fetch_counts_cached(
+      g, s, h5_path = h5_path,
+      gene_biotype_filter = gene_biotype_filter
+    )
   }
 
   # Step 4b: dispatch builders (stage3_assignments + stage2_master richiesti)

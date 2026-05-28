@@ -70,7 +70,7 @@ test_that(".resolve_dream_workers usa valore esplicito se non-NA", {
   expect_equal(.resolve_dream_workers(cfg), cfg$compute$dream_workers_cap)
 })
 
-test_that("schema_versions include stage4_algorithm v1", {
+test_that("schema_versions include stage4_algorithm v2_ensembl_gene_axis (post E1)", {
   cfg <- stage4_default_config()
-  expect_equal(cfg$schema_versions$stage4_algorithm, "v1")
+  expect_equal(cfg$schema_versions$stage4_algorithm, "v2_ensembl_gene_axis")
 })
