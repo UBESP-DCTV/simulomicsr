@@ -1057,13 +1057,31 @@ ancora trattati Stadio 1, Stadio 2, Stadio 3, Stadio 4 (vedere
 in `2026-05-25-pipeline-map-v0-critical-reading.md` /
 `2026-05-25-pipeline-map-v0-codex-review.md`).
 
-#### ⬜ F1 — ETL re-run (nuovo JSONL filtrato + esteso)
+#### ✅ F1 — ETL re-run (nuovo JSONL filtrato + esteso) — DONE sessione 8 (2026-05-28)
 
-**Cosa facciamo.** Rigirare `analysis/p4-beta-etl-build.R` con il nuovo
-filtro Stadio 0 + il nuovo campo `molecule_ch1`. Output: nuovo
-`archs4-human-stage1-input.jsonl`.
+**Cosa abbiamo fatto.** Riscritto l'ETL come `analysis/p4-fase-f-etl-build.R`
+(NON riusato lo script β, scoperto stale pre-FASE-C: 5 problemi — H2
+assente, H2-su-series-raw, molecule droppato, D4 non applicato, H5_PATH
+errato. Vedi piano `docs/superpowers/plans/2026-05-28-p5-fase-f1-etl-rebuild-plan.md`).
 
-**Perché serve.** Punto di partenza pulito per Stadio 1 rerun.
+**Esito (GATE PASS).** Bacino produzione **508.037 sample** in
+`analysis/input/archs4-human-stage1-input-v2.jsonl` (gitignored). Set
+equality vs oracle audit A3 (508.038): `extra=0`, `missing={GSM3612196}`
+(= drop pulito H2 opzione (i): GSE126753 78.6% murino, residuo H2 di β
+rimosso). molecule_ch1 preservato (20/20 non-NA random). Provenance
+`analysis/p4-output/p4-fase-f-source.json` (sha256 H5 verificato).
+Decomposizione drop + riconciliazione in ADR-0019 §Decision Outcome esito
+produzione F1 + commit F1.
+
+**Sub-decisioni utente sessione 8.** A1 (H2 post-resolver, non dentro
+`is_sample_classifiable`) + (i) drop pulito GSM3612196. Commit:
+`P5 audit RED_ALERT F1: ETL re-run Stage 0 v2 input stage1` (+ T1+T2
+helper TDD `.flag_mouse_mislabeled_h2` + `.build_libsize_vec`).
+
+**Nota downstream (tracciata, NON in scope F1).** `build_archs4_metadata_v2`
+(C3, usato da F5 Stadio 4) non fa resolver né H2 → il suo RDS include i
+sample H2 sopravvissuti a D1-D4. Innocuo a F5 (lookup solo su GSM nei
+cluster, post-H2). Da risolvere/documentare a F5.
 
 #### ⬜ F2 — Stadio 1 fullrun DGX
 
