@@ -10,7 +10,8 @@
   cluster_id,
   workers = 1L,
   n_baseline_studies_augmented = NA_integer_,
-  method_label = "mega"
+  method_label = "mega",
+  covariates = character(0)
 )
 }
 \arguments{

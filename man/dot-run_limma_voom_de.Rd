@@ -9,7 +9,9 @@
   treatment_vec,
   study_id,
   cluster_id,
-  direction_flip = FALSE
+  direction_flip = FALSE,
+  metadata_extra = NULL,
+  covariates = character(0)
 )
 }
 \arguments{

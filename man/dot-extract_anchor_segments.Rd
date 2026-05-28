@@ -2,18 +2,26 @@
 % Please edit documentation in R/stage3-anchor-levels.R
 \name{.extract_anchor_segments}
 \alias{.extract_anchor_segments}
-\title{Estrae i 13 segmenti dell'anchor v3 come named list}
+\title{Estrae i 13 segmenti dell'anchor v3.1 come named list + tracking_meta attr}
 \usage{
-.extract_anchor_segments(stage1_facts, stage2_role)
+.extract_anchor_segments(stage1_facts, stage2_role, ontology_env = NULL)
 }
 \arguments{
 \item{stage1_facts}{list (un sample_fact validato stage1.v3)}
 
 \item{stage2_role}{character: design_role assegnato dallo Stadio 2 al sample
 (es. "treated", "case", "comparison"). Influenza disease_vs_normal override.}
+
+\item{ontology_env}{environment caricato da \code{.load_ontology_dicts()}.
+Default = lazy-load dalla cache; passare un env esplicito (es. caricato da
+fixture) per test deterministici.}
 }
 \value{
-named list di 13 elementi carattere
+named list di 13 elementi carattere con attribute \code{tracking_meta}
+contenente 11 campi (agent_id_llm_original, agent_id_resolved,
+resolution_source, canonical_name, kind_effective_llm_original,
+kind_effective_resolved, kind_overridden, kind_override_reason,
+kind_role_evidence, kind_confidence, kind_unvalidatable).
 }
 \description{
 Replica internamente la logica di \code{make_anchor()} ma restituisce un
@@ -21,6 +29,14 @@ named list con i 13 valori invece della stringa concatenata. Usato come
 basis per costruire anchor a livelli L0..L4 droppando segmenti.
 }
 \details{
+\strong{Anchor v3.1 (ADR-0018):} i segmenti \code{kind_effective} e \code{agent_id}
+passano attraverso il resolver \code{resolve_agent_canonical()} +
+\code{infer_kind_with_override()}; l'output canonicalizzato (es.
+\code{CHEBI:17126} invece di \code{17126}, \code{vehicle_only} invece del LLM
+\code{cytokine_stim} per Ethanol) viene usato per costruire l'anchor_key.
+I valori LLM-original sono preservati in \code{attr(result, "tracking_meta")}
+per audit paper-grade.
+
 L'ordine dei nomi e' canonical e identico all'output di \code{make_anchor()}:
 kind_effective, agent_id, variant_label, dose_canonical, duration_canonical,
 phase_canonical, cell_id, context_kind, cell_state, subcellular, tissue,

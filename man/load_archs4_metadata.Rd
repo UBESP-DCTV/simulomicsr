@@ -2,7 +2,7 @@
 % Please edit documentation in R/stage3-archs4-meta.R
 \name{load_archs4_metadata}
 \alias{load_archs4_metadata}
-\title{Carica ARCHS4 metadata (sample_id, series_id, gpl) da H5}
+\title{Carica ARCHS4 metadata (sample_id, series_id, gpl, biosample_id) da H5}
 \usage{
 load_archs4_metadata(h5_path, cache_dir = NULL, use_cache = TRUE)
 }
@@ -17,7 +17,8 @@ load_archs4_metadata(h5_path, cache_dir = NULL, use_cache = TRUE)
 lettura e scrittura cache.}
 }
 \value{
-Tibble con colonne \code{sample_id}, \code{series_id}, \code{gpl}.
+Tibble con colonne \code{sample_id}, \code{series_id},
+\code{gpl}, \code{biosample_id}.
 }
 \description{
 Legge i field necessari da \code{/meta/samples/} dell'H5 ARCHS4 v2.5 e li
@@ -32,5 +33,11 @@ Nota schema ARCHS4 v2.5 (verificato su human_gene_v2.5.h5):
 contiene il modello del sequenziatore (es. "Illumina HiSeq 1000").
 \item \code{library_strategy} e' disponibile in v2.5 ma non viene
 restituito da questa funzione (necessario solo per ETL stage1).
+\item Il campo \code{biosample_id} (FASE E0 ADR-0019 D9) e' parsato
+da \code{meta/samples/relation} via \code{parse_biosample_id()}.
+Coverage attesa ~99.98\% sul dataset rescued (A7).
 }
+
+Cache key versionata: il prefisso schema \code{v2_biosample} invalida
+automaticamente i file cache pre-E0 (senza colonna biosample_id).
 }

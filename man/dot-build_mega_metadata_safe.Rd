@@ -4,13 +4,24 @@
 \alias{.build_mega_metadata_safe}
 \title{Costruisce metadata safe per dispatch MEGA con conflict detection}
 \usage{
-.build_mega_metadata_safe(grp, cluster_id)
+.build_mega_metadata_safe(
+  grp,
+  cluster_id,
+  biosample_lookup = NULL,
+  libsize_lookup = NULL
+)
 }
 \arguments{
 \item{grp}{list di dispatch entries con campi \code{study_id},
 \code{sample_ids}, \code{treatment}.}
 
 \item{cluster_id}{chr ID del cluster per logging.}
+
+\item{biosample_lookup}{environment o named char vec
+\code{GSM -> SAMN}. NULL (default) = no dedupe SAMN (retrocompat).}
+
+\item{libsize_lookup}{environment o named numeric vec
+\code{GSM -> lib_size}. NULL (default) = no dedupe SAMN.}
 }
 \value{
 list:
@@ -39,5 +50,14 @@ una sola volta + registrato come conflict.
 Nessun sample viene perso senza traccia: ogni dedup/drop e' nel
 \code{conflicts} tibble di ritorno, propagato a
 \code{qc_report$pooling_warnings}.
+
+FASE E0b ADR-0019 D9 (decisione utente 2026-05-27 su evidence A7b):
+aggiunti i parametri \code{biosample_lookup} + \code{libsize_lookup}.
+Quando entrambi sono forniti (non NULL), dopo il dedupe per GSM literal
+viene applicato \code{.dedupe_gsm_by_samn} sui sopravvissuti: per ogni
+SAMN con N>=2 GSM cross-GSE, tenuto il GSM con \code{lib_size} massimo
+(tie-break alfabetico), gli altri registrati come
+\code{conflict_type = "cross_gse_samn_dedupe_kept_<gsm_kept>"}. Lookup
+NULL = retrocompat (no dedupe SAMN).
 }
 \keyword{internal}

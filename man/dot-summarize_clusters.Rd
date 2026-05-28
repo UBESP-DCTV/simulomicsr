@@ -9,7 +9,8 @@
   eligible_pair,
   eligible_group,
   config,
-  archs4_metadata
+  archs4_metadata,
+  stage1_master = NULL
 )
 }
 \description{

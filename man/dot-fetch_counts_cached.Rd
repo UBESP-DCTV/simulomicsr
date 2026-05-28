@@ -9,7 +9,8 @@
   sample_ids,
   h5_path = NULL,
   fetch_fn = NULL,
-  cache_dir = NULL
+  cache_dir = NULL,
+  gene_biotype_filter = "protein_coding"
 )
 }
 \arguments{
@@ -20,12 +21,20 @@
 \item{h5_path}{path al H5 ARCHS4 (NULL se fetch_fn override fornito)}
 
 \item{fetch_fn}{function (gse, sample_ids) -> matrix; default chiama
-\code{.fetch_counts_from_h5} (per testabilita').}
+\code{.fetch_counts_from_h5(gse, sample_ids, h5_path,
+gene_biotype_filter)} (per testabilita').}
 
 \item{cache_dir}{cache directory; default \code{.default_stage4_cache_dir()}}
+
+\item{gene_biotype_filter}{character vector o NULL (FASE E2 ADR-0019 D7,
+default \code{"protein_coding"}). Propagato a \code{.fetch_counts_from_h5}
+\itemize{
+\item incluso in \code{.cache_key_for_fetch} per stratificare la cache.
+}}
 }
 \value{
-integer matrix (genes x samples)
+integer matrix (genes x samples) post-biotype filter +
+attr('gene_symbol') + attr('gene_biotype').
 }
 \description{
 Fetch counts ARCHS4 con cache persistente

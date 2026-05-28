@@ -2,9 +2,14 @@
 % Please edit documentation in R/etl-archs4-h5.R
 \name{archs4_to_stage1_jsonl}
 \alias{archs4_to_stage1_jsonl}
-\title{Trasforma ARCHS4 H5 in JSONL raw input per stage1 (formato B, filtri applicati).}
+\title{Trasforma ARCHS4 H5 in JSONL raw input per stage1 (formato B, filtri ADR-0019).}
 \usage{
-archs4_to_stage1_jsonl(h5_path, out_jsonl_path, skip_log_path = NULL)
+archs4_to_stage1_jsonl(
+  h5_path,
+  out_jsonl_path,
+  skip_log_path = NULL,
+  lib_size_vec = NULL
+)
 }
 \arguments{
 \item{h5_path}{Path ARCHS4 H5.}
@@ -12,12 +17,26 @@ archs4_to_stage1_jsonl(h5_path, out_jsonl_path, skip_log_path = NULL)
 \item{out_jsonl_path}{Path di output JSONL (una riga per sample).}
 
 \item{skip_log_path}{Path di output TSV con sample skippati e ragione (default NULL).}
+
+\item{lib_size_vec}{Vettore numeric lib_size per sample (named per
+geo_accession opzionale). Default NULL = D4 saltato. Se passato deve
+avere length = nrow(meta H5).}
 }
 \value{
 Lista con \code{included} (int), \code{skipped} (int), \code{total} (int).
 }
 \description{
-Applica i filtri di inclusione (human, bulk RNA-Seq, stringa >= 20 caratteri)
-e serializza ogni sample accettato come riga JSONL pronta per la pipeline stage1.
+Applica il filtro Stadio 0 v2 (ADR-0019 D1-D4) chiamando
+\code{is_sample_classifiable()} firma v2. Serializza ogni sample accettato
+come riga JSONL pronta per la pipeline stage1.
+}
+\details{
+Il check D4 (\code{lib_size >= 500.000}) richiede il vettore lib_size
+pre-calcolato (somma reads per sample). Se non fornito (\code{lib_size_vec
+= NULL}), D4 viene saltato (\code{is_sample_classifiable} riceve NA →
+check \code{is.na(lib_size)} non scatta). FASE C3
+(\code{build_archs4_metadata_v2()}) costruira' il vettore lib_size una
+volta sola materializzato in RDS; FASE F1 (re-ETL produttivo) lo
+passera' a questa funzione.
 }
 \keyword{internal}

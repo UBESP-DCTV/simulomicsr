@@ -10,9 +10,20 @@ read_archs4_metadata(h5_path)
 \item{h5_path}{Path al file \code{human_gene_v2.5.h5} ARCHS4.}
 }
 \value{
-Data frame con una riga per sample.
+Data frame con una riga per sample. Le colonne character sono
+coerce-ate con \code{as.character}; \code{singlecellprobability} e'
+numeric (\code{NA_real_} dove mancante).
 }
 \description{
-Estrae i campi sotto \code{/meta/samples/} necessari per la classificazione P4 beta.
+Estrae i campi sotto \code{/meta/samples/} necessari per la classificazione
+P4 beta + i campi addizionali introdotti da ADR-0019 (P5 audit RED_ALERT
+Stadio 0): filtri pre-LLM single-cell (\code{library_source},
+\code{extract_protocol_ch1}, \code{singlecellprobability}), hint LLM
+(\code{molecule_ch1}), covariate batch DE (\code{instrument_model},
+\code{data_processing}), dedupe BioSample (\code{relation}).
+}
+\details{
+Schema v2: 13 colonne character + 1 colonna numeric
+(\code{singlecellprobability}).
 }
 \keyword{internal}

@@ -8,7 +8,8 @@ build_prompt_stage1(
   sample_string,
   geo_accession,
   series_id,
-  organism_hint = NULL
+  organism_hint = NULL,
+  molecule_hint = NULL
 )
 }
 \arguments{
@@ -20,6 +21,10 @@ build_prompt_stage1(
 
 \item{organism_hint}{hint opzionale (es. "Homo sapiens"); incluso nello user
 message solo se non NULL}
+
+\item{molecule_hint}{hint opzionale GEO \code{molecule_ch1} (es. "total RNA",
+"polyA RNA", "nuclear RNA"); incluso nello user message solo se
+non-NULL/NA/"". Spec: ADR-0019 D5 + RED_ALERT FASE D1b.}
 }
 \value{
 list di 2 messages (\code{system}, \code{user}) nel formato OpenAI Chat

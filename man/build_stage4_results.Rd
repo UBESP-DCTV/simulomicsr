@@ -14,7 +14,9 @@ build_stage4_results(
   h5_path_for_hash = NULL,
   stage3_assignments = NULL,
   stage2_master = NULL,
-  dry_run_inputs_only = FALSE
+  dry_run_inputs_only = FALSE,
+  gene_biotype_filter = "protein_coding",
+  de_covariates = c("instrument_model", "aligner_class")
 )
 }
 \arguments{
@@ -46,6 +48,14 @@ dispatch per-cluster).}
 \item{dry_run_inputs_only}{logical: se TRUE, restituisce solo
 eligible_clusters + run_metadata + scaffold vuoti (skip DE/pooling)
 per debug rapido o test di integrazione minimi.}
+
+\item{gene_biotype_filter}{character vector o NULL (FASE E2 ADR-0019
+D7). Default \code{"protein_coding"}: il pool DE lavora sui ~23k
+geni protein_coding (vs ~67k totali in ARCHS4 v2.5). NULL =
+nessun filter (tutti i geni); vector multi-valore = union (es.
+\code{c("protein_coding", "lncRNA")} per ~42k geni). Propagato al
+fetch_fn default \code{.fetch_counts_cached} + a
+\code{.fetch_counts_from_h5}.}
 }
 \value{
 oggetto S3 \code{stage4_result} (list) con campi:

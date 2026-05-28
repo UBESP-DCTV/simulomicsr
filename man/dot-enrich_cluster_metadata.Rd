@@ -3,17 +3,21 @@
 \name{.enrich_cluster_metadata}
 \alias{.enrich_cluster_metadata}
 \title{Arricchisce cluster metadata con gpl_platforms, studies_in_cluster,
-n_distinct_donors derivati dai records del cluster.}
+n_distinct_donors, n_distinct_biosamples derivati dai records del cluster.}
 \usage{
 .enrich_cluster_metadata(
   cluster_records,
   archs4_metadata = NULL,
-  gpl_lookup = NULL
+  gpl_lookup = NULL,
+  biosample_lookup = NULL,
+  donor_lookup = NULL
 )
 }
 \arguments{
-\item{cluster_records}{list of records nel cluster (each con \code{$series_id},
-\code{$stage1_facts}).}
+\item{cluster_records}{list of records nel cluster. Per il sample-level
+lookup (E0) ogni record deve esporre \code{$treated_sample_ids} +
+\code{$control_sample_ids} (output di \code{.build_pair_records()} +
+\code{.build_group_records()} post-E0).}
 
 \item{archs4_metadata}{tibble (series_id, gpl, library_strategy opzionale) opzionale.
 Se NULL, \code{gpl_platforms = character(0)} e \code{n_gpl_distinct = NA}.
@@ -22,13 +26,36 @@ IGNORATO se \code{gpl_lookup} e' fornito.}
 \item{gpl_lookup}{named list pre-costruita series_id -> character(gpl) (output di
 \code{.build_gpl_lookup()}). Preferito per performance quando chiamato in loop
 su molti cluster: evita di ri-scannerare archs4_metadata ad ogni chiamata.}
+
+\item{biosample_lookup}{named character pre-costruito geo_accession ->
+SAMN (output di \code{.build_biosample_lookup()}). Se NULL,
+\code{n_distinct_biosamples = NA_integer_}.}
+
+\item{donor_lookup}{named character pre-costruito geo_accession ->
+donor_id (output di \code{.build_donor_lookup()}). Se NULL, fallback
+al pattern legacy (\code{stage1_facts$donor$donor_id} del primo
+sample del record).}
 }
 \value{
-list con \code{studies_in_cluster}, \code{n_studies}, \code{gpl_platforms},
-\code{n_gpl_distinct}, \code{n_distinct_donors}.
+list con \code{studies_in_cluster}, \code{n_studies},
+\code{gpl_platforms}, \code{n_gpl_distinct}, \code{n_distinct_donors},
+\code{n_distinct_biosamples}.
 }
 \description{
-Arricchisce cluster metadata con gpl_platforms, studies_in_cluster,
-n_distinct_donors derivati dai records del cluster.
+FASE E0 (ADR-0019 D9, paper-grade fix sotto-stima pre-E0):
+\itemize{
+\item aggiunge \code{n_distinct_biosamples} (count SAMN unique sample-level
+dal cluster) come metrica primaria di dedupe cross-studio.
+\item estende il calcolo di \code{n_distinct_donors} a sample-level (era
+"primo sample di ogni record", sotto-stimava quando un gruppo
+conteneva piu' donor); fallback al pattern legacy preservato quando
+\code{donor_lookup} non e' fornito (retrocompat test pre-E0).
+}
+}
+\details{
+La policy NA-non-collassante e' la stessa per entrambe le metriche:
+un sample senza identita' nota (SAMN o donor_id assente) conta come
+un'identita' biologica distinta (no false collapse). Coerente con A7
+synthesis (0.02\% sample senza SAMN non vanno fusi).
 }
 \keyword{internal}

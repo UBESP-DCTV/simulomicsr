@@ -2,11 +2,20 @@
 % Please edit documentation in R/stage4-counts-cache.R
 \name{.h5_gene_axis}
 \alias{.h5_gene_axis}
-\title{Gene axis (HGNC symbol, make.unique) di un H5, memoizzato}
+\title{Gene axis (Ensembl ID + HGNC symbol) di un H5, memoizzato}
 \usage{
 .h5_gene_axis(h5_path)
 }
+\value{
+list \code{(ensembl_gene, gene_symbol)} (output di
+\code{.parse_gene_axis}).
+}
 \description{
-Gene axis (HGNC symbol, make.unique) di un H5, memoizzato
+FASE E1 (ADR-0019 D6): legge sia \code{meta/genes/ensembl_gene} (axis
+univoco, 67186 ID distinti in ARCHS4 v2.5) sia \code{meta/genes/symbol}
+(annotation, 4638 simboli duplicati per paralogi) e li impacchetta via
+\code{.parse_gene_axis()}. Cache key bumpata a \code{v2_ensembl}:
+invalida automaticamente la cache pre-E1 che memoizzava
+\code{make.unique(symbol)}.
 }
 \keyword{internal}

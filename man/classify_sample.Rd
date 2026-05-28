@@ -12,6 +12,7 @@ classify_sample(
   model = "gpt-5.5",
   cache = NULL,
   organism_hint = NULL,
+  molecule_hint = NULL,
   ...
 )
 }
@@ -29,6 +30,9 @@ classify_sample(
 \item{cache}{oggetto \code{cache} (\code{cache_init()}), oppure \code{NULL} per bypass}
 
 \item{organism_hint}{hint opzionale per lo user message}
+
+\item{molecule_hint}{hint opzionale GEO \code{molecule_ch1} per lo user message
+(ADR-0019 D5).}
 
 \item{...}{inoltrato all'adapter (es. \code{temperature}, \code{max_tokens},
 \code{.mock_adapter} per test)}

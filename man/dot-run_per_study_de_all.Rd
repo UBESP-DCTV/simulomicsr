@@ -4,7 +4,13 @@
 \alias{.run_per_study_de_all}
 \title{Run limma-voom DE per-study per tutti gli eligible cluster REM + MEGA-AUG}
 \usage{
-.run_per_study_de_all(eligible_clusters, fetch_fn = NULL, workers = 1L)
+.run_per_study_de_all(
+  eligible_clusters,
+  fetch_fn = NULL,
+  metadata_extra = NULL,
+  de_covariates = character(0),
+  workers = 1L
+)
 }
 \arguments{
 \item{eligible_clusters}{tibble post-QC + \code{attr(., "study_dispatch")}

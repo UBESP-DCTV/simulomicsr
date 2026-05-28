@@ -4,9 +4,31 @@
 \alias{.cache_key_for_fetch}
 \title{Cache key per fetch counts ARCHS4}
 \usage{
-.cache_key_for_fetch(gse, sample_ids)
+.cache_key_for_fetch(gse, sample_ids, gene_biotype_filter = "protein_coding")
+}
+\arguments{
+\item{gse}{string GSE accession}
+
+\item{sample_ids}{character vector di GSM ids}
+
+\item{gene_biotype_filter}{character vector o NULL (default
+\code{"protein_coding"} per coerenza con \code{.fetch_counts_from_h5}).}
 }
 \description{
-xxhash32 di (gse, sorted(sample_ids)) -> 8-hex stabile.
+xxhash32 di (axis_version, biotype_filter, gse, sorted(sample_ids))
+-> 8-hex stabile.
+}
+\details{
+FASE E1 ADR-0019 D6: prefisso \code{v2_ensembl::} nel payload bumpa
+la chiave rispetto alla cache pre-E1, che memoizzava matrici con
+rownames = HGNC symbol \code{make.unique()}. Post-E1 i rownames sono
+Ensembl ID e gli attr \code{gene_symbol} sono attaccati: cache stale
+produrrebbe row-axis incoerente -> invalidazione automatica.
+
+FASE E2 ADR-0019 D7: aggiunto segmento \code{biotype::<filter>}
+(ordinato + dedup per neutralizzare permutazioni). Stratifica la
+cache per il filter biotype attivo, in modo che una run con
+\code{protein_coding} non collida con una run NULL o
+\code{c('protein_coding', 'lncRNA')}.
 }
 \keyword{internal}

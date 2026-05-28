@@ -2,21 +2,63 @@
 % Please edit documentation in R/etl-archs4-utils.R
 \name{is_sample_classifiable}
 \alias{is_sample_classifiable}
-\title{Filtra un sample per inclusione nella pipeline P4 beta (human, bulk RNA-seq, metadata non-trivial).}
+\title{Filtra un sample per inclusione nella pipeline P4 beta (firma v2, ADR-0019).}
 \usage{
-is_sample_classifiable(organism, library_strategy, string)
+is_sample_classifiable(
+  organism_ch1,
+  library_strategy,
+  library_source,
+  extract_protocol_ch1,
+  title,
+  source_name_ch1,
+  string,
+  singlecellprobability,
+  lib_size,
+  lib_size_min = 500000L
+)
 }
 \arguments{
-\item{organism}{Organism da ARCHS4 (\code{organism_ch1}).}
+\item{organism_ch1}{Organism da ARCHS4 (\code{meta/samples/organism_ch1}).}
 
-\item{library_strategy}{Library strategy (\code{library_strategy}).}
+\item{library_strategy}{Library strategy (\code{meta/samples/library_strategy}).}
 
-\item{string}{Stringa format B ricostruita.}
+\item{library_source}{Library source (\code{meta/samples/library_source}).
+Whitelist \code{transcriptomic} (D1).}
+
+\item{extract_protocol_ch1}{Testo libero protocollo
+(\code{meta/samples/extract_protocol_ch1}). Passato a \code{is_single_cell_protocol}
+per il check D2.}
+
+\item{title}{Title (\code{meta/samples/title}). Per title-bulk rescue D2.}
+
+\item{source_name_ch1}{Source name (\code{meta/samples/source_name_ch1}).
+Aggiunto al target del check D2.}
+
+\item{string}{Stringa format B ricostruita (input prompt LLM Stadio 1).}
+
+\item{singlecellprobability}{Predizione ML ARCHS4 0-1
+(\code{meta/samples/singlecellprobability}). NA semantica "unknown" → no drop.}
+
+\item{lib_size}{Somma reads del sample (somma colonna \verb{/data/expression}).
+Tipicamente pre-calcolato in \code{build_archs4_metadata_v2()} (FASE C3).}
+
+\item{lib_size_min}{Soglia minima lib_size (default 500.000, ADR-0019 D4).}
 }
 \value{
-Logical TRUE se passa i filtri.
+Lista con due elementi:
+\itemize{
+\item \code{keep} (logical): TRUE se il sample passa tutti i filtri.
+\item \code{reason} (character): NA se keep=TRUE, altrimenti il primo reason code
+che ha fatto fallire il sample. Valori possibili: \code{not_human},
+\code{not_bulk_rnaseq}, \code{library_source_not_transcriptomic},
+\code{string_too_short}, \code{single_cell_protocol_match},
+\code{lib_size_too_small}, \code{single_cell_probability_high}.
+}
 }
 \description{
-Filtra un sample per inclusione nella pipeline P4 beta (human, bulk RNA-seq, metadata non-trivial).
+Implementa il filtro Stadio 0 v2 secondo ADR-0019 D1+D2+D3+D4: 7 check in
+sequenza (organism, library_strategy, library_source, string length, regex
+SC protocollo, lib_size, singlecellprobability). Ordine deterministico:
+al primo fallimento esce con il reason code corrispondente.
 }
 \keyword{internal}

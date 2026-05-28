@@ -4,7 +4,12 @@
 \alias{.fetch_counts_from_h5}
 \title{Fetch counts da ARCHS4 H5 (low-level, no cache)}
 \usage{
-.fetch_counts_from_h5(gse, sample_ids, h5_path)
+.fetch_counts_from_h5(
+  gse,
+  sample_ids,
+  h5_path,
+  gene_biotype_filter = "protein_coding"
+)
 }
 \arguments{
 \item{gse}{string GSE accession}
@@ -12,10 +17,16 @@
 \item{sample_ids}{character vector di GSM ids}
 
 \item{h5_path}{path al H5 ARCHS4}
+
+\item{gene_biotype_filter}{character vector di biotype Ensembl da
+mantenere (FASE E2 ADR-0019 D7, default \code{"protein_coding"}).
+NULL = no filter (tutti i ~67k geni). Applicato PRE-cache (cache
+key stratifica per filter, vedi \code{.cache_key_for_fetch}).}
 }
 \value{
-integer matrix (genes x samples) con rownames HGNC symbol +
-colnames GSM accession.
+integer matrix (genes x samples) con rownames = ensembl_gene +
+colnames = GSM accession + attr('gene_symbol') named +
+attr('gene_biotype') named.
 }
 \description{
 Fetch counts da ARCHS4 H5 (low-level, no cache)

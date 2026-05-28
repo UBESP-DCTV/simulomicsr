@@ -4,7 +4,7 @@
 \alias{make_anchor}
 \title{Costruisci comparability_anchor v3 (13 segmenti) per un sample fact}
 \usage{
-make_anchor(stage1_facts, stage2_role)
+make_anchor(stage1_facts, stage2_role, ontology_env = NULL)
 }
 \arguments{
 \item{stage1_facts}{list (un sample_fact validato stage1.v3)}

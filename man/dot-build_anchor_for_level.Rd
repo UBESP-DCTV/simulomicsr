@@ -4,7 +4,13 @@
 \alias{.build_anchor_for_level}
 \title{Costruisce l'anchor a un dato livello L (droppando segmenti per tier)}
 \usage{
-.build_anchor_for_level(stage1_facts, stage2_role, level, tier_assignment)
+.build_anchor_for_level(
+  stage1_facts,
+  stage2_role,
+  level,
+  tier_assignment,
+  ontology_env = NULL
+)
 }
 \arguments{
 \item{stage1_facts}{list (un sample_fact validato stage1.v3)}
@@ -15,6 +21,9 @@
 
 \item{tier_assignment}{list: componente \code{tier_assignment} della config
 restituita da \code{stage3_default_config()}.}
+
+\item{ontology_env}{environment caricato da \code{.load_ontology_dicts()}.
+Forwardato a \code{.extract_anchor_segments()}.}
 }
 \value{
 character(1) chiave concatenata con "|"

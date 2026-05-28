@@ -11,7 +11,11 @@
   stage3_clusters,
   workers = 1L,
   dream_workers_cap = 8L,
-  mega_aug_config = NULL
+  mega_aug_config = NULL,
+  biosample_lookup = NULL,
+  libsize_lookup = NULL,
+  metadata_extra = NULL,
+  de_covariates = character(0)
 )
 }
 \arguments{

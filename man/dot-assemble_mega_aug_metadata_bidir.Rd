@@ -10,7 +10,9 @@
   matcher,
   direction = c("both", "control", "treated"),
   min_baseline_studies = 2L,
-  max_baseline_per_arm = NA_integer_
+  max_baseline_per_arm = NA_integer_,
+  biosample_lookup = NULL,
+  libsize_lookup = NULL
 )
 }
 \arguments{
@@ -36,9 +38,20 @@
 sample baseline aggiunti per braccio (Problema B). Se un baseline pool
 augmenterebbe il braccio con piu' di N sample, viene sotto-campionato a
 N (deterministico). \code{NA} (default) = nessun cap.}
+
+\item{biosample_lookup}{environment o named char vec \code{GSM -> SAMN}.
+FASE E0b: se fornito insieme a \code{libsize_lookup}, i baseline pool
+subiscono SAMN dedupe cross-GSE (drop max lib_size, tie-break alfabetico)
+\itemize{
+\item esclusione dei GSM il cui SAMN e' gia' presente nel pair. NULL
+(default) = no dedupe (retrocompat).
+}}
+
+\item{libsize_lookup}{environment o named numeric vec
+\code{GSM -> lib_size}. Vedi \code{biosample_lookup}.}
 }
 \value{
-list con 8 componenti:
+list con 9 componenti:
 \itemize{
 \item \code{metadata}: tibble \code{sample_id|study|treatment}.
 \item \code{n_baseline_studies_augmented_control}: integer.
@@ -54,6 +67,10 @@ indirect_disjoint), \code{NA} se nessun augmentation.
 stesso group baseline pool matchava entrambi i bracci e il
 dispatch e' stato collassato a monodirezionale (augmenta solo
 \code{control}). Vedi sez. 3b del corpo funzione.
+\item \code{samn_dedupe_log}: tibble del log SAMN dedupe baseline
+(FASE E0b). Colonne \code{gsm_dropped, samn, gsm_kept,
+          libsize_dropped, libsize_kept, reason, arm}. Empty tibble se
+nessun lookup fornito.
 }
 }
 \description{
