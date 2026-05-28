@@ -49,6 +49,27 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
                                  dry_run_inputs_only = FALSE,
                                  gene_biotype_filter = "protein_coding") {
 
+  # T7a Fix 1: warning runtime quando fetch_fn esterno (override
+  # esplicito del chiamante) E filter non-NULL. Emesso PRIMA della
+  # short-circuit dry-run, cosi' il chiamante e' avvertito anche se non
+  # esegue il pool. Il filter e' applicato SOLO al fetch_fn default
+  # (closure cacheata costruita in Step 4 sotto). fetch_fn esterno NON
+  # riceve gene_biotype_filter automaticamente -> incoerenza paper-grade
+  # se cluster_pooled finale contiene tutti i biotype ma
+  # run_metadata.json registra filter 'protein_coding'.
+  if (!is.null(fetch_fn) && !is.null(gene_biotype_filter)) {
+    warning(
+      "fetch_fn esterno fornito + gene_biotype_filter non-NULL: il filter ",
+      "NON viene applicato automaticamente al fetch_fn override. Il ",
+      "chiamante deve implementare il filter all'interno del proprio ",
+      "fetch_fn, oppure passare gene_biotype_filter = NULL per ",
+      "disabilitarlo esplicitamente. ",
+      "run_metadata$gene_biotype_filter registrera' comunque il valore ",
+      "richiesto.",
+      call. = FALSE
+    )
+  }
+
   # Step 1: QC sample + studio + cluster
   qc <- .qc_filter_samples_and_studies(stage3_clusters, h5_metadata, config)
 
@@ -84,7 +105,9 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
   # Step 4: default fetch_fn cacheato su disco se non specificato.
   # FASE E2 ADR-0019 D7: la closure cattura gene_biotype_filter e lo
   # propaga a .fetch_counts_cached -> .fetch_counts_from_h5. Cache key
-  # disk stratificata per filter via .cache_key_for_fetch.
+  # disk stratificata per filter via .cache_key_for_fetch. Il warning
+  # paper-grade per fetch_fn esterno + filter non-NULL e' emesso piu'
+  # in alto in funzione (T7a Fix 1).
   if (is.null(fetch_fn)) {
     if (is.null(h5_path)) {
       stop("h5_path e' richiesto quando fetch_fn e' NULL")

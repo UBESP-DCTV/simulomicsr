@@ -129,7 +129,24 @@
   if (is.null(.h5_axis_memo[[k]])) {
     ens <- as.character(rhdf5::h5read(h5_path, "meta/genes/ensembl_gene"))
     sym <- as.character(rhdf5::h5read(h5_path, "meta/genes/symbol"))
-    bt  <- as.character(rhdf5::h5read(h5_path, "meta/genes/biotype"))
+    # T7a Fix 5: errore esplicito se H5 manca meta/genes/biotype (es.
+    # ARCHS4 v1 legacy schema). Senza il check, h5read genera errore
+    # criptico tipo "An object with name 'meta/genes/biotype' does not
+    # exist" che non suggerisce la causa scientifica (axis schema
+    # incompatibile col filter FASE E2).
+    bt <- tryCatch(
+      as.character(rhdf5::h5read(h5_path, "meta/genes/biotype")),
+      error = function(e) {
+        stop(sprintf(
+          paste0("H5 path '%s' non contiene meta/genes/biotype: filter ",
+                 "biotype (FASE E2 ADR-0019 D7) richiede ARCHS4 v2.5+ ",
+                 "schema. Per H5 legacy senza biotype, passa ",
+                 "gene_biotype_filter = NULL a build_stage4_results. ",
+                 "Errore originale rhdf5: %s"),
+          h5_path, conditionMessage(e)
+        ), call. = FALSE)
+      }
+    )
     .h5_axis_memo[[k]] <- .parse_gene_axis(ens, sym, bt)
   }
   .h5_axis_memo[[k]]

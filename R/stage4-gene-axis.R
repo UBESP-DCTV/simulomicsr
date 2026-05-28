@@ -161,15 +161,54 @@ NULL
   if (is.null(gene_biotype_filter)) {
     return(list(counts = counts, gene_axis = gene_axis))
   }
-  keep_mask <- gene_axis$gene_biotype %in% gene_biotype_filter
-  # NB: %in% restituisce FALSE su NA -> NA biotype droppato automaticamente.
-  if (!any(keep_mask)) {
-    stop(sprintf(
-      paste0("gene_biotype_filter=c('%s') produce 0 geni: filter troppo ",
-             "restrittivo o gene_axis manca colonna gene_biotype"),
-      paste(gene_biotype_filter, collapse = "','")
+
+  # T7a Fix 3.1: errore esplicito se axis manca gene_biotype (es. axis
+  # pre-E2 o input malformato). Pre-E2 il drop sarebbe stato 100% perche'
+  # %in% NULL = FALSE per tutto -> errore '0 geni' generico downstream.
+  if (is.null(gene_axis$gene_biotype)) {
+    stop("gene_axis manca colonna gene_biotype: usa .parse_gene_axis con ",
+         "biotype non-NULL o passa gene_biotype_filter = NULL",
+         call. = FALSE)
+  }
+
+  # T7a Fix 3.2: filter character(0) e' input degenere semantico.
+  # NULL = "no filter" e' la convenzione ufficiale; character(0) e'
+  # confuso (potrebbe essere "0 biotype ammessi"?). Errore esplicito.
+  if (length(gene_biotype_filter) == 0L) {
+    stop("gene_biotype_filter vuoto (character(0)): usa NULL per disabilitare ",
+         "il filter",
+         call. = FALSE)
+  }
+
+  # T7a Fix 4: NA biotype + filter attivo -> warning con count.
+  # ARCHS4 v2.5 ha 0 NA confermato, ma forward-compat ARCHS4 future + axis
+  # alternativi. Senza warning, drop sarebbe silenzioso (impatta universe,
+  # normalizzazione, DE) e il revisore del paper non saprebbe.
+  n_na_biotype <- sum(is.na(gene_axis$gene_biotype))
+  if (n_na_biotype > 0L) {
+    warning(sprintf(
+      "gene_axis contiene %d geni con biotype=NA: droppati silenziosamente dal filter '%s'",
+      n_na_biotype, paste(gene_biotype_filter, collapse = "|")
     ), call. = FALSE)
   }
+
+  keep_mask <- gene_axis$gene_biotype %in% gene_biotype_filter
+  # NB: %in% restituisce FALSE su NA -> NA biotype droppato automaticamente.
+
+  # T7a Fix 3.3: filter typo / mismatch produce 0 geni -> errore mostra
+  # biotypes presenti per aiutare il debugging (top 20 unique, no NA).
+  if (!any(keep_mask)) {
+    biotypes_present <- unique(gene_axis$gene_biotype)
+    biotypes_present <- biotypes_present[!is.na(biotypes_present)]
+    show_n <- min(length(biotypes_present), 20L)
+    stop(sprintf(
+      "gene_biotype_filter c('%s') non matcha alcun biotype in gene_axis. Biotypes presenti (primi %d): %s",
+      paste(gene_biotype_filter, collapse = "','"),
+      show_n,
+      paste(biotypes_present[seq_len(show_n)], collapse = ", ")
+    ), call. = FALSE)
+  }
+
   counts_filt <- counts[keep_mask, , drop = FALSE]
   axis_filt <- list(
     ensembl_gene = gene_axis$ensembl_gene[keep_mask],
