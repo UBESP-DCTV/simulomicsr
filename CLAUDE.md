@@ -19,6 +19,22 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-05-29 fine sessione 10**: ✅ **F2-fullrun Stadio 1 v2
+> (508.037) + rescue cascade → 100%**. Fullrun sul bacino di produzione,
+> config invariata, prompt v2 + guard `is_zero_timepoint` a valle: 51 chunk
+> da 10k + 25 outlier, wall ~11h40m, ~13.8 min/chunk, 0 HALT. Validità
+> LLM-only 99.712% (1.464 fail). Diagnosi paper-grade (audit before patch):
+> fail rate 3x vs β = **fragilità prompt v2** (81.6% fail nuovi via overlap
+> GSM; 22/23 residui = GSE157354 chimera human-mouse), NON infra/dati;
+> accuratezza già validata 94-96%. Rescue cascade β (H1 rep_pen=1.2→1.317 /
+> H1.2 rep_pen=1.3→124 / H1.3 rep_pen=1.4→21 / H1.4 manual 2) → master
+> rescued **508.037/508.037 = 100%**, tag `rescue_source`. Deliverable
+> `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl`
+> (gitignored). Commit `bda18f8`..`6ecd7b1` + closeout doc (RED_ALERT F2 ✅,
+> NEWS 9028, finding §5). Branch ahead master ~101 commit, master invariato,
+> no push. **F2 chiuso; prossimo = F3 Stadio 2 fullrun** (build input v2 +
+> smoke gate + fullrun). Vedi `docs/RED_ALERT.md` §Handoff sessione 11.
+>
 > **Stato 2026-05-28/29 fine sessione 9 (+ lavoro autonomo)**: ✅
 > **F2-smoke + root-cause + fix `is_zero_timepoint` + benchmark scalato**.
 > Gate F2-smoke (100 sample) → accuracy mini-gold 92.93% < 93% → STOP.

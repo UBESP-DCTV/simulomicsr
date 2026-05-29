@@ -165,7 +165,76 @@ appartiene al rebuild Stadio 3 (F4), dove sarà validato end-to-end. La funzione
 (Claude). Per il paper, una review umana dell'autore (almeno sugli studi
 multi-asse e mal posti) lo eleverebbe a human-expert.
 
-## 5. Riferimenti
+## 5. Conferma su scala — fullrun 508k (sessione 10, 2026-05-29)
+
+Il fullrun Stadio 1 v2 sul bacino di produzione (508.037 sample, config
+invariata temp=0/rep_pen=1.1, prompt v2 con guard `is_zero_timepoint` a valle)
+ha **confermato e quantificato** la fragilità del prompt come previsto da §2-3.
+
+**Wall**: ~11h40m (07:12→18:50 UTC), 51 chunk da 10k + 25 outlier (nchar>3500,
+max_model_len=32768), throughput ~13.8 min/chunk stabile, 0 stall/HALT.
+
+### 5.1 Tasso di fallimento: 3x rispetto al β, attribuito al prompt
+
+Validità LLM-only post-fullrun: **506.573 / 508.037 = 99.712%** → **1.464 fail**
+(`parsed_json` null). Tasso 0.288% **contro lo 0.0925% del β** (822 fail genuini
+/ 888.795, escludendo i 749 ETL-leak). ~3.1x.
+
+Indagine (audit before patch — i fail NON sono stati patchati prima di capire la
+causa):
+
+| Test | Esito | Conclusione |
+|---|---|---|
+| Distribuzione per worker | 360 / 371 / 366 / 367 (uniforme) + spalmati su tutto il run | **NON è infra/worker** |
+| Correlazione input nchar | rate 0.23%→0.84% da <200 a 400-800 char | lieve, non spiega il 3x |
+| `molecule_ch1` | total RNA 0.285%, polyA 0.266%, **nuclear RNA 3.30%** (36 fail) | enrichment nuclear, ma solo 2.5% dei fail |
+| **Overlap GSM vs β** (stesso campione, prompt diverso) | **1.195/1.464 (81.6%) sono fail NUOVI** (successo nel prompt β, loop ora); 269 (18.4%) erano già β-fail; 328 β-fail ora recuperati | **causa = prompt v2 (D1b/D4)** |
+
+L'81.6% di fail "nuovi" è la prova diretta: sono record che con il prompt β
+(senza `molecule_hint`/`organism_hint`) classificavano e ora vanno in loop
+whitespace (Mode A 77.3%). Stesso meccanismo di §2 (un edit di prompt necessario
+perturba comportamento non correlato dell'LLM a temp=0), qui sul **decoder**
+invece che su `is_zero_timepoint`. C'è churn bidirezionale (+1.195 / −328).
+
+### 5.2 Caso estremo: GSE157354 (chimera neurale human-mouse)
+
+I fail più ostinati (resistenti fino a rep_pen=1.4) sono **22/23 dei residui
+finali da un solo studio**, GSE157354 ("Co-cultured human and mouse pluripotent
+stem cell-derived neural cells", metadati `mixing percent human`, titoli
+`Hsap_Mmul_Chimera`). Input corto (~380 char) ma output di flood whitespace
+176k-339k char. Sample human validi (passano H2). Il linguaggio chimera/mixing
+destabilizza il decoder su un sottoinsieme dello studio.
+
+### 5.3 Rescue cascade → 100% (riuso strategie β, ADR-0008 addendum)
+
+| Step | config | retry | recuperati |
+|---|---|---:|---:|
+| H1 | rep_pen=1.2, max_tokens=4096, mml=8192 | 1.464 | 1.317 (89.96%) |
+| H1.2 | rep_pen=1.3, max_tokens=8192, mml=16384 | 147 | 124 (84.4%) |
+| H1.3 | rep_pen=1.4, max_tokens=8192, mml=16384 | 23 | 21 (91.3%) |
+| H1.4 manual | mirror gemello GSM4763009, schema-validato | 2 | 2 |
+
+Master rescued: **508.037 / 508.037 = 100.0000%** (1.462 LLM + 2 manual), tag
+`rescue_source`. La curation manuale rispecchia il `parsed_json` di un gemello
+GSE157354 recuperato (stesso studio), cambiando solo `geo_accession` + `duration`
+(growth-time days), validato contro `sample_facts.stage1.v3`.
+
+### 5.4 Implicazione (onesta, senza minimizzare)
+
+La fragilità del prompt v2 è **reale e quantificata** (3x fail rate, 81.6%
+prompt-indotti). **Non** intacca:
+- la **validità finale** del master (recuperata al 100% dalla cascade, ogni
+  sample classificato e schema-valido, recuperi tracciati via `rescue_source`);
+- l'**accuratezza** del contenuto (il benchmark design-aware 94-96% di §4 era già
+  misurato sul prompt v2).
+
+Si manifesta come fallimento **rumoroso** (loop → JSON invalido, recuperabile),
+non come drift silenzioso. È un limite metodologico da dichiarare nel paper
+(estende L2 ceiling Mistral): edit di prompt necessari su un LLM a temp=0 possono
+perturbare comportamento non correlato — sia campi specifici (§2-3) sia la
+stabilità del decoder (§5) — e vanno verificati su scala, non solo su mini-gold.
+
+## 6. Riferimenti
 
 - Script audit F2: `analysis/p4-fase-f2-smoke.R`, `*-counterproof-IT.R`,
   `*-isolate-stage1prompt.R`, `*-validate-guard.R`,
@@ -173,3 +242,8 @@ multi-asse e mal posti) lo eleverebbe a human-expert.
   `*-eval-run.R`.
 - Fix: `R/stage1-normalize.R` + `tests/testthat/test-stage1-normalize.R`.
 - Gate sintesi: `analysis/audit/F2-smoke-eval.md`.
+- Fullrun F2 (sessione 10): scaffolding `analysis/p4-fase-f2-stage1-chunk-build.R`
+  + `scripts/p4-fase-f2-stage1-chunked-tick.sh`; merge
+  `analysis/p4-fase-f2-stage1-merge.R`; rescue
+  `analysis/p4-fase-f2-rescue-{classify-fails,build-input,h1,h12,h13,h14-manual,
+  merge-master}.R`. Master: `p4-fase-f2-stage1-master-predictions-rescued.jsonl`.

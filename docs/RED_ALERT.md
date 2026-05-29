@@ -1083,7 +1083,7 @@ helper TDD `.flag_mouse_mislabeled_h2` + `.build_libsize_vec`).
 sample H2 sopravvissuti a D1-D4. Innocuo a F5 (lookup solo su GSM nei
 cluster, post-H2). Da risolvere/documentare a F5.
 
-#### 🟡 F2 — Stadio 1 fullrun DGX (F2-smoke ✅ DONE + fix; fullrun ⬜ TODO sessione 10)
+#### ✅ F2 — Stadio 1 fullrun DGX (F2-smoke ✅ + fix ✅ + fullrun ✅ + rescue 100% ✅, sessione 10)
 
 **Cosa facciamo.** Submit del fullrun Stadio 1 sul nuovo input JSONL.
 
@@ -1116,8 +1116,26 @@ gap (3.5%) + 15 gold mal posto + solo 5 plausibili errori pipeline. Dettaglio:
 `analysis/p4-output/f2-eval-gold.csv`.
 
 **Gate pre-fullrun confermato PASS** (schema 100%, accuracy sopra soglia,
-distribuzione design_kind sana). F2-fullrun (508k) resta ⬜ TODO con gate
-utente esplicito in sessione separata.
+distribuzione design_kind sana).
+
+**✅ F2-fullrun + rescue COMPLETO (sessione 10, 2026-05-29).** Fullrun Stadio 1
+v2 sul bacino di produzione (508.037 sample), config invariata, prompt v2 (guard
+`is_zero_timepoint` a valle). 51 chunk da 10k + 25 outlier (nchar>3500,
+max_model_len=32768), wall ~11h40m, throughput ~13.8 min/chunk, 0 HALT.
+Validità LLM-only post-fullrun **99.712%** (1.464 fail). **Rescue cascade β**
+(H1 rep_pen=1.2 → 1.317; H1.2 rep_pen=1.3 → 124; H1.3 rep_pen=1.4 → 21; H1.4
+manual 2) → master rescued **508.037 / 508.037 = 100.0000%**.
+
+Diagnosi paper-grade (audit before patch): il fail rate 3x vs β NON è infra
+(worker bilanciati) né lunghezza, ma **fragilità del prompt v2** — 81.6% dei
+fail sono record che classificavano col prompt β e ora vanno in loop (overlap
+GSM). 22/23 residui finali = un solo studio (GSE157354 chimera human-mouse).
+Recuperabile, accuratezza già validata 94-96%. Dettaglio:
+`docs/findings/2026-05-28-f2-stage1-prompt-fragility.md` §5.
+
+Deliverable: `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl`
+(508.037 record, 100% validi, gitignored). Scaffolding/rescue script committati
+(`bda18f8`..`6ecd7b1`). Master invariato.
 
 #### ⬜ F3 — Stadio 2 fullrun DGX
 
@@ -1384,29 +1402,40 @@ ALERT per Stadio 1 audit nella sessione successiva.
   - Finding `docs/findings/2026-05-28-f2-stage1-prompt-fragility.md`.
   - Gate pre-F2-fullrun PASS. Master invariato.
 
-### Handoff next session (sessione 10 = F2-fullrun)
+- 2026-05-29 sessione 10: ✅ **F2-fullrun Stadio 1 v2 (508.037) + rescue
+  cascade → 100%**.
+  - Fullrun: 51 chunk da 10k + 25 outlier, config invariata, prompt v2 + guard.
+    Wall ~11h40m, ~13.8 min/chunk, 0 HALT. Validità LLM-only 99.712% (1.464 fail).
+  - Diagnosi (audit before patch): fail rate 3x vs β = **fragilità prompt v2**
+    (81.6% fail nuovi via overlap GSM; 22/23 residui = GSE157354 chimera). NON
+    infra, NON dati. Finding §5.
+  - Rescue: H1(1.317)/H1.2(124)/H1.3(21)/manual(2) → **508.037/508.037 = 100%**.
+  - Deliverable: `p4-fase-f2-stage1-master-predictions-rescued.jsonl` (gitignored).
+    Commit `bda18f8`..`6ecd7b1` + closeout doc. Master invariato.
 
-- **Deliverable F1 pronto**: `analysis/input/archs4-human-stage1-input-v2.jsonl`
-  (169M, **508.037 record**, gitignored). Schema: `record_id,
-  geo_accession, series_id (risolto), string, library_strategy, organism,
-  molecule_ch1`. H2-pulito, D1-D4 applicati, molecule preservato.
-- **Prossimo step: F2-smoke** (100-sample gate DGX, ~30 min). NIENTE
-  fullrun (validate-before-fullrun §10). Sotto-task:
-  1. Sub-set 100 sample stratificati per nchar tier (S/M/L/XL) dal
-     jsonl-v2.
-  2. Bundle DGX (`dgx_p4_build_bundle`) + submit (`dgx_p4_submit`, time
-     esplicito dal plan; default ora 72h ma smoke basta meno).
-  3. Eval: schema validity ≥99% (target 100%); mini-gold v5 accuracy
-     ≥96.7% baseline (se <93% → STOP revisione prompt D1b); distribuzione
-     design_kind sana; output `sample_facts.stage1.v3` parser-grade.
-  4. Commit `P5 audit RED_ALERT F2-smoke: 100-sample gate`.
-- **Gate pre-F2-fullrun**: smoke eval + decisione utente. F2 fullrun
-  (~12-15h DGX) in sessione 10 separata.
-- **DGX pronto** (verificato sessione 8): container v0.20.2, partition
-  dgx12cluster infinite, Mistral-Small-3.2 cached. SSH BatchMode OK.
-- **Nota downstream F5**: `build_archs4_metadata_v2` non applica H2 → RDS
-  include 996 sample H2-survived-D1-D4, inerti (lookup solo cluster GSM
-  post-H2). Decidere a F5 se restringere al GSM set F1 o documentare.
+### Handoff next session (sessione 11 = F3 Stadio 2 fullrun)
+
+- **Deliverable F2 pronto**: `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl`
+  (**508.037 record, 100% validi**, gitignored). Colonna `rescue_source` su
+  1.464 record (1.462 LLM rep_pen-escalation + 2 manual GSE157354).
+- **Prossimo step: F3 — Stadio 2 fullrun DGX**. Sotto-task previsti:
+  1. **Build input Stadio 2 v2** da `analysis/p4-beta-stage2-build-input.R`
+     (choke point pipeline): NB qui è agganciato il guard `is_zero_timepoint`
+     (`R/stage1-normalize.R`) — verificare che usi il master v2 rescued, non il β.
+     Output: nuovo `archs4-human-stage2-input-v2.jsonl` (chunked cs50).
+  2. **Validate-before-fullrun** (§10): smoke Stadio 2 + eval mini-gold v5 (prompt
+     Stadio 2 ora EN, D3) → gate utente PRIMA del fullrun.
+  3. **F3-fullrun**: chunked orchestrator stage2 (riusa pattern β; attenzione
+     tier XL + ADR-0009/0013 safe-mode/cs25 fallback se stall #39734). Rescue H3
+     (cs50→cs25) se fail.
+- **Riuso macchina F2**: scaffolding chunked v2 in `scripts/p4-fase-f2-stage1-chunked-tick.sh`
+  + `analysis/p4-fase-f2-stage1-chunk-build.R` (adattare a stage2). Tick β stage2
+  esiste? verificare; il fullrun β stage2 NON era chunked-cron ma job unico 4-worker.
+- **DGX pronto**: container v0.20.2, partition dgx12cluster infinite, Mistral cached,
+  SSH BatchMode OK. Cron F2 già rimosso.
+- **Nota downstream F5**: `build_archs4_metadata_v2` non applica H2 → RDS include
+  996 sample H2-survived-D1-D4, inerti (lookup solo cluster GSM post-H2). Decidere
+  a F5 se restringere al GSM set F1 o documentare.
 - Branch `p5-llm-anchor-classification-audit`, master invariato. No push.
 - Quando RED ALERT (Stadio 0) chiude (post-F6+G): aprire
   `docs/RED_ALERT-stage1.md` per audit Stadio 1.

@@ -1,3 +1,54 @@
+# simulomicsr 0.0.0.9028 (development) — P5 RED ALERT F2: fullrun Stadio 1 v2 (508k) + rescue cascade 100%
+
+## FASE F2 fullrun + rescue (2026-05-29, sessione 10)
+
+Fullrun Stadio 1 sul bacino v2 di produzione (508.037 sample), config invariata
+(temp=0, rep_pen=1.1, max_model_len=4096, microbatch=500), prompt v2 (D1b
+molecule_hint + D4 organism_hint) con guard `is_zero_timepoint` a valle. Master
+invariato, no push.
+
+### Fullrun
+
+- Scaffolding chunked v2 (riusa la macchina β senza toccarne gli artefatti,
+  dir/slug/state separati): `analysis/p4-fase-f2-stage1-chunk-build.R` (shuffle
+  seed=42 + split outlier nchar>3500 + 51 chunk da 10k) +
+  `scripts/p4-fase-f2-stage1-chunked-tick.sh` (orchestrator cron */3, cascade
+  COMPLETED→submit) + `analysis/p4-fase-f2-stage1-outliers.R` (25 outlier,
+  max_model_len=32768).
+- 51 chunk + 25 outlier tutti COMPLETED, 0 HALT. Wall ~11h40m, ~13.8 min/chunk.
+- Merge: `analysis/p4-fase-f2-stage1-merge.R` →
+  `p4-fase-f2-stage1-master-predictions.jsonl` (508.037 righe). Validità LLM-only
+  **99.712%** (506.573 validi, 1.464 fail `parsed_json` null).
+
+### Diagnosi fail (audit before patch)
+
+- I 1.464 fail NON sono infra (worker 360/371/366/367 bilanciati, distribuiti su
+  tutto il run) né lunghezza. **Overlap GSM vs β**: 81.6% (1.195) sono fail NUOVI
+  (successo nel prompt β, loop ora) → **fragilità del prompt v2** (D1b/D4), stesso
+  meccanismo del finding `is_zero_timepoint` ma sul decoder (loop whitespace Mode A
+  77%). 22/23 residui finali = un solo studio (GSE157354, chimera neurale
+  human-mouse). Accuratezza già validata sul prompt v2 (benchmark 94-96%).
+- Finding esteso `docs/findings/2026-05-28-f2-stage1-prompt-fragility.md` §5.
+
+### Rescue cascade → 100%
+
+- H1 (`rep_pen=1.2`, max_tokens=4096, mml=8192): 1.317/1.464.
+- H1.2 (`rep_pen=1.3`, max_tokens=8192, mml=16384): 124/147.
+- H1.3 (`rep_pen=1.4`): 21/23.
+- H1.4 manual: 2 residui GSE157354 curati rispecchiando il gemello GSM4763009
+  (stesso studio, recuperato), cambiati solo geo_accession + duration, validati
+  contro schema `sample_facts.stage1.v3`.
+- Merge finale: **508.037 / 508.037 = 100.0000%** (1.462 LLM + 2 manual), tag
+  `rescue_source`. Master rescued:
+  `p4-fase-f2-stage1-master-predictions-rescued.jsonl` (gitignored).
+- Script: `analysis/p4-fase-f2-rescue-{classify-fails,build-input,h1-stage1,
+  h12-stage1,h13-stage1,h14-manual,merge-master}.R`.
+
+### Note
+
+- Commit sessione 10: `bda18f8`..`6ecd7b1` + closeout doc. RED_ALERT.md F2 → ✅.
+- Prossimo: F3 Stadio 2 fullrun (build input v2 + smoke gate + fullrun).
+
 # simulomicsr 0.0.0.9027 (development) — P5 RED ALERT F2-smoke: root-cause is_zero_timepoint + benchmark design-aware scalato
 
 ## FASE F2-smoke + fix + benchmark (2026-05-28/29, sessione 9 + autonomo)
