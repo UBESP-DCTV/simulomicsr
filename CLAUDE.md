@@ -31,7 +31,7 @@
 > rescued **508.037/508.037 = 100%**, tag `rescue_source`. Deliverable
 > `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl`
 > (gitignored). Commit `bda18f8`..`6ecd7b1` + closeout doc (RED_ALERT F2 ✅,
-> NEWS 9028, finding §5). Branch ahead master ~101 commit, master invariato,
+> NEWS 9028, finding §5). Branch ahead master 102 commit, master invariato,
 > no push. **F2 chiuso; prossimo = F3 Stadio 2 fullrun** (build input v2 +
 > smoke gate + fullrun). Vedi `docs/RED_ALERT.md` §Handoff sessione 11.
 >
