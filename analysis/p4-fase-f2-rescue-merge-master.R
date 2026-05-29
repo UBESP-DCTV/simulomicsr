@@ -15,10 +15,12 @@ MASTER   <- "analysis/p4-output/p4-fase-f2-stage1-master-predictions.jsonl"
 H1       <- "analysis/p4-output/p4-fase-f2-rescue-h1-predictions.jsonl"
 H12      <- "analysis/p4-output/p4-fase-f2-rescue-h12-predictions.jsonl"
 H13      <- "analysis/p4-output/p4-fase-f2-rescue-h13-predictions.jsonl"
+MANUAL   <- "analysis/p4-output/p4-fase-f2-rescue-manual-predictions.jsonl"
 OUT      <- "analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl"
 EXPECTED <- 508037L
 
-stopifnot(file.exists(MASTER), file.exists(H1), file.exists(H12), file.exists(H13))
+stopifnot(file.exists(MASTER), file.exists(H1), file.exists(H12),
+          file.exists(H13), file.exists(MANUAL))
 
 # Costruisce lookup rid -> riga taggata, solo per i recuperati (parsed_json
 # non-null). H1.2 ha precedenza su H1 (gira sui residui di H1, nessun conflitto
@@ -45,9 +47,11 @@ n_h1  <- build_recovered(H1,  "h1_rep12_maxtok4096",  rec_env)
 # sui residui dello stadio precedente, quindi nessun conflitto effettivo.
 n_h12 <- build_recovered(H12, "h12_rep13_maxtok8192", rec_env)
 n_h13 <- build_recovered(H13, "h13_rep14_maxtok8192", rec_env)
+# H1.4 manual curation (2 residui GSE157354 mirror del gemello GSM4763009)
+n_man <- build_recovered(MANUAL, "manual_curation_2026-05-29", rec_env)
 n_lookup <- length(ls(rec_env))
-cat(sprintf("Recuperati: H1=%d, H1.2=%d, H1.3=%d, lookup unico=%d\n",
-            n_h1, n_h12, n_h13, n_lookup))
+cat(sprintf("Recuperati: H1=%d, H1.2=%d, H1.3=%d, manual=%d, lookup unico=%d\n",
+            n_h1, n_h12, n_h13, n_man, n_lookup))
 
 # Stream master: regex per record_id (veloce), sostituisce se recuperato.
 con <- file(MASTER, "r"); out <- file(OUT, "w")
