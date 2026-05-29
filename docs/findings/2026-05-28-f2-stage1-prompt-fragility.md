@@ -135,16 +135,35 @@ binario treated/control è una proiezione lossy del design factoriale — L1
 nota) + **gap di copertura 3.5%**, NON bug sistematici. Solo ~5/717 sono
 plausibili errori veri della pipeline, e per lo più difendibili.
 
-### 4.3 Raccomandazioni (deferred, non implementate questa sessione)
+### 4.3 Completeness guard Stadio 2 (implementato + validato)
 
-1. **Completeness guard Stadio 2** (coverage gap 3.5%): post-processing
-   deterministico che assegna `unclear` a ogni sample di input non coperto da
-   `replicate_groups` (materializza la REGOLA 4). Non cambia l'accuracy (NA →
-   unclear → comunque escluso dal binario), ma rende esplicito il gap nei
-   diagnostici. Da valutare per F2 fullrun.
-2. **Gold design-aware esteso human-reviewed**: il gold da 756 è LLM-assisted
-   (Claude). Per il paper, una review umana dell'autore (almeno sugli studi
-   multi-asse e mal posti) lo eleverebbe a human-expert.
+**Implementato** (`R/stage2-normalize.R`, TDD 19 expect_*): il coverage gap
+del 3.5% (Stadio 2 omette sample, viola la sua REGOLA 4) è ora gestito da un
+guard deterministico che raccoglie ogni sample di input non coperto da
+`replicate_groups` in un gruppo sintetico `primary_role='unclear'`
+(schema-valido v2). Chunk-aware: confronta con i sample EFFETTIVAMENTE in input
+a ciascun record (`input_by_record` keyed per record_id), non l'intera series.
+
+- `complete_stage2_coverage(parsed_json, input_sample_ids)` — pure, per-record.
+- `audit_stage2_coverage(stage2_records, input_by_record)` — driver + report.
+
+**Validazione sui dati reali del benchmark**: recupera **24 sample non coperti
+su 14 record** (= il coverage gap osservato). Non cambia l'accuracy (unclear →
+NA nel binario) ma rende il gap esplicito e auditabile invece di un drop
+silenzioso a monte di Stadio 3.
+
+**Wiring nel pipeline (deferred a F4, gated)**: l'integrazione nel path live
+richiede che `.load_stage2_master` preservi `record_id` (oggi riduce a
+`parsed_json`), così il match input/output è chunk-aware per record_id (per
+studi chunked il match per `series_id` fonderebbe i chunk → bug). Quel cambio
+appartiene al rebuild Stadio 3 (F4), dove sarà validato end-to-end. La funzione
+è pronta e testata; serve solo agganciarla a F4.
+
+### 4.4 Raccomandazione residua
+
+**Gold design-aware esteso human-reviewed**: il gold da 756 è LLM-assisted
+(Claude). Per il paper, una review umana dell'autore (almeno sugli studi
+multi-asse e mal posti) lo eleverebbe a human-expert.
 
 ## 5. Riferimenti
 

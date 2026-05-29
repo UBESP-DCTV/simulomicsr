@@ -36,6 +36,16 @@ Gate F2-smoke (100 sample) prima del fullrun Stadio 1. NIENTE fullrun 508k
   giustificato.
 - Finding `docs/findings/2026-05-28-f2-stage1-prompt-fragility.md`.
 
+### Completeness guard Stadio 2 (coverage gap)
+
+- `R/stage2-normalize.R` (NEW, TDD 19 expect_*): `complete_stage2_coverage` /
+  `audit_stage2_coverage`. Materializza la REGOLA 4 di Stadio 2 ("DO NOT OMIT"):
+  ogni sample di input non coperto da `replicate_groups` finisce in un gruppo
+  sintetico `primary_role='unclear'` (schema-valido, chunk-aware per record_id).
+  Validato sul benchmark: recupera 24 sample non coperti / 14 record. Wiring nel
+  path live deferred a F4 (richiede `.load_stage2_master` che preservi
+  record_id; verrà validato col rebuild Stadio 3).
+
 ### Note
 
 - Fallimenti test ambientali pre-esistenti (quarto/ComBat in layer-b/stage4
