@@ -19,6 +19,19 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-05-30 sessione 11 (in corso)**: 🟡 **F3 — build input Stadio 2
+> v2 ✅ + smoke ✅, fullrun ⬜ in attesa gate**. Build input dal master Stadio 1
+> v2 congelato (508.037 record): **28.544 record stage2 / 24.394 studi**, guard
+> `is_zero_timepoint` 12.967 flag corretti, 0 drop → `analysis/input/archs4-human-stage2-input-v2.jsonl`
+> (gitignored). Smoke Stadio 2 sui 72 studi gold (756 campioni) eseguito SOLO su
+> Stadio 2 sul materiale congelato (no re-run Stadio 1): schema **100%**,
+> accuracy **94,04%** (= baseline sessione 9 94,14%, recuperi inclusi non
+> rompono nulla), gate PASS. Distribuzione tier full input: XL 25,6% (vs β
+> 36,9%); stima wall fullrun ~24-30h. Fullrun in attesa di gate utente esplicito
+> (job unico 4-worker, config invariata, time 72h; safe-mode/cs25 pronti).
+> Sintesi `analysis/audit/F3-stage2-smoke-eval.md`. Branch invariato, master
+> invariato, no push. Vedi `docs/RED_ALERT.md` §F3.
+>
 > **Stato 2026-05-29 fine sessione 10**: ✅ **F2-fullrun Stadio 1 v2
 > (508.037) + rescue cascade → 100%**. Fullrun sul bacino di produzione,
 > config invariata, prompt v2 + guard `is_zero_timepoint` a valle: 51 chunk

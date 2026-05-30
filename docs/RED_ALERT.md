@@ -1137,11 +1137,36 @@ Deliverable: `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.js
 (508.037 record, 100% validi, gitignored). Scaffolding/rescue script committati
 (`bda18f8`..`6ecd7b1`). Master invariato.
 
-#### ⬜ F3 — Stadio 2 fullrun DGX
+#### 🟡 F3 — Stadio 2 fullrun DGX (build input ✅ + smoke ✅, fullrun ⬜ in attesa gate)
 
 **Cosa facciamo.** Build nuovo Stadio 2 input + submit fullrun.
 
 **Perché serve.** Stage 2 input cambia perché Stadio 1 output cambia.
+
+**✅ Build input v2 (sessione 11, 2026-05-30).** `analysis/p4-beta-stage2-build-input.R`
+con `STAGE1_PREDS_PATH` = master Stadio 1 v2 rescued (508.037 record) →
+`analysis/input/archs4-human-stage2-input-v2.jsonl` (gitignored, 708 MB).
+Esito: **28.544 record stage2 / 24.394 studi unici**; guard `is_zero_timepoint`
+ha corretto **12.967** flag (forzati FALSE, assenza evidenza t=0); **0** record
+droppati (508.037 sample tutti emessi, nessuna perdita). Chunking cs50: 5.809
+record chunked in 1.659 studi, 22.735 studi unsplit. Build su dev version
+(`load_all`): il pacchetto installato non ha ancora `normalize_stage1_facts_zt`.
+
+**✅ Smoke Stadio 2 (sessione 11, validate-before-fullrun).** Sottoinsieme dei
+72 studi del gold design-aware (756 campioni, tutti nel bacino v2) → solo Stadio
+2 sul materiale congelato (no re-run Stadio 1). Esito: schema **100%** (72/72),
+binary accuracy **94,04%** (722 valutabili, baseline sessione 9 = 94,14%),
+sens 97,6% / spec 89,0% / f1 0,951, coverage gap 21 (~2,9%). I 1.464 recuperi +
+2 manual non rompono lo schema né degradano l'accuratezza. Wall ~4 min, 1 solo
+record XL. **Gate PASS.** Dettaglio: `analysis/audit/F3-stage2-smoke-eval.md`.
+Script: `analysis/p4-fase-f3-stage2-smoke.R`.
+
+**⬜ Fullrun (in attesa gate utente).** Distribuzione tier su tutto l'input v2:
+S=13.980, M=5.004, L=2.244, **XL=7.316 (25,6%)** — vs β 36,9% XL. Config
+invariata (job unico 4-worker H100, `max_num_seqs=6`, microbatch=50,
+tiered_max_tokens, temp=0, rep_pen=1.1, time 72h). Stima wall ~24-30h (β era
+42,5h su 39.205 record / 36,9% XL; v2 ha −27% record e −49% record XL). Safe-mode
+(ADR-0009) + rescue H3 (cs50→cs25) pronti come fallback se stall #39734.
 
 #### ⬜ F4 — Stadio 3 rebuild
 
@@ -1412,6 +1437,20 @@ ALERT per Stadio 1 audit nella sessione successiva.
   - Rescue: H1(1.317)/H1.2(124)/H1.3(21)/manual(2) → **508.037/508.037 = 100%**.
   - Deliverable: `p4-fase-f2-stage1-master-predictions-rescued.jsonl` (gitignored).
     Commit `bda18f8`..`6ecd7b1` + closeout doc. Master invariato.
+
+- 2026-05-30 sessione 11: 🟡 **F3 build input ✅ + smoke ✅, fullrun ⬜ in
+  attesa gate utente**.
+  - Build input v2 dal master Stadio 1 congelato: **28.544 record / 24.394
+    studi**, guard `is_zero_timepoint` 12.967 flag corretti, 0 drop. Output
+    `analysis/input/archs4-human-stage2-input-v2.jsonl` (gitignored).
+  - Smoke Stadio 2 sui 72 studi gold (756 campioni), solo Stadio 2 sul materiale
+    congelato: schema **100%**, accuracy **94,04%** (= baseline sessione 9),
+    recuperi non rompono nulla. Gate PASS. Sintesi
+    `analysis/audit/F3-stage2-smoke-eval.md`.
+  - Distribuzione tier full input: XL 25,6% (vs β 36,9%). Stima wall fullrun
+    ~24-30h. Pacchetto fullrun (config + scelta job unico/chunked) presentato
+    all'utente, **submit in attesa di gate esplicito**.
+  - Master invariato. NEWS aggiornato a F3-fullrun completato (non a metà fase).
 
 ### Handoff next session (sessione 11 = F3 Stadio 2 fullrun)
 
