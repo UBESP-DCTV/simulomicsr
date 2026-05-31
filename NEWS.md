@@ -1,3 +1,50 @@
+# simulomicsr 0.0.0.9029 (development) — P5 RED ALERT F3: fullrun Stadio 2 v2 (28.544) + rescue cascade 100%
+
+## FASE F3 build input + smoke + fullrun + rescue (2026-05-30/31, sessione 11)
+
+Stadio 2 (study-level) ricostruito sul master Stadio 1 v2 congelato (508.037
+record). Config invariata (temp=0, rep_pen=1.1, microbatch=50, stage2
+tiered_max_tokens S/M/L/XL=4K/8K/16K/32K). Master git invariato, no push.
+
+### Build input + smoke (gate validate-before-fullrun)
+
+- Build input da `analysis/p4-beta-stage2-build-input.R` con
+  `STAGE1_PREDS_PATH` = master Stadio 1 v2 rescued → `archs4-human-stage2-input-v2.jsonl`
+  (gitignored): **28.544 record / 24.394 studi**. Guard `is_zero_timepoint`
+  ha corretto 12.967 flag (forzati FALSE), 0 record persi.
+- Smoke Stadio 2 sui 72 studi del gold design-aware (756 campioni), eseguito
+  SOLO su Stadio 2 sul materiale congelato (no re-run Stadio 1): schema **100%**,
+  binary accuracy **94,04%** (= baseline sessione 9 94,14%, recuperi inclusi non
+  rompono nulla). Gate PASS. `analysis/audit/F3-stage2-smoke-eval.md`.
+
+### Fullrun (job 22948, run 20260530T113933Z-...-33778a)
+
+- 28.544 record, **wall ~29h** (28h59m, dentro le 72h), 0 worker falliti.
+  Distribuzione tier XL 25,6% (7.316). Throughput oscillante (~6-19/min,
+  notturno sceso al pareggio ~6/min poi rientrato), monitoraggio orario.
+- Validità schema fullrun **99,874%** (28.508 validi, 36 fail). I 36 fail sparsi
+  su ~36 studi distinti (non concentrati), tasso ~ identico al β stage2 (99,89%).
+
+### Rescue cascade → 100%
+
+- **cs25 resplit** (`p4-fase-f3-rescue-{build-input,stage2-full,merge}.R`): 36
+  fail → 59 chunk da 25 → **32/36** recuperati. 4 residui = studi piccoli (4-6
+  campioni) dove il re-split è un no-op (già single-chunk); JSON malformato
+  (~8.500 char, non whitespace-flood).
+- **Cascade rep_pen** (`p4-fase-f3-rescue-cascade.R`, tecnica patch
+  `generation.json` da H1 Stadio 1): rep_pen=1,2 sui 4 residui → **4/4** validi
+  (output pulito ~1.400-2.200 char; la penalità più alta rompe la ripetizione che
+  corrompeva il JSON). Nessun manual necessario.
+- Master finale: **28.567 record, 100,0000% schema-validi, 24.394 studi (tutti
+  quelli attesi, 0 mancanti)**. Tag `rescue_source` (`h3_cs25_resplit_v2` su 55
+  chunk, `h1_rep_pen_1.2` su 4). Deliverable
+  `analysis/p4-output/p4-fase-f3-stage2-master-rescued.jsonl` (gitignored).
+
+### Note
+
+- F3 chiuso. Prossimo = **F4 (Stadio 3 rebuild)** con anchor v3.1.1 + i nuovi
+  Stadio 1/2. Sessione separata con gate utente.
+
 # simulomicsr 0.0.0.9028 (development) — P5 RED ALERT F2: fullrun Stadio 1 v2 (508k) + rescue cascade 100%
 
 ## FASE F2 fullrun + rescue (2026-05-29, sessione 10)

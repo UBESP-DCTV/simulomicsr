@@ -19,18 +19,23 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
-> **Stato 2026-05-30 sessione 11 (in corso)**: 🟡 **F3 — build input Stadio 2
-> v2 ✅ + smoke ✅, fullrun ⬜ in attesa gate**. Build input dal master Stadio 1
-> v2 congelato (508.037 record): **28.544 record stage2 / 24.394 studi**, guard
-> `is_zero_timepoint` 12.967 flag corretti, 0 drop → `analysis/input/archs4-human-stage2-input-v2.jsonl`
-> (gitignored). Smoke Stadio 2 sui 72 studi gold (756 campioni) eseguito SOLO su
-> Stadio 2 sul materiale congelato (no re-run Stadio 1): schema **100%**,
-> accuracy **94,04%** (= baseline sessione 9 94,14%, recuperi inclusi non
-> rompono nulla), gate PASS. Distribuzione tier full input: XL 25,6% (vs β
-> 36,9%); stima wall fullrun ~24-30h. Fullrun in attesa di gate utente esplicito
-> (job unico 4-worker, config invariata, time 72h; safe-mode/cs25 pronti).
-> Sintesi `analysis/audit/F3-stage2-smoke-eval.md`. Branch invariato, master
-> invariato, no push. Vedi `docs/RED_ALERT.md` §F3.
+> **Stato 2026-05-31 fine sessione 11**: ✅ **F3 — Stadio 2 fullrun v2 (28.544)
+> + rescue cascade → 100%**. Build input dal master Stadio 1 v2 congelato:
+> **28.544 record / 24.394 studi**, guard `is_zero_timepoint` 12.967 flag corretti,
+> 0 drop. Smoke Stadio 2 sui 72 studi gold (756 campioni) solo su Stadio 2 sul
+> materiale congelato: schema **100%**, accuracy **94,04%** (= baseline sessione 9),
+> gate PASS. Fullrun job 22948 (job unico 4-worker, config invariata, tier XL
+> 25,6%): wall **~29h**, validità **99,874%** (36 fail su 28.544, sparsi, ~ β).
+> Throughput oscillante (~6-19/min), dip notturno al pareggio ~6/min poi rientrato,
+> monitoraggio orario, nessun intervento reattivo. Rescue: cs25 resplit 32/36 +
+> cascade rep_pen=1,2 sui 4 residui (studi piccoli, JSON malformato) → 4/4. **Master
+> finale 28.567 record, 100,0000% validi, 24.394 studi**
+> (`analysis/p4-output/p4-fase-f3-stage2-master-rescued.jsonl`, gitignored,
+> `rescue_source` ×59). Doc NEWS 9029 + RED_ALERT §F3 ✅. Commit
+> `P5 audit RED_ALERT F3: *`. Branch invariato, master git invariato, no push.
+> **Prossimo = F4 (Stadio 3 rebuild)**: prompt in
+> `analysis/p4-fase-f3-NEXT-SESSION-PROMPT.md`. Vedi `docs/RED_ALERT.md` §F3 +
+> §Handoff sessione 12.
 >
 > **Stato 2026-05-29 fine sessione 10**: ✅ **F2-fullrun Stadio 1 v2
 > (508.037) + rescue cascade → 100%**. Fullrun sul bacino di produzione,

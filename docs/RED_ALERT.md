@@ -1137,7 +1137,7 @@ Deliverable: `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.js
 (508.037 record, 100% validi, gitignored). Scaffolding/rescue script committati
 (`bda18f8`..`6ecd7b1`). Master invariato.
 
-#### 🟡 F3 — Stadio 2 fullrun DGX (build input ✅ + smoke ✅, fullrun ⬜ in attesa gate)
+#### ✅ F3 — Stadio 2 fullrun DGX (build input ✅ + smoke ✅ + fullrun ✅ + rescue 100% ✅, sessione 11)
 
 **Cosa facciamo.** Build nuovo Stadio 2 input + submit fullrun.
 
@@ -1161,12 +1161,28 @@ sens 97,6% / spec 89,0% / f1 0,951, coverage gap 21 (~2,9%). I 1.464 recuperi +
 record XL. **Gate PASS.** Dettaglio: `analysis/audit/F3-stage2-smoke-eval.md`.
 Script: `analysis/p4-fase-f3-stage2-smoke.R`.
 
-**⬜ Fullrun (in attesa gate utente).** Distribuzione tier su tutto l'input v2:
-S=13.980, M=5.004, L=2.244, **XL=7.316 (25,6%)** — vs β 36,9% XL. Config
-invariata (job unico 4-worker H100, `max_num_seqs=6`, microbatch=50,
-tiered_max_tokens, temp=0, rep_pen=1.1, time 72h). Stima wall ~24-30h (β era
-42,5h su 39.205 record / 36,9% XL; v2 ha −27% record e −49% record XL). Safe-mode
-(ADR-0009) + rescue H3 (cs50→cs25) pronti come fallback se stall #39734.
+**✅ Fullrun (job 22948, run 20260530T113933Z-...-33778a).** Job unico 4-worker
+H100, config invariata (`max_num_seqs=6`, microbatch=50, tiered_max_tokens, temp=0,
+rep_pen=1.1, time 72h). Distribuzione tier: S=13.980, M=5.004, L=2.244, **XL=7.316
+(25,6%)**. **Wall ~29h** (28h59m, dentro le 72h), 0 worker falliti. Throughput
+oscillante (~6-19 studi/min); nella notte è sceso al pareggio ~6/min (margine 72h
+chiuso temporaneamente) poi rientrato — monitoraggio orario, nessun intervento
+reattivo (la soglia di stop non è stata superata in modo sostenuto). Validità
+schema fullrun **99,874%** (28.508 validi, 36 fail sparsi su ~36 studi distinti,
+tasso ~ identico al β 99,89%). Nessuno stall #39734.
+
+**✅ Rescue cascade → 100%.**
+- cs25 resplit (`p4-fase-f3-rescue-{build-input,stage2-full,merge}.R`): 36 fail →
+  59 chunk da 25 → **32/36** recuperati. 4 residui = studi piccoli (4-6 campioni),
+  per cui il re-split è un no-op (già single-chunk); JSON malformato (~8.500 char,
+  NON whitespace-flood come la chimera Stadio 1).
+- Cascade rep_pen (`p4-fase-f3-rescue-cascade.R`, tecnica patch `generation.json`
+  da H1 Stadio 1): rep_pen=1,2 sui 4 → **4/4** validi (output pulito; la penalità
+  più alta rompe la ripetizione che corrompeva il JSON). Nessun manual necessario.
+- **Master finale: 28.567 record, 100,0000% schema-validi, 24.394 studi (tutti
+  attesi, 0 mancanti).** Tag `rescue_source` (`h3_cs25_resplit_v2` ×55,
+  `h1_rep_pen_1.2` ×4). Deliverable
+  `analysis/p4-output/p4-fase-f3-stage2-master-rescued.jsonl` (gitignored).
 
 #### ⬜ F4 — Stadio 3 rebuild
 
@@ -1438,43 +1454,53 @@ ALERT per Stadio 1 audit nella sessione successiva.
   - Deliverable: `p4-fase-f2-stage1-master-predictions-rescued.jsonl` (gitignored).
     Commit `bda18f8`..`6ecd7b1` + closeout doc. Master invariato.
 
-- 2026-05-30 sessione 11: 🟡 **F3 build input ✅ + smoke ✅, fullrun ⬜ in
-  attesa gate utente**.
+- 2026-05-30/31 sessione 11: ✅ **F3 COMPLETO — build input + smoke + fullrun +
+  rescue cascade → 100%**.
   - Build input v2 dal master Stadio 1 congelato: **28.544 record / 24.394
-    studi**, guard `is_zero_timepoint` 12.967 flag corretti, 0 drop. Output
-    `analysis/input/archs4-human-stage2-input-v2.jsonl` (gitignored).
+    studi**, guard `is_zero_timepoint` 12.967 flag corretti, 0 drop.
   - Smoke Stadio 2 sui 72 studi gold (756 campioni), solo Stadio 2 sul materiale
-    congelato: schema **100%**, accuracy **94,04%** (= baseline sessione 9),
-    recuperi non rompono nulla. Gate PASS. Sintesi
-    `analysis/audit/F3-stage2-smoke-eval.md`.
-  - Distribuzione tier full input: XL 25,6% (vs β 36,9%). Stima wall fullrun
-    ~24-30h. Pacchetto fullrun (config + scelta job unico/chunked) presentato
-    all'utente, **submit in attesa di gate esplicito**.
-  - Master invariato. NEWS aggiornato a F3-fullrun completato (non a metà fase).
+    congelato: schema **100%**, accuracy **94,04%** (= baseline sessione 9).
+    Gate PASS. `analysis/audit/F3-stage2-smoke-eval.md`.
+  - Fullrun job 22948 (job unico 4-worker, config invariata): wall **~29h**,
+    validità **99,874%** (36 fail su 28.544). Throughput oscillante; dip notturno
+    al pareggio ~6/min poi rientrato; nessun intervento reattivo.
+  - Rescue: cs25 resplit 32/36 + cascade rep_pen=1,2 sui 4 residui (studi piccoli,
+    JSON malformato) → **4/4**. Master finale **28.567 record, 100,0000% validi,
+    24.394 studi** (`p4-fase-f3-stage2-master-rescued.jsonl`, gitignored,
+    `rescue_source` ×59).
+  - Doc: NEWS 9029, RED_ALERT §F3 ✅, CLAUDE.md banner. Commit
+    `P5 audit RED_ALERT F3: *` (script + doc; jsonl gitignored). Master git
+    invariato, no push. Prompt prossima sessione (F4) in
+    `analysis/p4-fase-f3-NEXT-SESSION-PROMPT.md`.
 
-### Handoff next session (sessione 11 = F3 Stadio 2 fullrun)
+### Handoff next session (sessione 12 = F4 Stadio 3 rebuild)
 
-- **Deliverable F2 pronto**: `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl`
-  (**508.037 record, 100% validi**, gitignored). Colonna `rescue_source` su
-  1.464 record (1.462 LLM rep_pen-escalation + 2 manual GSE157354).
-- **Prossimo step: F3 — Stadio 2 fullrun DGX**. Sotto-task previsti:
-  1. **Build input Stadio 2 v2** da `analysis/p4-beta-stage2-build-input.R`
-     (choke point pipeline): NB qui è agganciato il guard `is_zero_timepoint`
-     (`R/stage1-normalize.R`) — verificare che usi il master v2 rescued, non il β.
-     Output: nuovo `archs4-human-stage2-input-v2.jsonl` (chunked cs50).
-  2. **Validate-before-fullrun** (§10): smoke Stadio 2 + eval mini-gold v5 (prompt
-     Stadio 2 ora EN, D3) → gate utente PRIMA del fullrun.
-  3. **F3-fullrun**: chunked orchestrator stage2 (riusa pattern β; attenzione
-     tier XL + ADR-0009/0013 safe-mode/cs25 fallback se stall #39734). Rescue H3
-     (cs50→cs25) se fail.
-- **Riuso macchina F2**: scaffolding chunked v2 in `scripts/p4-fase-f2-stage1-chunked-tick.sh`
-  + `analysis/p4-fase-f2-stage1-chunk-build.R` (adattare a stage2). Tick β stage2
-  esiste? verificare; il fullrun β stage2 NON era chunked-cron ma job unico 4-worker.
-- **DGX pronto**: container v0.20.2, partition dgx12cluster infinite, Mistral cached,
-  SSH BatchMode OK. Cron F2 già rimosso.
+- **Deliverable F3 pronto**: `analysis/p4-output/p4-fase-f3-stage2-master-rescued.jsonl`
+  (**28.567 record, 100% schema-validi, 24.394 studi**, gitignored). `rescue_source`
+  su 59 record (55 `h3_cs25_resplit_v2` + 4 `h1_rep_pen_1.2`).
+- **Deliverable F2 (upstream)**: `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl`
+  (508.037 record Stadio 1, 100% validi, gitignored).
+- **Prossimo step: F4 — Stadio 3 rebuild**. Rebuild `build_stage3_clusters()` con:
+  1. **anchor v3.1.1 + resolver v1.1.0** (già implementati in S1bis/S2bis — vedi
+     `R/anchors.R`, `R/ontology-lookup.R`, ADR-0018/0019);
+  2. i **nuovi Stadio 1 (F2) + Stadio 2 (F3)** come input al posto dei master β;
+  3. dedupe BioSample SAMN (E0/E0b) + le covariate metadata C3 (per F5).
+  Output: nuovo `clusters.rds` cross-studio clean. Gate utente prima del run
+  (è il rebuild che alimenta F5 Stadio 4).
+- **Verificare i path di input** di `build_stage3_clusters`/script di rebuild
+  Stadio 3: oggi puntano ai master β (`p4-beta-stage2-master-rescued-collect.rds`,
+  `p4-beta-stage1-master-...`). Vanno ripuntati ai master v2 F2/F3. NB: F3 è un
+  JSONL (28.567 record), il β stage2 era un `collect.rds` (data.frame) — adattare
+  il loader Stadio 3 (`.load_stage2_master`) al formato JSONL o convertire.
+- **Completeness guard Stadio 2 (deferred da F2 §4.3)**: agganciare
+  `complete_stage2_coverage`/`audit_stage2_coverage` nel path Stadio 3 quando
+  `.load_stage2_master` preserva `record_id` (chunk-aware). Vedi finding F2 §4.3.
+- **DGX**: non serve per F4 (Stadio 3 è locale/CPU). Container v0.20.2 resta pronto
+  per F5. Nessun cron attivo.
 - **Nota downstream F5**: `build_archs4_metadata_v2` non applica H2 → RDS include
   996 sample H2-survived-D1-D4, inerti (lookup solo cluster GSM post-H2). Decidere
   a F5 se restringere al GSM set F1 o documentare.
+- Prompt pronto: `analysis/p4-fase-f3-NEXT-SESSION-PROMPT.md`.
 - Branch `p5-llm-anchor-classification-audit`, master invariato. No push.
 - Quando RED ALERT (Stadio 0) chiude (post-F6+G): aprire
   `docs/RED_ALERT-stage1.md` per audit Stadio 1.
