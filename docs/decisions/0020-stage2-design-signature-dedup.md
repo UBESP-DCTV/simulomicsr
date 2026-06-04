@@ -72,14 +72,31 @@ resta valido. C ridisegna **solo** l'input Stadio 2 + re-run (rifà F3), poi F4.
 ## Decisioni
 
 - **D1 — DECISA (2026-06-04)**: la firma è la **sola condizione sperimentale**.
-  INCLUDE: `cell_context` (tissue, cell_type_or_line_raw, context_kind,
-  cell_state, developmental_stage, subcellular_fraction,
+  INCLUDE: `cell_context` (tissue, tissue_segment, cell_type_or_line_raw,
+  context_kind, cell_state, developmental_stage, subcellular_fraction,
   engineered_modifications, sort_markers, co_culture_partners), `disease_state`
-  (status, term_raw, mesh_id_candidate), `perturbations` (kind, agent type/db/id,
-  dose, duration, phase, is_zero_timepoint, is_negative_control),
+  (status, term_raw, mesh_id_candidate), `perturbations` (kind, **agent_raw
+  normalizzato (trim+casefold)** + agent type/db/id, dose, duration, phase,
+  is_zero_timepoint, is_negative_control),
   `patient_metadata` sperimentali (condition, clinical_response, stage,
   survival_group, visit_or_timepoint). **ESCLUDE l'identità individuale**:
   donor_id, age, sex, ancestry_or_population, ancestry_admixture.
+  **Raffinamento sessione 13 (2026-06-04, data-driven)**: `tissue_segment`
+  AGGIUNTO (valori reali = regioni anatomiche pulite — cortex/ventricle/colon
+  segments; ometterlo causa false-merge irrecuperabile di regioni distinte nello
+  stesso studio, varia internamente in ~1,2% degli studi multi-sample).
+  `passage_or_state` resta ESCLUSO (campo sporco: parte utile = stato biologico
+  già coperta da `cell_state`; parte residua = numero di passaggio P3/P5 =
+  rumore tecnico → over-split ingiustificato).
+  Inoltre **`agent_raw` AGGIUNTO** all'identità dell'agente delle perturbazioni:
+  `agent_normalized$id` è NULL nel **65,4%** delle perturbazioni reali (sonda
+  120k record F2), quindi la firma sui soli `type/db/id` collasserebbe due terzi
+  dei farmaci distinti (DEX, TEPP-46, smoking…) in un'unica condizione =
+  false-merge. `agent_raw` (popolato 96,7%, coerente tra repliche entro lo
+  studio) è il discriminatore primario; `type/db/id` restano come separazione
+  extra quando presenti. La canonicalizzazione cross-studio resta compito
+  dell'anchor (Stadio 3). `preferred_name` escluso (field-swap LLM 23,87%, pop.
+  58,5% → rumore).
 
 ### Decisioni residue — DECISE 2026-06-04 (sessione 13)
 

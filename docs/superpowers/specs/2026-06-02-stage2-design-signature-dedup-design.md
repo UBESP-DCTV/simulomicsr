@@ -35,14 +35,20 @@ Chiave canonica deterministica sui campi Stage 1 della **sola condizione
 sperimentale**. Campi inclusi (decisione utente: esclusa l'identità individuale
 — donor_id, age, sex, ancestry):
 
-- `cell_context`: tissue, cell_type_or_line_raw, context_kind, cell_state,
-  developmental_stage, subcellular_fraction, engineered_modifications (set),
-  sort_markers (set), co_culture_partners (set)
+- `cell_context`: tissue, tissue_segment, cell_type_or_line_raw, context_kind,
+  cell_state, developmental_stage, subcellular_fraction,
+  engineered_modifications (set), sort_markers (set), co_culture_partners (set)
+  - `tissue_segment` AGGIUNTO sessione 13 (data-driven: regioni anatomiche
+    pulite, false-merge se omesso). `passage_or_state` resta escluso (overlap
+    `cell_state` + numero passaggio = rumore → over-split).
 - `disease_state`: status, term_raw (+ mesh_id_candidate)
 - `perturbations` (lista, ordinata canonicamente): per ciascuna — kind,
-  agent_normalized (type, id_database, id), dose (value_numeric+unit, fallback
-  value_raw), duration (value_hours, fallback value_raw), phase,
-  is_zero_timepoint, is_negative_control
+  **agent_raw normalizzato (trim+casefold)** + agent_normalized (type,
+  id_database, id), dose (value_numeric+unit, fallback value_raw), duration
+  (value_hours, fallback value_raw), phase, is_zero_timepoint, is_negative_control
+  - `agent_raw` AGGIUNTO sessione 13 (data-driven: `agent_normalized$id` NULL
+    nel 65,4% → senza raw, false-merge di agenti distinti). `preferred_name`
+    escluso (field-swap LLM + rumore).
 - `patient_metadata` **design-rilevanti**: condition, clinical_response, stage,
   survival_group, visit_or_timepoint
   - **ESCLUSI** (identità individuale, non assi di disegno): donor_id, age, sex,
