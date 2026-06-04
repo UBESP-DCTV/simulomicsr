@@ -110,9 +110,10 @@ record per studio**. A questo punto F4/F5 girano senza riassemblaggio.
 | # | Decisione | Stato |
 |---|---|---|
 | D1 | Campi della firma (design vs identità) | **DECISA 2026-06-04**: sola condizione sperimentale (§1); escluse donor/age/sex/ancestry |
-| D2 | Coda >soglia condizioni (~9 studi, max 2432) | aperta — default: chunking *per-condizione* coerente solo per quei pochi |
-| D3 | Scope re-run | aperta — default: **tutti** gli studi (uniformità config) |
-| D4 | Forma cambio prompt | aperta — default: rappresentante + `n_replicates` (minima churn) |
+| D2 | Coda >soglia condizioni (max 2432) | **DECISA 2026-06-04**: chunking *per-condizione* coerente + broadcast controlli/baseline in ogni blocco; soglia (token vs 32k XL) misurata empiricamente in build v3; ~9 giganti ispezionati uno per uno |
+| D3 | Scope re-run | **DECISA 2026-06-04**: **tutti** i 24.394 studi (uniformità config) |
+| D4 | Forma cambio prompt | **DECISA 2026-06-04**: rappresentante + `n_replicates` (minima churn); verbatim+diff+OK resta gated |
+| — | Sorte `.reassemble_stage2_chunks` | **DECISA 2026-06-04**: sostituire con guard fail-loud (errore su `series_id` duplicato); completeness guard per-studio resta |
 
 ## Fuori scope
 

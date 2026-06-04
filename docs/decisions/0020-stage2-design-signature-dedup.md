@@ -1,6 +1,6 @@
 # ADR-0020 — Stadio 2 su condizioni di design deduplicate (niente chunking)
 
-- **Status**: Proposed (2026-06-02); D1 decisa 2026-06-04 (D2-D4 residue)
+- **Status**: Proposed (2026-06-02); D1-D4 + namespacing decise 2026-06-04 (sessione 13)
 - **Contesto RED ALERT**: FASE F4. Supera la strategia di chunking cs50 dello
   Stadio 2 (ADR-0010/0013) come *modalità di input*, non come default di sampling.
 - **Driven by**: finding `docs/findings/2026-06-01-stage3-stage4-chunked-study-sample-resolution-bug.md`.
@@ -81,13 +81,34 @@ resta valido. C ridisegna **solo** l'input Stadio 2 + re-run (rifà F3), poi F4.
   survival_group, visit_or_timepoint). **ESCLUDE l'identità individuale**:
   donor_id, age, sex, ancestry_or_population, ancestry_admixture.
 
-### Decisioni aperte residue (gate inizio prossima sessione)
+### Decisioni residue — DECISE 2026-06-04 (sessione 13)
 
-- **D2** gestione della coda (~9 studi con >400 condizioni distinte). Default
-  proposto: chunking *per-condizione coerente* solo per quei pochi.
-- **D3** scope re-run. Default proposto: **tutti** gli studi (uniformità config).
-- **D4** forma del cambio prompt. Default proposto: rappresentante +
-  `n_replicates` (minima churn). Estrazione verbatim + diff + OK utente.
+- **D2 — DECISA**: gestione della coda di studi con #condizioni che eccede il
+  contesto LLM (in produzione `max_model_len` tier XL = 32k token; ~100 condizioni
+  compatte entrano → copre il 96,3% degli studi chunked; sopra ≈3,7%, max 2.432).
+  Politica: **chunking per-condizione coerente** per i soli studi-coda, con i
+  controlli/baseline (`is_negative_control` / `is_zero_timepoint`) **ripetuti
+  (broadcast) in ogni blocco**, così i confronti trattato-vs-controllo
+  sopravvivono entro chunk. La **soglia esatta** va misurata empiricamente sul
+  peso reale (token) di un record-condizione durante il build input v3, non
+  indovinata. I ~9 studi giganti (screen tipo LINCS) vanno ispezionati uno per uno.
+- **D3 — DECISA**: re-run su **tutti i 24.394 studi** (uniformità config — anche i
+  non-chunked vedono il prompt nuovo, ri-eseguirli evita un confounder
+  metodologico). Coerente con `feedback_pipeline_config_uniformity`.
+- **D4 — DECISA**: forma del cambio prompt = **rappresentante + `n_replicates`**
+  (minima churn). L'estrazione verbatim + diff + OK utente resta uno step gated
+  successivo prima di applicare.
+- **Sorte `.reassemble_stage2_chunks` — DECISA**: **sostituire con un guard
+  fail-loud**. La funzione namespacing (committata in `c940cde`, agganciata a
+  `R/stage3-build.R:55` + `R/stage4-build.R:151`) è superata da C; come "rete
+  difensiva" sarebbe dannosa perché, se mai girasse su un master chunked,
+  produrrebbe il riassemblaggio per-namespacing — che questo stesso ADR dichiara
+  scientificamente inaccettabile (perde i confronti cross-chunk) — **in silenzio**,
+  con output schema-valido. La sostituiamo con un controllo di invariante che
+  **fallisce rumorosamente** se trova `series_id` duplicati (input chunked
+  inatteso). Il completeness guard per-studio (`.apply_stage2_completeness_by_series`
+  + `.build_stage2_input_lookup`) è indipendente e **resta** (da verificare la
+  non-dipendenza da reassemble in fase di implementazione).
 
 ## Alternative scartate
 
