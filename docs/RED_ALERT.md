@@ -1217,6 +1217,17 @@ deduplicate per firma, niente chunking; espandere su tutti i campioni. Vedi
 **Prossimo = implementare C** (dopo conferma D2-D4): firma TDD → build input v3 →
 cambio prompt Stadio 2 gated → smoke gold 72 studi → fullrun DGX.
 
+**⬜ TODO differito (single-cell sfuggiti a Stadio 0).** Durante il build v3
+(sessione 13) è emerso che ~313 studi (1,28%, ~16k campioni) hanno disegno
+degenere (ratio campioni/condizione < 1,2): un identificatore per-campione cola
+in `cell_context$cell_type_or_line_raw` (es. GSE110154: 1.443
+`Fetal_pancreas_cell_N`), quasi certamente **single-cell sfuggiti al filtro
+Stadio 0** (A1 library_source + A2 extract_protocol). Producono 0 DE comunque
+(eligibility n≥2). Decisione utente: tenerli per ora, **indagine Stadio 0
+separata** (quantificare, capire perché A1/A2 non li hanno presi — probabile
+SMART-seq plate-based GSM-per-cellula — decidere se filtrare o dichiarare limite).
+Memoria `project_singlecell_escapees_stage0`.
+
 #### ⬜ F5 — Stadio 4 Layer A rebuild
 
 **Cosa facciamo.** Rebuild `build_stage4_results()` con (a) il nuovo
