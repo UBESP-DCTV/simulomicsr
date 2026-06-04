@@ -69,6 +69,31 @@ test_that("ogni condizione non-controllo appare in esattamente un chunk", {
   expect_true(all(appearances == 1L))
 })
 
+test_that("controlli oltre la frazione del budget -> fallback partizione semplice", {
+  # controlli totali 8000 > 30% di budget 10000 (=3000) -> niente broadcast
+  conds <- c(
+    lapply(1:4, function(i) mk_cond(paste0("ctrl", i), 2000, control = TRUE)),
+    lapply(1:6, function(i) mk_cond(paste0("t", i), 3000))
+  )
+  chunks <- .chunk_conditions(conds, budget_chars = 10000, broadcast_max_frac = 0.3)
+  all_ids <- unlist(lapply(chunks, function(ch)
+    vapply(ch, function(c) c$condition_id, character(1))))
+  expect_true(all(table(all_ids) == 1L))  # nessuna ripetizione (no broadcast)
+  expect_length(all_ids, 10L)
+})
+
+test_that("controlli entro la frazione del budget -> broadcast attivo", {
+  # 1 controllo 2000 < 30% di budget 10000 (=3000) -> broadcast
+  conds <- c(list(mk_cond("ctrl", 2000, control = TRUE)),
+             lapply(1:8, function(i) mk_cond(paste0("t", i), 3000)))
+  chunks <- .chunk_conditions(conds, budget_chars = 10000, broadcast_max_frac = 0.3)
+  expect_gt(length(chunks), 1L)
+  for (ch in chunks) {
+    ids <- vapply(ch, function(c) c$condition_id, character(1))
+    expect_true("ctrl" %in% ids)
+  }
+})
+
 test_that("nessuna condizione di controllo -> partizione semplice senza broadcast", {
   conds <- lapply(1:6, function(i) mk_cond(letters[i], 4000))
   chunks <- .chunk_conditions(conds, budget_chars = 10000)

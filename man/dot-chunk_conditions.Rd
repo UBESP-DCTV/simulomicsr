@@ -4,13 +4,18 @@
 \alias{.chunk_conditions}
 \title{Divide le condizioni di uno studio in chunk entro un budget di caratteri}
 \usage{
-.chunk_conditions(conditions, budget_chars)
+.chunk_conditions(conditions, budget_chars, broadcast_max_frac = 0.3)
 }
 \arguments{
 \item{conditions}{Lista di condizioni (vedi \code{\link{.build_study_conditions}});
 ciascuna deve avere \code{n_char}.}
 
 \item{budget_chars}{Tetto di caratteri per chunk (somma \code{n_char}).}
+
+\item{broadcast_max_frac}{Frazione massima del budget che i controlli possono
+occupare per essere broadcastati. Oltre questa soglia, ripetere i controlli
+in ogni chunk consumerebbe troppo budget (esplosione di chunk), quindi si
+ricade su partizione semplice (no broadcast). Default 0.3.}
 }
 \value{
 Lista di chunk; ciascun chunk e' una lista di condizioni.

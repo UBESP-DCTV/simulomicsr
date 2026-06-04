@@ -36,7 +36,10 @@ stopifnot(file.exists(STAGE1_PREDS_PATH))
 OUT_JSONL <- Sys.getenv(
   "OUT_JSONL", unset = "analysis/input/archs4-human-stage2-input-v3.jsonl")
 BUDGET_CHARS <- as.integer(Sys.getenv("BUDGET_CHARS", unset = "80000"))
+BROADCAST_MAX_FRAC <- as.numeric(Sys.getenv("BROADCAST_MAX_FRAC", unset = "0.3"))
 dir.create(dirname(OUT_JSONL), recursive = TRUE, showWarnings = FALSE)
+cat(sprintf("Config: BUDGET_CHARS=%d  BROADCAST_MAX_FRAC=%.2f\n",
+            BUDGET_CHARS, BROADCAST_MAX_FRAC))
 
 cat("Loading", STAGE1_PREDS_PATH, "...\n")
 preds <- jsonlite::stream_in(file(STAGE1_PREDS_PATH), verbose = FALSE,
@@ -83,7 +86,8 @@ for (sid in sids) {
   # check copertura: union member == campioni input dello studio
   total_members <- total_members + length(unique(unlist(
     lapply(conds, function(c) unlist(c$member_sample_ids)))))
-  chunks <- .chunk_conditions(conds, budget_chars = BUDGET_CHARS)
+  chunks <- .chunk_conditions(conds, budget_chars = BUDGET_CHARS,
+                              broadcast_max_frac = BROADCAST_MAX_FRAC)
   nchunks <- length(chunks)
   # broadcast reale = condizioni presenti in >1 chunk (onesto vs euristica)
   all_ids <- unlist(lapply(chunks, function(ch)

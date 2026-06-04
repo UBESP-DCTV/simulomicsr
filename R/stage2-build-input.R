@@ -87,9 +87,13 @@
 #' @param conditions Lista di condizioni (vedi \code{\link{.build_study_conditions}});
 #'   ciascuna deve avere \code{n_char}.
 #' @param budget_chars Tetto di caratteri per chunk (somma \code{n_char}).
+#' @param broadcast_max_frac Frazione massima del budget che i controlli possono
+#'   occupare per essere broadcastati. Oltre questa soglia, ripetere i controlli
+#'   in ogni chunk consumerebbe troppo budget (esplosione di chunk), quindi si
+#'   ricade su partizione semplice (no broadcast). Default 0.3.
 #' @return Lista di chunk; ciascun chunk e' una lista di condizioni.
 #' @keywords internal
-.chunk_conditions <- function(conditions, budget_chars) {
+.chunk_conditions <- function(conditions, budget_chars, broadcast_max_frac = 0.3) {
   sizes <- vapply(conditions, function(c) as.numeric(c$n_char), numeric(1))
   if (sum(sizes) <= budget_chars) return(list(conditions))
 
@@ -98,8 +102,9 @@
   treated  <- conditions[!is_ctrl]
   ctrl_size <- sum(sizes[is_ctrl])
 
-  # broadcast non praticabile: controlli da soli oltre budget -> partizione semplice
-  if (ctrl_size >= budget_chars) {
+  # broadcast non praticabile: controlli oltre la frazione del budget ->
+  # ripeterli esploderebbe il numero di chunk -> partizione semplice.
+  if (ctrl_size > budget_chars * broadcast_max_frac) {
     controls <- list(); treated <- conditions; ctrl_size <- 0
   }
 
