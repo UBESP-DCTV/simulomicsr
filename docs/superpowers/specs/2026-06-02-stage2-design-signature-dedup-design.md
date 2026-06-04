@@ -55,8 +55,12 @@ sperimentale**. Campi inclusi (decisione utente: esclusa l'identità individuale
     ancestry — *salvo* che lo studio li usi come fattore (vedi D1: rischio).
 
 Proprietà: NA-aware, ordine-insensibile su set/liste, JSON canonico sort_keys.
-Implementazione R pura + TDD (fixture: campioni replicati → stessa firma;
-campioni con dose diversa → firme diverse; ecc.).
+Normalizzazione encoding (raffinamento sessione 13, data-driven su GSE249377):
+casefold + collapse whitespace + segno micro (µ/μ → u, fonde unità dose `µM`
+vs `uM`) + token NA-like (`NA`/`N/A`/`null`/`NaN` → assente). Rimuove rumore di
+codifica senza fondere valori biologicamente distinti (`none`/`unclear` enum
+preservati). Implementazione R pura + TDD (fixture: campioni replicati → stessa
+firma; campioni con dose diversa → firme diverse; ecc.).
 
 ### 2. Build input v3 (`analysis/...-stage2-build-input-v3.R`)
 

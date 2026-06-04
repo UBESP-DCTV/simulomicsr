@@ -103,3 +103,32 @@ test_that("dose con value_raw e nessun numeric usa il raw come fallback", {
                                      dose_raw = "low")))
   expect_false(identical(design_signature(a), design_signature(b)))
 })
+
+# --- normalizzazione encoding-noise (raffinamento sessione 13, data-driven) ---
+
+test_that("unita' dose micro (mu greco vs micro sign vs ascii u) sono equivalenti", {
+  a <- mk_facts(perts = list(mk_pert(dose_num = 1, dose_unit = "µM"))) # micro sign
+  b <- mk_facts(perts = list(mk_pert(dose_num = 1, dose_unit = "uM")))      # ascii u
+  d <- mk_facts(perts = list(mk_pert(dose_num = 1, dose_unit = "μM"))) # mu greco
+  expect_identical(design_signature(a), design_signature(b))
+  expect_identical(design_signature(a), design_signature(d))
+})
+
+test_that("token NA-like (NA, N/A, null, NaN) equivalgono ad assente", {
+  base <- design_signature(mk_facts(tissue = NULL))
+  for (na in c("NA", "N/A", "null", "NaN")) {
+    expect_identical(design_signature(mk_facts(tissue = na)), base, info = na)
+  }
+})
+
+test_that("whitespace interno collassato non cambia la firma", {
+  a <- mk_facts(tissue = "frontal  cortex")
+  b <- mk_facts(tissue = "frontal cortex")
+  expect_identical(design_signature(a), design_signature(b))
+})
+
+test_that("casefold: differenza di sola maiuscola non cambia la firma", {
+  a <- mk_facts(tissue = "Brain")
+  b <- mk_facts(tissue = "brain")
+  expect_identical(design_signature(a), design_signature(b))
+})

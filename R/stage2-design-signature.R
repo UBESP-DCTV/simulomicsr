@@ -7,16 +7,29 @@
 # L'identita' individuale (donor/age/sex/ancestry) e il numero di passaggio
 # sono esclusi (vedi ADR-0020 D1 + raffinamenti sessione 13).
 
+# Token che l'LLM emette per "valore mancante" (post-casefold): equivalgono ad
+# assente. NON includono valori enum legittimi come "none"/"unclear".
+.SIG_NA_TOKENS <- c("na", "n/a", "nan", "null")
+
 #' Normalizza uno scalare a stringa canonica NA-aware
 #'
-#' NULL, NA, length-0 e stringhe vuote (dopo trim) collassano sul token
-#' assente \code{""}. Tutto il resto diventa il valore trimmato come carattere.
+#' NULL, NA, length-0, stringhe vuote e token NA-like (\code{NA}, \code{N/A},
+#' \code{null}, \code{NaN}) collassano sul token assente \code{""}. Gli altri
+#' valori sono trimmati, con whitespace interno collassato, casefolded e con il
+#' segno micro (mu greco U+03BC / micro sign U+00B5) normalizzato a \code{"u"}.
+#' Queste normalizzazioni rimuovono rumore di codifica (es. unita' dose
+#' \code{µM} vs \code{uM}) senza fondere valori biologicamente distinti.
 #' @keywords internal
 .norm_scalar <- function(x) {
   if (is.null(x) || length(x) == 0L) return("")
   x <- x[[1]]
   if (is.null(x) || (length(x) == 1L && is.na(x))) return("")
-  trimws(as.character(x))
+  s <- trimws(as.character(x))
+  s <- gsub("[[:space:]]+", " ", s)
+  s <- tolower(s)
+  s <- gsub("µ|μ", "u", s)
+  if (s %in% .SIG_NA_TOKENS) return("")
+  s
 }
 
 #' Normalizza un set di stringhe (array) -> lista di token, vuota se assente
@@ -75,7 +88,7 @@
   an <- p$agent_normalized
   list(
     kind = .norm_scalar(p$kind),
-    agent_raw = tolower(.norm_scalar(p$agent_raw)),
+    agent_raw = .norm_scalar(p$agent_raw),
     agent_type = .norm_scalar(an$type),
     agent_db = .norm_scalar(an$id_database),
     agent_id = .norm_scalar(an$id),
