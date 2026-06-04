@@ -7,7 +7,11 @@
 .norm_scalar(x)
 }
 \description{
-NULL, NA, length-0 e stringhe vuote (dopo trim) collassano sul token
-assente \code{""}. Tutto il resto diventa il valore trimmato come carattere.
+NULL, NA, length-0, stringhe vuote e token NA-like (\code{NA}, \code{N/A},
+\code{null}, \code{NaN}) collassano sul token assente \code{""}. Gli altri
+valori sono trimmati, con whitespace interno collassato, casefolded e con il
+segno micro (mu greco U+03BC / micro sign U+00B5) normalizzato a \code{"u"}.
+Queste normalizzazioni rimuovono rumore di codifica (es. unita' dose
+\code{µM} vs \code{uM}) senza fondere valori biologicamente distinti.
 }
 \keyword{internal}
