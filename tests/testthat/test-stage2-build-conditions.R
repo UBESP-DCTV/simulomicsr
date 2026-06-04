@@ -82,3 +82,13 @@ test_that("condition_id sono distinti e non vuoti", {
   expect_length(unique(ids), 2L)
   expect_true(all(nzchar(ids)))
 })
+
+test_that("n_char riflette nchar dei facts JSON del rappresentante", {
+  conds <- .build_study_conditions(two_cond_samples())
+  for (cnd in conds) {
+    expected <- nchar(jsonlite::toJSON(cnd$sample_facts, auto_unbox = TRUE,
+                                       null = "null"))
+    expect_identical(as.numeric(cnd$n_char), as.numeric(expected))
+    expect_gt(cnd$n_char, 0)
+  }
+})

@@ -36,13 +36,85 @@
     members <- sort(geos[idx])
     rep_geo <- members[[1]]
     rep_sample <- samples[[ idx[which(geos[idx] == rep_geo)[1]] ]]
+    facts <- rep_sample$sample_facts
     list(
       condition_id = sprintf("cond_%0*d", width, i),
       geo_accession = rep_geo,
-      sample_facts = rep_sample$sample_facts,
+      sample_facts = facts,
       n_replicates = length(idx),
       member_sample_ids = as.list(members),
-      signature = sg
+      signature = sg,
+      n_char = nchar(jsonlite::toJSON(facts, auto_unbox = TRUE, null = "null"))
     )
   })
+}
+
+#' Stabilisce se una condizione e' un controllo/baseline (broadcast nel chunking)
+#'
+#' Una condizione e' di controllo se il rappresentante porta evidenza di
+#' controllo: una perturbazione \code{is_negative_control}, oppure di kind
+#' \code{vehicle_only}/\code{none}, oppure a timepoint zero; oppure assenza di
+#' perturbazioni reali con \code{disease_state$status} in \{none, comparison\};
+#' oppure \code{disease_state$status == "comparison"} (braccio sano/di confronto).
+#' Set generoso: meglio ripetere un controllo in piu' che perdere un confronto.
+#' @keywords internal
+.is_control_condition <- function(condition) {
+  facts <- condition$sample_facts
+  perts <- facts$perturbations
+  has_real_pert <- FALSE
+  for (p in perts) {
+    if (isTRUE(p$is_negative_control)) return(TRUE)
+    if (isTRUE(p$duration$is_zero_timepoint)) return(TRUE)
+    k <- .norm_scalar(p$kind)
+    if (k %in% c("vehicle_only", "none")) return(TRUE)
+    if (nzchar(k) && !(k %in% c("none", "unclear"))) has_real_pert <- TRUE
+  }
+  status <- .norm_scalar(facts$disease_state$status)
+  if (identical(status, "comparison")) return(TRUE)
+  if (!has_real_pert && status %in% c("none", "comparison")) return(TRUE)
+  FALSE
+}
+
+#' Divide le condizioni di uno studio in chunk entro un budget di caratteri
+#'
+#' Per gli studi entro budget restituisce un singolo chunk con tutte le
+#' condizioni (no-op). Oltre budget, partiziona le condizioni non-controllo in
+#' chunk e RIPETE (broadcast) le condizioni di controllo in ogni chunk, cosi' i
+#' confronti trattato-vs-controllo si formano entro ogni chunk. Senza controlli,
+#' partizione semplice senza ripetizioni. Best-effort sui giganti: se i controlli
+#' da soli superano il budget, ricade su partizione semplice (warning).
+#'
+#' @param conditions Lista di condizioni (vedi \code{\link{.build_study_conditions}});
+#'   ciascuna deve avere \code{n_char}.
+#' @param budget_chars Tetto di caratteri per chunk (somma \code{n_char}).
+#' @return Lista di chunk; ciascun chunk e' una lista di condizioni.
+#' @keywords internal
+.chunk_conditions <- function(conditions, budget_chars) {
+  sizes <- vapply(conditions, function(c) as.numeric(c$n_char), numeric(1))
+  if (sum(sizes) <= budget_chars) return(list(conditions))
+
+  is_ctrl <- vapply(conditions, .is_control_condition, logical(1))
+  controls <- conditions[is_ctrl]
+  treated  <- conditions[!is_ctrl]
+  ctrl_size <- sum(sizes[is_ctrl])
+
+  # broadcast non praticabile: controlli da soli oltre budget -> partizione semplice
+  if (ctrl_size >= budget_chars) {
+    controls <- list(); treated <- conditions; ctrl_size <- 0
+  }
+
+  chunks <- list()
+  cur <- list(); cur_size <- 0
+  for (i in seq_along(treated)) {
+    sz <- as.numeric(treated[[i]]$n_char)
+    if (length(cur) > 0 && (ctrl_size + cur_size + sz) > budget_chars) {
+      chunks[[length(chunks) + 1L]] <- c(controls, cur)
+      cur <- list(); cur_size <- 0
+    }
+    cur[[length(cur) + 1L]] <- treated[[i]]
+    cur_size <- cur_size + sz
+  }
+  if (length(cur) > 0) chunks[[length(chunks) + 1L]] <- c(controls, cur)
+  if (length(chunks) == 0L) chunks <- list(controls)  # solo controlli
+  chunks
 }
