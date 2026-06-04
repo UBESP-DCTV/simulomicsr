@@ -1184,12 +1184,38 @@ tasso ~ identico al β 99,89%). Nessuno stall #39734.
   `h1_rep_pen_1.2` ×4). Deliverable
   `analysis/p4-output/p4-fase-f3-stage2-master-rescued.jsonl` (gitignored).
 
-#### ⬜ F4 — Stadio 3 rebuild
+#### 🟡 F4 — Stadio 3 rebuild (BLOCCATO da finding chunk-collision → opzione C)
 
-**Cosa facciamo.** Rebuild `build_stage3_clusters()` con anchor v3.1.1
-(che già abbiamo dall'audit ontology) + i nuovi Stadio 1+2.
+**Cosa facciamo.** Rebuild `build_stage3_clusters()` con anchor v3.1.1 + i nuovi
+Stadio 1+2.
 
 **Perché serve.** Cluster cross-studio cambiano perché input cambia.
+
+**🔴 Sessione 12 (2026-06-04) — finding bloccante + pivot.** Mentre agganciavo il
+completeness guard (F4 Step 2), una code review ha portato a scoprire un difetto
+paper-grade **pre-esistente**: gli studi grandi sono spezzati in chunk cs50 e lo
+Stadio 2 classifica ogni fetta in modo incoerente; a valle `record_id =
+series__suffix` collide e `.index_stage2_master` (per series, last-wins) perde i
+chunk non-ultimi → **35% dei campioni F3 (55% nel run β già prodotto)** misrisolti
+nel pooling, + ~435 confronti REM cross-chunk persi. Finding:
+`docs/findings/2026-06-01-stage3-stage4-chunked-study-sample-resolution-bug.md`.
+Riproduzione: `analysis/audit/F4-chunk-collision-repro.R`.
+
+Tentato fix a valle (riassemblaggio namespacing, `.reassemble_stage2_chunks`):
+chiude il group-mode ma **non** ricostruisce i confronti cross-chunk → **opzione
+A/B scartate dall'utente come scientificamente inaccettabili**. Codice namespacing
+uncommitted, **superato** da C (da shelvare/revertire).
+
+**→ Decisione utente: opzione C (root cause).** Ridisegnare l'input Stadio 2: dare
+all'LLM le **condizioni di design distinte** dello studio (mediana 13/studio),
+deduplicate per firma, niente chunking; espandere su tutti i campioni. Vedi
+**ADR-0020** + spec/HUMANE `docs/superpowers/specs/2026-06-02-stage2-design-signature-dedup-*`.
+**D1 decisa** (firma = sola condizione sperimentale, esclusa identità individuale).
+**D2/D3/D4 residue** (gate inizio prossima sessione). Implica re-run Stadio 2
+(rifà F3 → master v3, 1 record/studio), poi F4, poi F5.
+
+**Prossimo = implementare C** (dopo conferma D2-D4): firma TDD → build input v3 →
+cambio prompt Stadio 2 gated → smoke gold 72 studi → fullrun DGX.
 
 #### ⬜ F5 — Stadio 4 Layer A rebuild
 
@@ -1473,34 +1499,40 @@ ALERT per Stadio 1 audit nella sessione successiva.
     invariato, no push. Prompt prossima sessione (F4) in
     `analysis/p4-fase-f3-NEXT-SESSION-PROMPT.md`.
 
-### Handoff next session (sessione 12 = F4 Stadio 3 rebuild)
+### Handoff next session (sessione 13 = implementare opzione C)
 
-- **Deliverable F3 pronto**: `analysis/p4-output/p4-fase-f3-stage2-master-rescued.jsonl`
-  (**28.567 record, 100% schema-validi, 24.394 studi**, gitignored). `rescue_source`
-  su 59 record (55 `h3_cs25_resplit_v2` + 4 `h1_rep_pen_1.2`).
-- **Deliverable F2 (upstream)**: `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl`
-  (508.037 record Stadio 1, 100% validi, gitignored).
-- **Prossimo step: F4 — Stadio 3 rebuild**. Rebuild `build_stage3_clusters()` con:
-  1. **anchor v3.1.1 + resolver v1.1.0** (già implementati in S1bis/S2bis — vedi
-     `R/anchors.R`, `R/ontology-lookup.R`, ADR-0018/0019);
-  2. i **nuovi Stadio 1 (F2) + Stadio 2 (F3)** come input al posto dei master β;
-  3. dedupe BioSample SAMN (E0/E0b) + le covariate metadata C3 (per F5).
-  Output: nuovo `clusters.rds` cross-studio clean. Gate utente prima del run
-  (è il rebuild che alimenta F5 Stadio 4).
-- **Verificare i path di input** di `build_stage3_clusters`/script di rebuild
-  Stadio 3: oggi puntano ai master β (`p4-beta-stage2-master-rescued-collect.rds`,
-  `p4-beta-stage1-master-...`). Vanno ripuntati ai master v2 F2/F3. NB: F3 è un
-  JSONL (28.567 record), il β stage2 era un `collect.rds` (data.frame) — adattare
-  il loader Stadio 3 (`.load_stage2_master`) al formato JSONL o convertire.
-- **Completeness guard Stadio 2 (deferred da F2 §4.3)**: agganciare
-  `complete_stage2_coverage`/`audit_stage2_coverage` nel path Stadio 3 quando
-  `.load_stage2_master` preserva `record_id` (chunk-aware). Vedi finding F2 §4.3.
-- **DGX**: non serve per F4 (Stadio 3 è locale/CPU). Container v0.20.2 resta pronto
-  per F5. Nessun cron attivo.
-- **Nota downstream F5**: `build_archs4_metadata_v2` non applica H2 → RDS include
-  996 sample H2-survived-D1-D4, inerti (lookup solo cluster GSM post-H2). Decidere
-  a F5 se restringere al GSM set F1 o documentare.
-- Prompt pronto: `analysis/p4-fase-f3-NEXT-SESSION-PROMPT.md`.
+**Stato fine sessione 12 (2026-06-04).** F4 partito, poi **bloccato** dal finding
+chunk-collision (vedi §F4 sopra). Scelta utente: **opzione C** (ridisegno input
+Stadio 2 a condizioni deduplicate, niente chunking). Docs: ADR-0020 + spec/HUMANE
+`docs/superpowers/specs/2026-06-02-stage2-design-signature-dedup-*` + finding
+`docs/findings/2026-06-01-...`. **D1 decisa** (firma = sola condizione
+sperimentale).
+
+- **Prima cosa**: confermare con l'utente **D2/D3/D4** (default proposti nell'ADR:
+  coda >400 condizioni → chunk per-condizione; re-run = tutti gli studi; prompt =
+  rappresentante + n_replicates). Poi implementare C in TDD:
+  1. `design_signature(sample_facts)` (R puro, TDD) — campi in spec §1.
+  2. build input v3 (1 record/studio, condizioni) da master F2 (508.037).
+  3. cambio prompt Stadio 2 **gated** (estrazione verbatim + diff + OK utente,
+     come D1a Stadio 1) — `inst/dgx/python/prompts.py:56` + R equivalente.
+  4. espansione collect → master Stadio 2 v3 (1 record/studio).
+  5. smoke gold 72 studi design-aware → poi fullrun DGX (gate separato).
+  6. poi F4 (Stadio 3) e F5 (Stadio 4) sul master v3.
+- **Codice uncommitted da gestire**: `.reassemble_stage2_chunks` +
+  `.build_stage2_input_lookup` + `.apply_stage2_completeness_by_series` +
+  wiring in stage3/stage4-build + test (`test-stage2-reassemble.R`,
+  `test-stage3-completeness-guard.R`). **Superati da C** → decidere se revertire o
+  tenere `.reassemble_stage2_chunks` come rete difensiva idempotente (ha un bug
+  noto da fixare: `rename[[tg]]` su nome assente → crash, vedi review;
+  `%in% names(rename)` guard). Il completeness guard resta valido (per-studio).
+- **Deliverable F3 attuale** (input di partenza per C): master Stadio 2 chunked
+  `analysis/p4-output/p4-fase-f3-stage2-master-rescued.jsonl` (28.567 record) —
+  da NON usare per F4 così com'è (chunked). C ricostruisce da Stadio 1.
+- **Deliverable F2 (upstream, valido)**: `analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl`
+  (508.037 record Stadio 1, 100% validi). **Stadio 1 invariato da C.**
+- **DGX**: serve per il re-run Stadio 2 di C. Container v0.20.2 pronto.
+- **Nota downstream F5** (invariata): `build_archs4_metadata_v2` non applica H2 →
+  RDS include 996 sample H2-survived-D1-D4, inerti. Decidere a F5.
 - Branch `p5-llm-anchor-classification-audit`, master invariato. No push.
 - Quando RED ALERT (Stadio 0) chiude (post-F6+G): aprire
   `docs/RED_ALERT-stage1.md` per audit Stadio 1.

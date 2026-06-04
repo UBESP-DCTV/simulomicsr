@@ -8,7 +8,8 @@ build_stage3_clusters(
   stage1_master,
   stage2_master,
   config = stage3_default_config(),
-  archs4_metadata = NULL
+  archs4_metadata = NULL,
+  stage2_input = NULL
 )
 }
 \arguments{
@@ -22,6 +23,16 @@ override threshold + tier assignment.}
 
 \item{archs4_metadata}{tibble opzionale (output di \code{load_archs4_metadata()}).
 Se NULL, la colonna gpl_platforms e' vuota.}
+
+\item{stage2_input}{path (o character vector di path) ai file JSONL di input
+Stadio 2. Se fornito, attiva il completeness guard chunk-aware
+(\code{\link{audit_stage2_coverage}}): ogni sample di input non assegnato a
+un replicate_group dallo Stadio 2 viene raccolto in un gruppo sintetico
+primary_role='unclear' (inerte al pooling treated/control ma auditabile). Le
+statistiche finiscono in \code{run_metadata$output_counts$stage2_completeness}.
+Richiede che \code{stage2_master} sia un path JSONL (serve il record_id del
+chunk). Passare l'union di input + rescue (resplit cs25, cascade) per copertura
+piena. Default NULL = nessun guard (comportamento legacy).}
 }
 \value{
 \code{stage3_result} S3 object (list con 5 componenti: \code{assignments},

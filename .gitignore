@@ -87,4 +87,14 @@ analysis/p5-stage4-debug-*.run
 
 # Superpowers visual brainstorming session artifacts
 .superpowers/
-analysis/p5-stage4-layer-b-smoke.log
+analysis/p5-stage4-layer-b-*.log
+
+# Audit artefatti OLD (giganti, riproducibili dagli script) — es. A2 .OLD.tsv 278MB
+analysis/audit/*.OLD.*
+
+# FASE F log/state (riproducibili dagli script .R)
+analysis/p4-fase-*.log
+analysis/p4-fase-f2-chunked-state.txt
+
+# RED_ALERT rendered HTML (sorgente .md è il canonical)
+docs/RED_ALERT.html

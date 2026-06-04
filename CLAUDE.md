@@ -19,6 +19,29 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-06-04 fine sessione 12**: 🔴 **F4 bloccato da finding paper-grade
+> chunk-collision → pivot a opzione C (ridisegno input Stadio 2)**. Agganciando
+> il completeness guard è emerso (via code review) un difetto **pre-esistente**:
+> gli studi grandi sono spezzati in chunk cs50, lo Stadio 2 classifica ogni fetta
+> in modo incoerente, e a valle `record_id = series__suffix` collide +
+> `.index_stage2_master` (per series, last-wins) tiene solo l'ultimo chunk →
+> **35% dei campioni F3 (55% nel run β già prodotto `96c43acb`) misrisolti** nel
+> pooling DE + ~435 confronti REM cross-chunk persi. Finding
+> `docs/findings/2026-06-01-stage3-stage4-chunked-study-sample-resolution-bug.md`,
+> repro `analysis/audit/F4-chunk-collision-repro.R`. Tentato fix a valle
+> (riassemblaggio namespacing) → scartato (perde i confronti cross-chunk).
+> **Decisione utente: opzione C (root cause)** — dare allo Stadio 2 le condizioni
+> di design distinte (mediana 13/studio) deduplicate per firma, niente chunking,
+> poi espandere. **ADR-0020 Proposed** + spec/HUMANE
+> `docs/superpowers/specs/2026-06-02-stage2-design-signature-dedup-*`. **D1 decisa**
+> (firma = sola condizione sperimentale, esclusa identità individuale donor/age/
+> sex/ancestry). D2/D3/D4 residue (gate prossima sessione). C re-runa Stadio 2
+> (rifà F3 → master v3, 1 record/studio), poi F4, F5. Stadio 1 (F2 508k) invariato.
+> Codice namespacing uncommitted (superato da C, da gestire). I risultati
+> `96c43acb` + Layer B `56b911e6` **non affidabili** come baseline. Master git
+> invariato, no push. **Prossimo = implementare C** (vedi `docs/RED_ALERT.md`
+> §Handoff sessione 13).
+>
 > **Stato 2026-05-31 fine sessione 11**: ✅ **F3 — Stadio 2 fullrun v2 (28.544)
 > + rescue cascade → 100%**. Build input dal master Stadio 1 v2 congelato:
 > **28.544 record / 24.394 studi**, guard `is_zero_timepoint` 12.967 flag corretti,

@@ -14,6 +14,15 @@
 #'   override threshold + tier assignment.
 #' @param archs4_metadata tibble opzionale (output di \code{load_archs4_metadata()}).
 #'   Se NULL, la colonna gpl_platforms e' vuota.
+#' @param stage2_input path (o character vector di path) ai file JSONL di input
+#'   Stadio 2. Se fornito, attiva il completeness guard chunk-aware
+#'   (\code{\link{audit_stage2_coverage}}): ogni sample di input non assegnato a
+#'   un replicate_group dallo Stadio 2 viene raccolto in un gruppo sintetico
+#'   primary_role='unclear' (inerte al pooling treated/control ma auditabile). Le
+#'   statistiche finiscono in \code{run_metadata$output_counts$stage2_completeness}.
+#'   Richiede che \code{stage2_master} sia un path JSONL (serve il record_id del
+#'   chunk). Passare l'union di input + rescue (resplit cs25, cascade) per copertura
+#'   piena. Default NULL = nessun guard (comportamento legacy).
 #' @return \code{stage3_result} S3 object (list con 5 componenti: \code{assignments},
 #'   \code{clusters}, \code{record_summary}, \code{non_clusterable},
 #'   \code{run_metadata}).
@@ -21,7 +30,8 @@
 build_stage3_clusters <- function(stage1_master,
                                    stage2_master,
                                    config = stage3_default_config(),
-                                   archs4_metadata = NULL) {
+                                   archs4_metadata = NULL,
+                                   stage2_input = NULL) {
   ta         <- config$tier_assignment
   thresholds <- config$thresholds
   cli::cli_inform("[stage3] START build_stage3_clusters at {format(Sys.time())}")
@@ -31,9 +41,34 @@ build_stage3_clusters <- function(stage1_master,
     cli::cli_inform("[stage3] Phase 1a: load stage1_master from {stage1_master}")
     stage1_master <- .load_stage1_master(stage1_master)
   }
+  # 1b. Caricamento stage2 -> riassemblaggio chunk (un record per series) ->
+  # (opzionale) completeness guard per-studio.
   if (is.character(stage2_master)) {
     cli::cli_inform("[stage3] Phase 1b: load stage2_master from {stage2_master}")
     stage2_master <- .load_stage2_master(stage2_master)
+  }
+  # Riassemblaggio: gli studi grandi sono splittati in piu' chunk con la stessa
+  # series_id; senza riassemblaggio i chunk non-ultimi vengono persi a Stadio 4
+  # (.index_stage2_master per series, last-wins) e collidono a Stadio 3
+  # (record_id = series__group). Vedi finding 2026-06-01. No-op per master non
+  # chunked. Lo stesso riassemblaggio va applicato in build_stage4_results().
+  reasm <- .reassemble_stage2_chunks(stage2_master)
+  if (reasm$report$n_series_multichunk > 0L) {
+    cli::cli_inform("[stage3] reassembled {reasm$report$n_records_in} stage2 records -> {reasm$report$n_records_out} per-series ({reasm$report$n_series_multichunk} multi-chunk studies)")
+  }
+  stage2_master <- reasm$stage2_master
+
+  # Completeness guard (FASE F4 Step 2): ogni sample di input non coperto dai
+  # replicate_groups Stadio 2 (violazione REGOLA 4, ~3.5% nel benchmark F2)
+  # viene raccolto in un gruppo sintetico primary_role='unclear' (esplicito e
+  # auditabile). Per-studio, post-riassemblaggio.
+  stage2_completeness <- NULL
+  if (!is.null(stage2_input)) {
+    input_by_series <- .build_stage2_input_lookup(stage2_input)
+    guard <- .apply_stage2_completeness_by_series(stage2_master, input_by_series)
+    stage2_master <- guard$records
+    stage2_completeness <- c(guard$report, list(n_input_files = length(stage2_input)))
+    cli::cli_inform("[stage3] completeness guard: {guard$report$n_uncovered_total} sample non coperti -> 'unclear' su {guard$report$n_records_affected} studi")
   }
   cli::cli_inform("[stage3] Phase 1 done: {length(stage1_master)} stage1 + {length(stage2_master)} stage2 records loaded")
 
@@ -198,7 +233,8 @@ build_stage3_clusters <- function(stage1_master,
       n_clusters_per_level = list(
         pair  = .count_clusters_per_level(clusters, "pair"),
         group = .count_clusters_per_level(clusters, "group")
-      )
+      ),
+      stage2_completeness = stage2_completeness
     )
   )
 
@@ -780,6 +816,11 @@ build_stage3_clusters <- function(stage1_master,
 }
 
 #' Carica stage2 master da RDS o JSONL
+#'
+#' Restituisce una lista di study records (parsed_json). NB: per gli studi
+#' chunked ci sono piu' record con la stessa series_id; usare
+#' \code{\link{.reassemble_stage2_chunks}} a valle per ripristinare l'invariante
+#' un-record-per-studio (finding 2026-06-01).
 #' @keywords internal
 .load_stage2_master <- function(path) {
   if (!file.exists(path)) stop("stage2_master path non esiste: ", path)
@@ -801,7 +842,6 @@ build_stage3_clusters <- function(stage1_master,
     obj
   } else {
     # JSONL: ogni riga e' list(record_id=..., parsed_json=list(series_id=..., ...), ...)
-    # Estraiamo solo il parsed_json dei record con valid_schema=TRUE (o mancante)
     lines <- readLines(path, warn = FALSE)
     rows <- lapply(lines, jsonlite::fromJSON, simplifyVector = FALSE)
     lapply(rows, function(r) {

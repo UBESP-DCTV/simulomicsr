@@ -7,6 +7,9 @@
 .load_stage2_master(path)
 }
 \description{
-Carica stage2 master da RDS o JSONL
+Restituisce una lista di study records (parsed_json). NB: per gli studi
+chunked ci sono piu' record con la stessa series_id; usare
+\code{\link{.reassemble_stage2_chunks}} a valle per ripristinare l'invariante
+un-record-per-studio (finding 2026-06-01).
 }
 \keyword{internal}
