@@ -1,0 +1,84 @@
+RED ALERT FASE F4 opzione C — cambio prompt Stadio 2 (GATE utente, sessione 13)
+================================================================================
+
+Contesto: l'input Stadio 2 v3 non manda piu' i singoli campioni ma le CONDIZIONI
+di disegno deduplicate. Ogni voce di `samples:` = una condizione, con:
+  geo_accession (rappresentante), sample_facts (del rappresentante),
+  n_replicates (quanti campioni equivalenti rappresenta),
+  member_sample_ids (i GSM reali — solo per la nostra espansione, NON al modello),
+  condition_id.
+
+Schema output study_design.stage2.v2 INVARIATO. replicate_group.sample_ids resta
+array di stringhe (minItems 1), nessun campo n_replicates in output, nessun
+vincolo length(sample_ids)==n_replicates -> il modello mette i rappresentanti in
+sample_ids, l'espansione (step 5) li sostituisce con i member_sample_ids.
+
+================================================================================
+A) SYSTEM PROMPT — R/llm-stage2.R::.stage2_system_prompt  (va al DGX via bundle)
+================================================================================
+
+VERBATIM ATTUALE — sezione grouping (righe 111-117):
+--------------------------------------------------------------------------------
+## Grouping guidelines (strict)
+- Group into the SAME replicate_group ONLY samples with IDENTICAL conditions
+  (same treatment, dose, time, cell line, genotype). Samples differing in even a
+  single condition go in distinct groups.
+- Biological/technical replicates of the same group. Do not lose granularity: if
+  two samples look identical, put them in the same group with n_replicates >= 2
+  (the length of sample_ids).
+--------------------------------------------------------------------------------
+
+PROPOSTA — aggiungere una NUOVA sezione subito prima di "## Grouping guidelines",
+e riscrivere il secondo bullet del grouping (quello su n_replicates):
+
+  ## Input format: pre-deduplicated design conditions (IMPORTANT)
+  Each entry in `samples:` is NOT an individual GSM but a DISTINCT experimental
+  condition, already deduplicated across replicates upstream. For each entry:
+  - `geo_accession` is a REPRESENTATIVE sample of the condition.
+  - `n_replicates` is how many biologically-equivalent replicate samples the
+    condition stands for.
+  - `sample_facts` are the facts of the representative.
+  Treat each entry as ONE condition that is ALREADY a replicate set of size
+  `n_replicates`. Therefore:
+  - Put the representative `geo_accession` (one per entry) into `sample_ids`; do
+    NOT split an entry. Each entry is typically its own replicate_group.
+  - Use `n_replicates` as the replicate count of that group (for quality /
+    study_internal_score), even though `sample_ids` lists a single
+    representative.
+  - Merge two entries into the same group ONLY if they are truly the same
+    condition.
+  - RULE 4 ("do not omit") applies to every entry/condition.
+
+  (e il bullet grouping su n_replicates diventa:)
+  - Replicates are already merged upstream into one entry with `n_replicates`
+    (see "Input format"). Do NOT re-split an entry into multiple groups, and do
+    NOT merge distinct entries unless they are truly identical conditions.
+
+Tutto il resto del system prompt (philosophy, design_kinds, control_types,
+comparison guidelines, RULE 1/2/3/4, chunk/input_truncated) INVARIATO.
+
+================================================================================
+B) USER MESSAGE — inst/dgx/python/prompts.py::render_user_message_stage2
+================================================================================
+
+VERBATIM ATTUALE (riga ~85):
+--------------------------------------------------------------------------------
+    samples = record.get("samples", [])
+    samples_json = json.dumps(samples, sort_keys=False, separators=(",", ":"))
+--------------------------------------------------------------------------------
+
+PROPOSTA (strip member_sample_ids: serve all'espansione locale, non al modello;
+liste lunghe di GSM gonfiano il prompt):
+
+    samples = record.get("samples", [])
+    # v3: member_sample_ids serve all'espansione locale, NON al modello.
+    samples_for_llm = [
+        {k: v for k, v in s.items() if k != "member_sample_ids"}
+        for s in samples
+    ]
+    samples_json = json.dumps(samples_for_llm, sort_keys=False,
+                              separators=(",", ":"))
+
+Resto del renderer (series_id, chunk: X/Y, study_summary, samples:) INVARIATO.
+NB: il chunk_metadata v3 ha part/total_parts -> il renderer emette "chunk: X/Y"
+correttamente (study_total_samples assente -> riga omessa, ok).

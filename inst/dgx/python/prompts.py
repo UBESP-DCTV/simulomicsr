@@ -76,7 +76,17 @@ def render_user_message_stage2(record: dict[str, Any]) -> str:
     summary = str(record.get("study_summary", ""))
     samples = record.get("samples", [])
 
-    samples_json = json.dumps(samples, sort_keys=False, separators=(",", ":"))
+    # v3 (RED ALERT F4 opzione C): ogni voce di `samples` e' una condizione
+    # deduplicata. `member_sample_ids` serve all'espansione locale (collect),
+    # NON al modello: lo togliamo dal prompt (liste lunghe di GSM = token
+    # sprecati). Gli altri campi (geo_accession, sample_facts, n_replicates,
+    # condition_id) restano.
+    samples_for_llm = [
+        {k: v for k, v in s.items() if k != "member_sample_ids"}
+        for s in samples
+    ]
+    samples_json = json.dumps(samples_for_llm, sort_keys=False,
+                              separators=(",", ":"))
 
     lines = [f"series_id: {sid}"]
     chunk_meta = record.get("chunk_metadata")

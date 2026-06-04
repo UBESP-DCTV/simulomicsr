@@ -12,6 +12,20 @@ test_that(".stage2_system_prompt contiene la traduzione inglese (D3 RED_ALERT)",
   expect_match(sys, "RULE 4", fixed = TRUE)
 })
 
+test_that(".stage2_system_prompt spiega il formato input v3 a condizioni (F4 opzione C)", {
+  # P5 audit RED_ALERT F4 opzione C: ogni voce di samples e' una condizione
+  # deduplicata che rappresenta n_replicates campioni; il modello mette il
+  # rappresentante in sample_ids, l'espansione a valle lo sostituisce.
+  sys <- simulomicsr:::.stage2_system_prompt("test-model")
+  expect_match(sys, "Input format: pre-deduplicated design conditions", fixed = TRUE)
+  expect_match(sys, "DISTINCT", fixed = TRUE)
+  expect_match(sys, "n_replicates", fixed = TRUE)
+  expect_match(sys, "REPRESENTATIVE sample", fixed = TRUE)
+  expect_match(sys, "Each entry is typically its own replicate_group", fixed = TRUE)
+  # la vecchia formulazione contraddittoria e' stata rimossa
+  expect_no_match(sys, "the length of sample_ids", fixed = TRUE)
+})
+
 test_that("build_prompt_stage2 ritorna shape messages OpenAI", {
   facts_list <- list(
     jsonlite::read_json(testthat::test_path("fixtures/sample-facts-vegf-huvec.json"))
