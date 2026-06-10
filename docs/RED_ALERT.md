@@ -1228,6 +1228,14 @@ separata** (quantificare, capire perché A1/A2 non li hanno presi — probabile
 SMART-seq plate-based GSM-per-cellula — decidere se filtrare o dichiarare limite).
 Memoria `project_singlecell_escapees_stage0`.
 
+**⬜ TODO F4-wiring (completeness guard su input v3).** Il completeness guard
+(`.apply_stage2_completeness_by_series`) confronta la copertura del master con i
+GSM in input via `.build_stage2_input_lookup`, che oggi legge `geo_accession`.
+In v3 `geo_accession` è il **rappresentante** della condizione, non tutti i GSM:
+per il guard servono i `member_sample_ids` (i GSM reali). Da adattare quando F4
+(Stadio 3) girerà su input v3, altrimenti i membri non-rappresentanti
+risulterebbero "scoperti". Scoperto sostituendo il namespacing guard (sessione 13).
+
 #### ⬜ F5 — Stadio 4 Layer A rebuild
 
 **Cosa facciamo.** Rebuild `build_stage4_results()` con (a) il nuovo
