@@ -19,6 +19,28 @@
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-06-10 fine sessione 13**: 🟢 **F4 opzione C implementata fino allo
+> smoke gate PASS**. Ridisegno input Stadio 2 a condizioni di disegno deduplicate
+> per firma (niente chunking per-campione). TDD (179 expect_*): `design_signature`
+> (campi = sola condizione sperimentale, raffinati data-driven con tissue_segment +
+> agent_raw) + `.build_study_conditions` + `.chunk_conditions`/`.is_control_condition`
+> (coda D2: chunk per-condizione + broadcast controlli, cap 0.3) + espansione/fusione/
+> assembly (`.expand_study_design`/`.merge_chunked_designs`/`.assemble_stage2_study`).
+> Build input v3 (`analysis/input/archs4-human-stage2-input-v3.jsonl`, gitignored):
+> **24.972 record** (24.149 a 1 record + 245 studi-coda chunkati, budget 80k char),
+> **0 campioni persi**, ricostruzione esatta. Due fix trovati dai dati
+> (audit-before-patch): encoding firma (µM/uM, NA-string) + esplosione chunk da
+> broadcast. Cambio prompt Stadio 2 **gated** (A: sezione "Input format" nel system
+> prompt R; B: strip `member_sample_ids` in `prompts.py`). `.reassemble_stage2_chunks`
+> **sostituita** dal guard fail-loud `.assert_stage2_one_record_per_series` (stage3+4
+> build). **Smoke gate 72 studi gold: schema 100%, accuracy 94,04% (= baseline F3),
+> coverage 21→5 → PASS** (`analysis/audit/F4-stage2-smoke-v3-eval.md`). Decisioni a
+> libro in ADR-0020. **Prossimo = fullrun Stadio 2 v3 sul DGX** (sessione 14, gate
+> separato) → master v3 → F4 (Stadio 3) → F5. TODO tracciati: completeness guard su
+> `member_sample_ids`; indagine single-cell Stadio 0 (~313 studi degeneri). Branch
+> `p5-llm-anchor-classification-audit`, master git invariato, no push. Vedi
+> `docs/RED_ALERT.md` §F4 + §Handoff sessione 14.
+>
 > **Stato 2026-06-04 fine sessione 12**: 🔴 **F4 bloccato da finding paper-grade
 > chunk-collision → pivot a opzione C (ridisegno input Stadio 2)**. Agganciando
 > il completeness guard è emerso (via code review) un difetto **pre-esistente**:

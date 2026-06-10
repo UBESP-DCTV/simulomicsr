@@ -1214,8 +1214,26 @@ deduplicate per firma, niente chunking; espandere su tutti i campioni. Vedi
 **D2/D3/D4 residue** (gate inizio prossima sessione). Implica re-run Stadio 2
 (rifà F3 → master v3, 1 record/studio), poi F4, poi F5.
 
-**Prossimo = implementare C** (dopo conferma D2-D4): firma TDD → build input v3 →
-cambio prompt Stadio 2 gated → smoke gold 72 studi → fullrun DGX.
+**🟢 Sessione 13 (2026-06-10) — opzione C implementata fino allo smoke gate PASS.**
+D2/D3/D4 + sorte namespacing decise; campi firma raffinati (tissue_segment +
+agent_raw aggiunti data-driven). TDD: `design_signature` + `.build_study_conditions`
++ `.chunk_conditions`/`.is_control_condition` + espansione/fusione/assembly
+(`.expand_study_design`/`.merge_chunked_designs`/`.assemble_stage2_study`) — 179
+expect_* GREEN. Build input v3
+(`analysis/input/archs4-human-stage2-input-v3.jsonl`, gitignored): **24.972 record**
+(24.149 a 1 record + 245 studi chunkati coda D2, budget 80k char + broadcast
+controlli cap 0.3), **0 campioni persi**, ricostruzione esatta. Due fix trovati
+dai dati (audit-before-patch): encoding firma (µM/uM, NA-string) + esplosione
+chunk da broadcast. Cambio prompt Stadio 2 gated applicato (A system prompt
+"Input format" + B strip member_sample_ids in `prompts.py`). `.reassemble_stage2_chunks`
+**sostituita** dal guard fail-loud `.assert_stage2_one_record_per_series`
+(stage3+stage4 build). **Smoke gate sui 72 studi gold: schema 100%, accuracy
+94,04% (= baseline F3), coverage 21→5 → PASS** (`docs`/`analysis/audit/F4-stage2-smoke-v3-eval.md`).
+
+**Prossimo = fullrun Stadio 2 v3 sul DGX** (sessione 14, gate separato
+validate-before-fullrun): 24.972 record → collect → assembly → master v3 → poi
+F4 (Stadio 3 rebuild sul master v3) → F5 (Stadio 4). TODO F4-wiring tracciati:
+completeness guard su `member_sample_ids` (sotto); indagine single-cell Stadio 0.
 
 **⬜ TODO differito (single-cell sfuggiti a Stadio 0).** Durante il build v3
 (sessione 13) è emerso che ~313 studi (1,28%, ~16k campioni) hanno disegno
@@ -1518,7 +1536,37 @@ ALERT per Stadio 1 audit nella sessione successiva.
     invariato, no push. Prompt prossima sessione (F4) in
     `analysis/p4-fase-f3-NEXT-SESSION-PROMPT.md`.
 
-### Handoff next session (sessione 13 = implementare opzione C)
+### Handoff next session (sessione 14 = fullrun Stadio 2 v3)
+
+**Stato fine sessione 13 (2026-06-10).** ✅ **Opzione C implementata fino allo
+smoke gate PASS** (vedi §F4 sopra). Tutta la logica TDD (firma, condizioni,
+chunk+broadcast, espansione/fusione/assembly, guard fail-loud) + build input v3
+(24.972 record, 0 persi) + cambio prompt gated A+B. Smoke 72 studi gold: schema
+100%, accuracy 94,04% (= baseline F3), coverage 21→5 → PASS. Master git invariato,
+no push.
+
+- **Prossimo = fullrun Stadio 2 v3 sul DGX** (validate-before-fullrun, gate
+  utente esplicito). Procedura come F3:
+  1. submit fullrun su `analysis/input/archs4-human-stage2-input-v3.jsonl`
+     (24.972 record; tier atteso meno XL di F3 → più veloce). Lo smoke script
+     `analysis/p4-fase-f4-stage2-smoke-v3.R` è il template (config invariata,
+     tiered_max_tokens, time 72h, resume-safe).
+  2. collect → **assembly** (espansione) via `.assemble_stage2_study` per series
+     → master Stadio 2 v3 (1 record/studio). Va scritto lo script collect→master
+     (l'orchestrazione è in `assemble_master()` dentro lo smoke script, da
+     promuovere/riusare). Eventuale rescue cascade sui fail (come F3).
+  3. poi **F4** (Stadio 3 rebuild sul master v3) e **F5** (Stadio 4).
+- **TODO F4-wiring tracciati** (prima/durante F4): adattare il completeness guard
+  a `member_sample_ids` (oggi legge geo_accession = rappresentante, vedi §F4);
+  indagine single-cell Stadio 0 (~313 studi degeneri, memoria
+  `project_singlecell_escapees_stage0`).
+- **Deliverable validi**: input v3 (gitignored) + tutto il codice committato sul
+  branch. Master F2 Stadio 1 invariato. Il master F3 chunked NON va usato (C lo
+  rifà).
+
+---
+
+### Handoff sessione 13 (= implementare opzione C) — COMPLETATO
 
 **Stato fine sessione 12 (2026-06-04).** F4 partito, poi **bloccato** dal finding
 chunk-collision (vedi §F4 sopra). Scelta utente: **opzione C** (ridisegno input
