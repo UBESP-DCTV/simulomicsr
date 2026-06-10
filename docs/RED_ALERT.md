@@ -1545,12 +1545,12 @@ chunk+broadcast, espansione/fusione/assembly, guard fail-loud) + build input v3
 100%, accuracy 94,04% (= baseline F3), coverage 21→5 → PASS. Master git invariato,
 no push.
 
-- **Prossimo = fullrun Stadio 2 v3 sul DGX** (validate-before-fullrun, gate
-  utente esplicito). Procedura come F3:
-  1. submit fullrun su `analysis/input/archs4-human-stage2-input-v3.jsonl`
-     (24.972 record; tier atteso meno XL di F3 → più veloce). Lo smoke script
-     `analysis/p4-fase-f4-stage2-smoke-v3.R` è il template (config invariata,
-     tiered_max_tokens, time 72h, resume-safe).
+- **Fullrun Stadio 2 v3 SUBMITTATO** (2026-06-10, fine sessione 13, gate utente
+  esplicito): **slurm 24022**, run_id `20260610T120031Z-f4-stage2-fullrun-v3-5f166e`,
+  stato RUNNING. 24.972 record, config invariata, 4-worker, time 72h. Submit via
+  `analysis/p4-fase-f4-stage2-fullrun-v3.R` (resume-safe). Procedura sessione 14:
+  1. (fatto) submit fullrun su `analysis/input/archs4-human-stage2-input-v3.jsonl`
+     (24.972 record; tier atteso meno XL di F3 → più veloce).
   2. collect → **assembly** (espansione) via `.assemble_stage2_study` per series
      → master Stadio 2 v3 (1 record/studio). Va scritto lo script collect→master
      (l'orchestrazione è in `assemble_master()` dentro lo smoke script, da
