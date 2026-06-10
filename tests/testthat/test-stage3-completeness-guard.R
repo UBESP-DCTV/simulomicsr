@@ -2,9 +2,9 @@
 # (RED ALERT FASE F4 Step 2). Il guard `complete_stage2_coverage`
 # (R/stage2-normalize.R) esisteva ma era scollegato.
 #
-# Post-riassemblaggio chunk (un record per series, vedi test-stage2-reassemble.R)
-# il guard gira PER-STUDIO: ogni sample di input non assegnato a un
-# replicate_group viene raccolto in un gruppo sintetico primary_role='unclear'.
+# Master a un record per studio (invariante opzione C, ADR-0020): il guard gira
+# PER-STUDIO: ogni sample di input non assegnato a un replicate_group viene
+# raccolto in un gruppo sintetico primary_role='unclear'.
 
 mk_stage2_input_line <- function(record_id, gsms, series_id = NULL) {
   jsonlite::toJSON(

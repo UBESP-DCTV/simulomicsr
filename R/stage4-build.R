@@ -143,12 +143,12 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     stop("stage3_assignments + stage2_master sono richiesti quando ",
          "dry_run_inputs_only = FALSE")
   }
-  # Riassembla i chunk Stadio 2 in un record per series PRIMA dei dispatch
-  # builder: .index_stage2_master indicizza per series_id (last-wins), senza
-  # riassemblaggio i chunk non-ultimi vengono persi e i campioni misrisolti
-  # (finding 2026-06-01). No-op per master non chunked. Coerente col
-  # riassemblaggio applicato in build_stage3_clusters().
-  stage2_master <- .reassemble_stage2_chunks(stage2_master)$stage2_master
+  # Guard invariante un-record-per-studio (opzione C, ADR-0020) PRIMA dei dispatch
+  # builder: .index_stage2_master indicizza per series_id (last-wins); su un input
+  # chunked inatteso i chunk non-ultimi sarebbero persi/misrisolti (finding
+  # 2026-06-01). Fail-loud invece del vecchio riassemblaggio namespacing.
+  # Coerente col guard in build_stage3_clusters().
+  stage2_master <- .assert_stage2_one_record_per_series(stage2_master)
   study_dispatch <- .build_study_dispatch_from_stage3(
     qc$eligible_clusters, stage3_assignments, stage2_master
   )

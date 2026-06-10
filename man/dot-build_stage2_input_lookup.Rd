@@ -17,9 +17,9 @@ Legge uno o piu' file JSONL di input Stadio 2 (formato
 \verb{\{record_id, series_id, samples: [\{geo_accession, ...\}]\}}) e restituisce una
 named list \verb{series_id -> character vector dei GSM} di quello studio. I chunk
 di uno stesso studio (record_id "GSE100#1of2", "GSE100#2of2", ...) vengono
-UNITI per series, coerente con il riassemblaggio
-(\code{\link{.reassemble_stage2_chunks}}): il completeness guard a valle gira
-per-studio. L'union di piu' file copre l'input originale + i rescue (resplit
-cs25, cascade).
+UNITI per series: il completeness guard a valle gira per-studio, coerente con
+l'invariante un-record-per-studio
+(\code{\link{.assert_stage2_one_record_per_series}}). L'union di piu' file
+copre l'input originale + i rescue (resplit cs25, cascade).
 }
 \keyword{internal}

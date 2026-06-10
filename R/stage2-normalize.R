@@ -36,93 +36,45 @@ complete_stage2_coverage <- function(parsed_json, input_sample_ids) {
   list(parsed_json = parsed_json, n_added = length(uncovered), uncovered = uncovered)
 }
 
-#' Riassembla i chunk Stadio 2 in un record per studio
+#' Verifica l'invariante "un record per studio" del master Stadio 2 (opzione C)
 #'
-#' Uno studio grande viene classificato dallo Stadio 2 in piu' chunk (cs50, per
-#' il limite di contesto LLM): nel master compare come N record con la stessa
-#' `series_id`. La pipeline a valle assume un record per studio (record_id =
-#' `series__group`, indice Stadio 4 per `series_id` last-wins) -> di uno studio
-#' chunked sopravvive solo l'ultimo chunk, gli altri campioni vengono persi o
-#' misrisolti (vedi finding 2026-06-01). Questa funzione ripristina l'invariante:
-#' fonde i record con la stessa `series_id` in UN record.
+#' Lo Stadio 2 opzione C (ADR-0020) classifica le condizioni di disegno
+#' deduplicate e l'espansione a valle produce UN record per studio. La pipeline
+#' a valle assume questo invariante: lo Stadio 4 indicizza il master per
+#' `series_id` (\code{.index_stage2_master}, last-wins) e lo Stadio 3 costruisce
+#' `record_id = series__group`. Se il master contenesse piu' record con la stessa
+#' `series_id` (input chunked inatteso), i record non-ultimi verrebbero persi o
+#' misrisolti in silenzio (finding 2026-06-01).
 #'
-#' Strategia **namespacing-per-chunk**, non union-per-id: sui dati reali 639
-#' group_id omonimi tra chunk hanno `primary_role` in conflitto e 831
-#' comparison_id riferiscono treated/control diversi. Unire per id li
-#' corromperebbe. Invece ogni chunk mantiene i suoi gruppi/comparison con id resi
-#' unici (suffisso `#chunk<k>`); i riferimenti delle comparison vengono riscritti
-#' coerentemente entro lo stesso chunk. Il merge biologico (due chunk dello stesso
-#' gruppo) lo fa il clustering per-anchor a valle, non questa funzione.
+#' Questo guard FALLISCE rumorosamente in quel caso, invece di riassemblare in
+#' silenzio. Sostituisce la vecchia \code{.reassemble_stage2_chunks} (namespacing
+#' per-chunk), superata da opzione C: quel riassemblaggio perdeva i confronti
+#' cross-chunk (~435 REM) ed era dichiarato inaccettabile in ADR-0020. Tenerla
+#' come rete difensiva sarebbe peggio di niente: produrrebbe output sbagliato ma
+#' schema-valido senza segnalare. Drop-in (ritorna il master invariato).
 #'
-#' Idempotente: applicata a un master gia' riassemblato (un record per series) e'
-#' un no-op. Le series a chunk singolo restano invariate (nessun rename).
+#' I record senza `series_id` (anomalia separata) non innescano l'errore.
 #'
 #' @param stage2_master list di study records (output di `.load_stage2_master`).
-#' @return `list(stage2_master = <riassemblato>, report = list(n_records_in,
-#'   n_records_out, n_series_multichunk))`.
+#' @return `stage2_master` invariato se l'invariante regge; altrimenti \code{stop()}.
 #' @keywords internal
-.reassemble_stage2_chunks <- function(stage2_master) {
-  n_in <- length(stage2_master)
-  # Raggruppa per series_id preservando l'ordine di apparizione (= ordine
-  # last-wins di .index_stage2_master). I record senza series_id restano singoli.
+.assert_stage2_one_record_per_series <- function(stage2_master) {
   sids <- vapply(stage2_master, function(s) {
     v <- s$series_id
     if (is.null(v) || length(v) == 0L || is.na(v[[1L]])) NA_character_
     else as.character(v[[1L]])
   }, character(1L))
-
-  order_keys <- unique(sids)
-  out <- vector("list", 0L)
-  n_multichunk <- 0L
-
-  for (key in order_keys) {
-    idx <- which(sids == key | (is.na(sids) & is.na(key)))
-    chunks <- stage2_master[idx]
-    if (length(chunks) == 1L) {           # series non chunked: invariata
-      out[[length(out) + 1L]] <- chunks[[1L]]
-      next
-    }
-    n_multichunk <- n_multichunk + 1L
-
-    merged_groups <- list()
-    merged_cmps   <- list()
-    for (k in seq_along(chunks)) {
-      ch <- chunks[[k]]
-      suffix <- paste0("#chunk", k)
-      rename <- character(0)              # group_id originale -> namespaced
-      for (rg in (ch$replicate_groups %||% list())) {
-        new_gid <- paste0(rg$group_id %||% "", suffix)
-        rename[rg$group_id %||% ""] <- new_gid
-        rg$group_id <- new_gid
-        merged_groups[[length(merged_groups) + 1L]] <- rg
-      }
-      for (cmp in (ch$comparisons %||% list())) {
-        cmp$comparison_id <- paste0(cmp$comparison_id %||% "", suffix)
-        tg <- cmp$treated_group %||% ""
-        cg <- cmp$control_group %||% ""
-        if (!is.null(rename[[tg]]) && !is.na(rename[tg])) cmp$treated_group <- rename[[tg]]
-        if (!is.null(rename[[cg]]) && !is.na(rename[cg])) cmp$control_group <- rename[[cg]]
-        merged_cmps[[length(merged_cmps) + 1L]] <- cmp
-      }
-    }
-    # Record riassemblato: parte dal primo chunk (preserva campi top-level
-    # inerti a valle: design_kind/summary/factors/extraction) e sostituisce
-    # i tre campi consumati.
-    rec <- chunks[[1L]]
-    rec$series_id        <- key
-    rec$replicate_groups <- merged_groups
-    rec$comparisons      <- merged_cmps
-    out[[length(out) + 1L]] <- rec
+  present <- sids[!is.na(sids)]
+  dup <- unique(present[duplicated(present)])
+  if (length(dup) > 0L) {
+    stop(sprintf(paste0(
+      "Invariante Stadio 2 violata: %d series_id compaiono in piu' record ",
+      "(input chunked inatteso). Lo Stadio 2 opzione C (ADR-0020) deve produrre ",
+      "UN record per studio. Esempi: %s. Vedi finding 2026-06-01."),
+      length(dup), paste(utils::head(dup, 5L), collapse = ", ")),
+      call. = FALSE)
   }
-
-  list(
-    stage2_master = out,
-    report = list(
-      n_records_in       = n_in,
-      n_records_out      = length(out),
-      n_series_multichunk = n_multichunk
-    )
-  )
+  stage2_master
 }
 
 #' Costruisce la mappa series_id -> GSM in input dall'input Stadio 2
@@ -131,10 +83,10 @@ complete_stage2_coverage <- function(parsed_json, input_sample_ids) {
 #' `{record_id, series_id, samples: [{geo_accession, ...}]}`) e restituisce una
 #' named list `series_id -> character vector dei GSM` di quello studio. I chunk
 #' di uno stesso studio (record_id "GSE100#1of2", "GSE100#2of2", ...) vengono
-#' UNITI per series, coerente con il riassemblaggio
-#' (\code{\link{.reassemble_stage2_chunks}}): il completeness guard a valle gira
-#' per-studio. L'union di piu' file copre l'input originale + i rescue (resplit
-#' cs25, cascade).
+#' UNITI per series: il completeness guard a valle gira per-studio, coerente con
+#' l'invariante un-record-per-studio
+#' (\code{\link{.assert_stage2_one_record_per_series}}). L'union di piu' file
+#' copre l'input originale + i rescue (resplit cs25, cascade).
 #'
 #' @param paths character vector di path JSONL input Stadio 2.
 #' @return named list series_id -> character vector di GSM (union sui chunk).

@@ -47,21 +47,17 @@ build_stage3_clusters <- function(stage1_master,
     cli::cli_inform("[stage3] Phase 1b: load stage2_master from {stage2_master}")
     stage2_master <- .load_stage2_master(stage2_master)
   }
-  # Riassemblaggio: gli studi grandi sono splittati in piu' chunk con la stessa
-  # series_id; senza riassemblaggio i chunk non-ultimi vengono persi a Stadio 4
-  # (.index_stage2_master per series, last-wins) e collidono a Stadio 3
-  # (record_id = series__group). Vedi finding 2026-06-01. No-op per master non
-  # chunked. Lo stesso riassemblaggio va applicato in build_stage4_results().
-  reasm <- .reassemble_stage2_chunks(stage2_master)
-  if (reasm$report$n_series_multichunk > 0L) {
-    cli::cli_inform("[stage3] reassembled {reasm$report$n_records_in} stage2 records -> {reasm$report$n_records_out} per-series ({reasm$report$n_series_multichunk} multi-chunk studies)")
-  }
-  stage2_master <- reasm$stage2_master
+  # Guard invariante (opzione C, ADR-0020): lo Stadio 2 v3 produce UN record per
+  # studio. Se compaiono series_id duplicati (input chunked inatteso) fallisce
+  # rumorosamente invece di riassemblare in silenzio nel modo sbagliato (la
+  # vecchia .reassemble_stage2_chunks perdeva i confronti cross-chunk, finding
+  # 2026-06-01). Stesso guard in build_stage4_results().
+  stage2_master <- .assert_stage2_one_record_per_series(stage2_master)
 
   # Completeness guard (FASE F4 Step 2): ogni sample di input non coperto dai
   # replicate_groups Stadio 2 (violazione REGOLA 4, ~3.5% nel benchmark F2)
   # viene raccolto in un gruppo sintetico primary_role='unclear' (esplicito e
-  # auditabile). Per-studio, post-riassemblaggio.
+  # auditabile). Per-studio.
   stage2_completeness <- NULL
   if (!is.null(stage2_input)) {
     input_by_series <- .build_stage2_input_lookup(stage2_input)
