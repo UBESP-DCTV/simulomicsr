@@ -14,8 +14,13 @@ named list series_id -> character vector di GSM (union sui chunk).
 }
 \description{
 Legge uno o piu' file JSONL di input Stadio 2 (formato
-\verb{\{record_id, series_id, samples: [\{geo_accession, ...\}]\}}) e restituisce una
-named list \verb{series_id -> character vector dei GSM} di quello studio. I chunk
+\verb{\{record_id, series_id, samples: [\{geo_accession, member_sample_ids, ...\}]\}})
+e restituisce una named list \verb{series_id -> character vector dei GSM} di quello
+studio. In v3 (opzione C) ogni sample e' una condizione: \code{geo_accession} e' il
+rappresentante e \code{member_sample_ids} sono i GSM reali -> si raccolgono TUTTI i
+membri (altrimenti i non-rappresentanti risulterebbero scoperti e finirebbero
+in 'unclear'). Se \code{member_sample_ids} e' assente (input v2) si ricade su
+\code{geo_accession} (retrocompatibile). I chunk
 di uno stesso studio (record_id "GSE100#1of2", "GSE100#2of2", ...) vengono
 UNITI per series: il completeness guard a valle gira per-studio, coerente con
 l'invariante un-record-per-studio

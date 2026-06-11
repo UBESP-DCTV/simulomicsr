@@ -80,8 +80,13 @@ complete_stage2_coverage <- function(parsed_json, input_sample_ids) {
 #' Costruisce la mappa series_id -> GSM in input dall'input Stadio 2
 #'
 #' Legge uno o piu' file JSONL di input Stadio 2 (formato
-#' `{record_id, series_id, samples: [{geo_accession, ...}]}`) e restituisce una
-#' named list `series_id -> character vector dei GSM` di quello studio. I chunk
+#' `{record_id, series_id, samples: [{geo_accession, member_sample_ids, ...}]}`)
+#' e restituisce una named list `series_id -> character vector dei GSM` di quello
+#' studio. In v3 (opzione C) ogni sample e' una condizione: `geo_accession` e' il
+#' rappresentante e `member_sample_ids` sono i GSM reali -> si raccolgono TUTTI i
+#' membri (altrimenti i non-rappresentanti risulterebbero scoperti e finirebbero
+#' in 'unclear'). Se `member_sample_ids` e' assente (input v2) si ricade su
+#' `geo_accession` (retrocompatibile). I chunk
 #' di uno stesso studio (record_id "GSE100#1of2", "GSE100#2of2", ...) vengono
 #' UNITI per series: il completeness guard a valle gira per-studio, coerente con
 #' l'invariante un-record-per-studio
@@ -101,12 +106,17 @@ complete_stage2_coverage <- function(parsed_json, input_sample_ids) {
       rec <- jsonlite::fromJSON(line, simplifyVector = FALSE)
       sid <- rec$series_id %||% sub("(#|--).*$", "", rec$record_id %||% "")
       if (is.null(sid) || is.na(sid) || !nzchar(sid)) next
-      gsms <- vapply(
-        rec$samples %||% list(),
-        function(s) s$geo_accession %||% NA_character_,
-        character(1L)
-      )
-      lookup[[sid]] <- union(lookup[[sid]], as.character(gsms[!is.na(gsms)]))
+      # v3 (opzione C): ogni sample e' una condizione, geo_accession e' il
+      # rappresentante e member_sample_ids sono i GSM reali -> il guard deve
+      # contare TUTTI i membri, non il solo rappresentante. v2 (no
+      # member_sample_ids): fallback a geo_accession (retrocompatibile).
+      gsms <- unlist(lapply(rec$samples %||% list(), function(s) {
+        m <- s$member_sample_ids
+        if (!is.null(m) && length(m) > 0L) as.character(unlist(m))
+        else if (!is.null(s$geo_accession)) as.character(s$geo_accession)
+        else character(0L)
+      }), use.names = FALSE)
+      lookup[[sid]] <- union(lookup[[sid]], gsms[!is.na(gsms) & nzchar(gsms)])
     }
   }
   lookup

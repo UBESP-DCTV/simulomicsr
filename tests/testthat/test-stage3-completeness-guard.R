@@ -58,6 +58,56 @@ test_that(".build_stage2_input_lookup: path inesistente -> errore esplicito", {
   expect_error(.build_stage2_input_lookup("/nope/missing.jsonl"), "non esiste")
 })
 
+# --- v3: member_sample_ids reali, non il solo rappresentante ------------------
+# In v3 (opzione C) ogni sample e' una CONDIZIONE: geo_accession e' il
+# rappresentante, member_sample_ids sono i GSM reali. Il completeness guard deve
+# confrontarsi coi GSM reali, altrimenti i membri non-rappresentanti
+# risulterebbero "scoperti" e finirebbero erroneamente in 'unclear'.
+mk_stage2_input_line_v3 <- function(record_id, conditions, series_id = NULL) {
+  # conditions: list(list(rep = "GSM1", members = c("GSM1","GSM2")), ...)
+  jsonlite::toJSON(
+    list(
+      record_id = record_id,
+      series_id = series_id %||% sub("(#|--).*$", "", record_id),
+      study_summary = "",
+      samples = lapply(conditions, function(cnd) list(
+        geo_accession     = cnd$rep,
+        member_sample_ids = cnd$members
+      ))
+    ),
+    auto_unbox = TRUE, null = "null"
+  )
+}
+
+test_that(".build_stage2_input_lookup: v3 legge member_sample_ids (tutti i GSM), non il rappresentante", {
+  path <- write_stage2_input(list(mk_stage2_input_line_v3("GSE500", list(
+    list(rep = "GSM1", members = c("GSM1", "GSM2", "GSM3")),
+    list(rep = "GSM4", members = c("GSM4", "GSM5"))
+  ))))
+  lk <- .build_stage2_input_lookup(path)
+  expect_setequal(lk[["GSE500"]], c("GSM1", "GSM2", "GSM3", "GSM4", "GSM5"))
+})
+
+test_that(".build_stage2_input_lookup: v3 union sui chunk usa i membri", {
+  path <- write_stage2_input(list(
+    mk_stage2_input_line_v3("GSE600#1of2", list(
+      list(rep = "GSM1", members = c("GSM1", "GSM2"))), series_id = "GSE600"),
+    mk_stage2_input_line_v3("GSE600#2of2", list(
+      list(rep = "GSM3", members = c("GSM3", "GSM4", "GSM5"))), series_id = "GSE600")
+  ))
+  lk <- .build_stage2_input_lookup(path)
+  expect_setequal(lk[["GSE600"]], c("GSM1", "GSM2", "GSM3", "GSM4", "GSM5"))
+})
+
+test_that(".build_stage2_input_lookup: fallback a geo_accession se member_sample_ids assente (v2)", {
+  # input v2 (nessun member_sample_ids) -> retrocompatibile
+  path <- write_stage2_input(list(
+    mk_stage2_input_line("GSE100", c("GSM1", "GSM2", "GSM3"))
+  ))
+  lk <- .build_stage2_input_lookup(path)
+  expect_equal(lk[["GSE100"]], c("GSM1", "GSM2", "GSM3"))
+})
+
 # --- .apply_stage2_completeness_by_series --------------------------------------
 
 mk_study_rec <- function(series, covered_gsms) {
