@@ -1230,10 +1230,28 @@ chunk da broadcast. Cambio prompt Stadio 2 gated applicato (A system prompt
 (stage3+stage4 build). **Smoke gate sui 72 studi gold: schema 100%, accuracy
 94,04% (= baseline F3), coverage 21→5 → PASS** (`docs`/`analysis/audit/F4-stage2-smoke-v3-eval.md`).
 
-**Prossimo = fullrun Stadio 2 v3 sul DGX** (sessione 14, gate separato
-validate-before-fullrun): 24.972 record → collect → assembly → master v3 → poi
-F4 (Stadio 3 rebuild sul master v3) → F5 (Stadio 4). TODO F4-wiring tracciati:
-completeness guard su `member_sample_ids` (sotto); indagine single-cell Stadio 0.
+**🟢 Sessione 14 (2026-06-11) — fullrun + rescue + master v3 fatti.** Fullrun
+Stadio 2 v3 (slurm 24022, wall 15h20m): **24.953/24.972 valide (99,924%)**, 19
+fail-schema su 10 studi. Audit dei fail (before-patch): tre meccanismi distinti di
+troncamento output — esplosione confronti (multi-fattoriale), esplosione rep_groups
+(centinaia di condizioni/chunk), degenerazione/flood — + caso multi_arm tier S.
+Rescue con config unica: nuovo parametro `max_treated_per_chunk=12` di
+`.chunk_conditions` (TDD, commit `e1dec27`) + `max_tokens` 32768 piatto + `rep_pen`
+1.2 (deviazione di config, non di prompt, tracciata come β). Slurm 24222: **506/506
+valide, 0 residui** (wall 26 min). **Master Stadio 2 v3: 24.394 studi, 1 record/
+studio** (guard `.assert_stage2_one_record_per_series` PASS), studi re-chunkati
+ricomposti per series (GSE249377: 268 chunk → 1 record, 3146 replicate_groups),
+490.051 campioni coperti (resto = coverage gap REGOLA 4, lo chiude il completeness
+guard a F4). Deliverable `analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl`
+(gitignored, schema stage2.v2). Script `analysis/p4-fase-f4-stage2-rescue-build-v3.R`
++ `-rescue-submit-v3.R` + `-collect-v3.R`. Finding paper
+`docs/findings/2026-06-11-f4-stage2-v3-rescue-and-generalization.md` (rescue come
+procedura data-adaptive). Commit `e1dec27`..`b84231b`. Master git invariato, no push.
+
+**Prossimo = F4 (Stadio 3 rebuild) sul master v3 + anchor v3.1.1** (sessione 15).
+PRIMA: adattare il completeness guard a `member_sample_ids` (TODO sotto). Poi F5
+(Stadio 4) → F6 (Layer B). TODO tracciati: completeness guard `member_sample_ids`;
+indagine single-cell Stadio 0.
 
 **⬜ TODO differito (single-cell sfuggiti a Stadio 0).** Durante il build v3
 (sessione 13) è emerso che ~313 studi (1,28%, ~16k campioni) hanno disegno
@@ -1536,33 +1554,54 @@ ALERT per Stadio 1 audit nella sessione successiva.
     invariato, no push. Prompt prossima sessione (F4) in
     `analysis/p4-fase-f3-NEXT-SESSION-PROMPT.md`.
 
-### Handoff next session (sessione 14 = fullrun Stadio 2 v3)
+- 2026-06-11 sessione 14: ✅ **Stadio 2 v3 COMPLETO (opzione C) — fullrun +
+  rescue + master**.
+  - Fullrun Stadio 2 v3 (slurm 24022, wall 15h20m): **24.953/24.972 valide
+    (99,924%)**, 19 fail-schema su 10 studi.
+  - Audit dei fail (before-patch): **tre meccanismi distinti** di troncamento
+    output — esplosione confronti (multi-fattoriale ~4-6 cmp/condizione),
+    esplosione rep_groups (centinaia di condizioni/chunk), degenerazione/flood —
+    + caso multi_arm a tier S. Niente fix uniforme alla cieca.
+  - Rescue config unica: nuovo `max_treated_per_chunk=12` di `.chunk_conditions`
+    (TDD, retrocompatibile) + `max_tokens` 32768 piatto + `rep_pen` 1.2
+    (deviazione di config, non di prompt). Slurm 24222: **506/506 valide, 0
+    residui** (wall 26 min).
+  - **Master Stadio 2 v3: 24.394 studi, 1 record/studio** (guard PASS), studi
+    re-chunkati ricomposti per series (GSE249377: 268 chunk → 1 record), 490.051
+    campioni coperti. `p4-fase-f4-stage2-master-v3.jsonl` (gitignored).
+  - Finding paper `docs/findings/2026-06-11-f4-stage2-v3-rescue-and-generalization.md`
+    (rescue come procedura data-adaptive: stessa cassetta a tre leve su β/F3/F4,
+    valori da ri-derivare per corpus). Commit `e1dec27`..`b84231b`. Master git
+    invariato, no push.
 
-**Stato fine sessione 13 (2026-06-10).** ✅ **Opzione C implementata fino allo
-smoke gate PASS** (vedi §F4 sopra). Tutta la logica TDD (firma, condizioni,
-chunk+broadcast, espansione/fusione/assembly, guard fail-loud) + build input v3
-(24.972 record, 0 persi) + cambio prompt gated A+B. Smoke 72 studi gold: schema
-100%, accuracy 94,04% (= baseline F3), coverage 21→5 → PASS. Master git invariato,
-no push.
+### Handoff next session (sessione 15 = F4 Stadio 3 rebuild sul master v3)
 
-- **Fullrun Stadio 2 v3 SUBMITTATO** (2026-06-10, fine sessione 13, gate utente
-  esplicito): **slurm 24022**, run_id `20260610T120031Z-f4-stage2-fullrun-v3-5f166e`,
-  stato RUNNING. 24.972 record, config invariata, 4-worker, time 72h. Submit via
-  `analysis/p4-fase-f4-stage2-fullrun-v3.R` (resume-safe). Procedura sessione 14:
-  1. (fatto) submit fullrun su `analysis/input/archs4-human-stage2-input-v3.jsonl`
-     (24.972 record; tier atteso meno XL di F3 → più veloce).
-  2. collect → **assembly** (espansione) via `.assemble_stage2_study` per series
-     → master Stadio 2 v3 (1 record/studio). Va scritto lo script collect→master
-     (l'orchestrazione è in `assemble_master()` dentro lo smoke script, da
-     promuovere/riusare). Eventuale rescue cascade sui fail (come F3).
-  3. poi **F4** (Stadio 3 rebuild sul master v3) e **F5** (Stadio 4).
-- **TODO F4-wiring tracciati** (prima/durante F4): adattare il completeness guard
-  a `member_sample_ids` (oggi legge geo_accession = rappresentante, vedi §F4);
-  indagine single-cell Stadio 0 (~313 studi degeneri, memoria
-  `project_singlecell_escapees_stage0`).
-- **Deliverable validi**: input v3 (gitignored) + tutto il codice committato sul
-  branch. Master F2 Stadio 1 invariato. Il master F3 chunked NON va usato (C lo
-  rifà).
+**Stato fine sessione 14 (2026-06-11).** ✅ **Stadio 2 v3 COMPLETO** — fullrun +
+rescue + master (vedi §F4 sopra, 🟢 sessione 14). Master Stadio 2 v3 pronto:
+`analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl` (24.394 studi, 1 record/
+studio, schema stage2.v2, gitignored). Master git invariato, no push. Commit
+`e1dec27`..`b84231b`.
+
+Procedura sessione 15:
+1. **PREREQUISITO — completeness guard `member_sample_ids`** (TODO F4-wiring, è un
+   cambio di codice TDD da fare PRIMA del rebuild). `.build_stage2_input_lookup`
+   (`R/stage2-normalize.R`) oggi legge `geo_accession`, che in v3 è il
+   **rappresentante** della condizione, non tutti i GSM dello studio. Il
+   completeness guard (`.apply_stage2_completeness_by_series`) confronterebbe la
+   copertura del master coi soli rappresentanti → i membri non-rappresentanti
+   risulterebbero erroneamente "scoperti" e finirebbero nel gruppo sintetico
+   `unclear`. Va fatto leggere i `member_sample_ids` reali dall'input v3.
+2. **F4 — rebuild `build_stage3_clusters()`** sul master v3 + anchor v3.1.1
+   (+ resolver v1.1.0). Input: master Stadio 1 F2 + master Stadio 2 v3 +
+   stage2_input (per il guard). Atteso ~80 min (come i rebuild v3.1.x).
+3. **F5 — Stadio 4 Layer A rebuild** sul nuovo Stadio 3 (logica ensembl/biotype/
+   covariate batch già in FASE E). **F6 — Layer B re-selection + rebuild**.
+4. **FASE G — doc + commit + tag** di chiusura.
+- **TODO differito** (non blocca): indagine single-cell Stadio 0 (~313 studi
+  degeneri, memoria `project_singlecell_escapees_stage0`).
+- **Deliverable validi**: master Stadio 2 v3 + input v3 + rescue (gitignored) +
+  tutto il codice committato sul branch. Master F2 Stadio 1 invariato. Il master
+  F3 chunked NON va usato.
 
 ---
 

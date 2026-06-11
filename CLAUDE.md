@@ -11,13 +11,40 @@
 ---
 
 > ⚠️ **RED ALERT ATTIVO** (apertura 2026-05-25) — audit completo
-> pipeline a 5 stadi in corso. Sessione attuale lavora sullo **Stadio 0
-> (ETL ARCHS4)**: filtro single-cell incompleto + 25/32 campi metadato
-> ignorati. Reference operativa: **`docs/RED_ALERT.md`** (leggere PRIMA
+> pipeline a 5 stadi in corso (FASE F rebuild). **Stadio 2 v3 (opzione C)
+> COMPLETO** (fine sessione 14); prossimo = **F4 (Stadio 3 rebuild)** sul
+> master v3. Reference operativa: **`docs/RED_ALERT.md`** (leggere PRIMA
 > di toccare qualunque codice). Master invariato. Branch attivo:
 > `p5-llm-anchor-classification-audit`. Le regole comportamentali per
 > Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
+>
+> **Stato 2026-06-11 fine sessione 14**: 🟢 **Stadio 2 v3 COMPLETO (opzione C) —
+> fullrun + rescue + master**. Fullrun Stadio 2 v3 (slurm 24022, wall 15h20m):
+> **24.953/24.972 valide (99,924%)**, 19 fail-schema su 10 studi. Audit dei fail
+> (before-patch): **tre meccanismi distinti** di troncamento output — esplosione
+> confronti (multi-fattoriale ~4-6 cmp/condizione), esplosione rep_groups (centinaia
+> di condizioni/chunk), degenerazione/flood — + caso multi_arm a tier S. Rescue con
+> config unica: nuovo parametro **`max_treated_per_chunk=12`** di `.chunk_conditions`
+> (TDD, retrocompatibile, commit `e1dec27`) + **`max_tokens` 32768 piatto** +
+> **`rep_pen` 1.2** (deviazione di config, NON di prompt, tracciata come β). Slurm
+> 24222: **506/506 valide, 0 residui** (wall 26 min). **Master Stadio 2 v3: 24.394
+> studi, 1 record/studio** (guard `.assert_stage2_one_record_per_series` PASS), studi
+> re-chunkati ricomposti per series (GSE249377: 268 chunk → 1 record, 3146
+> replicate_groups, 123 cmp), 490.051 campioni coperti (resto = coverage gap REGOLA 4,
+> lo chiude il completeness guard a F4). Deliverable
+> `analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl` (gitignored, schema stage2.v2).
+> Script `analysis/p4-fase-f4-stage2-rescue-build-v3.R` + `-rescue-submit-v3.R` +
+> `-collect-v3.R`. Finding paper
+> `docs/findings/2026-06-11-f4-stage2-v3-rescue-and-generalization.md` (il rescue è
+> una **procedura data-adaptive**: stessa cassetta a tre leve su β/F3/F4, valori da
+> ri-derivare per corpus). Commit `e1dec27`..`b84231b`. **Prossimo = F4 (Stadio 3
+> rebuild) sul master v3 + anchor v3.1.1** (sessione 15). PRIMA: adattare il
+> completeness guard a `member_sample_ids` (oggi legge geo_accession = rappresentante).
+> Poi F5 (Stadio 4) → F6 (Layer B). TODO tracciati: completeness guard
+> `member_sample_ids`; indagine single-cell Stadio 0 (~313 studi degeneri). Branch
+> `p5-llm-anchor-classification-audit`, master git invariato, no push. Vedi
+> `docs/RED_ALERT.md` §F4 + §Handoff sessione 15.
 >
 > **Stato 2026-06-10 fine sessione 13**: 🟢 **F4 opzione C implementata fino allo
 > smoke gate PASS**. Ridisegno input Stadio 2 a condizioni di disegno deduplicate
