@@ -102,3 +102,59 @@ test_that("nessuna condizione di controllo -> partizione semplice senza broadcas
   expect_setequal(all_ids, letters[1:6])
   expect_length(all_ids, 6L)  # nessuna ripetizione
 })
+
+# --- tetto condizioni trattate per chunk (rescue F4: bounda l'output LLM) ---
+# Il budget caratteri limita l'INPUT; l'output LLM (confronti) scala col numero di
+# condizioni TRATTATE per chunk. Un tetto esplicito sul numero di trattati per
+# chunk bounda direttamente l'output, restando broadcast-safe (i controlli non
+# contano contro il tetto, restano in ogni chunk).
+
+test_that("tetto trattati/chunk: spezza anche se il budget non e' raggiunto", {
+  # budget enorme -> il char budget da solo non spezzerebbe mai; il tetto si'.
+  conds <- c(list(mk_cond("ctrl", 1000, control = TRUE)),
+             lapply(1:9, function(i) mk_cond(paste0("t", i), 1000)))
+  chunks <- .chunk_conditions(conds, budget_chars = 1000000,
+                              max_treated_per_chunk = 3L)
+  expect_length(chunks, 3L)  # 9 trattati / 3 = 3 chunk
+})
+
+test_that("tetto trattati/chunk: ogni chunk ha al piu' N trattati, controlli esclusi dal conteggio", {
+  conds <- c(list(mk_cond("ctrl", 1000, control = TRUE)),
+             lapply(1:9, function(i) mk_cond(paste0("t", i), 1000)))
+  chunks <- .chunk_conditions(conds, budget_chars = 1000000,
+                              max_treated_per_chunk = 3L)
+  for (ch in chunks) {
+    ids <- vapply(ch, function(c) c$condition_id, character(1))
+    n_treated <- sum(!grepl("^ctrl", ids))
+    expect_lte(n_treated, 3L)
+    expect_true("ctrl" %in% ids)  # broadcast preservato
+  }
+})
+
+test_that("tetto trattati/chunk: si applica anche senza controlli (partizione semplice)", {
+  conds <- lapply(1:6, function(i) mk_cond(letters[i], 1000))
+  chunks <- .chunk_conditions(conds, budget_chars = 1000000,
+                              max_treated_per_chunk = 2L)
+  expect_length(chunks, 3L)  # 6 / 2 = 3
+  all_ids <- unlist(lapply(chunks, function(ch)
+    vapply(ch, function(c) c$condition_id, character(1))))
+  expect_setequal(all_ids, letters[1:6])  # copertura, nessuna perdita
+})
+
+test_that("tetto trattati/chunk default Inf: comportamento invariato (retrocompat)", {
+  conds <- lapply(1:10, function(i) mk_cond(letters[i], 3000))
+  chunks_default <- .chunk_conditions(conds, budget_chars = 10000)
+  chunks_inf     <- .chunk_conditions(conds, budget_chars = 10000,
+                                      max_treated_per_chunk = Inf)
+  expect_equal(length(chunks_default), length(chunks_inf))
+})
+
+test_that("tetto trattati/chunk si combina col budget: vince il vincolo piu' stretto", {
+  # budget 10000 con trattati da 3000 -> ~3/chunk per budget; tetto 2 piu' stretto
+  conds <- lapply(1:6, function(i) mk_cond(letters[i], 3000))
+  chunks <- .chunk_conditions(conds, budget_chars = 10000,
+                              max_treated_per_chunk = 2L)
+  for (ch in chunks) {
+    expect_lte(length(ch), 2L)
+  }
+})

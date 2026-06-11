@@ -4,7 +4,12 @@
 \alias{.chunk_conditions}
 \title{Divide le condizioni di uno studio in chunk entro un budget di caratteri}
 \usage{
-.chunk_conditions(conditions, budget_chars, broadcast_max_frac = 0.3)
+.chunk_conditions(
+  conditions,
+  budget_chars,
+  broadcast_max_frac = 0.3,
+  max_treated_per_chunk = Inf
+)
 }
 \arguments{
 \item{conditions}{Lista di condizioni (vedi \code{\link{.build_study_conditions}});
@@ -16,6 +21,14 @@ ciascuna deve avere \code{n_char}.}
 occupare per essere broadcastati. Oltre questa soglia, ripetere i controlli
 in ogni chunk consumerebbe troppo budget (esplosione di chunk), quindi si
 ricade su partizione semplice (no broadcast). Default 0.3.}
+
+\item{max_treated_per_chunk}{Tetto sul numero di condizioni TRATTATE
+(non-controllo) per chunk, in aggiunta al budget caratteri. Il budget limita
+l'INPUT del chunk; l'output LLM (numero di confronti) scala col numero di
+trattati per chunk, quindi questo tetto bounda direttamente l'output ed e'
+broadcast-safe (i controlli non contano contro il tetto, restano in ogni
+chunk). Default \code{Inf} (nessun tetto, comportamento storico). Vince il
+vincolo piu' stretto fra budget e tetto.}
 }
 \value{
 Lista di chunk; ciascun chunk e' una lista di condizioni.

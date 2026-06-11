@@ -91,11 +91,18 @@
 #'   occupare per essere broadcastati. Oltre questa soglia, ripetere i controlli
 #'   in ogni chunk consumerebbe troppo budget (esplosione di chunk), quindi si
 #'   ricade su partizione semplice (no broadcast). Default 0.3.
+#' @param max_treated_per_chunk Tetto sul numero di condizioni TRATTATE
+#'   (non-controllo) per chunk, in aggiunta al budget caratteri. Il budget limita
+#'   l'INPUT del chunk; l'output LLM (numero di confronti) scala col numero di
+#'   trattati per chunk, quindi questo tetto bounda direttamente l'output ed e'
+#'   broadcast-safe (i controlli non contano contro il tetto, restano in ogni
+#'   chunk). Default \code{Inf} (nessun tetto, comportamento storico). Vince il
+#'   vincolo piu' stretto fra budget e tetto.
 #' @return Lista di chunk; ciascun chunk e' una lista di condizioni.
 #' @keywords internal
-.chunk_conditions <- function(conditions, budget_chars, broadcast_max_frac = 0.3) {
+.chunk_conditions <- function(conditions, budget_chars, broadcast_max_frac = 0.3,
+                              max_treated_per_chunk = Inf) {
   sizes <- vapply(conditions, function(c) as.numeric(c$n_char), numeric(1))
-  if (sum(sizes) <= budget_chars) return(list(conditions))
 
   is_ctrl <- vapply(conditions, .is_control_condition, logical(1))
   controls <- conditions[is_ctrl]
@@ -103,16 +110,23 @@
   ctrl_size <- sum(sizes[is_ctrl])
 
   # broadcast non praticabile: controlli oltre la frazione del budget ->
-  # ripeterli esploderebbe il numero di chunk -> partizione semplice.
+  # ripeterli esploderebbe il numero di chunk -> partizione semplice (tutte le
+  # condizioni diventano "trattate" e il tetto si applica a tutte).
   if (ctrl_size > budget_chars * broadcast_max_frac) {
     controls <- list(); treated <- conditions; ctrl_size <- 0
   }
+
+  # no-op: tutto entro budget E entro il tetto trattati -> un solo chunk.
+  if (sum(sizes) <= budget_chars && length(treated) <= max_treated_per_chunk)
+    return(list(conditions))
 
   chunks <- list()
   cur <- list(); cur_size <- 0
   for (i in seq_along(treated)) {
     sz <- as.numeric(treated[[i]]$n_char)
-    if (length(cur) > 0 && (ctrl_size + cur_size + sz) > budget_chars) {
+    if (length(cur) > 0 &&
+        ((ctrl_size + cur_size + sz) > budget_chars ||
+         length(cur) >= max_treated_per_chunk)) {
       chunks[[length(chunks) + 1L]] <- c(controls, cur)
       cur <- list(); cur_size <- 0
     }
