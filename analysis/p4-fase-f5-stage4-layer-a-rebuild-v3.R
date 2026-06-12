@@ -72,6 +72,10 @@ rm(h5_samples_axis); gc(verbose = FALSE)
 # ---- Layer A identification + sample collection ---------------------------
 config <- stage4_default_config()
 config$mega_aug$legacy_monodirectional <- FALSE  # bidirezionale (= 96c43acb)
+# Cluster in SERIE (workers cluster-level=1, default) + 32 dream worker per
+# cluster (scelta utente 2026-06-12): picco ~127 GB validato su 256 GB, niente
+# parallelismo annidato (evita gli OOM del vecchio run). Vedi sanity F5.
+config$compute$dream_workers_cap <- 32L
 cli_alert_info(
   "MEGA-AUG mode: BIDIREZIONALE (anchor_policy={config$mega_aug$anchor_policy}, direction={config$mega_aug$direction})"
 )
