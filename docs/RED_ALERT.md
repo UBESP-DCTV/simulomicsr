@@ -1264,30 +1264,55 @@ separata** (quantificare, capire perché A1/A2 non li hanno presi — probabile
 SMART-seq plate-based GSM-per-cellula — decidere se filtrare o dichiarare limite).
 Memoria `project_singlecell_escapees_stage0`.
 
-**⬜ TODO F4-wiring (completeness guard su input v3).** Il completeness guard
-(`.apply_stage2_completeness_by_series`) confronta la copertura del master con i
-GSM in input via `.build_stage2_input_lookup`, che oggi legge `geo_accession`.
-In v3 `geo_accession` è il **rappresentante** della condizione, non tutti i GSM:
-per il guard servono i `member_sample_ids` (i GSM reali). Da adattare quando F4
-(Stadio 3) girerà su input v3, altrimenti i membri non-rappresentanti
-risulterebbero "scoperti". Scoperto sostituendo il namespacing guard (sessione 13).
+**✅ TODO F4-wiring (completeness guard su input v3) — FATTO (sessione 15).**
+`.build_stage2_input_lookup` ora legge i `member_sample_ids` (i GSM reali) con
+fallback a `geo_accession` per l'input v2 (commit `c6b9d51`, TDD). Il completeness
+guard confronta la copertura coi GSM veri, non col rappresentante.
 
-#### ⬜ F5 — Stadio 4 Layer A rebuild
+#### ✅ F4 — Stadio 3 rebuild (FATTO, sessione 15)
 
-**Cosa facciamo.** Rebuild `build_stage4_results()` con (a) il nuovo
-Stadio 3, (b) ensembl gene axis, (c) biotype filter, (d) covariate
-instrument_model + aligner_class.
+Rebuild `build_stage3_clusters()` sul master Stadio 2 v3 (24.394 studi) + master
+Stadio 1 F2 (508.037) + anchor v3.1.1 + completeness guard attivo. Run
+`20260611T171555Z-stage3-v3-364547a7` (wall 221 min): **292.518 cluster, 546.905
+assignment, 165.404 non_clusterable**, completeness guard 18.004 sample → `unclear`
+su 1.452 studi (≈3,5% = REGOLA 4), kind_overridden 1,97%. Sanity PASS
+(`analysis/audit/F4-stage3-v3-sanity.md`): n_control=NA è per-design del group mode
+(mega_aug per-studio), **regressione chunk-collision chiusa** (0 suffissi chunk,
+GSE249377 coerente). Output gitignored.
 
-**Perché serve.** Nuovo `cluster_pooled.parquet` clean.
+#### ✅ F5 — Stadio 4 Layer A rebuild (FATTO, sessione 15)
 
-#### ⬜ F6 — Layer B re-selection + rebuild
+Rebuild `build_stage4_results()` sul nuovo Stadio 3 + master v3 (FASE E default:
+ensembl axis + biotype protein_coding + covariate batch). 32 dream worker, cluster
+in serie (RSS picco 20,6 GB). Run `20260613T051637Z-stage4-4f7ea215` (wall 24h):
+**776 cluster processati** (173 mega + 575 mega_aug + 28 rem) + 118
+mega_rank_deficient; **13.280.251 righe cluster_pooled, 1.677.343 geni
+significativi (FDR<0,05)**. Smoke gate pre-fullrun PASS (rem+mega+mega_aug, gene
+axis 100% Ensembl). Dashboard render quarto fallito (non-fatale, ri-renderizzabile).
+Output gitignored. Confronto vs 96c43acb: 776 vs 487 pooled (mega_aug ~raddoppiato,
+rem da 0 a 28). **NOTA**: la selezione Layer B userà la **metrica di riproducibilità
+cross-studio** (concordanza B + I²), non la %DE — vedi sotto.
 
-**Cosa facciamo.** La selection.csv attuale (15 case study, sha256
-56b911e6) è obsoleta perché i cluster_id sono cambiati. Ri-girare lo
-shortlist script e ri-curare la selection con te.
+**Metrica riproducibilità (sessione 15).** Validazione 2026-06-13: la %DE NON è
+diagnostica come guard (cluster ad alta %DE sono per lo più CONCORDI = biologia
+reale). Scelta: **concordanza cross-studio** (mediana correlazioni Spearman dei
+logFC per-studio) come gate POSITIVO + I² come asse complementare ortogonale (rem).
+Copertura: rem k=3-8 (trusted), mega_aug k=2 (check fragile, ed è dove stanno
+71/75 artefatti), mega k=0 (non calcolabile, accettato). Script
+`analysis/p4-fase-f6-concordance.R` → `cluster_reproducibility.rds`. Doc
+`analysis/audit/F5-concordance-metric.md`. Commit `0defe37`.
 
-**Perché serve.** Senza una nuova selection ri-curata non possiamo
-produrre il report Layer B finale.
+#### ⬜ F6 — Layer B re-selection + rebuild (PROSSIMO)
+
+**Cosa facciamo.** La selection.csv attuale (15 case study, sha256 56b911e6) è
+obsoleta perché i cluster_id sono cambiati. Ri-girare lo shortlist sul nuovo
+`cluster_pooled.parquet`, sostituendo il guard %DE con la **concordanza** (B) come
+gate di riproducibilità + I² (rem), oltre ai criteri di potenza esistenti (k,
+effect size, n_sig). Soglie da fissare con l'utente in fase di shortlist (NON
+hard-coded). Poi ri-curare la selection + ri-girare il batch Layer B.
+
+**Perché serve.** Senza una nuova selection ri-curata non possiamo produrre il
+report Layer B finale.
 
 ---
 
@@ -1574,34 +1599,48 @@ ALERT per Stadio 1 audit nella sessione successiva.
     valori da ri-derivare per corpus). Commit `e1dec27`..`b84231b`. Master git
     invariato, no push.
 
-### Handoff next session (sessione 15 = F4 Stadio 3 rebuild sul master v3)
+- 2026-06-12/14 sessione 15: ✅ **F4 (Stadio 3) + F5 (Stadio 4) + metrica
+  riproducibilità**.
+  - Prerequisito: completeness guard legge `member_sample_ids` (commit `c6b9d51`, TDD).
+  - **F4 Stadio 3 rebuild** (run `364547a7`, wall 221 min): 292.518 cluster,
+    546.905 assignment, completeness guard 18.004 → `unclear`. Sanity PASS
+    (regressione chunk-collision chiusa). Commit `c0aadb3`, `f461b0c`.
+  - **F5 Stadio 4 Layer A rebuild** (run `4f7ea215`, wall 24h, 32 worker, RSS 20,6
+    GB): 776 cluster (173 mega + 575 mega_aug + 28 rem), 13,28M righe pooled,
+    1.677.343 geni significativi. Smoke gate PASS. Commit `f6be9b7` + config.
+  - **Metrica riproducibilità** (per F6): %DE abbandonata (non diagnostica),
+    concordanza cross-studio (B) + I² (A, ortogonale). Commit `0defe37`. Doc
+    `analysis/audit/F5-concordance-metric.md`.
+  - Master git invariato, no push.
 
-**Stato fine sessione 14 (2026-06-11).** ✅ **Stadio 2 v3 COMPLETO** — fullrun +
-rescue + master (vedi §F4 sopra, 🟢 sessione 14). Master Stadio 2 v3 pronto:
-`analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl` (24.394 studi, 1 record/
-studio, schema stage2.v2, gitignored). Master git invariato, no push. Commit
-`e1dec27`..`b84231b`.
+### Handoff next session (sessione 16 = F6 Layer B re-selection)
 
-Procedura sessione 15:
-1. **PREREQUISITO — completeness guard `member_sample_ids`** (TODO F4-wiring, è un
-   cambio di codice TDD da fare PRIMA del rebuild). `.build_stage2_input_lookup`
-   (`R/stage2-normalize.R`) oggi legge `geo_accession`, che in v3 è il
-   **rappresentante** della condizione, non tutti i GSM dello studio. Il
-   completeness guard (`.apply_stage2_completeness_by_series`) confronterebbe la
-   copertura del master coi soli rappresentanti → i membri non-rappresentanti
-   risulterebbero erroneamente "scoperti" e finirebbero nel gruppo sintetico
-   `unclear`. Va fatto leggere i `member_sample_ids` reali dall'input v3.
-2. **F4 — rebuild `build_stage3_clusters()`** sul master v3 + anchor v3.1.1
-   (+ resolver v1.1.0). Input: master Stadio 1 F2 + master Stadio 2 v3 +
-   stage2_input (per il guard). Atteso ~80 min (come i rebuild v3.1.x).
-3. **F5 — Stadio 4 Layer A rebuild** sul nuovo Stadio 3 (logica ensembl/biotype/
-   covariate batch già in FASE E). **F6 — Layer B re-selection + rebuild**.
-4. **FASE G — doc + commit + tag** di chiusura.
+**Stato fine sessione 15 (2026-06-14).** ✅ **Pipeline ricostruita fino allo
+Stadio 4 v3.** Tutti i deliverable pronti (gitignored): master Stadio 2 v3
+(`p4-fase-f4-stage2-master-v3.jsonl`), Stadio 3 v3 (`20260611T171555Z-stage3-v3-364547a7/`),
+Stadio 4 Layer A v3 (`20260613T051637Z-stage4-4f7ea215/`: cluster_pooled.parquet
+13,28M righe + per_study_de.parquet + cluster_reproducibility.rds). Master git
+invariato, no push. Commit fino a `0defe37`.
+
+Procedura sessione 16 (F6 — Layer B re-selection + rebuild):
+1. **Shortlist con la metrica nuova.** Ri-girare lo shortlist (modello
+   `analysis/p5-stage4-layer-b-shortlist.R`) sul nuovo `cluster_pooled.parquet`,
+   **sostituendo il guard %DE con la concordanza B** (gate di riproducibilità) +
+   **I²** sui rem, oltre ai criteri di potenza (k, effect size, n_sig). La tabella
+   `cluster_reproducibility.rds` ha già concordanza/conc_confidence/med_I2 per
+   cluster. **Le soglie si fissano CON l'utente** (non hard-coded): concordanza
+   minima "trusted", trattamento mega_aug k=2, mega senza B, quanti case study,
+   mix biologico. Primo passo: mostrare all'utente la distribuzione di
+   concordanza/I²/effect-size sui candidati per decidere i tagli.
+2. **Ri-curare la selection** (15-ish case study) insieme all'utente.
+3. **Ri-girare il batch Layer B** (`analysis/p5-stage4-layer-b-*`) sul nuovo
+   `cluster_pooled.parquet` → bundle + report HTML.
+4. **FASE G — doc + commit + tag** di chiusura RED ALERT.
 - **TODO differito** (non blocca): indagine single-cell Stadio 0 (~313 studi
-  degeneri, memoria `project_singlecell_escapees_stage0`).
-- **Deliverable validi**: master Stadio 2 v3 + input v3 + rescue (gitignored) +
-  tutto il codice committato sul branch. Master F2 Stadio 1 invariato. Il master
-  F3 chunked NON va usato.
+  degeneri, memoria `project_singlecell_escapees_stage0`); dashboard Stadio 4
+  quarto da ri-renderizzare (`render_stage4_dashboard()`, fallito non-fatale a F5).
+- **Limite L2 noto**: molti cluster `disease_vs_normal` hanno `canonical_name=NA`
+  (classificazione anchor LLM) — non blocca il pooling, impatta solo l'etichetta.
 
 ---
 

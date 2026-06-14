@@ -11,13 +11,39 @@
 ---
 
 > ⚠️ **RED ALERT ATTIVO** (apertura 2026-05-25) — audit completo
-> pipeline a 5 stadi in corso (FASE F rebuild). **Stadio 2 v3 (opzione C)
-> COMPLETO** (fine sessione 14); prossimo = **F4 (Stadio 3 rebuild)** sul
-> master v3. Reference operativa: **`docs/RED_ALERT.md`** (leggere PRIMA
-> di toccare qualunque codice). Master invariato. Branch attivo:
-> `p5-llm-anchor-classification-audit`. Le regole comportamentali per
-> Claude in questa fase sono nel doc RED_ALERT, §"Come Claude si deve
-> comportare con me in questo audit".
+> pipeline a 5 stadi in corso (FASE F rebuild). **Pipeline ricostruita fino allo
+> Stadio 4 v3 COMPLETA** (fine sessione 15); prossimo = **F6 (Layer B
+> re-selection)** con la nuova metrica di riproducibilità. Reference operativa:
+> **`docs/RED_ALERT.md`** (leggere PRIMA di toccare qualunque codice). Master
+> invariato. Branch attivo: `p5-llm-anchor-classification-audit`. Le regole
+> comportamentali per Claude in questa fase sono nel doc RED_ALERT, §"Come Claude
+> si deve comportare con me in questo audit".
+>
+> **Stato 2026-06-14 fine sessione 15**: 🟢 **F4 (Stadio 3) + F5 (Stadio 4 Layer A)
+> ricostruiti + metrica di riproducibilità per F6**. **F4 Stadio 3** (run
+> `364547a7`, wall 221 min) sul master v3 + anchor v3.1.1 + completeness guard (ora
+> legge `member_sample_ids`, commit `c6b9d51` TDD): **292.518 cluster, 546.905
+> assignment**, guard 18.004 sample → `unclear` (≈3,5% REGOLA 4). Sanity PASS —
+> regressione chunk-collision **chiusa** (0 suffissi chunk; `n_control=NA` sui group
+> è per-design mega_aug). **F5 Stadio 4 Layer A** (run `4f7ea215`, wall 24h, 32
+> dream worker, RSS picco 20,6 GB, FASE E default = ensembl+biotype+covariate):
+> **776 cluster** (173 mega + 575 mega_aug + 28 rem) + 118 mega_rank_deficient,
+> **13,28M righe pooled, 1.677.343 geni significativi (FDR<0,05)**; vs 96c43acb
+> 776 vs 487 pooled (mega_aug ~raddoppiato, rem 0→28). Smoke gate pre-fullrun PASS
+> (gene axis 100% Ensembl); dashboard quarto fallito (non-fatale, ri-renderizzabile).
+> **Metrica riproducibilità per F6**: validazione ha mostrato che la **%DE NON è
+> diagnostica** (cluster ad alta %DE sono per lo più CONCORDI = biologia reale;
+> l'"artefatto" 80,7% DE aveva concordanza 1,00). Scelta utente: **concordanza
+> cross-studio (B)** come gate POSITIVO di riproducibilità + **I² (A)** come asse
+> complementare ortogonale (cor 0,03). Copertura B: rem k=3-8 (trusted), mega_aug
+> k=2 (fragile ma dove stanno 71/75 artefatti), mega k=0 (non calcolabile,
+> accettato). Script `analysis/p4-fase-f6-concordance.R` → `cluster_reproducibility.rds`;
+> doc `analysis/audit/F5-concordance-metric.md`. Commit `c6b9d51`..`0defe37`.
+> **Prossimo = F6 (Layer B re-selection)**: ri-girare lo shortlist sul nuovo
+> `cluster_pooled.parquet` con la concordanza al posto della %DE, **soglie da
+> fissare con l'utente**, ri-curare la selection, ri-girare il batch. Poi FASE G
+> (doc + tag). Branch `p5-llm-anchor-classification-audit`, master git invariato,
+> no push. Vedi `docs/RED_ALERT.md` §F5/§F6 + §Handoff sessione 16.
 >
 > **Stato 2026-06-11 fine sessione 14**: 🟢 **Stadio 2 v3 COMPLETO (opzione C) —
 > fullrun + rescue + master**. Fullrun Stadio 2 v3 (slurm 24022, wall 15h20m):
