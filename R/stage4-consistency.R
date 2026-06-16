@@ -46,3 +46,22 @@
   list(pi_lower = pil, pi_upper = piu, tau2 = fit$tau2,
        excl0 = is.finite(pil) && is.finite(piu) && (pil > 0 || piu < 0))
 }
+
+#' Sign-concordance dei logFC di 2 studi sui geni sig (proxy consistenza k=2)
+#'
+#' Per i cluster mega_aug (k=2) l'eterogeneita' non e' stimabile: la frazione di
+#' geni sig su cui i 2 studi concordano nella direzione del logFC e' il proxy di
+#' riproducibilita' raccomandato a k basso. logFC 0/NA esclusi dal denominatore.
+#'
+#' @param logFC_a,logFC_b logFC per-gene dei 2 studi (stessa lunghezza/ordine geni).
+#' @param sig_mask logical, gene FDR-significativo nel pooled (stessa lunghezza).
+#' @return list(concordance, n_used). concordance = NA se nessun gene usabile.
+#' @keywords internal
+.sign_concordance <- function(logFC_a, logFC_b, sig_mask) {
+  stopifnot(length(logFC_a) == length(logFC_b), length(sig_mask) == length(logFC_a))
+  use <- sig_mask & is.finite(logFC_a) & is.finite(logFC_b) &
+         logFC_a != 0 & logFC_b != 0
+  if (!any(use)) return(list(concordance = NA_real_, n_used = 0L))
+  agree <- sign(logFC_a[use]) == sign(logFC_b[use])
+  list(concordance = mean(agree), n_used = sum(use))
+}

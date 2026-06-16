@@ -34,3 +34,22 @@ test_that(".rem_prediction_interval: <2 studi -> NA", {
   res <- .rem_prediction_interval(logFC = c(2.0), SE = c(0.1))
   expect_true(is.na(res$pi_lower)); expect_true(is.na(res$excl0))
 })
+
+test_that(".sign_concordance: frazione direzione-concorde sui soli geni sig", {
+  a   <- c( 2,  -1,  3, -2,  1)
+  b   <- c( 1,  -2,  3,  2, -1)   # concordi: idx 1,2,3 ; discordi: 4,5
+  sig <- c(TRUE, TRUE, TRUE, TRUE, FALSE)  # gene5 non-sig -> escluso
+  res <- .sign_concordance(a, b, sig)
+  expect_equal(res$n_used, 4L)
+  expect_equal(res$concordance, 3/4)
+})
+
+test_that(".sign_concordance: logFC 0/NA esclusi dal denominatore", {
+  res <- .sign_concordance(c(2, 0, NA), c(1, 1, 1), c(TRUE, TRUE, TRUE))
+  expect_equal(res$n_used, 1L); expect_equal(res$concordance, 1)
+})
+
+test_that(".sign_concordance: nessun gene sig usabile -> NA", {
+  res <- .sign_concordance(c(2, 3), c(1, 2), c(FALSE, FALSE))
+  expect_true(is.na(res$concordance)); expect_equal(res$n_used, 0L)
+})
