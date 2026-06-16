@@ -24,6 +24,8 @@ if (requireNamespace("RhpcBLASctl", quietly = TRUE)) {
 }
 `%||%` <- function(a, b) if (is.null(a)) b else a
 SMOKE <- as.integer(Sys.getenv("SMOKE", unset = "0"))   # 0 = run pieno
+VPC_WORKERS <- as.integer(Sys.getenv("VPC_WORKERS", unset = "24"))  # MulticoreParam VPC
+bpp <- if (VPC_WORKERS > 1L) BiocParallel::MulticoreParam(VPC_WORKERS) else BiocParallel::SerialParam()
 S4_DIR  <- "analysis/p4-output/20260613T051637Z-stage4-4f7ea215"
 S3_DIR  <- "analysis/p4-output/20260611T171555Z-stage3-v3-364547a7"
 S2_PATH <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
@@ -116,9 +118,14 @@ if (length(mega_ids) > 0) {
       keepg <- edgeR::filterByExpr(dge, group = metadata$treatment)
       dge <- edgeR::normLibSizes(dge[keepg, , keep.lib.sizes = FALSE], method = "TMM")
       aug <- simulomicsr:::.augment_de_design(metadata, de_cov, cid); metadata <- aug$metadata_aug
-      form <- if (aug$formula_terms == "") ~ treatment + (1 | study) else
-        stats::as.formula(paste("~ treatment +", aug$formula_terms, "+ (1 | study)"))
-      bpp <- BiocParallel::SerialParam()
+      # VPC: variancePartition richiede le categoriche come effetti RANDOM (standard
+      # Hoffman & Schadt 2016) -> treatment + eventuali covariate come (1|...). Stesso
+      # preprocessing del DE; differisce solo la formula (treatment random vs fisso).
+      cov_terms <- if (aug$formula_terms == "") character(0) else
+        trimws(strsplit(aug$formula_terms, "\\+")[[1L]])
+      rand <- c("(1 | treatment)", "(1 | study)",
+                if (length(cov_terms)) paste0("(1 | ", cov_terms, ")"))
+      form <- stats::as.formula(paste("~", paste(rand, collapse = " + ")))
       vobj <- variancePartition::voomWithDreamWeights(dge, formula = form, data = metadata, BPPARAM = bpp, quiet = TRUE)
       vp <- variancePartition::fitExtractVarPartModel(vobj, formula = form, data = metadata, BPPARAM = bpp, quiet = TRUE)
       vp <- as.data.frame(vp)
@@ -126,7 +133,7 @@ if (length(mega_ids) > 0) {
       sub <- cp[cp$cluster_id == cid, c("gene_id","FDR_BH_within_cluster")]
       fdr <- sub$FDR_BH_within_cluster[match(gid, sub$gene_id)]
       summ <- .summarize_consistency_over_sig(vp$study, fdr)
-      vpc_pg[[cid]] <<- tibble::tibble(cluster_id = cid, gene_id = gid,
+      vpc_pg[[cid]] <- tibble::tibble(cluster_id = cid, gene_id = gid,
         gene_symbol = unname(gene_symbol_lookup[gid]), vpc_study = vp$study,
         vpc_treatment = vp$treatment, vpc_residual = vp$Residuals)
       list(consistency = .consistency_score("mega", median_heterogeneity = summ$median),
