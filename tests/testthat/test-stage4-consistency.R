@@ -53,3 +53,18 @@ test_that(".sign_concordance: nessun gene sig usabile -> NA", {
   res <- .sign_concordance(c(2, 3), c(1, 2), c(FALSE, FALSE))
   expect_true(is.na(res$concordance)); expect_equal(res$n_used, 0L)
 })
+
+test_that(".consistency_score: mega/rem = 1 - eterogeneita', clamp [0,1]", {
+  expect_equal(.consistency_score("mega", median_heterogeneity = 0.3), 0.7)
+  expect_equal(.consistency_score("rem", median_heterogeneity = 0.45), 0.55)
+  expect_equal(.consistency_score("mega", median_heterogeneity = 1.2), 0) # clamp
+})
+
+test_that(".consistency_score: mega_aug = sign_concordance", {
+  expect_equal(.consistency_score("mega_aug", sign_concordance = 0.8), 0.8)
+})
+
+test_that(".consistency_score: componenti NA -> NA", {
+  expect_true(is.na(.consistency_score("mega", median_heterogeneity = NA_real_)))
+  expect_true(is.na(.consistency_score("mega_aug", sign_concordance = NA_real_)))
+})

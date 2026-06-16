@@ -65,3 +65,24 @@
   agree <- sign(logFC_a[use]) == sign(logFC_b[use])
   list(concordance = mean(agree), n_used = sum(use))
 }
+
+#' Asse unico di consistenza (scala 0-1) per metodo
+#'
+#' mega/rem: 1 - frazione varianza between-study (VPC_study mediano / I2 mediano).
+#' mega_aug: sign_concordance. NA se la componente rilevante e' NA. Clamp a 0-1.
+#'
+#' @param method "mega" | "rem" | "mega_aug".
+#' @param median_heterogeneity mediana VPC_study (mega) o I2 (rem) sui geni sig.
+#' @param sign_concordance frazione direzione-concorde (mega_aug).
+#' @return numeric scalare nella scala 0-1, o NA.
+#' @keywords internal
+.consistency_score <- function(method, median_heterogeneity = NA_real_,
+                               sign_concordance = NA_real_) {
+  s <- switch(method,
+    mega     = 1 - median_heterogeneity,
+    rem      = 1 - median_heterogeneity,
+    mega_aug = sign_concordance,
+    NA_real_)
+  if (length(s) != 1L || is.na(s)) return(NA_real_)
+  max(0, min(1, s))
+}
