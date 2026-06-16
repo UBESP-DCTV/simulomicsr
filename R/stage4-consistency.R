@@ -17,3 +17,32 @@
   v <- values[sig]
   list(median = stats::median(v), iqr = stats::IQR(v), n_used = length(v))
 }
+
+#' Prediction interval 95% per-gene da logFC/SE per-studio (metafor REML + HKSJ)
+#'
+#' Risponde a "un nuovo studio replichera' l'effetto?" (IntHout 2016). Usa REML
+#' per tau2 (Veroniki 2016) + correzione HKSJ (test="knha", IntHout 2014) per
+#' l'inferenza. Fallback Paule-Mandel su non-convergenza REML.
+#'
+#' @param logFC,SE vettori per-studio (un gene).
+#' @param level percentuale del PI (default 95).
+#' @return list(pi_lower, pi_upper, tau2, excl0). NA se < 2 studi o non-convergenza.
+#'   excl0 = TRUE se il PI 95% sta tutto da un lato di 0.
+#' @keywords internal
+.rem_prediction_interval <- function(logFC, SE, level = 95) {
+  ok <- is.finite(logFC) & is.finite(SE) & SE > 0
+  yi <- logFC[ok]; sei <- SE[ok]
+  na <- list(pi_lower = NA_real_, pi_upper = NA_real_, tau2 = NA_real_, excl0 = NA)
+  if (length(yi) < 2L) return(na)
+  fit <- tryCatch(
+    metafor::rma(yi = yi, sei = sei, method = "REML", test = "knha"),
+    error = function(e) tryCatch(
+      metafor::rma(yi = yi, sei = sei, method = "PM", test = "knha"),
+      error = function(e2) NULL))
+  if (is.null(fit)) return(na)
+  pr <- tryCatch(stats::predict(fit, level = level), error = function(e) NULL)
+  if (is.null(pr) || is.null(pr$pi.lb)) return(na)
+  pil <- pr$pi.lb; piu <- pr$pi.ub
+  list(pi_lower = pil, pi_upper = piu, tau2 = fit$tau2,
+       excl0 = is.finite(pil) && is.finite(piu) && (pil > 0 || piu < 0))
+}

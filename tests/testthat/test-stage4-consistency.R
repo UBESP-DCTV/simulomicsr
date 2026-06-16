@@ -14,3 +14,23 @@ test_that(".summarize_consistency_over_sig: nessun gene sig -> NA + n_used 0", {
   res <- .summarize_consistency_over_sig(c(0.2, 0.3), c(0.4, 0.9), threshold = 0.05)
   expect_true(is.na(res$median)); expect_equal(res$n_used, 0L)
 })
+
+test_that(".rem_prediction_interval: studi concordi e precisi -> PI esclude 0", {
+  res <- .rem_prediction_interval(logFC = c(2.0, 2.2, 1.9, 2.1),
+                                  SE = c(0.1, 0.12, 0.09, 0.11))
+  expect_true(res$pi_lower > 0)
+  expect_true(isTRUE(res$excl0))
+  expect_true(is.finite(res$tau2))
+})
+
+test_that(".rem_prediction_interval: studi discordi -> PI include 0", {
+  res <- .rem_prediction_interval(logFC = c(2.0, -1.8, 1.5, -2.2),
+                                  SE = c(0.3, 0.3, 0.3, 0.3))
+  expect_true(res$pi_lower < 0 && res$pi_upper > 0)
+  expect_false(isTRUE(res$excl0))
+})
+
+test_that(".rem_prediction_interval: <2 studi -> NA", {
+  res <- .rem_prediction_interval(logFC = c(2.0), SE = c(0.1))
+  expect_true(is.na(res$pi_lower)); expect_true(is.na(res$excl0))
+})
