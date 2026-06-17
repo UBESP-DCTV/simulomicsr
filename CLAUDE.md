@@ -11,13 +11,34 @@
 ---
 
 > ⚠️ **RED ALERT ATTIVO** (apertura 2026-05-25) — audit completo
-> pipeline a 5 stadi in corso (FASE F rebuild). **Pipeline ricostruita fino allo
-> Stadio 4 v3 COMPLETA** (fine sessione 15); prossimo = **F6 (Layer B
-> re-selection)** con la nuova metrica di riproducibilità. Reference operativa:
+> pipeline a 5 stadi in corso (FASE F rebuild). **F6 in corso**: Fase A (metrica
+> di riproducibilità) implementata + verificata (fine sessione 16); prossimo =
+> **lanciare il run pieno Fase A** poi Fase B shortlist. Reference operativa:
 > **`docs/RED_ALERT.md`** (leggere PRIMA di toccare qualunque codice). Master
 > invariato. Branch attivo: `p5-llm-anchor-classification-audit`. Le regole
 > comportamentali per Claude in questa fase sono nel doc RED_ALERT, §"Come Claude
 > si deve comportare con me in questo audit".
+>
+> **Stato 2026-06-16 fine sessione 16**: 🟡 **F6 Fase A — metrica di consistenza
+> cross-studio implementata + verificata (run pieno da lanciare).** Deep research
+> metodologica (2026-06-15) ha ribaltato la %DE/Spearman (non difendibili: winner's
+> curse) → asse di consistenza [0,1] per-metodo (mega = 1−VPC(study) via
+> variancePartition; rem = 1−I² + prediction interval REML+HKSJ; mega_aug k=2 =
+> sign-concordance), sempre sui geni FDR-sig. **ADR-0021** + spec + piano. 4 helper
+> **TDD** (`R/stage4-consistency.R`, 24 expect_*) + script
+> `analysis/p4-fase-f6-consistency.R`. **Smoke SMOKE=2 PASS** (3 fix: formula VPC
+> categoriche-random, `<<-`→`<-`, parallelizzazione VPC_WORKERS) + **verifica round 2
+> PASS**: componenti VPC sommano a 1, allineamento geni 100%, **vpc_study
+> cross-validata vs lme4 indipendente entro 0,05**, scelta geni-sig validata (separa
+> segnale da rumore dei nulli: rem I² 84% su tutti i geni → ~1% sui sig). Commit
+> `57c9f19`..`f342a5f`. **Prossimo (gate dato): run pieno** `SMOKE=0 VPC_WORKERS=24
+> Rscript analysis/p4-fase-f6-consistency.R` (~3h sui 173 mega) →
+> `cluster_reproducibility_v2.rds` (776 cluster) + parquet per-gene; poi Fase B
+> shortlist (soglie con l'utente, `pi_frac_excl0` primario per i rem che saturano a
+> cons≈1), Fase C validazione esterna (LINCS+pathway+LOO sui candidati), Fase D
+> selezione ~15. **Finding**: covariate batch + SAMN-dedupe inerti nel fullrun F5
+> (h5_metadata senza quelle colonne). Master git invariato, no push. Vedi
+> `docs/RED_ALERT.md` §F6 + §Handoff sessione 17.
 >
 > **Stato 2026-06-14 fine sessione 15**: 🟢 **F4 (Stadio 3) + F5 (Stadio 4 Layer A)
 > ricostruiti + metrica di riproducibilità per F6**. **F4 Stadio 3** (run

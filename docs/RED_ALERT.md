@@ -1302,17 +1302,49 @@ Copertura: rem k=3-8 (trusted), mega_aug k=2 (check fragile, ed è dove stanno
 `analysis/p4-fase-f6-concordance.R` → `cluster_reproducibility.rds`. Doc
 `analysis/audit/F5-concordance-metric.md`. Commit `0defe37`.
 
-#### ⬜ F6 — Layer B re-selection + rebuild (PROSSIMO)
+#### 🟡 F6 — Layer B re-selection + rebuild (IN CORSO)
 
-**Cosa facciamo.** La selection.csv attuale (15 case study, sha256 56b911e6) è
-obsoleta perché i cluster_id sono cambiati. Ri-girare lo shortlist sul nuovo
-`cluster_pooled.parquet`, sostituendo il guard %DE con la **concordanza** (B) come
-gate di riproducibilità + I² (rem), oltre ai criteri di potenza esistenti (k,
-effect size, n_sig). Soglie da fissare con l'utente in fase di shortlist (NON
-hard-coded). Poi ri-curare la selection + ri-girare il batch Layer B.
+**Cosa facciamo.** Ri-curare i ~15 case study pilota sul nuovo `cluster_pooled.parquet`
+con una metrica di riproducibilità scientificamente difendibile (ADR-0021) al posto
+del proxy %DE/Spearman. Pilota = prova che la pipeline ha senso.
 
-**Perché serve.** Senza una nuova selection ri-curata non possiamo produrre il
-report Layer B finale.
+**🟢 Fase A — metrica di consistenza (implementata + verificata, sessione 16).**
+Deep research metodologica (2026-06-15) → asse di consistenza [0,1] per-metodo
+(mega = 1−VPC(study) via variancePartition; rem = 1−I² + prediction interval
+REML+HKSJ; mega_aug k=2 = sign-concordance), sui geni FDR-sig. Spec
+`docs/superpowers/specs/2026-06-15-f6-reproducibility-consistency-metric-design.md`,
+ADR-0021, piano `docs/superpowers/plans/2026-06-16-f6-consistency-metric.md`. 4 helper
+TDD in `R/stage4-consistency.R` (24 expect_*) + script `analysis/p4-fase-f6-consistency.R`.
+**Smoke SMOKE=2 PASS** (3 fix trovati: formula VPC categoriche-random, `<<-`→`<-`,
+parallelizzazione VPC_WORKERS) + **verifica round 2 PASS** (componenti VPC sommano a
+1, allineamento geni 100%, **vpc_study cross-validata vs lme4 indipendente entro
+0,05**, scelta geni-sig validata: separa segnale da rumore nulli). Commit
+`57c9f19`..`f342a5f`.
+
+**⬜ Fase A — run pieno (PROSSIMO, gate utente):** `SMOKE=0 VPC_WORKERS=24 Rscript
+analysis/p4-fase-f6-consistency.R` (~3h sui 173 mega; rem/mega_aug istantanei) →
+`cluster_reproducibility_v2.rds` (776 cluster) + `cluster_vpc_per_gene.parquet` +
+`cluster_pi_per_gene.parquet` nella dir del run Stadio 4. NON ancora lanciato.
+
+**⬜ Fase B — shortlist:** ri-girare lo shortlist (modello
+`analysis/p5-stage4-layer-b-shortlist.R`) sul nuovo `cluster_pooled.parquet` con la
+consistenza (e `pi_frac_excl0` come asse primario per i rem, che saturano a cons≈1)
+al posto del %DE, + criteri di potenza. **Soglie da fissare con l'utente.**
+
+**⬜ Fase C — validazione esterna (solo sui candidati):** LINCS connectivity
+(`signatureSearch::gess_lincs`, copertura ~40–55% degli anchor, two-tier con pathway)
++ pathway/Hallmark enrichment (riusa `.build_go_enrichment`, manca msigdbr/fgsea) +
+leave-one-study-out stability. Vedi piani agente (sessione 16) +
+`analysis/audit/F5-concordance-metric.md`.
+
+**⬜ Fase D — selezione finale ~15** stratificata (metodo/k/consistenza), con
+controlli negativi + ≥1 caso a bassa consistenza flaggato; riportare la distribuzione
+completa (anti-cherry-picking). Poi ri-girare il batch Layer B.
+
+**Finding collaterale (per il paper Methods):** nel fullrun F5 le covariate batch
+(instrument_model/aligner_class) e la SAMN-dedupe erano **inerti** (l'h5_metadata non
+portava quelle colonne) → mega fittato con `~ treatment + (1|study)`. La VPC replica
+identico. Da decidere se rilanciare F5 con le covariate vere o dichiararlo limite.
 
 ---
 
@@ -1613,34 +1645,41 @@ ALERT per Stadio 1 audit nella sessione successiva.
     `analysis/audit/F5-concordance-metric.md`.
   - Master git invariato, no push.
 
-### Handoff next session (sessione 16 = F6 Layer B re-selection)
+- 2026-06-15/16 sessione 16: 🟡 **F6 Fase A — metrica di consistenza implementata +
+  verificata** (run pieno NON ancora lanciato).
+  - Deep research metodologica (la %DE/Spearman ribaltate come non difendibili) →
+    asse [0,1] per-metodo: mega 1−VPC(study), rem 1−I²+PI(REML+HKSJ), mega_aug k=2
+    sign-concordance, sui geni FDR-sig. ADR-0021 + spec + piano.
+  - 4 helper TDD (`R/stage4-consistency.R`, 24 expect_*) + script
+    `analysis/p4-fase-f6-consistency.R`. Smoke SMOKE=2 PASS (3 fix) + verifica round 2
+    PASS (vpc_study cross-validata vs lme4 entro 0,05). Commit `57c9f19`..`f342a5f`.
+  - Finding: covariate batch + SAMN-dedupe erano inerti nel fullrun F5 (h5_metadata
+    senza quelle colonne) → mega = `~ treatment + (1|study)`. Master git invariato.
 
-**Stato fine sessione 15 (2026-06-14).** ✅ **Pipeline ricostruita fino allo
-Stadio 4 v3.** Tutti i deliverable pronti (gitignored): master Stadio 2 v3
-(`p4-fase-f4-stage2-master-v3.jsonl`), Stadio 3 v3 (`20260611T171555Z-stage3-v3-364547a7/`),
-Stadio 4 Layer A v3 (`20260613T051637Z-stage4-4f7ea215/`: cluster_pooled.parquet
-13,28M righe + per_study_de.parquet + cluster_reproducibility.rds). Master git
-invariato, no push. Commit fino a `0defe37`.
+### Handoff next session (sessione 17 = F6 run pieno consistenza → Fase B shortlist)
 
-Procedura sessione 16 (F6 — Layer B re-selection + rebuild):
-1. **Shortlist con la metrica nuova.** Ri-girare lo shortlist (modello
-   `analysis/p5-stage4-layer-b-shortlist.R`) sul nuovo `cluster_pooled.parquet`,
-   **sostituendo il guard %DE con la concordanza B** (gate di riproducibilità) +
-   **I²** sui rem, oltre ai criteri di potenza (k, effect size, n_sig). La tabella
-   `cluster_reproducibility.rds` ha già concordanza/conc_confidence/med_I2 per
-   cluster. **Le soglie si fissano CON l'utente** (non hard-coded): concordanza
-   minima "trusted", trattamento mega_aug k=2, mega senza B, quanti case study,
-   mix biologico. Primo passo: mostrare all'utente la distribuzione di
-   concordanza/I²/effect-size sui candidati per decidere i tagli.
-2. **Ri-curare la selection** (15-ish case study) insieme all'utente.
-3. **Ri-girare il batch Layer B** (`analysis/p5-stage4-layer-b-*`) sul nuovo
-   `cluster_pooled.parquet` → bundle + report HTML.
-4. **FASE G — doc + commit + tag** di chiusura RED ALERT.
-- **TODO differito** (non blocca): indagine single-cell Stadio 0 (~313 studi
-  degeneri, memoria `project_singlecell_escapees_stage0`); dashboard Stadio 4
-  quarto da ri-renderizzare (`render_stage4_dashboard()`, fallito non-fatale a F5).
-- **Limite L2 noto**: molti cluster `disease_vs_normal` hanno `canonical_name=NA`
-  (classificazione anchor LLM) — non blocca il pooling, impatta solo l'etichetta.
+**Stato fine sessione 16 (2026-06-16).** 🟡 **F6 Fase A pronta, run pieno da lanciare.**
+Codice committato (fino a `f342a5f`), smoke + verifica PASS. Master git invariato, no
+push. PC riavviato a fine sessione 16 (nessun processo in background da recuperare —
+il run pieno non era ancora partito).
+
+Procedura sessione 17:
+1. **Lanciare il run pieno Fase A** (gate utente già dato a fine sess. 16):
+   `SMOKE=0 VPC_WORKERS=24 Rscript analysis/p4-fase-f6-consistency.R` in background
+   (~3h sui 173 mega; rem/mega_aug istantanei; monitor orario come F5). Output:
+   `cluster_reproducibility_v2.rds` (776 cluster) + `cluster_vpc_per_gene.parquet` +
+   `cluster_pi_per_gene.parquet` in `…stage4-4f7ea215/`. NB serve l'H5 (47GB) montato
+   + cache counts calda (`.default_stage4_cache_dir()`).
+2. **Fase B — shortlist** sul nuovo `cluster_pooled.parquet` + `cluster_reproducibility_v2.rds`:
+   consistenza (e `pi_frac_excl0` come asse primario rem, che saturano a cons≈1) al
+   posto del %DE + criteri di potenza. **Soglie da fissare CON l'utente** — primo
+   passo: mostrare le distribuzioni di consistenza/pi_frac_excl0/effect-size/k.
+3. **Fase C — validazione esterna sui candidati** (LINCS `signatureSearch::gess_lincs`
+   two-tier + pathway/Hallmark + LOO). 4. **Fase D — selezione ~15 stratificata** +
+   batch Layer B. 5. **FASE G** doc + tag.
+- **TODO differiti**: single-cell Stadio 0 (~313 studi degeneri); dashboard Stadio 4
+  quarto da ri-renderizzare; decidere se rilanciare F5 con covariate batch vere o
+  dichiararlo limite; limite L2 `canonical_name=NA` sui disease_vs_normal.
 
 ---
 
