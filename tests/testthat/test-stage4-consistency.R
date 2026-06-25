@@ -68,3 +68,13 @@ test_that(".consistency_score: componenti NA -> NA", {
   expect_true(is.na(.consistency_score("mega", median_heterogeneity = NA_real_)))
   expect_true(is.na(.consistency_score("mega_aug", sign_concordance = NA_real_)))
 })
+
+test_that(".rem_consistency_from_i2: I2 su scala percento (0-100) -> consistenza 1 - I2/100", {
+  # metafor::rma riporta I2 come percentuale: 40% di eterogeneita' -> consistenza 0.60.
+  # Il bug originale trattava 40 come frazione (1 - 40 = -39 -> clamp 0). Questo test
+  # lo avrebbe beccato.
+  expect_equal(.rem_consistency_from_i2(40), 0.6)
+  expect_equal(.rem_consistency_from_i2(0), 1)
+  expect_equal(.rem_consistency_from_i2(100), 0)
+  expect_true(is.na(.rem_consistency_from_i2(NA_real_)))
+})

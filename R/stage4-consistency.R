@@ -86,3 +86,19 @@
   if (length(s) != 1L || is.na(s)) return(NA_real_)
   max(0, min(1, s))
 }
+
+#' Consistenza rem da I2 mediano su scala percentuale (0-100)
+#'
+#' metafor::rma riporta I2 come PERCENTUALE (0-100), mentre l'asse di consistenza
+#' (1 - frazione varianza between-study) vuole una FRAZIONE (0-1). Questo helper
+#' rende esplicita la conversione di scala prima di .consistency_score, cosi' che
+#' un I2 mediano del 40% dia consistenza 0.60 e non venga trattato come frazione
+#' (1 - 40 = -39 -> clamp 0). Il valore di I2 va comunque riportato in percento
+#' nella colonna median_I2 (convenzione paper).
+#'
+#' @param i2_percent_median I2 mediano sui geni sig, scala 0-100 (scalare).
+#' @return numeric in [0,1], o NA se l'input e' NA.
+#' @keywords internal
+.rem_consistency_from_i2 <- function(i2_percent_median) {
+  .consistency_score("rem", median_heterogeneity = i2_percent_median / 100)
+}
