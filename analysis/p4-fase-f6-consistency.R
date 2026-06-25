@@ -25,6 +25,9 @@ if (requireNamespace("RhpcBLASctl", quietly = TRUE)) {
 `%||%` <- function(a, b) if (is.null(a)) b else a
 SMOKE <- as.integer(Sys.getenv("SMOKE", unset = "0"))   # 0 = run pieno
 VPC_WORKERS <- as.integer(Sys.getenv("VPC_WORKERS", unset = "24"))  # MulticoreParam VPC
+# METHODS: quali metodi ricalcolare. I metodi NON elencati (es. mega, deterministico
+# e costoso ~3h) vengono riusati dal rds esistente in fase di assemblaggio.
+METHODS <- trimws(strsplit(Sys.getenv("METHODS", unset = "mega,rem,mega_aug"), ",")[[1L]])
 bpp <- if (VPC_WORKERS > 1L) BiocParallel::MulticoreParam(VPC_WORKERS) else BiocParallel::SerialParam()
 S4_DIR  <- "analysis/p4-output/20260613T051637Z-stage4-4f7ea215"
 S3_DIR  <- "analysis/p4-output/20260611T171555Z-stage3-v3-364547a7"
@@ -50,7 +53,7 @@ vpc_pg <- list()        # per-gene VPC (mega)
 pi_pg  <- list()        # per-gene PI (rem)
 
 # ============================ MEGA — VPC(study) ============================
-if (length(mega_ids) > 0) {
+if (length(mega_ids) > 0 && "mega" %in% METHODS) {
   cli_h2("mega — VPC(study) via variancePartition")
   # bootstrap H5 (identico a p4-fase-f5-stage4-layer-a-rebuild-v3.R)
   s3 <- load_stage3(S3_DIR)
@@ -152,7 +155,7 @@ if (length(mega_ids) > 0) {
 }
 
 # ============================ REM — I2 + PI ============================
-if (length(rem_ids) > 0) {
+if (length(rem_ids) > 0 && "rem" %in% METHODS) {
   cli_h2("rem — I2 + prediction interval")
   psde <- arrow::read_parquet(file.path(S4_DIR, "per_study_de.parquet"),
     col_select = c("cluster_id","study_id","gene_id","logFC","SE"))
@@ -174,7 +177,7 @@ if (length(rem_ids) > 0) {
     k <- length(unique(psde$study_id[psde$cluster_id == cid]))
     rows[[cid]] <- tibble::tibble(cluster_id = cid, method = "rem", k_studies = k,
       n_sig_used = summ_i2$n_used,
-      consistency_score = .consistency_score("rem", median_heterogeneity = summ_i2$median),
+      consistency_score = .rem_consistency_from_i2(summ_i2$median),  # I2 e' percento 0-100
       median_vpc_study = NA_real_, median_I2 = summ_i2$median, tau2_median = tau2_med,
       pi_frac_excl0 = frac_excl0, sign_concordance = NA_real_, note = NA_character_)
     cli_alert_info(sprintf("[rem] %s cons=%.3f pi_excl0=%.2f", cid,
@@ -183,7 +186,7 @@ if (length(rem_ids) > 0) {
 }
 
 # ============================ MEGA_AUG — sign-concordance ============================
-if (length(maug_ids) > 0) {
+if (length(maug_ids) > 0 && "mega_aug" %in% METHODS) {
   cli_h2("mega_aug — sign-concordance (k=2)")
   if (!exists("psde")) psde <- arrow::read_parquet(file.path(S4_DIR, "per_study_de.parquet"),
     col_select = c("cluster_id","study_id","gene_id","logFC","SE"))
@@ -208,11 +211,21 @@ if (length(maug_ids) > 0) {
 }
 
 # ============================ assembla + scrivi ============================
+out_rds <- file.path(S4_DIR, if (SMOKE > 0) "cluster_reproducibility_v2_smoke.rds" else "cluster_reproducibility_v2.rds")
 repro <- dplyr::bind_rows(rows)
+# Riusa le righe dei metodi NON ricalcolati in questo run (es. mega: deterministico e
+# gia' corretto nel rds esistente) cosi' l'output resta sui 776 cluster.
+skipped <- setdiff(c("mega", "rem", "mega_aug"), METHODS)
+if (length(skipped) > 0 && file.exists(out_rds)) {
+  prev <- readRDS(out_rds)
+  keep_prev <- prev[prev$method %in% skipped, , drop = FALSE]
+  keep_prev$conc_confidence <- NULL  # ricalcolata sotto per tutte le righe
+  repro <- dplyr::bind_rows(repro, keep_prev)
+  cli_alert_info("riuso {nrow(keep_prev)} righe esistenti per metodi non ricalcolati: {paste(skipped, collapse = ', ')}")
+}
 repro$conc_confidence <- dplyr::case_when(
   is.na(repro$k_studies) ~ "no_pairs", repro$k_studies >= 3L ~ "trusted",
   repro$k_studies == 2L ~ "low_conf_k2", TRUE ~ "no_pairs")
-out_rds <- file.path(S4_DIR, if (SMOKE > 0) "cluster_reproducibility_v2_smoke.rds" else "cluster_reproducibility_v2.rds")
 saveRDS(repro, out_rds)
 if (length(vpc_pg) > 0) arrow::write_parquet(dplyr::bind_rows(vpc_pg),
   file.path(S4_DIR, if (SMOKE > 0) "cluster_vpc_per_gene_smoke.parquet" else "cluster_vpc_per_gene.parquet"))
