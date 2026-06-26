@@ -11,13 +11,55 @@
 ---
 
 > ⚠️ **RED ALERT ATTIVO** (apertura 2026-05-25) — audit completo
-> pipeline a 5 stadi in corso (FASE F rebuild). **F6 in corso**: Fase A (metrica
-> di riproducibilità) implementata + verificata (fine sessione 16); prossimo =
-> **lanciare il run pieno Fase A** poi Fase B shortlist. Reference operativa:
-> **`docs/RED_ALERT.md`** (leggere PRIMA di toccare qualunque codice). Master
-> invariato. Branch attivo: `p5-llm-anchor-classification-audit`. Le regole
-> comportamentali per Claude in questa fase sono nel doc RED_ALERT, §"Come Claude
-> si deve comportare con me in questo audit".
+> pipeline a 5 stadi in corso (FASE F rebuild). **F6: Fase A run pieno FATTO; ma in
+> Fase B è emerso un difetto a monte paper-grade (minestrone Stadio 3: cluster
+> disease/small_molecule mescolano biologie diverse) → REWORK Stadio 3 IN CORSO
+> (esecuzione plan subagent-driven; Fase 1 modulo completa; riparti da Task 8).**
+> Reference operativa: **`docs/RED_ALERT.md`** (leggere PRIMA di toccare codice) +
+> ledger esecuzione **`.superpowers/sdd/progress.md`** + plan
+> `docs/superpowers/plans/2026-06-25-stage3-name-recovery-reclustering-plan.md`.
+> Master invariato. Branch attivo: `review-scientific-consistency-2026-06-10`. Le
+> regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
+> comportare con me in questo audit".
+>
+> **Stato 2026-06-25 fine sessione 17**: 🔴 **F6 Fase A run pieno FATTO + bug I² rem
+> fixato; in Fase B scoperto difetto MINESTRONE a monte → REWORK Stadio 3 deciso e
+> in esecuzione (Fase 1 modulo completa).**
+>
+> 1. **F6 Fase A run pieno** (`SMOKE=0 VPC_WORKERS=24`, ~3h): `cluster_reproducibility_v2.rds`
+>    (776 cluster) + `cluster_vpc_per_gene.parquet` + `cluster_pi_per_gene.parquet` in
+>    `…stage4-4f7ea215/`. **Bug paper-grade trovato+fixato**: l'I² in `cluster_pooled` è
+>    PERCENTUALE 0-100, ma `.consistency_score` voleva una frazione 0-1 → `1−I²` con I²=40
+>    dava −39→clamp 0 (16/28 rem falsamente azzerati). Lo smoke non l'aveva visto (pescava
+>    i 2 rem con I²≈0). Fix: helper `.rem_consistency_from_i2` (TDD) + env `METHODS` per
+>    ri-girare solo rem+mega_aug riusando i mega. Commit `8fc9d7d`,`828e4ca`. Distribuzione
+>    corretta: mega cons_med 0,525 · rem 0,715 · mega_aug 0,818.
+> 2. **Finding MINESTRONE (paper-grade, blocca F6)**: i cluster `disease_vs_normal`
+>    raggruppano malattie DIVERSE (es. "sangue" = HIV+Alzheimer+leucemia+dermatomiosite)
+>    perché l'anchor non porta il nome (`agent=UNK`, `R/stage3-anchor-levels.R:52` legge solo
+>    il campo LLM `disease_state$mesh_id_candidate`, spesso "unknown" → collassa sul tessuto).
+>    Misure: **37%** dei 177 disease cluster mescolano ≥2 malattie; **70%** dei 37
+>    robusti-candidati. **La consistenza NON protegge** (minestroni a cons 0,91-1,00:
+>    segnale generico aspecifico). `small_molecule` simile: degron mal-etichettati + theme-pooling.
+> 3. **Decisione utente: REWORK Stadio 3**. Recupero deterministico nome malattia/composto
+>    dai metadati GEO grezzi + ontologia (A) + benchmark LLM→eventuale ibrido (C); scope tutti
+>    gli `UNK` (S3); granularità livello-malattia (G2); ignoti non-poolati (U1); correzione tipi
+>    palesemente sbagliati (K2). Spec `docs/superpowers/specs/2026-06-25-stage3-name-recovery-reclustering-design.md`
+>    + plan + HUMANE committati (`37beb97`,`c6a4208`).
+> 4. **Esecuzione plan (subagent-driven) — Fase 1 COMPLETA**: modulo puro
+>    `R/stage3-name-recovery.R` (Task 1-7: parse characteristics, estrai malattia/composto, K2
+>    genetico, normalizza MeSH/ChEBI, orchestratore **`recover_identity`** esportato), **62 test
+>    PASS**. La review ha pescato 1 bug vero (tolower fallback) + 3 Minor (nel ledger).
+>    Commit `f88695f`..`96c8750`. **Prossimo = Task 8** (lookup `GSM→identità` dall'H5, Fase 2),
+>    poi Task 9-10 (innesto in `.extract_anchor_segments`/`.precompute_anchor_cache`), 11-12 (gate
+>    omogeneità + benchmark LLM), 13-16 (run gated: re-cluster Stadio 3 v4 → ri-pooling Stadio 4 →
+>    collaudo omogeneità). **F6 Fase B/C/D SOSPESE** finché il rework non rende i cluster coerenti
+>    (la consistenza da sola non è il gate; serve il gate di omogeneità).
+>
+> **Resume sessione 18**: leggi `.superpowers/sdd/progress.md` (ledger) + il plan, riparti dal
+> Task 8 con la skill `superpowers:subagent-driven-development`. Branch
+> `review-scientific-consistency-2026-06-10`, master invariato, no push. Memorie:
+> [[project_stage3_minestrone_rework]]. Vedi `docs/RED_ALERT.md` §F6 + §Handoff sessione 18.
 >
 > **Stato 2026-06-16 fine sessione 16**: 🟡 **F6 Fase A — metrica di consistenza
 > cross-studio implementata + verificata (run pieno da lanciare).** Deep research

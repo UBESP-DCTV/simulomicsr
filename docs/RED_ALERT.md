@@ -1302,7 +1302,34 @@ Copertura: rem k=3-8 (trusted), mega_aug k=2 (check fragile, ed è dove stanno
 `analysis/p4-fase-f6-concordance.R` → `cluster_reproducibility.rds`. Doc
 `analysis/audit/F5-concordance-metric.md`. Commit `0defe37`.
 
-#### 🟡 F6 — Layer B re-selection + rebuild (IN CORSO)
+#### 🔴 F6 — Layer B re-selection + rebuild (SOSPESO: rework Stadio 3 a monte)
+
+> **AGGIORNAMENTO sessione 17 (2026-06-25).**
+> - **Fase A run pieno FATTO**: `cluster_reproducibility_v2.rds` (776 cluster) +
+>   `cluster_vpc_per_gene.parquet` + `cluster_pi_per_gene.parquet` in `…stage4-4f7ea215/`.
+>   **Bug paper-grade trovato+fixato**: I² in `cluster_pooled` è percentuale 0-100, ma
+>   `.consistency_score` voleva una frazione → `1−I²` con I²=40 dava −39→clamp 0 (16/28 rem
+>   falsamente azzerati; lo smoke non l'aveva visto, pescava i rem con I²≈0). Fix helper
+>   `.rem_consistency_from_i2` (TDD, `R/stage4-consistency.R`) + env `METHODS` nello script per
+>   ri-girare solo rem+mega_aug. Commit `8fc9d7d`,`828e4ca`. Distribuzione corretta: mega
+>   cons_med 0,525 · rem 0,715 · mega_aug 0,818.
+> - **Fase B → FINDING MINESTRONE (blocca tutto)**: i `disease_vs_normal` raggruppano malattie
+>   diverse perché l'anchor non porta il nome (`agent=UNK`, `R/stage3-anchor-levels.R:52` legge
+>   solo `disease_state$mesh_id_candidate` LLM, spesso "unknown" → collassa sul tessuto). 37% dei
+>   177 disease cluster mescolano ≥2 malattie; 70% dei 37 robusti-candidati. La consistenza NON
+>   protegge (minestroni a cons 0,91-1,00). `small_molecule` simile (degron mal-etichettati).
+> - **Decisione utente: REWORK Stadio 3** (recupero nome deterministico dai metadati + ontologia
+>   (A) + benchmark LLM→eventuale ibrido (C); scope tutti UNK (S3); granularità livello-malattia
+>   (G2); ignoti non-poolati (U1); correzione tipi K2). Spec
+>   `docs/superpowers/specs/2026-06-25-stage3-name-recovery-reclustering-design.md` + plan
+>   `docs/superpowers/plans/2026-06-25-stage3-name-recovery-reclustering-plan.md` + HUMANE.
+> - **Esecuzione plan (subagent-driven), Fase 1 COMPLETA**: `R/stage3-name-recovery.R` (Task 1-7,
+>   `recover_identity` esportato), 62 test PASS. Ledger `.superpowers/sdd/progress.md`. **Prossimo
+>   = Task 8** (lookup H5). F6 Fase B/C/D restano sospese finché il rework non rende i cluster
+>   coerenti (il gate non è la consistenza ma l'omogeneità biologica).
+>
+> La descrizione originale di F6 sotto resta valida come obiettivo finale (selezione pilota), ma
+> opererà sui **cluster nuovi** post-rework.
 
 **Cosa facciamo.** Ri-curare i ~15 case study pilota sul nuovo `cluster_pooled.parquet`
 con una metrica di riproducibilità scientificamente difendibile (ADR-0021) al posto
@@ -1656,27 +1683,33 @@ ALERT per Stadio 1 audit nella sessione successiva.
   - Finding: covariate batch + SAMN-dedupe erano inerti nel fullrun F5 (h5_metadata
     senza quelle colonne) → mega = `~ treatment + (1|study)`. Master git invariato.
 
-### Handoff next session (sessione 17 = F6 run pieno consistenza → Fase B shortlist)
+### Handoff next session (sessione 18 = riprendere il rework Stadio 3 dal Task 8)
 
-**Stato fine sessione 16 (2026-06-16).** 🟡 **F6 Fase A pronta, run pieno da lanciare.**
-Codice committato (fino a `f342a5f`), smoke + verifica PASS. Master git invariato, no
-push. PC riavviato a fine sessione 16 (nessun processo in background da recuperare —
-il run pieno non era ancora partito).
+**Stato fine sessione 17 (2026-06-25).** 🔴 **Rework Stadio 3 in esecuzione, Fase 1
+(modulo puro) completa.** F6 Fase A run pieno fatto + bug I² rem fixato; in Fase B
+scoperto il MINESTRONE → deciso il rework (dettagli nel §F6 AGGIORNAMENTO sessione 17
+sopra). Master git invariato, no push.
 
-Procedura sessione 17:
-1. **Lanciare il run pieno Fase A** (gate utente già dato a fine sess. 16):
-   `SMOKE=0 VPC_WORKERS=24 Rscript analysis/p4-fase-f6-consistency.R` in background
-   (~3h sui 173 mega; rem/mega_aug istantanei; monitor orario come F5). Output:
-   `cluster_reproducibility_v2.rds` (776 cluster) + `cluster_vpc_per_gene.parquet` +
-   `cluster_pi_per_gene.parquet` in `…stage4-4f7ea215/`. NB serve l'H5 (47GB) montato
-   + cache counts calda (`.default_stage4_cache_dir()`).
-2. **Fase B — shortlist** sul nuovo `cluster_pooled.parquet` + `cluster_reproducibility_v2.rds`:
-   consistenza (e `pi_frac_excl0` come asse primario rem, che saturano a cons≈1) al
-   posto del %DE + criteri di potenza. **Soglie da fissare CON l'utente** — primo
-   passo: mostrare le distribuzioni di consistenza/pi_frac_excl0/effect-size/k.
-3. **Fase C — validazione esterna sui candidati** (LINCS `signatureSearch::gess_lincs`
-   two-tier + pathway/Hallmark + LOO). 4. **Fase D — selezione ~15 stratificata** +
-   batch Layer B. 5. **FASE G** doc + tag.
+Procedura sessione 18:
+1. **Leggi il ledger** `.superpowers/sdd/progress.md` (Task 1-7 fatti, prossimo = Task 8) +
+   il plan `docs/superpowers/plans/2026-06-25-stage3-name-recovery-reclustering-plan.md` + la
+   spec. NON ri-eseguire i Task 1-7 (committati, `f88695f`..`96c8750`).
+2. **Riprendi dal Task 8** con la skill `superpowers:subagent-driven-development` (subagente
+   fresco per task + review stretta: il reviewer restituisce solo verdetto + finding in una riga,
+   dettaglio nei file). Task 8 = `build_name_recovery_lookup` (legge H5, costruisce `GSM→identità`).
+   Poi Task 9-10 (innesto in `.extract_anchor_segments` + `.precompute_anchor_cache`, **codice vivo
+   Stadio 3** — delicato), 11 (gate omogeneità productionizzato), 12 (benchmark LLM).
+3. **Task 13-16 = run GATED utente** (smoke recovery sui 3 cluster-esempio seno/sangue/HCT116;
+   re-cluster Stadio 3 v4; ri-pooling Stadio 4 sui cluster cambiati; collaudo omogeneità ~0
+   minestroni poolabili).
+4. **Poi** ri-prendi F6 Fase B/C/D sui **cluster nuovi** (la consistenza è già calcolata; il gate
+   di selezione del pilota è l'omogeneità, non la consistenza). Infine FASE G (doc + tag).
+- **3 Minor aperti** dalla review Fase 1 (nel ledger: regex `\boe\b`, slug vuoto, doc `@return`),
+  da triagiare nella review finale di branch.
+- **Note operative**: gli accessor ontologici nome→id esistono (`.mesh_lookup_term`,
+  `.chebi_lookup_alias`); la fixture test è `inst/extdata/ontology-fixtures-mini` (ha "prostate
+  cancer"→D011471, "ethanol"→CHEBI:16236, NON breast/bleomycin); il match studio→campioni su
+  `series_id` H5 va fatto **per token** (super-series comma-joined), non `==`.
 - **TODO differiti**: single-cell Stadio 0 (~313 studi degeneri); dashboard Stadio 4
   quarto da ri-renderizzare; decidere se rilanciare F5 con covariate batch vere o
   dichiararlo limite; limite L2 `canonical_name=NA` sui disease_vs_normal.
