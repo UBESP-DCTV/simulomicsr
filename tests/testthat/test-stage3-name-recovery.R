@@ -95,3 +95,55 @@ test_that(".normalize_disease_to_mesh: nome leggibile popolato da $mh (G2)", {
   expect_equal(r$name, "Prostatic Neoplasms")
   expect_equal(r$source, "MESH_NAME")
 })
+
+# ---------------------------------------------------------------------------
+# Task 6 -- .normalize_compound_to_chebi
+# ---------------------------------------------------------------------------
+
+.fixt_chebi <- function() {
+  fixture_dir <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
+  if (!nzchar(fixture_dir) || !dir.exists(fixture_dir)) {
+    fixture_dir <- testthat::test_path("..", "..", "inst", "extdata", "ontology-fixtures-mini")
+  }
+  .load_ontology_dicts(refresh = TRUE, fixture_dir = fixture_dir)
+}
+
+test_that(".normalize_compound_to_chebi: ethanol -> CHEBI:16236", {
+  env <- .fixt_chebi()
+  r <- .normalize_compound_to_chebi("ethanol", env)
+  expect_equal(r$id, "CHEBI:16236")
+  expect_true(startsWith(r$id, "CHEBI:"))
+  expect_equal(r$source, "CHEBI_ALIAS")
+})
+
+test_that(".normalize_compound_to_chebi: composti diversi -> id diversi non-NA", {
+  env <- .fixt_chebi()
+  a <- .normalize_compound_to_chebi("ethanol", env)
+  b <- .normalize_compound_to_chebi("(-)-epicatechin", env)
+  expect_false(is.na(a$id))
+  expect_false(is.na(b$id))
+  expect_false(a$id == b$id)
+  expect_equal(a$id, "CHEBI:16236")
+  expect_equal(b$id, "CHEBI:90")
+})
+
+test_that(".normalize_compound_to_chebi: termine ignoto -> STR slug", {
+  env <- .fixt_chebi()
+  r <- .normalize_compound_to_chebi("xyzzy nonexistent compound", env)
+  expect_true(startsWith(r$id, "STR:"))
+  expect_equal(r$source, "STR_FALLBACK")
+})
+
+test_that(".normalize_compound_to_chebi: NA/vuoto -> NA (NO_TERM)", {
+  env <- .fixt_chebi()
+  expect_equal(.normalize_compound_to_chebi(NA_character_, env)$id, NA_character_)
+  expect_equal(.normalize_compound_to_chebi("", env)$id, NA_character_)
+  expect_equal(.normalize_compound_to_chebi(NA_character_, env)$source, "NO_TERM")
+})
+
+test_that(".normalize_compound_to_chebi: nome leggibile popolato da primary_name", {
+  env <- .fixt_chebi()
+  r <- .normalize_compound_to_chebi("ethanol", env)
+  expect_false(is.na(r$name))
+  expect_match(r$name, "ethanol", ignore.case = TRUE)
+})

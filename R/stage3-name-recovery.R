@@ -106,6 +106,40 @@ if (!exists("%||%")) {
   list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
 }
 
+# ---------------------------------------------------------------------------
+# Task 6 -- .normalize_compound_to_chebi
+# ---------------------------------------------------------------------------
+
+#' Normalizza un termine-composto testuale a ChEBI (sinonimi -> stesso ID) oppure
+#' al fallback STR:<slug> se non trovato in dizionario, oppure NA se termine assente.
+#'
+#' Flusso:
+#' 1. Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
+#' 2. Lookup nome/alias via \code{.chebi_lookup_alias} (indice \code{alias_lower}).
+#' 3. Se trovato: recupera nome leggibile \code{$primary_name} via
+#'    \code{.chebi_lookup_id} -> id="CHEBI:<chebi_id>", source="CHEBI_ALIAS".
+#' 4. Altrimenti: id="STR:<slug>", name=term, source="STR_FALLBACK".
+#'
+#' @param term character(1) termine-composto estratto dai metadati GEO.
+#' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
+#' @return lista con campi \code{id}, \code{name}, \code{source}.
+#' @keywords internal
+.normalize_compound_to_chebi <- function(term, ontology_env) {
+  if (length(term) != 1L || is.na(term) || !nzchar(term)) {
+    return(list(id = NA_character_, name = NA_character_, source = "NO_TERM"))
+  }
+  hit <- .chebi_lookup_alias(term, env = ontology_env)
+  if (!is.null(hit) && !is.null(hit$chebi_id)) {
+    full <- .chebi_lookup_id(hit$chebi_id, env = ontology_env)
+    return(list(
+      id     = paste0("CHEBI:", hit$chebi_id),
+      name   = if (!is.null(full) && !is.null(full$primary_name)) full$primary_name else term,
+      source = "CHEBI_ALIAS"
+    ))
+  }
+  list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
+}
+
 .GENETIC_SIGNALS <- c(
   knockout       = "knock-?out|\\bko\\b|crispr|\\bcas9\\b|sgrna|gene deletion",
   knockdown      = "knock-?down|\\bshrna\\b|\\bsirna\\b|sh[A-Z][A-Z0-9]+|si[A-Z][A-Z0-9]+|dtag|\\baid\\b|auxin|\\biaa\\b|degron|fkbp12|depletion",
