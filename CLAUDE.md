@@ -11,16 +11,67 @@
 ---
 
 > ⚠️ **RED ALERT ATTIVO** (apertura 2026-05-25) — audit completo
-> pipeline a 5 stadi in corso (FASE F rebuild). **F6: Fase A run pieno FATTO; ma in
-> Fase B è emerso un difetto a monte paper-grade (minestrone Stadio 3: cluster
-> disease/small_molecule mescolano biologie diverse) → REWORK Stadio 3 IN CORSO
-> (esecuzione plan subagent-driven; Fase 1 modulo completa; riparti da Task 8).**
+> pipeline a 5 stadi in corso (FASE F rebuild). **F6: Fase A run pieno FATTO; in
+> Fase B difetto paper-grade MINESTRONE Stadio 3 → REWORK Stadio 3: FASE CODICE
+> COMPLETA (Task 1-12 + final review fix, suite 283/0) + smoke validato (Task 13).
+> Restano i RUN GATED Task 14-16 (re-cluster v4 → ri-pooling Stadio 4 → gate
+> omogeneità v4).**
 > Reference operativa: **`docs/RED_ALERT.md`** (leggere PRIMA di toccare codice) +
 > ledger esecuzione **`.superpowers/sdd/progress.md`** + plan
 > `docs/superpowers/plans/2026-06-25-stage3-name-recovery-reclustering-plan.md`.
 > Master invariato. Branch attivo: `review-scientific-consistency-2026-06-10`. Le
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
+>
+> **Stato 2026-06-26 fine sessione 18**: 🟢 **REWORK Stadio 3 — FASE CODICE COMPLETA
+> (Task 1-12 + final whole-branch review fix) + smoke gate validato (Task 13). Restano
+> i 3 run gated Task 14-16.**
+>
+> 1. **Task 8-12 (subagent-driven-development)** sul plan
+>    `2026-06-25-stage3-name-recovery-reclustering-plan.md`, tutti review-Approved:
+>    - T8 `build_name_recovery_lookup` (`R/stage3-name-recovery-lookup.R`): env GSM→identità
+>      dall'H5, lettura iniettabile, cache version-aware (commit `831afd8`).
+>    - T9 `.extract_anchor_segments(recovery=NULL)` (`R/stage3-anchor-levels.R`): UNK→agente
+>      recuperato, K2 genetic→kind, 3 trace-field nel tracking_meta solo con recovery non-NULL;
+>      retrocompat anchor 89 test. Fix Important: NA-guard su `recovery$kind` (crash `if(NA)`).
+>      Commit `d3e9404`,`3dd52d1`.
+>    - T10 thread del lookup nel build (`R/stage3-build.R`): `.precompute_anchor_cache(recovery_lookup=NULL)`
+>      + `build_stage3_clusters(name_recovery_lookup=NULL)`; retrocompat byte-identica, suite stage3 490.
+>      Commit `8075fae`. (NB: nel loop `parts[1L]`="sid" è il GSM RAPPRESENTANTE, non series.)
+>    - T11 gate omogeneità (`analysis/audit/stage3-homogeneity-check.R`): Important di VALIDITÀ fixato
+>      con scelta utente A — conta le identità solo sui GSM MEMBRI (treated/case) via
+>      `record_id→stage2 master`, H5 per geo_accession diretto. Minestroni 84,8%→66,8% su v3
+>      pre-rework. Commit `129052e`,`0ae2823`.
+>    - T12 benchmark LLM (`analysis/audit/name-recovery-llm-benchmark.R`, eval fuori produzione):
+>      det 63,4% recupero, template gold 52 righe; LLM+gold+decisione C GATED. Helper condiviso
+>      `analysis/audit/_gsm-lookup-helper.R` (`build_record_gsm_lookup`). Commit `046301d`,`4cffb8e`.
+> 2. **FINAL whole-branch review (opus)**: integrazione SOLIDA (retrocompat byte-identica,
+>    tracking_meta 12→15 consumato safe da `.summarize_clusters`, data-flow coerente). Ma 1
+>    CRITICAL + 3 Important cross-task che i per-task non vedevano → fix completo (scelta utente A,
+>    4 commit atomici `368e8b3`,`f957cfd`,`1087d41`,`602c2fb`, suite 283/0):
+>    - **C1**: regex K2 girava con `ignore.case=TRUE` → annullava il vincolo case-sensitive di
+>      `sh[A-Z]`/`si[A-Z]` → flippava a genetic_* composti/agonisti REALI (Resiquimod case study
+>      noto-buono, simvastatin, sirolimus, "single cell", "serum depletion"). Fix: pattern di forma
+>      case-SENSITIVE (`_CS`) vs robusti case-insensitive (`_CI`); `depletion` ristretto; `auxin`/`iaa`
+>      standalone rimossi; +`\boe\b`/`\bKO\b`/`\bAID\b` case-sensitive. 6 canary.
+>    - **I1**: `match(gsm, geo_accession~888k)` vettorizzato fuori dal loop (era O(n²)).
+>    - **I2**: target K2 validato vs `.hgnc_lookup_symbol` (gene reale→HGNC, token non-gene→STR/NA).
+>    - **I3**: 3 colonne trace (`recovery_source`/`agent_id_recovered`/`kind_recovered`) additive a `clusters.rds`.
+> 3. **Task 13 smoke gate (RUN GATED leggero) — ESITO ECCELLENTE su dati reali**:
+>    breast `group_L4_f12efec4` CONCORDANTE (MeSH:D001943); blood `group_L4_cc07ca23` MINESTRONE
+>    SCOMPOSTO in **19 malattie distinte** MeSH-resolved; HCT116 `group_L0_686d6360` K2 (67% flippati
+>    a genetic_*, geni HGNC reali INTS11/PNUTS/WDR82/XRN2, titoli "POINT-Seq XRN2-dTAG"). Canary C1
+>    REGGE sui dati reali. Regime U1 atteso (NO_RECOVERY ~53% blood, non persi).
+> 4. **MINOR defer residui** (non-bloccanti per i run gated): `kind_by_gsm` come env vs list a scala
+>    (O(n²) → environment al full run); `.parse_characteristics_kv` splitta su "," → slug numerici
+>    degeneri (STR:1/STR:464); + ledger T5/T7/T8(M1-4)/T10(M1-2)/T11(R1-R2).
+>
+> **Resume sessione 19**: leggi `.superpowers/sdd/progress.md` (ledger, Task 1-13 complete) + il plan
+> §Phase 6. Prossimo = **Task 14 re-cluster Stadio 3 v4** (run pesante ~ore, GATE UTENTE): script
+> `analysis/p4-fase-f6-stage3-reclustering.R` (preparato + smoke-validato in sessione 18 — vedi
+> `.superpowers/sdd/task-14-prep-report.md`). Costruire `kind_by_gsm` come **environment**. Poi Task 15
+> (ri-pooling Stadio 4, DGX) + Task 16 (gate omogeneità v4, criterio ~0 minestroni provati). Branch
+> invariato, master invariato, no push. Memorie: [[project_stage3_minestrone_rework]].
 >
 > **Stato 2026-06-25 fine sessione 17**: 🔴 **F6 Fase A run pieno FATTO + bug I² rem
 > fixato; in Fase B scoperto difetto MINESTRONE a monte → REWORK Stadio 3 deciso e

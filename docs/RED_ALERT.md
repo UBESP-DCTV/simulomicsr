@@ -1683,33 +1683,40 @@ ALERT per Stadio 1 audit nella sessione successiva.
   - Finding: covariate batch + SAMN-dedupe erano inerti nel fullrun F5 (h5_metadata
     senza quelle colonne) → mega = `~ treatment + (1|study)`. Master git invariato.
 
-### Handoff next session (sessione 18 = riprendere il rework Stadio 3 dal Task 8)
+### Handoff next session (sessione 19 = lanciare il re-cluster Stadio 3 v4, Task 14)
 
-**Stato fine sessione 17 (2026-06-25).** 🔴 **Rework Stadio 3 in esecuzione, Fase 1
-(modulo puro) completa.** F6 Fase A run pieno fatto + bug I² rem fixato; in Fase B
-scoperto il MINESTRONE → deciso il rework (dettagli nel §F6 AGGIORNAMENTO sessione 17
-sopra). Master git invariato, no push.
+**Stato fine sessione 18 (2026-06-26).** 🟢 **Rework Stadio 3 — FASE CODICE COMPLETA
+(Task 1-12 + final whole-branch review fix, suite 283/0) + smoke gate validato (Task 13).**
+Restano i 3 run gated Task 14-16. Master git invariato, no push.
 
-Procedura sessione 18:
-1. **Leggi il ledger** `.superpowers/sdd/progress.md` (Task 1-7 fatti, prossimo = Task 8) +
-   il plan `docs/superpowers/plans/2026-06-25-stage3-name-recovery-reclustering-plan.md` + la
-   spec. NON ri-eseguire i Task 1-7 (committati, `f88695f`..`96c8750`).
-2. **Riprendi dal Task 8** con la skill `superpowers:subagent-driven-development` (subagente
-   fresco per task + review stretta: il reviewer restituisce solo verdetto + finding in una riga,
-   dettaglio nei file). Task 8 = `build_name_recovery_lookup` (legge H5, costruisce `GSM→identità`).
-   Poi Task 9-10 (innesto in `.extract_anchor_segments` + `.precompute_anchor_cache`, **codice vivo
-   Stadio 3** — delicato), 11 (gate omogeneità productionizzato), 12 (benchmark LLM).
-3. **Task 13-16 = run GATED utente** (smoke recovery sui 3 cluster-esempio seno/sangue/HCT116;
-   re-cluster Stadio 3 v4; ri-pooling Stadio 4 sui cluster cambiati; collaudo omogeneità ~0
-   minestroni poolabili).
-4. **Poi** ri-prendi F6 Fase B/C/D sui **cluster nuovi** (la consistenza è già calcolata; il gate
-   di selezione del pilota è l'omogeneità, non la consistenza). Infine FASE G (doc + tag).
-- **3 Minor aperti** dalla review Fase 1 (nel ledger: regex `\boe\b`, slug vuoto, doc `@return`),
-  da triagiare nella review finale di branch.
-- **Note operative**: gli accessor ontologici nome→id esistono (`.mesh_lookup_term`,
-  `.chebi_lookup_alias`); la fixture test è `inst/extdata/ontology-fixtures-mini` (ha "prostate
-  cancer"→D011471, "ethanol"→CHEBI:16236, NON breast/bleomycin); il match studio→campioni su
-  `series_id` H5 va fatto **per token** (super-series comma-joined), non `==`.
+Riepilogo sessione 18:
+- **Task 8-12** (subagent-driven-development), tutti review-Approved: T8 `build_name_recovery_lookup`
+  (`831afd8`); T9 `.extract_anchor_segments(recovery=NULL)` + fix NA-guard (`d3e9404`,`3dd52d1`);
+  T10 thread nel build (`8075fae`); T11 gate omogeneità — fix VALIDITÀ membri-cluster, minestroni
+  84,8%→66,8% (`129052e`,`0ae2823`); T12 benchmark LLM eval + helper condiviso (`046301d`,`4cffb8e`).
+- **FINAL review (opus)**: integrazione solida, ma 1 CRITICAL (C1: regex K2 `ignore.case` flippava
+  Resiquimod/statine/sirolimus a genetic) + 3 Important → fix completo, 4 commit `368e8b3`..`602c2fb`,
+  suite **283/0**. Ri-review Approved.
+- **Task 13 smoke gate (ECCELLENTE)**: breast CONCORDANTE, blood scomposto in **19 malattie distinte**,
+  HCT116 K2+geni reali (XRN2/INTS11/PNUTS/WDR82). Canary C1 regge sui dati reali.
+
+Procedura sessione 19:
+1. **Leggi il ledger** `.superpowers/sdd/progress.md` (Task 1-13 complete) + il plan §Phase 6. NON
+   ri-eseguire il codice (committato).
+2. **Task 14 = re-cluster Stadio 3 v4** (run pesante ~ore, GATE UTENTE): script
+   `analysis/p4-fase-f6-stage3-reclustering.R` (preparato + smoke-validato in sessione 18, vedi
+   `.superpowers/sdd/task-14-prep-report.md`). Costruisce il lookup recovery PIENO + `build_stage3_clusters(name_recovery_lookup=...)`.
+   **`kind_by_gsm` come `environment`** (non named list: al full run `[[gsm]]` su lista è O(n²)). Output
+   nuova dir `…stage3-v4-<id>/`. Sanity: cluster/assignment, copertura, UNK residui (U1), STR (frammentazione),
+   flip K2.
+3. **Task 15** = ri-pooling Stadio 4 sui cluster cambiati (DGX). **Task 16** = gate omogeneità sul v4
+   (`analysis/audit/stage3-homogeneity-check.R`, criterio ~0 minestroni provati nel set poolabile).
+4. **Poi** F6 Fase B/C/D sui **cluster nuovi** (consistenza già calcolata; il gate di selezione del
+   pilota è l'omogeneità). Infine FASE G (doc + tag).
+- **MINOR defer** (non-bloccanti, dal ledger): `kind_by_gsm` env vs list; `.parse_characteristics_kv`
+  slug numerici degeneri (STR:1/STR:464 da valori con virgola); T5/T7/T8/T10/T11 residui.
+- **Note operative**: accessor ontologici nome→id `.mesh_lookup_term`/`.chebi_lookup_alias`/`.hgnc_lookup_symbol`;
+  match studio→campioni su `series_id` H5 **per token** (super-series comma-joined), non `==`.
 - **TODO differiti**: single-cell Stadio 0 (~313 studi degeneri); dashboard Stadio 4
   quarto da ri-renderizzare; decidere se rilanciare F5 con covariate batch vere o
   dichiararlo limite; limite L2 `canonical_name=NA` sui disease_vs_normal.
