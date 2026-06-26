@@ -580,7 +580,13 @@ build_stage3_clusters <- function(stage1_master,
     kind_confidence             = character(),
     kind_unvalidatable          = logical(),
     # Anchor v3.1.1 tracking column (S1bis ADR-0018 addendum)
-    kind_chebi_zero_roles       = logical()
+    kind_chebi_zero_roles       = logical(),
+    # Rework Stadio 3 name-recovery: traccia quali cluster sono stati corretti
+    # dal recovery deterministico (review I3). Con recovery=NULL i campi sono
+    # assenti dal tracking_meta -> colonne presenti ma NA/FALSE (retrocompat).
+    recovery_source             = character(),
+    agent_id_recovered          = logical(),
+    kind_recovered              = logical()
   )
 
   if (nrow(assignments) == 0L) return(empty_clusters)
@@ -748,7 +754,12 @@ build_stage3_clusters <- function(stage1_master,
       kind_role_evidence          = tm_chr("kind_role_evidence"),
       kind_confidence             = tm_chr("kind_confidence"),
       kind_unvalidatable          = tm_lgl("kind_unvalidatable"),
-      kind_chebi_zero_roles       = tm_lgl("kind_chebi_zero_roles")
+      kind_chebi_zero_roles       = tm_lgl("kind_chebi_zero_roles"),
+      # Rework Stadio 3 name-recovery trace (review I3): NA/FALSE quando il
+      # recovery non e' stato applicato (campi assenti dal tracking_meta).
+      recovery_source             = tm_chr("recovery_source"),
+      agent_id_recovered          = tm_lgl("agent_id_recovered"),
+      kind_recovered              = tm_lgl("kind_recovered")
     )
 
     if (i %% progress_every == 0L || i == length(unique_clids)) {

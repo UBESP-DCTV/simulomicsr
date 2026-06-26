@@ -261,6 +261,52 @@ test_that(".precompute_anchor_cache con recovery_lookup = NULL preserva agent_id
   expect_false("recovery_source" %in% names(tm_null))
 })
 
+test_that("clusters espone le colonne trace recovery (I3): NA/FALSE con recovery=NULL", {
+  input <- make_mock_stage3_input()
+  s3 <- build_stage3_clusters(
+    stage1_master        = input$stage1_master,
+    stage2_master        = input$stage2_master,
+    config               = stage3_default_config(),
+    name_recovery_lookup = NULL
+  )
+  # Le 3 colonne devono esistere (additive) anche senza recovery
+  expect_true(all(c("recovery_source", "agent_id_recovered", "kind_recovered")
+                  %in% names(s3$clusters)))
+  if (nrow(s3$clusters) > 0L) {
+    # Con recovery=NULL i campi sono assenti dal tracking_meta -> NA
+    expect_true(all(is.na(s3$clusters$recovery_source)))
+    expect_true(all(is.na(s3$clusters$agent_id_recovered)))
+    expect_true(all(is.na(s3$clusters$kind_recovered)))
+  }
+})
+
+test_that("clusters trace recovery (I3): popolato quando il recovery corregge un UNK", {
+  gsm_id <- "GSM_UNK_DISEASE"
+  input  <- .make_unk_stage_input(gsm_id)
+
+  rec_env <- new.env(hash = TRUE, parent = emptyenv())
+  assign(gsm_id, list(
+    kind            = "disease_vs_normal",
+    agent_id        = "MeSH:D011279",
+    canonical_name  = "Prostatic Neoplasms",
+    recovery_source = "GEO_CHARACTERISTICS_PARSE"
+  ), envir = rec_env)
+
+  s3 <- build_stage3_clusters(
+    stage1_master        = input$stage1_master,
+    stage2_master        = input$stage2_master,
+    config               = stage3_default_config(),
+    name_recovery_lookup = rec_env
+  )
+  expect_true(all(c("recovery_source", "agent_id_recovered", "kind_recovered")
+                  %in% names(s3$clusters)))
+  # Almeno un cluster deve registrare la sorgente di recovery applicata
+  expect_true(any(s3$clusters$recovery_source == "GEO_CHARACTERISTICS_PARSE",
+                  na.rm = TRUE))
+  # agent_id_recovered = TRUE su almeno un cluster (%in% TRUE e' NA-safe)
+  expect_true(any(s3$clusters$agent_id_recovered %in% TRUE))
+})
+
 test_that("build_stage3_clusters con name_recovery_lookup = NULL non regredisce (retrocompat)", {
   # Stesso input del mock esistente: nessun UNK, recovery_lookup = NULL
   input <- make_mock_stage3_input()
