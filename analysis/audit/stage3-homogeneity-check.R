@@ -186,34 +186,8 @@ cat("\n")
 #     Mappa costruita UNA volta sola in un environment (lookup O(1)).
 # ---------------------------------------------------------------------------
 
-cat("[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...\n")
-t_map <- system.time({
-  master_lines <- readLines(stage2_master_path, warn = FALSE)
-  rec_env <- new.env(parent = emptyenv())
-  for (ln in master_lines) {
-    st  <- jsonlite::fromJSON(ln, simplifyVector = FALSE)
-    sid <- st$series_id
-    if (is.null(sid) || !nzchar(sid)) next
-    # Lookup group_id -> sample_ids per questa serie (serve sia ai record GROUP
-    # sia ai record PAIR per risalire al treated_group).
-    rg_lookup <- list()
-    for (rg in st$replicate_groups) {
-      gid  <- rg$group_id
-      sids <- as.character(unlist(rg$sample_ids, use.names = FALSE))
-      rg_lookup[[gid]] <- sids
-      assign(paste0(sid, "__", gid), sids, envir = rec_env)  # record GROUP
-    }
-    # record PAIR: il braccio caratterizzante e' il treated_group.
-    if (length(st$comparisons)) {
-      for (cmp in st$comparisons) {
-        tg <- rg_lookup[[cmp$treated_group]]
-        if (is.null(tg)) next  # comparison malformata: skip (come stage3-build)
-        assign(paste0(sid, "__", cmp$comparison_id), tg, envir = rec_env)
-      }
-    }
-  }
-})
-cat("  Mappa pronta:", length(ls(rec_env)), "record_id in", round(t_map[3], 1), "sec\n")
+source("analysis/audit/_gsm-lookup-helper.R")
+rec_env <- build_record_gsm_lookup(stage2_master_path)
 
 # Per ogni cluster auditato: record_id -> unione dei GSM membri.
 cluster_records <- split(assignments$record_id, assignments$cluster_id)

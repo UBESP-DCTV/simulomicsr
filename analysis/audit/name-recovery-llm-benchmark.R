@@ -181,40 +181,17 @@ print(table(cl_sample$kind_effective_resolved))
 cat("\n")
 
 # ===========================================================================
-# 4b. Costruisce mappa record_id -> GSM membri (DRY: stessa logica di
-#     stage3-homogeneity-check.R — NON duplicare la logica, rispecchiarla)
+# 4b. Costruisce mappa record_id -> GSM membri (helper condiviso DRY)
 # ===========================================================================
-
-cat("[4b] Costruzione mappa record_id -> GSM dal master Stadio 2...\n")
 
 assignments_path <- file.path(STAGE3_DIR, "assignments.parquet")
 if (!file.exists(assignments_path)) stop("assignments.parquet non trovato in: ", STAGE3_DIR)
 assignments <- read_parquet(assignments_path)
 
-t_map <- system.time({
-  master_lines <- readLines(STAGE2_MASTER, warn = FALSE)
-  rec_env <- new.env(parent = emptyenv())
-  for (ln in master_lines) {
-    st  <- jsonlite::fromJSON(ln, simplifyVector = FALSE)
-    sid <- st$series_id
-    if (is.null(sid) || !nzchar(sid)) next
-    rg_lookup <- list()
-    for (rg in st$replicate_groups) {
-      gid  <- rg$group_id
-      sids <- as.character(unlist(rg$sample_ids, use.names = FALSE))
-      rg_lookup[[gid]] <- sids
-      assign(paste0(sid, "__", gid), sids, envir = rec_env)
-    }
-    if (length(st$comparisons)) {
-      for (cmp in st$comparisons) {
-        tg <- rg_lookup[[cmp$treated_group]]
-        if (is.null(tg)) next
-        assign(paste0(sid, "__", cmp$comparison_id), tg, envir = rec_env)
-      }
-    }
-  }
-})
-cat("  Mappa pronta:", length(ls(rec_env)), "record_id in", round(t_map[3], 1), "sec\n")
+# Mappa record_id -> GSM: logica condivisa con stage3-homogeneity-check.R via helper.
+# Se la struttura del master Stadio 2 cambia, aggiornare _gsm-lookup-helper.R.
+source("analysis/audit/_gsm-lookup-helper.R")
+rec_env <- build_record_gsm_lookup(STAGE2_MASTER)
 
 # Per ogni cluster campionato: record_id -> unione GSM, poi PRIMO GSM come rappresentante
 cluster_records <- split(assignments$record_id, assignments$cluster_id)
@@ -410,7 +387,11 @@ cat("[8/9] [GATED] Estrazione LLM mirata...\n")
     return(TRUE)
   } else if (LLM_PROVIDER == "vllm") {
     key <- Sys.getenv("VLLM_API_KEY", unset = "none")  # vLLM accetta qualunque valore
-    # Verifica raggiungibilita' dell'endpoint con timeout breve
+    # Verifica raggiungibilita' dell'endpoint con timeout breve.
+    # Nota: req_method("GET") puo' ritornare TRUE anche per un reverse-proxy
+    # che risponde 405 (Method Not Allowed), non necessariamente vLLM. Per
+    # scopi di eval questa approssimazione e' accettabile: se il POST di
+    # completamento fallisce l'errore verra' catturato a livello di chiamata.
     reachable <- tryCatch({
       resp <- httr2::request(VLLM_BASE_URL) |>
         httr2::req_method("GET") |>
@@ -662,6 +643,10 @@ if (!file.exists(GOLD_TEMPLATE)) {
 
       if (llm_ran) {
         acc_llm  <- sum(scoring_df$llm_match, na.rm = TRUE) / n_sc
+        # Asimmetria intentionale rispetto ad acc_det_na: acc_llm_na controlla
+        # anche == "NA" (stringa letterale che lo schema JSON permette come valore
+        # del campo entity_name), mentre acc_det_na usa solo is.na() perche'
+        # recover_identity() ritorna NA vero in R quando non recupera nulla.
         acc_llm_na <- sum(is.na(scoring_df$llm_name) |
                           scoring_df$llm_name == "NA", na.rm = TRUE) / n_sc
         # Copertura LLM sui casi dove det e' NA
@@ -716,6 +701,9 @@ for (k in AUDIT_KINDS) {
 .add("")
 .add("--- Template gold ---")
 .add(sprintf("  File: %s", GOLD_TEMPLATE))
+# nrow(gold_template) riflette l'oggetto in-memory della sessione corrente;
+# se il file preesisteva su disco o e' stato editato a mano tra due run,
+# il conteggio potrebbe non corrispondere al file effettivo su disco.
 .add(sprintf("  Righe: %d", if (file.exists(GOLD_TEMPLATE)) nrow(gold_template) else 0))
 .add("")
 .add("--- Scoring (gated) ---")
