@@ -23,6 +23,12 @@
 #'   Richiede che \code{stage2_master} sia un path JSONL (serve il record_id del
 #'   chunk). Passare l'union di input + rescue (resplit cs25, cascade) per copertura
 #'   piena. Default NULL = nessun guard (comportamento legacy).
+#' @param name_recovery_lookup environment o NULL: lookup GSM -> identita' prodotto
+#'   da \code{\link{build_name_recovery_lookup}()}. Se non-NULL, per ogni sample
+#'   rappresentativo della cache il record di recovery (se presente) viene passato
+#'   a \code{.extract_anchor_segments(recovery = ...)}. I sample UNK ottengono
+#'   l'agente recuperato nell'anchor; i sample con kind K2 genetic ottengono il
+#'   kind corretto. Default NULL = comportamento invariato (nessun recovery).
 #' @return \code{stage3_result} S3 object (list con 5 componenti: \code{assignments},
 #'   \code{clusters}, \code{record_summary}, \code{non_clusterable},
 #'   \code{run_metadata}).
@@ -31,7 +37,8 @@ build_stage3_clusters <- function(stage1_master,
                                    stage2_master,
                                    config = stage3_default_config(),
                                    archs4_metadata = NULL,
-                                   stage2_input = NULL) {
+                                   stage2_input = NULL,
+                                   name_recovery_lookup = NULL) {
   ta         <- config$tier_assignment
   thresholds <- config$thresholds
   cli::cli_inform("[stage3] START build_stage3_clusters at {format(Sys.time())}")
@@ -84,8 +91,11 @@ build_stage3_clusters <- function(stage1_master,
   # 2.0 Pre-compute anchor cache per i sample_id referenziati in stage2_master.
   # FIX perf: senza cache .extract_anchor_segments() viene chiamata ~1M volte
   # (heavy function). Con cache, una sola estrazione per (sample_id, role).
+  # Rework Stadio 3 (Task 10): propaga name_recovery_lookup alla cache so che
+  # i sample UNK ricevano l'agente recuperato gia' nell'anchor cacheato.
   cli::cli_inform("[stage3] Phase 2.0: pre-compute anchor cache")
-  cache <- .precompute_anchor_cache(stage2_master, stage1_master, ta)
+  cache <- .precompute_anchor_cache(stage2_master, stage1_master, ta,
+                                     recovery_lookup = name_recovery_lookup)
   cli::cli_inform("[stage3] Phase 2.0 done: cached {length(cache$anchors)} (sample_id, role) anchors + {length(cache$hard_filters)} hard_filters")
 
   # 2. Costruzione records dual-mode
@@ -297,10 +307,15 @@ build_stage3_clusters <- function(stage1_master,
 #' \code{.extract_anchor_segments()} ~1M volte (la stessa funzione, sugli
 #' stessi sample). La cache riduce a ~unique(sample_id) chiamate.
 #'
+#' @param recovery_lookup environment o NULL: lookup GSM -> record identita'
+#'   (output di \code{build_name_recovery_lookup()}). Se non-NULL, per ogni
+#'   sample_id rappresentativo cerca il record di recovery e lo passa a
+#'   \code{.extract_anchor_segments(recovery = ...)}. Default NULL = invariato.
 #' @return list con \code{anchors} (named list: key "sample_id|role" -> segments)
 #'   e \code{hard_filters} (named list: key sample_id -> {subcellular, context_kind})
 #' @keywords internal
-.precompute_anchor_cache <- function(stage2_master, stage1_master, tier_assignment) {
+.precompute_anchor_cache <- function(stage2_master, stage1_master, tier_assignment,
+                                      recovery_lookup = NULL) {
   # FIX perf v2: usa lapply/unlist (no list growth O(N^2)). Collect tutte le
   # tuple via lapply per-study, poi flatten + dedup vettorialmente.
 
@@ -354,6 +369,9 @@ build_stage3_clusters <- function(stage1_master,
 
   # Anchors come ENVIRONMENT per O(1) lookup downstream (~315k entries).
   # Stesso motivo del fix stage1_master env: list[[name]] su 300k+ entries = O(N).
+  # Rework Stadio 3 (Task 10): per ogni sid recupera il record di identita'
+  # dal lookup (se fornito) e lo passa a .extract_anchor_segments come `recovery`.
+  # Con recovery_lookup = NULL: rec = NULL -> comportamento invariato (retrocompat).
   anchors <- new.env(hash = TRUE, size = length(unique_keys), parent = emptyenv())
   for (key in unique_keys) {
     parts <- strsplit(key, "|", fixed = TRUE)[[1L]]
@@ -361,7 +379,9 @@ build_stage3_clusters <- function(stage1_master,
     role  <- parts[2L]
     facts <- stage1_master[[sid]]
     if (is.null(facts)) next
-    assign(key, .extract_anchor_segments(facts, stage2_role = role), envir = anchors)
+    rec <- if (!is.null(recovery_lookup)) recovery_lookup[[sid]] else NULL
+    assign(key, .extract_anchor_segments(facts, stage2_role = role, recovery = rec),
+           envir = anchors)
   }
 
   # Hard filters per ogni unique sample_id (no dipendenza da role) come ENV.

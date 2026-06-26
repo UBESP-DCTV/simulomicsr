@@ -9,7 +9,8 @@ build_stage3_clusters(
   stage2_master,
   config = stage3_default_config(),
   archs4_metadata = NULL,
-  stage2_input = NULL
+  stage2_input = NULL,
+  name_recovery_lookup = NULL
 )
 }
 \arguments{
@@ -33,6 +34,13 @@ statistiche finiscono in \code{run_metadata$output_counts$stage2_completeness}.
 Richiede che \code{stage2_master} sia un path JSONL (serve il record_id del
 chunk). Passare l'union di input + rescue (resplit cs25, cascade) per copertura
 piena. Default NULL = nessun guard (comportamento legacy).}
+
+\item{name_recovery_lookup}{environment o NULL: lookup GSM -> identita' prodotto
+da \code{\link{build_name_recovery_lookup}()}. Se non-NULL, per ogni sample
+rappresentativo della cache il record di recovery (se presente) viene passato
+a \code{.extract_anchor_segments(recovery = ...)}. I sample UNK ottengono
+l'agente recuperato nell'anchor; i sample con kind K2 genetic ottengono il
+kind corretto. Default NULL = comportamento invariato (nessun recovery).}
 }
 \value{
 \code{stage3_result} S3 object (list con 5 componenti: \code{assignments},

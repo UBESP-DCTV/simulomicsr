@@ -4,7 +4,18 @@
 \alias{.precompute_anchor_cache}
 \title{Pre-computa cache di anchor segments + hard_filters per sample_id referenziati}
 \usage{
-.precompute_anchor_cache(stage2_master, stage1_master, tier_assignment)
+.precompute_anchor_cache(
+  stage2_master,
+  stage1_master,
+  tier_assignment,
+  recovery_lookup = NULL
+)
+}
+\arguments{
+\item{recovery_lookup}{environment o NULL: lookup GSM -> record identita'
+(output di \code{build_name_recovery_lookup()}). Se non-NULL, per ogni
+sample_id rappresentativo cerca il record di recovery e lo passa a
+\code{.extract_anchor_segments(recovery = ...)}. Default NULL = invariato.}
 }
 \value{
 list con \code{anchors} (named list: key "sample_id|role" -> segments)

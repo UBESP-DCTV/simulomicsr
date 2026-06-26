@@ -146,3 +146,133 @@ test_that("anchor_key L0 e L4 differenti per stesso record (L4 ha meno segmenti)
     expect_true(nchar(key_l0) > nchar(key_l4))
   }
 })
+
+# --- Test Task 10: thread recovery lookup nel build Stadio 3 -------------------
+
+# Fixture: sample_fact disease-case senza mesh_id_candidate -> agent_id = "UNK"
+# Retrocompat: stage2_role="treated" + disease_state$status="case" + no active
+# perturbation -> is_disease_design = TRUE -> ramo disease -> mesh_raw = "unknown"
+# -> agent_id = "UNK".
+.make_unk_disease_fact <- function() {
+  list(
+    perturbations = list(list(
+      kind             = "none",
+      agent_normalized = list(id = "unknown", preferred_name = "unknown",
+                              type = "unclear"),
+      dose             = list(value_raw = "nodose"),
+      duration         = list(value_raw = "N/A"),
+      phase            = "exposure"
+    )),
+    cell_context = list(
+      cell_type_or_line_raw           = "blood",
+      cell_line_cellosaurus_candidate = NULL,
+      context_kind                    = "primary_tissue",
+      cell_state                      = "basal",
+      subcellular_fraction            = NULL,
+      tissue                          = "blood",
+      engineered_modifications        = list()
+    ),
+    disease_state = list(status = "case", mesh_id_candidate = NULL)
+  )
+}
+
+# Stage2 mock minimale con 1 studio, 2 gruppi, 1 comparison; GSM_UNK = trattato.
+# Usato sia dal test di .precompute_anchor_cache sia da build_stage3_clusters.
+.make_unk_stage_input <- function(gsm_id = "GSM_UNK_DISEASE") {
+  unk_fact  <- .make_unk_disease_fact()
+  ctrl_fact <- make_test_sample_fact()   # agente noto -> anchor non-UNK
+  ctrl_fact$perturbations[[1]]$kind <- "none"
+  ctrl_fact$perturbations[[1]]$agent_normalized <- list(id = "unknown",
+                                                         preferred_name = "vehicle",
+                                                         type = "vehicle")
+  ctrl_gsm  <- paste0(gsm_id, "_ctrl")
+  list(
+    stage1_master = stats::setNames(
+      list(unk_fact, unk_fact, ctrl_fact, ctrl_fact),
+      c(gsm_id, paste0(gsm_id, "2"), ctrl_gsm, paste0(ctrl_gsm, "2"))
+    ),
+    stage2_master = list(list(
+      series_id        = "GSE_UNK_TEST",
+      replicate_groups = list(
+        list(group_id = "g1", sample_ids = c(gsm_id, paste0(gsm_id, "2")),
+             n = 2L, primary_role = "treated"),
+        list(group_id = "g2", sample_ids = c(ctrl_gsm, paste0(ctrl_gsm, "2")),
+             n = 2L, primary_role = "control")
+      ),
+      comparisons = list(list(
+        comparison_id = "c_unk",
+        treated_group = "g1",
+        control_group = "g2",
+        control_type  = "untreated",
+        design_kind   = "case_control_disease"
+      ))
+    ))
+  )
+}
+
+test_that(".precompute_anchor_cache con recovery_lookup non-NULL sostituisce UNK con agente recuperato", {
+  gsm_id   <- "GSM_UNK_DISEASE"
+  input    <- .make_unk_stage_input(gsm_id)
+  ta       <- stage3_default_config()$tier_assignment
+  s1_env   <- list2env(input$stage1_master, hash = TRUE)
+
+  # Recovery lookup: il GSM_UNK ottiene identita' recuperata da GEO metadata
+  rec_env <- new.env(hash = TRUE, parent = emptyenv())
+  assign(gsm_id, list(
+    kind           = "disease_vs_normal",
+    agent_id       = "MeSH:D011279",
+    canonical_name = "Prostatic Neoplasms",
+    recovery_source = "GEO_CHARACTERISTICS_PARSE"
+  ), envir = rec_env)
+
+  cache_with <- simulomicsr:::.precompute_anchor_cache(
+    input$stage2_master, s1_env, ta, recovery_lookup = rec_env
+  )
+
+  key <- sprintf("%s|treated", gsm_id)
+  expect_true(exists(key, envir = cache_with$anchors, inherits = FALSE))
+  segs_with <- get(key, envir = cache_with$anchors, inherits = FALSE)
+  # Con recovery: agent_id deve essere quello recuperato, non "UNK"
+  expect_equal(segs_with$agent_id, "MeSH:D011279")
+  # Campo di traccia: recovery_source presente (indica recovery attivo).
+  # tracking_meta e' un attr(), non un list element (vedere stage3-anchor-levels.R)
+  tm_with <- attr(segs_with, "tracking_meta")
+  expect_equal(tm_with$recovery_source, "GEO_CHARACTERISTICS_PARSE")
+})
+
+test_that(".precompute_anchor_cache con recovery_lookup = NULL preserva agent_id UNK (retrocompat)", {
+  gsm_id <- "GSM_UNK_DISEASE"
+  input  <- .make_unk_stage_input(gsm_id)
+  ta     <- stage3_default_config()$tier_assignment
+  s1_env <- list2env(input$stage1_master, hash = TRUE)
+
+  cache_null <- simulomicsr:::.precompute_anchor_cache(
+    input$stage2_master, s1_env, ta, recovery_lookup = NULL
+  )
+
+  key <- sprintf("%s|treated", gsm_id)
+  expect_true(exists(key, envir = cache_null$anchors, inherits = FALSE))
+  segs_null <- get(key, envir = cache_null$anchors, inherits = FALSE)
+  # Senza recovery: agent_id resta "UNK" (comportamento originale invariato)
+  expect_equal(segs_null$agent_id, "UNK")
+  # Nessun campo recovery_source nel tracking_meta quando recovery = NULL.
+  # tracking_meta e' un attr(), non un list element.
+  tm_null <- attr(segs_null, "tracking_meta")
+  expect_false("recovery_source" %in% names(tm_null))
+})
+
+test_that("build_stage3_clusters con name_recovery_lookup = NULL non regredisce (retrocompat)", {
+  # Stesso input del mock esistente: nessun UNK, recovery_lookup = NULL
+  input <- make_mock_stage3_input()
+  s3 <- build_stage3_clusters(
+    stage1_master        = input$stage1_master,
+    stage2_master        = input$stage2_master,
+    config               = stage3_default_config(),
+    name_recovery_lookup = NULL
+  )
+  expect_s3_class(s3, "stage3_result")
+  # Assignment per la comparison c1 deve essere presente (retrocompat esatta)
+  pair_asg <- s3$assignments[s3$assignments$record_id == "GSE100__c1" &
+                               s3$assignments$mode == "pair", ]
+  expect_equal(nrow(pair_asg), 5L)
+})
