@@ -11,6 +11,8 @@ if (!exists("%||%")) {
 
 .DISEASE_KEYS <- "^(disease|disease state|diagnosis|condition|histology|tumor type|cancer type|subtype|group|patient group)$"
 .CONTROL_VALS <- "healthy|normal|control|non-?malignant|baseline|unaffected|^na$|^none$"
+.AGENT_KEYS    <- "^(treatment|agent|compound|drug|chemical|stimulus|stimulation|ligand|exposure|reagent)$"
+.AGENT_CONTROL <- paste0(.CONTROL_VALS, "|vehicle|dmso|\\bpbs\\b|untreated|mock|scramble|vector|water")
 
 #' Parsa "key: value, key: value" in vettore nominato (chiavi/valori lowercased)
 #' @keywords internal
@@ -45,6 +47,20 @@ if (!exists("%||%")) {
   if (grepl("tumou?r|cancer|carcinoma|neoplas|leukemia|lymphoma", blob) &&
       !grepl(.CONTROL_VALS, blob, ignore.case = TRUE)) {
     return(tolower(trimws(gsub("\\s+", " ", source %||% title))))
+  }
+  NA_character_
+}
+
+#' Estrae il termine-agente (composto) dai metadati
+#' @keywords internal
+.extract_agent_term <- function(source, characteristics, title) {
+  kv <- .parse_characteristics_kv(characteristics)
+  if (length(kv) > 0L) {
+    hit <- names(kv)[grepl(.AGENT_KEYS, names(kv))]
+    for (k in hit) {
+      v <- kv[[k]]
+      if (nzchar(v) && !grepl(.AGENT_CONTROL, v)) return(v)
+    }
   }
   NA_character_
 }

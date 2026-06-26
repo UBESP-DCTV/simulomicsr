@@ -23,3 +23,13 @@ test_that(".extract_disease_term: fallback su source/title se niente chiave", {
   d <- .extract_disease_term("Breast Tumor", "tissue id: BRB123", "FFPE Breast Tumor sample")
   expect_equal(d, "breast tumor")
 })
+
+test_that(".extract_agent_term: prende il composto dal trattamento", {
+  a <- .extract_agent_term("cells", "treatment: Bleomycin, time: 24h", "rep1")
+  expect_equal(a, "bleomycin")
+})
+
+test_that(".extract_agent_term: veicolo/controllo -> NA", {
+  expect_true(is.na(.extract_agent_term("cells", "treatment: DMSO", "vehicle 1")))
+  expect_true(is.na(.extract_agent_term("cells", "treatment: control", "ctrl")))
+})
