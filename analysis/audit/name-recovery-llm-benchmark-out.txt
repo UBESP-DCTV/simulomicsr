@@ -1,0 +1,27 @@
+=== BENCHMARK RECUPERO-NOME LLM vs DETERMINISTICO ===
+Data    : 2026-06-26T20:10:57Z
+Stage3  : analysis/p4-output/20260611T171555Z-stage3-v3-364547a7
+
+--- Campione cluster UNK ---
+  UNK auditabili (kind OK + k>=2) : 5044
+  Campionati (stratificati)        : 202
+
+--- Estrazione deterministica ---
+  Recuperati (non-NA) : 128 (63.4%)
+  NA (regime U1)      : 74 (36.6%)
+    disease_vs_normal                        : 132 | det OK:  85 (64%)
+    small_molecule                           :  49 | det OK:  37 (76%)
+    cytokine_stim                            :   2 | det OK:   1 (50%)
+    pathogen_or_aggregate_exposure           :  19 | det OK:   5 (26%)
+
+--- Template gold ---
+  File: analysis/audit/name-recovery-gold-template.csv
+  Righe: 52
+
+--- Scoring (gated) ---
+  Gold non compilato — scoring sospeso
+
+--- Prossimi passi (GATE UTENTE) ---
+  1. Compila 'disease_or_compound_gold' in name-recovery-gold-template.csv
+  2. Configura LLM (OPENROUTER_API_KEY o VLLM_BASE_URL) e rilancia
+  3. Valuta numeri scoring con l'utente -> decisione C (LLM fallback in produzione)
