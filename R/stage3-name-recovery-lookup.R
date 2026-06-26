@@ -153,8 +153,15 @@ build_name_recovery_lookup <- function(h5_path, gsms, kind_by_gsm,
   # --- Costruzione lookup environment (hash per O(1)) -----------------------
   lookup <- new.env(parent = emptyenv(), hash = TRUE, size = length(gsms))
 
-  for (gsm in gsms) {
-    idx <- match(gsm, geo_accession)
+  # Match VETTORIZZATO una sola volta: `match(gsms, geo_accession)` hasha la
+  # tabella geo_accession (~888k) UNA volta. La versione scalare-nel-loop
+  # `match(gsm, geo_accession)` la ri-hashava ad ogni iterazione -> O(n_gsm x
+  # n_h5), non scalabile al full run 10^5 GSM (review I1).
+  idx_all <- match(gsms, geo_accession)
+
+  for (j in seq_along(gsms)) {
+    gsm <- gsms[[j]]
+    idx <- idx_all[[j]]
     if (is.na(idx)) next   # GSM assente: non assegnato, resta NULL nell'env
 
     # kind mancante in kind_by_gsm -> NA_character_ (recover_identity lo gestisce)
