@@ -147,3 +147,99 @@ test_that(".normalize_compound_to_chebi: nome leggibile popolato da primary_name
   expect_false(is.na(r$name))
   expect_match(r$name, "ethanol", ignore.case = TRUE)
 })
+
+# ---------------------------------------------------------------------------
+# Task 7 -- recover_identity (orchestratore)
+# ---------------------------------------------------------------------------
+
+.test_ontology_env_min <- function() {
+  fixture_dir <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
+  if (!nzchar(fixture_dir) || !dir.exists(fixture_dir)) {
+    fixture_dir <- testthat::test_path("..", "..", "inst", "extdata", "ontology-fixtures-mini")
+  }
+  .load_ontology_dicts(refresh = TRUE, fixture_dir = fixture_dir)
+}
+
+test_that("recover_identity: disease_vs_normal -> agent_id MeSH/STR, kind invariato", {
+  env <- .test_ontology_env_min()
+  r <- recover_identity(
+    source          = "prostate",
+    characteristics = "tissue: prostate, disease: prostate cancer",
+    title           = "S1",
+    llm_kind        = "disease_vs_normal",
+    ontology_env    = env
+  )
+  expect_true(startsWith(r$agent_id, "MeSH:") || startsWith(r$agent_id, "STR:"))
+  expect_equal(r$kind, "disease_vs_normal")
+  expect_false(is.null(r$canonical_name))
+  expect_false(is.null(r$recovery_source))
+})
+
+test_that("recover_identity: K2 genetico mal-etichettato small_molecule -> kind corretto, agent_id HGNC:/STR:", {
+  env <- .test_ontology_env_min()
+  r <- recover_identity(
+    source          = "HCT116",
+    characteristics = "cell line: HCT116",
+    title           = "XRN2-dTAG minus dTAG",
+    llm_kind        = "small_molecule",
+    ontology_env    = env
+  )
+  expect_match(r$kind, "genetic_")
+  expect_true(startsWith(r$agent_id, "HGNC:") || startsWith(r$agent_id, "STR:"))
+  expect_equal(r$recovery_source, "K2_GENETIC")
+})
+
+test_that("recover_identity: niente estraibile disease_vs_normal -> agent_id NA (regime U1)", {
+  env <- .test_ontology_env_min()
+  r <- recover_identity(
+    source          = "blood",
+    characteristics = "tissue: blood",
+    title           = "sample",
+    llm_kind        = "disease_vs_normal",
+    ontology_env    = env
+  )
+  expect_true(is.na(r$agent_id))
+  expect_equal(r$kind, "disease_vs_normal")
+  expect_equal(r$recovery_source, "NO_RECOVERY")
+})
+
+test_that("recover_identity: kind perturbativo con composto estraibile -> CHEBI o STR", {
+  env <- .test_ontology_env_min()
+  r <- recover_identity(
+    source          = "cells",
+    characteristics = "treatment: ethanol, time: 24h",
+    title           = "ethanol exposure rep1",
+    llm_kind        = "small_molecule",
+    ontology_env    = env
+  )
+  expect_true(startsWith(r$agent_id, "CHEBI:") || startsWith(r$agent_id, "STR:"))
+  expect_equal(r$kind, "small_molecule")
+})
+
+test_that("recover_identity: kind perturbativo senza composto estraibile -> agent_id NA", {
+  env <- .test_ontology_env_min()
+  r <- recover_identity(
+    source          = "cells",
+    characteristics = "tissue: lung",
+    title           = "rep1",
+    llm_kind        = "cytokine_stim",
+    ontology_env    = env
+  )
+  expect_true(is.na(r$agent_id))
+  expect_equal(r$kind, "cytokine_stim")
+  expect_equal(r$recovery_source, "NO_RECOVERY")
+})
+
+test_that("recover_identity: kind non perturbativo -> NO_RECOVERY, agent_id NA", {
+  env <- .test_ontology_env_min()
+  r <- recover_identity(
+    source          = "cells",
+    characteristics = "time: 24h",
+    title           = "time course",
+    llm_kind        = "time_course",
+    ontology_env    = env
+  )
+  expect_true(is.na(r$agent_id))
+  expect_equal(r$kind, "time_course")
+  expect_equal(r$recovery_source, "NO_RECOVERY")
+})

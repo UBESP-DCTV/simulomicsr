@@ -140,6 +140,106 @@ if (!exists("%||%")) {
   list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
 }
 
+# ---------------------------------------------------------------------------
+# Task 7 -- recover_identity (orchestratore pubblico)
+# ---------------------------------------------------------------------------
+
+#' Recupera l'identita' biologica di un campione dai metadati GEO grezzi.
+#'
+#' Orchestratore che compone le funzioni interne Task 1-6 in un flusso
+#' prioritario: (1) correzione K2 genetica, (2) normalizzazione malattia,
+#' (3) normalizzazione composto/citochina/patogeno, (4) nessun recupero
+#' (regime U1). Il campo \code{kind} restituito e' corretto (K2) o invariato
+#' rispetto a \code{llm_kind}.
+#'
+#' @param source character(1) campo \code{source} GEO del campione.
+#' @param characteristics character(1) campo \code{characteristics_ch1} GEO.
+#' @param title character(1) campo \code{title} GEO del campione.
+#' @param llm_kind character(1) \code{kind_effective} emesso dall'LLM Stadio 2.
+#' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
+#' @return Lista con quattro campi:
+#'   \describe{
+#'     \item{kind}{character(1) kind corretto (es. \code{"genetic_knockdown"})
+#'       oppure invariato rispetto a \code{llm_kind}.}
+#'     \item{agent_id}{character(1) ID ontologico canonico (es.
+#'       \code{"MeSH:D011471"}, \code{"CHEBI:16236"}, \code{"HGNC:XRN2"},
+#'       \code{"STR:<slug>"}) oppure \code{NA} se non recuperabile.}
+#'     \item{canonical_name}{character(1) nome leggibile dell'entita' oppure
+#'       \code{NA}.}
+#'     \item{recovery_source}{character(1) sorgente del recupero:
+#'       \code{"K2_GENETIC"}, \code{"MESH_NAME"}, \code{"CHEBI_ALIAS"},
+#'       \code{"STR_FALLBACK"}, \code{"NO_RECOVERY"}.}
+#'   }
+#' @export
+recover_identity <- function(source, characteristics, title, llm_kind, ontology_env) {
+  .perturbative_kinds <- c(
+    "small_molecule",
+    "cytokine_stim",
+    "pathogen_or_aggregate_exposure"
+  )
+
+  # Passo 1: K2 — perturbazione genetica mal-etichettata come perturbativa
+  g <- .detect_genetic_perturbation(source, characteristics, title)
+  if (isTRUE(g$is_genetic) && !is.na(llm_kind) && llm_kind %in% .perturbative_kinds) {
+    agent_id <- if (!is.na(g$target)) paste0("HGNC:", g$target) else NA_character_
+    return(list(
+      kind            = g$genetic_kind,
+      agent_id        = agent_id,
+      canonical_name  = g$target,
+      recovery_source = "K2_GENETIC"
+    ))
+  }
+
+  # Passo 2: disease_vs_normal -> MeSH (o STR fallback) o U1
+  if (!is.na(llm_kind) && llm_kind == "disease_vs_normal") {
+    t <- .extract_disease_term(source, characteristics, title)
+    if (!is.na(t)) {
+      n <- .normalize_disease_to_mesh(t, ontology_env)
+      return(list(
+        kind            = "disease_vs_normal",
+        agent_id        = n$id,
+        canonical_name  = n$name,
+        recovery_source = n$source
+      ))
+    }
+    # Regime U1: nessun termine estraibile
+    return(list(
+      kind            = "disease_vs_normal",
+      agent_id        = NA_character_,
+      canonical_name  = NA_character_,
+      recovery_source = "NO_RECOVERY"
+    ))
+  }
+
+  # Passo 3: composto/citochina/patogeno -> ChEBI (o STR fallback)
+  if (!is.na(llm_kind) && llm_kind %in% .perturbative_kinds) {
+    t <- .extract_agent_term(source, characteristics, title)
+    if (!is.na(t)) {
+      n <- .normalize_compound_to_chebi(t, ontology_env)
+      return(list(
+        kind            = llm_kind,
+        agent_id        = n$id,
+        canonical_name  = n$name,
+        recovery_source = n$source
+      ))
+    }
+    return(list(
+      kind            = llm_kind,
+      agent_id        = NA_character_,
+      canonical_name  = NA_character_,
+      recovery_source = "NO_RECOVERY"
+    ))
+  }
+
+  # Passo 4: altri kind (time_course, genetic_*, ecc.) -> nessun recupero
+  list(
+    kind            = llm_kind,
+    agent_id        = NA_character_,
+    canonical_name  = NA_character_,
+    recovery_source = "NO_RECOVERY"
+  )
+}
+
 .GENETIC_SIGNALS <- c(
   knockout       = "knock-?out|\\bko\\b|crispr|\\bcas9\\b|sgrna|gene deletion",
   knockdown      = "knock-?down|\\bshrna\\b|\\bsirna\\b|sh[A-Z][A-Z0-9]+|si[A-Z][A-Z0-9]+|dtag|\\baid\\b|auxin|\\biaa\\b|degron|fkbp12|depletion",
