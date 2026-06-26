@@ -65,6 +65,47 @@ if (!exists("%||%")) {
   NA_character_
 }
 
+# ---------------------------------------------------------------------------
+# Task 5 -- .slugify + .normalize_disease_to_mesh
+# ---------------------------------------------------------------------------
+
+#' Produce uno slug ASCII minuscolo (spazi e punteggiatura -> underscore)
+#' @keywords internal
+.slugify <- function(x) {
+  s <- tolower(trimws(gsub("[^a-z0-9]+", "_", tolower(x))))
+  gsub("^_+|_+$", "", s)
+}
+
+#' Normalizza un termine-malattia testuale a MeSH (sinonimi -> stesso UI) oppure
+#' al fallback STR:<slug> se non trovato in dizionario, oppure NA se termine assente.
+#'
+#' Flusso:
+#' 1. Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
+#' 2. Lookup nome/sinonimo via \code{.mesh_lookup_term} (indice \code{by_entry_lower}).
+#' 3. Se trovato: recupera nome leggibile \code{$mh} via \code{.mesh_lookup_ui} ->
+#'    id="MeSH:Dxxxxxx", source="MESH_NAME".
+#' 4. Altrimenti: id="STR:<slug>", name=term, source="STR_FALLBACK".
+#'
+#' @param term character(1) termine-malattia estratto dai metadati GEO.
+#' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
+#' @return lista con campi \code{id}, \code{name}, \code{source}.
+#' @keywords internal
+.normalize_disease_to_mesh <- function(term, ontology_env) {
+  if (length(term) != 1L || is.na(term) || !nzchar(term)) {
+    return(list(id = NA_character_, name = NA_character_, source = "NO_TERM"))
+  }
+  hit <- .mesh_lookup_term(term, env = ontology_env)
+  if (!is.null(hit) && !is.null(hit$ui)) {
+    full <- .mesh_lookup_ui(hit$ui, env = ontology_env)
+    return(list(
+      id     = paste0("MeSH:", hit$ui),
+      name   = if (!is.null(full) && !is.null(full$mh)) full$mh else term,
+      source = "MESH_NAME"
+    ))
+  }
+  list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
+}
+
 .GENETIC_SIGNALS <- c(
   knockout       = "knock-?out|\\bko\\b|crispr|\\bcas9\\b|sgrna|gene deletion",
   knockdown      = "knock-?down|\\bshrna\\b|\\bsirna\\b|sh[A-Z][A-Z0-9]+|si[A-Z][A-Z0-9]+|dtag|\\baid\\b|auxin|\\biaa\\b|degron|fkbp12|depletion",
