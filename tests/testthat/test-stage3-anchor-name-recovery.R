@@ -162,6 +162,41 @@ test_that("recovery$agent_id = NA -> agent_id resta UNK, agent_id_recovered = FA
 })
 
 # ---------------------------------------------------------------------------
+# Caso 4b: recovery$agent_id valido (non-NA) + recovery$kind = NA_character_
+# -> agent_id sostituito (a), kind NON corretto (b), nessun crash.
+# Verifica il guard !is.na(recovery$kind) aggiunto come review fix Task 9.
+# ---------------------------------------------------------------------------
+
+test_that("recovery$kind = NA_character_ + agent_id valido -> no crash, (a) scatta, (b) no", {
+  env <- .fixt_env_nr()
+  fact <- .make_fact_unk_disease()
+  rec_kind_na <- list(
+    agent_id        = "MeSH:D001943",
+    canonical_name  = "Breast Neoplasms",
+    kind            = NA_character_,  # kind mancante (llm_kind assente in GSM)
+    recovery_source = "GEO_TITLE_MESH"
+  )
+
+  # (i) Non deve generare errori (crash ante-fix: startsWith(NA, ...) -> if(NA))
+  segs <- expect_no_error(
+    simulomicsr:::.extract_anchor_segments(
+      fact, stage2_role = "case", ontology_env = env, recovery = rec_kind_na
+    )
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  # (ii) Caso (a): agent_id UNK -> MeSH:D001943 (recovery$agent_id e' non-NA)
+  expect_equal(segs$agent_id, "MeSH:D001943")
+  expect_true(tm$agent_id_recovered)
+
+  # (iii) Caso (b) non scatta: kind_effective rimane disease_vs_normal (no K2)
+  expect_equal(segs$kind_effective, "disease_vs_normal")
+
+  # (iv) kind_recovered = FALSE (la correzione K2 non e' stata applicata)
+  expect_false(tm$kind_recovered)
+})
+
+# ---------------------------------------------------------------------------
 # Caso 5: recovery con kind NON-genetico diverso -> kind_effective invariato
 # ---------------------------------------------------------------------------
 

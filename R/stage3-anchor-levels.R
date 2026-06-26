@@ -269,7 +269,10 @@
 
     # (b) Correggi kind_effective solo per correzioni genetiche (K2):
     # recovery$kind inizia con "genetic_" e differisce dal kind corrente.
-    if (!is.null(recovery$kind) &&
+    # Guard !is.na(recovery$kind): startsWith(NA_character_, "genetic_") -> NA,
+    # e if(...&& NA) genera "Error: missing value where TRUE/FALSE needed".
+    # recover_identity() puo' restituire kind = NA_character_ (llm_kind assente).
+    if (!is.null(recovery$kind) && !is.na(recovery$kind) &&
         startsWith(recovery$kind, "genetic_") &&
         !identical(recovery$kind, segs$kind_effective)) {
       segs$kind_effective <- recovery$kind
