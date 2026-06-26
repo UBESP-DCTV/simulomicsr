@@ -4,7 +4,12 @@
 \alias{.extract_anchor_segments}
 \title{Estrae i 13 segmenti dell'anchor v3.1 come named list + tracking_meta attr}
 \usage{
-.extract_anchor_segments(stage1_facts, stage2_role, ontology_env = NULL)
+.extract_anchor_segments(
+  stage1_facts,
+  stage2_role,
+  ontology_env = NULL,
+  recovery = NULL
+)
 }
 \arguments{
 \item{stage1_facts}{list (un sample_fact validato stage1.v3)}
@@ -15,13 +20,22 @@
 \item{ontology_env}{environment caricato da \code{.load_ontology_dicts()}.
 Default = lazy-load dalla cache; passare un env esplicito (es. caricato da
 fixture) per test deterministici.}
+
+\item{recovery}{list o NULL: record di recupero identita' per il GSM
+rappresentante, con campi \code{agent_id}, \code{canonical_name},
+\code{kind}, \code{recovery_source}. Default NULL = comportamento attuale
+(nessuna correzione, tracking_meta a 12 campi). Se non-NULL, tracking_meta
+viene esteso con 3 campi aggiuntivi: \code{recovery_source},
+\code{agent_id_recovered} (logical), \code{kind_recovered} (logical).}
 }
 \value{
 named list di 13 elementi carattere con attribute \code{tracking_meta}
-contenente 11 campi (agent_id_llm_original, agent_id_resolved,
+contenente 12 campi quando \code{recovery = NULL} (default), oppure 15 campi
+quando \code{recovery} e' non-NULL (12 standard + 3 recovery-trace).
+Campi standard: agent_id_llm_original, agent_id_resolved,
 resolution_source, canonical_name, kind_effective_llm_original,
 kind_effective_resolved, kind_overridden, kind_override_reason,
-kind_role_evidence, kind_confidence, kind_unvalidatable).
+kind_role_evidence, kind_confidence, kind_unvalidatable, kind_chebi_zero_roles.
 }
 \description{
 Replica internamente la logica di \code{make_anchor()} ma restituisce un
@@ -36,6 +50,17 @@ passano attraverso il resolver \code{resolve_agent_canonical()} +
 \code{cytokine_stim} per Ethanol) viene usato per costruire l'anchor_key.
 I valori LLM-original sono preservati in \code{attr(result, "tracking_meta")}
 per audit paper-grade.
+
+\strong{Recupero identita' (Task 9, rework Stadio 3):} se \code{recovery} e' non-NULL
+(record prodotto da \code{build_name_recovery_lookup()} per il GSM
+rappresentante), la funzione applica DOPO il calcolo ordinario due correzioni:
+(a) se \code{segs$agent_id == "UNK"} e \code{recovery$agent_id} e' non-NA,
+sostituisce \code{agent_id} + \code{canonical_name}; (b) se
+\code{recovery$kind} inizia con \code{"genetic_"} e differisce dal
+\code{kind_effective} calcolato, corregge il segmento (correzione K2).
+I tre campi di traccia \code{recovery_source}, \code{agent_id_recovered},
+\code{kind_recovered} vengono aggiunti al \code{tracking_meta} SOLO quando
+\code{recovery} e' non-NULL, per garantire retrocompatibilita' stretta.
 
 L'ordine dei nomi e' canonical e identico all'output di \code{make_anchor()}:
 kind_effective, agent_id, variant_label, dose_canonical, duration_canonical,

@@ -12,6 +12,17 @@
 #' I valori LLM-original sono preservati in \code{attr(result, "tracking_meta")}
 #' per audit paper-grade.
 #'
+#' **Recupero identita' (Task 9, rework Stadio 3):** se \code{recovery} e' non-NULL
+#' (record prodotto da \code{build_name_recovery_lookup()} per il GSM
+#' rappresentante), la funzione applica DOPO il calcolo ordinario due correzioni:
+#' (a) se \code{segs$agent_id == "UNK"} e \code{recovery$agent_id} e' non-NA,
+#' sostituisce \code{agent_id} + \code{canonical_name}; (b) se
+#' \code{recovery$kind} inizia con \code{"genetic_"} e differisce dal
+#' \code{kind_effective} calcolato, corregge il segmento (correzione K2).
+#' I tre campi di traccia \code{recovery_source}, \code{agent_id_recovered},
+#' \code{kind_recovered} vengono aggiunti al \code{tracking_meta} SOLO quando
+#' \code{recovery} e' non-NULL, per garantire retrocompatibilita' stretta.
+#'
 #' L'ordine dei nomi e' canonical e identico all'output di \code{make_anchor()}:
 #' kind_effective, agent_id, variant_label, dose_canonical, duration_canonical,
 #' phase_canonical, cell_id, context_kind, cell_state, subcellular, tissue,
@@ -23,14 +34,22 @@
 #' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
 #'   Default = lazy-load dalla cache; passare un env esplicito (es. caricato da
 #'   fixture) per test deterministici.
+#' @param recovery list o NULL: record di recupero identita' per il GSM
+#'   rappresentante, con campi \code{agent_id}, \code{canonical_name},
+#'   \code{kind}, \code{recovery_source}. Default NULL = comportamento attuale
+#'   (nessuna correzione, tracking_meta a 12 campi). Se non-NULL, tracking_meta
+#'   viene esteso con 3 campi aggiuntivi: \code{recovery_source},
+#'   \code{agent_id_recovered} (logical), \code{kind_recovered} (logical).
 #' @return named list di 13 elementi carattere con attribute \code{tracking_meta}
-#'   contenente 11 campi (agent_id_llm_original, agent_id_resolved,
+#'   contenente 12 campi quando \code{recovery = NULL} (default), oppure 15 campi
+#'   quando \code{recovery} e' non-NULL (12 standard + 3 recovery-trace).
+#'   Campi standard: agent_id_llm_original, agent_id_resolved,
 #'   resolution_source, canonical_name, kind_effective_llm_original,
 #'   kind_effective_resolved, kind_overridden, kind_override_reason,
-#'   kind_role_evidence, kind_confidence, kind_unvalidatable).
+#'   kind_role_evidence, kind_confidence, kind_unvalidatable, kind_chebi_zero_roles.
 #' @keywords internal
 .extract_anchor_segments <- function(stage1_facts, stage2_role,
-                                     ontology_env = NULL) {
+                                     ontology_env = NULL, recovery = NULL) {
   if (is.null(ontology_env)) ontology_env <- .load_ontology_dicts()
 
   pert <- .select_primary_perturbation(stage1_facts$perturbations, stage2_role)
@@ -228,6 +247,45 @@
     # v3.1.1 (S1bis): 12a tracking column propagata downstream
     kind_chebi_zero_roles       = kind_chebi_zero_roles
   )
+
+  # --- Innesto recovery lookup (Task 9, rework Stadio 3) -------------------
+  # Applicato DOPO il calcolo ordinario; attivo SOLO quando `recovery` non-NULL.
+  # Con recovery = NULL (default) l'output e' byte-identico al comportamento
+  # pre-Task9 (retrocompatibilita' stretta: tracking_meta rimane a 12 campi).
+  if (!is.null(recovery)) {
+    agent_id_recovered <- FALSE
+    kind_recovered     <- FALSE
+
+    # (a) Correggi agent_id se e' UNK e il recovery fornisce un'identita' valida
+    if (identical(segs$agent_id, "UNK") &&
+        !is.null(recovery$agent_id) && !is.na(recovery$agent_id)) {
+      segs$agent_id <- recovery$agent_id
+      tm <- attr(segs, "tracking_meta")
+      tm$agent_id_resolved <- recovery$agent_id
+      tm$canonical_name    <- recovery$canonical_name
+      attr(segs, "tracking_meta") <- tm
+      agent_id_recovered <- TRUE
+    }
+
+    # (b) Correggi kind_effective solo per correzioni genetiche (K2):
+    # recovery$kind inizia con "genetic_" e differisce dal kind corrente.
+    if (!is.null(recovery$kind) &&
+        startsWith(recovery$kind, "genetic_") &&
+        !identical(recovery$kind, segs$kind_effective)) {
+      segs$kind_effective <- recovery$kind
+      tm <- attr(segs, "tracking_meta")
+      tm$kind_effective_resolved <- recovery$kind
+      attr(segs, "tracking_meta") <- tm
+      kind_recovered <- TRUE
+    }
+
+    # Aggiungi 3 campi di traccia (solo quando recovery e' non-NULL)
+    tm <- attr(segs, "tracking_meta")
+    tm$recovery_source     <- recovery$recovery_source
+    tm$agent_id_recovered  <- agent_id_recovered
+    tm$kind_recovered      <- kind_recovered
+    attr(segs, "tracking_meta") <- tm
+  }
 
   segs
 }
