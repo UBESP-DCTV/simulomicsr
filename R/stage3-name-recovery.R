@@ -181,11 +181,26 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   # Passo 1: K2 — perturbazione genetica mal-etichettata come perturbativa
   g <- .detect_genetic_perturbation(source, characteristics, title)
   if (isTRUE(g$is_genetic) && !is.na(llm_kind) && llm_kind %in% .perturbative_kinds) {
-    agent_id <- if (!is.na(g$target)) paste0("HGNC:", g$target) else NA_character_
+    # I2 (review fix): il target K2 va VALIDATO contro HGNC prima di emettere un
+    # ID "HGNC:". Un token grezzo estratto dalla forma (es. "DTMYC" da una linea
+    # dTAG-MYC) non e' un simbolo gene -> NON fabbricare un ID HGNC inesistente.
+    # Se il simbolo risolve -> HGNC:<symbol canonico>; se non risolve -> fallback
+    # STR:<slug>; se nessun target -> agent_id NA.
+    agent_id       <- NA_character_
+    canonical_name <- g$target
+    if (!is.na(g$target)) {
+      hgnc_hit <- .hgnc_lookup_symbol(g$target, env = ontology_env)
+      if (!is.null(hgnc_hit) && !is.null(hgnc_hit$primary_symbol)) {
+        agent_id       <- paste0("HGNC:", hgnc_hit$primary_symbol)
+        canonical_name <- hgnc_hit$primary_symbol
+      } else {
+        agent_id <- paste0("STR:", .slugify(g$target))
+      }
+    }
     return(list(
       kind            = g$genetic_kind,
       agent_id        = agent_id,
-      canonical_name  = g$target,
+      canonical_name  = canonical_name,
       recovery_source = "K2_GENETIC"
     ))
   }

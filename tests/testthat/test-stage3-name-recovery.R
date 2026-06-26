@@ -230,6 +230,34 @@ test_that("recover_identity: K2 genetico mal-etichettato small_molecule -> kind 
   expect_equal(r$recovery_source, "K2_GENETIC")
 })
 
+test_that("recover_identity: K2 target validato vs HGNC -> HGNC: solo se gene reale (I2)", {
+  env <- .test_ontology_env_min()
+  # Target reale (TP53 in fixture) -> HGNC:<symbol canonico>
+  r_real <- recover_identity(
+    source          = "cells",
+    characteristics = "cell line: HCT116",
+    title           = "shTP53 knockdown",
+    llm_kind        = "small_molecule",
+    ontology_env    = env
+  )
+  expect_match(r_real$kind, "^genetic_")
+  expect_equal(r_real$agent_id, "HGNC:TP53")
+  expect_equal(r_real$canonical_name, "TP53")
+
+  # Token non-gene (DTMYC da una linea dTAG-MYC, assente da HGNC) -> NON HGNC:
+  r_fake <- recover_identity(
+    source          = "cells",
+    characteristics = "cell line: HCT116",
+    title           = "DTMYC-dTAG degron",
+    llm_kind        = "small_molecule",
+    ontology_env    = env
+  )
+  expect_match(r_fake$kind, "^genetic_")
+  expect_false(is.na(r_fake$agent_id))
+  expect_false(startsWith(r_fake$agent_id, "HGNC:"))
+  expect_true(startsWith(r_fake$agent_id, "STR:"))
+})
+
 test_that("recover_identity: niente estraibile disease_vs_normal -> agent_id NA (regime U1)", {
   env <- .test_ontology_env_min()
   r <- recover_identity(
