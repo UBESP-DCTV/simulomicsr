@@ -53,6 +53,47 @@ test_that(".detect_genetic_perturbation: farmaco normale -> non genetico", {
 })
 
 # ---------------------------------------------------------------------------
+# Canary C1 (review fix): la detection K2 deve essere case-SENSITIVE sui
+# pattern di forma sh[A-Z]/si[A-Z]. Con ignore.case=TRUE molti composti/parole
+# innocenti ("simvastatin", "sirolimus", "Resiquimod", "single cell",
+# "serum depletion", "signal transduction") venivano flippati a genetic_*.
+# ---------------------------------------------------------------------------
+
+test_that("canary C1 NON-genetici: sh/si minuscolo non flippa a genetic", {
+  not_genetic <- c(
+    "simvastatin 10uM",
+    "sirolimus",
+    "Resiquimod TLR7/8 agonist",
+    "single cell RNA-seq of lung",
+    "serum depletion",
+    "signal transduction"
+  )
+  for (txt in not_genetic) {
+    r <- .detect_genetic_perturbation("cells", "treatment: sample", txt)
+    expect_false(r$is_genetic, info = paste("falso positivo genetic su:", txt))
+  }
+})
+
+test_that("canary C1 genetici: segnali inequivocabili restano genetic", {
+  genetic <- c(
+    "shXRN2 knockdown",
+    "siTP53 siRNA",
+    "XRN2-dTAG minus dTAG",
+    "degron depletion",
+    "CRISPR KO of TP53",
+    "shRNA knockdown"
+  )
+  for (txt in genetic) {
+    r <- .detect_genetic_perturbation("cells", "cell line: HCT116", txt)
+    expect_true(r$is_genetic, info = paste("falso negativo genetic su:", txt))
+  }
+  # target estratto per il caso degron
+  r_xrn2 <- .detect_genetic_perturbation("HCT116", "cell line: HCT116",
+                                         "XRN2-dTAG minus dTAG")
+  expect_equal(toupper(r_xrn2$target), "XRN2")
+})
+
+# ---------------------------------------------------------------------------
 # Task 5 -- .normalize_disease_to_mesh
 # ---------------------------------------------------------------------------
 

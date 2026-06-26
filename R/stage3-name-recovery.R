@@ -240,10 +240,30 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   )
 }
 
-.GENETIC_SIGNALS <- c(
-  knockout       = "knock-?out|\\bko\\b|crispr|\\bcas9\\b|sgrna|gene deletion",
-  knockdown      = "knock-?down|\\bshrna\\b|\\bsirna\\b|sh[A-Z][A-Z0-9]+|si[A-Z][A-Z0-9]+|dtag|\\baid\\b|auxin|\\biaa\\b|degron|fkbp12|depletion",
-  overexpression = "over-?expression|overexpress|\\boe\\b|ectopic expression")
+# Segnali genetici (K2). Spec: is_genetic SOLO su segnali inequivocabili.
+#
+# DUE famiglie di pattern testate separatamente per ogni kind:
+# - CI (case-INsensitive): termini robustamente inequivocabili che NON dipendono
+#   dal case (knockout, knockdown, shRNA, siRNA, crispr, cas9, sgrna, dtag,
+#   degron, fkbp12, overexpression). Il depletion e' ristretto a
+#   (protein|targeted|degron)[ -]?depletion per NON catturare "serum depletion"
+#   o "glucose depletion".
+# - CS (case-SENSITIVE): pattern di FORMA (sh/si minuscolo + simbolo gene
+#   MAIUSCOLO; KO/AID maiuscoli; oe minuscolo). Con ignore.case questi
+#   annullerebbero il loro intento e flipperebbero "simvastatin", "sirolimus",
+#   "Resiquimod", "single cell", "signal transduction" a genetic_* (review C1).
+# auxin/IAA NON sono piu' trigger autonomi: contano solo accompagnati da
+# degron/AID, che gia' triggerano per conto loro.
+.GENETIC_SIGNALS_CI <- c(
+  knockout       = "knock-?out|crispr|\\bcas9\\b|sgrna|gene deletion",
+  knockdown      = paste0("knock-?down|\\bshrna\\b|\\bsirna\\b|dtag|degron|fkbp12|",
+                          "(protein|targeted|degron)[ -]?depletion"),
+  overexpression = "over-?expression|overexpress|ectopic expression")
+
+.GENETIC_SIGNALS_CS <- c(
+  knockout       = "\\bKO\\b|\\bAID\\b",
+  knockdown      = "sh[A-Z][A-Z0-9]+|si[A-Z][A-Z0-9]+",
+  overexpression = "\\boe\\b")
 
 #' Rileva perturbazione genetica inequivocabile (K2) + gene bersaglio se possibile
 #' @keywords internal
@@ -251,8 +271,12 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   blob <- paste(source %||% "", characteristics %||% "", title %||% "")
   none <- list(is_genetic = FALSE, genetic_kind = NA_character_, target = NA_character_)
   kind <- NA_character_
-  for (nm in names(.GENETIC_SIGNALS)) {
-    if (grepl(.GENETIC_SIGNALS[[nm]], blob, perl = TRUE, ignore.case = TRUE)) {
+  for (nm in names(.GENETIC_SIGNALS_CI)) {
+    ci_pat <- .GENETIC_SIGNALS_CI[[nm]]
+    cs_pat <- .GENETIC_SIGNALS_CS[[nm]]
+    ci_hit <- nzchar(ci_pat) && grepl(ci_pat, blob, perl = TRUE, ignore.case = TRUE)
+    cs_hit <- nzchar(cs_pat) && grepl(cs_pat, blob, perl = TRUE, ignore.case = FALSE)
+    if (ci_hit || cs_hit) {
       kind <- paste0("genetic_", nm); break
     }
   }
