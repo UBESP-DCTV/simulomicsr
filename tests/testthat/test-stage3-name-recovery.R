@@ -20,6 +20,6 @@ test_that(".extract_disease_term: valori di controllo -> NA", {
 })
 
 test_that(".extract_disease_term: fallback su source/title se niente chiave", {
-  d <- .extract_disease_term("breast tumor", "tissue id: BRB123", "FFPE breast tumor sample")
-  expect_true(grepl("breast", d))
+  d <- .extract_disease_term("Breast Tumor", "tissue id: BRB123", "FFPE Breast Tumor sample")
+  expect_equal(d, "breast tumor")
 })

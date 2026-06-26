@@ -40,11 +40,11 @@ if (!exists("%||%")) {
       if (nzchar(v) && !grepl(.CONTROL_VALS, v, ignore.case = TRUE)) return(v)
     }
   }
-  # fallback: source_name/title se contengono un marcatore tumore/malattia esplicito
+  # fallback: source/title se contengono un marcatore tumore/malattia esplicito
   blob <- tolower(paste(source %||% "", title %||% ""))
   if (grepl("tumou?r|cancer|carcinoma|neoplas|leukemia|lymphoma", blob) &&
       !grepl(.CONTROL_VALS, blob, ignore.case = TRUE)) {
-    return(trimws(gsub("\\s+", " ", source %||% title)))
+    return(tolower(trimws(gsub("\\s+", " ", source %||% title))))
   }
   NA_character_
 }
