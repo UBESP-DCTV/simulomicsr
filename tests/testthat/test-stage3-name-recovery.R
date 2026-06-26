@@ -33,3 +33,21 @@ test_that(".extract_agent_term: veicolo/controllo -> NA", {
   expect_true(is.na(.extract_agent_term("cells", "treatment: DMSO", "vehicle 1")))
   expect_true(is.na(.extract_agent_term("cells", "treatment: control", "ctrl")))
 })
+
+test_that(".detect_genetic_perturbation: dTAG/degron -> genetico, non small_molecule", {
+  r <- .detect_genetic_perturbation("HCT116", "cell line: HCT116", "POINT-Seq XRN2-dTAG minus dTAG rep1")
+  expect_true(r$is_genetic)
+  expect_match(r$genetic_kind, "genetic_")
+  expect_equal(toupper(r$target), "XRN2")
+})
+
+test_that(".detect_genetic_perturbation: shRNA knockdown", {
+  r <- .detect_genetic_perturbation("cells", "treatment: shTP53", "shRNA knockdown TP53")
+  expect_true(r$is_genetic)
+  expect_equal(r$genetic_kind, "genetic_knockdown")
+})
+
+test_that(".detect_genetic_perturbation: farmaco normale -> non genetico", {
+  r <- .detect_genetic_perturbation("cells", "treatment: bleomycin", "Bleomycin 24h")
+  expect_false(r$is_genetic)
+})

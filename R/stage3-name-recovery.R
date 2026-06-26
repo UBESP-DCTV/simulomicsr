@@ -64,3 +64,28 @@ if (!exists("%||%")) {
   }
   NA_character_
 }
+
+.GENETIC_SIGNALS <- c(
+  knockout       = "knock-?out|\\bko\\b|crispr|\\bcas9\\b|sgrna|gene deletion",
+  knockdown      = "knock-?down|\\bshrna\\b|\\bsirna\\b|sh[A-Z][A-Z0-9]+|si[A-Z][A-Z0-9]+|dtag|\\baid\\b|auxin|\\biaa\\b|degron|fkbp12|depletion",
+  overexpression = "over-?expression|overexpress|\\boe\\b|ectopic expression")
+
+#' Rileva perturbazione genetica inequivocabile (K2) + gene bersaglio se possibile
+#' @keywords internal
+.detect_genetic_perturbation <- function(source, characteristics, title) {
+  blob <- paste(source %||% "", characteristics %||% "", title %||% "")
+  none <- list(is_genetic = FALSE, genetic_kind = NA_character_, target = NA_character_)
+  kind <- NA_character_
+  for (nm in names(.GENETIC_SIGNALS)) {
+    if (grepl(.GENETIC_SIGNALS[[nm]], blob, perl = TRUE, ignore.case = TRUE)) {
+      kind <- paste0("genetic_", nm); break
+    }
+  }
+  if (is.na(kind)) return(none)
+  # estrai gene bersaglio: token in MAIUSCOLO adiacente a un segnale (es. XRN2-dTAG, shTP53)
+  m <- regmatches(blob, regexpr("\\b[A-Z][A-Z0-9]{1,6}(?=[- ]?(dTAG|AID|degron|KO|KD))", blob, perl = TRUE))
+  m2 <- regmatches(blob, regexpr("(?<=\\b(sh|si))[A-Z][A-Z0-9]{1,6}", blob, perl = TRUE))
+  target <- c(m, m2)
+  list(is_genetic = TRUE, genetic_kind = kind,
+       target = if (length(target)) target[[1L]] else NA_character_)
+}
