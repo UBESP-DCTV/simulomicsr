@@ -49,11 +49,7 @@ vengono mai letti dall'anchor.**
 | Granularità | Cosa è "stessa malattia/composto" | **G2**: livello-malattia (sottotipi dello stesso tumore insieme; malattie distinte separate). Composto esatto (bleomicina ≠ mitoxantrone). Dose/durata sono già segmenti separati. |
 | Ignoti | Cluster senza nome anche dopo recupero | **U1**: niente pooling cross-studio (nessuna affermazione cross-studio senza identità comune); restano per-studio, fuori dal pilota; si riporta il conteggio. |
 | Ontologia | Ruolo della mappatura | **Cuore del recupero**, non opzionale: senza, i sinonimi ("breast cancer" / "breast tumor") frammentano e G2 non si realizza. |
-
-**Decisione rimandata (da ripresentare a fine rework):** correzione dei **tipi
-sbagliati** (es. degron etichettato `small_molecule` → `genetic_*`). È un secondo asse,
-distinto dal recupero-nome. Il recupero-nome da solo de-minestrona quei cluster
-(separa per gene bersaglio) ma lascia il tipo errato.
+| Tipi | Correzione dei tipi sbagliati | **K2**: correzione deterministica dei tipi **palesemente** errati dai metadati (es. titolo/characteristics con `dTAG`/`AID`/`auxin`/`degron`/`shRNA`/`siRNA`/`CRISPR` → tipo genetico, non `small_molecule`). Alta precisione, solo segnali inequivocabili. Niente revisione a tappeto (K3 esclusa). |
 
 ---
 
@@ -82,8 +78,16 @@ produzione: **benchmark LLM**.
   - `STR:<nome normalizzato>` se nessun match ontologico (rischio frammentazione,
     tracciato), oppure
   - `NA` se non si estrae nulla.
+- **Correzione tipo (K2):** sullo stesso passaggio di metadati, se il `title`/
+  `characteristics` portano segnali **inequivocabili** di perturbazione genetica
+  (`dTAG`, `AID`, `auxin`, `IAA`, `FKBP12`, `degron`, `shRNA`, `siRNA`, `sgRNA`,
+  `CRISPR`, `Cas9`, `knockout`, `knockdown`, `overexpression`) mentre il tipo LLM è
+  `small_molecule`/`cytokine_stim`/`pathogen_*`, il tipo viene corretto al `genetic_*`
+  appropriato. **Alta precisione**: solo segnali chiari, niente inferenza dubbia;
+  il valore LLM-original resta in `tracking_meta`. Per i tipi genetici il "nome"
+  recuperato è il **gene bersaglio** (HGNC), non un composto.
 - **TDD:** funzioni pure testate su fixture sintetiche (estrazione + normalizzazione +
-  esclusione controlli + casi NA).
+  esclusione controlli + correzione tipo + casi NA).
 
 ### 3.2 Lookup precalcolato
 
@@ -97,8 +101,10 @@ gestire, vedi §6).
 
 Nei punti dove oggi si assegna `UNK` (riga 73 e gemelle per le perturbazioni), si
 consulta il lookup: se c'è un'identità recuperata, la si usa nel segmento `agent_id`;
-altrimenti resta `UNK` e il record entra in regime **U1**. I valori LLM-original
-restano in `tracking_meta` per audit (come già fa v3.1).
+altrimenti resta `UNK` e il record entra in regime **U1**. Allo stesso modo, se il
+modulo ha corretto il **tipo** (K2), il segmento `kind_effective` dell'anchor usa il
+tipo corretto. I valori LLM-original restano in `tracking_meta` per audit (come già fa
+v3.1).
 
 ### 3.4 Benchmark LLM (valutazione, gated, fuori produzione)
 
@@ -156,7 +162,10 @@ restano → il recupero non basta, si itera prima di accettare.
   dichiarare nel paper.
 - **Match `series_id` comma-joined** (super-series): usare match per token, non `==`
   (bug scoperto sessione 17; ha falsato le prime misure).
-- **Tipi sbagliati** (degron→small_molecule): fuori scope qui, decisione a fine rework.
+- **Correzione tipi (K2)**: rischio di falsi positivi se i segnali genetici sono
+  ambigui (es. uno studio che *cita* CRISPR come metodo ma testa un farmaco). Mitigazione:
+  whitelist di segnali inequivocabili + il tipo LLM-original resta tracciato; misurare
+  quanti tipi vengono corretti e campionarli a mano.
 - **Relazione con F6**: la metrica di consistenza resta valida come metrica, ma **non**
   è il gate di coerenza; il gate è l'omogeneità (§3.6). La selezione del pilota (F6
   Fase B/C/D) riparte dai cluster nuovi.
