@@ -95,8 +95,14 @@ Provenienza/SHA256 del dump registrati come per gli altri dump (riproducibilità
   `.chembl_lookup_id(chembl_id, env)` (`chembl_id`→`{chembl_id, pref_name}`), stessa firma/
   stile/difensività (`.normalize_key_chr`, NULL su miss) degli accessor esistenti.
 - `.ontology_release_meta` include `chembl`.
-- **Retrocompat**: con `fixture_dir` o cache senza ChEMBL, comportarsi gracefully come per
-  gli altri (errore diagnostico con istruzioni di rebuild, come ChEBI/HGNC/MeSH).
+- **Retrocompat (graceful, rivisto in esecuzione 2026-06-28):** ChEMBL è caricato **se
+  presente**; se il dict reale manca, `env$chembl <- NULL` + flag `has_chembl=FALSE` (gli
+  accessor tornano NULL → comportamento v4), **senza `stop()`**. Il fail-loud "ChEMBL
+  obbligatorio" NON sta nel loader (romperebbe ogni percorso anchor) ma è spostato come
+  **assert a runtime** negli script di re-cluster/re-pool v5 (§3.6): asseriscono
+  `.load_ontology_dicts()$has_chembl` prima di girare. ChEBI/HGNC/MeSH restano obbligatori.
+  (Motivo: lo `stop()` nel loader rompeva `test-anchor-parse.R` e ogni build di anchor —
+  vedi ledger Task 4.)
 
 ### 3.3 Risoluzione composto — `R/stage3-name-recovery.R`
 

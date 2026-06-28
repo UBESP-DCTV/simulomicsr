@@ -662,15 +662,23 @@ git commit -m "P5 audit RED_ALERT F6: script build dizionario ChEMBL reale (SQLi
 - [ ] Script scratchpad: campiona gli STR perturbativi del gate v4 (`stage3-homogeneity-check-v4-full-out.csv`), per ciascuno ricostruisci il `term` dai metadati H5 e gira `recover_identity` con la dict reale. Misura: % recuperati via ChEMBL/de-frag, # combo, **0 falsi sui canary** (`10_nm_1`, numeri, token <3).
 - [ ] **Gate**: recupero atteso ≫0 sui ~265 nomi-farmaco; nessun match spurio. Riporta la tabella all'utente PRIMA del re-cluster da 6h. Se deludente → rivedere `.extract_compound_candidates` (NON lanciare il fullrun).
 
+> **AMENDMENT 2026-06-28 (loader graceful, commit 83e1238):** il loader NON fa più `stop()`
+> se ChEMBL manca — carica `chembl=NULL` + `has_chembl=FALSE` (retrocompat v4). Il fail-loud è
+> spostato QUI: prima di girare il re-cluster/re-pool v5, **assertire** che ChEMBL sia caricato,
+> altrimenti si produrrebbe v5 in qualità-v4 silenziosamente.
+
 ### Task 8 (GATED): Re-cluster Stadio 3 → v5
 
-- [ ] Pre-flight: input 5/5 presenti, dict ChEMBL caricabile, env R OK (`Rscript` semplice).
+- [ ] **Assert ChEMBL caricato (fail-loud):** all'inizio dello script, dopo aver costruito/caricato
+      le ontologie, `stopifnot("ChEMBL dict mancante: esegui Task 6" = isTRUE(.load_ontology_dicts()$has_chembl))`.
+- [ ] Pre-flight: input 5/5 presenti, dict ChEMBL caricabile (`has_chembl=TRUE`), env R OK (`Rscript` semplice).
 - [ ] `SMOKE=1 Rscript analysis/p4-fase-f6-stage3-reclustering.R` (smoke ~2-3 min) → sanity scomposizione.
 - [ ] **GATE UTENTE** → `SMOKE=0 Rscript analysis/p4-fase-f6-stage3-reclustering.R` detached (~6h). Output `…-stage3-v5-<id>/` (token v5). Verifica `run_metadata` registra `ontology_releases$chembl` + cache lookup `v2`.
 - [ ] Sanity: `agent_id_resolved` mostra CHEMBL:/CHEBI: nuovi; `small_molecule|UNK` scomposto.
 
 ### Task 9 (GATED): Re-pool Stadio 4 → v5
 
+- [ ] **Assert ChEMBL caricato** anche qui se lo script ricarica l'ontologia (`stopifnot(... has_chembl ...)`), per coerenza fail-loud.
 - [ ] Crea `analysis/p4-fase-f5-stage4-layer-a-rebuild-v5.R` = copia del `-v4` con `stage3_dir`→dir v5 + token output `v5`. Output su `/sda`.
 - [ ] Smoke gate pre-fullrun (pattern F5): poche cluster, gene axis Ensembl OK.
 - [ ] **GATE UTENTE** → run detached (~11h). Verifica exit pulito (il fix df-residui `0c41848` regge). Backup protettivo su `/sda`.
