@@ -215,3 +215,32 @@ test_that(".ontology_release_meta ritorna chebi + hgnc + mesh meta", {
   expect_true(meta$hgnc$n_genes > 0L)
   expect_true(meta$mesh$n_descriptors > 0L)
 })
+
+# --- ChEMBL accessor ---------------------------------------------------------
+
+test_that(".load_ontology_dicts carica ChEMBL + accessor alias/id O(1)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fixture_dir())
+  expect_true(!is.null(env$chembl))
+  # alias diretto -> molecola
+  hit <- .chembl_lookup_alias("icotinib", env = env)
+  expect_equal(hit$chembl_id, "CHEMBL_ICOTINIB")
+  # case-insensitive
+  expect_equal(.chembl_lookup_alias("ICOTINIB", env = env)$chembl_id, "CHEMBL_ICOTINIB")
+  # research code -> stessa molecola
+  expect_equal(.chembl_lookup_alias("gdc0973", env = env)$chembl_id, "CHEMBL_COBI")
+  # by_id -> pref_name
+  expect_equal(.chembl_lookup_id("CHEMBL_COBI", env = env)$pref_name, "Cobimetinib")
+  # miss -> NULL
+  expect_null(.chembl_lookup_alias("nonesiste_xyz", env = env))
+  expect_null(.chembl_lookup_id("CHEMBL_ZZZ", env = env))
+  # input degenere -> NULL (difensivo)
+  expect_null(.chembl_lookup_alias(NA_character_, env = env))
+  expect_null(.chembl_lookup_alias(character(0), env = env))
+})
+
+test_that(".ontology_release_meta include chembl", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fixture_dir())
+  rel <- .ontology_release_meta(env)
+  expect_true(!is.null(rel$chembl))
+  expect_true(isTRUE(rel$chembl$fixture_subset))
+})

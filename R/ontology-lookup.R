@@ -1,9 +1,11 @@
-# ontology-lookup.R --- Loader e accessor deterministici per le 3 dictionary
-# (ChEBI, HGNC, MeSH) utilizzate dal resolver anchor v3.1.
+# ontology-lookup.R --- Loader e accessor deterministici per le 4 dictionary
+# (ChEBI, HGNC, MeSH, ChEMBL) utilizzate dal resolver anchor v3.1.
 #
 # I dump pre-buildati (analysis/p5-audit-chebi-build-dict.R +
-# analysis/p5-audit-hgnc-mesh-build-dict.R) vivono in
-# tools::R_user_dir("simulomicsr","cache")/chebi/ + .../hgnc-lookup.rds + .../mesh-lookup.rds.
+# analysis/p5-audit-hgnc-mesh-build-dict.R +
+# analysis/p5-audit-chembl-build-dict.R) vivono in
+# tools::R_user_dir("simulomicsr","cache")/chebi/ + .../hgnc-lookup.rds +
+# .../mesh-lookup.rds + .../chembl/chembl-lookup.rds.
 #
 # Per i test viene caricato un mini-subset da inst/extdata/ontology-fixtures-mini/.
 #
@@ -16,21 +18,23 @@
 #' @noRd
 .ontology_env <- new.env(parent = emptyenv())
 
-#' Carica ChEBI + HGNC + MeSH dictionary in env singleton, memoizzato
+#' Carica ChEBI + HGNC + MeSH + ChEMBL dictionary in env singleton, memoizzato
 #'
 #' Costruisce hash environment per ogni indice rilevante (by_id, aliases,
 #' secondary, has_role per ChEBI; by_hgnc_int, by_symbol_lower, by_entrez_int,
-#' aliases_long per HGNC; by_ui, by_entry_lower per MeSH).
+#' aliases_long per HGNC; by_ui, by_entry_lower per MeSH; by_id, aliases per
+#' ChEMBL).
 #'
 #' @param refresh logical(1): se TRUE forza reload (anche se gia' caricato).
-#' @param cache_dir character(1): directory contenente i 3 RDS full (default
+#' @param cache_dir character(1): directory contenente i 4 RDS full (default
 #'   \code{tools::R_user_dir("simulomicsr","cache")}). Usato solo se
 #'   \code{fixture_dir} e' NULL.
 #' @param fixture_dir character(1) | NULL: se non-NULL, carica i mini-subset
-#'   \code{chebi-mini.rds}, \code{hgnc-mini.rds}, \code{mesh-mini.rds} da
-#'   questa directory invece dei file full. Usato per i test.
+#'   \code{chebi-mini.rds}, \code{hgnc-mini.rds}, \code{mesh-mini.rds},
+#'   \code{chembl-mini.rds} da questa directory invece dei file full. Usato
+#'   per i test.
 #' @return environment con elementi \code{chebi}, \code{hgnc}, \code{mesh},
-#'   \code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
+#'   \code{chembl}, \code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
 #' @keywords internal
 .load_ontology_dicts <- function(refresh = FALSE,
                                  cache_dir = tools::R_user_dir("simulomicsr", which = "cache"),
@@ -41,15 +45,17 @@
     if (!dir.exists(fixture_dir)) {
       stop(sprintf("fixture_dir does not exist: %s", fixture_dir))
     }
-    chebi_raw <- readRDS(file.path(fixture_dir, "chebi-mini.rds"))
-    hgnc_raw  <- readRDS(file.path(fixture_dir, "hgnc-mini.rds"))
-    mesh_raw  <- readRDS(file.path(fixture_dir, "mesh-mini.rds"))
-    src_dir   <- fixture_dir
-    is_fix    <- TRUE
+    chebi_raw  <- readRDS(file.path(fixture_dir, "chebi-mini.rds"))
+    hgnc_raw   <- readRDS(file.path(fixture_dir, "hgnc-mini.rds"))
+    mesh_raw   <- readRDS(file.path(fixture_dir, "mesh-mini.rds"))
+    chembl_raw <- readRDS(file.path(fixture_dir, "chembl-mini.rds"))
+    src_dir    <- fixture_dir
+    is_fix     <- TRUE
   } else {
-    chebi_path <- file.path(cache_dir, "chebi", "chebi-lookup.rds")
-    hgnc_path  <- file.path(cache_dir, "hgnc-lookup.rds")
-    mesh_path  <- file.path(cache_dir, "mesh-lookup.rds")
+    chebi_path  <- file.path(cache_dir, "chebi", "chebi-lookup.rds")
+    hgnc_path   <- file.path(cache_dir, "hgnc-lookup.rds")
+    mesh_path   <- file.path(cache_dir, "mesh-lookup.rds")
+    chembl_path <- file.path(cache_dir, "chembl", "chembl-lookup.rds")
     if (!file.exists(chebi_path)) {
       stop(sprintf(
         "ChEBI dictionary missing at %s.\nRebuild via: Rscript analysis/p5-audit-chebi-build-dict.R",
@@ -62,16 +68,24 @@
         hgnc_path, mesh_path
       ))
     }
-    chebi_raw <- readRDS(chebi_path)
-    hgnc_raw  <- readRDS(hgnc_path)
-    mesh_raw  <- readRDS(mesh_path)
-    src_dir   <- cache_dir
-    is_fix    <- FALSE
+    if (!file.exists(chembl_path)) {
+      stop(sprintf(
+        "ChEMBL dictionary missing at %s.\nRebuild via: Rscript analysis/p5-audit-chembl-build-dict.R",
+        chembl_path
+      ))
+    }
+    chebi_raw  <- readRDS(chebi_path)
+    hgnc_raw   <- readRDS(hgnc_path)
+    mesh_raw   <- readRDS(mesh_path)
+    chembl_raw <- readRDS(chembl_path)
+    src_dir    <- cache_dir
+    is_fix     <- FALSE
   }
 
   .ontology_env$chebi      <- .build_chebi_index(chebi_raw)
   .ontology_env$hgnc       <- .build_hgnc_index(hgnc_raw)
   .ontology_env$mesh       <- .build_mesh_index(mesh_raw)
+  .ontology_env$chembl     <- .build_chembl_index(chembl_raw)
   .ontology_env$source_dir <- src_dir
   .ontology_env$is_fixture <- is_fix
   .ontology_env$loaded     <- TRUE
@@ -307,6 +321,43 @@
   )
 }
 
+#' @noRd
+.build_chembl_index <- function(chembl_raw) {
+  # by_id: hash env chembl_id (character) -> named list (chembl_id, pref_name).
+  # Pre-estraggo vettori una volta per evitare per-row tibble subset (O(1) finale).
+  by_id_env <- new.env(hash = TRUE, parent = emptyenv(),
+                       size = max(nrow(chembl_raw$by_id), 1L))
+  if (nrow(chembl_raw$by_id) > 0L) {
+    bi  <- chembl_raw$by_id
+    cid <- as.character(bi$chembl_id)
+    pn  <- bi$pref_name
+    for (i in seq_along(cid)) {
+      assign(cid[i], list(chembl_id = cid[i], pref_name = pn[i]),
+             envir = by_id_env)
+    }
+  }
+
+  # aliases: hash env alias_lower -> named list (chembl_id, type).
+  # Prima vittoria vince (rare duplicates dove un alias mappa a piu' molecole).
+  aliases_env <- new.env(hash = TRUE, parent = emptyenv(),
+                         size = max(nrow(chembl_raw$aliases), 1L))
+  if (nrow(chembl_raw$aliases) > 0L) {
+    al   <- chembl_raw$aliases
+    keys <- al$alias_lower
+    cids <- as.character(al$chembl_id)
+    types <- al$type
+    for (i in seq_along(keys)) {
+      k <- keys[i]
+      if (!exists(k, envir = aliases_env, inherits = FALSE)) {
+        assign(k, list(chembl_id = cids[i], type = types[i]),
+               envir = aliases_env)
+      }
+    }
+  }
+
+  list(by_id = by_id_env, aliases = aliases_env, meta = chembl_raw$meta)
+}
+
 # --- ChEBI accessor ----------------------------------------------------------
 #
 # Tutti gli accessor sono defensive: gestiscono input NULL, NA, character(0),
@@ -406,21 +457,42 @@
   get(key, envir = env$mesh$by_entry_lower, inherits = FALSE)
 }
 
+# --- ChEMBL accessor ---------------------------------------------------------
+
+#' @noRd
+.chembl_lookup_alias <- function(alias, env = .load_ontology_dicts()) {
+  raw <- .normalize_key_chr(alias)
+  if (is.na(raw)) return(NULL)
+  key <- tolower(raw)
+  if (!exists(key, envir = env$chembl$aliases, inherits = FALSE)) return(NULL)
+  get(key, envir = env$chembl$aliases, inherits = FALSE)
+}
+
+#' @noRd
+.chembl_lookup_id <- function(chembl_id, env = .load_ontology_dicts()) {
+  key <- .normalize_key_chr(chembl_id)
+  if (is.na(key)) return(NULL)
+  if (!exists(key, envir = env$chembl$by_id, inherits = FALSE)) return(NULL)
+  get(key, envir = env$chembl$by_id, inherits = FALSE)
+}
+
 # --- Release meta ------------------------------------------------------------
 
-#' Restituisce metadata di release delle 3 dictionary correnti
+#' Restituisce metadata di release delle 4 dictionary correnti
 #'
 #' Usato da \code{build_stage3_clusters()} per registrare \code{ontology_releases}
 #' nel \code{run_metadata.json}, garantendo riproducibilita' paper-grade.
 #'
 #' @param env environment caricato da \code{.load_ontology_dicts()}.
-#' @return named list con elementi \code{chebi}, \code{hgnc}, \code{mesh}.
+#' @return named list con elementi \code{chebi}, \code{hgnc}, \code{mesh},
+#'   \code{chembl}.
 #' @keywords internal
 .ontology_release_meta <- function(env = .load_ontology_dicts()) {
   list(
-    chebi = env$chebi$meta,
-    hgnc  = env$hgnc$meta,
-    mesh  = env$mesh$meta,
+    chebi      = env$chebi$meta,
+    hgnc       = env$hgnc$meta,
+    mesh       = env$mesh$meta,
+    chembl     = env$chembl$meta,
     source_dir = env$source_dir,
     is_fixture = env$is_fixture
   )
