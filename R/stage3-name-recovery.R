@@ -161,6 +161,13 @@ if (!exists("%||%")) {
 .resolve_one_compound <- function(cand, ontology_env) {
   c2   <- trimws(cand)
   alnum <- gsub("[^a-z0-9]", "", tolower(c2))
+  # Gate di precisione: blocca i token singoli troppo corti (<3 char alfanumerici)
+  # o puramente numerici (es. "1", "so" estratti da "10 nm 1") cosi' non producono
+  # mai un ID. La stringa intera rumorosa (es. "10 nm 1") puo' invece raggiungere
+  # il lookup DI PROPOSITO -- e' necessaria per i nomi multi-parola (es. "retinoic
+  # acid") -- e resta non-recuperata via dict-miss (STR_FALLBACK), NON via questo
+  # gate. La precisione sui token spurii e' garantita dal match esatto contro
+  # l'alias controllato nel dizionario ontologico.
   if (nchar(alnum) < 3L) return(NULL)           # gate: troppo corto
   if (grepl("^[0-9]+$", alnum)) return(NULL)    # gate: puramente numerico
   # 1. ChEBI diretto
@@ -222,7 +229,14 @@ if (!exists("%||%")) {
   resolved <- list()
   for (cand in cands) {
     r <- .resolve_one_compound(cand, ontology_env)
-    if (!is.null(r)) resolved[[r$id]] <- r   # dedup per id
+    if (!is.null(r)) {
+      # Dedup per ID: se lo stesso ID e' raggiunto da candidati diversi (es.
+      # nome + codice dello stesso farmaco), vince l'ultimo per campo source
+      # (l'ordine dei candidati e' deterministico). Il campo name e' invariante
+      # perche' deriva dal primary_name/pref_name canonico dell'ontologia, quindi
+      # la scelta del source non cambia l'identita' del composto.
+      resolved[[r$id]] <- r
+    }
   }
   ids <- names(resolved)
   if (length(ids) == 0L) {
