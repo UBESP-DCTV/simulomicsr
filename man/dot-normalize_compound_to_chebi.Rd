@@ -22,7 +22,9 @@ Flusso (riscritta Task 3):
 \item Per ogni candidato: \code{.resolve_one_compound} (gate + catena
 ChEBI -> ChEMBL -> de-frammentazione via pref_name -> CHEMBL nativo).
 \item Dedup per ID (named list, ultimo vince in caso di collisione).
-\item 0 risolti -> STR:\if{html}{\out{<slug>}} fallback; 1 risolto -> quell'ID;=2 distinti -> combo con \code{paste(sort(ids), collapse="+")} esource "COMPOUND_COMBO".
+\item 0 risolti -> STR:\if{html}{\out{<slug>}} fallback; 1 risolto -> quell'ID;
+2 o piu' distinti -> combo: \code{paste(sort(ids), collapse="+")}
+source "COMPOUND_COMBO".
 }
 }
 \keyword{internal}

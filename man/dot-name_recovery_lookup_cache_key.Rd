@@ -4,7 +4,12 @@
 \alias{.name_recovery_lookup_cache_key}
 \title{Calcola la chiave cache per build_name_recovery_lookup}
 \usage{
-.name_recovery_lookup_cache_key(h5_path, gsms, kind_by_gsm)
+.name_recovery_lookup_cache_key(
+  h5_path,
+  gsms,
+  kind_by_gsm,
+  ontology_env = NULL
+)
 }
 \arguments{
 \item{h5_path}{character(1) path al file H5.}
@@ -12,18 +17,27 @@
 \item{gsms}{character vector di GSM.}
 
 \item{kind_by_gsm}{named list/env GSM -> llm_kind.}
+
+\item{ontology_env}{list/environment | NULL con campo \code{has_chembl}
+(logical) e \code{chembl$meta$chembl_release} (character). Default NULL
+trattato come has_chembl=FALSE, release=NA (retrocompatibilita' a 3 arg).}
 }
 \value{
 character(1) hash xxhash32 8-hex.
 }
 \description{
 Ingloba: schema_version + h5_path + mtime H5 + sorted(gsms) + kind
-per ogni gsm. Cosi' ogni modifica al set di GSM, al kind richiesto
-o al file H5 produce una chiave distinta e invalida la cache stale.
+per ogni gsm + stato ChEMBL (has_chembl + release). Cosi' ogni modifica
+al set di GSM, al kind richiesto, al file H5 o alle ontologie caricate
+produce una chiave distinta e invalida la cache stale.
 }
 \details{
-Finding "cache version-blind" (audit pipeline RED ALERT): la chiave
-DEVE includere \code{.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION} per
-invalidare automaticamente dopo un bump di schema.
+Finding "cache version-blind" (audit pipeline RED ALERT C2/E6): la chiave
+DEVE includere \code{.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION} per invalidare
+automaticamente dopo un bump di schema, e l'asse ChEMBL per distinguere
+un lookup costruito con \code{has_chembl=FALSE} (qualita' degradata, tutto
+STR) da uno con \code{has_chembl=TRUE} (qualita' piena). Senza questo asse,
+un lookup degradato potrebbe essere servito da cache a un run con ChEMBL
+presente (cache poisoning cross-content).
 }
 \keyword{internal}

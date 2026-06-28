@@ -34,7 +34,10 @@ HGNC e MeSH.}
 \item{cache_dir}{character(1) | NULL directory per cache su disco
 (salva/rilegge un RDS). Default NULL = nessuna cache. La chiave
 include \code{.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION} + mtime H5
-per evitare hit stale.}
+\itemize{
+\item asse ChEMBL (has_chembl + release) per evitare hit stale e
+avvelenamento cross-content (lookup con/senza ChEMBL).
+}}
 
 \item{read_fn}{function | NULL reader iniettabile per testabilita'.
 Firma attesa: \code{function(h5_path) -> list(geo_accession,

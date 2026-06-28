@@ -261,3 +261,31 @@ test_that("build_name_recovery_lookup (g2): chiave cache diversa per gsms divers
   # Entrambe le chiamate devono aver letto dall'H5 (nessun hit stale)
   expect_equal(call_count, 2L)
 })
+
+# ---------------------------------------------------------------------------
+# (h) Cache key codifica has_chembl (no avvelenamento cross-content)
+# ---------------------------------------------------------------------------
+
+test_that("cache key codifica has_chembl (no avvelenamento cross-content)", {
+  k_with <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "small_molecule"),
+    ontology_env = list(has_chembl = TRUE,
+                        chembl = list(meta = list(chembl_release = "ChEMBL_37")))
+  )
+  k_without <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "small_molecule"),
+    ontology_env = list(has_chembl = FALSE)
+  )
+  expect_false(identical(k_with, k_without))
+})
+
+# default NULL (arg mancante) == has_chembl FALSE -> retrocompatibilita' a 3 arg
+test_that("cache key: default NULL retrocompat a 3 arg (trattato come has_chembl=FALSE)", {
+  k_null <- .name_recovery_lookup_cache_key("h5", c("GSM1"), list(GSM1 = "disease_vs_normal"))
+  k_false <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "disease_vs_normal"),
+    ontology_env = list(has_chembl = FALSE)
+  )
+  # Entrambi producono has_chembl=FALSE:NA -> stessa chiave
+  expect_identical(k_null, k_false)
+})

@@ -214,7 +214,7 @@ if (!exists("%||%")) {
 #'    ChEBI -> ChEMBL -> de-frammentazione via pref_name -> CHEMBL nativo).
 #' 4. Dedup per ID (named list, ultimo vince in caso di collisione).
 #' 5. 0 risolti -> STR:<slug> fallback; 1 risolto -> quell'ID;
-#'    >=2 distinti -> combo con \code{paste(sort(ids), collapse="+")} e
+#'    2 o piu' distinti -> combo: \code{paste(sort(ids), collapse="+")}
 #'    source "COMPOUND_COMBO".
 #'
 #' @param term character(1) termine-composto estratto dai metadati GEO.
@@ -246,7 +246,7 @@ if (!exists("%||%")) {
     r <- resolved[[1L]]
     return(list(id = r$id, name = r$name, source = r$source))
   }
-  ord <- sort(ids)
+  ord <- sort(ids, method = "radix")   # radix: C-locale, deterministico cross-locale
   list(
     id     = paste(ord, collapse = "+"),
     name   = paste(vapply(ord, function(i) resolved[[i]]$name %||% i, character(1L)), collapse = " + "),

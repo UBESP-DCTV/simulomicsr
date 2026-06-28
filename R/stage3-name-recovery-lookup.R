@@ -45,19 +45,28 @@
 #' Calcola la chiave cache per build_name_recovery_lookup
 #'
 #' Ingloba: schema_version + h5_path + mtime H5 + sorted(gsms) + kind
-#' per ogni gsm. Cosi' ogni modifica al set di GSM, al kind richiesto
-#' o al file H5 produce una chiave distinta e invalida la cache stale.
+#' per ogni gsm + stato ChEMBL (has_chembl + release). Cosi' ogni modifica
+#' al set di GSM, al kind richiesto, al file H5 o alle ontologie caricate
+#' produce una chiave distinta e invalida la cache stale.
 #'
-#' Finding "cache version-blind" (audit pipeline RED ALERT): la chiave
-#' DEVE includere \code{.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION} per
-#' invalidare automaticamente dopo un bump di schema.
+#' Finding "cache version-blind" (audit pipeline RED ALERT C2/E6): la chiave
+#' DEVE includere \code{.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION} per invalidare
+#' automaticamente dopo un bump di schema, e l'asse ChEMBL per distinguere
+#' un lookup costruito con \code{has_chembl=FALSE} (qualita' degradata, tutto
+#' STR) da uno con \code{has_chembl=TRUE} (qualita' piena). Senza questo asse,
+#' un lookup degradato potrebbe essere servito da cache a un run con ChEMBL
+#' presente (cache poisoning cross-content).
 #'
 #' @param h5_path character(1) path al file H5.
 #' @param gsms character vector di GSM.
 #' @param kind_by_gsm named list/env GSM -> llm_kind.
+#' @param ontology_env list/environment | NULL con campo \code{has_chembl}
+#'   (logical) e \code{chembl$meta$chembl_release} (character). Default NULL
+#'   trattato come has_chembl=FALSE, release=NA (retrocompatibilita' a 3 arg).
 #' @return character(1) hash xxhash32 8-hex.
 #' @keywords internal
-.name_recovery_lookup_cache_key <- function(h5_path, gsms, kind_by_gsm) {
+.name_recovery_lookup_cache_key <- function(h5_path, gsms, kind_by_gsm,
+                                             ontology_env = NULL) {
   mtime <- if (file.exists(h5_path)) as.character(file.mtime(h5_path)) else "NO_FILE"
   gsms_sorted <- sort(gsms)
   kinds_str <- paste(
@@ -67,8 +76,18 @@
     }, character(1L)),
     collapse = ";"
   )
+  # Asse ChEMBL: distingue lookup con/senza ChEMBL e per release (review fix
+  # "cache version-blind": un lookup has_chembl=FALSE e uno has_chembl=TRUE
+  # NON devono condividere la stessa chiave).
+  chembl_axis <- paste0(
+    "chembl=", isTRUE(ontology_env$has_chembl), ":",
+    if (!is.null(ontology_env$chembl) &&
+        !is.null(ontology_env$chembl$meta$chembl_release))
+      ontology_env$chembl$meta$chembl_release else "NA"
+  )
   payload <- paste0(
     .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "::",
+    chembl_axis, "::",
     h5_path, "::", mtime, "::",
     paste(gsms_sorted, collapse = "|"), "::",
     kinds_str
@@ -110,7 +129,8 @@
 #' @param cache_dir character(1) | NULL directory per cache su disco
 #'   (salva/rilegge un RDS). Default NULL = nessuna cache. La chiave
 #'   include \code{.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION} + mtime H5
-#'   per evitare hit stale.
+#'   + asse ChEMBL (has_chembl + release) per evitare hit stale e
+#'   avvelenamento cross-content (lookup con/senza ChEMBL).
 #' @param read_fn function | NULL reader iniettabile per testabilita'.
 #'   Firma attesa: \code{function(h5_path) -> list(geo_accession,
 #'   series_id, source_name_ch1, characteristics_ch1, title)}.
@@ -130,7 +150,8 @@ build_name_recovery_lookup <- function(h5_path, gsms, kind_by_gsm,
   cache_file <- NULL
   if (!is.null(cache_dir)) {
     if (!dir.exists(cache_dir)) dir.create(cache_dir, recursive = TRUE)
-    key <- .name_recovery_lookup_cache_key(h5_path, gsms, kind_by_gsm)
+    key <- .name_recovery_lookup_cache_key(h5_path, gsms, kind_by_gsm,
+                                             ontology_env = ontology_env)
     cache_file <- file.path(cache_dir,
                              paste0("name-recovery-lookup-", key, ".rds"))
     if (file.exists(cache_file)) {
