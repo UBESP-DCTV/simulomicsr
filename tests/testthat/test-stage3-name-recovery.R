@@ -445,3 +445,23 @@ test_that("recover_identity: malattia/genetico INVARIATI (retrocompat)", {
 test_that("cache version bumpata a v2 (invalida lookup v4)", {
   expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v2")
 })
+
+# ---------------------------------------------------------------------------
+# Stoplist generica (precision-first, evita merge spuri tipo due "*_inhibitor"
+# diversi -> stesso CHEBI:35222 o CHEMBL:CHEMBL_DOX)
+# ---------------------------------------------------------------------------
+
+test_that(".resolve_one_compound: stoplist generica rifiuta il match (precision-first)", {
+  env <- .ont()
+  # 'inhibitor' e' un alias nella fixture (->CHEMBL_DOX) ma e' generico -> NULL
+  expect_null(.resolve_one_compound("inhibitor", env))
+  # un farmaco reale NON in stoplist continua a risolvere
+  expect_false(is.null(.resolve_one_compound("icotinib", env)))
+})
+
+test_that(".normalize_compound_to_chebi: termine con parola-ruolo generica non risolve al generico", {
+  env <- .ont()
+  r <- .normalize_compound_to_chebi("tgfb1 inhibitor", env)
+  # 'inhibitor' rifiutato dalla stoplist, 'tgfb1' non in fixture -> STR
+  expect_equal(r$source, "STR_FALLBACK")
+})

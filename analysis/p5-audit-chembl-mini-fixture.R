@@ -22,7 +22,8 @@ aliases <- tibble::tribble(
   "onvansertib",   "CHEMBL_ONVA",     "SYNONYM",
   "nms-1286937",   "CHEMBL_ONVA",     "RESEARCH_CODE",
   "doxorubicin",   "CHEMBL_DOX",      "SYNONYM",
-  "nsc-123127",    "CHEMBL_DOX",      "RESEARCH_CODE"
+  "nsc-123127",    "CHEMBL_DOX",      "RESEARCH_CODE",
+  "inhibitor",     "CHEMBL_DOX",      "GENERIC_TEST"
 )
 meta <- list(chembl_release = "ChEMBL_37 (fixture subset)",
              n_molecules = nrow(by_id), n_synonyms = nrow(aliases),

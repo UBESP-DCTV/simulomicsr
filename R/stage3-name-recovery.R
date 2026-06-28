@@ -106,6 +106,18 @@ if (!exists("%||%")) {
   list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
 }
 
+# Termini di RUOLO/classe generici che sono anche alias ChEBI/ChEMBL ma NON
+# identificano un composto specifico: vanno rifiutati come match (precision-first,
+# evitano fusioni spurie tipo due "*_inhibitor" diversi -> stesso CHEBI:35222).
+.GENERIC_COMPOUND_STOPLIST <- c(
+  "drug","drugs","compound","compounds","chemical","chemicals","agent","agents",
+  "acid","base","peptide","peptides","protein","proteins","agonist","agonists",
+  "antagonist","antagonists","inhibitor","inhibitors","activator","activators",
+  "ligand","ligands","hormone","hormones","vehicle","solvent","water","medium",
+  "media","buffer","salt","salts","metabolite","substrate","enzyme","rna","dna",
+  "antibiotic","antibiotics","reagent","small molecule"
+)
+
 # ---------------------------------------------------------------------------
 # Task 2 -- .extract_compound_candidates
 # ---------------------------------------------------------------------------
@@ -170,6 +182,7 @@ if (!exists("%||%")) {
   # l'alias controllato nel dizionario ontologico.
   if (nchar(alnum) < 3L) return(NULL)           # gate: troppo corto
   if (grepl("^[0-9]+$", alnum)) return(NULL)    # gate: puramente numerico
+  if (tolower(c2) %in% .GENERIC_COMPOUND_STOPLIST) return(NULL)  # termine generico -> non-match
   # 1. ChEBI diretto
   hit <- .chebi_lookup_alias(c2, env = ontology_env)
   if (!is.null(hit) && !is.null(hit$chebi_id)) {
