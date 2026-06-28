@@ -186,3 +186,51 @@ test_that(".pool_all_clusters skippa mega_aug senza study_dispatch (no_dispatch)
   expect_equal(np$reason[np$cluster_id == "mega_aug_nodisp"],
                "mega_aug_no_study_dispatch")
 })
+
+test_that(".run_per_study_de_all isola un fit per-studio fallito (skip, non fatale)", {
+  skip_if_not_installed("limma")
+
+  # Bug 2026-06-27 (Task 15 v4): un singolo .run_limma_voom_de in errore
+  # (es. 0 df residui) faceva ABORTIRE l'intero run da centinaia di cluster.
+  # Atteso: rete di sicurezza -> lo studio in errore viene SKIPPATO, gli altri
+  # proseguono, il run non e' mai fatale.
+  eligible <- tibble::tibble(
+    cluster_id = "rem_k2",
+    method = "rem",
+    direction_check = factor("canonical",
+      levels = c("canonical", "swapped", "ambiguous", "indeterminate", "na"))
+  )
+  attr(eligible, "study_dispatch") <- list(
+    rem_k2 = list(
+      list(study_id = "GSE_OK",  treated = c("GSM1", "GSM2", "GSM3"),
+           control = c("GSM4", "GSM5", "GSM6")),
+      list(study_id = "GSE_BAD", treated = c("GSM7", "GSM8", "GSM9"),
+           control = c("GSM10", "GSM11", "GSM12"))
+    )
+  )
+  mock_fetch <- function(gse, sample_ids) {
+    m <- matrix(100L, nrow = 5, ncol = length(sample_ids))
+    rownames(m) <- paste0("GENE_", 1:5); colnames(m) <- sample_ids
+    m
+  }
+  # Inietta un .run_limma_voom_de che ESPLODE su GSE_BAD, valido su GSE_OK.
+  fake_de <- function(counts, treatment_vec, study_id, cluster_id, ...) {
+    if (identical(study_id, "GSE_BAD")) stop("boom: errore per-studio simulato")
+    tibble::tibble(cluster_id = cluster_id, study_id = study_id,
+                   gene_id = rownames(counts), gene_symbol = NA_character_,
+                   logFC = 0, SE = 1, p_value = 1, t_stat = 0,
+                   n_treated = 3L, n_control = 3L, direction_applied = "none")
+  }
+
+  # Lo skip non fatale emette un warning auditabile (non un errore).
+  expect_warning(
+    result <- with_mocked_bindings(
+      .run_per_study_de_all(eligible, fetch_fn = mock_fetch, workers = 1L),
+      .run_limma_voom_de = fake_de
+    ),
+    "FALLITO"
+  )
+  expect_s3_class(result, "tbl_df")
+  expect_true("GSE_OK" %in% result$study_id)    # studio valido presente
+  expect_false("GSE_BAD" %in% result$study_id)  # studio in errore skippato
+})

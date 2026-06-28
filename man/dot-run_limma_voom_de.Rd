@@ -30,8 +30,10 @@ geni (rownames = gene symbol), le colonne sample (colnames = GSM).}
 }
 \value{
 tibble con colonne \code{cluster_id}, \code{study_id},
-\code{gene}, \code{logFC}, \code{SE}, \code{p_value}, \code{t_stat},
-\code{n_treated}, \code{n_control}, \code{direction_applied}.
+\code{gene_id}, \code{gene_symbol}, \code{logFC}, \code{SE},
+\code{p_value}, \code{t_stat}, \code{n_treated}, \code{n_control},
+\code{direction_applied}. Restituisce una tibble 0-righe (stesso schema)
+se il disegno non ha gradi di liberta' residui (skip, con warning).
 }
 \description{
 Pipeline: DGEList -> filterByExpr -> normLibSizes(TMM) -> voom ->

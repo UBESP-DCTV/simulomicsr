@@ -53,10 +53,21 @@
       )
 
       counts <- fetch_fn(study_id, samples)
-      row_res <- .run_limma_voom_de(counts, treatment, study_id, cid,
-                                      direction_flip = dir_flip,
-                                      metadata_extra = metadata_extra,
-                                      covariates = de_covariates)
+      # Rete di sicurezza (bug 2026-06-27, Task 15 v4): un singolo fit per-studio
+      # in errore (es. 0 df residui, voom su 0 geni post-filter, ...) NON deve
+      # mai abortire l'intero run da centinaia di cluster. Skip+warning, prosegui.
+      row_res <- tryCatch(
+        .run_limma_voom_de(counts, treatment, study_id, cid,
+                            direction_flip = dir_flip,
+                            metadata_extra = metadata_extra,
+                            covariates = de_covariates),
+        error = function(e) {
+          warning(sprintf(
+            "per_study DE FALLITO (skip, non fatale): cluster=%s study=%s: %s",
+            cid, study_id, conditionMessage(e)))
+          .empty_per_study_de()
+        }
+      )
       out_list[[length(out_list) + 1L]] <- row_res
     }
   }

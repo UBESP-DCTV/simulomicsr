@@ -42,7 +42,7 @@ test_that("cluster con direction_check=swapped applica logFC flip in per_study_d
   canon <- result[result$cluster_id == "canon_c", ]
   swap  <- result[result$cluster_id == "swap_c", ]
 
-  expect_equal(canon$logFC[order(canon$gene)], -swap$logFC[order(swap$gene)])
+  expect_equal(canon$logFC[order(canon$gene_id)], -swap$logFC[order(swap$gene_id)])
   expect_equal(unique(canon$direction_applied), "none")
   expect_equal(unique(swap$direction_applied), "flipped")
 })

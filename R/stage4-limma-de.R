@@ -18,8 +18,10 @@
 #' @param direction_flip logical: se TRUE, moltiplica logFC per -1 e setta
 #'   \code{direction_applied="flipped"}; altrimenti \code{"none"}.
 #' @return tibble con colonne \code{cluster_id}, \code{study_id},
-#'   \code{gene}, \code{logFC}, \code{SE}, \code{p_value}, \code{t_stat},
-#'   \code{n_treated}, \code{n_control}, \code{direction_applied}.
+#'   \code{gene_id}, \code{gene_symbol}, \code{logFC}, \code{SE},
+#'   \code{p_value}, \code{t_stat}, \code{n_treated}, \code{n_control},
+#'   \code{direction_applied}. Restituisce una tibble 0-righe (stesso schema)
+#'   se il disegno non ha gradi di liberta' residui (skip, con warning).
 #' @keywords internal
 .run_limma_voom_de <- function(counts, treatment_vec, study_id, cluster_id,
                                 direction_flip = FALSE,
@@ -89,6 +91,22 @@
   cn[cn == "(Intercept)"]    <- "(Intercept)"
   cn[cn == "treatmenttreated"] <- "treatmenttreated"
   colnames(design) <- cn
+
+  # Guard gradi di liberta' residui (bug 2026-06-27, Task 15 v4): se i campioni
+  # non bastano a stimare la varianza residua (n_sample <= rank(design), tipico
+  # studio con 1 treated + 1 control = 2 sample, design ~treatment = 2 coef),
+  # limma::eBayes() lancia "No residual degrees of freedom in linear model fits"
+  # come errore FATALE che abortiva l'intero run. Skip pulito invece di
+  # crashare: tibble 0-righe (lo studio non entra nel pooling del cluster) +
+  # warning auditabile. Stessa filosofia dello skip 'mega_rank_deficient' del
+  # pooling MEGA.
+  design_rank <- qr(design)$rank
+  if (nrow(design) - design_rank < 1L) {
+    warning(sprintf(
+      "per_study DE skip (no residual df): cluster=%s study=%s n_sample=%d rank=%d n_treated=%d n_control=%d",
+      cluster_id, study_id, nrow(design), design_rank, n_treated, n_control))
+    return(.empty_per_study_de())
+  }
 
   v   <- limma::voom(dge, design)
   fit <- limma::lmFit(v, design)

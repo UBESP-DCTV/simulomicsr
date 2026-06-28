@@ -49,3 +49,32 @@ test_that(".run_limma_voom_de applica direction_flip negando logFC", {
   expect_equal(unique(res_flip$direction_applied), "flipped")
   expect_equal(unique(res_canon$direction_applied), "none")
 })
+
+test_that(".run_limma_voom_de salta (0 righe, no crash) studi senza gradi di liberta' residui", {
+  skip_if_not_installed("limma")
+  skip_if_not_installed("edgeR")
+
+  # Bug 2026-06-27 (Task 15 v4): uno studio con 1 treated + 1 control = 2 sample
+  # e design ~treatment (2 coef) -> 0 df residui -> eBayes() lanciava
+  # "No residual degrees of freedom in linear model fits" come errore FATALE.
+  # Atteso: skip pulito (tibble 0-righe, schema corretto), nessun errore.
+  set.seed(7)
+  counts <- matrix(rnbinom(100 * 2, size = 5, mu = 100), nrow = 100, ncol = 2)
+  rownames(counts) <- paste0("GENE_", sprintf("%03d", 1:100))
+  colnames(counts) <- c("GSM_T1", "GSM_C1")
+  treatment_vec <- factor(c("treated", "control"),
+                          levels = c("control", "treated"))
+
+  # Skip emette un warning auditabile (non un errore) e restituisce 0 righe.
+  expect_warning(
+    res <- .run_limma_voom_de(counts, treatment_vec, study_id = "GSE_NODF",
+                               cluster_id = "TEST", direction_flip = FALSE),
+    "no residual df"
+  )
+  expect_s3_class(res, "tbl_df")
+  expect_equal(nrow(res), 0L)
+  expect_named(res, c("cluster_id", "study_id", "gene_id", "gene_symbol",
+                       "logFC", "SE", "p_value", "t_stat", "n_treated",
+                       "n_control", "direction_applied"),
+               ignore.order = TRUE)
+})
