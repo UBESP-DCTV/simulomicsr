@@ -2,7 +2,7 @@
 % Please edit documentation in R/ontology-lookup.R
 \name{.load_ontology_dicts}
 \alias{.load_ontology_dicts}
-\title{Carica ChEBI + HGNC + MeSH dictionary in env singleton, memoizzato}
+\title{Carica ChEBI + HGNC + MeSH + ChEMBL dictionary in env singleton, memoizzato}
 \usage{
 .load_ontology_dicts(
   refresh = FALSE,
@@ -13,21 +13,23 @@
 \arguments{
 \item{refresh}{logical(1): se TRUE forza reload (anche se gia' caricato).}
 
-\item{cache_dir}{character(1): directory contenente i 3 RDS full (default
+\item{cache_dir}{character(1): directory contenente i 4 RDS full (default
 \code{tools::R_user_dir("simulomicsr","cache")}). Usato solo se
 \code{fixture_dir} e' NULL.}
 
 \item{fixture_dir}{character(1) | NULL: se non-NULL, carica i mini-subset
-\code{chebi-mini.rds}, \code{hgnc-mini.rds}, \code{mesh-mini.rds} da
-questa directory invece dei file full. Usato per i test.}
+\code{chebi-mini.rds}, \code{hgnc-mini.rds}, \code{mesh-mini.rds},
+\code{chembl-mini.rds} da questa directory invece dei file full. Usato
+per i test.}
 }
 \value{
 environment con elementi \code{chebi}, \code{hgnc}, \code{mesh},
-\code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
+\code{chembl}, \code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
 }
 \description{
 Costruisce hash environment per ogni indice rilevante (by_id, aliases,
 secondary, has_role per ChEBI; by_hgnc_int, by_symbol_lower, by_entrez_int,
-aliases_long per HGNC; by_ui, by_entry_lower per MeSH).
+aliases_long per HGNC; by_ui, by_entry_lower per MeSH; by_id, aliases per
+ChEMBL).
 }
 \keyword{internal}

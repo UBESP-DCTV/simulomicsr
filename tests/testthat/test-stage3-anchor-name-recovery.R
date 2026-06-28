@@ -286,3 +286,14 @@ test_that("con recovery attivo, segs ha ancora 13 segmenti (tracking_meta in att
   expect_length(tm, 15L)
   expect_true(all(c("recovery_source", "agent_id_recovered", "kind_recovered") %in% names(tm)))
 })
+
+# ---------------------------------------------------------------------------
+# Task 4 -- round-trip separatore combo: '+' NON e' separatore anchor key
+# ---------------------------------------------------------------------------
+
+test_that("anchor key con agent_id combo round-trip: split su '|' integro", {
+  ak <- "small_molecule|CHEBI:111+CHEBI:222|none|none|none"
+  segs <- strsplit(ak, "|", fixed = TRUE)[[1L]]
+  expect_equal(segs[2L], "CHEBI:111+CHEBI:222")  # il '+' non e' separatore
+  expect_length(segs, 5L)
+})

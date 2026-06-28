@@ -8,7 +8,7 @@
 # Versione schema del lookup: bumpa se cambia il contratto output di
 # recover_identity() o dei campi H5 letti, per evitare hit stale su disco
 # (finding "cache version-blind" audit pipeline C2/E6 2026-05-25).
-.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v1"
+.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v2"
 
 # ---------------------------------------------------------------------------
 # Helper lettura H5 (isolato per testabilita')

@@ -401,3 +401,47 @@ test_that(".normalize_compound_to_chebi: canary precisione - numeri/token corti 
   expect_equal(.normalize_compound_to_chebi("10 nm 1", .ont())$source, "STR_FALLBACK")
   expect_equal(.normalize_compound_to_chebi("1 so", .ont())$source, "STR_FALLBACK")
 })
+
+# ---------------------------------------------------------------------------
+# Task 4 -- integrazione recover_identity con ChEMBL/combo + bump cache version
+# ---------------------------------------------------------------------------
+
+# Helper che restituisce solo il path alla fixture, usato da .load_ontology_dicts.
+.fixture_dir <- function() {
+  fd <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
+  if (!nzchar(fd) || !dir.exists(fd)) {
+    fd <- testthat::test_path("..", "..", "inst", "extdata", "ontology-fixtures-mini")
+  }
+  fd
+}
+
+test_that("recover_identity: ramo composto usa ChEMBL (integrazione)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fixture_dir())
+  r <- recover_identity("cells", "treatment: icotinib, time: 24h", "rep1",
+                        "small_molecule", env)
+  expect_equal(r$agent_id, "CHEMBL:CHEMBL_ICOTINIB")
+  expect_equal(r$recovery_source, "CHEMBL_ALIAS")
+  expect_equal(r$kind, "small_molecule")
+})
+
+test_that("recover_identity: combo via metadati", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fixture_dir())
+  r <- recover_identity("cells",
+        "treatment: 10 um enzalutamide and 30 nm onvansertib", "rep1",
+        "small_molecule", env)
+  expect_equal(r$recovery_source, "COMPOUND_COMBO")
+  expect_true(grepl("\\+", r$agent_id))
+})
+
+test_that("recover_identity: malattia/genetico INVARIATI (retrocompat)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fixture_dir())
+  rd <- recover_identity("Blood", "disease: ethanol", "x", "disease_vs_normal", env)
+  expect_equal(rd$kind, "disease_vs_normal")  # ramo disease, non composto
+  rg <- recover_identity("HCT116", "cell line: HCT116", "XRN2-dTAG rep1",
+                         "small_molecule", env)
+  expect_match(rg$kind, "genetic_")           # K2 ancora prevale
+})
+
+test_that("cache version bumpata a v2 (invalida lookup v4)", {
+  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v2")
+})

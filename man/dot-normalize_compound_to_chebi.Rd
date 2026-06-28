@@ -2,8 +2,7 @@
 % Please edit documentation in R/stage3-name-recovery.R
 \name{.normalize_compound_to_chebi}
 \alias{.normalize_compound_to_chebi}
-\title{Normalizza un termine-composto testuale a ChEBI (sinonimi -> stesso ID) oppure
-al fallback STR:\if{html}{\out{<slug>}} se non trovato in dizionario, oppure NA se termine assente.}
+\title{Normalizza un termine-composto testuale a ChEBI/ChEMBL (o STR/combo).}
 \usage{
 .normalize_compound_to_chebi(term, ontology_env)
 }
@@ -16,13 +15,14 @@ al fallback STR:\if{html}{\out{<slug>}} se non trovato in dizionario, oppure NA 
 lista con campi \code{id}, \code{name}, \code{source}.
 }
 \description{
-Flusso:
+Flusso (riscritta Task 3):
 \enumerate{
 \item Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
-\item Lookup nome/alias via \code{.chebi_lookup_alias} (indice \code{alias_lower}).
-\item Se trovato: recupera nome leggibile \code{$primary_name} via
-\code{.chebi_lookup_id} -> id="CHEBI:<chebi_id>", source="CHEBI_ALIAS".
-\item Altrimenti: id="STR:\if{html}{\out{<slug>}}", name=term, source="STR_FALLBACK".
+\item Estrazione candidati via \code{.extract_compound_candidates}.
+\item Per ogni candidato: \code{.resolve_one_compound} (gate + catena
+ChEBI -> ChEMBL -> de-frammentazione via pref_name -> CHEMBL nativo).
+\item Dedup per ID (named list, ultimo vince in caso di collisione).
+\item 0 risolti -> STR:\if{html}{\out{<slug>}} fallback; 1 risolto -> quell'ID;=2 distinti -> combo con \code{paste(sort(ids), collapse="+")} esource "COMPOUND_COMBO".
 }
 }
 \keyword{internal}
