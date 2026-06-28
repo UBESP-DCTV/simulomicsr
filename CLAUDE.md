@@ -11,17 +11,56 @@
 ---
 
 > ⚠️ **RED ALERT ATTIVO** (apertura 2026-05-25) — audit completo
-> pipeline a 5 stadi in corso (FASE F rebuild). **F6: Fase A run pieno FATTO; in
-> Fase B difetto paper-grade MINESTRONE Stadio 3 → REWORK Stadio 3: FASE CODICE
-> COMPLETA (Task 1-12 + final review fix, suite 283/0) + smoke validato (Task 13).
-> Restano i RUN GATED Task 14-16 (re-cluster v4 → ri-pooling Stadio 4 → gate
-> omogeneità v4).**
+> pipeline a 5 stadi in corso (FASE F rebuild). **F6: pipeline END-TO-END su v4
+> (malattie risolte, minestrone 64→8%). In corso OPZIONE B (recupero nomi
+> farmaci/composti con ChEMBL → Stadio 3 v5): FASE 1 CODICE COMPLETA + final review
+> clean + dizionario ChEMBL reale costruito + smoke copertura PASS (63% recupero
+> drug-name, 0 falsi) + stoplist precisione. Resta il RUN GATED re-cluster v5 →
+> re-pool v5 → re-gate.**
 > Reference operativa: **`docs/RED_ALERT.md`** (leggere PRIMA di toccare codice) +
-> ledger esecuzione **`.superpowers/sdd/progress.md`** + plan
-> `docs/superpowers/plans/2026-06-25-stage3-name-recovery-reclustering-plan.md`.
+> ledger esecuzione **`.superpowers/sdd/progress.md`** + plan/spec/HUMANE
+> `docs/superpowers/{plans,specs}/2026-06-28-stage3-perturbative-name-recovery-B-*`.
 > Master invariato. Branch attivo: `review-scientific-consistency-2026-06-10`. Le
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
+>
+> **Stato 2026-06-28 fine sessione 20 (Opzione B — farmaci ChEMBL)**: 🟢 **FASE 1
+> CODICE COMPLETA + final review clean + Task 6/7 gated (dict ChEMBL reale + smoke
+> copertura) + stoplist precisione. Prossimo = RUN GATED re-cluster Stadio 3 v5.**
+>
+> 1. **Brainstorming→spec→plan** (gate utente): scope = SOLO farmaci/small-molecule
+>    (biologici citochina/patogeno + fix-tipo K3 → TODO sessione futura, brainstorming
+>    dedicato); DB = ChEMBL (CC BY-SA, copertura composti da ricerca); canonicalizzazione
+>    ChEBI-preferred via pref_name ChEMBL (de-frammentazione); estrazione tollerante a
+>    dose/tempo/combo; combo → ID-combo deterministico `+`. Spec/plan/HUMANE
+>    `docs/superpowers/{specs,plans}/2026-06-28-stage3-perturbative-name-recovery-B-*`.
+> 2. **FASE 1 codice (subagent-driven, Task 1-5, suite 1015 PASS/0 FAIL/0 ERROR)**:
+>    dizionario ChEMBL (`R/ontology-lookup.R`: `.build_chembl_index`+accessor+loader
+>    GRACEFUL con `has_chembl`); estrazione `.extract_compound_candidates` +
+>    risoluzione `.resolve_one_compound`/`.normalize_compound_to_chebi` (catena
+>    ChEBI→ChEMBL→de-frammentazione→combo→STR, gate precisione esatto C1); bump cache
+>    lookup v1→v2 + asse `has_chembl` nella chiave; script build reale
+>    `analysis/p5-audit-chembl-build-dict.R`. Commit `cd9b213`..`d4419a8`.
+>    - **REGRESSIONE cross-task chiusa**: lo `stop()` su ChEMBL mancante nel loader (Task 1)
+>      rompeva `test-anchor-parse.R` + ogni build di anchor → DECISIONE UTENTE: loader
+>      GRACEFUL (chembl=NULL+has_chembl=FALSE) + assert-at-run negli script v5 (`83e1238`).
+>    - **FINAL review (opus) Ready-to-merge + 1 Important**: chiave cache lookup non
+>      distingueva has_chembl TRUE/FALSE → rischio servire lookup degradato v4 → fixato
+>      (`aebfc68`, chiave include `has_chembl`+release).
+> 3. **Task 6 (gated, DONE)**: download ChEMBL 37 SQLite (5.4G, SHA256 in
+>    `analysis/p4-output/chembl-source-provenance.json`) → dict reale
+>    `cache/chembl/chembl-lookup.rds` (49099 molecole, 128937 alias). Schema SQL VERIFICATO.
+>    .db estratto (30G) scartato, tarball tenuto su `/sda`.
+> 4. **Task 7 (gated, DONE — smoke copertura PRE-fullrun)**: **63,4% recupero** sui 484
+>    drug-name candidates (driver dominante = ESTRAZIONE che sblocca farmaci già in ChEBI;
+>    ChEMBL complementa i composti da ricerca; 46 combo). Canary precisione OK. **Finding:
+>    7/362 match generici spuri** (drug/acid/inhibitor/agonist/ligand/peptide come token
+>    isolati → merge spuri) → **stoplist** `.GENERIC_COMPOUND_STOPLIST` (commit `3bd8728`):
+>    match generici **7→0**, recupero 63,4%, farmaci reali invariati.
+> 5. **Prossimo (sessione 21, GATE UTENTE)**: Task 8 re-cluster Stadio 3 v5 (~6h, assert
+>    `has_chembl` + SMOKE=1 sanity + SMOKE=0 detached) → Task 9 re-pool Stadio 4 v5 (~11h,
+>    `/sda`, fix df-residui già committato) → Task 10 re-gate omogeneità v5 (small_molecule
+>    atteso giù dal 49%) + closeout. Memorie: [[project_stage3_minestrone_rework]].
 >
 > **Stato 2026-06-26 fine sessione 18**: 🟢 **REWORK Stadio 3 — FASE CODICE COMPLETA
 > (Task 1-12 + final whole-branch review fix) + smoke gate validato (Task 13). Restano
