@@ -244,3 +244,17 @@ test_that(".ontology_release_meta include chembl", {
   expect_true(!is.null(rel$chembl))
   expect_true(isTRUE(rel$chembl$fixture_subset))
 })
+
+# --- ChEMBL graceful (chembl=NULL) -------------------------------------------
+
+test_that("ChEMBL graceful: accessor con env$chembl NULL -> NULL (no errore)", {
+  fake <- list(chembl = NULL)
+  expect_null(.chembl_lookup_alias("icotinib", env = fake))
+  expect_null(.chembl_lookup_id("CHEMBL_X", env = fake))
+})
+
+test_that("ChEMBL caricato da fixture -> has_chembl TRUE", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fixture_dir())
+  expect_true(isTRUE(env$has_chembl))
+  expect_false(is.null(env$chembl))
+})

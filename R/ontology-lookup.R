@@ -49,6 +49,7 @@
     hgnc_raw   <- readRDS(file.path(fixture_dir, "hgnc-mini.rds"))
     mesh_raw   <- readRDS(file.path(fixture_dir, "mesh-mini.rds"))
     chembl_raw <- readRDS(file.path(fixture_dir, "chembl-mini.rds"))
+    has_chembl <- TRUE
     src_dir    <- fixture_dir
     is_fix     <- TRUE
   } else {
@@ -68,16 +69,18 @@
         hgnc_path, mesh_path
       ))
     }
-    if (!file.exists(chembl_path)) {
-      stop(sprintf(
-        "ChEMBL dictionary missing at %s.\nRebuild via: Rscript analysis/p5-audit-chembl-build-dict.R",
-        chembl_path
-      ))
+    # ChEMBL e' opzionale: se non disponibile il loader continua senza errori.
+    # Lo assert runtime e' rinviato agli script v5 che richiedono ChEMBL.
+    if (file.exists(chembl_path)) {
+      chembl_raw <- readRDS(chembl_path)
+      has_chembl <- TRUE
+    } else {
+      chembl_raw <- NULL
+      has_chembl <- FALSE
     }
     chebi_raw  <- readRDS(chebi_path)
     hgnc_raw   <- readRDS(hgnc_path)
     mesh_raw   <- readRDS(mesh_path)
-    chembl_raw <- readRDS(chembl_path)
     src_dir    <- cache_dir
     is_fix     <- FALSE
   }
@@ -85,7 +88,12 @@
   .ontology_env$chebi      <- .build_chebi_index(chebi_raw)
   .ontology_env$hgnc       <- .build_hgnc_index(hgnc_raw)
   .ontology_env$mesh       <- .build_mesh_index(mesh_raw)
-  .ontology_env$chembl     <- .build_chembl_index(chembl_raw)
+  if (has_chembl) {
+    .ontology_env$chembl   <- .build_chembl_index(chembl_raw)
+  } else {
+    .ontology_env$chembl   <- NULL
+  }
+  .ontology_env$has_chembl <- has_chembl
   .ontology_env$source_dir <- src_dir
   .ontology_env$is_fixture <- is_fix
   .ontology_env$loaded     <- TRUE
@@ -461,6 +469,7 @@
 
 #' @noRd
 .chembl_lookup_alias <- function(alias, env = .load_ontology_dicts()) {
+  if (is.null(env$chembl)) return(NULL)
   raw <- .normalize_key_chr(alias)
   if (is.na(raw)) return(NULL)
   key <- tolower(raw)
@@ -470,6 +479,7 @@
 
 #' @noRd
 .chembl_lookup_id <- function(chembl_id, env = .load_ontology_dicts()) {
+  if (is.null(env$chembl)) return(NULL)
   key <- .normalize_key_chr(chembl_id)
   if (is.na(key)) return(NULL)
   if (!exists(key, envir = env$chembl$by_id, inherits = FALSE)) return(NULL)
@@ -492,7 +502,7 @@
     chebi      = env$chebi$meta,
     hgnc       = env$hgnc$meta,
     mesh       = env$mesh$meta,
-    chembl     = env$chembl$meta,
+    chembl     = if (!is.null(env$chembl)) env$chembl$meta else NULL,
     source_dir = env$source_dir,
     is_fixture = env$is_fixture
   )
