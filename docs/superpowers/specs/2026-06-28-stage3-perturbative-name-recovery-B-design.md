@@ -221,7 +221,16 @@ Ogni unità è testabile in isolamento con le mini-fixture (incluso `chembl-mini
 
 ## 8. TODO registrato (sessione futura, brainstorming dedicato)
 
-Recupero **biologici citochina/patogeno** (LPS/TNF/IFN/IL/TGF/poly(I:C)/…) + **fix-tipo K3**
-(small_molecule mal-etichettati → pathogen/cytokine). Copertura ontologica debole: serve una
-fonte/vocabolario curato di biologici e/o LLM-fallback precision-gated (DECISIONE C). È dove
-`cytokine_stim` resta fermo a ~64%. Da fare DOPO il consolidamento drugs (v5).
+1. **Biologici citochina/patogeno** (LPS/TNF/IFN/IL/TGF/poly(I:C)/…) + **fix-tipo K3**
+   (small_molecule mal-etichettati → pathogen/cytokine). Copertura ontologica debole: serve una
+   fonte/vocabolario curato di biologici. È dove `cytokine_stim` resta fermo a ~64%. Dopo i drugs (v5).
+2. **🔑 LLM-fallback FINALE (DECISIONE C, generalizzata).** Dopo TUTTO il recupero
+   **deterministico** (MeSH malattie + ChEMBL/ChEBI farmaci + vocabolario biologici), le occorrenze
+   **ancora non-deterministiche** — i residui `STR:`/`UNK` di **disease + small molecule + farmaci**
+   — si tentano di recuperare con un **LLM**, come passo FINALE, **precision-gated** (LLM propone,
+   decisione validata contro ontologia/regole per non re-introdurre allucinazioni). Infrastruttura
+   eval pronta: `analysis/audit/name-recovery-llm-benchmark.R` (Task 12). Da fare alla fine della
+   catena deterministica, brainstorming dedicato.
+3. **Scelta DB small-molecule** (deep research in corso): vedi
+   `docs/superpowers/specs/2026-06-28-deep-research-small-molecule-db-prompt.md`. Eventuale fonte
+   complementare a ChEMBL (es. DrugCentral/GtoPdb per i research compounds, UniChem per i cross-ref).
