@@ -107,6 +107,41 @@ if (!exists("%||%")) {
 }
 
 # ---------------------------------------------------------------------------
+# Task 2 -- .extract_compound_candidates
+# ---------------------------------------------------------------------------
+
+#' Estrae candidati-composto da un termine rumoroso (dose/tempo/combo).
+#' Restituisce un vettore ordinato di stringhe da provare contro le ontologie.
+#' Conservativo: prova prima la stringa intera (cosi' i nomi con separatori
+#' interni come "kj pyr 9" non si frantumano), poi la versione spogliata da
+#' dose/tempo, poi le sotto-stringhe spezzate sulle congiunzioni.
+#' @keywords internal
+.extract_compound_candidates <- function(term) {
+  if (length(term) != 1L || is.na(term) || !nzchar(term)) return(character(0))
+  base <- tolower(trimws(gsub("\\s+", " ", term)))
+  cands <- base
+  stripped <- base
+  stripped <- gsub("\\b[0-9]+(\\.[0-9]+)?\\s*(µm|um|nm|mm|ng/?ml|ng|mg|ug|iu|u|m)\\b", " ", stripped, perl = TRUE)
+  stripped <- gsub("\\bfor\\s+[0-9]+\\s*(h|hr|hrs|hours|d|days|min|minutes)\\b", " ", stripped, perl = TRUE)
+  stripped <- gsub("\\b[0-9]+\\s*(h|hr|hrs|d|days|min)\\b", " ", stripped, perl = TRUE)
+  stripped <- gsub("\\b(treated|treatment|exposed|exposure|stimulated|stimulation|condition|induction|induced|of)\\b", " ", stripped, perl = TRUE)
+  stripped <- trimws(gsub("\\s+", " ", stripped))
+  if (nzchar(stripped) && stripped != base) cands <- c(cands, stripped)
+  # sotto-stringhe da congiunzioni (combo "A and B" / "A + B")
+  parts <- unlist(strsplit(stripped, "\\s+(and|plus|with)\\s+|\\s*[+&]\\s*", perl = TRUE))
+  parts <- trimws(gsub("\\s+", " ", parts))
+  parts <- parts[nzchar(parts) & !(parts %in% c(base, stripped))]
+  cands <- c(cands, parts)
+  # token whitespace singoli (cattura name+code "cobimetinib gdc0973" e combo
+  # separati da spazi). Il gate di precisione vive in .resolve_one_compound:
+  # len>=3 + non-numerico + match esatto -> token spuri/corti/numerici non risolvono.
+  toks <- unlist(strsplit(stripped, "\\s+"))
+  toks <- trimws(toks)
+  cands <- c(cands, toks[nzchar(toks)])
+  unique(cands[nzchar(cands)])
+}
+
+# ---------------------------------------------------------------------------
 # Task 6 -- .normalize_compound_to_chebi
 # ---------------------------------------------------------------------------
 

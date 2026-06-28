@@ -312,3 +312,40 @@ test_that("recover_identity: kind non perturbativo -> NO_RECOVERY, agent_id NA",
   expect_equal(r$kind, "time_course")
   expect_equal(r$recovery_source, "NO_RECOVERY")
 })
+
+# ---------------------------------------------------------------------------
+# Task 2 -- .extract_compound_candidates
+# ---------------------------------------------------------------------------
+
+test_that(".extract_compound_candidates: termine pulito -> se stesso", {
+  cs <- .extract_compound_candidates("icotinib")
+  expect_true("icotinib" %in% cs)
+})
+
+test_that(".extract_compound_candidates: spoglia dose/tempo", {
+  cs <- .extract_compound_candidates("osimertinib 2 um 9d")
+  expect_true("osimertinib" %in% cs)
+})
+
+test_that(".extract_compound_candidates: combo -> sotto-candidati separati", {
+  cs <- .extract_compound_candidates("10 um enzalutamide and 30 nm onvansertib")
+  expect_true("enzalutamide" %in% cs)
+  expect_true("onvansertib" %in% cs)
+})
+
+test_that(".extract_compound_candidates: nome con underscore/numero interno preservato intero", {
+  cs <- .extract_compound_candidates("kj pyr 9")
+  expect_true("kj pyr 9" %in% cs)   # la stringa intera resta un candidato
+})
+
+test_that(".extract_compound_candidates: name+code separati -> token singoli candidati", {
+  cs <- .extract_compound_candidates("cobimetinib gdc0973")
+  expect_true("cobimetinib gdc0973" %in% cs)  # frase intera
+  expect_true("cobimetinib" %in% cs)          # token
+  expect_true("gdc0973" %in% cs)              # token
+})
+
+test_that(".extract_compound_candidates: input vuoto/NA -> character(0)", {
+  expect_length(.extract_compound_candidates(NA_character_), 0L)
+  expect_length(.extract_compound_candidates(""), 0L)
+})
