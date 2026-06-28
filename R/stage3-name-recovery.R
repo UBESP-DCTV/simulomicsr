@@ -142,18 +142,73 @@ if (!exists("%||%")) {
 }
 
 # ---------------------------------------------------------------------------
-# Task 6 -- .normalize_compound_to_chebi
+# Task 3 -- .resolve_one_compound + .normalize_compound_to_chebi (riscritta)
 # ---------------------------------------------------------------------------
 
-#' Normalizza un termine-composto testuale a ChEBI (sinonimi -> stesso ID) oppure
-#' al fallback STR:<slug> se non trovato in dizionario, oppure NA se termine assente.
+#' Risolve UN candidato-composto: gate precisione + catena ChEBI -> ChEMBL ->
+#' ChEBI-via-pref_name (de-frammentazione) -> CHEMBL nativo. NULL se non risolve.
 #'
-#' Flusso:
+#' Gate di precisione: un candidato viene processato solo se, dopo rimozione
+#' dei caratteri non-alfanumerici, ha lunghezza >=3 e non e' puramente numerico.
+#' Questo previene che token corti o numerici (es. da "10 nm 1") producano ID.
+#'
+#' @param cand character(1) stringa-candidato gia' estratta da
+#'   \code{.extract_compound_candidates}.
+#' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
+#' @return lista con campi \code{id}, \code{name}, \code{source}, oppure NULL
+#'   se il candidato non supera il gate o non risolve in nessun dizionario.
+#' @keywords internal
+.resolve_one_compound <- function(cand, ontology_env) {
+  c2   <- trimws(cand)
+  alnum <- gsub("[^a-z0-9]", "", tolower(c2))
+  if (nchar(alnum) < 3L) return(NULL)           # gate: troppo corto
+  if (grepl("^[0-9]+$", alnum)) return(NULL)    # gate: puramente numerico
+  # 1. ChEBI diretto
+  hit <- .chebi_lookup_alias(c2, env = ontology_env)
+  if (!is.null(hit) && !is.null(hit$chebi_id)) {
+    full <- .chebi_lookup_id(hit$chebi_id, env = ontology_env)
+    return(list(
+      id     = paste0("CHEBI:", hit$chebi_id),
+      name   = if (!is.null(full) && !is.null(full$primary_name)) full$primary_name else c2,
+      source = "CHEBI_ALIAS"
+    ))
+  }
+  # 2. ChEMBL -> pref_name -> ChEBI (de-frammentazione) oppure CHEMBL nativo
+  ch <- .chembl_lookup_alias(c2, env = ontology_env)
+  if (!is.null(ch) && !is.null(ch$chembl_id)) {
+    mol  <- .chembl_lookup_id(ch$chembl_id, env = ontology_env)
+    pref <- if (!is.null(mol) && !is.null(mol$pref_name)) mol$pref_name else NA_character_
+    if (!is.na(pref) && nzchar(pref)) {
+      chebi2 <- .chebi_lookup_alias(pref, env = ontology_env)
+      if (!is.null(chebi2) && !is.null(chebi2$chebi_id)) {
+        full <- .chebi_lookup_id(chebi2$chebi_id, env = ontology_env)
+        return(list(
+          id     = paste0("CHEBI:", chebi2$chebi_id),
+          name   = if (!is.null(full) && !is.null(full$primary_name)) full$primary_name else pref,
+          source = "CHEMBL_VIA_CHEBI"
+        ))
+      }
+    }
+    return(list(
+      id     = paste0("CHEMBL:", ch$chembl_id),
+      name   = pref %||% c2,
+      source = "CHEMBL_ALIAS"
+    ))
+  }
+  NULL
+}
+
+#' Normalizza un termine-composto testuale a ChEBI/ChEMBL (o STR/combo).
+#'
+#' Flusso (riscritta Task 3):
 #' 1. Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
-#' 2. Lookup nome/alias via \code{.chebi_lookup_alias} (indice \code{alias_lower}).
-#' 3. Se trovato: recupera nome leggibile \code{$primary_name} via
-#'    \code{.chebi_lookup_id} -> id="CHEBI:<chebi_id>", source="CHEBI_ALIAS".
-#' 4. Altrimenti: id="STR:<slug>", name=term, source="STR_FALLBACK".
+#' 2. Estrazione candidati via \code{.extract_compound_candidates}.
+#' 3. Per ogni candidato: \code{.resolve_one_compound} (gate + catena
+#'    ChEBI -> ChEMBL -> de-frammentazione via pref_name -> CHEMBL nativo).
+#' 4. Dedup per ID (named list, ultimo vince in caso di collisione).
+#' 5. 0 risolti -> STR:<slug> fallback; 1 risolto -> quell'ID;
+#'    >=2 distinti -> combo con \code{paste(sort(ids), collapse="+")} e
+#'    source "COMPOUND_COMBO".
 #'
 #' @param term character(1) termine-composto estratto dai metadati GEO.
 #' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
@@ -163,16 +218,26 @@ if (!exists("%||%")) {
   if (length(term) != 1L || is.na(term) || !nzchar(term)) {
     return(list(id = NA_character_, name = NA_character_, source = "NO_TERM"))
   }
-  hit <- .chebi_lookup_alias(term, env = ontology_env)
-  if (!is.null(hit) && !is.null(hit$chebi_id)) {
-    full <- .chebi_lookup_id(hit$chebi_id, env = ontology_env)
-    return(list(
-      id     = paste0("CHEBI:", hit$chebi_id),
-      name   = if (!is.null(full) && !is.null(full$primary_name)) full$primary_name else term,
-      source = "CHEBI_ALIAS"
-    ))
+  cands    <- .extract_compound_candidates(term)
+  resolved <- list()
+  for (cand in cands) {
+    r <- .resolve_one_compound(cand, ontology_env)
+    if (!is.null(r)) resolved[[r$id]] <- r   # dedup per id
   }
-  list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
+  ids <- names(resolved)
+  if (length(ids) == 0L) {
+    return(list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK"))
+  }
+  if (length(ids) == 1L) {
+    r <- resolved[[1L]]
+    return(list(id = r$id, name = r$name, source = r$source))
+  }
+  ord <- sort(ids)
+  list(
+    id     = paste(ord, collapse = "+"),
+    name   = paste(vapply(ord, function(i) resolved[[i]]$name %||% i, character(1L)), collapse = " + "),
+    source = "COMPOUND_COMBO"
+  )
 }
 
 # ---------------------------------------------------------------------------

@@ -349,3 +349,55 @@ test_that(".extract_compound_candidates: input vuoto/NA -> character(0)", {
   expect_length(.extract_compound_candidates(NA_character_), 0L)
   expect_length(.extract_compound_candidates(""), 0L)
 })
+
+# ---------------------------------------------------------------------------
+# Task 3 -- .resolve_one_compound + .normalize_compound_to_chebi estesa
+# (catena ChEBI -> ChEMBL -> de-frammentazione via pref_name -> CHEMBL nativo + combo)
+# ---------------------------------------------------------------------------
+
+# Riusa la stessa fixture degli altri test Task 6 in questo file.
+.ont <- function() .fixt_chebi()
+
+test_that(".normalize_compound_to_chebi: ChEBI diretto invariato (retrocompat)", {
+  r <- .normalize_compound_to_chebi("doxorubicin", .ont())
+  expect_equal(r$id, "CHEBI:28748")
+  expect_equal(r$source, "CHEBI_ALIAS")
+})
+
+test_that(".normalize_compound_to_chebi: ChEMBL nativo per composto non-ChEBI", {
+  r <- .normalize_compound_to_chebi("icotinib", .ont())
+  expect_equal(r$id, "CHEMBL:CHEMBL_ICOTINIB")
+  expect_equal(r$source, "CHEMBL_ALIAS")
+})
+
+test_that(".normalize_compound_to_chebi: de-frammentazione code->pref_name->ChEBI", {
+  # 'nsc-123127' (codice) -> ChEMBL -> pref 'Doxorubicin' -> ChEBI:28748
+  r <- .normalize_compound_to_chebi("nsc-123127", .ont())
+  expect_equal(r$id, "CHEBI:28748")
+  expect_equal(r$source, "CHEMBL_VIA_CHEBI")
+})
+
+test_that(".normalize_compound_to_chebi: estrae nome da termine rumoroso (dose/tempo)", {
+  r <- .normalize_compound_to_chebi("enzalutamide 10 um for 48 hours", .ont())
+  expect_equal(r$id, "CHEMBL:CHEMBL_ENZA")
+  expect_equal(r$source, "CHEMBL_ALIAS")
+})
+
+test_that(".normalize_compound_to_chebi: combo 2 farmaci -> ID-combo ordinato", {
+  r <- .normalize_compound_to_chebi("10 um enzalutamide and 30 nm onvansertib", .ont())
+  expect_equal(r$source, "COMPOUND_COMBO")
+  expect_equal(r$id, "CHEMBL:CHEMBL_ENZA+CHEMBL:CHEMBL_ONVA")  # ordinato
+  expect_true(grepl("\\+", r$id))
+})
+
+test_that(".normalize_compound_to_chebi: name+code stesso farmaco NON e' combo", {
+  r <- .normalize_compound_to_chebi("cobimetinib gdc0973", .ont())
+  # entrambi -> CHEMBL_COBI -> 1 solo id distinto
+  expect_false(identical(r$source, "COMPOUND_COMBO"))
+  expect_equal(r$id, "CHEMBL:CHEMBL_COBI")
+})
+
+test_that(".normalize_compound_to_chebi: canary precisione - numeri/token corti -> STR", {
+  expect_equal(.normalize_compound_to_chebi("10 nm 1", .ont())$source, "STR_FALLBACK")
+  expect_equal(.normalize_compound_to_chebi("1 so", .ont())$source, "STR_FALLBACK")
+})
