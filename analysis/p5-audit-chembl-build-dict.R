@@ -3,7 +3,7 @@
 # Input:  dump SQLite ChEMBL estratto (env CHEMBL_SQLITE = path al .db).
 # Output: cache/chembl/chembl-lookup.rds (by_id + aliases + meta).
 Sys.setenv(OPENBLAS_NUM_THREADS = "1", OMP_NUM_THREADS = "1")
-suppressPackageStartupMessages({ library(DBI); library(dplyr); library(tibble); library(cli) })
+suppressPackageStartupMessages({ library(DBI); library(dplyr); library(cli) })
 
 db_path <- Sys.getenv("CHEMBL_SQLITE", "")
 stopifnot("env CHEMBL_SQLITE non impostata" = nzchar(db_path), file.exists(db_path))
@@ -22,6 +22,7 @@ cli_alert_success(sprintf("molecole con pref_name: %d", nrow(md)))
 cli_alert_info("molecule_synonyms ...")
 syn <- DBI::dbGetQuery(con,
   "SELECT molregno, synonyms, syn_type FROM molecule_synonyms WHERE synonyms IS NOT NULL")
+cli_alert_success(sprintf("sinonimi grezzi: %d", nrow(syn)))
 
 by_id <- md |>
   transmute(chembl_id = chembl_id, pref_name = pref_name) |>
@@ -36,7 +37,7 @@ syn_al <- syn |>
 pref_al <- by_id |>
   transmute(alias_lower = tolower(trimws(pref_name)), chembl_id, type = "PREF_NAME")
 aliases <- bind_rows(pref_al, syn_al) |>
-  filter(nzchar(alias_lower)) |>
+  filter(nzchar(alias_lower), !is.na(chembl_id)) |>
   distinct(alias_lower, chembl_id, .keep_all = TRUE)
 
 meta <- list(
