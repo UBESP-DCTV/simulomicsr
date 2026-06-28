@@ -13,9 +13,13 @@
 \arguments{
 \item{refresh}{logical(1): se TRUE forza reload (anche se gia' caricato).}
 
-\item{cache_dir}{character(1): directory contenente i 4 RDS full (default
-\code{tools::R_user_dir("simulomicsr","cache")}). Usato solo se
-\code{fixture_dir} e' NULL.}
+\item{cache_dir}{character(1): directory contenente i RDS full (default
+\code{tools::R_user_dir("simulomicsr","cache")}). chebi/hgnc/mesh sono
+OBBLIGATORI (stop se mancano); chembl e' OPZIONALE (se manca, chembl=NULL
+\itemize{
+\item has_chembl=FALSE, comportamento retrocompat). Usato solo se
+\code{fixture_dir} e' NULL.
+}}
 
 \item{fixture_dir}{character(1) | NULL: se non-NULL, carica i mini-subset
 \code{chebi-mini.rds}, \code{hgnc-mini.rds}, \code{mesh-mini.rds},
@@ -24,7 +28,8 @@ per i test.}
 }
 \value{
 environment con elementi \code{chebi}, \code{hgnc}, \code{mesh},
-\code{chembl}, \code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
+\code{chembl} (NULL se assente nel ramo reale), \code{has_chembl} (logical),
+\code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
 }
 \description{
 Costruisce hash environment per ogni indice rilevante (by_id, aliases,

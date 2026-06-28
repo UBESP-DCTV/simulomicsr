@@ -26,15 +26,18 @@
 #' ChEMBL).
 #'
 #' @param refresh logical(1): se TRUE forza reload (anche se gia' caricato).
-#' @param cache_dir character(1): directory contenente i 4 RDS full (default
-#'   \code{tools::R_user_dir("simulomicsr","cache")}). Usato solo se
+#' @param cache_dir character(1): directory contenente i RDS full (default
+#'   \code{tools::R_user_dir("simulomicsr","cache")}). chebi/hgnc/mesh sono
+#'   OBBLIGATORI (stop se mancano); chembl e' OPZIONALE (se manca, chembl=NULL
+#'   + has_chembl=FALSE, comportamento retrocompat). Usato solo se
 #'   \code{fixture_dir} e' NULL.
 #' @param fixture_dir character(1) | NULL: se non-NULL, carica i mini-subset
 #'   \code{chebi-mini.rds}, \code{hgnc-mini.rds}, \code{mesh-mini.rds},
 #'   \code{chembl-mini.rds} da questa directory invece dei file full. Usato
 #'   per i test.
 #' @return environment con elementi \code{chebi}, \code{hgnc}, \code{mesh},
-#'   \code{chembl}, \code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
+#'   \code{chembl} (NULL se assente nel ramo reale), \code{has_chembl} (logical),
+#'   \code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
 #' @keywords internal
 .load_ontology_dicts <- function(refresh = FALSE,
                                  cache_dir = tools::R_user_dir("simulomicsr", which = "cache"),
