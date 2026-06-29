@@ -11,18 +11,48 @@
 ---
 
 > ⚠️ **RED ALERT ATTIVO** (apertura 2026-05-25) — audit completo
-> pipeline a 5 stadi in corso (FASE F rebuild). **F6: pipeline END-TO-END su v4
-> (malattie risolte, minestrone 64→8%). In corso OPZIONE B (recupero nomi
-> farmaci/composti con ChEMBL → Stadio 3 v5): FASE 1 CODICE COMPLETA + final review
-> clean + dizionario ChEMBL reale costruito + smoke copertura PASS (63% recupero
-> drug-name, 0 falsi) + stoplist precisione. Resta il RUN GATED re-cluster v5 →
-> re-pool v5 → re-gate.**
+> pipeline a 5 stadi in corso (FASE F rebuild). **F6: pipeline END-TO-END su v5
+> (malattie risolte + OPZIONE B farmaci/composti ChEMBL COMPLETA). Plan B Task 8-10
+> ESEGUITI: re-cluster Stadio 3 v5 (317k cluster) → re-pool Stadio 4 v5 (7,36M righe
+> pooled, 0 crash df-residui) → re-gate omogeneità. `small_molecule` minestrone
+> 49→36,5% globale, ma al livello granulare L0/L1 (composto specifico) 12→8% ≈ disease
+> (7,7%): il residuo è pooling gerarchico L3/L4 by-design, non name-recovery mancante.**
 > Reference operativa: **`docs/RED_ALERT.md`** (leggere PRIMA di toccare codice) +
 > ledger esecuzione **`.superpowers/sdd/progress.md`** + plan/spec/HUMANE
 > `docs/superpowers/{plans,specs}/2026-06-28-stage3-perturbative-name-recovery-B-*`.
 > Master invariato. Branch attivo: `review-scientific-consistency-2026-06-10`. Le
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
+>
+> **Stato 2026-06-29 fine sessione 21 (Plan B FASE 2 — run gated Task 8-10 COMPLETI)**:
+> 🟢 **Pipeline end-to-end ri-girata su v5. Plan B (farmaci ChEMBL) CHIUSO.**
+>
+> 1. **Pre-flight**: `has_chembl=TRUE` (49099 molecole), fix df-residui `0c41848` nel
+>    codice, input v4 presenti. **Task 8** (re-cluster Stadio 3 v5): 2 micro-edit allo
+>    script `analysis/p4-fase-f6-stage3-reclustering.R` (assert `has_chembl` fail-loud +
+>    token `v5`). Smoke PASS → full detached **400 min (~6h40)**, **317.434 cluster**,
+>    `analysis/p4-output/20260629T041343Z-stage3-v5-364547a7/`. run_metadata: chembl reale
+>    (`fixture_subset=false`), cache lookup `v2`. Recovery ChEMBL: 4407 cluster.
+> 2. **Task 9** (re-pool Stadio 4 v5): script `analysis/p4-fase-f5-stage4-layer-a-rebuild-v5.R`
+>    (copia -v4, 4 cambi: stage3_dir→v5, out_dir→`/sda`+token v5, 2 log). Smoke DRY_RUN PASS
+>    (Layer A 533 cluster). Full detached **619 min (~10h19)**, **7.362.958 righe pooled**,
+>    987.589 sig (FDR<0,05), 428 processed + 105 non-processable. **Zero crash df-residui**
+>    sui 348 mega_aug (fix `0c41848` validato sul full). Output
+>    `/sda/simulomicsr-stage4-v5/20260629T164735Z-stage4-v5-4f7ea215/`. Dashboard quarto
+>    fallita (non-fatale, manca binario). Stima DRY_RUN 24h pessimistica (reale ~11h).
+> 3. **Task 10** (re-gate omogeneità v5 + INDAGINE): `small_molecule` minestrone **49,0% →
+>    36,5%** globale (criterio soddisfatto; altri kind non peggiorano). **Indagine del
+>    residuo (gate utente)**: i 409 minestroni residui sono 97,5% anchor `CHEBI:` (NON
+>    UNK/STR) → NON name-recovery insufficiente. Per livello (v4→v5): **L0 12,1→8,3%, L1
+>    12,4→7,9%** (granulare = composto specifico, ora ≈ disease 7,7%), L2 23→17, L3 33→25,
+>    L4 41→32 (pooling per classe ChEBI = minestrone in parte BY-DESIGN). Finding
+>    `docs/findings/2026-06-29-stage3-v5-chembl-homogeneity.md`; audit
+>    `analysis/audit/stage3-homogeneity-check-v5-full-out.{txt,csv}`.
+> 4. **TODO (NON Plan B, sessioni future)**: biologici cytokine/pathogen (~61% residuo,
+>    vocabolario dedicato + fix-tipo K3); **LLM-fallback finale** (DECISIONE C generale,
+>    precision-gated) sui residui STR:/UNK; micro-fix casing `ChEMBL:`/`CHEMBL:` (20
+>    cluster) al prossimo rebuild; caratterizzare 105 non-processable Stadio 4.
+>    Memorie: [[project_stage3_minestrone_rework]].
 >
 > **Stato 2026-06-28 fine sessione 20 (Opzione B — farmaci ChEMBL)**: 🟢 **FASE 1
 > CODICE COMPLETA + final review clean + Task 6/7 gated (dict ChEMBL reale + smoke

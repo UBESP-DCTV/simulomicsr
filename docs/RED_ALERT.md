@@ -1304,6 +1304,20 @@ Copertura: rem k=3-8 (trusted), mega_aug k=2 (check fragile, ed è dove stanno
 
 #### 🔴 F6 — Layer B re-selection + rebuild (SOSPESO: rework Stadio 3 a monte)
 
+> **AGGIORNAMENTO sessione 21 (2026-06-29) — Plan B (farmaci ChEMBL) run gated Task 8-10 COMPLETI.**
+> Pipeline ri-girata end-to-end su **v5**. Dettagli in `CLAUDE.md` (header sessione 21),
+> `.superpowers/sdd/progress.md`, finding `docs/findings/2026-06-29-stage3-v5-chembl-homogeneity.md`.
+> - **Task 8** re-cluster Stadio 3 v5 (assert `has_chembl` + token v5): 400 min, **317.434 cluster**,
+>   `…20260629T041343Z-stage3-v5-364547a7/`. Recovery ChEMBL 4407 cluster, cache lookup v2.
+> - **Task 9** re-pool Stadio 4 v5 (script `…rebuild-v5.R`, output `/sda`): 619 min, **7.362.958 righe
+>   pooled**, 987.589 sig. **0 crash df-residui** sui 348 mega_aug (fix `0c41848` validato sul full).
+> - **Task 10** re-gate omogeneità: `small_molecule` minestrone **49,0→36,5%** globale (criterio OK,
+>   altri kind non peggiorano). Indagine: residuo = 97,5% anchor CHEBI (non UNK/STR); per livello
+>   **L0/L1 12→8% ≈ disease 7,7%** (granulare risolto), L3/L4 31-41→25-32% (pooling per classe ChEBI =
+>   minestrone in parte BY-DESIGN). Non è name-recovery insufficiente.
+> - **Resta SOSPESO** (non in questo scope): Layer B re-selection + Fase B/C/D; biologici
+>   cytokine/pathogen (~61%); LLM-fallback finale (DECISIONE C). TODO sessioni future.
+>
 > **AGGIORNAMENTO sessione 17 (2026-06-25).**
 > - **Fase A run pieno FATTO**: `cluster_reproducibility_v2.rds` (776 cluster) +
 >   `cluster_vpc_per_gene.parquet` + `cluster_pi_per_gene.parquet` in `…stage4-4f7ea215/`.
