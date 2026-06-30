@@ -26,14 +26,16 @@ scambiato per "small molecule".
 
 ## Le scelte che hai fatto nel brainstorming
 1. **Entrambe** le famiglie in un colpo (un re-cluster, non due).
-2. Citochine da **HGNC + UniProt + GO + ImmPort** (ImmPort lo scarichi tu con una API key gratuita).
+2. Citochine da **HGNC + UniProt + GO + ImmPort** (il cytokine registry ImmPort: 275 citochine con
+   ~4.900 sinonimi, già recuperato — è il seed dei nomi "scritti in mille modi").
 3. Il **fix-tipo** (LPS/TNF/IL4 mal-etichettati) **in questo giro**.
 4. I **PAMP** (LPS, poly(I:C)…) restano identificati come molecole ChEBI ma analizzati insieme ai
    patogeni, decisi da una lista bianca corta e leggibile.
 
-## L'unica cosa che serve da te
-Una **API key ImmPort** (registrazione gratuita, 1 minuto, scope "browse") quando arriviamo al build
-dei dizionari. Tutto il resto si scarica in anonimo.
+## Cosa serve da te — già fatto
+Avevi già fornito sia il **cytokine registry** (file Excel, 275 citochine / ~4.900 sinonimi) sia una
+**API key ImmPort** (scope "browse"): entrambi verificati su dati reali. Le altre fonti (NCBI Taxonomy,
+GO, UniProt) si scaricano in anonimo. Niente più incognite di accesso.
 
 ## Il punto di non ritorno
 Prima dei run pesanti (~6-7h + ~10h) c'è uno **smoke**: misuriamo su dati veri quanti biologici

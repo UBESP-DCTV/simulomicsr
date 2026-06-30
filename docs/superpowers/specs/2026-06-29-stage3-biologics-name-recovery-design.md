@@ -3,6 +3,8 @@
 **Data:** 2026-06-29 · **Branch:** `review-scientific-consistency-2026-06-10` (master invariato)
 **Status:** Proposed · **Sub-skill esecuzione:** `superpowers:subagent-driven-development`
 **Deep research propedeutica:** `docs/findings/2026-06-29-deep-research-biologics-db.md`
+**Verifica fonti ImmPort (2026-06-29, dati reali):** API ImmPort interrogata con API key utente
+(scope `browse`) + cytokine registry-file fornito. Vedi §4.1 — l'incognita ImmPort è CHIUSA.
 **Handout origine:** `docs/superpowers/specs/2026-06-29-stage3-biologics-NEXT-SESSION-handout.md`
 
 ---
@@ -33,21 +35,21 @@ Due sotto-problemi distinti:
 - Confine deterministico PAMP/adiuvante.
 
 **Out of scope (sessioni future):**
-- LLM-fallback finale (DECISIONE C), precision-gated, sui residui `STR:`/`UNK` — è il passo
-  FINALE dopo tutto il deterministico.
+- LLM-fallback finale (DECISIONE C), precision-gated, sui residui `STR:`/`UNK` — passo FINALE
+  dopo tutto il deterministico.
 - K3 nel verso opposto (biologico → small_molecule): non aperto (precision-first, un fronte solo).
-- Doppio-record "PAMP + organismo sorgente" (es. "LPS from E. coli"): limitazione nota (§9).
+- Doppio-record "PAMP + organismo sorgente" (es. "LPS from E. coli"): limitazione nota (§11).
 
 ## 3. Decisioni (dal brainstorming, gate utente)
 
 | # | Decisione | Scelta |
 |---|---|---|
 | D1 | Scope famiglie | **Entrambe** (citochine + patogeni) in v6 |
-| D2 | Fonti citochine | **HGNC** (cache, nome→ID) + **UniProt** (sinonimi, *misurato*) + **GO cytokine-activity** (whitelist CC) + **ImmPort** (seed primario sinonimi, via API key) |
-| D3 | Fonte patogeni | **NCBI Taxonomy** taxdump → `NCBITaxon:<taxid>` |
+| D2 | Fonti citochine | **HGNC** (cache, nome→ID + alias/previous) + **UniProt** (sinonimi, *misurato*) + **ImmPort cytokine registry-file** (seed sinonimi: 275 cito / 4.896 alias / 250 con HGNC ID) + **GO cytokine-activity** (whitelist CC complementare) |
+| D3 | Fonte patogeni | **NCBI Taxonomy** taxdump → `NCBITaxon:<taxid>` (primario); ImmPort `lkExposureMaterial`/`lkSpecies` come cross-check vernacolo |
 | D4 | Fix-tipo K3 | **In questo v6** (solo `small_molecule`→biologico, solo su match forte) |
 | D5 | Confine PAMP | **Whitelist curata → ChEBI ID**, kind `pathogen`, mai mergiato con l'organismo |
-| D6 | ImmPort accesso | **Build gated**: l'utente crea API key (scope `browse`) / usa Swagger; schema verificato al build |
+| D6 | ImmPort accesso | **Verificato (non più "al build")**: registry-file statico per i sinonimi + API key (scope `browse`) per `lkProteinName`/`lkExposureMaterial` come complemento. Vedi §4.1 |
 | D7 | Approccio architetturale | **A** — clone fedele del pattern `ontology-lookup` (una fonte = un indice = un test = un dump tracciabile) |
 
 **ID canonici:** citochina = `HGNC:n`; organismo = `NCBITaxon:<taxid>`; PAMP = `CHEBI:n`.
@@ -63,7 +65,7 @@ Namespace `HGNC:` già emesso dal K2 → riuso con `kind=cytokine_stim`. `NCBITa
 |---|---|---|---|---|
 | NCBI taxdump | patogeni nome→taxid (rank specie/sotto) | `analysis/p5-audit-taxonomy-build-dict.R` | ≈public domain | anonimo (FTP) |
 | GO cytokine-activity | whitelist "è-citochina" (GAF) | `analysis/p5-audit-go-cytokine-build-dict.R` | CC BY | anonimo |
-| ImmPort registry | seed primario sinonimi citochine + whitelist | `analysis/p5-audit-immport-build-dict.R` | data-use agreement | **API key (utente)** |
+| ImmPort cytokine registry | seed sinonimi citochine + whitelist | `analysis/p5-audit-immport-build-dict.R` | data-use agreement | **registry-file (.xls) + API key** |
 | UniProt | sinonimi-proteina → HGNC (*misurato*) | `analysis/p5-audit-uniprot-build-dict.R` | CC BY 4.0 | anonimo |
 
 **Loader:** estendo `.load_ontology_dicts` con flag graceful `has_taxonomy`/`has_immport`/
@@ -72,32 +74,52 @@ retrocompat byte-identica). Nuovi `.build_taxonomy_index`/`.build_immport_index`
 `.build_uniprot_index` + whitelist citochine (set) + accessor O(1) hash-env. Gli script v6 fanno
 **assert-at-run** dei flag richiesti.
 
-**ImmPort (D6):** le controlled-vocabulary ImmPort sono pubbliche (`Authorization Required: No`,
-pattern `/data/query/api/lookup/<nome>?format=json`); per il resto basta API key scope `browse`
-(`immport.org/auth/api/keys`). Path esatto dell'endpoint registry + schema campi si fissano al
-build sui dati reali (come lo schema SQL ChEMBL al Task 6). Fonte deriva da HGNC/UniProt/MeSH/PRO.
+### 4.1 ImmPort — verifica fonti (2026-06-29, dati reali)
+
+Interrogata l'API ImmPort con API key utente (scope `browse`, `Authorization: Bearer`) e ispezionato
+il cytokine registry-file fornito. Esito:
+
+- **Cytokine registry-file** `CytokineRegistry.November_2015.xls` (foglio `Registry`, 275 × 30):
+  preservato in `analysis/p4-output/cytokine-registry-immport-2015.xls` (gitignored;
+  `sha256:dc626e4e6ff9e4e848e7547be1a76a64f0f0f24cb0859c5520e07cd36cc01bcc`). **275 citochine**,
+  **250 con HGNC ID**, 247 UniProt, 255 Protein Ontology, 103 MeSH. **4.896 sinonimi** (media 18/cito,
+  max 104), distribuiti su colonne `EntrezGene Aliases/Additional Names (Human)`,
+  `UniProt protein (alternative) names (Human)`, `Typographical variations`, `IX Synonyms`,
+  `Protein Ontology synonyms`. Es. Interferon-beta → `HGNC:5434` con ~44 grafie (IFNB1, IFN-beta,
+  beta interferon, ifn{beta}, fiblaferon…). → **è il seed di sinonimi**; build via `readxl`.
+- **API `lkProteinName`** (841 proteine, di cui **207 citochine/chemochine/recettori** con
+  `uniprot_gene_name`=HGNC symbol + `uniprot_id`): **whitelist citochine** complementare (no alias ricchi).
+- **API `lkExposureMaterial`** (102, → `NCBITaxon:`/`VO:`/`UMLS_CUI:`), `lkSpecies` (24), `lkVirusStrain`
+  (59): cross-check vernacolo patogeni (SARS-CoV-2→2697049, M.tuberculosis→1773, Influenza A→11320).
+- **Smentito:** l'API NON espone il registry ricco; i ~4.896 sinonimi stanno SOLO nel registry-file.
+- **Conferma architetturale:** ImmPort canonicalizza su HGNC+UniProt (citochine) e NCBITaxon (patogeni)
+  = i nostri ID. Endpoint reali: `/data/query/api/lookup/<lkName>?format=json` (scope `browse`).
 
 ## 5. Estrazione + risoluzione (R/stage3-name-recovery.R)
 
 **Normalizzazione condivisa** `.normalize_biological_mention()`: riuso `.extract_compound_candidates`
-(strip dose/tempo/combo) + NFKC + mappa greco `α↔alpha`, `β↔beta`, `γ↔gamma` + collasso
-trattino/spazio (`"IFN-β"="ifn beta"="ifnb"`).
+(strip dose/tempo/combo: `"TNFa 600nm"→"tnfa"`) + NFKC + mappa greco `α↔alpha`, `β↔beta`, `γ↔gamma`
++ collasso trattino/spazio (`"IFN-β"="ifn beta"="ifnb"`).
 
 **Citochine** `.normalize_cytokine_to_hgnc(term, env)` (catena precisione-decrescente):
 1. gate stoplist (§6) → generico ⇒ STR
-2. ImmPort synonym → `HGNC:n`
-3. HGNC symbol / alias / previous → `HGNC:n`
-4. UniProt protein-name synonym → `HGNC:n` (*misurato; droppabile*)
-5. gate whitelist: hit accettato solo se il gene ∈ whitelist citochine (**ImmPort ∪ GO**) ⇒ altrimenti STR
+2. **ImmPort registry synonym** → `HGNC:n` *(seed sinonimi greco/storici dal registry-file)*
+3. HGNC symbol / alias / previous *(già in cache)* → `HGNC:n`
+4. UniProt protein-name synonym → `HGNC:n` *(misurato; droppabile)*
+5. gate whitelist: hit accettato solo se il gene ∈ whitelist citochine (**registry ∪ lkProteinName ∪
+   GO cytokine-activity**) ⇒ altrimenti STR
 6. miss → `STR:<slug>`
+- **ID canonico = `HGNC:n`** (es. IFN-β → `HGNC:5434`).
 
 **Patogeni** `.normalize_pathogen_to_taxid(term, env)`:
 1. gate stoplist → generico ⇒ STR
 2. **whitelist PAMP** → `CHEBI:n` + flag `pathogen_exposure` (controllata PRIMA di taxdump)
-3. vernacolo curato (flu→Influenza, TB/Mtb→M. tuberculosis, SARS-CoV-2→2697049)
+3. vernacolo curato (+ cross-check `lkExposureMaterial`): flu→Influenza, TB/Mtb→M. tuberculosis,
+   SARS-CoV-2→2697049
 4. taxdump names (scientific/synonym/common/genbank-common) → taxid
 5. rollup a specie via `nodes.dmp` (strain→specie salvo strain esplicito)
 6. miss → `STR:<slug>`
+- **ID canonico = `NCBITaxon:<taxid>`** per gli organismi, `CHEBI:n` per i PAMP.
 
 **Orchestrazione `recover_identity`:** ramo perturbativo per `kind` →
 `cytokine_stim`:`normalize_cytokine_to_hgnc`; `pathogen`:`normalize_pathogen_to_taxid`;
@@ -137,24 +159,25 @@ con l'organismo (whitelist PAMP prima di taxdump).
 - **Cache lookup `v2 → v3`**, con `has_taxonomy`/`has_immport`/`has_uniprot`/`has_go_cytokine` **nella
   chiave** (difensivo come `has_chembl`: mai servire cache costruita con meno fonti).
 - **Versioning:** resolver `v1.1.0 → v1.2.0`; anchor `v3.1.1 → v3.2` (nuovo namespace).
-  `run_metadata$ontology_releases` esteso (taxdump-date / GO-release / ImmPort-version / UniProt-release).
+  `run_metadata$ontology_releases` esteso (taxdump-date / GO-release / ImmPort-registry-version /
+  UniProt-release).
 - **Incidentale:** micro-fix casing `ChEMBL:`/`CHEMBL:` (20 cluster) chiuso a questo rebuild.
-- **Dipendenze:** verosimilmente nessuna nuova (taxdump/GO/UniProt = parsing base R; JSON ImmPort =
-  `jsonlite` già presente) — confermato al build.
+- **Dipendenze:** `readxl` per il registry ImmPort (verificare in DESCRIPTION); taxdump/GO/UniProt =
+  parsing base R; JSON API = `jsonlite` già presente — confermato al build.
 
 ## 9. Testing
 
 TDD bite-sized (test→fail→impl→pass→commit), subagent-driven. Mini-fixtures nuove in
-`inst/extdata/ontology-fixtures-mini/`: `taxonomy-mini.rds`, `immport-mini.rds`, `go-cytokine-mini.rds`,
-`uniprot-mini.rds` (IFN-β/IL-6/TNF + LPS/poly(I:C) + SARS-CoV-2/M.tuberculosis + canary generici).
-**Canary obbligatori:** stoplist (interferon/virus/cytokine nudi → STR); K3 (no flip su small-molecule
+`inst/extdata/ontology-fixtures-mini/`: `taxonomy-mini.rds`, `immport-mini.rds` (sottoinsieme del
+registry: IFN-β/IL-6/TNF con i loro alias), `go-cytokine-mini.rds`, `uniprot-mini.rds`. **Canary
+obbligatori:** stoplist (interferon/virus/cytokine nudi → STR); K3 (no flip su small-molecule
 generici). Final whole-branch review (opus) prima dei run gated.
 
 ## 10. Catena di run — tutti gate utente (clone sessione 21)
 
 | # | Step | Costo | Gate |
 |---|---|---|---|
-| Build | download+build dizionari reali (taxdump/GO/UniProt anonimi; ImmPort via API key utente) + verifica schema | minuti | utente fornisce key ImmPort |
+| Build | build dizionari reali: taxdump/GO/UniProt anonimi + ImmPort registry-file (`.xls` fornito) + API `lkProteinName` (key utente) | minuti | file/key già forniti |
 | Smoke | copertura PRE-fullrun sui `cytokine_stim`/`pathogen` `UNK`/`STR` reali (come Task 7 farmaci): % recupero + 0 falsi canary | minuti | **punto-decisione** |
 | v6.A | re-cluster Stadio 3 v6 | ~6-7h | gate |
 | v6.B | re-pool Stadio 4 v6 (output `/sda`, fix df-residui già committato) | ~10h | gate |
@@ -166,12 +189,15 @@ gate vero**: se il guadagno biologico non si materializza lì, ci si ferma prima
 
 ## 11. Known limitations / decisioni rinviate
 
+- **Registry ImmPort statico (Nov 2015):** 275 citochine; le citochine descritte dopo il 2015 non
+  hanno gli alias-ricchi del registry → coperte comunque da HGNC (cache, corrente) + UniProt come
+  fallback. Accettabile (l'universo citochine è stabile).
 - **`"LPS from E. coli"`**: risolve la porzione PAMP (→ChEBI), non genera un secondo anchor per
   l'organismo. Doppio-record = estensione futura.
 - **UniProt droppabile**: incluso ma misurato nello smoke; se il contributo marginale è ~0, si rimuove
   prima del re-cluster.
-- **ImmPort licenza**: derivato redistribuibile sotto "commensurate terms" + citazione (Bhattacharya
-  et al., Sci Data 2018); igiene attribuzioni per-sorgente nel supplementary.
+- **ImmPort licenza**: registry-file sotto data-use agreement (NON committato nel repo; gitignored) +
+  citazione (Bhattacharya et al., Sci Data 2018). Igiene attribuzioni per-sorgente nel supplementary.
 - **Virus**: classe più difficile da risolvere (benchmark SPECIES) — verifica manuale del sottoinsieme.
 - **LLM-fallback (DECISIONE C)**: passo finale, dopo questo v6.
 
@@ -181,4 +207,7 @@ gate vero**: se il guadagno biologico non si materializza lì, ci si ferma prima
 - Codice riusabile: `R/stage3-name-recovery.R`, `R/ontology-lookup.R`, `R/stage3-anchor-levels.R`,
   `analysis/p4-fase-f6-stage3-reclustering.R`, `analysis/audit/stage3-homogeneity-check.R`.
 - Pattern precedente: Plan B ChEMBL (`docs/superpowers/plans/2026-06-28-stage3-perturbative-name-recovery-B-plan.md`).
+- ImmPort: registry-file `analysis/p4-output/cytokine-registry-immport-2015.xls` (gitignored,
+  sha256 dc626e4e…); API `https://www.immport.org/data/query/api/lookup/` (scope `browse`);
+  Bhattacharya et al., Sci Data 2018;5:180015.
 - Memoria: `[[project_stage3_minestrone_rework]]`.
