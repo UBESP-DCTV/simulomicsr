@@ -339,3 +339,67 @@ test_that("parse_anchor_key mode='group' (default) e 'pair' sono distinte", {
   # mode='pair' su SAME key (senza __VS__) fallisce
   expect_error(parse_anchor_key(key, level = 0L, mode = "pair"))
 })
+
+# ===========================================================================
+# Round-trip NCBITaxon: il nuovo namespace biologici v6 (SARS-CoV-2, etc.)
+# deve sopravvivere intatto a parse_anchor_key e parse_anchor_canonical.
+# Il `:` nel prefisso NON e' un separatore anchor (solo `|` lo e'), quindi
+# il round-trip deve essere pulito BY-CONSTRUCTION senza modifiche al parse.
+# ===========================================================================
+
+# Stringhe anchor sintetiche (L0 = 13 segmenti, L4 = 3 segmenti Tier S)
+# Costruite a mano replicando l'ordine canonical di .extract_anchor_segments():
+# kind_effective | agent_id | variant_label | dose_canonical | duration_canonical |
+# phase_canonical | cell_id | context_kind | cell_state | subcellular | tissue |
+# disease_status | has_engineered
+.ncbitaxon_key_l0 <- paste(
+  c("pathogen_or_aggregate_exposure", "NCBITaxon:2697049", "wt",
+    "nodose", "48h", "exposure",
+    "Vero", "cell_line", "proliferating", "whole_cell",
+    "respiratory_tract", "healthy", "false"),
+  collapse = "|"
+)
+.ncbitaxon_key_l4 <- "pathogen_or_aggregate_exposure|NCBITaxon:2697049|respiratory_tract"
+
+test_that("round-trip NCBITaxon:2697049 sopravvive parse_anchor_key a L0", {
+  # RED: scritto prima di qualsiasi fix del parse.
+  # NCBITaxon:2697049 non contiene '|' ne' '__VS__' -> atteso PASS
+  # by-construction senza modifiche.
+  res <- parse_anchor_key(.ncbitaxon_key_l0, level = 0L)
+
+  expect_type(res, "list")
+  expect_length(res, 13L)
+  expect_identical(res$kind_effective, "pathogen_or_aggregate_exposure")
+  expect_identical(res$agent_id,       "NCBITaxon:2697049")
+  expect_identical(res$tissue,         "respiratory_tract")
+  expect_true(all(!vapply(res, is.na, logical(1L))))
+})
+
+test_that("round-trip NCBITaxon:2697049 sopravvive parse_anchor_key a L4", {
+  res <- parse_anchor_key(.ncbitaxon_key_l4, level = 4L)
+
+  expect_type(res, "list")
+  expect_length(res, 13L)
+  expect_identical(res$agent_id, "NCBITaxon:2697049")
+  # L4: solo tier S non-NA (kind_effective, agent_id, tissue)
+  non_na <- names(res)[!vapply(res, is.na, logical(1L))]
+  expect_identical(non_na, c("kind_effective", "agent_id", "tissue"))
+})
+
+test_that("round-trip NCBITaxon:2697049 sopravvive parse_anchor_canonical a L0", {
+  # parse_anchor_canonical e' la variante Stage4 (ritorna solo i segmenti presenti,
+  # senza NA padding). Verifica che il prefisso NCBITaxon: passi intatto.
+  res <- simulomicsr:::parse_anchor_canonical(.ncbitaxon_key_l0, level = 0L)
+
+  expect_type(res, "list")
+  expect_length(res, 13L)
+  expect_identical(res$agent_id, "NCBITaxon:2697049")
+})
+
+test_that("round-trip NCBITaxon:2697049 sopravvive parse_anchor_canonical a L4", {
+  res <- simulomicsr:::parse_anchor_canonical(.ncbitaxon_key_l4, level = 4L)
+
+  expect_length(res, 3L)
+  expect_named(res, c("kind_effective", "agent_id", "tissue"))
+  expect_identical(res$agent_id, "NCBITaxon:2697049")
+})
