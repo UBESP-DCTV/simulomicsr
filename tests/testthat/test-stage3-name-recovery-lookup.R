@@ -289,3 +289,85 @@ test_that("cache key: default NULL retrocompat a 3 arg (trattato come has_chembl
   # Entrambi producono has_chembl=FALSE:NA -> stessa chiave
   expect_identical(k_null, k_false)
 })
+
+# ---------------------------------------------------------------------------
+# (i) Cache key v3: biologics_axis anti-poisoning (Task 12)
+# ---------------------------------------------------------------------------
+
+# La chiave DEVE cambiare al variare di has_taxonomy (anti-poisoning: un
+# lookup costruito con fonti biologiche presenti NON viene servito da cache
+# a un run che ne era privo, e viceversa).
+test_that("cache key v3: has_taxonomy TRUE vs FALSE produce chiavi diverse (anti-poisoning)", {
+  k_tax_true <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "small_molecule"),
+    ontology_env = list(has_taxonomy     = TRUE,
+                        has_immport      = FALSE,
+                        has_uniprot      = FALSE,
+                        has_go_cytokine  = FALSE,
+                        has_chembl       = FALSE)
+  )
+  k_tax_false <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "small_molecule"),
+    ontology_env = list(has_taxonomy     = FALSE,
+                        has_immport      = FALSE,
+                        has_uniprot      = FALSE,
+                        has_go_cytokine  = FALSE,
+                        has_chembl       = FALSE)
+  )
+  expect_false(identical(k_tax_true, k_tax_false),
+               info = "biologics_axis mancante: chiavi identiche nonostante has_taxonomy diverso")
+})
+
+# Analogo per gli altri tre flag biologici (copertura completa del biologics_axis).
+test_that("cache key v3: has_immport TRUE vs FALSE produce chiavi diverse", {
+  k_true <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "cytokine_stim"),
+    ontology_env = list(has_taxonomy = FALSE, has_immport = TRUE,
+                        has_uniprot = FALSE, has_go_cytokine = FALSE,
+                        has_chembl = FALSE)
+  )
+  k_false <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "cytokine_stim"),
+    ontology_env = list(has_taxonomy = FALSE, has_immport = FALSE,
+                        has_uniprot = FALSE, has_go_cytokine = FALSE,
+                        has_chembl = FALSE)
+  )
+  expect_false(identical(k_true, k_false))
+})
+
+test_that("cache key v3: has_uniprot TRUE vs FALSE produce chiavi diverse", {
+  k_true <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "cytokine_stim"),
+    ontology_env = list(has_taxonomy = FALSE, has_immport = FALSE,
+                        has_uniprot = TRUE, has_go_cytokine = FALSE,
+                        has_chembl = FALSE)
+  )
+  k_false <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "cytokine_stim"),
+    ontology_env = list(has_taxonomy = FALSE, has_immport = FALSE,
+                        has_uniprot = FALSE, has_go_cytokine = FALSE,
+                        has_chembl = FALSE)
+  )
+  expect_false(identical(k_true, k_false))
+})
+
+test_that("cache key v3: has_go_cytokine TRUE vs FALSE produce chiavi diverse", {
+  k_true <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "cytokine_stim"),
+    ontology_env = list(has_taxonomy = FALSE, has_immport = FALSE,
+                        has_uniprot = FALSE, has_go_cytokine = TRUE,
+                        has_chembl = FALSE)
+  )
+  k_false <- .name_recovery_lookup_cache_key(
+    "h5", c("GSM1"), list(GSM1 = "cytokine_stim"),
+    ontology_env = list(has_taxonomy = FALSE, has_immport = FALSE,
+                        has_uniprot = FALSE, has_go_cytokine = FALSE,
+                        has_chembl = FALSE)
+  )
+  expect_false(identical(k_true, k_false))
+})
+
+# La versione schema e' ora "v3" (bump da "v2" per Task 12 biologics).
+test_that("cache key v3: .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION e' 'v3'", {
+  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v3")
+})

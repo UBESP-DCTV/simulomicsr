@@ -8,7 +8,7 @@
 # Versione schema del lookup: bumpa se cambia il contratto output di
 # recover_identity() o dei campi H5 letti, per evitare hit stale su disco
 # (finding "cache version-blind" audit pipeline C2/E6 2026-05-25).
-.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v2"
+.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v3"
 
 # ---------------------------------------------------------------------------
 # Helper lettura H5 (isolato per testabilita')
@@ -60,9 +60,11 @@
 #' @param h5_path character(1) path al file H5.
 #' @param gsms character vector di GSM.
 #' @param kind_by_gsm named list/env GSM -> llm_kind.
-#' @param ontology_env list/environment | NULL con campo \code{has_chembl}
-#'   (logical) e \code{chembl$meta$chembl_release} (character). Default NULL
-#'   trattato come has_chembl=FALSE, release=NA (retrocompatibilita' a 3 arg).
+#' @param ontology_env list/environment | NULL con i flag logici
+#'   \code{has_chembl}, \code{has_taxonomy}, \code{has_immport},
+#'   \code{has_uniprot}, \code{has_go_cytokine} e il campo
+#'   \code{chembl$meta$chembl_release} (character). Default NULL trattato come
+#'   tutti i flag FALSE, release=NA (retrocompatibilita' a 3 arg).
 #' @return character(1) hash xxhash32 8-hex.
 #' @keywords internal
 .name_recovery_lookup_cache_key <- function(h5_path, gsms, kind_by_gsm,
@@ -85,9 +87,21 @@
         !is.null(ontology_env$chembl$meta$chembl_release))
       ontology_env$chembl$meta$chembl_release else "NA"
   )
+  # Asse fonti biologiche (Task 12): distingue lookup costruiti con/senza
+  # ciascuna fonte biologica (taxonomy, ImmPort, UniProt, GO cytokine).
+  # Senza questo asse, un lookup costruito senza fonti biologiche potrebbe
+  # essere servito da cache a un run con fonti presenti (cache poisoning).
+  # Con ontology_env=NULL tutti i flag -> FALSE (coerente col chembl_axis).
+  biologics_axis <- paste0(
+    "tax=",  isTRUE(ontology_env$has_taxonomy),
+    ":imm=", isTRUE(ontology_env$has_immport),
+    ":uni=", isTRUE(ontology_env$has_uniprot),
+    ":go=",  isTRUE(ontology_env$has_go_cytokine)
+  )
   payload <- paste0(
     .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "::",
     chembl_axis, "::",
+    biologics_axis, "::",
     h5_path, "::", mtime, "::",
     paste(gsms_sorted, collapse = "|"), "::",
     kinds_str
@@ -129,8 +143,9 @@
 #' @param cache_dir character(1) | NULL directory per cache su disco
 #'   (salva/rilegge un RDS). Default NULL = nessuna cache. La chiave
 #'   include \code{.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION} + mtime H5
-#'   + asse ChEMBL (has_chembl + release) per evitare hit stale e
-#'   avvelenamento cross-content (lookup con/senza ChEMBL).
+#'   + asse ChEMBL (has_chembl + release) + asse biologici (has_taxonomy,
+#'   has_immport, has_uniprot, has_go_cytokine) per evitare hit stale e
+#'   avvelenamento cross-content (lookup con/senza fonti biologiche).
 #' @param read_fn function | NULL reader iniettabile per testabilita'.
 #'   Firma attesa: \code{function(h5_path) -> list(geo_accession,
 #'   series_id, source_name_ch1, characteristics_ch1, title)}.
