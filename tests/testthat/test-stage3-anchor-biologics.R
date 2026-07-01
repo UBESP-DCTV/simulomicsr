@@ -242,3 +242,114 @@ test_that("senza recovery, kind_effective ordinario invariato (retrocompat recov
   # tracking_meta ha solo i 12 campi originali
   expect_length(tm, 12L)
 })
+
+# ---------------------------------------------------------------------------
+# Fix-I1: innesto recovery adotta ID forte su STR debole
+# (PR review final fix, sessione 2026-07-01)
+# ---------------------------------------------------------------------------
+
+# Costruisce un sample_fact di tipo disease con mesh_id_candidate non-valido
+# come MeSH UI (non D\d{6}) -> .extract_anchor_segments produce agent_id = "STR:<slug>".
+.make_fact_str_disease_bio10_i1 <- function(mesh_slug = "lps") {
+  list(
+    perturbations = list(),
+    cell_context = list(
+      cell_type_or_line_raw           = "macrophages",
+      cell_line_cellosaurus_candidate = NULL,
+      context_kind                    = "primary_cells",
+      cell_state                      = "proliferating",
+      subcellular_fraction            = NULL,
+      tissue                          = "blood",
+      engineered_modifications        = list()
+    ),
+    # mesh_id_candidate non-NULL, non-empty, non-D\d{6} -> STR:<slug> (DISEASE_NO_MESH_UI)
+    disease_state = list(status = "case", mesh_id_candidate = mesh_slug)
+  )
+}
+
+# Test FIX-I1-a: STR:lps + recovery CHEBI forte -> agent_id adottato
+test_that("Fix-I1: STR:lps + recovery CHEBI forte -> agent_id adottato, agent_id_recovered TRUE", {
+  env  <- .fixt_env_bio10()
+  fact <- .make_fact_str_disease_bio10_i1("lps")  # agent_id ordinario = "STR:lps"
+  rec  <- list(
+    agent_id        = "CHEBI:16412",
+    canonical_name  = "lipopolysaccharide",
+    kind            = NA_character_,
+    recovery_source = "GEO_TITLE_CHEBI"
+  )
+
+  segs <- simulomicsr:::.extract_anchor_segments(
+    fact, stage2_role = "case", ontology_env = env, recovery = rec
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  # ID forte del recovery adotta lo slot STR debole
+  expect_equal(segs$agent_id, "CHEBI:16412")
+  expect_true(tm$agent_id_recovered)
+  expect_equal(tm$agent_id_resolved, "CHEBI:16412")
+  expect_equal(tm$canonical_name, "lipopolysaccharide")
+  expect_equal(tm$recovery_source, "GEO_TITLE_CHEBI")
+})
+
+# Test FIX-I1-b: STR:foo + recovery STR debole -> NON adottato
+test_that("Fix-I1: STR:foo + recovery STR debole -> NON adottato, agent_id invariato", {
+  env  <- .fixt_env_bio10()
+  fact <- .make_fact_str_disease_bio10_i1("foo")  # agent_id ordinario = "STR:foo"
+  rec  <- list(
+    agent_id        = "STR:bar",
+    canonical_name  = NA_character_,
+    kind            = NA_character_,
+    recovery_source = "GEO_TITLE_STR"
+  )
+
+  segs <- simulomicsr:::.extract_anchor_segments(
+    fact, stage2_role = "case", ontology_env = env, recovery = rec
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  # STR debole NON sovrascrive STR esistente
+  expect_equal(segs$agent_id, "STR:foo")
+  expect_false(tm$agent_id_recovered)
+})
+
+# Test FIX-I1-c: UNK + recovery STR debole -> adottato (retrocompat: UNK accetta qualsiasi)
+test_that("Fix-I1 retrocompat: UNK + recovery STR debole -> adottato (UNK accetta qualsiasi non-NA)", {
+  env  <- .fixt_env_bio10()
+  fact <- .make_fact_unk_disease_bio10()  # agent_id ordinario = "UNK"
+  rec  <- list(
+    agent_id        = "STR:bar",
+    canonical_name  = NA_character_,
+    kind            = NA_character_,
+    recovery_source = "GEO_TITLE_STR"
+  )
+
+  segs <- simulomicsr:::.extract_anchor_segments(
+    fact, stage2_role = "case", ontology_env = env, recovery = rec
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  # UNK adotta qualsiasi recovery non-NA (comportamento invariato)
+  expect_equal(segs$agent_id, "STR:bar")
+  expect_true(tm$agent_id_recovered)
+})
+
+# Test FIX-I1-d: ID forte esistente (CHEBI:17126) non sovrascritto da recovery HGNC
+test_that("Fix-I1: ID forte esistente (CHEBI:17126) non sovrascritto da recovery HGNC forte", {
+  env  <- .fixt_env_bio10()
+  fact <- .make_fact_sm_chebi17126()  # agent_id ordinario = "CHEBI:17126" (CHEBI_DIRECT)
+  rec  <- list(
+    agent_id        = "HGNC:BRCA1",
+    canonical_name  = "BRCA1",
+    kind            = NA_character_,
+    recovery_source = "GEO_TITLE_HGNC"
+  )
+
+  segs <- simulomicsr:::.extract_anchor_segments(
+    fact, stage2_role = "treated", ontology_env = env, recovery = rec
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  # ID forte gia' presente: NON sovrascritto
+  expect_equal(segs$agent_id, "CHEBI:17126")
+  expect_false(tm$agent_id_recovered)
+})

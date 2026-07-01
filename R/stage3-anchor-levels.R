@@ -18,13 +18,16 @@
 #' I valori LLM-original sono preservati in \code{attr(result, "tracking_meta")}
 #' per audit paper-grade.
 #'
-#' **Recupero identita' (Task 9, rework Stadio 3):** se \code{recovery} e' non-NULL
-#' (record prodotto da \code{build_name_recovery_lookup()} per il GSM
+#' **Recupero identita' (Task 9 + Fix-I1, rework Stadio 3):** se \code{recovery}
+#' e' non-NULL (record prodotto da \code{build_name_recovery_lookup()} per il GSM
 #' rappresentante), la funzione applica DOPO il calcolo ordinario due correzioni:
-#' (a) se \code{segs$agent_id == "UNK"} e \code{recovery$agent_id} e' non-NA,
-#' sostituisce \code{agent_id} + \code{canonical_name}; (b) se
-#' \code{recovery$kind} inizia con \code{"genetic_"} e differisce dal
-#' \code{kind_effective} calcolato, corregge il segmento (correzione K2).
+#' (a) se \code{segs$agent_id == "UNK"} oppure e' un ID debole \code{"STR:<slug>"}
+#' E il recovery porta un ID forte (\code{"HGNC:"}, \code{"CHEBI:"},
+#' \code{"NCBITaxon:"}, \code{"CHEMBL:"}), sostituisce \code{agent_id} +
+#' \code{canonical_name} (Fix-I1: riduce frammentazione \code{STR:lps} vs
+#' \code{CHEBI:16412} per la stessa entita'); (b) se \code{recovery$kind} inizia
+#' con \code{"genetic_"} e differisce dal \code{kind_effective} calcolato,
+#' corregge il segmento (correzione K2).
 #' I tre campi di traccia \code{recovery_source}, \code{agent_id_recovered},
 #' \code{kind_recovered} vengono aggiunti al \code{tracking_meta} SOLO quando
 #' \code{recovery} e' non-NULL, per garantire retrocompatibilita' stretta.
@@ -262,15 +265,26 @@
     agent_id_recovered <- FALSE
     kind_recovered     <- FALSE
 
-    # (a) Correggi agent_id se e' UNK e il recovery fornisce un'identita' valida
-    if (identical(segs$agent_id, "UNK") &&
-        !is.null(recovery$agent_id) && !is.na(recovery$agent_id)) {
-      segs$agent_id <- recovery$agent_id
-      tm <- attr(segs, "tracking_meta")
-      tm$agent_id_resolved <- recovery$agent_id
-      tm$canonical_name    <- recovery$canonical_name
-      attr(segs, "tracking_meta") <- tm
-      agent_id_recovered <- TRUE
+    # (a) Correggi agent_id in due situazioni (Fix-I1):
+    # - e' UNK (retrocompat): accetta qualsiasi recovery$agent_id non-NA.
+    # - e' un ID debole "STR:<slug>" E il recovery porta un ID forte
+    #   (prefisso "HGNC:", "CHEBI:", "NCBITaxon:", "CHEMBL:"): sostituisce per
+    #   ridurre la frammentazione "STR:lps" vs "CHEBI:16412" per la stessa entita'.
+    # Gli ID forti gia' presenti (MeSH:, CHEBI:, HGNC:, ecc.) NON vengono
+    # toccati: l'ontology override ordinario e' gia' piu' affidabile del recovery.
+    if (!is.null(recovery$agent_id) && !is.na(recovery$agent_id)) {
+      recovery_is_strong <- grepl("^(HGNC|CHEBI|NCBITaxon|CHEMBL):",
+                                  recovery$agent_id, perl = TRUE)
+      adopt <- identical(segs$agent_id, "UNK") ||
+               (startsWith(segs$agent_id, "STR:") && recovery_is_strong)
+      if (adopt) {
+        segs$agent_id <- recovery$agent_id
+        tm <- attr(segs, "tracking_meta")
+        tm$agent_id_resolved <- recovery$agent_id
+        tm$canonical_name    <- recovery$canonical_name
+        attr(segs, "tracking_meta") <- tm
+        agent_id_recovered <- TRUE
+      }
     }
 
     # (b) Correggi kind_effective per correzioni genetiche (K2) e biologiche:
