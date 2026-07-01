@@ -369,6 +369,115 @@
   list(by_id = by_id_env, aliases = aliases_env, meta = chembl_raw$meta)
 }
 
+# --- NCBI Taxonomy -----------------------------------------------------------
+#
+# Indice e accessor per dizionario patogeni nome->taxid.
+# Raw atteso: lista con elementi:
+#   $names: data.frame con colonne name_norm, taxid (integer), name_class
+#   $nodes: data.frame con colonne taxid (integer), parent_taxid (integer), rank
+#   $meta:  lista con metadati di release (as-is)
+#
+# .normalize_biological_mention (definita in stage3-name-recovery.R) viene
+# applicata alle chiavi di lookup per collassare grafie diverse dello stesso
+# patogeno (es. "SARS-CoV-2" -> "sarscov2").
+
+#' @noRd
+.build_taxonomy_index <- function(taxonomy_raw) {
+  # by_name: hash env name_norm (stringa canonica) -> list(taxid, name_class)
+  # Prima voce per ogni chiave vince (sinonimi multipli per stesso taxid ok).
+  by_name <- new.env(hash = TRUE, parent = emptyenv(),
+                     size = max(nrow(taxonomy_raw$names), 1L))
+  nm <- taxonomy_raw$names
+  if (nrow(nm) > 0L) {
+    for (i in seq_len(nrow(nm))) {
+      k <- nm$name_norm[i]
+      if (!is.na(k) && nzchar(k) &&
+          !exists(k, envir = by_name, inherits = FALSE)) {
+        assign(k, list(taxid      = as.integer(nm$taxid[i]),
+                       name_class = nm$name_class[i]),
+               envir = by_name)
+      }
+    }
+  }
+
+  # by_taxid: hash env as.character(taxid) -> list(parent_taxid, rank, scientific_name)
+  # scientific_name estratto da by_name (righe "scientific name") per taxid.
+  nd <- taxonomy_raw$nodes
+  sci_idx <- which(nm$name_class == "scientific name")
+  sci_by  <- stats::setNames(nm$name_norm[sci_idx], as.character(nm$taxid[sci_idx]))
+
+  by_taxid <- new.env(hash = TRUE, parent = emptyenv(),
+                      size = max(nrow(nd), 1L))
+  if (nrow(nd) > 0L) {
+    for (i in seq_len(nrow(nd))) {
+      tid_key <- as.character(nd$taxid[i])
+      assign(tid_key,
+             list(parent_taxid   = as.integer(nd$parent_taxid[i]),
+                  rank           = nd$rank[i],
+                  scientific_name = unname(sci_by[tid_key])),
+             envir = by_taxid)
+    }
+  }
+
+  list(by_name = by_name, by_taxid = by_taxid, meta = taxonomy_raw$meta)
+}
+
+#' Cerca un termine biologico nell'indice NCBI Taxonomy.
+#'
+#' Normalizza il termine con \code{.normalize_biological_mention} prima del
+#' lookup, cosi' grafie diverse dello stesso patogeno collassano sulla stessa
+#' chiave.
+#'
+#' @param term character(1) nome del patogeno (forma originale, tolower, sinonimo).
+#' @param env environment con elemento \code{$taxonomy} (output di
+#'   \code{.build_taxonomy_index}). Default: \code{.load_ontology_dicts()}.
+#' @return named list con elementi \code{taxid} (integer), \code{scientific_name}
+#'   (character), \code{name_class} (character); oppure \code{NULL} su miss.
+#' @noRd
+.taxonomy_lookup_name <- function(term, env = .load_ontology_dicts()) {
+  tax <- env$taxonomy
+  if (is.null(tax)) return(NULL)
+  k <- .normalize_biological_mention(term)   # "" su NA/vuoto/lunghezza!=1
+  if (!nzchar(k)) return(NULL)
+  if (!exists(k, envir = tax$by_name, inherits = FALSE)) return(NULL)
+  hit  <- get(k, envir = tax$by_name, inherits = FALSE)
+  tid  <- as.character(hit$taxid)
+  node <- if (exists(tid, envir = tax$by_taxid, inherits = FALSE))
+            get(tid, envir = tax$by_taxid, inherits = FALSE) else NULL
+  list(taxid          = hit$taxid,
+       scientific_name = if (!is.null(node)) node$scientific_name else NA_character_,
+       name_class     = hit$name_class)
+}
+
+#' Risale l'albero tassonomico fino al rango "species".
+#'
+#' Se il taxid di partenza e' gia' a livello specie, ritorna se stesso.
+#' Se non esiste nell'indice o non si raggiunge alcuna specie entro 50 passi,
+#' ritorna il taxid originale (comportamento difensivo: non crasha).
+#'
+#' @param taxid integer(1) taxid di partenza.
+#' @param env environment con elemento \code{$taxonomy}. Default:
+#'   \code{.load_ontology_dicts()}.
+#' @return integer(1) taxid a livello specie (o taxid originale se non trovato).
+#' @noRd
+.taxonomy_rollup_to_species <- function(taxid, env = .load_ontology_dicts()) {
+  tax <- env$taxonomy
+  if (is.null(tax)) return(as.integer(taxid))
+  cur   <- as.integer(taxid)
+  guard <- 0L
+  while (guard < 50L) {
+    tid_key <- as.character(cur)
+    if (!exists(tid_key, envir = tax$by_taxid, inherits = FALSE)) break
+    node <- get(tid_key, envir = tax$by_taxid, inherits = FALSE)
+    if (identical(node$rank, "species")) return(cur)
+    pt <- as.integer(node$parent_taxid)
+    if (is.na(pt) || pt == cur) break
+    cur   <- pt
+    guard <- guard + 1L
+  }
+  as.integer(taxid)  # nessuna specie raggiunta: ritorna taxid originale
+}
+
 # --- ChEBI accessor ----------------------------------------------------------
 #
 # Tutti gli accessor sono defensive: gestiscono input NULL, NA, character(0),
