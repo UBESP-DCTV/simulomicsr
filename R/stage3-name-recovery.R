@@ -599,9 +599,10 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   betaglucan          = 37168L    # beta-glucano -- Dectin-1 # VERIFICARE al Task 17
 )
 
-# Vernacolo patogeni curato: abbreviazioni comuni -> NCBI Taxonomy ID.
-# Le chiavi sono forme normalizzate via .normalize_biological_mention.
-# Questo ramo e' una COSTANTE (nessun env richiesto), ha priorita' sul taxdump.
+#' Dizionario vernacolare patogeni: abbreviazioni comuni -> NCBI Taxonomy ID.
+#' Le chiavi sono forme normalizzate via \code{.normalize_biological_mention};
+#' questa costante ha priorita' sul taxdump (nessun env richiesto).
+#' @keywords internal
 .PATHOGEN_VERNACULAR <- c(
   flu       = 11320L,    # Influenza A virus (taxid NCBI)
   influenza = 11320L,    # Influenza (forma estesa)
@@ -614,19 +615,24 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
 #'
 #' Flusso (precisione decrescente):
 #' 1. Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
-#' 2. Termine biologico generico (\code{.is_generic_biological}) ->
-#'    id="STR:<slug>", source="STR_FALLBACK".
-#' 3. Normalizza con \code{.normalize_biological_mention}.
-#' 4. Match in \code{.PAMP_WHITELIST} (costante, no env) ->
+#' 2. Normalizza con \code{.normalize_biological_mention} (rimuove separatori,
+#'    porta a minuscolo) per uniformare le chiavi dei dizionari costanti.
+#' 3. Match in \code{.PAMP_WHITELIST} (costante, no env) ->
 #'    id="CHEBI:<int>", source="PAMP_WHITELIST".
-#' 5. Match in vernacolo curato (costante, no env) ->
+#' 4. Match in vernacolo curato \code{.PATHOGEN_VERNACULAR} (costante, no env) ->
 #'    id="NCBITaxon:<taxid>", source="PATHOGEN_VERNACULAR".
+#'    I rami (3) e (4) precedono il generic-check (5) di proposito: vernacoli
+#'    brevi come "tb" o "flu" (<3 caratteri dopo normalizzazione) verrebbero
+#'    altrimenti demoti a STR da \code{.is_generic_biological} prima di essere
+#'    riconosciuti come alias noti.
+#' 5. Termine biologico generico (\code{.is_generic_biological}) ->
+#'    id="STR:<slug>", source="STR_FALLBACK".
 #' 6. \code{.taxonomy_lookup_name} + \code{.taxonomy_rollup_to_species}
 #'    (richiede \code{ontology_env} non-NULL) ->
 #'    id="NCBITaxon:<taxid>", source="PATHOGEN_TAXID".
 #' 7. Miss -> id="STR:<slugify(term)>", source="STR_FALLBACK".
 #'
-#' I rami (4) e (5) sono COSTANTI e non richiedono \code{ontology_env}:
+#' I rami (3) e (4) sono COSTANTI e non richiedono \code{ontology_env}:
 #' e' possibile chiamare la funzione senza env per i PAMP e il vernacolo.
 #' Il ramo (6) viene saltato se \code{ontology_env} e' NULL.
 #'
