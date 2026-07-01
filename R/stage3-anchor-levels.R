@@ -1,3 +1,9 @@
+# Kind biologici accettati come override nell'innesto recovery (passo b).
+# Estende la correzione K2 (genetic_*) ai mistype biologici citochina/patogeno
+# rilevati da recover_identity() (Task 10, biologici v6).
+#' @keywords internal
+.biological_override_kinds <- c("cytokine_stim", "pathogen_or_aggregate_exposure")
+
 #' Estrae i 13 segmenti dell'anchor v3.1 come named list + tracking_meta attr
 #'
 #' Replica internamente la logica di \code{make_anchor()} ma restituisce un
@@ -267,13 +273,17 @@
       agent_id_recovered <- TRUE
     }
 
-    # (b) Correggi kind_effective solo per correzioni genetiche (K2):
-    # recovery$kind inizia con "genetic_" e differisce dal kind corrente.
+    # (b) Correggi kind_effective per correzioni genetiche (K2) e biologiche:
+    # - K2 genetic_*: recovery$kind inizia con "genetic_" (caso preesistente)
+    # - biologici (Task 10, biologici v6): recovery$kind in .biological_override_kinds
+    #   (cytokine_stim, pathogen_or_aggregate_exposure) -- mistype K3 rilevato
+    #   da recover_identity()
     # Guard !is.na(recovery$kind): startsWith(NA_character_, "genetic_") -> NA,
     # e if(...&& NA) genera "Error: missing value where TRUE/FALSE needed".
     # recover_identity() puo' restituire kind = NA_character_ (llm_kind assente).
     if (!is.null(recovery$kind) && !is.na(recovery$kind) &&
-        startsWith(recovery$kind, "genetic_") &&
+        (startsWith(recovery$kind, "genetic_") ||
+           recovery$kind %in% .biological_override_kinds) &&
         !identical(recovery$kind, segs$kind_effective)) {
       segs$kind_effective <- recovery$kind
       tm <- attr(segs, "tracking_meta")
