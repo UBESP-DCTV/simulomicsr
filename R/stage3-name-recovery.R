@@ -383,6 +383,39 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
 }
 
 # ---------------------------------------------------------------------------
+# Task 6 -- .GENERIC_BIOLOGICAL_STOPLIST + .is_generic_biological
+# ---------------------------------------------------------------------------
+
+# Termini biologici generici che NON identificano un agente specifico: citochine
+# di classe, virus "nudo", infezione generica, ecc. Usata da Task 7 (citochine)
+# e Task 8 (patogeni) per bloccare alias troppo vaghi prima di ogni lookup
+# ontologico, analogamente a .GENERIC_COMPOUND_STOPLIST per i farmaci.
+#' @keywords internal
+.GENERIC_BIOLOGICAL_STOPLIST <- c(
+  "cytokine", "cytokines", "interferon", "interleukin", "chemokine",
+  "growthfactor", "virus", "viral", "bacteria", "bacterium", "bacterial",
+  "pathogen", "infection", "stimulation", "stimulus", "exposure",
+  "ligand", "tlr", "agonist"
+)
+
+#' Controlla se un termine biologico e' generico (non informativo per il lookup).
+#'
+#' Un termine e' considerato generico se, dopo normalizzazione via
+#' \code{.normalize_biological_mention}, (a) ha meno di 3 caratteri alfanumerici
+#' oppure (b) appartiene a \code{.GENERIC_BIOLOGICAL_STOPLIST}.
+#' Input vuoto o NA restituisce TRUE (non informativo).
+#'
+#' @param term character(1) termine da valutare.
+#' @return logical(1): TRUE se il termine e' generico/non informativo.
+#' @keywords internal
+.is_generic_biological <- function(term) {
+  norm <- .normalize_biological_mention(term)   # "" su NA/vuoto/lunghezza!=1
+  if (!nzchar(norm)) return(TRUE)               # vuoto -> non informativo
+  if (nchar(norm) < 3L) return(TRUE)            # alias corto -> non informativo
+  norm %in% .GENERIC_BIOLOGICAL_STOPLIST
+}
+
+# ---------------------------------------------------------------------------
 # Task 5b -- .normalize_biological_mention (forma canonica greco-aware)
 # Usata dai dizionari biologici (taxonomy/immport/uniprot) per collassare
 # grafie diverse della stessa citochina/patogeno in un'unica chiave di lookup.

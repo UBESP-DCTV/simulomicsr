@@ -31,3 +31,46 @@ test_that(".normalize_biological_mention: lunghezza input != 1 -> stringa vuota"
   expect_equal(.normalize_biological_mention(character(0)), "")
   expect_equal(.normalize_biological_mention(c("IFN-β", "TNF-α")), "")
 })
+
+# ---------------------------------------------------------------------------
+# Task 6: .GENERIC_BIOLOGICAL_STOPLIST + .is_generic_biological
+# ---------------------------------------------------------------------------
+
+test_that(".GENERIC_BIOLOGICAL_STOPLIST e' un character vector non vuoto", {
+  expect_true(is.character(.GENERIC_BIOLOGICAL_STOPLIST))
+  expect_gt(length(.GENERIC_BIOLOGICAL_STOPLIST), 0L)
+  # deve contenere almeno i termini attesi dal brief
+  expect_true("cytokine"   %in% .GENERIC_BIOLOGICAL_STOPLIST)
+  expect_true("interferon" %in% .GENERIC_BIOLOGICAL_STOPLIST)
+  expect_true("virus"      %in% .GENERIC_BIOLOGICAL_STOPLIST)
+  expect_true("infection"  %in% .GENERIC_BIOLOGICAL_STOPLIST)
+})
+
+test_that(".is_generic_biological: termini nudi generici -> TRUE", {
+  expect_true(.is_generic_biological("interferon"))
+  expect_true(.is_generic_biological("cytokine"))
+  expect_true(.is_generic_biological("virus"))
+  expect_true(.is_generic_biological("infection"))
+})
+
+test_that(".is_generic_biological: alias specifici -> FALSE", {
+  expect_false(.is_generic_biological("ifnbeta"))
+  expect_false(.is_generic_biological("sarscov2"))
+})
+
+test_that(".is_generic_biological: alias corti (<3 alnum) -> TRUE", {
+  expect_true(.is_generic_biological("il"))   # 2 caratteri alfanumerici
+  expect_true(.is_generic_biological("fc"))   # 2 caratteri alfanumerici
+})
+
+test_that(".is_generic_biological: normalizza prima di controllare la stoplist", {
+  # "Interferon" maiuscolo -> normalizzato a "interferon" -> in stoplist
+  expect_true(.is_generic_biological("Interferon"))
+  # "Virus" con maiuscola -> TRUE
+  expect_true(.is_generic_biological("Virus"))
+})
+
+test_that(".is_generic_biological: input vuoto/NA -> TRUE (termini non informativi)", {
+  expect_true(.is_generic_biological(NA_character_))
+  expect_true(.is_generic_biological(""))
+})
