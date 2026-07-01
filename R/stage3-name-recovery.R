@@ -382,6 +382,40 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   )
 }
 
+# ---------------------------------------------------------------------------
+# Task 5b -- .normalize_biological_mention (forma canonica greco-aware)
+# Usata dai dizionari biologici (taxonomy/immport/uniprot) per collassare
+# grafie diverse della stessa citochina/patogeno in un'unica chiave di lookup.
+# ---------------------------------------------------------------------------
+
+#' Normalizza una menzione biologica a stringa canonica ASCII-alfanumerica.
+#'
+#' Flusso: (1) guardia su input mancante/vuoto/lunghezza!=1 -> ""; (2) lower +
+#' trim; (3) sostituzione lettere greche comuni con il nome latino (fixed=TRUE);
+#' (4) rimozione di tutti i caratteri non-[a-z0-9].
+#'
+#' Esempi: "IFN-β" -> "ifnbeta", "TNF-α" -> "tnfalpha",
+#' "poly(I:C)" -> "polyic".
+#'
+#' @param x character(1) stringa da normalizzare.
+#' @return character(1) forma canonica; "" su input vuoto/NA/lunghezza!=1.
+#' @keywords internal
+.normalize_biological_mention <- function(x) {
+  if (length(x) != 1L || is.na(x) || !nzchar(x)) return("")
+  s <- tolower(trimws(x))
+  # Sostituzione lettere greche comuni (caratteri UTF-8 diretti nel sorgente)
+  greci <- c(
+    "α" = "alpha",   # α
+    "β" = "beta",    # β
+    "γ" = "gamma",   # γ
+    "δ" = "delta",   # δ
+    "κ" = "kappa",   # κ
+    "ω" = "omega"    # ω
+  )
+  for (g in names(greci)) s <- gsub(g, greci[[g]], s, fixed = TRUE)
+  gsub("[^a-z0-9]+", "", s)
+}
+
 # Segnali genetici (K2). Spec: is_genetic SOLO su segnali inequivocabili.
 #
 # DUE famiglie di pattern testate separatamente per ogni kind:
