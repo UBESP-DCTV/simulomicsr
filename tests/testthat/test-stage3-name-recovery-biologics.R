@@ -234,3 +234,77 @@ test_that(".normalize_pathogen_to_taxid: env NULL -> no taxdump, STR su organism
   expect_equal(r$source, "STR_FALLBACK")
   expect_match(r$id, "^STR:")
 })
+
+# ---------------------------------------------------------------------------
+# Task 9: .detect_biological_mistype + dispatch biologico in recover_identity
+# ---------------------------------------------------------------------------
+
+.fx9 <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
+
+test_that(".detect_biological_mistype: LPS (small_molecule mal-tipizzato) -> pathogen hit", {
+  # LPS e' in PAMP_WHITELIST -> CHEBI:16412 -> il check pathogeno da hit forte
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
+  r <- .detect_biological_mistype("lps", env)
+  expect_false(is.null(r))
+  expect_equal(r$kind, "pathogen_or_aggregate_exposure")
+  expect_equal(r$id, "CHEBI:16412")
+})
+
+test_that(".detect_biological_mistype: osimertinib (small_molecule vero) -> NULL", {
+  # osimertinib non e' ne' citochina ne' patogeno nel fixture -> precision-first -> NULL
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
+  r <- .detect_biological_mistype("osimertinib", env)
+  expect_null(r)
+})
+
+test_that(".detect_biological_mistype: IFN-beta (potrebbe essere small_mol errato) -> cytokine hit", {
+  # ifn-beta normalizzato trova IFNB1 via ImmPort -> hit forte HGNC: -> citochina
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
+  r <- .detect_biological_mistype("ifn-beta", env)
+  expect_false(is.null(r))
+  expect_equal(r$kind, "cytokine_stim")
+  expect_equal(r$id, "HGNC:IFNB1")
+})
+
+test_that(".detect_biological_mistype: termine sconosciuto -> NULL (precision-first)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
+  r <- .detect_biological_mistype("xyzzy_nonexistent_agent", env)
+  expect_null(r)
+})
+
+test_that("recover_identity dispatcha cytokine/pathogen e fa K3 su small_molecule", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
+  # Dispatch citochina: IFN-beta etichettato cytokine_stim -> HGNC:IFNB1
+  rc <- recover_identity("", "agent: IFN-beta", "", "cytokine_stim", env)
+  expect_equal(rc$agent_id, "HGNC:IFNB1")
+  expect_equal(rc$kind, "cytokine_stim")
+  # Dispatch patogeno: SARS-CoV-2 etichettato pathogen -> NCBITaxon:2697049
+  rp <- recover_identity("", "agent: SARS-CoV-2", "", "pathogen_or_aggregate_exposure", env)
+  expect_equal(rp$agent_id, "NCBITaxon:2697049")
+  expect_equal(rp$kind, "pathogen_or_aggregate_exposure")
+  # K3: LPS etichettato small_molecule -> ri-tipizzato pathogen_or_aggregate_exposure
+  rk <- recover_identity("", "treatment: LPS", "", "small_molecule", env)
+  expect_equal(rk$kind, "pathogen_or_aggregate_exposure")
+  expect_equal(rk$agent_id, "CHEBI:16412")
+  expect_true(startsWith(rk$recovery_source, "K3_MISTYPE"))
+  # small_molecule VERO (osimertinib) NON flippato
+  rs <- recover_identity("", "compound: osimertinib", "", "small_molecule", env)
+  expect_equal(rs$kind, "small_molecule")
+})
+
+test_that("recover_identity: cytokine_stim senza termine -> NO_RECOVERY (retrocompat)", {
+  # Nessuna chiave agent nel characteristics -> U1 regime invariato
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
+  r <- recover_identity("cells", "tissue: lung", "rep1", "cytokine_stim", env)
+  expect_true(is.na(r$agent_id))
+  expect_equal(r$kind, "cytokine_stim")
+  expect_equal(r$recovery_source, "NO_RECOVERY")
+})
+
+test_that("recover_identity: K3 recovery_source include suffisso kind", {
+  # Il suffisso distingue il tipo di mistype: K3_MISTYPE_pathogen o K3_MISTYPE_cytokine
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
+  rk <- recover_identity("", "treatment: LPS", "", "small_molecule", env)
+  expect_true(rk$recovery_source %in% c("K3_MISTYPE_pathogen", "K3_MISTYPE_cytokine"))
+  expect_equal(rk$recovery_source, "K3_MISTYPE_pathogen")
+})

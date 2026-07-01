@@ -353,10 +353,42 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
     ))
   }
 
-  # Passo 3: composto/citochina/patogeno -> ChEBI (o STR fallback)
+  # Passo 3: composto/citochina/patogeno -> dispatch per llm_kind
   if (!is.na(llm_kind) && llm_kind %in% .perturbative_kinds) {
     t <- .extract_agent_term(source, characteristics, title)
     if (!is.na(t)) {
+      # Citochina: normalizza verso HGNC via ImmPort/HGNC/UniProt + gate whitelist
+      if (llm_kind == "cytokine_stim") {
+        r <- .normalize_cytokine_to_hgnc(t, ontology_env)
+        return(list(
+          kind            = llm_kind,
+          agent_id        = r$id,
+          canonical_name  = r$name,
+          recovery_source = r$source
+        ))
+      }
+      # Patogeno/PAMP: normalizza verso NCBITaxon o ChEBI via whitelist/vernacolo/taxdump
+      if (llm_kind == "pathogen_or_aggregate_exposure") {
+        r <- .normalize_pathogen_to_taxid(t, ontology_env)
+        return(list(
+          kind            = llm_kind,
+          agent_id        = r$id,
+          canonical_name  = r$name,
+          recovery_source = r$source
+        ))
+      }
+      # small_molecule: K3 check — se il termine e' in realta' un biologico forte
+      # (citochina o patogeno) ri-tipizza; altrimenti comportamento esistente ChEBI/ChEMBL.
+      mis <- .detect_biological_mistype(t, ontology_env)
+      if (!is.null(mis)) {
+        suffix <- if (mis$kind == "cytokine_stim") "cytokine" else "pathogen"
+        return(list(
+          kind            = mis$kind,
+          agent_id        = mis$id,
+          canonical_name  = mis$name,
+          recovery_source = paste0("K3_MISTYPE_", suffix)
+        ))
+      }
       n <- .normalize_compound_to_chebi(t, ontology_env)
       return(list(
         kind            = llm_kind,
@@ -700,4 +732,50 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   target <- c(m, m2)
   list(is_genetic = TRUE, genetic_kind = kind,
        target = if (length(target)) target[[1L]] else NA_character_)
+}
+
+# ---------------------------------------------------------------------------
+# Task 9 -- .detect_biological_mistype (K3: ri-tipizzazione biologico forte)
+# ---------------------------------------------------------------------------
+
+#' Rileva se un termine etichettato come \code{small_molecule} e' in realta'
+#' una citochina o un patogeno/PAMP (K3 — correzione tipo biologico).
+#'
+#' Strategia precision-first: genera un flip di tipo SOLO se ottiene un hit
+#' forte dall'ontologia, cioe' un ID che inizia con \code{"HGNC:"} (citochina)
+#' oppure con \code{"CHEBI:"} o \code{"NCBITaxon:"} (patogeno/PAMP).
+#' Un ID \code{"STR:"} o \code{NA} non costituisce evidenza sufficiente.
+#'
+#' Flusso:
+#' 1. Prova \code{.normalize_cytokine_to_hgnc}: hit forte (HGNC:) ->
+#'    ritorna \code{list(kind="cytokine_stim", id, name, source)}.
+#' 2. Prova \code{.normalize_pathogen_to_taxid}: hit forte (CHEBI: o NCBITaxon:) ->
+#'    ritorna \code{list(kind="pathogen_or_aggregate_exposure", id, name, source)}.
+#' 3. Nessun hit forte -> ritorna \code{NULL} (nessun flip).
+#'
+#' @param term character(1) termine gia' estratto da \code{.extract_agent_term}.
+#' @param ontology_env environment da \code{.load_ontology_dicts()}.
+#' @return lista con campi \code{kind}, \code{id}, \code{name}, \code{source}
+#'   se il termine e' un biologico forte; \code{NULL} altrimenti.
+#' @keywords internal
+.detect_biological_mistype <- function(term, ontology_env) {
+  # Ramo citochina: hit forte = id inizia con "HGNC:" (non STR: o NA)
+  rc <- .normalize_cytokine_to_hgnc(term, ontology_env)
+  if (!is.null(rc$id) && !is.na(rc$id) && startsWith(rc$id, "HGNC:")) {
+    return(list(kind = "cytokine_stim",
+                id   = rc$id,
+                name = rc$name,
+                source = rc$source))
+  }
+  # Ramo patogeno/PAMP: hit forte = id inizia con "CHEBI:" o "NCBITaxon:" (non STR: o NA)
+  rp <- .normalize_pathogen_to_taxid(term, ontology_env)
+  if (!is.null(rp$id) && !is.na(rp$id) &&
+      (startsWith(rp$id, "CHEBI:") || startsWith(rp$id, "NCBITaxon:"))) {
+    return(list(kind = "pathogen_or_aggregate_exposure",
+                id   = rp$id,
+                name = rp$name,
+                source = rp$source))
+  }
+  # Nessun hit forte -> nessun flip (precision-first)
+  NULL
 }
