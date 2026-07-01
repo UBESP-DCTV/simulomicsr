@@ -577,26 +577,28 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
 # Whitelist PAMP: menzione PAMP/TLR-agonist curata -> ChEBI ID intero.
 # Le chiavi sono le forme normalizzate via .normalize_biological_mention (solo
 # [a-z0-9], senza separatori), i valori sono integer ChEBI.
-# CHEBI:16412 (LPS) e' verificato; gli altri sono migliori stime e verranno
-# validati al Task 17 (build sanity role-ancestry su ChEBI).
+# Tutti gli ID verificati al Task 17 (sanity ChEBI via p5-audit-uniprot-build-dict.R).
+# IDs errati corretti; FSL-1 e flagellina rimossi (non presenti in ChEBI come
+# small molecule -- sono rispettivamente un lipopeptide sintetico complesso e una
+# proteina, privi di ID ChEBI nel nostro dump; cadono nel fallback STR:).
 
 #' @keywords internal
 .PAMP_WHITELIST <- c(
-  lps                 = 16412L,   # lipopolisaccaride (LPS) -- verificato
+  lps                 = 16412L,   # lipopolisaccaride (LPS) -- CHEBI:16412 verificato
   lipopolysaccharide  = 16412L,   # alias per nome esteso
-  polyic              = 84491L,   # poly(I:C) = acido poliinositico-policitilidico # VERIFICARE al Task 17
-  r848                = 92052L,   # R848 (resiquimod) -- TLR7/8 # VERIFICARE al Task 17
-  resiquimod          = 92052L,   # alias per nome esteso # VERIFICARE al Task 17
-  imiquimod           = 36704L,   # imiquimod -- TLR7 # VERIFICARE al Task 17
-  pam3csk4            = 91060L,   # Pam3CSK4 -- TLR1/TLR2 # VERIFICARE al Task 17
-  pam2csk4            = 91061L,   # Pam2CSK4 -- TLR2/TLR6 # VERIFICARE al Task 17
-  fsl1                = 91062L,   # FSL-1 (lipoproteina batterica) -- TLR2/TLR6 # VERIFICARE al Task 17
-  cpgodn              = 48455L,   # CpG ODN -- TLR9 # VERIFICARE al Task 17
-  flagellin           = 65960L,   # flagellina -- TLR5 # VERIFICARE al Task 17
-  mpla                = 155981L,  # MPLA (monofosforil lipide A) -- TLR4 # VERIFICARE al Task 17
-  mdp                 = 57219L,   # MDP (muramil-dipeptide) -- NOD2 # VERIFICARE al Task 17
-  zymosan             = 37167L,   # zimosano -- TLR2/Dectin-1 # VERIFICARE al Task 17
-  betaglucan          = 37168L    # beta-glucano -- Dectin-1 # VERIFICARE al Task 17
+  polyic              = 84491L,   # poly(I:C) -- CHEBI:84491 verificato (immunological adjuvant)
+  r848                = 36706L,   # R848 (resiquimod) -- CORRECTED 92052->36706
+  resiquimod          = 36706L,   # alias per nome esteso -- CHEBI:36706 verificato
+  imiquimod           = 36704L,   # imiquimod -- CHEBI:36704 verificato (antineoplastic+interferon inducer)
+  pam3csk4            = 134411L,  # Pam3CSK4 -- CORRECTED 91060->134411 (N-palmitoyl-bis-palmitoyloxy-Cys-Ser-Lys4)
+  pam2csk4            = 46889L,   # Pam2CSK4 -- CORRECTED 91061->46889 (bis-palmitoyloxy-Cys-Ser-Lys4)
+  cpgodn              = 232583L,  # CpG ODN -- CORRECTED 48455->232583 (CpG-oligodeoxynucleotide)
+  mpla                = 77066L,   # MPLA (monofosforil lipide A) -- CORRECTED 155981->77066
+  mdp                 = 59414L,   # MDP (muramil-dipeptide) -- CORRECTED 57219->59414
+  zymosan             = 37671L,   # zimosano -- CORRECTED 37167->37671 ((1->3)-beta-D-glucan)
+  betaglucan          = 28793L    # beta-glucano -- CORRECTED 37168->28793 (beta-D-glucan)
+  # FSL-1 rimosso: lipopeptide sintetico complesso, non presente in ChEBI
+  # Flagellina rimossa: proteina (TLR5 agonist), non presente in ChEBI come small molecule
 )
 
 #' Dizionario vernacolare patogeni: abbreviazioni comuni -> NCBI Taxonomy ID.

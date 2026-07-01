@@ -1,0 +1,132 @@
+{
+  "url": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/taxonomic_divisions/uniprot_sprot_human.dat.gz",
+  "sha256": "a909f65ba620f9ca477671e1c681a605f82658f75567bcf6707cb92b765cf242",
+  "release": "2026-06-10",
+  "date": "2026-07-01",
+  "n_names": 68805,
+  "n_entries_total": 20431,
+  "n_entries_mapped": 20263,
+  "out_rds": "/home/user/.cache/R/simulomicsr/uniprot/uniprot-lookup.rds",
+  "rds_mb": 0.6,
+  "pamp_whitelist_sanity": {
+    "lps": {
+      "key": "lps",
+      "chebi_id": 16412,
+      "found": true,
+      "primary_name": "lipopolysaccharide",
+      "has_role_target": false,
+      "roles": "",
+      "status": "WARN_NO_ROLES"
+    },
+    "lipopolysaccharide": {
+      "key": "lipopolysaccharide",
+      "chebi_id": 16412,
+      "found": true,
+      "primary_name": "lipopolysaccharide",
+      "has_role_target": false,
+      "roles": "",
+      "status": "WARN_NO_ROLES"
+    },
+    "polyic": {
+      "key": "polyic",
+      "chebi_id": 84491,
+      "found": true,
+      "primary_name": "poly(I:C)",
+      "has_role_target": true,
+      "roles": "immunological adjuvant",
+      "status": "OK"
+    },
+    "r848": {
+      "key": "r848",
+      "chebi_id": 36706,
+      "found": true,
+      "primary_name": "resiquimod",
+      "has_role_target": false,
+      "roles": "",
+      "status": "WARN_NO_ROLES"
+    },
+    "resiquimod": {
+      "key": "resiquimod",
+      "chebi_id": 36706,
+      "found": true,
+      "primary_name": "resiquimod",
+      "has_role_target": false,
+      "roles": "",
+      "status": "WARN_NO_ROLES"
+    },
+    "imiquimod": {
+      "key": "imiquimod",
+      "chebi_id": 36704,
+      "found": true,
+      "primary_name": "imiquimod",
+      "has_role_target": false,
+      "roles": "antineoplastic agent; interferon inducer",
+      "status": "WARN_ROLE_MISMATCH"
+    },
+    "pam3csk4": {
+      "key": "pam3csk4",
+      "chebi_id": 134411,
+      "found": true,
+      "primary_name": "<em>N<\/em>-palmitoyl-<em>S<\/em>-[2,3-bis(palmitoyloxy)propyl]-Cys-Ser-Lys-Lys-Lys-Lys",
+      "has_role_target": true,
+      "roles": "Toll-like receptor 2 agonist; neuroprotective agent; antineoplastic agent",
+      "status": "OK"
+    },
+    "pam2csk4": {
+      "key": "pam2csk4",
+      "chebi_id": 46889,
+      "found": true,
+      "primary_name": "<em>S<\/em>-[2,3-bis(palmitoyloxy)propyl]-Cys-Ser-Lys-Lys-Lys-Lys",
+      "has_role_target": false,
+      "roles": "",
+      "status": "WARN_NO_ROLES"
+    },
+    "cpgodn": {
+      "key": "cpgodn",
+      "chebi_id": 232583,
+      "found": true,
+      "primary_name": "CpG-oligodeoxynucleotide",
+      "has_role_target": false,
+      "roles": "",
+      "status": "WARN_NO_ROLES"
+    },
+    "mpla": {
+      "key": "mpla",
+      "chebi_id": 77066,
+      "found": true,
+      "primary_name": "MPLA",
+      "has_role_target": false,
+      "roles": "",
+      "status": "WARN_NO_ROLES"
+    },
+    "mdp": {
+      "key": "mdp",
+      "chebi_id": 59414,
+      "found": true,
+      "primary_name": "muramyl dipeptide",
+      "has_role_target": true,
+      "roles": "immunological adjuvant",
+      "status": "OK"
+    },
+    "zymosan": {
+      "key": "zymosan",
+      "chebi_id": 37671,
+      "found": true,
+      "primary_name": "(1→3)-β-<small>D<\/small>-glucan",
+      "has_role_target": false,
+      "roles": "<em>Saccharomyces cerevisiae <\/em> metabolite",
+      "status": "WARN_ROLE_MISMATCH"
+    },
+    "betaglucan": {
+      "key": "betaglucan",
+      "chebi_id": 28793,
+      "found": true,
+      "primary_name": "β-<small>D<\/small>-glucan",
+      "has_role_target": false,
+      "roles": "",
+      "status": "WARN_NO_ROLES"
+    }
+  },
+  "pamp_errors": [],
+  "pamp_warns": ["CHEBI:16412 [lps] trovato (lipopolysaccharide) ma SENZA RUOLI in ChEBI dict (copertura incompleta, atteso)", "CHEBI:16412 [lipopolysaccharide] trovato (lipopolysaccharide) ma SENZA RUOLI in ChEBI dict (copertura incompleta, atteso)", "CHEBI:36706 [r848] trovato (resiquimod) ma SENZA RUOLI in ChEBI dict (copertura incompleta, atteso)", "CHEBI:36706 [resiquimod] trovato (resiquimod) ma SENZA RUOLI in ChEBI dict (copertura incompleta, atteso)", "CHEBI:36704 [imiquimod] trovato (imiquimod) ma ruoli non includono target (ruoli: antineoplastic agent; interferon inducer)", "CHEBI:46889 [pam2csk4] trovato (<em>S<\/em>-[2,3-bis(palmitoyloxy)propyl]-Cys-Ser-Lys-Lys-Lys-Lys) ma SENZA RUOLI in ChEBI dict (copertura incompleta, atteso)", "CHEBI:232583 [cpgodn] trovato (CpG-oligodeoxynucleotide) ma SENZA RUOLI in ChEBI dict (copertura incompleta, atteso)", "CHEBI:77066 [mpla] trovato (MPLA) ma SENZA RUOLI in ChEBI dict (copertura incompleta, atteso)", "CHEBI:37671 [zymosan] trovato ((1→3)-β-<small>D<\/small>-glucan) ma ruoli non includono target (ruoli: <em>Saccharomyces cerevisiae <\/em> metabolite)", "CHEBI:28793 [betaglucan] trovato (β-<small>D<\/small>-glucan) ma SENZA RUOLI in ChEBI dict (copertura incompleta, atteso)"]
+}
