@@ -24,6 +24,33 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-01 (biologici v6 — codice+dizionari+fix VALIDATI (GO), rebuild PRONTO NON lanciato)**:
+> 🟢 **Recupero-nome BIOLOGICI (citochine+patogeni) implementato + validato. 3 run pesanti gated da
+> lanciare in sessione FRESH. Handout:
+> `docs/superpowers/specs/2026-07-01-stage3-biologics-v6-rebuild-NEXT-SESSION-handout.md`.**
+>
+> 1. **Codice+dizionari+fix (subagent-driven TDD, tutti review/validati)**: dizionari reali in
+>    `~/.cache/R/simulomicsr/` = taxonomy(3.35M nomi)/ImmPort(5046 syn, 927 whitelist, has_go)/
+>    UniProt(68805)/GO(213). `.normalize_cytokine_to_hgnc`(→`HGNC:`) + `.normalize_pathogen_to_taxid`
+>    (→`NCBITaxon:`/PAMP `CHEBI:`) + **K3 compound-first** + anchor `NCBITaxon:` + cache **v3**. Sanity ha
+>    corretto **9 ID PAMP errati**. Design finale = **spec §13**
+>    (`docs/superpowers/specs/2026-06-29-stage3-biologics-name-recovery-design.md`).
+> 2. **Gate smoke (validate-before-fullrun) — HA FUNZIONATO**: smoke#1 NO-GO (K3 **8% falsi**, pathogen
+>    3%) → Fix-A(K3 compound-first, elimina flip su farmaci veri; PAMP preservati via CHEBI∈whitelist) +
+>    Fix-B(estrazione `.AGENT_KEYS`+vernacolo) + Fix-I1(anchor adotta ID forte su STR) → ri-smoke GO →
+>    **final review Opus** trovò I-1 (`organism: human` → Homo-sapiens-as-pathogen su **747 sample**) →
+>    Fix-D(trim `organism` + `.HOST_SPECIES_STOPLIST` + `.AGENT_CONTROL` infection-neg) → spot-check GO.
+>    **Esiti reali**: cytokine **53%**, pathogen 3→**8%**, K3 **0 falsi genuini**, host-species **0/747
+>    flip**, canary generici puliti. Report `docs/findings/2026-07-01-stage3-biologics-smoke.md`.
+> 3. **Script re-cluster v6 PRONTO** (`analysis/p4-fase-f6-stage3-reclustering.R`, commit `0e9bb96`:
+>    assert `has_taxonomy/immport/uniprot/chembl` fail-fast + token v6; SMOKE=1 PASS: HGNC:=1155,
+>    NCBITaxon:, K3_MISTYPE attivi). **NON lanciato** (decisione utente: full in sessione fresh).
+>    **Prossimo = 3 RUN GATED**: (a) re-cluster Stadio 3 v6 (~6-7h, `SMOKE=0 Rscript
+>    analysis/p4-fase-f6-stage3-reclustering.R`, detached) → (b) re-pool Stadio 4 v6 (~10h su `/sda`,
+>    preparare `-rebuild-v6.R` copia -v5) → (c) re-gate omogeneità v6 (attesi: cytokine 61%→giù, pathogen
+>    33%→giù; disease/small_molecule invariati). Branch invariato, master invariato, **pushato**.
+>    Ledger `.superpowers/sdd/progress.md`. Memorie: [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-06-29 fine sessione 21 (Plan B FASE 2 — run gated Task 8-10 COMPLETI)**:
 > 🟢 **Pipeline end-to-end ri-girata su v5. Plan B (farmaci ChEMBL) CHIUSO.**
 >
