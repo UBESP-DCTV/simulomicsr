@@ -1,5 +1,5 @@
 === SMOKE COPERTURA BIOLOGICI (Task 19) ===
-Data     : 2026-07-01T16:22:59Z
+Data     : 2026-07-01T18:01:34Z
 Stage3   : analysis/p4-output/20260629T041343Z-stage3-v5-364547a7
 
 --- Dizionari caricati ---
@@ -22,33 +22,24 @@ Stage3   : analysis/p4-output/20260629T041343Z-stage3-v5-364547a7
 
 --- (b) Recovery PATHOGEN (PAMP_WHITELIST + VERNACULAR + NCBITaxon taxdump) ---
   Campione: 400 cluster | GSM in H5: 399 (99.8%)
-  Recuperati NCBITaxon:/CHEBI: : 12 / 399 = 3.0%
+  Recuperati NCBITaxon:/CHEBI: : 31 / 399 = 7.8%
     NO_GSM                              : 1
-    NO_RECOVERY                         : 231
-    PATHOGEN_TAXID                      : 6
-    PATHOGEN_VERNACULAR                 : 6
-    STR_FALLBACK                        : 156
+    NO_RECOVERY                         : 179
+    PATHOGEN_TAXID                      : 13
+    PATHOGEN_VERNACULAR                 : 18
+    STR_FALLBACK                        : 189
 
 --- (c) CANARY I2 (K3 mistype — small_molecule CHEBI:/CHEMBL: risolti) ---
   Campione: 200 cluster
-  Flippati a biologic (K3_MISTYPE_*): 16 / 200 = 8.00%
+  Flippati a biologic (K3_MISTYPE_*): 7 / 200 = 3.50%
   FALSI POSITIVI:
-    pair_L1_e1c322ce : CHEBI:17126 -> CHEBI:16412 (K3_MISTYPE_pathogen)
-    group_L3_dc6c1876 : CHEBI:32970 -> CHEBI:84491 (K3_MISTYPE_pathogen)
+    pair_L1_e1c322ce : CHEBI:17126 -> CHEBI:16412 (K3_MISTYPE_pathogen_pamp)
+    group_L3_dc6c1876 : CHEBI:32970 -> CHEBI:84491 (K3_MISTYPE_pathogen_pamp)
     pair_L0_fb6070b8 : CHEBI:16991 -> HGNC:TGFA (K3_MISTYPE_cytokine)
-    pair_L2_2edad8f7 : CHEBI:17126 -> CHEBI:16412 (K3_MISTYPE_pathogen)
-    group_L1_3c75321d : CHEBI:177890 -> HGNC:CD44 (K3_MISTYPE_cytokine)
+    pair_L2_2edad8f7 : CHEBI:17126 -> CHEBI:16412 (K3_MISTYPE_pathogen_pamp)
     group_L2_1fd9a418 : CHEBI:32374 -> HGNC:TNF (K3_MISTYPE_cytokine)
-    group_L1_9472e233 : CHEBI:138655 -> HGNC:PDCD1 (K3_MISTYPE_cytokine)
-    group_L3_3b5d9199 : CHEBI:16991 -> HGNC:EGF (K3_MISTYPE_cytokine)
-    group_L2_647012a0 : CHEBI:28364 -> HGNC:TIMP1 (K3_MISTYPE_cytokine)
-    pair_L0_b7495c67 : CHEBI:9168 -> HGNC:TNF (K3_MISTYPE_cytokine)
     group_L4_3be82c37 : CHEBI:32970 -> CHEBI:84491 (K3_MISTYPE_pathogen)
-    pair_L0_13f96906 : CHEBI:197439 -> HGNC:TNF (K3_MISTYPE_cytokine)
-    group_L1_f612f6d7 : CHEBI:17105 -> CHEBI:16412 (K3_MISTYPE_pathogen)
-    group_L3_4ee5b2b1 : CHEBI:17120 -> HGNC:IFNG (K3_MISTYPE_cytokine)
-    pair_L0_12ad4e52 : CHEBI:29073 -> HGNC:TGFB2 (K3_MISTYPE_cytokine)
-    group_L1_b5d8dde8 : CHEMBL:CHEMBL2108501 -> HGNC:IL13 (K3_MISTYPE_cytokine)
+    group_L1_f612f6d7 : CHEBI:17105 -> CHEBI:16412 (K3_MISTYPE_pathogen_pamp)
 
 --- (d) CANARY GENERICI ---
   [cytokine_stim] 'interferon' -> STR:interferon (STR_FALLBACK) = STR/NA (ok)

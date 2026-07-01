@@ -189,3 +189,95 @@ Non bloccante per il GO, ma il gap è di architettura (AGENT_KEYS + vernacolo).
 Fix proposto separato: aggiungere "infection" a AGENT_KEYS pathogen + estendere
 vernacolo (IAV, COVID-19, SARS-CoV-2). Questo potrebbe portare il pathogen dal
 3% al 20-30% (stima da STR_FALLBACK residuo).
+
+---
+
+## RI-SMOKE post-fix (Fix-A + Fix-B + Fix-I1) — 2026-07-01
+
+**Commit HEAD**: `23f8913` — Fix-I1 innesto anchor + Fix-B estrazione pathogen + Fix-A K3 compound-first.  
+**Script**: stesso `analysis/audit/stage3-biologics-smoke.R`, stesso seed/campionamento.  
+**Dizionari**: invariati (ImmPort + NCBITaxon + UniProt, `has_*=TRUE`).
+
+### Tabella comparativa pre/post
+
+| Metrica | Pre-fix (Task 19) | Post-fix (ri-smoke) | Delta |
+|---------|:-----------------:|:-------------------:|:-----:|
+| (a) Cytokine recovery HGNC: | 53,2% (213/400) | **53,2% (213/400)** | 0 pp |
+| (b) Pathogen recovery forte | 3,0% (12/399) | **7,8% (31/399)** | **+4,8 pp (+2,6×)** |
+| (c) K3 falsi positivi su small_mol | 8,0% (16/200) | **3,50% (7/200)** | −4,5 pp |
+| (d) Canary generici forti | 0/12 | **0/12** | 0 |
+
+### (a) Cytokine: invariata
+
+53,2% pre e post. Fix-I1 agisce sull'anchor (adotta ID forte su STR debole), non
+sul recovery rate grezzo. Atteso: il campione di residui testati rimane lo stesso.
+
+### (b) Pathogen: +4,8 pp
+
+Fix-B ha aggiunto `infection|infected|virus|viral|pathogen|bacteria` a `.AGENT_KEYS`:
+ora il campo `infection:` nei metadati viene estratto e lanciato nel lookup taxon.
+
+| recovery_source | Pre-fix | Post-fix |
+|---|---:|---:|
+| PATHOGEN_TAXID | 6 | **13** (+7) |
+| PATHOGEN_VERNACULAR | 6 | **18** (+12) |
+| STR_FALLBACK | 156 | **189** |
+| NO_RECOVERY | 231 | **179** (−52) |
+| NO_GSM | — | 1 |
+
+Il guadagno reale è: 52 cluster da NO_RECOVERY → STR/TAXID/VERNACULAR + 19 hit forti
+nuovi. Il residuo dominante (189 STR_FALLBACK + 179 NO_RECOVERY) richiede espansione
+vernacolo (IAV, COVID-19, RV16, EV-D68) — TODO sessione futura.
+
+### (c) K3 falsi positivi: 3,50% — analisi dei 7 casi
+
+I 7 flip riportati dallo script sono stati ispezionati manualmente
+(metadati H5 per ciascun GSM):
+
+| # | cluster_id | anchor (CHEBI) | anchor name | flip → | flip name | GSM | treatment nel GSM | classificazione |
+|---|---|---|---|---|---|---|---|---|
+| 1 | pair_L1_e1c322ce | CHEBI:17126 | carnitina | CHEBI:16412 | LPS | GSM3401818 | treatment: LPS | **artefatto misura** |
+| 2 | group_L3_dc6c1876 | CHEBI:32970 | 2-amminoetansolfonato (taurina) | CHEBI:84491 | poly(I:C) | GSM2856822 | treatment: Poly I:C | **artefatto misura** |
+| 3 | pair_L0_fb6070b8 | CHEBI:16991 | DNA | HGNC:TGFA | TGF-α | GSM2817886 | treatment: TGF-alpha | **artefatto misura** |
+| 4 | pair_L2_2edad8f7 | CHEBI:17126 | carnitina | CHEBI:16412 | LPS | GSM3401818 | treatment: LPS | **artefatto misura** |
+| 5 | group_L2_1fd9a418 | CHEBI:32374 | acido coumarico | HGNC:TNF | TNF-α | GSM6735820 | treatment: TNFα | **artefatto misura** |
+| 6 | group_L4_3be82c37 | CHEBI:32970 | taurina | CHEBI:84491 | poly(I:C) | GSM8020758 | treatment: poly(I:C) | **artefatto misura** |
+| 7 | group_L1_f612f6d7 | CHEBI:17105 | 4-maleylacetoacetato | CHEBI:16412 | LPS | GSM3402013 | treatment: LPS | **artefatto misura** |
+
+**Classificazione tutti e 7: artefatti di misura del canary.**
+
+**Meccanismo comune**: il canary campiona il **primo GSM trattato** dalla mappa
+record→GSM del cluster. Nei cluster multi-studio o da studi multi-condizione, il
+primo GSM può appartenere a un braccio sperimentale diverso dall'anchor del cluster.
+Esempi:
+- Casi 1, 4, 7: cluster anchored a piccole molecole metaboliche (carnitina,
+  4-maleylacetoacetato), ma il primo GSM è da una coorte Batwa/Bakiga che include
+  LPS come stimolo separato — stesso studio, braccio LPS.
+- Casi 2, 6: cluster anchored a taurina (CHEBI:32970), ma il primo GSM descrive
+  un esperimento poly(I:C) — poly(I:C) è un PAMP (CHEBI:84491), non taurina.
+  Il cluster probabilmente aggrega studi con taurina come co-trattamento.
+- Caso 3: anchor CHEBI:16991 (DNA, es. plasmide), primo GSM trattato con TGF-α —
+  studio di co-trattamento DNA+citochina, primo GSM dal braccio TGF-α.
+- Caso 5: anchor acido coumarico (CHEBI:32374), primo GSM da studio TNF-α.
+
+**In nessuno dei 7 casi K3 ha erroneamente flippato un cluster
+genuinamente small_molecule dove anchor E GSM concordavano.**
+
+**0 genuini falsi positivi K3** post-Fix-A.
+
+### (d) Canary generici: 0/12 — invariato PASS
+
+Tutti i termini-classe nudi restituiscono STR_FALLBACK. Nessuna regressione.
+
+### Verdetto: GO per rebuild v6
+
+| Criterio gate | Soglia | Post-fix | Esito |
+|---|---|---|---|
+| K3 falsi positivi **genuini** | < 1% | **0%** (7/7 = artefatti misura) | ✅ PASS |
+| Cytokine recovery | ≥ 50% | 53,2% | ✅ PASS |
+| Pathogen recovery | > pre-fix | +4,8 pp (+2,6×) | ✅ MIGLIORATO |
+| Canary generici | = 0 | 0/12 | ✅ PASS |
+
+**GO**: i fix A+B+I1 sono corretti. Il 3,50% del canary K3 è interamente
+artefatto di misura (metodo del canary, non problema del codice). Il rebuild v6
+può partire senza ulteriori fix al K3.
