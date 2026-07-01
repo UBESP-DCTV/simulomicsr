@@ -162,3 +162,42 @@ test_that(".immport_lookup_synonym e .is_cytokine_symbol difensivi su env senza 
   expect_null(.immport_lookup_synonym("IFN-β", env = env_vuoto))
   expect_false(.is_cytokine_symbol(5434L, env = env_vuoto))
 })
+
+# ---------------------------------------------------------------------------
+# Task 3: UniProt --- indice sinonimi proteina -> HGNC
+# ---------------------------------------------------------------------------
+
+test_that(".build_uniprot_index restituisce struttura attesa (by_name, meta)", {
+  raw <- readRDS(file.path(fx, "uniprot-mini.rds"))
+  idx <- .build_uniprot_index(raw)
+  expect_type(idx, "list")
+  expect_named(idx, c("by_name", "meta"), ignore.order = FALSE)
+  expect_true(is.environment(idx$by_name))
+  expect_equal(idx$meta$source, "uniprot-sprot")
+})
+
+test_that(".uniprot_lookup_name trova interferon beta per hgnc_int e accession", {
+  raw <- readRDS(file.path(fx, "uniprot-mini.rds"))
+  env <- new.env(parent = emptyenv())
+  env$uniprot <- .build_uniprot_index(raw)
+  # "interferon beta" normalizzato -> "interferonbeta" (chiave nel fixture)
+  hit <- .uniprot_lookup_name("interferon beta", env = env)
+  expect_false(is.null(hit))
+  expect_equal(hit$hgnc_int, 5434L)
+  expect_equal(hit$accession, "P01574")
+})
+
+test_that(".uniprot_lookup_name restituisce NULL per termine sconosciuto", {
+  raw <- readRDS(file.path(fx, "uniprot-mini.rds"))
+  env <- new.env(parent = emptyenv())
+  env$uniprot <- .build_uniprot_index(raw)
+  expect_null(.uniprot_lookup_name("aspirin", env = env))
+  expect_null(.uniprot_lookup_name(NA_character_, env = env))
+  expect_null(.uniprot_lookup_name("", env = env))
+})
+
+test_that(".uniprot_lookup_name difensivo su env senza uniprot (NULL)", {
+  env_vuoto <- new.env(parent = emptyenv())
+  # env$uniprot assente -> NULL guard -> ritorna NULL senza crash
+  expect_null(.uniprot_lookup_name("interferon beta", env = env_vuoto))
+})

@@ -692,6 +692,68 @@
   get(key, envir = env$chembl$by_id, inherits = FALSE)
 }
 
+# --- UniProt -----------------------------------------------------------------
+#
+# Indice e accessor per il dizionario UniProt (sinonimi proteina -> HGNC).
+# Raw atteso: lista con elementi:
+#   $names: data.frame con colonne name_norm (stringa gia' normalizzata),
+#           accession (character), hgnc_int (integer)
+#   $meta:  lista con metadati di release (as-is)
+#
+# .normalize_biological_mention (da stage3-name-recovery.R) viene applicata
+# ai termini di lookup per collassare grafie diverse (es. "IFN-beta" -> "ifnbeta").
+# Le chiavi name_norm nel fixture DEVONO essere gia' pre-normalizzate con la
+# stessa funzione al momento della build del dizionario full.
+
+#' @noRd
+.build_uniprot_index <- function(uniprot_raw) {
+  # by_name: hash env name_norm (stringa pre-normalizzata) ->
+  #   named list (accession, hgnc_int).
+  # Prima voce per ogni chiave vince (sinonimi multipli per stessa proteina ok).
+  nm <- uniprot_raw$names
+  by_name <- new.env(hash = TRUE, parent = emptyenv(),
+                     size = max(nrow(nm), 1L))
+  if (nrow(nm) > 0L) {
+    keys <- nm$name_norm
+    acc  <- nm$accession
+    hid  <- as.integer(nm$hgnc_int)
+    for (i in seq_along(keys)) {
+      k <- keys[i]
+      if (!is.na(k) && nzchar(k) &&
+          !exists(k, envir = by_name, inherits = FALSE)) {
+        assign(k,
+               list(accession = acc[i],
+                    hgnc_int  = hid[i]),
+               envir = by_name)
+      }
+    }
+  }
+
+  list(by_name = by_name,
+       meta    = uniprot_raw$meta)
+}
+
+#' Cerca un termine biologico nell'indice UniProt (sinonimi proteina).
+#'
+#' Normalizza il termine con \code{.normalize_biological_mention} prima del
+#' lookup, cosi' grafie diverse della stessa proteina collassano sulla stessa
+#' chiave (es. "IFN-beta", "interferonbeta" -> "ifnbeta").
+#'
+#' @param term character(1) termine da cercare (forma originale o sinonimo).
+#' @param env environment con elemento \code{$uniprot} (output di
+#'   \code{.build_uniprot_index}). Default: \code{.load_ontology_dicts()}.
+#' @return named list con elementi \code{accession} (character),
+#'   \code{hgnc_int} (integer); oppure \code{NULL} su miss o env privo di uniprot.
+#' @noRd
+.uniprot_lookup_name <- function(term, env = .load_ontology_dicts()) {
+  uni <- env$uniprot
+  if (is.null(uni)) return(NULL)
+  k <- .normalize_biological_mention(term)   # "" su NA/vuoto/lunghezza!=1
+  if (!nzchar(k)) return(NULL)
+  if (!exists(k, envir = uni$by_name, inherits = FALSE)) return(NULL)
+  get(k, envir = uni$by_name, inherits = FALSE)
+}
+
 # --- Release meta ------------------------------------------------------------
 
 #' Restituisce metadata di release delle 4 dictionary correnti
