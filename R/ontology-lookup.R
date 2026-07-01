@@ -18,26 +18,32 @@
 #' @noRd
 .ontology_env <- new.env(parent = emptyenv())
 
-#' Carica ChEBI + HGNC + MeSH + ChEMBL dictionary in env singleton, memoizzato
+#' Carica ChEBI + HGNC + MeSH + ChEMBL + Taxonomy + ImmPort + UniProt
+#' dictionary in env singleton, memoizzato
 #'
 #' Costruisce hash environment per ogni indice rilevante (by_id, aliases,
 #' secondary, has_role per ChEBI; by_hgnc_int, by_symbol_lower, by_entrez_int,
 #' aliases_long per HGNC; by_ui, by_entry_lower per MeSH; by_id, aliases per
-#' ChEMBL).
+#' ChEMBL; by_name/by_taxid per Taxonomy; by_synonym/cytokine_symbols per
+#' ImmPort; by_name per UniProt).
 #'
 #' @param refresh logical(1): se TRUE forza reload (anche se gia' caricato).
 #' @param cache_dir character(1): directory contenente i RDS full (default
 #'   \code{tools::R_user_dir("simulomicsr","cache")}). chebi/hgnc/mesh sono
-#'   OBBLIGATORI (stop se mancano); chembl e' OPZIONALE (se manca, chembl=NULL
-#'   + has_chembl=FALSE, comportamento retrocompat). Usato solo se
-#'   \code{fixture_dir} e' NULL.
+#'   OBBLIGATORI (stop se mancano); chembl/taxonomy/immport/uniprot sono
+#'   OPZIONALI (se mancano, indice=NULL + has_*=FALSE, comportamento graceful).
+#'   Usato solo se \code{fixture_dir} e' NULL.
 #' @param fixture_dir character(1) | NULL: se non-NULL, carica i mini-subset
 #'   \code{chebi-mini.rds}, \code{hgnc-mini.rds}, \code{mesh-mini.rds},
-#'   \code{chembl-mini.rds} da questa directory invece dei file full. Usato
-#'   per i test.
+#'   \code{chembl-mini.rds} (e opzionalmente \code{taxonomy-mini.rds},
+#'   \code{immport-mini.rds}, \code{uniprot-mini.rds}) da questa directory
+#'   invece dei file full. Usato per i test.
 #' @return environment con elementi \code{chebi}, \code{hgnc}, \code{mesh},
-#'   \code{chembl} (NULL se assente nel ramo reale), \code{has_chembl} (logical),
-#'   \code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
+#'   \code{chembl} (NULL se assente), \code{taxonomy} (NULL se assente),
+#'   \code{immport} (NULL se assente), \code{uniprot} (NULL se assente),
+#'   \code{has_chembl}, \code{has_taxonomy}, \code{has_immport},
+#'   \code{has_uniprot}, \code{has_go_cytokine} (logical), \code{loaded=TRUE},
+#'   \code{source_dir}, \code{is_fixture}.
 #' @keywords internal
 .load_ontology_dicts <- function(refresh = FALSE,
                                  cache_dir = tools::R_user_dir("simulomicsr", which = "cache"),
@@ -53,8 +59,33 @@
     mesh_raw   <- readRDS(file.path(fixture_dir, "mesh-mini.rds"))
     chembl_raw <- readRDS(file.path(fixture_dir, "chembl-mini.rds"))
     has_chembl <- TRUE
-    src_dir    <- fixture_dir
-    is_fix     <- TRUE
+    # Dizionari biologici opzionali: graceful se il mini-file non e' presente.
+    tax_path <- file.path(fixture_dir, "taxonomy-mini.rds")
+    if (file.exists(tax_path)) {
+      taxonomy_raw <- readRDS(tax_path)
+      has_taxonomy <- TRUE
+    } else {
+      taxonomy_raw <- NULL
+      has_taxonomy <- FALSE
+    }
+    imp_path <- file.path(fixture_dir, "immport-mini.rds")
+    if (file.exists(imp_path)) {
+      immport_raw <- readRDS(imp_path)
+      has_immport <- TRUE
+    } else {
+      immport_raw <- NULL
+      has_immport <- FALSE
+    }
+    uni_path <- file.path(fixture_dir, "uniprot-mini.rds")
+    if (file.exists(uni_path)) {
+      uniprot_raw <- readRDS(uni_path)
+      has_uniprot <- TRUE
+    } else {
+      uniprot_raw <- NULL
+      has_uniprot <- FALSE
+    }
+    src_dir <- fixture_dir
+    is_fix  <- TRUE
   } else {
     chebi_path  <- file.path(cache_dir, "chebi", "chebi-lookup.rds")
     hgnc_path   <- file.path(cache_dir, "hgnc-lookup.rds")
@@ -84,19 +115,52 @@
     chebi_raw  <- readRDS(chebi_path)
     hgnc_raw   <- readRDS(hgnc_path)
     mesh_raw   <- readRDS(mesh_path)
-    src_dir    <- cache_dir
-    is_fix     <- FALSE
+    # Taxonomy opzionale: graceful se il file non e' presente.
+    tax_path <- file.path(cache_dir, "taxonomy", "taxonomy-lookup.rds")
+    if (file.exists(tax_path)) {
+      taxonomy_raw <- readRDS(tax_path)
+      has_taxonomy <- TRUE
+    } else {
+      taxonomy_raw <- NULL
+      has_taxonomy <- FALSE
+    }
+    # ImmPort opzionale: graceful se il file non e' presente.
+    imp_path <- file.path(cache_dir, "immport", "immport-lookup.rds")
+    if (file.exists(imp_path)) {
+      immport_raw <- readRDS(imp_path)
+      has_immport <- TRUE
+    } else {
+      immport_raw <- NULL
+      has_immport <- FALSE
+    }
+    # UniProt opzionale: graceful se il file non e' presente.
+    uni_path <- file.path(cache_dir, "uniprot", "uniprot-lookup.rds")
+    if (file.exists(uni_path)) {
+      uniprot_raw <- readRDS(uni_path)
+      has_uniprot <- TRUE
+    } else {
+      uniprot_raw <- NULL
+      has_uniprot <- FALSE
+    }
+    src_dir <- cache_dir
+    is_fix  <- FALSE
   }
 
   .ontology_env$chebi      <- .build_chebi_index(chebi_raw)
   .ontology_env$hgnc       <- .build_hgnc_index(hgnc_raw)
   .ontology_env$mesh       <- .build_mesh_index(mesh_raw)
-  if (has_chembl) {
-    .ontology_env$chembl   <- .build_chembl_index(chembl_raw)
-  } else {
-    .ontology_env$chembl   <- NULL
-  }
-  .ontology_env$has_chembl <- has_chembl
+  .ontology_env$chembl     <- if (has_chembl) .build_chembl_index(chembl_raw) else NULL
+  .ontology_env$taxonomy   <- if (has_taxonomy) .build_taxonomy_index(taxonomy_raw) else NULL
+  .ontology_env$immport    <- if (has_immport)  .build_immport_index(immport_raw)   else NULL
+  .ontology_env$uniprot    <- if (has_uniprot)  .build_uniprot_index(uniprot_raw)   else NULL
+  .ontology_env$has_chembl  <- has_chembl
+  .ontology_env$has_taxonomy <- has_taxonomy
+  .ontology_env$has_immport  <- has_immport
+  .ontology_env$has_uniprot  <- has_uniprot
+  # has_go_cytokine: TRUE solo se il build ImmPort ha incluso la whitelist GO.
+  # Il flag e' registrato in immport_raw$meta$has_go al momento della build
+  # del dizionario full. Default FALSE se immport assente.
+  .ontology_env$has_go_cytokine <- if (has_immport) isTRUE(immport_raw$meta$has_go) else FALSE
   .ontology_env$source_dir <- src_dir
   .ontology_env$is_fixture <- is_fix
   .ontology_env$loaded     <- TRUE
@@ -756,21 +820,26 @@
 
 # --- Release meta ------------------------------------------------------------
 
-#' Restituisce metadata di release delle 4 dictionary correnti
+#' Restituisce metadata di release delle dictionary correnti
 #'
 #' Usato da \code{build_stage3_clusters()} per registrare \code{ontology_releases}
 #' nel \code{run_metadata.json}, garantendo riproducibilita' paper-grade.
+#' I campi biologici (taxonomy/immport/uniprot) sono NULL se il dizionario
+#' corrispondente non e' stato caricato (has_*=FALSE).
 #'
 #' @param env environment caricato da \code{.load_ontology_dicts()}.
 #' @return named list con elementi \code{chebi}, \code{hgnc}, \code{mesh},
-#'   \code{chembl}.
+#'   \code{chembl}, \code{taxonomy}, \code{immport}, \code{uniprot}.
 #' @keywords internal
 .ontology_release_meta <- function(env = .load_ontology_dicts()) {
   list(
     chebi      = env$chebi$meta,
     hgnc       = env$hgnc$meta,
     mesh       = env$mesh$meta,
-    chembl     = if (!is.null(env$chembl)) env$chembl$meta else NULL,
+    chembl     = if (!is.null(env$chembl))   env$chembl$meta   else NULL,
+    taxonomy   = if (!is.null(env$taxonomy)) env$taxonomy$meta else NULL,
+    immport    = if (!is.null(env$immport))  env$immport$meta  else NULL,
+    uniprot    = if (!is.null(env$uniprot))  env$uniprot$meta  else NULL,
     source_dir = env$source_dir,
     is_fixture = env$is_fixture
   )

@@ -201,3 +201,60 @@ test_that(".uniprot_lookup_name difensivo su env senza uniprot (NULL)", {
   # env$uniprot assente -> NULL guard -> ritorna NULL senza crash
   expect_null(.uniprot_lookup_name("interferon beta", env = env_vuoto))
 })
+
+# ---------------------------------------------------------------------------
+# Task 4: .load_ontology_dicts — caricamento graceful biologici + flag has_*
+# ---------------------------------------------------------------------------
+
+test_that("loader carica le fonti biologiche da fixture_dir con flag has_*", {
+  # fixture_dir completa (taxonomy/immport/uniprot mini presenti)
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = fx)
+  expect_true(env$has_taxonomy)
+  expect_true(env$has_immport)
+  expect_true(env$has_uniprot)
+  expect_false(is.null(env$taxonomy))
+  expect_false(is.null(env$immport))
+  expect_false(is.null(env$uniprot))
+})
+
+test_that("loader carica has_go_cytokine dal meta di immport", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = fx)
+  # immport-mini.rds ha meta$has_go = TRUE (aggiunto al fixture)
+  # oppure ha meta$has_go = FALSE/NULL (da cui FALSE per has_go_cytokine)
+  expect_type(env$has_go_cytokine, "logical")
+  expect_length(env$has_go_cytokine, 1L)
+})
+
+test_that("loader graceful: fonti biologiche assenti -> has_*=FALSE, retrocompat", {
+  # Crea tempdir con solo i 4 file obbligatori + chembl (senza biological dicts)
+  td <- tempfile()
+  dir.create(td)
+  for (f in c("chebi-mini.rds", "hgnc-mini.rds", "mesh-mini.rds", "chembl-mini.rds")) {
+    file.copy(file.path(fx, f), file.path(td, f))
+  }
+  # Il loader NON deve fare stop() anche senza taxonomy/immport/uniprot
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = td)
+  expect_false(env$has_taxonomy)
+  expect_null(env$taxonomy)
+  expect_false(env$has_immport)
+  expect_null(env$immport)
+  expect_false(env$has_uniprot)
+  expect_null(env$uniprot)
+  expect_false(env$has_go_cytokine)
+  # retrocompat: chebi/hgnc/mesh/chembl caricati correttamente
+  expect_false(is.null(env$chebi))
+  expect_true(env$has_chembl)
+})
+
+test_that("ontology_release_meta include release biologiche (taxonomy/immport/uniprot)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = fx)
+  meta <- .ontology_release_meta(env)
+  # I nuovi campi devono esistere (NULL se assenti, non stop)
+  expect_true("taxonomy" %in% names(meta))
+  expect_true("immport" %in% names(meta))
+  expect_true("uniprot" %in% names(meta))
+  # Con fixture completa devono essere non-NULL
+  expect_false(is.null(meta$taxonomy))
+  expect_false(is.null(meta$immport))
+  expect_false(is.null(meta$uniprot))
+})
