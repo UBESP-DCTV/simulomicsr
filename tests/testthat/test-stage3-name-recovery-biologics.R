@@ -74,3 +74,65 @@ test_that(".is_generic_biological: input vuoto/NA -> TRUE (termini non informati
   expect_true(.is_generic_biological(NA_character_))
   expect_true(.is_generic_biological(""))
 })
+
+# ---------------------------------------------------------------------------
+# Task 7: .normalize_cytokine_to_hgnc
+# ---------------------------------------------------------------------------
+
+# Helper fixture comune (riusato in tutti i test Task 7)
+.fx7 <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
+
+test_that(".normalize_cytokine_to_hgnc: input vuoto/NA -> NO_TERM", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx7)
+  r_empty <- .normalize_cytokine_to_hgnc("", env)
+  expect_equal(r_empty$source, "NO_TERM")
+  expect_true(is.na(r_empty$id))
+  r_na <- .normalize_cytokine_to_hgnc(NA_character_, env)
+  expect_equal(r_na$source, "NO_TERM")
+})
+
+test_that(".normalize_cytokine_to_hgnc: termine generico -> STR_FALLBACK", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx7)
+  # "interferon" e' nella GENERIC_BIOLOGICAL_STOPLIST -> fallback senza lookup
+  r <- .normalize_cytokine_to_hgnc("interferon", env)
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_equal(r$id, "STR:interferon")
+})
+
+test_that(".normalize_cytokine_to_hgnc risolve IFN-beta a HGNC e gatekeepa i generici", {
+  # Test canonico dal brief: IFN-beta con dose -> ImmPort -> HGNC:IFNB1
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx7)
+  r <- .normalize_cytokine_to_hgnc("IFN-β 10 ng/ml", env)
+  expect_equal(r$id, "HGNC:IFNB1")
+  expect_equal(r$source, "CYTOKINE_IMMPORT")
+  # generico -> STR_FALLBACK
+  expect_equal(.normalize_cytokine_to_hgnc("interferon", env)$source, "STR_FALLBACK")
+  # vuoto -> NO_TERM
+  expect_equal(.normalize_cytokine_to_hgnc("", env)$source, "NO_TERM")
+})
+
+test_that(".normalize_cytokine_to_hgnc: percorso HGNC diretto (simbolo alias non in ImmPort)", {
+  # BSF2 (B-cell stimulatory factor 2) e' alias HGNC di IL6 (hgnc_int=6018)
+  # NON e' nel mini-fixture ImmPort -> deve colpire il path HGNC
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx7)
+  r <- .normalize_cytokine_to_hgnc("BSF2", env)
+  expect_equal(r$id, "HGNC:IL6")
+  expect_equal(r$source, "CYTOKINE_HGNC")
+})
+
+test_that(".normalize_cytokine_to_hgnc: gene non-citochina -> gateato -> STR_FALLBACK", {
+  # EGFR e' in HGNC ma NON nella whitelist citochine -> il gate lo scarta
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx7)
+  r <- .normalize_cytokine_to_hgnc("EGFR", env)
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_match(r$id, "^STR:")
+})
+
+test_that(".normalize_cytokine_to_hgnc: restituisce lista con campi id/name/source", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx7)
+  r <- .normalize_cytokine_to_hgnc("IFN-β 10 ng/ml", env)
+  expect_named(r, c("id", "name", "source"), ignore.order = TRUE)
+  expect_type(r$id, "character")
+  expect_type(r$name, "character")
+  expect_type(r$source, "character")
+})

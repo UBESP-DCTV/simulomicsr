@@ -449,6 +449,95 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   gsub("[^a-z0-9]+", "", s)
 }
 
+# ---------------------------------------------------------------------------
+# Task 7 biologici — .normalize_cytokine_to_hgnc
+# ---------------------------------------------------------------------------
+
+#' Normalizza un termine-citochina testuale a un ID HGNC (o STR fallback).
+#'
+#' Flusso (precisione decrescente):
+#' 1. Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
+#' 2. Termine biologico generico via \code{.is_generic_biological} ->
+#'    id="STR:<slug>", source="STR_FALLBACK".
+#' 3. Estrae candidati via \code{.extract_compound_candidates} (spoglia
+#'    dose/tempo, stesso helper dei composti).
+#' 4. Per ogni candidato, in ordine di precisione:
+#'    (a) ImmPort sinonimo \code{.immport_lookup_synonym} (normalizza
+#'        internamente via .normalize_biological_mention);
+#'    (b) HGNC simbolo \code{.hgnc_lookup_symbol(tolower(cand))};
+#'    (c) UniProt nome \code{.uniprot_lookup_name} (normalizza internamente).
+#'    Al primo hgnc_int trovato: gate whitelist \code{.is_cytokine_symbol};
+#'    se FALSE scarta e continua al candidato successivo.
+#'    Se TRUE: recupera simbolo canonico via \code{.hgnc_lookup_hgnc} e
+#'    restituisce id="HGNC:<symbol>".
+#' 5. Nessun hit valido -> id="STR:<slugify(term)>", source="STR_FALLBACK".
+#'
+#' @param term character(1) termine-citochina estratto dai metadati GEO.
+#' @param ontology_env environment caricato da \code{.load_ontology_dicts()}.
+#' @return lista con campi \code{id}, \code{name}, \code{source}.
+#'   \code{id} e' "HGNC:<symbol>" oppure "STR:<slug>" (oppure NA su NO_TERM).
+#'   \code{source} e' "CYTOKINE_IMMPORT" | "CYTOKINE_HGNC" | "CYTOKINE_UNIPROT"
+#'   | "STR_FALLBACK" | "NO_TERM".
+#' @keywords internal
+.normalize_cytokine_to_hgnc <- function(term, ontology_env) {
+  # 1. Guardia input mancante/vuoto
+  if (length(term) != 1L || is.na(term) || !nzchar(term)) {
+    return(list(id = NA_character_, name = NA_character_, source = "NO_TERM"))
+  }
+  # 2. Termine biologico generico -> STR fallback (non informativo per il lookup)
+  if (.is_generic_biological(term)) {
+    return(list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK"))
+  }
+  # 3. Estrai candidati (spoglia dose/tempo come per i composti)
+  cands <- .extract_compound_candidates(term)
+  # 4. Catena di lookup per ogni candidato, precisione-decrescente
+  for (cand in cands) {
+    hgnc_int <- NULL
+    src      <- NULL
+
+    # (a) ImmPort sinonimo (normalizza internamente via .normalize_biological_mention)
+    hit_imp <- .immport_lookup_synonym(cand, env = ontology_env)
+    if (!is.null(hit_imp) && !is.null(hit_imp$hgnc_int)) {
+      hgnc_int <- hit_imp$hgnc_int
+      src      <- "CYTOKINE_IMMPORT"
+    }
+
+    # (b) HGNC simbolo diretto (tolower del candidato come chiave, NON la forma compatta)
+    if (is.null(hgnc_int)) {
+      hit_hgnc <- .hgnc_lookup_symbol(tolower(cand), env = ontology_env)
+      if (!is.null(hit_hgnc) && !is.null(hit_hgnc$hgnc_int)) {
+        hgnc_int <- hit_hgnc$hgnc_int
+        src      <- "CYTOKINE_HGNC"
+      }
+    }
+
+    # (c) UniProt (normalizza internamente via .normalize_biological_mention)
+    if (is.null(hgnc_int)) {
+      hit_uni <- .uniprot_lookup_name(cand, env = ontology_env)
+      if (!is.null(hit_uni) && !is.null(hit_uni$hgnc_int)) {
+        hgnc_int <- hit_uni$hgnc_int
+        src      <- "CYTOKINE_UNIPROT"
+      }
+    }
+
+    # Gate whitelist citochine: scarta se il gene trovato NON e' una citochina
+    if (!is.null(hgnc_int) && .is_cytokine_symbol(hgnc_int, env = ontology_env)) {
+      # Recupera simbolo canonico da HGNC (fallback: hgnc_int come stringa)
+      gene_info <- .hgnc_lookup_hgnc(hgnc_int, env = ontology_env)
+      symbol    <- if (!is.null(gene_info) && !is.null(gene_info$symbol))
+                     gene_info$symbol else as.character(hgnc_int)
+      return(list(
+        id     = paste0("HGNC:", symbol),
+        name   = symbol,
+        source = src
+      ))
+    }
+    # hgnc_int trovato ma non nella whitelist -> continua al candidato successivo
+  }
+  # 5. Nessun hit valido -> STR fallback
+  list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
+}
+
 # Segnali genetici (K2). Spec: is_genetic SOLO su segnali inequivocabili.
 #
 # DUE famiglie di pattern testate separatamente per ogni kind:
