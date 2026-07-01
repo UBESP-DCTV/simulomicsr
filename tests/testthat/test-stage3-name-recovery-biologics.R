@@ -397,10 +397,11 @@ test_that("Fix-B1: .extract_agent_term estrae da chiave 'virus'", {
   expect_equal(r, "iav")
 })
 
-test_that("Fix-B1: .extract_agent_term estrae da chiave 'bacteria'", {
+test_that("Fix-D I-1: chiave 'bacteria' rimossa da .AGENT_KEYS -> NA (Fix-B1 aggiornato)", {
+  # Fix-D I-1: 'bacteria' rimosso da .AGENT_KEYS (0 hit reali, superficie di collisione).
+  # L'organismo ora va estratto tramite 'infection:', non 'bacteria:'.
   r <- .extract_agent_term("", "bacteria: Staphylococcus aureus", "")
-  expect_false(is.na(r))
-  expect_true(nzchar(r))
+  expect_true(is.na(r))
 })
 
 test_that("Fix-B1: recover_identity pathogen con chiave 'infection' -> NCBITaxon", {
@@ -513,4 +514,175 @@ test_that("Fix-B2: vernacolo retrocompat (flu/tb/mtb/sarscov2 invariati)", {
   expect_equal(.normalize_pathogen_to_taxid("flu")$id,      "NCBITaxon:11320")
   expect_equal(.normalize_pathogen_to_taxid("TB")$id,       "NCBITaxon:1773")
   expect_equal(.normalize_pathogen_to_taxid("SARS-CoV-2")$id, "NCBITaxon:2697049")
+})
+
+# ---------------------------------------------------------------------------
+# Fix-D I-1: trim .AGENT_KEYS (rimuovi organism/microbe/bacteria/bacterial/viral)
+# ---------------------------------------------------------------------------
+
+.fxd <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
+
+test_that("Fix-D I-1: .AGENT_KEYS non contiene piu' le chiavi rimosse", {
+  # Verifica che le 5 chiavi rimovibili non siano presenti nel pattern
+  expect_false(grepl("\\borganism\\b", .AGENT_KEYS))
+  expect_false(grepl("\\bmicrobe\\b",  .AGENT_KEYS))
+  expect_false(grepl("\\bbacteria\\b", .AGENT_KEYS))
+  expect_false(grepl("\\bbacterial\\b", .AGENT_KEYS))
+  expect_false(grepl("\\bviral\\b",    .AGENT_KEYS))
+})
+
+test_that("Fix-D I-1: .AGENT_KEYS mantiene le chiavi utili (infection/virus/pathogen)", {
+  # Chiavi Fix-B mantenute
+  expect_true(grepl("infection", .AGENT_KEYS, fixed = TRUE))
+  expect_true(grepl("virus",     .AGENT_KEYS, fixed = TRUE))
+  expect_true(grepl("pathogen",  .AGENT_KEYS, fixed = TRUE))
+  expect_true(grepl("inoculation", .AGENT_KEYS, fixed = TRUE))
+  expect_true(grepl("challenge", .AGENT_KEYS, fixed = TRUE))
+})
+
+test_that("Fix-D I-1: .extract_agent_term('organism: human') -> NA (organism non e' agente)", {
+  # 'organism: human' prima estraeva 'human' come agente (bug I-1).
+  # Dopo il trim 'organism' non e' piu' in .AGENT_KEYS -> NA.
+  r <- .extract_agent_term("", "tissue: cortex, organism: human", "")
+  expect_true(is.na(r))
+})
+
+test_that("Fix-D I-1: .extract_agent_term('infection: influenza A') ancora funziona", {
+  # Regression: chiave 'infection' mantenuta -> estrazione invariata
+  r <- .extract_agent_term("", "infection: influenza A", "rep1")
+  expect_equal(r, "influenza a")
+})
+
+test_that("Fix-D I-1: .extract_agent_term('virus: IAV') ancora funziona", {
+  # Regression: chiave 'virus' mantenuta -> estrazione invariata
+  r <- .extract_agent_term("", "virus: IAV", "")
+  expect_equal(r, "iav")
+})
+
+test_that("Fix-D I-1: recover_identity organism:human NON flippa a pathogen", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fxd)
+  # 'organism: human' non estrae piu' un agente -> NO_RECOVERY, kind invariato
+  r <- recover_identity("", "organism: human", "", "small_molecule", env)
+  expect_equal(r$recovery_source, "NO_RECOVERY")
+  expect_true(is.na(r$agent_id))
+  expect_equal(r$kind, "small_molecule")
+  # Invariante principale: agent_id NON deve essere NCBITaxon:9606
+  expect_false(identical(r$agent_id, "NCBITaxon:9606"))
+})
+
+# ---------------------------------------------------------------------------
+# Fix-D I-1b: .HOST_SPECIES_STOPLIST + guardia in .normalize_pathogen_to_taxid
+# ---------------------------------------------------------------------------
+
+test_that("Fix-D I-1b: .HOST_SPECIES_STOPLIST e' definito e contiene le specie-ospite", {
+  expect_true(is.character(.HOST_SPECIES_STOPLIST))
+  expect_gt(length(.HOST_SPECIES_STOPLIST), 0L)
+  # Forme normalizzate attese (output di .normalize_biological_mention)
+  expect_true("human"            %in% .HOST_SPECIES_STOPLIST)
+  expect_true("homosapiens"      %in% .HOST_SPECIES_STOPLIST)
+  expect_true("mouse"            %in% .HOST_SPECIES_STOPLIST)
+  expect_true("musmusculus"      %in% .HOST_SPECIES_STOPLIST)
+  expect_true("rat"              %in% .HOST_SPECIES_STOPLIST)
+  expect_true("rattusnorvegicus" %in% .HOST_SPECIES_STOPLIST)
+  expect_true("patient"          %in% .HOST_SPECIES_STOPLIST)
+  expect_true("donor"            %in% .HOST_SPECIES_STOPLIST)
+  expect_true("subject"          %in% .HOST_SPECIES_STOPLIST)
+})
+
+test_that("Fix-D I-1b: .normalize_pathogen_to_taxid('human') -> STR (host-species stoplist)", {
+  # 'human' normalizzato -> 'human' -> in .HOST_SPECIES_STOPLIST -> STR_FALLBACK
+  # PRIMA del lookup taxdump che avrebbe prodotto NCBITaxon:9606
+  r <- .normalize_pathogen_to_taxid("human")
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_true(startsWith(r$id, "STR:"))
+  # invariante principale: mai NCBITaxon:9606
+  expect_false(identical(r$id, "NCBITaxon:9606"))
+})
+
+test_that("Fix-D I-1b: .normalize_pathogen_to_taxid('Homo sapiens') -> STR (host-species)", {
+  r <- .normalize_pathogen_to_taxid("Homo sapiens")
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_false(identical(r$id, "NCBITaxon:9606"))
+})
+
+test_that("Fix-D I-1b: .normalize_pathogen_to_taxid('mouse') -> STR (host-species)", {
+  r <- .normalize_pathogen_to_taxid("mouse")
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_true(startsWith(r$id, "STR:"))
+})
+
+test_that("Fix-D I-1b: .normalize_pathogen_to_taxid('patient') -> STR (host-species)", {
+  r <- .normalize_pathogen_to_taxid("patient")
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_true(startsWith(r$id, "STR:"))
+})
+
+test_that("Fix-D I-1b: .normalize_pathogen_to_taxid('donor') -> STR (host-species)", {
+  r <- .normalize_pathogen_to_taxid("donor")
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_true(startsWith(r$id, "STR:"))
+})
+
+test_that("Fix-D I-1b: patogeni reali NON bloccati da host-species stoplist", {
+  # Regression: flu, SARS-CoV-2, LPS NON sono nella stoplist -> restano invariati
+  expect_equal(.normalize_pathogen_to_taxid("flu")$id,    "NCBITaxon:11320")
+  expect_equal(.normalize_pathogen_to_taxid("LPS")$id,    "CHEBI:16412")
+  expect_equal(.normalize_pathogen_to_taxid("SARS-CoV-2")$id, "NCBITaxon:2697049")
+})
+
+test_that("Fix-D I-1b: 'human adenovirus' NON bloccato (stoplist su forma normalizzata esatta)", {
+  # "human adenovirus" normalizzato -> "humanadenovirus" -> NON in stoplist
+  # (match esatto: solo "human" puro e' nella lista, non prefisso)
+  r <- .normalize_pathogen_to_taxid("human adenovirus")
+  # Non deve essere NCBITaxon:9606; puo' essere STR o un taxon se nel dump
+  expect_false(identical(r$id, "NCBITaxon:9606"))
+})
+
+# ---------------------------------------------------------------------------
+# Fix-D I-2: .AGENT_CONTROL esteso con pattern infection-negativo
+# ---------------------------------------------------------------------------
+
+test_that("Fix-D I-2: .AGENT_CONTROL include i pattern infection-negativo", {
+  expect_true(grepl("uninfected",    .AGENT_CONTROL, fixed = TRUE))
+  expect_true(grepl("non-?infected", .AGENT_CONTROL, fixed = TRUE))
+  expect_true(grepl("noninfection",  .AGENT_CONTROL, fixed = TRUE))
+})
+
+test_that("Fix-D I-2: 'infection: uninfected' -> .extract_agent_term -> NA (controllo infection-neg)", {
+  # 'uninfected' ora in .AGENT_CONTROL -> il valore viene scartato come controllo
+  r <- .extract_agent_term("", "infection: uninfected", "")
+  expect_true(is.na(r))
+})
+
+test_that("Fix-D I-2: 'infection: non-infected' -> .extract_agent_term -> NA", {
+  r <- .extract_agent_term("", "infection: non-infected", "")
+  expect_true(is.na(r))
+})
+
+test_that("Fix-D I-2: 'infection: noninfection' -> .extract_agent_term -> NA", {
+  r <- .extract_agent_term("", "infection: noninfection", "")
+  expect_true(is.na(r))
+})
+
+test_that("Fix-D I-2: 'infection: not infected' -> .extract_agent_term -> NA", {
+  r <- .extract_agent_term("", "infection: not infected", "")
+  expect_true(is.na(r))
+})
+
+test_that("Fix-D I-2: 'infection: no infection' -> .extract_agent_term -> NA", {
+  r <- .extract_agent_term("", "infection: no infection", "")
+  expect_true(is.na(r))
+})
+
+test_that("Fix-D I-2: 'infection: influenza A' non bloccato da infection-neg (positivo resta)", {
+  # 'influenza a' NON matcha i pattern infection-negativi -> viene estratto correttamente
+  r <- .extract_agent_term("", "infection: influenza A", "")
+  expect_equal(r, "influenza a")
+})
+
+test_that("Fix-D I-2: retrocompat untreated/mock/vehicle ancora bloccati", {
+  # Pattern preesistenti in .AGENT_CONTROL non devono essere stati rimossi
+  expect_true(is.na(.extract_agent_term("", "treatment: untreated", "")))
+  expect_true(is.na(.extract_agent_term("", "agent: mock",          "")))
+  expect_true(is.na(.extract_agent_term("", "compound: vehicle",    "")))
 })

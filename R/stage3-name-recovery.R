@@ -13,14 +13,41 @@ if (!exists("%||%")) {
 .CONTROL_VALS <- "healthy|normal|control|non-?malignant|baseline|unaffected|^na$|^none$"
 # Chiavi-campo GEO usate per agenti perturbativi (composti, patogeni, citochine).
 # Include sia chiavi generiche (treatment, compound) sia chiavi specifiche dei
-# patogeni (infection, virus, bacteria, organism) che nei metadati GEO compaiono
-# come "infection: influenza A" o "virus strain: IAV" anziche' "treatment: ...".
+# patogeni (infection, infected, virus, pathogen, inoculation, challenge, stimulant)
+# che nei metadati GEO compaiono come "infection: influenza A" anziche'
+# "treatment: ...".
+#
+# Fix-D I-1 (2026-07-01): rimosso 'organism' (747 hit con valore "human" -> flip
+# errato NCBITaxon:9606), 'microbe', 'bacteria', 'bacterial', 'viral' (0 hit reali
+# nei dati ARCHS4, superficie inutile per collisioni future).
 .AGENT_KEYS    <- paste0(
   "^(treatment|agent|compound|drug|chemical|stimulus|stimulation|ligand|",
-  "exposure|reagent|infection|infected|virus|viral|pathogen|bacteria|",
-  "bacterial|organism|microbe|inoculation|challenge|stimulant|treatment agent)$"
+  "exposure|reagent|infection|infected|virus|pathogen|",
+  "inoculation|challenge|stimulant|treatment agent)$"
 )
-.AGENT_CONTROL <- paste0(.CONTROL_VALS, "|vehicle|dmso|\\bpbs\\b|untreated|mock|scramble|vector|water")
+# Fix-D I-2 (2026-07-01): aggiunto blocco infection-negativo (uninfected,
+# non-infected, noninfection, not infected, no infection) per evitare che i
+# campioni di controllo infection-negative producano un agente STR spurio.
+.AGENT_CONTROL <- paste0(
+  .CONTROL_VALS,
+  "|vehicle|dmso|\\bpbs\\b|untreated|mock|scramble|vector|water",
+  "|uninfected|non-?infected|noninfection|not infected|no infection"
+)
+
+# Forme normalizzate (via .normalize_biological_mention, cioe' solo [a-z0-9])
+# di specie-ospite tipiche da laboratorio. Usata in .normalize_pathogen_to_taxid
+# come guardia PRIMA del lookup taxdump: previene che "organism: human" estratto
+# per errore produca NCBITaxon:9606 (Homo sapiens come patogeno).
+# Nota: il match e' sulla forma normalizzata, quindi "Human" e "Homo sapiens"
+# danno rispettivamente "human" e "homosapiens", entrambi coperti.
+# Fix-D I-1b (2026-07-01).
+#' @keywords internal
+.HOST_SPECIES_STOPLIST <- c(
+  "human", "homosapiens",
+  "mouse", "musmusculus",
+  "rat",   "rattusnorvegicus",
+  "patient", "donor", "subject"
+)
 
 #' Parsa "key: value, key: value" in vettore nominato (chiavi/valori lowercased)
 #' @keywords internal
@@ -710,6 +737,10 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
 #' 1. Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
 #' 2. Normalizza con \code{.normalize_biological_mention} (rimuove separatori,
 #'    porta a minuscolo) per uniformare le chiavi dei dizionari costanti.
+#' 2b. Guardia specie-ospite: se la forma normalizzata e' in
+#'    \code{.HOST_SPECIES_STOPLIST} (human, mouse, rat, patient, ecc.) ->
+#'    id="STR:<slug>", source="STR_FALLBACK". Previene che "organism: human"
+#'    estratto per errore produca NCBITaxon:9606 via il ramo taxdump.
 #' 3. Match in \code{.PAMP_WHITELIST} (costante, no env) ->
 #'    id="CHEBI:<int>", source="PAMP_WHITELIST".
 #' 4. Match in vernacolo curato \code{.PATHOGEN_VERNACULAR} (costante, no env) ->
@@ -746,6 +777,15 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   #    e devono avere priorita' sul generic check: ad es. "TB" normalizza a "tb"
   #    (2 char, generico per .is_generic_biological) ma e' un alias vernacolare noto.
   norm <- .normalize_biological_mention(term)
+  # 2b. Guardia specie-ospite: se la forma normalizzata e' una specie da laboratorio
+  #     comune (human, mouse, rat, patient, donor, subject) NON tipizzare come
+  #     patogeno. Previene che "organism: human" (747 sample in ARCHS4) estratto
+  #     per errore produca NCBITaxon:9606 via il ramo taxdump (Homo sapiens -> 9606).
+  #     Va PRIMA dei rami 3-4 (PAMP/vernacolo) per sicurezza difensiva, anche se
+  #     "human" non e' presente in quelle costanti.
+  if (nzchar(norm) && norm %in% .HOST_SPECIES_STOPLIST) {
+    return(list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK"))
+  }
   # 3. PAMP whitelist (costante, no env richiesto) -- priorita' massima
   if (nzchar(norm) && norm %in% names(.PAMP_WHITELIST)) {
     chebi_int <- .PAMP_WHITELIST[[norm]]
