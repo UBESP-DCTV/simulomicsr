@@ -136,3 +136,101 @@ test_that(".normalize_cytokine_to_hgnc: restituisce lista con campi id/name/sour
   expect_type(r$name, "character")
   expect_type(r$source, "character")
 })
+
+# ---------------------------------------------------------------------------
+# Task 8: .PAMP_WHITELIST + .normalize_pathogen_to_taxid
+# ---------------------------------------------------------------------------
+
+# Helper fixture comune (riusato in tutti i test Task 8)
+.fx8 <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
+
+test_that(".PAMP_WHITELIST e' un named integer vector con LPS a 16412", {
+  expect_true(is.integer(.PAMP_WHITELIST))
+  # Chiavi attese (form normalizzata via .normalize_biological_mention)
+  expect_true("lps" %in% names(.PAMP_WHITELIST))
+  expect_true("lipopolysaccharide" %in% names(.PAMP_WHITELIST))
+  # ID LPS verificato
+  expect_equal(.PAMP_WHITELIST[["lps"]], 16412L)
+  expect_equal(.PAMP_WHITELIST[["lipopolysaccharide"]], 16412L)
+})
+
+test_that(".normalize_pathogen_to_taxid: input vuoto/NA -> NO_TERM", {
+  r_na    <- .normalize_pathogen_to_taxid(NA_character_)
+  r_empty <- .normalize_pathogen_to_taxid("")
+  expect_equal(r_na$source, "NO_TERM")
+  expect_true(is.na(r_na$id))
+  expect_equal(r_empty$source, "NO_TERM")
+  expect_true(is.na(r_empty$id))
+})
+
+test_that(".normalize_pathogen_to_taxid: termine generico -> STR_FALLBACK (senza env)", {
+  r <- .normalize_pathogen_to_taxid("virus")
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_equal(r$id, "STR:virus")
+})
+
+test_that(".normalize_pathogen_to_taxid: PAMP LPS -> CHEBI:16412 senza env", {
+  r <- .normalize_pathogen_to_taxid("LPS")
+  expect_equal(r$id, "CHEBI:16412")
+  expect_equal(r$source, "PAMP_WHITELIST")
+})
+
+test_that(".normalize_pathogen_to_taxid: PAMP alias lipopolysaccharide -> CHEBI:16412", {
+  r <- .normalize_pathogen_to_taxid("lipopolysaccharide")
+  expect_equal(r$id, "CHEBI:16412")
+  expect_equal(r$source, "PAMP_WHITELIST")
+})
+
+test_that(".normalize_pathogen_to_taxid: SARS-CoV-2 -> NCBITaxon:2697049 (fixture env)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx8)
+  r <- .normalize_pathogen_to_taxid("SARS-CoV-2", env)
+  expect_equal(r$id, "NCBITaxon:2697049")
+})
+
+test_that(".normalize_pathogen_to_taxid: virus generico -> STR_FALLBACK (con env)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx8)
+  r <- .normalize_pathogen_to_taxid("virus", env)
+  expect_equal(r$source, "STR_FALLBACK")
+})
+
+test_that(".normalize_pathogen_to_taxid: vernacolo flu -> NCBITaxon:11320 (no env)", {
+  r <- .normalize_pathogen_to_taxid("flu")
+  expect_equal(r$id, "NCBITaxon:11320")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that(".normalize_pathogen_to_taxid: vernacolo tb -> NCBITaxon:1773 (no env)", {
+  r <- .normalize_pathogen_to_taxid("TB")
+  expect_equal(r$id, "NCBITaxon:1773")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that(".normalize_pathogen_to_taxid: taxdump M. tuberculosis -> NCBITaxon:1773", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx8)
+  r <- .normalize_pathogen_to_taxid("Mycobacterium tuberculosis", env)
+  expect_equal(r$id, "NCBITaxon:1773")
+  expect_equal(r$source, "PATHOGEN_TAXID")
+})
+
+test_that(".normalize_pathogen_to_taxid: organismo non in dict -> STR_FALLBACK", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx8)
+  r <- .normalize_pathogen_to_taxid("Listeria monocytogenes", env)
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_match(r$id, "^STR:")
+})
+
+test_that(".normalize_pathogen_to_taxid: restituisce lista con campi id/name/source", {
+  r <- .normalize_pathogen_to_taxid("LPS")
+  expect_named(r, c("id", "name", "source"), ignore.order = TRUE)
+  expect_type(r$id, "character")
+  expect_type(r$name, "character")
+  expect_type(r$source, "character")
+})
+
+test_that(".normalize_pathogen_to_taxid: env NULL -> no taxdump, STR su organismo sconosciuto", {
+  # Senza env il ramo taxdump viene saltato: un organismo non in whitelist/vernacolo
+  # deve cadere a STR_FALLBACK piuttosto che crashare
+  r <- .normalize_pathogen_to_taxid("Escherichia coli", ontology_env = NULL)
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_match(r$id, "^STR:")
+})

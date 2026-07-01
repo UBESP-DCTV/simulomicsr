@@ -538,6 +538,121 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
 }
 
+# ---------------------------------------------------------------------------
+# Task 8 -- .PAMP_WHITELIST + .normalize_pathogen_to_taxid
+# ---------------------------------------------------------------------------
+#
+# Whitelist PAMP: menzione PAMP/TLR-agonist curata -> ChEBI ID intero.
+# Le chiavi sono le forme normalizzate via .normalize_biological_mention (solo
+# [a-z0-9], senza separatori), i valori sono integer ChEBI.
+# CHEBI:16412 (LPS) e' verificato; gli altri sono migliori stime e verranno
+# validati al Task 17 (build sanity role-ancestry su ChEBI).
+
+#' @keywords internal
+.PAMP_WHITELIST <- c(
+  lps                 = 16412L,   # lipopolisaccaride (LPS) -- verificato
+  lipopolysaccharide  = 16412L,   # alias per nome esteso
+  polyic              = 84491L,   # poly(I:C) = acido poliinositico-policitilidico # VERIFICARE al Task 17
+  r848                = 92052L,   # R848 (resiquimod) -- TLR7/8 # VERIFICARE al Task 17
+  resiquimod          = 92052L,   # alias per nome esteso # VERIFICARE al Task 17
+  imiquimod           = 36704L,   # imiquimod -- TLR7 # VERIFICARE al Task 17
+  pam3csk4            = 91060L,   # Pam3CSK4 -- TLR1/TLR2 # VERIFICARE al Task 17
+  pam2csk4            = 91061L,   # Pam2CSK4 -- TLR2/TLR6 # VERIFICARE al Task 17
+  fsl1                = 91062L,   # FSL-1 (lipoproteina batterica) -- TLR2/TLR6 # VERIFICARE al Task 17
+  cpgodn              = 48455L,   # CpG ODN -- TLR9 # VERIFICARE al Task 17
+  flagellin           = 65960L,   # flagellina -- TLR5 # VERIFICARE al Task 17
+  mpla                = 155981L,  # MPLA (monofosforil lipide A) -- TLR4 # VERIFICARE al Task 17
+  mdp                 = 57219L,   # MDP (muramil-dipeptide) -- NOD2 # VERIFICARE al Task 17
+  zymosan             = 37167L,   # zimosano -- TLR2/Dectin-1 # VERIFICARE al Task 17
+  betaglucan          = 37168L    # beta-glucano -- Dectin-1 # VERIFICARE al Task 17
+)
+
+# Vernacolo patogeni curato: abbreviazioni comuni -> NCBI Taxonomy ID.
+# Le chiavi sono forme normalizzate via .normalize_biological_mention.
+# Questo ramo e' una COSTANTE (nessun env richiesto), ha priorita' sul taxdump.
+.PATHOGEN_VERNACULAR <- c(
+  flu       = 11320L,    # Influenza A virus (taxid NCBI)
+  influenza = 11320L,    # Influenza (forma estesa)
+  tb        = 1773L,     # Mycobacterium tuberculosis
+  mtb       = 1773L,     # M. tuberculosis (abbreviazione)
+  sarscov2  = 2697049L   # SARS-CoV-2 (COVID-19)
+)
+
+#' Normalizza un termine-patogeno/PAMP testuale a un ID ontologico canonico.
+#'
+#' Flusso (precisione decrescente):
+#' 1. Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
+#' 2. Termine biologico generico (\code{.is_generic_biological}) ->
+#'    id="STR:<slug>", source="STR_FALLBACK".
+#' 3. Normalizza con \code{.normalize_biological_mention}.
+#' 4. Match in \code{.PAMP_WHITELIST} (costante, no env) ->
+#'    id="CHEBI:<int>", source="PAMP_WHITELIST".
+#' 5. Match in vernacolo curato (costante, no env) ->
+#'    id="NCBITaxon:<taxid>", source="PATHOGEN_VERNACULAR".
+#' 6. \code{.taxonomy_lookup_name} + \code{.taxonomy_rollup_to_species}
+#'    (richiede \code{ontology_env} non-NULL) ->
+#'    id="NCBITaxon:<taxid>", source="PATHOGEN_TAXID".
+#' 7. Miss -> id="STR:<slugify(term)>", source="STR_FALLBACK".
+#'
+#' I rami (4) e (5) sono COSTANTI e non richiedono \code{ontology_env}:
+#' e' possibile chiamare la funzione senza env per i PAMP e il vernacolo.
+#' Il ramo (6) viene saltato se \code{ontology_env} e' NULL.
+#'
+#' @param term character(1) termine estratto dai metadati GEO.
+#' @param ontology_env environment da \code{.load_ontology_dicts()}, oppure
+#'   NULL per saltare il ramo taxdump (i rami costanti funzionano comunque).
+#' @return lista con campi \code{id}, \code{name}, \code{source}.
+#'   \code{id} e' "CHEBI:<int>" | "NCBITaxon:<int>" | "STR:<slug>" | NA.
+#'   \code{source} e' uno tra "PAMP_WHITELIST" | "PATHOGEN_VERNACULAR" |
+#'   "PATHOGEN_TAXID" | "STR_FALLBACK" | "NO_TERM".
+#' @keywords internal
+.normalize_pathogen_to_taxid <- function(term, ontology_env = NULL) {
+  # 1. Guardia su input mancante/vuoto
+  if (length(term) != 1L || is.na(term) || !nzchar(term)) {
+    return(list(id = NA_character_, name = NA_character_, source = "NO_TERM"))
+  }
+  # 2. Normalizza PRIMA (le lookup costanti usano la forma normalizzata come chiave,
+  #    e devono avere priorita' sul generic check: ad es. "TB" normalizza a "tb"
+  #    (2 char, generico per .is_generic_biological) ma e' un alias vernacolare noto.
+  norm <- .normalize_biological_mention(term)
+  # 3. PAMP whitelist (costante, no env richiesto) -- priorita' massima
+  if (nzchar(norm) && norm %in% names(.PAMP_WHITELIST)) {
+    chebi_int <- .PAMP_WHITELIST[[norm]]
+    return(list(
+      id     = paste0("CHEBI:", chebi_int),
+      name   = term,
+      source = "PAMP_WHITELIST"
+    ))
+  }
+  # 4. Vernacolo curato (costante, no env richiesto) -- priorita' alta
+  if (nzchar(norm) && norm %in% names(.PATHOGEN_VERNACULAR)) {
+    taxid <- .PATHOGEN_VERNACULAR[[norm]]
+    return(list(
+      id     = paste0("NCBITaxon:", taxid),
+      name   = term,
+      source = "PATHOGEN_VERNACULAR"
+    ))
+  }
+  # 5. Termine biologico generico -> STR fallback (dopo le whitelist, che hanno priorita')
+  if (.is_generic_biological(term)) {
+    return(list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK"))
+  }
+  # 6. Taxdump NCBI (richiede env; salta con guard se NULL)
+  if (!is.null(ontology_env)) {
+    hit <- .taxonomy_lookup_name(term, env = ontology_env)
+    if (!is.null(hit) && !is.null(hit$taxid)) {
+      species_taxid <- .taxonomy_rollup_to_species(hit$taxid, env = ontology_env)
+      return(list(
+        id     = paste0("NCBITaxon:", species_taxid),
+        name   = if (!is.na(hit$scientific_name)) hit$scientific_name else term,
+        source = "PATHOGEN_TAXID"
+      ))
+    }
+  }
+  # 7. Fallback STR
+  list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK")
+}
+
 # Segnali genetici (K2). Spec: is_genetic SOLO su segnali inequivocabili.
 #
 # DUE famiglie di pattern testate separatamente per ogni kind:
