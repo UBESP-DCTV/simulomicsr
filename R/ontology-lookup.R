@@ -559,20 +559,28 @@
   }
 
   # by_taxid: hash env as.character(taxid) -> list(parent_taxid, rank, scientific_name)
-  # scientific_name estratto da by_name (righe "scientific name") per taxid.
+  # scientific_name estratto da nm (righe "scientific name") per taxid.
+  # PERFORMANCE: sci_by[tid_key] su vettore named di 1.4M voci e' O(n) per chiamata
+  # (R non cachea la hash table tra chiamate scalari a `[`). Con 2.85M nodi diventa
+  # O(n*m) = catastrofico. Fix: match() vettorizzato pre-loop (O(n) totale,
+  # un'unica hash table costruita su tutti i taxid).
   nd <- taxonomy_raw$nodes
-  sci_idx <- which(nm$name_class == "scientific name")
-  sci_by  <- stats::setNames(nm$name_norm[sci_idx], as.character(nm$taxid[sci_idx]))
+  sci_idx      <- which(nm$name_class == "scientific name")
+  sci_taxids   <- nm$taxid[sci_idx]          # integer vector
+  sci_norms    <- nm$name_norm[sci_idx]      # character vector (gia' normalizzato)
+  # Precomputa indice: per ogni nodo in nd, posizione in sci_taxids (o NA se assente).
+  sci_match    <- match(nd$taxid, sci_taxids)  # O(n) con hash table interna
 
   by_taxid <- new.env(hash = TRUE, parent = emptyenv(),
                       size = max(nrow(nd), 1L))
   if (nrow(nd) > 0L) {
     for (i in seq_len(nrow(nd))) {
       tid_key <- as.character(nd$taxid[i])
+      smi     <- sci_match[i]
       assign(tid_key,
              list(parent_taxid   = as.integer(nd$parent_taxid[i]),
                   rank           = nd$rank[i],
-                  scientific_name = unname(sci_by[tid_key])),
+                  scientific_name = if (!is.na(smi)) sci_norms[[smi]] else NA_character_),
              envir = by_taxid)
     }
   }
