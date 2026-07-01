@@ -377,3 +377,140 @@ test_that("Fix-A combo non-PAMP: due ChEBI restano small_molecule (COMPOUND_COMB
   expect_equal(r$recovery_source, "COMPOUND_COMBO")
   expect_true(grepl("\\+", r$agent_id))
 })
+
+# ---------------------------------------------------------------------------
+# Fix-B: estrazione pathogen via nuove chiavi .AGENT_KEYS + vernacolo esteso
+# ---------------------------------------------------------------------------
+
+# Fix-B1: .AGENT_KEYS ora include "infection", "virus", "bacteria", ecc.
+test_that("Fix-B1: .extract_agent_term estrae da chiave 'infection'", {
+  # 'infection: influenza A' -> chiave 'infection' ora matcha .AGENT_KEYS
+  r <- .extract_agent_term("", "infection: influenza A", "rep1")
+  expect_equal(r, "influenza a")
+})
+
+test_that("Fix-B1: .extract_agent_term estrae da chiave 'virus'", {
+  # 'virus: IAV' -> chiave 'virus' ora matcha .AGENT_KEYS
+  # NB: .parse_characteristics_kv usa ':' come separatore; chiavi multi-parola
+  # ('virus strain') non corrispondono al pattern che usa match esatto.
+  r <- .extract_agent_term("", "virus: IAV", "")
+  expect_equal(r, "iav")
+})
+
+test_that("Fix-B1: .extract_agent_term estrae da chiave 'bacteria'", {
+  r <- .extract_agent_term("", "bacteria: Staphylococcus aureus", "")
+  expect_false(is.na(r))
+  expect_true(nzchar(r))
+})
+
+test_that("Fix-B1: recover_identity pathogen con chiave 'infection' -> NCBITaxon", {
+  # 'infection: SARS-CoV-2' -> estrazione funziona dopo Fix-B1 -> NCBITaxon:2697049
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx8)
+  r <- recover_identity("", "infection: SARS-CoV-2", "", "pathogen_or_aggregate_exposure", env)
+  expect_equal(r$agent_id, "NCBITaxon:2697049")
+  expect_equal(r$kind, "pathogen_or_aggregate_exposure")
+})
+
+# Fix-B2: .PATHOGEN_VERNACULAR esteso con abbreviazioni comuni
+test_that("Fix-B2: vernacolo IAV -> NCBITaxon:11320 (senza env)", {
+  r <- .normalize_pathogen_to_taxid("IAV")
+  expect_equal(r$id, "NCBITaxon:11320")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo IVB -> NCBITaxon:11520", {
+  r <- .normalize_pathogen_to_taxid("IVB")
+  expect_equal(r$id, "NCBITaxon:11520")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo HIV -> NCBITaxon:11676", {
+  r <- .normalize_pathogen_to_taxid("HIV")
+  expect_equal(r$id, "NCBITaxon:11676")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo HIV-1 -> NCBITaxon:11676", {
+  r <- .normalize_pathogen_to_taxid("HIV-1")
+  expect_equal(r$id, "NCBITaxon:11676")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo HSV-1 -> NCBITaxon:10298", {
+  r <- .normalize_pathogen_to_taxid("HSV-1")
+  expect_equal(r$id, "NCBITaxon:10298")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo HSV-2 -> NCBITaxon:10310", {
+  r <- .normalize_pathogen_to_taxid("HSV-2")
+  expect_equal(r$id, "NCBITaxon:10310")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo CMV -> NCBITaxon:10359", {
+  r <- .normalize_pathogen_to_taxid("CMV")
+  expect_equal(r$id, "NCBITaxon:10359")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo EBV -> NCBITaxon:10376", {
+  r <- .normalize_pathogen_to_taxid("EBV")
+  expect_equal(r$id, "NCBITaxon:10376")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo RSV -> NCBITaxon:12814 (corretto, non 11250)", {
+  r <- .normalize_pathogen_to_taxid("RSV")
+  expect_equal(r$id, "NCBITaxon:12814")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo HBV -> NCBITaxon:10407", {
+  r <- .normalize_pathogen_to_taxid("HBV")
+  expect_equal(r$id, "NCBITaxon:10407")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo HCV -> NCBITaxon:3052230 (Orthohepacivirus, corretto)", {
+  r <- .normalize_pathogen_to_taxid("HCV")
+  expect_equal(r$id, "NCBITaxon:3052230")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo EV-D68 -> NCBITaxon:42789", {
+  r <- .normalize_pathogen_to_taxid("EV-D68")
+  expect_equal(r$id, "NCBITaxon:42789")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo HPV -> NCBITaxon:10566", {
+  r <- .normalize_pathogen_to_taxid("HPV")
+  expect_equal(r$id, "NCBITaxon:10566")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo SARS-CoV -> NCBITaxon:694009 (SARS-CoV-1)", {
+  r <- .normalize_pathogen_to_taxid("SARS-CoV")
+  expect_equal(r$id, "NCBITaxon:694009")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo MERS-CoV -> NCBITaxon:1335626", {
+  r <- .normalize_pathogen_to_taxid("MERS-CoV")
+  expect_equal(r$id, "NCBITaxon:1335626")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo saureus (da 'S. aureus') -> NCBITaxon:1280", {
+  # 'S. aureus' normalizzato -> 'saureus' -> in vernacolo
+  r <- .normalize_pathogen_to_taxid("S. aureus")
+  expect_equal(r$id, "NCBITaxon:1280")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("Fix-B2: vernacolo retrocompat (flu/tb/mtb/sarscov2 invariati)", {
+  expect_equal(.normalize_pathogen_to_taxid("flu")$id,      "NCBITaxon:11320")
+  expect_equal(.normalize_pathogen_to_taxid("TB")$id,       "NCBITaxon:1773")
+  expect_equal(.normalize_pathogen_to_taxid("SARS-CoV-2")$id, "NCBITaxon:2697049")
+})

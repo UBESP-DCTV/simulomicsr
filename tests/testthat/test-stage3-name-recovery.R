@@ -442,8 +442,8 @@ test_that("recover_identity: malattia/genetico INVARIATI (retrocompat)", {
   expect_match(rg$kind, "genetic_")           # K2 ancora prevale
 })
 
-test_that("cache version bumpata a v2 (invalida lookup v4)", {
-  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v2")
+test_that("cache version bumpata a v3 (invalida lookup v4)", {
+  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v3")
 })
 
 # ---------------------------------------------------------------------------

@@ -11,7 +11,15 @@ if (!exists("%||%")) {
 
 .DISEASE_KEYS <- "^(disease|disease state|diagnosis|condition|histology|tumor type|cancer type|subtype|group|patient group)$"
 .CONTROL_VALS <- "healthy|normal|control|non-?malignant|baseline|unaffected|^na$|^none$"
-.AGENT_KEYS    <- "^(treatment|agent|compound|drug|chemical|stimulus|stimulation|ligand|exposure|reagent)$"
+# Chiavi-campo GEO usate per agenti perturbativi (composti, patogeni, citochine).
+# Include sia chiavi generiche (treatment, compound) sia chiavi specifiche dei
+# patogeni (infection, virus, bacteria, organism) che nei metadati GEO compaiono
+# come "infection: influenza A" o "virus strain: IAV" anziche' "treatment: ...".
+.AGENT_KEYS    <- paste0(
+  "^(treatment|agent|compound|drug|chemical|stimulus|stimulation|ligand|",
+  "exposure|reagent|infection|infected|virus|viral|pathogen|bacteria|",
+  "bacterial|organism|microbe|inoculation|challenge|stimulant|treatment agent)$"
+)
 .AGENT_CONTROL <- paste0(.CONTROL_VALS, "|vehicle|dmso|\\bpbs\\b|untreated|mock|scramble|vector|water")
 
 #' Parsa "key: value, key: value" in vettore nominato (chiavi/valori lowercased)
@@ -647,12 +655,53 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
 #' Le chiavi sono forme normalizzate via \code{.normalize_biological_mention};
 #' questa costante ha priorita' sul taxdump (nessun env richiesto).
 #' @keywords internal
+# Vernacolo curato per patogeni virali/batterici usati in esperimenti GEO.
+# Ogni chiave e' la forma normalizzata via .normalize_biological_mention (solo
+# caratteri [a-z0-9]). Tutti i taxid sono verificati sul taxonomy-lookup.rds
+# reale (Fix-B2, 2026-07-01). Non aggiungere ecoli/salmonella/listeria qui:
+# sono gia' nel taxdump come common/scientific name.
+#
+# Correzioni rispetto a valori nominali di briefing:
+#   rsv   -> 12814 (non 11250): il taxdump mappa "respiratory syncytial virus"
+#            su 12814; 11250 (human RSV) e' valid ma non e' il preferred term
+#   hcv   -> 3052230 (non 11103): 11103 non esiste nel taxdump (reclassificato
+#            in Orthohepacivirus hominis NCBI:3052230)
 .PATHOGEN_VERNACULAR <- c(
+  # Influenza
   flu       = 11320L,    # Influenza A virus (taxid NCBI)
   influenza = 11320L,    # Influenza (forma estesa)
+  iav       = 11320L,    # IAV -- abbreviazione comune GEO per Influenza A
+  ivb       = 11520L,    # IVB -- Influenza B virus
+  # HIV
+  hiv       = 11676L,    # HIV (Human immunodeficiency virus 1, uso generico)
+  hiv1      = 11676L,    # HIV-1 esplicito
+  # Herpesviridae
+  hsv       = 10298L,    # HSV (default HSV-1 in esperimenti; Herpes simplex virus 1)
+  hsv1      = 10298L,    # HSV-1 esplicito
+  hsv2      = 10310L,    # HSV-2 -- Herpes simplex virus 2
+  cmv       = 10359L,    # CMV -- Human cytomegalovirus (Human betaherpesvirus 5)
+  hcmv      = 10359L,    # HCMV -- Human CMV esplicito
+  ebv       = 10376L,    # EBV -- Epstein-Barr virus (Human gammaherpesvirus 4)
+  # Paramyxoviridae / Pneumoviridae
+  rsv       = 12814L,    # RSV -- Respiratory syncytial virus (CORRETTO: 12814)
+  # Hepadnaviridae / Flaviviridae
+  hbv       = 10407L,    # HBV -- Hepatitis B virus
+  hcv       = 3052230L,  # HCV -- Hepatitis C virus / Orthohepacivirus hominis (CORRETTO)
+  # Enterovirus
+  evd68     = 42789L,    # EV-D68 -- Enterovirus D68
+  # Papillomaviridae
+  hpv       = 10566L,    # HPV -- Human papillomavirus
+  # Coronaviridae
+  sarscov   = 694009L,   # SARS-CoV -- Severe acute respiratory syndrome coronavirus 1
+  sars      = 694009L,   # SARS (abbreviazione SARS-CoV-1)
+  sarscov2  = 2697049L,  # SARS-CoV-2 (COVID-19)
+  mers      = 1335626L,  # MERS -- Middle East respiratory syndrome coronavirus
+  merscov   = 1335626L,  # MERS-CoV esplicito
+  # Mycobacteria
   tb        = 1773L,     # Mycobacterium tuberculosis
   mtb       = 1773L,     # M. tuberculosis (abbreviazione)
-  sarscov2  = 2697049L   # SARS-CoV-2 (COVID-19)
+  # Staphylococcaceae (S. aureus: "saureus" non e' nel taxdump come common name)
+  saureus   = 1280L      # S. aureus -- Staphylococcus aureus
 )
 
 #' Normalizza un termine-patogeno/PAMP testuale a un ID ontologico canonico.
