@@ -1,9 +1,10 @@
-# test-ontology-lookup-biologics.R --- TDD Task 1: indice + accessor NCBI Taxonomy
+# test-ontology-lookup-biologics.R --- TDD Task 1+2: NCBI Taxonomy + ImmPort
 #
-# Testa .build_taxonomy_index, .taxonomy_lookup_name, .taxonomy_rollup_to_species
-# in isolamento: l'env viene costruito localmente senza il loader completo
-# (.load_ontology_dicts), che verra' esteso al Task 4.
-# La mini-fixture e' in inst/extdata/ontology-fixtures-mini/taxonomy-mini.rds.
+# Task 1: .build_taxonomy_index, .taxonomy_lookup_name, .taxonomy_rollup_to_species
+# Task 2: .build_immport_index, .immport_lookup_synonym, .is_cytokine_symbol
+#
+# Tutti in isolamento: env costruiti localmente senza il loader completo.
+# Fixture mini in inst/extdata/ontology-fixtures-mini/.
 
 fx <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
 
@@ -84,4 +85,80 @@ test_that(".taxonomy_rollup_to_species gestisce env senza taxonomy (NULL) in mod
   env_vuoto <- new.env(parent = emptyenv())
   # env$taxonomy assente => NULL, accessor deve tornare taxid invariato
   expect_equal(.taxonomy_rollup_to_species(1773L, env = env_vuoto), 1773L)
+})
+
+# ---------------------------------------------------------------------------
+# Task 2: ImmPort — indice sinonimi citochine + whitelist HGNC
+# ---------------------------------------------------------------------------
+
+test_that(".build_immport_index restituisce struttura attesa (by_synonym, cytokine_symbols, meta)", {
+  raw <- readRDS(file.path(fx, "immport-mini.rds"))
+  idx <- .build_immport_index(raw)
+  expect_type(idx, "list")
+  expect_named(idx, c("by_synonym", "cytokine_symbols", "meta"), ignore.order = FALSE)
+  expect_true(is.environment(idx$by_synonym))
+  expect_true(is.environment(idx$cytokine_symbols))
+  expect_equal(idx$meta$source, "immport-registry-2015+lkProteinName+GO")
+})
+
+test_that(".immport_lookup_synonym trova IFN-beta tramite normalizzazione greca", {
+  raw <- readRDS(file.path(fx, "immport-mini.rds"))
+  env <- new.env(parent = emptyenv())
+  env$immport <- .build_immport_index(raw)
+  # "IFN-beta" normalizzato -> "ifnbeta" (Greek letter + trattino rimossi)
+  hit <- .immport_lookup_synonym("IFN-β", env = env)
+  expect_false(is.null(hit))
+  expect_equal(hit$hgnc_int, 5434L)
+  expect_equal(hit$primary_symbol, "IFNB1")
+})
+
+test_that(".immport_lookup_synonym trova riferimento_name per IFN-beta", {
+  raw <- readRDS(file.path(fx, "immport-mini.rds"))
+  env <- new.env(parent = emptyenv())
+  env$immport <- .build_immport_index(raw)
+  hit <- .immport_lookup_synonym("IFN-β", env = env)
+  expect_equal(hit$reference_name, "Interferon-beta")
+})
+
+test_that(".immport_lookup_synonym trova IL-6 per nome completo", {
+  raw <- readRDS(file.path(fx, "immport-mini.rds"))
+  env <- new.env(parent = emptyenv())
+  env$immport <- .build_immport_index(raw)
+  hit <- .immport_lookup_synonym("interleukin6", env = env)
+  expect_false(is.null(hit))
+  expect_equal(hit$hgnc_int, 6018L)
+  expect_equal(hit$primary_symbol, "IL6")
+})
+
+test_that(".immport_lookup_synonym restituisce NULL per termine non-citochina (aspirin)", {
+  raw <- readRDS(file.path(fx, "immport-mini.rds"))
+  env <- new.env(parent = emptyenv())
+  env$immport <- .build_immport_index(raw)
+  expect_null(.immport_lookup_synonym("aspirin", env = env))
+  expect_null(.immport_lookup_synonym(NA_character_, env = env))
+  expect_null(.immport_lookup_synonym("", env = env))
+})
+
+test_that(".is_cytokine_symbol TRUE per HGNC ID in whitelist", {
+  raw <- readRDS(file.path(fx, "immport-mini.rds"))
+  env <- new.env(parent = emptyenv())
+  env$immport <- .build_immport_index(raw)
+  expect_true(.is_cytokine_symbol(5434L, env = env))   # IFNB1
+  expect_true(.is_cytokine_symbol(6018L, env = env))   # IL6
+  expect_true(.is_cytokine_symbol(11892L, env = env))  # TNF
+})
+
+test_that(".is_cytokine_symbol FALSE per HGNC ID non in whitelist", {
+  raw <- readRDS(file.path(fx, "immport-mini.rds"))
+  env <- new.env(parent = emptyenv())
+  env$immport <- .build_immport_index(raw)
+  expect_false(.is_cytokine_symbol(99999L, env = env))
+  expect_false(.is_cytokine_symbol(1L, env = env))
+})
+
+test_that(".immport_lookup_synonym e .is_cytokine_symbol difensivi su env senza immport", {
+  env_vuoto <- new.env(parent = emptyenv())
+  # env$immport assente -> NULL guard -> ritorna NULL / FALSE
+  expect_null(.immport_lookup_synonym("IFN-β", env = env_vuoto))
+  expect_false(.is_cytokine_symbol(5434L, env = env_vuoto))
 })

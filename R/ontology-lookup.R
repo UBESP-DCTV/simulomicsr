@@ -369,6 +369,100 @@
   list(by_id = by_id_env, aliases = aliases_env, meta = chembl_raw$meta)
 }
 
+# --- ImmPort -----------------------------------------------------------------
+#
+# Indice e accessor per il registro ImmPort (citochine, sinonimi -> HGNC).
+# Raw atteso: lista con elementi:
+#   $synonyms:         data.frame con colonne syn_norm (stringa gia' normalizzata),
+#                      hgnc_int (integer), primary_symbol (character),
+#                      reference_name (character)
+#   $cytokine_hgnc_int: integer vector = whitelist HGNC ID riconosciuti come
+#                       citochine (unione registry + lkProteinName + GO)
+#   $meta:             lista metadati di release (as-is)
+#
+# .normalize_biological_mention (da stage3-name-recovery.R) viene applicata
+# ai termini di lookup per collassare grafie diverse (es. "IFN-beta" -> "ifnbeta").
+# Le chiavi syn_norm nel fixture DEVONO essere gia' pre-normalizzate con la
+# stessa funzione al momento della build del dizionario full.
+
+#' @noRd
+.build_immport_index <- function(immport_raw) {
+  # by_synonym: hash env syn_norm (stringa pre-normalizzata) ->
+  #   named list (hgnc_int, primary_symbol, reference_name).
+  # Prima voce per ogni chiave vince (sinonimi multipli per stesso gene ok).
+  syn <- immport_raw$synonyms
+  by_syn <- new.env(hash = TRUE, parent = emptyenv(),
+                    size = max(nrow(syn), 1L))
+  if (nrow(syn) > 0L) {
+    keys <- syn$syn_norm
+    h    <- as.integer(syn$hgnc_int)
+    sym  <- syn$primary_symbol
+    ref  <- syn$reference_name
+    for (i in seq_along(keys)) {
+      k <- keys[i]
+      if (!is.na(k) && nzchar(k) &&
+          !exists(k, envir = by_syn, inherits = FALSE)) {
+        assign(k,
+               list(hgnc_int      = h[i],
+                    primary_symbol = sym[i],
+                    reference_name = ref[i]),
+               envir = by_syn)
+      }
+    }
+  }
+
+  # cytokine_symbols: hash env-SET as.character(hgnc_int) -> TRUE.
+  # Lookup O(1) via exists(as.character(hgnc_int), envir=cytokine_symbols).
+  wl  <- as.integer(immport_raw$cytokine_hgnc_int)
+  cyt <- new.env(hash = TRUE, parent = emptyenv(), size = max(length(wl), 1L))
+  for (id in wl[!is.na(wl)]) {
+    assign(as.character(id), TRUE, envir = cyt)
+  }
+
+  list(by_synonym      = by_syn,
+       cytokine_symbols = cyt,
+       meta            = immport_raw$meta)
+}
+
+#' Cerca un termine biologico nell'indice ImmPort (sinonimi citochine).
+#'
+#' Normalizza il termine con \code{.normalize_biological_mention} prima del
+#' lookup, cosi' grafie diverse della stessa citochina collassano sulla stessa
+#' chiave (es. "IFN-beta", "IFN-B", "interferonbeta" -> "ifnbeta").
+#'
+#' @param term character(1) termine da cercare (forma originale o sinonimo).
+#' @param env environment con elemento \code{$immport} (output di
+#'   \code{.build_immport_index}). Default: \code{.load_ontology_dicts()}.
+#' @return named list con elementi \code{hgnc_int} (integer),
+#'   \code{primary_symbol} (character), \code{reference_name} (character);
+#'   oppure \code{NULL} su miss o env privo di immport.
+#' @noRd
+.immport_lookup_synonym <- function(term, env = .load_ontology_dicts()) {
+  imp <- env$immport
+  if (is.null(imp)) return(NULL)
+  k <- .normalize_biological_mention(term)   # "" su NA/vuoto/lunghezza!=1
+  if (!nzchar(k)) return(NULL)
+  if (!exists(k, envir = imp$by_synonym, inherits = FALSE)) return(NULL)
+  get(k, envir = imp$by_synonym, inherits = FALSE)
+}
+
+#' Verifica se un HGNC ID e' nella whitelist citochine ImmPort.
+#'
+#' @param hgnc_int integer(1) HGNC ID numerico (senza prefisso "HGNC:").
+#' @param env environment con elemento \code{$immport}. Default:
+#'   \code{.load_ontology_dicts()}.
+#' @return logical(1): TRUE se hgnc_int e' nella whitelist, FALSE altrimenti
+#'   (incluso env privo di immport o hgnc_int NA/NULL).
+#' @noRd
+.is_cytokine_symbol <- function(hgnc_int, env = .load_ontology_dicts()) {
+  imp <- env$immport
+  if (is.null(imp)) return(FALSE)
+  if (length(hgnc_int) != 1L) return(FALSE)
+  if (is.na(hgnc_int)) return(FALSE)
+  exists(as.character(as.integer(hgnc_int)), envir = imp$cytokine_symbols,
+         inherits = FALSE)
+}
+
 # --- NCBI Taxonomy -----------------------------------------------------------
 #
 # Indice e accessor per dizionario patogeni nome->taxid.
