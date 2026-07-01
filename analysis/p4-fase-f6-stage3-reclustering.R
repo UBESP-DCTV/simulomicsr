@@ -69,7 +69,7 @@ nr_cache_dir  <- if (identical(nr_cache_env, "__DEFAULT__")) {
 # In SMOKE niente cache su disco (vogliamo esercitare il path completo).
 if (SMOKE) nr_cache_dir <- NULL
 
-cli::cli_h1(sprintf("Re-cluster Stadio 3 v5 (name-recovery + ChEMBL) -- modalita': %s",
+cli::cli_h1(sprintf("Re-cluster Stadio 3 v6 (name-recovery + ChEMBL + biologici) -- modalita': %s",
                     if (SMOKE) sprintf("SMOKE (max %d studi)", SMOKE_N) else "FULL RUN"))
 
 stage1_path   <- "analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl"
@@ -81,13 +81,25 @@ v3_dir        <- "analysis/p4-output/20260611T171555Z-stage3-v3-364547a7"
 stopifnot(file.exists(stage1_path), file.exists(stage2_path), file.exists(h5_path))
 if (!SMOKE) stopifnot(all(file.exists(stage2_inputs)))
 
-# Fail-loud ChEMBL: il loader e' GRACEFUL (senza dict gira in qualita'-v4 SENZA
-# ChEMBL, silenziosamente). Questo assert garantisce che v5 sia prodotto SOLO con
-# il dizionario ChEMBL caricato. refresh=TRUE popola il singleton per il run.
-stopifnot(
-  "ChEMBL dict mancante (R_user_dir/chembl/chembl-lookup.rds): impossibile produrre v5" =
-    isTRUE(simulomicsr:::.load_ontology_dicts(refresh = TRUE)$has_chembl)
-)
+# Fail-loud dizionari: il loader e' GRACEFUL (senza dizionari gira in qualita'
+# degradata, silenziosamente). Questi assert garantiscono che v6 sia prodotto
+# SOLO con tutti i dizionari necessari caricati. refresh=TRUE popola il
+# singleton per il run.
+local({
+  onto_chk <- simulomicsr:::.load_ontology_dicts(refresh = TRUE)
+  if (!isTRUE(onto_chk$has_chembl))
+    stop("ChEMBL dict mancante (R_user_dir/chembl/chembl-lookup.rds): impossibile produrre v6. ",
+         "Ricostruire via: Rscript analysis/p5-audit-chembl-build-dict.R")
+  if (!isTRUE(onto_chk$has_taxonomy))
+    stop("Taxonomy dict mancante (R_user_dir/taxonomy/taxonomy-lookup.rds): impossibile produrre v6. ",
+         "Ricostruire via: Rscript analysis/p5-audit-taxonomy-build-dict.R")
+  if (!isTRUE(onto_chk$has_immport))
+    stop("ImmPort dict mancante (R_user_dir/immport/immport-lookup.rds): impossibile produrre v6. ",
+         "Ricostruire via: Rscript analysis/p5-audit-immport-build-dict.R")
+  if (!isTRUE(onto_chk$has_uniprot))
+    stop("UniProt dict mancante (R_user_dir/uniprot/uniprot-lookup.rds): impossibile produrre v6. ",
+         "Ricostruire via: Rscript analysis/p5-audit-uniprot-build-dict.R")
+})
 
 ns      <- asNamespace("simulomicsr")
 get_int <- function(name) get(name, envir = ns, inherits = FALSE)
@@ -330,7 +342,7 @@ if (!is.null(completeness_report)) {
 # ---------------------------------------------------------------------------
 ts      <- format(Sys.time(), "%Y%m%dT%H%M%SZ", tz = "UTC")
 run_id  <- s3$run_metadata$run_id
-suffix  <- if (SMOKE) sprintf("v5smoke-%s", run_id) else sprintf("v5-%s", run_id)
+suffix  <- if (SMOKE) sprintf("v6smoke-%s", run_id) else sprintf("v6-%s", run_id)
 out_dir <- sprintf("analysis/p4-output/%s-stage3-%s", ts, suffix)
 cli::cli_h2(sprintf("10. Scrivo output in %s", out_dir))
 write_stage3_to_dir(s3, out_dir)
@@ -351,8 +363,8 @@ is_gen  <- !is.na(kind) & startsWith(kind, "genetic_")
 rec_applied <- if ("agent_id_recovered" %in% names(cl)) sum(cl$agent_id_recovered, na.rm = TRUE) else NA_integer_
 kind_rec    <- if ("kind_recovered" %in% names(cl)) sum(cl$kind_recovered, na.rm = TRUE) else NA_integer_
 
-cli::cli_h1("SANITY v5")
-cli::cli_alert_info("run_id={run_id}  (NB: deterministico da input+config; il token v5 nella dir lo distingue da v3/v4)")
+cli::cli_h1("SANITY v6")
+cli::cli_alert_info("run_id={run_id}  (NB: deterministico da input+config; il token v6 nella dir lo distingue da v3/v4/v5)")
 cli::cli_alert_info("n_clusters    = {nrow(cl)}")
 cli::cli_alert_info("n_assignments = {nrow(asg)}")
 cli::cli_alert_info("copertura: sum(n_total) cluster = {sum(cl$n_total, na.rm=TRUE)} ; record assegnati = {length(unique(asg$record_id))}")
@@ -375,8 +387,8 @@ if (dir.exists(v3_dir)) {
   v3_dis_unk <- sum(!is.na(cl_v3$kind_effective_resolved) &
                       cl_v3$kind_effective_resolved == "disease_vs_normal" &
                       !is.na(cl_v3$agent_id_resolved) & cl_v3$agent_id_resolved == "UNK")
-  scope <- if (SMOKE) "(v3 GLOBALE vs v5 SUBSET: non confrontabili 1:1, solo ordine di grandezza)" else "(v3 GLOBALE vs v5 GLOBALE)"
-  cli::cli_inform("CONFRONTO disease_vs_normal|UNK cluster: v3={v3_dis_unk} -> v5={sum(dis & is_unk)} {scope}")
+  scope <- if (SMOKE) "(v3 GLOBALE vs v6 SUBSET: non confrontabili 1:1, solo ordine di grandezza)" else "(v3 GLOBALE vs v6 GLOBALE)"
+  cli::cli_inform("CONFRONTO disease_vs_normal|UNK cluster: v3={v3_dis_unk} -> v6={sum(dis & is_unk)} {scope}")
 }
 
 cli::cli_alert_success("FINE. Wall totale: {round(as.numeric(difftime(Sys.time(), t_start, units='mins')),1)} min. Output: {out_dir}")
