@@ -281,3 +281,88 @@ Tutti i termini-classe nudi restituiscono STR_FALLBACK. Nessuna regressione.
 **GO**: i fix A+B+I1 sono corretti. Il 3,50% del canary K3 è interamente
 artefatto di misura (metodo del canary, non problema del codice). Il rebuild v6
 può partire senza ulteriori fix al K3.
+
+---
+
+## SPOT-CHECK host-species post-Fix-D — 2026-07-01
+
+**Commit HEAD**: `7933503` (Fix-D: trim `.AGENT_KEYS` organism + `.HOST_SPECIES_STOPLIST` + infection-neg)  
+**Script**: `analysis/audit/stage3-biologics-spotcheck-hostspecies.R`  
+**Dizionari**: invariati (ImmPort + NCBITaxon + UniProt, `has_*=TRUE`).
+
+### Motivazione
+
+Fix-D ha rimosso `organism` da `.AGENT_KEYS` (747 sample ARCHS4 con valore "human"
+che pre-fix producevano `NCBITaxon:9606` come patogeno, paper-grade bug) e ha aggiunto
+`.HOST_SPECIES_STOPLIST` come guard difensivo in `.normalize_pathogen_to_taxid()`.
+Questo spot-check verifica su dati reali che il bug è chiuso e che Fix-D non
+ha introdotto regressioni sul pathogen recovery di Fix-B.
+
+### Sezione 1 — Anti-flip host-species (dati reali H5)
+
+| Metrica | Valore | Atteso |
+|---|---|---|
+| Sample H5 con `organism:` nelle characteristics | **747** | — |
+| Di cui valore host-species (human/homo sapiens/mouse) | **747** | — |
+| Campione testato (seed=42) | 300 | — |
+| Flip a NCBITaxon:9606/10090/10116 | **0** | 0 |
+| Status | **✅ PASS** | — |
+
+Breakdown recovery_source (campione N=300):
+
+```
+  NO_RECOVERY   : 158   (nessun termine patogeno nel metadato)
+  K2_GENETIC    : 142   (il metadato porta un segnale genetico, non patogeno)
+```
+
+**Interpretazione**: l'intera popolazione di 747 sample con `organism: human/homo
+sapiens` ora produce NO_RECOVERY o K2_GENETIC — zero flip a host-species-as-pathogen.
+Il meccanismo è doppio: (1) `organism` non è più in `.AGENT_KEYS`, quindi il valore
+"human" non viene mai estratto come agente; (2) `.HOST_SPECIES_STOPLIST` blocca
+"human"/"homosapiens" nella lookup taxdump per sicurezza difensiva.
+
+### Sezione 2 — Regression pathogen recovery (Fix-D non deve regredire Fix-B)
+
+| Metrica | Valore | Baseline ri-smoke | Delta |
+|---|---|---|---|
+| Pathogen recovery NCBITaxon:/CHEBI: | **8,0%** (8/100) | 7,8% (N=400) | +0,2 pp |
+| Status | **✅ MANTENUTO** | — | — |
+
+Breakdown recovery_source (campione N=100, seed=42):
+
+```
+  STR_FALLBACK        : 52
+  NO_RECOVERY         : 40
+  PATHOGEN_TAXID      :  4
+  PATHOGEN_VERNACULAR :  4
+```
+
+Fix-D non ha rimosso chiavi utili: `infection`, `infected`, `virus`, `pathogen`,
+`inoculation`, `challenge` (aggiunti da Fix-B) restano in `.AGENT_KEYS`. Il +0,2 pp
+è entro la varianza di campionamento attesa (N=100 vs N=400).
+
+### Sezione 3 — Canary sintetici (8/8 PASS)
+
+| # | Descrizione | agent_id | Esito |
+|---|---|---|---|
+| 1 | LPS → CHEBI:16412 (PAMP) | `CHEBI:16412` | ✅ |
+| 2 | SARS-CoV-2 → NCBITaxon:2697049 | `NCBITaxon:2697049` | ✅ |
+| 3 | osimertinib small_molecule (no K3 flip) | `CHEBI:90943` | ✅ |
+| 4 | organism:human → NO_RECOVERY (Fix-D) | `NA` | ✅ |
+| 5 | organism:Homo sapiens → NO_RECOVERY (Fix-D) | `NA` | ✅ |
+| 6 | organism:Mus musculus → NO_RECOVERY (Fix-D) | `NA` | ✅ |
+| 7 | infection:uninfected → NO_RECOVERY (Fix-D) | `NA` | ✅ |
+| 8 | generic 'virus' → STR_FALLBACK | `STR:virus` | ✅ |
+
+### Verdetto: GO per rebuild v6
+
+| Gate | Metrica | Risultato | Soglia | Esito |
+|---|---|---|---|---|
+| G1 | Anti-flip host-species (N=300) | **0 flip** | 0 | ✅ PASS |
+| G2 | Pathogen recovery (N=100) | **8,0%** | ≥ 5,8% | ✅ PASS |
+| G3 | Canary Fix-D specifici | **4 / 4** | 4 / 4 | ✅ PASS |
+| G4 | Canary totali | **8 / 8** | 8 / 8 | ✅ PASS |
+
+**GO** — bug host-species-as-pathogen chiuso su 300 sample reali, guadagni
+Fix-B mantenuti (8,0% vs baseline 7,8%), tutti e 8 i canary sintetici
+(compresi i 4 Fix-D specifici) superati. Rebuild v6 autorizzato.
