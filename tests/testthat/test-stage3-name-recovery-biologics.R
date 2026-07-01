@@ -301,10 +301,79 @@ test_that("recover_identity: cytokine_stim senza termine -> NO_RECOVERY (retroco
   expect_equal(r$recovery_source, "NO_RECOVERY")
 })
 
-test_that("recover_identity: K3 recovery_source include suffisso kind", {
-  # Il suffisso distingue il tipo di mistype: K3_MISTYPE_pathogen o K3_MISTYPE_cytokine
+test_that("recover_identity: K3 recovery_source include suffisso kind (Fix-A: pamp)", {
+  # Fix-A: LPS risolto come composto (CHEBI:16412) poi controllato vs PAMP_WHITELIST
+  # -> suffisso specifico K3_MISTYPE_pathogen_pamp (non K3_MISTYPE_pathogen generico)
   env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
   rk <- recover_identity("", "treatment: LPS", "", "small_molecule", env)
-  expect_true(rk$recovery_source %in% c("K3_MISTYPE_pathogen", "K3_MISTYPE_cytokine"))
-  expect_equal(rk$recovery_source, "K3_MISTYPE_pathogen")
+  expect_true(rk$recovery_source %in% c("K3_MISTYPE_pathogen_pamp", "K3_MISTYPE_cytokine"))
+  expect_equal(rk$recovery_source, "K3_MISTYPE_pathogen_pamp")
+})
+
+# ---------------------------------------------------------------------------
+# Fix-A: K3 compound-first (TDD — fase RED -> GREEN)
+# Spec: il ramo small_molecule risolve PRIMA come composto; K3 biologico solo
+# come last-resort per composti non risolti (STR:).
+# ---------------------------------------------------------------------------
+
+.fxa <- system.file("extdata", "ontology-fixtures-mini", package = "simulomicsr")
+
+test_that("Fix-A: .is_pamp_chebi identifica PAMP e non-PAMP per ID ChEBI integer", {
+  # Helper: as.integer(chebi_int) %in% .PAMP_WHITELIST (valori interi del named vector)
+  expect_true(.is_pamp_chebi(16412L))    # LPS -> PAMP
+  expect_true(.is_pamp_chebi(36706L))    # resiquimod -> PAMP
+  expect_true(.is_pamp_chebi(84491L))    # poly(I:C) -> PAMP
+  expect_false(.is_pamp_chebi(17126L))   # L-carnitina NON e' un PAMP
+  expect_false(.is_pamp_chebi(16236L))   # etanolo NON e' un PAMP
+  expect_false(.is_pamp_chebi(28748L))   # doxorubicin NON e' un PAMP
+  expect_false(.is_pamp_chebi(NA_integer_))  # NA -> FALSE (guard difensivo)
+})
+
+test_that("Fix-A LPS PAMP: source K3_MISTYPE_pathogen_pamp (compound-first via ChEBI)", {
+  # LPS risolve a CHEBI:16412 (compound lookup), poi PAMP_WHITELIST conferma ->
+  # re-tipizzato a patogeno con source K3_MISTYPE_pathogen_pamp, NON K3_MISTYPE_pathogen
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fxa)
+  r <- recover_identity("", "treatment: LPS", "", "small_molecule", env)
+  expect_equal(r$kind, "pathogen_or_aggregate_exposure")
+  expect_equal(r$agent_id, "CHEBI:16412")
+  expect_equal(r$recovery_source, "K3_MISTYPE_pathogen_pamp")
+})
+
+test_that("Fix-A canary L-carnitina: CHEBI:17126 (non-PAMP) rimane small_molecule", {
+  # L-carnitina risolve a CHEBI:17126; 17126 NON e' in PAMP_WHITELIST values ->
+  # nessun flip, rimane small_molecule. Previene falsi positivi K3.
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fxa)
+  r <- recover_identity("", "treatment: carnitine", "", "small_molecule", env)
+  expect_equal(r$kind, "small_molecule")
+  expect_equal(r$agent_id, "CHEBI:17126")
+  expect_false(startsWith(r$recovery_source, "K3_MISTYPE"))
+})
+
+test_that("Fix-A canary osimertinib: STR (non in fixture) rimane small_molecule", {
+  # osimertinib non e' nel mini-fixture -> STR:osimertinib ->
+  # K3 last-resort: non e' citochina ne' patogeno -> rimane small_molecule con STR
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fxa)
+  r <- recover_identity("", "compound: osimertinib", "", "small_molecule", env)
+  expect_equal(r$kind, "small_molecule")
+  expect_true(startsWith(r$agent_id, "STR:"))
+})
+
+test_that("Fix-A TNF last-resort: STR (non composto) -> K3 citochina via ImmPort", {
+  # TNF non e' in ChEBI/ChEMBL -> STR:tnf -> Passo 4 K3 last-resort ->
+  # ImmPort trova hgnc_int=11892 in cytokine whitelist -> kind=cytokine_stim
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fxa)
+  r <- recover_identity("", "treatment: TNF", "", "small_molecule", env)
+  expect_equal(r$kind, "cytokine_stim")
+  expect_true(startsWith(r$agent_id, "HGNC:"))
+  expect_equal(r$recovery_source, "K3_MISTYPE_cytokine")
+})
+
+test_that("Fix-A combo non-PAMP: due ChEBI restano small_molecule (COMPOUND_COMBO)", {
+  # ethanol (CHEBI:16236) + doxorubicin (CHEBI:28748): nessuno e' PAMP ->
+  # comp$id = "CHEBI:16236+CHEBI:28748" -> Passo 3 -> kind=small_molecule invariato
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fxa)
+  r <- recover_identity("", "treatment: ethanol and doxorubicin", "", "small_molecule", env)
+  expect_equal(r$kind, "small_molecule")
+  expect_equal(r$recovery_source, "COMPOUND_COMBO")
+  expect_true(grepl("\\+", r$agent_id))
 })

@@ -377,8 +377,42 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
           recovery_source = r$source
         ))
       }
-      # small_molecule: K3 check — se il termine e' in realta' un biologico forte
-      # (citochina o patogeno) ri-tipizza; altrimenti comportamento esistente ChEBI/ChEMBL.
+      # small_molecule: Fix-A compound-first. Risolve PRIMA come composto;
+      # K3 biologico (citochina/patogeno) solo come last-resort se il composto
+      # non e' risolvibile (STR:). Previene falsi flip su composti veri (es.
+      # L-carnitina, doxorubicina) che in vecchio codice venivano controllati
+      # vs biologici PRIMA della risoluzione chimica.
+      #
+      # Passo 1: risolve il termine come composto ChEBI/ChEMBL.
+      comp <- .normalize_compound_to_chebi(t, ontology_env)
+      # Passo 2: composto singolo CHEBI: (non combo) -> controlla PAMP_WHITELIST.
+      # Solo i PAMP noti (LPS, resiquimod, poly(I:C), ecc.) vengono re-tipizzati;
+      # tutto il resto (farmaci, metaboliti) rimane small_molecule.
+      if (startsWith(comp$id, "CHEBI:") && !grepl("+", comp$id, fixed = TRUE)) {
+        chebi_int <- suppressWarnings(
+          as.integer(sub("CHEBI:", "", comp$id, fixed = TRUE))
+        )
+        if (.is_pamp_chebi(chebi_int)) {
+          return(list(
+            kind            = "pathogen_or_aggregate_exposure",
+            agent_id        = comp$id,
+            canonical_name  = comp$name,
+            recovery_source = "K3_MISTYPE_pathogen_pamp"
+          ))
+        }
+      }
+      # Passo 3: composto risolvibile come CHEBI: o CHEMBL: (singolo o combo) ->
+      # rimane small_molecule senza tentare K3 biologico.
+      if (!startsWith(comp$id, "STR:")) {
+        return(list(
+          kind            = llm_kind,
+          agent_id        = comp$id,
+          canonical_name  = comp$name,
+          recovery_source = comp$source
+        ))
+      }
+      # Passo 4: composto non risolto (STR:) -> K3 last-resort: prova citochina
+      # poi patogeno; se nessun hit, resta small_molecule con l'ID STR.
       mis <- .detect_biological_mistype(t, ontology_env)
       if (!is.null(mis)) {
         suffix <- if (mis$kind == "cytokine_stim") "cytokine" else "pathogen"
@@ -389,12 +423,11 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
           recovery_source = paste0("K3_MISTYPE_", suffix)
         ))
       }
-      n <- .normalize_compound_to_chebi(t, ontology_env)
       return(list(
         kind            = llm_kind,
-        agent_id        = n$id,
-        canonical_name  = n$name,
-        recovery_source = n$source
+        agent_id        = comp$id,
+        canonical_name  = comp$name,
+        recovery_source = comp$source
       ))
     }
     return(list(
@@ -600,6 +633,15 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   # FSL-1 rimosso: lipopeptide sintetico complesso, non presente in ChEBI
   # Flagellina rimossa: proteina (TLR5 agonist), non presente in ChEBI come small molecule
 )
+
+#' Controlla se un intero ChEBI e' nella whitelist PAMP.
+#' Restituisce TRUE se chebi_int e' un valore (non nome) di .PAMP_WHITELIST.
+#' NA_integer_ e' gestito in modo difensivo (ritorna FALSE).
+#' @keywords internal
+.is_pamp_chebi <- function(chebi_int) {
+  if (is.na(chebi_int)) return(FALSE)
+  as.integer(chebi_int) %in% .PAMP_WHITELIST
+}
 
 #' Dizionario vernacolare patogeni: abbreviazioni comuni -> NCBI Taxonomy ID.
 #' Le chiavi sono forme normalizzate via \code{.normalize_biological_mention};
