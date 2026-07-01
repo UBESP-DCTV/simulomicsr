@@ -1,7 +1,7 @@
 # Spec — Recupero-nome BIOLOGICI (citochine + patogeni) → Stadio 3 v6
 
 **Data:** 2026-06-29 · **Branch:** `review-scientific-consistency-2026-06-10` (master invariato)
-**Status:** Proposed · **Sub-skill esecuzione:** `superpowers:subagent-driven-development`
+**Status:** Implementato + validato pre-rebuild (design finale in §13, revisione post-smoke 2026-07-01) · **Sub-skill esecuzione:** `superpowers:subagent-driven-development`
 **Deep research propedeutica:** `docs/findings/2026-06-29-deep-research-biologics-db.md`
 **Verifica fonti ImmPort (2026-06-29, dati reali):** API ImmPort interrogata con API key utente
 (scope `browse`) + cytokine registry-file fornito. Vedi §4.1 — l'incognita ImmPort è CHIUSA.
@@ -211,3 +211,50 @@ gate vero**: se il guadagno biologico non si materializza lì, ci si ferma prima
   sha256 dc626e4e…); API `https://www.immport.org/data/query/api/lookup/` (scope `browse`);
   Bhattacharya et al., Sci Data 2018;5:180015.
 - Memoria: `[[project_stage3_minestrone_rework]]`.
+
+## 13. Revisione post-smoke (2026-07-01) — design finale K3 + fix di precisione
+
+La FASE codice (Task 5-13) + i dizionari reali (Task 14-18) sono stati implementati come sopra.
+Lo **smoke #1** (Task 19, gate decisionale) ha bocciato il rebuild (K3 8% falsi positivi, pathogen
+3%). Sono stati applicati 4 fix (A/B/I1/D), ri-validati con ri-smoke + spot-check → **GO**. Il design
+del **K3 è cambiato** rispetto a §5/§7 (che restano come progetto iniziale); la forma FINALE è questa.
+
+**K3 — ramo `small_molecule` di `recover_identity` (compound-first, Fix-A):**
+1. Risolvi PRIMA come composto (`.normalize_compound_to_chebi`).
+2. Se `CHEBI:` singolo (non combo) ∈ `.PAMP_WHITELIST` → flip a `pathogen`, agent_id = quel CHEBI,
+   source `K3_MISTYPE_pathogen_pamp` (preserva LPS/poly(I:C)/R848…).
+3. Se `CHEBI:`/`CHEMBL:` (incl. combo) non-PAMP → **resta `small_molecule`, NESSUN flip** (elimina i
+   falsi positivi su farmaci veri — era il difetto dell'8% smoke #1).
+4. Solo se `STR:` (composto non risolto) → K3 last-resort: citochina (`HGNC:`) → patogeno
+   (`NCBITaxon:`/PAMP) → altrimenti `small_molecule` STR. Helper `.is_pamp_chebi`.
+
+**Estrazione patogeni (Fix-B + Fix-D):** `.AGENT_KEYS` esteso con `infection|infected|virus|pathogen|
+inoculation|challenge|stimulant|"treatment agent"` (Fix-B), poi **trim di `organism` + chiavi morte**
+`microbe|bacteria|bacterial|viral` (Fix-D I-1: `organism: human` in 747 sample sarebbe stato flippato a
+`NCBITaxon:9606` Homo-sapiens-as-pathogen). `.PATHOGEN_VERNACULAR` da 5 a 25 voci (taxid verificati vs
+dict reale; RSV/HCV corretti). `.HOST_SPECIES_STOPLIST` (Fix-D I-1b): `human|homosapiens|mouse|
+musmusculus|rat|rattusnorvegicus|patient|donor|subject` → STR prima del taxdump (difesa host-species).
+`.AGENT_CONTROL` esteso con i controlli infection-negative (Fix-D I-2).
+
+**Coerenza anchor (Fix-I1):** l'innesto `recovery` (passo a) adotta `recovery$agent_id` forte
+(`HGNC:`/`CHEBI:`/`NCBITaxon:`/`CHEMBL:`) anche quando l'anchor aveva `STR:` (non solo `UNK`), riducendo
+la frammentazione `STR:` vs ID-forte. Retrocompat: caso `UNK` invariato, ID forti esistenti non toccati.
+
+**Esiti validazione (dati reali, dir Stadio3 v5 `364547a7`):**
+| Metrica | Smoke #1 | Ri-smoke (A+B+I1) | Spot-check (post-D) |
+|---|---:|---:|---:|
+| Cytokine recovery → `HGNC:` | 53,2% | 53,2% | (invariato) |
+| Pathogen recovery forte | 3,0% | 7,8% | 8,0% |
+| K3 falsi positivi (genuini) | 8,0% | 0 genuini | 0 |
+| Host-species flip (organism:human) | n/d | n/d | **0 / 747** |
+| Canary generici | 0/12 | 0/12 | 8/8 |
+
+**Known limits aggiornati:** (a) pathogen residuo alto per nomi rumorosi/abbreviazioni non nel
+vernacolo (IAV/COVID-19/RV16 → espansione vernacolo, TODO); (b) `uninf` (86 sample) non ancora in
+`.AGENT_CONTROL` (trascurabile); (c) M-1 PAMP short-circuit CHEBI-dependent (PAMP risolti via CHEMBL o
+sale non-whitelist non ri-tipizzati — nullo per i PAMP comuni); (d) whitelist citochine larga (927)
+resa innocua per `small_molecule` da Fix-A (K3 solo su STR), invariata per il dispatch diretto
+`cytokine_stim`.
+
+**Commit fix:** Fix-A `0d2e413`, Fix-B `9ec6c74`, Fix-I1 `23f8913`, Fix-D `7933503`. Report:
+`docs/findings/2026-07-01-stage3-biologics-smoke.md`. Ledger: `.superpowers/sdd/progress.md`.
