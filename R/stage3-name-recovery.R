@@ -725,8 +725,9 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   mers      = 1335626L,  # MERS -- Middle East respiratory syndrome coronavirus
   merscov   = 1335626L,  # MERS-CoV esplicito
   # Mycobacteria
-  tb        = 1773L,     # Mycobacterium tuberculosis
-  mtb       = 1773L,     # M. tuberculosis (abbreviazione)
+  tb            = 1773L,     # Mycobacterium tuberculosis
+  mtb           = 1773L,     # M. tuberculosis (abbreviazione)
+  mtuberculosis = 1773L,     # "M tuberculosis" (abbreviazione genere) -- forma normalizzata
   # Staphylococcaceae (S. aureus: "saureus" non e' nel taxdump come common name)
   saureus   = 1280L      # S. aureus -- Staphylococcus aureus
 )
@@ -737,28 +738,32 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
 #' 1. Guardia su input mancante/vuoto -> id=NA, source="NO_TERM".
 #' 2. Normalizza con \code{.normalize_biological_mention} (rimuove separatori,
 #'    porta a minuscolo) per uniformare le chiavi dei dizionari costanti.
-#' 2b. Guardia specie-ospite: se la forma normalizzata e' in
-#'    \code{.HOST_SPECIES_STOPLIST} (human, mouse, rat, patient, ecc.) ->
-#'    id="STR:<slug>", source="STR_FALLBACK". Previene che "organism: human"
-#'    estratto per errore produca NCBITaxon:9606 via il ramo taxdump.
-#' 3. Match in \code{.PAMP_WHITELIST} (costante, no env) ->
-#'    id="CHEBI:<int>", source="PAMP_WHITELIST".
-#' 4. Match in vernacolo curato \code{.PATHOGEN_VERNACULAR} (costante, no env) ->
-#'    id="NCBITaxon:<taxid>", source="PATHOGEN_VERNACULAR".
-#'    I rami (3) e (4) precedono il generic-check (5) di proposito: vernacoli
-#'    brevi come "tb" o "flu" (<3 caratteri dopo normalizzazione) verrebbero
-#'    altrimenti demoti a STR da \code{.is_generic_biological} prima di essere
-#'    riconosciuti come alias noti.
+#' 2. Genera candidati tolleranti a dose/tempo/verbo/via via
+#'    \code{.extract_compound_candidates} (stringa intera + versione spogliata +
+#'    token). Cosi' "LPS exposed for 24 hours"->"lps", "poly(I:C) 10 ug/ml"->
+#'    "poly(i:c)", "SARS-CoV-2 infected"->"sars-cov-2".
+#' 3. Per OGNI candidato (chiavi curate, match esatto sicuro): guardia
+#'    host-species (\code{.HOST_SPECIES_STOPLIST}: token "human"/"mouse"/... ->
+#'    salta il candidato, mai fabbricare un patogeno da una specie-ospite),
+#'    poi \code{.PAMP_WHITELIST} -> id="CHEBI:<int>" source="PAMP_WHITELIST",
+#'    poi \code{.PATHOGEN_VERNACULAR} -> id="NCBITaxon:<taxid>"
+#'    source="PATHOGEN_VERNACULAR". PAMP/vernacolo precedono il generic-check di
+#'    proposito (vernacoli brevi come "tb"/"flu").
+#' 4. Guardia host-species sul termine intero -> id="STR:<slug>",
+#'    source="STR_FALLBACK" (difensiva, prima del taxdump; "organism: human"
+#'    non deve produrre NCBITaxon:9606).
 #' 5. Termine biologico generico (\code{.is_generic_biological}) ->
 #'    id="STR:<slug>", source="STR_FALLBACK".
-#' 6. \code{.taxonomy_lookup_name} + \code{.taxonomy_rollup_to_species}
-#'    (richiede \code{ontology_env} non-NULL) ->
-#'    id="NCBITaxon:<taxid>", source="PATHOGEN_TAXID".
+#' 6. Taxdump (\code{.taxonomy_lookup_name} + \code{.taxonomy_rollup_to_species},
+#'    richiede \code{ontology_env} non-NULL) SOLO sui candidati MULTI-PAROLA
+#'    (frasi) + termine intero -- i nomi scientifici sono frasi; token singoli
+#'    NON interrogano il taxdump (precisione) -> id="NCBITaxon:<taxid>",
+#'    source="PATHOGEN_TAXID".
 #' 7. Miss -> id="STR:<slugify(term)>", source="STR_FALLBACK".
 #'
-#' I rami (3) e (4) sono COSTANTI e non richiedono \code{ontology_env}:
+#' PAMP e vernacolo (ramo 3) sono COSTANTI e non richiedono \code{ontology_env}:
 #' e' possibile chiamare la funzione senza env per i PAMP e il vernacolo.
-#' Il ramo (6) viene saltato se \code{ontology_env} e' NULL.
+#' Il ramo taxdump (6) viene saltato se \code{ontology_env} e' NULL.
 #'
 #' @param term character(1) termine estratto dai metadati GEO.
 #' @param ontology_env environment da \code{.load_ontology_dicts()}, oppure
@@ -773,51 +778,61 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   if (length(term) != 1L || is.na(term) || !nzchar(term)) {
     return(list(id = NA_character_, name = NA_character_, source = "NO_TERM"))
   }
-  # 2. Normalizza PRIMA (le lookup costanti usano la forma normalizzata come chiave,
-  #    e devono avere priorita' sul generic check: ad es. "TB" normalizza a "tb"
-  #    (2 char, generico per .is_generic_biological) ma e' un alias vernacolare noto.
-  norm <- .normalize_biological_mention(term)
-  # 2b. Guardia specie-ospite: se la forma normalizzata e' una specie da laboratorio
-  #     comune (human, mouse, rat, patient, donor, subject) NON tipizzare come
-  #     patogeno. Previene che "organism: human" (747 sample in ARCHS4) estratto
-  #     per errore produca NCBITaxon:9606 via il ramo taxdump (Homo sapiens -> 9606).
-  #     Va PRIMA dei rami 3-4 (PAMP/vernacolo) per sicurezza difensiva, anche se
-  #     "human" non e' presente in quelle costanti.
-  if (nzchar(norm) && norm %in% .HOST_SPECIES_STOPLIST) {
+  # 2. Candidati tolleranti a dose/tempo/verbo/via: riusa l'estrattore composti
+  #    (stessa strategia di .normalize_cytokine_to_hgnc, riga ~592). Cosi' le
+  #    stringhe GEO rumorose risolvono al token core:
+  #      "LPS exposed for 24 hours"  -> "lps"        -> CHEBI:16412 (PAMP)
+  #      "poly(I:C) 10 ug/ml"        -> "poly(i:c)"  -> CHEBI:84491 (PAMP)
+  #      "SARS-CoV-2 infected"       -> "sars-cov-2" -> NCBITaxon:2697049 (vernacolo)
+  #    La stringa intera resta il 1o candidato (i nomi multi-parola non si
+  #    frantumano). Fix 2026-07-02: prima si faceva SOLO il match esatto della
+  #    forma collassata -> i rumorosi cadevano a STR (minestrone LPS CHEBI vs STR).
+  cands <- unique(c(term, .extract_compound_candidates(term)))
+  # 3. Match curato (PAMP whitelist + vernacolo) su OGNI candidato: chiavi
+  #    controllate => match esatto sicuro. Guardia host-species PER CANDIDATO: un
+  #    token "human"/"mouse"/... viene saltato (mai fabbricare un patogeno da una
+  #    specie-ospite, es. NCBITaxon:9606). PAMP e vernacolo hanno priorita' sul
+  #    generic check (es. "tb" -> Mtb) e non richiedono env.
+  for (cand in cands) {
+    norm <- .normalize_biological_mention(cand)
+    if (!nzchar(norm) || norm %in% .HOST_SPECIES_STOPLIST) next
+    if (norm %in% names(.PAMP_WHITELIST)) {
+      return(list(id = paste0("CHEBI:", .PAMP_WHITELIST[[norm]]),
+                  name = cand, source = "PAMP_WHITELIST"))
+    }
+    if (norm %in% names(.PATHOGEN_VERNACULAR)) {
+      return(list(id = paste0("NCBITaxon:", .PATHOGEN_VERNACULAR[[norm]]),
+                  name = cand, source = "PATHOGEN_VERNACULAR"))
+    }
+  }
+  # 4. Guardia host-species sul termine intero (difensiva, prima del taxdump):
+  #    "organism: human" (747 sample in ARCHS4) -> mai NCBITaxon:9606.
+  norm_whole <- .normalize_biological_mention(term)
+  if (nzchar(norm_whole) && norm_whole %in% .HOST_SPECIES_STOPLIST) {
     return(list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK"))
   }
-  # 3. PAMP whitelist (costante, no env richiesto) -- priorita' massima
-  if (nzchar(norm) && norm %in% names(.PAMP_WHITELIST)) {
-    chebi_int <- .PAMP_WHITELIST[[norm]]
-    return(list(
-      id     = paste0("CHEBI:", chebi_int),
-      name   = term,
-      source = "PAMP_WHITELIST"
-    ))
-  }
-  # 4. Vernacolo curato (costante, no env richiesto) -- priorita' alta
-  if (nzchar(norm) && norm %in% names(.PATHOGEN_VERNACULAR)) {
-    taxid <- .PATHOGEN_VERNACULAR[[norm]]
-    return(list(
-      id     = paste0("NCBITaxon:", taxid),
-      name   = term,
-      source = "PATHOGEN_VERNACULAR"
-    ))
-  }
-  # 5. Termine biologico generico -> STR fallback (dopo le whitelist, che hanno priorita')
+  # 5. Termine biologico generico -> STR fallback (dopo le whitelist)
   if (.is_generic_biological(term)) {
     return(list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK"))
   }
-  # 6. Taxdump NCBI (richiede env; salta con guard se NULL)
+  # 6. Taxdump NCBI (richiede env). SOLO su candidati MULTI-PAROLA (frasi) +
+  #    termine intero: i nomi scientifici sono frasi ("Mycobacterium
+  #    tuberculosis"); NON interrogare il taxdump con token singoli, che
+  #    rischiano match spurii verso taxa casuali (precisione).
   if (!is.null(ontology_env)) {
-    hit <- .taxonomy_lookup_name(term, env = ontology_env)
-    if (!is.null(hit) && !is.null(hit$taxid)) {
-      species_taxid <- .taxonomy_rollup_to_species(hit$taxid, env = ontology_env)
-      return(list(
-        id     = paste0("NCBITaxon:", species_taxid),
-        name   = if (!is.na(hit$scientific_name)) hit$scientific_name else term,
-        source = "PATHOGEN_TAXID"
-      ))
+    phrase_cands <- unique(c(term, cands[grepl(" ", cands, fixed = TRUE)]))
+    for (tc in phrase_cands) {
+      nm <- .normalize_biological_mention(tc)
+      if (!nzchar(nm) || nm %in% .HOST_SPECIES_STOPLIST) next
+      hit <- .taxonomy_lookup_name(tc, env = ontology_env)
+      if (!is.null(hit) && !is.null(hit$taxid)) {
+        species_taxid <- .taxonomy_rollup_to_species(hit$taxid, env = ontology_env)
+        return(list(
+          id     = paste0("NCBITaxon:", species_taxid),
+          name   = if (!is.na(hit$scientific_name)) hit$scientific_name else tc,
+          source = "PATHOGEN_TAXID"
+        ))
+      }
     }
   }
   # 7. Fallback STR

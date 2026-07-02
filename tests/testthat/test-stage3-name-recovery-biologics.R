@@ -236,6 +236,75 @@ test_that(".normalize_pathogen_to_taxid: env NULL -> no taxdump, STR su organism
 })
 
 # ---------------------------------------------------------------------------
+# Fix estrazione pathogen (2026-07-02): dose/tempo/verbo/via tolleranti.
+# Root cause: .normalize_pathogen_to_taxid faceva SOLO match esatto del termine
+# collassato -> le stringhe GEO rumorose ("LPS exposed for 24 hours",
+# "SARS-CoV-2 infected", "poly(I:C) 10 ug/ml") non risolvevano e cadevano a STR,
+# creando minestroni (LPS->CHEBI:16412 mescolato con STR:lps_exposed_for_24_hours).
+# Fix: iterare i candidati da .extract_compound_candidates (come .normalize_cytokine_to_hgnc).
+# ---------------------------------------------------------------------------
+
+test_that("pathogen rumoroso: 'LPS exposed for 24 hours' -> CHEBI:16412 (PAMP)", {
+  r <- .normalize_pathogen_to_taxid("LPS exposed for 24 hours")
+  expect_equal(r$id, "CHEBI:16412")
+  expect_equal(r$source, "PAMP_WHITELIST")
+})
+
+test_that("pathogen rumoroso: 'intravenous LPS' -> CHEBI:16412", {
+  r <- .normalize_pathogen_to_taxid("intravenous LPS")
+  expect_equal(r$id, "CHEBI:16412")
+})
+
+test_that("pathogen rumoroso: 'poly(I:C) 10 ug/ml' -> CHEBI:84491 (PAMP)", {
+  r <- .normalize_pathogen_to_taxid("poly(I:C) 10 ug/ml")
+  expect_equal(r$id, "CHEBI:84491")
+  expect_equal(r$source, "PAMP_WHITELIST")
+})
+
+test_that("pathogen rumoroso: 'SARS-CoV-2 infected' -> NCBITaxon:2697049 (vernacolo)", {
+  r <- .normalize_pathogen_to_taxid("SARS-CoV-2 infected")
+  expect_equal(r$id, "NCBITaxon:2697049")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+test_that("pathogen rumoroso: 'SARS-CoV-2 infection at MOI 1 during 24 h' -> NCBITaxon:2697049", {
+  r <- .normalize_pathogen_to_taxid("SARS-CoV-2 infection at MOI 1 during 24 h")
+  expect_equal(r$id, "NCBITaxon:2697049")
+})
+
+test_that("pathogen: 'M tuberculosis' (abbreviazione genere) -> NCBITaxon:1773 (vernacolo)", {
+  r <- .normalize_pathogen_to_taxid("M tuberculosis")
+  expect_equal(r$id, "NCBITaxon:1773")
+  expect_equal(r$source, "PATHOGEN_VERNACULAR")
+})
+
+# --- Canary di PRECISIONE (guardie di regressione: NON devono falso-positivare) ---
+
+test_that("CANARY pathogen: 'LPS' pulito resta CHEBI:16412 (no regressione)", {
+  r <- .normalize_pathogen_to_taxid("LPS")
+  expect_equal(r$id, "CHEBI:16412")
+})
+
+test_that("CANARY host-species: 'human infected' -> STR (MAI NCBITaxon:9606)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx8)
+  r <- .normalize_pathogen_to_taxid("human infected", env)
+  expect_equal(r$source, "STR_FALLBACK")
+  expect_false(identical(r$id, "NCBITaxon:9606"))
+})
+
+test_that("CANARY host-species: 'mouse infected' -> STR (MAI taxid murino)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx8)
+  r <- .normalize_pathogen_to_taxid("mouse infected", env)
+  expect_equal(r$source, "STR_FALLBACK")
+})
+
+test_that("CANARY rumore non-patogeno: 'BxPC 3 exosomes' -> STR (no match spurio)", {
+  env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx8)
+  r <- .normalize_pathogen_to_taxid("BxPC 3 exosomes", env)
+  expect_equal(r$source, "STR_FALLBACK")
+})
+
+# ---------------------------------------------------------------------------
 # Task 9: .detect_biological_mistype + dispatch biologico in recover_identity
 # ---------------------------------------------------------------------------
 
