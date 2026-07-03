@@ -24,6 +24,34 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-04 (biologici v6 END-TO-END + FIX PATHOGEN v7 — CHIUSO)**:
+> 🟢 **Pipeline end-to-end su v7. Fix estrazione pathogen materializzato.** Finding
+> `docs/findings/2026-07-03-stage3-v7-pathogen-extraction.md`. Commit `1fb1520` (fix) + `409aa0a` (cache bump).
+>
+> 1. **v6 run gated (2026-07-01/02, setsid+loop)**: re-cluster Stadio 3 v6
+>    (`…20260702T024122Z-stage3-v6-364547a7`, wall 8h06) → re-pool Stadio 4 v6
+>    (`/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v6/…-stage4-v6-4f7ea215`, 11h, 7,41M righe, 998k sig, 0 crash).
+>    Re-gate v6: **cytokine 61→36% (VINTO, driver ImmPort), MA pathogen REGREDITO 33→44%** (unico kind peggiorato).
+> 2. **Root cause pathogen (data-driven)**: NON vocabolario ma **ESTRAZIONE**. `.normalize_pathogen_to_taxid`
+>    faceva solo match esatto del termine collassato mentre `.normalize_cytokine_to_hgnc` usava già
+>    `.extract_compound_candidates` → asimmetria (cytokine 53% vs pathogen 8%). Stringhe rumorose
+>    `STR:lps_exposed_for_24_hours`/`sars_cov_2_infected`/`poly_i_c_10_g_ml` non risolvevano.
+> 3. **Fix `1fb1520` (TDD, precision-gated)**: `.normalize_pathogen_to_taxid` itera i candidati da
+>    `.extract_compound_candidates` (LPS→CHEBI:16412; SARS-CoV-2→NCBITaxon:2697049; poly(I:C)→CHEBI:84491) +
+>    vernacolo `mtuberculosis`. Guardie host-species per-candidato + taxdump solo su frasi. Smoke: K3 0/200,
+>    generici 0/12. Misura pre-materializzazione (re-gate su v6 col fix): **pathogen 43,9→16,8%**.
+> 4. **⚠️ CACHE-MISS (lezione)**: 1° re-cluster v7 (~8h) = output byte-identico a v6 → lookup disk-cached
+>    riusato perché non bumpato `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`. Beccato dalla sanity. Fix v3→v4
+>    (`409aa0a`) → re-run. Vedi memoria `feedback_bump_lookup_cache_version`.
+> 5. **Ciclo v7 (2026-07-03/04)**: re-cluster v7 (`…20260703T113045Z-stage3-v7-364547a7`, 475min; NCBITaxon:
+>    1149→2245, PATHOGEN_VERNACULAR cluster 521→1561, PAMP 371→872, 0 host-species) → re-pool Stadio 4 v7
+>    (`/mnt/wwn-…/simulomicsr-stage4-v7/…-stage4-v7-4f7ea215`, 668min, **7.468.582 righe, 998.695 sig, 433 proc,
+>    0 crash df-residui**). **RE-GATE v7: pathogen 43,9→11,2%** (meglio del previsto — v7 ha ri-poolato
+>    coerentemente; ora ≈ disease 7,7%, batte v5 33%). cytokine/small_molecule 35,9% invariati, TOTALE 22,0→20,1%.
+> 6. **TODO**: cytokine/small_molecule ~36% = copertura ChEBI/HGNC + granularità per-membro (NON estrazione);
+>    **LLM-fallback finale** (DECISIONE C, precision-gated) sui residui STR/UNK = passo generale finale.
+>    Branch invariato, master invariato, no push.
+>
 > **Stato 2026-07-01 (biologici v6 — codice+dizionari+fix VALIDATI (GO), rebuild PRONTO NON lanciato)**:
 > 🟢 **Recupero-nome BIOLOGICI (citochine+patogeni) implementato + validato. 3 run pesanti gated da
 > lanciare in sessione FRESH. Handout:

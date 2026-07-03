@@ -69,7 +69,7 @@ nr_cache_dir  <- if (identical(nr_cache_env, "__DEFAULT__")) {
 # In SMOKE niente cache su disco (vogliamo esercitare il path completo).
 if (SMOKE) nr_cache_dir <- NULL
 
-cli::cli_h1(sprintf("Re-cluster Stadio 3 v6 (name-recovery + ChEMBL + biologici) -- modalita': %s",
+cli::cli_h1(sprintf("Re-cluster Stadio 3 v7 (name-recovery + ChEMBL + biologici + fix estrazione pathogen) -- modalita': %s",
                     if (SMOKE) sprintf("SMOKE (max %d studi)", SMOKE_N) else "FULL RUN"))
 
 stage1_path   <- "analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl"
@@ -342,7 +342,7 @@ if (!is.null(completeness_report)) {
 # ---------------------------------------------------------------------------
 ts      <- format(Sys.time(), "%Y%m%dT%H%M%SZ", tz = "UTC")
 run_id  <- s3$run_metadata$run_id
-suffix  <- if (SMOKE) sprintf("v6smoke-%s", run_id) else sprintf("v6-%s", run_id)
+suffix  <- if (SMOKE) sprintf("v7smoke-%s", run_id) else sprintf("v7-%s", run_id)
 out_dir <- sprintf("analysis/p4-output/%s-stage3-%s", ts, suffix)
 cli::cli_h2(sprintf("10. Scrivo output in %s", out_dir))
 write_stage3_to_dir(s3, out_dir)
@@ -363,8 +363,8 @@ is_gen  <- !is.na(kind) & startsWith(kind, "genetic_")
 rec_applied <- if ("agent_id_recovered" %in% names(cl)) sum(cl$agent_id_recovered, na.rm = TRUE) else NA_integer_
 kind_rec    <- if ("kind_recovered" %in% names(cl)) sum(cl$kind_recovered, na.rm = TRUE) else NA_integer_
 
-cli::cli_h1("SANITY v6")
-cli::cli_alert_info("run_id={run_id}  (NB: deterministico da input+config; il token v6 nella dir lo distingue da v3/v4/v5)")
+cli::cli_h1("SANITY v7")
+cli::cli_alert_info("run_id={run_id}  (NB: deterministico da input+config; il token v7 nella dir lo distingue da v3/v4/v5/v6)")
 cli::cli_alert_info("n_clusters    = {nrow(cl)}")
 cli::cli_alert_info("n_assignments = {nrow(asg)}")
 cli::cli_alert_info("copertura: sum(n_total) cluster = {sum(cl$n_total, na.rm=TRUE)} ; record assegnati = {length(unique(asg$record_id))}")
