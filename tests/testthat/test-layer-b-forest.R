@@ -86,3 +86,30 @@ test_that(".build_forest skip mega-strict with explanatory caption", {
   expect_true(is.na(result$png_path) || is.null(result$png_path))
   expect_match(result$caption, "Forest plot N/A for mega-strict")
 })
+
+test_that(".build_forest gestisce gene_symbol duplicati (paraloghi) senza crash", {
+  # ARCHS4 v2.5: piu' Ensembl gene_id mappano sullo STESSO gene_symbol HGNC
+  # (paraloghi PAR/KIR/HLA + loci multipli, es. KRT23 su 2 ENSG). Il forest usa
+  # la label (= gene_symbol) come levels di un factor, che richiede unicita' ->
+  # senza make.unique va in "factor level [N] is duplicated". Repro dal cluster
+  # v7 Alcoholic hepatitis (KRT23 su ENSG00000263309 + ENSG00000108244).
+  cp <- make_fake_cluster_pooled(n_genes = 20, n_sig = 12, cluster_id = "cl_dup")
+  cp$method <- "mega_aug"
+  cp$n_baseline_studies_augmented <- 8L
+  # Due gene_id distinti sullo stesso symbol, |logFC| tra i piu' alti -> top_n_forest.
+  cp$logFC_pool[1:2] <- c(9.0, 8.5)
+  cp$FDR_BH_within_cluster[1:2] <- c(0.001, 0.001)
+  cp$gene_symbol[1:2] <- "KRT23"
+  ps <- make_fake_per_study_de(cluster_id = "cl_dup", n_genes = 20, n_studies = 2)
+
+  out_dir <- tempfile("forest_dup_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  cfg <- layer_b_default_config()
+  result <- simulomicsr:::.build_forest(
+    per_study_de_subset = ps, cluster_pooled_subset = cp,
+    method = "mega_aug", out_dir = out_dir, config = cfg
+  )
+  expect_true(file.exists(result$png_path))
+})

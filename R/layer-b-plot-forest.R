@@ -57,6 +57,12 @@
     is.na(top_genes$gene_symbol) | top_genes$gene_symbol == "",
     top_genes$gene_id, top_genes$gene_symbol
   )
+  # Guard paralogo: i gene_symbol HGNC NON sono unici (piu' Ensembl gene_id sullo
+  # stesso symbol in ARCHS4 v2.5, es. KRT23 su 2 ENSG nel cluster Alcoholic
+  # hepatitis v7). La label e' usata come levels di un factor (mega_aug) e come
+  # header per-gene (rem); il factor richiede levels unici. make.unique
+  # deterministico (coerente con ADR-0016 D6 sul gene axis): KRT23, KRT23.1.
+  top_genes$label <- make.unique(top_genes$label)
   ps <- per_study_de_subset[per_study_de_subset$gene_id %in% top_genes$gene_id, , drop = FALSE]
   # Propaga la label sul ps via lookup per gene_id (mapping 1:1 garantito post-E1)
   ps$label <- top_genes$label[match(ps$gene_id, top_genes$gene_id)]
