@@ -92,9 +92,15 @@ analysis/p5-stage4-layer-b-*.log
 # Audit artefatti OLD (giganti, riproducibili dagli script) — es. A2 .OLD.tsv 278MB
 analysis/audit/*.OLD.*
 
-# FASE F log/state (riproducibili dagli script .R)
-analysis/p4-fase-*.log
+# FASE F log/state + run pid/start (riproducibili dagli script .R)
+analysis/p4-fase-*.log*
+analysis/p4-fase-*.pid
+analysis/p4-fase-*.start
 analysis/p4-fase-f2-chunked-state.txt
 
 # RED_ALERT rendered HTML (sorgente .md è il canonical)
 docs/RED_ALERT.html
+
+# testthat re-run artefatti (rigenerati da testthat::test_dir su fallimenti)
+tests/testthat/_problems/
+tests/testthat/testthat-problems.rds
