@@ -367,7 +367,8 @@ test_that("cache key v3: has_go_cytokine TRUE vs FALSE produce chiavi diverse", 
   expect_false(identical(k_true, k_false))
 })
 
-# La versione schema e' ora "v3" (bump da "v2" per Task 12 biologics).
-test_that("cache key v3: .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION e' 'v3'", {
-  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v3")
+# La versione schema e' ora "v4" (bump da "v3" per invalidare il lookup stale
+# dopo il fix estrazione pathogen v7, commit 409aa0a).
+test_that("cache key v4: .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION e' 'v4'", {
+  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v4")
 })
