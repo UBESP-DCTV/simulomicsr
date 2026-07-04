@@ -1,0 +1,9 @@
+cluster_id,label_paper,priority,notes
+pair_L4_0a11f3fb,Influenza_A_virus_infection_lung,1,"Pathogen (NCBITaxon:11320 Influenza A virus) in lung; recovery PATHOGEN_VERNACULAR da agent LLM=unknown. k_eff=186, n_sig_strong=2462, max_logFC=9.4. Innate/antiviral response showcase."
+pair_L3_6c511eb3,LPS_TLR4_agonist_peripheral_blood,1,"Pathogen/PAMP (CHEBI:16412 lipopolysaccharide) in peripheral blood; fix estrazione pathogen v7 (LPS -> CHEBI PAMP_WHITELIST). k_eff=23, n_sig_strong=4475, max_logFC=11.7. Canonical TLR4/innate-immunity case."
+pair_L4_84e3884d,PF4_CXCL4_chemokine_stimulation_blood,1,"Cytokine (HGNC:PF4 Platelet Factor 4 / CXCL4) in blood; recovery K3_MISTYPE_cytokine da LLM=small_molecule. k_eff=112, n_sig_strong=3205, max_logFC=7.9. Chemokine signaling case."
+pair_L4_60785d83,TGFB1_stimulation_lung,1,"Cytokine (HGNC:TGFB1) in lung; recovery K3_MISTYPE_cytokine. k_eff=180, n_sig_strong=987, max_logFC=7.2. Canonical TGF-beta signaling / fibrosis-relevant case."
+pair_L4_e7ef5ee5,Alcoholic_hepatitis_vs_normal_liver_MeSH_D006519,1,"Disease_vs_normal (MeSH:D006519 Hepatitis, Alcoholic) in liver. k_eff=81, n_sig_strong=3570, max_logFC=7.2. Disease transcriptome showcase (MeSH-resolved)."
+pair_L4_b6b80fb5,miR_9_9star_124_neural_reprogramming_skin,1,"Genetic_overexpression (miR-9/9*-124, direct neural reprogramming, Yoo et al.) in skin fibroblasts. k_eff=146, n_sig_strong=4172, max_logFC=10.2. Genetic perturbation showcase (era valido anche nel batch pre-rework)."
+pair_L4_571a98da,KRAS_overexpression_lung,1,"Genetic_overexpression (HGNC:6407 KRAS) in lung; oncogene classico. k_eff=174, n_sig_strong=881, max_logFC=5.7. Oncogenic transcriptome case."
+pair_L2_814b5433,Physostigmine_prostate_CHEBI_27953,2,"Small_molecule (CHEBI:27953 physostigmine, inibitore colinesterasi) in prostate. k_eff=7 (basso), n_sig_strong=4361, max_logFC=11.0 (segnale forte nonostante pochi studi). Companion small-molecule case."
