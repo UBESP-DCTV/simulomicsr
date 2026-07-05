@@ -117,7 +117,11 @@
   p_val  <- fit$p.value[, "treatmenttreated"]
   t_stat <- fit$t[, "treatmenttreated"]
 
-  if (direction_flip) {
+  # Difesa in profondita': isTRUE rende la guardia robusta a NA/NULL.
+  # Normalmente direction_flip viene gia' coerciato a FALSE da isTRUE nel
+  # chiamante (.run_per_study_de_all), ma una chiamata diretta futura con
+  # direction_flip=NA non deve sollevare "missing value where TRUE/FALSE needed".
+  if (isTRUE(direction_flip)) {
     logFC <- -logFC
     direction_applied <- "flipped"
   } else {

@@ -40,7 +40,10 @@
     dispatch_i <- dispatch[[cid]]
     if (is.null(dispatch_i)) next
 
-    dir_flip <- per_study_clusters$direction_check[i] == "swapped"
+    # direction_check e' NA per i cluster group-mode (concetto pair-only): NA
+    # nel confronto propagherebbe a if(NA) -> errore. isTRUE coerce NA/NULL a FALSE
+    # (nessun flip di direzione per i group: la direzione e' gia' treated-vs-control).
+    dir_flip <- isTRUE(per_study_clusters$direction_check[i] == "swapped")
 
     for (j in seq_along(dispatch_i)) {
       d <- dispatch_i[[j]]

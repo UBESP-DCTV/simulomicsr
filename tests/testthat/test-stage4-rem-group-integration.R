@@ -75,3 +75,45 @@ test_that("non-regressione: identify_layer_a non altera i rami rem/mega/mega_aug
   expect_identical(out$method[out$cluster_id == "group_meg"], "mega")
   expect_identical(out$method[out$cluster_id == "group_reg"], "rem_group")
 })
+
+# Regressione C1 (2026-07-05): direction_check = NA su cluster group-mode
+# -----------------------------------------------------------------------
+# I cluster group-mode ricevono direction_check = NA_character_ da
+# .summarize_clusters (concetto pair-only). In produzione TUTTI i group hanno NA.
+# Bug: `NA == "swapped"` -> NA -> if(NA) lancia errore -> tryCatch cattura ->
+# warning "per_study DE FALLITO (skip, non fatale)" -> .empty_per_study_de() per
+# ogni studio -> per_study_de vuoto -> pool vuoto. No-op silenzioso.
+# Questo test replica esattamente la condizione di produzione: direction_check = NA.
+test_that("C1 regressione: rem_group con direction_check=NA produce DE non vuoto", {
+  # Cluster group con direction_check NA (come in produzione)
+  eligible <- tibble::tibble(
+    cluster_id     = "group_L4_na",
+    mode           = "group",
+    method         = "rem_group",
+    direction_check = NA_character_   # <-- condizione di produzione: NA, non "ok"
+  )
+  fetch_fn <- function(gse, sids) {
+    m <- matrix(rpois(20L * length(sids), 100L), nrow = 20L,
+                dimnames = list(paste0("ENSG", 1:20), sids))
+    m
+  }
+  disp <- list(group_L4_na = list(
+    list(study_id = "GSE10", treated = c("s1","s2","s3"), control = c("s4","s5")),
+    list(study_id = "GSE11", treated = c("t1","t2"),      control = c("u1","u2")),
+    list(study_id = "GSE12", treated = c("p1","p2"),      control = c("q1","q2"))
+  ))
+  attr(eligible, "study_dispatch") <- disp
+
+  # Senza il fix: ogni studio finisce nel tryCatch per `if(NA)` ->
+  # per_study DE FALLITO -> 0 righe totali.
+  # Con il fix: isTRUE(NA == "swapped") = FALSE -> nessun flip, DE procede.
+  res <- .run_per_study_de_all(eligible, fetch_fn = fetch_fn)
+
+  # La tabella DE deve avere righe (almeno 1 gene x 3 studi)
+  expect_true(nrow(res) > 0L,
+    label = "per_study DE con direction_check=NA deve produrre righe (non no-op silenzioso)")
+  # Tutti i record devono appartenere al cluster corretto
+  expect_true(all(res$cluster_id == "group_L4_na"))
+  # direction_applied deve essere "none" (nessun flip: NA != "swapped")
+  expect_true(all(res$direction_applied == "none"))
+})
