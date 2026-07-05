@@ -274,3 +274,92 @@
   stage3_clusters$sample_studies <- sample_studies_col
   stage3_clusters
 }
+
+#' Lookup comparison da study via treated_group (prima match, deterministico)
+#'
+#' Per i group treated-only il control vive fuori dal cluster: si risale al
+#' control_group dello stesso studio cercando la comparison in cui il group_id
+#' e' il \code{treated_group}. Se un group e' treated_group di piu' comparison,
+#' vince la prima (ordine deterministico dell'input stage2).
+#'
+#' @keywords internal
+.lookup_cmp_by_treated_group <- function(study, group_id) {
+  for (cmp in study$comparisons) {
+    if (identical(cmp$treated_group, group_id)) return(cmp)
+  }
+  NULL
+}
+
+#' Costruisce study_dispatch per cluster group-mode nominati (rem_group)
+#'
+#' Mappa ogni cluster group con method \code{rem_group} in una lista di
+#' per-study record \code{{study_id, treated, control}}, con lo STESSO schema
+#' di \code{.build_study_dispatch_from_stage3} (cosi' il dispatch si fonde nello
+#' stesso attr "study_dispatch" e il ramo REM per-studio lo consuma invariato).
+#'
+#' Per ogni record group \code{<series>__<group_id>} treated si cerca la
+#' comparison dello stesso studio in cui \code{group_id} e' il treated_group ->
+#' control_group -> sample_ids (stesso studio). Serve UNIFORMEMENTE both_roles
+#' (control nel cluster) e treated_only (control in record fratello): la
+#' relazione vive sempre in \code{study\$comparisons}. Entry con < n_min treated
+#' o control scartate (limma-voom richiede replica). Dedup per
+#' \code{(study_id, treated_group)}.
+#'
+#' @inheritParams .build_study_dispatch_from_stage3
+#' @param n_min integer campioni minimi per braccio per-studio (default 2).
+#' @return named list (cluster_id -> list di \code{{study_id, treated,
+#'   control}}). Cluster senza entry valide sono omessi.
+#' @keywords internal
+.build_group_rem_dispatch_from_stage3 <- function(eligible_clusters,
+                                                   stage3_assignments,
+                                                   stage2_master,
+                                                   n_min = 2L) {
+  group_clusters <- eligible_clusters[
+    eligible_clusters$mode == "group" &
+      eligible_clusters$method == "rem_group",
+  ]
+  if (nrow(group_clusters) == 0L) return(list())
+
+  s2_idx <- .index_stage2_master(stage2_master)
+  asg_by_clid <- split(stage3_assignments$record_id,
+                       stage3_assignments$cluster_id)
+
+  dispatch <- vector("list", 0L)
+  for (i in seq_len(nrow(group_clusters))) {
+    cid <- group_clusters$cluster_id[i]
+    record_ids <- asg_by_clid[[cid]]
+    if (is.null(record_ids) || length(record_ids) == 0L) next
+
+    cluster_dispatch <- vector("list", 0L)
+    seen_keys <- character(0L)
+    for (rid in record_ids) {
+      parsed <- .split_record_id(rid)
+      if (is.na(parsed$series_id)) next
+      if (!exists(parsed$series_id, envir = s2_idx, inherits = FALSE)) next
+      study <- get(parsed$series_id, envir = s2_idx, inherits = FALSE)
+      cmp <- .lookup_cmp_by_treated_group(study, parsed$suffix)
+      if (is.null(cmp)) next
+
+      tg <- .lookup_rg(study, cmp$treated_group)
+      cg <- .lookup_rg(study, cmp$control_group)
+      if (is.null(tg) || is.null(cg)) next
+      treated <- as.character(unlist(tg$sample_ids))
+      control <- as.character(unlist(cg$sample_ids))
+      if (length(treated) < n_min || length(control) < n_min) next
+
+      key <- paste0(parsed$series_id, "||", cmp$treated_group)
+      if (key %in% seen_keys) next
+      seen_keys <- c(seen_keys, key)
+
+      cluster_dispatch[[length(cluster_dispatch) + 1L]] <- list(
+        study_id = parsed$series_id,
+        treated  = treated,
+        control  = control
+      )
+    }
+    if (length(cluster_dispatch) > 0L) {
+      dispatch[[cid]] <- cluster_dispatch
+    }
+  }
+  dispatch
+}
