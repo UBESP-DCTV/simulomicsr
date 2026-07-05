@@ -9,18 +9,6 @@ test_that("stage4_default_config espone il blocco rem_group con soglie decise", 
                    "v1_per_study_rem_named_groups")
 })
 
-.mk_cluster_row <- function(cluster_id, mode, level, k, n_total, n_studies,
-                            safety_min, usable_mega_strict, kind, agent) {
-  tibble::tibble(
-    cluster_id = cluster_id, mode = mode, level = level, k = k,
-    n_total = n_total, n_studies = n_studies, safety_min = safety_min,
-    usable_rem_strict = FALSE, usable_rem_relaxed = FALSE,
-    usable_mega_strict = usable_mega_strict, usable_mega_relaxed = FALSE,
-    kind_effective_resolved = kind, agent_id_resolved = agent,
-    studies_in_cluster = list(paste0("GSE", seq_len(n_studies))),
-    direction_check = "ok"
-  )
-}
 
 test_that("dedup rem_group tiene un cluster per entita al k massimo", {
   rg <- dplyr::bind_rows(

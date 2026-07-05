@@ -152,6 +152,14 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
   study_dispatch <- .build_study_dispatch_from_stage3(
     qc$eligible_clusters, stage3_assignments, stage2_master
   )
+  # FASE F6 2026-07-05: group nominati L2-L4 -> REM per-studio. Stesso schema
+  # {study_id, treated, control} dei pair, quindi si fonde nello study_dispatch
+  # (cluster_id disgiunti: rem_group e' group, rem/mega_aug sono pair).
+  group_rem_dispatch <- .build_group_rem_dispatch_from_stage3(
+    qc$eligible_clusters, stage3_assignments, stage2_master,
+    n_min = config$rem_group$n_min %||% 2L
+  )
+  study_dispatch <- c(study_dispatch, group_rem_dispatch)
   group_dispatch <- .build_group_dispatch_from_stage3(
     qc$eligible_clusters, stage3_assignments, stage2_master
   )
@@ -198,6 +206,7 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     workers           = dream_workers,
     dream_workers_cap = config$compute$dream_workers_cap,
     mega_aug_config   = config$mega_aug,
+    rem_group_config  = config$rem_group,
     biosample_lookup  = samn_lookups$biosample_lookup,
     libsize_lookup    = samn_lookups$libsize_lookup,
     metadata_extra    = h5_metadata,    # FASE E3 ADR-0019 D8
