@@ -49,6 +49,15 @@
 #'   \code{mega_aug}).
 #' @keywords internal
 .identify_layer_a_clusters <- function(stage3_clusters, stage4_config) {
+  # Colonne F6 opzionali: usable_mega_strict/kind_effective_resolved/agent_id_resolved
+  # sono assenti nelle fixture legacy pre-F6. .col_or_default garantisce
+  # retrocompatibilita' senza crash: colonna mancante -> valore scalare di default
+  # replicato nrow(df) volte. In produzione (clusters.rds da .summarize_clusters)
+  # le colonne sono sempre presenti e il comportamento e' identico all'accesso diretto.
+  mega_strict_col <- .col_or_default(stage3_clusters, "usable_mega_strict", FALSE)
+  kind_col        <- .col_or_default(stage3_clusters, "kind_effective_resolved", NA_character_)
+  agent_col       <- .col_or_default(stage3_clusters, "agent_id_resolved",       NA_character_)
+
   rem <- stage3_clusters[
     stage3_clusters$usable_rem_strict &
     stage3_clusters$k >= 3L & stage3_clusters$k <= 9L &
@@ -56,8 +65,10 @@
   ]
   if (nrow(rem) > 0L) rem$method <- "rem"
 
+  # Usa mega_strict_col (via .col_or_default) per proteggere il filtro dalle
+  # fixture legacy prive di usable_mega_strict.
   mega <- stage3_clusters[
-    stage3_clusters$usable_mega_strict &
+    mega_strict_col &
     stage3_clusters$n_studies >= 5L &
     stage3_clusters$mode == "group",
   ]
@@ -81,24 +92,18 @@
   # !usable_mega_strict (i L2-L4 non sono mai usable_mega_strict per il vincolo
   # di livello {0,1}; se un cluster soddisfa entrambi vince mega). Nessun gate
   # safety_min: il REM modella l'eterogeneita', non la filtra.
+  # Con colonne assenti: usable_mega_strict=FALSE -> !FALSE=TRUE (escluso
+  # dal gate mega ma non dal rem_group); kind/agent=NA -> !is.na(NA)=FALSE -> 0
+  # righe rem_group (degradazione graceful, nessun crash).
   rg_cfg      <- stage4_config$rem_group
   excl_kinds  <- rg_cfg$excluded_kinds %||% c("vehicle_only", "none", "")
   min_k_raw   <- rg_cfg$k_eff_min %||% 3L
-  # Usa .col_or_default per retrocompatibilita' con fixture legacy che non
-  # contengono le colonne F6. In produzione (clusters.rds da .summarize_clusters)
-  # le colonne sono sempre presenti e il comportamento e' identico all'accesso
-  # diretto. Con colonne assenti: usable_mega_strict=FALSE -> !FALSE=TRUE (escluso
-  # dal gate mega ma non dal rem_group); kind/agent=NA -> !is.na(NA)=FALSE -> 0
-  # righe rem_group (degradazione graceful, nessun crash).
-  mega_strict_col <- .col_or_default(stage3_clusters, "usable_mega_strict", FALSE)
-  kind_col        <- .col_or_default(stage3_clusters, "kind_effective_resolved", NA_character_)
-  agent_col       <- .col_or_default(stage3_clusters, "agent_id_resolved",       NA_character_)
   rem_group <- stage3_clusters[
     stage3_clusters$mode == "group" &
     !mega_strict_col &
     !(kind_col %in% excl_kinds) &
     !is.na(agent_col) &
-    nzchar(agent_col) &
+    nzchar(agent_col, keepNA = FALSE) &
     stage3_clusters$k >= min_k_raw,
   ]
   if (nrow(rem_group) > 0L) {

@@ -35,6 +35,26 @@ test_that("il group_rem_dispatch si fonde nello study_dispatch (cluster_id disgi
   expect_length(merged, 2L)
 })
 
+# Finding 1 (Important): verifica la semantica della guardia fail-loud sul merge
+# dispatch (cluster_id disgiunti). Non invoca build_stage4_results (troppo setup);
+# testa direttamente la logica della guardia: intersect(names(a), names(b)).
+test_that("guardia merge dispatch: chiavi sovrapposte rilevate, disgiunte no", {
+  sd_disjoint  <- list(pair_A   = list(), pair_B   = list())
+  grd_disjoint <- list(group_C  = list(), group_D  = list())
+  # Caso disgiunti: intersect e' vuoto -> guardia NON scatta
+  dup_disjoint <- intersect(names(sd_disjoint), names(grd_disjoint))
+  expect_length(dup_disjoint, 0L)
+  expect_false(length(dup_disjoint) > 0L)
+
+  sd_overlap   <- list(pair_A   = list(), group_L4_x = list())
+  grd_overlap  <- list(group_L4_x = list(), group_D = list())
+  # Caso sovrapposti: intersect non e' vuoto -> guardia scatta
+  dup_overlap <- intersect(names(sd_overlap), names(grd_overlap))
+  expect_length(dup_overlap, 1L)
+  expect_true(length(dup_overlap) > 0L)
+  expect_identical(dup_overlap, "group_L4_x")
+})
+
 # Task 7 Step 4: non-regressione — .identify_layer_a_clusters non altera
 # i method dei rami rem/mega/mega_aug; il ramo rem_group resta distinto.
 test_that("non-regressione: identify_layer_a non altera i rami rem/mega/mega_aug", {

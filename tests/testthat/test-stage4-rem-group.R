@@ -143,3 +143,30 @@ test_that("identify_layer_a_clusters tollera fixture priva di kind/agent_id_reso
   # Degradazione graceful: 0 righe rem_group (agent_id_resolved assente = NA = escluso)
   expect_equal(sum(out$method == "rem_group", na.rm = TRUE), 0L)
 })
+
+# Finding 2 (Minor): estende il test di regressione al caso in cui manca ANCHE
+# usable_mega_strict (oltre a kind_effective_resolved e agent_id_resolved).
+# Con .col_or_default gia' presente la funzione non deve ne' crashare ne' produrre
+# righe rem_group: senza agent_id_resolved tutti gli agent sono NA e il gate
+# !is.na(agent_col) esclude ogni riga.
+test_that("identify_layer_a_clusters tollera fixture priva di usable_mega_strict, kind e agent", {
+  clusters_noF6 <- tibble::tibble(
+    cluster_id            = "group_L3_y",
+    mode                  = "group",
+    level                 = 3L,
+    k                     = 5L,
+    n_total               = 50L,
+    n_studies             = 5L,
+    usable_rem_strict     = FALSE,
+    usable_rem_relaxed    = FALSE,
+    # MANCANO: usable_mega_strict, kind_effective_resolved, agent_id_resolved
+    safety_min            = 0.25,
+    studies_in_cluster    = list(c("GSE1","GSE2","GSE3","GSE4","GSE5")),
+    direction_check       = "ok"
+  )
+  cfg <- stage4_default_config()
+  expect_no_error(
+    out <- .identify_layer_a_clusters(clusters_noF6, cfg)
+  )
+  expect_equal(sum(out$method == "rem_group", na.rm = TRUE), 0L)
+})

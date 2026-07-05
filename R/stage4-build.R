@@ -159,6 +159,15 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     qc$eligible_clusters, stage3_assignments, stage2_master,
     n_min = config$rem_group$n_min %||% 2L
   )
+  # Invariante: i cluster_id pair (study_dispatch) e group (group_rem_dispatch)
+  # sono disgiunti per costruzione (mode diverso). Fail-loud se non lo sono:
+  # nomi duplicati in c() farebbero prendere silenziosamente il primo match a
+  # dispatch[[cid]] a valle.
+  .dup_dispatch <- intersect(names(study_dispatch), names(group_rem_dispatch))
+  if (length(.dup_dispatch) > 0L) {
+    stop("cluster_id sovrapposti tra study_dispatch e group_rem_dispatch: ",
+         paste(.dup_dispatch, collapse = ", "))
+  }
   study_dispatch <- c(study_dispatch, group_rem_dispatch)
   group_dispatch <- .build_group_dispatch_from_stage3(
     qc$eligible_clusters, stage3_assignments, stage2_master
