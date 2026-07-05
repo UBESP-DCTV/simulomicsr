@@ -104,6 +104,81 @@
   )
 }
 
+#' Collassa i bracci multipli intra-studio in un valore per studio (inverse-variance FE)
+#'
+#' Un cluster rem_group puo' avere piu' bracci trattati dello stesso studio (es.
+#' dosi diverse), ognuno con una riga per gene in per_study_de. Per non contarli
+#' come studi indipendenti nel REM (pseudo-replicazione), si combinano le stime
+#' dei bracci dello stesso (cluster, study, gene) in un'unica stima via
+#' meta-analisi fixed-effect inverse-variance:
+#'   w_i = 1/SE_i^2 ; logFC = sum(w_i logFC_i)/sum(w_i) ; SE = sqrt(1/sum(w_i)).
+#' LIMITE NOTO: assume indipendenza tra bracci; i bracci condividono il control
+#' in-study (correlazione non modellata) -> SE combinata lievemente ottimistica.
+#' La correzione per shared-baseline (Franchini) e' un raffinamento futuro.
+#'
+#' @param per_study_de_subset tibble per-studio di UN cluster (schema
+#'   per_study_de: cluster_id, study_id, gene_id, gene_symbol, logFC, SE,
+#'   p_value, t_stat, n_treated, n_control, direction_applied).
+#' @return tibble stesso schema, con 1 riga per (study_id, gene_id).
+#' @keywords internal
+.collapse_arms_by_study <- function(per_study_de_subset) {
+  if (nrow(per_study_de_subset) == 0L) return(per_study_de_subset)
+
+  # Chiave composta per identificare i gruppi (study_id, gene_id).
+  # Separatore improbabile negli ID reali (GSE + ENSEMBL) per evitare collisioni.
+  key <- paste(per_study_de_subset$study_id, per_study_de_subset$gene_id,
+               sep = "|||")
+
+  # Fast path: nessun (study_id, gene_id) duplicato -> ogni studio ha al
+  # piu' 1 braccio per gene. Ritorna l'input invariato senza overhead.
+  if (!anyDuplicated(key)) return(per_study_de_subset)
+
+  # Split per gruppo e combina i bracci multipli via inverse-variance FE.
+  groups <- split(per_study_de_subset, key)
+
+  collapsed <- lapply(groups, function(g) {
+    if (nrow(g) == 1L) return(g)
+
+    # Filtra bracci con SE finita e > 0 (validi per la media pesata)
+    validi <- is.finite(g$SE) & g$SE > 0
+    if (!any(validi)) return(NULL)  # nessun braccio valido -> scarta gruppo
+
+    gv <- g[validi, , drop = FALSE]
+    if (nrow(gv) == 1L) return(gv)  # 1 solo braccio valido -> passa invariato
+
+    # Meta-analisi fixed-effect inverse-variance:
+    #   w_i = 1/SE_i^2 ; logFC = sum(w_i * logFC_i) / sum(w_i)
+    #   SE_comb = sqrt(1 / sum(w_i))
+    w     <- 1 / gv$SE^2
+    w_sum <- sum(w)
+    lfc   <- sum(w * gv$logFC) / w_sum
+    se    <- sqrt(1 / w_sum)
+
+    tibble::tibble(
+      cluster_id        = gv$cluster_id[1L],
+      study_id          = gv$study_id[1L],
+      gene_id           = gv$gene_id[1L],
+      gene_symbol       = gv$gene_symbol[1L],
+      logFC             = lfc,
+      SE                = se,
+      p_value           = 2 * stats::pnorm(-abs(lfc / se)),
+      t_stat            = lfc / se,
+      # n_treated: somma dei bracci (campioni trattati distinti per braccio)
+      # n_control: max (il control e' condiviso tra i bracci -> NON sommare)
+      n_treated         = as.integer(sum(gv$n_treated)),
+      n_control         = max(gv$n_control),
+      direction_applied = gv$direction_applied[1L]
+    )
+  })
+
+  # Scarta i NULL (gruppi senza bracci validi), combina e ordina deterministicamente
+  collapsed <- Filter(Negate(is.null), collapsed)
+  if (length(collapsed) == 0L) return(.empty_per_study_de())
+
+  result <- do.call(rbind, collapsed)
+  result[order(result$study_id, result$gene_id), , drop = FALSE]
+}
+
 #' Pool tutti i cluster eligible (REM + MEGA + MEGA-AUG)
 #'
 #' Dispatch per method:
@@ -215,6 +290,13 @@
         next
       }
       subset <- per_study_de[per_study_de$cluster_id == cid, ]
+      # Opzione C: collassa i bracci multipli dello stesso studio in un unico
+      # valore per studio (inverse-variance FE) PRIMA del REM. Senza questo
+      # passo, uno studio con k bracci trattati contribuisce k righe per gene
+      # a metafor -> pseudo-replicazione -> I^2/tau^2 gonfiati, k_effective
+      # conta bracci invece di studi (trovato: 70% cluster affetti, fino a 97
+      # bracci extra). Vedi .collapse_arms_by_study per il dettaglio.
+      subset <- .collapse_arms_by_study(subset)
       pool <- .pool_rem_cluster(subset, method_label = "rem_group")
       out_list[[length(out_list) + 1L]] <- pool
 

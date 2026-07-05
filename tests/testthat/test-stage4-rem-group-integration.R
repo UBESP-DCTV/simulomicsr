@@ -205,3 +205,190 @@ test_that("I1 gate k_eff conta studi distinti: 3-entry/2-studi -> non_processabl
     label = "3-entry/3-studi: NON deve essere in non_processable (k_eff=3 >= soglia)"
   )
 })
+
+# --- .collapse_arms_by_study (Opzione C: inverse-variance FE intra-studio) ------
+# RED dimostrato: senza il collapse, due bracci dello stesso studio arrivano a
+# metafor come 2 studi indipendenti (k_effective gonfio, tau^2 / I^2 distorti).
+# GREEN: dopo il collapse, ogni (study_id, gene_id) ha esattamente 1 riga.
+
+test_that(".collapse_arms_by_study: studio a 2 bracci stesso gene -> 1 riga, formula FE verificata", {
+  # Input: GSE1 con 2 bracci per ENSG1, logFC 1.0 e 2.0, SE 0.2 entrambi.
+  # Formula inverse-variance:
+  #   w1 = w2 = 1/0.04 = 25  ;  w_sum = 50
+  #   logFC_comb = (25*1.0 + 25*2.0) / 50 = 1.5
+  #   SE_comb    = sqrt(1/50) = sqrt(0.02) = 0.14142135...
+  input <- tibble::tibble(
+    cluster_id        = c("group_L4_x", "group_L4_x"),
+    study_id          = c("GSE1", "GSE1"),
+    gene_id           = c("ENSG1", "ENSG1"),
+    gene_symbol       = c("A", "A"),
+    logFC             = c(1.0, 2.0),
+    SE                = c(0.2, 0.2),
+    p_value           = c(0.05, 0.03),
+    t_stat            = c(5.0, 10.0),
+    n_treated         = c(3L, 3L),
+    n_control         = c(3L, 3L),
+    direction_applied = c("none", "none")
+  )
+  out <- .collapse_arms_by_study(input)
+
+  expect_equal(nrow(out), 1L, label = "2 bracci -> 1 riga collassata")
+  expect_equal(out$study_id,   "GSE1")
+  expect_equal(out$gene_id,    "ENSG1")
+  expect_equal(out$logFC,      1.5,         tolerance = 1e-6,
+    label = "logFC inverse-variance = 1.5")
+  expect_equal(out$SE,         sqrt(1/50),  tolerance = 1e-6,
+    label = "SE inverse-variance = sqrt(1/50)")
+  expect_equal(out$t_stat,     1.5 / sqrt(1/50), tolerance = 1e-6,
+    label = "t_stat = logFC/SE")
+  expect_equal(out$n_treated,  6L,
+    label = "n_treated = somma bracci (3+3)")
+  expect_equal(out$n_control,  3L,
+    label = "n_control = max (control condiviso, non doppio conteggio)")
+})
+
+test_that(".collapse_arms_by_study: studio a 1 braccio -> riga invariata", {
+  input <- tibble::tibble(
+    cluster_id        = "group_L4_x",
+    study_id          = "GSE1",
+    gene_id           = "ENSG1",
+    gene_symbol       = "A",
+    logFC             = 1.5,
+    SE                = 0.3,
+    p_value           = 0.04,
+    t_stat            = 5.0,
+    n_treated         = 4L,
+    n_control         = 4L,
+    direction_applied = "none"
+  )
+  out <- .collapse_arms_by_study(input)
+  expect_equal(nrow(out), 1L)
+  expect_equal(out$logFC, 1.5, tolerance = 1e-10,
+    label = "1 braccio: logFC invariato")
+  expect_equal(out$SE, 0.3, tolerance = 1e-10,
+    label = "1 braccio: SE invariata")
+})
+
+test_that(".collapse_arms_by_study: 2 studi distinti 1 braccio ciascuno -> 2 righe invariate", {
+  # No collapse cross-studio: studi diversi restano righe distinte.
+  input <- tibble::tibble(
+    cluster_id        = c("group_L4_x", "group_L4_x"),
+    study_id          = c("GSE1", "GSE2"),
+    gene_id           = c("ENSG1", "ENSG1"),
+    gene_symbol       = c("A", "A"),
+    logFC             = c(1.0, 2.0),
+    SE                = c(0.2, 0.3),
+    p_value           = c(0.05, 0.02),
+    t_stat            = c(5.0, 6.7),
+    n_treated         = c(3L, 4L),
+    n_control         = c(3L, 4L),
+    direction_applied = c("none", "none")
+  )
+  out <- .collapse_arms_by_study(input)
+  expect_equal(nrow(out), 2L, label = "2 studi distinti -> 2 righe")
+  # Output ordinato per (study_id, gene_id)
+  expect_equal(out$study_id, c("GSE1", "GSE2"))
+  expect_equal(out$logFC, c(1.0, 2.0), tolerance = 1e-10,
+    label = "logFC invariati: nessun merge cross-studio")
+  expect_equal(out$SE, c(0.2, 0.3), tolerance = 1e-10,
+    label = "SE invariate")
+})
+
+test_that(".collapse_arms_by_study: braccio con SE=NA escluso, braccio valido restituito invariato", {
+  # GSE1 con 2 bracci: 1 con SE=NA (invalido) + 1 valido -> ritorna il valido senza
+  # applicare la formula FE (singolo braccio valido = passa invariato).
+  input <- tibble::tibble(
+    cluster_id        = c("group_L4_x", "group_L4_x"),
+    study_id          = c("GSE1", "GSE1"),
+    gene_id           = c("ENSG1", "ENSG1"),
+    gene_symbol       = c("A", "A"),
+    logFC             = c(1.0, 2.0),
+    SE                = c(NA_real_, 0.2),
+    p_value           = c(NA_real_, 0.04),
+    t_stat            = c(NA_real_, 10.0),
+    n_treated         = c(3L, 3L),
+    n_control         = c(3L, 3L),
+    direction_applied = c("none", "none")
+  )
+  out <- .collapse_arms_by_study(input)
+  expect_equal(nrow(out), 1L, label = "braccio SE=NA escluso -> 1 riga")
+  expect_equal(out$logFC, 2.0, tolerance = 1e-10,
+    label = "solo il braccio valido (SE=0.2, logFC=2.0)")
+  expect_equal(out$SE, 0.2, tolerance = 1e-10)
+})
+
+test_that(".collapse_arms_by_study: input 0 righe -> ritorna 0 righe con schema corretto", {
+  empty_in <- .empty_per_study_de()
+  out <- .collapse_arms_by_study(empty_in)
+  expect_equal(nrow(out), 0L)
+  expect_named(out, names(.empty_per_study_de()),
+    label = "schema identico a .empty_per_study_de()")
+})
+
+# End-to-end: rem_group con studio a 2 bracci -> k_effective = studi distinti
+# RED prima del fix: k=4 (GSE1-arm1 + GSE1-arm2 + GSE2 + GSE3 trattati come indipendenti)
+# GREEN dopo il fix: k=3 (GSE1 merged + GSE2 + GSE3)
+test_that("E2E rem_group: collapse intra-studio -> k_effective = studi distinti, non bracci", {
+  skip_if_not_installed("metafor")
+
+  # per_study_de: GSE1 a 2 bracci per ENSG1 + GSE2 + GSE3 = 3 studi distinti
+  per_study <- tibble::tibble(
+    cluster_id        = "group_L4_e2e",
+    study_id          = c("GSE1", "GSE1", "GSE2", "GSE3"),
+    gene_id           = c("ENSG1", "ENSG1", "ENSG1", "ENSG1"),
+    gene_symbol       = c("A", "A", "A", "A"),
+    logFC             = c(1.0, 2.0, 1.5, 1.2),
+    SE                = c(0.2, 0.2, 0.3, 0.25),
+    p_value           = c(0.05, 0.02, 0.01, 0.03),
+    t_stat            = c(5.0, 10.0, 5.0, 4.8),
+    n_treated         = c(3L, 3L, 4L, 4L),
+    n_control         = c(3L, 3L, 4L, 4L),
+    direction_applied = "none"
+  )
+
+  # Dispatch: 4 entry, 3 studi distinti (GSE1 con 2 bracci) -> k_eff=3 >= 3 (supera il gate)
+  eligible <- tibble::tibble(
+    cluster_id      = "group_L4_e2e",
+    method          = "rem_group",
+    level           = 4L,
+    mode            = "group",
+    direction_check = NA_character_
+  )
+  disp <- list(group_L4_e2e = list(
+    list(study_id = "GSE1", treated = c("s1", "s2"), control = c("s3")),
+    list(study_id = "GSE1", treated = c("s4", "s5"), control = c("s3")),
+    list(study_id = "GSE2", treated = c("t1", "t2"), control = c("t3", "t4")),
+    list(study_id = "GSE3", treated = c("u1", "u2"), control = c("u3", "u4"))
+  ))
+  attr(eligible, "study_dispatch") <- disp
+  attr(eligible, "group_dispatch")  <- list()
+
+  s3 <- tibble::tibble(
+    cluster_id         = character(0L),
+    mode               = factor(character(0L), levels = c("pair", "group")),
+    level              = integer(0L),
+    anchor_key         = character(0L),
+    studies_in_cluster = list(),
+    sample_ids         = list(),
+    sample_studies     = list()
+  )
+
+  pooled <- .pool_all_clusters(
+    per_study_de      = per_study,
+    eligible_clusters = eligible,
+    fetch_fn          = function(g, s) stop("fetch_fn non deve essere chiamato per rem_group"),
+    stage3_clusters   = s3,
+    workers           = 1L,
+    dream_workers_cap = 2L
+  )
+
+  # Deve esserci 1 gene nel pool (ENSG1, presente in 3 studi distinti dopo collapse)
+  expect_equal(nrow(pooled), 1L, label = "1 gene nel pool (ENSG1)")
+  expect_equal(pooled$gene_id, "ENSG1")
+
+  # Con collapse intra-studio: 3 studi distinti -> k_effective = 3 (non 4)
+  expect_equal(
+    pooled$k_effective[pooled$gene_id == "ENSG1"], 3L,
+    label = "k_effective = 3 studi distinti, non 4 bracci (pseudo-replicazione eliminata)"
+  )
+})
