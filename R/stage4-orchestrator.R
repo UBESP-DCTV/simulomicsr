@@ -29,9 +29,9 @@
     stop("fetch_fn deve essere fornita (cache-backed o mock)")
   }
 
-  # Filtra solo REM + MEGA-AUG (MEGA puro non fa per-study DE).
+  # Filtra solo REM + MEGA-AUG + REM_GROUP (MEGA puro non fa per-study DE).
   per_study_clusters <- eligible_clusters[
-    eligible_clusters$method %in% c("rem", "mega_aug"),
+    eligible_clusters$method %in% c("rem", "mega_aug", "rem_group"),
   ]
 
   out_list <- vector("list", 0L)
@@ -132,6 +132,7 @@
                                 stage3_clusters, workers = 1L,
                                 dream_workers_cap = 8L,
                                 mega_aug_config = NULL,
+                                rem_group_config = NULL,
                                 biosample_lookup = NULL,
                                 libsize_lookup = NULL,
                                 metadata_extra = NULL,
@@ -158,6 +159,7 @@
 
   dispatch <- attr(eligible_clusters, "study_dispatch")
   group_dispatch <- attr(eligible_clusters, "group_dispatch")
+  rem_group_k_eff_min <- rem_group_config$k_eff_min %||% 3L
 
   n_clusters <- nrow(eligible_clusters)
   for (i in seq_len(n_clusters)) {
@@ -181,6 +183,28 @@
     if (method == "rem") {
       subset <- per_study_de[per_study_de$cluster_id == cid, ]
       pool <- .pool_rem_cluster(subset)
+      out_list[[length(out_list) + 1L]] <- pool
+
+    } else if (method == "rem_group") {
+      # REM_GROUP: pooling random-effects su cluster group (non pair), con
+      # per-study DE accumulato in per_study_de + gate k_eff minimo.
+      disp_i <- dispatch[[cid]]
+      k_eff  <- length(disp_i %||% list())
+      if (k_eff < rem_group_k_eff_min) {
+        non_processable_list[[length(non_processable_list) + 1L]] <-
+          tibble::tibble(
+            cluster_id         = cid,
+            original_k         = NA_integer_,
+            qc_final_k         = k_eff,
+            original_n_studies = NA_integer_,
+            qc_final_n_studies = k_eff,
+            reason = sprintf("rem_group_insufficient_in_study_controls: k_eff=%d",
+                             k_eff)
+          )
+        next
+      }
+      subset <- per_study_de[per_study_de$cluster_id == cid, ]
+      pool <- .pool_rem_cluster(subset, method_label = "rem_group")
       out_list[[length(out_list) + 1L]] <- pool
 
     } else if (method == "mega") {
