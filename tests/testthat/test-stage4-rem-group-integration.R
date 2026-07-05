@@ -392,3 +392,41 @@ test_that("E2E rem_group: collapse intra-studio -> k_effective = studi distinti,
     label = "k_effective = 3 studi distinti, non 4 bracci (pseudo-replicazione eliminata)"
   )
 })
+
+# M4 (2026-07-05): tutti i bracci invalidi -> gene-studio ASSENTE dall'output
+# ---------------------------------------------------------------------------
+# Se tutti i bracci di un (study_id, gene_id) hanno SE NA/0 (o logFC NA), il
+# gruppo deve essere silenziosamente scartato (return NULL -> Filter) senza crash.
+# Un secondo gene con bracci validi nello stesso input deve restare presente:
+# .collapse_arms_by_study e' gene-per-gene, non cluster-wide.
+test_that("M4: tutti bracci invalidi (SE=NA) -> gene-studio assente, gene valido conservato", {
+  # ENSG_bad: GSE1 con 2 bracci ENTRAMBI SE = NA_real_ -> tutti invalidi -> scartato
+  # ENSG_ok:  GSE1 con 1 braccio SE = 0.3 valido         -> conservato invariato
+  input <- tibble::tibble(
+    cluster_id        = c("group_L4_x", "group_L4_x", "group_L4_x"),
+    study_id          = c("GSE1",       "GSE1",        "GSE1"),
+    gene_id           = c("ENSG_bad",   "ENSG_bad",    "ENSG_ok"),
+    gene_symbol       = c("BAD",        "BAD",         "OK"),
+    logFC             = c(1.0,          2.0,           1.5),
+    SE                = c(NA_real_,     NA_real_,      0.3),
+    p_value           = c(NA_real_,     NA_real_,      0.04),
+    t_stat            = c(NA_real_,     NA_real_,      5.0),
+    n_treated         = c(3L,           3L,            4L),
+    n_control         = c(3L,           3L,            4L),
+    direction_applied = c("none",       "none",        "none")
+  )
+  out <- .collapse_arms_by_study(input)
+
+  # ENSG_bad: entrambi i bracci invalidi -> completamente assente dall'output
+  expect_equal(
+    nrow(out[out$gene_id == "ENSG_bad", ]), 0L,
+    label = "ENSG_bad (tutti SE=NA) deve essere ASSENTE dall'output"
+  )
+  # ENSG_ok: braccio valido -> presente (1 riga)
+  expect_equal(
+    nrow(out[out$gene_id == "ENSG_ok", ]), 1L,
+    label = "ENSG_ok (SE valida) deve essere PRESENTE nell'output"
+  )
+  expect_equal(out$logFC[out$gene_id == "ENSG_ok"], 1.5, tolerance = 1e-10,
+    label = "logFC di ENSG_ok invariato")
+})

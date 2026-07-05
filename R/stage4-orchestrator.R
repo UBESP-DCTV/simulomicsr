@@ -139,8 +139,9 @@
   collapsed <- lapply(groups, function(g) {
     if (nrow(g) == 1L) return(g)
 
-    # Filtra bracci con SE finita e > 0 (validi per la media pesata)
-    validi <- is.finite(g$SE) & g$SE > 0
+    # Filtra bracci con SE finita e > 0 E logFC finito (validi per la media pesata).
+    # Un braccio con SE valida ma logFC NA/Inf propagherebbe NA nel risultato combinato.
+    validi <- is.finite(g$SE) & g$SE > 0 & is.finite(g$logFC)
     if (!any(validi)) return(NULL)  # nessun braccio valido -> scarta gruppo
 
     gv <- g[validi, , drop = FALSE]
@@ -165,8 +166,9 @@
       t_stat            = lfc / se,
       # n_treated: somma dei bracci (campioni trattati distinti per braccio)
       # n_control: max (il control e' condiviso tra i bracci -> NON sommare)
-      n_treated         = as.integer(sum(gv$n_treated)),
-      n_control         = max(gv$n_control),
+      # na.rm = TRUE: difesa se upstream produce un conteggio NA inatteso.
+      n_treated         = as.integer(sum(gv$n_treated, na.rm = TRUE)),
+      n_control         = max(gv$n_control, na.rm = TRUE),
       direction_applied = gv$direction_applied[1L]
     )
   })
