@@ -24,6 +24,42 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-05 (ramo `rem_group` Stadio 4 — CODICE+VALIDAZIONE COMPLETI, FULLRUN v8 GATED)**:
+> 🟢 **Fix del gate di selezione Stadio 4. Nuovo ramo di pooling `rem_group` che ammette le
+> meta-analisi cross-studio NOMINATE (L2–L4, `safety_min` basso per design) che la selezione
+> respingeva. Codice completo, final review Opus, validato sui dati veri. Fullrun v8 pronto (script +
+> DRY_RUN PASS), GATED. Handout: `docs/superpowers/specs/2026-07-05-stage4-rem-group-fullrun-v8-NEXT-SESSION-handout.md`.**
+>
+> 1. **Causa** (finding `docs/findings/2026-07-05-stage4-selection-gate-excludes-named-metaanalyses.md`):
+>    lo Stadio 4 v7 processava 433/317.304 cluster; la porta ammetteva group solo con `usable_mega_strict`
+>    (`level∈{0,1}` + `safety_min≥0.7`) → 71/72 MEGA SENZA nome; SARS (k=25), enzalutamide (25), Breast
+>    (88) esistevano ma `poolable=FALSE`. Logica MEGA applicata a target REM. Clustering v7 sano (95% omogeneo).
+> 2. **Brainstorming→spec→plan** (5 decisioni utente): REM per-studio uniforme (both_roles+treated_only,
+>    control in-study via `comparisons` stage2); porta strutturale senza `safety_min` + I²/τ² a valle;
+>    ibrido documentato (no augmentation); soglie `k_eff≥3`/`n_min=2`, cap rimosso; dedup una meta-analisi
+>    per entità al k massimo. `docs/superpowers/{specs,plans}/2026-07-05-stage4-rem-group-named-metaanalyses-*`.
+> 3. **Impl subagent-driven (Task 1-7 TDD)**: config + porta `.identify_layer_a_clusters` + dedup +
+>    dispatch-builder `.build_group_rem_dispatch_from_stage3` + `method_label` in `.pool_rem_cluster` +
+>    orchestrator (filtro method + cutoff k_eff) + merge in build. Ogni task reviewato. `4f3a544`..`eb2a782`.
+> 4. **Final review Opus**: **C1 CRITICAL** — il ramo era un **no-op silenzioso in produzione**
+>    (`direction_check=NA` sui group → `if(NA)` → tryCatch skip ogni studio → pool vuoto; i test usavano
+>    `"ok"`) → fix `isTRUE` coerce + difesa in profondità + test. **I1** (mismatch spec + pseudo-replicazione).
+> 5. **Decisione utente I1**: gate `k_eff` su studi distinti + **collapse bracci intra-studio**
+>    (`.collapse_arms_by_study`, inverse-variance FE, opzione C: sintesi per studio SENZA unire i campioni).
+>    Limite noto: correlazione da control condiviso non modellata (raffinamento Franchini futuro).
+> 6. **Validazione dati veri**: 70 rem_group AMMESSI (k_eff≥3) su 349; 6/7 bandiera (SARS k=12, enzalutamide
+>    12, Breast 6, Prostatic 4, fulvestrant 5, tamoxifen 5, vemurafenib 4; Alzheimer cade); 279 cadono (no
+>    comparison → ibrido, augmentation futura). Pool NON vuoto (enzalutamide 3747 sig, SARS 240; I² 58-92%).
+>    Collapse validato (SARS 10→5 studi). Suite `stage4` 780 PASS, 2 FAIL PRE-ESISTENTI (dashboard quarto +
+>    gene-axis E2, da `e8af92a`). Audit `analysis/audit/2026-07-05-stage4-rem-group-{smoke,collapse-validate}.*`.
+> 7. **CACHE (lezione)**: v8 = re-pool (NON re-cluster) → il disastro v6→v7 (name-recovery Stadio 3) NON si
+>    applica. Unica cache = **counts** (`stage4-counts/`, chiave `(v2_ensembl,biotype,gse,samples)`
+>    method-independent): RIUSARLA (velocizza, no stale); nessuna cache del pooled → il ramo è sempre eseguito.
+>    Verifica anti-stale: `Methods` include `rem_group`, ~70 pooled.
+> 8. **Prossimo = FULLRUN v8 GATED** (~11-15h, `setsid`, `analysis/p4-fase-f5-stage4-layer-a-rebuild-v8.R`
+>    DRY_RUN PASS: Layer A 885 = rem 8/mega 175/mega_aug 353/rem_group 349, 69238 sample). Poi closeout +
+>    ADR-0022 Accepted. Branch invariato, master invariato, no push. Memorie: [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-07-04 (biologici v6 END-TO-END + FIX PATHOGEN v7 — CHIUSO)**:
 > 🟢 **Pipeline end-to-end su v7. Fix estrazione pathogen materializzato.** Finding
 > `docs/findings/2026-07-03-stage3-v7-pathogen-extraction.md`. Commit `1fb1520` (fix) + `409aa0a` (cache bump).
