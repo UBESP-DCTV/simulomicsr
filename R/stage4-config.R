@@ -71,6 +71,15 @@ stage4_default_config <- function() {
       franchini_correction   = TRUE             # attiva correzione shared-baseline
                                                  # nel REM pooling (T6/T7).
     ),
+    rem_group = list(
+      # FASE F6 2026-07-05: ammissione group nominati L2-L4 (safety_min basso
+      # per design) al REM per-studio. safety_min NON e' un gate qui (il REM
+      # modella l'eterogeneita' via I2/tau2, non la filtra). Vedi spec
+      # docs/superpowers/specs/2026-07-05-stage4-rem-group-named-metaanalyses-design.md.
+      k_eff_min      = 3L,               # min studi contribuenti (dopo linking control in-study)
+      n_min          = 2L,               # min campioni per braccio per-studio (limma-voom richiede replica)
+      excluded_kinds = c("vehicle_only", "none", "")  # kind degeneri non-perturbativi
+    ),
     schema_versions = list(
       anchor             = "v3",
       stage3_algorithm   = "v1",
@@ -98,7 +107,10 @@ stage4_default_config <- function() {
       # alfabetico. Quando i lookup biosample_id + lib_size non sono
       # disponibili in h5_metadata, il dedupe e' off (warning emesso da
       # .build_samn_dedupe_lookups). Stringa registrata in run_metadata.json.
-      samn_dedupe_strategy = "max_libsize_alphabetic_tiebreak"
+      samn_dedupe_strategy = "max_libsize_alphabetic_tiebreak",
+      # FASE F6 2026-07-05: ramo rem_group (meta-analisi nominate al REM
+      # per-studio). Bump per invalidare output/cache pre-fix.
+      rem_group_strategy = "v1_per_study_rem_named_groups"
     )
   )
 }
