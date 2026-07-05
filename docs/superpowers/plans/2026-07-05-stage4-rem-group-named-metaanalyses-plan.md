@@ -182,7 +182,6 @@ In `R/stage4-qc.R`, dentro `.identify_layer_a_clusters`, prima della riga `do.ca
   ]
   if (nrow(rem_group) > 0L) {
     rem_group$method <- "rem_group"
-    rem_group <- .dedup_rem_group_by_entity(rem_group)
   }
 
   do.call(rbind, list(rem, mega, mega_aug, rem_group))
@@ -190,15 +189,7 @@ In `R/stage4-qc.R`, dentro `.identify_layer_a_clusters`, prima della riga `do.ca
 
 E rimuovi la vecchia riga finale `do.call(rbind, list(rem, mega, mega_aug))`.
 
-Aggiungi lo **stub** di `.dedup_rem_group_by_entity` in `R/stage4-qc.R` (sarà sostituito in Task 3), sopra `.identify_layer_a_clusters`:
-
-```r
-#' Dedup rem_group a un cluster per entita' (placeholder Task 2, impl Task 3)
-#' @keywords internal
-.dedup_rem_group_by_entity <- function(rem_group_clusters) {
-  rem_group_clusters
-}
-```
+(La dedup per entità è aggiunta in Task 3, insieme alla sua chiamata nella porta. In questo task la porta emette tutte le righe ammesse, senza dedup — il test di Task 2 non ha entità duplicate a più livelli, quindi passa.)
 
 - [ ] **Step 4: Run test to verify it passes**
 
@@ -217,7 +208,7 @@ git commit -m "P5 audit RED_ALERT F6: porta ammissione rem_group in identify_lay
 ## Task 3: Dedup a un livello per entità
 
 **Files:**
-- Modify: `R/stage4-qc.R` (sostituisci lo stub `.dedup_rem_group_by_entity`)
+- Modify: `R/stage4-qc.R` (aggiungi `.dedup_rem_group_by_entity` + chiamala nella porta)
 - Test: `tests/testthat/test-stage4-rem-group.R`
 
 **Interfaces:**
@@ -253,7 +244,7 @@ Expected: FAIL (lo stub restituisce entrambi i cluster enzalutamide).
 
 - [ ] **Step 3: Write minimal implementation**
 
-Sostituisci lo stub in `R/stage4-qc.R` con:
+(a) Aggiungi la funzione in `R/stage4-qc.R`, sopra `.identify_layer_a_clusters`:
 
 ```r
 #' Dedup rem_group: una meta-analisi per entita' (kind, agent) al k massimo
@@ -278,6 +269,16 @@ Sostituisci lo stub in `R/stage4-qc.R` con:
   ent <- entity[ord]
   rg[!duplicated(ent), , drop = FALSE]
 }
+```
+
+(b) Chiamala nella porta di `.identify_layer_a_clusters`, dentro il blocco
+`if (nrow(rem_group) > 0L)` (aggiunto in Task 2), dopo `rem_group$method <- "rem_group"`:
+
+```r
+  if (nrow(rem_group) > 0L) {
+    rem_group$method <- "rem_group"
+    rem_group <- .dedup_rem_group_by_entity(rem_group)
+  }
 ```
 
 - [ ] **Step 4: Run test to verify it passes**
