@@ -36,7 +36,27 @@
   ]
   if (nrow(mega_aug) > 0L) mega_aug$method <- "mega_aug"
 
-  do.call(rbind, list(rem, mega, mega_aug))
+  # rem_group (FASE F6 2026-07-05): group nominati L2-L4 (safety_min basso per
+  # design) -> REM per-studio. Mutua esclusivita' col ramo mega garantita da
+  # !usable_mega_strict (i L2-L4 non sono mai usable_mega_strict per il vincolo
+  # di livello {0,1}; se un cluster soddisfa entrambi vince mega). Nessun gate
+  # safety_min: il REM modella l'eterogeneita', non la filtra.
+  rg_cfg      <- stage4_config$rem_group
+  excl_kinds  <- rg_cfg$excluded_kinds %||% c("vehicle_only", "none", "")
+  min_k_raw   <- rg_cfg$k_eff_min %||% 3L
+  rem_group <- stage3_clusters[
+    stage3_clusters$mode == "group" &
+    !stage3_clusters$usable_mega_strict &
+    !(stage3_clusters$kind_effective_resolved %in% excl_kinds) &
+    !is.na(stage3_clusters$agent_id_resolved) &
+    nzchar(stage3_clusters$agent_id_resolved) &
+    stage3_clusters$k >= min_k_raw,
+  ]
+  if (nrow(rem_group) > 0L) {
+    rem_group$method <- "rem_group"
+  }
+
+  do.call(rbind, list(rem, mega, mega_aug, rem_group))
 }
 
 #' Filtra sample, studi e cluster per QC sample-level
