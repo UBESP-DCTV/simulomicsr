@@ -1,3 +1,20 @@
+#' Helper: legge colonna dal dataframe o restituisce un vettore di default
+#'
+#' Rende i rami di filtraggio robusti a fixture legacy che non contengono
+#' le colonne introdotte in FASE F6 (kind_effective_resolved,
+#' agent_id_resolved, usable_mega_strict). In produzione i cluster.rds emessi
+#' da .summarize_clusters hanno sempre quelle colonne; nei test pre-F6 mancano.
+#'
+#' @param df data.frame o tibble
+#' @param name nome colonna (character(1))
+#' @param default valore scalare da replicare nrow(df) volte se la colonna
+#'   e' assente
+#' @return vettore di lunghezza nrow(df)
+#' @keywords internal
+.col_or_default <- function(df, name, default) {
+  if (name %in% names(df)) df[[name]] else rep(default, nrow(df))
+}
+
 #' Dedup rem_group: una meta-analisi per entita' (kind, agent) al k massimo
 #'
 #' Le stesse entita' nominate compaiono a piu' livelli L2/L3/L4. Si tiene un
@@ -67,12 +84,21 @@
   rg_cfg      <- stage4_config$rem_group
   excl_kinds  <- rg_cfg$excluded_kinds %||% c("vehicle_only", "none", "")
   min_k_raw   <- rg_cfg$k_eff_min %||% 3L
+  # Usa .col_or_default per retrocompatibilita' con fixture legacy che non
+  # contengono le colonne F6. In produzione (clusters.rds da .summarize_clusters)
+  # le colonne sono sempre presenti e il comportamento e' identico all'accesso
+  # diretto. Con colonne assenti: usable_mega_strict=FALSE -> !FALSE=TRUE (escluso
+  # dal gate mega ma non dal rem_group); kind/agent=NA -> !is.na(NA)=FALSE -> 0
+  # righe rem_group (degradazione graceful, nessun crash).
+  mega_strict_col <- .col_or_default(stage3_clusters, "usable_mega_strict", FALSE)
+  kind_col        <- .col_or_default(stage3_clusters, "kind_effective_resolved", NA_character_)
+  agent_col       <- .col_or_default(stage3_clusters, "agent_id_resolved",       NA_character_)
   rem_group <- stage3_clusters[
     stage3_clusters$mode == "group" &
-    !stage3_clusters$usable_mega_strict &
-    !(stage3_clusters$kind_effective_resolved %in% excl_kinds) &
-    !is.na(stage3_clusters$agent_id_resolved) &
-    nzchar(stage3_clusters$agent_id_resolved) &
+    !mega_strict_col &
+    !(kind_col %in% excl_kinds) &
+    !is.na(agent_col) &
+    nzchar(agent_col) &
     stage3_clusters$k >= min_k_raw,
   ]
   if (nrow(rem_group) > 0L) {

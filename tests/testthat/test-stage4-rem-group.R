@@ -115,3 +115,31 @@ test_that(".pool_rem_cluster marca il method_label (rem_group) senza rompere il 
   out_group <- .pool_rem_cluster(subset, method_label = "rem_group")
   expect_true(all(out_group$method == "rem_group"))
 })
+
+# TDD regressione: fixture senza kind_effective_resolved / agent_id_resolved
+# deve tornare 0 righe rem_group senza errore (degradazione graceful).
+# RED prima del fix: "Can't subset rows" / "invalid argument type".
+# GREEN dopo il fix: nessun errore, 0 righe method=="rem_group".
+test_that("identify_layer_a_clusters tollera fixture priva di kind/agent_id_resolved", {
+  clusters_minimal <- tibble::tibble(
+    cluster_id            = "group_L2_x",
+    mode                  = "group",
+    level                 = 2L,
+    k                     = 4L,
+    n_total               = 40L,
+    n_studies             = 4L,
+    usable_rem_strict     = FALSE,
+    usable_rem_relaxed    = FALSE,
+    usable_mega_strict    = FALSE,
+    safety_min            = 0.30,
+    studies_in_cluster    = list(c("GSE1", "GSE2", "GSE3", "GSE4")),
+    direction_check       = "ok"
+    # NON contiene kind_effective_resolved ne' agent_id_resolved
+  )
+  cfg <- stage4_default_config()
+  expect_no_error(
+    out <- .identify_layer_a_clusters(clusters_minimal, cfg)
+  )
+  # Degradazione graceful: 0 righe rem_group (agent_id_resolved assente = NA = escluso)
+  expect_equal(sum(out$method == "rem_group", na.rm = TRUE), 0L)
+})
