@@ -113,3 +113,17 @@ test_that("group_rem_dispatch linka i control in-study (both_roles + treated_onl
   expect_setequal(gse1$treated, c("s1","s2","s3"))
   expect_setequal(gse1$control, c("s4","s5"))
 })
+
+test_that(".pool_rem_cluster marca il method_label (rem_group) senza rompere il default", {
+  subset <- tibble::tibble(
+    cluster_id = "group_L4_e",
+    gene_id    = rep(c("ENSG1", "ENSG2"), each = 3L),
+    gene_symbol = rep(c("A", "B"), each = 3L),
+    logFC      = c(1.0, 1.2, 0.8, -0.5, -0.6, -0.4),
+    SE         = rep(0.2, 6L)
+  )
+  out_default <- .pool_rem_cluster(subset)
+  expect_true(all(out_default$method == "rem"))
+  out_group <- .pool_rem_cluster(subset, method_label = "rem_group")
+  expect_true(all(out_group$method == "rem_group"))
+})

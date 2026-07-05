@@ -24,7 +24,7 @@
 #'   (\code{.empty_pooled_rem}).
 #' @keywords internal
 .pool_rem_cluster <- function(per_study_de_subset, method = "REML",
-                              fallback = "DL") {
+                              fallback = "DL", method_label = "rem") {
   stopifnot(
     inherits(per_study_de_subset, "data.frame"),
     "logFC" %in% names(per_study_de_subset),
@@ -80,7 +80,7 @@
       cluster_id   = cluster_id,
       gene_id      = g,
       gene_symbol  = gene_symbol_for_g,
-      method       = "rem",
+      method       = method_label,
       logFC_pool   = as.numeric(res$b),
       SE_pool      = as.numeric(res$se),
       p_value_pool = as.numeric(res$pval),
