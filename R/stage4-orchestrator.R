@@ -192,7 +192,15 @@
       # REM_GROUP: pooling random-effects su cluster group (non pair), con
       # per-study DE accumulato in per_study_de + gate k_eff minimo.
       disp_i <- dispatch[[cid]]
-      k_eff  <- length(disp_i %||% list())
+      # k_eff = numero di STUDI distinti (spec §4.2), non di entry: un singolo
+      # studio con piu' bracci trattati (stesso farmaco a piu' dosi/tempi) genera
+      # piu' entry con lo stesso study_id; contarle come studi indipendenti
+      # gonfierebbe il gate (pseudo-replicazione). Nota: l'aggregazione dei bracci
+      # intra-studio nel REM e' un passo successivo (misurato nello smoke gate).
+      study_ids_i <- if (length(disp_i)) {
+        vapply(disp_i, function(d) d$study_id, character(1))
+      } else character(0)
+      k_eff  <- length(unique(study_ids_i))
       if (k_eff < rem_group_k_eff_min) {
         non_processable_list[[length(non_processable_list) + 1L]] <-
           tibble::tibble(
