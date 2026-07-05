@@ -1,3 +1,26 @@
+#' Dedup rem_group: una meta-analisi per entita' (kind, agent) al k massimo
+#'
+#' Le stesse entita' nominate compaiono a piu' livelli L2/L3/L4. Si tiene un
+#' solo cluster per entita' \code{(kind_effective_resolved, agent_id_resolved)}:
+#' quello a \code{k} massimo (tie-break \code{n_total} desc, \code{level} desc,
+#' \code{cluster_id} asc). Decisione utente 2026-07-05: massimizza potenza;
+#' l'eterogeneita' di contesto residua e' catturata dall'I2/tau2 del REM.
+#'
+#' @keywords internal
+.dedup_rem_group_by_entity <- function(rem_group_clusters) {
+  if (nrow(rem_group_clusters) == 0L) return(rem_group_clusters)
+  entity <- paste0(rem_group_clusters$kind_effective_resolved, "||",
+                   rem_group_clusters$agent_id_resolved)
+  ord <- order(entity,
+               -rem_group_clusters$k,
+               -rem_group_clusters$n_total,
+               -rem_group_clusters$level,
+               rem_group_clusters$cluster_id)
+  rg  <- rem_group_clusters[ord, , drop = FALSE]
+  ent <- entity[ord]
+  rg[!duplicated(ent), , drop = FALSE]
+}
+
 #' Identifica cluster Layer A (REM proper + MEGA strict + MEGA-aug)
 #'
 #' Layer A = i ~412 cluster publishable definiti nel finding scope decision
@@ -54,6 +77,7 @@
   ]
   if (nrow(rem_group) > 0L) {
     rem_group$method <- "rem_group"
+    rem_group <- .dedup_rem_group_by_entity(rem_group)
   }
 
   do.call(rbind, list(rem, mega, mega_aug, rem_group))

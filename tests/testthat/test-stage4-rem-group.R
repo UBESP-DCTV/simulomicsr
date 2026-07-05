@@ -22,6 +22,24 @@ test_that("stage4_default_config espone il blocco rem_group con soglie decise", 
   )
 }
 
+test_that("dedup rem_group tiene un cluster per entita al k massimo", {
+  rg <- dplyr::bind_rows(
+    .mk_cluster_row("group_L4_enza", "group", 4L, 25L, 400L, 25L, 0.33,
+                    FALSE, "small_molecule", "CHEBI:enzalutamide"),
+    .mk_cluster_row("group_L3_enza", "group", 3L, 9L, 120L, 9L, 0.40,
+                    FALSE, "small_molecule", "CHEBI:enzalutamide"),
+    .mk_cluster_row("group_L4_tam", "group", 4L, 9L, 90L, 9L, 0.35,
+                    FALSE, "small_molecule", "CHEBI:tamoxifen")
+  )
+  rg$method <- "rem_group"
+  out <- .dedup_rem_group_by_entity(rg)
+  expect_setequal(out$cluster_id, c("group_L4_enza", "group_L4_tam"))
+  expect_identical(
+    out$cluster_id[out$agent_id_resolved == "CHEBI:enzalutamide"],
+    "group_L4_enza"
+  )
+})
+
 test_that("porta rem_group ammette group nominato L4, esclude coarse/vehicle/pair", {
   clusters <- dplyr::bind_rows(
     .mk_cluster_row("group_L4_enza", "group", 4L, 25L, 400L, 25L, 0.33,
