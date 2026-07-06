@@ -22,3 +22,24 @@ test_that("run_name_cleanup produce la side-table con override e flag", {
   expect_equal(st$new_id[st$cluster_id == "c1"], "CHEBI:16412")
   expect_equal(st$action[st$cluster_id == "c2"], "noop")  # canary risolve allo stesso ID
 })
+
+test_that("run_name_cleanup degrada a keep/unvalidatable su output LLM atomico (non abortisce l'intero run)", {
+  # Riproduce il caso reale vLLM: un top-level JSON scalare parsato con
+  # `fromJSON(..., simplifyVector=FALSE)` produce un vettore atomico
+  # (es. character(1)), non una list. `out$canonical_name` su un atomico e'
+  # un errore R fuori dal tryCatch dell'orchestratore: senza il fix
+  # abortirebbe l'intero lapply sui cluster.
+  cand <- tibble::tibble(cluster_id = c("c1"), name = c("carnitine"),
+                         kind = c("small_molecule"), k = c(4L),
+                         top_theme = c("lps"), role = c("candidate"))
+  member <- list(c1 = "lps treated")
+  current_ids <- c(c1 = "CHEBI:17126")
+  llm_fn <- function(messages) "oops"  # output atomico, non-list
+
+  st <- run_name_cleanup(cand, current_ids, member, llm_fn, env = list())
+
+  expect_equal(nrow(st), 1L)
+  expect_equal(st$cluster_id, "c1")
+  expect_equal(st$action, "keep")
+  expect_true(st$name_llm_unvalidatable)
+})

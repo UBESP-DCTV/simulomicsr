@@ -228,9 +228,10 @@
 #' .NAME_CLEANUP_CACHE_VERSION)`), risolve il nome canonico via
 #' `.resolve_canonical_to_id` (Task 6, chiamata come funzione libera cosi'
 #' e' mockabile), applica la policy precision-gated (Task 7) e assembla la
-#' side-table finale. Un fallimento di `llm_fn` (errore o output senza
-#' `canonical_name`) degrada all'esito NONE/low = nessun override, cluster
-#' marcato `name_llm_unvalidatable`.
+#' side-table finale. Un fallimento di `llm_fn` (errore, output NULL, output
+#' ATOMICO non-list — es. vLLM che emette uno scalare JSON top-level — o
+#' output senza `canonical_name`) degrada all'esito NONE/low = nessun
+#' override, cluster marcato `name_llm_unvalidatable`.
 #'
 #' @param candidates tibble da `.load_name_cleanup_candidates` (colonne
 #'   `cluster_id, name, kind, k, top_theme, role`).
@@ -251,7 +252,15 @@ run_name_cleanup <- function(candidates, current_ids, member_metadata, llm_fn,
     msgs <- .build_name_cleanup_messages(candidates$name[i], candidates$kind[i],
                                          member_metadata[[cid]] %||% "")
     out <- tryCatch(llm_fn(msgs), error = function(e) NULL)
-    if (is.null(out) || is.null(out$canonical_name)) {
+    # Guardia difensiva: un endpoint vLLM reale puo' emettere uno scalare JSON
+    # top-level (es. `fromJSON(..., simplifyVector=FALSE)` produce
+    # `character(1)` invece di una list) se il modello non rispetta lo schema
+    # atteso. `out$canonical_name` su un vettore atomico e' un errore R
+    # ("$ operator is invalid for atomic vectors") che sfuggirebbe al
+    # tryCatch sopra (l'errore avviene DOPO, fuori dal blocco), abortendo
+    # l'intero lapply. `!is.list(out)` instrada questo caso sullo stesso
+    # esito NONE/keep di un output NULL.
+    if (is.null(out) || !is.list(out) || is.null(out$canonical_name)) {
       res <- .none_resolution(); conf <- "low"; ckind <- NA_character_; ev <- NA_character_
     } else {
       ckind <- out$kind %||% candidates$kind[i]
