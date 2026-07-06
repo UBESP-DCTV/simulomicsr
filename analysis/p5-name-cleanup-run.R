@@ -1,0 +1,98 @@
+# analysis/p5-name-cleanup-run.R --- name-cleanup RUN PIENO (path batch DGX, T13).
+# Costruisce l'input dai cluster VERI del triage (125 candidati + canary),
+# submitta il bundle stage name_cleanup alla DGX, e (in un secondo passo, dopo
+# il COMPLETED) fa collect -> assemble side-table -> misura-B.
+#
+# Prerequisito: un nodo DGX che SCRIVA i log slurm (2026-07-06: poddgx02 rotto,
+#   0:53 zero-log; provare poddgx01/03 o dgx_config(nodelist=NULL/altro nodo)).
+#
+# Uso:
+#   Rscript analysis/p5-name-cleanup-run.R submit   # build input + submit
+#   Rscript analysis/p5-name-cleanup-run.R eval      # collect + assemble (dopo COMPLETED)
+suppressMessages(devtools::load_all("."))
+library(cli)
+ACTION <- (commandArgs(trailingOnly = TRUE)[1] %||% "submit")
+
+TRIAGE   <- "analysis/audit/2026-07-05-stage4-popB-coherence-triage.csv"
+STAGE3   <- "analysis/p4-output/20260703T113045Z-stage3-v7-364547a7"
+STAGE2   <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
+S1_INPUT <- "analysis/input/archs4-human-stage1-input.jsonl"   # geo_accession -> string
+JSONL    <- "analysis/audit/name-cleanup-run-input.jsonl"
+STATE    <- "analysis/p4-output/name-cleanup-run-state.rds"
+SIDE_RDS <- "analysis/p4-output/name-cleanup-side-table-v1.rds"
+FRAG_CSV <- "analysis/p4-output/name-cleanup-fragmentation-v1.csv"
+
+if (ACTION == "submit") {
+  cli_h1("Name-cleanup RUN — build input + submit")
+  cand <- simulomicsr:::.load_name_cleanup_candidates(TRIAGE)
+  cli_alert_info("Candidati: {nrow(cand)} ({sum(cand$role=='candidate')} candidate + {sum(cand$role=='canary')} canary)")
+
+  s3 <- load_stage3(STAGE3)
+  current_ids <- setNames(s3$clusters$anchor_key, s3$clusters$cluster_id)
+  current_ids <- current_ids[cand$cluster_id]
+
+  source("analysis/audit/_gsm-lookup-helper.R")
+  rec_env <- build_record_gsm_lookup(STAGE2)
+
+  # gsm_text: solo i GSM membri dei cluster candidati (subset dello Stadio 1 input)
+  cli_alert_info("Raccolgo i GSM membri dei candidati...")
+  member_gsms <- unique(unlist(lapply(cand$cluster_id, function(cid) {
+    recs <- s3$assignments$record_id[s3$assignments$cluster_id == cid]
+    unlist(lapply(recs, function(r) get0(r, envir = rec_env, inherits = FALSE)), use.names = FALSE)
+  }), use.names = FALSE))
+  cli_alert_info("GSM membri distinti: {length(member_gsms)}")
+
+  cli_alert_info("Stream Stadio 1 input per gsm_text (subset)...")
+  want <- new.env(hash = TRUE, parent = emptyenv()); for (g in member_gsms) assign(g, TRUE, envir = want)
+  gsm_text <- character(0)
+  con <- file(S1_INPUT, "r"); on.exit(close(con), add = TRUE)
+  repeat {
+    ln <- readLines(con, n = 20000L, warn = FALSE); if (!length(ln)) break
+    for (l in ln) {
+      j <- tryCatch(jsonlite::fromJSON(l, simplifyVector = TRUE), error = function(e) NULL)
+      if (is.null(j) || is.null(j$geo_accession)) next
+      ga <- as.character(j$geo_accession)
+      if (exists(ga, envir = want, inherits = FALSE)) gsm_text[ga] <- as.character(j$string %||% "")
+    }
+  }
+  cli_alert_success("gsm_text raccolti: {length(gsm_text)}/{length(member_gsms)}")
+
+  member <- simulomicsr:::.build_cluster_member_metadata(cand$cluster_id, s3$assignments, rec_env, gsm_text)
+  simulomicsr:::.build_name_cleanup_input_jsonl(cand, member, JSONL)
+  cli_alert_success("Input jsonl: {JSONL} ({nrow(cand)} record)")
+
+  cfg <- dgx_config()
+  bundle <- dgx_p4_build_bundle(JSONL, stage = "name_cleanup", config = cfg)
+  job <- dgx_p4_submit(bundle, time = "04:00:00", config = cfg)
+  saveRDS(list(job = job, cand = cand, current_ids = current_ids, s3_clusters = s3$clusters), STATE)
+  cli_alert_success("SUBMIT OK — run_id {job$run_id} slurm {job$slurm_job_id}. Stato: {STATE}")
+
+} else if (ACTION == "eval") {
+  cli_h1("Name-cleanup RUN — collect + assemble")
+  st <- readRDS(STATE)
+  res <- dgx_p4_collect(st$job)
+  predictions_by_id <- setNames(res$predictions$parsed_json, res$predictions$record_id)
+  cli_alert_info("Predictions: {nrow(res$predictions)} (valid_schema {sum(res$predictions$valid_schema)})")
+
+  env <- simulomicsr:::.load_ontology_dicts()
+  side <- simulomicsr:::.assemble_side_table_from_predictions(st$cand, st$current_ids, predictions_by_id, env)
+  saveRDS(side, SIDE_RDS)
+
+  k_by <- setNames(st$s3_clusters$k, st$s3_clusters$cluster_id)
+  fr <- simulomicsr:::.measure_fragmentation(side, k_by)
+  utils::write.csv(fr, FRAG_CSV, row.names = FALSE)
+
+  cli_h2("Riepilogo side-table")
+  cli_dl(list(
+    "override"    = sum(side$action == "override"),
+    "flag_review" = sum(side$action == "flag_review"),
+    "noop"        = sum(side$action == "noop"),
+    "keep"        = sum(side$action == "keep"),
+    "frammenti (entita' con >=2 cluster)" = nrow(fr),
+    "max k_merged_est" = if (nrow(fr)) max(fr$k_merged_est) else 0L
+  ))
+  cli_alert_success("Side-table: {SIDE_RDS} | frammentazione: {FRAG_CSV}")
+  cli_alert_info("Prossimo: review umana del diff (override before->after) + finding + closeout.")
+} else {
+  cli_abort("Azione sconosciuta: {ACTION}. Usa 'submit' o 'eval'.")
+}
