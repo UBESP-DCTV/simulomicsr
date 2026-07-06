@@ -24,6 +24,32 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-06 (FULLRUN Stadio 4 v8 ESEGUITO + CLOSEOUT — ramo `rem_group` CHIUSO)**:
+> 🟢 **Il re-pool Stadio 4 v8 col ramo `rem_group` è girato end-to-end e la verifica anti-stale è
+> PASS. Le meta-analisi cross-studio NOMINATE sono finalmente poolate. ADR-0022 Accepted.**
+>
+> 1. **Run**: `setsid` detached (SID==PID, NON run_in_background), wall **1067 min (~17,8h)** laptop,
+>    RSS picco ~14,6 GB, 0 crash. run_id `a500d032`, output
+>    `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v8/20260706T112612Z-stage4-v8-a500d032/`. Dashboard
+>    quarto fallita (non-fatale). Input v7 invariati (no re-cluster), cache counts riusata (no stale).
+> 2. **ANTI-STALE PASS**: `Methods = mega,mega_aug,rem,rem_group`; **503 processati = 433 (v7, IDENTICO
+>    su mega 72/mega_aug 353/rem 8) + 70 rem_group**. cluster_pooled 8.613.424 righe (rem_group 1.144.842),
+>    per_study_de 34.026.609, sig FDR<0,05 1.121.633. Retrocompat rami esistenti byte-identica verificata.
+> 3. **RE-GATE 70 rem_group** (tutti L4 group): n_sig 0–6347 (mediana ~1400), I² med 0–98%, k_eff 3–77
+>    (studi distinti post-collapse). **BANDIERA 7/7 presenti**: SARS `NCBITaxon:2697049` (k12,n1813),
+>    Prostatic `MeSH:D011471` (k4,n1485), enzalutamide `CHEBI:68534` (k12,n1337), fulvestrant
+>    `CHEBI:31638` (k5,n518), tamoxifen `CHEBI:41774` (k5,n437), Breast `MeSH:D001943` (k6,n272),
+>    vemurafenib `CHEBI:63637`. Top n_sig: tuberculosis|blood 6347.
+> 4. **non_processable 382** = 279 `rem_group_insufficient_in_study_controls` (k_eff 131@0/93@1/55@2) +
+>    103 `mega_rank_deficient`. I 279 = treated-only senza comparison stage2 (ibrido; augmentation = passo-3).
+> 5. **Closeout**: finding `docs/findings/2026-07-06-stage4-rem-group-results.md`; **ADR-0022 Accepted**
+>    `docs/decisions/0022-stage4-rem-group-named-metaanalyses.md`; ledger `.superpowers/sdd/progress.md`;
+>    verifica `analysis/audit/2026-07-06-stage4-v8-antistale-regate.R` + `-remgroup-names.R` (+ CSV).
+> 6. **PROSSIMO**: (a) **pulizia-nomi coda etichette** (LPS→"carnitine" ecc., handout
+>    `docs/superpowers/specs/2026-07-06-name-cleanup-mistral-SESSION-AFTER-handout.md`); (b) augmentation
+>    passo-3 (279 caduti); (c) Layer B re-curation con i 70 nuovi case-study. Branch invariato, master
+>    invariato, no push. Memorie: [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-07-05 (ramo `rem_group` Stadio 4 — CODICE+VALIDAZIONE COMPLETI, FULLRUN v8 GATED)**:
 > 🟢 **Fix del gate di selezione Stadio 4. Nuovo ramo di pooling `rem_group` che ammette le
 > meta-analisi cross-studio NOMINATE (L2–L4, `safety_min` basso per design) che la selezione
