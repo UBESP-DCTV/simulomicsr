@@ -39,3 +39,28 @@
                  kind = as.character(d$kind), k = as.integer(d$k),
                  top_theme = as.character(d$top_theme), role = d$role)
 }
+
+#' Costruisce i metadati grezzi dei membri per ciascun cluster.
+#'
+#' Per ogni `cluster_id` risolve i `record_id` assegnati (`assignments`) in
+#' GSM via `rec_env` (output di `build_record_gsm_lookup`), recupera il testo
+#' grezzo corrispondente da `gsm_text`, deduplica e concatena con `" | "`,
+#' troncando a `char_budget` caratteri (prompt Mistral non deve esplodere su
+#' cluster con migliaia di membri).
+#'
+#' @keywords internal
+#' @noRd
+.build_cluster_member_metadata <- function(cluster_ids, assignments, rec_env,
+                                           gsm_text, char_budget = 6000L) {
+  out <- vector("list", length(cluster_ids)); names(out) <- cluster_ids
+  for (cid in cluster_ids) {
+    recs <- assignments$record_id[assignments$cluster_id == cid]
+    gsms <- unique(unlist(lapply(recs, function(r)
+      get0(r, envir = rec_env, inherits = FALSE)), use.names = FALSE))
+    txt <- unique(gsm_text[intersect(gsms, names(gsm_text))])
+    joined <- paste(txt, collapse = " | ")
+    if (nchar(joined) > char_budget) joined <- substr(joined, 1L, char_budget)
+    out[[cid]] <- joined
+  }
+  out
+}
