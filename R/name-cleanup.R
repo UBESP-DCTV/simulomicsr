@@ -147,13 +147,23 @@
   try_hgnc <- function() {
     hit <- .hgnc_lookup_symbol(nm, env)
     if (is.null(hit)) return(NULL)
-    list(resolved_id = paste0("HGNC:", toupper(nm)), resolved_name = nm, match_strength = "STRONG")
+    # Usa il simbolo canonico ritornato dall'accessor (NON l'input grezzo):
+    # .hgnc_lookup_symbol risolve sia simboli primari che alias storici (es.
+    # "BSF2" -> IL6), quindi l'ID va costruito sul primary_symbol per non
+    # rompere il dedup cross-studio (mirror di R/anchors.R HGNC path).
+    list(resolved_id = paste0("HGNC:", hit$primary_symbol),
+         resolved_name = hit$primary_symbol %||% nm, match_strength = "STRONG")
   }
   try_taxon <- function() {
     hit <- .taxonomy_lookup_name(nm, env)
     if (is.null(hit)) return(NULL)
     list(resolved_id = paste0("NCBITaxon:", hit$taxid), resolved_name = nm, match_strength = "STRONG")
   }
+
+  # Guardia difensiva: switch() richiede EXPR scalare non-NA. Un `kind`
+  # character(0)/NA/multi-elemento (possibile da JSON LLM malformato) cade
+  # sulla catena catch-all invece di andare in errore.
+  if (length(kind) != 1L || is.na(kind)) kind <- ""
 
   chain <- switch(kind,
     small_molecule = list(try_chebi),
