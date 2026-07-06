@@ -179,3 +179,42 @@
   }
   .none_resolution()
 }
+
+#' Applica la policy di override precision-gated (pulizia-nomi, scope A).
+#'
+#' Decide l'azione da applicare a un cluster dato l'esito Mistral (relabel +
+#' `confidence`) e la risoluzione ontologica deterministica (`.resolve_canonical_to_id`).
+#' Regole (precision-gated: override SOLO su match forte e non-ambiguo):
+#' - match `NONE` o `mistral_confidence == "low"`: `"keep"` (nessun cambio),
+#'   `name_llm_unvalidatable = TRUE` (il cluster resta irrisolto, tracciato per audit).
+#' - match `STRONG` con `resolved_id` identico all'ID attuale: `"noop"` (gia' corretto).
+#' - match `STRONG` con `resolved_id` diverso su un cluster `canary` (gia' ben
+#'   nominato, controllo di non-regressione): `"flag_review"` — NON si applica
+#'   l'override in automatico, il disaccordo va rivisto a mano.
+#' - match `STRONG` con `resolved_id` diverso su un cluster `candidate` (coda
+#'   mal-etichettata): `"override"`, source `"mistral_fallback"`.
+#'
+#' @param current_id character(1) ID anchor attuale del cluster.
+#' @param mistral_confidence character(1) confidence del relabel LLM (`high`/`medium`/`low`).
+#' @param resolution lista `list(resolved_id, resolved_name, match_strength)`,
+#'   esito di `.resolve_canonical_to_id`.
+#' @param role character(1) `"candidate"` o `"canary"` (da `.load_name_cleanup_candidates`).
+#' @return lista `list(action, new_id, new_name, name_recovery_source, name_llm_unvalidatable)`.
+#' @keywords internal
+#' @noRd
+.apply_name_cleanup_policy <- function(current_id, mistral_confidence, resolution, role) {
+  keep <- list(action = "keep", new_id = NA_character_, new_name = NA_character_,
+               name_recovery_source = NA_character_, name_llm_unvalidatable = TRUE)
+  if (!identical(resolution$match_strength, "STRONG") || identical(mistral_confidence, "low"))
+    return(keep)
+  if (identical(resolution$resolved_id, current_id))
+    return(list(action = "noop", new_id = resolution$resolved_id,
+                new_name = resolution$resolved_name,
+                name_recovery_source = NA_character_, name_llm_unvalidatable = FALSE))
+  if (identical(role, "canary"))
+    return(list(action = "flag_review", new_id = NA_character_, new_name = NA_character_,
+                name_recovery_source = NA_character_, name_llm_unvalidatable = FALSE))
+  list(action = "override", new_id = resolution$resolved_id,
+       new_name = resolution$resolved_name,
+       name_recovery_source = "mistral_fallback", name_llm_unvalidatable = FALSE)
+}
