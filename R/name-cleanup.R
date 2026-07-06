@@ -268,3 +268,34 @@ run_name_cleanup <- function(candidates, current_ids, member_metadata, llm_fn,
   })
   dplyr::bind_rows(rows)
 }
+
+#' Misura la frammentazione cross-cluster post pulizia-nomi (sottoprodotto scope B).
+#'
+#' Per ogni cluster della side-table calcola l'ID effettivo (`new_id` dove
+#' presente, altrimenti `old_id`) e raggruppa per quell'ID: le entita' con
+#' 2+ cluster distinti che risolvono allo stesso ID effettivo sono
+#' "frammenti" (candidati a merge cross-cluster, materia dello scope B, NON
+#' applicato qui — questa funzione e' solo la misura diagnostica). Il
+#' `k_merged_est` (somma dei `k` dei cluster frammentati) stima quanti studi
+#' si riunirebbero se il merge fosse eseguito.
+#'
+#' @param side_table tibble con colonne `cluster_id, old_id, new_id` (es.
+#'   output di `run_name_cleanup`).
+#' @param k_by_cluster int con nomi, `cluster_id -> k` (numero studi/membri).
+#' @return tibble `resolved_entity_id, n_clusters, cluster_ids, k_merged_est`,
+#'   una riga per entita' frammentata (n_clusters >= 2), ordinato per
+#'   n_clusters decrescente.
+#' @keywords internal
+#' @noRd
+.measure_fragmentation <- function(side_table, k_by_cluster) {
+  eff_id <- ifelse(!is.na(side_table$new_id), side_table$new_id, side_table$old_id)
+  df <- tibble::tibble(cluster_id = side_table$cluster_id, eid = eff_id,
+                       k = as.integer(k_by_cluster[side_table$cluster_id]))
+  df <- df[!is.na(df$eid), , drop = FALSE]
+  g <- dplyr::group_by(df, eid)
+  s <- dplyr::summarise(g, n_clusters = dplyr::n(),
+                        cluster_ids = paste(sort(cluster_id), collapse = ";"),
+                        k_merged_est = sum(k, na.rm = TRUE), .groups = "drop")
+  s <- s[s$n_clusters >= 2L, , drop = FALSE]
+  dplyr::rename(dplyr::arrange(s, dplyr::desc(n_clusters)), resolved_entity_id = eid)
+}
