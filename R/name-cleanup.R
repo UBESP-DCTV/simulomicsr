@@ -308,3 +308,96 @@ run_name_cleanup <- function(candidates, current_ids, member_metadata, llm_fn,
   s <- s[s$n_clusters >= 2L, , drop = FALSE]
   dplyr::rename(dplyr::arrange(s, dplyr::desc(n_clusters)), resolved_entity_id = eid)
 }
+
+#' Costruisce il jsonl di input per il batch DGX pulizia-nomi (path batch).
+#'
+#' Una riga per candidato con le chiavi che il bundle DGX (Task 10) si
+#' aspetta per lo stage `name_cleanup`: `record_id` (= `cluster_id`, chiave
+#' di round-trip verso `predictions_by_id`), `current_label`, `kind` e
+#' `member_metadata` (metadati grezzi concatenati, da
+#' `.build_cluster_member_metadata`). Un cluster senza metadati (assente da
+#' `member_metadata`) scrive stringa vuota, coerente col fallback `%||% ""`
+#' gia' usato da `run_name_cleanup`.
+#'
+#' @param candidates tibble da `.load_name_cleanup_candidates` (colonne
+#'   `cluster_id, name, kind, ...`).
+#' @param member_metadata lista con nomi, `cluster_id -> stringa metadati
+#'   grezzi` (da `.build_cluster_member_metadata`).
+#' @param out_path path del file jsonl da scrivere.
+#' @return `out_path`, invisibilmente.
+#' @keywords internal
+#' @noRd
+.build_name_cleanup_input_jsonl <- function(candidates, member_metadata, out_path) {
+  con <- file(out_path, open = "w")
+  on.exit(close(con), add = TRUE)
+  for (i in seq_len(nrow(candidates))) {
+    cid <- candidates$cluster_id[i]
+    row <- list(record_id = cid, current_label = candidates$name[i],
+                kind = candidates$kind[i], member_metadata = member_metadata[[cid]] %||% "")
+    writeLines(jsonlite::toJSON(row, auto_unbox = TRUE), con)
+  }
+  invisible(out_path)
+}
+
+#' Assembla la side-table pulizia-nomi da predizioni batch DGX gia' raccolte.
+#'
+#' Analogo di `run_name_cleanup` (Task 8) per il path batch (Task 10): invece
+#' di chiamare un `llm_fn` live, sorge l'esito Mistral per ciascun cluster da
+#' `predictions_by_id[[cluster_id]]` — tipicamente `dgx_p4_collect(...)$predictions$parsed_json`
+#' indicizzato per `record_id` = `cluster_id`. Predizione assente O priva di
+#' `canonical_name` degrada allo stesso esito NONE/`confidence="low"` del
+#' fallimento `llm_fn` in `run_name_cleanup` (nessun override, cluster
+#' marcato `name_llm_unvalidatable`): la robustezza al vuoto e' identica,
+#' cambia solo la sorgente dell'input LLM.
+#'
+#' Riusa `.resolve_canonical_to_id` (Task 6) e `.apply_name_cleanup_policy`
+#' (Task 7) — nessuna duplicazione della logica di risoluzione/policy.
+#'
+#' Rispetto a `run_name_cleanup` la side-table ha 2 colonne AGGIUNTIVE per
+#' l'error-analysis del final review / gold gate: `llm_proposed_name` (nome
+#' grezzo proposto da Mistral, preservato ANCHE su NONE/keep — a differenza
+#' di `new_canonical` che resta NA in quel caso) e `conflicting_id` (su
+#' `action=="flag_review"`, l'ID a cui il canary avrebbe risolto ma che NON
+#' e' stato applicato — il disaccordo che un revisore umano deve giudicare).
+#'
+#' @param candidates tibble da `.load_name_cleanup_candidates` (colonne
+#'   `cluster_id, name, kind, k, top_theme, role`).
+#' @param current_ids chr con nomi, `cluster_id -> old_id` (l'anchor_key attuale).
+#' @param predictions_by_id lista con nomi, `cluster_id -> list(canonical_name,
+#'   kind, confidence, evidence)` (da `dgx_p4_collect(...)$predictions$parsed_json`
+#'   indicizzato per `record_id`). Cluster assenti o con predizione senza
+#'   `canonical_name` -> esito NONE/`confidence="low"`.
+#' @param env environment dizionari ontologia. Default: `.load_ontology_dicts()`.
+#' @return tibble side-table: le stesse 12 colonne di `run_name_cleanup`
+#'   (`cluster_id, old_id, old_label, new_canonical, new_id, new_kind,
+#'   match_strength, confidence, action, name_recovery_source,
+#'   name_llm_unvalidatable, evidence`) piu' `llm_proposed_name` e
+#'   `conflicting_id`.
+#' @keywords internal
+#' @noRd
+.assemble_side_table_from_predictions <- function(candidates, current_ids, predictions_by_id,
+                                                   env = .load_ontology_dicts()) {
+  rows <- lapply(seq_len(nrow(candidates)), function(i) {
+    cid <- candidates$cluster_id[i]
+    out <- predictions_by_id[[cid]]
+    if (is.null(out) || !is.list(out) || is.null(out$canonical_name)) {
+      res <- .none_resolution(); conf <- "low"; ckind <- NA_character_; ev <- NA_character_
+      proposed <- NA_character_
+    } else {
+      ckind <- out$kind %||% candidates$kind[i]
+      conf <- out$confidence %||% "low"; ev <- out$evidence %||% NA_character_
+      proposed <- out$canonical_name
+      res <- .resolve_canonical_to_id(out$canonical_name, ckind, env)
+    }
+    pol <- .apply_name_cleanup_policy(unname(current_ids[cid]), conf, res, candidates$role[i])
+    conflicting_id <- if (identical(pol$action, "flag_review")) res$resolved_id else NA_character_
+    tibble::tibble(
+      cluster_id = cid, old_id = unname(current_ids[cid]), old_label = candidates$name[i],
+      new_canonical = res$resolved_name, new_id = pol$new_id, new_kind = ckind,
+      match_strength = res$match_strength, confidence = conf, action = pol$action,
+      name_recovery_source = pol$name_recovery_source,
+      name_llm_unvalidatable = pol$name_llm_unvalidatable, evidence = ev,
+      llm_proposed_name = proposed, conflicting_id = conflicting_id)
+  })
+  dplyr::bind_rows(rows)
+}
