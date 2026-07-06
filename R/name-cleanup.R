@@ -64,3 +64,45 @@
   }
   out
 }
+
+#' Prompt di sistema per il relabel LLM (pulizia-nomi, scope A).
+#'
+#' Istruisce Mistral a identificare l'entita' biologica REALE (composto,
+#' citochina, patogeno, malattia) dietro un'etichetta di cluster sospetta,
+#' usando solo i metadati grezzi dei campioni membri (NON il `top_theme`,
+#' che resta un oracolo indipendente per la validazione a valle). Risposta
+#' vincolata allo schema `name_cleanup.v1.json`.
+#'
+#' @keywords internal
+#' @noRd
+.name_cleanup_system_prompt <- function() {
+  paste0(
+    "Sei un curatore esperto di metadati GEO/RNA-seq. Ricevi l'etichetta ATTUALE ",
+    "(potenzialmente sbagliata) di un gruppo di campioni e i loro metadati grezzi. ",
+    "Identifica l'entita' biologica REALE (composto, citochina, patogeno, malattia) ",
+    "che accomuna i campioni trattati/caso. Rispondi SOLO con un JSON: ",
+    "{canonical_name, kind, confidence(high|medium|low), evidence}. ",
+    "canonical_name = nome canonico piu' riconoscibile (es. 'lipopolysaccharide', ",
+    "non una sigla ambigua). Se i metadati non bastano, confidence='low'.")
+}
+
+#' Costruisce i messaggi (system+user) per il relabel LLM di un cluster.
+#'
+#' Il messaggio utente incapsula SOLO l'etichetta attuale, il kind atteso e i
+#' metadati grezzi dei membri: NON include `top_theme` (oracolo indipendente
+#' tenuto fuori dal prompt per non contaminare la valutazione a valle).
+#'
+#' @param current_label etichetta attuale sospetta del cluster
+#' @param kind kind atteso (es. "small_molecule", "cytokine_stim")
+#' @param member_metadata metadati grezzi dei campioni membri (stringa concatenata)
+#' @return lista di 2 messaggi `list(role=,content=)`, system poi user
+#' @keywords internal
+#' @noRd
+.build_name_cleanup_messages <- function(current_label, kind, member_metadata) {
+  user <- paste0(
+    "Etichetta attuale (sospetta): ", current_label, "\n",
+    "Kind atteso: ", kind, "\n",
+    "Metadati grezzi dei campioni membri:\n", member_metadata)
+  list(list(role = "system", content = .name_cleanup_system_prompt()),
+       list(role = "user",   content = user))
+}

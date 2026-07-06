@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "name_cleanup.v1",
+  "description": "Output JSON del relabel LLM (pulizia-nomi Stadio 3, scope A) — Mistral riceve l'etichetta attuale sospetta + kind atteso + metadati grezzi dei membri, e restituisce l'entita' biologica canonica identificata.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["canonical_name", "kind", "confidence", "evidence"],
+  "properties": {
+    "canonical_name": { "type": "string" },
+    "kind":           { "type": "string" },
+    "confidence":     { "type": "string", "enum": ["high", "medium", "low"] },
+    "evidence":       { "type": "string" }
+  }
+}
