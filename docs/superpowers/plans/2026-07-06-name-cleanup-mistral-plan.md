@@ -804,92 +804,81 @@ git commit -m "P5 audit RED_ALERT F6: misura frammentazione (sottoprodotto scope
 
 ---
 
-### Task 10: Gold ~20 + smoke gate (GATE UTENTE — endpoint vLLM)
+> **REVISIONE 2026-07-06 (decisione utente):** i job Mistral girano via **path batch DGX**
+> (`bundle → submit → collect`, come Stadio 1/2), NON via adapter/endpoint (non esiste un vLLM
+> server persistente in questo setup). L'adapter `.vllm_chat_structured` (Task 1) resta come
+> capacità generale ma non è il meccanismo del run. StructuredOutputsParams strict del batch
+> risolve la preoccupazione blast-radius del final review. I Task 10-13 sostituiscono i vecchi 10-11.
+
+### Task 10: Integrazione stage `name_cleanup` nel bundle/runner DGX
 
 **Files:**
-- Create: `analysis/audit/name-cleanup-gold.csv` (~20 mislabel noti + expected id)
-- Create: `analysis/audit/2026-07-06-name-cleanup-smoke.R`
-- Test: (nessun unit test nuovo; è un gate di validazione con deliverable = report)
+- Modify: `inst/dgx/python/prompts.py` (aggiungi `render_user_message_name_cleanup`)
+- Modify: `inst/dgx/python/run_p4_vllm.py:35,79-84` (import + branch in `render_user_for_stage`)
+- Modify: `R/dgx-bundle.R:38,106-111` (accetta stage `name_cleanup` + system prompt via `.name_cleanup_system_prompt()`)
+- Modify: `inst/extdata/p4-defaults.yml` (blocco `stages.name_cleanup`)
+- Test: `inst/dgx/python/test_prompts.py` (renderer) + `tests/testthat/test-dgx-bundle-name-cleanup.R` (bundle)
 
 **Interfaces:**
-- Consumes: tutte le funzioni Task 1-9; endpoint vLLM (`VLLM_BASE_URL` via SSH port-forward); ontologie full (`.load_ontology_dicts()`).
-- Produces: `analysis/audit/2026-07-06-name-cleanup-smoke.md` con precision/recall del relabel sul gold + esito canary (0 override spuri atteso).
+- Input jsonl record (name_cleanup): `{record_id, current_label, kind, member_metadata}`.
+- `render_user_message_name_cleanup(record)` produce lo stesso user-message di `.build_name_cleanup_messages` (label + kind + member_metadata; NIENTE top_theme). System prompt = testo di `.name_cleanup_system_prompt()`. Schema = `inst/schemas/name_cleanup.v1.json`.
+- `dgx_p4_build_bundle(input_jsonl, stage="name_cleanup", config)` → bundle con `prompt.txt` (name-cleanup) + `schema.json` (name_cleanup.v1) + `generation.json` (temp=0, rep_pen=1.1, max_tokens=1024).
 
-- [ ] **Step 1: Costruire il gold** — `analysis/audit/name-cleanup-gold.csv` con colonne `old_label,kind,member_metadata_hint,expected_canonical,expected_id`, ~20 righe dai casi noti del finding §3 (carnitine→lipopolysaccharide/CHEBI:16412; Antistreptolysin→AML; Netherlands Antilles→NSCLC; Pemphigoid Gestationis→hepatocellular carcinoma; Genes,Viral→glioblastoma; …) + ~5 canary ben-nominati che NON devono cambiare.
-
-- [ ] **Step 2: Scrivere lo smoke script** che: carica il gold, per ogni riga chiama `llm_fn` reale (vLLM) → `.resolve_canonical_to_id` → `.apply_name_cleanup_policy`, confronta `new_id` vs `expected_id`; calcola precision (override corretti / override totali) e recall (mislabel recuperati / mislabel gold); verifica 0 override sui canary. Gating: se `VLLM_BASE_URL` non raggiungibile (probe httr2 GET 5s) → SKIP non-fatale.
-
-```r
-# analysis/audit/2026-07-06-name-cleanup-smoke.R (scheletro)
-devtools::load_all(".")
-gold <- utils::read.csv("analysis/audit/name-cleanup-gold.csv", stringsAsFactors = FALSE)
-llm_fn <- function(messages) {
-  res <- llm_call_structured(provider = "vllm", model = Sys.getenv("VLLM_MODEL",
-    "mistralai/Mistral-Small-3.2-24B-Instruct-2506"), messages = messages,
-    response_schema = system.file("schemas","name_cleanup.v1.json", package="simulomicsr"),
-    cache = cache_init(tools::R_user_dir("simulomicsr","cache"), "nameclean"),
-    cache_namespace_version = .NAME_CLEANUP_CACHE_VERSION)
-  res$value
-}
-# ... loop gold -> resolve -> policy -> confronto expected_id; stampa precision/recall + canary
-```
-
-- [ ] **Step 3: Eseguire lo smoke (GATE UTENTE)**
-
-Run (con SSH port-forward attivo): `Rscript analysis/audit/2026-07-06-name-cleanup-smoke.R`
-Expected: precision alta sui mislabel gold, **0 override sui canary**. Se precision bassa o canary toccati → STOP, iterare prompt/policy PRIMA del run pieno.
-
-- [ ] **Step 4: Commit**
+- [ ] **Step 1 (python):** `render_user_message_name_cleanup(record)` in `prompts.py` (mirror del testo di `.build_name_cleanup_messages`); aggiungi il branch `name_cleanup` in `run_p4_vllm.py:render_user_for_stage` + l'import a riga 35. Aggiungi un test in `test_prompts.py` che verifica label/kind/member_metadata presenti e `top_theme` assente. Esegui: `python -m pytest inst/dgx/python/test_prompts.py -q` (o il runner python del repo).
+- [ ] **Step 2 (yaml):** blocco `stages.name_cleanup` in `p4-defaults.yml`: `schema_file: "name_cleanup.v1.json"`, `max_tokens: 1024`, `max_model_len: 8192`, `microbatch: 50`.
+- [ ] **Step 3 (R, TDD):** in `R/dgx-bundle.R` estendi la guardia stage (`:38`) a `name_cleanup` e il ramo system-prompt (`:106-111`) → `simulomicsr:::.name_cleanup_system_prompt()`. Test RED→GREEN in `tests/testthat/test-dgx-bundle-name-cleanup.R`: `dgx_p4_build_bundle(<jsonl 2 record>, stage="name_cleanup", config=dgx_config())` scrive `prompt.txt` che contiene il testo name-cleanup + `schema.json` == `name_cleanup.v1.json` + `manifest.json$stage=="name_cleanup"`. (Config solo per build locale, nessun submit.)
+- [ ] **Step 4:** run test R focalizzato (foreground) + python test. Commit.
 
 ```bash
-git add analysis/audit/name-cleanup-gold.csv analysis/audit/2026-07-06-name-cleanup-smoke.R analysis/audit/2026-07-06-name-cleanup-smoke.md
-git commit -m "P5 audit RED_ALERT F6: gold + smoke gate name-cleanup"
+git add inst/dgx/python/prompts.py inst/dgx/python/run_p4_vllm.py inst/dgx/python/test_prompts.py R/dgx-bundle.R inst/extdata/p4-defaults.yml tests/testthat/test-dgx-bundle-name-cleanup.R
+git commit -m "P5 audit RED_ALERT F6: stage name_cleanup nel bundle/runner DGX"
 ```
 
----
+### Task 11: Builder input jsonl + assembler side-table da predictions (TDD)
 
-### Task 11: Run produzione sui 125 + side-table + misura-B + closeout (GATE UTENTE)
+**Files:**
+- Modify: `R/name-cleanup.R`
+- Test: `tests/testthat/test-name-cleanup-batch.R`
+
+**Interfaces:**
+- Produces: `.build_name_cleanup_input_jsonl(candidates, member_metadata, out_path)` → scrive jsonl `{record_id=cluster_id, current_label, kind, member_metadata}` (1 riga/candidato).
+- Produces: `.assemble_side_table_from_predictions(candidates, current_ids, predictions_by_id, env = .load_ontology_dicts())` → side-table (stesse 12 colonne di `run_name_cleanup`) + **2 colonne audit** (final review): `conflicting_id` (l'id risolto su `flag_review`) e `llm_proposed_name` (il nome grezzo proposto dall'LLM, anche su NONE/keep). `predictions_by_id` = named list `cluster_id → list(canonical_name, kind, confidence, evidence)` (da `dgx_p4_collect$predictions$parsed_json`). Riusa `.resolve_canonical_to_id` + `.apply_name_cleanup_policy`.
+
+- [ ] **Step 1:** test RED per entrambe (jsonl scritto con le 4 chiavi giuste; assembler: un override + un canary flag_review con `conflicting_id` popolato + un NONE con `llm_proposed_name` preservato).
+- [ ] **Step 2:** implementa; usa `.resolve_canonical_to_id`/`.apply_name_cleanup_policy` come `run_name_cleanup` ma sourcing l'output LLM da `predictions_by_id[[cluster_id]]` invece che live; su predizione assente → riga NONE/keep.
+- [ ] **Step 3:** run test focalizzato (foreground). Commit.
+
+```bash
+git add R/name-cleanup.R tests/testthat/test-name-cleanup-batch.R
+git commit -m "P5 audit RED_ALERT F6: builder input jsonl + assembler side-table da predictions batch"
+```
+
+### Task 12: Gold ~20 + smoke gate batch (GATE UTENTE — submit DGX)
+
+**Files:**
+- Create: `analysis/audit/name-cleanup-gold.csv` (~20 mislabel noti + ~5 canary, colonne `record_id,current_label,kind,member_metadata,expected_id,is_canary`)
+- Create: `analysis/audit/2026-07-06-name-cleanup-smoke.R`
+
+- [ ] **Step 1:** costruisci il gold dai casi del finding §3 (carnitine→LPS/CHEBI:16412, Antistreptolysin→AML, Netherlands Antilles→NSCLC, Pemphigoid Gestationis→HCC, Genes-Viral→GBM, …) + ~5 canary ben-nominati.
+- [ ] **Step 2:** smoke script: gold → `.build_name_cleanup_input_jsonl` → `dgx_p4_build_bundle(stage="name_cleanup")` → `dgx_p4_submit(config=dgx_config())` → `dgx_p4_collect` → `.assemble_side_table_from_predictions` → precision (override corretti/override) + recall (mislabel recuperati/gold) + **0 override sui canary**.
+- [ ] **Step 3 (GATE UTENTE):** `Rscript analysis/audit/2026-07-06-name-cleanup-smoke.R`. Se precision bassa o canary toccati → STOP, iterare prompt/policy PRIMA del run pieno. Report `analysis/audit/2026-07-06-name-cleanup-smoke.md`. Commit.
+
+### Task 13: Run pieno (submit 125+ bundle) + side-table + misura-B + closeout (GATE UTENTE)
 
 **Files:**
 - Create: `analysis/p5-name-cleanup-run.R`
-- Create (output, gitignored): side-table `analysis/p4-output/name-cleanup-side-table-v1.rds` + `name-cleanup-fragmentation-v1.csv`
+- Output (gitignored): `analysis/p4-output/name-cleanup-side-table-v1.rds` + `name-cleanup-fragmentation-v1.csv` + bundle/collect dirs
 - Create: `docs/findings/2026-07-06-name-cleanup-results.md`
 
-**Interfaces:**
-- Consumes: Task 1-9 + Stadio 3 v7 `clusters.rds` (per `old_id`=anchor_key), assignments, master v3 (per `build_record_gsm_lookup`), stage1 input jsonl (per `gsm_text`), triage CSV.
-- Produces: side-table applicabile in join sul pooled v8 + report frammentazione + finding.
-
-- [ ] **Step 1: Scrivere lo script** `analysis/p5-name-cleanup-run.R` che assembla:
-  1. `cand <- .load_name_cleanup_candidates("analysis/audit/2026-07-05-stage4-popB-coherence-triage.csv")`
-  2. `s3 <- load_stage3("analysis/p4-output/20260703T113045Z-stage3-v7-364547a7")`; `current_ids <- setNames(s3$clusters$anchor_key, s3$clusters$cluster_id)` (ristretto a `cand$cluster_id`)
-  3. `rec_env <- build_record_gsm_lookup("analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl")` (source `analysis/audit/_gsm-lookup-helper.R`)
-  4. `gsm_text <- <named chr GSM→string dal jsonl input Stadio 1>` (stream del jsonl, `geo_accession`→`string`)
-  5. `member <- .build_cluster_member_metadata(cand$cluster_id, s3$assignments, rec_env, gsm_text)`
-  6. `llm_fn <- <wrapper vLLM cachato come nello smoke>`
-  7. `side <- run_name_cleanup(cand, current_ids, member, llm_fn)`; `saveRDS(side, ".../name-cleanup-side-table-v1.rds")`
-  8. `k_by <- setNames(s3$clusters$k, s3$clusters$cluster_id)`; `fr <- .measure_fragmentation(side, k_by)`; `write.csv(fr, ".../name-cleanup-fragmentation-v1.csv")`
-  9. Stampa summary: n override / flag_review / keep / noop; n frammenti + max k_merged_est.
-
-- [ ] **Step 2: Eseguire il run (GATE UTENTE, ~213 chiamate, endpoint vLLM)**
-
-Run: `Rscript analysis/p5-name-cleanup-run.R`
-Expected: side-table 187 righe (125 candidati + 62 canary risolti/noop; i 6 sospetti valutati), override sulla coda mal-nominata, 0 override spuri sui canary (coerente con lo smoke). Diff report per la review umana.
-
-- [ ] **Step 3: Review umana del diff** (no-fretta paper-grade): ispezionare gli `override` (before→after) + i `flag_review`; confermare che i mislabel noti sono corretti e i ben-nominati intatti.
-
-- [ ] **Step 4: Closeout** — finding `docs/findings/2026-07-06-name-cleanup-results.md` (n corretti/flaggati, misura-B: quante entità frammentano e k_merged → raccomandazione GO/NO-GO su scope B) + aggiornare CLAUDE.md header + memoria `project_stage3_minestrone_rework` + ledger `.superpowers/sdd/progress.md`.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add analysis/p5-name-cleanup-run.R docs/findings/2026-07-06-name-cleanup-results.md CLAUDE.md
-git commit -m "P5 audit RED_ALERT F6: run name-cleanup sui 125 + side-table + misura-B + closeout"
-```
+- [ ] **Step 1:** script che assembla: `cand <- .load_name_cleanup_candidates(<triage csv>)`; `s3 <- load_stage3(<stage3 v7>)`; `current_ids <- setNames(s3$clusters$anchor_key, s3$clusters$cluster_id)[cand$cluster_id]`; `rec_env <- build_record_gsm_lookup(<master v3>)` (source `_gsm-lookup-helper.R`); `gsm_text` = named chr GSM→string via `jsonlite::stream_in` sul jsonl input Stadio 1 (`geo_accession`→`string`); `member <- .build_cluster_member_metadata(cand$cluster_id, s3$assignments, rec_env, gsm_text)`; `.build_name_cleanup_input_jsonl(cand, member, <path>)`.
+- [ ] **Step 2 (GATE UTENTE):** `dgx_p4_build_bundle(stage="name_cleanup")` → `dgx_p4_submit(config=dgx_config(), time="04:00:00")` → poll → `dgx_p4_collect`; `predictions_by_id` da `collect$predictions` (`record_id→parsed_json`); `side <- .assemble_side_table_from_predictions(cand, current_ids, predictions_by_id)`; `saveRDS`. `k_by <- setNames(s3$clusters$k, s3$clusters$cluster_id)`; `fr <- .measure_fragmentation(side, k_by)`; `write.csv`.
+- [ ] **Step 3:** review umana del diff (override before→after + flag_review), no-fretta paper-grade.
+- [ ] **Step 4:** closeout — finding (n corretti/flaggati + misura-B: quante entità frammentano e k_merged → GO/NO-GO scope B) + CLAUDE.md header + memoria `project_stage3_minestrone_rework` + ledger. Commit.
 
 ---
 
 ## Note per l'esecuzione
 
-- **Ordine:** Task 1-9 sono TDD puri e indipendenti dall'endpoint (mock) → eseguibili subito. Task 10-11 sono GATE UTENTE (richiedono l'endpoint vLLM via SSH port-forward verso la DGX).
+- **Ordine:** Task 1-9 (moduli) + Task 10-11 (integrazione stage DGX + builder/assembler) sono TDD e indipendenti dalla DGX (mock/build locale) → eseguibili subito. Task 12-13 sono GATE UTENTE (richiedono `dgx_p4_submit` alla DGX: bundle→submit→collect, path batch — NON un endpoint persistente).
 - **Verifica `%||%`:** prima del Task 8, `grep -rn "\`%||%\`" R/` per confermare la disponibilità (rlang o helper locale); se assente, definirlo `@noRd`.
 - **Scope B è fuori piano:** la misura-B produce solo il *dato* per decidere; l'eventuale re-cluster→re-pool sarà spec/plan separati.
