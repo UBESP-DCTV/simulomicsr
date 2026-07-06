@@ -4,11 +4,13 @@
 #' valida la risposta contro `response_schema`, e (se `cache` e' fornita)
 #' serve dalla cache su hit.
 #'
-#' @param provider stringa: `"openai"`, `"anthropic"`, o `"mock"` (per i test).
+#' @param provider stringa: `"openai"`, `"anthropic"`, `"openrouter"`, `"vllm"`,
+#'   o `"mock"` (per i test).
 #' @param model nome del modello (es. `"gpt-5.4-mini"`)
 #' @param messages lista di messaggi nello schema OpenAI (`role` + `content`)
 #' @param response_schema path a un file JSON Schema; la risposta dell'LLM
-#'   viene validata contro questo schema
+#'   viene validata contro questo schema. Se `NULL`, la validazione e' saltata
+#'   (`validated` nel valore di ritorno sara' `NA`).
 #' @param cache oggetto ritornato da `cache_init()`, o `NULL` per bypass
 #' @param cache_namespace_version stringa che entra nella cache key (es.
 #'   `"stage1.v3"`); cambiare questo invalida la cache
@@ -33,8 +35,10 @@ llm_call_structured <- function(provider,
   stopifnot(is.character(model),    length(model)    == 1L)
   stopifnot(is.list(messages), length(messages) >= 1L)
 
-  # 1) Compila lo schema una volta sola
-  validator <- compile_schema(response_schema)
+  # 1) Compila lo schema una volta sola (NULL = nessuna validazione richiesta,
+  #    caso dell'adapter vLLM usato per compiti dove lo schema e' gia' vincolato
+  #    a monte dal prompt e la validazione client-side non serve)
+  validator <- if (is.null(response_schema)) NULL else compile_schema(response_schema)
 
   # 2) Costruisci la cache key se la cache e' attiva
   cache_key <- NULL
@@ -78,24 +82,37 @@ llm_call_structured <- function(provider,
   } else if (provider == "openrouter") {
     .openrouter_chat_structured(model = model, messages = messages,
                                 response_schema = response_schema, ...)
+  } else if (provider == "vllm") {
+    vllm_out <- if (!is.null(.mock_response)) {
+      list(content_json = .mock_response,
+           raw = as.character(jsonlite::toJSON(.mock_response, auto_unbox = TRUE)))
+    } else {
+      .vllm_chat_structured(model = model, messages = messages,
+                            response_schema = response_schema, ...)
+    }
+    vllm_out$content_json
   } else {
     rlang::abort(
-      glue::glue("Provider sconosciuto: '{provider}'. Supportati: 'openai', 'anthropic', 'openrouter', 'mock'."),
+      glue::glue("Provider sconosciuto: '{provider}'. Supportati: 'openai', 'anthropic', 'openrouter', 'vllm', 'mock'."),
       class = "simulomicsr_unknown_provider"
     )
   }
 
-  # 4) Valida
-  vres <- validate_json(raw, validator = validator)
-  if (!vres$valid) {
-    rlang::abort(
-      glue::glue(
-        "Risposta LLM NON conforme allo schema. Errori: {paste(vres$errors, collapse = ' | ')}"
-      ),
-      class = "simulomicsr_schema_error",
-      errors = vres$errors,
-      raw_response = raw
-    )
+  # 4) Valida (se c'e' uno schema; NULL = nessuna validazione, validated=NA)
+  validated <- NA
+  if (!is.null(response_schema)) {
+    vres <- validate_json(raw, validator = validator)
+    if (!vres$valid) {
+      rlang::abort(
+        glue::glue(
+          "Risposta LLM NON conforme allo schema. Errori: {paste(vres$errors, collapse = ' | ')}"
+        ),
+        class = "simulomicsr_schema_error",
+        errors = vres$errors,
+        raw_response = raw
+      )
+    }
+    validated <- TRUE
   }
 
   # 5) Persisti in cache
@@ -108,7 +125,7 @@ llm_call_structured <- function(provider,
     value        = raw,
     provider     = provider,
     model        = model,
-    validated    = TRUE,
+    validated    = validated,
     cache_hit    = FALSE,
     raw_response = raw
   )
