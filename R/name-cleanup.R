@@ -106,3 +106,66 @@
   list(list(role = "system", content = .name_cleanup_system_prompt()),
        list(role = "user",   content = user))
 }
+
+#' Esito di risoluzione ontologica vuoto (nessun match).
+#'
+#' @keywords internal
+#' @noRd
+.none_resolution <- function() {
+  list(resolved_id = NA_character_, resolved_name = NA_character_, match_strength = "NONE")
+}
+
+#' Risolve un nome canonico a un ID di ontologia controllata (precision gate).
+#'
+#' Dispatcha sull'accessor giusto in base al `kind` atteso e ritorna un match
+#' "STRONG" solo su hit esatto dell'accessor deterministico (nessun fuzzy
+#' matching qui: quello e' compito del passo LLM a monte). Kind ignoto prova
+#' tutte le ontologie in ordine (ChEBI, MeSH, HGNC, taxonomy).
+#'
+#' @param canonical_name character(1) nome canonico (es. da relabel LLM).
+#' @param kind character(1) kind atteso (`small_molecule`, `vehicle_only`,
+#'   `disease_vs_normal`, `cytokine_stim`, `pathogen_or_aggregate_exposure`,
+#'   o altro).
+#' @param env environment dizionari ontologia. Default: `.load_ontology_dicts()`.
+#' @return lista `list(resolved_id, resolved_name, match_strength)`.
+#' @keywords internal
+#' @noRd
+.resolve_canonical_to_id <- function(canonical_name, kind, env = .load_ontology_dicts()) {
+  nm <- .strip_name_markup(canonical_name)
+  if (is.na(nm)) return(.none_resolution())
+
+  try_chebi <- function() {
+    hit <- .chebi_lookup_alias(nm, env)
+    if (is.null(hit)) return(NULL)
+    list(resolved_id = paste0("CHEBI:", hit$chebi_id), resolved_name = nm, match_strength = "STRONG")
+  }
+  try_mesh <- function() {
+    hit <- .mesh_lookup_term(nm, env)
+    if (is.null(hit)) return(NULL)
+    list(resolved_id = paste0("MeSH:", hit$ui), resolved_name = nm, match_strength = "STRONG")
+  }
+  try_hgnc <- function() {
+    hit <- .hgnc_lookup_symbol(nm, env)
+    if (is.null(hit)) return(NULL)
+    list(resolved_id = paste0("HGNC:", toupper(nm)), resolved_name = nm, match_strength = "STRONG")
+  }
+  try_taxon <- function() {
+    hit <- .taxonomy_lookup_name(nm, env)
+    if (is.null(hit)) return(NULL)
+    list(resolved_id = paste0("NCBITaxon:", hit$taxid), resolved_name = nm, match_strength = "STRONG")
+  }
+
+  chain <- switch(kind,
+    small_molecule = list(try_chebi),
+    vehicle_only   = list(try_chebi),
+    disease_vs_normal = list(try_mesh),
+    cytokine_stim  = list(try_hgnc, try_chebi),
+    pathogen_or_aggregate_exposure = list(try_taxon, try_chebi),
+    list(try_chebi, try_mesh, try_hgnc, try_taxon))  # kind ignoto: prova tutto
+
+  for (f in chain) {
+    r <- f()
+    if (!is.null(r)) return(r)
+  }
+  .none_resolution()
+}
