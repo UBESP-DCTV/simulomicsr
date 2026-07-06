@@ -104,6 +104,33 @@ def render_user_message_stage2(record: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def render_user_message_name_cleanup(record: dict[str, Any]) -> str:
+    """Costruisce lo user message per la pulizia-nomi (Stadio 3, scope A).
+
+    Porta 1:1 di R/name-cleanup.R::.build_name_cleanup_messages(): etichetta
+    attuale sospetta + kind atteso + metadati grezzi dei campioni membri.
+    NIENTE `top_theme`: resta un oracolo indipendente per la validazione a
+    valle e non deve contaminare il prompt (vedi docstring R).
+
+    Layout:
+        Etichetta attuale (sospetta): <current_label>
+        Kind atteso: <kind>
+        Metadati grezzi dei campioni membri:
+        <member_metadata>
+    """
+    current_label = str(record["current_label"])
+    kind = str(record["kind"])
+    member_metadata = str(record["member_metadata"])
+
+    lines = [
+        f"Etichetta attuale (sospetta): {current_label}",
+        f"Kind atteso: {kind}",
+        "Metadati grezzi dei campioni membri:",
+        member_metadata,
+    ]
+    return "\n".join(lines)
+
+
 def build_messages(system_prompt: str, user_message: str) -> list[dict[str, str]]:
     """Restituisce la struttura messages standard OpenAI/vLLM."""
     return [

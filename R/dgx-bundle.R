@@ -10,7 +10,9 @@
 #'   \code{string}.
 #'   Per stage2: campi \code{record_id}, \code{study_summary}, \code{samples}
 #'   (lista).
-#' @param stage \code{"stage1"} o \code{"stage2"}.
+#'   Per name_cleanup (RED_ALERT F6 pulizia-nomi, scope A): campi
+#'   \code{record_id}, \code{current_label}, \code{kind}, \code{member_metadata}.
+#' @param stage \code{"stage1"}, \code{"stage2"} o \code{"name_cleanup"}.
 #' @param config \code{simulomicsr_dgx_config} da \code{dgx_config()}.
 #' @param metadata list opzionale con \code{slug} (default: stage), aggiunta al
 #'   manifest e usata per costruire il \code{run_id}.
@@ -35,9 +37,9 @@ dgx_p4_build_bundle <- function(input_jsonl,
                                 tiered_max_tokens  = FALSE) {
 
   # --- Validazione argomenti ---
-  if (!stage %in% c("stage1", "stage2"))
+  if (!stage %in% c("stage1", "stage2", "name_cleanup"))
     cli::cli_abort(
-      "stage deve essere {.val stage1} o {.val stage2}, ricevuto {.val {stage}}.",
+      "stage deve essere {.val stage1}, {.val stage2} o {.val name_cleanup}, ricevuto {.val {stage}}.",
       class = "simulomicsr_dgx_unknown_stage"
     )
 
@@ -103,10 +105,14 @@ dgx_p4_build_bundle <- function(input_jsonl,
   # --- 2. System prompt ---
   # .stage1_system_prompt() non ha argomenti.
   # .stage2_system_prompt(model) richiede il nome modello (informativo).
+  # .name_cleanup_system_prompt() (R/name-cleanup.R, RED_ALERT F6 scope A)
+  # non ha argomenti, come stage1.
   prompt_text <- if (stage == "stage1") {
     simulomicsr:::.stage1_system_prompt()
-  } else {
+  } else if (stage == "stage2") {
     simulomicsr:::.stage2_system_prompt(defaults$model_id)
+  } else {
+    simulomicsr:::.name_cleanup_system_prompt()
   }
   writeLines(prompt_text, fs::path(bundle_dir, "prompt.txt"))
 

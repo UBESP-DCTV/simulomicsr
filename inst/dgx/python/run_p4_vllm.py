@@ -32,7 +32,12 @@ from pathlib import Path
 from typing import Any
 
 # Local modules (PYTHONPATH set in container env)
-from prompts import build_messages, render_user_message_stage1, render_user_message_stage2
+from prompts import (
+    build_messages,
+    render_user_message_name_cleanup,
+    render_user_message_stage1,
+    render_user_message_stage2,
+)
 from resume import existing_record_ids, filter_input_records, shard_round_robin
 
 
@@ -81,6 +86,8 @@ def render_user_for_stage(stage: str, record: dict) -> str:
         return render_user_message_stage1(record)
     if stage == "stage2":
         return render_user_message_stage2(record)
+    if stage == "name_cleanup":
+        return render_user_message_name_cleanup(record)
     raise ValueError(f"stage non noto: {stage!r}")
 
 

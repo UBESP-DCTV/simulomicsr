@@ -92,6 +92,21 @@ stages:
     repetition_penalty: 1.1
     schema_version: "stage2.v2"
     model_prefix: "vllm-mistral-3.2"
+  name_cleanup:
+    schema_file: "name_cleanup.v1.json"
+    # Pulizia-nomi Stadio 3 (RED_ALERT F6, scope A): relabel dei cluster
+    # residui mal-etichettati via Mistral (R/name-cleanup.R). Prompt corto
+    # (etichetta attuale + kind atteso + metadati grezzi membri troncati a
+    # char_budget) e risposta JSON breve (canonical_name/kind/confidence/
+    # evidence) -> footprint token piccolo, stessa filosofia di stage1
+    # (nessun chunking, no tiered_max_tokens).
+    max_tokens: 1024
+    max_model_len: 8192
+    microbatch: 50
+    temperature: 0.0
+    repetition_penalty: 1.1
+    schema_version: "name_cleanup.v1"
+    model_prefix: "vllm-mistral-3.2"
 
 slurm_defaults:
   partition: "dgx12cluster"

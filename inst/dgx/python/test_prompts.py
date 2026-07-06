@@ -10,7 +10,7 @@ Verifica che il renderer v3:
 Esecuzione:  cd inst/dgx/python && python3 test_prompts.py
 """
 import json
-from prompts import render_user_message_stage2
+from prompts import render_user_message_name_cleanup, render_user_message_stage2
 
 
 def _v3_record(chunked=False):
@@ -52,7 +52,25 @@ def test_chunk_line():
     assert "member_sample_ids" not in out
 
 
+def test_name_cleanup_fields_present_no_top_theme():
+    # Porta 1:1 di R/name-cleanup.R::.build_name_cleanup_messages() — vedi
+    # Task 10 RED_ALERT F6 (pulizia-nomi Stadio 3, scope A).
+    rec = {
+        "record_id": "cluster_L2_abc123",
+        "current_label": "STR:carnitine_exposed",
+        "kind": "small_molecule",
+        "member_metadata": "carnitine 10mM 24h treated | control untreated",
+    }
+    out = render_user_message_name_cleanup(rec)
+    assert "current_label" not in out, "il nome del campo non deve comparire, solo il valore"
+    assert "STR:carnitine_exposed" in out, "current_label deve comparire nel testo"
+    assert "small_molecule" in out, "kind atteso deve comparire"
+    assert "carnitine 10mM 24h treated" in out, "member_metadata deve comparire"
+    assert "top_theme" not in out, "top_theme e' un oracolo indipendente, NON deve entrare nel prompt"
+
+
 if __name__ == "__main__":
     test_strip_member_sample_ids()
     test_chunk_line()
-    print("OK -- 2/2 sanity render_user_message_stage2 v3")
+    test_name_cleanup_fields_present_no_top_theme()
+    print("OK -- 3/3 sanity render_user_message_stage2/name_cleanup")
