@@ -1,0 +1,18 @@
+record_id,current_label,kind,member_metadata,expected_canonical,is_canary
+gold_lps,carnitine,pathogen_or_aggregate_exposure,"cell type: human PBMC; treatment: LPS (lipopolysaccharide) 100 ng/ml 24h; agent: bacterial endotoxin TLR4 agonist",lipopolysaccharide,FALSE
+gold_sars,unknown agent,pathogen_or_aggregate_exposure,"cell line: Calu-3; infection: SARS-CoV-2 MOI 1; time: 24 hpi; COVID-19 coronavirus infected vs mock",SARS-CoV-2,FALSE
+gold_polyic,carnitine,pathogen_or_aggregate_exposure,"treatment: poly(I:C) 10 ug/ml transfection; TLR3 agonist synthetic dsRNA analog; polyinosinic-polycytidylic acid",poly(I:C),FALSE
+gold_estradiol,acetone,small_molecule,"cell line: MCF-7 breast cancer; treatment: 17-beta-estradiol 10 nM 24h vs vehicle; estrogen receptor agonist",estradiol,FALSE
+gold_tamoxifen,pemphigoid,small_molecule,"cell line: MCF-7; treatment: tamoxifen 1 uM 48h; selective estrogen receptor modulator SERM",tamoxifen,FALSE
+gold_dexa,antistreptolysin,small_molecule,"treatment: dexamethasone 100 nM; synthetic glucocorticoid corticosteroid anti-inflammatory",dexamethasone,FALSE
+gold_dmso_veh,cytokine unknown,vehicle_only,"treatment: DMSO 0.1% vehicle control; dimethyl sulfoxide solvent",dimethyl sulfoxide,FALSE
+gold_aml,Antistreptolysin,disease_vs_normal,"disease: acute myeloid leukemia; source: bone marrow blasts from AML patients vs healthy donor CD34+ cells",acute myeloid leukemia,FALSE
+gold_hcc,Pemphigoid Gestationis,disease_vs_normal,"tissue: liver; disease: hepatocellular carcinoma tumor vs adjacent non-tumor liver; HCC",hepatocellular carcinoma,FALSE
+gold_nsclc,Netherlands Antilles,disease_vs_normal,"cancer: non-small cell lung carcinoma NSCLC adenocarcinoma tumor vs normal lung tissue",non-small cell lung carcinoma,FALSE
+gold_tnf,vehicle,cytokine_stim,"treatment: TNF-alpha 10 ng/ml 6h; tumor necrosis factor pro-inflammatory cytokine stimulation",TNF,FALSE
+gold_ifnb,carnitine,cytokine_stim,"treatment: interferon beta IFN-beta 1000 U/ml; type I interferon antiviral cytokine",IFNB1,FALSE
+gold_il6,acid,cytokine_stim,"treatment: recombinant human IL-6 20 ng/ml; interleukin-6 pro-inflammatory cytokine",IL6,FALSE
+canary_lps,lipopolysaccharide,pathogen_or_aggregate_exposure,"cell type: human macrophage; treatment: LPS 100 ng/ml 4h; lipopolysaccharide endotoxin",lipopolysaccharide,TRUE
+canary_tamoxifen,tamoxifen,small_molecule,"cell line: MCF-7 breast cancer; treatment: tamoxifen 1 uM; SERM estrogen antagonist",tamoxifen,TRUE
+canary_sars,SARS-CoV-2,pathogen_or_aggregate_exposure,"cell line: Calu-3; SARS-CoV-2 infected MOI 0.1 vs mock; coronavirus",SARS-CoV-2,TRUE
+canary_tnf,TNF,cytokine_stim,"treatment: TNF-alpha 10 ng/ml; tumor necrosis factor cytokine",TNF,TRUE
