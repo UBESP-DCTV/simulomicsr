@@ -218,3 +218,53 @@
        new_name = resolution$resolved_name,
        name_recovery_source = "mistral_fallback", name_llm_unvalidatable = FALSE)
 }
+
+#' Orchestratore pulizia-nomi: per ogni candidato chiama l'LLM, risolve l'ID
+#' deterministicamente, applica la policy, ritorna la side-table.
+#'
+#' Per ciascuna riga di `candidates` costruisce i messaggi (Task 4), chiama
+#' `llm_fn` (iniettato: in produzione un wrapper su
+#' `llm_call_structured(provider="vllm", ..., cache=..., cache_namespace_version=
+#' .NAME_CLEANUP_CACHE_VERSION)`), risolve il nome canonico via
+#' `.resolve_canonical_to_id` (Task 6, chiamata come funzione libera cosi'
+#' e' mockabile), applica la policy precision-gated (Task 7) e assembla la
+#' side-table finale. Un fallimento di `llm_fn` (errore o output senza
+#' `canonical_name`) degrada all'esito NONE/low = nessun override, cluster
+#' marcato `name_llm_unvalidatable`.
+#'
+#' @param candidates tibble da `.load_name_cleanup_candidates` (colonne
+#'   `cluster_id, name, kind, k, top_theme, role`).
+#' @param current_ids chr con nomi, `cluster_id -> old_id` (l'anchor_key attuale).
+#' @param member_metadata lista `cluster_id -> stringa metadati grezzi` (da
+#'   `.build_cluster_member_metadata`).
+#' @param llm_fn function(messages) -> list(canonical_name, kind, confidence, evidence).
+#' @param env environment dizionari ontologia. Default: `.load_ontology_dicts()`.
+#' @return tibble side-table: `cluster_id, old_id, old_label, new_canonical,
+#'   new_id, new_kind, match_strength, confidence, action,
+#'   name_recovery_source, name_llm_unvalidatable, evidence`.
+#' @keywords internal
+#' @noRd
+run_name_cleanup <- function(candidates, current_ids, member_metadata, llm_fn,
+                             env = .load_ontology_dicts()) {
+  rows <- lapply(seq_len(nrow(candidates)), function(i) {
+    cid <- candidates$cluster_id[i]
+    msgs <- .build_name_cleanup_messages(candidates$name[i], candidates$kind[i],
+                                         member_metadata[[cid]] %||% "")
+    out <- tryCatch(llm_fn(msgs), error = function(e) NULL)
+    if (is.null(out) || is.null(out$canonical_name)) {
+      res <- .none_resolution(); conf <- "low"; ckind <- NA_character_; ev <- NA_character_
+    } else {
+      ckind <- out$kind %||% candidates$kind[i]
+      conf <- out$confidence %||% "low"; ev <- out$evidence %||% NA_character_
+      res <- .resolve_canonical_to_id(out$canonical_name, ckind, env)
+    }
+    pol <- .apply_name_cleanup_policy(unname(current_ids[cid]), conf, res, candidates$role[i])
+    tibble::tibble(
+      cluster_id = cid, old_id = unname(current_ids[cid]), old_label = candidates$name[i],
+      new_canonical = res$resolved_name, new_id = pol$new_id, new_kind = ckind,
+      match_strength = res$match_strength, confidence = conf, action = pol$action,
+      name_recovery_source = pol$name_recovery_source,
+      name_llm_unvalidatable = pol$name_llm_unvalidatable, evidence = ev)
+  })
+  dplyr::bind_rows(rows)
+}
