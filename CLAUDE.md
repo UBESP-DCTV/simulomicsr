@@ -24,6 +24,31 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-07 (name-cleanup Mistral — PIPELINE DGX FUNZIONA, smoke girato, fix resolver GATED)**:
+> 🟢 **Il name-cleanup gira end-to-end sul DGX (batch). Mistral 13/13 semantico. Smoke intercetta un gap
+> del resolver sulle citochine → fix + re-smoke + full run nella prossima sessione. Handout:
+> `docs/superpowers/specs/2026-07-07-name-cleanup-resolver-fix-NEXT-SESSION-handout.md`.**
+>
+> 1. **Feature name-cleanup** (spec/plan `docs/superpowers/{specs,plans}/2026-07-06-name-cleanup-mistral-*`):
+>    relabel della coda mal-etichettata (LPS→"carnitine" ecc.) via Mistral self-hosted + risoluzione
+>    ontologica DETERMINISTICA + override precision-gated. **Codice T1–T13 COMPLETO** (subagent-driven TDD,
+>    final review Opus): moduli `R/name-cleanup.R` + adapter `R/llm-client-vllm.R` + stage `name_cleanup`
+>    nel bundle/runner DGX + builder/assembler batch + gold+smoke + script run pieno. Path batch DGX
+>    (decisione utente, non adapter/endpoint).
+> 2. **DGX: blocco `0:53`/zero-log RISOLTO** — era una **regressione di rete su poddgx02** (reboot
+>    2026-07-06 17:22 → bond1 LACP morto → `/home` NFS non montata), riparata dagli admin (ping NFS OK,
+>    `/home` montata). NON era autofs (mia 1ª diagnosi sbagliata), NON codice/quota. Debug sistematico
+>    via subagent adversariale + `srun`. Dettagli: §Note DGX + memoria `dgx_storage_projects_not_home`.
+>    Bonus: quota `/home` liberata 9.9G→380G (`sc-gpu-benchmark` 170G → `/mnt/projects`, verificato).
+> 3. **Smoke girato (2026-07-07, job 29665 COMPLETED)**: 17/17 predictions valid_schema. **Mistral 13/13
+>    mislabel corretti** (carnitine→LPS, Antistreptolysin→AML, Netherlands→NSCLC, Pemphigoid→HCC,
+>    acetone→estradiol…). Gate DA RIVEDERE: **Recall 69,2%, Precision 81,8%, canary false-alarm 1/4** — tutto
+>    per il **resolver** (citochine full-name non mappano sul symbol HGNC: interleukin-6, TNF-alpha,
+>    interferon beta → MeSH/miss; estradiol variante), NON per Mistral.
+> 4. **PROSSIMO (handout)**: migliorare `.resolve_canonical_to_id` per le citochine (sinonimo→HGNC symbol,
+>    preferenza HGNC per cytokine_stim) + variante estradiol, TDD → re-smoke → se PASS full run T13 sui 125 →
+>    closeout. Branch invariato, master invariato, 8 commit non pushati. Memorie: [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-07-06 (FULLRUN Stadio 4 v8 ESEGUITO + CLOSEOUT — ramo `rem_group` CHIUSO)**:
 > 🟢 **Il re-pool Stadio 4 v8 col ramo `rem_group` è girato end-to-end e la verifica anti-stale è
 > PASS. Le meta-analisi cross-studio NOMINATE sono finalmente poolate. ADR-0022 Accepted.**
