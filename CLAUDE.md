@@ -24,30 +24,36 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
-> **Stato 2026-07-07 (name-cleanup Mistral — PIPELINE DGX FUNZIONA, smoke girato, fix resolver GATED)**:
-> 🟢 **Il name-cleanup gira end-to-end sul DGX (batch). Mistral 13/13 semantico. Smoke intercetta un gap
-> del resolver sulle citochine → fix + re-smoke + full run nella prossima sessione. Handout:
-> `docs/superpowers/specs/2026-07-07-name-cleanup-resolver-fix-NEXT-SESSION-handout.md`.**
+> **Stato 2026-07-07b (name-cleanup Mistral — FIX RESOLVER + FULL RUN T13 END-TO-END, CHIUSO)**:
+> 🟢 **Il name-cleanup è completo end-to-end. Smoke PASS (13/13 recall, 0 canary false-alarm) e full run
+> T13 su 193 cluster girato (83 override, 65 noop, 14 flag_review, 31 keep). Finding
+> `docs/findings/2026-07-07-name-cleanup-results.md`.**
 >
-> 1. **Feature name-cleanup** (spec/plan `docs/superpowers/{specs,plans}/2026-07-06-name-cleanup-mistral-*`):
->    relabel della coda mal-etichettata (LPS→"carnitine" ecc.) via Mistral self-hosted + risoluzione
->    ontologica DETERMINISTICA + override precision-gated. **Codice T1–T13 COMPLETO** (subagent-driven TDD,
->    final review Opus): moduli `R/name-cleanup.R` + adapter `R/llm-client-vllm.R` + stage `name_cleanup`
->    nel bundle/runner DGX + builder/assembler batch + gold+smoke + script run pieno. Path batch DGX
->    (decisione utente, non adapter/endpoint).
-> 2. **DGX: blocco `0:53`/zero-log RISOLTO** — era una **regressione di rete su poddgx02** (reboot
->    2026-07-06 17:22 → bond1 LACP morto → `/home` NFS non montata), riparata dagli admin (ping NFS OK,
->    `/home` montata). NON era autofs (mia 1ª diagnosi sbagliata), NON codice/quota. Debug sistematico
->    via subagent adversariale + `srun`. Dettagli: §Note DGX + memoria `dgx_storage_projects_not_home`.
->    Bonus: quota `/home` liberata 9.9G→380G (`sc-gpu-benchmark` 170G → `/mnt/projects`, verificato).
-> 3. **Smoke girato (2026-07-07, job 29665 COMPLETED)**: 17/17 predictions valid_schema. **Mistral 13/13
->    mislabel corretti** (carnitine→LPS, Antistreptolysin→AML, Netherlands→NSCLC, Pemphigoid→HCC,
->    acetone→estradiol…). Gate DA RIVEDERE: **Recall 69,2%, Precision 81,8%, canary false-alarm 1/4** — tutto
->    per il **resolver** (citochine full-name non mappano sul symbol HGNC: interleukin-6, TNF-alpha,
->    interferon beta → MeSH/miss; estradiol variante), NON per Mistral.
-> 4. **PROSSIMO (handout)**: migliorare `.resolve_canonical_to_id` per le citochine (sinonimo→HGNC symbol,
->    preferenza HGNC per cytokine_stim) + variante estradiol, TDD → re-smoke → se PASS full run T13 sui 125 →
->    closeout. Branch invariato, master invariato, 8 commit non pushati. Memorie: [[project_stage3_minestrone_rework]].
+> 1. **Fix #1 resolver citochine** (commit `36756ac`, TDD, `R/name-cleanup.R`): lo smoke 29665 aveva Mistral
+>    13/13 semantico ma il resolver mancava le citochine full-name. Cause (dati reali): Mistral emette `kind`
+>    LIBERO `"cytokine"` (schema kind=string, no enum) → dispatch nel catch-all dove MeSH precede HGNC →
+>    interferon/TNF → MeSH invece del gene; + full-name non sono symbol HGNC; + `"17-beta-estradiol"` non
+>    matcha alias ChEBI. Fix: `.canonicalize_resolver_kind` (vocabolario→enum) + `try_cytokine` lookup
+>    **WHOLE-STRING** ImmPort/HGNC/UniProt + gate whitelist + `.normalize_greek_stereo`
+>    (`17-beta-estradiol`→`17β-estradiol`). **Review adversariale (subagent)** ha trovato PRECISION LEAK
+>    IMPORTANT (il 1° tentativo usava `.normalize_cytokine_to_hgnc` che fa token-extraction: `"IL-6 receptor"`
+>    →HGNC:IL6 spurio) → corretto a whole-string. Verifica: 45 test resolve + 19/19 sui dizionari reali.
+> 2. **Fix #2 current_ids full-run** (commit `d6587c8`, `p5-name-cleanup-run.R`): lo script passava
+>    `current_ids = anchor_key` completo (`kind|ID|tissue|…`) mentre la policy confronta l'ID ontologico del
+>    resolver → `noop` mai raggiunto → override/flag_review gonfiati (48/62 flag + 17/100 override = noop
+>    mascherati). Fix: `current_ids = extract_anchor_summary(...)$agent_id`.
+> 3. **Smoke re-eval PASS** (sulle stesse predictions 29665, resolver fixato): Recall 69,2%→**100% (13/13)**,
+>    Precision 81,8%→**100%**, canary false-alarm 25%→**0%**.
+> 4. **Full run T13** (job 29670, 193 record = 125 candidate + 68 canary, wall 1m31s, 193/193 valid_schema):
+>    **override 83** (correzioni genuine, new_id CHEBI 34/HGNC 13/MeSH 36), **noop 65** (già corretti),
+>    **flag_review 14** (disaccordi → review umana; ~3 falsi da mismatch HGNC numero-vs-symbol KRAS/SF3B1/
+>    TP53), **keep 31** (resolver NONE: glioblastoma MeSH miss, Infliximab anticorpo, varianti genetiche).
+>    Scope B: **31 entità ≥2 cluster, max k_merged_est 91**.
+> 5. **TODO** (non bloccanti, coerenti coi TODO noti): (a) mismatch HGNC numero-vs-symbol nell'anchor_key vs
+>    resolver (gonfia flag_review geni; conservativo); (b) gap copertura resolver (glioblastoma/anticorpi) =
+>    materia LLM-fallback finale (DECISIONE C). Deliverable: `analysis/p4-output/name-cleanup-side-table-v1.rds`
+>    + `-fragmentation-v1.csv`. Branch invariato, master invariato, +3 commit (`36756ac`,`d6587c8` + ledger).
+>    Memorie: [[project_stage3_minestrone_rework]].
 >
 > **Stato 2026-07-06 (FULLRUN Stadio 4 v8 ESEGUITO + CLOSEOUT — ramo `rem_group` CHIUSO)**:
 > 🟢 **Il re-pool Stadio 4 v8 col ramo `rem_group` è girato end-to-end e la verifica anti-stale è
