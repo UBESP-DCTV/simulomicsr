@@ -115,6 +115,87 @@
   list(resolved_id = NA_character_, resolved_name = NA_character_, match_strength = "NONE")
 }
 
+# Vocabolario `kind` libero di Mistral -> enum del dispatch di
+# `.resolve_canonical_to_id`. Lo schema name_cleanup.v1.json vincola `kind` a
+# `type: string` SENZA enum: Mistral emette forme arbitrarie ("cytokine",
+# "chemokine", "pathogen", "vehicle_control"...). Se non allineate agli enum
+# dello switch, cadono sul catch-all che prova MeSH PRIMA di HGNC -> le
+# citochine full-name risolvono a MeSH:D0xxxx invece del gene HGNC (smoke
+# 2026-07-07). La mappa contiene SOLO i sinonimi non-canonici; i kind gia'
+# canonici o ignoti restano invariati (l'ignoto ricade sul catch-all).
+.CANONICAL_RESOLVER_KIND <- c(
+  cytokine             = "cytokine_stim",
+  cytokine_stimulation = "cytokine_stim",
+  chemokine            = "cytokine_stim",
+  interleukin          = "cytokine_stim",
+  interferon           = "cytokine_stim",
+  growth_factor        = "cytokine_stim",
+  pathogen             = "pathogen_or_aggregate_exposure",
+  infection            = "pathogen_or_aggregate_exposure",
+  pathogen_exposure    = "pathogen_or_aggregate_exposure",
+  vehicle              = "vehicle_only",
+  vehicle_control      = "vehicle_only",
+  disease              = "disease_vs_normal",
+  drug                 = "small_molecule",
+  compound             = "small_molecule")
+
+# Enum riconosciuti dallo switch di .resolve_canonical_to_id (per normalizzare
+# le varianti di FORMATO — maiuscole/spazi — di un kind gia' canonico, che
+# altrimenti cadrebbero sul default case-sensitive dello switch).
+.RESOLVER_SWITCH_KINDS <- c("small_molecule", "vehicle_only", "disease_vs_normal",
+                            "cytokine_stim", "pathogen_or_aggregate_exposure")
+
+#' Normalizza il `kind` grezzo emesso da Mistral all'enum atteso dal dispatch.
+#'
+#' Case-insensitive, separatori (spazi/trattini) collassati a `_`. Mappa i
+#' sinonimi non-canonici (es. "cytokine" -> "cytokine_stim"), e normalizza alla
+#' forma canonica anche le varianti di formato di un enum gia' noto (es.
+#' "Cytokine Stim" -> "cytokine_stim"). Kind non riconosciuto: invariato (a
+#' valle il catch-all prova tutte le ontologie).
+#'
+#' @param kind character(1) kind grezzo (scalare non-NA garantito dal chiamante).
+#' @return character(1) enum canonico o `kind` invariato.
+#' @keywords internal
+#' @noRd
+.canonicalize_resolver_kind <- function(kind) {
+  key <- gsub("[[:space:]-]+", "_", tolower(trimws(kind)))
+  hit <- .CANONICAL_RESOLVER_KIND[key]
+  if (!is.na(hit)) return(unname(hit))
+  if (key %in% .RESOLVER_SWITCH_KINDS) return(key)  # variante di formato di un enum
+  kind                                              # ignoto: invariato (catch-all)
+}
+
+# Descrittori stereochimici greci scritti a parola -> lettera greca. Usati per
+# ritentare il lookup ChEBI quando la forma testuale ("17-beta-estradiol") non
+# matcha l'alias ontologico ("17beta-estradiol"/"17β-estradiol").
+.GREEK_STEREO_WORDS <- c(alpha = "α", beta = "β", gamma = "γ",
+                         delta = "δ", epsilon = "ε")
+
+#' Compatta i descrittori stereo del tipo "numero-parolagreca" nella forma
+#' ontologica "numero+letteragreca".
+#'
+#' Trasforma solo i descrittori ANCORATI a una cifra (es. `17-beta-`,
+#' `17beta-`, `17-β-` -> `17β-`): il vincolo sulla cifra evita di
+#' toccare nomi in cui "beta"/"alpha" sono parte del nome comune (es.
+#' "beta-estradiol", che ChEBI risolve gia' cosi'). La forma risultante viene
+#' comunque ri-validata contro ChEBI dal chiamante (precision gate).
+#'
+#' @param s character(1) nome gia' passato per `.strip_name_markup`.
+#' @return character(1) nome con i descrittori stereo compattati.
+#' @keywords internal
+#' @noRd
+.normalize_greek_stereo <- function(s) {
+  if (length(s) != 1L || is.na(s)) return(s)
+  # (a) cifra + parola greca (trattino opzionale) -> cifra + lettera greca
+  for (w in names(.GREEK_STEREO_WORDS)) {
+    s <- gsub(paste0("([0-9])-?", w, "\\b"), paste0("\\1", .GREEK_STEREO_WORDS[[w]]),
+              s, ignore.case = TRUE, perl = TRUE)
+  }
+  # (b) cifra-letteragreca (trattino) -> cifra + lettera greca
+  s <- gsub("([0-9])-(α|β|γ|δ|ε)", "\\1\\2", s, perl = TRUE)
+  s
+}
+
 #' Risolve un nome canonico a un ID di ontologia controllata (precision gate).
 #'
 #' Dispatcha sull'accessor giusto in base al `kind` atteso e ritorna un match
@@ -136,8 +217,43 @@
 
   try_chebi <- function() {
     hit <- .chebi_lookup_alias(nm, env)
+    if (is.null(hit)) {
+      # 2o tentativo: compatta i descrittori stereo greci scritti a parola
+      # ("17-beta-estradiol" -> "17β-estradiol") e ri-valida su ChEBI. La
+      # forma diretta e' provata PRIMA, quindi i nomi che ChEBI risolve gia'
+      # (es. "beta-estradiol") non vengono alterati.
+      nm2 <- .normalize_greek_stereo(nm)
+      if (!identical(nm2, nm)) hit <- .chebi_lookup_alias(nm2, env)
+    }
     if (is.null(hit)) return(NULL)
     list(resolved_id = paste0("CHEBI:", hit$chebi_id), resolved_name = nm, match_strength = "STRONG")
+  }
+  try_cytokine <- function() {
+    # I nomi-citochina full-name ("interleukin-6", "TNF-alpha", "interferon
+    # beta") NON sono symbol HGNC: risolvili via ImmPort/HGNC/UniProt col gate
+    # whitelist citochine. Match WHOLE-STRING (sul nome intero): a differenza
+    # di .normalize_cytokine_to_hgnc (name-recovery Stadio 3) NON si spezza in
+    # token, perche' il resolver e' precision-gated e il nome e' gia'
+    # canonicalizzato dall'LLM. Il token-stealing darebbe override spuri (es.
+    # "IL-6 receptor" = IL6R -> HGNC:IL6). Gli accessor normalizzano
+    # internamente grafie/separatori (.normalize_biological_mention).
+    hgnc_int <- NULL
+    hit <- .immport_lookup_synonym(nm, env)
+    if (!is.null(hit)) hgnc_int <- hit$hgnc_int
+    if (is.null(hgnc_int)) {
+      hs <- .hgnc_lookup_symbol(tolower(nm), env)
+      if (!is.null(hs)) hgnc_int <- hs$hgnc_int
+    }
+    if (is.null(hgnc_int)) {
+      hu <- .uniprot_lookup_name(nm, env)
+      if (!is.null(hu)) hgnc_int <- hu$hgnc_int
+    }
+    if (is.null(hgnc_int) || length(hgnc_int) != 1L || is.na(hgnc_int)) return(NULL)
+    # Gate whitelist: solo geni-citochina (un sinonimo puo' mappare un recettore)
+    if (!.is_cytokine_symbol(hgnc_int, env)) return(NULL)
+    info <- .hgnc_lookup_hgnc(hgnc_int, env)
+    symbol <- if (!is.null(info) && !is.null(info$symbol)) info$symbol else as.character(hgnc_int)
+    list(resolved_id = paste0("HGNC:", symbol), resolved_name = symbol, match_strength = "STRONG")
   }
   try_mesh <- function() {
     hit <- .mesh_lookup_term(nm, env)
@@ -164,12 +280,16 @@
   # character(0)/NA/multi-elemento (possibile da JSON LLM malformato) cade
   # sulla catena catch-all invece di andare in errore.
   if (length(kind) != 1L || is.na(kind)) kind <- ""
+  # Allinea il vocabolario libero di Mistral ("cytokine", "pathogen"...) agli
+  # enum dello switch: senza questo passo le citochine cadrebbero sul catch-all
+  # (MeSH prima di HGNC). Vedi .canonicalize_resolver_kind + smoke 2026-07-07.
+  kind <- .canonicalize_resolver_kind(kind)
 
   chain <- switch(kind,
     small_molecule = list(try_chebi),
     vehicle_only   = list(try_chebi),
     disease_vs_normal = list(try_mesh),
-    cytokine_stim  = list(try_hgnc, try_chebi),
+    cytokine_stim  = list(try_cytokine, try_hgnc, try_chebi),
     pathogen_or_aggregate_exposure = list(try_taxon, try_chebi),
     list(try_chebi, try_mesh, try_hgnc, try_taxon))  # kind ignoto: prova tutto
 
