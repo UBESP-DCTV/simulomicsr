@@ -28,8 +28,17 @@ if (ACTION == "submit") {
   cli_alert_info("Candidati: {nrow(cand)} ({sum(cand$role=='candidate')} candidate + {sum(cand$role=='canary')} canary)")
 
   s3 <- load_stage3(STAGE3)
-  current_ids <- setNames(s3$clusters$anchor_key, s3$clusters$cluster_id)
-  current_ids <- current_ids[cand$cluster_id]
+  # current_ids = ID ontologico (agent_id) ESTRATTO dall'anchor_key, NON
+  # l'anchor_key completo (kind|ID|tissue|...): .apply_name_cleanup_policy
+  # confronta l'ID corrente col resolved_id ontologico che il resolver
+  # produce; passare l'anchor_key intero rende identical() sempre FALSE ->
+  # noop mai raggiunto -> override/flag_review gonfiati. level/mode dal cluster_id.
+  ak_full <- setNames(s3$clusters$anchor_key, s3$clusters$cluster_id)[cand$cluster_id]
+  ak_lvl  <- as.integer(sub("^[a-z]+_L([0-9])_.*$", "\\1", cand$cluster_id))
+  ak_mode <- sub("^([a-z]+)_L[0-9]_.*$", "\\1", cand$cluster_id)
+  current_ids <- setNames(vapply(seq_along(ak_full), function(i)
+    extract_anchor_summary(ak_full[i], level = ak_lvl[i], mode = ak_mode[i])$agent_id %||% NA_character_,
+    character(1)), cand$cluster_id)
 
   source("analysis/audit/_gsm-lookup-helper.R")
   rec_env <- build_record_gsm_lookup(STAGE2)
