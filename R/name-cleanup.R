@@ -137,13 +137,52 @@
   vehicle_control      = "vehicle_only",
   disease              = "disease_vs_normal",
   drug                 = "small_molecule",
-  compound             = "small_molecule")
+  compound             = "small_molecule",
+  chemical             = "small_molecule",
+  # Vocabolario genetico realmente emesso da Mistral nel full run T13: l'entita'
+  # e' un GENE -> va risolta su HGNC, non su MeSH/ChEBI (es. "APOE" genotipo e4
+  # finiva su MeSH:D001057 = la proteina, invece che sul gene).
+  genetic_variant        = "genetic_perturbation",
+  genetic_knockdown      = "genetic_perturbation",
+  genetic_knockout       = "genetic_perturbation",
+  genetic_mutation       = "genetic_perturbation",
+  genetic_overexpression = "genetic_perturbation",
+  protein_overexpression = "genetic_perturbation",
+  gene_mutation          = "genetic_perturbation",
+  gene_knockdown         = "genetic_perturbation",
+  gene_knockout          = "genetic_perturbation",
+  gene                   = "genetic_perturbation")
 
 # Enum riconosciuti dallo switch di .resolve_canonical_to_id (per normalizzare
 # le varianti di FORMATO — maiuscole/spazi — di un kind gia' canonico, che
 # altrimenti cadrebbero sul default case-sensitive dello switch).
 .RESOLVER_SWITCH_KINDS <- c("small_molecule", "vehicle_only", "disease_vs_normal",
-                            "cytokine_stim", "pathogen_or_aggregate_exposure")
+                            "cytokine_stim", "pathogen_or_aggregate_exposure",
+                            "genetic_perturbation")
+
+#' Porta un ID gene alla forma canonica `HGNC:<numero>`.
+#'
+#' Negli anchor lo stesso gene puo' comparire come `HGNC:6407` (numero, da
+#' `R/anchors.R`) o come `HGNC:KRAS` (sigla, dal recupero-nome): due identita'
+#' distinte per lo stesso gene. L'ID canonico e' il **numero** HGNC, stabile nel
+#' tempo (i simboli vengono rinominati); il simbolo resta come etichetta
+#' leggibile — stesso pattern di `gene_id`/`gene_symbol` nello Stadio 4.
+#' Risolve anche gli alias storici (`BSF2` -> il gene IL6). Un simbolo non
+#' risolvibile o un ID non-HGNC vengono restituiti invariati (nessuna invenzione).
+#'
+#' @param id character(1) ID (qualsiasi ontologia).
+#' @param env environment dizionari ontologia.
+#' @return character(1) `HGNC:<hgnc_int>` se `id` e' un gene risolvibile, altrimenti `id`.
+#' @keywords internal
+#' @noRd
+.canonicalize_gene_id <- function(id, env = .load_ontology_dicts()) {
+  if (length(id) != 1L || is.na(id) || !startsWith(id, "HGNC:")) return(id)
+  val <- sub("^HGNC:", "", id)
+  if (grepl("^[0-9]+$", val)) return(id)          # gia' canonico
+  hit <- .hgnc_lookup_symbol(tolower(val), env)
+  if (is.null(hit) || length(hit$hgnc_int) != 1L || is.na(hit$hgnc_int)) return(id)
+  paste0("HGNC:", hit$hgnc_int)
+}
 
 #' Normalizza il `kind` grezzo emesso da Mistral all'enum atteso dal dispatch.
 #'
@@ -253,7 +292,30 @@
     if (!.is_cytokine_symbol(hgnc_int, env)) return(NULL)
     info <- .hgnc_lookup_hgnc(hgnc_int, env)
     symbol <- if (!is.null(info) && !is.null(info$symbol)) info$symbol else as.character(hgnc_int)
-    list(resolved_id = paste0("HGNC:", symbol), resolved_name = symbol, match_strength = "STRONG")
+    list(resolved_id = paste0("HGNC:", hgnc_int), resolved_name = symbol, match_strength = "STRONG")
+  }
+  try_gene <- function() {
+    # Perturbazione genetica (knockdown/knockout/variante/overexpression): il
+    # nome e' un GENE. Match WHOLE-STRING: (1) simbolo o alias storico HGNC,
+    # (2) nome esteso della proteina via UniProt ("androgen receptor" -> AR,
+    # non presente come simbolo). Nessun gate citochine, nessun fallback MeSH:
+    # per una perturbazione genetica MeSH e' il namespace sbagliato (il
+    # catch-all mandava "APOE" su MeSH:D001057, la proteina, invece che sul
+    # gene). Nomi non-gene (GFP, siRNA, varianti) restano non risolti.
+    hgnc_int <- NULL
+    hit <- .hgnc_lookup_symbol(tolower(nm), env)
+    if (!is.null(hit)) hgnc_int <- hit$hgnc_int
+    if (is.null(hgnc_int)) {
+      hu <- .uniprot_lookup_name(nm, env)
+      if (!is.null(hu)) hgnc_int <- hu$hgnc_int
+    }
+    if (is.null(hgnc_int) || length(hgnc_int) != 1L || is.na(hgnc_int)) return(NULL)
+    symbol <- if (!is.null(hit)) hit$primary_symbol else {
+      info <- .hgnc_lookup_hgnc(hgnc_int, env)
+      if (!is.null(info) && !is.null(info$symbol)) info$symbol else as.character(hgnc_int)
+    }
+    list(resolved_id = paste0("HGNC:", hgnc_int),
+         resolved_name = symbol %||% nm, match_strength = "STRONG")
   }
   try_mesh <- function() {
     hit <- .mesh_lookup_term(nm, env)
@@ -263,11 +325,11 @@
   try_hgnc <- function() {
     hit <- .hgnc_lookup_symbol(nm, env)
     if (is.null(hit)) return(NULL)
-    # Usa il simbolo canonico ritornato dall'accessor (NON l'input grezzo):
-    # .hgnc_lookup_symbol risolve sia simboli primari che alias storici (es.
-    # "BSF2" -> IL6), quindi l'ID va costruito sul primary_symbol per non
-    # rompere il dedup cross-studio (mirror di R/anchors.R HGNC path).
-    list(resolved_id = paste0("HGNC:", hit$primary_symbol),
+    # ID canonico = HGNC:<numero> (stabile), coerente con R/anchors.R. Il
+    # simbolo canonico dell'accessor (NON l'input grezzo: "BSF2" -> IL6) va in
+    # resolved_name come etichetta leggibile. Usare la sigla come ID
+    # frammenterebbe il dedup cross-studio (HGNC:6407 vs HGNC:KRAS).
+    list(resolved_id = paste0("HGNC:", hit$hgnc_int),
          resolved_name = hit$primary_symbol %||% nm, match_strength = "STRONG")
   }
   try_taxon <- function() {
@@ -290,6 +352,7 @@
     vehicle_only   = list(try_chebi),
     disease_vs_normal = list(try_mesh),
     cytokine_stim  = list(try_cytokine, try_hgnc, try_chebi),
+    genetic_perturbation = list(try_gene, try_chebi),
     pathogen_or_aggregate_exposure = list(try_taxon, try_chebi),
     list(try_chebi, try_mesh, try_hgnc, try_taxon))  # kind ignoto: prova tutto
 
@@ -387,7 +450,11 @@ run_name_cleanup <- function(candidates, current_ids, member_metadata, llm_fn,
       conf <- out$confidence %||% "low"; ev <- out$evidence %||% NA_character_
       res <- .resolve_canonical_to_id(out$canonical_name, ckind, env)
     }
-    pol <- .apply_name_cleanup_policy(unname(current_ids[cid]), conf, res, candidates$role[i])
+    # Confronto canonico: negli anchor lo stesso gene puo' essere HGNC:6407 o
+    # HGNC:KRAS. Senza canonicalizzare, un cluster gia' corretto risulterebbe
+    # "cambiato" (override/flag_review spurio) per sola differenza di formato.
+    pol <- .apply_name_cleanup_policy(.canonicalize_gene_id(unname(current_ids[cid]), env),
+                                      conf, res, candidates$role[i])
     tibble::tibble(
       cluster_id = cid, old_id = unname(current_ids[cid]), old_label = candidates$name[i],
       new_canonical = res$resolved_name, new_id = pol$new_id, new_kind = ckind,
@@ -509,7 +576,9 @@ run_name_cleanup <- function(candidates, current_ids, member_metadata, llm_fn,
       proposed <- out$canonical_name
       res <- .resolve_canonical_to_id(out$canonical_name, ckind, env)
     }
-    pol <- .apply_name_cleanup_policy(unname(current_ids[cid]), conf, res, candidates$role[i])
+    # Confronto canonico dell'ID gene (HGNC:6407 == HGNC:KRAS): vedi run_name_cleanup.
+    pol <- .apply_name_cleanup_policy(.canonicalize_gene_id(unname(current_ids[cid]), env),
+                                      conf, res, candidates$role[i])
     conflicting_id <- if (identical(pol$action, "flag_review")) res$resolved_id else NA_character_
     tibble::tibble(
       cluster_id = cid, old_id = unname(current_ids[cid]), old_label = candidates$name[i],
