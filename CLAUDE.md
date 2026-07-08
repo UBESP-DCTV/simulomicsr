@@ -49,10 +49,30 @@
 >    **flag_review 14** (disaccordi → review umana; ~3 falsi da mismatch HGNC numero-vs-symbol KRAS/SF3B1/
 >    TP53), **keep 31** (resolver NONE: glioblastoma MeSH miss, Infliximab anticorpo, varianti genetiche).
 >    Scope B: **31 entità ≥2 cluster, max k_merged_est 91**.
-> 5. **TODO** (non bloccanti, coerenti coi TODO noti): (a) mismatch HGNC numero-vs-symbol nell'anchor_key vs
->    resolver (gonfia flag_review geni; conservativo); (b) gap copertura resolver (glioblastoma/anticorpi) =
->    materia LLM-fallback finale (DECISIONE C). Deliverable: `analysis/p4-output/name-cleanup-side-table-v1.rds`
->    + `-fragmentation-v1.csv`. Branch invariato, master invariato, +3 commit (`36756ac`,`d6587c8` + ledger).
+> 5. **Fix #3 IDENTITÀ DEL GENE** (commit `bb802ae` resolver + `8dcd91e` sorgente): la review dei 14 flag_review
+>    ha fatto emergere che **lo stesso gene aveva due ID** — `R/anchors.R` emette `HGNC:<numero>`, il
+>    recupero-nome (citochine + K2) emetteva `HGNC:<simbolo>`. **Misura su anchor v7**: 39.096 cluster con
+>    gene (37.160 numerici + 1.936 sigla), **61 geni in entrambi i formati**, **80 gruppi si fonderebbero**
+>    (160 cluster), **3 meta-analisi oggi perse** sotto k≥3 (PF4/TGFB1/TNF) + 2 con più potenza; 5/503 cluster
+>    poolati (v8) hanno un gene, 1 frammentato; **0 alias non canonici**. **Errore di OMISSIONE** (i pool
+>    esistenti restano corretti) → NON giustifica un re-cluster dedicato (~20h). Fix: **ID canonico
+>    `HGNC:<numero>`** (stabile; simbolo = etichetta, come `gene_id`/`gene_symbol` FASE E1) in
+>    `.normalize_cytokine_to_hgnc` + K2 + resolver; `.canonicalize_gene_id` (`HGNC:KRAS`≡`HGNC:6407`); ramo
+>    `genetic_perturbation` (gene prima di ChEBI, **niente MeSH**) con `try_gene` whole-string HGNC+**UniProt**
+>    (`androgen receptor`→`HGNC:644`; canary 8/8 NULL); **cache lookup v4→v5** (obbligatorio). Si materializza
+>    al prossimo re-cluster. Suite anchor+name-cleanup+name-recovery+stage3: **1405 PASS / 0 FAIL**.
+> 6. **Full run re-eval finale**: override 83, **flag_review 14→10** (KRAS/SF3B1/TP53/APOE → noop: l'anchor era
+>    giusto), noop 65→67, keep 31→33. `androgen receptor` MeSH:D011944→HGNC:644; GFP/HPV16-E7: override MeSH
+>    spurio → keep. **Review dei 14**: 2 presunti *canary* erano gravemente mal-etichettati (JQ1 anchor
+>    "D-cicloserina"; 4-OH-tamoxifene anchor "metil-idrossipalmitato") → il canary NON è un puro controllo di
+>    non-regressione. 1 cluster è una **combo** (estradiolo+R5020) che nessuno dei due ID cattura.
+> 7. **TODO** (non bloccanti): (a) `R/stage3-anchor-levels.R:154` fabbrica `HGNC:<target grezzo>` (es.
+>    `HGNC:DTMYC`) per target mediated_effect ignoti a HGNC — stessa classe del fix I2, andrebbe `STR:` (5 sigle
+>    in v7); (b) gap copertura resolver (glioblastoma/anticorpi/varianti/siRNA) = materia **LLM-fallback finale**
+>    (DECISIONE C); (c) combo non modellate; (d) `kind` genetic_overexpression su cluster che sono *genotipi*
+>    (APOE e4) = questione K2. Deliverable: `analysis/p4-output/name-cleanup-side-table-v1.rds` +
+>    `-fragmentation-v1.csv`. Finding aggiornato con review dei 14 + misura frammentazione. Branch invariato,
+>    master invariato, +5 commit (`36756ac`,`d6587c8`,`c66d844`,`bb802ae`,`8dcd91e`).
 >    Memorie: [[project_stage3_minestrone_rework]].
 >
 > **Stato 2026-07-06 (FULLRUN Stadio 4 v8 ESEGUITO + CLOSEOUT — ramo `rem_group` CHIUSO)**:

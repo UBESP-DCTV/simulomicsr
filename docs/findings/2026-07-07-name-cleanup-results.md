@@ -106,14 +106,94 @@ merge cross-cluster), **max k_merged_est 91** studi. Segnale che uno scope B
 (merge cross-cluster) riunirebbe una frazione non banale del corpus. Deliverable
 `analysis/p4-output/name-cleanup-fragmentation-v1.csv`.
 
-## Limiti / TODO (non bloccanti, coerenti coi TODO noti)
+## Review umana dei 14 flag_review (letta sui metadati grezzi)
 
-1. **Mismatch HGNC numero-vs-symbol** nell'anchor_key (`HGNC:6407`) vs resolver
-   (`HGNC:KRAS`): gonfia i flag_review sui geni. Conservativo (nessun override
-   errato), ma andrebbe normalizzato per una misura pulita dei disaccordi geni.
-2. **Gap copertura resolver** (glioblastoma via MeSH, anticorpi monoclonali non
-   in ChEBI, varianti genetiche): materia del **LLM-fallback finale** già
-   previsto (DECISIONE C precision-gated) sui residui.
+I disaccordi **non applicati** si sono rivelati un mix istruttivo. Due presunti
+*canary* (cluster ritenuti ben nominati) erano **gravemente mal-etichettati** —
+il che indebolisce l'assunzione del canary come puro controllo di
+non-regressione: un "falso allarme" può essere un vero positivo.
+
+| Anchor attuale (nome vero) | Metadati grezzi | Verdetto |
+|---|---|---|
+| **D-cicloserina** (antibiotico) | `500 nM JQ1 (DMSO)`, H23 lung | Mistral ha ragione → JQ1 (`CHEBI:137113`) |
+| **metil-(S)-3-idrossipalmitato** (lipide) | `100 nM 4-hydroxytamoxifen`, MCF7 | Mistral ha ragione → afimoxifene (`CHEBI:44616`) |
+| estradiolo | `10nM Estradiol **+ 10 nM R5020**` | **Nessuno dei due**: è una co-somministrazione → serve un ID-combo |
+| gene **APOE** | `apoe genotype: e4`, `4_4`, astrociti iPSC | L'attuale è giusto. È un *genotipo*, non "overexpression" (il `kind` è scorretto) |
+| **Influenza A virus** (`11320`) | reassortant A/PR/1934, A/WSN/1933, PR8 | L'attuale è giusto e più specifico |
+| cloruro di calcio diidrato / calcium(2+) | `1.2 mM calcium`, `1.8 mM CaCl2` | Mistral propone `calcium atom` (elemento neutro): **peggiora**. L'agente è Ca²⁺ |
+| Leukemia / Liver Neoplasms / Lung Neoplasms | linee THP-1/MOLM13, HCC, adenocarcinoma | Mistral è **più specifico** (AML, HCC, adenocarcinoma polmonare) |
+
+## Identità del gene: frammentazione misurata e chiusa
+
+Il caso APOE ha fatto emergere un difetto **a monte**: lo stesso gene aveva due
+identificatori. `R/anchors.R` emette `HGNC:<hgnc_int>`; il recupero-nome
+(citochine, K2 genetico) emetteva `HGNC:<simbolo>`.
+
+**Misura sugli anchor v7** (278.433 cluster group):
+
+| | |
+|---|---:|
+| cluster con gene come agente | 39.096 |
+| formato numerico (`HGNC:6407`) | 37.160 |
+| formato sigla (`HGNC:KRAS`) | 1.936 |
+| geni presenti in **entrambi** i formati | 61 |
+| gruppi che si **fonderebbero** (anchor completo identico) | **80** (160 cluster) |
+| **meta-analisi oggi perse** (sotto k≥3, che unendo la superano) | **3** — PF4, TGFB1, TNF |
+| meta-analisi già fatte che guadagnerebbero studi | 2 |
+| cluster poolati nello Stadio 4 v8 con gene come agente | 5 / 503 (1 frammentato) |
+| alias non canonici (terzo ID) | **0** |
+
+**Natura dell'errore: omissione, non commissione.** I pool esistenti sono
+corretti; si perdono 3 meta-analisi e un po' di potenza. Non giustifica un
+re-cluster dedicato (~20h); il fix è nel codice e si materializzerà al prossimo
+re-cluster.
+
+### Fix (commit `bb802ae`, `8dcd91e`)
+
+- **ID gene canonico = `HGNC:<numero>`** (stabile: i simboli vengono rinominati);
+  il simbolo resta l'etichetta leggibile — stesso pattern di
+  `gene_id`/`gene_symbol` nello Stadio 4 (FASE E1). Allineati
+  `.normalize_cytokine_to_hgnc`, il path K2 genetico e il resolver name-cleanup.
+- `.canonicalize_gene_id()`: `HGNC:KRAS` ≡ `HGNC:6407` nei confronti della policy.
+- Nuovo ramo `genetic_perturbation` (kind emessi da Mistral: `genetic_variant`,
+  `genetic_knockdown`, `gene_mutation`, `protein_overexpression`, …) → gene
+  **prima** di ChEBI, **senza fallback MeSH** (per una perturbazione genetica
+  MeSH è il namespace sbagliato). `try_gene` fa match whole-string su
+  simbolo/alias HGNC **+ nome esteso via UniProt** (`androgen receptor` →
+  `HGNC:644`). Canary precisione: 8/8 NULL (tamoxifen, DMSO, LPS, prostate
+  cancer, hypoxia, control, vehicle → nessun gene spurio).
+- **Cache `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION` v4 → v5** (obbligatorio: altrimenti
+  il prossimo re-cluster servirebbe un lookup stale).
+
+### Effetto sul full run (re-eval, stesse predictions)
+
+| Azione | prima | dopo |
+|---|---:|---:|
+| override | 83 | **83** |
+| flag_review | 14 | **10** |
+| noop | 65 | **67** |
+| keep | 31 | **33** |
+
+- I 4 falsi allarmi sui geni (KRAS, SF3B1, TP53, APOE) → **noop** (l'anchor era giusto).
+- `androgen receptor`: `MeSH:D011944` → **`HGNC:644`** (namespace corretto per un knockdown).
+- `GFP` e `HPV16 E7`: prima forzati su un MeSH spurio → ora **keep** (non sono geni umani).
+
+## Limiti / TODO (non bloccanti)
+
+1. **`R/stage3-anchor-levels.R:154` fabbrica `HGNC:<target grezzo>`** per i target
+   `mediated_effect` che HGNC non conosce (es. `HGNC:DTMYC`). Stessa classe del
+   fix "I2" già chiuso in `name-recovery.R:346` (*non fabbricare ID inesistenti*):
+   andrebbe `STR:<slug>`. Impatto: 5 sigle non risolvibili negli anchor v7.
+2. **Gap copertura resolver**: `glioblastoma` (MeSH miss), anticorpi monoclonali
+   (Infliximab, non in ChEBI), varianti genetiche (`EGFR exon 19 deletion`),
+   reagenti generici (siRNA, GFP) → `keep`. Materia del **LLM-fallback finale**
+   già previsto (DECISIONE C, precision-gated).
+3. **Combo non modellate**: il cluster `estradiolo + R5020` mostra che una
+   co-somministrazione non ha oggi un ID unico (la pipeline ha un ID-combo `+`
+   per i composti, non usato qui).
+4. Il `kind` `genetic_overexpression` su cluster che sono in realtà **genotipi**
+   (APOE e4/e3) è scientificamente scorretto — questione di classificazione K2,
+   non di risoluzione ID.
 
 ## Deliverable
 
