@@ -353,7 +353,11 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
     if (!is.na(g$target)) {
       hgnc_hit <- .hgnc_lookup_symbol(g$target, env = ontology_env)
       if (!is.null(hgnc_hit) && !is.null(hgnc_hit$primary_symbol)) {
-        agent_id       <- paste0("HGNC:", hgnc_hit$primary_symbol)
+        # ID = HGNC:<numero> (identita' stabile, coerente con R/anchors.R). Il
+        # simbolo e' l'etichetta leggibile: usarlo come ID frammenterebbe lo
+        # stesso gene in due entita' (HGNC:11998 vs HGNC:TP53) e i cluster
+        # non si fonderebbero nel pooling cross-studio.
+        agent_id       <- paste0("HGNC:", hgnc_hit$hgnc_int)
         canonical_name <- hgnc_hit$primary_symbol
       } else {
         agent_id <- paste0("STR:", .slugify(g$target))
@@ -627,7 +631,9 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
       symbol    <- if (!is.null(gene_info) && !is.null(gene_info$symbol))
                      gene_info$symbol else as.character(hgnc_int)
       return(list(
-        id     = paste0("HGNC:", symbol),
+        # ID = HGNC:<numero> (identita' stabile, coerente con R/anchors.R);
+        # `name` = simbolo, etichetta leggibile. Vedi commento in K2 sopra.
+        id     = paste0("HGNC:", hgnc_int),
         name   = symbol,
         source = src
       ))

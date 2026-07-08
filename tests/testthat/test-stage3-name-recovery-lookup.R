@@ -367,8 +367,9 @@ test_that("cache key v3: has_go_cytokine TRUE vs FALSE produce chiavi diverse", 
   expect_false(identical(k_true, k_false))
 })
 
-# La versione schema e' ora "v4" (bump da "v3" per invalidare il lookup stale
-# dopo il fix estrazione pathogen v7, commit 409aa0a).
-test_that("cache key v4: .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION e' 'v4'", {
-  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v4")
+# La versione schema e' ora "v5" (bump da "v4": l'ID gene diventa HGNC:<numero>
+# invece di HGNC:<simbolo> -> recover_identity cambia output, il lookup su disco
+# NON deve essere servito da cache v4).
+test_that("cache key v5: .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION e' 'v5'", {
+  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v5")
 })

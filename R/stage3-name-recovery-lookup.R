@@ -11,7 +11,12 @@
 # v3->v4 (2026-07-03): fix estrazione pathogen (commit 1fb1520) cambia l'output
 #   di recover_identity per i patogeni rumorosi (LPS/poly(I:C)/SARS-CoV-2 con
 #   dose/tempo/verbo) -> il lookup DEVE essere ricalcolato, non servito da cache v3.
-.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v4"
+# v4->v5 (2026-07-07): l'ID gene diventa HGNC:<numero> (era HGNC:<simbolo>) in
+#   .normalize_cytokine_to_hgnc e nel path K2 genetico. Identita' stabile e
+#   coerente con R/anchors.R: prima lo stesso gene aveva due ID (HGNC:11892 vs
+#   HGNC:TNF) e i cluster non si fondevano (80 gruppi, 3 meta-analisi perse).
+#   recover_identity cambia output -> il lookup DEVE essere ricalcolato.
+.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v5"
 
 # ---------------------------------------------------------------------------
 # Helper lettura H5 (isolato per testabilita')

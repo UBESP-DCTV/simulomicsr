@@ -100,10 +100,14 @@ test_that(".normalize_cytokine_to_hgnc: termine generico -> STR_FALLBACK", {
 })
 
 test_that(".normalize_cytokine_to_hgnc risolve IFN-beta a HGNC e gatekeepa i generici", {
-  # Test canonico dal brief: IFN-beta con dose -> ImmPort -> HGNC:IFNB1
+  # Test canonico dal brief: IFN-beta con dose -> ImmPort -> gene IFNB1.
+  # L'ID e' HGNC:<numero> (identita' stabile, coerente con R/anchors.R); il
+  # simbolo e' l'etichetta leggibile in $name. Usare la sigla come ID
+  # frammenterebbe lo stesso gene in due entita' (HGNC:5434 vs HGNC:IFNB1).
   env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx7)
   r <- .normalize_cytokine_to_hgnc("IFN-β 10 ng/ml", env)
-  expect_equal(r$id, "HGNC:IFNB1")
+  expect_match(r$id, "^HGNC:[0-9]+$")
+  expect_equal(r$name, "IFNB1")
   expect_equal(r$source, "CYTOKINE_IMMPORT")
   # generico -> STR_FALLBACK
   expect_equal(.normalize_cytokine_to_hgnc("interferon", env)$source, "STR_FALLBACK")
@@ -113,10 +117,12 @@ test_that(".normalize_cytokine_to_hgnc risolve IFN-beta a HGNC e gatekeepa i gen
 
 test_that(".normalize_cytokine_to_hgnc: percorso HGNC diretto (simbolo alias non in ImmPort)", {
   # BSF2 (B-cell stimulatory factor 2) e' alias HGNC di IL6 (hgnc_int=6018)
-  # NON e' nel mini-fixture ImmPort -> deve colpire il path HGNC
+  # NON e' nel mini-fixture ImmPort -> deve colpire il path HGNC.
+  # L'ID e' il numero canonico del gene, il simbolo va in $name.
   env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx7)
   r <- .normalize_cytokine_to_hgnc("BSF2", env)
-  expect_equal(r$id, "HGNC:IL6")
+  expect_equal(r$id, "HGNC:6018")
+  expect_equal(r$name, "IL6")
   expect_equal(r$source, "CYTOKINE_HGNC")
 })
 
@@ -332,7 +338,7 @@ test_that(".detect_biological_mistype: IFN-beta (potrebbe essere small_mol errat
   r <- .detect_biological_mistype("ifn-beta", env)
   expect_false(is.null(r))
   expect_equal(r$kind, "cytokine_stim")
-  expect_equal(r$id, "HGNC:IFNB1")
+  expect_match(r$id, "^HGNC:[0-9]+$")   # ID gene = numero canonico (stabile)
 })
 
 test_that(".detect_biological_mistype: termine sconosciuto -> NULL (precision-first)", {
@@ -345,7 +351,8 @@ test_that("recover_identity dispatcha cytokine/pathogen e fa K3 su small_molecul
   env <- .load_ontology_dicts(refresh = TRUE, fixture_dir = .fx9)
   # Dispatch citochina: IFN-beta etichettato cytokine_stim -> HGNC:IFNB1
   rc <- recover_identity("", "agent: IFN-beta", "", "cytokine_stim", env)
-  expect_equal(rc$agent_id, "HGNC:IFNB1")
+  expect_match(rc$agent_id, "^HGNC:[0-9]+$")   # ID gene = numero canonico
+  expect_equal(rc$canonical_name, "IFNB1")     # simbolo = etichetta leggibile
   expect_equal(rc$kind, "cytokine_stim")
   # Dispatch patogeno: SARS-CoV-2 etichettato pathogen -> NCBITaxon:2697049
   rp <- recover_identity("", "agent: SARS-CoV-2", "", "pathogen_or_aggregate_exposure", env)

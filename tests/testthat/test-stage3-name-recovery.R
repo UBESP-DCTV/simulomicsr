@@ -232,7 +232,7 @@ test_that("recover_identity: K2 genetico mal-etichettato small_molecule -> kind 
 
 test_that("recover_identity: K2 target validato vs HGNC -> HGNC: solo se gene reale (I2)", {
   env <- .test_ontology_env_min()
-  # Target reale (TP53 in fixture) -> HGNC:<symbol canonico>
+  # Target reale (TP53 in fixture) -> HGNC:<numero canonico>, label = simbolo
   r_real <- recover_identity(
     source          = "cells",
     characteristics = "cell line: HCT116",
@@ -241,7 +241,7 @@ test_that("recover_identity: K2 target validato vs HGNC -> HGNC: solo se gene re
     ontology_env    = env
   )
   expect_match(r_real$kind, "^genetic_")
-  expect_equal(r_real$agent_id, "HGNC:TP53")
+  expect_equal(r_real$agent_id, "HGNC:11998")
   expect_equal(r_real$canonical_name, "TP53")
 
   # Token non-gene (DTMYC da una linea dTAG-MYC, assente da HGNC) -> NON HGNC:
@@ -442,8 +442,8 @@ test_that("recover_identity: malattia/genetico INVARIATI (retrocompat)", {
   expect_match(rg$kind, "genetic_")           # K2 ancora prevale
 })
 
-test_that("cache version bumpata a v4 (invalida lookup post-fix pathogen v7)", {
-  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v4")
+test_that("cache version bumpata a v5 (invalida lookup post ID gene numerico)", {
+  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v5")
 })
 
 # ---------------------------------------------------------------------------
