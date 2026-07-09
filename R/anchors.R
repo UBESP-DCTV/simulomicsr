@@ -304,7 +304,7 @@ make_inducer_log <- function(stage1_facts) {
 #'
 #' Decision table completa in spec sezione 4.2. Restituisce \code{canonical_id}
 #' deterministico (prefix \code{CHEBI:}, \code{HGNC:}, \code{MeSH:},
-#' \code{ChEMBL:}, \code{STR:}, o \code{UNK}) + \code{resolution_source} enum +
+#' \code{CHEMBL:}, \code{STR:}, o \code{UNK}) + \code{resolution_source} enum +
 #' \code{canonical_name} leggibile.
 #'
 #' Source enum: \code{CHEBI_DIRECT}, \code{CHEBI_FIELDSWAP},

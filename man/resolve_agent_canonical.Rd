@@ -20,7 +20,7 @@ named list con \code{canonical_id}, \code{canonical_name},
 \description{
 Decision table completa in spec sezione 4.2. Restituisce \code{canonical_id}
 deterministico (prefix \code{CHEBI:}, \code{HGNC:}, \code{MeSH:},
-\code{ChEMBL:}, \code{STR:}, o \code{UNK}) + \code{resolution_source} enum +
+\code{CHEMBL:}, \code{STR:}, o \code{UNK}) + \code{resolution_source} enum +
 \code{canonical_name} leggibile.
 }
 \details{

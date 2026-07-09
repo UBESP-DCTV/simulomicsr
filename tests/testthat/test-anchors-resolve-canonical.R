@@ -228,12 +228,12 @@ test_that("LLM_VEHICLE_LITERAL: type=vehicle, preferred_name='PBS' --> STR:pbs",
 
 # --- CHEMBL_NAKED_NOLOOKUP ---------------------------------------------------
 
-test_that("CHEMBL_NAKED_NOLOOKUP: id_database=ChEMBL --> ChEMBL:<id>, opaque", {
+test_that("CHEMBL_NAKED_NOLOOKUP: id_database=ChEMBL --> CHEMBL:<id>, opaque", {
   env <- .fixt()
   agent <- list(id_database = "ChEMBL", id = "CHEMBL1201626",
                 preferred_name = "doxorubicin-hcl", type = "small_molecule")
   res <- resolve_agent_canonical(agent, env = env)
-  expect_equal(res$canonical_id, "ChEMBL:CHEMBL1201626")
+  expect_equal(res$canonical_id, "CHEMBL:CHEMBL1201626")
   expect_equal(res$resolution_source, "CHEMBL_NAKED_NOLOOKUP")
 })
 
