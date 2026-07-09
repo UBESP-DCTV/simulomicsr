@@ -67,7 +67,11 @@ test_that("make_anchor produce anchor canonico v3 per VEGF cytokine HUVEC 1h", {
 test_that("make_anchor R8 mediated_effect: agente di interesse = mediated_effect.target", {
   facts <- read_fact("dox-teto-sox17")
   anchor <- make_anchor(facts, stage2_role = "perturbed")
-  expect_match(anchor, "^genetic_overexpression\\|HGNC:")
+  # R8: l'agente e' il TARGET mediato (SOX17), non l'induttore Dox. Il prefisso
+  # e' HGNC: se il target risolve (dict reale, SOX17->HGNC:18122) o STR: se non
+  # risolve nel dizionario del test (fix F6 v9 Task 1: target ignoto -> STR:, non
+  # piu' HGNC:<grezzo> fabbricato). L'intento R8 e' catturato da SOX17 + non-Dox.
+  expect_match(anchor, "^genetic_overexpression\\|(HGNC:|STR:)")
   expect_match(anchor, "SOX17")
   expect_false(grepl("Dox|small_molecule", anchor))
 })

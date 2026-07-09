@@ -276,7 +276,7 @@ test_that("mediated_effect target=TP53 --> resolved HGNC:11998 via STRING_ALIAS_
   expect_true(tm$kind_unvalidatable)  # gene HGNC kind=NONE
 })
 
-test_that("mediated_effect target=NONEXISTENT --> MEDIATED_HGNC_NO_LOOKUP fallback", {
+test_that("mediated_effect target=NONEXISTENT --> MEDIATED_STR_NO_LOOKUP fallback", {
   env <- .fixt_env()
   fact <- list(
     perturbations = list(list(
@@ -308,8 +308,10 @@ test_that("mediated_effect target=NONEXISTENT --> MEDIATED_HGNC_NO_LOOKUP fallba
                                                  ontology_env = env)
   tm <- attr(segs, "tracking_meta")
 
-  expect_equal(segs$agent_id, "HGNC:NONEXISTENT_GENE_XYZ")
-  expect_equal(tm$resolution_source, "MEDIATED_HGNC_NO_LOOKUP")
+  # Fix F6 v9 Task 1: target mediato ignoto a HGNC -> STR:<grezzo> (non piu'
+  # HGNC:<grezzo> fabbricato), resolution_source MEDIATED_STR_NO_LOOKUP.
+  expect_equal(segs$agent_id, "STR:NONEXISTENT_GENE_XYZ")
+  expect_equal(tm$resolution_source, "MEDIATED_STR_NO_LOOKUP")
 })
 
 # --- 13-segment interface invariata + tracking_meta attribute ----------------
