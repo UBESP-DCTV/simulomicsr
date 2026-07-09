@@ -16,7 +16,10 @@
 #   coerente con R/anchors.R: prima lo stesso gene aveva due ID (HGNC:11892 vs
 #   HGNC:TNF) e i cluster non si fondevano (80 gruppi, 3 meta-analisi perse).
 #   recover_identity cambia output -> il lookup DEVE essere ricalcolato.
-.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v5"
+# v5->v6 (2026-07-08): fix STR: per target mediated_effect ignoti a HGNC e
+#   uniforming ChEMBL: a CHEMBL: (20 cluster, da minoritario a canonico).
+#   recover_identity cambia output -> il lookup DEVE essere ricalcolato.
+.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v6"
 
 # ---------------------------------------------------------------------------
 # Helper lettura H5 (isolato per testabilita')

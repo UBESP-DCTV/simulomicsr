@@ -367,9 +367,17 @@ test_that("cache key v3: has_go_cytokine TRUE vs FALSE produce chiavi diverse", 
   expect_false(identical(k_true, k_false))
 })
 
-# La versione schema e' ora "v5" (bump da "v4": l'ID gene diventa HGNC:<numero>
-# invece di HGNC:<simbolo> -> recover_identity cambia output, il lookup su disco
-# NON deve essere servito da cache v4).
-test_that("cache key v5: .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION e' 'v5'", {
-  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v5")
+# La versione schema e' ora "v6" (bump da "v5": fix STR: per target mediated_effect
+# ignoti e uniforming ChEMBL: a CHEMBL: -> recover_identity cambia output, il lookup
+# su disco NON deve essere servito da cache v5).
+test_that("cache key v6: .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION e' 'v6'", {
+  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v6")
+})
+
+# v5->v6 (2026-07-08): fix STR: per target mediated_effect ignoti e CHEMBL:
+# uniforming (da ChEMBL: minoritario a CHEMBL: standard). recover_identity
+# cambia output per i geni STR e i composti ChEMBL -> il lookup su disco
+# NON deve essere servito da cache v5.
+test_that("schema version lookup bumpata post fix STR/ChEMBL", {
+  expect_identical(simulomicsr:::.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v6")
 })
