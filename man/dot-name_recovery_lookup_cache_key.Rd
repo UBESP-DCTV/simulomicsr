@@ -18,9 +18,11 @@
 
 \item{kind_by_gsm}{named list/env GSM -> llm_kind.}
 
-\item{ontology_env}{list/environment | NULL con campo \code{has_chembl}
-(logical) e \code{chembl$meta$chembl_release} (character). Default NULL
-trattato come has_chembl=FALSE, release=NA (retrocompatibilita' a 3 arg).}
+\item{ontology_env}{list/environment | NULL con i flag logici
+\code{has_chembl}, \code{has_taxonomy}, \code{has_immport},
+\code{has_uniprot}, \code{has_go_cytokine} e il campo
+\code{chembl$meta$chembl_release} (character). Default NULL trattato come
+tutti i flag FALSE, release=NA (retrocompatibilita' a 3 arg).}
 }
 \value{
 character(1) hash xxhash32 8-hex.

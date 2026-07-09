@@ -2,7 +2,8 @@
 % Please edit documentation in R/ontology-lookup.R
 \name{.load_ontology_dicts}
 \alias{.load_ontology_dicts}
-\title{Carica ChEBI + HGNC + MeSH + ChEMBL dictionary in env singleton, memoizzato}
+\title{Carica ChEBI + HGNC + MeSH + ChEMBL + Taxonomy + ImmPort + UniProt
+dictionary in env singleton, memoizzato}
 \usage{
 .load_ontology_dicts(
   refresh = FALSE,
@@ -15,26 +16,29 @@
 
 \item{cache_dir}{character(1): directory contenente i RDS full (default
 \code{tools::R_user_dir("simulomicsr","cache")}). chebi/hgnc/mesh sono
-OBBLIGATORI (stop se mancano); chembl e' OPZIONALE (se manca, chembl=NULL
-\itemize{
-\item has_chembl=FALSE, comportamento retrocompat). Usato solo se
-\code{fixture_dir} e' NULL.
-}}
+OBBLIGATORI (stop se mancano); chembl/taxonomy/immport/uniprot sono
+OPZIONALI (se mancano, indice=NULL + has_*=FALSE, comportamento graceful).
+Usato solo se \code{fixture_dir} e' NULL.}
 
 \item{fixture_dir}{character(1) | NULL: se non-NULL, carica i mini-subset
 \code{chebi-mini.rds}, \code{hgnc-mini.rds}, \code{mesh-mini.rds},
-\code{chembl-mini.rds} da questa directory invece dei file full. Usato
-per i test.}
+\code{chembl-mini.rds} (e opzionalmente \code{taxonomy-mini.rds},
+\code{immport-mini.rds}, \code{uniprot-mini.rds}) da questa directory
+invece dei file full. Usato per i test.}
 }
 \value{
 environment con elementi \code{chebi}, \code{hgnc}, \code{mesh},
-\code{chembl} (NULL se assente nel ramo reale), \code{has_chembl} (logical),
-\code{loaded=TRUE}, \code{source_dir}, \code{is_fixture}.
+\code{chembl} (NULL se assente), \code{taxonomy} (NULL se assente),
+\code{immport} (NULL se assente), \code{uniprot} (NULL se assente),
+\code{has_chembl}, \code{has_taxonomy}, \code{has_immport},
+\code{has_uniprot}, \code{has_go_cytokine} (logical), \code{loaded=TRUE},
+\code{source_dir}, \code{is_fixture}.
 }
 \description{
 Costruisce hash environment per ogni indice rilevante (by_id, aliases,
 secondary, has_role per ChEBI; by_hgnc_int, by_symbol_lower, by_entrez_int,
 aliases_long per HGNC; by_ui, by_entry_lower per MeSH; by_id, aliases per
-ChEMBL).
+ChEMBL; by_name/by_taxid per Taxonomy; by_synonym/cytokine_symbols per
+ImmPort; by_name per UniProt).
 }
 \keyword{internal}

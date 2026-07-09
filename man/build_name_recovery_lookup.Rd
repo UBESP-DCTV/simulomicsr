@@ -35,8 +35,9 @@ HGNC e MeSH.}
 (salva/rilegge un RDS). Default NULL = nessuna cache. La chiave
 include \code{.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION} + mtime H5
 \itemize{
-\item asse ChEMBL (has_chembl + release) per evitare hit stale e
-avvelenamento cross-content (lookup con/senza ChEMBL).
+\item asse ChEMBL (has_chembl + release) + asse biologici (has_taxonomy,
+has_immport, has_uniprot, has_go_cytokine) per evitare hit stale e
+avvelenamento cross-content (lookup con/senza fonti biologiche).
 }}
 
 \item{read_fn}{function | NULL reader iniettabile per testabilita'.

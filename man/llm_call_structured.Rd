@@ -17,14 +17,16 @@ llm_call_structured(
 )
 }
 \arguments{
-\item{provider}{stringa: \code{"openai"}, \code{"anthropic"}, o \code{"mock"} (per i test).}
+\item{provider}{stringa: \code{"openai"}, \code{"anthropic"}, \code{"openrouter"}, \code{"vllm"},
+o \code{"mock"} (per i test).}
 
 \item{model}{nome del modello (es. \code{"gpt-5.4-mini"})}
 
 \item{messages}{lista di messaggi nello schema OpenAI (\code{role} + \code{content})}
 
 \item{response_schema}{path a un file JSON Schema; la risposta dell'LLM
-viene validata contro questo schema}
+viene validata contro questo schema. Se \code{NULL}, la validazione e' saltata
+(\code{validated} nel valore di ritorno sara' \code{NA}).}
 
 \item{cache}{oggetto ritornato da \code{cache_init()}, o \code{NULL} per bypass}
 

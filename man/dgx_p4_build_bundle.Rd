@@ -18,9 +18,11 @@ dgx_p4_build_bundle(
 Per stage1: campi \code{record_id}, \code{geo_accession}, \code{series_id},
 \code{string}.
 Per stage2: campi \code{record_id}, \code{study_summary}, \code{samples}
-(lista).}
+(lista).
+Per name_cleanup (RED_ALERT F6 pulizia-nomi, scope A): campi
+\code{record_id}, \code{current_label}, \code{kind}, \code{member_metadata}.}
 
-\item{stage}{\code{"stage1"} o \code{"stage2"}.}
+\item{stage}{\code{"stage1"}, \code{"stage2"} o \code{"name_cleanup"}.}
 
 \item{config}{\code{simulomicsr_dgx_config} da \code{dgx_config()}.}
 

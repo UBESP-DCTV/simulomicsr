@@ -4,7 +4,12 @@
 \alias{.pool_rem_cluster}
 \title{Pool REM cluster con metafor::rma REML + DL fallback}
 \usage{
-.pool_rem_cluster(per_study_de_subset, method = "REML", fallback = "DL")
+.pool_rem_cluster(
+  per_study_de_subset,
+  method = "REML",
+  fallback = "DL",
+  method_label = "rem"
+)
 }
 \arguments{
 \item{per_study_de_subset}{tibble per-study DE filtrato per singolo cluster

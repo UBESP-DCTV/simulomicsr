@@ -2,7 +2,7 @@
 % Please edit documentation in R/ontology-lookup.R
 \name{.ontology_release_meta}
 \alias{.ontology_release_meta}
-\title{Restituisce metadata di release delle 4 dictionary correnti}
+\title{Restituisce metadata di release delle dictionary correnti}
 \usage{
 .ontology_release_meta(env = .load_ontology_dicts())
 }
@@ -11,10 +11,12 @@
 }
 \value{
 named list con elementi \code{chebi}, \code{hgnc}, \code{mesh},
-\code{chembl}.
+\code{chembl}, \code{taxonomy}, \code{immport}, \code{uniprot}.
 }
 \description{
 Usato da \code{build_stage3_clusters()} per registrare \code{ontology_releases}
 nel \code{run_metadata.json}, garantendo riproducibilita' paper-grade.
+I campi biologici (taxonomy/immport/uniprot) sono NULL se il dizionario
+corrispondente non e' stato caricato (has_*=FALSE).
 }
 \keyword{internal}

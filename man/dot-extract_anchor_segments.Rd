@@ -51,13 +51,16 @@ passano attraverso il resolver \code{resolve_agent_canonical()} +
 I valori LLM-original sono preservati in \code{attr(result, "tracking_meta")}
 per audit paper-grade.
 
-\strong{Recupero identita' (Task 9, rework Stadio 3):} se \code{recovery} e' non-NULL
-(record prodotto da \code{build_name_recovery_lookup()} per il GSM
+\strong{Recupero identita' (Task 9 + Fix-I1, rework Stadio 3):} se \code{recovery}
+e' non-NULL (record prodotto da \code{build_name_recovery_lookup()} per il GSM
 rappresentante), la funzione applica DOPO il calcolo ordinario due correzioni:
-(a) se \code{segs$agent_id == "UNK"} e \code{recovery$agent_id} e' non-NA,
-sostituisce \code{agent_id} + \code{canonical_name}; (b) se
-\code{recovery$kind} inizia con \code{"genetic_"} e differisce dal
-\code{kind_effective} calcolato, corregge il segmento (correzione K2).
+(a) se \code{segs$agent_id == "UNK"} oppure e' un ID debole \code{"STR:<slug>"}
+E il recovery porta un ID forte (\code{"HGNC:"}, \code{"CHEBI:"},
+\code{"NCBITaxon:"}, \code{"CHEMBL:"}), sostituisce \code{agent_id} +
+\code{canonical_name} (Fix-I1: riduce frammentazione \code{STR:lps} vs
+\code{CHEBI:16412} per la stessa entita'); (b) se \code{recovery$kind} inizia
+con \code{"genetic_"} e differisce dal \code{kind_effective} calcolato,
+corregge il segmento (correzione K2).
 I tre campi di traccia \code{recovery_source}, \code{agent_id_recovered},
 \code{kind_recovered} vengono aggiunti al \code{tracking_meta} SOLO quando
 \code{recovery} e' non-NULL, per garantire retrocompatibilita' stretta.
