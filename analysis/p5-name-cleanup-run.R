@@ -29,6 +29,18 @@ SIDE_RDS <- "analysis/p4-output/name-cleanup-side-table-v1.rds"
 FRAG_CSV <- "analysis/p4-output/name-cleanup-fragmentation-v1.csv"
 
 if (ACTION == "triage") {
+  # Guard: impedisci il clobber accidentale del CSV di riferimento se TRIAGE
+  # non e' esplicitamente impostato via env var.
+  if (TRIAGE == "analysis/audit/2026-07-05-stage4-popB-coherence-triage.csv") {
+    cli_abort(
+      "Azione 'triage': TRIAGE non esplicitamente impostato (valore default). \\
+      Non posso sovrascrivere il CSV di riferimento {.file {TRIAGE}}. \\
+      Per generare il triage v9, impostare TRIAGE a un path v9-specifico \\
+      (es. {.code TRIAGE=analysis/audit/2026-07-09-stage4-popB-coherence-triage-v9.csv}) \\
+      e STAGE3 alla dir Stadio 3 v9-final (non ai default). Poi ri-lanciare."
+    )
+  }
+
   cli_h1("Name-cleanup — genera triage v9 dai cluster (.build_suspect_triage)")
   cl <- load_stage3(STAGE3)$clusters
   tr <- simulomicsr:::.build_suspect_triage(cl)
