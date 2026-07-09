@@ -7,22 +7,38 @@
 #   0:53 zero-log; provare poddgx01/03 o dgx_config(nodelist=NULL/altro nodo)).
 #
 # Uso:
-#   Rscript analysis/p5-name-cleanup-run.R submit   # build input + submit
+#   Rscript analysis/p5-name-cleanup-run.R triage   # genera il triage CSV da STAGE3 (.build_suspect_triage)
+#   Rscript analysis/p5-name-cleanup-run.R submit    # build input + submit
 #   Rscript analysis/p5-name-cleanup-run.R eval      # collect + assemble (dopo COMPLETED)
+#
+# TRIAGE/STAGE3/STAGE2 sono configurabili via env var (default = v7, per
+# retrocompat col batch T13 gia' girato); per il ciclo v9 impostare STAGE3 alla
+# dir Stadio 3 v9-final e TRIAGE al path del triage v9 generato dall'azione
+# `triage` sui cluster v9-pre.
 suppressMessages(devtools::load_all("."))
 library(cli)
 ACTION <- (commandArgs(trailingOnly = TRUE)[1] %||% "submit")
 
-TRIAGE   <- "analysis/audit/2026-07-05-stage4-popB-coherence-triage.csv"
-STAGE3   <- "analysis/p4-output/20260703T113045Z-stage3-v7-364547a7"
-STAGE2   <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
+TRIAGE   <- Sys.getenv("TRIAGE", "analysis/audit/2026-07-05-stage4-popB-coherence-triage.csv")
+STAGE3   <- Sys.getenv("STAGE3", "analysis/p4-output/20260703T113045Z-stage3-v7-364547a7")
+STAGE2   <- Sys.getenv("STAGE2", "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl")
 S1_INPUT <- "analysis/input/archs4-human-stage1-input.jsonl"   # geo_accession -> string
 JSONL    <- "analysis/audit/name-cleanup-run-input.jsonl"
 STATE    <- "analysis/p4-output/name-cleanup-run-state.rds"
 SIDE_RDS <- "analysis/p4-output/name-cleanup-side-table-v1.rds"
 FRAG_CSV <- "analysis/p4-output/name-cleanup-fragmentation-v1.csv"
 
-if (ACTION == "submit") {
+if (ACTION == "triage") {
+  cli_h1("Name-cleanup — genera triage v9 dai cluster (.build_suspect_triage)")
+  cl <- load_stage3(STAGE3)$clusters
+  tr <- simulomicsr:::.build_suspect_triage(cl)
+  # scrivi solo le righe azionabili (candidate + canary); le skip (cls=vehicle/none,
+  # role=NA) le scarterebbe comunque .load_name_cleanup_candidates.
+  tr_out <- tr[!is.na(tr$role) & tr$cls != "vehicle/none", , drop = FALSE]
+  utils::write.csv(tr_out, TRIAGE, row.names = FALSE)
+  cli_alert_success("Triage v9: {nrow(tr_out)} righe azionabili ({sum(tr_out$role=='candidate')} candidate + {sum(tr_out$role=='canary')} canary) su {nrow(cl)} cluster -> {TRIAGE}")
+
+} else if (ACTION == "submit") {
   cli_h1("Name-cleanup RUN — build input + submit")
   cand <- simulomicsr:::.load_name_cleanup_candidates(TRIAGE)
   cli_alert_info("Candidati: {nrow(cand)} ({sum(cand$role=='candidate')} candidate + {sum(cand$role=='canary')} canary)")
@@ -103,5 +119,5 @@ if (ACTION == "submit") {
   cli_alert_success("Side-table: {SIDE_RDS} | frammentazione: {FRAG_CSV}")
   cli_alert_info("Prossimo: review umana del diff (override before->after) + finding + closeout.")
 } else {
-  cli_abort("Azione sconosciuta: {ACTION}. Usa 'submit' o 'eval'.")
+  cli_abort("Azione sconosciuta: {ACTION}. Usa 'triage', 'submit' o 'eval'.")
 }
