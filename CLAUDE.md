@@ -24,6 +24,32 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-09 (augmentation "passo 3" — farmaci esclusi: recuperabile pulito = 0, CHIUSO)**:
+> 🟢 **I 279 gruppi `rem_group_insufficient_in_study_controls` (trattati-solo senza controllo interno)
+> NON sono recuperabili in modo difendibile. Documentato come limite noto (L7). Decisione utente:
+> "recupera il recuperabile poi documenta"; esito del recupero = 0 cluster puliti.**
+>
+> 1. **Misura (dati veri):** 279 caduti = 195 irrecuperabili (dati troppo sottili) + 38 classe A
+>    (controlli interni) + 46 classe B (prestito; 13 ben ancorati, 13 interamente prestati). Il 93% dei
+>    record ha un controllo nello studio, spesso non collegato dallo Stadio 2 (disegni complessi /
+>    gruppi a campione singolo). Tabella `analysis/audit/2026-07-09-stage4-279-recovery-classification.csv`.
+> 2. **Validazione decisiva (test swap):** su farmaci noti-buoni (tamoxifene, enzalutamide) ho
+>    sostituito il controllo interno con uno prestato da altro studio comparabile → recupero geni veri
+>    **7% (tamoxifene) / 1% (enzalutamide)**, I² 92→98 / 86→99. **Più studi NON aiutano.** Il prestito
+>    preserva la direzione ma distrugge la scoperta di geni (batch cross-studio non modellato).
+> 3. **Recupero eseguito (verifica biologica cluster-per-cluster) → 0 puliti.** Opzione 2: i 3
+>    candidati a k≥3 sono minestrone (CXCL4/IL3/IFNalpha; asma steroide/gravità/vs-sano) o con 3° studio
+>    confuso (IL-4 M1/M2). Nessuna entità coerente (RCC, epatite alcolica, fegato, SM, IL-4, ovaio,
+>    psoriasi) raggiunge un 3° contrasto pulito (terzi confusi/incoerenti/sbagliati; molti anche
+>    mal-etichettati: Abomaso=Alzheimer, Stroma corneale=Crohn, Respirovirus=Parkinson). Opzione 3
+>    (prestito): gate swap già fallito → 0 ammessi.
+> 4. **Chiusura:** documentato limite L7 (`project_paper_known_limitations`). Nessun re-pool, nessun
+>    codice di produzione (niente da recuperare). Finding
+>    `docs/findings/2026-07-09-stage4-augmentation-passo3-measurement.md`, spec/plan
+>    `docs/superpowers/{specs,plans}/2026-07-09-stage4-augmentation-passo3-*`. Commit `f9f7750`+`3883f8f`
+>    su branch `review-scientific-consistency-2026-06-10` (pushato). Master invariato. Memorie:
+>    [[project_stage4_borrowed_controls_rejected]], [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-07-07b (name-cleanup Mistral — FIX RESOLVER + FULL RUN T13 END-TO-END, CHIUSO)**:
 > 🟢 **Il name-cleanup è completo end-to-end. Smoke PASS (13/13 recall, 0 canary false-alarm) e full run
 > T13 su 193 cluster girato (83 override, 65 noop, 14 flag_review, 31 keep). Finding
