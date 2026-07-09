@@ -65,38 +65,42 @@ test_that("mediated target ignoto a HGNC usa STR: non HGNC:", {
 
 - [ ] **Step 5: Commit** — `git add R/stage3-anchor-levels.R tests/testthat/test-stage3-anchor-levels.R && git commit -m "P5 audit F6 v9 Task 1: STR: per target mediati ignoti a HGNC"`
 
-### Task 2: Uniforma il casing del prefisso ChEMBL
+### Task 2: Uniforma il casing del prefisso ChEMBL a `CHEMBL:` (maiuscolo)
+
+> **CORREZIONE PIANO (2026-07-09, misura sui dati veri):** la direzione va **invertita**
+> rispetto alla bozza. Nei cluster v7: **2393 anchor `CHEMBL:` (maiuscolo)** vs **20 `ChEMBL:`
+> (misto)**. La forma maiuscola `CHEMBL:` è quella del recupero-nome (`R/stage3-name-recovery.R:248`),
+> della regex prefisso-forte (`R/stage3-anchor-levels.R:277` `^(HGNC|CHEBI|NCBITaxon|CHEMBL):`) e di
+> 5+ test. La minoranza `ChEMBL:` esce da `R/anchors.R:360` (path `CHEMBL_NAKED_NOLOOKUP`) e
+> frammenta le entità. Quindi si uniforma a `CHEMBL:` cambiando **`R/anchors.R:360`** (non la riga
+> 248, già corretta) + i test che asseriscono la forma mista.
 
 **Files:**
-- Modify: `R/stage3-name-recovery.R:248` (`"CHEMBL:"` → `"ChEMBL:"`)
-- Test: `tests/testthat/test-stage3-name-recovery.R`
+- Modify: `R/anchors.R:360` (`paste0("ChEMBL:", chembl_val)` → `paste0("CHEMBL:", chembl_val)`)
+- Test: `tests/testthat/test-anchor-parse.R` (5 asserzioni `"ChEMBL:CHEMBL941"` → `"CHEMBL:CHEMBL941"`, righe ~64,99,137,293,314)
+- Test: `tests/testthat/test-stage3-anchor-levels.R` (2 asserzioni, righe ~77,110)
 
 **Interfaces:**
-- Produce: il prefisso ChEMBL è **sempre** `"ChEMBL:"` (forma di `R/anchors.R:360`), mai `"CHEMBL:"`.
+- Produce: il prefisso ChEMBL è **sempre** `"CHEMBL:"` (maiuscolo), coerente col recupero-nome e la
+  regex prefisso-forte. `R/stage3-name-recovery.R:248` resta invariato (già `CHEMBL:`).
 
-- [ ] **Step 1: Scrivi il test che fallisce** — la risoluzione compound→ChEMBL emette prefisso `"ChEMBL:"`.
+- [ ] **Step 1: Aggiorna UNA asserzione per farla fallire** — in `test-anchor-parse.R:64`
+  cambia l'atteso a `"CHEMBL:CHEMBL941"`. Ora fallisce perché il codice emette ancora `ChEMBL:`.
 
-```r
-test_that("prefisso ChEMBL e' ChEMBL: non CHEMBL:", {
-  env <- .load_ontology_dicts()
-  # un compound risolto via ChEMBL (usa un alias presente nel dizionario reale;
-  # in mancanza, mocka .chembl_lookup per restituire un chembl_id noto)
-  res <- .normalize_compound_to_chebi("<compound-che-risolve-solo-via-chembl>", env)
-  if (!is.na(res$id)) expect_false(startsWith(res$id, "CHEMBL:"))
-  # asserzione diretta sul sito di costruzione:
-  expect_match(deparse(body(simulomicsr:::.resolve_one_compound)), "ChEMBL:", fixed = TRUE, all = FALSE)
-})
-```
+- [ ] **Step 2: Esegui, verifica FAIL** — `Rscript -e 'devtools::test(filter="anchor-parse")'` → FAIL
+  (`ChEMBL:CHEMBL941` != `CHEMBL:CHEMBL941`).
 
-(Se il test basato su dati è fragile, tieni solo l'asserzione sul sito di costruzione via `deparse(body(...))`, oppure aggiungi un test unit sul ramo ChEMBL con `.chembl_lookup` mockato.)
+- [ ] **Step 3: Implementa + allinea tutte le asserzioni** — `R/anchors.R:360`:
+  `canonical_id = paste0("CHEMBL:", chembl_val)`. Poi aggiorna le altre asserzioni
+  `ChEMBL:CHEMBL941` → `CHEMBL:CHEMBL941` in `test-anchor-parse.R` (righe ~99,137,293,314) e
+  `test-stage3-anchor-levels.R` (righe ~77,110). (Cerca `grep -rn "ChEMBL:CHEMBL941" tests/` per
+  trovarle tutte — non lasciarne indietro.)
 
-- [ ] **Step 2: Esegui, verifica FAIL** — `Rscript -e 'devtools::test(filter="stage3-name-recovery")'` → FAIL.
+- [ ] **Step 4: Esegui, verifica PASS** — `Rscript -e 'devtools::test(filter="anchor-parse|stage3-anchor-levels")'`
+  → PASS, 0 regressioni. Verifica anche `devtools::test(filter="stage3-name-recovery")` (i test
+  `CHEMBL:CHEMBL_*` restano verdi — non toccati).
 
-- [ ] **Step 3: Implementa** — `R/stage3-name-recovery.R:248`: `id = paste0("ChEMBL:", ch$chembl_id)`.
-
-- [ ] **Step 4: Esegui, verifica PASS** — test filtrati PASS.
-
-- [ ] **Step 5: Commit** — `git commit -m "P5 audit F6 v9 Task 2: uniforma prefisso ChEMBL: (era CHEMBL:)"`
+- [ ] **Step 5: Commit** — `git commit -m "P5 audit F6 v9 Task 2: uniforma prefisso ChEMBL a CHEMBL: (anchors.R, era ChEMBL: minoritario)"`
 
 ### Task 3: Bump versione cache lookup (invalida lookup stale post fix A)
 
