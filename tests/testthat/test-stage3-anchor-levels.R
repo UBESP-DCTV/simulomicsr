@@ -148,3 +148,18 @@ test_that("disease_vs_normal override: stage2_role=case produce kind_effective=d
   # Anchor v3.1: MeSH UI canonicalizzato con prefix "MeSH:"
   expect_equal(segs$agent_id, "MeSH:D003920")
 })
+
+test_that("mediated target ignoto a HGNC usa STR: non HGNC:", {
+  env <- .load_ontology_dicts()
+  facts <- list(  # stage1_facts minimale con mediated_effect target ignoto
+    perturbations = list(list(kind = "genetic_perturbation",
+      mediated_effect = list(kind = "genetic_knockdown", targets = list("DTMYC")))),
+    cell_context = list(engineered_modifications = NULL)
+  )
+  seg <- .extract_anchor_segments(facts, "treated", recovery = NULL, ontology_env = env)
+  expect_true(startsWith(seg$agent_id, "STR:"))
+  expect_false(startsWith(seg$agent_id, "HGNC:"))
+  # resolution_source vive nel tracking_meta attr (non e' un segmento top-level).
+  expect_identical(attr(seg, "tracking_meta")$resolution_source,
+                   "MEDIATED_STR_NO_LOOKUP")
+})

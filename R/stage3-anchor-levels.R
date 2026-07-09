@@ -150,9 +150,10 @@
     ar <- resolve_agent_canonical(synth_agent, env = ontology_env)
     if (identical(ar$resolution_source, "HALLUCINATED_OR_FALLBACK") ||
         identical(ar$resolution_source, "NO_AGENT")) {
-      # Target sconosciuto a HGNC: preserva forma HGNC:<symbol_raw>
-      agent_id          <- paste0("HGNC:", target_name)
-      resolution_source <- "MEDIATED_HGNC_NO_LOOKUP"
+      # Target sconosciuto a HGNC: NON e' un gene canonico -> forma STR:
+      # (stessa classe del fix I2; un HGNC:<sigla> fabbricato inquina l'identita').
+      agent_id          <- paste0("STR:", target_name)
+      resolution_source <- "MEDIATED_STR_NO_LOOKUP"
       canonical_name    <- target_name
     } else {
       agent_id          <- ar$canonical_id
