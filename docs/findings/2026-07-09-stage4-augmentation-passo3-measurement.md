@@ -147,3 +147,51 @@ scartare.**
 Questa misura **riforma il compito** rispetto all'handout: per questo la porto all'utente prima di
 implementare (regola: decisioni che cambiano l'approccio → gate utente; dubbio serio sulla qualità
 dei confronti → STOP, come da istruzioni della sessione).
+
+## 6. Esito del tentativo di recupero (decisione utente: recuperare il recuperabile, poi documentare)
+
+L'utente ha scelto di **recuperare il recuperabile** (Opzione 2 = controlli interni, poi Opzione 3 =
+prestito ancorato col gate per-cluster) e **poi documentare il limite**. Ho eseguito il recupero, con
+**verifica biologica cluster-per-cluster** (nessun abbinamento automatico cieco). Esito: **il
+recuperabile pulito è vuoto (0 cluster).** Perché:
+
+**Opzione 2 (controlli interni non ambigui).** La regola "un solo gruppo di controllo ≥2, trattato
+≥2, nessun confronto Stadio 2 esistente" produce solo **3 cluster** a k≥3. Esaminati a mano, tutti e
+tre falliscono:
+- `group_L4_1fc41cfe` (`CHEBI:17236`, codice-composto già noto come spazzatura): è un **minestrone**
+  — mescola tre citochine diverse (CXCL4, IL-3, IFNalpha). Non va poolato.
+- `group_L4_495fc876` (asma): **minestrone di confronti** — i due contrasti veri sono "asma ±
+  steroide" e "asma grave vs lieve", il terzo sarebbe "asma vs sano": tre effetti biologici diversi.
+- `group_L4_963812d7` (IL-4): entità **coerente**, ma l'unico terzo studio è **confuso** (macrofago
+  M1+IL4 vs macrofago M2+veicolo: mescola l'effetto di IL-4 con la polarizzazione M1/M2).
+
+**Le entità coerenti tra i caduti non raggiungono un terzo contrasto pulito.** Verifica manuale sui
+cluster chiaramente coerenti meglio ancorati (carcinoma renale, epatite alcolica, tumore del fegato,
+sclerosi multipla, psoriasi, IL-4, ovaio): tutti hanno **al più 2 contrasti veri puliti** e nessun
+terzo pulito. I terzi disponibili sono confusi (IL-4 M1/M2, IL-4 donatore-1-vs-donatore-2), incoerenti
+(fegato: cancro-vs-normale mescolato con stadio-avanzato-vs-precoce), o palesemente sbagliati (ovaio:
+un "contrasto" appaia la linea ovarica IGROV1 contro la linea **prostatica** DU145; sclerosi multipla:
+controlli = angina, cancro ovarico).
+
+**Molti dei caduti meglio ancorati sono anche mal-etichettati** (problema di *nome*, non in scope
+qui, ma rilevante): un cluster chiamato "Abomaso" (stomaco bovino) contiene in realtà campioni di
+Alzheimer; "Stroma corneale" è Crohn; "Respirovirus" è Parkinson. Recuperarli produrrebbe
+meta-analisi con nomi sbagliati. Vedi la coda del name-cleanup (materializzabile al prossimo
+re-cluster).
+
+**Opzione 3 (prestito ancorato).** Non eseguita come run perché il suo gate — la validazione swap
+(§4) — è già stato applicato al **caso migliore possibile** (tamoxifene ed enzalutamide, entità
+coerenti con controlli veri) e **ha fallito** (recupero geni 1–7%). I 13 cluster candidati hanno solo
+2 ancore vere (meno del tamoxifene) → fallirebbero il gate a maggior ragione. Nessuno ammesso.
+
+## 7. Limite documentato (Opzione 1) — per il paper
+
+**279 gruppi trattati-solo senza controllo interno appaiabile non producono meta-analisi
+cross-studio.** Non sono recuperabili in modo scientificamente difendibile: 195 hanno troppo pochi
+studi con repliche; i restanti sono in larga parte cluster incoerenti (biologie diverse sotto un'unica
+etichetta) o mal-etichettati, e le poche entità coerenti hanno al più due contrasti interni puliti,
+senza un terzo pulito. Il recupero via controlli presi in prestito da altri studi è stato **testato
+empiricamente e scartato**: preserva la direzione dell'effetto ma perde il 93–99% delle scoperte per
+effetto batch cross-studio non modellato. Questo è un errore di **omissione** (le meta-analisi
+prodotte restano corrette), non di commissione. Il numero e la caratterizzazione dei 279 sono in
+`analysis/audit/2026-07-09-stage4-279-recovery-classification.csv`.

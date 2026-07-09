@@ -3,8 +3,13 @@
 **Data:** 2026-07-09
 **Spec:** `docs/superpowers/specs/2026-07-09-stage4-augmentation-passo3-design.md`
 **Finding-misura:** `docs/findings/2026-07-09-stage4-augmentation-passo3-measurement.md`
-**Stato:** **BLOCCATO al gate utente sulla direzione.** La misura + validazione hanno riformato il
-compito; la scelta di quanto spingersi è dell'utente (spec §7). Nessun codice di produzione scritto.
+**Stato:** **ESEGUITO — recuperabile pulito = 0 cluster; documentato come limite noto.** L'utente ha
+scelto "recupera il recuperabile poi documenta" (ordine 2→3→1). Eseguito con verifica biologica
+cluster-per-cluster: Opzione 2 (controlli interni) → 3 candidati, tutti scartati alla verifica
+(2 minestrone, 1 confuso); Opzione 3 (prestito) → gate già fallito dalla validazione swab sul caso
+migliore; nessuna entità coerente tra i caduti raggiunge un terzo contrasto pulito. Esito e razionale
+in `docs/findings/2026-07-09-stage4-augmentation-passo3-measurement.md` §6–7. Nessun re-pool, nessun
+codice di produzione (non serviva: niente da recuperare). Master invariato, no push.
 
 ## In parole semplici
 
