@@ -7,7 +7,7 @@
 #'
 #' Anchor v3.1 (ADR-0018): \code{agent_normalized$id_database = "ChEMBL"} per
 #' triggerare CHEMBL_NAKED_NOLOOKUP nel resolver (deterministico, no dict
-#' lookup). Canonical id risultante: "ChEMBL:CHEMBL941".
+#' lookup). Canonical id risultante: "CHEMBL:CHEMBL941".
 #' @keywords internal
 make_test_sample_fact <- function() {
   list(

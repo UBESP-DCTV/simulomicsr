@@ -357,7 +357,7 @@ resolve_agent_canonical <- function(agent_normalized,
     chembl_val <- if (nzchar(id_v)) id_v else pref_v
     if (nzchar(chembl_val)) {
       return(list(
-        canonical_id      = paste0("ChEMBL:", chembl_val),
+        canonical_id      = paste0("CHEMBL:", chembl_val),
         canonical_name    = if (nzchar(pref_v)) pref_v else NA_character_,
         resolution_source = "CHEMBL_NAKED_NOLOOKUP"
       ))

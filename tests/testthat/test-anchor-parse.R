@@ -16,7 +16,7 @@ make_full_sample_fact <- function() {
     perturbations = list(list(
       kind = "small_molecule",
       # Anchor v3.1: id_database="ChEMBL" -> CHEMBL_NAKED_NOLOOKUP canonical
-      # "ChEMBL:CHEMBL941" (deterministico, no dict lookup).
+      # "CHEMBL:CHEMBL941" (deterministico, no dict lookup).
       agent_normalized = list(id_database = "ChEMBL", id = "CHEMBL941",
                               preferred_name = "imatinib",
                               type = "small_molecule"),
@@ -61,7 +61,7 @@ test_that("parse_anchor_key L0 ritorna 13 segmenti, tutti non-NA", {
   expect_named(res, CANONICAL_NAMES)
   expect_true(all(!vapply(res, is.na, logical(1L))))
   expect_identical(res$kind_effective, "small_molecule")
-  expect_identical(res$agent_id, "ChEMBL:CHEMBL941")
+  expect_identical(res$agent_id, "CHEMBL:CHEMBL941")
   expect_identical(res$tissue, "endothelium")
   expect_identical(res$has_engineered, "false")
 })
@@ -96,7 +96,7 @@ test_that("parse_anchor_key L2 droppa tier D + C (has_engineered, dose, duration
     expect_true(is.na(res[[nm]]), info = sprintf("L2 droppato: %s", nm))
   }
   expect_identical(res$kind_effective, "small_molecule")
-  expect_identical(res$agent_id, "ChEMBL:CHEMBL941")
+  expect_identical(res$agent_id, "CHEMBL:CHEMBL941")
   expect_identical(res$tissue, "endothelium")
 })
 
@@ -134,7 +134,7 @@ test_that("parse_anchor_key L4 ritorna solo Tier S (kind_effective + agent_id + 
   non_na <- vapply(res, function(x) !is.na(x), logical(1L))
   expect_identical(names(res)[non_na], c("kind_effective", "agent_id", "tissue"))
   expect_identical(res$kind_effective, "small_molecule")
-  expect_identical(res$agent_id, "ChEMBL:CHEMBL941")
+  expect_identical(res$agent_id, "CHEMBL:CHEMBL941")
   expect_identical(res$tissue, "endothelium")
 })
 
@@ -290,7 +290,7 @@ test_that("extract_anchor_summary group L0 ritorna 3 segmenti popolati", {
   expect_type(res, "list")
   expect_named(res, c("kind_effective", "agent_id", "tissue"))
   expect_identical(res$kind_effective, "small_molecule")
-  expect_identical(res$agent_id, "ChEMBL:CHEMBL941")
+  expect_identical(res$agent_id, "CHEMBL:CHEMBL941")
   expect_identical(res$tissue, "endothelium")
 })
 
@@ -311,7 +311,7 @@ test_that("extract_anchor_summary pair L2 estrae dal lato treated", {
   expect_named(res, c("kind_effective", "agent_id", "tissue"))
   # Lato treated: small_molecule, CHEMBL941, endothelium
   expect_identical(res$kind_effective, "small_molecule")
-  expect_identical(res$agent_id, "ChEMBL:CHEMBL941")
+  expect_identical(res$agent_id, "CHEMBL:CHEMBL941")
   expect_identical(res$tissue, "endothelium")
 })
 
