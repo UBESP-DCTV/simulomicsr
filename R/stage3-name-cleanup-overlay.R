@@ -16,3 +16,11 @@
   }
   ov
 }
+
+#' Sovrappone l'overlay LLM al recovery_lookup deterministico (in-place).
+#' Per ogni GSM nell'overlay, l'identita' LLM sostituisce quella deterministica.
+#' @keywords internal
+.overlay_recovery_lookup <- function(recovery_lookup_env, overlay) {
+  for (g in names(overlay)) assign(g, overlay[[g]], envir = recovery_lookup_env)
+  recovery_lookup_env
+}

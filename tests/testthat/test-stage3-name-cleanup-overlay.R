@@ -12,3 +12,16 @@ test_that("overlay mappa i GSM dei cluster override all'identita' corretta", {
   expect_identical(ov[["GSM1"]]$recovery_source, "LLM_NAME_CLEANUP")
   expect_false("GSM9" %in% names(ov))                     # flag_review escluso
 })
+
+test_that("overlay vince sul recovery deterministico per i GSM rivisti", {
+  env <- new.env(hash = TRUE, parent = emptyenv())
+  assign("GSM1", list(kind="small_molecule", agent_id="CHEBI:2decenal",
+                      canonical_name="2-decenal", recovery_source="CHEBI"), envir=env)
+  assign("GSMx", list(kind="disease", agent_id="MeSH:D1", canonical_name="x",
+                      recovery_source="MESH"), envir=env)
+  ov <- list(GSM1 = list(kind="small_molecule", agent_id="CHEBI:68534",
+                         canonical_name="Enzalutamide", recovery_source="LLM_NAME_CLEANUP"))
+  out <- .overlay_recovery_lookup(env, ov)
+  expect_identical(get("GSM1", envir=out)$agent_id, "CHEBI:68534")
+  expect_identical(get("GSMx", envir=out)$agent_id, "MeSH:D1")  # invariato
+})
