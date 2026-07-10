@@ -1,3 +1,49 @@
+# Kind genetici ANCHOR-validi: solo questi, se `startsWith(kind, "genetic_")`,
+# devono far scattare il branch (b) di .extract_anchor_segments. Ogni altro
+# `genetic_*` (genetic_variant/mutation/disorder/condition/tool/variation) e'
+# vocabolario libero di Mistral NON riconosciuto come kind-anchor: farlo passare
+# inietterebbe un kind non-anchor nell'anchor (un-bucketing).
+.OVERLAY_ANCHOR_GENETIC_KINDS <- c(
+  "genetic_knockdown", "genetic_knockout", "genetic_overexpression",
+  "crispra_activation", "crispri_repression")
+
+#' Canonicalizza il `new_kind` GREZZO di Mistral a un kind-anchor (o lo scarta).
+#'
+#' Mistral emette `new_kind` in vocabolario libero (`cytokine`, `pathogen`,
+#' `genetic_mutation`, ...), non nell'enum canonico. Il branch (b) di
+#' \code{.extract_anchor_segments} sovrascrive `kind_effective` SOLO se il kind
+#' inizia per `genetic_` o e' in \code{.biological_override_kinds}
+#' (`cytokine_stim`, `pathogen_or_aggregate_exposure`). Questo helper:
+#' \itemize{
+#'   \item traduce i biologici grezzi alla forma canonica (`cytokine` ->
+#'     `cytokine_stim`, `pathogen` -> `pathogen_or_aggregate_exposure`) cosi'
+#'     (b) scatta e i frammenti si fondono;
+#'   \item scarta (`NA`) i `genetic_*` NON in \code{.OVERLAY_ANCHOR_GENETIC_KINDS}
+#'     (es. `genetic_variant`/`genetic_mutation`): (b) non scatta -> resta il
+#'     kind deterministico (il consumer ha il guard `!is.na(recovery$kind)`);
+#'   \item lascia invariato tutto il resto (kind gia' anchor-validi, e i kind
+#'     non-(b) come `disease`/`small_molecule`/`gene_*`, che non toccano (b) e
+#'     per cui il kind deterministico governa comunque).
+#' }
+#' NB: NON usare \code{.canonicalize_resolver_kind} (mapperebbe `genetic_*` ->
+#' `genetic_perturbation`, che NON e' un kind-anchor -> reintrodurrebbe il
+#' problema).
+#'
+#' @param kind character(1) il `new_kind` grezzo (puo' essere `NA`/`""`).
+#' @return character(1): la forma canonica, `NA_character_` se scartato, o il
+#'   valore originale se gia' valido / non-(b).
+#' @keywords internal
+.canonicalize_overlay_kind <- function(kind) {
+  if (length(kind) != 1L || is.na(kind) || !nzchar(trimws(kind)))
+    return(NA_character_)
+  k <- tolower(trimws(kind))
+  if (identical(k, "cytokine")) return("cytokine_stim")
+  if (identical(k, "pathogen")) return("pathogen_or_aggregate_exposure")
+  if (startsWith(k, "genetic_") && !(k %in% .OVERLAY_ANCHOR_GENETIC_KINDS))
+    return(NA_character_)
+  kind
+}
+
 #' Converte la side-table del name-cleanup in overlay GSM -> identita' corretta.
 #' Solo le righe action=="override" (precision-gate). L'overlay si sovrappone
 #' al recovery_lookup deterministico (Task 5); e' agganciato ai GSM membri dei
@@ -24,7 +70,8 @@
   for (i in seq_len(nrow(keep))) {
     cid <- keep$cluster_id[i]
     rids <- asg_by[[cid]]; if (is.null(rids)) next
-    ident <- list(kind = keep$new_kind[i], agent_id = keep$new_id[i],
+    ident <- list(kind = .canonicalize_overlay_kind(keep$new_kind[i]),
+                  agent_id = keep$new_id[i],
                   canonical_name = keep$new_canonical[i], recovery_source = "LLM_NAME_CLEANUP")
     for (rid in rids) for (g in record_to_gsms(rid)) ov[[g]] <- ident
   }
