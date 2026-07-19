@@ -24,6 +24,30 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-19 (v9 DE-FRAMMENTAZIONE via overlay Mistral — END-TO-END COMPLETO)**:
+> 🟢 **La side-table del name-cleanup T13 è ora DENTRO la pipeline (overlay `GSM→identità`,
+> precision-gated, solo `action=="override"`). Il re-cluster v9-final FONDE i frammenti mal-nominati
+> della stessa entità → le meta-analisi cross-studio nominate (rem_group) RADDOPPIANO (70→161)
+> SENZA degradare l'omogeneità (I²_med 74→80, fusioni coerenti non minestroni). ADR-0023 Accepted.**
+>
+> 1. **Fase D Task 11-15 (run pesanti gated, setsid + loop orario)**: v9-pre (7,7h, cache lookup v6) →
+>    Mistral sui sospetti (DGX, poddgx02 **riparato**, scope **k≥2**=7.176 record, 0 fail) → **fix
+>    canonicalizzazione kind** (commit `4daa6e7`, TDD, 1441 PASS/0 FAIL: cytokine/pathogen grezzi→enum,
+>    scarta genetic_* non-anchor) → v9-final (7,8h, **56.427 GSM corretti**, 42.773 cluster LLM_NAME_CLEANUP,
+>    disease UNK 25.086→9.748) → re-pool Stadio 4 v9 (~41,3h, 631 poolati, ANTI-STALE PASS).
+> 2. **Re-gate (verdetto)**: rem_group poolati **70→161 (+130%)**; omogeneità **invariata** (I²_med 74,2→79,9,
+>    range 0-98 identico); **bandiera 7/7** (SARS/enzalutamide/breast/prostate/fulvestrant/tamoxifen/vemurafenib)
+>    + hepatocell/colorectal/M.tuberc/LPS. cluster_pooled 10,9M righe, sig FDR<0,05 1,23M.
+> 3. **Limite onesto L7**: il `k_effective` poolato << studi-membri (breast cluster Stadio3 k=277 →
+>    rem_group k_eff=22): il collo di bottiglia è il **gate di controllo interno** (treated-only, L7 già
+>    documentato come non-recuperabile 2026-07-09), NON più il name-recovery.
+> 4. **Output**: re-cluster `analysis/p4-output/20260717T171550Z-stage3-v9-364547a7/`; re-pool
+>    `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v9/20260719T105254Z-stage4-v9-a500d032/`. Finding
+>    `docs/findings/2026-07-19-stage4-v9-defragmentation-results.md`, ADR-0023, re-gate
+>    `analysis/audit/2026-07-19-stage4-v9-regate.R`. **Prossimo = Layer B** (case-study sui 161 rem_group
+>    nominati) = plan separato a valle. Branch invariato, commit di codice pushati (su richiesta utente),
+>    master invariato. Memorie: [[project_stage3_minestrone_rework]], [[dgx_storage_projects_not_home]].
+>
 > **Stato 2026-07-09 (augmentation "passo 3" — farmaci esclusi: recuperabile pulito = 0, CHIUSO)**:
 > 🟢 **I 279 gruppi `rem_group_insufficient_in_study_controls` (trattati-solo senza controllo interno)
 > NON sono recuperabili in modo difendibile. Documentato come limite noto (L7). Decisione utente:

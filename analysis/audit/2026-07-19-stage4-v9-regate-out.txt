@@ -1,0 +1,53 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+
+
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Meta-analisi poolate per method (v9) ──
+
+     method n_clusters  n_rows
+1       rem          8  148246
+2  mega_aug        376 6507884
+3 rem_group        161 2743484
+4      mega         86 1524560
+── rem_group PROCESSATI v9: 161 cluster (v8: 70) ──
+
+── Omogeneita' (I2_med) e potenza (k_eff) dei rem_group: v9 vs v8 ──
+
+v9 I2_med  quantili [0/25/50/75/100]: 0 52 79.9 90.5 98.1 
+v8 I2_med  quantili [0/25/50/75/100]: 0 39.6 74.2 90.7 98.4 
+v9 k_eff   quantili [0/25/50/75/100]: 2 3 4 7 58 
+v8 k_med   quantili [0/25/50/75/100]: 3 3 3 4.8 77 
+v9 n_sig   totale: 186158  | mediana per cluster: 703 
+── Entita' note poolate v9: potenza (k) e omogeneita' (I2) delle fusioni ──
+
+  MeSH:D001943       breast       | n_cluster= 3 | k_eff=  6- 22 | I2_med= 80- 96 | n_sig(max)=995
+  MeSH:D011471       prostate     | n_cluster= 4 | k_eff=  3- 19 | I2_med= 76- 93 | n_sig(max)=595
+  MeSH:D006528       hepatocell   | n_cluster= 4 | k_eff=  5- 26 | I2_med= 76- 96 | n_sig(max)=1528
+  MeSH:D015179       colorectal   | n_cluster= 1 | k_eff= 17- 17 | I2_med= 83- 83 | n_sig(max)=348
+  NCBITaxon:2697049  SARS-CoV-2   | n_cluster= 2 | k_eff=  3- 18 | I2_med= 60- 90 | n_sig(max)=2368
+  NCBITaxon:1773     M.tuberc     | n_cluster= 1 | k_eff= 25- 25 | I2_med= 91- 91 | n_sig(max)=1559
+  CHEBI:16412        LPS          | n_cluster= 2 | k_eff=  4-  5 | I2_med= 58- 89 | n_sig(max)=3823
+  CHEBI:68534        enzalutamide | n_cluster= 1 | k_eff= 26- 26 | I2_med= 96- 96 | n_sig(max)=1920
+  CHEBI:41774        tamoxifen    | n_cluster= 1 | k_eff=  5-  5 | I2_med= 92- 92 | n_sig(max)=437
+  CHEBI:31638        fulvestrant  | n_cluster= 1 | k_eff=  5-  5 | I2_med= 82- 82 | n_sig(max)=518
+── BANDIERA presenti tra i rem_group v9 ──
+
+        cluster_id agent_id_resolved      canonical_name n_sig I2_med k_eff
+ group_L4_b6a3eabd NCBITaxon:2697049          sars-cov-2  2368   90.0    18
+ group_L4_b128b80d       CHEBI:68534        Enzalutamide  1920   95.5    26
+ group_L4_2efa30eb NCBITaxon:2697049          SARS-CoV-2  1369   60.4     3
+ group_L4_4d2d5aa0      MeSH:D001943       breast cancer   995   79.9     6
+ group_L4_2bd06550      MeSH:D011471     prostate cancer   595   76.1     3
+ group_L4_c2a27b6c      MeSH:D011471     prostate cancer   553   90.1     8
+ group_L4_b4975123       CHEBI:31638         fulvestrant   518   81.6     5
+ group_L4_3c38c897       CHEBI:41774           tamoxifen   437   92.4     5
+ group_L4_4b3cd9cd      MeSH:D011471     prostate cancer   322   91.8    19
+ group_L4_fdd42642      MeSH:D011471 Prostatic Neoplasms   191   93.3    10
+ group_L4_34c767eb      MeSH:D001943       breast cancer   153   94.0     6
+ group_L4_5d10ee81      MeSH:D001943    Breast Neoplasms    92   96.1    22
+ group_L4_fbaef709       CHEBI:63637         vemurafenib    19    0.0     3
+
+CSV: analysis/audit/2026-07-19-stage4-v9-remgroup-processed.csv 
+== FINE ==
