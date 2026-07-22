@@ -24,6 +24,36 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-22 (v10 LLM-FALLBACK FINALE MATERIALIZZATO — END-TO-END COMPLETO)**:
+> 🟢 **L'LLM-fallback su TUTTI gli indeterminati (STR:/UNK, 50% del corpus) è dentro la pipeline
+> come 2° overlay. Misurato con statistiche complete + VALIDATO dal gate rem_group PRIMA di
+> materializzare (non a intuito). Le meta-analisi nominate crescono 161→184 e le bandiera guadagnano
+> potenza (breast k_eff 22→30) senza degradare l'omogeneità. ADR-0024 Accepted.**
+>
+> 1. **Misura (passi 1-4, read-only)**: funnel di allocazione su v9-final → **158.751 indeterminati**
+>    (agent UNK|STR:, 50% dei cluster, **96% k=1**). Fallback Mistral su TUTTI (113.475 record, DGX
+>    poddgx02 34min, 100% valid_schema): **override 50.246 (44%)**, keep 62.578, **canary 0 override**.
+>    Simulazione impatto anchor-aware: 79% override isolati (rumore k=1), 21% si fondono.
+> 2. **Opzione C (il passo decisivo)**: `2026-07-20-v9-fallback-poolable-gain.R` riproduce il gate
+>    rem_group (ADR-0022) sul membership post-overlay SENZA re-pool → **guadagno POOLABILE reale**
+>    (validato: breast k_eff_pre=23 vs v9 noto 22): **+22 nuove poolabili, +41 rafforzate, +151 k_eff**.
+>    **Ha ribaltato la raccomandazione da B (documentare) ad A (materializzare).**
+> 3. **Materializzazione (run pesanti gated, setsid + loop orario)**: re-cluster v10 (`p4-fase-f8-stage3-v10-final.R`,
+>    2 overlay v9 k≥2 + fallback STR/UNK, SMOKE PASS, ~7,6h, `20260720T180625Z-stage3-v10-364547a7`) →
+>    re-pool v10 (`p4-fase-f5-...-rebuild-v10.R`, DRY_RUN PASS, ~50,6h, `simulomicsr-stage4-v10/20260722T210452Z-stage4-v10-a500d032`).
+> 4. **Re-gate (verdetto)**: **714 cluster** poolati (v9 631), **rem_group 161→184** (+23), cluster_pooled
+>    12,4M righe, sig 1,45M. **Omogeneità INVARIATA** (I²_med 79,9→77,6, range identico → fusioni
+>    coerenti). **k_eff bandiera PREDETTA=REALE**: breast 22→30, colorectal 18→27, hepatocell 28→34,
+>    enzalutamide 27→30, SARS 20, M.tuberc 26 (scarto ±1-3 = over-stima H5 dichiarata). ANTI-STALE PASS.
+> 5. **Limite L7 (invariato)**: 71 entità nominate restano NON poolabili (treated-only, gate controllo
+>    interno); 79% degli override sono k=1 cosmetici (etichetta migliore, no pooling). La de-frag NON
+>    aggira l'L7 — il guadagno si concentra nelle entità con controlli interni (le bandiera).
+> 6. **Output**: finding `docs/findings/2026-07-22-stage4-v10-fallback-materialization.md`, **ADR-0024**,
+>    re-gate `analysis/audit/2026-07-20-stage4-v10-regate.R` (+ `-out.txt`, `-remgroup-processed.csv`).
+>    **Prossimo = Layer B** (case-study sui 184 rem_group nominati, 23 nuovi) = plan separato a valle.
+>    Branch invariato, master invariato. Memorie: [[project_stage3_minestrone_rework]],
+>    [[feedback_hourly_updates_during_long_runs]], [[dgx_storage_projects_not_home]].
+>
 > **Stato 2026-07-19 (v9 DE-FRAMMENTAZIONE via overlay Mistral — END-TO-END COMPLETO)**:
 > 🟢 **La side-table del name-cleanup T13 è ora DENTRO la pipeline (overlay `GSM→identità`,
 > precision-gated, solo `action=="override"`). Il re-cluster v9-final FONDE i frammenti mal-nominati
