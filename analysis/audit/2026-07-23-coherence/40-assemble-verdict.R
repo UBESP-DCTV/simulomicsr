@@ -16,7 +16,10 @@
 #             low (solo deterministico, spesso bassa copertura).
 
 Sys.setenv(OPENBLAS_NUM_THREADS = "1", OMP_NUM_THREADS = "1")
-suppressPackageStartupMessages({ library(dplyr); library(jsonlite); library(readr) })
+suppressPackageStartupMessages({
+  devtools::load_all(".", quiet = TRUE)   # per .coherence_verdict / .meta_analysis_valid
+  library(dplyr); library(jsonlite); library(readr)
+})
 
 DIR <- "analysis/audit/2026-07-23-coherence"
 CONS_OK <- 0.5   # soglia consistenza per meta_analysis_valid (documentata nel finding)
@@ -47,28 +50,22 @@ df <- sig |>
   left_join(dd, by = "cluster_id")
 df$pooled <- !is.na(df$method)
 
-# --- asse (1): contrast_verdict ---
-df$contrast_verdict <- mapply(function(nres, fdeg, nct, ddv) {
-  if (is.na(nres) || nres < 2L) return("uncertain")
-  if (!is.na(fdeg) && fdeg >= 0.5) return("degenerate")
-  if (!is.na(ddv)) {                      # deep-dive disponibile (184)
-    if (ddv == "multi_contrast") return("minestrone")
-    if (ddv == "one_contrast")  return("coherent")
-    return("uncertain")                   # unclear
-  }
-  # solo deterministico
-  if (!is.na(nct) && nct == 1L) return("coherent")
-  "minestrone"
-}, df$n_resolved, df$frac_degenerate, df$n_control_types, df$dd_verdict)
+# --- asse (1): contrast_verdict --- (usa l'helper testato R/stage3-coherence.R, D2 autoritativo)
+df$contrast_verdict <- vapply(seq_len(nrow(df)), function(i)
+  simulomicsr:::.coherence_verdict(
+    list(n_resolved = df$n_resolved[i], frac_degenerate = df$frac_degenerate[i],
+         n_control_types = df$n_control_types[i]),
+    deepdive = df$dd_verdict[i]),
+  character(1))
 
 # confidence
 df$confidence <- ifelse(!is.na(df$dd_verdict), "high",
                  ifelse(df$pooled & !is.na(df$consistency_score), "medium", "low"))
 
-# --- asse (3): meta_analysis_valid (AND multi-asse) ---
-df$meta_analysis_valid <- df$contrast_verdict == "coherent" &
-  (!is.na(df$frac_degenerate) & df$frac_degenerate == 0) &
-  (!is.na(df$consistency_score) & df$consistency_score >= CONS_OK)
+# --- asse (3): meta_analysis_valid (AND multi-asse) --- (helper testato)
+df$meta_analysis_valid <- mapply(simulomicsr:::.meta_analysis_valid,
+  df$contrast_verdict, df$frac_degenerate, df$consistency_score,
+  MoreArgs = list(cons_ok = CONS_OK))
 
 saveRDS(df, file.path(DIR, "cluster-verdicts.rds"))
 

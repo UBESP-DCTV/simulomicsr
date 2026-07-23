@@ -91,28 +91,43 @@
     frac_degenerate = mean(deg))
 }
 
-#' Verdetto AND multi-asse da segnali + consistenza + deep-dive
+#' Verdetto di COERENZA DI CONTRASTO da segnali + deep-dive (asse "stesso contrasto?")
 #'
-#' Soglie di DEFAULT (documentate nel finding, non nascoste):
+#' Risponde SOLO a "questi studi misurano lo stesso contrasto?", NON a "quanto segnale?"
+#' (la consistenza e' un asse separato in \code{.meta_analysis_valid}). Quando il
+#' deep-dive LLM (D2) e' disponibile e' AUTORITATIVO (giudica direttamente i contrasti
+#' reali, cfr. finding 2026-07-23): "one_contrast" -> coherent, "multi_contrast" ->
+#' minestrone, "unclear" -> uncertain. Il conteggio deterministico dei control-type e'
+#' solo un FLOOR usato dove il deep-dive manca. Soglie di DEFAULT (documentate nel finding):
 #'   - min_resolved = 2 : sotto = uncertain (copertura insufficiente).
-#'   - deg_frac_hi  = 0.5: frac_degenerate >= => degenerate.
-#'   - homogeneous control = n_control_types == 1 (dopo normalizzazione).
-#'   - design homogeneous  = n_design_kinds <= 1.
-#'   - consistency_ok = (is.na) o >= 0.5 dove disponibile.
-#'   - deepdive: se valutato, "one_contrast" richiesto per coherent; "multi_contrast" => minestrone.
+#'   - deg_frac_hi  = 0.5: frac_degenerate >= => degenerate (contrasto nullo maggioritario).
+#'   - senza deep-dive: n_control_types == 1 -> coherent (tentativo), altrimenti minestrone.
 #' @keywords internal
-.coherence_verdict <- function(signals, consistency = NA_real_, deepdive = NA_character_,
-                               min_resolved = 2L, deg_frac_hi = 0.5, cons_ok = 0.5) {
+.coherence_verdict <- function(signals, deepdive = NA_character_,
+                               min_resolved = 2L, deg_frac_hi = 0.5) {
   s <- signals
   if (is.na(s$n_resolved) || s$n_resolved < min_resolved) return("uncertain")
   if (!is.na(s$frac_degenerate) && s$frac_degenerate >= deg_frac_hi) return("degenerate")
-  if (!is.na(deepdive) && identical(deepdive, "multi_contrast")) return("minestrone")
-  control_homog <- !is.na(s$n_control_types) && s$n_control_types == 1L
-  design_homog  <- !is.na(s$n_design_kinds)  && s$n_design_kinds  <= 1L
-  if (!control_homog || !design_homog) return("minestrone")
-  # qui: control-omogeneo E design-omogeneo E non-degenere
-  cons_pass <- is.na(consistency) || consistency >= cons_ok
-  dd_pass   <- is.na(deepdive) || identical(deepdive, "one_contrast")
-  if (cons_pass && dd_pass) return("coherent")
-  "uncertain"
+  if (!is.na(deepdive)) {                       # D2 autoritativo dove disponibile
+    if (identical(deepdive, "one_contrast"))  return("coherent")
+    if (identical(deepdive, "multi_contrast")) return("minestrone")
+    return("uncertain")                         # "unclear"
+  }
+  # solo floor deterministico
+  if (!is.na(s$n_control_types) && s$n_control_types == 1L) return("coherent")
+  "minestrone"
+}
+
+#' Meta-analisi difendibile? (AND multi-asse, scelta utente 2026-07-23)
+#'
+#' TRUE solo se il contrasto e' coerente E non-degenere E la consistenza (ADR-0021) e'
+#' sopra soglia dove disponibile. Separa "stesso contrasto?" (\code{.coherence_verdict})
+#' da "quanto segnale?" (consistenza): un minestrone consistente NON e' valido, e un
+#' contrasto coerente ma troppo eterogeneo (I2 alto) nemmeno.
+#' @keywords internal
+.meta_analysis_valid <- function(contrast_verdict, frac_degenerate,
+                                 consistency = NA_real_, cons_ok = 0.5) {
+  identical(contrast_verdict, "coherent") &&
+    (!is.na(frac_degenerate) && frac_degenerate == 0) &&
+    (!is.na(consistency) && consistency >= cons_ok)
 }

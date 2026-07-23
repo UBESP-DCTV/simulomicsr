@@ -63,23 +63,36 @@ test_that(".cluster_coherence_signals flagga i membri degeneri (treated==control
   expect_equal(s$frac_degenerate, 1.0)
 })
 
-test_that(".coherence_verdict: consistente ma control-eterogeneo => minestrone (breast docet)", {
+test_that(".coherence_verdict: D2 e' autoritativo (one_contrast => coherent anche con control-type>1)", {
+  # senza deep-dive, control eterogeneo (floor) => minestrone
   s <- list(n_resolved=6L, n_control_types=8L, control_homogeneity=1/8,
             n_design_kinds=3L, n_degenerate=0L, frac_degenerate=0)
-  expect_equal(simulomicsr:::.coherence_verdict(s, consistency=0.98), "minestrone")
+  expect_equal(simulomicsr:::.coherence_verdict(s), "minestrone")
+  # ma se D2 dice one_contrast, e' AUTORITATIVO => coherent (il floor non lo declassa)
+  expect_equal(simulomicsr:::.coherence_verdict(s, deepdive="one_contrast"), "coherent")
+  # D2 multi_contrast => minestrone
+  expect_equal(simulomicsr:::.coherence_verdict(s, deepdive="multi_contrast"), "minestrone")
 })
-test_that(".coherence_verdict: degenere prevale", {
+test_that(".coherence_verdict: degenere prevale su tutto", {
   s <- list(n_resolved=4L, n_control_types=1L, control_homogeneity=1,
             n_design_kinds=1L, n_degenerate=3L, frac_degenerate=0.75)
-  expect_equal(simulomicsr:::.coherence_verdict(s), "degenerate")
+  expect_equal(simulomicsr:::.coherence_verdict(s, deepdive="one_contrast"), "degenerate")
 })
-test_that(".coherence_verdict: control-omogeneo + non-degenere + consistenza ok => coherent", {
-  s <- list(n_resolved=5L, n_control_types=1L, control_homogeneity=1,
-            n_design_kinds=1L, n_degenerate=0L, frac_degenerate=0)
-  expect_equal(simulomicsr:::.coherence_verdict(s, consistency=0.7, deepdive="one_contrast"), "coherent")
+test_that(".coherence_verdict: control-omogeneo deterministico => coherent; copertura bassa => uncertain", {
+  s1 <- list(n_resolved=5L, n_control_types=1L, control_homogeneity=1,
+             n_design_kinds=1L, n_degenerate=0L, frac_degenerate=0)
+  expect_equal(simulomicsr:::.coherence_verdict(s1), "coherent")
+  s2 <- list(n_resolved=1L, n_control_types=1L, control_homogeneity=1,
+             n_design_kinds=1L, n_degenerate=0L, frac_degenerate=0)
+  expect_equal(simulomicsr:::.coherence_verdict(s2), "uncertain")
 })
-test_that(".coherence_verdict: copertura insufficiente => uncertain", {
-  s <- list(n_resolved=1L, n_control_types=1L, control_homogeneity=1,
-            n_design_kinds=1L, n_degenerate=0L, frac_degenerate=0)
-  expect_equal(simulomicsr:::.coherence_verdict(s), "uncertain")
+test_that(".meta_analysis_valid: AND multi-asse (consistenza NON salva un minestrone)", {
+  # minestrone consistente 0.98 (breast docet) => NON valido
+  expect_false(simulomicsr:::.meta_analysis_valid("minestrone", frac_degenerate=0, consistency=0.98))
+  # coerente + non-degenere + consistente => valido
+  expect_true(simulomicsr:::.meta_analysis_valid("coherent", frac_degenerate=0, consistency=0.7))
+  # coerente ma consistenza bassa (I2 alto) => NON valido
+  expect_false(simulomicsr:::.meta_analysis_valid("coherent", frac_degenerate=0, consistency=0.3))
+  # coerente ma consistenza mancante => NON valido (serve la prova)
+  expect_false(simulomicsr:::.meta_analysis_valid("coherent", frac_degenerate=0, consistency=NA_real_))
 })

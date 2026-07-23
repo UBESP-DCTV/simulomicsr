@@ -77,8 +77,8 @@ era gonfiato). I numeri di questo finding sono POST-fix.
 
 - **13/184** contengono almeno un contrasto **degenere** (trattato==controllo) — errori Stadio 2
   che non andrebbero poolati (minoranza intra-cluster, nessun cluster interamente degenere).
-- I **19 sopravvissuti** pendono verso **k basso** (13 su 19 hanno k<5), dove la stima di I² ha
-  poca potenza → la loro consistenza (spesso I²=0) è **debole come evidenza**. Solo ~8 hanno k≥5.
+- I **19 sopravvissuti** pendono verso **k basso** (11 su 19 hanno k<5), dove la stima di I² ha
+  poca potenza → la loro consistenza (spesso I²=0) è **debole come evidenza**. Solo 8 hanno k≥5.
 - **Bug di etichetta ortogonale (non è coerenza ma inquina il paper):** alcuni sopravvissuti hanno
   il `canonical_name` SBAGLIATO — `ethanol` è in realtà TNF, `Met-tRNA` è TGFB1, `anisole` è
   calcitriolo, `4-maleylacetoacetate` è DHT, e "carnitine" è ancora etichettato `pathogen`
@@ -149,8 +149,9 @@ consistenza va calibrata con l'utente insieme a un minimo di k.
 | coherent | 2781 | 26 alta-conf + 2755 floor deterministico (tentativo) |
 | degenerate | 33 | trattato==controllo sulla maggioranza dei membri |
 
-**Caveat di onestà:** per ~56% dei 13.287 il contrasto non si ricostruisce (treated-only) → verdetto
-"uncertain", NON "coerente". Il floor deterministico (coherent/minestrone a bassa confidenza) è
+**Caveat di onestà:** il **40,6% (5401)** dei 13.287 non risolve alcun membro (treated-only) e il
+**56% (7437)** ha verdetto "uncertain" (n_resolved<2), NON "coerente". Il floor deterministico
+(coherent/minestrone a bassa confidenza) è
 indicativo, non provato per-cluster come i 184. La verità solida è sul **deliverable (184)**, dove
 c'è deep-dive LLM verificato + consistenza.
 
@@ -158,8 +159,9 @@ c'è deep-dive LLM verificato + consistenza.
 
 ## 6. Limiti (dichiarati, non nascosti)
 
-- **Copertura di ricostruzione** ~59% dei membri (mediana): i cluster treated-only non hanno il
-  controllo ricostruibile → verdetto uncertain (ma non erano poolati).
+- **Copertura di ricostruzione**: il 59% dei cluster k≥2 ricostruisce ≥1 contrasto; la mediana della
+  frazione di membri risolti è 0,25 su tutti (0,67 tra i ricostruibili, 0,69 sui 184 poolati). I
+  cluster treated-only non hanno il controllo ricostruibile → verdetto uncertain (ma non erano poolati).
 - **Consistenza a k basso** poco affidabile (I² non stimabile): i 19 "sopravvissuti" pendono verso
   k<5 → il loro pass di consistenza è debole.
 - **Floor deterministico** del control-type sovra/sotto-stima (corretto da D solo sui 184 + campione).
