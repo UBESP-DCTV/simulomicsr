@@ -75,9 +75,11 @@
     n_treated_types = NA_integer_, n_degenerate = NA_integer_, frac_degenerate = NA_real_))
   ctrl_types <- vapply(contrast_df$control_label, .normalize_control_type, character(1))
   trt_types  <- vapply(contrast_df$treated_label, .normalize_control_type, character(1))
-  # degenere: stessa firma factor_levels (stesso studio, chiavi confrontabili) o stesso label
-  deg <- (nzchar(contrast_df$treated_fl) & contrast_df$treated_fl == contrast_df$control_fl) |
-         (tolower(trimws(contrast_df$treated_label)) == tolower(trimws(contrast_df$control_label)))
+  # degenere = trattato e controllo hanno lo STESSO nome (contrasto nullo). NB: la firma
+  # factor_levels NON e' affidabile per questo (due bracci diversi possono avere fl
+  # identici se il trattamento e' codificato solo nel label_human, es. "Hypoxia" vs
+  # "Control" con le stesse chiavi -> falso positivo). Si usa solo l'uguaglianza del label.
+  deg <- tolower(trimws(contrast_df$treated_label)) == tolower(trimws(contrast_df$control_label))
   n_ct <- length(unique(ctrl_types))
   list(
     n_resolved = n,
