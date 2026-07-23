@@ -1,6 +1,10 @@
 #' Heatmap top-N geni x sample (vst + ComBat batch-corrected)
 #'
-#' Top-N geni FDR<thr ranked by |logFC_pool|. Counts normalize via
+#' Top-N geni FDR<thr ranked by significance (`FDR_BH_within_cluster`
+#' ascendente, tie-break `|logFC_pool|` discendente) e deduplicati per
+#' `gene_symbol` (vedi [.rank_and_dedup_genes()], stesso criterio della
+#' top-gene table cosi tabella ed heatmap mostrano un set di geni coerente
+#' e senza duplicati di simbolo). Counts normalize via
 #' `DESeq2::varianceStabilizingTransformation()` + `sva::ComBat()` batch
 #' correction per `study_id` (cosmetico, esplicitato nella caption).
 #' Subsample stratificato per (study, treatment) se
@@ -28,7 +32,11 @@
   max_samples <- config$max_heatmap_samples
 
   sig <- cp[!is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr, , drop = FALSE]
-  sig <- sig[order(abs(sig$logFC_pool), decreasing = TRUE), , drop = FALSE]
+  # Dedup per gene_symbol PRIMA di prendere i top_n: stesso criterio della
+  # top-gene table (significativita, non |logFC|), cosi table e heatmap sono
+  # coerenti e non mostrano lo stesso gene ripetuto su piu righe (artefatto
+  # multi-Ensembl ARCHS4).
+  sig <- .rank_and_dedup_genes(sig)
   # FASE E1: top_genes_id = chiave Ensembl (per indicizzare counts matrix
   # post-E1 con rownames = ensembl), top_genes_label = HGNC symbol
   # (per i row label dell'heatmap, leggibile). Mapping 1:1 per indice.

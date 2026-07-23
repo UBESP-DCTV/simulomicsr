@@ -23,7 +23,11 @@ il cluster (tutte le righe stesso \code{cluster_id}).}
 list con \code{png_path}, \code{svg_path}, \code{caption}.
 }
 \description{
-Top-N geni FDR<thr ranked by |logFC_pool|. Counts normalize via
+Top-N geni FDR<thr ranked by significance (\code{FDR_BH_within_cluster}
+ascendente, tie-break \verb{|logFC_pool|} discendente) e deduplicati per
+\code{gene_symbol} (vedi \code{\link[=.rank_and_dedup_genes]{.rank_and_dedup_genes()}}, stesso criterio della
+top-gene table cosi tabella ed heatmap mostrano un set di geni coerente
+e senza duplicati di simbolo). Counts normalize via
 \code{DESeq2::varianceStabilizingTransformation()} + \code{sva::ComBat()} batch
 correction per \code{study_id} (cosmetico, esplicitato nella caption).
 Subsample stratificato per (study, treatment) se
