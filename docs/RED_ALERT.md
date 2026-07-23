@@ -14,6 +14,14 @@
 > **Branch attivo**: `p5-llm-anchor-classification-audit` (non mergiare in
 > master finché RED ALERT non chiude).
 
+> 🔴🔴 **AGGIORNAMENTO 2026-07-24 — il problema CORE è ancora aperto.** Questo doc copre lo Stadio 0.
+> Ma il difetto che ha originato tutto il RED ALERT (i cluster Stadio 3 sono minestroni) NON è stato
+> risolto dall'audit v5→v10, che ha sistemato solo i NOMI. La **coerenza di contrasto** è stata
+> verificata solo il 2026-07-23: **157/184 (85%) del deliverable sono minestroni, vetrina Layer B 0/9.**
+> Decisione utente: rifare l'ancoraggio a monte (opzione 2). Prima di toccare codice leggi:
+> `docs/findings/2026-07-23-stage3-cluster-coherence.md` + handout
+> `docs/superpowers/specs/2026-07-24-stage3-anchor-coherence-rework-HANDOUT.md`.
+
 ## Perché esiste questo documento
 
 Durante l'audit completo della pipeline (sessione 2026-05-25, dopo il

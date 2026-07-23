@@ -1,8 +1,16 @@
-# Layer B v10 — 18 case study publication-grade sulle meta-analisi nominate (rem_group)
+# Layer B v10 — 18 case study sulle meta-analisi nominate (rem_group)
+
+> ⚠️🔴 **RITRATTAZIONE (2026-07-24).** Il titolo originale diceva "publication-grade": **NON lo è.**
+> La verifica di coerenza di contrasto (`docs/findings/2026-07-23-stage3-cluster-coherence.md`) ha
+> mostrato che dei 9 flagship di questa vetrina **0/9 sopravvivono** (7 sono minestroni tematici, 2 —
+> RSV e carcinoma renale — hanno un contrasto coerente ma I² troppo alto). I 18 bundle sono
+> costruiti su cluster la cui coerenza non era stata verificata. Questo documento descrive la
+> **meccanica** del build (corretta) e va tenuto come tale, **non come deliverable scientifico**. Da
+> NON usare per la sezione Results finché l'anchoring dello Stadio 3 non è rifatto.
 
 **Data:** 2026-07-23
 **Branch:** `review-scientific-consistency-2026-06-10` (master invariato)
-**Stato:** ✅ batch Layer B v10 completo (18/18 bundle + report HTML aggregato).
+**Stato:** ⚠️ batch Layer B v10 completo (18/18 bundle) MA su cluster non-coerenti (vedi ritrattazione sopra).
 **Run:** notturno autonomo (handout `docs/superpowers/specs/2026-07-22-layer-b-v10-NEXT-SESSION-handout.md`).
 
 ## 0. Idea in una riga

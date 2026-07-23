@@ -10,19 +10,30 @@
 
 ---
 
-> ⚠️ **RED ALERT ATTIVO** (apertura 2026-05-25) — audit completo
-> pipeline a 5 stadi in corso (FASE F rebuild). **F6: pipeline END-TO-END su v5
-> (malattie risolte + OPZIONE B farmaci/composti ChEMBL COMPLETA). Plan B Task 8-10
-> ESEGUITI: re-cluster Stadio 3 v5 (317k cluster) → re-pool Stadio 4 v5 (7,36M righe
-> pooled, 0 crash df-residui) → re-gate omogeneità. `small_molecule` minestrone
-> 49→36,5% globale, ma al livello granulare L0/L1 (composto specifico) 12→8% ≈ disease
-> (7,7%): il residuo è pooling gerarchico L3/L4 by-design, non name-recovery mancante.**
-> Reference operativa: **`docs/RED_ALERT.md`** (leggere PRIMA di toccare codice) +
-> ledger esecuzione **`.superpowers/sdd/progress.md`** + plan/spec/HUMANE
-> `docs/superpowers/{plans,specs}/2026-06-28-stage3-perturbative-name-recovery-B-*`.
-> Master invariato. Branch attivo: `review-scientific-consistency-2026-06-10`. Le
-> regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
-> comportare con me in questo audit".
+> 🔴🔴 **RED ALERT — FALLIMENTO DI PROCESSO RICONOSCIUTO (2026-07-24).** Per MESI l'audit v5→v10 ha
+> ottimizzato i **NOMI** dei cluster (recupero deterministico, de-frammentazione, LLM-fallback) e ha
+> dichiarato "vittoria" / "DELIVERABLE FINALE" / "publication-grade" **senza mai verificare la
+> COERENZA DI CONTRASTO** — cioè l'obiettivo stesso dello studio: che gli studi raggruppati misurino
+> lo STESSO contrasto così che la meta-analisi guadagni segnale vero. Quando è stata finalmente
+> verificata (2026-07-23, finding `docs/findings/2026-07-23-stage3-cluster-coherence.md`): **157/184
+> (85%) del deliverable sono MINESTRONI, la vetrina Layer B è 0/9.**
+>
+> **⚠️ RITRATTAZIONE ESPLICITA:** tutti i blocchi 🟢 qui sotto che dicono "DELIVERABLE FINALE" (v10
+> fallback 2026-07-22) e "publication-grade / 18 case study" (Layer B v10 2026-07-23) sono
+> **PREMATURI e RITRATTATI**: descrivono lavoro sui nomi corretto, ma NON il prodotto scientifico
+> (meta-analisi coerenti), che in larga parte non esiste. "Nome recuperato" ≠ "cluster omogeneo" ≠
+> "stesso contrasto". NON ri-dichiarare nulla "finale/publication-grade" senza il gate di coerenza.
+>
+> **DECISIONE UTENTE (2026-07-24): opzione 2 = REWORK DELL'ANCORAGGIO A MONTE (Stadio 3).** La causa
+> radice è che l'anchor entità+tessuto è troppo grezzo (L3/L4) e, in group-mode, lascia il CONTROLLO
+> libero per studio → pool­a contrasti diversi. Un filtro a valle è un cerotto; il fix vero è nel modo
+> in cui si costruisce l'anchor/cluster. **Handout prossima sessione (DURO):**
+> `docs/superpowers/specs/2026-07-24-stage3-anchor-coherence-rework-HANDOUT.md`.
+>
+> Reference operativa: ledger **`.superpowers/sdd/progress.md`** + finding coerenza + tool
+> `R/stage3-coherence.R` + tabelle `analysis/audit/2026-07-23-coherence/`. Master invariato. Branch
+> `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
+> comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
 > **Stato 2026-07-23c (COERENZA CLUSTER Stadio 3 — VERIFICATA, problema CORE del RED ALERT)**:
 > 🔴 **La coerenza di contrasto dei cluster — mai verificata in v5→v10 — è ora misurata su OGNI
@@ -55,10 +66,12 @@
 >    (b) ricostruire la vetrina solo sui sopravvissuti + fix nomi, o (c) **rework dell'anchoring a monte**
 >    (il vero fix). Branch invariato, master invariato, no push. Memorie: [[project_stage3_minestrone_rework]].
 >
-> **Stato 2026-07-23 (LAYER B v10 — 18 case study rem_group, DELIVERABLE FINALE)**:
-> 🟢 **Il Layer B publication-grade sulle meta-analisi nominate v10 è girato: 18 bundle
-> (10 flagship validati opzione C + 8 extra), 108 plot, report HTML reso, wall 11,7 min.
-> Deliverable finale della pipeline v10 pronto per la sezione Results del paper.**
+> **Stato 2026-07-23 (LAYER B v10 — 18 case study rem_group)** — ⚠️🔴 **RITRATTATO 2026-07-24: NON
+> "publication-grade", NON un "deliverable finale".** La verifica di coerenza ha mostrato che dei 9
+> flagship di questa vetrina **0/9 sopravvivono**. Il blocco sotto descrive la meccanica del build
+> (corretta), non la validità scientifica (assente finché l'anchoring non è rifatto):
+> 🟢 **Il Layer B sulle meta-analisi nominate v10 è girato: 18 bundle
+> (10 flagship + 8 extra), 108 plot, report HTML reso, wall 11,7 min.**
 >
 > 1. **Run notturno autonomo** (handout `docs/superpowers/specs/2026-07-22-layer-b-v10-NEXT-SESSION-handout.md`):
 >    build `analysis/p5-stage4-layer-b-build-v10.R` sotto setsid sulla selection
@@ -83,11 +96,13 @@
 >    ogni bundle → sezione Results del paper. Branch invariato, master invariato. Memorie:
 >    [[project_stage3_minestrone_rework]], [[feedback_no_whackamole_systematic_debug]].
 >
-> **Stato 2026-07-22 (v10 LLM-FALLBACK FINALE MATERIALIZZATO — END-TO-END COMPLETO)**:
+> **Stato 2026-07-22 (v10 LLM-FALLBACK FINALE MATERIALIZZATO)** — ⚠️🔴 **"END-TO-END COMPLETO" e
+> "DELIVERABLE FINALE" RITRATTATI 2026-07-24.** Il fallback ha migliorato i NOMI e il conteggio delle
+> meta-analisi (161→184), ma "senza degradare l'omogeneità" misurava l'I² del pooled, NON la coerenza
+> di contrasto: i 184 restano 85% minestroni (verifica 2026-07-23). Crescere di numero cluster
+> incoerenti non è progresso scientifico. Il blocco sotto è meccanicamente corretto ma NON un deliverable:
 > 🟢 **L'LLM-fallback su TUTTI gli indeterminati (STR:/UNK, 50% del corpus) è dentro la pipeline
-> come 2° overlay. Misurato con statistiche complete + VALIDATO dal gate rem_group PRIMA di
-> materializzare (non a intuito). Le meta-analisi nominate crescono 161→184 e le bandiera guadagnano
-> potenza (breast k_eff 22→30) senza degradare l'omogeneità. ADR-0024 Accepted.**
+> come 2° overlay. Materializzato: meta-analisi nominate 161→184. ADR-0024 Accepted.**
 >
 > 1. **Misura (passi 1-4, read-only)**: funnel di allocazione su v9-final → **158.751 indeterminati**
 >    (agent UNK|STR:, 50% dei cluster, **96% k=1**). Fallback Mistral su TUTTI (113.475 record, DGX
