@@ -24,6 +24,37 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-23c (COERENZA CLUSTER Stadio 3 — VERIFICATA, problema CORE del RED ALERT)**:
+> 🔴 **La coerenza di contrasto dei cluster — mai verificata in v5→v10 — è ora misurata su OGNI
+> cluster k≥2 (13.287), con la prova accanto a ogni verdetto. Verdetto onesto: la maggior parte dei
+> raggruppamenti NON mette insieme campioni che misurano lo stesso contrasto.**
+>
+> 1. **Metodo (spec/plan `docs/superpowers/{specs,plans}/2026-07-23-stage3-cluster-coherence-verification-*`,
+>    approvato + subagent-driven)**: ricostruzione del contrasto via **dispatch reale Stadio 4**
+>    (`.lookup_cmp`/`.lookup_cmp_by_treated_group`/`.lookup_rg`) → segnali deterministici A/C su tutti i
+>    13.287 (omogeneità del controllo + degenere, `R/stage3-coherence.R` testato) + consistenza ADR-0021
+>    sui 714 poolati (riuso `R/stage4-consistency.R`, validato 15/15 a 1e-17) + **deep-dive LLM (8
+>    subagent, D2 "un contrasto o molti?") sui 184 rem_group**, con verifica controller (~92% accordo su
+>    24 cluster). Nessuna metrica inventata. Verdetto AND multi-asse.
+> 2. **Risultato (DELIVERABLE = 184 rem_group)**: **157/184 (85%) MINESTRONE**, 26 coerenti, 1 incerto;
+>    **solo 19/184 (10%)** sopravvivono come meta-analisi difendibili (stesso contrasto + consistenti +
+>    non-degeneri; e pendono verso k basso, consistenza debole). **13/184** contengono un contrasto
+>    degenere. **Vetrina Layer B v10: 0/9 sopravvive** (7 minestrone, 2 coerenti ma I² alto: RSV, RCC).
+> 3. **Prove reali**: SARS `b6a3eabd` mescola infezione+farmaco+gene; M.tuberc `274f387d` dominato da
+>    COVID/sepsi/dengue; `2bd06550` pool­a DHT (agonista) + Enzalutamide (antagonista, segno opposto);
+>    disease_vs_normal inghiotte malattie diverse sotto un nome (SLE+Crohn+SLA…). Bug ORTOGONALE: alcuni
+>    coerenti hanno canonical_name sbagliato (ethanol→TNF, anisole→calcitriolo).
+> 4. **Diagnosi gate**: ADR-0022 è solo strutturale (L2-L4+group+k_eff≥3+dedup), ZERO check coerenza →
+>    ammette 86% non-coerenti. Gate di coerenza proposto → 19/184. **La causa radice è a monte: l'anchor
+>    entità+tessuto è troppo grezzo (L3/L4) e inghiotte contrasti diversi.**
+> 5. **Onestà**: la vetrina "publication-grade" della sessione precedente NON lo era (cluster non
+>    verificati). Fix del mio strumento in corsa: `frac_degenerate` fl-based dava falsi positivi (Hypoxia)
+>    → degenere = uguaglianza label (54→13). Finding `docs/findings/2026-07-23-stage3-cluster-coherence.md`.
+>    Codice `R/stage3-coherence.R`+test; script+tabelle `analysis/audit/2026-07-23-coherence/`.
+> 6. **PROSSIMO = decisione utente**: (a) adottare il gate di coerenza (ADR nuovo, soglie k+consistenza)?
+>    (b) ricostruire la vetrina solo sui sopravvissuti + fix nomi, o (c) **rework dell'anchoring a monte**
+>    (il vero fix). Branch invariato, master invariato, no push. Memorie: [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-07-23 (LAYER B v10 — 18 case study rem_group, DELIVERABLE FINALE)**:
 > 🟢 **Il Layer B publication-grade sulle meta-analisi nominate v10 è girato: 18 bundle
 > (10 flagship validati opzione C + 8 extra), 108 plot, report HTML reso, wall 11,7 min.
