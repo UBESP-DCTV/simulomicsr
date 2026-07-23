@@ -58,7 +58,7 @@
   }
 
   # tau2_median per REM
-  tau2_median_str <- if (method == "rem" && any(!is.na(cp_c$tau2))) {
+  tau2_median_str <- if (method %in% c("rem", "rem_group") && any(!is.na(cp_c$tau2))) {
     sprintf("%.4f", median(cp_c$tau2, na.rm = TRUE))
   } else {
     "N/A (non-REM)"

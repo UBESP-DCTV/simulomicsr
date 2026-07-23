@@ -129,6 +129,21 @@ selected_cluster_meta$method <- cp_sub_meta$method[
 study_dispatch <- simulomicsr:::.build_study_dispatch_from_stage3(
   selected_cluster_meta, assignments, stage2_master
 )
+# FASE F6 2026-07-05 (ADR-0022): i cluster group NOMINATI (rem_group, mode=group,
+# method=rem_group) usano un dispatch dedicato con lo STESSO schema
+# {study_id, treated, control} dei pair, quindi si fondono nello study_dispatch
+# (esattamente come in R/stage4-build.R:158-171). La selection Layer B v10 e'
+# TUTTA rem_group: senza questo merge il per_cluster_samples_provider non
+# risolveva alcun cluster (bug scoperto nel run notturno v10, 2026-07-23).
+group_rem_dispatch <- simulomicsr:::.build_group_rem_dispatch_from_stage3(
+  selected_cluster_meta, assignments, stage2_master,
+  n_min = 2L
+)
+.dup_disp <- intersect(names(study_dispatch), names(group_rem_dispatch))
+if (length(.dup_disp) > 0L) {
+  cli_abort("cluster_id sovrapposti study/group_rem dispatch: {.dup_disp}")
+}
+study_dispatch <- c(study_dispatch, group_rem_dispatch)
 group_dispatch <- simulomicsr:::.build_group_dispatch_from_stage3(
   selected_cluster_meta, assignments, stage2_master
 )

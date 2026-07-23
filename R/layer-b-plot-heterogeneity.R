@@ -21,7 +21,9 @@
   png_path <- file.path(out_dir, "heterogeneity.png")
   svg_path <- file.path(out_dir, "heterogeneity.svg")
 
-  if (method != "rem") {
+  # rem_group (ADR-0022) e' REM per-studio: tau^2/I^2 per-gene sono stimati come
+  # per rem -> stesso pannello di eterogeneita'.
+  if (!method %in% c("rem", "rem_group")) {
     grDevices::png(png_path, width = 8, height = 4, units = "in", res = config$dpi)
     graphics::plot.new()
     graphics::text(0.5, 0.5, sprintf("Heterogeneity panel N/A\n(method = %s, REM-only)", method))

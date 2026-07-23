@@ -1,13 +1,13 @@
 #' Forest plot top-N geni (REM + MEGA-AUG dispatch)
 #'
-#' Per `method == "rem"`: usa `metafor::forest()` su per-study yi/vi.
+#' Per `method %in% c("rem", "rem_group")`: usa `metafor::forest()` su per-study yi/vi.
 #' Per `method == "mega_aug"`: custom ggplot con 2 studi del pair + pooled diamond.
 #' Per `method == "mega"`: skip-graceful con caption esplicativa (no per-study DE
 #' nel Layer A output).
 #'
 #' @param per_study_de_subset tibble subset per il cluster (puo' essere 0 rows per mega).
 #' @param cluster_pooled_subset tibble subset per il cluster.
-#' @param method character "rem", "mega", o "mega_aug".
+#' @param method character "rem", "rem_group", "mega", o "mega_aug".
 #' @param out_dir character dir output.
 #' @param config list config.
 #'
@@ -129,8 +129,10 @@
       nrow(top_genes), fdr_thr, n_aug_str
     )
 
-  } else if (method == "rem") {
+  } else if (method %in% c("rem", "rem_group")) {
     # REM path via metafor::forest per ogni gene. Build matrix of yi, vi per gene.
+    # rem_group (ADR-0022, meta-analisi nominate group L2-L4) e' REM per-studio con
+    # lo stesso schema per_study_de {study_id, logFC, SE} -> stesso code path di rem.
     # Rispetta config$top_n_forest (era hard-coded 4 cap).
     top_n_actual <- min(nrow(top_genes), top_n)
 
