@@ -14,9 +14,20 @@
 
 **Risposta (misurata, non asserita):** in larga parte **NO**. Dei **184 raggruppamenti che
 compongono il deliverable finale** (le meta-analisi nominate `rem_group` v10), **157 (85%)
-mescolano contrasti diversi** ("mele con pere"), e **solo 19 (10%) sopravvivono** come
-meta-analisi difendibili (stesso contrasto **E** statisticamente consistenti **E** non-degeneri).
-La **vetrina Layer B v10** ("9 case study publication-grade"): **0 su 9 sopravvivono**.
+mescolano contrasti diversi** ("mele con pere"): NON difendibili. Solo **26 (14%) sono coerenti
+= difendibili** (stesso contrasto); di questi, **19 sono anche FORTI** (consistenza≥0,5). La
+**vetrina Layer B v10** ("9 case study publication-grade"): **0 su 9** raggiungono la barriera.
+
+> **DEFINIZIONE DI COERENZA (criterio di accettazione, def. utente 2026-07-24).** Un cluster è
+> **coerente** se è in grado di generare una **meta-analisi scientificamente difendibile** (REM,
+> mega_aug, …), cioè raggruppa studi che misurano lo **stesso contrasto** (stesso tipo di trattamento
+> vs stesso tipo di controllo). La **barriera è binaria** (difendibile vs minestrone); un minestrone
+> non è difendibile per quanta consistenza abbia (breast I²≈1,6 ma minestrone). La **consistenza (k,
+> I²/PI) è la FORZA da riportare, NON la barriera**: un cluster coerente ma eterogeneo è comunque un
+> REM difendibile, solo più debole. **Goal del paper = clustering IRREPRENSIBILE** (ogni cluster
+> difendibile); la vetrina viene dopo ed è secondaria. → I DIFENDIBILI sono **26/184**; i **19** sono
+> i difendibili **e forti** (consistenza≥0,5, colonna `meta_analysis_valid`), da leggere come forza
+> non come barriera.
 
 Questo è il problema CORE del RED ALERT (aperto 2026-05-25): l'audit v5→v10 ha sistemato i *nomi*
 dei cluster ma la **coerenza di contrasto** non era mai stata verificata. Ora lo è.
@@ -68,17 +79,22 @@ era gonfiato). I numeri di questo finding sono POST-fix.
 
 ## 2. Risultato principale — il deliverable (184 rem_group, alta confidenza)
 
-| contrast_verdict | n | % |
-|---|---:|---:|
-| **minestrone** (D2: contrasti diversi) | **157** | **85,3%** |
-| coherent (D2: un contrasto) | 26 | 14,1% |
-| uncertain | 1 | 0,5% |
-| **meta_analysis_valid** (coerente + consistente + non-degenere) | **19** | **10,3%** |
+| contrast_verdict | n | % | lettura |
+|---|---:|---:|---|
+| **minestrone** (D2: contrasti diversi) | **157** | **85,3%** | NON difendibili (falliti) |
+| **coherent** (D2: un contrasto) | **26** | **14,1%** | **DIFENDIBILI (raggiungono la barriera)** |
+| uncertain | 1 | 0,5% | copertura/segnale insufficiente |
+| — di cui `meta_analysis_valid` (anche consistenza≥0,5) | 19 | 10,3% | difendibili **E FORTI** (forza, non barriera) |
+
+**Barriera vs forza (def. §0):** i **26** coerenti sono i cluster DIFENDIBILI (bar = stesso contrasto);
+il **19** è il sottoinsieme anche forte (consistenza≥0,5) — la consistenza ordina per forza, non decide
+la difendibilità. Un coerente-ma-eterogeneo resta un REM difendibile, solo più debole.
 
 - **13/184** contengono almeno un contrasto **degenere** (trattato==controllo) — errori Stadio 2
   che non andrebbero poolati (minoranza intra-cluster, nessun cluster interamente degenere).
-- I **19 sopravvissuti** pendono verso **k basso** (11 su 19 hanno k<5), dove la stima di I² ha
-  poca potenza → la loro consistenza (spesso I²=0) è **debole come evidenza**. Solo 8 hanno k≥5.
+- I **19 forti** pendono verso **k basso** (11 su 19 hanno k<5), dove la stima di I² ha poca potenza
+  → la loro consistenza (spesso I²=0) è **debole come evidenza**. Solo 8 hanno k≥5. (I 26 difendibili
+  includono comunque i coerenti a I² alto, che restano REM validi ma deboli.)
 - **Bug di etichetta ortogonale (non è coerenza ma inquina il paper):** alcuni sopravvissuti hanno
   il `canonical_name` SBAGLIATO — `ethanol` è in realtà TNF, `Met-tRNA` è TGFB1, `anisole` è
   calcitriolo, `4-maleylacetoacetate` è DHT, e "carnitine" è ancora etichettato `pathogen`

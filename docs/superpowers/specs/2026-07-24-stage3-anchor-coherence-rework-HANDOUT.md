@@ -32,6 +32,34 @@ di cluster nominati (161→184) non è progresso se sono incoerenti.
 
 ---
 
+## 0.5 DEFINIZIONE DI COERENZA — il criterio di accettazione (def. utente 2026-07-24)
+
+**Un cluster è COERENTE se è in grado di generare una meta-analisi SCIENTIFICAMENTE DIFENDIBILE**
+(REM per-studio, mega_aug, mega, …): cioè raggruppa studi/campioni che misurano lo **STESSO
+contrasto** (stesso tipo di trattamento vs stesso tipo di controllo), così che poolarli stimi UNA
+quantità biologica reale e non la media di quantità diverse.
+
+- **La BARRIERA è binaria**: *difendibile* (stesso contrasto) vs *minestrone* (contrasti diversi). Un
+  minestrone NON è difendibile per quanta consistenza abbia (breast: I²≈1,6 = "consistentissimo" ma
+  minestrone). La consistenza NON è la barriera.
+- **La FORZA è un GRADIENTE, da RIPORTARE, non un gate della coerenza**: numerosità k, eterogeneità
+  (I²/PI, ADR-0021), potenza. Alcuni cluster saranno più forti di altri **solo per numerosità** — è OK
+  e atteso. Un cluster coerente ma eterogeneo (stesso contrasto, I² alto) è **comunque un REM
+  difendibile** (il REM *modella* l'eterogeneità), semplicemente più debole — NON invalido.
+- **GOAL DEL PAPER = un CLUSTERING IRREPRENSIBILE**: OGNI cluster deve raggiungere la barriera
+  (difendibile). La **vetrina** (Layer B / case study) viene DOPO ed è **secondaria** — è solo la
+  selezione dei casi migliori da mostrare. Il prodotto scientifico primario è la **qualità del
+  clustering**, non la vetrina. Per questo serve un clustering irreprensibile: ogni cluster = input
+  valido per una meta-analisi.
+
+**Conseguenza operativa (correzione del finding 2026-07-23):** i cluster DIFENDIBILI nel deliverable
+v10 sono **26/184** (stesso contrasto, D2=one_contrast, ~92% verificati a mano), NON 19. Il **19** era
+il sottoinsieme difendibile **E forte** (consistenza≥0,5): è la FORZA, non la barriera. I **157**
+minestroni sono i falliti. **Il gate del rework è la barriera di coerenza su OGNI cluster** (rendere
+difendibile ogni cluster), con la forza riportata come gradiente accanto.
+
+---
+
 ## 1. La causa radice (PROVATA, non ipotesi)
 
 Vedi il finding §2-4 + le tabelle `analysis/audit/2026-07-23-coherence/deliverable-184-verdicts.csv`
@@ -64,11 +92,13 @@ il brainstorming non provi che è equivalente e sufficiente).
 
 ## 3. REGOLE HARD (non negoziabili — sono le lezioni dei mesi persi)
 
-1. **Il GATE di accettazione è la COERENZA, non i nomi.** Metrica = coerenza di contrasto
-   (omogeneità del controllo + non-degenere) **E** consistenza (ADR-0021) **E**, sul campione,
-   deep-dive LLM "un contrasto o molti?". Il tool esiste: `R/stage3-coherence.R` +
-   `analysis/audit/2026-07-23-coherence/` + `R/stage4-consistency.R`. Copertura nomi / conteggio
-   cluster / I² del pooled da soli = NON sufficienti, MAI più come criterio di successo.
+1. **Il GATE di accettazione è la COERENZA (= meta-analisi difendibile = stesso contrasto), non i
+   nomi.** Vedi §0.5. Metrica della BARRIERA = coerenza di contrasto (omogeneità del controllo +
+   non-degenere) + deep-dive LLM "un contrasto o molti?" sul campione. La **consistenza (ADR-0021) è
+   la FORZA da riportare accanto, NON la barriera** (un coerente-ma-eterogeneo resta difendibile).
+   Tool: `R/stage3-coherence.R` + `analysis/audit/2026-07-23-coherence/` + `R/stage4-consistency.R`.
+   Copertura nomi / conteggio cluster / I² del pooled da soli = NON sufficienti, MAI più come criterio
+   di successo. L'obiettivo è che OGNI cluster raggiunga la barriera (clustering irreprensibile).
 2. **VIETATO dichiarare "paper-grade"/"publication-grade"/"finale"/"done" senza la prova di coerenza
    PER-CLUSTER sui dati.** Se lo scrivi senza averlo dimostrato è una bugia (è già successo).
 3. **VALIDA-PRIMA-DEL-FULLRUN sulla coerenza.** Ogni design candidato dell'anchor va misurato con la

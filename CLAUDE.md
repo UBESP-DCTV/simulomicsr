@@ -47,10 +47,12 @@
 >    sui 714 poolati (riuso `R/stage4-consistency.R`, validato 15/15 a 1e-17) + **deep-dive LLM (8
 >    subagent, D2 "un contrasto o molti?") sui 184 rem_group**, con verifica controller (~92% accordo su
 >    24 cluster). Nessuna metrica inventata. Verdetto AND multi-asse.
-> 2. **Risultato (DELIVERABLE = 184 rem_group)**: **157/184 (85%) MINESTRONE**, 26 coerenti, 1 incerto;
->    **solo 19/184 (10%)** sopravvivono come meta-analisi difendibili (stesso contrasto + consistenti +
->    non-degeneri; e pendono verso k basso, consistenza debole). **13/184** contengono un contrasto
->    degenere. **Vetrina Layer B v10: 0/9 sopravvive** (7 minestrone, 2 coerenti ma I² alto: RSV, RCC).
+> 2. **Risultato (DELIVERABLE = 184 rem_group)**: **157/184 (85%) MINESTRONE** (non difendibili), 1
+>    incerto, e solo **26/184 (14%) COERENTI = difendibili** (stesso contrasto). DEFINIZIONE (utente
+>    2026-07-24): coerente = genera una meta-analisi difendibile (stesso contrasto); la barriera è
+>    binaria, la **consistenza (k, I²) è la FORZA da riportare non il gate** — dei 26, **19 anche forti**
+>    (consistenza≥0,5, 11/19 k<5). **13/184** con un contrasto degenere. **Vetrina Layer B v10: 0/9
+>    raggiunge la barriera** (7 minestrone, 2 coerenti ma deboli/I² alto: RSV, RCC).
 > 3. **Prove reali**: SARS `b6a3eabd` mescola infezione+farmaco+gene; M.tuberc `274f387d` dominato da
 >    COVID/sepsi/dengue; `2bd06550` pool­a DHT (agonista) + Enzalutamide (antagonista, segno opposto);
 >    disease_vs_normal inghiotte malattie diverse sotto un nome (SLE+Crohn+SLA…). Bug ORTOGONALE: alcuni
