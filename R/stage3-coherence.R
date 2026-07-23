@@ -65,3 +65,52 @@
   study_id = character(0), treated_label = character(0), treated_fl = character(0),
   control_label = character(0), control_fl = character(0), design_kind = character(0),
   stringsAsFactors = FALSE)
+
+#' Riassume i segnali di coerenza (Fase A/C) da un data.frame di contrasti
+#' @keywords internal
+.cluster_coherence_signals <- function(contrast_df) {
+  n <- nrow(contrast_df)
+  if (n == 0L) return(list(n_resolved = 0L, n_control_types = NA_integer_,
+    control_homogeneity = NA_real_, n_design_kinds = NA_integer_,
+    n_treated_types = NA_integer_, n_degenerate = NA_integer_, frac_degenerate = NA_real_))
+  ctrl_types <- vapply(contrast_df$control_label, .normalize_control_type, character(1))
+  trt_types  <- vapply(contrast_df$treated_label, .normalize_control_type, character(1))
+  # degenere: stessa firma factor_levels (stesso studio, chiavi confrontabili) o stesso label
+  deg <- (nzchar(contrast_df$treated_fl) & contrast_df$treated_fl == contrast_df$control_fl) |
+         (tolower(trimws(contrast_df$treated_label)) == tolower(trimws(contrast_df$control_label)))
+  n_ct <- length(unique(ctrl_types))
+  list(
+    n_resolved = n,
+    n_control_types = n_ct,
+    control_homogeneity = 1 / n_ct,                 # 1 = un solo tipo; ->0 = molti tipi
+    n_design_kinds = length(unique(contrast_df$design_kind)),
+    n_treated_types = length(unique(trt_types)),
+    n_degenerate = sum(deg),
+    frac_degenerate = mean(deg))
+}
+
+#' Verdetto AND multi-asse da segnali + consistenza + deep-dive
+#'
+#' Soglie di DEFAULT (documentate nel finding, non nascoste):
+#'   - min_resolved = 2 : sotto = uncertain (copertura insufficiente).
+#'   - deg_frac_hi  = 0.5: frac_degenerate >= => degenerate.
+#'   - homogeneous control = n_control_types == 1 (dopo normalizzazione).
+#'   - design homogeneous  = n_design_kinds <= 1.
+#'   - consistency_ok = (is.na) o >= 0.5 dove disponibile.
+#'   - deepdive: se valutato, "one_contrast" richiesto per coherent; "multi_contrast" => minestrone.
+#' @keywords internal
+.coherence_verdict <- function(signals, consistency = NA_real_, deepdive = NA_character_,
+                               min_resolved = 2L, deg_frac_hi = 0.5, cons_ok = 0.5) {
+  s <- signals
+  if (is.na(s$n_resolved) || s$n_resolved < min_resolved) return("uncertain")
+  if (!is.na(s$frac_degenerate) && s$frac_degenerate >= deg_frac_hi) return("degenerate")
+  if (!is.na(deepdive) && identical(deepdive, "multi_contrast")) return("minestrone")
+  control_homog <- !is.na(s$n_control_types) && s$n_control_types == 1L
+  design_homog  <- !is.na(s$n_design_kinds)  && s$n_design_kinds  <= 1L
+  if (!control_homog || !design_homog) return("minestrone")
+  # qui: control-omogeneo E design-omogeneo E non-degenere
+  cons_pass <- is.na(consistency) || consistency >= cons_ok
+  dd_pass   <- is.na(deepdive) || identical(deepdive, "one_contrast")
+  if (cons_pass && dd_pass) return("coherent")
+  "uncertain"
+}

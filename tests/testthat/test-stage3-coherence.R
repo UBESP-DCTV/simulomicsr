@@ -37,3 +37,49 @@ test_that(".reconstruct_cluster_contrasts ricostruisce >=1 contrasto per un clus
   expect_gt(nrow(df), 1L)
   expect_true(all(c("study_id","treated_label","control_label","design_kind") %in% names(df)))
 })
+
+test_that(".cluster_coherence_signals conta i tipi di controllo distinti e i degeneri", {
+  df <- data.frame(
+    study_id = c("A","B","C"),
+    treated_label = c("drugX","drugX","drugX"), treated_fl = c("t=x","t=x","t=x"),
+    control_label = c("DMSO","vehicle","control diet"),   # 2 tipi: vehicle_untreated + diet
+    control_fl    = c("c=dmso","c=veh","c=x"),
+    design_kind = c("treatment_vs_vehicle","treatment_vs_vehicle","dietary"),
+    stringsAsFactors = FALSE)
+  s <- simulomicsr:::.cluster_coherence_signals(df)
+  expect_equal(s$n_resolved, 3L)
+  expect_equal(s$n_control_types, 2L)
+  expect_equal(s$n_design_kinds, 2L)
+  expect_equal(s$n_degenerate, 0L)
+})
+
+test_that(".cluster_coherence_signals flagga i membri degeneri (treated==control)", {
+  df <- data.frame(
+    study_id = "A", treated_label = "case", treated_fl = "g=case",
+    control_label = "case", control_fl = "g=case",
+    design_kind = "case_control_disease", stringsAsFactors = FALSE)
+  s <- simulomicsr:::.cluster_coherence_signals(df)
+  expect_equal(s$n_degenerate, 1L)
+  expect_equal(s$frac_degenerate, 1.0)
+})
+
+test_that(".coherence_verdict: consistente ma control-eterogeneo => minestrone (breast docet)", {
+  s <- list(n_resolved=6L, n_control_types=8L, control_homogeneity=1/8,
+            n_design_kinds=3L, n_degenerate=0L, frac_degenerate=0)
+  expect_equal(simulomicsr:::.coherence_verdict(s, consistency=0.98), "minestrone")
+})
+test_that(".coherence_verdict: degenere prevale", {
+  s <- list(n_resolved=4L, n_control_types=1L, control_homogeneity=1,
+            n_design_kinds=1L, n_degenerate=3L, frac_degenerate=0.75)
+  expect_equal(simulomicsr:::.coherence_verdict(s), "degenerate")
+})
+test_that(".coherence_verdict: control-omogeneo + non-degenere + consistenza ok => coherent", {
+  s <- list(n_resolved=5L, n_control_types=1L, control_homogeneity=1,
+            n_design_kinds=1L, n_degenerate=0L, frac_degenerate=0)
+  expect_equal(simulomicsr:::.coherence_verdict(s, consistency=0.7, deepdive="one_contrast"), "coherent")
+})
+test_that(".coherence_verdict: copertura insufficiente => uncertain", {
+  s <- list(n_resolved=1L, n_control_types=1L, control_homogeneity=1,
+            n_design_kinds=1L, n_degenerate=0L, frac_degenerate=0)
+  expect_equal(simulomicsr:::.coherence_verdict(s), "uncertain")
+})
