@@ -24,6 +24,34 @@
 > regole comportamentali per Claude sono nel doc RED_ALERT, §"Come Claude si deve
 > comportare con me in questo audit".
 >
+> **Stato 2026-07-23 (LAYER B v10 — 18 case study rem_group, DELIVERABLE FINALE)**:
+> 🟢 **Il Layer B publication-grade sulle meta-analisi nominate v10 è girato: 18 bundle
+> (10 flagship validati opzione C + 8 extra), 108 plot, report HTML reso, wall 11,7 min.
+> Deliverable finale della pipeline v10 pronto per la sezione Results del paper.**
+>
+> 1. **Run notturno autonomo** (handout `docs/superpowers/specs/2026-07-22-layer-b-v10-NEXT-SESSION-handout.md`):
+>    build `analysis/p5-stage4-layer-b-build-v10.R` sotto setsid sulla selection
+>    `analysis/layer-b-selection-v10.csv` (18 case study, tutti `rem_group`, exists_in_stage4=TRUE).
+>    Output `analysis/p4-output/20260722T215752Z-layer-b-d7a475bb/` (gitignored): 18 sottodir bundle
+>    (volcano/forest/MA/heatmap/heterogeneity/GO + top_genes + summary_card + narrative.qmd stub) +
+>    `layer_b_report.html` (35 MB, standalone) + `run_metadata.json` + `selection_resolved.csv`.
+> 2. **Copertura**: 7 malattie (RCC/lung/gastric/hepatocell/colorectal/breast/prostate), 5 farmaci
+>    (bleomicina/physostigmine/tamoxifen/enzalutamide/fulvestrant), 5 patogeni (RSV/influenza/LPS/
+>    SARS/M.tuberc), 1 citochina/gene (TGFB1). Le 6 bandiera del re-gate opzione C tutte presenti.
+> 3. **BUG scoperto+chiuso durante il run (paper-grade)**: la macchina Layer B (ADR-0017, 2026-05-24)
+>    è ANTERIORE al ramo `rem_group` (ADR-0022) → non gestiva quel method. Due crash con stessa causa,
+>    chiusi in blocco (no whack-a-mole) mappando TUTTI i dispatch su `method`: (a) mancava
+>    `.build_group_rem_dispatch_from_stage3` nello script di build (nessun cluster risolto in campioni);
+>    (b) `rem_group` assente dal dispatch di `.build_forest`/`.build_heterogeneity_panel`/`.build_summary_card`
+>    (τ²). Fix ADDITIVO: `rem_group`→ramo `rem` (identità di schema REM: τ²/I²/Q + per-study logFC/SE),
+>    replica di `R/stage4-build.R:158-171`. Validato prima di ogni rilancio (18/18 risolti; 3 cluster
+>    reali producono forest+heterogeneity; 33 test builder PASS/0 FAIL). Fix in git:
+>    `R/layer-b-plot-forest.R`, `-heterogeneity.R`, `layer-b-summary-card.R`, `p5-stage4-layer-b-build-v10.R`.
+> 4. **Output**: finding `docs/findings/2026-07-23-layer-b-v10-case-studies.md`, ADR-0017 Addendum,
+>    ledger. **Prossimo = compilare le narrative.qmd** (Biological context/Findings/Discussion) per
+>    ogni bundle → sezione Results del paper. Branch invariato, master invariato. Memorie:
+>    [[project_stage3_minestrone_rework]], [[feedback_no_whackamole_systematic_debug]].
+>
 > **Stato 2026-07-22 (v10 LLM-FALLBACK FINALE MATERIALIZZATO — END-TO-END COMPLETO)**:
 > 🟢 **L'LLM-fallback su TUTTI gli indeterminati (STR:/UNK, 50% del corpus) è dentro la pipeline
 > come 2° overlay. Misurato con statistiche complete + VALIDATO dal gate rem_group PRIMA di

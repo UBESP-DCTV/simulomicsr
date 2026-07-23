@@ -57,10 +57,31 @@ Adozione di un'architettura **CSV-driven selection + comprehensive plot bundle +
 - Multi-organism support (ARCHS4 mouse) — dipendente da γ pipeline future.
 - Cross-cluster integration (es. combine 2 cluster narrative in un singolo case study composto) — out-of-scope v1.
 
+## Addendum 2026-07-23 — Layer B v10 (deliverable finale rem_group-focused)
+
+Il deliverable Layer B della pipeline v10 è un batch di **18 case study focalizzati sulle
+meta-analisi cross-studio NOMINATE (`rem_group`, ADR-0022/0024)**: 10 flagship validati
+opzione C + 8 extra (7 malattie, 5 farmaci, 5 patogeni, 1 citochina/gene). Run notturno
+autonomo, wall 11,7 min, 108 plot generati, report HTML reso. Output
+`analysis/p4-output/20260722T215752Z-layer-b-d7a475bb/`. Finding
+`docs/findings/2026-07-23-layer-b-v10-case-studies.md`.
+
+**Estensione architetturale (retrocompatibile) al method `rem_group`.** La macchina Layer B
+originale (questo ADR) conosceva i method `{mega, mega_aug, rem}`; il ramo `rem_group`
+(introdotto in v8+, ADR-0022) non era gestito nel dispatch dei campioni né nei plot builder.
+Poiché `rem_group` è REM per-studio con lo STESSO schema statistico di `rem` (τ²/I²/Q/k_effective
++ per-study logFC/SE), è stato instradato sul ramo `rem` esistente in `.build_forest`,
+`.build_heterogeneity_panel`, `.build_summary_card` + aggiunto `.build_group_rem_dispatch_from_stage3`
+allo script di build. Cambi additivi (rem/mega/mega_aug invariati, 33 test builder PASS/0 FAIL).
+Decisione paper-grade: identità di schema, non assunzione — lo skip-graceful (come `mega`)
+avrebbe prodotto forest/heterogeneity "N/A" per meta-analisi che HANNO quelle statistiche.
+
 ## Riferimenti
 
 - Spec: `docs/superpowers/specs/2026-05-24-p5-stadio4-layer-b-design.md`
 - ADR-0006 (positioning vs RummaGEO)
 - ADR-0015 (Stage 4 three-path architecture)
 - ADR-0016 (Stage 4 crash fixes baseline pool cap)
+- ADR-0022 (Stage 4 rem_group named meta-analyses) · ADR-0024 (v10 LLM-fallback)
 - Finding scope decision: `docs/findings/2026-05-19-stadio-4-5-scope-decision.md`
+- Finding Layer B v10: `docs/findings/2026-07-23-layer-b-v10-case-studies.md`
