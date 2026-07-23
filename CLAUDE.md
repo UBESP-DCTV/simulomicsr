@@ -35,6 +35,38 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-24 (REWORK ANCORAGGIO — CAUSA RADICE PROVATA + DESIGN MISURATO SULLA COERENZA, GATED)**:
+> 🟡 **Causa radice provata e design candidati misurati sulla coerenza su campione (nessun re-cluster).
+> Decisione di design in attesa dell'utente.** (Nessuna dichiarazione "finale/paper-grade": è un design
+> validato, non un deliverable.)
+>
+> 1. **CAUSA RADICE (provata):** l'anchor è **comparison-blind** — ancora sulla perturbazione del campione
+>    TRATTATO, non su ciò che il CONTRASTO isola (il delta trattato↔controllo). Prova SARS `b6a3eabd`:
+>    infezione-vs-mock + farmaco-vs-DMSO (SARS held-constant) + KO-genetico sotto un anchor. Scala: dei
+>    1.674 cluster k≥3 risolvibili, 59,8% mescola ≥2 classi-contrasto, 76,8% ≥2 tipi-controllo.
+> 2. **METODO (validate-before-fullrun):** riparto dai contrasti già ricostruiti
+>    (`per-member-contrasts.parquet`, 38.440 membri/7.886 cluster), firma-di-contrasto per membro
+>    (control_type + classe-delta + entità-delta via `factor_levels`), ri-partiziono ogni cluster
+>    (within-cluster = LOWER BOUND, no merge cross-cluster), **verifica LLM** subagent (rubrica deep-dive
+>    identica). Engine + script + verdetti: `analysis/audit/2026-07-24-anchor-coherence-sim/`.
+> 3. **RISULTATI:** Design A (solo control_type) **INSUFFICIENTE = 11% coerente (3/28 LLM)**
+>    ("vehicle_untreated" troppo grezzo, il trattato resta eterogeneo). Design B/C (delta-entity, proxy
+>    dell'anchor derivato-dal-contrasto) **= 80% coerente (89% escl. classe `<none>`)**: i minestroni noti
+>    si sciolgono (SARS→"SARS vs mock" k=7 pulito; enzalutamide/fulvestrant/osimertinib/R1881/vemurafenib/HCC
+>    puliti). **~95-107 meta-analisi difendibili k≥3** (lower bound within-cluster) vs **26/184** oggi.
+> 4. **TRADE-OFF misurato:** k crolla (mediana 8→3-4), le malattie collassano (13 poolabili disease, k_med 3).
+>    CAVEAT: il proxy grezzo-da-label sovra-frammenta (spezza 18/26 coerenti; SARS-infezione in 3 pezzi
+>    k=7+4+4 che con entità **canonica** `NCBITaxon:2697049` diventano k=15) → il design VERO usa il
+>    **resolver esistente sul DELTA**, recuperando k = il lavoro del build.
+> 5. **RACCOMANDAZIONE = Opzione B** (re-anchor a monte: entità-delta canonica + control_type + drop
+>    degeneri, ~8h re-cluster + ~50h re-pool) con **Opzione C** (filtro a valle, stesso split senza merge,
+>    ~50h) come ripiego economico. **DECISIONI APERTE per l'utente** (spec §6): direzione B vs C, soglia k,
+>    trade-off k↔coerenza, disease low-k, combo.
+> 6. **Output:** finding `docs/findings/2026-07-24-anchor-contrast-coherence-simulation.md`; spec di design
+>    `docs/superpowers/specs/2026-07-24-stage3-contrast-anchor-design.md`; evidenza
+>    `analysis/audit/2026-07-24-anchor-coherence-sim/`. **GATE: nessun re-cluster finché l'utente non sceglie
+>    il design.** Branch invariato, master invariato, no push. Memorie: [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-07-23c (COERENZA CLUSTER Stadio 3 — VERIFICATA, problema CORE del RED ALERT)**:
 > 🔴 **La coerenza di contrasto dei cluster — mai verificata in v5→v10 — è ora misurata su OGNI
 > cluster k≥2 (13.287), con la prova accanto a ogni verdetto. Verdetto onesto: la maggior parte dei
