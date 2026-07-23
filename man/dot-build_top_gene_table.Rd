@@ -17,7 +17,12 @@
 list \verb{csv_path, tex_path, caption, n_rows}.
 }
 \description{
-Top-N geni FDR<thr ranked by |logFC_pool|. Output 2 file: \code{top_genes.csv}
-(machine-readable) e \code{top_genes.tex} (paper-ready, kableExtra booktabs).
+Top-N geni FDR<thr ranked by significance (\code{FDR_BH_within_cluster}
+ascendente, tie-break \verb{|logFC_pool|} discendente), deduplicati per
+\code{gene_symbol} (vedi \code{\link[=.rank_and_dedup_genes]{.rank_and_dedup_genes()}}: il ranking per |logFC|
+pescava geni ad alta varianza/bassa robustezza e l'artefatto
+multi-Ensembl di ARCHS4 gonfiava la tabella con lo stesso gene ripetuto
+su piu righe). Output 2 file: \code{top_genes.csv} (machine-readable) e
+\code{top_genes.tex} (paper-ready, kableExtra booktabs).
 }
 \keyword{internal}
