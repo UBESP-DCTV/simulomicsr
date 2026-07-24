@@ -108,6 +108,35 @@ fonte dell'entità (16 STR + 14 NAME + 10 onto, i più a rischio prima):
 campione), non 287. Va portato più su chiudendo i 4 modi-di-fallire e RI-misurando. Solo allora
 "soluzione". Verdetti: `llm-verdicts-v4-sample.jsonl`.
 
+## 8. CENSIMENTO COMPLETO su TUTTI i cluster (non a campione) — gate v5 poi v6
+
+Dopo la verifica a campione (§7, 72%), l'utente ha imposto: censimento LLM su **TUTTI** i poolabili +
+niente slop (es. `STR:t` non doveva esistere). Due giri di gate rigoroso + censimento completo:
+
+**Gate v5 (stoplist base + blacklist ID-ombrello + induttori):** 219 poolabili → censiti TUTTI (15
+batch) → **162/219 = 74% coerenti**. Catalogo dei 57 falliti in `v5-census-failures.txt`: combo 16,
+STR generici 11, baseline eterogenei 8, umbrella/generic ChEBI 7, disease-ombrello 4, misti/direzione 11.
+
+**Gate v6 (hardened: stoplist estesa high/low/positive/mutant/…, blacklist ID doxiciclina/DMSO/organic-
+cation/steroid, combo→entità distinta #5, control_type material-aware):** 196 poolabili → censiti TUTTI
+(14 batch) → **159/196 = 81% coerenti su TUTTI**; **~89% sul deliverable** escludendo i 16 bucket
+`+COMBO` (combo staccate dai mono ORA puliti — enzalutamide/fulvestrant/palbociclib/osimertinib/DHT/
+estradiolo mono tutti one_contrast; il bucket +COMBO lumpa combo diverse ed è multi per costruzione, ma
+in produzione ogni combo si risolve in un ID specifico, decisione #5).
+
+**Falliti VERI residui = 15** (`v6-census-failures.txt`): baseline-material eterogenei 5
+(tessuto-vs-plasma: HCC, liver_cancer, lung-adeno, heart_failure, HBV; il fix material-aware è parziale),
+**direzione opposta 4** (glucosio depriv/agg; androgeno agonista/degrader; estrogeno/resistenza; TNF
+inib/stim → serve pooling sign-aware, decisione di design), misti 2, umbrella-residuo 3 (heat-shock+tabacco,
+covid+vaccino, environmental), longitudinale 1. + 4 combo non catturate dallo split (bleomicina/TMZ/
+vemurafenib usano "/" non "+") + 2 unclear.
+
+**Traiettoria coerenza (censimento completo, non campione):** v5 74% → v6 81% (tutti) / 89% (deliverable).
+Il resto è cataloghato, con fix noti (sign-aware per la direzione; control_type material-aware pieno;
+resolver combo specifico). NON ancora "soluzione": il residuo va chiuso e ri-censito, e il proxy resta più
+debole della pipeline vera (che risolve combo/entità meglio). Ma la direzione regge coi numeri, su TUTTI i
+cluster. Verdetti: `v5-census-failures.txt`, `v6-census-failures.txt`; gate `77-fase1-v6-hardened-gate.R`.
+
 ## Dati / riproducibilità
 `70-fase1-canonical-sim.R` (v1 ontologia pura) · `72-fase1-v4-hybrid.R` (engine finale) ·
 `73-fase1-stratified.R` (stratificazione). `contrast-sig-engine.R` (firma). rds intermedi gitignored.

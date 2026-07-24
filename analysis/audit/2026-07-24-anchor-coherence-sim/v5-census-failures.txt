@@ -1,0 +1,57 @@
+COMBO: CHEBI:68534 enzalutamide+simirosertib
+COMBO: CHEBI:85993 palbociclib+combo
+COMBO: NAME:palbociclib +Indisulam/+Fulvestrant
+COMBO: CHEBI:31638 fulvestrant+NVP-CGM097
+COMBO: NAME:cisplatin +BYK204165/siASCL1
+COMBO: CHEBI:50131 decitabine+panobinostat
+COMBO: NAME:dexamethasone +Belinostat
+COMBO: NAME:temozolomide +Radiation
+COMBO: HGNC:11927 TWEAK+TNF/+IL17A
+COMBO: HGNC:14900 IL22+flow/+IFNL
+COMBO: HGNC:6001 IL2+kynurenine/+SR1
+COMBO: HGNC:6014 IL4+Staph/+SGA
+COMBO: NAME:bleomycin +protective
+COMBO: NAME:bleomycin a2 +combos
+COMBO: NAME:staphylococcus aureus +cytokine
+COMBO: NAME:staphylococcus epidermidis +cytokine
+GENERIC_CHEBI: CHEBI:25367 organic cation
+GENERIC_CHEBI: CHEBI:35341 steroid (+ infezioni)
+GENERIC_CHEBI: CHEBI:33699 mRNA/tecnica
+GENERIC_CHEBI: CHEBI:84123 (env+immuno+aging)
+VEHICLE_AS_ENTITY: CHEBI:28262 DMSO
+INDUCER_ID: CHEBI:50845 doxycycline (vehicle_untreated)
+INDUCER_ID: CHEBI:50845 doxycycline (no doxycycline)
+GENERIC_STR: STR:high||low
+GENERIC_STR: STR:high||vehicle
+GENERIC_STR: STR:positive||negative
+GENERIC_STR: STR:post||pre treatment
+GENERIC_STR: STR:present||absent
+GENERIC_STR: STR:mutant||wild type
+GENERIC_STR: STR:overexpressed||not overexpressed
+GENERIC_STR: STR:chemotherapy
+GENERIC_STR: STR:differentiation
+GENERIC_STR: STR:environmental_or_behavioral
+GENERIC_STR: STR:transgene_stable
+BASELINE_HETERO: NAME:hepatocellular carcinoma tessuto-vs-plasma
+BASELINE_HETERO: STR:liver_cancer plasma
+BASELINE_HETERO: STR:multiple_myeloma plasma/bm/cells
+BASELINE_HETERO: NAME:gastric cancer normale-gastrico-vs-normale-fegato
+BASELINE_HETERO: NAME:leukemia myeloid acute AML-vs-Normal-Lung
+BASELINE_HETERO: NAME:lung adenocarcinoma +SSc/plasma
+BASELINE_HETERO: NAME:osteoarthritis condrocita-vs-MSC
+BASELINE_HETERO: NAME:non-small cell lung carcinoma CD8-vs-tessuto
+DIRECTION_OPPOSITE: CHEBI:4167 glucose deprivazione/aggiunta
+DIRECTION_OPPOSITE: CHEMBL:265582 TNF inibitore/stimolo
+DIRECTION_OPPOSITE: CHEBI:50113 androgeno agonista/degrader
+UMBRELLA_DISEASE: NAME:non-small cell lung cancer +SCLC
+UMBRELLA_DISEASE: NAME:mycobacterium tuberculosis +anti-TB-drugs
+UMBRELLA_DISEASE: NAME:lesional malattie-cutanee-diverse
+UMBRELLA_DISEASE: NAME:heat shock +heated-tobacco
+CONTROL_HETERO: CHEBI:66919 ruxolitinib vs-SARS/vs-mock
+MIXED_CYTOKINE: HGNC:1662 IR+UM171+shRNA
+MIXED_CYTOKINE: HGNC:1678 case-control+iTreg+T4
+MIXED_CYTOKINE: HGNC:1706 antiPD1+farmaci
+MIXED_CYTOKINE: HGNC:6018 heatshock+IL6+HGF+OSM
+MIXED_OTHER: HGNC:11795 SLE+lariciresinol+dox+graphene
+MIXED_OTHER: CHEBI:138653 hepatoblastoma+chemo+enza
+MIXED_OTHER: CHEBI:16236 LSCC+A485+alcohol
