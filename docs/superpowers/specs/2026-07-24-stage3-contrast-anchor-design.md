@@ -109,26 +109,32 @@ ma è un cerotto e lascia k sul tavolo.
    (come già fa il resolver combo con ID-combo `+`); non si spezza né si scarta. Se poi la combo ha k<3 si
    scarta da sola per la soglia. ✅ deciso.
 
-## 7. Gate di validazione PRIMA di qualunque re-cluster (regola hard 3)
+## 7. Come si prova che funziona — RIPRODUCIBILE, NO Claude (decisione utente 2026-07-24)
 
-**Decisione utente 2026-07-24: la validazione va fatta su TUTTI i cluster, NON su campione** — ogni
-cluster va controllato, altrimenti si ricade nel fallimento dei mesi (proxy campionato → falsa vittoria).
-Il gate produce un **verdetto di coerenza PER-CLUSTER per ogni cluster del deliverable**, con la prova
-accanto (come il finding 2026-07-23 fece per i 184, ma esteso a TUTTI). Prima del re-cluster (~8h):
+**Vincolo fondamentale: la pipeline pubblicata è 100% DETERMINISTICA.** La coerenza nasce **per
+costruzione** dell'anchor (entità-delta canonica via resolver + control_type + drop degeneri), NON da un
+giudice LLM a runtime. Nessun componente richiede Claude o un abbonamento. L'unico LLM *nella* pipeline
+resta **Mistral self-hosted** ($0, riproducibile), come già in Stadio 1/2. **Principio: se la coerenza
+avesse bisogno di un giudice LLM a runtime, l'anchor sarebbe mal progettato.**
 
-1. **Deterministico su TUTTI i cluster (by-construction, 100% copertura):** l'anchor derivato-dal-contrasto
-   con entità **canonica** garantisce, per costruzione, un'unica entità-delta canonica + un unico
-   `control_type` + non-degenere per cluster. Verificare questa proprietà su OGNI cluster (control
-   homogeneity, singola entità canonica, `frac_degenerate==0`); i cluster che la violano sono flag/scarto.
-2. **LLM deep-dive su TUTTI i cluster poolabili (non campione):** dove il deterministico non arriva
-   (errori di canonicalizzazione che fondono entità diverse sotto un ID; `control_type` troppo grezzo →
-   confondimenti sottili tipo estradiolo+fulvestrant), serve il giudizio LLM su OGNI cluster poolabile.
-   Batch di subagent con la rubrica del deep-dive (identica al finding); il costo scala col n. cluster
-   (feasibile: i 184 = 8 subagent; qualche centinaio = decine di batch). Nessun cluster passa non-controllato.
-3. **Controllo di non-regressione:** verificare che i **26 coerenti attuali restino interi** (regola hard 5).
+**Gate di coerenza = DETERMINISTICO** (è un componente della pipeline, ricalcolabile da chiunque con le
+ontologie): per ogni cluster poolabile, richiede control-homogeneity (un solo `control_type`), **singola
+entità-delta canonica**, `frac_degenerate==0`, delta non-vuoto. I cluster che non lo soddisfano sono
+scartati. Questo È la barriera; non c'è LLM che decide a valle.
+
+**Validazione (come PROVO che il gate funziona), su TUTTI i cluster, NON campione:**
+1. **Prova primaria = metriche deterministiche su TUTTI i cluster** (control-homogeneity, entità canonica
+   unica, non-degenere). Ricalcolabili da chiunque → è la validazione del paper. Copertura 100%.
+2. **Evaluator LLM = Mistral** (il modello della pipeline, NON Claude), come check human-auditable sul fatto
+   che il gate deterministico catturi davvero l'incoerenza residua (canonicalizzazione che fonde entità
+   diverse; `control_type` troppo grezzo). Riproducibile, $0. NON è nella pipeline: è metodo di validazione.
+3. **Non-regressione:** i **26 coerenti attuali restano interi** (regola hard 5).
 4. **Confronto col lower bound** di questa simulazione: l'entità canonica deve **migliorare** k a parità di
-   coerenza (i frammenti sinonimi si fondono, es. SARS k=7+4+4 → k=15).
-5. Solo con TUTTI i cluster verificati coerenti + GO dell'utente → re-cluster + re-pool.
+   coerenza (SARS k=7+4+4 → 15).
+5. Solo con TUTTI i cluster verificati + GO utente → re-cluster + re-pool.
+
+(Nota: i subagent Claude usati per MISURARE nel finding 2026-07-23 e in questa simulazione erano strumenti
+di audit usa-e-getta — NON parte della pipeline né della validazione pubblicata.)
 
 ## 8. Cosa NON fa questa spec
 - Non lancia re-cluster/re-pool. Non tocca master. Non dichiara nulla "finale/paper-grade".
