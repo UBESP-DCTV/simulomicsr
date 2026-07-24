@@ -35,6 +35,35 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-25 (ANCHOR DAL-CONTRASTO v7 — RESIDUO CHIUSO + RI-CENSIMENTO SU TUTTI: 92,7%)**:
+> 🟡 **150 poolabili k≥3, coerenza 92,7% (139/150) misurata su TUTTI uno per uno. NON validato, NON
+> finale: nessun re-cluster lanciato. 11 falliti residui catalogati per causa.**
+>
+> 1. **DECISIONI UTENTE**: (a) la **direzione opposta NON si fonde** → il verso (gain/loss/block) entra
+>    nella chiave dell'anchor; (b) **verso non determinabile → si scarta il cluster**.
+> 2. **Numeri**: 150 poolabili k≥3 (74 con k≥5, v6 70); **139 coerenti = 92,7%**; 866/934 studi-slot nei
+>    coerenti. ⚠️ **NON confrontabile con l'81% di v6** (rubrica di giudizio più severa). Il confronto
+>    valido è la chiusura uno-per-uno dei falliti v6, **verificata sui dati** (`87-v6-failures-closure.R`):
+>    **19 casi su 20 CHIUSI**, 1 aperto (HBV clinico-vs-sperimentale).
+> 3. **Regole nuove, tutte deterministiche e tutte derivate dai falliti veri**: on-contrast a parola intera
+>    su token distintivi; nome del cluster canonicalizzato nello stesso spazio-ID; **verso** nella chiave;
+>    **combo = entità a sé** rilevata anche dal label; **materiale per braccio**; baseline propria;
+>    **contrasto rotto** (anatomia/materiale/tipo cellulare disgiunti) → membro droppato; infezione
+>    **clinica vs sperimentale**; firma delle **classi** del delta.
+> 4. **Tre bug MIEI trovati misurando e corretti**: `anatomy_of()` faceva `gsub` prima di `tolower`
+>    (AML-vs-"Normal Lung" passava indenne); la mia sanitizzazione spezzava `sars-cov-2`→`sars-cov` (SARS
+>    2003, 166 membri sull'entità sbagliata); `\b` non vede `calcium_low` (`_` è carattere di parola).
+> 5. **Bug di PRODUZIONE ortogonale (nomi)**: `.normalize_cytokine_to_hgnc` risolve **ogni etichetta con
+>    `ug/ml` a THPO** (ImmPort ha `ML` come sinonimo di *Thrombopoietin*) — stessa famiglia di ethanol→TNF.
+>    Non toccato (i nomi sono ortogonali alla coerenza): **decisione utente aperta**.
+> 6. **Limite nuovo — frammentazione**: ~10 cluster in eccesso (LPS 27+3, SARS 31+3, enzalutamide 22+4,
+>    TGFB1 28+7, ipossia 9+9+6, nutlin 4+3 = due ID ChEBI per lo stesso farmaco…). Costa k, non coerenza.
+> 7. **PROSSIMO**: handout `docs/superpowers/specs/2026-07-26-stage3-contrast-anchor-NEXT-SESSION-HANDOUT.md`
+>    (chiudere gli 11 + la frammentazione, ri-censire, poi GATE utente prima della Fase 2 in produzione).
+>    Finding `docs/findings/2026-07-25-stage3-contrast-anchor-v7-census.md`; verdetti
+>    `analysis/audit/2026-07-24-anchor-coherence-sim/v7-census-verdicts.csv`. Branch invariato, master
+>    invariato, no push. Memorie: [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-07-24b (ANCHOR DAL-CONTRASTO — SIMULAZIONE ITERATA + CENSIMENTO SU TUTTI I CLUSTER)**:
 > 🟡 **Design validato in simulazione all'81% (TUTTI i cluster) / ~89% (deliverable). NON finito, NON
 > "una soluzione". Residuo catalogato. Nessun re-cluster. Handout+prompt pronti per la prossima sessione.**

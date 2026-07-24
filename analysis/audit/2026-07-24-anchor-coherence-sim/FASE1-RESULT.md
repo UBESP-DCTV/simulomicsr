@@ -1,5 +1,13 @@
 # Fase 1 — Validazione in simulazione dell'anchor derivato-dal-contrasto
 
+> **AGGIORNAMENTO 2026-07-25 (v7).** Il residuo di v6 e' stato chiuso e la coerenza RI-CENSITA su TUTTI:
+> **150 poolabili k≥3, 139 coerenti = 92,7%**, 11 incoerenti catalogati per causa. Dei 20 casi falliti
+> catalogati in v6, **19 chiusi e 1 aperto** (HBV), verificato sui dati (`87-v6-failures-closure.R`).
+> ⚠️ Le percentuali v6 (81%) e v7 (92,7%) **non sono confrontabili**: rubrica di giudizio piu' severa.
+> Resta **NON validato e NON finale**: nessun re-cluster lanciato, e il proxy e' piu' debole della
+> pipeline vera. Report completo: `docs/findings/2026-07-25-stage3-contrast-anchor-v7-census.md`;
+> verdetti per-cluster: `v7-census-verdicts.csv`.
+
 **Data:** 2026-07-24 · nessun re-cluster (simulazione sui 38.440 contrasti già ricostruiti).
 **Scopo:** gate go/no-go PRIMA delle 8h di re-cluster. Provare che l'anchor derivato-dal-contrasto
 (entità-delta canonica + control_type-dal-delta, filtro degeneri) de-mescola i minestroni e recupera k
