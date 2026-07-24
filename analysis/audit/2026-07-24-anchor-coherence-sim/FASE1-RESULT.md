@@ -5,11 +5,18 @@
 (entità-delta canonica + control_type-dal-delta, filtro degeneri) de-mescola i minestroni e recupera k
 senza regredire i cluster già coerenti.
 
-## Verdetto: 🟢 DESIGN VALIDATO (soluzione trovata) — con un limite netto e onesto sul RESOLVER
+## Verdetto: 🟡 DESIGN PROMETTENTE, COERENZA MISURATA 72% — NON ancora una soluzione
 
-Il meccanismo funziona. Il residuo NON è un difetto del design ma la **copertura del resolver** su
-alcune classi (disease/environment/genetic), che il mio proxy Fase 1 (risolve i label GREZZI)
-**sotto-rappresenta** rispetto alla pipeline vera (name-recovery + overlay LLM v9/v10).
+> ⚠️ **CORREZIONE (2026-07-24, post-verifica).** La prima stesura diceva "🟢 DESIGN VALIDATO / soluzione
+> trovata" basandosi su k-recupero (287 poolabili) + preservazione (drug 8/8). **Era prematura: misurava
+> CONTEGGI, non coerenza** — l'errore ricorrente del RED ALERT. La verifica di coerenza (deep-dive su 40
+> nuovi cluster, §7) mostra **72% coerenti (29/40)**, NON ~100%. Il conteggio 287 NON è "287 coerenti":
+> è ~72% di essi. Il design funziona nella direzione ma ha 4 modi-di-fallire diagnosticati e non ancora
+> chiusi/ri-misurati.
+
+Il meccanismo recupera k e de-mescola i minestroni noti, ma la coerenza dei NUOVI cluster va portata su:
+il residuo del 28% ha cause precise (§7), fixabili, ma finché non sono fixate e RI-MISURATE non è una
+soluzione. Il limite di copertura del resolver (sotto) resta valido e va sommato a questo.
 
 ## 1. Numeri (engine finale v4 = hybrid on/off-contrast + control_type-dal-delta)
 
@@ -71,6 +78,35 @@ hybrid on/off-contrast, (c) control_type dal lato-controllo del delta, (d) gate 
 deterministico. Poi ri-eseguire QUESTA validazione sul re-cluster vero (Fase 3): atteso ≥24/26 grazie
 alla risoluzione di produzione. Disease/environment restano lo **stratum a copertura minore** (meno
 cluster, low-k), come già accettato.
+
+## 7. PROVA DI COERENZA sui nuovi cluster (il passo che avevo saltato) — 72%
+
+Deep-dive (rubrica identica al finding 2026-07-23) su 40 nuovi cluster v4 poolabili, stratificati per
+fonte dell'entità (16 STR + 14 NAME + 10 onto, i più a rischio prima):
+
+| fonte entità | coerenti | tasso |
+|---|---|---|
+| NAME (ereditata dal cluster) | 12/14 | 86% |
+| onto (ID ontologico) | 7/10 | 70% |
+| STR (fallback etichetta) | 10/16 | 62% |
+| **totale** | **29/40** | **72%** |
+
+**4 modi-di-fallire diagnosticati (tutti fixabili, NON ancora chiusi):**
+1. **Token STR generici/troncati** → minestrone: `STR:t`, `STR:d`, `STR:dox`, `STR:none`,
+   `STR:genetic_knockdown`, `STR:genetic_overexpression`. La mia normalizzazione ha ridotto valori a
+   singole lettere che collidono. Fix: stoplist + non collassare a <3 char + non usare valori di chiave
+   generici come entità.
+2. **Termini-ombrello ontologici** → minestrone: `MeSH:D009369` = "Neoplasms" (tutti i tumori insieme!),
+   `CHEBI:17499`. Fix: blacklist dei termini troppo generici.
+3. **Chimici induttori held-constant**: `CHEBI:50845` = doxiciclina (Tet-on) — è solo l'induttore, la
+   perturbazione vera è il transgene attivato (diverso per studio). Fix: trattare gli induttori come
+   held-constant (come SARS nel braccio farmaco).
+4. **Baseline eterogenei sotto la stessa entità**: HCC tessuto-vs-plasma (liquid biopsy) mescolati;
+   AML+CML. Il control_type "vehicle_untreated" è troppo grezzo. Fix: raffinare il control_type.
+
+**Conseguenza onesta:** dei 287 poolabili, i coerenti reali sono ~72% ≈ **~207** (con incertezza da
+campione), non 287. Va portato più su chiudendo i 4 modi-di-fallire e RI-misurando. Solo allora
+"soluzione". Verdetti: `llm-verdicts-v4-sample.jsonl`.
 
 ## Dati / riproducibilità
 `70-fase1-canonical-sim.R` (v1 ontologia pura) · `72-fase1-v4-hybrid.R` (engine finale) ·
