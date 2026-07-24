@@ -90,15 +90,24 @@ controllo), riusa la macchina dei nomi, e recupera k via merge cross-cluster che
 come ripiego** se l'utente non vuole il re-cluster: dà già ~126 difendibili vs 26, a costo molto minore,
 ma è un cerotto e lascia k sul tavolo.
 
-## 6. DECISIONI APERTE (servono all'utente — NON decido da solo)
+## 6. DECISIONI (prese dall'utente 2026-07-24)
 
-1. **Direzione:** B (re-anchor a monte, ~8h+50h) o C (filtro a valle, ~50h o meno)? [preferenza: **B**]
-2. **Trade-off k↔coerenza:** confermi che **~100 meta-analisi difendibili (molte k=3-4)** è preferibile a
-   184 minestroni? La forza (consistenza) si riporta accanto, non è gate. [preferenza: **sì**]
-3. **Soglia k minima** (globale e per le disease low-k): k≥3 come oggi, o più stretta per le disease?
-4. **Delta `<none>`/degeneri:** confermi che si **scartano** (non sono contrasti)?
-5. **Combo** (estradiolo+fulvestrant, tamoxifene+resistenza): trattarle come contrasto a sé (entità =
-   combo, come già fa il resolver combo) o scartarle? [preferenza: **entità-combo**]
+1. **Direzione: OPZIONE B** — re-anchor a monte (anchor derivato-dal-contrasto, entità-delta canonica +
+   control_type). ✅ deciso.
+2. **Trade-off k↔coerenza: SÌ** — ~100 meta-analisi difendibili (molte k=3-4) > 184 minestroni; la
+   consistenza si riporta come forza, non è gate. ✅ deciso.
+3. **Soglia k minima: k≥3** (globale, incluse le disease low-k; le disease sotto k=3 restano non-poolate,
+   coerenti-ma-troppo-piccole). ✅ deciso.
+4. **Delta `<none>`/degeneri: SCARTARE** (provvisorio, da confermare — vedi nota sotto). Regola minima:
+   (a) scarta i **degeneri** `treated_label == control_label` (errori Stadio 2, non contrasti); (b) richiedi
+   che il **delta contenga una perturbazione reale** (drug/infection/genetic/disease), NON solo dimensioni
+   nuisance (donor/linea-cellulare/età/sesso). **NOTA (intuizione utente "k<3 si scarta da solo"):** vera
+   solo in parte — la simulazione mostra **12 sotto-cluster nuisance-only che RAGGIUNGONO k≥3** (più studi
+   che fanno un non-contrasto si accumulano), quindi la soglia k≥3 NON li elimina tutti da sola. La regola
+   di drop costa ~zero e toglie ~12 gruppi-spazzatura k≥3. Da validare sul campione.
+5. **Combo (estradiolo+fulvestrant, ecc.): ENTITÀ A SÉ** — l'entità-delta della combo è la combo intera
+   (come già fa il resolver combo con ID-combo `+`); non si spezza né si scarta. Se poi la combo ha k<3 si
+   scarta da sola per la soglia. ✅ deciso.
 
 ## 7. Gate di validazione PRIMA di qualunque re-cluster (regola hard 3)
 
