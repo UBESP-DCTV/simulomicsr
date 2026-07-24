@@ -35,6 +35,42 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-24b (ANCHOR DAL-CONTRASTO — SIMULAZIONE ITERATA + CENSIMENTO SU TUTTI I CLUSTER)**:
+> 🟡 **Design validato in simulazione all'81% (TUTTI i cluster) / ~89% (deliverable). NON finito, NON
+> "una soluzione". Residuo catalogato. Nessun re-cluster. Handout+prompt pronti per la prossima sessione.**
+>
+> ⚠️ **DUE ERRORI MIEI in questa sessione, ritrattati (stesso errore dei mesi scorsi, in piccolo):**
+> (a) ho scritto "DESIGN VALIDATO/soluzione" avendo misurato solo il **k recuperato** (287 poolabili) e la
+> preservazione (farmaci 8/8) **senza verificare la coerenza** → verificata: **72%**, non 100%;
+> (b) ho lasciato passare entità-spazzatura (`STR:t`, `STR:d`, `STR:dox`) come chiave di clustering = slop.
+>
+> 1. **Meccanismo che funziona**: entità = DELTA trattato↔controllo, hybrid on/off-contrast (i membri il
+>    cui delta tocca l'entità del cluster la ereditano coerente; gli altri risolvono il proprio delta e si
+>    staccano) + control_type preso dal **lato-controllo del delta**. SARS ricomposto pulito **k=34** (era
+>    3 frammenti 7+4+4).
+> 2. **Gate irrigidito (v5→v6)**: stoplist entità (min 4 char, no parole generiche high/low/positive/
+>    mutant/chemotherapy…), blacklist ID (doxiciclina=induttore, DMSO=veicolo, "organic cation"/"steroid"/
+>    MeSH:Neoplasms=classi-ombrello), **combo=entità a sé** (decisione utente), control material-aware.
+> 3. **CENSIMENTO COERENZA SU TUTTI I CLUSTER** (mandato utente, mai a campione): v5 **74% (162/219**,
+>    15 batch) → v6 **81% (159/196)** su tutti, **~89% sul deliverable** (escl. 16 bucket `+COMBO` = combo
+>    staccate dai mono ORA puliti: enzalutamide/fulvestrant/palbociclib/osimertinib/DHT/estradiolo mono
+>    tutti one_contrast).
+> 4. **Residuo = 15 falliti veri (84 studi-slot su 965, ~9%)**, catalogati: baseline-material 5
+>    (tessuto-vs-plasma), **direzione opposta 4** (agonista+antagonista → DECISIONE UTENTE APERTA), combo
+>    non catturate 4 (rilevatore combo cattura `+` ma non `/` e `and`), umbrella 3, misti 2, longitud. 1.
+> 5. **Strategia di recupero quantificata**: (A) SPLIT (vemurafenib 12/12, covid 13/13, HCC-tessuto 8/9,
+>    RA 5/6, bleomicina mono k=3 + combo k=3 = entrambi validi); (B) RIPULITURA (droppa i MEMBRI con
+>    controllo incongruo, tieni il cluster); (C) SCARTO (entità da nomi sbagliati, aggregati vaghi,
+>    trattamento ignoto). Stima ~50-60 slot recuperati, ~25-30 scartati.
+> 6. **Vincolo di pubblicabilità (utente)**: pipeline+gate **DETERMINISTICI** — la coerenza nasce per
+>    costruzione dell'anchor, NON da un giudice LLM a runtime; nessun Claude nella pipeline né nella
+>    validazione pubblicata (evaluator = Mistral self-hosted). I subagent Claude sono solo audit interno.
+> 7. **PROSSIMA SESSIONE**: handout `docs/superpowers/specs/2026-07-25-stage3-contrast-anchor-NEXT-SESSION-HANDOUT.md`
+>    + prompt `docs/superpowers/specs/2026-07-25-NEXT-SESSION-PROMPT.md`. Prima cosa: chiedere all'utente
+>    la decisione sulla DIREZIONE OPPOSTA. Poi implementare A+B+C e **ri-censire su TUTTI**. Evidenza
+>    `analysis/audit/2026-07-24-anchor-coherence-sim/` (engine, gate v6, cataloghi, FASE1-RESULT.md).
+>    Branch invariato, master invariato, no push. Memorie: [[project_stage3_minestrone_rework]].
+>
 > **Stato 2026-07-24 (REWORK ANCORAGGIO — CAUSA RADICE PROVATA + DESIGN MISURATO SULLA COERENZA, GATED)**:
 > 🟡 **Causa radice provata e design candidati misurati sulla coerenza su campione (nessun re-cluster).
 > Decisione di design in attesa dell'utente.** (Nessuna dichiarazione "finale/paper-grade": è un design
