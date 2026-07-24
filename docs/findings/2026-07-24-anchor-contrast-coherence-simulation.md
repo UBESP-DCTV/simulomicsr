@@ -188,6 +188,26 @@ esattamente il **lavoro di build** del re-cluster — motivo per cui la misura s
 - `design-comparison.csv`, `dc-poolable-by-class.csv` — tabelle di sintesi.
 - Input riusati: `analysis/audit/2026-07-23-coherence/{per-member-contrasts.parquet,cluster-verdicts.rds}`.
 
+## 5bis. Nota sui contrasti degeneri (errore di etichettatura Stadio 2) — provenienza onesta
+
+Il drop dei **degeneri** (`treated_label == control_label`) fa parte del design (decisione utente). Per il
+record: **NON era un difetto pre-misurato/validato sullo Stadio 2.** La validazione Stadio 2 (F3/F4,
+smoke gate, accuracy ~94% su `design_role`) misurava se i ruoli-campione erano classificati bene, **non**
+se ogni comparison ricostruita avesse trattato≠controllo. Il degenere è **emerso come sottoprodotto della
+verifica di coerenza 2026-07-23** (ricostruendo i contrasti col dispatch Stadio 4 si vede che alcune
+comparison hanno label identiche). Anche la misura fu raffinata in corsa: il 1° rilevatore (via
+`factor_levels`) dava falsi positivi → fix a uguaglianza del `label_human` (54→13 sui 184).
+
+**Magnitudine reale (misurata 2026-07-24, `degen.R`):** **264/38.440 membri risolti = 0,69%** degeneri;
+**183 cluster** hanno ≥1 membro degenere; **49 cluster interamente degeneri** — ma **0 di questi raggiunge
+k≥3** (la soglia k≥3 elimina da sola i cluster interamente degeneri; restano da droppare i **membri**
+degeneri sparsi dentro cluster altrimenti validi). **Giustificazione del drop:** una comparison con
+trattato==controllo non ha alcun contrasto da stimare (confronta una cosa con sé stessa) → input invalido
+per definizione, a prescindere dalla statistica. **Caveat:** rilevamento label-based → conservativo (una
+coppia "degenere" potrebbe essere un contrasto reale mal-etichettato, es. dose/timepoint collassati nella
+label); magnitudine comunque minima (0,69%). È un problema di **qualità Stadio 2 ortogonale**, piccolo,
+non il cuore del minestrone.
+
 ## 6. Limiti (dichiarati)
 
 - **Lower bound**: ri-partizione entro-cluster, no merge cross-cluster → k e conteggio difendibili

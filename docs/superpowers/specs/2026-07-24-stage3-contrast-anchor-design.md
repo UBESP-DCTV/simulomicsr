@@ -111,12 +111,24 @@ ma è un cerotto e lascia k sul tavolo.
 
 ## 7. Gate di validazione PRIMA di qualunque re-cluster (regola hard 3)
 
-Una volta scelto il design, PRIMA del re-cluster (~8h):
-1. implementare l'anchor derivato-dal-contrasto con **entità canonica** (resolver) su un **campione** di
-   studi; misurare la coerenza col tool (`R/stage3-coherence.R` + deep-dive LLM) e confrontare col lower
-   bound di questa simulazione (deve **migliorare** k a parità di coerenza, grazie alla canonica);
-2. verificare che i **26 coerenti attuali restano interi** (regola hard 5: il controllo di prima classe);
-3. solo con il GO dell'utente → re-cluster + re-pool.
+**Decisione utente 2026-07-24: la validazione va fatta su TUTTI i cluster, NON su campione** — ogni
+cluster va controllato, altrimenti si ricade nel fallimento dei mesi (proxy campionato → falsa vittoria).
+Il gate produce un **verdetto di coerenza PER-CLUSTER per ogni cluster del deliverable**, con la prova
+accanto (come il finding 2026-07-23 fece per i 184, ma esteso a TUTTI). Prima del re-cluster (~8h):
+
+1. **Deterministico su TUTTI i cluster (by-construction, 100% copertura):** l'anchor derivato-dal-contrasto
+   con entità **canonica** garantisce, per costruzione, un'unica entità-delta canonica + un unico
+   `control_type` + non-degenere per cluster. Verificare questa proprietà su OGNI cluster (control
+   homogeneity, singola entità canonica, `frac_degenerate==0`); i cluster che la violano sono flag/scarto.
+2. **LLM deep-dive su TUTTI i cluster poolabili (non campione):** dove il deterministico non arriva
+   (errori di canonicalizzazione che fondono entità diverse sotto un ID; `control_type` troppo grezzo →
+   confondimenti sottili tipo estradiolo+fulvestrant), serve il giudizio LLM su OGNI cluster poolabile.
+   Batch di subagent con la rubrica del deep-dive (identica al finding); il costo scala col n. cluster
+   (feasibile: i 184 = 8 subagent; qualche centinaio = decine di batch). Nessun cluster passa non-controllato.
+3. **Controllo di non-regressione:** verificare che i **26 coerenti attuali restino interi** (regola hard 5).
+4. **Confronto col lower bound** di questa simulazione: l'entità canonica deve **migliorare** k a parità di
+   coerenza (i frammenti sinonimi si fondono, es. SARS k=7+4+4 → k=15).
+5. Solo con TUTTI i cluster verificati coerenti + GO dell'utente → re-cluster + re-pool.
 
 ## 8. Cosa NON fa questa spec
 - Non lancia re-cluster/re-pool. Non tocca master. Non dichiara nulla "finale/paper-grade".
