@@ -35,7 +35,7 @@ che matcha e assegna l'identita' **in silenzio**.
 | `HGF`/`TPO`/`HGI` | — | **IL6** | sinonimi storici ImmPort ("hybridoma growth factor") |
 
 Sono cinque famiglie: **unita' di misura**, **parole del discorso**, **sinonimi storici**,
-**abbreviazioni di famiglia promosse a un membro** (IFN→IFNA1, IL1→IL1A, CSF→CSF2), **omonimie
+**abbreviazioni di famiglia promosse a un membro** (IFN→IFNA1, CSF→CSF2), **omonimie
 chimiche**.
 
 ## 3. Misura sulla produzione (non sul proxy)
@@ -50,12 +50,34 @@ ARCHS4 (`source_name_ch1`, `characteristics_ch1`, `title`) — gli stessi campi 
 - **414 alias sospetti** allo screening, **4.649 campioni** coinvolti (22,9%).
 - **Adjudicazione una per una** dei 170 alias piu' impattanti: **78 collisioni confermate**,
   92 risoluzioni corrette.
+- **Ri-verifica sul TESTO SORGENTE** di ogni coppia bloccata (§4bis): **5 delle 78 erano sbagliate**
+  e sono state tolte prima della consegna. Tabella finale: **71 coppie**.
 
 ⚠️ **Una prima classificazione automatica dava il 51% e non era affidabile**: contava come collisione
 anche `cisplatin` presente in ChEBI *e* ChEMBL, cioe' la stessa sostanza in due dizionari. Corretta:
 l'ambiguita' va misurata sui **nomi**, non sui dizionari. Il numero pubblicabile e' quello adjudicato.
 
-## 4. Una regola generale? Misurata e SCARTATA
+## 4bis. Cinque adjudicazioni MIE erano sbagliate (trovate ri-leggendo il testo)
+
+Giudicare la coppia *alias → nome dell'entita'* non basta: bisogna guardare la stringa che l'ha
+prodotta. Rileggendo il testo H5 di ogni coppia bloccata:
+
+| coppia | testo sorgente reale | verdetto corretto |
+|---|---|---|
+| `lead` → piombo | `agent: Lead, dose: 30uM, cell type: neural progenitor cells` | **risoluzione GIUSTA** — e' tossicologia del piombo (52 campioni) |
+| `ser` → L-serina | `genotype: sgACAD11, treatment: SER` | **GIUSTA** — screen metabolico con serina (23) |
+| `mc` → 3-metilcolantrene | `treatment: 3-MC` | **GIUSTA** (8) |
+| `il1` → IL1A | `treatment: 10ng/ml IL-1alpha for 1 h` | **GIUSTA** — IL-1alpha *e'* IL1A (20) |
+| `iaa` → ac. indolacetico | `HeLa OsTIR1, mAID tag, treatment: IAA` | nome **giusto**: e' auxina in un sistema degron. E' un **induttore**, si filtra nel gate dell'anchor, non nel resolver (40) |
+
+Bloccarle avrebbe cancellato **143 identita' corrette**. Rimosse dalla tabella; `lead` tolto anche
+dalle parole funzionali. Le altre 71 coppie sono confermate dal testo (`ml` in `10 ug/ml OSM`;
+`ifn` in `IFN-γ (50ng/mL)` → IFNA1 e' il sottotipo sbagliato; `TPO` in `HSC, treatment: TPO`;
+`HGI` = *high glucose incubation*; `CHOP` = regime chemioterapico; `PH` = *pulmonary hypertension*;
+`BAP` = protocollo BMP4/A83/PD03; `C6` = C6-ceramide; `SEL` = selumetinib; `AMO` = morfolino
+antisenso; `APG` = farmaco APG in plasma di pazienti).
+
+## 4ter. Una regola generale? Misurata e SCARTATA
 
 Ipotesi elegante: *una sigla vale solo se l'entita' e' anche nominata per esteso nel corpus*
 ("LPS" e' credibile perche' compare "lipopolysaccharide"; "ML"→THPO no perche' "thrombopoietin" non
@@ -79,13 +101,14 @@ Tre guardie, applicate ai quattro punti d'ingresso (`.resolve_one_compound`,
 
 1. **Unita' di misura e parametri** (`ml`, `mg`, `ph`, `moi`…): non identificano mai un'entita'.
 2. **Parole funzionali e di laboratorio** (`in`, `on`, `lead`, `donor`, `cancer`, `tumor`, `cell`…).
-3. **76 coppie (alias, ID) di collisione accertata**, ognuna con l'impatto misurato in commento.
+3. **71 coppie (alias, ID) di collisione accertata**, ognuna con l'impatto misurato in commento
+   e verificata sul testo sorgente (§4bis).
 
 Si scarta **il candidato**, non il termine: la catena prosegue col candidato successivo.
 **Non si ri-mappa** al bersaglio giusto (5-FU → CHEBI:46345): ri-mappare significherebbe asserire
 un'identita' per inferenza, che e' esattamente l'errore d'origine. Meglio nessun nome che uno sbagliato.
 
-Test: `tests/testthat/test-resolver-guards.R` — **57 PASS, 0 FAIL**, inclusa la non-regressione su
+Test: `tests/testthat/test-resolver-guards.R` — **59 PASS, 0 FAIL**, inclusa la non-regressione su
 LPS/DHT/vemurafenib/TNF/SARS-CoV-2.
 
 ## 6. Effetto misurato prima/dopo, sulla produzione
@@ -98,12 +121,12 @@ originale, `siMETTL3` continua a risolvere a METTL3 anche con le guardie attive)
 | | valore |
 |---|---:|
 | campioni su percorsi kind-invarianti | 26.936 |
-| identita' invariate | 25.984 (**96,5%**) |
-| **identita' sbagliate rimosse** | **952 (3,53%)** |
+| identita' invariate | 25.987 (**96,5%**) |
+| **identita' sbagliate rimosse** | **949 (3,52%)** |
 
-Collisioni accertate: **THPO 105→0 · CD44 96→0 · piombo 52→0 · 5-formiluracile 18→0 ·
-diidrossiacetone 24→0 · acido tereftalico 19→0 · L-serina 23→0 · Neoplasms 354→0 · IFNA1 168→27 ·
-IL6 86→42**.
+Collisioni accertate: **Neoplasms 354→0 · IFNA1 119→0 · THPO 36→0 · IL6 33→0 · diidrossiacetone 24→0 ·
+Ala-Pro-Gly 20→0 · acido tereftalico 19→0 · 5-formiluracile 18→0 · CD44 16→0** (conteggi sul
+sottoinsieme kind-invariante).
 
 Non-regressione (campioni con l'entita' corretta, prima → dopo): **LPS 401→401 · DHT 126→126 ·
 vemurafenib 54→54 · enzalutamide 89→89 · SARS-CoV-2 308→308 · epatocarcinoma 162→162 · prostata
@@ -129,18 +152,18 @@ TGFB1).
 
 ⚠️ **E' un limite SUPERIORE, non un tasso di errore**: lo stesso ID puo' essere raggiunto anche per
 via legittima (TGFB1 da "TGF-beta1" e' corretto; solo la via `lap` e' sbagliata). Il numero preciso e'
-quello misurato per-campione al §6: **952 identita' sbagliate su 26.936 (3,53%)**, ognuna con l'alias
+quello misurato per-campione al §6: **949 identita' sbagliate su 26.936 (3,52%)**, ognuna con l'alias
 d'innesco identificato.
 
 ## 8. Limiti dichiarati
 
 - L'adjudicazione copre i **170 alias piu' impattanti** (85% dei campioni sospetti). I 244 alias della
   coda (698 campioni, tutti n≤6) non sono stati giudicati uno per uno.
-- La tabella delle collisioni e' **curata**: e' un dato, non un algoritmo. Va versionata insieme ai
+- La tabella delle collisioni (71 coppie) e' **curata**: e' un dato, non un algoritmo. Va versionata insieme ai
   dizionari e ri-verificata quando cambia una release ontologica.
 - Il giudice dell'adjudicazione e' interno (Claude). La pipeline pubblicata resta deterministica: le
   guardie sono codice + tabella, nessun LLM a runtime.
-- Le identita' rimosse **non vengono sostituite**: 952 campioni perdono il nome e tornano a `STR:`.
+- Le identita' rimosse **non vengono sostituite**: 949 campioni perdono il nome e tornano a `STR:`.
   Recuperarli con un ri-mappaggio curato e' lavoro futuro, esplicitamente non fatto qui.
 
 ## 9. Riproducibilita'

@@ -54,14 +54,16 @@
 >    `mek`→butanone, `nmda`→ketamina, `hgf`/`tpo`/`hgi`→IL6, `ifn`→IFNA1.
 > 4. **Misura sulla produzione** (cache recupero-nome + testo H5 vero): 28.556 campioni con ID
 >    ontologico; 414 alias sospetti (4.649 campioni); **adjudicati i 170 più impattanti → 78
->    collisioni confermate**. ⚠️ Una prima cifra automatica (51%) era SBAGLIATA e l'ho corretta prima
+>    collisioni**, di cui **5 poi RITRATTATE** ri-leggendo il testo sorgente (`lead` era davvero
+>    piombo, `ser` serina, `mc` 3-metilcolantrene, `il1` IL-1α, `iaa` auxina-induttore): bloccarle
+>    avrebbe cancellato 143 nomi corretti. Tabella finale **71 coppie**. ⚠️ Una prima cifra automatica (51%) era SBAGLIATA e l'ho corretta prima
 >    di usarla (contava `cisplatin` in ChEBI+ChEMBL come ambiguo).
 > 5. **Regola generale tentata e SCARTATA sui dati** (una sigla vale solo se l'entità è nominata per
 >    esteso nel corpus): precisione 61%, copertura 46%, **danno 25%** — avrebbe perso PFOS, DNCB, DHEA.
 > 6. **FIX in produzione**: `R/resolver-guards.R` (unità di misura, parole funzionali, 76 coppie
 >    alias→ID accertate) innestato nei 4 resolver + TDD (`test-resolver-guards.R`, 57 PASS/0 FAIL).
->    **Prima/dopo su 26.936 campioni**: 952 identità sbagliate rimosse (3,53%), 96,5% invariate;
->    THPO 105→0, CD44 96→0, Neoplasms 354→0; **non-regressione perfetta** (LPS 401→401, SARS 308→308,
+>    **Prima/dopo su 26.936 campioni**: 949 identità sbagliate rimosse (3,52%), 96,5% invariate;
+>    Neoplasms 354→0, IFNA1 119→0, THPO 36→0, IL6 33→0; **non-regressione perfetta** (LPS 401→401, SARS 308→308,
 >    enzalutamide 89→89, TNF 275→**281**). Il fix ha chiuso da solo il cluster TGFB1.
 > 7. **PROSSIMO**: portare le regole del gate dagli script d'analisi al **codice di pacchetto con TDD**
 >    (+ bump `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`), decidere sul ri-mappaggio (oggi si rifiuta e

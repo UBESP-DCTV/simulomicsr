@@ -8,14 +8,17 @@ test_that(".is_unreliable_candidate scarta unita' di misura", {
 })
 
 test_that(".is_unreliable_candidate scarta parole funzionali che collidono", {
-  for (w in c("in", "on", "of", "no", "lead", "donor", "cancer", "tumor", "cell", "type")) {
+  for (w in c("in", "on", "of", "no", "donor", "cancer", "tumor", "cell", "type")) {
     expect_true(.is_unreliable_candidate(w), info = w)
   }
 })
 
 test_that(".is_unreliable_candidate NON scarta nomi di entita' veri", {
+  # "lead" e "ser" sono qui per una ragione precisa: erano stati giudicati parole
+  # inglesi, ma il testo sorgente mostra tossicologia del piombo ("agent: Lead,
+  # dose: 30uM") e trattamento con serina ("treatment: SER"). Sono entita'.
   for (g in c("lps", "dht", "tnf", "il6", "vemurafenib", "enzalutamide", "sars-cov-2",
-              "poly(I:C)", "tgf-beta1", "doxorubicin")) {
+              "poly(I:C)", "tgf-beta1", "doxorubicin", "lead", "ser", "mc")) {
     expect_false(.is_unreliable_candidate(g), info = g)
   }
 })

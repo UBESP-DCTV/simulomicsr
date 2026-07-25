@@ -50,7 +50,7 @@
 .UNRELIABLE_WORD_TOKENS <- c(
   "in", "on", "at", "by", "of", "or", "and", "no", "not", "with", "without",
   "for", "from", "the", "a", "an", "as", "is", "are", "was", "per", "via",
-  "lead", "donor", "donors", "control", "controls", "case", "cases", "sample",
+  "donor", "donors", "control", "controls", "case", "cases", "sample",
   "samples", "type", "cell", "cells", "tissue", "patient", "patients", "human",
   "age", "sex", "male", "female", "id", "name", "group", "level", "levels",
   "media", "medium", "buffer", "input", "pool", "mix", "set", "run", "test",
@@ -64,6 +64,16 @@
 #' quasi sempre un'altra cosa. Il numero e' l'impatto misurato in campioni di
 #' produzione (cache del recupero-nome, 28.556 campioni con ID ontologico).
 #' Formato: "alias|ID_sbagliato".
+#'
+#' CORREZIONE 2026-07-25 (verifica sul testo sorgente): cinque coppie erano state
+#' giudicate collisioni ed erano invece RISOLUZIONI CORRETTE — rimosse.
+#'   lead->piombo   ("agent: Lead, dose: 30uM": tossicologia del piombo, 52 campioni)
+#'   ser->L-serina  ("treatment: SER" in uno screen metabolico, 23)
+#'   mc->3-metilcolantrene ("treatment: 3-MC", 8)
+#'   il1->IL1A      ("10ng/ml IL-1alpha": IL-1alpha E' IL1A, 20)
+#'   iaa->ac. indolacetico (sistema auxina-degron: il nome e' giusto, e' un
+#'                  INDUTTORE — si filtra nel gate dell'anchor, non qui, 40)
+#' Il giudizio sulla coppia alias->ID non basta: va visto il testo che l'ha prodotta.
 #' @keywords internal
 #' @noRd
 .ALIAS_COLLISIONS <- c(
@@ -73,13 +83,9 @@
   "ifn|HGNC:5417",            # IFNA1 (100)
   "in|HGNC:1681",             # CD44 (94)
   "ifna|HGNC:5417",           # IFNA1 (62)
-  "lead|CHEBI:25016",         # lead atom (52)
-  "iaa|CHEBI:16411",          # indole-3-acetic acid (40)
   "dha|CHEBI:16016",          # dihydroxyacetone (24)
-  "ser|CHEBI:17115",          # L-serine (23)
   "hgf|HGNC:6018",            # IL6 (22)
   "apg|CHEBI:155879",         # Ala-Pro-Gly (20)
-  "il1|HGNC:5991",            # IL1A (20)
   "tpa|CHEBI:15702",          # terephthalic acid (19)
   "5fu|CHEBI:80961",          # 5-formyluracil (18)
   "activin|HGNC:24029",       # INHBE (16)
@@ -94,7 +100,6 @@
   "il27|HGNC:5984",           # IL17D (9)
   "sel|CHEBI:24866",          # salt (9)
   "amo|CHEBI:53705",          # amoxicilloyl group (8)
-  "mc|CHEBI:34342",           # 3-methylcholanthrene (8)
   "bap|CHEBI:29022",          # N-benzyladenine (7)
   "c6|HGNC:1339",             # C6 (7)
   "chop|CHEBI:18132",         # phosphocholine (7)
