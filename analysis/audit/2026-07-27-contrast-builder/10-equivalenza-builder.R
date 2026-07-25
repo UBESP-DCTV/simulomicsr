@@ -21,20 +21,50 @@ oe <- .load_ontology_dicts()
 caches <- list(agent = new.env(parent = emptyenv()),
                token = new.env(parent = emptyenv()))
 
+# PROXY DELL'ANCHOR DEL RECORD.
+# Nel build il ramo on-contrast prende nome e ID gia' risolti nell'anchor del
+# campione TRATTATO di quel record (tracking_meta: canonical_name +
+# agent_id_resolved). Qui quell'ID non c'e', ma il nome del cluster nasce dallo
+# stesso anchor: canonicalizzandolo con gli stessi resolver si ottiene il
+# proxy piu' fedele. Senza, il ramo on-contrast resta spento e il confronto e'
+# ingiusto (prima misura: 853 differenze tutte di questa natura).
+.anchor_cache <- new.env(parent = emptyenv())
+anchor_id_proxy <- function(nome, cls) {
+  if (is.na(nome) || !nzchar(nome) || is.na(cls)) return(NA_character_)
+  key <- paste0(cls, "||", tolower(nome))
+  if (exists(key, envir = .anchor_cache, inherits = FALSE)) return(get(key, envir = .anchor_cache))
+  is_canon <- function(id) !is.na(id) && nzchar(id) && !startsWith(id, "STR:")
+  r <- NA_character_
+  if (cls == "drug") {
+    x <- .normalize_compound_to_chebi(nome, oe); if (is_canon(x$id)) r <- x$id
+    if (is.na(r)) { x <- .normalize_cytokine_to_hgnc(nome, oe); if (is_canon(x$id)) r <- x$id }
+  } else if (cls == "infection") {
+    x <- .normalize_pathogen_to_taxid(nome, oe); if (is_canon(x$id)) r <- x$id
+  } else if (cls == "disease") {
+    x <- .normalize_disease_to_mesh(nome, oe); if (is_canon(x$id)) r <- x$id
+  } else if (cls == "genetic") {
+    h <- .hgnc_lookup_symbol(nome, env = oe)
+    if (!is.null(h) && !is.null(h$hgnc_int)) r <- paste0("HGNC:", h$hgnc_int)
+  }
+  # nome non canonicalizzabile: nel build l'anchor avrebbe comunque un ID
+  # (spesso STR:), quindi si usa la forma NAME: come faceva il gate.
+  if (is.na(r) && nzchar(nome)) r <- paste0("NAME:", tolower(nome))
+  assign(key, r, envir = .anchor_cache); r
+}
+
 n <- nrow(pm)
 cat(format(Sys.time()), "- verdetto di pacchetto su", n, "membri...\n")
 ent <- rep(NA_character_, n); dr <- character(n); src <- rep(NA_character_, n)
 ck  <- rep(NA_character_, n); vs <- rep(NA_character_, n)
 t0 <- Sys.time()
+PRI <- c("genetic", "drug", "infection", "disease", "environment", "time", "other")
 for (i in seq_len(n)) {
+  cls_i <- PRI[PRI %in% strsplit(pm$dclasses[i], "+", fixed = TRUE)[[1L]]][1L]
   v <- .ca_member_contrast(
     treated_label = pm$treated_label[i], control_label = pm$control_label[i],
     treated_fl    = pm$treated_fl[i],    control_fl    = pm$control_fl[i],
-    # PROXY: nella simulazione il nome viene dal CLUSTER; nel build viene
-    # dall'anchor del record. Qui si usa il nome del cluster per confrontare le
-    # regole a parita' di input; la differenza fra le due fonti e' misurata a
-    # parte (controfattuale: 149 chiavi contro 144).
-    anchor_name = pm$canonical_name[i], anchor_id = NA_character_,
+    anchor_name   = pm$canonical_name[i],
+    anchor_id     = anchor_id_proxy(pm$canonical_name[i], cls_i),
     ontology_env = oe, caches = caches)
   ent[i] <- v$entity; dr[i] <- v$drop_reason; src[i] <- v$entity_source
   ck[i]  <- v$control_key; vs[i] <- v$direction
@@ -49,6 +79,10 @@ pm$new_src    <- src
 pm$new_ct     <- ck
 pm$new_verso  <- vs
 
+# Il pacchetto non distingue "ok" da "ok_combo": la combo si riconosce dalla
+# fonte dell'entita'. Senza questa normalizzazione le transizioni mentono
+# (una combo riscritta appena diversa sembrava una combo persa).
+pm$new_dr_lab <- ifelse(pm$new_dr == "ok" & pm$new_src == "COMBO", "ok_combo", pm$new_dr)
 old_dr <- ifelse(pm$dr %in% c("ok", "ok_combo"), "ok", pm$dr)
 tenuti_da_entrambi <- old_dr == "ok" & pm$new_dr == "ok"
 
@@ -72,7 +106,7 @@ diff <- pm[(old_dr == "ok") != (pm$new_dr == "ok") |
            (tenuti_da_entrambi & pm$entity != pm$new_entity), ]
 cat("\ndifferenze totali:", nrow(diff), "\n")
 cat("\ntransizioni piu' frequenti (vecchio -> nuovo):\n")
-print(head(sort(table(paste(diff$dr, "->", diff$new_dr)), decreasing = TRUE), 25))
+print(head(sort(table(paste(diff$dr, "->", diff$new_dr_lab)), decreasing = TRUE), 25))
 write.csv(diff[, c("study_id", "treated_label", "control_label", "dr", "new_dr",
                    "entity", "new_entity", "new_src")],
           file.path(OUT, "equivalenza-builder.csv"), row.names = FALSE)

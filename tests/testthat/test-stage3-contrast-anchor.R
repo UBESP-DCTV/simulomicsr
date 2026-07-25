@@ -134,6 +134,19 @@ test_that(".ca_combo_parts vede la combinazione dentro il valore (GSE197602)", {
   expect_length(.ca_combo_parts("SARS-CoV-2_MOI_1", oe), 0L)
 })
 
+test_that(".ca_combo_parts vede le combinazioni di sigle corte (regressione)", {
+  # Misurato dall'equivalenza 2026-07-27: la guardia sulle sigle (un candidato
+  # sotto i 5 caratteri vale solo se coincide col nome risolto) e' giusta quando
+  # i token si pescano da un'etichetta, ma NON quando le parti sono separate
+  # esplicitamente da "+": li' e' l'autore a dire che sono agenti. Con la guardia
+  # sbagliata al posto sbagliato sparivano la co-infezione "M.tb + CMV" e la
+  # combinazione di citochine "IL2 + IL23".
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  expect_setequal(.ca_combo_parts("M.tb + CMV", oe), c("m tb", "cmv"))
+  expect_setequal(.ca_combo_parts("IL2 + IL23", oe), c("il2", "il23"))
+})
+
 test_that(".ca_combo_parts vede la combinazione separata da / e da _ (regressione)", {
   # Misurato dall'equivalenza 2026-07-27: .ca_strip_units trasforma "/" in spazio,
   # quindi il separatore spariva PRIMA dello split e "Bleomycin/Alpha-Lipoic Acid"

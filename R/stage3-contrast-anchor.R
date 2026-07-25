@@ -404,6 +404,24 @@
   if (nchar(gsub("[^a-z0-9]", "", s)) >= 3L) s else ""
 }
 
+#' La parte risolve a un agente? (senza la guardia sulle sigle)
+#'
+#' Qui la parte viene da un separatore ESPLICITO (\code{A + B}): e' l'autore
+#' dell'etichetta a dire che sono due agenti, quindi la guardia sui candidati
+#' corti — giusta quando i token si pescano da un'etichetta libera — qui butta
+#' via i nomi veri. Senza questa distinzione sparivano la co-infezione
+#' \code{M.tb + CMV} e la combinazione \code{IL2 + IL23} (misurato 2026-07-27).
+#' @keywords internal
+.ca_resolves_to_agent <- function(part, ontology_env) {
+  p <- trimws(part)
+  if (!nzchar(p) || nchar(p) < 3L) return(FALSE)
+  ok <- function(id) !is.na(id) && nzchar(id) && !startsWith(id, "STR:")
+  ok(.normalize_compound_to_chebi(p, ontology_env)$id) ||
+    ok(.normalize_cytokine_to_hgnc(p, ontology_env)$id) ||
+    ok(.normalize_pathogen_to_taxid(p, ontology_env)$id) ||
+    !is.null(.hgnc_lookup_symbol(sub("^(sh|si|sg)", "", p), env = ontology_env))
+}
+
 #' Combinazione dentro il valore di UNA chiave
 #'
 #' \code{+}, \code{and}, \code{plus} bastano da soli; \code{/} e \code{_} solo se
@@ -413,7 +431,7 @@
 #' @keywords internal
 .ca_combo_parts <- function(treated_values, ontology_env, cache = NULL) {
   best <- character(0)
-  is_agent <- function(p) nzchar(.ca_agent_id(p, ontology_env, cache))
+  is_agent <- function(p) .ca_resolves_to_agent(p, ontology_env)
   for (v in treated_values) {
     s <- .ca_drop_doses(v)
     if (!nzchar(s)) next
