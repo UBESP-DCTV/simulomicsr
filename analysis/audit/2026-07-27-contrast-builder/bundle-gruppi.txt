@@ -297,7 +297,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 ===============================================================
 [007/146] CHEBI:379896||gain||vehicle_untreated
-  nome: 17β-hydroxy-17-methylestra-4,9,11-trien-3-one | k=19 studi | n=149 confronti
+  nome: 17β-hydroxy-17-methylestra-4,9,11-trien-3-one | k=19 studi | n=151 confronti
   --- CONFRONTI TENUTI ---
    GSE120660    VCaP cells treated with R1881 for 24 hours  =>  Untreated VCaP cells
    GSE245454    R1881 24h  =>  DMSO 24h
@@ -323,6 +323,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
    GSE135879    22PC + R1881  =>  22PC + DMSO
    GSE135879    LAPC4 + R1881  =>  LAPC4 + DMSO
    GSE168670    shControl_puro_shControl_neo + R1881 (prostate)  =>  shControl_puro_shControl_neo + Ethanol
+   GSE168670    shControl_puro_shControl_neo + R1881 (prostate cancer)  =>  shControl_puro_shControl_neo + Ethanol
    GSE240364    WT_HOXB13_R1881  =>  WT_HOXB13_vehicle_vehicle
    GSE240364    X285K_R1881  =>  X285K_vehicle_vehicle
    GSE225481    LNCaP-RBL1_ko_R1881  =>  LNCaP-RBL1_ko_DMSO
@@ -2351,24 +2352,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[128/146] NAME:lesional||gain||vehicle_untreated
-  nome: lesional | k=3 studi | n=23 confronti
-  --- CONFRONTI TENUTI ---
-   GSE164285    Lesional NS_patient5  =>  Healthy Control HC1
-   GSE164285    Lesional NS_patient8  =>  Healthy Control HC2
-   GSE164285    Lesional NS_patient3.2  =>  Healthy Control HC3
-   GSE164285    Lesional NS_patient2  =>  Healthy Control HC4
-   GSE164285    Lesional NS_patient7  =>  Healthy Control HC5
-   GSE164285    Lesional NS_patient9  =>  Healthy Control HC11
-   GSE164285    Lesional NS_patient10.2  =>  Healthy Control HC12
-   GSE164285    Lesional NS_patient10.1  =>  Healthy Control HC13
-   GSE188763    Lesional S2  =>  Control S7
-   GSE189096    Lesional skin (psoriasis)  =>  Healthy skin
-   GSE164285    Lesional NS_patient10.3  =>  Healthy Control HC7
-
-
-===============================================================
-[129/146] NAME:sars-cov-2||gain||vehicle_untreated
+[128/146] NAME:sars-cov-2||gain||vehicle_untreated
   nome: sars-cov-2 | k=3 studi | n=30 confronti
   --- CONFRONTI TENUTI ---
    GSE198449    SARS-CoV-2 Later Surveillance  =>  Vehicle Control Later Surveillance
@@ -2380,7 +2364,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[130/146] NCBITaxon:10298||gain||vehicle_untreated
+[129/146] NCBITaxon:10298||gain||vehicle_untreated
   nome: hsv1 | k=3 studi | n=8 confronti
   --- CONFRONTI TENUTI ---
    GSE120891    MRC5 cells exposed to HSV1/strain F  =>  MRC5 cells mock-infected for 9 hours
@@ -2390,7 +2374,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[131/146] NCBITaxon:12814||gain||vehicle_untreated
+[130/146] NCBITaxon:12814||gain||vehicle_untreated
   nome: (rsv) | k=3 studi | n=19 confronti
   --- CONFRONTI TENUTI ---
    GSE113210    respiratory syncytial virus (RSV) at AV  =>  Control CV
@@ -2401,7 +2385,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[132/146] STR:adenoma||gain||vehicle_untreated
+[131/146] STR:adenoma||gain||vehicle_untreated
   nome: colorectal cancer | k=3 studi | n=24 confronti
   --- CONFRONTI TENUTI ---
    GSE222298    Adenoma T2 SAP-07  =>  Healthy T2 SAP-07
@@ -2419,7 +2403,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[133/146] STR:asthmatic||gain||vehicle_untreated
+[132/146] STR:asthmatic||gain||vehicle_untreated
   nome: NA | k=3 studi | n=26 confronti
   --- CONFRONTI TENUTI ---
    GSE152004    Asthmatic pooled  =>  Healthy control
@@ -2433,7 +2417,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[134/146] STR:biliary_atresia||gain||vehicle_untreated
+[133/146] STR:biliary_atresia||gain||vehicle_untreated
   nome: biliary atresia | k=3 studi | n=26 confronti
   --- CONFRONTI TENUTI ---
    GSE122340    Liver_Biliary_Atresia  =>  UC8926_Normal
@@ -2461,7 +2445,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[135/146] STR:bipolar_disorder||gain||vehicle_untreated
+[134/146] STR:bipolar_disorder||gain||vehicle_untreated
   nome: neurodevelopmental disorder | k=3 studi | n=82 confronti
   --- CONFRONTI TENUTI ---
    GSE78936     Bipolar Disorder (BA24)  =>  Control (BA24)
@@ -2480,7 +2464,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[136/146] STR:copd||gain||vehicle_untreated
+[135/146] STR:copd||gain||vehicle_untreated
   nome: non-small cell lung carcinoma | k=3 studi | n=11 confronti
   --- CONFRONTI TENUTI ---
    GSE57148     COPD lung tissue (donor 4136)  =>  Normal lung tissue (small group)
@@ -2489,7 +2473,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[137/146] STR:fetal||gain||adult
+[136/146] STR:fetal||gain||adult
   nome: NA | k=3 studi | n=6 confronti
   --- CONFRONTI TENUTI ---
    GSE107111    CD19+ thymic B cells, fetal  =>  CD19+ thymic B cells, age 42
@@ -2498,7 +2482,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[138/146] STR:hepatoblastoma||gain||vehicle_untreated
+[137/146] STR:hepatoblastoma||gain||vehicle_untreated
   nome: hepatocellular carcinoma | k=3 studi | n=12 confronti
   --- CONFRONTI TENUTI ---
    GSE151347    Hepatoblastoma  =>  N175
@@ -2509,7 +2493,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[139/146] STR:multiple_myeloma||gain||vehicle_untreated_liquid
+[138/146] STR:multiple_myeloma||gain||vehicle_untreated_liquid
   nome: Alzheimer's disease | k=3 studi | n=18 confronti
   --- CONFRONTI TENUTI ---
    GSE182824    Multiple Myeloma Plasma (Age 60)  =>  Healthy Control Plasma (Donor PP002)
@@ -2519,7 +2503,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[140/146] STR:multiple_sclerosis||gain||vehicle_untreated
+[139/146] STR:multiple_sclerosis||gain||vehicle_untreated
   nome: multiple sclerosis | k=3 studi | n=11 confronti
   --- CONFRONTI TENUTI ---
    GSE89843     Multiple Sclerosis  =>  Healthy Control (none)
@@ -2528,7 +2512,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[141/146] STR:obese||gain||vehicle_untreated
+[140/146] STR:obese||gain||vehicle_untreated
   nome: traumatic brain injury | k=3 studi | n=7 confronti
   --- CONFRONTI TENUTI ---
    GSE205668    Obese (Age ~14)  =>  Normal Weight (Age ~0.5)
@@ -2538,7 +2522,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[142/146] STR:p_ink_a_positive_expression||gain||p ink a negative expression
+[141/146] STR:p_ink_a_positive_expression||gain||p ink a negative expression
   nome: colorectal carcinoma | k=3 studi | n=15 confronti
   --- CONFRONTI TENUTI ---
    GSE125248    Colorectal carcinoma samples with p16INK4A positive expression  =>  Colorectal carcinoma samples with p16INK4A negative expres
@@ -2547,7 +2531,7 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[143/146] STR:pdac||gain||vehicle_untreated
+[142/146] STR:pdac||gain||vehicle_untreated
   nome: hepatocellular carcinoma | k=3 studi | n=12 confronti
   --- CONFRONTI TENUTI ---
    GSE234760    PDAC tissue  =>  Normal adjacent tissue
@@ -2556,12 +2540,22 @@ Ogni gruppo: identita' del contrasto, confronti TENUTI, confronti SCARTATI della
 
 
 ===============================================================
-[144/146] STR:ptsd||gain||vehicle_untreated
+[143/146] STR:ptsd||gain||vehicle_untreated
   nome: IL25 | k=3 studi | n=7 confronti
   --- CONFRONTI TENUTI ---
    GSE83601     PTSD Case 1  =>  Healthy Control
    GSE64813     Case (PTSD) Post-deployment  =>  Control Post-deployment
    GSE97356     Current, PTSD perturbation  =>  Current, no perturbation
+
+
+===============================================================
+[144/146] STR:sirna_pool_against_igf_bp||block||control sirna
+  nome: IGF2BP1 | k=3 studi | n=16 confronti
+  --- CONFRONTI TENUTI ---
+   GSE146547    A549 cells transfected with siRNA pool against IGF2BP1 (lung cancer)  =>  A549 cells transfected with Control siRNA
+   GSE161087    A549 IGF2BP1 Knockdown  =>  A549 Control siRNA
+   GSE146805    siRNA pool against IGF2BP1  =>  Control siRNA
+   GSE161087    PANC-1 IGF2BP1 Knockdown  =>  PANC-1 Control siRNA
 
 
 ===============================================================
