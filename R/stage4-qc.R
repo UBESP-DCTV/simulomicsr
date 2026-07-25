@@ -15,7 +15,7 @@
   if (name %in% names(df)) df[[name]] else rep(default, nrow(df))
 }
 
-#' Dedup rem_group: una meta-analisi per entita' (kind, agent) al k massimo
+#' Dedup rem_group: una meta-analisi per entita' (kind, agent, verso) al k massimo
 #'
 #' Le stesse entita' nominate compaiono a piu' livelli L2/L3/L4. Si tiene un
 #' solo cluster per entita' \code{(kind_effective_resolved, agent_id_resolved)}:
@@ -23,11 +23,19 @@
 #' \code{cluster_id} asc). Decisione utente 2026-07-05: massimizza potenza;
 #' l'eterogeneita' di contesto residua e' catturata dall'I2/tau2 del REM.
 #'
+#' ADR-0025: per i cluster derivati dal contrasto la chiave include il
+#' \code{contrast_direction}. Agonista e antagonista della stessa entita' sono
+#' contrasti OPPOSTI e non vanno dedotti l'uno contro l'altro (decisione utente
+#' 2026-07-25: la direzione opposta non si fonde). Quando la colonna non c'e'
+#' (cluster legacy) il comportamento e' identico a prima.
+#'
 #' @keywords internal
 .dedup_rem_group_by_entity <- function(rem_group_clusters) {
   if (nrow(rem_group_clusters) == 0L) return(rem_group_clusters)
+  direction <- .col_or_default(rem_group_clusters, "contrast_direction", NA_character_)
+  direction[is.na(direction)] <- ""
   entity <- paste0(rem_group_clusters$kind_effective_resolved, "||",
-                   rem_group_clusters$agent_id_resolved)
+                   rem_group_clusters$agent_id_resolved, "||", direction)
   ord <- order(entity,
                -rem_group_clusters$k,
                -rem_group_clusters$n_total,
@@ -98,8 +106,14 @@
   rg_cfg      <- stage4_config$rem_group
   excl_kinds  <- rg_cfg$excluded_kinds %||% c("vehicle_only", "none", "")
   min_k_raw   <- rg_cfg$k_eff_min %||% 3L
+  # ADR-0025: il deliverable nasce dal CONTRASTO. Il ramo rem_group consuma i
+  # cluster "cgroup" (un record per comparison, chiave = entita'-delta || verso
+  # || tipo di controllo) e non piu' i "group", che restavano comparison-blind e
+  # producevano l'85% di minestroni (finding 2026-07-23). Il vincolo
+  # !usable_mega_strict e' ridondante per i cgroup (level 5) ma resta come difesa
+  # e per non cambiare il comportamento su input legacy.
   rem_group <- stage3_clusters[
-    stage3_clusters$mode == "group" &
+    stage3_clusters$mode == "cgroup" &
     !mega_strict_col &
     !(kind_col %in% excl_kinds) &
     !is.na(agent_col) &

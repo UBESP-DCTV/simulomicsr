@@ -65,7 +65,8 @@ test_that("non-regressione: identify_layer_a non altera i rami rem/mega/mega_aug
                     "small_molecule", "CHEBI:a"),
     .mk_cluster_row("group_meg", "group", 0L, 8L, 200L, 8L, 0.90, TRUE,
                     "environmental", "STR:hyp"),
-    .mk_cluster_row("group_reg", "group", 4L, 25L, 400L, 25L, 0.30, FALSE,
+    # ADR-0025: il ramo rem_group nasce dal contrasto (mode "cgroup", level 5)
+    .mk_cluster_row("cgroup_reg", "cgroup", 5L, 25L, 400L, 25L, 0.30, FALSE,
                     "small_molecule", "CHEBI:enza")
   )
   clusters$usable_rem_strict[clusters$cluster_id == "pair_rem"] <- TRUE
@@ -73,7 +74,7 @@ test_that("non-regressione: identify_layer_a non altera i rami rem/mega/mega_aug
   out <- .identify_layer_a_clusters(clusters, cfg)
   expect_identical(out$method[out$cluster_id == "pair_rem"], "rem")
   expect_identical(out$method[out$cluster_id == "group_meg"], "mega")
-  expect_identical(out$method[out$cluster_id == "group_reg"], "rem_group")
+  expect_identical(out$method[out$cluster_id == "cgroup_reg"], "rem_group")
 })
 
 # Regressione C1 (2026-07-05): direction_check = NA su cluster group-mode

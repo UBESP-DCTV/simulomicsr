@@ -28,13 +28,17 @@ test_that("dedup rem_group tiene un cluster per entita al k massimo", {
   )
 })
 
-test_that("porta rem_group ammette group nominato L4, esclude coarse/vehicle/pair", {
+# ADR-0025 (2026-07-27): la porta rem_group consuma i cluster derivati dal
+# CONTRASTO (mode "cgroup"), non piu' i "group". Il contratto precedente
+# (ADR-0022, group nominati L2-L4) e' superato: quei cluster erano
+# comparison-blind e producevano l'85% di minestroni (finding 2026-07-23).
+test_that("porta rem_group ammette il cgroup nominato, esclude coarse/vehicle/pair", {
   clusters <- dplyr::bind_rows(
-    .mk_cluster_row("group_L4_enza", "group", 4L, 25L, 400L, 25L, 0.33,
+    .mk_cluster_row("cgroup_L5_enza", "cgroup", 5L, 25L, 400L, 25L, 0.33,
                     FALSE, "small_molecule", "CHEBI:enzalutamide"),
     .mk_cluster_row("group_L0_coarse", "group", 0L, 8L, 200L, 8L, 0.85,
                     TRUE,  "environmental", "STR:hypoxia"),
-    .mk_cluster_row("group_L3_veh", "group", 3L, 5L, 60L, 5L, 0.30,
+    .mk_cluster_row("cgroup_L5_veh", "cgroup", 5L, 5L, 60L, 5L, 0.30,
                     FALSE, "vehicle_only", "CHEBI:dmso"),
     .mk_cluster_row("pair_L2_x", "pair", 2L, 4L, 40L, 4L, 0.60,
                     FALSE, "small_molecule", "CHEBI:foo")
@@ -42,10 +46,17 @@ test_that("porta rem_group ammette group nominato L4, esclude coarse/vehicle/pai
   cfg <- stage4_default_config()
   out <- .identify_layer_a_clusters(clusters, cfg)
   rg <- out[out$method == "rem_group", ]
-  expect_identical(rg$cluster_id, "group_L4_enza")
+  expect_identical(rg$cluster_id, "cgroup_L5_enza")
   expect_false("group_L0_coarse" %in% out$cluster_id[out$method == "rem_group"])
-  expect_false("group_L3_veh"    %in% out$cluster_id)
+  expect_false("cgroup_L5_veh"   %in% out$cluster_id)
   expect_false(any(out$method == "rem_group" & out$mode == "pair"))
+})
+
+test_that("i group legacy nominati NON entrano piu' nel ramo rem_group (ADR-0025)", {
+  clusters <- .mk_cluster_row("group_L4_enza", "group", 4L, 25L, 400L, 25L, 0.33,
+                              FALSE, "small_molecule", "CHEBI:enzalutamide")
+  out <- .identify_layer_a_clusters(clusters, stage4_default_config())
+  expect_false("group_L4_enza" %in% out$cluster_id[out$method == "rem_group"])
 })
 
 .mk_study <- function(series_id, rgs, cmps) {

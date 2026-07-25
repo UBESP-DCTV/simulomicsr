@@ -314,8 +314,11 @@
                                                    stage3_assignments,
                                                    stage2_master,
                                                    n_min = 2L) {
+  # ADR-0025: i cluster derivati dal contrasto ("cgroup") hanno come record_id la
+  # COMPARISON, quindi si risolvono con .lookup_cmp (come il ramo pair). I group
+  # legacy restano risolti per gruppo-trattato.
   group_clusters <- eligible_clusters[
-    eligible_clusters$mode == "group" &
+    eligible_clusters$mode %in% c("group", "cgroup") &
       eligible_clusters$method == "rem_group",
   ]
   if (nrow(group_clusters) == 0L) return(list())
@@ -327,6 +330,7 @@
   dispatch <- vector("list", 0L)
   for (i in seq_len(nrow(group_clusters))) {
     cid <- group_clusters$cluster_id[i]
+    is_contrast <- identical(group_clusters$mode[i], "cgroup")
     record_ids <- asg_by_clid[[cid]]
     if (is.null(record_ids) || length(record_ids) == 0L) next
 
@@ -337,7 +341,10 @@
       if (is.na(parsed$series_id)) next
       if (!exists(parsed$series_id, envir = s2_idx, inherits = FALSE)) next
       study <- get(parsed$series_id, envir = s2_idx, inherits = FALSE)
-      cmp <- .lookup_cmp_by_treated_group(study, parsed$suffix)
+      # cgroup: il record_id E' la comparison. group legacy: si cerca la
+      # comparison in cui quel gruppo e' il braccio trattato.
+      cmp <- if (is_contrast) .lookup_cmp(study, parsed$suffix)
+             else .lookup_cmp_by_treated_group(study, parsed$suffix)
       if (is.null(cmp)) next
 
       tg <- .lookup_rg(study, cmp$treated_group)
