@@ -118,6 +118,20 @@ Il fix ha chiuso da solo un cluster incoerente del rework anchor: **TGFB1** cont
 cluster e' **k=27, tutto TGF-β1** — coerente. Vedi
 `docs/findings/2026-07-25-stage3-contrast-anchor-v7-census.md` §Addendum.
 
+## 7bis. Quanto ne e' toccato il deliverable v10
+
+Sui 310.738 cluster dello Stadio 3 v10, **200.279 hanno un ID ontologico**; **6.389 (3,19%)** portano
+un ID che e' bersaglio di una collisione accertata — i piu' frequenti: `MeSH:D009369` (*Neoplasms*,
+nominato "cancer") 4.107, `TGFB1` 555, `IL6` 171, acido indolacetico 154, `THPO` 142, `IFNA1` 112,
+`CSF2` 107, vorinostat 91, `CD44` 86, piombo 43. Nel **deliverable dei 184 rem_group** verificati il
+2026-07-23 sono **5** i cluster con un nome di questo tipo (2× "cancer", acido indolacetico, CD44,
+TGFB1).
+
+⚠️ **E' un limite SUPERIORE, non un tasso di errore**: lo stesso ID puo' essere raggiunto anche per
+via legittima (TGFB1 da "TGF-beta1" e' corretto; solo la via `lap` e' sbagliata). Il numero preciso e'
+quello misurato per-campione al §6: **952 identita' sbagliate su 26.936 (3,53%)**, ognuna con l'alias
+d'innesco identificato.
+
 ## 8. Limiti dichiarati
 
 - L'adjudicazione copre i **170 alias piu' impattanti** (85% dei campioni sospetti). I 244 alias della

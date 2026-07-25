@@ -52,27 +52,32 @@ test_that(".reject_unreliable_match combina le due guardie", {
   expect_false(.reject_unreliable_match("vemurafenib", "CHEBI:63637"))
 })
 
+# I test end-to-end richiedono i dizionari REALI. Nella suite completa
+# `.load_ontology_dicts()` puo' restituire il singleton FIXTURE caricato da un file
+# di test precedente: in quel caso si salta, altrimenti si misurerebbe la fixture.
+.real_ontology_or_skip <- function() {
+  skip_if_not(dir.exists(file.path(tools::R_user_dir("simulomicsr", "cache"), "chebi")),
+              "dizionari ontologici reali non disponibili")
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari caricati come fixture (isolamento suite)")
+  oe
+}
+
 # ---- effetto end-to-end sui resolver di produzione -------------------------
 
 test_that("una dose in ug/ml non produce piu' una citochina", {
-  skip_if_not(dir.exists(file.path(tools::R_user_dir("simulomicsr", "cache"), "chebi")),
-            "dizionari ontologici reali non disponibili")
-  oe <- .load_ontology_dicts()
+  oe <- .real_ontology_or_skip()
   expect_false(identical(.normalize_cytokine_to_hgnc("GO 1 ug/ml 28 days", oe)$id, "HGNC:11795"))
   expect_false(identical(.normalize_cytokine_to_hgnc("Doxorubicin 0.5 ug/ml 24h", oe)$id, "HGNC:11795"))
 })
 
 test_that("'Her/Lap' non produce piu' TGFB1", {
-  skip_if_not(dir.exists(file.path(tools::R_user_dir("simulomicsr", "cache"), "chebi")),
-            "dizionari ontologici reali non disponibili")
-  oe <- .load_ontology_dicts()
+  oe <- .real_ontology_or_skip()
   expect_false(identical(.normalize_cytokine_to_hgnc("Her/Lap", oe)$id, "HGNC:11766"))
 })
 
 test_that("NON-REGRESSIONE: le entita' vere continuano a risolvere", {
-  skip_if_not(dir.exists(file.path(tools::R_user_dir("simulomicsr", "cache"), "chebi")),
-            "dizionari ontologici reali non disponibili")
-  oe <- .load_ontology_dicts()
+  oe <- .real_ontology_or_skip()
   expect_identical(.normalize_compound_to_chebi("LPS", oe)$id, "CHEBI:16412")
   expect_identical(.normalize_compound_to_chebi("DHT", oe)$id, "CHEBI:16330")
   expect_identical(.normalize_compound_to_chebi("vemurafenib", oe)$id, "CHEBI:63637")
