@@ -65,7 +65,12 @@
 >    **Prima/dopo su 26.936 campioni**: 949 identità sbagliate rimosse (3,52%), 96,5% invariate;
 >    Neoplasms 354→0, IFNA1 119→0, THPO 36→0, IL6 33→0; **non-regressione perfetta** (LPS 401→401, SARS 308→308,
 >    enzalutamide 89→89, TNF 275→**281**). Il fix ha chiuso da solo il cluster TGFB1.
-> 7. **PROSSIMO**: portare le regole del gate dagli script d'analisi al **codice di pacchetto con TDD**
+> 7. **VERIFICA RIGA PER RIGA** (1.851 righe, tutti i 143): **96 righe mal appaiate (5,2%)** — tempo
+>    non appaiato 42, controllo di linea/donatore diverso 29, combinazione non vista 13, genetica su un
+>    braccio solo 12. 90 altre segnalazioni erano falsi allarmi (nei disegni malato-vs-sano i soggetti sono per forza
+>    diversi). **DECISIONE UTENTE: si scartano** → 143 → **141 gruppi**. Nessun verdetto cambia.
+> 8. **PROSSIMO**: implementare lo scarto delle righe come regole, poi portare le regole del gate dagli
+>    script d'analisi al **codice di pacchetto con TDD**
 >    (+ bump `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`), decidere sul ri-mappaggio (oggi si rifiuta e
 >    basta), poi GATE utente per re-cluster+re-pool. Handout
 >    `docs/superpowers/specs/2026-07-26-NEXT-SESSION-HANDOUT.md`; finding
