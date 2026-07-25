@@ -1,0 +1,84 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+2026-07-25 20:09:52 - carico gli input...
+2026-07-25 20:15:11 - input pronti; 99 mega poolate
+
+=== CENSIMENTO MEGA (99 poolate in v10) ===
+copertura: bracci trattati 928 | con contrasto ricostruibile 457 (49%)
+
+cluster con almeno un braccio ricostruito: 93 / 99 
+cluster con almeno un'entita' risolta: 68 
+  UNA sola entita' del delta (coerenti, per quanto misurabile): 36 
+  DUE O PIU' entita' del delta (minestrone misurato): 32 
+
+distribuzione entita' distinte per cluster:
+
+ 0  1  2  3  4  5  6 
+31 36 11  7  4  2  8 
+
+etichette di trattamento distinte per cluster (copertura piena, descrittiva):
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   2.000   4.000   8.646  10.500  63.000 
+
+=== i 15 con piu' entita' diverse ===
+        cluster_id  k        kind_effective_resolved             canonical_name
+ group_L0_f8e4f330 11 pathogen_or_aggregate_exposure Mycobacterium tuberculosis
+ group_L1_70c503a4 11 pathogen_or_aggregate_exposure Mycobacterium tuberculosis
+ group_L0_687b3425 10              disease_vs_normal                     cancer
+ group_L0_6c41952f  5                  environmental     acute myeloid leukemia
+ group_L0_a3dbd6fa  5                  environmental     acute myeloid leukemia
+ group_L1_0f29aa2d  5                  environmental     acute myeloid leukemia
+ group_L1_29411be9 10              disease_vs_normal                     cancer
+ group_L1_56195a0a  5                  environmental     acute myeloid leukemia
+ group_L0_59e2c58e 10 pathogen_or_aggregate_exposure Mycobacterium tuberculosis
+ group_L1_0088c943 10 pathogen_or_aggregate_exposure Mycobacterium tuberculosis
+ group_L0_05dadd11 21                           none                       <NA>
+ group_L0_a110b3fa  6                  environmental     acute myeloid leukemia
+ group_L1_a7f52377 25                           none                       <NA>
+ group_L1_cd440424  6                  environmental     acute myeloid leukemia
+ group_L0_4db86466  9                  environmental     acute myeloid leukemia
+ n_treated n_ricostruiti n_entita_distinte
+        20            18                10
+        20            18                10
+        16            12                 7
+        28            22                 7
+        11            11                 7
+        28            22                 7
+        16            12                 7
+        12            12                 7
+        25            12                 5
+        25            12                 5
+         7             6                 4
+        38            12                 4
+         7             6                 4
+        48            12                 4
+        63            16                 3
+                                                                 entita
+ MeSH:D007251 | MeSH:D049590 | STR:active_tb | STR:bacteria | STR:first
+ MeSH:D007251 | MeSH:D049590 | STR:active_tb | STR:bacteria | STR:first
+ MeSH:D003093 | MeSH:D015535 | STR:celiac_disease | STR:fibromyalgia_sy
+ STR:chill | STR:dr_knockout | STR:fatigue | STR:fvr_initial_outbreak |
+ STR:hook | STR:positive_group_iii_iii | STR:positive_group_iii_iv | ST
+ STR:chill | STR:dr_knockout | STR:fatigue | STR:fvr_initial_outbreak |
+ MeSH:D003093 | MeSH:D015535 | STR:celiac_disease | STR:fibromyalgia_sy
+ STR:hook | STR:positive_group_iii_iii | STR:positive_group_iii_iv | ST
+ COMBO:anti-pd-l1+tgf-beta bifunctional fusion protein | MeSH:D047928 |
+ COMBO:anti-pd-l1+tgf-beta bifunctional fusion protein | MeSH:D047928 |
+          STR:ha_yb | STR:hs_nrse_monocolon | STR:magi_ko | STR:mlph_ko
+ COMBO:02 sera+necrotic lysates | COMBO:necrotic lysates+sle 06 sera | 
+          STR:ha_yb | STR:hs_nrse_monocolon | STR:magi_ko | STR:mlph_ko
+ COMBO:02 sera+necrotic lysates | COMBO:necrotic lysates+sle 06 sera | 
+                        STR:active | STR:moderate_stroke | STR:pregnant
+
+=== per kind ===
+# A tibble: 5 × 5
+  kind_effective_resolved            n una_entita due_o_piu non_misurabili
+  <chr>                          <int>      <int>     <int>          <int>
+1 disease_vs_normal                 37         17        15              5
+2 environmental                     15          2        10              3
+3 none                              28          6         3             19
+4 pathogen_or_aggregate_exposure    10          6         4              0
+5 vehicle_only                       9          5         0              4
+
+ 2026-07-25 20:15:32 - salvato censimento-mega.csv

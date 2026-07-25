@@ -370,6 +370,27 @@
   res
 }
 
+#' Toglie dosi e tempi PRESERVANDO i separatori
+#'
+#' Serve al rilevatore di combinazioni, che deve ancora vedere \code{/} e
+#' \code{_}. \code{.ca_strip_units()} invece trasforma \code{/} in spazio (li'
+#' e' voluto: \code{ug/ml} e' rumore), e usarla qui faceva sparire il separatore
+#' prima dello split: \code{Bleomycin/Alpha-Lipoic Acid} diventava la sola
+#' bleomicina (regressione misurata dall'equivalenza 2026-07-27).
+#' @keywords internal
+.ca_drop_doses <- function(x) {
+  if (length(x) == 0L || all(is.na(x))) return("")
+  s <- tolower(paste(stats::na.omit(x), collapse = " "))
+  s <- gsub(paste0("\\b\\d+([.,]\\d+)?\\s*(ug|mg|ng|pg|kg|g|ul|ml|dl|l|nm|um|mm|pm|iu|moi|",
+                   "pfu|ffu|%)\\s*(/\\s*(ml|l|kg|g|ul))?"),
+            " ", s, perl = TRUE)
+  s <- gsub("\\b\\d+([.,]\\d+)?\\s*(h|hr|hrs|hour|hours|d|day|days|week|weeks|min|hpi|dpi)\\b",
+            " ", s, perl = TRUE)
+  s <- gsub("\\b(ug|mg|ng|kg|ul|ml|nm|um|iu|moi|pfu)\\s*/\\s*(ml|l|kg|g|ul|min)\\b",
+            " ", s, perl = TRUE)
+  trimws(gsub("\\s+", " ", s))
+}
+
 #' Normalizza una parte di combinazione
 #'
 #' La soglia va sui caratteri alfanumerici della PARTE, non su ogni token:
@@ -394,7 +415,7 @@
   best <- character(0)
   is_agent <- function(p) nzchar(.ca_agent_id(p, ontology_env, cache))
   for (v in treated_values) {
-    s <- .ca_strip_units(v)
+    s <- .ca_drop_doses(v)
     if (!nzchar(s)) next
     strong <- trimws(strsplit(s, "\\s*[+&]\\s*|\\s+and\\s+|\\s+plus\\s+", perl = TRUE)[[1L]])
     ps <- unique(vapply(strong, .ca_normalize_part, character(1L)))
@@ -422,7 +443,7 @@
 #' @keywords internal
 .ca_combo_from_labels <- function(treated_label, control_label, ontology_env, cache = NULL) {
   agents_of <- function(lab) {
-    s <- .ca_strip_units(lab)
+    s <- .ca_drop_doses(lab)
     toks <- strsplit(gsub("[^a-z0-9 -]", " ", s), "[^a-z0-9-]+")[[1L]]
     toks <- toks[nzchar(toks) & nchar(gsub("[^a-z0-9]", "", toks)) >= 3L &
                    !(toks %in% .CA_NONENTITY)]
