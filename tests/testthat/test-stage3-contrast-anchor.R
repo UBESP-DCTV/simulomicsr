@@ -301,6 +301,19 @@ test_that("un nome risolto che e' una sigla corta NON e' un nome generico (GSE23
   expect_equal(r$entity, "HGNC:11892")
 })
 
+test_that("un delta di solo TEMPO non e' un contrasto (GSE78678)", {
+  # Il gate misurato escludeva la classe "time" dall'universo poolabile; il
+  # pacchetto non filtrava per classe e faceva nascere il gruppo
+  # "STR:fetal||gain||adult" (k=3, tre tessuti diversi). Uno stadio di sviluppo
+  # e' una dimensione identitaria, non una perturbazione (ADR-0025 §4).
+  oe <- .load_ontology_dicts()
+  r <- .ca_member_contrast("Fetal alveolar epithelial cells",
+                           "Adult alveolar epithelial cells",
+                           "developmental_stage=fetal", "developmental_stage=adult",
+                           ontology_env = oe)
+  expect_equal(r$drop_reason, "classe_non_contrastiva")
+})
+
 test_that("l'entita' si risolve dai valori della CLASSE DOMINANTE (GSE99133)", {
   # Misurato 2026-07-27: passavo al resolver TUTTI i valori del delta, non solo
   # quelli della classe dominante. In "APC/TP53 mutant, STAR positive" il primo

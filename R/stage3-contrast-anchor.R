@@ -555,6 +555,10 @@
 
   d <- .ca_delta(treated_fl, control_fl)
   if (is.na(d$dominant_class)) return(out("no_delta"))
+  # Un delta di solo TEMPO non e' un contrasto: e' una dimensione identitaria
+  # (ADR-0025 §4, decisione utente 2026-07-24). Il gate misurato lo escludeva;
+  # senza questo filtro nasceva il gruppo "fetale vs adulto" su tre tessuti.
+  if (identical(d$dominant_class, "time")) return(out("classe_non_contrastiva"))
   cls  <- d$dominant_class
   tval <- d$treated_values
   cval <- d$control_values
