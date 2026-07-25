@@ -4,7 +4,9 @@
 **Dove si lavora:** `/home/user/simulomicsr-mega` — **worktree dedicato**, branch
 `mega-recovery-2026-07-27` (creato da `review-scientific-consistency-2026-06-10` @ `828fcbe`).
 Master invariato · nessun push.
-**Stato:** 🔴 **Problema MISURATO, nessuna decisione presa, nessun codice scritto.**
+**Stato:** ✅ **CHIUSO il 2026-07-27 — ADR-0026: il ramo mega esce dal deliverable** (decisione
+dell'utente). Questo handout resta come traccia di come e' stato impostato il lavoro; i risultati
+sono in `docs/findings/2026-07-27-mega-branch-anatomy.md` e nel riassunto di sessione.
 
 ---
 
@@ -156,8 +158,11 @@ Comandi R: `Rscript` **senza** `--vanilla` (con `--vanilla` non trova devtools).
 La sessione principale sta innestando l'anchor dal contrasto per il ramo `rem_group` e, finito
 quello, chiederà all'utente il **GO per il re-cluster (~8h) + re-pool (~50h)**.
 
-- **Se le mega vanno ri-ancorate, quel cambio deve entrare nello STESSO re-cluster.** Altrimenti
-  serve un secondo giro da 8 ore. Questo è il vincolo temporale che governa la sessione.
+- ~~**Se le mega vanno ri-ancorate, quel cambio deve entrare nello STESSO re-cluster.** Altrimenti
+  serve un secondo giro da 8 ore.~~ **SBAGLIATO — ritrattato il 2026-07-27.** Era un ragionamento
+  non verificato. Il gate e la risoluzione dei campioni delle mega sono **Stadio 4**: la decisione si
+  applica prima del **re-pool** (~50 h), non prima del re-cluster (~8 h). Verificato nel codice dalla
+  sessione mega. Esito: **ADR-0026, il ramo mega esce dal deliverable.**
 - I file `R/stage3-contrast-anchor.R`, `R/stage3-build.R`, `R/stage4-qc.R`, `R/stage4-dispatch.R` e i
   test `test-stage3-contrast-*.R`, `test-stage4-cgroup-branch.R` sono **lavoro in corso dell'altra
   sessione**: qui si **leggono e si riusano**, non si riscrivono. Il worktree ne ha una copia
@@ -199,40 +204,3 @@ quello, chiederà all'utente il **GO per il re-cluster (~8h) + re-pool (~50h)**.
 | perché le mega esistono | `docs/findings/2026-05-19-stadio-4-5-scope-decision.md` |
 | il difetto gemello sulle rem_group | `docs/findings/2026-07-23-stage3-cluster-coherence.md` |
 | l'innesto in corso | `docs/decisions/0025-stage3-contrast-derived-group-records.md` |
-
-## 8. PROMPT PER APRIRE LA SESSIONE
-
-> RECUPERO DEL RAMO MEGA — sessione dedicata, in parallelo all'innesto dell'anchor dal contrasto.
->
-> LAVORI IN `/home/user/simulomicsr-mega` (worktree dedicato, branch `mega-recovery-2026-07-27`).
-> L'ambiente e' gia' pronto e verificato: dati collegati con symlink, `.Renviron` che aggira renv.
-> Non toccare `.Renviron` e usa `Rscript` senza `--vanilla`.
->
-> LEGGI PRIMA, INTERO: `docs/superpowers/specs/2026-07-27-mega-recovery-HANDOUT.md`, poi
-> `docs/findings/2026-05-19-stadio-4-5-scope-decision.md` (perché le mega esistono) e
-> `docs/decisions/0025-stage3-contrast-derived-group-records.md` (che cosa si sta facendo alle
-> rem_group).
->
-> CONTESTO SENZA SCONTI. Per mesi il progetto ha dichiarato "publication-grade" raggruppamenti che
-> mettevano nella stessa meta-analisi studi che misurano cose diverse. Sulle `rem_group` è stato
-> misurato e ammesso: 157 su 184. Il ramo **mega** — 99 meta-analisi del deliverable — non è mai
-> stato verificato. Adesso lo è: dei 68 cluster misurabili, **32 hanno due o più entità del delta**,
-> con casi come *M. tuberculosis* che ne mescola 10. Copertura della misura: 49% dei bracci trattati,
-> e va ripetuta accanto a ogni numero.
->
-> IL LAVORO: capire se e come le mega si recuperano. Prima misurare (perché il 51% dei bracci non ha
-> un confronto; che cosa sono i 31 cluster non misurabili; se l'anchor vuoto predice l'eterogeneità),
-> poi proporre le opzioni con i tradeoff onesti e la tua preferenza, e FERMARTI: la decisione è mia.
->
-> VINCOLO DI TEMPO: se le mega vanno ri-ancorate, il cambio deve entrare nello **stesso** re-cluster
-> dell'altra sessione (~8h), altrimenti servono due giri. Quindi il design va chiuso prima che io dia
-> il GO là.
->
-> NON TOCCARE i file della sessione principale (elencati al §5 dell'handout): leggili e riusali.
-> Scrivi in `analysis/audit/2026-07-27-mega-recovery/` e in `docs/`.
->
-> REGOLE: il gate è la coerenza, mai il numero. Verifica su TUTTI, mai a campione. Nessun LLM nella
-> pipeline. Nessun run pesante senza il mio GO. Fail onesto coi numeri. Vietato scrivere
-> "validato/risolto/finale" senza prova per-cluster su tutti. Prima di normalizzare testo ricorda che
-> `_` conta come lettera per le espressioni regolari. Parlami come a un essere umano: breve, chiaro,
-> senza gergo. Branch `mega-recovery-2026-07-27`, master invariato, no push.

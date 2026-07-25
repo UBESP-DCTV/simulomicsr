@@ -124,6 +124,36 @@ Nessun run pesante senza GO esplicito. Prima del GO:
 Dopo il re-cluster + re-pool: **ri-censimento della coerenza sui dati veri, su TUTTI i gruppi**,
 prima di qualunque dichiarazione. Il 97,9% della simulazione è un pavimento da riverificare.
 
+## Addendum 2026-07-27 — il rischio sul ramo mega e' chiuso, e una mia affermazione era sbagliata
+
+Questa ADR dichiarava fra i rischi: «il ramo `mega` resta non verificato … il censimento va fatto
+prima del GO». Il censimento e' stato fatto dalla sessione parallela (branch
+`mega-recovery-2026-07-27`) e ha prodotto **ADR-0026: il ramo `mega` esce dal deliverable**
+(decisione dell'utente, 2026-07-27). Il rischio e' chiuso.
+
+**RITRATTAZIONE.** L'handout che ho preparato per quella sessione affermava che «se le mega vanno
+ri-ancorate, il cambio deve entrare nello STESSO re-cluster, altrimenti servono due giri da 8 ore».
+**Era sbagliato, e non l'avevo verificato**: era un ragionamento, non una misura. La sessione mega
+l'ha controllato nel codice — il gate (`.identify_layer_a_clusters`, `R/stage4-qc.R`) e la
+risoluzione dei campioni (`.build_group_dispatch_from_stage3`, `R/stage4-dispatch.R`) sono **Stadio
+4**, e le colonne che servono (`k`, `n_studies`, `n_total`, `safety_min`) esistono gia' per i cluster
+`cgroup`. La decisione si applica **prima del re-pool (~50 h)**, non prima del re-cluster (~8 h).
+**Il GO sul re-cluster non e' mai stato bloccato da quella questione.**
+
+**Conseguenze operative per questa ADR:**
+
+- `.build_group_records()` **resta**, e questa ADR gia' lo prevedeva (affiancamento, non
+  sostituzione). ADR-0026 conferma che serve ancora: i record `group` sono il pool donatore del ramo
+  `mega_aug`. Togliere la `mega` non toglie i record `group`.
+- Nessuna modifica al codice di questa ADR e' richiesta da ADR-0026.
+
+**Una decisione di questa ADR e' ora RIAPERTA (non da me, non qui).** La soglia **k≥3** era stata
+fissata dall'utente il 2026-07-24 quando il ramo `mega_aug` (419 cluster a k=2) era ancora nel
+deliverable. ADR-0026 §Aperto mette sul tavolo — senza deciderlo — di non tenere `mega_aug` e di
+valutare se il ramo `cgroup` debba emettere anche un **livello dichiarato a k=2**: stessa materia,
+coerenza per costruzione, nessun prestito di campioni. Finche' l'utente non decide, **k≥3 resta**;
+ma non va scritto da nessuna parte come definitivo.
+
 ## Links
 
 - Spec di design: `docs/superpowers/specs/2026-07-27-stage3-contrast-group-builder-design.md`
