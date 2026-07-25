@@ -92,6 +92,26 @@ precedente; i **36 con composizione cambiata o nuovi sono stati riletti uno per 
 
 ## 5. Codice di produzione
 
+**Due moduli, entrambi scritti test-first.**
+
+`R/stage3-contrast-gate.R` (nuovo) — le regole del gate che finora vivevano nello script d'analisi:
+token generici, induttori, verso del delta, anatomia e sinonimi d'organo, materiale del braccio,
+contrasto rotto, baseline propria, infezione clinica vs sperimentale, resistenza asimmetrica,
+controlli non validi, delta multiclasse, nomi-ombrello, entita' on-contrast.
+`tests/testthat/test-stage3-contrast-gate.R`: **102 PASS / 0 FAIL**.
+
+**Equivalenza verificata sui dati veri** (`108-equivalenza-gate.R`, 19.863 etichette / 38.440
+contrasti): 11 regole su 16 danno risposta identica allo script; le altre differiscono in **624
+casi**, e in ogni caso la versione di pacchetto e' quella corretta — lo script non vedeva oltre un
+underscore (`_doxycycline` non era un induttore, `Baseline_Control` non era una baseline,
+`CON_1_input` non era un controllo di saggio, `Patient_081` non era un contesto clinico) — piu'
+`pulmonary` aggiunto al vocabolario anatomico.
+
+Il gate e' stato quindi **rimisurato col codice di produzione** (`109-fase1-v11-gate.R`): **stessi
+144 gruppi, composizione identica, 0 gruppi da rileggere**. Le 624 differenze agiscono su cluster
+fuori dal deliverable o su membri gia' scartati per altre ragioni. I numeri riportati sono quelli
+del codice che verra' eseguito, non di uno script divergente.
+
 `R/stage3-row-pairing.R` (nuovo) — `.rp_time_hours`, `.rp_identifiers`, `.rp_subject_mismatch`,
 `.rp_has_genetic_marker`, `.rp_genetic_asymmetry`, `.rp_agents`, `.rp_uncaptured_combination`,
 `.rp_row_defect`. Scritto **test-first**: `tests/testthat/test-stage3-row-pairing.R`, **67 PASS /

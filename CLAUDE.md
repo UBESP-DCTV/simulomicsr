@@ -35,6 +35,42 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-26 (REGOLE IN PRODUZIONE CON TDD — 141 GRUPPI COERENTI SU 144, MISURATI COL CODICE VERO)**:
+> 🟡 **Le regole di riga E le regole del gate sono codice di pacchetto, testate test-first, verificate
+> equivalenti allo script sui dati veri e RIMISURATE col codice di produzione. Nessun re-cluster,
+> nessun re-pool: niente e' materializzato.**
+>
+> 1. **Regole di RIGA** (`R/stage3-row-pairing.R`, 67 test): tempo non appaiato · soggetto/linea
+>    diversa (**solo nei disegni di trattamento**: nei caso-controllo di malattia i soggetti diversi
+>    sono obbligatori) · genetica su un braccio solo · combinazione non catturata.
+>    Misura sulle 1.851 righe gia' verificate a mano: **139 segnalazioni, 139/139 difetti VERI**
+>    (il primo rilevatore: 186 segnalate, 96 vere = 52%). Le 43 in piu' non sono un criterio piu'
+>    largo: sono difetti che non poteva vedere (tempi dentro gli underscore, `CWR-22Rv1`, linee
+>    diverse in GSE186341).
+> 2. **CINQUE BUG MIEI** trovati misurando: `_` e' carattere di parola per le regex; la regex dei
+>    codici pretendeva la cifra nel primo segmento; un token condiviso qualsiasi annullava la
+>    segnalazione; la stoplist conteneva il **candidato grezzo** del resolver (disinnescava la regola
+>    in silenzio); la soglia sui token scartava `TNF-` e `IL-1`.
+> 3. **Regole del GATE** (`R/stage3-contrast-gate.R`, 102 test): verso, anatomia, materiale,
+>    contrasto rotto, baseline, infezione clinica vs sperimentale, resistenza, controlli non validi,
+>    multiclasse, ombrelli, on-contrast. **Equivalenza verificata su 19.863 etichette / 38.440
+>    contrasti**: 624 differenze, tutte a favore del pacchetto (lo script non vedeva oltre un
+>    underscore: `_doxycycline`, `Baseline_Control`, `CON_1_input`, `Patient_081`).
+> 4. **RIMISURA COL CODICE DI PRODUZIONE** (gate v11): **stessi 144 gruppi, composizione identica,
+>    0 gruppi da rileggere**. I numeri pubblicati sono quelli del codice che verra' eseguito.
+> 5. **DELIVERABLE**: 145 → **144 poolabili**, 143 → **141 coerenti (97,9%)**, 866/875 studi-slot.
+>    Scartati **2.722 membri (7,1%) = 1.110 confronti**. Persi i 2 gruppi previsti (bosutinib,
+>    RSV-uninfected); RSV ricompare sotto un altro controllo ed e' **incoerente** (clinico +
+>    sperimentale). Incoerenti: CSF2, PTSD, RSV.
+> 6. **Bump `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION` v6 → v7**: le guardie del resolver erano entrate
+>    in produzione senza bump (la trappola che e' gia' costata 8 ore).
+> 7. **Ri-mappaggio del resolver (domanda dell'utente): MISURATO — 0 gruppi nuovi**, 1 rafforzamento,
+>    50 membri; `cancer`/`ifn`/`ml` non sono ri-mappabili per principio. Decisione utente aperta.
+> 8. **PROSSIMO**: l'innesto nel build (i record **group** devono nascere dal CONTRASTO — opzione B,
+>    `.build_group_records` in `R/stage3-build.R:473`), poi GATE UTENTE per re-cluster + re-pool.
+>    Handout `docs/superpowers/specs/2026-07-27-NEXT-SESSION-HANDOUT.md`; finding
+>    `docs/findings/2026-07-26-stage3-row-pairing-rules.md`. Branch invariato, master invariato, no push.
+>
 > **Stato 2026-07-25b (NOTTE AUTONOMA — COERENZA 98,6% + AUDIT SISTEMATICO DEL RESOLVER)**:
 > 🟡 **145 poolabili, 143 coerenti (98,6%) censiti uno per uno; il resolver ha una guardia di
 > precisione IN PRODUZIONE, con TDD e misura prima/dopo. Nessun re-cluster, nessun re-pool.**
