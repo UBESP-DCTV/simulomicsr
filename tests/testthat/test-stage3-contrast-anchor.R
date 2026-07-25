@@ -159,6 +159,32 @@ test_that(".ca_combo_parts vede la combinazione separata da / e da _ (regression
   expect_length(.ca_combo_parts("LPS 10 ug/ml", oe), 0L)
 })
 
+test_that(".ca_combo_parts usa il vocabolario del gate per ripulire le parti", {
+  # Misurato 2026-07-27: le parti venivano ripulite con un vocabolario diverso da
+  # quello del gate, e restavano dentro parole come "sirna" e "plasmid". L'entita'
+  # e' la CHIAVE del cluster: "COMBO:taz sirna+yap" e "COMBO:taz+yap" sono due
+  # gruppi diversi. 102 membri finivano in una chiave leggermente diversa.
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  expect_setequal(.ca_combo_parts("YAP/TAZ siRNA", oe), c("yap", "taz"))
+})
+
+test_that("il prefisso dell'entita' non entra nei controlli a valle", {
+  # Misurato 2026-07-27: si toglieva solo "STR:", non "NAME:", quindi per le
+  # entita' prese dall'anchor la sonda dell'entita'-costante cercava
+  # "name training" invece di "training" e non trovava nulla: 66 membri che il
+  # gate scartava restavano dentro.
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast("Training Post-Training Period 1",
+                           "Untrained Pre-Training Period 2",
+                           "time=post-training period 1;treatment=training",
+                           "time=pre-training period 2;treatment=untrained",
+                           anchor_name = "training", anchor_id = "NAME:training",
+                           ontology_env = oe)
+  expect_equal(r$drop_reason, "entita_costante")
+})
+
 test_that(".ca_combo_from_labels non conta gli agenti tenuti costanti", {
   oe <- .load_ontology_dicts()
   skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")

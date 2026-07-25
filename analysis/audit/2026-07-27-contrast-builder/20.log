@@ -1,16 +1,18 @@
 - The project is out-of-sync -- use `renv::status()` for details.
-=== differenze totali: 1214 ===
+=== differenze totali: 381 ===
 
 
-                               ok -> ok                          ok_combo -> ok 
-                                    853                                     203 
-                  entita_costante -> ok                     nome_ombrello -> ok 
-                                     64                                      23 
-ok_combo -> riga_combinazione_non_vista         riga_genetica_asimmetrica -> ok 
-                                     22                                      19 
-                  ok -> entita_costante                      id_blacklist -> ok 
-                                     12                                      11 
-      riga_combinazione_non_vista -> ok             riga_soggetto_diverso -> ok 
-                                      5                                       2 
+                   ok_combo -> ok_combo                   entita_costante -> ok 
+                                    102                                      66 
+                         ok -> ok_combo                                ok -> ok 
+                                     47                                      38 
+                         ok_combo -> ok                     nome_ombrello -> ok 
+                                     38                                      27 
+  riga_genetica_asimmetrica -> ok_combo                   ok -> entita_costante 
+                                     27                                      12 
+               id_blacklist -> ok_combo         riga_genetica_asimmetrica -> ok 
+                                     11                                       8 
+riga_combinazione_non_vista -> ok_combo 
+                                      5 
 
 scritti differenze-classi.txt e differenze-tutte.csv

@@ -7,7 +7,8 @@ suppressPackageStartupMessages(library(dplyr))
 OUT <- "analysis/audit/2026-07-27-contrast-builder"
 r <- readRDS(file.path(OUT, "equivalenza-builder.rds")); pm <- r$pm
 old <- ifelse(pm$dr %in% c("ok", "ok_combo"), "ok", pm$dr)
-pm$transizione <- paste(pm$dr, "->", pm$new_dr)
+pm$new_dr_lab <- ifelse(pm$new_dr == "ok" & pm$new_src == "COMBO", "ok_combo", pm$new_dr)
+pm$transizione <- paste(pm$dr, "->", pm$new_dr_lab)
 d <- pm[(old == "ok") != (pm$new_dr == "ok") |
         (old == "ok" & pm$new_dr == "ok" & pm$entity != pm$new_entity), ]
 

@@ -398,8 +398,12 @@
 #' co-infezione \code{M.tb + CMV} non era vista come combinazione.
 #' @keywords internal
 .ca_normalize_part <- function(p) {
+  # Il vocabolario e' quello del GATE (.CG_GENERIC + .CG_CONNECTORS): l'entita'
+  # e' la chiave del cluster, e "COMBO:taz sirna+yap" e "COMBO:taz+yap" sono due
+  # gruppi diversi. Con un vocabolario diverso 102 membri finivano in una chiave
+  # leggermente diversa dal gate misurato (2026-07-27).
   w <- strsplit(gsub("[^a-z0-9 -]", " ", tolower(p)), "[^a-z0-9-]+")[[1L]]
-  w <- w[nzchar(w) & !(w %in% .CA_NONENTITY)]
+  w <- w[nzchar(w) & !(w %in% .CG_GENERIC) & !(w %in% .CG_CONNECTORS)]
   s <- paste(w, collapse = " ")
   if (nchar(gsub("[^a-z0-9]", "", s)) >= 3L) s else ""
 }
@@ -616,7 +620,9 @@
   }
   if (is.na(entity)) return(out("no_entity"))
 
-  raw <- sub("^STR:", "", entity)
+  # Si tolgono ENTRAMBI i prefissi: per un'entita' presa dall'anchor la sonda
+  # cercherebbe "name training" invece di "training" e non troverebbe nulla.
+  raw <- sub("^(NAME|STR):", "", entity)
   if (startsWith(entity, "STR:") && .cg_is_generic_token(gsub("_", " ", raw)))
     return(out("str_generico"))
   if (entity %in% .CA_BLACKLIST_ID) return(out("id_blacklist"))

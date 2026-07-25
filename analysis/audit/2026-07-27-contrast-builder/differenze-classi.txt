@@ -1,44 +1,273 @@
 
 
 ################################################################
-## CLASSE: ok -> ok  ( 853 membri )
+## CLASSE: ok_combo -> ok_combo  ( 102 membri )
 ################################################################
 
 -- coppie entita' distinte (gate -> pacchetto), top 15:
-                                  entity                         new_entity
-                       NAME:glioblastoma                   STR:glioblastoma
-                            NAME:hypoxia                        STR:hypoxia
-                          NAME:radiation                      STR:radiation
-                         NAME:sars-cov-2                  NCBITaxon:2697049
-                       NCBITaxon:3428501                   STR:rhinovirus_a
-     STR:sle_sera_mg_ml_necrotic_lysates COMBO:necrotic lysates+sle 06 sera
-      NAME:early onset colorectal cancer  STR:early_onset_colorectal_cancer
-                           NAME:exercise      STR:exercise_h_after_exercise
-             STR:g_ml_soybean_s_globulin                     NCBITaxon:3847
- NAME:esophageal squamous cell carcinoma  STR:esophageal_squamous_carcinoma
-                            MeSH:D006528 STR:liver_hepatocellular_carcinoma
-               STR:g_ml_s_albumin_lupine               CHEMBL:CHEMBL1201451
-                             NAME:keloid                         STR:keloid
-                      NAME:endometriosis                  STR:endometriosis
-                      NAME:endometriosis       STR:peritoneal_endometriosis
- new_src  n
-     STR 64
-     STR 56
-     STR 42
-    onto 30
-     STR 28
-   COMBO 27
-     STR 20
-     STR 16
-    onto 16
-     STR 15
-     STR 14
-    onto 14
-     STR 13
-     STR 12
-     STR 12
+                                                                 entity
+                                  COMBO:hepb mo 7 5 8 5 13+tetanus mo 0
+                                                       COMBO:ctrl+ifn-b
+                                      COMBO:mettl14+pool against mettl3
+                                                          COMBO:taz+yap
+                                                COMBO:delta82-zc3h4+tmp
+                                              COMBO:deltaarms-zc3h4+tmp
+                                               COMBO:deltaznf-zc3h4+tmp
+      COMBO:full-length copy cdna park2 under minimal cmv+teto promoter
+                     COMBO:sd targeting grnas+spry-abe8e w app ex 17 sa
+                                      COMBO:e2f3+pool against e2f1 e2f2
+                                                       COMBO:ev71+il-25
+                                                 COMBO:olaparib+unc0642
+ COMBO:antibody fvfc m okt3 murine scfv fused human ig1 ch1+ch2 domains
+                                                  COMBO:colon+spiperone
+                                                         COMBO:cse+hlag
+                                                           new_entity new_src
+                        COMBO:hepb mo 7 5 8 5 13+placebo+tetanus mo 0   COMBO
+                                                COMBO:ifn-b+only ctrl   COMBO
+                              COMBO:mettl14+sirna pool against mettl3   COMBO
+                                                  COMBO:taz sirna+yap   COMBO
+                                      COMBO:delta82-zc3h4 plasmid+tmp   COMBO
+                                    COMBO:deltaarms-zc3h4 plasmid+tmp   COMBO
+                                     COMBO:deltaznf-zc3h4 plasmid+tmp   COMBO
+ COMBO:full-length copy of cdna park2 under minimal cmv+teto promoter   COMBO
+           COMBO:sd targeting grnas+spry-abe8e plasmid w app ex 17 sa   COMBO
+                              COMBO:e2f3+sirna pool against e2f1 e2f2   COMBO
+                            COMBO:ev71 infection+il-25 overexpression   COMBO
+                                         COMBO:combo+olaparib+unc0642   COMBO
+  COMBO:antibody fvfc m okt3 murine scfv fused to ig1 ch1+ch2 domains   COMBO
+                                         COMBO:cancer+colon+spiperone   COMBO
+                                                    COMBO:cse+hlag ko   COMBO
+  n
+ 29
+  8
+  6
+  6
+  5
+  5
+  5
+  5
+  5
+  3
+  3
+  3
+  2
+  2
+  2
 
--- studi coinvolti: 142 
+-- studi coinvolti: 21 
+
+-- esempi (fino a 8):
+
+  [ 1 ] studio GSE205235 
+      trattato :  Neural progenitors with PARK2 genetic knockout and full-length copy of cDNA PARK2 
+      controllo:  Neural progenitors with PARK2 genetic knockout 
+      delta    : [ full-length copy of cDNA PARK2 under (minimal CMV + TetO) promoter ] vs [  ] classi: drug 
+      nome cluster (gate):  PANX2  | on-contrast: FALSE 
+      ce2 (delta risolto):  NCBITaxon:10359 = cmv  da candidato [ full-length copy of cdna park2 under (minimal cmv + teto) promoter ]
+      GATE     :  ok_combo -> COMBO:full-length copy cdna park2 under minimal cmv+teto promoter 
+      PACCHETTO:  ok -> COMBO:full-length copy of cdna park2 under minimal cmv+teto promoter  (fonte: COMBO )
+
+  [ 2 ] studio GSE246587 
+      trattato :  Transfected with SpRY-ABE8e Plasmid 
+      controllo:  Vehicle Control 
+      delta    : [ SpRY-ABE8e Plasmid w APP ex 17 SA and SD Targeting gRNAs ] vs [ Vehicle ] classi: drug 
+      nome cluster (gate):  Middle East respiratory syndrome coronavirus  | on-contrast: FALSE 
+      ce2 (delta risolto):  CHEBI:50071 = ascopyrone P  da candidato [ spry-abe8e plasmid w app ex 17 sa and sd targeting grnas ]
+      GATE     :  ok_combo -> COMBO:sd targeting grnas+spry-abe8e w app ex 17 sa 
+      PACCHETTO:  ok -> COMBO:sd targeting grnas+spry-abe8e plasmid w app ex 17 sa  (fonte: COMBO )
+
+  [ 3 ] studio GSE207418 
+      trattato :  TMP + delta82-ZC3H4 plasmid 
+      controllo:  ZC3H4-DHFR minus TMP 
+      delta    : [ TMP + delta82-ZC3H4 plasmid ] vs [ ZC3H4-DHFR minus TMP ] classi: drug 
+      nome cluster (gate):  trimethoprim  | on-contrast: FALSE 
+      ce2 (delta risolto):  NCBITaxon:45202 = unidentifiedplasmid  da candidato [ plasmid ]
+      GATE     :  ok_combo -> COMBO:delta82-zc3h4+tmp 
+      PACCHETTO:  ok -> COMBO:delta82-zc3h4 plasmid+tmp  (fonte: COMBO )
+
+  [ 4 ] studio GSE207418 
+      trattato :  TMP + deltaARMS-ZC3H4 plasmid 
+      controllo:  ZC3H4-DHFR minus TMP 
+      delta    : [ TMP + deltaARMS-ZC3H4 plasmid ] vs [ ZC3H4-DHFR minus TMP ] classi: drug 
+      nome cluster (gate):  trimethoprim  | on-contrast: FALSE 
+      ce2 (delta risolto):  NCBITaxon:45202 = unidentifiedplasmid  da candidato [ plasmid ]
+      GATE     :  ok_combo -> COMBO:deltaarms-zc3h4+tmp 
+      PACCHETTO:  ok -> COMBO:deltaarms-zc3h4 plasmid+tmp  (fonte: COMBO )
+
+  [ 5 ] studio GSE207418 
+      trattato :  TMP + deltaZnF-ZC3H4 plasmid 
+      controllo:  ZC3H4-DHFR minus TMP 
+      delta    : [ TMP + deltaZnF-ZC3H4 plasmid ] vs [ ZC3H4-DHFR minus TMP ] classi: drug 
+      nome cluster (gate):  trimethoprim  | on-contrast: FALSE 
+      ce2 (delta risolto):  NCBITaxon:45202 = unidentifiedplasmid  da candidato [ plasmid ]
+      GATE     :  ok_combo -> COMBO:deltaznf-zc3h4+tmp 
+      PACCHETTO:  ok -> COMBO:deltaznf-zc3h4 plasmid+tmp  (fonte: COMBO )
+
+  [ 6 ] studio GSE164366 
+      trattato :  Placebo + Tetanus mo(0) + HepB mo(7.5,8.5,13) V4 
+      controllo:  Placebo V4 
+      delta    : [ Placebo + Tetanus mo(0) + HepB mo(7.5,8.5,13) ] vs [ Placebo ] classi: infection 
+      nome cluster (gate):  NA  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok_combo -> COMBO:hepb mo 7 5 8 5 13+tetanus mo 0 
+      PACCHETTO:  ok -> COMBO:hepb mo 7 5 8 5 13+placebo+tetanus mo 0  (fonte: COMBO )
+
+  [ 7 ] studio GSE164366 
+      trattato :  Placebo + Tetanus mo(0) + HepB mo(7.5,8.5,13) V5 
+      controllo:  Placebo V5 
+      delta    : [ Placebo + Tetanus mo(0) + HepB mo(7.5,8.5,13) ] vs [ Placebo ] classi: infection 
+      nome cluster (gate):  NA  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok_combo -> COMBO:hepb mo 7 5 8 5 13+tetanus mo 0 
+      PACCHETTO:  ok -> COMBO:hepb mo 7 5 8 5 13+placebo+tetanus mo 0  (fonte: COMBO )
+
+  [ 8 ] studio GSE164366 
+      trattato :  Placebo + Tetanus mo(0) + HepB mo(7.5,8.5,13) V6 
+      controllo:  Placebo V6 
+      delta    : [ Placebo + Tetanus mo(0) + HepB mo(7.5,8.5,13) ] vs [ Placebo ] classi: infection 
+      nome cluster (gate):  NA  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok_combo -> COMBO:hepb mo 7 5 8 5 13+tetanus mo 0 
+      PACCHETTO:  ok -> COMBO:hepb mo 7 5 8 5 13+placebo+tetanus mo 0  (fonte: COMBO )
+
+
+################################################################
+## CLASSE: entita_costante -> ok  ( 66 membri )
+################################################################
+
+-- coppie entita' distinte (gate -> pacchetto), top 15:
+ entity       new_entity new_src  n
+   <NA>    NAME:training  anchor 24
+   <NA> NAME:vaccination  anchor 22
+   <NA>    NAME:exercise  anchor 11
+   <NA>      NAME:asthma  anchor  4
+   <NA>    NAME:bed rest  anchor  2
+   <NA>   NAME:radiation  anchor  2
+   <NA>     NAME:hypoxia  anchor  1
+
+-- studi coinvolti: 10 
+
+-- esempi (fino a 8):
+
+  [ 1 ] studio GSE60590 
+      trattato :  Trained (Post-training) 
+      controllo:  Untrained (Pre-training) 
+      delta    : [ post-training period 1 | trained ] vs [ pre-training period 1 | untrained ] classi: disease+time 
+      nome cluster (gate):  training  | on-contrast: TRUE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  entita_costante -> NA 
+      PACCHETTO:  ok -> NAME:training  (fonte: anchor )
+
+  [ 2 ] studio GSE60833 
+      trattato :  Training Post-Training Period 1 
+      controllo:  Untrained Pre-Training Period 2 
+      delta    : [ post-training period 1 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
+      nome cluster (gate):  training  | on-contrast: TRUE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  entita_costante -> NA 
+      PACCHETTO:  ok -> NAME:training  (fonte: anchor )
+
+  [ 3 ] studio GSE60590 
+      trattato :  Trained (Post-training) 
+      controllo:  Untrained (Pre-training) 
+      delta    : [ post-training period 1 | trained ] vs [ pre-training period 1 | untrained ] classi: disease+time 
+      nome cluster (gate):  training  | on-contrast: TRUE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  entita_costante -> NA 
+      PACCHETTO:  ok -> NAME:training  (fonte: anchor )
+
+  [ 4 ] studio GSE60833 
+      trattato :  Training Post-Training Period 1 
+      controllo:  Untrained Pre-Training Period 2 
+      delta    : [ post-training period 1 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
+      nome cluster (gate):  training  | on-contrast: TRUE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  entita_costante -> NA 
+      PACCHETTO:  ok -> NAME:training  (fonte: anchor )
+
+  [ 5 ] studio GSE60590 
+      trattato :  Trained (Post-training) 
+      controllo:  Untrained (Pre-training) 
+      delta    : [ post-training period 1 | trained ] vs [ pre-training period 1 | untrained ] classi: disease+time 
+      nome cluster (gate):  training  | on-contrast: TRUE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  entita_costante -> NA 
+      PACCHETTO:  ok -> NAME:training  (fonte: anchor )
+
+  [ 6 ] studio GSE60833 
+      trattato :  Training Post-Training Period 1 
+      controllo:  Untrained Pre-Training Period 2 
+      delta    : [ post-training period 1 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
+      nome cluster (gate):  training  | on-contrast: TRUE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  entita_costante -> NA 
+      PACCHETTO:  ok -> NAME:training  (fonte: anchor )
+
+  [ 7 ] studio GSE60833 
+      trattato :  Training Post-Training Period 2 
+      controllo:  Untrained Pre-Training Period 2 
+      delta    : [ post-training period 2 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
+      nome cluster (gate):  training  | on-contrast: TRUE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  entita_costante -> NA 
+      PACCHETTO:  ok -> NAME:training  (fonte: anchor )
+
+  [ 8 ] studio GSE60833 
+      trattato :  Training Post-Training Period 2 
+      controllo:  Untrained Pre-Training Period 2 
+      delta    : [ post-training period 2 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
+      nome cluster (gate):  training  | on-contrast: TRUE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  entita_costante -> NA 
+      PACCHETTO:  ok -> NAME:training  (fonte: anchor )
+
+
+################################################################
+## CLASSE: ok -> ok_combo  ( 47 membri )
+################################################################
+
+-- coppie entita' distinte (gate -> pacchetto), top 15:
+                        entity
+                     STR:siino
+                   CHEBI:84491
+             NCBITaxon:3049954
+ STR:sirna_pool_against_igf_bp
+       CHEBI:16412+CHEBI:28262
+       CHEBI:16330+CHEBI:28262
+       CHEBI:17823+CHEBI:84491
+       CHEBI:28262+CHEBI:41879
+                  CHEBI:379896
+       CHEBI:81664+CHEBI:84491
+                    HGNC:11766
+                     STR:sibrd
+                                                                    new_entity
+                                                          COMBO:cancer+siino80
+                                                          COMBO:poly ic+siilf3
+ COMBO:respiratory rna viruses parainfluenza virus+respiratory syncytial virus
+                                                          COMBO:cancer+igf2bp1
+                                                                COMBO:dmso+lps
+                                                                COMBO:dht+dmso
+                                                     COMBO:calcitriol+poly i c
+                                                      COMBO:dexamethasone+dmso
+                                                            COMBO:cancer+r1881
+                                                           COMBO:ll-37+poly ic
+                                                           COMBO:shrna+tgfbeta
+                                                             COMBO:dmso+sibrd4
+ new_src  n
+   COMBO 10
+   COMBO  8
+   COMBO  7
+   COMBO  5
+   COMBO  3
+   COMBO  2
+   COMBO  2
+   COMBO  2
+   COMBO  2
+   COMBO  2
+   COMBO  2
+   COMBO  2
+
+-- studi coinvolti: 12 
 
 -- esempi (fino a 8):
 
@@ -51,61 +280,95 @@
       GATE     :  ok -> NCBITaxon:3049954 
       PACCHETTO:  ok -> COMBO:respiratory rna viruses parainfluenza virus+respiratory syncytial virus  (fonte: COMBO )
 
-  [ 2 ] studio GSE154964 
-      trattato :  HCC Stage II 
-      controllo:  Para-cancerous Stage II 
-      delta    : [ liver hepatocellular carcinoma ] vs [ para-cancerous ] classi: disease 
-      nome cluster (gate):  hepatocellular carcinoma  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  ok -> MeSH:D006528 
-      PACCHETTO:  ok -> STR:liver_hepatocellular_carcinoma  (fonte: STR )
+  [ 2 ] studio GSE130595 
+      trattato :  siILF3 + poly(IC) 
+      controllo:  siMock + poly(IC) 
+      delta    : [ siILF3 + poly(IC) | 1 hour ] vs [ siMock + poly(IC) | unknown ] classi: drug+time 
+      nome cluster (gate):  polyinosinic:polycytidylic acid  | on-contrast: FALSE 
+      ce2 (delta risolto):  CHEBI:84491 = poly(I:C)  da candidato [ siilf3 + poly ic ]
+      GATE     :  ok -> CHEBI:84491 
+      PACCHETTO:  ok -> COMBO:poly ic+siilf3  (fonte: COMBO )
 
-  [ 3 ] studio GSE154964 
-      trattato :  HCC Stage III 
-      controllo:  Para-cancerous Stage III 
-      delta    : [ liver hepatocellular carcinoma ] vs [ para-cancerous ] classi: disease 
-      nome cluster (gate):  hepatocellular carcinoma  | on-contrast: TRUE 
+  [ 3 ] studio GSE97412 
+      trattato :  HepG2 + siINO80#1 (liver cancer model) 
+      controllo:  HepG2 + NTG (transgene) 
+      delta    : [ siINO80#1 |  ] vs [  | NTG ] classi: drug+other 
+      nome cluster (gate):  hepatocellular carcinoma  | on-contrast: FALSE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  ok -> MeSH:D006528 
-      PACCHETTO:  ok -> STR:liver_hepatocellular_carcinoma  (fonte: STR )
+      GATE     :  ok -> STR:siino 
+      PACCHETTO:  ok -> COMBO:cancer+siino80  (fonte: COMBO )
 
-  [ 4 ] studio GSE130977 
-      trattato :  Type IIa trained basal 
-      controllo:  Type IIa untrained basal 
-      delta    : [ training ] vs [ untrained ] classi: drug 
-      nome cluster (gate):  training  | on-contrast: TRUE 
+  [ 4 ] studio GSE97412 
+      trattato :  HepG2 + siINO80#2 (liver cancer model) 
+      controllo:  HepG2 + NTG (transgene) 
+      delta    : [ siINO80#2 |  ] vs [  | NTG ] classi: drug+other 
+      nome cluster (gate):  hepatocellular carcinoma  | on-contrast: FALSE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  ok -> NAME:training 
-      PACCHETTO:  ok -> STR:training  (fonte: STR )
+      GATE     :  ok -> STR:siino 
+      PACCHETTO:  ok -> COMBO:cancer+siino80  (fonte: COMBO )
 
-  [ 5 ] studio GSE120862 
-      trattato :  Exercise +4h 
-      controllo:  Baseline Training Status Trained NE 
-      delta    : [ exercise | +4 h after exercise ] vs [ training status: trained | baseline ] classi: other+time 
-      nome cluster (gate):  exercise  | on-contrast: TRUE 
+  [ 5 ] studio GSE146547 
+      trattato :  A549 cells transfected with siRNA pool against IGF2BP1 (lung cancer) 
+      controllo:  A549 cells transfected with Control siRNA 
+      delta    : [ siRNA pool against IGF2BP1 ] vs [ Control siRNA ] classi: drug 
+      nome cluster (gate):  IGF2BP1  | on-contrast: FALSE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  ok -> NAME:exercise 
-      PACCHETTO:  ok -> STR:exercise_h_after_exercise  (fonte: STR )
+      GATE     :  ok -> STR:sirna_pool_against_igf_bp 
+      PACCHETTO:  ok -> COMBO:cancer+igf2bp1  (fonte: COMBO )
 
-  [ 6 ] studio GSE120862 
-      trattato :  Exercise +4h polyA 
-      controllo:  Baseline Untrained polyA 
-      delta    : [ exercise | +4 h after exercise ] vs [ untrained | baseline ] classi: other+time 
-      nome cluster (gate):  exercise  | on-contrast: TRUE 
+  [ 6 ] studio GSE157240 
+      trattato :  Other respiratory RNA virus infected patients 
+      controllo:  Healthy controls 
+      delta    : [ Other respiratory RNA viruses (Parainfluenza virus and Respiratory Syncytial vir ] vs [  ] classi: infection 
+      nome cluster (gate):  Mycobacterium tuberculosis  | on-contrast: FALSE 
+      ce2 (delta risolto):  NCBITaxon:3049954 = respiratorysyncytialvirus  da candidato [ other respiratory rna viruses (parainfluenza virus and respiratory syncytial virus) ]
+      GATE     :  ok -> NCBITaxon:3049954 
+      PACCHETTO:  ok -> COMBO:respiratory rna viruses parainfluenza virus+respiratory syncytial virus  (fonte: COMBO )
+
+  [ 7 ] studio GSE146547 
+      trattato :  A549 cells transfected with siRNA pool against IGF2BP1 (lung cancer) 
+      controllo:  A549 cells transfected with Control siRNA 
+      delta    : [ siRNA pool against IGF2BP1 ] vs [ Control siRNA ] classi: drug 
+      nome cluster (gate):  IGF2BP1  | on-contrast: FALSE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  ok -> NAME:exercise 
-      PACCHETTO:  ok -> STR:exercise_h_after_exercise  (fonte: STR )
+      GATE     :  ok -> STR:sirna_pool_against_igf_bp 
+      PACCHETTO:  ok -> COMBO:cancer+igf2bp1  (fonte: COMBO )
 
-  [ 7 ] studio GSE60590 
-      trattato :  Trained (Post-training) 
-      controllo:  Control (Untrained) 
-      delta    : [ post-training period 1 | trained ] vs [ pre-training period 1 | untrained ] classi: disease+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
+  [ 8 ] studio GSE97412 
+      trattato :  HepG2 + siINO80#1 (liver cancer model) 
+      controllo:  HepG2 + NTG (transgene) 
+      delta    : [ siINO80#1 |  ] vs [  | NTG ] classi: drug+other 
+      nome cluster (gate):  hepatocellular carcinoma  | on-contrast: FALSE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  ok -> NAME:training 
-      PACCHETTO:  ok -> STR:post_training_period_trained  (fonte: STR )
+      GATE     :  ok -> STR:siino 
+      PACCHETTO:  ok -> COMBO:cancer+siino80  (fonte: COMBO )
 
-  [ 8 ] studio GSE169030 
+
+################################################################
+## CLASSE: ok -> ok  ( 38 membri )
+################################################################
+
+-- coppie entita' distinte (gate -> pacchetto), top 15:
+                                                            entity
+                                       STR:g_ml_soybean_s_globulin
+                                         STR:g_ml_s_albumin_lupine
+                                   STR:not_specified_low_is_dosage
+                                STR:not_specified_normal_is_dosage
+                                            STR:uc_i_sigmoid_colon
+ STR:unknown_chemotherapy_tki_egfri_radiotherapy_apd_immunotherapy
+           new_entity new_src  n
+       NCBITaxon:3847    onto 16
+ CHEMBL:CHEMBL1201451    onto 14
+      NCBITaxon:32644    onto  2
+      NCBITaxon:32644    onto  2
+         MeSH:D012809    onto  2
+      NCBITaxon:32644    onto  2
+
+-- studi coinvolti: 4 
+
+-- esempi (fino a 8):
+
+  [ 1 ] studio GSE169030 
       trattato :  Soybean 7S globulin 50 µg/mL 
       controllo:  Control (no exposure) 
       delta    : [ 50 µg/mL | Soybean 7S globulin ] vs [  |  ] classi: drug+other 
@@ -114,62 +377,83 @@
       GATE     :  ok -> STR:g_ml_soybean_s_globulin 
       PACCHETTO:  ok -> NCBITaxon:3847  (fonte: onto )
 
+  [ 2 ] studio GSE169030 
+      trattato :  2S albumin Lupine 50 µg/mL 
+      controllo:  Control (no exposure) 
+      delta    : [ 50 µg/mL | 2S albumin Lupine ] vs [  |  ] classi: drug+other 
+      nome cluster (gate):  indole-3-acetic acid  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok -> STR:g_ml_s_albumin_lupine 
+      PACCHETTO:  ok -> CHEMBL:CHEMBL1201451  (fonte: onto )
+
+  [ 3 ] studio GSE169030 
+      trattato :  Soybean 7S globulin 50 µg/mL (Donor 137) 
+      controllo:  Control (no exposure) 
+      delta    : [ 50 µg/mL | Soybean 7S globulin ] vs [  |  ] classi: drug+other 
+      nome cluster (gate):  Glycine max 7S globulin  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok -> STR:g_ml_soybean_s_globulin 
+      PACCHETTO:  ok -> NCBITaxon:3847  (fonte: onto )
+
+  [ 4 ] studio GSE169030 
+      trattato :  Soybean 7S globulin 50 µg/mL 
+      controllo:  Control (no exposure) 
+      delta    : [ 50 µg/mL | Soybean 7S globulin ] vs [  |  ] classi: drug+other 
+      nome cluster (gate):  Soybean 7S globulin  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok -> STR:g_ml_soybean_s_globulin 
+      PACCHETTO:  ok -> NCBITaxon:3847  (fonte: onto )
+
+  [ 5 ] studio GSE169030 
+      trattato :  2S albumin Lupine 50 µg/mL 
+      controllo:  Control (no exposure) 
+      delta    : [ 50 µg/mL | 2S albumin Lupine ] vs [  |  ] classi: drug+other 
+      nome cluster (gate):  indole-3-acetic acid  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok -> STR:g_ml_s_albumin_lupine 
+      PACCHETTO:  ok -> CHEMBL:CHEMBL1201451  (fonte: onto )
+
+  [ 6 ] studio GSE169030 
+      trattato :  Soybean 7S globulin 50 µg/mL (Donor 137) 
+      controllo:  Control (no exposure) 
+      delta    : [ 50 µg/mL | Soybean 7S globulin ] vs [  |  ] classi: drug+other 
+      nome cluster (gate):  Glycine max 7S globulin  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok -> STR:g_ml_soybean_s_globulin 
+      PACCHETTO:  ok -> NCBITaxon:3847  (fonte: onto )
+
+  [ 7 ] studio GSE169030 
+      trattato :  Soybean 7S globulin 50 µg/mL (Donor 137) 
+      controllo:  Control (no exposure) 
+      delta    : [ 50 µg/mL | Soybean 7S globulin ] vs [  |  ] classi: drug+other 
+      nome cluster (gate):  Glycine max 7S globulin  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok -> STR:g_ml_soybean_s_globulin 
+      PACCHETTO:  ok -> NCBITaxon:3847  (fonte: onto )
+
+  [ 8 ] studio GSE169030 
+      trattato :  2S albumin Lupine 10 µg/mL 
+      controllo:  Control (no exposure) 
+      delta    : [ 10 µg/mL | 2S albumin Lupine ] vs [  |  ] classi: drug+other 
+      nome cluster (gate):  indole-3-acetic acid  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok -> STR:g_ml_s_albumin_lupine 
+      PACCHETTO:  ok -> CHEMBL:CHEMBL1201451  (fonte: onto )
+
 
 ################################################################
-## CLASSE: ok_combo -> ok  ( 203 membri )
+## CLASSE: ok_combo -> ok  ( 38 membri )
 ################################################################
 
 -- coppie entita' distinte (gate -> pacchetto), top 15:
-                                                            entity
-                             COMBO:hepb mo 7 5 8 5 13+tetanus mo 0
-                                                     COMBO:taz+yap
-                                                 COMBO:4-hdha+tnf-
-                                            COMBO:flag-rbm39+rbm39
-                                                    COMBO:cmv+m tb
-                                                  COMBO:ctrl+ifn-b
-                                                     COMBO:tat+zta
-                                          COMBO:complete media+fbs
-                                                    COMBO:il2+il23
-                                 COMBO:mettl14+pool against mettl3
-                                           COMBO:delta82-zc3h4+tmp
-                                         COMBO:deltaarms-zc3h4+tmp
-                                          COMBO:deltaznf-zc3h4+tmp
- COMBO:full-length copy cdna park2 under minimal cmv+teto promoter
-                                                   COMBO:mit+ml324
-                                                           new_entity new_src
-                        COMBO:hepb mo 7 5 8 5 13+placebo+tetanus mo 0   COMBO
-                                                    STR:yap_taz_sirna     STR
-                                                           HGNC:11892    onto
-                                         COMBO:flag-rbm39+rbm39 sirna   COMBO
-                                                       NCBITaxon:1773    onto
-                                                COMBO:ifn-b+only ctrl   COMBO
-                                                          STR:tat_zta     STR
-                                      STR:no_fbs_complete_media_after     STR
-                                                            HGNC:6001    onto
-                              COMBO:mettl14+sirna pool against mettl3   COMBO
-                                      COMBO:delta82-zc3h4 plasmid+tmp   COMBO
-                                    COMBO:deltaarms-zc3h4 plasmid+tmp   COMBO
-                                     COMBO:deltaznf-zc3h4 plasmid+tmp   COMBO
- COMBO:full-length copy of cdna park2 under minimal cmv+teto promoter   COMBO
-                                                         CHEBI:746977    onto
-  n
- 29
- 24
- 10
- 10
-  8
-  8
-  8
-  7
-  6
-  6
-  5
-  5
-  5
-  5
-  5
+                   entity                      new_entity new_src  n
+            COMBO:taz+yap               STR:yap_taz_sirna     STR 18
+   COMBO:flag-rbm39+rbm39          STR:rbm_sirna_flag_rbm     STR 10
+ COMBO:complete media+fbs STR:no_fbs_complete_media_after     STR  7
+  COMBO:culture media+lps                     CHEBI:16412    onto  2
+      COMBO:hoxb13+plko 1                STR:plko_hoxb_wt     STR  1
 
--- studi coinvolti: 45 
+-- studi coinvolti: 6 
 
 -- esempi (fino a 8):
 
@@ -180,7 +464,7 @@
       nome cluster (gate):  RBM39  | on-contrast: FALSE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  ok_combo -> COMBO:flag-rbm39+rbm39 
-      PACCHETTO:  ok -> COMBO:flag-rbm39+rbm39 sirna  (fonte: COMBO )
+      PACCHETTO:  ok -> STR:rbm_sirna_flag_rbm  (fonte: STR )
 
   [ 2 ] studio GSE202134 
       trattato :  RBM39 siRNA + FLAG-RBM39 (replicate) 
@@ -189,18 +473,9 @@
       nome cluster (gate):  RBM39  | on-contrast: FALSE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  ok_combo -> COMBO:flag-rbm39+rbm39 
-      PACCHETTO:  ok -> COMBO:flag-rbm39+rbm39 sirna  (fonte: COMBO )
+      PACCHETTO:  ok -> STR:rbm_sirna_flag_rbm  (fonte: STR )
 
-  [ 3 ] studio GSE205235 
-      trattato :  Neural progenitors with PARK2 genetic knockout and full-length copy of cDNA PARK2 
-      controllo:  Neural progenitors with PARK2 genetic knockout 
-      delta    : [ full-length copy of cDNA PARK2 under (minimal CMV + TetO) promoter ] vs [  ] classi: drug 
-      nome cluster (gate):  PANX2  | on-contrast: FALSE 
-      ce2 (delta risolto):  NCBITaxon:10359 = cmv  da candidato [ full-length copy of cdna park2 under (minimal cmv + teto) promoter ]
-      GATE     :  ok_combo -> COMBO:full-length copy cdna park2 under minimal cmv+teto promoter 
-      PACCHETTO:  ok -> COMBO:full-length copy of cdna park2 under minimal cmv+teto promoter  (fonte: COMBO )
-
-  [ 4 ] studio GSE158305 
+  [ 3 ] studio GSE158305 
       trattato :  HBEC1_YAP_TAZ_knockdown 
       controllo:  Control_siRNA_1 
       delta    : [ YAP/TAZ siRNA ] vs [ Control siRNA 1 ] classi: drug 
@@ -209,25 +484,7 @@
       GATE     :  ok_combo -> COMBO:taz+yap 
       PACCHETTO:  ok -> STR:yap_taz_sirna  (fonte: STR )
 
-  [ 5 ] studio GSE249870 
-      trattato :  HT-29 + TNF-α + 4-HDHA 
-      controllo:  HT-29 + vehicle control 
-      delta    : [ 4-HDHA + TNF-α ] vs [ vehicle ] classi: drug 
-      nome cluster (gate):  ferrocytochrome <em>b</em><small><sub>1</sub></small>  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:11892 = TNF  da candidato [ 4-hdha + tnf- ]
-      GATE     :  ok_combo -> COMBO:4-hdha+tnf- 
-      PACCHETTO:  ok -> HGNC:11892  (fonte: onto )
-
-  [ 6 ] studio GSE249870 
-      trattato :  HT-29 + TNF-α + 4-HDHA 
-      controllo:  HT-29 + vehicle control 
-      delta    : [ 4-HDHA + TNF-α ] vs [ vehicle ] classi: drug 
-      nome cluster (gate):  ferrocytochrome <em>b</em><small><sub>1</sub></small>  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:11892 = TNF  da candidato [ 4-hdha + tnf- ]
-      GATE     :  ok_combo -> COMBO:4-hdha+tnf- 
-      PACCHETTO:  ok -> HGNC:11892  (fonte: onto )
-
-  [ 7 ] studio GSE158305 
+  [ 4 ] studio GSE158305 
       trattato :  HBEC2_YAP_TAZ_knockdown 
       controllo:  Control_siRNA_1 
       delta    : [ YAP/TAZ siRNA ] vs [ Control siRNA 1 ] classi: drug 
@@ -235,6 +492,33 @@
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  ok_combo -> COMBO:taz+yap 
       PACCHETTO:  ok -> STR:yap_taz_sirna  (fonte: STR )
+
+  [ 5 ] studio GSE233529 
+      trattato :  Caco2 + no FBS and Complete media after 
+      controllo:  Caco2 + Complete media 
+      delta    : [ no FBS and Complete media after ] vs [ Complete media ] classi: drug 
+      nome cluster (gate):  NA  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok_combo -> COMBO:complete media+fbs 
+      PACCHETTO:  ok -> STR:no_fbs_complete_media_after  (fonte: STR )
+
+  [ 6 ] studio GSE202134 
+      trattato :  RBM39 siRNA + FLAG-RBM39 
+      controllo:  Ctrl siRNA 
+      delta    : [ RBM39 siRNA + FLAG-RBM39 ] vs [ Ctrl siRNA ] classi: drug 
+      nome cluster (gate):  RBM39  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok_combo -> COMBO:flag-rbm39+rbm39 
+      PACCHETTO:  ok -> STR:rbm_sirna_flag_rbm  (fonte: STR )
+
+  [ 7 ] studio GSE202134 
+      trattato :  RBM39 siRNA + FLAG-RBM39 (replicate) 
+      controllo:  Ctrl siRNA 
+      delta    : [ RBM39 siRNA + FLAG-RBM39 ] vs [ Ctrl siRNA ] classi: drug 
+      nome cluster (gate):  RBM39  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  ok_combo -> COMBO:flag-rbm39+rbm39 
+      PACCHETTO:  ok -> STR:rbm_sirna_flag_rbm  (fonte: STR )
 
   [ 8 ] studio GSE233529 
       trattato :  Caco2 + no FBS and Complete media after 
@@ -247,111 +531,12 @@
 
 
 ################################################################
-## CLASSE: entita_costante -> ok  ( 64 membri )
+## CLASSE: nome_ombrello -> ok  ( 27 membri )
 ################################################################
 
 -- coppie entita' distinte (gate -> pacchetto), top 15:
- entity                              new_entity new_src  n
-   <NA>       STR:post_training_period_training     STR 13
-   <NA>        STR:post_training_period_trained     STR 11
-   <NA>     STR:post_vaccination_th_vaccination     STR  8
-   <NA>     STR:post_vaccination_rd_vaccination     STR  6
-   <NA>             STR:after_exercise_exercise     STR  4
-   <NA>     STR:post_vaccination_nd_vaccination     STR  4
-   <NA>   STR:post_vaccination_post_vaccination     STR  4
-   <NA>                  STR:aerobic_exercise_h     STR  2
-   <NA> STR:immediately_after_exercise_exercise     STR  2
-   <NA>                     STR:moderate_asthma     STR  2
-   <NA>                       STR:post_bed_rest     STR  2
-   <NA>              STR:post_exercise_exercise     STR  2
-   <NA>                       STR:severe_asthma     STR  2
-   <NA>                      STR:after_exercise     STR  1
-   <NA>                      STR:hypoxia_oxpapc     STR  1
-
--- studi coinvolti: 9 
-
--- esempi (fino a 8):
-
-  [ 1 ] studio GSE60590 
-      trattato :  Trained (Post-training) 
-      controllo:  Untrained (Pre-training) 
-      delta    : [ post-training period 1 | trained ] vs [ pre-training period 1 | untrained ] classi: disease+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  entita_costante -> NA 
-      PACCHETTO:  ok -> STR:post_training_period_trained  (fonte: STR )
-
-  [ 2 ] studio GSE60833 
-      trattato :  Training Post-Training Period 1 
-      controllo:  Untrained Pre-Training Period 2 
-      delta    : [ post-training period 1 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  entita_costante -> NA 
-      PACCHETTO:  ok -> STR:post_training_period_training  (fonte: STR )
-
-  [ 3 ] studio GSE60590 
-      trattato :  Trained (Post-training) 
-      controllo:  Untrained (Pre-training) 
-      delta    : [ post-training period 1 | trained ] vs [ pre-training period 1 | untrained ] classi: disease+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  entita_costante -> NA 
-      PACCHETTO:  ok -> STR:post_training_period_trained  (fonte: STR )
-
-  [ 4 ] studio GSE60833 
-      trattato :  Training Post-Training Period 1 
-      controllo:  Untrained Pre-Training Period 2 
-      delta    : [ post-training period 1 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  entita_costante -> NA 
-      PACCHETTO:  ok -> STR:post_training_period_training  (fonte: STR )
-
-  [ 5 ] studio GSE60590 
-      trattato :  Trained (Post-training) 
-      controllo:  Untrained (Pre-training) 
-      delta    : [ post-training period 1 | trained ] vs [ pre-training period 1 | untrained ] classi: disease+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  entita_costante -> NA 
-      PACCHETTO:  ok -> STR:post_training_period_trained  (fonte: STR )
-
-  [ 6 ] studio GSE60833 
-      trattato :  Training Post-Training Period 1 
-      controllo:  Untrained Pre-Training Period 2 
-      delta    : [ post-training period 1 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  entita_costante -> NA 
-      PACCHETTO:  ok -> STR:post_training_period_training  (fonte: STR )
-
-  [ 7 ] studio GSE60833 
-      trattato :  Training Post-Training Period 2 
-      controllo:  Untrained Pre-Training Period 2 
-      delta    : [ post-training period 2 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  entita_costante -> NA 
-      PACCHETTO:  ok -> STR:post_training_period_training  (fonte: STR )
-
-  [ 8 ] studio GSE60833 
-      trattato :  Training Post-Training Period 2 
-      controllo:  Untrained Pre-Training Period 2 
-      delta    : [ post-training period 2 | training ] vs [ pre-training period 2 | untrained ] classi: drug+time 
-      nome cluster (gate):  training  | on-contrast: TRUE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  entita_costante -> NA 
-      PACCHETTO:  ok -> STR:post_training_period_training  (fonte: STR )
-
-
-################################################################
-## CLASSE: nome_ombrello -> ok  ( 23 membri )
-################################################################
-
--- coppie entita' distinte (gate -> pacchetto), top 15:
- entity   new_entity new_src  n
-   <NA> STR:lesional     STR 23
+ entity    new_entity new_src  n
+   <NA> NAME:lesional  anchor 27
 
 -- studi coinvolti: 3 
 
@@ -364,7 +549,7 @@
       nome cluster (gate):  lesional  | on-contrast: TRUE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  nome_ombrello -> NA 
-      PACCHETTO:  ok -> STR:lesional  (fonte: STR )
+      PACCHETTO:  ok -> NAME:lesional  (fonte: anchor )
 
   [ 2 ] studio GSE164285 
       trattato :  Lesional NS_patient8 
@@ -373,7 +558,7 @@
       nome cluster (gate):  lesional  | on-contrast: TRUE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  nome_ombrello -> NA 
-      PACCHETTO:  ok -> STR:lesional  (fonte: STR )
+      PACCHETTO:  ok -> NAME:lesional  (fonte: anchor )
 
   [ 3 ] studio GSE164285 
       trattato :  Lesional NS_patient3.2 
@@ -382,7 +567,7 @@
       nome cluster (gate):  lesional  | on-contrast: TRUE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  nome_ombrello -> NA 
-      PACCHETTO:  ok -> STR:lesional  (fonte: STR )
+      PACCHETTO:  ok -> NAME:lesional  (fonte: anchor )
 
   [ 4 ] studio GSE164285 
       trattato :  Lesional NS_patient2 
@@ -391,7 +576,7 @@
       nome cluster (gate):  lesional  | on-contrast: TRUE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  nome_ombrello -> NA 
-      PACCHETTO:  ok -> STR:lesional  (fonte: STR )
+      PACCHETTO:  ok -> NAME:lesional  (fonte: anchor )
 
   [ 5 ] studio GSE164285 
       trattato :  Lesional NS_patient7 
@@ -400,7 +585,7 @@
       nome cluster (gate):  lesional  | on-contrast: TRUE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  nome_ombrello -> NA 
-      PACCHETTO:  ok -> STR:lesional  (fonte: STR )
+      PACCHETTO:  ok -> NAME:lesional  (fonte: anchor )
 
   [ 6 ] studio GSE164285 
       trattato :  Lesional NS_patient9 
@@ -409,7 +594,7 @@
       nome cluster (gate):  lesional  | on-contrast: TRUE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  nome_ombrello -> NA 
-      PACCHETTO:  ok -> STR:lesional  (fonte: STR )
+      PACCHETTO:  ok -> NAME:lesional  (fonte: anchor )
 
   [ 7 ] studio GSE164285 
       trattato :  Lesional NS_patient10.2 
@@ -418,7 +603,7 @@
       nome cluster (gate):  lesional  | on-contrast: TRUE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  nome_ombrello -> NA 
-      PACCHETTO:  ok -> STR:lesional  (fonte: STR )
+      PACCHETTO:  ok -> NAME:lesional  (fonte: anchor )
 
   [ 8 ] studio GSE164285 
       trattato :  Lesional NS_patient10.1 
@@ -427,114 +612,63 @@
       nome cluster (gate):  lesional  | on-contrast: TRUE 
       ce2 (delta risolto):  NA = NA  da candidato [ NA ]
       GATE     :  nome_ombrello -> NA 
-      PACCHETTO:  ok -> STR:lesional  (fonte: STR )
+      PACCHETTO:  ok -> NAME:lesional  (fonte: anchor )
 
 
 ################################################################
-## CLASSE: ok_combo -> riga_combinazione_non_vista  ( 22 membri )
-################################################################
-
--- coppie entita' distinte (gate -> pacchetto), top 15:
-          entity new_entity new_src  n
-   COMBO:il1+tnf       <NA>    <NA> 15
-   COMBO:cmv+fix       <NA>    <NA>  4
- COMBO:il-1+tnf-       <NA>    <NA>  3
-
--- studi coinvolti: 4 
-
--- esempi (fino a 8):
-
-  [ 1 ] studio GSE161760 
-      trattato :  IL1 and TNF treated 
-      controllo:  Untreated control 
-      delta    : [ IL1 and TNF ] vs [ untreated ] classi: drug 
-      nome cluster (gate):  TNF  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:5991 = IL1A  da candidato [ il1 and tnf ]
-      GATE     :  ok_combo -> COMBO:il1+tnf 
-      PACCHETTO:  riga_combinazione_non_vista -> NA  (fonte: NA )
-
-  [ 2 ] studio GSE161760 
-      trattato :  IL1 and TNF treated 
-      controllo:  Untreated control 
-      delta    : [ IL1 and TNF ] vs [ untreated ] classi: drug 
-      nome cluster (gate):  TNF  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:5991 = IL1A  da candidato [ il1 and tnf ]
-      GATE     :  ok_combo -> COMBO:il1+tnf 
-      PACCHETTO:  riga_combinazione_non_vista -> NA  (fonte: NA )
-
-  [ 3 ] studio GSE161760 
-      trattato :  IL1 and TNF treated 
-      controllo:  Untreated control 
-      delta    : [ IL1 and TNF ] vs [ untreated ] classi: drug 
-      nome cluster (gate):  TNF  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:5991 = IL1A  da candidato [ il1 and tnf ]
-      GATE     :  ok_combo -> COMBO:il1+tnf 
-      PACCHETTO:  riga_combinazione_non_vista -> NA  (fonte: NA )
-
-  [ 4 ] studio GSE161761 
-      trattato :  IL1 and TNF for 14 days 
-      controllo:  Untreated 
-      delta    : [ IL1 and TNF ] vs [  ] classi: drug 
-      nome cluster (gate):  TNF  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:5991 = IL1A  da candidato [ il1 and tnf ]
-      GATE     :  ok_combo -> COMBO:il1+tnf 
-      PACCHETTO:  riga_combinazione_non_vista -> NA  (fonte: NA )
-
-  [ 5 ] studio GSE161761 
-      trattato :  IL1 and TNF for 2 days 
-      controllo:  Untreated 
-      delta    : [ IL1 and TNF ] vs [  ] classi: drug 
-      nome cluster (gate):  TNF  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:5991 = IL1A  da candidato [ il1 and tnf ]
-      GATE     :  ok_combo -> COMBO:il1+tnf 
-      PACCHETTO:  riga_combinazione_non_vista -> NA  (fonte: NA )
-
-  [ 6 ] studio GSE158875 
-      trattato :  IL-1β and TNF-α 
-      controllo:  PBS 
-      delta    : [ IL-1β and TNF-α ] vs [ PBS ] classi: drug 
-      nome cluster (gate):  IL1B  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:5991 = IL1A  da candidato [ il-1 and tnf- ]
-      GATE     :  ok_combo -> COMBO:il-1+tnf- 
-      PACCHETTO:  riga_combinazione_non_vista -> NA  (fonte: NA )
-
-  [ 7 ] studio GSE161760 
-      trattato :  IL1 and TNF treated 
-      controllo:  Untreated control 
-      delta    : [ IL1 and TNF ] vs [ untreated ] classi: drug 
-      nome cluster (gate):  TNF  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:5991 = IL1A  da candidato [ il1 and tnf ]
-      GATE     :  ok_combo -> COMBO:il1+tnf 
-      PACCHETTO:  riga_combinazione_non_vista -> NA  (fonte: NA )
-
-  [ 8 ] studio GSE161760 
-      trattato :  IL1 and TNF treated 
-      controllo:  Untreated control 
-      delta    : [ IL1 and TNF ] vs [ untreated ] classi: drug 
-      nome cluster (gate):  TNF  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:5991 = IL1A  da candidato [ il1 and tnf ]
-      GATE     :  ok_combo -> COMBO:il1+tnf 
-      PACCHETTO:  riga_combinazione_non_vista -> NA  (fonte: NA )
-
-
-################################################################
-## CLASSE: riga_genetica_asimmetrica -> ok  ( 19 membri )
+## CLASSE: riga_genetica_asimmetrica -> ok_combo  ( 27 membri )
 ################################################################
 
 -- coppie entita' distinte (gate -> pacchetto), top 15:
- entity                               new_entity new_src n
-   <NA>                     STR:zfx_znf_knockout     STR 6
-   <NA>              COMBO:siube2a+siube2b sirna   COMBO 4
-   <NA>             COMBO:dht+knockdown+paxillin   COMBO 3
-   <NA>                   COMBO:il-4+stat6 sirna   COMBO 2
-   <NA> COMBO:imp1 knockdown+infbeta stimulation   COMBO 2
-   <NA>                        STR:yap_taz_sirna     STR 2
+ entity                   new_entity new_src n
+   <NA>    COMBO:il4+smartpool sirna   COMBO 8
+   <NA>              COMBO:sirna+tnf   COMBO 8
+   <NA>  COMBO:siube2a+siube2b sirna   COMBO 4
+   <NA> COMBO:dht+knockdown+paxillin   COMBO 3
+   <NA>       COMBO:il-4+stat6 sirna   COMBO 2
+   <NA>          COMBO:taz sirna+yap   COMBO 2
 
 -- studi coinvolti: 6 
 
 -- esempi (fino a 8):
 
-  [ 1 ] studio GSE131726 
+  [ 1 ] studio GSE98984 
+      trattato :  siRNA + TNFα 
+      controllo:  untreated 
+      delta    : [ siRNA + TNFα ] vs [ untreated ] classi: drug 
+      nome cluster (gate):  hepatocellular carcinoma  | on-contrast: FALSE 
+      ce2 (delta risolto):  HGNC:11892 = TNF  da candidato [ sirna + tnf ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> COMBO:sirna+tnf  (fonte: COMBO )
+
+  [ 2 ] studio GSE98984 
+      trattato :  siRNA + TNFα 
+      controllo:  untreated 
+      delta    : [ siRNA + TNFα ] vs [ untreated ] classi: drug 
+      nome cluster (gate):  hepatocellular carcinoma  | on-contrast: FALSE 
+      ce2 (delta risolto):  HGNC:11892 = TNF  da candidato [ sirna + tnf ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> COMBO:sirna+tnf  (fonte: COMBO )
+
+  [ 3 ] studio GSE171750 
+      trattato :  A549 Control Smartpool siRNA + IL4 
+      controllo:  A549 untreated 
+      delta    : [ Control Smartpool siRNA + IL4 ] vs [ untreated ] classi: drug 
+      nome cluster (gate):  lung cancer  | on-contrast: FALSE 
+      ce2 (delta risolto):  HGNC:6014 = IL4  da candidato [ control smartpool sirna + il4 ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> COMBO:il4+smartpool sirna  (fonte: COMBO )
+
+  [ 4 ] studio GSE171750 
+      trattato :  A549 Control Smartpool siRNA + IL4 
+      controllo:  A549 untreated 
+      delta    : [ Control Smartpool siRNA + IL4 ] vs [ untreated ] classi: drug 
+      nome cluster (gate):  lung cancer  | on-contrast: FALSE 
+      ce2 (delta risolto):  HGNC:6014 = IL4  da candidato [ control smartpool sirna + il4 ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> COMBO:il4+smartpool sirna  (fonte: COMBO )
+
+  [ 5 ] studio GSE131726 
       trattato :  Paxillin Knockdown with DHT (Engineered) 
       controllo:  Vehicle Control (Engineered) 
       delta    : [ paxillin_knockdown_with_DHT ] vs [ vehicle_only ] classi: drug 
@@ -543,68 +677,32 @@
       GATE     :  riga_genetica_asimmetrica -> NA 
       PACCHETTO:  ok -> COMBO:dht+knockdown+paxillin  (fonte: COMBO )
 
-  [ 2 ] studio GSE236818 
-      trattato :  IMP1 knockdown + INFbeta stimulation 
-      controllo:  PBS control 
-      delta    : [ IMP1 knockdown + INFbeta stimulation ] vs [ PBS ] classi: drug 
-      nome cluster (gate):  POLR1H  | on-contrast: FALSE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+  [ 6 ] studio GSE171750 
+      trattato :  A549 Control Smartpool siRNA + IL4 
+      controllo:  A549 untreated 
+      delta    : [ Control Smartpool siRNA + IL4 ] vs [ untreated ] classi: drug 
+      nome cluster (gate):  lung cancer  | on-contrast: FALSE 
+      ce2 (delta risolto):  HGNC:6014 = IL4  da candidato [ control smartpool sirna + il4 ]
       GATE     :  riga_genetica_asimmetrica -> NA 
-      PACCHETTO:  ok -> COMBO:imp1 knockdown+infbeta stimulation  (fonte: COMBO )
+      PACCHETTO:  ok -> COMBO:il4+smartpool sirna  (fonte: COMBO )
 
-  [ 3 ] studio GSE214029 
-      trattato :  siUBE2A+siUBE2B siRNA 
-      controllo:  vehicle 
-      delta    : [ siUBE2A+siUBE2B siRNA ] vs [ vehicle ] classi: drug 
-      nome cluster (gate):  DHTKD1  | on-contrast: FALSE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+  [ 7 ] studio GSE171750 
+      trattato :  A549 Control Smartpool siRNA + IL4 
+      controllo:  A549 untreated 
+      delta    : [ Control Smartpool siRNA + IL4 ] vs [ untreated ] classi: drug 
+      nome cluster (gate):  lung cancer  | on-contrast: FALSE 
+      ce2 (delta risolto):  HGNC:6014 = IL4  da candidato [ control smartpool sirna + il4 ]
       GATE     :  riga_genetica_asimmetrica -> NA 
-      PACCHETTO:  ok -> COMBO:siube2a+siube2b sirna  (fonte: COMBO )
+      PACCHETTO:  ok -> COMBO:il4+smartpool sirna  (fonte: COMBO )
 
-  [ 4 ] studio GSE131726 
-      trattato :  Paxillin Knockdown with DHT (Engineered) 
-      controllo:  Vehicle Control (Engineered) 
-      delta    : [ paxillin_knockdown_with_DHT ] vs [ vehicle_only ] classi: drug 
-      nome cluster (gate):  6-<em>O</em>-sulfo-α-<small>D</small>-Glc-(1→6)-α-<small>D</small>-Glc-(1→6)-α-<small>D</small>-Glc-(1→3)-1-<em>O</em>-alkyl-2-<em>O</em>-acylglycerol  | on-contrast: FALSE 
-      ce2 (delta risolto):  CHEBI:16330+CHEBI:34907 = 17β-hydroxy-5α-androstan-3-one + paxilline  da candidato [ paxillin knockdown with dht ]
+  [ 8 ] studio GSE98984 
+      trattato :  siRNA + TNFα 
+      controllo:  untreated 
+      delta    : [ siRNA + TNFα ] vs [ untreated ] classi: drug 
+      nome cluster (gate):  hepatocellular carcinoma  | on-contrast: FALSE 
+      ce2 (delta risolto):  HGNC:11892 = TNF  da candidato [ sirna + tnf ]
       GATE     :  riga_genetica_asimmetrica -> NA 
-      PACCHETTO:  ok -> COMBO:dht+knockdown+paxillin  (fonte: COMBO )
-
-  [ 5 ] studio GSE59275 
-      trattato :  STAT6 siRNA + IL-4 120h 
-      controllo:  IL-4 120h 
-      delta    : [ STAT6 siRNA + IL-4 ] vs [ IL-4 ] classi: drug 
-      nome cluster (gate):  IL4  | on-contrast: FALSE 
-      ce2 (delta risolto):  HGNC:6014 = IL4  da candidato [ stat6 sirna + il-4 ]
-      GATE     :  riga_genetica_asimmetrica -> NA 
-      PACCHETTO:  ok -> COMBO:il-4+stat6 sirna  (fonte: COMBO )
-
-  [ 6 ] studio GSE241276 
-      trattato :  293T ZFX/ZNF711 knockout rep1 
-      controllo:  293T wt ZFX FLAG 
-      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
-      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  riga_genetica_asimmetrica -> NA 
-      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
-
-  [ 7 ] studio GSE241276 
-      trattato :  293T ZFX/ZNF711 knockout rep2 
-      controllo:  293T wt ZFX FLAG 
-      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
-      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  riga_genetica_asimmetrica -> NA 
-      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
-
-  [ 8 ] studio GSE241276 
-      trattato :  293T ZFX/ZNF711 knockout rep3 
-      controllo:  293T wt ZFX FLAG 
-      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
-      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
-      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
-      GATE     :  riga_genetica_asimmetrica -> NA 
-      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
+      PACCHETTO:  ok -> COMBO:sirna+tnf  (fonte: COMBO )
 
 
 ################################################################
@@ -693,7 +791,7 @@
 
 
 ################################################################
-## CLASSE: id_blacklist -> ok  ( 11 membri )
+## CLASSE: id_blacklist -> ok_combo  ( 11 membri )
 ################################################################
 
 -- coppie entita' distinte (gate -> pacchetto), top 15:
@@ -781,7 +879,93 @@
 
 
 ################################################################
-## CLASSE: riga_combinazione_non_vista -> ok  ( 5 membri )
+## CLASSE: riga_genetica_asimmetrica -> ok  ( 8 membri )
+################################################################
+
+-- coppie entita' distinte (gate -> pacchetto), top 15:
+ entity                            new_entity new_src n
+   <NA>                  STR:zfx_znf_knockout     STR 6
+   <NA> STR:imp_knockdown_infbeta_stimulation     STR 2
+
+-- studi coinvolti: 2 
+
+-- esempi (fino a 8):
+
+  [ 1 ] studio GSE236818 
+      trattato :  IMP1 knockdown + INFbeta stimulation 
+      controllo:  PBS control 
+      delta    : [ IMP1 knockdown + INFbeta stimulation ] vs [ PBS ] classi: drug 
+      nome cluster (gate):  POLR1H  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> STR:imp_knockdown_infbeta_stimulation  (fonte: STR )
+
+  [ 2 ] studio GSE241276 
+      trattato :  293T ZFX/ZNF711 knockout rep1 
+      controllo:  293T wt ZFX FLAG 
+      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
+      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
+
+  [ 3 ] studio GSE241276 
+      trattato :  293T ZFX/ZNF711 knockout rep2 
+      controllo:  293T wt ZFX FLAG 
+      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
+      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
+
+  [ 4 ] studio GSE241276 
+      trattato :  293T ZFX/ZNF711 knockout rep3 
+      controllo:  293T wt ZFX FLAG 
+      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
+      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
+
+  [ 5 ] studio GSE241276 
+      trattato :  293T ZFX/ZNF711 knockout rep1 
+      controllo:  293T wt ZFX FLAG 
+      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
+      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
+
+  [ 6 ] studio GSE241276 
+      trattato :  293T ZFX/ZNF711 knockout rep2 
+      controllo:  293T wt ZFX FLAG 
+      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
+      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
+
+  [ 7 ] studio GSE241276 
+      trattato :  293T ZFX/ZNF711 knockout rep3 
+      controllo:  293T wt ZFX FLAG 
+      delta    : [ ZFX/ZNF711 knockout ] vs [ wt ZFX FLAG ] classi: drug 
+      nome cluster (gate):  zinc finger protein X-linked  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> STR:zfx_znf_knockout  (fonte: STR )
+
+  [ 8 ] studio GSE236818 
+      trattato :  IMP1 knockdown + INFbeta stimulation 
+      controllo:  PBS control 
+      delta    : [ IMP1 knockdown + INFbeta stimulation ] vs [ PBS ] classi: drug 
+      nome cluster (gate):  POLR1H  | on-contrast: FALSE 
+      ce2 (delta risolto):  NA = NA  da candidato [ NA ]
+      GATE     :  riga_genetica_asimmetrica -> NA 
+      PACCHETTO:  ok -> STR:imp_knockdown_infbeta_stimulation  (fonte: STR )
+
+
+################################################################
+## CLASSE: riga_combinazione_non_vista -> ok_combo  ( 5 membri )
 ################################################################
 
 -- coppie entita' distinte (gate -> pacchetto), top 15:
@@ -836,34 +1020,3 @@
       ce2 (delta risolto):  CHEBI:35341+CHEBI:44185 = steroid + methotrexate  da candidato [ mtx+steroid ]
       GATE     :  riga_combinazione_non_vista -> NA 
       PACCHETTO:  ok -> COMBO:mtx+steroid  (fonte: COMBO )
-
-
-################################################################
-## CLASSE: riga_soggetto_diverso -> ok  ( 2 membri )
-################################################################
-
--- coppie entita' distinte (gate -> pacchetto), top 15:
- entity                                new_entity new_src n
-   <NA> COMBO:cdk4 6 inhibitor+combination of mek   COMBO 2
-
--- studi coinvolti: 1 
-
--- esempi (fino a 8):
-
-  [ 1 ] studio GSE111005 
-      trattato :  Melanoma cells treated with combination of MEK plus CDK4/6 inhibitor 
-      controllo:  WM1366 cells treated with control diet 
-      delta    : [ combination of MEK plus CDK4/6 inhibitor ] vs [ control diet ] classi: drug 
-      nome cluster (gate):  vemurafenib  | on-contrast: FALSE 
-      ce2 (delta risolto):  CHEBI:82665 = EC 2.7.11.22 (cyclin-dependent kinase) inhibitor  da candidato [ combination of mek plus cdk4 inhibitor ]
-      GATE     :  riga_soggetto_diverso -> NA 
-      PACCHETTO:  ok -> COMBO:cdk4 6 inhibitor+combination of mek  (fonte: COMBO )
-
-  [ 2 ] studio GSE111005 
-      trattato :  Melanoma cells treated with combination of MEK plus CDK4/6 inhibitor 
-      controllo:  WM1366 cells treated with control diet 
-      delta    : [ combination of MEK plus CDK4/6 inhibitor ] vs [ control diet ] classi: drug 
-      nome cluster (gate):  vemurafenib  | on-contrast: FALSE 
-      ce2 (delta risolto):  CHEBI:82665 = EC 2.7.11.22 (cyclin-dependent kinase) inhibitor  da candidato [ combination of mek plus cdk4 inhibitor ]
-      GATE     :  riga_soggetto_diverso -> NA 
-      PACCHETTO:  ok -> COMBO:cdk4 6 inhibitor+combination of mek  (fonte: COMBO )
