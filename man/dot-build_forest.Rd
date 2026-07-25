@@ -17,7 +17,7 @@
 
 \item{cluster_pooled_subset}{tibble subset per il cluster.}
 
-\item{method}{character "rem", "mega", o "mega_aug".}
+\item{method}{character "rem", "rem_group", "mega", o "mega_aug".}
 
 \item{out_dir}{character dir output.}
 
@@ -28,7 +28,7 @@ list con \code{png_path} (NA se skip), \code{svg_path} (NA se skip o save_svg=FA
 \code{caption} (skip-explanation se applicable).
 }
 \description{
-Per \code{method == "rem"}: usa \code{metafor::forest()} su per-study yi/vi.
+Per \code{method \%in\% c("rem", "rem_group")}: usa \code{metafor::forest()} su per-study yi/vi.
 Per \code{method == "mega_aug"}: custom ggplot con 2 studi del pair + pooled diamond.
 Per \code{method == "mega"}: skip-graceful con caption esplicativa (no per-study DE
 nel Layer A output).
