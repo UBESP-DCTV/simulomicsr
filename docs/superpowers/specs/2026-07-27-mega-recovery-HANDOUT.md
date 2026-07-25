@@ -1,7 +1,9 @@
 # HANDOUT — sessione MEGA (parallela): il ramo mega non ha mai passato il gate di coerenza
 
 **Preparato:** 2026-07-27, dalla sessione "innesto dell'anchor dal contrasto"
-**Branch di partenza:** `review-scientific-consistency-2026-06-10` · master invariato · nessun push
+**Dove si lavora:** `/home/user/simulomicsr-mega` — **worktree dedicato**, branch
+`mega-recovery-2026-07-27` (creato da `review-scientific-consistency-2026-06-10` @ `828fcbe`).
+Master invariato · nessun push.
 **Stato:** 🔴 **Problema MISURATO, nessuna decisione presa, nessun codice scritto.**
 
 ---
@@ -123,22 +125,46 @@ Tre direzioni, da valutare **misurando**, non per principio:
 3. **Verificare l'ipotesi dell'anchor vuoto**: i cluster con `agent = UNK` sono sistematicamente i
    più eterogenei? La tabella ha tutto per rispondere (`censimento-mega.csv` + `clusters.rds` v10).
 
-## 5. ⚠️ COORDINAMENTO CON LA SESSIONE PRINCIPALE — LEGGERE
+## 5. ⚠️ AMBIENTE E COORDINAMENTO CON LA SESSIONE PRINCIPALE — LEGGERE
+
+### L'ambiente è già pronto e verificato
+
+Questa sessione gira in un **worktree separato**, `/home/user/simulomicsr-mega`, sul branch
+`mega-recovery-2026-07-27`. Serviva una cartella a sé, non solo un branch: le due sessioni
+lavorerebbero altrimenti sugli stessi file, e un cambio di branch cambierebbe i file sotto i piedi
+all'altra mentre gira.
+
+Tre cose sono già state sistemate e **verificate girando davvero il codice** (pacchetto caricato,
+310.738 cluster letti, dizionari ontologici reali, `.ca_member_contrast()` che risolve
+`CHEBI:68534`):
+
+- I dati pesanti sono **gitignored**, quindi non esistono in un worktree nuovo: sono collegati con
+  symlink a quelli del checkout principale — `analysis/input`, `analysis/cache`,
+  `analysis/p4-output/20260720T180625Z-stage3-v10-364547a7`,
+  `analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl`.
+- **renv indicizza la libreria sul PERCORSO del progetto**: da qui vorrebbe reinstallare tutto e si
+  pianta (misurato: > 900 s senza output). Il `.Renviron` locale disattiva l'autoloader
+  (`RENV_CONFIG_AUTOLOADER_ENABLED=FALSE`) e punta `R_LIBS_USER` alla libreria del checkout
+  principale. **Non toccarlo.**
+- `.Renviron` contiene anche le variabili `PROJ_*` richieste da `.Rprofile`, senza le quali R non
+  parte.
+
+Comandi R: `Rscript` **senza** `--vanilla` (con `--vanilla` non trova devtools).
+
+### Coordinamento
 
 La sessione principale sta innestando l'anchor dal contrasto per il ramo `rem_group` e, finito
 quello, chiederà all'utente il **GO per il re-cluster (~8h) + re-pool (~50h)**.
 
 - **Se le mega vanno ri-ancorate, quel cambio deve entrare nello STESSO re-cluster.** Altrimenti
   serve un secondo giro da 8 ore. Questo è il vincolo temporale che governa la sessione.
-- **Non toccare** i file su cui la sessione principale sta lavorando: `R/stage3-contrast-anchor.R`,
-  `R/stage3-build.R`, `R/stage4-qc.R`, `R/stage4-dispatch.R`,
-  `tests/testthat/test-stage3-contrast-*.R`, `tests/testthat/test-stage4-cgroup-branch.R`.
-  Sono modificati e committati su `review-scientific-consistency-2026-06-10`: si possono **leggere e
-  riusare**, non riscrivere.
-- **Consiglio operativo:** questa sessione resti su **misura + design + spec/ADR** e scriva solo in
-  `analysis/audit/2026-07-27-mega-recovery/` e `docs/`. Se il design richiede codice in `R/`, si
-  concorda con l'utente il punto di innesto **prima** di scriverlo, così le due sessioni non si
-  pestano i piedi sugli stessi file.
+- I file `R/stage3-contrast-anchor.R`, `R/stage3-build.R`, `R/stage4-qc.R`, `R/stage4-dispatch.R` e i
+  test `test-stage3-contrast-*.R`, `test-stage4-cgroup-branch.R` sono **lavoro in corso dell'altra
+  sessione**: qui si **leggono e si riusano**, non si riscrivono. Il worktree ne ha una copia
+  congelata a `828fcbe`; se servisse la versione aggiornata, allinearsi con
+  `git merge review-scientific-consistency-2026-06-10` invece di riscrivere.
+- Le due sessioni **non condividono l'indice git**: qui si committa liberamente sul proprio branch.
+  La fusione dei due rami si fa alla fine, con l'utente.
 
 ## 6. TRAPPOLE GIÀ PAGATE (non ripeterle)
 
@@ -178,6 +204,10 @@ quello, chiederà all'utente il **GO per il re-cluster (~8h) + re-pool (~50h)**.
 
 > RECUPERO DEL RAMO MEGA — sessione dedicata, in parallelo all'innesto dell'anchor dal contrasto.
 >
+> LAVORI IN `/home/user/simulomicsr-mega` (worktree dedicato, branch `mega-recovery-2026-07-27`).
+> L'ambiente e' gia' pronto e verificato: dati collegati con symlink, `.Renviron` che aggira renv.
+> Non toccare `.Renviron` e usa `Rscript` senza `--vanilla`.
+>
 > LEGGI PRIMA, INTERO: `docs/superpowers/specs/2026-07-27-mega-recovery-HANDOUT.md`, poi
 > `docs/findings/2026-05-19-stadio-4-5-scope-decision.md` (perché le mega esistono) e
 > `docs/decisions/0025-stage3-contrast-derived-group-records.md` (che cosa si sta facendo alle
@@ -205,4 +235,4 @@ quello, chiederà all'utente il **GO per il re-cluster (~8h) + re-pool (~50h)**.
 > pipeline. Nessun run pesante senza il mio GO. Fail onesto coi numeri. Vietato scrivere
 > "validato/risolto/finale" senza prova per-cluster su tutti. Prima di normalizzare testo ricorda che
 > `_` conta come lettera per le espressioni regolari. Parlami come a un essere umano: breve, chiaro,
-> senza gergo. Branch `review-scientific-consistency-2026-06-10`, master invariato, no push.
+> senza gergo. Branch `mega-recovery-2026-07-27`, master invariato, no push.
