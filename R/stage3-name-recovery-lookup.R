@@ -19,7 +19,12 @@
 # v5->v6 (2026-07-08): fix STR: per target mediated_effect ignoti a HGNC e
 #   uniforming ChEMBL: a CHEMBL: (20 cluster, da minoritario a canonico).
 #   recover_identity cambia output -> il lookup DEVE essere ricalcolato.
-.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v6"
+# v6->v7 (2026-07-25): guardie di precisione del resolver (R/resolver-guards.R:
+#   unita' di misura, parole funzionali, 71 coppie alias->ID di collisione
+#   accertata). Misurato sulla produzione: 949 identita' su 26.936 cambiano
+#   (Neoplasms 354->0, IFNA1 119->0, THPO 36->0). recover_identity cambia output
+#   -> il lookup DEVE essere ricalcolato.
+.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION <- "v7"
 
 # ---------------------------------------------------------------------------
 # Helper lettura H5 (isolato per testabilita')

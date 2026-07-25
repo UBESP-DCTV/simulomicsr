@@ -442,8 +442,8 @@ test_that("recover_identity: malattia/genetico INVARIATI (retrocompat)", {
   expect_match(rg$kind, "genetic_")           # K2 ancora prevale
 })
 
-test_that("cache version bumpata a v6 (invalida lookup post fix STR/ChEMBL)", {
-  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v6")
+test_that("cache version bumpata a v7 (invalida lookup post guardie del resolver)", {
+  expect_equal(.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION, "v7")
 })
 
 # ---------------------------------------------------------------------------
