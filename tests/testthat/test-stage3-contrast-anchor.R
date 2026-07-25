@@ -232,6 +232,24 @@ test_that(".ca_member_contrast usa il nome dell'anchor quando il delta lo nomina
   expect_equal(r$entity, "STR:hypoxia")
 })
 
+test_that("un nome risolto che e' una sigla corta NON e' un nome generico (GSE231460)", {
+  # Bug misurato dall'equivalenza (2026-07-27): usare l'euristica sui token
+  # (< 4 caratteri = generico) sul NOME RISOLTO scartava 565 membri di entita'
+  # vere — TNF, IL6, RSV, CMV, HBV, M. tuberculosis. Il gate misurato controlla
+  # l'appartenenza al vocabolario, non la lunghezza.
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # NB: la riga vera scrive "TNFα" con la lettera greca. Scritta ASCII
+  # ("TNF-alpha") il resolver trova prima un alias ChEMBL: sono due stringhe
+  # diverse, e il test deve usare quella del dato.
+  r <- .ca_member_contrast("TNFα stimulated", "Control (vehicle)",
+                           "cell_type=HUVECs;time=26 hours;treatment=TNFα",
+                           "cell_type=HUVECs;time=26 hours;treatment=vehicle_only",
+                           ontology_env = oe)
+  expect_equal(r$drop_reason, "")
+  expect_equal(r$entity, "HGNC:11892")
+})
+
 test_that(".ca_member_contrast scarta il contrasto rotto e il controllo non valido", {
   oe <- .load_ontology_dicts()
   skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")

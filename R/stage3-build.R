@@ -189,7 +189,9 @@ build_stage3_clusters <- function(stage1_master,
     })
     assignments_all[[length(assignments_all) + 1L]] <-
       .assign_records_to_clusters(cg_keyed, "cgroup", .CA_CONTRAST_LEVEL)
-    cli::cli_inform("[stage3]   mode=cgroup L{.CA_CONTRAST_LEVEL}: {length(cg_keyed)} record in {round(as.numeric(difftime(Sys.time(), cg_start, units = 'secs')), 1)}s")
+    # NB: cli >= 3.4 interpreta "{.x}" come stile, non come variabile: il nome
+    # va fra parentesi, altrimenti il build muore appena esiste un record cgroup.
+    cli::cli_inform("[stage3]   mode=cgroup L{(.CA_CONTRAST_LEVEL)}: {length(cg_keyed)} record in {round(as.numeric(difftime(Sys.time(), cg_start, units = 'secs')), 1)}s")
   }
 
   # Unione assignments (base R: do.call(rbind, ...) su tibble)
@@ -815,9 +817,19 @@ build_stage3_clusters <- function(stage1_master,
       n_total   <- n_treated
     }
 
-    # Safety: segmenti droppati a questo livello
-    dropped_segs <- .dropped_segments_at_level(ta, level)
+    # Safety: segmenti droppati a questo livello.
+    # ADR-0025: per i cgroup la nozione di "livello" non esiste — la chiave e'
+    # il contrasto (entita'-delta, verso, tipo di controllo) e NESSUNO dei 13
+    # segmenti dell'anchor vi entra. L'analogo onesto e' quindi "tutti droppati":
+    # la safety misura quanto sono omogenei i membri sull'intero anchor, ed e'
+    # una diagnostica da riportare accanto, mai un gate (il ramo rem_group non
+    # ha soglia di safety per design, ADR-0022).
     safety_inputs <- lapply(member_records, function(r) r$treated_anchor_segments)
+    dropped_segs <- if (identical(mode, "cgroup")) {
+      if (length(safety_inputs) > 0L) names(safety_inputs[[1L]]) else character(0)
+    } else {
+      .dropped_segments_at_level(ta, level)
+    }
     safety        <- .compute_pooling_safety(safety_inputs, dropped_segs)
 
     # Metadata enrichment (GPL + donors + studies + biosamples E0)

@@ -582,9 +582,14 @@
     return(out("str_generico"))
   if (entity %in% .CA_BLACKLIST_ID) return(out("id_blacklist"))
   if (.cg_is_inducer(gsub("_", " ", raw))) return(out("induttore"))
+  # Il NOME RISOLTO si giudica per APPARTENENZA al vocabolario, non con
+  # l'euristica sui token: quella scarta ogni sigla sotto i 4 caratteri, cioe'
+  # entita' vere come TNF, IL6, RSV, CMV, HBV (565 membri persi, misurato
+  # dall'equivalenza 2026-07-27). Un ID risolto e' gia' una garanzia di identita';
+  # qui si tolgono solo i nomi che sono parole generiche o anatomia.
   rn <- tolower(res$name %||% "")
   if (nzchar(rn) && !grepl(" ", rn) &&
-      (.cg_is_generic_token(rn) || length(.cg_anatomy(rn)) > 0L))
+      (rn %in% .CG_GENERIC || rn %in% .CG_ANATOMY))
     return(out("nome_generico"))
   if (nzchar(rn) && .cg_is_umbrella_name(rn)) return(out("nome_ombrello"))
 

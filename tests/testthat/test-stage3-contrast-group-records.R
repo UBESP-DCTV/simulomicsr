@@ -91,7 +91,13 @@ test_that("build_stage3_clusters produce cluster cgroup accanto a pair e group",
   res <- build_stage3_clusters(.ca_test_stage1(), list(.ca_test_study()))
   modes <- unique(res$clusters$mode)
   expect_true("cgroup" %in% modes)
-  expect_true(all(c("pair", "group") %in% modes))   # i rami esistenti restano
+  expect_true("group" %in% modes)                   # il ramo group resta intatto
+  # Il record pair di questa fixture viene scartato dal direction check
+  # PRE-ESISTENTE (i due bracci hanno gli stessi stage1_facts, quindi il verso
+  # non e' determinabile): comportamento invariato, verificato qui perche' e'
+  # esattamente cio' che l'innesto non deve cambiare.
+  expect_true(any(res$non_clusterable$mode == "pair" &
+                    res$non_clusterable$reason == "direction_ambiguous"))
   cg <- res$clusters[res$clusters$mode == "cgroup", ]
   expect_equal(nrow(cg), 1L)
   expect_equal(cg$level, .CA_CONTRAST_LEVEL)
