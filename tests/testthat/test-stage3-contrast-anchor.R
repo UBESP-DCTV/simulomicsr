@@ -148,3 +148,99 @@ test_that(".ca_agent_id riconosce un agente vero e rifiuta il rumore", {
   expect_equal(.ca_agent_id("moi", oe), "")
   expect_equal(.ca_agent_id("053", oe), "")
 })
+
+# ------------------------------------------------- verdetto per-membro --------
+# Le righe sono copiate da fase1-v11-results.rds: label, factor_levels e verdetto
+# atteso sono quelli MISURATI dal gate v11.
+
+test_that(".ca_member_contrast tiene un contrasto pulito (GSE147876, enzalutamide)", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast(
+    treated_label = "LNCaP Enzalutamide Treated", control_label = "LNCaP Vehicle Control",
+    treated_fl = "cell_line=LNCaP;treatment=Enzalutamide",
+    control_fl = "cell_line=LNCaP;treatment=Vehicle",
+    ontology_env = oe)
+  expect_equal(r$drop_reason, "")
+  expect_equal(r$entity, "CHEBI:68534")
+  expect_equal(r$direction, "gain")
+  expect_equal(r$control_key, "vehicle_untreated")
+})
+
+test_that(".ca_member_contrast ricompone SARS-CoV-2 sotto l'ID del patogeno", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast("Calu-3 SARS-CoV-2 infected", "mock",
+                           "treatment=SARS-CoV-2 MOI 1 24h", "treatment=mock",
+                           ontology_env = oe)
+  expect_equal(r$drop_reason, "")
+  expect_equal(r$entity, "NCBITaxon:2697049")
+})
+
+test_that(".ca_member_contrast marca la combinazione come entita' a se' (GSE197602)", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast("A549 cells treated with Palbociclib and Indisulam",
+                           "Untreated A549 cells",
+                           "cell_line=A549;treatment=Palbociclib+Indisulam",
+                           "cell_line=A549;treatment=untreated",
+                           ontology_env = oe)
+  expect_equal(r$entity, "COMBO:indisulam+palbociclib")
+  expect_equal(r$entity_source, "COMBO")
+  expect_equal(r$drop_reason, "")
+})
+
+test_that(".ca_member_contrast scarta il delta vuoto (GSE72509)", {
+  r <- .ca_member_contrast("Healthy Control", "Healthy Control",
+                           "disease_state=healthy;treatment=control",
+                           "disease_state=healthy;treatment=control",
+                           ontology_env = .load_ontology_dicts())
+  expect_equal(r$drop_reason, "no_delta")
+  expect_true(is.na(r$entity))
+})
+
+test_that(".ca_member_contrast scarta la riga mal appaiata sul tempo (GSE218827)", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast("HEK293T treated with siCont for 24 hours",
+                           "HEK293T treated with DMSO for 0 hours (control)",
+                           "time=24h;treatment=siCont", "time=0h;treatment=DMSO",
+                           ontology_env = oe)
+  expect_equal(r$drop_reason, "riga_tempo_non_appaiato")
+})
+
+test_that(".ca_member_contrast scarta quando l'entita' e' tenuta costante (GSE97326)", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast("HEK293T_MLL3_G368V_mutation", "HEK293T_wild_type_MLL3",
+                           "cell_line=HEK293T;genetic_modification=MLL3 G368V mutation",
+                           "cell_line=HEK293T;genetic_modification=wild type MLL3",
+                           ontology_env = oe)
+  expect_equal(r$drop_reason, "entita_costante")
+})
+
+test_that(".ca_member_contrast usa il nome dell'anchor quando il delta lo nomina", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # on-contrast: il delta nomina l'entita' che il resolver ha gia' risolto
+  # nell'anchor di QUESTO record (nel build il nome del cluster non esiste ancora)
+  r <- .ca_member_contrast("HUVEC hypoxia", "HUVEC normoxia",
+                           "oxygen=hypoxia", "oxygen=normoxia",
+                           anchor_name = "hypoxia", anchor_id = "STR:hypoxia",
+                           ontology_env = oe)
+  expect_equal(r$entity_source, "anchor")
+  expect_equal(r$entity, "STR:hypoxia")
+})
+
+test_that(".ca_member_contrast scarta il contrasto rotto e il controllo non valido", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  rotto <- .ca_member_contrast("HNSCC tumor tissue", "Healthy blood platelets",
+                               "disease_state=HNSCC", "disease_state=healthy",
+                               ontology_env = oe)
+  expect_equal(rotto$drop_reason, "contrasto_rotto")
+  nonctrl <- .ca_member_contrast("A549 LPS", "total RNA",
+                                 "treatment=LPS", "treatment=total RNA",
+                                 ontology_env = oe)
+  expect_equal(nonctrl$drop_reason, "controllo_non_valido")
+})

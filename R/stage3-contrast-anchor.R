@@ -437,3 +437,173 @@
   keep <- at[!(at %in% ac)]
   if (length(unique(keep)) >= 2L) unique(names(keep)) else character(0)
 }
+
+# --------------------------------------------------- verdetto per-membro ------
+
+#' ID ontologici che non identificano una perturbazione
+#'
+#' Classi-ombrello (Neoplasms, "organic cation", "steroid"), veicoli (etanolo,
+#' DMSO) e un TNF di specie sbagliata: sono ID validi che non sono entita' del
+#' contrasto.
+#' @keywords internal
+.CA_BLACKLIST_ID <- c(
+  "MeSH:D009369", "MeSH:D009361", "MeSH:D002277", "MeSH:D004194", "MeSH:D007239",
+  "MeSH:D007249", "MeSH:D009371", "CHEBI:17499", "CHEBI:24431", "CHEBI:23367",
+  "CHEBI:33232", "CHEBI:50906", "CHEBI:50845", "CHEBI:28262", "CHEBI:25367",
+  "CHEBI:35341", "CHEBI:33699", "CHEBI:84123", "CHEBI:16236", "CHEBI:197439"
+)
+
+#' Ripulisce il valore del delta per il ripiego STR:
+#' @keywords internal
+.ca_clean_token <- function(x) {
+  s <- tolower(trimws(paste(stats::na.omit(x), collapse = " ")))
+  s <- gsub("[_|]+", " ", s)
+  s <- gsub("[^a-z ]+", " ", s)
+  s <- gsub(paste0("\\b(patient|patients|case|cases|control|controls|healthy|donor|donors|",
+                   "sample|samples|primary|culture|cell|cells|from|the|and|of|with|vs|total|",
+                   "rna|tissue|line|human|treated|treatment|stimulated|infected|exposed|day|",
+                   "days|hour|hours|hr|hrs)\\b"), " ", s)
+  trimws(gsub("\\s+", " ", s))
+}
+
+#' Token che appartengono al nome dell'entita' (non sono identificatori di linea)
+#' @keywords internal
+.ca_entity_tokens <- function(...) {
+  s <- tolower(paste(stats::na.omit(c(...)), collapse = " "))
+  t <- strsplit(gsub("[^a-z0-9 -]+", " ", s), " +")[[1L]]
+  unique(t[nzchar(t)])
+}
+
+#' Verdetto di contrasto per un singolo membro (un confronto trattato-vs-controllo)
+#'
+#' Applica, NELL'ORDINE misurato dal gate v11
+#' (\code{analysis/audit/2026-07-24-anchor-coherence-sim/109-fase1-v11-gate.R}),
+#' le regole del gate (\code{.cg_*}) e dell'appaiamento della riga
+#' (\code{.rp_row_defect}), e restituisce l'identita' del contrasto oppure la
+#' ragione dello scarto. L'ordine non e' arbitrario: cambiarlo cambia le ragioni
+#' di scarto e quindi i conteggi, anche a parita' di esito.
+#'
+#' @param treated_label,control_label etichette leggibili dei due bracci
+#' @param treated_fl,control_fl factor_levels dei due bracci (lista o stringa)
+#' @param anchor_name,anchor_id nome canonico e ID gia' risolti nell'anchor del
+#'   campione trattato di QUESTO record (ramo on-contrast). \code{NA} = ramo
+#'   disattivato. Nel build il nome del CLUSTER non esiste ancora: l'analogo
+#'   disponibile e' l'anchor del record (decisione utente 2026-07-27).
+#' @param ontology_env environment dei dizionari
+#' @param caches list opzionale di environment di memoizzazione
+#'   (\code{agent}, \code{token})
+#' @return list con \code{entity}, \code{direction}, \code{control_key},
+#'   \code{contrast_class}, \code{entity_source}, \code{drop_reason}.
+#'   \code{drop_reason == ""} = membro tenuto.
+#' @keywords internal
+.ca_member_contrast <- function(treated_label, control_label, treated_fl, control_fl,
+                                anchor_name = NA_character_, anchor_id = NA_character_,
+                                ontology_env = NULL, caches = NULL) {
+  if (is.null(ontology_env)) ontology_env <- .load_ontology_dicts()
+  out <- function(reason, entity = NA_character_, direction = NA_character_,
+                  control_key = NA_character_, cls = NA_character_, src = NA_character_) {
+    list(entity = entity, direction = direction, control_key = control_key,
+         contrast_class = cls, entity_source = src, drop_reason = reason)
+  }
+  agent_cache <- caches$agent
+  row_cache   <- caches$token
+
+  d <- .ca_delta(treated_fl, control_fl)
+  if (is.na(d$dominant_class)) return(out("no_delta"))
+  cls  <- d$dominant_class
+  tval <- d$treated_values
+  cval <- d$control_values
+
+  # Regole che scartano il MEMBRO, nell'ordine del gate misurato.
+  if (.cg_broken_contrast(treated_label, control_label, treated_fl, control_fl))
+    return(out("contrasto_rotto"))
+  if (.cg_is_noncontrol(control_label))
+    return(out("controllo_non_valido"))
+  if (.cg_resistance_mismatch(treated_label, control_label))
+    return(out("resistenza_asimmetrica"))
+  if (.cg_is_multiclass(d$classes_signature))
+    return(out("delta_multiclasse"))
+  if (identical(tolower(trimws(treated_label)), tolower(trimws(control_label))))
+    return(out("label_degenere"))
+  if (.cg_is_control_like_treated(paste(tval, collapse = " ")))
+    return(out("trattato_e_un_controllo"))
+
+  direction <- .cg_direction(tval)
+  if (identical(direction, "ambiguo")) return(out("verso_ambiguo"))
+
+  # Entita' del delta: serve anche a decidere l'asse clinico/sperimentale.
+  res <- .ca_resolve_entity(cls, tval, .ca_candidates(tval, treated_label, cls), ontology_env)
+
+  # Tipo di controllo composito: lato-controllo del delta + materiale + baseline
+  # propria + contesto d'infezione. L'asse clinico/sperimentale vale per OGNI
+  # contrasto su un patogeno, non solo quando la chiave si chiama "infection"
+  # (misurato: HIV arriva spesso come cls=drug).
+  cvv <- cval[nzchar(trimws(cval))]
+  if (!length(cvv)) cvv <- "untreated"
+  ct_base <- paste(sort(unique(vapply(cvv, .normalize_control_type, character(1L)))),
+                   collapse = "+")
+  material <- if (identical(.cg_material_arm(treated_label, treated_fl), "liquid")) "_liquid" else ""
+  is_pathogen <- identical(cls, "infection") ||
+    (!is.na(res$id) && startsWith(res$id, "NCBITaxon:"))
+  control_key <- paste0(ct_base, material, .cg_baseline_kind(control_label),
+                        .cg_infection_context(if (is_pathogen) "infection" else cls,
+                                              control_label, treated_label))
+
+  # Combinazione: entita' a se'.
+  combo <- .ca_combo_parts(tval, ontology_env, agent_cache)
+  if (length(combo) < 2L) {
+    combo <- .ca_combo_from_labels(treated_label, control_label, ontology_env, agent_cache)
+  }
+  if (cls %in% c("drug", "infection") && length(combo) >= 2L) {
+    entity <- paste0("COMBO:", paste(sort(combo), collapse = "+"))
+    defect <- .rp_row_defect(treated_label, control_label, cls, entity,
+                             .ca_entity_tokens(anchor_name, res$name, combo),
+                             ontology_env, row_cache)
+    if (nzchar(defect)) return(out(paste0("riga_", defect)))
+    return(out("", entity, direction, control_key, cls, "COMBO"))
+  }
+
+  # Entita': on-contrast (nome gia' risolto nell'anchor di questo record) ->
+  # delta risolto -> ripiego STR:.
+  entity <- NA_character_; src <- NA_character_
+  if (!is.na(anchor_name) && nzchar(anchor_name) && !is.na(anchor_id) &&
+      .cg_matches_all_words(.cg_distinctive_tokens(anchor_name), paste(tval, collapse = " "))) {
+    entity <- anchor_id; src <- "anchor"
+  } else if (!is.na(res$id) && !startsWith(res$id, "STR:")) {
+    entity <- res$id; src <- "onto"
+  } else {
+    tk <- .ca_clean_token(tval)
+    if (nzchar(tk)) { entity <- paste0("STR:", gsub(" ", "_", tk)); src <- "STR" }
+  }
+  if (is.na(entity)) return(out("no_entity"))
+
+  raw <- sub("^STR:", "", entity)
+  if (startsWith(entity, "STR:") && .cg_is_generic_token(gsub("_", " ", raw)))
+    return(out("str_generico"))
+  if (entity %in% .CA_BLACKLIST_ID) return(out("id_blacklist"))
+  if (.cg_is_inducer(gsub("_", " ", raw))) return(out("induttore"))
+  rn <- tolower(res$name %||% "")
+  if (nzchar(rn) && !grepl(" ", rn) &&
+      (.cg_is_generic_token(rn) || length(.cg_anatomy(rn)) > 0L))
+    return(out("nome_generico"))
+  if (nzchar(rn) && .cg_is_umbrella_name(rn)) return(out("nome_ombrello"))
+
+  # L'entita' e' TENUTA COSTANTE fra i due bracci: quel membro non la misura
+  # ("Current PTSD, perturbazione" vs "Current PTSD, nessuna perturbazione" non
+  # e' il contrasto "PTSD vs sano").
+  probe <- if (!is.na(res$candidate) && nzchar(res$candidate)) res$candidate else gsub("_", " ", raw)
+  probe <- trimws(gsub("[^a-z0-9 ]+", " ", tolower(probe)))
+  if (nzchar(probe) && nchar(gsub("[^a-z0-9]", "", probe)) >= 3L) {
+    cl_norm <- gsub("[^a-z0-9]+", " ", tolower(control_label))
+    if (grepl(paste0("(^| )", probe, "( |$)"), cl_norm)) return(out("entita_costante"))
+  }
+
+  # La riga deve essere anche APPAIATA: il gruppo dice CHE COSA si misura, la
+  # riga COME e' stato confrontato.
+  defect <- .rp_row_defect(treated_label, control_label, cls, entity,
+                           .ca_entity_tokens(anchor_name, res$name, raw),
+                           ontology_env, row_cache)
+  if (nzchar(defect)) return(out(paste0("riga_", defect)))
+
+  out("", entity, direction, control_key, cls, src)
+}
