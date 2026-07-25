@@ -122,3 +122,29 @@ test_that(".ca_resolve_entity non trasforma le unita' di misura in entita'", {
   r <- .ca_resolve_entity("drug", "GO 1 ug/ml", .ca_candidates("GO 1 ug/ml", NA, "drug"), oe)
   expect_false(identical(r$id, "HGNC:11795"))   # THPO
 })
+
+# ------------------------------------------------------------- combinazioni ---
+
+test_that(".ca_combo_parts vede la combinazione dentro il valore (GSE197602)", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  expect_setequal(.ca_combo_parts("Palbociclib+Indisulam", oe), c("palbociclib", "indisulam"))
+  expect_length(.ca_combo_parts("Enzalutamide", oe), 0L)
+  # "/" e "_" contano solo se >=2 parti sono agenti veri: "SARS-CoV-2_MOI_1" no
+  expect_length(.ca_combo_parts("SARS-CoV-2_MOI_1", oe), 0L)
+})
+
+test_that(".ca_combo_from_labels non conta gli agenti tenuti costanti", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # SARS sta su entrambi i bracci: il contrasto e' su ruxolitinib, non una combo
+  expect_length(.ca_combo_from_labels("SARS-CoV-2 + Ruxolitinib", "SARS-CoV-2", oe), 0L)
+})
+
+test_that(".ca_agent_id riconosce un agente vero e rifiuta il rumore", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  expect_true(nzchar(.ca_agent_id("palbociclib", oe)))
+  expect_equal(.ca_agent_id("moi", oe), "")
+  expect_equal(.ca_agent_id("053", oe), "")
+})

@@ -331,3 +331,109 @@
   }
   none
 }
+
+# ------------------------------------------------------------ combinazioni ----
+# Decisione utente 2026-07-24: una combinazione e' un'entita' a se' (COMBO:a+b),
+# non si spezza ne' si scarta. Gli agenti presenti su ENTRAMBI i bracci sono
+# tenuti costanti e non fanno parte del delta: "SARS-CoV-2 + Ruxolitinib vs
+# SARS-CoV-2" resta un contrasto su ruxolitinib.
+
+#' ID canonico dell'agente contenuto in una parte, se esiste
+#'
+#' Un agente e' "vero" solo se risolve a un ID canonico: non basta essere
+#' informativo (\code{MOI}, \code{Contact}, \code{053} sono informativi e non
+#' sono agenti).
+#' @param cache environment opzionale di memoizzazione
+#' @keywords internal
+.ca_agent_id <- function(part, ontology_env, cache = NULL) {
+  p <- trimws(part)
+  if (!nzchar(p)) return("")
+  if (!is.null(cache) && exists(p, envir = cache, inherits = FALSE)) {
+    return(get(p, envir = cache))
+  }
+  ok <- function(id) !is.na(id) && nzchar(id) && !startsWith(id, "STR:")
+  res <- ""
+  for (cand in unique(c(p, strsplit(p, " ")[[1L]]))) {
+    if (nchar(cand) < 3L) next
+    r <- .normalize_compound_to_chebi(cand, ontology_env)
+    if (ok(r$id)) { res <- r$id; break }
+    r <- .normalize_cytokine_to_hgnc(cand, ontology_env)
+    if (ok(r$id) && nchar(cand) > 4L) { res <- r$id; break }
+    r <- .normalize_pathogen_to_taxid(cand, ontology_env)
+    if (ok(r$id) && nchar(cand) > 4L) { res <- r$id; break }
+    h <- .hgnc_lookup_symbol(sub("^(sh|si|sg)", "", cand), env = ontology_env)
+    if (!is.null(h) && !is.null(h$hgnc_int) && nchar(cand) > 3L) {
+      res <- paste0("HGNC:", h$hgnc_int); break
+    }
+  }
+  if (!is.null(cache)) assign(p, res, envir = cache)
+  res
+}
+
+#' Normalizza una parte di combinazione
+#'
+#' La soglia va sui caratteri alfanumerici della PARTE, non su ogni token:
+#' \code{M.tb} e' fatto di token da 1 e 2 caratteri e veniva buttato, per cui la
+#' co-infezione \code{M.tb + CMV} non era vista come combinazione.
+#' @keywords internal
+.ca_normalize_part <- function(p) {
+  w <- strsplit(gsub("[^a-z0-9 -]", " ", tolower(p)), "[^a-z0-9-]+")[[1L]]
+  w <- w[nzchar(w) & !(w %in% .CA_NONENTITY)]
+  s <- paste(w, collapse = " ")
+  if (nchar(gsub("[^a-z0-9]", "", s)) >= 3L) s else ""
+}
+
+#' Combinazione dentro il valore di UNA chiave
+#'
+#' \code{+}, \code{and}, \code{plus} bastano da soli; \code{/} e \code{_} solo se
+#' >=2 parti sono agenti veri (cosi' \code{Bleomycin/Alpha-Lipoic Acid} e
+#' \code{Vemurafenib_Acalabrutinib} passano, \code{SARS-CoV-2_MOI_1} e
+#' \code{Contact_Pulmonary} no).
+#' @keywords internal
+.ca_combo_parts <- function(treated_values, ontology_env, cache = NULL) {
+  best <- character(0)
+  is_agent <- function(p) nzchar(.ca_agent_id(p, ontology_env, cache))
+  for (v in treated_values) {
+    s <- .ca_strip_units(v)
+    if (!nzchar(s)) next
+    strong <- trimws(strsplit(s, "\\s*[+&]\\s*|\\s+and\\s+|\\s+plus\\s+", perl = TRUE)[[1L]])
+    ps <- unique(vapply(strong, .ca_normalize_part, character(1L)))
+    ps <- ps[nzchar(ps)]
+    if (length(ps) >= 2L && sum(vapply(ps, is_agent, logical(1L))) >= 1L) {
+      if (length(ps) > length(best)) best <- ps
+      next
+    }
+    weak <- trimws(strsplit(s, "\\s*[/_]\\s*", perl = TRUE)[[1L]])
+    pw <- unique(vapply(weak, .ca_normalize_part, character(1L)))
+    pw <- pw[nzchar(pw)]
+    if (length(pw) >= 2L && sum(vapply(pw, is_agent, logical(1L))) >= 2L) {
+      if (length(pw) > length(best)) best <- pw
+    }
+  }
+  best
+}
+
+#' Agenti nominati nel braccio trattato e assenti dal controllo
+#'
+#' Molte combinazioni stanno nel label e NON nel delta (misurato: "Estradiol and
+#' Fulvestrant", "Bleomycin/Alpha-Lipoic Acid", "Palbociclib and Indisulam").
+#' Non serve un separatore: "M1 macrophage GMCSF INFG activated" e' una
+#' combinazione anche senza "+".
+#' @keywords internal
+.ca_combo_from_labels <- function(treated_label, control_label, ontology_env, cache = NULL) {
+  agents_of <- function(lab) {
+    s <- .ca_strip_units(lab)
+    toks <- strsplit(gsub("[^a-z0-9 -]", " ", s), "[^a-z0-9-]+")[[1L]]
+    toks <- toks[nzchar(toks) & nchar(gsub("[^a-z0-9]", "", toks)) >= 3L &
+                   !(toks %in% .CA_NONENTITY)]
+    ids <- character(0); nms <- character(0)
+    for (tk in unique(toks)) {
+      a <- .ca_agent_id(tk, ontology_env, cache)
+      if (nzchar(a)) { ids <- c(ids, a); nms <- c(nms, tk) }
+    }
+    stats::setNames(ids, nms)
+  }
+  at <- agents_of(treated_label); ac <- agents_of(control_label)
+  keep <- at[!(at %in% ac)]
+  if (length(unique(keep)) >= 2L) unique(names(keep)) else character(0)
+}
