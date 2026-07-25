@@ -35,6 +35,40 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-25b (NOTTE AUTONOMA — COERENZA 98,6% + AUDIT SISTEMATICO DEL RESOLVER)**:
+> 🟡 **145 poolabili, 143 coerenti (98,6%) censiti uno per uno; il resolver ha una guardia di
+> precisione IN PRODUZIONE, con TDD e misura prima/dopo. Nessun re-cluster, nessun re-pool.**
+>
+> 1. **Mandato utente**: (a) gli 11 incoerenti non sono recuperabili → scartarli; (b) «il bug THPO non
+>    è il solo di quel tipo, va indagato»; otto ore autonome, «soluzioni non ipotesi».
+> 2. **(a) COERENZA 98,6%** (143/145, 890/896 studi-slot). Scarto **per costruzione** — non con una
+>    lista di chiavi: soglia sui caratteri della *parte* (co-infezione M.tb+CMV), combo senza
+>    separatore, infezione **clinica vs sperimentale** decisa sul trattato, controllo che non è un
+>    controllo ("total RNA"), resistenza asimmetrica, delta multi-classe, **entità tenuta costante**
+>    fra i bracci, label degenere, **dedup per entità** (policy ADR-0022). Residui: 2 cluster k=3
+>    (CSF2 polarizzazione M1/M0, PTSD dentro-malattia). Costo: 2 cluster persi, entrambi **duplicati**
+>    di entità sopravvissute. Più forti: SARS k=29, LPS k=28, TGFB1 k=27, JQ1 k=24, enzalutamide k=21.
+> 3. **(b) IL BUG THPO È UNA CLASSE.** Sinonimi formalmente validi che collidono col gergo di
+>    laboratorio: `ml`→THPO, `lap`→TGFB1 (Lap = lapatinib), `in`→CD44, `cancer`→**granchio**,
+>    `5fu`→5-formiluracile, `dha`→diidrossiacetone, `tpa`→ac. tereftalico, `shh`→vorinostat,
+>    `mek`→butanone, `nmda`→ketamina, `hgf`/`tpo`/`hgi`→IL6, `ifn`→IFNA1.
+> 4. **Misura sulla produzione** (cache recupero-nome + testo H5 vero): 28.556 campioni con ID
+>    ontologico; 414 alias sospetti (4.649 campioni); **adjudicati i 170 più impattanti → 78
+>    collisioni confermate**. ⚠️ Una prima cifra automatica (51%) era SBAGLIATA e l'ho corretta prima
+>    di usarla (contava `cisplatin` in ChEBI+ChEMBL come ambiguo).
+> 5. **Regola generale tentata e SCARTATA sui dati** (una sigla vale solo se l'entità è nominata per
+>    esteso nel corpus): precisione 61%, copertura 46%, **danno 25%** — avrebbe perso PFOS, DNCB, DHEA.
+> 6. **FIX in produzione**: `R/resolver-guards.R` (unità di misura, parole funzionali, 76 coppie
+>    alias→ID accertate) innestato nei 4 resolver + TDD (`test-resolver-guards.R`, 57 PASS/0 FAIL).
+>    **Prima/dopo su 26.936 campioni**: 952 identità sbagliate rimosse (3,53%), 96,5% invariate;
+>    THPO 105→0, CD44 96→0, Neoplasms 354→0; **non-regressione perfetta** (LPS 401→401, SARS 308→308,
+>    enzalutamide 89→89, TNF 275→**281**). Il fix ha chiuso da solo il cluster TGFB1.
+> 7. **PROSSIMO**: portare le regole del gate dagli script d'analisi al **codice di pacchetto con TDD**
+>    (+ bump `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`), decidere sul ri-mappaggio (oggi si rifiuta e
+>    basta), poi GATE utente per re-cluster+re-pool. Handout
+>    `docs/superpowers/specs/2026-07-26-NEXT-SESSION-HANDOUT.md`; finding
+>    `docs/findings/2026-07-25-resolver-alias-collisions.md`.
+>
 > **Stato 2026-07-25 (ANCHOR DAL-CONTRASTO v7 — RESIDUO CHIUSO + RI-CENSIMENTO SU TUTTI: 92,7%)**:
 > 🟡 **150 poolabili k≥3, coerenza 92,7% (139/150) misurata su TUTTI uno per uno. NON validato, NON
 > finale: nessun re-cluster lanciato. 11 falliti residui catalogati per causa.**

@@ -1,5 +1,36 @@
 # Anchor derivato-dal-contrasto v7 — censimento di coerenza su TUTTI i cluster
 
+> ## ADDENDUM 2026-07-25 (sessione notturna) — v10: **143/145 = 98,6% coerenti**
+>
+> Decisione utente: *gli 11 incoerenti non sono recuperabili, si scartano*. Scartati **per
+> costruzione**, con regole generali che descrivono la causa misurata — non con una lista di chiavi
+> (una blacklist di 11 ID non sarebbe pubblicabile):
+>
+> | regola nuova | cosa chiude |
+> |---|---|
+> | soglia dei 3 caratteri sulla **parte** e non sui token; la virgola separa agenti | co-infezione "M.tb + CMV", "RSV, rhinovirus" |
+> | combinazione rilevata **senza bisogno di separatore** (≥2 agenti nel trattato assenti dal controllo) | palbociclib+indisulam, GM-CSF+IFN-γ |
+> | infezione **clinica vs sperimentale** decisa sul trattato (viremia, carcinoma, paziente) | CMV, HBV |
+> | controllo che **non e' un controllo** ("total RNA", "input") | 5-FU |
+> | **resistenza asimmetrica** fra i bracci | 5-FU |
+> | delta che muove **≥2 classi perturbative** | metotrexato (artrite+terapia) |
+> | **entita' tenuta costante** fra i due bracci | PTSD dentro-malattia |
+> | contrasto **degenere per etichetta** (bracci scritti uguale) | birabresib |
+> | **dedup per entita'** (una meta-analisi per entita', al k massimo — policy ADR-0022) | frammenti LPS-rpmi, R1881-etanolo, ipossia, RSV |
+> | **guardie del resolver** in produzione (finding separato) | TGFB1 (`Her/Lap` → collisione `lap`→TGFB1) |
+>
+> **Esito, censito di nuovo su TUTTI i 145 cluster:** 143 coerenti (98,6%), 890/896 studi-slot.
+> Restano **2 incoerenti** (entrambi k=3): CSF2 (polarizzazione M1-vs-M0) e PTSD (perturbazione
+> dentro-malattia). Cluster piu' forti: SARS-CoV-2 k=29 · LPS k=28 · TGFB1 k=27 · JQ1 k=24 ·
+> enzalutamide k=21 · DHT k=20 · cisplatino k=19 · R1881 k=19.
+> Costo misurato: 2 cluster coerenti persi, entrambi **duplicati** di entita' che sopravvivono
+> (ipossia, R1881) — cioe' dedup, non perdita.
+> Catalogo: `analysis/audit/2026-07-24-anchor-coherence-sim/v10-census-verdicts-FINAL.csv`.
+>
+> **Resta NON validato**: nessun re-cluster e nessun re-pool sono stati lanciati; il proxy della
+> simulazione e' piu' debole del resolver di produzione.
+
+
 **Data:** 2026-07-25 · **Branch:** `review-scientific-consistency-2026-06-10` · master invariato · nessun push
 **Stato:** 🟡 **92,7% di coerenza misurata su TUTTI i 150 cluster poolabili, uno per uno. NON e' un
 deliverable, NON e' "validato": nessun re-cluster e' stato lanciato e il residuo dell'7,3% e' aperto e

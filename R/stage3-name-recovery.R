@@ -129,7 +129,16 @@ if (!exists("%||%")) {
   if (length(term) != 1L || is.na(term) || !nzchar(term)) {
     return(list(id = NA_character_, name = NA_character_, source = "NO_TERM"))
   }
+  # Guardia di precisione (audit 2026-07-25): un termine funzionale ("cancer",
+  # "tumor", "ph") non identifica una malattia specifica; MeSH lo mapperebbe su
+  # un descrittore-ombrello (D009369 Neoplasms) o su un parametro.
+  if (.is_unreliable_candidate(term)) {
+    return(list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK"))
+  }
   hit <- .mesh_lookup_term(term, env = ontology_env)
+  if (!is.null(hit) && !is.null(hit$ui) && .is_alias_collision(term, paste0("MeSH:", hit$ui))) {
+    return(list(id = paste0("STR:", .slugify(term)), name = term, source = "STR_FALLBACK"))
+  }
   if (!is.null(hit) && !is.null(hit$ui)) {
     full <- .mesh_lookup_ui(hit$ui, env = ontology_env)
     return(list(
@@ -205,7 +214,24 @@ if (!exists("%||%")) {
 #' @return lista con campi \code{id}, \code{name}, \code{source}, oppure NULL
 #'   se il candidato non supera il gate o non risolve in nessun dizionario.
 #' @keywords internal
+#' Risoluzione di un candidato a composto, con le guardie di precisione
+#'
+#' Wrapper di \code{.resolve_one_compound_inner}: scarta i candidati che non
+#' possono identificare un'entita' (unita' di misura, parole funzionali) e le
+#' coppie candidato/ID accertate come collisioni (audit 2026-07-25). Vedi
+#' \code{R/resolver-guards.R}.
+#' @keywords internal
+#' @noRd
 .resolve_one_compound <- function(cand, ontology_env) {
+  if (.is_unreliable_candidate(cand)) return(NULL)
+  res <- .resolve_one_compound_inner(cand, ontology_env)
+  if (!is.null(res) && !is.null(res$id) && .is_alias_collision(cand, res$id)) return(NULL)
+  res
+}
+
+#' @keywords internal
+#' @noRd
+.resolve_one_compound_inner <- function(cand, ontology_env) {
   c2   <- trimws(cand)
   alnum <- gsub("[^a-z0-9]", "", tolower(c2))
   # Gate di precisione: blocca i token singoli troppo corti (<3 char alfanumerici)
@@ -598,6 +624,10 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   for (cand in cands) {
     hgnc_int <- NULL
     src      <- NULL
+    # Guardia di precisione (audit 2026-07-25): un candidato che e' un'unita' di
+    # misura o una parola funzionale non puo' nominare una citochina. Senza
+    # questa riga "ug/ml" -> candidato "ml" -> sinonimo ImmPort di THPO.
+    if (.is_unreliable_candidate(cand)) next
 
     # (a) ImmPort sinonimo (normalizza internamente via .normalize_biological_mention)
     hit_imp <- .immport_lookup_synonym(cand, env = ontology_env)
@@ -624,6 +654,9 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
       }
     }
 
+    # Collisione accertata alias->citochina (es. "HGF"/"TPO"/"HGI" -> IL6,
+    # "LAP" -> TGFB1, "IFN" -> IFNA1): si scarta e si prova il candidato dopo.
+    if (!is.null(hgnc_int) && .is_alias_collision(cand, paste0("HGNC:", hgnc_int))) next
     # Gate whitelist citochine: scarta se il gene trovato NON e' una citochina
     if (!is.null(hgnc_int) && .is_cytokine_symbol(hgnc_int, env = ontology_env)) {
       # Recupera simbolo canonico da HGNC (fallback: hgnc_int come stringa)
@@ -802,6 +835,9 @@ recover_identity <- function(source, characteristics, title, llm_kind, ontology_
   for (cand in cands) {
     norm <- .normalize_biological_mention(cand)
     if (!nzchar(norm) || norm %in% .HOST_SPECIES_STOPLIST) next
+    # Guardia di precisione (audit 2026-07-25): "cancer" e' un genere di granchi
+    # nella tassonomia NCBI, "in"/"lead" sono parole. Mai patogeni.
+    if (.is_unreliable_candidate(cand)) next
     if (norm %in% names(.PAMP_WHITELIST)) {
       return(list(id = paste0("CHEBI:", .PAMP_WHITELIST[[norm]]),
                   name = cand, source = "PAMP_WHITELIST"))
