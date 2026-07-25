@@ -35,6 +35,54 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-27 (L'INNESTO È FATTO — LA PIPELINE CHIAMA LE REGOLE; 141 COERENTI SU 145 CENSITI)**:
+> 🟡 **I record di gruppo nascono dal CONTRASTO dentro `build_stage3_clusters()`. Equivalenza col gate
+> misurato verificata membro per membro. Censimento fatto su TUTTI i gruppi. NESSUN re-cluster,
+> NESSUN re-pool: niente è materializzato, il deliverable sul disco è ancora quello vecchio.**
+>
+> 1. **ADR-0025 + innesto** (`R/stage3-contrast-anchor.R` nuovo, `.build_contrast_group_records()` in
+>    `R/stage3-build.R`): un record per ogni comparison, `mode = "cgroup"`, chiave
+>    `entità-delta || verso || tipo-di-controllo`, un solo livello (5), nessuna partizione per hard
+>    filter. Le regole del gate (`.cg_*`) e della riga (`.rp_row_defect`) sono **richiamate, non
+>    riscritte**. Stadio 4: il ramo `rem_group` consuma i `cgroup` e risolve per comparison.
+>    **`rem`, `mega`, `mega_aug` non toccati** (test di non-regressione).
+> 2. **EQUIVALENZA sui 38.440 contrasti veri**: verdetto identico al gate sul **99,4%** dei membri;
+>    a livello di gruppo **zero persi, k IDENTICO su tutti e 144**, uno nuovo. Bandiera esatte: SARS
+>    28, TGFB1 27, LPS 26, enzalutamide 21, vemurafenib 13.
+> 3. **DODICI BUG MIEI**, nessuno visibile dai test unitari, tutti trovati misurando: nome giudicato
+>    per lunghezza (565 entità vere scartate: TNF, RSV, CMV, HBV), `{.x}` in un log che uccideva il
+>    build, safety a livello 5, dosi tolte coi separatori (253 combo perse), guardia sulle sigle al
+>    posto sbagliato (`M.tb + CMV`), vocabolario diverso dal gate (102 membri + combo inventate),
+>    prefisso `NAME:` non tolto (66 membri), entità risolta da tutti i valori invece che dalla classe
+>    dominante, ombrella non controllata sull'entità, classe `time` non filtrata.
+>    **Lezione: quando una regola passa da script a pacchetto, vocabolario e guardie vanno portati
+>    CON lei, allo stesso posto.**
+> 4. **CENSIMENTO su TUTTI i 145 gruppi, letti uno per uno**: **141 coerenti (97,2%)**, 866/878
+>    studi-slot. Incoerenti: CSF2, PTSD, RSV (gli **stessi tre** del 2026-07-25) + `MeSH:D012008`
+>    Recurrence (nuovo). Nessuna regola inventata per prenderli: tre casi su 145 sono una lista
+>    travestita.
+> 5. **FRAMMENTAZIONE misurata, decisione da riaprire**: enzalutamide `CHEBI:68534` k=21 + `STR:enza`
+>    k=4; TGFB1 `HGNC:11766` k=27 + `STR:tgfb` k=7. Non è incoerenza (entrambi i gruppi sono puliti):
+>    è potenza buttata. La decisione del 2026-07-26 (niente ri-mappaggio) era basata su "0 gruppi
+>    NUOVI" — vero — ma il guadagno di POTENZA sui gruppi esistenti non era stato quantificato.
+> 6. **k≥3 NON è più definitivo**: ADR-0026 §Aperto propone (senza deciderlo) un livello dichiarato a
+>    k=2 per il ramo `cgroup`, al posto di `mega_aug`. Finché l'utente non decide, k≥3 resta.
+> 7. **PROSSIMO = GATE UTENTE** per re-cluster (~8h) + re-pool (~50h) + ri-censimento sui dati VERI.
+>    Handout `docs/superpowers/specs/2026-07-28-NEXT-SESSION-HANDOUT.md`. Finding
+>    `docs/findings/2026-07-27-equivalenza-builder-contrasto.md` e `-censimento-145-gruppi.md`.
+>    Branch invariato, master invariato, no push.
+>
+> **🔗 SESSIONE PARALLELA "MEGA" (branch `mega-recovery-2026-07-27`, worktree
+> `/home/user/simulomicsr-mega`)**: ha censito il ramo `mega`, mai verificato prima, e l'utente ha
+> deciso che **esce dal deliverable** (**ADR-0026 Accepted**, nessun codice rimosso: è selezione, non
+> cancellazione). Misure a copertura 100%: dei 11.874 campioni poolati nei 99 cluster mega, **74%
+> viene da studi che portano UN SOLO braccio**; le 99 mega sono in realtà **55 meta-analisi distinte**;
+> **I² e τ² sono NA su tutte** le 1,75 M di righe — quel ramo non può riportare l'eterogeneità.
+> `.build_group_records()` **resta** (i record `group` servono come pool donatore di `mega_aug`).
+> **Si applica prima del RE-POOL, non prima del re-cluster.** Restano APERTI: `mega_aug` (419 cluster,
+> 167 coerenti ma k=2 e 88% con campioni prestati) e `rem` (12 cluster, 10 minestroni). Riassunto:
+> `docs/superpowers/specs/2026-07-27-mega-recovery-SESSION-SUMMARY.md`.
+>
 > **Stato 2026-07-26 (REGOLE IN PRODUZIONE CON TDD — 141 GRUPPI COERENTI SU 144, MISURATI COL CODICE VERO)**:
 > 🟡 **Le regole di riga E le regole del gate sono codice di pacchetto, testate test-first, verificate
 > equivalenti allo script sui dati veri e RIMISURATE col codice di produzione. Nessun re-cluster,
