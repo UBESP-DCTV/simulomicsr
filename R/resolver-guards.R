@@ -27,6 +27,13 @@
 # COSA NON FANNO. Non ri-mappano al bersaglio giusto (5-FU -> CHEBI:46345):
 # ri-mappare significherebbe asserire un'identita' sulla base di un'inferenza,
 # ed e' esattamente cio' che ha prodotto il problema. Si rifiuta e basta.
+#
+# DECISIONE UTENTE 2026-07-26: si resta cosi'. Il ri-mappaggio e' stato misurato
+# (analysis/audit/2026-07-25-resolver-alias-audit/98-remap-impatto.R): darebbe
+# 0 gruppi poolabili nuovi, 1 rafforzamento e 50 membri in tutto; le sigle che
+# pesano davvero (cancer 354 campioni, ifn, ml) non sono ri-mappabili per
+# principio, sono ombrelli, famiglie e unita' di misura. Riapribile dopo il
+# re-cluster, solo per la leggibilita' delle etichette nelle figure.
 
 #' Token che non identificano MAI un'entita' (unita' di misura e parametri)
 #'

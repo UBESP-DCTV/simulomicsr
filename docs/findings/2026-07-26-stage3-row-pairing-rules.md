@@ -174,6 +174,11 @@ di misura, non entita'.
 I 1.990 campioni che perdono il nome fuori dai contrasti non producono comunque meta-analisi: il loro
 effetto sarebbe solo su etichette di cluster k=1/k=2.
 
+**DECISIONE UTENTE (2026-07-26): NO al ri-mappaggio (opzione A).** Le guardie continuano a
+rifiutare senza proporre il nome giusto. Motivo: il guadagno misurato sul prodotto scientifico e'
+nullo, e ri-mappare significherebbe asserire un'identita' per inferenza — l'errore d'origine. Si
+potra' riaprire dopo il re-cluster, se le etichette delle figure lo richiederanno.
+
 **Conseguenza:** il ri-mappaggio non cambia il deliverable. Se si fara', andra' fatto come tabella
 curata e versionata coi dizionari (lo stesso trattamento delle 71 coppie di collisione), non come
 inferenza automatica — ma non e' sulla strada critica. **Decisione dell'utente in attesa, con questi

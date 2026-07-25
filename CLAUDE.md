@@ -64,8 +64,10 @@
 >    sperimentale). Incoerenti: CSF2, PTSD, RSV.
 > 6. **Bump `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION` v6 → v7**: le guardie del resolver erano entrate
 >    in produzione senza bump (la trappola che e' gia' costata 8 ore).
-> 7. **Ri-mappaggio del resolver (domanda dell'utente): MISURATO — 0 gruppi nuovi**, 1 rafforzamento,
->    50 membri; `cancer`/`ifn`/`ml` non sono ri-mappabili per principio. Decisione utente aperta.
+> 7. **Ri-mappaggio del resolver: MISURATO (0 gruppi nuovi, 1 rafforzamento, 50 membri) → DECISIONE
+>    UTENTE 2026-07-26: NO (opzione A).** Le guardie continuano a rifiutare senza proporre il nome
+>    giusto; `cancer`/`ifn`/`ml` non sono ri-mappabili per principio. Riapribile dopo il re-cluster,
+>    solo per la leggibilita' delle etichette.
 > 8. **PROSSIMO**: l'innesto nel build (i record **group** devono nascere dal CONTRASTO — opzione B,
 >    `.build_group_records` in `R/stage3-build.R:473`), poi GATE UTENTE per re-cluster + re-pool.
 >    Handout `docs/superpowers/specs/2026-07-27-NEXT-SESSION-HANDOUT.md`; finding
