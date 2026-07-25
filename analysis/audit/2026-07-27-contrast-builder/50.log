@@ -1,0 +1,38 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+=== SMOKE SUI GRUPPI BANDIERA ===
+            entita         nome k_pavimento k_ottenuto esito
+ NCBITaxon:2697049   SARS-CoV-2          28         28    OK
+       CHEBI:16412          LPS          26         26    OK
+        HGNC:11766        TGFB1          27         27    OK
+       CHEBI:68534 enzalutamide          21         21    OK
+       CHEBI:63637  vemurafenib          13         13    OK
+
+Tutti i gruppi bandiera sono al pavimento o sopra.
+
+=== i 20 gruppi piu' forti ===
+                                       ckey  k   n
+ NCBITaxon:2697049||gain||vehicle_untreated 28 170
+        HGNC:11766||gain||vehicle_untreated 27 124
+       CHEBI:16412||gain||vehicle_untreated 26 110
+      CHEBI:137113||gain||vehicle_untreated 24  87
+       CHEBI:68534||gain||vehicle_untreated 21 108
+       CHEBI:16330||gain||vehicle_untreated 19  58
+      CHEBI:379896||gain||vehicle_untreated 19 149
+       CHEBI:27899||gain||vehicle_untreated 18  75
+       CHEBI:28748||gain||vehicle_untreated 17  34
+       CHEBI:31638||gain||vehicle_untreated 13  70
+       CHEBI:63637||gain||vehicle_untreated 13 125
+        HGNC:11892||gain||vehicle_untreated 13  53
+      MeSH:D003424||gain||vehicle_untreated 13 141
+       CHEBI:16469||gain||vehicle_untreated 12  50
+         STR:covid||gain||vehicle_untreated 12  68
+       CHEBI:85993||gain||vehicle_untreated 11  41
+         HGNC:5438||gain||vehicle_untreated 11  36
+       CHEBI:90943||gain||vehicle_untreated 10  60
+      MeSH:D015179||gain||vehicle_untreated 10  74
+       CHEBI:50924||gain||vehicle_untreated  9  43
+
+=== distribuzione di k ===
+
+  k=3-4   k=5-9 k=10-19   k>=20 
+     80      47      14       5 

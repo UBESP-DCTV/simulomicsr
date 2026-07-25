@@ -467,8 +467,10 @@
   agents_of <- function(lab) {
     s <- .ca_drop_doses(lab)
     toks <- strsplit(gsub("[^a-z0-9 -]", " ", s), "[^a-z0-9-]+")[[1L]]
+    # Vocabolario del GATE: senza, "cancer" conta come agente e nasce la
+    # combinazione inventata "COMBO:cancer+siINO80" (19 membri, misurato).
     toks <- toks[nzchar(toks) & nchar(gsub("[^a-z0-9]", "", toks)) >= 3L &
-                   !(toks %in% .CA_NONENTITY)]
+                   !(toks %in% .CG_GENERIC) & !(toks %in% .CG_CONNECTORS)]
     ids <- character(0); nms <- character(0)
     for (tk in unique(toks)) {
       a <- .ca_agent_id(tk, ontology_env, cache)
@@ -574,8 +576,15 @@
   direction <- .cg_direction(tval)
   if (identical(direction, "ambiguo")) return(out("verso_ambiguo"))
 
-  # Entita' del delta: serve anche a decidere l'asse clinico/sperimentale.
-  res <- .ca_resolve_entity(cls, tval, .ca_candidates(tval, treated_label, cls), ontology_env)
+  # Entita' del delta: si risolve dai valori della CLASSE DOMINANTE, non da
+  # tutti. Con tutti, in "APC/TP53 mutant, STAR positive" il gene risolto
+  # diventava STAR (primo valore, classe other) invece di APC.
+  # NB: verso, combinazioni e ripiego STR: usano invece TUTTI i valori, come il
+  # gate misurato.
+  tval_cls <- d$treated_values[d$classes == cls]
+  if (!length(tval_cls)) tval_cls <- tval
+  res <- .ca_resolve_entity(cls, tval_cls,
+                            .ca_candidates(tval_cls, treated_label, cls), ontology_env)
 
   # Tipo di controllo composito: lato-controllo del delta + materiale + baseline
   # propria + contesto d'infezione. L'asse clinico/sperimentale vale per OGNI
@@ -625,6 +634,10 @@
   raw <- sub("^(NAME|STR):", "", entity)
   if (startsWith(entity, "STR:") && .cg_is_generic_token(gsub("_", " ", raw)))
     return(out("str_generico"))
+  # Ombrella sull'entita' stessa quando non e' un ID ontologico: "lesional",
+  # "syndrome", "vector" non sono entita' (il gate lo faceva sul ramo NAME:).
+  if ((startsWith(entity, "STR:") || startsWith(entity, "NAME:")) &&
+      .cg_is_umbrella_name(tolower(raw))) return(out("nome_ombrello"))
   if (entity %in% .CA_BLACKLIST_ID) return(out("id_blacklist"))
   if (.cg_is_inducer(gsub("_", " ", raw))) return(out("induttore"))
   # Il NOME RISOLTO si giudica per APPARTENENZA al vocabolario, non con

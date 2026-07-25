@@ -1,61 +1,55 @@
 - The project is out-of-sync -- use `renv::status()` for details.
 Warning message:
 replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
-2026-07-25 22:23:05 - verdetto di pacchetto su 38440 membri...
-  5000/38440 (79s)
-  10000/38440 (141s)
-  15000/38440 (205s)
-  20000/38440 (270s)
-  25000/38440 (343s)
-  30000/38440 (401s)
-  35000/38440 (458s)
+2026-07-25 22:49:40 - verdetto di pacchetto su 38440 membri...
+  5000/38440 (81s)
+  10000/38440 (144s)
+  15000/38440 (210s)
+  20000/38440 (276s)
+  25000/38440 (335s)
+  30000/38440 (408s)
+  35000/38440 (466s)
 
 === esito per-membro: pacchetto vs gate misurato ===
 membri: 38440 
-verdetto identico (tenuto/scartato): 38284 (99.59%)
+verdetto identico (tenuto/scartato): 38400 (99.90%)
 tenuti da entrambi: 20751 
-entita' identica sui tenuti da entrambi: 20526 
+entita' identica sui tenuti da entrambi: 20692 
 
 === ragioni di scarto: gate misurato vs pacchetto ===
                         gate Freq_v11 Freq_pacchetto
              contrasto_rotto      350            350
         controllo_non_valido      105            105
            delta_multiclasse     2427           2427
-             entita_costante      681            625
-                id_blacklist      219            208
+             entita_costante      681            697
+                id_blacklist      219            219
                    induttore       16             16
               label_degenere       14             14
                     no_delta     3923           3923
                    no_entity     1003           1003
                nome_generico       33             33
                nome_ombrello      147            120
-                          ok    20763          20895
+                          ok    20763          20779
       resistenza_asimmetrica      140            140
  riga_combinazione_non_vista       60             55
-   riga_genetica_asimmetrica      870            835
-       riga_soggetto_diverso     1162           1164
+   riga_genetica_asimmetrica      870            870
+       riga_soggetto_diverso     1162           1162
      riga_tempo_non_appaiato      630            630
                 str_generico     5786           5786
      trattato_e_un_controllo      111            111
 
-differenze totali: 381 
+differenze totali: 99 
 
 transizioni piu' frequenti (vecchio -> nuovo):
 
-                   ok_combo -> ok_combo                   entita_costante -> ok 
-                                    102                                      66 
-                         ok -> ok_combo                                ok -> ok 
-                                     47                                      38 
-                         ok_combo -> ok                     nome_ombrello -> ok 
-                                     38                                      27 
-  riga_genetica_asimmetrica -> ok_combo                   ok -> entita_costante 
-                                     27                                      12 
-               id_blacklist -> ok_combo         riga_genetica_asimmetrica -> ok 
-                                     11                                       8 
-riga_combinazione_non_vista -> ok_combo 
-                                      5 
+                               ok -> ok                     nome_ombrello -> ok 
+                                     38                                      23 
+                         ok -> ok_combo                   ok -> entita_costante 
+                                     19                                      12 
+riga_combinazione_non_vista -> ok_combo                    ok_combo -> ok_combo 
+                                      5                                       2 
 
-=== gruppi poolabili k>=3 col codice di pacchetto: 145  (gate misurato: 144) ===
+=== gruppi poolabili k>=3 col codice di pacchetto: 146  (gate misurato: 144) ===
 k>=5: 66 
 
 === gruppi bandiera ===
@@ -65,4 +59,4 @@ k>=5: 66
   CHEBI:68534          k=21
   CHEBI:63637          k=13
 
- 2026-07-25 22:31:23 - salvato equivalenza-builder.rds
+ 2026-07-25 22:58:07 - salvato equivalenza-builder.rds

@@ -301,6 +301,45 @@ test_that("un nome risolto che e' una sigla corta NON e' un nome generico (GSE23
   expect_equal(r$entity, "HGNC:11892")
 })
 
+test_that("l'entita' si risolve dai valori della CLASSE DOMINANTE (GSE99133)", {
+  # Misurato 2026-07-27: passavo al resolver TUTTI i valori del delta, non solo
+  # quelli della classe dominante. In "APC/TP53 mutant, STAR positive" il primo
+  # valore e' "STAR positive" (classe other) e il gene risolto diventava STAR
+  # invece di APC — e poi il contrasto veniva scartato perche' "star" compare
+  # anche nel controllo.
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast(
+    "APC/TP53 mutant, STAR positive",
+    "Normal colon, STAR negative, expansion medium",
+    "genetic_modification=APC/TP53;reporter=STAR positive",
+    "genetic_modification=None;reporter=STAR negative",
+    ontology_env = oe)
+  expect_equal(r$entity, "HGNC:583")
+  expect_equal(r$drop_reason, "")
+})
+
+test_that("un nome-ombrella preso dall'anchor viene scartato (GSE164285)", {
+  # "lesional" non e' un'entita': il gate lo scartava, il pacchetto lo teneva
+  # perche' controllava l'ombrella solo sul nome risolto dal delta (23 membri).
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast("Lesional NS_patient5", "Healthy Control HC1",
+                           "disease_state=lesional", "disease_state=healthy control",
+                           anchor_name = "lesional", anchor_id = "STR:lesional",
+                           ontology_env = oe)
+  expect_equal(r$drop_reason, "nome_ombrello")
+})
+
+test_that(".ca_combo_from_labels non fabbrica combinazioni con parole-ombrello", {
+  # "HepG2 + siINO80#2 (liver cancer model)" non e' la combinazione
+  # "cancer + siINO80": "cancer" e' una parola-ombrello, non un agente.
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  expect_length(.ca_combo_from_labels("HepG2 + siINO80#2 (liver cancer model)",
+                                      "HepG2 + NTG (transgene)", oe), 0L)
+})
+
 test_that(".ca_member_contrast scarta il contrasto rotto e il controllo non valido", {
   oe <- .load_ontology_dicts()
   skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
