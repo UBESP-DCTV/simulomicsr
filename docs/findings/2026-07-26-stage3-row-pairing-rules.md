@@ -123,3 +123,38 @@ l'errore che e' gia' costato 8 ore.
 `106-bundle-cambiati.R` (i 36 da rileggere) → `107-census-v11-final.R`.
 Tabelle: `regole-riga-esito.csv`, `regole-riga-segnalate.txt`, `v11-cambiati.txt`,
 `v11-census-verdicts-FINAL.csv`.
+
+---
+
+## 8. Addendum — quanto varrebbe il ri-mappaggio delle sigle bloccate (misurato)
+
+Domanda dell'utente: le guardie rifiutano senza ri-mappare (`5-FU` resta senza nome invece di
+diventare `CHEBI:46345`). Quanto si recupererebbe ri-mappando?
+
+Misura (`analysis/audit/2026-07-25-resolver-alias-audit/98-remap-impatto.R`), sui contrasti
+ricostruiti, contando i membri il cui braccio trattato nomina la sigla a parola intera e che oggi non
+hanno un'entita' canonica:
+
+| alias | bersaglio giusto | membri | studi | il bersaglio e' gia' poolabile |
+|---|---|---:|---:|---|
+| `tpa` | CHEBI:37537 forbolo estere | 15 | 2 | no |
+| `lap` | CHEBI:49603 lapatinib | 19 | 2 | **si'** |
+| `hgf` | HGNC:4881 HGF | 6 | 2 | no |
+| `5fu` | CHEBI:46345 5-fluorouracile | 4 | 1 | no |
+| `shh` | HGNC:10848 SHH | 5 | 1 | no |
+| `dha` | CHEBI:28125 acido docosaesaenoico | 1 | 1 | no |
+| `mek`, `nmda`, `mit`, `tpo`, `5-fu` | — | 0 | 0 | — |
+
+**Gruppi poolabili nuovi (k≥3): 0. Rafforzamenti: 1** (lapatinib, gia' poolabile). 50 membri in
+totale. Le sigle bloccate piu' frequenti in assoluto — `cancer`→Neoplasms (354 campioni), `ifn`→IFNA1,
+`ml`→THPO — **non sono ri-mappabili per principio**: sono termini-ombrello, nomi di famiglia e unita'
+di misura, non entita'.
+
+**Limite della misura:** e' fatta sui contrasti ricostruiti (38.440 membri), non sull'intero corpus.
+I 1.990 campioni che perdono il nome fuori dai contrasti non producono comunque meta-analisi: il loro
+effetto sarebbe solo su etichette di cluster k=1/k=2.
+
+**Conseguenza:** il ri-mappaggio non cambia il deliverable. Se si fara', andra' fatto come tabella
+curata e versionata coi dizionari (lo stesso trattamento delle 71 coppie di collisione), non come
+inferenza automatica — ma non e' sulla strada critica. **Decisione dell'utente in attesa, con questi
+numeri in mano.**
