@@ -102,13 +102,21 @@ build_stage3_clusters <- function(stage1_master,
   cli::cli_inform("[stage3] Phase 2: build pair+group records")
   records_pair  <- .build_pair_records(stage2_master, stage1_master, ta, cache)
   records_group <- .build_group_records(stage2_master, stage1_master, ta, cache)
-  cli::cli_inform("[stage3] Phase 2 done: {length(records_pair)} pair + {length(records_group)} group records")
+  # ADR-0025: i record derivati dal CONTRASTO affiancano pair e group (non li
+  # sostituiscono: il ramo mega continua a consumare i group).
+  records_cgroup <- .build_contrast_group_records(stage2_master, stage1_master, ta, cache)
+  cli::cli_inform("[stage3] Phase 2 done: {length(records_pair)} pair + {length(records_group)} group + {length(records_cgroup)} cgroup records")
 
   # 3. Eligibility filter
   cli::cli_inform("[stage3] Phase 3: eligibility filter")
   pair_filt  <- .filter_eligible_records(records_pair)
   group_filt <- .filter_eligible_records(records_group)
-  cli::cli_inform("[stage3] Phase 3 done: pair eligible={length(pair_filt$eligible)} non_clust={length(pair_filt$non_clusterable)}; group eligible={length(group_filt$eligible)} non_clust={length(group_filt$non_clusterable)}")
+  cgroup_filt <- .filter_eligible_records(records_cgroup)
+  # Gli scarti del gate di contrasto sono non_clusterable a pieno titolo: la
+  # perdita e' auditabile con la sua ragione, non silenziosa.
+  cgroup_filt$non_clusterable <- c(cgroup_filt$non_clusterable,
+                                    attr(records_cgroup, "dropped") %||% list())
+  cli::cli_inform("[stage3] Phase 3 done: pair eligible={length(pair_filt$eligible)} non_clust={length(pair_filt$non_clusterable)}; group eligible={length(group_filt$eligible)} non_clust={length(group_filt$non_clusterable)}; cgroup eligible={length(cgroup_filt$eligible)} non_clust={length(cgroup_filt$non_clusterable)}")
 
   # 4. Direction check (pair only) + scarta ambiguous/indeterminate
   if (length(pair_filt$eligible) > 0L) {
@@ -167,6 +175,23 @@ build_stage3_clusters <- function(stage1_master,
     }
   }
 
+  # 5b. Cluster derivati dal contrasto (ADR-0025): UN SOLO livello e NESSUNA
+  # partizione per hard filter. La chiave del contrasto (entita' || verso ||
+  # tipo di controllo) e' gia' l'identita' completa; aggiungere subcellular e
+  # context_kind frammenterebbe rispetto ai numeri misurati. level = 5 e' un
+  # valore nuovo, non un L4 travestito: tiene i cgroup fuori dal ramo mega per
+  # costruzione (usable_mega_strict richiede level in {0,1}).
+  if (length(cgroup_filt$eligible) > 0L) {
+    cg_start <- Sys.time()
+    cg_keyed <- lapply(cgroup_filt$eligible, function(r) {
+      r$anchor_key <- r$contrast_key
+      r
+    })
+    assignments_all[[length(assignments_all) + 1L]] <-
+      .assign_records_to_clusters(cg_keyed, "cgroup", .CA_CONTRAST_LEVEL)
+    cli::cli_inform("[stage3]   mode=cgroup L{.CA_CONTRAST_LEVEL}: {length(cg_keyed)} record in {round(as.numeric(difftime(Sys.time(), cg_start, units = 'secs')), 1)}s")
+  }
+
   # Unione assignments (base R: do.call(rbind, ...) su tibble)
   cli::cli_inform("[stage3] Phase 5 done: combining {length(assignments_all)} assignment chunks")
   assignments <- if (length(assignments_all) > 0L) {
@@ -191,6 +216,7 @@ build_stage3_clusters <- function(stage1_master,
     assignments     = assignments,
     eligible_pair   = pair_filt$eligible,
     eligible_group  = group_filt$eligible,
+    eligible_cgroup = cgroup_filt$eligible,
     config          = config,
     archs4_metadata = archs4_metadata,
     stage1_master   = stage1_master  # E0: per .build_donor_lookup
@@ -202,8 +228,9 @@ build_stage3_clusters <- function(stage1_master,
   record_summary <- .build_record_summary(assignments, clusters)
   cli::cli_inform("[stage3] Phase 7 done: {nrow(record_summary)} record_summary rows")
 
-  # 8. Non clusterable (consolidata: pair + group)
-  nc_items <- c(pair_filt$non_clusterable, group_filt$non_clusterable)
+  # 8. Non clusterable (consolidata: pair + group + cgroup)
+  nc_items <- c(pair_filt$non_clusterable, group_filt$non_clusterable,
+                cgroup_filt$non_clusterable)
   nc <- if (length(nc_items) > 0L) {
     # Converti ogni list item in tibble row e unisci
     rows <- lapply(nc_items, function(item) {
@@ -234,6 +261,7 @@ build_stage3_clusters <- function(stage1_master,
       n_records_input_stage2       = length(stage2_master),
       n_records_clusterable_pair   = length(pair_filt$eligible),
       n_records_clusterable_group  = length(group_filt$eligible),
+      n_records_clusterable_cgroup = length(cgroup_filt$eligible),
       n_non_clusterable_records    = nrow(nc),
       n_assignments_total          = nrow(assignments),
       n_clusters_per_level = list(
@@ -517,6 +545,113 @@ build_stage3_clusters <- function(stage1_master,
   records
 }
 
+#' Costruisce i record di gruppo derivati dal CONTRASTO (ADR-0025)
+#'
+#' Un record per ogni \code{comparison} dello Stadio 2 — non per replicate_group.
+#' L'identita' del record non e' la perturbazione del campione trattato ma cio'
+#' che il confronto ISOLA: entita' del delta canonicalizzata, verso, tipo di
+#' controllo (\code{.ca_member_contrast()}).
+#'
+#' I confronti che non isolano una perturbazione (delta vuoto o solo identitario,
+#' degeneri, scarti del gate, righe mal appaiate) NON producono record: finiscono
+#' nell'attributo \code{"dropped"} con la ragione, e da li' in
+#' \code{non_clusterable}. La perdita e' auditabile, non silenziosa.
+#'
+#' I gruppi senza alcuna comparison non producono record: e' il limite L7 gia'
+#' documentato (bracci trattati senza controllo interno collegato), oggi comunque
+#' non poolabili. Restano disponibili come record \code{group} per il ramo mega.
+#'
+#' @param cache opzionale: output di \code{.precompute_anchor_cache()}.
+#' @param ontology_env environment dei dizionari; default = lazy-load.
+#' @return list di record \code{mode = "cgroup"}, con attributo \code{"dropped"}.
+#' @keywords internal
+.build_contrast_group_records <- function(stage2_master, stage1_master, tier_assignment,
+                                          cache = NULL, ontology_env = NULL) {
+  if (is.null(ontology_env)) ontology_env <- .load_ontology_dicts()
+  caches <- list(agent = new.env(parent = emptyenv()),
+                 token = new.env(parent = emptyenv()))
+  fl_of <- function(rg) {
+    fl <- rg$factor_levels
+    if (length(fl) == 0L) return("")
+    paste(sort(vapply(fl, function(z) paste0(z$key, "=", z$value), character(1L))),
+          collapse = ";")
+  }
+  lab_of <- function(rg, gid) {
+    if (!is.null(rg$label_human) && nzchar(rg$label_human)) rg$label_human else gid
+  }
+
+  records <- list(); dropped <- list()
+  for (study in stage2_master) {
+    sid <- study$series_id
+    rg_lookup <- setNames(
+      study$replicate_groups,
+      vapply(study$replicate_groups, function(g) g$group_id, character(1L))
+    )
+    for (cmp in study$comparisons) {
+      tg <- rg_lookup[[cmp$treated_group]]
+      cg <- rg_lookup[[cmp$control_group]]
+      if (is.null(tg) || is.null(cg)) next            # comparison malformata
+      if (length(tg$sample_ids) == 0L || length(cg$sample_ids) == 0L) next
+      tg_sample <- tg$sample_ids[[1L]]
+      tg_facts  <- stage1_master[[tg_sample]]
+      if (is.null(tg_facts)) next                     # GSM non in stage1
+
+      segs <- if (!is.null(cache))
+                cache$anchors[[sprintf("%s|treated", tg_sample)]]
+              else
+                .extract_anchor_segments(tg_facts, stage2_role = "treated",
+                                          ontology_env = ontology_env)
+      tm <- attr(segs, "tracking_meta")
+
+      v <- .ca_member_contrast(
+        treated_label = lab_of(tg, cmp$treated_group),
+        control_label = lab_of(cg, cmp$control_group),
+        treated_fl    = fl_of(tg),
+        control_fl    = fl_of(cg),
+        anchor_name   = tm$canonical_name    %||% NA_character_,
+        anchor_id     = tm$agent_id_resolved %||% NA_character_,
+        ontology_env  = ontology_env,
+        caches        = caches
+      )
+
+      rid <- sprintf("%s__%s", sid, cmp$comparison_id)
+      if (nzchar(v$drop_reason)) {
+        dropped[[length(dropped) + 1L]] <- list(
+          record_id = rid, mode = "cgroup",
+          reason = "contrast_gate", details = v$drop_reason
+        )
+        next
+      }
+
+      hf <- if (!is.null(cache)) cache$hard_filters[[tg_sample]]
+            else .extract_hard_filters(tg_facts, tier_assignment)
+
+      records[[length(records) + 1L]] <- list(
+        record_id               = rid,
+        mode                    = "cgroup",
+        series_id               = sid,
+        comparison_id           = cmp$comparison_id,
+        treated_anchor_segments = segs,
+        n_treated_group         = length(tg$sample_ids),
+        n_control_group         = length(cg$sample_ids),
+        treated_sample_ids      = as.character(unlist(tg$sample_ids)),
+        control_sample_ids      = as.character(unlist(cg$sample_ids)),
+        control_type            = cmp$control_type,
+        hard_filters            = hf,
+        stage1_facts            = tg_facts,
+        contrast_key            = paste(v$entity, v$direction, v$control_key, sep = "||"),
+        contrast_entity         = v$entity,
+        contrast_direction      = v$direction,
+        contrast_control_key    = v$control_key,
+        contrast_class          = v$contrast_class,
+        contrast_entity_source  = v$entity_source
+      )
+    }
+  }
+  attr(records, "dropped") <- dropped
+  records
+}
+
 #' Annota records pair con direction_check
 #' @keywords internal
 .annotate_direction <- function(records_pair) {
@@ -538,7 +673,8 @@ build_stage3_clusters <- function(stage1_master,
 #' @keywords internal
 .summarize_clusters <- function(assignments, eligible_pair, eligible_group,
                                  config, archs4_metadata,
-                                 stage1_master = NULL) {
+                                 stage1_master = NULL,
+                                 eligible_cgroup = list()) {
   # Schema vuoto canonico per cluster tibble. Anchor v3.1 (ADR-0018) aggiunge
   # 11 colonne tracking + v3.1.1 (S1bis 2026-05-25) aggiunge 12a colonna
   # kind_chebi_zero_roles per Layer B shortlist filter (CHEBI compound esiste
@@ -586,7 +722,12 @@ build_stage3_clusters <- function(stage1_master,
     # assenti dal tracking_meta -> colonne presenti ma NA/FALSE (retrocompat).
     recovery_source             = character(),
     agent_id_recovered          = logical(),
-    kind_recovered              = logical()
+    kind_recovered              = logical(),
+    # ADR-0025: identita' del contrasto per i cluster mode="cgroup"
+    contrast_entity             = character(),
+    contrast_direction          = character(),
+    contrast_control_key        = character(),
+    contrast_entity_source      = character()
   )
 
   if (nrow(assignments) == 0L) return(empty_clusters)
@@ -604,6 +745,12 @@ build_stage3_clusters <- function(stage1_master,
                           size = max(1L, length(eligible_group)),
                           parent = emptyenv())
   for (r in eligible_group) assign(r$record_id, r, envir = group_lookup)
+  # ADR-0025: i record derivati dal contrasto hanno un lookup proprio (il loro
+  # record_id usa la convenzione del ramo pair, <series>__<comparison_id>).
+  cgroup_lookup <- new.env(hash = TRUE,
+                           size = max(1L, length(eligible_cgroup)),
+                           parent = emptyenv())
+  for (r in eligible_cgroup) assign(r$record_id, r, envir = cgroup_lookup)
 
   # Pre-build GPL lookup UNA volta (split su series_id) per evitare O(N) scan
   # di archs4_metadata in ogni iterazione del loop su cluster.
@@ -639,6 +786,8 @@ build_stage3_clusters <- function(stage1_master,
 
     member_records <- if (identical(mode, "pair")) {
       mget(cl_rows$record_id, envir = pair_lookup, ifnotfound = list(NULL))
+    } else if (identical(mode, "cgroup")) {
+      mget(cl_rows$record_id, envir = cgroup_lookup, ifnotfound = list(NULL))
     } else {
       mget(cl_rows$record_id, envir = group_lookup, ifnotfound = list(NULL))
     }
@@ -654,7 +803,9 @@ build_stage3_clusters <- function(stage1_master,
       as.integer(r$n_treated_group)
     }, integer(1L)))
 
-    if (identical(mode, "pair")) {
+    # I cgroup, come i pair, hanno un lato-controllo semantico (il confronto
+    # porta entrambi i bracci): n_control e n_total si contano davvero.
+    if (identical(mode, "pair") || identical(mode, "cgroup")) {
       n_control <- sum(vapply(member_records, function(r) {
         as.integer(r$n_control_group)
       }, integer(1L)))
@@ -717,6 +868,15 @@ build_stage3_clusters <- function(stage1_master,
       if (is.na(v)) return(NA)
       isTRUE(as.logical(v))
     }
+    # ADR-0025: campi di contrasto dal primo membro (i membri di un cluster
+    # cgroup condividono entita', verso e tipo di controllo per costruzione
+    # della chiave). NA per i modi pair e group, che non li hanno.
+    ct_chr <- function(name) {
+      if (length(member_records) == 0L) return(NA_character_)
+      v <- member_records[[1L]][[name]]
+      if (is.null(v) || length(v) == 0L || is.na(v)) return(NA_character_)
+      as.character(v)
+    }
 
     rows[[i]] <- tibble::tibble(
       cluster_id                  = cl_id,
@@ -759,7 +919,12 @@ build_stage3_clusters <- function(stage1_master,
       # recovery non e' stato applicato (campi assenti dal tracking_meta).
       recovery_source             = tm_chr("recovery_source"),
       agent_id_recovered          = tm_lgl("agent_id_recovered"),
-      kind_recovered              = tm_lgl("kind_recovered")
+      kind_recovered              = tm_lgl("kind_recovered"),
+      # ADR-0025: identita' del contrasto (NA per i modi pair e group)
+      contrast_entity             = ct_chr("contrast_entity"),
+      contrast_direction          = ct_chr("contrast_direction"),
+      contrast_control_key        = ct_chr("contrast_control_key"),
+      contrast_entity_source      = ct_chr("contrast_entity_source")
     )
 
     if (i %% progress_every == 0L || i == length(unique_clids)) {
