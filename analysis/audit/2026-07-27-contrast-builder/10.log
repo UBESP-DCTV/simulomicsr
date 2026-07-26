@@ -1,18 +1,18 @@
 - The project is out-of-sync -- use `renv::status()` for details.
 Warning message:
 replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
-2026-07-26 13:58:57 - verdetto di pacchetto su 38440 membri...
-  5000/38440 (78s)
-  10000/38440 (139s)
-  15000/38440 (204s)
-  20000/38440 (268s)
-  25000/38440 (325s)
-  30000/38440 (383s)
-  35000/38440 (439s)
+2026-07-26 15:04:27 - verdetto di pacchetto su 38440 membri...
+  5000/38440 (81s)
+  10000/38440 (144s)
+  15000/38440 (212s)
+  20000/38440 (279s)
+  25000/38440 (339s)
+  30000/38440 (399s)
+  35000/38440 (461s)
 
 === esito per-membro: pacchetto vs gate misurato ===
 membri: 38440 
-verdetto identico (tenuto/scartato): 36729 (95.55%)
+verdetto identico (tenuto/scartato): 36688 (95.44%)
 tenuti da entrambi: 20472 
 entita' identica sui tenuti da entrambi: 16070 
 
@@ -30,21 +30,21 @@ entita' identica sui tenuti da entrambi: 16070
                    no_entity     1003            809
                nome_generico       33             33
                nome_ombrello      147            184
-                          ok    20763          21892
+                          ok    20763          21933
       resistenza_asimmetrica      140            136
  riga_combinazione_non_vista       60             61
    riga_genetica_asimmetrica      870            969
-       riga_soggetto_diverso     1162           1143
+       riga_soggetto_diverso     1162           1144
      riga_tempo_non_appaiato      630            661
-                str_generico     5786           3993
+                str_generico     5786           3951
      trattato_e_un_controllo      111            111
 
-differenze totali: 6113 
+differenze totali: 6154 
 
 transizioni piu' frequenti (vecchio -> nuovo):
 
                     ok -> ok           str_generico -> ok 
-                        4402                         1366 
+                        4402                         1407 
 ok -> classe_non_contrastiva        ok -> entita_costante 
                          229                           36 
  riga_soggetto_diverso -> ok        entita_costante -> ok 
@@ -54,14 +54,14 @@ ok -> classe_non_contrastiva        ok -> entita_costante
              no_entity -> ok 
                            3 
 
-=== gruppi poolabili k>=3 col codice di pacchetto: 145  (gate misurato: 144) ===
+=== gruppi poolabili k>=3 col codice di pacchetto: 144  (gate misurato: 144) ===
 k>=5: 66 
 
 === gruppi bandiera ===
   NCBITaxon:2697049    k=28
   CHEBI:16412          k=26
-  HGNC:11766           k=27
+  HGNC:11766           k=38
   CHEBI:68534          k=24
   CHEBI:63637          k=13
 
- 2026-07-26 14:06:59 - salvato equivalenza-builder.rds
+ 2026-07-26 15:12:52 - salvato equivalenza-builder.rds
