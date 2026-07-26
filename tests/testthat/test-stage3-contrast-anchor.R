@@ -365,3 +365,56 @@ test_that(".ca_member_contrast scarta il contrasto rotto e il controllo non vali
                                  ontology_env = oe)
   expect_equal(nonctrl$drop_reason, "controllo_non_valido")
 })
+
+# ------------------------------------------------- sigle e cifre --------------
+
+test_that(".ca_clean_token NON toglie le cifre dal nome", {
+  # Misurato 2026-07-27: "RBM4 knockdown" diventava "rbm knockdown" e "p16INK4A"
+  # diventava "p ink a". Oggi non produce fusioni sbagliate, ma RBM4 e RBM3
+  # diventerebbero la stessa entita'.
+  expect_match(.ca_clean_token("RBM4 knockdown"), "rbm4")
+  expect_match(.ca_clean_token("p16INK4A positive expression"), "p16ink4a")
+})
+
+test_that("le sigle accertate leggendo le etichette risolvono all'entita' giusta", {
+  # Tabella curata: ogni voce e' stata verificata leggendo le etichette degli
+  # studi che la usano (vedi .CA_VERIFIED_ALIASES). NON e' inferenza.
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast("LNCaP + ENZA", "LNCaP + DMSO",
+                           "treatment=ENZA", "treatment=DMSO", ontology_env = oe)
+  expect_equal(r$entity, "CHEBI:68534")            # enzalutamide
+  r2 <- .ca_member_contrast("HCT116_5_Aza_CdR", "HCT116_DMSO",
+                            "treatment=5-Aza-CdR", "treatment=DMSO", ontology_env = oe)
+  expect_equal(r2$entity, "CHEBI:50131")           # 5-aza-2'-deossicitidina
+  r3 <- .ca_member_contrast("G010 ZIKV infected", "G010 Mock infected",
+                            "infection=ZIKV", "infection=mock", ontology_env = oe)
+  expect_equal(r3$entity, "NCBITaxon:64320")       # Zika virus
+})
+
+test_that("TGFb resta senza isoforma: non si mappa per inferenza", {
+  # Le etichette non dicono MAI se e' TGFB1, 2 o 3 ("TGFb-treated SAEC",
+  # "TGFB 48hrs", "Vehicle A + TGFb"). Mapparlo sarebbe asserire un'identita'
+  # per inferenza: resta separato e il limite si dichiara.
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  r <- .ca_member_contrast("TGFb treated LX2 cells", "Untreated LX2 cells",
+                           "treatment=TGFb", "treatment=untreated", ontology_env = oe)
+  expect_false(identical(r$entity, "HGNC:11766"))
+})
+
+test_that("le lettere greche non nascondono il nome del gene (regressione)", {
+  # "TGF-β1" DICE l'isoforma: il resolver la mancava solo per la lettera greca,
+  # non per ambiguita' (20 membri, 8 studi separati da HGNC:11766). Si traduce
+  # la lettera quando si cerca un gene — regola generale, non una lista.
+  # "TNFα" deve continuare a risolvere come prima: la traduzione si prova DOPO.
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  expect_equal(.ca_latinize_greek("TGF-β1"), "tgf-beta1")
+  r <- .ca_member_contrast("TGF-β1 stimulated", "Vehicle control",
+                           "treatment=TGF-β1", "treatment=vehicle", ontology_env = oe)
+  expect_equal(r$entity, "HGNC:11766")
+  r2 <- .ca_member_contrast("TNFα stimulated", "Control (vehicle)",
+                            "treatment=TNFα", "treatment=vehicle_only", ontology_env = oe)
+  expect_equal(r2$entity, "HGNC:11892")
+})

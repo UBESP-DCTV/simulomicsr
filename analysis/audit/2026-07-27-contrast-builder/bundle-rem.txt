@@ -1,0 +1,131 @@
+
+
+===============================================================
+pair_L0_24a99438 | k=3 | small_molecule | bleomycin
+anchor: small_molecule|CHEBI:3139|wt|nodose|na|exposure|Normal human prostate derived primary stromal cells|primary_culture|proliferating|whole_cell|prostate|
+  GSE156038    bleomycin/NAD+ (prostate)                            => control                                [COMBO:bleomycin+nad]
+  GSE156038    bleomycin/NMN (prostate)                             => control                                [COMBO:bleomycin+nmn]
+  GSE156184    Bleomycin/Alpha-Lipoic Acid                          => Control                                [COMBO:alpha-lipoic acid+bleomycin]
+  GSE164012    bleomycin/PCC1                                       => control                                [COMBO:bleomycin+pcc1]
+  --> entita' distinte del delta: 4 (COMBO:bleomycin+nad | COMBO:bleomycin+nmn | COMBO:alpha-lipoic acid+bleomycin | COMBO:bleomycin+pcc1)
+
+
+===============================================================
+pair_L0_554fd8b4 | k=3 | disease_vs_normal | non-small cell lung carcinoma
+anchor: disease_vs_normal|MeSH:D002289|wt|nodose|na|exposure|Thrombocytes|primary_tissue|proliferating|whole_cell|blood|case|false__VS__disease_vs_normal|MeSH
+  GSE183635    non-small-cell lung cancer                           => asymptomatic controls                  [STR:non_small_lung_cancer]
+  GSE207586    NSCLC stage 3                                        => Control                                [delta_multiclasse]
+  GSE89843     NSCLC                                                => Healthy Control (none)                 [STR:nsclc]
+  --> entita' distinte del delta: 2 (STR:non_small_lung_cancer | STR:nsclc)
+
+
+===============================================================
+pair_L0_84d40577 | k=6 | disease_vs_normal | hepatocellular carcinoma
+anchor: disease_vs_normal|MeSH:D006528|wt|nodose|na|exposure|Liver|primary_tissue|proliferating|whole_cell|liver|case|false__VS__none|UNK|wt|nodose|na|exposur
+  GSE160016    NAFLD                                                => Normal                                 [MeSH:D065626]
+  GSE184733    Carcinoma (PT11)                                     => Non-neoplastic (PT11)                  [str_generico]
+  GSE185700    Virus-Unrelated HCC Liver                            => Normal Liver                           [STR:vu_hcc]
+  GSE203453    Acute Rejection 2                                    => Healthy Control                        [STR:acute_rejection]
+  GSE203453    Hyperbilirubinemia                                   => Healthy Control                        [STR:hyperbilirubinemia]
+  GSE207435    Tumor Liver Tissue                                   => Normal Liver Tissue                    [str_generico]
+  GSE207435    Tumor Liver Tissue                                   => Additional Normal Liver Tissue         [str_generico]
+  GSE246221    NAFLD Case                                           => Healthy Control                        [MeSH:D065626]
+  GSE246221    NAFLD Stage 1                                        => Healthy Control                        [MeSH:D065626]
+  GSE246221    NAFLD Stage 3                                        => Healthy Control                        [MeSH:D065626]
+  --> entita' distinte del delta: 4 (MeSH:D065626 | STR:vu_hcc | STR:acute_rejection | STR:hyperbilirubinemia)
+
+
+===============================================================
+pair_L0_a6a3ef07 | k=3 | disease_vs_normal | Friedreich's ataxia
+anchor: disease_vs_normal|MeSH:D005621|wt|nodose|na|exposure|Skin biopsy|primary_tissue|proliferating|whole_cell|skin|case|false__VS__none|UNK|wt|nodose|na|ex
+  GSE132195    Inadequate responder (Donor 304)                     => Control (Donor 401)                    [STR:inadequate_responder]
+  GSE157538    lichen planus lesion of cGVHD                        => Healthy Control (donor age 31)         [MeSH:D008011]
+  GSE157538    morphea lesion of cGVHD (donor C0014FW)              => Healthy Control (donor age 31)         [MeSH:D012594]
+  GSE157538    morphea lesion of cGVHD (donor C0014FQ)              => Healthy Control (donor age 31)         [MeSH:D012594]
+  GSE158395    Keloid                                               => Normal                                 [STR:keloid]
+  --> entita' distinte del delta: 4 (STR:inadequate_responder | MeSH:D008011 | MeSH:D012594 | STR:keloid)
+
+
+===============================================================
+pair_L0_a81817d4 | k=3 | environmental | NA
+anchor: environmental|UNK|wt|nodose|na|exposure|vastus lateralis muscle|primary_tissue|proliferating|whole_cell|muscle tissue|case|false__VS__environmental|UN
+  GSE111006    Sarcopenia Case                                      => Normal Control                         [STR:sarcopenia]
+  GSE111010    Sarcopenia (Age 89)                                  => Healthy (Age 86)                       [STR:sarcopenia]
+  GSE111016    Sarcopenia patients                                  => Healthy controls                       [STR:sarcopenia]
+  --> entita' distinte del delta: 1 (STR:sarcopenia)
+
+
+===============================================================
+pair_L0_dd86b06e | k=3 | genetic_knockdown | INTS11
+anchor: genetic_knockdown|HGNC:26052|wt|nodose|na|exposure|HCT116|cell_line_in_vitro|proliferating|whole_cell|colorectal carcinoma|none|true__VS__vehicle_only
+  GSE243260    HCT116 INTS11-dTAGv-1 treated with NVP2 and dTAGv-1  => HCT116 INTS11-dTAGv-1 treated with min [STR:nvp2]
+  GSE243262    HCT116 INTS11-dTAGv-1 treated with dTAGv-1           => HCT116 INTS11-dTAGv-1 vehicle control  [entita_costante]
+  GSE243264    dTAGv-1 + TEXO                                       => Vehicle Control                        [COMBO:dtagv-1+texo]
+  GSE243264    TEXO                                                 => Vehicle Control                        [STR:texo]
+  --> entita' distinte del delta: 3 (STR:nvp2 | COMBO:dtagv-1+texo | STR:texo)
+
+
+===============================================================
+pair_L1_72eddc8c | k=3 | disease_vs_normal | Friedreich's ataxia
+anchor: disease_vs_normal|MeSH:D005621|wt|nodose|na|exposure|Skin biopsy|primary_tissue|proliferating|whole_cell|skin|case__VS__none|UNK|wt|nodose|na|exposure
+  GSE132195    Inadequate responder (Donor 304)                     => Control (Donor 401)                    [STR:inadequate_responder]
+  GSE157538    lichen planus lesion of cGVHD                        => Healthy Control (donor age 31)         [MeSH:D008011]
+  GSE157538    morphea lesion of cGVHD (donor C0014FW)              => Healthy Control (donor age 31)         [MeSH:D012594]
+  GSE157538    morphea lesion of cGVHD (donor C0014FQ)              => Healthy Control (donor age 31)         [MeSH:D012594]
+  GSE158395    Keloid                                               => Normal                                 [STR:keloid]
+  --> entita' distinte del delta: 4 (STR:inadequate_responder | MeSH:D008011 | MeSH:D012594 | STR:keloid)
+
+
+===============================================================
+pair_L1_8005219a | k=4 | small_molecule | bleomycin
+anchor: small_molecule|CHEBI:3139|wt|nodose|na|exposure|Normal human prostate derived primary stromal cells|primary_culture|proliferating|whole_cell|prostate|
+  GSE156038    bleomycin/NAD+ (prostate)                            => control                                [COMBO:bleomycin+nad]
+  GSE156038    bleomycin/NMN (prostate)                             => control                                [COMBO:bleomycin+nmn]
+  GSE156184    Bleomycin/Alpha-Lipoic Acid                          => Control                                [COMBO:alpha-lipoic acid+bleomycin]
+  GSE156472    Bleomycin/Curcumin without transgene                 => Control without transgene              [delta_multiclasse]
+  GSE164012    bleomycin/PCC1                                       => control                                [COMBO:bleomycin+pcc1]
+  --> entita' distinte del delta: 4 (COMBO:bleomycin+nad | COMBO:bleomycin+nmn | COMBO:alpha-lipoic acid+bleomycin | COMBO:bleomycin+pcc1)
+
+
+===============================================================
+pair_L1_8c0cebd9 | k=3 | genetic_knockdown | INTS11
+anchor: genetic_knockdown|HGNC:26052|wt|nodose|na|exposure|HCT116|cell_line_in_vitro|proliferating|whole_cell|colorectal carcinoma|none__VS__vehicle_only|UNK|
+  GSE243260    HCT116 INTS11-dTAGv-1 treated with NVP2 and dTAGv-1  => HCT116 INTS11-dTAGv-1 treated with min [STR:nvp2]
+  GSE243262    HCT116 INTS11-dTAGv-1 treated with dTAGv-1           => HCT116 INTS11-dTAGv-1 vehicle control  [entita_costante]
+  GSE243264    dTAGv-1 + TEXO                                       => Vehicle Control                        [COMBO:dtagv-1+texo]
+  GSE243264    TEXO                                                 => Vehicle Control                        [STR:texo]
+  --> entita' distinte del delta: 3 (STR:nvp2 | COMBO:dtagv-1+texo | STR:texo)
+
+
+===============================================================
+pair_L1_b81bff88 | k=6 | disease_vs_normal | hepatocellular carcinoma
+anchor: disease_vs_normal|MeSH:D006528|wt|nodose|na|exposure|Liver|primary_tissue|proliferating|whole_cell|liver|case__VS__none|UNK|wt|nodose|na|exposure|Live
+  GSE160016    NAFLD                                                => Normal                                 [MeSH:D065626]
+  GSE184733    Carcinoma (PT11)                                     => Non-neoplastic (PT11)                  [str_generico]
+  GSE185700    Virus-Unrelated HCC Liver                            => Normal Liver                           [STR:vu_hcc]
+  GSE203453    Acute Rejection 2                                    => Healthy Control                        [STR:acute_rejection]
+  GSE203453    Hyperbilirubinemia                                   => Healthy Control                        [STR:hyperbilirubinemia]
+  GSE207435    Tumor Liver Tissue                                   => Normal Liver Tissue                    [str_generico]
+  GSE207435    Tumor Liver Tissue                                   => Additional Normal Liver Tissue         [str_generico]
+  GSE246221    NAFLD Case                                           => Healthy Control                        [MeSH:D065626]
+  GSE246221    NAFLD Stage 1                                        => Healthy Control                        [MeSH:D065626]
+  GSE246221    NAFLD Stage 3                                        => Healthy Control                        [MeSH:D065626]
+  --> entita' distinte del delta: 4 (MeSH:D065626 | STR:vu_hcc | STR:acute_rejection | STR:hyperbilirubinemia)
+
+
+===============================================================
+pair_L1_d2f3c8f9 | k=3 | disease_vs_normal | non-small cell lung carcinoma
+anchor: disease_vs_normal|MeSH:D002289|wt|nodose|na|exposure|Thrombocytes|primary_tissue|proliferating|whole_cell|blood|case__VS__disease_vs_normal|MeSH:D0093
+  GSE183635    non-small-cell lung cancer                           => asymptomatic controls                  [STR:non_small_lung_cancer]
+  GSE207586    NSCLC stage 3                                        => Control                                [delta_multiclasse]
+  GSE89843     NSCLC                                                => Healthy Control (none)                 [STR:nsclc]
+  --> entita' distinte del delta: 2 (STR:non_small_lung_cancer | STR:nsclc)
+
+
+===============================================================
+pair_L1_e8b757bb | k=3 | environmental | NA
+anchor: environmental|UNK|wt|nodose|na|exposure|vastus lateralis muscle|primary_tissue|proliferating|whole_cell|muscle tissue|case__VS__environmental|UNK|wt|n
+  GSE111006    Sarcopenia Case                                      => Normal Control                         [STR:sarcopenia]
+  GSE111010    Sarcopenia (Age 89)                                  => Healthy (Age 86)                       [STR:sarcopenia]
+  GSE111016    Sarcopenia patients                                  => Healthy controls                       [STR:sarcopenia]
+  --> entita' distinte del delta: 1 (STR:sarcopenia)

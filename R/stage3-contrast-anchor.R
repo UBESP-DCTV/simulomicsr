@@ -229,6 +229,23 @@
   trimws(paste(w, collapse = " "))
 }
 
+#' Traduce le lettere greche in lettere latine
+#'
+#' \code{TGF-\u03b21} dice l'isoforma: il resolver la mancava solo perche' il
+#' nome nei dizionari e' scritto \code{TGF-beta1}. Regola generale, non una
+#' lista di casi. Si prova DOPO la forma originale, per non cambiare le
+#' risoluzioni che gia' funzionano (\code{TNF\u03b1} risolve a HGNC via il ramo
+#' citochine; tradotta per prima finirebbe su un alias ChEMBL).
+#' @keywords internal
+.ca_latinize_greek <- function(x) {
+  s <- tolower(x)
+  greche <- c("\u03b1" = "alpha", "\u03b2" = "beta", "\u03b3" = "gamma",
+              "\u03b4" = "delta", "\u03ba" = "kappa", "\u03bb" = "lambda",
+              "\u03c3" = "sigma", "\u03c9" = "omega")
+  for (g in names(greche)) s <- gsub(g, greche[[g]], s, fixed = TRUE)
+  s
+}
+
 #' Guardia sulle sigle: un candidato corto vale solo se coincide col nome risolto
 #'
 #' Le tabelle di sinonimi contengono sigle di 2-3 lettere che collidono col gergo
@@ -275,6 +292,48 @@
   unique(out[nzchar(out)])
 }
 
+#' Sigle accertate LEGGENDO le etichette degli studi che le usano
+#'
+#' Non e' inferenza e non e' una lista di comodo: ogni voce e' stata verificata
+#' guardando tutte le etichette del gruppo che la contiene (censimento
+#' 2026-07-27). Si applica SOLO quando i resolver hanno gia' fallito.
+#'
+#' \itemize{
+#'   \item \code{enza}: etichette \code{LNCaP_ENZA}, \code{VCaP_ENZA},
+#'     \code{LAPC4_ENZA}, \code{R1AD1_ENZA} — le stesse linee prostatiche del
+#'     gruppo enzalutamide. 4 studi, nessuna ambiguita' nel contesto.
+#'   \item \code{5-aza-cdr}: sei studi, tutti con la sigla standard della
+#'     5-aza-2'-deossicitidina (decitabina).
+#'   \item \code{zikv}: sigla universale del virus Zika; il resolver la rifiuta
+#'     solo perche' la guardia sulle sigle vuole >4 caratteri.
+#' }
+#'
+#' NON contiene \code{TGFb}: le etichette non dicono MAI l'isoforma
+#' (\code{TGFb-treated SAEC}, \code{TGFB 48hrs}, \code{Vehicle A + TGFb}), e
+#' mapparla a TGFB1 sarebbe asserire un'identita' per inferenza — l'errore
+#' d'origine di questo progetto. Resta separata e il limite si dichiara.
+#' @keywords internal
+.CA_VERIFIED_ALIASES <- c(
+  "enza"           = "CHEBI:68534",     # enzalutamide
+  "5-aza-cdr"      = "CHEBI:50131",     # 5-aza-2'-deossicitidina (decitabina)
+  "5 aza cdr"      = "CHEBI:50131",
+  "aza-cdr"        = "CHEBI:50131",
+  "zikv"           = "NCBITaxon:64320"  # Zika virus
+)
+
+#' Cerca una sigla accertata fra i candidati
+#' @keywords internal
+.ca_verified_alias <- function(candidates) {
+  for (cand in candidates) {
+    k <- tolower(trimws(cand))
+    if (k %in% names(.CA_VERIFIED_ALIASES)) {
+      return(list(id = unname(.CA_VERIFIED_ALIASES[[k]]), name = k,
+                  source = "ALIAS_ACCERTATO", candidate = cand))
+    }
+  }
+  NULL
+}
+
 #' Risolve l'entita' del delta con i resolver della classe dominante
 #'
 #' \code{raw_values} = valori grezzi (servono a ChEBI: gli alias hanno
@@ -300,7 +359,10 @@
       r <- .normalize_compound_to_chebi(cand, ontology_env)
       if (is_canon(r$id)) return(hit(r, cand))
     }
-    for (cand in candidates) {
+    # La forma con le lettere greche tradotte si prova DOPO l'originale. La
+    # traduzione va fatta sui valori GREZZI: la sanitizzazione toglie la lettera
+    # greca e lascia "tgf- 1", su cui tradurre non serve piu' a niente.
+    for (cand in unique(c(candidates, .ca_candidates(.ca_latinize_greek(raw_values))))) {
       r <- .normalize_cytokine_to_hgnc(cand, ontology_env)
       if (is_canon(r$id) && .ca_acronym_ok(cand, r$name)) return(hit(r, cand))
     }
@@ -321,7 +383,7 @@
       if (is_canon(r$id) && .ca_acronym_ok(cand, r$name)) return(hit(r, cand))
     }
   } else if (identical(contrast_class, "genetic")) {
-    for (cand in candidates) {
+    for (cand in unique(c(candidates, .ca_candidates(.ca_latinize_greek(raw_values))))) {
       h <- .hgnc_lookup_symbol(cand, env = ontology_env)
       if (!is.null(h) && !is.null(h$hgnc_int)) {
         return(list(id = paste0("HGNC:", h$hgnc_int), name = h$primary_symbol,
@@ -329,6 +391,10 @@
       }
     }
   }
+  # Ultimo passo: le sigle accertate leggendo le etichette. Solo dopo che i
+  # resolver hanno fallito, mai al loro posto.
+  hit <- .ca_verified_alias(unique(c(raw, candidates)))
+  if (!is.null(hit)) return(hit)
   none
 }
 
@@ -503,7 +569,9 @@
 .ca_clean_token <- function(x) {
   s <- tolower(trimws(paste(stats::na.omit(x), collapse = " ")))
   s <- gsub("[_|]+", " ", s)
-  s <- gsub("[^a-z ]+", " ", s)
+  # Le CIFRE restano: senza, "RBM4 knockdown" diventa "rbm knockdown" e
+  # "p16INK4A" diventa "p ink a" — RBM4 e RBM3 sarebbero la stessa entita'.
+  s <- gsub("[^a-z0-9 ]+", " ", s)
   s <- gsub(paste0("\\b(patient|patients|case|cases|control|controls|healthy|donor|donors|",
                    "sample|samples|primary|culture|cell|cells|from|the|and|of|with|vs|total|",
                    "rna|tissue|line|human|treated|treatment|stimulated|infected|exposed|day|",
