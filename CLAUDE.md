@@ -67,8 +67,14 @@
 >    NUOVI" — vero — ma il guadagno di POTENZA sui gruppi esistenti non era stato quantificato.
 > 6. **k≥3 NON è più definitivo**: ADR-0026 §Aperto propone (senza deciderlo) un livello dichiarato a
 >    k=2 per il ramo `cgroup`, al posto di `mega_aug`. Finché l'utente non decide, k≥3 resta.
-> 7. **PROSSIMO = GATE UTENTE** per re-cluster (~8h) + re-pool (~50h) + ri-censimento sui dati VERI.
->    Handout `docs/superpowers/specs/2026-07-28-NEXT-SESSION-HANDOUT.md`. Finding
+> 7. **PROSSIMO = RE-CLUSTER (~8h), autorizzato dall'utente il 2026-07-27.** Handout operativo:
+>    **`docs/superpowers/specs/2026-07-28-RECLUSTER-HANDOUT.md`** (prompt nel §8). Aggiornamento
+>    ORARIO obbligatorio durante il run. Il re-pool (~50h) resta dietro un GO separato.
+>    **Cache del recupero-nome: NON va bumpata, resta v7** — verificato che dal bump l'unica modifica
+>    ai file del recupero-nome sono 7 righe di commento. Fuori dal deliverable: `mega` (ADR-0026),
+>    `mega_aug` e `rem` (decisioni utente 2026-07-27; i 12 `rem` sono 6 meta-analisi, 5 minestroni, e
+>    l'unica pulita e' gia' nel ramo nuovo con k piu' alto). Numeri di riferimento: **144 gruppi, 140
+>    coerenti (97,2%)**, TGFB1 k=38, enzalutamide k=24, SARS k=28, LPS k=26. Finding
 >    `docs/findings/2026-07-27-equivalenza-builder-contrasto.md` e `-censimento-145-gruppi.md`.
 >    Branch invariato, master invariato, no push.
 >
