@@ -1,0 +1,110 @@
+#!/usr/bin/env Rscript
+# Bundle di lettura per TUTTI i gruppi del deliverable v12 (dati VERI, non
+# simulazione). Un bundle per gruppo: identita' del contrasto + ogni confronto
+# tenuto (studio, trattato => controllo, coi factor_levels dei due bracci).
+#
+# Serve a rispondere a UNA domanda per gruppo: tutti i confronti che contiene
+# misurano lo STESSO contrasto? Se si', il gruppo genera una meta-analisi
+# difendibile. La forza (k, I2) si riporta accanto, non e' il gate.
+#
+# Stesso metro del censimento 2026-07-27, cosi' i numeri sono confrontabili:
+# in particolare il TESSUTO non entra nella chiave e non e' di per se' un
+# difetto (ADR-0025 §Negative, da dichiarare nei Methods).
+Sys.setenv(OPENBLAS_NUM_THREADS = "1", OMP_NUM_THREADS = "1")
+suppressPackageStartupMessages({ devtools::load_all(".", quiet = TRUE) })
+
+V12 <- Sys.getenv("V12_DIR", "analysis/p4-output/20260727T204316Z-stage3-v12-364547a7")
+OUT <- "analysis/audit/2026-07-28-censimento-v12"
+dir.create(OUT, showWarnings = FALSE, recursive = TRUE)
+STAGE2 <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
+
+cat(format(Sys.time()), "- carico cluster v12...\n")
+cl  <- readRDS(file.path(V12, "clusters.rds"))
+sel <- as.data.frame(simulomicsr:::.identify_layer_a_clusters(cl, stage4_default_config()))
+stopifnot(nrow(sel) > 0L, all(sel$method == "rem_group"))
+cat("  deliverable:", nrow(sel), "gruppi\n")
+
+cat(format(Sys.time()), "- carico assignments...\n")
+asg <- arrow::read_parquet(file.path(V12, "assignments.parquet"),
+                           col_select = c("record_id", "cluster_id"))
+asg <- asg[asg$cluster_id %in% sel$cluster_id, ]
+cat("  record assegnati ai gruppi del deliverable:", nrow(asg), "\n")
+
+# --- mappa <series>__<comparison_id> -> etichette dei due bracci --------------
+cat(format(Sys.time()), "- carico Stadio 2 e costruisco le etichette...\n")
+s2 <- simulomicsr:::.load_stage2_master(STAGE2)
+need <- unique(asg$record_id)
+lab <- new.env(hash = TRUE, size = length(need), parent = emptyenv())
+fl_of <- function(rg) {
+  fl <- rg$factor_levels
+  if (length(fl) == 0L) return("")
+  paste(sort(vapply(fl, function(z) paste0(z$key, "=", z$value), character(1L))),
+        collapse = ";")
+}
+lab_of <- function(rg, gid) {
+  if (!is.null(rg$label_human) && nzchar(rg$label_human)) rg$label_human else gid
+}
+for (study in s2) {
+  sid <- study$series_id
+  if (length(study$comparisons) == 0L) next
+  rgl <- setNames(study$replicate_groups,
+                  vapply(study$replicate_groups, function(g) g$group_id, character(1L)))
+  for (cmp in study$comparisons) {
+    rid <- sprintf("%s__%s", sid, cmp$comparison_id)
+    if (!rid %in% need) next
+    tg <- rgl[[cmp$treated_group]]; cg <- rgl[[cmp$control_group]]
+    if (is.null(tg) || is.null(cg)) next
+    assign(rid, list(study = sid,
+                     tl = lab_of(tg, cmp$treated_group),
+                     cl = lab_of(cg, cmp$control_group),
+                     tfl = fl_of(tg), cfl = fl_of(cg),
+                     ct = cmp$control_type %||% NA_character_,
+                     nt = length(tg$sample_ids), nc = length(cg$sample_ids)),
+           envir = lab)
+  }
+}
+cat("  etichette risolte:", length(ls(lab)), "/", length(need), "\n")
+
+# --- confronto con le chiavi gia' censite il 2026-07-27 ----------------------
+cen <- read.csv("analysis/audit/2026-07-27-contrast-builder/censimento-verdetti.csv",
+                stringsAsFactors = FALSE)
+sel$ckey <- paste0(sel$contrast_entity, "||", sel$contrast_direction, "||",
+                   sel$contrast_control_key)
+sel$gia_letto <- sel$ckey %in% cen$ckey
+
+# --- scrittura del bundle ----------------------------------------------------
+sel <- sel[order(-sel$k, sel$ckey), ]
+zz <- file(file.path(OUT, "bundle-v12.txt"), open = "wt")
+sink(zz)
+cat("BUNDLE DEI GRUPPI DEL DELIVERABLE v12 —", nrow(sel), "gruppi (dati VERI)\n")
+cat("sorgente:", V12, "\n")
+cat("Domanda per ogni gruppo: TUTTI i confronti misurano lo STESSO contrasto?\n")
+cat("[GIA' LETTO] = chiave presente nel censimento 2026-07-27; [NUOVO] = mai letto.\n")
+for (i in seq_len(nrow(sel))) {
+  rid <- asg$record_id[asg$cluster_id == sel$cluster_id[i]]
+  cat("\n\n===============================================================\n")
+  cat(sprintf("[%03d/%03d] %s   %s\n", i, nrow(sel), sel$ckey[i],
+              if (sel$gia_letto[i]) "[GIA' LETTO]" else "[NUOVO]"))
+  cat(sprintf("  nome: %s | k=%d studi | %d confronti | n=%d campioni\n",
+              sel$canonical_name[i] %||% "", sel$k[i], length(rid), sel$n_total[i]))
+  cat("  --- CONFRONTI ---\n")
+  righe <- character(0)
+  for (r in rid) {
+    e <- get0(r, envir = lab, inherits = FALSE)
+    if (is.null(e)) { righe <- c(righe, sprintf("   %-40s [etichette non risolte]", r)); next }
+    righe <- c(righe, sprintf("   %-11s %-62s => %-42s [ctrl=%s n=%d/%d]",
+                              e$study, substr(e$tl, 1, 62), substr(e$cl, 1, 42),
+                              substr(e$ct, 1, 18), e$nt, e$nc))
+    if (nzchar(e$tfl) || nzchar(e$cfl))
+      righe <- c(righe, sprintf("               fl: %s  ||  %s",
+                                substr(e$tfl, 1, 60), substr(e$cfl, 1, 60)))
+  }
+  cat(paste(righe, collapse = "\n"), "\n")
+}
+sink(); close(zz)
+
+write.csv(sel[, c("cluster_id", "ckey", "contrast_entity", "contrast_direction",
+                  "contrast_control_key", "k", "n_total", "canonical_name", "gia_letto")],
+          file.path(OUT, "indice-v12.csv"), row.names = FALSE)
+cat(format(Sys.time()), "- scritti bundle-v12.txt e indice-v12.csv (", nrow(sel), "gruppi )\n")
+cat("gia letti:", sum(sel$gia_letto), "| nuovi:", sum(!sel$gia_letto), "\n")

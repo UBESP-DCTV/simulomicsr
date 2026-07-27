@@ -1,0 +1,44 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+carico Stadio 2...
+           used  (Mb) gc trigger   (Mb) max used   (Mb)
+Ncells 15429674 824.1   37366387 1995.6 23620685 1261.5
+Vcells 44993698 343.3   99113768  756.2 99113567  756.2
+misuro su 5110 confronti...
+   500 / 5110  ( 0 min )
+   1000 / 5110  ( 0.1 min )
+   1500 / 5110  ( 0.1 min )
+   2000 / 5110  ( 0.1 min )
+   2500 / 5110  ( 0.2 min )
+   3000 / 5110  ( 0.2 min )
+   3500 / 5110  ( 0.2 min )
+   4000 / 5110  ( 0.3 min )
+   4500 / 5110  ( 0.3 min )
+   5000 / 5110  ( 0.4 min )
+
+=== ESITO ===
+confronti misurati: 5088 
+confronti in cui l'entita' del gruppo e' ANCHE nel controllo: 9 (0.2%)
+gruppi toccati: 6 su 308 
+
+--- gruppi piu' colpiti ---
+  CHEBI:4031||gain||vehicle_untreated                  4/11 confronti
+  CHEBI:16411||gain||vehicle_untreated                 1/9 confronti
+  CHEBI:32588||gain||vehicle_untreated                 1/6 confronti
+  CHEBI:4167||gain||vehicle_untreated                  1/9 confronti
+  CHEMBL:CHEMBL265582||gain||vehicle_untreated         1/12 confronti
+  HGNC:5991||gain||vehicle_untreated                   1/3 confronti
+
+--- esempi (primi 15) ---
+  GSE180240   CHEBI:32588    hESC-derived Neurons, KCl_Harringtonin, 6h => hESC-derived Neurons, KCl_DMSO, 6h
+  GSE208405   CHEBI:4031     Atopic Dermatitis Ciclosporin Treated      => Atopic Dermatitis Before Ciclospor
+  GSE208405   CHEBI:4031     Atopic Dermatitis Ciclosporin Treated      => Atopic Dermatitis Before Ciclospor
+  GSE208405   CHEBI:4031     Atopic Dermatitis Ciclosporin Treated      => Atopic Dermatitis Before Ciclospor
+  GSE208405   CHEBI:4031     Atopic Dermatitis Ciclosporin Treated      => Atopic Dermatitis Before Ciclospor
+  GSE214475   HGNC:5991      CD4+ T-cell, IL1A                          => CD4+ T-cell, vehicle
+  GSE228291   CHEBI:16411    IAA only                                   => IAA control only
+  GSE241565   CHEBI:4167     High Glucose (30 mM, 8 days)               => Control (5.5 mM glucose, 8 days)
+  GSE65354    CHEMBL:CHEMBL265582 TNF-alpha stimulated                       => Control (Cytosolic Hsp60 normal an
+
+fatto.

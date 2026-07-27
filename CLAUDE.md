@@ -35,6 +35,58 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-28 (RE-CLUSTER v12 ESEGUITO + CENSIMENTO SUI DATI VERI: 297 COERENTI SU 312)**:
+> 🟡 **L'ancoraggio dal-contrasto è MATERIALIZZATO. Il deliverable esiste sul disco e ogni suo gruppo
+> è stato letto. NESSUN re-pool: i gruppi non sono ancora poolati (I², τ², geni significativi non
+> esistono). Il re-pool (~50 h) è dietro un GO dell'utente.**
+>
+> 1. **RE-CLUSTER v12** (`analysis/p4-fase-f9-stage3-v12-contrast.R`, 524,8 min = 8h45m, output
+>    `20260727T204316Z-stage3-v12-364547a7`). ⚠️ Lo script è copia di **f8** (quello che ha prodotto
+>    v10), NON di f6 come diceva l'handout: f6 non ha i due overlay di correzione dei nomi e i 144
+>    gruppi erano stati misurati sull'output di v10. **11.853 cluster `mode=cgroup`**, tutti a livello
+>    5, prefisso `cgroup_L5_`, le tre colonne del contrasto popolate 11.853/11.853. Record `pair` e
+>    `group` in ingresso **identici a v10** (87.081 / 187.704): il builder è additivo, provato sui dati.
+> 2. **BANDIERA tutte sopra il pavimento**: SARS 38 (28) · TGFB1 61 (38) · LPS 41 (26) · enzalutamide
+>    29 (24) · vemurafenib 19 (13). NB: `smoke-bandiera.csv` è ANTERIORE alle correzioni del 26/07 ed
+>    è stale (dà TGFB1 27, enza 21); i pavimenti veri sono nel censimento del 27/07.
+> 3. **USCITA DEI TRE RAMI** (ADR-0026 + decisione utente), in TDD: `stage4_default_config()$deliverable_methods`
+>    di default `"rem_group"`; `mega`/`mega_aug`/`rem` restano nel codice e tornano raggiungibili
+>    chiedendoli. Quattro test usavano fixture anteriori ad ADR-0025 (senza `cgroup`) e sono stati resi
+>    espliciti. stage4 **794 PASS / 0 FAIL** (+2 ERROR pre-esistenti), stage3-contrast 228 PASS.
+> 4. **IL NUMERO NON È 144, È 312.** Delle 144 chiavi censite 140 si ritrovano; le 4 "perse" erano
+>    artefatti del proxy `NAME:` della misura (ipossia da k=9 a 37, SARS dentro i 38). **Zero gruppi
+>    persi, k mai calato, 113 rafforzati.** Ma **242 chiavi nuove**: il 60% del deliverable non era mai
+>    stato letto. Il 97,2% valeva su un altro insieme.
+> 5. **CENSIMENTO SUI DATI VERI, TUTTI E 312 LETTI UNO PER UNO: 297 coerenti (95,2%), 15 incoerenti.**
+>    Frequenza quasi identica fra nuovi (8/187 = 4,3%) e già letti (7/125 = 5,6%). **Tre gruppi
+>    coerenti il 27/07 sono oggi incoerenti** (influenza, HIV-1, adenoma): non è cambiato il metro, è
+>    cambiata la loro composizione. I 15 si raggruppano in **cinque meccanismi**, non quindici casi:
+>    clinico-vs-sperimentale · entità che è una classe · entità che è un reagente (auxina, dTAGv-1:
+>    induttori degron) · direzioni opposte sotto lo stesso verso (TP53 KO + overexpression) · residui
+>    noti (CSF2, PTSD, Recurrence, `iL3` = larve di nematode, `2_gram` = dose come chiave).
+>    **Tre regole generalizzabili chiuderebbero 7 dei 15 → 97,4%. NON scritte: servirebbe un altro
+>    re-cluster, è decisione dell'utente.**
+> 6. **Difetto di identità trovato e misurato**: `.ca_combo_from_labels()` calcola gli agenti del
+>    trattato assenti dal controllo ma li usa solo se ≥2; con uno solo l'entità si risolve dal valore
+>    intero e ripesca la parte comune (`TGF-β1 + 3C` vs `TGF-β1 + DMSO` → TGFB1). **Impatto misurato:
+>    1 confronto su 4.954.** ⚠️ Due metri sbagliati prima di quello giusto (il primo non trovava
+>    nemmeno il caso di partenza): riportato solo il terzo perché gli altri erano ciechi.
+> 7. **Le ETICHETTE sono sbagliate su decine di gruppi, gli ID no** (CHEBI:63637 mostrato come "sodium
+>    aurothiomalate" è vemurafenib; CHEBI:85993 "PI(18:0/18:3)" è palbociclib; MeSH:D008180 "cancer" è
+>    il lupus). Verificato coi resolver: **gli ID sono tutti giusti**. Le etichette del paper vanno
+>    prese risolvendo `contrast_entity`, non leggendo `canonical_name`.
+> 8. **FRAMMENTAZIONE: 16 entità in due o più gruppi** — TGF-β1 in quattro (61+11+3+3), nutlin-3a in
+>    tre (con **due ID ChEBI** per la stessa molecola), TNF-α in due (gene vs ChEMBL). Non è
+>    incoerenza (i gruppi sono puliti), è potenza buttata. Metà è dovuta a **tipi di controllo tenuti
+>    separati pur essendo lo stesso controllo** (`vehicle_untreated` / `no treatment` / `unstimulated`
+>    / `RPMI media`): chiuderla recupererebbe DHT 27→30, LPS 41→44, IFN-γ 30→33.
+> 9. **PROSSIMO = decisione utente**, in questo ordine: (a) chiudere i 5 meccanismi + la
+>    frammentazione dei controlli con un altro re-cluster (~9 h), oppure (b) GO sul re-pool (~50 h)
+>    sui 312 così come sono, scartando i 15. Finding
+>    `docs/findings/2026-07-28-censimento-v12-dati-veri.md`; evidenza
+>    `analysis/audit/2026-07-28-censimento-v12/` (`bundle-v12-compatto.txt` = il file letto,
+>    `verdetti.csv`, `frammentazione.csv`). Branch invariato, master invariato, no push.
+>
 > **Stato 2026-07-27 (L'INNESTO È FATTO — LA PIPELINE CHIAMA LE REGOLE; 141 COERENTI SU 145 CENSITI)**:
 > 🟡 **I record di gruppo nascono dal CONTRASTO dentro `build_stage3_clusters()`. Equivalenza col gate
 > misurato verificata membro per membro. Censimento fatto su TUTTI i gruppi. NESSUN re-cluster,

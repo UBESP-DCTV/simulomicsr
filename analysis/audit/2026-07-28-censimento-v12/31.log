@@ -1,0 +1,37 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+carico Stadio 2...
+           used  (Mb) gc trigger   (Mb) max used   (Mb)
+Ncells 15429733 824.1   37882128 2023.2 23543992 1257.4
+Vcells 44993805 343.3   99681444  760.6 99680590  760.6
+misuro su 5110 confronti (metro simmetrico)...
+   500 / 5110  ( 0.1 min )
+   1000 / 5110  ( 0.1 min )
+   1500 / 5110  ( 0.2 min )
+   2000 / 5110  ( 0.3 min )
+   2500 / 5110  ( 0.4 min )
+   3000 / 5110  ( 0.5 min )
+   3500 / 5110  ( 0.5 min )
+   4000 / 5110  ( 0.6 min )
+   4500 / 5110  ( 0.7 min )
+   5000 / 5110  ( 0.8 min )
+
+=== ESITO (metro simmetrico) ===
+confronti misurati: 4954 
+confronti in cui il CONTROLLO risolve alla stessa entita' del gruppo: 6 (0.1%)
+gruppi toccati: 2 su 308 
+
+--- gruppi piu' colpiti ---
+  HGNC:11766||gain||vehicle_untreated                5/128 confronti
+  CHEBI:16411||gain||vehicle_untreated               1/9 confronti
+
+--- esempi (primi 25) ---
+  GSE163241   HGNC:11766      T[TGF-β1] => C[no TGF-β1 treatment (control)]
+  GSE163241   HGNC:11766      T[TGF-β1] => C[no TGF-β1 treatment (control)]
+  GSE163241   HGNC:11766      T[TGF-β1] => C[no TGF-β1 treatment (control)]
+  GSE163241   HGNC:11766      T[TGF-β1] => C[no TGF-β1 treatment (control)]
+  GSE163241   HGNC:11766      T[TGF-β1] => C[no TGF-β1 treatment (control)]
+  GSE228291   CHEBI:16411     T[IAA only] => C[IAA control only]
+
+fatto.
