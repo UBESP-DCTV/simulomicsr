@@ -68,7 +68,7 @@
 > 6. **k≥3 NON è più definitivo**: ADR-0026 §Aperto propone (senza deciderlo) un livello dichiarato a
 >    k=2 per il ramo `cgroup`, al posto di `mega_aug`. Finché l'utente non decide, k≥3 resta.
 > 7. **PROSSIMO = RE-CLUSTER (~8h), autorizzato dall'utente il 2026-07-27.** Handout operativo:
->    **`docs/superpowers/specs/2026-07-28-RECLUSTER-HANDOUT.md`** (prompt nel §8). Aggiornamento
+>    **`docs/superpowers/specs/2026-07-28-RECLUSTER-HANDOUT.md`**. Aggiornamento
 >    ORARIO obbligatorio durante il run. Il re-pool (~50h) resta dietro un GO separato.
 >    **Cache del recupero-nome: NON va bumpata, resta v7** — verificato che dal bump l'unica modifica
 >    ai file del recupero-nome sono 7 righe di commento. Fuori dal deliverable: `mega` (ADR-0026),

@@ -1,6 +1,7 @@
 # HANDOUT — sessione del RE-CLUSTER (preparato 2026-07-27)
 
-**Branch:** `review-scientific-consistency-2026-06-10` · master invariato · nessun push
+**Branch:** `review-scientific-consistency-2026-06-10` (pushato su richiesta dell'utente il
+2026-07-27) · master invariato
 **Stato:** 🟢 **Tutto pronto. Il codice è innestato, verificato e censito. Manca solo eseguire.**
 **Il lavoro di questa sessione è UN RUN PESANTE (~8h) con aggiornamento ORARIO all'utente.**
 
@@ -140,42 +141,3 @@ allora si ri-tenta.
 | ADR mega fuori | `docs/decisions/0026-mega-branch-out-of-deliverable.md` (branch `mega-recovery-2026-07-27`) |
 | finding equivalenza | `docs/findings/2026-07-27-equivalenza-builder-contrasto.md` |
 | finding censimento | `docs/findings/2026-07-27-censimento-145-gruppi.md` |
-
----
-
-## 8. PROMPT PER APRIRE LA SESSIONE
-
-> RE-CLUSTER — si esegue. Il codice è pronto, verificato e censito: manca solo girarlo.
->
-> LEGGI PRIMA, INTERO: `docs/superpowers/specs/2026-07-28-RECLUSTER-HANDOUT.md`, poi
-> `docs/decisions/0025-stage3-contrast-derived-group-records.md` (compreso l'Addendum) e
-> `docs/findings/2026-07-27-censimento-145-gruppi.md`.
->
-> CONTESTO SENZA SCONTI. Per mesi questo progetto ha dichiarato "publication-grade" raggruppamenti in
-> cui studi che misurano cose diverse finivano nella stessa meta-analisi: 157 su 184. Il rifacimento
-> è stato scritto come codice di pacchetto, verificato contro il gate misurato (zero gruppi persi, k
-> identico su 144) e censito leggendo TUTTI i gruppi uno per uno: 140 coerenti su 144. Ma non è mai
-> stato eseguito: sul disco c'è ancora il vecchio deliverable.
->
-> IL LAVORO DI OGGI: il re-cluster dello Stadio 3 (~8 ore). Smoke prima, poi il full con `setsid`
-> (verifica SID==PID: `run_in_background` uccide i run lunghi).
->
-> AGGIORNAMENTO OGNI ORA, non solo alla fine: che cosa è stato fatto, a che punto siamo, quanto
-> manca. Se il log non mostra i record `cgroup` in fase 2 o i cluster `cgroup_L5_*`, FERMATI.
->
-> CONTROLLI BANDIERA sul risultato vero (pavimenti misurati): SARS-CoV-2 k≥28, TGFB1 k≥38, LPS k≥26,
-> enzalutamide k≥24, vemurafenib k≥13. Se scendono: fermati e misura, non aggiustare la regola per
-> far tornare il numero.
->
-> DECISIONI GIÀ PRESE, non ri-litigare: i rami `mega`, `mega_aug` e `rem` escono dal deliverable (il
-> ramo dal-contrasto è l'unico che resta); la cache del recupero-nome **non** va bumpata (resta v7,
-> verificato: nessuna modifica di codice dal bump); soglia k≥3.
->
-> DOPO IL RE-CLUSTER: applica l'uscita dei tre rami nella selezione dello Stadio 4 (è selezione, non
-> cancellazione di codice) e poi FERMATI: il re-pool (~50 ore) richiede un mio GO separato.
->
-> REGOLE: il gate è la coerenza, mai il numero. Verifica su TUTTI, mai a campione. Nessun LLM nella
-> pipeline. Nessun altro run pesante senza il mio GO. Fail onesto coi numeri: se resta il 5%, scrivi
-> 5%. Vietato scrivere "validato/finale/paper-grade" senza prova per-gruppo su tutti. Parlami come a
-> un essere umano: breve, chiaro, senza gergo. Branch `review-scientific-consistency-2026-06-10`,
-> master invariato, no push.
