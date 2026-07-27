@@ -3,7 +3,7 @@ test_that("stage4_default_config restituisce list con campi essenziali", {
 
   expect_type(cfg, "list")
   expect_named(cfg, c("qc", "de_engine", "pooling", "compute", "mega_aug",
-                       "schema_versions", "rem_group"),
+                       "schema_versions", "rem_group", "deliverable_methods"),
                ignore.order = TRUE)
 })
 

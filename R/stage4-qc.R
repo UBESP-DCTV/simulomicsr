@@ -125,7 +125,19 @@
     rem_group <- .dedup_rem_group_by_entity(rem_group)
   }
 
-  do.call(rbind, list(rem, mega, mega_aug, rem_group))
+  # ADR-0026: il deliverable e' selezionato, non cablato. Di default resta il
+  # solo ramo derivato dal contrasto; gli altri restano calcolati e raggiungibili
+  # (config$deliverable_methods), cosi' la loro logica non muore silenziosamente.
+  branches <- list(rem = rem, mega = mega, mega_aug = mega_aug,
+                   rem_group = rem_group)
+  keep <- stage4_config$deliverable_methods %||%
+    c("rem", "mega", "mega_aug", "rem_group")
+  branches <- branches[names(branches) %in% keep]
+  # deliverable_methods senza nessun nome valido: risultato vuoto, non NULL
+  # (un NULL a valle diventerebbe un errore lontano dalla causa).
+  if (length(branches) == 0L) return(stage3_clusters[0L, , drop = FALSE])
+
+  do.call(rbind, branches)
 }
 
 #' Filtra sample, studi e cluster per QC sample-level

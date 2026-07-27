@@ -70,7 +70,12 @@ test_that("non-regressione: identify_layer_a non altera i rami rem/mega/mega_aug
                     "small_molecule", "CHEBI:enza")
   )
   clusters$usable_rem_strict[clusters$cluster_id == "pair_rem"] <- TRUE
+  # ADR-0026: il deliverable di default e' il solo ramo dal-contrasto. Qui si
+  # verifica che la CLASSIFICAZIONE dei rami non sia cambiata, quindi si chiedono
+  # esplicitamente tutti e quattro (vedi test-stage4-deliverable-branches.R per
+  # la selezione di default).
   cfg <- stage4_default_config()
+  cfg$deliverable_methods <- c("rem", "mega", "mega_aug", "rem_group")
   out <- .identify_layer_a_clusters(clusters, cfg)
   expect_identical(out$method[out$cluster_id == "pair_rem"], "rem")
   expect_identical(out$method[out$cluster_id == "group_meg"], "mega")

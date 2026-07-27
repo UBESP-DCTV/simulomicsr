@@ -71,6 +71,20 @@ stage4_default_config <- function() {
       franchini_correction   = TRUE             # attiva correzione shared-baseline
                                                  # nel REM pooling (T6/T7).
     ),
+    # ADR-0026 + decisione utente 2026-07-27: quali rami di pooling compongono
+    # il DELIVERABLE. Dal re-cluster v12 il deliverable e' il solo ramo derivato
+    # dal CONTRASTO (`rem_group` sui cluster `cgroup`, ADR-0025). Gli altri tre
+    # escono per SELEZIONE, non per cancellazione: il loro codice resta, resta
+    # testato, e torna raggiungibile passando i metodi voluti in questo campo.
+    # Perche' escono:
+    #   mega      -- censito 2026-07-27: il 74% dei campioni poolati viene da
+    #                studi che portano UN SOLO braccio; le 99 mega sono in
+    #                realta' 55 meta-analisi distinte; I2 e tau2 sono NA su
+    #                tutte (ADR-0026).
+    #   mega_aug  -- k=2 e 88% dei cluster con campioni prestati da altri studi.
+    #   rem       -- 12 cluster = 6 meta-analisi, 5 minestroni; l'unica pulita
+    #                (sarcopenia) e' gia' nel ramo nuovo con k piu' alto.
+    deliverable_methods = "rem_group",
     rem_group = list(
       # FASE F6 2026-07-05: ammissione group nominati L2-L4 (safety_min basso
       # per design) al REM per-studio. safety_min NON e' un gate qui (il REM

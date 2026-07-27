@@ -17,7 +17,11 @@ test_that(".qc_filter_samples_and_studies marca sample sotto lib_size_min", {
 
 test_that("identify_layer_a_clusters filtra correttamente i 3 path", {
   input <- make_test_stage4_input(seed = 42L)
+  # ADR-0026: la fixture e' anteriore al ramo dal-contrasto (nessun cluster
+  # "cgroup"), e col deliverable di default darebbe una selezione vuota. Qui si
+  # verifica la classificazione nei tre path storici, quindi si chiedono.
   cfg <- stage4_default_config()
+  cfg$deliverable_methods <- c("rem", "mega", "mega_aug", "rem_group")
 
   la <- .identify_layer_a_clusters(input$clusters, stage4_config = cfg)
 
@@ -31,7 +35,10 @@ test_that("cluster con tutti sample droppati va in qc_drops_cluster", {
   # forza lib_size = 100k per tutti i sample di GSE001
   input$h5_metadata$lib_size[input$h5_metadata$gse == "GSE001"] <- 100000L
 
+  # Come sopra: la fixture non ha cluster "cgroup", quindi il deliverable di
+  # default sarebbe vuoto e non ci sarebbe nulla su cui misurare i drop.
   cfg <- stage4_default_config()
+  cfg$deliverable_methods <- c("rem", "mega", "mega_aug", "rem_group")
   result <- .qc_filter_samples_and_studies(input$clusters, input$h5_metadata, cfg)
 
   expect_true(any(result$qc_drops_study$study_id == "GSE001"))

@@ -1,0 +1,154 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Re-cluster Stadio 3 v12 (ancoraggio dal-contrasto ADR-0025 + name-recovery + 
+schema_versions: anchor=v3.1.1, resolver=v1.1.0
+
+── 1. Carico Stadio 2 master ──
+
+✔ Stadio 2: 24394 studi
+
+── 1b. [SMOKE] Seleziono subset di studi (target minestroni v3) ──
+
+ℹ Cluster v3 target: group_L4_93e1c603, group_L4_c814e4da, group_L4_cc07ca23, group_L0_686d6360 -> 737 serie membri
+ℹ [v10] +337 serie da 3831 override fallback -> bandiera (tot target 1054)
+✔ [SMOKE] subset: 250 studi (250 dai minestroni target)
+ℹ [SMOKE] completeness guard SALTATO (inerte al recupero)
+
+── 3. Carico Stadio 1 (facts) ──
+
+ℹ [SMOKE] GSM referenziati dal subset: 6615
+<environment: 0x6043c8c8e8e0>
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  88227107 4711.9  165939400 8862.2 129645990 6923.9
+Vcells 157927844 1204.9  502282815 3832.2 502282517 3832.2
+✔ Stadio 1: 6615 GSM in environment
+
+── 4. Carico ontologia (MeSH + ChEBI + HGNC) ──
+
+✔ Ontologia caricata
+
+── 5. Pre-pass anchor (recovery=NULL) -> kind_by_gsm ──
+
+ℹ anchor cache pre-pass: 3247 chiavi (GSM|role)
+✔ kind_by_gsm: 3210 GSM rappresentanti; collisioni ruolo: 37 (kind divergente: 0)
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  88249939 4713.1  165939400 8862.2 129645990 6923.9
+Vcells 157979976 1205.3  502282815 3832.2 502282517 3832.2
+
+── 6. Costruisco lookup recovery (build_name_recovery_lookup) ──
+
+✔ lookup: 3210/3210 GSM con entry (in H5) -- 0.1 min
+recovery_source: CHEBI_ALIAS=714, CHEMBL_ALIAS=88, COMPOUND_COMBO=3,
+CYTOKINE_IMMPORT=17, K2_GENETIC=73, K3_MISTYPE_cytokine=10,
+K3_MISTYPE_pathogen=1, MESH_NAME=200, NO_RECOVERY=1444, PAMP_WHITELIST=4,
+PATHOGEN_VERNACULAR=24, STR_FALLBACK=632
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 271791 record_id in 16.4 sec
+
+── 6b. Overlay correzioni LLM (v9 + fallback) ──
+
+✔ overlay v9 (k>=2): 56427 GSM corretti (da 3646 override)
+✔ overlay fallback (STR/UNK): 43185 GSM corretti (da 50246 override)
+
+── 8. build_stage3_clusters (recovery ON) ──
+
+[stage3] START build_stage3_clusters at 2026-07-27 13:49:34
+[stage3] Phase 1 done: 6615 stage1 + 250 stage2 records loaded
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3247 (sample_id, role) anchors + 3210
+hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1694 pair + 3211 group + 1340 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=414 non_clust=1280; group eligible=2505
+non_clust=706; cgroup eligible=1170 non_clust=524
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 93 eligible records in 5 hard-filter partitions
+[stage3] mode=pair L0 done in 0.1s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 2505 eligible records in 10 hard-filter partitions
+[stage3] mode=group L0 done in 0.3s
+[stage3] mode=group L1 done in 0.3s
+[stage3] mode=group L2 done in 0.3s
+[stage3] mode=group L3 done in 0.3s
+[stage3] mode=group L4 done in 0.2s
+[stage3] mode=cgroup L5: 1170 record in 0s
+[stage3] Phase 5 done: combining 76 assignment chunks
+[stage3] Phase 6: summarize_clusters (14160 assignments -> ~clusters)
+Summarizing 8584 clusters at 2026-07-27 13:50:06
+...cluster 429/8584 (5%) at 2026-07-27 13:50:13
+...cluster 858/8584 (10%) at 2026-07-27 13:50:19
+...cluster 1287/8584 (15%) at 2026-07-27 13:50:25
+...cluster 1716/8584 (20%) at 2026-07-27 13:50:31
+...cluster 2145/8584 (25%) at 2026-07-27 13:50:37
+...cluster 2574/8584 (30%) at 2026-07-27 13:50:43
+...cluster 3003/8584 (35%) at 2026-07-27 13:50:48
+...cluster 3432/8584 (40%) at 2026-07-27 13:50:55
+...cluster 3861/8584 (45%) at 2026-07-27 13:51:00
+...cluster 4290/8584 (50%) at 2026-07-27 13:51:07
+...cluster 4719/8584 (55%) at 2026-07-27 13:51:12
+...cluster 5148/8584 (60%) at 2026-07-27 13:51:18
+...cluster 5577/8584 (65%) at 2026-07-27 13:51:25
+...cluster 6006/8584 (70%) at 2026-07-27 13:51:30
+...cluster 6435/8584 (75%) at 2026-07-27 13:51:38
+...cluster 6864/8584 (80%) at 2026-07-27 13:51:43
+...cluster 7293/8584 (85%) at 2026-07-27 13:51:49
+...cluster 7722/8584 (90%) at 2026-07-27 13:51:56
+...cluster 8151/8584 (95%) at 2026-07-27 13:52:02
+...cluster 8580/8584 (100%) at 2026-07-27 13:52:09
+...cluster 8584/8584 (100%) at 2026-07-27 13:52:09
+Combining 8584 cluster rows at 2026-07-27 13:52:09
+[stage3] Phase 6 done: 8584 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 3670 record_summary rows
+✔ build wall: 3.2 min
+
+── 10. Scrivo output in analysis/p4-output/20260727T115244Z-stage3-v12smoke-578ac1a4 ──
+
+── SANITY v12 ──────────────────────────────────────────────────────────────────
+ℹ run_id=578ac1a4  (NB: deterministico da input+config; il token v12 nella dir lo distingue da v3..v10)
+ℹ n_clusters    = 8584
+ℹ n_assignments = 14160
+ℹ copertura: sum(n_total) cluster = 44835 ; record assegnati = 3598
+ℹ agent_id_resolved: UNK(residuo U1)=653 | STR:(framm)=585 | MeSH:=1918 | CHEBI:=3566 | HGNC:=1469
+ℹ kind genetic_* (K2)=1700 | agent recuperati (flag)=3437 | kind recuperati (flag)=222
+recovery_source (cluster): CHEBI_ALIAS=2018, CHEMBL_ALIAS=355,
+COMPOUND_COMBO=21, CYTOKINE_IMMPORT=47, K2_GENETIC=181, K3_MISTYPE_cytokine=21,
+K3_MISTYPE_pathogen=6, LLM_NAME_CLEANUP=2727, MESH_NAME=400, NO_RECOVERY=2151,
+PAMP_WHITELIST=14, PATHOGEN_VERNACULAR=103, STR_FALLBACK=540
+disease_vs_normal: 1846 cluster | UNK residui=22 | con agent recuperato
+(MeSH/STR)=1824 | identita' distinte=66
+small_molecule: 3748 cluster | UNK residui=11 | recuperati=3737
+CONFRONTO disease_vs_normal|UNK cluster: v3=55432 -> v10=22 (v3 GLOBALE vs v12
+SUBSET: non confrontabili 1:1, solo ordine di grandezza)
+
+── SANITY v12 (overlay + bandiera) ──
+
+ℹ overlay applicati: v9(k>=2)=56427 GSM | fallback(STR/UNK)=43185 GSM
+ℹ cluster con recovery_source=LLM_NAME_CLEANUP: 2727 (v9-final full era 42.773; qui SUBSET smoke)
+breast (MeSH:D001943): 67 cluster | max studi (k) = 8
+colorectal (MeSH:D015179): 10 cluster | max studi (k) = 1
+hepatocell (MeSH:D006528): 76 cluster | max studi (k) = 2
+
+── SANITY v12 (ancoraggio dal-contrasto) ──
+
+ℹ cluster mode=cgroup: 326 su 8584 totali
+ℹ level dei cgroup: 5 (atteso: 5)
+ℹ cluster_id con prefisso cgroup_L5_: 326/326
+ℹ   contrast_entity: 326/326 popolate
+ℹ   contrast_direction: 326/326 popolate
+ℹ   contrast_control_key: 326/326 popolate
+ℹ cgroup poolabili k>=3: 7 | k>=5: 1 | k max: 6
+
+── Bandiera (SUBSET smoke: NON confrontabile coi pavimenti) 
+SARS-CoV-2 (NCBITaxon:2697049): k=1 (pavimento 28) (smoke)
+TGFB1 (HGNC:11766): k=0 (pavimento 38) (smoke)
+LPS (CHEBI:16412): k=0 (pavimento 26) (smoke)
+enzalutamide (CHEBI:68534): k=0 (pavimento 24) (smoke)
+vemurafenib (CHEBI:63637): k=1 (pavimento 13) (smoke)
+✔ FINE. Wall totale: 10.3 min. Output: analysis/p4-output/20260727T115244Z-stage3-v12smoke-578ac1a4

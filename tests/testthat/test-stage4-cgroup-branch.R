@@ -29,7 +29,11 @@ test_that("il gate rem_group seleziona i cgroup e non piu' i group", {
 })
 
 test_that("il ramo mega non cambia: continua a prendere i group L0/L1", {
-  sel <- .identify_layer_a_clusters(.s4cg_clusters(), stage4_default_config())
+  # ADR-0026 lo toglie dal DELIVERABLE, non dal codice: chiesto esplicitamente
+  # deve ancora classificare come prima.
+  cfg <- stage4_default_config()
+  cfg$deliverable_methods <- c("rem", "mega", "mega_aug", "rem_group")
+  sel <- .identify_layer_a_clusters(.s4cg_clusters(), cfg)
   mg <- sel[sel$method == "mega", ]
   expect_equal(nrow(mg), 1L)
   expect_equal(mg$cluster_id, "group_L0_ccc")
