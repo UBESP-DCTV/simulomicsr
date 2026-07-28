@@ -35,6 +35,49 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-28b (RE-CLUSTER v13 CON LE SEI REGOLE: 296 COERENTI SU 305 = 97,0%)**:
+> 🟡 **Secondo re-cluster (8h43m, `20260728T151529Z-stage3-v13-364547a7`). NESSUN RE-POOL: i gruppi
+> non sono poolati, I² e τ² non esistono. Il re-pool (~50 h) è dietro un GO dell'utente.**
+>
+> 1. **SEI REGOLE in TDD** (30 asserzioni viste fallire prima del codice), ognuna da una causa
+>    trovata nel codice, non da un elenco di casi: (a) `.normalize_control_type` cercava i sinonimi
+>    a DUE parole (`"no treatment"`) in una lista confrontata per TOKEN — non potevano matchare mai,
+>    ed è il motivo per cui TGFB1/LPS/IFN-γ/DHT stavano in due gruppi ciascuno; (b) `.CG_BLOCK_RX`
+>    non conosceva la notazione genetica `-/-`; (c) `.CG_UMBRELLA_RX` era ancorato `^…$` e nessuno
+>    controllava il CANDIDATO del resolver (`"MEK inhibitor"` → U0126); (d) `.cg_is_inducer` riceveva
+>    `"CHEBI:16411"` invece del nome; (e) mancavano i segnali clinici sul trattato (soggetto,
+>    donatore, età, visita); (f) nessun controllo "solo numeri + unità".
+> 2. **MISURA PRIMA DEL RUN** su tutti i 28.294 confronti (le regole nuove non passano dall'anchor):
+>    89 membri scartati dalle due porte nuove, 7 versi `gain→block`, 1.031 chiavi di controllo
+>    cambiate (~650 fusioni, ~168 separazioni cliniche). **Le bandiera previste erano esatte**
+>    (TGFB1 65, LPS 50, vemurafenib 20); il conteggio dei gruppi no (stimati 360, veri 305: la mia
+>    dedup non era quella dello Stadio 4).
+> 3. **DELIVERABLE: 312 → 305 gruppi, ma studi-slot 2.076 → 2.158.** Meno gruppi, più studi dentro:
+>    è quello che devono fare le fusioni. Bandiera: SARS 38 (=), TGFB1 61→**65**, LPS 41→**50**,
+>    enzalutamide 29 (=), vemurafenib 19→**20**.
+> 4. **CENSIMENTO: 296 coerenti (97,0%), 9 incoerenti** (v12: 297/312 = 95,2%). Verifica per
+>    IDENTITÀ, non a campione: **242 gruppi hanno l'insieme dei membri identico a v12** (confronto
+>    di insiemi, gruppo per gruppo) → stesso verdetto; **riletti i 63 restanti** (51 cambiati + 12
+>    nuovi), uno per uno.
+> 5. **CHIUSI**: cytokine_stimulation, U0126, `2_gram`, IAA, dTAGv-1, auxina, `affected` (spariti);
+>    **HIV-1** (k=6 tutti sperimentali, i 2 clinici separati sotto soglia); **TP53** — il caso più
+>    istruttivo: il gruppo `gain` che mescolava knockout e sovraespressione è sparito e ne è nato uno
+>    **`block` k=3 pulito**. La regola non ha solo tolto un membro: ha fatto nascere una meta-analisi
+>    corretta che prima non esisteva.
+> 6. **I NOVE INCOERENTI, detti senza sconti**: 4 invariati (Recurrence, adenoma, CSF2, PTSD —
+>    nessuna regola scritta per loro, per scelta); influenza migliorata (da 2 clinici su 10 a 1 su 9,
+>    GSE113210 usa le sigle `AV`/`CV` per le visite e nessuna regola generale può dedurlo); **4 nuovi
+>    o resi visibili dalla crescita** — IFN-α (GSE126517 misura R5020, e compare identico anche nel
+>    gruppo R5020), IL1A (mescola IL-1β, che ha un gruppo proprio k=26), IL3 (larve di nematode),
+>    DCVC (tre contrasti sotto un'entità). **È il prezzo delle fusioni e va riportato.**
+> 7. **RESTANO APERTI**: le etichette sbagliate con ID giusti (`CHEBI:5931` "chloride" è insulina,
+>    `CHEBI:16335` "glucose" è adenosina) — da risolvere da `contrast_entity` prima del paper; la
+>    frammentazione da scritture diverse (ATRA vs acido retinoico, `STR:ifna` vs `HGNC:5417`), che
+>    era fuori scope.
+> 8. **PROSSIMO = GO UTENTE sul re-pool (~50 h)**. Finding `docs/findings/2026-07-28-censimento-v13.md`;
+>    evidenza `analysis/audit/2026-07-28-censimento-v13/`. Script re-cluster
+>    `analysis/p4-fase-f10-stage3-v13-regole.R`. Branch invariato, master invariato, no push.
+>
 > **Stato 2026-07-28 (RE-CLUSTER v12 ESEGUITO + CENSIMENTO SUI DATI VERI: 297 COERENTI SU 312)**:
 > 🟡 **L'ancoraggio dal-contrasto è MATERIALIZZATO. Il deliverable esiste sul disco e ogni suo gruppo
 > è stato letto. NESSUN re-pool: i gruppi non sono ancora poolati (I², τ², geni significativi non

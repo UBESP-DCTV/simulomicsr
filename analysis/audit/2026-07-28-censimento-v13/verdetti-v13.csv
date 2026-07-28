@@ -1,0 +1,10 @@
+n,ckey,nome_reale,k,stato,verdetto,motivo
+28,NCBITaxon:11320||gain||vehicle_untreated,influenza,9,cambiato,incoerente,"migliorato ma non chiuso: resta GSE113210 ('influenza at AV' => 'Control CV'), sorveglianza clinica indicata con sigle di visita che nessuna regola generale puo' dedurre. Prima erano 2 clinici su 10, ora 1 su 9"
+37,HGNC:5417||gain||vehicle_untreated,Interferon-alpha,6,nuovo,incoerente,"GSE126517 misura R5020 (progestinico), non interferone: compare identico anche nel gruppo STR:r5020. Un membro su sei non c'entra"
+38,HGNC:5991||gain||vehicle_untreated,IL1A,6,cambiato,incoerente,"mescola IL-1alfa e IL-1beta: GSE155141 e GSE205853 sono IL-1beta, che ha un gruppo proprio (HGNC:5992, k=26). Errore di risoluzione reso visibile dalla crescita del gruppo"
+54,HGNC:6011||gain||vehicle_untreated,IL3,4,cambiato,incoerente,"invariato: in GSE93620 'iL3' sono le larve infettive di stadio 3 del nematode A. ceylanicum, non l'interleuchina 3"
+59,CHEBI:59132||gain||vehicle_untreated,DCVC,3,nuovo,incoerente,"tre contrasti diversi: DCVC (nefrotossico), 'HHC treated' e stimolazione antigenica di cellule T CD8+. L'entita' non li accomuna"
+--,MeSH:D012008||gain||diagnosis,Recurrence,4,invariato,incoerente,"invariato dal censimento v12: un membro confronta 'Untreated' contro 'Diagnosis' e due appaiano pazienti diversi"
+--,STR:adenoma||gain||vehicle_untreated,adenoma,4,invariato,incoerente,"invariato: mescola adenoma ipofisario e adenoma del colon"
+--,HGNC:2434||gain||vehicle_untreated,CSF2,3,invariato,incoerente,"invariato: due studi stimolano con GM-CSF, il terzo confronta macrofagi M1 (GM-CSF + IFN-gamma) contro M0"
+--,STR:ptsd||gain||vehicle_untreated,PTSD,3,invariato,incoerente,"invariato: due studi caso-controllo, il terzo una perturbazione dentro i malati"
