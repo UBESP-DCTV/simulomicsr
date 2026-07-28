@@ -84,7 +84,7 @@
 > 9. **PROSSIMO = RE-POOL (~50 h), GO DATO dall'utente il 2026-07-28, da eseguire in sessione
 >    pulita** insieme alla correzione delle etichette (a valle, in parallelo: verificato che
 >    `canonical_name` non entra nel pooling). Handout
->    `docs/superpowers/specs/2026-07-29-REPOOL-HANDOUT.md` + prompt `-REPOOL-PROMPT.md`.
+>    `docs/superpowers/specs/2026-07-29-REPOOL-HANDOUT.md` (il prompt di apertura lo incolla l'utente).
 >    Finding `docs/findings/2026-07-28-censimento-v13.md`;
 >    evidenza `analysis/audit/2026-07-28-censimento-v13/`. Script re-cluster
 >    `analysis/p4-fase-f10-stage3-v13-regole.R`. Branch invariato, master invariato, no push.
