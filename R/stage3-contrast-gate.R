@@ -25,6 +25,7 @@
   "cell", "tissue", "line", "type", "status", "state", "high", "low", "positive", "negative",
   "present", "absent", "mutant", "post", "pre", "on", "off", "early", "late", "responder",
   "nonresponder", "non", "sensitive", "resistant", "primary", "recurrent", "chemotherapy",
+  "affected", "unaffected", "affected_individual",
   "differentiation", "differentiated", "environmental", "behavioral", "transgene", "stable",
   "up", "down", "yes", "no", "before", "after", "day", "week", "month", "stage", "grade",
   "level", "score", "activated", "resting", "poly", "mrna", "rna", "dna", "organic", "cation",
@@ -51,7 +52,12 @@
 # induttori dei sistemi condizionali: non sono la perturbazione studiata
 #' @keywords internal
 .CG_INDUCERS <- c("doxycycline", "dox", "doxy", "tetracycline", "tet", "iptg", "auxin", "iaa",
-                  "blasticidin", "puromycin", "g418", "geneticin", "hygromycin", "cumate")
+                  "blasticidin", "puromycin", "g418", "geneticin", "hygromycin", "cumate",
+                  # il nome per esteso dell'auxina e i degradatori a tag: l'entita'
+                  # comune e' il reagente, la proteina degradata cambia da studio a
+                  # studio (censimento 2026-07-28).
+                  "indole-3-acetic acid", "indole 3 acetic acid", "dtag", "dtagv",
+                  "shield-1", "shield1", "asunaprevir", "trimethoprim")
 
 # anatomia: non e' MAI un token distintivo di identita'
 #' @keywords internal
@@ -130,7 +136,11 @@
   w <- strsplit(t, "[^a-z0-9]+")[[1L]]
   w <- setdiff(w[nzchar(w)], .CG_CONNECTORS)
   if (!length(w)) return(TRUE)
-  all(w %in% .CG_GENERIC)
+  # Una quantita' non e' un'entita': "STR:2_gram" era diventata la chiave di un
+  # gruppo (censimento 2026-07-28). NB: si scarta solo se TUTTI i token sono
+  # numeri o unita' — "rbm4" e "p16ink4a" restano entita' (correzione 2026-07-26).
+  quantita <- grepl("^[0-9]+$", w) | (w %in% .CA_UNITS)
+  all(w %in% .CG_GENERIC | quantita)
 }
 
 #' L'etichetta nomina un induttore di sistema condizionale
@@ -141,11 +151,27 @@
   any(vapply(.CG_INDUCERS, function(z) grepl(paste0("\\b", z, "\\b"), s), logical(1)))
 }
 
+#' Nome di CLASSE farmacologica: un bersaglio piu' il ruolo, non una molecola
+#'
+#' "MEK inhibitor" identifica una famiglia, non un composto: quando il resolver
+#' l'ha agganciato a U0126 ha messo insieme inibitori di MEK, ERK e JNK
+#' (censimento 2026-07-28).
+#' @keywords internal
+.CG_DRUGCLASS_RX <- paste0("\\b(inhibitors?|agonists?|antagonists?|blockers?|",
+                           "activators?|inducers?|modulators?|ligands?)$")
+
 #' Il nome e' un termine-classe (ombrello), non un'entita'
 #' @keywords internal
 .cg_is_umbrella_name <- function(x) {
   if (length(x) == 0L || is.na(x[1L])) return(FALSE)
-  grepl(.CG_UMBRELLA_RX, tolower(trimws(x[1L])))
+  s <- tolower(trimws(x[1L]))
+  if (grepl(.CG_UMBRELLA_RX, s)) return(TRUE)
+  if (grepl(.CG_DRUGCLASS_RX, s, perl = TRUE)) return(TRUE)
+  # Un ombrello resta un ombrello anche accompagnato da parole generiche:
+  # l'ancoraggio ^...$ non vedeva "cytokine stimulation".
+  w <- strsplit(gsub("[^a-z0-9 ]+", " ", s), " +")[[1L]]
+  w <- w[nzchar(w) & !(w %in% .CG_GENERIC) & !(w %in% .CG_CONNECTORS)]
+  length(w) > 0L && grepl(.CG_UMBRELLA_RX, paste(w, collapse = " "))
 }
 
 # ------------------------------------------------------------ verso del delta --
@@ -155,7 +181,12 @@
   "reduced|decreas")
 .CG_BLOCK_RX <- paste0("inhibitor|inhibiti|antagonist|blockade|blocking|blocker|neutraliz|",
   "degrader|protac|knockdown|knockout|\\bko\\b|\\bshrna|\\bsirna|\\bsgrna|crispr|deficien|",
-  "\\bnull\\b|\\banti-[a-z0-9]")
+  "\\bnull\\b|\\banti-[a-z0-9]|",
+  # notazione genetica standard di allele perso: (-/-), (+/-), (-/mut). Dopo
+  # .cg_normalize la barra e' gia' uno spazio, quindi "(-/-)" arriva come "(- -)".
+  # Senza questa forma il gruppo TP53 metteva insieme un doppio knockout e una
+  # SOVRAESPRESSIONE (censimento 2026-07-28).
+  "\\(\\s*-\\s*[-a-z]*\\s*\\)")
 .CG_GAIN_RX <- "addition|added|supplement|agonist|overexpress|\\bhigh\\b|stimulat|activation|induction|\\bplus\\b"
 
 #' Verso del delta: guadagno, perdita, blocco o ambiguo
@@ -235,7 +266,12 @@
 # il segnale piu' affidabile e' sul TRATTATO: "CMV viremia", "HBV in epatocarcinoma"
 # sono stati clinici di un paziente; "MRC5 esposte a CMV" e' un'infezione sperimentale.
 .CG_CLINICAL_TREATED_RX <- paste0("viremia|viraemia|seropositiv|carrier|chronic infect|carcinoma|",
-  "\\bcancer\\b|tumou?r|hepatitis|\\bpatients?\\b|\\bcase\\b|positive status")
+  "\\bcancer\\b|tumou?r|hepatitis|\\bpatients?\\b|\\bcase\\b|positive status|",
+  # Un soggetto umano identificato (donatore, soggetto, eta', visita di studio) e'
+  # sorveglianza clinica, non un'infezione di laboratorio. Senza questi segnali
+  # influenza e HIV mescolavano pazienti e cellule (censimento 2026-07-28).
+  "\\bsubjects?\\b|\\bdonors?\\b|\\bvolunteers?\\b|\\bcohort\\b|\\bvisit\\b|",
+  "\\benrolled\\b|post-?deployment|[0-9]+\\s*-?\\s*years?-?\\s*old|\\bage[d:]?\\s*[0-9]")
 
 #' Asse clinico/sperimentale di un contrasto d'infezione
 #'

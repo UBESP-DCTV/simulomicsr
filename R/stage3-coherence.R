@@ -14,13 +14,27 @@
   x <- gsub("\\b\\d+(\\.\\d+)?\\b", " ", x)              # numeri isolati
   x <- gsub("[^a-z ]+", " ", x)                            # punteggiatura
   x <- trimws(gsub("\\s+", " ", x))
-  # classe veicolo/baseline: sinonimi comuni -> stessa classe
-  veh <- c("dmso","vehicle","untreated","control","mock","pbs","saline","none",
-           "no treatment","not treated","baseline","normal","healthy","naive")
+  # Controlli SPECIFICI di un contrasto: restano distinti anche se accompagnati da
+  # una parola di veicolo. Fonderli creerebbe minestroni (normossia e' il controllo
+  # dell'ipossia, lo scramble quello del silenziamento).
   toks <- strsplit(x, " ")[[1]]
-  if (any(toks %in% veh) &&
-      !any(toks %in% c("diet","normoxia","normoxic","hypoxia","scramble","scrambled",
-                        "wildtype","wt","sirna","shrna","sgrna","irradiated","fasting"))) {
+  specifici <- c("diet","normoxia","normoxic","hypoxia","scramble","scrambled",
+                 "wildtype","wt","sirna","shrna","sgrna","irradiated","fasting",
+                 "conditioned")
+  if (any(toks %in% specifici)) {
+    if (x == "") return("NA")
+    return(x)
+  }
+  # Classe veicolo/baseline. I sinonimi a DUE parole ("no treatment") vanno cercati
+  # nella frase: la versione precedente li teneva in una lista confrontata per
+  # TOKEN, quindi non potevano matchare mai — ed e' il motivo per cui TGFB1, LPS,
+  # IFN-gamma e DHT finivano in due gruppi ciascuno (censimento 2026-07-28).
+  veh_tok <- c("dmso","vehicle","untreated","control","mock","pbs","saline","none",
+               "baseline","normal","healthy","naive","unstimulated","unstim",
+               "media","medium","ethanol","etoh","solvent")
+  veh_frasi <- c("no treatment", "not treated", "no perturbation", "no stimulation")
+  if (any(toks %in% veh_tok) ||
+      any(vapply(veh_frasi, function(p) grepl(p, x, fixed = TRUE), logical(1)))) {
     return("vehicle_untreated")
   }
   if (x == "") return("NA")

@@ -162,6 +162,7 @@
 .CA_UNITS <- c(
   "ml", "ul", "dl", "l", "ug", "mg", "ng", "pg", "kg", "g", "nm", "um", "mm",
   "pm", "cm", "mol", "mmol", "umol", "nmol", "moi", "pfu", "ffu", "tcid", "iu",
+  "gram", "grams", "litre", "litres", "liter", "liters", "mole", "moles",
   "hr", "hrs", "min", "sec", "h", "d", "day", "days", "week", "weeks", "wk",
   "month", "months", "hour", "hours", "hpi", "dpi", "rpm", "per", "dose",
   "doses", "conc", "final", "approx", "total", "fold", "percent"
@@ -711,7 +712,17 @@
   if ((startsWith(entity, "STR:") || startsWith(entity, "NAME:")) &&
       .cg_is_umbrella_name(tolower(raw))) return(out("nome_ombrello"))
   if (entity %in% .CA_BLACKLIST_ID) return(out("id_blacklist"))
+  # L'induttore va cercato nel NOME, non nel `raw`: per un'entita' con ID
+  # ontologico `raw` vale "CHEBI:16411" e non ha mai potuto matchare. Cosi'
+  # l'auxina (sistema AID) e il dTAG erano diventati due gruppi, mentre la
+  # proteina degradata cambia da studio a studio (censimento 2026-07-28).
   if (.cg_is_inducer(gsub("_", " ", raw))) return(out("induttore"))
+  if (.cg_is_inducer(res$name %||% "") ||
+      .cg_is_inducer(res$candidate %||% "")) return(out("induttore_nome"))
+  # Un nome di CLASSE che aggancia un membro della classe produce un ID vero ma
+  # sbagliato: "MEK inhibitor" -> U0126 metteva insieme inibitori di MEK, ERK e
+  # JNK. Il controllo va sul CANDIDATO che ha prodotto il match, non sull'esito.
+  if (.cg_is_umbrella_name(res$candidate %||% "")) return(out("candidato_ombrello"))
   # Il NOME RISOLTO si giudica per APPARTENENZA al vocabolario, non con
   # l'euristica sui token: quella scarta ogni sigla sotto i 4 caratteri, cioe'
   # entita' vere come TNF, IL6, RSV, CMV, HBV (565 membri persi, misurato
