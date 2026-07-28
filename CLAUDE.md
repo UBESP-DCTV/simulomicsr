@@ -74,7 +74,18 @@
 >    `CHEBI:16335` "glucose" è adenosina) — da risolvere da `contrast_entity` prima del paper; la
 >    frammentazione da scritture diverse (ATRA vs acido retinoico, `STR:ifna` vs `HGNC:5417`), che
 >    era fuori scope.
-> 8. **PROSSIMO = GO UTENTE sul re-pool (~50 h)**. Finding `docs/findings/2026-07-28-censimento-v13.md`;
+> 8. **LIMITE DICHIARATO su TGF-β1 (decisione utente 2026-07-28)**: (a) l'entità è ancora spezzata
+>    in TRE gruppi — `HGNC:11766` k=65, `STR:tgfb` k=11, `STR:tgf_b` k=3 — perché le scritture
+>    `TGFb`/`TGF-B` non risolvono all'ID del gene: **79 studi-slot potenziali contro 65 usati**, i
+>    tre gruppi sono internamente coerenti (è potenza persa, non un errore di contrasto);
+>    `HGNC:11768` k=4 è TGF-β**2**, isoforma diversa, non va fuso. (b) `GSE233083` (`"TGF-β1 + 3C"`
+>    contro `"TGF-β1 + DMSO"`) misura 3C ma finisce nel gruppo TGF-β1: impatto misurato **1
+>    confronto su 4.954**. Entrambi **non si correggono**: vanno nei Methods.
+> 9. **PROSSIMO = RE-POOL (~50 h), GO DATO dall'utente il 2026-07-28, da eseguire in sessione
+>    pulita** insieme alla correzione delle etichette (a valle, in parallelo: verificato che
+>    `canonical_name` non entra nel pooling). Handout
+>    `docs/superpowers/specs/2026-07-29-REPOOL-HANDOUT.md` + prompt `-REPOOL-PROMPT.md`.
+>    Finding `docs/findings/2026-07-28-censimento-v13.md`;
 >    evidenza `analysis/audit/2026-07-28-censimento-v13/`. Script re-cluster
 >    `analysis/p4-fase-f10-stage3-v13-regole.R`. Branch invariato, master invariato, no push.
 >

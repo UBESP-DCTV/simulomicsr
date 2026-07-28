@@ -82,6 +82,28 @@ TGFB1 61+3→65, R1881 4→26). Resta la frammentazione da **scritture diverse d
 che era fuori dallo scope deciso: ATRA vs acido retinoico, `STR:ifna` vs `HGNC:5417`,
 `STR:il17` vs `HGNC:5981`, nutlin su due ID ChEBI.
 
+## 6bis. LIMITE DICHIARATO — TGF-β1 (decisione utente 2026-07-28)
+
+Due difetti distinti riguardano TGF-β1 e **restano nel deliverable, dichiarati come limite**:
+
+1. **Frammentazione dell'entita'.** TGF-β1 e' ancora spezzato in **tre** gruppi:
+   `HGNC:11766` (k=65), `STR:tgfb` (k=11), `STR:tgf_b` (k=3). Le scritture `TGFb` e `TGF-B` non
+   risolvono all'ID del gene. **79 studi-slot potenziali contro i 65 usati.** I tre gruppi sono
+   internamente coerenti: e' potenza persa, non un errore di contrasto. Chiuderla richiede di
+   ri-mappare le sigle nel resolver — decisione gia' presa in negativo il 2026-07-26 (opzione A) e
+   fuori dallo scope del rework del 2026-07-28.
+   NB: `HGNC:11768` (k=4) e' TGF-β**2**, un'isoforma diversa: **non** va fuso.
+
+2. **Entita' presente su entrambi i bracci.** `GSE233083`: `"TGF-β1 + 3C"` contro
+   `"TGF-β1 + DMSO"` misura 3C, non TGF-β1, ma finisce nel gruppo TGF-β1. Causa provata:
+   `.ca_combo_from_labels()` calcola gli agenti del trattato assenti dal controllo ma usa il
+   risultato solo se ne restano ≥2; con uno solo l'entita' si risolve dal valore intero e ripesca
+   la parte comune. `3C` viene per giunta scartato dalla soglia dei 3 caratteri alfanumerici.
+   **Impatto misurato: 1 confronto su 4.954** (ricerca strutturale del pattern `X + A` contro
+   `X + B` su tutto il deliverable: 3 casi, 2 dei quali corretti).
+
+Entrambi vanno nei Methods come limiti noti, insieme ai nove gruppi incoerenti del §4.
+
 ## 7. Che cosa questo NON dimostra
 
 - **Non e' una validazione del pooling**: i gruppi non sono poolati, non esistono I², τ², geni
