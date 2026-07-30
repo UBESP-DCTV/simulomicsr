@@ -80,7 +80,15 @@
 >    (linea diversa, `visit`, passaggio, etnia, sede). Misura esatta: 38 confronti su 4.452 con un
 >    numero diverso, di cui **16 non sono difetti** (caso-controllo di malattia) → **~22 veri (0,5%)
 >    in 4 gruppi**. Etnia/sede/tipo cellulare **non misurati** (servirebbe un vocabolario).
-> 11. **PROSSIMO = LAYER B in sessione dedicata**: handout
+> 11. **SELEZIONE DEI CASE STUDY DECISA — ADR-0027 Accepted** (utente 2026-07-30): **main paper 2
+>    figure / 3 gruppi** — DHT (`CHEBI:16330`, k=23) **contro** enzalutamide (`CHEBI:68534`, k=19)
+>    nella STESSA figura (segni opposti sugli stessi bersagli = controllo positivo e negativo
+>    insieme), piu' UN SOLO caso ad alto k (TGF-β1 k=49 o LPS k=35) con forest e I². **Supplementari
+>    5-6 per copertura di tipo**: SARS-CoV-2, IFN-γ, una malattia, JQ1, e **almeno uno dei 6
+>    incoerenti** (un paper che mostra solo successi e' meno credibile). Le due vetrine precedenti
+>    (15 case study 2026-05-24, 18 del 2026-07-23) sono **superate**: erano costruite su cluster poi
+>    risultati incoerenti.
+> 12. **PROSSIMO = LAYER B in sessione dedicata**: handout
 >    `docs/superpowers/specs/2026-07-31-layer-b-NEXT-SESSION-HANDOUT.md`. Poi Methods, poi
 >    (decisione utente) l'eventuale regola «entità con un gruppo proprio» (~9h + ~28h).
 >    Deliverable annotato: `analysis/audit/2026-07-29-etichette-v13/deliverable-v13-poolato.csv`.
