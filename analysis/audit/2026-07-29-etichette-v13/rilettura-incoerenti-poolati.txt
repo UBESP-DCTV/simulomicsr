@@ -1,0 +1,150 @@
+I SEI GRUPPI INCOERENTI, LETTI SUI MEMBRI CHE SONO ENTRATI NEL POOL
+[POOLATO] = lo studio e' nel pool · [CADUTO] = scartato (nessun controllo interno)
+
+
+=============================================================
+influenzaavirus  (NCBITaxon:11320||gain||vehicle_untreated)
+  k poolato = 7 (censiti 9 studi, poolati 7)
+  motivo del verdetto: resta incoerente sul poolato: GSE113210 ('influenza at AV' => 'Control CV') e' sorveglianza clinica indicata con sigle di visita, ed e' fra i 7 studi poolati. Il rapporto peggiora da 1 su 9 a 1 su 7 perche' sono caduti due studi sperimentali (GSE134817, GSE162632)
+   [POOLATO] GSE113210 influenza at AV
+       => Control CV
+   [POOLATO] GSE121155 Influenza virus PR8
+       => Mock infection
+   [POOLATO] GSE121155 Influenza virus PR8
+       => PBS
+   [CADUTO]  GSE134817 HepG2 cells treated with Flu for 6 hours
+       => HepG2 cells treated with vehicle for 6 hours
+   [CADUTO]  GSE134817 THP-1 cells treated with Flu for 48 hours
+       => THP-1 cells treated with vehicle for 48 hours
+   [CADUTO]  GSE162632 PBMC flu (blood)
+       => PBMC mock (blood)
+   [POOLATO] GSE163959 Lung Tissue Influenza A Infected
+       => LM7 Mock Infected
+   [POOLATO] GSE163959 Nasal Turbinate Influenza A Infected
+       => TM3 Mock Infected
+   [POOLATO] GSE184017 Bronchial epithelial cells exposed to Influenza
+       => Mock-treated bronchial epithelial cells
+   [POOLATO] GSE197143 Influenza B 48hpi
+       => Mock 48hpi
+   [POOLATO] GSE239726 Influenza A (H3N2) infected
+       => Mock infected
+   [POOLATO] GSE253542 IAV (H1N1) 48hpi
+       => Mock Infected 48hpi
+
+
+=============================================================
+IL1A  (HGNC:5991||gain||vehicle_untreated)
+  k poolato = 4 (censiti 6 studi, poolati 4)
+  motivo del verdetto: PEGGIORATO dal pooling: i due studi IL-1alfa veri (GSE120784, GSE142706) sono caduti e restano dentro entrambi gli IL-1beta (GSE155141; GSE205853, che e' per giunta IFN-gamma+IL-1beta). Sui 4 studi poolati, 2 misurano un'altra citochina
+   [CADUTO]  GSE120784 Keratinocytes IL-1a Stimulated
+       => Keratinocytes Unstimulated
+   [CADUTO]  GSE142706 LNas1 + IL-1 alpha
+       => LNCaP untreated
+   [POOLATO] GSE155141 Non-lesional human skin, IL-1β stimulated
+       => Non-lesional human skin, no treatment
+   [POOLATO] GSE181229 MDA-PCa-2b + IL-1 alpha (25 ng/ml) for 3 days
+       => MDA-PCa-2b untreated
+   [POOLATO] GSE205853 IFN-γ, IL-1β
+       => No Treatment
+   [POOLATO] GSE214475 CD4+ T-cell, IL1A
+       => CD4+ T-cell, vehicle
+
+
+=============================================================
+IFNA1  (HGNC:5417||gain||vehicle_untreated)
+  k poolato = 3 (censiti 6 studi, poolati 3)
+  motivo del verdetto: PEGGIORATO dal pooling: sono caduti tutti gli studi IFN-alfa tranne due (GSE124810, GSE221804, GSE234424 fuori) mentre GSE126517, che misura R5020 (progestinico), resta. Sui 3 studi poolati 1 non c'entra: il peso dell'intruso sale da 1 su 6 a 1 su 3
+   [CADUTO]  GSE124810 IFNα stimulated
+       => Vehicle control
+   [POOLATO] GSE126517 T47D breast cancer cells treated with R5020 for 6 hours and IFN-alpha for 18 hours
+       => T47D breast cancer cells treated with EtOH for 6 hours and water for 18 hours
+   [POOLATO] GSE202350 IFNα
+       => DMSO
+   [POOLATO] GSE206784 A549 NINL KO IFN alpha 100 µg/mL 24h
+       => A549 NINL KO no treatment 24h
+   [CADUTO]  GSE221804 Wild-type, IFN alpha, 0h
+       => Wild-type, unstimulated
+   [CADUTO]  GSE221804 Wild-type, IFN alpha, 2h
+       => Wild-type, unstimulated
+   [CADUTO]  GSE221804 Wild-type, IFN alpha, 24h
+       => Wild-type, unstimulated
+   [CADUTO]  GSE221804 Wild-type, IFN alpha, 4h
+       => Wild-type, unstimulated
+   [CADUTO]  GSE221804 Wild-type, IFN alpha, 48h
+       => Wild-type, unstimulated
+   [CADUTO]  GSE221804 Wild-type, IFN alpha, 72h
+       => Wild-type, unstimulated
+   [CADUTO]  GSE221804 Wild-type, IFN alpha, 8h
+       => Wild-type, unstimulated
+   [CADUTO]  GSE221804 IRF9 knockout, IFN alpha, 2h
+       => IRF9 knockout, unstimulated
+   [CADUTO]  GSE234424 EPC2-hTERT + IFN-alpha
+       => EPC2-hTERT + Control
+
+
+=============================================================
+antigen  (CHEBI:59132||gain||vehicle_untreated)
+  k poolato = 3 (censiti 3 studi, poolati 3)
+  motivo del verdetto: invariato (stesso insieme di membri, provato): tre contrasti diversi sotto un'entita' che e' una classe-ombrello ('antigen') — DCVC nefrotossico (GSE154339, dove 'SV40 T antigen' e' il tipo cellulare), 'HHC treated' (GSE179987) e stimolazione antigenica di cellule T CD8+ (GSE229026)
+   [POOLATO] GSE154339 DCVC 10 µM 6h SV40 T antigen
+       => No Treatment 6h
+   [POOLATO] GSE154339 DCVC 20 µM 6h SV40 T antigen
+       => No Treatment 6h
+   [POOLATO] GSE179987 HHC treated
+       => HHC control
+   [POOLATO] GSE229026 CD8+ T cells Antigen Stimulated
+       => CD8+ T cells Unstimulated
+   [POOLATO] GSE229026 M28z Antigen Stimulated
+       => M28z Unstimulated
+
+
+=============================================================
+adenoma  (STR:adenoma||gain||vehicle_untreated)
+  k poolato = 3 (censiti 4 studi, poolati 3)
+  motivo del verdetto: resta incoerente sul poolato: e' caduto GSE77635 (adenoma del colon) ma restano insieme adenoma ipofisario (GSE208107) e adenoma del colon (GSE72820), piu' GSE222298 la cui sede non e' deducibile dalle etichette
+   [POOLATO] GSE208107 Pituitary cells from Adenoma patients
+       => Pituitary cells from Healthy donors
+   [POOLATO] GSE222298 Adenoma T2 SAP-07
+       => Healthy T2 SAP-07
+   [POOLATO] GSE222298 Adenoma T2 SAP-19
+       => Healthy T2 SAP-07
+   [POOLATO] GSE72820  Human colon adenoma
+       => Human normal mucosa
+   [POOLATO] GSE72820  MDA27ad
+       => MDA27N
+   [POOLATO] GSE72820  MDA27ad
+       => MDA34N
+   [CADUTO]  GSE77635  Patient 1 Adenoma
+       => Patient 1 Normal Mucosa
+   [CADUTO]  GSE77635  Patient 2 Adenoma
+       => Patient 2 Normal Mucosa
+   [CADUTO]  GSE77635  Patient 3 Adenoma
+       => Patient 3 Normal Mucosa
+   [CADUTO]  GSE77635  Patient 4 Adenoma
+       => Patient 4 Normal Mucosa
+   [CADUTO]  GSE77635  Patient 5 Adenoma
+       => Patient 5 Normal Mucosa
+   [CADUTO]  GSE77635  Patient 81 Adenoma
+       => Patient 81 Normal Mucosa
+   [CADUTO]  GSE77635  Patient 82 Adenoma
+       => Patient 82 Normal Mucosa
+   [CADUTO]  GSE77635  Patient 85 Adenoma
+       => Patient 85 Normal Mucosa
+   [CADUTO]  GSE77635  Patient GNG Adenoma
+       => Patient GNG Normal Mucosa
+
+
+=============================================================
+IL3  (HGNC:6011||gain||vehicle_untreated)
+  k poolato = 3 (censiti 4 studi, poolati 3)
+  motivo del verdetto: PEGGIORATO dal pooling: e' caduto uno studio di IL-3 vera (GSE110041) mentre resta GSE93620, dove 'iL3' sono le larve infettive di stadio 3 del nematode A. ceylanicum. Sui 3 studi poolati, 1 non e' l'interleuchina
+   [CADUTO]  GSE110041 IL3 24h H50
+       => Vehicle 24h H50
+   [POOLATO] GSE159782 Subject 1, IL-3 4h
+       => Subject 1, Untreated
+   [POOLATO] GSE159782 Subject 1, IL-3 20h
+       => Subject 1, Untreated
+   [POOLATO] GSE89442  pDC donor 1 IL-3
+       => pDC donor 1 unstimulated
+   [POOLATO] GSE93620  HT-29-MTX, Colorectal carcinoma, A. ceylanicum iL3 larvae, 24h
+       => HT-29-MTX, Colorectal carcinoma, untreated
