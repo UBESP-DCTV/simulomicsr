@@ -35,6 +35,71 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-31b (LAYER B FINALE — 9 CASE STUDY, IL DELIVERABLE DICE QUANTO IL POOLING È EFFICACE)**:
+> 🟡 **La critica dell'utente («non mostriamo dove il pooling sia davvero efficace») è accolta e
+> chiusa: due assi nuovi, misurati su TUTTI e 191, in codice di pacchetto con TDD, dentro il
+> deliverable. Le figure sono corrette e la correzione è verificata sull'artefatto. NON è "validato":
+> vedi §10 del finding.**
+>
+> 1. **BUILD FINALE** `analysis/p4-output/20260730T220723Z-layer-b-828b020d` (9 bundle = 3 main + 6
+>    supplementari, 54 figure, 5,7 min, report HTML 19 MB con 57 immagini incorporate).
+>    Selezione: `analysis/layer-b-selection-v13-finale.csv`, generata dal deliverable.
+> 2. **DECISE LE DUE SCELTE APERTE, sui numeri**: figura 2 = **TGF-β1** (49 studi contro 35 di LPS,
+>    45,1 efficaci contro 31,8, i 6 bersagli attesi tutti al k pieno); malattia = **CROHN** (k=10,
+>    **6,9 studi efficaci**, nessuno sopra il 21%, 3.515 geni sig, tutti i membri tessuto di paziente)
+>    al posto di Parkinson (1,8 efficaci) e dell'epatocellulare (72 geni sig in tutto).
+> 3. **IL DELIVERABLE ORA QUANTIFICA L'EFFICACIA.**
+>    `analysis/audit/2026-07-29-etichette-v13/deliverable-v13-poolato.csv` ha 12 colonne nuove:
+>    `k_kish` (numero efficace di studi, Kish), `frazione_efficace`, `quota_top1`, `dominato`,
+>    `studio_dominante`, `materiale_misto`, `n_studi_model/primary/unknown`,
+>    `classe_studio_dominante`, `dominato_da_modello`. Codice: **`R/stage4-pooling-effectiveness.R`
+>    (38 test)** e **`R/stage3-material-class.R` (49 test)**, scritti test-first.
+>    **Riproduzione ESATTA della misura a mano: scarto 0,0000000000 su k_kish e quota_top1,
+>    k_studies identico su tutti e 191.**
+> 4. **I NUMERI, su tutti e 191**: dominati da un solo studio (≥50%) **105 (55,0%)** · meno di 2 studi
+>    efficaci **66 (34,6%)** · frazione efficace mediana **0,65** · materiale misto 49 (25,7%) ·
+>    **dominati da un modello in vitro 8 (4,2%)**. Tutto concentrato sui k bassi: k=3-4 → **80%
+>    dominati**, k≥11 → **zero**. Estremo: «Lung Neoplasms» k=3, **1,0 efficaci, 98,8% su uno**.
+>    **Coerenza e dominanza sono assi INDIPENDENTI: 100 dei 105 dominati sono marcati "coerenti".**
+>    Non è un errore (l'inverso della varianza deve pesare così) ma per un terzo dei gruppi il pooling
+>    non aggiunge nulla, e prima nulla lo diceva. Va nei Methods.
+> 5. **FIGURE CORRETTE E VERIFICATE**: `layer_b_default_config()$top_genes_min_k_frac = 0.5` (31 test)
+>    — un gene entra in tabella/heatmap solo se misurato in almeno metà degli studi. Il filtro è
+>    **dichiarato in caption** (mai tagli silenziosi), **non svuota mai una figura** (fallback
+>    dichiarato) e **non tocca le stime**. Verifica sull'artefatto: geni sotto metà del k **106 → 0**;
+>    k mediano dei mostrati SARS 6,0→**33,0**, IFN-γ 4,0→**19,0**; geni quasi-tutti-zero IFN-γ
+>    **16/30 → 0/30**. La tabella di IFN-γ prima aveva geni GIMAP a k=2 con l'85-92% di zeri, **ora ha
+>    STAT1, GBP1, CXCL9, TAP1**.
+> 6. **LA FIGURA 1 È PIÙ FORTE DEL PREVISTO.** Non sono i quattro bersagli scelti prima: su **1.299
+>    geni significativi in ENTRAMBI i gruppi, il 97,5% ha segno opposto, Spearman −0,939**; e dei 15
+>    geni condivisi fra i primi trenta di ciascuno, **15 su 15** sono opposti (PGC +4,63/−3,04,
+>    SLC38A4 +4,15/−4,23, UGT2B28, CHRNA2, KLK2…), tutti **scoperti, non scelti**. Caveat col numero:
+>    i 2 studi condivisi fra i gruppi pesano **8,6%** e **10,2%**, quindi ~90% di ciascuna stima viene
+>    da studi esclusivi. I bersagli noti non sono in cima all'FDR perché hanno **I² 99,7-99,9**:
+>    l'ordinamento per FDR premia i consistenti, non i grandi — proprietà del REM, da dichiarare.
+> 7. **PROPOSTA DI RITRATTAZIONE DI IERI SERA, RITIRATA.** Avevo proposto di ritrattare il verdetto di
+>    coerenza del solo Parkinson. Leggendo **tutti e 20** i gruppi di malattia, la forma «paziente
+>    contro modello in vitro» è in **almeno 6** (Parkinson 73%, spondilite 80%, Huntington 57%,
+>    colorettale 47%, renale 31%, diabete gestazionale). Ritrattarne uno sarebbe stata **una lista
+>    scritta a mano** — l'errore già pagato. Al suo posto: l'asse è misurato su tutti e 191 e sta nel
+>    deliverable; **i verdetti non sono stati toccati**. Il rilevatore è un'euristica **dichiarata**,
+>    accordo col giudizio umano **19/20**, e l'unico disaccordo è un caso in cui ha ragione lui.
+> 8. **RITRATTATO ANCHE §8 DI IERI**: «i simboli duplicati costano 0-5 posti su 30» è **falso** —
+>    `.rank_and_dedup_genes()` deduplica già, **zero duplicati in tutte e 12 le tabelle prodotte**.
+>    Avevo misurato sul parquet grezzo invece che sull'artefatto. Stessa classe di errore di sempre:
+>    **misurare l'oggetto sbagliato**.
+> 9. **TRE ERRORI DI MISURA MIEI, tutti corretti prima dell'uso**: (a) confronto con un `k_effective`
+>    che è **per-gene**; (b) peso calcolato sui **bracci** invece che sugli studi (83 per 49 in
+>    TGF-β1) → rifatto col collasso e **validato, 0 disallineamenti su 40.251**; (c)
+>    `dominato_da_modello` si accendeva dove il "dominante" pesa il 2,5% → mancava la congiunzione con
+>    `dominato` (17 gruppi → **8**).
+> 10. **SUITE**: stage4 **844 PASS / 0 FAIL** (+2 ERROR pre-esistenti), stage3 **1283 PASS / 0 FAIL**,
+>    layer-b **202 PASS / 0 FAIL**. **PROSSIMO**: le narrative dei 9 bundle e i Methods (il materiale
+>    c'è: i 114 scartati dal gate, i 6 incoerenti, TGF-β1 spezzato in tre, l'ID sbagliato dell'LTA,
+>    la dominanza, il gate che può concentrare l'errore). Finding
+>    `docs/findings/2026-07-31-layer-b-v13-case-study.md`; evidenza
+>    `analysis/audit/2026-07-31-layer-b-v13/`. Branch invariato, master invariato, no push.
+>
 > **Stato 2026-07-31 (LAYER B v13 COSTRUITO — LE STIME REGGONO, DUE FIGURE NO, UN VERDETTO DA RIVEDERE)**:
 > 🟡 **12 case study, 72 figure, report HTML, wall 10 min. La biologia passa (32 bersagli attesi su
 > 32). Ma guardare i bundle ha trovato tre cose che i numeri aggregati non dicevano. NON è

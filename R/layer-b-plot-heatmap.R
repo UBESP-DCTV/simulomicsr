@@ -32,6 +32,19 @@
   max_samples <- config$max_heatmap_samples
 
   sig <- cp[!is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr, , drop = FALSE]
+  # Stesso filtro di copertura della top-gene table, e per lo stesso motivo: i
+  # geni a k basso sono anche quelli a conteggio quasi tutto zero (Spearman fra
+  # k e frazione di zeri: -0,813), ComBat li salta esplicitamente ("genes with
+  # uniform expression within a single batch"), e la loro riga nella heatmap
+  # resta segnale di STUDIO invece che di trattamento. Misurato il 2026-07-31:
+  # filtrando, la frazione mediana di zeri fra i trenta mostrati passa da
+  # ~50-68% a ~0-4,5%.
+  k_max_cluster <- if (!is.null(cp$k_effective) && any(!is.na(cp$k_effective))) {
+    max(cp$k_effective, na.rm = TRUE)
+  } else NULL
+  filtro_cov <- .filter_genes_by_coverage(sig, config$top_genes_min_k_frac,
+                                          k_max = k_max_cluster)
+  sig <- filtro_cov$genes
   # Dedup per gene_symbol PRIMA di prendere i top_n: stesso criterio della
   # top-gene table (significativita, non |logFC|), cosi table e heatmap sono
   # coerenti e non mostrano lo stesso gene ripetuto su piu righe (artefatto
@@ -229,8 +242,9 @@
     paste0("Heatmap of top %d DE genes (rows) across samples (columns). ",
            "vst + ComBat batch correction applied for visual cross-study ",
            "coherence; effect-size statistics in pooled output are NOT ",
-           "batch-corrected.%s%s"),
-    length(top_genes), combat_note, subsample_note
+           "batch-corrected.%s%s%s"),
+    length(top_genes), combat_note, subsample_note,
+    .coverage_filter_note(filtro_cov)
   )
 
   list(png_path = png_path, svg_path = svg_path, caption = caption)

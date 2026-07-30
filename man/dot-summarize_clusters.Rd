@@ -10,7 +10,8 @@
   eligible_group,
   config,
   archs4_metadata,
-  stage1_master = NULL
+  stage1_master = NULL,
+  eligible_cgroup = list()
 )
 }
 \description{

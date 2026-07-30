@@ -2,7 +2,7 @@
 % Please edit documentation in R/stage4-qc.R
 \name{.dedup_rem_group_by_entity}
 \alias{.dedup_rem_group_by_entity}
-\title{Dedup rem_group: una meta-analisi per entita' (kind, agent) al k massimo}
+\title{Dedup rem_group: una meta-analisi per entita' (kind, agent, verso) al k massimo}
 \usage{
 .dedup_rem_group_by_entity(rem_group_clusters)
 }
@@ -12,5 +12,12 @@ solo cluster per entita' \code{(kind_effective_resolved, agent_id_resolved)}:
 quello a \code{k} massimo (tie-break \code{n_total} desc, \code{level} desc,
 \code{cluster_id} asc). Decisione utente 2026-07-05: massimizza potenza;
 l'eterogeneita' di contesto residua e' catturata dall'I2/tau2 del REM.
+}
+\details{
+ADR-0025: per i cluster derivati dal contrasto la chiave include il
+\code{contrast_direction}. Agonista e antagonista della stessa entita' sono
+contrasti OPPOSTI e non vanno dedotti l'uno contro l'altro (decisione utente
+2026-07-25: la direzione opposta non si fonde). Quando la colonna non c'e'
+(cluster legacy) il comportamento e' identico a prima.
 }
 \keyword{internal}

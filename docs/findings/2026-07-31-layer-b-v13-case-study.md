@@ -1,261 +1,297 @@
-# Layer B v13: i case study esistono, e guardarli ha trovato tre cose che i numeri aggregati non dicevano
+# Layer B v13: i case study esistono, e costruirli ha cambiato il deliverable
 
 **Data:** 2026-07-31 · **Branch:** `review-scientific-consistency-2026-06-10` · master invariato
-**Build:** `analysis/p4-output/20260730T160606Z-layer-b-c279e308` (12 bundle, 72 figure, wall **10,0 min**)
-**Stato:** 🟡 **Il materiale guardabile esiste. Le stime poolate reggono. Due delle figure — la
-tabella dei top geni e la heatmap — NON mostrano quello che il lettore penserebbe, e uno dei due
-case study di malattia non regge.**
+**Stato:** 🟡 **9 case study (3 main + 6 supplementari), scelti sulle misure e non sul k. Il
+deliverable ora dice anche QUANTO il pooling è efficace, non solo quanti studi entrano. Non è
+"validato": vedi §10.**
 
 ---
 
+## 0. Che cosa è cambiato rispetto alla prima stesura di questo documento
+
+Questo finding è stato scritto due volte nella stessa giornata. La prima stesura, dopo il primo
+build, conteneva **un errore** e **una raccomandazione sbagliata**, entrambi corretti misurando:
+
+| prima stesura | dopo |
+|---|---|
+| «i simboli genici duplicati costano 0-5 posti su 30 nelle tabelle» | **RITRATTATO (§9).** Avevo misurato sul parquet grezzo invece che sull'artefatto prodotto. La tabella deduplica già (`.rank_and_dedup_genes`): **zero duplicati in tutti e 12 i bundle**. |
+| «propongo di ritrattare il verdetto di coerenza del gruppo Parkinson» | **RITIRATA (§6).** Leggendo tutti e 20 i gruppi di malattia, la stessa forma è in **almeno 6**. Ritrattarne uno sarebbe stata una lista scritta a mano. Al suo posto: due assi misurati su tutti e 191, nel deliverable. |
+
+E una critica dell'utente, giusta e accolta: la misura di efficacia del pooling **stava in un file di
+audit invece che nel deliverable**. Ora è nel deliverable (§4).
+
 ## 1. Che cosa è stato costruito
 
-12 case study sui 191 gruppi poolati di v13, tutti `rem_group`, tutti `mode=cgroup` (ADR-0025):
+**Build finale:** `analysis/p4-output/…-layer-b-…` (9 bundle) da
+`analysis/p5-stage4-layer-b-build-v13.R` su `analysis/layer-b-selection-v13-finale.csv`.
+Un primo build esplorativo a 12 case study (con i doppioni ancora aperti) resta in
+`20260730T160606Z-layer-b-c279e308`.
 
-| dove | case study |
-|---|---|
-| main paper | DHT (k=23) · enzalutamide (k=19) · **entrambi** i candidati ad alto k: TGF-β1 (k=49) e LPS (k=35) |
-| supplementari | SARS-CoV-2 (k=33) · IFN-γ (k=19) · JQ1 (k=24) · **entrambi** i candidati malattia: Parkinson (k=10) e carcinoma epatocellulare (k=9) |
-| incoerenti dichiarati | IL1A (k=4) · IFNA1 (k=3) · «antigen» (k=3) |
+| dove | case study | perché questo |
+|---|---|---|
+| **main fig. 1** | DHT (k=23) **contro** enzalutamide (k=19) | controllo positivo e negativo insieme: KLK3 **+2,27** / **−1,60**, TMPRSS2 +1,78 / −0,92, FKBP5 +2,32 / −1,22, NKX3-1 +1,37 / −1,24, da studi diversi in gruppi costruiti separatamente |
+| **main fig. 2** | **TGF-β1** (k=49) | vince su LPS su ogni asse: 49 studi contro 35, **45,1 studi efficaci** contro 31,8, 7.233 geni sig contro 6.883, e i sei bersagli attesi tutti misurati **al k pieno** (48-49 su 49) |
+| supplementari | SARS-CoV-2 (k=33) · IFN-γ (k=19) · JQ1 (k=24) · **Crohn** (k=10) | copertura di tipo: patogeno, citochina, piccola molecola, malattia |
+| limiti dichiarati | **Parkinson** · **IL1A** | un gruppo che sul k sembra solido e che le misure nuove smontano; e uno incoerente dichiarato |
 
-I due doppioni (TGF-β1/LPS, Parkinson/HCC) sono stati costruiti entrambi **perché la scelta fra i
-due era aperta e il costo di costruirli tutti e due è di due minuti**. La decisione resta dell'utente,
-ma ora poggia sulle figure invece che sul k.
-
-Ogni bundle: volcano, forest, MA, heatmap, pannello di eterogeneità, arricchimento GO, tabella dei
-top 30 geni, summary card, stub della narrativa. Più un report HTML unico da 23,8 MB con **75
-immagini incorporate e zero riferimenti esterni** (verificato, non assunto).
+**La malattia non è più Parkinson né il carcinoma epatocellulare: è Crohn.** Misurato: Crohn ha 10
+studi, **6,9 efficaci**, nessuno sopra il 21%, 3.515 geni significativi, e tutti i membri sono
+tessuto o campione di paziente. Parkinson ha **1,8 studi efficaci su 10**; l'epatocellulare ha il
+67% del peso su due studi problematici e **72 geni significativi in tutto**.
 
 ## 2. Due difetti della macchina, trovati PRIMA di lanciarla
 
-L'handout chiedeva di verificare i percorsi e il dispatch `rem_group`. La verifica ne ha trovati due
-che l'handout non prevedeva, entrambi dovuti al fatto che la macchina Layer B è **anteriore ad
-ADR-0025**:
+La macchina Layer B è anteriore ad ADR-0025 e non conosce i cluster del deliverable:
 
-1. **L'anchor dei cluster v13 non è parsabile dal codice esistente.** `anchor_key` per `mode=cgroup`
-   ha **tre** segmenti (`entità||verso||tipo-di-controllo`), non i 13 dell'anchor canonico v3.
-   `extract_anchor_summary()` non crasha: restituisce `NA` su tutti i campi. Ogni summary card
-   avrebbe scritto `Anchor: ? x ? (tissue=?)`. Fallimento silenzioso, misurato. Ora l'anchor si
-   costruisce dalle colonne del contrasto, con una guardia che **ferma il build** se un cluster della
-   selezione resta senza anchor.
-2. **`canonical_name` per il DHT dice «4-maleylacetoacetate».** L'etichetta delle figure viene dal CSV
-   di selezione (`label_paper`), non da `canonical_name` — verificato leggendo il codice, non
-   supposto. Il CSV è **generato dal deliverable annotato** (`10-selection.R`), così k, n_sig, I² e
-   verdetto di coerenza vengono dal dato e non da una trascrizione.
+1. **L'anchor dei cluster v13 non è parsabile.** `anchor_key` per `mode=cgroup` ha **tre** segmenti
+   (`entità||verso||tipo-di-controllo`), non i 13 dell'anchor canonico v3.
+   `extract_anchor_summary()` non crasha: restituisce `NA` su tutto. Ogni summary card avrebbe
+   scritto `Anchor: ? x ? (tissue=?)`. Fallimento silenzioso, misurato.
+2. **`canonical_name` per il DHT dice «4-maleylacetoacetate».** L'etichetta delle figure viene dal
+   CSV di selezione, che ora è **generato dal deliverable** invece che trascritto.
 
-Il fix `rem_group` del 2026-07-23 (forest, eterogeneità, summary card) è invece già nel codice di
-pacchetto ed è stato riverificato.
+Il fix `rem_group` del 2026-07-23 era già nel codice di pacchetto ed è stato riverificato.
+**Pre-flight 5/5** (`20-preflight.R`): esistenza nel Layer A · method su tutte le 220.493 righe ·
+dispatch che risolve 12/12 · **studi risolti == k del deliverable == max `k_effective`** ·
+3.146 campioni tutti nell'asse H5.
 
-**Pre-flight, 5 controlli su 12 cluster, tutti passati** (`20-preflight.R`): esistenza nel Layer A ·
-method `rem_group` su tutte le 220.493 righe · dispatch che risolve 12/12 · **numero di studi risolti
-== k del deliverable == max `k_effective` del pool su tutti e 12** · 3.146 campioni tutti presenti
-nell'asse H5.
-
-⚠️ **Un mio errore di misura, corretto prima di usarlo.** La prima versione del controllo confrontava
-il dispatch con un `k_effective` pescato con `match()`: `k_effective` in `cluster_pooled` è
-**per-gene**, e 12 cluster danno 219 combinazioni distinte. Sei cluster risultavano "disallineati" per
-colpa del metro, non del dato.
+⚠️ **Errore di misura mio, corretto prima di usarlo.** Il primo controllo confrontava il dispatch con
+un `k_effective` pescato con `match()`: `k_effective` in `cluster_pooled` è **per-gene**, e 12
+cluster danno 219 combinazioni distinte. Sei cluster sembravano disallineati per colpa del metro.
 
 ## 3. La biologia regge: 32 bersagli attesi su 32
 
-Geni scelti dalla letteratura **prima** di guardare, gli stessi del controllo del 2026-07-30. Rango
-sull'ordinamento per FDR:
+Geni scelti dalla letteratura **prima** di guardare. Tutti presenti, segno corretto, tutti nel 5% più
+significativo (ranghi 6–1.009 su ~19-20.000). TGF-β1 li ha tutti a k=48-49 su 49.
 
-| gruppo | bersagli | esito |
-|---|---|---|
-| DHT | KLK3, TMPRSS2, FKBP5, NKX3-1 | tutti **su**, ranghi 152–484 su 19.186 |
-| enzalutamide | gli stessi quattro | tutti **giù**, ranghi 179–1.009 su 18.452 |
-| TGF-β1 | SERPINE1, CCN2, SMAD7, JUNB, TGFBI, COL1A1 | tutti su, ranghi 26–649, **tutti a k=48-49 su 49** |
-| LPS | TNF, IL6, IL1B, CXCL8, CCL2, NFKBIA | tutti su, ranghi 6–429, k=20-35 |
-| SARS-CoV-2 | IFIT1, ISG15, IFIT3, CXCL10, OAS1, MX1 | tutti su, ranghi 53–471 |
-| IFN-γ | GBP1, CXCL9, CXCL10, STAT1, IDO1, GBP5 | tutti su, ranghi 10–91 |
+L'arricchimento GO conferma in modo indipendente, ed è la parte del bundle che **non** soffre del
+difetto del §5 (usa tutti i geni significativi, non i primi 30): IFN-γ dà «response to type II
+interferon», enzalutamide dà biogenesi ribosomiale e replicazione del DNA (blocco proliferativo da AR
+spento), DHT dà biosintesi del colesterolo e degli steroli — il programma lipogenico noto a valle di
+AR.
 
-**32 su 32 presenti, segno corretto, tutti nel 5% più significativo.** L'arricchimento GO conferma
-in modo indipendente: IFN-γ dà «response to type II interferon» (letteralmente sé stesso),
-enzalutamide dà biogenesi ribosomiale e replicazione del DNA (blocco proliferativo da AR spento),
-DHT dà biosintesi del colesterolo e degli steroli (il programma lipogenico noto a valle di AR).
+## 3bis. LA FIGURA 1 È PIÙ FORTE DI QUELLO CHE CERCAVAMO
 
-## 4. FINDING 1 — la tabella dei top geni e la heatmap non mostrano l'effetto, mostrano dove τ² è caduto a zero
+L'argomento noto era: quattro bersagli scelti dalla letteratura salgono col DHT e scendono con
+l'enzalutamide. È vero, ma sono **geni scelti prima**. Guardando le tabelle dei due bundle è saltato
+fuori che fra i primi trenta geni di ciascun gruppo **quindici sono gli stessi**, e nessuno era stato
+scelto da nessuno. Misurato su tutto il trascrittoma condiviso:
 
-La tabella dei top 30 geni è ordinata per FDR. Guardando il bundle DHT: i primi tre sono AFP (k=5),
-KRT72 (k=6), COL22A1 (k=2), **su 23 studi**. I bersagli veri dell'androgeno stanno dal rango 152 in
-poi. Misurato su tutti e 12 e sul meccanismo, non sull'impressione:
+| insieme | n | Pearson | Spearman | segno opposto |
+|---|---:|---:|---:|---:|
+| tutti i geni in comune | 18.284 | −0,435 | −0,388 | 63,9% |
+| **significativi in entrambi** | **1.299** | **−0,841** | **−0,939** | **97,5%** |
+| significativi con \|logFC\|>1 | 174 | −0,815 | −0,862 | **99,4%** |
 
-| | |
+**Dei 15 geni condivisi fra i primi trenta, 15 su 15 hanno segno opposto**: PGC (+4,63 / −3,04),
+SLC38A4 (+4,15 / −4,23), UGT2B28, CHRNA2, HPGD, CCDC141, ST6GALNAC1, ALPK2, TUBA3E, PLA2G5, KLK2,
+MOGAT2, NNMT, PCED1B.
+
+⚠️ **Il caveat, con il suo numero.** I due gruppi condividono **2 studi** (GSE123766, GSE236286) su 23
+e 19. Un esperimento che misura entrambi i bracci produrrebbe stime correlate per costruzione, quindi
+va pesato: quei due studi valgono **8,6%** del peso nel gruppo DHT e **10,2%** in quello
+enzalutamide. Circa il 90% di ciascuna stima viene da studi esclusivi del proprio gruppo.
+
+Perché i quattro bersagli noti non compaiono in cima alla tabella ordinata per FDR: hanno **I² fra
+99,7 e 99,9**, cioè gli studi concordano sul segno ma non sulla magnitudine, e questo gonfia
+l'errore standard del pooled. **L'ordinamento per FDR premia i geni consistenti, non quelli
+grandi**: è una proprietà del random-effects, non un difetto, ma va detta quando si sceglie che cosa
+mostrare. Col punteggio del volcano (|logFC| × −log10 FDR) FKBP5 è 16°, TMPRSS2 22°, KLK3 33° nel
+DHT, e KLK3 è 13° nell'enzalutamide.
+
+## 4. IL DELIVERABLE ORA DICE QUANTO IL POOLING È EFFICACE
+
+Il deliverable riportava `k_effective`: **quanti** studi entrano. Non diceva quanto **contano**. In un
+random-effects il peso è `1/(SE²+τ²)`: uno studio può portare il 98% e gli altri essere comparse.
+
+`analysis/audit/2026-07-29-etichette-v13/deliverable-v13-poolato.csv` ha ora, per ogni meta-analisi:
+
+| colonna | che cosa dice |
 |---|---|
-| **il meccanismo** | con k basso il random-effects non riesce a stimare τ², lo pone a **0**, l'errore standard collassa e l'FDR precipita. Su SARS-CoV-2: SE mediano **0,554 a k=2** contro **0,088 a k=21-33**; τ²=0 nel **56,6%** dei geni a k=2 contro **0%** a k≥21. **Nove dei primi dieci geni per FDR hanno τ²=0 e I²=0.** |
-| **quanto pesa sui primi 20** | SARS-CoV-2: k mediano dei primi 20 = **6,5 su 33**, e **20 su 20** stanno sotto metà del k pieno. JQ1 3,5 su 24 (15/20). IFN-γ **3 su 19** (15/20). |
-| **quanto pesa sul totale** | poco, ed è la parte rassicurante: i geni significativi a k=2 sono **0,7–3,2%** nei gruppi grandi (16,7% in HCC, 35,5% in «antigen»). Fra il 43% e il 71% dei geni significativi sta al **k pieno**. |
+| `k_kish` | **numero efficace di studi**, `(Σw)²/Σw²`: vale `k` se pesano uguale, tende a 1 se uno domina |
+| `frazione_efficace` | `k_kish / k` |
+| `quota_top1`, `dominato` | quota di peso del primo studio, e se supera il 50% |
+| `studio_dominante` | **quale** studio porta il peso |
+| `materiale_misto`, `n_studi_model/primary/unknown` | il gruppo mescola sistemi in vitro e materiale di paziente? |
+| `classe_studio_dominante`, `dominato_da_modello` | chi porta il peso è un modello in vitro, in un gruppo che contiene anche pazienti? |
 
-**Il difetto è nella selezione dei 30 da mostrare, non nelle stime.**
+Codice di pacchetto, test scritti prima: `R/stage4-pooling-effectiveness.R` (**38 PASS**) e
+`R/stage3-material-class.R` (**49 PASS**).
 
-E si propaga alla heatmap, per una catena che è stata verificata passo per passo:
+**Riproduzione esatta sui dati veri**: la funzione di pacchetto dà gli stessi numeri della misura
+fatta a mano — **scarto massimo 0,0000000000** su `k_kish` e su `quota_top1`, `k_studies` identico su
+tutti e 191.
 
-> k basso → τ²=0 → FDR minuscolo → il gene entra nei top 30 → ma è un gene **espresso a zero nella
-> maggior parte dei campioni** → ComBat lo salta esplicitamente («genes with uniform expression
-> within a single batch (all zeros); these will not be adjusted») → nella heatmap quella riga resta
-> segnale di studio puro.
-
-Geni dei top 30 con oltre metà dei campioni a conteggio zero: **DHT 8/30, enzalutamide 7/30,
-IFN-γ 16/30**, TGF-β1 3/30.
-
-⚠️ **Qui ho corretto una mia conclusione prima di scriverla.** Misurando sul log-CPM grezzo, lo
-studio spiegava il 55–84% della varianza e il trattamento l'1–8%: sembrava che la heatmap mostrasse
-batch ovunque. Ma la heatmap applica **VST + ComBat**, e misurare a monte della correzione misura
-un'altra cosa. Rifatta sulla catena vera:
-
-| gruppo | R² studio pre-ComBat | **post-ComBat** | R² trattamento |
-|---|---:|---:|---:|
-| TGF-β1 | 0,55 | **0,03** | 0,24 |
-| DHT | 0,82 | **0,02** | 0,14 |
-| enzalutamide | 0,69 | **0,01** | 0,05 |
-| **IFN-γ** | 0,84 | **0,82** | **0,01** |
-
-**ComBat funziona in tre casi su quattro.** Il fallimento è mirato: in IFN-γ, dove 16 dei 30 geni
-sono quasi tutti zero, ComBat non può correggere e la heatmap resta una mappa degli studi.
-
-**Conseguenza pratica**: la tabella dei top geni e la heatmap vanno filtrate per k (e per espressione
-minima) prima di finire in un paper. È un cambiamento al `layer_b_default_config()`, **non fatto**:
-è una decisione dell'utente.
-
-## 5. FINDING 2 — 105 delle 191 meta-analisi sono dominate da un solo studio
-
-Misurato su **tutti e 191**, non su un campione. Il peso di uno studio su un gene in un random-effects
-è `1/(SE²+τ²)`; il numero efficace di studi è quello di Kish, `(Σw)²/Σw²`. Calcolato sui geni
-significativi, **dopo il collasso dei bracci dentro lo studio** — l'unità su cui gira davvero il REM.
-
-⚠️ **Secondo mio errore di misura, corretto.** La prima versione pesava i **bracci**: `per_study_de`
-ha una riga per braccio, e TGF-β1 ne ha 83 per 49 studi. Il metro corretto è stato validato
-esplicitamente: **0 geni su 40.251 hanno un conteggio di studi diverso da `k_effective`.**
+### I numeri, su tutti e 191
 
 | | |
 |---|---:|
-| gruppi dominati da un solo studio (≥50% del peso) | **105 su 191 (55,0%)** |
+| dominati da un solo studio (≥50% del peso) | **105 (55,0%)** |
 | con uno studio al ≥70% | 37 (19,4%) |
 | **con meno di 2 studi efficaci** | **66 (34,6%)** |
-| frazione efficace mediana (k_kish / k) | 0,65 |
+| frazione efficace mediana | 0,65 |
+| materiale misto | 49 (25,7%) |
+| **dominati da un modello in vitro** | **8 (4,2%)** |
 
-E il fenomeno è **interamente concentrato sui k bassi**:
+Il fenomeno è **interamente concentrato sui k bassi**: k=3-4 → 80% dominati; **k≥11 → zero**.
+I nove case study stanno tutti nella parte sana tranne i due dichiarati.
 
-| fascia di k | gruppi | frazione efficace | dominati |
-|---|---:|---:|---:|
-| k=3-4 | 105 | 0,65 | **84 (80%)** |
-| k=5-6 | 31 | 0,63 | 11 (35%) |
-| k=7-10 | 34 | 0,58 | 10 (29%) |
-| k=11-20 | 13 | 0,90 | **0** |
-| k=21-49 | 8 | 0,94 | **0** |
+**Coerenza e dominanza sono assi indipendenti**, e questa è la riga che va nei Methods:
 
-I sette case study di punta stanno tutti nella parte sana: TGF-β1 49 → **45,1 efficaci** (studio più
-pesante: 2,6%), LPS 34 → 31,8, SARS 33 → 29,2, JQ1 24 → 22,8, DHT 23 → 20,9, enzalutamide 19 → 17,4,
-IFN-γ 19 → 17,1.
+|  | non dominato | dominato |
+|---|---:|---:|
+| coerente | 85 | **100** |
+| incoerente | 1 | 5 |
 
-Il caso estremo è **«Lung Neoplasms», k=3, 1,0 studi efficaci, 98,8% del peso su uno solo** — e
-1.884 geni significativi. Verificato sui dati: dei tre studi, `GSE148862` contribuisce **159 geni su
-~20.000** e `GSE216561` ha un SE mediano di **1,95** contro **0,48**. Per quasi tutti i geni quel
-gruppo è uno studio con due comparse.
+Il caso estremo è **«Lung Neoplasms», k=3, 1,0 studi efficaci, 98,8% del peso su uno**, con 1.884
+geni significativi. Verificato: dei tre studi, `GSE148862` contribuisce **159 geni su ~20.000** e
+`GSE216561` ha un SE mediano di **1,95** contro **0,48**.
 
-**Non è un errore, ed è importante dirlo così:** la pesatura per inverso della varianza *deve* dare
-più peso a chi misura meglio. Il punto è un altro — **per un terzo dei gruppi il pooling non aggiunge
-quasi nulla a quello che diceva già lo studio più grande**, e nulla nel deliverable lo segnala.
-Coerenza e dominanza sono assi indipendenti: **tutti e 105 i gruppi dominati sono marcati
-«coerenti»**. Va nei Methods, e `k_kish` andrebbe accanto a `k_effective` nel deliverable.
+**Non è un errore**, e va detto così: l'inverso della varianza *deve* dare più peso a chi misura
+meglio. Il punto è che **per un terzo dei gruppi il pooling non aggiunge quasi nulla a ciò che diceva
+già lo studio più grande**, e prima nulla lo segnalava.
 
-## 6. FINDING 3 — il case study di malattia non regge, in nessuna delle due versioni
+⚠️ **Secondo errore di misura mio, corretto.** La prima versione pesava i **bracci**: `per_study_de`
+ha una riga per braccio, e TGF-β1 ne ha 83 per 49 studi. Il ramo `rem_group` collassa i bracci dentro
+lo studio prima del random-effects. Rifatta col collasso e **validata: 0 disallineamenti su 40.251
+geni**. Il test che difende quest'unità è in `test-stage4-pooling-effectiveness.R`.
 
-Era l'unica voce della selezione senza un'alternativa già decisa. Entrambi i candidati falliscono, e
-per motivi diversi.
+⚠️ **Terzo errore, visto nell'output prima di pubblicarlo.** La colonna `dominato_da_modello` si
+accendeva anche su TGF-β1 e LPS, dove lo studio "dominante" pesa il 2,5% e il 3,8% — cioè non domina
+affatto. Mancava la congiunzione con `dominato`. Con la congiunzione: da 17 gruppi a **8**.
 
-**Parkinson (`MeSH:D010300`, k=10): 1,8 studi efficaci, 73,2% del peso su `GSE181029`.** Leggendo i
-membri a testo intero, `GSE181029` **non è cervello di paziente**: sono progenitori neurali e neuroni
-dopaminergici **derivati da iPSC** con mutazioni PARK2 — un modello cellulare. Gli altri nove studi
-sono tessuto post-mortem (sostanza nera, amigdala, giro temporale) o campioni di paziente. È la stessa
-forma «clinico contro sperimentale» che nel censimento v13 ha reso **incoerenti** influenza e HIV-1.
+## 5. FINDING — la tabella dei top geni e la heatmap mostravano τ²=0, non l'effetto (CORRETTO)
 
-> **Contraddice il verdetto in atti.** Il gruppo Parkinson è marcato `coherent`. Se la regola che ha
-> squalificato influenza vale, vale anche qui — con l'aggravante che qui il membro fuori posto porta
-> quasi tre quarti del peso. **Il verdetto va rivisto**; non lo cambio da solo perché la marcatura è
-> una lettura umana e la decisione è dell'utente. Un secondo membro, `GSE90469` («Patient-Derived
-> Dopamine Neurons»), è pure in coltura, ma pesa lo 0,7%.
+Nel primo build il bundle DHT aveva in cima AFP (k=5), KRT72 (k=6), COL22A1 (k=2), **su 23 studi**,
+mentre i bersagli veri dell'androgeno cominciavano dal rango 152. Il meccanismo, verificato:
 
-**Carcinoma epatocellulare (`MeSH:D006528`, k=9): 3,0 studi efficaci, 67,4% del peso su due studi
-problematici, e solo 72 geni significativi.** `GSE120663` misura **PBMC (sangue)** dove tutti gli
-altri misurano tessuto epatico (27,7% del peso); `GSE77509` usa **un solo controllo** («Adjacent
-Normal #3») per tumori di pazienti diversi e include un trombo portale (39,7%).
+> k basso → il random-effects non stima τ², lo pone a **0** → l'errore standard collassa → l'FDR
+> precipita → il gene entra nei primi 30 → ma è **a conteggio zero nella maggior parte dei campioni**
+> → ComBat lo salta esplicitamente («genes with uniform expression within a single batch») → nella
+> heatmap quella riga resta segnale di **studio**.
 
-**Alternative misurate, dalla stessa tabella** (tutti i gruppi `MeSH:` dei 191, ordinati per studi
-efficaci):
+Misure: su SARS-CoV-2, SE mediano **0,554 a k=2** contro **0,088 a k≥21**; τ²=0 nel **56,6%** dei
+geni a k=2 contro **0%** a k≥21; **nove dei primi dieci** geni per FDR hanno τ²=0 e I²=0. Il k
+mediano dei primi venti era **6,5 su 33** (JQ1 3,5 su 24; IFN-γ 3 su 19). Correlazione fra k e
+frazione di zeri: **Spearman −0,813**.
 
-| malattia | k | studi efficaci | studio più pesante | geni sig | I² |
-|---|---:|---:|---:|---:|---:|
-| **Crohn Disease** | 10 | **6,9** | 20,3% | 3.515 | 62,9 |
-| Colorectal Neoplasms | 7 | 3,9 | 36,0% | 1.318 | 72,8 |
-| **Alzheimer Disease** | 6 | 3,8 | 35,8% | 6.231 | 44,5 |
-| Breast Neoplasms | 5 | 3,7 | 35,3% | 3.264 | 70,8 |
-| Pre-Eclampsia | 6 | 3,5 | 44,7% | 2.461 | 50,4 |
-| — Parkinson | 10 | 1,8 | 73,2% | 976 | 64,2 |
-| — Carcinoma, Hepatocellular | 9 | 3,0 | 47,9% | 72 | 75,8 |
+⚠️ **Una conclusione corretta prima di scriverla.** Misurando sul log-CPM grezzo lo studio spiegava
+il 55-84% della varianza: sembrava batch ovunque. Ma la heatmap applica **VST + ComBat**. Rifatta
+sulla catena vera: R² dello studio **0,82 → 0,02** (DHT), 0,55 → 0,03 (TGF-β1), 0,69 → 0,01
+(enzalutamide). **ComBat funziona in tre casi su quattro.** Fallisce solo su **IFN-γ (0,84 → 0,82)**,
+dove 16 dei 30 geni mostrati sono quasi tutti zero e ComBat non può correggerli.
 
-**Crohn è il candidato giusto**: k=10, quasi 7 studi efficaci, nessuno sopra il 21%, 3.515 geni
-significativi. Alzheimer è il secondo, con più geni ma meno studi. **Non li ho costruiti**: la
-selezione è una decisione presa, e cambiarla è dell'utente. Sono due minuti di build.
+**FIX APPLICATO** (`layer_b_default_config()$top_genes_min_k_frac = 0.5`, 31 test): un gene entra
+nella tabella e nella heatmap solo se misurato in **almeno metà** degli studi del cluster. Il filtro:
 
-## 7. Quanto pesano i difetti già noti: poco, e ora è un numero
+- è **dichiarato nella caption** con quanti geni ha tolto e perché — nessun taglio silenzioso;
+- **non svuota mai una figura**: se nessun gene passa, torna all'insieme intero e lo scrive;
+- **non tocca le stime poolate**: decide solo quali geni si mostrano;
+- prende `k_max` dal cluster **intero**, non dai geni sopravvissuti a un filtro precedente.
 
-Il finding del 2026-07-30 elencava difetti di appaiamento senza quantificarli. Ora sì — peso mediano
-nel random-effects, sui geni significativi:
+**VERIFICATO SULL'ARTEFATTO PRODOTTO**, non solo sui test (`140-verifica-filtro.R`, confronto fra i
+due build sugli 8 cluster in comune):
+
+| | prima | dopo |
+|---|---:|---:|
+| geni mostrati sotto metà del k, in totale | **106** | **0** |
+| k mediano dei geni mostrati — SARS-CoV-2 | 6,0 | **33,0** |
+| — IFN-γ | 4,0 | **19,0** |
+| — JQ1 | 4,0 | **24,0** |
+| — enzalutamide | 9,0 | **19,0** |
+| geni con oltre metà dei campioni a zero — IFN-γ | 16/30 | **0/30** |
+| — DHT | 8/30 | **0/30** |
+| frazione mediana di zeri fra i mostrati | ~50-68% | **0,0-0,3%** |
+
+Il cambiamento si vede: la tabella di IFN-γ prima aveva in cima geni GIMAP a k=2 con l'85-92% dei
+campioni a zero; **ora ha STAT1, GBP1, CXCL9, TAP1, TRIM69, NMI** — i geni canonici della risposta a
+interferone γ. 8 bundle su 9 dichiarano il filtro nella caption; il nono è IL1A, dove non è stato
+tolto nulla e la nota giustamente non compare.
+
+## 6. FINDING — «paziente contro modello in vitro» non è di Parkinson: è di almeno 6 gruppi su 20
+
+Il gruppo Parkinson (k=10, marcato coerente) ha il **73,2%** del peso su `GSE181029`, che leggendo il
+testo intero **non è cervello di paziente** ma progenitori neurali e neuroni dopaminergici **derivati
+da iPSC** con mutazione PARK2. Gli altri nove studi sono tessuto post-mortem o campioni di paziente.
+
+**La prima stesura proponeva di ritrattare il verdetto di quel gruppo. La proposta è ritirata**, per
+un motivo che è una misura e non un ripensamento: leggendo **tutti e 20** i gruppi di malattia, la
+stessa forma c'è in almeno sei — Parkinson (iPSC, 73%), Huntington (progenitori gliali, 57%),
+spondilite anchilosante (differenziamento adipogenico, 80%), colorettale (sferoidi, 47%), carcinoma
+renale (colture, 31%), diabete gestazionale (progenitori endoteliali, 11%). Ritrattarne uno sarebbe
+stata **una lista scritta a mano** — l'errore che questo progetto ha già pagato per mesi.
+
+Al suo posto: il segnale è **misurato su tutti e 191** e sta nel deliverable, e i verdetti di coerenza
+restano quelli che sono. Il rilevatore (`R/stage3-material-class.R`) è un'euristica **dichiarata**,
+con vocabolario esplicito e match a parola intera; il suo accordo col giudizio umano sui 20 gruppi
+letti a mano è **19 su 20 (95%)**. L'unico disaccordo — «Stomach Neoplasms» — è un caso in cui il
+rilevatore ha ragione e la mia lettura l'aveva classificato sotto un'altra voce (`GSE46597` confronta
+cellule staminali gastriche contro cellule differenziate: non è tumore contro normale).
+
+Gli **8 gruppi dominati da un modello in vitro** (con materiale di paziente dentro): StemRegenin 1
+(88,3%), cabozantinib (84,3%), spondilite (80,7%), **Parkinson (73,2%)**, scompenso cardiaco (68,5%),
+tofacitinib (64,1%), ponatinib (61,3%), **Huntington (60,2%)**.
+
+## 7. Quanto pesano i difetti già noti: poco dove conta
 
 | gruppo | studi difettosi | peso totale |
 |---|---:|---:|
-| **Parkinson** | 2 | **74,1%** |
-| **HCC** | 2 | **67,4%** |
+| Parkinson | 2 | **74,1%** |
+| carcinoma epatocellulare | 2 | **67,4%** |
 | DHT | 2 (`DHT and ENZ`; `E2 and DHT`) | 9,4% |
 | TGF-β1 | 3 (iPSC vs primarie; passaggio; etnia) | 6,8% |
 | enzalutamide | 1 (`LAPC4_ENZA` vs `VCaP_DMSO`) | 6,4% |
 | IFN-γ | 1 (soggetto diverso) | 4,8% |
 | JQ1 | 1 (DIPG pons vs brain) | 4,8% |
-| SARS-CoV-2 | 2 (cuore di paziente; `COVID-19 Lung` vs `hESC Mock`) | 4,7% |
+| SARS-CoV-2 | 2 | 4,7% |
 
-**Nei sette gruppi di punta i difetti noti pesano fra il 4,7% e il 9,4%: non guidano il risultato.**
-Nei due gruppi di malattia lo guidano e basta. Tre difetti sono **nuovi** rispetto al 2026-07-30:
-`GSE210984` in TGF-β1 (trattato = MSC da iPSC, controllo = MSC primarie), `GSE78801` in JQ1 (pons
-contro brain), `GSE130247` in DHT (`DHT and ENZ`: l'antagonista dentro il gruppo dell'agonista).
+**Nei gruppi di punta i difetti noti pesano fra il 4,7% e il 9,4%: non guidano il risultato.** Tre
+sono **nuovi** rispetto al 2026-07-30: `GSE210984` in TGF-β1 (trattato = MSC da iPSC, controllo = MSC
+primarie), `GSE78801` in JQ1 (pons contro brain), `GSE130247` in DHT (`DHT and ENZ`: l'antagonista
+dentro il gruppo dell'agonista).
 
-## 8. Un difetto minore, misurato: simboli genici duplicati nelle tabelle
+## 8. Che cosa NON è stato fatto, per scelta
 
-L'asse dei geni è pulito — **zero righe duplicate per `(cluster_id, gene_id)` su 3.178.307**. Ma le
-tabelle e le etichette usano `gene_symbol`, e nella regione MHC lo stesso simbolo ha più ID Ensembl
-su aplotipi alternativi: `UBD` compare **sei volte** nel gruppo SARS-CoV-2, tre con valori identici.
-È una nuova manifestazione di un problema noto dal 2026-05-21 (memoria
-`project_archs4_gene_symbol_duplicates`), che l'asse Ensembl aveva risolto **nel calcolo** ma non
-**nella visualizzazione**.
+- **I verdetti di coerenza non sono stati toccati.** Cambiarli richiederebbe una regola applicata a
+  tutti e 305 e un nuovo censimento, non una correzione mirata.
+- **La regola «entità con un gruppo proprio»** (IL-1α/IL-1β) resta aperta: ~9 h di re-cluster + ~28 h
+  di re-pool, decisione dell'utente.
+- **Il filtro sui volcano label** non è stato aggiunto: lì un simbolo ripetuto è cosmetico.
 
-Ampiezza sui 12: 4,6% dei simboli hanno più di un ID (12,0% delle righe). Costo sulle tabelle da 30
-righe: **da 0 a 5 posti persi** (HCC 5, LPS 4, SARS 3, zero su quattro gruppi).
+## 9. RITRATTAZIONE — i simboli genici duplicati non costano posti nelle tabelle
 
-## 9. Che cosa questo NON dimostra
+La prima stesura diceva: «le tabelle da 30 righe perdono da 0 a 5 posti per simboli con più ID
+Ensembl». **È falso.** `.rank_and_dedup_genes()` deduplica per simbolo **prima** di prendere i primi
+30, in tabella e in heatmap, e il commento nel codice dice pure perché. Verificato sull'artefatto:
+**zero simboli duplicati in tutte e 12 le tabelle prodotte**.
 
-- **Non è una validazione del deliverable.** Sono 12 gruppi su 191. Le misure dei §5 e §8 sono su
-  tutti e 191; quelle dei §4, §6 e §7 sono sui 12 costruiti.
-- **La verifica dei membri è una lettura umana**, come il censimento: ripetibile sugli stessi file
-  (`membri-case-study.txt`, testo intero, massimo 88 caratteri, **nessun limite toccato**), non
+Il dato di partenza resta vero — `UBD` ha sei ID Ensembl nel gruppo SARS-CoV-2, 4,6% dei simboli ne
+ha più di uno — ma **avevo misurato sul parquet grezzo invece che sul file che la pipeline produce**.
+È la stessa classe di errore che questo progetto continua a pagare: *misurare l'oggetto sbagliato*.
+
+## 10. Che cosa questo NON dimostra
+
+- **Non è una validazione del deliverable.** Le misure dei §4 e §6 sono su tutti e 191; quelle dei
+  §3, §5 e §7 sono sui case study costruiti.
+- **La lettura dei membri è umana**, ripetibile sugli stessi file (`membri-case-study.txt`,
+  `malattie-membri.txt`: testo intero, massimo 129 caratteri, **nessun limite toccato**), non
   l'output di una regola.
-- **Il verdetto su Parkinson è una proposta di ritrattazione, non una ritrattazione applicata.** Il
-  deliverable annotato non è stato modificato.
-- **Nessuna correzione è stata applicata alle figure.** Il filtro per k sui top geni e sulla heatmap
-  è proposto, non fatto.
+- **`materiale_misto` è un'euristica dichiarata**, non un classificatore di materiale biologico. Non
+  copre i nomi propri delle linee cellulari; il suo accordo col giudizio umano è misurato solo sui 20
+  gruppi di malattia.
+- **La soglia del filtro (metà del k) è una scelta**, non un risultato. È un parametro di config.
 - **Il forest e il pannello di eterogeneità non sono stati letti uno per uno**: la dominanza è stata
-  misurata dai pesi, che è più forte, ma le figure andrebbero comunque guardate prima del paper.
+  misurata dai pesi, che è più forte, ma le figure vanno guardate prima del paper.
 
-## 10. Riproducibilità
+## 11. Riproducibilità
 
-`analysis/audit/2026-07-31-layer-b-v13/`:
-`10-selection.R` → `analysis/layer-b-selection-v13.csv` ·
-`20-preflight.R` → `preflight-dispatch.rds` ·
-`30-k-per-gene.R` → `k-per-gene-quote.csv`, `bersagli-attesi-rango.csv` ·
-`40-dominanza-forest.R` → `dominanza-forest.csv` ·
-`50-membri-case-study.R` → `membri-case-study.txt` ·
-`60-peso-dei-difetti.R` → `peso-dei-difetti.csv` ·
-`70-dominanza-tutti-191.R` → `dominanza-tutti-191.csv` ·
-`80-heatmap-verifica.R` → `heatmap-verifica.csv`.
+`analysis/audit/2026-07-31-layer-b-v13/`: `10-selection.R` · `20-preflight.R` · `30-k-per-gene.R` ·
+`40-dominanza-forest.R` · `50-membri-case-study.R` · `60-peso-dei-difetti.R` ·
+`70-dominanza-tutti-191.R` · `80-heatmap-verifica.R` · `90-malattie-modello-vs-paziente.R` ·
+`100-efficacia-pacchetto.R` · `110-materiale-tutti-191.R` · `120-selection-finale.R` ·
+`130-deliverable-arricchito.R` · `140-verifica-filtro.R`.
 
-Build: `analysis/p5-stage4-layer-b-build-v13.R` → `analysis/p4-output/20260730T160606Z-layer-b-c279e308`.
+Codice di pacchetto nuovo: `R/stage4-pooling-effectiveness.R`, `R/stage3-material-class.R`,
+filtro di copertura in `R/layer-b-utils.R` + innesto in `R/layer-b-plot-top-gene-table.R` e
+`R/layer-b-plot-heatmap.R`. Test: `test-stage4-pooling-effectiveness.R` (38),
+`test-stage3-material-class.R` (49), `test-layer-b-gene-coverage-filter.R` (31).

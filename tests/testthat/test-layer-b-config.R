@@ -7,7 +7,7 @@ test_that("layer_b_default_config returns expected schema", {
     c("top_n_forest", "top_n_heatmap", "top_n_table", "top_n_volcano_labels",
       "fdr_threshold", "palette", "language", "heatmap_normalize",
       "go_enrichment", "save_svg", "dpi", "min_genes_for_go_ora",
-      "max_heatmap_samples"),
+      "max_heatmap_samples", "top_genes_min_k_frac"),
     ignore.order = TRUE
   )
 

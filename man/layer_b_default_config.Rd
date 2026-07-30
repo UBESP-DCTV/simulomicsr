@@ -22,6 +22,7 @@ Lista con i seguenti elementi:
 \item{dpi}{\code{integer(1)} --- DPI per output PNG (default 300).}
 \item{min_genes_for_go_ora}{\code{integer(1)} --- soglia minima geni nell'universo per ORA (default 200; sotto skip-graceful).}
 \item{max_heatmap_samples}{\code{integer(1)} --- max sample plottati nella heatmap (default 100; sopra subsample stratificato).}
+\item{top_genes_min_k_frac}{\code{numeric(1)} --- frazione minima del \code{k} del cluster perche' un gene entri nella top-gene table e nella heatmap (default 0.5). Con k basso il random-effects stima tau^2 = 0, l'errore standard collassa e geni misurati in due studi finiscono in cima all'ordinamento per FDR: misurato sui bundle v13 il 2026-07-31. 0 disattiva il filtro.}
 }
 }
 \description{

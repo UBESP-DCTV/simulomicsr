@@ -73,3 +73,83 @@
 
   sig[keep, , drop = FALSE]
 }
+
+# --- filtro di copertura sui geni mostrati nelle figure -----------------------
+#
+# Misurato il 2026-07-31 sui bundle veri: la tabella dei top geni e la heatmap,
+# ordinate per FDR, sono guidate da geni misurati in POCHI studi. Il meccanismo
+# e' verificato: con k basso il random-effects non riesce a stimare tau^2, lo
+# pone a ZERO, l'errore standard collassa e l'FDR precipita. Quegli stessi geni
+# sono a conteggio zero nella maggior parte dei campioni (Spearman fra k e
+# frazione di zeri: -0,813) e ComBat li salta, quindi nella heatmap restano
+# segnale di studio invece che di trattamento.
+#
+# Il filtro non giudica la stima poolata — quella resta quella che e'. Decide
+# solo QUALI geni si mostrano in una figura.
+
+#' Tiene i geni misurati in una frazione minima degli studi del cluster
+#'
+#' @param sig data.frame dei geni candidati (tipicamente i significativi), con
+#'   colonna `k_effective`. Se la colonna manca, l'input passa indenne.
+#' @param min_k_frac numeric(1) frazione minima del `k` del cluster. 0 disattiva.
+#' @param k_max integer(1) opzionale: il `k` del cluster. Va passato quando `sig`
+#'   e' gia' un sottoinsieme, perche' dedurlo dai geni presenti abbasserebbe la
+#'   soglia proprio nei cluster in cui serve di piu'.
+#' @return list con `genes` (il data.frame filtrato), `n_dropped`, `k_max`,
+#'   `k_min_richiesto`, `fallback` (TRUE se il filtro avrebbe svuotato la figura
+#'   e si e' tornati all'insieme intero).
+#' @keywords internal
+.filter_genes_by_coverage <- function(sig, min_k_frac, k_max = NULL) {
+  vuoto <- list(genes = sig, n_dropped = 0L, k_max = NA_integer_,
+                k_min_richiesto = NA_integer_, fallback = FALSE)
+  if (nrow(sig) == 0L) return(vuoto)
+  if (is.null(sig$k_effective)) return(vuoto)
+  if (is.null(min_k_frac) || is.na(min_k_frac) || min_k_frac <= 0) {
+    vuoto$k_max <- as.integer(max(sig$k_effective, na.rm = TRUE))
+    return(vuoto)
+  }
+
+  kmax <- if (!is.null(k_max)) as.integer(k_max) else {
+    as.integer(max(sig$k_effective, na.rm = TRUE))
+  }
+  if (!is.finite(kmax) || kmax <= 0L) return(vuoto)
+
+  kmin <- as.integer(ceiling(min_k_frac * kmax))
+  # NA non passa di nascosto: un k ignoto non e' un k alto.
+  tieni <- !is.na(sig$k_effective) & sig$k_effective >= kmin
+
+  if (!any(tieni)) {
+    # Mai svuotare una figura in silenzio: il lettore leggerebbe "nessun
+    # risultato" invece di "filtro troppo severo per questo cluster".
+    return(list(genes = sig, n_dropped = 0L, k_max = kmax,
+                k_min_richiesto = kmin, fallback = TRUE))
+  }
+  list(genes = sig[tieni, , drop = FALSE],
+       n_dropped = as.integer(sum(!tieni)),
+       k_max = kmax, k_min_richiesto = kmin, fallback = FALSE)
+}
+
+#' Frase per la caption che dichiara il filtro applicato
+#'
+#' Un taglio di copertura non dichiarato si legge come "questi sono i geni piu'
+#' forti", che e' falso. Se non e' stato tolto nulla la frase e' vuota, cosi' la
+#' caption non si sporca senza motivo.
+#'
+#' @param filtro output di `.filter_genes_by_coverage()`.
+#' @return character(1), eventualmente `""`.
+#' @keywords internal
+.coverage_filter_note <- function(filtro) {
+  if (isTRUE(filtro$fallback)) {
+    return(sprintf(
+      paste0(" Coverage filter (>= %d of %d studies) not applied: no gene met ",
+             "it in this cluster, so all significant genes are shown."),
+      filtro$k_min_richiesto, filtro$k_max))
+  }
+  if (is.null(filtro$n_dropped) || filtro$n_dropped == 0L) return("")
+  sprintf(
+    paste0(" Genes measured in fewer than %d of %d studies were excluded from ",
+           "ranking (%d genes): with few studies the random-effects model ",
+           "estimates tau^2 as zero, which collapses the standard error and ",
+           "inflates significance."),
+    filtro$k_min_richiesto, filtro$k_max, filtro$n_dropped)
+}

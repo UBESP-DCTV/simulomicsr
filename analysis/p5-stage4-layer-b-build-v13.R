@@ -40,7 +40,12 @@ cli_h1("Stadio 4 Layer B batch build — v13")
 stage4_dir    <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v13/20260729T210013Z-stage4-v13-ac125296"
 stage3_dir    <- "analysis/p4-output/20260728T151529Z-stage3-v13-364547a7"
 stage2_path   <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
-selection_csv <- "analysis/layer-b-selection-v13.csv"
+# Selezione FINALE (9 case study: 3 main + 6 supplementari), decisa sulle misure
+# del 2026-07-31 e non sul k — vedi analysis/audit/2026-07-31-layer-b-v13/120-selection-finale.R.
+# La prima selezione esplorativa (12 case study, con i doppioni TGF-beta1/LPS e
+# Parkinson/HCC ancora aperti) resta in analysis/layer-b-selection-v13.csv.
+selection_csv <- Sys.getenv("LAYER_B_SELECTION",
+                            "analysis/layer-b-selection-v13-finale.csv")
 h5_path       <- "analysis/input/human_gene_v2.5.h5"
 
 stopifnot(

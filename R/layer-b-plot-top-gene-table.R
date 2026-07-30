@@ -20,6 +20,17 @@
   top_n <- config$top_n_table
 
   sig <- cp[!is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr, , drop = FALSE]
+  # Filtro di copertura PRIMA del ranking: senza, la tabella e' guidata da geni
+  # misurati in due studi su trentatre, dove il random-effects stima tau^2 = 0 e
+  # l'errore standard collassa (misurato sui bundle v13 il 2026-07-31). `k_max`
+  # viene dal cluster INTERO, non dai soli significativi: dedurlo dal
+  # sottoinsieme abbasserebbe la soglia proprio dove serve.
+  k_max_cluster <- if (!is.null(cp$k_effective) && any(!is.na(cp$k_effective))) {
+    max(cp$k_effective, na.rm = TRUE)
+  } else NULL
+  filtro <- .filter_genes_by_coverage(sig, config$top_genes_min_k_frac,
+                                      k_max = k_max_cluster)
+  sig <- filtro$genes
   # Dedup per gene_symbol PRIMA di prendere i top_n, cosi si mostrano top_n
   # simboli distinti (non top_n righe di cui alcune ridondanti).
   sig <- .rank_and_dedup_genes(sig)
@@ -80,15 +91,15 @@
     digits = digits_vec,
     caption = sprintf(paste0(
       "Top %d differentially expressed genes for cluster %s (FDR<%g, ",
-      "ranked by significance; $\\log_2 FC$ reported for reference)."
-    ), nrow(top_out), cluster_id_str, fdr_thr),
+      "ranked by significance; $\\log_2 FC$ reported for reference).%s"
+    ), nrow(top_out), cluster_id_str, fdr_thr, .coverage_filter_note(filtro)),
     label = sprintf("tab:top-genes-%s", gsub("[^a-zA-Z0-9]", "-", cluster_id_str))
   )
   writeLines(as.character(tex_str), tex_path)
 
   caption <- sprintf(
-    "Top %d differentially expressed genes (FDR<%g, ranked by significance). Full table in top_genes.csv.",
-    nrow(top_out), fdr_thr
+    "Top %d differentially expressed genes (FDR<%g, ranked by significance). Full table in top_genes.csv.%s",
+    nrow(top_out), fdr_thr, .coverage_filter_note(filtro)
   )
 
   list(

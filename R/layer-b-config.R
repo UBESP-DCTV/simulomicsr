@@ -19,6 +19,7 @@
 #'   \item{dpi}{`integer(1)` --- DPI per output PNG (default 300).}
 #'   \item{min_genes_for_go_ora}{`integer(1)` --- soglia minima geni nell'universo per ORA (default 200; sotto skip-graceful).}
 #'   \item{max_heatmap_samples}{`integer(1)` --- max sample plottati nella heatmap (default 100; sopra subsample stratificato).}
+#'   \item{top_genes_min_k_frac}{`numeric(1)` --- frazione minima del `k` del cluster perche' un gene entri nella top-gene table e nella heatmap (default 0.5). Con k basso il random-effects stima tau^2 = 0, l'errore standard collassa e geni misurati in due studi finiscono in cima all'ordinamento per FDR: misurato sui bundle v13 il 2026-07-31. 0 disattiva il filtro.}
 #' }
 #'
 #' @export
@@ -40,6 +41,7 @@ layer_b_default_config <- function() {
     save_svg             = TRUE,
     dpi                  = 300L,
     min_genes_for_go_ora = 200L,
-    max_heatmap_samples  = 100L
+    max_heatmap_samples  = 100L,
+    top_genes_min_k_frac = 0.5
   )
 }

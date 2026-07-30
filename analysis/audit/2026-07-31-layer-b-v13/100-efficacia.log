@@ -1,0 +1,25 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+ℹ geni significativi: 315037 | righe per-braccio: 32391956
+✔ calcolata in 601s: 191 cluster
+           used  (Mb) gc trigger    (Mb)   max used    (Mb)
+Ncells 12511309 668.2  190588642 10178.6  199446830 10651.7
+Vcells 56446549 430.7  934818277  7132.1 1158247566  8836.8
+
+── Confronto pacchetto vs misura a mano ──
+
+  cluster confrontati: 191 su 191
+  scarto massimo su k_kish:     0.0000000000
+  scarto massimo su quota_top1: 0.0000000000
+  k_studies identico:           191 su 191
+── Il deliverable copre tutti i cluster misurati? ──
+
+  nel deliverable: 191 | misurati: 191 | in comune: 191
+  k_studies (mediana sui geni) <= k_effective: 191 su 191
+── Riepilogo sui 191 ──
+
+  dominati (top1 >= 50%):        105 (55.0%)
+  meno di 2 studi efficaci:      66 (34.6%)
+  frazione efficace mediana:     0.65
+✔ Scritte efficacia-pooling-191.rds e .csv

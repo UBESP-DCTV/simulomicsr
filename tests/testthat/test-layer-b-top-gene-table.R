@@ -69,11 +69,45 @@ test_that(".build_top_gene_table ranks by significance (FDR asc), not raw |logFC
   dir.create(out_dir)
   on.exit(unlink(out_dir, recursive = TRUE))
 
+  # Il filtro di copertura (2026-07-31) toglierebbe NOISY_B, che ha k=2 su 20:
+  # e' esattamente il caso per cui e' stato scritto. Qui lo si disattiva per
+  # tenere il test su UNA cosa sola — l'ordinamento — mentre il filtro ha i suoi
+  # test in test-layer-b-gene-coverage-filter.R.
   cfg <- layer_b_default_config()
+  cfg$top_genes_min_k_frac <- 0
   result <- simulomicsr:::.build_top_gene_table(cp, out_dir = out_dir, config = cfg)
 
   csv_df <- readr::read_csv(result$csv_path, show_col_types = FALSE)
   expect_equal(csv_df$gene_symbol, c("MARKER_A", "NOISY_B"))
+})
+
+test_that(".build_top_gene_table col filtro ATTIVO toglie il gene a bassa copertura", {
+  # La controprova del test qui sopra: con la config di default lo stesso
+  # NOISY_B (k=2 su 20, logFC 5,0) non deve comparire, e la caption deve dirlo.
+  cp <- tibble::tibble(
+    cluster_id = "cl_rank",
+    gene_id = c("ENSG_A", "ENSG_B"),
+    gene_symbol = c("MARKER_A", "NOISY_B"),
+    method = "mega",
+    logFC_pool = c(0.6, 5.0),
+    SE_pool = c(0.1, 2.0),
+    p_value_pool = c(1e-12, 0.04),
+    tau2 = NA_real_, I2 = c(10, 90), Q = NA_real_, Q_pval = NA_real_,
+    k_effective = c(20L, 2L),
+    n_baseline_studies_augmented = NA_integer_,
+    FDR_BH_within_cluster = c(1e-10, 0.049),
+    direction_applied = "none"
+  )
+  out_dir <- tempfile("tgt_cov_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_top_gene_table(
+    cp, out_dir = out_dir, config = layer_b_default_config())
+
+  csv_df <- readr::read_csv(result$csv_path, show_col_types = FALSE)
+  expect_equal(csv_df$gene_symbol, "MARKER_A")
+  expect_match(result$caption, "fewer than 10 of 20 studies")
 })
 
 test_that(".build_top_gene_table deduplicates rows sharing gene_symbol (multi-Ensembl artifact), keeping the most significant", {
