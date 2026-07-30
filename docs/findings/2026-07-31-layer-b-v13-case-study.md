@@ -208,6 +208,22 @@ campioni a zero; **ora ha STAT1, GBP1, CXCL9, TAP1, TRIM69, NMI** — i geni can
 interferone γ. 8 bundle su 9 dichiarano il filtro nella caption; il nono è IL1A, dove non è stato
 tolto nulla e la nota giustamente non compare.
 
+**E la varianza si sposta dove deve.** Rimisurato sui geni *effettivamente mostrati* dal bundle
+nuovo, con la stessa catena VST+ComBat della figura:
+
+| gruppo | R² studio (post-ComBat) | R² **trattamento** |
+|---|---:|---:|
+| **IFN-γ** | 0,82 → **0,04** | 0,01 → **0,81** |
+| DHT | 0,02 → 0,01 | 0,14 → **0,25** |
+| enzalutamide | 0,01 → 0,00 | 0,05 → **0,11** |
+| TGF-β1 | 0,03 → 0,03 | 0,24 → **0,27** |
+
+Su IFN-γ è un ribaltamento completo: la heatmap prima era una mappa degli studi, ora separa i
+campioni in due blocchi per trattamento con gli studi mescolati in entrambi, e le righe sono la firma
+canonica dell'interferone γ (STAT1, STAT2, IRF1, GBP1, IDO1, TAP1/TAP2, l'immunoproteasoma
+PSMB9/PSMB10/PSME1/PSME2, CXCL9/CXCL11, PARP9/PARP14/DTX3L). Geni con oltre metà dei campioni a zero:
+**0/30 su tutti e quattro** (erano 8, 7, 16 e 3).
+
 ## 6. FINDING — «paziente contro modello in vitro» non è di Parkinson: è di almeno 6 gruppi su 20
 
 Il gruppo Parkinson (k=10, marcato coerente) ha il **73,2%** del peso su `GSE181029`, che leggendo il

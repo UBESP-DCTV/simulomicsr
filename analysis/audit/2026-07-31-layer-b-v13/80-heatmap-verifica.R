@@ -44,10 +44,19 @@ risultati <- list()
 for (cid in CIDS) {
   lab <- sel$label_paper[match(cid, sel$cluster_id)]
   # 30 geni della tabella, stesso ordinamento del Layer B (FDR crescente)
-  top <- arrow::open_dataset(file.path(STAGE4, "cluster_pooled.parquet")) |>
-    filter(cluster_id == cid, !is.na(FDR_BH_within_cluster)) |>
-    select(gene_id, gene_symbol, FDR_BH_within_cluster, k_effective) |>
-    collect() |> arrange(FDR_BH_within_cluster) |> head(30)
+  # I 30 geni EFFETTIVAMENTE mostrati dal bundle: si legge il file prodotto,
+  # non si ricalcola il criterio. Con BUNDLE_DIR non impostato si ricade sul
+  # vecchio comportamento (top 30 per FDR senza filtro), che e' la misura
+  # "prima del fix".
+  bdir <- Sys.getenv("BUNDLE_DIR", "")
+  top <- if (nzchar(bdir) && file.exists(file.path(bdir, cid, "top_genes.csv"))) {
+    utils::read.csv(file.path(bdir, cid, "top_genes.csv"), stringsAsFactors = FALSE)
+  } else {
+    arrow::open_dataset(file.path(STAGE4, "cluster_pooled.parquet")) |>
+      filter(cluster_id == cid, !is.na(FDR_BH_within_cluster)) |>
+      select(gene_id, gene_symbol, FDR_BH_within_cluster, k_effective) |>
+      collect() |> arrange(FDR_BH_within_cluster) |> head(30)
+  }
 
   campioni <- do.call(rbind, lapply(disp[[cid]], function(it) data.frame(
     sample_id = c(it$treated, it$control), study_id = it$study_id,

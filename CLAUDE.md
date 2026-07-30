@@ -69,7 +69,12 @@
 >    dichiarato) e **non tocca le stime**. Verifica sull'artefatto: geni sotto metà del k **106 → 0**;
 >    k mediano dei mostrati SARS 6,0→**33,0**, IFN-γ 4,0→**19,0**; geni quasi-tutti-zero IFN-γ
 >    **16/30 → 0/30**. La tabella di IFN-γ prima aveva geni GIMAP a k=2 con l'85-92% di zeri, **ora ha
->    STAT1, GBP1, CXCL9, TAP1**.
+>    STAT1, GBP1, CXCL9, TAP1**. **E la varianza si sposta dove deve**: rimisurato sui geni
+>    effettivamente mostrati, su IFN-γ l'R² del TRATTAMENTO va da **0,01 a 0,81** e quello dello
+>    studio da 0,82 a 0,04 — la heatmap era una mappa degli studi, ora separa in due blocchi per
+>    trattamento e mostra la firma canonica dell'interferone γ (STAT1/STAT2/IRF1/GBP1/IDO1/TAP1-2,
+>    immunoproteasoma, CXCL9/11). Geni quasi-tutti-zero: **0/30 su tutti e quattro** i cluster
+>    rimisurati.
 > 6. **LA FIGURA 1 È PIÙ FORTE DEL PREVISTO.** Non sono i quattro bersagli scelti prima: su **1.299
 >    geni significativi in ENTRAMBI i gruppi, il 97,5% ha segno opposto, Spearman −0,939**; e dei 15
 >    geni condivisi fra i primi trenta di ciascuno, **15 su 15** sono opposti (PGC +4,63/−3,04,
