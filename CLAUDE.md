@@ -35,6 +35,58 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-30 (RE-POOL v13 FATTO — 191 META-ANALISI POOLATE, I² ESISTE, I GENI SONO GIUSTI)**:
+> 🟢 **Il deliverable è poolato, annotato e per la prima volta VALIDATO BIOLOGICAMENTE. Non è
+> "finale": mancano il Layer B, i Methods e le decisioni sui limiti.**
+>
+> 1. **RUN** `analysis/p4-fase-f5-stage4-layer-a-rebuild-v13.R`, 28h17m, output
+>    `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v13/20260729T210013Z-stage4-v13-ac125296`
+>    (run_id `ac125296`). Solo ramo `rem_group` (ADR-0026). Un errore non fatale: dashboard quarto.
+> 2. **ANTI-STALE PASS**, letta dai file non dal log: `Methods` = solo `rem_group` su 3.178.307
+>    righe; tutti i `cluster_id` con prefisso `cgroup_L5_`; **191 poolati = ESATTAMENTE i 191
+>    previsti** (confronto di insiemi); **k per cluster identico al previsto su tutti e 191**.
+>    114 scartati con un solo motivo (`rem_group_insufficient_in_study_controls`, limite L7).
+> 3. **IL NUMERO È 191, NON 305.** Il gate dei controlli interni scarta 114 gruppi (studi-slot
+>    1.758 su 2.158). «305» è il censimento dei raggruppamenti, non il deliverable poolato.
+> 4. **I² e τ² esistono su TUTTE le righe** (I² mediano 73,2) — è ciò che il ramo `mega`, uscito
+>    con ADR-0026, non poteva fare. 315.037 geni significativi (FDR<0,05).
+> 5. **CONTROLLO BIOLOGICO, MAI FATTO PRIMA — PASSA.** DHT (agonista AR): KLK3 **+2,27**,
+>    TMPRSS2 +1,78, FKBP5 +2,32; **enzalutamide (antagonista): −1,60, −0,92, −1,22 SUGLI STESSI
+>    GENI**. LPS, TGF-β1, SARS-CoV-2, IFN-γ tutti coerenti con la letteratura. Gli I² di quei geni
+>    stanno fra 94 e 100: gli studi concordano sul **segno**, non sulla magnitudine.
+> 6. **IL POOLING CAMBIA LA COMPOSIZIONE DI 3 GRUPPI SU 4**: solo 45 su 191 hanno lo stesso insieme
+>    di studi censito, 524 studi persi. Per i coerenti il verdetto regge per **chiusura per
+>    sottoinsiemi** (argomento, non misura); i **6 incoerenti sono stati riletti sui membri veri**:
+>    nessuno assolto, e in tre casi il pooling ha fatto cadere gli studi giusti lasciando l'intruso.
+>    **Il gate seleziona per controllo interno, non per correttezza biologica: può CONCENTRARE
+>    l'errore.** Va nei Methods.
+> 7. **DUE RITRATTAZIONI, per iscritto**: (a) «gli ID sono tutti giusti» (censimento 28/07) è
+>    **falso** — `CHEBI:73572` è il tripeptide Leu-Thr-Ala mentre i suoi 3 studi trattano con acido
+>    lipoteicoico; verifica estesa a TUTTI e 305: **303 corretti, 1 sbagliato, 1 parziale**
+>    (`HGNC:1653` CD28 = anti-CD3/CD28). (b) **Il bundle del censimento TRONCAVA le etichette** a
+>    58/40 caratteri e un mio verdetto è stato dato su mezza frase (GSE126517: il pezzo tagliato era
+>    `and IFN-alpha for 18 hours`). Ampiezza: **8,6% dei confronti, 52% dei gruppi poolati**.
+>    Riletti tutti i 99 col testo intero: **zero verdetti ribaltati**, un motivo corretto.
+> 8. **LEZIONE DI METODO (dall'utente, e confermata dai fatti)**: tre strumenti di misura ciechi in
+>    due giorni — alias corti (`LTA`), lettere greche cancellate (`IL-1β`), testo troncato — sempre
+>    perché **lo strumento vedeva meno del dato**. Principio scrivibile PRIMA: *prima di giudicare,
+>    verifica che lo strumento veda il dato per intero*, con accanto il controllo «quante stringhe
+>    toccano il limite?».
+> 9. **CODICE NUOVO** (TDD, 59 PASS/0 FAIL): `R/stage3-entity-label.R` (etichetta risolta dall'ID +
+>    `.display_entity_label()` con le scelte umane in `inst/extdata/entity-label-overrides.csv`) e
+>    `R/stage4-coherence-annotation.R` (marca i 6 incoerenti invece di scartarli — scartarli sarebbe
+>    una lista; un verdetto orfano FERMA la marcatura). **`canonical_name` non è mai sovrascritto.**
+> 10. **REGOLE DI RIGA: limite misurato.** `.rp_row_defect` non segnala nessuno dei difetti visti
+>    (linea diversa, `visit`, passaggio, etnia, sede). Misura esatta: 38 confronti su 4.452 con un
+>    numero diverso, di cui **16 non sono difetti** (caso-controllo di malattia) → **~22 veri (0,5%)
+>    in 4 gruppi**. Etnia/sede/tipo cellulare **non misurati** (servirebbe un vocabolario).
+> 11. **PROSSIMO = LAYER B in sessione dedicata**: handout
+>    `docs/superpowers/specs/2026-07-31-layer-b-NEXT-SESSION-HANDOUT.md`. Poi Methods, poi
+>    (decisione utente) l'eventuale regola «entità con un gruppo proprio» (~9h + ~28h).
+>    Deliverable annotato: `analysis/audit/2026-07-29-etichette-v13/deliverable-v13-poolato.csv`.
+>    Finding `docs/findings/2026-07-30-repool-v13-risultati.md` e
+>    `-2026-07-29-etichette-identita-e-gate-del-pooling.md`. Branch invariato, master invariato.
+>
 > **Stato 2026-07-28b (RE-CLUSTER v13 CON LE SEI REGOLE: 296 COERENTI SU 305 = 97,0%)**:
 > 🟡 **Secondo re-cluster (8h43m, `20260728T151529Z-stage3-v13-364547a7`). NESSUN RE-POOL: i gruppi
 > non sono poolati, I² e τ² non esistono. Il re-pool (~50 h) è dietro un GO dell'utente.**
