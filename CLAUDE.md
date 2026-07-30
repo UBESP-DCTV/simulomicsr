@@ -35,6 +35,63 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-31 (LAYER B v13 COSTRUITO — LE STIME REGGONO, DUE FIGURE NO, UN VERDETTO DA RIVEDERE)**:
+> 🟡 **12 case study, 72 figure, report HTML, wall 10 min. La biologia passa (32 bersagli attesi su
+> 32). Ma guardare i bundle ha trovato tre cose che i numeri aggregati non dicevano. NON è
+> "validato": vedi §9 del finding.**
+>
+> 1. **BUILD** `analysis/p5-stage4-layer-b-build-v13.R` → `analysis/p4-output/20260730T160606Z-layer-b-c279e308`
+>    (12 bundle, 75 immagini incorporate, 0 riferimenti esterni). Selezione ADR-0027 + **entrambi** i
+>    doppioni aperti (TGF-β1/LPS e Parkinson/HCC), perché costruirli tutti e due costava due minuti.
+> 2. **DUE DIFETTI DELLA MACCHINA trovati PRIMA del lancio**, entrambi perché il Layer B è anteriore
+>    ad ADR-0025: (a) `anchor_key` dei `cgroup` ha **3** segmenti, non 13 → `extract_anchor_summary()`
+>    non crasha ma dà **NA su tutto** (ogni card avrebbe scritto `Anchor: ? x ?`); (b) `canonical_name`
+>    del DHT dice «4-maleylacetoacetate» — l'etichetta viene dal CSV di selezione, ora **generato dal
+>    deliverable**. Il fix `rem_group` del 23/07 c'era già. Pre-flight 5/5 su 12 cluster.
+> 3. **LA BIOLOGIA REGGE**: 32 bersagli attesi su 32, segno corretto, tutti nel 5% più significativo.
+>    GO indipendente: IFN-γ dà «response to type II interferon», enzalutamide biogenesi ribosomiale,
+>    DHT biosintesi del colesterolo (programma lipogenico di AR).
+> 4. **FINDING 1 — la tabella dei top geni e la heatmap non mostrano l'effetto.** Catena verificata:
+>    k basso → τ² stimato **0** → SE collassa → FDR minuscolo → il gene entra nei top 30 → ma è
+>    **zero nella maggior parte dei campioni** → ComBat lo salta esplicitamente → la riga resta
+>    segnale di studio. SARS: k mediano dei primi 20 = **6,5 su 33**, 20/20 sotto metà del k pieno;
+>    SE mediano 0,554 a k=2 contro 0,088 a k≥21; τ²=0 nel 56,6% dei geni a k=2. Geni dei top 30
+>    quasi tutti a zero: DHT 8/30, **IFN-γ 16/30**. ⚠️ **Una mia conclusione corretta prima di
+>    scriverla**: misurato sul grezzo sembrava batch ovunque, ma la heatmap applica VST+ComBat →
+>    rifatto sulla catena vera, R² studio **0,82→0,02** (DHT), 0,55→0,03 (TGF-β1); **fallisce solo
+>    IFN-γ, 0,84→0,82**. Le stime poolate NON sono toccate: il difetto è in quali 30 geni si mostrano.
+> 5. **FINDING 2 — 105 delle 191 (55,0%) sono dominate da un solo studio** (≥50% del peso), 66
+>    (34,6%) valgono **meno di 2 studi efficaci**. Misurato su TUTTI e 191 col numero di Kish
+>    `(Σw)²/Σw²`, w=1/(SE²+τ²). Tutto concentrato sui k bassi: k=3-4 → **80% dominati**; k≥11 → **0**.
+>    I sette di punta stanno bene (TGF-β1 49→45,1 efficaci, studio più pesante 2,6%). Estremo:
+>    «Lung Neoplasms» k=3, **1,0 efficaci, 98,8% su uno**. **Non è un errore** (l'inverso della
+>    varianza deve pesare così) ma per un terzo dei gruppi **il pooling non aggiunge nulla**, e
+>    **tutti e 105 sono marcati "coerenti"**: coerenza e dominanza sono assi indipendenti. Va nei
+>    Methods; `k_kish` andrebbe accanto a `k_effective`. ⚠️ **Secondo mio errore corretto**: la prima
+>    versione pesava i **bracci** (`per_study_de` ha una riga per braccio: 83 per 49 studi in TGF-β1);
+>    rifatta col collasso e **validata — 0 disallineamenti su 40.251**.
+> 6. **FINDING 3 — il case study di MALATTIA non regge, in nessuna delle due versioni.** Parkinson:
+>    **1,8 studi efficaci su 10, 73,2% del peso su GSE181029**, che leggendo il testo intero **non è
+>    cervello di paziente** ma progenitori/neuroni **da iPSC** con mutazione PARK2 — la stessa forma
+>    «clinico contro sperimentale» che ha reso **incoerenti influenza e HIV-1**. → **PROPOSTA DI
+>    RITRATTAZIONE del verdetto `coherent`, non applicata** (la marcatura è lettura umana, decide
+>    l'utente). HCC: 67,4% del peso su due studi problematici (PBMC invece di fegato; un solo
+>    controllo per pazienti diversi) e **solo 72 geni significativi**. **Alternativa misurata:
+>    Crohn Disease k=10, 6,9 efficaci, max 20,3%, 3.515 geni sig** — poi Alzheimer (k=6, 3,8, 6.231).
+>    Non costruiti: sono due minuti.
+> 7. **I DIFETTI GIÀ NOTI ORA HANNO UN PESO**: nei sette gruppi di punta valgono **4,7–9,4%** (non
+>    guidano nulla); nei due di malattia **67–74%**. Tre difetti **nuovi**: `GSE210984` in TGF-β1
+>    (trattato = MSC da iPSC, controllo = MSC primarie), `GSE78801` in JQ1 (pons contro brain),
+>    `GSE130247` in DHT (`DHT and ENZ`: l'antagonista dentro il gruppo dell'agonista).
+> 8. **Difetto minore misurato**: asse dei geni pulito (**0 righe duplicate per `(cluster_id,gene_id)`
+>    su 3.178.307**), ma le tabelle usano `gene_symbol` e nella regione MHC lo stesso simbolo ha più
+>    ID Ensembl (`UBD` sei volte in SARS). Costo: **0-5 posti su 30** per tabella.
+> 9. **PROSSIMO = decisioni utente**: (a) quale alto-k e quale malattia (Crohn?); (b) filtro per k
+>    ed espressione su top-geni e heatmap (`layer_b_default_config()`, **non fatto**); (c) verdetto
+>    Parkinson; (d) `k_kish` nel deliverable. Poi le narrative e i Methods. Finding
+>    `docs/findings/2026-07-31-layer-b-v13-case-study.md`; evidenza
+>    `analysis/audit/2026-07-31-layer-b-v13/`. Branch invariato, master invariato, no push.
+>
 > **Stato 2026-07-30 (RE-POOL v13 FATTO — 191 META-ANALISI POOLATE, I² ESISTE, I GENI SONO GIUSTI)**:
 > 🟢 **Il deliverable è poolato, annotato e per la prima volta VALIDATO BIOLOGICAMENTE. Non è
 > "finale": mancano il Layer B, i Methods e le decisioni sui limiti.**
