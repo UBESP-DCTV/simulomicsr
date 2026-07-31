@@ -20,12 +20,26 @@
 #'   \code{layer_a_subset$per_study_de} (popolato solo per mega_aug). Passare
 #'   questo argomento permette di mostrare il sample count anche per cluster
 #'   mega-strict (n_studies>=5, k>=5) dove \code{per_study_de} e' vuoto.
+#' @param pooling_effectiveness data.frame opzionale, una riga per cluster, con
+#'   le colonne di \code{compute_pooling_effectiveness()} e
+#'   \code{detect_mixed_material()}: `k_kish`, `quota_top1`,
+#'   `frazione_efficace`, `dominato`, `studio_dominante`, `materiale_misto`,
+#'   `dominato_da_modello`, `n_studi_model/primary/unknown`.
+#'
+#'   Serve perche' `k_effective` dice **quanti** studi entrano e non quanto
+#'   **contano**: il case study di Parkinson ha k=10 ma 1,8 studi efficaci e il
+#'   73% del peso su un modello cellulare, e senza queste righe chi legge la
+#'   scheda accanto alla figura non lo vede.
+#'
+#'   Quando NULL (default) la scheda esce **identica** a prima — nessuna riga
+#'   vuota, nessun "NA": un bundle costruito senza annotazione resta leggibile.
 #'
 #' @return list `md_path`.
 #' @keywords internal
 .build_summary_card <- function(cluster_id, layer_a_subset, stage3_metadata,
                                 selection_row, config, out_dir = tempdir(),
-                                per_cluster_samples = NULL) {
+                                per_cluster_samples = NULL,
+                                pooling_effectiveness = NULL) {
   cp <- layer_a_subset$cluster_pooled
   cp_c <- cp[cp$cluster_id == cluster_id, , drop = FALSE]
   if (nrow(cp_c) == 0L) {
@@ -34,7 +48,9 @@
 
   fdr_thr <- config$fdr_threshold
   method <- unique(cp_c$method)[1L]
-  k_eff <- unique(cp_c$k_effective)[1L]
+  # k del CLUSTER (massimo), non del primo gene del parquet: vedi
+  # .cluster_k_effective(). Quattro schede su nove sbagliavano.
+  k_eff <- .cluster_k_effective(cp_c)
   n_sig <- sum(!is.na(cp_c$FDR_BH_within_cluster) &
                  cp_c$FDR_BH_within_cluster < fdr_thr)
   n_total <- nrow(cp_c)
@@ -115,6 +131,38 @@
     }
   }
 
+  # --- efficacia del pooling (additiva: NULL -> nessuna riga) ---------------
+  eff_lines <- character(0L)
+  if (!is.null(pooling_effectiveness) && nrow(pooling_effectiveness) > 0L) {
+    er <- pooling_effectiveness[pooling_effectiveness$cluster_id == cluster_id, ,
+                                drop = FALSE]
+    if (nrow(er) > 0L) {
+      .g <- function(nm) if (nm %in% names(er)) er[[nm]][1L] else NA
+      k_kish <- .g("k_kish"); q1 <- .g("quota_top1")
+      dom <- isTRUE(.g("dominato"))
+      eff_lines <- c(
+        sprintf("- **Effective studies (Kish):** %s of %s (%s of nominal k)",
+                if (is.na(k_kish)) "N/A" else sprintf("%.1f", k_kish),
+                as.character(k_eff),
+                if (is.na(.g("frazione_efficace"))) "N/A"
+                else sprintf("%.0f%%", 100 * .g("frazione_efficace"))),
+        sprintf("- **Heaviest study:** %s (%s of the weight)%s",
+                .g("studio_dominante") %||% "N/A",
+                if (is.na(q1)) "N/A" else sprintf("%.1f%%", 100 * q1),
+                if (dom) " -- **this group is dominated by a single study**" else "")
+      )
+      mm <- .g("materiale_misto")
+      if (!is.na(mm) && isTRUE(mm)) {
+        eff_lines <- c(eff_lines, sprintf(
+          "- **Material:** MIXED -- %s in vitro model / %s patient-derived / %s unclassified%s",
+          as.character(.g("n_studi_model")), as.character(.g("n_studi_primary")),
+          as.character(.g("n_studi_unknown")),
+          if (isTRUE(.g("dominato_da_modello")))
+            " -- **the heaviest study is an in vitro model**" else ""))
+      }
+    }
+  }
+
   md_lines <- c(
     sprintf("# %s -- Cluster %s",
             selection_row$label_paper[1L], cluster_id),
@@ -123,6 +171,7 @@
     sprintf("- **Anchor:** %s", anchor_str),
     sprintf("- **Method:** `%s`", method),
     sprintf("- **k_effective:** %s", as.character(k_eff)),
+    eff_lines,
     sprintf("- **n_total_samples:** %s", n_total_samples_str),
     sprintf("- **n_sig FDR<%g:** %d / %d (%.1f%%)",
             fdr_thr, n_sig, n_total, pct_sig),

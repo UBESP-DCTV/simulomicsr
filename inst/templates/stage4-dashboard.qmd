@@ -30,7 +30,11 @@ s4 <- load_stage4(params$stage4_dir)
 ```{r overview-cards}
 n_clusters_processed <- length(unique(s4$cluster_pooled$cluster_id))
 n_clusters_non_proc  <- nrow(s4$non_processable)
-n_genes_total <- length(unique(s4$cluster_pooled$gene))
+# FASE E1 (ADR-0019 D6, 2026-05-28): l'asse dei geni e' passato da `gene` a
+# `gene_id` (Ensembl) + `gene_symbol` (etichetta). Questo template non era
+# stato aggiornato, e da allora il render falliva a ogni run pesante — errore
+# liquidato per due mesi come "binario quarto assente", che invece c'e'.
+n_genes_total <- length(unique(s4$cluster_pooled$gene_id))
 n_sig <- sum(s4$cluster_pooled$FDR_BH_within_cluster < 0.05, na.rm = TRUE)
 
 knitr::kable(tibble::tibble(
@@ -89,6 +93,10 @@ if (nrow(nonsig_df) > n_nonsig_keep) {
   nonsig_df <- nonsig_df[sample.int(nrow(nonsig_df), n_nonsig_keep), , drop = FALSE]
 }
 plot_data <- dplyr::bind_rows(sig_df, nonsig_df)
+# etichetta leggibile: simbolo HGNC, fallback all'Ensembl se assente
+plot_data$gene_label <- ifelse(
+  is.na(plot_data$gene_symbol) | plot_data$gene_symbol == "",
+  plot_data$gene_id, plot_data$gene_symbol)
 plot_caption <- if (nrow(plot_data_full) > nrow(plot_data)) {
   sprintf("Volcano plot — Layer A (subsample %s / %s; tutti i significativi + non-sig sampled)",
           format(nrow(plot_data), big.mark="."), format(nrow(plot_data_full), big.mark="."))
@@ -98,7 +106,7 @@ plotly::plot_ly(plot_data, x = ~logFC_pool, y = ~neg_log10_p,
                 color = ~method, symbol = ~sig,
                 type = "scatter", mode = "markers",
                 opacity = 0.3, marker = list(size = 4),
-                text = ~paste("Cluster:", cluster_id, "<br>Gene:", gene)) |>
+                text = ~paste("Cluster:", cluster_id, "<br>Gene:", gene_label)) |>
   layout(title = plot_caption,
          xaxis = list(title = "logFC_pool"),
          yaxis = list(title = "-log10(p_value_pool)"))
@@ -109,12 +117,17 @@ plotly::plot_ly(plot_data, x = ~logFC_pool, y = ~neg_log10_p,
 ```{r heterogeneity}
 rem_data <- s4$cluster_pooled |>
   filter(method == "rem", !is.na(tau2), !is.na(I2))
+if (nrow(rem_data) > 0) {
+  rem_data$gene_label <- ifelse(
+    is.na(rem_data$gene_symbol) | rem_data$gene_symbol == "",
+    rem_data$gene_id, rem_data$gene_symbol)
+}
 
 if (nrow(rem_data) > 0) {
   plotly::plot_ly(rem_data, x = ~tau2, y = ~I2,
                   type = "scatter", mode = "markers",
                   marker = list(size = 4, opacity = 0.3),
-                  text = ~paste("Cluster:", cluster_id, "<br>Gene:", gene)) |>
+                  text = ~paste("Cluster:", cluster_id, "<br>Gene:", gene_label)) |>
     layout(title = "tau^2 vs I^2 distribution (REM cluster)",
            xaxis = list(title = "tau^2"),
            yaxis = list(title = "I^2 (%)"))

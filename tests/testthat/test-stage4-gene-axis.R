@@ -310,10 +310,18 @@ test_that("E2 T2.4 apply_biotype_filter biotype non esistente -> errore", {
     gene_symbol  = c("A", "B", "C"),
     gene_biotype = c("protein_coding", "lncRNA", "miRNA")
   )
-  expect_error(
+  # L'attesa era "0 geni", cioe' il messaggio PRIMA del fix T7a (commit 0f1dd59,
+  # 2026-05-28), che lo ha reso diagnostico elencando i biotype davvero presenti.
+  # Il codice e' giusto: era il test a essere rimasto indietro, e ha fatto rumore
+  # per due mesi coprendo la vera domanda «la suite e' verde?».
+  err <- expect_error(
     simulomicsr:::.apply_biotype_filter(counts, axis, "nonexistent_biotype"),
-    "0 geni"
+    "non matcha alcun biotype"
   )
+  # e deve dire QUALI biotype ci sono, che e' il motivo per cui il messaggio
+  # e' stato cambiato
+  expect_match(conditionMessage(err), "protein_coding")
+  expect_match(conditionMessage(err), "nonexistent_biotype")
 })
 
 test_that("E2 T2.5 apply_biotype_filter preserva NA biotype solo se nel filter NA-aware", {

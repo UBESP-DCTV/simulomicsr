@@ -10,6 +10,7 @@ build_layer_b_results(
   h5_path,
   per_cluster_samples_provider,
   stage3_metadata = NULL,
+  pooling_effectiveness = NULL,
   config = layer_b_default_config(),
   out_dir = NULL,
   fetch_counts_fn = NULL
@@ -29,6 +30,10 @@ dal join Stage 3 assignment + Stage 2 design_role).}
 
 \item{stage3_metadata}{tibble opzionale con \verb{cluster_id, kind_effective, agent_id, tissue, safety_min} (per summary card). NULL -> summary card
 senza Stage 3 fields.}
+
+\item{pooling_effectiveness}{data.frame opzionale (una riga per cluster) con
+le misure di efficacia del pooling e di materiale; passato tale e quale a
+\code{.build_summary_card()}. NULL -> le schede escono come prima.}
 
 \item{config}{list (vedi \code{\link[=layer_b_default_config]{layer_b_default_config()}}).}
 

@@ -107,7 +107,9 @@ layer_b_validate_selection <- function(selection, stage4_dir, fdr_threshold = 0.
     dplyr::group_by(cluster_id) |>
     dplyr::summarise(
       method = dplyr::first(method),
-      k_effective = as.integer(dplyr::first(k_effective)),
+      # k del CLUSTER (massimo): `k_effective` e' per-gene, e questa e' la
+      # tabella che si legge PRIMA di lanciare il build.
+      k_effective = as.integer(max(k_effective, na.rm = TRUE)),
       n_sig_FDR05 = sum(FDR_BH_within_cluster < fdr_threshold, na.rm = TRUE),
       .groups = "drop"
     )

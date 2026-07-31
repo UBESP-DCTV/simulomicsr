@@ -160,9 +160,11 @@
 
     svg_path <- NA_character_  # metafor::forest base graphics non SVG-trivial
 
-    # Defensive: k_effective puo' essere NA/empty -> evita NA in caption.
-    k_values <- unique(top_genes$k_effective)
-    k_str <- if (length(k_values) > 0L && !is.na(k_values[1L])) as.character(k_values[1L]) else "?"
+    # k del CLUSTER, non del primo gene disegnato: `k_effective` e' per-gene
+    # (vedi .cluster_k_effective()). Si legge dal cluster intero, non dai soli
+    # geni del forest, che sono un sottoinsieme scelto per significativita'.
+    k_cl <- .cluster_k_effective(cluster_pooled_subset)
+    k_str <- if (!is.na(k_cl)) as.character(k_cl) else "?"
     caption <- sprintf(
       "Forest plots for top %d significantly DE genes (FDR<%g). Each panel: per-study logFC +- 95%% CI and REML-pooled summary (k=%s).",
       top_n_actual, fdr_thr, k_str

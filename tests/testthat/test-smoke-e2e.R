@@ -1,9 +1,5 @@
 test_that("E2E reale: llm_call_structured contro OpenAI con cache", {
-  skip_on_cran()
-  skip_if(
-    !nzchar(Sys.getenv("OPENAI_API_KEY")),
-    "OPENAI_API_KEY non impostata, skip smoke E2E."
-  )
+  skip_if_no_llm_smoke()
 
   schema <- system.file("schemas/llm-call-envelope.v1.json", package = "simulomicsr")
   cache  <- cache_init(new_cache_dir(), namespace = "smoke")

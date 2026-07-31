@@ -212,6 +212,30 @@ per_cluster_samples_provider <- function(cluster_id) {
 # -----------------------------------------------------------------------------
 # Batch build
 # -----------------------------------------------------------------------------
+# Efficacia del pooling + materiale, dal deliverable annotato: senza queste
+# righe la scheda dice `k_effective: 10` per Parkinson e non dice che gli studi
+# efficaci sono 1,8 e che il 73% del peso viene da un modello cellulare.
+# Se il deliverable non c'e', il build procede lo stesso e le schede escono
+# come prima (il parametro e' opzionale per design).
+deliverable_path <- "analysis/audit/2026-07-29-etichette-v13/deliverable-v13-poolato.rds"
+pooling_eff <- if (file.exists(deliverable_path)) {
+  d <- readRDS(deliverable_path)
+  cols <- intersect(
+    c("cluster_id", "k_kish", "quota_top1", "frazione_efficace", "dominato",
+      "studio_dominante", "materiale_misto", "classe_studio_dominante",
+      "dominato_da_modello", "n_studi_model", "n_studi_primary", "n_studi_unknown"),
+    names(d))
+  mancanti <- setdiff(selection_csv_loaded$cluster_id, d$cluster_id)
+  if (length(mancanti) > 0L) {
+    cli_alert_warning("Cluster della selezione assenti dal deliverable: {mancanti}")
+  }
+  cli_alert_success("Efficacia del pooling caricata: {length(cols)-1} colonne su {nrow(d)} cluster.")
+  d[, cols, drop = FALSE]
+} else {
+  cli_alert_warning("Deliverable annotato assente: le schede usciranno senza le misure di efficacia.")
+  NULL
+}
+
 cli_alert_info("Build Layer B...")
 t0 <- Sys.time()
 result <- build_layer_b_results(
@@ -220,6 +244,7 @@ result <- build_layer_b_results(
   h5_path                      = h5_path,
   per_cluster_samples_provider = per_cluster_samples_provider,
   stage3_metadata              = stage3_metadata,
+  pooling_effectiveness        = pooling_eff,
   config                       = layer_b_default_config()
 )
 wall <- as.numeric(difftime(Sys.time(), t0, units = "secs"))

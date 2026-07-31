@@ -11,7 +11,8 @@
   selection_row,
   config,
   out_dir = tempdir(),
-  per_cluster_samples = NULL
+  per_cluster_samples = NULL,
+  pooling_effectiveness = NULL
 )
 }
 \arguments{
@@ -34,6 +35,20 @@ Quando NULL (default backward-compat), cade sul pattern legacy via
 \code{layer_a_subset$per_study_de} (popolato solo per mega_aug). Passare
 questo argomento permette di mostrare il sample count anche per cluster
 mega-strict (n_studies>=5, k>=5) dove \code{per_study_de} e' vuoto.}
+
+\item{pooling_effectiveness}{data.frame opzionale, una riga per cluster, con
+le colonne di \code{compute_pooling_effectiveness()} e
+\code{detect_mixed_material()}: \code{k_kish}, \code{quota_top1},
+\code{frazione_efficace}, \code{dominato}, \code{studio_dominante}, \code{materiale_misto},
+\code{dominato_da_modello}, \code{n_studi_model/primary/unknown}.
+
+Serve perche' \code{k_effective} dice \strong{quanti} studi entrano e non quanto
+\strong{contano}: il case study di Parkinson ha k=10 ma 1,8 studi efficaci e il
+73\% del peso su un modello cellulare, e senza queste righe chi legge la
+scheda accanto alla figura non lo vede.
+
+Quando NULL (default) la scheda esce \strong{identica} a prima — nessuna riga
+vuota, nessun "NA": un bundle costruito senza annotazione resta leggibile.}
 }
 \value{
 list \code{md_path}.

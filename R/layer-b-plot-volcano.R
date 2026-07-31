@@ -21,22 +21,7 @@
   n_total <- nrow(cp)
   n_sig <- sum(cp$is_sig, na.rm = TRUE)
 
-  # Top-N labels: ranked by |logFC| * -log10(FDR) tra i sig
-  cp$label_score <- abs(cp$logFC_pool) * (-log10(pmax(cp$FDR_BH_within_cluster, .Machine$double.xmin)))
-  sig_idx <- which(cp$is_sig)
-  if (length(sig_idx) > 0L) {
-    ranked_sig <- sig_idx[order(cp$label_score[sig_idx], decreasing = TRUE)]
-    top_idx <- head(ranked_sig, top_n)
-    # FASE E1 ADR-0019 D6: label = HGNC symbol leggibile (fallback gene_id
-    # se symbol NA o stringa vuota).
-    readable_label <- ifelse(
-      is.na(cp$gene_symbol) | cp$gene_symbol == "",
-      cp$gene_id, cp$gene_symbol
-    )
-    cp$label <- ifelse(seq_len(nrow(cp)) %in% top_idx, readable_label, NA_character_)
-  } else {
-    cp$label <- NA_character_
-  }
+  cp$label <- .volcano_labels(cp, config)
 
   # Rasterizza il layer di punti nel SVG (axis/labels/legend restano vector).
   # ggrastr e' in Suggests: fallback skip-graceful se non installato (SVG resta
@@ -94,4 +79,51 @@
     svg_path = svg_path,
     caption = caption
   )
+}
+
+
+#' Etichette del volcano: top-N per |logFC| x -log10(FDR), un simbolo una volta
+#'
+#' Nella regione MHC lo stesso simbolo ha piu' ID Ensembl su aplotipi
+#' alternativi (`UBD` ne ha sei nel gruppo SARS-CoV-2, tre con valori identici):
+#' senza deduplica la stessa etichetta occupava piu' posti fra i top-N. Tabella
+#' e heatmap deduplicavano gia' via `.rank_and_dedup_genes()`; qui si chiude il
+#' terzo pannello, cosi' la stessa figura non racconta due cose diverse.
+#'
+#' I geni **senza** simbolo restano etichettati col proprio `gene_id` e non
+#' vengono fusi fra loro: sono geni diversi, e collassarli sarebbe peggio del
+#' problema che si sta risolvendo.
+#'
+#' @param cp data.frame poolato del cluster, con `is_sig` gia' calcolata.
+#' @param config list di configurazione Layer B.
+#' @return character della stessa lunghezza di `nrow(cp)`: l'etichetta dove va
+#'   mostrata, `NA` altrove.
+#' @keywords internal
+.volcano_labels <- function(cp, config) {
+  top_n <- config$top_n_volcano_labels
+  out <- rep(NA_character_, nrow(cp))
+  if (nrow(cp) == 0L) return(out)
+  # La significativita' si ricalcola qui invece di dipendere da una colonna
+  # messa dal chiamante: cosi' la funzione e' verificabile da sola, ed e' il
+  # motivo per cui questo difetto era rimasto invisibile nel volcano mentre
+  # tabella e heatmap erano gia' state corrette.
+  sig <- !is.na(cp$FDR_BH_within_cluster) &
+    cp$FDR_BH_within_cluster < config$fdr_threshold
+  sig_idx <- which(sig)
+  if (length(sig_idx) == 0L) return(out)
+
+  score <- abs(cp$logFC_pool) *
+    (-log10(pmax(cp$FDR_BH_within_cluster, .Machine$double.xmin)))
+  # FASE E1 ADR-0019 D6: label = simbolo HGNC leggibile, fallback all'Ensembl.
+  readable <- ifelse(is.na(cp$gene_symbol) | cp$gene_symbol == "",
+                     cp$gene_id, cp$gene_symbol)
+
+  ranked <- sig_idx[order(score[sig_idx], decreasing = TRUE)]
+  # dedup per etichetta MOSTRATA, non per simbolo: due geni senza simbolo hanno
+  # `gene_id` diversi e devono restare distinti.
+  primo <- ranked[!duplicated(readable[ranked])]
+  scelti <- utils::head(primo, top_n)
+
+  out[scelti] <- readable[scelti]
+  out
 }

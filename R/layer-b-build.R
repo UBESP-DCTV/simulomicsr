@@ -13,6 +13,9 @@
 #' @param per_cluster_samples_provider function(cluster_id) -> tibble
 #'   `sample_id, study_id, treatment` per il cluster (assemblata upstream
 #'   dal join Stage 3 assignment + Stage 2 design_role).
+#' @param pooling_effectiveness data.frame opzionale (una riga per cluster) con
+#'   le misure di efficacia del pooling e di materiale; passato tale e quale a
+#'   `.build_summary_card()`. NULL -> le schede escono come prima.
 #' @param stage3_metadata tibble opzionale con `cluster_id, kind_effective,
 #'   agent_id, tissue, safety_min` (per summary card). NULL -> summary card
 #'   senza Stage 3 fields.
@@ -31,6 +34,7 @@ build_layer_b_results <- function(stage4_dir, selection,
                                   h5_path,
                                   per_cluster_samples_provider,
                                   stage3_metadata = NULL,
+                                  pooling_effectiveness = NULL,
                                   config = layer_b_default_config(),
                                   out_dir = NULL,
                                   fetch_counts_fn = NULL) {
@@ -176,7 +180,8 @@ build_layer_b_results <- function(stage4_dir, selection,
       selection_row       = selection_row,
       config              = config,
       out_dir             = cl_dir,
-      per_cluster_samples = counts_meta$metadata
+      per_cluster_samples = counts_meta$metadata,
+      pooling_effectiveness = pooling_effectiveness
     )
     narrative_path <- .write_narrative_template(
       cluster_id          = cl_id,

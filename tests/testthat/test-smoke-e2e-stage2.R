@@ -1,5 +1,5 @@
 test_that("smoke E2E classify_study contro gpt-5.5 produce study_design valido (gated OPENAI_API_KEY)", {
-  skip_if(Sys.getenv("OPENAI_API_KEY") == "")
+  skip_if_no_llm_smoke()
   skip_if_not_installed("rentrez")
 
   facts_path <- system.file(

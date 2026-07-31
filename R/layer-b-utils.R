@@ -153,3 +153,32 @@
            "inflates significance."),
     filtro$k_min_richiesto, filtro$k_max, filtro$n_dropped)
 }
+
+#' Il `k` del CLUSTER, non quello di un gene a caso
+#'
+#' `k_effective` in `cluster_pooled` ha un valore **per gene**: un gene assente
+#' in alcuni studi ha meno studi che contribuiscono. Prendere `unique(...)[1L]`
+#' o `dplyr::first()` restituisce il k di qualunque gene capiti per primo nel
+#' parquet — misurato il 2026-07-31, **quattro schede di case study su nove
+#' riportavano un k sbagliato** (IL1A 3 invece di 4, Parkinson 9 invece di 10,
+#' SARS-CoV-2 32 invece di 33, JQ1 22 invece di 24).
+#'
+#' Il k del cluster e' il **massimo**: e' il criterio gia' usato dal deliverable
+#' e dal filtro di copertura, e corrisponde al numero di studi che il dispatch
+#' risolve (verificato su tutti e 191 il 2026-07-31, `20-preflight.R`).
+#'
+#' @param cp data.frame/tibble delle righe poolate di UN cluster.
+#' @return integer(1), oppure `NA_integer_` se la colonna manca, e' tutta `NA`
+#'   o non ci sono righe.
+#' @keywords internal
+.cluster_k_effective <- function(cp) {
+  if (is.null(cp) || nrow(cp) == 0L) return(NA_integer_)
+  # `%in% names()` e non `cp$k_effective`: su un tibble l'accesso a una colonna
+  # assente emette un warning, e un warning in una funzione chiamata su ogni
+  # cluster e' rumore che finisce per nascondere quelli veri.
+  if (!"k_effective" %in% names(cp)) return(NA_integer_)
+  k <- cp[["k_effective"]]
+  k <- k[!is.na(k)]
+  if (length(k) == 0L) return(NA_integer_)
+  as.integer(max(k))
+}

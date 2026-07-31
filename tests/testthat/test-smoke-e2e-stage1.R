@@ -1,6 +1,5 @@
 test_that("smoke E2E: classify_sample con gpt-5.5 produce sample_fact schema-valido (gated OPENAI_API_KEY)", {
-  testthat::skip_if(!nzchar(Sys.getenv("OPENAI_API_KEY")),
-                    "OPENAI_API_KEY non impostata")
+  skip_if_no_llm_smoke()
 
   schema    <- system.file("schemas/sample_facts.stage1.v3.json", package = "simulomicsr")
   validator <- compile_schema(schema)
