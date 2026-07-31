@@ -178,12 +178,80 @@ nel commit. Non va silenziato.
 
 ---
 
+## FASE D0bis — LA REGOLA DI DE-FRAMMENTAZIONE (da fare PRIMA del re-cluster)
+
+Deciso il 2026-07-31 dopo aver rifatto l'analisi (vedi
+`docs/superpowers/specs/2026-07-31-decisione-rerun.md`): **un re-pool da solo non cambia niente**
+— nessuna riga del calcolo dell'effetto è cambiata dal run v13 — quindi l'unico re-run con
+contenuto è re-cluster + re-pool con questa regola.
+
+### La regola
+
+> Prima di ripiegare su `STR:`, si prova a risolvere il token contro l'ontologia pretendendo un
+> match **univoco** su un alias **per esteso** (>3 caratteri). Se l'alias aggancia più di una
+> entità, **non si fonde** e si resta su `STR:`.
+
+**È una regola per-record, non dipende dal corpus.** Così `ifna` resta `STR:` da solo (gli alias
+`IFNA` agganciano IFNA1…IFNA21), mentre `tgfb` aggancia solo TGFB1 — **da verificare, è la prima
+cosa da misurare.**
+
+### Dove va, esattamente
+
+`R/stage3-contrast-anchor.R`, nel ramo di ripiego intorno alla **riga 697-701**:
+
+```r
+} else if (!is.na(res$id) && !startsWith(res$id, "STR:")) {
+  entity <- res$id; src <- "onto"
+} else {
+  tk <- .ca_clean_token(tval)
+  if (nzchar(tk)) { entity <- paste0("STR:", gsub(" ", "_", tk)); src <- "STR" }
+}
+```
+
+Il nuovo tentativo va **fra** i due: dopo `res$id`, prima del ripiego `STR:`.
+
+### Trappole già pagate oggi, da non ripagare
+
+1. **`contrast_entity_label_source` NON vale `"STR"`.** I valori veri sono
+   `chebi`, `chembl`, `combo_parts`, `hgnc`, `mesh`, `override`, `str_literal`. Un filtro su
+   `"STR"` seleziona **zero righe** e il rilevatore trova «nessuna frammentazione» — errore
+   commesso e corretto il 2026-07-31.
+2. **Solo alias per esteso (>3 caratteri).** Un match su una **sigla** non prova l'identità: è
+   l'errore che il 2026-07-29 fece dare per buono `CHEBI:73572` (il tripeptide ha `LTA` fra i
+   sinonimi).
+3. **Il costruttore di alias esiste già**: `analysis/audit/2026-07-29-etichette-v13/40-id-vs-membri.R`
+   righe 53-101, che legge i dump da `/home/user/.cache/R/simulomicsr/`. Non riscriverlo.
+4. **Bumpare `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`** se si tocca il recupero-nome: senza, il
+   re-cluster riusa il lookup su disco e produce un output identico (8 ore buttate, già successe).
+   Se la regola sta solo in `stage3-contrast-anchor.R` il bump **non** serve — verificare.
+5. **La simulazione del guadagno si fa con la funzione vera**:
+   `analysis/audit/2026-07-31-layer-b-v13/180-guadagno-dopo-il-gate.R` mostra come — si uniscono gli
+   assignment e si chiama `.build_group_rem_dispatch_from_stage3`.
+
+### Criteri di accettazione
+
+- Test scritti **prima** e visti fallire: `tgfb` → `HGNC:11766`; `ifna` → resta `STR:`; una sigla
+  (≤3 caratteri) non fonde mai; un token che non aggancia nulla resta `STR:`.
+- **Misura su TUTTI i membri prima del lancio** (modello: `2026-07-28`, che misurò su 28.294
+  confronti): quante entità cambiano, quanti membri, quanti gruppi nascono o spariscono.
+  **Se cambia più di quanto previsto dal §2 della decisione, ci si ferma e si guarda.**
+- Attesi (misurati il 2026-07-31 sul deliverable): TGF-β1 poolati **49 → 59**, glioblastoma entra
+  nel deliverable (k_eff 2 → 3), IL17A 7 → 8, `STR:ifna` **invariato**.
+
+---
+
 ## FASE D — il re-run (fine settimana, parte stasera)
 
 ⚠️ **Non lanciare finché le Fasi A, B e C non sono chiuse**: il senso del re-run è produrre il
 deliverable arricchito automaticamente.
 
-### D0 · Decisione aperta da prendere PRIMA del lancio 🔶
+### D0 · Decisione ✅ PRESA il 2026-07-31: re-cluster + re-pool
+
+**«Solo re-pool» è ritrattata**: dal run v13 nessuna riga del calcolo dell'effetto è cambiata,
+quindi riprodurrebbe un file identico. Vedi `specs/2026-07-31-decisione-rerun.md`.
+Il re-run è **re-cluster (~9 h) + re-pool (~28 h)**, dopo la FASE D0bis.
+
+<details><summary>Il ragionamento originale, superato</summary>
 
 **Solo re-pool (~28 h) oppure re-cluster + re-pool (~37 h)?**
 
@@ -194,9 +262,9 @@ deliverable arricchito automaticamente.
   rifatto sui gruppi cambiati** (non su tutti: si confrontano gli insiemi dei membri e si rileggono
   solo i diversi, come il 28/07).
 
-**Raccomandazione: solo re-pool.** La regola chiuderebbe 1 gruppo su 191, e il re-cluster
-riaprirebbe il censimento — un costo sproporzionato al guadagno. Se emergessero altri casi della
-stessa famiglia si riapre.
+**Raccomandazione: solo re-pool.** ← **SBAGLIATA**: pesava il costo, che non è un argomento
+scientifico, e il «riapre il censimento» era sovrastimato (cambiano **3 gruppi**, non 191).
+</details>
 
 ### D1 · Pre-flight prima del lancio ⬜
 
