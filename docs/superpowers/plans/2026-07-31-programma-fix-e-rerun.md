@@ -261,18 +261,33 @@ figure, dichiarato.
 
 ## STATO
 
-| fase | | stato |
-|---|---|---|
-| A1 | k per-gene | ⬜ |
-| A2 | efficacia nella scheda | ⬜ |
-| A3 | dedup volcano | ⬜ |
-| A4 | rebuild + verifica | ⬜ |
-| B1 | velocizzare | ⬜ |
-| B2 | annotazione di pacchetto | ⬜ |
-| B3 | aggancio al re-pool | ⬜ |
-| C1 | smoke E2E gated | ⬜ |
-| C2 | dashboard quarto | ⬜ |
-| C3 | gene-axis E2 T2.4 | ⬜ |
-| D0 | decisione re-cluster | 🔶 aperta |
-| D1-D4 | re-run | ⬜ |
-| E1-E2 | narrative + Methods | ⬜ |
+| fase | | stato | esito misurato |
+|---|---|---|---|
+| A1 | k per-gene | ✅ | `.cluster_k_effective()` in tre punti; **9/9 schede col k giusto** (erano 4 sbagliate) |
+| A2 | efficacia nella scheda | ✅ | 12 test; la scheda di Parkinson ora dice «1.8 of 10» e «GSE181029 73.2%» |
+| A3 | dedup volcano | ✅ | `.volcano_labels()`, 8 test |
+| A4 | rebuild + verifica | ✅ | `20260731T113513Z-layer-b-828b020d`, 9 bundle, 5,9 min |
+| B1 | velocizzare | ✅ | **612 s → 91 s** (6,7×) con **scarto 0,0000000000** sui 191 |
+| B2 | annotazione di pacchetto | ✅ | `annotate_stage4_deliverable()`, 18 test; **16 colonne su 16 IDENTICHE** al deliverable a mano |
+| B3 | aggancio al re-pool | ✅ | il run scrive `deliverable-annotato.{csv,rds}` da solo, non-fatale |
+| C1 | smoke E2E gated | ✅ | la chiave c'era ma dava 401 → serve `SIMULOMICSR_LLM_SMOKE=1` |
+| C2 | dashboard quarto | ✅ | **il binario c'era**: il template usava `gene`, rinominata da FASE E1 a maggio |
+| C3 | gene-axis E2 T2.4 | ✅ | attesa del test anteriore al fix T7a; codice corretto |
+| D0 | decisione re-cluster | 🔶 **APERTA — serve prima del lancio** | |
+| D1-D4 | re-run | ⬜ | |
+| E1-E2 | narrative + Methods | ⬜ | |
+
+**Suite:** da 3952 PASS / 3 FAIL / 3 ERROR a **3983+ PASS / 0 FAIL / 0 ERROR**.
+
+### Due cose emerse strada facendo, che non erano nella lista
+
+- **La dashboard non era rotta per il binario mancante.** Il template
+  `inst/templates/stage4-dashboard.qmd` usava la colonna `gene`, che la FASE E1
+  ha rinominato in `gene_id`/`gene_symbol` il 2026-05-28. L'errore veniva
+  liquidato da due mesi come «quarto assente» (anche da me, nella prima stesura
+  della lista). **Effetto collaterale utile: la dashboard tornerà a renderizzare
+  nel re-run.**
+- **`I2_med` nel deliverable attuale è approssimato.** Lo script vecchio
+  calcolava la mediana **dentro Arrow**, che usa un t-digest; la funzione di
+  pacchetto la calcola esatta in R. Differenza fino a **0,93** su 190 righe su
+  191. I valori nuovi sono quelli giusti, e il re-run li produrrà.

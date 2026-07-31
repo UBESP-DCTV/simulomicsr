@@ -213,6 +213,89 @@ cli_alert_info("Rendering dashboard...")
 tryCatch(render_stage4_dashboard(out_dir),
          error = function(e) cli_alert_warning("Dashboard render FALLITO (non-fatale): {conditionMessage(e)}"))
 
+# -----------------------------------------------------------------------------
+# DELIVERABLE ANNOTATO — una riga per meta-analisi, con etichetta risolta
+# dall'ID, verdetto di coerenza, efficacia del pooling e materiale.
+#
+# Perche' e' QUI e non in uno script di audit a valle: fino al 2026-07-31 queste
+# misure venivano cucite a mano dopo il run, quindi un re-pool produceva un
+# deliverable senza `k_kish` — cioe' senza il numero che dice quanto il pooling
+# e' davvero efficace. Ora esce dal run.
+#
+# NON-FATALE, come il render della dashboard: i parquet sono gia' scritti sopra
+# e sono il deliverable primario.
+# -----------------------------------------------------------------------------
+cli_alert_info("Annotazione del deliverable...")
+tryCatch({
+  verdetti_path <- "analysis/audit/2026-07-29-etichette-v13/verdetti-poolato-v13.csv"
+  meta_ann <- as.data.frame(
+    simulomicsr:::.identify_layer_a_clusters(s3$clusters, config))
+  meta_ann <- meta_ann[meta_ann$cluster_id %in% unique(result$cluster_pooled$cluster_id), ]
+  meta_ann$ckey <- paste0(meta_ann$contrast_entity, "||", meta_ann$contrast_direction,
+                          "||", meta_ann$contrast_control_key)
+
+  # Etichette dei membri, per l'asse del materiale. La funzione scarta da sola
+  # gli studi non poolati.
+  asg_ann <- s3$assignments[
+    s3$assignments$cluster_id %in% meta_ann$cluster_id, ]
+  asg_ann$study <- sub("__.*$", "", asg_ann$record_id)
+  lab_env <- new.env(hash = TRUE, parent = emptyenv())
+  .lab_of <- function(rg, gid) {
+    if (!is.null(rg$label_human) && nzchar(rg$label_human)) rg$label_human else gid
+  }
+  need_ann <- unique(asg_ann$record_id)
+  for (study in stage2_master) {
+    if (length(study$comparisons) == 0L) next
+    rgl <- stats::setNames(
+      study$replicate_groups,
+      vapply(study$replicate_groups, function(g) g$group_id, character(1L)))
+    for (cmp in study$comparisons) {
+      rid <- sprintf("%s__%s", study$series_id, cmp$comparison_id)
+      if (!rid %in% need_ann) next
+      tg <- rgl[[cmp$treated_group]]; cg <- rgl[[cmp$control_group]]
+      if (is.null(tg) || is.null(cg)) next
+      assign(rid, c(.lab_of(tg, cmp$treated_group), .lab_of(cg, cmp$control_group)),
+             envir = lab_env)
+    }
+  }
+  membri_ann <- do.call(rbind, lapply(seq_len(nrow(asg_ann)), function(i) {
+    e <- get0(asg_ann$record_id[i], envir = lab_env, inherits = FALSE)
+    if (is.null(e)) return(NULL)
+    data.frame(cluster_id = asg_ann$cluster_id[i], study_id = asg_ann$study[i],
+               label = e, stringsAsFactors = FALSE)
+  }))
+
+  verdetti_ann <- if (file.exists(verdetti_path)) {
+    vv <- utils::read.csv(verdetti_path, stringsAsFactors = FALSE)
+    # I verdetti che non trovano il loro gruppo si tolgono ESPLICITAMENTE qui e
+    # si dichiarano, invece di allentare il controllo dentro la funzione.
+    fuori <- setdiff(vv$ckey, meta_ann$ckey)
+    if (length(fuori) > 0L) {
+      cli_alert_warning("Verdetti senza gruppo nel poolato ({length(fuori)}): {fuori}")
+    }
+    vv[vv$ckey %in% meta_ann$ckey, ]
+  } else NULL
+
+  deliverable <- annotate_stage4_deliverable(
+    cluster_pooled = result$cluster_pooled,
+    per_study_de   = result$per_study_de,
+    cluster_meta   = meta_ann,
+    member_labels  = membri_ann,
+    coherence_verdicts = verdetti_ann,
+    coherence_source   = "rilettura-sui-poolati-2026-07-30")
+
+  saveRDS(deliverable, file.path(out_dir, "deliverable-annotato.rds"))
+  utils::write.csv(deliverable, file.path(out_dir, "deliverable-annotato.csv"),
+                   row.names = FALSE)
+  cli_alert_success(paste0(
+    "Deliverable annotato: ", nrow(deliverable), " meta-analisi | dominate da un ",
+    "solo studio ", sum(deliverable$dominato, na.rm = TRUE), " | meno di 2 studi ",
+    "efficaci ", sum(deliverable$k_kish < 2, na.rm = TRUE)))
+}, error = function(e) {
+  cli_alert_warning("Annotazione FALLITA (non-fatale): {conditionMessage(e)}")
+  cli_alert_info("I parquet sono comunque in {.path {out_dir}}")
+})
+
 cli_h2("Layer A summary")
 cli_dl(list(
   "Cluster processed"       = length(unique(result$cluster_pooled$cluster_id)),

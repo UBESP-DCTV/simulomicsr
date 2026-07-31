@@ -35,17 +35,14 @@
                       study_id = character(), SE_study = numeric(),
                       stringsAsFactors = FALSE))
   }
-  chiave <- paste(x$cluster_id, x$gene_id, x$study_id, sep = "\r")
-  prec <- stats::aggregate(list(prec = 1 / x$SE^2), by = list(chiave = chiave),
-                           FUN = sum)
-  parti <- do.call(rbind, strsplit(prec$chiave, "\r", fixed = TRUE))
-  data.frame(
-    cluster_id = parti[, 1L],
-    gene_id    = parti[, 2L],
-    study_id   = parti[, 3L],
-    SE_study   = sqrt(1 / prec$prec),
-    stringsAsFactors = FALSE
-  )
+  # dplyr e non stats::aggregate(): su 32,4 M di righe l'aggregate impiegava
+  # ~10 minuti. Il risultato deve restare identico — i test lo bloccano, e la
+  # verifica sui dati veri (100-efficacia-pacchetto.R) confronta con la misura
+  # fatta a mano pretendendo scarto zero.
+  x |>
+    dplyr::group_by(.data$cluster_id, .data$gene_id, .data$study_id) |>
+    dplyr::summarise(SE_study = sqrt(1 / sum(1 / .data$SE^2)), .groups = "drop") |>
+    as.data.frame(stringsAsFactors = FALSE)
 }
 
 #' Efficacia del pooling per cluster: quanti studi contano davvero
@@ -81,64 +78,67 @@ compute_pooling_effectiveness <- function(per_arm, tau2, soglia_dominanza = 0.5)
   )
   if (nrow(per_arm) == 0L) return(vuoto)
 
+  t2 <- tau2[!is.na(tau2$tau2), c("cluster_id", "gene_id", "tau2"), drop = FALSE]
+  if (nrow(t2) == 0L) return(vuoto)
+  chiave_t2 <- paste(t2$cluster_id, t2$gene_id, sep = "\r")
+
+  # Si filtra PRIMA di collassare, non dopo. Il collasso avviene dentro
+  # (cluster, gene, studio): restringere l'insieme dei (cluster, gene) non puo'
+  # cambiare nessun risultato, e taglia il lavoro di un ordine di grandezza —
+  # sui dati v13 si passa da 32,4 M di righe da collassare a quelle dei soli
+  # geni significativi. Misurato: 612 s -> 333 s col solo cambio di libreria,
+  # poi giu' ancora spostando il filtro qui.
+  chiave_pa <- paste(per_arm$cluster_id, per_arm$gene_id, sep = "\r")
+  per_arm <- per_arm[chiave_pa %in% chiave_t2, , drop = FALSE]
+  if (nrow(per_arm) == 0L) return(vuoto)
+
   per_studio <- .collapse_arm_se_by_study(per_arm)
   if (nrow(per_studio) == 0L) return(vuoto)
 
-  t2 <- tau2[!is.na(tau2$tau2), c("cluster_id", "gene_id", "tau2"), drop = FALSE]
-  chiave_ps <- paste(per_studio$cluster_id, per_studio$gene_id, sep = "\r")
-  chiave_t2 <- paste(t2$cluster_id, t2$gene_id, sep = "\r")
-  j <- match(chiave_ps, chiave_t2)
+  j <- match(paste(per_studio$cluster_id, per_studio$gene_id, sep = "\r"), chiave_t2)
   tieni <- !is.na(j)
   if (!any(tieni)) return(vuoto)
 
   per_studio <- per_studio[tieni, , drop = FALSE]
   per_studio$tau2 <- t2$tau2[j[tieni]]
   per_studio$w <- 1 / (per_studio$SE_study^2 + per_studio$tau2)
+  per_studio <- per_studio |>
+    dplyr::group_by(.data$cluster_id, .data$gene_id) |>
+    dplyr::mutate(quota = .data$w / sum(.data$w)) |>
+    dplyr::ungroup()
 
-  # per gene: Kish + quota del primo
-  gk <- paste(per_studio$cluster_id, per_studio$gene_id, sep = "\r")
-  agg <- function(f) vapply(split(per_studio$w, gk), f, numeric(1L))
-  sw   <- agg(sum)
-  sw2  <- agg(function(w) sum(w^2))
-  maxw <- agg(max)
-  n_st <- vapply(split(per_studio$w, gk), length, integer(1L))
+  # per gene: numero efficace di studi (Kish) e quota del primo
+  per_gene <- per_studio |>
+    dplyr::group_by(.data$cluster_id, .data$gene_id) |>
+    dplyr::summarise(
+      k_studies  = dplyr::n(),
+      k_kish     = sum(.data$w)^2 / sum(.data$w^2),
+      quota_top1 = max(.data$quota),
+      .groups = "drop")
 
   # quale studio domina: quello con la quota MEDIANA piu' alta sui geni del
   # cluster, non quello che vince su un gene solo. Senza il nome non si puo'
   # chiedere se chi porta il peso sia un modello in vitro.
-  per_studio$quota <- per_studio$w / sw[gk]
-  sk <- paste(per_studio$cluster_id, per_studio$study_id, sep = "\r")
-  q_med <- vapply(split(per_studio$quota, sk), stats::median, numeric(1L))
-  q_cl <- sub("\r.*$", "", names(q_med))
-  q_st <- sub("^.*\r", "", names(q_med))
-  dominante <- vapply(split(seq_along(q_med), q_cl),
-                      function(idx) q_st[idx][which.max(q_med[idx])],
-                      character(1L))
+  dominante <- per_studio |>
+    dplyr::group_by(.data$cluster_id, .data$study_id) |>
+    dplyr::summarise(q = stats::median(.data$quota), .groups = "drop") |>
+    dplyr::group_by(.data$cluster_id) |>
+    dplyr::slice_max(.data$q, n = 1L, with_ties = FALSE) |>
+    dplyr::ungroup()
 
-  per_gene <- data.frame(
-    gk = names(sw),
-    k_studies = as.integer(n_st),
-    k_kish = as.numeric(sw^2 / sw2),
-    quota_top1 = as.numeric(maxw / sw),
-    stringsAsFactors = FALSE
-  )
-  per_gene$cluster_id <- sub("\r.*$", "", per_gene$gk)
+  out <- per_gene |>
+    dplyr::group_by(.data$cluster_id) |>
+    dplyr::summarise(
+      k_studies  = as.integer(round(stats::median(.data$k_studies))),
+      k_kish     = stats::median(.data$k_kish),
+      quota_top1 = stats::median(.data$quota_top1),
+      n_geni     = dplyr::n(),
+      .groups = "drop") |>
+    as.data.frame(stringsAsFactors = FALSE)
 
-  med <- function(col) {
-    vapply(split(per_gene[[col]], per_gene$cluster_id), stats::median, numeric(1L))
-  }
-  k_studies <- med("k_studies")
-  out <- data.frame(
-    cluster_id = names(k_studies),
-    k_studies  = as.integer(round(k_studies)),
-    k_kish     = as.numeric(med("k_kish")),
-    quota_top1 = as.numeric(med("quota_top1")),
-    n_geni     = as.integer(table(per_gene$cluster_id)[names(k_studies)]),
-    stringsAsFactors = FALSE
-  )
   out$frazione_efficace <- out$k_kish / out$k_studies
   out$dominato <- out$quota_top1 >= soglia_dominanza
-  out$studio_dominante <- unname(dominante[out$cluster_id])
+  out$studio_dominante <- dominante$study_id[match(out$cluster_id, dominante$cluster_id)]
   rownames(out) <- NULL
   out[, c("cluster_id", "k_studies", "k_kish", "quota_top1",
           "frazione_efficace", "dominato", "studio_dominante", "n_geni")]

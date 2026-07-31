@@ -1,0 +1,69 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Showcase consistency (ADR-0021 ramo REM) su rem_group v10 ───────────────────
+ℹ [showcase] group_L4_c8600f54 k=6 n_sig=4138 cons=0.860 I2med=14.0 pi_excl0=0.439 (1815 geni) (30s)
+ℹ [showcase] group_L4_7b3e137b k=6 n_sig=7962 cons=0.492 I2med=50.8 pi_excl0=0.452 (3602 geni) (49s)
+ℹ [showcase] group_L4_7059e6f2 k=4 n_sig=2725 cons=0.162 I2med=83.8 pi_excl0=0.274 (748 geni) (19s)
+ℹ [showcase] group_L4_1f404c0b k=12 n_sig=1253 cons=0.083 I2med=91.7 pi_excl0=0.093 (116 geni) (11s)
+ℹ [showcase] group_L4_eda28231 k=7 n_sig=3444 cons=0.571 I2med=42.9 pi_excl0=0.348 (1197 geni) (22s)
+ℹ [showcase] group_L4_b128b80d k=32 n_sig=3193 cons=0.034 I2med=96.6 pi_excl0=0.021 (67 geni) (29s)
+ℹ [showcase] group_L4_b6a3eabd k=21 n_sig=1646 cons=0.100 I2med=90.0 pi_excl0=0.062 (102 geni) (15s)
+ℹ [showcase] group_L4_274f387d k=26 n_sig=1322 cons=0.102 I2med=89.8 pi_excl0=0.070 (93 geni) (15s)
+ℹ [showcase] group_L4_c51b10c1 k=37 n_sig=3576 cons=0.133 I2med=86.7 pi_excl0=0.025 (88 geni) (32s)
+ℹ [drop] group_L4_4d2d5aa0 k=7 n_sig=686 cons=0.984 I2med=1.6 pi_excl0=0.538 (369 geni) (8s)
+ℹ [drop] group_L4_c2a27b6c k=9 n_sig=553 cons=0.676 I2med=32.4 pi_excl0=0.325 (180 geni) (7s)
+ℹ [drop] group_L4_59db95a9 k=5 n_sig=598 cons=0.557 I2med=44.3 pi_excl0=0.361 (216 geni) (8s)
+ℹ [drop] group_L4_b4975123 k=8 n_sig=419 cons=0.668 I2med=33.2 pi_excl0=0.449 (188 geni) (6s)
+ℹ [drop] group_L4_02a1fb3f k=5 n_sig=5483 cons=0.176 I2med=82.4 pi_excl0=0.436 (2393 geni) (30s)
+ℹ [drop] group_L4_f4b9f686 k=4 n_sig=5141 cons=0.214 I2med=78.6 pi_excl0=0.383 (1968 geni) (30s)
+Warning messages:
+1: Fisher scoring algorithm may have gotten stuck at a local maximum.
+Setting tau^2 = 0. Check the profile likelihood plot with profile(). 
+2: Fisher scoring algorithm may have gotten stuck at a local maximum.
+Setting tau^2 = 0. Check the profile likelihood plot with profile(). 
+3: Fisher scoring algorithm may have gotten stuck at a local maximum.
+Setting tau^2 = 0. Check the profile likelihood plot with profile(). 
+4: Fisher scoring algorithm may have gotten stuck at a local maximum.
+Setting tau^2 = 0. Check the profile likelihood plot with profile(). 
+5: Fisher scoring algorithm may have gotten stuck at a local maximum.
+Setting tau^2 = 0. Check the profile likelihood plot with profile(). 
+6: Fisher scoring algorithm may have gotten stuck at a local maximum.
+Setting tau^2 = 0. Check the profile likelihood plot with profile(). 
+
+── Summary per-cluster (ordinato per pi_frac_excl0) ──
+
+          cluster_id     role k_studies n_sig_used consistency_score median_I2
+1  group_L4_4d2d5aa0     drop         7        686        0.98446591  1.553409
+2  group_L4_b4975123     drop         8        419        0.66847363 33.152637
+3  group_L4_02a1fb3f     drop         5       5483        0.17587797 82.412203
+4  group_L4_f4b9f686     drop         4       5141        0.21439699 78.560301
+5  group_L4_59db95a9     drop         5        598        0.55659986 44.340014
+6  group_L4_c2a27b6c     drop         9        553        0.67559686 32.440314
+7  group_L4_7b3e137b showcase         6       7962        0.49201769 50.798231
+8  group_L4_c8600f54 showcase         6       4138        0.85956887 14.043113
+9  group_L4_eda28231 showcase         7       3444        0.57137658 42.862342
+10 group_L4_7059e6f2 showcase         4       2725        0.16209084 83.790916
+11 group_L4_1f404c0b showcase        12       1253        0.08276506 91.723494
+12 group_L4_274f387d showcase        26       1322        0.10244714 89.755286
+13 group_L4_b6a3eabd showcase        21       1646        0.10015403 89.984597
+14 group_L4_c51b10c1 showcase        37       3576        0.13274451 86.725549
+15 group_L4_b128b80d showcase        32       3193        0.03396077 96.603923
+   tau2_median n_pi_excl0 pi_frac_excl0
+1  0.007335555        369    0.53790087
+2  0.010981320        188    0.44868735
+3  0.089439516       2393    0.43643991
+4  0.058833143       1968    0.38280490
+5  0.094702316        216    0.36120401
+6  0.039815653        180    0.32549729
+7  0.142149985       3602    0.45239889
+8  0.052987317       1815    0.43861769
+9  0.037906243       1197    0.34756098
+10 0.117994745        748    0.27449541
+11 0.381011562        116    0.09257781
+12 0.150217215         93    0.07034796
+13 0.090735137        102    0.06196841
+14 0.227006496         88    0.02460850
+15 0.164497092         67    0.02098340
+✔ scritto /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v10/20260722T210452Z-stage4-v10-a500d032/cluster_pi_per_gene_showcase.parquet (42139 geni) + analysis/audit/2026-07-23-showcase-consistency-summary.csv
