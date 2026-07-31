@@ -35,6 +35,45 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-07-31c (FASI A-C CHIUSE — la suite e' verde e il re-run produrra' il deliverable da solo)**:
+> 🟢 **Cinque difetti del codice corretti con TDD, i tre test rotti risolti (due non erano quello che
+> sembravano), suite da 3952 PASS / 3 FAIL / 3 ERROR a 0 FAIL / 0 ERROR. Il re-run e' pronto: manca
+> solo la decisione D0.**
+>
+> 1. **A1 — `k_effective` e' PER-GENE e tre punti lo usavano come se fosse del cluster**
+>    (`layer-b-summary-card.R:37`, `layer-b-selection.R:110`, `layer-b-plot-forest.R:164`).
+>    **Quattro schede di case study su nove riportavano un k sbagliato** (IL1A 3 invece di 4,
+>    Parkinson 9/10, SARS 32/33, JQ1 22/24). Fix: `.cluster_k_effective()` (10 test). Bundle
+>    rigenerati: **9/9 col k giusto**.
+> 2. **A2 — le schede dicono quanto il pooling e' efficace** (12 test, parametro opzionale
+>    retrocompatibile). Parkinson ora dice «1.8 of 10», «GSE181029 73.2%», «the heaviest study is an
+>    in vitro model». **A3** — il volcano deduplica le etichette come gia' facevano tabella e heatmap.
+> 3. **B1 — `compute_pooling_effectiveness()` da 612 a 91 secondi** (6,7x) con **scarto
+>    0,0000000000** sui 191. Il grosso non e' il cambio di libreria ma **lo spostamento del filtro a
+>    monte del collasso dei bracci**.
+> 4. **B2/B3 — `annotate_stage4_deliverable()` e' codice di pacchetto** (24 test) e **lo script di
+>    re-pool la chiama a fine run**. Prima le misure erano cucite a mano in script di audit: un
+>    re-pool avrebbe rifatto un deliverable **senza `k_kish`**. Validata sui dati veri: **tutte e 20
+>    le colonne identiche** al deliverable costruito a mano, nessuna mancante.
+> 5. **Due difetti trovati dal confronto B2**: (a) il materiale andava misurato sui soli studi
+>    **poolati** e uno script usava tutti gli **assegnati** (1.758 contro 1.234 studi-slot) — ora la
+>    funzione filtra da sola; (b) **`I2_med` era APPROSSIMATO**: lo script vecchio calcolava la
+>    mediana **dentro Arrow** (t-digest), scarti fino a **0,93 su 190 righe su 191**. Deliverable
+>    canonico rigenerato con la mediana esatta.
+> 6. **C — i tre test rotti non erano quello che sembravano.** (a) Gli smoke E2E: la chiave OpenAI
+>    **c'e' ma risponde 401**, e la guardia su `nzchar()` li lasciava passare → ora serve
+>    `SIMULOMICSR_LLM_SMOKE=1`. (b) **La dashboard: il binario quarto NON e' assente** (c'e' in
+>    `/usr/local/bin`), come si credeva da due mesi e come avevo scritto anch'io: il template usava
+>    la colonna **`gene`**, rinominata da FASE E1 in `gene_id`/`gene_symbol` il 2026-05-28.
+>    **La dashboard tornera' a renderizzare nel re-run.** (c) `gene-axis E2 T2.4`: l'attesa del test
+>    era anteriore al fix T7a che ha reso il messaggio diagnostico.
+> 7. **RE-RUN PRONTO, D0 APERTA.** DRY_RUN **PASS**: 305 cluster tutti `rem_group`/`cgroup_L5_`,
+>    24.502 campioni, 3,1 TB liberi, cache counts riusata. **Decisione da prendere prima del lancio:
+>    solo re-pool (~28 h) oppure re-cluster + re-pool (~37 h, chiude il gruppo IL1A ma riapre il
+>    censimento di coerenza sui gruppi cambiati). Raccomandazione scritta: solo re-pool.**
+>    Programma completo e autosufficiente: `docs/superpowers/plans/2026-07-31-programma-fix-e-rerun.md`.
+>    Branch invariato, master invariato, no push.
+>
 > **Stato 2026-07-31b (LAYER B FINALE — 9 CASE STUDY, IL DELIVERABLE DICE QUANTO IL POOLING È EFFICACE)**:
 > 🟡 **La critica dell'utente («non mostriamo dove il pooling sia davvero efficace») è accolta e
 > chiusa: due assi nuovi, misurati su TUTTI e 191, in codice di pacchetto con TDD, dentro il
