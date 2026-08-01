@@ -1,0 +1,50 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+================ 1. INVARIANTI STRUTTURALI (dai file) ================
+  cluster cgroup                     : 11510
+  prefisso cgroup_L5_                : 11510 / 11510
+  contrast_entity popolate           : 11510 / 11510
+  contrast_direction popolate        : 11510 / 11510
+  contrast_control_key popolate      : 11510 / 11510
+  livelli distinti dei cgroup        : 5
+
+  gruppi selezionati (deliverable Stadio 3): v13=305 -> v14=304
+
+================ 2. LE ENTITA' BANDIERA E I QUATTRO NUMERI ================
+       entita                id k_v13 k_v14 delta
+   SARS-CoV-2 NCBITaxon:2697049    38    38     0
+        TGFB1        HGNC:11766    65    78    13
+          LPS       CHEBI:16412    50    50     0
+ enzalutamide       CHEBI:68534    29    29     0
+  vemurafenib       CHEBI:63637    20    20     0
+ Glioblastoma      MeSH:D005909     3     7     4
+        IL17A         HGNC:5981     8    12     4
+     STR:ifna          STR:ifna     6     6     0
+
+  --- STR:ifna deve essere INVARIATO (non fuso) ---
+    v13: 1 gruppo/i (k=6) · v14: 1 gruppo/i (k=6)
+    IFNA1/IFNA2 come entita' a se': v14 HGNC:5417 k=6 · HGNC:5423 k=3
+
+================ 3. CONFRONTO DEGLI INSIEMI DEI MEMBRI (FASE D0ter) ================
+stato
+CAMBIATO IDENTICO    NUOVO  SPARITO 
+      19      258       27       28 
+
+  -> i verdetti di coerenza restano validi sui 258 gruppi IDENTICI
+  -> DA RILEGGERE: 19 cambiati + 27 nuovi = 46
+
+  --- i 6 verdetti di incoerenza: la loro chiave esiste ancora? ---
+                                     ckey in_v14    stato
+ NCBITaxon:11320||gain||vehicle_untreated   TRUE IDENTICO
+       HGNC:5991||gain||vehicle_untreated   TRUE IDENTICO
+       HGNC:5417||gain||vehicle_untreated   TRUE IDENTICO
+     CHEBI:59132||gain||vehicle_untreated   TRUE IDENTICO
+     STR:adenoma||gain||vehicle_untreated  FALSE  SPARITO
+       HGNC:6011||gain||vehicle_untreated   TRUE IDENTICO
+
+  ⚠️ VERDETTI ORFANI: 1 -> l'annotazione del deliverable si FERMEREBBE.
+      STR:adenoma||gain||vehicle_untreated 
+
+Scritto 50-confronto-insiemi-v13-v14.csv
+EXIT=0

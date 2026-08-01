@@ -266,6 +266,98 @@ Il re-run è **re-cluster (~9 h) + re-pool (~28 h)**, dopo la FASE D0bis.
 scientifico, e il «riapre il censimento» era sovrastimato (cambiano **3 gruppi**, non 191).
 </details>
 
+### D0ter · FRA I DUE RUN: rileggere i gruppi cambiati e aggiornare i verdetti ⬜
+
+**Trovato il 2026-07-31 misurando, non supponendo.** I verdetti di coerenza sono chiavati
+`entita||verso||controllo`, e la de-frammentazione cambia l'entita'. Dei 6 verdetti in
+`verdetti-poolato-v13.csv`, **`STR:adenoma` diventa `MeSH:D000236`** → verdetto orfano →
+`.annotate_coherence()` **si ferma** (difesa voluta). Senza questo passo il re-pool gira 28 h
+e poi non produce il deliverable arricchito.
+
+Va fatto **fra** il re-cluster e il re-pool, che e' la finestra naturale:
+
+1. confronto degli **insiemi dei membri** gruppo per gruppo (procedura 2026-07-28): quelli
+   identici tengono il verdetto, si rileggono **solo** i diversi;
+2. i verdetti si aggiornano su quelli, con la chiave nuova, in un file
+   `verdetti-poolato-v14.csv`;
+3. `verdetti_path` nello script di re-pool punta al file nuovo;
+4. **il verdetto su adenoma si RILEGGE, non si ri-chiavizza**: il gruppo puo' aver assorbito
+   membri. Spostare l'etichetta senza guardare il dato e' la scorciatoia di sempre.
+
+### D0quater · DECISIONE APERTA: la soglia k resta 3? (serve prima del RE-POOL, non del re-cluster) ⬜
+
+Domanda dell'utente (2026-07-31): *alzare k da 3 a 5 per limitare gli studi influenti?*
+Misurato sui 191 attuali (`deliverable-v13-poolato.rds`):
+
+| soglia | restano | dominati (uno studio ≥50% del peso) |
+|---|---:|---:|
+| k≥3 (oggi) | 191 (100%) | 105 (55%) |
+| k≥4 | 124 (65%) | 48 (39%) |
+| **k≥5** | **86 (45%)** | **21 (24%)** |
+| k≥8 | 42 (22%) | 5 (12%) |
+
+**Il proxy costa e non chiude**: k≥5 toglie il 55% del deliverable e lascia dentro 21
+meta-analisi dominate. Il motivo e' che k conta gli studi e la dominanza dipende dal
+**peso**: `1/(SE²+τ²)`.
+
+**Il confronto che decide**: a parita' di sopravvissuti (**86**), il filtro diretto
+`quota_top1 < 0,5` lascia **0** dominati contro i **21** di k≥5. Il proxy e' strettamente
+peggiore. Prova sul caso concreto: **Parkinson k=10 passa k≥5** ma vale **1,8 studi
+efficaci** con il **73,2%** del peso su un modello iPSC — e' il gruppo che il finding del
+31/07 aveva gia' segnalato come non solido.
+
+**Raccomandazione**: k≥3 resta il criterio di INCLUSIONE (proprieta' del disegno, nota
+prima di poolare, dichiarabile). La dominanza e' un **asse da riportare** — le colonne sono
+gia' in ogni riga — non un cancello. Se serve un cancello, va sulle FIGURE e sui case
+study, con il filtro diretto (`quota_top1<0,5` = 86; `k_kish>=2` = 125). Per gli studi
+influenti la risposta standard e' la **leave-one-out** di `metafor`, per-studio, accanto ai
+forest.
+
+**Avvertenza da dichiarare**: filtrare sulla dominanza seleziona le meta-analisi in base a
+una quantita' calcolata dai dati. Non falsa le stime dentro ciascuna, ma introduce una
+selezione di COPERTURA (si escludono i campi dove esiste un unico studio grande).
+
+⚠️ **I numeri qui sopra vanno RIFATTI dopo la de-frammentazione**: con piu' studi dentro la
+dominanza dovrebbe calare, e la soglia va decisa sui dati nuovi.
+
+### ✅ RE-CLUSTER v14 FATTO (2026-08-01, wall 550,7 min = 9h11m)
+
+Output: `analysis/p4-output/20260801T081819Z-stage3-v14-364547a7` · script
+`analysis/p4-fase-f11-stage3-v14-defrag.R` (copia di f10, **una sola differenza voluta**:
+il token di versione) · smoke PASS 12,8 min prima del full.
+
+**Verifica letta DAI FILE** (`50-antistale-v14.R`), non dal log:
+
+| controllo | esito |
+|---|---|
+| cluster `cgroup` | 11.510 |
+| prefisso `cgroup_L5_` | **11.510 / 11.510** |
+| le tre colonne del contrasto popolate | **11.510 / 11.510** ciascuna |
+| livelli distinti | solo 5 |
+| gruppi selezionati Stadio 3 | 305 → **304** |
+
+**I quattro numeri, sui dati veri:**
+
+| entità | v13 | v14 | |
+|---|---:|---:|---|
+| **TGF-β1** `HGNC:11766` | 65 | **78** | **+13** |
+| **Glioblastoma** `MeSH:D005909` | 3 | **7** | +4 |
+| **IL17A** `HGNC:5981` | 8 | **12** | +4 |
+| **`STR:ifna`** | 6 | **6** | **invariato** |
+| SARS · LPS · enzalutamide · vemurafenib | | | invariate |
+
+`IFNA1` (k=6) e `IFNA2` (k=3) restano **entità separate**: la regola distingue l'identita'
+invece di impastarla.
+
+**Confronto degli INSIEMI dei membri** (`50-confronto-insiemi-v13-v14.csv`): **258
+IDENTICI** (verdetto valido, provato non supposto) · **19 cambiati** · **27 nuovi** · **28
+spariti** (assorbiti). → **46 gruppi da rileggere**, non i 1.454 che la simulazione
+pre-run lasciava temere: un'altra conferma che i suoi valori assoluti non andavano usati.
+
+**VERDETTO ORFANO CONFERMATO**: `STR:adenoma||gain||vehicle_untreated` è **SPARITO**, come
+previsto il 2026-07-31. Gli altri cinque sono su gruppi IDENTICI e restano validi. Senza
+D0ter il re-pool girerebbe 28 h e poi l'annotazione si fermerebbe.
+
 ### D1 · Pre-flight prima del lancio ⬜
 
 ```

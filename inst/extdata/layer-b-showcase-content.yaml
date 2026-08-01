@@ -1,0 +1,241 @@
+# Contenuto curato della vetrina Layer B v10 (showcase redesign, 2026-07-23).
+# Biologia SOLO verificata dalle revisioni critiche (3 subagent + letteratura).
+# Consumato da inst/templates/layer-b-report.qmd via system.file("extdata/...").
+
+# ---------------------------------------------------------------------------
+# Primer riusabile: "come si legge ogni figura" (livello 1 = plain, livello 2 = technical).
+# ---------------------------------------------------------------------------
+figure_primer:
+  volcano:
+    plain: >
+      Ogni punto è un gene. Verso destra/sinistra = più attivo/meno attivo nella
+      condizione; più in alto = più certezza statistica. I geni negli angoli in
+      alto sono i cambiamenti più forti e affidabili.
+    technical: >
+      x = log2 fold-change pooled; y = -log10(FDR, Benjamini-Hochberg entro
+      cluster). I punti colorati superano FDR<0.05.
+  forest:
+    plain: >
+      Per un singolo gene, ogni riga è la misura di uno studio indipendente; il
+      diamante in basso li combina. Quando le righe concordano e il diamante è
+      lontano da zero, il cambiamento è consistente tra studi diversi.
+    technical: >
+      logFC per-studio ± IC 95% con sintesi random-effects REML (metafor::rma).
+  ma:
+    plain: >
+      Un controllo di qualità: mostra l'entità del cambiamento rispetto a quanto
+      un gene è espresso. Una nuvola piatta significa dati normalizzati bene,
+      senza distorsioni sistematiche.
+    technical: >
+      log2FC vs espressione media; smooth loess piatto ⇒ normalizzazione TMM
+      adeguata a monte (Layer A).
+  heatmap:
+    plain: >
+      Righe = geni top, colonne = campioni. I colori mostrano l'attività
+      relativa: blocchi di colore coerente indicano che la firma separa i gruppi
+      biologici.
+    technical: >
+      vst + correzione batch ComBat SOLO per la visualizzazione; gli effect-size
+      pooled NON sono batch-corretti.
+  heterogeneity:
+    plain: >
+      Quanto gli studi sono in disaccordo. I geni a sinistra (τ² basso) sono
+      consistenti tra studi; il pannello mostra che frazione dei geni
+      significativi è del tipo "concorde".
+    technical: >
+      Distribuzione per-gene di τ² (REML); split REM-amenable (τ²<0.1) vs
+      REM-resisted (τ²≥0.1).
+  go_enrichment:
+    plain: >
+      Raggruppa i geni significativi in temi biologici (processi/percorsi)
+      sovra-rappresentati: un riassunto di "quali funzioni sono coinvolte".
+    technical: >
+      Over-representation GO Biological Process, FDR<0.05.
+
+# ---------------------------------------------------------------------------
+# Contenuto per case study (keyed su cluster_id). "narrative" = micro-narrativa
+# verificata; "headline_genes" = geni da promuovere (verificati, con direzione).
+# ---------------------------------------------------------------------------
+cases:
+  group_L4_c8600f54:
+    title: "Gastric cancer — loss of gastric secretory identity"
+    category: "Cancer"
+    tissue: "stomach"
+    one_liner: >
+      Cross-study signature of gastric cancer: the tumour transcriptome loses
+      the secretory identity of the normal stomach.
+    narrative: >
+      Il segnale più forte e omogeneo del lotto. I marcatori della differenziazione
+      gastrica normale collassano in modo coerente: il pepsinogeno PGA5 (cellule
+      principali) è down con FDR ~1e-97 e I² ~3% — eterogeneità quasi nulla tra
+      studi — insieme alla pompa protonica parietale ATP4B e all'oncosoppressore
+      gastro-specifico gastrokina GKN2. È una firma "da manuale" di perdita di
+      identità secretoria gastrica.
+    headline_genes:
+      - {symbol: "PGA5", direction: "down", note: "pepsinogeno, marcatore chief-cell; FDR ~1e-97, I² ~3%"}
+      - {symbol: "ATP4B", direction: "down", note: "subunità pompa protonica parietale"}
+      - {symbol: "GKN2", direction: "down", note: "gastrokina-2, oncosoppressore gastro-specifico"}
+    caveat: ""
+    source: ""
+
+  group_L4_7b3e137b:
+    title: "Clear-cell renal cell carcinoma — HIF program vs nephron identity"
+    category: "Cancer"
+    tissue: "kidney"
+    one_liner: >
+      Cross-study signature of renal cell carcinoma: gain of the hypoxia/HIF
+      program with loss of normal nephron identity.
+    narrative: >
+      Firma ccRCC da manuale, con alta potenza (quasi tutti i top gene ai 6 studi)
+      e arricchimento funzionale ricchissimo (356 termini GO). L'anidrasi carbonica
+      CA9/CAIX, marcatore HIF-driven principe del ccRCC, e il trasportatore SLC6A3
+      (biomarcatore ccRCC regolato da HIF-2α) sono up; i marcatori del nefrone
+      normale — uromodulina UMOD, acquaporina AQP2 — sono persi.
+    headline_genes:
+      - {symbol: "CA9", direction: "up", note: "anidrasi carbonica IX, marcatore HIF principe del ccRCC"}
+      - {symbol: "SLC6A3", direction: "up", note: "biomarcatore ccRCC regolato da HIF-2α"}
+      - {symbol: "UMOD", direction: "down", note: "uromodulina, marcatore tubulare normale perso"}
+    caveat: ""
+    source: ""
+
+  group_L4_7059e6f2:
+    title: "RSV infection — type I/III interferon antiviral response"
+    category: "Viral infection"
+    tissue: "lung"
+    one_liner: >
+      Cross-study signature of respiratory syncytial virus: the canonical type I/III
+      interferon antiviral programme.
+    narrative: >
+      La firma antivirale più pulita del lotto. L'induzione di interferoni di tipo
+      III (IFNL1) e di tipo I (IFNB1) accende un pannello completo di geni
+      interferone-stimolati — RSAD2/viperina, OAS2, MX1, ISG15 — e questi core-ISG
+      sono presenti in tutti e 4 gli studi, quindi il segnale è ubiquo e non
+      trainato da un singolo dataset.
+    headline_genes:
+      - {symbol: "IFNL1", direction: "up", note: "interferone di tipo III"}
+      - {symbol: "RSAD2", direction: "up", note: "viperina, ISG antivirale core (k=4/4 studi)"}
+      - {symbol: "ISG15", direction: "up", note: "modificatore ubiquitin-like interferone-indotto"}
+    caveat: ""
+    source: ""
+
+  group_L4_1f404c0b:
+    title: "Influenza infection — cross-study antiviral ISG signature"
+    category: "Viral infection"
+    tissue: "lung"
+    one_liner: >
+      Cross-study signature of influenza: a robust interferon-stimulated-gene
+      programme that holds across 12 studies.
+    narrative: >
+      Il caso antivirale meglio potenziato (12 studi, 314 campioni): il core ISG è
+      robusto e ad alto numero di studi — RSAD2 e CMPK2 in 8 studi, IFNB1 in 6 — con
+      direzione coerente nonostante l'eterogeneità dei dataset. Tra i top spicca
+      UBD/FAT10, la proteina ubiquitin-like più indotta nel polmone da influenza A,
+      interferone- e TNF-inducibile.
+    headline_genes:
+      - {symbol: "RSAD2", direction: "up", note: "viperina, ISG core presente in 8 studi"}
+      - {symbol: "UBD", direction: "up", note: "FAT10, ubiquitin-like più indotto in polmone da influenza"}
+      - {symbol: "IFNB1", direction: "up", note: "interferone di tipo I"}
+    caveat: ""
+    source: "Verifica UBD/FAT10: Biomolecules 2020, 10(6):951."
+
+  group_L4_eda28231:
+    title: "Lung cancer — tumour markers vs alveolar identity"
+    category: "Cancer"
+    tissue: "lung"
+    one_liner: >
+      Cross-study signature of lung cancer: gain of tumour markers with loss of
+      normal alveolar identity.
+    narrative: >
+      Firma polmonare coerente: i marcatori alveolari normali sono persi — AGER/RAGE
+      (pneumociti di tipo I, down nei 6 studi) e la surfattante SFTPC — mentre
+      emergono marcatori tumorali dell'adenocarcinoma polmonare come CST1 (prognostico,
+      EMT) e l'oncogene FAM83A. La potenza è mista (alcuni geni a soli 2 studi), quindi
+      va letta come firma solida ma di seconda fascia.
+    headline_genes:
+      - {symbol: "FAM83A", direction: "up", note: "oncogene dell'adenocarcinoma polmonare"}
+      - {symbol: "CST1", direction: "up", note: "cistatina SN, biomarcatore prognostico LUAD"}
+      - {symbol: "AGER", direction: "down", note: "RAGE, marcatore pneumocita tipo I (k=6)"}
+    caveat: "Potenza mista: parte del segnale poggia su geni a k=2 studi."
+    source: ""
+
+  group_L4_b128b80d:
+    title: "Enzalutamide — androgen-receptor pathway suppression"
+    category: "Targeted therapy"
+    tissue: "prostate"
+    one_liner: >
+      Cross-study signature of enzalutamide: suppression of the androgen-receptor
+      transcriptional programme in prostate cancer.
+    narrative: >
+      L'unico caso farmaco davvero publication-grade, e di gran lunga il più potente
+      (32 studi, 480 campioni, 291 termini GO). L'accoppiamento è quello canonico —
+      antagonista del recettore degli androgeni nella prostata — e i target AR
+      classici rispondono nella direzione attesa: KLK3/PSA, TMPRSS2 e FKBP5 sono
+      down sotto blocco AR, insieme a CYP11A1 (steroidogenesi). Nel report questi
+      geni sono in evidenza perché la tabella è ordinata per significatività, non per
+      fold-change grezzo.
+    headline_genes:
+      - {symbol: "KLK3", direction: "down", note: "PSA, target AR canonico"}
+      - {symbol: "TMPRSS2", direction: "down", note: "target AR canonico"}
+      - {symbol: "FKBP5", direction: "down", note: "target AR canonico"}
+    caveat: ""
+    source: ""
+
+  group_L4_b6a3eabd:
+    title: "SARS-CoV-2 infection — muted type-I interferon + TNF"
+    category: "Viral infection"
+    tissue: "lung"
+    one_liner: >
+      Cross-study signature of SARS-CoV-2 in the lung: a blunted type-I interferon
+      response with TNF-driven inflammation.
+    narrative: >
+      Il caso a potenza massima (21 studi, 306 campioni). Il core interferone reale è
+      presente e ben ancorato — IFNB1, IFNL1/3, TNF — coerente con la biologia nota di
+      SARS-CoV-2 nel polmone: risposta di tipo I "attenuata" accompagnata da
+      infiammazione TNF-dipendente. La headline è deliberatamente sul pannello IFN, non
+      sui geni ad alto fold-change ma poco robusti.
+    headline_genes:
+      - {symbol: "IFNB1", direction: "up", note: "interferone di tipo I"}
+      - {symbol: "IFNL1", direction: "up", note: "interferone di tipo III"}
+      - {symbol: "TNF", direction: "up", note: "infiammazione polmonare TNF-dipendente"}
+    caveat: "Effetti per-gene modesti (n_sig_strong 197 su 21 studi)."
+    source: ""
+
+  group_L4_274f387d:
+    title: "Tuberculosis (blood) — interferon-inducible signature"
+    category: "Bacterial infection"
+    tissue: "blood"
+    one_liner: >
+      Cross-study signature of tuberculosis in whole blood: the canonical
+      interferon-inducible blood signature.
+    narrative: >
+      L'identità biologica più "canonica" del lotto. I due geni con la maggiore
+      consistenza cross-studio sono IFI27 (25 studi) e OTOF (24 studi) — esattamente i
+      marcatori della firma interferone-inducibile della tubercolosi nel sangue
+      descritta da Berry et al. (Nature 2010). Il fatto che siano proprio i geni più
+      stabili su 20 studi è un segnale forte. Nel report sono promossi in testa (la TB
+      nel sangue dà firma interferone, non la classica TNF/IL6).
+    headline_genes:
+      - {symbol: "IFI27", direction: "up", note: "interferon alpha-inducible, marcatore firma TB-sangue (k=25)"}
+      - {symbol: "OTOF", direction: "up", note: "co-marcatore firma TB-sangue interferone-inducibile (k=24)"}
+    caveat: "Effetti per-gene modesti (max logFC ~4.5); il valore è la consistenza cross-studio."
+    source: "Berry et al., Nature 2010 (firma IFN whole-blood in TB)."
+
+  group_L4_c51b10c1:
+    title: "Hepatocellular carcinoma — cross-study breadth (k=36)"
+    category: "Cancer"
+    tissue: "liver"
+    one_liner: >
+      Cross-study signature of hepatocellular carcinoma: the widest meta-analysis
+      in the set (36 studies), a showcase of breadth.
+    narrative: >
+      La meta-analisi di massima ampiezza (36 studi, 948 campioni, 241 termini GO). La
+      biologia HCC è difendibile: antigeni cancer-testis come MAGEA3 sono up, mentre
+      l'oncosoppressore metallotioneina MT1G (silenziato per metilazione in HCC) e i
+      marcatori sinusoidali epatici FCN2/CLEC4M sono persi. È presentato come vetrina di
+      "copertura" cross-studio, con un caveat onesto sull'eterogeneità.
+    headline_genes:
+      - {symbol: "MAGEA3", direction: "up", note: "antigene cancer-testis, noto in HCC"}
+      - {symbol: "MT1G", direction: "down", note: "metallotioneina, oncosoppressore silenziato in HCC (k=32)"}
+      - {symbol: "FCN2", direction: "down", note: "ficolina-2, marcatore sinusoidale epatico"}
+    caveat: "Eterogeneità estrema (I² ~99%) sui geni presenti in molti studi: vetrina di ampiezza, non di segnale pulito."
+    source: ""
