@@ -154,7 +154,14 @@
   "c10|CHEBI:87148",          # (Z)-13-methyltetradec-2-eno (2)
   "c5a|HGNC:1331",            # C5 (2)
   "mit|CHEBI:27847",          # 3-iodo-L-tyrosine (1)
-  "lap|HGNC:11766"           # TGFB1: "Lap" e' lapatinib, LAP e' il peptide (cluster TGFB1)
+  "lap|HGNC:11766",          # TGFB1: "Lap" e' lapatinib, LAP e' il peptide (cluster TGFB1)
+  # Trovato il 2026-07-31 leggendo UNA PER UNA le fusioni della de-frammentazione
+  # che finiscono su un taxon (6 su 7 erano ceppi virali corretti). NCBITaxon:262676
+  # e' *Vasconcellea candicans*, una PIANTA che ha "mito" fra i sinonimi; negli
+  # studi "mito" e' mitocondriale/mitomicina/mitotico. Stessa famiglia di
+  # cancer->granchio: la tassonomia ha 3,3 M di nomi e molte parole comuni sono
+  # generi. Impatto misurato: 1 confronto su 87.092.
+  "mito|NCBITaxon:262676"
 )
 
 #' Il candidato e' un token che non puo' identificare un'entita'?

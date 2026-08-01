@@ -53,6 +53,13 @@ stage3_default_config <- function() {
       sample_facts       = "stage1.v3",
       study_design       = "stage2.v2",
       resolver           = "v1.1.0",
+      # De-frammentazione dell'entita' del contrasto (R/stage3-defrag-alias.R,
+      # 2026-08-01). AGGIUNTA perche' senza di essa `run_metadata.json` NON
+      # distingue un run con la regola da uno senza: il diff fra i metadati di
+      # v13 e v14 mostrava solo il timestamp e tre conteggi, benche' v14 avesse
+      # introdotto la regola. Un run non riproducibile dai suoi metadati non e'
+      # un run documentato.
+      contrast_defrag    = "v2",
       # FASE E0 ADR-0019 D9: strategia di dedupe cross-studio costante per
       # design (relation BioSample SAMN unique). Loggata una sola volta in
       # run_metadata invece che come colonna ridondante per-cluster.

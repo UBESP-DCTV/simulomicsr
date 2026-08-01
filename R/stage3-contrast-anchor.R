@@ -691,6 +691,12 @@
   # Entita': on-contrast (nome gia' risolto nell'anchor di questo record) ->
   # delta risolto -> ripiego STR:.
   entity <- NA_character_; src <- NA_character_
+  # Token che ha prodotto la fusione de-frammentata. Serve PIU' AVANTI: per un
+  # membro `STR:tgfb` il nome dell'entita' si legge dall'entita' stessa, per uno
+  # de-frammentato l'entita' e' un ID e il nome andrebbe perso — spegnendo due
+  # guardie (i token dell'entita' nel rilevatore di riga e la sonda
+  # "entita' tenuta costante").
+  defrag_tk <- NA_character_
   if (!is.na(anchor_name) && nzchar(anchor_name) && !is.na(anchor_id) &&
       .cg_matches_all_words(.cg_distinctive_tokens(anchor_name), paste(tval, collapse = " "))) {
     entity <- anchor_id; src <- "anchor"
@@ -698,7 +704,16 @@
     entity <- res$id; src <- "onto"
   } else {
     tk <- .ca_clean_token(tval)
-    if (nzchar(tk)) { entity <- paste0("STR:", gsub(" ", "_", tk)); src <- "STR" }
+    # De-frammentazione (2026-07-31): prima di rassegnarsi a STR:, il token si
+    # prova contro l'ontologia pretendendo un aggancio UNIVOCO su un alias di
+    # piu' di tre caratteri. Sta QUI, dopo `res$id`, perche' non deve poter
+    # cambiare un'entita' gia' risolta: solo recuperarne una che si perderebbe.
+    dfg <- .ca_defrag_entity(tk, cls, ontology_env)
+    if (!is.na(dfg)) {
+      entity <- dfg; src <- "defrag"; defrag_tk <- tk
+    } else if (nzchar(tk)) {
+      entity <- paste0("STR:", gsub(" ", "_", tk)); src <- "STR"
+    }
   }
   if (is.na(entity)) return(out("no_entity"))
 
@@ -717,18 +732,39 @@
   # l'auxina (sistema AID) e il dTAG erano diventati due gruppi, mentre la
   # proteina degradata cambia da studio a studio (censimento 2026-07-28).
   if (.cg_is_inducer(gsub("_", " ", raw))) return(out("induttore"))
+  # `defrag_tk` entra QUI e in tutti i controlli sul nome qui sotto: per un
+  # membro de-frammentato l'entita' e' un ID e `res$name` e' NA, quindi senza il
+  # token il nome non esiste da nessuna parte e ogni guardia basata sul NOME si
+  # spegne.
+  #
+  # ⚠️ RETTIFICA 2026-07-31: la prima stesura di questo commento diceva che senza
+  # la riga i 22 membri `dTAG-13` sarebbero RIENTRATI nel deliverable. E' FALSO,
+  # misurato: quei membri erano gia' tenuti prima e restano tenuti dopo. Avevo
+  # dedotto lo scarto dal commento accanto invece di contarlo.
+  # Il guadagno vero di queste righe e' sui controlli OMBRELLO e NOME GENERICO:
+  # 99 membri (59 `nome_ombrello`, 40 `str_generico`) rientravano perche' la
+  # fusione toglieva il prefisso `STR:` su cui quelle guardie sono agganciate.
+  #
+  # Limite PRE-ESISTENTE, non introdotto qui e non chiuso qui: `.CG_INDUCERS`
+  # contiene "dtag", ma il confronto e' a confini di parola e `\bdtag\b` non
+  # aggancia `dtag13` (le cifre sono caratteri di parola). Le etichette scritte
+  # `dTAG-13` vengono prese, quelle scritte `dTAG13` no: 64 membri misurati.
   if (.cg_is_inducer(res$name %||% "") ||
-      .cg_is_inducer(res$candidate %||% "")) return(out("induttore_nome"))
+      .cg_is_inducer(res$candidate %||% "") ||
+      (!is.na(defrag_tk) && .cg_is_inducer(defrag_tk))) return(out("induttore_nome"))
   # Un nome di CLASSE che aggancia un membro della classe produce un ID vero ma
   # sbagliato: "MEK inhibitor" -> U0126 metteva insieme inibitori di MEK, ERK e
   # JNK. Il controllo va sul CANDIDATO che ha prodotto il match, non sull'esito.
-  if (.cg_is_umbrella_name(res$candidate %||% "")) return(out("candidato_ombrello"))
+  if (.cg_is_umbrella_name(res$candidate %||% "") ||
+      (!is.na(defrag_tk) && .cg_is_umbrella_name(defrag_tk)))
+    return(out("candidato_ombrello"))
   # Il NOME RISOLTO si giudica per APPARTENENZA al vocabolario, non con
   # l'euristica sui token: quella scarta ogni sigla sotto i 4 caratteri, cioe'
   # entita' vere come TNF, IL6, RSV, CMV, HBV (565 membri persi, misurato
   # dall'equivalenza 2026-07-27). Un ID risolto e' gia' una garanzia di identita';
   # qui si tolgono solo i nomi che sono parole generiche o anatomia.
   rn <- tolower(res$name %||% "")
+  if (!nzchar(rn) && !is.na(defrag_tk)) rn <- tolower(defrag_tk)
   if (nzchar(rn) && !grepl(" ", rn) &&
       (rn %in% .CG_GENERIC || rn %in% .CG_ANATOMY))
     return(out("nome_generico"))
@@ -737,7 +773,9 @@
   # L'entita' e' TENUTA COSTANTE fra i due bracci: quel membro non la misura
   # ("Current PTSD, perturbazione" vs "Current PTSD, nessuna perturbazione" non
   # e' il contrasto "PTSD vs sano").
-  probe <- if (!is.na(res$candidate) && nzchar(res$candidate)) res$candidate else gsub("_", " ", raw)
+  probe <- if (!is.na(res$candidate) && nzchar(res$candidate)) res$candidate
+           else if (!is.na(defrag_tk)) defrag_tk
+           else gsub("_", " ", raw)
   probe <- trimws(gsub("[^a-z0-9 ]+", " ", tolower(probe)))
   if (nzchar(probe) && nchar(gsub("[^a-z0-9]", "", probe)) >= 3L) {
     cl_norm <- gsub("[^a-z0-9]+", " ", tolower(control_label))
@@ -747,7 +785,7 @@
   # La riga deve essere anche APPAIATA: il gruppo dice CHE COSA si misura, la
   # riga COME e' stato confrontato.
   defect <- .rp_row_defect(treated_label, control_label, cls, entity,
-                           .ca_entity_tokens(anchor_name, res$name, raw),
+                           .ca_entity_tokens(anchor_name, res$name, raw, defrag_tk),
                            ontology_env, row_cache)
   if (nzchar(defect)) return(out(paste0("riga_", defect)))
 
