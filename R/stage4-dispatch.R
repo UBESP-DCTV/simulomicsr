@@ -58,14 +58,33 @@
   NULL
 }
 
-#' Lookup comparison da study via comparison_id
+#' Lookup comparison da study via comparison_id, con indice opzionale
+#'
+#' Lo Stadio 2 puo' emettere lo STESSO \code{comparison_id} piu' volte dentro lo
+#' stesso studio, e nel 99% dei casi le copie puntano a bracci DIVERSI (misurato:
+#' 291 studi, 746 coppie su 754). Fino al 2026-08-02 questa funzione restituiva
+#' sempre la PRIMA, quindi i membri che erano la seconda o la terza copia
+#' poolavano i campioni della prima: 7 gruppi del deliverable perdevano uno
+#' studio intero e il gruppo del 17-beta-estradiolo poolava 14 righe su 44 di un
+#' altro composto.
+#'
+#' Dallo Stadio 3 v15 il \code{record_id} porta un terzo segmento con l'indice
+#' 1-based dell'occorrenza. Il suffisso senza indice resta valido e si comporta
+#' come prima: gli output v13/v14 restano leggibili.
 #'
 #' @keywords internal
 .lookup_cmp <- function(study, comparison_id) {
+  # Prima si prova il match ESATTO: un comparison_id puo' contenere "__" e
+  # terminare con cifre, e in quel caso non e' un indice.
   for (cmp in study$comparisons) {
     if (identical(cmp$comparison_id, comparison_id)) return(cmp)
   }
-  NULL
+  m <- regmatches(comparison_id, regexec("^(.*)__([0-9]+)$", comparison_id))[[1L]]
+  if (length(m) != 3L) return(NULL)
+  base <- m[2L]; idx <- as.integer(m[3L])
+  hits <- Filter(function(cmp) identical(cmp$comparison_id, base), study$comparisons)
+  if (idx < 1L || idx > length(hits)) return(NULL)
+  hits[[idx]]
 }
 
 #' Split record_id in (series_id, suffix) sul primo "__"

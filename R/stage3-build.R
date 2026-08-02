@@ -589,6 +589,11 @@ build_stage3_clusters <- function(stage1_master,
       study$replicate_groups,
       vapply(study$replicate_groups, function(g) g$group_id, character(1L))
     )
+    # Lo stesso comparison_id puo' comparire piu' volte nello stesso studio, su
+    # bracci diversi: senza un indice il record_id non e' una chiave e a valle
+    # si poola sempre il primo braccio (misurato 2026-08-02: 7 gruppi del
+    # deliverable perdono uno studio, uno ne poola uno sbagliato).
+    cmp_seen <- new.env(hash = TRUE, parent = emptyenv())
     for (cmp in study$comparisons) {
       tg <- rg_lookup[[cmp$treated_group]]
       cg <- rg_lookup[[cmp$control_group]]
@@ -616,7 +621,9 @@ build_stage3_clusters <- function(stage1_master,
         caches        = caches
       )
 
-      rid <- sprintf("%s__%s", sid, cmp$comparison_id)
+      n_seen <- (get0(cmp$comparison_id, envir = cmp_seen, ifnotfound = 0L)) + 1L
+      assign(cmp$comparison_id, n_seen, envir = cmp_seen)
+      rid <- sprintf("%s__%s__%d", sid, cmp$comparison_id, n_seen)
       if (nzchar(v$drop_reason)) {
         dropped[[length(dropped) + 1L]] <- list(
           record_id = rid, mode = "cgroup",

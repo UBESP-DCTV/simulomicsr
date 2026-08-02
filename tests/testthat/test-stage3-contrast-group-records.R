@@ -38,7 +38,9 @@ test_that(".build_contrast_group_records produce un record per comparison", {
   expect_length(recs, 1L)
   r <- recs[[1L]]
   expect_equal(r$mode, "cgroup")
-  expect_equal(r$record_id, "GSE147876__cmp1")
+  # Dallo Stadio 3 v15 il record_id porta un terzo segmento con l'indice
+  # 1-based dell'occorrenza del comparison_id dentro lo studio (Task 4).
+  expect_equal(r$record_id, "GSE147876__cmp1__1")
   expect_equal(r$contrast_entity, "CHEBI:68534")
   expect_equal(r$contrast_key, "CHEBI:68534||gain||vehicle_untreated")
   expect_equal(r$treated_sample_ids, c("GSM1", "GSM2"))
@@ -60,7 +62,7 @@ test_that(".build_contrast_group_records non emette record per i confronti scart
   # lo scarto e' tracciato, non silenzioso
   dropped <- attr(recs, "dropped")
   expect_length(dropped, 1L)
-  expect_equal(dropped[[1L]]$record_id, "GSE147876__cmp1")
+  expect_equal(dropped[[1L]]$record_id, "GSE147876__cmp1__1")
   expect_equal(dropped[[1L]]$details, "no_delta")
 })
 
