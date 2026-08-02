@@ -45,8 +45,9 @@ test_that("lo stesso token da' lo STESSO ID qualunque sia la classe", {
   oe <- .load_ontology_dicts()
   skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
   # e' l'invariante che impedisce lo split, provata sui casi che lo produssero
+  # ⚠️ glioblastoma rimosso il 2026-08-02: non si fonde piu' e ritornerebbe NA
   for (tk in c("hypoxia", "schizophrenia", "sepsis", "smoking", "tgfb",
-               "glioblastoma", "il17")) {
+               "il17")) {
     ids <- unique(vapply(c("disease", "drug", "genetic", "infection", "other"),
                          function(c) .ca_defrag_entity(tk, c, oe), character(1L)))
     expect_length(ids, 1L)
@@ -106,13 +107,15 @@ test_that(".ca_defrag_entity lascia STR quello che non aggancia nulla", {
   expect_true(is.na(.ca_defrag_entity(NA_character_, "drug", oe)))
 })
 
-test_that(".ca_defrag_entity recupera glioblastoma, che il resolver MeSH non vede", {
+test_that(".ca_defrag_entity NON fonde glioblastoma (tolto 2026-08-02)", {
   oe <- .load_ontology_dicts()
   skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
-  # .normalize_disease_to_mesh("glioblastoma") ripiega su STR (limite noto,
-  # "glioblastoma MeSH miss", name-cleanup 2026-07-07). L'indice degli alias lo
-  # aggancia in modo univoco.
-  expect_equal(.ca_defrag_entity("glioblastoma", "disease", oe), "MeSH:D005909")
+  # ⚠️ ASSERZIONE CAPOVOLTA il 2026-08-02. Era autorizzato dalla decisione del
+  # 2026-07-31, ma la misura mostra che comprava solo 1 membro su 40, con una
+  # chiave di controllo non presente nel gruppo bersaglio. La fusione non
+  # chiudeva lo split e avrebbe introdotto una meta-analisi a k=3 mai censita.
+  # Restano due fusioni: tgfb e il17.
+  expect_true(is.na(.ca_defrag_entity("glioblastoma", "disease", oe)))
 })
 
 test_that(".ca_defrag_entity fonde IL17 in IL17A ma solo dove la classe lo prevede", {
@@ -297,15 +300,17 @@ test_that("il rifiuto NON tocca le due fusioni autorizzate che sono sigle", {
 # La regola fonde SOLO le tre entita' autorizzate dalla decisione del 31/07.
 # Tutto il resto torna `STR:`, cioe' esattamente come in v13.
 
-test_that("si fondono SOLO le tre entita' autorizzate", {
+test_that("si fondono SOLO le due entita' autorizzate (glioblastoma tolto 2026-08-02)", {
   oe <- .load_ontology_dicts()
   skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
   expect_equal(.ca_defrag_entity("tgfb", "drug", oe), "HGNC:11766")
   expect_equal(.ca_defrag_entity("tgf_b", "drug", oe), "HGNC:11766")
   expect_equal(.ca_defrag_entity("TGF-B", "drug", oe), "HGNC:11766")
-  expect_equal(.ca_defrag_entity("glioblastoma", "disease", oe), "MeSH:D005909")
+  # ⚠️ glioblastoma non si fonde piu': dei 40 membri candidati solo 1 arrivava
+  # al ripiego, con una chiave di controllo non presente nel bersaglio.
+  expect_true(is.na(.ca_defrag_entity("glioblastoma", "disease", oe)))
   expect_equal(.ca_defrag_entity("il17", "drug", oe), "HGNC:5981")
-  expect_length(.CA_DEFRAG_ACCEPT, 3L)
+  expect_length(.CA_DEFRAG_ACCEPT, 2L)
 })
 
 test_that("le fusioni abbandonate tornano STR:, non spariscono", {
@@ -351,4 +356,36 @@ test_that("ogni entita' autorizzata e' ancora univoca e sostenuta dal nome", {
     nm <- norm(.resolve_contrast_entity_label(id, env = oe)$label)
     expect_true(grepl(k, nm, fixed = TRUE) || grepl(nm, k, fixed = TRUE), info = k)
   }
+})
+
+# ============================== TASK 1 / 2026-08-02 ===========================
+# Glioblastoma esce dalle fusioni: la misura mostra che comprava un membro su 40.
+
+test_that("la lista autorizzata contiene DUE entita': glioblastoma e' stato tolto", {
+  # Decisione utente 2026-08-02. Misurato: dei 40 membri candidati, 39 hanno gia'
+  # l'entita' dal ramo `anchor` (che precede la de-frammentazione) e al ripiego ne
+  # arriva UNO, con una chiave di controllo che non esiste nel gruppo bersaglio.
+  # La fusione non chiudeva lo split e faceva entrare una meta-analisi a k=3 esatti
+  # mai censita.
+  expect_length(simulomicsr:::.CA_DEFRAG_ACCEPT, 2L)
+  expect_setequal(names(simulomicsr:::.CA_DEFRAG_ACCEPT), c("tgfb", "il17"))
+  expect_false("glioblastoma" %in% names(simulomicsr:::.CA_DEFRAG_ACCEPT))
+})
+
+test_that("glioblastoma NON si fonde piu', in nessuna forma", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  for (tk in c("glioblastoma", "Glioblastoma", "GLIOBLASTOMA")) {
+    expect_true(is.na(.ca_defrag_entity(tk, "disease", oe)),
+                info = tk)
+  }
+})
+
+test_that("le due fusioni tenute continuano a funzionare su tutte le grafie del corpus", {
+  oe <- .load_ontology_dicts()
+  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  for (tk in c("tgfb", "TGFb", "TGF-B", "tgf_b", "TGF-b"))
+    expect_identical(.ca_defrag_entity(tk, "drug", oe), "HGNC:11766", info = tk)
+  for (tk in c("il17", "IL-17", "il_17", "IL17"))
+    expect_identical(.ca_defrag_entity(tk, "drug", oe), "HGNC:5981", info = tk)
 })

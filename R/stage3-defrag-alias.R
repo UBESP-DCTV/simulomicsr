@@ -302,9 +302,14 @@
 #'   tipo di controllo si calcola PRIMA dell'entita' (`ck_off == ck_on` su tutte
 #'   e 87.092 le righe).
 #'
-#' Nessuno di questi difetti tocca le tre fusioni qui sotto: sono sostenute dal
-#' nome primario, adjudicate una per una, e **nessuna e' fra le entita' colpite
-#' dallo split del ramo anchor** (verificato sull'output v14).
+#' Nessuno di questi difetti tocca le DUE fusioni qui sotto. ⚠️ RETTIFICA
+#' 2026-08-02: la versione precedente diceva «nessuna e' fra le entita' colpite
+#' dallo split del ramo anchor» ed era FALSA per glioblastoma — lo smentiva
+#' proprio l'output v14 che citava (`MeSH:D005909` k=7 accanto a
+#' `STR:glioblastoma` k=2, stesso verso, stessa chiave di controllo). Per quello
+#' glioblastoma e' stato tolto. Per `tgfb` e `il17` la verifica regge: nel
+#' corpus non esiste NESSUN ancoraggio `STR:` che normalizzi a quei due token
+#' (misurato su v13, residuo anchor zero per entrambi).
 #'
 #' Il beneficio dichiarato resta intero, ed e' quello su cui la decisione fu
 #' presa: il gruppo `HGNC:11766` contiene GIA' membri etichettati `TGF-beta`,
@@ -318,14 +323,27 @@
 .CA_DEFRAG_ACCEPT <- c(
   # TGF-beta1: `tgfb`, `TGF-B`, `tgf_b` normalizzano tutti a "tgfb". Misurato:
   # nessuna entita' oltre TGFB1 ha "tgfb" nudo fra gli alias (TGFB2 e TGFB3
-  # hanno "tgfb2"/"tgfb3"). E' la figura 2 del main paper: k 65 -> 78.
-  "tgfb"         = "HGNC:11766",
-  # Glioblastoma: il resolver MeSH non lo vede (limite noto "glioblastoma MeSH
-  # miss", name-cleanup 2026-07-07), l'alias lo aggancia in modo univoco.
-  "glioblastoma" = "MeSH:D005909",
-  # IL17A: "il17" aggancia solo HGNC:5981 fra i geni. Giudicata ammissibile
-  # nella decisione del 2026-07-31 (nel corpus esiste un solo gruppo IL17).
-  "il17"         = "HGNC:5981"
+  # hanno "tgfb2"/"tgfb3"). E' la figura 2 del main paper: studi-slot CENSITI
+  # 65 -> 78; studi POOLATI attesi 49 -> 59 (i due numeri sono grandezze
+  # DIVERSE: il primo e' il k dello Stadio 3, il secondo quello che la scheda
+  # del case study mostra. Verificato che i tre insiemi di studi poolabili sono
+  # disgiunti).
+  "tgfb" = "HGNC:11766",
+  # IL17A: "il17" aggancia solo HGNC:5981 fra i geni. Nel corpus esiste un solo
+  # gruppo IL17. Misurato: 11 membri su 5 studi, k censito 8 -> 12.
+  "il17" = "HGNC:5981"
+  # ⚠️ GLIOBLASTOMA TOLTO (decisione utente 2026-08-02). Era autorizzato dalla
+  # decisione del 2026-07-31, ma la misura fatta dopo mostra che non comprava
+  # nulla: dei 40 membri candidati 39 hanno gia' l'entita' dal ramo `anchor`
+  # (R/stage3-contrast-anchor.R:700-702), che PRECEDE questo ripiego e che la
+  # regola non puo' vedere. Al ramo di ripiego arrivava UN solo record
+  # (GSE241396), con chiave di controllo `non tumor` assente nel gruppo
+  # bersaglio: sarebbe finito in un gruppo isolato a k=1. In piu' la fusione
+  # non chiudeva lo split (in v13 convivono gia' `STR:glioblastoma` k=6, fonte
+  # anchor, e `MeSH:D005909` k=3, stesso verso e stesso controllo) e avrebbe
+  # fatto entrare nel deliverable una meta-analisi a k=3 ESATTI mai censita,
+  # nella fascia in cui il progetto ha misurato l'80% di gruppi dominati da un
+  # solo studio.
 )
 
 #' Entita' recuperata dalla de-frammentazione, oppure NA
