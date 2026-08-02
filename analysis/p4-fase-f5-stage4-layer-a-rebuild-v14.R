@@ -45,6 +45,22 @@ if (!nzchar(stage3_dir)) {
   stop("STAGE3_DIR non impostata: passare esplicitamente la dir dello Stadio 3 v15.\n",
        "  esempio: STAGE3_DIR=analysis/p4-output/<UTC>-stage3-v15-<run_id> Rscript ...")
 }
+
+# I verdetti di coerenza sono un INGRESSO del run, non un dettaglio
+# dell'annotazione: si controllano qui, al minuto zero, non dopo 28 ore.
+# Il default puntava a un file inesistente e il ramo di ripiego marcava
+# `coherent` TUTTE le righe con la provenienza di una rilettura mai avvenuta.
+verdetti_path <- Sys.getenv("VERDETTI_PATH", "")
+if (!nzchar(verdetti_path) && !nzchar(Sys.getenv("VERDETTI_ASSENTI_OK"))) {
+  stop("VERDETTI_PATH non impostata. Passare il file dei verdetti di coerenza ",
+       "(per v15: analysis/audit/2026-07-29-etichette-v13/verdetti-poolato-v13.csv, ",
+       "riusabile perche' nessuna delle 6 chiavi tocca le entita' fuse), oppure ",
+       "chiedere esplicitamente un deliverable senza coerenza con VERDETTI_ASSENTI_OK=1.")
+}
+if (nzchar(verdetti_path) && !file.exists(verdetti_path)) {
+  stop("VERDETTI_PATH indica un file che non esiste: ", verdetti_path)
+}
+
 if (!grepl("-stage3-v15-", basename(stage3_dir), fixed = TRUE)) {
   stop("stage3_dir NON e' un output v15: ", stage3_dir, "\n",
        "  il re-pool girerebbe ~28 h su cluster vecchi producendo un file gia' visto.")
@@ -227,6 +243,52 @@ tryCatch(render_stage4_dashboard(out_dir),
          error = function(e) cli_alert_warning("Dashboard render FALLITO (non-fatale): {conditionMessage(e)}"))
 
 # -----------------------------------------------------------------------------
+# VERIFICA VERDETTI DI COERENZA — FATALE. Le chiavi dei verdetti letti da
+# VERDETTI_PATH devono essere un sottoinsieme delle chiavi del deliverable
+# appena poolato: un verdetto "orfano" (il suo gruppo non e' nel poolato)
+# vuol dire che il gruppo e' stato rinominato o fuso, e non aggiornarlo (FASE
+# D0ter) rischia di marcare `coherent` un gruppo che era stato letto INCOERENTE.
+#
+# ⚠️ 2026-08-02: questo controllo stava DENTRO il tryCatch qui sotto, che lo
+# declassava a warning — quindi «senza D0ter il re-pool si ferma davvero» era
+# falso, in entrambi i punti dell'handout in cui era scritto. Qui fuori ferma
+# sul serio, prima di scrivere il deliverable annotato (non prima delle 28 ore
+# di pooling: il confronto usa le chiavi REALI del poolato appena prodotto,
+# non solo quelle previste — non e' calcolabile prima).
+# -----------------------------------------------------------------------------
+meta_ann <- as.data.frame(
+  simulomicsr:::.identify_layer_a_clusters(s3$clusters, config))
+meta_ann <- meta_ann[meta_ann$cluster_id %in% unique(result$cluster_pooled$cluster_id), ]
+meta_ann$ckey <- paste0(meta_ann$contrast_entity, "||", meta_ann$contrast_direction,
+                        "||", meta_ann$contrast_control_key)
+
+verdetti_ann <- if (file.exists(verdetti_path)) {
+  vv <- utils::read.csv(verdetti_path, stringsAsFactors = FALSE)
+  # ⚠️ CORRETTO 2026-08-01, e la versione precedente era PEGGIO di come l'avevo
+  # descritta. Qui i verdetti orfani venivano tolti e solo segnalati: cosi'
+  # `.annotate_coherence()` non li vedeva mai, e la sua difesa — scritta
+  # apposta contro il "fallimento silenzioso a favore della conclusione che fa
+  # comodo" — era disinnescata dal chiamante. Provato affiancando i due rami:
+  # col pre-filtro l'annotazione RIUSCIVA e il gruppo `adenoma`, che ha un
+  # verdetto di INCOERENZA, usciva marcato `coherent`.
+  # Il piano diceva "l'annotazione si ferma": era falso, proseguiva.
+  fuori <- setdiff(vv$ckey, meta_ann$ckey)
+  if (length(fuori) > 0L) {
+    stop("VERDETTI ORFANI (", length(fuori), "): ", paste(fuori, collapse = "; "),
+         "\n  Il loro gruppo non e' nel poolato: senza aggiornarli (FASE D0ter)",
+         " un gruppo INCOERENTE verrebbe marcato `coherent`.")
+  }
+  vv
+} else {
+  cli_alert_warning(paste0(
+    "VERDETTI ASSENTI",
+    if (nzchar(verdetti_path)) paste0(" (", verdetti_path, ")") else " (VERDETTI_ASSENTI_OK=1, nessun file richiesto)",
+    ": le colonne di coerenza usciranno VUOTE (NA): nessun gruppo sara' dichiarato",
+    " coerente ne' incoerente."))
+  NULL
+}
+
+# -----------------------------------------------------------------------------
 # DELIVERABLE ANNOTATO — una riga per meta-analisi, con etichetta risolta
 # dall'ID, verdetto di coerenza, efficacia del pooling e materiale.
 #
@@ -236,16 +298,13 @@ tryCatch(render_stage4_dashboard(out_dir),
 # e' davvero efficace. Ora esce dal run.
 #
 # NON-FATALE, come il render della dashboard: i parquet sono gia' scritti sopra
-# e sono il deliverable primario.
+# e sono il deliverable primario. La VALIDAZIONE dei verdetti (sopra) e' invece
+# fatale — qui dentro resta solo la costruzione delle etichette e la scrittura,
+# che possono essere rifatte a freddo se falliscono.
 # -----------------------------------------------------------------------------
 cli_alert_info("Annotazione del deliverable...")
 tryCatch({
-  verdetti_path <- Sys.getenv("VERDETTI_PATH", "analysis/audit/2026-07-31-defrag/verdetti-poolato-v14.csv")
-  meta_ann <- as.data.frame(
-    simulomicsr:::.identify_layer_a_clusters(s3$clusters, config))
-  meta_ann <- meta_ann[meta_ann$cluster_id %in% unique(result$cluster_pooled$cluster_id), ]
-  meta_ann$ckey <- paste0(meta_ann$contrast_entity, "||", meta_ann$contrast_direction,
-                          "||", meta_ann$contrast_control_key)
+  # meta_ann e verdetti_ann gia' calcolati e validati sopra, fuori dal tryCatch.
 
   # Etichette dei membri, per l'asse del materiale. La funzione scarta da sola
   # gli studi non poolati.
@@ -277,29 +336,6 @@ tryCatch({
     data.frame(cluster_id = asg_ann$cluster_id[i], study_id = asg_ann$study[i],
                label = e, stringsAsFactors = FALSE)
   }))
-
-  verdetti_ann <- if (file.exists(verdetti_path)) {
-    vv <- utils::read.csv(verdetti_path, stringsAsFactors = FALSE)
-    # ⚠️ CORRETTO 2026-08-01, e la versione precedente era PEGGIO di come l'avevo
-    # descritta. Qui i verdetti orfani venivano tolti e solo segnalati: cosi'
-    # `.annotate_coherence()` non li vedeva mai, e la sua difesa — scritta
-    # apposta contro il "fallimento silenzioso a favore della conclusione che fa
-    # comodo" — era disinnescata dal chiamante. Provato affiancando i due rami:
-    # col pre-filtro l'annotazione RIUSCIVA e il gruppo `adenoma`, che ha un
-    # verdetto di INCOERENZA, usciva marcato `coherent`.
-    # Il piano diceva "l'annotazione si ferma": era falso, proseguiva.
-    fuori <- setdiff(vv$ckey, meta_ann$ckey)
-    if (length(fuori) > 0L) {
-      stop("VERDETTI ORFANI (", length(fuori), "): ", paste(fuori, collapse = "; "),
-           "\n  Il loro gruppo non e' nel poolato: senza aggiornarli (FASE D0ter)",
-           " un gruppo INCOERENTE verrebbe marcato `coherent`.")
-    }
-    vv
-  } else {
-    cli_alert_warning(paste0("VERDETTI ASSENTI (", verdetti_path, "): il deliverable ",
-                             "uscira' SENZA le colonne di coerenza. FASE D0ter non fatta."))
-    NULL
-  }
 
   deliverable <- annotate_stage4_deliverable(
     cluster_pooled = result$cluster_pooled,
