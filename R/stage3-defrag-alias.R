@@ -10,9 +10,14 @@
 # diverse» non si puo' scrivere: non e' un limite del dato, e' un'incoerenza
 # interna del metodo.
 #
-# LA REGOLA. Prima di ripiegare su `STR:`, il token si prova contro l'ontologia
-# pretendendo un match UNIVOCO su un alias PER ESTESO (>3 caratteri). Se
-# l'alias aggancia piu' di un'entita', NON si fonde e si resta su `STR:`.
+# LA REGOLA, COM'E' OGGI. Due fusioni autorizzate una per una (`.CA_DEFRAG_ACCEPT`).
+# L'univocita' sull'ontologia e' stata la MISURA che le ha giustificate, NON la
+# regola che gira: `.ca_defrag_entity()` e' un lookup su due voci e non legge
+# ne' `ontology_env` ne' `contrast_class`. L'indice degli alias qui sotto
+# (`.ca_defrag_index` e compagnia) e la tabella `.CA_DEFRAG_REJECT` sono
+# materiale d'AUDIT, non sul percorso di produzione: verificato il 2026-08-02
+# con un test di mutazione (togliendo tutte e quattro le guardie l'esito non
+# cambia su 14.089 token del corpus).
 #
 # Perche' non e' una lista di casi:
 #   - `tgfb` si fonde perche' nessuna entita' oltre TGFB1 ha "tgfb" nudo fra gli
@@ -71,9 +76,13 @@
 #' **E' frammentazione creata dalla regola che doveva toglierla**, cioe' l'esatto
 #' opposto del suo scopo.
 #'
-#' Un ordine UNICO la elimina **per costruzione**: lo stesso token da' sempre lo
-#' stesso ID, qualunque sia la classe. Restano validi gli altri due vincoli
-#' (lunghezza > 3, univocita' DENTRO l'ontologia che vince).
+#' Un ordine UNICO elimina lo split FRA CLASSI: lo stesso token da' sempre lo
+#' stesso ID qualunque sia la classe. ⚠️ NON elimina lo split FRA RAMI, e questo
+#' va detto: il ramo `anchor` (R/stage3-contrast-anchor.R:700-702) precede la
+#' de-frammentazione e puo' produrre esso stesso un'entita' `STR:`, che questo
+#' codice non vede mai. Misurato su v13: 415 cluster cgroup hanno un'entita'
+#' `STR:` dal ramo anchor. E' il motivo per cui glioblastoma e' stato tolto
+#' dalla lista il 2026-08-02.
 #'
 #' Perche' questo ordine, e non un altro:
 #' - **la tassonomia e' ULTIMA** perche' e' la fonte del problema del granchio:
@@ -181,11 +190,13 @@
 
 #' Fusioni RIFIUTATE, adjudicate una per una sui dati (2026-08-01)
 #'
-#' Delle 923 fusioni prodotte dalla regola, **682 sono sostenute dal nome
-#' primario** dell'entita' (`hypoxia`->Hypoxia, `tgfb`->TGFB1) e non pongono
-#' problemi. Le altre **241 stanno in piedi solo su un alias**, e sono state
-#' lette una per una con le etichette vere accanto (`90-adjudica.txt`).
-#' **~63 assegnano un'identita' SBAGLIATA.**
+#' Delle 923 coppie prodotte dalla regola generale, 682 erano sostenute dal nome
+#' primario e NON sono state lette; le **241** che stavano in piedi solo su un
+#' alias sono state lette una per una con le etichette vere (`90-adjudica.txt`),
+#' e **61** assegnavano un'identita' sbagliata. ⚠️ Il numero «130 su 923», che
+#' compariva qui e nel messaggio di commit f0907fc, non e' sostenuto da nessun
+#' artefatto: non compare in nessun log dell'audit e contraddice questa stessa
+#' tabella, che ha 61 voci.
 #'
 #' La forma dell'errore e' sempre la stessa: una sigla di laboratorio, un codice
 #' di campione, un tipo cellulare o un descrittore tecnico che collide con un
@@ -288,9 +299,14 @@
 #' generalizzazione non era stata decisa da nessuno, ed e' da li' che vengono
 #' tutti i difetti misurati:
 #'
-#' - **14,1% di identita' sbagliate** (130 su 923), adjudicate leggendo TUTTE le
-#'   coppie con le etichette vere: `msa_p`->MTAP (e' l'atrofia multisistemica),
-#'   `copd`->ARCN1, `rela`->carisoprodol su `RELA-/-`, `ifn_i`->**il Marocco**;
+#' - **identita' sbagliate**: delle 923 coppie, 682 erano sostenute dal nome
+#'   primario e NON sono state lette; delle **241** che stavano in piedi solo
+#'   su un alias, lette una per una con le etichette vere, **61** assegnavano
+#'   un'identita' sbagliata (`msa_p`->MTAP, e' l'atrofia multisistemica;
+#'   `copd`->ARCN1; `rela`->carisoprodol su `RELA-/-`; `ifn_i`->**il
+#'   Marocco**) — tabella completa in `.CA_DEFRAG_REJECT`. ⚠️ «14,1% (130 su
+#'   923)», scritto qui in una versione precedente e nel messaggio di commit
+#'   f0907fc, non e' sostenuto da nessun artefatto d'audit;
 #' - **lo split NON si chiudeva**: il ramo `anchor` precede questo e puo' esso
 #'   stesso produrre un'entita' `STR:`, quindi in v14 convivevano
 #'   `STR:hypoxia` (k=33) e `MeSH:D000860` (k=10) — stessa entita', stesso verso,

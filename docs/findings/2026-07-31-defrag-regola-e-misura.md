@@ -217,10 +217,14 @@ quindi quel gruppo cambia chiave e il verdetto resta **orfano**.
 «un verdetto che non attacca lascerebbe un gruppo incoerente marcato coerente: fallimento
 silenzioso, e per giunta a favore della conclusione che fa comodo».
 
-**Conseguenza operativa, e quando va chiusa.** Se non si fa nulla, il re-pool gira 28 ore
-e poi l'annotazione fallisce (in modo non fatale: i parquet restano, il deliverable
-arricchito no). C'e' una finestra naturale: il re-cluster finisce **prima** del re-pool.
-Quindi, **fra i due run**:
+⚠️ **CORRETTO 2026-08-02**: qui si scriveva «Se non si fa nulla, il re-pool gira 28 ore e
+poi l'annotazione fallisce (in modo non fatale: i parquet restano, il deliverable
+arricchito no)» — l'annotazione NON si fermava: il chiamante pre-filtrava gli orfani e la
+difesa non scattava mai — provato, il gruppo `adenoma`, che ha un verdetto di INCOERENZA,
+usciva marcato `coherent`. E anche dopo il fix del pre-filtro lo `stop()` restava dentro un
+`tryCatch` che lo declassava a warning. Chiuso il 2026-08-02 portando il controllo in testa
+allo script (Task 7). C'e' comunque una finestra naturale per aggiornare i verdetti: il
+re-cluster finisce **prima** del re-pool. Quindi, **fra i due run**:
 
 1. si confrontano gli insiemi dei membri gruppo per gruppo (procedura 2026-07-28) e si
    rileggono **solo** i gruppi che cambiano composizione;
@@ -232,8 +236,12 @@ membri, quindi va riletto. Ri-chiavizzarlo senza leggerlo sarebbe la stessa scor
 spostare un'etichetta invece di guardare il dato.
 
 Gli altri tre incoerenti noti che restano fuori dal deliverable poolato (`Recurrence`,
-`PTSD`, `CSF2`) hanno gia' un ID ontologico e non sono toccati; `IL3` non si fonde perche'
-`il3` ha 3 caratteri.
+`PTSD`, `CSF2`) non sono toccati dalla de-frammentazione; ⚠️ **CORRETTO 2026-08-02**: qui si
+scriveva che tutti e tre «hanno gia' un ID ontologico» — falso per `PTSD`, che resta
+`STR:ptsd` (verificato: non e' in `.CA_DEFRAG_ACCEPT` ne' in `.CA_DEFRAG_REJECT`, un ID
+MeSH candidato `MeSH:D013313` esiste nella tabella d'audit ma non e' mai stato applicato).
+`Recurrence` e `CSF2` hanno gia' un ID ontologico. `IL3` non si fonde perche' `il3` ha 3
+caratteri.
 
 ## 8. IL GUADAGNO POOLATO — e perche' NON posso certificare i quattro numeri
 

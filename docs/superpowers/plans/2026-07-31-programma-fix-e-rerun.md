@@ -271,8 +271,15 @@ scientifico, e il «riapre il censimento» era sovrastimato (cambiano **3 gruppi
 **Trovato il 2026-07-31 misurando, non supponendo.** I verdetti di coerenza sono chiavati
 `entita||verso||controllo`, e la de-frammentazione cambia l'entita'. Dei 6 verdetti in
 `verdetti-poolato-v13.csv`, **`STR:adenoma` diventa `MeSH:D000236`** → verdetto orfano →
-`.annotate_coherence()` **si ferma** (difesa voluta). Senza questo passo il re-pool gira 28 h
-e poi non produce il deliverable arricchito.
+`.annotate_coherence()` **si ferma** (difesa voluta) — questo e' vero della funzione presa
+da sola.
+
+⚠️ **CORRETTO 2026-08-02**: qui si scriveva «Senza questo passo il re-pool gira 28 h e poi
+non produce il deliverable arricchito» — l'annotazione NON si fermava: il chiamante
+pre-filtrava gli orfani e la difesa non scattava mai — provato, il gruppo `adenoma`, che ha
+un verdetto di INCOERENZA, usciva marcato `coherent`. E anche dopo il fix del pre-filtro lo
+`stop()` restava dentro un `tryCatch` che lo declassava a warning. Chiuso il 2026-08-02
+portando il controllo in testa allo script (Task 7).
 
 Va fatto **fra** il re-cluster e il re-pool, che e' la finestra naturale:
 
@@ -355,8 +362,14 @@ spariti** (assorbiti). → **46 gruppi da rileggere**, non i 1.454 che la simula
 pre-run lasciava temere: un'altra conferma che i suoi valori assoluti non andavano usati.
 
 **VERDETTO ORFANO CONFERMATO**: `STR:adenoma||gain||vehicle_untreated` è **SPARITO**, come
-previsto il 2026-07-31. Gli altri cinque sono su gruppi IDENTICI e restano validi. Senza
-D0ter il re-pool girerebbe 28 h e poi l'annotazione si fermerebbe.
+previsto il 2026-07-31. Gli altri cinque sono su gruppi IDENTICI e restano validi.
+
+⚠️ **CORRETTO 2026-08-02**: qui si scriveva «Senza D0ter il re-pool girerebbe 28 h e poi
+l'annotazione si fermerebbe» — era falso, in entrambi i punti di questo handout in cui era
+scritto: l'annotazione NON si fermava, il chiamante pre-filtrava gli orfani e la difesa non
+scattava mai (provato, il gruppo `adenoma` usciva marcato `coherent`), e anche dopo il fix
+del pre-filtro lo `stop()` restava dentro un `tryCatch` che lo declassava a warning. Chiuso
+il 2026-08-02 portando il controllo in testa allo script (Task 7).
 
 ### D1 · Pre-flight prima del lancio ⬜
 
