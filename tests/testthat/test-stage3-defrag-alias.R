@@ -57,11 +57,11 @@ test_that("lo stesso token da' lo STESSO ID qualunque sia la classe", {
 test_that("l'omonimia nella tassonomia resta un rischio REALE, e per questo `sepsis` non si fonde", {
   oe <- .load_ontology_dicts()
   skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
-  # ⚠️ ASSERZIONE CAMBIATA il 2026-08-01 con la restrizione alle tre entita'
-  # autorizzate. Prima questo test chiedeva `sepsis -> MeSH:D018805`, perche' la
-  # regola generale fondeva 923 entita' e l'ordine delle ontologie serviva a far
-  # vincere la malattia sull'omonimo. Ora `sepsis` non e' autorizzata e resta
-  # `STR:`, come in v13.
+  # ⚠️ ASSERZIONE CAMBIATA il 2026-08-01 con la restrizione alle due entita'
+  # autorizzate (glioblastoma tolto il 2026-08-02). Prima questo test chiedeva
+  # `sepsis -> MeSH:D018805`, perche' la regola generale fondeva 923 entita' e
+  # l'ordine delle ontologie serviva a far vincere la malattia sull'omonimo. Ora
+  # `sepsis` non e' autorizzata e resta `STR:`, come in v13.
   # Il rischio che il test documenta e' comunque VERO e va tenuto scritto:
   # NCBITaxon:137507 e' un GENERE DI MOSCHE che si chiama Sepsis, ed e' la stessa
   # famiglia di `cancer`->granchio e `mito`->una pianta.
@@ -296,8 +296,9 @@ test_that("il rifiuto NON tocca le due fusioni autorizzate che sono sigle", {
   expect_equal(.ca_defrag_entity("tgfb", "drug", oe), "HGNC:11766")
 })
 
-# =============================== RESTRIZIONE 2026-08-01 ======================
-# La regola fonde SOLO le tre entita' autorizzate dalla decisione del 31/07.
+# =============================== RESTRIZIONE 2026-08-01/02 ==================
+# La regola fonde SOLO le due entita' autorizzate (tgfb, il17). Glioblastoma
+# tolto il 2026-08-02 perche' comprava solo 1 membro su 40 candidati.
 # Tutto il resto torna `STR:`, cioe' esattamente come in v13.
 
 test_that("si fondono SOLO le due entita' autorizzate (glioblastoma tolto 2026-08-02)", {
