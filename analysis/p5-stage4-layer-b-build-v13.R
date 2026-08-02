@@ -37,15 +37,30 @@ if (requireNamespace("RhpcBLASctl", quietly = TRUE)) {
 
 cli_h1("Stadio 4 Layer B batch build — v13")
 
-stage4_dir    <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v13/20260729T210013Z-stage4-v13-ac125296"
-stage3_dir    <- "analysis/p4-output/20260728T151529Z-stage3-v13-364547a7"
+# I percorsi stanno TUTTI qui e il deliverable si DERIVA: prima era cablato 180
+# righe piu' in basso, e chi aggiornava questi due non lo vedeva (misurato
+# 2026-08-02: il join sarebbe riuscito in silenzio sulla figura 2 del paper,
+# perche' il cluster_id di un cgroup e' l'hash della sola chiave del
+# contrasto e coincide fra run diversi).
+stage4_dir  <- Sys.getenv("STAGE4_DIR", "")
+stage3_dir  <- Sys.getenv("STAGE3_DIR", "")
+if (!nzchar(stage4_dir) || !nzchar(stage3_dir))
+  stop("STAGE4_DIR e STAGE3_DIR sono obbligatorie: il Layer B non deve poter ",
+       "illustrare un run diverso da quello che misura.")
+deliverable_path <- Sys.getenv("LAYER_B_DELIVERABLE",
+                               file.path(stage4_dir, "deliverable-annotato.rds"))
 stage2_path   <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
 # Selezione FINALE (9 case study: 3 main + 6 supplementari), decisa sulle misure
 # del 2026-07-31 e non sul k — vedi analysis/audit/2026-07-31-layer-b-v13/120-selection-finale.R.
 # La prima selezione esplorativa (12 case study, con i doppioni TGF-beta1/LPS e
 # Parkinson/HCC ancora aperti) resta in analysis/layer-b-selection-v13.csv.
-selection_csv <- Sys.getenv("LAYER_B_SELECTION",
-                            "analysis/layer-b-selection-v13-finale.csv")
+# NB: nessun default — il CSV v13 porta 181 numeri del run vecchio cablati a
+# mano nella colonna `notes`, e finirebbero ristampati sulle schede del run
+# nuovo (secondo canale, indipendente da deliverable_path sopra).
+selection_csv <- Sys.getenv("LAYER_B_SELECTION", "")
+if (!nzchar(selection_csv))
+  stop("LAYER_B_SELECTION e' obbligatoria: il CSV di v13 porta 181 numeri ",
+       "cablati nelle note e finirebbero stampati sulle schede del run nuovo.")
 h5_path       <- "analysis/input/human_gene_v2.5.h5"
 
 stopifnot(
@@ -212,29 +227,28 @@ per_cluster_samples_provider <- function(cluster_id) {
 # -----------------------------------------------------------------------------
 # Batch build
 # -----------------------------------------------------------------------------
-# Efficacia del pooling + materiale, dal deliverable annotato: senza queste
-# righe la scheda dice `k_effective: 10` per Parkinson e non dice che gli studi
-# efficaci sono 1,8 e che il 73% del peso viene da un modello cellulare.
-# Se il deliverable non c'e', il build procede lo stesso e le schede escono
-# come prima (il parametro e' opzionale per design).
-deliverable_path <- "analysis/audit/2026-07-29-etichette-v13/deliverable-v13-poolato.rds"
-pooling_eff <- if (file.exists(deliverable_path)) {
-  d <- readRDS(deliverable_path)
-  cols <- intersect(
-    c("cluster_id", "k_kish", "quota_top1", "frazione_efficace", "dominato",
-      "studio_dominante", "materiale_misto", "classe_studio_dominante",
-      "dominato_da_modello", "n_studi_model", "n_studi_primary", "n_studi_unknown"),
-    names(d))
-  mancanti <- setdiff(selection_csv_loaded$cluster_id, d$cluster_id)
-  if (length(mancanti) > 0L) {
-    cli_alert_warning("Cluster della selezione assenti dal deliverable: {mancanti}")
-  }
-  cli_alert_success("Efficacia del pooling caricata: {length(cols)-1} colonne su {nrow(d)} cluster.")
-  d[, cols, drop = FALSE]
-} else {
-  cli_alert_warning("Deliverable annotato assente: le schede usciranno senza le misure di efficacia.")
-  NULL
+# Efficacia del pooling + materiale, dal deliverable annotato dello STESSO run
+# (deliverable_path e' derivato da stage4_dir in testa al file — vedi sopra):
+# senza queste righe la scheda dice `k_effective: 10` per Parkinson e non dice
+# che gli studi efficaci sono 1,8 e che il 73% del peso viene da un modello
+# cellulare. Non e' piu' opzionale: un deliverable mancante o incompleto ferma
+# il batch invece di produrre schede silenziosamente senza le misure.
+if (!file.exists(deliverable_path))
+  cli::cli_abort(c("Deliverable annotato assente in {.path {deliverable_path}}.",
+                   i = "Le misure devono venire dallo stesso run delle figure: ",
+                   i = "non si ripiega su un file di audit di un altro run."))
+d <- readRDS(deliverable_path)
+cols <- intersect(
+  c("cluster_id", "k_kish", "quota_top1", "frazione_efficace", "dominato",
+    "studio_dominante", "materiale_misto", "classe_studio_dominante",
+    "dominato_da_modello", "n_studi_model", "n_studi_primary", "n_studi_unknown"),
+  names(d))
+mancanti <- setdiff(selection_csv_loaded$cluster_id, d$cluster_id)
+if (length(mancanti) > 0L) {
+  cli_abort("Cluster della selezione assenti dal deliverable: {mancanti}")
 }
+cli_alert_success("Efficacia del pooling caricata: {length(cols)-1} colonne su {nrow(d)} cluster.")
+pooling_eff <- d[, cols, drop = FALSE]
 
 cli_alert_info("Build Layer B...")
 t0 <- Sys.time()
