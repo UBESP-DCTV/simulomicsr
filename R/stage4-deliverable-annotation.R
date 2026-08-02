@@ -104,9 +104,14 @@ annotate_stage4_deliverable <- function(cluster_pooled,
   if (!is.null(coherence_verdicts)) {
     d <- .annotate_coherence(d, coherence_verdicts, source = coherence_source)
   } else {
-    d$coherence_verdict <- "coherent"
+    # ⚠️ 2026-08-02: qui prima si scriveva "coherent" su OGNI riga, con la
+    # `coherence_source` del chiamante — cioe' il deliverable ATTESTAVA una
+    # rilettura umana che non era avvenuta, e i sei gruppi giudicati incoerenti
+    # uscivano indistinguibili dagli altri. Un'assenza di giudizio non e' un
+    # giudizio di coerenza: si scrive NA, e la provenienza resta vuota.
+    d$coherence_verdict <- NA_character_
     d$coherence_reason  <- NA_character_
-    d$coherence_source  <- coherence_source
+    d$coherence_source  <- NA_character_
   }
 
   # --- 5. efficacia del pooling --------------------------------------------

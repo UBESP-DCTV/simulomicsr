@@ -61,6 +61,17 @@
   )
 }
 
+.fixture_deliverable_minimo <- function() {
+  # Il minimo indispensabile perche' `annotate_stage4_deliverable()` giri:
+  # riusa le stesse fixture degli altri test di questo file (nessuna colonna
+  # in piu' di quelle che la funzione legge davvero).
+  list(
+    cluster_pooled = .ann_pooled(),
+    per_study_de   = .ann_per_arm(),
+    meta           = .ann_cluster_meta()
+  )
+}
+
 test_that("una sola chiamata produce tutte le colonne del deliverable", {
   out <- annotate_stage4_deliverable(
     cluster_pooled = .ann_pooled(), per_study_de = .ann_per_arm(),
@@ -141,6 +152,33 @@ test_that("i verdetti che attaccano marcano i gruppi giusti", {
 
   expect_equal(out$coherence_verdict[out$cluster_id == "cg_b"], "incoherent")
   expect_equal(out$coherence_verdict[out$cluster_id == "cg_a"], "coherent")
+})
+
+test_that("senza verdetti la coerenza resta NA, e la provenienza non viene attestata", {
+  # Provato il 2026-08-02: il ramo NULL scriveva "coherent" su OGNI riga e ci
+  # metteva sopra la provenienza di una rilettura umana mai avvenuta. Un
+  # deliverable che dichiara 191/191 coerenti e' esattamente il fallimento
+  # "a favore della conclusione che fa comodo" contro cui esiste il RED ALERT.
+  d <- .fixture_deliverable_minimo()   # helper gia' presente nel file di test
+  out <- annotate_stage4_deliverable(
+    d$cluster_pooled, d$per_study_de, d$meta,
+    coherence_verdicts = NULL,
+    coherence_source   = "rilettura-sui-poolati-2026-07-30")
+  expect_true(all(is.na(out$coherence_verdict)))
+  expect_true(all(is.na(out$coherence_source)))
+  expect_true("coherence_verdict" %in% names(out))   # la colonna c'e', vuota
+
+  # Controprova nello STESSO test: quando i verdetti CI SONO, il comportamento
+  # deve restare quello di sempre. Senza questa asserzione non si potrebbe
+  # distinguere "il ramo NULL ora scrive NA" da "la funzione ha smesso di
+  # annotare del tutto".
+  v <- data.frame(ckey = "HGNC:5991||gain||vehicle_untreated",
+                  motivo = "mescola IL-1alfa e IL-1beta", stringsAsFactors = FALSE)
+  out_v <- annotate_stage4_deliverable(
+    d$cluster_pooled, d$per_study_de, d$meta,
+    coherence_verdicts = v,
+    coherence_source   = "rilettura-sui-poolati-2026-07-30")
+  expect_equal(out_v$coherence_verdict[out_v$cluster_id == "cg_b"], "incoherent")
 })
 
 test_that("l'ordine delle righe e' deterministico", {
