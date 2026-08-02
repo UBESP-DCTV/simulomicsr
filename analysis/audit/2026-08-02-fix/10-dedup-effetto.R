@@ -4,8 +4,17 @@
 #
 # Confronto "prima" (chiave anchor-del-primo-membro) vs "dopo" (chiave
 # contrast_entity||contrast_direction, gia' innestata in produzione da questa
-# sessione) usando SEMPRE il gate vero di produzione
-# `simulomicsr:::.identify_layer_a_clusters`, non una riscrittura locale.
+# sessione). ENTRAMBI i regimi passano dal gate vero di produzione
+# `simulomicsr:::.identify_layer_a_clusters` -- niente riscrittura locale del
+# filtro di selezione. Per ottenere il regime "prima" si sostituisce SOLO
+# `.dedup_rem_group_by_entity` (via testthat::with_mocked_bindings, mock nel
+# namespace del pacchetto) con una copia della funzione ANTE-fix; il gate, i
+# filtri a monte e ogni altra condizione restano il codice vero, identico in
+# entrambe le chiamate. La sola differenza tra "prima" e "dopo" e' la chiave
+# di dedup -- esattamente cio' che si sta misurando. (Round 1 di revisione:
+# la versione precedente di questo script riscriveva a mano il filtro di
+# selezione per isolare il "prima" -- lo stesso numero, ma misurato con uno
+# strumento che non era quello vero. Corretto qui.)
 
 devtools::load_all(".", quiet = TRUE)
 
@@ -15,34 +24,14 @@ cl <- readRDS(file.path(stage3_dir, "clusters.rds"))
 cfg <- simulomicsr::stage4_default_config()
 cfg$deliverable_methods <- "rem_group"
 
-# --- "DOPO": codice di produzione attuale (fix gia' applicato in R/stage4-qc.R) ---
+# --- "DOPO": codice di produzione attuale, senza alcun mock (fix gia'
+# innestato in R/stage4-qc.R). ---
 after <- simulomicsr:::.identify_layer_a_clusters(cl, cfg)
 
-# --- "PRIMA": stessa selezione a monte del gate, ma con la vecchia chiave di
-# dedup (anchor del primo membro). Replica LOCALE della sola funzione di dedup
-# per il confronto "prima/dopo" (non e' il gate misurato: il gate misurato e'
-# sempre `after`, prodotto dal codice vero). Per isolare l'effetto della SOLA
-# dedup, ricostruiamo qui il pool "rem_group" pre-dedup allo stesso modo del
-# codice di produzione e applichiamo le due chiavi.
-rg_cfg     <- cfg$rem_group
-excl_kinds <- rg_cfg$excluded_kinds %||% c("vehicle_only", "none", "")
-min_k_raw  <- rg_cfg$k_eff_min %||% 3L
-mega_strict_col <- simulomicsr:::.col_or_default(cl, "usable_mega_strict", FALSE)
-kind_col        <- simulomicsr:::.col_or_default(cl, "kind_effective_resolved", NA_character_)
-agent_col       <- simulomicsr:::.col_or_default(cl, "agent_id_resolved", NA_character_)
-
-rem_group_pre_dedup <- cl[
-  cl$mode == "cgroup" &
-  !mega_strict_col &
-  !(kind_col %in% excl_kinds) &
-  !is.na(agent_col) &
-  nzchar(agent_col, keepNA = FALSE) &
-  cl$k >= min_k_raw,
-]
-
+# --- "PRIMA": stesso gate di produzione, con la SOLA .dedup_rem_group_by_entity
+# sostituita dalla copia ante-fix (chiave = kind||agent_id_resolved||direction,
+# l'anchor del primo membro, niente contrast_entity, niente attributo scartati).
 .dedup_old_key <- function(rem_group_clusters) {
-  # Copia della funzione ANTE-fix: chiave = kind||agent||direction (anchor
-  # del primo membro), niente contrast_entity, niente attributo scartati.
   if (nrow(rem_group_clusters) == 0L) return(rem_group_clusters)
   direction <- simulomicsr:::.col_or_default(rem_group_clusters, "contrast_direction", NA_character_)
   direction[is.na(direction)] <- ""
@@ -58,25 +47,56 @@ rem_group_pre_dedup <- cl[
   rg[!duplicated(ent), , drop = FALSE]
 }
 
-before <- .dedup_old_key(rem_group_pre_dedup)
-
-cat("=== Passo 5: effetto della dedup su v13 (rem_group / cgroup) ===\n\n")
-cat("Pool cgroup pre-dedup (stesso gate a monte, entrambe le chiave):", nrow(rem_group_pre_dedup), "\n\n")
-
-cat("--- PRIMA (chiave vecchia: kind||agent_id_resolved||direction) ---\n")
-cat("Tenuti :", nrow(before), "\n")
-cat("Scartati:", nrow(rem_group_pre_dedup) - nrow(before), "\n\n")
-
-cat("--- DOPO (chiave nuova: contrast_entity||contrast_direction, codice di produzione) ---\n")
-cat("Tenuti :", nrow(after), "\n")
-scartati_dopo <- attr(
-  simulomicsr:::.dedup_rem_group_by_entity(rem_group_pre_dedup),
-  "scartati"
+before <- testthat::with_mocked_bindings(
+  .dedup_rem_group_by_entity = .dedup_old_key,
+  .package = "simulomicsr",
+  simulomicsr:::.identify_layer_a_clusters(cl, cfg)
 )
-cat("Scartati:", nrow(scartati_dopo), "\n\n")
+
+# --- Pool "cgroup" pre-dedup (per il denominatore "scartati"): stesso gate
+# vero, dedup mockata a funzione IDENTITA' (nessun collasso) cosi' il conteggio
+# viene anch'esso dal filtro di selezione di produzione, non da un ricalcolo
+# locale. ---
+pre_dedup <- testthat::with_mocked_bindings(
+  .dedup_rem_group_by_entity = function(rem_group_clusters) rem_group_clusters,
+  .package = "simulomicsr",
+  simulomicsr:::.identify_layer_a_clusters(cl, cfg)
+)
+n_pre_dedup <- nrow(pre_dedup)
+
+cat("=== Passo 5: effetto della dedup su v13 (rem_group / cgroup) ===\n")
+cat("Entrambi i regimi passano da simulomicsr:::.identify_layer_a_clusters();\n")
+cat("l'unica differenza e' la funzione di dedup mockata (testthat::with_mocked_bindings).\n\n")
+
+cat("Pool cgroup pre-dedup (gate vero, dedup mockata a identita'):", n_pre_dedup, "\n\n")
+
+cat("--- PRIMA (chiave vecchia: kind||agent_id_resolved||direction, gate vero + dedup mockata) ---\n")
+cat("Tenuti :", nrow(before), "\n")
+cat("Scartati:", n_pre_dedup - nrow(before), "\n\n")
+
+cat("--- DOPO (chiave nuova: contrast_entity||contrast_direction, codice di produzione, nessun mock) ---\n")
+cat("Tenuti :", nrow(after), "\n")
+scartati_dopo <- attr(after, "scartati")
+if (is.null(scartati_dopo)) {
+  # do.call(rbind, ...) su piu' branch in .identify_layer_a_clusters puo'
+  # far cadere gli attributi custom; se successo, ricalcola l'attributo
+  # richiamando la dedup vera sullo stesso pool rem_group gia' filtrato da
+  # .identify_layer_a_clusters (nessuna riscrittura del filtro: e' lo stesso
+  # identify_layer_a_clusters, isolato solo per recuperare l'attributo perso
+  # nel rbind).
+  rem_group_after <- after[after$method == "rem_group", , drop = FALSE]
+  scartati_dopo <- attr(simulomicsr:::.dedup_rem_group_by_entity(rem_group_after), "scartati")
+}
+cat("Scartati:", if (is.null(scartati_dopo)) NA else nrow(scartati_dopo), "\n\n")
 
 cat("Dettaglio scartati DOPO (i 4 duplicati veri attesi):\n")
 print(scartati_dopo)
+
+cat("\n--- Verifica di fedelta' del regime PRIMA ---\n")
+cat("Atteso dal round 1 di revisione (misurato in precedenza con una riscrittura locale del filtro,\n")
+cat("da ri-confermare qui col gate vero): 305 tenuti / 53 scartati.\n")
+cat("Ottenuto col gate vero (nessuna riscrittura) + dedup mockata:", nrow(before), "tenuti /",
+    n_pre_dedup - nrow(before), "scartati.\n")
 
 # --- Entita' che PRIMA venivano buttate e DOPO rientrano ---
 before_entities <- unique(before$contrast_entity)
