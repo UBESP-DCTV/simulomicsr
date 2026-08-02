@@ -1,3 +1,10 @@
+# NOTA (2026-08-02): i blocchi qui sotto NON saltano piu' sotto `test_dir`.
+# `.ca_defrag_entity()` e' un lookup su `.CA_DEFRAG_ACCEPT` e non legge
+# `ontology_env` (verificato: stesso esito con ambiente vuoto, NULL e indice
+# avvelenato). Prima l'84% delle asserzioni spariva quando la suite girava
+# insieme agli altri file di stage3, e nessuna delle superstiti chiamava la
+# funzione che la produzione usa: la suite era verde senza provare nulla.
+
 # De-frammentazione: un token che sarebbe finito in `STR:` si fonde nell'ID
 # ontologico SOLO se aggancia, in modo UNIVOCO, un alias per esteso (>3
 # caratteri) di una sola entita' fra quelle che la classe del contrasto
@@ -42,14 +49,13 @@ test_that("l'ordine delle ontologie NON dipende dalla classe (niente split)", {
 })
 
 test_that("lo stesso token da' lo STESSO ID qualunque sia la classe", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # e' l'invariante che impedisce lo split, provata sui casi che lo produssero
   # ⚠️ glioblastoma rimosso il 2026-08-02: non si fonde piu' e ritornerebbe NA
   for (tk in c("hypoxia", "schizophrenia", "sepsis", "smoking", "tgfb",
                "il17")) {
     ids <- unique(vapply(c("disease", "drug", "genetic", "infection", "other"),
-                         function(c) .ca_defrag_entity(tk, c, oe), character(1L)))
+                         function(c) .ca_defrag_entity(tk, c, NULL), character(1L)))
     expect_length(ids, 1L)
   }
 })
@@ -73,67 +79,60 @@ test_that("l'omonimia nella tassonomia resta un rischio REALE, e per questo `sep
 # ------------------------------------------------------------------- la regola --
 
 test_that(".ca_defrag_entity fonde TGFb in TGFB1 (aggancio univoco)", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # misurato il 2026-07-31: nessuna entita' oltre TGFB1 ha "tgfb" nudo fra gli
   # alias — TGFB2 e TGFB3 hanno "tgfb2"/"tgfb3"
-  expect_equal(.ca_defrag_entity("tgfb", "drug", oe), "HGNC:11766")
-  expect_equal(.ca_defrag_entity("tgf_b", "drug", oe), "HGNC:11766")
-  expect_equal(.ca_defrag_entity("TGF-B", "drug", oe), "HGNC:11766")
+  expect_equal(.ca_defrag_entity("tgfb", "drug", NULL), "HGNC:11766")
+  expect_equal(.ca_defrag_entity("tgf_b", "drug", NULL), "HGNC:11766")
+  expect_equal(.ca_defrag_entity("TGF-B", "drug", NULL), "HGNC:11766")
 })
 
 test_that(".ca_defrag_entity NON fonde IFNa: la stringa non dice quale interferone", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # "ifna" e' alias sia di IFNA1 (HGNC:5417) sia di IFNA2 (HGNC:5423)
-  expect_true(is.na(.ca_defrag_entity("ifna", "drug", oe)))
+  expect_true(is.na(.ca_defrag_entity("ifna", "drug", NULL)))
 })
 
 test_that(".ca_defrag_entity non fonde MAI su una sigla di 3 caratteri", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # il caso gia' pagato: "LTA" e' sinonimo del tripeptide Leu-Thr-Ala
-  expect_true(is.na(.ca_defrag_entity("lta", "drug", oe)))
+  expect_true(is.na(.ca_defrag_entity("lta", "drug", NULL)))
   # e nemmeno quando l'aggancio SAREBBE univoco: la lunghezza viene prima
-  expect_true(is.na(.ca_defrag_entity("dht", "drug", oe)))
-  expect_true(is.na(.ca_defrag_entity("tnf", "drug", oe)))
+  expect_true(is.na(.ca_defrag_entity("dht", "drug", NULL)))
+  expect_true(is.na(.ca_defrag_entity("tnf", "drug", NULL)))
 })
 
 test_that(".ca_defrag_entity lascia STR quello che non aggancia nulla", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
-  expect_true(is.na(.ca_defrag_entity("zzzqqqwww", "drug", oe)))
-  expect_true(is.na(.ca_defrag_entity("", "drug", oe)))
-  expect_true(is.na(.ca_defrag_entity(NA_character_, "drug", oe)))
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
+  expect_true(is.na(.ca_defrag_entity("zzzqqqwww", "drug", NULL)))
+  expect_true(is.na(.ca_defrag_entity("", "drug", NULL)))
+  expect_true(is.na(.ca_defrag_entity(NA_character_, "drug", NULL)))
 })
 
 test_that(".ca_defrag_entity NON fonde glioblastoma (tolto 2026-08-02)", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # ⚠️ ASSERZIONE CAPOVOLTA il 2026-08-02. Era autorizzato dalla decisione del
   # 2026-07-31, ma la misura mostra che comprava solo 1 membro su 40, con una
   # chiave di controllo non presente nel gruppo bersaglio. La fusione non
   # chiudeva lo split e avrebbe introdotto una meta-analisi a k=3 mai censita.
   # Restano due fusioni: tgfb e il17.
-  expect_true(is.na(.ca_defrag_entity("glioblastoma", "disease", oe)))
+  expect_true(is.na(.ca_defrag_entity("glioblastoma", "disease", NULL)))
 })
 
 test_that(".ca_defrag_entity fonde IL17 in IL17A ma solo dove la classe lo prevede", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # nello spazio che la classe drug interroga (ChEBI/ChEMBL/HGNC/taxonomy)
   # "il17" aggancia solo HGNC:5981
-  expect_equal(.ca_defrag_entity("il17", "drug", oe), "HGNC:5981")
+  expect_equal(.ca_defrag_entity("il17", "drug", NULL), "HGNC:5981")
 })
 
 test_that("anche una classe senza resolver fonde, e allo STESSO ID", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # ⚠️ RETTIFICA 2026-08-01: prima queste classi non fondevano nulla, e sembrava
   # la scelta conservativa. Era la CAUSA dello split: un membro `hypoxia` di
   # classe `other` restava STR mentre uno di classe `disease` diventava MeSH.
-  expect_equal(.ca_defrag_entity("tgfb", "other", oe), "HGNC:11766")
-  expect_equal(.ca_defrag_entity("tgfb", NA_character_, oe), "HGNC:11766")
+  expect_equal(.ca_defrag_entity("tgfb", "other", NULL), "HGNC:11766")
+  expect_equal(.ca_defrag_entity("tgfb", NA_character_, NULL), "HGNC:11766")
 })
 
 test_that(".ca_defrag_entity rispetta le collisioni alias gia' accertate", {
@@ -267,22 +266,20 @@ test_that("un membro che restava STR e non aggancia nulla resta STR", {
 # ------------------------------------------------- le fusioni adjudicate ------
 
 test_that("le fusioni giudicate sbagliate NON avvengono", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # Adjudicate una per una il 2026-08-01 leggendo le etichette vere: 63 coppie
   # su 241 assegnavano un'identita' sbagliata. Qui si difendono le piu' grosse e
   # le piu' istruttive.
   for (tk in c("msa_p", "copd", "pla_b", "nets", "chmi", "mid_49", "mos2",
                "boca", "cadasil", "senv", "cbp30", "blast", "mir_1", "tcells",
                "cpd1", "rela", "ifn_i", "polya", "spms", "iwr1")) {
-    expect_true(is.na(.ca_defrag_entity(tk, "drug", oe)),
+    expect_true(is.na(.ca_defrag_entity(tk, "drug", NULL)),
                 info = paste("doveva essere rifiutato:", tk))
   }
 })
 
 test_that("il rifiuto NON tocca le due fusioni autorizzate che sono sigle", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # ⚠️ ASSERZIONI RIMOSSE il 2026-08-01, non perche' fossero sbagliate ma perche'
   # descrivono un comportamento che non esiste piu'. `arac`->citarabina,
   # `r837`->imiquimod, `4oht`->afimoxifene, `zikv`->Zika erano fusioni CORRETTE
@@ -292,8 +289,8 @@ test_that("il rifiuto NON tocca le due fusioni autorizzate che sono sigle", {
   # sua evidenza sta in `analysis/audit/2026-07-31-defrag/90-adjudica.txt`.
   # Con la restrizione, quei quattro token NON si fondono piu' — ed e' asserito
   # nel test "le fusioni abbandonate tornano STR:".
-  expect_equal(.ca_defrag_entity("il17", "drug", oe), "HGNC:5981")
-  expect_equal(.ca_defrag_entity("tgfb", "drug", oe), "HGNC:11766")
+  expect_equal(.ca_defrag_entity("il17", "drug", NULL), "HGNC:5981")
+  expect_equal(.ca_defrag_entity("tgfb", "drug", NULL), "HGNC:11766")
 })
 
 # =============================== RESTRIZIONE 2026-08-01/02 ==================
@@ -302,31 +299,29 @@ test_that("il rifiuto NON tocca le due fusioni autorizzate che sono sigle", {
 # Tutto il resto torna `STR:`, cioe' esattamente come in v13.
 
 test_that("si fondono SOLO le due entita' autorizzate (glioblastoma tolto 2026-08-02)", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
-  expect_equal(.ca_defrag_entity("tgfb", "drug", oe), "HGNC:11766")
-  expect_equal(.ca_defrag_entity("tgf_b", "drug", oe), "HGNC:11766")
-  expect_equal(.ca_defrag_entity("TGF-B", "drug", oe), "HGNC:11766")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
+  expect_equal(.ca_defrag_entity("tgfb", "drug", NULL), "HGNC:11766")
+  expect_equal(.ca_defrag_entity("tgf_b", "drug", NULL), "HGNC:11766")
+  expect_equal(.ca_defrag_entity("TGF-B", "drug", NULL), "HGNC:11766")
   # ⚠️ glioblastoma non si fonde piu': dei 40 membri candidati solo 1 arrivava
   # al ripiego, con una chiave di controllo non presente nel bersaglio.
-  expect_true(is.na(.ca_defrag_entity("glioblastoma", "disease", oe)))
-  expect_equal(.ca_defrag_entity("il17", "drug", oe), "HGNC:5981")
+  expect_true(is.na(.ca_defrag_entity("glioblastoma", "disease", NULL)))
+  expect_equal(.ca_defrag_entity("il17", "drug", NULL), "HGNC:5981")
   expect_length(.CA_DEFRAG_ACCEPT, 2L)
 })
 
 test_that("le fusioni abbandonate tornano STR:, non spariscono", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   # Le ~918 fusioni della regola generale non avvengono piu'. Le piu' grosse
   # erano corrette (hypoxia 182 membri, covid_19 61, schizophrenia 57): restano
   # `STR:` come in v13 — etichetta ignota ma onesta, gruppo per stringa identica.
   for (tk in c("hypoxia", "covid_19", "schizophrenia", "keloid", "ifnb",
                "r5020", "4oht", "arac", "zikv", "kshv")) {
-    expect_true(is.na(.ca_defrag_entity(tk, "drug", oe)), info = tk)
+    expect_true(is.na(.ca_defrag_entity(tk, "drug", NULL)), info = tk)
   }
   # e quelle SBAGLIATE a maggior ragione
   for (tk in c("msa_p", "copd", "rela", "ifn_i", "tnfa", "nets", "mos2")) {
-    expect_true(is.na(.ca_defrag_entity(tk, "drug", oe)), info = tk)
+    expect_true(is.na(.ca_defrag_entity(tk, "drug", NULL)), info = tk)
   }
 })
 
@@ -374,19 +369,39 @@ test_that("la lista autorizzata contiene DUE entita': glioblastoma e' stato tolt
 })
 
 test_that("glioblastoma NON si fonde piu', in nessuna forma", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   for (tk in c("glioblastoma", "Glioblastoma", "GLIOBLASTOMA")) {
-    expect_true(is.na(.ca_defrag_entity(tk, "disease", oe)),
+    expect_true(is.na(.ca_defrag_entity(tk, "disease", NULL)),
                 info = tk)
   }
 })
 
 test_that("le due fusioni tenute continuano a funzionare su tutte le grafie del corpus", {
-  oe <- .load_ontology_dicts()
-  skip_if(isTRUE(oe$is_fixture), "dizionari fixture: test end-to-end saltato")
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   for (tk in c("tgfb", "TGFb", "TGF-B", "tgf_b", "TGF-b"))
-    expect_identical(.ca_defrag_entity(tk, "drug", oe), "HGNC:11766", info = tk)
+    expect_identical(.ca_defrag_entity(tk, "drug", NULL), "HGNC:11766", info = tk)
   for (tk in c("il17", "IL-17", "il_17", "IL17"))
-    expect_identical(.ca_defrag_entity(tk, "drug", oe), "HGNC:5981", info = tk)
+    expect_identical(.ca_defrag_entity(tk, "drug", NULL), "HGNC:5981", info = tk)
+})
+
+# ============================== TASK 3 / 2026-08-02 ===========================
+# Le guardie interne sono dichiarate INERTI sulle chiavi autorizzate: un test di
+# mutazione lo mostra, e va detto invece che lasciato implicito.
+
+test_that("le guardie interne sono INERTI sulle chiavi autorizzate, ed e' dichiarato", {
+  # Misurato con un test di mutazione: togliendo una qualsiasi delle quattro
+  # guardie — o tutte e quattro — l'esito non cambia su 14.089 token del corpus.
+  # Non e' un difetto: le due chiavi autorizzate le superano tutte per
+  # costruzione. Va detto, altrimenti i test sembrano difendere qualcosa che non
+  # possono difendere.
+  for (k in names(simulomicsr:::.CA_DEFRAG_ACCEPT)) {
+    expect_gte(nchar(k), simulomicsr:::.CA_DEFRAG_MIN_CHARS)
+    expect_false(simulomicsr:::.is_unreliable_candidate(k), info = k)
+    expect_false(simulomicsr:::.is_alias_collision(k, simulomicsr:::.CA_DEFRAG_ACCEPT[[k]]),
+                 info = k)
+  }
+  # `.CA_DEFRAG_REJECT` non puo' scattare: nessuna delle sue chiavi e' fra le
+  # autorizzate. E' materiale d'audit, non una guardia viva.
+  rej_keys <- sub("\\|.*$", "", simulomicsr:::.CA_DEFRAG_REJECT)
+  expect_length(intersect(rej_keys, names(simulomicsr:::.CA_DEFRAG_ACCEPT)), 0L)
 })
