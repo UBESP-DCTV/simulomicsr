@@ -34,8 +34,28 @@
   if (nrow(rem_group_clusters) == 0L) return(rem_group_clusters)
   direction <- .col_or_default(rem_group_clusters, "contrast_direction", NA_character_)
   direction[is.na(direction)] <- ""
-  entity <- paste0(rem_group_clusters$kind_effective_resolved, "||",
-                   rem_group_clusters$agent_id_resolved, "||", direction)
+  # ATTENZIONE 2026-08-02: per i cgroup l'identita' e' `contrast_entity`, NON
+  # l'anchor. `agent_id_resolved` e `kind_effective_resolved` vengono dal
+  # PRIMO MEMBRO (R/stage3-build.R:861-866) e per i cgroup l'invariante che
+  # li giustifica e' falsa, perche' li' l'anchor_key nasce dal contrasto e
+  # non dall'anchor: misurato, differiscono in 188 cluster su 358. La chiave
+  # vecchia buttava 53 gruppi, 49 dei quali ORFANI (entita' che non ricompare
+  # da nessuna parte), e tutte e 53 le coppie perdente/vincente avevano ZERO
+  # record in comune -- tamoxifene ucciso da afimoxifene, testosterone dal suo
+  # antagonista, due gruppi di tubercolosi da un gruppo che si chiama
+  # tubercolosi ed e' COVID.
+  #
+  # Il `contrast_control_key` resta FUORI dalla chiave: con lui dentro la
+  # chiave coinciderebbe con l'anchor_key, unica per costruzione, e la dedup
+  # sarebbe un no-op che riapre la frammentazione per tipo di controllo
+  # (l'intento di ADR-0022 e' proprio fondere hypoxia-vs-vehicle e
+  # hypoxia-vs-normoxia al k maggiore).
+  ce <- .col_or_default(rem_group_clusters, "contrast_entity", NA_character_)
+  entity <- ifelse(
+    !is.na(ce) & nzchar(ce),
+    paste0(ce, "||", direction),
+    paste0(rem_group_clusters$kind_effective_resolved, "||",
+           rem_group_clusters$agent_id_resolved, "||", direction))
   ord <- order(entity,
                -rem_group_clusters$k,
                -rem_group_clusters$n_total,
@@ -43,7 +63,23 @@
                rem_group_clusters$cluster_id)
   rg  <- rem_group_clusters[ord, , drop = FALSE]
   ent <- entity[ord]
-  rg[!duplicated(ent), , drop = FALSE]
+  keep <- !duplicated(ent)
+  out <- rg[keep, , drop = FALSE]
+  # Una selezione silenziosa non e' auditabile: chi viene tolto lo si scrive,
+  # con il gruppo che l'ha assorbito.
+  sc <- rg[!keep, , drop = FALSE]
+  attr(out, "scartati") <- if (nrow(sc) == 0L) {
+    data.frame(cluster_id = character(0), reason = character(0),
+               details = character(0), stringsAsFactors = FALSE)
+  } else {
+    data.frame(
+      cluster_id = sc$cluster_id,
+      reason     = "dedup_entita_duplicata",
+      details    = paste0("assorbito da ", out$cluster_id[match(ent[!keep], ent[keep])],
+                          " (chiave ", ent[!keep], ")"),
+      stringsAsFactors = FALSE)
+  }
+  out
 }
 
 #' Identifica cluster Layer A (REM proper + MEGA strict + MEGA-aug)
