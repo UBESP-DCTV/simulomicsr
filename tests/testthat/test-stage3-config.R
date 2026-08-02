@@ -61,9 +61,13 @@ test_that("schema_versions documenta tutte le versioni (anchor v3.1.1 + dedupe_s
   cfg <- stage3_default_config()
   expect_named(cfg$schema_versions,
                c("anchor", "stage3_algorithm", "sample_facts", "study_design",
-                 "resolver", "dedupe_strategy"),
+                 "resolver", "dedupe_strategy", "contrast_defrag"),
                ignore.order = TRUE)
   expect_equal(cfg$schema_versions$anchor, "v3.1.1")
+  # Un run che cambia la regola di de-frammentazione DEVE essere distinguibile
+  # dai suoi metadati: senza questo campo il run_id di v13, v14 e v15 sarebbe
+  # identico (364547a7). Con "v2" v15 vale 7f986159.
+  expect_equal(cfg$schema_versions$contrast_defrag, "v2")
   expect_equal(cfg$schema_versions$stage3_algorithm, "v1")
   expect_equal(cfg$schema_versions$sample_facts, "stage1.v3")
   expect_equal(cfg$schema_versions$study_design, "stage2.v2")
