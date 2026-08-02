@@ -212,6 +212,21 @@ if (SMOKE) {
       smoke_target_series <- unique(c(smoke_target_series, fb_series))
       cli::cli_alert_info("[v10] +{length(fb_series)} serie da {length(fb_cids)} override fallback -> bandiera (tot target {length(smoke_target_series)})")
     }
+
+    # [v15] Lo smoke DEVE esercitare la de-frammentazione: senza questo la sua
+    # intersezione con i 38 studi toccati e' ZERO (misurato sul subset di v14) e
+    # lo smoke passa verde senza aver provato la sola cosa nuova del run.
+    dfg_dump <- "analysis/audit/2026-07-31-defrag/impatto-membri-v5.rds"
+    if (file.exists(dfg_dump)) {
+      dd  <- readRDS(dfg_dump)
+      tok <- gsub("[^a-z0-9]", "", tolower(sub("^STR:", "", dd$ent_off)))
+      dfg_series <- unique(dd$study[!is.na(dd$src_off) & dd$src_off == "STR" &
+                                      tok %in% c("tgfb", "il17")])
+      smoke_target_series <- unique(c(dfg_series, smoke_target_series))
+      cli::cli_alert_info("[v15] +{length(dfg_series)} serie che esercitano la de-frammentazione")
+    } else {
+      cli::cli_alert_warning("[v15] dump della de-frammentazione assente: lo smoke NON la esercita")
+    }
   } else {
     cli::cli_alert_warning("Dir v3 assente: subset smoke = prime serie del master")
   }
@@ -514,6 +529,41 @@ if (sum(is_cg) == 0L) {
   # Poolabili k>=3 (soglia ADR-0022/0025, non ancora ri-aperta)
   k_cg <- cl$k[is_cg]
   cli::cli_alert_info("cgroup poolabili k>=3: {sum(k_cg >= 3L, na.rm=TRUE)} | k>=5: {sum(k_cg >= 5L, na.rm=TRUE)} | k max: {max(k_cg, na.rm=TRUE)}")
+}
+
+# --- GATE DELLA DE-FRAMMENTAZIONE -------------------------------------------
+# Senza questo, un run in cui la regola non fa NULLA passa verde: il pavimento
+# di TGFB1 e' 61 e v13 ne da' gia' 65. Misurato il 2026-08-02.
+if ("contrast_entity_source" %in% names(cl)) {
+  n_dfg <- sum(cl$contrast_entity_source == "defrag", na.rm = TRUE)
+  cli::cli_alert_info("cluster con entita' dalla de-frammentazione: {n_dfg}")
+  if (!SMOKE && n_dfg == 0L)
+    stop("La de-frammentazione non ha prodotto NULLA: 0 cluster con ",
+         "contrast_entity_source=='defrag'. FERMARSI e capire perche'.")
+} else {
+  stop("colonna contrast_entity_source assente: impossibile verificare la ",
+       "de-frammentazione. FERMARSI.")
+}
+# Post-condizioni falsificabili, misurate su v13 (dove valgono 65 e 8).
+if (!SMOKE) {
+  k_of <- function(id) {
+    s <- is_cg & !is.na(cl$contrast_entity) & cl$contrast_entity == id
+    if (any(s)) max(cl$k[s], na.rm = TRUE) else 0L
+  }
+  for (chk in list(list(id = "HGNC:11766", min = 66L, nome = "TGFB1"),
+                   list(id = "HGNC:5981",  min = 9L,  nome = "IL17A"))) {
+    kk <- k_of(chk$id)
+    if (kk < chk$min)
+      stop(sprintf("%s (%s): k=%d, atteso > %d. La fusione non e' avvenuta.",
+                   chk$nome, chk$id, kk, chk$min - 1L))
+    cli::cli_alert_success("{chk$nome}: k={kk} (atteso > {chk$min - 1L}) OK")
+  }
+  # Le forme STR: delle entita' fuse non devono sopravvivere.
+  residui <- unique(cl$contrast_entity[is_cg & !is.na(cl$contrast_entity) &
+    gsub("[^a-z0-9]", "", tolower(sub("^STR:", "", cl$contrast_entity))) %in%
+      c("tgfb", "il17") & startsWith(cl$contrast_entity, "STR:")])
+  if (length(residui) > 0L)
+    stop("residui STR: delle entita' fuse: ", paste(residui, collapse = ", "))
 }
 
 # Pavimenti bandiera: censimento 2026-07-27 DOPO le tre correzioni del 2026-07-26.

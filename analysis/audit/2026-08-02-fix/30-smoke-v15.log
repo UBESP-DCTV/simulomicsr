@@ -1,0 +1,53 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Re-cluster Stadio 3 v15 (ancoraggio dal-contrasto + le sei regole del censime
+schema_versions: anchor=v3.1.1, resolver=v1.1.0
+
+── 1. Carico Stadio 2 master ──
+
+✔ Stadio 2: 24394 studi
+
+── 1b. [SMOKE] Seleziono subset di studi (target minestroni v3) ──
+
+ℹ Cluster v3 target: group_L4_93e1c603, group_L4_c814e4da, group_L4_cc07ca23, group_L0_686d6360 -> 737 serie membri
+ℹ [v10] +337 serie da 3831 override fallback -> bandiera (tot target 1054)
+ℹ [v15] +38 serie che esercitano la de-frammentazione
+✔ [SMOKE] subset: 250 studi (250 dai minestroni target)
+ℹ [SMOKE] completeness guard SALTATO (inerte al recupero)
+
+── 3. Carico Stadio 1 (facts) ──
+
+ℹ [SMOKE] GSM referenziati dal subset: 6894
+<environment: 0x59b84ff3fa78>
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  88477444 4725.3  133022375 7104.2 133022375 7104.2
+Vcells 160730413 1226.3  507183678 3869.6 507183255 3869.6
+✔ Stadio 1: 6894 GSM in environment
+
+── 4. Carico ontologia (MeSH + ChEBI + HGNC) ──
+
+✔ Ontologia caricata
+
+── 5. Pre-pass anchor (recovery=NULL) -> kind_by_gsm ──
+
+ℹ anchor cache pre-pass: 3316 chiavi (GSM|role)
+✔ kind_by_gsm: 3266 GSM rappresentanti; collisioni ruolo: 50 (kind divergente: 0)
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  88500651 4726.5  133022375 7104.2 133022375 7104.2
+Vcells 160783173 1226.7  507183678 3869.6 507183255 3869.6
+
+── 6. Costruisco lookup recovery (build_name_recovery_lookup) ──
+
+✔ lookup: 3266/3266 GSM con entry (in H5) -- 0.1 min
+recovery_source: CHEBI_ALIAS=641, CHEMBL_ALIAS=86, COMPOUND_COMBO=3,
+CYTOKINE_IMMPORT=90, K2_GENETIC=75, K3_MISTYPE_cytokine=39,
+K3_MISTYPE_pathogen=1, MESH_NAME=166, NO_RECOVERY=1579, PAMP_WHITELIST=2,
+PATHOGEN_VERNACULAR=24, STR_FALLBACK=560
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 271791 record_id in 16.3 sec
+
+── 6b. Overlay correzioni LLM (v9 + fallback) ──
+
+✔ overlay v9 (k>=2): 56427 GSM corretti (da 3646 override)
