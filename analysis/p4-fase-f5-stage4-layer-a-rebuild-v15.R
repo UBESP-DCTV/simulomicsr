@@ -1,5 +1,5 @@
-# analysis/p4-fase-f5-stage4-layer-a-rebuild-v14.R --- RE-POOL v13.
-# Layer A full run Stadio 4 v13 sullo Stadio 3 v13 (ancoraggio dal CONTRASTO,
+# analysis/p4-fase-f5-stage4-layer-a-rebuild-v15.R --- RE-POOL v15.
+# Layer A full run Stadio 4 v15 sullo Stadio 3 v15 (ancoraggio dal CONTRASTO,
 # ADR-0025, + le sei regole del 2026-07-28) e master Stadio 2 v3.
 #
 # Differenze vs rebuild v10 (unica base di codice, nessun cambio di logica):
@@ -10,7 +10,8 @@
 #     nel codice ma FUORI dal deliverable.
 #   - GATE nel DRY_RUN: se compare un metodo diverso da rem_group lo script si
 #     ferma con errore (la selezione non starebbe leggendo deliverable_methods).
-#   - out_dir -> simulomicsr-stage4-v14, token -stage4-v13-.
+#   - out_dir -> simulomicsr-stage4-<token>, con <token> derivato dal nome della
+#     dir di Stadio 3 in ingresso.
 #
 # Config invariata (config uniformity): max_baseline_per_arm=350,
 # dream_workers_cap=32, de_engine mega/mega_aug=dream. Il ramo rem_group non usa
@@ -20,9 +21,9 @@
 # DRY_RUN=1 -> si ferma dopo identificazione Layer A + conteggio sample (no DE).
 #
 # Usage (full, detached):
-#   setsid nohup Rscript analysis/p4-fase-f5-stage4-layer-a-rebuild-v14.R \
+#   setsid nohup Rscript analysis/p4-fase-f5-stage4-layer-a-rebuild-v15.R \
 #     > analysis/audit/v15-repool-full.log 2>&1 < /dev/null &
-#   ps -eo pid,sid,args | grep "[r]ebuild-v14"   # SID deve essere == PID
+#   ps -eo pid,sid,args | grep "[r]ebuild-v15"   # SID deve essere == PID
 
 Sys.setenv(OPENBLAS_NUM_THREADS = "1", OMP_NUM_THREADS = "1")
 suppressPackageStartupMessages({ devtools::load_all("."); library(cli) })
@@ -31,7 +32,7 @@ if (requireNamespace("RhpcBLASctl", quietly = TRUE)) {
 }
 DRY_RUN <- nzchar(Sys.getenv("DRY_RUN"))
 
-cli_h1(paste0("Stadio 4 Layer A re-pool v13 (Stadio 3 v13, solo ramo rem_group)", if (DRY_RUN) " [DRY_RUN]" else ""))
+cli_h1(paste0("Stadio 4 Layer A re-pool v15 (Stadio 3 v15, solo ramo rem_group)", if (DRY_RUN) " [DRY_RUN]" else ""))
 
 # ⚠️ TROVATO PRIMA DEL LANCIO (audit 2026-08-01). La copia da `-v13.R` aveva
 # aggiornato la dir di USCITA ma NON quella di INGRESSO, che puntava ancora allo
@@ -45,6 +46,10 @@ if (!nzchar(stage3_dir)) {
   stop("STAGE3_DIR non impostata: passare esplicitamente la dir dello Stadio 3 v15.\n",
        "  esempio: STAGE3_DIR=analysis/p4-output/<UTC>-stage3-v15-<run_id> Rscript ...")
 }
+
+# Il nome dell'uscita non puo' piu' contraddire l'ingresso: si deriva.
+v_token <- sub("^.*-stage3-(v[0-9]+)-.*$", "\\1", basename(stage3_dir))
+stopifnot(grepl("^v[0-9]+$", v_token))
 
 # I verdetti di coerenza sono un INGRESSO del run, non un dettaglio
 # dell'annotazione: si controllano qui, al minuto zero, non dopo 28 ore.
@@ -232,9 +237,10 @@ result <- build_stage4_results(
 wall_sec <- as.numeric(difftime(Sys.time(), t1, units = "secs"))
 cli_alert_success("Build complete in {round(wall_sec/60, 1)} min — run_id {result$run_metadata$run_id}")
 
-out_dir <- file.path("/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v14",
-  sprintf("%s-stage4-v14-%s", format(Sys.time(), "%Y%m%dT%H%M%SZ", tz = "UTC"),
-          result$run_metadata$run_id))
+ts     <- format(Sys.time(), "%Y%m%dT%H%M%SZ", tz = "UTC")
+run_id <- result$run_metadata$run_id
+out_root <- file.path("/mnt/wwn-0x5000039d58caca35", paste0("simulomicsr-stage4-", v_token))
+out_dir  <- file.path(out_root, sprintf("%s-stage4-%s-%s", ts, v_token, run_id))
 cli_alert_info("Writing to {.path {out_dir}}...")
 write_stage4_to_dir(result, out_dir)
 # Render dashboard NON-fatale: i deliverable DE sono gia' scritti sopra.
@@ -370,4 +376,4 @@ cli_dl(list(
   "Wall total"              = sprintf("%.1f min", wall_sec / 60),
   "Output dir"              = out_dir
 ))
-cli_alert_success("Layer A re-pool v13 OK")
+cli_alert_success("Layer A re-pool v15 OK")

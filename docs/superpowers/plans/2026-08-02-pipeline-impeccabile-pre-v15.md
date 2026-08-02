@@ -48,7 +48,7 @@ calcolo ma decidono se ci accorgeremmo di un fallimento.
 | `R/stage4-dispatch.R` | risoluzione del `record_id` (compatibile all'indietro) | 4 |
 | `R/stage4-qc.R` | chiave della dedup + registro degli scarti | 5 |
 | `R/stage4-deliverable-annotation.R` | assenza di verdetti = NA, non «coherent» | 6 |
-| `analysis/p4-fase-f5-stage4-layer-a-rebuild-v14.R` | verdetti fatali, out_dir v15, provenienza | 6, 7, 9, 11 |
+| `analysis/p4-fase-f5-stage4-layer-a-rebuild-v15.R` (rinominato dal Task 9, era `-v14.R`) | verdetti fatali, out_dir v15, provenienza | 6, 7, 9, 11 |
 | `analysis/p4-fase-f12-stage3-v15-defrag.R` | gate sulla de-frammentazione, smoke che la esercita | 8 |
 | `analysis/p5-stage4-layer-b-build-v13.R` | deliverable dal run corrente | 10 |
 | `R/stage4-build.R`, `R/stage4-io.R` | impronta dello Stadio 3 nell'artefatto | 11 |

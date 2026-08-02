@@ -242,7 +242,8 @@ invece di inventare.
 4. **I consumatori a valle**: `R/stage4-*.R`, `R/layer-b-*.R`, gli script di build, i CSV di
    selezione, i file in `inst/extdata/`. Criterio di ordinamento: **quanto tardi ce ne
    accorgeremmo** (subito / dopo 9h / dopo 37h).
-5. **Gli script del run** (`p4-fase-f12-stage3-v15-defrag.R`, `p4-fase-f5-...-rebuild-v14.R`):
+5. **Gli script del run** (`p4-fase-f12-stage3-v15-defrag.R`, `p4-fase-f5-...-rebuild-v15.R`,
+   rinominato dal Task 9, era `-v14.R`):
    `diff` contro i predecessori — le differenze devono essere SOLO il token di versione e le
    directory. Più: cache, percorsi, spazio, assert tardivi.
 6. **Le cache**: la domanda precisa è *«una cache può far girare v15 per nove ore producendo
@@ -298,7 +299,8 @@ Solo allora: `setsid`, SID==PID, `Rscript` **senza** `--vanilla`, aggiornamento 
    `verdetti-poolato-v15.csv`. **Senza questo il re-pool si ferma** (ora davvero).
 3. **Decisione dell'utente sulla soglia k** (§3c-E), da prendere sui numeri nuovi.
 4. **Re-pool** (~28 h): `STAGE3_DIR=<dir v15> setsid nohup Rscript
-   analysis/p4-fase-f5-stage4-layer-a-rebuild-v14.R > analysis/audit/v15-repool-full.log 2>&1 &`
+   analysis/p4-fase-f5-stage4-layer-a-rebuild-v15.R > analysis/audit/v15-repool-full.log 2>&1 &`
+   (rinominato dal Task 9, era `-v14.R`)
 5. **Layer B** ricostruito sul pool nuovo, col fix del difetto 3c-C.
 6. Narrative e Methods.
 
