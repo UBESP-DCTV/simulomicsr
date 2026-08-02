@@ -42,6 +42,16 @@ write_stage4_to_dir <- function(s4, dir) {
   meta <- list(
     run_id = s4$run_metadata$run_id,
     timestamp = ts_str,
+    # Task 11: da quale Stadio 3 viene questo run. L'identita' e' lo SHA256
+    # del CONTENUTO di clusters.rds (impronta dell'oggetto prodotto, non una
+    # stringa di versione da ricordare di aggiornare). Retrocompat: oggetti
+    # pre-Task11 non hanno s4$run_metadata$stage3 -> campo scritto con NA,
+    # non un errore.
+    stage3 = s4$run_metadata$stage3 %||% list(
+      run_id = NA_character_,
+      dir = NA_character_,
+      clusters_sha256 = NA_character_
+    ),
     schema_versions = s4$config$schema_versions,
     # FASE E2 ADR-0019 D7: filter biotype effettivamente applicato in
     # questo run. NULL/missing = no filter (~67k geni); default

@@ -83,6 +83,18 @@ cli_alert_success(
   "Loaded: {nrow(s3$clusters)} clusters / {nrow(s3$assignments)} assignments / {length(stage2_master)} stage2 studies (wall {round(as.numeric(difftime(Sys.time(), t0, units='secs')), 1)} sec)"
 )
 
+# Task 11: l'identita' di questo Stadio 3 e' l'impronta del CONTENUTO di
+# clusters.rds, non una stringa di versione scritta a mano — e' esattamente
+# il modo in cui questo progetto ha gia' perso otto ore con
+# .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION. Costa frazioni di secondo (~17 MB),
+# una volta sola per run.
+t_sha <- Sys.time()
+stage3_clusters_sha256 <- digest::digest(
+  file = file.path(stage3_dir, "clusters.rds"), algo = "sha256")
+cli_alert_info(
+  "Stadio 3 clusters.rds sha256: {stage3_clusters_sha256} (wall {round(as.numeric(difftime(Sys.time(), t_sha, units='secs')), 3)} sec)"
+)
+
 # ---- Pre-filter stage2_master vs ARCHS4 H5 sample axis (fix 2026-05-20) ----
 cli_alert_info("Pre-filter stage2_master vs ARCHS4 H5 sample axis...")
 t_filt <- Sys.time()
@@ -230,6 +242,8 @@ result <- build_stage4_results(
   config             = config,
   h5_path            = h5_path,
   stage3_run_id      = s3$run_metadata$run_id,
+  stage3_dir         = stage3_dir,
+  stage3_clusters_sha256 = stage3_clusters_sha256,
   h5_path_for_hash   = h5_path,
   stage3_assignments = s3$assignments,
   stage2_master      = stage2_master
@@ -350,6 +364,11 @@ tryCatch({
     member_labels  = membri_ann,
     coherence_verdicts = verdetti_ann,
     coherence_source   = "rilettura-sui-poolati-2026-07-30")
+
+  # Task 11: la provenienza dello Stadio 3 nel deliverable stesso — un join
+  # fra tabelle di run diversi si vede a occhio, senza dover riaprire il
+  # run_metadata.json.
+  deliverable$stage3_clusters_sha256 <- result$run_metadata$stage3$clusters_sha256
 
   saveRDS(deliverable, file.path(out_dir, "deliverable-annotato.rds"))
   utils::write.csv(deliverable, file.path(out_dir, "deliverable-annotato.csv"),

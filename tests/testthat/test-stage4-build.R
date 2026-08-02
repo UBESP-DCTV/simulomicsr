@@ -40,3 +40,59 @@ test_that("build_stage4_results end-to-end produce stage4_result list", {
                ignore.order = TRUE)
   expect_true(nchar(result$run_metadata$run_id) == 8L)
 })
+
+test_that("run_metadata dello Stadio 4 registra la provenienza dello Stadio 3", {
+  skip_if_not_installed("limma")
+  skip_if_not_installed("arrow")
+  skip_if_not_installed("digest")
+
+  # Provato il 2026-08-02: l'unica occorrenza di "stage3" nel run_metadata era
+  # la chiave `stage3_algorithm`. Il run_id dello Stadio 3 entrava nell'hash e
+  # veniva buttato: l'artefatto non sapeva da dove veniva.
+  input <- make_test_stage4_input(seed = 42L)
+  cfg <- stage4_default_config()
+
+  # Fixture minimale su disco: l'impronta e' del CONTENUTO di clusters.rds,
+  # non una stringa scritta a mano.
+  tmp_dir <- withr::local_tempdir()
+  saveRDS(input$clusters, file.path(tmp_dir, "clusters.rds"))
+  sha <- digest::digest(file = file.path(tmp_dir, "clusters.rds"), algo = "sha256")
+
+  result <- build_stage4_results(
+    stage3_clusters = input$clusters,
+    h5_metadata = input$h5_metadata,
+    config = cfg,
+    stage3_run_id = "364547a7",
+    stage3_dir = tmp_dir,
+    stage3_clusters_sha256 = sha,
+    h5_path_for_hash = NULL,
+    dry_run_inputs_only = TRUE
+  )
+
+  expect_identical(result$run_metadata$stage3$run_id, "364547a7")
+  expect_identical(result$run_metadata$stage3$dir, tmp_dir)
+  expect_identical(result$run_metadata$stage3$clusters_sha256, sha)
+})
+
+test_that("run_metadata dello Stadio 4 resta valido senza provenienza Stadio 3 (retrocompat)", {
+  skip_if_not_installed("limma")
+  skip_if_not_installed("arrow")
+
+  # Chiamante pre-Task11: nessun stage3_dir / stage3_clusters_sha256 passato.
+  # Il campo deve esistere comunque, con valore mancante, non un errore.
+  input <- make_test_stage4_input(seed = 42L)
+  cfg <- stage4_default_config()
+
+  result <- build_stage4_results(
+    stage3_clusters = input$clusters,
+    h5_metadata = input$h5_metadata,
+    config = cfg,
+    stage3_run_id = "364547a7",
+    h5_path_for_hash = NULL,
+    dry_run_inputs_only = TRUE
+  )
+
+  expect_identical(result$run_metadata$stage3$run_id, "364547a7")
+  expect_true(is.na(result$run_metadata$stage3$dir))
+  expect_true(is.na(result$run_metadata$stage3$clusters_sha256))
+})

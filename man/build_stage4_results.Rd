@@ -11,6 +11,8 @@ build_stage4_results(
   fetch_fn = NULL,
   h5_path = NULL,
   stage3_run_id = NULL,
+  stage3_dir = NULL,
+  stage3_clusters_sha256 = NULL,
   h5_path_for_hash = NULL,
   stage3_assignments = NULL,
   stage2_master = NULL,
@@ -33,6 +35,17 @@ counts. Default chiama \code{.fetch_counts_cached} con \code{h5_path}.}
 \item{h5_path}{path al file H5 ARCHS4 (richiesto se \code{fetch_fn=NULL}).}
 
 \item{stage3_run_id}{stringa run_id Stadio 3 per input_hashes.}
+
+\item{stage3_dir}{path della directory Stadio 3 di ingresso (Task 11:
+provenienza registrata in \code{run_metadata$stage3}). Default
+\code{NULL} per retrocompatibilita' (campo scritto come NA, non errore).}
+
+\item{stage3_clusters_sha256}{sha256 del CONTENUTO di
+\code{clusters.rds} dello Stadio 3 (Task 11), calcolato dal chiamante con
+\code{digest::digest(file = ..., algo = "sha256")}. E' l'impronta
+dell'oggetto prodotto, non una stringa di versione scritta a mano — non
+si puo' dimenticare di aggiornarla. Default \code{NULL} per
+retrocompatibilita' (campo scritto come NA, non errore).}
 
 \item{h5_path_for_hash}{path al H5 per il calcolo sha256 (NULL se non si
 vuole hashare il H5; in tal caso usa placeholder "unknown").}

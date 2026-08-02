@@ -16,6 +16,15 @@
 #'   counts. Default chiama \code{.fetch_counts_cached} con \code{h5_path}.
 #' @param h5_path path al file H5 ARCHS4 (richiesto se \code{fetch_fn=NULL}).
 #' @param stage3_run_id stringa run_id Stadio 3 per input_hashes.
+#' @param stage3_dir path della directory Stadio 3 di ingresso (Task 11:
+#'   provenienza registrata in \code{run_metadata$stage3}). Default
+#'   \code{NULL} per retrocompatibilita' (campo scritto come NA, non errore).
+#' @param stage3_clusters_sha256 sha256 del CONTENUTO di
+#'   \code{clusters.rds} dello Stadio 3 (Task 11), calcolato dal chiamante con
+#'   \code{digest::digest(file = ..., algo = "sha256")}. E' l'impronta
+#'   dell'oggetto prodotto, non una stringa di versione scritta a mano — non
+#'   si puo' dimenticare di aggiornarla. Default \code{NULL} per
+#'   retrocompatibilita' (campo scritto come NA, non errore).
 #' @param h5_path_for_hash path al H5 per il calcolo sha256 (NULL se non si
 #'   vuole hashare il H5; in tal caso usa placeholder "unknown").
 #' @param stage3_assignments tibble \code{assignments.parquet} Stadio 3
@@ -43,6 +52,8 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
                                  config = stage4_default_config(),
                                  fetch_fn = NULL, h5_path = NULL,
                                  stage3_run_id = NULL,
+                                 stage3_dir = NULL,
+                                 stage3_clusters_sha256 = NULL,
                                  h5_path_for_hash = NULL,
                                  stage3_assignments = NULL,
                                  stage2_master = NULL,
@@ -99,6 +110,17 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
   hashes <- list(stage3 = stage3_hash, h5 = h5_hash)
   run_id <- .run_id_for_stage4(hashes, config, config$schema_versions)
 
+  # Task 11: la provenienza dello Stadio 3 va nel run_metadata, non solo
+  # nell'hash (che poi viene buttato). L'identita' dello Stadio 3 e' lo
+  # SHA256 del CONTENUTO di clusters.rds — calcolato dall'oggetto prodotto,
+  # non una stringa di versione da ricordare di aggiornare. Vedi
+  # .NAME_RECOVERY_LOOKUP_SCHEMA_VERSION per il costo di quel tipo di errore.
+  stage3_provenance <- list(
+    run_id          = stage3_run_id %||% NA_character_,
+    dir             = stage3_dir %||% NA_character_,
+    clusters_sha256 = stage3_clusters_sha256 %||% NA_character_
+  )
+
   # Step 3: short-circuit per dry-run / debug rapido
   if (isTRUE(dry_run_inputs_only)) {
     return(structure(list(
@@ -112,6 +134,7 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
       run_metadata      = list(
         run_id = run_id,
         timestamp = Sys.time(),
+        stage3 = stage3_provenance,                   # Task 11
         gene_biotype_filter = gene_biotype_filter,    # FASE E2 ADR-0019 D7
         gene_axis_summary = gene_axis_summary,        # T7b Fix 2
         de_covariates_requested = de_covariates       # FASE E3 ADR-0019 D8
@@ -242,6 +265,7 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     run_metadata      = list(
       run_id = run_id,
       timestamp = Sys.time(),
+      stage3 = stage3_provenance,                  # Task 11
       gene_biotype_filter = gene_biotype_filter  # FASE E2 ADR-0019 D7
     )
   ), class = "stage4_result")
