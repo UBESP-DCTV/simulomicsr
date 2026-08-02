@@ -82,12 +82,20 @@ bersaglio mobile (il codice è cambiato mentre girava). Non si ripete.
 
 ### La regola, com'è adesso
 
-`R/stage3-defrag-alias.R` fonde **TRE entità e basta** (`.CA_DEFRAG_ACCEPT`):
+⚠️ **AGGIORNATO 2026-08-02**: quando questo handout fu scritto (2026-08-01) la regola fondeva tre
+entità. **Da allora `glioblastoma` è uscita** (decisione utente 2026-08-02): la misura fatta dopo
+ha mostrato che non comprava nulla — dei 40 membri candidati **39 avevano già l'entità dal ramo
+`anchor`** (che precede questo ripiego e che la regola non può vedere), al ripiego arrivava **un
+solo record** (GSE241396), con una chiave di controllo assente nel gruppo bersaglio: sarebbe finito
+isolato a k=1. In più la fusione non chiudeva lo split (in v13 convivono già `STR:glioblastoma` k=6
+e `MeSH:D005909` k=3, stesso verso e stesso controllo — vedi riga sotto sul difetto "lo split non
+era chiuso", che per questa entità NON era chiuso come la tabella diceva).
+
+`R/stage3-defrag-alias.R` fonde **DUE entità e basta** (`.CA_DEFRAG_ACCEPT`):
 
 | token (normalizzato) | ID | perché |
 |---|---|---|
 | `tgfb` (copre `TGFb`, `TGF-B`, `tgf_b`) | `HGNC:11766` | figura 2 del main paper, k 65 → 78 |
-| `glioblastoma` | `MeSH:D005909` | entra nel deliverable (il resolver MeSH non lo vede) |
 | `il17` | `HGNC:5981` | IL17A |
 
 **Test:** `tests/testthat/test-stage3-defrag-alias.R` → **119 PASS / 0 FAIL** sui dizionari VERI
@@ -101,10 +109,11 @@ non si fondono più): il cambiamento è dichiarato nei commenti dei test, non na
 dalle sbagliate — quella dimostrazione resta valida ed è il motivo per cui la regola generale è
 stata abbandonata.
 
-Sono **esattamente** le entità che la decisione dell'utente del 2026-07-31
-(`docs/superpowers/specs/2026-07-31-decisione-rerun.md`) aveva autorizzato. La versione precedente
-ne fondeva **923**: quella generalizzazione non era stata decisa da nessuno ed è la causa di tutti i
-difetti del §3.
+Sono **due delle tre** entità che la decisione dell'utente del 2026-07-31
+(`docs/superpowers/specs/2026-07-31-decisione-rerun.md`) aveva autorizzato — la terza,
+`glioblastoma`, è uscita con la decisione del 2026-08-02 (vedi riquadro sopra). La versione
+precedente ne fondeva **923**: quella generalizzazione non era stata decisa da nessuno ed è la causa
+di tutti i difetti del §3.
 
 ---
 
@@ -120,14 +129,21 @@ v10 (fallback) → v12 (ancoraggio dal contrasto) → v13 (sei regole, **quello 
 
 ## 3. I DIFETTI — provati, con la loro evidenza
 
-### 3a. CHIUSI dalla restrizione alle tre entità (non da una correzione: per costruzione)
+### 3a. CHIUSI dalla restrizione alle due entità (non da una correzione: per costruzione)
 
-| difetto | misura | perché sparisce |
+⚠️ **AGGIORNATO 2026-08-02** — due righe di questa tabella erano sbagliate, non solo datate dal
+"tre"→"due": il numero «130 su 923» non è mai stato sostenuto da nessun log dell'audit (verificato
+contando `.CA_DEFRAG_REJECT`, `90-adjudica.txt`, `80-da-leggere-identita.csv`, `80-screen.log`:
+i numeri veri sono **682 fusioni sostenute dal nome primario e mai lette, 241 lette una per una,
+61 sbagliate**), e la riga sullo split diceva che **nessuna** delle tre entità autorizzate ne era
+colpita — falso per `glioblastoma`, che infatti per quello è uscita (vedi §1).
+
+| difetto | misura | perché sparisce (per `tgfb`/`il17`) |
 |---|---|---|
-| **14,1% di identità sbagliate** (130 su 923 fusioni, tutte lette) | `msa_p`→MTAP (è l'atrofia multisistemica), `copd`→ARCN1, `rela`→carisoprodol su `RELA-/-`, `ifn_i`→**il Marocco**, `mito`→una pianta | le 130 sono tutte **fuori** dalle tre autorizzate |
-| **lo split non era chiuso** | in v14: `STR:hypoxia` k=33 **e** `MeSH:D000860` k=10 — stessa entità, stesso verso, stesso controllo. 427 cluster con entità `STR:` dal ramo `anchor`, 67 coppie compresenti | nessuna delle tre è fra le entità colpite (verificato su v14) |
+| **identità sbagliate**: delle 923 coppie prodotte dalla regola generale, 682 sostenute dal nome primario e mai lette; delle 241 lette una per una, **61** sbagliate | `msa_p`→MTAP (è l'atrofia multisistemica), `copd`→ARCN1, `rela`→carisoprodol su `RELA-/-`, `ifn_i`→**il Marocco**, `mito`→una pianta | le 61 sono tutte **fuori** dalle due autorizzate |
+| **lo split non era chiuso** | in v14: `STR:hypoxia` k=33 **e** `MeSH:D000860` k=10 — stessa entità, stesso verso, stesso controllo. 427 cluster con entità `STR:` dal ramo `anchor`, 67 coppie compresenti. Su v13, **415** cluster `cgroup` hanno un'entità `STR:` dal ramo anchor | `tgfb`/`il17` non sono fra le colpite (residuo anchor zero, misurato su v13) — **`glioblastoma` invece lo era** (`STR:glioblastoma` k=6 accanto a `MeSH:D005909` k=3 in v13), motivo per cui è uscita |
 | **la regola CANCELLAVA dati** | `tnfa` → TNF di *zebrafish* (`CHEBI:197439`, in blacklist) → **17 confronti TNFα prima tenuti venivano scartati** | `tnfa` non è nella lista |
-| **asse clinico-vs-sperimentale spento** sui membri fusi | il `control_key` si calcola PRIMA dell'entità: `ck_off == ck_on` su **87.092/87.092** righe | nessuna delle tre è un patogeno |
+| **asse clinico-vs-sperimentale spento** sui membri fusi | il `control_key` si calcola PRIMA dell'entità: `ck_off == ck_on` su **87.092/87.092** righe | nessuna delle due è un patogeno |
 
 ### 3b. CORRETTI nel codice (verificare che i fix reggano)
 
@@ -142,8 +158,11 @@ v10 (fallback) → v12 (ancoraggio dal contrasto) → v13 (sei regole, **quello 
 3. **Il pre-filtro dei verdetti disinnescava la difesa sugli orfani.** Lo script toglieva i verdetti
    orfani prima di passarli a `.annotate_coherence()`, che quindi non li vedeva mai. **Provato: con
    il pre-filtro l'annotazione riusciva e il gruppo `adenoma`, che ha un verdetto di INCOERENZA,
-   usciva marcato `coherent`.** Ora lo script si ferma. ⚠️ Il piano diceva «l'annotazione si ferma»:
-   era **falso**, proseguiva.
+   usciva marcato `coherent`.** Tolto il pre-filtro. ⚠️ Il piano diceva «l'annotazione si ferma»:
+   era **falso**, proseguiva. ⚠️ **AGGIORNATO 2026-08-02**: qui si scriveva «Ora lo script si
+   ferma» — non era ancora vero: lo `stop()` sugli orfani restava dentro un `tryCatch` che lo
+   declassava a warning, quindi anche dopo questo fix lo script proseguiva comunque. Reso vero
+   solo dal Task 7 (2026-08-02), portando il controllo in testa allo script, fuori dal `tryCatch`.
 4. **`run_metadata.json` non distingueva i run.** Il diff fra i metadati di v13 e v14 mostrava solo
    il timestamp e tre conteggi, benché v14 avesse introdotto la regola. Aggiunto
    `schema_versions$contrast_defrag`.
@@ -227,17 +246,21 @@ invece di inventare.
 
 ### I dieci fronti
 
-1. **Le tre fusioni autorizzate, una per una.** Verificare su TUTTI i membri che `tgfb`,
-   `glioblastoma`, `il17` fondano ciò che devono e nulla di più: leggere le etichette di ogni membro
-   che cambia entità, e provare che nessuno di essi misura un'altra cosa.
-2. **Lo split del ramo `anchor`, per le tre entità.** È il difetto che ha bruciato v14. Verificare
-   sull'output che nessuna delle tre compaia contemporaneamente come `STR:` (dal ramo anchor) e come
-   ID. Misurare, non assumere.
+1. **Le due fusioni autorizzate, una per una.** ⚠️ **AGGIORNATO 2026-08-02**: erano tre quando
+   questo fronte fu scritto; `glioblastoma` è uscita proprio perché il fronte 2 qui sotto, eseguito,
+   l'ha trovata colpita dallo split. Verificare su TUTTI i membri che `tgfb`, `il17` fondano ciò che
+   devono e nulla di più: leggere le etichette di ogni membro che cambia entità, e provare che
+   nessuno di essi misura un'altra cosa.
+2. **Lo split del ramo `anchor`, per le due entità rimaste.** È il difetto che ha bruciato v14 —
+   ed è il difetto per cui `glioblastoma` (terza entità originaria) è uscita: eseguito su tutte e
+   tre, ha trovato `STR:glioblastoma` k=6 accanto a `MeSH:D005909` k=3 in v13 (esattamente lo split
+   che questo fronte cerca). Verificare sull'output che nessuna delle due rimaste (`tgfb`, `il17`)
+   compaia contemporaneamente come `STR:` (dal ramo anchor) e come ID. Misurare, non assumere.
 3. **Le guardie a valle** (`R/stage3-contrast-anchor.R`, `R/stage3-row-pairing.R`,
    `R/stage3-contrast-gate.R`): trovare ogni punto in cui la forma dell'entità (ID contro `STR:`)
    cambia il comportamento. Ne sono già stati trovati e corretti tre; il quarto lo ha trovato un
    agente.
-3bis. **`control_key` e `is_pathogen`**: sono calcolati PRIMA dell'entità. Nessuna delle tre
+3bis. **`control_key` e `is_pathogen`**: sono calcolati PRIMA dell'entità. Nessuna delle due
    autorizzate è un patogeno, ma va **provato**, non dedotto.
 4. **I consumatori a valle**: `R/stage4-*.R`, `R/layer-b-*.R`, gli script di build, i CSV di
    selezione, i file in `inst/extdata/`. Criterio di ordinamento: **quanto tardi ce ne
@@ -255,8 +278,11 @@ invece di inventare.
 8. **La dedup ADR-0022** (difetto 3c-A): quantificare quante entità il deliverable v15 perderebbe e
    quali, e produrre la lista degli scartati da affiancare al deliverable.
 9. **La catena dei verdetti di coerenza**: quali dei 6 verdetti sopravvivono a v15, quali gruppi
-   cambiano composizione, e che cosa serve per la fase D0ter. Attenzione: il pre-filtro ora fa
-   fallire lo script (corretto), quindi **senza D0ter il re-pool si ferma davvero**.
+   cambiano composizione, e che cosa serve per la fase D0ter. ⚠️ **AGGIORNATO 2026-08-02**: qui si
+   scriveva «il pre-filtro ora fa fallire lo script (corretto), quindi senza D0ter il re-pool si
+   ferma davvero» — non era ancora vero (lo `stop()` restava dentro un `tryCatch` che lo
+   declassava a warning). **Ora, grazie al Task 7 (2026-08-02), è vero davvero**: il controllo è
+   in testa allo script, fuori dal `tryCatch`.
 10. **Il Layer B** (difetto 3c-C): il join con le misure vecchie riesce in silenzio. Verificare e
     proporre il fix (leggere il deliverable dalla `out_dir` del run nuovo).
 11. **Un agente che rilegge le RITRATTAZIONI del §3d** e verifica che nessuna affermazione falsa sia
@@ -280,7 +306,7 @@ Tutte queste condizioni, **provate sui file, non sul log**:
    fanno saltare: va lanciata con `test_file`);
 3. la misura sulla regola ristretta torna: **membri cambiati nell'ordine delle centinaia, non
    migliaia** · invariante «0 membri cambiano partendo da un'entità già risolta» · **0 membri persi**
-   · **nessuno split** · le tre entità crescono, nient'altro cambia;
+   · **nessuno split** · le due entità (`tgfb`, `il17`) crescono, nient'altro cambia;
 4. i dieci agenti hanno riferito e la verifica avversariale ha ripulito la lista;
 5. **ogni difetto sopravvissuto è o corretto o dichiarato per iscritto** con il suo numero;
 6. lo SMOKE del re-cluster (12,8 min) è PASS.
@@ -296,7 +322,9 @@ Solo allora: `setsid`, SID==PID, `Rscript` **senza** `--vanilla`, aggiornamento 
    TGFB1 **≥78**, LPS 50, enzalutamide 29, vemurafenib 20), e il confronto degli **insiemi** dei
    membri v13→v15.
 2. **FASE D0ter**: rileggere i gruppi che cambiano composizione e produrre
-   `verdetti-poolato-v15.csv`. **Senza questo il re-pool si ferma** (ora davvero).
+   `verdetti-poolato-v15.csv`. **Senza questo il re-pool si ferma** — davvero **solo dal
+   2026-08-02** (Task 7): prima di allora lo `stop()` sugli orfani era dentro un `tryCatch` che lo
+   declassava a warning, e "si ferma" era una previsione, non un fatto verificato.
 3. **Decisione dell'utente sulla soglia k** (§3c-E), da prendere sui numeri nuovi.
 4. **Re-pool** (~28 h): `STAGE3_DIR=<dir v15> setsid nohup Rscript
    analysis/p4-fase-f5-stage4-layer-a-rebuild-v15.R > analysis/audit/v15-repool-full.log 2>&1 &`

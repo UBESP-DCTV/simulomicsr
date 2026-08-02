@@ -5,10 +5,12 @@
 # insieme agli altri file di stage3, e nessuna delle superstiti chiamava la
 # funzione che la produzione usa: la suite era verde senza provare nulla.
 
-# De-frammentazione: un token che sarebbe finito in `STR:` si fonde nell'ID
-# ontologico SOLO se aggancia, in modo UNIVOCO, un alias per esteso (>3
-# caratteri) di una sola entita' fra quelle che la classe del contrasto
-# interroga.
+# De-frammentazione, com'e' oggi (AGGIORNATO 2026-08-02): due fusioni
+# autorizzate una per una (`.CA_DEFRAG_ACCEPT`). L'aggancio UNIVOCO su un
+# alias per esteso (>3 caratteri) e' stata la MISURA che le ha giustificate
+# quando la regola era ancora generale, NON la regola che gira oggi:
+# `.ca_defrag_entity()` e' un lookup sulle due chiavi autorizzate e non
+# consulta l'ontologia ne' la classe del contrasto a runtime.
 #
 # Perche' esiste (decisione 2026-07-31): il gruppo HGNC:11766 contiene GIA'
 # membri etichettati "TGF-beta"/"TGFbeta"/"TGF-B1"; tenere fuori "TGFb" non e'
