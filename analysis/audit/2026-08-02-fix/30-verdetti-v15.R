@@ -3,18 +3,22 @@
 #
 # Unisce i SEI verdetti di incoerenza del censimento 2026-07-29 (che restano
 # validi: nessuna delle loro chiavi e' toccata dalla de-frammentazione a due
-# entita') con i DICIASSETTE nuovi, dalla rilettura dei 49 gruppi che la dedup
+# entita') con i DICIOTTO nuovi, dalla rilettura dei 49 gruppi che la dedup
 # sbagliata cancellava (FASE D0ter estesa, decisione utente 2026-08-03).
 #
 # I 49 gruppi sono stati letti con le etichette INTERE, quattro lettori in
 # parallelo, con la rubrica del progetto: coerente = i membri isolano lo stesso
-# contrasto. Esito: 31 coerenti, 17 incoerenti, 1 dubbio.
+# contrasto. Esito della lettura: 31 coerenti, 17 incoerenti, 1 dubbio — e il
+# dubbio e' poi stato ESCLUSO dall'utente, quindi i verdetti nuovi sono 18.
 #
-# ⚠️ IL DUBBIO NON E' UN VERDETTO. `cgroup_L5_855ca642` (perossido di idrogeno)
-# ha 6 membri puliti su 7; il settimo usa come riferimento un «vehicle
-# (bortezomib)» invece del veicolo del confronto gemello nello stesso studio.
-# Per deciderlo serve il testo dello studio. NON e' incluso fra gli incoerenti:
-# resta una decisione aperta, dichiarata qui e nel finding.
+# IL DUBBIO E' STATO CHIUSO DALL'UTENTE (2026-08-03): si esclude.
+# `cgroup_L5_855ca642` (perossido di idrogeno) ha 6 membri puliti su 7; il
+# settimo (GSE235768) usa come riferimento un «vehicle (bortezomib)» invece del
+# veicolo del confronto gemello nello stesso studio. Per decidere servirebbe il
+# testo dello studio; l'utente ha scelto di escluderlo invece di tenerlo per
+# buono. E' la scelta conservativa, ed e' l'unica azione che la pipeline
+# consente a questo livello: i verdetti marcano un GRUPPO, non un singolo
+# membro. Costo dichiarato: si perdono anche i 6 confronti puliti.
 #
 # Uso: Rscript analysis/audit/2026-08-02-fix/30-verdetti-v15.R
 suppressPackageStartupMessages({ devtools::load_all(".", quiet = TRUE) })
@@ -23,7 +27,7 @@ V13 <- "analysis/p4-output/20260728T151529Z-stage3-v13-364547a7"
 OUT <- "analysis/audit/2026-08-02-fix/verdetti-poolato-v15.csv"
 VECCHI <- "analysis/audit/2026-07-29-etichette-v13/verdetti-poolato-v13.csv"
 
-# --- i 17 nuovi, con il motivo scritto da chi li ha letti --------------------
+# --- i 18 nuovi (17 giudicati incoerenti + 1 escluso), col motivo di chi ha letto --------------------
 nuovi <- rbind(
   data.frame(cluster_id = "cgroup_L5_3b91a21d", motivo = "entita' che e' una classe: 'Neoplasm Metastasis' mescola tumori primari diversi (colon->fegato, ovaio->omento) e un membro che confronta stadi (M1 vs M0), non malattia vs sano; due membri isolano solo cellule endoteliali"),
   data.frame(cluster_id = "cgroup_L5_165b7913", motivo = "entita' che e' una classe: l'ID ChEMBL e' 'INTERFERON' generico e il gruppo mescola IFN-gamma e IFN-alfa, che hanno recettori e vie diverse (tipo II contro tipo I)"),
@@ -42,8 +46,9 @@ nuovi <- rbind(
   data.frame(cluster_id = "cgroup_L5_6e9f3913", motivo = "un membro non confronta tumore contro normale ma linfociti infiltranti contro linfociti del sangue: sottopopolazioni cellulari, non tessuti"),
   data.frame(cluster_id = "cgroup_L5_af8f3547", motivo = "popolazioni di base diverse: un membro e' su pazienti asmatici, un altro cambia definizione di controllo introducendo un vaccino, un terzo usa le sigle di visita AV/CV gia' dichiarate irrisolvibili"),
   data.frame(cluster_id = "cgroup_L5_6ce4ac22", motivo = "materiale non omogeneo: un confronto clinico diretto insieme a un disegno longitudinale con donatore fisso (fino a 526 giorni) e a uno su linfonodo"),
+  data.frame(cluster_id = "cgroup_L5_855ca642", motivo = "ESCLUSO SU DECISIONE DELL'UTENTE (2026-08-03): 6 membri su 7 sono puliti, ma il settimo (GSE235768) usa come riferimento un 'vehicle (bortezomib)' invece del veicolo del confronto gemello nello stesso studio. Deciderlo richiederebbe il testo dello studio; si esclude invece di tenerlo per buono. Costo: si perdono anche i 6 confronti puliti"),
   stringsAsFactors = FALSE)
-stopifnot(nrow(nuovi) == 17L, !anyDuplicated(nuovi$cluster_id))
+stopifnot(nrow(nuovi) == 18L, !anyDuplicated(nuovi$cluster_id))
 
 # --- la chiave del contrasto, presa dall'oggetto vero ------------------------
 cl <- readRDS(file.path(V13, "clusters.rds"))
@@ -61,6 +66,4 @@ stopifnot(length(intersect(vecchi$ckey, nuovi$ckey)) == 0L)
 fin <- rbind(vecchi[, c("ckey", "motivo")], nuovi[, c("ckey", "motivo")])
 utils::write.csv(fin, OUT, row.names = FALSE)
 cat("scritto:", OUT, "-", nrow(fin), "verdetti di incoerenza\n")
-cat("\nDUBBIO NON INCLUSO (decisione aperta): cgroup_L5_855ca642 (perossido di idrogeno),\n",
-    "6 membri puliti su 7; il settimo usa 'vehicle (bortezomib)' invece del veicolo\n",
-    "del confronto gemello. Serve il testo dello studio.\n")
+cat("\nNessun dubbio residuo: il gruppo H2O2 e' stato ESCLUSO su decisione dell'utente.\n")
