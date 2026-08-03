@@ -1,0 +1,33 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+=== INVARIANTI v15 sull'OUTPUT VERO ===
+v15: analysis/p4-output/20260803T164558Z-stage3-v15-7f986159 
+v13: analysis/p4-output/20260728T151529Z-stage3-v13-364547a7 
+
+[ OK ] 0. run_id diverso da 364547a7 -- run_id=7f986159
+
+membri cgroup: v13=27792  v15=27792
+
+[ OK ] 5a. destinazioni della de-frammentazione solo TGFB1/IL17A -- osservate: HGNC:11766
+[ OK ] 5b. glioblastoma MAI fra le destinazioni -- cluster defrag: 3
+[ OK ] 5c. glioblastoma invariato rispetto a v13 -- k v13=3, k v15=3 (atteso uguale)
+[ OK ] 1. nessun membro partito da un'entita' gia' risolta -- 0 membri fuori norma | confrontati 7, ambigui esclusi 0, nuovi in v15 0
+[ OK ] 3. nessun control_key divergente -- 0 divergenti su 7
+[ OK ] 4. nessuna direzione divergente -- 0 divergenti su 7
+[ OK ] 2a. membri TGFB1 non calati -- v13=204 (65+9+..)  v15=204  delta=+0
+[ OK ] 2b. membri IL17A non calati -- v13=23  v15=23  delta=+0
+
+--- k censiti (Stadio 3), contro 00-atteso-v15.md §2 ---
+  TGFB1  HGNC:11766: v13=65  v15=78  (atteso 78)
+  IL17A  HGNC:5981: v13=8  v15=12  (atteso 12)
+  residui STR: fusi ancora presenti: 0
+
+--- candidati pre-pooling (00-atteso-v15.md §3) ---
+  candidati v15: 351  (v13 col codice attuale = 354; atteso 351 = 354 - 3 fusi)
+  scomposizione: 305 pre-fix dedup  ->  354 post-fix (+49)  ->  351 dopo la fusione (-3)
+[ OK ] 6. candidati pre-pooling = 351 -- osservati 351 (scarto +0 sull'atteso)
+
+=== VERDETTO ===
+Tutte le invarianti tornano. Si puo' procedere al re-pool.
