@@ -111,6 +111,10 @@ testosterone `CHEBI:17347` k=6, un cluster su `NCBITaxon:1773`.
   `clusters.rds`)**: da **305 a 354** cluster tenuti, **4 scartati** (duplicati veri,
   invece di 53). Misurato col gate di produzione vero (nessuna riscrittura locale del
   filtro), solo la funzione di dedup mockata per isolare "prima"/"dopo".
+  **Numero atteso da verificare dopo il run: Δ = +49 gruppi candidati** (354 − 305),
+  che coincide alla cifra coi 49 orfani misurati pre-fix (sopra) — non sono gruppi mai
+  visti: sono i 49 che **rientrano** nella selezione perché il fix ancora la dedup su
+  `contrast_entity`, il vero contrasto, invece che sull'anchor del primo membro.
 - **Deliverable poolato (stima, NON un run reale)**: applicando ai 354 candidati lo
   stesso tasso di sopravvivenza al gate di pooling osservato in v13 (191 poolate / 305
   candidate ≈ 62,6%), la proiezione è **~215-225 righe**. È una STIMA basata su un
@@ -124,6 +128,51 @@ poolato a **~215-225**. Il numero finale dopo v15 + re-pool sarà l'effetto comb
 (atteso nell'ordine di ~214-224, cioè "quello che la dedup guadagna" meno "la riga che la
 de-frag consuma"), **non 191 → 190 da solo**: leggere un conteggio finale diverso da 191
 come regressione, senza scomporlo nei due effetti, sarebbe un errore di lettura.
+
+---
+
+## 3bis. Effetto 3 — la chiave `record_id` (fix F1/F2 della revisione finale, 2026-08-03):
+sette gruppi cambiano composizione, uno correggeva un braccio sbagliato
+
+Terzo effetto, **indipendente** dai primi due (non tocca `tgfb`/`il17` né la chiave di
+dedup): dallo Stadio 3 v15 lo stesso `comparison_id` può comparire più volte nello stesso
+studio su bracci DIVERSI (`R/stage3-build.R:592-595`, misurato: 291 studi, 746 coppie su
+754), e il `record_id` porta un terzo segmento con l'indice 1-based dell'occorrenza per
+distinguerle. Il re-pool `analysis/p4-fase-f5-stage4-layer-a-rebuild-v15.R` aveva DUE copie
+locali della risoluzione `record_id → campioni` (in `collect_sids()` e nel blocco di
+annotazione) che non conoscevano questo terzo segmento e restituivano sempre vuoto/nessun
+aggancio — fix in questa stessa sessione (F1: da 0 a 587 sample id sullo smoke §5; F2: da
+0/102 a 102/102 `rid` agganciati sullo smoke §5), sostituendo le copie con
+`.split_record_id()`/`.lookup_cmp()` di `R/stage4-dispatch.R`, già corrette per l'indice.
+
+**Perché è un effetto sul deliverable e non solo un fix di script**: PRIMA del fix, quando
+un `comparison_id` ricorreva più volte nello stesso studio, la risoluzione (ovunque nella
+pipeline, non solo nel re-pool) restituiva sempre i campioni della PRIMA occorrenza — le
+occorrenze successive risolvevano lo stesso braccio, quindi uno studio con `comparison_id`
+duplicato o perdeva un membro (il braccio vero non veniva mai raggiunto) o ne poolava uno
+sbagliato (stessi campioni contati due volte sotto due `record_id` diversi). Misurato
+(revisione finale, prima del re-pool pieno): **sette gruppi del deliverable cambiano k**:
+
+| gruppo | k prima | k dopo |
+|---|---:|---:|
+| vemurafenib | 8 | **9** |
+| gefitinib | 7 | **8** |
+| ciclosporina A | 3 | **4** |
+| IFN-γ | 19 | **20** |
+| IL1B | 17 | **18** |
+| gemcitabina | 4 | **5** |
+| JQ1 | 24 | **25** (due dei membri sono case study del Layer B) |
+
+più una correzione di **composizione senza cambio di k**: il gruppo del **17β-estradiolo**
+poolava 14 righe su 44 di un **altro composto** (il braccio sbagliato della comparison
+duplicata) — corrette dal fix, non aggiunte.
+
+**Numeri attesi da verificare dopo il re-pool pieno**: i sette k sopra (colonna "k dopo"),
+e nel gruppo 17β-estradiolo 0 righe residue del composto estraneo (14/44 corrette). Questi
+sette k **non sono spiegati né dall'Effetto 1 né dall'Effetto 2** (nessuno dei sette è
+TGFB1/IL17A, nessuno era fra gli orfani della dedup): se dopo il run compaiono senza che
+questa sezione venga letta, sembreranno inspiegati — è esattamente il motivo per cui questo
+file esiste.
 
 ---
 
@@ -221,10 +270,16 @@ fallimento della regola stessa (che sul dump ha già passato il cancello alla ci
    separato, o se esiste che sia sotto la soglia k≥3 residua da fusione parziale).
 4. Contare il deliverable poolato SOLO dopo il re-pool (non prima): confrontare col
    range combinato di §3, scomponendo i due effetti prima di dichiarare
-   regressione/progresso.
+   regressione/progresso. Verificare in particolare che i candidati pre-pooling tornino
+   da 305 a 354 (**Δ = +49**, §3): un Δ diverso vuol dire che il fix della dedup non si è
+   comportato come misurato su v13.
 5. Rileggere i 6 verdetti di coerenza uno per uno sulla nuova composizione (FASE D0ter,
    §7 dell'handout) — "invariato" qui è una previsione sulle DUE entità fuse, non
    un'esenzione dal rileggerli.
 6. Ri-misurare le cinque invarianti del §2/§6bis **sull'output vero** (`clusters.rds` del
    run pieno), non fidarsi del dump di §2: è la verifica che il dump, per costruzione, non
    può fare da solo (non vede il ramo `anchor`).
+7. Controllare i sette k dell'Effetto 3 (§3bis: vemurafenib, gefitinib, ciclosporina A,
+   IFN-γ, IL1B, gemcitabina, JQ1) e la composizione del gruppo 17β-estradiolo — un
+   cambiamento su questi sette senza spiegazione nell'Effetto 1 o 2 è ATTESO, non un
+   difetto nuovo da indagare.
