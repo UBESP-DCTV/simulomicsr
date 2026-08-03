@@ -326,9 +326,11 @@ Solo allora: `setsid`, SID==PID, `Rscript` **senza** `--vanilla`, aggiornamento 
    2026-08-02** (Task 7): prima di allora lo `stop()` sugli orfani era dentro un `tryCatch` che lo
    declassava a warning, e "si ferma" era una previsione, non un fatto verificato.
 3. **Decisione dell'utente sulla soglia k** (§3c-E), da prendere sui numeri nuovi.
-4. **Re-pool** (~28 h): `STAGE3_DIR=<dir v15> setsid nohup Rscript
-   analysis/p4-fase-f5-stage4-layer-a-rebuild-v15.R > analysis/audit/v15-repool-full.log 2>&1 &`
-   (rinominato dal Task 9, era `-v14.R`)
+4. **Re-pool** (~28 h): `STAGE3_DIR=<dir v15> VERDETTI_PATH=analysis/audit/2026-07-29-etichette-v13/verdetti-poolato-v13.csv
+   setsid nohup Rscript analysis/p4-fase-f5-stage4-layer-a-rebuild-v15.R > analysis/audit/v15-repool-full.log 2>&1 &`
+   (rinominato dal Task 9, era `-v14.R`). `VERDETTI_PATH` è **obbligatoria** (lo script si ferma al
+   minuto zero senza): senza, il ramo di ripiego marcherebbe `coherent` tutte le righe senza nessuna
+   provenienza vera.
 5. **Layer B** ricostruito sul pool nuovo, col fix del difetto 3c-C.
 6. Narrative e Methods.
 
