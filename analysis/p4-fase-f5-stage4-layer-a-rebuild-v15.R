@@ -65,6 +65,29 @@ if (!nzchar(verdetti_path) && !nzchar(Sys.getenv("VERDETTI_ASSENTI_OK"))) {
 if (nzchar(verdetti_path) && !file.exists(verdetti_path)) {
   stop("VERDETTI_PATH indica un file che non esiste: ", verdetti_path)
 }
+# GATE F4 (2026-08-03): lo schema del CSV va validato QUI, al minuto zero, non
+# scoperto dopo 28 ore. Se il CSV non avesse la colonna `ckey` (o fosse
+# tutta vuota/NA), `vv$ckey` piu' avanti restituirebbe NULL/NA: nessun
+# orfano verrebbe rilevato dal controllo fatale post-run, e ogni gruppo
+# uscirebbe marcato `coherent` per assenza di corrispondenza — lo stesso
+# fallimento silenzioso "a favore della conclusione che fa comodo" gia'
+# corretto per il pre-filtro dei verdetti (vedi commento piu' sotto).
+if (nzchar(verdetti_path) && file.exists(verdetti_path)) {
+  vv_schema_check <- utils::read.csv(verdetti_path, stringsAsFactors = FALSE)
+  if (!"ckey" %in% names(vv_schema_check)) {
+    stop("VERDETTI_PATH (", verdetti_path, ") non ha la colonna `ckey`: ",
+         "colonne trovate: ", paste(names(vv_schema_check), collapse = ", "), ".\n",
+         "  Senza `ckey` nessun orfano verrebbe rilevato e TUTTI i gruppi",
+         " uscirebbero marcati `coherent`.")
+  }
+  if (all(!nzchar(trimws(vv_schema_check$ckey)) | is.na(vv_schema_check$ckey))) {
+    stop("VERDETTI_PATH (", verdetti_path, ") ha la colonna `ckey` ma e' TUTTA vuota/NA: ",
+         nrow(vv_schema_check), " righe, 0 chiavi utilizzabili.\n",
+         "  Senza almeno una chiave non vuota nessun orfano verrebbe rilevato",
+         " e TUTTI i gruppi uscirebbero marcati `coherent`.")
+  }
+  rm(vv_schema_check)
+}
 
 if (!grepl("-stage3-v15-", basename(stage3_dir), fixed = TRUE)) {
   stop("stage3_dir NON e' un output v15: ", stage3_dir, "\n",
