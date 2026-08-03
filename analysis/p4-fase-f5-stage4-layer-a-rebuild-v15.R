@@ -202,21 +202,38 @@ cli_alert_info("Assignments rilevanti: {nrow(relevant_asg)}")
 
 s2_idx <- new.env(hash = TRUE, parent = emptyenv())
 for (st in stage2_master) if (!is.null(st$series_id)) assign(st$series_id, st, envir = s2_idx)
+# ⚠️ FIX F1 (2026-08-03, revisione finale). Questa funzione aveva una copia
+# PROPRIA della risoluzione record_id -> campioni: splittava sul primo "__" e
+# cercava il resto come comparison_id ESATTO. Funzionava su v13/v14
+# (record_id a due segmenti, <serie>__<comparison_id>) ma dallo Stadio 3 v15
+# i record cgroup hanno TRE segmenti (<serie>__<comparison_id>__<indice>,
+# R/stage3-build.R:626, fix del bug "stessa comparison_id due bracci"): il
+# confronto esatto contro il terzo segmento non trova mai nulla e la funzione
+# restituiva SEMPRE character(0). Misurato sull'output smoke v15
+# (analysis/p4-output/20260803T000942Z-stage3-v15smoke-7418a9a0): 0 sample
+# con la logica vecchia, 2813 con quella corretta sotto — vedi
+# fix-finale-report.md per il numero rieseguito post-fix.
+# Fix: niente seconda copia della stessa logica. Si riusano le funzioni di
+# pacchetto gia' testate e gia' corrette per l'indice (R/stage4-dispatch.R):
+# .split_record_id() fa lo split vero (solo sul PRIMO "__", series_id non ne
+# contiene) e .lookup_cmp() risolve sia il comparison_id nudo (v13/v14) sia
+# quello indicizzato (v15), con fallback a match esatto prima di provare
+# l'indice.
 collect_sids <- function(record_id) {
-  parts <- regmatches(record_id, regexpr("__", record_id), invert = TRUE)[[1L]]
-  if (length(parts) < 2L) return(character(0L))
-  ser <- parts[1L]; suf <- parts[2L]
-  if (!exists(ser, envir = s2_idx, inherits = FALSE)) return(character(0L))
-  st <- get(ser, envir = s2_idx, inherits = FALSE)
+  parsed <- simulomicsr:::.split_record_id(record_id)
+  if (is.na(parsed$series_id)) return(character(0L))
+  if (!exists(parsed$series_id, envir = s2_idx, inherits = FALSE)) return(character(0L))
+  st <- get(parsed$series_id, envir = s2_idx, inherits = FALSE)
   rg_lookup <- setNames(st$replicate_groups,
                         vapply(st$replicate_groups, `[[`, character(1L), "group_id"))
-  cmp <- NULL
-  for (c in st$comparisons) if (identical(c$comparison_id, suf)) { cmp <- c; break }
+  cmp <- simulomicsr:::.lookup_cmp(st, parsed$suffix)
   if (!is.null(cmp)) {
     tg <- rg_lookup[[cmp$treated_group]]; cg <- rg_lookup[[cmp$control_group]]
+    if (is.null(tg) || is.null(cg)) return(character(0L))
     return(c(as.character(unlist(tg$sample_ids)), as.character(unlist(cg$sample_ids))))
   }
-  rg <- rg_lookup[[suf]]
+  # ramo group-mode (record_id = <serie>__<group_id>, nessun indice): invariato.
+  rg <- rg_lookup[[parsed$suffix]]
   if (!is.null(rg)) return(as.character(unlist(rg$sample_ids)))
   character(0L)
 }
@@ -238,6 +255,15 @@ h5_metadata <- tibble::tibble(
   sample_id = all_samples, gsm = all_samples,
   gse = unname(gse_for_sid), lib_size = 1e7L)  # placeholder lib_size (vedi 96c43acb)
 cli_alert_success("h5_metadata: {nrow(h5_metadata)} sample")
+
+# GATE F1 (2026-08-03): un re-pool che parte con zero campioni non deve poter
+# proseguire in silenzio fino a fine run (era esattamente il difetto appena
+# corretto sopra in collect_sids() — senza questo controllo un altro bug dello
+# stesso tipo tornerebbe a scoprirsi solo dopo ~28 ore).
+stopifnot(
+  "Nessun campione raccolto (h5_metadata ha 0 righe): collect_sids() non ha risolto nessun record_id -- il re-pool partirebbe da un Layer A vuoto senza errore visibile fino a fine run." =
+    nrow(h5_metadata) > 0L
+)
 
 if (DRY_RUN) {
   est_h <- round(nrow(layer_a) * 164 / 3600, 1)
