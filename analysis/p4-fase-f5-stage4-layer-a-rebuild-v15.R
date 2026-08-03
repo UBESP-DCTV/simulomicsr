@@ -385,19 +385,38 @@ tryCatch({
     if (!is.null(rg$label_human) && nzchar(rg$label_human)) rg$label_human else gid
   }
   need_ann <- unique(asg_ann$record_id)
-  for (study in stage2_master) {
-    if (length(study$comparisons) == 0L) next
+  # ⚠️ FIX F2 (2026-08-03, revisione finale). Questo blocco COSTRUIVA rid IN
+  # AVANTI (`sprintf("%s__%s", study$series_id, cmp$comparison_id)`, due
+  # segmenti) e lo confrontava con `need_ann`, che dallo Stadio 3 v15 contiene
+  # record_id a TRE segmenti (indice di occorrenza incluso, R/stage3-build.R:626).
+  # Il confronto `!rid %in% need_ann` era SEMPRE vero (mai un agganciato) ->
+  # lab_env restava vuoto -> membri_ann = NULL -> annotate_stage4_deliverable
+  # prendeva i rami di ripiego che scrivono NA su n_studi_censiti,
+  # stessi_membri, studi_caduti, materiale_misto, n_studi_model/primary/unknown,
+  # classe_studio_dominante, dominato_da_modello: gli assi aggiunti apposta il
+  # 2026-07-31 per misurare quanto il pooling e' efficace.
+  #
+  # Fix: si inverte la direzione. Invece di ricostruire rid dai comparisons e
+  # sperare che combaci (fragile: richiederebbe replicare a mano il contatore
+  # per-comparison_id di .build_contrast_group_records, rischiando un'altra
+  # divergenza silenziosa), si parte dai record_id VERI delle assignments
+  # (need_ann, che SONO le chiavi da risolvere) e si risolve ciascuno con le
+  # stesse .split_record_id()/.lookup_cmp() di R/stage4-dispatch.R usate sopra
+  # in collect_sids() — nessuna logica duplicata, nessun indice da rifare a mano.
+  for (rid in need_ann) {
+    parsed <- simulomicsr:::.split_record_id(rid)
+    if (is.na(parsed$series_id)) next
+    if (!exists(parsed$series_id, envir = s2_idx, inherits = FALSE)) next
+    study <- get(parsed$series_id, envir = s2_idx, inherits = FALSE)
+    cmp <- simulomicsr:::.lookup_cmp(study, parsed$suffix)
+    if (is.null(cmp)) next
     rgl <- stats::setNames(
       study$replicate_groups,
       vapply(study$replicate_groups, function(g) g$group_id, character(1L)))
-    for (cmp in study$comparisons) {
-      rid <- sprintf("%s__%s", study$series_id, cmp$comparison_id)
-      if (!rid %in% need_ann) next
-      tg <- rgl[[cmp$treated_group]]; cg <- rgl[[cmp$control_group]]
-      if (is.null(tg) || is.null(cg)) next
-      assign(rid, c(.lab_of(tg, cmp$treated_group), .lab_of(cg, cmp$control_group)),
-             envir = lab_env)
-    }
+    tg <- rgl[[cmp$treated_group]]; cg <- rgl[[cmp$control_group]]
+    if (is.null(tg) || is.null(cg)) next
+    assign(rid, c(.lab_of(tg, cmp$treated_group), .lab_of(cg, cmp$control_group)),
+           envir = lab_env)
   }
   membri_ann <- do.call(rbind, lapply(seq_len(nrow(asg_ann)), function(i) {
     e <- get0(asg_ann$record_id[i], envir = lab_env, inherits = FALSE)
