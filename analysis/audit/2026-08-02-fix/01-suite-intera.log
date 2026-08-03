@@ -1,0 +1,2325 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+
+
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+i tiered_max_tokens: S=1 M=1 L=1 XL=1 (max=32768)
+v Submitted: run_id=20260802T235853Z-stage1-921669 slurm=123456
+
+-- Layer B build ---------------------------------------------------------------
+i B.1 Loader + validation
+i B.2 Asset generation (2 cluster)
+> Processing cl_mega_1...
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+> Processing cl_aug_1...
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+v Layer B build OK in 56.5s: '/tmp/RtmpcvLs9z/lb_out_13dce04c1e1351'
+
+-- Layer B build ---------------------------------------------------------------
+i B.1 Loader + validation
+i B.2 Asset generation (2 cluster)
+> Processing cl_mega_1...
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+> Processing cl_aug_1...
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+v Layer B build OK in 24s: '/tmp/RtmpcvLs9z/lb_mini_13dce0579ce0db'
+'select()' returned 1:1 mapping between keys and columns
+WARNING: 'test-layer-b-go-enrichment.R:58:3' ----------
+95% of input gene IDs are fail to map...
+Backtrace:
+    ▆
+ 1. └─simulomicsr:::.build_go_enrichment(cp, out_dir = out_dir, config = cfg) at test-layer-b-go-enrichment.R:58:3
+ 2.   ├─base::tryCatch(...) at simulomicsr/R/layer-b-plot-go-enrichment.R:57:3
+ 3.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 4.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 5.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 6.   └─clusterProfiler::enrichGO(...) at simulomicsr/R/layer-b-plot-go-enrichment.R:58:5
+ 7.     └─clusterProfiler:::map_to_entrezid(gene, fromType = keyType, OrgDb = OrgDb) at clusterProfiler/R/enrichGO.R:58:9
+ 8.       └─clusterProfiler::bitr(...) at clusterProfiler/R/enrichGO.R:183:5
+
+'select()' returned 1:1 mapping between keys and columns
+WARNING: 'test-layer-b-go-enrichment.R:58:3' ----------
+99.41% of input gene IDs are fail to map...
+Backtrace:
+    ▆
+ 1. └─simulomicsr:::.build_go_enrichment(cp, out_dir = out_dir, config = cfg) at test-layer-b-go-enrichment.R:58:3
+ 2.   ├─base::tryCatch(...) at simulomicsr/R/layer-b-plot-go-enrichment.R:57:3
+ 3.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 4.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 5.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 6.   └─clusterProfiler::enrichGO(...) at simulomicsr/R/layer-b-plot-go-enrichment.R:58:5
+ 7.     └─clusterProfiler:::map_to_entrezid(...) at clusterProfiler/R/enrichGO.R:65:13
+ 8.       └─clusterProfiler::bitr(...) at clusterProfiler/R/enrichGO.R:183:5
+
+No gene sets have size between 10 and 500 ...
+--> return NULL...
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+converting counts to integer mode
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found3batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+WARNING: 'test-layer-b-heatmap.R:145:3' -----------
+Estimated rdf < 1.0; not estimating variance
+Backtrace:
+     ▆
+  1. └─simulomicsr:::.build_heatmap(...) at test-layer-b-heatmap.R:145:3
+  2.   ├─base::tryCatch(...) at simulomicsr/R/layer-b-plot-heatmap.R:119:3
+  3.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+  4.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+  5.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+  6.   └─DESeq2::varianceStabilizingTransformation(...) at simulomicsr/R/layer-b-plot-heatmap.R:120:5
+  7.     └─DESeq2::estimateDispersionsFit(object, quiet = TRUE, fitType) at DESeq2/R/vst.R:130:5
+  8.       └─DESeq2:::localDispersionFit(...) at DESeq2/R/core.R:897:5
+  9.         └─locfit::locfit(...) at DESeq2/R/core.R:2219:3
+ 10.           └─locfit (local) lfproc(...)
+
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+converting counts to integer mode
+WARNING: 'test-layer-b-heatmap.R:208:3' -----------
+ComBat failed per cluster cl_hm_rank: dim(X) must have a positive length
+Backtrace:
+    ▆
+ 1. └─simulomicsr:::.build_heatmap(...) at test-layer-b-heatmap.R:208:3
+ 2.   └─base::tryCatch(...) at simulomicsr/R/layer-b-plot-heatmap.R:145:5
+ 3.     └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 4.       └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 5.         └─value[[3L]](cond)
+ 6.           └─cli::cli_warn("ComBat failed per cluster {.field {cluster_id_str}}: {conditionMessage(e)}") at simulomicsr/R/layer-b-plot-heatmap.R:154:7
+
+WARNING: 'test-layer-b-ma.R:4:3' ------------------
+Unknown or uninitialised column: `gene`.
+Backtrace:
+    ▆
+ 1. ├─base::matrix(...) at test-layer-b-ma.R:4:3
+ 2. ├─cp$gene
+ 3. └─tibble:::`$.tbl_df`(cp, gene)
+
+WARNING: 'test-layer-b-ma.R:12:3' -----------------
+No shared levels found between `names(values)` of the manual scale and the data's colour values.
+Backtrace:
+     ▆
+  1. └─simulomicsr:::.build_ma_plot(...) at test-layer-b-ma.R:12:3
+  2.   └─ggplot2::ggsave(png_path, p, width = 6, height = 6, dpi = config$dpi) at simulomicsr/R/layer-b-plot-ma.R:59:3
+  3.     └─base::lapply(plot, grid.draw)
+  4.       ├─grid (local) FUN(X[[i]], ...)
+  5.       └─ggplot2 (local) `grid.draw.ggplot2::ggplot`(X[[i]], ...)
+  6.         ├─base::print(x)
+  7.         └─ggplot2 (local) `print.ggplot2::ggplot`(x)
+  8.           ├─ggplot2::ggplot_build(x)
+  9.           └─ggplot2 (local) `ggplot_build.ggplot2::ggplot`(x)
+ 10.             └─plot@guides$build(npscales, plot@layers, plot@labels, data, plot@theme)
+ 11.               └─ggplot2 (local) build(..., self = self)
+ 12.                 └─guides$train(scales, labels)
+ 13.                   └─ggplot2 (local) train(..., self = self)
+ 14.                     └─base::Map(...)
+ 15.                       └─base::mapply(FUN = f, ..., SIMPLIFY = FALSE)
+ 16.                         └─ggplot2 (local) `<fn>`(...)
+ 17.                           └─guide$train(param, scale, aes, title = labels[[aes]])
+ 18.                             └─ggplot2 (local) train(..., self = self)
+ 19.                               ├─rlang::inject(self$extract_key(scale, !!!params))
+ 20.                               └─self$extract_key(...)
+ 21.                                 └─ggplot2 (local) extract_key(...)
+ 22.                                   └─scale$get_breaks()
+ 23.                                     └─ggplot2 (local) get_breaks(..., self = self)
+ 24.                                       └─self$get_limits()
+ 25.                                         └─ggplot2 (local) get_limits(..., self = self)
+ 26.                                           └─self$limits(self$range$range)
+ 27.                                             └─ggplot2:::limits(...)
+ 28.                                               └─cli::cli_warn(...)
+
+WARNING: 'test-layer-b-ma.R:12:3' -----------------
+No shared levels found between `names(values)` of the manual scale and the data's colour values.
+Backtrace:
+     ▆
+  1. └─simulomicsr:::.build_ma_plot(...) at test-layer-b-ma.R:12:3
+  2.   └─ggplot2::ggsave(svg_path, p, width = 6, height = 6, device = "svg") at simulomicsr/R/layer-b-plot-ma.R:61:5
+  3.     └─base::lapply(plot, grid.draw)
+  4.       ├─grid (local) FUN(X[[i]], ...)
+  5.       └─ggplot2 (local) `grid.draw.ggplot2::ggplot`(X[[i]], ...)
+  6.         ├─base::print(x)
+  7.         └─ggplot2 (local) `print.ggplot2::ggplot`(x)
+  8.           ├─ggplot2::ggplot_build(x)
+  9.           └─ggplot2 (local) `ggplot_build.ggplot2::ggplot`(x)
+ 10.             └─plot@guides$build(npscales, plot@layers, plot@labels, data, plot@theme)
+ 11.               └─ggplot2 (local) build(..., self = self)
+ 12.                 └─guides$train(scales, labels)
+ 13.                   └─ggplot2 (local) train(..., self = self)
+ 14.                     └─base::Map(...)
+ 15.                       └─base::mapply(FUN = f, ..., SIMPLIFY = FALSE)
+ 16.                         └─ggplot2 (local) `<fn>`(...)
+ 17.                           └─guide$train(param, scale, aes, title = labels[[aes]])
+ 18.                             └─ggplot2 (local) train(..., self = self)
+ 19.                               ├─rlang::inject(self$extract_key(scale, !!!params))
+ 20.                               └─self$extract_key(...)
+ 21.                                 └─ggplot2 (local) extract_key(...)
+ 22.                                   └─scale$get_breaks()
+ 23.                                     └─ggplot2 (local) get_breaks(..., self = self)
+ 24.                                       └─self$get_limits()
+ 25.                                         └─ggplot2 (local) get_limits(..., self = self)
+ 26.                                           └─self$limits(self$range$range)
+ 27.                                             └─ggplot2:::limits(...)
+ 28.                                               └─cli::cli_warn(...)
+
+
+-- Layer B build ---------------------------------------------------------------
+i B.1 Loader + validation
+i B.2 Asset generation (1 cluster)
+> Processing cl_mega_1...
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+v Layer B build OK in 11.3s: '/tmp/RtmpcvLs9z/lb_rep1_13dce020f71ce6'
+
+-- Layer B build ---------------------------------------------------------------
+i B.1 Loader + validation
+i B.2 Asset generation (1 cluster)
+> Processing cl_mega_1...
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+v Layer B build OK in 17.6s: '/tmp/RtmpcvLs9z/lb_rep2_13dce0776abbd7'
+WARNING: 'test-layer-b-selection.R:34:3' ----------
+The following named parsers don't match the column names: priority, notes
+Backtrace:
+     ▆
+  1. ├─testthat::expect_error(...) at test-layer-b-selection.R:34:3
+  2. │ └─testthat:::expect_condition_matching_(...)
+  3. │   └─testthat:::quasi_capture(...)
+  4. │     ├─testthat (local) .capture(...)
+  5. │     │ └─base::withCallingHandlers(...)
+  6. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+  7. ├─simulomicsr:::.load_layer_b_selection(csv)
+  8. │ └─readr::read_csv(...) at simulomicsr/R/layer-b-selection.R:14:5
+  9. │   └─vroom::vroom(...)
+ 10. │     └─vroom:::vroom_(...)
+ 11. └─vroom (local) `<fn>`(`<col_spec>`, 2L, `<chr>`, NULL, "unique")
+
+SKIP: 'test-resolver-guards.R:72:3' ---------------
+Reason: dizionari caricati come fixture (isolamento suite)
+
+SKIP: 'test-resolver-guards.R:78:3' ---------------
+Reason: dizionari caricati come fixture (isolamento suite)
+
+SKIP: 'test-resolver-guards.R:83:3' ---------------
+Reason: dizionari caricati come fixture (isolamento suite)
+
+SKIP: 'test-smoke-e2e-stage1.R:2:3' ---------------
+Reason: On CRAN
+
+SKIP: 'test-smoke-e2e-stage2.R:2:3' ---------------
+Reason: On CRAN
+
+SKIP: 'test-smoke-e2e.R:2:3' ----------------------
+Reason: On CRAN
+
+SKIP: 'test-stage3-archs4-meta.R:63:3' ------------
+Reason: H5 ARCHS4 non disponibile
+
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:27
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:28
+...cluster 1/15 (7%) at 2026-08-03 02:02:29
+...cluster 2/15 (13%) at 2026-08-03 02:02:29
+...cluster 3/15 (20%) at 2026-08-03 02:02:29
+...cluster 4/15 (27%) at 2026-08-03 02:02:29
+...cluster 5/15 (33%) at 2026-08-03 02:02:29
+...cluster 6/15 (40%) at 2026-08-03 02:02:29
+...cluster 7/15 (47%) at 2026-08-03 02:02:29
+...cluster 8/15 (53%) at 2026-08-03 02:02:29
+...cluster 9/15 (60%) at 2026-08-03 02:02:29
+...cluster 10/15 (67%) at 2026-08-03 02:02:29
+...cluster 11/15 (73%) at 2026-08-03 02:02:29
+...cluster 12/15 (80%) at 2026-08-03 02:02:29
+...cluster 13/15 (87%) at 2026-08-03 02:02:29
+...cluster 14/15 (93%) at 2026-08-03 02:02:30
+...cluster 15/15 (100%) at 2026-08-03 02:02:30
+Combining 15 cluster rows at 2026-08-03 02:02:30
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:30
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:32
+...cluster 1/15 (7%) at 2026-08-03 02:02:32
+...cluster 2/15 (13%) at 2026-08-03 02:02:32
+...cluster 3/15 (20%) at 2026-08-03 02:02:32
+...cluster 4/15 (27%) at 2026-08-03 02:02:32
+...cluster 5/15 (33%) at 2026-08-03 02:02:32
+...cluster 6/15 (40%) at 2026-08-03 02:02:32
+...cluster 7/15 (47%) at 2026-08-03 02:02:32
+...cluster 8/15 (53%) at 2026-08-03 02:02:32
+...cluster 9/15 (60%) at 2026-08-03 02:02:33
+...cluster 10/15 (67%) at 2026-08-03 02:02:33
+...cluster 11/15 (73%) at 2026-08-03 02:02:33
+...cluster 12/15 (80%) at 2026-08-03 02:02:33
+...cluster 13/15 (87%) at 2026-08-03 02:02:33
+...cluster 14/15 (93%) at 2026-08-03 02:02:33
+...cluster 15/15 (100%) at 2026-08-03 02:02:33
+Combining 15 cluster rows at 2026-08-03 02:02:33
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:33
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:34
+...cluster 1/15 (7%) at 2026-08-03 02:02:34
+...cluster 2/15 (13%) at 2026-08-03 02:02:34
+...cluster 3/15 (20%) at 2026-08-03 02:02:34
+...cluster 4/15 (27%) at 2026-08-03 02:02:35
+...cluster 5/15 (33%) at 2026-08-03 02:02:35
+...cluster 6/15 (40%) at 2026-08-03 02:02:35
+...cluster 7/15 (47%) at 2026-08-03 02:02:35
+...cluster 8/15 (53%) at 2026-08-03 02:02:35
+...cluster 9/15 (60%) at 2026-08-03 02:02:35
+...cluster 10/15 (67%) at 2026-08-03 02:02:35
+...cluster 11/15 (73%) at 2026-08-03 02:02:35
+...cluster 12/15 (80%) at 2026-08-03 02:02:35
+...cluster 13/15 (87%) at 2026-08-03 02:02:35
+...cluster 14/15 (93%) at 2026-08-03 02:02:35
+...cluster 15/15 (100%) at 2026-08-03 02:02:35
+Combining 15 cluster rows at 2026-08-03 02:02:35
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:35
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:36
+...cluster 1/15 (7%) at 2026-08-03 02:02:37
+...cluster 2/15 (13%) at 2026-08-03 02:02:37
+...cluster 3/15 (20%) at 2026-08-03 02:02:37
+...cluster 4/15 (27%) at 2026-08-03 02:02:37
+...cluster 5/15 (33%) at 2026-08-03 02:02:37
+...cluster 6/15 (40%) at 2026-08-03 02:02:37
+...cluster 7/15 (47%) at 2026-08-03 02:02:37
+...cluster 8/15 (53%) at 2026-08-03 02:02:37
+...cluster 9/15 (60%) at 2026-08-03 02:02:37
+...cluster 10/15 (67%) at 2026-08-03 02:02:37
+...cluster 11/15 (73%) at 2026-08-03 02:02:37
+...cluster 12/15 (80%) at 2026-08-03 02:02:37
+...cluster 13/15 (87%) at 2026-08-03 02:02:37
+...cluster 14/15 (93%) at 2026-08-03 02:02:37
+...cluster 15/15 (100%) at 2026-08-03 02:02:37
+Combining 15 cluster rows at 2026-08-03 02:02:38
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:38
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:39
+...cluster 1/15 (7%) at 2026-08-03 02:02:39
+...cluster 2/15 (13%) at 2026-08-03 02:02:39
+...cluster 3/15 (20%) at 2026-08-03 02:02:39
+...cluster 4/15 (27%) at 2026-08-03 02:02:39
+...cluster 5/15 (33%) at 2026-08-03 02:02:39
+...cluster 6/15 (40%) at 2026-08-03 02:02:39
+...cluster 7/15 (47%) at 2026-08-03 02:02:39
+...cluster 8/15 (53%) at 2026-08-03 02:02:39
+...cluster 9/15 (60%) at 2026-08-03 02:02:39
+...cluster 10/15 (67%) at 2026-08-03 02:02:39
+...cluster 11/15 (73%) at 2026-08-03 02:02:39
+...cluster 12/15 (80%) at 2026-08-03 02:02:40
+...cluster 13/15 (87%) at 2026-08-03 02:02:40
+...cluster 14/15 (93%) at 2026-08-03 02:02:40
+...cluster 15/15 (100%) at 2026-08-03 02:02:40
+Combining 15 cluster rows at 2026-08-03 02:02:40
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:40
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:42
+...cluster 1/15 (7%) at 2026-08-03 02:02:42
+...cluster 2/15 (13%) at 2026-08-03 02:02:42
+...cluster 3/15 (20%) at 2026-08-03 02:02:42
+...cluster 4/15 (27%) at 2026-08-03 02:02:42
+...cluster 5/15 (33%) at 2026-08-03 02:02:43
+...cluster 6/15 (40%) at 2026-08-03 02:02:43
+...cluster 7/15 (47%) at 2026-08-03 02:02:43
+...cluster 8/15 (53%) at 2026-08-03 02:02:43
+...cluster 9/15 (60%) at 2026-08-03 02:02:43
+...cluster 10/15 (67%) at 2026-08-03 02:02:43
+...cluster 11/15 (73%) at 2026-08-03 02:02:43
+...cluster 12/15 (80%) at 2026-08-03 02:02:43
+...cluster 13/15 (87%) at 2026-08-03 02:02:43
+...cluster 14/15 (93%) at 2026-08-03 02:02:43
+...cluster 15/15 (100%) at 2026-08-03 02:02:43
+Combining 15 cluster rows at 2026-08-03 02:02:43
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:43
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:44
+...cluster 1/15 (7%) at 2026-08-03 02:02:44
+...cluster 2/15 (13%) at 2026-08-03 02:02:44
+...cluster 3/15 (20%) at 2026-08-03 02:02:44
+...cluster 4/15 (27%) at 2026-08-03 02:02:45
+...cluster 5/15 (33%) at 2026-08-03 02:02:45
+...cluster 6/15 (40%) at 2026-08-03 02:02:45
+...cluster 7/15 (47%) at 2026-08-03 02:02:45
+...cluster 8/15 (53%) at 2026-08-03 02:02:45
+...cluster 9/15 (60%) at 2026-08-03 02:02:45
+...cluster 10/15 (67%) at 2026-08-03 02:02:45
+...cluster 11/15 (73%) at 2026-08-03 02:02:45
+...cluster 12/15 (80%) at 2026-08-03 02:02:45
+...cluster 13/15 (87%) at 2026-08-03 02:02:45
+...cluster 14/15 (93%) at 2026-08-03 02:02:45
+...cluster 15/15 (100%) at 2026-08-03 02:02:45
+Combining 15 cluster rows at 2026-08-03 02:02:45
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:45
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:46
+...cluster 1/15 (7%) at 2026-08-03 02:02:46
+...cluster 2/15 (13%) at 2026-08-03 02:02:47
+...cluster 3/15 (20%) at 2026-08-03 02:02:47
+...cluster 4/15 (27%) at 2026-08-03 02:02:47
+...cluster 5/15 (33%) at 2026-08-03 02:02:47
+...cluster 6/15 (40%) at 2026-08-03 02:02:47
+...cluster 7/15 (47%) at 2026-08-03 02:02:47
+...cluster 8/15 (53%) at 2026-08-03 02:02:47
+...cluster 9/15 (60%) at 2026-08-03 02:02:47
+...cluster 10/15 (67%) at 2026-08-03 02:02:47
+...cluster 11/15 (73%) at 2026-08-03 02:02:47
+...cluster 12/15 (80%) at 2026-08-03 02:02:47
+...cluster 13/15 (87%) at 2026-08-03 02:02:47
+...cluster 14/15 (93%) at 2026-08-03 02:02:47
+...cluster 15/15 (100%) at 2026-08-03 02:02:47
+Combining 15 cluster rows at 2026-08-03 02:02:47
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:48
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:49
+...cluster 1/15 (7%) at 2026-08-03 02:02:49
+...cluster 2/15 (13%) at 2026-08-03 02:02:49
+...cluster 3/15 (20%) at 2026-08-03 02:02:49
+...cluster 4/15 (27%) at 2026-08-03 02:02:49
+...cluster 5/15 (33%) at 2026-08-03 02:02:49
+...cluster 6/15 (40%) at 2026-08-03 02:02:49
+...cluster 7/15 (47%) at 2026-08-03 02:02:49
+...cluster 8/15 (53%) at 2026-08-03 02:02:49
+...cluster 9/15 (60%) at 2026-08-03 02:02:49
+...cluster 10/15 (67%) at 2026-08-03 02:02:49
+...cluster 11/15 (73%) at 2026-08-03 02:02:49
+...cluster 12/15 (80%) at 2026-08-03 02:02:49
+...cluster 13/15 (87%) at 2026-08-03 02:02:49
+...cluster 14/15 (93%) at 2026-08-03 02:02:49
+...cluster 15/15 (100%) at 2026-08-03 02:02:49
+Combining 15 cluster rows at 2026-08-03 02:02:50
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:50
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:51
+...cluster 1/15 (7%) at 2026-08-03 02:02:51
+...cluster 2/15 (13%) at 2026-08-03 02:02:51
+...cluster 3/15 (20%) at 2026-08-03 02:02:51
+...cluster 4/15 (27%) at 2026-08-03 02:02:51
+...cluster 5/15 (33%) at 2026-08-03 02:02:51
+...cluster 6/15 (40%) at 2026-08-03 02:02:51
+...cluster 7/15 (47%) at 2026-08-03 02:02:51
+...cluster 8/15 (53%) at 2026-08-03 02:02:51
+...cluster 9/15 (60%) at 2026-08-03 02:02:51
+...cluster 10/15 (67%) at 2026-08-03 02:02:51
+...cluster 11/15 (73%) at 2026-08-03 02:02:51
+...cluster 12/15 (80%) at 2026-08-03 02:02:51
+...cluster 13/15 (87%) at 2026-08-03 02:02:51
+...cluster 14/15 (93%) at 2026-08-03 02:02:52
+...cluster 15/15 (100%) at 2026-08-03 02:02:52
+Combining 15 cluster rows at 2026-08-03 02:02:52
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:52
+[stage3] Phase 1 done: 0 stage1 + 0 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 0 (sample_id, role) anchors + 0 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 0 pair + 0 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=0 non_clust=0; group eligible=0 non_clust=0; cgroup eligible=0 non_clust=0
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] Phase 5 done: combining 0 assignment chunks
+[stage3] Phase 6: summarize_clusters (0 assignments -> ~clusters)
+[stage3] Phase 6 done: 0 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 0 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:52
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:53
+...cluster 1/15 (7%) at 2026-08-03 02:02:53
+...cluster 2/15 (13%) at 2026-08-03 02:02:53
+...cluster 3/15 (20%) at 2026-08-03 02:02:53
+...cluster 4/15 (27%) at 2026-08-03 02:02:54
+...cluster 5/15 (33%) at 2026-08-03 02:02:54
+...cluster 6/15 (40%) at 2026-08-03 02:02:54
+...cluster 7/15 (47%) at 2026-08-03 02:02:54
+...cluster 8/15 (53%) at 2026-08-03 02:02:54
+...cluster 9/15 (60%) at 2026-08-03 02:02:54
+...cluster 10/15 (67%) at 2026-08-03 02:02:54
+...cluster 11/15 (73%) at 2026-08-03 02:02:54
+...cluster 12/15 (80%) at 2026-08-03 02:02:54
+...cluster 13/15 (87%) at 2026-08-03 02:02:54
+...cluster 14/15 (93%) at 2026-08-03 02:02:54
+...cluster 15/15 (100%) at 2026-08-03 02:02:54
+Combining 15 cluster rows at 2026-08-03 02:02:54
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:54
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:55
+...cluster 1/15 (7%) at 2026-08-03 02:02:56
+...cluster 2/15 (13%) at 2026-08-03 02:02:56
+...cluster 3/15 (20%) at 2026-08-03 02:02:56
+...cluster 4/15 (27%) at 2026-08-03 02:02:56
+...cluster 5/15 (33%) at 2026-08-03 02:02:56
+...cluster 6/15 (40%) at 2026-08-03 02:02:56
+...cluster 7/15 (47%) at 2026-08-03 02:02:56
+...cluster 8/15 (53%) at 2026-08-03 02:02:56
+...cluster 9/15 (60%) at 2026-08-03 02:02:56
+...cluster 10/15 (67%) at 2026-08-03 02:02:56
+...cluster 11/15 (73%) at 2026-08-03 02:02:56
+...cluster 12/15 (80%) at 2026-08-03 02:02:56
+...cluster 13/15 (87%) at 2026-08-03 02:02:56
+...cluster 14/15 (93%) at 2026-08-03 02:02:56
+...cluster 15/15 (100%) at 2026-08-03 02:02:56
+Combining 15 cluster rows at 2026-08-03 02:02:56
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:57
+[stage3] Phase 1 done: 4 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 2 (sample_id, role) anchors + 2 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 2 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=2 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 2 eligible records in 2 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 15 assignment chunks
+[stage3] Phase 6: summarize_clusters (15 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:02:58
+...cluster 1/15 (7%) at 2026-08-03 02:02:58
+...cluster 2/15 (13%) at 2026-08-03 02:02:58
+...cluster 3/15 (20%) at 2026-08-03 02:02:58
+...cluster 4/15 (27%) at 2026-08-03 02:02:58
+...cluster 5/15 (33%) at 2026-08-03 02:02:58
+...cluster 6/15 (40%) at 2026-08-03 02:02:58
+...cluster 7/15 (47%) at 2026-08-03 02:02:58
+...cluster 8/15 (53%) at 2026-08-03 02:02:58
+...cluster 9/15 (60%) at 2026-08-03 02:02:58
+...cluster 10/15 (67%) at 2026-08-03 02:02:58
+...cluster 11/15 (73%) at 2026-08-03 02:02:58
+...cluster 12/15 (80%) at 2026-08-03 02:02:58
+...cluster 13/15 (87%) at 2026-08-03 02:02:58
+...cluster 14/15 (93%) at 2026-08-03 02:02:58
+...cluster 15/15 (100%) at 2026-08-03 02:02:59
+Combining 15 cluster rows at 2026-08-03 02:02:59
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 3 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:02:59
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:00
+...cluster 1/15 (7%) at 2026-08-03 02:03:00
+...cluster 2/15 (13%) at 2026-08-03 02:03:00
+...cluster 3/15 (20%) at 2026-08-03 02:03:00
+...cluster 4/15 (27%) at 2026-08-03 02:03:00
+...cluster 5/15 (33%) at 2026-08-03 02:03:00
+...cluster 6/15 (40%) at 2026-08-03 02:03:00
+...cluster 7/15 (47%) at 2026-08-03 02:03:00
+...cluster 8/15 (53%) at 2026-08-03 02:03:00
+...cluster 9/15 (60%) at 2026-08-03 02:03:00
+...cluster 10/15 (67%) at 2026-08-03 02:03:00
+...cluster 11/15 (73%) at 2026-08-03 02:03:00
+...cluster 12/15 (80%) at 2026-08-03 02:03:00
+...cluster 13/15 (87%) at 2026-08-03 02:03:01
+...cluster 14/15 (93%) at 2026-08-03 02:03:01
+...cluster 15/15 (100%) at 2026-08-03 02:03:01
+Combining 15 cluster rows at 2026-08-03 02:03:01
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:06
+[stage3] Phase 1b: load stage2_master from /tmp/RtmpcvLs9z/file13dce02d1289a1.jsonl
+[stage3] completeness guard: 1 sample non coperti -> 'unclear' su 1 studi
+[stage3] Phase 1 done: 6 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 4 (sample_id, role) anchors + 4 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 4 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=4 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 4 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (25 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:07
+...cluster 1/15 (7%) at 2026-08-03 02:03:07
+...cluster 2/15 (13%) at 2026-08-03 02:03:07
+...cluster 3/15 (20%) at 2026-08-03 02:03:07
+...cluster 4/15 (27%) at 2026-08-03 02:03:07
+...cluster 5/15 (33%) at 2026-08-03 02:03:07
+...cluster 6/15 (40%) at 2026-08-03 02:03:07
+...cluster 7/15 (47%) at 2026-08-03 02:03:07
+...cluster 8/15 (53%) at 2026-08-03 02:03:07
+...cluster 9/15 (60%) at 2026-08-03 02:03:07
+...cluster 10/15 (67%) at 2026-08-03 02:03:07
+...cluster 11/15 (73%) at 2026-08-03 02:03:07
+...cluster 12/15 (80%) at 2026-08-03 02:03:08
+...cluster 13/15 (87%) at 2026-08-03 02:03:08
+...cluster 14/15 (93%) at 2026-08-03 02:03:08
+...cluster 15/15 (100%) at 2026-08-03 02:03:08
+Combining 15 cluster rows at 2026-08-03 02:03:08
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 5 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:08
+[stage3] Phase 1b: load stage2_master from /tmp/RtmpcvLs9z/file13dce029eddad0.jsonl
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:09
+...cluster 1/15 (7%) at 2026-08-03 02:03:09
+...cluster 2/15 (13%) at 2026-08-03 02:03:09
+...cluster 3/15 (20%) at 2026-08-03 02:03:09
+...cluster 4/15 (27%) at 2026-08-03 02:03:09
+...cluster 5/15 (33%) at 2026-08-03 02:03:09
+...cluster 6/15 (40%) at 2026-08-03 02:03:09
+...cluster 7/15 (47%) at 2026-08-03 02:03:09
+...cluster 8/15 (53%) at 2026-08-03 02:03:10
+...cluster 9/15 (60%) at 2026-08-03 02:03:10
+...cluster 10/15 (67%) at 2026-08-03 02:03:10
+...cluster 11/15 (73%) at 2026-08-03 02:03:10
+...cluster 12/15 (80%) at 2026-08-03 02:03:10
+...cluster 13/15 (87%) at 2026-08-03 02:03:10
+...cluster 14/15 (93%) at 2026-08-03 02:03:10
+...cluster 15/15 (100%) at 2026-08-03 02:03:10
+Combining 15 cluster rows at 2026-08-03 02:03:10
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+SKIP: 'test-stage3-contrast-anchor.R:108:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:121:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:130:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:145:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:155:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:168:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:178:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:190:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:197:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:209:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:223:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:233:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:255:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:265:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:275:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:292:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:324:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:339:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:351:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:358:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:383:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:400:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-anchor.R:412:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-group-records.R:34:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-contrast-group-records.R:92:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:67:3' -----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:142:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:167:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:179:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:192:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:219:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:259:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:332:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+SKIP: 'test-stage3-defrag-alias.R:347:3' ----------
+Reason: dizionari fixture: test end-to-end saltato
+
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:16
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:17
+...cluster 1/15 (7%) at 2026-08-03 02:03:17
+...cluster 2/15 (13%) at 2026-08-03 02:03:17
+...cluster 3/15 (20%) at 2026-08-03 02:03:17
+...cluster 4/15 (27%) at 2026-08-03 02:03:17
+...cluster 5/15 (33%) at 2026-08-03 02:03:17
+...cluster 6/15 (40%) at 2026-08-03 02:03:18
+...cluster 7/15 (47%) at 2026-08-03 02:03:18
+...cluster 8/15 (53%) at 2026-08-03 02:03:18
+...cluster 9/15 (60%) at 2026-08-03 02:03:18
+...cluster 10/15 (67%) at 2026-08-03 02:03:18
+...cluster 11/15 (73%) at 2026-08-03 02:03:18
+...cluster 12/15 (80%) at 2026-08-03 02:03:18
+...cluster 13/15 (87%) at 2026-08-03 02:03:18
+...cluster 14/15 (93%) at 2026-08-03 02:03:18
+...cluster 15/15 (100%) at 2026-08-03 02:03:18
+Combining 15 cluster rows at 2026-08-03 02:03:18
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:18
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:19
+...cluster 1/15 (7%) at 2026-08-03 02:03:19
+...cluster 2/15 (13%) at 2026-08-03 02:03:19
+...cluster 3/15 (20%) at 2026-08-03 02:03:19
+...cluster 4/15 (27%) at 2026-08-03 02:03:19
+...cluster 5/15 (33%) at 2026-08-03 02:03:20
+...cluster 6/15 (40%) at 2026-08-03 02:03:20
+...cluster 7/15 (47%) at 2026-08-03 02:03:20
+...cluster 8/15 (53%) at 2026-08-03 02:03:20
+...cluster 9/15 (60%) at 2026-08-03 02:03:20
+...cluster 10/15 (67%) at 2026-08-03 02:03:20
+...cluster 11/15 (73%) at 2026-08-03 02:03:20
+...cluster 12/15 (80%) at 2026-08-03 02:03:20
+...cluster 13/15 (87%) at 2026-08-03 02:03:20
+...cluster 14/15 (93%) at 2026-08-03 02:03:20
+...cluster 15/15 (100%) at 2026-08-03 02:03:20
+Combining 15 cluster rows at 2026-08-03 02:03:20
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:20
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:21
+...cluster 1/15 (7%) at 2026-08-03 02:03:21
+...cluster 2/15 (13%) at 2026-08-03 02:03:22
+...cluster 3/15 (20%) at 2026-08-03 02:03:22
+...cluster 4/15 (27%) at 2026-08-03 02:03:22
+...cluster 5/15 (33%) at 2026-08-03 02:03:22
+...cluster 6/15 (40%) at 2026-08-03 02:03:22
+...cluster 7/15 (47%) at 2026-08-03 02:03:22
+...cluster 8/15 (53%) at 2026-08-03 02:03:22
+...cluster 9/15 (60%) at 2026-08-03 02:03:22
+...cluster 10/15 (67%) at 2026-08-03 02:03:22
+...cluster 11/15 (73%) at 2026-08-03 02:03:22
+...cluster 12/15 (80%) at 2026-08-03 02:03:22
+...cluster 13/15 (87%) at 2026-08-03 02:03:22
+...cluster 14/15 (93%) at 2026-08-03 02:03:22
+...cluster 15/15 (100%) at 2026-08-03 02:03:22
+Combining 15 cluster rows at 2026-08-03 02:03:22
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:23
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:23
+...cluster 1/15 (7%) at 2026-08-03 02:03:24
+...cluster 2/15 (13%) at 2026-08-03 02:03:24
+...cluster 3/15 (20%) at 2026-08-03 02:03:24
+...cluster 4/15 (27%) at 2026-08-03 02:03:24
+...cluster 5/15 (33%) at 2026-08-03 02:03:24
+...cluster 6/15 (40%) at 2026-08-03 02:03:24
+...cluster 7/15 (47%) at 2026-08-03 02:03:24
+...cluster 8/15 (53%) at 2026-08-03 02:03:24
+...cluster 9/15 (60%) at 2026-08-03 02:03:24
+...cluster 10/15 (67%) at 2026-08-03 02:03:24
+...cluster 11/15 (73%) at 2026-08-03 02:03:24
+...cluster 12/15 (80%) at 2026-08-03 02:03:24
+...cluster 13/15 (87%) at 2026-08-03 02:03:24
+...cluster 14/15 (93%) at 2026-08-03 02:03:24
+...cluster 15/15 (100%) at 2026-08-03 02:03:24
+Combining 15 cluster rows at 2026-08-03 02:03:24
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:26
+[stage3] Phase 1 done: 46 stage1 + 5 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 10 (sample_id, role) anchors + 10 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 5 pair + 10 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=2 non_clust=3; group eligible=4 non_clust=6; cgroup eligible=0 non_clust=5
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=group: 4 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 5 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 19 clusters at 2026-08-03 02:03:26
+...cluster 1/19 (5%) at 2026-08-03 02:03:26
+...cluster 2/19 (11%) at 2026-08-03 02:03:26
+...cluster 3/19 (16%) at 2026-08-03 02:03:26
+...cluster 4/19 (21%) at 2026-08-03 02:03:27
+...cluster 5/19 (26%) at 2026-08-03 02:03:27
+...cluster 6/19 (32%) at 2026-08-03 02:03:27
+...cluster 7/19 (37%) at 2026-08-03 02:03:27
+...cluster 8/19 (42%) at 2026-08-03 02:03:27
+...cluster 9/19 (47%) at 2026-08-03 02:03:27
+...cluster 10/19 (53%) at 2026-08-03 02:03:27
+...cluster 11/19 (58%) at 2026-08-03 02:03:27
+...cluster 12/19 (63%) at 2026-08-03 02:03:27
+...cluster 13/19 (68%) at 2026-08-03 02:03:27
+...cluster 14/19 (74%) at 2026-08-03 02:03:27
+...cluster 15/19 (79%) at 2026-08-03 02:03:27
+...cluster 16/19 (84%) at 2026-08-03 02:03:27
+...cluster 17/19 (89%) at 2026-08-03 02:03:27
+...cluster 18/19 (95%) at 2026-08-03 02:03:27
+...cluster 19/19 (100%) at 2026-08-03 02:03:27
+Combining 19 cluster rows at 2026-08-03 02:03:28
+[stage3] Phase 6 done: 19 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:28
+[stage3] Phase 1 done: 46 stage1 + 5 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 10 (sample_id, role) anchors + 10 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 5 pair + 10 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=2 non_clust=3; group eligible=4 non_clust=6; cgroup eligible=0 non_clust=5
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=group: 4 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 5 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 19 clusters at 2026-08-03 02:03:28
+...cluster 1/19 (5%) at 2026-08-03 02:03:28
+...cluster 2/19 (11%) at 2026-08-03 02:03:29
+...cluster 3/19 (16%) at 2026-08-03 02:03:29
+...cluster 4/19 (21%) at 2026-08-03 02:03:29
+...cluster 5/19 (26%) at 2026-08-03 02:03:29
+...cluster 6/19 (32%) at 2026-08-03 02:03:29
+...cluster 7/19 (37%) at 2026-08-03 02:03:29
+...cluster 8/19 (42%) at 2026-08-03 02:03:29
+...cluster 9/19 (47%) at 2026-08-03 02:03:29
+...cluster 10/19 (53%) at 2026-08-03 02:03:29
+...cluster 11/19 (58%) at 2026-08-03 02:03:29
+...cluster 12/19 (63%) at 2026-08-03 02:03:29
+...cluster 13/19 (68%) at 2026-08-03 02:03:29
+...cluster 14/19 (74%) at 2026-08-03 02:03:29
+...cluster 15/19 (79%) at 2026-08-03 02:03:29
+...cluster 16/19 (84%) at 2026-08-03 02:03:29
+...cluster 17/19 (89%) at 2026-08-03 02:03:29
+...cluster 18/19 (95%) at 2026-08-03 02:03:30
+...cluster 19/19 (100%) at 2026-08-03 02:03:30
+Combining 19 cluster rows at 2026-08-03 02:03:30
+[stage3] Phase 6 done: 19 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:30
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:31
+...cluster 1/15 (7%) at 2026-08-03 02:03:31
+...cluster 2/15 (13%) at 2026-08-03 02:03:31
+...cluster 3/15 (20%) at 2026-08-03 02:03:31
+...cluster 4/15 (27%) at 2026-08-03 02:03:31
+...cluster 5/15 (33%) at 2026-08-03 02:03:31
+...cluster 6/15 (40%) at 2026-08-03 02:03:31
+...cluster 7/15 (47%) at 2026-08-03 02:03:31
+...cluster 8/15 (53%) at 2026-08-03 02:03:31
+...cluster 9/15 (60%) at 2026-08-03 02:03:31
+...cluster 10/15 (67%) at 2026-08-03 02:03:31
+...cluster 11/15 (73%) at 2026-08-03 02:03:32
+...cluster 12/15 (80%) at 2026-08-03 02:03:32
+...cluster 13/15 (87%) at 2026-08-03 02:03:32
+...cluster 14/15 (93%) at 2026-08-03 02:03:32
+...cluster 15/15 (100%) at 2026-08-03 02:03:32
+Combining 15 cluster rows at 2026-08-03 02:03:32
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:32
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:33
+...cluster 1/15 (7%) at 2026-08-03 02:03:33
+...cluster 2/15 (13%) at 2026-08-03 02:03:33
+...cluster 3/15 (20%) at 2026-08-03 02:03:33
+...cluster 4/15 (27%) at 2026-08-03 02:03:33
+...cluster 5/15 (33%) at 2026-08-03 02:03:33
+...cluster 6/15 (40%) at 2026-08-03 02:03:33
+...cluster 7/15 (47%) at 2026-08-03 02:03:33
+...cluster 8/15 (53%) at 2026-08-03 02:03:33
+...cluster 9/15 (60%) at 2026-08-03 02:03:34
+...cluster 10/15 (67%) at 2026-08-03 02:03:34
+...cluster 11/15 (73%) at 2026-08-03 02:03:34
+...cluster 12/15 (80%) at 2026-08-03 02:03:34
+...cluster 13/15 (87%) at 2026-08-03 02:03:34
+...cluster 14/15 (93%) at 2026-08-03 02:03:34
+...cluster 15/15 (100%) at 2026-08-03 02:03:34
+Combining 15 cluster rows at 2026-08-03 02:03:34
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:34
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:35
+...cluster 1/15 (7%) at 2026-08-03 02:03:35
+...cluster 2/15 (13%) at 2026-08-03 02:03:35
+...cluster 3/15 (20%) at 2026-08-03 02:03:35
+...cluster 4/15 (27%) at 2026-08-03 02:03:35
+...cluster 5/15 (33%) at 2026-08-03 02:03:35
+...cluster 6/15 (40%) at 2026-08-03 02:03:35
+...cluster 7/15 (47%) at 2026-08-03 02:03:36
+...cluster 8/15 (53%) at 2026-08-03 02:03:36
+...cluster 9/15 (60%) at 2026-08-03 02:03:36
+...cluster 10/15 (67%) at 2026-08-03 02:03:36
+...cluster 11/15 (73%) at 2026-08-03 02:03:36
+...cluster 12/15 (80%) at 2026-08-03 02:03:36
+...cluster 13/15 (87%) at 2026-08-03 02:03:36
+...cluster 14/15 (93%) at 2026-08-03 02:03:36
+...cluster 15/15 (100%) at 2026-08-03 02:03:36
+Combining 15 cluster rows at 2026-08-03 02:03:36
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:36
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:37
+...cluster 1/15 (7%) at 2026-08-03 02:03:37
+...cluster 2/15 (13%) at 2026-08-03 02:03:37
+...cluster 3/15 (20%) at 2026-08-03 02:03:37
+...cluster 4/15 (27%) at 2026-08-03 02:03:37
+...cluster 5/15 (33%) at 2026-08-03 02:03:37
+...cluster 6/15 (40%) at 2026-08-03 02:03:38
+...cluster 7/15 (47%) at 2026-08-03 02:03:38
+...cluster 8/15 (53%) at 2026-08-03 02:03:38
+...cluster 9/15 (60%) at 2026-08-03 02:03:38
+...cluster 10/15 (67%) at 2026-08-03 02:03:38
+...cluster 11/15 (73%) at 2026-08-03 02:03:38
+...cluster 12/15 (80%) at 2026-08-03 02:03:38
+...cluster 13/15 (87%) at 2026-08-03 02:03:38
+...cluster 14/15 (93%) at 2026-08-03 02:03:38
+...cluster 15/15 (100%) at 2026-08-03 02:03:38
+Combining 15 cluster rows at 2026-08-03 02:03:38
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:38
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:39
+...cluster 1/15 (7%) at 2026-08-03 02:03:39
+...cluster 2/15 (13%) at 2026-08-03 02:03:39
+...cluster 3/15 (20%) at 2026-08-03 02:03:39
+...cluster 4/15 (27%) at 2026-08-03 02:03:40
+...cluster 5/15 (33%) at 2026-08-03 02:03:40
+...cluster 6/15 (40%) at 2026-08-03 02:03:40
+...cluster 7/15 (47%) at 2026-08-03 02:03:40
+...cluster 8/15 (53%) at 2026-08-03 02:03:40
+...cluster 9/15 (60%) at 2026-08-03 02:03:40
+...cluster 10/15 (67%) at 2026-08-03 02:03:40
+...cluster 11/15 (73%) at 2026-08-03 02:03:40
+...cluster 12/15 (80%) at 2026-08-03 02:03:40
+...cluster 13/15 (87%) at 2026-08-03 02:03:40
+...cluster 14/15 (93%) at 2026-08-03 02:03:40
+...cluster 15/15 (100%) at 2026-08-03 02:03:40
+Combining 15 cluster rows at 2026-08-03 02:03:40
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:40
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:41
+...cluster 1/15 (7%) at 2026-08-03 02:03:41
+...cluster 2/15 (13%) at 2026-08-03 02:03:42
+...cluster 3/15 (20%) at 2026-08-03 02:03:42
+...cluster 4/15 (27%) at 2026-08-03 02:03:42
+...cluster 5/15 (33%) at 2026-08-03 02:03:42
+...cluster 6/15 (40%) at 2026-08-03 02:03:42
+...cluster 7/15 (47%) at 2026-08-03 02:03:42
+...cluster 8/15 (53%) at 2026-08-03 02:03:42
+...cluster 9/15 (60%) at 2026-08-03 02:03:42
+...cluster 10/15 (67%) at 2026-08-03 02:03:42
+...cluster 11/15 (73%) at 2026-08-03 02:03:42
+...cluster 12/15 (80%) at 2026-08-03 02:03:42
+...cluster 13/15 (87%) at 2026-08-03 02:03:42
+...cluster 14/15 (93%) at 2026-08-03 02:03:42
+...cluster 15/15 (100%) at 2026-08-03 02:03:42
+Combining 15 cluster rows at 2026-08-03 02:03:42
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+SKIP: 'test-stage3-helpers.R:54:1' ----------------
+Reason: empty test
+
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:43
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:45
+...cluster 1/15 (7%) at 2026-08-03 02:03:45
+...cluster 2/15 (13%) at 2026-08-03 02:03:45
+...cluster 3/15 (20%) at 2026-08-03 02:03:45
+...cluster 4/15 (27%) at 2026-08-03 02:03:45
+...cluster 5/15 (33%) at 2026-08-03 02:03:45
+...cluster 6/15 (40%) at 2026-08-03 02:03:45
+...cluster 7/15 (47%) at 2026-08-03 02:03:45
+...cluster 8/15 (53%) at 2026-08-03 02:03:45
+...cluster 9/15 (60%) at 2026-08-03 02:03:45
+...cluster 10/15 (67%) at 2026-08-03 02:03:45
+...cluster 11/15 (73%) at 2026-08-03 02:03:45
+...cluster 12/15 (80%) at 2026-08-03 02:03:46
+...cluster 13/15 (87%) at 2026-08-03 02:03:46
+...cluster 14/15 (93%) at 2026-08-03 02:03:46
+...cluster 15/15 (100%) at 2026-08-03 02:03:46
+Combining 15 cluster rows at 2026-08-03 02:03:46
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:46
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:47
+...cluster 1/15 (7%) at 2026-08-03 02:03:47
+...cluster 2/15 (13%) at 2026-08-03 02:03:47
+...cluster 3/15 (20%) at 2026-08-03 02:03:47
+...cluster 4/15 (27%) at 2026-08-03 02:03:47
+...cluster 5/15 (33%) at 2026-08-03 02:03:47
+...cluster 6/15 (40%) at 2026-08-03 02:03:47
+...cluster 7/15 (47%) at 2026-08-03 02:03:47
+...cluster 8/15 (53%) at 2026-08-03 02:03:47
+...cluster 9/15 (60%) at 2026-08-03 02:03:47
+...cluster 10/15 (67%) at 2026-08-03 02:03:48
+...cluster 11/15 (73%) at 2026-08-03 02:03:48
+...cluster 12/15 (80%) at 2026-08-03 02:03:48
+...cluster 13/15 (87%) at 2026-08-03 02:03:48
+...cluster 14/15 (93%) at 2026-08-03 02:03:48
+...cluster 15/15 (100%) at 2026-08-03 02:03:48
+Combining 15 cluster rows at 2026-08-03 02:03:48
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:48
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:49
+...cluster 1/15 (7%) at 2026-08-03 02:03:49
+...cluster 2/15 (13%) at 2026-08-03 02:03:49
+...cluster 3/15 (20%) at 2026-08-03 02:03:49
+...cluster 4/15 (27%) at 2026-08-03 02:03:49
+...cluster 5/15 (33%) at 2026-08-03 02:03:49
+...cluster 6/15 (40%) at 2026-08-03 02:03:49
+...cluster 7/15 (47%) at 2026-08-03 02:03:50
+...cluster 8/15 (53%) at 2026-08-03 02:03:50
+...cluster 9/15 (60%) at 2026-08-03 02:03:50
+...cluster 10/15 (67%) at 2026-08-03 02:03:50
+...cluster 11/15 (73%) at 2026-08-03 02:03:50
+...cluster 12/15 (80%) at 2026-08-03 02:03:50
+...cluster 13/15 (87%) at 2026-08-03 02:03:50
+...cluster 14/15 (93%) at 2026-08-03 02:03:50
+...cluster 15/15 (100%) at 2026-08-03 02:03:50
+Combining 15 cluster rows at 2026-08-03 02:03:50
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:50
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:51
+...cluster 1/15 (7%) at 2026-08-03 02:03:51
+...cluster 2/15 (13%) at 2026-08-03 02:03:51
+...cluster 3/15 (20%) at 2026-08-03 02:03:51
+...cluster 4/15 (27%) at 2026-08-03 02:03:51
+...cluster 5/15 (33%) at 2026-08-03 02:03:52
+...cluster 6/15 (40%) at 2026-08-03 02:03:52
+...cluster 7/15 (47%) at 2026-08-03 02:03:52
+...cluster 8/15 (53%) at 2026-08-03 02:03:52
+...cluster 9/15 (60%) at 2026-08-03 02:03:52
+...cluster 10/15 (67%) at 2026-08-03 02:03:52
+...cluster 11/15 (73%) at 2026-08-03 02:03:52
+...cluster 12/15 (80%) at 2026-08-03 02:03:52
+...cluster 13/15 (87%) at 2026-08-03 02:03:52
+...cluster 14/15 (93%) at 2026-08-03 02:03:52
+...cluster 15/15 (100%) at 2026-08-03 02:03:52
+Combining 15 cluster rows at 2026-08-03 02:03:52
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:52
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:53
+...cluster 1/15 (7%) at 2026-08-03 02:03:53
+...cluster 2/15 (13%) at 2026-08-03 02:03:53
+...cluster 3/15 (20%) at 2026-08-03 02:03:54
+...cluster 4/15 (27%) at 2026-08-03 02:03:54
+...cluster 5/15 (33%) at 2026-08-03 02:03:54
+...cluster 6/15 (40%) at 2026-08-03 02:03:54
+...cluster 7/15 (47%) at 2026-08-03 02:03:54
+...cluster 8/15 (53%) at 2026-08-03 02:03:54
+...cluster 9/15 (60%) at 2026-08-03 02:03:54
+...cluster 10/15 (67%) at 2026-08-03 02:03:54
+...cluster 11/15 (73%) at 2026-08-03 02:03:54
+...cluster 12/15 (80%) at 2026-08-03 02:03:54
+...cluster 13/15 (87%) at 2026-08-03 02:03:54
+...cluster 14/15 (93%) at 2026-08-03 02:03:54
+...cluster 15/15 (100%) at 2026-08-03 02:03:54
+Combining 15 cluster rows at 2026-08-03 02:03:54
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+[stage3] START build_stage3_clusters at 2026-08-03 02:03:55
+[stage3] Phase 1 done: 5 stage1 + 1 stage2 records loaded
+[stage3] Phase 1.5: convert stage1_master list -> environment for O(1) lookup
+[stage3] Phase 1.5 done
+[stage3] Phase 2.0: pre-compute anchor cache
+[stage3] Phase 2.0 done: cached 3 (sample_id, role) anchors + 3 hard_filters
+[stage3] Phase 2: build pair+group records
+[stage3] Phase 2 done: 1 pair + 3 group + 0 cgroup records
+[stage3] Phase 3: eligibility filter
+[stage3] Phase 3 done: pair eligible=1 non_clust=0; group eligible=3 non_clust=0; cgroup eligible=0 non_clust=1
+[stage3] Phase 5: anchor key build + cluster assignment (5 levels x 2 modes)
+[stage3] mode=pair: 1 eligible records in 1 hard-filter partitions
+[stage3] mode=pair L0 done in 0s
+[stage3] mode=pair L1 done in 0s
+[stage3] mode=pair L2 done in 0s
+[stage3] mode=pair L3 done in 0s
+[stage3] mode=pair L4 done in 0s
+[stage3] mode=group: 3 eligible records in 1 hard-filter partitions
+[stage3] mode=group L0 done in 0s
+[stage3] mode=group L1 done in 0s
+[stage3] mode=group L2 done in 0s
+[stage3] mode=group L3 done in 0s
+[stage3] mode=group L4 done in 0s
+[stage3] Phase 5 done: combining 10 assignment chunks
+[stage3] Phase 6: summarize_clusters (20 assignments -> ~clusters)
+Summarizing 15 clusters at 2026-08-03 02:03:55
+...cluster 1/15 (7%) at 2026-08-03 02:03:56
+...cluster 2/15 (13%) at 2026-08-03 02:03:56
+...cluster 3/15 (20%) at 2026-08-03 02:03:56
+...cluster 4/15 (27%) at 2026-08-03 02:03:56
+...cluster 5/15 (33%) at 2026-08-03 02:03:56
+...cluster 6/15 (40%) at 2026-08-03 02:03:56
+...cluster 7/15 (47%) at 2026-08-03 02:03:56
+...cluster 8/15 (53%) at 2026-08-03 02:03:56
+...cluster 9/15 (60%) at 2026-08-03 02:03:56
+...cluster 10/15 (67%) at 2026-08-03 02:03:56
+...cluster 11/15 (73%) at 2026-08-03 02:03:56
+...cluster 12/15 (80%) at 2026-08-03 02:03:56
+...cluster 13/15 (87%) at 2026-08-03 02:03:56
+...cluster 14/15 (93%) at 2026-08-03 02:03:56
+...cluster 15/15 (100%) at 2026-08-03 02:03:56
+Combining 15 cluster rows at 2026-08-03 02:03:56
+[stage3] Phase 6 done: 15 clusters summarized
+[stage3] Phase 7: build_record_summary
+[stage3] Phase 7 done: 4 record_summary rows
+SKIP: 'test-stage3-perf-budget.R:10:3' ------------
+Reason: On CRAN
+
+SKIP: 'test-stage3-row-pairing.R:144:3' -----------
+Reason: dizionari caricati come fixture (isolamento suite)
+
+SKIP: 'test-stage3-row-pairing.R:153:3' -----------
+Reason: dizionari caricati come fixture (isolamento suite)
+
+SKIP: 'test-stage3-row-pairing.R:158:3' -----------
+Reason: dizionari caricati come fixture (isolamento suite)
+
+SKIP: 'test-stage3-row-pairing.R:164:3' -----------
+Reason: dizionari caricati come fixture (isolamento suite)
+
+WARNING: 'test-stage4-build.R:26:3' ---------------
+fetch_fn esterno fornito + gene_biotype_filter non-NULL: il filter NON viene applicato automaticamente al fetch_fn override. Il chiamante deve implementare il filter all'interno del proprio fetch_fn, oppure passare gene_biotype_filter = NULL per disabilitarlo esplicitamente. run_metadata$gene_biotype_filter registrera' comunque il valore richiesto.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-build.R:26:3
+
+SKIP: 'test-stage4-dashboard.R:2:3' ---------------
+Reason: quarto installato; questo test verifica solo fallback path
+
+[cluster 1/1] pair_aug_k2 (method=mega_aug)
+  -> pair_aug_k2 ok | wall 29.1s | RSS 8.2 GB
+[cluster 1/1] mega_samn_x (method=mega)
+  -> mega_samn_x ok | wall 15.7s | RSS 8.0 GB
+[cluster 1/1] pair_L4_test_samn (method=mega_aug)
+Coefficients not estimable: treatmenttreated 
+WARNING: 'test-stage4-e0b-smoke.R:184:3' ----------
+Partial NA coefficients for 60 probe(s)
+Backtrace:
+    ▆
+ 1. └─simulomicsr:::.pool_all_clusters(...) at test-stage4-e0b-smoke.R:184:3
+ 2.   ├─base::tryCatch(...) at simulomicsr/R/stage4-orchestrator.R:262:5
+ 3.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 4.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 5.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 6.   └─simulomicsr:::.run_dream_mega(...) at simulomicsr/R/stage4-orchestrator.R:548:7
+ 7.     └─limma::voom(dge, design) at simulomicsr/R/stage4-dream-mega.R:137:5
+ 8.       └─limma::lmFit(...)
+
+Note: design matrix not of full rank (1 coef not estimable).
+Coefficients not estimable: treatmenttreated 
+[pool_runtime_error] cluster pair_L4_test_samn (method=mega_aug): missing value where TRUE/FALSE needed
+  -> pair_L4_test_samn FALLITO | wall 0.3s | RSS 8.0 GB
+[cluster 1/1] mega_samn_x_b (method=mega)
+  -> mega_samn_x_b ok | wall 18.9s | RSS 8.0 GB
+WARNING: 'test-stage4-e2-biotype-filter.R:107:3' ----------
+Unknown or uninitialised column: `usable_rem_strict`.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-e2-biotype-filter.R:107:3
+ 2.   └─simulomicsr:::.qc_filter_samples_and_studies(...) at simulomicsr/R/stage4-build.R:100:3
+ 3.     └─simulomicsr:::.identify_layer_a_clusters(stage3_clusters, config) at simulomicsr/R/stage4-qc.R:195:3
+ 4.       ├─...[] at simulomicsr/R/stage4-qc.R:105:3
+ 5.       ├─tibble:::`[.tbl_df`(...) at simulomicsr/R/stage4-qc.R:105:3
+ 6.       ├─stage3_clusters$usable_rem_strict
+ 7.       └─tibble:::`$.tbl_df`(stage3_clusters, usable_rem_strict)
+
+WARNING: 'test-stage4-e2-biotype-filter.R:107:3' ----------
+Unknown or uninitialised column: `k`.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-e2-biotype-filter.R:107:3
+ 2.   └─simulomicsr:::.qc_filter_samples_and_studies(...) at simulomicsr/R/stage4-build.R:100:3
+ 3.     └─simulomicsr:::.identify_layer_a_clusters(stage3_clusters, config) at simulomicsr/R/stage4-qc.R:195:3
+ 4.       ├─...[] at simulomicsr/R/stage4-qc.R:105:3
+ 5.       ├─tibble:::`[.tbl_df`(...) at simulomicsr/R/stage4-qc.R:105:3
+ 6.       ├─stage3_clusters$k
+ 7.       └─tibble:::`$.tbl_df`(stage3_clusters, k)
+
+WARNING: 'test-stage4-e2-biotype-filter.R:107:3' ----------
+Unknown or uninitialised column: `k`.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-e2-biotype-filter.R:107:3
+ 2.   └─simulomicsr:::.qc_filter_samples_and_studies(...) at simulomicsr/R/stage4-build.R:100:3
+ 3.     └─simulomicsr:::.identify_layer_a_clusters(stage3_clusters, config) at simulomicsr/R/stage4-qc.R:195:3
+ 4.       ├─...[] at simulomicsr/R/stage4-qc.R:105:3
+ 5.       ├─tibble:::`[.tbl_df`(...) at simulomicsr/R/stage4-qc.R:105:3
+ 6.       ├─stage3_clusters$k
+ 7.       └─tibble:::`$.tbl_df`(stage3_clusters, k)
+
+WARNING: 'test-stage4-e2-biotype-filter.R:107:3' ----------
+Unknown or uninitialised column: `n_studies`.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-e2-biotype-filter.R:107:3
+ 2.   └─simulomicsr:::.qc_filter_samples_and_studies(...) at simulomicsr/R/stage4-build.R:100:3
+ 3.     └─simulomicsr:::.identify_layer_a_clusters(stage3_clusters, config) at simulomicsr/R/stage4-qc.R:195:3
+ 4.       ├─...[] at simulomicsr/R/stage4-qc.R:114:3
+ 5.       ├─tibble:::`[.tbl_df`(...) at simulomicsr/R/stage4-qc.R:114:3
+ 6.       ├─stage3_clusters$n_studies
+ 7.       └─tibble:::`$.tbl_df`(stage3_clusters, n_studies)
+
+WARNING: 'test-stage4-e2-biotype-filter.R:107:3' ----------
+Unknown or uninitialised column: `k`.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-e2-biotype-filter.R:107:3
+ 2.   └─simulomicsr:::.qc_filter_samples_and_studies(...) at simulomicsr/R/stage4-build.R:100:3
+ 3.     └─simulomicsr:::.identify_layer_a_clusters(stage3_clusters, config) at simulomicsr/R/stage4-qc.R:195:3
+ 4.       ├─...[] at simulomicsr/R/stage4-qc.R:127:3
+ 5.       ├─tibble:::`[.tbl_df`(...) at simulomicsr/R/stage4-qc.R:127:3
+ 6.       ├─stage3_clusters$k
+ 7.       └─tibble:::`$.tbl_df`(stage3_clusters, k)
+
+WARNING: 'test-stage4-e2-biotype-filter.R:107:3' ----------
+Unknown or uninitialised column: `usable_rem_relaxed`.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-e2-biotype-filter.R:107:3
+ 2.   └─simulomicsr:::.qc_filter_samples_and_studies(...) at simulomicsr/R/stage4-build.R:100:3
+ 3.     └─simulomicsr:::.identify_layer_a_clusters(stage3_clusters, config) at simulomicsr/R/stage4-qc.R:195:3
+ 4.       ├─...[] at simulomicsr/R/stage4-qc.R:127:3
+ 5.       ├─tibble:::`[.tbl_df`(...) at simulomicsr/R/stage4-qc.R:127:3
+ 6.       ├─stage3_clusters$usable_rem_relaxed
+ 7.       └─tibble:::`$.tbl_df`(stage3_clusters, usable_rem_relaxed)
+
+WARNING: 'test-stage4-e2-biotype-filter.R:107:3' ----------
+Unknown or uninitialised column: `k`.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-e2-biotype-filter.R:107:3
+ 2.   └─simulomicsr:::.qc_filter_samples_and_studies(...) at simulomicsr/R/stage4-build.R:100:3
+ 3.     └─simulomicsr:::.identify_layer_a_clusters(stage3_clusters, config) at simulomicsr/R/stage4-qc.R:195:3
+ 4.       ├─...[] at simulomicsr/R/stage4-qc.R:151:3
+ 5.       ├─tibble:::`[.tbl_df`(...) at simulomicsr/R/stage4-qc.R:151:3
+ 6.       ├─stage3_clusters$k
+ 7.       └─tibble:::`$.tbl_df`(stage3_clusters, k)
+
+WARNING: 'test-stage4-e3-covariates.R:81:3' ----------
+cluster TEST_T1.3: covariata 'aligner_class' richiesta ma assente dal metadata input -> skip
+Backtrace:
+    ▆
+ 1. ├─testthat::expect_warning(...) at test-stage4-e3-covariates.R:81:3
+ 2. │ └─testthat:::expect_condition_matching_(...)
+ 3. │   └─testthat:::quasi_capture(...)
+ 4. │     ├─testthat (local) .capture(...)
+ 5. │     │ └─base::withCallingHandlers(...)
+ 6. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+ 7. └─simulomicsr:::.augment_de_design(...)
+
+
+-- Layer B build ---------------------------------------------------------------
+i B.1 Loader + validation
+i B.2 Asset generation (1 cluster)
+> Processing cl_mega_1...
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+v Layer B build OK in 9.1s: '/tmp/RtmpcvLs9z/e5_smoke_13dce0360862db'
+
+-- Layer B build ---------------------------------------------------------------
+i B.1 Loader + validation
+i B.2 Asset generation (1 cluster)
+> Processing cl_mega_1...
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+v Layer B build OK in 18.5s: '/tmp/RtmpcvLs9z/e5_csv_13dce05e3069a2'
+WARNING: 'test-stage4-gene-axis.R:337:3' ----------
+gene_axis contiene 1 geni con biotype=NA: droppati silenziosamente dal filter 'protein_coding'
+Backtrace:
+    ▆
+ 1. └─simulomicsr:::.apply_biotype_filter(counts, axis, "protein_coding") at test-stage4-gene-axis.R:337:3
+
+[cluster 1/3] mega_dup (method=mega)
+WARNING: 'test-stage4-orchestrator.R:74:3' ----------
+Model failed for 56 responses.
+  See errors with attr(., 'errors')
+Backtrace:
+     ▆
+  1. ├─testthat::expect_no_error(...) at test-stage4-orchestrator.R:74:3
+  2. │ └─testthat:::expect_no_(...)
+  3. │   └─testthat:::quasi_capture(enquo(object), NULL, capture)
+  4. │     ├─testthat (local) .capture(...)
+  5. │     │ ├─base::withRestarts(...)
+  6. │     │ │ └─base (local) withOneRestart(expr, restarts[[1L]])
+  7. │     │ │   └─base (local) doWithOneRestart(return(expr), restart)
+  8. │     │ └─base::withCallingHandlers(...)
+  9. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+ 10. └─simulomicsr:::.pool_all_clusters(...)
+ 11.   ├─base::tryCatch(...) at simulomicsr/R/stage4-orchestrator.R:262:5
+ 12.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 13.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 14.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 15.   └─simulomicsr:::.run_dream_mega(...) at simulomicsr/R/stage4-orchestrator.R:368:7
+ 16.     ├─base::tryCatch(...) at simulomicsr/R/stage4-dream-mega.R:113:3
+ 17.     │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 18.     │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 19.     │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 20.     └─variancePartition::dream(...) at simulomicsr/R/stage4-dream-mega.R:117:5
+
+  -> mega_dup ok | wall 9.4s | RSS 8.3 GB
+[cluster 2/3] mega_singleton (method=mega)
+[cluster 3/3] mega_ok (method=mega)
+WARNING: 'test-stage4-orchestrator.R:74:3' ----------
+Model failed for 1 responses.
+  See errors with attr(., 'errors')
+Backtrace:
+     ▆
+  1. ├─testthat::expect_no_error(...) at test-stage4-orchestrator.R:74:3
+  2. │ └─testthat:::expect_no_(...)
+  3. │   └─testthat:::quasi_capture(enquo(object), NULL, capture)
+  4. │     ├─testthat (local) .capture(...)
+  5. │     │ ├─base::withRestarts(...)
+  6. │     │ │ └─base (local) withOneRestart(expr, restarts[[1L]])
+  7. │     │ │   └─base (local) doWithOneRestart(return(expr), restart)
+  8. │     │ └─base::withCallingHandlers(...)
+  9. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+ 10. └─simulomicsr:::.pool_all_clusters(...)
+ 11.   ├─base::tryCatch(...) at simulomicsr/R/stage4-orchestrator.R:262:5
+ 12.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 13.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 14.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 15.   └─simulomicsr:::.run_dream_mega(...) at simulomicsr/R/stage4-orchestrator.R:368:7
+ 16.     ├─base::tryCatch(...) at simulomicsr/R/stage4-dream-mega.R:113:3
+ 17.     │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 18.     │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 19.     │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 20.     └─variancePartition::voomWithDreamWeights(...) at simulomicsr/R/stage4-dream-mega.R:114:5
+ 21.       ├─variancePartition::fitVarPartModel(...)
+ 22.       └─variancePartition::fitVarPartModel(...)
+ 23.         └─variancePartition:::.fitVarPartModel(...)
+
+WARNING: 'test-stage4-orchestrator.R:74:3' ----------
+Model failed for 56 responses.
+  See errors with attr(., 'errors')
+Backtrace:
+     ▆
+  1. ├─testthat::expect_no_error(...) at test-stage4-orchestrator.R:74:3
+  2. │ └─testthat:::expect_no_(...)
+  3. │   └─testthat:::quasi_capture(enquo(object), NULL, capture)
+  4. │     ├─testthat (local) .capture(...)
+  5. │     │ ├─base::withRestarts(...)
+  6. │     │ │ └─base (local) withOneRestart(expr, restarts[[1L]])
+  7. │     │ │   └─base (local) doWithOneRestart(return(expr), restart)
+  8. │     │ └─base::withCallingHandlers(...)
+  9. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+ 10. └─simulomicsr:::.pool_all_clusters(...)
+ 11.   ├─base::tryCatch(...) at simulomicsr/R/stage4-orchestrator.R:262:5
+ 12.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 13.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 14.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 15.   └─simulomicsr:::.run_dream_mega(...) at simulomicsr/R/stage4-orchestrator.R:368:7
+ 16.     ├─base::tryCatch(...) at simulomicsr/R/stage4-dream-mega.R:113:3
+ 17.     │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 18.     │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 19.     │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 20.     └─variancePartition::dream(...) at simulomicsr/R/stage4-dream-mega.R:117:5
+
+  -> mega_ok ok | wall 9.7s | RSS 8.3 GB
+[cluster 1/1] mega_aug_nodisp (method=mega_aug)
+[cluster 1/2] group_L4_multiarm (method=rem_group)
+[cluster 2/2] group_L4_3studi (method=rem_group)
+  -> group_L4_3studi ok | wall 0.0s | RSS 8.1 GB
+[cluster 1/1] group_L4_e2e (method=rem_group)
+  -> group_L4_e2e ok | wall 0.1s | RSS 8.1 GB
+WARNING: 'test-stage4-rem-group.R:59:3' -----------
+Unknown or uninitialised column: `method`.
+Backtrace:
+    ▆
+ 1. ├─testthat::expect_false(...) at test-stage4-rem-group.R:59:3
+ 2. │ └─testthat::quasi_label(enquo(object), label)
+ 3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
+ 4. ├─"group_L4_enza" %in% ...
+ 5. ├─out$method
+ 6. └─tibble:::`$.tbl_df`(out, method)
+
+WARNING: 'test-stage4-rem-group.R:155:3' ----------
+Unknown or uninitialised column: `method`.
+Backtrace:
+    ▆
+ 1. ├─testthat::expect_equal(...) at test-stage4-rem-group.R:155:3
+ 2. │ └─testthat::quasi_label(enquo(object), label)
+ 3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
+ 4. ├─out$method
+ 5. └─tibble:::`$.tbl_df`(out, method)
+
+WARNING: 'test-stage4-rem-group.R:182:3' ----------
+Unknown or uninitialised column: `method`.
+Backtrace:
+    ▆
+ 1. ├─testthat::expect_equal(...) at test-stage4-rem-group.R:182:3
+ 2. │ └─testthat::quasi_label(enquo(object), label)
+ 3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
+ 4. ├─out$method
+ 5. └─tibble:::`$.tbl_df`(out, method)
+
+WARNING: 'test-stage4-replication.R:17:3' ----------
+fetch_fn esterno fornito + gene_biotype_filter non-NULL: il filter NON viene applicato automaticamente al fetch_fn override. Il chiamante deve implementare il filter all'interno del proprio fetch_fn, oppure passare gene_biotype_filter = NULL per disabilitarlo esplicitamente. run_metadata$gene_biotype_filter registrera' comunque il valore richiesto.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-replication.R:17:3
+
+WARNING: 'test-stage4-replication.R:21:3' ----------
+fetch_fn esterno fornito + gene_biotype_filter non-NULL: il filter NON viene applicato automaticamente al fetch_fn override. Il chiamante deve implementare il filter all'interno del proprio fetch_fn, oppure passare gene_biotype_filter = NULL per disabilitarlo esplicitamente. run_metadata$gene_biotype_filter registrera' comunque il valore richiesto.
+Backtrace:
+    ▆
+ 1. └─simulomicsr::build_stage4_results(...) at test-stage4-replication.R:21:3
+
+[ FAIL 0 | WARN 27 | SKIP 48 | PASS 4153 ]

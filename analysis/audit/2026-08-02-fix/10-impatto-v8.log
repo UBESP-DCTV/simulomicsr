@@ -1,0 +1,370 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+regimi verificati: ON fonde le DUE autorizzate (tgfb, il17) e non glioblastoma/hypoxia/ifna; OFF nessuna.
+carico lo Stadio 2...
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  85338203 4557.6  157562560 8414.8 157562560 8414.8
+Vcells 137402641 1048.3  245022858 1869.4 200690702 1531.2
+confronti totali nel corpus: 87092
+[strumento] etichette: max 238 char · mediana 22 
+            == 40: 1868
+            == 58: 451
+            == 64: 300
+            == 100: 18
+            == 128: 3
+            == 255: 0
+passata OFF (regola sostituita: e' il comportamento di v13)...
+  [off] 5000/87092 (1.4 min)
+  [off] 10000/87092 (2.6 min)
+  [off] 15000/87092 (3.8 min)
+  [off] 20000/87092 (5 min)
+  [off] 25000/87092 (6.5 min)
+  [off] 30000/87092 (7.8 min)
+  [off] 35000/87092 (9 min)
+  [off] 40000/87092 (10.2 min)
+  [off] 45000/87092 (11.4 min)
+  [off] 50000/87092 (12.5 min)
+  [off] 55000/87092 (13.7 min)
+  [off] 60000/87092 (14.9 min)
+  [off] 65000/87092 (16.1 min)
+  [off] 70000/87092 (17.3 min)
+  [off] 75000/87092 (18.5 min)
+  [off] 80000/87092 (19.7 min)
+  [off] 85000/87092 (20.9 min)
+  [off] fatto in 21.4 min
+passata ON (codice vero, due fusioni)...
+  [on] 5000/87092 (1.3 min)
+  [on] 10000/87092 (2.6 min)
+  [on] 15000/87092 (3.8 min)
+  [on] 20000/87092 (5 min)
+  [on] 25000/87092 (6.2 min)
+  [on] 30000/87092 (7.4 min)
+  [on] 35000/87092 (8.6 min)
+  [on] 40000/87092 (9.8 min)
+  [on] 45000/87092 (11 min)
+  [on] 50000/87092 (12.2 min)
+  [on] 55000/87092 (13.4 min)
+  [on] 60000/87092 (14.6 min)
+  [on] 65000/87092 (15.7 min)
+  [on] 70000/87092 (16.8 min)
+  [on] 75000/87092 (18.1 min)
+  [on] 80000/87092 (19.3 min)
+  [on] 85000/87092 (20.4 min)
+  [on] fatto in 20.9 min
+
+================= COSA HA FATTO LA REGOLA A DUE ENTITA' =================
+righe totali: 87092 
+membri che CAMBIANO entita': 97 
+
+-- da/a, con quanti membri --
+
+ STR:tgfb -> HGNC:11766 STR:tgf_b -> HGNC:11766   STR:il17 -> HGNC:5981 
+                     69                      17                       8 
+ STR:il_17 -> HGNC:5981 
+                      3 
+
+[invariante] membri che cambiano partendo da un'entita' gia' risolta: 0  (atteso 0)
+[invariante] membri PERSI (tenuti prima, scartati dopo): 0  (atteso 0)
+[invariante] membri RIPESCATI (scartati prima, tenuti dopo): 0 
+[invariante] control_key divergenti: 0  (atteso 0)
+[invariante] direzione divergente: 0  (atteso 0)
+[invariante] destinazioni inattese:  (nessuna) 
+
+-- le etichette dei membri che cambiano (TUTTE, da leggere) --
+      study     ent_off   ent_on    
+11546 GSE125577 STR:tgfb  HGNC:11766
+11547 GSE125577 STR:tgfb  HGNC:11766
+13975 GSE130348 STR:tgf_b HGNC:11766
+13976 GSE130348 STR:tgf_b HGNC:11766
+17938 GSE137779 STR:tgfb  HGNC:11766
+22315 GSE145850 STR:tgfb  HGNC:11766
+22316 GSE145850 STR:tgfb  HGNC:11766
+22317 GSE145850 STR:tgfb  HGNC:11766
+22318 GSE145850 STR:tgfb  HGNC:11766
+22319 GSE145850 STR:tgfb  HGNC:11766
+22320 GSE145850 STR:tgfb  HGNC:11766
+22321 GSE145850 STR:tgfb  HGNC:11766
+22322 GSE145850 STR:tgfb  HGNC:11766
+22323 GSE145850 STR:tgfb  HGNC:11766
+22324 GSE145850 STR:tgfb  HGNC:11766
+22325 GSE145850 STR:tgfb  HGNC:11766
+22326 GSE145850 STR:tgfb  HGNC:11766
+22327 GSE145850 STR:tgfb  HGNC:11766
+22328 GSE145850 STR:tgfb  HGNC:11766
+22329 GSE145850 STR:tgfb  HGNC:11766
+22330 GSE145850 STR:tgfb  HGNC:11766
+22331 GSE145850 STR:tgfb  HGNC:11766
+22993 GSE147045 STR:il17  HGNC:5981 
+22996 GSE147045 STR:il17  HGNC:5981 
+23588 GSE148248 STR:tgfb  HGNC:11766
+23591 GSE148248 STR:tgfb  HGNC:11766
+23594 GSE148248 STR:tgfb  HGNC:11766
+23598 GSE148248 STR:tgfb  HGNC:11766
+26016 GSE152250 STR:tgfb  HGNC:11766
+26017 GSE152250 STR:tgfb  HGNC:11766
+26018 GSE152250 STR:tgfb  HGNC:11766
+26147 GSE152438 STR:il17  HGNC:5981 
+26148 GSE152438 STR:il17  HGNC:5981 
+26151 GSE152438 STR:il17  HGNC:5981 
+26152 GSE152438 STR:il17  HGNC:5981 
+29826 GSE158542 STR:tgf_b HGNC:11766
+29829 GSE158542 STR:tgf_b HGNC:11766
+31231 GSE160990 STR:tgfb  HGNC:11766
+36220 GSE168639 STR:tgfb  HGNC:11766
+36222 GSE168639 STR:tgfb  HGNC:11766
+40000 GSE178518 STR:tgfb  HGNC:11766
+40129 GSE178714 STR:tgfb  HGNC:11766
+40130 GSE178714 STR:tgfb  HGNC:11766
+40131 GSE178714 STR:tgfb  HGNC:11766
+40132 GSE178714 STR:tgfb  HGNC:11766
+40133 GSE178714 STR:tgfb  HGNC:11766
+40134 GSE178714 STR:tgfb  HGNC:11766
+42345 GSE182371 STR:tgf_b HGNC:11766
+42346 GSE182371 STR:tgf_b HGNC:11766
+42362 GSE182372 STR:tgf_b HGNC:11766
+42883 GSE182957 STR:il17  HGNC:5981 
+44279 GSE185200 STR:il17  HGNC:5981 
+51315 GSE198683 STR:il_17 HGNC:5981 
+51316 GSE198683 STR:il_17 HGNC:5981 
+51317 GSE198683 STR:il_17 HGNC:5981 
+51667 GSE199154 STR:tgfb  HGNC:11766
+51668 GSE199154 STR:tgfb  HGNC:11766
+51698 GSE199225 STR:tgfb  HGNC:11766
+54809 GSE205378 STR:tgfb  HGNC:11766
+54810 GSE205378 STR:tgfb  HGNC:11766
+54811 GSE205378 STR:tgfb  HGNC:11766
+54812 GSE205378 STR:tgfb  HGNC:11766
+54813 GSE205378 STR:tgfb  HGNC:11766
+60169 GSE215947 STR:tgf_b HGNC:11766
+62138 GSE219215 STR:tgfb  HGNC:11766
+62141 GSE219215 STR:tgfb  HGNC:11766
+64634 GSE225336 STR:tgfb  HGNC:11766
+64635 GSE225336 STR:tgfb  HGNC:11766
+64636 GSE225336 STR:tgfb  HGNC:11766
+64729 GSE225549 STR:tgfb  HGNC:11766
+64730 GSE225549 STR:tgfb  HGNC:11766
+64731 GSE225549 STR:tgfb  HGNC:11766
+67781 GSE232640 STR:tgfb  HGNC:11766
+69717 GSE237690 STR:tgf_b HGNC:11766
+69721 GSE237690 STR:tgf_b HGNC:11766
+69725 GSE237690 STR:tgf_b HGNC:11766
+69729 GSE237690 STR:tgf_b HGNC:11766
+70239 GSE240476 STR:tgfb  HGNC:11766
+70241 GSE240476 STR:tgfb  HGNC:11766
+70243 GSE240476 STR:tgfb  HGNC:11766
+70244 GSE240476 STR:tgfb  HGNC:11766
+73933 GSE252315 STR:tgf_b HGNC:11766
+73934 GSE252315 STR:tgf_b HGNC:11766
+73935 GSE252315 STR:tgf_b HGNC:11766
+73936 GSE252315 STR:tgf_b HGNC:11766
+73937 GSE252315 STR:tgf_b HGNC:11766
+74934 GSE259376 STR:tgfb  HGNC:11766
+75351 GSE262398 STR:tgfb  HGNC:11766
+77602 GSE59817  STR:tgfb  HGNC:11766
+77603 GSE59818  STR:tgfb  HGNC:11766
+80720 GSE78276  STR:tgfb  HGNC:11766
+83417 GSE88757  STR:tgfb  HGNC:11766
+83421 GSE88757  STR:tgfb  HGNC:11766
+83580 GSE89152  STR:tgfb  HGNC:11766
+83894 GSE90111  STR:tgfb  HGNC:11766
+84529 GSE93605  STR:tgfb  HGNC:11766
+84532 GSE93605  STR:tgfb  HGNC:11766
+      tl                                                 
+11546 HIBEC P4-6 TGFb stimulated                         
+11547 Primary HIBEC TGFb stimulated                      
+13975 TGF-B 24H                                          
+13976 TGF-B 48H                                          
+17938 TGFB                                               
+22315 TGFB 10d                                           
+22316 TGFB 6d                                            
+22317 TGFB 4d                                            
+22318 TGFB 2d                                            
+22319 TGFB 24d                                           
+22320 TGFB 4d                                            
+22321 TGFB 4d                                            
+22322 TGFB 4d                                            
+22323 TGFB 2d                                            
+22324 TGFB 6d                                            
+22325 TGFB 8d                                            
+22326 TGFB 10d                                           
+22327 TGFB 2d                                            
+22328 TGFB 4d                                            
+22329 TGFB 10d                                           
+22330 TGFB 2d                                            
+22331 TGFB 4d withdrawn                                  
+22993 Intestinal Epithelial Cells (IEC) treated with IL17
+22996 Intestinal Epithelial Cells (IEC) treated with IL17
+23588 HPAC + TGFb                                        
+23591 PANC0327 + TGFb                                    
+23594 PANC1 + TGFb                                       
+23598 PATU8902 + TGFb                                    
+26016 Stellate Cells, TGFb, 24h                          
+26017 Stellate Cells, TGFb, 48h                          
+26018 Stellate Cells, TGFB, 6h                           
+26147 IL17 stimulated                                    
+26148 IL17 stimulated                                    
+26151 IL17 stimulated                                    
+26152 IL17 stimulated                                    
+29826 NHLF1 TGF-B                                        
+29829 NHLF2 TGF-B                                        
+31231 TGFB                                               
+36220 CAFs + TGFB                                        
+36222 CAFs + TGFB + 1% BDDGE scaffold                    
+40000 Vehicle A + TGFb                                   
+40129 Wild-type, TGFB, 1h                                
+40130 Wild-type, TGFB, 24h                               
+40131 SMAD2/SMAD3 KO, TGFB, 1h                           
+40132 SMAD2/SMAD3 KO, TGFB, 24h                          
+40133 SMAD2/SMAD3 KO, TGFB, 1h                           
+40134 SMAD2/SMAD3 KO, TGFB, 24h                          
+42345 Fibroblast TGF-B anti-Ig-G antibody                
+42346 Fibroblast TGF-B                                   
+42362 fibroblast TGF-B                                   
+42883 IL17                                               
+44279 IL17                                               
+51315 IL-17 (DonorID 3)                                  
+51316 IL-17 (DonorID 4)                                  
+51317 IL-17 (DonorID 1)                                  
+51667 TGFb 100 nM 16h DIV63                              
+51668 TGFb 100 nM 96h DIV63                              
+51698 PCOS, tgfb                                         
+54809 Primary PrSC 1 TGFB Day 3                          
+54810 Primary PrSC 2 TGFB Day 3                          
+54811 Primary PrSC 3 TGFB Day 3                          
+54812 Primary PrSC 4 TGFB Day 3                          
+54813 Primary PrSC 5 TGFB Day 3                          
+60169 TGF-B                                              
+62138 MCRIi019-A_D48_TGFb                                
+62141 MCRIi019-A_D48_TGFb_transgene                      
+64634 TGFB 48hrs                                         
+64635 TGFB 72hrs                                         
+64636 TGFB 24hrs                                         
+64729 Post-COVID Fibrosis TGFB                           
+64730 IPF TGFB                                           
+64731 Healthy Donor TGFB                                 
+67781 TGFb treated LX2 cells                             
+69717 Lupus + TGF-B                                      
+69721 PSLE + TGF-B                                       
+69725 Psoriasis + TGF-B                                  
+69729 Control + TGF-B                                    
+70239 Fibrotic tissue, TGFB                              
+70241 Non-fibrotic tissue, TGFB                          
+70243 Knee tissue, TGFB                                  
+70244 Knee tissue, TGFB                                  
+73933 HMLE TGF-b Day1                                    
+73934 HMLE TGF-b Day4                                    
+73935 HMLE TGF-b Day7                                    
+73936 HMLE TGF-b Day10                                   
+73937 HMLE TGF-b Day15                                   
+74934 Treated (TGFB)                                     
+75351 TGFb-treated SAEC                                  
+77602 TGFb                                               
+77603 MCF10A + siCtrl + TGFb                             
+80720 TGFb                                               
+83417 PANC-1 + TGFb 72h                                  
+83421 PANC-1 + TGFb 72h (duplicate)                      
+83580 MCF10A TGFB Day1                                   
+83894 PANC1 TGFb                                         
+84529 MDA231 + TGFB                                      
+84532 MDA231 + TGFB                                      
+      cl                                                                                               
+11546 HIBEC P4-6 Vehicle Control                                                                       
+11547 HIBEC P4-6 Vehicle Control                                                                       
+13975 Untreated                                                                                        
+13976 Untreated                                                                                        
+17938 Control                                                                                          
+22315 Untreated                                                                                        
+22316 Untreated                                                                                        
+22317 Untreated                                                                                        
+22318 Untreated                                                                                        
+22319 Untreated                                                                                        
+22320 Untreated                                                                                        
+22321 Untreated                                                                                        
+22322 Untreated                                                                                        
+22323 Untreated                                                                                        
+22324 Untreated                                                                                        
+22325 Untreated                                                                                        
+22326 Untreated                                                                                        
+22327 Untreated                                                                                        
+22328 Untreated                                                                                        
+22329 Untreated                                                                                        
+22330 Untreated                                                                                        
+22331 Untreated                                                                                        
+22993 Intestinal Epithelial Cells (IEC) treated with Medium                                            
+22996 Intestinal Epithelial Cells (IEC) treated with Medium                                            
+23588 HPAC + vehicle                                                                                   
+23591 PANC0327 + vehicle                                                                               
+23594 PANC1 + vehicle                                                                                  
+23598 PATU8902 + vehicle                                                                               
+26016 Stellate Cells, 24h, CTRL                                                                        
+26017 Stellate Cells, 48h, CTRL                                                                        
+26018 Stellate Cells, 6h, CTRL                                                                         
+26147 Control delayed                                                                                  
+26148 Normal control                                                                                   
+26151 Control delayed                                                                                  
+26152 Normal control                                                                                   
+29826 NHLF1 Vehicle Control                                                                            
+29829 NHLF2 Vehicle Control                                                                            
+31231 No Treatment                                                                                     
+36220 NFs + Control                                                                                    
+36222 NFs + Control                                                                                    
+40000 Vehicle A                                                                                        
+40129 Wild-type, untreated, 1h                                                                         
+40130 Wild-type, untreated, 24h                                                                        
+40131 SMAD2/SMAD3 KO, untreated, 1h                                                                    
+40132 SMAD2/SMAD3 KO, untreated, 24h                                                                   
+40133 SMAD2/SMAD3 KO, untreated, 1h                                                                    
+40134 SMAD2/SMAD3 KO, untreated, 24h                                                                   
+42345 Fibroblast untreated                                                                             
+42346 Fibroblast untreated                                                                             
+42362 fibroblast untreated                                                                             
+42883 Bronchial epithelial cells differentiated on porous membrane under air-liquid interface condition
+44279 Untreated Control                                                                                
+51315 Control                                                                                          
+51316 Control                                                                                          
+51317 Control                                                                                          
+51667 PBS 100 nM 16h DIV63                                                                             
+51668 PBS 100 nM 96h DIV63                                                                             
+51698 PCOS, no treatment                                                                               
+54809 Primary PrSC 1 untreated                                                                         
+54810 Primary PrSC 2 untreated                                                                         
+54811 Primary PrSC 3 untreated                                                                         
+54812 Primary PrSC 4 untreated                                                                         
+54813 Primary PrSC 5 untreated                                                                         
+60169 Control                                                                                          
+62138 MCRIi019-A_D69_chondrogenic_diff                                                                 
+62141 MCRIi019-A_D48_chondrogenic_diff_transgene                                                       
+64634 Ctrl 48hrs                                                                                       
+64635 Ctrl 72hrs                                                                                       
+64636 Ctrl 24hrs                                                                                       
+64729 Post-COVID Fibrosis Control                                                                      
+64730 IPF Control                                                                                      
+64731 Healthy Donor Control                                                                            
+67781 Untreated LX2 cells                                                                              
+69717 Lupus + NoStim                                                                                   
+69721 PSLE + NoStim                                                                                    
+69725 Psoriasis + NoStim                                                                               
+69729 Control + NoStim                                                                                 
+70239 Fibrotic tissue, Vehicle                                                                         
+70241 Non-fibrotic tissue, Vehicle                                                                     
+70243 Non-fibrotic tissue, Vehicle                                                                     
+70244 Non-fibrotic tissue, Vehicle                                                                     
+73933 HMLE Untreated Day1                                                                              
+73934 HMLE Untreated Day4                                                                              
+73935 HMLE Untreated Day7                                                                              
+73936 HMLE Untreated Day10                                                                             
+73937 HMLE Untreated Day15                                                                             
+74934 Control (CON)                                                                                    
+75351 DMSO-treated SAEC                                                                                
+77602 Control                                                                                          
+77603 MCF10A + siCtrl                                                                                  
+80720 beads only                                                                                       
+83417 PANC-1 + Vehicle 72h                                                                             
+83421 PANC-1 + Vehicle 72h                                                                             
+83580 MCF10A Vehicle Control                                                                           
+83894 PANC1 DMSO                                                                                       
+84529 MDA231 + vehicle                                                                                 
+84532 MDA231 + vehicle                                                                                 
+
+EXIT_MISURA=0
