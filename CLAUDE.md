@@ -35,6 +35,48 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-08-05b (I CONFRONTI IMPERFETTI: RILETTI TUTTI E 214, MISURATI, NON USATI COME GATE)**:
+> 🟢 **Tutte e 214 le meta-analisi rilette sulla composizione POOLATA vera, con un contestatore per
+> blocco. I difetti trovati sono QUANTIFICATI: 85 confronti su 843 nei 13 gruppi grandi (10,1%).
+> DECISIONE UTENTE: non sono un gate, sono un finding dell'articolo.**
+> Finding completo (metodo + numeri + limiti): `docs/findings/2026-08-05-confronti-imperfetti.md`.
+>
+> 1. **METODO, in tre passate** (`analysis/audit/2026-08-05-rilettura-214/`): materiale con le
+>    etichette **INTERE** dei confronti POOLATI (non censiti) → 22 lettori da 10 gruppi → 22
+>    contestatori («il tuo compito non è confermarlo: è provare che ha sbagliato») → 13 contatori sui
+>    gruppi grandi, con un compito solo: **contare**, non rigiudicare.
+> 2. **Il controllo del troncamento è dentro lo script**: misura la distribuzione delle lunghezze e
+>    segnala i picchi. Ne ha trovati due (69 etichette a 40 caratteri, 11 a 58) → ispezionati: frasi
+>    **complete**, non tronconi. La più lunga è 129 caratteri e arriva in fondo.
+> 3. **ESITO sui 214**: 101 senza difetti, **97 con almeno un confronto imperfetto**, 16 incerti. Il
+>    tasso **cresce con la dimensione**: k 3-4 → 47 su 115; **k≥15 → 13 su 13**. È il motivo per cui
+>    NON può essere un gate: escluderebbe tutti i gruppi con potenza da figura.
+> 4. **QUANTIFICAZIONE (i 13 grandi): 85 confronti imperfetti su 843 = 10,1%**, mediana 8,6%. Pesati
+>    sui dati veri: mediana **12,0% del segnale** (LIMITE SUPERIORE: attribuisce a un difetto tutto il
+>    peso dello studio). Estremi: SARS-CoV-2 **0,7%**, ipossia 1,3%, JQ1 3,2% · IL1B **33,7%**, LPS
+>    19,5%. **TGF-β1 ha il conteggio peggiore (29 su 145) ma il 6,7% del peso**: la pesatura per
+>    varianza inversa declassa da sola gli studi rumorosi.
+> 5. **TASSONOMIA**: secondo agente nel solo trattato 22% · materiale diverso 21% · passaggio di
+>    coltura 16% · linea cellulare 15% · sede anatomica 12% · donatore/sesso/etnia 9%. **I difetti si
+>    concentrano**: 8 studi danno 51 degli 85, e in 10 casi coprono l'INTERO contributo di uno studio
+>    (GSE161176, GSE210984, GSE78801, GSE169241…) → una lista di studi da escludere è molto più corta
+>    di una lista di confronti.
+> 6. **UN DIFETTO NON IMPLICA UN RISULTATO SBAGLIATO**: DHT ed enzalutamide hanno 12,0% e 12,1% di peso
+>    contaminato e danno insieme **1.408 geni su 1.441 di segno opposto, Spearman −0,938**.
+> 7. **LIMITI DICHIARATI**: (a) il contestatore era **spinto alla severità** dal prompt — i 24 verdetti
+>    cambiati vanno TUTTI verso il peggio, zero assoluzioni: un impianto migliore avrebbe due critici
+>    simmetrici; (b) il peso è un limite superiore; (c) **tre accuse non hanno retto**, e una era MIA
+>    (**RITRATTATA**): GSE178714 in TGF-β1 non è un difetto — il genotipo `SMAD2/SMAD3 KO` è IDENTICO
+>    sui due bracci, era un argomento di plausibilità biologica, non di appaiamento; (d) una misura del
+>    peso via regex **scartata perché cieca** (mediana 87%: prendeva anche gli studi citati come
+>    *puliti*); (e) **TGF-β1 ha 145 CONFRONTI, non 59** — 59 sono gli STUDI, i due numeri erano stati
+>    usati come sinonimi.
+> 8. **Gli 11 verdetti umani precedenti: 11 su 11 riconfermati**, zero assoluzioni. E i difetti già
+>    documentati nel progetto sono stati **ritrovati indipendentemente** dalle sole etichette (GSE78801
+>    pons/brain, GSE210984 MSC da iPSC, GSE130247 «DHT and ENZ»).
+> 9. **PROSSIMO**: le narrative dei 9 bundle e i Methods, con la tabella dei confronti imperfetti
+>    accanto a ogni figura. Branch invariato, master invariato, no push.
+>
 > **Stato 2026-08-05 (v15 ESEGUITO — 214 META-ANALISI, IL CONTROLLO BIOLOGICO PASSA, LAYER B COSTRUITO)**:
 > 🟢 **Il re-cluster v15 è stato l'ULTIMO, come da mandato. Re-cluster 8h43m + re-pool 31h, deliverable
 > annotato, validazione biologica, 9 case study. Tutte le previsioni depositate PRIMA del run tornano
