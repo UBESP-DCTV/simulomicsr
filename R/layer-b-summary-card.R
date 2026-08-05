@@ -381,18 +381,36 @@
 #' "Discussion") che l'utente cura a mano. Embed pointer al summary_card.md
 #' + lista figure.
 #'
+#' Collegamento (Task 7bis, 2026-08-05): quando il chiamante passa
+#' `narrativa_bozza_md` (tipicamente l'output di `.narrativa_bozza()`, in
+#' `R/layer-b-narrative.R`), gli stub TODO sono sostituiti da quel testo --
+#' gia' marcato `> BOZZA -- da rivedere` dalla funzione stessa, quindi non
+#' serve un'altra intestazione TODO sopra. Senza (default `NULL`, e' il caso
+#' del ripiego quando il deliverable annotato non e' disponibile) il
+#' comportamento resta quello di sempre: stub TODO, invariato per
+#' retrocompatibilita' coi bundle costruiti prima di questo collegamento.
+#'
 #' @param cluster_id character (1).
 #' @param summary_card_path character path al summary_card.md (NULL OK;
 #'   entry skip).
 #' @param selection_row tibble (1 row).
 #' @param config list.
 #' @param out_dir character.
+#' @param narrativa_bozza_md character(1) opzionale, markdown gia' pronto
+#'   (tipicamente `.narrativa_bozza()`) da inserire al posto degli stub TODO.
+#'   `NULL` (default) -> stub TODO, come prima di questo collegamento.
+#' @param nota_ripiego character(1) opzionale: quando non `NULL`, una riga in
+#'   evidenza subito sotto il titolo che DICHIARA che questo case study sta
+#'   usando la scheda/narrativa precedenti (invece delle nuove) e perche' --
+#'   mai un ripiego silenzioso. `NULL` (default) -> nessuna nota.
 #'
 #' @return character path al .qmd scritto.
 #' @keywords internal
 .write_narrative_template <- function(cluster_id, summary_card_path,
                                       selection_row, config,
-                                      out_dir = tempdir()) {
+                                      out_dir = tempdir(),
+                                      narrativa_bozza_md = NULL,
+                                      nota_ripiego = NULL) {
   label_paper <- selection_row$label_paper[1L]
 
   summary_block <- if (!is.null(summary_card_path) &&
@@ -403,6 +421,36 @@
             cluster_id)
   }
 
+  corpo_narrativa <- if (!is.null(narrativa_bozza_md)) {
+    c("## Narrative", "", narrativa_bozza_md, "")
+  } else {
+    c(
+      "## Biological context",
+      "",
+      "_TODO: write biological narrative (1-2 paragraphs). What is the",
+      "biological intervention/disease? Why is this comparison interesting?",
+      "What known mechanisms apply?_",
+      "",
+      "## Findings",
+      "",
+      "_TODO: interpret top-30 genes table + volcano + GO enrichment.",
+      "Which genes confirm known biology? Are there surprises? Cross-reference",
+      "with literature._",
+      "",
+      "## Discussion",
+      "",
+      "_TODO: discuss heterogeneity (if REM), cross-study consistency (forest),",
+      "caveats (mega_aug baseline-pool), implications for the field._",
+      ""
+    )
+  }
+
+  nota_lines <- if (!is.null(nota_ripiego)) {
+    c(sprintf("> **Nota:** %s", nota_ripiego), "")
+  } else {
+    NULL
+  }
+
   qmd_lines <- c(
     "---",
     sprintf('title: "Case study: %s (%s)"', label_paper, cluster_id),
@@ -410,27 +458,12 @@
     "",
     sprintf("# Case study: %s", label_paper),
     "",
+    nota_lines,
     "## Summary card",
     "",
     summary_block,
     "",
-    "## Biological context",
-    "",
-    "_TODO: write biological narrative (1-2 paragraphs). What is the",
-    "biological intervention/disease? Why is this comparison interesting?",
-    "What known mechanisms apply?_",
-    "",
-    "## Findings",
-    "",
-    "_TODO: interpret top-30 genes table + volcano + GO enrichment.",
-    "Which genes confirm known biology? Are there surprises? Cross-reference",
-    "with literature._",
-    "",
-    "## Discussion",
-    "",
-    "_TODO: discuss heterogeneity (if REM), cross-study consistency (forest),",
-    "caveats (mega_aug baseline-pool), implications for the field._",
-    "",
+    corpo_narrativa,
     "## Figures",
     "",
     "::: {.figure-list}",

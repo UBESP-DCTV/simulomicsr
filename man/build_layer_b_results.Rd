@@ -11,6 +11,8 @@ build_layer_b_results(
   per_cluster_samples_provider,
   stage3_metadata = NULL,
   pooling_effectiveness = NULL,
+  bersagli_attesi_provider = NULL,
+  confronti_imperfetti_provider = NULL,
   config = layer_b_default_config(),
   out_dir = NULL,
   fetch_counts_fn = NULL
@@ -33,7 +35,25 @@ senza Stage 3 fields.}
 
 \item{pooling_effectiveness}{data.frame opzionale (una riga per cluster) con
 le misure di efficacia del pooling e di materiale; passato tale e quale a
-\code{.build_summary_card()}. NULL -> le schede escono come prima.}
+\code{.build_summary_card()} \strong{solo quando si ripiega sulla scheda vecchia}
+(deliverable annotato non disponibile per quel cluster: vedi
+\code{deliverable_annotato_path} sotto). Quando la scheda nuova e' in uso,
+queste misure vengono dalla riga del deliverable annotato, non da qui.
+NULL -> le schede vecchie (ripiego) escono come prima.}
+
+\item{bersagli_attesi_provider}{function(cluster_id) -> character vector
+opzionale, i simboli genici attesi dalla letteratura per quel cluster.
+\strong{Argomento del chiamante}: il pacchetto non ha una tabella interna di
+bersagli (vedi \code{.narrativa_bozza()}) -- inventarne una qui sarebbe
+esattamente il tipo di affermazione non verificabile che quella funzione
+e' scritta per evitare. NULL (default) -> nessuna attesa dichiarata per
+nessun cluster (la scheda/narrativa lo dicono esplicitamente, non lo
+tacciono).}
+
+\item{confronti_imperfetti_provider}{function(cluster_id) -> list(n, tot,
+peso) o NULL, opzionale, dalla rilettura dei confronti poolati (vedi
+\code{docs/findings/2026-08-05-confronti-imperfetti.md}). NULL (default) ->
+"non misurato" dichiarato per ogni cluster.}
 
 \item{config}{list (vedi \code{\link[=layer_b_default_config]{layer_b_default_config()}}).}
 

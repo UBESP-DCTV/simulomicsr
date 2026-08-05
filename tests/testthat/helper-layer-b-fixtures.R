@@ -44,7 +44,22 @@ make_fake_per_study_de <- function(cluster_id = "cl_aug", n_genes = 50, n_studie
 
 # Fixture end-to-end per build_layer_b_results(): finto stage4 dir + counts cache.
 # Usato dai test test-layer-b-build.R, test-layer-b-fixture-mini.R, test-layer-b-replication.R.
-make_fake_layer_a_dir <- function() {
+#
+# `cluster_ids`: coppia (mega, mega_aug) -- default invariato per non rompere
+# i chiamanti esistenti. Parametrizzato per il test del collegamento
+# scheda/narrativa (test-layer-b-collegamento-scheda.R), che ha bisogno di un
+# cluster_id nella forma vera `cgroup_L5_...` per verificare che la scheda
+# nuova non lo stampi nel corpo.
+# `con_deliverable_annotato`: se TRUE, scrive anche `deliverable-annotato.rds`
+# con una riga per il cluster mega (schema minimo di
+# `annotate_stage4_deliverable()`) -- il file che fa scattare la scheda/
+# narrativa nuove invece del ripiego su quelle vecchie.
+make_fake_layer_a_dir <- function(cluster_ids = c("cl_mega_1", "cl_aug_1"),
+                                  con_deliverable_annotato = FALSE) {
+  stopifnot(length(cluster_ids) == 2L)
+  id_mega <- cluster_ids[1L]
+  id_aug  <- cluster_ids[2L]
+
   d <- tempfile("stage4_full_")
   dir.create(d)
 
@@ -73,14 +88,14 @@ make_fake_layer_a_dir <- function() {
     )
   }
   cp <- dplyr::bind_rows(
-    build_cp_chunk("cl_mega_1", "mega"),
-    build_cp_chunk("cl_aug_1", "mega_aug")
+    build_cp_chunk(id_mega, "mega"),
+    build_cp_chunk(id_aug, "mega_aug")
   )
   arrow::write_parquet(cp, file.path(d, "cluster_pooled.parquet"))
 
   # Per-study DE solo per mega_aug
   ps <- tibble::tibble(
-    cluster_id = rep("cl_aug_1", 200L),
+    cluster_id = rep(id_aug, 200L),
     study_id   = rep(c("GSE_PAIR_A", "GSE_PAIR_B"), each = 100L),
     gene_id    = rep(paste0("ENSG", sprintf("%011d", 1:100)), 2L),
     gene_symbol = rep(paste0("HGNC", 1:100), 2L),
@@ -99,7 +114,7 @@ make_fake_layer_a_dir <- function() {
     qc_drops_cluster = tibble::tibble(),
     pooling_warnings = tibble::tibble(),
     mega_aug_diagnostics = tibble::tibble(
-      cluster_id = "cl_aug_1", bidir_collapsed_to_mono = FALSE,
+      cluster_id = id_aug, bidir_collapsed_to_mono = FALSE,
       comparison_kind_overall = "direct_overlap"
     )
   )
@@ -111,6 +126,26 @@ make_fake_layer_a_dir <- function() {
     config = list(de_engine = list(mega = "dream"))
   )
   jsonlite::write_json(meta, file.path(d, "run_metadata.json"), auto_unbox = TRUE)
+
+  if (con_deliverable_annotato) {
+    n_sig_mega <- sum(cp$cluster_id == id_mega & cp$FDR_BH_within_cluster < 0.05,
+                      na.rm = TRUE)
+    deliverable <- data.frame(
+      cluster_id             = id_mega,
+      contrast_entity        = "HGNC:11766",
+      contrast_entity_label  = "TGF-beta1 (fixture)",
+      k_effective            = 5L,
+      k_kish                 = 4.2,
+      I2_med                 = 42.0,
+      n_sig                  = n_sig_mega,
+      quota_top1             = 0.31,
+      studio_dominante       = "GSE_PAIR_A",
+      materiale_misto        = FALSE,
+      coherence_verdict      = "coherent",
+      stringsAsFactors       = FALSE
+    )
+    saveRDS(deliverable, file.path(d, "deliverable-annotato.rds"))
+  }
 
   d
 }

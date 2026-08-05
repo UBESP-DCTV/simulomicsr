@@ -9,7 +9,9 @@
   summary_card_path,
   selection_row,
   config,
-  out_dir = tempdir()
+  out_dir = tempdir(),
+  narrativa_bozza_md = NULL,
+  nota_ripiego = NULL
 )
 }
 \arguments{
@@ -23,6 +25,15 @@ entry skip).}
 \item{config}{list.}
 
 \item{out_dir}{character.}
+
+\item{narrativa_bozza_md}{character(1) opzionale, markdown gia' pronto
+(tipicamente \code{.narrativa_bozza()}) da inserire al posto degli stub TODO.
+\code{NULL} (default) -> stub TODO, come prima di questo collegamento.}
+
+\item{nota_ripiego}{character(1) opzionale: quando non \code{NULL}, una riga in
+evidenza subito sotto il titolo che DICHIARA che questo case study sta
+usando la scheda/narrativa precedenti (invece delle nuove) e perche' --
+mai un ripiego silenzioso. \code{NULL} (default) -> nessuna nota.}
 }
 \value{
 character path al .qmd scritto.
@@ -33,5 +44,15 @@ Template Quarto con sezioni TODO ("Biological context", "Findings",
 \itemize{
 \item lista figure.
 }
+}
+\details{
+Collegamento (Task 7bis, 2026-08-05): quando il chiamante passa
+\code{narrativa_bozza_md} (tipicamente l'output di \code{.narrativa_bozza()}, in
+\code{R/layer-b-narrative.R}), gli stub TODO sono sostituiti da quel testo --
+gia' marcato \verb{> BOZZA -- da rivedere} dalla funzione stessa, quindi non
+serve un'altra intestazione TODO sopra. Senza (default \code{NULL}, e' il caso
+del ripiego quando il deliverable annotato non e' disponibile) il
+comportamento resta quello di sempre: stub TODO, invariato per
+retrocompatibilita' coi bundle costruiti prima di questo collegamento.
 }
 \keyword{internal}
