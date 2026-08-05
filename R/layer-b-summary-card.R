@@ -101,32 +101,23 @@
   # (compute_pooling_effectiveness()) e VINCE sempre sul ricalcolo locale: e'
   # il fix del rilievo Important della review -- una sola soglia, non due che
   # possono divergere in silenzio. Il ricalcolo da quota_top1 resta solo un
-  # ripiego per righe che non portano ancora quella colonna.
-  dominato_flag <- if (!is.na(dom_col)) {
-    isTRUE(dom_col)
-  } else if (!is.na(quota_top1)) {
-    quota_top1 >= soglia_dominanza
-  } else {
-    NA
-  }
+  # ripiego per righe che non portano ancora quella colonna. Regola condivisa
+  # con .narrativa_bozza() (R/layer-b-narrative.R) via .lb_dominato_flag(): un
+  # posto solo, cosi' le due schede non possono disallinearsi in silenzio.
+  dominato_flag <- .lb_dominato_flag(dom_col, quota_top1, soglia_dominanza)
 
   # --- riga 1: cosa e' stato confrontato ------------------------------------
-  soggetto <- if (!.na_chr(etichetta)) {
-    as.character(etichetta)
-  } else if (!.na_chr(entita_id)) {
-    sprintf("%s (etichetta leggibile non disponibile: ripiego sull'identificativo grezzo del contrasto)",
-            as.character(entita_id))
-  } else {
-    "identita' del contrasto non disponibile (vedi PROVENIENZA)"
-  }
-  verdetto_txt <- if (.na_chr(verdetto)) {
-    "verdetto di coerenza non disponibile"
-  } else if (identical(as.character(verdetto), "coherent")) {
-    "verdetto di coerenza: coerente"
-  } else {
-    sprintf("VERDETTO DI COERENZA: %s -- i confronti raggruppati potrebbero non misurare lo stesso contrasto",
-            toupper(as.character(verdetto)))
-  }
+  # soggetto e verdetto_txt: stessa logica di .narrativa_bozza(), condivisa
+  # via .lb_soggetto_da_contrasto()/.lb_verdetto_coerenza_txt() -- le
+  # formulazioni restano quelle di questa scheda (passate come template).
+  soggetto <- .lb_soggetto_da_contrasto(
+    etichetta, entita_id,
+    non_disponibile = "identita' del contrasto non disponibile (vedi PROVENIENZA)")
+  verdetto_txt <- .lb_verdetto_coerenza_txt(
+    verdetto,
+    tmpl_na = "verdetto di coerenza non disponibile",
+    tmpl_coherent = "verdetto di coerenza: coerente",
+    tmpl_altro = "VERDETTO DI COERENZA: %s -- i confronti raggruppati potrebbero non misurare lo stesso contrasto")
   riga1 <- sprintf(
     "- **Cosa e' stato confrontato:** %s, trattato contro il proprio controllo (%s).",
     soggetto, verdetto_txt)
@@ -142,11 +133,7 @@
   } else {
     " Il peso del singolo studio piu' pesante non e' disponibile."
   }
-  materiale_txt <- if (isTRUE(mat_misto)) {
-    " Il materiale e' misto: studi su modello in vitro e su tessuto di paziente insieme."
-  } else {
-    ""
-  }
+  materiale_txt <- .lb_materiale_misto_txt(mat_misto)
   riga2 <- sprintf(
     "- **Su quanti studi, e quanto pesano davvero:** %s studi entrano nel pool, ma quelli che contano davvero (numero efficace di Kish) sono %s.%s%s",
     k_eff_txt, k_kish_txt, peso_studio, materiale_txt)
@@ -168,18 +155,10 @@
     bersagli_txt, n_sig_txt)
 
   # --- riga 5: quanto e' sporco -----------------------------------------------
-  riga5 <- if (is.null(confronti_imperfetti)) {
-    "- **Quanto e' sporco:** non misurato per questo gruppo."
-  } else {
-    n_imp   <- confronti_imperfetti$n
-    tot_imp <- confronti_imperfetti$tot
-    peso_imp <- confronti_imperfetti$peso
-    sprintf(
-      "- **Quanto e' sporco:** %s confronti imperfetti su %s (%s%% del peso stimato della meta-analisi; vedi docs/findings/2026-08-05-confronti-imperfetti.md).",
-      if (is.null(n_imp) || is.na(n_imp)) "?" else as.character(as.integer(n_imp)),
-      if (is.null(tot_imp) || is.na(tot_imp)) "?" else as.character(as.integer(tot_imp)),
-      if (is.null(peso_imp) || is.na(peso_imp)) "?" else sprintf("%.1f", 100 * peso_imp))
-  }
+  # Clausola condivisa con .narrativa_bozza() via .lb_confronti_imperfetti_txt()
+  # (ritorna solo il contenuto, senza il prefisso di bullet ne' il punto finale).
+  riga5 <- sprintf("- **Quanto e' sporco:** %s.",
+                   .lb_confronti_imperfetti_txt(confronti_imperfetti))
 
   # --- provenienza: dove vivono gli identificativi interni --------------------
   .prov <- function(x) if (.na_chr(x)) "N/A" else as.character(x)

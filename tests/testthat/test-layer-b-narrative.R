@@ -167,3 +167,102 @@ test_that("materiale non misto non produce nessuna frase su 'misto'", {
   txt <- simulomicsr:::.narrativa_bozza(riga)
   expect_false(grepl("misto", txt, ignore.case = TRUE))
 })
+
+# --- correzione post-review: Important 1, taglio silenzioso sulla dominanza -
+# Quando ne' `dominato` ne' `quota_top1` sono disponibili, il vecchio codice
+# assorbiva il ramo in `else ""`: silenzio indistinguibile da "verificato,
+# nessuno studio domina". Deve essere dichiarato, come gia' fa
+# .summary_card_v2() quando manca quota_top1.
+
+test_that("dominanza non calcolabile (ne' 'dominato' ne' quota_top1): dichiarata, non taciuta", {
+  riga <- data.frame(contrast_entity_label = "X", k_effective = 5L,
+                     k_kish = 4.0, I2_med = 20, n_sig = 1L,
+                     stringsAsFactors = FALSE)
+  txt <- simulomicsr:::.narrativa_bozza(riga)
+  expect_match(txt, "peso del singolo studio.*non e' disponibile")
+  expect_false(grepl("pesa piu' della meta'", txt))
+})
+
+test_that("dominanza non calcolabile ma quota_top1 nota e sotto soglia: NON dominante, nessuna frase di indisponibilita' nei limiti", {
+  riga <- data.frame(contrast_entity_label = "X", k_effective = 5L,
+                     k_kish = 4.0, I2_med = 20, n_sig = 1L, quota_top1 = 0.1,
+                     studio_dominante = "GSE1", coherence_verdict = "coherent",
+                     stringsAsFactors = FALSE)
+  txt <- simulomicsr:::.narrativa_bozza(riga)
+  limiti <- sub("(?s).*\\*\\*Limiti di questo gruppo\\.\\*\\*", "", txt, perl = TRUE)
+  expect_false(grepl("pesa piu' della meta'", limiti))
+  expect_false(grepl("non e' disponibile", limiti))
+})
+
+# --- correzione post-review: Important 2, helper condivisi con la scheda ---
+
+test_that("il parametro soglia_dominanza e' letto davvero (ripiego, non colonna 'dominato')", {
+  riga <- data.frame(contrast_entity_label = "X", k_effective = 10L,
+                     k_kish = 3.0, I2_med = 50, n_sig = 3L, quota_top1 = 0.3,
+                     studio_dominante = "GSE9", stringsAsFactors = FALSE)
+  # 0.3 e' sotto il default (0.5): nessuna segnalazione
+  txt_default <- simulomicsr:::.narrativa_bozza(riga)
+  expect_false(grepl("pesa piu' della meta'", txt_default))
+  # abbassando il parametro a 0.25, 0.3 diventa dominante
+  txt_soglia_bassa <- simulomicsr:::.narrativa_bozza(riga, soglia_dominanza = 0.25)
+  expect_match(txt_soglia_bassa, "pesa piu' della meta'")
+})
+
+test_that("il parametro soglia_dominanza ha default 0.5, come .summary_card_v2()", {
+  expect_equal(formals(simulomicsr:::.narrativa_bozza)$soglia_dominanza, 0.5)
+})
+
+# --- correzione post-review: Minor, guardia su 'trovati' senza colonna gene -
+
+test_that("'trovati' non vuoto senza colonna 'gene' e' un errore esplicito, non un crash su vapply", {
+  riga <- data.frame(contrast_entity_label = "X", k_effective = 5L,
+                     k_kish = 4.0, I2_med = 20, n_sig = 1L,
+                     stringsAsFactors = FALSE)
+  trovati_malformato <- data.frame(logFC = 1.41, stringsAsFactors = FALSE)
+  expect_error(
+    simulomicsr:::.narrativa_bozza(riga, bersagli_attesi = "SMAD7",
+                                   trovati = trovati_malformato),
+    "gene")
+})
+
+# --- correzione post-review: helper condivisi, verifica diretta -------------
+# Gli helper .lb_*() sono la fonte unica delle cinque regole segnalate dal
+# revisore come duplicate. Testati qui direttamente (non solo attraverso
+# .narrativa_bozza()) perche' sono anche usati da .summary_card_v2().
+
+test_that(".lb_soggetto_da_contrasto: ripiego etichetta -> id grezzo -> non_disponibile del chiamante", {
+  expect_equal(simulomicsr:::.lb_soggetto_da_contrasto("Y", "HGNC:1", "N/D"), "Y")
+  expect_match(simulomicsr:::.lb_soggetto_da_contrasto(NA_character_, "HGNC:1", "N/D"),
+              "HGNC:1")
+  expect_equal(simulomicsr:::.lb_soggetto_da_contrasto(NA_character_, NA_character_, "N/D"),
+              "N/D")
+})
+
+test_that(".lb_verdetto_coerenza_txt: tre rami, template del chiamante", {
+  expect_equal(
+    simulomicsr:::.lb_verdetto_coerenza_txt(NA_character_, "na", "coer", "ALTRO: %s"),
+    "na")
+  expect_equal(
+    simulomicsr:::.lb_verdetto_coerenza_txt("coherent", "na", "coer", "ALTRO: %s"),
+    "coer")
+  expect_equal(
+    simulomicsr:::.lb_verdetto_coerenza_txt("incoherent", "na", "coer", "ALTRO: %s"),
+    "ALTRO: INCOHERENT")
+})
+
+test_that(".lb_dominato_flag: la colonna vince sempre sul ricalcolo da quota_top1", {
+  expect_true(simulomicsr:::.lb_dominato_flag(TRUE, 0.1))
+  expect_false(simulomicsr:::.lb_dominato_flag(FALSE, 0.9))
+  expect_true(simulomicsr:::.lb_dominato_flag(NA, 0.6, soglia_dominanza = 0.5))
+  expect_false(simulomicsr:::.lb_dominato_flag(NA, 0.3, soglia_dominanza = 0.5))
+  expect_true(is.na(simulomicsr:::.lb_dominato_flag(NA, NA_real_)))
+})
+
+test_that(".lb_confronti_imperfetti_txt e .lb_materiale_misto_txt: clausole condivise", {
+  expect_equal(simulomicsr:::.lb_confronti_imperfetti_txt(NULL),
+              "non misurato per questo gruppo")
+  expect_match(simulomicsr:::.lb_confronti_imperfetti_txt(list(n = 1L, tot = 2L, peso = 0.5)),
+              "1 confronti imperfetti su 2")
+  expect_equal(simulomicsr:::.lb_materiale_misto_txt(FALSE), "")
+  expect_match(simulomicsr:::.lb_materiale_misto_txt(TRUE), "misto")
+})
