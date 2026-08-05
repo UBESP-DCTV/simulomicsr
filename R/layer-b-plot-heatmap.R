@@ -1,3 +1,49 @@
+#' Le colonne annotate della heatmap: Treatment sempre, Study solo su richiesta
+#'
+#' Su TGF-beta1 la fascia "Study" e' 47 colori indistinguibili e la legenda
+#' che la spiega occupa un terzo della figura (47 codici GSE illeggibili,
+#' misurato il 2026-08-05): la biologia che la heatmap deve mostrare
+#' (bersagli + separazione trattato/controllo) sta gia' tutta
+#' nell'annotazione Treatment. Study resta disponibile
+#' (`config$heatmap_mostra_studi`) per chi la vuole comunque, ma di default
+#' e' fuori.
+#'
+#' @param metadata data.frame/tibble con colonne `study_id` e `treatment`,
+#'   allineate alle colonne della matrice passata a [.build_heatmap()].
+#' @param mostra_studi logical(1): includere l'annotazione Study.
+#' @return list nominata: `Treatment` sempre, `Study` solo se
+#'   `mostra_studi = TRUE`. Ogni elemento e' a sua volta una list con
+#'   `values` (il vettore da annotare) e `colors` (la mappa nome->colore),
+#'   pronta per `ComplexHeatmap::HeatmapAnnotation()`.
+#' @keywords internal
+.heatmap_annotazione_colonne <- function(metadata, mostra_studi) {
+  treatment_levels <- unique(metadata$treatment)
+  treatment_colors <- stats::setNames(
+    rep(c("#BBBBBB", "#333333"), length.out = length(treatment_levels)),
+    treatment_levels
+  )
+  # Override la mappatura di default se i label canonici sono presenti, cosi'
+  # control/treated hanno sempre lo stesso colore indipendentemente
+  # dall'ordine in cui compaiono nei dati.
+  if ("control" %in% treatment_levels) treatment_colors[["control"]] <- "#BBBBBB"
+  if ("treated" %in% treatment_levels) treatment_colors[["treated"]] <- "#333333"
+
+  ann <- list(
+    Treatment = list(values = metadata$treatment, colors = treatment_colors)
+  )
+
+  if (isTRUE(mostra_studi)) {
+    studies_unique <- unique(metadata$study_id)
+    study_colors <- stats::setNames(
+      viridisLite::viridis(length(studies_unique)),
+      studies_unique
+    )
+    ann$Study <- list(values = metadata$study_id, colors = study_colors)
+  }
+
+  ann
+}
+
 #' Heatmap top-N geni x sample (vst + ComBat batch-corrected)
 #'
 #' Top-N geni FDR<thr ranked by significance (`FDR_BH_within_cluster`
@@ -8,8 +54,9 @@
 #' `DESeq2::varianceStabilizingTransformation()` + `sva::ComBat()` batch
 #' correction per `study_id` (cosmetico, esplicitato nella caption).
 #' Subsample stratificato per (study, treatment) se
-#' n_samples > max_heatmap_samples. Row-wise z-score, annotation rows
-#' study (viridis) + treatment (binary), ComplexHeatmap engine.
+#' n_samples > max_heatmap_samples. Row-wise z-score, annotation colonne
+#' via [.heatmap_annotazione_colonne()] (Treatment sempre, Study solo se
+#' `config$heatmap_mostra_studi = TRUE`), ComplexHeatmap engine.
 #'
 #' Edge cases:
 #' - 0 sig genes -> PNG placeholder + caption N/A.
@@ -22,14 +69,31 @@
 #'   il cluster (tutte le righe stesso `cluster_id`).
 #' @param out_dir character path al dir dove salvare `heatmap.png` (+ `.svg`).
 #' @param config list di config (vedi [layer_b_default_config()]).
+#' @param etichetta character(1) opzionale, l'etichetta leggibile del gruppo
+#'   (tipicamente `selection_row$label_paper`) da usare come `entita` del
+#'   titolo (`.lb_titolo()`). Se NULL, NA o vuota il titolo ripiega sul
+#'   `cluster_id` grezzo -- MAI in silenzio: la caption lo dichiara. Stesso
+#'   pattern di `.build_forest()`/`.build_volcano()` (Task 3-4).
 #'
-#' @return list con `png_path`, `svg_path`, `caption`.
+#' @return list con `png_path`, `svg_path`, `titolo`, `caption`.
 #' @keywords internal
-.build_heatmap <- function(counts, metadata, cluster_pooled_subset, out_dir, config) {
+.build_heatmap <- function(counts, metadata, cluster_pooled_subset, out_dir, config,
+                           etichetta = NULL) {
   cp <- cluster_pooled_subset
   fdr_thr <- config$fdr_threshold
   top_n <- config$top_n_heatmap
   max_samples <- config$max_heatmap_samples
+
+  # entita' del titolo: l'etichetta leggibile se c'e', altrimenti il
+  # cluster_id grezzo -- MAI in silenzio, la caption dichiara il ripiego
+  # (vedi titolo_nota sotto). Calcolato qui perche' non dipende da nulla di
+  # ricalcolato piu' avanti (filtro geni, subsample, ComBat).
+  etichetta_ok <- !is.null(etichetta) && !is.na(etichetta) && nzchar(etichetta)
+  entita_titolo <- if (etichetta_ok) etichetta else cp$cluster_id[1L]
+  titolo_nota <- if (etichetta_ok) "" else paste0(
+    " Figure title falls back to the raw cluster_id: no readable group ",
+    "label (label_paper) was provided to .build_heatmap()."
+  )
 
   sig <- cp[!is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr, , drop = FALSE]
   # Stesso filtro di copertura della top-gene table, e per lo stesso motivo: i
@@ -163,30 +227,18 @@
   z_mat <- t(scale(t(combat_mat)))
   z_mat[is.na(z_mat)] <- 0
 
-  # Annotation rows: study (viridis) + treatment (binary)
-  studies_unique <- unique(metadata$study_id)
-  study_colors <- stats::setNames(
-    viridisLite::viridis(length(studies_unique)),
-    studies_unique
+  # Annotation colonne: Treatment sempre, Study solo se config lo chiede
+  # esplicitamente (default FALSE -- vedi .heatmap_annotazione_colonne()).
+  ann_spec <- .heatmap_annotazione_colonne(
+    metadata, mostra_studi = isTRUE(config$heatmap_mostra_studi)
   )
-  treatment_levels <- unique(metadata$treatment)
-  treatment_colors <- stats::setNames(
-    rep(c("#BBBBBB", "#333333"), length.out = length(treatment_levels)),
-    treatment_levels
-  )
-  # Override default mapping se i label canonici sono presenti
-  if ("control" %in% treatment_levels) treatment_colors[["control"]] <- "#BBBBBB"
-  if ("treated" %in% treatment_levels) treatment_colors[["treated"]] <- "#333333"
-
-  ha <- ComplexHeatmap::HeatmapAnnotation(
-    Study = metadata$study_id,
-    Treatment = metadata$treatment,
-    col = list(
-      Study = study_colors,
-      Treatment = treatment_colors
-    ),
-    annotation_height = grid::unit(c(4, 4), "mm")
-  )
+  ha <- do.call(ComplexHeatmap::HeatmapAnnotation, c(
+    lapply(ann_spec, `[[`, "values"),
+    list(
+      col               = lapply(ann_spec, `[[`, "colors"),
+      annotation_height = grid::unit(rep(4, length(ann_spec)), "mm")
+    )
+  ))
 
   # use_raster=TRUE: body della heatmap rasterizzato (PNG-embedded nel SVG)
   # mentre axis/labels/annotation restano vettoriali. Riduce SVG da ~5MB a
@@ -197,9 +249,18 @@
   # via top_genes_id -> top_genes_label.
   row_labels_z <- top_genes_label[match(rownames(z_mat), top_genes_id)]
 
+  # Stesso k del forest/volcano per lo stesso cluster (.cluster_k_effective su
+  # cp intero, non su n_studies): sono figure diverse dello stesso case study
+  # e devono concordare sul "quanti studi", non riportare due numeri diversi
+  # (n_studies e' quanti studi hanno campioni NELLA heatmap, che puo' non
+  # coincidere col k della meta-analisi poolata).
+  k_cluster <- .cluster_k_effective(cp)
+  titolo <- .lb_titolo(entita = entita_titolo, k = k_cluster)
+
   hm <- ComplexHeatmap::Heatmap(
     z_mat,
     name = "z-score",
+    column_title = titolo,
     top_annotation = ha,
     show_column_names = FALSE,
     show_row_names = TRUE,
@@ -242,10 +303,10 @@
     paste0("Heatmap of top %d DE genes (rows) across samples (columns). ",
            "vst + ComBat batch correction applied for visual cross-study ",
            "coherence; effect-size statistics in pooled output are NOT ",
-           "batch-corrected.%s%s%s"),
+           "batch-corrected.%s%s%s%s"),
     length(top_genes), combat_note, subsample_note,
-    .coverage_filter_note(filtro_cov)
+    .coverage_filter_note(filtro_cov), titolo_nota
   )
 
-  list(png_path = png_path, svg_path = svg_path, caption = caption)
+  list(png_path = png_path, svg_path = svg_path, titolo = titolo, caption = caption)
 }

@@ -167,7 +167,8 @@ build_layer_b_results <- function(stage4_dir, selection,
       metadata              = counts_meta$metadata,
       cluster_pooled_subset = cp_sub,
       out_dir               = cl_dir,
-      config                = config
+      config                = config,
+      etichetta             = selection_row$label_paper[1L]
     )
     if (isTRUE(config$go_enrichment)) {
       plots$go_enrichment <- .build_go_enrichment(

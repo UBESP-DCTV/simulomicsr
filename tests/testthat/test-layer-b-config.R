@@ -7,7 +7,7 @@ test_that("layer_b_default_config returns expected schema", {
     c("top_n_forest", "top_n_heatmap", "top_n_table", "top_n_volcano_labels",
       "fdr_threshold", "palette", "language", "heatmap_normalize",
       "go_enrichment", "save_svg", "dpi", "min_genes_for_go_ora",
-      "max_heatmap_samples", "top_genes_min_k_frac"),
+      "max_heatmap_samples", "top_genes_min_k_frac", "heatmap_mostra_studi"),
     ignore.order = TRUE
   )
 
@@ -25,6 +25,7 @@ test_that("layer_b_default_config returns expected schema", {
   expect_equal(config$dpi, 300L)
   expect_equal(config$min_genes_for_go_ora, 200L)
   expect_equal(config$max_heatmap_samples, 100L)
+  expect_false(config$heatmap_mostra_studi)
 })
 
 test_that("layer_b_default_config returns plain list (serializable to JSON)", {
