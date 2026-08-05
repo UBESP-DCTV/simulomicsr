@@ -30,3 +30,15 @@ vengano risolte da Pandoc e correttamente base64-embeddate
 (\code{embed-resources: true}). Path assoluti farebbero scattare l'auto-prepend
 \verb{./} di Pandoc, generando \verb{<img src="./home/user/...">} non risolvibili.
 }
+\section{ATTENZIONE prima di ogni render (lezione pagata, Task 9 2026-08-05)}{
+
+Quarto esegue il template in un sotto-processo R che carica \code{simulomicsr}
+via \code{library()} (il pacchetto INSTALLATO), non la sessione di sviluppo con
+\code{devtools::load_all()}. Se il template chiama una funzione interna via
+\code{simulomicsr:::nome_funzione()} (es. \code{.corpus_overview_from_bundle()}), un
+render fallisce con "object 'nome_funzione' not found" finche' non si
+esegue \code{devtools::install(quick = TRUE, upgrade = "never")} PRIMA. Non
+basta il \code{load_all()} della sessione corrente: il gap non si manifesta
+finche' il template chiama solo funzioni esportate.
+}
+

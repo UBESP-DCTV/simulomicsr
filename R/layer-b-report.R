@@ -16,6 +16,16 @@
 #' @param out_path character path output HTML. Default: `lb$dir/layer_b_report.html`.
 #' @param template character path al .qmd template. Default: incluso nel pacchetto.
 #'
+#' @section ATTENZIONE prima di ogni render (lezione pagata, Task 9 2026-08-05):
+#' Quarto esegue il template in un sotto-processo R che carica `simulomicsr`
+#' via `library()` (il pacchetto INSTALLATO), non la sessione di sviluppo con
+#' `devtools::load_all()`. Se il template chiama una funzione interna via
+#' `simulomicsr:::nome_funzione()` (es. `.corpus_overview_from_bundle()`), un
+#' render fallisce con "object 'nome_funzione' not found" finche' non si
+#' esegue `devtools::install(quick = TRUE, upgrade = "never")` PRIMA. Non
+#' basta il `load_all()` della sessione corrente: il gap non si manifesta
+#' finche' il template chiama solo funzioni esportate.
+#'
 #' @return invisible(out_path).
 #' @export
 render_layer_b_report <- function(lb, out_path = NULL, template = NULL) {
