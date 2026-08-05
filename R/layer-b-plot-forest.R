@@ -1,6 +1,28 @@
+#' Il gene da mostrare studio per studio nel pannello inferiore del forest
+#'
+#' Regola DICHIARATA (va in didascalia): fra i geni misurati in TUTTI gli studi
+#' del cluster, quello con l'effetto assoluto maggiore. Se nessun gene ha
+#' copertura piena si restituisce NA e il pannello inferiore si omette, invece di
+#' ripiegare in silenzio su un gene a bassa copertura -- che e' il difetto che
+#' questo ridisegno corregge.
+#' @keywords internal
+.forest_gene_rappresentativo <- function(top_genes, k_cluster) {
+  if (nrow(top_genes) == 0L || is.null(top_genes$k_effective)) return(NA_character_)
+  pieni <- top_genes[!is.na(top_genes$k_effective) &
+                       top_genes$k_effective >= as.integer(k_cluster), , drop = FALSE]
+  if (nrow(pieni) == 0L) return(NA_character_)
+  pieni$gene_id[which.max(abs(pieni$logFC_pool))]
+}
+
 #' Forest plot top-N geni (REM + MEGA-AUG dispatch)
 #'
-#' Per `method %in% c("rem", "rem_group")`: usa `metafor::forest()` su per-study yi/vi.
+#' Per `method %in% c("rem", "rem_group")`: figura a due pannelli via `patchwork`.
+#' Sopra, la stima poolata +- 95% CI per ciascuno dei geni bersaglio (colpo
+#' d'occhio su tutti). Sotto, UN gene -- quello scelto da
+#' `.forest_gene_rappresentativo()` -- studio per studio con la stima poolata
+#' resa come rombo, a riprova che il pooling e' coerente. Sostituisce il vecchio
+#' pannello `metafor::forest()` per-gene in `mfrow`, che mostrava pochi geni con
+#' meta' pagina bianca.
 #' Per `method == "mega_aug"`: custom ggplot con 2 studi del pair + pooled diamond.
 #' Per `method == "mega"`: skip-graceful con caption esplicativa (no per-study DE
 #' nel Layer A output).
@@ -139,44 +161,128 @@
     )
 
   } else if (method %in% c("rem", "rem_group")) {
-    # REM path via metafor::forest per ogni gene. Build matrix of yi, vi per gene.
     # rem_group (ADR-0022, meta-analisi nominate group L2-L4) e' REM per-studio con
     # lo stesso schema per_study_de {study_id, logFC, SE} -> stesso code path di rem.
     # Rispetta config$top_n_forest (era hard-coded 4 cap).
     top_n_actual <- min(nrow(top_genes), top_n)
+    k_str <- if (!is.na(k_cluster)) as.character(k_cluster) else "?"
+
+    # --- pannello superiore: i bersagli, stima poolata ordinata per effetto ---
+    top_disp <- top_genes
+    # Livelli in ordine crescente di logFC_pool: nel factor discreto di ggplot il
+    # primo livello e' in basso, quindi i geni piu' negativi finiscono in basso e
+    # i piu' positivi in alto (lettura "a tornado").
+    top_disp$label <- factor(top_disp$label,
+                             levels = top_disp$label[order(top_disp$logFC_pool)])
+    top_disp$verso <- ifelse(top_disp$logFC_pool >= 0, "su", "giu")
+
+    p_top <- ggplot2::ggplot(
+      top_disp,
+      ggplot2::aes(y = .data$label, x = .data$logFC_pool,
+                   xmin = .data$logFC_pool - 1.96 * .data$SE_pool,
+                   xmax = .data$logFC_pool + 1.96 * .data$SE_pool,
+                   colour = .data$verso)
+    ) +
+      ggplot2::geom_vline(xintercept = 0, linetype = "dashed", colour = .LB_COLORI$neutro) +
+      ggplot2::geom_errorbar(width = 0.2, orientation = "y") +
+      ggplot2::geom_point(size = 2.2) +
+      ggplot2::scale_colour_manual(
+        values = c(su = .LB_COLORI$su, giu = .LB_COLORI$giu), guide = "none"
+      ) +
+      ggplot2::labs(x = expression(log[2] ~ "FC (pooled)"), y = NULL,
+                    subtitle = sprintf("Top %d target genes", nrow(top_disp))) +
+      .lb_theme(base_size = 11)
+
+    # --- pannello inferiore: il gene rappresentativo, studio per studio -------
+    gene_rap <- .forest_gene_rappresentativo(top_genes, k_cluster)
+
+    if (is.na(gene_rap)) {
+      # Mai un ripiego silenzioso su un gene a bassa copertura: si mostra solo
+      # il pannello superiore e la didascalia lo dichiara (vedi bottom_desc sotto).
+      combined <- p_top + patchwork::plot_annotation(
+        title = .lb_titolo(entita = cp$cluster_id[1L], k = k_cluster)
+      )
+      h_inch <- max(3, top_n_actual * 0.35 + 1)
+      gene_lab_rap <- NA_character_
+    } else {
+      ps_g <- ps[ps$gene_id == gene_rap, , drop = FALSE]
+      ps_g <- ps_g[order(ps_g$logFC), , drop = FALSE]
+      gene_lab_rap <- top_genes$label[top_genes$gene_id == gene_rap][1L]
+      pooled_g <- top_genes[top_genes$gene_id == gene_rap, , drop = FALSE]
+
+      # "Pooled" per primo livello -> in basso nel pannello (convenzione forest
+      # plot: la sintesi in fondo, sotto le righe per studio).
+      livelli <- c("Pooled", ps_g$study_id)
+      df_studi <- data.frame(
+        riga  = factor(ps_g$study_id, levels = livelli),
+        stima = ps_g$logFC,
+        ci_lo = ps_g$logFC - 1.96 * ps_g$SE,
+        ci_hi = ps_g$logFC + 1.96 * ps_g$SE,
+        stringsAsFactors = FALSE
+      )
+      df_pool <- data.frame(
+        riga  = factor("Pooled", levels = livelli),
+        stima = pooled_g$logFC_pool[1L],
+        ci_lo = pooled_g$logFC_pool[1L] - 1.96 * pooled_g$SE_pool[1L],
+        ci_hi = pooled_g$logFC_pool[1L] + 1.96 * pooled_g$SE_pool[1L]
+      )
+
+      p_bottom <- ggplot2::ggplot() +
+        ggplot2::geom_vline(xintercept = 0, linetype = "dashed", colour = .LB_COLORI$neutro) +
+        ggplot2::geom_errorbar(
+          data = df_studi,
+          ggplot2::aes(y = .data$riga, xmin = .data$ci_lo, xmax = .data$ci_hi),
+          width = 0.2, colour = .LB_COLORI$evidenza, orientation = "y"
+        ) +
+        ggplot2::geom_point(
+          data = df_studi,
+          ggplot2::aes(y = .data$riga, x = .data$stima),
+          size = 2, colour = .LB_COLORI$evidenza
+        ) +
+        ggplot2::geom_errorbar(
+          data = df_pool,
+          ggplot2::aes(y = .data$riga, xmin = .data$ci_lo, xmax = .data$ci_hi),
+          width = 0.25, colour = .LB_COLORI$evidenza, linewidth = 0.9, orientation = "y"
+        ) +
+        ggplot2::geom_point(
+          data = df_pool,
+          ggplot2::aes(y = .data$riga, x = .data$stima),
+          shape = 18, size = 5, colour = .LB_COLORI$evidenza
+        ) +
+        ggplot2::labs(x = expression(log[2] ~ "FC"), y = NULL,
+                      subtitle = sprintf("%s, per study (k=%d)", gene_lab_rap, nrow(ps_g))) +
+        .lb_theme(base_size = 11)
+
+      combined <- patchwork::wrap_plots(p_top, p_bottom, ncol = 1L, heights = c(2, 1)) +
+        patchwork::plot_annotation(
+          title = .lb_titolo(entita = cp$cluster_id[1L], k = k_cluster)
+        )
+      h_inch <- max(4, top_n_actual * 0.32 + (nrow(ps_g) + 1) * 0.3 + 1.2)
+    }
 
     png_path <- file.path(out_dir, "forest.png")
     svg_path <- file.path(out_dir, "forest.svg")
-
-    h_inch <- max(3, top_n_actual * 0.6)
-    grDevices::png(png_path, width = 8 * config$dpi, height = h_inch * config$dpi,
-                   res = config$dpi)
-    # Device-safe: chiude solo se ancora aperto (gestisce crash mid-loop senza leak).
-    on.exit(if (grDevices::dev.cur() != 1L) grDevices::dev.off(), add = TRUE)
-    graphics::par(mfrow = c(min(top_n_actual, 4L), 1L), mar = c(3, 1, 2, 1))
-    for (i in seq_len(top_n_actual)) {
-      g_id   <- top_genes$gene_id[i]
-      g_lab  <- top_genes$label[i]
-      ps_g <- ps[ps$gene_id == g_id, , drop = FALSE]
-      if (nrow(ps_g) < 2L) next
-      tryCatch({
-        res <- metafor::rma(yi = ps_g$logFC, sei = ps_g$SE, method = "REML")
-        # FASE E1: header del singolo forest = symbol leggibile (fallback id).
-        metafor::forest(res, slab = ps_g$study_id, header = g_lab)
-      }, error = function(e) NULL)
+    ggplot2::ggsave(png_path, combined, width = 8, height = h_inch, dpi = config$dpi)
+    if (config$save_svg) {
+      ggplot2::ggsave(svg_path, combined, width = 8, height = h_inch, device = "svg")
+    } else {
+      svg_path <- NA_character_
     }
-    grDevices::dev.off()  # chiusura esplicita post-loop; on.exit copre crash
 
-    svg_path <- NA_character_  # metafor::forest base graphics non SVG-trivial
-
-    # k del CLUSTER, non del primo gene disegnato: `k_effective` e' per-gene
-    # (vedi .cluster_k_effective()). Si legge dal cluster intero, non dai soli
-    # geni del forest, che sono un sottoinsieme scelto per significativita'.
-    k_cl <- .cluster_k_effective(cluster_pooled_subset)
-    k_str <- if (!is.na(k_cl)) as.character(k_cl) else "?"
+    bottom_desc <- if (is.na(gene_rap)) {
+      paste0(
+        "omitted -- no gene among the top targets is measured in all studies of ",
+        "this cluster; showing a low-coverage gene here would misrepresent ",
+        "cross-study consistency"
+      )
+    } else {
+      sprintf("%s per study, REML-pooled summary as diamond (k=%s)", gene_lab_rap, k_str)
+    }
     caption_base <- sprintf(
-      "Forest plots for top %d significantly DE genes (FDR<%g). Each panel: per-study logFC +- 95%% CI and REML-pooled summary (k=%s).",
-      top_n_actual, fdr_thr, k_str
+      paste0("Forest plots for top %d significantly DE genes (FDR<%g). Top panel: ",
+             "pooled effect +- 95%% CI per gene, ordered by effect and coloured by ",
+             "sign. Bottom panel: %s."),
+      top_n_actual, fdr_thr, bottom_desc
     )
 
   } else {
