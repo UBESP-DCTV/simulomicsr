@@ -8,7 +8,7 @@ test_that(".build_volcano writes PNG + SVG with expected content", {
 
   result <- simulomicsr:::.build_volcano(cp, out_dir = out_dir, config = cfg)
 
-  expect_named(result, c("png_path", "svg_path", "caption"), ignore.order = TRUE)
+  expect_named(result, c("png_path", "svg_path", "titolo", "caption"), ignore.order = TRUE)
   expect_true(file.exists(result$png_path))
   expect_true(file.exists(result$svg_path))
   expect_match(basename(result$png_path), "^volcano\\.png$")

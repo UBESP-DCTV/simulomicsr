@@ -139,7 +139,10 @@ build_layer_b_results <- function(stage4_dir, selection,
     )
 
     plots <- list()
-    plots$volcano <- .build_volcano(cp_sub, out_dir = cl_dir, config = config)
+    plots$volcano <- .build_volcano(
+      cp_sub, out_dir = cl_dir, config = config,
+      etichetta = selection_row$label_paper[1L]
+    )
     plots$forest  <- .build_forest(
       per_study_de_subset   = ps_sub,
       cluster_pooled_subset = cp_sub,
