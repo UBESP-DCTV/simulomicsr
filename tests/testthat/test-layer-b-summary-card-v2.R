@@ -181,3 +181,80 @@ test_that("un I2 basso si legge come alta concordanza, uno alto come bassa", {
   expect_match(md_bassa, "alta concordanza")
   expect_false(grepl("alta concordanza", md_alta))
 })
+
+# --- correzione post-review: la soglia di dominanza non va duplicata -------
+# `compute_pooling_effectiveness(soglia_dominanza = 0.5)` gia' scrive
+# `dominato` nel deliverable annotato (R/stage4-deliverable-annotation.R).
+# Se la scheda ricalcola da sola con un valore letterale, un cambio del
+# default a monte diverge in silenzio da quello che la scheda mostra: la
+# colonna, quando c'e', deve vincere sempre sul ricalcolo locale.
+
+test_that("con 'dominato' gia' calcolato a monte, la scheda lo usa anche se il ricalcolo locale darebbe un altro esito", {
+  # quota_top1 = 0.2 e' SOTTO la soglia locale di default (0.5): se la scheda
+  # ricalcolasse da sola non segnalerebbe dominanza. La colonna dice TRUE e
+  # deve vincere.
+  riga <- data.frame(
+    cluster_id = "cl_domcol_true", contrast_entity = "HGNC:1", contrast_entity_label = "Y",
+    k_effective = 10L, k_kish = 3.0, I2_med = 50, n_sig = 3L, quota_top1 = 0.2,
+    studio_dominante = "GSE9", materiale_misto = FALSE,
+    coherence_verdict = "coherent", dominato = TRUE, stringsAsFactors = FALSE)
+  md <- simulomicsr:::.summary_card_v2(riga)
+  expect_match(md, "pesa piu' della meta'")
+})
+
+test_that("con 'dominato' = FALSE a monte, la scheda non segnala anche se quota_top1 e' alta", {
+  # quota_top1 = 0.9 e' SOPRA la soglia locale di default: se la scheda
+  # ricalcolasse da sola segnalerebbe dominanza. La colonna dice FALSE
+  # (magari calcolata con una soglia diversa a monte) e deve vincere.
+  riga <- data.frame(
+    cluster_id = "cl_domcol_false", contrast_entity = "HGNC:1", contrast_entity_label = "Y",
+    k_effective = 10L, k_kish = 3.0, I2_med = 50, n_sig = 3L, quota_top1 = 0.9,
+    studio_dominante = "GSE9", materiale_misto = FALSE,
+    coherence_verdict = "coherent", dominato = FALSE, stringsAsFactors = FALSE)
+  md <- simulomicsr:::.summary_card_v2(riga)
+  expect_false(grepl("pesa piu' della meta'", md))
+})
+
+test_that("senza la colonna 'dominato', il ripiego usa il PARAMETRO soglia_dominanza, non un numero annidato", {
+  riga <- data.frame(
+    cluster_id = "cl_soglia_param", contrast_entity = "HGNC:1", contrast_entity_label = "Y",
+    k_effective = 10L, k_kish = 3.0, I2_med = 50, n_sig = 3L, quota_top1 = 0.3,
+    studio_dominante = "GSE9", materiale_misto = FALSE,
+    coherence_verdict = "coherent", stringsAsFactors = FALSE)
+  # 0.3 e' sotto il default (0.5): nessuna segnalazione
+  md_default <- simulomicsr:::.summary_card_v2(riga)
+  expect_false(grepl("pesa piu' della meta'", md_default))
+  # abbassando il parametro a 0.25, 0.3 diventa dominante: prova che il
+  # parametro e' letto davvero, non solo dichiarato nella firma
+  md_soglia_bassa <- simulomicsr:::.summary_card_v2(riga, soglia_dominanza = 0.25)
+  expect_match(md_soglia_bassa, "pesa piu' della meta'")
+})
+
+test_that("il parametro soglia_dominanza ha default 0.5, come compute_pooling_effectiveness()", {
+  expect_equal(formals(simulomicsr:::.summary_card_v2)$soglia_dominanza, 0.5)
+})
+
+# --- correzione post-review: minor 1, cluster_id nudo in PROVENIENZA -------
+
+test_that("cluster_id NA in PROVENIENZA esce 'N/A', non un NA nudo", {
+  riga <- data.frame(
+    cluster_id = NA_character_, contrast_entity = "HGNC:1", contrast_entity_label = "Y",
+    k_effective = 5L, k_kish = 4.0, I2_med = 30, n_sig = 2L, quota_top1 = 0.3,
+    studio_dominante = "GSE2", materiale_misto = FALSE,
+    coherence_verdict = "coherent", stringsAsFactors = FALSE)
+  md <- simulomicsr:::.summary_card_v2(riga)
+  expect_match(md, "cluster_id: `N/A`", fixed = TRUE)
+  expect_false(grepl("cluster_id: `NA`", md, fixed = TRUE))
+})
+
+# --- correzione post-review: minor 2, simmetria del test su materiale_misto -
+
+test_that("il materiale NON misto non produce nessuna frase su 'misto'", {
+  riga <- data.frame(
+    cluster_id = "cl_mm_false", contrast_entity = "HGNC:1", contrast_entity_label = "Y",
+    k_effective = 5L, k_kish = 4.0, I2_med = 30, n_sig = 2L, quota_top1 = 0.3,
+    studio_dominante = "GSE2", materiale_misto = FALSE,
+    coherence_verdict = "coherent", stringsAsFactors = FALSE)
+  md <- simulomicsr:::.summary_card_v2(riga)
+  expect_false(grepl("misto", md, ignore.case = TRUE))
+})

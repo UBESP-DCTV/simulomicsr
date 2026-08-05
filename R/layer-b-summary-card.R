@@ -56,11 +56,20 @@
 #'   `docs/findings/2026-08-05-confronti-imperfetti.md`). `NULL` (default) se
 #'   non misurato per questo gruppo -- dichiarato "non misurato", mai omesso
 #'   in silenzio.
+#' @param soglia_dominanza quota di peso oltre la quale lo studio piu'
+#'   pesante viene segnalato come dominante. **Usata SOLO come ripiego**,
+#'   quando `riga` non porta gia' la colonna `dominato` -- che
+#'   `compute_pooling_effectiveness()` calcola a monte con la stessa soglia
+#'   di default (0,5) e scrive nel deliverable annotato
+#'   (`R/stage4-deliverable-annotation.R`). Quando la colonna c'e', vince
+#'   sempre lei: ricalcolare qui con un valore indipendente farebbe
+#'   divergere la scheda in silenzio se il default a monte cambiasse.
 #'
 #' @return `character(1)`, markdown.
 #' @keywords internal
 .summary_card_v2 <- function(riga, bersagli_trovati = character(0),
-                             confronti_imperfetti = NULL) {
+                             confronti_imperfetti = NULL,
+                             soglia_dominanza = 0.5) {
   riga <- as.data.frame(riga, stringsAsFactors = FALSE)
   if (nrow(riga) == 0L) {
     cli::cli_abort(".summary_card_v2: {.arg riga} non ha righe.")
@@ -80,12 +89,26 @@
   n_sig      <- .v("n_sig")
   quota_top1 <- suppressWarnings(as.numeric(.v("quota_top1")))
   dominante  <- .v("studio_dominante")
+  dom_col    <- .v("dominato")
   mat_misto  <- .v("materiale_misto")
   verdetto   <- .v("coherence_verdict")
   run_id     <- .v("run_id")
   sha256     <- .v("sha256")
 
   .na_chr <- function(x) is.na(x) || !nzchar(as.character(x))
+
+  # `dominato`, quando presente e non-NA, viene dalla stessa misura a monte
+  # (compute_pooling_effectiveness()) e VINCE sempre sul ricalcolo locale: e'
+  # il fix del rilievo Important della review -- una sola soglia, non due che
+  # possono divergere in silenzio. Il ricalcolo da quota_top1 resta solo un
+  # ripiego per righe che non portano ancora quella colonna.
+  dominato_flag <- if (!is.na(dom_col)) {
+    isTRUE(dom_col)
+  } else if (!is.na(quota_top1)) {
+    quota_top1 >= soglia_dominanza
+  } else {
+    NA
+  }
 
   # --- riga 1: cosa e' stato confrontato ------------------------------------
   soggetto <- if (!.na_chr(etichetta)) {
@@ -113,7 +136,7 @@
   k_kish_txt <- if (is.na(k_kish)) "non disponibile" else sprintf("%.1f", k_kish)
   peso_studio <- if (!is.na(quota_top1)) {
     nome_studio <- if (!.na_chr(dominante)) as.character(dominante) else "non identificato"
-    dom_flag <- if (quota_top1 >= 0.5) " -- **un solo studio pesa piu' della meta'**" else ""
+    dom_flag <- if (isTRUE(dominato_flag)) " -- **un solo studio pesa piu' della meta'**" else ""
     sprintf(" Lo studio piu' pesante (%s) porta il %.1f%% del peso%s.",
             nome_studio, 100 * quota_top1, dom_flag)
   } else {
@@ -166,7 +189,7 @@
     "",
     "**PROVENIENZA** (per la verifica, non per la lettura)",
     "",
-    sprintf("- cluster_id: `%s`", cluster_id),
+    sprintf("- cluster_id: `%s`", .prov(cluster_id)),
     sprintf("- identita' del contrasto (ID grezzo): `%s`", .prov(entita_id)),
     sprintf("- run_id: `%s`", .prov(run_id)),
     sprintf("- sha256: `%s`", .prov(sha256))
