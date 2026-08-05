@@ -87,13 +87,22 @@
   # entita' del titolo: l'etichetta leggibile se c'e', altrimenti il
   # cluster_id grezzo -- MAI in silenzio, la caption dichiara il ripiego
   # (vedi titolo_nota sotto). Calcolato qui perche' non dipende da nulla di
-  # ricalcolato piu' avanti (filtro geni, subsample, ComBat).
+  # ricalcolato piu' avanti (filtro geni, subsample, ComBat), cosi' e'
+  # disponibile anche per il ramo "0 geni significativi" qui sotto, che il
+  # contratto documentato (@return) impone includa comunque `titolo`.
   etichetta_ok <- !is.null(etichetta) && !is.na(etichetta) && nzchar(etichetta)
   entita_titolo <- if (etichetta_ok) etichetta else cp$cluster_id[1L]
   titolo_nota <- if (etichetta_ok) "" else paste0(
     " Figure title falls back to the raw cluster_id: no readable group ",
     "label (label_paper) was provided to .build_heatmap()."
   )
+  # Stesso k del forest/volcano per lo stesso cluster (.cluster_k_effective su
+  # cp intero, non su n_studies calcolato piu' sotto): sono figure diverse
+  # dello stesso case study e devono concordare sul "quanti studi", non
+  # riportare due numeri diversi (n_studies e' quanti studi hanno campioni
+  # NELLA heatmap, che puo' non coincidere col k della meta-analisi poolata).
+  k_cluster <- .cluster_k_effective(cp)
+  titolo <- .lb_titolo(entita = entita_titolo, k = k_cluster)
 
   sig <- cp[!is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr, , drop = FALSE]
   # Stesso filtro di copertura della top-gene table, e per lo stesso motivo: i
@@ -137,6 +146,7 @@
     return(list(
       png_path = png_path,
       svg_path = NA_character_,
+      titolo = titolo,
       caption = sprintf(
         "Heatmap N/A: no genes significant at FDR<%g for this cluster.",
         fdr_thr
@@ -229,9 +239,8 @@
 
   # Annotation colonne: Treatment sempre, Study solo se config lo chiede
   # esplicitamente (default FALSE -- vedi .heatmap_annotazione_colonne()).
-  ann_spec <- .heatmap_annotazione_colonne(
-    metadata, mostra_studi = isTRUE(config$heatmap_mostra_studi)
-  )
+  mostra_studi <- isTRUE(config$heatmap_mostra_studi)
+  ann_spec <- .heatmap_annotazione_colonne(metadata, mostra_studi = mostra_studi)
   ha <- do.call(ComplexHeatmap::HeatmapAnnotation, c(
     lapply(ann_spec, `[[`, "values"),
     list(
@@ -239,6 +248,16 @@
       annotation_height = grid::unit(rep(4, length(ann_spec)), "mm")
     )
   ))
+  # L'omissione di Study cambia cio' che il lettore puo' ricavare dalla
+  # figura (non vede piu' quale colonna viene da quale studio): va dichiarata
+  # in didascalia con lo stesso principio gia' applicato sopra al filtro di
+  # copertura e al ripiego del titolo -- mai un taglio silenzioso.
+  study_annotation_note <- if (mostra_studi) "" else paste0(
+    " Per-study identity (Study annotation) is omitted from the column bar: ",
+    "with dozens of studies its legend (one colour per GSE accession) would ",
+    "occupy roughly a third of the figure and the colours become ",
+    "indistinguishable; set config$heatmap_mostra_studi = TRUE to show it."
+  )
 
   # use_raster=TRUE: body della heatmap rasterizzato (PNG-embedded nel SVG)
   # mentre axis/labels/annotation restano vettoriali. Riduce SVG da ~5MB a
@@ -248,14 +267,6 @@
   # gene_id se symbol NA). z_mat ha rownames = ensembl_gene; rimappiamo
   # via top_genes_id -> top_genes_label.
   row_labels_z <- top_genes_label[match(rownames(z_mat), top_genes_id)]
-
-  # Stesso k del forest/volcano per lo stesso cluster (.cluster_k_effective su
-  # cp intero, non su n_studies): sono figure diverse dello stesso case study
-  # e devono concordare sul "quanti studi", non riportare due numeri diversi
-  # (n_studies e' quanti studi hanno campioni NELLA heatmap, che puo' non
-  # coincidere col k della meta-analisi poolata).
-  k_cluster <- .cluster_k_effective(cp)
-  titolo <- .lb_titolo(entita = entita_titolo, k = k_cluster)
 
   hm <- ComplexHeatmap::Heatmap(
     z_mat,
@@ -303,9 +314,9 @@
     paste0("Heatmap of top %d DE genes (rows) across samples (columns). ",
            "vst + ComBat batch correction applied for visual cross-study ",
            "coherence; effect-size statistics in pooled output are NOT ",
-           "batch-corrected.%s%s%s%s"),
+           "batch-corrected.%s%s%s%s%s"),
     length(top_genes), combat_note, subsample_note,
-    .coverage_filter_note(filtro_cov), titolo_nota
+    .coverage_filter_note(filtro_cov), study_annotation_note, titolo_nota
   )
 
   list(png_path = png_path, svg_path = svg_path, titolo = titolo, caption = caption)

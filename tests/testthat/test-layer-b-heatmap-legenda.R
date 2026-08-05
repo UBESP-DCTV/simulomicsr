@@ -200,3 +200,126 @@ test_that(".build_heatmap senza etichetta ripiega sul cluster_id e lo dichiara i
   expect_match(result$titolo, "cgroup_L5_deadbeef", fixed = TRUE)
   expect_match(result$caption, "falls back to the raw cluster_id", fixed = TRUE)
 })
+
+test_that("la didascalia dichiara l'omissione dell'annotazione Study quando heatmap_mostra_studi = FALSE", {
+  # Revisione: il filtro di copertura e il ripiego del titolo sono
+  # dichiarati in didascalia (nessun taglio silenzioso), ma l'omissione di
+  # Study -- che cambia cio' che il lettore puo' ricavare dalla figura,
+  # esattamente come gli altri due -- non lo era.
+  skip_if_not_installed("ComplexHeatmap")
+  skip_if_not_installed("DESeq2")
+  skip_if_not_installed("sva")
+
+  set.seed(12)
+  n_genes <- 20
+  n_samples <- 12
+  cp <- make_fake_cluster_pooled(n_genes = n_genes, n_sig = 10, cluster_id = "cl_capnote")
+  counts <- matrix(rpois(n_genes * n_samples, lambda = 100), nrow = n_genes,
+                   dimnames = list(cp$gene_id, paste0("GSM", seq_len(n_samples))))
+  metadata <- tibble::tibble(
+    sample_id = paste0("GSM", seq_len(n_samples)),
+    study_id = rep(paste0("GSE", 1:2), each = 6),
+    treatment = rep(c("control", "treated"), times = n_samples / 2L)
+  )
+
+  out_dir <- tempfile("hm_capnote_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_heatmap(
+    counts = counts, metadata = metadata,
+    cluster_pooled_subset = cp,
+    out_dir = out_dir, config = layer_b_default_config()
+    # heatmap_mostra_studi non impostata: default FALSE
+  )
+
+  expect_match(result$caption, "Study annotation", fixed = TRUE)
+  expect_match(result$caption, "omitted", fixed = TRUE)
+  # Deve dire anche COME riattivarla, non solo che manca.
+  expect_match(result$caption, "heatmap_mostra_studi", fixed = TRUE)
+})
+
+test_that("la didascalia NON dichiara l'omissione quando heatmap_mostra_studi = TRUE", {
+  skip_if_not_installed("ComplexHeatmap")
+  skip_if_not_installed("DESeq2")
+  skip_if_not_installed("sva")
+
+  set.seed(13)
+  n_genes <- 20
+  n_samples <- 12
+  cp <- make_fake_cluster_pooled(n_genes = n_genes, n_sig = 10, cluster_id = "cl_capnote2")
+  counts <- matrix(rpois(n_genes * n_samples, lambda = 100), nrow = n_genes,
+                   dimnames = list(cp$gene_id, paste0("GSM", seq_len(n_samples))))
+  metadata <- tibble::tibble(
+    sample_id = paste0("GSM", seq_len(n_samples)),
+    study_id = rep(paste0("GSE", 1:2), each = 6),
+    treatment = rep(c("control", "treated"), times = n_samples / 2L)
+  )
+
+  out_dir <- tempfile("hm_capnote_on_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  cfg <- layer_b_default_config()
+  cfg$heatmap_mostra_studi <- TRUE
+  result <- simulomicsr:::.build_heatmap(
+    counts = counts, metadata = metadata,
+    cluster_pooled_subset = cp,
+    out_dir = out_dir, config = cfg
+  )
+
+  expect_false(grepl("Study annotation", result$caption, fixed = TRUE))
+})
+
+test_that(".build_heatmap include titolo anche nel ramo senza geni significativi (contratto @return)", {
+  skip_if_not_installed("ComplexHeatmap")
+  skip_if_not_installed("DESeq2")
+  skip_if_not_installed("sva")
+
+  set.seed(14)
+  n_genes <- 10
+  n_samples <- 8
+  # n_sig = 0: nessun gene sotto la soglia FDR di default -> ramo placeholder.
+  cp <- make_fake_cluster_pooled(n_genes = n_genes, n_sig = 0, cluster_id = "cgroup_L5_nosig")
+  counts <- matrix(rpois(n_genes * n_samples, lambda = 100), nrow = n_genes,
+                   dimnames = list(cp$gene_id, paste0("GSM", seq_len(n_samples))))
+  metadata <- tibble::tibble(
+    sample_id = paste0("GSM", seq_len(n_samples)),
+    study_id = rep(paste0("GSE", 1:2), each = 4),
+    treatment = rep(c("control", "treated"), times = n_samples / 2L)
+  )
+
+  out_dir <- tempfile("hm_nosig_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  # Il rendering vero del placeholder (grDevices::png a 800x400px res=300 +
+  # graphics::plot.new/text) e' un difetto PRE-ESISTENTE e non correlato,
+  # scoperto scrivendo questo test: su questo sistema il canvas e' troppo
+  # piccolo per i margini di default di plot.new() ("figure margins too
+  # large"), riproducibile in isolamento anche senza questo test. Non e' nello
+  # scope di questa correzione (solo la nota di didascalia + il campo
+  # `titolo`), quindi si mocka SOLO il rendering per isolare cio' che questo
+  # test deve verificare -- il contenuto del valore di ritorno, non il PNG.
+  local_mocked_bindings(
+    png = function(...) invisible(NULL),
+    dev.off = function(...) invisible(NULL),
+    .package = "grDevices"
+  )
+  local_mocked_bindings(
+    "plot.new" = function(...) invisible(NULL),
+    text = function(...) invisible(NULL),
+    .package = "graphics"
+  )
+
+  result <- simulomicsr:::.build_heatmap(
+    counts = counts, metadata = metadata,
+    cluster_pooled_subset = cp,
+    out_dir = out_dir, config = layer_b_default_config(),
+    etichetta = "Nessun Segnale"
+  )
+
+  expect_match(result$caption, "no genes significant", fixed = TRUE)
+  expect_false(is.null(result$titolo))
+  expect_match(result$titolo, "Nessun Segnale", fixed = TRUE)
+})
