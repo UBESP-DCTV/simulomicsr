@@ -202,6 +202,14 @@ build_layer_b_results <- function(stage4_dir, selection,
   }
   if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
 
+  # MA plot ed eterogeneita' sono ESCLUSI dal bundle di default
+  # (config$figure_escluse, Task 8 del ridisegno) -- selezione, non
+  # cancellazione: il codice di .build_ma_plot()/.build_heterogeneity_panel()
+  # resta, come gia' deciso per il ramo `mega` in ADR-0026. Un config senza
+  # quella chiave (bundle costruiti con una list letterale invece di
+  # layer_b_default_config()) non esclude nulla.
+  figure_escluse <- config$figure_escluse %||% character(0)
+
   # Accumula quali cluster hanno usato il ripiego (scheda vecchia + narrativa
   # stub) invece della scheda/narrativa nuove: dichiarato in run_metadata.json
   # (vedi sotto), non solo nella nota dentro ogni narrative.qmd.
@@ -253,12 +261,14 @@ build_layer_b_results <- function(stage4_dir, selection,
       config                = config,
       etichetta             = selection_row$label_paper[1L]
     )
-    plots$ma <- .build_ma_plot(
-      cluster_pooled_subset = cp_sub,
-      counts                = counts_meta$counts,
-      out_dir               = cl_dir,
-      config                = config
-    )
+    if (!("ma" %in% figure_escluse)) {
+      plots$ma <- .build_ma_plot(
+        cluster_pooled_subset = cp_sub,
+        counts                = counts_meta$counts,
+        out_dir               = cl_dir,
+        config                = config
+      )
+    }
     plots$top_gene_table <- .build_top_gene_table(
       cluster_pooled_subset = cp_sub,
       out_dir               = cl_dir,
@@ -279,11 +289,13 @@ build_layer_b_results <- function(stage4_dir, selection,
         config                = config
       )
     }
-    plots$heterogeneity <- .build_heterogeneity_panel(
-      cluster_pooled_subset = cp_sub,
-      out_dir               = cl_dir,
-      config                = config
-    )
+    if (!("heterogeneity" %in% figure_escluse)) {
+      plots$heterogeneity <- .build_heterogeneity_panel(
+        cluster_pooled_subset = cp_sub,
+        out_dir               = cl_dir,
+        config                = config
+      )
+    }
 
     # --- scheda + narrativa: la riga del deliverable annotato vince, se c'e' -
     # `.build_summary_card()`/`.write_narrative_template()` senza bozza sono

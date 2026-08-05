@@ -21,6 +21,8 @@
 #'   \item{max_heatmap_samples}{`integer(1)` --- max sample plottati nella heatmap (default 100; sopra subsample stratificato).}
 #'   \item{top_genes_min_k_frac}{`numeric(1)` --- frazione minima del `k` del cluster perche' un gene entri nella top-gene table e nella heatmap (default 0.5). Con k basso il random-effects stima tau^2 = 0, l'errore standard collassa e geni misurati in due studi finiscono in cima all'ordinamento per FDR: misurato sui bundle v13 il 2026-07-31. 0 disattiva il filtro.}
 #'   \item{heatmap_mostra_studi}{`logical(1)` --- annotare le colonne della heatmap anche per `study_id` (default FALSE). Su TGF-beta1 la fascia "Study" e' 47 colori indistinguibili e la legenda che li spiega occupa un terzo della figura (misurato il 2026-08-05): di default resta solo l'annotazione Treatment (trattato/controllo), che e' cio' che la figura deve mostrare. TRUE ripristina anche Study, per chi la vuole comunque.}
+#'   \item{figure_escluse}{`character()` --- nomi delle figure da NON generare nel bundle (default `c("ma", "heterogeneity")`). E' una SELEZIONE, non una cancellazione: il codice di `.build_ma_plot()`/`.build_heterogeneity_panel()` resta nel pacchetto (stessa decisione gia' presa per il ramo `mega` in ADR-0026) -- togliere un nome dal vettore lo riattiva.}
+#'   \item{volcano_quota_asse}{`numeric(1)` --- soglia usata da `.volcano_soglia_asse()`: se il 99-esimo percentile dei punti copre meno di questa frazione del massimo, l'asse verticale del volcano viene compresso in modo dichiarato (default 0.6, lo stesso valore gia' usato come default della funzione).}
 #' }
 #'
 #' @export
@@ -44,6 +46,8 @@ layer_b_default_config <- function() {
     min_genes_for_go_ora = 200L,
     max_heatmap_samples  = 100L,
     top_genes_min_k_frac = 0.5,
-    heatmap_mostra_studi = FALSE
+    heatmap_mostra_studi = FALSE,
+    figure_escluse       = c("ma", "heterogeneity"),
+    volcano_quota_asse   = 0.6
   )
 }
