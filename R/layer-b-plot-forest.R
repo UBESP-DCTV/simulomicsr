@@ -38,7 +38,16 @@
   cp <- cluster_pooled_subset
   cp$is_sig <- !is.na(cp$FDR_BH_within_cluster) & cp$FDR_BH_within_cluster < fdr_thr
 
-  top_genes <- cp[cp$is_sig, , drop = FALSE]
+  # Il filtro di copertura e' lo STESSO usato da tabella e heatmap dal
+  # 2026-07-31: il forest era rimasto fuori, e per questo mostrava geni
+  # misurati in due studi su 59 (CD300C, PROK2 su TGF-beta1, misurato il
+  # 2026-08-05). Il k del cluster va passato esplicitamente: dedurlo dai soli
+  # geni significativi abbasserebbe la soglia proprio dove serve di piu'.
+  k_cluster <- .cluster_k_effective(cp)
+  filtro <- .filter_genes_by_coverage(cp[cp$is_sig, , drop = FALSE],
+                                      config$top_genes_min_k_frac,
+                                      k_max = k_cluster)
+  top_genes <- filtro$genes
   top_genes <- top_genes[order(abs(top_genes$logFC_pool), decreasing = TRUE), , drop = FALSE]
   top_genes <- head(top_genes, top_n)
 
@@ -124,7 +133,7 @@
 
     n_aug <- unique(cp$n_baseline_studies_augmented)
     n_aug_str <- if (length(n_aug) == 1 && !is.na(n_aug)) sprintf("%d", n_aug) else "n/a"
-    caption <- sprintf(
+    caption_base <- sprintf(
       "Forest plot of top %d significantly DE genes (FDR<%g). Pool diamond (red) reflects mixed-model coefficient (k=2 pair + %s baseline studies).",
       nrow(top_genes), fdr_thr, n_aug_str
     )
@@ -165,7 +174,7 @@
     # geni del forest, che sono un sottoinsieme scelto per significativita'.
     k_cl <- .cluster_k_effective(cluster_pooled_subset)
     k_str <- if (!is.na(k_cl)) as.character(k_cl) else "?"
-    caption <- sprintf(
+    caption_base <- sprintf(
       "Forest plots for top %d significantly DE genes (FDR<%g). Each panel: per-study logFC +- 95%% CI and REML-pooled summary (k=%s).",
       top_n_actual, fdr_thr, k_str
     )
@@ -177,6 +186,7 @@
   list(
     png_path = png_path,
     svg_path = svg_path,
-    caption = caption
+    genes_mostrati = top_genes$gene_id,
+    caption = paste0(caption_base, .coverage_filter_note(filtro))
   )
 }
