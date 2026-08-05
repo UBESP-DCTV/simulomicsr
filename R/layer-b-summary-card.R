@@ -451,6 +451,28 @@
     NULL
   }
 
+  # Lista figure ALLINEATA a config$figure_escluse (Task 8): prima di questo
+  # fix la lista era cablata a mano e citava sempre ma.svg/heterogeneity.svg,
+  # anche quando la config di default (Task 8) le esclude dal bundle --
+  # riferimenti a file che non esistono mai sul disco. Un config senza quella
+  # chiave (bundle vecchi, list letterale invece di layer_b_default_config())
+  # non esclude nulla, come .build_cluster_bundle() in R/layer-b-build.R.
+  figure_disponibili <- c(
+    volcano       = "volcano.svg",
+    forest        = "forest.svg (REM/MEGA-AUG only)",
+    ma            = "ma.svg",
+    heatmap       = "heatmap.svg",
+    go_enrichment = "go_enrichment.svg",
+    heterogeneity = "heterogeneity.svg (REM only)"
+  )
+  figure_escluse <- config$figure_escluse %||% character(0)
+  figure_incluse <- figure_disponibili[!names(figure_disponibili) %in% figure_escluse]
+  figure_lines <- if (length(figure_incluse) > 0L) {
+    paste0("- ", unname(figure_incluse))
+  } else {
+    character(0)
+  }
+
   qmd_lines <- c(
     "---",
     sprintf('title: "Case study: %s (%s)"', label_paper, cluster_id),
@@ -467,12 +489,7 @@
     "## Figures",
     "",
     "::: {.figure-list}",
-    "- volcano.svg",
-    "- forest.svg (REM/MEGA-AUG only)",
-    "- ma.svg",
-    "- heatmap.svg",
-    "- go_enrichment.svg",
-    "- heterogeneity.svg (REM only)",
+    figure_lines,
     ":::"
   )
 

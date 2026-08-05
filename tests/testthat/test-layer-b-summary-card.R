@@ -194,3 +194,60 @@ test_that(".write_narrative_template writes .qmd with required TODO sections", {
   expect_match(content, "TODO")
   expect_match(content, "Test Case")
 })
+
+# --- Task 9 (correzione pendente dal Task 8): la lista "## Figures" deve
+# elencare SOLO le figure che il bundle produce davvero. Prima di questo fix
+# elencava sempre ma.svg/heterogeneity.svg, anche se config$figure_escluse
+# (default dal Task 8) le esclude dal build -- riferimenti a file che non
+# esistono mai sul disco.
+
+test_that(".write_narrative_template elenca solo le figure che il bundle produce davvero (config di default)", {
+  out_dir <- tempfile("nt_fig_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  cfg <- layer_b_default_config()  # figure_escluse default: c("ma", "heterogeneity")
+  selection_row <- tibble::tibble(
+    cluster_id = "cl_fig", label_paper = "Fig Test",
+    priority = 1L, notes = ""
+  )
+
+  qmd_path <- simulomicsr:::.write_narrative_template(
+    cluster_id = "cl_fig",
+    summary_card_path = NULL,
+    selection_row = selection_row,
+    config = cfg,
+    out_dir = out_dir
+  )
+  content <- paste(readLines(qmd_path), collapse = "\n")
+  expect_match(content, "volcano.svg", fixed = TRUE)
+  expect_match(content, "forest.svg", fixed = TRUE)
+  expect_match(content, "heatmap.svg", fixed = TRUE)
+  expect_match(content, "go_enrichment.svg", fixed = TRUE)
+  expect_false(grepl("ma.svg", content, fixed = TRUE))
+  expect_false(grepl("heterogeneity.svg", content, fixed = TRUE))
+})
+
+test_that(".write_narrative_template rimette ma.svg/heterogeneity.svg quando figure_escluse e' vuoto", {
+  out_dir <- tempfile("nt_fig2_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  cfg <- layer_b_default_config()
+  cfg$figure_escluse <- character(0)
+  selection_row <- tibble::tibble(
+    cluster_id = "cl_fig2", label_paper = "Fig Test 2",
+    priority = 1L, notes = ""
+  )
+
+  qmd_path <- simulomicsr:::.write_narrative_template(
+    cluster_id = "cl_fig2",
+    summary_card_path = NULL,
+    selection_row = selection_row,
+    config = cfg,
+    out_dir = out_dir
+  )
+  content <- paste(readLines(qmd_path), collapse = "\n")
+  expect_match(content, "ma.svg", fixed = TRUE)
+  expect_match(content, "heterogeneity.svg", fixed = TRUE)
+})
