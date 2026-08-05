@@ -91,3 +91,49 @@ test_that(".build_forest REM: pannello inferiore omesso se nessun gene ha copert
   expect_match(result$caption, "Top panel")
   expect_match(result$caption, "omitted")
 })
+
+test_that(".build_forest usa l'etichetta passata nel titolo, non il cluster_id grezzo", {
+  # Revisione: il titolo chiamava .lb_titolo() con cp$cluster_id[1L], che sui
+  # dati reali e' un ID tipo "cgroup_L5_2e16719f" -- vanifica lo scopo della
+  # funzione (dire a colpo d'occhio di quale gruppo si tratta).
+  set.seed(7)
+  cp <- make_fake_cluster_pooled(n_genes = 20, n_sig = 10, cluster_id = "cgroup_L5_2e16719f")
+  cp$method <- "rem_group"
+  cp$k_effective <- 4L  # copertura piena: il ramo con pannello inferiore
+  ps <- make_fake_per_study_de(cluster_id = "cgroup_L5_2e16719f", n_genes = 20, n_studies = 4)
+
+  out_dir <- tempfile("forest_lab_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_forest(
+    per_study_de_subset = ps, cluster_pooled_subset = cp,
+    method = "rem_group", out_dir = out_dir, config = layer_b_default_config(),
+    etichetta = "TGF-beta1"
+  )
+
+  expect_match(result$titolo, "TGF-beta1", fixed = TRUE)
+  expect_false(grepl("cgroup_L5_", result$titolo, fixed = TRUE))
+  expect_false(grepl("falls back to the raw cluster_id", result$caption, fixed = TRUE))
+})
+
+test_that(".build_forest senza etichetta ripiega sul cluster_id e lo dichiara in didascalia", {
+  set.seed(8)
+  cp <- make_fake_cluster_pooled(n_genes = 20, n_sig = 10, cluster_id = "cgroup_L5_deadbeef")
+  cp$method <- "rem_group"
+  cp$k_effective <- 4L
+  ps <- make_fake_per_study_de(cluster_id = "cgroup_L5_deadbeef", n_genes = 20, n_studies = 4)
+
+  out_dir <- tempfile("forest_nolab_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_forest(
+    per_study_de_subset = ps, cluster_pooled_subset = cp,
+    method = "rem_group", out_dir = out_dir, config = layer_b_default_config()
+    # etichetta non passata: default NULL, il ripiego deve essere dichiarato
+  )
+
+  expect_match(result$titolo, "cgroup_L5_deadbeef", fixed = TRUE)
+  expect_match(result$caption, "falls back to the raw cluster_id", fixed = TRUE)
+})

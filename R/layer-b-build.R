@@ -121,6 +121,15 @@ build_layer_b_results <- function(stage4_dir, selection,
     ]
     method <- unique(cp_sub$method)[1L]
 
+    # Calcolata qui (non piu' in basso, vicino a summary_card) perche' serve
+    # anche a .build_forest() per il titolo (.lb_titolo()): senza label_paper
+    # il titolo ripiegherebbe su cluster_id, un ID grezzo tipo
+    # "cgroup_L5_2e16719f" che vanifica lo scopo della funzione.
+    selection_row <- sel_resolved[
+      sel_resolved$cluster_id == cl_id, ,
+      drop = FALSE
+    ]
+
     # Counts assembly (per_cluster_samples + fetch_counts_fn DI)
     per_cluster_samples <- per_cluster_samples_provider(cl_id)
     counts_meta <- .assemble_cluster_counts(
@@ -136,7 +145,8 @@ build_layer_b_results <- function(stage4_dir, selection,
       cluster_pooled_subset = cp_sub,
       method                = method,
       out_dir               = cl_dir,
-      config                = config
+      config                = config,
+      etichetta             = selection_row$label_paper[1L]
     )
     plots$ma <- .build_ma_plot(
       cluster_pooled_subset = cp_sub,
@@ -169,10 +179,6 @@ build_layer_b_results <- function(stage4_dir, selection,
       config                = config
     )
 
-    selection_row <- sel_resolved[
-      sel_resolved$cluster_id == cl_id, ,
-      drop = FALSE
-    ]
     summary_card <- .build_summary_card(
       cluster_id          = cl_id,
       layer_a_subset      = layer_a_subset,

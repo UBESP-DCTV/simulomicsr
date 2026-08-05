@@ -32,14 +32,24 @@
 #' @param method character "rem", "rem_group", "mega", o "mega_aug".
 #' @param out_dir character dir output.
 #' @param config list config.
+#' @param etichetta character(1) opzionale, l'etichetta leggibile del gruppo
+#'   (tipicamente `selection_row$label_paper`) da usare come `entita` del
+#'   titolo (`.lb_titolo()`, ramo rem/rem_group). Se NULL, NA o vuota il
+#'   titolo ripiega sul `cluster_id` grezzo -- MAI in silenzio: la caption lo
+#'   dichiara. Senza questo argomento il titolo sarebbe sempre un ID come
+#'   `cgroup_L5_2e16719f`, che vanifica lo scopo di `.lb_titolo()` (dire a
+#'   colpo d'occhio di quale gruppo si tratta).
 #'
 #' @return list con `png_path` (NA se skip), `svg_path` (NA se skip o save_svg=FALSE),
+#'   `titolo` (NA se il ramo non genera un titolo, es. mega/mega_aug),
 #'   `caption` (skip-explanation se applicable).
 #' @keywords internal
 .build_forest <- function(per_study_de_subset, cluster_pooled_subset, method,
-                          out_dir, config) {
+                          out_dir, config, etichetta = NULL) {
   fdr_thr <- config$fdr_threshold
   top_n <- config$top_n_forest
+  titolo <- NA_character_
+  titolo_nota <- ""
 
   if (method == "mega") {
     return(list(
@@ -167,6 +177,18 @@
     top_n_actual <- min(nrow(top_genes), top_n)
     k_str <- if (!is.na(k_cluster)) as.character(k_cluster) else "?"
 
+    # entita' del titolo: l'etichetta leggibile se c'e', altrimenti il
+    # cluster_id grezzo -- MAI in silenzio, la caption dichiara il ripiego
+    # (vedi titolo_nota sotto).
+    etichetta_ok <- !is.null(etichetta) && !is.na(etichetta) && nzchar(etichetta)
+    entita_titolo <- if (etichetta_ok) etichetta else cp$cluster_id[1L]
+    if (!etichetta_ok) {
+      titolo_nota <- paste0(
+        " Figure title falls back to the raw cluster_id: no readable group ",
+        "label (label_paper) was provided to .build_forest()."
+      )
+    }
+
     # --- pannello superiore: i bersagli, stima poolata ordinata per effetto ---
     top_disp <- top_genes
     # Livelli in ordine crescente di logFC_pool: nel factor discreto di ggplot il
@@ -199,11 +221,9 @@
     if (is.na(gene_rap)) {
       # Mai un ripiego silenzioso su un gene a bassa copertura: si mostra solo
       # il pannello superiore e la didascalia lo dichiara (vedi bottom_desc sotto).
-      combined <- p_top + patchwork::plot_annotation(
-        title = .lb_titolo(entita = cp$cluster_id[1L], k = k_cluster)
-      )
+      titolo <- .lb_titolo(entita = entita_titolo, k = k_cluster)
+      combined <- p_top + patchwork::plot_annotation(title = titolo)
       h_inch <- max(3, top_n_actual * 0.35 + 1)
-      gene_lab_rap <- NA_character_
     } else {
       ps_g <- ps[ps$gene_id == gene_rap, , drop = FALSE]
       ps_g <- ps_g[order(ps_g$logFC), , drop = FALSE]
@@ -232,12 +252,14 @@
         ggplot2::geom_errorbar(
           data = df_studi,
           ggplot2::aes(y = .data$riga, xmin = .data$ci_lo, xmax = .data$ci_hi),
-          width = 0.2, colour = .LB_COLORI$evidenza, orientation = "y"
+          # $neutro per le righe per-studio: $evidenza (nel tema) e' la tinta
+          # delle stime POOLATE, riservata al solo rombo qui sotto.
+          width = 0.2, colour = .LB_COLORI$neutro, orientation = "y"
         ) +
         ggplot2::geom_point(
           data = df_studi,
           ggplot2::aes(y = .data$riga, x = .data$stima),
-          size = 2, colour = .LB_COLORI$evidenza
+          size = 2, colour = .LB_COLORI$neutro
         ) +
         ggplot2::geom_errorbar(
           data = df_pool,
@@ -253,10 +275,9 @@
                       subtitle = sprintf("%s, per study (k=%d)", gene_lab_rap, nrow(ps_g))) +
         .lb_theme(base_size = 11)
 
+      titolo <- .lb_titolo(entita = entita_titolo, k = k_cluster)
       combined <- patchwork::wrap_plots(p_top, p_bottom, ncol = 1L, heights = c(2, 1)) +
-        patchwork::plot_annotation(
-          title = .lb_titolo(entita = cp$cluster_id[1L], k = k_cluster)
-        )
+        patchwork::plot_annotation(title = titolo)
       h_inch <- max(4, top_n_actual * 0.32 + (nrow(ps_g) + 1) * 0.3 + 1.2)
     }
 
@@ -293,6 +314,7 @@
     png_path = png_path,
     svg_path = svg_path,
     genes_mostrati = top_genes$gene_id,
-    caption = paste0(caption_base, .coverage_filter_note(filtro))
+    titolo = titolo,
+    caption = paste0(caption_base, titolo_nota, .coverage_filter_note(filtro))
   )
 }
