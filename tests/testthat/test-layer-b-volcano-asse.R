@@ -122,3 +122,35 @@ test_that("il filtro di copertura del volcano tocca solo le etichette, mai i pun
   expect_match(res$caption, "excluded from labeling")
   expect_match(res$caption, "not from the plot", fixed = TRUE)
 })
+
+test_that(".build_volcano usa config$volcano_quota_asse, non un default cablato", {
+  # PERCHE' ESISTE (Task 8 review): .build_volcano() chiamava
+  # .volcano_soglia_asse(cp$neg_log10_p) SENZA passare config$volcano_quota_asse
+  # -- cambiare quella chiave in config non aveva alcun effetto (parametro
+  # morto). Distribuzione costruita apposta al confine: p99/max = 0.604, cosi'
+  # con la quota di default (0.6) NON comprime, ma con una quota piu' alta
+  # (0.7, passata via config) SI -- stessi dati, cambia solo la config.
+  y <- c(rep(5, 96), rep(6, 3), 10)
+  p99_su_max <- stats::quantile(y, 0.99, names = FALSE) / max(y)
+  stopifnot(p99_su_max > 0.6, p99_su_max < 0.7)  # verifica il confine scelto
+
+  cp <- make_fake_cluster_pooled(n_genes = length(y), n_sig = 20, cluster_id = "cl_quota")
+  cp$k_effective <- 20L
+  cp$p_value_pool <- 10 ^ (-y)
+
+  out_dir_default <- tempfile("volcano_quota_default_")
+  dir.create(out_dir_default)
+  on.exit(unlink(out_dir_default, recursive = TRUE))
+  res_default <- simulomicsr:::.build_volcano(
+    cp, out_dir = out_dir_default, config = layer_b_default_config())
+  expect_false(grepl("compressed", res_default$caption, ignore.case = TRUE))
+
+  cfg_stretta <- layer_b_default_config()
+  cfg_stretta$volcano_quota_asse <- 0.7
+  out_dir_stretta <- tempfile("volcano_quota_stretta_")
+  dir.create(out_dir_stretta)
+  on.exit(unlink(out_dir_stretta, recursive = TRUE), add = TRUE)
+  res_stretta <- simulomicsr:::.build_volcano(
+    cp, out_dir = out_dir_stretta, config = cfg_stretta)
+  expect_match(res_stretta$caption, "compressed", ignore.case = TRUE)
+})

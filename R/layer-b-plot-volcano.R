@@ -130,7 +130,11 @@
   # Scatta solo quando .volcano_soglia_asse() la trova necessaria. I punti
   # oltre soglia restano disegnati: e' la loro POSIZIONE a essere compressa
   # (radice quadrata oltre la soglia), non un taglio -- nessun punto sparisce.
-  soglia <- .volcano_soglia_asse(cp$neg_log10_p)
+  # La quota viene da config$volcano_quota_asse: prima di questo fix la
+  # chiamata non la passava mai, quindi cambiare quella chiave in config non
+  # aveva alcun effetto (parametro morto). Ripiego dichiarato sul default
+  # della funzione (0.6) se la chiave manca in config.
+  soglia <- .volcano_soglia_asse(cp$neg_log10_p, quota = config$volcano_quota_asse %||% 0.6)
   comprimi <- is.finite(soglia)
   if (comprimi) {
     # pmax(...,0) sotto radice: ifelse valuta ENTRAMBI i rami per ogni
