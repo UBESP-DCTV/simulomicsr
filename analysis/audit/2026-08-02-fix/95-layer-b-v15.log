@@ -1,0 +1,30 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Stadio 4 Layer B batch build — v13 ──────────────────────────────────────────
+ℹ Pre-validation della selection...
+# A tibble: 9 × 8
+  cluster_id      label_paper priority notes exists_in_stage4 method k_effective
+  <chr>           <chr>          <int> <chr> <lgl>            <chr>        <int>
+1 cgroup_L5_930c… DHT (dihyd…        1 MAIN… TRUE             rem_g…          23
+2 cgroup_L5_c0d1… Enzalutami…        1 MAIN… TRUE             rem_g…          19
+3 cgroup_L5_2e16… TGF-beta1          1 MAIN… TRUE             rem_g…          59
+4 cgroup_L5_871a… SARS-CoV-2…        2 SUPP… TRUE             rem_g…          34
+5 cgroup_L5_87c4… IFN-gamma          2 SUPP… TRUE             rem_g…          20
+6 cgroup_L5_b71a… JQ1 (BET b…        2 SUPP… TRUE             rem_g…          25
+7 cgroup_L5_c3ae… Crohn dise…        2 SUPP… TRUE             rem_g…          10
+8 cgroup_L5_8508… Parkinson …        3 SUPP… TRUE             rem_g…          10
+9 cgroup_L5_3973… IL1A -- DE…        3 SUPP… TRUE             rem_g…           4
+# ℹ 1 more variable: n_sig_FDR05 <int>
+ℹ Loading Stage 3 metadata + Stage 2 master...
+✔ stage3_metadata: anchor risolto su tutti e 9 i cluster selezionati.
+✔ 
+ℹ Building study/group dispatch per la selection...
+✔ Dispatch: 9/9 cluster risolti.
+✔ Efficacia del pooling caricata: 11 colonne su 214 cluster.
+ℹ Build Layer B...
+
+── Layer B build ───────────────────────────────────────────────────────────────
+ℹ B.1 Loader + validation

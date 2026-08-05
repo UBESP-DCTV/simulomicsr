@@ -1,0 +1,67 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+ℹ colonne usate: gene=gene_symbol effetto=logFC_pool fdr=FDR_BH_within_cluster
+
+── Controllo biologico -- v15 ──────────────────────────────────────────────────
+
+── DHT (agonista AR) -- k=23, 21 studi efficaci, n_sig=4875, coerenza=coherent 
+   KLK3       +2.27  FDR 7.21e-06  OK
+   TMPRSS2    +1.78  FDR 6.49e-08  OK
+   FKBP5      +2.32  FDR 5.35e-08  OK
+   NKX3-1     +1.37  FDR 1.28e-05  OK
+
+── Enzalutamide (antagonista AR) -- k=19, 17 studi efficaci, n_sig=3498, coerenza=coherent 
+   KLK3       -1.60  FDR 3.06e-04  OK
+   TMPRSS2    -0.92  FDR 7.51e-03  OK
+   FKBP5      -1.22  FDR 3.15e-03  OK
+   NKX3-1     -1.24  FDR 2.57e-04  OK
+
+── TGF-beta1 -- k=59, 54 studi efficaci, n_sig=7909, coerenza=coherent 
+   SERPINE1   +2.43  FDR 6.94e-19  OK
+   CCN2       +1.69  FDR 6.02e-17  OK
+   SMAD7      +1.41  FDR 2.48e-22  OK
+   JUNB       +1.22  FDR 6.00e-19  OK
+   TGFBI      +2.15  FDR 4.10e-24  OK
+   COL1A1     +1.72  FDR 1.01e-11  OK
+
+── SARS-CoV-2 -- k=34, 30 studi efficaci, n_sig=1933, coerenza=coherent 
+   IFIT1      +2.20  FDR 5.12e-05  OK
+   ISG15      +1.64  FDR 4.33e-05  OK
+   MX1        +1.89  FDR 2.86e-04  OK
+   OAS1       +1.31  FDR 6.13e-03  OK
+
+── IFN-gamma -- k=20, 18 studi efficaci, n_sig=3579, coerenza=coherent 
+   STAT1      +2.89  FDR 2.59e-91  OK
+   GBP1       +5.98  FDR 1.35e-58  OK
+   CXCL9     +11.27  FDR 1.04e-51  OK
+   TAP1       +4.21  FDR 1.01e-18  OK
+   IRF1       +4.45  FDR 1.15e-35  OK
+
+── LPS -- k=35, 32 studi efficaci, n_sig=6883, coerenza=coherent 
+   TNF        +2.50  FDR 3.27e-03  OK
+   IL6        +4.70  FDR 4.33e-10  OK
+   IL1B       +4.49  FDR 3.87e-13  OK
+   CXCL8      +3.57  FDR 1.68e-15  OK
+
+── IL17A (de-frammentato in v15) -- k=9, 3 studi efficaci, n_sig=781, coerenza=coherent 
+   CXCL8      +1.53  FDR 6.75e-02  non significativo
+   CCL20      +3.36  FDR 2.02e-05  OK
+   CXCL1      +1.67  FDR 1.67e-01  non significativo
+   LCN2       +1.90  FDR 6.13e-03  OK
+
+── Bersagli attesi col segno giusto e significativi: 29/31 ──
+
+── DHT (agonista) CONTRO enzalutamide (antagonista), sugli stessi geni ──
+
+  geni significativi in ENTRAMBI: 1441 | di segno OPPOSTO: 1408 (97.7%)
+  correlazione di Spearman fra i due effetti: -0.938 (atteso NEGATIVO)
+── Quadro d'insieme delle 214 ──
+
+  meta-analisi           : 214
+  con k >= 10            : 29
+  geni significativi tot : 344996
+  I2 mediano             : 72.1
+  dominate da uno studio : 122 (57%)
+  meno di 2 studi eff.   : 78 (37%)
+  marcate incoerenti     : 11 | coerenti 203 | non lette (NA) 0
