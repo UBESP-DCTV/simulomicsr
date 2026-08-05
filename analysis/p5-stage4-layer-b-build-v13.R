@@ -250,16 +250,66 @@ if (length(mancanti) > 0L) {
 cli_alert_success("Efficacia del pooling caricata: {length(cols)-1} colonne su {nrow(d)} cluster.")
 pooling_eff <- d[, cols, drop = FALSE]
 
+# -----------------------------------------------------------------------------
+# Confronti imperfetti (rilettura 2026-08-05): la funzione narrativa esiste
+# gia' (.lb_confronti_imperfetti_txt, R/layer-b-narrative.R) ma senza un
+# provider resta muta ("non misurato per questo gruppo") anche quando il
+# numero e' gia' sul disco -- lo stesso difetto del parametro morto
+# config$volcano_quota_asse (Task 9): una funzione scritta ma mai collegata.
+# Due fonti, granularita' diversa (docs/findings/2026-08-05-confronti-imperfetti.md):
+#   - verdetti-con-peso.csv: peso_citati per TUTTI i 214 gruppi rilettura.
+#   - 13-grandi-conteggio.json: n/tot confronti ESATTI, ma solo per i 13
+#     gruppi grandi (k>=15) dove la rilettura e' arrivata al conteggio.
+# Per i gruppi fuori dai 13 grandi si dichiara comunque il peso, con n/tot
+# "?" (gestito da .lb_confronti_imperfetti_txt) invece di "non misurato" --
+# un numero parziale dichiarato, non un buco silenzioso.
+confronti_dir <- "analysis/audit/2026-08-05-rilettura-214"
+peso_path  <- file.path(confronti_dir, "verdetti-con-peso.csv")
+conteggio_path <- file.path(confronti_dir, "13-grandi-conteggio.json")
+if (!file.exists(peso_path)) {
+  cli_alert_warning(paste0(
+    "Rilettura confronti imperfetti assente in {.path {peso_path}}: ",
+    "ogni scheda/narrativa dichiarera' \"non misurato\"."
+  ))
+  confronti_imperfetti_provider <- NULL
+} else {
+  peso_tab <- utils::read.csv(peso_path, stringsAsFactors = FALSE)
+  conteggio_tab <- if (file.exists(conteggio_path)) {
+    jsonlite::fromJSON(conteggio_path, simplifyDataFrame = FALSE)
+  } else {
+    list()
+  }
+  conteggio_by_id <- stats::setNames(conteggio_tab, vapply(conteggio_tab, `[[`, character(1), "cluster_id"))
+  mancanti_confronti <- setdiff(selection_csv_loaded$cluster_id, peso_tab$cluster_id)
+  if (length(mancanti_confronti) > 0L) {
+    cli_alert_warning(paste0(
+      "Cluster della selezione assenti dalla rilettura confronti imperfetti ",
+      "(dichiareranno \"non misurato\"): {paste(mancanti_confronti, collapse = ', ')}"
+    ))
+  }
+  confronti_imperfetti_provider <- function(cluster_id) {
+    riga <- peso_tab[peso_tab$cluster_id == cluster_id, , drop = FALSE]
+    if (nrow(riga) == 0L) return(NULL)
+    grande <- conteggio_by_id[[cluster_id]]
+    list(
+      n    = if (!is.null(grande)) length(grande$confronti_difettosi) else NA_integer_,
+      tot  = if (!is.null(grande)) grande$n_confronti_totali else NA_integer_,
+      peso = riga$peso_citati[1L]
+    )
+  }
+}
+
 cli_alert_info("Build Layer B...")
 t0 <- Sys.time()
 result <- build_layer_b_results(
-  stage4_dir                   = stage4_dir,
-  selection                    = selection_csv,
-  h5_path                      = h5_path,
-  per_cluster_samples_provider = per_cluster_samples_provider,
-  stage3_metadata              = stage3_metadata,
-  pooling_effectiveness        = pooling_eff,
-  config                       = layer_b_default_config()
+  stage4_dir                    = stage4_dir,
+  selection                     = selection_csv,
+  h5_path                       = h5_path,
+  per_cluster_samples_provider  = per_cluster_samples_provider,
+  stage3_metadata               = stage3_metadata,
+  pooling_effectiveness         = pooling_eff,
+  confronti_imperfetti_provider = confronti_imperfetti_provider,
+  config                        = layer_b_default_config()
 )
 wall <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
 
