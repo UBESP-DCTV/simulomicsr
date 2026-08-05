@@ -35,6 +35,65 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-08-05 (v15 ESEGUITO — 214 META-ANALISI, IL CONTROLLO BIOLOGICO PASSA, LAYER B COSTRUITO)**:
+> 🟢 **Il re-cluster v15 è stato l'ULTIMO, come da mandato. Re-cluster 8h43m + re-pool 31h, deliverable
+> annotato, validazione biologica, 9 case study. Tutte le previsioni depositate PRIMA del run tornano
+> alla cifra.**
+>
+> 1. **RE-CLUSTER v15** `analysis/p4-output/20260803T164558Z-stage3-v15-7f986159` (8h43m).
+>    **`run_id` = `7f986159`, cioè il valore calcolato a mano nell'atteso prima del run.** Gate interni
+>    tutti passati da soli: TGFB1 k=65→**78**, IL17A 8→**12** (attesi 78 e 12), **zero residui** delle
+>    scritture fuse, glioblastoma **invariato a k=3** (tolto dalle fusioni il 2026-08-02), bandiera
+>    tutte sopra il pavimento (SARS 38, LPS 50, enzalutamide 29, vemurafenib 20).
+> 2. **LE CINQUE INVARIANTI, ri-misurate sull'OUTPUT VERO** (`60-invarianti-v15.R`, non sul dump che non
+>    vede il ramo `anchor`): **tutte tornano**. Candidati pre-pooling **351**, cioè il numero depositato
+>    nello script PRIMA di vedere l'output (305 pre-fix dedup → 354 post-fix → −3 assorbiti).
+>    ⚠️ **Difetto del mio strumento, corretto misurando**: la prima versione confrontava solo i membri
+>    dei cluster marcati `defrag` — **7 su 26.638**. Rifatta su tutti: **70 membri cambiano**, 49 sono
+>    le fusioni volute (32+9 TGFB1, 5+3 IL17A) e **21 sono ricadute dell'Effetto 3**, provate:
+>    `GSE131705__…__celiac_vs_control` in v13 compariva **dodici volte con lo stesso record_id**.
+>    Nessuno di quei cluster tocca il deliverable (k≤2); il gruppo del 17β-estradiolo resta k=16.
+>    Le chiavi di controllo anomale (`d+vehicle_untreated`) sono **8 in v13 e 8 in v15**: pre-esistenti.
+> 3. **RE-POOL v15** `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7`
+>    (31h, 351/351 cluster, run_id `d29545c7`). **Si è fermato sulla guardia dei verdetti**, che sta
+>    fuori dal `tryCatch` apposta e ha funzionato. Annotazione rifatta **A FREDDO** dai parquet già
+>    scritti (`80-annotazione-a-freddo-v15.R`, minuti invece di altre 31 h; guardia fatale inclusa).
+> 4. **I 13 VERDETTI ORFANI NON sono il pre-filtro corretto il 2026-08-01.** Quel difetto riguardava un
+>    gruppo **presente** nel poolato con chiave diversa (`adenoma`), che tolto il verdetto usciva
+>    `coherent`. Qui **nessuna delle 13 entità compare fra le 214** e nessuno dei 13 cluster è poolato:
+>    cadono al gate dei controlli interni come 137 candidati su 351. Prova in
+>    `analysis/audit/2026-08-02-fix/81-verdetti-tolti-e-perche.md`. **La guardia non è stata toccata.**
+> 5. **DELIVERABLE: 214 meta-analisi** (v13: 191), scomposizione **191 − 1 + 24** verificata: la riga
+>    persa è **esattamente** `STR:tgfb||gain||vehicle_untreated`; i 24 nuovi vengono dalla dedup
+>    corretta e sono **tutti già letti nella D0ter** — **zero gruppi entrano senza lettura umana**.
+>    344.996 geni significativi, I² mediano 72,1, **11 incoerenti dichiarate, 0 NA**.
+> 6. **LE PREVISIONI DEPOSITATE PRIMA DEL RUN, tutte verificate**: TGF-β1 **49→59** studi poolati;
+>    **JQ1 24→25, IFN-γ 19→20, IL1B 17→18** (Effetto 3, `record_id` univoco); candidati 351; run_id.
+>    Il fix F2 sui `record_id` a tre segmenti aggancia **4.726/4.726** (prima: zero).
+> 7. **CONTROLLO BIOLOGICO — PASSA** (`90-controllo-biologico-v15.R`, bersagli fissati dalla letteratura
+>    PRIMA di guardare i risultati): **29/31** col segno giusto e significativi. Il controllo che vale
+>    doppio — **DHT agonista contro enzalutamide antagonista**, due gruppi costruiti separatamente —
+>    dà **1.441 geni significativi in entrambi, 1.408 (97,7%) di SEGNO OPPOSTO, Spearman −0,938**.
+>    KLK3 +2,27/−1,60 · TMPRSS2 +1,78/−0,92 · FKBP5 +2,32/−1,22 · NKX3-1 +1,37/−1,24. TGF-β1 tutti e 6
+>    i bersagli (FDR fino a 1e−24), IFN-γ CXCL9 **+11,3**, LPS IL6 +4,70.
+>    **Le due mancate sono entrambe su IL17A**, l'altro gruppo de-frammentato: segno giusto ma non
+>    significative, e il gruppo lo spiega da sé — **k=9 con 3 soli studi efficaci**. La fusione ha
+>    aggiunto studi, il gruppo resta debole: **non è materiale da figura**, e va detto.
+> 8. **LAYER B v15** `analysis/p4-output/20260805T055939Z-layer-b-bb08afbd` (5,3 min, 9 bundle, 54 PNG
+>    + 45 SVG, report HTML 18,8 MB con **54 immagini incorporate e 0 riferimenti esterni**). Selezione
+>    **rigenerata dal deliverable nuovo** (`70-selection-v15.R`): il CSV di v13 portava **181 numeri di
+>    v13 scritti a mano** nelle note, l'unico canale che nessuna guardia intercetta perché è testo
+>    libero. Verificato sull'artefatto: la scheda di TGF-β1 dice **k=59**, non 49. I primi geni sono
+>    SKIL, PMEPA1, BHLHE40, FSTL3 — bersagli canonici, misurati **tutti a k=59**.
+> 9. **LE NOVE SCELTE DI ADR-0027 REGGONO**, tre si rafforzano. Verificato che **nessuno dei 24 gruppi
+>    nuovi le batta**: il migliore è `irradiation` con 5,6 studi efficaci contro k 10-59 della vetrina.
+>    **Il guadagno della dedup è in NUMERO di meta-analisi, non in potenza** (i nuovi sono tutti k=3-8).
+> 10. **DUE LIMITI DA METTERE NEI METHODS**: (a) **122 su 214 (57%)** hanno uno studio che pesa più
+>    della metà e **78 (37%)** valgono meno di due studi efficaci — non è un errore (la pesatura per
+>    varianza inversa deve fare così) ma per un terzo del deliverable il pooling non aggiunge molto;
+>    (b) il guadagno della dedup è in numero, non in potenza. **PROSSIMO**: le narrative dei 9 bundle e
+>    i Methods. Branch invariato, master invariato, no push.
+>
 > **Stato 2026-07-31c (FASI A-C CHIUSE — la suite e' verde e il re-run produrra' il deliverable da solo)**:
 > 🟢 **Cinque difetti del codice corretti con TDD, i tre test rotti risolti (due non erano quello che
 > sembravano), suite da 3952 PASS / 3 FAIL / 3 ERROR a 0 FAIL / 0 ERROR. Il re-run e' pronto: manca
