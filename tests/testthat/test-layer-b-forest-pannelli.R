@@ -137,3 +137,39 @@ test_that(".build_forest senza etichetta ripiega sul cluster_id e lo dichiara in
   expect_match(result$titolo, "cgroup_L5_deadbeef", fixed = TRUE)
   expect_match(result$caption, "falls back to the raw cluster_id", fixed = TRUE)
 })
+
+test_that(".build_forest collassa i bracci multipli intra-studio prima del pannello per-studio", {
+  # Trovato sui dati veri v15 (IFN-gamma, cgroup_L5_87c40ebb): per_study_de.parquet
+  # su disco resta PRE-collasso (l'orchestrator collassa i bracci solo in memoria
+  # prima di .pool_rem_cluster, R/stage4-orchestrator.R), quindi uno studio con
+  # piu' bracci trattati per lo stesso gene produce piu' righe con lo STESSO
+  # study_id. Senza collasso .build_forest crashava:
+  # "Error in `levels<-`(...) : factor level [19] is duplicated".
+  set.seed(9)
+  cp <- make_fake_cluster_pooled(n_genes = 10, n_sig = 5, cluster_id = "cl_multiarm")
+  cp$method <- "rem_group"
+  cp$k_effective <- 3L  # 3 STUDI distinti, non 4 righe
+
+  ps <- make_fake_per_study_de(cluster_id = "cl_multiarm", n_genes = 10, n_studies = 3)
+  # GSE1 contribuisce un SECONDO braccio per il gene rappresentativo (quello con
+  # l'effetto assoluto massimo fra i geni a copertura piena): stesso study_id,
+  # riga in piu'.
+  gene_rap_atteso <- cp$gene_id[which.max(abs(cp$logFC_pool))]
+  riga_extra <- ps[ps$study_id == "GSE1" & ps$gene_id == gene_rap_atteso, , drop = FALSE]
+  riga_extra$logFC <- riga_extra$logFC + 0.5
+  ps <- dplyr::bind_rows(ps, riga_extra)
+  expect_gt(sum(ps$study_id == "GSE1" & ps$gene_id == gene_rap_atteso), 1L)  # precondizione
+
+  out_dir <- tempfile("forest_multiarm_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_forest(
+    per_study_de_subset = ps, cluster_pooled_subset = cp,
+    method = "rem_group", out_dir = out_dir, config = layer_b_default_config()
+  )
+
+  expect_true(file.exists(result$png_path))
+  expect_false(grepl("omitted", result$caption))  # copertura piena raggiunta post-collasso
+  expect_match(result$caption, "k=3", fixed = TRUE)  # 3 STUDI, non 4 bracci
+})

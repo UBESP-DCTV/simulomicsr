@@ -105,6 +105,20 @@
   # deterministico (coerente con ADR-0016 D6 sul gene axis): KRT23, KRT23.1.
   top_genes$label <- make.unique(top_genes$label)
   ps <- per_study_de_subset[per_study_de_subset$gene_id %in% top_genes$gene_id, , drop = FALSE]
+  # Collassa i bracci multipli intra-studio (rem_group, ADR-0022 gruppi):
+  # cluster_pooled_subset$k_effective per-gene e' calcolato dall'orchestrator
+  # SUL SUBSET GIA' COLLASSATO (.collapse_arms_by_study prima di
+  # .pool_rem_cluster, R/stage4-orchestrator.R), ma per_study_de.parquet su
+  # disco resta PRE-collasso: uno studio con piu' bracci trattati per lo
+  # stesso gene produce piu' righe con lo STESSO study_id. Senza questo passo
+  # il pannello inferiore crasha ("factor level ... is duplicated": i livelli
+  # del factor studio-per-studio non sono unici) e, quando non crasha,
+  # mostrerebbe piu' punti per lo stesso studio -- il difetto opposto a "a
+  # riprova che il pooling e' coerente" che questo pannello vuole dimostrare.
+  # No-op se non ci sono bracci multipli (fast path di
+  # .collapse_arms_by_study). Trovato sui dati veri v15 (IFN-gamma
+  # cgroup_L5_87c40ebb, 2026-08-05).
+  ps <- .collapse_arms_by_study(ps)
   # Propaga la label sul ps via lookup per gene_id (mapping 1:1 garantito post-E1)
   ps$label <- top_genes$label[match(ps$gene_id, top_genes$gene_id)]
 
