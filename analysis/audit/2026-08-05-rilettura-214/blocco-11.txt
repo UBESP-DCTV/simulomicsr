@@ -1,0 +1,512 @@
+# BLOCCO 11 — 10 meta-analisi da rileggere
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable: gli studi elencati
+sono quelli EFFETTIVAMENTE POOLATI (non quelli censiti). Le etichette sono
+INTERE, mai troncate.
+
+## GRUPPO cgroup_L5_3973fe03
+- entita dichiarata : HGNC:5991  (IL1A)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 1.9   piu pesante: 67%
+- geni significativi: 947   I2 mediano: 63.0
+- verdetto attuale  : incoherent — PEGGIORATO dal pooling: i due studi IL-1alfa veri (GSE120784, GSE142706) sono caduti e restano dentro entrambi gli IL-1beta (GSE155141; GSE205853, che e' per giunta IFN-gamma+IL-1beta). Sui 4 studi poolati, 2 misurano un'altra citochina
+- CONFRONTI (etichette intere):
+    [GSE155141] n=3 vs 4
+        TRATTATO : Non-lesional human skin, IL-1β stimulated
+        CONTROLLO: Non-lesional human skin, no treatment
+    [GSE155141] n=2 vs 1
+        TRATTATO : Non-lesional human skin, IL-1β stimulated
+        CONTROLLO: Non-lesional human skin, no treatment
+    [GSE181229] n=6 vs 3
+        TRATTATO : MDA-PCa-2b + IL-1 alpha (25 ng/ml) for 3 days
+        CONTROLLO: MDA-PCa-2b untreated
+    [GSE205853] n=3 vs 4
+        TRATTATO : IFN-γ, IL-1β
+        CONTROLLO: No Treatment
+    [GSE205853] n=2 vs 4
+        TRATTATO : IFN-γ, IL-1β
+        CONTROLLO: No Treatment
+    [GSE205853] n=1 vs 4
+        TRATTATO : IFN-γ, IL-1β
+        CONTROLLO: No Treatment
+    [GSE214475] n=4 vs 3
+        TRATTATO : CD4+ T-cell, IL1A
+        CONTROLLO: CD4+ T-cell, vehicle
+
+## GRUPPO cgroup_L5_3a625868
+- entita dichiarata : CHEBI:231601  (trastuzumab)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 1.9   piu pesante: 66%
+- geni significativi: 1649   I2 mediano: 81.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE158969] n=10 vs 7
+        TRATTATO : BT-474 Herceptin treated
+        CONTROLLO: BT-474 untreated (control)
+    [GSE186402] n=1 vs 1
+        TRATTATO : MDA-MB-231 Trastuzumab
+        CONTROLLO: MDA-MB-231
+    [GSE186402] n=2 vs 2
+        TRATTATO : SK-BR-3 Trastuzumab
+        CONTROLLO: SK-BR-3
+    [GSE217421] n=12 vs 9
+        TRATTATO : Trastuzumab-treated cardiac myocytes (donor 1)
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=1 vs 9
+        TRATTATO : Trastuzumab-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE244533] n=1 vs 3
+        TRATTATO : Trastuzumab-treated SKBR3 (1)
+        CONTROLLO: Untreated SKBR3
+    [GSE244533] n=2 vs 3
+        TRATTATO : Trastuzumab-treated SKBR3 (2)
+        CONTROLLO: Untreated SKBR3
+
+## GRUPPO cgroup_L5_3b461817
+- entita dichiarata : CHEBI:52172  (nilotinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.8   piu pesante: 46%
+- geni significativi: 740   I2 mediano: 52.5
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE146096] n=16 vs 102
+        TRATTATO : Nilotinib 3uM 48h
+        CONTROLLO: Vehicle Control
+    [GSE186341] n=2 vs 17
+        TRATTATO : Nilotinib-treated AsPC-1 cells
+        CONTROLLO: DMSO-treated AsPC-1 cells
+    [GSE186341] n=2 vs 48
+        TRATTATO : Nilotinib
+        CONTROLLO: DMSO
+    [GSE186341] n=1 vs 47
+        TRATTATO : EFO-21_Nilotinib_2.5uM_24h
+        CONTROLLO: EFO-21_DMSO_24h
+    [GSE186341] n=1 vs 47
+        TRATTATO : EFO-21_Nilotinib_2.5uM_24h
+        CONTROLLO: EFO-21_DMSO_24h
+    [GSE186341] n=1 vs 9
+        TRATTATO : Nilotinib-treated HCC1143 cells
+        CONTROLLO: DMSO-treated HCC1143 cells
+    [GSE186341] n=1 vs 9
+        TRATTATO : Nilotinib-treated HCC1143 cells
+        CONTROLLO: DMSO-treated HCC1143 cells
+    [GSE186341] n=2 vs 26
+        TRATTATO : HF2597_Nilotinib_2_uM_24h
+        CONTROLLO: HF2597_DMSO_24h
+    [GSE186341] n=1 vs 27
+        TRATTATO : HSTS Nilotinib
+        CONTROLLO: HSTS DMSO
+    [GSE186341] n=2 vs 23
+        TRATTATO : LNCaP_Nilotinib
+        CONTROLLO: LNCaP_DMSO
+    [GSE186341] n=1 vs 3
+        TRATTATO : PANC-1 Nilotinib 0.13 µM 24h
+        CONTROLLO: PANC-1 DMSO 24h
+    [GSE186341] n=1 vs 3
+        TRATTATO : PANC-1 Nilotinib 0.13 µM 24h
+        CONTROLLO: PANC-1 DMSO 24h
+    [GSE186341] n=1 vs 1
+        TRATTATO : U87_MG_Nilotinib_2.2942_uM_24h
+        CONTROLLO: U87_MG_UNTREATED_24h
+    [GSE186341] n=1 vs 1
+        TRATTATO : U87_MG_Nilotinib_2.2942_uM_24h
+        CONTROLLO: U87_MG_UNTREATED_24h
+    [GSE217421] n=15 vs 9
+        TRATTATO : Nilotinib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=1 vs 54
+        TRATTATO : Nilotinib-treated MSN01 cardiac myocytes
+        CONTROLLO: DMSO-treated MSN01 cardiac myocytes
+    [GSE217423] n=6 vs 16
+        TRATTATO : Cardiac Myocytes treated with Nilotinib 3uM for 48 hours
+        CONTROLLO: Cardiac Myocytes treated with DMSO
+    [GSE217423] n=1 vs 16
+        TRATTATO : Cardiac Myocytes treated with Nilotinib
+        CONTROLLO: Cardiac Myocytes treated with DMSO
+    [GSE217423] n=5 vs 16
+        TRATTATO : Cardiac Myocytes treated with Nilotinib
+        CONTROLLO: Cardiac Myocytes treated with DMSO
+
+## GRUPPO cgroup_L5_3d8c29f4
+- entita dichiarata : HGNC:6001  (IL2)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.4   piu pesante: 54%
+- geni significativi: 387   I2 mediano: 86.5
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE122409] n=2 vs 3
+        TRATTATO : CD3+ Vd2+ CD26- CD94hi +IL2
+        CONTROLLO: CD3+ Vd2+ CD26- CD94hi
+    [GSE122409] n=2 vs 3
+        TRATTATO : CD3+ Vd2+ CD26- CD94lo +IL2
+        CONTROLLO: CD3+ Vd2+ CD26- CD94lo
+    [GSE122409] n=1 vs 3
+        TRATTATO : CD3+ Vd2+ CD26+ CD94hi +IL2
+        CONTROLLO: CD3+ Vd2+ CD26+ CD94hi
+    [GSE122409] n=1 vs 3
+        TRATTATO : CD3+ Vd2+ CD26+ CD94hi +IL2
+        CONTROLLO: CD3+ Vd2+ CD26+ CD94hi
+    [GSE122409] n=2 vs 3
+        TRATTATO : CD3+ Vd2+ CD26+ CD94lo +IL2
+        CONTROLLO: CD3+ Vd2+ CD26+ CD94lo
+    [GSE130284] n=2 vs 3
+        TRATTATO : Natural Killer Cells - IL-2 - 16h
+        CONTROLLO: Natural Killer Cells - Untreated
+    [GSE130284] n=1 vs 3
+        TRATTATO : Natural Killer Cells - IL-2 - 16h
+        CONTROLLO: Natural Killer Cells - Untreated
+    [GSE138698] n=3 vs 3
+        TRATTATO : CD8+ T cells, IL2 stimulation
+        CONTROLLO: CD8+ T cells, no treatment
+    [GSE221563] n=2 vs 6
+        TRATTATO : Gamma-delta T cells treated with IL2
+        CONTROLLO: Untreated gamma-delta T cells
+
+## GRUPPO cgroup_L5_3f0cc1fe
+- entita dichiarata : MeSH:D003093  (Colitis, Ulcerative)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.4   piu pesante: 52%
+- geni significativi: 555   I2 mediano: 61.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE112057] n=3 vs 11
+        TRATTATO : Ulcerative Colitis (Female)
+        CONTROLLO: Healthy Control
+    [GSE112057] n=11 vs 11
+        TRATTATO : Ulcerative Colitis (Male)
+        CONTROLLO: Healthy Control
+    [GSE123141] n=4 vs 2
+        TRATTATO : Ulcerative Colitis, Never Smoked
+        CONTROLLO: Normal Control, Never Smoked
+    [GSE123141] n=2 vs 2
+        TRATTATO : Ulcerative Colitis, Systemic Immunosuppression, Never Smoked
+        CONTROLLO: Normal Control, Never Smoked
+    [GSE137344] n=2 vs 37
+        TRATTATO : Ulcerative Colitis (Case)
+        CONTROLLO: Healthy Control
+    [GSE137344] n=31 vs 37
+        TRATTATO : Ulcerative Colitis (Case)
+        CONTROLLO: Healthy Control
+    [GSE137344] n=8 vs 37
+        TRATTATO : Ulcerative Colitis (Case)
+        CONTROLLO: Healthy Control
+    [GSE137344] n=3 vs 37
+        TRATTATO : Ulcerative Colitis (Case)
+        CONTROLLO: Healthy Control
+    [GSE243625] n=1 vs 7
+        TRATTATO : Active ulcerative colitis
+        CONTROLLO: Normal mucosa (control)
+    [GSE243625] n=14 vs 7
+        TRATTATO : Active ulcerative colitis (unclear perturbation)
+        CONTROLLO: Normal mucosa (control)
+    [GSE243625] n=15 vs 7
+        TRATTATO : Inactive ulcerative colitis
+        CONTROLLO: Normal mucosa (control)
+
+## GRUPPO cgroup_L5_49e290ae
+- entita dichiarata : CHEBI:4031  (cyclosporin A)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.0   piu pesante: 66%
+- geni significativi: 142   I2 mediano: 21.6
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE208405] n=2 vs 31
+        TRATTATO : Atopic Dermatitis Ciclosporin Treated
+        CONTROLLO: Atopic Dermatitis Before Dupilumab Treatment
+    [GSE208405] n=1 vs 31
+        TRATTATO : Atopic Dermatitis Ciclosporin Treated
+        CONTROLLO: Atopic Dermatitis Before Dupilumab Treatment
+    [GSE208405] n=2 vs 31
+        TRATTATO : Atopic Dermatitis Ciclosporin Treated
+        CONTROLLO: Atopic Dermatitis Before Dupilumab Treatment
+    [GSE208405] n=1 vs 31
+        TRATTATO : Atopic Dermatitis Ciclosporin Treated
+        CONTROLLO: Atopic Dermatitis Before Dupilumab Treatment
+    [GSE217421] n=2 vs 9
+        TRATTATO : Cyclosporine-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=12 vs 9
+        TRATTATO : Cyclosporine-treated MSN01 cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=1 vs 9
+        TRATTATO : Cyclosporine-treated MSN01 cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=2 vs 9
+        TRATTATO : Cyclosporine-treated MSN06 cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217423] n=8 vs 16
+        TRATTATO : Cardiac Myocytes treated with Cyclosporine 125nM for 48 hours
+        CONTROLLO: Cardiac Myocytes treated with DMSO
+    [GSE236896] n=2 vs 6
+        TRATTATO : HCT-116, Cyclosporin A, 5 uM, 3 days, 4-5 passages
+        CONTROLLO: HCT-116, DMSO, 3 days, 4-5 passages
+    [GSE236896] n=1 vs 6
+        TRATTATO : HCT-116, Cyclosporin A, 5 uM, 3 days, 4-5 passages
+        CONTROLLO: HCT-116, DMSO, 3 days, 4-5 passages
+
+## GRUPPO cgroup_L5_4be9e90d
+- entita dichiarata : CHEBI:39421  (PFOS)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 1.7   piu pesante: 73%
+- geni significativi: 549   I2 mediano: 9.1
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE129018] n=1 vs 2
+        TRATTATO : Day 12 PFOS
+        CONTROLLO: Day 12 DMSO
+    [GSE129018] n=1 vs 2
+        TRATTATO : Day 12 PFOS
+        CONTROLLO: Day 12 DMSO
+    [GSE129018] n=2 vs 2
+        TRATTATO : Day 8 PFOS
+        CONTROLLO: Day 8 DMSO
+    [GSE144775] n=4 vs 30
+        TRATTATO : PFOS 0.02 µM 1 day
+        CONTROLLO: DMSO 1 day
+    [GSE144775] n=4 vs 33
+        TRATTATO : PFOS 0.02 µM 10 days
+        CONTROLLO: DMSO 10 days
+    [GSE144775] n=3 vs 31
+        TRATTATO : PFOS 0.02 µM 14 days
+        CONTROLLO: DMSO 14 days
+    [GSE144775] n=4 vs 31
+        TRATTATO : PFOS 0.02 µM 4 days
+        CONTROLLO: DMSO 4 days
+    [GSE144775] n=3 vs 30
+        TRATTATO : PFOS 0.1 µM 1 day
+        CONTROLLO: DMSO 1 day
+    [GSE144775] n=4 vs 33
+        TRATTATO : PFOS 0.1 µM 10 days
+        CONTROLLO: DMSO 10 days
+    [GSE144775] n=2 vs 31
+        TRATTATO : PFOS 0.1 µM 14 days
+        CONTROLLO: DMSO 14 days
+    [GSE144775] n=3 vs 31
+        TRATTATO : PFOS 0.1 µM 4 days
+        CONTROLLO: DMSO 4 days
+    [GSE144775] n=4 vs 30
+        TRATTATO : PFOS 0.2 µM 1 day
+        CONTROLLO: DMSO 1 day
+    [GSE144775] n=4 vs 33
+        TRATTATO : PFOS 0.2 µM 10 days
+        CONTROLLO: DMSO 10 days
+    [GSE144775] n=3 vs 31
+        TRATTATO : PFOS 0.2 µM 14 days
+        CONTROLLO: DMSO 14 days
+    [GSE144775] n=4 vs 31
+        TRATTATO : PFOS 0.2 µM 4 days
+        CONTROLLO: DMSO 4 days
+    [GSE144775] n=4 vs 30
+        TRATTATO : PFOS 1 µM 1 day
+        CONTROLLO: DMSO 1 day
+    [GSE144775] n=3 vs 33
+        TRATTATO : PFOS 1 µM 10 days
+        CONTROLLO: DMSO 10 days
+    [GSE144775] n=3 vs 31
+        TRATTATO : PFOS 1 µM 14 days
+        CONTROLLO: DMSO 14 days
+    [GSE144775] n=4 vs 31
+        TRATTATO : PFOS 1 µM 4 days
+        CONTROLLO: DMSO 4 days
+    [GSE144775] n=4 vs 30
+        TRATTATO : PFOS 10 µM 1 day
+        CONTROLLO: DMSO 1 day
+    [GSE144775] n=3 vs 33
+        TRATTATO : PFOS 10 µM 10 days
+        CONTROLLO: DMSO 10 days
+    [GSE144775] n=4 vs 31
+        TRATTATO : PFOS 10 µM 14 days
+        CONTROLLO: DMSO 14 days
+    [GSE144775] n=3 vs 31
+        TRATTATO : PFOS 10 µM 4 days
+        CONTROLLO: DMSO 4 days
+    [GSE144775] n=4 vs 30
+        TRATTATO : PFOS 2 µM 1 day
+        CONTROLLO: DMSO 1 day
+    [GSE144775] n=3 vs 33
+        TRATTATO : PFOS 2 µM 10 days
+        CONTROLLO: DMSO 10 days
+    [GSE144775] n=4 vs 31
+        TRATTATO : PFOS 2 µM 14 days
+        CONTROLLO: DMSO 14 days
+    [GSE144775] n=4 vs 31
+        TRATTATO : PFOS 2 µM 4 days
+        CONTROLLO: DMSO 4 days
+    [GSE144775] n=4 vs 30
+        TRATTATO : PFOS 20 µM 1 day
+        CONTROLLO: DMSO 1 day
+    [GSE144775] n=4 vs 33
+        TRATTATO : PFOS 20 µM 10 days
+        CONTROLLO: DMSO 10 days
+    [GSE144775] n=4 vs 31
+        TRATTATO : PFOS 20 µM 14 days
+        CONTROLLO: DMSO 14 days
+    [GSE144775] n=4 vs 31
+        TRATTATO : PFOS 20 µM 4 days
+        CONTROLLO: DMSO 4 days
+    [GSE232176] n=4 vs 1
+        TRATTATO : PFOS treated
+        CONTROLLO: DMSO control
+    [GSE232176] n=4 vs 1
+        TRATTATO : PFOS treated
+        CONTROLLO: DMSO control
+    [GSE232176] n=4 vs 2
+        TRATTATO : PFOS treated
+        CONTROLLO: DMSO control
+    [GSE262137] n=3 vs 5
+        TRATTATO : C1 cells treated with PFOS (10 nM)
+        CONTROLLO: Testicular germ cell tumor cells treated with DMSO
+    [GSE262137] n=1 vs 1
+        TRATTATO : EP cells treated with PFOS (10 nM)
+        CONTROLLO: EP cells treated with DMSO
+    [GSE262137] n=2 vs 1
+        TRATTATO : EP cells treated with PFOS (5 uM)
+        CONTROLLO: EP cells treated with DMSO
+
+## GRUPPO cgroup_L5_522fa0c2
+- entita dichiarata : STR:sals  (sals)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 1.9   piu pesante: 64%
+- geni significativi: 56   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE122649] n=19 vs 4
+        TRATTATO : sALS (JR9)
+        CONTROLLO: Non-neurological control (JR39)
+    [GSE122649] n=19 vs 4
+        TRATTATO : sALS (JR9)
+        CONTROLLO: Non-neurological control (JR39)
+    [GSE122649] n=1 vs 4
+        TRATTATO : sALS (JR34)
+        CONTROLLO: Non-neurological control (JR39)
+    [GSE122649] n=1 vs 4
+        TRATTATO : sALS (JR34)
+        CONTROLLO: Non-neurological control (JR39)
+    [GSE122649] n=1 vs 4
+        TRATTATO : sALS (JR36)
+        CONTROLLO: Non-neurological control (JR39)
+    [GSE122649] n=1 vs 4
+        TRATTATO : sALS (JR36)
+        CONTROLLO: Non-neurological control (JR39)
+    [GSE122649] n=1 vs 4
+        TRATTATO : sALS (JR61)
+        CONTROLLO: Non-neurological control (JR39)
+    [GSE122649] n=1 vs 4
+        TRATTATO : sALS (JR61)
+        CONTROLLO: Non-neurological control (JR39)
+    [GSE234297] n=96 vs 3
+        TRATTATO : sALS Case01
+        CONTROLLO: Healthy control
+    [GSE234297] n=96 vs 45
+        TRATTATO : sALS Case01
+        CONTROLLO: Healthy control (additional)
+    [GSE52946] n=7 vs 6
+        TRATTATO : sALS
+        CONTROLLO: Healthy donor
+    [GSE67196] n=2 vs 7
+        TRATTATO : Cerebellum sALS
+        CONTROLLO: Cerebellum Healthy
+    [GSE67196] n=3 vs 7
+        TRATTATO : Cerebellum sALS (drug adapted)
+        CONTROLLO: Cerebellum Healthy
+    [GSE67196] n=4 vs 7
+        TRATTATO : Cerebellum sALS (drug adapted)
+        CONTROLLO: Cerebellum Healthy
+    [GSE67196] n=1 vs 9
+        TRATTATO : Frontal Cortex sALS (drug adapted)
+        CONTROLLO: Frontal Cortex Healthy
+
+## GRUPPO cgroup_L5_538960a6
+- entita dichiarata : NCBITaxon:1773  (mycobacteriumtuberculosis)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.3   piu pesante: 56%
+- geni significativi: 653   I2 mediano: 89.7
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE103147] n=19 vs 3
+        TRATTATO : mTb 180h
+        CONTROLLO: unstim 180h
+    [GSE103147] n=19 vs 5
+        TRATTATO : mTb 360h
+        CONTROLLO: unstim 360h
+    [GSE103147] n=6 vs 15
+        TRATTATO : mTb 540h
+        CONTROLLO: unstim 540h
+    [GSE143982] n=2 vs 2
+        TRATTATO : THP-1 cells after differentiation and activated by M.tb H37Ra
+        CONTROLLO: THP-1 cells after differentiation
+    [GSE190850] n=5 vs 4
+        TRATTATO : Airway Macrophages - M.tb Lysate - No Vaccination
+        CONTROLLO: Airway Macrophages - Unstimulated - No Vaccination
+    [GSE203395] n=1 vs 2
+        TRATTATO : M.tb-infected, D-7
+        CONTROLLO: D-7, 7 days
+    [GSE203395] n=1 vs 2
+        TRATTATO : M.tb-infected, D-7
+        CONTROLLO: D-7, 7 days
+    [GSE203395] n=1 vs 2
+        TRATTATO : M.tb-infected, D-7
+        CONTROLLO: D-7, 7 days
+    [GSE203395] n=1 vs 2
+        TRATTATO : M.tb-infected, D-7, 7 days
+        CONTROLLO: D-7, 7 days
+    [GSE203395] n=4 vs 2
+        TRATTATO : M.tb-infected, D-7
+        CONTROLLO: D-7, 7 days
+
+## GRUPPO cgroup_L5_5927750b
+- entita dichiarata : CHEBI:65347  (carfilzomib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 1.9   piu pesante: 67%
+- geni significativi: 2135   I2 mediano: 88.4
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE184029] n=1 vs 3
+        TRATTATO : CAPAN-2 + Carfilzomib
+        CONTROLLO: CAPAN-2 + DMSO
+    [GSE184029] n=3 vs 3
+        TRATTATO : DLD-1 + Carfilzomib
+        CONTROLLO: DLD-1 + DMSO
+    [GSE184029] n=3 vs 3
+        TRATTATO : H-1299 + Carfilzomib
+        CONTROLLO: H-1299 + DMSO
+    [GSE184029] n=2 vs 3
+        TRATTATO : H-23 + Carfilzomib
+        CONTROLLO: H-23 + DMSO
+    [GSE184029] n=1 vs 3
+        TRATTATO : PANC-1 + Carfilzomib
+        CONTROLLO: PANC-1 + DMSO
+    [GSE184029] n=1 vs 3
+        TRATTATO : RPMI + Carfilzomib
+        CONTROLLO: RPMI + DMSO
+    [GSE217421] n=1 vs 9
+        TRATTATO : Carfilzomib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=1 vs 9
+        TRATTATO : Carfilzomib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=16 vs 9
+        TRATTATO : Carfilzomib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=4 vs 9
+        TRATTATO : Carfilzomib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217898] n=1 vs 2
+        TRATTATO : Primary aorta endothelial cells treated with Carfilzomib for 24 hours
+        CONTROLLO: Primary aorta endothelial cells treated with DMSO for 24 hours
+    [GSE217898] n=2 vs 2
+        TRATTATO : Primary aorta endothelial cells treated with Carfilzomib for 72 hours
+        CONTROLLO: Primary aorta endothelial cells treated with DMSO for 72 hours
+    [GSE266011] n=1 vs 4
+        TRATTATO : Carfilzomib (10 nM) for 8 hours
+        CONTROLLO: DMSO for 8 hours
+    [GSE266011] n=3 vs 3
+        TRATTATO : Carfilzomib (10 nM) for 24 hours
+        CONTROLLO: DMSO for 24 hours
+    [GSE266011] n=1 vs 4
+        TRATTATO : Carfilzomib (10 nM) for 8 hours
+        CONTROLLO: DMSO for 8 hours
+    [GSE266011] n=1 vs 4
+        TRATTATO : Carfilzomib (10 nM) for 8 hours
+        CONTROLLO: DMSO for 8 hours
+

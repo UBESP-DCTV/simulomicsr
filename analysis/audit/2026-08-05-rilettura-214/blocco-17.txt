@@ -1,0 +1,299 @@
+# BLOCCO 17 — 10 meta-analisi da rileggere
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable: gli studi elencati
+sono quelli EFFETTIVAMENTE POOLATI (non quelli censiti). Le etichette sono
+INTERE, mai troncate.
+
+## GRUPPO cgroup_L5_5b9a08fb
+- entita dichiarata : CHEBI:44185  (methotrexate)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 64%
+- geni significativi: 1077   I2 mediano: 88.6
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE163377] n=3 vs 3
+        TRATTATO : MTX 1uM 10h
+        CONTROLLO: Untreated 10h
+    [GSE199800] n=2 vs 4
+        TRATTATO : DU145_Methotrexate_0.01_24h
+        CONTROLLO: DU145_UNTREATED
+    [GSE199800] n=1 vs 6
+        TRATTATO : LNCaP + Methotrexate
+        CONTROLLO: LNCaP + UNTREATED
+    [GSE225731] n=51 vs 15
+        TRATTATO : RA MTX
+        CONTROLLO: RA untreated
+
+## GRUPPO cgroup_L5_5d97d5b1
+- entita dichiarata : CHEBI:59132  (antigen (classe-ombrello))
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.7   piu pesante: 72%
+- geni significativi: 251   I2 mediano: 56.3
+- verdetto attuale  : incoherent — invariato (stesso insieme di membri, provato): tre contrasti diversi sotto un'entita' che e' una classe-ombrello ('antigen') — DCVC nefrotossico (GSE154339, dove 'SV40 T antigen' e' il tipo cellulare), 'HHC treated' (GSE179987) e stimolazione antigenica di cellule T CD8+ (GSE229026)
+- CONFRONTI (etichette intere):
+    [GSE154339] n=2 vs 4
+        TRATTATO : DCVC 10 µM 6h SV40 T antigen
+        CONTROLLO: No Treatment 6h
+    [GSE154339] n=3 vs 4
+        TRATTATO : DCVC 20 µM 6h SV40 T antigen
+        CONTROLLO: No Treatment 6h
+    [GSE179987] n=2 vs 2
+        TRATTATO : HHC treated
+        CONTROLLO: HHC control
+    [GSE229026] n=2 vs 3
+        TRATTATO : CD8+ T cells Antigen Stimulated
+        CONTROLLO: CD8+ T cells Unstimulated
+    [GSE229026] n=3 vs 3
+        TRATTATO : M28z Antigen Stimulated
+        CONTROLLO: M28z Unstimulated
+
+## GRUPPO cgroup_L5_6b7b8076
+- entita dichiarata : MeSH:D000077273  (Thyroid Cancer, Papillary)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.5   piu pesante: 49%
+- geni significativi: 3491   I2 mediano: 33.5
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE124841] n=2 vs 2
+        TRATTATO : Papillary Thyroid Cancer Tissue
+        CONTROLLO: Adjacent Normal Tissue
+    [GSE153659] n=11 vs 2
+        TRATTATO : Papillary Thyroid Carcinoma (Age 40)
+        CONTROLLO: Normal Thyroid Tissue (Age 40)
+    [GSE153659] n=6 vs 2
+        TRATTATO : Papillary Thyroid Carcinoma (Age 44)
+        CONTROLLO: Normal Thyroid Tissue (Age 40)
+    [GSE153659] n=1 vs 2
+        TRATTATO : Papillary Thyroid Carcinoma (Age 35)
+        CONTROLLO: Normal Thyroid Tissue (Age 40)
+    [GSE153659] n=1 vs 2
+        TRATTATO : Papillary Thyroid Carcinoma (Age 55)
+        CONTROLLO: Normal Thyroid Tissue (Age 40)
+    [GSE153659] n=4 vs 2
+        TRATTATO : Papillary Thyroid Carcinoma (Age 45)
+        CONTROLLO: Normal Thyroid Tissue (Age 40)
+    [GSE153659] n=1 vs 2
+        TRATTATO : Papillary Thyroid Carcinoma (Age 54)
+        CONTROLLO: Normal Thyroid Tissue (Age 40)
+    [GSE201365] n=6 vs 6
+        TRATTATO : Papillary thyroid carcinoma
+        CONTROLLO: Normal tissue
+
+## GRUPPO cgroup_L5_6ee86f02
+- entita dichiarata : MeSH:D013167  (Spondylitis, Ankylosing)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.5   piu pesante: 81%
+- geni significativi: 348   I2 mediano: 13.6
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE181364] n=5 vs 3
+        TRATTATO : Ankylosing Spondylitis Patients
+        CONTROLLO: Healthy Controls
+    [GSE205812] n=3 vs 3
+        TRATTATO : Ankylosing Spondylitis
+        CONTROLLO: Normal Control
+    [GSE212613] n=3 vs 3
+        TRATTATO : Ankylosing Spondylitis Patients - Adipogenic Differentiation Day 10
+        CONTROLLO: Healthy Donors - Adipogenic Differentiation Day 10
+
+## GRUPPO cgroup_L5_729b276d
+- entita dichiarata : MeSH:D016640  (Diabetes, Gestational)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.2   piu pesante: 91%
+- geni significativi: 23   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE154377] n=5 vs 9
+        TRATTATO : Gestational Diabetes Cord Blood Patient 1
+        CONTROLLO: Normal Pregnancy Cord Blood Patient 1
+    [GSE154414] n=4 vs 4
+        TRATTATO : Placental tissue from gestational diabetes mellitus patients
+        CONTROLLO: Healthy control placental tissue
+    [GSE228990] n=17 vs 15
+        TRATTATO : Endothelial progenitor cells from donor 21 with gestational diabetes
+        CONTROLLO: Endothelial progenitor cells from donor 1 (healthy)
+
+## GRUPPO cgroup_L5_79b3a442
+- entita dichiarata : STR:cteph  (cteph)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.7   piu pesante: 71%
+- geni significativi: 116   I2 mediano: 49.9
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE188938] n=7 vs 5
+        TRATTATO : CTEPH patients
+        CONTROLLO: Healthy controls
+    [GSE221511] n=3 vs 3
+        TRATTATO : growth condition (CTEPH)
+        CONTROLLO: growth condition (normal)
+    [GSE84538] n=3 vs 4
+        TRATTATO : Pulmonary Artery CTEPH
+        CONTROLLO: Pulmonary Artery Control
+
+## GRUPPO cgroup_L5_81b706c4
+- entita dichiarata : CHEBI:45863  (paclitaxel)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.8   piu pesante: 66%
+- geni significativi: 84   I2 mediano: 73.5
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE113685] n=2 vs 2
+        TRATTATO : HS 578T + Paclitaxel
+        CONTROLLO: HS 578T + DMSO
+    [GSE113685] n=3 vs 2
+        TRATTATO : HS 578T + Paclitaxel
+        CONTROLLO: HS 578T + DMSO
+    [GSE215975] n=1 vs 1
+        TRATTATO : Endometrial Cancer Paclitaxel
+        CONTROLLO: Endometrial Cancer Vehicle Control
+    [GSE215975] n=1 vs 1
+        TRATTATO : CTNNB1-mutated Endometrial Cancer Paclitaxel
+        CONTROLLO: CTNNB1-mutated Endometrial Cancer Vehicle Control
+    [GSE215975] n=1 vs 1
+        TRATTATO : CTNNB1-mutated Endometrial Cancer Paclitaxel
+        CONTROLLO: CTNNB1-mutated Endometrial Cancer Vehicle Control
+    [GSE215975] n=1 vs 1
+        TRATTATO : Ishikawa-S33Y Paclitaxel
+        CONTROLLO: Ishikawa-S33Y Vehicle Control
+    [GSE215975] n=1 vs 1
+        TRATTATO : Ishikawa-S33Y Paclitaxel
+        CONTROLLO: Ishikawa-S33Y Vehicle Control
+    [GSE215975] n=2 vs 1
+        TRATTATO : Ishikawa-S33Y Paclitaxel/SM08502
+        CONTROLLO: Ishikawa-S33Y Vehicle Control
+    [GSE215975] n=2 vs 2
+        TRATTATO : Ishikawa Paclitaxel
+        CONTROLLO: Ishikawa Vehicle Control
+    [GSE236502] n=3 vs 3
+        TRATTATO : PMCA-3 Paclitaxel
+        CONTROLLO: PMCA-3 Saline Control
+    [GSE236502] n=3 vs 3
+        TRATTATO : TM00351 Paclitaxel
+        CONTROLLO: TM00351 Saline Control
+
+## GRUPPO cgroup_L5_8341bee7
+- entita dichiarata : CHEBI:17026  (progesterone)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.8   piu pesante: 71%
+- geni significativi: 227   I2 mediano: 72.1
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE149640] n=3 vs 3
+        TRATTATO : HTR8/SVneo + progesterone + ethanol
+        CONTROLLO: HTR8/SVneo + ethanol
+    [GSE220806] n=4 vs 4
+        TRATTATO : Cervical insufficiency, progesterone
+        CONTROLLO: Cervical insufficiency, untreated
+    [GSE220806] n=3 vs 3
+        TRATTATO : Healthy, progesterone
+        CONTROLLO: Healthy, untreated
+    [GSE99626] n=2 vs 3
+        TRATTATO : T47D cells treated with E2 and Progesterone
+        CONTROLLO: T47D cells treated with Vehicle
+
+## GRUPPO cgroup_L5_83b1f88c
+- entita dichiarata : CHEBI:61397  (neratinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.0   piu pesante: 58%
+- geni significativi: 2782   I2 mediano: 73.8
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE186341] n=2 vs 17
+        TRATTATO : Neratinib-treated AsPC-1 cells
+        CONTROLLO: DMSO-treated AsPC-1 cells
+    [GSE186341] n=1 vs 48
+        TRATTATO : Neratinib
+        CONTROLLO: DMSO
+    [GSE186341] n=1 vs 48
+        TRATTATO : Neratinib
+        CONTROLLO: DMSO
+    [GSE186341] n=2 vs 47
+        TRATTATO : EFO-21_Neratinib_16.5uM_24h
+        CONTROLLO: EFO-21_DMSO_24h
+    [GSE186341] n=1 vs 9
+        TRATTATO : Neratinib-treated HCC1143 cells
+        CONTROLLO: DMSO-treated HCC1143 cells
+    [GSE186341] n=1 vs 9
+        TRATTATO : Neratinib-treated HCC1143 cells
+        CONTROLLO: DMSO-treated HCC1143 cells
+    [GSE186341] n=2 vs 26
+        TRATTATO : HF2597_Neratinib_0.225_uM_24h
+        CONTROLLO: HF2597_DMSO_24h
+    [GSE186341] n=1 vs 36
+        TRATTATO : HSTS_Neratinib_0.225_uM_24h
+        CONTROLLO: HF2597_UNTREATED
+    [GSE186341] n=1 vs 27
+        TRATTATO : HSTS Neratinib
+        CONTROLLO: HSTS DMSO
+    [GSE186341] n=2 vs 35
+        TRATTATO : KRJ1_Neratinib_0.18uM_24h
+        CONTROLLO: KRJ1_UNTREATED
+    [GSE186341] n=1 vs 40
+        TRATTATO : LNCaP_Neratinib_0.225uM_24h
+        CONTROLLO: LNCaP_UNTREATED
+    [GSE186341] n=1 vs 23
+        TRATTATO : LNCaP_Neratinib
+        CONTROLLO: LNCaP_DMSO
+    [GSE186341] n=2 vs 22
+        TRATTATO : NCI-H1793_Neratinib
+        CONTROLLO: NCI-H1793_DMSO
+    [GSE186341] n=1 vs 3
+        TRATTATO : PANC-1 Neratinib 0.225 µM 24h
+        CONTROLLO: PANC-1 DMSO 24h
+    [GSE186341] n=1 vs 3
+        TRATTATO : PANC-1 Neratinib 0.225 µM 24h PS2AS430
+        CONTROLLO: PANC-1 DMSO 24h
+    [GSE186341] n=2 vs 1
+        TRATTATO : U87_MG_Neratinib_0.23_uM_24h
+        CONTROLLO: U87_MG_UNTREATED_24h
+    [GSE188958] n=2 vs 2
+        TRATTATO : SF268 + Neratinib 6h
+        CONTROLLO: SF268 Untreated
+    [GSE188958] n=2 vs 2
+        TRATTATO : SF268 + Neratinib 72h
+        CONTROLLO: SF268 Untreated
+    [GSE188958] n=1 vs 1
+        TRATTATO : TS895 + Neratinib 3h
+        CONTROLLO: TS895 Vehicle 3h
+    [GSE249573] n=2 vs 4
+        TRATTATO : BM3_Neratinib_Monoculture
+        CONTROLLO: BM3_DMSO_Monoculture
+    [GSE249573] n=1 vs 1
+        TRATTATO : BM3_Neratinib_Coculture
+        CONTROLLO: BM3_DMSO_Coculture
+    [GSE249573] n=2 vs 2
+        TRATTATO : HCC1954_Neratinib_Monoculture
+        CONTROLLO: HCC1954_DMSO_Monoculture
+    [GSE249573] n=1 vs 1
+        TRATTATO : HCC1954_Neratinib_Coculture
+        CONTROLLO: HCC1954_DMSO_Coculture
+    [GSE249573] n=2 vs 4
+        TRATTATO : MDA-MB-453_Neratinib_Monoculture
+        CONTROLLO: MDA-MB-453_DMSO_Monoculture
+    [GSE249573] n=2 vs 6
+        TRATTATO : MDA-MB-453_Neratinib_Coculture
+        CONTROLLO: MDA-MB-453_DMSO_Coculture
+
+## GRUPPO cgroup_L5_840b7e36
+- entita dichiarata : HGNC:1653  (anti-CD3/CD28 stimulation)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.1   piu pesante: 58%
+- geni significativi: 643   I2 mediano: 91.6
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE144852] n=2 vs 4
+        TRATTATO : AMTH17 + α-CD3/α-CD28 (BD) 6h
+        CONTROLLO: AMTH17 + vehicle 6h
+    [GSE263462] n=5 vs 3
+        TRATTATO : CD3/CD28 stimulated PBMCs
+        CONTROLLO: Control PBMCs
+    [GSE264373] n=7 vs 2
+        TRATTATO : Wild-type + CD3/CD28
+        CONTROLLO: Wild-type + vehicle_only
+    [GSE264373] n=3 vs 2
+        TRATTATO : S325E + CD3/CD28
+        CONTROLLO: S325E
+    [GSE264373] n=2 vs 3
+        TRATTATO : S325A + CD3/CD28
+        CONTROLLO: S325A
+

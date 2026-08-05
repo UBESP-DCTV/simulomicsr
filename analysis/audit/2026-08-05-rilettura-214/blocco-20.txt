@@ -1,0 +1,251 @@
+# BLOCCO 20 — 10 meta-analisi da rileggere
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable: gli studi elencati
+sono quelli EFFETTIVAMENTE POOLATI (non quelli censiti). Le etichette sono
+INTERE, mai troncate.
+
+## GRUPPO cgroup_L5_cfad03a8
+- entita dichiarata : STR:hepatoblastoma  (hepatoblastoma)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.0   piu pesante: 56%
+- geni significativi: 9709   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE104766] n=22 vs 12
+        TRATTATO : Hepatoblastoma Tumor
+        CONTROLLO: Normal Liver
+    [GSE104766] n=8 vs 13
+        TRATTATO : Hepatoblastoma Tumor Extracted Cells
+        CONTROLLO: Normal Liver
+    [GSE133039] n=34 vs 31
+        TRATTATO : Tumor liver tissue (Donor 14)
+        CONTROLLO: Normal liver tissue (Donor 7)
+    [GSE133039] n=34 vs 1
+        TRATTATO : Tumor liver tissue (Donor 14)
+        CONTROLLO: Normal liver tissue (Donor 9)
+    [GSE89775] n=8 vs 2
+        TRATTATO : Hepatoblastoma liver
+        CONTROLLO: Normal liver
+
+## GRUPPO cgroup_L5_d28620cd
+- entita dichiarata : CHEBI:15738  (staurosporine)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.3   piu pesante: 57%
+- geni significativi: 1859   I2 mediano: 27.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE171543] n=3 vs 3
+        TRATTATO : cc14 colon cancer cells treated with STS
+        CONTROLLO: cc14 colon cancer cells treated with DMSO
+    [GSE171560] n=3 vs 3
+        TRATTATO : Colon cancer cells treated with STS for 48 hours
+        CONTROLLO: Colon cancer cells treated with DMSO for 48 hours
+    [GSE241595] n=3 vs 2
+        TRATTATO : apoEVs (apoptosis induced by staurosporine)
+        CONTROLLO: control
+
+## GRUPPO cgroup_L5_d53bf74e
+- entita dichiarata : MeSH:D008224  (Lymphoma, Follicular)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.6   piu pesante: 75%
+- geni significativi: 1972   I2 mediano: 72.4
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE145842] n=10 vs 6
+        TRATTATO : Follicular Lymphoma
+        CONTROLLO: Healthy Control
+    [GSE148656] n=4 vs 2
+        TRATTATO : FL Patient Double Negative Cells
+        CONTROLLO: Healthy Donor Double Negative Cells
+    [GSE148656] n=4 vs 5
+        TRATTATO : FL Patient Fibroblastic Reticular Cells CD49a+
+        CONTROLLO: Healthy Donor Fibroblastic Reticular Cells CD49a+
+    [GSE148656] n=3 vs 4
+        TRATTATO : FL Patient Follicular Dendritic Cells
+        CONTROLLO: Healthy Donor Follicular Dendritic Cells
+    [GSE62241] n=10 vs 2
+        TRATTATO : Follicular Lymphoma CD19+ B Cells
+        CONTROLLO: Normal CD19+/CD10+/CD44low/CXCR4- B Cells
+
+## GRUPPO cgroup_L5_d631ee89
+- entita dichiarata : HGNC:6011  (IL3)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.8   piu pesante: 69%
+- geni significativi: 314   I2 mediano: 85.4
+- verdetto attuale  : incoherent — PEGGIORATO dal pooling: e' caduto uno studio di IL-3 vera (GSE110041) mentre resta GSE93620, dove 'iL3' sono le larve infettive di stadio 3 del nematode A. ceylanicum. Sui 3 studi poolati, 1 non e' l'interleuchina
+- CONFRONTI (etichette intere):
+    [GSE159782] n=6 vs 6
+        TRATTATO : Subject 1, IL-3 4h
+        CONTROLLO: Subject 1, Untreated
+    [GSE159782] n=6 vs 6
+        TRATTATO : Subject 1, IL-3 20h
+        CONTROLLO: Subject 1, Untreated
+    [GSE89442] n=3 vs 3
+        TRATTATO : pDC donor 1 IL-3
+        CONTROLLO: pDC donor 1 unstimulated
+    [GSE93620] n=2 vs 2
+        TRATTATO : HT-29-MTX, Colorectal carcinoma, A. ceylanicum iL3 larvae, 24h
+        CONTROLLO: HT-29-MTX, Colorectal carcinoma, untreated
+
+## GRUPPO cgroup_L5_d7abf612
+- entita dichiarata : CHEBI:28201  (rotenone)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.7   piu pesante: 73%
+- geni significativi: 196   I2 mediano: 34.5
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE126750] n=3 vs 2
+        TRATTATO : Rotenone-treated cerebellar astrocytes
+        CONTROLLO: DMSO-treated cerebellar astrocytes
+    [GSE191034] n=2 vs 6
+        TRATTATO : rotenone 5 day
+        CONTROLLO: DMSO(0.1%) 5 day
+    [GSE191034] n=2 vs 1
+        TRATTATO : rotenone 1 day
+        CONTROLLO: DMSO(0.1%) 1 day
+    [GSE64553] n=16 vs 8
+        TRATTATO : HFF PD22 rotenone 100 nM
+        CONTROLLO: HFF PD22 untreated
+    [GSE64553] n=16 vs 10
+        TRATTATO : HFF PD22 rotenone 100 nM
+        CONTROLLO: HFF PD22 untreated
+    [GSE64553] n=12 vs 12
+        TRATTATO : MRC-5 passage 38 rotenone 100 nM
+        CONTROLLO: MRC-5 passage 38 untreated
+
+## GRUPPO cgroup_L5_d8006c5b
+- entita dichiarata : CHEBI:31941  (oxaliplatin)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.0   piu pesante: 56%
+- geni significativi: 655   I2 mediano: 79.4
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE129071] n=3 vs 3
+        TRATTATO : MHCC97L cells treated with oxaliplatin
+        CONTROLLO: Untreated MHCC97L cells
+    [GSE227609] n=3 vs 2
+        TRATTATO : HCT 15 oxaliplatin
+        CONTROLLO: HCT 15 vehicle
+    [GSE227871] n=1 vs 3
+        TRATTATO : DLD1 wild-type oxaliplatin
+        CONTROLLO: DLD1 XPCoxa-inactive untreated
+    [GSE227871] n=1 vs 3
+        TRATTATO : DLD1 XPCoxa-inactive oxaliplatin
+        CONTROLLO: DLD1 XPCoxa-inactive untreated
+    [GSE227871] n=3 vs 3
+        TRATTATO : HCT116 oxaliplatin
+        CONTROLLO: HCT116 untreated
+    [GSE227871] n=2 vs 2
+        TRATTATO : LOVO XPCoxa-inactive oxaliplatin
+        CONTROLLO: LOVO XPCoxa-inactive untreated
+    [GSE227871] n=3 vs 3
+        TRATTATO : SW480 oxaliplatin
+        CONTROLLO: SW480 untreated
+
+## GRUPPO cgroup_L5_dd2a13de
+- entita dichiarata : STR:idiopathic_pulmonary_fibrosis  (idiopathic pulmonary fibrosis)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 62%
+- geni significativi: 19   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE248485] n=3 vs 5
+        TRATTATO : IPF patient, no treatment
+        CONTROLLO: Healthy control
+    [GSE79544] n=2 vs 7
+        TRATTATO : IPF non-smokers
+        CONTROLLO: Healthy non-smokers
+    [GSE79544] n=12 vs 2
+        TRATTATO : IPF smokers
+        CONTROLLO: Healthy smokers
+    [GSE99621] n=1 vs 3
+        TRATTATO : IPF Case
+        CONTROLLO: Healthy Control
+    [GSE99621] n=1 vs 3
+        TRATTATO : IPF Case IPF1s1
+        CONTROLLO: Healthy Control
+    [GSE99621] n=1 vs 3
+        TRATTATO : IPF Case IPF1s2
+        CONTROLLO: Healthy Control
+    [GSE99621] n=1 vs 3
+        TRATTATO : IPF Case IPF1s3
+        CONTROLLO: Healthy Control
+    [GSE99621] n=1 vs 3
+        TRATTATO : IPF Case IPF2s2
+        CONTROLLO: Healthy Control
+    [GSE99621] n=1 vs 3
+        TRATTATO : IPF Case IPF3s1
+        CONTROLLO: Healthy Control
+    [GSE99621] n=12 vs 3
+        TRATTATO : IPF Case Lung Tissue
+        CONTROLLO: Healthy Control
+
+## GRUPPO cgroup_L5_debadb13
+- entita dichiarata : NCBITaxon:10407  (hepatitis B virus)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.7   piu pesante: 69%
+- geni significativi: 23   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE164266] n=5 vs 5
+        TRATTATO : Vγ9+Vδ2+ T cells from HBV patients
+        CONTROLLO: Vγ9+Vδ2+ T cells from healthy donors
+    [GSE194179] n=3 vs 2
+        TRATTATO : HBV 500 on dHepaRG
+        CONTROLLO: Mock on HepaRG
+    [GSE194179] n=2 vs 2
+        TRATTATO : HBV 500 on primary human hepatocyte
+        CONTROLLO: Mock on primary human hepatocyte
+    [GSE93153] n=1 vs 2
+        TRATTATO : Donor2 HBV D8
+        CONTROLLO: Donor2 Mock D8
+    [GSE93153] n=1 vs 2
+        TRATTATO : Donor2 HBV D2
+        CONTROLLO: Donor2 Mock D2
+    [GSE93153] n=2 vs 2
+        TRATTATO : Donor1 HBV D10
+        CONTROLLO: Donor1 Mock D10
+    [GSE93153] n=4 vs 2
+        TRATTATO : Donor2 HBV D13
+        CONTROLLO: Donor2 Mock D13
+
+## GRUPPO cgroup_L5_e16bfa7f
+- entita dichiarata : CHEMBL:CHEMBL4297454  (ABBV-744)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.4   piu pesante: 53%
+- geni significativi: 1588   I2 mediano: 72.1
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE144326] n=2 vs 2
+        TRATTATO : NCI-H1299 cells treated with ABBV-744
+        CONTROLLO: NCI-H1299 cells treated with DMSO
+    [GSE189376] n=6 vs 3
+        TRATTATO : HepG2 + ABBV-744
+        CONTROLLO: HepG2 + DMSO
+    [GSE189376] n=3 vs 3
+        TRATTATO : HepG2 + ABBV-744
+        CONTROLLO: HepG2 + DMSO
+    [GSE208774] n=2 vs 2
+        TRATTATO : BRD4-NUTM1_ABBV744_6h
+        CONTROLLO: BRD4-NUTM1_DMSO
+    [GSE208774] n=2 vs 2
+        TRATTATO : PER403_ABBV744_6h
+        CONTROLLO: PER403_DMSO
+
+## GRUPPO cgroup_L5_e17c136b
+- entita dichiarata : CHEBI:145535  (pevonedistat)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.7   piu pesante: 48%
+- geni significativi: 1037   I2 mediano: 87.6
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE171255] n=3 vs 5
+        TRATTATO : MSK-LX227C treated with MLN4924
+        CONTROLLO: MSK-LX227C treated with Vehicle
+    [GSE171260] n=4 vs 4
+        TRATTATO : FHSC39 MLN4924
+        CONTROLLO: FHSC39 Vehicle
+    [GSE206428] n=2 vs 2
+        TRATTATO : 786-0 Kidney Cells Treated with Pevonedistat
+        CONTROLLO: Untreated 786-0 Kidney Cells
+

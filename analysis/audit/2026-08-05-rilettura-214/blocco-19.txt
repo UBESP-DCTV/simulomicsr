@@ -1,0 +1,314 @@
+# BLOCCO 19 — 10 meta-analisi da rileggere
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable: gli studi elencati
+sono quelli EFFETTIVAMENTE POOLATI (non quelli censiti). Le etichette sono
+INTERE, mai troncate.
+
+## GRUPPO cgroup_L5_a3c3e08c
+- entita dichiarata : MeSH:D008175  (Lung Neoplasms)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.0   piu pesante: 99%
+- geni significativi: 1884   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE148862] n=15 vs 12
+        TRATTATO : Lung cancer patients
+        CONTROLLO: Healthy controls
+    [GSE216561] n=5 vs 11
+        TRATTATO : Lung Cancer
+        CONTROLLO: Healthy Donor
+    [GSE234170] n=5 vs 3
+        TRATTATO : LDN_CD45_hi Lung Cancer PA017_D
+        CONTROLLO: LDN_CD45_hi Healthy HD_LIRI
+    [GSE234170] n=2 vs 3
+        TRATTATO : LDN_CD45_hi Tumor PA100
+        CONTROLLO: LDN_CD45_hi Healthy HD_LIRI
+    [GSE234170] n=6 vs 3
+        TRATTATO : LDN_CD45_lo Lung Cancer PA017_D
+        CONTROLLO: LDN_CD45_hi Healthy HD_LIRI
+    [GSE234170] n=9 vs 7
+        TRATTATO : PMN Lung Cancer PA017_C
+        CONTROLLO: PMN Healthy HD_DIDI
+
+## GRUPPO cgroup_L5_a3f0c959
+- entita dichiarata : CHEBI:232752  (GSK-LSD1)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 66%
+- geni significativi: 933   I2 mediano: 60.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE133737] n=3 vs 3
+        TRATTATO : GSK-LSD1 2uM 144H
+        CONTROLLO: DMSO 144H
+    [GSE133737] n=3 vs 3
+        TRATTATO : GSK-LSD1 2uM 48H
+        CONTROLLO: DMSO 48H
+    [GSE147815] n=3 vs 3
+        TRATTATO : PeTa cells treated with GSK-LSD1 for 6 days
+        CONTROLLO: PeTa cells treated with DMSO for 6 days
+    [GSE147815] n=3 vs 3
+        TRATTATO : PeTa cells treated with GSK-LSD1 for 24 hours
+        CONTROLLO: PeTa cells treated with DMSO for 24 hours
+    [GSE147816] n=3 vs 2
+        TRATTATO : PeTa, GSK-LSD1, 100 nM, 1h
+        CONTROLLO: PeTa, DMSO, 60 min
+    [GSE147816] n=3 vs 2
+        TRATTATO : PeTa, GSK-LSD1, 100 nM, 6h
+        CONTROLLO: PeTa, DMSO, 6h
+
+## GRUPPO cgroup_L5_a739837c
+- entita dichiarata : STR:adenoma  (adenoma)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 66%
+- geni significativi: 65   I2 mediano: 0.0
+- verdetto attuale  : incoherent — resta incoerente sul poolato: e' caduto GSE77635 (adenoma del colon) ma restano insieme adenoma ipofisario (GSE208107) e adenoma del colon (GSE72820), piu' GSE222298 la cui sede non e' deducibile dalle etichette
+- CONFRONTI (etichette intere):
+    [GSE208107] n=2 vs 3
+        TRATTATO : Pituitary cells from Adenoma patients
+        CONTROLLO: Pituitary cells from Healthy donors
+    [GSE222298] n=5 vs 8
+        TRATTATO : Adenoma T2 SAP-07
+        CONTROLLO: Healthy T2 SAP-07
+    [GSE222298] n=3 vs 8
+        TRATTATO : Adenoma T2 SAP-19
+        CONTROLLO: Healthy T2 SAP-07
+    [GSE72820] n=6 vs 5
+        TRATTATO : Human colon adenoma
+        CONTROLLO: Human normal mucosa
+    [GSE72820] n=1 vs 1
+        TRATTATO : MDA27ad
+        CONTROLLO: MDA27N
+    [GSE72820] n=1 vs 1
+        TRATTATO : MDA27ad
+        CONTROLLO: MDA34N
+
+## GRUPPO cgroup_L5_aad8ed47
+- entita dichiarata : COMBO:taz+yap  (taz + yap)
+- verso / controllo : block / control sirna
+- studi poolati     : 3   studi efficaci (Kish): 2.7   piu pesante: 45%
+- geni significativi: 3058   I2 mediano: 79.5
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE133003] n=2 vs 3
+        TRATTATO : Bronchial basal epithelial cells + YAP/TAZ siRNA
+        CONTROLLO: Bronchial basal epithelial cells + control siRNA
+    [GSE133003] n=1 vs 3
+        TRATTATO : Bronchial basal epithelial cells (transgene stable) + YAP/TAZ siRNA
+        CONTROLLO: Bronchial basal epithelial cells + control siRNA
+    [GSE133003] n=3 vs 3
+        TRATTATO : Bronchial epithelial cells derived from low grade dysplastic lesion (transgene stable) + YAP/TAZ siRNA
+        CONTROLLO: Bronchial epithelial cells derived from low grade dysplastic lesion + control siRNA
+    [GSE158305] n=3 vs 6
+        TRATTATO : HBEC1_YAP_TAZ_knockdown
+        CONTROLLO: Control_siRNA_1
+    [GSE158305] n=3 vs 6
+        TRATTATO : HBEC2_YAP_TAZ_knockdown
+        CONTROLLO: Control_siRNA_1
+    [GSE158305] n=3 vs 6
+        TRATTATO : HBEC1_YAP_TAZ_knockdown
+        CONTROLLO: Control_siRNA_2
+    [GSE158305] n=3 vs 6
+        TRATTATO : HBEC2_YAP_TAZ_knockdown
+        CONTROLLO: Control_siRNA_2
+    [GSE158305] n=3 vs 6
+        TRATTATO : HBEC1_YAP_TAZ_knockdown
+        CONTROLLO: Control_siRNA_3
+    [GSE158305] n=3 vs 6
+        TRATTATO : HBEC2_YAP_TAZ_knockdown
+        CONTROLLO: Control_siRNA_3
+    [GSE205726] n=1 vs 3
+        TRATTATO : MDA-MB-231 + YAP+TAZ siRNA
+        CONTROLLO: MDA-MB-231 + control siRNA
+    [GSE205726] n=2 vs 3
+        TRATTATO : MDA-MB-231 + YAP+TAZ siRNA (duplicate)
+        CONTROLLO: MDA-MB-231 + control siRNA
+
+## GRUPPO cgroup_L5_ae969461
+- entita dichiarata : CHEBI:47458  (saracatinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 63%
+- geni significativi: 1706   I2 mediano: 85.9
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE129071] n=3 vs 3
+        TRATTATO : MHCC97L cells treated with saracatinib
+        CONTROLLO: Untreated MHCC97L cells
+    [GSE226664] n=2 vs 3
+        TRATTATO : VAV1 Saracatinib
+        CONTROLLO: VAV1 Vehicle
+    [GSE229805] n=2 vs 2
+        TRATTATO : Saracatinib
+        CONTROLLO: Vehicle Control (DMSO)
+
+## GRUPPO cgroup_L5_b3ccf1c1
+- entita dichiarata : CHEBI:49960  (vandetanib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.7   piu pesante: 69%
+- geni significativi: 1   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE146096] n=16 vs 102
+        TRATTATO : Vandetanib 333nM 48h
+        CONTROLLO: Vehicle Control
+    [GSE186341] n=2 vs 17
+        TRATTATO : Vandetanib-treated AsPC-1 cells
+        CONTROLLO: DMSO-treated AsPC-1 cells
+    [GSE186341] n=1 vs 48
+        TRATTATO : Vandetanib
+        CONTROLLO: DMSO
+    [GSE186341] n=1 vs 48
+        TRATTATO : Vandetanib
+        CONTROLLO: DMSO
+    [GSE186341] n=2 vs 26
+        TRATTATO : HF2597_Vandetanib_0.5_uM_24h
+        CONTROLLO: HF2597_DMSO_24h
+    [GSE186341] n=1 vs 27
+        TRATTATO : HSTS Vandetanib
+        CONTROLLO: HSTS DMSO
+    [GSE186341] n=1 vs 23
+        TRATTATO : LNCaP_Vandetanib
+        CONTROLLO: LNCaP_DMSO
+    [GSE186341] n=1 vs 22
+        TRATTATO : NCI-H1793_Vandetanib
+        CONTROLLO: NCI-H1793_DMSO
+    [GSE186341] n=2 vs 14
+        TRATTATO : PANC-1_Vandetanib_0.02_uM_24h
+        CONTROLLO: PANC-1_DMSO_24h
+    [GSE217421] n=5 vs 9
+        TRATTATO : Vandetanib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=1 vs 9
+        TRATTATO : Vandetanib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=1 vs 9
+        TRATTATO : Vandetanib-treated cardiac myocytes (donor 1)
+        CONTROLLO: DMSO-treated cardiac myocytes
+
+## GRUPPO cgroup_L5_b9e7806c
+- entita dichiarata : CHEBI:143122  (THZ531)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 63%
+- geni significativi: 1893   I2 mediano: 95.1
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE198248] n=3 vs 3
+        TRATTATO : TCam2_THZ531_100nM_1h
+        CONTROLLO: TCam2_DMSO_0.001%_1h
+    [GSE198248] n=3 vs 3
+        TRATTATO : TCam2_THZ531_100nM_24h
+        CONTROLLO: TCam2_DMSO_0.001%_24h
+    [GSE221475] n=3 vs 3
+        TRATTATO : CAL-51_THZ531
+        CONTROLLO: CAL-51_DMSO
+    [GSE221475] n=3 vs 2
+        TRATTATO : MDA-MB-231_THZ531
+        CONTROLLO: MDA-MB-231_DMSO
+    [GSE225375] n=3 vs 3
+        TRATTATO : D341 Medulloblastoma + THZ531
+        CONTROLLO: D341 Medulloblastoma + DMSO
+
+## GRUPPO cgroup_L5_bd40f34f
+- entita dichiarata : HGNC:5977  (IL15)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.1   piu pesante: 57%
+- geni significativi: 1457   I2 mediano: 44.7
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE120904] n=5 vs 5
+        TRATTATO : Intestinal epithelial cells treated with IL15
+        CONTROLLO: Intestinal epithelial cells treated with vehicle only
+    [GSE120904] n=1 vs 2
+        TRATTATO : Intestinal intraepithelial cytotoxic T cells treated with IL15 and CP
+        CONTROLLO: Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+    [GSE120904] n=1 vs 2
+        TRATTATO : Intestinal intraepithelial cytotoxic T cells treated with IL15 and CP (alternative)
+        CONTROLLO: Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+    [GSE120904] n=2 vs 2
+        TRATTATO : Intestinal intraepithelial cytotoxic T cells treated with IL15 and CP (alternative 2)
+        CONTROLLO: Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+    [GSE120904] n=4 vs 2
+        TRATTATO : Intestinal intraepithelial cytotoxic T cells treated with IL15 (alternative)
+        CONTROLLO: Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+    [GSE126409] n=4 vs 3
+        TRATTATO : Celiac IL15 30min
+        CONTROLLO: Celiac Control
+    [GSE126409] n=3 vs 3
+        TRATTATO : Celiac IL15 24h
+        CONTROLLO: Celiac Control
+    [GSE126409] n=4 vs 3
+        TRATTATO : Celiac IL15 3h
+        CONTROLLO: Celiac Control
+    [GSE126409] n=3 vs 3
+        TRATTATO : Celiac IL15 4h
+        CONTROLLO: Celiac Control
+    [GSE126409] n=1 vs 3
+        TRATTATO : Celiac IL15 24h
+        CONTROLLO: Celiac Control
+    [GSE126409] n=1 vs 3
+        TRATTATO : Celiac IL15 4h
+        CONTROLLO: Celiac Control
+    [GSE126409] n=4 vs 4
+        TRATTATO : Healthy IL15 30min
+        CONTROLLO: Healthy Vehicle Control
+    [GSE126409] n=3 vs 4
+        TRATTATO : Healthy IL15 24h
+        CONTROLLO: Healthy Vehicle Control
+    [GSE126409] n=4 vs 4
+        TRATTATO : Healthy IL15 3h
+        CONTROLLO: Healthy Vehicle Control
+    [GSE126409] n=3 vs 4
+        TRATTATO : Healthy IL15 4h
+        CONTROLLO: Healthy Vehicle Control
+    [GSE94150] n=2 vs 9
+        TRATTATO : IL15-treated CD4+ T cells (ST124)
+        CONTROLLO: Untreated CD4+ T cells (ST124)
+    [GSE94150] n=2 vs 9
+        TRATTATO : IL15-treated CD4+ T cells (ST124)
+        CONTROLLO: Untreated CD4+ T cells (ST124)
+    [GSE94150] n=4 vs 9
+        TRATTATO : IL15-treated CD4+ T cells (ST124)
+        CONTROLLO: Untreated CD4+ T cells (ST124)
+
+## GRUPPO cgroup_L5_cacf5d1a
+- entita dichiarata : STR:f_nucleatum  (f nucleatum)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.2   piu pesante: 55%
+- geni significativi: 513   I2 mediano: 49.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE118691] n=4 vs 2
+        TRATTATO : Human gingival fibroblasts, donor 1, F. nucleatum, 2h
+        CONTROLLO: Human gingival fibroblasts, donor 1, control, 2h
+    [GSE191257] n=3 vs 3
+        TRATTATO : HT29 + F. nucleatum
+        CONTROLLO: HT29 + medium control
+    [GSE236117] n=3 vs 1
+        TRATTATO : F. nucleatum exposed AMC-HN-8 cells
+        CONTROLLO: Control AMC-HN-8 cells (case)
+    [GSE236117] n=3 vs 2
+        TRATTATO : F. nucleatum exposed AMC-HN-8 cells
+        CONTROLLO: Control AMC-HN-8 cells (none)
+
+## GRUPPO cgroup_L5_cf34c533
+- entita dichiarata : CHEBI:46742  (Nutlin-3)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 66%
+- geni significativi: 2810   I2 mediano: 12.5
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE139862] n=2 vs 3
+        TRATTATO : PAEC, passage 3, Nutlin-3 10 uM 24h
+        CONTROLLO: PAEC, passage 3, DMSO
+    [GSE139862] n=1 vs 3
+        TRATTATO : PAEC, passage 5, Nutlin-3 10 uM 24h
+        CONTROLLO: PAEC, passage 3, PBS
+    [GSE154118] n=2 vs 2
+        TRATTATO : Nutlin-3 treated PASMCs
+        CONTROLLO: Vehicle control (PBS/DMSO) PASMCs
+    [GSE59841] n=2 vs 3
+        TRATTATO : nutlin 10uM
+        CONTROLLO: DMSO
+    [GSE59841] n=1 vs 3
+        TRATTATO : nutlin 10uM no disease
+        CONTROLLO: DMSO
+

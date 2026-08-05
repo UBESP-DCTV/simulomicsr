@@ -1,0 +1,467 @@
+# BLOCCO 07 — 10 meta-analisi da rileggere
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable: gli studi elencati
+sono quelli EFFETTIVAMENTE POOLATI (non quelli censiti). Le etichette sono
+INTERE, mai troncate.
+
+## GRUPPO cgroup_L5_3b91a21d
+- entita dichiarata : MeSH:D009362  (Neoplasm Metastasis)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 3.7   piu pesante: 39%
+- geni significativi: 1554   I2 mediano: 65.2
+- verdetto attuale  : incoherent — entita' che e' una classe: 'Neoplasm Metastasis' mescola tumori primari diversi (colon->fegato, ovaio->omento) e un membro che confronta stadi (M1 vs M0), non malattia vs sano; due membri isolano solo cellule endoteliali
+- CONFRONTI (etichette intere):
+    [GSE147493] n=8 vs 2
+        TRATTATO : M1 oligo Metastasis
+        CONTROLLO: M0 oligo
+    [GSE159851] n=6 vs 6
+        TRATTATO : Endothelial cells from brain adenocarcinoma metastasis
+        CONTROLLO: Healthy endothelial cells (control)
+    [GSE162960] n=2 vs 2
+        TRATTATO : Liver metastasis (Donor I)
+        CONTROLLO: Healthy liver tissue (Donor I)
+    [GSE186145] n=2 vs 16
+        TRATTATO : Ovarian High Grade Serous Omental Metastasis (Donor D3)
+        CONTROLLO: Adjacent Normal Omentum
+    [GSE186145] n=3 vs 16
+        TRATTATO : Ovarian High Grade Serous Omental Metastasis (Donor D1)
+        CONTROLLO: Adjacent Normal Omentum
+    [GSE221240] n=13 vs 3
+        TRATTATO : Liver Metastasis
+        CONTROLLO: Normal Liver (Donor 655)
+    [GSE256492] n=4 vs 3
+        TRATTATO : Endothelial cells from brain metastasis patients
+        CONTROLLO: Healthy control endothelial cells
+
+## GRUPPO cgroup_L5_4f4d9051
+- entita dichiarata : CHEMBL:CHEMBL265582  (TNF-ALPHA)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 4.5   piu pesante: 27%
+- geni significativi: 986   I2 mediano: 89.2
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE132958] n=2 vs 2
+        TRATTATO : TNF-alpha stimulated
+        CONTROLLO: Nontargeting control
+    [GSE210522] n=3 vs 3
+        TRATTATO : Eahy926_TNF_alpha
+        CONTROLLO: Eahy926_Vehicle
+    [GSE210522] n=3 vs 3
+        TRATTATO : TeloHAEC_TNF_alpha
+        CONTROLLO: TeloHAEC_Vehicle
+    [GSE211439] n=6 vs 6
+        TRATTATO : TNF-alpha-treated HBMEC
+        CONTROLLO: Media control HBMEC
+    [GSE217421] n=18 vs 9
+        TRATTATO : TNF-alpha-stimulated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=4 vs 9
+        TRATTATO : TNF-alpha-stimulated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=1 vs 9
+        TRATTATO : TNF-alpha-stimulated MSN05 cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE226186] n=3 vs 3
+        TRATTATO : TNF-alpha Stimulation
+        CONTROLLO: Vehicle Control
+    [GSE70068] n=2 vs 3
+        TRATTATO : Neutrophils stimulated with TNF-alpha
+        CONTROLLO: Untreated Neutrophils (Donor 1)
+    [GSE70068] n=1 vs 3
+        TRATTATO : Neutrophils stimulated with TNF-alpha
+        CONTROLLO: Untreated Neutrophils (Donor 1)
+    [GSE70068] n=1 vs 3
+        TRATTATO : Neutrophils stimulated with TNF-alpha
+        CONTROLLO: Untreated Neutrophils (Donor 1)
+
+## GRUPPO cgroup_L5_63e69fdc
+- entita dichiarata : MeSH:D000544  (Alzheimer Disease)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 3.8   piu pesante: 36%
+- geni significativi: 6231   I2 mediano: 44.6
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE113524] n=16 vs 20
+        TRATTATO : Alzheimer's Disease Patient2
+        CONTROLLO: Healthy
+    [GSE113524] n=3 vs 20
+        TRATTATO : Alzheimer's Disease Patient1
+        CONTROLLO: Healthy
+    [GSE125583] n=219 vs 67
+        TRATTATO : Alzheimer's disease
+        CONTROLLO: Healthy control
+    [GSE161199] n=6 vs 10
+        TRATTATO : Alzheimer's Disease
+        CONTROLLO: Healthy Control
+    [GSE203206] n=5 vs 8
+        TRATTATO : AD Subject 5419
+        CONTROLLO: Control Subject 4870
+    [GSE203206] n=17 vs 8
+        TRATTATO : AD Subject 5020
+        CONTROLLO: Control Subject 4870
+    [GSE203206] n=17 vs 8
+        TRATTATO : AD Subject 4920
+        CONTROLLO: Control Subject 4870
+    [GSE207821] n=2 vs 4
+        TRATTATO : Alzheimer's disease brain
+        CONTROLLO: Unaffected control brain
+    [GSE95587] n=81 vs 1
+        TRATTATO : Alzheimer's Disease (Donor SAM19655462)
+        CONTROLLO: Control (Donor 06-57)
+    [GSE95587] n=81 vs 1
+        TRATTATO : Alzheimer's Disease (Donor SAM19655462)
+        CONTROLLO: Control (Donor 99-50)
+    [GSE95587] n=81 vs 19
+        TRATTATO : Alzheimer's Disease (Donor SAM19655462)
+        CONTROLLO: Control (Donor 10-94)
+    [GSE95587] n=81 vs 12
+        TRATTATO : Alzheimer's Disease (Donor SAM19655462)
+        CONTROLLO: Control (Donor SAM19655497)
+    [GSE95587] n=2 vs 1
+        TRATTATO : Alzheimer's Disease (Donor SAM19655476)
+        CONTROLLO: Control (Donor 06-57)
+    [GSE95587] n=2 vs 1
+        TRATTATO : Alzheimer's Disease (Donor SAM19655476)
+        CONTROLLO: Control (Donor 99-50)
+    [GSE95587] n=2 vs 19
+        TRATTATO : Alzheimer's Disease (Donor SAM19655476)
+        CONTROLLO: Control (Donor 10-94)
+    [GSE95587] n=2 vs 12
+        TRATTATO : Alzheimer's Disease (Donor SAM19655476)
+        CONTROLLO: Control (Donor SAM19655497)
+
+## GRUPPO cgroup_L5_7784bb43
+- entita dichiarata : STR:pcos  (pcos)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 2.1   piu pesante: 65%
+- geni significativi: 24   I2 mediano: 38.5
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE128328] n=3 vs 3
+        TRATTATO : PCOS patient 1
+        CONTROLLO: Healthy control 1
+    [GSE128328] n=1 vs 1
+        TRATTATO : PCOS patient 2
+        CONTROLLO: Healthy control 2
+    [GSE130580] n=4 vs 7
+        TRATTATO : PCOS T helper cells
+        CONTROLLO: Healthy T helper cells
+    [GSE156067] n=3 vs 1
+        TRATTATO : PCOS Day 12
+        CONTROLLO: Control Day 12
+    [GSE156067] n=3 vs 3
+        TRATTATO : PCOS Day 3
+        CONTROLLO: Control Day 3
+    [GSE156067] n=3 vs 3
+        TRATTATO : PCOS Day 7
+        CONTROLLO: Control Day 7
+    [GSE173160] n=4 vs 2
+        TRATTATO : PCOS
+        CONTROLLO: Normal
+    [GSE173160] n=4 vs 6
+        TRATTATO : PCOS
+        CONTROLLO: Control
+    [GSE193812] n=4 vs 2
+        TRATTATO : PCOS ASC
+        CONTROLLO: Normal ASC Control
+    [GSE193812] n=4 vs 3
+        TRATTATO : PCOS Adipose Tissue
+        CONTROLLO: Normal Adipose Tissue Control
+    [GSE226146] n=2 vs 3
+        TRATTATO : PCOS secretory phase
+        CONTROLLO: Healthy secretory phase
+    [GSE226146] n=1 vs 3
+        TRATTATO : PCOS secretory phase (single replicate)
+        CONTROLLO: Healthy secretory phase
+
+## GRUPPO cgroup_L5_79ce3bd1
+- entita dichiarata : CHEBI:3139  (bleomycin A2)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 6.0   piu pesante: 18%
+- geni significativi: 4199   I2 mediano: 94.9
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE128420] n=2 vs 3
+        TRATTATO : bleomycin
+        CONTROLLO: untreated
+    [GSE156038] n=1 vs 3
+        TRATTATO : bleomycin
+        CONTROLLO: control
+    [GSE156038] n=2 vs 3
+        TRATTATO : bleomycin (prostate)
+        CONTROLLO: control
+    [GSE156184] n=1 vs 3
+        TRATTATO : Bleomycin
+        CONTROLLO: Control
+    [GSE156184] n=2 vs 3
+        TRATTATO : Bleomycin (Replicates)
+        CONTROLLO: Control
+    [GSE176324] n=3 vs 3
+        TRATTATO : Bleomycin-treated donor 2
+        CONTROLLO: DMSO-treated donor 2
+    [GSE176324] n=3 vs 3
+        TRATTATO : Bleomycin-treated donor 1
+        CONTROLLO: DMSO-treated donor 1
+    [GSE222279] n=3 vs 3
+        TRATTATO : Bleomycin
+        CONTROLLO: Vehicle Control
+    [GSE244305] n=2 vs 3
+        TRATTATO : Wild-Type Bleomycin Treated
+        CONTROLLO: Wild-Type Vehicle Control
+    [GSE244305] n=3 vs 1
+        TRATTATO : ANT1 Knockout Bleomycin Treated
+        CONTROLLO: ANT1 Knockout Vehicle Control
+
+## GRUPPO cgroup_L5_b2affd22
+- entita dichiarata : MeSH:D011225  (Pre-Eclampsia)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 3.5   piu pesante: 45%
+- geni significativi: 2461   I2 mediano: 50.6
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE148241] n=2 vs 32
+        TRATTATO : EOSPE Placenta (Replicates 1-2)
+        CONTROLLO: Normal Placenta
+    [GSE148241] n=1 vs 32
+        TRATTATO : PHPR26
+        CONTROLLO: Normal Placenta
+    [GSE148241] n=1 vs 32
+        TRATTATO : PHPR30
+        CONTROLLO: Normal Placenta
+    [GSE148241] n=1 vs 32
+        TRATTATO : PHPR32
+        CONTROLLO: Normal Placenta
+    [GSE186257] n=26 vs 3
+        TRATTATO : Severe preeclampsia
+        CONTROLLO: Non-hypertensive Control (P1430)
+    [GSE186257] n=26 vs 8
+        TRATTATO : Severe preeclampsia
+        CONTROLLO: Non-hypertensive Control (P1138)
+    [GSE186257] n=26 vs 7
+        TRATTATO : Severe preeclampsia
+        CONTROLLO: Non-hypertensive Control (P1389)
+    [GSE218039] n=2 vs 4
+        TRATTATO : Preeclampsia
+        CONTROLLO: Healthy
+    [GSE218039] n=10 vs 4
+        TRATTATO : Preeclampsia (additional)
+        CONTROLLO: Healthy
+    [GSE234729] n=1 vs 1
+        TRATTATO : Severe Preeclampsia (P818)
+        CONTROLLO: Non-hypertensive control (P1950)
+    [GSE234729] n=1 vs 1
+        TRATTATO : Severe Preeclampsia (P826)
+        CONTROLLO: Non-hypertensive control (P1950)
+    [GSE234729] n=41 vs 67
+        TRATTATO : Severe Preeclampsia (P768)
+        CONTROLLO: Non-hypertensive control (mixed donors)
+    [GSE262147] n=9 vs 6
+        TRATTATO : Placental biopsy, preeclampsia
+        CONTROLLO: Placental biopsy, normal
+    [GSE79782] n=3 vs 8
+        TRATTATO : Preeclampsia (Amnion)
+        CONTROLLO: Control (Amnion)
+    [GSE79782] n=2 vs 8
+        TRATTATO : Preeclampsia (Amnion)
+        CONTROLLO: Control (Amnion)
+    [GSE79782] n=10 vs 8
+        TRATTATO : Preeclampsia (Amnion)
+        CONTROLLO: Control (Amnion)
+    [GSE79782] n=1 vs 8
+        TRATTATO : Preeclampsia (Amnion)
+        CONTROLLO: Control (Amnion)
+
+## GRUPPO cgroup_L5_c054e202
+- entita dichiarata : CHEBI:9168  (sirolimus)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 5.0   piu pesante: 23%
+- geni significativi: 3642   I2 mediano: 81.6
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE102674] n=4 vs 4
+        TRATTATO : rapamycin
+        CONTROLLO: -vehicle
+    [GSE130006] n=2 vs 2
+        TRATTATO : Rapamycin
+        CONTROLLO: DMSO
+    [GSE184427] n=1 vs 2
+        TRATTATO : LuCaP 147 Rapamycin
+        CONTROLLO: LuCaP 147 PBS Control
+    [GSE184427] n=1 vs 2
+        TRATTATO : LuCaP 73 Rapamycin
+        CONTROLLO: LuCaP 73 PBS Control
+    [GSE184427] n=2 vs 2
+        TRATTATO : LuCaP 78 + Rapamycin
+        CONTROLLO: LuCaP 78 PBS Control
+    [GSE184427] n=1 vs 2
+        TRATTATO : LuCaP 81 + Rapamycin (Castrated)
+        CONTROLLO: LuCaP 81 PBS Control
+    [GSE184427] n=1 vs 2
+        TRATTATO : LuCaP 81 + Rapamycin
+        CONTROLLO: LuCaP 81 PBS Control
+    [GSE193398] n=2 vs 2
+        TRATTATO : Rapamycin 0.05uM
+        CONTROLLO: Untreated
+    [GSE193398] n=2 vs 2
+        TRATTATO : Rapamycin 1uM
+        CONTROLLO: Untreated
+    [GSE236742] n=3 vs 3
+        TRATTATO : Rapamycin-treated TSC1-null HCV29 cells
+        CONTROLLO: DMSO-treated TSC1-null HCV29 cells
+    [GSE246886] n=2 vs 6
+        TRATTATO : MCF7 + Rapamycin
+        CONTROLLO: MCF7 + Vehicle (DMSO)
+    [GSE246886] n=1 vs 6
+        TRATTATO : MCF7 + Rapamycin
+        CONTROLLO: MCF7 + Vehicle (DMSO)
+
+## GRUPPO cgroup_L5_004d293d
+- entita dichiarata : CHEBI:49603  (lapatinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 5   studi efficaci (Kish): 2.2   piu pesante: 61%
+- geni significativi: 1052   I2 mediano: 68.8
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE146096] n=5 vs 102
+        TRATTATO : Lapatinib 2uM
+        CONTROLLO: Vehicle Control
+    [GSE186341] n=2 vs 17
+        TRATTATO : Lapatinib-treated AsPC-1 cells
+        CONTROLLO: DMSO-treated AsPC-1 cells
+    [GSE186341] n=1 vs 48
+        TRATTATO : Lapatinib
+        CONTROLLO: DMSO
+    [GSE186341] n=2 vs 9
+        TRATTATO : Lapatinib-treated HCC1143 cells
+        CONTROLLO: DMSO-treated HCC1143 cells
+    [GSE186341] n=2 vs 26
+        TRATTATO : HF2597_Lapatinib_24h
+        CONTROLLO: HF2597_DMSO_24h
+    [GSE186341] n=2 vs 27
+        TRATTATO : HSTS Lapatinib
+        CONTROLLO: HSTS DMSO
+    [GSE186341] n=1 vs 35
+        TRATTATO : KRJ1_Lapatinib_7.5uM_24h
+        CONTROLLO: KRJ1_UNTREATED
+    [GSE186341] n=2 vs 23
+        TRATTATO : LNCaP_Lapatinib
+        CONTROLLO: LNCaP_DMSO
+    [GSE186341] n=1 vs 22
+        TRATTATO : NCI-H1793_Lapatinib
+        CONTROLLO: NCI-H1793_DMSO
+    [GSE186341] n=2 vs 3
+        TRATTATO : PANC-1 Lapatinib 24h
+        CONTROLLO: PANC-1 DMSO 24h
+    [GSE186341] n=2 vs 1
+        TRATTATO : U87_MG_Lapatinib_10_uM_24h
+        CONTROLLO: U87_MG_UNTREATED_24h
+    [GSE217421] n=11 vs 9
+        TRATTATO : Lapatinib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE237413] n=1 vs 3
+        TRATTATO : Lapatinib-treated SKBR3
+        CONTROLLO: Untreated SKBR3
+    [GSE237413] n=1 vs 3
+        TRATTATO : Lapatinib-treated Senescent SKBR3
+        CONTROLLO: Untreated SKBR3
+    [GSE237413] n=4 vs 3
+        TRATTATO : Lapatinib-treated Senescent SKBR3 (Replicates)
+        CONTROLLO: Untreated SKBR3
+    [GSE89127] n=3 vs 3
+        TRATTATO : N87 Lapatinib 100nM 48h
+        CONTROLLO: N87 DMSO 0.1% 48h
+
+## GRUPPO cgroup_L5_089ccae5
+- entita dichiarata : CHEBI:52717  (bortezomib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 5   studi efficaci (Kish): 3.6   piu pesante: 37%
+- geni significativi: 1978   I2 mediano: 87.0
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE123637] n=2 vs 2
+        TRATTATO : MM.1S_Bortezomib
+        CONTROLLO: MM.1S_PBS
+    [GSE123638] n=1 vs 3
+        TRATTATO : Bortezomib-treated shPSMD2
+        CONTROLLO: DMSO-treated shPSMD2
+    [GSE123638] n=1 vs 3
+        TRATTATO : Bortezomib-treated shPSMD2 (no Dox)
+        CONTROLLO: DMSO-treated uninduced shPSMD2
+    [GSE123638] n=1 vs 3
+        TRATTATO : Bortezomib-treated Dox-induced shPSMD2
+        CONTROLLO: DMSO-treated shPSMD2
+    [GSE123638] n=2 vs 3
+        TRATTATO : Bortezomib-treated uninduced shPSMD2
+        CONTROLLO: DMSO-treated uninduced shPSMD2
+    [GSE136725] n=4 vs 2
+        TRATTATO : Bortezomib-treated MM1.S
+        CONTROLLO: Untreated MM1.S
+    [GSE136725] n=5 vs 2
+        TRATTATO : Bortezomib-treated bone marrow
+        CONTROLLO: Untreated MM1.S
+    [GSE152816] n=1 vs 5
+        TRATTATO : Bortezomib-treated Leukemia Cells (Sample 1)
+        CONTROLLO: DMSO-treated Leukemia Cells
+    [GSE152816] n=4 vs 5
+        TRATTATO : Bortezomib-treated Leukemia Cells (Sample 2)
+        CONTROLLO: DMSO-treated Leukemia Cells
+    [GSE217421] n=3 vs 9
+        TRATTATO : Bortezomib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=4 vs 9
+        TRATTATO : Bortezomib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=5 vs 9
+        TRATTATO : Bortezomib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n=8 vs 9
+        TRATTATO : Bortezomib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+
+## GRUPPO cgroup_L5_12228932
+- entita dichiarata : HGNC:3229  (EGF)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 5   studi efficaci (Kish): 3.9   piu pesante: 33%
+- geni significativi: 1161   I2 mediano: 90.4
+- verdetto attuale  : coherent
+- CONFRONTI (etichette intere):
+    [GSE106716] n=2 vs 2
+        TRATTATO : SYK-KO + EGF
+        CONTROLLO: SYK-KO
+    [GSE106716] n=2 vs 2
+        TRATTATO : SYK-WT + EGF
+        CONTROLLO: SYK-WT
+    [GSE152409] n=2 vs 3
+        TRATTATO : EGF 24h
+        CONTROLLO: PBS 24h
+    [GSE152409] n=3 vs 3
+        TRATTATO : EGF 48h
+        CONTROLLO: PBS 48h
+    [GSE226358] n=12 vs 12
+        TRATTATO : HAoSMC EGF
+        CONTROLLO: HAoSMC Control
+    [GSE226358] n=9 vs 10
+        TRATTATO : HCASMC EGF
+        CONTROLLO: HCASMC Control
+    [GSE247637] n=1 vs 4
+        TRATTATO : EGF 30min + NTC-siRNA
+        CONTROLLO: PBS + NTC-siRNA
+    [GSE247637] n=1 vs 4
+        TRATTATO : EGF 30min + NTC-siRNA
+        CONTROLLO: PBS + NTC-siRNA
+    [GSE247637] n=1 vs 4
+        TRATTATO : EGF 60min + NTC-siRNA
+        CONTROLLO: PBS + NTC-siRNA
+    [GSE247637] n=2 vs 4
+        TRATTATO : EGF 30min + NTC-siRNA
+        CONTROLLO: PBS + NTC-siRNA
+    [GSE247637] n=1 vs 4
+        TRATTATO : EGF 60min + NTC-siRNA
+        CONTROLLO: PBS + NTC-siRNA
+    [GSE247637] n=1 vs 4
+        TRATTATO : EGF 60min + NTC-siRNA
+        CONTROLLO: PBS + NTC-siRNA
+    [GSE254479] n=3 vs 3
+        TRATTATO : EGF 9h
+        CONTROLLO: Starvation control
+
