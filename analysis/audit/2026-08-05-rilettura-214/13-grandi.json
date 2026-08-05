@@ -1,0 +1,93 @@
+[
+ {
+  "cluster_id": "cgroup_L5_2e16719f",
+  "label": "TGFB1",
+  "k": 59,
+  "blocco": "blocco-01.txt",
+  "motivo": "Confermato su ogni etichetta citata. GSE139963 riga 89-91: 'Hypoxia + TGF-β1' vs 'PBS (Vehicle Control)' senza braccio ipossia-da-sola (mecc.7), mentre lo stesso studio ha anche un confronto pulito TGF-β1 vs PBS. GSE240476: verificati tutti i 7 confronti dello studio — 3 sono 'TGFB+AR' vs 'Vehicle' (righe 335-337, 341-343, 347-349, secondo agente AR non isolato) e 2 sono 'Knee tissue, TGFB' vs 'Non-fibrotic tissue, Vehicle' (righe 350-355, sede anatomica diversa fra i bracci) = esattamente 5 confronti intrusi come detto. GSE210984 (righe 275-298): tutti gli 8 confronti appaiano 'Mesenchymal Stem Cells (iPSC-derived)' trattate con 'Primary Mesenchymal Stem Cells' di controllo — materiale diverso (iPSC-derivate vs primarie) su tutto lo studio. GSE161176 (righe 149-190): confermato, il controllo è sempre a passaggio fisso (Passage 6 per condrociti articolari, Passage 3 per cellule stromali midollari) mentre il trattato varia da passaggio 8 a 27 — non appaiati su tutto lo studio. GSE97358 riga 434-436: 'TGFB1-treated Cardiac Fibroblasts (Chinese)' vs 'Control Cardiac Fibroblasts (Malay)' — donatore/etnia diversa, mentre gli altri 4 confronti dello stesso studio appaiano correttamente Chinese-Chinese, Malay-Malay, Indian-Indian. Tutte le accuse reggono, i conteggi sono esatti."
+ },
+ {
+  "cluster_id": "cgroup_L5_c548d053",
+  "label": "lipopolysaccharide",
+  "k": 35,
+  "blocco": "blocco-01.txt",
+  "motivo": "Confermato su ogni etichetta citata. GSE97744 riga 670-672: 'Circulating macrophage + IFN-γ and LPS' vs 'Circulating macrophage untreated' — secondo agente (IFN-γ) non isolato. GSE180693: entrambi i confronti (righe 535-540) sono 'T3 and LPS' vs 'RPMI media', nessun braccio LPS-da-solo in questo studio nel pool. GSE181851 riga 544-546: 1 dei 2 confronti è 'PW and LPS' vs 'Untreated' (l'altro, righe 541-543, è pulito). GSE245677: verificati tutti i 4 confronti (righe 628-639) — solo 1 ('LPS + BMS treated' vs 'Control (vehicle_only)', righe 631-633) ha il secondo agente BMS; gli altri 3 tengono transgene_stable costante correttamente. GSE76404 riga 640-642: 'African American Male' trattato vs 'African American Female' controllo, stesso tessuto adiposo — sesso non appaiato. Tutte le accuse reggono con i conteggi esatti."
+ },
+ {
+  "cluster_id": "cgroup_L5_871ae09e",
+  "label": "SARS-CoV-2",
+  "k": 34,
+  "blocco": "blocco-01.txt",
+  "motivo": "Confermato. GSE169241 riga 753-755: 'human heart, SARS-CoV-2 infected person' vs 'human ES-derived macrophage, No treatment' — tessuto cardiaco clinico infetto confrontato con una linea di macrofagi da ES cell mai nemmeno mock-infettata: materiale e disegno completamente disgiunti, il difetto più severo del blocco. GSE151803: verificati tutti i 4 confronti (righe 690-701) — 2 sono 'COVID-19 Lung' (tessuto polmonare) vs 'hESC Mock' (cellule staminali embrionali indifferenziate, righe 690-695), mentre 'hESC sars-Cov2 vs hESC Mock' e 'Liver Organoid sars-Cov2 vs Liver Organoid Mock' sono correttamente appaiati per materiale. Conteggio esatto (2 su 4)."
+ },
+ {
+  "cluster_id": "cgroup_L5_d9e23e09",
+  "label": "TNF",
+  "k": 32,
+  "blocco": "blocco-01.txt",
+  "motivo": "Il revisore aveva già trovato un difetto vero (GSE236122, righe 1133-1168: verificati tutti gli 11 confronti, esattamente 2 sono 'TNF stimulated...finger' vs 'Unstimulated...knee', sede anatomica diversa) ma lo ha liquidato come 'non decisivo' mantenendo coerente. Cercando attivamente ho trovato un SECONDO difetto non citato: GSE186396 riga 1058-1060, 'Melanoma BLM cells, HOIPIN-8, TNF 6h' vs 'Melanoma BLM cells, Untreated' — HOIPIN-8 (inibitore LUBAC) è presente solo nel braccio trattato, secondo agente non isolato dal controllo (mecc.7); gli altri 2 confronti dello stesso studio tengono il genotipo/farmaco costante correttamente. Per lo stesso standard con cui il revisore ha reso incoerenti TGFB1 (es. GSE97358, 1 solo confronto donatore diverso) e SARS-CoV-2, anche qui un'intrusione confermata e verificabile sull'etichetta rende il gruppo tecnicamente incoerente. Il peso resta però contenuto: 3 confronti su ~70, confinati a 2 studi su 32 (GSE236122, GSE186396); il resto del gruppo appaia correttamente TNF/TNFα vs vehicle/PBS/DMSO/control con tessuto, genotipo e passaggio tenuti costanti."
+ },
+ {
+  "cluster_id": "cgroup_L5_83f57274",
+  "label": "hypoxia",
+  "k": 25,
+  "blocco": "blocco-01.txt",
+  "motivo": "Il revisore aveva già trovato GSE269699 (righe 1366-1371: 'Hypoxia (Donor 1)'/'(Donor 3)' vs 'Normoxia (Control, Donor 2)', donatore diverso su entrambi i confronti) ma lo ha chiamato 'minoritario' mantenendo coerente. Cercando attivamente ho trovato un SECONDO difetto non citato: GSE139233 riga 1228-1230, 'Hypoxia pH 6.0' vs 'Normoxia pH 7.4' — il pH cambia insieme all'ossigeno in questo confronto (confondimento non controllato, mecc.7/9), mentre gli altri 3 confronti dello stesso studio (righe 1231-1239) tengono correttamente il pH a 7.4 su entrambi i bracci. Per coerenza con lo standard applicato a TGFB1 (dove un singolo confronto per donatore diverso, GSE97358, ha contribuito a rendere il gruppo incoerente), anche qui il gruppo va marcato incoerente. Peso contenuto: 3 confronti su ~60, confinati a 2 studi su 25 (GSE269699, GSE139233); il resto del gruppo (23/25 studi) è pulito hypoxia vs normoxia con linea/genotipo/induttori (dox, auxina) tenuti costanti su entrambi i bracci."
+ },
+ {
+  "cluster_id": "cgroup_L5_b71a25a2",
+  "label": "JQ1",
+  "k": 25,
+  "blocco": "blocco-01.txt",
+  "motivo": "Il revisore cita già GSE78801 (pons vs 'brain' generico) ma lo definisce 'di peso contenuto' mantenendo coerente. Verificando tutti i 6 confronti dello studio (righe 1518-1535) il difetto copre l'INTERO studio, non un singolo confronto: ogni riga appaia 'DIPG primary culture pons...JQ1' contro 'DIPG primary culture brain...DMSO' — regione anatomica specifica (pons, tronco encefalico) contro etichetta generica e diversa ('brain') nel controllo, materiale non appaiato su tutti e 6 i confronti. Questo è dello stesso ordine di grandezza dei difetti che hanno reso incoerenti altri gruppi del blocco (es. GSE151803 in SARS-CoV-2, 2 confronti su 4 con mismatch di materiale). Per coerenza di criterio, il gruppo va marcato incoerente. Peso: 6 confronti su ~54, confinati a 1 studio su 25; tutti gli altri 24 studi appaiano correttamente JQ1 vs DMSO/vehicle/untreated con linea cellulare tenuta costante."
+ },
+ {
+  "cluster_id": "cgroup_L5_930c8dcf",
+  "label": "DHT (5alpha-dihydrotestosterone)",
+  "k": 23,
+  "blocco": "blocco-01.txt",
+  "motivo": "Confermato. GSE130247 riga 1583-1585: 'DHT and ENZ' (enzalutamide, antagonista) vs 'EtOH_DMSO' — direzione opposta dentro il gruppo dell'agonista, come già noto nel progetto. GSE99626 riga 1697-1699: 'T47D cells treated with E2 and DHT' vs 'T47D cells treated with Vehicle' — E2 (estradiolo) aggiunto e non isolato, intero studio (unico confronto). GSE227511: verificati tutti i 4 confronti (righe 1670-1681) — solo 1 ('MDaPCa2a cells treated with DHT and ACP-coating' vs 'plastic and control media', righe 1673-1675) ha substrato diverso oltre all'ormone; gli altri 3 tengono l'ACP-coating costante su entrambi i bracci. Tutte le accuse reggono con i conteggi esatti."
+ },
+ {
+  "cluster_id": "cgroup_L5_f94b6180",
+  "label": "R1881 (metribolone)",
+  "k": 22,
+  "blocco": "blocco-01.txt",
+  "motivo": "Confermato. GSE172205 riga 1786-1788: 'Prostate tissue treated with R1881 and atraric acid (AA)' vs 'C4-2 cells treated with DMSO' — doppio difetto reale, tessuto vs linea cellulare (materiale) più un secondo agente (atraric acid) non isolato. GSE225481 riga 1855-1857: 'LAPC4_R1881' vs 'VCaP_DMSO' — linea cellulare diversa; verificati gli altri 12 confronti di GSE225481 in questo gruppo e sono tutti correttamente appaiati per linea (es. 'VCaP_R1881_rep' vs 'VCaP_DMSO'), quindi il conteggio 'intero studio' inteso come un solo confronto anomalo è corretto. Nota aggiuntiva non citata dal revisore ma di rinforzo: GSE230741 righe 1930-1935 appaia 'HIRA KO clone 3' trattato con 'HIRA KO clone 14' di controllo (cloni KO diversi) in 2 confronti — non cambia il verdetto già corretto, lo rinforza."
+ },
+ {
+  "cluster_id": "cgroup_L5_87c40ebb",
+  "label": "IFNG",
+  "k": 20,
+  "blocco": "blocco-01.txt",
+  "motivo": "Confermato. GSE141585: verificati tutti i 3 confronti (righe 2019-2027) — 2 sono 'SB-3CT + IFN-γ' vs 'Control' (SB-3CT, inibitore MMP-9, non isolato), il terzo (IFN-γ vs Control) è pulito. GSE158814: verificati entrambi i confronti (righe 2034-2039) — 1 è 'C. trachomatis infection + IFN-γ (44hrs)' vs 'untreated' (infezione batterica aggiunta), l'altro (IFN-γ stimulation vs untreated) è pulito. Conteggi esatti (2/3 e 1/2)."
+ },
+ {
+  "cluster_id": "cgroup_L5_c0d1d837",
+  "label": "enzalutamide",
+  "k": 19,
+  "blocco": "blocco-01.txt",
+  "motivo": "Confermato con precisione. Verificati tutti gli 8 confronti di GSE225481 in questo gruppo (righe 2183-2206): esattamente 4 ('LAPC4_ENZA', 'LAPC4_ENZA_rep', 'LNCaP_ENZA', 'LNCaP_ENZA_rep') sono appaiati contro 'VCaP_DMSO' invece del DMSO della propria linea, mentre gli altri 4 (22PC-EP, R1AD1, VCaP, VCaP_rep) sono correttamente appaiati. È lo stesso identico studio (GSE225481) e lo stesso pattern di errore già confermato nel gruppo R1881 di questo blocco (1 confronto 'LAPC4_R1881 vs VCaP_DMSO') — coerente con un probabile difetto a monte nella risoluzione dei controlli di GSE225481, non un caso isolato di lettura. Conteggio esatto."
+ },
+ {
+  "cluster_id": "cgroup_L5_905be893",
+  "label": "IL1B",
+  "k": 18,
+  "blocco": "blocco-02.txt",
+  "motivo": "Confermato sulle etichette: in GSE134896 i due confronti 'IL-1beta + P4' vs 'vehicle' (n=1v3, n=2v3) portano un secondo agente (progesterone) assente dal controllo, mentre il terzo confronto dello stesso studio (IL-1beta vs vehicle) e tutti gli altri 17 studi sono IL-1b vs vehicle/untreated puliti, appaiati per tipo cellulare. Nota debole non decisiva: in GSE162691 due confronti appaiano 'Microtissue AD IL-1Beta Treated' a un controllo etichettato 'Unclear Context AD Control' - l'etichetta segnala ambiguita di materiale ma non basta a confermare un'intrusione certa (dubbio, non aggiunto al verdetto)."
+ },
+ {
+  "cluster_id": "cgroup_L5_021e875e",
+  "label": "cisplatin",
+  "k": 17,
+  "blocco": "blocco-02.txt",
+  "motivo": "Il motivo del revisore regge: in GSE161800 quattro dei cinque confronti appaiano trattati 'proliferative'/'pre-sorted'/'proliferating cells' allo stesso controllo 'Untreated arrested cells' (stato del ciclo non corrispondente). Ma manca una seconda intrusione dello stesso tipo (materiale/linea non appaiata) in GSE206649: 'A2780/CDDP treated with cisplatin' (la sigla /CDDP indica la sublinea resistente al cisplatino, la stessa nomenclatura di A2780cis usata correttamente altrove nel gruppo, es. GSE173201) e' appaiata a 'A2780 untreated', cioe' la linea PARENTALE non trattata: confonde l'effetto acuto del farmaco con la selezione di resistenza. Resto del gruppo pulito. Verdetto invariato, motivo esteso a un secondo studio intruso."
+ },
+ {
+  "cluster_id": "cgroup_L5_b6b8bc00",
+  "label": "palbociclib",
+  "k": 15,
+  "blocco": "blocco-02.txt",
+  "motivo": "Confermato: in GSE133567 tutti e 5 i confronti trattano linee col suffisso 'AR991' (sublinee a resistenza acquisita) contro controlli senza quel suffisso (A375/CHL1 no treatment); in GSE234514 'MCF-7 PR Palbociclib' (PR verosimilmente resistant) e' appaiato a 'MCF-7 WT Vehicle', linea genotipicamente diversa. Il resto del gruppo (inclusi i pair correttamente appaiati per genotipo: RB KO in GSE145316, CCND1-rearranged in GSE206257, ESR1Y537S in GSE184156) e' pulito. Nessun'altra intrusione trovata."
+ }
+]
