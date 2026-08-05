@@ -1,0 +1,85 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 367 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+=====================================================================
+Bundle verificato: analysis/p4-output/20260805T231606Z-layer-b-81f379d3 
+HTML: analysis/p4-output/20260805T231606Z-layer-b-81f379d3/layer_b_report.html 13701214 byte
+Cluster nella selezione: 9 
+=====================================================================
+
+[PASS] Criterio 1: forest TGF-b1, ogni gene mostrato >= 30/59 studi
+  k_cluster(TGF-b1)=59, soglia richiesta=ceiling(0.5*k)=30 studi. top_genes.csv (n=30 righe): min k_effective=33, max=59, tutte >= soglia: TRUE. CD300C/PROK2 (bersagli vecchi, minestrone) assenti dalla tabella: TRUE. Geni disegnati nel pannello superiore del forest.svg (letti dall'SVG, n=10): ADH1B, ZPLD1, ISLR2, MDFI, COL10A1, CLDN14, TSPAN2, COMP, FOXS1, KANK4, tutti >= soglia: TRUE. Bersagli canonici della via presenti fra i mostrati: SKIL, PMEPA1, BHLHE40, FSTL3 (k=59, 59, 59, 59).
+         cluster_id k_cluster kmin compresso soglia frac_senza_fix frac_con_fix
+ cgroup_L5_930c8dcf        23   12      TRUE    8.7          0.182        0.582
+ cgroup_L5_c0d1d837        19   10      TRUE    5.6          0.086        0.421
+ cgroup_L5_2e16719f        59   30      TRUE   16.0          0.052        0.484
+ cgroup_L5_871ae09e        34   17      TRUE    4.8          0.098        0.418
+ cgroup_L5_87c40ebb        20   10      TRUE   15.2          0.049        0.471
+ cgroup_L5_b71a25a2        25   13      TRUE   21.4          0.070        0.558
+ cgroup_L5_c3ae78cd        10    5      TRUE    8.1          0.281        0.639
+ cgroup_L5_85083e38        10    5      TRUE    8.1          0.050        0.395
+ cgroup_L5_3973fe03         4    2      TRUE    6.8          0.058        0.394
+ frac_ok n_etichette min_k_etichette label_ok
+    TRUE          15              12     TRUE
+    TRUE          15              10     TRUE
+    TRUE          14              33     TRUE
+    TRUE          12              17     TRUE
+    TRUE          15              11     TRUE
+    TRUE          15              14     TRUE
+    TRUE          15               6     TRUE
+    TRUE          15               5     TRUE
+    TRUE          15               2     TRUE
+
+[PASS] Criterio 2: volcano, nessuna compressione sotto il 20%% + etichette >= meta' k
+  9 cluster misurati (tabella sopra). Frazione di altezza occupata dal 99% dei punti DOPO il fix (sempre >= 0.20): min=0.394 su cgroup_L5_3973fe03. Senza il fix sarebbe stata < 0.20 in 8/9 cluster (prova che il difetto esisteva ed e' stato corretto, non che il controllo e' vacuo). Tutte le etichette disegnate hanno k >= meta' degli studi in 9/9 cluster.
+
+[PASS] Criterio 3: zero cgroup_L5_ nelle intestazioni e nel sommario
+  Intestazioni <h1>-<h6> totali nel documento: 57, con cgroup_L5_ dentro: 0. Sommario (<nav id="TOC">): presente=FALSE, con cgroup_L5_ dentro: FALSE. Occorrenze totali di cgroup_L5_ nel documento (ovunque): 27 -- le restanti stanno in blocco PROVENIENZA, didascalie delle figure e tabella di selezione in Appendice (dichiarate per verifica incrociata, non intestazioni).
+         cluster_id  k forest_titolo_ok volcano_titolo_ok
+ cgroup_L5_930c8dcf 23             TRUE              TRUE
+ cgroup_L5_c0d1d837 19             TRUE              TRUE
+ cgroup_L5_2e16719f 59             TRUE              TRUE
+ cgroup_L5_871ae09e 34             TRUE              TRUE
+ cgroup_L5_87c40ebb 20             TRUE              TRUE
+ cgroup_L5_b71a25a2 25             TRUE              TRUE
+ cgroup_L5_c3ae78cd 10             TRUE              TRUE
+ cgroup_L5_85083e38 10             TRUE              TRUE
+ cgroup_L5_3973fe03  4             TRUE              TRUE
+
+[PASS] Criterio 4: ogni figura (forest/volcano/heatmap) ha nel titolo gruppo + N studi
+  Titolo atteso ("<label_paper> . <k> studi") trovato letteralmente come testo nell'SVG in 9/9 forest e 9/9 volcano (vedi tabella sopra). La heatmap (R/layer-b-plot-heatmap.R:274, column_title=titolo) usa lo stesso .lb_titolo(): il testo NON e' leggibile via grep perche' grDevices::svg() rasterizza i glifi in <path> (0 <text> nel file) -- verificato a occhio sul PNG (vedi sezione 'ispezione visiva' del rapporto). NOTA fuori scope: il plot GO enrichment (non toccato da questo ridisegno, assente da spec Sec.9bis) ha un titolo statico che NON include gruppo/k: title = "GO Biological Process -- top 10 enriched terms") +
+
+[PASS] Criterio 5: la heatmap non contiene la legenda dei codici GSE
+  config$heatmap_mostra_studi (registrata in run_metadata.json, la config VERA usata da questo run) = FALSE. Didascalia di TUTTE le 9 heatmap dichiara esplicitamente l'omissione dell'annotazione Study: 9/9. Verifica visiva (Read su heatmap.png di TGF-b1, DHT, enzalutamide) nella sezione dedicata.
+         cluster_id ha_todo_stub ha_riga_sporco ha_peso_numerico
+ cgroup_L5_930c8dcf        FALSE           TRUE             TRUE
+ cgroup_L5_c0d1d837        FALSE           TRUE             TRUE
+ cgroup_L5_2e16719f        FALSE           TRUE             TRUE
+ cgroup_L5_871ae09e        FALSE           TRUE             TRUE
+ cgroup_L5_87c40ebb        FALSE           TRUE             TRUE
+ cgroup_L5_b71a25a2        FALSE           TRUE             TRUE
+ cgroup_L5_c3ae78cd        FALSE           TRUE             TRUE
+ cgroup_L5_85083e38        FALSE           TRUE             TRUE
+ cgroup_L5_3973fe03        FALSE           TRUE             TRUE
+
+[PASS] Criterio 6: narrativa compilata (non stub) + riga dei confronti imperfetti col peso
+  0/9 narrative con stub "TODO" nelle sezioni Biological context/Findings/Discussion (sostituite dalla narrativa bozza compilata dai numeri reali del deliverable -- ma vedi nota sotto). Riga "Quanto e' sporco" presente in 9/9 case study, con un peso percentuale NUMERICO REALE in 9/9 (fonte: analysis/audit/2026-08-05-rilettura-214/ verdetti-con-peso.csv, colonna peso_citati, per cluster_id -- provider collegato in questa sessione, prima era NULL e la riga diceva sempre 'non misurato'). Di questi, 6/9 hanno anche il conteggio ESATTO n/tot confronti (fonte: 13-grandi-conteggio.json, disponibile solo per i gruppi con k>=15); i restanti 3 mostrano '?' al posto di n/tot (dichiarato, non un buco silenzioso) perche' la rilettura a conteggio esatto copre solo i 13 gruppi grandi, per costruzione del metodo (vedi docs/findings/2026-08-05-confronti-imperfetti.md).
+
+[PASS] Criterio 7: la prova agonista/antagonista precede qualunque figura tecnica
+  Posizione (offset carattere nell'HTML) di: 'Apertura'=1451257, i quattro bersagli KLK3/TMPRSS2/FKBP5/NKX3-1=1452492,1452657,1452824,1452990, '1.441' (geni sig in entrambi)=1453236, '97,7' (% segno opposto)=1453247, '0,938' (Spearman)=1453359, primo <img>=1454946. Tutti i numeri del controllo compaiono DOPO l'apertura e PRIMA del primo <img>: TRUE.
+
+=====================================================================
+SOMMARIO DEI SETTE CRITERI (spec Sec.9)
+=====================================================================
+[PASS] Criterio 1: forest TGF-b1, ogni gene mostrato >= 30/59 studi
+[PASS] Criterio 2: volcano, nessuna compressione sotto il 20%% + etichette >= meta' k
+[PASS] Criterio 3: zero cgroup_L5_ nelle intestazioni e nel sommario
+[PASS] Criterio 4: ogni figura (forest/volcano/heatmap) ha nel titolo gruppo + N studi
+[PASS] Criterio 5: la heatmap non contiene la legenda dei codici GSE
+[PASS] Criterio 6: narrativa compilata (non stub) + riga dei confronti imperfetti col peso
+[PASS] Criterio 7: la prova agonista/antagonista precede qualunque figura tecnica
