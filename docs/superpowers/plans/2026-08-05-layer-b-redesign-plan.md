@@ -571,6 +571,85 @@ git commit -m "Bozze di narrativa costruite dai numeri del deliverable, marcate 
 
 ---
 
+### Task 7bis: collegare scheda e narrativa al build (AGGIUNTO 2026-08-05 in corso d'opera)
+
+**Perché esiste:** la revisione del Task 6 ha trovato che `.summary_card_v2()` era **codice
+irraggiungibile** — `R/layer-b-build.R` continuava a chiamare la vecchia scheda. Stessa sorte
+toccherebbe alla narrativa del Task 7. Nessuno dei dieci task originali si intestava il
+collegamento: è un buco del piano, non dell'esecuzione. Senza questo task il piano può
+dichiararsi completo lasciando **insoddisfatti i criteri 3 e 6** della spec §9.
+
+Scheda e narrativa hanno bisogno degli **stessi due dati calcolati**, ed è il motivo per cui
+stanno in un task solo invece di due: costruire due volte la stessa pipeline sarebbe il modo
+per farle divergere.
+
+**File:**
+- Modifica: `R/layer-b-build.R`
+- Modifica: `R/layer-b-write.R` (se la scrittura della scheda passa di lì)
+- Test: `tests/testthat/test-layer-b-collegamento-scheda.R`
+
+**Interfacce:**
+- Consuma: `.summary_card_v2(riga, bersagli_trovati, confronti_imperfetti)` (Task 6),
+  `.narrativa_bozza(riga, bersagli_attesi, trovati, imperfetti)` (Task 7),
+  il deliverable annotato `deliverable-annotato.rds` nella directory dello Stadio 4.
+- Produce: `.bersagli_trovati(cp, bersagli_attesi)` → data.frame con `gene`, `logFC`, `FDR`
+  per i soli bersagli attesi presenti fra i geni misurati.
+
+- [ ] **Step 1: scrivere il test che fallisce**
+
+```r
+test_that(".bersagli_trovati riporta solo i bersagli presenti, coi loro valori", {
+  cp <- data.frame(
+    gene_symbol = c("SMAD7", "SERPINE1", "ACTB"),
+    logFC_pool = c(1.41, 2.43, 0.02),
+    FDR_BH_within_cluster = c(1e-22, 1e-19, 0.9),
+    stringsAsFactors = FALSE)
+  out <- simulomicsr:::.bersagli_trovati(cp, c("SMAD7", "SERPINE1", "ASSENTE"))
+  expect_equal(nrow(out), 2L)
+  expect_setequal(out$gene, c("SMAD7", "SERPINE1"))
+  expect_equal(out$logFC[out$gene == "SMAD7"], 1.41)
+})
+
+test_that("il bundle usa la scheda nuova: niente cgroup_L5_ nel corpo", {
+  # il corpo e' tutto cio' che precede il blocco PROVENIENZA
+  md <- readLines(file.path(bundle_dir, "summary_card.md"))
+  corpo <- md[seq_len(which(grepl("PROVENIENZA", md))[1] - 1L)]
+  expect_false(any(grepl("cgroup_L5_", corpo)))
+})
+```
+
+- [ ] **Step 2: eseguire e vedere il fallimento**
+
+Comando: `Rscript -e 'devtools::load_all("."); testthat::test_file("tests/testthat/test-layer-b-collegamento-scheda.R")'`
+Atteso: FAIL, `.bersagli_trovati` non esiste.
+
+- [ ] **Step 3: implementare `.bersagli_trovati()`** e collegare in `R/layer-b-build.R`:
+carica il deliverable annotato dalla directory dello Stadio 4, prendi la riga del cluster in
+lavorazione, calcola i bersagli trovati e i confronti imperfetti, e passa tutto a
+`.summary_card_v2()` e `.narrativa_bozza()` al posto delle chiamate vecchie.
+
+**I bersagli attesi arrivano dal chiamante**, non da una tabella interna al pacchetto: sono
+attese di letteratura, e vanno dichiarate come tali. Se per un cluster non ce ne sono, la
+scheda lo dice invece di tacere.
+
+**Se il deliverable annotato non è disponibile**, il build non deve fallire: ripiega sulla
+scheda vecchia e **lo dichiara** nel bundle. Un ripiego silenzioso qui vanificherebbe la
+verifica del Task 10, che troverebbe la scheda vecchia senza sapere perché.
+
+- [ ] **Step 4: eseguire e vedere il verde**
+
+Comando: `Rscript -e 'devtools::load_all("."); testthat::test_dir("tests/testthat", filter="layer-b-collegamento|layer-b-build")'`
+Atteso: 0 FAIL.
+
+- [ ] **Step 5: commit**
+
+```bash
+git add R/layer-b-build.R tests/testthat/test-layer-b-collegamento-scheda.R
+git commit -m "La scheda nuova e la narrativa arrivano davvero nel bundle"
+```
+
+---
+
 ### Task 8: configurazione e figure escluse
 
 **File:**
