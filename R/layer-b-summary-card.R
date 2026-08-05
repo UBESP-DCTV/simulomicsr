@@ -1,3 +1,180 @@
+#' Lettura testuale della concordanza fra studi, da I^2 mediano
+#'
+#' Soglie standard (Cochrane): sotto 25 = eterogeneita' bassa, sotto 50 =
+#' moderata, sotto 75 = sostanziale, altrimenti molto alta. Il testo e'
+#' scritto in termini di CONCORDANZA (la domanda della scheda), che e'
+#' l'inverso dell'eterogeneita': un I^2 alto vuol dire che gli studi
+#' concordano poco sulla DIMENSIONE dell'effetto -- possono comunque
+#' concordare sul segno, ed e' un'altra misura (vedi il controllo biologico
+#' agonista/antagonista in RED_ALERT).
+#' @keywords internal
+.i2_lettura <- function(i2) {
+  if (is.na(i2)) return("concordanza non valutabile (I^2 mancante)")
+  if (i2 < 25) return("alta concordanza, eterogeneita' bassa")
+  if (i2 < 50) return("concordanza moderata")
+  if (i2 < 75) return("bassa concordanza, eterogeneita' sostanziale")
+  "concordanza scarsa, eterogeneita' molto alta -- gli studi concordano piu' sul segno che sulla dimensione dell'effetto"
+}
+
+#' Scheda riassuntiva v2: cinque domande, non un dump di campi tecnici
+#'
+#' La scheda precedente (`.build_summary_card()`, invariata da questo task,
+#' vedi sotto) elenca campi tecnici -- `safety_min: 0.06`, `direction_applied
+#' distribution: none: 19687`, `Anchor: contrast/gain x HGNC:11766` -- che non
+#' dicono nulla a un biologo, e sceglie il "Top gene" per solo FDR (per
+#' TGF-beta1 e' la cornulina, che con quella via non c'entra). Questa funzione
+#' e' la sostituzione: cinque righe che rispondono a cinque domande --- che
+#' cosa e' stato confrontato, su quanti studi e quanto pesano davvero, quanto
+#' concordano, che cosa si trova, quanto e' sporco --- seguite da un blocco
+#' `PROVENIENZA` dove finiscono gli identificativi interni (`cluster_id`,
+#' l'ID grezzo del contrasto, `run_id`, sha256): servono a chi verifica, non a
+#' chi legge la scheda accanto alla figura.
+#'
+#' A differenza di `.build_summary_card()`, che legge `cluster_pooled` riga
+#' per riga e scrive un file su disco, questa funzione e' PURA: prende la riga
+#' gia' calcolata del deliverable annotato (`annotate_stage4_deliverable()`)
+#' e ritorna una stringa markdown. Non tocca il disco -- chi la chiama decide
+#' dove va (file, chunk Quarto, ...).
+#'
+#' Nessun taglio silenzioso: quando un dato manca (etichetta, verdetto,
+#' run_id, bersagli, confronti imperfetti) la scheda lo DICE, non lo omette e
+#' non ripiega senza dirlo su un identificativo tecnico.
+#'
+#' @param riga data.frame/tibble di **una** riga del deliverable annotato
+#'   (`annotate_stage4_deliverable()`). Colonne usate: `cluster_id`,
+#'   `contrast_entity` (ID grezzo del contrasto, opzionale),
+#'   `contrast_entity_label`, `k_effective`, `k_kish`, `I2_med`, `n_sig`,
+#'   `quota_top1`, `studio_dominante`, `materiale_misto`, `coherence_verdict`,
+#'   e due colonne opzionali non ancora nel deliverable standard --
+#'   `run_id`, `sha256` -- usate se presenti, altrimenti dichiarate `N/A`.
+#'   Se `riga` ha piu' di una riga, si usa solo la prima.
+#' @param bersagli_trovati character vector di bersagli attesi ritrovati,
+#'   gia' formattati per la lettura (es. `"SMAD7 +1,41"`). `character(0)`
+#'   (default) se nessuno o non calcolato per questo gruppo.
+#' @param confronti_imperfetti list opzionale con `n`, `tot` (interi) e
+#'   `peso` (frazione 0-1) dalla rilettura dei confronti poolati (vedi
+#'   `docs/findings/2026-08-05-confronti-imperfetti.md`). `NULL` (default) se
+#'   non misurato per questo gruppo -- dichiarato "non misurato", mai omesso
+#'   in silenzio.
+#'
+#' @return `character(1)`, markdown.
+#' @keywords internal
+.summary_card_v2 <- function(riga, bersagli_trovati = character(0),
+                             confronti_imperfetti = NULL) {
+  riga <- as.data.frame(riga, stringsAsFactors = FALSE)
+  if (nrow(riga) == 0L) {
+    cli::cli_abort(".summary_card_v2: {.arg riga} non ha righe.")
+  }
+  riga <- riga[1L, , drop = FALSE]
+
+  # Accessor tollerante: una colonna assente non e' un errore, e' un dato
+  # mancante come un altro -- dichiarato piu' sotto, non fatto crashare qui.
+  .v <- function(nm) if (nm %in% names(riga)) riga[[nm]][1L] else NA
+
+  cluster_id <- as.character(.v("cluster_id"))
+  entita_id  <- .v("contrast_entity")
+  etichetta  <- .v("contrast_entity_label")
+  k_eff      <- .v("k_effective")
+  k_kish     <- suppressWarnings(as.numeric(.v("k_kish")))
+  i2         <- suppressWarnings(as.numeric(.v("I2_med")))
+  n_sig      <- .v("n_sig")
+  quota_top1 <- suppressWarnings(as.numeric(.v("quota_top1")))
+  dominante  <- .v("studio_dominante")
+  mat_misto  <- .v("materiale_misto")
+  verdetto   <- .v("coherence_verdict")
+  run_id     <- .v("run_id")
+  sha256     <- .v("sha256")
+
+  .na_chr <- function(x) is.na(x) || !nzchar(as.character(x))
+
+  # --- riga 1: cosa e' stato confrontato ------------------------------------
+  soggetto <- if (!.na_chr(etichetta)) {
+    as.character(etichetta)
+  } else if (!.na_chr(entita_id)) {
+    sprintf("%s (etichetta leggibile non disponibile: ripiego sull'identificativo grezzo del contrasto)",
+            as.character(entita_id))
+  } else {
+    "identita' del contrasto non disponibile (vedi PROVENIENZA)"
+  }
+  verdetto_txt <- if (.na_chr(verdetto)) {
+    "verdetto di coerenza non disponibile"
+  } else if (identical(as.character(verdetto), "coherent")) {
+    "verdetto di coerenza: coerente"
+  } else {
+    sprintf("VERDETTO DI COERENZA: %s -- i confronti raggruppati potrebbero non misurare lo stesso contrasto",
+            toupper(as.character(verdetto)))
+  }
+  riga1 <- sprintf(
+    "- **Cosa e' stato confrontato:** %s, trattato contro il proprio controllo (%s).",
+    soggetto, verdetto_txt)
+
+  # --- riga 2: su quanti studi, e quanto pesano davvero ---------------------
+  k_eff_txt  <- if (is.na(k_eff)) "non disponibile" else as.character(as.integer(k_eff))
+  k_kish_txt <- if (is.na(k_kish)) "non disponibile" else sprintf("%.1f", k_kish)
+  peso_studio <- if (!is.na(quota_top1)) {
+    nome_studio <- if (!.na_chr(dominante)) as.character(dominante) else "non identificato"
+    dom_flag <- if (quota_top1 >= 0.5) " -- **un solo studio pesa piu' della meta'**" else ""
+    sprintf(" Lo studio piu' pesante (%s) porta il %.1f%% del peso%s.",
+            nome_studio, 100 * quota_top1, dom_flag)
+  } else {
+    " Il peso del singolo studio piu' pesante non e' disponibile."
+  }
+  materiale_txt <- if (isTRUE(mat_misto)) {
+    " Il materiale e' misto: studi su modello in vitro e su tessuto di paziente insieme."
+  } else {
+    ""
+  }
+  riga2 <- sprintf(
+    "- **Su quanti studi, e quanto pesano davvero:** %s studi entrano nel pool, ma quelli che contano davvero (numero efficace di Kish) sono %s.%s%s",
+    k_eff_txt, k_kish_txt, peso_studio, materiale_txt)
+
+  # --- riga 3: quanto concordano ---------------------------------------------
+  i2_txt <- if (is.na(i2)) "non disponibile" else sprintf("%.1f%%", i2)
+  riga3 <- sprintf("- **Quanto concordano:** I² mediano = %s (%s).",
+                   i2_txt, .i2_lettura(i2))
+
+  # --- riga 4: cosa si trova --------------------------------------------------
+  bersagli_txt <- if (length(bersagli_trovati) > 0L) {
+    paste(bersagli_trovati, collapse = "; ")
+  } else {
+    "nessun bersaglio noto ritrovato per questo gruppo"
+  }
+  n_sig_txt <- if (is.na(n_sig)) "non disponibile" else as.character(as.integer(n_sig))
+  riga4 <- sprintf(
+    "- **Cosa si trova:** %s -- su %s geni significativi in totale (FDR<0,05).",
+    bersagli_txt, n_sig_txt)
+
+  # --- riga 5: quanto e' sporco -----------------------------------------------
+  riga5 <- if (is.null(confronti_imperfetti)) {
+    "- **Quanto e' sporco:** non misurato per questo gruppo."
+  } else {
+    n_imp   <- confronti_imperfetti$n
+    tot_imp <- confronti_imperfetti$tot
+    peso_imp <- confronti_imperfetti$peso
+    sprintf(
+      "- **Quanto e' sporco:** %s confronti imperfetti su %s (%s%% del peso stimato della meta-analisi; vedi docs/findings/2026-08-05-confronti-imperfetti.md).",
+      if (is.null(n_imp) || is.na(n_imp)) "?" else as.character(as.integer(n_imp)),
+      if (is.null(tot_imp) || is.na(tot_imp)) "?" else as.character(as.integer(tot_imp)),
+      if (is.null(peso_imp) || is.na(peso_imp)) "?" else sprintf("%.1f", 100 * peso_imp))
+  }
+
+  # --- provenienza: dove vivono gli identificativi interni --------------------
+  .prov <- function(x) if (.na_chr(x)) "N/A" else as.character(x)
+  provenienza <- c(
+    "",
+    "---",
+    "",
+    "**PROVENIENZA** (per la verifica, non per la lettura)",
+    "",
+    sprintf("- cluster_id: `%s`", cluster_id),
+    sprintf("- identita' del contrasto (ID grezzo): `%s`", .prov(entita_id)),
+    sprintf("- run_id: `%s`", .prov(run_id)),
+    sprintf("- sha256: `%s`", .prov(sha256))
+  )
+
+  paste(c(riga1, riga2, riga3, riga4, riga5, provenienza), collapse = "\n")
+}
+
 #' Costruisci summary card (.md) per un cluster Layer B
 #'
 #' Card 1-pagina con metadata cluster: cluster_id, label_paper, anchor, method,
