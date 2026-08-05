@@ -628,6 +628,18 @@ carica il deliverable annotato dalla directory dello Stadio 4, prendi la riga de
 lavorazione, calcola i bersagli trovati e i confronti imperfetti, e passa tutto a
 `.summary_card_v2()` e `.narrativa_bozza()` al posto delle chiamate vecchie.
 
+⚠️ **DUE PUNTI DI COLLEGAMENTO, NON UNO.** Segnalato dall'implementatore del Task 7, ed è la
+stessa trappola già scattata sulla scheda:
+
+1. `.build_summary_card()` → sostituita da `.summary_card_v2()`;
+2. **`.write_narrative_template()`** (in `R/layer-b-summary-card.R`) → è la funzione che oggi
+   scrive gli stub `TODO` nel file `narrative.qmd` del bundle. Se non viene collegata a
+   `.narrativa_bozza()`, la narrativa resta codice irraggiungibile esattamente come lo era la
+   scheda, **e il criterio 6 della spec §9 resta insoddisfatto anche dopo questo task**.
+
+Verificare esplicitamente, a collegamento fatto, che il `narrative.qmd` scritto su disco
+contenga la bozza e non più gli stub.
+
 **I bersagli attesi arrivano dal chiamante**, non da una tabella interna al pacchetto: sono
 attese di letteratura, e vanno dichiarate come tali. Se per un cluster non ce ne sono, la
 scheda lo dice invece di tacere.
