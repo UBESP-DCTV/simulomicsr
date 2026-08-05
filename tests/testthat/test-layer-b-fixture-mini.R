@@ -46,7 +46,15 @@ test_that("build + write + load + report end-to-end on mini fixture", {
 
   # Files attesi per cluster mega (no forest)
   expect_true(file.exists(file.path(result$dir, "cl_mega_1", "volcano.png")))
-  expect_true(file.exists(file.path(result$dir, "cl_mega_1", "ma.png")))
+  # L'MA plot e' ESCLUSO dal bundle con la config di default
+  # (config$figure_escluse = c("ma", "heterogeneity"), Task 8 del ridisegno;
+  # spec §4.5 lo dichiara "eliminato": ridondante col volcano). Il codice di
+  # .build_ma_plot() resta nel pacchetto -- e' selezione, non cancellazione,
+  # stessa scelta gia' presa per il ramo `mega` in ADR-0026 -- ma il file non
+  # viene piu' scritto con layer_b_default_config(). L'asserzione precedente
+  # (expect_true) contraddiceva questa decisione gia' in git dal commit
+  # 7d6d91b: non era un bug da indagare, era un'asserzione rimasta indietro.
+  expect_false(file.exists(file.path(result$dir, "cl_mega_1", "ma.png")))
   expect_true(file.exists(file.path(result$dir, "cl_mega_1", "heatmap.png")))
   expect_true(file.exists(file.path(result$dir, "cl_mega_1", "summary_card.md")))
   expect_true(file.exists(file.path(result$dir, "cl_mega_1", "narrative.qmd")))
