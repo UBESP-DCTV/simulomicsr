@@ -66,8 +66,31 @@ coprire i casi rilevanti: il controllo a due bracci qui sopra, un gruppo ad alto
 con eterogeneita' misurata, un patogeno, una citochina, una piccola molecola, una
 malattia, e un gruppo con un limite dichiarato (dominanza di un singolo studio,
 materiale misto, o un verdetto di incoerenza). Il deliverable completo, da cui
-queste meta-analisi sono estratte, e' molto piu' grande:
+queste meta-analisi sono estratte, e' molto piu' grande — questa figura mostra
+quanto, senza una tabella:
 
+```{r corpus-overview, results = "asis"}
+# La figura si genera QUI, al momento del render, leggendo il deliverable
+# annotato dal path registrato in run_metadata (collegato al build dal
+# Task 7bis): i numeri vengono dal file, mai ricopiati a mano -- un futuro
+# re-render riflette sempre il deliverable vero. Se il file non e'
+# raggiungibile da questo render (bundle scritto prima del collegamento,
+# disco esterno non montato, ...) si dichiara il motivo e si ripiega sulla
+# prosa statica sotto -- mai un buco silenzioso.
+overview <- simulomicsr:::.corpus_overview_from_bundle(lb)
+
+if (isTRUE(overview$disponibile)) {
+  cat(sprintf("\n![%s](%s)\n\n",
+              overview$plot$caption, basename(overview$plot$png_path)))
+} else {
+  cat(sprintf(paste0(
+    "\n::: {.callout-important}\n",
+    "La figura non e' disponibile per questo render: %s ",
+    "I numeri sotto sono citati da un log invece di essere ricalcolati dal ",
+    "deliverable annotato.\n:::\n\n"
+  ), overview$motivo))
+
+  cat(r"(
 - **214 meta-analisi** poolate (Stadio 4, run v15);
 - **344.996 geni significativi** in totale (FDR<0,05);
 - eterogeneita' mediana **I² = 72,1%**;
@@ -79,13 +102,15 @@ queste meta-analisi sono estratte, e' molto piu' grande:
   varianza deve pesare cosi'), ma per un terzo del corpus il pooling da solo
   aggiunge poco.
 
+Fonte: `analysis/audit/2026-08-02-fix/90-controllo-biologico.log`, sezione
+"Quadro d'insieme delle 214".
+)", "\n")
+}
+```
+
 Le meta-analisi non mostrate qui restano nel deliverable CSV, con le stesse colonne
 (`k_effective`, `k_kish`, `I2_med`, `n_sig`, `coherence_verdict`, ...) usate per
-costruire le schede qui sotto.
-
-::: {.callout-note}
-Fonte: lo stesso log dell'Apertura, sezione "Quadro d'insieme delle 214".
-:::
+costruire le figure e le schede qui sotto.
 
 ## I case study
 
