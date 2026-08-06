@@ -1,5 +1,5 @@
 
-NOTE: Dependency discovery took 11 seconds during snapshot.
+NOTE: Dependency discovery took 10 seconds during snapshot.
 Consider using .renvignore to ignore files, or switching to explicit snapshots.
 See `?renv::dependencies` for more information.
 
@@ -7,13 +7,13 @@ See `?renv::dependencies` for more information.
 
 - The project is out-of-sync -- use `renv::status()` for details.
 =====================================================================
-Bundle verificato: analysis/p4-output/20260805T231606Z-layer-b-81f379d3 
-HTML: analysis/p4-output/20260805T231606Z-layer-b-81f379d3/layer_b_report.html 13701214 byte
+Bundle verificato: analysis/p4-output/20260806T002603Z-layer-b-81f379d3 
+HTML: analysis/p4-output/20260806T002603Z-layer-b-81f379d3/layer_b_report.html 15060031 byte
 Cluster nella selezione: 9 
 =====================================================================
 
 [PASS] Criterio 1: forest TGF-b1, ogni gene mostrato >= 30/59 studi
-  k_cluster(TGF-b1)=59, soglia richiesta=ceiling(0.5*k)=30 studi. top_genes.csv (n=30 righe): min k_effective=33, max=59, tutte >= soglia: TRUE. CD300C/PROK2 (bersagli vecchi, minestrone) assenti dalla tabella: TRUE. Geni disegnati nel pannello superiore del forest.svg (letti dall'SVG, n=10): ADH1B, ZPLD1, ISLR2, MDFI, COL10A1, CLDN14, TSPAN2, COMP, FOXS1, KANK4, tutti >= soglia: TRUE. Bersagli canonici della via presenti fra i mostrati: SKIL, PMEPA1, BHLHE40, FSTL3 (k=59, 59, 59, 59).
+  k_cluster(TGF-b1)=59, soglia richiesta=ceiling(0.5*k)=30 studi. top_genes.csv (n=30 righe): min k_effective=33, max=59, tutte >= soglia: TRUE. CD300C/PROK2 (bersagli vecchi, minestrone) assenti dalla tabella: TRUE. Geni REALMENTE disegnati nel pannello superiore del forest.svg (letti dall'SVG, n=10): MAP3K2, BHLHE40, NUAK1, SKIL, FSTL3, XYLT1, AMIGO2, PMEPA1, NOX4, KANK4, tutti >= soglia: TRUE. Bersagli canonici della via (SKIL/PMEPA1/BHLHE40/FSTL3, k=59, 59, 59, 59) presenti FRA I MOSTRATI: TRUE (SKIL, PMEPA1, BHLHE40, FSTL3). Pannello inferiore presente (didascalia NON dice 'omitted'): TRUE -- 'Forest plots for top 10 significantly DE genes (FDR<0.05). Top panel: pooled effect +- 95% CI per gene, ordered by effect and coloured by sign. Bottom panel: PMEPA1 per study, REML-pooled summary as diamond (k=59). Genes measured in fewer than 30 of 59 studies were excluded from ranking (839 genes): with few studies the random-effects model estimates tau^2 as zero, which collapses the standard error and inflates significance.'.
          cluster_id k_cluster kmin compresso soglia frac_senza_fix frac_con_fix
  cgroup_L5_930c8dcf        23   12      TRUE    8.7          0.182        0.582
  cgroup_L5_c0d1d837        19   10      TRUE    5.6          0.086        0.421

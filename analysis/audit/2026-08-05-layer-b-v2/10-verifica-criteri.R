@@ -9,16 +9,20 @@
 # Uso:
 #   Rscript analysis/audit/2026-08-05-layer-b-v2/10-verifica-criteri.R
 #
-# Bundle verificato: analysis/p4-output/20260805T231606Z-layer-b-81f379d3
-# (build finale, dopo il fix del collasso bracci nel forest e il collegamento
-# del provider dei confronti imperfetti -- vedi 20-build.log nella stessa dir).
+# Bundle verificato: analysis/p4-output/20260806T002603Z-layer-b-81f379d3
+# (build finale, dopo: il fix del collasso bracci nel forest, il collegamento
+# del provider dei confronti imperfetti, E il fix della selezione dei top-N
+# del forest per FDR invece che per |logFC| -- vedi 20-build-v2.log nella
+# stessa dir. Il bundle precedente, 20260805T231606Z-layer-b-81f379d3, resta
+# sul disco come run pre-fix-selezione: il criterio 1 ci sarebbe risultato
+# PASS per un motivo sbagliato, vedi task-10-report.md).
 
 suppressPackageStartupMessages({
   library(arrow)
   library(dplyr)
 })
 
-BUNDLE      <- "analysis/p4-output/20260805T231606Z-layer-b-81f379d3"
+BUNDLE      <- "analysis/p4-output/20260806T002603Z-layer-b-81f379d3"
 STAGE4_DIR  <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7"
 HTML_PATH   <- file.path(BUNDLE, "layer_b_report.html")
 SELECTION   <- "analysis/layer-b-selection-v15.csv"
@@ -113,25 +117,39 @@ k_geni_mostrati <- vapply(geni_mostrati, k_migliore_per_etichetta, integer(1), c
 ok1c <- length(geni_mostrati) > 0L && all(k_geni_mostrati >= kmin_tgfb1, na.rm = TRUE)
 
 # (c) i bersagli canonici della via TGF-beta citati nello stato del progetto
-# (SKIL, PMEPA1, BHLHE40, FSTL3) misurati a k pieno (59), quando presenti nel
-# cluster
+# (SKIL, PMEPA1, BHLHE40, FSTL3) sono FRA I GENI REALMENTE DISEGNATI nel
+# forest (non solo presenti da qualche parte nel cluster): dopo il fix
+# 2026-08-06 (selezione per FDR, non per |logFC|) devono comparire nel
+# pannello superiore, cosa che PRIMA del fix non accadeva mai.
 bersagli_canonici <- c("SKIL", "PMEPA1", "BHLHE40", "FSTL3")
-bersagli_presenti <- intersect(bersagli_canonici, cp_tgfb1$gene_symbol)
-k_bersagli <- vapply(bersagli_presenti, k_migliore_per_etichetta, integer(1), cp = cp_tgfb1)
+bersagli_mostrati <- intersect(bersagli_canonici, geni_mostrati)
+k_bersagli <- vapply(bersagli_canonici, k_migliore_per_etichetta, integer(1), cp = cp_tgfb1)
+ok1d <- length(bersagli_mostrati) > 0L
+
+# (d) il pannello INFERIORE esiste davvero (fix 2026-08-06): prima del fix
+# spariva sempre ("omitted") perche' i dieci geni a |logFC| massimo non
+# raggiungevano mai la copertura PIENA (k=59) richiesta da
+# .forest_gene_rappresentativo(). La didascalia lo dichiara esplicitamente.
+caption_forest_tgfb1 <- jsonlite::fromJSON(file.path(BUNDLE, cl_tgfb1, "captions.json"))$forest
+pannello_inferiore_presente <- !grepl("omitted", caption_forest_tgfb1)
+gene_bottom_k59 <- grepl("k=59", caption_forest_tgfb1) || grepl("k=59\\)", caption_forest_tgfb1)
 
 segna(
   "Criterio 1: forest TGF-b1, ogni gene mostrato >= 30/59 studi",
-  ok1a && ok1b && ok1c,
+  ok1a && ok1b && ok1c && ok1d && pannello_inferiore_presente,
   sprintf(paste0(
     "k_cluster(TGF-b1)=%d, soglia richiesta=ceiling(0.5*k)=%d studi. ",
     "top_genes.csv (n=%d righe): min k_effective=%d, max=%d, tutte >= soglia: %s. ",
     "CD300C/PROK2 (bersagli vecchi, minestrone) assenti dalla tabella: %s. ",
-    "Geni disegnati nel pannello superiore del forest.svg (letti dall'SVG, n=%d): %s, ",
-    "tutti >= soglia: %s. Bersagli canonici della via presenti fra i mostrati: %s (k=%s)."),
+    "Geni REALMENTE disegnati nel pannello superiore del forest.svg (letti dall'SVG, n=%d): %s, ",
+    "tutti >= soglia: %s. Bersagli canonici della via (SKIL/PMEPA1/BHLHE40/FSTL3, k=%s) ",
+    "presenti FRA I MOSTRATI: %s (%s). Pannello inferiore presente (didascalia NON dice ",
+    "'omitted'): %s -- '%s'."),
     k_cluster_tgfb1, kmin_tgfb1, nrow(top_genes_csv),
     min(top_genes_csv$k_effective), max(top_genes_csv$k_effective), ok1a,
     ok1b, length(geni_mostrati), paste(geni_mostrati, collapse = ", "), ok1c,
-    paste(bersagli_presenti, collapse = ", "), paste(k_bersagli, collapse = ", ")
+    paste(k_bersagli, collapse = ", "), ok1d, paste(bersagli_mostrati, collapse = ", "),
+    pannello_inferiore_presente, caption_forest_tgfb1
   )
 )
 
