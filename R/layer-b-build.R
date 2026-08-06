@@ -14,7 +14,13 @@
 #'   vuoto, ritorna 0 righe senza errore -- e' il caso "nessuna aspettativa
 #'   dichiarata dal chiamante", gia' gestito a valle da `.narrativa_bozza()`.
 #' @return data.frame con `gene`, `logFC`, `FDR` -- una riga per bersaglio
-#'   atteso che e' anche misurato in questo cluster.
+#'   atteso che e' anche misurato in questo cluster. Deduplicato per
+#'   `gene_symbol` (vedi [.rank_and_dedup_genes()]): ARCHS4 mappa piu'
+#'   Ensembl gene_id sullo stesso simbolo HGNC (artefatto multi-Ensembl), e
+#'   senza questo passo un bersaglio con piu' righe comparirebbe piu' volte
+#'   nella scheda/narrativa -- lo stesso difetto gia' corretto per
+#'   tabella/heatmap/forest/volcano, qui latente finche' nessun cluster
+#'   veniva mai passato a questa funzione (vedi rilievo C1).
 #' @keywords internal
 .bersagli_trovati <- function(cp, bersagli_attesi) {
   cp <- as.data.frame(cp, stringsAsFactors = FALSE)
@@ -23,6 +29,7 @@
   if (length(bersagli_attesi) == 0L || nrow(cp) == 0L) return(vuoto)
   sub <- cp[cp$gene_symbol %in% bersagli_attesi, , drop = FALSE]
   if (nrow(sub) == 0L) return(vuoto)
+  sub <- .rank_and_dedup_genes(sub)
   data.frame(
     gene  = sub$gene_symbol,
     logFC = sub$logFC_pool,

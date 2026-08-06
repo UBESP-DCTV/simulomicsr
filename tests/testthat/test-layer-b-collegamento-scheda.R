@@ -40,6 +40,26 @@ test_that(".bersagli_trovati ritorna 0 righe (non un errore) quando non ce ne so
   expect_named(out_vuoto_attesi, c("gene", "logFC", "FDR"))
 })
 
+test_that(".bersagli_trovati deduplica per gene_symbol (artefatto multi-Ensembl, rilievo I8)", {
+  # ARCHS4 mappa piu' Ensembl gene_id sullo stesso simbolo HGNC (paraloghi):
+  # SMAD7 compare due volte, con FDR diverso. Senza dedup il bersaglio
+  # comparirebbe due volte nella scheda/narrativa -- lo stesso difetto gia'
+  # corretto per tabella/heatmap/forest/volcano via .rank_and_dedup_genes(),
+  # rimasto latente qui finche' nessun cluster raggiungeva questa funzione
+  # (rilievo C1: il provider non era mai collegato).
+  cp <- data.frame(
+    gene_symbol = c("SMAD7", "SMAD7", "SERPINE1"),
+    logFC_pool = c(1.41, 1.38, 2.43),
+    FDR_BH_within_cluster = c(1e-22, 1e-5, 1e-19),
+    stringsAsFactors = FALSE)
+  out <- simulomicsr:::.bersagli_trovati(cp, c("SMAD7", "SERPINE1"))
+  expect_equal(nrow(out), 2L)
+  expect_equal(sum(out$gene == "SMAD7"), 1L)
+  # tiene la riga PIU significativa (FDR minimo), non la prima incontrata
+  expect_equal(out$logFC[out$gene == "SMAD7"], 1.41)
+  expect_equal(out$FDR[out$gene == "SMAD7"], 1e-22)
+})
+
 test_that("il bundle usa la scheda nuova: niente cgroup_L5_ nel corpo, e la narrativa e' la bozza", {
   skip_if_not_installed("ComplexHeatmap")
   skip_if_not_installed("clusterProfiler")
