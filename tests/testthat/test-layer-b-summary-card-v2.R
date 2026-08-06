@@ -100,6 +100,63 @@ test_that("nessun bersaglio trovato e' dichiarato, non lasciato in bianco", {
   expect_match(md, "nessun bersaglio")
 })
 
+# --- correzione post-review finale (rilievo C2, 2026-08-06): la scheda
+# diceva la STESSA frase ("nessun bersaglio noto ritrovato per questo
+# gruppo") sia quando nessuna aspettativa era stata dichiarata dal chiamante
+# sia quando le aspettative c'erano ma non sono state ritrovate --
+# contraddicendo .narrativa_bozza(), che gia' distingueva i due casi a
+# quindici righe di distanza sulla stessa pagina.
+
+test_that("bersagli NON dichiarati: la scheda dice 'nessuna aspettativa fornita', non 'nessuno ritrovato'", {
+  riga <- data.frame(
+    cluster_id = "cl_no_decl", contrast_entity = "HGNC:1", contrast_entity_label = "Y",
+    k_effective = 5L, k_kish = 4.0, I2_med = 30, n_sig = 0L, quota_top1 = 0.3,
+    studio_dominante = "GSE2", materiale_misto = FALSE,
+    coherence_verdict = "coherent", stringsAsFactors = FALSE)
+  md <- simulomicsr:::.summary_card_v2(riga, bersagli_trovati = character(0))
+  expect_match(md, "nessuna aspettativa di letteratura fornita")
+  expect_false(grepl("nessuno dei", md))
+})
+
+test_that("bersagli DICHIARATI ma nessuno ritrovato: la scheda dice 'nessuno dei N', non 'nessuna aspettativa'", {
+  riga <- data.frame(
+    cluster_id = "cl_decl_notfound", contrast_entity = "HGNC:1", contrast_entity_label = "Y",
+    k_effective = 5L, k_kish = 4.0, I2_med = 30, n_sig = 0L, quota_top1 = 0.3,
+    studio_dominante = "GSE2", materiale_misto = FALSE,
+    coherence_verdict = "coherent", stringsAsFactors = FALSE)
+  md <- simulomicsr:::.summary_card_v2(
+    riga, bersagli_trovati = character(0), bersagli_attesi = c("SMAD7", "SERPINE1"))
+  expect_match(md, "nessuno dei 2 bersagli attesi")
+  expect_false(grepl("nessuna aspettativa di letteratura fornita", md))
+})
+
+test_that("bersagli dichiarati e ritrovati: la scheda li elenca coi valori, come prima", {
+  riga <- data.frame(
+    cluster_id = "cl_decl_found", contrast_entity = "HGNC:11766",
+    contrast_entity_label = "TGF-beta1", k_effective = 59L, k_kish = 54.5,
+    I2_med = 93.5, n_sig = 7909L, quota_top1 = 0.021,
+    studio_dominante = "GSE155832", materiale_misto = FALSE,
+    coherence_verdict = "coherent", stringsAsFactors = FALSE)
+  md <- simulomicsr:::.summary_card_v2(
+    riga, bersagli_trovati = c("SMAD7 +1.41", "SERPINE1 +2.43"),
+    bersagli_attesi = c("SMAD7", "SERPINE1", "CCN2"))
+  expect_match(md, "SMAD7 \\+1.41")
+  expect_false(grepl("nessuno dei", md))
+  expect_false(grepl("nessuna aspettativa", md))
+})
+
+test_that(".lb_bersagli_trovati_txt: i tre rami direttamente", {
+  expect_match(
+    simulomicsr:::.lb_bersagli_trovati_txt(character(0), character(0)),
+    "nessuna aspettativa di letteratura fornita")
+  expect_match(
+    simulomicsr:::.lb_bersagli_trovati_txt(c("A", "B"), character(0)),
+    "nessuno dei 2 bersagli attesi")
+  expect_equal(
+    simulomicsr:::.lb_bersagli_trovati_txt(c("A"), c("A +1.00")),
+    "A +1.00")
+})
+
 test_that("confronti_imperfetti NULL e' dichiarato 'non misurato', non omesso", {
   riga <- data.frame(
     cluster_id = "cl_nc", contrast_entity = "HGNC:1", contrast_entity_label = "Y",

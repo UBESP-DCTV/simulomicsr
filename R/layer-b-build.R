@@ -325,7 +325,8 @@ build_layer_b_results <- function(stage4_dir, selection,
       }
       imperfetti <- confronti_imperfetti_provider(cl_id)
 
-      summary_md <- .summary_card_v2(riga_deliverable, bersagli_trovati_fmt, imperfetti)
+      summary_md <- .summary_card_v2(riga_deliverable, bersagli_trovati_fmt, imperfetti,
+                                     bersagli_attesi = bersagli_attesi)
       summary_md_path <- file.path(cl_dir, "summary_card.md")
       writeLines(strsplit(summary_md, "\n", fixed = TRUE)[[1L]], summary_md_path)
       summary_card <- list(md_path = summary_md_path)

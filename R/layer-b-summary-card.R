@@ -49,8 +49,19 @@
 #'   `run_id`, `sha256` -- usate se presenti, altrimenti dichiarate `N/A`.
 #'   Se `riga` ha piu' di una riga, si usa solo la prima.
 #' @param bersagli_trovati character vector di bersagli attesi ritrovati,
-#'   gia' formattati per la lettura (es. `"SMAD7 +1,41"`). `character(0)`
+#'   gia' formattati per la lettura (es. `"SMAD7 +1.41"` -- notazione col
+#'   punto decimale, coerente con `sprintf("%+.2f", ...)` in
+#'   `build_layer_b_results()`, non con la virgola italiana). `character(0)`
 #'   (default) se nessuno o non calcolato per questo gruppo.
+#' @param bersagli_attesi character vector (puo' essere vuoto) dei bersagli
+#'   DICHIARATI dal chiamante, **indipendentemente** da quanti sono stati
+#'   ritrovati (vedi `bersagli_attesi_provider` di [build_layer_b_results()]).
+#'   Serve SOLO a distinguere in riga4 "nessuna aspettativa dichiarata" da
+#'   "aspettative dichiarate ma non ritrovate" -- due affermazioni diverse
+#'   che, prima di questo parametro, producevano la stessa frase (vedi
+#'   [.lb_bersagli_trovati_txt()]). `character(0)` (default) -> "nessuna
+#'   aspettativa dichiarata", coerente col comportamento precedente quando
+#'   nessun bersaglio era dichiarato.
 #' @param confronti_imperfetti list opzionale con `n`, `tot` (interi) e
 #'   `peso` (frazione 0-1) dalla rilettura dei confronti poolati (vedi
 #'   `docs/findings/2026-08-05-confronti-imperfetti.md`). `NULL` (default) se
@@ -69,7 +80,8 @@
 #' @keywords internal
 .summary_card_v2 <- function(riga, bersagli_trovati = character(0),
                              confronti_imperfetti = NULL,
-                             soglia_dominanza = 0.5) {
+                             soglia_dominanza = 0.5,
+                             bersagli_attesi = character(0)) {
   riga <- as.data.frame(riga, stringsAsFactors = FALSE)
   if (nrow(riga) == 0L) {
     cli::cli_abort(".summary_card_v2: {.arg riga} non ha righe.")
@@ -144,11 +156,12 @@
                    i2_txt, .i2_lettura(i2))
 
   # --- riga 4: cosa si trova --------------------------------------------------
-  bersagli_txt <- if (length(bersagli_trovati) > 0L) {
-    paste(bersagli_trovati, collapse = "; ")
-  } else {
-    "nessun bersaglio noto ritrovato per questo gruppo"
-  }
+  # .lb_bersagli_trovati_txt() distingue "nessuna aspettativa dichiarata" da
+  # "aspettative dichiarate ma non ritrovate" (fix rilievo C2, 2026-08-06):
+  # prima la scheda diceva la STESSA frase nei due casi, in contraddizione
+  # con .narrativa_bozza() che gia' distingueva i due, a quindici righe di
+  # distanza sulla stessa pagina.
+  bersagli_txt <- .lb_bersagli_trovati_txt(bersagli_attesi, bersagli_trovati)
   n_sig_txt <- if (is.na(n_sig)) "non disponibile" else as.character(as.integer(n_sig))
   riga4 <- sprintf(
     "- **Cosa si trova:** %s -- su %s geni significativi in totale (FDR<0,05).",

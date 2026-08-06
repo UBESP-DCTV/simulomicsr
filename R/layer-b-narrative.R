@@ -109,6 +109,40 @@
     if (is.null(peso_imp) || is.na(peso_imp)) "?" else sprintf("%.1f", 100 * peso_imp))
 }
 
+#' Testo dei bersagli ritrovati, distinguendo "non dichiarati" da "dichiarati ma non trovati"
+#'
+#' Fix del rilievo C2 della revisione finale (2026-08-06): `.summary_card_v2()`
+#' scriveva la STESSA frase ("nessun bersaglio noto ritrovato per questo
+#' gruppo") sia quando NESSUNA aspettativa era stata dichiarata dal chiamante,
+#' sia quando le aspettative c'erano ma non sono state ritrovate fra i geni
+#' misurati -- due affermazioni diverse, a quindici righe di distanza dalla
+#' stessa distinzione che `.narrativa_bozza()` gia' faceva (vedi
+#' \code{attesi_txt}/\code{trovati_txt} sopra), cosi' la scheda e la
+#' narrativa si contraddicevano sulla stessa pagina.
+#'
+#' @param bersagli_attesi character vector (puo' essere vuoto) dei bersagli
+#'   DICHIARATI dal chiamante (vedi \code{bersagli_attesi_provider} di
+#'   [build_layer_b_results()]).
+#' @param bersagli_trovati_fmt character vector gia' formattato (es. `"SMAD7
+#'   +1.41"`) dei bersagli ritrovati fra i geni misurati.
+#' @return character(1).
+#' @keywords internal
+.lb_bersagli_trovati_txt <- function(bersagli_attesi, bersagli_trovati_fmt) {
+  # Controllare PRIMA i trovati, non gli attesi: un bersaglio trovato implica
+  # per forza che un'aspettativa esisteva, anche quando il chiamante non ha
+  # infilato `bersagli_attesi` fino a qui (retrocompatibile con chi passa solo
+  # `bersagli_trovati`, come faceva la scheda prima di questo fix).
+  if (length(bersagli_trovati_fmt) > 0L) {
+    return(paste(bersagli_trovati_fmt, collapse = "; "))
+  }
+  if (length(bersagli_attesi) == 0L) {
+    return("nessun bersaglio dichiarato per questo gruppo (nessuna aspettativa di letteratura fornita)")
+  }
+  sprintf(
+    "nessuno dei %d bersagli attesi e' stato ritrovato fra i geni misurati",
+    length(bersagli_attesi))
+}
+
 #' Frase sul materiale misto, identica ovunque compaia
 #'
 #' @param materiale_misto valore della colonna `materiale_misto` (`TRUE`,
