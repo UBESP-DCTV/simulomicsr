@@ -470,6 +470,14 @@
   # riferimenti a file che non esistono mai sul disco. Un config senza quella
   # chiave (bundle vecchi, list letterale invece di layer_b_default_config())
   # non esclude nulla, come .build_cluster_bundle() in R/layer-b-build.R.
+  #
+  # go_enrichment segue una chiave DIVERSA (`config$go_enrichment`, booleano:
+  # se e' generata affatto, non se e' esclusa dal bundle come ma/heterogeneity)
+  # perche' e' l'unica delle sei figure controllata da un flag invece che da
+  # `figure_escluse` (vedi R/layer-b-build.R, `if (isTRUE(config$go_enrichment))`).
+  # Prima di questo fix (minor, revisione finale 2026-08-06) lo stub elencava
+  # sempre go_enrichment.svg anche quando `config$go_enrichment = FALSE`
+  # significava che il file non veniva mai scritto.
   figure_disponibili <- c(
     volcano       = "volcano.svg",
     forest        = "forest.svg (REM/MEGA-AUG only)",
@@ -479,6 +487,9 @@
     heterogeneity = "heterogeneity.svg (REM only)"
   )
   figure_escluse <- config$figure_escluse %||% character(0)
+  if (!isTRUE(config$go_enrichment)) {
+    figure_escluse <- c(figure_escluse, "go_enrichment")
+  }
   figure_incluse <- figure_disponibili[!names(figure_disponibili) %in% figure_escluse]
   figure_lines <- if (length(figure_incluse) > 0L) {
     paste0("- ", unname(figure_incluse))

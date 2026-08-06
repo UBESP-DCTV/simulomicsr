@@ -85,6 +85,54 @@ test_that(".build_forest skip mega-strict with explanatory caption", {
   )
   expect_true(is.na(result$png_path) || is.null(result$png_path))
   expect_match(result$caption, "Forest plot N/A for mega-strict")
+  # minor (revisione finale 2026-08-06): il return anticipato rispetta il
+  # proprio @return -- titolo NA_character_, genes_mostrati character(0),
+  # non NULL.
+  expect_true(is.character(result$titolo) && is.na(result$titolo))
+  expect_identical(result$genes_mostrati, character(0))
+})
+
+test_that(".build_forest: nessun gene significativo restituisce titolo/genes_mostrati dichiarati (minor)", {
+  cp <- make_fake_cluster_pooled(n_genes = 20, n_sig = 0, cluster_id = "cl_nosig")
+  cp$method <- "rem"
+  cp$k_effective <- 5L
+  ps <- make_fake_per_study_de(cluster_id = "cl_nosig", n_genes = 20, n_studies = 5)
+
+  out_dir <- tempfile("forest_nosig_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_forest(
+    per_study_de_subset = ps,
+    cluster_pooled_subset = cp,
+    method = "rem",
+    out_dir = out_dir,
+    config = layer_b_default_config()
+  )
+  expect_match(result$caption, "no genes significant at FDR")
+  expect_true(is.character(result$titolo) && is.na(result$titolo))
+  expect_identical(result$genes_mostrati, character(0))
+})
+
+test_that(".build_forest: nessuna riga per_study_de restituisce titolo/genes_mostrati dichiarati (minor)", {
+  cp <- make_fake_cluster_pooled(n_genes = 50, n_sig = 10, cluster_id = "cl_norows")
+  cp$method <- "rem"
+  ps <- tibble::tibble()  # 0 righe: stesso schema del ramo mega, ma method != mega
+
+  out_dir <- tempfile("forest_norows_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_forest(
+    per_study_de_subset = ps,
+    cluster_pooled_subset = cp,
+    method = "rem",
+    out_dir = out_dir,
+    config = layer_b_default_config()
+  )
+  expect_match(result$caption, "no per-study DE rows found")
+  expect_true(is.character(result$titolo) && is.na(result$titolo))
+  expect_identical(result$genes_mostrati, character(0))
 })
 
 test_that(".build_forest gestisce gene_symbol duplicati (paraloghi) senza crash", {

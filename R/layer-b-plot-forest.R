@@ -109,7 +109,8 @@
 #'   colpo d'occhio di quale gruppo si tratta).
 #'
 #' @return list con `png_path` (NA se skip), `svg_path` (NA se skip o save_svg=FALSE),
-#'   `titolo` (NA se il ramo non genera un titolo, es. mega/mega_aug),
+#'   `titolo` (NA se il ramo non genera un titolo, es. mega/mega_aug o skip),
+#'   `genes_mostrati` (gene_id dei geni disegnati, `character(0)` se skip),
 #'   `caption` (skip-explanation se applicable).
 #' @keywords internal
 .build_forest <- function(per_study_de_subset, cluster_pooled_subset, method,
@@ -119,10 +120,17 @@
   titolo <- NA_character_
   titolo_nota <- ""
 
+  # I tre return anticipati sotto restituiscono SEMPRE `titolo` e
+  # `genes_mostrati`, contro il proprio @return (minor della revisione
+  # finale, 2026-08-06): senza, un chiamante che leggesse `res$titolo` su
+  # questi rami avrebbe preso NULL invece del NA_character_ dichiarato, e
+  # `res$genes_mostrati` sarebbe stato NULL invece di character(0).
   if (method == "mega") {
     return(list(
       png_path = NA_character_,
       svg_path = NA_character_,
+      titolo = NA_character_,
+      genes_mostrati = character(0),
       caption = "Forest plot N/A for mega-strict method (per-study DE absorbed in mixed model; per-study coefficients not extracted in Layer A)."
     ))
   }
@@ -131,6 +139,8 @@
     return(list(
       png_path = NA_character_,
       svg_path = NA_character_,
+      titolo = NA_character_,
+      genes_mostrati = character(0),
       caption = sprintf("Forest plot N/A for cluster (method=%s): no per-study DE rows found.", method)
     ))
   }
@@ -167,6 +177,8 @@
     return(list(
       png_path = NA_character_,
       svg_path = NA_character_,
+      titolo = NA_character_,
+      genes_mostrati = character(0),
       caption = sprintf("Forest plot N/A: no genes significant at FDR<%g for cluster.", fdr_thr)
     ))
   }

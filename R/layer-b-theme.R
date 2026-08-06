@@ -36,9 +36,21 @@
 #'
 #' Nessuna figura del report attuale dice a quale gruppo appartiene: aperta da
 #' sola non e' interpretabile.
+#'
+#' Con `k = NA` (minor della revisione finale, 2026-08-06: prima
+#' `sprintf("%d studi", as.integer(NA))` produceva letteralmente «entita' ·
+#' NA studi», un numero-fantasma nel titolo) il segmento del conteggio studi
+#' e' `NA_character_` e viene tolto dal titolo dallo stesso filtro che gia'
+#' toglie `extra` quando e' `NULL` -- non un ripiego nuovo, lo stesso.
 #' @keywords internal
 .lb_titolo <- function(entita, k, extra = NULL) {
-  studi <- if (isTRUE(k == 1L)) "1 studio" else sprintf("%d studi", as.integer(k))
+  studi <- if (is.na(k)) {
+    NA_character_
+  } else if (isTRUE(k == 1L)) {
+    "1 studio"
+  } else {
+    sprintf("%d studi", as.integer(k))
+  }
   parti <- c(as.character(entita), studi, extra)
   paste(parti[nzchar(parti) & !is.na(parti)], collapse = " · ")
 }

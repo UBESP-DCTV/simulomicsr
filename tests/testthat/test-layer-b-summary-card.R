@@ -251,3 +251,35 @@ test_that(".write_narrative_template rimette ma.svg/heterogeneity.svg quando fig
   expect_match(content, "ma.svg", fixed = TRUE)
   expect_match(content, "heterogeneity.svg", fixed = TRUE)
 })
+
+# --- minor della revisione finale (2026-08-06): go_enrichment.svg non
+# seguiva la sua chiave di configurazione (`config$go_enrichment`, un
+# booleano, diversa da `figure_escluse`): con config$go_enrichment = FALSE il
+# file non viene mai scritto da R/layer-b-build.R, ma lo stub lo elencava
+# comunque.
+
+test_that(".write_narrative_template non elenca go_enrichment.svg quando config$go_enrichment = FALSE", {
+  out_dir <- tempfile("nt_fig3_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  cfg <- layer_b_default_config()
+  cfg$go_enrichment <- FALSE
+  selection_row <- tibble::tibble(
+    cluster_id = "cl_fig3", label_paper = "Fig Test 3",
+    priority = 1L, notes = ""
+  )
+
+  qmd_path <- simulomicsr:::.write_narrative_template(
+    cluster_id = "cl_fig3",
+    summary_card_path = NULL,
+    selection_row = selection_row,
+    config = cfg,
+    out_dir = out_dir
+  )
+  content <- paste(readLines(qmd_path), collapse = "\n")
+  expect_false(grepl("go_enrichment.svg", content, fixed = TRUE))
+  # le altre figure di default restano elencate
+  expect_match(content, "volcano.svg", fixed = TRUE)
+  expect_match(content, "heatmap.svg", fixed = TRUE)
+})

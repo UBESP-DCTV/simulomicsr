@@ -1,5 +1,5 @@
 ---
-title: "Layer B — nove meta-analisi, verificate riga per riga"
+title: "Layer B — meta-analisi selezionate, verificate riga per riga"
 format:
   html:
     embed-resources: true
@@ -20,7 +20,7 @@ library(simulomicsr)
 lb <- load_layer_b(params$layer_b_dir)
 ```
 
-# Layer B — nove meta-analisi, verificate riga per riga
+# Layer B — `r nrow(lb$selection_resolved)` meta-analisi, verificate riga per riga
 
 ## Apertura
 
@@ -268,8 +268,8 @@ Run id: ``r lb$run_metadata$run_id``
 Generated: ``r lb$run_metadata$timestamp``
 Package version: ``r lb$run_metadata$package_version``
 
-I nove gruppi mostrati in questo documento, con l'identificativo interno per la
-verifica incrociata col deliverable:
+I `r nrow(lb$selection_resolved)` gruppi mostrati in questo documento, con
+l'identificativo interno per la verifica incrociata col deliverable:
 
 ```{r selection-table}
 DT::datatable(lb$selection_resolved, options = list(pageLength = 25))
