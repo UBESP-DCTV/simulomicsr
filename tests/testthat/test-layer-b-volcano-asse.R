@@ -73,6 +73,27 @@ test_that(".build_volcano usa l'etichetta passata nel titolo, non il cluster_id 
   expect_false(grepl("falls back to the raw cluster_id", res$caption, fixed = TRUE))
 })
 
+test_that(".build_volcano usa l'etichetta leggibile anche nella prima frase della didascalia, non il cluster_id (rilievo I7)", {
+  # Prima del fix la didascalia apriva SEMPRE con "Volcano plot for cluster
+  # cgroup_L5_...", anche quando forest/heatmap della STESSA figura usavano
+  # gia' l'etichetta leggibile nel titolo -- due figure adiacenti dello
+  # stesso case study raccontavano l'identita' del gruppo in due modi diversi.
+  cp <- make_fake_cluster_pooled(n_genes = 40, n_sig = 15, cluster_id = "cgroup_L5_2e16719f")
+  cp$k_effective <- 20L
+
+  out_dir <- tempfile("volcano_caption_lab_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  res <- simulomicsr:::.build_volcano(
+    cp, out_dir = out_dir, config = layer_b_default_config(),
+    etichetta = "TGF-beta1"
+  )
+
+  expect_match(res$caption, "TGF-beta1", fixed = TRUE)
+  expect_false(grepl("cgroup_L5_", res$caption, fixed = TRUE))
+})
+
 test_that(".build_volcano senza etichetta ripiega sul cluster_id e lo dichiara in didascalia", {
   cp <- make_fake_cluster_pooled(n_genes = 40, n_sig = 15, cluster_id = "cgroup_L5_deadbeef")
   cp$k_effective <- 20L

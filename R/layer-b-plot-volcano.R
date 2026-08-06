@@ -223,9 +223,14 @@
     svg_path <- NA_character_
   }
 
+  # Etichetta leggibile, non cluster_id (rilievo I7, 2026-08-06): forest e
+  # heatmap non nominano mai il cluster_id grezzo nella didascalia -- il
+  # volcano era rimasto indietro, aprendo con "for cluster cgroup_L5_..."
+  # mentre il titolo della STESSA figura dice gia' "TGF-beta1 - 59 studi".
+  # `entita_titolo` e' lo stesso ripiego dichiarato usato dal titolo sopra.
   caption <- sprintf(
     "Volcano plot for cluster %s. %d of %d genes significant at FDR<%g (BH-corrected within cluster).",
-    unique(cp$cluster_id), n_sig, n_total, fdr_thr
+    entita_titolo, n_sig, n_total, fdr_thr
   )
   if (comprimi) {
     caption <- paste0(caption, sprintf(
