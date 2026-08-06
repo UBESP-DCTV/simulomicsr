@@ -1,0 +1,241 @@
+# FATTI VERIFICATI — IFN-gamma  (cgroup_L5_87c40ebb)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : HGNC:5438  (IFNG)
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 20
+- studi efficaci (Kish)      : 18.16  (91% del k nominale)
+- studio piu' pesante        : GSE144484 (6.59% del peso)
+- geni significativi (FDR<0,05): 3579 su 18948 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 17443)
+- I2 mediano                 : 90.51%
+- verdetto di coerenza       : coherent
+- materiale                  : omogeneo (2 modello in vitro / 0 tessuto di paziente / 18 non classificato)
+- studi censiti -> poolati   : 35 -> 20
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  STAT1      logFC=+2.894  FDR=2.59e-91  k=20  I2=99.5
+  GBP1       logFC=+5.977  FDR=1.35e-58  k=20  I2=99.5
+  CXCL9      logFC=+11.271  FDR=1.04e-51  k=15  I2=93.8
+  TAP1       logFC=+3.472  FDR=8.53e-35  k=16  I2=54.1
+  IRF1       logFC=+4.449  FDR=1.15e-35  k=20  I2=99.7
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  GIMAP4          +2.063            0     2     0.0
+  KRT6C           +1.674            0     3     0.0
+  GIMAP7          +3.044    5.14e-202     2     0.0
+  CD300LF         +0.946    3.16e-123     2     0.0
+  GIMAP5          +3.417    6.55e-102     2     0.0
+  GIMAP6          +1.824    2.78e-101     4     0.0
+  STAT1           +2.894     2.59e-91    20    99.5
+  FGG             -0.455     1.39e-89     2     0.0
+  S100B           -1.041     6.86e-88     4     0.0
+  PLA2G2A         +5.355     4.64e-84     4     0.0
+  RNASE6          -1.448     2.73e-76     2     0.0
+  ENSG00000241690    +5.219     1.42e-72     4     0.0
+  KNG1            -0.570     2.73e-72     3     0.0
+  COL16A1         -0.285     1.51e-63    17     0.0
+  GBP1            +5.977     1.35e-58    20    99.5
+  CXCL9          +11.271     1.04e-51    15    93.8
+  TRIM69          +1.933     3.03e-51    20    85.6
+  GIMAP1-GIMAP5    +1.474     1.14e-49     2     0.0
+  MPEG1           +1.091     1.66e-45     2     0.0
+  MMP8            -1.498     3.95e-40     3    44.1
+  SMTNL1          +5.118     8.42e-39    14    81.3
+  CXCL11          +9.364     1.38e-37    15    95.5
+  KLK5            -0.370     4.58e-36     5     0.0
+  NMI             +2.060     5.42e-36    20    98.3
+  PARP9           +3.047     5.42e-36    20    99.4
+  IRF1            +4.449     1.15e-35    20    99.7
+  IFI35           +3.101     1.55e-35    20    98.7
+  VCX3A           +0.747     8.53e-35     2     0.0
+  TAP1            +3.472     8.53e-35    16    54.1
+  KRTDAP          +1.148     4.62e-34     3     0.0
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  HLA-DRA        +12.228     1.32e-11     2    89.8
+  CXCL9          +11.271     1.04e-51    15    93.8
+  IDO1            +9.795     2.05e-33    17    97.5
+  CXCL11          +9.364     1.38e-37    15    95.5
+  CXCL10          +8.986     2.23e-24    16    97.9
+  GBP5            +8.583     8.25e-28    20    98.8
+  CCL8            +8.457     1.19e-09     5    90.6
+  HLA-DPB1        +7.817     1.86e-19     4    61.2
+  UBD             +7.097     6.94e-31    11    80.4
+  CD5L            +6.496     9.23e-20     3    74.6
+  BATF2           +6.224     3.95e-23    20    99.1
+  GBP7            +6.125     5.45e-17     9    90.7
+  HLA-DQA1        +6.024     1.31e-05     5    93.6
+  GBP1            +5.977     1.35e-58    20    99.5
+  GBP4            +5.954     9.62e-19    20    99.4
+  HLA-DOA         +5.875     3.14e-10     7    95.4
+  HLA-DQB1        +5.857     0.000248     6    97.4
+  C1orf68         +5.854       0.0238     2    94.6
+  HLA-DQA2        +5.848       0.0413     3    78.5
+  ACOD1           +5.808     1.61e-08     2    69.2
+  SLAMF8          +5.680     4.79e-14    10    94.5
+  C4B_2           +5.679     6.19e-06     6    93.3
+  HLA-DRB3        +5.633     2.03e-14     9    94.0
+  HLA-DRB1        +5.616     3.55e-14    12    96.4
+  HLA-DRB5        +5.423      0.00188     5    97.4
+  APOL3           +5.404      2.1e-25    18    98.8
+  PLAAT4          +5.377     5.36e-22    20    98.4
+  TEX29           +5.361     3.48e-14     9    91.7
+  PLA2G2A         +5.355     4.64e-84     4     0.0
+  ENSG00000241690    +5.219     1.42e-72     4     0.0
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE144484      16.87%
+  GSE209536      12.59%
+  GSE173902      12.18%
+  GSE233548      10.30%
+  GSE158434       9.90%
+  GSE99299        7.98%
+  GSE141585       7.53%
+  GSE163067       5.68%
+  GSE158814       5.44%
+  GSE161916       1.69%
+  GSE138209       1.19%
+  GSE197302       1.19%
+  GSE174244       1.17%
+  GSE215771       1.15%
+  GSE179354       1.12%
+  GSE135458       1.05%
+  GSE124939       0.84%
+  GSE161664       0.83%
+  GSE190634       0.76%
+  GSE228173       0.54%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  confronti totali          : 35
+  confronti difettosi       : 3 (8.6%)
+  studi con >=1 difetto     : GSE141585; GSE158814
+  peso di quegli studi      : 13.0%  (mediana 1/SE^2 per studio, normalizzata)
+  dettaglio dei confronti difettosi:
+    [GSE141585] SB-3CT + IFN-γ (1 replicate)  VS  Control
+        meccanismo: 1 secondo agente non isolato (SB-3CT presente nel trattato, assente nel controllo)
+    [GSE141585] SB-3CT + IFN-γ (2 replicates)  VS  Control
+        meccanismo: 1 secondo agente non isolato (SB-3CT presente nel trattato, assente nel controllo)
+    [GSE158814] C. trachomatis infection + IFN-γ (44hrs)  VS  untreated
+        meccanismo: 1 secondo agente non isolato (infezione C. trachomatis presente nel trattato, assente nel controllo)
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE124939] n=1 trattati vs 7 controlli
+      TRATTATO : Normal IFNg control_1
+      CONTROLLO: Normal control control_1
+  [GSE124939] n=2 trattati vs 7 controlli
+      TRATTATO : Normal IFNg control_4
+      CONTROLLO: Normal control control_1
+  [GSE124939] n=1 trattati vs 7 controlli
+      TRATTATO : Normal IFNg control_5
+      CONTROLLO: Normal control control_1
+  [GSE135458] n=2 trattati vs 1 controlli
+      TRATTATO : HCT116 E33Q MED12 knock-in IFN-gamma 24h
+      CONTROLLO: HCT116 E33Q MED12 knock-in untreated
+  [GSE135458] n=2 trattati vs 2 controlli
+      TRATTATO : HCT116 wild-type IFN-gamma 24h
+      CONTROLLO: HCT116 wild-type untreated
+  [GSE138209] n=2 trattati vs 2 controlli
+      TRATTATO : K562_DMSO_IFNg
+      CONTROLLO: K562_DMSO
+  [GSE138209] n=1 trattati vs 3 controlli
+      TRATTATO : K562_DMSO_IFNg
+      CONTROLLO: K562_DMSO
+  [GSE138209] n=3 trattati vs 3 controlli
+      TRATTATO : K562_iBET-BD1_IFNg
+      CONTROLLO: K562_iBET-BD1
+  [GSE138209] n=3 trattati vs 3 controlli
+      TRATTATO : K562_iBET-BD2_IFNg
+      CONTROLLO: K562_iBET-BD2
+  [GSE141585] n=3 trattati vs 3 controlli
+      TRATTATO : IFN-γ
+      CONTROLLO: Control
+  [GSE141585] n=1 trattati vs 3 controlli
+      TRATTATO : SB-3CT + IFN-γ (1 replicate)
+      CONTROLLO: Control
+  [GSE141585] n=2 trattati vs 3 controlli
+      TRATTATO : SB-3CT + IFN-γ (2 replicates)
+      CONTROLLO: Control
+  [GSE144484] n=3 trattati vs 3 controlli
+      TRATTATO : IFNG Stimulated
+      CONTROLLO: Control (Untreated)
+  [GSE158434] n=3 trattati vs 3 controlli
+      TRATTATO : Interferon-gamma
+      CONTROLLO: Mock
+  [GSE158814] n=2 trattati vs 2 controlli
+      TRATTATO : IFN-γ stimulation (44hrs)
+      CONTROLLO: untreated
+  [GSE158814] n=1 trattati vs 2 controlli
+      TRATTATO : C. trachomatis infection + IFN-γ (44hrs)
+      CONTROLLO: untreated
+  [GSE161664] n=3 trattati vs 4 controlli
+      TRATTATO : IFNg
+      CONTROLLO: Control
+  [GSE161916] n=1 trattati vs 3 controlli
+      TRATTATO : IFNg
+      CONTROLLO: untreated
+  [GSE161916] n=2 trattati vs 3 controlli
+      TRATTATO : IFNg
+      CONTROLLO: untreated
+  [GSE163067] n=2 trattati vs 3 controlli
+      TRATTATO : IFNg 50 IU 48h
+      CONTROLLO: No treatment
+  [GSE163067] n=1 trattati vs 3 controlli
+      TRATTATO : IFNg 50 IU 48h
+      CONTROLLO: No treatment
+  [GSE173902] n=2 trattati vs 2 controlli
+      TRATTATO : IFNg
+      CONTROLLO: untreated
+  [GSE174244] n=5 trattati vs 7 controlli
+      TRATTATO : IFNg
+      CONTROLLO: Control
+  [GSE174244] n=1 trattati vs 7 controlli
+      TRATTATO : IFNg
+      CONTROLLO: Control
+  [GSE179354] n=4 trattati vs 4 controlli
+      TRATTATO : IFNg
+      CONTROLLO: Control
+  [GSE190634] n=2 trattati vs 2 controlli
+      TRATTATO : Colonic Organoid Donor 1 IFNG 20ng/mL
+      CONTROLLO: Colonic Organoid Donor 1 Control
+  [GSE197302] n=3 trattati vs 3 controlli
+      TRATTATO : BM-MSC + IFN gamma 500 units
+      CONTROLLO: BM-MSC + Vehicle
+  [GSE209536] n=2 trattati vs 2 controlli
+      TRATTATO : IFN-gamma Stimulated Human TSC
+      CONTROLLO: Unstimulated Human TSC
+  [GSE215771] n=3 trattati vs 1 controlli
+      TRATTATO : A549 Wild-Type IFN-γ Treated
+      CONTROLLO: A549 Wild-Type Vehicle Control
+  [GSE215771] n=2 trattati vs 6 controlli
+      TRATTATO : A549 IRF1KO IFN-γ Treated
+      CONTROLLO: A549 IRF1KO Vehicle Control
+  [GSE228173] n=3 trattati vs 3 controlli
+      TRATTATO : Endothelial cells treated with IFNγ
+      CONTROLLO: Untreated endothelial cells
+  [GSE233548] n=3 trattati vs 3 controlli
+      TRATTATO : Huh7.5 + IFN-γ
+      CONTROLLO: Huh7.5 untreated
+  [GSE99299] n=3 trattati vs 2 controlli
+      TRATTATO : A375 non-targeting IFNg
+      CONTROLLO: A375 non-targeting vehicle
+  [GSE99299] n=3 trattati vs 2 controlli
+      TRATTATO : A375 Ptpn2sg3 IFNg
+      CONTROLLO: A375 Ptpn2sg3 vehicle
+  [GSE99299] n=1 trattati vs 2 controlli
+      TRATTATO : HT29 non-targeting IFNg
+      CONTROLLO: HT29 non-targeting vehicle

@@ -26,5 +26,11 @@ terzo pannello, cosi' la stessa figura non racconta due cose diverse.
 I geni \strong{senza} simbolo restano etichettati col proprio \code{gene_id} e non
 vengono fusi fra loro: sono geni diversi, e collassarli sarebbe peggio del
 problema che si sta risolvendo.
+
+Filtro di copertura (Task 4, 2026-08-05): i candidati all'etichetta passano
+da \code{\link[=.volcano_label_filtro]{.volcano_label_filtro()}} prima del ranking, cosi' un gene misurato in
+pochi studi (tau^2 stimato a zero, SE collassata, FDR minuscolo) non vince
+un posto fra i top-N al posto di un bersaglio biologico vero. Il filtro
+agisce SOLO qui, sulla scelta del nome: nessuna riga di \code{cp} viene toccata.
 }
 \keyword{internal}

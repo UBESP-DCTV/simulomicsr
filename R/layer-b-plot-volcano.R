@@ -71,7 +71,7 @@
   if (isTRUE(filtro$fallback)) {
     return(sprintf(
       paste0(" Label coverage filter (>= %d of %d studies) not applied: no ",
-             "significant gene met it in this cluster, so labels are drawn ",
+             "significant gene met it in this meta-analysis, so labels are drawn ",
              "from the full significant set."),
       filtro$k_min_richiesto, filtro$k_max))
   }
@@ -229,7 +229,7 @@
   # mentre il titolo della STESSA figura dice gia' "TGF-beta1 - 59 studi".
   # `entita_titolo` e' lo stesso ripiego dichiarato usato dal titolo sopra.
   caption <- sprintf(
-    "Volcano plot for cluster %s. %d of %d genes significant at FDR<%g (BH-corrected within cluster).",
+    "Volcano plot for %s. %d of %d genes significant at FDR<%g (Benjamini-Hochberg, within this meta-analysis).",
     entita_titolo, n_sig, n_total, fdr_thr
   )
   if (comprimi) {

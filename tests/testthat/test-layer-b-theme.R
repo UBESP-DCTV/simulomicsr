@@ -1,9 +1,9 @@
 test_that(".lb_titolo mette entita e numero di studi nel titolo", {
   expect_equal(simulomicsr:::.lb_titolo("TGF-beta1", 59L),
-               "TGF-beta1 · 59 studi")
-  expect_equal(simulomicsr:::.lb_titolo("TGF-beta1", 59L, "geni piu' forti"),
-               "TGF-beta1 · 59 studi · geni piu' forti")
-  expect_equal(simulomicsr:::.lb_titolo("X", 1L), "X · 1 studio")
+               "TGF-beta1 · 59 studies")
+  expect_equal(simulomicsr:::.lb_titolo("TGF-beta1", 59L, "strongest genes"),
+               "TGF-beta1 · 59 studies · strongest genes")
+  expect_equal(simulomicsr:::.lb_titolo("X", 1L), "X · 1 study")
 })
 
 test_that(".lb_titolo con k=NA non stampa 'NA studi' (minor, 2026-08-06)", {

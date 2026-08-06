@@ -251,52 +251,80 @@ cli_alert_success("Efficacia del pooling caricata: {length(cols)-1} colonne su {
 pooling_eff <- d[, cols, drop = FALSE]
 
 # -----------------------------------------------------------------------------
-# Confronti imperfetti (rilettura 2026-08-05): la funzione narrativa esiste
-# gia' (.lb_confronti_imperfetti_txt, R/layer-b-narrative.R) ma senza un
-# provider resta muta ("non misurato per questo gruppo") anche quando il
-# numero e' gia' sul disco -- lo stesso difetto del parametro morto
-# config$volcano_quota_asse (Task 9): una funzione scritta ma mai collegata.
-# Due fonti, granularita' diversa (docs/findings/2026-08-05-confronti-imperfetti.md):
-#   - verdetti-con-peso.csv: peso_citati per TUTTI i 214 gruppi rilettura.
-#   - 13-grandi-conteggio.json: n/tot confronti ESATTI, ma solo per i 13
-#     gruppi grandi (k>=15) dove la rilettura e' arrivata al conteggio.
-# Per i gruppi fuori dai 13 grandi si dichiara comunque il peso, con n/tot
-# "?" (gestito da .lb_confronti_imperfetti_txt) invece di "non misurato" --
-# un numero parziale dichiarato, non un buco silenzioso.
-confronti_dir <- "analysis/audit/2026-08-05-rilettura-214"
-peso_path  <- file.path(confronti_dir, "verdetti-con-peso.csv")
-conteggio_path <- file.path(confronti_dir, "13-grandi-conteggio.json")
-if (!file.exists(peso_path)) {
+# Confronti imperfetti: SOLO dove esiste un conteggio vero.
+#
+# CORREZIONE 2026-08-06. La versione precedente prendeva il peso da
+# `peso_citati` (analysis/audit/2026-08-05-rilettura-214/verdetti-con-peso.csv),
+# la quota degli studi CITATI nelle motivazioni della rilettura, estratti con
+# un'espressione regolare -- una stima che il progetto stesso dichiara cieca
+# (finding 2026-08-05 §5.4: mediana 87%, perche' raccoglie anche gli studi
+# citati come *puliti*). Per i tre case study fuori dai tredici gruppi grandi
+# quel numero veniva stampato accanto a due punti di domanda: «? confronti
+# imperfetti su ? (100,0% del peso stimato)» per IL1A. Un numero inaffidabile
+# con l'aspetto di una misura, in un documento da articolo.
+#
+# Ora la fonte e' una sola: `confronti-imperfetti-conteggio.json`, prodotto da
+# analysis/audit/2026-08-06-layer-b-v3/10-conteggio-e-peso.R, che tiene insieme
+#   - i tredici gruppi con k>=15 contati il 2026-08-05, e
+#   - i tre case study contati il 2026-08-06 (contatore + due critici
+#     simmetrici + arbitro),
+# e ricalcola il peso per TUTTI con la stessa regola: quota degli studi che il
+# CONTEGGIO identifica come portatori di almeno un confronto difettoso
+# (mediana 1/SE^2 per studio, normalizzata dentro il gruppo). Sui sedici
+# gruppi il numero cambia in sei casi -- IL1A da 100,0% a 10,1%, Parkinson da
+# 60,1% a 12,6%.
+#
+# Un gruppo senza conteggio non riceve un peso: .lb_confronti_imperfetti_txt()
+# dichiara "not measured for this group".
+conteggio_path <- "analysis/audit/2026-08-06-layer-b-v3/confronti-imperfetti-conteggio.json"
+if (!file.exists(conteggio_path)) {
   cli_alert_warning(paste0(
-    "Rilettura confronti imperfetti assente in {.path {peso_path}}: ",
-    "ogni scheda/narrativa dichiarera' \"non misurato\"."
+    "Conteggio dei confronti imperfetti assente in {.path {conteggio_path}}: ",
+    "ogni scheda dichiarera' \"not measured\"."
   ))
   confronti_imperfetti_provider <- NULL
 } else {
-  peso_tab <- utils::read.csv(peso_path, stringsAsFactors = FALSE)
-  conteggio_tab <- if (file.exists(conteggio_path)) {
-    jsonlite::fromJSON(conteggio_path, simplifyDataFrame = FALSE)
-  } else {
-    list()
-  }
-  conteggio_by_id <- stats::setNames(conteggio_tab, vapply(conteggio_tab, `[[`, character(1), "cluster_id"))
-  mancanti_confronti <- setdiff(selection_csv_loaded$cluster_id, peso_tab$cluster_id)
-  if (length(mancanti_confronti) > 0L) {
+  conteggio_tab <- jsonlite::fromJSON(conteggio_path, simplifyDataFrame = FALSE)
+  conteggio_by_id <- stats::setNames(
+    conteggio_tab, vapply(conteggio_tab, `[[`, character(1), "cluster_id"))
+  senza_conteggio <- setdiff(selection_csv_loaded$cluster_id, names(conteggio_by_id))
+  if (length(senza_conteggio) > 0L) {
     cli_alert_warning(paste0(
-      "Cluster della selezione assenti dalla rilettura confronti imperfetti ",
-      "(dichiareranno \"non misurato\"): {paste(mancanti_confronti, collapse = ', ')}"
+      "Cluster della selezione senza conteggio dei confronti imperfetti ",
+      "(dichiareranno \"not measured\"): {paste(senza_conteggio, collapse = ', ')}"
     ))
   }
   confronti_imperfetti_provider <- function(cluster_id) {
-    riga <- peso_tab[peso_tab$cluster_id == cluster_id, , drop = FALSE]
-    if (nrow(riga) == 0L) return(NULL)
-    grande <- conteggio_by_id[[cluster_id]]
-    list(
-      n    = if (!is.null(grande)) length(grande$confronti_difettosi) else NA_integer_,
-      tot  = if (!is.null(grande)) grande$n_confronti_totali else NA_integer_,
-      peso = riga$peso_citati[1L]
-    )
+    g <- conteggio_by_id[[cluster_id]]
+    if (is.null(g)) return(NULL)
+    list(n = g$n, tot = g$tot, peso = g$peso)
   }
+}
+
+# -----------------------------------------------------------------------------
+# Narrative firmate: una per case study, in analysis/layer-b-narratives/.
+#
+# Sono testo scientifico scritto e verificato (ricerca bibliografica, verifica
+# indipendente di ogni cifra contro deliverable e parquet, contestazione e
+# difesa), NON un testo generato dalle colonne del deliverable: quella strada
+# (.narrativa_bozza(), 2026-08-05) produceva nove testi formalmente corretti e
+# senza contenuto scientifico, ed e' stata ritirata.
+#
+# Un gruppo senza file non riceve un testo generico: il documento dichiara che
+# la narrativa non e' disponibile, e il run_metadata lo registra.
+narrative_dir <- "analysis/layer-b-narratives"
+narrative_provider <- function(cluster_id) {
+  p <- file.path(narrative_dir, sprintf("%s.md", cluster_id))
+  if (!file.exists(p)) return(NULL)
+  paste(readLines(p, warn = FALSE), collapse = "\n")
+}
+senza_narrativa <- selection_csv_loaded$cluster_id[
+  !file.exists(file.path(narrative_dir, sprintf("%s.md", selection_csv_loaded$cluster_id)))]
+if (length(senza_narrativa) > 0L) {
+  cli_alert_warning(
+    "Case study senza narrativa firmata: {paste(senza_narrativa, collapse = ', ')}")
+} else {
+  cli_alert_success("Narrative firmate presenti per tutti i {nrow(selection_csv_loaded)} case study.")
 }
 
 # -----------------------------------------------------------------------------
@@ -346,6 +374,7 @@ result <- build_layer_b_results(
   bersagli_attesi_provider      = bersagli_attesi_provider,
   pooling_effectiveness         = pooling_eff,
   confronti_imperfetti_provider = confronti_imperfetti_provider,
+  narrative_provider            = narrative_provider,
   config                        = layer_b_default_config()
 )
 wall <- as.numeric(difftime(Sys.time(), t0, units = "secs"))

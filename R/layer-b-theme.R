@@ -47,9 +47,9 @@
   studi <- if (is.na(k)) {
     NA_character_
   } else if (isTRUE(k == 1L)) {
-    "1 studio"
+    "1 study"
   } else {
-    sprintf("%d studi", as.integer(k))
+    sprintf("%d studies", as.integer(k))
   }
   parti <- c(as.character(entita), studi, extra)
   paste(parti[nzchar(parti) & !is.na(parti)], collapse = " · ")

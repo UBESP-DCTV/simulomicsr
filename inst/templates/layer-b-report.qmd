@@ -1,10 +1,10 @@
 ---
-title: "Layer B — meta-analisi selezionate, verificate riga per riga"
+title: "Cross-study transcriptomic meta-analyses: selected case studies"
 format:
   html:
     embed-resources: true
     toc: true
-    toc-depth: 3
+    toc-depth: 2
     code-fold: true
     fig-cap-location: bottom
 params:
@@ -15,109 +15,73 @@ execute:
   message: false
 ---
 
+```{=html}
+<style>
+/* Le tabelle dei valori per gene hanno otto colonne e, a larghezza piena,
+   uscivano dal contenitore del testo sovrapponendosi all'indice laterale.
+   Regola: la tabella non e' mai piu' larga della colonna di testo, e se il
+   contenuto non ci sta scorre DENTRO il proprio riquadro -- la pagina non
+   scorre mai in orizzontale. */
+.tabella-valori {
+  overflow-x: auto;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+}
+.tabella-valori table {
+  font-size: 0.82rem;
+  margin-bottom: 0;
+  width: auto;
+  max-width: 100%;
+}
+.tabella-valori th, .tabella-valori td {
+  padding: 0.2rem 0.5rem;
+  white-space: nowrap;
+}
+.tabella-valori caption {
+  white-space: normal;
+  font-size: 0.85rem;
+  caption-side: top;
+  text-align: left;
+}
+</style>
+```
+
 ```{r setup}
 library(simulomicsr)
 lb <- load_layer_b(params$layer_b_dir)
-```
 
-# Layer B — `r nrow(lb$selection_resolved)` meta-analisi, verificate riga per riga
-
-## Apertura
-
-**La pipeline misura biologia vera, non rumore.**
-
-Due gruppi di questo lavoro sono costruiti in modo completamente indipendente: uno
-raccoglie studi che trattano con **DHT (diidrotestosterone)**, un agonista del
-recettore degli androgeni; l'altro raccoglie studi che trattano con
-**enzalutamide**, un antagonista dello stesso recettore. Le due entita' sono
-diverse (`CHEBI:16330` contro `CHEBI:68534`), risolte da etichette diverse, poolate
-da studi in gran parte diversi. **Nulla nella pipeline sa che i due bersagli sono
-collegati.**
-
-Sui quattro bersagli canonici del recettore degli androgeni, i due gruppi danno il
-segno opposto atteso:
-
-| Gene        | DHT (agonista), log2FC | Enzalutamide (antagonista), log2FC |
-|:------------|------------------------:|-------------------------------------:|
-| **KLK3**    | +2,27                   | −1,60                                |
-| **TMPRSS2** | +1,78                   | −0,92                                |
-| **FKBP5**   | +2,32                   | −1,22                                |
-| **NKX3-1**  | +1,37                   | −1,24                                |
-
-Il controllo non si ferma ai quattro bersagli scelti a mano: **sui geni
-significativi in entrambi i gruppi (1.441), il 97,7% (1.408) ha segno opposto**, e
-la correlazione di Spearman fra i due profili di effetto e' **−0,938**. E' un
-controllo positivo e negativo insieme, misurato sui dati e non scelto per
-confermare un'attesa: se la pipeline stesse solo raggruppando rumore, due gruppi
-costruiti da studi diversi non produrrebbero un accordo di questa entita' sul segno
-di oltre 1.400 geni.
-
-::: {.callout-note}
-Fonte dei numeri: `analysis/audit/2026-08-02-fix/90-controllo-biologico.log`
-(script `90-controllo-biologico-v15.R`), deliverable v15. I due gruppi compaiono
-per intero, con tutte le figure e la scheda di verifica, piu' avanti in questo
-documento.
-:::
-
-## Il corpus
-
-Questo documento mostra ``r nrow(lb$selection_resolved)`` meta-analisi, scelte per
-coprire i casi rilevanti: il controllo a due bracci qui sopra, un gruppo ad alto k
-con eterogeneita' misurata, un patogeno, una citochina, una piccola molecola, una
-malattia, e un gruppo con un limite dichiarato (dominanza di un singolo studio,
-materiale misto, o un verdetto di incoerenza). Il deliverable completo, da cui
-queste meta-analisi sono estratte, e' molto piu' grande — questa figura mostra
-quanto, senza una tabella:
-
-```{r corpus-overview, results = "asis"}
-# La figura si genera QUI, al momento del render, leggendo il deliverable
-# annotato dal path registrato in run_metadata (collegato al build dal
-# Task 7bis): i numeri vengono dal file, mai ricopiati a mano -- un futuro
-# re-render riflette sempre il deliverable vero. Se il file non e'
-# raggiungibile da questo render (bundle scritto prima del collegamento,
-# disco esterno non montato, ...) si dichiara il motivo e si ripiega sulla
-# prosa statica sotto -- mai un buco silenzioso.
-overview <- simulomicsr:::.corpus_overview_from_bundle(lb)
-
-if (isTRUE(overview$disponibile)) {
-  cat(sprintf("\n![%s](%s)\n\n",
-              overview$plot$caption, basename(overview$plot$png_path)))
+# La sezione conclusiva sul corpus completo legge il deliverable annotato dal
+# path registrato in run_metadata: i numeri vengono dal file, mai ricopiati a
+# mano. Si calcola QUI, in testa, perche' l'introduzione dichiara quante
+# meta-analisi ci sono in tutto e da quante e' estratta la selezione: due
+# letture dello stesso file potrebbero divergere.
+corpus <- simulomicsr:::.corpus_overview_from_bundle(lb)
+n_totali_txt <- if (isTRUE(corpus$disponibile) && !is.null(corpus$tabelle)) {
+  as.character(corpus$tabelle$n_gruppi)
 } else {
-  cat(sprintf(paste0(
-    "\n::: {.callout-important}\n",
-    "La figura non e' disponibile per questo render: %s ",
-    "I numeri sotto sono citati da un log invece di essere ricalcolati dal ",
-    "deliverable annotato.\n:::\n\n"
-  ), overview$motivo))
-
-  cat(r"(
-- **214 meta-analisi** poolate (Stadio 4, run v15);
-- **344.996 geni significativi** in totale (FDR<0,05);
-- eterogeneita' mediana **I² = 72,1%**;
-- **203 coerenti, 11 incoerenti dichiarate** (nessun verdetto mancante);
-- **29 gruppi con k ≥ 10** studi poolati;
-- **122 (57%)** dei gruppi sono dominati da un solo studio (≥50% del peso per
-  inverso della varianza), e **78 (37%)** valgono meno di due studi efficaci
-  secondo il numero di Kish — non e' un errore del pooling (l'inverso della
-  varianza deve pesare cosi'), ma per un terzo del corpus il pooling da solo
-  aggiunge poco.
-
-Fonte: `analysis/audit/2026-08-02-fix/90-controllo-biologico.log`, sezione
-"Quadro d'insieme delle 214".
-)", "\n")
+  NA_character_
 }
 ```
 
-Le meta-analisi non mostrate qui restano nel deliverable CSV, con le stesse colonne
-(`k_effective`, `k_kish`, `I2_med`, `n_sig`, `coherence_verdict`, ...) usate per
-costruire le figure e le schede qui sotto.
+## Introduction
 
-## I case study
+This document presents `r nrow(lb$selection_resolved)` cross-study transcriptomic
+meta-analyses in full. Each one pools differential expression estimates from
+independent public studies that measure the same experimental contrast — a
+treatment against its own control, or disease tissue against healthy tissue —
+under a random-effects model.
 
-Per ciascuno dei gruppi seguenti, in quest'ordine: la scheda (che cosa e' stato
-confrontato, su quanti studi, quanto concordano), la narrativa (contesto, cosa si
-vede, limiti del gruppo — bozza, marcata come tale), le figure, e i numeri che le
-sostengono.
+The `r nrow(lb$selection_resolved)` were chosen to cover the situations a reader
+needs in order to judge the approach: a receptor agonist and its antagonist,
+assembled separately and never compared during their construction; a
+high-powered cytokine response; a pathogen; an interferon; a small-molecule
+inhibitor; a disease; and two groups whose stated limitations are part of what
+they are meant to show. `r if (!is.na(n_totali_txt)) sprintf("They are drawn from a set of %s meta-analyses, described in full in the final section.", n_totali_txt) else ""`
+
+For each case study, in this order: a summary card stating what was compared, on
+how many studies, and how much they agree; a narrative placing the result in its
+biological context, with references; the figures; and the underlying per-gene
+values.
 
 ```{r case-studies, results = "asis"}
 # Le immagini si referenziano con path relative (l'identificativo del gruppo
@@ -129,8 +93,7 @@ sostengono.
 # Le figure escluse dal bundle (config$figure_escluse, di default "ma" e
 # "heterogeneity") si leggono dal run_metadata invece di essere elencate a
 # mano qui: un elenco cablato e' esattamente il difetto gia' corretto una
-# volta nello stub di narrative.qmd (lista "## Figures" con file che non
-# esistono piu').
+# volta nello stub di narrative.qmd.
 figure_escluse <- unlist(lb$run_metadata$config$figure_escluse)
 if (is.null(figure_escluse)) figure_escluse <- character(0)
 candidati_figura <- setdiff(
@@ -138,22 +101,36 @@ candidati_figura <- setdiff(
   figure_escluse
 )
 
+# Le colonne della tabella per gene, rinominate per la lettura. `gene_label` e
+# `gene_id` non compaiono: il primo duplica `gene_symbol`, il secondo (l'ID
+# Ensembl) resta come ultima colonna perche' serve a chi verifica.
+COLONNE_VALORI <- c(
+  gene_symbol           = "Gene",
+  logFC_pool            = "log2 FC",
+  FDR_BH_within_cluster = "FDR",
+  k_effective           = "Studies",
+  SE_pool               = "SE",
+  tau2                  = "tau-squared",
+  I2                    = "I-squared (%)",
+  gene_id               = "Ensembl ID"
+)
+
+n_caso <- 0L
 for (cl_id in names(lb$cluster_bundles)) {
+  n_caso <- n_caso + 1L
   bundle <- lb$cluster_bundles[[cl_id]]
   label_paper <- lb$selection_resolved$label_paper[lb$selection_resolved$cluster_id == cl_id]
 
-  # Titolo con la SOLA etichetta leggibile: mai l'identificativo del gruppo,
-  # che e' la causa del titolo triplicato e dell'id grezzo nelle intestazioni
-  # documentati nel ridisegno.
-  cat(sprintf("\n\n### %s\n\n", label_paper))
+  # Titolo numerato (richiesta utente 2026-08-06), con la SOLA etichetta
+  # leggibile: mai l'identificativo interno del gruppo, che vive nel blocco
+  # PROVENANCE della scheda.
+  cat(sprintf("\n\n## Case study %d — %s\n\n", n_caso, label_paper))
 
   # Scheda + narrativa: gia' un unico file per costruzione (narrative.qmd,
-  # vedi .write_narrative_template() in R/layer-b-summary-card.R), perche'
-  # la scheda vi e' incorporata sotto "## Summary card". Qui si toglie solo
-  # il titolo che il file porta gia' (ripeterebbe questo stesso ### sopra)
-  # e si abbassano le sue intestazioni di due livelli, cosi' restano
-  # annidate sotto il case study invece di comparire come sorelle di
-  # "Apertura"/"Il corpus" nel sommario.
+  # vedi .write_narrative_template() in R/layer-b-summary-card.R). Qui si
+  # toglie il titolo che il file porta gia' (ripeterebbe il ## appena
+  # stampato) e si abbassano le sue intestazioni di un livello, cosi' restano
+  # annidate sotto il case study.
   narr_path <- file.path(bundle$cluster_dir, "narrative.qmd")
   if (file.exists(narr_path)) {
     narr_lines <- readLines(narr_path)
@@ -161,22 +138,15 @@ for (cl_id in names(lb$cluster_bundles)) {
     if (length(body_start) >= 2L) {
       narr_lines <- narr_lines[(body_start[2L] + 1L):length(narr_lines)]
     }
-    # Il titolo di primo livello ("# Case study: ...") ripeterebbe il ###
-    # appena stampato: tolto ovunque compaia, non solo alla prima riga --
-    # il ramo di ripiego (scheda precedente, quando il deliverable annotato
-    # non copre questo gruppo) porta un secondo titolo di primo livello con
-    # l'identificativo grezzo del gruppo dentro il testo della scheda.
     narr_lines <- narr_lines[!grepl("^#\\s", narr_lines)]
     # Rete di sicurezza esplicita: nessuna intestazione, in nessun ramo, puo'
-    # portare l'identificativo di QUESTO gruppo -- tolta per costruzione
-    # sopra, verificata di nuovo qui.
+    # portare l'identificativo interno di QUESTO gruppo.
     narr_lines <- narr_lines[!(grepl("^#+\\s", narr_lines) & grepl(cl_id, narr_lines, fixed = TRUE))]
-    narr_lines <- sub("^## ", "#### ", narr_lines)
+    narr_lines <- sub("^## ", "### ", narr_lines)
     cat(paste(narr_lines, collapse = "\n"), "\n\n")
   }
 
-  # Le figure vere (PNG), dopo scheda e narrativa: e' il passo "figure" del
-  # quartetto scheda -> narrativa -> figure -> numeri.
+  # Le figure vere (PNG), dopo scheda e narrativa.
   for (plot_name in candidati_figura) {
     abs_path <- file.path(bundle$cluster_dir, sprintf("%s.png", plot_name))
     rel_path <- sprintf("%s/%s.png", cl_id, plot_name)
@@ -186,96 +156,173 @@ for (cl_id in names(lb$cluster_bundles)) {
     }
   }
 
-  # Numeri verificabili: la tabella dei geni di punta dietro le figure. La
-  # caption di .build_top_gene_table() dichiara il filtro di copertura
-  # applicato (es. "Genes measured in fewer than 30 of 59 studies were
-  # excluded from ranking (839 genes)") -- senza passarla a kable() il
-  # lettore vede "i numeri verificabili" senza sapere che 839 geni sono stati
-  # esclusi dal ranking (rilievo I3, 2026-08-06).
+  # I valori per gene dietro le figure. La didascalia di
+  # .build_top_gene_table() dichiara il filtro di copertura applicato (es.
+  # "Genes measured in fewer than 30 of 59 studies were excluded from
+  # ranking") -- senza passarla a kable() il lettore vedrebbe la tabella senza
+  # sapere che dei geni sono stati esclusi dall'ordinamento.
   tg_csv <- file.path(bundle$cluster_dir, "top_genes.csv")
   if (file.exists(tg_csv) && file.info(tg_csv)$size > 0L) {
     df <- readr::read_csv(tg_csv, show_col_types = FALSE)
     if (nrow(df) > 0L) {
-      cat("\n#### Numeri verificabili\n\n")
+      cat("\n### Top-ranked genes\n\n")
+      colonne <- intersect(names(COLONNE_VALORI), names(df))
+      df_vista <- df[, colonne, drop = FALSE]
+      names(df_vista) <- unname(COLONNE_VALORI[colonne])
       caption_tg <- bundle$captions$top_gene_table %||%
         "Top differentially expressed genes."
-      print(knitr::kable(df, format = "html", digits = 3, caption = caption_tg))
+      cat("\n<div class=\"tabella-valori\">\n")
+      print(knitr::kable(df_vista, format = "html", digits = 3, caption = caption_tg))
+      cat("\n</div>\n\n")
     }
   }
 }
 ```
 
-## Appendice
+## The full set of meta-analyses
 
-### Metodo: come sono stati trovati i confronti imperfetti
+The case studies above are a selection. This section describes the whole set
+from which they are drawn, so that the selection can be judged against it.
 
-Per ognuna delle 214 meta-analisi si sono estratte le etichette **intere** (non
-troncate: la misura ha controllato la distribuzione delle lunghezze e ispezionato i
-picchi sospetti) dei confronti **effettivamente poolati**, non dei membri semplicemente
-censiti. Un primo agente per blocco di dieci gruppi ha dato un verdetto con una
-rubrica di nove meccanismi noti (clinico contro sperimentale, entita' che e' una
-classe, materiale incompatibile, combinazione non catturata, ...); un secondo
-agente per blocco ha ricevuto il compito esplicito di smentirlo; per i tredici
-gruppi con k ≥ 15 (i candidati alle figure) un terzo agente ha contato, confronto
-per confronto, quali sono difettosi. Il peso di ogni confronto imperfetto e' la sua
-quota nella somma degli inversi della varianza dentro il gruppo — lo stesso peso
-che il modello a effetti casuali usa per il pooling, quindi un limite superiore
-(attribuisce a un difetto tutto il peso dello studio coinvolto).
+```{r corpus-figura, results = "asis"}
+# La figura e le tabelle si generano QUI, al momento del render, leggendo il
+# deliverable annotato dal path registrato in run_metadata: i numeri vengono
+# dal file, mai ricopiati a mano -- un futuro re-render riflette sempre il
+# deliverable vero. Se il file non e' raggiungibile da questo render (disco
+# esterno non montato, bundle spostato, ...) si dichiara il motivo invece di
+# lasciare un buco silenzioso.
+if (isTRUE(corpus$disponibile)) {
+  cat(sprintf("\n![%s](%s)\n\n",
+              corpus$plot$caption, basename(corpus$plot$png_path)))
+} else {
+  cat(sprintf(paste0(
+    "\n::: {.callout-important}\n",
+    "This section could not be computed for this render: %s\n:::\n\n"
+  ), corpus$motivo))
+}
+```
 
-### I tredici gruppi grandi (k ≥ 15): confronti imperfetti e peso
+```{r corpus-tabelle, results = "asis"}
+tb <- corpus$tabelle
+if (!is.null(tb)) {
+  .n <- function(x) if (is.na(x)) "not available" else format(x, big.mark = ",")
+  .pc <- function(x, tot) if (is.na(x)) "" else sprintf(" (%.0f%%)", 100 * x / tot)
 
-| Gruppo | Confronti totali | Imperfetti | % confronti | % del peso |
-|:---|---:|---:|---:|---:|
-| SARS-CoV-2 | 98 | 3 | 3,1% | 0,7% |
-| ipossia | 58 | 3 | 5,2% | 1,3% |
-| JQ1 | 58 | 6 | 10,3% | 3,2% |
-| R1881 | 92 | 4 | 4,3% | 4,4% |
-| TGF-β1 | 145 | 29 | 20,0% | 6,7% |
-| cisplatino | 49 | 5 | 10,2% | 4,7% |
-| DHT | 44 | 3 | 6,8% | 12,0% |
-| enzalutamide | 45 | 4 | 8,9% | 12,1% |
-| IFN-γ | 35 | 3 | 8,6% | 13,0% |
-| TNF | 71 | 4 | 5,6% | 13,8% |
-| palbociclib | 39 | 11 | 28,2% | 16,1% |
-| LPS | 72 | 6 | 8,3% | 19,5% |
-| IL1B | 37 | 4 | 10,8% | 33,7% |
+  cat(sprintf(paste0(
+    "The set comprises **%s meta-analyses**, together reporting %s genes ",
+    "significant at FDR < 0.05. The median number of pooled studies is %s and ",
+    "the median heterogeneity is I-squared = %.1f%%.\n\n"),
+    .n(tb$n_gruppi), .n(tb$totale_geni_sig), .n(tb$mediana_k), tb$mediana_i2))
 
-**85 confronti imperfetti su 843 nei tredici gruppi grandi (10,1%)**, mediana per
-gruppo 8,6%. Su tutte le 214 meta-analisi: 101 senza difetti rilevati, 97 con
-almeno un confronto imperfetto, 16 incerti — il tasso cresce con la dimensione del
-gruppo (k 3-4: 47/115; k ≥ 15: 13/13), ed e' il motivo per cui questa misura **non
-e' un gate**: escluderebbe tutti i gruppi con potenza sufficiente per una figura.
+  cat(sprintf(paste0(
+    "Two properties are reported for the whole set because they bound what ",
+    "pooling can deliver. **%s%s of the meta-analyses are dominated by a ",
+    "single study**, which carries at least half of the inverse-variance ",
+    "weight, and **%s%s are worth fewer than two effective studies** by Kish's ",
+    "measure. This is not a defect of the estimator — inverse-variance ",
+    "weighting must behave this way when one study is far more precise than ",
+    "the others — but for those groups pooling adds little beyond the ",
+    "heaviest contribution, and the number is stated here rather than left to ",
+    "be discovered per group. A further %s%s pool in vitro models together ",
+    "with patient-derived tissue.\n\n"),
+    .n(tb$n_dominati), .pc(tb$n_dominati, tb$n_gruppi),
+    .n(tb$n_sotto_due_efficaci), .pc(tb$n_sotto_due_efficaci, tb$n_gruppi),
+    .n(tb$n_materiale_misto), .pc(tb$n_materiale_misto, tb$n_gruppi)))
 
-### Limiti dichiarati
+  cat("\n### Composition by entity type\n\n")
+  cat("\n<div class=\"tabella-valori\">\n")
+  print(knitr::kable(tb$composizione, format = "html", digits = 1,
+                     caption = paste0(
+                       "Entity type is read from the prefix of the contrast ",
+                       "identifier (ChEBI, HGNC, NCBI Taxonomy, MeSH). ",
+                       "Identifiers that were never resolved to an ontology ",
+                       "are reported as such rather than assigned to a class.")))
+  cat("\n</div>\n\n")
 
-- il tasso di gruppi con almeno un difetto **cresce con la dimensione del gruppo**,
-  quindi non e' una misura di qualita' comparabile fra gruppi di taglia diversa;
-- la colonna del peso e' un **limite superiore**: attribuisce a un difetto tutto il
-  peso dello studio coinvolto anche quando un solo confronto su piu' e' imperfetto;
-- il contestatore della seconda passata era spinto alla severita' dal proprio
-  compito (24 verdetti cambiati, tutti verso il peggio, zero assoluzioni): un
-  impianto con due critici simmetrici avrebbe probabilmente numeri diversi;
-- **un difetto non implica un risultato sbagliato** — il controllo DHT/enzalutamide
-  dell'Apertura ha 12,0%/12,1% di peso contaminato e produce comunque l'accordo piu'
-  forte di questo lavoro.
+  cat("\n### Power and single-study leverage, by group size\n\n")
+  cat("\n<div class=\"tabella-valori\">\n")
+  print(knitr::kable(tb$potenza, format = "html", digits = 1,
+                     caption = paste0(
+                       "The effective number of studies is Kish's measure, ",
+                       "(sum of weights)squared / sum of squared weights, on ",
+                       "the same inverse-variance weights used for pooling. ",
+                       "Single-study dominance is concentrated in the smaller ",
+                       "groups.")))
+  cat("\n</div>\n\n")
 
-Il dettaglio completo del metodo, la tassonomia dei difetti e i limiti della misura
-sono in `docs/findings/2026-08-05-confronti-imperfetti.md`.
+  cat("\n### The meta-analyses with the most pooled studies\n\n")
+  cat("\n<div class=\"tabella-valori\">\n")
+  print(knitr::kable(tb$piu_potenti, format = "html", digits = 1,
+                     caption = paste0(
+                       "Ordered by number of pooled studies. Significant ",
+                       "genes are counted at FDR < 0.05 within each ",
+                       "meta-analysis.")))
+  cat("\n</div>\n\n")
 
-### Provenienza del run
+  if (nrow(tb$incoerenti) > 0L) {
+    cat(sprintf("\n### Meta-analyses declared incoherent (%d)\n\n", nrow(tb$incoerenti)))
+    cat(paste0(
+      "These groups are reported rather than removed. In each of them at least ",
+      "one pooled comparison does not measure the contrast the group is named ",
+      "for; the reason is stated so that the estimate is read with it. One of ",
+      "them is included among the case studies above.\n\n"))
+    cat("\n<div class=\"tabella-valori\">\n")
+    print(knitr::kable(tb$incoerenti, format = "html",
+                       caption = "Groups whose pooled comparisons were found not to measure a single contrast."))
+    cat("\n</div>\n\n")
+  }
+}
+```
 
-Run id: ``r lb$run_metadata$run_id``
-Generated: ``r lb$run_metadata$timestamp``
-Package version: ``r lb$run_metadata$package_version``
+## Appendix
 
-I `r nrow(lb$selection_resolved)` gruppi mostrati in questo documento, con
-l'identificativo interno per la verifica incrociata col deliverable:
+### How comparisons with a design defect were counted
+
+For every meta-analysis, the **whole** labels — not truncated: the length
+distribution was measured and the suspicious peaks inspected one by one — of the
+comparisons that were **actually pooled**, rather than merely assembled, were
+extracted. A first reader per block of ten groups gave a verdict against a
+rubric of nine known mechanisms (clinical against experimental material, an
+entity that is a class rather than a molecule, an entity that is a reagent, a
+control that is not a control, incompatible materials, an uncaptured
+combination, the wrong entity, arms unmatched for time, donor, cell line,
+culture passage or anatomical site); a second reader per block was asked to
+refute the first. For the groups large enough to carry a figure, a third agent
+counted, comparison by comparison, which ones are defective.
+
+The weight of a defective comparison is its share of the sum of inverse
+variances within the group — the same weight the random-effects model uses for
+pooling — and is therefore an **upper bound**: it attributes to a defect the
+entire weight of the study involved, even when only one of that study's
+comparisons is affected.
+
+Where this count was not performed, the summary card says so. It does not
+report a weight without the count that gives it meaning.
+
+### Declared limitations of this measure
+
+- the proportion of groups containing at least one defective comparison **grows
+  with group size**, so it is not a quality measure that can be compared across
+  groups of different size;
+- the weight column is an **upper bound**, as described above;
+- a defect does not imply a wrong result. The agonist/antagonist pair among the
+  case studies above contains defective comparisons in both groups and still
+  produces the strongest agreement in this work.
+
+### Provenance
+
+Run identifier: `` `r lb$run_metadata$run_id` ``
+Generated: `` `r lb$run_metadata$timestamp` ``
+Package version: `` `r lb$run_metadata$package_version` ``
+
+The `r nrow(lb$selection_resolved)` groups shown in this document, with their
+internal identifiers for cross-checking against the pooled results:
 
 ```{r selection-table}
 DT::datatable(lb$selection_resolved, options = list(pageLength = 25))
 ```
 
-Configurazione usata per generare le figure:
+Configuration used to generate the figures:
 
 ```{r config-print}
 yaml::as.yaml(lb$run_metadata$config) |> cat()

@@ -1,0 +1,271 @@
+# FATTI VERIFICATI — enzalutamide  (cgroup_L5_c0d1d837)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : CHEBI:68534  (enzalutamide)
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 19
+- studi efficaci (Kish)      : 17.37  (91% del k nominale)
+- studio piu' pesante        : GSE147876 (7.02% del peso)
+- geni significativi (FDR<0,05): 3498 su 18452 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 17120)
+- I2 mediano                 : 87.88%
+- verdetto di coerenza       : coherent
+- materiale                  : omogeneo (4 modello in vitro / 0 tessuto di paziente / 15 non classificato)
+- studi censiti -> poolati   : 29 -> 19
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  KLK3       logFC=-1.600  FDR=0.000306  k=15  I2=99.9
+  TMPRSS2    logFC=-0.922  FDR=0.00751  k=18  I2=99.8
+  FKBP5      logFC=-1.223  FDR=0.00315  k=19  I2=99.8
+  NKX3-1     logFC=-1.239  FDR=0.000257  k=19  I2=99.8
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  COL22A1         +6.397     1.71e-61     2     0.0
+  OR5B12          -4.709     1.35e-50     3     0.0
+  ORM2            -5.891     4.38e-41     2    23.1
+  TMEM132C        +5.082     1.63e-24     2     7.0
+  CYP3A43         -0.979     1.18e-15     5     0.0
+  USP27X          +0.236     5.22e-15    18     0.0
+  ADGRL4          -3.383     2.24e-13     2     0.0
+  ALPK2           -2.429     2.24e-13    10    88.7
+  C1orf131        -0.173     6.61e-13    19    27.3
+  NKX2-8          +0.741     1.51e-12     7     0.0
+  SEC22C          -0.238     2.76e-12    19    80.3
+  CCNQ            -0.148     2.76e-12    19     0.1
+  KRT6A           -0.944     3.94e-12     3     0.0
+  HSPA1L          +1.156     1.23e-11     5     0.0
+  B3GNT3          +0.558     2.01e-11     8     0.0
+  MEIS2           +0.373     9.08e-11    13     0.0
+  DUSP18          +0.249     1.47e-09    19    11.1
+  URB1            -0.215     1.18e-08    19    79.9
+  CCDC40          -0.373     1.29e-08    19    69.8
+  DLEC1           -0.650     1.57e-08    13    61.3
+  HCK             +1.285     2.74e-08     5     0.0
+  DPP10           +0.602     1.15e-07     7     0.0
+  NUDT21          -0.080     1.17e-07    19    10.7
+  TSG101          +0.115     1.53e-07    19    46.4
+  MTCL1           -0.223     1.91e-07    18    58.3
+  UGT1A10         +3.874     2.69e-07     2    30.2
+  KCNQ1           +1.754     3.39e-07     2    13.3
+  CAT             +0.185     4.53e-07    19    81.0
+  TCEAL7          +3.157     5.25e-07     2    43.4
+  CHAMP1          -0.135     6.94e-07    19    53.7
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  COL22A1         +6.397     1.71e-61     2     0.0
+  TRIM49D2        -6.006     7.27e-05     9    98.5
+  ORM2            -5.891     4.38e-41     2    23.1
+  TMEM132C        +5.082     1.63e-24     2     7.0
+  OR5B12          -4.709     1.35e-50     3     0.0
+  SLC38A4         -4.232     0.000751    12    98.5
+  PNLIP           -3.975     0.000229     4    86.6
+  UGT1A10         +3.874     2.69e-07     2    30.2
+  KRT72           -3.845       0.0215     2    73.2
+  DGKK            -3.403     1.69e-05     6    91.9
+  ADGRL4          -3.383     2.24e-13     2     0.0
+  OR5B2           -3.372      0.00673     7    98.4
+  TMEM100         -3.288      0.00915     8    97.4
+  SLC6A19         +3.263      0.00763     7    97.8
+  DOK5            +3.230       0.0293     2    88.6
+  TCEAL7          +3.157     5.25e-07     2    43.4
+  DAB1            +3.134       0.0175     8    99.6
+  PGC             -3.039     0.000152    13    98.8
+  GHRHR           -2.956      0.00977     6    96.9
+  ADAM7           -2.955       0.0269    11    99.8
+  PTCRA           -2.857       0.0019     3    81.1
+  PLA2G5          -2.761     0.000444    12    97.5
+  ENSG00000283580    +2.637       0.0126     3     8.3
+  DSC1            -2.597       0.0046     9    98.2
+  CHRNA2          -2.581      0.00439    16    99.5
+  CPNE5           +2.578       0.0332     5    95.8
+  SDR9C7          -2.574      0.00211     7    95.0
+  ADH1C           -2.471       0.0353    13    98.9
+  ST6GALNAC1      -2.455      0.00637    16    99.8
+  ENSG00000289685    +2.452      0.00998     4    59.2
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE228587      14.59%
+  GSE234805      14.00%
+  GSE130246      12.64%
+  GSE225481      12.13%
+  GSE147876       9.53%
+  GSE202885       7.02%
+  GSE229805       5.40%
+  GSE252576       4.74%
+  GSE236286       3.24%
+  GSE184455       3.03%
+  GSE147250       2.50%
+  GSE215653       2.40%
+  GSE95413        2.03%
+  GSE182278       1.91%
+  GSE123766       1.75%
+  GSE252567       0.96%
+  GSE252566       0.91%
+  GSE244272       0.86%
+  GSE184427       0.37%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  confronti totali          : 45
+  confronti difettosi       : 4 (8.9%)
+  studi con >=1 difetto     : GSE225481
+  peso di quegli studi      : 12.1%  (mediana 1/SE^2 per studio, normalizzata)
+  dettaglio dei confronti difettosi:
+    [GSE225481] LAPC4_ENZA  VS  VCaP_DMSO
+        meccanismo: 9 linea diversa
+    [GSE225481] LAPC4_ENZA_rep  VS  VCaP_DMSO
+        meccanismo: 9 linea diversa
+    [GSE225481] LNCaP_ENZA  VS  VCaP_DMSO
+        meccanismo: 9 linea diversa
+    [GSE225481] LNCaP_ENZA_rep  VS  VCaP_DMSO
+        meccanismo: 9 linea diversa
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE123766] n=1 trattati vs 3 controlli
+      TRATTATO : Enzalutamide
+      CONTROLLO: Vehicle
+  [GSE123766] n=3 trattati vs 3 controlli
+      TRATTATO : Enzalutamide
+      CONTROLLO: Vehicle
+  [GSE130246] n=2 trattati vs 3 controlli
+      TRATTATO : LNCaP + enzalutamide
+      CONTROLLO: LNCaP + vehicle
+  [GSE130246] n=2 trattati vs 3 controlli
+      TRATTATO : LNCaP sgTLE3 + enzalutamide
+      CONTROLLO: LNCaP sgTLE3 + vehicle
+  [GSE147250] n=1 trattati vs 2 controlli
+      TRATTATO : LNCaP Enzalutamide Treated
+      CONTROLLO: LNCaP EtOH Vehicle Control
+  [GSE147250] n=1 trattati vs 2 controlli
+      TRATTATO : LNCaP Enzalutamide Treated
+      CONTROLLO: LNCaP DMSO Vehicle Control
+  [GSE147250] n=5 trattati vs 5 controlli
+      TRATTATO : LNCaP-RB1/TP53 Double Knockout Enzalutamide Treated
+      CONTROLLO: LNCaP-RB1/TP53 Double Knockout Vehicle Control
+  [GSE147876] n=3 trattati vs 3 controlli
+      TRATTATO : LNCaP Enzalutamide Treated
+      CONTROLLO: LNCaP Vehicle Control
+  [GSE147876] n=2 trattati vs 3 controlli
+      TRATTATO : MR42D Enzalutamide Treated
+      CONTROLLO: MR42D Vehicle Control
+  [GSE147876] n=2 trattati vs 1 controlli
+      TRATTATO : MR42F Enzalutamide Treated
+      CONTROLLO: MR42F Vehicle Control
+  [GSE147876] n=1 trattati vs 1 controlli
+      TRATTATO : MR42F Enzalutamide Treated
+      CONTROLLO: MR42F Vehicle Control
+  [GSE147876] n=3 trattati vs 2 controlli
+      TRATTATO : Prostate Carcinoma Cell Line Castration-Resistant Enzalutamide Treated
+      CONTROLLO: Prostate Carcinoma Cell Line Castration-Resistant Vehicle Control
+  [GSE182278] n=3 trattati vs 2 controlli
+      TRATTATO : LAPC-4 cells treated with Enzalutamide
+      CONTROLLO: LAPC-4 cells with Vehicle Control (None)
+  [GSE184427] n=2 trattati vs 2 controlli
+      TRATTATO : LuCaP 147 Enzalutamide
+      CONTROLLO: LuCaP 147 PBS Control
+  [GSE184427] n=1 trattati vs 2 controlli
+      TRATTATO : LuCaP 73 Enzalutamide
+      CONTROLLO: LuCaP 73 PBS Control
+  [GSE184427] n=2 trattati vs 1 controlli
+      TRATTATO : LuCaP 77 + Enzalutamide
+      CONTROLLO: LuCaP 77 + PBS
+  [GSE184427] n=2 trattati vs 2 controlli
+      TRATTATO : LuCaP 78 + Enzalutamide
+      CONTROLLO: LuCaP 78 PBS Control
+  [GSE184427] n=1 trattati vs 2 controlli
+      TRATTATO : LuCaP 81 + Enzalutamide (Castrated)
+      CONTROLLO: LuCaP 81 PBS Control
+  [GSE184427] n=1 trattati vs 2 controlli
+      TRATTATO : LuCaP 81 + Enzalutamide
+      CONTROLLO: LuCaP 81 PBS Control
+  [GSE184455] n=2 trattati vs 2 controlli
+      TRATTATO : HCC38 treated with Enzalutamide
+      CONTROLLO: HCC38 treated with Vehicle (DMSO)
+  [GSE202885] n=3 trattati vs 3 controlli
+      TRATTATO : 16D CRPC + Enzalutamide 24h
+      CONTROLLO: 16D CRPC + DMSO
+  [GSE202885] n=1 trattati vs 3 controlli
+      TRATTATO : 16D CRPC + Enzalutamide 48h
+      CONTROLLO: 16D CRPC + DMSO
+  [GSE202885] n=2 trattati vs 3 controlli
+      TRATTATO : 16D CRPC + Enzalutamide 96h
+      CONTROLLO: 16D CRPC + DMSO
+  [GSE202885] n=1 trattati vs 3 controlli
+      TRATTATO : 16D CRPC + Enzalutamide 144h
+      CONTROLLO: 16D CRPC + DMSO
+  [GSE202885] n=3 trattati vs 3 controlli
+      TRATTATO : 16D CRPC + Enzalutamide long-term
+      CONTROLLO: 16D CRPC + DMSO
+  [GSE215653] n=3 trattati vs 3 controlli
+      TRATTATO : Enzalutamide
+      CONTROLLO: DMSO
+  [GSE225481] n=2 trattati vs 1 controlli
+      TRATTATO : 22PC-EP_ENZA
+      CONTROLLO: 22PC-EP_DMSO
+  [GSE225481] n=2 trattati vs 2 controlli
+      TRATTATO : R1AD1_ENZA
+      CONTROLLO: R1AD1_DMSO
+  [GSE225481] n=1 trattati vs 2 controlli
+      TRATTATO : LAPC4_ENZA
+      CONTROLLO: VCaP_DMSO
+  [GSE225481] n=1 trattati vs 2 controlli
+      TRATTATO : LAPC4_ENZA_rep
+      CONTROLLO: VCaP_DMSO
+  [GSE225481] n=1 trattati vs 2 controlli
+      TRATTATO : LNCaP_ENZA
+      CONTROLLO: VCaP_DMSO
+  [GSE225481] n=1 trattati vs 2 controlli
+      TRATTATO : LNCaP_ENZA_rep
+      CONTROLLO: VCaP_DMSO
+  [GSE225481] n=1 trattati vs 2 controlli
+      TRATTATO : VCaP_ENZA
+      CONTROLLO: VCaP_DMSO
+  [GSE225481] n=1 trattati vs 2 controlli
+      TRATTATO : VCaP_ENZA_rep
+      CONTROLLO: VCaP_DMSO
+  [GSE228587] n=3 trattati vs 3 controlli
+      TRATTATO : LNCaP + ENZA
+      CONTROLLO: LNCaP + DMSO
+  [GSE229805] n=2 trattati vs 2 controlli
+      TRATTATO : Enzalutamide
+      CONTROLLO: Vehicle Control (DMSO)
+  [GSE234805] n=3 trattati vs 3 controlli
+      TRATTATO : Enzalutamide 20uM 8hr
+      CONTROLLO: Control
+  [GSE236286] n=2 trattati vs 2 controlli
+      TRATTATO : Enzalutamide
+      CONTROLLO: Vehicle
+  [GSE244272] n=3 trattati vs 3 controlli
+      TRATTATO : MDA-MB-453 + Enzalutamide
+      CONTROLLO: MDA-MB-453 + Vehicle
+  [GSE252566] n=3 trattati vs 3 controlli
+      TRATTATO : DKO LnCap/AR + Enzalutamide
+      CONTROLLO: DKO LnCap/AR + Control
+  [GSE252567] n=4 trattati vs 4 controlli
+      TRATTATO : Enzalutamide
+      CONTROLLO: Control
+  [GSE252576] n=3 trattati vs 2 controlli
+      TRATTATO : C42 cells treated with Enzalutamide (1 microMolar)
+      CONTROLLO: C42 cells treated with Vehicle
+  [GSE252576] n=3 trattati vs 3 controlli
+      TRATTATO : LNCaP cells treated with Enzalutamide (1 microMolar)
+      CONTROLLO: LNCaP cells treated with Vehicle
+  [GSE252576] n=3 trattati vs 4 controlli
+      TRATTATO : RV1 cells treated with Enzalutamide (1 microMolar)
+      CONTROLLO: RV1 cells treated with Vehicle
+  [GSE95413] n=14 trattati vs 15 controlli
+      TRATTATO : Enzalutamide treated VCaP xenografts
+      CONTROLLO: Vehicle treated VCaP xenografts

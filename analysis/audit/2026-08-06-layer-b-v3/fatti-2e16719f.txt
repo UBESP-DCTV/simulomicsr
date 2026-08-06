@@ -1,0 +1,663 @@
+# FATTI VERIFICATI — TGF-beta1  (cgroup_L5_2e16719f)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : HGNC:11766  (TGFB1)
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 59
+- studi efficaci (Kish)      : 54.47  (94% del k nominale)
+- studio piu' pesante        : GSE155832 (2.13% del peso)
+- geni significativi (FDR<0,05): 7909 su 19687 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 18096)
+- I2 mediano                 : 93.50%
+- verdetto di coerenza       : coherent
+- materiale                  : MISTO (11 modello in vitro / 4 tessuto di paziente / 44 non classificato)
+- studi censiti -> poolati   : 78 -> 59
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  SERPINE1   logFC=+2.429  FDR=6.94e-19  k=59  I2=99.9
+  CCN2       logFC=+1.690  FDR=6.02e-17  k=59  I2=99.7
+  SMAD7      logFC=+1.414  FDR=2.48e-22  k=59  I2=99.2
+  JUNB       logFC=+1.218  FDR=6e-19  k=58  I2=99.2
+  TGFBI      logFC=+2.154  FDR=4.1e-24  k=59  I2=99.8
+  COL1A1     logFC=+1.717  FDR=1.01e-11  k=59  I2=99.8
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  SPINK13         -1.830    2.05e-308     3     0.0
+  GZMK            +5.281     5.62e-70     2     6.0
+  SKIL            +1.619     2.96e-52    59    98.8
+  PMEPA1          +2.879     8.63e-39    59    99.7
+  CGB8            +4.526      1.1e-31    24    91.8
+  BHLHE40         +1.410     9.87e-30    59    99.3
+  KANK4           +5.171     1.18e-29    43    98.9
+  FSTL3           +1.663     7.77e-28    59    99.4
+  NOX4            +2.984     1.11e-26    47    98.5
+  XYLT1           +2.017     9.38e-26    52    99.4
+  NUAK1           +1.520     1.34e-25    59    99.3
+  MAP3K2          +0.607     1.34e-25    59    96.9
+  AMIGO2          +2.300     1.37e-25    59    99.7
+  IL11            +3.063      7.2e-25    59    99.4
+  CSGALNACT2      +0.601     9.85e-25    59    96.7
+  TGFBI           +2.154      4.1e-24    59    99.8
+  FOXS1           +4.866     4.32e-24    33    97.7
+  COL7A1          +1.874     4.47e-24    58    99.4
+  DCBLD1          +1.161     4.47e-24    59    99.1
+  GOPC            +0.689     2.08e-23    59    97.9
+  POMT2           +0.474     2.73e-23    59    95.3
+  VDR             +1.145     7.24e-23    58    98.9
+  ACMSD           -2.626     8.18e-23     3     0.0
+  CLTCL1          +1.267     1.96e-22    57    98.7
+  SMAD7           +1.414     2.48e-22    59    99.2
+  LEFTY2          +4.492     2.71e-22    16    82.1
+  LIMS1           +0.875     2.71e-22    59    98.9
+  LRRC15          +2.331     2.87e-22    47    99.2
+  APBB2           +0.815     3.07e-22    59    98.7
+  FNDC3B          +0.613     9.19e-22    59    98.3
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  CRNN            -5.696     1.64e-13     3    66.8
+  R3HDML          +5.539     8.75e-12    10    96.1
+  LEFTY1          +5.349      5.8e-05     6    96.6
+  GZMK            +5.281     5.62e-70     2     6.0
+  CXCL13          +5.185       0.0168     4    96.3
+  KANK4           +5.171     1.18e-29    43    98.9
+  FOXS1           +4.866     4.32e-24    33    97.7
+  AMTN            +4.768     5.06e-18    13    91.0
+  CD300C          +4.754     4.82e-09     3    30.4
+  PROK2           -4.751     4.01e-14     2     0.0
+  ORM1            +4.730       0.0434     5    99.4
+  KRTAP1-5        -4.628      0.00587     9    95.3
+  CCL8            -4.617     3.64e-18     5    11.8
+  CGB8            +4.526      1.1e-31    24    91.8
+  LEFTY2          +4.492     2.71e-22    16    82.1
+  KRTAP1-1        -4.400      0.00547     5    88.3
+  IGFL3           +4.216     7.18e-08    11    95.9
+  IHH             +4.194     0.000635     8    98.5
+  MCEMP1          +4.165     4.98e-05     3    47.9
+  CXCR1           +4.058      0.00199     3    84.7
+  COMP            +4.050     1.78e-15    44    99.2
+  ADH1B           -4.044     2.22e-11    36    99.7
+  EPYC            +4.008       0.0353     7    94.4
+  CRYAA           +3.959       0.0364     5    99.5
+  LILRB5          +3.934     6.29e-08     2     0.0
+  DCSTAMP         +3.934     0.000287     5    85.9
+  GARIN5B         +3.878     1.47e-09     6    77.4
+  CNTNAP4         -3.782       0.0203     3    92.5
+  LCE3E           +3.728      0.00904     6    98.5
+  CHRNA9          +3.693     1.68e-13    27    96.7
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE117329       6.44%
+  GSE102674       6.16%
+  GSE137779       5.45%
+  GSE232640       5.19%
+  GSE223682       5.10%
+  GSE179395       4.92%
+  GSE178518       4.79%
+  GSE128940       4.00%
+  GSE139963       3.98%
+  GSE155832       3.68%
+  GSE119606       3.29%
+  GSE85910        3.11%
+  GSE207291       3.04%
+  GSE247237       3.00%
+  GSE125577       2.87%
+  GSE262398       2.19%
+  GSE174490       2.16%
+  GSE179347       1.93%
+  GSE160671       1.88%
+  GSE225159       1.82%
+  GSE100574       1.73%
+  GSE215947       1.60%
+  GSE204868       1.40%
+  GSE199688       1.37%
+  GSE245621       1.18%
+  GSE161176       0.97%
+  GSE97358        0.89%
+  GSE188234       0.88%
+  GSE226239       0.87%
+  GSE232435       0.84%
+  GSE220038       0.81%
+  GSE119007       0.78%
+  GSE191279       0.76%
+  GSE134298       0.74%
+  GSE240476       0.70%
+  GSE252425       0.64%
+  GSE148767       0.63%
+  GSE145746       0.59%
+  GSE134595       0.59%
+  GSE163241       0.58%
+  GSE178714       0.55%
+  GSE96975        0.55%
+  GSE142417       0.53%
+  GSE202714       0.47%
+  GSE199225       0.45%
+  GSE88757        0.42%
+  GSE240898       0.42%
+  GSE264288       0.38%
+  GSE225549       0.36%
+  GSE134395       0.36%
+  GSE49159        0.36%
+  GSE123018       0.34%
+  GSE248794       0.32%
+  GSE154646       0.28%
+  GSE246391       0.25%
+  GSE136534       0.19%
+  GSE210984       0.16%
+  GSE201506       0.06%
+  GSE131998       0.01%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  confronti totali          : 145
+  confronti difettosi       : 29 (20.0%)
+  studi con >=1 difetto     : GSE139963; GSE161176; GSE210984; GSE240476; GSE97358
+  peso di quegli studi      : 6.7%  (mediana 1/SE^2 per studio, normalizzata)
+  dettaglio dei confronti difettosi:
+    [GSE139963] Hypoxia + TGF-β1  VS  PBS (Vehicle Control)
+        meccanismo: 1 secondo agente (Hypoxia non isolata; lo stesso studio ha anche TGF-β1 vs PBS pulito)
+    [GSE240476] Fibrotic tissue, TGFB+AR  VS  Fibrotic tissue, Vehicle
+        meccanismo: 1 secondo agente (AR non isolato)
+    [GSE240476] Fibrotic tissue, TGFB+AR  VS  Fibrotic tissue, Vehicle
+        meccanismo: 1 secondo agente (AR non isolato, duplicato n=2 vs 1)
+    [GSE240476] Non-fibrotic tissue, TGFB+AR  VS  Non-fibrotic tissue, Vehicle
+        meccanismo: 1 secondo agente (AR non isolato)
+    [GSE240476] Knee tissue, TGFB  VS  Non-fibrotic tissue, Vehicle
+        meccanismo: 2 sede diversa (ginocchio vs non-fibrotico)
+    [GSE240476] Knee tissue, TGFB  VS  Non-fibrotic tissue, Vehicle
+        meccanismo: 2 sede diversa (duplicato identico)
+    [GSE210984] Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 7 days  VS  Primary Mesenchymal Stem Cells (Control)
+        meccanismo: 2 materiale diverso (iPSC-derivate vs primarie)
+    [GSE210984] Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 14 days  VS  Primary Mesenchymal Stem Cells (Control)
+        meccanismo: 2 materiale diverso (iPSC-derivate vs primarie)
+    [GSE210984] Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 21 days  VS  Primary Mesenchymal Stem Cells (Control)
+        meccanismo: 2 materiale diverso (iPSC-derivate vs primarie)
+    [GSE210984] Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 7 days (Replicate)  VS  Primary Mesenchymal Stem Cells (Control)
+        meccanismo: 2 materiale diverso (iPSC-derivate vs primarie)
+    [GSE210984] Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 7 days  VS  Primary Mesenchymal Stem Cells (Vehicle Control)
+        meccanismo: 2 materiale diverso (iPSC-derivate vs primarie)
+    [GSE210984] Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 14 days  VS  Primary Mesenchymal Stem Cells (Vehicle Control)
+        meccanismo: 2 materiale diverso (iPSC-derivate vs primarie)
+    [GSE210984] Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 21 days  VS  Primary Mesenchymal Stem Cells (Vehicle Control)
+        meccanismo: 2 materiale diverso (iPSC-derivate vs primarie)
+    [GSE210984] Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 7 days (Replicate)  VS  Primary Mesenchymal Stem Cells (Vehicle Control)
+        meccanismo: 2 materiale diverso (iPSC-derivate vs primarie)
+    [GSE161176] Articular chondrocytes (ACh) - TGF-B1 - 7-days - Passage 24 - Donor 1  VS  Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Articular chondrocytes (ACh) - TGF-B1 - 3-days - Passage 21 - Donor 1  VS  Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Articular chondrocytes (ACh) - TGF-B1 - 7-days - Passage 15 - Donor 1  VS  Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Articular chondrocytes (ACh) - TGF-B1 - 21-days - Passage 27 - Donor 1  VS  Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Articular chondrocytes (ACh) - TGF-B1 - 1-days - Passage 9 - Donor 1  VS  Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Articular chondrocytes (ACh) - TGF-B1 - 3-days - Passage 12 - Donor 1  VS  Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Articular chondrocytes (ACh) - TGF-B1 - 1-day - Passage 19 - Donor 1  VS  Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Articular chondrocytes (ACh) - TGF-B1 - 7-days - Passage 25 - Donor 1  VS  Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Bone marrow stromal cell - TGF-B1 - 21-days - Passage 26 - Donor 1  VS  Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Bone marrow stromal cell - TGF-B1 - 7-days - Passage 12 - Donor 1  VS  Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Bone marrow stromal cell - TGF-B1 - 1-day - Passage 6 - Donor 1  VS  Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Bone marrow stromal cell - TGF-B1 - 21-days - Passage 24 - Donor 1  VS  Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Bone marrow stromal cell - TGF-B1 - 3-days - Passage 9 - Donor 1  VS  Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE161176] Bone marrow stromal cell - TGF-B1 - 1-day - Passage 8 - Donor 1  VS  Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+        meccanismo: 3 passaggio diverso
+    [GSE97358] TGFB1-treated Cardiac Fibroblasts (Chinese)  VS  Control Cardiac Fibroblasts (Malay)
+        meccanismo: 3 donatore/etnia diversa
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE100574] n=5 trattati vs 5 controlli
+      TRATTATO : TGF-β1
+      CONTROLLO: Vehicle Control
+  [GSE102674] n=4 trattati vs 4 controlli
+      TRATTATO : TGFβ1
+      CONTROLLO: -vehicle
+  [GSE117329] n=3 trattati vs 3 controlli
+      TRATTATO : TGFb1 24h
+      CONTROLLO: Untreated 24h
+  [GSE117329] n=3 trattati vs 3 controlli
+      TRATTATO : TGFb1 48h
+      CONTROLLO: Untreated 48h
+  [GSE117329] n=3 trattati vs 3 controlli
+      TRATTATO : TGFb1 72h
+      CONTROLLO: Untreated 72h
+  [GSE119007] n=1 trattati vs 3 controlli
+      TRATTATO : TGFβ-treated IPF HPFs
+      CONTROLLO: Untreated IPF HPFs
+  [GSE119007] n=2 trattati vs 3 controlli
+      TRATTATO : TGFβ-treated healthy HPFs
+      CONTROLLO: Untreated healthy HPFs
+  [GSE119606] n=1 trattati vs 3 controlli
+      TRATTATO : TGF-beta (2h)
+      CONTROLLO: Vehicle (2h)
+  [GSE119606] n=2 trattati vs 3 controlli
+      TRATTATO : TGF-beta (2h)
+      CONTROLLO: Vehicle (2h)
+  [GSE119606] n=3 trattati vs 3 controlli
+      TRATTATO : TGF-beta (48h)
+      CONTROLLO: Vehicle (48h)
+  [GSE123018] n=7 trattati vs 7 controlli
+      TRATTATO : TGFB1 45 mins
+      CONTROLLO: Untreated
+  [GSE123018] n=6 trattati vs 7 controlli
+      TRATTATO : TGFB1 2 hrs
+      CONTROLLO: Untreated
+  [GSE123018] n=7 trattati vs 7 controlli
+      TRATTATO : TGFB1 6 hrs
+      CONTROLLO: Untreated
+  [GSE123018] n=6 trattati vs 7 controlli
+      TRATTATO : TGFB1 24 hrs
+      CONTROLLO: Untreated
+  [GSE125577] n=1 trattati vs 3 controlli
+      TRATTATO : HIBEC P4-6 TGFb stimulated
+      CONTROLLO: HIBEC P4-6 Vehicle Control
+  [GSE125577] n=2 trattati vs 3 controlli
+      TRATTATO : Primary HIBEC TGFb stimulated
+      CONTROLLO: HIBEC P4-6 Vehicle Control
+  [GSE128940] n=3 trattati vs 3 controlli
+      TRATTATO : TGFB1 stimulated hepatic stellate cells
+      CONTROLLO: Untreated hepatic stellate cells
+  [GSE131998] n=6 trattati vs 5 controlli
+      TRATTATO : TGFb1-treated HPASMCs
+      CONTROLLO: Untreated HPASMCs
+  [GSE134298] n=3 trattati vs 2 controlli
+      TRATTATO : MCF10A TGF-beta-1 6 days
+      CONTROLLO: MCF10A 6 days
+  [GSE134395] n=4 trattati vs 8 controlli
+      TRATTATO : TGFb1 (Disease Model)
+      CONTROLLO: Untreated (Case)
+  [GSE134395] n=4 trattati vs 8 controlli
+      TRATTATO : TGFb1 (Case)
+      CONTROLLO: Untreated (Case)
+  [GSE134595] n=4 trattati vs 1 controlli
+      TRATTATO : Glioma Stem-Like Cells Stimulated with TGF-β
+      CONTROLLO: Glioma Stem-Like Cells Treated with ddH2O Vehicle Control
+  [GSE134595] n=4 trattati vs 3 controlli
+      TRATTATO : Glioma Stem-Like Cells Stimulated with TGF-β
+      CONTROLLO: Glioma Stem-Like Cells Treated with ddH2O Vehicle Control
+  [GSE136534] n=3 trattati vs 3 controlli
+      TRATTATO : TGFbeta
+      CONTROLLO: DMSO
+  [GSE137779] n=3 trattati vs 3 controlli
+      TRATTATO : TGFB
+      CONTROLLO: Control
+  [GSE139963] n=2 trattati vs 3 controlli
+      TRATTATO : Hypoxia + TGF-β1
+      CONTROLLO: PBS (Vehicle Control)
+  [GSE139963] n=3 trattati vs 3 controlli
+      TRATTATO : TGF-β1
+      CONTROLLO: PBS (Vehicle Control)
+  [GSE142417] n=6 trattati vs 9 controlli
+      TRATTATO : TGFB1 (VS007)
+      CONTROLLO: Control (VS007)
+  [GSE145746] n=3 trattati vs 3 controlli
+      TRATTATO : Non-Diabetic Donors - TGF-β1
+      CONTROLLO: Non-Diabetic Donors - Untreated
+  [GSE145746] n=4 trattati vs 4 controlli
+      TRATTATO : Diabetic Donors - TGF-β1
+      CONTROLLO: Diabetic Donors - No Treatment
+  [GSE148767] n=3 trattati vs 2 controlli
+      TRATTATO : M010817 TGF-β 48h
+      CONTROLLO: M010817 control
+  [GSE148767] n=1 trattati vs 2 controlli
+      TRATTATO : M010817 TGF-β 96h
+      CONTROLLO: M010817 control
+  [GSE148767] n=2 trattati vs 2 controlli
+      TRATTATO : M010817 TGF-β 96h (duplicate)
+      CONTROLLO: M010817 control
+  [GSE148767] n=1 trattati vs 3 controlli
+      TRATTATO : M921 TGF-β 48h
+      CONTROLLO: M921 control
+  [GSE148767] n=2 trattati vs 3 controlli
+      TRATTATO : M921 TGF-β 48h (duplicate)
+      CONTROLLO: M921 control
+  [GSE154646] n=2 trattati vs 2 controlli
+      TRATTATO : SW480_TET2_TGFB1
+      CONTROLLO: SW480_TET2_DMSO
+  [GSE154646] n=2 trattati vs 2 controlli
+      TRATTATO : SW480_vector_TGFB1
+      CONTROLLO: SW480_vector_DMSO
+  [GSE154646] n=1 trattati vs 2 controlli
+      TRATTATO : SW620_TET2_TGFB1
+      CONTROLLO: SW620_TET2_DMSO
+  [GSE154646] n=1 trattati vs 2 controlli
+      TRATTATO : SW620_vector_TGFB1
+      CONTROLLO: SW620_vector_DMSO
+  [GSE155832] n=4 trattati vs 4 controlli
+      TRATTATO : Lung epithelial cells, TGFbeta1, 72h
+      CONTROLLO: Lung epithelial cells, control, 72h
+  [GSE155832] n=4 trattati vs 4 controlli
+      TRATTATO : Lung epithelial cells co-culture, TGFbeta1, 72h, A549 partner
+      CONTROLLO: Lung epithelial cells co-culture, control, 72h, A549 partner
+  [GSE155832] n=4 trattati vs 4 controlli
+      TRATTATO : Lung fibroblasts, TGFbeta1, 72h
+      CONTROLLO: Lung fibroblasts, control, 72h
+  [GSE155832] n=4 trattati vs 4 controlli
+      TRATTATO : Lung fibroblasts co-culture, TGFbeta1, 72h, NHLF partner
+      CONTROLLO: Lung fibroblasts co-culture, control, 72h, NHLF partner
+  [GSE160671] n=4 trattati vs 4 controlli
+      TRATTATO : TGF-β 10 ng/mL 2h
+      CONTROLLO: Control without treatment
+  [GSE160671] n=4 trattati vs 4 controlli
+      TRATTATO : TGF-β 10 ng/mL 6h
+      CONTROLLO: Control without treatment
+  [GSE161176] n=1 trattati vs 1 controlli
+      TRATTATO : Articular chondrocytes (ACh) - TGF-B1 - 7-days - Passage 24 - Donor 1
+      CONTROLLO: Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+  [GSE161176] n=1 trattati vs 1 controlli
+      TRATTATO : Articular chondrocytes (ACh) - TGF-B1 - 3-days - Passage 21 - Donor 1
+      CONTROLLO: Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+  [GSE161176] n=7 trattati vs 1 controlli
+      TRATTATO : Articular chondrocytes (ACh) - TGF-B1 - 7-days - Passage 15 - Donor 1
+      CONTROLLO: Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+  [GSE161176] n=6 trattati vs 1 controlli
+      TRATTATO : Articular chondrocytes (ACh) - TGF-B1 - 21-days - Passage 27 - Donor 1
+      CONTROLLO: Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+  [GSE161176] n=8 trattati vs 1 controlli
+      TRATTATO : Articular chondrocytes (ACh) - TGF-B1 - 1-days - Passage 9 - Donor 1
+      CONTROLLO: Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+  [GSE161176] n=8 trattati vs 1 controlli
+      TRATTATO : Articular chondrocytes (ACh) - TGF-B1 - 3-days - Passage 12 - Donor 1
+      CONTROLLO: Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+  [GSE161176] n=1 trattati vs 1 controlli
+      TRATTATO : Articular chondrocytes (ACh) - TGF-B1 - 1-day - Passage 19 - Donor 1
+      CONTROLLO: Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+  [GSE161176] n=1 trattati vs 1 controlli
+      TRATTATO : Articular chondrocytes (ACh) - TGF-B1 - 7-days - Passage 25 - Donor 1
+      CONTROLLO: Articular chondrocytes (ACh) - vehicle_only - Passage 6 - Donor 1
+  [GSE161176] n=6 trattati vs 9 controlli
+      TRATTATO : Bone marrow stromal cell - TGF-B1 - 21-days - Passage 26 - Donor 1
+      CONTROLLO: Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+  [GSE161176] n=12 trattati vs 9 controlli
+      TRATTATO : Bone marrow stromal cell - TGF-B1 - 7-days - Passage 12 - Donor 1
+      CONTROLLO: Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+  [GSE161176] n=9 trattati vs 9 controlli
+      TRATTATO : Bone marrow stromal cell - TGF-B1 - 1-day - Passage 6 - Donor 1
+      CONTROLLO: Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+  [GSE161176] n=3 trattati vs 9 controlli
+      TRATTATO : Bone marrow stromal cell - TGF-B1 - 21-days - Passage 24 - Donor 1
+      CONTROLLO: Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+  [GSE161176] n=11 trattati vs 9 controlli
+      TRATTATO : Bone marrow stromal cell - TGF-B1 - 3-days - Passage 9 - Donor 1
+      CONTROLLO: Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+  [GSE161176] n=3 trattati vs 9 controlli
+      TRATTATO : Bone marrow stromal cell - TGF-B1 - 1-day - Passage 8 - Donor 1
+      CONTROLLO: Bone marrow stromal cell - vehicle_only - Passage 3 - Donor 1
+  [GSE163241] n=1 trattati vs 3 controlli
+      TRATTATO : UPCI-SCC-040 passage 12, TGF-β1 48h
+      CONTROLLO: UPCI-SCC-040 passage 12, no TGF-β1 treatment (control)
+  [GSE163241] n=2 trattati vs 3 controlli
+      TRATTATO : UPCI-SCC-040 passage 13, TGF-β1 72h
+      CONTROLLO: UPCI-SCC-040 passage 12, no TGF-β1 treatment (control)
+  [GSE163241] n=1 trattati vs 3 controlli
+      TRATTATO : UPCI-SCC-040 passage 8, TGF-β1 48h
+      CONTROLLO: UPCI-SCC-040 passage 12, no TGF-β1 treatment (control)
+  [GSE163241] n=1 trattati vs 3 controlli
+      TRATTATO : UPCI-SCC-040 passage 13, TGF-β1 48h
+      CONTROLLO: UPCI-SCC-040 passage 12, no TGF-β1 treatment (control)
+  [GSE163241] n=1 trattati vs 3 controlli
+      TRATTATO : UPCI-SCC-040 passage 12, TGF-β1 72h
+      CONTROLLO: UPCI-SCC-040 passage 12, no TGF-β1 treatment (control)
+  [GSE174490] n=4 trattati vs 3 controlli
+      TRATTATO : TGFBeta
+      CONTROLLO: Untreated
+  [GSE178518] n=3 trattati vs 2 controlli
+      TRATTATO : Vehicle A + TGFb
+      CONTROLLO: Vehicle A
+  [GSE178714] n=3 trattati vs 3 controlli
+      TRATTATO : Wild-type, TGFB, 1h
+      CONTROLLO: Wild-type, untreated, 1h
+  [GSE178714] n=2 trattati vs 2 controlli
+      TRATTATO : Wild-type, TGFB, 24h
+      CONTROLLO: Wild-type, untreated, 24h
+  [GSE178714] n=3 trattati vs 2 controlli
+      TRATTATO : SMAD2/SMAD3 KO, TGFB, 1h
+      CONTROLLO: SMAD2/SMAD3 KO, untreated, 1h
+  [GSE178714] n=3 trattati vs 1 controlli
+      TRATTATO : SMAD2/SMAD3 KO, TGFB, 24h
+      CONTROLLO: SMAD2/SMAD3 KO, untreated, 24h
+  [GSE178714] n=1 trattati vs 2 controlli
+      TRATTATO : SMAD2/SMAD3 KO, TGFB, 1h
+      CONTROLLO: SMAD2/SMAD3 KO, untreated, 1h
+  [GSE178714] n=1 trattati vs 1 controlli
+      TRATTATO : SMAD2/SMAD3 KO, TGFB, 24h
+      CONTROLLO: SMAD2/SMAD3 KO, untreated, 24h
+  [GSE179347] n=3 trattati vs 14 controlli
+      TRATTATO : HepG2 TGF-B1
+      CONTROLLO: HepG2 CONTROL (EMPTY EMEM MEDIUM)
+  [GSE179347] n=3 trattati vs 2 controlli
+      TRATTATO : HMCL-7304 cells treated with TGF-B1
+      CONTROLLO: HMCL-7304 CONTROL (EMPTY EMEM MEDIUM)
+  [GSE179347] n=2 trattati vs 9 controlli
+      TRATTATO : SGBS cells treated with TGF-B1
+      CONTROLLO: SGBS CONTROL (EMPTY EMEM MEDIUM)
+  [GSE179395] n=5 trattati vs 6 controlli
+      TRATTATO : TGF-β1
+      CONTROLLO: Unstimulated Control
+  [GSE188234] n=5 trattati vs 5 controlli
+      TRATTATO : TGF-beta1
+      CONTROLLO: Control
+  [GSE191279] n=4 trattati vs 8 controlli
+      TRATTATO : Healthy, 13 days of culture, TGF-β1
+      CONTROLLO: Healthy, 13 days of culture, no treatment
+  [GSE191279] n=1 trattati vs 8 controlli
+      TRATTATO : Healthy, 13 days of culture, TGF-β1
+      CONTROLLO: Healthy, 13 days of culture, no treatment
+  [GSE191279] n=11 trattati vs 8 controlli
+      TRATTATO : Healthy, 13 days of culture, TGF-β1
+      CONTROLLO: Healthy, 13 days of culture, no treatment
+  [GSE199225] n=5 trattati vs 4 controlli
+      TRATTATO : PCOS, tgfb
+      CONTROLLO: PCOS, no treatment
+  [GSE199688] n=3 trattati vs 3 controlli
+      TRATTATO : TGF-beta1
+      CONTROLLO: Untreated
+  [GSE201506] n=12 trattati vs 12 controlli
+      TRATTATO : TGF-Beta1
+      CONTROLLO: Control
+  [GSE202714] n=3 trattati vs 3 controlli
+      TRATTATO : Human Adult Primary Cardiac Fibroblasts TGF-Beta1 Activated
+      CONTROLLO: Human Adult Primary Cardiac Fibroblasts Control
+  [GSE202714] n=3 trattati vs 3 controlli
+      TRATTATO : Human Fetal Primary Cardiac Fibroblasts TGF-Beta1 Activated
+      CONTROLLO: Human Fetal Primary Cardiac Fibroblasts Control
+  [GSE204868] n=3 trattati vs 3 controlli
+      TRATTATO : TGF-beta (triplicate)
+      CONTROLLO: Control (triplicate)
+  [GSE207291] n=2 trattati vs 2 controlli
+      TRATTATO : TGF-β1 stimulated
+      CONTROLLO: Vehicle control
+  [GSE210984] n=1 trattati vs 1 controlli
+      TRATTATO : Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 7 days
+      CONTROLLO: Primary Mesenchymal Stem Cells (Control)
+  [GSE210984] n=3 trattati vs 1 controlli
+      TRATTATO : Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 14 days
+      CONTROLLO: Primary Mesenchymal Stem Cells (Control)
+  [GSE210984] n=3 trattati vs 1 controlli
+      TRATTATO : Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 21 days
+      CONTROLLO: Primary Mesenchymal Stem Cells (Control)
+  [GSE210984] n=2 trattati vs 1 controlli
+      TRATTATO : Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 7 days (Replicate)
+      CONTROLLO: Primary Mesenchymal Stem Cells (Control)
+  [GSE210984] n=1 trattati vs 3 controlli
+      TRATTATO : Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 7 days
+      CONTROLLO: Primary Mesenchymal Stem Cells (Vehicle Control)
+  [GSE210984] n=3 trattati vs 3 controlli
+      TRATTATO : Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 14 days
+      CONTROLLO: Primary Mesenchymal Stem Cells (Vehicle Control)
+  [GSE210984] n=3 trattati vs 3 controlli
+      TRATTATO : Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 21 days
+      CONTROLLO: Primary Mesenchymal Stem Cells (Vehicle Control)
+  [GSE210984] n=2 trattati vs 3 controlli
+      TRATTATO : Mesenchymal Stem Cells (iPSC-derived) treated with TGF-β for 7 days (Replicate)
+      CONTROLLO: Primary Mesenchymal Stem Cells (Vehicle Control)
+  [GSE215947] n=3 trattati vs 3 controlli
+      TRATTATO : TGF-B
+      CONTROLLO: Control
+  [GSE220038] n=6 trattati vs 9 controlli
+      TRATTATO : Wild-type + TGFB1
+      CONTROLLO: Wild-type + DMSO
+  [GSE220038] n=2 trattati vs 9 controlli
+      TRATTATO : Wild-type + TGFB1 (1 hour)
+      CONTROLLO: Wild-type + DMSO
+  [GSE223682] n=3 trattati vs 2 controlli
+      TRATTATO : TGFB1-treated HBEC3KT
+      CONTROLLO: PBS-treated HBEC3KT
+  [GSE225159] n=3 trattati vs 3 controlli
+      TRATTATO : MRC-5 cells treated with TGF-Beta1
+      CONTROLLO: MRC-5 cells treated with DMSO
+  [GSE225549] n=2 trattati vs 3 controlli
+      TRATTATO : Post-COVID Fibrosis TGFB
+      CONTROLLO: Post-COVID Fibrosis Control
+  [GSE225549] n=2 trattati vs 3 controlli
+      TRATTATO : IPF TGFB
+      CONTROLLO: IPF Control
+  [GSE225549] n=1 trattati vs 3 controlli
+      TRATTATO : Healthy Donor TGFB
+      CONTROLLO: Healthy Donor Control
+  [GSE226239] n=3 trattati vs 3 controlli
+      TRATTATO : TGF-Beta1
+      CONTROLLO: Control
+  [GSE232435] n=2 trattati vs 3 controlli
+      TRATTATO : TGF-Beta
+      CONTROLLO: Control (Vehicle Only)
+  [GSE232435] n=1 trattati vs 3 controlli
+      TRATTATO : TGF-Beta (8h)
+      CONTROLLO: Control (Vehicle Only)
+  [GSE232640] n=4 trattati vs 4 controlli
+      TRATTATO : TGFb treated LX2 cells
+      CONTROLLO: Untreated LX2 cells
+  [GSE240476] n=1 trattati vs 1 controlli
+      TRATTATO : Fibrotic tissue, TGFB+AR
+      CONTROLLO: Fibrotic tissue, Vehicle
+  [GSE240476] n=3 trattati vs 1 controlli
+      TRATTATO : Fibrotic tissue, TGFB
+      CONTROLLO: Fibrotic tissue, Vehicle
+  [GSE240476] n=2 trattati vs 1 controlli
+      TRATTATO : Fibrotic tissue, TGFB+AR
+      CONTROLLO: Fibrotic tissue, Vehicle
+  [GSE240476] n=1 trattati vs 3 controlli
+      TRATTATO : Non-fibrotic tissue, TGFB
+      CONTROLLO: Non-fibrotic tissue, Vehicle
+  [GSE240476] n=3 trattati vs 3 controlli
+      TRATTATO : Non-fibrotic tissue, TGFB+AR
+      CONTROLLO: Non-fibrotic tissue, Vehicle
+  [GSE240476] n=1 trattati vs 3 controlli
+      TRATTATO : Knee tissue, TGFB
+      CONTROLLO: Non-fibrotic tissue, Vehicle
+  [GSE240476] n=1 trattati vs 3 controlli
+      TRATTATO : Knee tissue, TGFB
+      CONTROLLO: Non-fibrotic tissue, Vehicle
+  [GSE240898] n=2 trattati vs 3 controlli
+      TRATTATO : A549 cells treated with TGF-beta1
+      CONTROLLO: A549 naive cells
+  [GSE240898] n=3 trattati vs 3 controlli
+      TRATTATO : H1944 cells treated with TGF-beta1
+      CONTROLLO: H1944 naive cells
+  [GSE245621] n=2 trattati vs 2 controlli
+      TRATTATO : PANC-1, TGFbeta
+      CONTROLLO: PANC-1, no treatment
+  [GSE245621] n=2 trattati vs 2 controlli
+      TRATTATO : PANC-1, TGFbeta, proliferating
+      CONTROLLO: PANC-1, no treatment
+  [GSE246391] n=6 trattati vs 2 controlli
+      TRATTATO : TGF-beta1 stimulated
+      CONTROLLO: Untreated
+  [GSE246391] n=6 trattati vs 4 controlli
+      TRATTATO : TGF-beta1 stimulated
+      CONTROLLO: Untreated (additional replicates)
+  [GSE247237] n=3 trattati vs 3 controlli
+      TRATTATO : macromolecular crowding model + DHACM + TGFβ1
+      CONTROLLO: macromolecular crowding model + basal media
+  [GSE247237] n=1 trattati vs 3 controlli
+      TRATTATO : macromolecular crowding model + TGFβ1
+      CONTROLLO: macromolecular crowding model + basal media
+  [GSE248794] n=2 trattati vs 2 controlli
+      TRATTATO : Wild-type, TGF-beta1, 0 hours
+      CONTROLLO: Wild-type, PBS, 0 hours
+  [GSE248794] n=1 trattati vs 2 controlli
+      TRATTATO : CD26 knockdown, TGF-beta1, 0 hours
+      CONTROLLO: CD26 knockdown, PBS
+  [GSE248794] n=1 trattati vs 2 controlli
+      TRATTATO : CD26 knockdown, TGF-beta1, 1 hour
+      CONTROLLO: CD26 knockdown, PBS
+  [GSE248794] n=1 trattati vs 2 controlli
+      TRATTATO : CD26 knockdown, TGF-beta1, 2 hours
+      CONTROLLO: CD26 knockdown, PBS
+  [GSE248794] n=1 trattati vs 2 controlli
+      TRATTATO : CD26 knockdown, TGF-beta1, 3 hours
+      CONTROLLO: CD26 knockdown, PBS
+  [GSE252425] n=3 trattati vs 3 controlli
+      TRATTATO : TGFBeta
+      CONTROLLO: Vehicle
+  [GSE262398] n=3 trattati vs 3 controlli
+      TRATTATO : TGFb-treated SAEC
+      CONTROLLO: DMSO-treated SAEC
+  [GSE264288] n=5 trattati vs 6 controlli
+      TRATTATO : Fibroblasts, TGFβ
+      CONTROLLO: Fibroblasts, vehicle
+  [GSE264288] n=5 trattati vs 5 controlli
+      TRATTATO : Fibroblasts, CRISPLD2 knockdown, TGFβ
+      CONTROLLO: Fibroblasts, CRISPLD2 knockdown, vehicle
+  [GSE264288] n=5 trattati vs 2 controlli
+      TRATTATO : Fibroblasts, CRISPLD2 up-regulate, TGFβ
+      CONTROLLO: Fibroblasts, CRISPLD2 up-regulate, vehicle
+  [GSE264288] n=1 trattati vs 1 controlli
+      TRATTATO : Fibroblasts, hc3, TGFβ
+      CONTROLLO: Fibroblasts, hc3, vehicle
+  [GSE264288] n=1 trattati vs 1 controlli
+      TRATTATO : Fibroblasts, hc5, TGFβ
+      CONTROLLO: Fibroblasts, hc5, vehicle
+  [GSE264288] n=1 trattati vs 1 controlli
+      TRATTATO : Fibroblasts, hc4, TGFβ
+      CONTROLLO: Fibroblasts, hc4, vehicle
+  [GSE49159] n=2 trattati vs 2 controlli
+      TRATTATO : TGFbeta
+      CONTROLLO: Control (skin)
+  [GSE85910] n=2 trattati vs 2 controlli
+      TRATTATO : TGFbeta
+      CONTROLLO: Vehicle Control
+  [GSE88757] n=2 trattati vs 3 controlli
+      TRATTATO : PANC-1 + TGFb 72h
+      CONTROLLO: PANC-1 + Vehicle 72h
+  [GSE88757] n=1 trattati vs 3 controlli
+      TRATTATO : PANC-1 + TGFb 72h (duplicate)
+      CONTROLLO: PANC-1 + Vehicle 72h
+  [GSE96975] n=4 trattati vs 10 controlli
+      TRATTATO : TGFB1 Stimulated Cardiac Fibroblasts
+      CONTROLLO: Untreated Cardiac Fibroblasts
+  [GSE97358] n=2 trattati vs 4 controlli
+      TRATTATO : TGFB1-treated Cardiac Fibroblasts (Chinese)
+      CONTROLLO: Control Cardiac Fibroblasts (Malay)
+  [GSE97358] n=13 trattati vs 5 controlli
+      TRATTATO : TGFB1-treated Cardiac Fibroblasts (Chinese)
+      CONTROLLO: Control Cardiac Fibroblasts (Chinese)
+  [GSE97358] n=10 trattati vs 4 controlli
+      TRATTATO : TGFB1-treated Cardiac Fibroblasts (Malay)
+      CONTROLLO: Control Cardiac Fibroblasts (Malay)
+  [GSE97358] n=1 trattati vs 5 controlli
+      TRATTATO : TGFB1-treated Cardiac Fibroblasts (Chinese)
+      CONTROLLO: Control Cardiac Fibroblasts (Chinese)
+  [GSE97358] n=58 trattati vs 75 controlli
+      TRATTATO : TGFB1-treated Cardiac Fibroblasts (Indian)
+      CONTROLLO: Control Cardiac Fibroblasts (Indian)

@@ -141,7 +141,7 @@
       svg_path = NA_character_,
       titolo = NA_character_,
       genes_mostrati = character(0),
-      caption = sprintf("Forest plot N/A for cluster (method=%s): no per-study DE rows found.", method)
+      caption = sprintf("Forest plot not available (method=%s): no per-study estimates found.", method)
     ))
   }
 
@@ -179,7 +179,7 @@
       svg_path = NA_character_,
       titolo = NA_character_,
       genes_mostrati = character(0),
-      caption = sprintf("Forest plot N/A: no genes significant at FDR<%g for cluster.", fdr_thr)
+      caption = sprintf("Forest plot not available: no genes significant at FDR<%g.", fdr_thr)
     ))
   }
 
@@ -421,7 +421,7 @@
     bottom_desc <- if (is.na(gene_rap)) {
       paste0(
         "omitted -- no gene among the top targets is measured in all studies of ",
-        "this cluster; showing a low-coverage gene here would misrepresent ",
+        "this meta-analysis; showing a low-coverage gene here would misrepresent ",
         "cross-study consistency"
       )
     } else if (layout_pan$label_stride > 1L) {

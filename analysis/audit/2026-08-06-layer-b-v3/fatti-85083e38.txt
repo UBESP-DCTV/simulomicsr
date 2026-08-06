@@ -1,0 +1,201 @@
+# FATTI VERIFICATI — Parkinson disease  (cgroup_L5_85083e38)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : MeSH:D010300  (Parkinson Disease)
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 10
+- studi efficaci (Kish)      : 1.79  (20% del k nominale)
+- studio piu' pesante        : GSE181029 (73.16% del peso)  <-- DOMINA il gruppo (>=50%)
+- geni significativi (FDR<0,05): 976 su 19025 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 17570)
+- I2 mediano                 : 64.20%
+- verdetto di coerenza       : coherent
+- materiale                  : MISTO (2 modello in vitro / 1 tessuto di paziente / 7 non classificato)
+- studi censiti -> poolati   : 11 -> 10
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  (nessun bersaglio dichiarato prima del run per questa entita')
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  TMSB15A         -0.730    3.94e-158     2     0.0
+  CDC20           -0.546    6.55e-135     7     0.0
+  NEUROG2         -1.075     5.27e-96     3     0.0
+  HAND2           +3.854     4.65e-89     2     0.0
+  S100A3          -1.488     1.39e-69     4     0.0
+  ASF1B           -0.567     3.73e-65     2     0.0
+  MFAP2           +0.404     1.89e-63     5     0.0
+  BIRC5           -0.386      1.5e-59     5     0.0
+  CENPA           -0.650     3.96e-56     2     0.0
+  CEP55           -0.415     1.98e-54     5     0.0
+  COL2A1          +0.447     3.89e-54     4     0.0
+  MICB            -4.838     5.11e-53     3     0.0
+  BRD2            +0.661     3.48e-40     9     0.0
+  AURKB           -0.400     3.89e-40     2     0.0
+  NRXN3           -0.385     6.96e-38     7     0.0
+  RIMBP2          -0.529      1.3e-36     8     0.0
+  ROBO2           -0.451     2.74e-35     7     0.0
+  CNIH2           -0.393     1.02e-33     6     0.0
+  PLCH1           -0.478     1.68e-33     9     0.0
+  NEK2            -0.352     4.35e-32     4     0.0
+  OPTN            -0.218     4.48e-32    10     0.0
+  FAM102B         -0.301     2.01e-29     9     0.0
+  OLIG3           -1.775     7.24e-29     2     0.0
+  ACOT7           -0.294     2.74e-28     9     0.8
+  TICRR           -0.356     4.01e-27     6     0.0
+  HS6ST2          -0.284     5.38e-27     8     0.0
+  CHRNA3          +0.568     1.24e-26     7     0.0
+  CTXN1           -0.312     1.24e-26     6     0.0
+  FADS1           -0.183      4.4e-26     9     0.0
+  SIX5            +0.314     3.36e-25     8     0.0
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  RBM46           +5.828     9.16e-13     2    10.9
+  FDCSP           +5.027      8.2e-15     2     0.0
+  TUBB8B          +4.989       0.0272     2    72.9
+  MICB            -4.838     5.11e-53     3     0.0
+  SCN10A          +4.327     2.71e-11     2     0.0
+  GPR20           +4.104     7.37e-07     2     0.0
+  HAND2           +3.854     4.65e-89     2     0.0
+  HEPACAM2        +3.783     8.95e-08     2     0.0
+  HLA-DQB1        +3.195       0.0498     5    63.9
+  C16orf82        +3.094     3.15e-05     2     0.0
+  KCNU1           +3.063     1.52e-11     2     0.0
+  CRB3            +3.006     1.26e-11     2     0.0
+  ENSG00000259784    +2.947       0.0107     2    27.2
+  CBLC            +2.674     4.92e-07     2     0.0
+  OTUB2           +2.612     2.86e-08     2     0.0
+  SEPTIN9         +2.606      0.00241     2    31.1
+  CRHR1           -2.445     7.28e-09     2     0.0
+  ZBTB22          +2.353     0.000844     7     0.0
+  ENSG00000283663    +2.297       0.0325     2     0.0
+  GNG4            -2.086      0.00176     4    39.7
+  NPC1L1          +1.957       0.0249     3    21.6
+  SLC6A14         +1.938       0.0177     2     0.0
+  APOA1           +1.918      0.00013     2     0.0
+  TLX1            +1.857     3.29e-06     2     0.0
+  OLIG3           -1.775     7.24e-29     2     0.0
+  TMEM190         +1.764     0.000224     2     0.0
+  ARMS2           +1.724      0.00794     2     0.0
+  CD177           +1.717     0.000155     5     0.0
+  LRRC52          +1.717      6.9e-05     2     0.0
+  C22orf15        -1.683     4.67e-09     3     0.0
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE181029      55.03%
+  GSE168496      13.44%
+  GSE128177       9.10%
+  GSE133101       5.20%
+  GSE206308       4.98%
+  GSE140089       4.76%
+  GSE106608       2.94%
+  GSE90469        2.11%
+  GSE161199       1.85%
+  GSE208347       0.58%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  NON MISURATO: questo gruppo e' fuori dai 13 con k>=15 per cui il conteggio
+  confronto-per-confronto e' stato fatto il 2026-08-05. Il conteggio per questo
+  gruppo e' oggetto del workflow di questa sessione.
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE106608] n=7 trattati vs 5 controlli
+      TRATTATO : Parkinson's Disease (Age 88, Male)
+      CONTROLLO: Control (Age 66, Male)
+  [GSE106608] n=7 trattati vs 4 controlli
+      TRATTATO : Parkinson's Disease (Age 88, Male)
+      CONTROLLO: Control (Age 72, Female)
+  [GSE128177] n=9 trattati vs 24 controlli
+      TRATTATO : Parkinson's disease (male, age 65)
+      CONTROLLO: Healthy control (male, age 65)
+  [GSE128177] n=1 trattati vs 24 controlli
+      TRATTATO : Parkinson's disease (female, age 60)
+      CONTROLLO: Healthy control (male, age 65)
+  [GSE128177] n=2 trattati vs 24 controlli
+      TRATTATO : Parkinson's disease (male, age 71)
+      CONTROLLO: Healthy control (male, age 65)
+  [GSE133101] n=15 trattati vs 8 controlli
+      TRATTATO : Parkinson's disease amygdala
+      CONTROLLO: Control amygdala
+  [GSE133101] n=13 trattati vs 6 controlli
+      TRATTATO : Parkinson's disease medial temporal gyrus
+      CONTROLLO: Control medial temporal gyrus
+  [GSE133101] n=3 trattati vs 2 controlli
+      TRATTATO : Parkinson's disease substantia nigra
+      CONTROLLO: Control substantia nigra
+  [GSE140089] n=2 trattati vs 16 controlli
+      TRATTATO : Parkinson's Disease, no treatment
+      CONTROLLO: Control, no treatment
+  [GSE161199] n=6 trattati vs 10 controlli
+      TRATTATO : Parkinson's Disease
+      CONTROLLO: Healthy Control
+  [GSE168496] n=8 trattati vs 8 controlli
+      TRATTATO : Parkinson's disease
+      CONTROLLO: Non-demented control
+  [GSE181029] n=3 trattati vs 3 controlli
+      TRATTATO : Neural progenitors, PARK2: 2 exon del, 1 intron splicing mutation, PD case
+      CONTROLLO: Neural progenitors, healthy control
+  [GSE181029] n=1 trattati vs 3 controlli
+      TRATTATO : Neural progenitors, PARK2: heterozygous 2 exon del, PD case
+      CONTROLLO: Neural progenitors, healthy control
+  [GSE181029] n=1 trattati vs 3 controlli
+      TRATTATO : Neural progenitors, PARK2: homozygous 8 exon del, PD case
+      CONTROLLO: Neural progenitors, healthy control
+  [GSE181029] n=1 trattati vs 3 controlli
+      TRATTATO : Neural progenitors, PARK2: heterozygous 2 exon del, PD case
+      CONTROLLO: Neural progenitors, healthy control
+  [GSE181029] n=2 trattati vs 3 controlli
+      TRATTATO : Neural progenitors, PARK2: homozygous 8 exon del, PD case
+      CONTROLLO: Neural progenitors, healthy control
+  [GSE181029] n=1 trattati vs 3 controlli
+      TRATTATO : Neural progenitors, PARK2: heterozygous 2 exon del, PD case
+      CONTROLLO: Neural progenitors, healthy control
+  [GSE181029] n=2 trattati vs 2 controlli
+      TRATTATO : Neurons presumably dopaminergic, PARK2: heterozygous 2 exon del, PD case
+      CONTROLLO: Neurons presumably dopaminergic, terminally differentiated, healthy control
+  [GSE181029] n=1 trattati vs 2 controlli
+      TRATTATO : Neurons presumably dopaminergic, PARK2: homozygous 8 exon del, PD case
+      CONTROLLO: Neurons presumably dopaminergic, terminally differentiated, healthy control
+  [GSE181029] n=1 trattati vs 2 controlli
+      TRATTATO : Neurons presumably dopaminergic, terminally differentiated, PD case
+      CONTROLLO: Neurons presumably dopaminergic, terminally differentiated, healthy control
+  [GSE181029] n=1 trattati vs 2 controlli
+      TRATTATO : Neurons presumably dopaminergic, terminally differentiated, PD case
+      CONTROLLO: Neurons presumably dopaminergic, terminally differentiated, healthy control
+  [GSE181029] n=2 trattati vs 2 controlli
+      TRATTATO : Neurons presumably dopaminergic, PARK2: 2 exon del, 1 intron splicing mutation, PD model
+      CONTROLLO: Neurons presumably dopaminergic, terminally differentiated, healthy control
+  [GSE181029] n=1 trattati vs 2 controlli
+      TRATTATO : Neurons presumably dopaminergic, terminally differentiated, PD model
+      CONTROLLO: Neurons presumably dopaminergic, terminally differentiated, healthy control
+  [GSE181029] n=3 trattati vs 3 controlli
+      TRATTATO : Neurons presumably dopaminergic, PD patient
+      CONTROLLO: Neurons presumably dopaminergic, healthy control
+  [GSE206308] n=1 trattati vs 3 controlli
+      TRATTATO : Parkinson's disease (single replicate)
+      CONTROLLO: Healthy Control (triplicate)
+  [GSE206308] n=3 trattati vs 3 controlli
+      TRATTATO : Parkinson's disease (triplicate)
+      CONTROLLO: Healthy Control (triplicate)
+  [GSE208347] n=3 trattati vs 4 controlli
+      TRATTATO : Parkinson's Disease Cases
+      CONTROLLO: Healthy Controls
+  [GSE208347] n=3 trattati vs 8 controlli
+      TRATTATO : Parkinson's Disease Cases
+      CONTROLLO: Unspecified Controls
+  [GSE90469] n=3 trattati vs 3 controlli
+      TRATTATO : Parkinson's Disease Patient-Derived Dopamine Neurons
+      CONTROLLO: Untreated Healthy Dopamine Neurons

@@ -130,7 +130,7 @@ test_that(".build_forest: nessuna riga per_study_de restituisce titolo/genes_mos
     out_dir = out_dir,
     config = layer_b_default_config()
   )
-  expect_match(result$caption, "no per-study DE rows found")
+  expect_match(result$caption, "no per-study estimates found")
   expect_true(is.character(result$titolo) && is.na(result$titolo))
   expect_identical(result$genes_mostrati, character(0))
 })

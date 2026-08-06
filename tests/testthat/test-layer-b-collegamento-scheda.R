@@ -115,18 +115,20 @@ test_that("il bundle usa la scheda nuova: niente cgroup_L5_ nel corpo, e la narr
 
   # --- scheda nuova: niente cgroup_L5_ nel corpo (test letterale del brief) -
   md <- readLines(file.path(bundle_dir, "summary_card.md"))
-  corpo <- md[seq_len(which(grepl("PROVENIENZA", md))[1] - 1L)]
+  corpo <- md[seq_len(which(grepl("PROVENANCE", md))[1] - 1L)]
   expect_false(any(grepl("cgroup_L5_", corpo)))
   # ma l'ID grezzo del contrasto (contrast_entity), che e' informazione, resta
-  # visibile in PROVENIENZA -- verificato che il blocco esista davvero.
-  expect_true(any(grepl("PROVENIENZA", md)))
+  # visibile in PROVENANCE -- verificato che il blocco esista davvero.
+  expect_true(any(grepl("PROVENANCE", md)))
 
-  # --- narrativa: la bozza, non lo stub TODO ---------------------------------
+  # --- narrativa: nessun provider passato qui -> assenza DICHIARATA, mai uno
+  # stub TODO e mai un testo generato dal deliverable (era `.narrativa_bozza()`,
+  # rimossa il 2026-08-06: nove testi formalmente corretti e senza contenuto
+  # scientifico non reggono in un articolo).
   narr_txt <- paste(readLines(file.path(bundle_dir, "narrative.qmd")), collapse = "\n")
-  expect_match(narr_txt, "BOZZA")
+  expect_match(narr_txt, "not available")
   expect_false(grepl("TODO", narr_txt))
-  # i bersagli dichiarati dal chiamante arrivano davvero nella narrativa
-  expect_match(narr_txt, "HGNC1")
+  expect_false(grepl("BOZZA", narr_txt))
 
   # --- nessuna nota di ripiego: il deliverable annotato C'ERA per questo
   # cluster, quindi non deve comparire alcuna dichiarazione di ripiego.
@@ -185,13 +187,15 @@ test_that("senza deliverable-annotato.rds il build non fallisce: ripiega e lo di
   )
 
   # --- il ripiego e' dichiarato anche nel narrative.qmd (per chi legge il
-  # bundle senza aprire il JSON) -- e la narrativa resta lo stub TODO di prima
+  # bundle senza aprire il JSON). La narrativa segue la propria regola: senza
+  # provider, assenza dichiarata -- mai stub "TODO", mai testo generato.
   narr_txt <- paste(
     readLines(file.path(result$dir, "cl_mega_1", "narrative.qmd")),
     collapse = "\n"
   )
-  expect_match(narr_txt, "scheda usa la versione precedente")
-  expect_match(narr_txt, "TODO")
+  expect_match(narr_txt, "the summary card below is the earlier version")
+  expect_match(narr_txt, "not available")
+  expect_false(grepl("TODO", narr_txt))
   expect_false(grepl("BOZZA", narr_txt))
 
   # --- run_metadata.json scritto su disco riporta la stessa cosa (rilettura
@@ -248,10 +252,14 @@ test_that("con deliverable-annotato.rds presente ma il cluster assente dalla tab
 
   narr_mega <- paste(
     readLines(file.path(result$dir, "cl_mega_2", "narrative.qmd")), collapse = "\n")
-  expect_match(narr_mega, "BOZZA")
+  expect_match(narr_mega, "not available")
 
   narr_aug <- paste(
     readLines(file.path(result$dir, "cl_aug_2", "narrative.qmd")), collapse = "\n")
   expect_match(narr_aug, "non e' una riga di")
-  expect_match(narr_aug, "TODO")
+  # Anche il ramo di ripiego passa dal provider di narrative: senza provider
+  # l'assenza e' DICHIARATA, non riempita con stub "TODO" (testo di processo
+  # dentro un documento da articolo).
+  expect_match(narr_aug, "not available")
+  expect_false(grepl("TODO", narr_aug))
 })

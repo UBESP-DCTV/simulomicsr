@@ -4,7 +4,7 @@
 \alias{.build_volcano}
 \title{Volcano plot publication-grade per un cluster}
 \usage{
-.build_volcano(cluster_pooled_subset, out_dir, config)
+.build_volcano(cluster_pooled_subset, out_dir, config, etichetta = NULL)
 }
 \arguments{
 \item{cluster_pooled_subset}{tibble subset di \code{cluster_pooled.parquet} per il
@@ -13,12 +13,24 @@ cluster di interesse (tutte le righe stesso \code{cluster_id}).}
 \item{out_dir}{character path al dir dove salvare \code{volcano.png} + \code{volcano.svg}.}
 
 \item{config}{list di config (vedi \code{\link[=layer_b_default_config]{layer_b_default_config()}}).}
+
+\item{etichetta}{character(1) opzionale, l'etichetta leggibile del gruppo
+(tipicamente \code{selection_row$label_paper}) da usare come \code{entita} del
+titolo (\code{.lb_titolo()}). Se NULL, NA o vuota il titolo ripiega sul
+\code{cluster_id} grezzo -- MAI in silenzio: la caption lo dichiara.}
 }
 \value{
-list con \code{png_path}, \code{svg_path}, \code{caption}.
+list con \code{png_path}, \code{svg_path}, \code{titolo}, \code{caption}.
 }
 \description{
 Genera volcano plot (logFC_pool vs -log10(p_value_pool)) con FDR<0.05 color,
 top-N labels via ggrepel. Salva PNG (DPI configurabile) + SVG.
+}
+\details{
+Due correzioni rispetto alla versione precedente (Task 4, 2026-08-05):
+l'asse verticale si comprime, in modo DICHIARATO, quando un punto domina
+tutti gli altri (vedi \code{\link[=.volcano_soglia_asse]{.volcano_soglia_asse()}}); le etichette pescano solo
+fra i geni ben misurati (vedi \code{\link[=.volcano_label_filtro]{.volcano_label_filtro()}}), ma nessun punto
+viene mai tolto dal grafico per questo.
 }
 \keyword{internal}

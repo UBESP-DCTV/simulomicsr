@@ -26,9 +26,9 @@ test_that(".summary_card_v2 risponde alle cinque domande e nasconde gli id inter
   expect_match(md, "59")            # su quanti studi
   expect_match(md, "54")            # quanto pesano davvero
   expect_match(md, "SMAD7")         # cosa si trova
-  expect_match(md, "6,7|6\\.7")     # quanto e' sporco
+  expect_match(md, "6\\.7")          # i confronti con un difetto di disegno
   # gli identificativi interni non stanno nel corpo, ma nel blocco provenienza
-  corpo <- sub("(?s)PROVENIENZA.*", "", md, perl = TRUE)
+  corpo <- sub("(?s)PROVENANCE.*", "", md, perl = TRUE)
   expect_false(grepl("cgroup_L5_", corpo))
 })
 
@@ -54,7 +54,7 @@ test_that("senza etichetta leggibile il ripiego sull'id grezzo e' dichiarato, ma
   # l'id grezzo del contrasto compare (non e' cluster_id: e' informazione, non
   # un identificativo tecnico interno) ma il ripiego e' dichiarato a parole
   expect_match(md, "MeSH:D999999")
-  expect_match(md, "non disponibile|ripiego|grezzo", ignore.case = TRUE)
+  expect_match(md, "not available|falling back|raw contrast", ignore.case = TRUE)
 })
 
 test_that("senza etichetta ne' id grezzo, la scheda lo dice invece di stampare cluster_id", {
@@ -65,9 +65,9 @@ test_that("senza etichetta ne' id grezzo, la scheda lo dice invece di stampare c
     materiale_misto = FALSE, coherence_verdict = "coherent",
     stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga)
-  corpo <- sub("(?s)PROVENIENZA.*", "", md, perl = TRUE)
+  corpo <- sub("(?s)PROVENANCE.*", "", md, perl = TRUE)
   expect_false(grepl("cgroup_L5_", corpo))
-  expect_match(corpo, "non disponibile")
+  expect_match(corpo, "not available")
 })
 
 test_that("un verdetto NON coerente e' segnalato in modo evidente, non taciuto", {
@@ -87,7 +87,7 @@ test_that("un verdetto NA e' dichiarato non disponibile, non stampato come 'NA'"
     studio_dominante = "GSE2", materiale_misto = FALSE,
     coherence_verdict = NA_character_, stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga)
-  expect_match(md, "verdetto di coerenza non disponibile")
+  expect_match(md, "coherence verdict not available")
 })
 
 test_that("nessun bersaglio trovato e' dichiarato, non lasciato in bianco", {
@@ -97,7 +97,7 @@ test_that("nessun bersaglio trovato e' dichiarato, non lasciato in bianco", {
     studio_dominante = "GSE2", materiale_misto = FALSE,
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga, bersagli_trovati = character(0))
-  expect_match(md, "nessun bersaglio")
+  expect_match(md, "no expected targets")
 })
 
 # --- correzione post-review finale (rilievo C2, 2026-08-06): la scheda
@@ -114,8 +114,8 @@ test_that("bersagli NON dichiarati: la scheda dice 'nessuna aspettativa fornita'
     studio_dominante = "GSE2", materiale_misto = FALSE,
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga, bersagli_trovati = character(0))
-  expect_match(md, "nessuna aspettativa di letteratura fornita")
-  expect_false(grepl("nessuno dei", md))
+  expect_match(md, "no expected targets were declared")
+  expect_false(grepl("none of the", md))
 })
 
 test_that("bersagli DICHIARATI ma nessuno ritrovato: la scheda dice 'nessuno dei N', non 'nessuna aspettativa'", {
@@ -126,8 +126,8 @@ test_that("bersagli DICHIARATI ma nessuno ritrovato: la scheda dice 'nessuno dei
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(
     riga, bersagli_trovati = character(0), bersagli_attesi = c("SMAD7", "SERPINE1"))
-  expect_match(md, "nessuno dei 2 bersagli attesi")
-  expect_false(grepl("nessuna aspettativa di letteratura fornita", md))
+  expect_match(md, "none of the 2 expected targets")
+  expect_false(grepl("no expected targets were declared", md))
 })
 
 test_that("bersagli dichiarati e ritrovati: la scheda li elenca coi valori, come prima", {
@@ -141,17 +141,17 @@ test_that("bersagli dichiarati e ritrovati: la scheda li elenca coi valori, come
     riga, bersagli_trovati = c("SMAD7 +1.41", "SERPINE1 +2.43"),
     bersagli_attesi = c("SMAD7", "SERPINE1", "CCN2"))
   expect_match(md, "SMAD7 \\+1.41")
-  expect_false(grepl("nessuno dei", md))
-  expect_false(grepl("nessuna aspettativa", md))
+  expect_false(grepl("none of the", md))
+  expect_false(grepl("were declared", md))
 })
 
 test_that(".lb_bersagli_trovati_txt: i tre rami direttamente", {
   expect_match(
     simulomicsr:::.lb_bersagli_trovati_txt(character(0), character(0)),
-    "nessuna aspettativa di letteratura fornita")
+    "no expected targets were declared")
   expect_match(
     simulomicsr:::.lb_bersagli_trovati_txt(c("A", "B"), character(0)),
-    "nessuno dei 2 bersagli attesi")
+    "none of the 2 expected targets")
   expect_equal(
     simulomicsr:::.lb_bersagli_trovati_txt(c("A"), c("A +1.00")),
     "A +1.00")
@@ -164,7 +164,7 @@ test_that("confronti_imperfetti NULL e' dichiarato 'non misurato', non omesso", 
     studio_dominante = "GSE2", materiale_misto = FALSE,
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga, confronti_imperfetti = NULL)
-  expect_match(md, "non misurato")
+  expect_match(md, "not measured")
 })
 
 test_that("uno studio che pesa piu' della meta' e' segnalato come dominante", {
@@ -176,7 +176,7 @@ test_that("uno studio che pesa piu' della meta' e' segnalato come dominante", {
   md <- simulomicsr:::.summary_card_v2(riga)
   expect_match(md, "GSE181029")
   expect_match(md, "73")
-  expect_match(md, "pesa piu' della meta'|dominante", ignore.case = TRUE)
+  expect_match(md, "more than half of the weight|heaviest", ignore.case = TRUE)
 })
 
 test_that("uno studio dominante sotto soglia NON e' segnalato come dominante", {
@@ -186,7 +186,7 @@ test_that("uno studio dominante sotto soglia NON e' segnalato come dominante", {
     quota_top1 = 0.021, studio_dominante = "GSE155832", materiale_misto = FALSE,
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga)
-  expect_false(grepl("pesa piu' della meta'", md))
+  expect_false(grepl("more than half of the weight", md))
 })
 
 test_that("il materiale misto e' dichiarato quando presente", {
@@ -196,10 +196,10 @@ test_that("il materiale misto e' dichiarato quando presente", {
     studio_dominante = "GSE2", materiale_misto = TRUE,
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga)
-  expect_match(md, "misto", ignore.case = TRUE)
+  expect_match(md, "mixed", ignore.case = TRUE)
 })
 
-test_that("run_id e sha256 finiscono in PROVENIENZA quando presenti nella riga", {
+test_that("run_id e sha256 finiscono in PROVENANCE quando presenti nella riga", {
   riga <- data.frame(
     cluster_id = "cl_prov", contrast_entity = "HGNC:1", contrast_entity_label = "Y",
     k_effective = 5L, k_kish = 4.0, I2_med = 30, n_sig = 2L, quota_top1 = 0.3,
@@ -209,7 +209,7 @@ test_that("run_id e sha256 finiscono in PROVENIENZA quando presenti nella riga",
   md <- simulomicsr:::.summary_card_v2(riga)
   expect_match(md, "d29545c7")
   expect_match(md, "abc123def456")
-  corpo <- sub("(?s)PROVENIENZA.*", "", md, perl = TRUE)
+  corpo <- sub("(?s)PROVENANCE.*", "", md, perl = TRUE)
   expect_false(grepl("d29545c7", corpo))
   expect_false(grepl("abc123def456", corpo))
 })
@@ -221,7 +221,7 @@ test_that("run_id e sha256 assenti dalla riga escono N/A, non errore ne' NA nudo
     studio_dominante = "GSE2", materiale_misto = FALSE,
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga)
-  expect_match(md, "run_id.*N/A")
+  expect_match(md, "run identifier.*N/A")
   expect_match(md, "sha256.*N/A")
 })
 
@@ -235,8 +235,8 @@ test_that("un I2 basso si legge come alta concordanza, uno alto come bassa", {
   alta$I2_med <- 95
   md_bassa <- simulomicsr:::.summary_card_v2(bassa)
   md_alta  <- simulomicsr:::.summary_card_v2(alta)
-  expect_match(md_bassa, "alta concordanza")
-  expect_false(grepl("alta concordanza", md_alta))
+  expect_match(md_bassa, "high agreement")
+  expect_false(grepl("high agreement", md_alta))
 })
 
 # --- correzione post-review: la soglia di dominanza non va duplicata -------
@@ -256,7 +256,7 @@ test_that("con 'dominato' gia' calcolato a monte, la scheda lo usa anche se il r
     studio_dominante = "GSE9", materiale_misto = FALSE,
     coherence_verdict = "coherent", dominato = TRUE, stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga)
-  expect_match(md, "pesa piu' della meta'")
+  expect_match(md, "more than half of the weight")
 })
 
 test_that("con 'dominato' = FALSE a monte, la scheda non segnala anche se quota_top1 e' alta", {
@@ -269,7 +269,7 @@ test_that("con 'dominato' = FALSE a monte, la scheda non segnala anche se quota_
     studio_dominante = "GSE9", materiale_misto = FALSE,
     coherence_verdict = "coherent", dominato = FALSE, stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga)
-  expect_false(grepl("pesa piu' della meta'", md))
+  expect_false(grepl("more than half of the weight", md))
 })
 
 test_that("senza la colonna 'dominato', il ripiego usa il PARAMETRO soglia_dominanza, non un numero annidato", {
@@ -280,27 +280,27 @@ test_that("senza la colonna 'dominato', il ripiego usa il PARAMETRO soglia_domin
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   # 0.3 e' sotto il default (0.5): nessuna segnalazione
   md_default <- simulomicsr:::.summary_card_v2(riga)
-  expect_false(grepl("pesa piu' della meta'", md_default))
+  expect_false(grepl("more than half of the weight", md_default))
   # abbassando il parametro a 0.25, 0.3 diventa dominante: prova che il
   # parametro e' letto davvero, non solo dichiarato nella firma
   md_soglia_bassa <- simulomicsr:::.summary_card_v2(riga, soglia_dominanza = 0.25)
-  expect_match(md_soglia_bassa, "pesa piu' della meta'")
+  expect_match(md_soglia_bassa, "more than half of the weight")
 })
 
 test_that("il parametro soglia_dominanza ha default 0.5, come compute_pooling_effectiveness()", {
   expect_equal(formals(simulomicsr:::.summary_card_v2)$soglia_dominanza, 0.5)
 })
 
-# --- correzione post-review: minor 1, cluster_id nudo in PROVENIENZA -------
+# --- correzione post-review: minor 1, cluster_id nudo in PROVENANCE -------
 
-test_that("cluster_id NA in PROVENIENZA esce 'N/A', non un NA nudo", {
+test_that("cluster_id NA in PROVENANCE esce 'N/A', non un NA nudo", {
   riga <- data.frame(
     cluster_id = NA_character_, contrast_entity = "HGNC:1", contrast_entity_label = "Y",
     k_effective = 5L, k_kish = 4.0, I2_med = 30, n_sig = 2L, quota_top1 = 0.3,
     studio_dominante = "GSE2", materiale_misto = FALSE,
     coherence_verdict = "coherent", stringsAsFactors = FALSE)
   md <- simulomicsr:::.summary_card_v2(riga)
-  expect_match(md, "cluster_id: `N/A`", fixed = TRUE)
+  expect_match(md, "group identifier: `N/A`", fixed = TRUE)
   expect_false(grepl("cluster_id: `NA`", md, fixed = TRUE))
 })
 

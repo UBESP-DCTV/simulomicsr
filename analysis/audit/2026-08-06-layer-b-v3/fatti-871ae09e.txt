@@ -1,0 +1,443 @@
+# FATTI VERIFICATI — SARS-CoV-2  (cgroup_L5_871ae09e)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : NCBITaxon:2697049  (SARS-CoV-2)
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 34
+- studi efficaci (Kish)      : 30.25  (89% del k nominale)
+- studio piu' pesante        : GSE198449 (3.80% del peso)
+- geni significativi (FDR<0,05): 1933 su 20723 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 18926)
+- I2 mediano                 : 95.63%
+- verdetto di coerenza       : coherent
+- materiale                  : MISTO (11 modello in vitro / 2 tessuto di paziente / 21 non classificato)
+- studi censiti -> poolati   : 38 -> 34
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  IFIT1      logFC=+2.198  FDR=5.12e-05  k=33  I2=99.7
+  ISG15      logFC=+1.641  FDR=4.33e-05  k=34  I2=99.3
+  MX1        logFC=+1.892  FDR=0.000286  k=34  I2=99.7
+  OAS1       logFC=+1.308  FDR=0.00613  k=34  I2=99.7
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  KEL             -0.877     8.44e-46     7     0.0
+  C17orf98        +4.916     7.64e-25     2     0.0
+  APOA5           +0.917     5.91e-20     3     0.0
+  SPP2            +0.535     5.96e-20    12     0.0
+  AGXT            +0.483     1.88e-16    10     0.0
+  SERPINA9        +0.925     9.95e-16     6     0.0
+  CMTM2           -0.420     1.05e-15     4     0.0
+  UBD             +1.028     1.05e-15     8    49.8
+  APOBEC3A        +0.521     1.85e-15     4     0.0
+  ENSG00000288339    +4.462     3.84e-15     2     0.0
+  IFNB1           +6.964     5.54e-15     8    90.5
+  SLC46A2         -0.340     5.72e-15     5     0.0
+  WFDC6           -1.183     9.21e-14     4     4.0
+  MSMP            -0.804     1.46e-12     7     4.8
+  TEX55           -0.743     4.45e-12     5     0.0
+  QRFP            +0.683     2.53e-08     9     0.0
+  SFTA2           -0.555     3.33e-08     8     0.0
+  SERPINA2        +4.969     5.42e-08     4     0.0
+  PTPRN2          +3.064     2.67e-07     4     0.0
+  IRF7            +1.326     3.05e-07    32    93.6
+  KRTAP1-5        -0.763     4.83e-07     3     0.2
+  HORMAD2         -0.598     7.83e-07     6     0.0
+  HSD3B2          -0.608     7.92e-07     3     0.0
+  CFHR5           +0.418     1.01e-06     5     0.0
+  IFNL2           +5.339     1.25e-06     7    85.4
+  OOSP4A          +6.568     1.79e-06     4    93.2
+  IRF9            +0.737     2.04e-06    34    96.8
+  TRIM69          +0.729     2.07e-06    34    96.4
+  ZC3H12A         +0.966     2.09e-06    33    99.1
+  CXCL3           +1.509     2.98e-06    33    98.6
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  IFNB1           +6.964     5.54e-15     8    90.5
+  OOSP4A          +6.568     1.79e-06     4    93.2
+  IFNL2           +5.339     1.25e-06     7    85.4
+  SERPINA2        +4.969     5.42e-08     4     0.0
+  IFNL1           +4.957     0.000468     9    95.5
+  C17orf98        +4.916     7.64e-25     2     0.0
+  IFNL3           +4.864     0.000391     7    85.7
+  TTLL8           +4.634      0.00527     7    92.8
+  ALLC            +4.499     0.000217    10    89.3
+  ENSG00000288339    +4.462     3.84e-15     2     0.0
+  OOSP1           +4.058      0.00447     5    93.9
+  H3-4            +3.895       0.0153     3    73.8
+  IL31            +3.891       0.0243     6    92.5
+  GALR3           +3.737     0.000106     5    49.8
+  CEACAM20        +3.733      0.00396     7    89.6
+  SLC22A8         +3.720       0.0229     6    91.6
+  CXCL11          +3.560     1.76e-05    23    98.1
+  KRTAP5-2        +3.531      0.00894     6    63.5
+  CXCL10          +3.469     0.000603    24    98.6
+  SELE            +3.301       0.0002    17    98.3
+  FNDC7           +3.184       0.0197     7    93.9
+  SPEM3           +3.147       0.0163     5    61.4
+  PTPRN2          +3.064     2.67e-07     4     0.0
+  GARIN4          +2.984       0.0442     7    86.7
+  CSF3            +2.962      0.00181    21    98.3
+  RFPL4A          +2.911       0.0393    11    97.4
+  PYY             +2.890       0.0193     8    91.9
+  RSAD2           +2.882     0.000129    28    99.4
+  GOLGA6L1        +2.856     3.87e-06     2     0.0
+  ZSCAN10         +2.845       0.0449     8    94.0
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE198722      14.33%
+  GSE188382       9.43%
+  GSE196113       8.05%
+  GSE253542       7.41%
+  GSE148697       6.93%
+  GSE183999       6.46%
+  GSE225517       5.99%
+  GSE164073       5.29%
+  GSE225564       3.62%
+  GSE153277       3.51%
+  GSE193330       3.47%
+  GSE151879       2.95%
+  GSE196464       2.93%
+  GSE150819       2.83%
+  GSE205621       2.05%
+  GSE202963       2.02%
+  GSE159201       1.60%
+  GSE217099       1.26%
+  GSE183850       1.26%
+  GSE163959       1.14%
+  GSE148696       1.01%
+  GSE198449       1.01%
+  GSE206677       0.96%
+  GSE199743       0.81%
+  GSE244486       0.79%
+  GSE244485       0.65%
+  GSE181238       0.64%
+  GSE169241       0.42%
+  GSE155518       0.40%
+  GSE151803       0.27%
+  GSE244484       0.15%
+  GSE226702       0.13%
+  GSE190350       0.12%
+  GSE233732       0.08%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  confronti totali          : 98
+  confronti difettosi       : 3 (3.1%)
+  studi con >=1 difetto     : GSE151803; GSE169241
+  peso di quegli studi      : 0.7%  (mediana 1/SE^2 per studio, normalizzata)
+  dettaglio dei confronti difettosi:
+    [GSE169241] human heart, SARS-CoV-2 infected person  VS  human ES-derived macrophage, No treatment
+        meccanismo: 3 materiale/sede diversa fra i bracci
+    [GSE151803] COVID-19 Lung 58L  VS  hESC Mock
+        meccanismo: 3 materiale/sede diversa fra i bracci
+    [GSE151803] COVID-19 Lung  VS  hESC Mock
+        meccanismo: 3 materiale/sede diversa fra i bracci
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE148696] n=2 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 infected Hesc cells
+      CONTROLLO: Mock infected Hesc cells
+  [GSE148697] n=3 trattati vs 3 controlli
+      TRATTATO : SARS-CoV-2-infected Hesc cells
+      CONTROLLO: Mock-treated Hesc cells
+  [GSE150819] n=3 trattati vs 3 controlli
+      TRATTATO : Human bronchial organoids, SARS-CoV-2
+      CONTROLLO: Human bronchial organoids, no treatment
+  [GSE151803] n=1 trattati vs 1 controlli
+      TRATTATO : COVID-19 Lung 58L
+      CONTROLLO: hESC Mock
+  [GSE151803] n=2 trattati vs 1 controlli
+      TRATTATO : COVID-19 Lung
+      CONTROLLO: hESC Mock
+  [GSE151803] n=3 trattati vs 1 controlli
+      TRATTATO : hESC sars-Cov2
+      CONTROLLO: hESC Mock
+  [GSE151803] n=4 trattati vs 6 controlli
+      TRATTATO : Liver Organoid sars-Cov2
+      CONTROLLO: Liver Organoid Mock
+  [GSE151879] n=3 trattati vs 3 controlli
+      TRATTATO : Adult human cardiomyocytes SARS-CoV-2
+      CONTROLLO: Adult human cardiomyocytes Mock
+  [GSE151879] n=3 trattati vs 3 controlli
+      TRATTATO : hESC-derived cardiomyocytes SARS-CoV-2
+      CONTROLLO: hESC-derived cardiomyocytes Mock
+  [GSE151879] n=3 trattati vs 3 controlli
+      TRATTATO : Macrophages SARS-CoV-2
+      CONTROLLO: Macrophages Mock
+  [GSE153277] n=3 trattati vs 3 controlli
+      TRATTATO : SARS-CoV-2 MOI 140 1dpi
+      CONTROLLO: Control (CK+DCI)
+  [GSE153277] n=2 trattati vs 3 controlli
+      TRATTATO : SARS-CoV-2 MOI 140 4days
+      CONTROLLO: Control (CK+DCI)
+  [GSE155518] n=3 trattati vs 3 controlli
+      TRATTATO : Infected with SARS-CoV2
+      CONTROLLO: Mock-infected
+  [GSE159201] n=3 trattati vs 3 controlli
+      TRATTATO : colonic organoid, SARS-CoV-2, 1 day
+      CONTROLLO: colonic organoid, mock, 1 day
+  [GSE159201] n=3 trattati vs 3 controlli
+      TRATTATO : colonic organoid, SARS-CoV-2, 4 days
+      CONTROLLO: colonic organoid, mock, 4 days
+  [GSE163959] n=2 trattati vs 2 controlli
+      TRATTATO : LS4 SARS-CoV-2 Infected
+      CONTROLLO: LM4 Mock Infected
+  [GSE163959] n=2 trattati vs 2 controlli
+      TRATTATO : LS5 SARS-CoV-2 Infected
+      CONTROLLO: LM5 Mock Infected
+  [GSE163959] n=2 trattati vs 2 controlli
+      TRATTATO : LS6 SARS-CoV-2 Infected
+      CONTROLLO: LM6 Mock Infected
+  [GSE163959] n=4 trattati vs 1 controlli
+      TRATTATO : Lung Tissue SARS-CoV-2 Infected
+      CONTROLLO: LM8 Mock Infected
+  [GSE163959] n=1 trattati vs 2 controlli
+      TRATTATO : Nasal Turbinate SARS-CoV-2 Infected
+      CONTROLLO: TM1 Mock Infected
+  [GSE163959] n=5 trattati vs 2 controlli
+      TRATTATO : Nasal Turbinate SARS-CoV-2 Infected
+      CONTROLLO: TM2 Mock Infected
+  [GSE164073] n=3 trattati vs 1 controlli
+      TRATTATO : Cornea_SARS-CoV-2
+      CONTROLLO: Cornea_mock
+  [GSE164073] n=3 trattati vs 2 controlli
+      TRATTATO : Limbus_SARS-CoV-2
+      CONTROLLO: Limbus_mock
+  [GSE164073] n=3 trattati vs 3 controlli
+      TRATTATO : Sclera_SARS-CoV-2
+      CONTROLLO: Sclera_mock
+  [GSE169241] n=3 trattati vs 3 controlli
+      TRATTATO : human heart, SARS-CoV-2 infected person
+      CONTROLLO: human ES-derived macrophage, No treatment
+  [GSE181238] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2-infected Term placenta
+      CONTROLLO: Mock-treated Term placenta
+  [GSE183850] n=10 trattati vs 6 controlli
+      TRATTATO : Heart Failure SARS-CoV-2
+      CONTROLLO: Heart Failure Mock
+  [GSE183850] n=5 trattati vs 3 controlli
+      TRATTATO : Healthy SARS-CoV-2
+      CONTROLLO: Healthy Mock
+  [GSE183999] n=2 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 + siRNA against non-targeting control
+      CONTROLLO: Mock + siRNA against non-targeting control
+  [GSE183999] n=2 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 + siRNA against non-targeting control
+      CONTROLLO: Mock + siRNA against non-targeting control
+  [GSE183999] n=2 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 + siRNA against non-targeting control
+      CONTROLLO: Mock + siRNA against non-targeting control
+  [GSE183999] n=2 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 + siRNA against non-targeting control
+      CONTROLLO: Mock + siRNA against non-targeting control
+  [GSE183999] n=2 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 + siRNA against non-targeting control
+      CONTROLLO: Mock + siRNA against non-targeting control
+  [GSE183999] n=2 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 + siRNA against non-targeting control
+      CONTROLLO: Mock + siRNA against non-targeting control
+  [GSE188382] n=3 trattati vs 4 controlli
+      TRATTATO : Wild-Type SARS-CoV-2
+      CONTROLLO: Wild-Type Mock
+  [GSE188382] n=1 trattati vs 2 controlli
+      TRATTATO : SIRT5-KO SARS-CoV-2
+      CONTROLLO: SIRT5-KO Mock
+  [GSE188382] n=4 trattati vs 1 controlli
+      TRATTATO : SIRT5-KO SARS-CoV-2 (Replicate)
+      CONTROLLO: SIRT5-KO Mock (Replicate)
+  [GSE190350] n=3 trattati vs 3 controlli
+      TRATTATO : HRT18 SARS-CoV2 passage 11
+      CONTROLLO: HRT18 mock-infected
+  [GSE193330] n=2 trattati vs 3 controlli
+      TRATTATO : hepatocytes of bv-LoC infected with SARS-CoV-2
+      CONTROLLO: hepatocytes of bv-LoC control
+  [GSE193330] n=3 trattati vs 3 controlli
+      TRATTATO : HuCCT1 infected with SARS-CoV-2
+      CONTROLLO: HuCCT1 control
+  [GSE196113] n=3 trattati vs 3 controlli
+      TRATTATO : SARS-CoV-2
+      CONTROLLO: Control
+  [GSE196464] n=6 trattati vs 4 controlli
+      TRATTATO : SARS-CoV-2 1 DPI
+      CONTROLLO: Mock 1 DPI
+  [GSE196464] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 3 DPI
+      CONTROLLO: Mock 3 DPI
+  [GSE198449] n=188 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=2 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=2 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=12 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=8 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=4 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=3 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=2 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=1 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=1 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=2 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=1 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=28 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=11 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198449] n=6 trattati vs 166 controlli
+      TRATTATO : SARS-CoV-2 Later Surveillance
+      CONTROLLO: Vehicle Control Later Surveillance
+  [GSE198722] n=6 trattati vs 6 controlli
+      TRATTATO : Astrocytes infected with SARS-CoV-2 (MOI=1)
+      CONTROLLO: Mock-infected astrocytes
+  [GSE198722] n=6 trattati vs 6 controlli
+      TRATTATO : Astrocytes infected with SARS-CoV-2 (MOI=5)
+      CONTROLLO: Mock-infected astrocytes
+  [GSE199743] n=4 trattati vs 4 controlli
+      TRATTATO : SARS-CoV-2 infected WD-PNEC 48h
+      CONTROLLO: Mock infected WD-PNEC 48h
+  [GSE199743] n=4 trattati vs 4 controlli
+      TRATTATO : SARS-CoV-2 infected WD-PNEC 96h
+      CONTROLLO: Mock infected WD-PNEC 96h
+  [GSE202963] n=2 trattati vs 3 controlli
+      TRATTATO : Airway Organoids SARS-CoV-2 MOI=1 48h
+      CONTROLLO: Airway Organoids Mock
+  [GSE202963] n=1 trattati vs 3 controlli
+      TRATTATO : Airway Organoids SARS-CoV-2 MOI=1_2 48h
+      CONTROLLO: Airway Organoids Mock
+  [GSE202963] n=3 trattati vs 1 controlli
+      TRATTATO : Alveolar Organoids Lung SARS-CoV-2 MOI=0.01 48h
+      CONTROLLO: Alveolar Organoids Lung Mock 48h
+  [GSE202963] n=3 trattati vs 1 controlli
+      TRATTATO : Alveolar Organoids Lung SARS-CoV-2 MOI=0.1 48h
+      CONTROLLO: Alveolar Organoids Lung Mock 48h
+  [GSE202963] n=1 trattati vs 1 controlli
+      TRATTATO : Alveolar Organoids Lung SARS-CoV-2 MOI=1 48h
+      CONTROLLO: Alveolar Organoids Lung Mock 48h
+  [GSE202963] n=2 trattati vs 1 controlli
+      TRATTATO : Alveolar Organoids Lung SARS-CoV-2 MOI=1 48h Replicate
+      CONTROLLO: Alveolar Organoids Lung Mock 48h
+  [GSE205621] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 DelARKSAP 24h
+      CONTROLLO: Mock 24h
+  [GSE205621] n=3 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 DelARKSAP 48h
+      CONTROLLO: Mock 48h
+  [GSE205621] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 DelOrf8 24h
+      CONTROLLO: Mock 24h
+  [GSE205621] n=3 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 DelOrf8 48h
+      CONTROLLO: Mock 48h
+  [GSE205621] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 WT 24h
+      CONTROLLO: Mock 24h
+  [GSE205621] n=3 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 WT 48h
+      CONTROLLO: Mock 48h
+  [GSE205621] n=3 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 DelARKSAP 24h
+      CONTROLLO: Mock 24h
+  [GSE205621] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 DelARKSAP 48h
+      CONTROLLO: Mock 48h
+  [GSE205621] n=3 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 DelOrf8 24h
+      CONTROLLO: Mock 24h
+  [GSE205621] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 DelOrf8 48h
+      CONTROLLO: Mock 48h
+  [GSE205621] n=3 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 WT 24h
+      CONTROLLO: Mock 24h
+  [GSE205621] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 WT 48h
+      CONTROLLO: Mock 48h
+  [GSE206677] n=3 trattati vs 6 controlli
+      TRATTATO : SARS-CoV-2 infection 72hpi
+      CONTROLLO: Control
+  [GSE217099] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2
+      CONTROLLO: mock
+  [GSE225517] n=4 trattati vs 3 controlli
+      TRATTATO : Midbrain organoid Line 15 SARS-CoV-2
+      CONTROLLO: Midbrain organoid Line 15 Mock infection
+  [GSE225517] n=4 trattati vs 4 controlli
+      TRATTATO : Midbrain organoid SARS-CoV-2
+      CONTROLLO: Midbrain organoid Line 11 Mock infection
+  [GSE225564] n=3 trattati vs 3 controlli
+      TRATTATO : RUES2 lung cells infected with SARS-CoV-2 for 48 hours
+      CONTROLLO: RUES2 lung cells mock-infected for 48 hours
+  [GSE225564] n=1 trattati vs 3 controlli
+      TRATTATO : RUES2 lung cells infected with SARS-CoV-2 for 12 hours
+      CONTROLLO: RUES2 lung cells mock-infected for 12 hours
+  [GSE225564] n=1 trattati vs 3 controlli
+      TRATTATO : RUES2 lung cells infected with SARS-CoV-2 for 24 hours
+      CONTROLLO: RUES2 lung cells mock-infected for 24 hours
+  [GSE225564] n=2 trattati vs 3 controlli
+      TRATTATO : RUES2 lung cells infected with SARS-CoV-2 for 48 hours
+      CONTROLLO: RUES2 lung cells mock-infected for 48 hours
+  [GSE226702] n=1 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 24h
+      CONTROLLO: Mock infection
+  [GSE226702] n=2 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 48h
+      CONTROLLO: Mock infection
+  [GSE226702] n=2 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 72h
+      CONTROLLO: Mock infection
+  [GSE226702] n=2 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 96h
+      CONTROLLO: Mock infection
+  [GSE233732] n=27 trattati vs 5 controlli
+      TRATTATO : SARS-CoV-2 infected vagus nerve
+      CONTROLLO: Control vagus nerve
+  [GSE244484] n=6 trattati vs 1 controlli
+      TRATTATO : SARS-CoV-2 MOI 1 24h
+      CONTROLLO: mock
+  [GSE244484] n=6 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 MOI 1 24h
+      CONTROLLO: mock
+  [GSE244485] n=12 trattati vs 6 controlli
+      TRATTATO : SARS-CoV-2-infected A549-ACE2
+      CONTROLLO: Mock-treated A549-ACE2
+  [GSE244486] n=12 trattati vs 6 controlli
+      TRATTATO : SARS-CoV-2-infected A549-ACE2
+      CONTROLLO: Mock-treated A549-ACE2
+  [GSE253542] n=3 trattati vs 2 controlli
+      TRATTATO : SARS-CoV-2 96hpi
+      CONTROLLO: Mock Infected 96hpi

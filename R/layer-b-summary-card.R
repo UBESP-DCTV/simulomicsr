@@ -9,11 +9,11 @@
 #' agonista/antagonista in RED_ALERT).
 #' @keywords internal
 .i2_lettura <- function(i2) {
-  if (is.na(i2)) return("concordanza non valutabile (I^2 mancante)")
-  if (i2 < 25) return("alta concordanza, eterogeneita' bassa")
-  if (i2 < 50) return("concordanza moderata")
-  if (i2 < 75) return("bassa concordanza, eterogeneita' sostanziale")
-  "concordanza scarsa, eterogeneita' molto alta -- gli studi concordano piu' sul segno che sulla dimensione dell'effetto"
+  if (is.na(i2)) return("agreement not assessable (I-squared missing)")
+  if (i2 < 25) return("high agreement, low heterogeneity")
+  if (i2 < 50) return("moderate agreement")
+  if (i2 < 75) return("limited agreement, substantial heterogeneity")
+  "poor agreement, very high heterogeneity -- studies agree on the direction of the effect more than on its magnitude"
 }
 
 #' Scheda riassuntiva v2: cinque domande, non un dump di campi tecnici
@@ -25,8 +25,8 @@
 #' TGF-beta1 e' la cornulina, che con quella via non c'entra). Questa funzione
 #' e' la sostituzione: cinque righe che rispondono a cinque domande --- che
 #' cosa e' stato confrontato, su quanti studi e quanto pesano davvero, quanto
-#' concordano, che cosa si trova, quanto e' sporco --- seguite da un blocco
-#' `PROVENIENZA` dove finiscono gli identificativi interni (`cluster_id`,
+#' concordano, che cosa si trova, quanti confronti hanno un difetto di
+#' disegno --- seguite da un blocco `PROVENANCE` dove finiscono gli identificativi interni (`cluster_id`,
 #' l'ID grezzo del contrasto, `run_id`, sha256): servono a chi verifica, non a
 #' chi legge la scheda accanto alla figura.
 #'
@@ -114,63 +114,65 @@
   # il fix del rilievo Important della review -- una sola soglia, non due che
   # possono divergere in silenzio. Il ricalcolo da quota_top1 resta solo un
   # ripiego per righe che non portano ancora quella colonna. Regola condivisa
-  # con .narrativa_bozza() (R/layer-b-narrative.R) via .lb_dominato_flag(): un
-  # posto solo, cosi' le due schede non possono disallinearsi in silenzio.
+  # via .lb_dominato_flag() (R/layer-b-narrative.R): una sola implementazione
+  # della regola, non due copie che possono disallinearsi in silenzio.
   dominato_flag <- .lb_dominato_flag(dom_col, quota_top1, soglia_dominanza)
 
   # --- riga 1: cosa e' stato confrontato ------------------------------------
-  # soggetto e verdetto_txt: stessa logica di .narrativa_bozza(), condivisa
-  # via .lb_soggetto_da_contrasto()/.lb_verdetto_coerenza_txt() -- le
+  # soggetto e verdetto_txt: regole condivise in R/layer-b-narrative.R
+  # (.lb_soggetto_da_contrasto()/.lb_verdetto_coerenza_txt()) -- le
   # formulazioni restano quelle di questa scheda (passate come template).
   soggetto <- .lb_soggetto_da_contrasto(
     etichetta, entita_id,
-    non_disponibile = "identita' del contrasto non disponibile (vedi PROVENIENZA)")
+    non_disponibile = "contrast identity not available (see PROVENANCE)")
   verdetto_txt <- .lb_verdetto_coerenza_txt(
     verdetto,
-    tmpl_na = "verdetto di coerenza non disponibile",
-    tmpl_coherent = "verdetto di coerenza: coerente",
-    tmpl_altro = "VERDETTO DI COERENZA: %s -- i confronti raggruppati potrebbero non misurare lo stesso contrasto")
+    tmpl_na = "coherence verdict not available",
+    tmpl_coherent = "coherence verdict: coherent",
+    tmpl_altro = "COHERENCE VERDICT: %s -- the pooled comparisons may not measure the same contrast")
   riga1 <- sprintf(
-    "- **Cosa e' stato confrontato:** %s, trattato contro il proprio controllo (%s).",
+    "- **What was compared:** %s, treated against its own control (%s).",
     soggetto, verdetto_txt)
 
   # --- riga 2: su quanti studi, e quanto pesano davvero ---------------------
-  k_eff_txt  <- if (is.na(k_eff)) "non disponibile" else as.character(as.integer(k_eff))
-  k_kish_txt <- if (is.na(k_kish)) "non disponibile" else sprintf("%.1f", k_kish)
+  k_eff_txt  <- if (is.na(k_eff)) "not available" else as.character(as.integer(k_eff))
+  k_kish_txt <- if (is.na(k_kish)) "not available" else sprintf("%.1f", k_kish)
   peso_studio <- if (!is.na(quota_top1)) {
-    nome_studio <- if (!.na_chr(dominante)) as.character(dominante) else "non identificato"
-    dom_flag <- if (isTRUE(dominato_flag)) " -- **un solo studio pesa piu' della meta'**" else ""
-    sprintf(" Lo studio piu' pesante (%s) porta il %.1f%% del peso%s.",
+    nome_studio <- if (!.na_chr(dominante)) as.character(dominante) else "not identified"
+    dom_flag <- if (isTRUE(dominato_flag)) " -- **a single study carries more than half of the weight**" else ""
+    sprintf(" The heaviest study (%s) carries %.1f%% of the weight%s.",
             nome_studio, 100 * quota_top1, dom_flag)
   } else {
-    " Il peso del singolo studio piu' pesante non e' disponibile."
+    " The weight of the heaviest single study is not available."
   }
   materiale_txt <- .lb_materiale_misto_txt(mat_misto)
   riga2 <- sprintf(
-    "- **Su quanti studi, e quanto pesano davvero:** %s studi entrano nel pool, ma quelli che contano davvero (numero efficace di Kish) sono %s.%s%s",
+    "- **How many studies, and how much they actually weigh:** %s studies enter the pool, but the effective number (Kish) is %s.%s%s",
     k_eff_txt, k_kish_txt, peso_studio, materiale_txt)
 
   # --- riga 3: quanto concordano ---------------------------------------------
-  i2_txt <- if (is.na(i2)) "non disponibile" else sprintf("%.1f%%", i2)
-  riga3 <- sprintf("- **Quanto concordano:** I² mediano = %s (%s).",
+  i2_txt <- if (is.na(i2)) "not available" else sprintf("%.1f%%", i2)
+  riga3 <- sprintf("- **How much the studies agree:** median I-squared = %s (%s).",
                    i2_txt, .i2_lettura(i2))
 
   # --- riga 4: cosa si trova --------------------------------------------------
   # .lb_bersagli_trovati_txt() distingue "nessuna aspettativa dichiarata" da
   # "aspettative dichiarate ma non ritrovate" (fix rilievo C2, 2026-08-06):
   # prima la scheda diceva la STESSA frase nei due casi, in contraddizione
-  # con .narrativa_bozza() che gia' distingueva i due, a quindici righe di
+  # con la narrativa, che gia' distingueva i due, a quindici righe di
   # distanza sulla stessa pagina.
   bersagli_txt <- .lb_bersagli_trovati_txt(bersagli_attesi, bersagli_trovati)
-  n_sig_txt <- if (is.na(n_sig)) "non disponibile" else as.character(as.integer(n_sig))
+  n_sig_txt <- if (is.na(n_sig)) "not available" else as.character(as.integer(n_sig))
   riga4 <- sprintf(
-    "- **Cosa si trova:** %s -- su %s geni significativi in totale (FDR<0,05).",
+    "- **Expected targets recovered:** %s -- out of %s genes significant at FDR < 0.05.",
     bersagli_txt, n_sig_txt)
 
-  # --- riga 5: quanto e' sporco -----------------------------------------------
-  # Clausola condivisa con .narrativa_bozza() via .lb_confronti_imperfetti_txt()
-  # (ritorna solo il contenuto, senza il prefisso di bullet ne' il punto finale).
-  riga5 <- sprintf("- **Quanto e' sporco:** %s.",
+  # --- riga 5: i confronti con un difetto di disegno --------------------------
+  # Clausola in .lb_confronti_imperfetti_txt() (ritorna solo il contenuto, senza
+  # il prefisso di bullet ne' il punto finale). L'intestazione non e' piu' un
+  # giudizio ("quanto e' sporco") ma la descrizione della misura: il documento
+  # e' materiale da articolo.
+  riga5 <- sprintf("- **Comparisons with a design defect:** %s.",
                    .lb_confronti_imperfetti_txt(confronti_imperfetti))
 
   # --- provenienza: dove vivono gli identificativi interni --------------------
@@ -179,11 +181,11 @@
     "",
     "---",
     "",
-    "**PROVENIENZA** (per la verifica, non per la lettura)",
+    "**PROVENANCE** (for verification, not for reading)",
     "",
-    sprintf("- cluster_id: `%s`", .prov(cluster_id)),
-    sprintf("- identita' del contrasto (ID grezzo): `%s`", .prov(entita_id)),
-    sprintf("- run_id: `%s`", .prov(run_id)),
+    sprintf("- group identifier: `%s`", .prov(cluster_id)),
+    sprintf("- contrast entity (raw identifier): `%s`", .prov(entita_id)),
+    sprintf("- run identifier: `%s`", .prov(run_id)),
     sprintf("- sha256: `%s`", .prov(sha256))
   )
 
@@ -395,7 +397,7 @@
 #' + lista figure.
 #'
 #' Collegamento (Task 7bis, 2026-08-05): quando il chiamante passa
-#' `narrativa_bozza_md` (tipicamente l'output di `.narrativa_bozza()`, in
+#' `narrativa_bozza_md` (tipicamente l'output di `.narrativa_da_provider()`, in
 #' `R/layer-b-narrative.R`), gli stub TODO sono sostituiti da quel testo --
 #' gia' marcato `> BOZZA -- da rivedere` dalla funzione stessa, quindi non
 #' serve un'altra intestazione TODO sopra. Senza (default `NULL`, e' il caso
@@ -410,7 +412,7 @@
 #' @param config list.
 #' @param out_dir character.
 #' @param narrativa_bozza_md character(1) opzionale, markdown gia' pronto
-#'   (tipicamente `.narrativa_bozza()`) da inserire al posto degli stub TODO.
+#'   (la narrativa firmata risolta da .narrativa_da_provider()) da inserire al posto degli stub TODO.
 #'   `NULL` (default) -> stub TODO, come prima di questo collegamento.
 #' @param nota_ripiego character(1) opzionale: quando non `NULL`, una riga in
 #'   evidenza subito sotto il titolo che DICHIARA che questo case study sta
@@ -430,12 +432,16 @@
                        file.exists(summary_card_path)) {
     paste(readLines(summary_card_path), collapse = "\n")
   } else {
-    sprintf("_(summary_card.md not yet generated for cluster %s)_",
+    sprintf("_(summary card not yet generated for %s)_",
             cluster_id)
   }
 
   corpo_narrativa <- if (!is.null(narrativa_bozza_md)) {
-    c("## Narrative", "", narrativa_bozza_md, "")
+    # Nessuna intestazione "## Narrative" sopra: la narrativa firmata porta
+    # gia' le proprie sezioni ("Biological context", "What the meta-analysis
+    # shows", "Interpretation and limits", "References") e un livello in piu'
+    # aggiungerebbe solo una voce vuota nell'indice.
+    c(narrativa_bozza_md, "")
   } else {
     c(
       "## Biological context",
@@ -464,39 +470,13 @@
     NULL
   }
 
-  # Lista figure ALLINEATA a config$figure_escluse (Task 8): prima di questo
-  # fix la lista era cablata a mano e citava sempre ma.svg/heterogeneity.svg,
-  # anche quando la config di default (Task 8) le esclude dal bundle --
-  # riferimenti a file che non esistono mai sul disco. Un config senza quella
-  # chiave (bundle vecchi, list letterale invece di layer_b_default_config())
-  # non esclude nulla, come .build_cluster_bundle() in R/layer-b-build.R.
-  #
-  # go_enrichment segue una chiave DIVERSA (`config$go_enrichment`, booleano:
-  # se e' generata affatto, non se e' esclusa dal bundle come ma/heterogeneity)
-  # perche' e' l'unica delle sei figure controllata da un flag invece che da
-  # `figure_escluse` (vedi R/layer-b-build.R, `if (isTRUE(config$go_enrichment))`).
-  # Prima di questo fix (minor, revisione finale 2026-08-06) lo stub elencava
-  # sempre go_enrichment.svg anche quando `config$go_enrichment = FALSE`
-  # significava che il file non veniva mai scritto.
-  figure_disponibili <- c(
-    volcano       = "volcano.svg",
-    forest        = "forest.svg (REM/MEGA-AUG only)",
-    ma            = "ma.svg",
-    heatmap       = "heatmap.svg",
-    go_enrichment = "go_enrichment.svg",
-    heterogeneity = "heterogeneity.svg (REM only)"
-  )
-  figure_escluse <- config$figure_escluse %||% character(0)
-  if (!isTRUE(config$go_enrichment)) {
-    figure_escluse <- c(figure_escluse, "go_enrichment")
-  }
-  figure_incluse <- figure_disponibili[!names(figure_disponibili) %in% figure_escluse]
-  figure_lines <- if (length(figure_incluse) > 0L) {
-    paste0("- ", unname(figure_incluse))
-  } else {
-    character(0)
-  }
-
+  # NIENTE elenco delle figure (richiesta utente, 2026-08-06). L'elenco
+  # ripeteva in parole i nomi dei file di figure che il documento mostra
+  # subito sotto, per intero e con la loro didascalia: in un articolo e' una
+  # voce di indice che non porta informazione. La lista era gia' stata
+  # corretta due volte (allineamento a `figure_escluse`, poi a
+  # `config$go_enrichment`) -- toglierla chiude la classe di difetti invece
+  # del singolo caso.
   qmd_lines <- c(
     "---",
     sprintf('title: "Case study: %s (%s)"', label_paper, cluster_id),
@@ -509,12 +489,7 @@
     "",
     summary_block,
     "",
-    corpo_narrativa,
-    "## Figures",
-    "",
-    "::: {.figure-list}",
-    figure_lines,
-    ":::"
+    corpo_narrativa
   )
 
   if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)

@@ -4,7 +4,7 @@
 \alias{.build_go_enrichment}
 \title{GO BP + Reactome enrichment per un cluster (ORA via clusterProfiler)}
 \usage{
-.build_go_enrichment(cluster_pooled_subset, out_dir, config)
+.build_go_enrichment(cluster_pooled_subset, out_dir, config, etichetta = NULL)
 }
 \arguments{
 \item{cluster_pooled_subset}{tibble subset di \code{cluster_pooled.parquet} per
@@ -13,9 +13,15 @@ il cluster (tutte le righe stesso \code{cluster_id}).}
 \item{out_dir}{character path al dir dove salvare gli output.}
 
 \item{config}{list di config (vedi \code{\link[=layer_b_default_config]{layer_b_default_config()}}).}
+
+\item{etichetta}{character(1) opzionale, l'etichetta leggibile del gruppo
+(tipicamente \code{selection_row$label_paper}) da usare come \code{entita} del
+titolo (\code{.lb_titolo()}). Se NULL, NA o vuota il titolo ripiega sul
+\code{cluster_id} grezzo -- MAI in silenzio: la caption lo dichiara. Stesso
+pattern di \code{.build_forest()}/\code{.build_volcano()}/\code{.build_heatmap()}.}
 }
 \value{
-list con \code{png_path}, \code{svg_path}, \code{csv_path}, \code{caption}.
+list con \code{png_path}, \code{svg_path}, \code{csv_path}, \code{titolo}, \code{caption}.
 }
 \description{
 Over-representation analysis: gene set = geni FDR<thr nel cluster,

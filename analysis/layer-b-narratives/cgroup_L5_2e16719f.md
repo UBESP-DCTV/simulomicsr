@@ -1,0 +1,26 @@
+## Biological context
+
+Transforming growth factor beta 1 (TGF-β1) signals through a TGFBR2/TGFBR1 complex that phosphorylates SMAD2 and SMAD3; with SMAD4 these act as transcriptional regulators [1]. TGF-β1 is the principal driver of fibroblast-to-myofibroblast conversion and matrix deposition across organs, and of phenotypic plasticity in epithelial cells [1,2].
+
+A core set of targets was recorded by the first array surveys of treated cells: SERPINE1 (PAI-1), JUNB, SMAD7 and TGFBI (βIG-H3) [3]. Several are negative feedback: SMAD7 blocks SMAD2/3 phosphorylation at the activated receptor [4], and PMEPA1/TMEPAI sequesters R-SMADs [5]. Matrix and matrix-remodelling genes form a second component, including collagens and CCN2/CTGF [1,2] and LRRC15, a marker of TGF-β-programmed myofibroblasts [6]. Two further genes are relevant functionally: NOX4, required for myofibroblast activation [7], and IL11, reported as the dominant response to TGF-β1 in primary human fibroblasts [8].
+
+## What the meta-analysis shows
+
+Across 59 studies comparing TGF-β1 against vehicle or untreated control, 7909 of 19687 tested genes reach FDR < 0.05. All six targets specified from the literature before the analysis are recovered with the expected positive sign and near-complete coverage: SERPINE1 (log2 fold change +2.429, FDR 6.94e-19, 59 studies), TGFBI (+2.154, 4.10e-24, 59), COL1A1 (+1.717, 1.01e-11, 59), CCN2 (+1.690, 6.02e-17, 59), SMAD7 (+1.414, 2.48e-22, 59) and JUNB (+1.218, 6.00e-19, 58).
+
+Among genes measured in at least half of the studies — a coverage requirement on the ranking, not on the estimates — the most significant are SKIL (+1.619, 2.96e-52, 59 studies), PMEPA1 (+2.879, 8.63e-39, 59), BHLHE40 (+1.410, 9.87e-30, 59), KANK4 (+5.171, 1.18e-29, 43) and FSTL3 (+1.663, 7.77e-28, 59). SPINK13 and GZMK reach lower FDR values but are measured in 3 and 2 studies and are set aside by it. Genes named above but not pre-specified are recovered as post-hoc observations, not predictions: IL11 (+3.063, 7.20e-25) at the full 59 studies, NOX4 (+2.984, 1.11e-26, 47) and LRRC15 (+2.331, 2.87e-22, 47). COMP (+4.050, 1.78e-15, 44), among the largest effects, was not anticipated.
+
+## Interpretation and limits
+
+The pooled values are directional summaries, not transferable effect sizes: the median I² is 93.50% and the pre-specified targets sit between I² 99.2 and 99.9, so magnitude varies with cell type, dose and exposure time. Per-study concordance of sign was not quantified, and heterogeneity of this size does not by itself establish that all studies move these genes in the same direction. The effective number of studies is 54.47 against 59 pooled (92%), and the heaviest study holds 6.44% of the weight (GSE117329, median inverse-variance weight per study, normalised within the group). The material is mixed (11 in vitro models, 4 patient tissues, 44 studies not classified), so the response cannot be attributed to a defined cell context, and exposure times range from 45 minutes to 21 days, averaging early and late phases into one estimate. Of the 145 pooled comparisons, 29 (20.0%) carry a documented pairing defect: an unisolated second agent, iPSC-derived against primary cells, mismatched culture passage, or donors of different ancestry; the five studies involved hold 6.7% of the weight, an upper bound since not all their comparisons are affected. Nineteen of the 78 studies identified for this comparison did not enter the pooling: the pooled set is a subset of the available evidence. The group was judged coherent overall, a judgement about the contrast addressed, not a guarantee on every comparison.
+
+## References
+
+1. Massagué J, Sheppard D. TGF-β signaling in health and disease. Cell 2023;186:4007-4037. PMID: 37714133
+2. Meng XM, Nikolic-Paterson DJ, Lan HY. TGF-β: the master regulator of fibrosis. Nat Rev Nephrol 2016;12:325-338. PMID: 27108839
+3. Akiyoshi S, Ishii M, Nemoto N, Kawabata M, Aburatani H, Miyazono K. Targets of transcriptional regulation by transforming growth factor-beta: expression profile analysis using oligonucleotide arrays. Jpn J Cancer Res 2001;92:257-268. PMID: 11267935
+4. Nakao A, Afrakhte M, Morén A, Nakayama T, Christian JL, Heuchel R, Itoh S, Kawabata M, Heldin NE, Heldin CH, ten Dijke P. Identification of Smad7, a TGFbeta-inducible antagonist of TGF-beta signalling. Nature 1997;389:631-635. PMID: 9335507
+5. Watanabe Y, Itoh S, Goto T, Ohnishi E, Inamitsu M, Itoh F, Satoh K, Wiercinska E, Yang W, Shi L, Tanaka A, Nakano N, Mommaas AM, Shibuya H, ten Dijke P, Kato M. TMEPAI, a transmembrane TGF-beta-inducible protein, sequesters Smad proteins from active participation in TGF-beta signaling. Mol Cell 2010;37:123-134. PMID: 20129061
+6. Dominguez CX, Müller S, Keerthivasan S, et al. Single-cell RNA sequencing reveals stromal evolution into LRRC15+ myofibroblasts as a determinant of patient response to cancer immunotherapy. Cancer Discov 2020;10:232-253. PMID: 31699795
+7. Hecker L, Vittal R, Jones T, Jagirdar R, Luckhardt TR, Horowitz JC, Pennathur S, Martinez FJ, Thannickal VJ. NADPH oxidase-4 mediates myofibroblast activation and fibrogenic responses to lung injury. Nat Med 2009;15:1077-1081. PMID: 19701206
+8. Schafer S, Viswanathan S, Widjaja AA, et al. IL-11 is a crucial determinant of cardiovascular fibrosis. Nature 2017;552:110-115. PMID: 29160304

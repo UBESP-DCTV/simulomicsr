@@ -12,11 +12,17 @@ Colonne usate: \code{gene_symbol}, \code{logFC_pool}, \code{FDR_BH_within_cluste
 
 \item{bersagli_attesi}{character vector di simboli genici attesi. Se
 vuoto, ritorna 0 righe senza errore -- e' il caso "nessuna aspettativa
-dichiarata dal chiamante", gia' gestito a valle da \code{.narrativa_bozza()}.}
+dichiarata dal chiamante", gia' gestito a valle da \code{.summary_card_v2()}.}
 }
 \value{
 data.frame con \code{gene}, \code{logFC}, \code{FDR} -- una riga per bersaglio
-atteso che e' anche misurato in questo cluster.
+atteso che e' anche misurato in questo cluster. Deduplicato per
+\code{gene_symbol} (vedi \code{\link[=.rank_and_dedup_genes]{.rank_and_dedup_genes()}}): ARCHS4 mappa piu'
+Ensembl gene_id sullo stesso simbolo HGNC (artefatto multi-Ensembl), e
+senza questo passo un bersaglio con piu' righe comparirebbe piu' volte
+nella scheda/narrativa -- lo stesso difetto gia' corretto per
+tabella/heatmap/forest/volcano, qui latente finche' nessun cluster
+veniva mai passato a questa funzione (vedi rilievo C1).
 }
 \description{
 Incrocia i bersagli attesi dalla letteratura (dichiarati dal CHIAMANTE --
@@ -24,7 +30,7 @@ vedi \code{bersagli_attesi_provider} di \code{\link[=build_layer_b_results]{buil
 funzione non ha una tabella interna) con i geni effettivamente misurati nel
 pool (\code{cluster_pooled}), e riporta SOLO quelli presenti. E' il ponte fra il
 deliverable annotato (che vive a livello di meta-analisi, non di gene: non
-ha \code{logFC}/\code{FDR} per bersaglio) e \code{.summary_card_v2()}/\code{.narrativa_bozza()}
+ha \code{logFC}/\code{FDR} per bersaglio) e \code{.summary_card_v2()}
 (che li vogliono gia' pronti).
 }
 \keyword{internal}

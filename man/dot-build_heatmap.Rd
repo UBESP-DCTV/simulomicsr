@@ -4,7 +4,14 @@
 \alias{.build_heatmap}
 \title{Heatmap top-N geni x sample (vst + ComBat batch-corrected)}
 \usage{
-.build_heatmap(counts, metadata, cluster_pooled_subset, out_dir, config)
+.build_heatmap(
+  counts,
+  metadata,
+  cluster_pooled_subset,
+  out_dir,
+  config,
+  etichetta = NULL
+)
 }
 \arguments{
 \item{counts}{integer matrix genes x samples (rownames = HGNC symbol).}
@@ -18,9 +25,15 @@ il cluster (tutte le righe stesso \code{cluster_id}).}
 \item{out_dir}{character path al dir dove salvare \code{heatmap.png} (+ \code{.svg}).}
 
 \item{config}{list di config (vedi \code{\link[=layer_b_default_config]{layer_b_default_config()}}).}
+
+\item{etichetta}{character(1) opzionale, l'etichetta leggibile del gruppo
+(tipicamente \code{selection_row$label_paper}) da usare come \code{entita} del
+titolo (\code{.lb_titolo()}). Se NULL, NA o vuota il titolo ripiega sul
+\code{cluster_id} grezzo -- MAI in silenzio: la caption lo dichiara. Stesso
+pattern di \code{.build_forest()}/\code{.build_volcano()} (Task 3-4).}
 }
 \value{
-list con \code{png_path}, \code{svg_path}, \code{caption}.
+list con \code{png_path}, \code{svg_path}, \code{titolo}, \code{caption}.
 }
 \description{
 Top-N geni FDR<thr ranked by significance (\code{FDR_BH_within_cluster}
@@ -31,8 +44,9 @@ e senza duplicati di simbolo). Counts normalize via
 \code{DESeq2::varianceStabilizingTransformation()} + \code{sva::ComBat()} batch
 correction per \code{study_id} (cosmetico, esplicitato nella caption).
 Subsample stratificato per (study, treatment) se
-n_samples > max_heatmap_samples. Row-wise z-score, annotation rows
-study (viridis) + treatment (binary), ComplexHeatmap engine.
+n_samples > max_heatmap_samples. Row-wise z-score, annotation colonne
+via \code{\link[=.heatmap_annotazione_colonne]{.heatmap_annotazione_colonne()}} (Treatment sempre, Study solo se
+\code{config$heatmap_mostra_studi = TRUE}), ComplexHeatmap engine.
 }
 \details{
 Edge cases:

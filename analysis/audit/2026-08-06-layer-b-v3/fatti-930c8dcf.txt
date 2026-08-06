@@ -1,0 +1,270 @@
+# FATTI VERIFICATI — DHT (5alpha-dihydrotestosterone)  (cgroup_L5_930c8dcf)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : CHEBI:16330  (DHT (5alpha-dihydrotestosterone))
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 23
+- studi efficaci (Kish)      : 20.91  (91% del k nominale)
+- studio piu' pesante        : GSE125014 (6.10% del peso)
+- geni significativi (FDR<0,05): 4875 su 19186 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 17733)
+- I2 mediano                 : 85.05%
+- verdetto di coerenza       : coherent
+- materiale                  : omogeneo (12 modello in vitro / 0 tessuto di paziente / 11 non classificato)
+- studi censiti -> poolati   : 34 -> 23
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  KLK3       logFC=+2.267  FDR=7.21e-06  k=14  I2=99.9
+  TMPRSS2    logFC=+1.780  FDR=6.49e-08  k=19  I2=99.7
+  FKBP5      logFC=+2.322  FDR=5.35e-08  k=23  I2=99.9
+  NKX3-1     logFC=+1.368  FDR=1.28e-05  k=23  I2=99.9
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  AFP             -2.000     2.57e-44     5     0.0
+  COL22A1         +4.412     6.65e-28     2     0.0
+  KRT72           +5.405     6.65e-28     6    77.4
+  UCHL3           +0.335     3.39e-23    23    44.7
+  RIMBP2          -0.315     7.91e-22     2     0.0
+  PGC             +4.630     4.54e-20    17    95.9
+  PSG9            +2.251     4.54e-20     3     0.0
+  TBL1Y           -0.456     1.88e-18    17     0.0
+  SLC25A33        +0.602     3.54e-18    23    94.3
+  NSG2            -0.584     8.67e-16     2     0.0
+  HOXC12          -0.760     8.92e-16    18    84.1
+  CSGALNACT2      +0.304     8.92e-16    23    60.0
+  PIGZ            -0.452     4.63e-14    23    60.4
+  ADAM2           -0.796     1.56e-13     4    13.4
+  ETF1            +0.184      4.5e-13    23    64.0
+  RBP5            -0.602      4.5e-13    18    44.0
+  DSG4            -2.386     6.58e-13     2     0.0
+  COPS3           +0.202      7.8e-13    23    55.7
+  PIK3R6          -1.894      7.8e-13     4     0.0
+  GOT1            +0.408     2.23e-12    23    90.1
+  ENSG00000276418    +1.892     3.61e-12    18    86.0
+  SSBP3           -0.366     5.32e-12    23    91.2
+  TRIM10          -4.674     6.35e-12     2     0.0
+  BFAR            +0.273     6.35e-12    23    27.3
+  ENSG00000278384    -0.277     7.78e-12    23    32.8
+  ERMAP           -0.314     8.04e-12    23    69.1
+  MAP2K1          +0.242     8.39e-12    23    78.6
+  ZNF596          -0.381     9.84e-12    23    44.4
+  INSL5           -1.655     1.25e-11     4     6.6
+  MS4A8           -0.809     1.61e-11     9    12.5
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  KRT72           +5.405     6.65e-28     6    77.4
+  RNASE12         +4.890     7.56e-06     5    92.3
+  PPP1R11         -4.848     0.000444     2    35.3
+  PNLIP           +4.766     1.63e-06     6    93.5
+  KRT73           +4.717     2.78e-05     6    95.9
+  TRIM10          -4.674     6.35e-12     2     0.0
+  PGC             +4.630     4.54e-20    17    95.9
+  COL22A1         +4.412     6.65e-28     2     0.0
+  IL20            -4.367       0.0199     2    83.8
+  ARL14           -4.166     0.000583     2     0.0
+  SLC38A4         +4.147     1.13e-08    19    98.7
+  ORM1            +4.004     1.85e-05    10    97.2
+  PTCRA           +3.949     3.04e-09     7    82.4
+  UGT2B28         +3.873     3.78e-11    14    97.7
+  SLC26A3         +3.744     2.51e-10    18    95.3
+  CHRNA2          +3.723     2.06e-10    17    99.6
+  PNLIPRP3        +3.703      0.00145     9    98.5
+  ADH1C           +3.438     8.19e-08    11    95.9
+  SDR9C7          +3.429     2.79e-07     9    92.1
+  P3R3URF-PIK3R3    -3.314        0.047     2     0.0
+  ORM2            +3.208      0.00214    10    98.2
+  TP53TG3E        -3.208      0.00626     2     0.0
+  SLC2A3          +3.096     0.000107    16    99.4
+  MUC4            -3.067       0.0231     2    36.3
+  ENSG00000289746    +2.923     1.53e-05    16    99.3
+  OIT3            -2.918       0.0252     3    84.8
+  CEACAM7         +2.901       0.0399     2    87.3
+  HPGD            +2.893     7.13e-05    18    99.4
+  MYBPC1          +2.886     2.49e-08    17    99.1
+  CCDC141         +2.859     1.08e-07    20    97.5
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE125014      22.48%
+  GSE64529       14.23%
+  GSE218556       9.08%
+  GSE99626        8.69%
+  GSE163539       5.90%
+  GSE148806       5.37%
+  GSE89917        4.94%
+  GSE94013        4.57%
+  GSE178374       2.98%
+  GSE236286       2.59%
+  GSE159606       2.45%
+  GSE130247       2.36%
+  GSE165246       2.20%
+  GSE123766       2.06%
+  GSE157104       1.93%
+  GSE123763       1.75%
+  GSE176006       1.52%
+  GSE210765       1.18%
+  GSE227511       0.98%
+  GSE141806       0.90%
+  GSE174618       0.83%
+  GSE138053       0.57%
+  GSE158557       0.45%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  confronti totali          : 44
+  confronti difettosi       : 3 (6.8%)
+  studi con >=1 difetto     : GSE130247; GSE227511; GSE99626
+  peso di quegli studi      : 12.0%  (mediana 1/SE^2 per studio, normalizzata)
+  dettaglio dei confronti difettosi:
+    [GSE130247] 22RV1 cells treated with DHT and ENZ  VS  22RV1 cells treated with EtOH_DMSO
+        meccanismo: 7 secondo agente
+    [GSE99626] T47D cells treated with E2 and DHT  VS  T47D cells treated with Vehicle
+        meccanismo: 7 secondo agente
+    [GSE227511] MDaPCa2a cells treated with DHT and ACP-coating  VS  MDaPCa2a cells treated with plastic and control media
+        meccanismo: 6 materiale diverso
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE123763] n=2 trattati vs 5 controlli
+      TRATTATO : GAR15-13_DHT
+      CONTROLLO: GAR15-13_Vehicle
+  [GSE123763] n=2 trattati vs 2 controlli
+      TRATTATO : HCI-005_DHT
+      CONTROLLO: HCI-005_Vehicle
+  [GSE123766] n=5 trattati vs 3 controlli
+      TRATTATO : DHT
+      CONTROLLO: Vehicle
+  [GSE125014] n=2 trattati vs 4 controlli
+      TRATTATO : LNCaP + DHT
+      CONTROLLO: LNCaP + Vehicle
+  [GSE125014] n=2 trattati vs 4 controlli
+      TRATTATO : LNCaP + DHT
+      CONTROLLO: LNCaP + Vehicle
+  [GSE130247] n=2 trattati vs 2 controlli
+      TRATTATO : 22RV1 cells treated with DHT and ENZ
+      CONTROLLO: 22RV1 cells treated with EtOH_DMSO
+  [GSE130247] n=1 trattati vs 2 controlli
+      TRATTATO : 22RV1 cells treated with DHT and DMSO
+      CONTROLLO: 22RV1 cells treated with EtOH_DMSO
+  [GSE138053] n=3 trattati vs 6 controlli
+      TRATTATO : DHT-treated iPSC (Donor 6)
+      CONTROLLO: EtOH-treated iPSC (Donor 6)
+  [GSE141806] n=2 trattati vs 3 controlli
+      TRATTATO : 22Rv1 cells treated with DHT
+      CONTROLLO: 22Rv1 cells treated with ethanol
+  [GSE148806] n=3 trattati vs 3 controlli
+      TRATTATO : R1-AD1 shCon DHT
+      CONTROLLO: R1-AD1 shCon ethanol
+  [GSE148806] n=3 trattati vs 1 controlli
+      TRATTATO : R1-AD1 shKLF5-1 DHT
+      CONTROLLO: R1-AD1 shKLF5-1 ethanol
+  [GSE148806] n=2 trattati vs 3 controlli
+      TRATTATO : R1-AD1 shKLF5-2 DHT
+      CONTROLLO: R1-AD1 shKLF5-2 ethanol
+  [GSE148806] n=1 trattati vs 3 controlli
+      TRATTATO : R1-AD1 shKLF5-2 DHT
+      CONTROLLO: R1-AD1 shKLF5-2 ethanol
+  [GSE157104] n=2 trattati vs 6 controlli
+      TRATTATO : VCaP_DHT_10hr
+      CONTROLLO: VCaP_Vehicle
+  [GSE157104] n=1 trattati vs 6 controlli
+      TRATTATO : VCaP_DHT_2hr
+      CONTROLLO: VCaP_Vehicle
+  [GSE157104] n=2 trattati vs 2 controlli
+      TRATTATO : VCaP_DHT_24hr
+      CONTROLLO: VCaP_Vehicle_24hr
+  [GSE158557] n=1 trattati vs 3 controlli
+      TRATTATO : ARQ640X + DHT
+      CONTROLLO: ARQ640X + Vehicle
+  [GSE158557] n=2 trattati vs 3 controlli
+      TRATTATO : ARV7 + DHT
+      CONTROLLO: ARV7 + Vehicle
+  [GSE158557] n=2 trattati vs 3 controlli
+      TRATTATO : ARWT + DHT
+      CONTROLLO: ARWT + Vehicle
+  [GSE158557] n=3 trattati vs 3 controlli
+      TRATTATO : EGFP + DHT
+      CONTROLLO: EGFP + Vehicle
+  [GSE159606] n=3 trattati vs 3 controlli
+      TRATTATO : DHT
+      CONTROLLO: Vehicle Control
+  [GSE163539] n=3 trattati vs 3 controlli
+      TRATTATO : DHT-treated LNCaP cells
+      CONTROLLO: DMSO-treated LNCaP cells
+  [GSE165246] n=3 trattati vs 2 controlli
+      TRATTATO : LNCaP + DHT
+      CONTROLLO: LNCaP + vehicle
+  [GSE174618] n=3 trattati vs 4 controlli
+      TRATTATO : DHT 10nm 1hr
+      CONTROLLO: Vehicle Control (EtOH)
+  [GSE174618] n=4 trattati vs 4 controlli
+      TRATTATO : DHT 10nm 24hr
+      CONTROLLO: Vehicle Control (EtOH)
+  [GSE174618] n=1 trattati vs 4 controlli
+      TRATTATO : DHT 10nm 96hr (Sample 1)
+      CONTROLLO: Vehicle Control (EtOH)
+  [GSE174618] n=1 trattati vs 4 controlli
+      TRATTATO : DHT 10nm 1hr (Cell Line HPR1-AR)
+      CONTROLLO: Vehicle Control (EtOH)
+  [GSE174618] n=1 trattati vs 4 controlli
+      TRATTATO : DHT 10nm 96hr (Sample 2)
+      CONTROLLO: Vehicle Control (EtOH)
+  [GSE174618] n=2 trattati vs 4 controlli
+      TRATTATO : DHT 10nm 96hr (Sample 3)
+      CONTROLLO: Vehicle Control (EtOH)
+  [GSE176006] n=5 trattati vs 6 controlli
+      TRATTATO : MDA-MB-453 passage 1 treated with DHT
+      CONTROLLO: MDA-MB-453 passage 1 treated with Vehicle
+  [GSE178374] n=4 trattati vs 3 controlli
+      TRATTATO : 2D-cultured dermal papilla cells treated with DHT
+      CONTROLLO: 2D-cultured dermal papilla cells
+  [GSE178374] n=2 trattati vs 3 controlli
+      TRATTATO : 3D-cultured dermal papilla cells treated with DHT
+      CONTROLLO: 3D-cultured dermal papilla cells
+  [GSE210765] n=3 trattati vs 6 controlli
+      TRATTATO : DHT Treated
+      CONTROLLO: Vehicle Control
+  [GSE218556] n=3 trattati vs 3 controlli
+      TRATTATO : LNCaP cells treated with DHT
+      CONTROLLO: LNCaP cells treated with Vehicle (DMSO)
+  [GSE227511] n=2 trattati vs 2 controlli
+      TRATTATO : LNCaP cells treated with DHT and ACP-coating
+      CONTROLLO: LNCaP cells treated with control media and ACP-coating
+  [GSE227511] n=2 trattati vs 1 controlli
+      TRATTATO : MDaPCa2a cells treated with DHT and ACP-coating
+      CONTROLLO: MDaPCa2a cells treated with plastic and control media
+  [GSE227511] n=1 trattati vs 2 controlli
+      TRATTATO : VCaP cells treated with DHT, ACP-coating, and polyA RNA fractionation
+      CONTROLLO: VCaP cells treated with control media and ACP-coating
+  [GSE227511] n=1 trattati vs 2 controlli
+      TRATTATO : VCaP cells treated with DHT and ACP-coating
+      CONTROLLO: VCaP cells treated with control media and ACP-coating
+  [GSE236286] n=2 trattati vs 2 controlli
+      TRATTATO : DHT
+      CONTROLLO: Vehicle
+  [GSE64529] n=2 trattati vs 3 controlli
+      TRATTATO : DHT-treated LNCaP cells
+      CONTROLLO: Control LNCaP cells
+  [GSE89917] n=2 trattati vs 2 controlli
+      TRATTATO : LNCaP Bag-1L KO cell line with DHT
+      CONTROLLO: LNCaP Bag-1L KO cell line with EtOH
+  [GSE89917] n=2 trattati vs 1 controlli
+      TRATTATO : LNCaP Bag-1L KO cell line with DHT
+      CONTROLLO: LNCaP Bag-1L KO cell line
+  [GSE94013] n=2 trattati vs 2 controlli
+      TRATTATO : DHT
+      CONTROLLO: DMSO
+  [GSE99626] n=3 trattati vs 3 controlli
+      TRATTATO : T47D cells treated with E2 and DHT
+      CONTROLLO: T47D cells treated with Vehicle

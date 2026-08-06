@@ -1,0 +1,240 @@
+# FATTI VERIFICATI — Crohn disease  (cgroup_L5_c3ae78cd)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : MeSH:D003424  (Crohn Disease)
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 10
+- studi efficaci (Kish)      : 6.87  (69% del k nominale)
+- studio piu' pesante        : GSE93624 (20.30% del peso)
+- geni significativi (FDR<0,05): 3515 su 19184 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 17557)
+- I2 mediano                 : 62.91%
+- verdetto di coerenza       : coherent
+- materiale                  : omogeneo (0 modello in vitro / 5 tessuto di paziente / 5 non classificato)
+- studi censiti -> poolati   : 16 -> 10
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  (nessun bersaglio dichiarato prima del run per questa entita')
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  NETO2           +0.692     1.86e-25    10     4.5
+  APOL4           +1.066      8.2e-25    10     0.0
+  MRC1            +0.632     3.45e-22    10     0.0
+  UGT1A3          -3.187     1.09e-21     6     0.0
+  NPSR1           +4.358      1.7e-19     3     0.0
+  EXOC3L1         +0.646     1.31e-18     9     0.0
+  IL22            +4.529     4.26e-17     2     0.0
+  SAA4            +3.811     4.26e-17     3     0.0
+  ZNF836          -0.287     4.55e-16    10     0.0
+  FRAS1           -0.996     8.27e-16     9     0.0
+  NKX1-2          -2.304     7.74e-15     3     0.0
+  SPCS2           +0.257     1.62e-14    10     0.0
+  DUOXA2          +4.433     1.62e-14     8    60.4
+  UCN2            +2.546     1.62e-14     4     0.0
+  MAPKAPK2        +0.320     1.62e-14    10     0.0
+  VAMP5           +0.539     2.72e-14    10     3.6
+  RNF183          +1.225     2.77e-14     8     0.0
+  NLRC4           +0.730     3.56e-14    10    14.1
+  ZNF181          -0.287     1.12e-13    10     0.0
+  HINFP           -0.229     2.05e-13    10     0.0
+  TBC1D30         +0.398     2.41e-13    10     0.0
+  FCGR1A          +2.436     3.72e-13    10    70.5
+  TXNDC5          +0.814     6.73e-13    10    53.1
+  UBTF            -0.196     8.96e-13    10     0.0
+  SUB1            +0.224     1.84e-12    10     0.0
+  CCL8            +1.244     2.08e-12     7     0.0
+  ALDH3B2         +3.534     2.08e-12     2     6.5
+  IGDCC4          +0.661     2.95e-12     8     0.0
+  NDUFA4L2        +0.741     3.06e-12     8     0.0
+  VSIG10L         -0.449     3.36e-12    10     1.2
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  GKN2            +5.327     1.14e-08     2    24.7
+  GIP             +5.279       0.0334     2    91.0
+  SOX14           +4.987      0.00978     3    94.3
+  ACOD1           +4.919     1.25e-07     4    69.5
+  HOXD13          -4.694     8.85e-07     2     0.0
+  CXCL5           +4.674     0.000396     9    93.2
+  IL22            +4.529     4.26e-17     2     0.0
+  DUOXA2          +4.433     1.62e-14     8    60.4
+  ENSG00000261793    +4.422      0.00436     2    55.8
+  ENSG00000288423    +4.400     2.08e-05     2    55.8
+  CSF3            +4.366      0.00366     6    82.4
+  NPSR1           +4.358      1.7e-19     3     0.0
+  DPYS            +4.262     6.83e-12     2     0.0
+  AQP9            +3.894     0.000177     9    93.3
+  SAA4            +3.811     4.26e-17     3     0.0
+  MMP3            +3.788      0.00486     8    91.4
+  KRTAP13-2       -3.540       0.0182     4    48.6
+  ALDH3B2         +3.534     2.08e-12     2     6.5
+  FPR2            +3.526     7.57e-05     8    92.8
+  MMP10           +3.491     0.000106     7    74.9
+  OR52N1          +3.484     9.86e-05     3     0.0
+  GC              +3.410     0.000135     2     0.0
+  CXCR1           +3.350      0.00446     9    94.7
+  CHI3L1          +3.326      0.00247    10    94.0
+  HCAR3           +3.230      0.00598     8    92.8
+  HOXD12          -3.219        0.005     2     0.0
+  SAA2            +3.217     0.000282     9    88.5
+  MMP1            +3.202     0.000574     8    89.1
+  UGT1A3          -3.187     1.09e-21     6     0.0
+  FCGR3B          +3.140      0.00048    10    92.7
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE93624       40.45%
+  GSE112057      20.83%
+  GSE137344       6.81%
+  GSE233900       6.77%
+  GSE199906       6.65%
+  GSE156044       6.06%
+  GSE261086       5.18%
+  GSE139179       4.89%
+  GSE164871       1.67%
+  GSE117875       0.71%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  NON MISURATO: questo gruppo e' fuori dai 13 con k>=15 per cui il conteggio
+  confronto-per-confronto e' stato fatto il 2026-08-05. Il conteggio per questo
+  gruppo e' oggetto del workflow di questa sessione.
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE112057] n=55 trattati vs 11 controlli
+      TRATTATO : Crohn's Disease
+      CONTROLLO: Healthy Control
+  [GSE117875] n=4 trattati vs 3 controlli
+      TRATTATO : Crohn's disease ileum adolescent
+      CONTROLLO: Healthy ileum adolescent
+  [GSE137344] n=3 trattati vs 37 controlli
+      TRATTATO : Crohn's Disease (Case)
+      CONTROLLO: Healthy Control
+  [GSE137344] n=109 trattati vs 37 controlli
+      TRATTATO : Crohn's Disease (Case)
+      CONTROLLO: Healthy Control
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, rectum, T26
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, rectum, TM30
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon, activated, T26
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon, activated, T52
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, ascending colon, TM36
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, ascending colon, T26
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=2 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, ascending colon, T52
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, ascending colon, TM48
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon, Baseline
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon, T106
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon, T106
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=2 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon, T26
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon, T52
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, descending colon, T52
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, sigmoid colon, T106
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, sigmoid colon, T26
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, rectum, TM36
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, rectum, TM48
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE139179] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's disease, rectum, T52
+      CONTROLLO: Healthy, sigmoid colon
+  [GSE156044] n=4 trattati vs 2 controlli
+      TRATTATO : Crohn's disease mesenteric adipose tissue
+      CONTROLLO: Healthy mesenteric adipose tissue
+  [GSE156044] n=4 trattati vs 2 controlli
+      TRATTATO : Crohn's disease mesenteric adipose tissue
+      CONTROLLO: Healthy mesenteric adipose tissue
+  [GSE164871] n=1 trattati vs 4 controlli
+      TRATTATO : Crohn's Disease CD4
+      CONTROLLO: Healthy Control Colon Tissue
+  [GSE164871] n=2 trattati vs 4 controlli
+      TRATTATO : Crohn's Disease Colon Tissue
+      CONTROLLO: Healthy Control Colon Tissue
+  [GSE199906] n=18 trattati vs 14 controlli
+      TRATTATO : Crohn's Disease
+      CONTROLLO: Healthy Control
+  [GSE199906] n=18 trattati vs 11 controlli
+      TRATTATO : Crohn's Disease
+      CONTROLLO: Healthy Control
+  [GSE233900] n=3 trattati vs 19 controlli
+      TRATTATO : CD patient D681
+      CONTROLLO: Healthy control B206
+  [GSE261086] n=6 trattati vs 5 controlli
+      TRATTATO : Crohn's disease colon mucosa
+      CONTROLLO: Normal colon mucosa
+  [GSE261086] n=6 trattati vs 3 controlli
+      TRATTATO : Crohn's disease colon mucosa
+      CONTROLLO: Normal colon mucosa
+  [GSE261086] n=3 trattati vs 5 controlli
+      TRATTATO : Inflamed colon mucosa
+      CONTROLLO: Normal colon mucosa
+  [GSE261086] n=3 trattati vs 3 controlli
+      TRATTATO : Inflamed colon mucosa
+      CONTROLLO: Normal colon mucosa
+  [GSE261086] n=2 trattati vs 9 controlli
+      TRATTATO : Crohn's disease colon
+      CONTROLLO: Normal colon wall
+  [GSE261086] n=1 trattati vs 9 controlli
+      TRATTATO : Crohn's disease colon
+      CONTROLLO: Normal colon wall
+  [GSE261086] n=3 trattati vs 9 controlli
+      TRATTATO : Inflamed colon
+      CONTROLLO: Normal colon wall
+  [GSE261086] n=1 trattati vs 9 controlli
+      TRATTATO : Crohn's disease colon wall
+      CONTROLLO: Normal colon wall
+  [GSE261086] n=9 trattati vs 9 controlli
+      TRATTATO : Crohn's disease colon wall
+      CONTROLLO: Normal colon wall
+  [GSE261086] n=8 trattati vs 9 controlli
+      TRATTATO : Inflamed colon wall
+      CONTROLLO: Normal colon wall
+  [GSE93624] n=144 trattati vs 35 controlli
+      TRATTATO : Crohn's disease (European, M, age 13.25)
+      CONTROLLO: Non-IBD control

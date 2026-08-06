@@ -43,14 +43,14 @@
     # CSV vuoto + LaTeX con caption esplicativa
     readr::write_csv(top, csv_path)
     writeLines(
-      sprintf("%% No genes significant at FDR<%g for cluster %s.",
+      sprintf("%% No genes significant at FDR<%g in %s.",
               fdr_thr, unique(cp$cluster_id)[1L]),
       tex_path
     )
     return(list(
       csv_path = csv_path,
       tex_path = tex_path,
-      caption = sprintf("No genes significant at FDR<%g for this cluster.", fdr_thr),
+      caption = sprintf("No genes significant at FDR<%g in this meta-analysis.", fdr_thr),
       n_rows = 0L
     ))
   }
@@ -90,7 +90,7 @@
     booktabs = TRUE,
     digits = digits_vec,
     caption = sprintf(paste0(
-      "Top %d differentially expressed genes for cluster %s (FDR<%g, ",
+      "Top %d differentially expressed genes in %s (FDR<%g, ",
       "ranked by significance; $\\log_2 FC$ reported for reference).%s"
     ), nrow(top_out), cluster_id_str, fdr_thr, .coverage_filter_note(filtro)),
     label = sprintf("tab:top-genes-%s", gsub("[^a-zA-Z0-9]", "-", cluster_id_str))

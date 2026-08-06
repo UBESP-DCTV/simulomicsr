@@ -1,0 +1,317 @@
+# FATTI VERIFICATI — JQ1  (cgroup_L5_b71a25a2)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : CHEBI:137113  (JQ1)
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 25
+- studi efficaci (Kish)      : 23.70  (95% del k nominale)
+- studio piu' pesante        : GSE113604 (4.81% del peso)
+- geni significativi (FDR<0,05): 9678 su 19105 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 17551)
+- I2 mediano                 : 95.59%
+- verdetto di coerenza       : coherent
+- materiale                  : MISTO (3 modello in vitro / 1 tessuto di paziente / 21 non classificato)
+- studi censiti -> poolati   : 41 -> 25
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  (nessun bersaglio dichiarato prima del run per questa entita')
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  FAM163A         -1.985            0     2     0.0
+  PLPPR5          -1.814    8.12e-288     4     0.0
+  MBD3L3          -1.222     2.6e-225     2     0.0
+  TMEM238L        -1.563    6.99e-126     2     0.0
+  DEFB1           -1.736    1.62e-115     4     0.0
+  PRSS57          -0.622    5.13e-106     2     0.0
+  PHGR1           -1.115    9.23e-100     2     0.0
+  SERPINB4        -2.689     6.41e-95     4     0.0
+  SHD             -1.229     6.81e-92     5     0.0
+  TMEM242         +0.637     1.04e-66    25    77.0
+  BTNL3           -2.387     6.43e-63     2     0.0
+  ARL2-SNX15      +0.868     1.19e-56    17     0.0
+  TRIM55          -2.881      6.4e-55     4    17.7
+  CD244           -2.071      3.7e-53     3     0.0
+  HSD3B1          -3.407     1.27e-50     2    36.8
+  ZNF445          +0.752     9.75e-48    25    90.0
+  ZPLD1           -4.194      2.1e-44     2     0.0
+  KCTD21          +0.984     2.14e-39    25    92.8
+  INPP4A          +0.741     2.53e-38    25    94.2
+  GRAP2           -3.543     9.29e-38     2     0.0
+  LILRB4          -0.756     2.05e-37     2     0.0
+  CALM1           +0.780     3.05e-37    25    97.8
+  SOAT2           -3.330     4.46e-37     3     0.0
+  TBC1D20         +0.697     8.24e-36    25    95.4
+  TMEM200B        -1.716     8.24e-36    14    74.4
+  FUNDC1          -0.812     3.56e-35    25    89.6
+  HIF1AN          +0.525     5.28e-33    25    93.5
+  GGPS1           +0.708     7.98e-33    25    93.6
+  FAM149B1        +0.748     2.68e-32    25    92.5
+  C3orf33         -1.489     8.13e-32    25    88.4
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  OR51E1          -6.463      1.8e-08     2    77.9
+  MGAM2           -5.497        0.019     2    85.4
+  SLAMF8          -4.827     2.86e-07     4    93.6
+  BAAT            -4.671     1.36e-26     2     0.0
+  C3orf85         -4.611      0.00665     2    94.7
+  KLK3            -4.419     1.66e-20     3     0.0
+  NR1H4           -4.338     2.19e-05     4    85.0
+  SMTNL1          -4.315      0.00194     2    90.8
+  APOBEC1         -4.253     2.24e-19     2    47.9
+  ZPLD1           -4.194      2.1e-44     2     0.0
+  RUFY4           -4.193      0.00613     2    92.3
+  KBTBD11         -4.136     1.74e-07    15    97.1
+  TM4SF4          -4.135       0.0159     3    98.8
+  CXorf49         -4.125      0.00101     2    88.0
+  LRRC31          -4.125     0.000301     4    96.9
+  CXorf49B        -4.044       0.0139     2    82.2
+  H3C14           +4.032     1.74e-10    20    98.8
+  B3GNT6          -4.011       0.0282     2    92.7
+  CCR2            -4.002       0.0244     2    96.8
+  CCR1            -3.991     1.23e-11     8    96.6
+  IL36RN          -3.991     0.000202     5    94.2
+  XIRP2           -3.960      0.00102     2    77.2
+  SLC17A4         -3.934     2.45e-05     3    91.8
+  GSDMC           -3.911     3.44e-12     2     4.7
+  NEUROD6         -3.888      0.00795     2    99.4
+  IFNL1           -3.887       0.0173     3    97.4
+  SERPINB3        -3.869     2.96e-14     4    60.4
+  ACTC1           -3.869       0.0491     5    99.3
+  PPP1R17         -3.839       0.0449     3    98.5
+  TNFSF18         -3.839      0.00576     5    95.8
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE231871      17.24%
+  GSE88750       13.51%
+  GSE192903       8.89%
+  GSE118548       7.40%
+  GSE235031       6.01%
+  GSE113604       5.81%
+  GSE266389       5.47%
+  GSE74324        5.11%
+  GSE255300       3.78%
+  GSE80153        3.75%
+  GSE78801        3.24%
+  GSE239585       2.69%
+  GSE210196       2.64%
+  GSE211468       2.10%
+  GSE113711       2.07%
+  GSE131983       2.00%
+  GSE92532        1.65%
+  GSE123285       1.44%
+  GSE81405        1.20%
+  GSE186961       0.97%
+  GSE210101       0.75%
+  GSE55922        0.70%
+  GSE219191       0.59%
+  GSE130313       0.55%
+  GSE131099       0.43%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  confronti totali          : 58
+  confronti difettosi       : 6 (10.3%)
+  studi con >=1 difetto     : GSE78801
+  peso di quegli studi      : 3.2%  (mediana 1/SE^2 per studio, normalizzata)
+  dettaglio dei confronti difettosi:
+    [GSE78801] DIPG primary culture pons H3.1K27M, JQ1, 12h  VS  DIPG primary culture brain, DMSO, 12h
+        meccanismo: 6 sede diversa
+    [GSE78801] DIPG primary culture pons H3.1K27M, JQ1, 24h  VS  DIPG primary culture brain, DMSO, 24h
+        meccanismo: 6 sede diversa
+    [GSE78801] DIPG primary culture pons H3.1K27M, JQ1, 48h  VS  DIPG primary culture brain, DMSO, 48h
+        meccanismo: 6 sede diversa
+    [GSE78801] DIPG primary culture pons H3.1K27M, JQ1, 6h  VS  DIPG primary culture brain, DMSO, 6h
+        meccanismo: 6 sede diversa
+    [GSE78801] DIPG primary culture pons, JQ1, 3h  VS  DIPG primary culture brain, DMSO, 3h
+        meccanismo: 6 sede diversa
+    [GSE78801] DIPG primary culture pons, JQ1, 24h  VS  DIPG primary culture brain, DMSO, 24h
+        meccanismo: 6 sede diversa
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE113604] n=2 trattati vs 2 controlli
+      TRATTATO : Cado-ES + JQ1
+      CONTROLLO: Cado-ES + DMSO
+  [GSE113604] n=2 trattati vs 2 controlli
+      TRATTATO : CHLA10 + JQ1
+      CONTROLLO: CHLA10 + DMSO
+  [GSE113604] n=2 trattati vs 2 controlli
+      TRATTATO : RD-ES + JQ1
+      CONTROLLO: RD-ES + DMSO
+  [GSE113604] n=2 trattati vs 2 controlli
+      TRATTATO : SK-N-MC + JQ1
+      CONTROLLO: SK-N-MC + DMSO
+  [GSE113711] n=1 trattati vs 3 controlli
+      TRATTATO : JQ1 3h
+      CONTROLLO: DMSO 3h
+  [GSE113711] n=1 trattati vs 3 controlli
+      TRATTATO : JQ1 6h
+      CONTROLLO: DMSO 6h
+  [GSE113711] n=2 trattati vs 3 controlli
+      TRATTATO : JQ1 12h
+      CONTROLLO: DMSO 12h
+  [GSE113711] n=3 trattati vs 3 controlli
+      TRATTATO : JQ1 24h
+      CONTROLLO: DMSO 24h
+  [GSE118548] n=3 trattati vs 2 controlli
+      TRATTATO : JQ1 (3 replicates)
+      CONTROLLO: DMSO (2 replicates)
+  [GSE123285] n=3 trattati vs 13 controlli
+      TRATTATO : MCF7 + JQ1 (250 nM)
+      CONTROLLO: MCF7 + DMSO Vehicle
+  [GSE123285] n=1 trattati vs 13 controlli
+      TRATTATO : MCF7 + JQ1 (250 nM)
+      CONTROLLO: MCF7 + DMSO Vehicle
+  [GSE130313] n=3 trattati vs 3 controlli
+      TRATTATO : Diffuse SSc, JQ1
+      CONTROLLO: Diffuse SSc, No Treatment
+  [GSE130313] n=3 trattati vs 3 controlli
+      TRATTATO : Healthy Control, JQ1
+      CONTROLLO: Healthy Control, No Treatment
+  [GSE130313] n=3 trattati vs 3 controlli
+      TRATTATO : Diffuse SSc, JQ1
+      CONTROLLO: Diffuse SSc, DMSO
+  [GSE130313] n=3 trattati vs 3 controlli
+      TRATTATO : Healthy Control, JQ1
+      CONTROLLO: Healthy Control, DMSO
+  [GSE131099] n=2 trattati vs 4 controlli
+      TRATTATO : SUM159 cells with transgene treated with JQ1 for 12 hours
+      CONTROLLO: SUM159 cells with transgene treated with DMSO for 12 hours
+  [GSE131983] n=4 trattati vs 4 controlli
+      TRATTATO : JQ1
+      CONTROLLO: DMSO
+  [GSE186961] n=4 trattati vs 5 controlli
+      TRATTATO : JQ1-treated dermal fibroblasts
+      CONTROLLO: Untreated dermal fibroblasts
+  [GSE192903] n=3 trattati vs 3 controlli
+      TRATTATO : JQ1
+      CONTROLLO: Control
+  [GSE210101] n=1 trattati vs 8 controlli
+      TRATTATO : H446 WT JQ1
+      CONTROLLO: H446 WT DMSO
+  [GSE210101] n=3 trattati vs 6 controlli
+      TRATTATO : H446 NEUROD1 KO JQ1
+      CONTROLLO: H446 NEUROD1 KO DMSO
+  [GSE210196] n=4 trattati vs 4 controlli
+      TRATTATO : DLD1 JQ1
+      CONTROLLO: DLD1 DMSO
+  [GSE210196] n=1 trattati vs 1 controlli
+      TRATTATO : SY01 JQ1 sgELOA3
+      CONTROLLO: SY01 DMSO sgELOA3
+  [GSE210196] n=1 trattati vs 2 controlli
+      TRATTATO : SYO1 JQ1 sgELOA3
+      CONTROLLO: SYO1 DMSO sgELOA3
+  [GSE211468] n=2 trattati vs 2 controlli
+      TRATTATO : JQ1 5 days, 4 hours
+      CONTROLLO: DMSO 4 hours
+  [GSE219191] n=1 trattati vs 2 controlli
+      TRATTATO : MDA-MB-231 treated with JQ1 (1)
+      CONTROLLO: MDA-MB-231 treated with DMSO
+  [GSE219191] n=4 trattati vs 2 controlli
+      TRATTATO : MDA-MB-231 treated with JQ1 (2)
+      CONTROLLO: MDA-MB-231 treated with DMSO
+  [GSE219191] n=1 trattati vs 2 controlli
+      TRATTATO : MDA-MB-231 treated with JQ1 (3)
+      CONTROLLO: MDA-MB-231 treated with DMSO
+  [GSE231871] n=4 trattati vs 3 controlli
+      TRATTATO : DOHH2 + JQ1
+      CONTROLLO: DOHH2 + Solvent
+  [GSE235031] n=2 trattati vs 3 controlli
+      TRATTATO : Treated (JQ1)
+      CONTROLLO: Control (drug-free medium)
+  [GSE235031] n=1 trattati vs 3 controlli
+      TRATTATO : Treated (JQ1)
+      CONTROLLO: Control (drug-free medium)
+  [GSE239585] n=3 trattati vs 3 controlli
+      TRATTATO : JQ1-treated, uninfected
+      CONTROLLO: DMSO-treated, uninfected
+  [GSE239585] n=2 trattati vs 3 controlli
+      TRATTATO : JQ1-treated, SARS-CoV-2-infected
+      CONTROLLO: DMSO-treated, SARS-CoV-2-infected
+  [GSE239585] n=3 trattati vs 2 controlli
+      TRATTATO : JQ1-treated, uninfected
+      CONTROLLO: Naive, uninfected
+  [GSE255300] n=4 trattati vs 4 controlli
+      TRATTATO : Colon Organoid Polyp JQ1 500 nM 24h
+      CONTROLLO: Colon Organoid Polyp DMSO
+  [GSE255300] n=2 trattati vs 2 controlli
+      TRATTATO : Colon Organoid Mucosa JQ1 500 nM 24h
+      CONTROLLO: Colon Organoid Mucosa DMSO
+  [GSE255300] n=2 trattati vs 2 controlli
+      TRATTATO : HPCEC Colon JQ1 500 nM 24h
+      CONTROLLO: HPCEC Colon DMSO
+  [GSE266389] n=2 trattati vs 2 controlli
+      TRATTATO : JQ1 1µM 16h
+      CONTROLLO: DMSO 0.1% 16h
+  [GSE55922] n=2 trattati vs 2 controlli
+      TRATTATO : MCF7 + JQ1
+      CONTROLLO: MCF7 + Vehicle
+  [GSE74324] n=2 trattati vs 3 controlli
+      TRATTATO : IMR90 senescent HRASV12 shRen JQ1
+      CONTROLLO: IMR90 senescent HRASV12 shRen DMSO
+  [GSE74324] n=1 trattati vs 3 controlli
+      TRATTATO : IMR90 senescent HRASV12 shRen JQ1
+      CONTROLLO: IMR90 senescent HRASV12 shRen DMSO
+  [GSE74324] n=2 trattati vs 1 controlli
+      TRATTATO : IMR90 quiescent shRen JQ1
+      CONTROLLO: IMR90 quiescent shRen DMSO
+  [GSE74324] n=1 trattati vs 1 controlli
+      TRATTATO : IMR90 quiescent shRen JQ1
+      CONTROLLO: IMR90 quiescent shRen DMSO
+  [GSE74324] n=3 trattati vs 1 controlli
+      TRATTATO : IMR90 proliferating shRen JQ1
+      CONTROLLO: IMR90 proliferating shRen vehicle
+  [GSE78801] n=2 trattati vs 2 controlli
+      TRATTATO : DIPG primary culture pons H3.1K27M, JQ1, 12h
+      CONTROLLO: DIPG primary culture brain, DMSO, 12h
+  [GSE78801] n=1 trattati vs 2 controlli
+      TRATTATO : DIPG primary culture pons H3.1K27M, JQ1, 24h
+      CONTROLLO: DIPG primary culture brain, DMSO, 24h
+  [GSE78801] n=2 trattati vs 2 controlli
+      TRATTATO : DIPG primary culture pons H3.1K27M, JQ1, 48h
+      CONTROLLO: DIPG primary culture brain, DMSO, 48h
+  [GSE78801] n=2 trattati vs 2 controlli
+      TRATTATO : DIPG primary culture pons H3.1K27M, JQ1, 6h
+      CONTROLLO: DIPG primary culture brain, DMSO, 6h
+  [GSE78801] n=2 trattati vs 2 controlli
+      TRATTATO : DIPG primary culture pons, JQ1, 3h
+      CONTROLLO: DIPG primary culture brain, DMSO, 3h
+  [GSE78801] n=1 trattati vs 2 controlli
+      TRATTATO : DIPG primary culture pons, JQ1, 24h
+      CONTROLLO: DIPG primary culture brain, DMSO, 24h
+  [GSE80153] n=3 trattati vs 3 controlli
+      TRATTATO : JQ1 24H BE(2)-C
+      CONTROLLO: DMSO BE(2)-C
+  [GSE80153] n=2 trattati vs 3 controlli
+      TRATTATO : JQ1 4H BE(2)-C
+      CONTROLLO: DMSO BE(2)-C
+  [GSE80153] n=3 trattati vs 3 controlli
+      TRATTATO : JQ1 8H BE(2)-C
+      CONTROLLO: DMSO BE(2)-C
+  [GSE81405] n=3 trattati vs 3 controlli
+      TRATTATO : Primary CAF JQ1 treated (500 nM)
+      CONTROLLO: Primary CAF DMSO vehicle
+  [GSE88750] n=3 trattati vs 3 controlli
+      TRATTATO : JQ1
+      CONTROLLO: DMSO
+  [GSE92532] n=1 trattati vs 12 controlli
+      TRATTATO : JQ1 24h Donor 2
+      CONTROLLO: DMSO 24h
+  [GSE92532] n=5 trattati vs 12 controlli
+      TRATTATO : JQ1 24h Donor 1
+      CONTROLLO: DMSO 24h
+  [GSE92532] n=6 trattati vs 12 controlli
+      TRATTATO : JQ1 6h Donor 1
+      CONTROLLO: DMSO 6h

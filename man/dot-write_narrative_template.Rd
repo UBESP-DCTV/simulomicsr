@@ -27,7 +27,7 @@ entry skip).}
 \item{out_dir}{character.}
 
 \item{narrativa_bozza_md}{character(1) opzionale, markdown gia' pronto
-(tipicamente \code{.narrativa_bozza()}) da inserire al posto degli stub TODO.
+(la narrativa firmata risolta da .narrativa_da_provider()) da inserire al posto degli stub TODO.
 \code{NULL} (default) -> stub TODO, come prima di questo collegamento.}
 
 \item{nota_ripiego}{character(1) opzionale: quando non \code{NULL}, una riga in
@@ -47,7 +47,7 @@ Template Quarto con sezioni TODO ("Biological context", "Findings",
 }
 \details{
 Collegamento (Task 7bis, 2026-08-05): quando il chiamante passa
-\code{narrativa_bozza_md} (tipicamente l'output di \code{.narrativa_bozza()}, in
+\code{narrativa_bozza_md} (tipicamente l'output di \code{.narrativa_da_provider()}, in
 \code{R/layer-b-narrative.R}), gli stub TODO sono sostituiti da quel testo --
 gia' marcato \verb{> BOZZA -- da rivedere} dalla funzione stessa, quindi non
 serve un'altra intestazione TODO sopra. Senza (default \code{NULL}, e' il caso

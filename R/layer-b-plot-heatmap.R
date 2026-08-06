@@ -155,7 +155,7 @@
       svg_path = NA_character_,
       titolo = titolo,
       caption = sprintf(
-        "Heatmap N/A: no genes significant at FDR<%g for this cluster.",
+        "Heatmap not available: no genes significant at FDR<%g.",
         fdr_thr
       )
     ))

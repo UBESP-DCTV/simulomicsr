@@ -5,14 +5,14 @@
 #' funzione non ha una tabella interna) con i geni effettivamente misurati nel
 #' pool (`cluster_pooled`), e riporta SOLO quelli presenti. E' il ponte fra il
 #' deliverable annotato (che vive a livello di meta-analisi, non di gene: non
-#' ha `logFC`/`FDR` per bersaglio) e `.summary_card_v2()`/`.narrativa_bozza()`
+#' ha `logFC`/`FDR` per bersaglio) e `.summary_card_v2()`
 #' (che li vogliono gia' pronti).
 #'
 #' @param cp data.frame/tibble del subset `cluster_pooled` per UN cluster.
 #'   Colonne usate: `gene_symbol`, `logFC_pool`, `FDR_BH_within_cluster`.
 #' @param bersagli_attesi character vector di simboli genici attesi. Se
 #'   vuoto, ritorna 0 righe senza errore -- e' il caso "nessuna aspettativa
-#'   dichiarata dal chiamante", gia' gestito a valle da `.narrativa_bozza()`.
+#'   dichiarata dal chiamante", gia' gestito a valle da `.summary_card_v2()`.
 #' @return data.frame con `gene`, `logFC`, `FDR` -- una riga per bersaglio
 #'   atteso che e' anche misurato in questo cluster. Deduplicato per
 #'   `gene_symbol` (vedi [.rank_and_dedup_genes()]): ARCHS4 mappa piu'
@@ -66,7 +66,7 @@
 #' @param bersagli_attesi_provider function(cluster_id) -> character vector
 #'   opzionale, i simboli genici attesi dalla letteratura per quel cluster.
 #'   **Argomento del chiamante**: il pacchetto non ha una tabella interna di
-#'   bersagli (vedi `.narrativa_bozza()`) -- inventarne una qui sarebbe
+#'   bersagli (vedi `.summary_card_v2()`) -- inventarne una qui sarebbe
 #'   esattamente il tipo di affermazione non verificabile che quella funzione
 #'   e' scritta per evitare. NULL (default) -> nessuna attesa dichiarata per
 #'   nessun cluster (la scheda/narrativa lo dicono esplicitamente, non lo
@@ -74,7 +74,17 @@
 #' @param confronti_imperfetti_provider function(cluster_id) -> list(n, tot,
 #'   peso) o NULL, opzionale, dalla rilettura dei confronti poolati (vedi
 #'   `docs/findings/2026-08-05-confronti-imperfetti.md`). NULL (default) ->
-#'   "non misurato" dichiarato per ogni cluster.
+#'   "non misurato" dichiarato per ogni cluster. **Il peso viene pubblicato
+#'   solo insieme al conteggio** (`n`/`tot`): vedi
+#'   [.lb_confronti_imperfetti_txt()].
+#' @param narrative_provider function(cluster_id) -> character(1) markdown, o
+#'   NULL, opzionale. La narrativa scientifica FIRMATA di quel case study
+#'   (tipicamente letta da `analysis/layer-b-narratives/<cluster_id>.md`).
+#'   NULL (default) o un provider che ritorna NULL per un gruppo -> il
+#'   documento dichiara che la narrativa non e' disponibile, mai una sezione
+#'   vuota o un testo generato da template: quest'ultima strada e' stata
+#'   percorsa (`.narrativa_bozza()`, 2026-08-05, poi rimossa) e ritirata perche' produceva
+#'   nove testi formalmente corretti e privi di contenuto scientifico.
 #' @param config list (vedi [layer_b_default_config()]).
 #' @param out_dir character path output dir. Se NULL, genera dir versionata
 #'   in `analysis/p4-output/<ts>-layer-b-<run_id>/`.
@@ -93,6 +103,7 @@ build_layer_b_results <- function(stage4_dir, selection,
                                   pooling_effectiveness = NULL,
                                   bersagli_attesi_provider = NULL,
                                   confronti_imperfetti_provider = NULL,
+                                  narrative_provider = NULL,
                                   config = layer_b_default_config(),
                                   out_dir = NULL,
                                   fetch_counts_fn = NULL) {
@@ -125,7 +136,7 @@ build_layer_b_results <- function(stage4_dir, selection,
   layer_a_subset <- .fetch_layer_a_subset(stage4_dir, cluster_ids)
 
   # --- deliverable annotato: fonte della scheda nuova (.summary_card_v2()) e
-  # della bozza di narrativa (.narrativa_bozza()) ------------------------------
+  # dei numeri che la accompagnano -----------------------------------------
   # Vive nella STESSA directory dello Stadio 4 passata come stage4_dir -- mai
   # un parametro separato, per garantire che la scheda descriva sempre lo
   # stesso run delle figure (stessa regola gia' applicata a mano negli script
@@ -221,6 +232,12 @@ build_layer_b_results <- function(stage4_dir, selection,
   # stub) invece della scheda/narrativa nuove: dichiarato in run_metadata.json
   # (vedi sotto), non solo nella nota dentro ogni narrative.qmd.
   cluster_id_ripiego <- character(0)
+  # Gruppi per cui il provider non ha una narrativa firmata: registrati nel
+  # run_metadata insieme a quelli che ripiegano sulla scheda vecchia. Un
+  # documento a cui manca un testo lo deve dire in due posti -- nella pagina
+  # (callout) e nell'audit (qui) -- perche' chi verifica non deve aprire nove
+  # bundle per scoprirlo.
+  cluster_id_senza_narrativa <- character(0)
 
   cluster_bundles <- list()
   for (cl_id in cluster_ids) {
@@ -332,14 +349,22 @@ build_layer_b_results <- function(stage4_dir, selection,
       writeLines(strsplit(summary_md, "\n", fixed = TRUE)[[1L]], summary_md_path)
       summary_card <- list(md_path = summary_md_path)
 
-      narrativa_md <- .narrativa_bozza(riga_deliverable, bersagli_attesi, trovati_df, imperfetti)
+      # La narrativa e' testo scientifico FIRMATO, non un testo generato dal
+      # deliverable: arriva dal provider del chiamante. Quando manca, il
+      # documento lo dichiara (mai una sezione vuota) e il gruppo finisce
+      # nell'elenco registrato in run_metadata, cosi' la verifica
+      # sull'artefatto lo vede senza aprire i bundle uno per uno.
+      narr <- .narrativa_da_provider(cl_id, narrative_provider)
+      if (!isTRUE(narr$disponibile)) {
+        cluster_id_senza_narrativa <- c(cluster_id_senza_narrativa, cl_id)
+      }
       narrative_path <- .write_narrative_template(
         cluster_id          = cl_id,
         summary_card_path   = summary_card$md_path,
         selection_row       = selection_row,
         config              = config,
         out_dir             = cl_dir,
-        narrativa_bozza_md  = narrativa_md
+        narrativa_bozza_md  = narr$md
       )
     } else {
       motivo_ripiego <- if (is.null(deliverable_annotato)) {
@@ -360,15 +385,25 @@ build_layer_b_results <- function(stage4_dir, selection,
         per_cluster_samples = counts_meta$metadata,
         pooling_effectiveness = pooling_effectiveness
       )
+      # La narrativa NON dipende dal deliverable annotato: un gruppo che
+      # ripiega sulla scheda vecchia puo' benissimo avere la sua narrativa
+      # firmata, e in quel caso va usata. Prima di questa correzione il ramo
+      # di ripiego scriveva sempre gli stub "TODO" -- testo di processo dentro
+      # un documento da articolo, e per giunta ignorando un testo che poteva
+      # esserci.
+      narr <- .narrativa_da_provider(cl_id, narrative_provider)
+      if (!isTRUE(narr$disponibile)) {
+        cluster_id_senza_narrativa <- c(cluster_id_senza_narrativa, cl_id)
+      }
       narrative_path <- .write_narrative_template(
         cluster_id          = cl_id,
         summary_card_path   = summary_card$md_path,
         selection_row       = selection_row,
         config              = config,
         out_dir             = cl_dir,
+        narrativa_bozza_md  = narr$md,
         nota_ripiego        = sprintf(
-          "questa scheda usa la versione precedente e la narrativa e' uno stub TODO: %s",
-          motivo_ripiego)
+          "the summary card below is the earlier version: %s", motivo_ripiego)
       )
     }
 
@@ -429,6 +464,10 @@ build_layer_b_results <- function(stage4_dir, selection,
         disponibile         = !is.null(deliverable_annotato),
         motivo_assenza      = deliverable_annotato_motivo_assenza,
         cluster_id_ripiego  = cluster_id_ripiego
+      ),
+      narrative = list(
+        provider_fornito           = !is.null(narrative_provider),
+        cluster_id_senza_narrativa = cluster_id_senza_narrativa
       )
     ),
     config          = config,

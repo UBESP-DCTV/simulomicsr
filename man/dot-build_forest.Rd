@@ -9,7 +9,8 @@
   cluster_pooled_subset,
   method,
   out_dir,
-  config
+  config,
+  etichetta = NULL
 )
 }
 \arguments{
@@ -22,13 +23,29 @@
 \item{out_dir}{character dir output.}
 
 \item{config}{list config.}
+
+\item{etichetta}{character(1) opzionale, l'etichetta leggibile del gruppo
+(tipicamente \code{selection_row$label_paper}) da usare come \code{entita} del
+titolo (\code{.lb_titolo()}, ramo rem/rem_group). Se NULL, NA o vuota il
+titolo ripiega sul \code{cluster_id} grezzo -- MAI in silenzio: la caption lo
+dichiara. Senza questo argomento il titolo sarebbe sempre un ID come
+\code{cgroup_L5_2e16719f}, che vanifica lo scopo di \code{.lb_titolo()} (dire a
+colpo d'occhio di quale gruppo si tratta).}
 }
 \value{
 list con \code{png_path} (NA se skip), \code{svg_path} (NA se skip o save_svg=FALSE),
+\code{titolo} (NA se il ramo non genera un titolo, es. mega/mega_aug o skip),
+\code{genes_mostrati} (gene_id dei geni disegnati, \code{character(0)} se skip),
 \code{caption} (skip-explanation se applicable).
 }
 \description{
-Per \code{method \%in\% c("rem", "rem_group")}: usa \code{metafor::forest()} su per-study yi/vi.
+Per \code{method \%in\% c("rem", "rem_group")}: figura a due pannelli via \code{patchwork}.
+Sopra, la stima poolata +- 95\% CI per ciascuno dei geni bersaglio (colpo
+d'occhio su tutti). Sotto, UN gene -- quello scelto da
+\code{.forest_gene_rappresentativo()} -- studio per studio con la stima poolata
+resa come rombo, a riprova che il pooling e' coerente. Sostituisce il vecchio
+pannello \code{metafor::forest()} per-gene in \code{mfrow}, che mostrava pochi geni con
+meta' pagina bianca.
 Per \code{method == "mega_aug"}: custom ggplot con 2 studi del pair + pooled diamond.
 Per \code{method == "mega"}: skip-graceful con caption esplicativa (no per-study DE
 nel Layer A output).

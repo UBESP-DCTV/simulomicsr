@@ -13,6 +13,7 @@ build_layer_b_results(
   pooling_effectiveness = NULL,
   bersagli_attesi_provider = NULL,
   confronti_imperfetti_provider = NULL,
+  narrative_provider = NULL,
   config = layer_b_default_config(),
   out_dir = NULL,
   fetch_counts_fn = NULL
@@ -44,7 +45,7 @@ NULL -> le schede vecchie (ripiego) escono come prima.}
 \item{bersagli_attesi_provider}{function(cluster_id) -> character vector
 opzionale, i simboli genici attesi dalla letteratura per quel cluster.
 \strong{Argomento del chiamante}: il pacchetto non ha una tabella interna di
-bersagli (vedi \code{.narrativa_bozza()}) -- inventarne una qui sarebbe
+bersagli (vedi \code{.summary_card_v2()}) -- inventarne una qui sarebbe
 esattamente il tipo di affermazione non verificabile che quella funzione
 e' scritta per evitare. NULL (default) -> nessuna attesa dichiarata per
 nessun cluster (la scheda/narrativa lo dicono esplicitamente, non lo
@@ -53,7 +54,18 @@ tacciono).}
 \item{confronti_imperfetti_provider}{function(cluster_id) -> list(n, tot,
 peso) o NULL, opzionale, dalla rilettura dei confronti poolati (vedi
 \code{docs/findings/2026-08-05-confronti-imperfetti.md}). NULL (default) ->
-"non misurato" dichiarato per ogni cluster.}
+"non misurato" dichiarato per ogni cluster. \strong{Il peso viene pubblicato
+solo insieme al conteggio} (\code{n}/\code{tot}): vedi
+\code{\link[=.lb_confronti_imperfetti_txt]{.lb_confronti_imperfetti_txt()}}.}
+
+\item{narrative_provider}{function(cluster_id) -> character(1) markdown, o
+NULL, opzionale. La narrativa scientifica FIRMATA di quel case study
+(tipicamente letta da \verb{analysis/layer-b-narratives/<cluster_id>.md}).
+NULL (default) o un provider che ritorna NULL per un gruppo -> il
+documento dichiara che la narrativa non e' disponibile, mai una sezione
+vuota o un testo generato da template: quest'ultima strada e' stata
+percorsa (\code{.narrativa_bozza()}, 2026-08-05, poi rimossa) e ritirata perche' produceva
+nove testi formalmente corretti e privi di contenuto scientifico.}
 
 \item{config}{list (vedi \code{\link[=layer_b_default_config]{layer_b_default_config()}}).}
 

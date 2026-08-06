@@ -1,0 +1,129 @@
+# FATTI VERIFICATI — IL1A  (cgroup_L5_3973fe03)
+
+Tutti i numeri qui sotto sono letti dal deliverable annotato e dai parquet del
+run v15 in /mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7
+e dallo Stadio 3 in
+analysis/p4-output/20260803T164558Z-stage3-v15-7f986159
+
+## Riga del deliverable
+
+- entita' del contrasto      : HGNC:5991  (IL1A)
+- verso / tipo di controllo  : gain / vehicle_untreated
+- studi poolati (k_effective): 4
+- studi efficaci (Kish)      : 1.93  (48% del k nominale)
+- studio piu' pesante        : GSE181229 (67.17% del peso)  <-- DOMINA il gruppo (>=50%)
+- geni significativi (FDR<0,05): 947 su 16713 testati (identificativi Ensembl: e' l'unita' del test; i simboli distinti sono 15571)
+- I2 mediano                 : 63.03%
+- verdetto di coerenza       : incoherent  — PEGGIORATO dal pooling: i due studi IL-1alfa veri (GSE120784, GSE142706) sono caduti e restano dentro entrambi gli IL-1beta (GSE155141; GSE205853, che e' per giunta IFN-gamma+IL-1beta). Sui 4 studi poolati, 2 misurano un'altra citochina
+- materiale                  : omogeneo (0 modello in vitro / 1 tessuto di paziente / 3 non classificato)
+- studi censiti -> poolati   : 6 -> 4
+
+## Bersagli attesi dalla letteratura, fissati PRIMA del run
+  (analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R)
+
+  (nessun bersaglio dichiarato prima del run per questa entita')
+
+## I trenta geni piu' significativi (per FDR)
+
+  gene             logFC          FDR     k      I2
+  TMC5            +1.057    5.04e-113     3     0.0
+  HLA-DRA         -1.573     7.43e-91     3     0.0
+  BATF2           +3.189     2.83e-76     2     0.0
+  IFIH1           +1.139     4.11e-58     4     0.0
+  RPS4Y1          -0.782     2.51e-50     3     0.0
+  DDR1            +0.967     4.04e-41     3     0.0
+  ELF3            +1.043     1.02e-38     3     0.0
+  LRRN1           -0.705     4.67e-37     3     0.0
+  IFI6            +1.366     3.55e-33     4     4.3
+  ST6GALNAC1      -0.725     2.25e-30     4     0.0
+  RNF24           +0.671     1.59e-28     4     0.0
+  ESYT1           -0.465      8.9e-27     4     0.0
+  PARP12          +0.784     4.86e-26     4    21.2
+  PTGR1           -0.596     1.97e-25     4     0.0
+  SMAD3           +0.571     3.62e-24     4     0.0
+  TESK2           +0.641     4.07e-23     4     0.0
+  ALDH3A2         -0.441     2.23e-22     4     0.0
+  APLN            -1.180     1.38e-21     3     0.0
+  NPR3            -0.962     1.41e-21     3     0.0
+  MAFF            +0.713     1.02e-20     4     0.0
+  PCDHB2          +0.680     1.49e-18     3     0.0
+  VSIG10L         +0.775     2.05e-18     3     6.7
+  C1R             +1.256     2.35e-18     4     6.9
+  IL17D           -0.734     5.89e-18     2     0.0
+  PPP1R1B         -0.841     2.61e-17     3     0.0
+  DHX58           +1.243     2.02e-16     3     0.0
+  SIPA1L1         +0.371     2.57e-16     4     0.0
+  TRAF3           +0.404     8.77e-16     4     0.0
+  TLE6            -0.577     1.93e-15     3     0.0
+  FSTL1           +0.454      5.4e-15     3     3.0
+
+## I trenta geni con effetto piu' grande (fra i significativi)
+
+  gene             logFC          FDR     k      I2
+  DEFB4A          +5.783       0.0156     2    73.8
+  DEFB4B          +5.783       0.0156     2    73.8
+  CCL20           +4.186       0.0186     4    91.5
+  CFB             +3.571     0.000566     2    72.3
+  UBD             +3.306       0.0201     2     0.0
+  BATF2           +3.189     2.83e-76     2     0.0
+  VNN2            +3.088     6.16e-06     2     0.0
+  IFIT3           +3.054       0.0231     4    91.7
+  CALHM6          +3.025      0.00452     2     0.0
+  C2              +2.826       0.0163     2    46.8
+  SLC44A4         +2.742      0.00024     2    21.3
+  IL36G           +2.601     3.93e-08     2     0.0
+  IFI44           +2.436       0.0493     4    87.2
+  DDX60           +1.918       0.0102     4    85.9
+  OAS3            +1.896       0.0305     4    94.9
+  IFI44L          +1.888     4.29e-14     3     0.0
+  PTGES           +1.822      0.00949     3    92.5
+  IL6             +1.809       0.0202     3    64.9
+  KRT79           -1.786       0.0316     2     0.0
+  CYP4B1          +1.786      0.00036     2     0.0
+  FABP4           -1.704     2.37e-05     2     0.0
+  H2AC18          +1.695     0.000838     2     0.0
+  S100A9          +1.691       0.0341     2    47.8
+  SELL            +1.661     6.92e-05     2     0.0
+  KRT75           -1.624       0.0381     2     0.0
+  SLITRK6         -1.619      0.00952     3    83.6
+  NFKBIA          +1.592        0.024     4    95.7
+  HLA-DRA         -1.573     7.43e-91     3     0.0
+  RHCG            +1.571       0.0422     2    55.9
+  SLAMF8          +1.549     2.24e-09     2     0.0
+
+## Studi poolati e loro peso (mediana 1/SE^2, normalizzata dentro il gruppo)
+
+  GSE181229      71.05%
+  GSE214475      10.90%
+  GSE205853      10.15%
+  GSE155141       7.90%
+
+## Confronti imperfetti (rilettura 2026-08-05)
+
+  NON MISURATO: questo gruppo e' fuori dai 13 con k>=15 per cui il conteggio
+  confronto-per-confronto e' stato fatto il 2026-08-05. Il conteggio per questo
+  gruppo e' oggetto del workflow di questa sessione.
+
+## Etichette INTERE dei confronti effettivamente poolati
+
+  [GSE155141] n=3 trattati vs 4 controlli
+      TRATTATO : Non-lesional human skin, IL-1β stimulated
+      CONTROLLO: Non-lesional human skin, no treatment
+  [GSE155141] n=2 trattati vs 1 controlli
+      TRATTATO : Non-lesional human skin, IL-1β stimulated
+      CONTROLLO: Non-lesional human skin, no treatment
+  [GSE181229] n=6 trattati vs 3 controlli
+      TRATTATO : MDA-PCa-2b + IL-1 alpha (25 ng/ml) for 3 days
+      CONTROLLO: MDA-PCa-2b untreated
+  [GSE205853] n=3 trattati vs 4 controlli
+      TRATTATO : IFN-γ, IL-1β
+      CONTROLLO: No Treatment
+  [GSE205853] n=2 trattati vs 4 controlli
+      TRATTATO : IFN-γ, IL-1β
+      CONTROLLO: No Treatment
+  [GSE205853] n=1 trattati vs 4 controlli
+      TRATTATO : IFN-γ, IL-1β
+      CONTROLLO: No Treatment
+  [GSE214475] n=4 trattati vs 3 controlli
+      TRATTATO : CD4+ T-cell, IL1A
+      CONTROLLO: CD4+ T-cell, vehicle

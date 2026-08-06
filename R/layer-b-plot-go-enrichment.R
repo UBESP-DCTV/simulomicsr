@@ -135,7 +135,7 @@
   }
 
   caption <- sprintf(
-    "GO Biological Process over-representation analysis. %d significant terms at FDR<0.05 (BH-corrected). Universe: %d genes tested in cluster.%s",
+    "GO Biological Process over-representation analysis. %d significant terms at FDR<0.05 (Benjamini-Hochberg). Universe: the %d genes tested in this meta-analysis.%s",
     nrow(enrich_df), length(universe), titolo_nota
   )
 

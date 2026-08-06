@@ -39,23 +39,24 @@
 
   p_k <- ggplot2::ggplot(d, ggplot2::aes(x = k_effective)) +
     ggplot2::geom_histogram(fill = .LB_COLORI$evidenza, bins = 30, na.rm = TRUE) +
-    ggplot2::labs(title = "k effettivo", x = "studi poolati per gruppo", y = "meta-analisi") +
+    ggplot2::labs(title = "Pooled studies", x = "studies per meta-analysis",
+                  y = "meta-analyses") +
     .lb_theme(base_size = 10)
 
   p_i2 <- ggplot2::ggplot(d, ggplot2::aes(x = I2_med)) +
     ggplot2::geom_histogram(fill = .LB_COLORI$su, bins = 30, na.rm = TRUE) +
-    ggplot2::labs(title = "eterogeneita' (I² mediano)", x = "I² (%)", y = NULL) +
+    ggplot2::labs(title = "Heterogeneity (median I-squared)", x = "I-squared (%)", y = NULL) +
     .lb_theme(base_size = 10)
 
   p_sig <- ggplot2::ggplot(d, ggplot2::aes(x = pmax(n_sig, 1))) +
     ggplot2::geom_histogram(fill = .LB_COLORI$giu, bins = 30, na.rm = TRUE) +
     ggplot2::scale_x_log10() +
-    ggplot2::labs(title = "geni significativi", x = "n. geni (scala log10)", y = NULL) +
+    ggplot2::labs(title = "Significant genes", x = "genes (log10 scale)", y = NULL) +
     .lb_theme(base_size = 10)
 
   p <- patchwork::wrap_plots(p_k, p_i2, p_sig, ncol = 3L) +
     patchwork::plot_annotation(
-      title = sprintf("Il corpus: %d meta-analisi poolate", n_gruppi))
+      title = sprintf("%d pooled meta-analyses", n_gruppi))
 
   if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
   png_path <- file.path(out_dir, "corpus_overview.png")
@@ -69,9 +70,11 @@
   }
 
   caption <- sprintf(
-    paste0("Distribuzione di k effettivo, I² mediano e geni significativi ",
-           "(FDR<%g) sulle %d meta-analisi del deliverable poolato (asse dei ",
-           "geni significativi in scala log10)."),
+    paste0("Distribution of the number of pooled studies, median I-squared ",
+           "and number of significant genes (FDR < %g) across the %d ",
+           "meta-analyses. The gene axis is on a log10 scale because the ",
+           "distribution spans four orders of magnitude; on a linear scale ",
+           "almost every meta-analysis would fall into a single bar."),
     config$fdr_threshold %||% 0.05, n_gruppi)
 
   list(png_path = png_path, svg_path = svg_path, caption = caption, n_gruppi = n_gruppi)
@@ -153,5 +156,162 @@
   if (is.null(config)) config <- layer_b_default_config()
   plot <- .build_corpus_overview(d, out_dir = out_dir, config = config)
 
-  list(disponibile = TRUE, plot = plot, motivo = NA_character_)
+  # Le tabelle aggregate viaggiano con la figura: se il deliverable e'
+  # raggiungibile per l'una lo e' anche per le altre, e tenerle in due punti
+  # diversi vorrebbe dire due letture dello stesso file che potrebbero
+  # divergere. Le colonne facoltative mancanti non fanno fallire nulla:
+  # .corpus_tabelle() ritorna NA e il documento lo dichiara.
+  tabelle <- tryCatch(.corpus_tabelle(d), error = function(e) NULL)
+
+  list(disponibile = TRUE, plot = plot, tabelle = tabelle, motivo = NA_character_)
 }
+
+#' Tipo di entita' dedotto dal prefisso dell'identificativo del contrasto
+#'
+#' Gli identificativi del contrasto portano gia' l'ontologia di provenienza nel
+#' prefisso (`CHEBI:`, `HGNC:`, `NCBITaxon:`, `MeSH:`), quindi il tipo non va
+#' inventato ne' mantenuto in una tabella a parte che potrebbe divergere: si
+#' legge dal dato. `STR:` e tutto il resto sono identificativi non risolti a
+#' un'ontologia, e vanno dichiarati come tali invece di essere silenziosamente
+#' assegnati a una categoria.
+#'
+#' @param entita character vector di identificativi (`contrast_entity`).
+#' @return character vector della stessa lunghezza, in inglese.
+#' @keywords internal
+.corpus_tipo_entita <- function(entita) {
+  e <- as.character(entita)
+  out <- rep("Unresolved identifier", length(e))
+  out[grepl("^CHEBI:", e)]       <- "Small molecule"
+  out[grepl("^HGNC:", e)]        <- "Protein or gene product"
+  out[grepl("^NCBITaxon:", e)]   <- "Pathogen"
+  out[grepl("^MeSH:", e)]        <- "Disease or condition"
+  out[is.na(e)]                  <- "Unresolved identifier"
+  out
+}
+
+#' Le tabelle aggregate sul corpus completo, calcolate dal deliverable
+#'
+#' Sezione conclusiva del documento (richiesta utente 2026-08-06, punto 8):
+#' dopo i case study, che cosa c'e' nel resto delle meta-analisi. Ogni cifra e'
+#' CALCOLATA dal data.frame ricevuto -- nessun numero e' cablato qui dentro,
+#' cosi' un documento rigenerato riflette sempre il deliverable vero e non una
+#' fotografia ricopiata a mano (e' l'errore gia' pagato con le note della
+#' selezione, che portavano numeri di un run precedente scritti a mano).
+#'
+#' Le colonne facoltative (`dominato`, `k_kish`, `materiale_misto`,
+#' `coherence_verdict`) sono trattate come possono mancare: il conteggio
+#' corrispondente esce `NA` e chi scrive il documento lo dichiara, invece di
+#' stampare uno zero indistinguibile da "misurato, nessuno".
+#'
+#' @param deliverable_annotato data.frame, una riga per meta-analisi. Servono
+#'   almeno `contrast_entity`, `contrast_entity_label`, `k_effective`,
+#'   `I2_med`, `n_sig`.
+#' @param top_n numero di righe della tabella delle meta-analisi con piu'
+#'   studi poolati. Default 15.
+#'
+#' @return list con `n_gruppi`, `composizione` (data.frame per tipo di
+#'   entita'), `potenza` (data.frame per fascia di k), `piu_potenti`
+#'   (data.frame delle `top_n` con piu' studi), `incoerenti` (data.frame delle
+#'   marcate incoerenti, 0 righe se nessuna), e i conteggi `n_dominati`,
+#'   `n_sotto_due_efficaci`, `n_incoerenti`, `n_materiale_misto`,
+#'   `mediana_k`, `mediana_i2`, `totale_geni_sig`.
+#' @keywords internal
+.corpus_tabelle <- function(deliverable_annotato, top_n = 15L) {
+  d <- as.data.frame(deliverable_annotato, stringsAsFactors = FALSE)
+  richieste <- c("contrast_entity", "contrast_entity_label", "k_effective",
+                 "I2_med", "n_sig")
+  mancanti <- setdiff(richieste, names(d))
+  if (length(mancanti) > 0L) {
+    cli::cli_abort(".corpus_tabelle: mancano le colonne {.field {mancanti}}.")
+  }
+
+  .col <- function(nm) if (nm %in% names(d)) d[[nm]] else NULL
+
+  n_gruppi <- nrow(d)
+  tipo <- .corpus_tipo_entita(d$contrast_entity)
+
+  # --- composizione per tipo di entita' ---------------------------------------
+  spl <- split(seq_len(n_gruppi), factor(tipo, levels = unique(tipo)))
+  composizione <- data.frame(
+    `Entity type`             = names(spl),
+    `Meta-analyses`           = vapply(spl, length, integer(1)),
+    `Median pooled studies`   = vapply(spl, function(i) stats::median(d$k_effective[i], na.rm = TRUE), numeric(1)),
+    `Median significant genes`= vapply(spl, function(i) stats::median(d$n_sig[i], na.rm = TRUE), numeric(1)),
+    check.names = FALSE, stringsAsFactors = FALSE, row.names = NULL)
+  composizione <- composizione[order(-composizione$`Meta-analyses`), , drop = FALSE]
+
+  # --- potenza per fascia di studi poolati -------------------------------------
+  fascia <- cut(d$k_effective, breaks = c(-Inf, 4, 9, 14, Inf),
+                labels = c("3-4 studies", "5-9 studies", "10-14 studies",
+                           "15 or more studies"))
+  k_kish <- .col("k_kish")
+  dominato <- .col("dominato")
+  spl2 <- split(seq_len(n_gruppi), fascia)
+  potenza <- data.frame(
+    `Pooled studies`   = names(spl2),
+    `Meta-analyses`    = vapply(spl2, length, integer(1)),
+    `Median effective studies (Kish)` = if (is.null(k_kish)) {
+      rep(NA_real_, length(spl2))
+    } else {
+      vapply(spl2, function(i) stats::median(k_kish[i], na.rm = TRUE), numeric(1))
+    },
+    `Dominated by one study` = if (is.null(dominato)) {
+      rep(NA_integer_, length(spl2))
+    } else {
+      vapply(spl2, function(i) sum(.isTRUE_vec(dominato[i])), integer(1))
+    },
+    `Median I-squared (%)` = vapply(spl2, function(i) stats::median(d$I2_med[i], na.rm = TRUE), numeric(1)),
+    check.names = FALSE, stringsAsFactors = FALSE, row.names = NULL)
+
+  # --- le meta-analisi con piu' studi poolati ---------------------------------
+  ord <- order(-d$k_effective)
+  top <- utils::head(ord, top_n)
+  piu_potenti <- data.frame(
+    `Contrast`            = d$contrast_entity_label[top],
+    `Type`                = tipo[top],
+    `Pooled studies`      = as.integer(d$k_effective[top]),
+    `Effective studies (Kish)` = if (is.null(k_kish)) NA_real_ else round(k_kish[top], 1),
+    `Significant genes`   = as.integer(d$n_sig[top]),
+    `Median I-squared (%)`= round(d$I2_med[top], 1),
+    check.names = FALSE, stringsAsFactors = FALSE, row.names = NULL)
+
+  # --- le marcate incoerenti ---------------------------------------------------
+  verdetto <- .col("coherence_verdict")
+  incoerenti <- if (is.null(verdetto)) {
+    data.frame(Contrast = character(0), `Pooled studies` = integer(0),
+               Reason = character(0), check.names = FALSE, stringsAsFactors = FALSE)
+  } else {
+    idx <- which(!is.na(verdetto) & verdetto != "coherent")
+    ragione <- .col("coherence_reason")
+    data.frame(
+      Contrast         = d$contrast_entity_label[idx],
+      `Pooled studies` = as.integer(d$k_effective[idx]),
+      Reason           = if (is.null(ragione)) rep(NA_character_, length(idx)) else ragione[idx],
+      check.names = FALSE, stringsAsFactors = FALSE, row.names = NULL)
+  }
+
+  mat_misto <- .col("materiale_misto")
+
+  list(
+    n_gruppi             = n_gruppi,
+    composizione         = composizione,
+    potenza              = potenza,
+    piu_potenti          = piu_potenti,
+    incoerenti           = incoerenti,
+    n_dominati           = if (is.null(dominato)) NA_integer_ else sum(.isTRUE_vec(dominato)),
+    n_sotto_due_efficaci = if (is.null(k_kish)) NA_integer_ else sum(k_kish < 2, na.rm = TRUE),
+    n_incoerenti         = if (is.null(verdetto)) NA_integer_ else sum(!is.na(verdetto) & verdetto != "coherent"),
+    n_materiale_misto    = if (is.null(mat_misto)) NA_integer_ else sum(.isTRUE_vec(mat_misto)),
+    mediana_k            = stats::median(d$k_effective, na.rm = TRUE),
+    mediana_i2           = stats::median(d$I2_med, na.rm = TRUE),
+    totale_geni_sig      = sum(d$n_sig, na.rm = TRUE)
+  )
+}
+
+#' `isTRUE()` vettorizzato: `NA` non e' `TRUE`
+#'
+#' `isTRUE()` accetta un solo valore; `x == TRUE` propaga gli `NA`. Serve la
+#' terza cosa: un vettore logico dove `NA` conta come "non lo sappiamo",
+#' cioe' non `TRUE`.
+#' @keywords internal
+.isTRUE_vec <- function(x) !is.na(x) & as.logical(x)
