@@ -346,14 +346,17 @@
         ggplot2::geom_errorbar(
           data = df_studi,
           ggplot2::aes(y = .data$riga, xmin = .data$ci_lo, xmax = .data$ci_hi),
-          # $neutro per le righe per-studio: $evidenza (nel tema) e' la tinta
-          # delle stime POOLATE, riservata al solo rombo qui sotto.
-          width = 0.2, colour = .LB_COLORI$neutro, orientation = "y"
+          # $per_studio per le righe per-studio (rilievo I6, 2026-08-06):
+          # $evidenza (nel tema) e' la tinta delle stime POOLATE, riservata
+          # al solo rombo qui sotto; $neutro e' "non significativo" nella
+          # legenda del volcano, e su questo pannello senza legenda si
+          # leggerebbe con lo stesso significato sbagliato.
+          width = 0.2, colour = .LB_COLORI$per_studio, orientation = "y"
         ) +
         ggplot2::geom_point(
           data = df_studi,
           ggplot2::aes(y = .data$riga, x = .data$stima),
-          size = 2, colour = .LB_COLORI$neutro
+          size = 2, colour = .LB_COLORI$per_studio
         ) +
         ggplot2::geom_errorbar(
           data = df_pool,

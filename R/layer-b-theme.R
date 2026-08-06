@@ -4,10 +4,17 @@
 #' colori, ed e' uno dei motivi per cui il report non sembra un solo oggetto.
 #' @keywords internal
 .LB_COLORI <- list(
-  su       = "#B2182B",  # effetto positivo
-  giu      = "#2166AC",  # effetto negativo
-  neutro   = "#BFBFBF",  # non significativo
-  evidenza = "#1A1A1A"   # stime poolate, testo forte
+  su         = "#B2182B",  # effetto positivo
+  giu        = "#2166AC",  # effetto negativo
+  neutro     = "#BFBFBF",  # non significativo (legenda del volcano)
+  evidenza   = "#1A1A1A",  # stime poolate, testo forte
+  per_studio = "#6E6E6E"   # stime PER-STUDIO nel forest (rilievo I6,
+                           # 2026-08-06): NON $neutro. Il forest non ha
+                           # legenda, ma chi ha appena letto il volcano
+                           # leggerebbe lo stesso grigio come "non
+                           # significativo" invece che "una stima per
+                           # studio" -- due significati diversi in due
+                           # figure adiacenti dello stesso case study.
 )
 
 #' Tema comune delle figure del Layer B

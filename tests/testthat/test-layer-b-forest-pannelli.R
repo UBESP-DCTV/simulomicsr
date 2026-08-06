@@ -56,6 +56,62 @@ test_that(".build_forest REM a due pannelli: pooled sopra, un gene studio-per-st
   expect_gte(dim(png_info)[2], 2400L)  # 8 pollici * 300 dpi
 })
 
+test_that(".build_forest usa .LB_COLORI$per_studio per le stime per-studio, non $neutro (rilievo I6)", {
+  # Prima del fix, le stime per-studio del pannello inferiore usavano lo
+  # STESSO grigio ($neutro) che il volcano adiacente usa in legenda per "non
+  # significativo": senza legenda sul forest, un lettore che ha appena letto
+  # il volcano leggerebbe le stime per-studio come non significative.
+  set.seed(42)
+  cp <- make_fake_cluster_pooled(n_genes = 50, n_sig = 15, cluster_id = "cl_rem_colore")
+  cp$method <- "rem"
+  cp$k_effective <- 5L
+  cp$n_baseline_studies_augmented <- NA_integer_
+
+  studies <- paste0("GSE", 1:5)
+  ps <- expand.grid(study_id = studies, gene_id = cp$gene_id,
+                    KEEP.OUT.ATTRS = FALSE, stringsAsFactors = FALSE) |>
+    tibble::as_tibble() |>
+    dplyr::mutate(
+      cluster_id = "cl_rem_colore",
+      gene_symbol = cp$gene_symbol[match(gene_id, cp$gene_id)],
+      logFC = rnorm(dplyr::n(), 0, 1),
+      SE = abs(rnorm(dplyr::n(), 0.3, 0.1)),
+      p_value = runif(dplyr::n(), 0, 1),
+      t_stat = logFC / SE, n_treated = 3L, n_control = 3L,
+      direction_applied = "none"
+    )
+
+  out_dir <- tempfile("forest_colore_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  catturato <- new.env()
+  local_mocked_bindings(
+    ggsave = function(filename, plot, ...) {
+      if (is.null(catturato$plot)) catturato$plot <- plot
+      invisible(NULL)
+    },
+    .package = "ggplot2"
+  )
+
+  simulomicsr:::.build_forest(
+    per_study_de_subset = ps, cluster_pooled_subset = cp,
+    method = "rem", out_dir = out_dir, config = layer_b_default_config()
+  )
+
+  p_bottom <- catturato$plot[[2]]
+  colori_layer <- vapply(p_bottom$layers, function(l) {
+    col <- l$aes_params$colour
+    if (is.null(col)) NA_character_ else col
+  }, character(1))
+
+  expect_true(simulomicsr:::.LB_COLORI$per_studio %in% colori_layer)
+  # $neutro compare SOLO nella geom_vline di riferimento (x=0), MAI nelle
+  # stime per-studio (errorbar/point): il layer con $neutro deve essere
+  # esattamente uno.
+  expect_equal(sum(colori_layer == simulomicsr:::.LB_COLORI$neutro, na.rm = TRUE), 1L)
+})
+
 test_that(".build_forest REM: pannello inferiore omesso se nessun gene ha copertura piena, dichiarato", {
   skip_if_not_installed("png")
   set.seed(1)
