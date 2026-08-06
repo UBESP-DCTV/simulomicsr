@@ -299,6 +299,42 @@ if (!file.exists(peso_path)) {
   }
 }
 
+# -----------------------------------------------------------------------------
+# Bersagli attesi (controllo biologico): STESSA lista, letteralmente, di
+# analysis/audit/2026-08-02-fix/90-controllo-biologico-v15.R (7 entita', 31
+# bersagli, fissati dalla letteratura PRIMA di guardare i risultati) -- non se
+# ne inventa una seconda qui. E' un argomento del CHIAMANTE
+# (bersagli_attesi_provider, R/layer-b-build.R): il pacchetto non porta una
+# tabella interna di bersagli (vedi .narrativa_bozza()).
+#
+# Prima di questo collegamento il parametro esisteva gia' in
+# build_layer_b_results() ma non veniva mai passato: ogni scheda dichiarava
+# "nessun bersaglio noto ritrovato per questo gruppo" anche quando i bersagli
+# erano nel parquet al k pieno (es. TGF-beta1: PMEPA1 +2,879 FDR 8,6e-39 k=59).
+#
+# `d` (il deliverable annotato, gia' caricato sopra per pooling_eff) porta
+# `contrast_entity` -- la STESSA colonna che 90-controllo-biologico-v15.R usa
+# per trovare la riga di ciascuna entita' (`D$contrast_entity == a$ent`).
+ATTESI <- list(
+  list(ent = "CHEBI:16330",       geni = c("KLK3", "TMPRSS2", "FKBP5", "NKX3-1")),
+  list(ent = "CHEBI:68534",       geni = c("KLK3", "TMPRSS2", "FKBP5", "NKX3-1")),
+  list(ent = "HGNC:11766",        geni = c("SERPINE1", "CCN2", "SMAD7", "JUNB", "TGFBI", "COL1A1")),
+  list(ent = "NCBITaxon:2697049", geni = c("IFIT1", "ISG15", "MX1", "OAS1")),
+  list(ent = "HGNC:5438",         geni = c("STAT1", "GBP1", "CXCL9", "TAP1", "IRF1")),
+  list(ent = "CHEBI:16412",       geni = c("TNF", "IL6", "IL1B", "CXCL8")),
+  list(ent = "HGNC:5981",         geni = c("CXCL8", "CCL20", "CXCL1", "LCN2"))
+)
+ATTESI_BY_ENT <- stats::setNames(
+  lapply(ATTESI, `[[`, "geni"),
+  vapply(ATTESI, `[[`, character(1), "ent")
+)
+bersagli_attesi_provider <- function(cluster_id) {
+  ent <- d$contrast_entity[d$cluster_id == cluster_id]
+  if (length(ent) == 0L || is.na(ent[1L])) return(character(0))
+  geni <- ATTESI_BY_ENT[[ent[1L]]]
+  if (is.null(geni)) character(0) else geni
+}
+
 cli_alert_info("Build Layer B...")
 t0 <- Sys.time()
 result <- build_layer_b_results(
@@ -307,6 +343,7 @@ result <- build_layer_b_results(
   h5_path                       = h5_path,
   per_cluster_samples_provider  = per_cluster_samples_provider,
   stage3_metadata               = stage3_metadata,
+  bersagli_attesi_provider      = bersagli_attesi_provider,
   pooling_effectiveness         = pooling_eff,
   confronti_imperfetti_provider = confronti_imperfetti_provider,
   config                        = layer_b_default_config()
