@@ -138,7 +138,14 @@
 
   if (length(top_genes) == 0L) {
     png_path <- file.path(out_dir, "heatmap.png")
-    grDevices::png(png_path, width = 800, height = 400, res = config$dpi)
+    # units="in" (non px, il default): a res=300 un canvas di 800x400 PX e'
+    # solo 2.67x1.33 pollici, troppo piccolo per i margini di default di
+    # plot.new() -> "figure margins too large". Stessa forma gia' usata da
+    # .build_ma_plot()/.build_go_enrichment() (rilievo I1, 2026-08-06): senza
+    # tryCatch attorno a .build_heatmap() nel ciclo di R/layer-b-build.R, un
+    # solo cluster a zero geni significativi abortiva l'intero batch dopo
+    # aver gia' prodotto le figure dei cluster precedenti.
+    grDevices::png(png_path, width = 8, height = 4, units = "in", res = config$dpi)
     graphics::plot.new()
     graphics::text(0.5, 0.5,
                    sprintf("Heatmap N/A: no genes significant at FDR<%g", fdr_thr))

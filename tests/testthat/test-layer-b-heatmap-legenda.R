@@ -293,14 +293,12 @@ test_that(".build_heatmap include titolo anche nel ramo senza geni significativi
   dir.create(out_dir)
   on.exit(unlink(out_dir, recursive = TRUE))
 
-  # Il rendering vero del placeholder (grDevices::png a 800x400px res=300 +
-  # graphics::plot.new/text) e' un difetto PRE-ESISTENTE e non correlato,
-  # scoperto scrivendo questo test: su questo sistema il canvas e' troppo
-  # piccolo per i margini di default di plot.new() ("figure margins too
-  # large"), riproducibile in isolamento anche senza questo test. Non e' nello
-  # scope di questa correzione (solo la nota di didascalia + il campo
-  # `titolo`), quindi si mocka SOLO il rendering per isolare cio' che questo
-  # test deve verificare -- il contenuto del valore di ritorno, non il PNG.
+  # Il rendering vero del placeholder e' stato un difetto PRE-ESISTENTE
+  # ("figure margins too large" a canvas 800x400px res=300, corretto nel
+  # rilievo I1 della revisione finale, vedi il test SENZA mock piu' sotto),
+  # scoperto scrivendo questo test. Qui si mocka comunque il rendering per
+  # isolare cio' che QUESTO test deve verificare -- il contenuto del valore
+  # di ritorno (didascalia + campo `titolo`), non il PNG.
   local_mocked_bindings(
     png = function(...) invisible(NULL),
     dev.off = function(...) invisible(NULL),
@@ -322,4 +320,41 @@ test_that(".build_heatmap include titolo anche nel ramo senza geni significativi
   expect_match(result$caption, "no genes significant", fixed = TRUE)
   expect_false(is.null(result$titolo))
   expect_match(result$titolo, "Nessun Segnale", fixed = TRUE)
+})
+
+test_that(".build_heatmap non crasha sul ramo placeholder (rilievo I1, senza mock del rendering)", {
+  skip_if_not_installed("ComplexHeatmap")
+  skip_if_not_installed("DESeq2")
+  skip_if_not_installed("sva")
+
+  # Riproduzione minimale del crash "figure margins too large": un cluster
+  # con ZERO geni significativi, rendering vero (nessun mock di grDevices/
+  # graphics). Prima del fix (width/height in px senza units="in") questo
+  # `expect_no_error()` falliva su qualunque sistema col device di default.
+  set.seed(15)
+  n_genes <- 10
+  n_samples <- 8
+  cp <- make_fake_cluster_pooled(n_genes = n_genes, n_sig = 0, cluster_id = "cgroup_L5_nocrash")
+  counts <- matrix(rpois(n_genes * n_samples, lambda = 100), nrow = n_genes,
+                   dimnames = list(cp$gene_id, paste0("GSM", seq_len(n_samples))))
+  metadata <- tibble::tibble(
+    sample_id = paste0("GSM", seq_len(n_samples)),
+    study_id = rep(paste0("GSE", 1:2), each = 4),
+    treatment = rep(c("control", "treated"), times = n_samples / 2L)
+  )
+
+  out_dir <- tempfile("hm_nocrash_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- NULL
+  expect_no_error(
+    result <- simulomicsr:::.build_heatmap(
+      counts = counts, metadata = metadata,
+      cluster_pooled_subset = cp,
+      out_dir = out_dir, config = layer_b_default_config()
+    )
+  )
+  expect_true(file.exists(result$png_path))
+  expect_gt(file.info(result$png_path)$size, 0)
 })
