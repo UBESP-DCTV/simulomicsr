@@ -7,9 +7,42 @@ test_that(".build_go_enrichment skip-graceful on small universe", {
   cfg <- layer_b_default_config()
   result <- simulomicsr:::.build_go_enrichment(cp, out_dir = out_dir, config = cfg)
 
-  expect_named(result, c("png_path", "svg_path", "csv_path", "caption"),
+  expect_named(result, c("png_path", "svg_path", "csv_path", "titolo", "caption"),
                ignore.order = TRUE)
   expect_match(result$caption, "below threshold")
+})
+
+# --- rilievo I4 (revisione finale, 2026-08-06): il titolo era statico ("GO
+# Biological Process -- top 10 enriched terms", senza gruppo ne' k) e il
+# tema era theme_bw() invece di .lb_theme(); la spec tiene il GO fra le
+# quattro figure e dice "ogni figura porta nel titolo di quale gruppo si
+# tratta e su quanti studi", come forest/volcano/heatmap gia' fanno.
+
+test_that(".build_go_enrichment usa .lb_titolo()/etichetta come le altre tre figure", {
+  cp <- make_fake_cluster_pooled(n_genes = 50, n_sig = 5)  # skip-graceful: universo piccolo
+  cp$k_effective <- 12L
+  out_dir <- tempfile("go_titolo_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_go_enrichment(
+    cp, out_dir = out_dir, config = layer_b_default_config(),
+    etichetta = "TGF-beta1"
+  )
+  expect_match(result$titolo, "TGF-beta1", fixed = TRUE)
+  expect_match(result$titolo, "12 studi", fixed = TRUE)
+  expect_false(grepl(unique(cp$cluster_id), result$titolo, fixed = TRUE))
+})
+
+test_that(".build_go_enrichment senza etichetta ripiega sul cluster_id e lo dichiara in didascalia", {
+  cp <- make_fake_cluster_pooled(n_genes = 50, n_sig = 5, cluster_id = "cgroup_L5_deadbeef")
+  out_dir <- tempfile("go_noetichetta_")
+  dir.create(out_dir)
+  on.exit(unlink(out_dir, recursive = TRUE))
+
+  result <- simulomicsr:::.build_go_enrichment(cp, out_dir = out_dir, config = layer_b_default_config())
+  expect_match(result$titolo, "cgroup_L5_deadbeef", fixed = TRUE)
+  expect_match(result$caption, "falls back to the raw cluster_id", fixed = TRUE)
 })
 
 test_that(".build_go_enrichment runs on real-sized universe", {

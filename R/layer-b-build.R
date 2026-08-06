@@ -293,7 +293,8 @@ build_layer_b_results <- function(stage4_dir, selection,
       plots$go_enrichment <- .build_go_enrichment(
         cluster_pooled_subset = cp_sub,
         out_dir               = cl_dir,
-        config                = config
+        config                = config,
+        etichetta             = selection_row$label_paper[1L]
       )
     }
     if (!("heterogeneity" %in% figure_escluse)) {
