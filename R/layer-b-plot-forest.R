@@ -14,6 +14,74 @@
   pieni$gene_id[which.max(abs(pieni$logFC_pool))]
 }
 
+#' Layout del forest a due pannelli: altezze proporzionate, un tetto stampabile
+#'
+#' Prima di questa funzione i due pannelli avevano SEMPRE lo stesso rapporto
+#' 2:1 (`patchwork::plot_layout(heights = c(2, 1))`) e l'altezza totale della
+#' figura era una costante per riga moltiplicata per il conteggio, SENZA
+#' TETTO. Su un cluster con 10 geni bersaglio e 59 studi (TGF-beta1, run v15,
+#' misurato sul PNG reale il 2026-08-06) il file usciva 2400x6720 px: il
+#' pannello superiore tutto spazio vuoto fra dieci righe, quello inferiore
+#' con 59 nomi di studio compressi in caratteri illeggibili.
+#'
+#' Qui le altezze passate a `patchwork` sono proporzionate al numero di righe
+#' di ciascun pannello, e l'altezza totale cresce con `n_bottom` ma si ferma a
+#' un tetto stampabile (`h_max`, una pagina intera). Quando il tetto comprime
+#' lo spazio per studio sotto la soglia leggibile a `.lb_theme()`, le
+#' etichette si DIRADANO invece di sovrapporsi in silenzio: il chiamante deve
+#' riportare `label_stride` in didascalia quando e' maggiore di 1 (tutte le
+#' stime restano disegnate, solo il testo dell'etichetta si dirada).
+#'
+#' @param n_top integer(1) righe (geni) nel pannello superiore.
+#' @param n_bottom integer(1) righe (studi + "Pooled") nel pannello inferiore.
+#' @return list con `heights` (numeric(2), proporzioni per
+#'   `patchwork::plot_layout(heights=)`), `h_inch` (numeric(1), altezza totale
+#'   della figura in pollici, con tetto), `label_stride` (integer(1) >= 1:
+#'   1 = tutte le etichette mostrate, N = una ogni N righe).
+#' @keywords internal
+.forest_layout_pannelli <- function(n_top, n_bottom) {
+  n_top <- max(1L, as.integer(n_top))
+  n_bottom <- max(1L, as.integer(n_bottom))
+
+  # Altezza "naturale" (senza tetto) di ciascun pannello, calibrata perche' le
+  # etichette non si sovrappongano al base_size(11) di .lb_theme(). Il
+  # pannello inferiore e' piu' fitto (solo etichetta + errorbar) di quello
+  # superiore (subtitle + margini).
+  riga_top    <- 0.35
+  riga_bottom <- 0.22
+  margine     <- 1.3   # titolo + subtitle + assi
+  h_max       <- 11    # tetto stampabile (altezza di una pagina intera)
+
+  h_top_nat    <- n_top * riga_top
+  h_bottom_nat <- n_bottom * riga_bottom
+  h_naturale   <- margine + h_top_nat + h_bottom_nat
+
+  h_inch <- min(h_max, max(4, h_naturale))
+
+  # Proporzioni, non pollici: patchwork ridistribuisce lo spazio DISPONIBILE
+  # nello stesso rapporto, quindi restano valide anche quando il tetto
+  # comprime la figura.
+  heights <- c(h_top_nat, h_bottom_nat)
+
+  # Spazio davvero disponibile per il pannello inferiore dopo il tetto, nello
+  # stesso rapporto usato per `heights` sopra.
+  disponibile <- h_inch - margine
+  quota_bottom <- disponibile * h_bottom_nat / (h_top_nat + h_bottom_nat)
+  riga_effettiva <- quota_bottom / n_bottom
+
+  # Sotto questa spaziatura un'etichetta a base_size 11 si sovrappone alla
+  # vicina (misurato: ~8.8pt di testo + margine minimo). Si dirada invece di
+  # lasciarla illeggibile in silenzio.
+  riga_minima_leggibile <- 0.15
+  label_stride <- if (riga_effettiva >= riga_minima_leggibile) {
+    1L
+  } else {
+    ceiling(riga_minima_leggibile / riga_effettiva)
+  }
+
+  list(heights = heights, h_inch = h_inch, label_stride = as.integer(label_stride))
+}
+
 #' Forest plot top-N geni (REM + MEGA-AUG dispatch)
 #'
 #' Per `method %in% c("rem", "rem_group")`: figura a due pannelli via `patchwork`.
@@ -301,10 +369,29 @@
                       subtitle = sprintf("%s, per study (k=%d)", gene_lab_rap, nrow(ps_g))) +
         .lb_theme(base_size = 11)
 
+      # Altezze proporzionate al numero di righe di ciascun pannello + tetto
+      # stampabile (.forest_layout_pannelli()): il vecchio heights=c(2,1) e
+      # l'altezza costante-per-riga producevano un pannello superiore quasi
+      # vuoto e uno inferiore illeggibile su cluster a k alto (TGF-beta1
+      # k=59, misurato 2026-08-06 -- vedi la doc della funzione).
+      layout_pan <- .forest_layout_pannelli(n_top = nrow(top_disp), n_bottom = nrow(ps_g) + 1L)
+
+      if (layout_pan$label_stride > 1L) {
+        # Etichettatura rada, MAI in silenzio: dichiarata in didascalia sotto.
+        # "Pooled" resta sempre visibile; gli studi ogni label_stride righe.
+        # Tutte le stime restano disegnate (punti/errorbar invariati): si
+        # dirada solo il TESTO dell'etichetta sull'asse.
+        indici_mostrati <- seq(1L, nrow(ps_g), by = layout_pan$label_stride)
+        p_bottom <- p_bottom + ggplot2::scale_y_discrete(
+          breaks = c("Pooled", ps_g$study_id[indici_mostrati])
+        )
+      }
+
       titolo <- .lb_titolo(entita = entita_titolo, k = k_cluster)
-      combined <- patchwork::wrap_plots(p_top, p_bottom, ncol = 1L, heights = c(2, 1)) +
+      combined <- patchwork::wrap_plots(p_top, p_bottom, ncol = 1L,
+                                        heights = layout_pan$heights) +
         patchwork::plot_annotation(title = titolo)
-      h_inch <- max(4, top_n_actual * 0.32 + (nrow(ps_g) + 1) * 0.3 + 1.2)
+      h_inch <- layout_pan$h_inch
     }
 
     png_path <- file.path(out_dir, "forest.png")
@@ -322,6 +409,15 @@
         "this cluster; showing a low-coverage gene here would misrepresent ",
         "cross-study consistency"
       )
+    } else if (layout_pan$label_stride > 1L) {
+      # Diradamento DICHIARATO (mai in silenzio): con troppi studi per stare
+      # leggibili in un'altezza stampabile, si etichetta ogni N-esima riga --
+      # ma OGNI stima resta disegnata (solo il testo si dirada).
+      sprintf(paste0(
+        "%s per study, REML-pooled summary as diamond (k=%s); study labels ",
+        "shown every %d studies to remain legible, all %d per-study estimates ",
+        "are plotted"
+      ), gene_lab_rap, k_str, layout_pan$label_stride, nrow(ps_g))
     } else {
       sprintf("%s per study, REML-pooled summary as diamond (k=%s)", gene_lab_rap, k_str)
     }
