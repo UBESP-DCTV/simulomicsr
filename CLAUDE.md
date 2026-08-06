@@ -35,6 +35,38 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-08-06 (LAYER B RIDISEGNATO — la vetrina era «indecente», ora regge)**:
+> 🟢 **39 commit, 11 task in TDD con revisione indipendente ciascuno + revisione finale dell'intero
+> ramo. Report: `analysis/p4-output/20260806T022106Z-layer-b-81f379d3` (9 bundle, 37 PNG, HTML 14,1 MB).
+> Spec `docs/superpowers/specs/2026-08-05-layer-b-redesign-design.md`, piano
+> `docs/superpowers/plans/2026-08-05-layer-b-redesign-plan.md`, difetti residui
+> `docs/findings/2026-08-06-layer-b-difetti-noti.md`.**
+>
+> 1. **IL DIFETTO PEGGIORE ERA IL FOREST**: per TGF-β1 (59 studi) mostrava **CD300C e PROK2** —
+>    misurati su **5 e 2 studi** — perché ordinava per grandezza dell'effetto senza guardare la
+>    copertura. Il filtro giusto esisteva già ed era usato da tabella e heatmap: il forest non lo
+>    chiamava. Ora: due pannelli, i bersagli canonici sopra, **PMEPA1 su tutti e 59 gli studi** sotto.
+> 2. **TRE CASI DI CODICE SCRITTO E MAI CHIAMATO**, tutti trovati dalle revisioni: la scheda nuova
+>    (il build usava ancora la vecchia), il fornitore dei confronti imperfetti, e — trovato solo dalla
+>    revisione finale — `bersagli_attesi_provider`, per cui **ogni scheda dichiarava «nessun bersaglio
+>    noto ritrovato» mentre nei dati c'erano tutti al k pieno**. Due erano buchi del PIANO, non
+>    dell'esecuzione: nessun task si intestava il collegamento.
+> 3. **QUELLO CHE I CRITERI AUTOMATICI NON HANNO VISTO**: i sette criteri erano tutti PASS quando il
+>    forest ancora mostrava i geni sbagliati e il pannello studio-per-studio spariva **sempre**
+>    (i geni a effetto massimo hanno k 43-52, mai 59). Trovato aprendo il PNG. **I criteri sono
+>    misure, non garanzie** — ed è per questo che l'ispezione visiva era uno step del piano.
+> 4. **VOLCANO**: un punto a p≈1e-310 schiacciava tutto; ora l'asse è compresso **in modo dichiarato**
+>    e le etichette sono i bersagli veri (SKIL, PMEPA1, SERPINE1, TGFBI) invece di cornulina e granzima.
+>    **HEATMAP**: via la legenda dei 47 codici GSE (un terzo della figura), la biologia era già giusta.
+> 5. **TAGLI SILENZIOSI CHIUSI**: la heatmap non dichiarava di aver tolto l'annotazione per-studio;
+>    la tabella dei «numeri verificabili» non diceva che 839 geni erano esclusi dall'ordinamento; la
+>    narrativa taceva sulla dominanza quando il dato mancava, contraddicendo la scheda accanto.
+> 6. **UN BUG PRE-ESISTENTE**: il ramo «0 geni significativi» della heatmap crashava e avrebbe abortito
+>    l'intero batch. Mai esercitato da un test prima; il primo test lo isolava con un mock **che lo
+>    nascondeva**. Ora il test lo esercita davvero.
+> 7. **LE NARRATIVE SONO BOZZE**, marcate come tali: testo scientifico da rileggere e firmare.
+>    **PROSSIMO**: rileggerle, poi i Methods.
+>
 > **Stato 2026-08-05b (I CONFRONTI IMPERFETTI: RILETTI TUTTI E 214, MISURATI, NON USATI COME GATE)**:
 > 🟢 **Tutte e 214 le meta-analisi rilette sulla composizione POOLATA vera, con un contestatore per
 > blocco. I difetti trovati sono QUANTIFICATI: 85 confronti su 843 nei 13 gruppi grandi (10,1%).
