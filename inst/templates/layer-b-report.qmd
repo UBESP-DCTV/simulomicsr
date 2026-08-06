@@ -186,13 +186,20 @@ for (cl_id in names(lb$cluster_bundles)) {
     }
   }
 
-  # Numeri verificabili: la tabella dei geni di punta dietro le figure.
+  # Numeri verificabili: la tabella dei geni di punta dietro le figure. La
+  # caption di .build_top_gene_table() dichiara il filtro di copertura
+  # applicato (es. "Genes measured in fewer than 30 of 59 studies were
+  # excluded from ranking (839 genes)") -- senza passarla a kable() il
+  # lettore vede "i numeri verificabili" senza sapere che 839 geni sono stati
+  # esclusi dal ranking (rilievo I3, 2026-08-06).
   tg_csv <- file.path(bundle$cluster_dir, "top_genes.csv")
   if (file.exists(tg_csv) && file.info(tg_csv)$size > 0L) {
     df <- readr::read_csv(tg_csv, show_col_types = FALSE)
     if (nrow(df) > 0L) {
       cat("\n#### Numeri verificabili\n\n")
-      print(knitr::kable(df, format = "html", digits = 3))
+      caption_tg <- bundle$captions$top_gene_table %||%
+        "Top differentially expressed genes."
+      print(knitr::kable(df, format = "html", digits = 3, caption = caption_tg))
     }
   }
 }
