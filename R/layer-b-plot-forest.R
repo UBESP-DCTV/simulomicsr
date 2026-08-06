@@ -80,7 +80,19 @@
                                       config$top_genes_min_k_frac,
                                       k_max = k_cluster)
   top_genes <- filtro$genes
-  top_genes <- top_genes[order(abs(top_genes$logFC_pool), decreasing = TRUE), , drop = FALSE]
+  # SELEZIONE per significativita' (FDR crescente, pareggio su |logFC|
+  # decrescente), non per |logFC|: stesso criterio di .rank_and_dedup_genes()
+  # gia' usato da tabella/heatmap. Trovato sui dati veri (TGF-beta1, 2026-08-06):
+  # ordinare per |logFC| faceva vincere geni a effetto enorme ma copertura
+  # PARZIALE (sopra la soglia del filtro qui sopra, ma sotto la copertura
+  # PIENA che .forest_gene_rappresentativo() richiede) -- il pannello
+  # inferiore spariva SEMPRE e nessun bersaglio canonico compariva mai, anche
+  # se la tabella (ordinata per FDR) li mostrava regolarmente: le due figure
+  # raccontavano due storie diverse sullo stesso cluster. L'ordine ENTRO la
+  # figura (il "a tornado" del pannello superiore, poco sotto) resta per
+  # effetto: solo la SELEZIONE dei dieci cambia.
+  top_genes <- top_genes[order(top_genes$FDR_BH_within_cluster,
+                               -abs(top_genes$logFC_pool)), , drop = FALSE]
   top_genes <- head(top_genes, top_n)
 
   if (nrow(top_genes) == 0L) {
