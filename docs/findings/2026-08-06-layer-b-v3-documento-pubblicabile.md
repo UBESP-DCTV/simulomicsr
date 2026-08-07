@@ -1,8 +1,8 @@
 # Layer B v3 — il documento diventa pubblicabile
 
 **Data:** 2026-08-06 · **Branch:** `review-scientific-consistency-2026-06-10` · master invariato, no push
-**Artefatto:** `analysis/p4-output/20260806T143047Z-layer-b-81f379d3` (9 bundle, 37 PNG, HTML 14,9 MB)
-**Commit:** `8876ade`
+**Artefatto:** `analysis/p4-output/20260807T103637Z-layer-b-81f379d3` (9 bundle, 37 PNG, HTML 14,9 MB)
+**Commit:** `8876ade`, `38cdeff`, `6fa7743` · **Aggiornato:** 2026-08-07 (§6 e §7)
 
 ---
 
@@ -115,7 +115,7 @@ forest di TGF-β1 (i bersagli canonici sopra, PMEPA1 su tutti e 59 gli studi sot
 heatmap di IFN-γ (firma canonica, separazione netta), il volcano di enzalutamide, il forest
 di IL1A.
 
-Suite `layer-b`: **527 PASS / 0 FAIL / 1 SKIP** (lo skip è il test dell'apertura, marcato
+Suite `layer-b`: **537 PASS / 0 FAIL / 1 SKIP** (lo skip è il test dell'apertura, marcato
 superato perché l'apertura non esiste più).
 
 ---
@@ -128,8 +128,9 @@ superato perché l'apertura non esiste più).
    non raggiunge il server locale e non c'è un Chromium headless. **Va guardata a occhio.**
 2. **Le narrative sono da firmare.** Sono verificate nei numeri e nei riferimenti, ma sono
    testo scientifico che l'autore deve leggere e fare proprio.
-3. **Quindici disaccordi restano aperti** (§6): sono questioni che i fatti disponibili non
-   chiudono, e sono state lasciate aperte invece di essere decise d'arbitrio.
+3. ~~Quindici disaccordi restano aperti.~~ **Decisi il 2026-08-07** (§6): uno era una
+   misura mai fatta ed è stato misurato; gli altri seguono la regola prudente dichiarata
+   nel documento.
 4. Il peso dei confronti difettosi resta un **limite superiore** (attribuisce a un difetto
    l'intero peso dello studio).
 
