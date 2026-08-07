@@ -1,0 +1,64 @@
+{
+  "decisioni": [
+    {
+      "cluster": "cgroup_L5_c3ae78cd",
+      "confronti": 1,
+      "studi": "GSE164871",
+      "questione": "GSE164871 'Crohn's Disease CD4' contro 'Healthy Control Colon Tissue'",
+      "decisione": "CONTATO come difettoso",
+      "motivo": "L'etichetta ammette due letture: 'CD4' come popolazione linfocitaria isolata (materiale incompatibile col tessuto colico intero del controllo) o come codice di soggetto. Il braccio gemello dello stesso studio, 'Crohn's Disease Colon Tissue', mette un MATERIALE in quello slot. La lettura prudente e' quella che vede il difetto."
+    },
+    {
+      "cluster": "cgroup_L5_c3ae78cd",
+      "confronti": 4,
+      "studi": "GSE261086",
+      "questione": "GSE261086, i quattro confronti 'Inflamed ...' contro 'Normal ...'",
+      "decisione": "CONTATI come difettosi",
+      "motivo": "L'etichetta non nomina l'entita' del gruppo (Crohn), e lo studio tiene bracci 'Crohn's disease X' e 'Inflamed X' come DISTINTI in tutte e tre le granularita': nel vocabolario dello studio stesso 'Inflamed' non e' 'Crohn's disease'. Che sia il segmento infiammato della stessa coorte e' plausibile ma non scritto."
+    },
+    {
+      "cluster": "cgroup_L5_c3ae78cd",
+      "confronti": 2,
+      "studi": [],
+      "questione": "GSE139179, i due confronti su sigmoideo con codice temporale (T26, T106)",
+      "decisione": "CONTATI come difettosi",
+      "motivo": "Qui la sede coincide, quindi il difetto di sede non si applica; resta il tempo. Che T## sia un tempo e' provato dalle etichette vicine ('Baseline' nello stesso slot). Se il campione a T106 sia sotto terapia non e' scritto: la lettura prudente lo conta. Lo studio era gia' fra i contaminati, quindi cambia il conteggio e non il peso."
+    },
+    {
+      "cluster": "cgroup_L5_85083e38",
+      "confronti": 2,
+      "studi": [],
+      "questione": "Eta' del donatore discordante (GSE106608 88 contro 66 anni; GSE128177 71 contro 65)",
+      "decisione": "CONTATI come difettosi",
+      "motivo": "La tassonomia dei difetti del progetto nomina 'donatore, sesso o etnia' e non l'eta'. Ma l'eta' e' un attributo del donatore come il sesso, e' scritta sulle stesse etichette, e in tessuto cerebrale post-mortem e' il confondente principale per una malattia guidata dall'eta'. Contare il sesso e non l'eta' sarebbe incoerente. Entrambi gli studi erano gia' fra i contaminati: cambia il conteggio e non il peso."
+    },
+    {
+      "cluster": "cgroup_L5_85083e38",
+      "confronti": 3,
+      "studi": "GSE181029",
+      "questione": "GSE181029, 'terminally differentiated' presente sul solo braccio di controllo",
+      "decisione": "CONTATI come difettosi",
+      "motivo": "Lo studio tiene due pool di controllo distinti proprio con quella dicitura, quindi la parola discrimina; e il braccio trattato puo' portarla, quindi la sua assenza non e' una collisione di slot obbligata. In un differenziamento da iPSC lo stadio pesa. CONSEGUENZA GRAVE E VOLUTA: GSE181029 porta il 73% del peso del gruppo, quindi il peso contaminato di Parkinson diventa la quasi totalita'. E' esattamente cio' che un limite superiore deve fare in un gruppo gia' dichiarato dominato da un solo studio e a materiale misto."
+    },
+    {
+      "cluster": "cgroup_L5_85083e38",
+      "confronti": 1,
+      "studi": "GSE168496",
+      "questione": "GSE168496 'Parkinson's disease' contro 'Non-demented control'",
+      "decisione": "CONTATO come difettoso",
+      "motivo": "Il riferimento e' definito su un asse diverso da quello della malattia in studio: assenza di demenza, non assenza di parkinsonismo. E' l'unico dei dieci studi a cambiare asse. Che 'non-demented' sia la dicitura standard di una banca cervelli per un controllo neurologicamente normale e' conoscenza esterna, non testo dell'etichetta: la lettura prudente conta il confronto."
+    }
+  ],
+  "esclusioni": [
+    {
+      "questione": "IFN-gamma / GSE215771 'A549 IRF1KO IFN-g' contro 'A549 IRF1KO Vehicle'",
+      "decisione": "NON contato",
+      "motivo": "Il genotipo knockout e' IDENTICO sui due bracci, quindi il confronto isola correttamente l'effetto dell'IFN-gamma in quel genotipo. L'obiezione (che IRF1 non possa salire dove IRF1 e' spento) e' di plausibilita' biologica, non di appaiamento: e' letteralmente il caso GSE178714/SMAD2-SMAD3 KO in TGF-beta1, gia' accusato e poi RITRATTATO dal progetto. Va dichiarato nella narrativa, non contato qui."
+    },
+    {
+      "questione": "IL1A / GSE155141, i due confronti su cute non lesionale",
+      "decisione": "NON contati",
+      "motivo": "L'appaiamento interno e' impeccabile e identico sui due bracci. Che lo studio somministri IL-1beta invece di IL-1alfa e' un difetto di COMPOSIZIONE del gruppo, gia' contato una volta nel verdetto di incoerenza: contarlo di nuovo qui lo metterebbe in due bilanci."
+    }
+  ]
+}

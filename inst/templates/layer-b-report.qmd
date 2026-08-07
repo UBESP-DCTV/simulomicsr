@@ -290,11 +290,28 @@ culture passage or anatomical site); a second reader per block was asked to
 refute the first. For the groups large enough to carry a figure, a third agent
 counted, comparison by comparison, which ones are defective.
 
+**Where a label admitted two readings** — one under which the comparison is
+defective and one under which it is not — the comparison was counted as
+**defective**. Ten comparisons were resolved this way: an arm labelled only as
+inflamed, in a study that keeps its disease-labelled arms separate; a treated
+arm whose material could be read either as a sorted cell population or as a
+subject code; donors discordant in age; a differentiation stage declared on one
+arm only; a control defined as free of dementia rather than free of the disease
+under study. The rule is one-directional by design, and it is the same rule that
+makes the weight below an upper bound. It does not mean every ambiguity was
+resolved against the data: two contested comparisons were **not** counted,
+because their labels do decide — a knockout genotype present identically on both
+arms isolates the treatment correctly in that genotype, and a study whose agent
+differs from the one the group is named for is already counted once, in the
+coherence verdict.
+
 The weight of a defective comparison is its share of the sum of inverse
 variances within the group — the same weight the random-effects model uses for
 pooling — and is therefore an **upper bound**: it attributes to a defect the
 entire weight of the study involved, even when only one of that study's
-comparisons is affected.
+comparisons is affected. In one of the case studies below this pushes the figure
+above 80%, because the single study that dominates the pooling is among those
+carrying a defect; the number is reported as it comes out.
 
 Where this count was not performed, the summary card says so. It does not
 report a weight without the count that gives it meaning.
@@ -319,7 +336,23 @@ The `r nrow(lb$selection_resolved)` groups shown in this document, with their
 internal identifiers for cross-checking against the pooled results:
 
 ```{r selection-table}
-DT::datatable(lb$selection_resolved, options = list(pageLength = 25))
+# SOLO le colonne pubblicabili. La colonna `notes` del file di selezione
+# contiene appunti di lavoro -- in italiano, col gergo interno e con i numeri
+# di un run precedente scritti a mano -- e finiva stampata per intero in questa
+# appendice. Resta nel CSV accanto al documento, che e' il posto giusto per
+# chi verifica; qui no.
+COLONNE_SELEZIONE <- c(
+  cluster_id    = "Group identifier",
+  label_paper   = "Contrast",
+  method        = "Pooling method",
+  k_effective   = "Pooled studies",
+  n_sig_FDR05   = "Significant genes"
+)
+sel_vista <- lb$selection_resolved[, intersect(names(COLONNE_SELEZIONE),
+                                               names(lb$selection_resolved)),
+                                   drop = FALSE]
+names(sel_vista) <- unname(COLONNE_SELEZIONE[names(sel_vista)])
+DT::datatable(sel_vista, rownames = FALSE, options = list(pageLength = 25))
 ```
 
 Configuration used to generate the figures:

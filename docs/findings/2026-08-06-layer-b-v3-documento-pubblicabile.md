@@ -135,34 +135,85 @@ superato perché l'apertura non esiste più).
 
 ---
 
-## 6. I disaccordi da decidere
+## 6. I quindici disaccordi: decisi (2026-08-07)
 
-**Sui conteggi** (dieci, dall'arbitrato dei tre gruppi nuovi):
+Decisione dell'utente: non si rimandano, si decidono sui dati, e **nel dubbio si
+sceglie la lettura prudente**.
 
-- **Crohn / GSE261086** (quattro confronti): l'etichetta dice `Inflamed colon mucosa` contro
-  `Normal colon mucosa`, ma non nomina il Crohn, e lo studio tiene bracci `Crohn's disease X`
-  e `Inflamed X` come distinti. È la coorte Crohn descritta con un'altra parola, oppure
-  infiammazione di altra eziologia? L'etichetta non decide.
-- **Crohn / GSE164871**: `Crohn's Disease CD4` — «CD4» è una popolazione cellulare isolata
-  (materiale incompatibile col tessuto colico del controllo) o il codice di un paziente?
-- **Crohn / GSE139179**: i bracci malati (retto, colon ascendente, discendente) sono
-  confrontati con controlli di **sigmoideo**. Contato come difetto (18 confronti). È
-  giusto, o in studi colici un unico sito di controllo è pratica accettabile?
-- **Parkinson**: l'**età** del donatore va contata come il sesso? (GSE106608: 88 contro 66
-  anni). E `Non-demented control` è un controllo valido per il Parkinson?
+### 6.1 Una domanda non era un'opinione: era una misura mai fatta
 
-**Sulle narrative** (cinque questioni ricorrenti):
+Cinque narrative si erano fermate sulla stessa obiezione — con I² fra 87 e 96, si puo'
+dire che gli studi concordano sul *segno*? Il contestatore aveva ragione sul metodo (l'I²
+misura la varianza delle magnitudini, non la direzione) e torto sul fatto: i segni per
+studio stanno in `per_study_de.parquet`. Misurati
+(`analysis/audit/2026-08-06-layer-b-v3/20-concordanza-di-segno.R`), sui bersagli fissati
+prima del run:
 
-- se con I² di 95-99 si possa affermare che «gli studi concordano sul segno» (servirebbe il
-  conteggio dei segni per studio, che non è nel materiale);
-- se la testa dell'ordinamento per FDR a k basso sia segnale o artefatto della stima di τ²;
-- se in IFN-γ vadano **esclusi** (non solo dichiarati) il confronto con co-infezione da
-  *C. trachomatis* e quello su cellule IRF1-knockout;
-- se in JQ1 si possa citare HEXIM1 come conferma, dato che per quel gruppo nessun bersaglio
-  era stato fissato prima del run (osservazione a posteriori);
-- se il gruppo Parkinson, che somma tre regioni cerebrali, neuroni da staminali e sette
-  studi a tessuto non dichiarato, debba continuare a essere riportato come **un solo**
-  contrasto caso-controllo.
+| gruppo | stime per-studio concordi col segno poolato | I² mediano |
+|---|---:|---:|
+| IFN-γ | **91 / 91 (100%)** | 90,5 |
+| TGF-β1 | 320 / 353 (90,7%) | 93,5 |
+| DHT | 71 / 79 (89,9%) | 85,1 |
+| SARS-CoV-2 | 114 / 135 (84,4%) | 95,6 |
+| enzalutamide | 58 / 71 (81,7%) | 87,9 |
 
-Evidenza completa: `analysis/audit/2026-08-06-layer-b-v3/` (fatti per case study, conteggio
-dei tre gruppi, pesi ricalcolati) e i journal dei due workflow.
+Eterogeneita' altissima nelle *ampiezze* e concordanza alta nella *direzione* convivono, ed
+e' esattamente la lettura che il progetto sosteneva senza averla misurata. Le cinque
+narrative ora riportano la cifra invece della cautela.
+
+### 6.2 I dieci confronti che l'etichetta non decideva
+
+Regola applicata, dichiarata nel documento: **quando l'etichetta ammette due letture, il
+confronto si conta come difettoso**. E' coerente con una misura gia' dichiarata limite
+superiore. La regola non e' "conta tutto": due confronti contestati **non** sono stati
+contati, perche' l'etichetta li decide (un genotipo knockout identico sui due bracci isola
+correttamente il trattamento — e' il caso GSE178714 gia' ritrattato dal progetto; e un
+difetto di composizione gia' contato una volta nel verdetto di coerenza).
+
+| gruppo | prima | dopo | peso |
+|---|---:|---:|---:|
+| Crohn | 18 / 42 | **25 / 42** | 4,9% → 11,7% |
+| Parkinson | 3 / 29 | **9 / 29** | 12,6% → **81,1%** |
+| IL1A | 3 / 7 | 3 / 7 | 10,1% |
+
+L'81,1% di Parkinson e' voluto e va letto con la definizione accanto: lo studio che porta
+il 73% del peso e' fra quelli con un confronto difettoso, e il limite superiore attribuisce
+al difetto l'intero peso dello studio. In un gruppo gia' dichiarato dominato da un solo
+studio e a materiale misto, e' l'informazione corretta.
+
+Dettaglio per singolo confronto, con la motivazione:
+`analysis/audit/2026-08-06-layer-b-v3/decisioni-conservative.json`.
+
+### 6.3 Le cinque questioni sulle narrative
+
+- **concordanza di segno** → misurata (§6.1);
+- **testa dell'ordinamento a k basso** → descritta senza attribuirle una causa: a due o tre
+  studi la varianza fra studi non e' stimabile e collassa a zero, il che comprime l'FDR;
+  il documento lo dice, e il filtro di copertura tiene quei geni fuori dagli ordinamenti;
+- **IFN-γ, i due confronti contestati** → non esclusi dal pooling (escluderli sarebbe una
+  lista scritta a mano, l'errore gia' pagato) ma **dichiarati** nella narrativa: uno porta
+  una co-infezione che induce parte dello stesso programma, l'altro stima IRF1 includendo
+  cellule IRF1-deficienti;
+- **JQ1 / HEXIM1** → mantenuto, con la dichiarazione che per quel gruppo nessun bersaglio
+  era stato fissato prima del run e che i geni sono riportati come osservati;
+- **Parkinson come contrasto unico** → il verdetto non e' stato ritrattato (i verdetti sono
+  lettura umana, e ritrattarne uno a mano e' l'errore gia' pagato), ma la narrativa ora
+  riporta il conteggio dei confronti mal appaiati accanto alla dominanza e al materiale
+  misto.
+
+---
+
+## 7. Correzioni al testo pubblicato (2026-08-07)
+
+Tre cose che finivano nel documento e non dovevano:
+
+1. **Le motivazioni delle undici incoerenti** erano il verbale della lettura umana: in
+   italiano, lungo, e in un caso con dentro la data e l'autore della decisione. Ora vengono
+   da una traduzione editoriale breve (`inst/extdata/coherence-reason-en.csv`); un gruppo
+   senza traduzione **non** ricade sull'italiano, dichiara che manca.
+2. **Una etichetta di entita' era in italiano** (`antigen (classe-ombrello)`). Corretta
+   nell'override canonico, che ora viene **riapplicato al momento della pubblicazione**:
+   una correzione di testo non richiede un re-pool di 214 meta-analisi.
+3. **La tabella della selezione in appendice** stampava la colonna `notes`, cioe' appunti
+   di lavoro col gergo interno e i numeri di un run precedente scritti a mano. Ora mostra
+   solo le colonne pubblicabili; le note restano nel CSV accanto al documento.

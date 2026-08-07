@@ -230,6 +230,17 @@
   n_gruppi <- nrow(d)
   tipo <- .corpus_tipo_entita(d$contrast_entity)
 
+  # L'etichetta pubblicata riapplica l'override canonico
+  # (inst/extdata/entity-label-overrides.csv) invece di fidarsi di quella
+  # materializzata nel deliverable: una correzione a quel file arriva nel
+  # documento senza dover ri-poolare 214 meta-analisi. E' il caso di
+  # `CHEBI:59132`, che nel deliverable v15 porta ancora un'etichetta scritta
+  # in italiano ("antigen (classe-ombrello)") e finiva stampata cosi' nella
+  # tabella delle incoerenti. Quando l'override non c'e', si tiene
+  # l'etichetta del deliverable.
+  etichetta <- .corpus_etichetta_pubblicata(d$contrast_entity,
+                                            d$contrast_entity_label)
+
   # --- composizione per tipo di entita' ---------------------------------------
   spl <- split(seq_len(n_gruppi), factor(tipo, levels = unique(tipo)))
   composizione <- data.frame(
@@ -267,7 +278,7 @@
   ord <- order(-d$k_effective)
   top <- utils::head(ord, top_n)
   piu_potenti <- data.frame(
-    `Contrast`            = d$contrast_entity_label[top],
+    `Contrast`            = etichetta[top],
     `Type`                = tipo[top],
     `Pooled studies`      = as.integer(d$k_effective[top]),
     `Effective studies (Kish)` = if (is.null(k_kish)) NA_real_ else round(k_kish[top], 1),
@@ -276,17 +287,25 @@
     check.names = FALSE, stringsAsFactors = FALSE, row.names = NULL)
 
   # --- le marcate incoerenti ---------------------------------------------------
+  # La colonna `coherence_reason` del deliverable e' il VERBALE della lettura
+  # umana: italiano, lungo, e in un caso cita per esteso la decisione presa da
+  # una persona in una certa data. E' la fonte giusta per chi verifica e la
+  # fonte sbagliata per un documento da articolo. La riga pubblicata viene da
+  # una traduzione editoriale breve (`inst/extdata/coherence-reason-en.csv`),
+  # tenuta separata dal dato perche' e' testo, non misura.
+  #
+  # Nessun ripiego silenzioso: un gruppo senza traduzione NON stampa il verbale
+  # italiano, dichiara che la motivazione non e' disponibile in inglese.
   verdetto <- .col("coherence_verdict")
   incoerenti <- if (is.null(verdetto)) {
     data.frame(Contrast = character(0), `Pooled studies` = integer(0),
                Reason = character(0), check.names = FALSE, stringsAsFactors = FALSE)
   } else {
     idx <- which(!is.na(verdetto) & verdetto != "coherent")
-    ragione <- .col("coherence_reason")
     data.frame(
-      Contrast         = d$contrast_entity_label[idx],
+      Contrast         = etichetta[idx],
       `Pooled studies` = as.integer(d$k_effective[idx]),
-      Reason           = if (is.null(ragione)) rep(NA_character_, length(idx)) else ragione[idx],
+      Reason           = .corpus_motivo_en(d$cluster_id[idx]),
       check.names = FALSE, stringsAsFactors = FALSE, row.names = NULL)
   }
 
@@ -315,3 +334,68 @@
 #' cioe' non `TRUE`.
 #' @keywords internal
 .isTRUE_vec <- function(x) !is.na(x) & as.logical(x)
+
+#' Motivazione dell'incoerenza, in inglese e breve, per la tabella pubblicata
+#'
+#' La colonna `coherence_reason` del deliverable annotato e' il verbale della
+#' lettura umana che ha marcato il gruppo: in italiano, lunga, e in un caso con
+#' dentro la data e l'autore della decisione. Serve a chi verifica, non a chi
+#' legge il documento.
+#'
+#' Questa funzione restituisce invece la frase pubblicabile, presa da
+#' `inst/extdata/coherence-reason-en.csv` -- una tabella EDITORIALE (testo
+#' scritto e riletto, non una misura), tenuta fuori dal codice per la stessa
+#' ragione per cui le narrative stanno in file loro: un testo scientifico si
+#' rilegge e si firma, non si nasconde dentro una funzione.
+#'
+#' Nessun ripiego silenzioso: se un gruppo non ha una traduzione, la tabella
+#' non stampa il verbale italiano -- dichiara che la motivazione non e'
+#' disponibile in inglese, cosi' chi rilegge il documento vede che manca.
+#'
+#' @param cluster_id character vector di identificativi di gruppo.
+#' @return character vector della stessa lunghezza.
+#' @keywords internal
+.corpus_motivo_en <- function(cluster_id) {
+  path <- system.file("extdata", "coherence-reason-en.csv", package = "simulomicsr")
+  non_disp <- "reason not available in English for this group"
+  if (!nzchar(path) || !file.exists(path)) {
+    return(rep(non_disp, length(cluster_id)))
+  }
+  tab <- utils::read.csv(path, stringsAsFactors = FALSE)
+  i <- match(as.character(cluster_id), tab$cluster_id)
+  out <- tab$reason_en[i]
+  out[is.na(out) | !nzchar(out)] <- non_disp
+  out
+}
+
+#' L'etichetta leggibile pubblicata, dall'override canonico se c'e'
+#'
+#' `contrast_entity_label` nel deliverable e' una fotografia dell'override
+#' (`inst/extdata/entity-label-overrides.csv`) al momento in cui il pooling e'
+#' stato eseguito. Correggere una etichetta in quel file, dopo, non basterebbe
+#' a correggerla nel documento: servirebbe un re-pool di 214 meta-analisi per
+#' un problema di testo. Qui l'override viene riapplicato al momento della
+#' pubblicazione.
+#'
+#' Nessun ripiego silenzioso in nessuno dei due sensi: se l'entita' non e'
+#' nell'override, si tiene l'etichetta del deliverable; se manca anche quella,
+#' si tiene l'identificativo grezzo, che e' informazione e non un buco.
+#'
+#' @param entita character vector di `contrast_entity`.
+#' @param etichetta character vector di `contrast_entity_label`, stessa lunghezza.
+#' @return character vector della stessa lunghezza.
+#' @keywords internal
+.corpus_etichetta_pubblicata <- function(entita, etichetta) {
+  out <- as.character(etichetta)
+  vuota <- is.na(out) | !nzchar(out)
+  out[vuota] <- as.character(entita)[vuota]
+
+  path <- system.file("extdata", "entity-label-overrides.csv", package = "simulomicsr")
+  if (!nzchar(path) || !file.exists(path)) return(out)
+  ov <- utils::read.csv(path, stringsAsFactors = FALSE)
+  if (!all(c("contrast_entity", "label") %in% names(ov))) return(out)
+  i <- match(as.character(entita), ov$contrast_entity)
+  ha <- !is.na(i) & !is.na(ov$label[i]) & nzchar(ov$label[i])
+  out[ha] <- ov$label[i][ha]
+  out
+}

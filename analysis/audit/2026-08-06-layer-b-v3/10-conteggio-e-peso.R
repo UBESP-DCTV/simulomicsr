@@ -31,7 +31,7 @@ suppressPackageStartupMessages({ library(arrow); library(cli) })
 
 POOL <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7"
 OUT  <- "analysis/audit/2026-08-06-layer-b-v3"
-NUOVI <- file.path(OUT, "conteggio-3-gruppi.json")   # esito del workflow
+NUOVI <- file.path(OUT, "conteggio-3-gruppi-deciso.json")  # esito del workflow + le decisioni conservative (30-*.R)
 GRANDI <- "analysis/audit/2026-08-05-rilettura-214/13-grandi-conteggio.json"
 
 # --- i conteggi: i tredici grandi (2026-08-05) + i tre nuovi (2026-08-06) -----
@@ -49,8 +49,8 @@ if (file.exists(NUOVI)) {
     cluster_id = x$cluster_id,
     n_confronti_totali = x$n_confronti_totali,
     studi = sort(unique(unlist(x$studi_con_difetti))),
-    n_difettosi = length(x$confronti_difettosi_finali),
-    fonte = "conteggio 2026-08-06 (contatore + due critici simmetrici + arbitro)")))
+    n_difettosi = x$n_confronti_difettosi_finale,
+    fonte = "conteggio 2026-08-06 (contatore + due critici simmetrici + arbitro) + decisioni conservative 2026-08-07")))
 } else {
   cli_alert_warning("Conteggio dei tre gruppi assente in {.path {NUOVI}}: restano non misurati.")
 }

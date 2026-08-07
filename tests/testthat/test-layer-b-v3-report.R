@@ -221,3 +221,65 @@ test_that("narrative_provider: il testo firmato finisce nel narrative.qmd del bu
   expect_equal(res$run_metadata$input_files$narrative$cluster_id_senza_narrativa,
                "cl_aug_1")
 })
+
+# --- 8. le motivazioni delle incoerenti sono in inglese e brevi ---------------
+# La colonna `coherence_reason` del deliverable e' un verbale di lettura umana:
+# italiano, lungo, e in un caso cita la decisione presa da una persona in una
+# data. In un documento da articolo non va stampata cosi'. La traduzione
+# editoriale vive in inst/extdata/coherence-reason-en.csv (testo, non dato) e
+# un gruppo senza traduzione NON ricade sull'italiano: si dichiara.
+
+test_that(".corpus_tabelle usa la motivazione inglese quando c'e'", {
+  d <- data.frame(
+    cluster_id = c("cgroup_L5_3973fe03", "c2"),
+    contrast_entity = c("HGNC:5991", "CHEBI:1"),
+    contrast_entity_label = c("IL1A", "x"),
+    k_effective = c(4L, 3L), I2_med = c(63, 10), n_sig = c(947L, 5L),
+    coherence_verdict = c("incoherent", "coherent"),
+    coherence_reason = c("PEGGIORATO dal pooling: i due studi IL-1alfa veri sono caduti", NA),
+    stringsAsFactors = FALSE)
+  tb <- simulomicsr:::.corpus_tabelle(d)
+  expect_equal(nrow(tb$incoerenti), 1L)
+  expect_match(tb$incoerenti$Reason[1L], "IL-1 beta")
+  expect_false(grepl("PEGGIORATO", tb$incoerenti$Reason[1L]))
+})
+
+test_that(".corpus_tabelle non ripiega sull'italiano quando la traduzione manca", {
+  d <- data.frame(
+    cluster_id = "cgroup_L5_mai_visto", contrast_entity = "CHEBI:1",
+    contrast_entity_label = "y", k_effective = 3L, I2_med = 10, n_sig = 5L,
+    coherence_verdict = "incoherent",
+    coherence_reason = "verbale interno in italiano, con nomi e date",
+    stringsAsFactors = FALSE)
+  tb <- simulomicsr:::.corpus_tabelle(d)
+  expect_false(grepl("verbale", tb$incoerenti$Reason[1L]))
+  expect_match(tb$incoerenti$Reason[1L], "not available", ignore.case = TRUE)
+})
+
+# --- 9. le etichette pubblicate sono in inglese ------------------------------
+# `contrast_entity_label` arriva dal deliverable, che a sua volta applica
+# inst/extdata/entity-label-overrides.csv. Una etichetta di quel file era in
+# italiano ("antigen (classe-ombrello)") e finiva stampata nella tabella delle
+# incoerenti. La correzione sta nel file (fonte unica delle etichette
+# leggibili), ma il deliverable gia' materializzato porta ancora la vecchia:
+# la tabella riapplica l'override al momento della pubblicazione.
+
+test_that(".corpus_tabelle riapplica l'override delle etichette al momento della pubblicazione", {
+  d <- data.frame(
+    cluster_id = "c1", contrast_entity = "CHEBI:59132",
+    contrast_entity_label = "antigen (classe-ombrello)",
+    k_effective = 3L, I2_med = 10, n_sig = 5L,
+    coherence_verdict = "incoherent", stringsAsFactors = FALSE)
+  tb <- simulomicsr:::.corpus_tabelle(d)
+  expect_equal(tb$incoerenti$Contrast[1L], "antigen (umbrella class)")
+  expect_equal(tb$piu_potenti$Contrast[1L], "antigen (umbrella class)")
+})
+
+test_that("un'entita' senza override tiene l'etichetta del deliverable", {
+  d <- data.frame(
+    cluster_id = "c1", contrast_entity = "HGNC:11766",
+    contrast_entity_label = "TGFB1", k_effective = 59L, I2_med = 93, n_sig = 7909L,
+    stringsAsFactors = FALSE)
+  tb <- simulomicsr:::.corpus_tabelle(d)
+  expect_equal(tb$piu_potenti$Contrast[1L], "TGFB1")
+})

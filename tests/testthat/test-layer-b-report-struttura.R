@@ -147,3 +147,13 @@ test_that("render_layer_b_report produce un HTML con l'apertura prima delle imma
   intestazioni_html <- regmatches(html, gregexpr("<h[1-6][^>]*>.*?</h[1-6]>", html, perl = TRUE))[[1]]
   expect_false(any(grepl("cgroup_L5_", intestazioni_html)))
 })
+
+test_that("l'appendice non pubblica la colonna `notes` della selezione", {
+  # `notes` contiene appunti di lavoro: italiano, gergo interno ('SUPP -
+  # incoerente dichiarato'), e i numeri di un run precedente scritti a mano.
+  # Il documento e' materiale da articolo: quelle note restano nel CSV.
+  qmd <- paste(readLines(system.file("templates", "layer-b-report.qmd",
+                                     package = "simulomicsr")), collapse = "\n")
+  expect_match(qmd, "COLONNE_SELEZIONE", fixed = TRUE)
+  expect_false(grepl("DT::datatable(lb$selection_resolved", qmd, fixed = TRUE))
+})
