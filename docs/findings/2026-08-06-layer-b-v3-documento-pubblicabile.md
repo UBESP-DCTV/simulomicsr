@@ -122,10 +122,12 @@ superato perché l'apertura non esiste più).
 
 ## 5. Limiti dichiarati
 
-1. **Il layout non è stato verificato in un browser.** Il fix della tabella che sforava è
-   verificato in modo statico (ogni tabella è dentro un contenitore `overflow-x: auto`,
-   nessuna larghezza forzata inline), non aprendo la pagina: in questo ambiente il browser
-   non raggiunge il server locale e non c'è un Chromium headless. **Va guardata a occhio.**
+1. ~~Il layout non è stato verificato in un browser.~~ **Verificato dall'utente il
+   2026-08-07**: la formattazione regge, la tabella non sfora più sull'indice. Il fix è il
+   contenitore `overflow-x: auto` con `max-width: 100%` attorno a ciascuna tabella e
+   nessuna larghezza forzata inline; qui restava verificabile solo in modo statico, perché
+   in questo ambiente il browser non raggiunge il server locale e non c'è un Chromium
+   headless.
 2. **Le narrative sono da firmare.** Sono verificate nei numeri e nei riferimenti, ma sono
    testo scientifico che l'autore deve leggere e fare proprio.
 3. ~~Quindici disaccordi restano aperti.~~ **Decisi il 2026-08-07** (§6): uno era una
