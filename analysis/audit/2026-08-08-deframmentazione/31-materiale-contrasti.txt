@@ -1,0 +1,1573 @@
+MATERIALE INTEGRALE DEI CONTRASTI — le 8 fusioni entro la stessa chiave di controllo
+Generato: 2026-08-08 08:39:19   Stadio 3 v15 = 20260803T164558Z-stage3-v15-7f986159
+Stadio 2 = analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl
+Membri risolti 200/200 righe assignments. Non risolti: 0.
+Etichette INTERE (nessun troncamento: vedi controllo lunghezze nel report). Le lettere greche sono preservate.
+========================================================================================================================
+
+########################################################################################################################
+# FUSIONE: TNF (gene HGNC:11892 vs proteina ricombinante CHEMBL:CHEMBL265582)
+# chiave gruppo: HGNC:11892||gain||vehicle_untreated
+# cluster coinvolti: cgroup_L5_4f4d9051 [CHEMBL:CHEMBL265582] studi=7 membri=12  |  cgroup_L5_d9e23e09 [HGNC:11892] studi=41 membri=88
+########################################################################################################################
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEMBL:CHEMBL265582     cluster_id: cgroup_L5_4f4d9051     studi: 7   membri(confronti): 12
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE132958   [design_kind studio: treatment_vs_vehicle]
+      design_summary: This study investigates the effects of TNF-alpha stimulation on pathological intervertebral disc cells from the nucleus pulposus, comparing treated and control conditions.
+      -- confronto 1/1  (GSE132958__grp_0002_vs_grp_0001)
+         TRATTATO (n=2, role=treated): TNF-alpha stimulated
+            factor_levels: treatment=TNF-alpha
+         CONTROLLO (n=2, role=control): Nontargeting control
+            factor_levels: treatment=Nontargeting control
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE210522   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various perturbations on human vascular cells using CRISPRi technology and cytokine stimulations.
+      -- confronto 1/2  (GSE210522__group_0025_vs_group_0024)
+         TRATTATO (n=3, role=treated): Eahy926_TNF_alpha
+            factor_levels: cell_line=Eahy926 ; perturbation=TNF-alpha
+         CONTROLLO (n=3, role=control): Eahy926_Vehicle
+            factor_levels: cell_line=Eahy926 ; perturbation=Vehicle
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=cell_line|Eahy926
+      -- confronto 2/2  (GSE210522__group_0031_vs_group_0029)
+         TRATTATO (n=3, role=treated): TeloHAEC_TNF_alpha
+            factor_levels: cell_line=TeloHAEC ; perturbation=TNF-alpha
+         CONTROLLO (n=3, role=control): TeloHAEC_Vehicle
+            factor_levels: cell_line=TeloHAEC ; perturbation=Vehicle
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=cell_line|TeloHAEC
+
+    STUDIO GSE211439   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the response of human brain microvascular endothelial cells (HBMEC) to various treatments, including pathogen exposure and cytokine stimulation.
+      -- confronto 1/1  (GSE211439__TNF_alpha_vs_Media_control)
+         TRATTATO (n=6, role=treated): TNF-alpha-treated HBMEC
+            factor_levels: treatment=TNF-alpha
+         CONTROLLO (n=6, role=control): Media control HBMEC
+            factor_levels: treatment=Media control
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE217421   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various small molecules on human iPSC-derived cardiac myocytes.
+      -- confronto 1/3  (GSE217421__grp_DMSO_1_vs_grp_TNF_alpha_1)
+         TRATTATO (n=18, role=treated): TNF-alpha-stimulated cardiac myocytes
+            factor_levels: treatment=TNF-alpha ; cell_type=cardiac myocytes ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|tissue|skin|context_kind|iPSC_derived
+      -- confronto 2/3  (GSE217421__grp_DMSO_1_vs_grp_TNF_alpha_2)
+         TRATTATO (n=4, role=treated): TNF-alpha-stimulated cardiac myocytes
+            factor_levels: treatment=TNF-alpha ; cell_type=cardiac myocytes ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|tissue|skin|context_kind|iPSC_derived
+      -- confronto 3/3  (GSE217421__grp_DMSO_1_vs_grp_TNF_alpha_3)
+         TRATTATO (n=1, role=treated): TNF-alpha-stimulated MSN05 cardiac myocytes
+            factor_levels: treatment=TNF-alpha ; cell_type=cardiac myocytes ; cell_line=MSN05 ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|cell_line|MSN05|tissue|skin|context_kind|iPSC_derived
+
+    STUDIO GSE226186   [design_kind studio: treatment_vs_vehicle]
+      design_summary: This study investigates the effects of TNF-alpha stimulation on primary nucleus pulposus cells from human intervertebral discs.
+      -- confronto 1/1  (GSE226186__grp_0002_vs_grp_0001)
+         TRATTATO (n=3, role=treated): TNF-alpha Stimulation
+            factor_levels: treatment=TNF-alpha
+         CONTROLLO (n=3, role=control): Vehicle Control
+            factor_levels: treatment=vehicle_only
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE65354   [design_kind studio: factorial]
+      design_summary: This study investigates the effects of TNF-alpha stimulation and cytosolic Hsp60 depletion on aortic vascular smooth muscle cells.
+      -- confronto 1/1  (GSE65354__grp_0002_vs_grp_0001)
+         TRATTATO (n=1, role=treated): TNF-alpha stimulated
+            factor_levels: perturbation=TNF-alpha stimulation
+         CONTROLLO (n=1, role=control): Control (Cytosolic Hsp60 normal and TNF-alpha negative)
+            factor_levels: perturbation=none
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=<vuoto>
+
+    STUDIO GSE70068   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional response of human neutrophils to cytokine stimulation with TNF-alpha and GM-CSF.
+      -- confronto 1/3  (GSE70068__grp_0001_vs_grp_0002)
+         TRATTATO (n=2, role=treated): Neutrophils stimulated with TNF-alpha
+            factor_levels: Cytokine Stimulation=TNF-alpha ; Duration=1 hour
+         CONTROLLO (n=3, role=control): Untreated Neutrophils (Donor 1)
+            factor_levels: Treatment=Untreated ; Duration=1 hour
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Cytokine Stimulation | fixed=Cell Type|Neutrophils|Duration|1 hour
+      -- confronto 2/3  (GSE70068__grp_0004_vs_grp_0002)
+         TRATTATO (n=1, role=treated): Neutrophils stimulated with TNF-alpha
+            factor_levels: Cytokine Stimulation=TNF-alpha ; Duration=1 hour
+         CONTROLLO (n=3, role=control): Untreated Neutrophils (Donor 1)
+            factor_levels: Treatment=Untreated ; Duration=1 hour
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Cytokine Stimulation | fixed=Cell Type|Neutrophils|Duration|1 hour
+      -- confronto 3/3  (GSE70068__grp_0005_vs_grp_0002)
+         TRATTATO (n=1, role=treated): Neutrophils stimulated with TNF-alpha
+            factor_levels: Cytokine Stimulation=TNF-alpha ; Duration=1 hour
+         CONTROLLO (n=3, role=control): Untreated Neutrophils (Donor 1)
+            factor_levels: Treatment=Untreated ; Duration=1 hour
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Cytokine Stimulation | fixed=Cell Type|Neutrophils|Duration|1 hour
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: HGNC:11892     cluster_id: cgroup_L5_d9e23e09     studi: 41   membri(confronti): 88
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE108621   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNF-α stimulation and various inhibitors on colon adenocarcinoma cell line HT29.
+      -- confronto 1/1  (GSE108621__TNF_vs_DMSO)
+         TRATTATO (n=3, role=treated): TNF-α
+            factor_levels: treatment=TNF-α
+         CONTROLLO (n=3, role=control): DMSO
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE115311   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various perturbations on ES-derived mesenchymal stem cells and vascular cells.
+      -- confronto 1/2  (GSE115311__grp_0004_vs_grp_0026)
+         TRATTATO (n=2, role=treated): ES-derived mesenchymal stem cells, TNFa stimulation
+            factor_levels: cell_type=ES-derived mesenchymal stem cells ; perturbation=TNFa stimulation
+         CONTROLLO (n=2, role=control): ES-derived mesenchymal stem cells, undifferentiated, untreated
+            factor_levels: cell_type=ES-derived mesenchymal stem cells ; perturbation=untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_type|ES-derived mesenchymal stem cells
+      -- confronto 2/2  (GSE115311__grp_0020_vs_grp_0019)
+         TRATTATO (n=2, role=treated): ES-derived vascular smooth muscle cells, TNFa stimulation
+            factor_levels: cell_type=ES-derived vascular smooth muscle cells ; perturbation=TNFa stimulation
+         CONTROLLO (n=2, role=control): ES-derived vascular smooth muscle cells, untreated
+            factor_levels: cell_type=ES-derived vascular smooth muscle cells ; perturbation=untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_type|ES-derived vascular smooth muscle cells
+
+    STUDIO GSE122305   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various cytokine stimulations on human skin tissue.
+      -- confronto 1/1  (GSE122305__TNF_vs_PBS0.1%BSA)
+         TRATTATO (n=3, role=treated): TNF
+            factor_levels: treatment=TNF
+         CONTROLLO (n=3, role=control): Control (PBS-0.1%BSA)
+            factor_levels: treatment=PBS-0.1%BSA
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE126101   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of palmitate and TNFα treatments on primary human skeletal muscle cells.
+      -- confronto 1/1  (GSE126101__TNFa_vs_control)
+         TRATTATO (n=3, role=treated): TNFα
+            factor_levels: treatment=TNFα
+         CONTROLLO (n=4, role=control): Control (Ctrl)
+            factor_levels: treatment=control
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE128638   [design_kind studio: time_course]
+      design_summary: Time course analysis of TNF stimulation in human monocytes.
+      -- confronto 1/4  (GSE128638__TNF_1hr_vs_Untreated)
+         TRATTATO (n=1, role=treated): Monocytes treated with TNF for 1 hour
+            factor_levels: treatment=TNF ; time=1hr
+         CONTROLLO (n=1, role=control): Untreated monocytes
+            factor_levels: treatment=none ; time=0hr
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=time | fixed=treatment|TNF
+      -- confronto 2/4  (GSE128638__TNF_3hr_vs_Untreated)
+         TRATTATO (n=1, role=treated): Monocytes treated with TNF for 3 hours
+            factor_levels: treatment=TNF ; time=3hr
+         CONTROLLO (n=1, role=control): Untreated monocytes
+            factor_levels: treatment=none ; time=0hr
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=time | fixed=treatment|TNF
+      -- confronto 3/4  (GSE128638__TNF_6hr_vs_Untreated)
+         TRATTATO (n=1, role=treated): Monocytes treated with TNF for 6 hours
+            factor_levels: treatment=TNF ; time=6hr
+         CONTROLLO (n=1, role=control): Untreated monocytes
+            factor_levels: treatment=none ; time=0hr
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=time | fixed=treatment|TNF
+      -- confronto 4/4  (GSE128638__TNF_24hr_vs_Untreated)
+         TRATTATO (n=1, role=treated): Monocytes treated with TNF for 24 hours
+            factor_levels: treatment=TNF ; time=24hr
+         CONTROLLO (n=1, role=control): Untreated monocytes
+            factor_levels: treatment=none ; time=0hr
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=time | fixed=treatment|TNF
+
+    STUDIO GSE130226   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNFα stimulation on Caco2 cells, including both wild-type and genetically modified variants.
+      -- confronto 1/6  (GSE130226__grp_0003_vs_grp_0001)
+         TRATTATO (n=2, role=treated): Caco2 cells, TNFα, disease model
+            factor_levels: treatment=TNFα ; genetic_background=wild-type
+         CONTROLLO (n=1, role=control): Caco2 cells, untreated, disease model
+            factor_levels: treatment=untreated ; genetic_background=wild-type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genetic_background|wild-type
+      -- confronto 2/6  (GSE130226__grp_0004_vs_grp_0001)
+         TRATTATO (n=2, role=treated): Caco2 cells, TNFα, disease model
+            factor_levels: treatment=TNFα ; genetic_background=wild-type
+         CONTROLLO (n=1, role=control): Caco2 cells, untreated, disease model
+            factor_levels: treatment=untreated ; genetic_background=wild-type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genetic_background|wild-type
+      -- confronto 3/6  (GSE130226__grp_0005_vs_grp_0001)
+         TRATTATO (n=2, role=treated): Caco2 cells, TNFα, disease model
+            factor_levels: treatment=TNFα ; genetic_background=wild-type
+         CONTROLLO (n=1, role=control): Caco2 cells, untreated, disease model
+            factor_levels: treatment=untreated ; genetic_background=wild-type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genetic_background|wild-type
+      -- confronto 4/6  (GSE130226__grp_0007_vs_grp_0002)
+         TRATTATO (n=2, role=treated): Caco2 cells, TNFα, no disease model
+            factor_levels: treatment=TNFα ; genetic_background=wild-type
+         CONTROLLO (n=6, role=control): Caco2 cells, untreated, no disease model
+            factor_levels: treatment=untreated ; genetic_background=wild-type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genetic_background|wild-type
+      -- confronto 5/6  (GSE130226__grp_0008_vs_grp_0002)
+         TRATTATO (n=1, role=treated): Caco2 cells, TNFα, no disease model
+            factor_levels: treatment=TNFα ; genetic_background=wild-type
+         CONTROLLO (n=6, role=control): Caco2 cells, untreated, no disease model
+            factor_levels: treatment=untreated ; genetic_background=wild-type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genetic_background|wild-type
+      -- confronto 6/6  (GSE130226__grp_0010_vs_grp_0009)
+         TRATTATO (n=2, role=treated): Caco2 CFTRpos cells, TNFα, no disease model
+            factor_levels: treatment=TNFα ; genetic_background=CFTRpos
+         CONTROLLO (n=4, role=control): Caco2 CFTRpos cells, untreated, no disease model
+            factor_levels: treatment=untreated ; genetic_background=CFTRpos
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genetic_background|CFTRpos
+
+    STUDIO GSE138237   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional response of MCF7 breast cancer cells to TNFα stimulation over time, comparing wild-type and NF-κB-deficient variants.
+      -- confronto 1/3  (GSE138237__grp_0002_vs_grp_0001)
+         TRATTATO (n=1, role=treated): MCF7 WT TNFα 45 min
+            factor_levels: genotype=WT ; treatment=TNFα ; time=45 min
+         CONTROLLO (n=2, role=control): MCF7 WT control
+            factor_levels: genotype=WT ; treatment=control
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genotype|WT|time|45 min
+      -- confronto 2/3  (GSE138237__grp_0005_vs_grp_0003)
+         TRATTATO (n=2, role=treated): MCF7 ΔNFκB TNFα 45 min
+            factor_levels: genotype=ΔNFκB ; treatment=TNFα ; time=45 min
+         CONTROLLO (n=1, role=control): MCF7 ΔNFκB control
+            factor_levels: genotype=ΔNFκB ; treatment=control
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genotype|ΔNFκB|time|45 min
+      -- confronto 3/3  (GSE138237__grp_0006_vs_grp_0003)
+         TRATTATO (n=2, role=treated): MCF7 ΔNFκB TNFα 90 min
+            factor_levels: genotype=ΔNFκB ; treatment=TNFα ; time=90 min
+         CONTROLLO (n=1, role=control): MCF7 ΔNFκB control
+            factor_levels: genotype=ΔNFκB ; treatment=control
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genotype|ΔNFκB|time|90 min
+
+    STUDIO GSE147045   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various cytokine stimulations on intestinal epithelial cells.
+      -- confronto 1/1  (GSE147045__grp_0004_vs_grp_0002)
+         TRATTATO (n=3, role=treated): Intestinal Epithelial Cells (IEC) treated with TNF
+            factor_levels: treatment=TNF ; cell_type=Intestinal Epithelial Cells (IEC)
+         CONTROLLO (n=2, role=control): Intestinal Epithelial Cells (IEC) treated with Medium
+            factor_levels: treatment=Medium ; cell_type=Intestinal Epithelial Cells (IEC)
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Intestinal Epithelial Cells (IEC)
+
+    STUDIO GSE148987   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNF stimulation and Mfn2 knockdown on human lung microvascular endothelial cells (HLMVECs). The experiment uses shMfn2 RNA to knock down mitofusin 2 and examines the impact of TNF treatment.
+      -- confronto 1/1  (GSE148987__grp_0001_vs_grp_0006)
+         TRATTATO (n=1, role=treated): HLMVECs + TNF
+            factor_levels: treatment=TNF ; genetic_knockdown=shMfn2 RNA
+         CONTROLLO (n=2, role=control): HLMVECs + DMSO
+            factor_levels: treatment=DMSO ; genetic_knockdown=shMfn2 RNA
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genetic_knockdown|shMfn2 RNA
+
+    STUDIO GSE151854   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNFα stimulation and VWF knockdown on human umbilical vein endothelial cells (HUVECs). It includes various controls such as vehicle-only treatments and untreated samples.
+      -- confronto 1/1  (GSE151854__grp_0006_vs_grp_0003)
+         TRATTATO (n=2, role=treated): TNFα stimulated (50 ng/mL, 3h) in HUVECs from umbilical cord
+            factor_levels: treatment=cytokine_stimulation ; agent=TNFα ; dose=50 ng/mL ; duration=3 hours ; tissue=umbilical cord
+         CONTROLLO (n=4, role=control): Untreated control
+            factor_levels: treatment=vehicle_only ; agent=untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|HUVEC|culture_media|M199|tissue|umbilical cord
+
+    STUDIO GSE152755   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional response of various human melanoma cell lines to cytokine stimulation with IFNγ and TNF.
+      -- confronto 1/2  (GSE152755__grp_0003_vs_grp_0001)
+         TRATTATO (n=2, role=treated): 3998MEL TNF
+            factor_levels: cell_line=3998MEL ; treatment=TNF
+         CONTROLLO (n=1, role=control): 3998MEL Untreated
+            factor_levels: cell_line=3998MEL ; treatment=Untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|3998MEL
+      -- confronto 2/2  (GSE152755__grp_0006_vs_grp_0004)
+         TRATTATO (n=1, role=treated): M257A2 TNF
+            factor_levels: cell_line=M257A2 ; treatment=TNF
+         CONTROLLO (n=1, role=control): M257A2 Untreated
+            factor_levels: cell_line=M257A2 ; treatment=Untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|M257A2
+
+    STUDIO GSE157364   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of ACP and TNF treatments on primary fibroblast-like synoviocytes and macrophages.
+      -- confronto 1/2  (GSE157364__grp_0004_vs_grp_0003)
+         TRATTATO (n=4, role=treated): Primary fibroblast-like synoviocytes treated with TNF
+            factor_levels: treatment=TNF ; cell_type=Primary fibroblast-like synoviocytes
+         CONTROLLO (n=4, role=control): Primary fibroblast-like synoviocytes untreated
+            factor_levels: treatment=untreated ; cell_type=Primary fibroblast-like synoviocytes
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|Primary fibroblast-like synoviocytes
+      -- confronto 2/2  (GSE157364__grp_0007_vs_grp_0009)
+         TRATTATO (n=4, role=treated): Primary macrophages treated with TNF
+            factor_levels: treatment=TNF ; cell_type=Primary macrophages
+         CONTROLLO (n=3, role=control): Primary macrophages untreated
+            factor_levels: treatment=untreated ; cell_type=Primary macrophages
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|Primary macrophages
+
+    STUDIO GSE159894   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNF-α stimulation and Septin 2 knockdown on human endothelial cells.
+      -- confronto 1/1  (GSE159894__TNF_a_vs_Untreated)
+         TRATTATO (n=2, role=treated): TNF-α
+            factor_levels: treatment=TNF-α
+         CONTROLLO (n=2, role=control): Untreated
+            factor_levels: treatment=Untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE161021   [design_kind studio: treatment_vs_vehicle]
+      design_summary: This study investigates the effects of Tumor Necrosis Factor (TNF) stimulation on Human dermal microvascular endothelial cells.
+      -- confronto 1/2  (GSE161021__TNF_vs_PBS)
+         TRATTATO (n=3, role=treated): TNF-treated
+            factor_levels: treatment=TNF ; cell_type=Human dermal microvascular endothelial cells
+         CONTROLLO (n=2, role=control): PBS-treated
+            factor_levels: treatment=PBS ; cell_type=Human dermal microvascular endothelial cells
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Human dermal microvascular endothelial cells
+      -- confronto 2/2  (GSE161021__TNF_vs_PBS)
+         TRATTATO (n=3, role=treated): TNF-treated
+            factor_levels: treatment=TNF ; cell_type=Human dermal microvascular endothelial cells
+         CONTROLLO (n=1, role=control): PBS-treated
+            factor_levels: treatment=PBS ; cell_type=Human dermal microvascular endothelial cells
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Human dermal microvascular endothelial cells
+
+    STUDIO GSE161761   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of cytokine stimulation (IL1, TNF, and their combination) on primary bone marrow-derived mesenchymal stem cells (MSCs) over different durations.
+      -- confronto 1/2  (GSE161761__TNF_for_14_days_vs_Untreated)
+         TRATTATO (n=2, role=treated): TNF for 14 days
+            factor_levels: perturbation=TNF ; duration=14 days
+         CONTROLLO (n=3, role=control): Untreated
+            factor_levels: <assente>
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=duration|14 days
+      -- confronto 2/2  (GSE161761__TNF_for_2_days_vs_Untreated)
+         TRATTATO (n=1, role=treated): TNF for 2 days
+            factor_levels: perturbation=TNF ; duration=2 days
+         CONTROLLO (n=3, role=control): Untreated
+            factor_levels: <assente>
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=duration|2 days
+
+    STUDIO GSE163548   [design_kind studio: treatment_vs_untreated]
+      design_summary: This study investigates the transcriptional response of rheumatoid arthritis synovial fibroblasts (FLS) to TNF stimulation.
+      -- confronto 1/4  (GSE163548__grp_0004_vs_grp_0001)
+         TRATTATO (n=1, role=treated): RA FLS TNF-treated finger
+            factor_levels: treatment=TNF ; tissue=Finger
+         CONTROLLO (n=2, role=control): RA FLS SF_415B untreated
+            factor_levels: treatment=none ; tissue=Finger
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=tissue|Finger
+      -- confronto 2/4  (GSE163548__grp_0006_vs_grp_0005)
+         TRATTATO (n=6, role=treated): RA FLS TNF-treated knee
+            factor_levels: treatment=TNF ; tissue=Knee
+         CONTROLLO (n=1, role=control): RA FLS SF_336 untreated knee
+            factor_levels: treatment=none ; tissue=Knee
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=tissue|Knee
+      -- confronto 3/4  (GSE163548__grp_0009_vs_grp_0008)
+         TRATTATO (n=2, role=treated): RA FLS TNF-treated shoulder
+            factor_levels: treatment=TNF ; tissue=Shoulder
+         CONTROLLO (n=2, role=control): RA FLS SF_407 untreated shoulder
+            factor_levels: treatment=none ; tissue=Shoulder
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=tissue|Shoulder
+      -- confronto 4/4  (GSE163548__grp_0010_vs_grp_0015)
+         TRATTATO (n=3, role=treated): RA FLS TNF-treated wrist
+            factor_levels: treatment=TNF ; tissue=Wrist
+         CONTROLLO (n=3, role=control): RA FLS donor 230 untreated wrist
+            factor_levels: treatment=none ; tissue=Wrist
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=tissue|Wrist
+
+    STUDIO GSE166079   [design_kind studio: treatment_vs_vehicle]
+      design_summary: This study investigates the transcriptional response of human Langerhans cells from the epidermis to TNF stimulation compared to unstimulated controls.
+      -- confronto 1/1  (GSE166079__grp_0002_vs_grp_0001)
+         TRATTATO (n=1, role=treated): TNF-stimulated Langerhans cells
+            factor_levels: treatment=TNF ; cell_type=Langerhans cells ; tissue=Epidermis
+         CONTROLLO (n=1, role=control): Unstimulated Langerhans cells
+            factor_levels: treatment=unstimulated ; cell_type=Langerhans cells ; tissue=Epidermis
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Langerhans cells|tissue|Epidermis
+
+    STUDIO GSE171170   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various cytokine stimulations on human neonatal epidermal keratinocytes.
+      -- confronto 1/1  (GSE171170__grp_0003_vs_grp_0005)
+         TRATTATO (n=3, role=treated): TNF (10 ng/ml)
+            factor_levels: Treatment=TNF (10 ng/ml)
+         CONTROLLO (n=3, role=control): PBS
+            factor_levels: Treatment=PBS
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=<vuoto>
+
+    STUDIO GSE186396   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of HOIPIN-8 and TNF stimulation on melanoma BLM cells, including CRISPR-modified variants.
+      -- confronto 1/3  (GSE186396__grp_0002_vs_grp_0003)
+         TRATTATO (n=1, role=treated): Melanoma BLM cells, HOIPIN-8, TNF 6h
+            factor_levels: Treatment=TNF ; Genetic Modification=Wild Type
+         CONTROLLO (n=2, role=control): Melanoma BLM cells, Untreated
+            factor_levels: Treatment=Untreated ; Genetic Modification=Wild Type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Treatment | fixed=Genetic Modification|Wild Type
+      -- confronto 2/3  (GSE186396__grp_0006_vs_grp_0007)
+         TRATTATO (n=2, role=treated): Melanoma BLM cells, sgRNF31, Untreated, TNF 6h
+            factor_levels: Treatment=TNF ; Genetic Modification=sgRNF31
+         CONTROLLO (n=2, role=control): Melanoma BLM cells, sgRNF31, Untreated
+            factor_levels: Treatment=Untreated ; Genetic Modification=sgRNF31
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Treatment | fixed=Genetic Modification|sgRNF31
+      -- confronto 3/3  (GSE186396__grp_0008_vs_grp_0003)
+         TRATTATO (n=2, role=treated): Primary Melanoma BLM cells, Untreated, TNF 6h
+            factor_levels: Treatment=TNF ; Genetic Modification=Wild Type
+         CONTROLLO (n=2, role=control): Melanoma BLM cells, Untreated
+            factor_levels: Treatment=Untreated ; Genetic Modification=Wild Type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Treatment | fixed=Genetic Modification|Wild Type
+
+    STUDIO GSE190181   [design_kind studio: treatment_vs_vehicle]
+      design_summary: This study investigates the effects of Tumor Necrosis Factor (TNF) stimulation on Human Umbilical Vein Endothelial Cells (HUVECs) compared to a Phosphate Buffered Saline (PBS) vehicle control.
+      -- confronto 1/2  (GSE190181__grp_0002_vs_grp_0001)
+         TRATTATO (n=2, role=treated): TNF-treated HUVEC
+            factor_levels: treatment=Tumor Necrosis factor
+         CONTROLLO (n=2, role=control): PBS-treated HUVEC
+            factor_levels: treatment=PBS
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+      -- confronto 2/2  (GSE190181__grp_0004_vs_grp_0003)
+         TRATTATO (n=1, role=treated): TNF-treated HUVEC
+            factor_levels: treatment=Tumor Necrosis factor
+         CONTROLLO (n=1, role=control): PBS-treated HUVEC
+            factor_levels: treatment=PBS
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE190634   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional responses of human colonic organoids to various cytokine stimulations.
+      -- confronto 1/1  (GSE190634__grp_0004_vs_grp_0003)
+         TRATTATO (n=4, role=treated): Colonic Organoid Donor 1 TNF 10ng/mL
+            factor_levels: perturbation=TNF 10ng/mL ; donor_id=1
+         CONTROLLO (n=2, role=control): Colonic Organoid Donor 1 Control
+            factor_levels: perturbation=none ; donor_id=1
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=donor_id|1
+
+    STUDIO GSE191101   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various treatments on MH7A cells derived from rheumatoid arthritis synovial tissue. The treatments include DMSO (vehicle control), Tub B (a small molecule), TNFα (a cytokine), and a combination of TNFα and Tub B.
+      -- confronto 1/1  (GSE191101__TNFa_vs_DMSO)
+         TRATTATO (n=2, role=treated): TNFα
+            factor_levels: treatment=TNFα
+         CONTROLLO (n=2, role=control): DMSO
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE194220   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNFα stimulation and JNK inhibition on brain tumor cells.
+      -- confronto 1/1  (GSE194220__grp_TNFa_vs_grp_control)
+         TRATTATO (n=1, role=treated): TNFα stimulated
+            factor_levels: treatment=TNFα
+         CONTROLLO (n=1, role=control): Control
+            factor_levels: treatment=control
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE196243   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional responses of dermal fibroblasts and peripheral blood mononuclear cells (PBMCs) to various stimuli, including lipopolysaccharide (LPS), Poly(I:C), tumor necrosis factor (TNF), and untreated controls.
+      -- confronto 1/2  (GSE196243__dermal_HC_TNF_vs_dermal_HC_untreated)
+         TRATTATO (n=2, role=treated): Dermal Fibroblast HC TNF-treated
+            factor_levels: cell_context=Dermal Fibroblast ; perturbation=TNF
+         CONTROLLO (n=3, role=control): Dermal Fibroblast HC Untreated
+            factor_levels: cell_context=Dermal Fibroblast ; perturbation=Untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_context|Dermal Fibroblast
+      -- confronto 2/2  (GSE196243__dermal_NDAS_TNF_vs_dermal_untreated)
+         TRATTATO (n=3, role=treated): Dermal Fibroblast NDAS TNF-treated
+            factor_levels: cell_context=Dermal Fibroblast ; perturbation=TNF
+         CONTROLLO (n=5, role=control): Dermal Fibroblast Untreated
+            factor_levels: cell_context=Dermal Fibroblast ; perturbation=Untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_context|Dermal Fibroblast
+
+    STUDIO GSE202436   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNFα and Formoterol treatments on human primary bronchial epithelial cells over various time points.
+      -- confronto 1/8  (GSE202436__TNF_1h_LL_vs_VEH_1h_LL)
+         TRATTATO (n=3, role=treated): TNFα 1h Left Lung
+            factor_levels: treatment=TNFα ; time=1 hour
+         CONTROLLO (n=3, role=control): Vehicle 1h Left Lung
+            factor_levels: treatment=Vehicle ; time=1 hour
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|1 hour|tissue|Left Lung
+      -- confronto 2/8  (GSE202436__TNF_18h_LL_vs_VEH_18h_LL)
+         TRATTATO (n=3, role=treated): TNFα 18h Left Lung
+            factor_levels: treatment=TNFα ; time=18 hours
+         CONTROLLO (n=3, role=control): Vehicle 18h Left Lung
+            factor_levels: treatment=Vehicle ; time=18 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|18 hours|tissue|Left Lung
+      -- confronto 3/8  (GSE202436__TNF_2h_LL_vs_VEH_2h_LL)
+         TRATTATO (n=3, role=treated): TNFα 2h Left Lung
+            factor_levels: treatment=TNFα ; time=2 hours
+         CONTROLLO (n=3, role=control): Vehicle 2h Left Lung
+            factor_levels: treatment=Vehicle ; time=2 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|2 hours|tissue|Left Lung
+      -- confronto 4/8  (GSE202436__TNF_6h_LL_vs_VEH_6h_LL)
+         TRATTATO (n=3, role=treated): TNFα 6h Left Lung
+            factor_levels: treatment=TNFα ; time=6 hours
+         CONTROLLO (n=3, role=control): Vehicle 6h Left Lung
+            factor_levels: treatment=Vehicle ; time=6 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|6 hours|tissue|Left Lung
+      -- confronto 5/8  (GSE202436__TNF_1h_RL_vs_VEH_1h_RL)
+         TRATTATO (n=2, role=treated): TNFα 1h Right Lung
+            factor_levels: treatment=TNFα ; time=1 hour
+         CONTROLLO (n=2, role=control): Vehicle 1h Right Lung
+            factor_levels: treatment=Vehicle ; time=1 hour
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|1 hour|tissue|Right Lung
+      -- confronto 6/8  (GSE202436__TNF_18h_RL_vs_VEH_18h_RL)
+         TRATTATO (n=2, role=treated): TNFα 18h Right Lung
+            factor_levels: treatment=TNFα ; time=18 hours
+         CONTROLLO (n=2, role=control): Vehicle 18h Right Lung
+            factor_levels: treatment=Vehicle ; time=18 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|18 hours|tissue|Right Lung
+      -- confronto 7/8  (GSE202436__TNF_2h_RL_vs_VEH_2h_RL)
+         TRATTATO (n=2, role=treated): TNFα 2h Right Lung
+            factor_levels: treatment=TNFα ; time=2 hours
+         CONTROLLO (n=2, role=control): Vehicle 2h Right Lung
+            factor_levels: treatment=Vehicle ; time=2 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|2 hours|tissue|Right Lung
+      -- confronto 8/8  (GSE202436__TNF_6h_RL_vs_VEH_6h_RL)
+         TRATTATO (n=2, role=treated): TNFα 6h Right Lung
+            factor_levels: treatment=TNFα ; time=6 hours
+         CONTROLLO (n=2, role=control): Vehicle 6h Right Lung
+            factor_levels: treatment=Vehicle ; time=6 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|6 hours|tissue|Right Lung
+
+    STUDIO GSE202576   [design_kind studio: treatment_vs_vehicle]
+      design_summary: This study investigates the effects of TNFα stimulation on RT4 urothelial cells compared to a vehicle control.
+      -- confronto 1/1  (GSE202576__grp_0002_vs_grp_0001)
+         TRATTATO (n=3, role=treated): TNFα stimulated
+            factor_levels: treatment=TNFα ; cell_type_or_line_raw=RT4
+         CONTROLLO (n=3, role=control): Control
+            factor_levels: treatment=control ; cell_type_or_line_raw=RT4
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type_or_line_raw|RT4
+
+    STUDIO GSE213972   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the differentiation process of kidney organoids derived from human embryonic stem cells (hESCs) and their response to TNF stimulation.
+      -- confronto 1/2  (GSE213972__grp_0008_vs_grp_0010)
+         TRATTATO (n=1, role=treated): UM77-2 Kidney Organoid TNF 24h
+            factor_levels: treatment=TNF_24h
+         CONTROLLO (n=1, role=control): UM77-2 Kidney Organoid Vehicle 24h
+            factor_levels: treatment=vehicle_24h
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+      -- confronto 2/2  (GSE213972__grp_0009_vs_grp_0011)
+         TRATTATO (n=1, role=treated): UM77-2 Kidney Organoid TNF 48h
+            factor_levels: treatment=TNF_48h
+         CONTROLLO (n=1, role=control): UM77-2 Kidney Organoid Vehicle 48h
+            factor_levels: treatment=vehicle_48h
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE215039   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of cytokine stimulation (TNF, IL-1b, IL-6) on chondrocytes derived from osteoarthritis (OA) patients and non-OA donors.
+      -- confronto 1/2  (GSE215039__grp_OA_TNF_vs_grp_OA_no_treatment)
+         TRATTATO (n=5, role=treated): OA + TNF
+            factor_levels: disease_state=OA ; treatment=TNF
+         CONTROLLO (n=5, role=control): OA + No treatment
+            factor_levels: disease_state=OA ; treatment=No treatment
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=disease_state|OA
+      -- confronto 2/2  (GSE215039__grp_nonOA_TNF_vs_grp_nonOA_no_treatment)
+         TRATTATO (n=5, role=treated): non-OA + TNF
+            factor_levels: disease_state=non-OA ; treatment=TNF
+         CONTROLLO (n=5, role=control): non-OA + No treatment
+            factor_levels: disease_state=non-OA ; treatment=No treatment
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=disease_state|non-OA
+
+    STUDIO GSE215275   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the response of oral epithelial cells to various treatments including pathogen exposure, cytokine stimulation, and genetic overexpression.
+      -- confronto 1/1  (GSE215275__grp_0004_vs_grp_0003)
+         TRATTATO (n=3, role=treated): oral epithelial cells stimulated with TNF (subject 1)
+            factor_levels: treatment=TNF ; cell_type=oral epithelial cells ; tissue=gingiva ; donor_id=subject 1
+         CONTROLLO (n=4, role=control): oral epithelial cells vehicle control
+            factor_levels: treatment=vehicle control ; cell_type=oral epithelial cells ; tissue=gingiva ; donor_id=subject 1
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|oral epithelial cells|tissue|gingiva|donor_id|subject 1
+
+    STUDIO GSE218167   [design_kind studio: treatment_vs_vehicle]
+      design_summary: This study investigates the effects of TNFα stimulation on NPC43 nasopharyngeal cells compared to a vehicle control.
+      -- confronto 1/1  (GSE218167__grp_0002_vs_grp_0001)
+         TRATTATO (n=2, role=treated): TNFα Stimulation
+            factor_levels: treatment=TNFα ; cell_type_or_line_raw=NPC43 ; tissue=nasopharynx ; duration=18 hours
+         CONTROLLO (n=2, role=control): Vehicle Control
+            factor_levels: treatment=vehicle_only ; cell_type_or_line_raw=NPC43 ; tissue=nasopharynx ; duration=18 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type_or_line_raw|NPC43|tissue|nasopharynx|duration|18 hours
+
+    STUDIO GSE225274   [design_kind studio: treatment_vs_untreated]
+      design_summary: This study investigates the effects of TNFα stimulation on gastric antral organoids.
+      -- confronto 1/2  (GSE225274__grp_0002_vs_grp_0001)
+         TRATTATO (n=1, role=treated): TNFα-treated gastric antral organoids
+            factor_levels: treatment=TNFα ; cell_type=gastric antral organoids
+         CONTROLLO (n=2, role=control): Untreated WT gastric antral organoids
+            factor_levels: treatment=untreated ; cell_type=WT human gastric antral organoids
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|gastric antral organoids
+      -- confronto 2/2  (GSE225274__grp_0002_vs_grp_0004)
+         TRATTATO (n=1, role=treated): TNFα-treated gastric antral organoids
+            factor_levels: treatment=TNFα ; cell_type=gastric antral organoids
+         CONTROLLO (n=1, role=control): Untreated gastric antral organoids
+            factor_levels: treatment=untreated ; cell_type=gastric antral organoids
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE226232   [design_kind studio: treatment_vs_untreated]
+      design_summary: This study investigates the effects of TNF-α stimulation on mesenchymal stem cells derived from human fat tissue.
+      -- confronto 1/1  (GSE226232__grp_0002_vs_grp_0001)
+         TRATTATO (n=3, role=treated): TNF-α stimulated mesenchymal stem cells
+            factor_levels: treatment=TNF-α ; cell_type=mesenchymal stem cells ; tissue=fat
+         CONTROLLO (n=3, role=control): Untreated mesenchymal stem cells
+            factor_levels: treatment=untreated ; cell_type=mesenchymal stem cells ; tissue=fat
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|mesenchymal stem cells|tissue|fat
+
+    STUDIO GSE231460   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNFα stimulation and Robo4 knockdown on HUVEC cells.
+      -- confronto 1/2  (GSE231460__grp_0002_vs_grp_0001)
+         TRATTATO (n=2, role=treated): TNFα stimulated
+            factor_levels: treatment=TNFα ; cell_type=HUVECs ; time=26 hours
+         CONTROLLO (n=3, role=control): Control (vehicle)
+            factor_levels: treatment=vehicle_only ; cell_type=HUVECs ; time=26 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|HUVECs|time|26 hours
+      -- confronto 2/2  (GSE231460__grp_0003_vs_grp_0001)
+         TRATTATO (n=1, role=treated): TNFα stimulated with si-control
+            factor_levels: treatment=TNFα ; cell_type=HUVECs ; time=26 hours
+         CONTROLLO (n=3, role=control): Control (vehicle)
+            factor_levels: treatment=vehicle_only ; cell_type=HUVECs ; time=26 hours
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|HUVECs|time|26 hours
+
+    STUDIO GSE236122   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNF stimulation on rheumatoid arthritis synovial fibroblasts, comparing responses between cells expressing gap_CBP and gap_p300 transgenes.
+      -- confronto 1/12  (GSE236122__grp_0001_vs_grp_0002)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_CBP, finger
+            factor_levels: treatment=TNF ; transgene=gap_CBP
+         CONTROLLO (n=1, role=control): Unstimulated, gap_CBP, knee, passage 196
+            factor_levels: treatment=unstimulated ; transgene=gap_CBP
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_CBP
+      -- confronto 2/12  (GSE236122__grp_0003_vs_grp_0002)
+         TRATTATO (n=3, role=treated): TNF stimulated, gap_CBP, knee, passage 196
+            factor_levels: treatment=TNF ; transgene=gap_CBP
+         CONTROLLO (n=1, role=control): Unstimulated, gap_CBP, knee, passage 196
+            factor_levels: treatment=unstimulated ; transgene=gap_CBP
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_CBP
+      -- confronto 3/12  (GSE236122__grp_0004_vs_grp_0005)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_p300, finger
+            factor_levels: treatment=TNF ; transgene=gap_p300
+         CONTROLLO (n=1, role=control): Unstimulated, gap_p300, knee
+            factor_levels: treatment=unstimulated ; transgene=gap_p300
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_p300
+      -- confronto 4/12  (GSE236122__grp_0007_vs_grp_0006)
+         TRATTATO (n=3, role=treated): TNF stimulated, primary tissue, finger
+            factor_levels: treatment=TNF
+         CONTROLLO (n=3, role=control): Unstimulated, primary tissue, finger
+            factor_levels: <assente>
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+      -- confronto 5/12  (GSE236122__grp_0008_vs_grp_0009)
+         TRATTATO (n=3, role=treated): TNF stimulated, primary tissue, knee
+            factor_levels: treatment=TNF
+         CONTROLLO (n=1, role=control): Unstimulated, primary tissue, knee
+            factor_levels: treatment=unstimulated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+      -- confronto 6/12  (GSE236122__grp_0013_vs_grp_0012)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_CBP, primary tissue, finger, passage 379
+            factor_levels: treatment=TNF ; transgene=gap_CBP
+         CONTROLLO (n=2, role=control): Unstimulated, gap_CBP, primary tissue, finger
+            factor_levels: treatment=unstimulated ; transgene=gap_CBP
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_CBP
+      -- confronto 7/12  (GSE236122__grp_0014_vs_grp_0012)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_CBP, primary tissue, finger
+            factor_levels: treatment=TNF ; transgene=gap_CBP
+         CONTROLLO (n=2, role=control): Unstimulated, gap_CBP, primary tissue, finger
+            factor_levels: treatment=unstimulated ; transgene=gap_CBP
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_CBP
+      -- confronto 8/12  (GSE236122__grp_0018_vs_grp_0017)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_p300, primary tissue, finger
+            factor_levels: treatment=TNF ; transgene=gap_p300
+         CONTROLLO (n=1, role=control): Unstimulated, gap_p300, primary tissue, finger
+            factor_levels: treatment=unstimulated ; transgene=gap_p300
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_p300
+      -- confronto 9/12  (GSE236122__grp_0019_vs_grp_0017)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_p300, primary tissue, finger
+            factor_levels: treatment=TNF ; transgene=gap_p300
+         CONTROLLO (n=1, role=control): Unstimulated, gap_p300, primary tissue, finger
+            factor_levels: treatment=unstimulated ; transgene=gap_p300
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_p300
+      -- confronto 10/12  (GSE236122__grp_0021_vs_grp_0020)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_p300, primary tissue, knee
+            factor_levels: treatment=TNF ; transgene=gap_p300
+         CONTROLLO (n=2, role=control): Unstimulated, gap_p300, primary tissue, knee
+            factor_levels: treatment=unstimulated ; transgene=gap_p300
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_p300
+      -- confronto 11/12  (GSE236122__grp_0022_vs_grp_0020)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_p300, primary tissue, knee
+            factor_levels: treatment=TNF ; transgene=gap_p300
+         CONTROLLO (n=2, role=control): Unstimulated, gap_p300, primary tissue, knee
+            factor_levels: treatment=unstimulated ; transgene=gap_p300
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_p300
+      -- confronto 12/12  (GSE236122__grp_0023_vs_grp_0020)
+         TRATTATO (n=1, role=treated): TNF stimulated, gap_p300, primary tissue, knee
+            factor_levels: treatment=TNF ; transgene=gap_p300
+         CONTROLLO (n=2, role=control): Unstimulated, gap_p300, primary tissue, knee
+            factor_levels: treatment=unstimulated ; transgene=gap_p300
+         control_type=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=transgene|gap_p300
+
+    STUDIO GSE246340   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNF-α stimulation and YZ gene knockdown on mesenchymal stem cells derived from bone marrow.
+      -- confronto 1/1  (GSE246340__grp_0005_vs_grp_0002)
+         TRATTATO (n=3, role=treated): TNF-α Treated MSCs
+            factor_levels: Perturbation=TNF-α
+         CONTROLLO (n=5, role=control): Negative Control MSCs
+            factor_levels: Perturbation=None
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Perturbation | fixed=<vuoto>
+
+    STUDIO GSE247226   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNF stimulation and BRD3 knockdown on rheumatoid arthritis synovial fibroblasts.
+      -- confronto 1/1  (GSE247226__TNF_vs_vehicle)
+         TRATTATO (n=3, role=treated): TNF
+            factor_levels: treatment=TNF
+         CONTROLLO (n=1, role=control): vehicle
+            factor_levels: control=vehicle
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE267930   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of heat stress and TNF-alpha stimulation on HUVEC cells.
+      -- confronto 1/2  (GSE267930__grp_0003_vs_grp_0001)
+         TRATTATO (n=2, role=treated): TNF-alpha Stimulation
+            factor_levels: treatment=TNF_alpha ; cell_context=HUVEC
+         CONTROLLO (n=2, role=control): Control
+            factor_levels: treatment=control ; cell_context=HUVEC
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_context|HUVEC
+      -- confronto 2/2  (GSE267930__grp_0004_vs_grp_0001)
+         TRATTATO (n=1, role=treated): TNF-alpha Stimulation (Replicate)
+            factor_levels: treatment=TNF_alpha ; cell_context=HUVEC
+         CONTROLLO (n=2, role=control): Control
+            factor_levels: treatment=control ; cell_context=HUVEC
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_context|HUVEC
+
+    STUDIO GSE64233   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various treatments on SGBS adipocytes and preadipocytes.
+      -- confronto 1/2  (GSE64233__TNF_vs_DMSO)
+         TRATTATO (n=1, role=treated): TNF
+            factor_levels: Treatment=TNF
+         CONTROLLO (n=3, role=control): DMSO
+            factor_levels: Treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=<vuoto>
+      -- confronto 2/2  (GSE64233__shp65_TNF_1_vs_shp65_Vehicle)
+         TRATTATO (n=3, role=treated): shp65 TNF 1
+            factor_levels: Treatment=shp65 ; Technical Treatment=TNF 1
+         CONTROLLO (n=3, role=control): shp65 Vehicle
+            factor_levels: Treatment=shp65 Vehicle
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=<vuoto>
+
+    STUDIO GSE93330   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNF stimulation and SB203580 inhibition on lung microvascular endothelial cells.
+      -- confronto 1/1  (GSE93330__TNF_vs_Control)
+         TRATTATO (n=3, role=treated): TNF
+            factor_levels: Treatment=TNF
+         CONTROLLO (n=3, role=control): Control
+            factor_levels: Treatment=Control
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=<vuoto>
+
+    STUDIO GSE95078   [design_kind studio: case_control_disease]
+      design_summary: This study investigates the transcriptional response of primary dermal fibroblasts to TNF stimulation, comparing healthy individuals and patients with Behçet’s-like autoinflammatory disease.
+      -- confronto 1/2  (GSE95078__grp_0003_vs_grp_0001)
+         TRATTATO (n=1, role=treated): Healthy - TNF
+            factor_levels: disease_state=none ; perturbation=TNF
+         CONTROLLO (n=3, role=control): Healthy - Vehicle
+            factor_levels: disease_state=none ; perturbation=vehicle_only
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=disease_state|none
+      -- confronto 2/2  (GSE95078__grp_0005_vs_grp_0002)
+         TRATTATO (n=2, role=treated): Diseased - TNF
+            factor_levels: disease_state=Behçet’s-like autoinflammatory disease ; perturbation=TNF
+         CONTROLLO (n=3, role=control): Diseased - Vehicle
+            factor_levels: disease_state=Behçet’s-like autoinflammatory disease ; perturbation=vehicle_only
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=disease_state|Behçet’s-like autoinflammatory disease
+
+    STUDIO GSE98984   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of TNFα stimulation and genetic knockdown using siRNA in HepG2 liver cells.
+      -- confronto 1/1  (GSE98984__TNFα_vs_untreated)
+         TRATTATO (n=2, role=treated): TNFα
+            factor_levels: perturbation=TNFα
+         CONTROLLO (n=2, role=control): untreated
+            factor_levels: perturbation=untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=<vuoto>
+
+########################################################################################################################
+# FUSIONE: IL6 (gene HGNC:6018 vs MeSH:D015850)
+# chiave gruppo: HGNC:6018||gain||vehicle_untreated
+# cluster coinvolti: cgroup_L5_7a487535 [MeSH:D015850] studi=1 membri=1  |  cgroup_L5_a25d0964 [HGNC:6018] studi=10 membri=26
+########################################################################################################################
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: MeSH:D015850     cluster_id: cgroup_L5_7a487535     studi: 1   membri(confronti): 1
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE138309   [design_kind studio: treatment_vs_untreated]
+      design_summary: This study investigates the effects of interleukin-6 stimulation on hCMEC/D3 cells, comparing treated and untreated conditions.
+      -- confronto 1/1  (GSE138309__grp_0002_vs_grp_0001)
+         TRATTATO (n=3, role=treated): Interleukin-6 treated hCMEC/D3 cells
+            factor_levels: treatment=interleukin-6
+         CONTROLLO (n=3, role=control): Untreated hCMEC/D3 cells
+            factor_levels: treatment=none
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: HGNC:6018     cluster_id: cgroup_L5_a25d0964     studi: 10   membri(confronti): 26
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE113185   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various cytokines and inhibitors on bronchial epithelial cells.
+      -- confronto 1/1  (GSE113185__IL6_vs_DMSO)
+         TRATTATO (n=3, role=treated): IL-6
+            factor_levels: treatment=IL-6
+         CONTROLLO (n=3, role=control): DMSO
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Bronchial epithelial cells
+
+    STUDIO GSE126003   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of IL6 stimulation and STAT3 knockout on gene expression in MCF7 and T47D breast cancer cell lines.
+      -- confronto 1/4  (GSE126003__grp_0001_vs_grp_0002)
+         TRATTATO (n=2, role=treated): MCF7 STAT3 -/- + EtOH + IL6 (4h)
+            factor_levels: cell_line=MCF7 ; genetic_perturbation=STAT3 knockout ; chemical_perturbation=IL6
+         CONTROLLO (n=1, role=control): MCF7 STAT3 -/- + EtOH
+            factor_levels: cell_line=MCF7 ; genetic_perturbation=STAT3 knockout ; chemical_perturbation=EtOH
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=IL6 | fixed=cell_line|MCF7|genetic_perturbation|STAT3 knockout|chemical_perturbation|EtOH
+      -- confronto 2/4  (GSE126003__grp_0003_vs_grp_0004)
+         TRATTATO (n=3, role=treated): MCF7 STAT3 -/- + EtOH + IL6
+            factor_levels: cell_line=MCF7 ; genetic_perturbation=STAT3 knockout ; chemical_perturbation=IL6
+         CONTROLLO (n=1, role=control): MCF7 STAT3 -/- + EtOH
+            factor_levels: cell_line=MCF7 ; genetic_perturbation=STAT3 knockout ; chemical_perturbation=EtOH
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=IL6 | fixed=cell_line|MCF7|genetic_perturbation|STAT3 knockout|chemical_perturbation|EtOH
+      -- confronto 3/4  (GSE126003__grp_0010_vs_grp_0011)
+         TRATTATO (n=1, role=treated): P4B5_MCF7 STAT3 -/- + EtOH + IL6
+            factor_levels: cell_line=P4B5_MCF7 ; genetic_perturbation=STAT3 knockout ; chemical_perturbation=IL6
+         CONTROLLO (n=1, role=control): P4B5_MCF7 STAT3 -/- + EtOH + PBS
+            factor_levels: cell_line=P4B5_MCF7 ; genetic_perturbation=STAT3 knockout ; chemical_perturbation=EtOH + PBS
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=IL6 | fixed=cell_line|P4B5_MCF7|genetic_perturbation|STAT3 knockout|chemical_perturbation|EtOH
+      -- confronto 4/4  (GSE126003__grp_0030_vs_grp_0034)
+         TRATTATO (n=3, role=treated): WT_MCF7 + EtOH + IL6
+            factor_levels: cell_line=WT_MCF7 ; genetic_perturbation=None ; chemical_perturbation=IL6
+         CONTROLLO (n=4, role=control): WT_MCF7 + EtOH + PBS
+            factor_levels: cell_line=WT_MCF7 ; genetic_perturbation=None ; chemical_perturbation=EtOH + PBS
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=IL6 | fixed=cell_line|WT_MCF7|genetic_perturbation|None|chemical_perturbation|EtOH
+
+    STUDIO GSE143443   [design_kind studio: case_control_disease]
+      design_summary: Case-control study comparing IL6 stimulation effects on fibroblast-like synoviocytes from rheumatoid arthritis patients.
+      -- confronto 1/2  (GSE143443__grp_0002_vs_grp_0001)
+         TRATTATO (n=5, role=treated): RA synovial fibroblasts, IL6 stimulated
+            factor_levels: treatment=IL6 ; cell_type=fibroblast-like synoviocytes ; disease_state=rheumatoid arthritis
+         CONTROLLO (n=5, role=control): RA synovial fibroblasts, untreated
+            factor_levels: treatment=none ; cell_type=fibroblast-like synoviocytes ; disease_state=rheumatoid arthritis
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|fibroblast-like synoviocytes|disease_state|rheumatoid arthritis
+      -- confronto 2/2  (GSE143443__grp_0006_vs_grp_0003)
+         TRATTATO (n=5, role=treated): RA knee synovial fibroblasts, IL6 stimulated
+            factor_levels: treatment=IL6 ; cell_type=fibroblast-like synoviocytes ; disease_state=rheumatoid arthritis ; tissue_segment=knee
+         CONTROLLO (n=1, role=control): RA knee synovial fibroblasts, untreated
+            factor_levels: treatment=none ; cell_type=fibroblast-like synoviocytes ; disease_state=rheumatoid arthritis ; tissue_segment=knee
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|fibroblast-like synoviocytes|disease_state|rheumatoid arthritis|tissue_segment|knee
+
+    STUDIO GSE149262   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of IL-22 and IL-6 stimulation on colorectal cancer cells with different KRAS statuses.
+      -- confronto 1/2  (GSE149262__grp_0008_vs_grp_0001)
+         TRATTATO (n=2, role=treated): DLD-1 KRAS WT IL-6 10ng/mL 2h
+            factor_levels: treatment=IL-6 ; KRAS_status=KRAS WT
+         CONTROLLO (n=2, role=control): DLD-1 KRAS WT untreated 2h
+            factor_levels: treatment=untreated ; KRAS_status=KRAS WT
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=KRAS_status|KRAS WT
+      -- confronto 2/2  (GSE149262__grp_0009_vs_grp_0003)
+         TRATTATO (n=3, role=treated): DLD-1 KRAS WT IL-6 10ng/mL 24h
+            factor_levels: treatment=IL-6 ; KRAS_status=KRAS WT
+         CONTROLLO (n=2, role=control): DLD-1 KRAS WT untreated 24h
+            factor_levels: treatment=untreated ; KRAS_status=KRAS WT
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=KRAS_status|KRAS WT
+
+    STUDIO GSE161664   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various treatments on small airway epithelial cells (SAEC) using RNA sequencing.
+      -- confronto 1/1  (GSE161664__IL6_vs_Control)
+         TRATTATO (n=3, role=treated): IL6
+            factor_levels: treatment=IL6
+         CONTROLLO (n=4, role=control): Control
+            factor_levels: treatment=Control
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE179347   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various treatments on different human cell lines, including HepG2 hepatocytes, HMCL-7304 myocytes, and SGBS adipocytes.
+      -- confronto 1/3  (GSE179347__grp_0001_vs_grp_0035)
+         TRATTATO (n=3, role=treated): HepG2 IL-6
+            factor_levels: cell_line=HepG2 ; treatment=IL-6
+         CONTROLLO (n=14, role=control): HepG2 CONTROL (EMPTY EMEM MEDIUM)
+            factor_levels: cell_line=HepG2 ; treatment=CONTROL (EMPTY EMEM MEDIUM)
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|HepG2
+      -- confronto 2/3  (GSE179347__HMCL7304_IL6_vs_HMCL7304_EMEM_medium)
+         TRATTATO (n=2, role=treated): HMCL-7304 cells treated with IL-6
+            factor_levels: cell_line=HMCL-7304 ; treatment=IL-6
+         CONTROLLO (n=2, role=control): HMCL-7304 CONTROL (EMPTY EMEM MEDIUM)
+            factor_levels: cell_line=HMCL-7304 ; treatment=CONTROL (EMPTY EMEM MEDIUM)
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|HMCL-7304
+      -- confronto 3/3  (GSE179347__SGBS_IL6_vs_SGBS_EMEM_medium)
+         TRATTATO (n=3, role=treated): SGBS cells treated with IL-6
+            factor_levels: cell_line=SGBS ; treatment=IL-6
+         CONTROLLO (n=9, role=control): SGBS CONTROL (EMPTY EMEM MEDIUM)
+            factor_levels: cell_line=SGBS ; treatment=CONTROL (EMPTY EMEM MEDIUM)
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|SGBS
+
+    STUDIO GSE189997   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional responses of CD4+ and CD8+ T cells to cytokine stimulation (IFN-α, IL-27, IL-6) in both healthy donors and HIV-infected individuals.
+      -- confronto 1/5  (GSE189997__CD4Memory_IL6_vs_Unstim)
+         TRATTATO (n=2, role=treated): CD4 Memory IL-6
+            factor_levels: cell_type=CD4Memory ; treatment=IL-6
+         CONTROLLO (n=1, role=control): CD4 Memory Unstim
+            factor_levels: cell_type=CD4Memory ; treatment=Unstim
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|CD4Memory
+      -- confronto 2/5  (GSE189997__CD4Memory_IL6_2_vs_Unstim)
+         TRATTATO (n=1, role=treated): CD4 Memory IL-6 2
+            factor_levels: cell_type=CD4Memory ; treatment=IL-6
+         CONTROLLO (n=1, role=control): CD4 Memory Unstim
+            factor_levels: cell_type=CD4Memory ; treatment=Unstim
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|CD4Memory
+      -- confronto 3/5  (GSE189997__CD4Naive_IL6_vs_Unstim)
+         TRATTATO (n=3, role=treated): CD4 Naive IL-6
+            factor_levels: cell_type=CD4Naive ; treatment=IL-6
+         CONTROLLO (n=3, role=control): CD4 Naive Unstim
+            factor_levels: cell_type=CD4Naive ; treatment=Unstim
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|CD4Naive
+      -- confronto 4/5  (GSE189997__CD8Memory_IL6_vs_Unstim)
+         TRATTATO (n=2, role=treated): CD8 Memory IL-6
+            factor_levels: cell_type=CD8Memory ; treatment=IL-6
+         CONTROLLO (n=3, role=control): CD8 Memory Unstim
+            factor_levels: cell_type=CD8Memory ; treatment=Unstim
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|CD8Memory
+      -- confronto 5/5  (GSE189997__CD8Naive_IL6_vs_Unstim)
+         TRATTATO (n=2, role=treated): CD8 Naive IL-6
+            factor_levels: cell_type=CD8Naive ; treatment=IL-6
+         CONTROLLO (n=2, role=control): CD8 Naive Unstim
+            factor_levels: cell_type=CD8Naive ; treatment=Unstim
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|CD8Naive
+
+    STUDIO GSE202045   [design_kind studio: time_course]
+      design_summary: This study investigates the transcriptional response of HepG2 cells and primary human hepatocytes to IL6 stimulation over time.
+      -- confronto 1/4  (GSE202045__HepG2_IL6_6h_vs_HepG2_no_treatment_6h)
+         TRATTATO (n=1, role=treated): HepG2, IL6, t=6h
+            factor_levels: cell_context=HepG2 ; perturbation=IL6 ; time=6h
+         CONTROLLO (n=2, role=control): HepG2, No treatment, t=6h
+            factor_levels: cell_context=HepG2 ; perturbation=No treatment ; time=6h
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_context|HepG2|time|6h
+      -- confronto 2/4  (GSE202045__HepG2_IL6_24h_vs_HepG2_no_treatment_24h)
+         TRATTATO (n=2, role=treated): HepG2, IL6, t=24h
+            factor_levels: cell_context=HepG2 ; perturbation=IL6 ; time=24h
+         CONTROLLO (n=2, role=control): HepG2, No treatment, t=24h
+            factor_levels: cell_context=HepG2 ; perturbation=No treatment ; time=24h
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_context|HepG2|time|24h
+      -- confronto 3/4  (GSE202045__hepatocytes_IL6_6h_vs_hepatocytes_no_treatment_6h)
+         TRATTATO (n=3, role=treated): Primary hepatocytes, IL6, t=6h
+            factor_levels: cell_context=Primary hepatocytes ; perturbation=IL6 ; time=6h
+         CONTROLLO (n=3, role=control): Primary hepatocytes, No treatment, t=6h
+            factor_levels: cell_context=Primary hepatocytes ; perturbation=No treatment ; time=6h
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_context|Primary hepatocytes|time|6h
+      -- confronto 4/4  (GSE202045__hepatocytes_IL6_24h_vs_hepatocytes_no_treatment_24h)
+         TRATTATO (n=3, role=treated): Primary hepatocytes, IL6, t=24h
+            factor_levels: cell_context=Primary hepatocytes ; perturbation=IL6 ; time=24h
+         CONTROLLO (n=2, role=control): Primary hepatocytes, No treatment, t=24h
+            factor_levels: cell_context=Primary hepatocytes ; perturbation=No treatment ; time=24h
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_context|Primary hepatocytes|time|24h
+
+    STUDIO GSE215039   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of cytokine stimulation (TNF, IL-1b, IL-6) on chondrocytes derived from osteoarthritis (OA) patients and non-OA donors.
+      -- confronto 1/2  (GSE215039__grp_OA_IL6_vs_grp_OA_no_treatment)
+         TRATTATO (n=4, role=treated): OA + IL-6
+            factor_levels: disease_state=OA ; treatment=IL-6
+         CONTROLLO (n=5, role=control): OA + No treatment
+            factor_levels: disease_state=OA ; treatment=No treatment
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=disease_state|OA
+      -- confronto 2/2  (GSE215039__grp_nonOA_IL6_vs_grp_nonOA_no_treatment)
+         TRATTATO (n=5, role=treated): non-OA + IL-6
+            factor_levels: disease_state=non-OA ; treatment=IL-6
+         CONTROLLO (n=5, role=control): non-OA + No treatment
+            factor_levels: disease_state=non-OA ; treatment=No treatment
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=disease_state|non-OA
+
+    STUDIO GSE78922   [design_kind studio: treatment_vs_vehicle]
+      design_summary: This study investigates the effects of IL-6 stimulation on CD4+CD25- T cells isolated from human PBMCs.
+      -- confronto 1/2  (GSE78922__grp_0002_vs_grp_0001)
+         TRATTATO (n=2, role=treated): IL-6 stimulated CD4+CD25- T cells
+            factor_levels: treatment=IL-6 ; cell_type=CD4+CD25- T cells
+         CONTROLLO (n=7, role=control): Unstimulated CD4+CD25- T cells
+            factor_levels: treatment=unstimulated ; cell_type=CD4+CD25- T cells
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|CD4+CD25- T cells
+      -- confronto 2/2  (GSE78922__grp_0003_vs_grp_0001)
+         TRATTATO (n=5, role=treated): IL-6 stimulated CD4+CD25- T cells (additional replicates)
+            factor_levels: treatment=IL-6 ; cell_type=CD4+CD25- T cells
+         CONTROLLO (n=7, role=control): Unstimulated CD4+CD25- T cells
+            factor_levels: treatment=unstimulated ; cell_type=CD4+CD25- T cells
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|CD4+CD25- T cells
+
+########################################################################################################################
+# FUSIONE: IL10 (CHEMBL:CHEMBL4297771 vs gene HGNC:5962)
+# chiave gruppo: CHEMBL:CHEMBL4297771||gain||vehicle_untreated
+# cluster coinvolti: cgroup_L5_3668c2c2 [CHEMBL:CHEMBL4297771] studi=4 membri=4  |  cgroup_L5_897d1777 [HGNC:5962] studi=2 membri=6
+########################################################################################################################
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEMBL:CHEMBL4297771     cluster_id: cgroup_L5_3668c2c2     studi: 4   membri(confronti): 4
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE146438   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various small molecules on CD8 cells and monocytes.
+      -- confronto 1/1  (GSE146438__CD8_no_IL10_vs_CD8_vehicle)
+         TRATTATO (n=2, role=treated): CD8 cells activated in the absence of IL-10
+            factor_levels: cell_type=CD8 cell ; treatment=IL-10
+         CONTROLLO (n=1, role=control): CD8 cells vehicle control
+            factor_levels: cell_type=CD8 cell ; treatment=vehicle
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|CD8 cell
+
+    STUDIO GSE227737   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various perturbations on primary human monocyte-derived macrophages.
+      -- confronto 1/1  (GSE227737__grp_0004_vs_grp_0005)
+         TRATTATO (n=4, role=treated): IL-10
+            factor_levels: perturbation=IL-10
+         CONTROLLO (n=2, role=control): untreated/unpolarized macrophages (M0)
+            factor_levels: perturbation=untreated/unpolarized macrophages (M0)
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=<vuoto>
+
+    STUDIO GSE92852   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of LPS stimulation on human peripheral blood-derived dendritic cells (moDC) and IL-10-treated antigen-presenting cells (IL-10-APC). It includes comparisons between LPS-treated and untreated cells, as well as the impact of IL-10 on LPS responses.
+      -- confronto 1/1  (GSE92852__grp_0003_vs_grp_0004)
+         TRATTATO (n=3, role=treated): IL-10-APC + IL-10 (Donor BC2)
+            factor_levels: treatment=IL-10 ; cell_type=IL-10-APC
+         CONTROLLO (n=3, role=control): moDC (Undifferentiated, Donor BC2)
+            factor_levels: treatment=vehicle ; cell_type=moDC
+         control_type=secondary_arm | design_kind_cmp=case_control_disease | varying=treatment | fixed=cell_type|IL-10-APC
+
+    STUDIO GSE97744   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional responses of various human macrophage populations to different stimuli, including IFN-γ and LPS, IL-10, and IL-4/IL-13.
+      -- confronto 1/1  (GSE97744__grp_0002_vs_grp_0004)
+         TRATTATO (n=2, role=treated): Circulating macrophage + IL-10
+            factor_levels: cell_type=circulating_macrophage ; treatment=IL-10
+         CONTROLLO (n=2, role=control): Circulating macrophage untreated
+            factor_levels: cell_type=circulating_macrophage ; treatment=untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|circulating_macrophage
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: HGNC:5962     cluster_id: cgroup_L5_897d1777     studi: 2   membri(confronti): 6
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE198963   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of IL21 and IL10 stimulation on purified CD4+ T-cells from human peripheral blood, including various STAT3 mutations.
+      -- confronto 1/5  (GSE198963__grp_0005_vs_grp_0001)
+         TRATTATO (n=1, role=treated): IL10 stimulated WT CD4+ T-cells (Female)
+            factor_levels: treatment=IL10 ; mutation=wild-type
+         CONTROLLO (n=4, role=control): Unstimulated WT CD4+ T-cells (Age 45, Female)
+            factor_levels: treatment=unstimulated ; mutation=wild-type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=mutation|wild-type
+      -- confronto 2/5  (GSE198963__grp_0006_vs_grp_0001)
+         TRATTATO (n=2, role=treated): IL10 stimulated WT CD4+ T-cells (Age 45, Female)
+            factor_levels: treatment=IL10 ; mutation=wild-type
+         CONTROLLO (n=4, role=control): Unstimulated WT CD4+ T-cells (Age 45, Female)
+            factor_levels: treatment=unstimulated ; mutation=wild-type
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=mutation|wild-type
+      -- confronto 3/5  (GSE198963__grp_0009_vs_grp_0008)
+         TRATTATO (n=1, role=treated): IL10 stimulated STAT3-H332L CD4+ T-cells (Age 18, Male)
+            factor_levels: treatment=IL10 ; mutation=STAT3-H332L
+         CONTROLLO (n=1, role=control): Unstimulated STAT3-H332L CD4+ T-cells (Age 18, Male)
+            factor_levels: treatment=unstimulated ; mutation=STAT3-H332L
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=mutation|STAT3-H332L
+      -- confronto 4/5  (GSE198963__grp_0015_vs_grp_0014)
+         TRATTATO (n=1, role=treated): IL10 stimulated STAT3-Q288P CD4+ T-cells (Age 12, Male)
+            factor_levels: treatment=IL10 ; mutation=STAT3-Q288P
+         CONTROLLO (n=1, role=control): Unstimulated STAT3-Q288P CD4+ T-cells (Age 12, Male)
+            factor_levels: treatment=unstimulated ; mutation=STAT3-Q288P
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=mutation|STAT3-Q288P
+      -- confronto 5/5  (GSE198963__grp_0020_vs_grp_0018)
+         TRATTATO (n=1, role=treated): IL10 stimulated STAT3-T716M CD4+ T-cells (Age 9, Female)
+            factor_levels: treatment=IL10 ; mutation=STAT3-T716M
+         CONTROLLO (n=1, role=control): Unstimulated STAT3-T716M CD4+ T-cells (Age 9, Female)
+            factor_levels: treatment=unstimulated ; mutation=STAT3-T716M
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=mutation|STAT3-T716M
+
+    STUDIO GSE80727   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of cytokine stimulation on peripheral blood monocyte-derived macrophages using RNA-seq.
+      -- confronto 1/1  (GSE80727__grp_0004_vs_grp_0003)
+         TRATTATO (n=2, role=treated): IL10 stimulated (additional)
+            factor_levels: perturbation=IL10
+         CONTROLLO (n=5, role=control): Vehicle control
+            factor_levels: perturbation=vehicle
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=<vuoto>
+
+########################################################################################################################
+# FUSIONE: IL15 (gene HGNC:5977 vs CHEMBL:CHEMBL4297989)
+# chiave gruppo: HGNC:5977||gain||vehicle_untreated
+# cluster coinvolti: cgroup_L5_bd40f34f [HGNC:5977] studi=4 membri=22  |  cgroup_L5_d5036241 [CHEMBL:CHEMBL4297989] studi=2 membri=5
+########################################################################################################################
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: HGNC:5977     cluster_id: cgroup_L5_bd40f34f     studi: 4   membri(confronti): 22
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE120904   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various cytokine stimulations and small molecule treatments on intestinal epithelial cells and intraepithelial cytotoxic T cells.
+      -- confronto 1/5  (GSE120904__grp_intestinal_epithelial_IL15_vs_grp_intestinal_epithelial_vehicle)
+         TRATTATO (n=5, role=treated): Intestinal epithelial cells treated with IL15
+            factor_levels: cell_type=Intestinal epithelial cells ; treatment=IL15
+         CONTROLLO (n=5, role=control): Intestinal epithelial cells treated with vehicle only
+            factor_levels: cell_type=Intestinal epithelial cells ; treatment=vehicle_only
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Intestinal epithelial cells
+      -- confronto 2/5  (GSE120904__grp_intraepithelial_IL15_CP_vs_grp_intraepithelial_vehicle)
+         TRATTATO (n=1, role=treated): Intestinal intraepithelial cytotoxic T cells treated with IL15 and CP
+            factor_levels: cell_type=Intestinal intraepithelial cytotoxic T cells ; treatment=IL15 + CP
+         CONTROLLO (n=2, role=control): Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+            factor_levels: cell_type=Intestinal intraepithelial cytotoxic T cells ; treatment=vehicle_only
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Intestinal intraepithelial cytotoxic T cells
+      -- confronto 3/5  (GSE120904__grp_intraepithelial_IL15_CP_alt_vs_grp_intraepithelial_vehicle)
+         TRATTATO (n=1, role=treated): Intestinal intraepithelial cytotoxic T cells treated with IL15 and CP (alternative)
+            factor_levels: cell_type=Intestinal intraepithelial cytotoxic T cells ; treatment=IL15 + CP
+         CONTROLLO (n=2, role=control): Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+            factor_levels: cell_type=Intestinal intraepithelial cytotoxic T cells ; treatment=vehicle_only
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Intestinal intraepithelial cytotoxic T cells
+      -- confronto 4/5  (GSE120904__grp_intraepithelial_IL15_CP_alt2_vs_grp_intraepithelial_vehicle)
+         TRATTATO (n=2, role=treated): Intestinal intraepithelial cytotoxic T cells treated with IL15 and CP (alternative 2)
+            factor_levels: cell_type=Intestinal intraepithelial cytotoxic T cells ; treatment=IL15 + CP
+         CONTROLLO (n=2, role=control): Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+            factor_levels: cell_type=Intestinal intraepithelial cytotoxic T cells ; treatment=vehicle_only
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Intestinal intraepithelial cytotoxic T cells
+      -- confronto 5/5  (GSE120904__grp_intraepithelial_IL15_alt_vs_grp_intraepithelial_vehicle)
+         TRATTATO (n=4, role=treated): Intestinal intraepithelial cytotoxic T cells treated with IL15 (alternative)
+            factor_levels: cell_type=Intestinal intraepithelial cytotoxic T cells ; treatment=IL15
+         CONTROLLO (n=2, role=control): Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+            factor_levels: cell_type=Intestinal intraepithelial cytotoxic T cells ; treatment=vehicle_only
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Intestinal intraepithelial cytotoxic T cells
+
+    STUDIO GSE126409   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional response of intestinal epithelial cells to cytokine stimulation under healthy and celiac disease conditions.
+      -- confronto 1/10  (GSE126409__grp_0009_vs_grp_0007)
+         TRATTATO (n=4, role=treated): Celiac IL15 30min
+            factor_levels: cytokine=IL15 ; time=30min ; disease_state=celiac
+         CONTROLLO (n=3, role=control): Celiac Control
+            factor_levels: cytokine=none ; time=0 ; disease_state=celiac
+         control_type=time_zero | design_kind_cmp=time_course | varying=time | fixed=cytokine|IL15|disease_state|celiac
+      -- confronto 2/10  (GSE126409__grp_0010_vs_grp_0007)
+         TRATTATO (n=3, role=treated): Celiac IL15 24h
+            factor_levels: cytokine=IL15 ; time=24h ; disease_state=celiac
+         CONTROLLO (n=3, role=control): Celiac Control
+            factor_levels: cytokine=none ; time=0 ; disease_state=celiac
+         control_type=time_zero | design_kind_cmp=time_course | varying=time | fixed=cytokine|IL15|disease_state|celiac
+      -- confronto 3/10  (GSE126409__grp_0011_vs_grp_0007)
+         TRATTATO (n=4, role=treated): Celiac IL15 3h
+            factor_levels: cytokine=IL15 ; time=3h ; disease_state=celiac
+         CONTROLLO (n=3, role=control): Celiac Control
+            factor_levels: cytokine=none ; time=0 ; disease_state=celiac
+         control_type=time_zero | design_kind_cmp=time_course | varying=time | fixed=cytokine|IL15|disease_state|celiac
+      -- confronto 4/10  (GSE126409__grp_0012_vs_grp_0007)
+         TRATTATO (n=3, role=treated): Celiac IL15 4h
+            factor_levels: cytokine=IL15 ; time=4h ; disease_state=celiac
+         CONTROLLO (n=3, role=control): Celiac Control
+            factor_levels: cytokine=none ; time=0 ; disease_state=celiac
+         control_type=time_zero | design_kind_cmp=time_course | varying=time | fixed=cytokine|IL15|disease_state|celiac
+      -- confronto 5/10  (GSE126409__grp_0020_vs_grp_0007)
+         TRATTATO (n=1, role=treated): Celiac IL15 24h
+            factor_levels: cytokine=IL15 ; time=24h ; disease_state=celiac
+         CONTROLLO (n=3, role=control): Celiac Control
+            factor_levels: cytokine=none ; time=0 ; disease_state=celiac
+         control_type=time_zero | design_kind_cmp=time_course | varying=time | fixed=cytokine|IL15|disease_state|celiac
+      -- confronto 6/10  (GSE126409__grp_0021_vs_grp_0007)
+         TRATTATO (n=1, role=treated): Celiac IL15 4h
+            factor_levels: cytokine=IL15 ; time=4h ; disease_state=celiac
+         CONTROLLO (n=3, role=control): Celiac Control
+            factor_levels: cytokine=none ; time=0 ; disease_state=celiac
+         control_type=time_zero | design_kind_cmp=time_course | varying=time | fixed=cytokine|IL15|disease_state|celiac
+      -- confronto 7/10  (GSE126409__grp_0031_vs_grp_0026)
+         TRATTATO (n=4, role=treated): Healthy IL15 30min
+            factor_levels: cytokine=IL15 ; time=30min ; disease_state=healthy
+         CONTROLLO (n=4, role=control): Healthy Vehicle Control
+            factor_levels: cytokine=vehicle ; time=0 ; disease_state=healthy
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=cytokine | fixed=time|30min|disease_state|healthy
+      -- confronto 8/10  (GSE126409__grp_0032_vs_grp_0026)
+         TRATTATO (n=3, role=treated): Healthy IL15 24h
+            factor_levels: cytokine=IL15 ; time=24h ; disease_state=healthy
+         CONTROLLO (n=4, role=control): Healthy Vehicle Control
+            factor_levels: cytokine=vehicle ; time=0 ; disease_state=healthy
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=cytokine | fixed=time|24h|disease_state|healthy
+      -- confronto 9/10  (GSE126409__grp_0033_vs_grp_0026)
+         TRATTATO (n=4, role=treated): Healthy IL15 3h
+            factor_levels: cytokine=IL15 ; time=3h ; disease_state=healthy
+         CONTROLLO (n=4, role=control): Healthy Vehicle Control
+            factor_levels: cytokine=vehicle ; time=0 ; disease_state=healthy
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=cytokine | fixed=time|3h|disease_state|healthy
+      -- confronto 10/10  (GSE126409__grp_0034_vs_grp_0026)
+         TRATTATO (n=3, role=treated): Healthy IL15 4h
+            factor_levels: cytokine=IL15 ; time=4h ; disease_state=healthy
+         CONTROLLO (n=4, role=control): Healthy Vehicle Control
+            factor_levels: cytokine=vehicle ; time=0 ; disease_state=healthy
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=cytokine | fixed=time|4h|disease_state|healthy
+
+    STUDIO GSE227098   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various perturbations on human natural killer (NK) cells, focusing on cytokine stimulation and genetic modifications involving CEBPD overexpression or knockout.
+      -- confronto 1/4  (GSE227098__grp_0003_vs_grp_0012)
+         TRATTATO (n=1, role=treated): CBNK, IL15
+            factor_levels: perturbation=IL15 ; genetic_modification=wild-type
+         CONTROLLO (n=1, role=control): CBNK, vehicle
+            factor_levels: perturbation=vehicle ; genetic_modification=wild-type
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=genetic_modification|wild-type
+      -- confronto 2/4  (GSE227098__grp_0005_vs_grp_0010)
+         TRATTATO (n=1, role=treated): CBNK, IL15
+            factor_levels: perturbation=IL15 ; genetic_modification=wild-type
+         CONTROLLO (n=1, role=control): CBNK, vehicle
+            factor_levels: perturbation=vehicle ; genetic_modification=wild-type
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=genetic_modification|wild-type
+      -- confronto 3/4  (GSE227098__grp_0006_vs_grp_0010)
+         TRATTATO (n=1, role=treated): CBNK, IL15
+            factor_levels: perturbation=IL15 ; genetic_modification=wild-type
+         CONTROLLO (n=1, role=control): CBNK, vehicle
+            factor_levels: perturbation=vehicle ; genetic_modification=wild-type
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=genetic_modification|wild-type
+      -- confronto 4/4  (GSE227098__grp_0007_vs_grp_0010)
+         TRATTATO (n=1, role=treated): CBNK, IL15
+            factor_levels: perturbation=IL15 ; genetic_modification=wild-type
+         CONTROLLO (n=1, role=control): CBNK, vehicle
+            factor_levels: perturbation=vehicle ; genetic_modification=wild-type
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=genetic_modification|wild-type
+
+    STUDIO GSE94150   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various treatments on primary sorted memory CD4+ T cell subsets derived from PBMCs of HIV patients who were successfully treated.
+      -- confronto 1/3  (GSE94150__IL15_ST124_vs_Control_ST124)
+         TRATTATO (n=2, role=treated): IL15-treated CD4+ T cells (ST124)
+            factor_levels: treatment=IL15 ; donor_id=ST124
+         CONTROLLO (n=9, role=control): Untreated CD4+ T cells (ST124)
+            factor_levels: treatment=Unstimulated Controls ; donor_id=ST124
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=donor_id|ST124
+      -- confronto 2/3  (GSE94150__IL15_ST124_2_vs_Control_ST124)
+         TRATTATO (n=2, role=treated): IL15-treated CD4+ T cells (ST124)
+            factor_levels: treatment=IL15 ; donor_id=ST124
+         CONTROLLO (n=9, role=control): Untreated CD4+ T cells (ST124)
+            factor_levels: treatment=Unstimulated Controls ; donor_id=ST124
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=donor_id|ST124
+      -- confronto 3/3  (GSE94150__IL15_ST124_3_vs_Control_ST124)
+         TRATTATO (n=4, role=treated): IL15-treated CD4+ T cells (ST124)
+            factor_levels: treatment=IL15 ; donor_id=ST124
+         CONTROLLO (n=9, role=control): Untreated CD4+ T cells (ST124)
+            factor_levels: treatment=Unstimulated Controls ; donor_id=ST124
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=donor_id|ST124
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEMBL:CHEMBL4297989     cluster_id: cgroup_L5_d5036241     studi: 2   membri(confronti): 5
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE132270   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional changes in adherent monocytes upon stimulation with cytokines IL-4 and IL-15 over various time points.
+      -- confronto 1/4  (GSE132270__IL15_Day6_Donor58_vs_Media_Day6)
+         TRATTATO (n=1, role=treated): IL-15 Day 6 Donor 58
+            factor_levels: cytokine=IL-15 ; time=Day 6
+         CONTROLLO (n=3, role=control): Media Day 6
+            factor_levels: cytokine=Media ; time=Day 6
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=cytokine | fixed=time|Day 6
+      -- confronto 2/4  (GSE132270__IL15_Day1_vs_Media_Day1)
+         TRATTATO (n=3, role=treated): IL-15 Day 1
+            factor_levels: cytokine=IL-15 ; time=Day 1
+         CONTROLLO (n=3, role=control): Media Day 1
+            factor_levels: cytokine=Media ; time=Day 1
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=cytokine | fixed=time|Day 1
+      -- confronto 3/4  (GSE132270__IL15_Day3_Donor58_vs_Media_Day3_Donor58)
+         TRATTATO (n=2, role=treated): IL-15 Day 3 Donor 58
+            factor_levels: cytokine=IL-15 ; time=Day 3
+         CONTROLLO (n=2, role=control): Media Day 3 Donor 58
+            factor_levels: cytokine=Media ; time=Day 3
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=cytokine | fixed=time|Day 3
+      -- confronto 4/4  (GSE132270__IL15_Day10_Donor58_vs_Media_Day10_Donor58)
+         TRATTATO (n=2, role=treated): IL-15 Day 10 Donor 58
+            factor_levels: cytokine=IL-15 ; time=Day 10
+         CONTROLLO (n=2, role=control): Media Day 10 Donor 58
+            factor_levels: cytokine=Media ; time=Day 10
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=cytokine | fixed=time|Day 10
+
+    STUDIO GSE166268   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various treatments on NK cells from human blood.
+      -- confronto 1/1  (GSE166268__grp_0004_vs_grp_0001)
+         TRATTATO (n=2, role=treated): NK cells, IL-15, donor 445, D1
+            factor_levels: treatment=IL-15 ; time=D1 ; donor_id=445
+         CONTROLLO (n=3, role=control): NK cells, freshly isolated, donor 445, D0
+            factor_levels: treatment=none (freshly isolated) ; time=D0 ; donor_id=445
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=donor_id|445
+
+########################################################################################################################
+# FUSIONE: GM-CSF/CSF2 (CHEMBL:CHEMBL2107881 vs gene HGNC:2434)
+# chiave gruppo: CHEMBL:CHEMBL2107881||gain||vehicle_untreated
+# cluster coinvolti: cgroup_L5_206576be [HGNC:2434] studi=3 membri=5  |  cgroup_L5_e135d758 [CHEMBL:CHEMBL2107881] studi=4 membri=8
+########################################################################################################################
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: HGNC:2434     cluster_id: cgroup_L5_206576be     studi: 3   membri(confronti): 5
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE122941   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of cytokine stimulation and genetic overexpression on effector memory T lymphocytes.
+      -- confronto 1/2  (GSE122941__grp_0005_vs_grp_0002)
+         TRATTATO (n=1, role=treated): Cytokine Stimulation (CSF2) (Donor C)
+            factor_levels: treatment=CSF2 ; donor_id=Donor.C
+         CONTROLLO (n=1, role=control): Control (Donor C)
+            factor_levels: treatment=none ; donor_id=Donor.C
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=donor_id|Donor.C
+      -- confronto 2/2  (GSE122941__grp_0006_vs_grp_0004)
+         TRATTATO (n=1, role=treated): Cytokine Stimulation (CSF2) (Donor B)
+            factor_levels: treatment=CSF2 ; donor_id=Donor.B
+         CONTROLLO (n=1, role=control): Control (Donor B)
+            factor_levels: treatment=none ; donor_id=Donor.B
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=donor_id|Donor.B
+
+    STUDIO GSE149377   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptomic profiles of various human macrophage populations derived from iPSCs and PBMCs under different conditions.
+      -- confronto 1/2  (GSE149377__grp_0018_vs_grp_0013)
+         TRATTATO (n=1, role=treated): PBMC-derived M1 macrophage GMCSF INFG
+            factor_levels: cell_type=PBMC-derived M1 macrophage ; treatment=GMCSF INFG
+         CONTROLLO (n=2, role=control): PBMC-derived M0 macrophage
+            factor_levels: cell_type=PBMC-derived M0 macrophage ; treatment=none
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|PBMC-derived M1 macrophage
+      -- confronto 2/2  (GSE149377__grp_0022_vs_grp_0013)
+         TRATTATO (n=2, role=treated): PBMC-derived M1 macrophage GMCSF INFG activated
+            factor_levels: cell_type=PBMC-derived M1 macrophage ; treatment=GMCSF INFG
+         CONTROLLO (n=2, role=control): PBMC-derived M0 macrophage
+            factor_levels: cell_type=PBMC-derived M0 macrophage ; treatment=none
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|PBMC-derived M1 macrophage
+
+    STUDIO GSE248927   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional response of human peripheral blood monocytes to various treatments, including pathogen exposure, cytokine stimulation, and mock treatments.
+      -- confronto 1/1  (GSE248927__GMCSF_vs_Mock)
+         TRATTATO (n=1, role=treated): GMCSF stimulated
+            factor_levels: treatment=GMCSF ; concentration(ng/mL)=100 ; time(hours)=24
+         CONTROLLO (n=2, role=control): Mock treated
+            factor_levels: treatment=Mock ; time(hours)=24
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time(hours)|24
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEMBL:CHEMBL2107881     cluster_id: cgroup_L5_e135d758     studi: 4   membri(confronti): 8
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE123573   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various treatments on monocyte CD14+ cells derived from peripheral blood.
+      -- confronto 1/1  (GSE123573__GM-CSF_vs_Untreated)
+         TRATTATO (n=2, role=treated): GM-CSF
+            factor_levels: Treatment=GM-CSF
+         CONTROLLO (n=2, role=control): Untreated
+            factor_levels: Treatment=Untreated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Treatment | fixed=<vuoto>
+
+    STUDIO GSE155697   [design_kind studio: case_control_disease]
+      design_summary: This study investigates the transcriptional profiles of CD14+ monocytes and monocyte-derived macrophages (MDMs) from patients with H syndrome and other rare diseases.
+      -- confronto 1/3  (GSE155697__grp_0015_vs_grp_0005)
+         TRATTATO (n=1, role=treated): MDMs, Healthy, GM-CSF
+            factor_levels: disease_state=Healthy ; cell_context=MDMs ; perturbation=GM-CSF
+         CONTROLLO (n=5, role=control): CD14+ Monocytes, Healthy, Vehicle Only
+            factor_levels: disease_state=Healthy ; cell_context=CD14+ Monocytes ; perturbation=Vehicle Only
+         control_type=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_context|MDMs|perturbation|GM-CSF
+      -- confronto 2/3  (GSE155697__grp_0016_vs_grp_0005)
+         TRATTATO (n=1, role=treated): MDMs, Healthy, GM-CSF
+            factor_levels: disease_state=Healthy ; cell_context=MDMs ; perturbation=GM-CSF
+         CONTROLLO (n=5, role=control): CD14+ Monocytes, Healthy, Vehicle Only
+            factor_levels: disease_state=Healthy ; cell_context=CD14+ Monocytes ; perturbation=Vehicle Only
+         control_type=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_context|MDMs|perturbation|GM-CSF
+      -- confronto 3/3  (GSE155697__grp_0017_vs_grp_0005)
+         TRATTATO (n=1, role=treated): MDMs, Healthy, GM-CSF
+            factor_levels: disease_state=Healthy ; cell_context=MDMs ; perturbation=GM-CSF
+         CONTROLLO (n=5, role=control): CD14+ Monocytes, Healthy, Vehicle Only
+            factor_levels: disease_state=Healthy ; cell_context=CD14+ Monocytes ; perturbation=Vehicle Only
+         control_type=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_context|MDMs|perturbation|GM-CSF
+
+    STUDIO GSE70068   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional response of human neutrophils to cytokine stimulation with TNF-alpha and GM-CSF.
+      -- confronto 1/3  (GSE70068__grp_0006_vs_grp_0003)
+         TRATTATO (n=1, role=treated): Neutrophils stimulated with GM-CSF (with Negative Selection)
+            factor_levels: Cytokine Stimulation=GM-CSF ; Technical Treatment=Negative selection (beads) ; Duration=1 hour
+         CONTROLLO (n=1, role=control): Untreated Neutrophils (with Negative Selection)
+            factor_levels: Treatment=Untreated ; Technical Treatment=Negative selection (beads) ; Duration=1 hour
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Cytokine Stimulation | fixed=Cell Type|Neutrophils|Technical Treatment|Negative selection (beads)|Duration|1 hour
+      -- confronto 2/3  (GSE70068__grp_0007_vs_grp_0003)
+         TRATTATO (n=2, role=treated): Neutrophils stimulated with GM-CSF (with Negative Selection)
+            factor_levels: Cytokine Stimulation=GM-CSF ; Technical Treatment=Negative selection (beads) ; Duration=1 hour
+         CONTROLLO (n=1, role=control): Untreated Neutrophils (with Negative Selection)
+            factor_levels: Treatment=Untreated ; Technical Treatment=Negative selection (beads) ; Duration=1 hour
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Cytokine Stimulation | fixed=Cell Type|Neutrophils|Technical Treatment|Negative selection (beads)|Duration|1 hour
+      -- confronto 3/3  (GSE70068__grp_0008_vs_grp_0002)
+         TRATTATO (n=1, role=treated): Neutrophils stimulated with GM-CSF
+            factor_levels: Cytokine Stimulation=GM-CSF ; Duration=1 hour
+         CONTROLLO (n=3, role=control): Untreated Neutrophils (Donor 1)
+            factor_levels: Treatment=Untreated ; Duration=1 hour
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=Cytokine Stimulation | fixed=Cell Type|Neutrophils|Duration|1 hour
+
+    STUDIO GSE89442   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the transcriptional responses of human myeloid dendritic cells (mDCs) and plasmacytoid dendritic cells (pDCs) to various stimuli, including GM-CSF, IL-3, FSME virus, and CpG oligodeoxynucleotides.
+      -- confronto 1/1  (GSE89442__grp_0002_vs_grp_0001)
+         TRATTATO (n=1, role=treated): mDC donor 3 GM-CSF
+            factor_levels: cell_type=mDC ; treatment=GM-CSF
+         CONTROLLO (n=2, role=control): mDC donor 1 unstimulated
+            factor_levels: cell_type=mDC ; treatment=unstimulated
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|mDC
+
+########################################################################################################################
+# FUSIONE: endotelina-1 (CHEBI:80240 vs CHEMBL:CHEMBL437472)
+# chiave gruppo: CHEBI:80240||gain||vehicle_untreated
+# cluster coinvolti: cgroup_L5_70ec763f [CHEBI:80240] studi=1 membri=3  |  cgroup_L5_b7085406 [CHEMBL:CHEMBL437472] studi=1 membri=11
+########################################################################################################################
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEBI:80240     cluster_id: cgroup_L5_70ec763f     studi: 1   membri(confronti): 3
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE196065   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of endothelin-1 and macitentan on patient-derived high-grade serous ovarian cancer (HG-SOC) primary cells.
+      -- confronto 1/3  (GSE196065__endothelin-1_vs_control)
+         TRATTATO (n=2, role=treated): endothelin-1
+            factor_levels: treatment=endothelin-1
+         CONTROLLO (n=4, role=control): control
+            factor_levels: treatment=none
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+      -- confronto 2/3  (GSE196065__endothelin-1_vs_control)
+         TRATTATO (n=1, role=treated): endothelin-1
+            factor_levels: treatment=endothelin-1
+         CONTROLLO (n=4, role=control): control
+            factor_levels: treatment=none
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+      -- confronto 3/3  (GSE196065__endothelin-1_vs_control)
+         TRATTATO (n=1, role=treated): endothelin-1
+            factor_levels: treatment=endothelin-1
+         CONTROLLO (n=4, role=control): control
+            factor_levels: treatment=none
+         control_type=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEMBL:CHEMBL437472     cluster_id: cgroup_L5_b7085406     studi: 1   membri(confronti): 11
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE217421   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various small molecules on human iPSC-derived cardiac myocytes.
+      -- confronto 1/11  (GSE217421__grp_Endothelin_vs_grp_DMSO_1)
+         TRATTATO (n=3, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+      -- confronto 2/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_1)
+         TRATTATO (n=3, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|tissue|skin|context_kind|iPSC_derived
+      -- confronto 3/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_2)
+         TRATTATO (n=1, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|tissue|skin|context_kind|iPSC_derived
+      -- confronto 4/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_3)
+         TRATTATO (n=1, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|tissue|skin|context_kind|iPSC_derived
+      -- confronto 5/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_4)
+         TRATTATO (n=1, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|tissue|skin|context_kind|iPSC_derived
+      -- confronto 6/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_5)
+         TRATTATO (n=1, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|tissue|skin|context_kind|iPSC_derived
+      -- confronto 7/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_6)
+         TRATTATO (n=1, role=treated): Endothelin-treated MSN05 cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes ; cell_line=MSN05 ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|cell_line|MSN05|tissue|skin|context_kind|iPSC_derived
+      -- confronto 8/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_7)
+         TRATTATO (n=1, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|tissue|skin|context_kind|iPSC_derived
+      -- confronto 9/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_8)
+         TRATTATO (n=1, role=treated): Endothelin-treated MSN05 cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes ; cell_line=MSN05 ; tissue=skin ; context_kind=iPSC_derived
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes|cell_line|MSN05|tissue|skin|context_kind|iPSC_derived
+      -- confronto 10/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_1)
+         TRATTATO (n=4, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes
+      -- confronto 11/11  (GSE217421__grp_DMSO_1_vs_grp_Endothelin_2)
+         TRATTATO (n=3, role=treated): Endothelin-treated cardiac myocytes
+            factor_levels: treatment=Endothelin ; cell_type=cardiac myocytes
+         CONTROLLO (n=9, role=control): DMSO-treated cardiac myocytes
+            factor_levels: treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|cardiac myocytes
+
+########################################################################################################################
+# FUSIONE: infigratinib/BGJ-398 (CHEBI:63451 vs CHEMBL:CHEMBL1852688)
+# chiave gruppo: CHEBI:63451||gain||vehicle_untreated
+# cluster coinvolti: cgroup_L5_889ae73b [CHEBI:63451] studi=2 membri=3  |  cgroup_L5_ae927181 [CHEMBL:CHEMBL1852688] studi=1 membri=2
+########################################################################################################################
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEBI:63451     cluster_id: cgroup_L5_889ae73b     studi: 2   membri(confronti): 3
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE89127   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various small molecule inhibitors on different cancer cell lines.
+      -- confronto 1/1  (GSE89127__grp_RT112_BGJ398_1uM_48h_vs_grp_RT112_DMSO_0.1pct_48h)
+         TRATTATO (n=3, role=treated): RT112 BGJ398 1uM 48h
+            factor_levels: cell_line=RT112 ; treatment=BGJ398
+         CONTROLLO (n=3, role=control): RT112 DMSO 0.1% 48h
+            factor_levels: cell_line=RT112 ; treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|RT112
+
+    STUDIO GSE92651   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of BGJ398, a small molecule inhibitor, on two different human cancer cell lines: DMS114 (small cell lung cancer) and RT112 (urothelial carcinoma). The study compares treated cells with vehicle controls.
+      -- confronto 1/2  (GSE92651__grp_DMS114_BGJ398_vs_grp_DMS114_control)
+         TRATTATO (n=1, role=treated): DMS114 small cell lung cancer cell line, BGJ398
+            factor_levels: cell_line=DMS114 small cell lung cancer cell line ; treatment=BGJ398
+         CONTROLLO (n=1, role=control): DMS114 small cell lung cancer cell line, control
+            factor_levels: cell_line=DMS114 small cell lung cancer cell line ; treatment=control
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|DMS114 small cell lung cancer cell line
+      -- confronto 2/2  (GSE92651__grp_RT112_BGJ398_vs_grp_RT112_control)
+         TRATTATO (n=1, role=treated): RT112 urothelial carcinoma cell line, BGJ398
+            factor_levels: cell_line=RT112 urothelial carcinoma cell line ; treatment=BGJ398
+         CONTROLLO (n=1, role=control): RT112 urothelial carcinoma cell line, control
+            factor_levels: cell_line=RT112 urothelial carcinoma cell line ; treatment=control
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|RT112 urothelial carcinoma cell line
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEMBL:CHEMBL1852688     cluster_id: cgroup_L5_ae927181     studi: 1   membri(confronti): 2
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE168023   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of infigratinib treatment on CAL-120 breast cancer cells, including various perturbations such as genetic knockouts and treatments.
+      -- confronto 1/2  (GSE168023__grp_0002_vs_grp_0001)
+         TRATTATO (n=2, role=treated): CAL-120 breast cancer cells treated with infigratinib for 4 hours
+            factor_levels: treatment=infigratinib ; genetic_perturbation=none
+         CONTROLLO (n=2, role=control): CAL-120 breast cancer cells treated with DMSO
+            factor_levels: treatment=DMSO ; genetic_perturbation=none
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genetic_perturbation|none
+      -- confronto 2/2  (GSE168023__grp_0004_vs_grp_0001)
+         TRATTATO (n=3, role=treated): CAL-120 breast cancer cells treated with infigratinib for 12 days
+            factor_levels: treatment=infigratinib ; genetic_perturbation=none
+         CONTROLLO (n=2, role=control): CAL-120 breast cancer cells treated with DMSO
+            factor_levels: treatment=DMSO ; genetic_perturbation=none
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genetic_perturbation|none
+
+########################################################################################################################
+# FUSIONE: WNT-974/LGK974 (CHEBI:220491 vs CHEMBL:CHEMBL4456585)
+# chiave gruppo: CHEBI:220491||gain||vehicle_untreated
+# cluster coinvolti: cgroup_L5_0fcd8d51 [CHEBI:220491] studi=1 membri=2  |  cgroup_L5_ecb9b976 [CHEMBL:CHEMBL4456585] studi=1 membri=2
+########################################################################################################################
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEBI:220491     cluster_id: cgroup_L5_0fcd8d51     studi: 1   membri(confronti): 2
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE229066   [design_kind studio: multi_arm_treatment]
+      design_summary: This study investigates the effects of various small molecules on gene expression in human epithelial cell lines OVCAR-8 and HCC1576.
+      -- confronto 1/2  (GSE229066__HCC1576_Compound4_vs_HCC1576_DMSO)
+         TRATTATO (n=2, role=treated): HCC1576 treated with Compound 4
+            factor_levels: cell_line=HCC1576 ; treatment=Compound 4
+         CONTROLLO (n=3, role=control): HCC1576 treated with DMSO
+            factor_levels: cell_line=HCC1576 ; treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|HCC1576
+      -- confronto 2/2  (GSE229066__OVCAR-8_Compound4_vs_OVCAR-8_DMSO)
+         TRATTATO (n=1, role=treated): OVCAR-8 treated with Compound 4
+            factor_levels: cell_line=OVCAR-8 ; treatment=Compound 4
+         CONTROLLO (n=3, role=control): OVCAR-8 treated with DMSO
+            factor_levels: cell_line=OVCAR-8 ; treatment=DMSO
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|OVCAR-8
+
+  ------------------------------------------------------------------------------------------------------------------
+  SCRITTURA: CHEMBL:CHEMBL4456585     cluster_id: cgroup_L5_ecb9b976     studi: 1   membri(confronti): 2
+  ------------------------------------------------------------------------------------------------------------------
+
+    STUDIO GSE205802   [design_kind studio: factorial]
+      design_summary: This study investigates the effects of WM-1119 on OCI-AML3 cells, comparing treated and control conditions with and without CDKN2A knockout.
+      -- confronto 1/2  (GSE205802__grp_0002_vs_grp_0001)
+         TRATTATO (n=3, role=treated): OCI-AML3 wild-type + WM-1119
+            factor_levels: treatment=WM-1119 ; genotype=wild-type
+         CONTROLLO (n=3, role=control): OCI-AML3 wild-type + DMSO
+            factor_levels: treatment=DMSO ; genotype=wild-type
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genotype|wild-type
+      -- confronto 2/2  (GSE205802__grp_0004_vs_grp_0003)
+         TRATTATO (n=3, role=treated): OCI-AML3 CDKN2A knockout + WM-1119
+            factor_levels: treatment=WM-1119 ; genotype=CDKN2A knockout
+         CONTROLLO (n=3, role=control): OCI-AML3 CDKN2A knockout + DMSO
+            factor_levels: treatment=DMSO ; genotype=CDKN2A knockout
+         control_type=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genotype|CDKN2A knockout
