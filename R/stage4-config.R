@@ -92,7 +92,20 @@ stage4_default_config <- function() {
       # docs/superpowers/specs/2026-07-05-stage4-rem-group-named-metaanalyses-design.md.
       k_eff_min      = 3L,               # min studi contribuenti (dopo linking control in-study)
       n_min          = 2L,               # min campioni per braccio per-studio (limma-voom richiede replica)
-      excluded_kinds = c("vehicle_only", "none", "")  # kind degeneri non-perturbativi
+      excluded_kinds = c("vehicle_only", "none", ""),  # kind degeneri non-perturbativi
+      # DE-FRAMMENTAZIONE (2026-08-08). Vettore con nome `scrittura -> codice
+      # canonico`: le scritture che vi compaiono vengono FUSE nel loro codice
+      # canonico dentro `.dedup_rem_group_by_entity()`. NULL = comportamento di
+      # sempre, verificato byte-identico sui dati veri (351 candidati, insieme
+      # dei cluster_id invariato).
+      #
+      # ⚠️ NON si popola a mano. Una tabella di equivalenze scritta a mano e' la
+      # «lista travestita» che questo progetto ha gia' pagato piu' volte: va
+      # GENERATA da una regola (ponte fra registri sostenuto da un nome
+      # canonico, con le guardie di precisione) e la regola va misurata prima di
+      # essere accesa. Misura del 2026-08-08:
+      # analysis/audit/2026-08-08-deframmentazione/.
+      entity_canonical = NULL
     ),
     schema_versions = list(
       anchor             = "v3",

@@ -30,7 +30,8 @@
 #' (cluster legacy) il comportamento e' identico a prima.
 #'
 #' @keywords internal
-.dedup_rem_group_by_entity <- function(rem_group_clusters) {
+.dedup_rem_group_by_entity <- function(rem_group_clusters,
+                                       entity_canonical = NULL) {
   if (nrow(rem_group_clusters) == 0L) return(rem_group_clusters)
   direction <- .col_or_default(rem_group_clusters, "contrast_direction", NA_character_)
   direction[is.na(direction)] <- ""
@@ -51,9 +52,21 @@
   # (l'intento di ADR-0022 e' proprio fondere hypoxia-vs-vehicle e
   # hypoxia-vs-normoxia al k maggiore).
   ce <- .col_or_default(rem_group_clusters, "contrast_entity", NA_character_)
+
+  # ENTITA' CANONICA (2026-08-08). `entity_canonical` rimappa le SCRITTURE
+  # diverse della stessa entita' sul loro codice canonico: il TNF arriva come
+  # `HGNC:11892` (il gene) e come `CHEMBL:CHEMBL265582` (la proteina
+  # ricombinante), sono la stessa cosa e nel deliverable occupano DUE righe.
+  # Chi non e' nella mappa resta com'e': la mappa non e' un dizionario di
+  # tutte le entita', solo delle equivalenze accertate.
+  ce_can <- ce
+  if (length(entity_canonical) > 0L) {
+    hit <- !is.na(ce) & ce %in% names(entity_canonical)
+    if (any(hit)) ce_can[hit] <- unname(entity_canonical[ce[hit]])
+  }
   entity <- ifelse(
-    !is.na(ce) & nzchar(ce),
-    paste0(ce, "||", direction),
+    !is.na(ce_can) & nzchar(ce_can),
+    paste0(ce_can, "||", direction),
     paste0(rem_group_clusters$kind_effective_resolved, "||",
            rem_group_clusters$agent_id_resolved, "||", direction))
   ord <- order(entity,
@@ -63,6 +76,76 @@
                rem_group_clusters$cluster_id)
   rg  <- rem_group_clusters[ord, , drop = FALSE]
   ent <- entity[ord]
+  ce_ord <- ce[ord]
+  ck <- .col_or_default(rg, "contrast_control_key", NA_character_)
+  ck[is.na(ck)] <- ""
+
+  # ---- PASSO 1: FUSIONE, non scarto -----------------------------------------
+  # Due SCRITTURE della stessa entita' canonica, stesso verso e **stessa chiave
+  # di controllo**, sono la stessa cosa scritta in due modi: i record del
+  # perdente vanno poolati COL vincente, non buttati. Canonicalizzare senza
+  # fondere peggiorerebbe le cose -- il TNF diventerebbe una riga da 32 studi
+  # buttandone 6 -- quindi le due cose vanno insieme.
+  #
+  # Condizione STRETTA, per non toccare nulla di quanto gia' validato: il gruppo
+  # si fonde solo se contiene almeno DUE valori distinti di `contrast_entity`
+  # GREZZO e la colonna e' popolata su tutti i membri. Con `entity_canonical`
+  # assente (il default) la condizione non puo' accendersi: due scritture
+  # distinte danno per costruzione due chiavi distinte. Il comportamento resta
+  # quindi identico a prima, e le fixture legacy prive di `contrast_entity`
+  # cadono nel ramo `anyNA` e non vengono nemmeno considerate.
+  key1 <- paste0(ent, "||", ck)
+  assorbiti <- integer(0L)
+  vincenti  <- integer(0L)
+  for (g in split(seq_len(nrow(rg)), key1)) {
+    if (length(g) < 2L) next
+    scr <- ce_ord[g]
+    if (anyNA(scr) || !all(nzchar(scr))) next
+    if (length(unique(scr)) < 2L) next
+    # rg e' ordinato per forza decrescente entro la chiave: g[1] e' il vincente
+    assorbiti <- c(assorbiti, g[-1L])
+    vincenti  <- c(vincenti,  rep(g[1L], length(g) - 1L))
+  }
+  fusioni <- data.frame(cluster_id_assorbito = character(0),
+                        cluster_id_vincente  = character(0),
+                        chiave               = character(0),
+                        k_vincente_prima     = integer(0),
+                        k_dopo_fusione       = integer(0),
+                        stringsAsFactors = FALSE)
+  if (length(assorbiti) > 0L) {
+    # IL k DEL VINCENTE DIVENTA QUELLO DELL'UNIONE. Il gate del deliverable
+    # filtra su `k`; lasciandogli il k del solo vincente giudicherebbe un gruppo
+    # che non esiste piu'. Si contano gli studi DISTINTI (misurato: per i cgroup
+    # `k` e' esattamente il numero di studi distinti in `studies_in_cluster`,
+    # verificato su tutti e 11.536), quindi uno studio presente in entrambe le
+    # scritture non viene contato due volte.
+    k_prima <- rg$k[vincenti]
+    ha_studi <- "studies_in_cluster" %in% names(rg)
+    if (ha_studi) {
+      for (w in unique(vincenti)) {
+        assorbiti_di_w <- assorbiti[vincenti == w]
+        unione <- unique(unlist(rg$studies_in_cluster[c(w, assorbiti_di_w)],
+                                use.names = FALSE))
+        rg$studies_in_cluster[[w]] <- unione
+        rg$k[w] <- length(unione)
+      }
+    }
+    fusioni <- data.frame(cluster_id_assorbito = rg$cluster_id[assorbiti],
+                          cluster_id_vincente  = rg$cluster_id[vincenti],
+                          chiave               = key1[assorbiti],
+                          k_vincente_prima     = as.integer(k_prima),
+                          k_dopo_fusione       = as.integer(rg$k[vincenti]),
+                          stringsAsFactors = FALSE)
+    tieni1 <- rep(TRUE, nrow(rg)); tieni1[assorbiti] <- FALSE
+    rg  <- rg[tieni1, , drop = FALSE]
+    ent <- ent[tieni1]
+  }
+
+  # ---- PASSO 2: lo SCARTO di sempre -----------------------------------------
+  # Stessa entita' e stesso verso ma chiave di controllo DIVERSA: si tiene il k
+  # maggiore e gli altri si perdono. Fondere due CONTROLLI diversi e' un'altra
+  # decisione (ipossia contro normossia non e' ipossia contro veicolo) e alla
+  # data di questo codice non e' stata presa.
   keep <- !duplicated(ent)
   out <- rg[keep, , drop = FALSE]
   # Una selezione silenziosa non e' auditabile: chi viene tolto lo si scrive,
@@ -79,6 +162,7 @@
                           " (chiave ", ent[!keep], ")"),
       stringsAsFactors = FALSE)
   }
+  attr(out, "fusioni") <- fusioni
   out
 }
 
@@ -148,17 +232,35 @@
   # producevano l'85% di minestroni (finding 2026-07-23). Il vincolo
   # !usable_mega_strict e' ridondante per i cgroup (level 5) ma resta come difesa
   # e per non cambiare il comportamento su input legacy.
+  # ⚠️ IL FILTRO SU `k` STA DOPO LA FUSIONE, NON PRIMA (2026-08-08). Prima era
+  # dentro questa selezione, e il risultato era che le scritture PICCOLE della
+  # stessa entita' cadevano al gate senza che la dedup le vedesse mai: misurato,
+  # IL6 (una scrittura a k=10 e una a k=1) e IL15 (k=4 e k=2) non si fondevano
+  # per questo. Filtrare i pezzi prima di ricomporli e' lo stesso errore della
+  # frammentazione, in un'altra forma. Il gate ora giudica il gruppo FUSO, il cui
+  # `k` e' il numero di studi distinti dell'unione.
+  #
+  # Con `entity_canonical` assente l'ordine e' indifferente e la selezione resta
+  # la stessa: la dedup tiene il k massimo, e il massimo di un sovrainsieme che
+  # contiene il massimo globale e' lo stesso. Verificato sui dati veri: 351
+  # candidati, insieme dei cluster_id identico. Cambia solo `scartati`, che
+  # diventa piu' completo (registra anche i cluster sotto soglia).
   rem_group <- stage3_clusters[
     stage3_clusters$mode == "cgroup" &
     !mega_strict_col &
     !(kind_col %in% excl_kinds) &
     !is.na(agent_col) &
-    nzchar(agent_col, keepNA = FALSE) &
-    stage3_clusters$k >= min_k_raw,
+    nzchar(agent_col, keepNA = FALSE),
   ]
   if (nrow(rem_group) > 0L) {
     rem_group$method <- "rem_group"
-    rem_group <- .dedup_rem_group_by_entity(rem_group)
+    rem_group <- .dedup_rem_group_by_entity(
+      rem_group, entity_canonical = rg_cfg$entity_canonical)
+    .fus <- attr(rem_group, "fusioni")
+    .sca <- attr(rem_group, "scartati")
+    rem_group <- rem_group[rem_group$k >= min_k_raw, , drop = FALSE]
+    attr(rem_group, "fusioni")  <- .fus
+    attr(rem_group, "scartati") <- .sca
   }
 
   # ADR-0026: il deliverable e' selezionato, non cablato. Di default resta il
