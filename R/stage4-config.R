@@ -105,7 +105,15 @@ stage4_default_config <- function() {
       # canonico, con le guardie di precisione) e la regola va misurata prima di
       # essere accesa. Misura del 2026-08-08:
       # analysis/audit/2026-08-08-deframmentazione/.
-      entity_canonical = NULL
+      entity_canonical = NULL,
+      # Simmetrica alla precedente, sulle CHIAVI DI CONTROLLO. Due dei tre
+      # ingressi sono dimenticanze del vocabolario di `.normalize_control_type()`
+      # (`mock` vi sta, `uninfected` no; `normal`/`healthy`/`control` vi stanno,
+      # `lean` no), il terzo (`normoxia`) ribalta una scelta deliberata perche' la
+      # misura mostra che il confine non separa nulla. Evidenza e verdetti:
+      # analysis/audit/2026-08-08-deframmentazione/36-verdetti-4-fusioni-dedup.csv.
+      # NULL = comportamento di sempre.
+      control_canonical = NULL
     ),
     schema_versions = list(
       anchor             = "v3",

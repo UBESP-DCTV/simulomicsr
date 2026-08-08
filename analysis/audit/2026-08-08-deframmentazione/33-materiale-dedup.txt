@@ -1,0 +1,1825 @@
+MATERIALE INTEGRALE DEI CONTRASTI — le 4 fusioni della DEDUPLICA (due CHIAVI DI CONTROLLO diverse)
+Generato: 2026-08-08 09:20:01
+Stadio 3 v15  = analysis/p4-output/20260803T164558Z-stage3-v15-7f986159 (assignments.parquet + clusters.rds)
+Stadio 2      = analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl
+Deduplica     = .dedup_rem_group_by_entity() in R/stage4-qc.R : tiene 1 cluster per <contrast_entity>||<contrast_direction>, SCARTA gli altri.
+
+MEMBRI: 237 righe di assignments sugli 8 cluster, 237 risolte in confronto Stadio 2, 0 NON risolte.
+Studi risolti per cluster = n_studies dichiarato in clusters.rds su TUTTI e 8 (14/14, 37/37, 3/3, 38/38, 3/3, 4/4, 3/3, 7/7).
+
+CONTROLLO DEL TRONCAMENTO (dettaglio nel report): il massimo di OGNI campo e' toccato da 1 stringa su 237 (0,4%).
+  treated_label MAX 58 · control_label MAX 69 · treated_fl MAX 127 · control_fl MAX 93 · design_summary MAX 238.
+  Massimi DIVERSI per campo = nessun cap condiviso. Nel corpus stage2 (186.269 etichette) i due valori-cap noti del
+  progetto (40 e 58 caratteri) NON sono picchi: 0,96x e 0,97x la mediana del vicinato, decadimento monotono.
+  Lettere greche PRESERVATE: 'Vγ9+Vδ2+ T cells' arriva intera (γ e δ presenti).
+  Zero etichette che finiscono con '...', '-' o spazio. LE ETICHETTE QUI SOTTO SONO INTERE.
+=============================================================================================================================
+
+#############################################################################################################################
+# IPOSSIA — STR:hypoxia||gain : controllo 'normoxia' (vincente) contro 'vehicle_untreated' (scartato)
+# entita: STR:hypoxia   |   guadagno atteso da confermare: +8 studi efficaci attesi (k_eff 25 -> 33), 12 studi persi censiti
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_83f57274   contrast_control_key: 'normoxia'   canonical_name: 'hypoxia'
+      studi: 37   membri (confronti): 79
+  =======================================================================================================================
+
+    STUDIO GSE101799   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia and normoxia on primary cell lines derived from biopsies of patients with DIPG and glioblastoma.
+      -- confronto 1/2   (GSE101799__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): DIPG cells under hypoxia
+             factor_levels: oxygen_condition=hypoxia ; disease_state=DIPG
+         CONTROLLO (n=1, role=control): DIPG cells under normoxia
+             factor_levels: oxygen_condition=normoxia ; disease_state=DIPG
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=disease_state|DIPG
+      -- confronto 2/2   (GSE101799__grp_0003_vs_grp_0004)
+         TRATTATO  (n=1, role=treated): Glioblastoma cells under hypoxia
+             factor_levels: oxygen_condition=hypoxia ; disease_state=glioblastoma
+         CONTROLLO (n=1, role=control): Glioblastoma cells under normoxia
+             factor_levels: oxygen_condition=normoxia ; disease_state=glioblastoma
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=disease_state|glioblastoma
+
+    STUDIO GSE104193   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the effects of hypoxia and PP242 on MCF10A and MDA-MB-231 breast cancer cell lines.
+      -- confronto 1/4   (GSE104193__grp_MCF10A_hypoxia_vs_grp_MCF10A_normoxia)
+         TRATTATO  (n=4, role=treated): MCF10A Hypoxia
+             factor_levels: cell_line=MCF10A ; oxygen_condition=hypoxia ; treatment=no_PP242
+         CONTROLLO (n=4, role=control): MCF10A Normoxia
+             factor_levels: cell_line=MCF10A ; oxygen_condition=normoxia ; treatment=no_PP242
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|MCF10A|treatment|no_PP242
+      -- confronto 2/4   (GSE104193__grp_MCF10A_hypoxia_PP242_vs_grp_MCF10A_normoxia_PP242)
+         TRATTATO  (n=3, role=treated): MCF10A Hypoxia + PP242
+             factor_levels: cell_line=MCF10A ; oxygen_condition=hypoxia ; treatment=PP242
+         CONTROLLO (n=3, role=treated): MCF10A Normoxia + PP242
+             factor_levels: cell_line=MCF10A ; oxygen_condition=normoxia ; treatment=PP242
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|MCF10A|treatment|PP242
+      -- confronto 3/4   (GSE104193__grp_MDA-MB-231_hypoxia_vs_grp_MDA-MB-231_normoxia)
+         TRATTATO  (n=3, role=treated): MDA-MB-231 Hypoxia
+             factor_levels: cell_line=MDA-MB-231 ; oxygen_condition=hypoxia ; treatment=no_PP242
+         CONTROLLO (n=1, role=control): MDA-MB-231 Normoxia
+             factor_levels: cell_line=MDA-MB-231 ; oxygen_condition=normoxia ; treatment=no_PP242
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|MDA-MB-231|treatment|no_PP242
+      -- confronto 4/4   (GSE104193__grp_MDA-MB-231_hypoxia_PP242_vs_grp_MDA-MB-231_normoxia_PP242)
+         TRATTATO  (n=4, role=treated): MDA-MB-231 Hypoxia + PP242
+             factor_levels: cell_line=MDA-MB-231 ; oxygen_condition=hypoxia ; treatment=PP242
+         CONTROLLO (n=4, role=treated): MDA-MB-231 Normoxia + PP242
+             factor_levels: cell_line=MDA-MB-231 ; oxygen_condition=normoxia ; treatment=PP242
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|MDA-MB-231|treatment|PP242
+
+    STUDIO GSE114519   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia versus normoxia on NK cells derived from human blood.
+      -- confronto 1/1   (GSE114519__grp_0001_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): Hypoxia-treated NK cells
+             factor_levels: oxygen_condition=hypoxia
+         CONTROLLO (n=3, role=control): Normoxia-treated NK cells
+             factor_levels: oxygen_condition=normoxia
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=<vuoto>
+
+    STUDIO GSE118046   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia and normoxia on human dental pulp cells over different durations.
+      -- confronto 1/2   (GSE118046__Hypoxia_4h_vs_Normoxia_4h)
+         TRATTATO  (n=3, role=treated): Hypoxia 4h
+             factor_levels: oxygen_condition=hypoxia ; duration=4h
+         CONTROLLO (n=3, role=control): Normoxia 4h
+             factor_levels: oxygen_condition=normoxia ; duration=4h
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=duration|4h
+      -- confronto 2/2   (GSE118046__Hypoxia_48h_vs_Normoxia_48h)
+         TRATTATO  (n=3, role=treated): Hypoxia 48h
+             factor_levels: oxygen_condition=hypoxia ; duration=48h
+         CONTROLLO (n=3, role=control): Normoxia 48h
+             factor_levels: oxygen_condition=normoxia ; duration=48h
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=duration|48h
+
+    STUDIO GSE118362   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia on human pulmonary artery smooth muscle cells compared to normoxia.
+      -- confronto 1/1   (GSE118362__hypoxia_vs_normoxia)
+         TRATTATO  (n=1, role=treated): Hypoxia-treated Human Pulmonary Artery Smooth Muscle Cells
+             factor_levels: oxygen_condition=hypoxia
+         CONTROLLO (n=1, role=control): Normoxia-treated (Control) Human Pulmonary Artery Smooth Muscle Cells
+             factor_levels: oxygen_condition=normoxia
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=<vuoto>
+
+    STUDIO GSE120886   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia on different human cell lines, including HepG2, HKC8, and RCC4+VHL cells.
+      -- confronto 1/1   (GSE120886__RCC4+VHL_hypoxia_vs_RCC4+VHL_normoxia)
+         TRATTATO  (n=3, role=treated): RCC4+VHL hypoxia
+             factor_levels: cell_line=RCC4+VHL ; treatment=hypoxia
+         CONTROLLO (n=1, role=control): RCC4+VHL normoxia
+             factor_levels: cell_line=RCC4+VHL ; treatment=normoxia
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|RCC4+VHL
+
+    STUDIO GSE134737   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia on hPSC-derived human motor neurons and iPS-derived motor neurons, including those affected by Type 1 Diabetes (T1D). It compares normoxic and hypoxic conditions, as well as disease states.
+      -- confronto 1/1   (GSE134737__grp_0014_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): iPS-derived motor neurons, neuron, unaffected, hypoxia
+             factor_levels: oxygen_condition=hypoxia ; disease_state=unaffected
+         CONTROLLO (n=6, role=control): hPSC-derived human motor neuron, normoxia
+             factor_levels: oxygen_condition=normoxia ; disease_state=unaffected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=disease_state|unaffected
+
+    STUDIO GSE139233   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the effects of hypoxia and acidosis on U87MG cells.
+      -- confronto 1/4   (GSE139233__grp_0001_vs_grp_0007)
+         TRATTATO  (n=2, role=treated): Hypoxia pH 6.0
+             factor_levels: oxygen_condition=hypoxia ; ph_level=pH 6.0
+         CONTROLLO (n=2, role=control): Normoxia pH 7.4
+             factor_levels: oxygen_condition=normoxia ; ph_level=pH 7.4
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=ph_level|pH 7.4
+      -- confronto 2/4   (GSE139233__grp_0002_vs_grp_0007)
+         TRATTATO  (n=1, role=treated): Hypoxia pH 7.4
+             factor_levels: oxygen_condition=hypoxia ; ph_level=pH 7.4
+         CONTROLLO (n=2, role=control): Normoxia pH 7.4
+             factor_levels: oxygen_condition=normoxia ; ph_level=pH 7.4
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=ph_level|pH 7.4
+      -- confronto 3/4   (GSE139233__grp_0003_vs_grp_0007)
+         TRATTATO  (n=1, role=treated): Hypoxia pH 7.4 Oligosome
+             factor_levels: oxygen_condition=hypoxia ; ph_level=pH 7.4
+         CONTROLLO (n=2, role=control): Normoxia pH 7.4
+             factor_levels: oxygen_condition=normoxia ; ph_level=pH 7.4
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=ph_level|pH 7.4
+      -- confronto 4/4   (GSE139233__grp_0004_vs_grp_0007)
+         TRATTATO  (n=1, role=treated): Hypoxia Polysome
+             factor_levels: oxygen_condition=hypoxia ; ph_level=pH 7.4
+         CONTROLLO (n=2, role=control): Normoxia pH 7.4
+             factor_levels: oxygen_condition=normoxia ; ph_level=pH 7.4
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=ph_level|pH 7.4
+
+    STUDIO GSE142123   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia versus normoxia on endothelial progenitor cells.
+      -- confronto 1/2   (GSE142123__grp_0001_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): Hypoxia
+             factor_levels: oxygen_condition=hypoxia
+         CONTROLLO (n=2, role=control): Normoxia
+             factor_levels: oxygen_condition=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=<vuoto>
+      -- confronto 2/2   (GSE142123__grp_0001_vs_grp_0003)
+         TRATTATO  (n=3, role=treated): Hypoxia
+             factor_levels: oxygen_condition=hypoxia
+         CONTROLLO (n=1, role=control): Normoxia Control
+             factor_levels: oxygen_condition=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=<vuoto>
+
+    STUDIO GSE145108   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the effects of hypoxia versus normoxia on gene expression in different human cancer cell lines.
+      -- confronto 1/3   (GSE145108__A549_hypoxia_vs_A549_normoxia)
+         TRATTATO  (n=2, role=treated): A549 cells exposed to hypoxia
+             factor_levels: oxygen_condition=hypoxia ; cell_line=A549
+         CONTROLLO (n=2, role=control): A549 cells under normoxia
+             factor_levels: oxygen_condition=normoxia ; cell_line=A549
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|A549
+      -- confronto 2/3   (GSE145108__H460_hypoxia_vs_H460_normoxia)
+         TRATTATO  (n=1, role=treated): H460 cells exposed to hypoxia
+             factor_levels: oxygen_condition=hypoxia ; cell_line=H460
+         CONTROLLO (n=1, role=control): H460 cells under normoxia
+             factor_levels: oxygen_condition=normoxia ; cell_line=H460
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|H460
+      -- confronto 3/3   (GSE145108__RKO_hypoxia_vs_RKO_normoxia)
+         TRATTATO  (n=1, role=treated): RKO cells exposed to hypoxia
+             factor_levels: oxygen_condition=hypoxia ; cell_line=RKO
+         CONTROLLO (n=1, role=control): RKO cells under normoxia
+             factor_levels: oxygen_condition=normoxia ; cell_line=RKO
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|RKO
+
+    STUDIO GSE149132   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia on T47D breast cancer cells.
+      -- confronto 1/1   (GSE149132__grp_0002_vs_grp_0001)
+         TRATTATO  (n=2, role=treated): T47D Hypoxia
+             factor_levels: oxygen_level=hypoxia
+         CONTROLLO (n=3, role=control): T47D Control Normoxia
+             factor_levels: oxygen_level=normoxia
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_level | fixed=<vuoto>
+
+    STUDIO GSE151610   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia and genetic modifications on ARPE-19 retinal epithelial cells.
+      -- confronto 1/1   (GSE151610__grp_0005_vs_grp_0003)
+         TRATTATO  (n=3, role=treated): Hypoxia Only
+             factor_levels: treatment=hypoxia ; genetic modification=none
+         CONTROLLO (n=2, role=control): Normoxia Only
+             factor_levels: treatment=normoxia ; genetic modification=none
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genetic modification|none
+
+    STUDIO GSE154162   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: Comparison of human primary nucleus pulposus cells under hypoxic versus normoxic conditions.
+      -- confronto 1/1   (GSE154162__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): Hypoxia-treated nucleus pulposus cells
+             factor_levels: oxygen_tension=hypoxia
+         CONTROLLO (n=1, role=control): Normoxia-treated nucleus pulposus cells
+             factor_levels: oxygen_tension=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_tension | fixed=<vuoto>
+
+    STUDIO GSE157371   [design_kind studio: treatment_vs_untreated]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia on RKO colon cancer cells.
+      -- confronto 1/1   (GSE157371__hypoxia_vs_untreated)
+         TRATTATO  (n=6, role=treated): Hypoxia
+             factor_levels: oxygen_condition=hypoxia
+         CONTROLLO (n=1, role=control): Untreated
+             factor_levels: oxygen_condition=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=<vuoto>
+
+    STUDIO GSE163333   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia and normoxia on SK-N-MC cells derived from Ewing's Sarcoma, including a genetic knockdown of LOXHD1 under hypoxic conditions.
+      -- confronto 1/1   (GSE163333__grp_0001_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_knockdown=no knockdown
+         CONTROLLO (n=1, role=control): Normoxia
+             factor_levels: oxygen_condition=normoxia ; genetic_knockdown=no knockdown
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=genetic_knockdown|no knockdown
+
+    STUDIO GSE176123   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the transcriptional response of endothelial colony-forming cells (ECFCs) derived from human umbilical cord blood under hypoxic and normoxic conditions over various time points.
+      -- confronto 1/3   (GSE176123__grp_0001_vs_grp_0005)
+         TRATTATO  (n=4, role=treated): Hypoxia 40 minutes
+             factor_levels: oxygen_condition=hypoxia ; time=40_minutes
+         CONTROLLO (n=4, role=control): Normoxia 40 minutes
+             factor_levels: oxygen_condition=normoxia ; time=40_minutes
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=time|40_minutes
+      -- confronto 2/3   (GSE176123__grp_0002_vs_grp_0006)
+         TRATTATO  (n=4, role=treated): Hypoxia 10 hours
+             factor_levels: oxygen_condition=hypoxia ; time=10_hours
+         CONTROLLO (n=4, role=control): Normoxia 10 hours
+             factor_levels: oxygen_condition=normoxia ; time=10_hours
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=time|10_hours
+      -- confronto 3/3   (GSE176123__grp_0003_vs_grp_0004)
+         TRATTATO  (n=4, role=treated): Hypoxia 24 hours
+             factor_levels: oxygen_condition=hypoxia ; time=24_hours
+         CONTROLLO (n=1, role=control): Normoxia 24 hours
+             factor_levels: oxygen_condition=normoxia ; time=24_hours
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=time|24_hours
+
+    STUDIO GSE180467   [design_kind studio: factorial]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia and dynamic compression on human engineered meniscus cells derived from iPSCs.
+      -- confronto 1/1   (GSE180467__grp_0003_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): HYP + DC (Donor A)
+             factor_levels: oxygen_level=hypoxia ; mechanical_stress=dynamic_compression
+         CONTROLLO (n=2, role=treated): NRX + DC (Donor A)
+             factor_levels: oxygen_level=normoxia ; mechanical_stress=dynamic_compression
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_level | fixed=mechanical_stress|dynamic_compression
+
+    STUDIO GSE183112   [design_kind studio: time_course]   confronti in questo cluster: 3
+      design_summary: This study investigates the effects of hypoxia on primary human valve interstitial cells over different time points.
+      -- confronto 1/3   (GSE183112__Hypoxia_Day7_vs_Normoxia_Day7)
+         TRATTATO  (n=1, role=treated): Hypoxia Day 7
+             factor_levels: oxygen_condition=hypoxia ; time=day7
+         CONTROLLO (n=1, role=control): Normoxia Day 7
+             factor_levels: oxygen_condition=normoxia ; time=day7
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=time|day7
+      -- confronto 2/3   (GSE183112__Hypoxia_Day14_vs_Normoxia_Day14)
+         TRATTATO  (n=1, role=treated): Hypoxia Day 14
+             factor_levels: oxygen_condition=hypoxia ; time=day14
+         CONTROLLO (n=1, role=control): Normoxia Day 14
+             factor_levels: oxygen_condition=normoxia ; time=day14
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=time|day14
+      -- confronto 3/3   (GSE183112__Hypoxia_Day28_vs_Normoxia_Day28)
+         TRATTATO  (n=1, role=treated): Hypoxia Day 28
+             factor_levels: oxygen_condition=hypoxia ; time=day28
+         CONTROLLO (n=1, role=control): Normoxia Day 28
+             factor_levels: oxygen_condition=normoxia ; time=day28
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=time|day28
+
+    STUDIO GSE197523   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: Comparison between Human Aortic Endothelial Cells under Hypoxia and Normoxia conditions.
+      -- confronto 1/1   (GSE197523__hypoxia_vs_normoxia)
+         TRATTATO  (n=3, role=treated): Hypoxia
+             factor_levels: treatment=Hypoxia ; time(hours)=24
+         CONTROLLO (n=3, role=control): Normoxia
+             factor_levels: treatment=Normoxia ; time(hours)=24
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE197525   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the effects of hypoxia on telomerase-immortalized human aortic endothelial cells (teloHAEC) with different genetic modifications.
+      -- confronto 1/3   (GSE197525__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): KO + Hypoxia
+             factor_levels: treatment=hypoxia ; genetic_modification=KO
+         CONTROLLO (n=1, role=control): KO + Normoxia
+             factor_levels: treatment=normoxia ; genetic_modification=KO
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genetic_modification|KO
+      -- confronto 2/3   (GSE197525__grp_0003_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): KO + Hypoxia (replicates)
+             factor_levels: treatment=hypoxia ; genetic_modification=KO
+         CONTROLLO (n=2, role=control): KO + Normoxia (replicates)
+             factor_levels: treatment=normoxia ; genetic_modification=KO
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genetic_modification|KO
+      -- confronto 3/3   (GSE197525__grp_0006_vs_grp_0007)
+         TRATTATO  (n=2, role=treated): TERT + Hypoxia (replicates)
+             factor_levels: treatment=hypoxia ; genetic_modification=TERT
+         CONTROLLO (n=3, role=control): TERT + Normoxia (replicates)
+             factor_levels: treatment=normoxia ; genetic_modification=TERT
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genetic_modification|TERT
+
+    STUDIO GSE197576   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the effects of hypoxia on SW480 colorectal cancer cells with various CRISPR-Cas9 knockouts.
+      -- confronto 1/4   (GSE197576__grp_0003_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): sgCTRL Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_knockout=sgCTRL
+         CONTROLLO (n=1, role=control): sgCTRL Normoxia
+             factor_levels: oxygen_condition=normoxia ; genetic_knockout=sgCTRL
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=genetic_knockout|sgCTRL
+      -- confronto 2/4   (GSE197576__grp_0007_vs_grp_0006)
+         TRATTATO  (n=1, role=treated): sgITPR3_1 Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_knockout=sgITPR3_1
+         CONTROLLO (n=2, role=control): sgITPR3_1 Normoxia
+             factor_levels: oxygen_condition=normoxia ; genetic_knockout=sgITPR3_1
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=genetic_knockout|sgITPR3_1
+      -- confronto 3/4   (GSE197576__grp_0008_vs_grp_0009)
+         TRATTATO  (n=1, role=treated): sgRELB_3 Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_knockout=sgRELB_3
+         CONTROLLO (n=1, role=control): sgRELB_3 Normoxia
+             factor_levels: oxygen_condition=normoxia ; genetic_knockout=sgRELB_3
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=genetic_knockout|sgRELB_3
+      -- confronto 4/4   (GSE197576__grp_0011_vs_grp_0010)
+         TRATTATO  (n=1, role=treated): sgRELB_3 Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_knockout=sgRELB_3
+         CONTROLLO (n=1, role=control): sgRELB_3 Normoxia (replicate)
+             factor_levels: oxygen_condition=normoxia ; genetic_knockout=sgRELB_3
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=genetic_knockout|sgRELB_3
+
+    STUDIO GSE198860   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia and reoxygenation on cholangiocyte organoids derived from human liver tissue.
+      -- confronto 1/1   (GSE198860__Hypoxia_vs_Normoxia)
+         TRATTATO  (n=4, role=treated): Hypoxia
+             factor_levels: oxygen_condition=hypoxia
+         CONTROLLO (n=4, role=control): Normoxia
+             factor_levels: oxygen_condition=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=<vuoto>
+
+    STUDIO GSE211611   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the effects of hypoxia and normoxia on ARPE19 cybrids with different mitochondrial DNA backgrounds.
+      -- confronto 1/4   (GSE211611__grp_0002_vs_grp_0001)
+         TRATTATO  (n=8, role=treated): ARPE19 Cybrid Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; mtDNA_background=none
+         CONTROLLO (n=8, role=control): ARPE19 Cybrid Normoxia
+             factor_levels: oxygen_condition=normoxia ; mtDNA_background=none
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=mtDNA_background|none
+      -- confronto 2/4   (GSE211611__grp_0003_vs_grp_0004)
+         TRATTATO  (n=4, role=treated): European DM Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; mtDNA_background=European DM
+         CONTROLLO (n=1, role=control): European DM Normoxia
+             factor_levels: oxygen_condition=normoxia ; mtDNA_background=European DM
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=mtDNA_background|European DM
+      -- confronto 3/4   (GSE211611__grp_0005_vs_grp_0006)
+         TRATTATO  (n=1, role=treated): Non-European DM Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; mtDNA_background=Non-European DM
+         CONTROLLO (n=1, role=control): Non-European DM Normoxia
+             factor_levels: oxygen_condition=normoxia ; mtDNA_background=Non-European DM
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=mtDNA_background|Non-European DM
+      -- confronto 4/4   (GSE211611__grp_0008_vs_grp_0009)
+         TRATTATO  (n=3, role=treated): Non-European DM Hypoxia (additional)
+             factor_levels: oxygen_condition=hypoxia ; mtDNA_background=Non-European DM
+         CONTROLLO (n=3, role=control): Non-European DM Normoxia (additional)
+             factor_levels: oxygen_condition=normoxia ; mtDNA_background=Non-European DM
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=mtDNA_background|Non-European DM
+
+    STUDIO GSE212201   [design_kind studio: factorial]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia and MIF knockdown on PANC-1 pancreatic cancer cells.
+      -- confronto 1/2   (GSE212201__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): PANC-1 Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; MIF_knockdown=wild_type
+         CONTROLLO (n=1, role=control): PANC-1 Normoxia
+             factor_levels: oxygen_condition=normoxia ; MIF_knockdown=wild_type
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=MIF_knockdown|wild_type
+      -- confronto 2/2   (GSE212201__grp_0003_vs_grp_0004)
+         TRATTATO  (n=1, role=treated): PANC-1 shMIF Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; MIF_knockdown=MIF_knockdown
+         CONTROLLO (n=1, role=control): PANC-1 shMIF Normoxia
+             factor_levels: oxygen_condition=normoxia ; MIF_knockdown=MIF_knockdown
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=MIF_knockdown|MIF_knockdown
+
+    STUDIO GSE212703   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia on anaplastic thyroid cancer cells (SW1736) under normoxic and hypoxic conditions.
+      -- confronto 1/2   (GSE212703__hypoxia_vs_normoxia)
+         TRATTATO  (n=2, role=treated): Hypoxia
+             factor_levels: oxygen_condition=hypoxia
+         CONTROLLO (n=3, role=control): Normoxia
+             factor_levels: oxygen_condition=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=<vuoto>
+      -- confronto 2/2   (GSE212703__hypoxia_3hr_vs_normoxia)
+         TRATTATO  (n=1, role=treated): Hypoxia 3 hours
+             factor_levels: oxygen_condition=hypoxia
+         CONTROLLO (n=3, role=control): Normoxia
+             factor_levels: oxygen_condition=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=<vuoto>
+
+    STUDIO GSE224973   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the effects of hypoxic and normoxic cultures on healthy human jejunal epithelium over different time points.
+      -- confronto 1/4   (GSE224973__grp_0001_vs_grp_0003)
+         TRATTATO  (n=1, role=treated): Hypoxia 24h
+             factor_levels: oxygen_condition=hypoxia ; time=24 hours
+         CONTROLLO (n=3, role=control): Normoxia 24h
+             factor_levels: oxygen_condition=normoxia ; time=24 hours
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=time|24 hours
+      -- confronto 2/4   (GSE224973__grp_0005_vs_grp_0003)
+         TRATTATO  (n=3, role=treated): Hypoxia 24h
+             factor_levels: oxygen_condition=hypoxia ; time=24 hours
+         CONTROLLO (n=3, role=control): Normoxia 24h
+             factor_levels: oxygen_condition=normoxia ; time=24 hours
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=time|24 hours
+      -- confronto 3/4   (GSE224973__grp_0006_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): Hypoxia 48h
+             factor_levels: oxygen_condition=hypoxia ; time=48 hours
+         CONTROLLO (n=1, role=control): Normoxia 48h
+             factor_levels: oxygen_condition=normoxia ; time=48 hours
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=time|48 hours
+      -- confronto 4/4   (GSE224973__grp_0007_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): Hypoxia 6h
+             factor_levels: oxygen_condition=hypoxia ; time=6 hours
+         CONTROLLO (n=3, role=control): Normoxia 6h
+             factor_levels: oxygen_condition=normoxia ; time=6 hours
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=time|6 hours
+
+    STUDIO GSE225253   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia versus normoxia on two human kidney cell lines, 786-0 and HK-2.
+      -- confronto 1/1   (GSE225253__HK-2_hypoxia_vs_HK-2_normoxia)
+         TRATTATO  (n=3, role=treated): HK-2 Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; cell_line=HK-2
+         CONTROLLO (n=3, role=control): HK-2 Normoxia
+             factor_levels: oxygen_condition=normoxia ; cell_line=HK-2
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|HK-2
+
+    STUDIO GSE228269   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of a peptide treatment under hypoxia and normoxia conditions on human retinal microvascular endothelial cells.
+      -- confronto 1/1   (GSE228269__grp_0006_vs_grp_0004)
+         TRATTATO  (n=2, role=control): HRMVEC vehicle hypoxia
+             factor_levels: treatment=vehicle ; oxygen_condition=hypoxia
+         CONTROLLO (n=2, role=control): HRMVEC vehicle normoxia
+             factor_levels: treatment=vehicle ; oxygen_condition=normoxia
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=oxygen_condition|normoxia
+
+    STUDIO GSE233425   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 5
+      design_summary: This study investigates the effects of hypoxia on human hepatocytes with various genetic mutations associated with liver diseases.
+      -- confronto 1/5   (GSE233425__grp_0005_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): G6PC mutation, hypoxia
+             factor_levels: mutation=G6PC mutation ; treatment=hypoxia
+         CONTROLLO (n=1, role=treated): G6PC mutation, normoxia
+             factor_levels: mutation=G6PC mutation ; treatment=normoxia
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=mutation|G6PC mutation
+      -- confronto 2/5   (GSE233425__grp_0006_vs_grp_0004)
+         TRATTATO  (n=1, role=treated): OTC mutation, hypoxia
+             factor_levels: mutation=OTC mutation ; treatment=hypoxia
+         CONTROLLO (n=1, role=treated): OTC mutation, normoxia
+             factor_levels: mutation=OTC mutation ; treatment=normoxia
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=mutation|OTC mutation
+      -- confronto 3/5   (GSE233425__grp_0007_vs_grp_0003)
+         TRATTATO  (n=3, role=treated): LDLR mutation, hypoxia
+             factor_levels: mutation=LDLR mutation ; treatment=hypoxia
+         CONTROLLO (n=1, role=treated): LDLR mutation, normoxia
+             factor_levels: mutation=LDLR mutation ; treatment=normoxia
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=mutation|LDLR mutation
+      -- confronto 4/5   (GSE233425__grp_0008_vs_grp_0002)
+         TRATTATO  (n=3, role=control): Wild-type, hypoxia
+             factor_levels: mutation=wild-type ; treatment=hypoxia
+         CONTROLLO (n=3, role=control): Wild-type, normoxia
+             factor_levels: mutation=wild-type ; treatment=normoxia
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=mutation|wild-type
+      -- confronto 5/5   (GSE233425__grp_0009_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): OTC mutation, hypoxia
+             factor_levels: mutation=OTC mutation ; treatment=hypoxia
+         CONTROLLO (n=1, role=treated): OTC mutation, normoxia
+             factor_levels: mutation=OTC mutation ; treatment=normoxia
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=mutation|OTC mutation
+
+    STUDIO GSE244754   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 5
+      design_summary: This study investigates the effects of hypoxia and various genetic modifications on gene expression in DLD-1 colon cancer cells.
+      -- confronto 1/5   (GSE244754__grp_0002_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): DLD-1 wild type hypoxia gRNA 6h
+             factor_levels: oxygen_condition=hypoxia ; genetic_modification=wild_type ; treatment=none
+         CONTROLLO (n=2, role=control): DLD-1 wild type normoxia gRNA control
+             factor_levels: oxygen_condition=normoxia ; genetic_modification=wild_type ; treatment=none
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=genetic_modification|wild_type|treatment|none
+      -- confronto 2/5   (GSE244754__grp_0005_vs_grp_0007)
+         TRATTATO  (n=1, role=treated): DLD-1 HIF1B_KO hypoxia 6h NT
+             factor_levels: oxygen_condition=hypoxia ; genetic_modification=HIF1B_KO ; treatment=nt
+         CONTROLLO (n=6, role=control): DLD-1 HIF1B_KO normoxia NT
+             factor_levels: oxygen_condition=normoxia ; genetic_modification=HIF1B_KO ; treatment=nt
+         control_type(Stadio 2)=genetic_negative | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=oxygen_condition|hypoxia|genetic_modification|HIF1B_KO
+      -- confronto 3/5   (GSE244754__grp_0014_vs_grp_0015)
+         TRATTATO  (n=3, role=treated): DLD-1 BRD4_AID auxin hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_modification=BRD4_AID ; treatment=auxin
+         CONTROLLO (n=3, role=treated): DLD-1 BRD4_AID auxin normoxia
+             factor_levels: oxygen_condition=normoxia ; genetic_modification=BRD4_AID ; treatment=auxin
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=genetic_modification|BRD4_AID|treatment|auxin
+      -- confronto 4/5   (GSE244754__grp_0027_vs_grp_0028)
+         TRATTATO  (n=3, role=treated): DLD-1 BRD4G3-TetOGFP-dCTM dox hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_modification=BRD4G3-TetOGFP-dCTM ; treatment=dox
+         CONTROLLO (n=3, role=treated): DLD-1 BRD4G3-TetOGFP-dCTM dox normoxia
+             factor_levels: oxygen_condition=normoxia ; genetic_modification=BRD4G3-TetOGFP-dCTM ; treatment=dox
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=genetic_modification|BRD4G3-TetOGFP-dCTM|treatment|dox
+      -- confronto 5/5   (GSE244754__grp_0029_vs_grp_0030)
+         TRATTATO  (n=3, role=treated): DLD-1 BRD4G3-TetOGFP-FL dox hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_modification=BRD4G3-TetOGFP-FL ; treatment=dox
+         CONTROLLO (n=3, role=treated): DLD-1 BRD4G3-TetOGFP-FL dox normoxia
+             factor_levels: oxygen_condition=normoxia ; genetic_modification=BRD4G3-TetOGFP-FL ; treatment=dox
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=genetic_modification|BRD4G3-TetOGFP-FL|treatment|dox
+
+    STUDIO GSE245762   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the effects of hypoxia versus normoxia on glioblastoma cell lines.
+      -- confronto 1/3   (GSE245762__grp_0001_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): U3017-MG Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; cell_line=U3017-MG
+         CONTROLLO (n=3, role=control): U3017-MG Normoxia
+             factor_levels: oxygen_condition=normoxia ; cell_line=U3017-MG
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|U3017-MG
+      -- confronto 2/3   (GSE245762__grp_0003_vs_grp_0004)
+         TRATTATO  (n=1, role=treated): U3034-MG Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; cell_line=U3034-MG
+         CONTROLLO (n=3, role=control): U3034-MG Normoxia
+             factor_levels: oxygen_condition=normoxia ; cell_line=U3034-MG
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|U3034-MG
+      -- confronto 3/3   (GSE245762__grp_0005_vs_grp_0006)
+         TRATTATO  (n=3, role=treated): U3047-MG Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; cell_line=U3047-MG
+         CONTROLLO (n=3, role=control): U3047-MG Normoxia
+             factor_levels: oxygen_condition=normoxia ; cell_line=U3047-MG
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=cell_line|U3047-MG
+
+    STUDIO GSE254480   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia (<0.1% oxygen) versus normoxia (20% oxygen) on HeLa cells.
+      -- confronto 1/1   (GSE254480__Hypoxia_vs_Normoxia)
+         TRATTATO  (n=1, role=treated): Hypoxia
+             factor_levels: oxygen_level=Hypoxia
+         CONTROLLO (n=1, role=control): Normoxia
+             factor_levels: oxygen_level=Normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_level | fixed=<vuoto>
+
+    STUDIO GSE255352   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia and normoxia on KYSE30 cells, including the overexpression of LAMC2.
+      -- confronto 1/1   (GSE255352__grp_0002_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): KYSE30 Hypoxia
+             factor_levels: oxygen_condition=hypoxia ; genetic_manipulation=wild_type
+         CONTROLLO (n=3, role=control): KYSE30 Control
+             factor_levels: oxygen_condition=normoxia ; genetic_manipulation=wild_type
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=genetic_manipulation|wild_type
+
+    STUDIO GSE269699   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia on human monocyto-derived macrophages.
+      -- confronto 1/2   (GSE269699__grp_0001_vs_grp_0003)
+         TRATTATO  (n=2, role=treated): Hypoxia (Donor 1)
+             factor_levels: oxygen_condition=hypoxia ; donor_id=Healthy donor 1
+         CONTROLLO (n=2, role=control): Normoxia (Control, Donor 2)
+             factor_levels: oxygen_condition=normoxia ; donor_id=Healthy donor 2
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=donor_id|Healthy donor 1
+      -- confronto 2/2   (GSE269699__grp_0002_vs_grp_0003)
+         TRATTATO  (n=1, role=treated): Hypoxia (Donor 3)
+             factor_levels: oxygen_condition=hypoxia ; donor_id=Healthy donor 3
+         CONTROLLO (n=2, role=control): Normoxia (Control, Donor 2)
+             factor_levels: oxygen_condition=normoxia ; donor_id=Healthy donor 2
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_condition | fixed=donor_id|Healthy donor 3
+
+    STUDIO GSE59987   [design_kind studio: factorial]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia and TET1 knockdown on gene expression in FADU cells.
+      -- confronto 1/2   (GSE59987__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): FADU cells under hypoxia
+             factor_levels: oxygen_condition=hypoxia ; TET1_knockdown=wild_type
+         CONTROLLO (n=1, role=control): FADU cells under normoxia
+             factor_levels: oxygen_condition=normoxia ; TET1_knockdown=wild_type
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=TET1_knockdown|wild_type
+      -- confronto 2/2   (GSE59987__grp_0003_vs_grp_0004)
+         TRATTATO  (n=1, role=treated): FADU cells with TET1 knockdown under hypoxia
+             factor_levels: oxygen_condition=hypoxia ; TET1_knockdown=knockdown
+         CONTROLLO (n=1, role=control): FADU cells with TET1 knockdown under normoxia
+             factor_levels: oxygen_condition=normoxia ; TET1_knockdown=knockdown
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=oxygen_condition | fixed=TET1_knockdown|knockdown
+
+    STUDIO GSE77307   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia on gene expression in human brain cell lines, comparing normoxic and hypoxic conditions.
+      -- confronto 1/2   (GSE77307__HEB_hypoxia_vs_normoxia)
+         TRATTATO  (n=3, role=treated): HEB cell line, hypoxia
+             factor_levels: cell_line=HEB cell line ; treatment=hypoxia
+         CONTROLLO (n=3, role=control): HEB cell line, normoxia
+             factor_levels: cell_line=HEB cell line ; treatment=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|HEB cell line
+      -- confronto 2/2   (GSE77307__U87MG_hypoxia_vs_normoxia)
+         TRATTATO  (n=2, role=treated): U87-MG cell line, hypoxia
+             factor_levels: cell_line=U87-MG cell line ; treatment=hypoxia
+         CONTROLLO (n=2, role=control): U87-MG cell line, normoxia
+             factor_levels: cell_line=U87-MG cell line ; treatment=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|U87-MG cell line
+
+    STUDIO GSE78025   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia on human brain cell lines, specifically HEB and U87-MG cells, under different oxygen levels.
+      -- confronto 1/2   (GSE78025__grp_0003_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): HEB 5% hypoxia
+             factor_levels: cell_line=HEB ; oxygen_level=5% hypoxia
+         CONTROLLO (n=3, role=control): HEB normoxia
+             factor_levels: cell_line=HEB ; oxygen_level=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_level | fixed=cell_line|HEB
+      -- confronto 2/2   (GSE78025__grp_0005_vs_grp_0004)
+         TRATTATO  (n=1, role=treated): U87-MG 1% hypoxia
+             factor_levels: cell_line=U87-MG ; oxygen_level=1% hypoxia
+         CONTROLLO (n=3, role=control): U87-MG normoxia
+             factor_levels: cell_line=U87-MG ; oxygen_level=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=oxygen_level | fixed=cell_line|U87-MG
+
+  =======================================================================================================================
+  >>> SCARTATO  cluster_id: cgroup_L5_5ed15418   contrast_control_key: 'vehicle_untreated'   canonical_name: 'hypoxia'
+      studi: 14   membri (confronti): 23
+  =======================================================================================================================
+
+    STUDIO GSE113882   [design_kind studio: time_course]   confronti in questo cluster: 3
+      design_summary: This study investigates the effects of hypoxia on human sebaceous glands over different durations.
+      -- confronto 1/3   (GSE113882__grp_0002_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): Hypoxia 8hr
+             factor_levels: treatment=hypoxia ; duration=8hr
+         CONTROLLO (n=1, role=control): Untreated Sebaceous Gland
+             factor_levels: treatment=none ; duration=0hr
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=duration | fixed=treatment|hypoxia|duration|8hr
+      -- confronto 2/3   (GSE113882__grp_0003_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): Hypoxia 24hr
+             factor_levels: treatment=hypoxia ; duration=24hr
+         CONTROLLO (n=1, role=control): Untreated Sebaceous Gland
+             factor_levels: treatment=none ; duration=0hr
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=duration | fixed=treatment|hypoxia|duration|24hr
+      -- confronto 3/3   (GSE113882__grp_0004_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): Hypoxia 48hr
+             factor_levels: treatment=hypoxia ; duration=48hr
+         CONTROLLO (n=1, role=control): Untreated Sebaceous Gland
+             factor_levels: treatment=none ; duration=0hr
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=duration | fixed=treatment|hypoxia|duration|48hr
+
+    STUDIO GSE120523   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: The study investigates the effects of TEPA and hypoxia on EA.Hy926 cells.
+      -- confronto 1/2   (GSE120523__grp_0006_vs_grp_0003)
+         TRATTATO  (n=1, role=treated): Hypoxia 1
+             factor_levels: treatment=hypoxia
+         CONTROLLO (n=1, role=control): Vehicle Control 1
+             factor_levels: treatment=vehicle
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+      -- confronto 2/2   (GSE120523__grp_0007_vs_grp_0003)
+         TRATTATO  (n=2, role=treated): Hypoxia 2
+             factor_levels: treatment=hypoxia
+         CONTROLLO (n=1, role=control): Vehicle Control 1
+             factor_levels: treatment=vehicle
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE120611   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia and YTHDF2 overexpression on SMMC-7721 liver cancer cells.
+      -- confronto 1/1   (GSE120611__grp_0002_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): Hypoxia
+             factor_levels: treatment=hypoxia
+         CONTROLLO (n=1, role=control): Control (EV+Nx)
+             factor_levels: treatment=none
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE120886   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia on different human cell lines, including HepG2, HKC8, and RCC4+VHL cells.
+      -- confronto 1/1   (GSE120886__HKC8_hypoxia_vs_HKC8_untreated)
+         TRATTATO  (n=3, role=treated): HKC8 hypoxia
+             factor_levels: cell_line=HKC8 ; treatment=hypoxia
+         CONTROLLO (n=3, role=control): HKC8 untreated
+             factor_levels: cell_line=HKC8 ; treatment=untreated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|HKC8
+
+    STUDIO GSE123571   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of AntA and hypoxia treatments on HeLa cells.
+      -- confronto 1/1   (GSE123571__hypoxia_vs_control)
+         TRATTATO  (n=1, role=treated): HeLa cells under hypoxia
+             factor_levels: treatment=hypoxia ; cell_type=HeLa
+         CONTROLLO (n=1, role=control): Control HeLa cells
+             factor_levels: treatment=control ; cell_type=HeLa
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|HeLa
+
+    STUDIO GSE139963   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia and TGF-β1 on human lung fibroblast cells.
+      -- confronto 1/1   (GSE139963__grp_0001_vs_grp_0003)
+         TRATTATO  (n=3, role=treated): Hypoxia
+             factor_levels: treatment=hypoxia
+         CONTROLLO (n=3, role=control): PBS (Vehicle Control)
+             factor_levels: treatment=PBS (vehicle)
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE141941   [design_kind studio: time_course]   confronti in questo cluster: 3
+      design_summary: This study investigates the transcriptional response of HeLa cells to hypoxia over different time points.
+      -- confronto 1/3   (GSE141941__hypoxia_6h_vs_untreated)
+         TRATTATO  (n=1, role=treated): HeLa hypoxia 6h
+             factor_levels: treatment=hypoxia ; time=6h
+         CONTROLLO (n=1, role=control): HeLa untreated
+             factor_levels: treatment=none ; time=0h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=time | fixed=treatment|hypoxia|time|6h
+      -- confronto 2/3   (GSE141941__hypoxia_12h_vs_untreated)
+         TRATTATO  (n=1, role=treated): HeLa hypoxia 12h
+             factor_levels: treatment=hypoxia ; time=12h
+         CONTROLLO (n=1, role=control): HeLa untreated
+             factor_levels: treatment=none ; time=0h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=time | fixed=treatment|hypoxia|time|12h
+      -- confronto 3/3   (GSE141941__hypoxia_24h_vs_untreated)
+         TRATTATO  (n=1, role=treated): HeLa hypoxia 24h
+             factor_levels: treatment=hypoxia ; time=24h
+         CONTROLLO (n=1, role=control): HeLa untreated
+             factor_levels: treatment=none ; time=0h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=time | fixed=treatment|hypoxia|time|24h
+
+    STUDIO GSE151610   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia and genetic modifications on ARPE-19 retinal epithelial cells.
+      -- confronto 1/1   (GSE151610__grp_0001_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): Hypoxia + Vector Control
+             factor_levels: treatment=hypoxia ; genetic modification=none
+         CONTROLLO (n=3, role=control): Vector Control + Normoxia
+             factor_levels: treatment=vector control ; genetic modification=none
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=genetic modification|none
+
+    STUDIO GSE154427   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia and OxPAPC treatments on various human primary cell types, including aortic endothelial cells, aortic smooth muscle cells, macrophages, and umbilical vein endothelial cells.
+      -- confronto 1/2   (GSE154427__grp_0003_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): human aortic smooth muscle cells, Hypoxia
+             factor_levels: cell_type=human aortic smooth muscle cells ; treatment=hypoxia
+         CONTROLLO (n=3, role=control): human aortic smooth muscle cells, Control
+             factor_levels: cell_type=human aortic smooth muscle cells ; treatment=control
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|human aortic smooth muscle cells
+      -- confronto 2/2   (GSE154427__grp_0004_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): human aortic smooth muscle cells, Hypoxia
+             factor_levels: cell_type=human aortic smooth muscle cells ; treatment=hypoxia
+         CONTROLLO (n=3, role=control): human aortic smooth muscle cells, Control
+             factor_levels: cell_type=human aortic smooth muscle cells ; treatment=control
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|human aortic smooth muscle cells
+
+    STUDIO GSE163827   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia and HIF1A knockdown on human brain microvascular endothelial cells and human pulmonary artery endothelial cells.
+      -- confronto 1/2   (GSE163827__grp_0001_vs_grp_0005)
+         TRATTATO  (n=2, role=treated): Brain endothelial cells, hypoxia
+             factor_levels: cell_type=Human brain microvascular endothelial cells ; treatment=hypoxia
+         CONTROLLO (n=3, role=control): Brain endothelial cells, untreated
+             factor_levels: cell_type=Human brain microvascular endothelial cells ; treatment=untreated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|Human brain microvascular endothelial cells
+      -- confronto 2/2   (GSE163827__grp_0002_vs_grp_0005)
+         TRATTATO  (n=1, role=treated): Brain endothelial cells, hypoxia 3 hours
+             factor_levels: cell_type=Human brain microvascular endothelial cells ; treatment=hypoxia
+         CONTROLLO (n=3, role=control): Brain endothelial cells, untreated
+             factor_levels: cell_type=Human brain microvascular endothelial cells ; treatment=untreated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|Human brain microvascular endothelial cells
+
+    STUDIO GSE193133   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of hypoxia on MDA-MB-231 breast cancer cells, including wild-type and CCAR2 knockout variants.
+      -- confronto 1/2   (GSE193133__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): MDA-MB-231 wild-type hypoxia 24h
+             factor_levels: treatment=hypoxia ; genotype=wild-type
+         CONTROLLO (n=3, role=control): MDA-MB-231 wild-type untreated
+             factor_levels: treatment=untreated ; genotype=wild-type
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genotype|wild-type
+      -- confronto 2/2   (GSE193133__grp_0004_vs_grp_0006)
+         TRATTATO  (n=3, role=treated): MDA-MB-231 CCAR2-/- hypoxia 24h
+             factor_levels: treatment=hypoxia ; genotype=CCAR2-/-
+         CONTROLLO (n=2, role=control): MDA-MB-231 CCAR2-/- untreated
+             factor_levels: treatment=untreated ; genotype=CCAR2-/-
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=genotype|CCAR2-/-
+
+    STUDIO GSE226005   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of various treatments on IMR90 lung cells, including hypoxia, NMN, and normoxia.
+      -- confronto 1/2   (GSE226005__Hypoxia_vs_None)
+         TRATTATO  (n=2, role=treated): Hypoxia
+             factor_levels: treatment=Hypoxia ; cell_line=IMR90 ; tissue=lung
+         CONTROLLO (n=4, role=control): Control (None)
+             factor_levels: treatment=None ; cell_line=IMR90 ; tissue=lung ; passage_or_state=senescent
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|IMR90|tissue|lung
+      -- confronto 2/2   (GSE226005__Hypoxia_senescent_vs_None)
+         TRATTATO  (n=2, role=treated): Hypoxia (senescent)
+             factor_levels: treatment=Hypoxia ; cell_line=IMR90 ; tissue=lung ; passage_or_state=senescent
+         CONTROLLO (n=4, role=control): Control (None)
+             factor_levels: treatment=None ; cell_line=IMR90 ; tissue=lung ; passage_or_state=senescent
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|IMR90|tissue|lung|passage_or_state|senescent
+
+    STUDIO GSE267662   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of hypoxia on HUVEC cells compared to a normal control.
+      -- confronto 1/1   (GSE267662__hypoxia_vs_normal)
+         TRATTATO  (n=2, role=treated): Hypoxia-treated HUVEC
+             factor_levels: treatment=Hypoxia ; cell_type=HUVEC
+         CONTROLLO (n=2, role=control): Normal HUVEC
+             factor_levels: treatment=Normal ; cell_type=HUVEC
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|HUVEC
+
+    STUDIO GSE70544   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of cytokine stimulation and hypoxia on proximal tubular epithelial cells derived from human kidney tissue.
+      -- confronto 1/1   (GSE70544__grp_0003_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): Hypoxia Treated
+             factor_levels: treatment=hypoxia
+         CONTROLLO (n=6, role=control): Control
+             factor_levels: treatment=control
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+#############################################################################################################################
+# SARS-CoV-2 — NCBITaxon:2697049||gain : controllo 'vehicle_untreated' (vincente) contro 'uninfected' (scartato)
+# entita: NCBITaxon:2697049   |   guadagno atteso da confermare: +2 studi efficaci attesi (k_eff 34 -> 36), 3 studi persi censiti
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_871ae09e   contrast_control_key: 'vehicle_untreated'   canonical_name: 'sars-cov2'
+      studi: 38   membri (confronti): 103
+  =======================================================================================================================
+
+    STUDIO GSE148696   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human iPSC-derived colon cells to SARS-CoV-2 infection compared to mock-infected controls.
+      -- confronto 1/1   (GSE148696__grp_0002_vs_grp_0001)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 infected Hesc cells
+             factor_levels: infection_status=SARS-CoV-2
+         CONTROLLO (n=2, role=control): Mock infected Hesc cells
+             factor_levels: infection_status=mock infected
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=<vuoto>
+
+    STUDIO GSE148697   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human iPSC-derived lung cells to SARS-CoV-2 infection compared to a mock-treated control.
+      -- confronto 1/1   (GSE148697__grp_0002_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2-infected Hesc cells
+             factor_levels: treatment=sars-Cov2 ; cell_type=Hesc cells ; tissue=lung
+         CONTROLLO (n=3, role=control): Mock-treated Hesc cells
+             factor_levels: treatment=mock ; cell_type=Hesc cells ; tissue=lung
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Hesc cells|tissue|lung
+
+    STUDIO GSE150819   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human lung cells and bronchial organoids to SARS-CoV-2 infection and the effects of camostat treatment.
+      -- confronto 1/1   (GSE150819__HBO_SARS_vs_HBO_none)
+         TRATTATO  (n=3, role=treated): Human bronchial organoids, SARS-CoV-2
+             factor_levels: cell_context=human bronchial organoids ; perturbation=SARS-CoV-2
+         CONTROLLO (n=3, role=control): Human bronchial organoids, no treatment
+             factor_levels: cell_context=human bronchial organoids ; perturbation=none
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=perturbation | fixed=cell_context|human bronchial organoids
+
+    STUDIO GSE151803   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the transcriptional response of human lung tissue and organoids to SARS-CoV-2 infection.
+      -- confronto 1/4   (GSE151803__grp_0001_vs_grp_0003)
+         TRATTATO  (n=1, role=treated): COVID-19 Lung 58L
+             factor_levels: cell_context=COVID-19 Lung 58L ; perturbation=sars-Cov2
+         CONTROLLO (n=1, role=control): hESC Mock
+             factor_levels: cell_context=hESC ; perturbation=Mock
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=cell_context | fixed=perturbation|sars-Cov2
+      -- confronto 2/4   (GSE151803__grp_0002_vs_grp_0003)
+         TRATTATO  (n=2, role=treated): COVID-19 Lung
+             factor_levels: cell_context=COVID-19 Lung ; perturbation=sars-Cov2
+         CONTROLLO (n=1, role=control): hESC Mock
+             factor_levels: cell_context=hESC ; perturbation=Mock
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=cell_context | fixed=perturbation|sars-Cov2
+      -- confronto 3/4   (GSE151803__grp_0005_vs_grp_0003)
+         TRATTATO  (n=3, role=treated): hESC sars-Cov2
+             factor_levels: cell_context=hESC ; perturbation=sars-Cov2
+         CONTROLLO (n=1, role=control): hESC Mock
+             factor_levels: cell_context=hESC ; perturbation=Mock
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=cell_context | fixed=perturbation|sars-Cov2
+      -- confronto 4/4   (GSE151803__grp_0007_vs_grp_0006)
+         TRATTATO  (n=4, role=treated): Liver Organoid sars-Cov2
+             factor_levels: cell_context=Liver Organoid ; perturbation=sars-Cov2
+         CONTROLLO (n=6, role=control): Liver Organoid Mock
+             factor_levels: cell_context=Liver Organoid ; perturbation=Mock
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=cell_context | fixed=perturbation|sars-Cov2
+
+    STUDIO GSE151879   [design_kind studio: case_control_disease]   confronti in questo cluster: 3
+      design_summary: This study investigates the transcriptional response of human cardiomyocytes and macrophages to SARS-CoV-2 infection.
+      -- confronto 1/3   (GSE151879__grp_0002_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): Adult human cardiomyocytes SARS-CoV-2
+             factor_levels: cell_context=Adult human cardiomyocytes ; perturbation=SARS-CoV-2
+         CONTROLLO (n=3, role=control): Adult human cardiomyocytes Mock
+             factor_levels: cell_context=Adult human cardiomyocytes ; perturbation=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=perturbation | fixed=cell_context|Adult human cardiomyocytes
+      -- confronto 2/3   (GSE151879__grp_0004_vs_grp_0003)
+         TRATTATO  (n=3, role=treated): hESC-derived cardiomyocytes SARS-CoV-2
+             factor_levels: cell_context=hESC-derived cardiomyocytes ; perturbation=SARS-CoV-2
+         CONTROLLO (n=3, role=control): hESC-derived cardiomyocytes Mock
+             factor_levels: cell_context=hESC-derived cardiomyocytes ; perturbation=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=perturbation | fixed=cell_context|hESC-derived cardiomyocytes
+      -- confronto 3/3   (GSE151879__grp_0005_vs_grp_0006)
+         TRATTATO  (n=3, role=treated): Macrophages SARS-CoV-2
+             factor_levels: cell_context=Macrophages ; perturbation=SARS-CoV-2
+         CONTROLLO (n=3, role=control): Macrophages Mock
+             factor_levels: cell_context=Macrophages ; perturbation=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=perturbation | fixed=cell_context|Macrophages
+
+    STUDIO GSE153277   [design_kind studio: treatment_vs_untreated]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of iPSC-derived alveolar epithelial type II-like cells to SARS-CoV-2 infection over time.
+      -- confronto 1/2   (GSE153277__SARS-CoV-2_MOI_140_1dpi_vs_none)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 MOI 140 1dpi
+             factor_levels: viral_infection=SARS-CoV-2_MOI_140_1dpi ; time=1 day post-infection
+         CONTROLLO (n=3, role=control): Control (CK+DCI)
+             factor_levels: viral_infection=none ; time=baseline
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=viral_infection | fixed=time|1 day post-infection
+      -- confronto 2/2   (GSE153277__SARS-CoV-2_MOI_140_4days_vs_none)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 MOI 140 4days
+             factor_levels: viral_infection=SARS-CoV-2_MOI_140_4days ; time=4 days post-infection
+         CONTROLLO (n=3, role=control): Control (CK+DCI)
+             factor_levels: viral_infection=none ; time=baseline
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=viral_infection | fixed=time|4 days post-infection
+
+    STUDIO GSE155518   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional changes in lung organoids upon infection with SARS-CoV2 compared to a mock-infected control.
+      -- confronto 1/1   (GSE155518__grp_infected_vs_grp_mock)
+         TRATTATO  (n=3, role=treated): Infected with SARS-CoV2
+             factor_levels: infection_status=infected_with_SARS-CoV2
+         CONTROLLO (n=3, role=control): Mock-infected
+             factor_levels: infection_status=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=infection_status | fixed=<vuoto>
+
+    STUDIO GSE155717   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human lung cells (hALO) and trachea tissue to SARS-CoV-2 infection compared to mock-treated controls.
+      -- confronto 1/1   (GSE155717__grp_0002_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): hALO SARS-CoV-2 (GSM4711203)
+             factor_levels: infection_status=SARS-CoV-2 ; cell_context.cell_type_or_line_raw=hALO ; cell_context.tissue=lung
+         CONTROLLO (n=1, role=control): hALO Mock (GSM4711201)
+             factor_levels: infection_status=mock ; cell_context.cell_type_or_line_raw=hALO ; cell_context.tissue=Lung
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=infection_status | fixed=cell_context.cell_type_or_line_raw|hALO|cell_context.tissue|Lung
+
+    STUDIO GSE159201   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of human iPSC-derived proximal and colonic organoids to SARS-CoV-2 infection over time.
+      -- confronto 1/2   (GSE159201__grp_0007_vs_grp_0005)
+         TRATTATO  (n=3, role=treated): colonic organoid, SARS-CoV-2, 1 day
+             factor_levels: treatment=SARS-CoV-2 ; time=1 day
+         CONTROLLO (n=3, role=control): colonic organoid, mock, 1 day
+             factor_levels: treatment=mock ; time=1 day
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|1 day
+      -- confronto 2/2   (GSE159201__grp_0008_vs_grp_0006)
+         TRATTATO  (n=3, role=treated): colonic organoid, SARS-CoV-2, 4 days
+             factor_levels: treatment=SARS-CoV-2 ; time=4 days
+         CONTROLLO (n=3, role=control): colonic organoid, mock, 4 days
+             factor_levels: treatment=mock ; time=4 days
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|4 days
+
+    STUDIO GSE163959   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 6
+      design_summary: This study investigates the transcriptional response of human lung tissues and nasal turbinate tissues to SARS-CoV-2 and Influenza A infections.
+      -- confronto 1/6   (GSE163959__LS4_SARS-CoV-2_vs_LM4_Mock)
+         TRATTATO  (n=2, role=treated): LS4 SARS-CoV-2 Infected
+             factor_levels: infection_status=SARS-CoV-2_infected ; tissue_type=lung
+         CONTROLLO (n=2, role=control): LM4 Mock Infected
+             factor_levels: infection_status=mock_infected ; tissue_type=lung
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=tissue_type|lung
+      -- confronto 2/6   (GSE163959__LS5_SARS-CoV-2_vs_LM5_Mock)
+         TRATTATO  (n=2, role=treated): LS5 SARS-CoV-2 Infected
+             factor_levels: infection_status=SARS-CoV-2_infected ; tissue_type=lung
+         CONTROLLO (n=2, role=control): LM5 Mock Infected
+             factor_levels: infection_status=mock_infected ; tissue_type=lung
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=tissue_type|lung
+      -- confronto 3/6   (GSE163959__LS6_SARS-CoV-2_vs_LM6_Mock)
+         TRATTATO  (n=2, role=treated): LS6 SARS-CoV-2 Infected
+             factor_levels: infection_status=SARS-CoV-2_infected ; tissue_type=lung
+         CONTROLLO (n=2, role=control): LM6 Mock Infected
+             factor_levels: infection_status=mock_infected ; tissue_type=lung
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=tissue_type|lung
+      -- confronto 4/6   (GSE163959__Lung_Tissue_SARS-CoV-2_vs_LM8_Mock)
+         TRATTATO  (n=4, role=treated): Lung Tissue SARS-CoV-2 Infected
+             factor_levels: infection_status=SARS-CoV-2_infected ; tissue_type=lung
+         CONTROLLO (n=1, role=control): LM8 Mock Infected
+             factor_levels: infection_status=mock_infected ; tissue_type=lung
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=tissue_type|lung
+      -- confronto 5/6   (GSE163959__Nasal_Turbinate_SARS-CoV-2_vs_TM1_Mock)
+         TRATTATO  (n=1, role=treated): Nasal Turbinate SARS-CoV-2 Infected
+             factor_levels: infection_status=SARS-CoV-2_infected ; tissue_type=nasal_turbinate
+         CONTROLLO (n=2, role=control): TM1 Mock Infected
+             factor_levels: infection_status=mock_infected ; tissue_type=nasal_turbinate
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=tissue_type|nasal_turbinate
+      -- confronto 6/6   (GSE163959__Nasal_Turbinate_SARS-CoV-2_vs_TM2_Mock)
+         TRATTATO  (n=5, role=treated): Nasal Turbinate SARS-CoV-2 Infected
+             factor_levels: infection_status=SARS-CoV-2_infected ; tissue_type=nasal_turbinate
+         CONTROLLO (n=2, role=control): TM2 Mock Infected
+             factor_levels: infection_status=mock_infected ; tissue_type=nasal_turbinate
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=tissue_type|nasal_turbinate
+
+    STUDIO GSE164073   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the effects of SARS-CoV-2 infection on different tissues of the human eye, including cornea, limbus, and sclera.
+      -- confronto 1/3   (GSE164073__Cornea_SARS-CoV-2_vs_Cornea_mock)
+         TRATTATO  (n=3, role=treated): Cornea_SARS-CoV-2
+             factor_levels: treatment=SARS-CoV-2 ; tissue=cornea
+         CONTROLLO (n=1, role=control): Cornea_mock
+             factor_levels: treatment=mock ; tissue=cornea
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=tissue|cornea
+      -- confronto 2/3   (GSE164073__Limbus_SARS-CoV-2_vs_Limbus_mock)
+         TRATTATO  (n=3, role=treated): Limbus_SARS-CoV-2
+             factor_levels: treatment=SARS-CoV-2 ; tissue=limbus
+         CONTROLLO (n=2, role=control): Limbus_mock
+             factor_levels: treatment=mock ; tissue=limbus
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=tissue|limbus
+      -- confronto 3/3   (GSE164073__Sclera_SARS-CoV-2_vs_Sclera_mock)
+         TRATTATO  (n=3, role=treated): Sclera_SARS-CoV-2
+             factor_levels: treatment=SARS-CoV-2 ; tissue=sclera
+         CONTROLLO (n=3, role=control): Sclera_mock
+             factor_levels: treatment=mock ; tissue=sclera
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=tissue|sclera
+
+    STUDIO GSE165200   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of various lung cell models to SARS-CoV-2 infection.
+      -- confronto 1/2   (GSE165200__grp_0016_vs_grp_0015)
+         TRATTATO  (n=1, role=treated): Small Airway epithelium SARS-CoV2 48h
+             factor_levels: cell_model=Small Airway epithelium ; treatment=SARS-CoV2 48h
+         CONTROLLO (n=1, role=control): Small Airway epithelium Vehicle Only
+             factor_levels: cell_model=Small Airway epithelium ; treatment=Vehicle Only
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_model|Small Airway epithelium
+      -- confronto 2/2   (GSE165200__grp_0017_vs_grp_0015)
+         TRATTATO  (n=1, role=treated): Small Airway epithelium SARS-CoV2 72h
+             factor_levels: cell_model=Small Airway epithelium ; treatment=SARS-CoV2 72h
+         CONTROLLO (n=1, role=control): Small Airway epithelium Vehicle Only
+             factor_levels: cell_model=Small Airway epithelium ; treatment=Vehicle Only
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_model|Small Airway epithelium
+
+    STUDIO GSE167131   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of SARS-CoV2 infection on Calu-3 lung cells.
+      -- confronto 1/1   (GSE167131__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): Calu-3 cells infected with SARS-CoV2 (USA-WA1/2020)
+             factor_levels: viral_infection=SARS-CoV2 (USA-WA1/2020)
+         CONTROLLO (n=2, role=control): Mock-infected Calu-3 cells
+             factor_levels: viral_infection=mock
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=viral_infection | fixed=<vuoto>
+
+    STUDIO GSE169241   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of SARS-CoV-2 infection and various treatments on human iPSC-derived cardiomyocytes and macrophages.
+      -- confronto 1/1   (GSE169241__grp_0008_vs_grp_0006)
+         TRATTATO  (n=3, role=treated): human heart, SARS-CoV-2 infected person
+             factor_levels: cell_type=human heart ; treatment=SARS-CoV-2
+         CONTROLLO (n=3, role=control): human ES-derived macrophage, No treatment
+             factor_levels: cell_type=human ES-derived macrophage ; treatment=No treatment
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|human heart
+
+    STUDIO GSE174745   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of SARS-CoV-2 infection and various treatments on dopaminergic neurons and human ventral midbrain tissue.
+      -- confronto 1/1   (GSE174745__grp_0004_vs_grp_0010)
+         TRATTATO  (n=3, role=treated): Dopaminergic Neuron, SARS-CoV-2
+             factor_levels: Treatment=SARS-CoV-2 ; Cell Context=Dopaminergic Neuron
+         CONTROLLO (n=1, role=control): Dopaminergic Neuron, Control
+             factor_levels: Treatment=Control ; Cell Context=Dopaminergic Neuron
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=Treatment | fixed=Cell Context|Dopaminergic Neuron
+
+    STUDIO GSE181238   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional changes in placental tissue associated with COVID-19 infection compared to healthy controls and other inflammatory pathologies.
+      -- confronto 1/1   (GSE181238__grp_0007_vs_grp_0006)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2-infected Term placenta
+             factor_levels: perturbation=SARS-CoV-2
+         CONTROLLO (n=2, role=control): Mock-treated Term placenta
+             factor_levels: perturbation=MOCK
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=<vuoto>
+
+    STUDIO GSE183850   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of SARS-CoV-2 infection on primary cardiac pericytes derived from heart tissue, comparing healthy and heart failure conditions.
+      -- confronto 1/2   (GSE183850__grp_0003_vs_grp_0002)
+         TRATTATO  (n=10, role=treated): Heart Failure SARS-CoV-2
+             factor_levels: disease_state=Heart Failure ; treatment=SARS-CoV-2 mNeonGreen
+         CONTROLLO (n=6, role=control): Heart Failure Mock
+             factor_levels: disease_state=Heart Failure ; treatment=Mock - Pericyte Growth Medium
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=disease_state|Heart Failure
+      -- confronto 2/2   (GSE183850__grp_0004_vs_grp_0001)
+         TRATTATO  (n=5, role=treated): Healthy SARS-CoV-2
+             factor_levels: disease_state=Healthy ; treatment=SARS-CoV-2 mNeonGreen
+         CONTROLLO (n=3, role=control): Healthy Mock
+             factor_levels: disease_state=Healthy ; treatment=Mock - Pericyte Growth Medium
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=disease_state|Healthy
+
+    STUDIO GSE183999   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 6
+      design_summary: This study investigates the effects of SARS-CoV-2 infection on ACE2-expressing A549 lung cells, comparing wild-type and MAPK11 knockdown conditions.
+      -- confronto 1/6   (GSE183999__grp_0002_vs_grp_0003)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 + siRNA against non-targeting control
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_knockdown=siRNA against non-targeting control
+         CONTROLLO (n=1, role=control): Mock + siRNA against non-targeting control
+             factor_levels: viral_infection=mock ; genetic_knockdown=siRNA against non-targeting control
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_knockdown|siRNA against non-targeting control
+      -- confronto 2/6   (GSE183999__grp_0002_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 + siRNA against non-targeting control
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_knockdown=siRNA against non-targeting control
+         CONTROLLO (n=2, role=control): Mock + siRNA against non-targeting control
+             factor_levels: viral_infection=mock ; genetic_knockdown=siRNA against non-targeting control
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_knockdown|siRNA against non-targeting control
+      -- confronto 3/6   (GSE183999__grp_0002_vs_grp_0005)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 + siRNA against non-targeting control
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_knockdown=siRNA against non-targeting control
+         CONTROLLO (n=1, role=control): Mock + siRNA against non-targeting control
+             factor_levels: viral_infection=mock ; genetic_knockdown=siRNA against non-targeting control
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_knockdown|siRNA against non-targeting control
+      -- confronto 4/6   (GSE183999__grp_0006_vs_grp_0003)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 + siRNA against non-targeting control
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_knockdown=siRNA against non-targeting control
+         CONTROLLO (n=1, role=control): Mock + siRNA against non-targeting control
+             factor_levels: viral_infection=mock ; genetic_knockdown=siRNA against non-targeting control
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_knockdown|siRNA against non-targeting control
+      -- confronto 5/6   (GSE183999__grp_0006_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 + siRNA against non-targeting control
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_knockdown=siRNA against non-targeting control
+         CONTROLLO (n=2, role=control): Mock + siRNA against non-targeting control
+             factor_levels: viral_infection=mock ; genetic_knockdown=siRNA against non-targeting control
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_knockdown|siRNA against non-targeting control
+      -- confronto 6/6   (GSE183999__grp_0006_vs_grp_0005)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 + siRNA against non-targeting control
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_knockdown=siRNA against non-targeting control
+         CONTROLLO (n=1, role=control): Mock + siRNA against non-targeting control
+             factor_levels: viral_infection=mock ; genetic_knockdown=siRNA against non-targeting control
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_knockdown|siRNA against non-targeting control
+
+    STUDIO GSE188382   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the impact of SARS-CoV-2 infection on lung adenocarcinoma A549 cells, including wild-type and SIRT5 knockout variants.
+      -- confronto 1/3   (GSE188382__grp_0002_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): Wild-Type SARS-CoV-2
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_background=wild_type
+         CONTROLLO (n=4, role=control): Wild-Type Mock
+             factor_levels: viral_infection=mock ; genetic_background=wild_type
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_background|wild_type
+      -- confronto 2/3   (GSE188382__grp_0004_vs_grp_0003)
+         TRATTATO  (n=1, role=treated): SIRT5-KO SARS-CoV-2
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_background=SIRT5-KO
+         CONTROLLO (n=2, role=control): SIRT5-KO Mock
+             factor_levels: viral_infection=mock ; genetic_background=SIRT5-KO
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_background|SIRT5-KO
+      -- confronto 3/3   (GSE188382__grp_0007_vs_grp_0006)
+         TRATTATO  (n=4, role=treated): SIRT5-KO SARS-CoV-2 (Replicate)
+             factor_levels: viral_infection=SARS-CoV-2 ; genetic_background=SIRT5-KO
+         CONTROLLO (n=1, role=control): SIRT5-KO Mock (Replicate)
+             factor_levels: viral_infection=mock ; genetic_background=SIRT5-KO
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=viral_infection | fixed=genetic_background|SIRT5-KO
+
+    STUDIO GSE190350   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human epithelial cell lines (CaCO2, A549, HRT18) to SARS-CoV2 infection.
+      -- confronto 1/1   (GSE190350__grp_HRT18_SARS-CoV2_p11_vs_grp_HRT18_mock)
+         TRATTATO  (n=3, role=treated): HRT18 SARS-CoV2 passage 11
+             factor_levels: cell_line=HRT18 ; infection_status=infected
+         CONTROLLO (n=3, role=control): HRT18 mock-infected
+             factor_levels: cell_line=HRT18 ; infection_status=mock-infected
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=infection_status | fixed=cell_line|HRT18
+
+    STUDIO GSE193330   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of SARS-CoV-2 infection on human hepatocytes and HuCCT1 cells.
+      -- confronto 1/2   (GSE193330__grp_0001_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): hepatocytes of bv-LoC infected with SARS-CoV-2
+             factor_levels: cell_type=hepatocytes of bv-LoC ; infection_status=infected
+         CONTROLLO (n=3, role=control): hepatocytes of bv-LoC control
+             factor_levels: cell_type=hepatocytes of bv-LoC ; infection_status=control
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=infection_status | fixed=cell_type|hepatocytes of bv-LoC
+      -- confronto 2/2   (GSE193330__grp_0005_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): HuCCT1 infected with SARS-CoV-2
+             factor_levels: cell_type=HuCCT1 ; infection_status=infected
+         CONTROLLO (n=3, role=control): HuCCT1 control
+             factor_levels: cell_type=HuCCT1 ; infection_status=control
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=infection_status | fixed=cell_type|HuCCT1
+
+    STUDIO GSE196113   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of SARS-CoV-2 infection on human lung microvascular endothelial cells (HMVEC-L) compared to a control.
+      -- confronto 1/1   (GSE196113__SARS-CoV-2_vs_control)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2
+             factor_levels: treatment=SARS-CoV-2
+         CONTROLLO (n=3, role=control): Control
+             factor_levels: treatment=control
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE196464   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of iPSC-derived airway epithelium to SARS-CoV-2 infection over time.
+      -- confronto 1/2   (GSE196464__grp_0006_vs_grp_0001)
+         TRATTATO  (n=6, role=treated): SARS-CoV-2 1 DPI
+             factor_levels: treatment=SARS-CoV-2 ; time=1 DPI
+         CONTROLLO (n=4, role=control): Mock 1 DPI
+             factor_levels: treatment=mock ; time=1 DPI
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|1 DPI
+      -- confronto 2/2   (GSE196464__grp_0007_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 3 DPI
+             factor_levels: treatment=SARS-CoV-2 ; time=3 DPI
+         CONTROLLO (n=2, role=control): Mock 3 DPI
+             factor_levels: treatment=mock ; time=3 DPI
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|3 DPI
+
+    STUDIO GSE198449   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 15
+      design_summary: This study investigates the transcriptional response of blood samples from individuals exposed to SARS-CoV-2 over various time points and conditions.
+      -- confronto 1/15   (GSE198449__grp_041_vs_grp_009)
+         TRATTATO  (n=188, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 2/15   (GSE198449__grp_042_vs_grp_009)
+         TRATTATO  (n=2, role=control): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 3/15   (GSE198449__grp_043_vs_grp_009)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 4/15   (GSE198449__grp_044_vs_grp_009)
+         TRATTATO  (n=12, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 5/15   (GSE198449__grp_045_vs_grp_009)
+         TRATTATO  (n=8, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 6/15   (GSE198449__grp_046_vs_grp_009)
+         TRATTATO  (n=4, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 7/15   (GSE198449__grp_047_vs_grp_009)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 8/15   (GSE198449__grp_048_vs_grp_009)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 9/15   (GSE198449__grp_049_vs_grp_009)
+         TRATTATO  (n=1, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 10/15   (GSE198449__grp_050_vs_grp_009)
+         TRATTATO  (n=1, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 11/15   (GSE198449__grp_051_vs_grp_009)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 12/15   (GSE198449__grp_052_vs_grp_009)
+         TRATTATO  (n=1, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 13/15   (GSE198449__grp_053_vs_grp_009)
+         TRATTATO  (n=28, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 14/15   (GSE198449__grp_054_vs_grp_009)
+         TRATTATO  (n=11, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+      -- confronto 15/15   (GSE198449__grp_055_vs_grp_009)
+         TRATTATO  (n=6, role=treated): SARS-CoV-2 Later Surveillance
+             factor_levels: Perturbation=sars-cov-2 ; Time Point=Later Surveillance
+         CONTROLLO (n=166, role=control): Vehicle Control Later Surveillance
+             factor_levels: Perturbation=Control ; Time Point=Later Surveillance
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=Perturbation | fixed=Time Point|Later Surveillance
+
+    STUDIO GSE198722   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of human astrocytes to SARS-CoV-2 infection at different multiplicities of infection (MOI). It includes a mock-infected control group and two treated groups with MOI of 1 and 5.
+      -- confronto 1/2   (GSE198722__SARS-CoV-2_MOI_1_vs_mock)
+         TRATTATO  (n=6, role=treated): Astrocytes infected with SARS-CoV-2 (MOI=1)
+             factor_levels: infection_status=SARS-CoV-2_MOI_1
+         CONTROLLO (n=6, role=control): Mock-infected astrocytes
+             factor_levels: infection_status=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=<vuoto>
+      -- confronto 2/2   (GSE198722__SARS-CoV-2_MOI_5_vs_mock)
+         TRATTATO  (n=6, role=treated): Astrocytes infected with SARS-CoV-2 (MOI=5)
+             factor_levels: infection_status=SARS-CoV-2_MOI_5
+         CONTROLLO (n=6, role=control): Mock-infected astrocytes
+             factor_levels: infection_status=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=<vuoto>
+
+    STUDIO GSE199743   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of well-differentiated primary nasal epithelial cells (WD-PNECs) to SARS-CoV-2 infection over time.
+      -- confronto 1/2   (GSE199743__grp_0003_vs_grp_0001)
+         TRATTATO  (n=4, role=treated): SARS-CoV-2 infected WD-PNEC 48h
+             factor_levels: infection_status=SARS-CoV-2 ; time=48h
+         CONTROLLO (n=4, role=control): Mock infected WD-PNEC 48h
+             factor_levels: infection_status=mock_infected ; time=48h
+         control_type(Stadio 2)=genetic_negative | design_kind_cmp=case_control_disease | varying=infection_status | fixed=time|48h
+      -- confronto 2/2   (GSE199743__grp_0004_vs_grp_0002)
+         TRATTATO  (n=4, role=treated): SARS-CoV-2 infected WD-PNEC 96h
+             factor_levels: infection_status=SARS-CoV-2 ; time=96h
+         CONTROLLO (n=4, role=control): Mock infected WD-PNEC 96h
+             factor_levels: infection_status=mock_infected ; time=96h
+         control_type(Stadio 2)=genetic_negative | design_kind_cmp=case_control_disease | varying=infection_status | fixed=time|96h
+
+    STUDIO GSE202963   [design_kind studio: case_control_disease]   confronti in questo cluster: 6
+      design_summary: This study investigates the transcriptional response of human airway organoids, alveolar organoids, and cardiomyocytes to SARS-CoV-2 infection.
+      -- confronto 1/6   (GSE202963__Airway_Organoids_SARS-CoV-2_MOI1_48h_vs_Airway_Organoids_Mock)
+         TRATTATO  (n=2, role=treated): Airway Organoids SARS-CoV-2 MOI=1 48h
+             factor_levels: cell_type=Airway Organoids ; treatment=SARS-CoV-2 Infection
+         CONTROLLO (n=3, role=control): Airway Organoids Mock
+             factor_levels: cell_type=Airway Organoids ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Airway Organoids
+      -- confronto 2/6   (GSE202963__Airway_Organoids_SARS-CoV-2_MOI1_2_48h_vs_Airway_Organoids_Mock)
+         TRATTATO  (n=1, role=treated): Airway Organoids SARS-CoV-2 MOI=1_2 48h
+             factor_levels: cell_type=Airway Organoids ; treatment=SARS-CoV-2 Infection
+         CONTROLLO (n=3, role=control): Airway Organoids Mock
+             factor_levels: cell_type=Airway Organoids ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Airway Organoids
+      -- confronto 3/6   (GSE202963__Alveolar_Organoids_Lung_SARS-CoV-2_MOI0.01_48h_vs_Alveolar_Organoids_Lung_Mock_48h)
+         TRATTATO  (n=3, role=treated): Alveolar Organoids Lung SARS-CoV-2 MOI=0.01 48h
+             factor_levels: cell_type=Alveolar Organoids ; treatment=SARS-CoV-2 Infection
+         CONTROLLO (n=1, role=control): Alveolar Organoids Lung Mock 48h
+             factor_levels: cell_type=Alveolar Organoids ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Alveolar Organoids
+      -- confronto 4/6   (GSE202963__Alveolar_Organoids_Lung_SARS-CoV-2_MOI0.1_48h_vs_Alveolar_Organoids_Lung_Mock_48h)
+         TRATTATO  (n=3, role=treated): Alveolar Organoids Lung SARS-CoV-2 MOI=0.1 48h
+             factor_levels: cell_type=Alveolar Organoids ; treatment=SARS-CoV-2 Infection
+         CONTROLLO (n=1, role=control): Alveolar Organoids Lung Mock 48h
+             factor_levels: cell_type=Alveolar Organoids ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Alveolar Organoids
+      -- confronto 5/6   (GSE202963__Alveolar_Organoids_Lung_SARS-CoV-2_MOI1_48h_vs_Alveolar_Organoids_Lung_Mock_48h)
+         TRATTATO  (n=1, role=treated): Alveolar Organoids Lung SARS-CoV-2 MOI=1 48h
+             factor_levels: cell_type=Alveolar Organoids ; treatment=SARS-CoV-2 Infection
+         CONTROLLO (n=1, role=control): Alveolar Organoids Lung Mock 48h
+             factor_levels: cell_type=Alveolar Organoids ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Alveolar Organoids
+      -- confronto 6/6   (GSE202963__Alveolar_Organoids_Lung_SARS-CoV-2_MOI1_48h_Replicate_vs_Alveolar_Organoids_Lung_Mock_48h)
+         TRATTATO  (n=2, role=treated): Alveolar Organoids Lung SARS-CoV-2 MOI=1 48h Replicate
+             factor_levels: cell_type=Alveolar Organoids ; treatment=SARS-CoV-2 Infection
+         CONTROLLO (n=1, role=control): Alveolar Organoids Lung Mock 48h
+             factor_levels: cell_type=Alveolar Organoids ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|Alveolar Organoids
+
+    STUDIO GSE205621   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 12
+      design_summary: This study investigates the transcriptional response of A549 cells expressing the ACE receptor to different variants of SARS-CoV-2 over 24 and 48 hours.
+      -- confronto 1/12   (GSE205621__grp_0003_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 DelARKSAP 24h
+             factor_levels: virus_variant=SARS-CoV-2 DelARKSAP ; time=24 hour
+         CONTROLLO (n=2, role=control): Mock 24h
+             factor_levels: virus_variant=Mock ; time=24 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|24 hour
+      -- confronto 2/12   (GSE205621__grp_0004_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 DelARKSAP 48h
+             factor_levels: virus_variant=SARS-CoV-2 DelARKSAP ; time=48 hour
+         CONTROLLO (n=1, role=control): Mock 48h
+             factor_levels: virus_variant=Mock ; time=48 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|48 hour
+      -- confronto 3/12   (GSE205621__grp_0005_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 DelOrf8 24h
+             factor_levels: virus_variant=SARS-CoV-2 DelOrf8 ; time=24 hour
+         CONTROLLO (n=2, role=control): Mock 24h
+             factor_levels: virus_variant=Mock ; time=24 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|24 hour
+      -- confronto 4/12   (GSE205621__grp_0006_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 DelOrf8 48h
+             factor_levels: virus_variant=SARS-CoV-2 DelOrf8 ; time=48 hour
+         CONTROLLO (n=1, role=control): Mock 48h
+             factor_levels: virus_variant=Mock ; time=48 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|48 hour
+      -- confronto 5/12   (GSE205621__grp_0007_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 WT 24h
+             factor_levels: virus_variant=SARS-CoV-2 WT ; time=24 hour
+         CONTROLLO (n=2, role=control): Mock 24h
+             factor_levels: virus_variant=Mock ; time=24 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|24 hour
+      -- confronto 6/12   (GSE205621__grp_0008_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 WT 48h
+             factor_levels: virus_variant=SARS-CoV-2 WT ; time=48 hour
+         CONTROLLO (n=1, role=control): Mock 48h
+             factor_levels: virus_variant=Mock ; time=48 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|48 hour
+      -- confronto 7/12   (GSE205621__grp_0003_vs_grp_0009)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 DelARKSAP 24h
+             factor_levels: virus_variant=SARS-CoV-2 DelARKSAP ; time=24 hour
+         CONTROLLO (n=1, role=control): Mock 24h
+             factor_levels: virus_variant=Mock ; time=24 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|24 hour
+      -- confronto 8/12   (GSE205621__grp_0004_vs_grp_0010)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 DelARKSAP 48h
+             factor_levels: virus_variant=SARS-CoV-2 DelARKSAP ; time=48 hour
+         CONTROLLO (n=2, role=control): Mock 48h
+             factor_levels: virus_variant=Mock ; time=48 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|48 hour
+      -- confronto 9/12   (GSE205621__grp_0005_vs_grp_0009)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 DelOrf8 24h
+             factor_levels: virus_variant=SARS-CoV-2 DelOrf8 ; time=24 hour
+         CONTROLLO (n=1, role=control): Mock 24h
+             factor_levels: virus_variant=Mock ; time=24 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|24 hour
+      -- confronto 10/12   (GSE205621__grp_0006_vs_grp_0010)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 DelOrf8 48h
+             factor_levels: virus_variant=SARS-CoV-2 DelOrf8 ; time=48 hour
+         CONTROLLO (n=2, role=control): Mock 48h
+             factor_levels: virus_variant=Mock ; time=48 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|48 hour
+      -- confronto 11/12   (GSE205621__grp_0007_vs_grp_0009)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 WT 24h
+             factor_levels: virus_variant=SARS-CoV-2 WT ; time=24 hour
+         CONTROLLO (n=1, role=control): Mock 24h
+             factor_levels: virus_variant=Mock ; time=24 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|24 hour
+      -- confronto 12/12   (GSE205621__grp_0008_vs_grp_0010)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 WT 48h
+             factor_levels: virus_variant=SARS-CoV-2 WT ; time=48 hour
+         CONTROLLO (n=2, role=control): Mock 48h
+             factor_levels: virus_variant=Mock ; time=48 hour
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_variant | fixed=time|48 hour
+
+    STUDIO GSE206677   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional changes in human umbilical vein endothelial cells upon SARS-CoV-2 infection.
+      -- confronto 1/1   (GSE206677__SARS-CoV-2_infection_vs_Control)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 infection 72hpi
+             factor_levels: treatment=SARS-CoV-2 ; time(hours)=72
+         CONTROLLO (n=6, role=control): Control
+             factor_levels: treatment=Control ; time(hours)=72
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time(hours)|72
+
+    STUDIO GSE217099   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of SARS-CoV-2 infection and cycloheximide treatment on iPS cell-derived bronchioalveolar organoids.
+      -- confronto 1/1   (GSE217099__grp_0008_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2
+             factor_levels: treatment=SARS-CoV-2 ; time=4 dpi
+         CONTROLLO (n=2, role=control): mock
+             factor_levels: treatment=mock ; time=4 dpi
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time|4 dpi
+
+    STUDIO GSE225517   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of SARS-CoV-2 infection on midbrain organoids compared to mock-infected controls.
+      -- confronto 1/2   (GSE225517__grp_0002_vs_grp_0001)
+         TRATTATO  (n=4, role=treated): Midbrain organoid Line 15 SARS-CoV-2
+             factor_levels: infection_status=SARS-CoV-2 ; cell_line=Line 15
+         CONTROLLO (n=3, role=control): Midbrain organoid Line 15 Mock infection
+             factor_levels: infection_status=mock_infection ; cell_line=Line 15
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=cell_line|Line 15
+      -- confronto 2/2   (GSE225517__grp_0004_vs_grp_0003)
+         TRATTATO  (n=4, role=treated): Midbrain organoid SARS-CoV-2
+             factor_levels: infection_status=SARS-CoV-2
+         CONTROLLO (n=4, role=control): Midbrain organoid Line 11 Mock infection
+             factor_levels: infection_status=mock_infection ; cell_line=Line 11
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=cell_line|Line 11
+
+    STUDIO GSE225564   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the transcriptional response of iPSC-derived lung cells to infection with SARS-CoV-2 and other coronaviruses over different time points.
+      -- confronto 1/4   (GSE225564__grp_0001_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): RUES2 lung cells infected with SARS-CoV-2 for 48 hours
+             factor_levels: virus=SARS-CoV-2 ; time=48hpi
+         CONTROLLO (n=3, role=control): RUES2 lung cells mock-infected for 48 hours
+             factor_levels: virus=mock ; time=48hpi
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=time|48hpi
+      -- confronto 2/4   (GSE225564__grp_0006_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): RUES2 lung cells infected with SARS-CoV-2 for 12 hours
+             factor_levels: virus=SARS-CoV-2 ; time=12hpi
+         CONTROLLO (n=3, role=control): RUES2 lung cells mock-infected for 12 hours
+             factor_levels: virus=mock ; time=12hpi
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=time|12hpi
+      -- confronto 3/4   (GSE225564__grp_0007_vs_grp_0003)
+         TRATTATO  (n=1, role=treated): RUES2 lung cells infected with SARS-CoV-2 for 24 hours
+             factor_levels: virus=SARS-CoV-2 ; time=24hpi
+         CONTROLLO (n=3, role=control): RUES2 lung cells mock-infected for 24 hours
+             factor_levels: virus=mock ; time=24hpi
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=time|24hpi
+      -- confronto 4/4   (GSE225564__grp_0008_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): RUES2 lung cells infected with SARS-CoV-2 for 48 hours
+             factor_levels: virus=SARS-CoV-2 ; time=48hpi
+         CONTROLLO (n=3, role=control): RUES2 lung cells mock-infected for 48 hours
+             factor_levels: virus=mock ; time=48hpi
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=time|48hpi
+
+    STUDIO GSE226702   [design_kind studio: time_course]   confronti in questo cluster: 4
+      design_summary: This study investigates the transcriptional response of ex vivo human precision-cut lung slices to SARS-CoV-2 infection over time.
+      -- confronto 1/4   (GSE226702__grp_0002_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): SARS-CoV-2 24h
+             factor_levels: infection_status=SARS-CoV-2 ; time_post_infection=24h
+         CONTROLLO (n=2, role=control): Mock infection
+             factor_levels: infection_status=mock_infection ; time_post_infection=0h
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=time_post_infection|24h
+      -- confronto 2/4   (GSE226702__grp_0003_vs_grp_0001)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 48h
+             factor_levels: infection_status=SARS-CoV-2 ; time_post_infection=48h
+         CONTROLLO (n=2, role=control): Mock infection
+             factor_levels: infection_status=mock_infection ; time_post_infection=0h
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=time_post_infection|48h
+      -- confronto 3/4   (GSE226702__grp_0004_vs_grp_0001)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 72h
+             factor_levels: infection_status=SARS-CoV-2 ; time_post_infection=72h
+         CONTROLLO (n=2, role=control): Mock infection
+             factor_levels: infection_status=mock_infection ; time_post_infection=0h
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=time_post_infection|72h
+      -- confronto 4/4   (GSE226702__grp_0005_vs_grp_0001)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 96h
+             factor_levels: infection_status=SARS-CoV-2 ; time_post_infection=96h
+         CONTROLLO (n=2, role=control): Mock infection
+             factor_levels: infection_status=mock_infection ; time_post_infection=0h
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=time_post_infection|96h
+
+    STUDIO GSE233732   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: Case-control study comparing SARS-CoV-2 infected vagus nerve tissue to control samples.
+      -- confronto 1/1   (GSE233732__infected_vs_control)
+         TRATTATO  (n=27, role=treated): SARS-CoV-2 infected vagus nerve
+             factor_levels: infection_status=infected
+         CONTROLLO (n=5, role=control): Control vagus nerve
+             factor_levels: infection_status=control
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=infection_status | fixed=<vuoto>
+
+    STUDIO GSE244484   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of A549-ACE2 cells to SARS-CoV-2 infection compared to mock-treated controls.
+      -- confronto 1/2   (GSE244484__SARS-CoV-2_MOI_1_24h_vs_mock)
+         TRATTATO  (n=6, role=treated): SARS-CoV-2 MOI 1 24h
+             factor_levels: treatment=SARS-CoV-2 MOI 1 24h
+         CONTROLLO (n=1, role=control): mock
+             factor_levels: treatment=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+      -- confronto 2/2   (GSE244484__SARS-CoV-2_MOI_1_24h_vs_mock_2)
+         TRATTATO  (n=6, role=treated): SARS-CoV-2 MOI 1 24h
+             factor_levels: treatment=SARS-CoV-2 MOI 1 24h
+         CONTROLLO (n=2, role=control): mock
+             factor_levels: treatment=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE244485   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of A549 cells stably expressing ACE2 to SARS-CoV-2 infection compared to a mock-treated control.
+      -- confronto 1/1   (GSE244485__grp_0002_vs_grp_0001)
+         TRATTATO  (n=12, role=treated): SARS-CoV-2-infected A549-ACE2
+             factor_levels: treatment=SARS-CoV-2 ; cell_type_or_line_raw=A549-ACE2
+         CONTROLLO (n=6, role=control): Mock-treated A549-ACE2
+             factor_levels: treatment=mock ; cell_type_or_line_raw=A549-ACE2
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type_or_line_raw|A549-ACE2
+
+    STUDIO GSE244486   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of A549 cells stably expressing ACE2 to SARS-CoV-2 infection compared to a mock-treated control.
+      -- confronto 1/1   (GSE244486__grp_0002_vs_grp_0001)
+         TRATTATO  (n=12, role=treated): SARS-CoV-2-infected A549-ACE2
+             factor_levels: treatment=SARS-CoV-2 ; cell_line=A549-ACE2
+         CONTROLLO (n=6, role=control): Mock-treated A549-ACE2
+             factor_levels: treatment=mock ; cell_line=A549-ACE2
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|A549-ACE2
+
+    STUDIO GSE253542   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of primary human nasal epithelial cells to various respiratory viruses, including HCoV-NL63, HCoV-229E, HRV-16, IAV (H1N1), MERS-CoV, and SARS-CoV-2, compared to mock-infected controls.
+      -- confronto 1/1   (GSE253542__grp_0006_vs_grp_0008)
+         TRATTATO  (n=3, role=treated): SARS-CoV-2 96hpi
+             factor_levels: virus=SARS-CoV-2 ; time=96hpi
+         CONTROLLO (n=2, role=control): Mock Infected 96hpi
+             factor_levels: virus=Mock Infected ; time=96hpi
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=time|96hpi
+
+  =======================================================================================================================
+  >>> SCARTATO  cluster_id: cgroup_L5_89b5ca86   contrast_control_key: 'uninfected'   canonical_name: 'sars-cov-2'
+      studi: 3   membri (confronti): 5
+  =======================================================================================================================
+
+    STUDIO GSE161281   [design_kind studio: treatment_vs_untreated]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of SARS-CoV-2 infection on hESC-derived peripheral neurons.
+      -- confronto 1/1   (GSE161281__grp_0002_vs_grp_0001)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 infected hESC-derived peripheral neurons
+             factor_levels: infection_status=SARS-CoV-2
+         CONTROLLO (n=2, role=control): Uninfected hESC-derived peripheral neurons
+             factor_levels: infection_status=uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=<vuoto>
+
+    STUDIO GSE175900   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional changes in human lung samples exposed to SARS-CoV-2 over different durations and compares them to uninfected controls.
+      -- confronto 1/2   (GSE175900__SARS-CoV-2_21_days_vs_uninfected)
+         TRATTATO  (n=1, role=treated): SARS-CoV-2 exposure for 21 days
+             factor_levels: exposure=SARS-CoV-2 exposure for 21 days
+         CONTROLLO (n=1, role=control): uninfected
+             factor_levels: exposure=uninfected
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=exposure | fixed=<vuoto>
+      -- confronto 2/2   (GSE175900__SARS-CoV-2_5_days_vs_uninfected)
+         TRATTATO  (n=1, role=treated): SARS-CoV-2 exposure for 5 days
+             factor_levels: exposure=SARS-CoV-2 exposure for 5 days
+         CONTROLLO (n=1, role=control): uninfected
+             factor_levels: exposure=uninfected
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=exposure | fixed=<vuoto>
+
+    STUDIO GSE237059   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of iPSC-derived alveolar organoids to SARS-CoV-2 infection.
+      -- confronto 1/2   (GSE237059__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): SARS-CoV-2 WA1 (sheared)
+             factor_levels: infection_status=SARS-CoV-2 WA1 ; passage_or_state=Sheared
+         CONTROLLO (n=1, role=control): Uninfected (sheared)
+             factor_levels: infection_status=Uninfected ; passage_or_state=Sheared
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=passage_or_state|Sheared
+      -- confronto 2/2   (GSE237059__grp_0003_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): SARS-CoV-2 WA1 (non-sheared)
+             factor_levels: infection_status=SARS-CoV-2 WA1
+         CONTROLLO (n=2, role=control): Uninfected (non-sheared)
+             factor_levels: infection_status=Uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=<vuoto>
+
+#############################################################################################################################
+# EPATITE B — NCBITaxon:10407||gain : controllo 'vehicle_untreated' (vincente) contro 'vehicle_untreated_clin' (scartato)
+# entita: NCBITaxon:10407   |   guadagno atteso da confermare: +1 studio efficace atteso (k_eff 3 -> 4), 2 studi persi censiti
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_debadb13   contrast_control_key: 'vehicle_untreated'   canonical_name: 'hepatitis B virus'
+      studi: 4   membri (confronti): 9
+  =======================================================================================================================
+
+    STUDIO GSE164266   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: Case-control study comparing Vγ9+Vδ2+ T cells from patients with hepatitis B virus-related chronic liver disease to healthy donors.
+      -- confronto 1/1   (GSE164266__grp_0001_vs_grp_0002)
+         TRATTATO  (n=5, role=treated): Vγ9+Vδ2+ T cells from HBV patients
+             factor_levels: disease_state=hepatitis B virus-related chronic liver disease ; cell_type_or_line_raw=Vγ9+Vδ2+ T cells ; tissue=liver perfusate
+         CONTROLLO (n=5, role=control): Vγ9+Vδ2+ T cells from healthy donors
+             factor_levels: disease_state=healthy donor ; cell_type_or_line_raw=Vγ9+Vδ2+ T cells ; tissue=liver perfusate
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_type_or_line_raw|Vγ9+Vδ2+ T cells|tissue|liver perfusate
+
+    STUDIO GSE194179   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of HBV and HDV infections on hepatocellular carcinoma cells and primary human hepatocytes.
+      -- confronto 1/2   (GSE194179__grp_0004_vs_grp_0011)
+         TRATTATO  (n=3, role=treated): HBV 500 on dHepaRG
+             factor_levels: virus=HBV 500 ; cell_type=dHepaRG
+         CONTROLLO (n=2, role=control): Mock on HepaRG
+             factor_levels: virus=Mock ; cell_type=HepaRG
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_type|dHepaRG
+      -- confronto 2/2   (GSE194179__grp_0005_vs_grp_0012)
+         TRATTATO  (n=2, role=treated): HBV 500 on primary human hepatocyte
+             factor_levels: virus=HBV 500 ; cell_type=Primary human hepatocyte
+         CONTROLLO (n=2, role=control): Mock on primary human hepatocyte
+             factor_levels: virus=Mock ; cell_type=Primary human hepatocyte
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_type|Primary human hepatocyte
+
+    STUDIO GSE205567   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional changes in human hepatocytes under different infection conditions including HDV mono-infection, HBV mono-infection, and HBV-HDV co-infection.
+      -- confronto 1/2   (GSE205567__grp_0004_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): HBV Mono-Infection (Disease Model)
+             factor_levels: infection_condition=HBV Mono-Infection
+         CONTROLLO (n=4, role=control): Mock Infection
+             factor_levels: infection_condition=Mock Infection
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_condition | fixed=<vuoto>
+      -- confronto 2/2   (GSE205567__grp_0005_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): HBV Mono-Infection
+             factor_levels: infection_condition=HBV Mono-Infection
+         CONTROLLO (n=4, role=control): Mock Infection
+             factor_levels: infection_condition=Mock Infection
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_condition | fixed=<vuoto>
+
+    STUDIO GSE93153   [design_kind studio: time_course]   confronti in questo cluster: 4
+      design_summary: This study investigates the transcriptional response of primary human hepatocytes to Hepatitis B virus (HBV) infection over various time points.
+      -- confronto 1/4   (GSE93153__grp_0002_vs_grp_0032)
+         TRATTATO  (n=1, role=treated): Donor2 HBV D8
+             factor_levels: time=D8 ; treatment=HBV
+         CONTROLLO (n=2, role=control): Donor2 Mock D8
+             factor_levels: time=D8 ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=time_course | varying=time | fixed=treatment|HBV
+      -- confronto 2/4   (GSE93153__grp_0006_vs_grp_0040)
+         TRATTATO  (n=1, role=treated): Donor2 HBV D2
+             factor_levels: time=D2 ; treatment=HBV
+         CONTROLLO (n=2, role=control): Donor2 Mock D2
+             factor_levels: time=D2 ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=time_course | varying=time | fixed=treatment|HBV
+      -- confronto 3/4   (GSE93153__grp_0007_vs_grp_0034)
+         TRATTATO  (n=2, role=treated): Donor1 HBV D10
+             factor_levels: time=D10 ; treatment=HBV
+         CONTROLLO (n=2, role=control): Donor1 Mock D10
+             factor_levels: time=D10 ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=time_course | varying=time | fixed=treatment|HBV
+      -- confronto 4/4   (GSE93153__grp_0008_vs_grp_0035)
+         TRATTATO  (n=4, role=treated): Donor2 HBV D13
+             factor_levels: time=D13 ; treatment=HBV
+         CONTROLLO (n=2, role=control): Donor2 Mock D13
+             factor_levels: time=D13 ; treatment=Mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=time_course | varying=time | fixed=treatment|HBV
+
+  =======================================================================================================================
+  >>> SCARTATO  cluster_id: cgroup_L5_74581ab0   contrast_control_key: 'vehicle_untreated_clin'   canonical_name: 'Hepatitis B virus'
+      studi: 3   membri (confronti): 4
+  =======================================================================================================================
+
+    STUDIO GSE141198   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional landscape of hepatocellular carcinoma (HCC) tissues with various perturbations including HBV, HCV, and NBNC infections, as well as genetic modifications such as CTNNB1 mutations.
+      -- confronto 1/2   (GSE141198__group_0001_vs_group_0003)
+         TRATTATO  (n=2, role=treated): Hepatocellular carcinoma, HBV
+             factor_levels: infection_status=HBV ; genetic_modification=none
+         CONTROLLO (n=2, role=control): Hepatocellular carcinoma, no treatment
+             factor_levels: infection_status=none ; genetic_modification=none
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=genetic_modification|none
+      -- confronto 2/2   (GSE141198__group_0007_vs_group_0008)
+         TRATTATO  (n=1, role=treated): Hepatocellular carcinoma, HBV, ctnnb1_status_wt
+             factor_levels: infection_status=HBV ; genetic_modification=ctnnb1_status_wt
+         CONTROLLO (n=1, role=control): Hepatocellular carcinoma, ctnnb1_status_wt
+             factor_levels: infection_status=none ; genetic_modification=ctnnb1_status_wt
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=genetic_modification|ctnnb1_status_wt
+
+    STUDIO GSE165727   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of various treatments on primary human hepatocytes, including vehicle controls, small molecule treatments at different doses and durations, and hepatitis B virus (HBV) exposure.
+      -- confronto 1/1   (GSE165727__grp_0016_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): HBV 10 uM 24h (donor 4239)
+             factor_levels: treatment=HBV ; dose=10 uM ; duration=24 hours
+         CONTROLLO (n=1, role=control): Vehicle control (donor 4239)
+             factor_levels: treatment=vehicle_only ; dose=0 uM ; duration=0 hours
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=dose|10 uM|duration|24 hours
+
+    STUDIO GSE194179   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of HBV and HDV infections on hepatocellular carcinoma cells and primary human hepatocytes.
+      -- confronto 1/1   (GSE194179__grp_0003_vs_grp_0011)
+         TRATTATO  (n=2, role=treated): HBV 500 on cancer cell line
+             factor_levels: virus=HBV 500 ; cell_type=cancer cell line
+         CONTROLLO (n=2, role=control): Mock on HepaRG
+             factor_levels: virus=Mock ; cell_type=HepaRG
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_type|cancer cell line
+
+#############################################################################################################################
+# OBESI — STR:obese||gain : controllo 'vehicle_untreated' (vincente) contro 'lean' (scartato)
+# entita: STR:obese   |   guadagno atteso da confermare: +0 studi efficaci attesi (k_eff 7 -> 7), 3 studi persi censiti
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_3ec58cd6   contrast_control_key: 'vehicle_untreated'   canonical_name: 'obese'
+      studi: 7   membri (confronti): 8
+  =======================================================================================================================
+
+    STUDIO GSE126848   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates gene expression profiles in human liver tissues under various disease states including NAFLD, NASH, obesity, and healthy controls.
+      -- confronto 1/1   (GSE126848__obese_vs_healthy)
+         TRATTATO  (n=8, role=treated): Obese
+             factor_levels: disease_state=obese
+         CONTROLLO (n=14, role=control): Healthy
+             factor_levels: disease_state=healthy
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=<vuoto>
+
+    STUDIO GSE134580   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of obesity and overweight status on human sperm RNA expression.
+      -- confronto 1/1   (GSE134580__grp_0003_vs_grp_0001)
+         TRATTATO  (n=8, role=treated): Obese
+             factor_levels: condition=obese
+         CONTROLLO (n=2, role=control): Healthy Control
+             factor_levels: condition=healthy
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=condition | fixed=<vuoto>
+
+    STUDIO GSE168705   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates gene expression profiles in human adipose tissue under various conditions including obesity and potential treatments.
+      -- confronto 1/1   (GSE168705__grp_0002_vs_grp_0001)
+         TRATTATO  (n=32, role=treated): Obese
+             factor_levels: condition=obese
+         CONTROLLO (n=36, role=control): Control
+             factor_levels: condition=control
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=condition | fixed=<vuoto>
+
+    STUDIO GSE196387   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: Case-control study comparing skeletal muscle tissue from obese and T2D patients with healthy controls.
+      -- confronto 1/1   (GSE196387__obese_vs_healthy)
+         TRATTATO  (n=6, role=treated): Obese
+             factor_levels: disease_state=Obese
+         CONTROLLO (n=6, role=control): Healthy
+             factor_levels: disease_state=Healthy
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=<vuoto>
+
+    STUDIO GSE205668   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: Case-control study comparing obese and normal-weight subcutaneous adipose tissue samples.
+      -- confronto 1/2   (GSE205668__grp_obese_1_vs_grp_normal_weight_1)
+         TRATTATO  (n=16, role=treated): Obese (Age ~18)
+             factor_levels: disease_state=obese ; age=~18
+         CONTROLLO (n=20, role=control): Normal Weight (Age ~13)
+             factor_levels: disease_state=normal_weight ; age=~13
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=age|~13
+      -- confronto 2/2   (GSE205668__grp_obese_2_vs_grp_normal_weight_2)
+         TRATTATO  (n=10, role=treated): Obese (Age ~14)
+             factor_levels: disease_state=obese ; age=~14
+         CONTROLLO (n=15, role=control): Normal Weight (Age ~0.5)
+             factor_levels: disease_state=normal_weight ; age=~0.5
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=age|~0.5
+
+    STUDIO GSE213465   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: Case-control study comparing CD3-CD56+ NK cells from obese individuals versus healthy controls.
+      -- confronto 1/1   (GSE213465__obese_vs_normal)
+         TRATTATO  (n=4, role=treated): Obese
+             factor_levels: disease_state=obese
+         CONTROLLO (n=4, role=control): Normal
+             factor_levels: disease_state=normal
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=<vuoto>
+
+    STUDIO GSE95243   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates gene expression profiles in hypothalamus neurons derived from iPSCs and primary tissue, comparing obese and control states.
+      -- confronto 1/1   (GSE95243__grp_0002_vs_grp_0003)
+         TRATTATO  (n=5, role=treated): Obese Hypothalamus Neuron (iPSC)
+             factor_levels: disease_state=obese ; cell_context=iPSC_derived
+         CONTROLLO (n=5, role=control): Control Hypothalamus Neuron (iPSC)
+             factor_levels: disease_state=control ; cell_context=iPSC_derived
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_context|iPSC_derived
+
+  =======================================================================================================================
+  >>> SCARTATO  cluster_id: cgroup_L5_0e1c93f7   contrast_control_key: 'lean'   canonical_name: 'Mycobacterium tuberculosis'
+      studi: 3   membri (confronti): 6
+  =======================================================================================================================
+
+    STUDIO GSE145412   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of obesity and metabolic health on gene expression in whole blood samples from human donors.
+      -- confronto 1/1   (GSE145412__group_0004_vs_group_0003)
+         TRATTATO  (n=2, role=treated): Diabetic Obese
+             factor_levels: disease_state=D ; BMI=obese
+         CONTROLLO (n=1, role=treated): Diabetic Lean
+             factor_levels: disease_state=D ; BMI=lean
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=BMI | fixed=disease_state|D
+
+    STUDIO GSE165932   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of insulin sensitivity and resistance in human omental adipose tissue from lean and obese individuals.
+      -- confronto 1/1   (GSE165932__obese_insulin_sensitive_vs_lean_insulin_control)
+         TRATTATO  (n=1, role=treated): Obese Insulin Sensitive
+             factor_levels: disease_state=Obese ; insulin_sensitivity=Insulin Sensitive
+         CONTROLLO (n=1, role=control): Lean Insulin Control
+             factor_levels: disease_state=Lean ; insulin_sensitivity=Insulin Sensitive
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=insulin_sensitivity|Insulin Sensitive
+
+    STUDIO GSE235696   [design_kind studio: case_control_disease]   confronti in questo cluster: 4
+      design_summary: This study compares gene expression profiles between lean and obese visceral adipose tissues.
+      -- confronto 1/4   (GSE235696__obese_vs_lean)
+         TRATTATO  (n=4, role=treated): Obese
+             factor_levels: disease_state=obese
+         CONTROLLO (n=1, role=control): Lean LN1
+             factor_levels: disease_state=lean ; cell_type=ln1
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_type|ln1
+      -- confronto 2/4   (GSE235696__obese_vs_lean_ln2)
+         TRATTATO  (n=4, role=treated): Obese
+             factor_levels: disease_state=obese
+         CONTROLLO (n=1, role=control): Lean LN2
+             factor_levels: disease_state=lean ; cell_type=ln2
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_type|ln2
+      -- confronto 3/4   (GSE235696__obese_vs_lean_ln3)
+         TRATTATO  (n=4, role=treated): Obese
+             factor_levels: disease_state=obese
+         CONTROLLO (n=1, role=control): Lean LN3
+             factor_levels: disease_state=lean ; cell_type=ln3
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_type|ln3
+      -- confronto 4/4   (GSE235696__obese_vs_lean_ln4)
+         TRATTATO  (n=4, role=treated): Obese
+             factor_levels: disease_state=obese
+         CONTROLLO (n=1, role=control): Lean LN4
+             factor_levels: disease_state=lean ; cell_type=ln4
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=cell_type|ln4

@@ -104,6 +104,75 @@ Il `k_eff` calcolato qui salta il pre-filtro H5 del re-pool vero, quindi è un
 351**, quindi il limite è stretto — ma resta un limite superiore, non una
 previsione esatta.
 
+## SECONDO ASSE — le chiavi di controllo (⚠️ IN ATTESA DEL CANCELLO)
+
+`.normalize_control_type()` ha una lista di sinonimi che diventano
+`vehicle_untreated` e una di controlli tenuti distinti. Misurato chiamando la
+funzione vera: `mock` sta fra i sinonimi ma **`uninfected` non sta in nessuna
+delle due**; `normal`/`healthy`/`control`/`normal_weight` ci sono ma **`lean`
+no**. Sono dimenticanze di vocabolario. `normoxia` è distinta **di proposito**,
+ma il confine non tiene nei dati (il cluster vincente dell'ipossia poolа già
+controlli scritti `Untreated` e `Control`, lo scartato ne ha tre che nominano la
+normossia): **decisione utente 2026-08-08, si ribalta**.
+
+Verdetti già dati, su 237 confronti letti per intero
+(`36-verdetti-4-fusioni-dedup.csv`):
+
+| fusione | verdetto | k_eff |
+|---|---|---|
+| ipossia `normoxia`+`veicolo` | stesso contrasto | 25 → **33** |
+| SARS `veicolo`+`uninfected` | stesso contrasto | 34 → **36** |
+| epatite B `veicolo`+`veicolo clinico` | **incerto** → lasciata fuori | 3 → 4 |
+| obesi `veicolo`+`lean` | stesso contrasto | 7 → 7 (**zero**) |
+
+⚠️ **PERCHÉ NON È ANCORA ACCESA.** Una correzione di vocabolario si applica a
+**tutto il corpus**, non ai casi letti. Misurato:
+
+| mappa | fusioni | gruppi nella vetrina | candidati |
+|---|---:|---:|---|
+| entità (5, tutte giudicate) | 5 | 3 | 351 → 351 |
+| controlli | **13** | 6 | 351 → **354** |
+| entrambe | 18 | 9 | 354 |
+
+`uninfected` da solo produce **10** fusioni e ne era stata letta **una**. I
+candidati salgono a 354: tre gruppi superano la soglia, quindi **possono nascere
+meta-analisi nuove** — l'opposto di quanto previsto sopra. Le dieci non lette
+sono in `37-fusioni-controllo-da-giudicare.csv` e sono al cancello. Fra le tre
+che toccano la vetrina c'è **l'influenza A** (`NCBITaxon:11320`), che è **già
+marcata incoerente** con la motivazione «il rapporto clinico-su-sperimentale
+peggiora da 1 su 9 a 1 su 7»: aggiungerle studi va deciso sapendolo.
+
+**Finché quelle dieci non hanno un verdetto, `control_canonical` resta NULL.**
+
+## PRE-FLIGHT già superato: nessun verdetto orfano
+
+I verdetti di coerenza sono un **ingresso** del run e sono indicizzati per
+`entità‖verso‖controllo`. Se una fusione cambia una di quelle chiavi il verdetto
+diventa **orfano** e l'annotazione del deliverable **si ferma a fine run** — è
+quello che sarebbe successo in v14 (1 orfano). Verificato con **entrambe** le
+mappe accese sui verdetti veri (`verdetti-poolato-v15-applicabili.csv`, 11
+righe): **orfani 0 su 11**.
+
+## Due correzioni al piano, prese dopo averlo misurato
+
+1. **Re-pool INTERO, non mirato.** Avevo proposto di aggiungere un parametro
+   d'ambito per rifare i soli cluster che cambiano (~1 h invece di 31). Scartato:
+   renderebbe il deliverable **misto** — alcune righe da un run, il resto da un
+   altro, con versioni di pacchetto diverse — e richiederebbe una macchina nuova
+   per fondere i due pezzi. Il tempo macchina non è la risorsa scarsa; un
+   artefatto omogeneo sì.
+2. **La regola generale NON va in produzione.** Avevo proposto di portarla a
+   codice di pacchetto. È esattamente ciò che il progetto ha già fatto e disfatto:
+   in produzione ha dato 923 fusioni, 61 identità sbagliate e un deliverable più
+   piccolo (v14: 305 → 304 gruppi). La forma corretta è quella di
+   `.CA_DEFRAG_ACCEPT`: la regola genera i candidati in uno script di audit
+   (`20-regola-risoluzione.R`), un umano legge e accetta con la prova accanto
+   (`32-verdetti-8-fusioni.csv`, `36-verdetti-4-fusioni-dedup.csv`), e il pacchetto
+   porta la mappa accettata. **È una lista rivista da un umano, e va detto così**:
+   la differenza rispetto alla lista che questo progetto ha pagato è che i
+   candidati nascono da una regola che gira su tutti gli 11.536 cluster e ogni
+   bocciatura è scritta.
+
 ## Costo del run, misurato dal log di v15
 
 I tempi per cluster stanno in `analysis/audit/2026-08-02-fix/50-repool-v15.log`:

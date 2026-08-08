@@ -99,6 +99,60 @@ test_that("vince il k maggiore anche quando la scrittura canonica e' la piu' pic
   expect_equal(attr(out, "fusioni")$cluster_id_assorbito, "piccolo")
 })
 
+test_that("si fondono anche due CHIAVI DI CONTROLLO che sono lo stesso controllo", {
+  # Misurato il 2026-08-08 leggendo le etichette intere di 237 confronti:
+  # `.normalize_control_type()` ha una lista di sinonimi che diventano
+  # `vehicle_untreated` e una di controlli tenuti distinti. `mock` sta fra i
+  # sinonimi, `uninfected` NON sta in nessuna delle due e ricade su se stesso:
+  # e' una dimenticanza di vocabolario, non una distinzione semantica. Cosi'
+  # SARS-CoV-2 finisce in due cluster (34 e 2 studi) e la dedup ne BUTTA uno.
+  # `normoxia` invece e' distinta di proposito, ma la misura mostra che il
+  # confine non tiene: il cluster vincente dell'ipossia pool­a gia' controlli
+  # scritti `Untreated` e `Control`, e lo scartato ne ha tre che nominano la
+  # normossia. Decisione utente 2026-08-08: si ribalta.
+  cl <- .s4df_cl(c("vince", "assorbito"), "STR:hypoxia", "gain",
+                 c("normoxia", "vehicle_untreated"), c(25L, 12L),
+                 studies = list(paste0("GSE", 1:25), paste0("GSE", 20:31)))
+  out <- .dedup_rem_group_by_entity(
+    cl, control_canonical = c("normoxia" = "vehicle_untreated"))
+  expect_equal(out$cluster_id, "vince")
+  fus <- attr(out, "fusioni")
+  expect_equal(nrow(fus), 1L)
+  expect_equal(fus$cluster_id_assorbito, "assorbito")
+  expect_equal(nrow(attr(out, "scartati")), 0L)   # fuso, non scartato
+  expect_equal(out$k, 31L)                        # unione di GSE1..GSE31
+})
+
+test_that("dopo una fusione il vincente porta la chiave CANONICA, e l'originale resta scritto", {
+  cl <- .s4df_cl(c("vince", "assorbito"), "STR:hypoxia", "gain",
+                 c("normoxia", "vehicle_untreated"), c(25L, 12L))
+  out <- .dedup_rem_group_by_entity(
+    cl, control_canonical = c("normoxia" = "vehicle_untreated"))
+  # il gruppo ora pool­a entrambi i controlli: l'etichetta deve dirlo
+  expect_equal(out$contrast_control_key, "vehicle_untreated")
+  expect_equal(attr(out, "fusioni")$control_key_vincente_prima, "normoxia")
+})
+
+test_that("dopo una fusione di scritture il vincente porta l'entita' CANONICA", {
+  cl <- .s4df_cl(c("vince", "assorbito"), c("CHEMBL:265582", "HGNC:11892"),
+                 "gain", "vehicle_untreated", c(30L, 5L))
+  out <- .dedup_rem_group_by_entity(
+    cl, entity_canonical = c("CHEMBL:265582" = "HGNC:11892"))
+  expect_equal(out$cluster_id, "vince")            # vince sul k
+  expect_equal(out$contrast_entity, "HGNC:11892")  # ma porta l'ID canonico
+  expect_equal(attr(out, "fusioni")$entity_vincente_prima, "CHEMBL:265582")
+})
+
+test_that("senza nessuna delle due mappe le chiavi non vengono toccate", {
+  cl <- .s4df_cl(c("a", "b"), "STR:hypoxia", "gain",
+                 c("normoxia", "vehicle_untreated"), c(25L, 12L))
+  out <- .dedup_rem_group_by_entity(cl)
+  expect_equal(out$cluster_id, "a")
+  expect_equal(out$contrast_control_key, "normoxia")
+  expect_equal(nrow(attr(out, "fusioni")), 0L)
+  expect_equal(nrow(attr(out, "scartati")), 1L)
+})
+
 test_that("il k del vincente diventa il numero di studi DISTINTI dell'unione", {
   # Il gate del deliverable filtra su `k`. Se dopo una fusione `k` resta quello
   # del solo vincente, il gate giudica un gruppo che non esiste piu' -- ed e' il

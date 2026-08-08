@@ -1,0 +1,1081 @@
+MATERIALE INTEGRALE DEI CONTRASTI — le 10 fusioni MAI GIUDICATE prodotte dalla correzione del
+vocabolario dei controlli (normoxia / uninfected / lean trattati come sinonimi di vehicle_untreated).
+Generato: 2026-08-08 09:57:09
+Stadio 3 v15 = analysis/p4-output/20260803T164558Z-stage3-v15-7f986159 (assignments.parquet + clusters.rds)
+Stadio 2     = analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl
+Tabella      = analysis/audit/2026-08-08-deframmentazione/37-fusioni-controllo-da-giudicare.csv (gia_giudicato==FALSE)
+
+COPERTURA: 123 righe di assignments sui 20 cluster, 123 risolte in confronto Stadio 2, 0 NON risolte.
+Studi risolti per cluster == n_studies dichiarato in clusters.rds su TUTTI e 20 i cluster (20/20).
+
+CONTROLLO DEL TRONCAMENTO (numeri nel report):
+  MASSIMI DIVERSI per campo -> nessun cap condiviso: treated_label 74 · control_label 88 · treated_fl 134
+  · control_fl 134 · design_summary 259 · varying_factor 30 · fixed_factors 113.
+  Ogni massimo e' toccato da UN SOLO VALORE DISTINTO, proveniente da UN SOLO studio (la stessa
+  stringa ripetuta su piu' confronti dello stesso GSE), non da molte stringhe diverse.
+  I due valori-cap noti del progetto (40 e 58 caratteri) NON sono picchi nel corpus Stadio 2
+  (186.269 etichette): 0,96x e 0,97x la mediana del vicinato, decadimento monotono.
+  Zero etichette che finiscono con '...', '-' o spazio. Zero caratteri non-ASCII in questi 123
+  membri (il corpus ne ha: 958 etichette con lettera greca = 0,514%, quindi il canale le preserva;
+  questi contrasti semplicemente non ne contengono).
+  LE ETICHETTE QUI SOTTO SONO INTERE.
+=============================================================================================================================
+
+#############################################################################################################################
+# ENTITA NCBITaxon:10359   =   Human betaherpesvirus 5 = CITOMEGALOVIRUS umano (CMV). NB: 'influenza virus' e' taxid 11309, NON questo.
+# k Stadio 3 12 -> 13  |  nel deliverable 214: SI  |  k_eff oggi: 9
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_444e7fc2   contrast_control_key: 'vehicle_untreated'   canonical_name: 'influenza virus'
+      studi: 12   membri (confronti): 26
+  =======================================================================================================================
+
+    STUDIO GSE120890   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of MRC5 lung cells to CMV/AD169 infection compared to a mock-treated control.
+      -- confronto 1/1   (GSE120890__grp_CMV_AD169_vs_grp_mock)
+         TRATTATO  (n=1, role=treated): MRC5 lung cells treated with CMV/AD169 for 48 hours
+             factor_levels: treatment=CMV/AD169 ; time(hours)=48
+         CONTROLLO (n=3, role=control): MRC5 lung cells mock-treated for 48 hours
+             factor_levels: treatment=mock ; time(hours)=48
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|MRC5|time(hours)|48
+
+    STUDIO GSE120891   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the host response to various viral infections in human cells using RNA sequencing.
+      -- confronto 1/4   (GSE120891__ARPE19_CMV_TB40e_vs_ARPE19_mock)
+         TRATTATO  (n=2, role=treated): ARPE19 cells exposed to CMV/TB40e
+             factor_levels: virus=CMV/TB40e ; cell_line=ARPE19
+         CONTROLLO (n=2, role=control): ARPE19 cells mock-infected
+             factor_levels: virus=mock ; cell_line=ARPE19
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_line|ARPE19
+      -- confronto 2/4   (GSE120891__MRC5_CMV_AD169_vs_MRC5_mock_48h)
+         TRATTATO  (n=2, role=treated): MRC5 cells exposed to CMV/AD169
+             factor_levels: virus=CMV/AD169 ; cell_line=MRC5
+         CONTROLLO (n=2, role=control): MRC5 cells mock-infected for 48 hours
+             factor_levels: virus=mock ; cell_line=MRC5
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_line|MRC5
+      -- confronto 3/4   (GSE120891__MRC5_CMV_TB40_vs_MRC5_mock_48h)
+         TRATTATO  (n=2, role=treated): MRC5 cells exposed to CMV/TB40
+             factor_levels: virus=CMV/TB40 ; cell_line=MRC5
+         CONTROLLO (n=2, role=control): MRC5 cells mock-infected for 48 hours
+             factor_levels: virus=mock ; cell_line=MRC5
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_line|MRC5
+      -- confronto 4/4   (GSE120891__MRC5_CMV_TB40e_vs_MRC5_mock_48h)
+         TRATTATO  (n=2, role=treated): MRC5 cells exposed to CMV/TB40e
+             factor_levels: virus=CMV/TB40e ; cell_line=MRC5
+         CONTROLLO (n=2, role=control): MRC5 cells mock-infected for 48 hours
+             factor_levels: virus=mock ; cell_line=MRC5
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_line|MRC5
+
+    STUDIO GSE130665   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the role of P2Y2 receptor in human lung fibroblasts during CMV infection.
+      -- confronto 1/2   (GSE130665__grp_0001_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): siNT + CMV/TB40 strain
+             factor_levels: genetic_knockdown=siNT ; pathogen_or_aggregate_exposure=CMV/TB40 strain
+         CONTROLLO (n=2, role=control): siNT + mock infected
+             factor_levels: genetic_knockdown=siNT
+         control_type(Stadio 2)=genetic_negative | design_kind_cmp=treatment_vs_untreated | varying=pathogen_or_aggregate_exposure | fixed=genetic_knockdown|siNT
+      -- confronto 2/2   (GSE130665__grp_0005_vs_grp_0003)
+         TRATTATO  (n=2, role=treated): siP2Y2 + CMV/TB40 strain
+             factor_levels: genetic_knockdown=siP2Y2 ; pathogen_or_aggregate_exposure=CMV/TB40 strain
+         CONTROLLO (n=1, role=treated): siP2Y2 + mock infected
+             factor_levels: genetic_knockdown=siP2Y2
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_untreated | varying=pathogen_or_aggregate_exposure | fixed=genetic_knockdown|siP2Y2
+
+    STUDIO GSE141236   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human monocytes to Mycobacterium massiliense and Human cytomegalovirus (HCMV) infections.
+      -- confronto 1/1   (GSE141236__grp_0002_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): Monocytes exposed to HCMV
+             factor_levels: infection=Human cytomegalovirus (HCMV) ; cell_type=Monocyte ; context_kind=primary_culture
+         CONTROLLO (n=3, role=control): Uninfected THP-1 cells (control)
+             factor_levels: infection=None ; cell_type=THP-1 ; context_kind=cell_line_in_vitro
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection | fixed=cell_type|Monocyte|context_kind|primary_culture
+
+    STUDIO GSE145415   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of CMV infection on iPSC-derived brain organoids compared to mock-infected controls.
+      -- confronto 1/1   (GSE145415__CMV_infection_vs_mock_infection)
+         TRATTATO  (n=1, role=treated): CMV infection
+             factor_levels: infection_status=CMV infection
+         CONTROLLO (n=1, role=control): Mock infection
+             factor_levels: infection_status=mock infection
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=infection_status | fixed=<vuoto>
+
+    STUDIO GSE159235   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of zeocin treatment on human retinal pigment epithelial cells (ARPE-19) compared to various controls including water, mock treatments, and virus exposure.
+      -- confronto 1/1   (GSE159235__virus_CMV_strain_TB40_vs_mock)
+         TRATTATO  (n=2, role=treated): virus CMV strain TB40
+             factor_levels: treatment=virus CMV strain TB40
+         CONTROLLO (n=2, role=control): mock
+             factor_levels: treatment=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=<vuoto>
+
+    STUDIO GSE179609   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional changes in CD8+ T cells upon exposure to Cytomegalovirus (CMV)
+      -- confronto 1/2   (GSE179609__CMV_naive_vs_control_naive)
+         TRATTATO  (n=2, role=treated): Naive CD8+ T Cells Exposed to CMV
+             factor_levels: cell_state=naive ; perturbation=CMV
+         CONTROLLO (n=8, role=control): Naive CD8+ T Cells Control
+             factor_levels: cell_state=naive ; perturbation=Control
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=perturbation | fixed=<vuoto>
+      -- confronto 2/2   (GSE179609__CMV_activated_vs_control_activated)
+         TRATTATO  (n=1, role=treated): Activated CD8+ T Cells Exposed to CMV
+             factor_levels: cell_state=activated ; perturbation=CMV
+         CONTROLLO (n=2, role=control): Activated CD8+ T Cells Control
+             factor_levels: cell_state=activated ; perturbation=Control
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=perturbation | fixed=<vuoto>
+
+    STUDIO GSE203395   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 6
+      design_summary: This study investigates the transcriptional response of human PBMCs to Mycobacterium tuberculosis (M.tb) and Cytomegalovirus (CMV) infections, both individually and in co-infection scenarios. It also explores the effects of BCG vaccination on these responses.
+      -- confronto 1/6   (GSE203395__grp_0003_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): CMV-infected, D-7, 7 days
+             factor_levels: infection_status=CMV ; vaccination_status=non-vaccinated
+         CONTROLLO (n=2, role=treated): D-7, 7 days
+             factor_levels: infection_status=none ; vaccination_status=non-vaccinated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=vaccination_status|non-vaccinated
+      -- confronto 2/6   (GSE203395__grp_0006_vs_grp_0004)
+         TRATTATO  (n=33, role=treated): CMV-infected, 7 days
+             factor_levels: infection_status=CMV ; vaccination_status=non-vaccinated
+         CONTROLLO (n=2, role=treated): D-7, 7 days
+             factor_levels: infection_status=none ; vaccination_status=non-vaccinated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=vaccination_status|non-vaccinated
+      -- confronto 3/6   (GSE203395__grp_0008_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): CMV-infected, D-7, 7 days
+             factor_levels: infection_status=CMV ; vaccination_status=non-vaccinated
+         CONTROLLO (n=2, role=treated): D-7, 7 days
+             factor_levels: infection_status=none ; vaccination_status=non-vaccinated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=vaccination_status|non-vaccinated
+      -- confronto 4/6   (GSE203395__grp_0024_vs_grp_0025)
+         TRATTATO  (n=23, role=treated): CMV-infected, D-7, 7 days, BCG vaccinated
+             factor_levels: infection_status=CMV ; vaccination_status=BCG vaccinated
+         CONTROLLO (n=2, role=control): M.tb-uninfected, D-7, 7 days, BCG vaccinated
+             factor_levels: infection_status=none ; vaccination_status=BCG vaccinated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=vaccination_status|BCG vaccinated
+      -- confronto 5/6   (GSE203395__grp_0027_vs_grp_0025)
+         TRATTATO  (n=35, role=treated): CMV-infected, D-7, 7 days, BCG vaccinated
+             factor_levels: infection_status=CMV ; vaccination_status=BCG vaccinated
+         CONTROLLO (n=2, role=control): M.tb-uninfected, D-7, 7 days, BCG vaccinated
+             factor_levels: infection_status=none ; vaccination_status=BCG vaccinated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=vaccination_status|BCG vaccinated
+      -- confronto 6/6   (GSE203395__grp_0028_vs_grp_0025)
+         TRATTATO  (n=5, role=treated): M.tb-uninfected, CMV-infected, D-7, 7 days, BCG vaccinated
+             factor_levels: infection_status=CMV ; vaccination_status=BCG vaccinated
+         CONTROLLO (n=2, role=control): M.tb-uninfected, D-7, 7 days, BCG vaccinated
+             factor_levels: infection_status=none ; vaccination_status=BCG vaccinated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=vaccination_status|BCG vaccinated
+
+    STUDIO GSE210989   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of MRC5 lung cells to HCMV strain AD169 infection compared to mock-infected controls.
+      -- confronto 1/2   (GSE210989__grp_0001_vs_grp_0002)
+         TRATTATO  (n=3, role=treated): MRC5 cells infected with HCMV strain AD169 for 48 hours
+             factor_levels: infection_status=HCMV strain AD169 ; time(hours)=48
+         CONTROLLO (n=1, role=control): Mock-infected MRC5 cells for 48 hours
+             factor_levels: infection_status=Mock ; time(hours)=48
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=time(hours)|48
+      -- confronto 2/2   (GSE210989__grp_0001_vs_grp_0003)
+         TRATTATO  (n=3, role=treated): MRC5 cells infected with HCMV strain AD169 for 48 hours
+             factor_levels: infection_status=HCMV strain AD169 ; time(hours)=48
+         CONTROLLO (n=2, role=control): Vehicle-only MRC5 cells for 48 hours
+             factor_levels: infection_status=Mock ; time(hours)=48
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=time(hours)|48
+
+    STUDIO GSE248927   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human peripheral blood monocytes to various treatments, including pathogen exposure, cytokine stimulation, and mock treatments.
+      -- confronto 1/1   (GSE248927__HCMV_vs_Mock)
+         TRATTATO  (n=2, role=treated): HCMV (TB40E) treated
+             factor_levels: treatment=HCMV (TB40E) ; time(hours)=24
+         CONTROLLO (n=2, role=control): Mock treated
+             factor_levels: treatment=Mock ; time(hours)=24
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time(hours)|24
+
+    STUDIO GSE81637   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 4
+      design_summary: This study investigates the transcriptional response of human decidua and placenta tissues to infection with Human Cytomegalovirus (HCMV) and Zika Virus (ZIKV) compared to mock-infected controls.
+      -- confronto 1/4   (GSE81637__grp_0001_vs_grp_0003)
+         TRATTATO  (n=1, role=treated): Decidua HCMV 2dpi
+             factor_levels: virus=HCMV ; tissue=decidua
+         CONTROLLO (n=1, role=control): Decidua Mock 2dpi
+             factor_levels: virus=Mock ; tissue=decidua
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=tissue|decidua
+      -- confronto 2/4   (GSE81637__grp_0002_vs_grp_0004)
+         TRATTATO  (n=1, role=treated): Decidua HCMV 2dpi
+             factor_levels: virus=HCMV ; tissue=decidua
+         CONTROLLO (n=1, role=control): Decidua Mock 2dpi
+             factor_levels: virus=Mock ; tissue=decidua
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=tissue|decidua
+      -- confronto 3/4   (GSE81637__grp_0006_vs_grp_0008)
+         TRATTATO  (n=1, role=treated): Placenta HCMV 2dpi
+             factor_levels: virus=HCMV ; tissue=placenta
+         CONTROLLO (n=1, role=control): Placenta Mock 2dpi
+             factor_levels: virus=Mock ; tissue=placenta
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=tissue|placenta
+      -- confronto 4/4   (GSE81637__grp_0007_vs_grp_0008)
+         TRATTATO  (n=1, role=treated): Placenta HCMV 2dpi
+             factor_levels: virus=HCMV ; tissue=placenta
+         CONTROLLO (n=1, role=control): Placenta Mock 2dpi
+             factor_levels: virus=Mock ; tissue=placenta
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=tissue|placenta
+
+    STUDIO GSE94724   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional changes in human decidua tissue upon infection with human cytomegalovirus (HCMV) compared to a mock-infected control.
+      -- confronto 1/1   (GSE94724__grp_0001_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): HCMV infected decidua
+             factor_levels: infection_status=HCMV_infected
+         CONTROLLO (n=2, role=control): Mock infected decidua
+             factor_levels: infection_status=mock_infected
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=<vuoto>
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_eff40d9b   contrast_control_key: 'uninfected'   canonical_name: 'human herpesvirus 5'
+      studi: 1   membri (confronti): 3
+  =======================================================================================================================
+
+    STUDIO GSE63797   [design_kind studio: time_course]   confronti in questo cluster: 3
+      design_summary: Time course analysis of human foreskin fibroblasts exposed to human herpesvirus 5.
+      -- confronto 1/3   (GSE63797__grp_0001_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): Human herpesvirus 5 exposure for 24 hours
+             factor_levels: time=24h ; agent=human herpesvirus 5
+         CONTROLLO (n=2, role=control): Uninfected control
+             factor_levels: time=0h ; agent=uninfected
+         control_type(Stadio 2)=time_zero | design_kind_cmp=time_course | varying=time | fixed=<vuoto>
+      -- confronto 2/3   (GSE63797__grp_0002_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): Human herpesvirus 5 exposure for 48 hours
+             factor_levels: time=48h ; agent=human herpesvirus 5
+         CONTROLLO (n=2, role=control): Uninfected control
+             factor_levels: time=0h ; agent=uninfected
+         control_type(Stadio 2)=time_zero | design_kind_cmp=time_course | varying=time | fixed=<vuoto>
+      -- confronto 3/3   (GSE63797__grp_0003_vs_grp_0004)
+         TRATTATO  (n=2, role=treated): Human herpesvirus 5 exposure for 72 hours
+             factor_levels: time=72h ; agent=human herpesvirus 5
+         CONTROLLO (n=2, role=control): Uninfected control
+             factor_levels: time=0h ; agent=uninfected
+         control_type(Stadio 2)=time_zero | design_kind_cmp=time_course | varying=time | fixed=<vuoto>
+
+#############################################################################################################################
+# ENTITA NCBITaxon:11320   =   Influenza A virus. NB: 'SARS-CoV-2' e' taxid 2697049, NON questo.
+# k Stadio 3 9 -> 10  |  nel deliverable 214: SI  |  k_eff oggi: 7
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_79a73ac5   contrast_control_key: 'vehicle_untreated'   canonical_name: '<NA>'
+      studi: 9   membri (confronti): 13
+  =======================================================================================================================
+
+    STUDIO GSE113210   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of peripheral blood mononuclear cells (PBMCs) from pediatric patients to various viral infections.
+      -- confronto 1/1   (GSE113210__grp_0011_vs_grp_0022)
+         TRATTATO  (n=3, role=treated): influenza at AV
+             factor_levels: viral_infection=influenza
+         CONTROLLO (n=7, role=control): Control CV
+             factor_levels: <assente>
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=viral_infection | fixed=<vuoto>
+
+    STUDIO GSE121155   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of A549 lung epithelial cells to Influenza virus PR8 infection compared to mock infection and PBS-treated controls.
+      -- confronto 1/2   (GSE121155__Influenza_virus_PR8_vs_Mock_infection)
+         TRATTATO  (n=3, role=treated): Influenza virus PR8
+             factor_levels: treatment=Influenza virus PR8 ; cell_line=A549
+         CONTROLLO (n=2, role=control): Mock infection
+             factor_levels: treatment=mock infection ; cell_line=A549
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|A549
+      -- confronto 2/2   (GSE121155__Influenza_virus_PR8_vs_PBS)
+         TRATTATO  (n=3, role=treated): Influenza virus PR8
+             factor_levels: treatment=Influenza virus PR8 ; cell_line=A549
+         CONTROLLO (n=1, role=control): PBS
+             factor_levels: treatment=PBS ; cell_line=A549
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|A549
+
+    STUDIO GSE134817   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of various statins and small molecules on different human cell lines (HepG2, MCF-7, THP-1) under different conditions.
+      -- confronto 1/2   (GSE134817__grp_HepG2_Flu_6h_vs_grp_HepG2_Flu_6h_Vehicle)
+         TRATTATO  (n=1, role=treated): HepG2 cells treated with Flu for 6 hours
+             factor_levels: cell_line=HepG2 ; treatment=Flu ; duration=6h
+         CONTROLLO (n=1, role=control): HepG2 cells treated with vehicle for 6 hours
+             factor_levels: cell_line=HepG2 ; treatment=Vehicle ; duration=6h
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|HepG2|duration|6h
+      -- confronto 2/2   (GSE134817__grp_THP1_Flu_48h_vs_grp_THP1_Flu_48h_Vehicle)
+         TRATTATO  (n=1, role=treated): THP-1 cells treated with Flu for 48 hours
+             factor_levels: cell_line=THP-1 ; treatment=Flu ; duration=48h
+         CONTROLLO (n=2, role=control): THP-1 cells treated with vehicle for 48 hours
+             factor_levels: cell_line=THP-1 ; treatment=Vehicle ; duration=48h
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|THP-1|duration|48h
+
+    STUDIO GSE162632   [design_kind studio: time_course]   confronti in questo cluster: 2
+      design_summary: Time course analysis of peripheral blood mononuclear cells infected with influenza virus.
+      -- confronto 1/2   (GSE162632__grp_0011_vs_grp_0013)
+         TRATTATO  (n=7, role=treated): PBMC flu (blood)
+             factor_levels: agent=flu ; tissue=blood
+         CONTROLLO (n=1, role=control): PBMC mock (blood)
+             factor_levels: agent=mock ; tissue=blood
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=agent | fixed=tissue|blood
+      -- confronto 2/2   (GSE162632__grp_0012_vs_grp_0013)
+         TRATTATO  (n=4, role=treated): PBMC flu (blood)
+             factor_levels: agent=flu ; tissue=blood
+         CONTROLLO (n=1, role=control): PBMC mock (blood)
+             factor_levels: agent=mock ; tissue=blood
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=agent | fixed=tissue|blood
+
+    STUDIO GSE163959   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of human lung tissues and nasal turbinate tissues to SARS-CoV-2 and Influenza A infections.
+      -- confronto 1/2   (GSE163959__Lung_Tissue_Influenza_A_vs_LM7_Mock)
+         TRATTATO  (n=10, role=treated): Lung Tissue Influenza A Infected
+             factor_levels: infection_status=Influenza_A_infected ; tissue_type=lung
+         CONTROLLO (n=2, role=control): LM7 Mock Infected
+             factor_levels: infection_status=mock_infected ; tissue_type=lung
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=tissue_type|lung
+      -- confronto 2/2   (GSE163959__Nasal_Turbinate_Influenza_A_vs_TM3_Mock)
+         TRATTATO  (n=3, role=treated): Nasal Turbinate Influenza A Infected
+             factor_levels: infection_status=Influenza_A_infected ; tissue_type=nasal_turbinate
+         CONTROLLO (n=2, role=control): TM3 Mock Infected
+             factor_levels: infection_status=mock_infected ; tissue_type=nasal_turbinate
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=infection_status | fixed=tissue_type|nasal_turbinate
+
+    STUDIO GSE184017   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: Case-control study comparing bronchial epithelial cells exposed to Influenza virus versus mock-treated controls.
+      -- confronto 1/1   (GSE184017__Influenza_vs_mock)
+         TRATTATO  (n=30, role=treated): Bronchial epithelial cells exposed to Influenza
+             factor_levels: treatment=Influenza ; cell_type=bronchial epithelial cells ; tissue=lung ; context_kind=primary_culture
+         CONTROLLO (n=2, role=control): Mock-treated bronchial epithelial cells
+             factor_levels: treatment=mock ; cell_type=bronchial epithelial cells ; tissue=lung ; context_kind=primary_culture
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=treatment | fixed=cell_type|bronchial epithelial cells|tissue|lung|context_kind|primary_culture
+
+    STUDIO GSE197143   [design_kind studio: time_course]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human lung tissue to influenza B virus infection over time.
+      -- confronto 1/1   (GSE197143__Influenza_B_48hpi_vs_Mock_48hpi)
+         TRATTATO  (n=2, role=treated): Influenza B 48hpi
+             factor_levels: virus_strain=FluB_337_48hpi ; time=48hpi
+         CONTROLLO (n=3, role=control): Mock 48hpi
+             factor_levels: virus_strain=Mock ; time=48hpi
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=virus_strain | fixed=time|48hpi
+
+    STUDIO GSE239726   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of primary nasal epithelial cells to infection with Influenza A (H3N2) and Respiratory Syncytial Virus (RSV) compared to mock-infected controls.
+      -- confronto 1/1   (GSE239726__grp_0001_vs_grp_0002)
+         TRATTATO  (n=14, role=treated): Influenza A (H3N2) infected
+             factor_levels: virus_infection=Influenza A (H3N2)
+         CONTROLLO (n=30, role=control): Mock infected
+             factor_levels: virus_infection=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_infection | fixed=<vuoto>
+
+    STUDIO GSE253542   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of primary human nasal epithelial cells to various respiratory viruses, including HCoV-NL63, HCoV-229E, HRV-16, IAV (H1N1), MERS-CoV, and SARS-CoV-2, compared to mock-infected controls.
+      -- confronto 1/1   (GSE253542__grp_0004_vs_grp_0007)
+         TRATTATO  (n=2, role=treated): IAV (H1N1) 48hpi
+             factor_levels: virus=IAV (H1N1) ; time=48hpi
+         CONTROLLO (n=5, role=control): Mock Infected 48hpi
+             factor_levels: virus=Mock Infected ; time=48hpi
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=time|48hpi
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_a299eca9   contrast_control_key: 'uninfected'   canonical_name: 'SARS-CoV-2'
+      studi: 1   membri (confronti): 3
+  =======================================================================================================================
+
+    STUDIO GSE206606   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the transcriptional response of human lung cells to Influenza A Virus (IAV) infection.
+      -- confronto 1/3   (GSE206606__AEC_IAV_vs_AEC_uninfected)
+         TRATTATO  (n=3, role=treated): AEC IAV
+             factor_levels: cell_type=AEC ; infection_status=IAV infected
+         CONTROLLO (n=3, role=control): AEC uninfected
+             factor_levels: cell_type=AEC ; infection_status=uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=cell_type|AEC
+      -- confronto 2/3   (GSE206606__AM_IAV_vs_AM_uninfected)
+         TRATTATO  (n=3, role=treated): AM IAV
+             factor_levels: cell_type=AM ; infection_status=IAV infected
+         CONTROLLO (n=1, role=control): AM uninfected
+             factor_levels: cell_type=AM ; infection_status=uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=cell_type|AM
+      -- confronto 3/3   (GSE206606__HuLu_IAV_vs_HuLu_uninfected)
+         TRATTATO  (n=2, role=treated): HuLu IAV
+             factor_levels: cell_type=HuLu ; infection_status=IAV infected
+         CONTROLLO (n=1, role=control): HuLu uninfected
+             factor_levels: cell_type=HuLu ; infection_status=uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=cell_type|HuLu
+
+#############################################################################################################################
+# ENTITA STR:atra   =   scrittura non risolta: ATRA = acido retinoico all-trans (dalle etichette).
+# k Stadio 3 9 -> 9  |  nel deliverable 214: SI  |  k_eff oggi: 5
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_a8ff7b6d   contrast_control_key: 'vehicle_untreated'   canonical_name: 'spin probe'
+      studi: 9   membri (confronti): 20
+  =======================================================================================================================
+
+    STUDIO GSE142383   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) on SH SY5Y cells, including both wild-type and genetically modified variants.
+      -- confronto 1/2   (GSE142383__grp_0006_vs_grp_0007)
+         TRATTATO  (n=2, role=treated): SH SY5Y BKO-98 ATRA Treated
+             factor_levels: Treatment=ATRA ; Genetic Modification=BKO-98
+         CONTROLLO (n=1, role=control): SH SY5Y BKO-98 Untreated Control
+             factor_levels: Treatment=Untreated ; Genetic Modification=BKO-98
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=Treatment | fixed=Genetic Modification|BKO-98
+      -- confronto 2/2   (GSE142383__grp_0009_vs_grp_0008)
+         TRATTATO  (n=2, role=treated): SH SY5Y BKO-98 ATRA Treated
+             factor_levels: Treatment=ATRA ; Genetic Modification=BKO-98
+         CONTROLLO (n=3, role=control): SH SY5Y BKO-98 Untreated Control
+             factor_levels: Treatment=Untreated ; Genetic Modification=BKO-98
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=Treatment | fixed=Genetic Modification|BKO-98
+
+    STUDIO GSE155000   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) on neuroblastoma cell lines BE2C, NBL-S, and NGP.
+      -- confronto 1/3   (GSE155000__BE2C_ATRA_vs_BE2C_DMSO)
+         TRATTATO  (n=3, role=treated): BE2C + ATRA
+             factor_levels: cell_line=BE2C ; treatment=ATRA
+         CONTROLLO (n=3, role=control): BE2C + DMSO
+             factor_levels: cell_line=BE2C ; treatment=DMSO
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|BE2C
+      -- confronto 2/3   (GSE155000__NBL_S_ATRA_vs_NBL_S_DMSO)
+         TRATTATO  (n=3, role=treated): NBL-S + ATRA
+             factor_levels: cell_line=NBL-S ; treatment=ATRA
+         CONTROLLO (n=3, role=control): NBL-S + DMSO
+             factor_levels: cell_line=NBL-S ; treatment=DMSO
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|NBL-S
+      -- confronto 3/3   (GSE155000__NGP_ATRA_vs_NGP_DMSO)
+         TRATTATO  (n=3, role=treated): NGP + ATRA
+             factor_levels: cell_line=NGP ; treatment=ATRA
+         CONTROLLO (n=3, role=control): NGP + DMSO
+             factor_levels: cell_line=NGP ; treatment=DMSO
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|NGP
+
+    STUDIO GSE163428   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) on neuroblastoma cell lines SK-N-BE(2) and SK-N-BE(2)C.
+      -- confronto 1/2   (GSE163428__grp_0001_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): SK-N-BE(2) + ATRA
+             factor_levels: treatment=ATRA ; cell_line=SK-N-BE(2)
+         CONTROLLO (n=2, role=control): SK-N-BE(2)C + ethanol
+             factor_levels: treatment=ethanol ; cell_line=SK-N-BE(2)C
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|SK-N-BE(2)
+      -- confronto 2/2   (GSE163428__grp_0003_vs_grp_0002)
+         TRATTATO  (n=1, role=treated): SK-N-BE(2)C + ATRA
+             factor_levels: treatment=ATRA ; cell_line=SK-N-BE(2)C
+         CONTROLLO (n=2, role=control): SK-N-BE(2)C + ethanol
+             factor_levels: treatment=ethanol ; cell_line=SK-N-BE(2)C
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|SK-N-BE(2)C
+
+    STUDIO GSE175757   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 5
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) treatment on acute myeloid leukemia cell lines HL60 and Kasumi1, including various genetically modified versions of these cell lines.
+      -- confronto 1/5   (GSE175757__Kasumi1_ATRA_1mM_24h_vs_Kasumi1)
+         TRATTATO  (n=1, role=treated): Kasumi1 ATRA 1mM 24h
+             factor_levels: cell_line=Kasumi1 ; treatment=ATRA
+         CONTROLLO (n=2, role=control): Kasumi1
+             factor_levels: cell_line=Kasumi1 ; treatment=untreated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|Kasumi1
+      -- confronto 2/5   (GSE175757__Kasumi1_EPASp10_ATRA_1mM_24h_vs_Kasumi1_EPASp10)
+         TRATTATO  (n=1, role=treated): Kasumi1 EPASp10 ATRA 1mM 24h
+             factor_levels: cell_line=Kasumi1 ; treatment=ATRA
+         CONTROLLO (n=1, role=control): Kasumi1 EPASp10
+             factor_levels: cell_line=Kasumi1 ; treatment=untreated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|Kasumi1
+      -- confronto 3/5   (GSE175757__Kasumi1_EPASp8A_ATRA_1mM_24h_vs_Kasumi1_EPASp8)
+         TRATTATO  (n=1, role=treated): Kasumi1 EPASp8A ATRA 1mM 24h
+             factor_levels: cell_line=Kasumi1 ; treatment=ATRA
+         CONTROLLO (n=1, role=control): Kasumi1 EPASp8
+             factor_levels: cell_line=Kasumi1 ; treatment=untreated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|Kasumi1
+      -- confronto 4/5   (GSE175757__Kasumi1_HIF1p10A_ATRA_1mM_24h_vs_Kasumi1)
+         TRATTATO  (n=1, role=treated): Kasumi1 HIF1p10A ATRA 1mM 24h
+             factor_levels: cell_line=Kasumi1 ; treatment=ATRA
+         CONTROLLO (n=2, role=control): Kasumi1
+             factor_levels: cell_line=Kasumi1 ; treatment=untreated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|Kasumi1
+      -- confronto 5/5   (GSE175757__Kasumi1_HIF1p8A_ATRA_1mM_24h_vs_Kasumi1_HIF1p8)
+         TRATTATO  (n=1, role=treated): Kasumi1 HIF1p8A ATRA 1mM 24h
+             factor_levels: cell_line=Kasumi1 ; treatment=ATRA
+         CONTROLLO (n=1, role=control): Kasumi1 HIF1p8
+             factor_levels: cell_line=Kasumi1 ; treatment=untreated
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_line|Kasumi1
+
+    STUDIO GSE178340   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of ATRA and Cfz treatments on MM.1S cells, comparing them against a DMSO vehicle control.
+      -- confronto 1/1   (GSE178340__ATRA_vs_DMSO)
+         TRATTATO  (n=12, role=treated): MM.1S + ATRA
+             factor_levels: treatment=ATRA ; cell_line=MM.1S
+         CONTROLLO (n=12, role=control): MM.1S + DMSO
+             factor_levels: treatment=DMSO ; cell_line=MM.1S
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|MM.1S
+
+    STUDIO GSE184282   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) and decitabine on AML cell lines.
+      -- confronto 1/2   (GSE184282__ATRA_2h_vs_untreated)
+         TRATTATO  (n=1, role=treated): MOLM-13 cells treated with ATRA for 2 hours
+             factor_levels: treatment=ATRA ; time=2 hours
+         CONTROLLO (n=3, role=control): Untreated MOLM-13 cells
+             factor_levels: treatment=untreated ; time=0 hours
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=time|2 hours
+      -- confronto 2/2   (GSE184282__ATRA_3h_vs_untreated)
+         TRATTATO  (n=1, role=treated): MOLM-13 cells treated with ATRA for 3 hours
+             factor_levels: treatment=ATRA ; time=3 hours
+         CONTROLLO (n=3, role=control): Untreated MOLM-13 cells
+             factor_levels: treatment=untreated ; time=0 hours
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=time|3 hours
+
+    STUDIO GSE202458   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) and hyperoxia on A549 lung cancer cells.
+      -- confronto 1/2   (GSE202458__grp_0008_vs_grp_0007)
+         TRATTATO  (n=1, role=treated): A549 + ATRA + normoxia
+             factor_levels: treatment=ATRA ; oxygen_condition=normoxia
+         CONTROLLO (n=1, role=control): A549 + ethanol (vehicle) + normoxia
+             factor_levels: treatment=vehicle ; oxygen_condition=normoxia
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=oxygen_condition|normoxia
+      -- confronto 2/2   (GSE202458__grp_0009_vs_grp_0007)
+         TRATTATO  (n=2, role=treated): A549 + ATRA + normoxia
+             factor_levels: treatment=ATRA ; oxygen_condition=normoxia
+         CONTROLLO (n=1, role=control): A549 + ethanol (vehicle) + normoxia
+             factor_levels: treatment=vehicle ; oxygen_condition=normoxia
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=oxygen_condition|normoxia
+
+    STUDIO GSE252527   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) on human astrocytes compared to a DMSO vehicle control.
+      -- confronto 1/2   (GSE252527__grp_0004_vs_grp_0003)
+         TRATTATO  (n=1, role=treated): Brain astrocytes treated with ATRA
+             factor_levels: treatment=ATRA ; cell_context.cell_type_or_line_raw=Astrocytes ; cell_context.tissue=brain ; cell_context.context_kind=primary_culture
+         CONTROLLO (n=3, role=control): Brain astrocytes treated with DMSO
+             factor_levels: treatment=DMSO ; cell_context.cell_type_or_line_raw=Astrocytes ; cell_context.tissue=brain ; cell_context.context_kind=primary_culture
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_context.cell_type_or_line_raw|Astrocytes|cell_context.tissue|brain|cell_context.context_kind|primary_culture
+      -- confronto 2/2   (GSE252527__grp_0005_vs_grp_0003)
+         TRATTATO  (n=2, role=treated): Brain astrocytes treated with ATRA
+             factor_levels: treatment=ATRA ; cell_context.cell_type_or_line_raw=Astrocytes ; cell_context.tissue=brain ; cell_context.context_kind=primary_culture
+         CONTROLLO (n=3, role=control): Brain astrocytes treated with DMSO
+             factor_levels: treatment=DMSO ; cell_context.cell_type_or_line_raw=Astrocytes ; cell_context.tissue=brain ; cell_context.context_kind=primary_culture
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_context.cell_type_or_line_raw|Astrocytes|cell_context.tissue|brain|cell_context.context_kind|primary_culture
+
+    STUDIO GSE93996   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) on HL-60 cells derived from acute promyelocytic leukemia patients.
+      -- confronto 1/1   (GSE93996__grp_0001_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): HL-60 + ATRA
+             factor_levels: treatment=ATRA ; cell_line=HL-60 ; dose=1 uM ; duration=4 days
+         CONTROLLO (n=2, role=control): HL-60 + ethanol
+             factor_levels: treatment=ethanol ; cell_line=HL-60 ; duration=4 days
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|HL-60|duration|4 days
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_06b5da4a   contrast_control_key: 'normoxia'   canonical_name: '2,3,4,5-Tetrachloro-4'-biphenylol'
+      studi: 1   membri (confronti): 2
+  =======================================================================================================================
+
+    STUDIO GSE202458   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of all-trans retinoic acid (ATRA) and hyperoxia on A549 lung cancer cells.
+      -- confronto 1/2   (GSE202458__grp_0008_vs_grp_0006)
+         TRATTATO  (n=1, role=treated): A549 + ATRA + normoxia
+             factor_levels: treatment=ATRA ; oxygen_condition=normoxia
+         CONTROLLO (n=1, role=control): A549 + normoxia
+             factor_levels: treatment=normoxia ; oxygen_condition=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+      -- confronto 2/2   (GSE202458__grp_0009_vs_grp_0006)
+         TRATTATO  (n=2, role=treated): A549 + ATRA + normoxia
+             factor_levels: treatment=ATRA ; oxygen_condition=normoxia
+         CONTROLLO (n=1, role=control): A549 + normoxia
+             factor_levels: treatment=normoxia ; oxygen_condition=normoxia
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=<vuoto>
+
+#############################################################################################################################
+# ENTITA NCBITaxon:10298   =   Human alphaherpesvirus 1 = HSV-1.
+# k Stadio 3 5 -> 5  |  nel deliverable 214: no  |  k_eff oggi: -
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_7cc951b5   contrast_control_key: 'vehicle_untreated'   canonical_name: 'hsv-1'
+      studi: 5   membri (confronti): 11
+  =======================================================================================================================
+
+    STUDIO GSE103763   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of human fetal lung tissue-derived fibroblast cells (KMB17) to HSV-1 infection compared to various controls.
+      -- confronto 1/1   (GSE103763__grp_0004_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): HSV-1 Infection
+             factor_levels: treatment=HSV-1 strain 17
+         CONTROLLO (n=1, role=control): Control (no treatment)
+             factor_levels: treatment=none
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=cell_type|KMB17|passage|20-28
+
+    STUDIO GSE120891   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the host response to various viral infections in human cells using RNA sequencing.
+      -- confronto 1/2   (GSE120891__MRC5_HSV1_F_vs_MRC5_mock_9h)
+         TRATTATO  (n=1, role=treated): MRC5 cells exposed to HSV1/strain F
+             factor_levels: virus=HSV1/strain F ; cell_line=MRC5
+         CONTROLLO (n=2, role=control): MRC5 cells mock-infected for 9 hours
+             factor_levels: virus=mock ; cell_line=MRC5
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_line|MRC5
+      -- confronto 2/2   (GSE120891__MRC5_HSV1_F_2_vs_MRC5_mock_9h)
+         TRATTATO  (n=1, role=treated): MRC5 cells exposed to HSV1/strain F (second exposure)
+             factor_levels: virus=HSV1/strain F ; cell_line=MRC5
+         CONTROLLO (n=2, role=control): MRC5 cells mock-infected for 9 hours
+             factor_levels: virus=mock ; cell_line=MRC5
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus | fixed=cell_line|MRC5
+
+    STUDIO GSE201012   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of HEK293T cells to HSV1 KOS infection compared to mock and uninfected controls.
+      -- confronto 1/1   (GSE201012__HSV1_KOS_vs_mock)
+         TRATTATO  (n=2, role=treated): HSV1 KOS infected
+             factor_levels: treatment=HSV1 KOS ; time(hours)=16
+         CONTROLLO (n=1, role=control): Mock infected
+             factor_levels: treatment=mock ; time(hours)=16
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=time(hours)|16
+
+    STUDIO GSE209632   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 6
+      design_summary: This study investigates the transcriptional response of macroH2A1 knockout and wild-type tert-immortalized human foreskin fibroblasts to HSV-1 infection over time.
+      -- confronto 1/6   (GSE209632__grp_0001_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): macroH2A1 knockout tert-immortalized human foreskin fibroblast, HSV-1, 12h
+             factor_levels: Genotype=macroH2A1 knockout ; Treatment=HSV-1 infection ; Time=12 hours post-infection
+         CONTROLLO (n=3, role=control): macroH2A1 knockout tert-immortalized human foreskin fibroblast, mH2A1 KO, mock infection
+             factor_levels: Genotype=macroH2A1 knockout ; Treatment=mock infection
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=Genotype|macroH2A1 knockout
+      -- confronto 2/6   (GSE209632__grp_0002_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): macroH2A1 knockout tert-immortalized human foreskin fibroblast, HSV-1, 4h
+             factor_levels: Genotype=macroH2A1 knockout ; Treatment=HSV-1 infection ; Time=4 hours post-infection
+         CONTROLLO (n=3, role=control): macroH2A1 knockout tert-immortalized human foreskin fibroblast, mH2A1 KO, mock infection
+             factor_levels: Genotype=macroH2A1 knockout ; Treatment=mock infection
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=Genotype|macroH2A1 knockout
+      -- confronto 3/6   (GSE209632__grp_0003_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): macroH2A1 knockout tert-immortalized human foreskin fibroblast, HSV-1, 8h
+             factor_levels: Genotype=macroH2A1 knockout ; Treatment=HSV-1 infection ; Time=8 hours post-infection
+         CONTROLLO (n=3, role=control): macroH2A1 knockout tert-immortalized human foreskin fibroblast, mH2A1 KO, mock infection
+             factor_levels: Genotype=macroH2A1 knockout ; Treatment=mock infection
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=Genotype|macroH2A1 knockout
+      -- confronto 4/6   (GSE209632__grp_0005_vs_grp_0008)
+         TRATTATO  (n=3, role=treated): Wild-type tert-immortalized human foreskin fibroblast, HSV-1, 12h
+             factor_levels: Genotype=wild-type ; Treatment=HSV-1 infection ; Time=12 hours post-infection
+         CONTROLLO (n=1, role=control): Wild-type tert-immortalized human foreskin fibroblast, mock infection
+             factor_levels: Genotype=wild-type ; Treatment=mock infection
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=Genotype|wild-type
+      -- confronto 5/6   (GSE209632__grp_0006_vs_grp_0008)
+         TRATTATO  (n=3, role=treated): Wild-type tert-immortalized human foreskin fibroblast, HSV-1, 4h
+             factor_levels: Genotype=wild-type ; Treatment=HSV-1 infection ; Time=4 hours post-infection
+         CONTROLLO (n=1, role=control): Wild-type tert-immortalized human foreskin fibroblast, mock infection
+             factor_levels: Genotype=wild-type ; Treatment=mock infection
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=Genotype|wild-type
+      -- confronto 6/6   (GSE209632__grp_0007_vs_grp_0008)
+         TRATTATO  (n=3, role=treated): Wild-type tert-immortalized human foreskin fibroblast, HSV-1, 8h
+             factor_levels: Genotype=wild-type ; Treatment=HSV-1 infection ; Time=8 hours post-infection
+         CONTROLLO (n=1, role=control): Wild-type tert-immortalized human foreskin fibroblast, mock infection
+             factor_levels: Genotype=wild-type ; Treatment=mock infection
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=treatment_vs_vehicle | varying=Treatment | fixed=Genotype|wild-type
+
+    STUDIO GSE95623   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the interaction between HSV-1 and RIG-I in HEK 293T cells.
+      -- confronto 1/1   (GSE95623__grp_0003_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): wildtype HSV-1
+             factor_levels: perturbation=wildtype HSV-1 ; cell_line=HEK 293T ; passage=p5-15
+         CONTROLLO (n=1, role=control): mock-infected
+             factor_levels: perturbation=mock-infected ; cell_line=HEK 293T ; passage=p5-15
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=perturbation | fixed=cell_line|HEK 293T|passage|p5-15
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_1b7f19cc   contrast_control_key: 'uninfected'   canonical_name: 'hsv1'
+      studi: 1   membri (confronti): 1
+  =======================================================================================================================
+
+    STUDIO GSE201012   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of HEK293T cells to HSV1 KOS infection compared to mock and uninfected controls.
+      -- confronto 1/1   (GSE201012__HSV1_KOS_vs_uninfected)
+         TRATTATO  (n=2, role=treated): HSV1 KOS infected
+             factor_levels: treatment=HSV1 KOS ; time(hours)=16
+         CONTROLLO (n=1, role=control): Uninfected
+             factor_levels: treatment=uninfected ; time(hours)=16
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=time(hours)|16
+
+#############################################################################################################################
+# ENTITA NCBITaxon:12814   =   Respiratory syncytial virus (RSV). NB: 'Mycobacterium tuberculosis' e' taxid 1773, NON questo.
+# k Stadio 3 4 -> 5  |  nel deliverable 214: no  |  k_eff oggi: -
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_e25d67cf   contrast_control_key: 'vehicle_untreated'   canonical_name: '<NA>'
+      studi: 4   membri (confronti): 9
+  =======================================================================================================================
+
+    STUDIO GSE113210   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the transcriptional response of peripheral blood mononuclear cells (PBMCs) from pediatric patients to various viral infections.
+      -- confronto 1/3   (GSE113210__grp_0012_vs_grp_0022)
+         TRATTATO  (n=1, role=treated): respiratory syncytial virus (RSV) at AV
+             factor_levels: viral_infection=respiratory syncytial virus (RSV)
+         CONTROLLO (n=7, role=control): Control CV
+             factor_levels: <assente>
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=viral_infection | fixed=<vuoto>
+      -- confronto 2/3   (GSE113210__grp_0013_vs_grp_0022)
+         TRATTATO  (n=1, role=treated): virus positive at AV, RSV, rhinovirus
+             factor_levels: viral_infection=virus positive ; viral_infection=respiratory syncytial virus (RSV) ; viral_infection=rhinovirus
+         CONTROLLO (n=7, role=control): Control CV
+             factor_levels: <assente>
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=viral_infection | fixed=<vuoto>
+      -- confronto 3/3   (GSE113210__grp_0018_vs_grp_0022)
+         TRATTATO  (n=3, role=treated): virus positive at AV, RSV
+             factor_levels: viral_infection=virus positive ; viral_infection=respiratory syncytial virus (RSV)
+         CONTROLLO (n=7, role=control): Control CV
+             factor_levels: <assente>
+         control_type(Stadio 2)=secondary_arm | design_kind_cmp=case_control_disease | varying=viral_infection | fixed=<vuoto>
+
+    STUDIO GSE140226   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 3
+      design_summary: This study investigates the effects of Respiratory Syncytial Virus (RSV) infection and dexamethasone treatment on human lung epithelial cells.
+      -- confronto 1/3   (GSE140226__A549_RSV_vs_A549_mock)
+         TRATTATO  (n=1, role=treated): A549 RSV
+             factor_levels: cell_line=A549 ; treatment=RSV
+         CONTROLLO (n=1, role=control): A549 mock
+             factor_levels: cell_line=A549 ; treatment=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|A549
+      -- confronto 2/3   (GSE140226__H292_RSV_vs_H292_mock)
+         TRATTATO  (n=1, role=treated): H292 RSV
+             factor_levels: cell_line=H292 ; treatment=RSV
+         CONTROLLO (n=1, role=control): H292 mock
+             factor_levels: cell_line=H292 ; treatment=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|H292
+      -- confronto 3/3   (GSE140226__HBEC_RSV_vs_HBEC_mock)
+         TRATTATO  (n=1, role=treated): HBEC RSV
+             factor_levels: cell_line=HBEC ; treatment=RSV
+         CONTROLLO (n=1, role=control): HBEC mock
+             factor_levels: cell_line=HBEC ; treatment=mock
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_line|HBEC
+
+    STUDIO GSE146795   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the effects of Respiratory Syncytial Virus (RSV) infection on human bronchial epithelial cells (NHBE) compared to mock-infected controls.
+      -- confronto 1/1   (GSE146795__grp_0005_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): NHBE P4 RSV Bronchial Epithelium
+             factor_levels: treatment=RSV ; cell_type=NHBE ; tissue=bronchial epithelium ; passage_or_state=P4 ; context_kind=primary_culture
+         CONTROLLO (n=4, role=control): NHBE C16 P4 Mock
+             factor_levels: treatment=mock ; cell_type=NHBE C16 P4 ; context_kind=primary_culture
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|NHBE|tissue|bronchial epithelium|context_kind|primary_culture
+
+    STUDIO GSE228327   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the effects of RSV infection and KIRA treatment on human lung epithelial cells.
+      -- confronto 1/2   (GSE228327__grp_0005_vs_grp_0004)
+         TRATTATO  (n=1, role=treated): RSV infected lung epithelial
+             factor_levels: treatment=RSV infected ; cell_type=lung epithelial ; transgenic=yes
+         CONTROLLO (n=3, role=control): Control lung epithelial
+             factor_levels: treatment=control ; cell_type=lung epithelial ; transgenic=yes
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|lung epithelial|transgenic|yes
+      -- confronto 2/2   (GSE228327__grp_0006_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): RSV lung epithelial
+             factor_levels: treatment=RSV ; cell_type=lung epithelial ; transgenic=yes
+         CONTROLLO (n=3, role=control): Control lung epithelial
+             factor_levels: treatment=control ; cell_type=lung epithelial ; transgenic=yes
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|lung epithelial|transgenic|yes
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_5b37d889   contrast_control_key: 'uninfected'   canonical_name: 'Mycobacterium tuberculosis'
+      studi: 1   membri (confronti): 2
+  =======================================================================================================================
+
+    STUDIO GSE183435   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of human lung tissue to Respiratory Syncytial Virus (RSV) infection.
+      -- confronto 1/2   (GSE183435__infected_vs_uninfected_1)
+         TRATTATO  (n=2, role=treated): Infected with RSV
+             factor_levels: infection_status=infected ; age=16
+         CONTROLLO (n=1, role=control): Uninfected control 1
+             factor_levels: infection_status=uninfected ; age=24
+         control_type(Stadio 2)=untreated | design_kind_cmp=case_control_disease | varying=infection_status | fixed=age|16 vs 24
+      -- confronto 2/2   (GSE183435__infected_vs_uninfected_2)
+         TRATTATO  (n=2, role=treated): Infected with RSV
+             factor_levels: infection_status=infected ; age=16
+         CONTROLLO (n=1, role=control): Uninfected control 2
+             factor_levels: infection_status=uninfected ; age=15
+         control_type(Stadio 2)=untreated | design_kind_cmp=case_control_disease | varying=infection_status | fixed=age|16 vs 15
+
+#############################################################################################################################
+# ENTITA NCBITaxon:3052230   =   Orthohepacivirus hominis = virus dell'epatite C (HCV).
+# k Stadio 3 2 -> 3  |  nel deliverable 214: no  |  k_eff oggi: -
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_6b0fd283   contrast_control_key: 'uninfected'   canonical_name: 'Hepatitis C virus'
+      studi: 2   membri (confronti): 4
+  =======================================================================================================================
+
+    STUDIO GSE103729   [design_kind studio: case_control_disease]   confronti in questo cluster: 3
+      design_summary: This study investigates the transcriptional response of Huh-7.5 liver cells to HCV infection compared to controls.
+      -- confronto 1/3   (GSE103729__grp_0004_vs_grp_0001)
+         TRATTATO  (n=9, role=treated): HCV Infected
+             factor_levels: infection_status=infected
+         CONTROLLO (n=3, role=control): Uninfected Control
+             factor_levels: infection_status=uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=case_control_disease | varying=infection_status | fixed=<vuoto>
+      -- confronto 2/3   (GSE103729__grp_0004_vs_grp_0002)
+         TRATTATO  (n=9, role=treated): HCV Infected
+             factor_levels: infection_status=infected
+         CONTROLLO (n=3, role=control): Vehicle Control
+             factor_levels: infection_status=uninfected
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=infection_status | fixed=<vuoto>
+      -- confronto 3/3   (GSE103729__grp_0004_vs_grp_0003)
+         TRATTATO  (n=9, role=treated): HCV Infected
+             factor_levels: infection_status=infected
+         CONTROLLO (n=3, role=control): Vehicle Only
+             factor_levels: infection_status=uninfected
+         control_type(Stadio 2)=vehicle | design_kind_cmp=case_control_disease | varying=infection_status | fixed=<vuoto>
+
+    STUDIO GSE130891   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of Huh7 cells to various viral infections over different time points.
+      -- confronto 1/1   (GSE130891__grp_0007_vs_grp_0004)
+         TRATTATO  (n=3, role=treated): Huh7_HCV_JFH-1_48h
+             factor_levels: virus=HCV genotype 2A JFH-1 ; time=48 hours
+         CONTROLLO (n=6, role=control): Huh7_uninfected_48h
+             factor_levels: virus=uninfected ; time=48 hours
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=virus | fixed=time|48 hours
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_67a1cfc1   contrast_control_key: 'vehicle_untreated'   canonical_name: 'hcv'
+      studi: 1   membri (confronti): 2
+  =======================================================================================================================
+
+    STUDIO GSE211161   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of patient-derived primary human hepatocytes to HCV JFH-1 infection compared to control conditions.
+      -- confronto 1/2   (GSE211161__grp_0003_vs_grp_0001)
+         TRATTATO  (n=2, role=treated): HCV JFH-1 MOI = 1 Day 2
+             factor_levels: treatment=HCV JFH-1 ; time(hours)=48 ; dose(MOI)=1
+         CONTROLLO (n=1, role=control): Control; No Treatment
+             factor_levels: treatment=Control ; time(hours)=48
+         control_type(Stadio 2)=untreated | design_kind_cmp=case_control_disease | varying=treatment | fixed=time(hours)|48
+      -- confronto 2/2   (GSE211161__grp_0003_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): HCV JFH-1 MOI = 1 Day 2
+             factor_levels: treatment=HCV JFH-1 ; time(hours)=48 ; dose(MOI)=1
+         CONTROLLO (n=1, role=control): Control
+             factor_levels: treatment=Control ; time(hours)=48
+         control_type(Stadio 2)=untreated | design_kind_cmp=case_control_disease | varying=treatment | fixed=time(hours)|48
+
+#############################################################################################################################
+# ENTITA STR:kshv   =   scrittura non risolta: KSHV = herpesvirus del sarcoma di Kaposi (HHV-8, taxid 37296).
+# k Stadio 3 2 -> 3  |  nel deliverable 214: no  |  k_eff oggi: -
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_179d71b0   contrast_control_key: 'vehicle_untreated'   canonical_name: 'kshvinfected'
+      studi: 2   membri (confronti): 2
+  =======================================================================================================================
+
+    STUDIO GSE223396   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: Comparison between KSHV-infected and mock-treated human gingival epithelial cells.
+      -- confronto 1/1   (GSE223396__grp_0002_vs_grp_0001)
+         TRATTATO  (n=3, role=treated): KSHV-infected human gingival epithelial cells
+             factor_levels: treatment=KSHV ; cell_type=human gingival epithelial cell
+         CONTROLLO (n=3, role=control): mock-treated human gingival epithelial cells
+             factor_levels: treatment=mock ; cell_type=human gingival epithelial cell
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|human gingival epithelial cell
+
+    STUDIO GSE84237   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional changes in hTert-immortalized microvascular endothelial cells upon exposure to KSHV compared to mock-treated controls.
+      -- confronto 1/1   (GSE84237__KSHV_vs_mock)
+         TRATTATO  (n=3, role=treated): KSHV-treated
+             factor_levels: treatment=KSHV ; cell_type=hTert-immortalized microvascular endothelial cells ; passage=60 to 70
+         CONTROLLO (n=3, role=control): Mock-treated
+             factor_levels: treatment=mock ; cell_type=hTert-immortalized microvascular endothelial cells ; passage=60 to 70
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type|hTert-immortalized microvascular endothelial cells|passage|60 to 70
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_dbd518d4   contrast_control_key: 'uninfected'   canonical_name: 'Kaposi's sarcoma-associated herpesvirus'
+      studi: 1   membri (confronti): 2
+  =======================================================================================================================
+
+    STUDIO GSE92341   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional changes in human periodontal ligament cells upon infection with Kaposi's sarcoma-associated herpesvirus (KSHV) over different time points.
+      -- confronto 1/2   (GSE92341__KSHV_48h_vs_uninfected)
+         TRATTATO  (n=3, role=treated): KSHV 48h
+             factor_levels: treatment=KSHV ; time=48 hr
+         CONTROLLO (n=3, role=control): Uninfected
+             factor_levels: treatment=uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=time|48 hr
+      -- confronto 2/2   (GSE92341__KSHV_96h_vs_uninfected)
+         TRATTATO  (n=3, role=treated): KSHV 96h
+             factor_levels: treatment=KSHV ; time=96 hr
+         CONTROLLO (n=3, role=control): Uninfected
+             factor_levels: treatment=uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=treatment | fixed=time|96 hr
+
+#############################################################################################################################
+# ENTITA STR:mr766   =   scrittura non risolta: MR766 = ceppo ugandese prototipo del virus Zika (taxid 64320).
+# k Stadio 3 2 -> 3  |  nel deliverable 214: no  |  k_eff oggi: -
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_babc7ecd   contrast_control_key: 'vehicle_untreated'   canonical_name: 'Zika virus'
+      studi: 2   membri (confronti): 4
+  =======================================================================================================================
+
+    STUDIO GSE122193   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of human mesenchymal stem cells derived from umbilical cord to infection with different strains of Zika virus (MR766 and PRVABC59) over time.
+      -- confronto 1/2   (GSE122193__MR766_4hpi_vs_Mock)
+         TRATTATO  (n=1, role=treated): MR766-infected Mesenchymal Stem Cells (4 hpi)
+             factor_levels: virus_strain=MR766 ; infection_duration=4 hours post-infection
+         CONTROLLO (n=1, role=control): Mock-infected Mesenchymal Stem Cells
+             factor_levels: virus_strain=Mock ; infection_duration=4 hours post-infection
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_strain | fixed=infection_duration|4 hours post-infection
+      -- confronto 2/2   (GSE122193__MR766_48hpi_vs_Mock)
+         TRATTATO  (n=1, role=treated): MR766-infected Mesenchymal Stem Cells (48 hpi)
+             factor_levels: virus_strain=MR766 ; infection_duration=48 hours post-infection
+         CONTROLLO (n=1, role=control): Mock-infected Mesenchymal Stem Cells
+             factor_levels: virus_strain=Mock ; infection_duration=4 hours post-infection
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=virus_strain | fixed=infection_duration|48 hours post-infection
+
+    STUDIO GSE149775   [design_kind studio: treatment_vs_vehicle]   confronti in questo cluster: 2
+      design_summary: This study investigates the response of SH-SY5Y neuroblastoma cells to Dengue virus (DENV) infection and compares it with mock-infected controls.
+      -- confronto 1/2   (GSE149775__grp_0005_vs_grp_0001)
+         TRATTATO  (n=2, role=treated): SH-SY5Y MR766
+             factor_levels: treatment=MR766 ; cell_type_or_line_raw=SH-SY5Y ; tissue=neuroblastoma
+         CONTROLLO (n=1, role=control): SH-SY5Y Mock 1
+             factor_levels: treatment=mock ; cell_type_or_line_raw=SH-SY5Y ; tissue=Neuroblastoma
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type_or_line_raw|SH-SY5Y|tissue|neuroblastoma
+      -- confronto 2/2   (GSE149775__grp_0005_vs_grp_0002)
+         TRATTATO  (n=2, role=treated): SH-SY5Y MR766
+             factor_levels: treatment=MR766 ; cell_type_or_line_raw=SH-SY5Y ; tissue=neuroblastoma
+         CONTROLLO (n=2, role=control): SH-SY5Y Mock
+             factor_levels: treatment=mock ; cell_type_or_line_raw=SH-SY5Y ; tissue=Neuroblastoma
+         control_type(Stadio 2)=vehicle | design_kind_cmp=treatment_vs_vehicle | varying=treatment | fixed=cell_type_or_line_raw|SH-SY5Y|tissue|neuroblastoma
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_9ff60287   contrast_control_key: 'uninfected'   canonical_name: 'Zika virus'
+      studi: 1   membri (confronti): 1
+  =======================================================================================================================
+
+    STUDIO GSE171648   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 1
+      design_summary: This study investigates the transcriptional response of BeWo cells to Zika virus (ZIKV) infection using different strains and mutants.
+      -- confronto 1/1   (GSE171648__grp_0002_vs_grp_0001)
+         TRATTATO  (n=1, role=treated): ZIKV MR766 (MOI=1, 72h)
+             factor_levels: virus_strain=MR766
+         CONTROLLO (n=3, role=control): Control (uninfected)
+             factor_levels: virus_strain=uninfected
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=virus_strain | fixed=<vuoto>
+
+#############################################################################################################################
+# ENTITA NCBITaxon:147711   =   Rhinovirus A (rinovirus umano A).
+# k Stadio 3 1 -> 2  |  nel deliverable 214: no  |  k_eff oggi: -
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_ccefbba3   contrast_control_key: 'uninfected'   canonical_name: 'rhinovirus A'
+      studi: 1   membri (confronti): 12
+  =======================================================================================================================
+
+    STUDIO GSE146532   [design_kind studio: multi_arm_treatment]   confronti in questo cluster: 12
+      design_summary: This study investigates the transcriptional response of bronchial epithelial cells to Rhinovirus 1A infection over time in subjects with asthma, COPD, and healthy controls.
+      -- confronto 1/12   (GSE146532__asthma_rhinovirus_1a_24h_vs_asthma_uninfected_24h)
+         TRATTATO  (n=5, role=treated): Asthma, Rhinovirus 1A, 24h
+             factor_levels: disease_state=asthma ; infection_status=rhinovirus_1a_infected ; time=24h
+         CONTROLLO (n=5, role=control): Asthma, Uninfected, 24h
+             factor_levels: disease_state=asthma ; infection_status=uninfected ; time=24h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|asthma|time|24h
+      -- confronto 2/12   (GSE146532__asthma_rhinovirus_1a_48h_vs_asthma_uninfected_48h)
+         TRATTATO  (n=5, role=treated): Asthma, Rhinovirus 1A, 48h
+             factor_levels: disease_state=asthma ; infection_status=rhinovirus_1a_infected ; time=48h
+         CONTROLLO (n=5, role=control): Asthma, Uninfected, 48h
+             factor_levels: disease_state=asthma ; infection_status=uninfected ; time=48h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|asthma|time|48h
+      -- confronto 3/12   (GSE146532__asthma_rhinovirus_1a_72h_vs_asthma_uninfected_72h)
+         TRATTATO  (n=5, role=treated): Asthma, Rhinovirus 1A, 72h
+             factor_levels: disease_state=asthma ; infection_status=rhinovirus_1a_infected ; time=72h
+         CONTROLLO (n=5, role=control): Asthma, Uninfected, 72h
+             factor_levels: disease_state=asthma ; infection_status=uninfected ; time=72h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|asthma|time|72h
+      -- confronto 4/12   (GSE146532__asthma_rhinovirus_1a_96h_vs_asthma_uninfected_96h)
+         TRATTATO  (n=5, role=treated): Asthma, Rhinovirus 1A, 96h
+             factor_levels: disease_state=asthma ; infection_status=rhinovirus_1a_infected ; time=96h
+         CONTROLLO (n=5, role=control): Asthma, Uninfected, 96h
+             factor_levels: disease_state=asthma ; infection_status=uninfected ; time=96h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|asthma|time|96h
+      -- confronto 5/12   (GSE146532__copd_rhinovirus_1a_24h_vs_copd_uninfected_24h)
+         TRATTATO  (n=5, role=treated): COPD, Rhinovirus 1A, 24h
+             factor_levels: disease_state=copd ; infection_status=rhinovirus_1a_infected ; time=24h
+         CONTROLLO (n=5, role=control): COPD, Uninfected, 24h
+             factor_levels: disease_state=copd ; infection_status=uninfected ; time=24h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|copd|time|24h
+      -- confronto 6/12   (GSE146532__copd_rhinovirus_1a_48h_vs_copd_uninfected_48h)
+         TRATTATO  (n=5, role=treated): COPD, Rhinovirus 1A, 48h
+             factor_levels: disease_state=copd ; infection_status=rhinovirus_1a_infected ; time=48h
+         CONTROLLO (n=4, role=control): COPD, Uninfected, 48h
+             factor_levels: disease_state=copd ; infection_status=uninfected ; time=48h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|copd|time|48h
+      -- confronto 7/12   (GSE146532__copd_rhinovirus_1a_72h_vs_copd_uninfected_72h)
+         TRATTATO  (n=5, role=treated): COPD, Rhinovirus 1A, 72h
+             factor_levels: disease_state=copd ; infection_status=rhinovirus_1a_infected ; time=72h
+         CONTROLLO (n=5, role=control): COPD, Uninfected, 72h
+             factor_levels: disease_state=copd ; infection_status=uninfected ; time=72h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|copd|time|72h
+      -- confronto 8/12   (GSE146532__copd_rhinovirus_1a_96h_vs_copd_uninfected_96h)
+         TRATTATO  (n=5, role=treated): COPD, Rhinovirus 1A, 96h
+             factor_levels: disease_state=copd ; infection_status=rhinovirus_1a_infected ; time=96h
+         CONTROLLO (n=5, role=control): COPD, Uninfected, 96h
+             factor_levels: disease_state=copd ; infection_status=uninfected ; time=96h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|copd|time|96h
+      -- confronto 9/12   (GSE146532__healthy_rhinovirus_1a_24h_vs_healthy_uninfected_24h)
+         TRATTATO  (n=4, role=treated): Healthy, Rhinovirus 1A, 24h
+             factor_levels: disease_state=healthy ; infection_status=rhinovirus_1a_infected ; time=24h
+         CONTROLLO (n=5, role=control): Healthy, Uninfected, 24h
+             factor_levels: disease_state=healthy ; infection_status=uninfected ; time=24h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|healthy|time|24h
+      -- confronto 10/12   (GSE146532__healthy_rhinovirus_1a_48h_vs_healthy_uninfected_48h)
+         TRATTATO  (n=5, role=treated): Healthy, Rhinovirus 1A, 48h
+             factor_levels: disease_state=healthy ; infection_status=rhinovirus_1a_infected ; time=48h
+         CONTROLLO (n=5, role=control): Healthy, Uninfected, 48h
+             factor_levels: disease_state=healthy ; infection_status=uninfected ; time=48h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|healthy|time|48h
+      -- confronto 11/12   (GSE146532__healthy_rhinovirus_1a_72h_vs_healthy_uninfected_72h)
+         TRATTATO  (n=5, role=treated): Healthy, Rhinovirus 1A, 72h
+             factor_levels: disease_state=healthy ; infection_status=rhinovirus_1a_infected ; time=72h
+         CONTROLLO (n=5, role=control): Healthy, Uninfected, 72h
+             factor_levels: disease_state=healthy ; infection_status=uninfected ; time=72h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|healthy|time|72h
+      -- confronto 12/12   (GSE146532__healthy_rhinovirus_1a_96h_vs_healthy_uninfected_96h)
+         TRATTATO  (n=5, role=treated): Healthy, Rhinovirus 1A, 96h
+             factor_levels: disease_state=healthy ; infection_status=rhinovirus_1a_infected ; time=96h
+         CONTROLLO (n=5, role=control): Healthy, Uninfected, 96h
+             factor_levels: disease_state=healthy ; infection_status=uninfected ; time=96h
+         control_type(Stadio 2)=untreated | design_kind_cmp=treatment_vs_untreated | varying=infection_status | fixed=disease_state|healthy|time|96h
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_0cfef990   contrast_control_key: 'vehicle_untreated'   canonical_name: 'rhinovirus A'
+      studi: 1   membri (confronti): 2
+  =======================================================================================================================
+
+    STUDIO GSE106388   [design_kind studio: case_control_disease]   confronti in questo cluster: 2
+      design_summary: This study investigates the transcriptional response of primary bronchial epithelial cells from healthy donors and mild asthmatics to rhinovirus (RV16) infection.
+      -- confronto 1/2   (GSE106388__grp_0002_vs_grp_0001)
+         TRATTATO  (n=15, role=treated): Mild asthmatic, RV16 infected
+             factor_levels: disease_state=Mild asthmatic ; perturbation=rhinovirus (RV16)
+         CONTROLLO (n=15, role=control): Mild asthmatic, uninfected
+             factor_levels: disease_state=Mild asthmatic ; perturbation=none
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=perturbation | fixed=disease_state|Mild asthmatic
+      -- confronto 2/2   (GSE106388__grp_0004_vs_grp_0003)
+         TRATTATO  (n=4, role=treated): Healthy, RV16 infected
+             factor_levels: disease_state=Healthy ; perturbation=rhinovirus (RV16)
+         CONTROLLO (n=4, role=control): Healthy, uninfected
+             factor_levels: disease_state=Healthy ; perturbation=none
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=perturbation | fixed=disease_state|Healthy
+
+#############################################################################################################################
+# ENTITA STR:symptomatic   =   scrittura non risolta e NON un'entita': 'symptomatic' e' uno stato clinico, non un agente.
+# k Stadio 3 1 -> 2  |  nel deliverable 214: no  |  k_eff oggi: -
+#############################################################################################################################
+
+  =======================================================================================================================
+  >>> VINCENTE  cluster_id: cgroup_L5_95f8c0ec   contrast_control_key: 'vehicle_untreated'   canonical_name: 'infectious disease'
+      studi: 1   membri (confronti): 3
+  =======================================================================================================================
+
+    STUDIO GSE236651   [design_kind studio: case_control_disease]   confronti in questo cluster: 3
+      design_summary: Case-control study comparing symptomatic patients, asymptomatic individuals, and healthy controls using peripheral blood mononuclear cells.
+      -- confronto 1/3   (GSE236651__symptomatic_vs_healthy)
+         TRATTATO  (n=13, role=treated): Symptomatic patients
+             factor_levels: disease_status=symptomatic
+         CONTROLLO (n=10, role=control): Healthy controls
+             factor_levels: disease_status=healthy
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_status | fixed=<vuoto>
+      -- confronto 2/3   (GSE236651__symptomatic_vs_healthy_neg)
+         TRATTATO  (n=13, role=treated): Symptomatic patients
+             factor_levels: disease_status=symptomatic
+         CONTROLLO (n=3, role=control): Healthy controls negative
+             factor_levels: disease_status=healthy
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_status | fixed=<vuoto>
+      -- confronto 3/3   (GSE236651__symptomatic_2_vs_healthy)
+         TRATTATO  (n=3, role=treated): Symptomatic patients 2
+             factor_levels: disease_status=symptomatic
+         CONTROLLO (n=10, role=control): Healthy controls
+             factor_levels: disease_status=healthy
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_status | fixed=<vuoto>
+
+  =======================================================================================================================
+  >>> ASSORBITO  cluster_id: cgroup_L5_9fa7c92d   contrast_control_key: 'uninfected'   canonical_name: 'respiratory syncytial virus infection'
+      studi: 1   membri (confronti): 1
+  =======================================================================================================================
+
+    STUDIO GSE230169   [design_kind studio: case_control_disease]   confronti in questo cluster: 1
+      design_summary: Case-control study comparing symptomatic and asymptomatic individuals using whole blood samples.
+      -- confronto 1/1   (GSE230169__grp_symptomatic_1_vs_grp_uninfected_2)
+         TRATTATO  (n=8, role=treated): Symptomatic (age 0.98)
+             factor_levels: disease_state=symptomatic ; age=0.98 ; sex=M
+         CONTROLLO (n=24, role=control): Uninfected (age 1)
+             factor_levels: disease_state=uninfected ; age=1 ; sex=M
+         control_type(Stadio 2)=disease_normal | design_kind_cmp=case_control_disease | varying=disease_state | fixed=age|0.98|sex|M

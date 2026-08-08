@@ -31,7 +31,8 @@
 #'
 #' @keywords internal
 .dedup_rem_group_by_entity <- function(rem_group_clusters,
-                                       entity_canonical = NULL) {
+                                       entity_canonical = NULL,
+                                       control_canonical = NULL) {
   if (nrow(rem_group_clusters) == 0L) return(rem_group_clusters)
   direction <- .col_or_default(rem_group_clusters, "contrast_direction", NA_character_)
   direction[is.na(direction)] <- ""
@@ -76,32 +77,57 @@
                rem_group_clusters$cluster_id)
   rg  <- rem_group_clusters[ord, , drop = FALSE]
   ent <- entity[ord]
-  ce_ord <- ce[ord]
-  ck <- .col_or_default(rg, "contrast_control_key", NA_character_)
-  ck[is.na(ck)] <- ""
+  ce_ord     <- ce[ord]         # scrittura GREZZA dell'entita'
+  ce_can_ord <- ce_can[ord]     # entita' canonica
+  ck_raw <- .col_or_default(rg, "contrast_control_key", NA_character_)
+  ck_raw[is.na(ck_raw)] <- ""
+
+  # CHIAVE DI CONTROLLO CANONICA (2026-08-08). Simmetrica a quella dell'entita'.
+  # `.normalize_control_type()` (R/stage3-coherence.R) ha una lista di sinonimi
+  # che diventano `vehicle_untreated` e una di controlli tenuti distinti. Due
+  # tagli misurati sono DIMENTICANZE di quel vocabolario, non distinzioni:
+  # `mock` sta fra i sinonimi ma `uninfected` non sta in nessuna delle due liste
+  # (SARS-CoV-2 finiva in due cluster, 34 e 2 studi), e `normal`/`healthy`/
+  # `control`/`normal_weight` ci sono ma `lean` no. Un terzo -- `normoxia` -- e'
+  # distinto DI PROPOSITO, ma la misura mostra che il confine non tiene: il
+  # cluster vincente dell'ipossia pool­a gia' controlli scritti `Untreated` e
+  # `Control`, e lo scartato ne ha tre che nominano la normossia. Decisione
+  # utente 2026-08-08: si ribalta. Evidenza: 33-materiale-dedup.txt (237
+  # confronti con le etichette intere), 36-verdetti-4-fusioni-dedup.csv.
+  #
+  # Si applica QUI e non nello Stadio 3 perche' cambiare il vocabolario a monte
+  # imporrebbe un re-cluster (~9 h) per un effetto che si ottiene senza.
+  ck <- ck_raw
+  if (length(control_canonical) > 0L) {
+    hitc <- ck_raw %in% names(control_canonical)
+    if (any(hitc)) ck[hitc] <- unname(control_canonical[ck_raw[hitc]])
+  }
 
   # ---- PASSO 1: FUSIONE, non scarto -----------------------------------------
-  # Due SCRITTURE della stessa entita' canonica, stesso verso e **stessa chiave
-  # di controllo**, sono la stessa cosa scritta in due modi: i record del
-  # perdente vanno poolati COL vincente, non buttati. Canonicalizzare senza
-  # fondere peggiorerebbe le cose -- il TNF diventerebbe una riga da 32 studi
-  # buttandone 6 -- quindi le due cose vanno insieme.
+  # Stessa entita' canonica, stesso verso e stessa chiave di controllo CANONICA
+  # sono la stessa cosa scritta in due modi: i record del perdente vanno poolati
+  # COL vincente, non buttati. Canonicalizzare senza fondere peggiorerebbe le
+  # cose -- il TNF diventerebbe una riga da 32 studi buttandone 6 -- quindi le
+  # due cose vanno insieme.
   #
   # Condizione STRETTA, per non toccare nulla di quanto gia' validato: il gruppo
-  # si fonde solo se contiene almeno DUE valori distinti di `contrast_entity`
-  # GREZZO e la colonna e' popolata su tutti i membri. Con `entity_canonical`
-  # assente (il default) la condizione non puo' accendersi: due scritture
-  # distinte danno per costruzione due chiavi distinte. Il comportamento resta
-  # quindi identico a prima, e le fixture legacy prive di `contrast_entity`
-  # cadono nel ramo `anyNA` e non vengono nemmeno considerate.
+  # si fonde solo se contiene almeno DUE coppie distinte
+  # (`contrast_entity` GREZZO, `contrast_control_key` GREZZA) e `contrast_entity`
+  # e' popolato su tutti i membri. Con le due mappe assenti (il default) la
+  # condizione NON PUO' accendersi: due coppie grezze distinte danno per
+  # costruzione due chiavi distinte, perche' il `cluster_id` di un cgroup e'
+  # l'hash di (entita' || verso || controllo). Il comportamento resta quindi
+  # identico a prima, e le fixture legacy prive di `contrast_entity` cadono nel
+  # ramo `anyNA` e non vengono nemmeno considerate.
   key1 <- paste0(ent, "||", ck)
+  grezza <- paste0(ce_ord, "\r", ck_raw)
   assorbiti <- integer(0L)
   vincenti  <- integer(0L)
   for (g in split(seq_len(nrow(rg)), key1)) {
     if (length(g) < 2L) next
     scr <- ce_ord[g]
     if (anyNA(scr) || !all(nzchar(scr))) next
-    if (length(unique(scr)) < 2L) next
+    if (length(unique(grezza[g])) < 2L) next
     # rg e' ordinato per forza decrescente entro la chiave: g[1] e' il vincente
     assorbiti <- c(assorbiti, g[-1L])
     vincenti  <- c(vincenti,  rep(g[1L], length(g) - 1L))
@@ -111,6 +137,8 @@
                         chiave               = character(0),
                         k_vincente_prima     = integer(0),
                         k_dopo_fusione       = integer(0),
+                        entity_vincente_prima      = character(0),
+                        control_key_vincente_prima = character(0),
                         stringsAsFactors = FALSE)
   if (length(assorbiti) > 0L) {
     # IL k DEL VINCENTE DIVENTA QUELLO DELL'UNIONE. Il gate del deliverable
@@ -130,11 +158,27 @@
         rg$k[w] <- length(unione)
       }
     }
+    # IL VINCENTE PORTA LE CHIAVI CANONICHE. Il gruppo fuso pool­a entrambe le
+    # scritture e entrambi i controlli: se restasse etichettato con la chiave del
+    # solo vincente, la scheda del case study direbbe una cosa piu' stretta di
+    # quella che il gruppo misura (per l'ipossia direbbe «contro normossia»
+    # mentre pool­a anche i controlli non trattati). Le chiavi di partenza
+    # restano scritte in `fusioni`, per l'audit.
+    ent_prima <- rg$contrast_entity[vincenti]
+    ck_prima  <- ck_raw[vincenti]
+    if ("contrast_entity" %in% names(rg)) {
+      rg$contrast_entity[unique(vincenti)] <- ce_can_ord[unique(vincenti)]
+    }
+    if ("contrast_control_key" %in% names(rg)) {
+      rg$contrast_control_key[unique(vincenti)] <- ck[unique(vincenti)]
+    }
     fusioni <- data.frame(cluster_id_assorbito = rg$cluster_id[assorbiti],
                           cluster_id_vincente  = rg$cluster_id[vincenti],
                           chiave               = key1[assorbiti],
                           k_vincente_prima     = as.integer(k_prima),
                           k_dopo_fusione       = as.integer(rg$k[vincenti]),
+                          entity_vincente_prima      = ent_prima,
+                          control_key_vincente_prima = ck_prima,
                           stringsAsFactors = FALSE)
     tieni1 <- rep(TRUE, nrow(rg)); tieni1[assorbiti] <- FALSE
     rg  <- rg[tieni1, , drop = FALSE]
@@ -255,7 +299,9 @@
   if (nrow(rem_group) > 0L) {
     rem_group$method <- "rem_group"
     rem_group <- .dedup_rem_group_by_entity(
-      rem_group, entity_canonical = rg_cfg$entity_canonical)
+      rem_group,
+      entity_canonical  = rg_cfg$entity_canonical,
+      control_canonical = rg_cfg$control_canonical)
     .fus <- attr(rem_group, "fusioni")
     .sca <- attr(rem_group, "scartati")
     rem_group <- rem_group[rem_group$k >= min_k_raw, , drop = FALSE]
