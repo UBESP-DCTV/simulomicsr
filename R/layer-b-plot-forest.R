@@ -159,8 +159,16 @@
                                       k_max = k_cluster)
   top_genes <- filtro$genes
   # SELEZIONE per significativita' (FDR crescente, pareggio su |logFC|
-  # decrescente), non per |logFC|: stesso criterio di .rank_and_dedup_genes()
-  # gia' usato da tabella/heatmap. Trovato sui dati veri (TGF-beta1, 2026-08-06):
+  # decrescente), non per |logFC|: si CHIAMA .rank_and_dedup_genes(), la stessa
+  # funzione di tabella/heatmap/volcano. ⚠️ Fino al 2026-08-08 qui c'era una
+  # COPIA del solo ordinamento, senza la deduplica per simbolo, e il difetto
+  # era visibile sull'artefatto: nel bundle del DHT (figura 1 del main paper) il
+  # forest mostrava `RBP5` e `RBP5.1` -- lo stesso gene due volte -- e in cambio
+  # perdeva COPS3, mentre la tabella dello stesso bundle mostrava RBP5 una volta
+  # sola. Il make.unique() poco sotto, che serve a garantire livelli di factor
+  # univoci, MASCHERAVA il difetto invece di segnalarlo. Ampiezza misurata sugli
+  # SVG dei 9 bundle: 2 su 9 (DHT `RBP5.1`, cgroup_L5_b71a25a2 `ZNF445.1`).
+  # Trovato sui dati veri (TGF-beta1, 2026-08-06):
   # ordinare per |logFC| faceva vincere geni a effetto enorme ma copertura
   # PARZIALE (sopra la soglia del filtro qui sopra, ma sotto la copertura
   # PIENA che .forest_gene_rappresentativo() richiede) -- il pannello
@@ -169,8 +177,7 @@
   # raccontavano due storie diverse sullo stesso cluster. L'ordine ENTRO la
   # figura (il "a tornado" del pannello superiore, poco sotto) resta per
   # effetto: solo la SELEZIONE dei dieci cambia.
-  top_genes <- top_genes[order(top_genes$FDR_BH_within_cluster,
-                               -abs(top_genes$logFC_pool)), , drop = FALSE]
+  top_genes <- .rank_and_dedup_genes(top_genes)
   top_genes <- head(top_genes, top_n)
 
   if (nrow(top_genes) == 0L) {
