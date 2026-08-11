@@ -21,7 +21,7 @@ fai a sapere che funziona?» non ha una risposta misurata.
 | verifica | esito | perché non è validazione esterna |
 |---|---|---|
 | **Bersagli fissati prima del run** (31 geni su 7 entità) | 29/31 col segno atteso e significativi | i bersagli li ha scelti chi conosce la biologia attesa: prova che il metodo non è rotto, non che sia accurato. E copre 7 entità su 214 |
-| **Agonista contro antagonista** (DHT contro enzalutamide, gruppi costruiti separatamente) | 1.441 geni significativi in entrambi, **1.408 (97,7%) di segno opposto**, Spearman −0,938 | è il controllo più forte che c'è, ma resta interno: sono due sottoinsiemi dello stesso corpus |
+| **Agonista contro antagonista** (DHT contro enzalutamide, gruppi costruiti separatamente) | 1.299 geni significativi in entrambi, **1.266 (97,5%) di segno opposto**, Spearman −0,939 (⚠️ CORRETTO 2026-08-10: prima 1.441/1.408, merge su `gene_symbol`) | è il controllo più forte che c'è, ma resta interno: sono due sottoinsiemi dello stesso corpus |
 | **Arricchimento GO** | termini attesi in cima (es. «response to type II interferon» per IFN-γ) | usa gli stessi geni della stima: misura la coerenza interna del risultato, non la sua verità |
 | **Concordanza di segno per studio** (misurata 2026-08-07) | IFN-γ 91/91, TGF-β1 90,7%, DHT 89,9%, SARS 84,4%, enzalutamide 81,7% | dice che gli studi poolati concordano fra loro — cioè che il pool è coerente, non che abbia ragione |
 

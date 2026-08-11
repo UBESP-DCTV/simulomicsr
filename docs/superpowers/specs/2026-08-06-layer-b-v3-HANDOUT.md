@@ -169,5 +169,5 @@ colonna `peso_citati` **inutilizzabile** (§3.2). Le altre colonne di quel file 
 - Suite: `[ FAIL 0 | PASS 545 ]` sul perimetro `layer-b`.
 - Difetti noti residui: `docs/findings/2026-08-06-layer-b-difetti-noti.md`.
 - Confronti imperfetti (metodo e numeri): `docs/findings/2026-08-05-confronti-imperfetti.md`.
-- Deliverable: 214 meta-analisi, controllo biologico 29/31, DHT contro enzalutamide 1.408/1.441
+- Deliverable: 214 meta-analisi, controllo biologico 29/31, DHT contro enzalutamide 1.266/1.299 (⚠️ CORRETTO 2026-08-10, prima 1.408/1.441)
   di segno opposto, Spearman −0,938.

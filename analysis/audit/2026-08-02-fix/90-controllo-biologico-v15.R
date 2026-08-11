@@ -41,7 +41,18 @@ ATTESI <- list(
        geni = c("CXCL8","CCL20","CXCL1","LCN2"), segno = +1)
 )
 
-gene_col <- if ("gene_symbol" %in% names(cp)) "gene_symbol" else "gene_id"
+# ⚠️ CORRETTO 2026-08-10. Qui c'era `if ("gene_symbol" %in% names(cp)) "gene_symbol"`,
+# cioe' il merge fra i due cluster avveniva sul SIMBOLO. ARCHS4 v2.5 ha 4.638
+# simboli duplicati (paraloghi PAR/KIR/HLA), quindi il merge produceva un
+# PRODOTTO CARTESIANO: fra i geni significativi ci sono 150 simboli duplicati nel
+# DHT e 108 nell'enzalutamide. Effetto misurato: 1.441 righe invece di 1.299
+# (+10,9%), e "1.408 di segno opposto" invece di 1.266. La direzione regge
+# (97,7% contro 97,5%, Spearman -0,938 contro -0,939), il CONTEGGIO no.
+# `gene_id` (Ensembl) e' l'asse su cui `.pool_rem_cluster` poola davvero (FASE E1).
+# Stessa famiglia di errore gia' pagata due volte: §8 del 2026-07-31 e il forest
+# del 2026-08-06.
+gene_col <- "gene_id"
+stopifnot(gene_col %in% names(cp))
 lfc_col  <- grep("^(logFC|estimate|beta)", names(cp), value = TRUE)[1]
 fdr_col  <- grep("FDR", names(cp), value = TRUE)[1]
 cli_alert_info("colonne usate: gene={gene_col} effetto={lfc_col} fdr={fdr_col}")

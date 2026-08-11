@@ -67,7 +67,7 @@ questo vale come argomento nei Methods. Il prezzo è un documento statico.
 
 La prova agonista/antagonista, in grande. Non un grafico generico: i quattro bersagli
 canonici del recettore androgenico (KLK3, TMPRSS2, FKBP5, NKX3-1) con le due stime
-opposte affiancate, il numero d'insieme (**1.408 geni su 1.441 di segno opposto,
+opposte affiancate, il numero d'insieme (**1.266 geni su 1.299 di segno opposto (⚠️ CORRETTO 2026-08-10, prima «1.408 su 1.441»: merge su `gene_symbol` invece che su `gene_id`),
 Spearman −0,938**) e una riga che dice perché conta: *i due gruppi sono costruiti
 separatamente, da studi diversi, e nulla nella pipeline sa che sono collegati.*
 
