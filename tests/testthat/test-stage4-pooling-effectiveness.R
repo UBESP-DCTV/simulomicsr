@@ -230,3 +230,138 @@ test_that("la soglia di dominanza e' un parametro, non un numero nascosto", {
   expect_true(compute_pooling_effectiveness(per_arm, tau2, soglia_dominanza = 0.5)$dominato)
   expect_false(compute_pooling_effectiveness(per_arm, tau2, soglia_dominanza = 0.9)$dominato)
 })
+
+# --- quota di peso per studio (2026-08-10) ------------------------------------
+#
+# PERCHE'. Il «peso contaminato» di un gruppo — quanto del pooling viene dagli
+# studi accusati di portare un confronto spurio — era stato misurato con una
+# regola scritta a mano in uno script di audit: mediana di 1/SE^2 sui BRACCCI,
+# senza collasso per studio e senza tau^2. Da' 6,7% dove il peso vero e' 9,0%
+# (TGF-beta1). Il calcolo giusto esisteva gia' dentro
+# compute_pooling_effectiveness(), che lo usa per trovare lo studio dominante:
+# qui viene estratto, cosi' chi misura la contaminazione usa lo stesso codice
+# che ha prodotto il deliverable invece di riscriverlo.
+
+test_that(".compute_study_gene_weights collassa i bracci PRIMA di pesare", {
+  # GSE1 ha due bracci (SE 0.3 e 0.4), GSE2 uno solo (SE 0.5). Il peso di GSE1
+  # deve nascere dal suo SE COLLASSATO, non dai due bracci separati.
+  per_arm <- data.frame(
+    cluster_id = "c1", gene_id = "g1",
+    study_id = c("GSE1", "GSE1", "GSE2"),
+    SE = c(0.3, 0.4, 0.5), stringsAsFactors = FALSE)
+  tau2 <- data.frame(cluster_id = "c1", gene_id = "g1", tau2 = 0,
+                     stringsAsFactors = FALSE)
+
+  out <- .compute_study_gene_weights(per_arm, tau2)
+
+  expect_equal(nrow(out), 2L)
+  se1 <- sqrt(1 / (1 / 0.3^2 + 1 / 0.4^2))
+  w1 <- 1 / se1^2; w2 <- 1 / 0.5^2
+  expect_equal(out$w[out$study_id == "GSE1"], w1)
+  expect_equal(out$quota[out$study_id == "GSE1"], w1 / (w1 + w2))
+  expect_equal(sum(out$quota), 1)
+})
+
+test_that(".compute_study_gene_weights somma tau^2 al posto giusto", {
+  # Con tau^2 grande i pesi si appiattiscono: e' la proprieta' del random-effects
+  # che rende il peso diverso dal semplice 1/SE^2.
+  per_arm <- data.frame(
+    cluster_id = "c1", gene_id = "g1", study_id = c("GSE1", "GSE2"),
+    SE = c(0.1, 1.0), stringsAsFactors = FALSE)
+
+  senza <- .compute_study_gene_weights(
+    per_arm, data.frame(cluster_id = "c1", gene_id = "g1", tau2 = 0))
+  con <- .compute_study_gene_weights(
+    per_arm, data.frame(cluster_id = "c1", gene_id = "g1", tau2 = 4))
+
+  q_senza <- senza$quota[senza$study_id == "GSE1"]
+  q_con   <- con$quota[con$study_id == "GSE1"]
+  expect_equal(q_senza, (1 / 0.01) / (1 / 0.01 + 1 / 1))
+  expect_equal(q_con, (1 / 4.01) / (1 / 4.01 + 1 / 5))
+  expect_lt(q_con, q_senza)
+})
+
+test_that(".compute_study_gene_weights esclude i geni senza tau2", {
+  per_arm <- data.frame(
+    cluster_id = "c1", gene_id = c("g1", "g1", "g2", "g2"),
+    study_id = c("GSE1", "GSE2", "GSE1", "GSE2"),
+    SE = c(0.3, 0.4, 0.3, 0.4), stringsAsFactors = FALSE)
+  tau2 <- data.frame(cluster_id = "c1", gene_id = "g1", tau2 = 0,
+                     stringsAsFactors = FALSE)
+
+  out <- .compute_study_gene_weights(per_arm, tau2)
+
+  expect_equal(unique(out$gene_id), "g1")
+})
+
+test_that("compute_pooling_weight_shares e' la mediana sui geni della quota sommata", {
+  # Due geni. Su g1 l'accusato pesa 1/2, su g2 pesa 1/5 -> mediana 0.35.
+  per_arm <- data.frame(
+    cluster_id = "c1",
+    gene_id  = c("g1", "g1", "g2", "g2"),
+    study_id = c("GSE_acc", "GSE_ok", "GSE_acc", "GSE_ok"),
+    SE = c(1, 1, 2, 1), stringsAsFactors = FALSE)
+  tau2 <- data.frame(cluster_id = "c1", gene_id = c("g1", "g2"), tau2 = 0,
+                     stringsAsFactors = FALSE)
+
+  out <- compute_pooling_weight_shares(
+    per_arm, tau2,
+    studi = data.frame(cluster_id = "c1", study_id = "GSE_acc",
+                       stringsAsFactors = FALSE))
+
+  expect_equal(nrow(out), 1L)
+  expect_equal(out$quota_mediana, stats::median(c(0.5, (1 / 4) / (1 / 4 + 1))))
+  expect_equal(out$n_geni, 2L)
+})
+
+test_that("compute_pooling_weight_shares da' zero se lo studio marcato non e' nel cluster", {
+  # Il caso che conta: enzalutamide e TNF hanno un peso contaminato PUBBLICATO
+  # (12,1% e 13,8%) mentre nessuno dei loro confronti accusati e' nel pooling.
+  # Se lo studio marcato non porta peso, la risposta deve essere 0, non NA.
+  per_arm <- data.frame(
+    cluster_id = "c1", gene_id = "g1", study_id = c("GSE1", "GSE2"),
+    SE = c(1, 1), stringsAsFactors = FALSE)
+  tau2 <- data.frame(cluster_id = "c1", gene_id = "g1", tau2 = 0,
+                     stringsAsFactors = FALSE)
+
+  out <- compute_pooling_weight_shares(
+    per_arm, tau2,
+    studi = data.frame(cluster_id = "c1", study_id = "GSE_assente",
+                       stringsAsFactors = FALSE))
+
+  expect_equal(nrow(out), 1L)
+  expect_equal(out$quota_mediana, 0)
+})
+
+test_that("compute_pooling_weight_shares tiene i cluster separati", {
+  per_arm <- data.frame(
+    cluster_id = c("c1", "c1", "c2", "c2"), gene_id = "g1",
+    study_id = c("GSE1", "GSE2", "GSE1", "GSE3"),
+    SE = c(1, 1, 1, 1), stringsAsFactors = FALSE)
+  tau2 <- data.frame(cluster_id = c("c1", "c2"), gene_id = "g1", tau2 = 0,
+                     stringsAsFactors = FALSE)
+  studi <- data.frame(cluster_id = "c1", study_id = "GSE1",
+                      stringsAsFactors = FALSE)
+
+  out <- compute_pooling_weight_shares(per_arm, tau2, studi)
+
+  expect_equal(nrow(out), 2L)
+  expect_equal(out$quota_mediana[out$cluster_id == "c1"], 0.5)
+  expect_equal(out$quota_mediana[out$cluster_id == "c2"], 0)
+})
+
+test_that("compute_pooling_weight_shares regge gli input vuoti", {
+  vuoto_pa <- data.frame(cluster_id = character(), gene_id = character(),
+                         study_id = character(), SE = numeric(),
+                         stringsAsFactors = FALSE)
+  vuoto_t2 <- data.frame(cluster_id = character(), gene_id = character(),
+                         tau2 = numeric(), stringsAsFactors = FALSE)
+  vuoto_st <- data.frame(cluster_id = character(), study_id = character(),
+                         stringsAsFactors = FALSE)
+
+  out <- compute_pooling_weight_shares(vuoto_pa, vuoto_t2, vuoto_st)
+
+  expect_s3_class(out, "data.frame")
+  expect_equal(nrow(out), 0L)
+  expect_true(all(c("cluster_id", "quota_mediana", "n_geni") %in% names(out)))
+})

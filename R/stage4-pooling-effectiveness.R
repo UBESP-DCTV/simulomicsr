@@ -45,6 +45,112 @@
     as.data.frame(stringsAsFactors = FALSE)
 }
 
+#' Peso random-effects di ogni studio, gene per gene
+#'
+#' Il nucleo condiviso da \code{compute_pooling_effectiveness()} (che ne ricava
+#' il numero efficace di studi e il dominante) e da
+#' \code{compute_pooling_weight_shares()} (che ne ricava la quota di un
+#' sottoinsieme di studi). Estratto il 2026-08-10 perche' la quota di peso degli
+#' studi accusati di portare un confronto spurio era stata misurata con una
+#' regola scritta a mano: mediana di 1/SE^2 sui BRACCI, senza collasso per
+#' studio e senza tau^2 (6,7% dove il peso vero e' 9,0%).
+#'
+#' L'ordine delle operazioni e' vincolante: si collassano i bracci per studio con
+#' l'inverso della varianza, POI si somma tau^2, POI si normalizza dentro il
+#' gene. Un gene privo di \code{tau2} viene escluso, non trattato come tau2 = 0.
+#'
+#' @inheritParams compute_pooling_effectiveness
+#' @return data.frame con \code{cluster_id}, \code{gene_id}, \code{study_id},
+#'   \code{w} (peso REM) e \code{quota} (peso normalizzato dentro il gene, somma
+#'   1 per ogni coppia cluster-gene). Zero righe se non resta nulla.
+#' @keywords internal
+.compute_study_gene_weights <- function(per_arm, tau2) {
+  vuoto <- data.frame(cluster_id = character(), gene_id = character(),
+                      study_id = character(), w = numeric(), quota = numeric(),
+                      stringsAsFactors = FALSE)
+  if (nrow(per_arm) == 0L) return(vuoto)
+
+  t2 <- tau2[!is.na(tau2$tau2), c("cluster_id", "gene_id", "tau2"), drop = FALSE]
+  if (nrow(t2) == 0L) return(vuoto)
+  chiave_t2 <- paste(t2$cluster_id, t2$gene_id, sep = "\r")
+
+  # Si filtra PRIMA di collassare, non dopo. Il collasso avviene dentro
+  # (cluster, gene, studio): restringere l'insieme dei (cluster, gene) non puo'
+  # cambiare nessun risultato, e taglia il lavoro di un ordine di grandezza —
+  # sui dati v13 si passa da 32,4 M di righe da collassare a quelle dei soli
+  # geni significativi. Misurato: 612 s -> 333 s col solo cambio di libreria,
+  # poi giu' ancora spostando il filtro qui.
+  chiave_pa <- paste(per_arm$cluster_id, per_arm$gene_id, sep = "\r")
+  per_arm <- per_arm[chiave_pa %in% chiave_t2, , drop = FALSE]
+  if (nrow(per_arm) == 0L) return(vuoto)
+
+  per_studio <- .collapse_arm_se_by_study(per_arm)
+  if (nrow(per_studio) == 0L) return(vuoto)
+
+  j <- match(paste(per_studio$cluster_id, per_studio$gene_id, sep = "\r"), chiave_t2)
+  tieni <- !is.na(j)
+  if (!any(tieni)) return(vuoto)
+
+  per_studio <- per_studio[tieni, , drop = FALSE]
+  per_studio$tau2 <- t2$tau2[j[tieni]]
+  per_studio$w <- 1 / (per_studio$SE_study^2 + per_studio$tau2)
+  per_studio |>
+    dplyr::group_by(.data$cluster_id, .data$gene_id) |>
+    dplyr::mutate(quota = .data$w / sum(.data$w)) |>
+    dplyr::ungroup() |>
+    dplyr::select("cluster_id", "gene_id", "study_id", "w", "quota") |>
+    as.data.frame(stringsAsFactors = FALSE)
+}
+
+#' Quota di peso di un insieme di studi marcati, per cluster
+#'
+#' Risponde a «quanto del pooling viene da questi studi». Per ogni gene si somma
+#' la quota di peso degli studi marcati, e si prende la MEDIANA sui geni (come
+#' ovunque nel modulo: robusta alle code).
+#'
+#' Uno studio marcato che nel cluster non porta peso contribuisce 0, non NA: e'
+#' il caso che conta, perche' due gruppi (enzalutamide, TNF) hanno un peso
+#' contaminato pubblicato mentre nessuno dei loro confronti accusati e' dentro il
+#' pooling.
+#'
+#' @inheritParams compute_pooling_effectiveness
+#' @param studi data.frame con \code{cluster_id} e \code{study_id}: gli studi
+#'   marcati, cluster per cluster.
+#' @return data.frame con \code{cluster_id}, \code{quota_mediana} (in [0,1]),
+#'   \code{n_geni} (geni su cui la mediana e' calcolata) e \code{n_studi_marcati}
+#'   (quanti degli studi marcati portano davvero peso). Una riga per ogni cluster
+#'   presente nei pesi.
+#' @export
+compute_pooling_weight_shares <- function(per_arm, tau2, studi) {
+  vuoto <- data.frame(cluster_id = character(), quota_mediana = numeric(),
+                      n_geni = integer(), n_studi_marcati = integer(),
+                      stringsAsFactors = FALSE)
+  pesi <- .compute_study_gene_weights(per_arm, tau2)
+  if (nrow(pesi) == 0L) return(vuoto)
+
+  marcato <- paste(pesi$cluster_id, pesi$study_id, sep = "\r") %in%
+    paste(studi$cluster_id, studi$study_id, sep = "\r")
+  pesi$quota_marcata <- ifelse(marcato, pesi$quota, 0)
+
+  per_gene <- pesi |>
+    dplyr::group_by(.data$cluster_id, .data$gene_id) |>
+    dplyr::summarise(q = sum(.data$quota_marcata), .groups = "drop")
+
+  out <- per_gene |>
+    dplyr::group_by(.data$cluster_id) |>
+    dplyr::summarise(quota_mediana = stats::median(.data$q),
+                     n_geni = dplyr::n(), .groups = "drop") |>
+    as.data.frame(stringsAsFactors = FALSE)
+
+  n_marcati <- tapply(pesi$study_id[marcato], pesi$cluster_id[marcato],
+                      function(x) length(unique(x)))
+  out$n_studi_marcati <- as.integer(n_marcati[out$cluster_id])
+  out$n_studi_marcati[is.na(out$n_studi_marcati)] <- 0L
+  out$n_geni <- as.integer(out$n_geni)
+  rownames(out) <- NULL
+  out
+}
+
 #' Efficacia del pooling per cluster: quanti studi contano davvero
 #'
 #' Per ogni gene si calcolano i pesi del random-effects `w = 1/(SE_studio^2 +
@@ -76,36 +182,11 @@ compute_pooling_effectiveness <- function(per_arm, tau2, soglia_dominanza = 0.5)
     dominato = logical(), studio_dominante = character(),
     n_geni = integer(), stringsAsFactors = FALSE
   )
-  if (nrow(per_arm) == 0L) return(vuoto)
-
-  t2 <- tau2[!is.na(tau2$tau2), c("cluster_id", "gene_id", "tau2"), drop = FALSE]
-  if (nrow(t2) == 0L) return(vuoto)
-  chiave_t2 <- paste(t2$cluster_id, t2$gene_id, sep = "\r")
-
-  # Si filtra PRIMA di collassare, non dopo. Il collasso avviene dentro
-  # (cluster, gene, studio): restringere l'insieme dei (cluster, gene) non puo'
-  # cambiare nessun risultato, e taglia il lavoro di un ordine di grandezza —
-  # sui dati v13 si passa da 32,4 M di righe da collassare a quelle dei soli
-  # geni significativi. Misurato: 612 s -> 333 s col solo cambio di libreria,
-  # poi giu' ancora spostando il filtro qui.
-  chiave_pa <- paste(per_arm$cluster_id, per_arm$gene_id, sep = "\r")
-  per_arm <- per_arm[chiave_pa %in% chiave_t2, , drop = FALSE]
-  if (nrow(per_arm) == 0L) return(vuoto)
-
-  per_studio <- .collapse_arm_se_by_study(per_arm)
+  # Il calcolo dei pesi vive in .compute_study_gene_weights(): stesso nucleo
+  # usato da compute_pooling_weight_shares(), cosi' la quota di peso degli studi
+  # accusati e il numero efficace di studi non possono divergere.
+  per_studio <- .compute_study_gene_weights(per_arm, tau2)
   if (nrow(per_studio) == 0L) return(vuoto)
-
-  j <- match(paste(per_studio$cluster_id, per_studio$gene_id, sep = "\r"), chiave_t2)
-  tieni <- !is.na(j)
-  if (!any(tieni)) return(vuoto)
-
-  per_studio <- per_studio[tieni, , drop = FALSE]
-  per_studio$tau2 <- t2$tau2[j[tieni]]
-  per_studio$w <- 1 / (per_studio$SE_study^2 + per_studio$tau2)
-  per_studio <- per_studio |>
-    dplyr::group_by(.data$cluster_id, .data$gene_id) |>
-    dplyr::mutate(quota = .data$w / sum(.data$w)) |>
-    dplyr::ungroup()
 
   # per gene: numero efficace di studi (Kish) e quota del primo
   per_gene <- per_studio |>

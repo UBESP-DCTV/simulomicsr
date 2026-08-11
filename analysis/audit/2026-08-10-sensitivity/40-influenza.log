@@ -1,0 +1,91 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+ℹ MODO = tutti | nullo per gruppo = 20 | worker = 32 | seed = 42
+ℹ gruppi con almeno uno studio accusato DENTRO il pooling: 11 (studi: 25)
+
+── TGFB1 — cgroup_L5_2e16719f ──
+
+ℹ k=59 | accusati 5 | geni fissi 7909 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 16 bracci, 20 tentativi)
+ℹ 80 pooling su 32 worker
+✔ TGFB1: 64.4 min
+
+── lipopolysaccharide — cgroup_L5_c548d053 ──
+
+ℹ k=35 | accusati 5 | geni fissi 6883 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 8 bracci, 20 tentativi)
+ℹ 56 pooling su 32 worker
+✔ lipopolysaccharide: 34.4 min
+
+── SARS-CoV-2 — cgroup_L5_871ae09e ──
+
+ℹ k=34 | accusati 1 | geni fissi 1933 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 1 bracci, 20 tentativi)
+ℹ 54 pooling su 32 worker
+✔ SARS-CoV-2: 47.8 min
+
+── hypoxia — cgroup_L5_83f57274 ──
+
+ℹ k=25 | accusati 2 | geni fissi 4068 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 2 bracci, 20 tentativi)
+ℹ 46 pooling su 32 worker
+✔ hypoxia: 31.2 min
+
+── JQ1 — cgroup_L5_b71a25a2 ──
+
+ℹ k=25 | accusati 1 | geni fissi 9678 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 4 bracci, 20 tentativi)
+ℹ 45 pooling su 32 worker
+✔ JQ1: 30.5 min
+
+── DHT (5alpha-dihydrotestosterone) — cgroup_L5_930c8dcf ──
+
+ℹ k=23 | accusati 2 | geni fissi 4875 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 2 bracci, 20 tentativi)
+ℹ 44 pooling su 32 worker
+✔ DHT (5alpha-dihydrotestosterone): 31.6 min
+
+── R1881 (metribolone) — cgroup_L5_f94b6180 ──
+
+ℹ k=22 | accusati 2 | geni fissi 8427 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 4 bracci, 20 tentativi)
+ℹ 43 pooling su 32 worker
+✔ R1881 (metribolone): 42.2 min
+
+── IFNG — cgroup_L5_87c40ebb ──
+
+ℹ k=20 | accusati 1 | geni fissi 3579 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 2 bracci, 20 tentativi)
+ℹ 40 pooling su 32 worker
+✔ IFNG: 23.1 min
+
+── IL1B — cgroup_L5_905be893 ──
+
+ℹ k=18 | accusati 2 | geni fissi 1681 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 3 bracci, 20 tentativi)
+ℹ 39 pooling su 32 worker
+✔ IL1B: 27.8 min
+
+── cisplatin — cgroup_L5_021e875e ──
+
+ℹ k=17 | accusati 2 | geni fissi 835 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 4 bracci, 20 tentativi)
+ℹ 38 pooling su 32 worker
+✔ cisplatin: 26.6 min
+
+── palbociclib — cgroup_L5_b6b8bc00 ──
+
+ℹ k=15 | accusati 2 | geni fissi 2833 | scarto anti-stale 0
+ℹ nullo appaiato: 20 estrazioni (bersaglio 3 bracci, 20 tentativi)
+ℹ 36 pooling su 32 worker
+✔ palbociclib: 20.9 min
+✔ scritto 40-influenza-tutti.csv (521 righe)
+
+── Sintesi per tipo ──
+
+              tipo   n spearman_med max_dlogFC_med sig_persi_med
+ accusati (blocco)   8       0.8988          0.262         458.5
+    accusato (LOO)  25       0.9666          0.152         225.0
+    nullo appaiato 220       0.9143          0.270         666.0
+      pulito (LOO) 268       0.9740          0.119         258.0

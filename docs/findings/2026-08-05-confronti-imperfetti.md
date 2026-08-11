@@ -113,32 +113,48 @@ dell'uno per cento del segnale.
 
 ### 3.2 Quanti confronti, nei 13 gruppi grandi
 
-**85 confronti imperfetti su 843 = 10,1%.** Mediana per gruppo: 8,6%.
+> 🔴 **CORRETTO IL 2026-08-10 — QUESTA SEZIONE ERA SBAGLIATA DUE VOLTE.** I confronti censiti
+> **non sono** quelli poolati (il materiale elencava i confronti di uno studio non appena lo
+> *studio* compariva nel poolato, senza applicare `n_min`), e la regola del peso pesava i
+> **bracci** senza collasso per studio e senza τ². Numeri corretti in
+> `docs/findings/2026-08-10-sensitivity-confronti-spuri.md` §3.1 e
+> `-2026-08-10-passo1-accusati-dentro-il-pooling.md`. Sotto restano i numeri **censiti**,
+> con accanto quelli veri.
 
-| gruppo | confronti totali | imperfetti | % confronti | % del peso |
-|---|---:|---:|---:|---:|
-| SARS-CoV-2 | 98 | 3 | 3,1% | **0,7%** |
-| ipossia | 58 | 3 | 5,2% | 1,3% |
-| JQ1 | 58 | 6 | 10,3% | 3,2% |
-| R1881 | 92 | 4 | 4,3% | 4,4% |
-| TGF-β1 | 145 | 29 | 20,0% | 6,7% |
-| cisplatino | 49 | 5 | 10,2% | 4,7% |
-| DHT | 44 | 3 | 6,8% | 12,0% |
-| enzalutamide | 45 | 4 | 8,9% | 12,1% |
-| IFN-γ | 35 | 3 | 8,6% | 13,0% |
-| TNF | 71 | 4 | 5,6% | 13,8% |
-| palbociclib | 39 | 11 | 28,2% | 16,1% |
-| LPS | 72 | 6 | 8,3% | 19,5% |
-| IL1B | 37 | 4 | 10,8% | 33,7% |
+**85 confronti imperfetti su 843 censiti = 10,1%.** Mediana per gruppo: 8,6%.
+**Sui confronti effettivamente poolati: 38 su 533 = 7,1%.**
+
+| gruppo | confronti censiti | imperfetti | % | % del peso (pubblicata) | **% del peso (corretta)** |
+|---|---:|---:|---:|---:|---:|
+| SARS-CoV-2 | 98 | 3 | 3,1% | 0,7% | **2,1%** |
+| ipossia | 58 | 3 | 5,2% | 1,3% | **5,0%** |
+| JQ1 | 58 | 6 | 10,3% | 3,2% | **4,5%** |
+| R1881 | 92 | 4 | 4,3% | 4,4% | **8,8%** |
+| TGF-β1 | 145 | 29 | 20,0% | 6,7% | **9,1%** |
+| cisplatino | 49 | 5 | 10,2% | 4,7% | **12,0%** |
+| DHT | 44 | 3 | 6,8% | 12,0% | **9,1%** |
+| **enzalutamide** | 45 | 4 | 8,9% | 12,1% | **0,0%** |
+| IFN-γ | 35 | 3 | 8,6% | 13,0% | **6,0%** |
+| **TNF** | 71 | 4 | 5,6% | 13,8% | **0,0%** |
+| palbociclib | 39 | 11 | 28,2% | 16,1% | **15,4%** |
+| LPS | 72 | 6 | 8,3% | 19,5% | **15,9%** |
+| IL1B | 37 | 4 | 10,8% | 33,7% | **13,3%** |
 
 **La colonna del peso è un limite superiore**: attribuisce a un difetto tutto il peso dello
 studio coinvolto, anche quando solo uno dei suoi sette confronti è imperfetto.
 
-Da notare che le due colonne **non sono ordinate allo stesso modo**. TGF-β1 ha il conteggio
-peggiore (29 confronti su 145) ma il 6,7% del peso, perché i due studi che contribuiscono
-la maggior parte dei difetti — GSE161176 e GSE210984 — pesano poco: **la pesatura per
-varianza inversa declassa da sola ciò che è rumoroso**. Il fenomeno inverso si vede in
-IL1B, dove quattro soli confronti valgono un terzo del peso perché appartengono a uno
+⚠️ **TNF ed enzalutamide hanno peso contaminato ZERO**: tutti i loro confronti accusati stanno
+sotto `n_min` e non entrano nel deliverable. E la correzione **non va in una sola direzione** —
+cinque gruppi salgono, perché la regola vecchia sottostimava. Il caso peggiore non è IL1B (33,7%)
+ma **LPS (15,9%)**, e l'intervallo è **0,0%–15,9%**, non 0,7%–33,7%.
+
+~~Da notare che le due colonne non sono ordinate allo stesso modo. TGF-β1 ha il conteggio peggiore
+(29 confronti su 145) ma il 6,7% del peso, perché i due studi che contribuiscono la maggior parte
+dei difetti — GSE161176 e GSE210984 — pesano poco: la pesatura per varianza inversa declassa da
+sola ciò che è rumoroso.~~ **RITRATTATO 2026-08-10**: il peso vero di TGF-β1 è **9,1%**, e non
+c'è nessun declassamento automatico — il rapporto fra il peso degli studi accusati e la loro quota
+a peso uguale è **1,07** (in 8 gruppi su 13 gli accusati pesano *più* della loro quota). Resta
+vero il fenomeno inverso in IL1B, dove pochi confronti valgono molto perché appartengono a uno
 studio dominante.
 
 ### 3.3 Che tipo di difetti sono
@@ -182,7 +198,7 @@ studi da escludere è molto più corta di una lista di confronti.
 
 **Un difetto non implica un risultato sbagliato.** DHT ed enzalutamide contengono entrambi
 confronti imperfetti (12,0% e 12,1% del peso) e producono insieme il controllo biologico
-più forte del lavoro: 1.441 geni significativi in entrambi i gruppi, **1.408 (97,7%) di
+più forte del lavoro: 1.299 geni significativi in entrambi i gruppi (⚠️ CORRETTO 2026-08-10: erano «1.441», conteggio gonfiato del 10,9% da un merge su `gene_symbol` con simboli duplicati; l’asse giusto è `gene_id`), **1.266 (97,5%) di
 segno opposto**, correlazione di Spearman **−0,938**, sui quattro bersagli canonici del
 recettore androgenico con i segni attesi (KLK3 +2,27 contro −1,60). Sono due gruppi
 costruiti separatamente, da studi diversi, e nulla nella pipeline sa che sono collegati.
@@ -224,19 +240,23 @@ costruiti separatamente, da studi diversi, e nulla nella pipeline sa che sono co
 **Nei Methods**, la procedura del §2 come descritta, compresa la verifica che le etichette
 non fossero troncate e la terza passata di conteggio.
 
-**Nei Results**, i numeri del §3: 97 gruppi su 214 con almeno un confronto imperfetto;
-85 confronti su 843 nei tredici gruppi ad alta potenza (10,1%); la tabella per gruppo con
-le due colonne, conteggio e peso.
+**Nei Results**, i numeri del §3: 97 gruppi su 214 con almeno un confronto imperfetto; **38
+confronti su 533 poolati nei tredici gruppi ad alta potenza (7,1%)** — non 85 su 843, che è il
+censito; la tabella per gruppo con le due colonne, conteggio e peso corretto.
 
 **Nelle Limitations**, tre affermazioni:
 
 - il tasso di gruppi con almeno un difetto **cresce con la dimensione del gruppo**, quindi
   non è una misura di qualità comparabile fra gruppi di taglia diversa;
-- la contaminazione misurata sui gruppi delle figure va da **0,7% a 33,7% del peso**,
-  mediana 12%, e va riportata accanto a ciascuna figura;
-- la pesatura per varianza inversa **attenua da sola** il contributo degli studi difettosi,
-  perché tendono ad avere varianza più alta — il che spiega perché TGF-β1 abbia il 20% dei
-  confronti difettosi ma il 6,7% del peso.
+- la contaminazione misurata sui gruppi delle figure va da **0,0% a 15,9% del peso**,
+  mediana **8,8%**, e va riportata accanto a ciascuna figura;
+- ~~la pesatura per varianza inversa attenua da sola il contributo degli studi difettosi~~
+  **RITRATTATA 2026-08-10**: non c'è nessuna attenuazione automatica (rapporto peso
+  accusati/equipeso = 1,07). Al suo posto va la sensitivity analysis:
+  **rimuovere gli studi accusati costa una mediana del 10,1% dei geni significativi e sposta il
+  ranking quanto rimuovere studi puliti che tolgono altrettanti dati** — gli accusati stanno al
+  79° percentile dei riferimenti appaiati, senza raggiungere la significatività (n = 17, p = 0,11).
+  Finding: `docs/findings/2026-08-10-sensitivity-confronti-spuri.md`.
 
 **Come contributo metodologico**, il punto che questo lavoro può rivendicare: in una
 meta-analisi automatica su scala di database, l'appaiamento trattato-controllo va

@@ -35,6 +35,41 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-08-10 (I CONFRONTI SPURI: MISURATI INVECE CHE GIUDICATI — decisione utente: opzione A)**:
+> 🟢 **Il verdetto di coerenza è sostituito da una misura di influenza. Nessun gruppo escluso,
+> nessun re-cluster, nessun re-pool. Finding: `docs/findings/2026-08-10-sensitivity-confronti-spuri.md`
+> (+ `-2026-08-10-passo1-accusati-dentro-il-pooling.md`). Evidenza `analysis/audit/2026-08-10-sensitivity/`.**
+>
+> 1. **PERCHÉ**: il verdetto non è riproducibile (stessi 213 gruppi: Mistral 24 incoerenti, lettura
+>    umana 96, accordo 36,2%) e il criterio severo **azzera tutte le meta-analisi con k≥15**.
+> 2. **IL CENSITO NON È IL POOLATO.** Il materiale della rilettura elencava i confronti di uno studio
+>    non appena lo *studio* compariva nel poolato, senza `n_min` né dedup. **47 confronti accusati su
+>    85 non sono nel deliverable**, tutti con un lato a n=1. Tasso vero **38/533 = 7,1%**, non 10,1%.
+>    Definizione di braccio fissata (entry del dispatch di produzione) e verificata con **tre casi di
+>    accettazione**: dispatch riprodotto su 214 cluster, bracci coincidenti col `per_study_de` su
+>    **1.338** coppie, denominatore **843 riprodotto esattamente**.
+> 3. **`n_min` FILTRA ANCHE LA QUALITÀ DELL'APPAIAMENTO** (scoperta nuova): difetti **7,1% dentro
+>    contro 15,2% fuori**, Fisher **p = 0,00032**. Lette le 9 coppie accusate a vuoto: **9 su 9** il
+>    confronto rimasto è la versione correttamente appaiata (`LAPC4_ENZA vs VCaP_DMSO` fuori,
+>    `R1AD1_ENZA vs R1AD1_DMSO` dentro). Associazione, non meccanismo dimostrato.
+> 4. **STRUMENTO in codice di pacchetto** (`R/stage4-loo-influence.R`, 28 test): il ri-pooling
+>    riproduce `cluster_pooled.parquet` con **scarto 0 su tutte e otto le quantità**, anche su TGF-β1
+>    (k=59, 532.109 coppie studio-gene a bracci multipli). **Nessun re-pool serve.** 521 pooling, 6,3 h.
+> 5. **RISULTATO**: togliere tutti gli studi accusati costa **mediana 10,1% dei geni significativi**
+>    (max 20,6%), Spearman mediana **0,902**. Gli accusati stanno al **79° percentile** delle rimozioni
+>    pulite appaiate sui bracci (n=17, **p = 0,109**), e **6 su 17** superano il 90° percentile contro
+>    1,7 attesi. **I dati sono coerenti con accusati un po' più influenti, ma non lo stabiliscono.**
+> 6. **UN DIFETTO DEL MIO DISEGNO, DICHIARATO**: il nullo di blocco pareggia i *bracci* ma toglie
+>    **1,35× più studi** (2,3× su TGF-β1), quindi è conservativo nella direzione sbagliata — il suo
+>    p = 0,765 non prova indistinguibilità.
+> 7. **DUE PREVISIONI SU CINQUE FALSIFICATE**, nella stessa direzione: avevo sottostimato quanto una
+>    rimozione sposti il risultato (P1 prevedeva Spearman ≥0,95 in 9/11: sono 2).
+> 8. **LIMITE PRINCIPALE, scritto prima di misurare**: una LOO vede solo gli studi **discordanti**;
+>    un bias **concorde** le è invisibile (concordanza accusati 0,652 vs puliti 0,683, p = 0,168).
+>    «Influenza piccola» **non assolve i difetti**.
+> 9. **PROSSIMO**: Methods e Results (testo pronto nel finding §7). Branch invariato, master
+>    invariato, no push, nessun commit.
+>
 > **Stato 2026-08-06 (LAYER B RIDISEGNATO — la vetrina era «indecente», ora regge)**:
 > 🟢 **39 commit, 11 task in TDD con revisione indipendente ciascuno + revisione finale dell'intero
 > ramo. Report: `analysis/p4-output/20260806T022106Z-layer-b-81f379d3` (9 bundle, 37 PNG, HTML 14,1 MB).
@@ -83,18 +118,22 @@
 > 3. **ESITO sui 214**: 101 senza difetti, **97 con almeno un confronto imperfetto**, 16 incerti. Il
 >    tasso **cresce con la dimensione**: k 3-4 → 47 su 115; **k≥15 → 13 su 13**. È il motivo per cui
 >    NON può essere un gate: escluderebbe tutti i gruppi con potenza da figura.
-> 4. **QUANTIFICAZIONE (i 13 grandi): 85 confronti imperfetti su 843 = 10,1%**, mediana 8,6%. Pesati
->    sui dati veri: mediana **12,0% del segnale** (LIMITE SUPERIORE: attribuisce a un difetto tutto il
->    peso dello studio). Estremi: SARS-CoV-2 **0,7%**, ipossia 1,3%, JQ1 3,2% · IL1B **33,7%**, LPS
->    19,5%. **TGF-β1 ha il conteggio peggiore (29 su 145) ma il 6,7% del peso**: la pesatura per
->    varianza inversa declassa da sola gli studi rumorosi.
+> 4. **QUANTIFICAZIONE — ⚠️ RIFATTA IL 2026-08-10, i numeri qui sotto erano sbagliati due volte.**
+>    ~~85 confronti imperfetti su 843 = 10,1%; peso mediano 12,0%; estremi SARS 0,7% / IL1B 33,7%;
+>    TGF-β1 il 6,7% del peso perché «la pesatura per varianza inversa declassa da sola gli studi
+>    rumorosi».~~ Il censito **non è** il poolato (il materiale ignorava `n_min`) e la regola del peso
+>    pesava i **bracci** senza collasso né τ². **Veri: 38 confronti difettosi su 533 poolati = 7,1%;
+>    peso contaminato mediano 8,8%, estremi 0,0%–15,9%; TNF ed enzalutamide 0,0%; il peggiore è LPS
+>    (15,9%), non IL1B (13,3%); TGF-β1 9,1%.** Nessun declassamento automatico: rapporto
+>    peso-accusati/equipeso **1,07**. Vedi
+>    `docs/findings/2026-08-10-sensitivity-confronti-spuri.md`.
 > 5. **TASSONOMIA**: secondo agente nel solo trattato 22% · materiale diverso 21% · passaggio di
 >    coltura 16% · linea cellulare 15% · sede anatomica 12% · donatore/sesso/etnia 9%. **I difetti si
 >    concentrano**: 8 studi danno 51 degli 85, e in 10 casi coprono l'INTERO contributo di uno studio
 >    (GSE161176, GSE210984, GSE78801, GSE169241…) → una lista di studi da escludere è molto più corta
 >    di una lista di confronti.
 > 6. **UN DIFETTO NON IMPLICA UN RISULTATO SBAGLIATO**: DHT ed enzalutamide hanno 12,0% e 12,1% di peso
->    contaminato e danno insieme **1.408 geni su 1.441 di segno opposto, Spearman −0,938**.
+>    contaminato e danno insieme **1.266 geni su 1.299 di segno opposto, Spearman −0,939** (⚠️ CORRETTO 2026-08-10: prima «1.408 su 1.441», merge su `gene_symbol` con simboli ARCHS4 duplicati = prodotto cartesiano; l’asse del pooling è `gene_id`. La direzione regge, il conteggio era gonfiato del 10,9%).
 > 7. **LIMITI DICHIARATI**: (a) il contestatore era **spinto alla severità** dal prompt — i 24 verdetti
 >    cambiati vanno TUTTI verso il peggio, zero assoluzioni: un impianto migliore avrebbe due critici
 >    simmetrici; (b) il peso è un limite superiore; (c) **tre accuse non hanno retto**, e una era MIA
@@ -147,7 +186,7 @@
 > 7. **CONTROLLO BIOLOGICO — PASSA** (`90-controllo-biologico-v15.R`, bersagli fissati dalla letteratura
 >    PRIMA di guardare i risultati): **29/31** col segno giusto e significativi. Il controllo che vale
 >    doppio — **DHT agonista contro enzalutamide antagonista**, due gruppi costruiti separatamente —
->    dà **1.441 geni significativi in entrambi, 1.408 (97,7%) di SEGNO OPPOSTO, Spearman −0,938**.
+>    dà **1.299 geni significativi in entrambi, 1.266 (97,5%) di SEGNO OPPOSTO, Spearman −0,939** (⚠️ CORRETTO 2026-08-10, prima 1.441/1.408: merge su `gene_symbol`).
 >    KLK3 +2,27/−1,60 · TMPRSS2 +1,78/−0,92 · FKBP5 +2,32/−1,22 · NKX3-1 +1,37/−1,24. TGF-β1 tutti e 6
 >    i bersagli (FDR fino a 1e−24), IFN-γ CXCL9 **+11,3**, LPS IL6 +4,70.
 >    **Le due mancate sono entrambe su IL17A**, l'altro gruppo de-frammentato: segno giusto ma non

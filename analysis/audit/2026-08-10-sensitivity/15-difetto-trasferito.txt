@@ -1,0 +1,119 @@
+MATERIALE PER UNA DECISIONE UMANA — il difetto sopravvive cambiando etichetta?
+
+Per ognuna delle coppie (studio, gruppo) i cui confronti accusati sono TUTTI
+fuori dal pooling (scartati da n_min), qui sotto ci sono:
+  [ACCUSATO, FUORI]  il confronto giudicato difettoso e il meccanismo;
+  [PULITO, DENTRO]   i confronti dello stesso studio che sono nel deliverable.
+
+La domanda per ciascuno: il meccanismo dell'accusa vale anche per il confronto
+che e' rimasto dentro? Se si', il peso contaminato di quel gruppo NON e' zero.
+Etichette intere, mai troncate.
+
+
+================ [1/9] GSE151803 in cgroup_L5_871ae09e  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 3 materiale/sede diversa fra i bracci
+     TRATTATO : COVID-19 Lung 58L
+     CONTROLLO: hESC Mock
+  [ACCUSATO, FUORI]  meccanismo: 3 materiale/sede diversa fra i bracci
+     TRATTATO : COVID-19 Lung
+     CONTROLLO: hESC Mock
+  [PULITO, DENTRO]   n=4 vs 6
+     TRATTATO : Liver Organoid sars-Cov2
+     CONTROLLO: Liver Organoid Mock
+
+================ [2/9] GSE236122 in cgroup_L5_d9e23e09  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 2 sede-diversa
+     TRATTATO : TNF stimulated, gap_CBP, finger
+     CONTROLLO: Unstimulated, gap_CBP, knee, passage 196
+  [ACCUSATO, FUORI]  meccanismo: 2 sede-diversa
+     TRATTATO : TNF stimulated, gap_p300, finger
+     CONTROLLO: Unstimulated, gap_p300, knee
+  [PULITO, DENTRO]   n=3 vs 3
+     TRATTATO : TNF stimulated, primary tissue, finger
+     CONTROLLO: Unstimulated, primary tissue, finger
+
+================ [3/9] GSE186396 in cgroup_L5_d9e23e09  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 1 agente-extra
+     TRATTATO : Melanoma BLM cells, HOIPIN-8, TNF 6h
+     CONTROLLO: Melanoma BLM cells, Untreated
+  [PULITO, DENTRO]   n=2 vs 2
+     TRATTATO : Melanoma BLM cells, sgRNF31, Untreated, TNF 6h
+     CONTROLLO: Melanoma BLM cells, sgRNF31, Untreated
+  [PULITO, DENTRO]   n=2 vs 2
+     TRATTATO : Primary Melanoma BLM cells, Untreated, TNF 6h
+     CONTROLLO: Melanoma BLM cells, Untreated
+
+================ [4/9] GSE231460 in cgroup_L5_d9e23e09  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 1 agente-extra
+     TRATTATO : TNFα stimulated with si-control
+     CONTROLLO: Control (vehicle)
+  [PULITO, DENTRO]   n=2 vs 3
+     TRATTATO : TNFα stimulated
+     CONTROLLO: Control (vehicle)
+
+================ [5/9] GSE227511 in cgroup_L5_930c8dcf  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 6 materiale diverso
+     TRATTATO : MDaPCa2a cells treated with DHT and ACP-coating
+     CONTROLLO: MDaPCa2a cells treated with plastic and control media
+  [PULITO, DENTRO]   n=2 vs 2
+     TRATTATO : LNCaP cells treated with DHT and ACP-coating
+     CONTROLLO: LNCaP cells treated with control media and ACP-coating
+
+================ [6/9] GSE230741 in cgroup_L5_f94b6180  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 3 clone diverso
+     TRATTATO : R1-AD1 FLAGHA-H3F3A, HIRA KO clone 3, R1881 (1 nM, 12h)
+     CONTROLLO: R1-AD1 FLAGHA-H3F3A, HIRA KO clone 14, Vehicle (EtOH)
+  [ACCUSATO, FUORI]  meccanismo: 3 clone diverso
+     TRATTATO : R1-AD1 FLAGHA-H3F3A, HIRA KO clone 3, R1881 (1 nM, 4h)
+     CONTROLLO: R1-AD1 FLAGHA-H3F3A, HIRA KO clone 14, Vehicle (EtOH)
+  [PULITO, DENTRO]   n=3 vs 3
+     TRATTATO : R1-AD1 FLAGHA-H3F3A, R1881 (1 nM, 12h)
+     CONTROLLO: Prostate cancer cells, FLAG-HA knock-in 5' ORF of H3F3A gene, Vehicle (EtOH)
+  [PULITO, DENTRO]   n=3 vs 3
+     TRATTATO : R1-AD1 FLAGHA-H3F3A, R1881 (1 nM, 4h)
+     CONTROLLO: Prostate cancer cells, FLAG-HA knock-in 5' ORF of H3F3A gene, Vehicle (EtOH)
+  [PULITO, DENTRO]   n=3 vs 3
+     TRATTATO : R1-AD1 FLAGHA-H3F3A, R1881 (1 nM, 24h)
+     CONTROLLO: Prostate cancer cells, FLAG-HA knock-in 5' ORF of H3F3A gene, Vehicle (EtOH)
+
+================ [7/9] GSE158814 in cgroup_L5_87c40ebb  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 1 secondo agente non isolato (infezione C. trachomatis presente nel trattato, assente nel controllo)
+     TRATTATO : C. trachomatis infection + IFN-γ (44hrs)
+     CONTROLLO: untreated
+  [PULITO, DENTRO]   n=2 vs 2
+     TRATTATO : IFN-γ stimulation (44hrs)
+     CONTROLLO: untreated
+
+================ [8/9] GSE225481 in cgroup_L5_c0d1d837  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 9 linea diversa
+     TRATTATO : LAPC4_ENZA
+     CONTROLLO: VCaP_DMSO
+  [ACCUSATO, FUORI]  meccanismo: 9 linea diversa
+     TRATTATO : LAPC4_ENZA_rep
+     CONTROLLO: VCaP_DMSO
+  [ACCUSATO, FUORI]  meccanismo: 9 linea diversa
+     TRATTATO : LNCaP_ENZA
+     CONTROLLO: VCaP_DMSO
+  [ACCUSATO, FUORI]  meccanismo: 9 linea diversa
+     TRATTATO : LNCaP_ENZA_rep
+     CONTROLLO: VCaP_DMSO
+  [PULITO, DENTRO]   n=2 vs 2
+     TRATTATO : R1AD1_ENZA
+     CONTROLLO: R1AD1_DMSO
+
+================ [9/9] GSE113922 in cgroup_L5_b6b8bc00  (fuori: n_min)
+  [ACCUSATO, FUORI]  meccanismo: 2 controllo non-appaiato (donatore assente)
+     TRATTATO : PDX pancreatic cancer, donor 1222, palbociclib
+     CONTROLLO: PDX pancreatic cancer, vehicle control
+  [ACCUSATO, FUORI]  meccanismo: 2 controllo non-appaiato (donatore assente)
+     TRATTATO : PDX pancreatic cancer, donor 1013, palbociclib
+     CONTROLLO: PDX pancreatic cancer, vehicle control
+  [ACCUSATO, FUORI]  meccanismo: 2 controllo non-appaiato (donatore assente)
+     TRATTATO : PDX pancreatic cancer, donor 226, palbociclib
+     CONTROLLO: PDX pancreatic cancer, vehicle control
+  [ACCUSATO, FUORI]  meccanismo: 2 controllo non-appaiato (donatore assente)
+     TRATTATO : PDX pancreatic cancer, donor 226, palbociclib
+     CONTROLLO: PDX pancreatic cancer, vehicle control
+  [PULITO, DENTRO]   n=3 vs 9
+     TRATTATO : PDX pancreatic cancer, donor 1013, palbociclib
+     CONTROLLO: PDX pancreatic cancer, donor 1013, vehicle control
