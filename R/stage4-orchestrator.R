@@ -20,7 +20,12 @@
 .run_per_study_de_all <- function(eligible_clusters, fetch_fn = NULL,
                                    metadata_extra = NULL,
                                    de_covariates = character(0),
-                                    workers = 1L) {
+                                    workers = 1L,
+                                    role_conflict_n_min = 2L) {
+  # Registro degli scarti per conflitto di ruolo: viaggia con l'output come
+  # attributo, perche' questa guardia toglie campioni da stime pubblicate e una
+  # selezione silenziosa non sarebbe auditabile.
+  role_conflict_log <- vector("list", 0L)
   dispatch <- attr(eligible_clusters, "study_dispatch")
   if (is.null(dispatch)) {
     stop("eligible_clusters deve avere attr 'study_dispatch'")
@@ -48,10 +53,32 @@
     for (j in seq_along(dispatch_i)) {
       d <- dispatch_i[[j]]
       study_id <- d$study_id
-      samples <- c(d$treated, d$control)
+
+      # GUARDIA SUI CONFLITTI DI RUOLO (2026-08-09). I ruoli qui si assegnano per
+      # POSIZIONE: un campione presente in entrambe le liste entrerebbe due volte,
+      # una per lato, mettendo lo stesso profilo su tutti e due i bracci del
+      # contrasto. Misurato: 1 confronto su 2.152 nel deliverable v15 (GSE158765
+      # nell'acido acetilsalicilico, 59 dei 61 controlli sono anche trattati --
+      # e' uno studio longitudinale entro soggetto). Vedi R/stage4-role-conflict.R.
+      rc <- .drop_role_conflicts(d$treated, d$control, n_min = role_conflict_n_min,
+                                 cluster_id = cid, study_id = study_id)
+      if (nrow(rc$log) > 0L) {
+        role_conflict_log[[length(role_conflict_log) + 1L]] <- rc$log
+        warning(sprintf(
+          paste0("conflitto di ruolo: cluster=%s study=%s, %d campioni erano ",
+                 "trattati E controlli, tolti da entrambi i bracci (%s)"),
+          cid, study_id, rc$log$n_dropped,
+          if (rc$usable) "il confronto resta" else "il confronto NON entra"),
+          call. = FALSE)
+      }
+      # Un contrasto che sopravvive solo grazie ai campioni ambigui non e' un
+      # contrasto: si salta, e lo scarto e' gia' registrato sopra.
+      if (!rc$usable) next
+
+      samples <- c(rc$treated, rc$control)
       treatment <- factor(
-        c(rep("treated", length(d$treated)),
-          rep("control", length(d$control))),
+        c(rep("treated", length(rc$treated)),
+          rep("control", length(rc$control))),
         levels = c("control", "treated")
       )
 
@@ -75,8 +102,18 @@
     }
   }
 
-  if (length(out_list) == 0L) return(.empty_per_study_de())
-  do.call(rbind, out_list)
+  rc_log <- if (length(role_conflict_log) > 0L) {
+    do.call(rbind, role_conflict_log)
+  } else {
+    .empty_role_conflict_log()
+  }
+  out <- if (length(out_list) == 0L) {
+    .empty_per_study_de()
+  } else {
+    do.call(rbind, out_list)
+  }
+  attr(out, "role_conflicts") <- rc_log
+  out
 }
 
 #' Tibble vuota schema \code{per_study_de.parquet}

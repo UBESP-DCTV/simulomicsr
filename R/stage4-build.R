@@ -213,7 +213,10 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     fetch_fn          = fetch_fn,
     metadata_extra    = h5_metadata,
     de_covariates     = de_covariates,
-    workers           = 1L
+    workers           = 1L,
+    # Stessa soglia del dispatch: un braccio ridotto sotto n_min dopo lo scarto
+    # dei campioni ambigui non e' un braccio. Vedi R/stage4-role-conflict.R.
+    role_conflict_n_min = as.integer(config$rem_group$n_min %||% 2L)
   )
 
   # Step 5b: SAMN dedupe lookups (FASE E0b, decisione utente 2026-05-27 su

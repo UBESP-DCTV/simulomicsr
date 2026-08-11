@@ -9,7 +9,8 @@
   fetch_fn = NULL,
   metadata_extra = NULL,
   de_covariates = character(0),
-  workers = 1L
+  workers = 1L,
+  role_conflict_n_min = 2L
 )
 }
 \arguments{
