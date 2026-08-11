@@ -347,7 +347,30 @@
   "tgfb" = "HGNC:11766",
   # IL17A: "il17" aggancia solo HGNC:5981 fra i geni. Nel corpus esiste un solo
   # gruppo IL17. Misurato: 11 membri su 5 studi, k censito 8 -> 12.
-  "il17" = "HGNC:5981"
+  "il17" = "HGNC:5981",
+  # IFNB1 (aggiunta 2026-08-09, dalla lettura dei 44 gruppi filtrati dal
+  # censimento `id-vs-membri-v15`). L'interferone-beta e' spezzato in DUE
+  # gruppi del deliverable v15 che non si sommano: `STR:ifnb` k=5 e
+  # `HGNC:5434` k=4. Non e' un errore di identita' — entrambi i gruppi sono
+  # corretti e internamente coerenti — e' potenza buttata.
+  #
+  # Il metro e' lo stesso di `tgfb` e `il17`, verificato sui dizionari veri
+  # PRIMA di scrivere la regola:
+  #  (a) l'alias NUDO "ifnb" aggancia UNA SOLA entita', HGNC:5434 (IFNB1);
+  #  (b) `.is_alias_collision("ifnb","HGNC:5434")` = FALSE e
+  #      `.is_unreliable_candidate("ifnb")` = FALSE;
+  #  (c) i due gruppi hanno lo STESSO verso (`gain`) e la STESSA chiave di
+  #      controllo (`vehicle_untreated`) — senza le quali non si fonderebbero
+  #      comunque, ed e' il motivo per cui il glioblastoma fu tolto;
+  #  (d) gli insiemi di studi sono DISGIUNTI: 5 + 4, zero in comune, unione 9.
+  #
+  # Il contrasto che rende questa una regola e non una lista: `ifna` NON si
+  # fonde (test dedicato), perche' aggancia sia IFNA1 sia IFNA2. La stessa
+  # regola decide i due casi in modo opposto guardando il dato, non il nome.
+  #
+  # ⚠️ Si materializza solo al prossimo re-cluster: sul deliverable v15 gia'
+  # scritto i due gruppi restano separati.
+  "ifnb" = "HGNC:5434"
   # ⚠️ GLIOBLASTOMA TOLTO (decisione utente 2026-08-02). Era autorizzato dalla
   # decisione del 2026-07-31, ma la misura fatta dopo mostra che non comprava
   # nulla: dei 40 membri candidati 39 hanno gia' l'entita' dal ramo `anchor`

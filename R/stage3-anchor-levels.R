@@ -283,6 +283,23 @@
         tm <- attr(segs, "tracking_meta")
         tm$agent_id_resolved <- recovery$agent_id
         tm$canonical_name    <- recovery$canonical_name
+        # `resolution_source` deve dichiarare da dove viene DAVVERO l'identita'.
+        # Prima di questa riga restava il valore della risoluzione appena
+        # SCARTATA (tipicamente "NO_AGENT" o "STRING_NO_ALIAS_MATCH", che sono
+        # proprio le condizioni sotto cui `adopt` scatta): il campo mentiva.
+        # Ampiezza misurata su Stadio 3 v15 (2026-08-09): 129.400 cluster su
+        # 322.415 (40,1%) con l'identita' sostituita dal recovery; 101.776 di
+        # essi etichettati come "nessun ID dal resolver" mentre portavano un ID
+        # ontologico forte, e 12.788 con un prefisso `NCBITaxon:` che
+        # `resolve_agent_canonical()` non emette in nessun ramo.
+        # Si materializza al prossimo re-cluster; i file gia' scritti restano
+        # con il campo stale e vanno letti con questa avvertenza.
+        rsrc <- recovery$recovery_source
+        tm$resolution_source <- paste0(
+          "RECOVERY_",
+          if (is.null(rsrc) || length(rsrc) != 1L || is.na(rsrc) || !nzchar(rsrc))
+            "UNKNOWN" else as.character(rsrc)
+        )
         attr(segs, "tracking_meta") <- tm
         agent_id_recovered <- TRUE
       }

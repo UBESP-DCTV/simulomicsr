@@ -300,7 +300,7 @@ test_that("il rifiuto NON tocca le due fusioni autorizzate che sono sigle", {
 # tolto il 2026-08-02 perche' comprava solo 1 membro su 40 candidati.
 # Tutto il resto torna `STR:`, cioe' esattamente come in v13.
 
-test_that("si fondono SOLO le due entita' autorizzate (glioblastoma tolto 2026-08-02)", {
+test_that("si fondono SOLO le tre entita' autorizzate (glioblastoma tolto 2026-08-02)", {
   # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
   expect_equal(.ca_defrag_entity("tgfb", "drug", NULL), "HGNC:11766")
   expect_equal(.ca_defrag_entity("tgf_b", "drug", NULL), "HGNC:11766")
@@ -309,7 +309,8 @@ test_that("si fondono SOLO le due entita' autorizzate (glioblastoma tolto 2026-0
   # al ripiego, con una chiave di controllo non presente nel bersaglio.
   expect_true(is.na(.ca_defrag_entity("glioblastoma", "disease", NULL)))
   expect_equal(.ca_defrag_entity("il17", "drug", NULL), "HGNC:5981")
-  expect_length(.CA_DEFRAG_ACCEPT, 2L)
+  expect_equal(.ca_defrag_entity("ifnb", "drug", NULL), "HGNC:5434")
+  expect_length(.CA_DEFRAG_ACCEPT, 3L)
 })
 
 test_that("le fusioni abbandonate tornano STR:, non spariscono", {
@@ -317,7 +318,15 @@ test_that("le fusioni abbandonate tornano STR:, non spariscono", {
   # Le ~918 fusioni della regola generale non avvengono piu'. Le piu' grosse
   # erano corrette (hypoxia 182 membri, covid_19 61, schizophrenia 57): restano
   # `STR:` come in v13 — etichetta ignota ma onesta, gruppo per stringa identica.
-  for (tk in c("hypoxia", "covid_19", "schizophrenia", "keloid", "ifnb",
+  #
+  # ⚠️⚠️ ASSERZIONE CAPOVOLTA il 2026-08-09: `ifnb` era in QUESTA lista ed e'
+  # passato a quella autorizzata. Non e' la revoca di un giudizio dato su
+  # `ifnb` — era una delle ~918 fusioni abbandonate IN BLOCCO con la regola
+  # generale, mai valutata da sola. La valutazione singola, fatta ora con lo
+  # stesso metro di `tgfb` e `il17`, la ammette: alias nudo univoco (solo
+  # HGNC:5434), guardie spente, stesso verso e stessa chiave di controllo fra i
+  # due gruppi, studi disgiunti 5 + 4. Gli altri nove restano dove sono.
+  for (tk in c("hypoxia", "covid_19", "schizophrenia", "keloid",
                "r5020", "4oht", "arac", "zikv", "kshv")) {
     expect_true(is.na(.ca_defrag_entity(tk, "drug", NULL)), info = tk)
   }
@@ -359,14 +368,22 @@ test_that("ogni entita' autorizzata e' ancora univoca e sostenuta dal nome", {
 # ============================== TASK 1 / 2026-08-02 ===========================
 # Glioblastoma esce dalle fusioni: la misura mostra che comprava un membro su 40.
 
-test_that("la lista autorizzata contiene DUE entita': glioblastoma e' stato tolto", {
-  # Decisione utente 2026-08-02. Misurato: dei 40 membri candidati, 39 hanno gia'
-  # l'entita' dal ramo `anchor` (che precede la de-frammentazione) e al ripiego ne
-  # arriva UNO, con una chiave di controllo che non esiste nel gruppo bersaglio.
-  # La fusione non chiudeva lo split e faceva entrare una meta-analisi a k=3 esatti
-  # mai censita.
-  expect_length(simulomicsr:::.CA_DEFRAG_ACCEPT, 2L)
-  expect_setequal(names(simulomicsr:::.CA_DEFRAG_ACCEPT), c("tgfb", "il17"))
+test_that("la lista autorizzata e' fissata: glioblastoma fuori, ifnb dentro", {
+  # Questo test FISSA il contenuto della lista: ogni aggiunta o rimozione deve
+  # passare di qui e portare la sua misura. Ha gia' fatto il suo lavoro due volte.
+  #
+  # glioblastoma TOLTO (decisione utente 2026-08-02). Misurato: dei 40 membri
+  # candidati, 39 hanno gia' l'entita' dal ramo `anchor` (che precede la
+  # de-frammentazione) e al ripiego ne arriva UNO, con una chiave di controllo
+  # che non esiste nel gruppo bersaglio. La fusione non chiudeva lo split e
+  # faceva entrare una meta-analisi a k=3 esatti mai censita.
+  #
+  # ifnb AGGIUNTO (2026-08-09). Misurato PRIMA di scrivere la regola: alias nudo
+  # "ifnb" -> una sola entita' (HGNC:5434); guardie spente; i due gruppi hanno
+  # stesso verso (`gain`) e stessa chiave di controllo (`vehicle_untreated`);
+  # studi disgiunti 5 + 4, unione 9.
+  expect_length(simulomicsr:::.CA_DEFRAG_ACCEPT, 3L)
+  expect_setequal(names(simulomicsr:::.CA_DEFRAG_ACCEPT), c("tgfb", "il17", "ifnb"))
   expect_false("glioblastoma" %in% names(simulomicsr:::.CA_DEFRAG_ACCEPT))
 })
 
@@ -406,4 +423,29 @@ test_that("le guardie interne sono INERTI sulle chiavi autorizzate, ed e' dichia
   # autorizzate. E' materiale d'audit, non una guardia viva.
   rej_keys <- sub("\\|.*$", "", simulomicsr:::.CA_DEFRAG_REJECT)
   expect_length(intersect(rej_keys, names(simulomicsr:::.CA_DEFRAG_ACCEPT)), 0L)
+})
+
+test_that(".ca_defrag_entity fonde IFNb in IFNB1 (aggancio univoco), a differenza di IFNa", {
+  # `.ca_defrag_entity` non legge `ontology_env`: NULL basta (vedi NOTA in testa).
+  #
+  # Misurato il 2026-08-09 sui dizionari veri: l'alias NUDO "ifnb" aggancia UNA
+  # SOLA entita', HGNC:5434 (IFNB1). E' esattamente il metro con cui furono
+  # ammessi `tgfb` e `il17`, e il contrario del caso `ifna` (test qui sopra),
+  # che aggancia sia IFNA1 sia IFNA2 e per questo NON si fonde.
+  #
+  # Il guadagno, misurato sul deliverable v15 prima di scrivere la regola:
+  # `STR:ifnb` k=5 e `HGNC:5434` k=4 hanno lo STESSO verso (`gain`) e la STESSA
+  # chiave di controllo (`vehicle_untreated`) — senza le quali non si
+  # fonderebbero comunque — e insiemi di studi DISGIUNTI: 5 + 4, zero in
+  # comune, unione 9 (GSE104348 GSE124939 GSE126409 GSE129093 GSE161916 |
+  # GSE114284 GSE125066 GSE178901 GSE233494).
+  expect_equal(.ca_defrag_entity("ifnb", "drug", NULL), "HGNC:5434")
+  expect_equal(.ca_defrag_entity("IFN-b", "drug", NULL), "HGNC:5434")
+  expect_equal(.ca_defrag_entity("ifn_b", "drug", NULL), "HGNC:5434")
+  # come per tgfb: fonde anche nelle classi senza resolver, allo STESSO ID
+  expect_equal(.ca_defrag_entity("ifnb", "other", NULL), "HGNC:5434")
+  # il contrasto che rende la regola una regola e non una lista: IFNa resta STR
+  expect_true(is.na(.ca_defrag_entity("ifna", "drug", NULL)))
+  # e le isoforme numerate NON vengono agganciate
+  expect_true(is.na(.ca_defrag_entity("ifnb2", "drug", NULL)))
 })

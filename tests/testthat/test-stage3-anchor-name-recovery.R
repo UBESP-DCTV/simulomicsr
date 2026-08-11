@@ -297,3 +297,77 @@ test_that("anchor key con agent_id combo round-trip: split su '|' integro", {
   expect_equal(segs[2L], "CHEBI:111+CHEBI:222")  # il '+' non e' separatore
   expect_length(segs, 5L)
 })
+
+# ---------------------------------------------------------------------------
+# resolution_source NON deve restare STALE quando il recovery adotta l'identita'
+#
+# Difetto misurato il 2026-08-09 su Stadio 3 v15: il recovery sovrascriveva
+# `agent_id_resolved` e `canonical_name` lasciando `resolution_source` al valore
+# di una risoluzione poi SCARTATA. Ampiezza: 129.400 cluster su 322.415 (40,1%)
+# con l'identita' sostituita dal recovery; 101.776 cluster etichettati
+# `NO_AGENT`/`HALLUCINATED_OR_FALLBACK`/... portavano un ID ontologico forte, e
+# 12.788 portavano un prefisso `NCBITaxon:` che `resolve_agent_canonical()` non
+# emette in nessun ramo. Il campo mentiva sulla provenienza dell'identita'.
+# ---------------------------------------------------------------------------
+
+test_that("recovery adottato -> resolution_source dichiara il recovery, non la risoluzione scartata", {
+  env  <- .fixt_env_nr()
+  fact <- .make_fact_unk_disease()
+  rec  <- .recovery_disease()
+
+  segs <- simulomicsr:::.extract_anchor_segments(
+    fact, stage2_role = "case", ontology_env = env, recovery = rec
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  expect_equal(tm$agent_id_resolved, "MeSH:D001943")
+  expect_true(tm$agent_id_recovered)
+  # Il campo deve dire da dove viene DAVVERO l'identita'.
+  expect_equal(tm$resolution_source, "RECOVERY_GEO_TITLE_MESH")
+  # Non deve piu' riportare l'esito del resolver, che e' stato scartato.
+  expect_false(identical(tm$resolution_source, "NO_AGENT"))
+})
+
+test_that("recovery adottato con recovery_source assente -> etichetta generica, mai stale", {
+  env  <- .fixt_env_nr()
+  fact <- .make_fact_unk_disease()
+  rec  <- .recovery_disease()
+  rec$recovery_source <- NULL
+
+  segs <- simulomicsr:::.extract_anchor_segments(
+    fact, stage2_role = "case", ontology_env = env, recovery = rec
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  expect_true(tm$agent_id_recovered)
+  expect_equal(tm$resolution_source, "RECOVERY_UNKNOWN")
+})
+
+test_that("recovery NON adottato -> resolution_source resta quello del resolver", {
+  env  <- .fixt_env_nr()
+  fact <- .make_fact_unk_disease()
+  rec  <- .recovery_disease()
+  rec$agent_id <- NA_character_          # niente da adottare
+
+  segs <- simulomicsr:::.extract_anchor_segments(
+    fact, stage2_role = "case", ontology_env = env, recovery = rec
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  expect_false(tm$agent_id_recovered)
+  expect_equal(tm$resolution_source, "NO_AGENT")
+  expect_false(startsWith(tm$resolution_source, "RECOVERY_"))
+})
+
+test_that("senza recovery (NULL) resolution_source e' invariato -- retrocompat", {
+  env  <- .fixt_env_nr()
+  fact <- .make_fact_unk_disease()
+
+  segs <- simulomicsr:::.extract_anchor_segments(
+    fact, stage2_role = "case", ontology_env = env
+  )
+  tm <- attr(segs, "tracking_meta")
+
+  expect_equal(tm$resolution_source, "NO_AGENT")
+  expect_false(startsWith(tm$resolution_source, "RECOVERY_"))
+})
