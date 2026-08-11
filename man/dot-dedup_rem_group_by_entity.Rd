@@ -4,7 +4,11 @@
 \alias{.dedup_rem_group_by_entity}
 \title{Dedup rem_group: una meta-analisi per entita' (kind, agent, verso) al k massimo}
 \usage{
-.dedup_rem_group_by_entity(rem_group_clusters)
+.dedup_rem_group_by_entity(
+  rem_group_clusters,
+  entity_canonical = NULL,
+  control_canonical = NULL
+)
 }
 \description{
 Le stesse entita' nominate compaiono a piu' livelli L2/L3/L4. Si tiene un
