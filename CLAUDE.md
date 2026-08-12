@@ -35,6 +35,32 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-08-13 (PASSO 2 — IL NOME SBAGLIATO NON COSTA POTENZA: chiuso SENZA modifiche)**:
+> 🟢 **L'intervento più invasivo del programma di correttezza è stato tolto dal tavolo da una misura.
+> Finding: `docs/findings/2026-08-13-passo2-il-nome-sbagliato-non-costa.md`. Evidenza
+> `analysis/audit/2026-08-13-passo2/`. Nessuna modifica al codice di produzione.**
+>
+> 1. **L'IPOTESI**: il ramo `anchor` adotta l'ID dell'anchor **solo se** tutti i token del suo
+>    `canonical_name` compaiono nel delta trattato; il nome è sbagliato su 111 righe su 214, quindi
+>    dovrebbe **spegnere il ramo** → errore di **omissione** (potenza persa).
+> 2. **CADE, misurata su 10.521 cluster `cgroup` non-COMBO**: il nome del modello spegne il ramo dove
+>    quello vero lo accenderebbe in **9 cluster (0,09%), ZERO nel deliverable**. Il caso **opposto** —
+>    il nome del modello **accende** il ramo e quello ontologico no — è **26**. Esito identico coi due
+>    nomi nel **99,7%**; dove differiscono è **grafia o sinonimo** (`PLX4720`/`PLX-4720`,
+>    `Monosomy X`/`Turner Syndrome`), non identità.
+> 3. **SE SI "AGGIUSTASSE"**: dei 9, tre si fonderebbero con una chiave esistente e **una sola tocca
+>    il deliverable** (`CHEBI:15698` k=1 → `cgroup_L5_a32e5eaa` k=31). Guadagno: **un membro in una
+>    meta-analisi su 214**, e per giunta è de-frammentazione (due schede ChEBI della decitabina).
+>    Costo: 26 cluster perdono l'anchor. **Netto negativo**, prima delle ~9 h di re-cluster e ~31 di
+>    re-pool.
+> 4. **DUE DIFETTI DELLO STRUMENTO, corretti prima di pubblicare**: (a) la prima versione girava su
+>    tutti i `factor_levels` invece che su `d$treated_values` — un **sovrainsieme**, e 173 cluster
+>    passavano senza avere `src=="anchor"`; rifatta con `.ca_delta` di produzione, **accordo
+>    10.521/10.521 = 100,000%**; (b) il risolutore copre solo HGNC/ChEBI/MeSH, e per il 34,7% dei
+>    cluster il nome vero è NA: contarli avrebbe dato **486 "guadagni" invece di 26**.
+> 5. **PROGRAMMA**: passi 0-1-2-3-4 chiusi. Resta il **PASSO 5** (de-frammentazione, ampiezza del
+>    re-pool, KSHV a k=3) e le due decisioni del PASSO 3.
+>
 > **Stato 2026-08-12 (PASSO 3 — LE CORSIE DI SEQUENZIAMENTO NON SONO REPLICHE)**:
 > 🟢 **Meccanismo in codice di pacchetto, SPENTO di default. Nessun re-cluster, nessun re-pool.
 > Finding: `docs/findings/2026-08-12-corsie-non-repliche.md`. Evidenza
