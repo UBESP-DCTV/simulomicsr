@@ -324,8 +324,11 @@ sono 0,102 / 0,637 / 0,416 in entrambe le esecuzioni.)*
 
 ## 6. Il codice
 
-`R/stage4-technical-lanes.R` (nuovo, **36 casi di accettazione**, di cui 20
-negativi):
+`R/stage4-technical-lanes.R` (nuovo, **23 casi di accettazione / 41 asserzioni**,
+di cui 10 blocchi negativi contro 4 positivi — i negativi sono piu' numerosi
+apposta, e' la direzione in cui uno strumento sbaglia senza dare segno), piu'
+`test-stage4-technical-lanes-integration.R` (4 casi / 10 asserzioni) che si
+intesta il collegamento col percorso di produzione:
 
 - `build_lane_library_lookup(h5_metadata)` — la corrispondenza campione ->
   libreria, con le tre guardie e il registro degli scarti;
@@ -355,6 +358,7 @@ Interruttore: `stage4_default_config()$rem_group$collapse_technical_lanes`,
 | dispatch con la corrispondenza accesa | 2.152 -> 2.146 entry, **6 cluster con k cambiato, gli stessi** |
 | ri-pooling che riproduce il pubblicato | **scarto 0,000e+00** su logFC, SE, tau2, I2 in tutti e 9 i cluster |
 | suite `stage4` | **0 FAIL, 0 ERROR** |
+| suite INTERA (tutti i file di test) | **0 fallimenti** |
 
 **Con `lane_lookup = NULL` non cambia nulla — verificato, non assunto.** Il codice
 di prima contava `length(treated)`, il nuovo conta i campioni **distinti**: sono lo
