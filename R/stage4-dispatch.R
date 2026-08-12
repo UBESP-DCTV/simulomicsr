@@ -326,13 +326,19 @@
 #'
 #' @inheritParams .build_study_dispatch_from_stage3
 #' @param n_min integer campioni minimi per braccio per-studio (default 2).
+#' @param lane_lookup corrispondenza campione -> libreria di sequenziamento
+#'   (\code{build_lane_library_lookup}), oppure NULL. Con NULL \code{n_min} conta
+#'   i CAMPIONI, come ha sempre fatto; con la corrispondenza conta le LIBRERIE,
+#'   cosi' due corsie della stessa libreria non valgono per due repliche. Vedi
+#'   \code{R/stage4-technical-lanes.R}.
 #' @return named list (cluster_id -> list di \code{{study_id, treated,
 #'   control}}). Cluster senza entry valide sono omessi.
 #' @keywords internal
 .build_group_rem_dispatch_from_stage3 <- function(eligible_clusters,
                                                    stage3_assignments,
                                                    stage2_master,
-                                                   n_min = 2L) {
+                                                   n_min = 2L,
+                                                   lane_lookup = NULL) {
   # ADR-0025: i cluster derivati dal contrasto ("cgroup") hanno come record_id la
   # COMPARISON, quindi si risolvono con .lookup_cmp (come il ramo pair). I group
   # legacy restano risolti per gruppo-trattato.
@@ -371,7 +377,8 @@
       if (is.null(tg) || is.null(cg)) next
       treated <- as.character(unlist(tg$sample_ids))
       control <- as.character(unlist(cg$sample_ids))
-      if (length(treated) < n_min || length(control) < n_min) next
+      if (.n_biological(treated, lane_lookup) < n_min ||
+          .n_biological(control, lane_lookup) < n_min) next
 
       key <- paste0(parsed$series_id, "||", cmp$treated_group)
       if (key %in% seen_keys) next

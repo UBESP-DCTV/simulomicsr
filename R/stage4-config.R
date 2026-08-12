@@ -113,7 +113,19 @@ stage4_default_config <- function() {
       # misura mostra che il confine non separa nulla. Evidenza e verdetti:
       # analysis/audit/2026-08-08-deframmentazione/36-verdetti-4-fusioni-dedup.csv.
       # NULL = comportamento di sempre.
-      control_canonical = NULL
+      control_canonical = NULL,
+      # LE CORSIE NON SONO REPLICHE (2026-08-12). TRUE = `n_min` conta le
+      # LIBRERIE di sequenziamento invece dei campioni, e le corsie della stessa
+      # libreria vengono sommate prima del DE. FALSE = comportamento di sempre.
+      # Misura sul deliverable v15: 9 confronti su 2.152 toccati in 4 studi, 6
+      # cadono (tutti GSE173902, che ha un solo campione biologico per
+      # condizione), 6 righe delle 214 perdono uno studio e una esce sotto k>=3
+      # (*Staphylococcus epidermidis*, k 3 -> 2).
+      # Evidenza: docs/findings/2026-08-12-corsie-non-repliche.md.
+      # La corrispondenza si costruisce con `build_lane_library_lookup()` dai
+      # metadati H5; serve `title`, `series_id`, `characteristics_ch1`,
+      # `source_name_ch1`. Senza quei campi il meccanismo resta spento e lo dice.
+      collapse_technical_lanes = FALSE
     ),
     schema_versions = list(
       anchor             = "v3",

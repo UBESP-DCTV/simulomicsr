@@ -9,7 +9,8 @@
   control,
   n_min = 2L,
   cluster_id = NA_character_,
-  study_id = NA_character_
+  study_id = NA_character_,
+  lane_lookup = NULL
 )
 }
 \arguments{
@@ -21,6 +22,12 @@
 utilizzabile (stessa soglia del pooling).}
 
 \item{cluster_id, study_id}{opzionali, solo per il registro.}
+
+\item{lane_lookup}{corrispondenza campione -> libreria di sequenziamento,
+oppure NULL. Con la corrispondenza \code{n_min} conta le LIBRERIE: dopo lo
+scarto un braccio puo' restare con due campioni che sono due corsie di una
+sola libreria, e quello non e' un braccio replicato. Con NULL conta i
+campioni, come ha sempre fatto.}
 }
 \value{
 list con \code{treated} e \code{control} ripuliti e deduplicati,

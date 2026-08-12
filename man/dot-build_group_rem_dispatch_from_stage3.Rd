@@ -8,7 +8,8 @@
   eligible_clusters,
   stage3_assignments,
   stage2_master,
-  n_min = 2L
+  n_min = 2L,
+  lane_lookup = NULL
 )
 }
 \arguments{
@@ -21,6 +22,12 @@
 \code{.load_stage2_master}).}
 
 \item{n_min}{integer campioni minimi per braccio per-studio (default 2).}
+
+\item{lane_lookup}{corrispondenza campione -> libreria di sequenziamento
+(\code{build_lane_library_lookup}), oppure NULL. Con NULL \code{n_min} conta
+i CAMPIONI, come ha sempre fatto; con la corrispondenza conta le LIBRERIE,
+cosi' due corsie della stessa libreria non valgono per due repliche. Vedi
+\code{R/stage4-technical-lanes.R}.}
 }
 \value{
 named list (cluster_id -> list di \code{{study_id, treated,

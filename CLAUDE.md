@@ -35,6 +35,53 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-08-12 (PASSO 3 — LE CORSIE DI SEQUENZIAMENTO NON SONO REPLICHE)**:
+> 🟢 **Meccanismo in codice di pacchetto, SPENTO di default. Nessun re-cluster, nessun re-pool.
+> Finding: `docs/findings/2026-08-12-corsie-non-repliche.md`. Evidenza
+> `analysis/audit/2026-08-12-corsie/` (README con l'ordine degli script). Suite `stage4` verde.**
+>
+> 1. **IL DIFETTO**: `n_min` ammette un braccio con **due campioni**; in quattro studi quei due
+>    campioni sono la **stessa libreria letta su due corsie**. Il caso grave è **GSE173902** (36 GSM =
+>    18 campioni × 2 corsie, **un solo campione biologico per condizione**): SE mediano **0,19–0,39
+>    volte** quello dei pari e **76% del peso** in *S. aureus* e *S. epidermidis*.
+> 2. **PRIMA DI MISURARE, L'UNITÀ ERA SBAGLIATA**: il rilevatore del 2026-08-09 raggruppava per
+>    (cluster, studio, braccio); `n_min` agisce per **entry del dispatch**. Rifatto, con accettazione:
+>    la replica riproduce il dispatch di produzione **entry per entry** (2.152 entry, 1.338 coppie
+>    cluster-studio = lo stesso numero del 10 agosto).
+> 3. **TRE CRITERI AUTOREVOLI PROVATI E SCARTATI**: il **BioSample** (copertura 100% ma quattro corsie
+>    = quattro SAMN, e l'unico SAMN condiviso sta sui **due bracci opposti**); la **profondità** (le
+>    corsie di GSE173902 hanno 19,9 M di reads, sopra la mediana); il **profilo di espressione**
+>    (AUC 0,985 ma a soglia 0,990 ritrova **15%** delle corsie prendendo 3.444 coppie biologiche —
+>    genera candidati, non verdetti).
+> 4. **IL FALSO POSITIVO CHE HA CAMBIATO IL DISEGNO**: la regola del solo titolo unisce i **pozzetti
+>    di una piastra** (`well: L1` contro `well: L10`, con `moi: 0` contro `moi: 0.1` = un controllo e
+>    un trattato). Corpus intero: **solo il 45,3%** delle 4.360 librerie collassanti ha
+>    `characteristics_ch1` identici. Tre guardie → 1.717 librerie, 50 studi. Una quarta guardia
+>    proposta è stata **scartata perché vera per costruzione** (non misurava nulla).
+> 5. **ESITO**: 9 confronti su 2.152 toccati, **6 cadono**, 6 righe delle 214 perdono uno studio,
+>    **una esce** (*S. epidermidis*, k 3→2) → deliverable **214 → 213**. La previsione depositata
+>    prima è confermata alla lettera.
+> 6. **QUANTO CONTA**: *S. aureus* perde il **78,9%** dei geni significativi con Spearman **−0,02**,
+>    *S. epidermidis* il 68,6% con 0,10. **Anche senza che nessuno studio esca**, la sola somma delle
+>    corsie costa dal 12% al 18% (digossina, ATRA, artrite reumatoide).
+> 7. **IL NULLO APPAIATO (55 pooling)**: in **tre gruppi su sei** GSE173902 **non** è la rimozione più
+>    influente. Lì il motivo per toglierlo non è che sposta il risultato — è che **quel confronto non
+>    ha repliche biologiche**. Nei due stafilococchi le due cose coincidono.
+> 8. **PREVISIONE FALSIFICATA, con la spiegazione misurata**: avevo previsto SE ×√4 = 2 per gli studi
+>    a quattro corsie; misurato **2,16 e 1,20**. Scomponendo `SE = sd·√(1/n₁+1/n₂)`: in GSE178340 la
+>    **sd scende a 0,58** perché la dispersione fra le corsie era parte della varianza fra i 12.
+> 9. **LIMITE PRINCIPALE**: i falsi negativi **non sono esclusi e non esiste uno strumento** per
+>    farlo (7.185 coppie non dichiarate su 313.047 correlano almeno quanto una corsia confermata).
+>    Il numero è un **limite inferiore**.
+> 10. **DUE DIFETTI PRE-ESISTENTI CHIUSI DI PASSAGGIO**: il registro dei conflitti di ruolo viveva
+>    come attributo di `per_study_de` e `write_parquet` gli attributi li perde — **non è mai arrivato
+>    su disco**; ora sta in `qc_report` con quello dei collassi. E `NAMESPACE`/`man` non erano stati
+>    rigenerati dopo il 10 agosto.
+> 11. **DECISIONE APERTA (utente)**: **solo il gate** oppure **il collasso**. Il collasso *contiene*
+>    il gate e in più corregge l'SE dei tre studi che restano; il gate da solo lascia metà del difetto
+>    in piedi. Accendere richiede un re-pool. **PROSSIMO**: PASSO 2 ridotto alla sola misura (quante
+>    volte il ramo `anchor` non scatta per un `canonical_name` sbagliato), poi PASSO 5.
+>
 > **Stato 2026-08-10 (I CONFRONTI SPURI: MISURATI INVECE CHE GIUDICATI — decisione utente: opzione A)**:
 > 🟢 **Il verdetto di coerenza è sostituito da una misura di influenza. Nessun gruppo escluso,
 > nessun re-cluster, nessun re-pool. Finding: `docs/findings/2026-08-10-sensitivity-confronti-spuri.md`

@@ -62,6 +62,11 @@
 #' @param n_min integer, minimo di campioni per braccio perche' il confronto sia
 #'   utilizzabile (stessa soglia del pooling).
 #' @param cluster_id,study_id opzionali, solo per il registro.
+#' @param lane_lookup corrispondenza campione -> libreria di sequenziamento,
+#'   oppure NULL. Con la corrispondenza \code{n_min} conta le LIBRERIE: dopo lo
+#'   scarto un braccio puo' restare con due campioni che sono due corsie di una
+#'   sola libreria, e quello non e' un braccio replicato. Con NULL conta i
+#'   campioni, come ha sempre fatto.
 #' @return list con \code{treated} e \code{control} ripuliti e deduplicati,
 #'   \code{dropped} (i campioni tolti, in ordine di prima comparsa nel braccio
 #'   trattato), \code{usable} (entrambi i bracci hanno almeno \code{n_min}
@@ -69,7 +74,8 @@
 #' @keywords internal
 .drop_role_conflicts <- function(treated, control, n_min = 2L,
                                  cluster_id = NA_character_,
-                                 study_id = NA_character_) {
+                                 study_id = NA_character_,
+                                 lane_lookup = NULL) {
   treated <- unique(as.character(treated))
   control <- unique(as.character(control))
   n_t0 <- length(treated)
@@ -84,7 +90,8 @@
     control <- control[!(control %in% dropped)]
   }
 
-  usable <- length(treated) >= n_min && length(control) >= n_min
+  usable <- .n_biological(treated, lane_lookup) >= n_min &&
+    .n_biological(control, lane_lookup) >= n_min
 
   log <- .empty_role_conflict_log()
   if (length(dropped) > 0L) {

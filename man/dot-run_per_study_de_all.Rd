@@ -10,7 +10,8 @@
   metadata_extra = NULL,
   de_covariates = character(0),
   workers = 1L,
-  role_conflict_n_min = 2L
+  role_conflict_n_min = 2L,
+  lane_lookup = NULL
 )
 }
 \arguments{
@@ -21,6 +22,12 @@ list nested per cluster_id.}
 richiede iniezione esplicita (mock o cache-backed da chiamante).}
 
 \item{workers}{integer numero di worker per future_map (default 1L, serial).}
+
+\item{lane_lookup}{corrispondenza campione -> libreria di sequenziamento
+(\code{build_lane_library_lookup}), oppure NULL. Se fornita, le corsie della
+stessa libreria vengono SOMMATE prima del DE: contarle come repliche fa
+stimare a limma-voom una varianza di sequenziamento invece che biologica.
+Con NULL non cambia nulla. Vedi \code{R/stage4-technical-lanes.R}.}
 }
 \value{
 tibble \code{per_study_de.parquet} schema; vuoto se nessun cluster

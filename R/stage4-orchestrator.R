@@ -14,6 +14,11 @@
 #' @param fetch_fn function \code{(gse, sample_ids) -> matrix}. Default NULL
 #'   richiede iniezione esplicita (mock o cache-backed da chiamante).
 #' @param workers integer numero di worker per future_map (default 1L, serial).
+#' @param lane_lookup corrispondenza campione -> libreria di sequenziamento
+#'   (\code{build_lane_library_lookup}), oppure NULL. Se fornita, le corsie della
+#'   stessa libreria vengono SOMMATE prima del DE: contarle come repliche fa
+#'   stimare a limma-voom una varianza di sequenziamento invece che biologica.
+#'   Con NULL non cambia nulla. Vedi \code{R/stage4-technical-lanes.R}.
 #' @return tibble \code{per_study_de.parquet} schema; vuoto se nessun cluster
 #'   eleggibile.
 #' @keywords internal
@@ -21,11 +26,14 @@
                                    metadata_extra = NULL,
                                    de_covariates = character(0),
                                     workers = 1L,
-                                    role_conflict_n_min = 2L) {
+                                    role_conflict_n_min = 2L,
+                                    lane_lookup = NULL) {
   # Registro degli scarti per conflitto di ruolo: viaggia con l'output come
   # attributo, perche' questa guardia toglie campioni da stime pubblicate e una
   # selezione silenziosa non sarebbe auditabile.
   role_conflict_log <- vector("list", 0L)
+  # Stesso motivo per il collasso delle corsie: cambia una stima pubblicata.
+  lane_collapse_log <- vector("list", 0L)
   dispatch <- attr(eligible_clusters, "study_dispatch")
   if (is.null(dispatch)) {
     stop("eligible_clusters deve avere attr 'study_dispatch'")
@@ -61,7 +69,8 @@
       # nell'acido acetilsalicilico, 59 dei 61 controlli sono anche trattati --
       # e' uno studio longitudinale entro soggetto). Vedi R/stage4-role-conflict.R.
       rc <- .drop_role_conflicts(d$treated, d$control, n_min = role_conflict_n_min,
-                                 cluster_id = cid, study_id = study_id)
+                                 cluster_id = cid, study_id = study_id,
+                                 lane_lookup = lane_lookup)
       if (nrow(rc$log) > 0L) {
         role_conflict_log[[length(role_conflict_log) + 1L]] <- rc$log
         warning(sprintf(
@@ -83,6 +92,37 @@
       )
 
       counts <- fetch_fn(study_id, samples)
+
+      # LE CORSIE NON SONO REPLICHE. Se due colonne sono la stessa libreria letta
+      # su corsie diverse, si sommano PRIMA del fit: contarle come repliche fa
+      # stimare a limma-voom il rumore di sequenziamento al posto della varianza
+      # biologica. Il registro viaggia con l'output: questo passo cambia una
+      # stima pubblicata e non puo' essere silenzioso.
+      if (!is.null(lane_lookup) && length(lane_lookup) > 0L) {
+        col_ok <- !is.null(colnames(counts))
+        cl_res <- if (col_ok) {
+          tryCatch(.collapse_technical_lanes(counts, treatment, lane_lookup),
+                   error = function(e) {
+                     warning(sprintf(
+                       "collasso delle corsie NON applicato: cluster=%s study=%s: %s",
+                       cid, study_id, conditionMessage(e)), call. = FALSE)
+                     NULL
+                   })
+        } else {
+          warning(sprintf(paste0("collasso delle corsie NON applicato: cluster=%s ",
+                                 "study=%s: la matrice non ha i nomi di colonna"),
+                          cid, study_id), call. = FALSE)
+          NULL
+        }
+        if (!is.null(cl_res) && nrow(cl_res$log) > 0L) {
+          counts <- cl_res$counts
+          treatment <- cl_res$treatment
+          cl_res$log$cluster_id <- cid
+          cl_res$log$study_id <- study_id
+          lane_collapse_log[[length(lane_collapse_log) + 1L]] <- cl_res$log
+        }
+      }
+
       # Rete di sicurezza (bug 2026-06-27, Task 15 v4): un singolo fit per-studio
       # in errore (es. 0 df residui, voom su 0 geni post-filter, ...) NON deve
       # mai abortire l'intero run da centinaia di cluster. Skip+warning, prosegui.
@@ -113,6 +153,13 @@
     do.call(rbind, out_list)
   }
   attr(out, "role_conflicts") <- rc_log
+  attr(out, "lane_collapses") <- if (length(lane_collapse_log) > 0L) {
+    do.call(rbind, lane_collapse_log)
+  } else {
+    data.frame(libreria = character(), n_campioni = integer(),
+               campioni = character(), cluster_id = character(),
+               study_id = character(), stringsAsFactors = FALSE)
+  }
   out
 }
 

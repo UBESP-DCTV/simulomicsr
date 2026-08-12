@@ -178,9 +178,31 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
   # FASE F6 2026-07-05: group nominati L2-L4 -> REM per-studio. Stesso schema
   # {study_id, treated, control} dei pair, quindi si fonde nello study_dispatch
   # (cluster_id disgiunti: rem_group e' group, rem/mega_aug sono pair).
+  # LE CORSIE NON SONO REPLICHE (2026-08-12). La corrispondenza campione ->
+  # libreria si costruisce una volta sola dai metadati H5 e serve DUE consumatori:
+  # il gate `n_min` qui sotto (un braccio con due corsie di una sola libreria non
+  # e' replicato) e il collasso delle conte prima del DE (Step 5). Spenta di
+  # default. Vedi R/stage4-technical-lanes.R.
+  lane_lookup <- NULL
+  if (isTRUE(config$rem_group$collapse_technical_lanes)) {
+    serve <- c("geo_accession", "title", "series_id",
+               "characteristics_ch1", "source_name_ch1")
+    if (!is.null(h5_metadata) && all(serve %in% names(h5_metadata))) {
+      lane_lookup <- build_lane_library_lookup(h5_metadata)
+      message(sprintf(
+        "corsie: %d campioni in %d librerie da piu' corsie (%d candidate scartate dalle guardie)",
+        length(lane_lookup), length(unique(lane_lookup)),
+        nrow(attr(lane_lookup, "scartate"))))
+    } else {
+      warning("collapse_technical_lanes richiesto ma h5_metadata non ha ",
+              paste(setdiff(serve, names(h5_metadata)), collapse = ", "),
+              ": il meccanismo resta SPENTO", call. = FALSE)
+    }
+  }
   group_rem_dispatch <- .build_group_rem_dispatch_from_stage3(
     qc$eligible_clusters, stage3_assignments, stage2_master,
-    n_min = config$rem_group$n_min %||% 2L
+    n_min = config$rem_group$n_min %||% 2L,
+    lane_lookup = lane_lookup
   )
   # Invariante: i cluster_id pair (study_dispatch) e group (group_rem_dispatch)
   # sono disgiunti per costruzione (mode diverso). Fail-loud se non lo sono:
@@ -216,7 +238,8 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     workers           = 1L,
     # Stessa soglia del dispatch: un braccio ridotto sotto n_min dopo lo scarto
     # dei campioni ambigui non e' un braccio. Vedi R/stage4-role-conflict.R.
-    role_conflict_n_min = as.integer(config$rem_group$n_min %||% 2L)
+    role_conflict_n_min = as.integer(config$rem_group$n_min %||% 2L),
+    lane_lookup = lane_lookup
   )
 
   # Step 5b: SAMN dedupe lookups (FASE E0b, decisione utente 2026-05-27 su
@@ -257,6 +280,18 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     qc$qc_drops_cluster <- rbind(qc$qc_drops_cluster, pool_non_proc)
     qc_report$qc_drops_cluster <- qc$qc_drops_cluster
   }
+
+  # I DUE REGISTRI CHE TOCCANO STIME PUBBLICATE finiscono dentro `qc_report`,
+  # che e' salvato su disco. Vivevano come ATTRIBUTI di `per_study_de`, e
+  # `arrow::write_parquet` gli attributi li perde: il registro dei conflitti di
+  # ruolo (2026-08-11) non e' mai arrivato su disco. Una selezione silenziosa non
+  # e' auditabile, e questa e' la sede dove il resto degli scarti gia' vive.
+  qc_report$role_conflicts <- attr(per_study_de, "role_conflicts") %||%
+    .empty_role_conflict_log()
+  qc_report$lane_collapses <- attr(per_study_de, "lane_collapses") %||%
+    data.frame(libreria = character(), n_campioni = integer(),
+               campioni = character(), cluster_id = character(),
+               study_id = character(), stringsAsFactors = FALSE)
 
   structure(list(
     per_study_de      = per_study_de,

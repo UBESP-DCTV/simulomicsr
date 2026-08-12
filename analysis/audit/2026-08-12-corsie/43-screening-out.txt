@@ -1,0 +1,29 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+bracci distinti: 3641 
+studi: 1115 
+[22:32:43] 100/1115 studi | 1.0 min
+[22:33:52] 200/1115 studi | 2.2 min
+[22:35:00] 300/1115 studi | 3.3 min
+[22:36:12] 400/1115 studi | 4.5 min
+[22:37:00] 500/1115 studi | 5.3 min
+[22:38:07] 600/1115 studi | 6.4 min
+[22:39:15] 700/1115 studi | 7.6 min
+[22:40:30] 800/1115 studi | 8.8 min
+[22:41:19] 900/1115 studi | 9.6 min
+[22:42:16] 1000/1115 studi | 10.6 min
+[22:43:22] 1100/1115 studi | 11.7 min
+
+coppie intra-braccio distinte: 313047 
+dichiarate stessa libreria dalla regola: 85 
+
+=== DISTRIBUZIONE DI r, coppie NON dichiarate ===
+   50%    90%    99%  99.9%   100% 
+0.9350 0.9601 0.9909 0.9963 0.9988 
+
+=== DISTRIBUZIONE DI r, coppie DICHIARATE ===
+    0%     1%    10%    50%   100% 
+0.9773 0.9776 0.9784 0.9832 0.9960 
+
+soglia = il minimo osservato fra le coppie dichiarate: 0.9773 
+CANDIDATI (coppie non dichiarate sopra la soglia): 7185 | studi: 739 
+scritto.
