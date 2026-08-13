@@ -194,6 +194,28 @@ Lo **Stadio 3** invece registrava già tutto: `non_clusterable.rds` di v15 ha
 224.680 righe con il motivo, fra cui **4.482 `riga_genetica_asimmetrica`**.
 Non serviva aggiungere nulla lì.
 
+## 7bis. Lo smoke del re-cluster v16 NON esercita D2 — e come lo so
+
+Lo smoke (`analysis/p4-fase-f13-stage3-v16-tre-cambi.R`, 10,8 min, 250 studi,
+297 `cgroup`) produce un output **identico** a quello di v15: 3.052
+`non_clusterable`, **69** `riga_genetica_asimmetrica`, zero `k` cambiati.
+
+Due spiegazioni erano possibili, e la seconda è il difetto che questo progetto ha
+già pagato tre volte: (a) il subset non contiene i casi toccati, (b) **il codice
+nuovo non viene chiamato**. Distinte con `D2e-smoke-esercita.R`:
+
+- **(b) è esclusa**: chiamando `.ca_member_contrast()` — la funzione del build,
+  non il solo marcatore — sui due confronti veri di GSE111009, il verdetto è
+  `riga_genetica_asimmetrica`. Con la regola vecchia passavano.
+- **(a) è la spiegazione**: dei 132 studi toccati sul corpus, solo 3 sono nel
+  subset smoke (GSE149035, GSE162186, GSE172506), e i loro 10 confronti
+  interessati **non arrivano al gate**: non compaiono né fra gli assegnati né fra
+  i `non_clusterable`, in nessuno dei due smoke.
+
+Lo smoke vale quindi come **non-regressione** (il cambio non ha rotto nulla nel
+percorso di produzione), non come prova che D2 funziona: quella sta nei 121 test
+e nella misura sui dati veri.
+
 ## 8. Limiti dichiarati
 
 1. **Le previsioni valgono a parità di Stadio 1 e 2.** Il re-run degli stadi LLM

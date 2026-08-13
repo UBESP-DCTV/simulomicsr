@@ -26,3 +26,4 @@ che esiste già,
 `D1-lookup.rds` è la corrispondenza campione → libreria costruita dall'H5
 (5.721 campioni, 1.810 librerie): si ricostruisce in 3 minuti se manca.
 `s2.rds` (la cache del master Stadio 2) vive in `../2026-08-12-corsie/`.
+| `D2e-smoke-esercita.R` | lo smoke v16 e' identico al v15: distingue «il subset non contiene i casi» da «il codice non e' chiamato». **La seconda e' esclusa**: `.ca_member_contrast()` sui due confronti veri di GSE111009 da' `riga_genetica_asimmetrica` | 3 min |
