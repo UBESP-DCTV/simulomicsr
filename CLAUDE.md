@@ -35,6 +35,47 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-08-13b (I TRE CAMBI DEL RE-RUN: IMPLEMENTATI E MISURATI — nessun run lanciato)**:
+> 🟢 **D1, D2, D3+D4, D7 in codice di pacchetto con TDD, ognuno validato SUI DATI VERI. Suite intera
+> 4.317 asserzioni, 0 fallimenti. Finding `docs/findings/2026-08-13-tre-cambi-implementati.md`,
+> evidenza `analysis/audit/2026-08-13-rerun-prep/`, previsioni depositate in
+> `PREVISIONI-PRIMA-DEL-RUN.md`. Commit `d92f505`, `18f83ea`. Master invariato, no push.**
+>
+> 1. **D1 corsie ACCESO**: dispatch 2.152 → 2.146, gli **stessi 6** cluster col k cambiato,
+>    deliverable 214 → 213. Con l'interruttore spento il dispatch resta byte-identico.
+> 2. **D2 confine del marcatore**: `\b` non vede il confine dopo una CIFRA (`p63shRNA`). Corretto,
+>    con KO/KD solo maiuscoli, il marcatore sui VALORI e non sul nome del campo, e le negazioni.
+>    **Sui dati veri: 5 confronti segnalati, NESSUNO poolato → effetto sul deliverable ZERO.**
+>    L'attesa dell'handout («Nutlin 8 → 7») **non regge**: quel k=8 è il k_eff e i confronti
+>    segnalati erano già fuori per `n_min`. Cambia un solo k di Stadio 3 (bleomicina 10 → 9).
+> 3. **D3+D4 mappe**: 7 fusioni. **TNF 32 → 38, ipossia 25 → 33, SARS-CoV-2 34 → 36** (i tre numeri
+>    della decisione tornano alla cifra), IL-6 10 → 11, IL-15 3 → 5. **La voce `normoxia` GENERALE
+>    portava dentro un'ottava fusione non voluta** — ATRA, guadagno zero, stessi campioni contro due
+>    controlli: è uno dei casi che D4 escludeva. Ora anche `normoxia` è condizionata all'entità
+>    (`STR:hypoxia||normoxia`); il condizionamento è codice nuovo, senza il quale D4 non era
+>    esprimibile.
+> 4. **INFIGRATINIB NON NASCE**: la fusione porta il k di Stadio 3 da 2 a 3 (entra fra i 351
+>    candidati) ma il **k_eff va da 1 a 2**, sotto il gate del pooling. D6 lo dava per «unica
+>    meta-analisi nuova»: l'audit dell'8 agosto aveva scritto «gate ignoto», ora è misurato.
+> 5. **PREVISIONE: deliverable 214 → 212** (−1 *S. epidermidis* per le corsie, −1 la riga TNF
+>    assorbita dalla fusione, +0 infigratinib). Candidati 351, non processabili 137 → 139.
+> 6. **⚠️ LE PREVISIONI VALGONO A PARITÀ DI STADIO 1 E 2.** `VLLM_BATCH_INVARIANT=1` rende
+>    riproducibile il run NUOVO, non fa coincidere il nuovo col vecchio: senza flag due esecuzioni
+>    identiche dello Stadio 1 davano lo stesso record nel **40,4%** dei casi (Stadio 2 62,0%;
+>    `agent_normalized.id` 86,0%; confronti per identità dei campioni 92,0%). Rifacendo gli stadi
+>    LLM, il deliverable cambia anche per motivi indipendenti dai tre fix. **DECISIONE APERTA
+>    (utente): re-run a due tempi (prima Stadio 3+4 sul master attuale = verifica esatta dei tre
+>    cambi, poi il re-run completo) oppure tutto insieme.**
+> 7. **CONTROLLO PIPELINE §3 fatto**: Stadio 1 guard 12.967 flag corretti (2.882 accesi nell'input
+>    v3, **0 senza evidenza**); Stadio 2 un record per studio PASS (24.394 studi); Stadio 3 le
+>    cinque invarianti tornano tutte; Stadio 4 funnel 322.415 → 11.536 cgroup → 351 → 214+137, zero
+>    orfani; guardie tutte invocate; cache recupero-nome **resta v7** (nessun cambio la tocca).
+> 8. **DUE DIFETTI DEI MIEI STRUMENTI, corretti prima dell'uso**: (a) il riconoscimento di
+>    `chiave=valore` tagliava tutto prima del primo `=` e mutilava **115 etichette**
+>    (`LNCaP-abl shKDM3B1 t=7` → `7`); (b) i «36 flag senza evidenza» dello Stadio 1 **non esistono**:
+>    nell'input v3 `value_hours` è un array di un elemento, `is.numeric(list(0))` è FALSE — la
+>    trappola degli scalari-come-array, commessa dopo averla letta.
+>
 > **Stato 2026-08-13 (PASSO 2 — IL NOME SBAGLIATO NON COSTA POTENZA: chiuso SENZA modifiche)**:
 > 🟢 **L'intervento più invasivo del programma di correttezza è stato tolto dal tavolo da una misura.
 > Finding: `docs/findings/2026-08-13-passo2-il-nome-sbagliato-non-costa.md`. Evidenza
