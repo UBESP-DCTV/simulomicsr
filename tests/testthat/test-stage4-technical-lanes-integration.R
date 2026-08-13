@@ -96,3 +96,20 @@ test_that("un braccio con DUE librerie su piu' corsie resta ammesso", {
   expect_length(acceso, 1L)
   expect_equal(acceso[["cgroup_L5_test"]][[1]]$treated, paste0("S", 1:4))
 })
+
+# L'INTERRUTTORE (2026-08-13, decisione utente D1). Il meccanismo era completo e
+# testato ma SPENTO: un default sbagliato e' un difetto invisibile ai test del
+# meccanismo, che lo accendono a mano. Questo test si intesta il default.
+test_that("il collasso delle corsie e' ACCESO di default", {
+  expect_true(stage4_default_config()$rem_group$collapse_technical_lanes)
+})
+
+test_that("acceso, la corrispondenza si costruisce dai metadati H5 o fallisce forte", {
+  m <- .lane_meta(paste0("S", 1:4), paste0("T1_S1_L00", 1:4))
+  expect_length(build_lane_library_lookup(m), 4L)
+  # Un campo mancante non deve degradare in silenzio: il build lo intercetta a
+  # monte (warning + meccanismo spento), il lookup a valle si ferma.
+  expect_error(
+    build_lane_library_lookup(m[, setdiff(names(m), "title"), drop = FALSE]),
+    "colonne necessarie")
+})

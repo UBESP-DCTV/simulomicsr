@@ -97,9 +97,24 @@
   #
   # Si applica QUI e non nello Stadio 3 perche' cambiare il vocabolario a monte
   # imporrebbe un re-cluster (~9 h) per un effetto che si ottiene senza.
+  #
+  # ⚠️ UNA VOCE PUO' ESSERE CONDIZIONATA ALL'ENTITA' (2026-08-13). `uninfected`
+  # NON si puo' rendere generale: da solo produce 10 fusioni, di cui due con
+  # DOPPIO CONTEGGIO (ATRA e HSV-1: gli stessi campioni contati due volte contro
+  # due controlli diversi dello stesso studio) e una MINESTRONE (RSV: un secondo
+  # studio clinico dentro un gruppo sperimentale). Per SARS-CoV-2 invece i 5
+  # membri sono "infected" contro "Uninfected" dentro lo studio, stesso tipo
+  # cellulare, zero difetti. Senza il condizionamento la decisione utente D4
+  # (fondere quello e nessun altro) non sarebbe esprimibile.
+  # Forma: `entita||chiave` per la voce condizionata, `chiave` nuda per quella
+  # generale; la condizionata vince. L'entita' e' quella CANONICA (dopo
+  # `entity_canonical`), perche' e' quella che identifica il gruppo.
   ck <- ck_raw
   if (length(control_canonical) > 0L) {
-    hitc <- ck_raw %in% names(control_canonical)
+    qual  <- paste0(ce_can_ord, "||", ck_raw)
+    hitq  <- !is.na(ce_can_ord) & qual %in% names(control_canonical)
+    if (any(hitq)) ck[hitq] <- unname(control_canonical[qual[hitq]])
+    hitc <- !hitq & ck_raw %in% names(control_canonical)
     if (any(hitc)) ck[hitc] <- unname(control_canonical[ck_raw[hitc]])
   }
 

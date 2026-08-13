@@ -127,6 +127,91 @@ test_that(".rp_genetic_asymmetry non si applica quando la genetica E' l'entita'"
   expect_false(.rp_genetic_asymmetry("shMETTL3", "shControl", "genetic", "HGNC:31386"))
 })
 
+# ---- IL CONFINE DEL MARCATORE (2026-08-13, decisione utente D2) --------------
+# `\b` pretende un confine di parola PRIMA del marcatore: in `p63shRNA` prima di
+# `sh` c'e' una CIFRA, quindi niente confine e nessun match. E' la stessa trappola
+# gia' pagata quattro volte con `_`, in una variante nuova. Sui dati veri la
+# regola vedeva ZERO confronti con la genetica su un braccio solo; ce ne sono 3,
+# ed erano gli stessi due gruppi che i lettori umani avevano segnalato a occhio.
+
+test_that("il marcatore si vede anche quando e' incollato a una cifra", {
+  expect_true(.rp_has_genetic_marker("p63shRNA"))
+  expect_true(.rp_has_genetic_marker("MCF10A_p63shRNA_Nutlin3A_5uM"))
+  expect_true(.rp_has_genetic_marker("A549siEGFR"))
+  expect_true(.rp_has_genetic_marker("MCF7 RELA KO2 + Fulvestrant"))
+  expect_true(.rp_has_genetic_marker("Engineered HeLa S3 cells (KO38)"))
+  # i marcatori gia' visti prima devono restare visti
+  expect_true(.rp_has_genetic_marker("shTP53"))
+  expect_true(.rp_has_genetic_marker("siRNA against MYC"))
+  expect_true(.rp_has_genetic_marker("MYC overexpression"))
+  expect_true(.rp_has_genetic_marker("TP53 KO"))
+})
+
+test_that("KO e KD contano solo in MAIUSCOLO", {
+  # `Kd` e `kd` sono la costante di dissociazione: il pattern di produzione
+  # `\\bkd\\b` e' case-insensitive e ha gia' questo falso positivo.
+  expect_false(.rp_has_genetic_marker("Kd measurement"))
+  expect_false(.rp_has_genetic_marker("kd of 5 nM"))
+  expect_false(.rp_has_genetic_marker("KOH buffer"))
+  expect_false(.rp_has_genetic_marker("Tokyo"))
+  expect_false(.rp_has_genetic_marker("Kobe"))
+})
+
+test_that("il confine allargato non apre la porta alle parole comuni", {
+  for (x in c("simvastatin", "sirolimus", "single cell", "shear stress",
+              "sitagliptin", "silica", "sigmoid colon", "washing",
+              "MCF10A_DMSO", "serum depletion", "SiO2 nanoparticles"))
+    expect_false(.rp_has_genetic_marker(x), info = x)
+})
+
+test_that("il marcatore guarda i VALORI, non il nome del campo", {
+  # Questo errore ha gonfiato un conteggio da 3 a 23: il NOME del campo dice
+  # "knockdown" mentre il valore dice che la modifica non c'e'.
+  expect_false(.rp_has_genetic_marker("genetic_knockdown=no knockdown"))
+  expect_false(.rp_has_genetic_marker("TET1_knockdown=wild_type"))
+  expect_false(.rp_has_genetic_marker("overexpression=None"))
+  expect_false(.rp_has_genetic_marker("knockdown=control"))
+  expect_false(.rp_has_genetic_marker("sirna=scramble"))
+  # ma il valore vero deve continuare a passare
+  expect_true(.rp_has_genetic_marker("genetic_knockdown=shTP53"))
+  expect_true(.rp_has_genetic_marker("perturbation=CRISPR KO;cell line=MCF7"))
+})
+
+test_that("un `=` dentro una frase NON e' un nome di campo", {
+  # Il primo tentativo tagliava tutto cio' che stava prima del primo `=`:
+  # `LNCaP-abl shKDM3B1 t=7` diventava `7` e il marcatore spariva. Misurato:
+  # 115 etichette del corpus mutilate, quasi tutte per un tempo o una MOI.
+  expect_true(.rp_has_genetic_marker("LNCaP-abl shKDM3B1 t=7"))
+  expect_true(.rp_has_genetic_marker("TRIM6 Knockout WNV Infection (MOI = 5)"))
+  expect_true(.rp_has_genetic_marker("Airway Organoids CIART Knockout SARS-CoV-2 MOI=0.1"))
+  expect_true(.rp_has_genetic_marker("iCell GlutaNeurons, transgene stable, GRN, n=11"))
+})
+
+test_that("i valori che NEGANO la modifica non sono marcatori", {
+  for (x in c("none", "no", "wild-type", "wild_type", "WT", "control",
+              "scramble", "parental", "empty", "-", "no knockdown",
+              "without knockdown", "non-transfected"))
+    expect_false(.rp_has_genetic_marker(x), info = x)
+  # `empty vector` invece E' una manipolazione (cellule trasfettate): tenerlo
+  # per marcatore e' cio' che rende simmetrico il confronto shTP53-vs-vettore.
+  expect_true(.rp_has_genetic_marker("empty vector"))
+})
+
+test_that("i 3 confronti veri del deliverable sono segnalati, e i loro pari no", {
+  # Le etichette sono quelle vere (G4-un-braccio-solo.csv). Sono qui perche' la
+  # regola deve riprodurre il giudizio umano del 5 agosto: non uno di piu'.
+  expect_true(.rp_genetic_asymmetry(
+    "MCF10A_p63shRNA_Nutlin3A_5uM", "MCF10A_DMSO", "drug", "CHEBI:45418"))
+  expect_true(.rp_genetic_asymmetry(
+    "Engineered HeLa S3 cells treated with 1 uM retinoic acid for 7 hours",
+    "Engineered HeLa S3 cells (KO38) treated with DMSO", "drug", "CHEBI:15367"))
+  # contesto genetico IDENTICO sui due bracci: non e' un difetto
+  expect_false(.rp_genetic_asymmetry(
+    "SYK-KO HAP1 + EGF", "SYK-KO HAP1 + PBS", "drug", "HGNC:3229"))
+  expect_false(.rp_genetic_asymmetry(
+    "p53KO MCF10A + Nutlin", "p53KO MCF10A + DMSO", "drug", "CHEBI:45418"))
+})
+
 # --------------------------------------------------- combinazione non catturata
 
 # I dizionari veri servono solo qui. Nella suite completa `.load_ontology_dicts()`

@@ -105,7 +105,38 @@ stage4_default_config <- function() {
       # canonico, con le guardie di precisione) e la regola va misurata prima di
       # essere accesa. Misura del 2026-08-08:
       # analysis/audit/2026-08-08-deframmentazione/.
-      entity_canonical = NULL,
+      #
+      # POPOLATA il 2026-08-13 (decisione utente D3). Le candidate NON sono
+      # scritte a mano: le genera la regola del ponte fra registri
+      # (`20-regola-risoluzione.R` + `22-ponti-fra-registri.csv`), che ne ha
+      # prodotte 8. Ognuna e' stata poi giudicata leggendo TUTTI i membri delle
+      # due scritture (`32-verdetti-8-fusioni.csv`): 5 accettate, 3 respinte.
+      # Quello che sta qui e' l'esito del giudizio, non la lista di partenza.
+      #
+      # RESPINTE, con la prova:
+      #   * IL-10 (`CHEMBL:CHEMBL4297771`): 2 membri su 4 misurano un contrasto
+      #     diverso -- uno ha il verso INVERTITO ("attivate in ASSENZA di IL-10").
+      #   * GM-CSF/CSF2 (`CHEMBL:CHEMBL2107881`): 5 membri su 13 misurano
+      #     DIFFERENZIAZIONE, non stimolazione (monocita -> macrofago).
+      #   * "Compound 4" (`CHEBI:220491`): NON E' LA STESSA MOLECOLA -- il ponte
+      #     fra i due ID e' l'alias generico `compound4`; bersagli diversi
+      #     (serie med-chem GNE-7883 contro l'inibitore KAT6A WM-1119).
+      entity_canonical = c(
+        # TNF-alfa: il gene e la proteina ricombinante. 48/48 membri = proteina
+        # esogena aggiunta al terreno vs veicolo. Zero trasfezioni, zero
+        # anticorpi anti-TNF, zero infezioni induttrici. +6 studi (32 -> 38).
+        "CHEMBL:CHEMBL265582"   = "HGNC:11892",
+        # IL-6: 11/11 membri = IL-6 esogena vs non trattato/veicolo.
+        "MeSH:D015850"          = "HGNC:6018",
+        # IL-15: 6/6 membri = IL-15 esogena vs veicolo/media/non trattato.
+        "CHEMBL:CHEMBL4297989"  = "HGNC:5977",
+        # Endotelina-1: entrambi i lati = endotelina-1 esogena vs controllo.
+        # Materiale diverso (ovaio primario vs cardiomiociti iPSC), contrasto
+        # uguale. Non raggiunge il gate: fondere non fa nascere una riga nuova.
+        "CHEMBL:CHEMBL437472"   = "CHEBI:80240",
+        # BGJ398 = infigratinib, lo stesso inibitore FGFR, farmaco vs DMSO.
+        "CHEMBL:CHEMBL1852688"  = "CHEBI:63451"
+      ),
       # Simmetrica alla precedente, sulle CHIAVI DI CONTROLLO. Due dei tre
       # ingressi sono dimenticanze del vocabolario di `.normalize_control_type()`
       # (`mock` vi sta, `uninfected` no; `normal`/`healthy`/`control` vi stanno,
@@ -113,7 +144,37 @@ stage4_default_config <- function() {
       # misura mostra che il confine non separa nulla. Evidenza e verdetti:
       # analysis/audit/2026-08-08-deframmentazione/36-verdetti-4-fusioni-dedup.csv.
       # NULL = comportamento di sempre.
-      control_canonical = NULL,
+      #
+      # POPOLATA il 2026-08-13 (decisione utente D4): DUE voci soltanto, non
+      # tutte quelle che la misura proponeva.
+      #   * `normoxia` -> generale. 23/23 membri dello scartato sono ipossia in
+      #     coltura contro il compagno normossico dello stesso studio, scritto
+      #     `untreated`/`control`/`vehicle`; e il cluster VINCENTE gia' pool­a
+      #     controlli scritti cosi'. Il confine non separava nulla.
+      #     +8 studi (25 -> 33).
+      #   * `uninfected` -> SOLO per SARS-CoV-2, e per questo la voce e'
+      #     CONDIZIONATA (`entita||chiave`). Da solo, generale, produce 10
+      #     fusioni: 2 con DOPPIO CONTEGGIO (ATRA e HSV-1: gli stessi campioni
+      #     contati due volte contro due controlli diversi dello stesso studio),
+      #     1 MINESTRONE (RSV: un secondo studio clinico dentro un gruppo
+      #     sperimentale), 2 incerte, 3 a guadagno nullo. Per SARS-CoV-2 i 5
+      #     membri sono "infected" contro "Uninfected" dentro lo studio, stesso
+      #     tipo cellulare, zero difetti. +2 studi (34 -> 36).
+      # Le altre fusioni misurate (epatite B, obesi/lean, KSHV, epatite C,
+      # Zika...) restano FUORI: verdetti in 38b-verdetti-10-fusioni-controllo.csv.
+      #
+      # ⚠️ ANCHE `normoxia` E' CONDIZIONATA, e non per simmetria: misurato sui
+      # dati veri, la voce generale produce DUE fusioni, non una. La seconda e'
+      # `STR:atra` (`cgroup_L5_06b5da4a`, k=1, chiave `normoxia`) dentro il
+      # gruppo ATRA: il suo unico studio, GSE202458, e' GIA' nel vincente, il `k`
+      # resta 9 e i due membri portano gli STESSI campioni trattati contro due
+      # controlli diversi dello stesso studio. E' il DOPPIO CONTEGGIO per cui
+      # ATRA era gia' stata esclusa fra le 10 fusioni di `uninfected`. Nel
+      # corpus la chiave `normoxia` sta su 14 cluster di 14 entita' diverse.
+      control_canonical = c(
+        "STR:hypoxia||normoxia"          = "vehicle_untreated",
+        "NCBITaxon:2697049||uninfected"  = "vehicle_untreated"
+      ),
       # LE CORSIE NON SONO REPLICHE (2026-08-12). TRUE = `n_min` conta le
       # LIBRERIE di sequenziamento invece dei campioni, e le corsie della stessa
       # libreria vengono sommate prima del DE. FALSE = comportamento di sempre.
@@ -125,7 +186,11 @@ stage4_default_config <- function() {
       # La corrispondenza si costruisce con `build_lane_library_lookup()` dai
       # metadati H5; serve `title`, `series_id`, `characteristics_ch1`,
       # `source_name_ch1`. Senza quei campi il meccanismo resta spento e lo dice.
-      collapse_technical_lanes = FALSE
+      #
+      # ACCESO il 2026-08-13 (decisione utente D1, dopo la misura sopra). Non e'
+      # il solo gate: il collasso *contiene* il gate e in piu' corregge l'SE dei
+      # tre studi che restano (GSE115542 x2,16, GSE116899 x1,31, GSE178340 x1,20).
+      collapse_technical_lanes = TRUE
     ),
     schema_versions = list(
       anchor             = "v3",

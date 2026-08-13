@@ -189,3 +189,117 @@ test_that("tre scritture della stessa entita' si fondono tutte nel vincente", {
   expect_setequal(attr(out, "fusioni")$cluster_id_assorbito, c("b", "c"))
   expect_true(all(attr(out, "fusioni")$cluster_id_vincente == "a"))
 })
+
+# ---- LA CHIAVE DI CONTROLLO CONDIZIONATA ALL'ENTITA' (2026-08-13, D4) --------
+# `uninfected` NON si puo' rendere generale. Da solo produce 10 fusioni, di cui
+# due con DOPPIO CONTEGGIO (ATRA e HSV-1: gli stessi campioni contati due volte
+# contro due controlli diversi dello stesso studio) e una MINESTRONE (RSV: un
+# secondo studio clinico dentro un gruppo sperimentale). Per SARS-CoV-2 invece
+# i 5 membri sono `infected` contro `Uninfected` dentro lo studio, stesso tipo
+# cellulare, zero difetti. La decisione utente e' fondere quello e nessun altro:
+# serve poter dire «questa equivalenza vale SOLO per questa entita'».
+#
+# Forma della chiave: `entita||chiave_di_controllo` per la voce condizionata,
+# `chiave_di_controllo` nuda per quella generale. La condizionata vince.
+
+test_that("una voce condizionata vale SOLO per la sua entita'", {
+  cl <- rbind(
+    .s4df_cl(c("sars_v", "sars_a"), "NCBITaxon:2697049", "gain",
+             c("vehicle_untreated", "uninfected"), c(34L, 2L),
+             studies = list(paste0("GSE", 1:34), paste0("GSE", 40:41))),
+    .s4df_cl(c("rsv_v", "rsv_a"), "NCBITaxon:11250", "gain",
+             c("vehicle_untreated", "uninfected"), c(5L, 3L),
+             studies = list(paste0("GSE", 50:54), paste0("GSE", 60:62))))
+  out <- .dedup_rem_group_by_entity(
+    cl, control_canonical = c("NCBITaxon:2697049||uninfected" = "vehicle_untreated"))
+  fus <- attr(out, "fusioni")
+  expect_equal(nrow(fus), 1L)
+  expect_equal(fus$cluster_id_assorbito, "sars_a")
+  expect_equal(out$k[out$cluster_id == "sars_v"], 36L)
+  # l'RSV NON si fonde: resta scartato dalla dedup di sempre (chiave diversa)
+  expect_true("rsv_v" %in% out$cluster_id)
+  expect_false("rsv_a" %in% out$cluster_id)
+  expect_equal(out$k[out$cluster_id == "rsv_v"], 5L)
+})
+
+test_that("una voce generale continua a valere per tutte le entita'", {
+  cl <- rbind(
+    .s4df_cl(c("ipo_v", "ipo_a"), "STR:hypoxia", "gain",
+             c("normoxia", "vehicle_untreated"), c(25L, 12L),
+             studies = list(paste0("GSE", 1:25), paste0("GSE", 20:31))),
+    .s4df_cl(c("alt_v", "alt_a"), "STR:altro", "gain",
+             c("normoxia", "vehicle_untreated"), c(4L, 2L),
+             studies = list(paste0("GSE", 70:73), paste0("GSE", 80:81))))
+  out <- .dedup_rem_group_by_entity(
+    cl, control_canonical = c("normoxia" = "vehicle_untreated"))
+  expect_equal(nrow(attr(out, "fusioni")), 2L)
+  expect_equal(sort(out$cluster_id), c("alt_v", "ipo_v"))
+})
+
+test_that("la voce condizionata vince su quella generale", {
+  # generale: uninfected -> vehicle_untreated; condizionata: per QUESTA entita'
+  # uninfected resta se stesso (equivalenza negata caso per caso)
+  cl <- .s4df_cl(c("v", "a"), "NCBITaxon:11250", "gain",
+                 c("vehicle_untreated", "uninfected"), c(5L, 3L))
+  out <- .dedup_rem_group_by_entity(
+    cl, control_canonical = c("uninfected" = "vehicle_untreated",
+                              "NCBITaxon:11250||uninfected" = "uninfected"))
+  expect_equal(nrow(attr(out, "fusioni")), 0L)
+  expect_equal(out$cluster_id, "v")
+})
+
+test_that("la qualificazione usa l'entita' CANONICA, non la scrittura", {
+  # se l'entita' viene rimappata da entity_canonical, la voce condizionata deve
+  # essere scritta sul codice canonico: e' quello che identifica il gruppo.
+  cl <- .s4df_cl(c("v", "a"), c("HGNC:11892", "CHEMBL:CHEMBL265582"), "gain",
+                 c("vehicle_untreated", "uninfected"), c(32L, 6L),
+                 studies = list(paste0("GSE", 1:32), paste0("GSE", 40:45)))
+  out <- .dedup_rem_group_by_entity(
+    cl,
+    entity_canonical  = c("CHEMBL:CHEMBL265582" = "HGNC:11892"),
+    control_canonical = c("HGNC:11892||uninfected" = "vehicle_untreated"))
+  expect_equal(nrow(attr(out, "fusioni")), 1L)
+  expect_equal(out$k, 38L)
+})
+
+# ---- LE DUE MAPPE DI PRODUZIONE (2026-08-13, D3+D4) -------------------------
+# Le mappe sono una DECISIONE, non un dettaglio di implementazione: chi le
+# cambia deve rompere un test. Le tre entita' respinte sono qui per nome: una
+# regressione che le rimettesse dentro passerebbe altrimenti inosservata.
+test_that("le mappe di produzione contengono esattamente cio' che e' stato deciso", {
+  rg <- stage4_default_config()$rem_group
+  expect_equal(sort(names(rg$entity_canonical)),
+               sort(c("CHEMBL:CHEMBL265582", "MeSH:D015850", "CHEMBL:CHEMBL4297989",
+                      "CHEMBL:CHEMBL437472", "CHEMBL:CHEMBL1852688")))
+  expect_equal(unname(rg$entity_canonical[["CHEMBL:CHEMBL265582"]]), "HGNC:11892")
+  # respinte con la prova: IL-10 (verso invertito), GM-CSF (differenziazione),
+  # "Compound 4" (non e' la stessa molecola)
+  for (x in c("CHEMBL:CHEMBL4297771", "CHEMBL:CHEMBL2107881", "CHEBI:220491"))
+    expect_false(x %in% names(rg$entity_canonical))
+  # i controlli: due voci, ENTRAMBE condizionate all'entita'
+  expect_equal(sort(names(rg$control_canonical)),
+               sort(c("STR:hypoxia||normoxia", "NCBITaxon:2697049||uninfected")))
+  expect_false("uninfected" %in% names(rg$control_canonical))
+  expect_false("normoxia" %in% names(rg$control_canonical))
+})
+
+test_that("`normoxia` generale porterebbe dentro una fusione a guadagno zero", {
+  # cgroup_L5_06b5da4a (STR:atra, chiave `normoxia`, k=1) ha un solo studio,
+  # GSE202458, che e' GIA' nel gruppo ATRA vincente: fondere non aggiunge studi
+  # e mette gli stessi campioni trattati contro due controlli diversi.
+  cl <- rbind(
+    .s4df_cl(c("ipo_v", "ipo_a"), "STR:hypoxia", "gain",
+             c("normoxia", "vehicle_untreated"), c(37L, 14L),
+             studies = list(paste0("GSE", 1:37), paste0("GSE", 30:43))),
+    .s4df_cl(c("atra_v", "atra_a"), "STR:atra", "gain",
+             c("vehicle_untreated", "normoxia"), c(9L, 1L),
+             studies = list(paste0("GSE", 50:58), "GSE58")))
+  gen <- .dedup_rem_group_by_entity(cl, control_canonical = c("normoxia" = "vehicle_untreated"))
+  expect_equal(nrow(attr(gen, "fusioni")), 2L)                 # anche ATRA
+  expect_equal(gen$k[gen$cluster_id == "atra_v"], 9L)          # guadagno zero
+  cond <- .dedup_rem_group_by_entity(
+    cl, control_canonical = c("STR:hypoxia||normoxia" = "vehicle_untreated"))
+  expect_equal(nrow(attr(cond, "fusioni")), 1L)                # solo l'ipossia
+  expect_equal(attr(cond, "fusioni")$cluster_id_assorbito, "ipo_a")
+  expect_equal(cond$k[cond$cluster_id == "ipo_v"], 43L)
+})

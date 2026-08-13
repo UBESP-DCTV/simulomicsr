@@ -353,6 +353,15 @@
                        stage3_assignments$cluster_id)
 
   dispatch <- vector("list", 0L)
+  scarti <- vector("list", 0L)
+  reg <- function(cid, sid, grp, motivo, nt = NA_integer_, nc = NA_integer_,
+                  bt = NA_integer_, bc = NA_integer_) {
+    scarti[[length(scarti) + 1L]] <<- data.frame(
+      cluster_id = cid, study_id = sid, treated_group = grp, motivo = motivo,
+      n_treated = as.integer(nt), n_control = as.integer(nc),
+      n_bio_treated = as.integer(bt), n_bio_control = as.integer(bc),
+      stringsAsFactors = FALSE)
+  }
   for (i in seq_len(nrow(group_clusters))) {
     cid <- group_clusters$cluster_id[i]
     is_contrast <- identical(group_clusters$mode[i], "cgroup")
@@ -363,25 +372,50 @@
     seen_keys <- character(0L)
     for (rid in record_ids) {
       parsed <- .split_record_id(rid)
-      if (is.na(parsed$series_id)) next
-      if (!exists(parsed$series_id, envir = s2_idx, inherits = FALSE)) next
+      if (is.na(parsed$series_id)) {
+        reg(cid, NA_character_, rid, "record_id_non_risolto"); next
+      }
+      if (!exists(parsed$series_id, envir = s2_idx, inherits = FALSE)) {
+        reg(cid, parsed$series_id, parsed$suffix, "studio_assente_dallo_stadio2"); next
+      }
       study <- get(parsed$series_id, envir = s2_idx, inherits = FALSE)
       # cgroup: il record_id E' la comparison. group legacy: si cerca la
       # comparison in cui quel gruppo e' il braccio trattato.
       cmp <- if (is_contrast) .lookup_cmp(study, parsed$suffix)
              else .lookup_cmp_by_treated_group(study, parsed$suffix)
-      if (is.null(cmp)) next
+      if (is.null(cmp)) {
+        reg(cid, parsed$series_id, parsed$suffix, "confronto_non_trovato"); next
+      }
 
       tg <- .lookup_rg(study, cmp$treated_group)
       cg <- .lookup_rg(study, cmp$control_group)
-      if (is.null(tg) || is.null(cg)) next
+      if (is.null(tg) || is.null(cg)) {
+        reg(cid, parsed$series_id, cmp$treated_group, "braccio_non_trovato"); next
+      }
       treated <- as.character(unlist(tg$sample_ids))
       control <- as.character(unlist(cg$sample_ids))
-      if (.n_biological(treated, lane_lookup) < n_min ||
-          .n_biological(control, lane_lookup) < n_min) next
+      # LA PORTA PIU' SELETTIVA DI TUTTE, e fino al 2026-08-13 muta: sul
+      # deliverable v15 lascia fuori piu' della meta' dei confronti assegnati.
+      # Il motivo distingue il braccio che ha davvero un campione solo da quello
+      # che scende sotto soglia perche' le sue repliche erano corsie della
+      # stessa libreria: sono due difetti diversi e vanno letti separatamente.
+      bt <- .n_biological(treated, lane_lookup)
+      bc <- .n_biological(control, lane_lookup)
+      if (bt < n_min || bc < n_min) {
+        collasso <- !is.null(lane_lookup) && length(lane_lookup) > 0L &&
+          length(unique(treated)) >= n_min && length(unique(control)) >= n_min
+        reg(cid, parsed$series_id, cmp$treated_group,
+            if (collasso) "n_min_dopo_collasso_corsie" else "n_min",
+            length(unique(treated)), length(unique(control)), bt, bc)
+        next
+      }
 
       key <- paste0(parsed$series_id, "||", cmp$treated_group)
-      if (key %in% seen_keys) next
+      if (key %in% seen_keys) {
+        reg(cid, parsed$series_id, cmp$treated_group, "doppione_studio_braccio",
+            length(unique(treated)), length(unique(control)), bt, bc)
+        next
+      }
       seen_keys <- c(seen_keys, key)
 
       cluster_dispatch[[length(cluster_dispatch) + 1L]] <- list(
@@ -394,5 +428,20 @@
       dispatch[[cid]] <- cluster_dispatch
     }
   }
+  attr(dispatch, "scarti") <- if (length(scarti))
+    do.call(rbind, scarti) else .empty_dispatch_drop_log()
   dispatch
+}
+
+#' Registro vuoto degli scarti del dispatch
+#'
+#' Lo schema non dipende da quanto e' caduto: chi legge il registro da disco non
+#' deve scoprire che le colonne compaiono solo quando c'e' uno scarto.
+#' @keywords internal
+.empty_dispatch_drop_log <- function() {
+  data.frame(cluster_id = character(), study_id = character(),
+             treated_group = character(), motivo = character(),
+             n_treated = integer(), n_control = integer(),
+             n_bio_treated = integer(), n_bio_control = integer(),
+             stringsAsFactors = FALSE)
 }

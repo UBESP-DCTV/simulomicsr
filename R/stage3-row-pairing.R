@@ -176,10 +176,67 @@
 # marcatori genetici ESPLICITI. I pattern sh/si/sg valgono solo case-sensitive
 # seguiti da maiuscola ("shMfn2", "siRNA"): in minuscolo catturano parole comuni
 # ("sigmoid", "single", "significant") — 21 falsi allarmi misurati.
-.RP_GENETIC_CS_RX <- "\\b(sh|si|sg)[A-Z][A-Za-z0-9]{1,}\\b"
-.RP_GENETIC_CI_RX <- paste0("knock-?down|knock-?out|\\bko\\b|\\bkd\\b|crispr|cas9|transgen(e|ic)|",
+#
+# ⚠️ IL CONFINE NON E' `\b` (2026-08-13). `\b` pretende un confine di parola PRIMA
+# del marcatore: in `p63shRNA` prima di `sh` c'e' una CIFRA, quindi niente
+# confine e nessun match. E' la stessa trappola gia' pagata quattro volte con
+# `_`, in una variante nuova. Il confine giusto e' "inizio, oppure un carattere
+# che non sia una lettera": la maiuscola che segue (`sh[A-Z]`) resta la guardia
+# che tiene fuori `sigmoid`, `simvastatin`, `shear`.
+# Misura: la regola vedeva ZERO confronti con la genetica su un braccio solo nel
+# deliverable; ce ne sono 3, ed erano gli stessi due gruppi che i lettori umani
+# avevano segnalato a occhio il 5 agosto.
+.RP_GENETIC_CS_RX <- "(^|[^A-Za-z])(sh|si|sg)[A-Z][A-Za-z0-9]{1,}"
+# KO/KD SOLO in maiuscolo, con l'indice di clone facoltativo (`KO2`, `KO38`).
+# In minuscolo `kd` e' la costante di dissociazione (`Kd measurement`,
+# `kd of 5 nM`): il pattern precedente `\bkd\b` era case-insensitive e questo
+# falso positivo lo aveva gia'.
+.RP_GENETIC_KO_RX <- "(^|[^A-Za-z])(KO|KD)[0-9]{0,2}([^A-Za-z]|$)"
+.RP_GENETIC_CI_RX <- paste0("knock-?down|knock-?out|crispr|cas9|transgen(e|ic)|",
                             "over-?express|\\bshrna\\b|\\bsirna\\b|\\bsgrna\\b|\\bgrna\\b|",
                             "empty vector|vector control|silenc|lentivir|\\bdegron\\b|\\bdtag\\b|\\bmaid\\b")
+
+# Un VALORE che e' esattamente una di queste parole dichiara che la modifica NON
+# c'e'. Vale sul valore intero, non sui token: `scrambled siRNA` e `empty vector`
+# sono cellule manipolate (ed e' quello che rende SIMMETRICO il confronto con un
+# braccio shRNA), `scramble` da solo no.
+.RP_GENETIC_NEG_VALUE_RX <-
+  "^(no|none|non|nessun|wild.?type|wt|control|ctrl|scramble|scr|parental|empty|na|-)$"
+# Negazione davanti al marcatore: `no knockdown` non e' un knockdown.
+.RP_GENETIC_NEG_PREFIX_RX <- paste0(
+  "\\b(no|non|without|w/?o)[ -]+(knock[ -]?(down|out)|shrna|sirna|sgrna|crispr|",
+  "cas9|transgen(e|ic)|over-?express\\w*|silenc\\w*|transfect\\w*|transduc\\w*|",
+  "edit\\w*|modif\\w*|ko|kd)\\w*")
+
+#' I VALORI di un'etichetta, senza i nomi dei campi
+#'
+#' Il nome del campo non e' il suo contenuto: \code{genetic_knockdown=no
+#' knockdown}, \code{TET1_knockdown=wild_type} e \code{overexpression=None}
+#' dicono tutti e tre che la modifica NON c'e', ma chi guarda la stringa intera
+#' li conta per genetici. Questo errore ha gonfiato un conteggio da 3 a 23.
+#'
+#' Scelta dichiarata: quando un segmento ha la forma \code{chiave=valore} si
+#' tiene il VALORE. Un marcatore che stesse solo nella chiave verrebbe perso —
+#' ma una chiave e' un nome di campo, e il valore dice che cosa c'e' davvero.
+#'
+#' ⚠️ La forma \code{chiave=valore} va RICONOSCIUTA, non presunta: il primo
+#' tentativo tagliava tutto quello che stava prima di un \code{=} e cosi'
+#' \code{LNCaP-abl shKDM3B1 t=7} diventava \code{7}, \code{TRIM6 Knockout WNV
+#' Infection (MOI = 5)} diventava \code{5)}. Misurato: mutilava 115 etichette del
+#' corpus, quasi tutte con un tempo o una MOI dentro un'etichetta umana. Una
+#' chiave e' un NOME DI CAMPO: una o due parole, senza punteggiatura di frase.
+#' @keywords internal
+.RP_FIELD_KEY_RX <- "^[A-Za-z][A-Za-z0-9_.+/-]*( [A-Za-z0-9_.+/-]+)?[ ]*="
+.rp_marker_values <- function(x) {
+  if (length(x) == 0L) return(character(0))
+  s <- as.character(x); s <- s[!is.na(s)]
+  if (!length(s)) return(character(0))
+  p <- unlist(strsplit(paste(s, collapse = ";"), "[;\r\n]+"), use.names = FALSE)
+  p <- trimws(p)
+  campo <- grepl(.RP_FIELD_KEY_RX, p, perl = TRUE)
+  p[campo] <- trimws(sub("^[^=]*=", "", p[campo]))
+  p[nzchar(p)]
+}
 
 #' L'etichetta dichiara una modifica genetica
 #'
@@ -187,8 +244,17 @@
 #' ceppi virali indica il ceppo non mutato).
 #' @keywords internal
 .rp_has_genetic_marker <- function(x) {
-  s <- .rp_normalize_separators(x)
-  grepl(.RP_GENETIC_CS_RX, s, perl = TRUE) || grepl(.RP_GENETIC_CI_RX, tolower(s), perl = TRUE)
+  v <- .rp_marker_values(x)
+  if (!length(v)) return(FALSE)
+  v <- v[!grepl(.RP_GENETIC_NEG_VALUE_RX,
+                tolower(vapply(v, .rp_normalize_separators, character(1))),
+                perl = TRUE)]
+  if (!length(v)) return(FALSE)
+  s <- .rp_normalize_separators(paste(v, collapse = " ; "))
+  s <- gsub(.RP_GENETIC_NEG_PREFIX_RX, " ", s, perl = TRUE, ignore.case = TRUE)
+  grepl(.RP_GENETIC_CS_RX, s, perl = TRUE) ||
+    grepl(.RP_GENETIC_KO_RX, s, perl = TRUE) ||
+    grepl(.RP_GENETIC_CI_RX, tolower(s), perl = TRUE)
 }
 
 #' La modifica genetica c'e' su un braccio solo

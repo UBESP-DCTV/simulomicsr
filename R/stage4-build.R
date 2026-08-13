@@ -292,6 +292,14 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
     data.frame(libreria = character(), n_campioni = integer(),
                campioni = character(), cluster_id = character(),
                study_id = character(), stringsAsFactors = FALSE)
+  # IL MOTIVO DI OGNI CONFRONTO CHE NON ENTRA NEL POOLING (2026-08-13, D7).
+  # `n_min` e' la porta piu' selettiva della pipeline -- sul deliverable v15
+  # lascia fuori piu' della meta' dei confronti assegnati -- e fino a oggi lo
+  # faceva senza lasciare traccia. Il 2026-08-10 quel silenzio e' costato una
+  # misura sbagliata: 85 confronti dichiarati difettosi, di cui 47 non erano
+  # nemmeno nel poolato.
+  qc_report$dispatch_drops <- attr(group_rem_dispatch, "scarti") %||%
+    .empty_dispatch_drop_log()
 
   structure(list(
     per_study_de      = per_study_de,
