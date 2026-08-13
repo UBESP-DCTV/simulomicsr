@@ -18,7 +18,8 @@ chiave di raggruppamento e separa per costruzione stimolazione e knockout.
 produzione che esiste apposta per questo: `.rp_genetic_asymmetry()` deve scartare i
 confronti in cui la modifica genetica c'e' su **un braccio solo** (e' un contrasto
 rotto: cambiano due cose insieme). Quella regola, sui dati veri del deliverable,
-segnala **zero** casi. Ce ne sono almeno **23**.
+segnala **zero** casi. Ce ne sono **3**, e sono esattamente i due gruppi che i
+lettori umani avevano trovato a occhio il 5 agosto.
 
 ## 2. Il caso TNF: una mia affermazione, ritrattata
 
@@ -63,7 +64,7 @@ Misurato su tutti i 4.726 confronti delle 214, col rilevatore di produzione
 | | confronti | gruppi |
 |---|---:|---:|
 | marcatore genetico su **entrambi** i bracci (contesto costante) | 280 | 54 |
-| marcatore su **un braccio solo** (contrasto rotto) | **0 secondo la produzione** | 0 |
+| marcatore su **un braccio solo** (contrasto rotto) | **0 in produzione, 3 con la regola corretta** | 2 |
 | nessun marcatore | 4.446 | — |
 
 **52 gruppi su 214 contengono sia confronti con materiale geneticamente modificato
@@ -102,25 +103,36 @@ e con gli stessi 16 casi negativi di controllo (`simvastatin`, `sirolimus`,
 `single cell`, `serum depletion`, `shear stress`, `sitagliptin`, `silica`,
 `sigmoid`, `Tokyo`, `washing`, `KOH buffer`…) tutti ancora negativi:
 
-> **23 confronti su 4.726 (0,49%), in 11 gruppi**, hanno un marcatore genetico su
-> un braccio solo. La produzione ne vede **zero**.
+**⚠️ Il primo conteggio era 23, ed era gonfiato da un errore mio.** Davo al
+marcatore la stringa `chiave=valore`, cosi' `genetic_knockdown=no knockdown`,
+`TET1_knockdown=wild_type` e `overexpression=None` risultavano "genetici" **per il
+nome del campo**, mentre il valore dice il contrario. E' lo stesso errore del primo
+rilevatore, al rovescio. Rifatto sui soli **valori**, con l'elenco dei valori che
+NEGANO la modifica (`none`, `wild-type`, `scramble`, `parental`, `empty`…):
 
-Alcuni, letti: `MCF10A_p63shRNA_Nutlin3A_5uM` vs `MCF10A_DMSO`; `Engineered HeLa S3
-cells + acido retinoico` vs `Engineered HeLa S3 cells (KO38) + DMSO`; `MDA-MB-231
-Doxorubicin (overexpr…)` vs `MDA-MB-231 Untreated (overexpr…)`.
+> **3 confronti su 4.726, in 2 gruppi.** La produzione ne vede **zero**.
+
+| gruppo | k | trattato | controllo |
+|---|---:|---|---|
+| ATRA (`GSE100855`) | 4 | `Engineered HeLa S3 + acido retinoico` | `Engineered HeLa S3 (KO38) + DMSO` |
+| Nutlin-3a (`GSE111009`) | 8 | `MCF10A_p63shRNA_Nutlin3A_5uM` | `MCF10A_DMSO` |
+| Nutlin-3a (`GSE111009`) | 8 | `MCF10A_p63shRNA_Nutlin3A_5uM_rep` | `MCF10A_DMSO` |
+
+**Sono esattamente i due gruppi che i lettori umani avevano segnalato il 5 agosto**
+(`cgroup_L5_35d1be10` incoerente, `cgroup_L5_37942548` «un'unica imprecisione»).
+La regola corretta riproduce il giudizio umano: non uno di piu', non uno di meno.
 
 ## 6. Limiti, dichiarati
 
-1. **23 e' un limite superiore che chiede lettura umana.** Alcuni possono essere
-   asimmetrie di *etichetta* e non di sostanza (il campo c'e' su entrambi i bracci
-   ma scritto diversamente). Nessuno dei 23 e' stato giudicato.
+1. **I 3 sono stati letti; i 23 del primo conteggio no** — ed e' cosi' che il
+   difetto del mio strumento e' venuto fuori. Leggere prima di contare.
 2. **Il pattern allargato ha gia' un falso positivo noto**: `Kd measurement`
    (costante di dissociazione) viene preso per un knockdown. Va chiuso prima di
    metterlo in produzione.
 3. **Non ho misurato la regola intera**, solo il marcatore.
    `.rp_genetic_asymmetry()` ha due esenzioni (quando il contrasto E' genetico e
-   quando l'entita' del gruppo e' genetica): quante delle 23 sopravvivrebbero alla
-   regola completa non e' misurato.
+   quando l'entita' del gruppo e' genetica): se i 3 sopravvivano alla regola completa
+   non e' misurato.
 4. **Un primo rilevatore, scartato.** Il primo tentativo classificava il delta con
    `.ca_delta()`/`.ca_classify_key()` e dava **zero delta genetici in tutto il
    deliverable** — mentre sei gruppi delle 214 hanno un `kind` genetico. Causa:
