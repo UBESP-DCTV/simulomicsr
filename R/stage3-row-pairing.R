@@ -208,6 +208,10 @@
   "cas9|transgen(e|ic)|over-?express\\w*|silenc\\w*|transfect\\w*|transduc\\w*|",
   "edit\\w*|modif\\w*|ko|kd)\\w*")
 
+# Una chiave e' un NOME DI CAMPO: una o due parole, senza punteggiatura di frase.
+# Vedi la testata di `.rp_marker_values()` per il perche'.
+.RP_FIELD_KEY_RX <- "^[A-Za-z][A-Za-z0-9_.+/-]*( [A-Za-z0-9_.+/-]+)?[ ]*="
+
 #' I VALORI di un'etichetta, senza i nomi dei campi
 #'
 #' Il nome del campo non e' il suo contenuto: \code{genetic_knockdown=no
@@ -226,7 +230,6 @@
 #' corpus, quasi tutte con un tempo o una MOI dentro un'etichetta umana. Una
 #' chiave e' un NOME DI CAMPO: una o due parole, senza punteggiatura di frase.
 #' @keywords internal
-.RP_FIELD_KEY_RX <- "^[A-Za-z][A-Za-z0-9_.+/-]*( [A-Za-z0-9_.+/-]+)?[ ]*="
 .rp_marker_values <- function(x) {
   if (length(x) == 0L) return(character(0))
   s <- as.character(x); s <- s[!is.na(s)]
