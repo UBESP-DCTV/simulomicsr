@@ -1,5 +1,27 @@
 # Le previsioni, depositate PRIMA del run
 
+> ## ⚠️ CORREZIONE dopo il re-cluster v16 (2026-08-14, PRIMA del re-pool)
+>
+> **Il numero previsto era 212. È 211.** I dodici `k_eff` della tabella §2
+> tornano tutti alla cifra sull'output v16 vero; sbagliato era il conteggio
+> delle righe, e per una ragione mia: **avevo assunto che il solo delta di
+> codice fra v15 e oggi fosse D2, senza verificare il diff.**
+>
+> Non era vero. Il 2026-08-09 era entrato in produzione anche il fix della
+> de-frammentazione dell'interferone-β (`.CA_DEFRAG_ACCEPT`, `"ifnb" =
+> "HGNC:5434"`), con scritto accanto, testualmente: *«⚠️ Si materializza solo al
+> prossimo re-cluster»*. Questo È quel re-cluster. Effetto misurato:
+> `cgroup_L5_9bb4734d` (`STR:ifnb`, k=5, **era una riga del 214**) viene assorbito
+> in `cgroup_L5_fea19ca0` (`HGNC:5434`), che passa da k=4 a **k=9** e da k_eff 4
+> a **6**. Candidati **351 → 350**.
+>
+> Scomposizione corretta, 214 → **211**:
+> −1 *S. epidermidis* (corsie) · −1 TNF-CHEMBL (fusione D3) · −1 `STR:ifnb`
+> (de-frammentazione IFN-β, cambio del 9 agosto) · +0 infigratinib (k_eff 2).
+>
+> L'informazione era nel repo e non l'ho cercata: prima di depositare previsioni
+> su un re-run, il diff del codice dall'ultimo run è un controllo obbligatorio.
+
 **Scritte:** 2026-08-13, dopo l'implementazione dei tre cambi e prima di
 qualunque re-cluster o re-pool. **Nessun run lanciato.**
 
