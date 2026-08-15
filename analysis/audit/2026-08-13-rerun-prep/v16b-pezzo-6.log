@@ -1,0 +1,104 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Stadio 4 Layer A re-pool v16 (Stadio 3 v16, solo ramo rem_group) ────────────
+ℹ PEZZO 6 di 8
+ℹ Stadio 3: 'analysis/p4-output/20260814T025911Z-stage3-v16-7f986159'
+ℹ Loading stage3 + stage2_master...
+✔ Loaded: 322417 clusters / 574799 assignments / 24394 stage2 studies (wall 13.6 sec)
+ℹ Stadio 3 clusters.rds sha256: b55e5ff2d7200739b10dbc7e7bda6bd7a318ffc6b90a9c93330dece4cfc94e1f (wall 0.106 sec)
+ℹ Pre-filter stage2_master vs ARCHS4 H5 sample axis...
+ℹ H5 sample axis: 888821 sample
+✔ Pre-filter done in 10.1 sec: 15/491071 sample droppati ("0.003%") — non in ARCHS4 H5 v2.5
+           used   (Mb) gc trigger   (Mb) max used   (Mb)
+Ncells 24859794 1327.7   39387334 2103.6 39387334 2103.6
+Vcells 66571687  508.0  108933045  831.1 83705841  638.7
+ℹ deliverable_methods: rem_group
+ℹ Layer A: 350 clusters (rem=0, mega=0, mega_aug=0, rem_group=350)
+✔ GATE: 350 cluster, tutti rem_group / cgroup_L5_
+ℹ MEGA-AUG baseline cluster matchati: 0
+ℹ Assignments rilevanti: 5772
+ℹ Sample IDs totali Layer A: 27788
+✔ h5_metadata: 27788 sample, 5 campi per le corsie
+
+── build_stage4_results ──
+
+ℹ dream_workers resolved: 32
+ℹ pezzo 6/8: 44 cluster su 350
+pezzo: 44 cluster su 350 ammessi
+fusioni: record di 7 cluster assorbiti spostati sul vincente
+corsie: 76 campioni in 26 librerie da piu' corsie (5 candidate scartate dalle guardie)
+[cluster 1/44] cgroup_L5_b71a25a2 (method=rem_group)
+  -> cgroup_L5_b71a25a2 ok | wall 437.8s | RSS 5.0 GB
+[cluster 2/44] cgroup_L5_8e775709 (method=rem_group)
+[cluster 3/44] cgroup_L5_a12414d4 (method=rem_group)
+  -> cgroup_L5_a12414d4 ok | wall 268.3s | RSS 5.1 GB
+[cluster 4/44] cgroup_L5_b967c97c (method=rem_group)
+[cluster 5/44] cgroup_L5_aa8c1d6d (method=rem_group)
+  -> cgroup_L5_aa8c1d6d ok | wall 177.3s | RSS 5.1 GB
+[cluster 6/44] cgroup_L5_417c69a3 (method=rem_group)
+[cluster 7/44] cgroup_L5_3a625868 (method=rem_group)
+  -> cgroup_L5_3a625868 ok | wall 112.0s | RSS 5.1 GB
+[cluster 8/44] cgroup_L5_f01e9f74 (method=rem_group)
+[cluster 9/44] cgroup_L5_a48d6990 (method=rem_group)
+[cluster 10/44] cgroup_L5_fde7b89b (method=rem_group)
+[cluster 11/44] cgroup_L5_26c302f6 (method=rem_group)
+[cluster 12/44] cgroup_L5_3d3658ad (method=rem_group)
+[cluster 13/44] cgroup_L5_10344dfd (method=rem_group)
+  -> cgroup_L5_10344dfd ok | wall 221.1s | RSS 5.1 GB
+[cluster 14/44] cgroup_L5_004d293d (method=rem_group)
+  -> cgroup_L5_004d293d ok | wall 165.4s | RSS 5.1 GB
+[cluster 15/44] cgroup_L5_d2c64672 (method=rem_group)
+  -> cgroup_L5_d2c64672 ok | wall 128.7s | RSS 5.1 GB
+[cluster 16/44] cgroup_L5_5927750b (method=rem_group)
+  -> cgroup_L5_5927750b ok | wall 223.4s | RSS 5.1 GB
+[cluster 17/44] cgroup_L5_b8bc334a (method=rem_group)
+[cluster 18/44] cgroup_L5_af782291 (method=rem_group)
+[cluster 19/44] cgroup_L5_b6b8bc00 (method=rem_group)
+  -> cgroup_L5_b6b8bc00 ok | wall 260.4s | RSS 5.1 GB
+[cluster 20/44] cgroup_L5_601ede7b (method=rem_group)
+  -> cgroup_L5_601ede7b ok | wall 293.3s | RSS 5.1 GB
+[cluster 21/44] cgroup_L5_855ca642 (method=rem_group)
+  -> cgroup_L5_855ca642 ok | wall 163.0s | RSS 5.1 GB
+[cluster 22/44] cgroup_L5_3973fe03 (method=rem_group)
+  -> cgroup_L5_3973fe03 ok | wall 199.1s | RSS 5.1 GB
+[cluster 23/44] cgroup_L5_eba39954 (method=rem_group)
+  -> cgroup_L5_eba39954 ok | wall 253.2s | RSS 5.1 GB
+[cluster 24/44] cgroup_L5_6b7b8076 (method=rem_group)
+  -> cgroup_L5_6b7b8076 ok | wall 213.0s | RSS 5.0 GB
+[cluster 25/44] cgroup_L5_c040a36d (method=rem_group)
+  -> cgroup_L5_c040a36d ok | wall 268.8s | RSS 5.0 GB
+[cluster 26/44] cgroup_L5_e0c9a685 (method=rem_group)
+[cluster 27/44] cgroup_L5_bd19fe42 (method=rem_group)
+  -> cgroup_L5_bd19fe42 ok | wall 304.3s | RSS 5.0 GB
+[cluster 28/44] cgroup_L5_3b91a21d (method=rem_group)
+  -> cgroup_L5_3b91a21d ok | wall 253.8s | RSS 5.1 GB
+[cluster 29/44] cgroup_L5_719ab136 (method=rem_group)
+[cluster 30/44] cgroup_L5_7cc951b5 (method=rem_group)
+[cluster 31/44] cgroup_L5_8c9339f5 (method=rem_group)
+  -> cgroup_L5_8c9339f5 ok | wall 311.2s | RSS 5.1 GB
+[cluster 32/44] cgroup_L5_47e67cab (method=rem_group)
+[cluster 33/44] cgroup_L5_7805eee6 (method=rem_group)
+  -> cgroup_L5_7805eee6 ok | wall 362.9s | RSS 5.1 GB
+[cluster 34/44] cgroup_L5_03544ab6 (method=rem_group)
+[cluster 35/44] cgroup_L5_79b3a442 (method=rem_group)
+  -> cgroup_L5_79b3a442 ok | wall 154.3s | RSS 5.0 GB
+[cluster 36/44] cgroup_L5_c860712d (method=rem_group)
+  -> cgroup_L5_c860712d ok | wall 230.0s | RSS 5.0 GB
+[cluster 37/44] cgroup_L5_cacf5d1a (method=rem_group)
+  -> cgroup_L5_cacf5d1a ok | wall 141.3s | RSS 5.0 GB
+[cluster 38/44] cgroup_L5_97da8b42 (method=rem_group)
+[cluster 39/44] cgroup_L5_3824dc37 (method=rem_group)
+  -> cgroup_L5_3824dc37 ok | wall 173.2s | RSS 5.0 GB
+[cluster 40/44] cgroup_L5_67e7722b (method=rem_group)
+[cluster 41/44] cgroup_L5_16aef109 (method=rem_group)
+[cluster 42/44] cgroup_L5_304e1195 (method=rem_group)
+[cluster 43/44] cgroup_L5_eedd08cb (method=rem_group)
+  -> cgroup_L5_eedd08cb ok | wall 130.0s | RSS 5.0 GB
+[cluster 44/44] cgroup_L5_5929f298 (method=rem_group)
+  -> cgroup_L5_5929f298 ok | wall 204.3s | RSS 5.0 GB
+There were 50 or more warnings (use warnings() to see the first 50)
+✔ Build complete in 107.6 min — run_id 3e31e59d
+✔ PEZZO 6/8 scritto: '/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16-pezzi/pezzo-06-di-08.rds' | pooled 431529 righe | 107.6 min
