@@ -38,7 +38,8 @@ build_stage3_clusters <- function(stage1_master,
                                    config = stage3_default_config(),
                                    archs4_metadata = NULL,
                                    stage2_input = NULL,
-                                   name_recovery_lookup = NULL) {
+                                   name_recovery_lookup = NULL,
+                                   summarize_workers = 1L) {
   ta         <- config$tier_assignment
   thresholds <- config$thresholds
   cli::cli_inform("[stage3] START build_stage3_clusters at {format(Sys.time())}")
@@ -221,7 +222,8 @@ build_stage3_clusters <- function(stage1_master,
     eligible_cgroup = cgroup_filt$eligible,
     config          = config,
     archs4_metadata = archs4_metadata,
-    stage1_master   = stage1_master  # E0: per .build_donor_lookup
+    stage1_master   = stage1_master,  # E0: per .build_donor_lookup
+    workers         = summarize_workers
   )
   cli::cli_inform("[stage3] Phase 6 done: {nrow(clusters)} clusters summarized")
 
@@ -683,7 +685,8 @@ build_stage3_clusters <- function(stage1_master,
 .summarize_clusters <- function(assignments, eligible_pair, eligible_group,
                                  config, archs4_metadata,
                                  stage1_master = NULL,
-                                 eligible_cgroup = list()) {
+                                 eligible_cgroup = list(),
+                                 workers = 1L) {
   # Schema vuoto canonico per cluster tibble. Anchor v3.1 (ADR-0018) aggiunge
   # 11 colonne tracking + v3.1.1 (S1bis 2026-05-25) aggiunge 12a colonna
   # kind_chebi_zero_roles per Layer B shortlist filter (CHEBI compound esiste
@@ -784,9 +787,11 @@ build_stage3_clusters <- function(stage1_master,
   )
   progress_every <- max(1L, length(unique_clids) %/% 20L)  # ~5% steps
 
-  rows <- vector("list", length(unique_clids))
-
-  for (i in seq_along(unique_clids)) {
+  # UNA RIGA PER CLUSTER, come funzione: cosi' il ciclo puo' essere eseguito in
+  # parallelo. Il corpo e' identico a quello del `for` di prima -- nessun effetto
+  # collaterale, legge soltanto (assignments, i due lookup, la config) e
+  # restituisce la riga. Vedi `workers` piu' sotto.
+  una_riga <- function(i) {
     cl_id   <- unique_clids[i]
     cl_rows <- assignments[cluster_row_idx[[cl_id]], , drop = FALSE]
     mode       <- cl_rows$mode[1L]
@@ -897,7 +902,7 @@ build_stage3_clusters <- function(stage1_master,
       as.character(v)
     }
 
-    rows[[i]] <- tibble::tibble(
+    tibble::tibble(
       cluster_id                  = cl_id,
       mode                        = mode,
       level                       = level,
@@ -946,11 +951,36 @@ build_stage3_clusters <- function(stage1_master,
       contrast_entity_source      = ct_chr("contrast_entity_source")
     )
 
-    if (i %% progress_every == 0L || i == length(unique_clids)) {
-      cli::cli_inform(
-        "  ...cluster {i}/{length(unique_clids)} ({round(100*i/length(unique_clids))}%) at {format(Sys.time())}"
-      )
-    }
+  }
+
+  # IL CICLO, in serie o a pezzi (2026-08-15). Su 322.417 cluster questa fase e'
+  # l'88% del re-cluster (8 h 15 m su 9 h 21 m) e gira su un core solo. I cluster
+  # sono indipendenti: `mclapply` li divide fra i worker con `fork`, quindi le
+  # fasi precedenti non vengono rifatte e la memoria di base resta condivisa.
+  # `mc.preschedule = TRUE` assegna blocchi contigui e CONSERVA L'ORDINE: la
+  # tabella finale e' identica a quella seriale, non solo equivalente.
+  # Default `workers = 1L`: chi non chiede niente ha il comportamento di sempre.
+  idx <- seq_along(unique_clids)
+  rows <- if (workers > 1L && .Platform$OS.type == "unix") {
+    cli::cli_inform("Summarize in {.val {workers}} pezzi (fork)")
+    parallel::mclapply(idx, una_riga, mc.cores = workers, mc.preschedule = TRUE)
+  } else {
+    lapply(idx, function(i) {
+      if (i %% progress_every == 0L || i == length(unique_clids)) {
+        cli::cli_inform(
+          "  ...cluster {i}/{length(unique_clids)} ({round(100*i/length(unique_clids))}%) at {format(Sys.time())}")
+      }
+      una_riga(i)
+    })
+  }
+  # `mclapply` non si ferma sull'errore di un worker: restituisce un `try-error`
+  # al suo posto. Senza questo controllo un pezzo fallito diventerebbe una riga
+  # mancante in silenzio.
+  ko <- vapply(rows, function(x) inherits(x, "try-error"), logical(1))
+  if (any(ko)) {
+    stop("summarize_clusters: ", sum(ko), " cluster su ", length(rows),
+         " hanno fallito nel worker. Primo errore: ",
+         conditionMessage(attr(rows[ko][[1L]], "condition")))
   }
 
   cli::cli_inform("Combining {.val {length(rows)}} cluster rows at {format(Sys.time())}")

@@ -430,13 +430,20 @@ if (!is.null(archs4_meta)) cli::cli_alert_success("ARCHS4 metadata: {nrow(archs4
 # ---------------------------------------------------------------------------
 cli::cli_h2("8. build_stage3_clusters (recovery ON)")
 t_build <- Sys.time()
+# SUMMARIZE_WORKERS (2026-08-15): la fase 6 e' l'88% del wall e gira su un core
+# solo. Con `fork` i cluster si dividono fra i worker senza rifare le fasi
+# precedenti. Identita' del risultato verificata su fixture (test-stage3-summarize-workers.R)
+# e sui dati veri (due smoke a confronto). Default 1 = comportamento di sempre.
+SUMMARIZE_WORKERS <- as.integer(Sys.getenv("SUMMARIZE_WORKERS", "1"))
+cli::cli_alert_info("summarize_workers: {SUMMARIZE_WORKERS}")
 s3 <- build_stage3_clusters(
   stage1_master        = stage1_env,
   stage2_master        = stage2_master,
   config               = config,
   archs4_metadata      = archs4_meta,
   stage2_input         = NULL,                 # guard gia' applicato a monte (FULL)
-  name_recovery_lookup = recovery_lookup
+  name_recovery_lookup = recovery_lookup,
+  summarize_workers    = SUMMARIZE_WORKERS
 )
 cli::cli_alert_success("build wall: {round(as.numeric(difftime(Sys.time(), t_build, units='mins')),1)} min")
 
