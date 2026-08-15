@@ -458,3 +458,30 @@
     qc_drops_cluster  = qc_drops_cluster
   )
 }
+
+#' Sposta i record dei cluster assorbiti sul loro vincente
+#'
+#' \code{.dedup_rem_group_by_entity()} toglie il cluster assorbito e riscrive il
+#' \code{k} del vincente con gli studi dell'unione, ma i \code{record_id}
+#' dell'assorbito restano attaccati a lui negli \code{assignments} — ed e' da li'
+#' che il dispatch pesca i confronti da poolare.
+#'
+#' ⚠️ MISURATO SUL RE-POOL v16 (2026-08-15), col difetto ancora in piedi: il TNF
+#' dichiarava \code{k = 48} e il dispatch ne risolveva \code{32}; la riga
+#' assorbita (6 studi poolati) spariva dal deliverable senza che quei 6 studi
+#' entrassero nel vincente. La fusione era una perdita, non un guadagno. I test
+#' del meccanismo guardavano il data.frame dei cluster; nessuno guardava il
+#' dispatch.
+#'
+#' @param assignments \code{assignments.parquet} dello Stadio 3.
+#' @param fusioni tabella \code{"fusioni"} prodotta dalla dedup, oppure NULL.
+#' @return \code{assignments} con i \code{cluster_id} assorbiti rimappati.
+#' @keywords internal
+.reassign_absorbed_records <- function(assignments, fusioni) {
+  if (is.null(fusioni) || nrow(fusioni) == 0L) return(assignments)
+  m <- stats::setNames(as.character(fusioni$cluster_id_vincente),
+                       as.character(fusioni$cluster_id_assorbito))
+  hit <- assignments$cluster_id %in% names(m)
+  if (any(hit)) assignments$cluster_id[hit] <- unname(m[assignments$cluster_id[hit]])
+  assignments
+}

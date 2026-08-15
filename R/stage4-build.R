@@ -187,6 +187,16 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
   # 2026-06-01). Fail-loud invece del vecchio riassemblaggio namespacing.
   # Coerente col guard in build_stage3_clusters().
   stage2_master <- .assert_stage2_one_record_per_series(stage2_master)
+  # I RECORD DEI CLUSTER ASSORBITI PASSANO AL VINCENTE, prima dei dispatch.
+  # Senza questo la fusione cancella una riga del deliverable e non porta i suoi
+  # studi da nessuna parte: sul re-pool v16 il TNF dichiarava k=48 e il dispatch
+  # ne risolveva 32. Vedi .reassign_absorbed_records().
+  .fus_rec <- attr(qc$eligible_clusters, "fusioni")
+  if (!is.null(.fus_rec) && nrow(.fus_rec) > 0L) {
+    stage3_assignments <- .reassign_absorbed_records(stage3_assignments, .fus_rec)
+    message(sprintf("fusioni: record di %d cluster assorbiti spostati sul vincente",
+                    nrow(.fus_rec)))
+  }
   study_dispatch <- .build_study_dispatch_from_stage3(
     qc$eligible_clusters, stage3_assignments, stage2_master
   )
@@ -209,9 +219,18 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
         length(lane_lookup), length(unique(lane_lookup)),
         nrow(attr(lane_lookup, "scartate"))))
     } else {
-      warning("collapse_technical_lanes richiesto ma h5_metadata non ha ",
-              paste(setdiff(serve, names(h5_metadata)), collapse = ", "),
-              ": il meccanismo resta SPENTO", call. = FALSE)
+      # ⚠️ ERRORE, non warning (2026-08-15). Nel re-pool v16 questo ramo ha
+      # emesso un warning che e' finito fra i «50 or more warnings» e non l'ha
+      # letto nessuno: il collasso delle corsie non si e' acceso e 32 ore di
+      # calcolo sono uscite senza il cambio che dovevano applicare. Un
+      # meccanismo che tocca le stime pubblicate o e' acceso o si ferma. Chi non
+      # lo vuole lo spegne dalla config, esplicitamente.
+      stop("collapse_technical_lanes = TRUE ma h5_metadata non ha: ",
+           paste(setdiff(serve, names(h5_metadata)), collapse = ", "),
+           ".\n  Servono i cinque campi per riconoscere le corsie della stessa ",
+           "libreria (il titolo e' quello che le distingue).",
+           "\n  Per procedere senza: config$rem_group$collapse_technical_lanes <- FALSE",
+           call. = FALSE)
     }
   }
   group_rem_dispatch <- .build_group_rem_dispatch_from_stage3(

@@ -61,6 +61,21 @@ if (!nzchar(stage3_dir)) {
 v_token <- sub("^.*-stage3-(v[0-9]+)-.*$", "\\1", basename(stage3_dir))
 stopifnot(grepl("^v[0-9]+$", v_token))
 
+# ---- SPEZZETTAMENTO (2026-08-15) --------------------------------------------
+# I cluster sono indipendenti: si calcolano in processi separati e si
+# ricompongono. Il motore di calcolo non cambia -- ogni pezzo esegue lo stesso
+# codice sugli stessi dati, solo su meno cluster. Equivalenza misurata sui dati
+# veri (analysis/audit/2026-08-13-rerun-prep/E2-equivalenza-completa.R): dati e
+# registri identici. Con PEZZO/N_PEZZI assenti il comportamento e' quello di
+# sempre.
+PEZZO   <- suppressWarnings(as.integer(Sys.getenv("PEZZO", "")))
+N_PEZZI <- suppressWarnings(as.integer(Sys.getenv("N_PEZZI", "")))
+IS_SHARD <- !is.na(PEZZO) && !is.na(N_PEZZI) && N_PEZZI > 1L
+if (IS_SHARD) {
+  stopifnot(PEZZO >= 1L, PEZZO <= N_PEZZI)
+  cli_alert_info("PEZZO {PEZZO} di {N_PEZZI}")
+}
+
 # I verdetti di coerenza sono un INGRESSO del run, non un dettaglio
 # dell'annotazione: si controllano qui, al minuto zero, non dopo 28 ore.
 # Il default puntava a un file inesistente e il ramo di ripiego marcava
@@ -261,10 +276,30 @@ if (missing_gse > 0L) {
   ok <- !(gse_for_sid == "" | is.na(gse_for_sid))
   all_samples <- all_samples[ok]; gse_for_sid <- gse_for_sid[ok]
 }
+# I CINQUE CAMPI DELLE CORSIE (2026-08-15). Senza `title`,
+# `characteristics_ch1` e `source_name_ch1` il collasso delle corsie non puo'
+# riconoscere due letture della stessa libreria — ed e' esattamente quello che e'
+# successo nel re-pool v16: quattro colonne, meccanismo spento, un warning
+# sepolto fra cinquanta e 32 ore di calcolo senza il cambio che dovevano
+# applicare. Ora il build si ferma se mancano; qui si leggono dall'H5.
+.h5_fields <- c("geo_accession", "title", "series_id", "characteristics_ch1",
+                "source_name_ch1")
+.h5_all <- lapply(stats::setNames(.h5_fields, .h5_fields), function(f)
+  as.character(rhdf5::h5read(h5_path, paste0("meta/samples/", f))))
+rhdf5::h5closeAll()
+.idx <- match(all_samples, .h5_all$geo_accession)
 h5_metadata <- tibble::tibble(
   sample_id = all_samples, gsm = all_samples,
-  gse = unname(gse_for_sid), lib_size = 1e7L)  # placeholder lib_size (vedi 96c43acb)
-cli_alert_success("h5_metadata: {nrow(h5_metadata)} sample")
+  gse = unname(gse_for_sid), lib_size = 1e7L,  # placeholder lib_size (vedi 96c43acb)
+  geo_accession       = all_samples,
+  title               = .h5_all$title[.idx],
+  series_id           = .h5_all$series_id[.idx],
+  characteristics_ch1 = .h5_all$characteristics_ch1[.idx],
+  source_name_ch1     = .h5_all$source_name_ch1[.idx])
+.n_no_h5 <- sum(is.na(.idx))
+if (.n_no_h5 > 0L) cli_alert_warning("{.val {.n_no_h5}} campioni senza riga nell'H5: titolo NA")
+rm(.h5_all, .idx)
+cli_alert_success("h5_metadata: {nrow(h5_metadata)} sample, {length(.h5_fields)} campi per le corsie")
 
 # GATE F1 (2026-08-03): un re-pool che parte con zero campioni non deve poter
 # proseguire in silenzio fino a fine run (era esattamente il difetto appena
@@ -295,6 +330,16 @@ if (DRY_RUN) {
 cli_h2("build_stage4_results")
 cli_alert_info("dream_workers resolved: {simulomicsr:::.resolve_dream_workers(config)}")
 t1 <- Sys.time()
+# I cluster del pezzo: ordinati per `k` DECRESCENTE e assegnati a giro, cosi' i
+# gruppi grandi (che dominano il wall: il piu' lento del v16 e' durato 48 min)
+# finiscono uno per pezzo invece di ammucchiarsi nell'ultimo.
+mio_subset <- NULL
+if (IS_SHARD) {
+  amm <- simulomicsr:::.qc_filter_samples_and_studies(s3$clusters, h5_metadata, config)$eligible_clusters
+  amm <- amm[order(-amm$k, amm$cluster_id), ]
+  mio_subset <- amm$cluster_id[seq_len(nrow(amm)) %% N_PEZZI == (PEZZO %% N_PEZZI)]
+  cli_alert_info("pezzo {PEZZO}/{N_PEZZI}: {length(mio_subset)} cluster su {nrow(amm)}")
+}
 result <- build_stage4_results(
   stage3_clusters    = s3$clusters,
   h5_metadata        = h5_metadata,
@@ -305,10 +350,24 @@ result <- build_stage4_results(
   stage3_clusters_sha256 = stage3_clusters_sha256,
   h5_path_for_hash   = h5_path,
   stage3_assignments = s3$assignments,
-  stage2_master      = stage2_master
+  stage2_master      = stage2_master,
+  cluster_subset     = mio_subset
 )
 wall_sec <- as.numeric(difftime(Sys.time(), t1, units = "secs"))
 cli_alert_success("Build complete in {round(wall_sec/60, 1)} min — run_id {result$run_metadata$run_id}")
+
+# Un pezzo si ferma qui: salva il proprio `stage4_result` e basta. La
+# ricomposizione (merge_stage4_shards), la scrittura dei parquet e l'annotazione
+# le fa uno script a parte, una volta sola, quando tutti i pezzi hanno finito.
+if (IS_SHARD) {
+  pezzi_dir <- Sys.getenv("PEZZI_DIR", "")
+  if (!nzchar(pezzi_dir)) stop("PEZZI_DIR non impostata: dove salvo il pezzo?")
+  dir.create(pezzi_dir, recursive = TRUE, showWarnings = FALSE)
+  f <- file.path(pezzi_dir, sprintf("pezzo-%02d-di-%02d.rds", PEZZO, N_PEZZI))
+  saveRDS(result, f)
+  cli_alert_success("PEZZO {PEZZO}/{N_PEZZI} scritto: {.path {f}} | pooled {nrow(result$cluster_pooled)} righe | {round(wall_sec/60,1)} min")
+  quit(save = "no")
+}
 
 ts     <- format(Sys.time(), "%Y%m%dT%H%M%SZ", tz = "UTC")
 run_id <- result$run_metadata$run_id

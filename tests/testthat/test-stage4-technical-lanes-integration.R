@@ -107,9 +107,49 @@ test_that("il collasso delle corsie e' ACCESO di default", {
 test_that("acceso, la corrispondenza si costruisce dai metadati H5 o fallisce forte", {
   m <- .lane_meta(paste0("S", 1:4), paste0("T1_S1_L00", 1:4))
   expect_length(build_lane_library_lookup(m), 4L)
-  # Un campo mancante non deve degradare in silenzio: il build lo intercetta a
-  # monte (warning + meccanismo spento), il lookup a valle si ferma.
+  # Un campo mancante non degrada in silenzio: il build si FERMA (vedi il test
+  # in fondo al file) e il lookup a valle pure.
   expect_error(
     build_lane_library_lookup(m[, setdiff(names(m), "title"), drop = FALSE]),
     "colonne necessarie")
+})
+
+# ---- IL SILENZIO NON E' PIU' AMMESSO (2026-08-15) ----------------------------
+# Nel re-pool v16 il collasso delle corsie non si e' MAI acceso: lo script
+# passava un `h5_metadata` con quattro colonne (sample_id, gsm, gse, lib_size) e
+# il ramo di degradazione ha emesso un `warning`... finito fra i «50 or more
+# warnings» e mai letto. Prove: `lane_collapses` 0 righe, nessun
+# `n_min_dopo_collasso_corsie`, i 7 confronti di GSE173902 ancora nel poolato.
+# Un meccanismo che cambia le stime pubblicate non puo' spegnersi da solo.
+
+test_that("acceso + metadati incompleti = ERRORE, non warning", {
+  cl <- data.frame(cluster_id = "cgroup_L5_x", mode = "cgroup", level = 5L,
+                   k = 3L, n_total = 12L, n_studies = 3L,
+                   usable_rem_strict = FALSE, usable_rem_relaxed = FALSE,
+                   usable_mega_strict = FALSE,
+                   kind_effective_resolved = "cytokine_stim",
+                   agent_id_resolved = "HGNC:1", contrast_entity = "HGNC:1",
+                   contrast_direction = "gain",
+                   contrast_control_key = "vehicle_untreated",
+                   stringsAsFactors = FALSE)
+  cl$studies_in_cluster <- list(paste0("GSE", 1:3))
+  h5m <- tibble::tibble(sample_id = "S1", gsm = "S1", gse = "GSE1", lib_size = 1e7)
+  cfg <- stage4_default_config()
+  expect_true(cfg$rem_group$collapse_technical_lanes)
+  expect_error(
+    build_stage4_results(stage3_clusters = cl, h5_metadata = h5m, config = cfg,
+                         fetch_fn = function(g, s) matrix(0L, 1, length(s)),
+                         stage3_assignments = data.frame(cluster_id = "cgroup_L5_x",
+                                                          record_id = "GSE1__cmp1",
+                                                          stringsAsFactors = FALSE),
+                         stage2_master = list(list(series_id = "GSE1",
+                                                   replicate_groups = list(), comparisons = list())),
+                         gene_biotype_filter = NULL),
+    "collapse_technical_lanes")
+})
+
+test_that("spegnendolo esplicitamente i metadati magri restano leciti", {
+  cfg <- stage4_default_config()
+  cfg$rem_group$collapse_technical_lanes <- FALSE
+  expect_false(cfg$rem_group$collapse_technical_lanes)
 })
