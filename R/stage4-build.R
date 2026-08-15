@@ -33,6 +33,10 @@
 #' @param stage2_master list di study records (output di
 #'   \code{.load_stage2_master} o equivalente). Richiesto quando
 #'   \code{dry_run_inputs_only = FALSE}.
+#' @param cluster_subset character dei \code{cluster_id} da calcolare, oppure
+#'   NULL (tutti). Serve a spezzare un re-pool in piu' processi: il filtro si
+#'   applica DOPO l'identificazione Layer A, quindi ogni pezzo lavora sugli
+#'   stessi gruppi vincenti e con gli stessi \code{k} del run intero.
 #' @param dry_run_inputs_only logical: se TRUE, restituisce solo
 #'   eligible_clusters + run_metadata + scaffold vuoti (skip DE/pooling)
 #'   per debug rapido o test di integrazione minimi.
@@ -58,6 +62,7 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
                                  stage3_assignments = NULL,
                                  stage2_master = NULL,
                                  dry_run_inputs_only = FALSE,
+                                 cluster_subset = NULL,
                                  gene_biotype_filter = "protein_coding",
                                  de_covariates = c("instrument_model",
                                                     "aligner_class")) {
@@ -98,6 +103,16 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
 
   # Step 1: QC sample + studio + cluster
   qc <- .qc_filter_samples_and_studies(stage3_clusters, h5_metadata, config)
+  # SPEZZETTAMENTO (2026-08-15). Il sottoinsieme si applica QUI, dopo
+  # l'identificazione Layer A e prima dei dispatch: la dedup per entita' e le
+  # fusioni hanno gia' visto l'insieme completo, quindi ogni pezzo lavora sugli
+  # stessi gruppi vincenti e con gli stessi `k` del run intero.
+  if (!is.null(cluster_subset)) {
+    n_prima <- nrow(qc$eligible_clusters)
+    qc$eligible_clusters <- .apply_cluster_subset(qc$eligible_clusters, cluster_subset)
+    message(sprintf("pezzo: %d cluster su %d ammessi",
+                    nrow(qc$eligible_clusters), n_prima))
+  }
 
   # Step 2: Calcolo run_id deterministico (hash di input + config + schema)
   stage3_hash <- if (is.null(stage3_run_id)) "unknown" else stage3_run_id
@@ -300,6 +315,9 @@ build_stage4_results <- function(stage3_clusters, h5_metadata,
   # nemmeno nel poolato.
   qc_report$dispatch_drops <- attr(group_rem_dispatch, "scarti") %||%
     .empty_dispatch_drop_log()
+  qc_report$covariate_drops <- attr(per_study_de, "covariate_drop_log") %||%
+    data.frame(cluster_id = character(), covariate = character(),
+               reason = character(), detail = character(), stringsAsFactors = FALSE)
 
   structure(list(
     per_study_de      = per_study_de,

@@ -17,6 +17,7 @@ build_stage4_results(
   stage3_assignments = NULL,
   stage2_master = NULL,
   dry_run_inputs_only = FALSE,
+  cluster_subset = NULL,
   gene_biotype_filter = "protein_coding",
   de_covariates = c("instrument_model", "aligner_class")
 )
@@ -61,6 +62,11 @@ dispatch per-cluster).}
 \item{dry_run_inputs_only}{logical: se TRUE, restituisce solo
 eligible_clusters + run_metadata + scaffold vuoti (skip DE/pooling)
 per debug rapido o test di integrazione minimi.}
+
+\item{cluster_subset}{character dei \code{cluster_id} da calcolare, oppure
+NULL (tutti). Serve a spezzare un re-pool in piu' processi: il filtro si
+applica DOPO l'identificazione Layer A, quindi ogni pezzo lavora sugli
+stessi gruppi vincenti e con gli stessi \code{k} del run intero.}
 
 \item{gene_biotype_filter}{character vector o NULL (FASE E2 ADR-0019
 D7). Default \code{"protein_coding"}: il pool DE lavora sui ~23k

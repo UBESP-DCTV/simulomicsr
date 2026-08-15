@@ -32,6 +32,7 @@
   # attributo, perche' questa guardia toglie campioni da stime pubblicate e una
   # selezione silenziosa non sarebbe auditabile.
   role_conflict_log <- vector("list", 0L)
+  covariate_drop_log <- vector("list", 0L)
   # Stesso motivo per il collasso delle corsie: cambia una stima pubblicata.
   lane_collapse_log <- vector("list", 0L)
   dispatch <- attr(eligible_clusters, "study_dispatch")
@@ -138,6 +139,13 @@
           .empty_per_study_de()
         }
       )
+      # IL REGISTRO DELLE COVARIATE SCARTATE va accumulato QUI: e' attaccato al
+      # singolo risultato per-studio, e il `rbind` in fondo ne terrebbe solo il
+      # primo (misurato il 2026-08-15: su cinque cluster il run riportava le
+      # covariate scartate di UNO). Stessa lezione di `role_conflicts`.
+      cdl <- attr(row_res, "covariate_drop_log")
+      if (!is.null(cdl) && NROW(cdl) > 0L)
+        covariate_drop_log[[length(covariate_drop_log) + 1L]] <- cdl
       out_list[[length(out_list) + 1L]] <- row_res
     }
   }
@@ -153,6 +161,8 @@
     do.call(rbind, out_list)
   }
   attr(out, "role_conflicts") <- rc_log
+  if (length(covariate_drop_log) > 0L)
+    attr(out, "covariate_drop_log") <- do.call(rbind, covariate_drop_log)
   attr(out, "lane_collapses") <- if (length(lane_collapse_log) > 0L) {
     do.call(rbind, lane_collapse_log)
   } else {

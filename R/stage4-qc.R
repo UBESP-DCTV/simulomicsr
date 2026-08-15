@@ -225,6 +225,39 @@
   out
 }
 
+#' Tiene solo un sottoinsieme dei cluster ammessi, conservandone gli attributi
+#'
+#' Serve a spezzare un re-pool in piu' processi: i cluster sono indipendenti fra
+#' loro e il ciclo di calcolo li tratta uno alla volta.
+#'
+#' ⚠️ SI APPLICA DOPO \code{.identify_layer_a_clusters()}, mai prima. La dedup per
+#' entita' e le fusioni dipendono dall'insieme COMPLETO (vince il \code{k}
+#' maggiore): se ogni pezzo rifacesse l'identificazione sul proprio
+#' sottoinsieme, i pezzi vedrebbero vincitori diversi e la ricomposizione non
+#' sarebbe piu' il run intero.
+#'
+#' @param eligible output di \code{.identify_layer_a_clusters}.
+#' @param subset character dei \code{cluster_id} da tenere, oppure NULL (tutti).
+#' @return \code{eligible} filtrato, con gli attributi conservati.
+#' @keywords internal
+.apply_cluster_subset <- function(eligible, subset = NULL) {
+  if (is.null(subset) || length(subset) == 0L) return(eligible)
+  subset <- unique(as.character(subset))
+  ignoti <- setdiff(subset, eligible$cluster_id)
+  # Un refuso nel nome di un pezzo produrrebbe un output vuoto, e la
+  # ricomposizione perderebbe quei cluster senza dirlo.
+  if (length(ignoti) > 0L) {
+    stop("questi cluster_id non sono fra i cluster ammessi: ",
+         paste(utils::head(ignoti, 5), collapse = ", "),
+         if (length(ignoti) > 5L) sprintf(" (e altri %d)", length(ignoti) - 5L) else "")
+  }
+  attrs <- attributes(eligible)
+  out <- eligible[eligible$cluster_id %in% subset, , drop = FALSE]
+  for (nm in setdiff(names(attrs), c("names", "row.names", "class", "dim", "dimnames")))
+    attr(out, nm) <- attrs[[nm]]
+  out
+}
+
 #' Identifica cluster Layer A (REM proper + MEGA strict + MEGA-aug)
 #'
 #' Layer A = i ~412 cluster publishable definiti nel finding scope decision

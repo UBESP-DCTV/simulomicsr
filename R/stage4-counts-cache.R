@@ -84,7 +84,19 @@
   }
 
   counts <- fetch_fn(gse, sample_ids)
-  saveRDS(counts, cache_file, compress = "xz")
+  # SCRITTURA ATOMICA (2026-08-15). `saveRDS` sul file finale va bene con un
+  # processo solo; con piu' pezzi di re-pool in parallelo due processi possono
+  # vedere `file.exists() == FALSE` per la stessa chiave e scrivere insieme, e un
+  # terzo puo' leggere il file mentre e' scritto a meta'. Il temporaneo sta nella
+  # STESSA directory perche' `file.rename` e' atomico solo dentro il filesystem;
+  # se la rinomina fallisce (chi ha vinto la corsa ha gia' scritto lo stesso
+  # contenuto) il temporaneo viene tolto e si tiene il file che c'e'.
+  tmp <- tempfile(pattern = ".tmp-", tmpdir = cache_dir, fileext = ".rds")
+  on.exit(if (file.exists(tmp)) unlink(tmp), add = TRUE)
+  saveRDS(counts, tmp, compress = "xz")
+  if (!file.rename(tmp, cache_file) && !file.exists(cache_file)) {
+    stop("cache delle conte: impossibile scrivere ", cache_file)
+  }
   counts
 }
 

@@ -1,0 +1,599 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Stadio 4 Layer A re-pool v16 (Stadio 3 v16, solo ramo rem_group) ────────────
+ℹ Stadio 3: 'analysis/p4-output/20260814T025911Z-stage3-v16-7f986159'
+ℹ Loading stage3 + stage2_master...
+✔ Loaded: 322417 clusters / 574799 assignments / 24394 stage2 studies (wall 12.2 sec)
+ℹ Stadio 3 clusters.rds sha256: b55e5ff2d7200739b10dbc7e7bda6bd7a318ffc6b90a9c93330dece4cfc94e1f (wall 0.095 sec)
+ℹ Pre-filter stage2_master vs ARCHS4 H5 sample axis...
+ℹ H5 sample axis: 888821 sample
+✔ Pre-filter done in 8.6 sec: 15/491071 sample droppati ("0.003%") — non in ARCHS4 H5 v2.5
+           used   (Mb) gc trigger   (Mb) max used   (Mb)
+Ncells 24857515 1327.6   40177571 2145.8 40177571 2145.8
+Vcells 66555672  507.8  109786434  837.7 83670312  638.4
+ℹ deliverable_methods: rem_group
+ℹ Layer A: 350 clusters (rem=0, mega=0, mega_aug=0, rem_group=350)
+✔ GATE: 350 cluster, tutti rem_group / cgroup_L5_
+ℹ MEGA-AUG baseline cluster matchati: 0
+ℹ Assignments rilevanti: 5772
+ℹ Sample IDs totali Layer A: 27788
+✔ h5_metadata: 27788 sample
+
+── build_stage4_results ──
+
+ℹ dream_workers resolved: 32
+[cluster 1/350] cgroup_L5_64fbeb97 (method=rem_group)
+[cluster 2/350] cgroup_L5_2987cdb6 (method=rem_group)
+  -> cgroup_L5_2987cdb6 ok | wall 196.1s | RSS 10.9 GB
+[cluster 3/350] cgroup_L5_479c6221 (method=rem_group)
+  -> cgroup_L5_479c6221 ok | wall 181.2s | RSS 10.9 GB
+[cluster 4/350] cgroup_L5_b3bbf8e4 (method=rem_group)
+[cluster 5/350] cgroup_L5_61352c9e (method=rem_group)
+[cluster 6/350] cgroup_L5_b71a25a2 (method=rem_group)
+  -> cgroup_L5_b71a25a2 ok | wall 429.5s | RSS 10.8 GB
+[cluster 7/350] cgroup_L5_63180d66 (method=rem_group)
+[cluster 8/350] cgroup_L5_86417b40 (method=rem_group)
+[cluster 9/350] cgroup_L5_b45f7252 (method=rem_group)
+[cluster 10/350] cgroup_L5_b9e7806c (method=rem_group)
+  -> cgroup_L5_b9e7806c ok | wall 167.1s | RSS 10.8 GB
+[cluster 11/350] cgroup_L5_3370a794 (method=rem_group)
+  -> cgroup_L5_3370a794 ok | wall 150.1s | RSS 10.8 GB
+[cluster 12/350] cgroup_L5_8e775709 (method=rem_group)
+[cluster 13/350] cgroup_L5_e17c136b (method=rem_group)
+  -> cgroup_L5_e17c136b ok | wall 108.9s | RSS 10.8 GB
+[cluster 14/350] cgroup_L5_ff78d2a8 (method=rem_group)
+  -> cgroup_L5_ff78d2a8 ok | wall 142.4s | RSS 10.8 GB
+[cluster 15/350] cgroup_L5_37942548 (method=rem_group)
+  -> cgroup_L5_37942548 ok | wall 198.8s | RSS 10.8 GB
+[cluster 16/350] cgroup_L5_3a58e5f5 (method=rem_group)
+  -> cgroup_L5_3a58e5f5 ok | wall 120.8s | RSS 10.8 GB
+[cluster 17/350] cgroup_L5_d28620cd (method=rem_group)
+  -> cgroup_L5_d28620cd ok | wall 121.2s | RSS 10.8 GB
+[cluster 18/350] cgroup_L5_dde29fb4 (method=rem_group)
+  -> cgroup_L5_dde29fb4 ok | wall 221.3s | RSS 10.8 GB
+[cluster 19/350] cgroup_L5_930c8dcf (method=rem_group)
+  -> cgroup_L5_930c8dcf ok | wall 460.8s | RSS 10.7 GB
+[cluster 20/350] cgroup_L5_0b985869 (method=rem_group)
+[cluster 21/350] cgroup_L5_c548d053 (method=rem_group)
+  -> cgroup_L5_c548d053 ok | wall 734.6s | RSS 10.7 GB
+[cluster 22/350] cgroup_L5_a12414d4 (method=rem_group)
+  -> cgroup_L5_a12414d4 ok | wall 318.9s | RSS 10.7 GB
+[cluster 23/350] cgroup_L5_862cd9b9 (method=rem_group)
+  -> cgroup_L5_862cd9b9 ok | wall 213.8s | RSS 10.7 GB
+[cluster 24/350] cgroup_L5_ef9b09df (method=rem_group)
+[cluster 25/350] cgroup_L5_8be26844 (method=rem_group)
+[cluster 26/350] cgroup_L5_8341bee7 (method=rem_group)
+  -> cgroup_L5_8341bee7 ok | wall 182.0s | RSS 10.7 GB
+[cluster 27/350] cgroup_L5_56d531e8 (method=rem_group)
+  -> cgroup_L5_56d531e8 ok | wall 188.1s | RSS 10.7 GB
+[cluster 28/350] cgroup_L5_5a202240 (method=rem_group)
+[cluster 29/350] cgroup_L5_5d1a5c5f (method=rem_group)
+[cluster 30/350] cgroup_L5_90db4e34 (method=rem_group)
+  -> cgroup_L5_90db4e34 ok | wall 201.5s | RSS 10.7 GB
+[cluster 31/350] cgroup_L5_a8015c98 (method=rem_group)
+  -> cgroup_L5_a8015c98 ok | wall 161.2s | RSS 10.7 GB
+[cluster 32/350] cgroup_L5_5756018b (method=rem_group)
+[cluster 33/350] cgroup_L5_34376df0 (method=rem_group)
+[cluster 34/350] cgroup_L5_c5c72bba (method=rem_group)
+[cluster 35/350] cgroup_L5_b967c97c (method=rem_group)
+[cluster 36/350] cgroup_L5_93068469 (method=rem_group)
+  -> cgroup_L5_93068469 ok | wall 145.8s | RSS 10.7 GB
+[cluster 37/350] cgroup_L5_b5db4aff (method=rem_group)
+  -> cgroup_L5_b5db4aff ok | wall 241.8s | RSS 10.7 GB
+[cluster 38/350] cgroup_L5_ea4a1823 (method=rem_group)
+  -> cgroup_L5_ea4a1823 ok | wall 184.2s | RSS 10.7 GB
+[cluster 39/350] cgroup_L5_9f0ea111 (method=rem_group)
+  -> cgroup_L5_9f0ea111 ok | wall 199.8s | RSS 10.7 GB
+[cluster 40/350] cgroup_L5_dc7451b1 (method=rem_group)
+  -> cgroup_L5_dc7451b1 ok | wall 261.1s | RSS 10.7 GB
+[cluster 41/350] cgroup_L5_f9769fd6 (method=rem_group)
+[cluster 42/350] cgroup_L5_721184e6 (method=rem_group)
+  -> cgroup_L5_721184e6 ok | wall 420.9s | RSS 10.7 GB
+[cluster 43/350] cgroup_L5_aa8c1d6d (method=rem_group)
+  -> cgroup_L5_aa8c1d6d ok | wall 226.1s | RSS 10.7 GB
+[cluster 44/350] cgroup_L5_f44b01e2 (method=rem_group)
+[cluster 45/350] cgroup_L5_417c69a3 (method=rem_group)
+[cluster 46/350] cgroup_L5_84b52570 (method=rem_group)
+[cluster 47/350] cgroup_L5_7934174c (method=rem_group)
+  -> cgroup_L5_7934174c ok | wall 367.4s | RSS 10.7 GB
+[cluster 48/350] cgroup_L5_3a625868 (method=rem_group)
+  -> cgroup_L5_3a625868 ok | wall 154.2s | RSS 10.7 GB
+[cluster 49/350] cgroup_L5_2618c026 (method=rem_group)
+[cluster 50/350] cgroup_L5_a3f0c959 (method=rem_group)
+  -> cgroup_L5_a3f0c959 ok | wall 265.8s | RSS 10.7 GB
+[cluster 51/350] cgroup_L5_0dd60753 (method=rem_group)
+[cluster 52/350] cgroup_L5_8b65b3ff (method=rem_group)
+[cluster 53/350] cgroup_L5_f01e9f74 (method=rem_group)
+[cluster 54/350] cgroup_L5_a48d6990 (method=rem_group)
+[cluster 55/350] cgroup_L5_fde7b89b (method=rem_group)
+[cluster 56/350] cgroup_L5_57810d6c (method=rem_group)
+[cluster 57/350] cgroup_L5_021e875e (method=rem_group)
+  -> cgroup_L5_021e875e ok | wall 483.6s | RSS 10.7 GB
+[cluster 58/350] cgroup_L5_f956ef98 (method=rem_group)
+  -> cgroup_L5_f956ef98 ok | wall 245.5s | RSS 10.7 GB
+[cluster 59/350] cgroup_L5_d7abf612 (method=rem_group)
+  -> cgroup_L5_d7abf612 ok | wall 232.8s | RSS 10.7 GB
+[cluster 60/350] cgroup_L5_26c302f6 (method=rem_group)
+[cluster 61/350] cgroup_L5_8a54ddd6 (method=rem_group)
+  -> cgroup_L5_8a54ddd6 ok | wall 496.1s | RSS 10.7 GB
+[cluster 62/350] cgroup_L5_3d3658ad (method=rem_group)
+[cluster 63/350] cgroup_L5_516200d1 (method=rem_group)
+  -> cgroup_L5_516200d1 ok | wall 225.4s | RSS 10.7 GB
+[cluster 64/350] cgroup_L5_d411c435 (method=rem_group)
+  -> cgroup_L5_d411c435 ok | wall 255.1s | RSS 10.7 GB
+[cluster 65/350] cgroup_L5_79ce3bd1 (method=rem_group)
+  -> cgroup_L5_79ce3bd1 ok | wall 279.1s | RSS 10.7 GB
+[cluster 66/350] cgroup_L5_0e66597e (method=rem_group)
+  -> cgroup_L5_0e66597e ok | wall 562.9s | RSS 10.7 GB
+[cluster 67/350] cgroup_L5_d8006c5b (method=rem_group)
+  -> cgroup_L5_d8006c5b ok | wall 243.1s | RSS 10.7 GB
+[cluster 68/350] cgroup_L5_60d9a5bf (method=rem_group)
+[cluster 69/350] cgroup_L5_1c7b64af (method=rem_group)
+[cluster 70/350] cgroup_L5_8078374b (method=rem_group)
+[cluster 71/350] cgroup_L5_31308596 (method=rem_group)
+  -> cgroup_L5_31308596 ok | wall 256.7s | RSS 10.7 GB
+[cluster 72/350] cgroup_L5_f94b6180 (method=rem_group)
+  -> cgroup_L5_f94b6180 ok | wall 928.1s | RSS 10.7 GB
+[cluster 73/350] cgroup_L5_efced505 (method=rem_group)
+  -> cgroup_L5_efced505 ok | wall 409.3s | RSS 10.7 GB
+[cluster 74/350] cgroup_L5_f97e665a (method=rem_group)
+[cluster 75/350] cgroup_L5_4be9e90d (method=rem_group)
+  -> cgroup_L5_4be9e90d ok | wall 227.0s | RSS 10.7 GB
+[cluster 76/350] cgroup_L5_d7ad915e (method=rem_group)
+  -> cgroup_L5_d7ad915e ok | wall 397.9s | RSS 10.7 GB
+[cluster 77/350] cgroup_L5_62404e11 (method=rem_group)
+[cluster 78/350] cgroup_L5_49e290ae (method=rem_group)
+  -> cgroup_L5_49e290ae ok | wall 377.9s | RSS 10.7 GB
+[cluster 79/350] cgroup_L5_10344dfd (method=rem_group)
+  -> cgroup_L5_10344dfd ok | wall 372.5s | RSS 10.7 GB
+[cluster 80/350] cgroup_L5_ff04c7c1 (method=rem_group)
+[cluster 81/350] cgroup_L5_8b61f50b (method=rem_group)
+  -> cgroup_L5_8b61f50b ok | wall 338.3s | RSS 10.7 GB
+[cluster 82/350] cgroup_L5_eb5e1e65 (method=rem_group)
+  -> cgroup_L5_eb5e1e65 ok | wall 615.3s | RSS 10.7 GB
+[cluster 83/350] cgroup_L5_dcce160a (method=rem_group)
+  -> cgroup_L5_dcce160a ok | wall 219.9s | RSS 10.7 GB
+[cluster 84/350] cgroup_L5_ebd83cd1 (method=rem_group)
+[cluster 85/350] cgroup_L5_2248a891 (method=rem_group)
+  -> cgroup_L5_2248a891 ok | wall 270.8s | RSS 10.7 GB
+[cluster 86/350] cgroup_L5_5b9a08fb (method=rem_group)
+  -> cgroup_L5_5b9a08fb ok | wall 192.5s | RSS 10.7 GB
+[cluster 87/350] cgroup_L5_a6fd82fa (method=rem_group)
+  -> cgroup_L5_a6fd82fa ok | wall 209.7s | RSS 10.7 GB
+[cluster 88/350] cgroup_L5_03d0ca7b (method=rem_group)
+  -> cgroup_L5_03d0ca7b ok | wall 313.6s | RSS 10.7 GB
+[cluster 89/350] cgroup_L5_d800c4f2 (method=rem_group)
+[cluster 90/350] cgroup_L5_535d97f6 (method=rem_group)
+  -> cgroup_L5_535d97f6 ok | wall 435.0s | RSS 10.7 GB
+[cluster 91/350] cgroup_L5_81b706c4 (method=rem_group)
+  -> cgroup_L5_81b706c4 ok | wall 333.1s | RSS 10.7 GB
+[cluster 92/350] cgroup_L5_356eedd3 (method=rem_group)
+  -> cgroup_L5_356eedd3 ok | wall 189.7s | RSS 10.7 GB
+[cluster 93/350] cgroup_L5_29cb04f8 (method=rem_group)
+  -> cgroup_L5_29cb04f8 ok | wall 390.0s | RSS 10.7 GB
+[cluster 94/350] cgroup_L5_17b35bdc (method=rem_group)
+  -> cgroup_L5_17b35bdc ok | wall 304.7s | RSS 10.7 GB
+[cluster 95/350] cgroup_L5_8958b27a (method=rem_group)
+  -> cgroup_L5_8958b27a ok | wall 213.7s | RSS 10.7 GB
+[cluster 96/350] cgroup_L5_cf34c533 (method=rem_group)
+  -> cgroup_L5_cf34c533 ok | wall 205.7s | RSS 10.7 GB
+[cluster 97/350] cgroup_L5_451ecb56 (method=rem_group)
+[cluster 98/350] cgroup_L5_ae969461 (method=rem_group)
+  -> cgroup_L5_ae969461 ok | wall 201.3s | RSS 10.7 GB
+[cluster 99/350] cgroup_L5_24ae0579 (method=rem_group)
+  -> cgroup_L5_24ae0579 ok | wall 345.9s | RSS 10.7 GB
+[cluster 100/350] cgroup_L5_f34ff8df (method=rem_group)
+  -> cgroup_L5_f34ff8df ok | wall 284.2s | RSS 10.7 GB
+[cluster 101/350] cgroup_L5_3a0a595f (method=rem_group)
+  -> cgroup_L5_3a0a595f ok | wall 655.8s | RSS 10.7 GB
+[cluster 102/350] cgroup_L5_004d293d (method=rem_group)
+  -> cgroup_L5_004d293d ok | wall 313.2s | RSS 10.7 GB
+[cluster 103/350] cgroup_L5_41f7b088 (method=rem_group)
+  -> cgroup_L5_41f7b088 ok | wall 460.5s | RSS 10.7 GB
+[cluster 104/350] cgroup_L5_e294a3bc (method=rem_group)
+  -> cgroup_L5_e294a3bc ok | wall 319.7s | RSS 10.7 GB
+[cluster 105/350] cgroup_L5_b3ccf1c1 (method=rem_group)
+  -> cgroup_L5_b3ccf1c1 ok | wall 246.3s | RSS 10.7 GB
+[cluster 106/350] cgroup_L5_3eaa92c9 (method=rem_group)
+  -> cgroup_L5_3eaa92c9 ok | wall 442.3s | RSS 10.7 GB
+[cluster 107/350] cgroup_L5_a32e5eaa (method=rem_group)
+  -> cgroup_L5_a32e5eaa ok | wall 676.0s | RSS 10.7 GB
+[cluster 108/350] cgroup_L5_f640365a (method=rem_group)
+  -> cgroup_L5_f640365a ok | wall 310.1s | RSS 10.7 GB
+[cluster 109/350] cgroup_L5_8f29463d (method=rem_group)
+[cluster 110/350] cgroup_L5_6df6a50e (method=rem_group)
+  -> cgroup_L5_6df6a50e ok | wall 748.9s | RSS 10.7 GB
+[cluster 111/350] cgroup_L5_06ff1592 (method=rem_group)
+[cluster 112/350] cgroup_L5_3b461817 (method=rem_group)
+  -> cgroup_L5_3b461817 ok | wall 307.9s | RSS 10.7 GB
+[cluster 113/350] cgroup_L5_089ccae5 (method=rem_group)
+  -> cgroup_L5_089ccae5 ok | wall 434.8s | RSS 10.7 GB
+[cluster 114/350] cgroup_L5_5d97d5b1 (method=rem_group)
+  -> cgroup_L5_5d97d5b1 ok | wall 358.0s | RSS 10.7 GB
+[cluster 115/350] cgroup_L5_759892f5 (method=rem_group)
+[cluster 116/350] cgroup_L5_cbc935db (method=rem_group)
+[cluster 117/350] cgroup_L5_d2c64672 (method=rem_group)
+  -> cgroup_L5_d2c64672 ok | wall 251.2s | RSS 10.7 GB
+[cluster 118/350] cgroup_L5_a4029927 (method=rem_group)
+  -> cgroup_L5_a4029927 ok | wall 432.1s | RSS 10.7 GB
+[cluster 119/350] cgroup_L5_83b1f88c (method=rem_group)
+  -> cgroup_L5_83b1f88c ok | wall 449.5s | RSS 10.7 GB
+[cluster 120/350] cgroup_L5_889ae73b (method=rem_group)
+[cluster 121/350] cgroup_L5_03b38818 (method=rem_group)
+  -> cgroup_L5_03b38818 ok | wall 537.6s | RSS 10.7 GB
+[cluster 122/350] cgroup_L5_f97e50de (method=rem_group)
+  -> cgroup_L5_f97e50de ok | wall 646.5s | RSS 10.7 GB
+[cluster 123/350] cgroup_L5_92f4f307 (method=rem_group)
+  -> cgroup_L5_92f4f307 ok | wall 385.1s | RSS 10.7 GB
+[cluster 124/350] cgroup_L5_5927750b (method=rem_group)
+  -> cgroup_L5_5927750b ok | wall 452.7s | RSS 10.7 GB
+[cluster 125/350] cgroup_L5_b80b0368 (method=rem_group)
+[cluster 126/350] cgroup_L5_523e64b9 (method=rem_group)
+  -> cgroup_L5_523e64b9 ok | wall 378.3s | RSS 10.7 GB
+[cluster 127/350] cgroup_L5_2ec87595 (method=rem_group)
+  -> cgroup_L5_2ec87595 ok | wall 477.4s | RSS 10.7 GB
+[cluster 128/350] cgroup_L5_3439da02 (method=rem_group)
+  -> cgroup_L5_3439da02 ok | wall 405.0s | RSS 10.7 GB
+[cluster 129/350] cgroup_L5_c0d1d837 (method=rem_group)
+  -> cgroup_L5_c0d1d837 ok | wall 815.1s | RSS 10.7 GB
+[cluster 130/350] cgroup_L5_fd0c6a79 (method=rem_group)
+  -> cgroup_L5_fd0c6a79 ok | wall 503.3s | RSS 10.7 GB
+[cluster 131/350] cgroup_L5_6ac5ea3a (method=rem_group)
+[cluster 132/350] cgroup_L5_05322ba1 (method=rem_group)
+  -> cgroup_L5_05322ba1 ok | wall 511.5s | RSS 10.7 GB
+[cluster 133/350] cgroup_L5_ae11259e (method=rem_group)
+  -> cgroup_L5_ae11259e ok | wall 268.9s | RSS 10.7 GB
+[cluster 134/350] cgroup_L5_8ac307e0 (method=rem_group)
+  -> cgroup_L5_8ac307e0 ok | wall 403.9s | RSS 10.7 GB
+[cluster 135/350] cgroup_L5_99d7941a (method=rem_group)
+  -> cgroup_L5_99d7941a ok | wall 464.3s | RSS 10.7 GB
+[cluster 136/350] cgroup_L5_4290da61 (method=rem_group)
+[cluster 137/350] cgroup_L5_8eca612e (method=rem_group)
+  -> cgroup_L5_8eca612e ok | wall 395.7s | RSS 10.7 GB
+[cluster 138/350] cgroup_L5_702a5dea (method=rem_group)
+  -> cgroup_L5_702a5dea ok | wall 501.5s | RSS 10.7 GB
+[cluster 139/350] cgroup_L5_83135c89 (method=rem_group)
+[cluster 140/350] cgroup_L5_dcfcec80 (method=rem_group)
+[cluster 141/350] cgroup_L5_16525349 (method=rem_group)
+  -> cgroup_L5_16525349 ok | wall 492.3s | RSS 10.7 GB
+[cluster 142/350] cgroup_L5_b8bc334a (method=rem_group)
+[cluster 143/350] cgroup_L5_7b545f77 (method=rem_group)
+[cluster 144/350] cgroup_L5_af782291 (method=rem_group)
+[cluster 145/350] cgroup_L5_a3112513 (method=rem_group)
+[cluster 146/350] cgroup_L5_c5e86fe9 (method=rem_group)
+  -> cgroup_L5_c5e86fe9 ok | wall 391.1s | RSS 10.7 GB
+[cluster 147/350] cgroup_L5_1d96b9da (method=rem_group)
+  -> cgroup_L5_1d96b9da ok | wall 726.7s | RSS 10.7 GB
+[cluster 148/350] cgroup_L5_00fd9348 (method=rem_group)
+  -> cgroup_L5_00fd9348 ok | wall 252.2s | RSS 10.7 GB
+[cluster 149/350] cgroup_L5_aa505132 (method=rem_group)
+[cluster 150/350] cgroup_L5_b6b8bc00 (method=rem_group)
+  -> cgroup_L5_b6b8bc00 ok | wall 625.1s | RSS 10.7 GB
+[cluster 151/350] cgroup_L5_a8d88150 (method=rem_group)
+  -> cgroup_L5_a8d88150 ok | wall 311.6s | RSS 10.7 GB
+[cluster 152/350] cgroup_L5_455fe91d (method=rem_group)
+  -> cgroup_L5_455fe91d ok | wall 371.6s | RSS 10.7 GB
+[cluster 153/350] cgroup_L5_57ea5503 (method=rem_group)
+[cluster 154/350] cgroup_L5_7cda77c1 (method=rem_group)
+[cluster 155/350] cgroup_L5_0a71325c (method=rem_group)
+[cluster 156/350] cgroup_L5_548236b5 (method=rem_group)
+[cluster 157/350] cgroup_L5_af2c15aa (method=rem_group)
+[cluster 158/350] cgroup_L5_601ede7b (method=rem_group)
+  -> cgroup_L5_601ede7b ok | wall 655.3s | RSS 10.7 GB
+[cluster 159/350] cgroup_L5_203dc31a (method=rem_group)
+[cluster 160/350] cgroup_L5_87135459 (method=rem_group)
+[cluster 161/350] cgroup_L5_3437775a (method=rem_group)
+[cluster 162/350] cgroup_L5_9f293ec3 (method=rem_group)
+[cluster 163/350] cgroup_L5_c054e202 (method=rem_group)
+  -> cgroup_L5_c054e202 ok | wall 416.4s | RSS 10.7 GB
+[cluster 164/350] cgroup_L5_f2139c4f (method=rem_group)
+  -> cgroup_L5_f2139c4f ok | wall 367.6s | RSS 10.7 GB
+[cluster 165/350] cgroup_L5_4041e3af (method=rem_group)
+  -> cgroup_L5_4041e3af ok | wall 494.3s | RSS 10.7 GB
+[cluster 166/350] cgroup_L5_edc8e828 (method=rem_group)
+[cluster 167/350] cgroup_L5_766cd3c6 (method=rem_group)
+[cluster 168/350] cgroup_L5_1e8a735e (method=rem_group)
+  -> cgroup_L5_1e8a735e ok | wall 396.8s | RSS 10.7 GB
+[cluster 169/350] cgroup_L5_5e0c0fae (method=rem_group)
+  -> cgroup_L5_5e0c0fae ok | wall 441.7s | RSS 10.7 GB
+[cluster 170/350] cgroup_L5_b2645a34 (method=rem_group)
+[cluster 171/350] cgroup_L5_1d4f4a13 (method=rem_group)
+[cluster 172/350] cgroup_L5_f2481870 (method=rem_group)
+  -> cgroup_L5_f2481870 ok | wall 242.5s | RSS 10.7 GB
+[cluster 173/350] cgroup_L5_e135d758 (method=rem_group)
+[cluster 174/350] cgroup_L5_165b7913 (method=rem_group)
+[cluster 175/350] cgroup_L5_f56d966d (method=rem_group)
+  -> cgroup_L5_f56d966d ok | wall 273.5s | RSS 10.7 GB
+[cluster 176/350] cgroup_L5_0a4e5f58 (method=rem_group)
+[cluster 177/350] cgroup_L5_28bee975 (method=rem_group)
+  -> cgroup_L5_28bee975 ok | wall 371.4s | RSS 10.7 GB
+[cluster 178/350] cgroup_L5_e16bfa7f (method=rem_group)
+  -> cgroup_L5_e16bfa7f ok | wall 415.5s | RSS 10.7 GB
+[cluster 179/350] cgroup_L5_3668c2c2 (method=rem_group)
+  -> cgroup_L5_3668c2c2 ok | wall 265.6s | RSS 10.7 GB
+[cluster 180/350] cgroup_L5_b1c1f147 (method=rem_group)
+[cluster 181/350] cgroup_L5_855ca642 (method=rem_group)
+  -> cgroup_L5_855ca642 ok | wall 350.7s | RSS 10.7 GB
+[cluster 182/350] cgroup_L5_79981eb2 (method=rem_group)
+[cluster 183/350] cgroup_L5_9f34eb99 (method=rem_group)
+[cluster 184/350] cgroup_L5_ff45f67e (method=rem_group)
+  -> cgroup_L5_ff45f67e ok | wall 280.5s | RSS 10.7 GB
+[cluster 185/350] cgroup_L5_aad8ed47 (method=rem_group)
+  -> cgroup_L5_aad8ed47 ok | wall 416.6s | RSS 10.7 GB
+[cluster 186/350] cgroup_L5_344e058f (method=rem_group)
+  -> cgroup_L5_344e058f ok | wall 417.9s | RSS 10.7 GB
+[cluster 187/350] cgroup_L5_574b5d0e (method=rem_group)
+[cluster 188/350] cgroup_L5_bff799ca (method=rem_group)
+[cluster 189/350] cgroup_L5_2e16719f (method=rem_group)
+  -> cgroup_L5_2e16719f ok | wall 2497.3s | RSS 12.3 GB
+[cluster 190/350] cgroup_L5_b0e8388e (method=rem_group)
+[cluster 191/350] cgroup_L5_d9e23e09 (method=rem_group)
+  -> cgroup_L5_d9e23e09 ok | wall 1282.2s | RSS 12.3 GB
+[cluster 192/350] cgroup_L5_828ae0cb (method=rem_group)
+  -> cgroup_L5_828ae0cb ok | wall 546.3s | RSS 12.3 GB
+[cluster 193/350] cgroup_L5_1c583f9b (method=rem_group)
+[cluster 194/350] cgroup_L5_2ab433c8 (method=rem_group)
+  -> cgroup_L5_2ab433c8 ok | wall 534.7s | RSS 12.3 GB
+[cluster 195/350] cgroup_L5_840b7e36 (method=rem_group)
+  -> cgroup_L5_840b7e36 ok | wall 399.7s | RSS 12.3 GB
+[cluster 196/350] cgroup_L5_206576be (method=rem_group)
+[cluster 197/350] cgroup_L5_d693cf88 (method=rem_group)
+[cluster 198/350] cgroup_L5_12228932 (method=rem_group)
+  -> cgroup_L5_12228932 ok | wall 593.8s | RSS 12.3 GB
+[cluster 199/350] cgroup_L5_b9921e6e (method=rem_group)
+[cluster 200/350] cgroup_L5_f25af0a2 (method=rem_group)
+[cluster 201/350] cgroup_L5_3be7454c (method=rem_group)
+  -> cgroup_L5_3be7454c ok | wall 422.3s | RSS 12.3 GB
+[cluster 202/350] cgroup_L5_9132f546 (method=rem_group)
+[cluster 203/350] cgroup_L5_fea19ca0 (method=rem_group)
+  -> cgroup_L5_fea19ca0 ok | wall 612.3s | RSS 12.3 GB
+[cluster 204/350] cgroup_L5_87c40ebb (method=rem_group)
+  -> cgroup_L5_87c40ebb ok | wall 870.9s | RSS 12.3 GB
+[cluster 205/350] cgroup_L5_be15b706 (method=rem_group)
+  -> cgroup_L5_be15b706 ok | wall 764.9s | RSS 12.3 GB
+[cluster 206/350] cgroup_L5_bd40f34f (method=rem_group)
+  -> cgroup_L5_bd40f34f ok | wall 528.6s | RSS 12.3 GB
+[cluster 207/350] cgroup_L5_b32ab7f6 (method=rem_group)
+  -> cgroup_L5_b32ab7f6 ok | wall 679.5s | RSS 12.3 GB
+[cluster 208/350] cgroup_L5_3973fe03 (method=rem_group)
+  -> cgroup_L5_3973fe03 ok | wall 518.6s | RSS 12.3 GB
+[cluster 209/350] cgroup_L5_905be893 (method=rem_group)
+  -> cgroup_L5_905be893 ok | wall 1039.1s | RSS 12.3 GB
+[cluster 210/350] cgroup_L5_3d8c29f4 (method=rem_group)
+  -> cgroup_L5_3d8c29f4 ok | wall 492.3s | RSS 12.3 GB
+[cluster 211/350] cgroup_L5_2d53def6 (method=rem_group)
+  -> cgroup_L5_2d53def6 ok | wall 524.0s | RSS 12.3 GB
+[cluster 212/350] cgroup_L5_d631ee89 (method=rem_group)
+  -> cgroup_L5_d631ee89 ok | wall 389.7s | RSS 12.3 GB
+[cluster 213/350] cgroup_L5_49d55bfd (method=rem_group)
+  -> cgroup_L5_49d55bfd ok | wall 778.8s | RSS 12.3 GB
+[cluster 214/350] cgroup_L5_a25d0964 (method=rem_group)
+  -> cgroup_L5_a25d0964 ok | wall 988.9s | RSS 12.3 GB
+[cluster 215/350] cgroup_L5_59d2b212 (method=rem_group)
+[cluster 216/350] cgroup_L5_680b6b9c (method=rem_group)
+[cluster 217/350] cgroup_L5_eba39954 (method=rem_group)
+  -> cgroup_L5_eba39954 ok | wall 669.3s | RSS 12.3 GB
+[cluster 218/350] cgroup_L5_545a48c6 (method=rem_group)
+  -> cgroup_L5_545a48c6 ok | wall 386.3s | RSS 12.3 GB
+[cluster 219/350] cgroup_L5_7a9d880a (method=rem_group)
+[cluster 220/350] cgroup_L5_6b7b8076 (method=rem_group)
+  -> cgroup_L5_6b7b8076 ok | wall 574.4s | RSS 12.3 GB
+[cluster 221/350] cgroup_L5_63e69fdc (method=rem_group)
+  -> cgroup_L5_63e69fdc ok | wall 800.5s | RSS 12.3 GB
+[cluster 222/350] cgroup_L5_f29dd3b3 (method=rem_group)
+  -> cgroup_L5_f29dd3b3 ok | wall 410.1s | RSS 12.3 GB
+[cluster 223/350] cgroup_L5_c669863b (method=rem_group)
+[cluster 224/350] cgroup_L5_f832048f (method=rem_group)
+  -> cgroup_L5_f832048f ok | wall 709.7s | RSS 12.3 GB
+[cluster 225/350] cgroup_L5_c040a36d (method=rem_group)
+  -> cgroup_L5_c040a36d ok | wall 704.7s | RSS 12.3 GB
+[cluster 226/350] cgroup_L5_fbcdc471 (method=rem_group)
+[cluster 227/350] cgroup_L5_3f0cc1fe (method=rem_group)
+  -> cgroup_L5_3f0cc1fe ok | wall 777.3s | RSS 12.3 GB
+[cluster 228/350] cgroup_L5_c3ae78cd (method=rem_group)
+  -> cgroup_L5_c3ae78cd ok | wall 928.9s | RSS 12.3 GB
+[cluster 229/350] cgroup_L5_e0c9a685 (method=rem_group)
+[cluster 230/350] cgroup_L5_387b0d1a (method=rem_group)
+  -> cgroup_L5_387b0d1a ok | wall 367.0s | RSS 12.3 GB
+[cluster 231/350] cgroup_L5_3e8ba26a (method=rem_group)
+[cluster 232/350] cgroup_L5_f2f8d3ac (method=rem_group)
+[cluster 233/350] cgroup_L5_bd19fe42 (method=rem_group)
+  -> cgroup_L5_bd19fe42 ok | wall 832.7s | RSS 12.3 GB
+[cluster 234/350] cgroup_L5_964c6389 (method=rem_group)
+  -> cgroup_L5_964c6389 ok | wall 830.0s | RSS 12.3 GB
+[cluster 235/350] cgroup_L5_6d58c751 (method=rem_group)
+[cluster 236/350] cgroup_L5_a3c3e08c (method=rem_group)
+  -> cgroup_L5_a3c3e08c ok | wall 287.9s | RSS 12.3 GB
+[cluster 237/350] cgroup_L5_a69fcae5 (method=rem_group)
+  -> cgroup_L5_a69fcae5 ok | wall 655.0s | RSS 12.3 GB
+[cluster 238/350] cgroup_L5_d53bf74e (method=rem_group)
+  -> cgroup_L5_d53bf74e ok | wall 619.8s | RSS 12.3 GB
+[cluster 239/350] cgroup_L5_3b91a21d (method=rem_group)
+  -> cgroup_L5_3b91a21d ok | wall 719.7s | RSS 12.3 GB
+[cluster 240/350] cgroup_L5_c99ed4ee (method=rem_group)
+[cluster 241/350] cgroup_L5_85083e38 (method=rem_group)
+  -> cgroup_L5_85083e38 ok | wall 980.4s | RSS 12.3 GB
+[cluster 242/350] cgroup_L5_be3d65c3 (method=rem_group)
+[cluster 243/350] cgroup_L5_b2affd22 (method=rem_group)
+  -> cgroup_L5_b2affd22 ok | wall 762.3s | RSS 12.3 GB
+[cluster 244/350] cgroup_L5_c4640631 (method=rem_group)
+[cluster 245/350] cgroup_L5_81c08752 (method=rem_group)
+[cluster 246/350] cgroup_L5_719ab136 (method=rem_group)
+[cluster 247/350] cgroup_L5_6ee86f02 (method=rem_group)
+  -> cgroup_L5_6ee86f02 ok | wall 414.5s | RSS 12.3 GB
+[cluster 248/350] cgroup_L5_1bbf4b9b (method=rem_group)
+  -> cgroup_L5_1bbf4b9b ok | wall 500.0s | RSS 12.3 GB
+[cluster 249/350] cgroup_L5_889ec305 (method=rem_group)
+  -> cgroup_L5_889ec305 ok | wall 867.9s | RSS 12.3 GB
+[cluster 250/350] cgroup_L5_6c7f9e9e (method=rem_group)
+[cluster 251/350] cgroup_L5_2f86628a (method=rem_group)
+[cluster 252/350] cgroup_L5_36a11112 (method=rem_group)
+[cluster 253/350] cgroup_L5_729b276d (method=rem_group)
+  -> cgroup_L5_729b276d ok | wall 383.6s | RSS 12.3 GB
+[cluster 254/350] cgroup_L5_bfeacf75 (method=rem_group)
+[cluster 255/350] cgroup_L5_c13b1103 (method=rem_group)
+  -> cgroup_L5_c13b1103 ok | wall 447.6s | RSS 12.3 GB
+[cluster 256/350] cgroup_L5_7cc951b5 (method=rem_group)
+[cluster 257/350] cgroup_L5_444e7fc2 (method=rem_group)
+  -> cgroup_L5_444e7fc2 ok | wall 821.2s | RSS 12.3 GB
+[cluster 258/350] cgroup_L5_debadb13 (method=rem_group)
+  -> cgroup_L5_debadb13 ok | wall 622.1s | RSS 12.3 GB
+[cluster 259/350] cgroup_L5_79a73ac5 (method=rem_group)
+  -> cgroup_L5_79a73ac5 ok | wall 758.9s | RSS 12.3 GB
+[cluster 260/350] cgroup_L5_b9c77320 (method=rem_group)
+  -> cgroup_L5_b9c77320 ok | wall 736.4s | RSS 12.3 GB
+[cluster 261/350] cgroup_L5_a7509255 (method=rem_group)
+  -> cgroup_L5_a7509255 ok | wall 485.5s | RSS 12.3 GB
+[cluster 262/350] cgroup_L5_e25d67cf (method=rem_group)
+[cluster 263/350] cgroup_L5_034592d9 (method=rem_group)
+  -> cgroup_L5_034592d9 ok | wall 415.0s | RSS 12.3 GB
+[cluster 264/350] cgroup_L5_538960a6 (method=rem_group)
+  -> cgroup_L5_538960a6 ok | wall 580.3s | RSS 12.3 GB
+[cluster 265/350] cgroup_L5_871ae09e (method=rem_group)
+  -> cgroup_L5_871ae09e ok | wall 2889.6s | RSS 12.3 GB
+[cluster 266/350] cgroup_L5_38c9104c (method=rem_group)
+[cluster 267/350] cgroup_L5_ee94648c (method=rem_group)
+  -> cgroup_L5_ee94648c ok | wall 664.2s | RSS 12.3 GB
+[cluster 268/350] cgroup_L5_8c9339f5 (method=rem_group)
+  -> cgroup_L5_8c9339f5 ok | wall 902.3s | RSS 12.3 GB
+[cluster 269/350] cgroup_L5_44420e6e (method=rem_group)
+[cluster 270/350] cgroup_L5_47e67cab (method=rem_group)
+[cluster 271/350] cgroup_L5_a739837c (method=rem_group)
+  -> cgroup_L5_a739837c ok | wall 683.9s | RSS 12.3 GB
+[cluster 272/350] cgroup_L5_2a225fda (method=rem_group)
+  -> cgroup_L5_2a225fda ok | wall 689.4s | RSS 12.3 GB
+[cluster 273/350] cgroup_L5_f51ff620 (method=rem_group)
+  -> cgroup_L5_f51ff620 ok | wall 859.4s | RSS 12.3 GB
+[cluster 274/350] cgroup_L5_a8ff7b6d (method=rem_group)
+  -> cgroup_L5_a8ff7b6d ok | wall 658.9s | RSS 12.3 GB
+[cluster 275/350] cgroup_L5_aaecff07 (method=rem_group)
+[cluster 276/350] cgroup_L5_96c9f7bf (method=rem_group)
+  -> cgroup_L5_96c9f7bf ok | wall 852.3s | RSS 12.3 GB
+[cluster 277/350] cgroup_L5_7636ff0e (method=rem_group)
+[cluster 278/350] cgroup_L5_b837242a (method=rem_group)
+[cluster 279/350] cgroup_L5_988d478d (method=rem_group)
+  -> cgroup_L5_988d478d ok | wall 521.3s | RSS 12.3 GB
+[cluster 280/350] cgroup_L5_7805eee6 (method=rem_group)
+  -> cgroup_L5_7805eee6 ok | wall 1102.6s | RSS 12.3 GB
+[cluster 281/350] cgroup_L5_03544ab6 (method=rem_group)
+[cluster 282/350] cgroup_L5_79b3a442 (method=rem_group)
+  -> cgroup_L5_79b3a442 ok | wall 491.9s | RSS 12.3 GB
+[cluster 283/350] cgroup_L5_c860712d (method=rem_group)
+  -> cgroup_L5_c860712d ok | wall 720.6s | RSS 12.3 GB
+[cluster 284/350] cgroup_L5_45ca22b1 (method=rem_group)
+[cluster 285/350] cgroup_L5_82f82010 (method=rem_group)
+  -> cgroup_L5_82f82010 ok | wall 591.8s | RSS 12.3 GB
+[cluster 286/350] cgroup_L5_d5e79c9e (method=rem_group)
+[cluster 287/350] cgroup_L5_bb8cb388 (method=rem_group)
+  -> cgroup_L5_bb8cb388 ok | wall 583.1s | RSS 12.3 GB
+[cluster 288/350] cgroup_L5_4399f313 (method=rem_group)
+[cluster 289/350] cgroup_L5_cacf5d1a (method=rem_group)
+  -> cgroup_L5_cacf5d1a ok | wall 420.6s | RSS 12.3 GB
+[cluster 290/350] cgroup_L5_17b55386 (method=rem_group)
+  -> cgroup_L5_17b55386 ok | wall 805.3s | RSS 12.3 GB
+[cluster 291/350] cgroup_L5_4def5638 (method=rem_group)
+[cluster 292/350] cgroup_L5_777adc83 (method=rem_group)
+[cluster 293/350] cgroup_L5_fa0ee5b4 (method=rem_group)
+[cluster 294/350] cgroup_L5_dd2a1a58 (method=rem_group)
+  -> cgroup_L5_dd2a1a58 ok | wall 890.9s | RSS 12.3 GB
+[cluster 295/350] cgroup_L5_cfad03a8 (method=rem_group)
+  -> cgroup_L5_cfad03a8 ok | wall 685.1s | RSS 12.3 GB
+[cluster 296/350] cgroup_L5_97da8b42 (method=rem_group)
+[cluster 297/350] cgroup_L5_83f57274 (method=rem_group)
+  -> cgroup_L5_83f57274 ok | wall 1985.6s | RSS 12.3 GB
+[cluster 298/350] cgroup_L5_dd2a13de (method=rem_group)
+  -> cgroup_L5_dd2a13de ok | wall 750.5s | RSS 12.3 GB
+[cluster 299/350] cgroup_L5_9bdf0dcb (method=rem_group)
+  -> cgroup_L5_9bdf0dcb ok | wall 654.0s | RSS 12.3 GB
+[cluster 300/350] cgroup_L5_1556072e (method=rem_group)
+[cluster 301/350] cgroup_L5_ba4af011 (method=rem_group)
+  -> cgroup_L5_ba4af011 ok | wall 540.3s | RSS 12.3 GB
+[cluster 302/350] cgroup_L5_80a3028a (method=rem_group)
+[cluster 303/350] cgroup_L5_b0066299 (method=rem_group)
+  -> cgroup_L5_b0066299 ok | wall 578.8s | RSS 12.3 GB
+[cluster 304/350] cgroup_L5_522e9ebd (method=rem_group)
+  -> cgroup_L5_522e9ebd ok | wall 498.1s | RSS 12.3 GB
+[cluster 305/350] cgroup_L5_7ba0168b (method=rem_group)
+[cluster 306/350] cgroup_L5_70f8671b (method=rem_group)
+[cluster 307/350] cgroup_L5_c2cce144 (method=rem_group)
+[cluster 308/350] cgroup_L5_12212e41 (method=rem_group)
+  -> cgroup_L5_12212e41 ok | wall 1042.0s | RSS 12.3 GB
+[cluster 309/350] cgroup_L5_d6fad784 (method=rem_group)
+[cluster 310/350] cgroup_L5_469db990 (method=rem_group)
+  -> cgroup_L5_469db990 ok | wall 642.6s | RSS 12.3 GB
+[cluster 311/350] cgroup_L5_3824dc37 (method=rem_group)
+  -> cgroup_L5_3824dc37 ok | wall 579.8s | RSS 12.3 GB
+[cluster 312/350] cgroup_L5_35d1be10 (method=rem_group)
+  -> cgroup_L5_35d1be10 ok | wall 1028.0s | RSS 12.3 GB
+[cluster 313/350] cgroup_L5_3ec58cd6 (method=rem_group)
+  -> cgroup_L5_3ec58cd6 ok | wall 848.5s | RSS 12.4 GB
+[cluster 314/350] cgroup_L5_74daf1c9 (method=rem_group)
+  -> cgroup_L5_74daf1c9 ok | wall 570.6s | RSS 12.4 GB
+[cluster 315/350] cgroup_L5_3fa847fe (method=rem_group)
+  -> cgroup_L5_3fa847fe ok | wall 576.9s | RSS 12.4 GB
+[cluster 316/350] cgroup_L5_67e7722b (method=rem_group)
+[cluster 317/350] cgroup_L5_37b0b276 (method=rem_group)
+[cluster 318/350] cgroup_L5_6e9f3913 (method=rem_group)
+[cluster 319/350] cgroup_L5_16aef109 (method=rem_group)
+[cluster 320/350] cgroup_L5_304e1195 (method=rem_group)
+[cluster 321/350] cgroup_L5_7784bb43 (method=rem_group)
+  -> cgroup_L5_7784bb43 ok | wall 969.1s | RSS 12.4 GB
+[cluster 322/350] cgroup_L5_3de56a79 (method=rem_group)
+  -> cgroup_L5_3de56a79 ok | wall 525.7s | RSS 12.4 GB
+[cluster 323/350] cgroup_L5_a747a14e (method=rem_group)
+  -> cgroup_L5_a747a14e ok | wall 498.3s | RSS 12.4 GB
+[cluster 324/350] cgroup_L5_5801e974 (method=rem_group)
+[cluster 325/350] cgroup_L5_4b901bf1 (method=rem_group)
+  -> cgroup_L5_4b901bf1 ok | wall 1090.3s | RSS 12.4 GB
+[cluster 326/350] cgroup_L5_36b956de (method=rem_group)
+[cluster 327/350] cgroup_L5_4753688f (method=rem_group)
+  -> cgroup_L5_4753688f ok | wall 1133.9s | RSS 12.4 GB
+[cluster 328/350] cgroup_L5_46a3a103 (method=rem_group)
+  -> cgroup_L5_46a3a103 ok | wall 1145.0s | RSS 12.4 GB
+[cluster 329/350] cgroup_L5_067df4a3 (method=rem_group)
+[cluster 330/350] cgroup_L5_27f3255f (method=rem_group)
+[cluster 331/350] cgroup_L5_af8f3547 (method=rem_group)
+[cluster 332/350] cgroup_L5_522fa0c2 (method=rem_group)
+  -> cgroup_L5_522fa0c2 ok | wall 844.6s | RSS 12.4 GB
+[cluster 333/350] cgroup_L5_d5e39a5d (method=rem_group)
+  -> cgroup_L5_d5e39a5d ok | wall 779.2s | RSS 12.4 GB
+[cluster 334/350] cgroup_L5_aecd610f (method=rem_group)
+  -> cgroup_L5_aecd610f ok | wall 1708.3s | RSS 12.4 GB
+[cluster 335/350] cgroup_L5_75110535 (method=rem_group)
+[cluster 336/350] cgroup_L5_df599af1 (method=rem_group)
+  -> cgroup_L5_df599af1 ok | wall 767.6s | RSS 12.4 GB
+[cluster 337/350] cgroup_L5_a90d3d64 (method=rem_group)
+[cluster 338/350] cgroup_L5_eedd08cb (method=rem_group)
+  -> cgroup_L5_eedd08cb ok | wall 464.6s | RSS 12.4 GB
+[cluster 339/350] cgroup_L5_844de383 (method=rem_group)
+  -> cgroup_L5_844de383 ok | wall 590.0s | RSS 12.4 GB
+[cluster 340/350] cgroup_L5_64c55823 (method=rem_group)
+[cluster 341/350] cgroup_L5_5929f298 (method=rem_group)
+  -> cgroup_L5_5929f298 ok | wall 721.7s | RSS 12.4 GB
+[cluster 342/350] cgroup_L5_e0fdea29 (method=rem_group)
+[cluster 343/350] cgroup_L5_64adcd6b (method=rem_group)
+[cluster 344/350] cgroup_L5_e7eebebd (method=rem_group)
+  -> cgroup_L5_e7eebebd ok | wall 780.0s | RSS 12.4 GB
+[cluster 345/350] cgroup_L5_ead098cd (method=rem_group)
+[cluster 346/350] cgroup_L5_9de3f0ea (method=rem_group)
+  -> cgroup_L5_9de3f0ea ok | wall 877.7s | RSS 12.4 GB
+[cluster 347/350] cgroup_L5_6ce4ac22 (method=rem_group)
+[cluster 348/350] cgroup_L5_37ecd157 (method=rem_group)
+  -> cgroup_L5_37ecd157 ok | wall 516.1s | RSS 12.4 GB
+[cluster 349/350] cgroup_L5_f9cc41b3 (method=rem_group)
+  -> cgroup_L5_f9cc41b3 ok | wall 690.6s | RSS 12.4 GB
+[cluster 350/350] cgroup_L5_4d535f25 (method=rem_group)
+  -> cgroup_L5_4d535f25 ok | wall 434.9s | RSS 12.4 GB
+There were 50 or more warnings (use warnings() to see the first 50)
+✔ Build complete in 1947.2 min — run_id 3e31e59d
+ℹ Writing to '/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T121010Z-stage4-v16-3e31e59d'...
+ℹ Rendering dashboard...
+Warning message:
+In file.rename(produced, out_path) :
+  cannot rename file '/tmp/RtmplKRFxS/stage4_dashboard.html' to '/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T121010Z-stage4-v16-3e31e59d/stage4_dashboard.html', reason 'Invalid cross-device link'
+Error: VERDETTI ORFANI (13): CHEMBL:CHEMBL2108494||gain||vehicle_untreated; NCBITaxon:12814||gain||vehicle_untreated; STR:pathogen_or_aggregate_exposure||gain||vehicle_untreated; MeSH:D008113||gain||vehicle_untreated; MeSH:D016889||gain||vehicle_untreated; NCBITaxon:32644||gain||vehicle_untreated; STR:diseased||gain||vehicle_untreated; STR:fshd1||gain||vehicle_untreated; STR:myotonic_dystrophy_type_1||gain||vehicle_untreated; STR:osteogenic_differentiation||gain||vehicle_untreated; STR:ovarian_tumor||gain||vehicle_untreated; STR:rhinovirus||gain||vehicle_untreated; STR:tuberculosis||gain||vehicle_untreated
+  Il loro gruppo non e' nel poolato: senza aggiornarli (FASE D0ter) un gruppo INCOERENTE verrebbe marcato `coherent`.
+Execution halted
