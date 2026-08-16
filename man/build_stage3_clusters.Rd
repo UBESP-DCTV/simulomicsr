@@ -10,7 +10,8 @@ build_stage3_clusters(
   config = stage3_default_config(),
   archs4_metadata = NULL,
   stage2_input = NULL,
-  name_recovery_lookup = NULL
+  name_recovery_lookup = NULL,
+  summarize_workers = 1L
 )
 }
 \arguments{

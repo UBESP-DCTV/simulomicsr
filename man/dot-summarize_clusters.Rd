@@ -11,7 +11,8 @@
   config,
   archs4_metadata,
   stage1_master = NULL,
-  eligible_cgroup = list()
+  eligible_cgroup = list(),
+  workers = 1L
 )
 }
 \description{
