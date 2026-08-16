@@ -22,9 +22,20 @@ test_that(".dgx_format_env_lines rende piu' variabili, una per riga", {
   expect_match(righe[[2]], '--env "B=due"', fixed = TRUE)
 })
 
-test_that(".dgx_format_env_lines senza variabili non produce nulla", {
-  expect_identical(.dgx_format_env_lines(NULL), "")
-  expect_identical(.dgx_format_env_lines(character(0)), "")
+test_that(".dgx_format_env_lines senza variabili non aggiunge alcuna --env", {
+  expect_false(grepl("--env", .dgx_format_env_lines(NULL), fixed = TRUE))
+  expect_false(grepl("--env", .dgx_format_env_lines(character(0)), fixed = TRUE))
+})
+
+test_that(".dgx_format_env_lines senza variabili NON restituisce una riga vuota", {
+  # Il segnaposto sta dentro un comando continuato con `\`: una riga vuota lo
+  # chiude e singularity riceve zero argomenti (job 35590/35591 FAILED il
+  # 2026-08-16). Deve restare una continuazione valida.
+  for (v in list(NULL, character(0))) {
+    out <- .dgx_format_env_lines(v)
+    expect_false(grepl("^[[:space:]]*$", out))
+    expect_match(out, "\\\\$")
+  }
 })
 
 # --- casi NEGATIVI: la direzione in cui lo strumento sbaglia senza dare segno --
@@ -116,6 +127,40 @@ test_that("dgx_p4_submit senza env NON scrive alcuna riga aggiuntiva", {
   job <- dgx_p4_submit(b, dry_run = TRUE)
   sh <- paste(readLines(job$rendered_slurm, warn = FALSE), collapse = "\n")
   expect_false(grepl("VLLM_BATCH_INVARIANT", sh, fixed = TRUE))
+})
+
+test_that("lo script renderizzato e' shell VALIDA, con e senza env", {
+  # ⚠️ Questo e' il test che mancava. Quello sopra guarda l'ETICHETTA (la
+  # stringa c'e' / non c'e'); questo guarda l'ULTIMO ANELLO: che cosa la shell
+  # fara' davvero. Senza di lui, il 2026-08-16 due job sono partiti con uno
+  # script in cui una riga vuota chiudeva la continuazione di `singularity
+  # exec`, che e' finito senza argomenti.
+  skip_if(Sys.which("bash") == "", "bash non disponibile")
+  d <- withr::local_tempdir()
+  for (env in list(NULL, c(VLLM_BATCH_INVARIANT = "1"))) {
+    b <- .mk_bundle_finto(file.path(d, paste0("b", length(env))))
+    job <- dgx_p4_submit(b, dry_run = TRUE, env = env)
+    res <- system2("bash", c("-n", shQuote(job$rendered_slurm)),
+                   stdout = TRUE, stderr = TRUE)
+    expect_identical(attr(res, "status"), NULL)   # bash -n senza errori
+
+    # ⚠️ `bash -n` NON vede il difetto del 2026-08-16: lo script rotto era
+    # sintatticamente VALIDO -- una riga vuota chiude una continuazione, non e'
+    # un errore di sintassi. Verificato: con extra_env="" `bash -n` passa lo
+    # stesso. L'asserzione che porta il peso e' quella qui sotto. `bash -n`
+    # resta perche' costa nulla e prende altre classi di errore.
+    #
+    # Il comando singularity deve restare UNO: nessuna riga vuota fra
+    # `singularity exec` e l'immagine .sif.
+    righe <- readLines(job$rendered_slurm, warn = FALSE)
+    i_exec <- grep("SINGULARITY_BIN\" exec", righe, fixed = TRUE)
+    i_sif  <- grep("simulomicsr-vllm.sif", righe, fixed = TRUE)
+    expect_gt(length(i_exec), 0L)
+    for (k in seq_along(i_exec)) {
+      blocco <- righe[i_exec[[k]]:i_sif[[k]]]
+      expect_false(any(grepl("^[[:space:]]*$", blocco)))
+    }
+  }
 })
 
 test_that("dgx_p4_submit propaga l'errore su env non valide", {

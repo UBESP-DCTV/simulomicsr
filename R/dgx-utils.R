@@ -66,7 +66,13 @@
 #'   pronte per essere inserite nel comando `singularity exec`.
 #' @keywords internal
 .dgx_format_env_lines <- function(env) {
-  if (is.null(env) || length(env) == 0L) return("")
+  # ⚠️ Il caso vuoto NON puo' essere la stringa vuota. Il segnaposto sta in
+  # mezzo a un comando `singularity exec ... \` continuato su piu' righe: una
+  # riga VUOTA chiude la continuazione, il comando finisce li' e singularity
+  # riceve zero argomenti. Successo il 2026-08-16 sui job 35590/35591 (FAILED,
+  # «exec requires at least 2 arg(s), only received 0»). Una riga con la sola
+  # continuazione e' invece valida e si annulla.
+  if (is.null(env) || length(env) == 0L) return("  \\")
 
   bad <- function(msg, ...) {
     cli::cli_abort(msg, ..., class = "simulomicsr_dgx_env_invalid")
