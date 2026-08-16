@@ -129,14 +129,36 @@ if (SMOKE) nr_cache_dir <- NULL
 cli::cli_h1(sprintf("Re-cluster Stadio 3 v16 (D2: il confine del marcatore genetico) -- modalita': %s",
                     if (SMOKE) sprintf("SMOKE (max %d studi)", SMOKE_N) else "FULL RUN"))
 
-stage1_path   <- "analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl"
-stage2_path   <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
-stage2_inputs <- c("analysis/input/archs4-human-stage2-input-v3.jsonl",
-                   "analysis/input/archs4-human-stage2-rescue-v3.jsonl")
-h5_path       <- "analysis/input/human_gene_v2.5.h5"
-v3_dir        <- "analysis/p4-output/20260611T171555Z-stage3-v3-364547a7"
+# ⚠️ 2026-08-16: i percorsi di input erano SCRITTI QUI DENTRO. Con master nuovi
+# scritti altrove, il re-cluster sarebbe girato sui vecchi SENZA fallire, e
+# l'unico segno sarebbe stato il conteggio dei record in run_metadata.json --
+# che nessuno confronta a memoria. Ora sono variabili d'ambiente, i valori usati
+# vengono stampati in testa, e il loro sha256 finisce nell'output.
+stage1_path   <- Sys.getenv("STAGE1_MASTER",
+  "analysis/p4-output/p4-fase-f2-stage1-master-predictions-rescued.jsonl")
+stage2_path   <- Sys.getenv("STAGE2_MASTER",
+  "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl")
+stage2_inputs <- strsplit(Sys.getenv("STAGE2_INPUTS",
+  paste("analysis/input/archs4-human-stage2-input-v3.jsonl",
+        "analysis/input/archs4-human-stage2-rescue-v3.jsonl", sep = ",")),
+  ",", fixed = TRUE)[[1]]
+h5_path       <- Sys.getenv("H5_PATH", "analysis/input/human_gene_v2.5.h5")
+v3_dir        <- Sys.getenv("STAGE3_V3_DIR",
+  "analysis/p4-output/20260611T171555Z-stage3-v3-364547a7")
 stopifnot(file.exists(stage1_path), file.exists(stage2_path), file.exists(h5_path))
 if (!SMOKE) stopifnot(all(file.exists(stage2_inputs)))
+
+cli::cli_h2("Input di questo run (verificare PRIMA che parta)")
+for (p in c(stage1_path, stage2_path, stage2_inputs)) {
+  cli::cli_alert_info("{p}  [{format(file.info(p)$size / 1024^2, digits = 5)} MB, mtime {format(file.mtime(p))}]")
+}
+input_sha <- list(
+  stage1_master = list(path = stage1_path,
+                       sha256 = digest::digest(file = stage1_path, algo = "sha256")),
+  stage2_master = list(path = stage2_path,
+                       sha256 = digest::digest(file = stage2_path, algo = "sha256")))
+cli::cli_alert_info("sha256 Stadio 1: {substr(input_sha$stage1_master$sha256, 1, 12)}...")
+cli::cli_alert_info("sha256 Stadio 2: {substr(input_sha$stage2_master$sha256, 1, 12)}...")
 
 # Fail-loud dizionari: il loader e' GRACEFUL (senza dizionari gira in qualita'
 # degradata, silenziosamente). Questi assert garantiscono che v6 sia prodotto
@@ -479,6 +501,12 @@ s3$run_metadata$schema_versions$name_recovery_lookup <- get_int(".NAME_RECOVERY_
 if (!is.null(completeness_report)) {
   s3$run_metadata$output_counts$stage2_completeness <- completeness_report
 }
+# Provenienza degli input: percorso + sha256. Senza questo, un run sul master
+# sbagliato lascia come unica traccia un conteggio di record.
+s3$run_metadata$input_files$stage1_master$path   <- input_sha$stage1_master$path
+s3$run_metadata$input_files$stage1_master$sha256 <- input_sha$stage1_master$sha256
+s3$run_metadata$input_files$stage2_master$path   <- input_sha$stage2_master$path
+s3$run_metadata$input_files$stage2_master$sha256 <- input_sha$stage2_master$sha256
 
 # ---------------------------------------------------------------------------
 # 10. Scrivi output (schema v3: clusters.rds, assignments.parquet, ...)
