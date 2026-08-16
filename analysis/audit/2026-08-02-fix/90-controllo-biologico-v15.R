@@ -53,27 +53,47 @@ ATTESI <- list(
 # del 2026-08-06.
 gene_col <- "gene_id"
 stopifnot(gene_col %in% names(cp))
+# ⚠️ DUE COLONNE PER DUE USI DIVERSI (corretto il 2026-08-16). Il confronto
+# DHT/enzalutamide deve usare `gene_id` (l'asse su cui il pooling lavora), ma i
+# BERSAGLI attesi sono SIMBOLI (`STAT1`, `IFIT1`, `KLK3`...): cercarli in
+# `gene_id` non trova mai niente. Dal 2026-08-10, quando `gene_col` e' passato a
+# `gene_id` per chiudere il prodotto cartesiano, questo script ha stampato «non
+# misurato» su OGNI bersaglio e concluso «0/0» -- cioe' ha smesso di controllare
+# la biologia senza dirlo. Il gruppo veniva trovato (i `k` erano giusti), quindi
+# l'esito sembrava un dato e non un guasto.
+sym_col <- "gene_symbol"
+stopifnot(sym_col %in% names(cp))
 lfc_col  <- grep("^(logFC|estimate|beta)", names(cp), value = TRUE)[1]
 fdr_col  <- grep("FDR", names(cp), value = TRUE)[1]
 cli_alert_info("colonne usate: gene={gene_col} effetto={lfc_col} fdr={fdr_col}")
 
 cli_h1("Controllo biologico -- v15")
+# La guardia che mancava: se non si trova NESSUN bersaglio in NESSUN gruppo, la
+# spiegazione non e' «la biologia non torna», e' che si sta cercando nella
+# colonna sbagliata. Meglio fermarsi che stampare 0/0.
+.trovati_totali <- 0L
 tot_ok <- 0L; tot <- 0L
 for (a in ATTESI) {
   r <- D[which(D$contrast_entity == a$ent), ]
   if (!nrow(r)) { cli_alert_warning("{a$nome}: ASSENTE dal deliverable"); next }
-  sub <- cp[cp$cluster_id == r$cluster_id[1] & cp[[gene_col]] %in% a$geni, ]
+  sub <- cp[cp$cluster_id == r$cluster_id[1] & cp[[sym_col]] %in% a$geni, ]
   cli_h3(sprintf("%s -- k=%d, %d studi efficaci, n_sig=%d, coerenza=%s",
                  a$nome, r$k_effective[1], round(r$k_kish[1]), r$n_sig[1], r$coherence_verdict[1]))
   for (g in a$geni) {
-    row <- sub[sub[[gene_col]] == g, ]
+    row <- sub[sub[[sym_col]] == g, ]
     if (!nrow(row)) { cat(sprintf("   %-9s non misurato\n", g)); next }
+    .trovati_totali <- .trovati_totali + 1L
     lfc <- row[[lfc_col]][1]; fdr <- row[[fdr_col]][1]
     ok  <- sign(lfc) == a$segno && fdr < 0.05
     tot <- tot + 1L; tot_ok <- tot_ok + as.integer(ok)
     cat(sprintf("   %-9s %+6.2f  FDR %8.2e  %s\n", g, lfc, fdr,
                 if (ok) "OK" else if (fdr >= 0.05) "non significativo" else "SEGNO SBAGLIATO"))
   }
+}
+if (.trovati_totali == 0L) {
+  cli_abort(paste0("NESSUN bersaglio trovato in NESSUN gruppo: non e' un esito, ",
+                   "e' un guasto dello strumento (colonna sbagliata, o ",
+                   "`cluster_pooled` senza simboli). Fermarsi e guardare."))
 }
 cli_h2(sprintf("Bersagli attesi col segno giusto e significativi: %d/%d", tot_ok, tot))
 

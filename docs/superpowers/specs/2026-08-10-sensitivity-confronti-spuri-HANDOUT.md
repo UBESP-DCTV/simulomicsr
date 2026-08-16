@@ -87,9 +87,17 @@ record_id 4.549/4.549):
   del pooling (⚠️ non 6,7%: vedi §0.2). **Non c'è nessun declassamento automatico**
   (§0.3): il 9,0% va confrontato con l'8,47% che quei 5 studi varrebbero a peso
   uguale — cioè pesano *un po' di più*, non di meno.
-- **Peso contaminato, mediana sui 13 gruppi grandi: 11,5%** (col peso vero; era
-  12,0% con la regola vecchia — questa riga sopravvive alla rimisura). Estremi
-  **4,2%–20,0%**, non 0,7%–33,7%.
+- **Peso contaminato, mediana sui 13 gruppi grandi: 8,8%**, estremi
+  **0,0%–15,9%** (non 0,7%–33,7%).
+  ⚠️ **CORRETTO IL 2026-08-16.** Questa riga diceva **11,5%, estremi 4,2%–20,0%**:
+  è la colonna `peso_regola_nuova_lista_vecchia` di
+  `analysis/audit/2026-08-10-sensitivity/20-peso-contaminato.csv` — regola del
+  peso corretta, ma lista dei confronti difettosi ancora quella VECCHIA (85
+  accusati su 843 censiti). Il valore finale e' `peso_CORRETTO`, che applica
+  entrambe le correzioni: **mediana 8,8%, minimo 0,0%, massimo 15,9%**. Il
+  finding gemello (`docs/findings/2026-08-10-sensitivity-confronti-spuri.md`)
+  riportava gia' il numero giusto: era questo handout a essersi fermato allo
+  stadio intermedio.
 - **Esperimento naturale**: DHT ed enzalutamide, gruppi costruiti separatamente,
   danno **1.266 geni su 1.299 di segno opposto (97,5%), Spearman −0,939**.
 
