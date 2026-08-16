@@ -111,3 +111,15 @@ analysis/audit/2026-07-23-coherence/*.rds
 analysis/audit/2026-07-23-coherence/deepdive-bundles.jsonl
 analysis/audit/2026-07-23-coherence/deepdive-verdicts-all.jsonl
 analysis/audit/2026-07-23-coherence/deepdive-batches/
+
+# Materiale di lavoro delle prove di equivalenza (2026-08-15): sono oggetti
+# `stage4_result` interi, 158 MB, e si ricostruiscono rilanciando gli script
+# accanto (E1-equivalenza-shard.R, E2-equivalenza-completa.R) in ~20 minuti.
+# Nel repo restano gli SCRIPT e i numeri, non i binari.
+analysis/audit/*/E1-equivalenza/
+analysis/audit/*/E2-equivalenza/
+analysis/audit/2026-08-12-corsie/s2.rds
+analysis/audit/2026-08-13-rerun-prep/D2-corpus.rds
+analysis/audit/2026-08-13-rerun-prep/D2d-corpus.rds
+analysis/audit/2026-08-13-rerun-prep/D2-deliverable.rds
+analysis/audit/2026-08-13-rerun-prep/D2b-deliverable.rds
