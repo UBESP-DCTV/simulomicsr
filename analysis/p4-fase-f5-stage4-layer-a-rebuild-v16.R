@@ -68,8 +68,20 @@ stopifnot(grepl("^v[0-9]+$", v_token))
 # veri (analysis/audit/2026-08-13-rerun-prep/E2-equivalenza-completa.R): dati e
 # registri identici. Con PEZZO/N_PEZZI assenti il comportamento e' quello di
 # sempre.
+#
+# QUANTI PEZZI: 16, misurato sul run a 8 (2026-08-15). Qui i pezzi sono PROCESSI
+# SEPARATI -- non `fork` come nello Stadio 3 -- quindi ognuno ricarica gli input
+# e la memoria NON e' condivisa. I numeri del run a 8 pezzi:
+#   * picco per pezzo 5,1-8,9 GB, somma dei picchi 47,6 GB su 251 (19%), e i
+#     picchi non sono nemmeno simultanei -> a 16 pezzi si sta sui 95 GB;
+#   * i pezzi hanno impiegato da 104 a 132 min: la ripartizione per `k`
+#     decrescente bilancia bene (27% di scarto);
+#   * il limite vero NON e' il numero di pezzi ma IL CLUSTER PIU' LENTO, che da
+#     solo dura 48 minuti. Sotto quello non si scende con nessuna divisione.
+# Stima: 8 pezzi 2h25m, 16 pezzi ~75 min, 32 pezzi ~55-60 min ma ~190 GB di
+# memoria per guadagnare un quarto d'ora che il cluster piu' lento si riprende.
 PEZZO   <- suppressWarnings(as.integer(Sys.getenv("PEZZO", "")))
-N_PEZZI <- suppressWarnings(as.integer(Sys.getenv("N_PEZZI", "")))
+N_PEZZI <- suppressWarnings(as.integer(Sys.getenv("N_PEZZI", "16")))
 IS_SHARD <- !is.na(PEZZO) && !is.na(N_PEZZI) && N_PEZZI > 1L
 if (IS_SHARD) {
   stopifnot(PEZZO >= 1L, PEZZO <= N_PEZZI)

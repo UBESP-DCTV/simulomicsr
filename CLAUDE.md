@@ -35,6 +35,55 @@
 > `review-scientific-consistency-2026-06-10`. Regole comportamentali: RED_ALERT §"Come Claude si deve
 > comportare con me in questo audit" (+ la regola NUOVA sotto: la coerenza è il gate, non i nomi).
 >
+> **Stato 2026-08-16 (IL CICLO COMPLETO RIFATTO: 211 META-ANALISI, E DA 41 ORE A 4)**:
+> 🟢 **Stadio 3 v16 + Stadio 4 v16b sono fatti, verificati e pushati (branch `review-scientific-consistency-2026-06-10`,
+> commit `d92f505`..`c27ebd6`). Deliverable:
+> `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T193851Z-stage4-v16-3e31e59d`
+> (211 meta-analisi). Master invariato. Finding `docs/findings/2026-08-13-tre-cambi-implementati.md`,
+> evidenza `analysis/audit/2026-08-13-rerun-prep/`.**
+>
+> 1. **DELIVERABLE 214 → 211**, esattamente la previsione depositata prima del run: −1
+>    *S. epidermidis* (corsie), −1 TNF-CHEMBL e −1 `STR:ifnb` **assorbiti dalle fusioni** (i loro
+>    studi sono nei vincenti), +0 infigratinib (k_eff 2, non nasce).
+> 2. **TUTTI E DODICI I `k_eff` PREVISTI, alla cifra**: TNF 32→**38**, ipossia 25→**33**,
+>    SARS-CoV-2 34→**36**, IL-6 10→11, IL-15 3→5, IFN-β 3→**6**, IFN-γ 20→19, IL-4 10→9,
+>    IL5RA 12→11, IMPDH2 6→5, *S. aureus* 4→3, TGF-β1 59 invariato.
+> 3. **DUE DIFETTI GRAVI DEL PRIMO RE-POOL (v16 seriale), trovati DOPO 32 ore di calcolo e
+>    corretti**: (a) **le fusioni non spostavano i record** — `.dedup_rem_group_by_entity` toglieva
+>    l'assorbito e riscriveva il `k`, ma i `record_id` restavano attaccati a lui e il dispatch pesca
+>    da lì: il TNF dichiarava k=48 e ne risolveva **32**, cioè la fusione era una PERDITA. Fix
+>    `.reassign_absorbed_records()`; (b) **le corsie non si sono mai accese** — lo script passava un
+>    `h5_metadata` a quattro colonne e il ramo di degradazione emetteva un `warning` finito fra i
+>    «50 or more warnings». Ora la mancanza dei cinque campi è **FATALE**.
+>    ⚠️ **Errore di metodo mio**: nella validazione del 13 agosto avevo misurato il k_eff passando al
+>    dispatch l'unione dei record **a mano** — ho simulato il comportamento voluto invece di misurare
+>    quello reale. I test della fusione guardavano il data.frame, mai il dispatch.
+> 4. **PROVE CHE I MECCANISMI HANNO AGITO** (v16b): `lane_collapses` **18 righe** (prima 0), 7 scarti
+>    `n_min_dopo_collasso_corsie` (prima nessuno), **zero** confronti di GSE173902 nel `per_study_de`
+>    (prima 7). Registri su disco: `dispatch_drops` 3.345, `covariate_drops` 4.950.
+> 5. **DA 41 ORE A MENO DI 5, senza toccare il motore di calcolo.**
+>    * **Re-pool a PEZZI** (processi separati, `cluster_subset` + `merge_stage4_shards`): 32,5 h →
+>      **2 h 25 m** con 8 pezzi. Il sottoinsieme si applica DOPO l'identificazione Layer A, perché le
+>      fusioni dipendono dall'insieme completo. Equivalenza misurata due volte sui dati veri: dati
+>      **identici** (15/15 e 11/11 colonne) e registri identici.
+>    * **Re-cluster a FORK** (`summarize_workers`, `mclapply` su `summarize_clusters`): 9 h 21 m →
+>      **2 h 28 m**, e l'output è `identical()` al seriale su tutti e quattro i file (322.417 cluster,
+>      574.799 assignment, stesso `run_id`).
+> 6. **I DEFAULT SONO MISURATI, NON SCELTI** (`E4-scaling-worker.csv`): Stadio 3 **32 worker**
+>    (accelerazione 10,65×; a 64 peggiora — il collo è la raccolta dei risultati via pipe, non i core;
+>    la memoria passa da 8,7 a 9,2 GB perché `fork` condivide le pagine). Re-pool **16 pezzi**
+>    (processi separati, memoria NON condivisa: 5-9 GB a pezzo, ~95 GB in 16; il limite vero è **il
+>    cluster più lento, 48 minuti**, sotto cui nessuna divisione scende).
+> 7. **TRE DIFETTI PRE-ESISTENTI TROVATI DAI TEST DI EQUIVALENZA**: la cache delle conte scriveva
+>    `saveRDS` direttamente sul file finale (ora temporaneo + rename atomico); `covariate_drop_log`
+>    non era accumulato (`rbind` ne teneva solo il primo: su cinque cluster ne riportava uno);
+>    il registro non arrivava su disco (ora `qc_report$covariate_drops`).
+> 8. **APERTO**: il re-run degli stadi LLM (Stadio 1 e 2 su DGX con `VLLM_BATCH_INVARIANT=1`) — le
+>    previsioni di questa sessione valgono **a parità di Stadio 1/2**, e rifarli cambierà il
+>    deliverable per motivi indipendenti dai fix. Poi Layer B e i Methods. E: nel ramo parallelo
+>    dello Stadio 3 manca l'avanzamento per blocco; i binari di lavoro delle prove (158 MB) sono
+>    fuori dall'indice ma **restano nella storia del branch**.
+>
 > **Stato 2026-08-13b (I TRE CAMBI DEL RE-RUN: IMPLEMENTATI E MISURATI — nessun run lanciato)**:
 > 🟢 **D1, D2, D3+D4, D7 in codice di pacchetto con TDD, ognuno validato SUI DATI VERI. Suite intera
 > 4.317 asserzioni, 0 fallimenti. Finding `docs/findings/2026-08-13-tre-cambi-implementati.md`,

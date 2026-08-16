@@ -432,9 +432,20 @@ cli::cli_h2("8. build_stage3_clusters (recovery ON)")
 t_build <- Sys.time()
 # SUMMARIZE_WORKERS (2026-08-15): la fase 6 e' l'88% del wall e gira su un core
 # solo. Con `fork` i cluster si dividono fra i worker senza rifare le fasi
-# precedenti. Identita' del risultato verificata su fixture (test-stage3-summarize-workers.R)
-# e sui dati veri (due smoke a confronto). Default 1 = comportamento di sempre.
-SUMMARIZE_WORKERS <- as.integer(Sys.getenv("SUMMARIZE_WORKERS", "1"))
+# precedenti. Identita' del risultato verificata su fixture
+# (test-stage3-summarize-workers.R) e sui dati veri: il run intero a 8 worker ha
+# dato output `identical()` a quello seriale su tutti e quattro i file.
+#
+# 32 E' IL VALORE MISURATO, non scelto (E4-scaling-worker.csv, 40.000 cluster):
+#   worker    1     4     8    16    32    64
+#   secondi 221,6  63,2  38,9  27,3  20,8  21,4
+#   accel.   1,00  3,51  5,70  8,12 10,65 10,36
+# L'accelerazione satura a 32 e a 64 PEGGIORA: il collo di bottiglia non sono i
+# core (ce ne sono 128) ma la raccolta dei risultati, che `mclapply` serializza
+# da ogni figlio attraverso una pipe. La memoria non c'entra: da 1 a 64 worker il
+# totale di sistema passa da 8,7 a 9,2 GB, perche' `fork` condivide le pagine.
+# Il risultato resta identico a tutti i livelli.
+SUMMARIZE_WORKERS <- as.integer(Sys.getenv("SUMMARIZE_WORKERS", "32"))
 cli::cli_alert_info("summarize_workers: {SUMMARIZE_WORKERS}")
 s3 <- build_stage3_clusters(
   stage1_master        = stage1_env,
