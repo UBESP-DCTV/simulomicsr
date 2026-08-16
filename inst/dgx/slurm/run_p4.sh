@@ -52,6 +52,20 @@ echo "[INFO] Workdir: $REMOTE_ROOT"
 
 SINGULARITY_BIN=/cm/shared/apps/singularity/4.2.0/bin/singularity
 
+# L'ambiente che il container riceve DAVVERO, scritto su disco prima del run.
+# Non e' diagnostica di lusso: una variabile scritta qui e non arrivata al
+# processo e' lo stesso modo di fallire del collasso delle corsie, rimasto
+# spento per un intero re-pool con un warning sepolto fra cinquanta. Con questo
+# file la verifica si fa sull'artefatto, non sullo script.
+"$SINGULARITY_BIN" exec \
+  --bind "$REMOTE_ROOT/runs/$RUN_ID:/work/run" \
+  --env "HF_HOME=/work/models/HF_HOME" \
+__EXTRA_ENV__
+  "$REMOTE_ROOT/runtime/simulomicsr-vllm.sif" \
+  sh -c 'env | sort > /work/run/container-env.txt'
+echo "[INFO] Ambiente del container registrato in runs/$RUN_ID/container-env.txt"
+grep -E '^(VLLM_|HF_HOME)' "$REMOTE_ROOT/runs/$RUN_ID/container-env.txt" || true
+
 "$SINGULARITY_BIN" exec \
   --nv \
   --bind /home/__USER__:/home/__USER__ \
@@ -62,6 +76,7 @@ SINGULARITY_BIN=/cm/shared/apps/singularity/4.2.0/bin/singularity
   --env "HF_TOKEN=${HF_TOKEN:-}" \
   --env "HF_HOME=/work/models/HF_HOME" \
   --env "TRANSFORMERS_CACHE=/work/models/HF_HOME" \
+__EXTRA_ENV__
   "$REMOTE_ROOT/runtime/simulomicsr-vllm.sif" \
   python3 /opt/simulomicsr/runtime/python/run_p4_vllm.py \
     --bundle /work/bundle --output /work/run --workers 4

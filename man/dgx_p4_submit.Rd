@@ -4,7 +4,13 @@
 \alias{dgx_p4_submit}
 \title{Submit di un bundle P4 al cluster DGX via SSH+SLURM}
 \usage{
-dgx_p4_submit(bundle, time = "72:00:00", config = NULL, dry_run = FALSE)
+dgx_p4_submit(
+  bundle,
+  time = "72:00:00",
+  config = NULL,
+  dry_run = FALSE,
+  env = NULL
+)
 }
 \arguments{
 \item{bundle}{output di \code{dgx_p4_build_bundle()}.}
@@ -19,6 +25,11 @@ prudente per evitare TIMEOUT su run lunghi (es. fullrun ~12-15h).}
 \item{config}{\code{simulomicsr_dgx_config}. Default = \code{bundle$config}.}
 
 \item{dry_run}{logical: se TRUE, non chiama ssh/rsync.}
+
+\item{env}{named character con variabili d'ambiente aggiuntive per il
+container, es. \code{c(VLLM_BATCH_INVARIANT = "1")}. Il job scrive
+l'ambiente che ha ricevuto davvero in \code{runs/<run_id>/container-env.txt}:
+la verifica va fatta li', non nello script. Default \code{NULL}.}
 }
 \value{
 oggetto \code{simulomicsr_dgx_job} con campi \code{run_id},

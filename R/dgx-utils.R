@@ -51,6 +51,46 @@
   tmpl
 }
 
+#' Formatta variabili d'ambiente aggiuntive come righe `--env` per singularity
+#'
+#' Serve a passare al container variabili che il template non conosce, prima fra
+#' tutte `VLLM_BATCH_INVARIANT`. Le regole sono strette **per costruzione**: il
+#' valore finisce dentro virgolette doppie in uno script di shell, quindi un
+#' valore che contenga `"`, `$`, backtick o a-capo uscirebbe dalle virgolette e
+#' verrebbe interpretato dal nodo. Meglio un errore qui che una variabile
+#' silenziosamente diversa da quella chiesta.
+#'
+#' @param env named character: `c(VLLM_BATCH_INVARIANT = "1")`. `NULL` o vuoto
+#'   producono la stringa vuota (nessuna riga aggiunta al template).
+#' @return character(1): righe gia' indentate e con la continuazione `\\`,
+#'   pronte per essere inserite nel comando `singularity exec`.
+#' @keywords internal
+.dgx_format_env_lines <- function(env) {
+  if (is.null(env) || length(env) == 0L) return("")
+
+  bad <- function(msg, ...) {
+    cli::cli_abort(msg, ..., class = "simulomicsr_dgx_env_invalid")
+  }
+
+  if (!is.character(env)) bad("{.arg env} deve essere un character con nomi.")
+  nms <- names(env)
+  if (is.null(nms) || any(!nzchar(nms)) || any(is.na(nms)))
+    bad("Ogni elemento di {.arg env} deve avere un nome non vuoto.")
+  # Nome valido per una shell POSIX: lettera o underscore, poi alfanumerici.
+  invalidi <- nms[!grepl("^[A-Za-z_][A-Za-z0-9_]*$", nms)]
+  if (length(invalidi) > 0L)
+    bad("Nomi di variabile non validi: {.val {invalidi}}.")
+  if (any(is.na(env)))
+    bad("Valori NA in {.arg env}: {.val {nms[is.na(env)]}}.")
+  # Un valore che rompe le virgolette del template e' un'iniezione, non un dato.
+  pericolosi <- nms[grepl('["`$\\\\]|[\n\r]', env)]
+  if (length(pericolosi) > 0L)
+    bad(c("Valori non ammessi in {.arg env}: {.val {pericolosi}}.",
+          "i" = 'Vietati `"`, `$`, backtick, backslash e a-capo: uscirebbero dalle virgolette dello script.'))
+
+  paste0("  --env \"", nms, "=", unname(env), "\" \\", collapse = "\n")
+}
+
 #' Esegue un comando SSH sul login node via processx
 #'
 #' @param cfg `simulomicsr_dgx_config`.

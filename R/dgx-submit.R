@@ -23,6 +23,10 @@
 #'   prudente per evitare TIMEOUT su run lunghi (es. fullrun ~12-15h).
 #' @param config \code{simulomicsr_dgx_config}. Default = \code{bundle$config}.
 #' @param dry_run logical: se TRUE, non chiama ssh/rsync.
+#' @param env named character con variabili d'ambiente aggiuntive per il
+#'   container, es. \code{c(VLLM_BATCH_INVARIANT = "1")}. Il job scrive
+#'   l'ambiente che ha ricevuto davvero in \code{runs/<run_id>/container-env.txt}:
+#'   la verifica va fatta li', non nello script. Default \code{NULL}.
 #' @return oggetto \code{simulomicsr_dgx_job} con campi \code{run_id},
 #'   \code{slurm_job_id}, \code{stage}, \code{bundle_dir},
 #'   \code{rendered_slurm}, \code{submitted_at}, \code{config}.
@@ -30,7 +34,8 @@
 dgx_p4_submit <- function(bundle,
                           time = "72:00:00",
                           config = NULL,
-                          dry_run = FALSE) {
+                          dry_run = FALSE,
+                          env = NULL) {
 
   stopifnot(inherits(bundle, "simulomicsr_dgx_bundle"))
   if (is.null(config)) config <- bundle$config
@@ -57,7 +62,8 @@ dgx_p4_submit <- function(bundle,
     user                = config$login_user,
     time                = time,
     mail_user           = config$mail_user,
-    nodelist_directive  = nodelist_directive
+    nodelist_directive  = nodelist_directive,
+    extra_env           = .dgx_format_env_lines(env)
   )
   rendered_path <- fs::path(bundle$bundle_dir, "run_p4.rendered.sh")
   writeLines(rendered, rendered_path)
