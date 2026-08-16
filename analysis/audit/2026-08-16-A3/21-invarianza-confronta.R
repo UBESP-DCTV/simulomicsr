@@ -27,16 +27,31 @@ shared_ids <- readLines(file.path(DIR, "record-condivisi.txt"))
 cat(sprintf("record condivisi attesi: %d\n", length(shared_ids)))
 
 # --- raccolta ---------------------------------------------------------------
+# ⚠️ dgx_p4_collect() restituisce una LISTA con $predictions e $errors, non un
+# data.frame piatto. La prima stesura di questo script assumeva il secondo e
+# raccoglieva 0 record su 1000 -- uno strumento che smette di misurare e non
+# fallisce. Da qui la guardia sotto.
 leggi <- function(job) {
   d <- dgx_p4_collect(job)
-  x <- data.frame(record_id = d$record_id, raw_output = d$raw_output,
-                  valid = d$valid_schema, stringsAsFactors = FALSE)
-  x[x$record_id %in% shared_ids, , drop = FALSE]
+  p <- d$predictions
+  x <- data.frame(record_id  = as.character(p$record_id),
+                  raw_output = as.character(p$raw_output),
+                  valid      = as.logical(p$valid_schema),
+                  stringsAsFactors = FALSE)
+  x <- x[x$record_id %in% shared_ids, , drop = FALSE]
+  attr(x, "n_errors") <- if (is.null(d$errors)) 0L else nrow(d$errors)
+  x
 }
 res <- lapply(jobs, leggi)
 for (nm in names(res))
-  cat(sprintf("  %-9s %d record condivisi, %d validi\n",
-              nm, nrow(res[[nm]]), sum(res[[nm]]$valid)))
+  cat(sprintf("  %-9s %d record condivisi, %d validi, %d errori di schema\n",
+              nm, nrow(res[[nm]]), sum(res[[nm]]$valid), attr(res[[nm]], "n_errors")))
+
+# GUARDIA: se non si raccoglie nulla non e' un esito, e' un guasto.
+vuoti <- names(res)[vapply(res, nrow, integer(1)) == 0L]
+if (length(vuoti) > 0L)
+  stop(sprintf("Raccolti ZERO record condivisi per: %s. Non e' un risultato.",
+               paste(vuoti, collapse = ", ")))
 
 # --- il confronto -----------------------------------------------------------
 confronta <- function(a, b) {
