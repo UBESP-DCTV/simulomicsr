@@ -89,9 +89,20 @@ fuori <- setdiff(seq_along(old), pos)
 chk("negativo: i record FUORI da A3 sono byte-identici",
     identical(merged[fuori], old[fuori]),
     sprintf("%d record intatti", length(fuori)))
-n_cambiati <- sum(merged[pos] != old[pos])
-cat(sprintf("  record di A3 effettivamente CAMBIATI dal modello: %d / %d (%.1f%%)\n",
-            n_cambiati, length(pos), 100 * n_cambiati / length(pos)))
+# ⚠️ NON confrontare le righe intere: contengono `ts` e `worker_id`, che
+# cambiano SEMPRE. La prima stesura lo faceva e stampava «100,0% dei record
+# cambiati» -- un numero che sembra un risultato e misura l'orologio. Il
+# confronto giusto e' su `raw_output`, cioe' su quello che il modello ha detto.
+estrai_raw <- function(x) sub('^.*"raw_output": ?"(.*)", ?"record_id".*$', "\\1", x)
+raw_v <- estrai_raw(old[pos]); raw_n <- estrai_raw(merged[pos])
+if (all(raw_v == old[pos])) {
+  cat("  ⚠️ estrazione di raw_output fallita: non riporto una percentuale.\n")
+} else {
+  n_cambiati <- sum(raw_v != raw_n)
+  cat(sprintf("  record di A3 col RAW_OUTPUT cambiato: %d / %d (%.1f%%)\n",
+              n_cambiati, length(pos), 100 * n_cambiati / length(pos)))
+  cat(sprintf("  (riferimento: 2026-08-09, due giri senza flag, identici nel 40,4%%)\n"))
+}
 if (!ok) stop("CONTROLLI FALLITI dopo l'innesto: non scrivo.")
 
 writeLines(merged, OUT)
