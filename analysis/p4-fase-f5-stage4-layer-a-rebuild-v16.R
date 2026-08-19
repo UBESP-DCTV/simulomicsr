@@ -130,10 +130,43 @@ if (!grepl("-stage3-v16-", basename(stage3_dir), fixed = TRUE)) {
   stop("stage3_dir NON e' un output v16: ", stage3_dir, "\n",
        "  il re-pool girerebbe ~28 h su cluster vecchi producendo un file gia' visto.")
 }
-h5_path     <- "analysis/input/human_gene_v2.5.h5"
-stage2_path <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
+# ---- GLI INPUT NON SI CABLANO (2026-08-19) ----------------------------------
+# Il 16 agosto il re-cluster girava sui master vecchi SENZA FALLIRE, perche' i
+# suoi quattro percorsi erano scritti nel codice (commit 0c186d5). Qui lo stesso
+# difetto era ancora aperto: `stage2_path` puntava al master v3 anche quando lo
+# Stadio 3 in ingresso era stato costruito su un master RIGENERATO. Il risultato
+# sarebbe stato un deliverable ibrido -- cluster nuovi, confronti vecchi --
+# prodotto in silenzio dopo ore di calcolo.
+#
+# Due difese, non una. (1) Il percorso e' una variabile d'ambiente, e viene
+# stampato. (2) Soprattutto: lo Stadio 3 registra nel proprio run_metadata.json
+# il path e lo SHA256 del master Stadio 2 con cui e' stato costruito, quindi la
+# coincidenza si VERIFICA invece di doverla ricordare. Dichiarare l'input senza
+# controllarlo lascerebbe in piedi esattamente l'errore che si vuole chiudere.
+h5_path     <- Sys.getenv("H5_PATH", "analysis/input/human_gene_v2.5.h5")
+stage2_path <- Sys.getenv("STAGE2_MASTER",
+  "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl")
 stopifnot(dir.exists(stage3_dir), file.exists(h5_path), file.exists(stage2_path))
 cli_alert_info("Stadio 3: {.path {stage3_dir}}")
+cli_alert_info("Stadio 2 master: {.path {stage2_path}}")
+
+.rm_path <- file.path(stage3_dir, "run_metadata.json")
+if (file.exists(.rm_path)) {
+  .atteso <- tryCatch(jsonlite::fromJSON(.rm_path)$input_files$stage2_master,
+                      error = function(e) NULL)
+  if (!is.null(.atteso) && !is.null(.atteso$sha256)) {
+    .sha <- digest::digest(file = stage2_path, algo = "sha256")
+    if (!identical(.sha, .atteso$sha256) && !nzchar(Sys.getenv("STAGE2_MISMATCH_OK"))) {
+      stop("MASTER STADIO 2 DIVERSO da quello con cui e' stato costruito lo Stadio 3.\n",
+           "  in ingresso qui : ", stage2_path, "\n    sha256 ", substr(.sha, 1, 16), "...\n",
+           "  usato da Stadio 3: ", .atteso$path, "\n    sha256 ", substr(.atteso$sha256, 1, 16), "...\n",
+           "  Un re-pool cosi' produce un deliverable IBRIDO (cluster nuovi, confronti\n",
+           "  vecchi) senza fallire. Passare STAGE2_MASTER=<il master giusto>, oppure\n",
+           "  STAGE2_MISMATCH_OK=1 se la differenza e' voluta e dichiarata.")
+    }
+    cli_alert_success("Master Stadio 2 coincide con quello dello Stadio 3 (sha256 {substr(.sha, 1, 12)}...)")
+  }
+}
 
 cli_alert_info("Loading stage3 + stage2_master...")
 t0 <- Sys.time()

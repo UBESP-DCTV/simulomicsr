@@ -1,0 +1,32 @@
+
+NOTE: Dependency discovery took 10 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Stadio 4 Layer A re-pool v16 (Stadio 3 v16, solo ramo rem_group) ────────────
+ℹ PEZZO 12 di 16
+ℹ Stadio 3: 'analysis/p4-output/20260818T110906Z-stage3-v16-7f986159'
+ℹ Stadio 2 master: 'analysis/p4-output/A3-stage2-master-innestato.jsonl'
+✔ Master Stadio 2 coincide con quello dello Stadio 3 (sha256 b9947746ab19...)
+ℹ Loading stage3 + stage2_master...
+✔ Loaded: 325059 clusters / 571680 assignments / 24394 stage2 studies (wall 13.2 sec)
+ℹ Stadio 3 clusters.rds sha256: 43f3c6fe569d8a628074e3df0d6df412926ebfbf9c915a5e8fdfaafa8826d750 (wall 0.107 sec)
+ℹ Pre-filter stage2_master vs ARCHS4 H5 sample axis...
+ℹ H5 sample axis: 888821 sample
+✔ Pre-filter done in 7.6 sec: 13/489998 sample droppati ("0.003%") — non in ARCHS4 H5 v2.5
+           used   (Mb) gc trigger   (Mb) max used   (Mb)
+Ncells 24874581 1328.5   43829677 2340.8 43829677 2340.8
+Vcells 66708144  509.0  109340036  834.2 84523504  644.9
+ℹ deliverable_methods: rem_group
+ℹ Layer A: 316 clusters (rem=0, mega=0, mega_aug=0, rem_group=316)
+✔ GATE: 316 cluster, tutti rem_group / cgroup_L5_
+ℹ MEGA-AUG baseline cluster matchati: 0
+ℹ Assignments rilevanti: 5500
+ℹ Sample IDs totali Layer A: 24241
