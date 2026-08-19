@@ -1,0 +1,826 @@
+# BLOCCO 09 — 13 meta-analisi
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable. I confronti elencati
+sono quelli EFFETTIVAMENTE POOLATI (replica del dispatch di produzione, validata
+contro il registro degli scarti e contro per_study_de). Le etichette sono INTERE.
+
+La riga [CONFRONTO] e' cio' che il gruppo mette insieme. La riga [RIFERIMENTO]
+dice dov'era quello studio nell'altra esecuzione della stessa catena, che
+differisce SOLO per gli stadi LLM.
+
+## GRUPPO cgroup_L5_c0d1d837
+- entita dichiarata : CHEBI:68534  (enzalutamide)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 18   studi efficaci (Kish): 16.2   piu pesante: 7%
+- geni significativi: 3380   I2 mediano: 86.9
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 19 studi; entrati ora: 1, usciti: 2
+- CONFRONTI POOLATI (etichette intere):
+    [GSE123766] n_trattati=3 vs n_controlli=3
+        TRATTATO : Enzalutamide (Replicate)
+        CONTROLLO: Vehicle
+    [GSE130246] n_trattati=2 vs n_controlli=3
+        TRATTATO : LNCaP sgTLE3 + enzalutamide
+        CONTROLLO: LNCaP sgTLE3 + vehicle
+    [GSE147250] n_trattati=2 vs n_controlli=2
+        TRATTATO : LNCaP wild-type + Enzalutamide
+        CONTROLLO: LNCaP wild-type + EtOH
+    [GSE147250] n_trattati=5 vs n_controlli=5
+        TRATTATO : LNCaP RB1/TP53 double knockout + Enzalutamide
+        CONTROLLO: LNCaP RB1/TP53 double knockout + vehicle
+    [GSE147876] n_trattati=3 vs n_controlli=3
+        TRATTATO : LNCaP Enzalutamide
+        CONTROLLO: LNCaP Vehicle
+    [GSE147876] n_trattati=3 vs n_controlli=3
+        TRATTATO : MR42D Enzalutamide
+        CONTROLLO: MR42D Vehicle
+    [GSE147876] n_trattati=3 vs n_controlli=3
+        TRATTATO : MR42F Enzalutamide
+        CONTROLLO: MR42D Vehicle
+    [GSE184427] n_trattati=2 vs n_controlli=2
+        TRATTATO : LuCaP 147 Enzalutamide
+        CONTROLLO: LuCaP 73 PBS Control
+    [GSE202885] n_trattati=2 vs n_controlli=2
+        TRATTATO : Enzalutamide 24h
+        CONTROLLO: DMSO 24h
+    [GSE215653] n_trattati=3 vs n_controlli=3
+        TRATTATO : Enzalutamide
+        CONTROLLO: DMSO
+    [GSE217537] n_trattati=2 vs n_controlli=3
+        TRATTATO : 22Rv1 + enzalutamide
+        CONTROLLO: 22Rv1 + DMSO
+    [GSE217537] n_trattati=2 vs n_controlli=3
+        TRATTATO : LNCaP95 + enzalutamide
+        CONTROLLO: LNCaP95 + DMSO
+    [GSE217537] n_trattati=2 vs n_controlli=3
+        TRATTATO : C4-2_enzalutamide
+        CONTROLLO: C4-2 + DMSO
+    [GSE225481] n_trattati=2 vs n_controlli=2
+        TRATTATO : R1AD1_ENZA
+        CONTROLLO: R1AD1_DMSO
+    [GSE225481] n_trattati=2 vs n_controlli=2
+        TRATTATO : LAPC4_ENZA
+        CONTROLLO: LAPC4_DMSO
+    [GSE228587] n_trattati=3 vs n_controlli=3
+        TRATTATO : LNCaP + ENZA
+        CONTROLLO: LNCaP + DMSO
+    [GSE229805] n_trattati=2 vs n_controlli=2
+        TRATTATO : Enzalutamide
+        CONTROLLO: DMSO
+    [GSE234805] n_trattati=3 vs n_controlli=3
+        TRATTATO : Enzalutamide 20uM 8hr
+        CONTROLLO: Control
+    [GSE236286] n_trattati=2 vs n_controlli=2
+        TRATTATO : Enzalutamide
+        CONTROLLO: Vehicle
+    [GSE244272] n_trattati=3 vs n_controlli=5
+        TRATTATO : Enzalutamide-treated MDA-MB-453 cells
+        CONTROLLO: Vehicle-treated MDA-MB-453 cells
+    [GSE252566] n_trattati=3 vs n_controlli=2
+        TRATTATO : DKO LnCap/AR + Enzalutamide
+        CONTROLLO: DKO LnCap/AR + Control
+    [GSE252567] n_trattati=3 vs n_controlli=4
+        TRATTATO : Enzalutamide
+        CONTROLLO: Control
+    [GSE252576] n_trattati=3 vs n_controlli=2
+        TRATTATO : C42 cells treated with Enzalutamide (1 microMolar)
+        CONTROLLO: C42 cells treated with Vehicle
+    [GSE252576] n_trattati=2 vs n_controlli=3
+        TRATTATO : LNCaP cells treated with Enzalutamide (1 microMolar)
+        CONTROLLO: LNCaP cells treated with Vehicle
+    [GSE252576] n_trattati=3 vs n_controlli=4
+        TRATTATO : RV1 cells treated with Enzalutamide (1 microMolar)
+        CONTROLLO: RV1 cells treated with Vehicle
+    [GSE95413] n_trattati=13 vs n_controlli=7
+        TRATTATO : VCaP p61 xenograft prostate cancer tissue segment cancer treated with Enzalutamide
+        CONTROLLO: VCaP p61 xenograft prostate cancer tissue segment cancer treated with Vehicle
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE123766] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Enzalutamide → Vehicle
+    [GSE130246] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            LNCaP + enzalutamide → LNCaP + vehicle
+            LNCaP sgTLE3 + enzalutamide → LNCaP sgTLE3 + vehicle
+    [GSE147250] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            LNCaP-RB1/TP53 Double Knockout Enzalutamide Treated → LNCaP-RB1/TP53 Double Knockout Vehicle Control
+    [GSE147876] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            LNCaP Enzalutamide Treated → LNCaP Vehicle Control
+            MR42D Enzalutamide Treated → MR42D Vehicle Control
+            Prostate Carcinoma Cell Line Castration-Resistant Enzalutamide Treated → Prostate Carcinoma Cell Line Castration-Resistant Vehicle Control
+    [GSE184427] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            LuCaP 147 Enzalutamide → LuCaP 147 PBS Control
+            LuCaP 78 + Enzalutamide → LuCaP 78 PBS Control
+    [GSE202885] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            16D CRPC + Enzalutamide 24h → 16D CRPC + DMSO
+            16D CRPC + Enzalutamide 96h → 16D CRPC + DMSO
+            16D CRPC + Enzalutamide long-term → 16D CRPC + DMSO
+    [GSE215653] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE217537] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE225481] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            R1AD1_ENZA → R1AD1_DMSO
+    [GSE228587] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE229805] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Enzalutamide → Vehicle Control (DMSO)
+    [GSE234805] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE236286] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE244272] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            MDA-MB-453 + Enzalutamide → MDA-MB-453 + Vehicle
+    [GSE252566] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE252567] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE252576] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE95413] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Enzalutamide treated VCaP xenografts → Vehicle treated VCaP xenografts
+- STUDI USCITI rispetto al riferimento (2) >>> DIVERGENZA:
+    [GSE182278] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : LAPC-4 cells treated with Enzalutamide
+        era CONTROLLO: LAPC-4 cells with Vehicle Control (None)
+    [GSE184455] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : HCC38 treated with Enzalutamide
+        era CONTROLLO: HCC38 treated with Vehicle (DMSO)
+
+## GRUPPO cgroup_L5_a12414d4
+- entita dichiarata : CHEBI:16469  (17β-estradiol)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 9   studi efficaci (Kish): 2.9   piu pesante: 47%
+- geni significativi: 357   I2 mediano: 87.4
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 10 studi; entrati ora: 2, usciti: 3
+- CONFRONTI POOLATI (etichette intere):
+    [GSE108308] n_trattati=2 vs n_controlli=2
+        TRATTATO : MCF-7 + estradiol (10 nM)
+        CONTROLLO: MCF-7 + vehicle
+    [GSE112983] n_trattati=2 vs n_controlli=2
+        TRATTATO : Estradiol-treated HepG2 cells
+        CONTROLLO: DMSO-treated HepG2 cells
+    [GSE150683] n_trattati=2 vs n_controlli=3
+        TRATTATO : T47D + estradiol
+        CONTROLLO: T47D + vehicle
+    [GSE217423] n_trattati=8 vs n_controlli=16
+        TRATTATO : Cardiac myocytes treated with Estradiol
+        CONTROLLO: Cardiac myocytes treated with DMSO
+    [GSE237784] n_trattati=3 vs n_controlli=3
+        TRATTATO : MCF7 (TAMR) cells treated with Estradiol
+        CONTROLLO: MCF7 (TAMR) cells treated with Vehicle control
+    [GSE237784] n_trattati=3 vs n_controlli=3
+        TRATTATO : MCF7 cells treated with Estradiol
+        CONTROLLO: MCF7 cells treated with Vehicle control
+    [GSE237784] n_trattati=3 vs n_controlli=3
+        TRATTATO : UCD12 cells treated with Estradiol
+        CONTROLLO: UCD12 cells treated with Vehicle control
+    [GSE241942] n_trattati=2 vs n_controlli=3
+        TRATTATO : Estradiol (no duration)
+        CONTROLLO: Vehicle control
+    [GSE252576] n_trattati=3 vs n_controlli=2
+        TRATTATO : C42 cells treated with Estradiol (100nM)
+        CONTROLLO: C42 cells treated with Vehicle
+    [GSE252576] n_trattati=2 vs n_controlli=3
+        TRATTATO : LNCaP cells treated with Estradiol (100nM)
+        CONTROLLO: LNCaP cells treated with Vehicle
+    [GSE252576] n_trattati=3 vs n_controlli=4
+        TRATTATO : RV1 cells treated with Estradiol (100nM)
+        CONTROLLO: RV1 cells treated with Vehicle
+    [GSE256370] n_trattati=3 vs n_controlli=3
+        TRATTATO : VCaP + 17β-estradiol 10 nM
+        CONTROLLO: VCaP + Ethanol
+    [GSE80365] n_trattati=4 vs n_controlli=7
+        TRATTATO : Estradiol 10 nM 24h
+        CONTROLLO: Vehicle 24h
+    [GSE80365] n_trattati=5 vs n_controlli=5
+        TRATTATO : Estradiol 10 nM 48h
+        CONTROLLO: Vehicle 48h
+    [GSE80365] n_trattati=3 vs n_controlli=7
+        TRATTATO : Estradiol 10 nM 24h
+        CONTROLLO: Vehicle 24h
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE108308] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            estradiol → vehicle
+    [GSE112983] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE150683] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE217423] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Cardiac Myocytes treated with Estradiol 5nM for 48 hours → Cardiac Myocytes treated with DMSO
+    [GSE237784] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE241942] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE252576] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            C42 cells treated with Estradiol (100nM) → C42 cells treated with Vehicle
+            RV1 cells treated with Estradiol (100nM) → RV1 cells treated with Vehicle
+    [GSE256370] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            VCaP + Estradiol → VCaP + Ethanol
+    [GSE80365] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Estradiol 24h → Vehicle 24h
+            Estradiol 48h → Vehicle 48h
+- STUDI USCITI rispetto al riferimento (3) >>> DIVERGENZA:
+    [GSE112568] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SW620 + Estradiol
+        era CONTROLLO: SW620 + DMSO
+    [GSE217421] nel riferimento era in QUESTO gruppo; ora sta in: CHEBI:49603||gain||vehicle_untreated ; CHEBI:78543||gain||vehicle_untreated ; CHEBI:47898||gain||vehicle_untreated ; CHEBI:114785||gain||vehicle_untreated ; CHEBI:49375||gain||vehicle_untreated ; CHEBI:231601||gain||vehicle_untreated ; CHEBI:52172||gain||vehicle_untreated ; CHEBI:50122||gain||vehicle_untreated ; CHEBI:49668||gain||vehicle_untreated ; CHEBI:4031||gain||vehicle_untreated ; CHEBI:45783||gain||vehicle_untreated ; CHEBI:65347||gain||vehicle_untreated ; CHEBI:50924||gain||vehicle_untreated ; CHEBI:75998||gain||vehicle_untreated ; CHEBI:28748||gain||vehicle_untreated ; CHEBI:72317||gain||vehicle_untreated ; CHEBI:66919||gain||vehicle_untreated ; CHEBI:64317||gain||vehicle_untreated ; CHEBI:61390||gain||vehicle_untreated ; CHEBI:71200||gain||vehicle_untreated ; CHEMBL:CHEMBL1201577||gain||vehicle_untreated ; CHEBI:41977||gain||vehicle_untreated ; CHEBI:38940||gain||vehicle_untreated ; CHEBI:64310||gain||vehicle_untreated ; CHEBI:68647||gain||vehicle_untreated
+        era TRATTATO : Estradiol-treated MSN01 cardiac myocytes
+        era CONTROLLO: DMSO-treated MSN01 cardiac myocytes
+    [GSE99641] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Estradiol
+        era CONTROLLO: Control
+
+## GRUPPO cgroup_L5_efced505
+- entita dichiarata : CHEBI:38940  (sunitinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 7   studi efficaci (Kish): 3.4   piu pesante: 40%
+- geni significativi: 478   I2 mediano: 48.0
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 9 studi; entrati ora: 0, usciti: 2
+- CONFRONTI POOLATI (etichette intere):
+    [GSE114686] n_trattati=2 vs n_controlli=3
+        TRATTATO : Sunitinib 3 µM 24h
+        CONTROLLO: DMSO 0.001 µM 24h
+    [GSE114686] n_trattati=3 vs n_controlli=3
+        TRATTATO : Sunitinib 10 µM 24h
+        CONTROLLO: DMSO 0.001 µM 24h
+    [GSE114686] n_trattati=3 vs n_controlli=2
+        TRATTATO : Sunitinib 3 µM 6h
+        CONTROLLO: DMSO 0.001 µM 6h
+    [GSE186341] n_trattati=2 vs n_controlli=24
+        TRATTATO : Sunitinib
+        CONTROLLO: DMSO
+    [GSE186341] n_trattati=2 vs n_controlli=9
+        TRATTATO : HCC1143 cells treated with Sunitinib (0.045 µM)
+        CONTROLLO: HCC1143 cells untreated
+    [GSE186341] n_trattati=2 vs n_controlli=34
+        TRATTATO : HF2597 Sunitinib
+        CONTROLLO: HF2597 DMSO
+    [GSE186341] n_trattati=2 vs n_controlli=28
+        TRATTATO : HSTS_Sunitinib
+        CONTROLLO: HSTS_DMSO
+    [GSE186341] n_trattati=2 vs n_controlli=28
+        TRATTATO : NCI-H1793_Sunitinib
+        CONTROLLO: NCI-H1793_Untreated
+    [GSE186341] n_trattati=2 vs n_controlli=8
+        TRATTATO : Sunitinib-treated U87 MG cells
+        CONTROLLO: DMSO-treated U87 MG cells
+    [GSE201740] n_trattati=2 vs n_controlli=2
+        TRATTATO : MYCN-amplified + Sunitinib
+        CONTROLLO: MYCN-amplified + vehicle
+    [GSE217421] n_trattati=2 vs n_controlli=12
+        TRATTATO : Sunitinib-treated cardiac myocytes (MSN06)
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n_trattati=14 vs n_controlli=12
+        TRATTATO : Sunitinib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n_trattati=2 vs n_controlli=12
+        TRATTATO : Sunitinib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n_trattati=2 vs n_controlli=12
+        TRATTATO : Sunitinib-treated cardiac myocytes (MSN06)
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217423] n_trattati=8 vs n_controlli=16
+        TRATTATO : Cardiac myocytes treated with Sunitinib
+        CONTROLLO: Cardiac myocytes treated with DMSO
+    [GSE59066] n_trattati=2 vs n_controlli=7
+        TRATTATO : Renal Cell Carcinoma Stage IV Treated with Sutent
+        CONTROLLO: Renal Cell Carcinoma Stage IV Untreated
+    [GSE98428] n_trattati=2 vs n_controlli=7
+        TRATTATO : Sunitinib 0.1 uM
+        CONTROLLO: Vehicle Control
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE114686] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 4 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Sunitinib 1 µM 24h → DMSO 0.001 µM 24h
+            Sunitinib 10 µM 24h → DMSO 0.001 µM 24h
+            Sunitinib 3 µM 168h → DMSO 0.001 µM 168h
+            Sunitinib 3 µM 24h → DMSO 0.001 µM 24h
+    [GSE186341] stesso gruppo ma i CONFRONTI CAMBIANO (6 ora, 5 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            HF2597_Sunitinib_0.045_uM_24h → HF2597_DMSO_24h
+            HSTS Sunitinib → HSTS DMSO
+            NCI-H1793_Sunitinib → NCI-H1793_DMSO
+            Sunitinib-treated AsPC-1 cells → DMSO-treated AsPC-1 cells
+            Sunitinib-treated HCC1143 cells → DMSO-treated HCC1143 cells
+    [GSE201740] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE217421] stesso gruppo ma i CONFRONTI CAMBIANO (4 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Sunitinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+            Sunitinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+            Sunitinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+    [GSE217423] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Cardiac Myocytes treated with Sunitinib 1uM for 48 hours → Cardiac Myocytes treated with DMSO
+    [GSE59066] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Renal Cell Carcinoma Stage IV Sutent Treated → Renal Cell Carcinoma Stage IV Untreated
+    [GSE98428] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Sunitinib 0.1 uM (Replicate) → Vehicle Control
+- STUDI USCITI rispetto al riferimento (2) >>> DIVERGENZA:
+    [GSE146096] nel riferimento era in QUESTO gruppo; ora sta in: CHEBI:49603||gain||vehicle_untreated ; CHEBI:50924||gain||vehicle_untreated
+        era TRATTATO : Sunitinib 100nM 48h
+        era CONTROLLO: Vehicle Control
+    [GSE98431] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Sunitinib 0.1 uM
+        era CONTROLLO: Vehicle Control
+
+## GRUPPO cgroup_L5_922312d6
+- entita dichiarata : CHEBI:66919  (ruxolitinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 2.3   piu pesante: 57%
+- geni significativi: 342   I2 mediano: 76.3
+- verdetto attuale  : coherent
+- nel riferimento   : QUESTO GRUPPO NON ESISTEVA (meta-analisi nuova)
+- CONFRONTI POOLATI (etichette intere):
+    [GSE131300] n_trattati=6 vs n_controlli=5
+        TRATTATO : Macrophages treated with ruxolitinib
+        CONTROLLO: Macrophages treated with vehicle
+    [GSE161664] n_trattati=3 vs n_controlli=4
+        TRATTATO : Ruxolitinib
+        CONTROLLO: Control
+    [GSE161916] n_trattati=3 vs n_controlli=2
+        TRATTATO : Ruxolitinib
+        CONTROLLO: Untreated
+    [GSE201093] n_trattati=2 vs n_controlli=2
+        TRATTATO : ML-DS2_ruxolitinib
+        CONTROLLO: ML-DS2_DMSO
+    [GSE217421] n_trattati=22 vs n_controlli=12
+        TRATTATO : Ruxolitinib-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE94235] n_trattati=4 vs n_controlli=4
+        TRATTATO : Ruxolitinib
+        CONTROLLO: DMSO
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE131300] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE161664] SPOSTATO: nel riferimento lo stesso studio stava sotto un'ALTRA chiave >>> DIVERGENZA
+        era in HGNC:5438||gain||vehicle_untreated
+            IFNg → Control
+        era in STR:ifna||gain||vehicle_untreated
+            IFNa → Control
+        era in HGNC:6018||gain||vehicle_untreated
+            IL6 → Control
+    [GSE161916] SPOSTATO: nel riferimento lo stesso studio stava sotto un'ALTRA chiave >>> DIVERGENZA
+        era in HGNC:5438||gain||vehicle_untreated
+            IFNg → untreated
+        era in HGNC:5992||gain||vehicle_untreated
+            IL1b → untreated
+        era in STR:ifna||gain||vehicle_untreated
+            IFNa → untreated
+        era in HGNC:5434||gain||vehicle_untreated
+            IFNb → untreated
+        era in HGNC:5434||gain||vehicle_untreated
+            IFNb → untreated
+    [GSE201093] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE217421] SPOSTATO: nel riferimento lo stesso studio stava sotto un'ALTRA chiave >>> DIVERGENZA
+        era in CHEBI:49603||gain||vehicle_untreated
+            Lapatinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:63637||gain||vehicle_untreated
+            Vemurafenib-treated MSN05 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:63637||gain||vehicle_untreated
+            Vemurafenib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:63637||gain||vehicle_untreated
+            Vemurafenib-treated MSN06 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:52717||gain||vehicle_untreated
+            Bortezomib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:52717||gain||vehicle_untreated
+            Bortezomib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:52717||gain||vehicle_untreated
+            Bortezomib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:52717||gain||vehicle_untreated
+            Bortezomib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:78543||gain||vehicle_untreated
+            Ponatinib-treated MSN05 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:78543||gain||vehicle_untreated
+            Ponatinib-treated cardiac myocytes (donor 1) → DMSO-treated cardiac myocytes
+        era in CHEBI:47898||gain||vehicle_untreated
+            Epirubicin-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:47898||gain||vehicle_untreated
+            Epirubicin-treated MSN05 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:47898||gain||vehicle_untreated
+            Epirubicin-treated MSN01 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:114785||gain||vehicle_untreated
+            Erlotinib-treated MSN01 → DMSO-treated MSN01 cardiac myocytes
+        era in CHEBI:49375||gain||vehicle_untreated
+            Dasatinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:49375||gain||vehicle_untreated
+            Dasatinib-treated MSN06 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:49375||gain||vehicle_untreated
+            Dasatinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:49375||gain||vehicle_untreated
+            Dasatinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:231601||gain||vehicle_untreated
+            Trastuzumab-treated cardiac myocytes (donor 1) → DMSO-treated cardiac myocytes
+        era in CHEBI:52172||gain||vehicle_untreated
+            Nilotinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:50122||gain||vehicle_untreated
+            Rosiglitazone-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:50122||gain||vehicle_untreated
+            Rosiglitazone-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:49668||gain||vehicle_untreated
+            Gefitinib-treated MSN01 cardiac myocytes → DMSO-treated MSN01 cardiac myocytes
+        era in CHEBI:49668||gain||vehicle_untreated
+            Gefitinib-treated MSN01 cardiac myocytes → DMSO-treated MSN01 cardiac myocytes
+        era in CHEBI:4031||gain||vehicle_untreated
+            Cyclosporine-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:4031||gain||vehicle_untreated
+            Cyclosporine-treated MSN01 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:4031||gain||vehicle_untreated
+            Cyclosporine-treated MSN06 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:45783||gain||vehicle_untreated
+            Imatinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:65347||gain||vehicle_untreated
+            Carfilzomib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:65347||gain||vehicle_untreated
+            Carfilzomib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEMBL:CHEMBL1201576||gain||vehicle_untreated
+            Rituximab-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEMBL:CHEMBL1201576||gain||vehicle_untreated
+            Rituximab-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEMBL:CHEMBL1201576||gain||vehicle_untreated
+            Rituximab-treated cardiac myocytes (donor 1) → DMSO-treated cardiac myocytes
+        era in CHEBI:50924||gain||vehicle_untreated
+            Sorafenib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:50924||gain||vehicle_untreated
+            Sorafenib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:50924||gain||vehicle_untreated
+            Sorafenib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:75998||gain||vehicle_untreated
+            Trametinib-treated cardiac myocytes (donor 1) → DMSO-treated cardiac myocytes
+        era in CHEBI:28748||gain||vehicle_untreated
+            Doxorubicin-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:72317||gain||vehicle_untreated
+            Cabozantinib-treated cardiac myocytes (donor 1) → DMSO-treated cardiac myocytes
+        era in CHEBI:75045||gain||vehicle_untreated
+            Dabrafenib-treated MSN01 cardiac myocytes → DMSO-treated MSN01 cardiac myocytes
+        era in CHEBI:75045||gain||vehicle_untreated
+            Dabrafenib-treated MSN01 → DMSO-treated MSN01 cardiac myocytes
+        era in CHEBI:64317||gain||vehicle_untreated
+            Isoproterenol-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:64317||gain||vehicle_untreated
+            Isoproterenol-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:16469||gain||vehicle_untreated
+            Estradiol-treated MSN01 cardiac myocytes → DMSO-treated MSN01 cardiac myocytes
+        era in CHEBI:50131||gain||vehicle_untreated
+            Decitabine-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:50131||gain||vehicle_untreated
+            Decitabine-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:50131||gain||vehicle_untreated
+            Decitabine-treated MSN06 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:50131||gain||vehicle_untreated
+            Decitabine-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:61390||gain||vehicle_untreated
+            Afatinib-treated MSN02 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:61390||gain||vehicle_untreated
+            Afatinib-treated MSN02 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:71200||gain||vehicle_untreated
+            Tofacitinib-treated cardiac myocytes (donor 1) → DMSO-treated cardiac myocytes
+        era in CHEBI:49960||gain||vehicle_untreated
+            Vandetanib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in HGNC:11892||gain||vehicle_untreated
+            TNF-alpha-stimulated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in HGNC:11892||gain||vehicle_untreated
+            TNF-alpha-stimulated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:41977||gain||vehicle_untreated
+            Daunorubicin-treated MSN01 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:38940||gain||vehicle_untreated
+            Sunitinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:38940||gain||vehicle_untreated
+            Sunitinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:38940||gain||vehicle_untreated
+            Sunitinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:64310||gain||vehicle_untreated
+            Crizotinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:64310||gain||vehicle_untreated
+            Crizotinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:64310||gain||vehicle_untreated
+            Crizotinib-treated cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:68647||gain||vehicle_untreated
+            Regorafenib-treated MSN05 cardiac myocytes → DMSO-treated cardiac myocytes
+        era in CHEBI:68647||gain||vehicle_untreated
+            Regorafenib-treated cardiac myocytes (donor 1) → DMSO-treated cardiac myocytes
+    [GSE94235] SPOSTATO: nel riferimento lo stesso studio stava sotto un'ALTRA chiave >>> DIVERGENZA
+        era in CHEBI:71200||gain||vehicle_untreated
+            Tofacitinib-treated CD8+ T-cells (Donor D1) → DMSO-treated CD8+ T-cells (Donor D1)
+
+## GRUPPO cgroup_L5_3439da02
+- entita dichiarata : CHEBI:68478  (everolimus)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 5   studi efficaci (Kish): 2.9   piu pesante: 46%
+- geni significativi: 1735   I2 mediano: 82.3
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 1, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE155923] n_trattati=5 vs n_controlli=7
+        TRATTATO : Everolimus-treated SCLC cells
+        CONTROLLO: Vehicle-treated SCLC cells
+    [GSE213650] n_trattati=2 vs n_controlli=3
+        TRATTATO : EpiOral 3D tissue treated with 32 ng/ml everolimus for 60 hours
+        CONTROLLO: EpiOral 3D tissue treated with vehicle for 60 hours
+    [GSE213650] n_trattati=2 vs n_controlli=3
+        TRATTATO : EpiOral 3D tissue treated with 64 ng/ml everolimus for 60 hours
+        CONTROLLO: EpiOral 3D tissue treated with vehicle for 60 hours
+    [GSE225751] n_trattati=3 vs n_controlli=3
+        TRATTATO : CEM cells treated with everolimus
+        CONTROLLO: T lymphocytes vehicle control
+    [GSE230627] n_trattati=3 vs n_controlli=4
+        TRATTATO : MCF-7 + everolimus 4h
+        CONTROLLO: MCF-7 + DMSO 4h
+    [GSE99875] n_trattati=3 vs n_controlli=6
+        TRATTATO : Everolimus 4hr
+        CONTROLLO: Control
+    [GSE99875] n_trattati=2 vs n_controlli=6
+        TRATTATO : Everolimus 4hr differentiated
+        CONTROLLO: Control
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE155923] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Everolimus → Vehicle
+    [GSE213650] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE225751] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            CEM + everolimus → T lymphocytes + control
+            Jurkat + everolimus → T lymphocytes + control
+    [GSE230627] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE99875] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Everolimus 4h → Control
+
+## GRUPPO cgroup_L5_4811fc0c
+- entita dichiarata : CHEBI:17823  (calcitriol)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 1.6   piu pesante: 77%
+- geni significativi: 189   I2 mediano: 1.8
+- verdetto attuale  : coherent
+- nel riferimento   : QUESTO GRUPPO NON ESISTEVA (meta-analisi nuova)
+- CONFRONTI POOLATI (etichette intere):
+    [GSE162427] n_trattati=3 vs n_controlli=3
+        TRATTATO : Calcitriol-treated CLL CD19+ B cells (GSM4951902)
+        CONTROLLO: Untreated CLL CD19+ B cells (GSM4951907)
+    [GSE178702] n_trattati=2 vs n_controlli=2
+        TRATTATO : HaCaT calcitriol
+        CONTROLLO: HaCaT untreated
+    [GSE248274] n_trattati=5 vs n_controlli=12
+        TRATTATO : Calcitriol (1,25(OH)2D3) - Patient #92
+        CONTROLLO: Vehicle (ethanol)
+    [GSE261699] n_trattati=7 vs n_controlli=2
+        TRATTATO : PBMC + calcitriol (10 nM) 24h
+        CONTROLLO: PBMC + ethanol (0.1%) 24h
+    [GSE261699] n_trattati=7 vs n_controlli=2
+        TRATTATO : PBMC + calcitriol (10 nM) 24h
+        CONTROLLO: PBMC + ethanol (0.1%) 24h
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE162427] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE178702] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE248274] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE261699] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+
+## GRUPPO cgroup_L5_828ae0cb
+- entita dichiarata : HGNC:11927  (TWEAK (TNFSF12))
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 3.4   piu pesante: 37%
+- geni significativi: 1437   I2 mediano: 74.3
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 1, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE171170] n_trattati=2 vs n_controlli=3
+        TRATTATO : TWEAK (100 ng/ml)
+        CONTROLLO: PBS
+    [GSE214503] n_trattati=3 vs n_controlli=3
+        TRATTATO : TWEAK
+        CONTROLLO: PBS
+    [GSE231480] n_trattati=3 vs n_controlli=2
+        TRATTATO : CAMA1 TWEAK
+        CONTROLLO: CAMA1 Untreated
+    [GSE231480] n_trattati=2 vs n_controlli=3
+        TRATTATO : Hs578T TWEAK
+        CONTROLLO: Hs578T Untreated
+    [GSE231480] n_trattati=3 vs n_controlli=3
+        TRATTATO : MCF7 TWEAK
+        CONTROLLO: MCF7 Untreated
+    [GSE251869] n_trattati=3 vs n_controlli=2
+        TRATTATO : MDA-MB-453 TWEAK
+        CONTROLLO: MDA-MB-453 Untreated
+    [GSE251869] n_trattati=3 vs n_controlli=3
+        TRATTATO : SKBR3 TWEAK
+        CONTROLLO: SKBR3 Untreated
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE171170] SPOSTATO: nel riferimento lo stesso studio stava sotto un'ALTRA chiave >>> DIVERGENZA
+        era in HGNC:5981||gain||vehicle_untreated
+            IL-17A (100 ng/ml) → PBS
+        era in HGNC:11892||gain||vehicle_untreated
+            TNF (10 ng/ml) → PBS
+    [GSE214503] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE231480] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 4 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            CAMA1 cells treated with TWEAK → CAMA1 cells untreated
+            Hs578T cells treated with TWEAK → Hs578T cells untreated
+            MCF7 cells treated with TWEAK → MCF7 cells untreated
+            MDA-MB-231 cells treated with TWEAK → MDA-MB-231 cells untreated
+    [GSE251869] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE237845] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : TWEAK (2 reps)
+        era CONTROLLO: Vehicle
+
+## GRUPPO cgroup_L5_64fbeb97
+- entita dichiarata : CHEBI:102218  (dimethyloxalylglycine)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.7   piu pesante: 43%
+- geni significativi: 2153   I2 mediano: 96.3
+- verdetto attuale  : coherent
+- nel riferimento   : QUESTO GRUPPO NON ESISTEVA (meta-analisi nuova)
+- CONFRONTI POOLATI (etichette intere):
+    [GSE162834] n_trattati=3 vs n_controlli=3
+        TRATTATO : DMOG
+        CONTROLLO: DMSO
+    [GSE189504] n_trattati=4 vs n_controlli=4
+        TRATTATO : DMOG-treated Primary Pulmonary artery endothelial cells
+        CONTROLLO: Untreated Primary Pulmonary artery endothelial cells
+    [GSE204929] n_trattati=2 vs n_controlli=4
+        TRATTATO : MKN74siYWHAG DMOG
+        CONTROLLO: MKN74siYWHAG Control
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE162834] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE189504] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE204929] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+
+## GRUPPO cgroup_L5_31308596
+- entita dichiarata : CHEBI:37537  (PMA (phorbol 12-myristate 13-acetate))
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.1   piu pesante: 55%
+- geni significativi: 807   I2 mediano: 75.3
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 5 studi; entrati ora: 0, usciti: 2
+- CONFRONTI POOLATI (etichette intere):
+    [GSE169140] n_trattati=2 vs n_controlli=4
+        TRATTATO : PMA 6h
+        CONTROLLO: Control
+    [GSE169140] n_trattati=4 vs n_controlli=4
+        TRATTATO : PMA 24h
+        CONTROLLO: Control
+    [GSE178883] n_trattati=2 vs n_controlli=3
+        TRATTATO : PMA 100 nM
+        CONTROLLO: Control medium
+    [GSE206742] n_trattati=2 vs n_controlli=2
+        TRATTATO : PMA + shUHRF1
+        CONTROLLO: DMSO + shUHRF1
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE169140] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE178883] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            PMA-treated → Control (control medium)
+    [GSE206742] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            PMA → DMSO
+- STUDI USCITI rispetto al riferimento (2) >>> DIVERGENZA:
+    [GSE138209] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : THP-1_DMSO_PMA
+        era CONTROLLO: THP-1_DMSO
+    [GSE252575] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : HT1080 cells treated with PMA
+        era CONTROLLO: HT1080 cells treated with Control
+
+## GRUPPO cgroup_L5_a4029927
+- entita dichiarata : CHEBI:61390  (afatinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.3   piu pesante: 86%
+- geni significativi: 1811   I2 mediano: 22.4
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE162285] n_trattati=3 vs n_controlli=2
+        TRATTATO : HCI003 afatinib
+        CONTROLLO: HCI003 vehicle
+    [GSE186341] n_trattati=2 vs n_controlli=33
+        TRATTATO : HSTS cells treated with Afatinib
+        CONTROLLO: KRJ1 cells treated with DMSO
+    [GSE186341] n_trattati=2 vs n_controlli=22
+        TRATTATO : NCI-H1793_Afatinib_0.1869uM_24h
+        CONTROLLO: NCI-H1793_DMSO_24h
+    [GSE217421] n_trattati=2 vs n_controlli=12
+        TRATTATO : Afatinib-treated cardiac myocytes (MSN01)
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217421] n_trattati=3 vs n_controlli=12
+        TRATTATO : Afatinib-treated cardiac myocytes (MSN05)
+        CONTROLLO: DMSO-treated cardiac myocytes
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE162285] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE186341] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Afatinib-treated HCC1143 cells → DMSO-treated HCC1143 cells
+            NCI-H1793_Afatinib → NCI-H1793_DMSO
+    [GSE217421] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Afatinib-treated MSN02 cardiac myocytes → DMSO-treated cardiac myocytes
+            Afatinib-treated MSN02 cardiac myocytes → DMSO-treated cardiac myocytes
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE146096] nel riferimento era in QUESTO gruppo; ora sta in: CHEBI:49603||gain||vehicle_untreated ; CHEBI:50924||gain||vehicle_untreated
+        era TRATTATO : Afatinib 50nM
+        era CONTROLLO: Vehicle Control
+        era TRATTATO : Afatinib 50nM
+        era CONTROLLO: Vehicle Control
+
+## GRUPPO cgroup_L5_aad8ed47
+- entita dichiarata : COMBO:taz+yap  (taz + yap)
+- verso / controllo : block / control sirna
+- studi poolati     : 3   studi efficaci (Kish): 2.7   piu pesante: 45%
+- geni significativi: 3163   I2 mediano: 77.0
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE133003] n_trattati=2 vs n_controlli=3
+        TRATTATO : HBEC + YAP/TAZ siRNA
+        CONTROLLO: HBEC + control siRNA
+    [GSE133003] n_trattati=3 vs n_controlli=2
+        TRATTATO : LGD + YAP/TAZ siRNA
+        CONTROLLO: LGD + control siRNA
+    [GSE158305] n_trattati=3 vs n_controlli=6
+        TRATTATO : HBEC1_YAP_TAZ_knockdown
+        CONTROLLO: Control_siRNA_1
+    [GSE158305] n_trattati=3 vs n_controlli=6
+        TRATTATO : HBEC2_YAP_TAZ_knockdown
+        CONTROLLO: Control_siRNA_1
+    [GSE205726] n_trattati=2 vs n_controlli=3
+        TRATTATO : MDA-MB-231 + YAP+TAZ siRNA
+        CONTROLLO: MDA-MB-231 + control siRNA
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE133003] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Bronchial basal epithelial cells + YAP/TAZ siRNA → Bronchial basal epithelial cells + control siRNA
+            Bronchial epithelial cells derived from low grade dysplastic lesion (transgene stable) + YAP/TAZ siRNA → Bronchial epithelial cells derived from low grade dysplastic lesion + control siRNA
+    [GSE158305] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE205726] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            MDA-MB-231 + YAP+TAZ siRNA (duplicate) → MDA-MB-231 + control siRNA
+
+## GRUPPO cgroup_L5_47e67cab
+- entita dichiarata : STR:1_25_oh_2d3  (1 25 oh 2d3)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.0   piu pesante: 98%
+- geni significativi: 892   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- nel riferimento   : QUESTO GRUPPO NON ESISTEVA (meta-analisi nuova)
+- CONFRONTI POOLATI (etichette intere):
+    [GSE100785] n_trattati=3 vs n_controlli=3
+        TRATTATO : Healthy Colon, 1,25(OH)2D3, Age 77
+        CONTROLLO: Healthy Colon, Vehicle, Age 77
+    [GSE100785] n_trattati=6 vs n_controlli=6
+        TRATTATO : Tumor Left Colon, 1,25(OH)2D3, Age 77
+        CONTROLLO: Tumor Left Colon, Vehicle, Age 77
+    [GSE143782] n_trattati=2 vs n_controlli=5
+        TRATTATO : Rectum Stem Cells - Calcitriol - Donor #40
+        CONTROLLO: Rectum Stem Cells - Vehicle - Donor #40
+    [GSE223405] n_trattati=3 vs n_controlli=3
+        TRATTATO : HPr1-AR Calcitriol
+        CONTROLLO: HPr1-AR Vehicle
+    [GSE223405] n_trattati=2 vs n_controlli=3
+        TRATTATO : HPr1-AR Vector Calcitriol
+        CONTROLLO: HPr1-AR Vector Vehicle
+    [GSE223405] n_trattati=2 vs n_controlli=3
+        TRATTATO : LNCaP Vector Calcitriol
+        CONTROLLO: LNCaP Vector Vehicle
+    [GSE223405] n_trattati=3 vs n_controlli=3
+        TRATTATO : RC43N Calcitriol
+        CONTROLLO: RC43N Vehicle
+    [GSE223405] n_trattati=2 vs n_controlli=2
+        TRATTATO : RC43N BAZ1A Calcitriol
+        CONTROLLO: RC43N BAZ1A Vehicle
+    [GSE223405] n_trattati=2 vs n_controlli=2
+        TRATTATO : RC43T Vector Calcitriol
+        CONTROLLO: RC43T Vector Vehicle
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE100785] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE143782] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE223405] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+
+## GRUPPO cgroup_L5_a747a14e
+- entita dichiarata : STR:pm2_5  (pm2 5)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.1   piu pesante: 59%
+- geni significativi: 602   I2 mediano: 69.8
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE215411] n_trattati=3 vs n_controlli=3
+        TRATTATO : PM2.5
+        CONTROLLO: Control
+    [GSE237795] n_trattati=3 vs n_controlli=3
+        TRATTATO : PM2.5 Treated
+        CONTROLLO: Vehicle Control
+    [GSE243618] n_trattati=3 vs n_controlli=3
+        TRATTATO : PM2.5
+        CONTROLLO: Control
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE215411] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE237795] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE243618] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE208331] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : PM2.5
+        era CONTROLLO: Control sample
+

@@ -1,0 +1,765 @@
+# BLOCCO 13 — 13 meta-analisi
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable. I confronti elencati
+sono quelli EFFETTIVAMENTE POOLATI (replica del dispatch di produzione, validata
+contro il registro degli scarti e contro per_study_de). Le etichette sono INTERE.
+
+La riga [CONFRONTO] e' cio' che il gruppo mette insieme. La riga [RIFERIMENTO]
+dice dov'era quello studio nell'altra esecuzione della stessa catena, che
+differisce SOLO per gli stadi LLM.
+
+## GRUPPO cgroup_L5_8a54ddd6
+- entita dichiarata : CHEBI:28748  (doxorubicin)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 15   studi efficaci (Kish): 12.9   piu pesante: 9%
+- geni significativi: 6348   I2 mediano: 93.9
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 14 studi; entrati ora: 4, usciti: 3
+- CONFRONTI POOLATI (etichette intere):
+    [GSE124622] n_trattati=2 vs n_controlli=2
+        TRATTATO : Adriamycin-treated (replicate)
+        CONTROLLO: Control
+    [GSE128728] n_trattati=2 vs n_controlli=5
+        TRATTATO : Doxorubicin-treated B cell double-hit lymphoma (Bone Marrow, Case)
+        CONTROLLO: Vehicle-treated B cell double-hit lymphoma (Bone Marrow, Case)
+    [GSE128728] n_trattati=6 vs n_controlli=4
+        TRATTATO : Doxorubicin-treated B cell double-hit lymphoma (Spleen, Case)
+        CONTROLLO: Vehicle-treated B cell double-hit lymphoma (Spleen, Model)
+    [GSE137056] n_trattati=2 vs n_controlli=2
+        TRATTATO : Doxorubicin (0.4)
+        CONTROLLO: Control (No Treatment)
+    [GSE137056] n_trattati=2 vs n_controlli=2
+        TRATTATO : Doxorubicin (High)
+        CONTROLLO: Control (No Treatment)
+    [GSE139862] n_trattati=2 vs n_controlli=2
+        TRATTATO : PAEC passage 3 treated with Doxorubicin
+        CONTROLLO: PAEC passage 3 treated with DMSO
+    [GSE154118] n_trattati=2 vs n_controlli=2
+        TRATTATO : Doxorubicin treated PASMCs
+        CONTROLLO: Vehicle control (PBS/DMSO) PASMCs
+    [GSE166033] n_trattati=5 vs n_controlli=5
+        TRATTATO : Doxorubicin
+        CONTROLLO: DMSO
+    [GSE196724] n_trattati=3 vs n_controlli=3
+        TRATTATO : Artery, Donor 1, Doxorubicin
+        CONTROLLO: Artery, Donor 1, No Treatment
+    [GSE196724] n_trattati=6 vs n_controlli=4
+        TRATTATO : Vein, Donor 2, Doxorubicin
+        CONTROLLO: Vein, Donor 2, No Treatment
+    [GSE197243] n_trattati=4 vs n_controlli=3
+        TRATTATO : SH-SY5Y GFP + puromycin doxorubicin
+        CONTROLLO: SH-SY5Y GFP + puromycin untreated
+    [GSE197243] n_trattati=3 vs n_controlli=2
+        TRATTATO : SH-SY5Y GFP + puromycin TRPM2 knockout + doxorubicin
+        CONTROLLO: SH-SY5Y GFP + puromycin TRPM2 knockout
+    [GSE216137] n_trattati=3 vs n_controlli=6
+        TRATTATO : doxorubicin (1 nM)
+        CONTROLLO: DMSO (0.1%)
+    [GSE216137] n_trattati=3 vs n_controlli=6
+        TRATTATO : doxorubicin (5 nM)
+        CONTROLLO: DMSO (0.1%)
+    [GSE216137] n_trattati=3 vs n_controlli=6
+        TRATTATO : doxorubicin (10 nM)
+        CONTROLLO: DMSO (0.1%)
+    [GSE216137] n_trattati=3 vs n_controlli=6
+        TRATTATO : doxorubicin (15 nM)
+        CONTROLLO: DMSO (0.1%)
+    [GSE216137] n_trattati=3 vs n_controlli=6
+        TRATTATO : doxorubicin (25 nM)
+        CONTROLLO: DMSO (0.1%)
+    [GSE216137] n_trattati=3 vs n_controlli=6
+        TRATTATO : doxorubicin (50 nM)
+        CONTROLLO: DMSO (0.1%)
+    [GSE216137] n_trattati=3 vs n_controlli=6
+        TRATTATO : doxorubicin (100 nM)
+        CONTROLLO: DMSO (0.1%)
+    [GSE217421] n_trattati=19 vs n_controlli=12
+        TRATTATO : Doxorubicin-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217423] n_trattati=8 vs n_controlli=16
+        TRATTATO : Cardiac myocytes treated with Doxorubicin
+        CONTROLLO: Cardiac myocytes treated with DMSO
+    [GSE217898] n_trattati=2 vs n_controlli=2
+        TRATTATO : Primary aorta endothelial cells, Doxorubicin, 24h
+        CONTROLLO: Primary aorta endothelial cells, DMSO, 24h
+    [GSE217898] n_trattati=2 vs n_controlli=2
+        TRATTATO : Primary aorta endothelial cells, Doxorubicin, 72h
+        CONTROLLO: Primary aorta endothelial cells, DMSO, 72h
+    [GSE226115] n_trattati=3 vs n_controlli=3
+        TRATTATO : doxorubicin
+        CONTROLLO: saline
+    [GSE226115] n_trattati=2 vs n_controlli=3
+        TRATTATO : doxorubicin (total RNA)
+        CONTROLLO: saline
+    [GSE55727] n_trattati=2 vs n_controlli=2
+        TRATTATO : GM00011 doxorubicin
+        CONTROLLO: GM00011 vehicle
+    [GSE60340] n_trattati=2 vs n_controlli=3
+        TRATTATO : Adriamycin treated (senescent)
+        CONTROLLO: Untreated control
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE124622] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Adriamycin-treated Podocytes → Untreated Podocytes
+    [GSE128728] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Doxorubicin-treated Bone Marrow → Vehicle-treated Bone Marrow
+            Doxorubicin-treated Spleen → Vehicle-treated Spleen
+    [GSE137056] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Doxorubicin (0.4 µM) → Control (No Treatment)
+    [GSE139862] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            PAEC, passage 3, Doxorubicin 0.5 ug/ml 24h → PAEC, passage 3, DMSO
+    [GSE154118] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE166033] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE196724] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Donor 1 Artery Doxorubicin → Donor 1 Artery Vehicle Control
+            Donor 2 Vein Doxorubicin → Donor 2 Vein Vehicle Control
+    [GSE197243] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Doxorubicin-treated TRPM2 knockout → TRPM2 knockout
+    [GSE216137] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE217421] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE217423] SPOSTATO: nel riferimento lo stesso studio stava sotto un'ALTRA chiave >>> DIVERGENZA
+        era in CHEBI:63637||gain||vehicle_untreated
+            Cardiac Myocytes treated with Vemurafenib 2uM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:47898||gain||vehicle_untreated
+            Cardiac Myocytes treated with Epirubicin 2uM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:52172||gain||vehicle_untreated
+            Cardiac Myocytes treated with Nilotinib 3uM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:52172||gain||vehicle_untreated
+            Cardiac Myocytes treated with Nilotinib → Cardiac Myocytes treated with DMSO
+        era in CHEBI:4031||gain||vehicle_untreated
+            Cardiac Myocytes treated with Cyclosporine 125nM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:45783||gain||vehicle_untreated
+            Cardiac Myocytes treated with Imatinib 5uM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEMBL:CHEMBL1201576||gain||vehicle_untreated
+            Cardiac Myocytes treated with Rituximab 3uM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:50924||gain||vehicle_untreated
+            Cardiac Myocytes treated with Sorafenib 1uM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:64317||gain||vehicle_untreated
+            Cardiac Myocytes treated with Isoproterenol 2uM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:16469||gain||vehicle_untreated
+            Cardiac Myocytes treated with Estradiol 5nM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:41977||gain||vehicle_untreated
+            Cardiac Myocytes treated with Daunorubicin 1uM for 48 hours → Cardiac Myocytes treated with DMSO
+        era in CHEBI:38940||gain||vehicle_untreated
+            Cardiac Myocytes treated with Sunitinib 1uM for 48 hours → Cardiac Myocytes treated with DMSO
+    [GSE217898] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Primary aorta endothelial cells treated with Doxorubicin for 24 hours → Primary aorta endothelial cells treated with DMSO for 24 hours
+            Primary aorta endothelial cells treated with Doxorubicin for 72 hours → Primary aorta endothelial cells treated with DMSO for 72 hours
+    [GSE226115] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE55727] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE60340] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+- STUDI USCITI rispetto al riferimento (3) >>> DIVERGENZA:
+    [GSE145141] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : MDA-MB-231 Doxorubicin + ZMYND8 Overexpression (48h)
+        era CONTROLLO: MDA-MB-231 ZMYND8 Overexpression
+        era TRATTATO : MDA-MB-231 Doxorubicin + ZMYND8 Overexpression (48h)
+        era CONTROLLO: MDA-MB-231 ZMYND8 Overexpression
+    [GSE157069] nel riferimento era in QUESTO gruppo; ora sta in: CHEBI:27899||gain||vehicle_untreated ; CHEBI:29699||gain||vehicle_untreated
+        era TRATTATO : MDA-MB-231 (transgene stable) + doxorubicin
+        era CONTROLLO: MDA-MB-231 (transgene stable) + control
+    [GSE222221] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Adriamycin-treated
+        era CONTROLLO: Control (no treatment)
+
+## GRUPPO cgroup_L5_2ec87595
+- entita dichiarata : CHEBI:6801  (metformin)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 9   studi efficaci (Kish): 5.8   piu pesante: 22%
+- geni significativi: 357   I2 mediano: 91.9
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 8 studi; entrati ora: 2, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE102677] n_trattati=5 vs n_controlli=3
+        TRATTATO : PBMC + Metformin + MtbLysate
+        CONTROLLO: PBMC unstimulated
+    [GSE102677] n_trattati=7 vs n_controlli=3
+        TRATTATO : PBMC + Metformin
+        CONTROLLO: PBMC unstimulated
+    [GSE140714] n_trattati=2 vs n_controlli=3
+        TRATTATO : Metformin-treated
+        CONTROLLO: Untreated
+    [GSE146982] n_trattati=2 vs n_controlli=2
+        TRATTATO : A549 Vector Control Metformin
+        CONTROLLO: A549 Vector Control
+    [GSE179347] n_trattati=3 vs n_controlli=9
+        TRATTATO : SGBS cells treated with METFORMIN
+        CONTROLLO: SGBS CONTROL (EMPTY EMEM MEDIUM)
+    [GSE185624] n_trattati=6 vs n_controlli=4
+        TRATTATO : XRT plus Metformin
+        CONTROLLO: Untreated Control
+    [GSE196343] n_trattati=2 vs n_controlli=2
+        TRATTATO : Metformin-treated C4-2 cells (replicates)
+        CONTROLLO: PBS-treated C4-2 cells (replicates)
+    [GSE207122] n_trattati=3 vs n_controlli=3
+        TRATTATO : CAL27 + Metformin 30 mM 48h
+        CONTROLLO: CAL27 + PBS 48h
+    [GSE210562] n_trattati=3 vs n_controlli=3
+        TRATTATO : Metformin
+        CONTROLLO: DMSO
+    [GSE247159] n_trattati=10 vs n_controlli=13
+        TRATTATO : Metformin (Primary Culture)
+        CONTROLLO: Control (Primary Culture)
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE102677] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            PBMC + Metformin → PBMC + Unstimulated (Donor 1)
+            PBMC + Metformin + MtbLysate → PBMC + Unstimulated (Donor 1)
+    [GSE140714] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE146982] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE179347] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE185624] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE196343] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE207122] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE210562] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE247159] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Metformin (cell line) → Control (cell line)
+            Metformin (primary culture) → Control (primary culture)
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE133087] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : hPSCs, Pancreatic Beta-like cells, Metformin
+        era CONTROLLO: hPSCs, pancreas, Pancreatic Beta-like cells, Untreated
+
+## GRUPPO cgroup_L5_c054e202
+- entita dichiarata : CHEBI:9168  (sirolimus)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 7   studi efficaci (Kish): 6.2   piu pesante: 19%
+- geni significativi: 2975   I2 mediano: 82.3
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 6 studi; entrati ora: 1, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE102674] n_trattati=2 vs n_controlli=4
+        TRATTATO : Rapamycin Treated (1)
+        CONTROLLO: Vehicle Control
+    [GSE102674] n_trattati=2 vs n_controlli=4
+        TRATTATO : Rapamycin Treated (2)
+        CONTROLLO: Vehicle Control
+    [GSE130006] n_trattati=2 vs n_controlli=2
+        TRATTATO : Rapamycin
+        CONTROLLO: DMSO
+    [GSE184427] n_trattati=2 vs n_controlli=2
+        TRATTATO : LuCaP 147 Rapamycin
+        CONTROLLO: LuCaP 73 PBS Control
+    [GSE193398] n_trattati=2 vs n_controlli=2
+        TRATTATO : Rapamycin 1uM
+        CONTROLLO: Untreated
+    [GSE225683] n_trattati=2 vs n_controlli=3
+        TRATTATO : Rapamycin
+        CONTROLLO: Control
+    [GSE236742] n_trattati=3 vs n_controlli=3
+        TRATTATO : Rapamycin-treated TSC1-null HCV29 cells
+        CONTROLLO: DMSO-treated TSC1-null HCV29 cells
+    [GSE246886] n_trattati=3 vs n_controlli=6
+        TRATTATO : MCF7 + Rapamycin (duplicate)
+        CONTROLLO: MCF7 + Vehicle (DMSO)
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE102674] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            rapamycin → -vehicle
+    [GSE130006] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE184427] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            LuCaP 78 + Rapamycin → LuCaP 78 PBS Control
+    [GSE193398] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Rapamycin 0.05uM → Untreated
+            Rapamycin 1uM → Untreated
+    [GSE225683] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE236742] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE246886] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            MCF7 + Rapamycin → MCF7 + Vehicle (DMSO)
+
+## GRUPPO cgroup_L5_bd19fe42
+- entita dichiarata : MeSH:D006528  (Carcinoma, Hepatocellular)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 2.7   piu pesante: 54%
+- geni significativi: 105   I2 mediano: 79.8
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 9 studi; entrati ora: 0, usciti: 3
+- CONFRONTI POOLATI (etichette intere):
+    [GSE120663] n_trattati=4 vs n_controlli=3
+        TRATTATO : HCC PBMC
+        CONTROLLO: Healthy Control PBMC
+    [GSE144269] n_trattati=56 vs n_controlli=61
+        TRATTATO : Hepatocellular carcinoma patients
+        CONTROLLO: Normal liver tissue
+    [GSE159220] n_trattati=3 vs n_controlli=3
+        TRATTATO : Hepatocellular carcinoma tissue
+        CONTROLLO: Normal liver tissue
+    [GSE164359] n_trattati=27 vs n_controlli=9
+        TRATTATO : Hepatocellular Carcinoma
+        CONTROLLO: Adjacent Liver Tissue
+    [GSE164359] n_trattati=7 vs n_controlli=9
+        TRATTATO : Hepatocellular Carcinoma Case
+        CONTROLLO: Adjacent Liver Tissue
+    [GSE256235] n_trattati=10 vs n_controlli=3
+        TRATTATO : Hepatocellular carcinoma
+        CONTROLLO: Healthy liver control
+    [GSE77509] n_trattati=11 vs n_controlli=16
+        TRATTATO : PVTT #6
+        CONTROLLO: Adjacent Normal #3
+    [GSE77509] n_trattati=2 vs n_controlli=16
+        TRATTATO : PVTT #14
+        CONTROLLO: Adjacent Normal #3
+    [GSE77509] n_trattati=2 vs n_controlli=16
+        TRATTATO : Primary Tumor #17
+        CONTROLLO: Adjacent Normal #3
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE120663] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE144269] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE159220] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE164359] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Hepatocellular Carcinoma → Adjacent Liver Tissue
+            Hepatocellular Carcinoma Case → Adjacent Liver Tissue
+            Recurrent Hepatocellular Carcinoma → Adjacent Liver Tissue
+    [GSE256235] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE77509] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            PVTT #3 → Adjacent Normal #3
+            PVTT #8 → Adjacent Normal #3
+- STUDI USCITI rispetto al riferimento (3) >>> DIVERGENZA:
+    [GSE216613] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Hepatocellular Carcinoma
+        era CONTROLLO: Normal Adjacent Liver Tissue
+    [GSE263134] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : HCC (HCC patient 1)
+        era CONTROLLO: Adjacent normal tissue (HCC patient 1)
+    [GSE73708] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Hepatocellular Cancer (Donor 9128)
+        era CONTROLLO: Normal Liver (Donor 9128)
+
+## GRUPPO cgroup_L5_1bbf4b9b
+- entita dichiarata : MeSH:D013274  (Stomach Neoplasms)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 5   studi efficaci (Kish): 2.9   piu pesante: 47%
+- geni significativi: 946   I2 mediano: 25.1
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 6 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE121445] n_trattati=3 vs n_controlli=3
+        TRATTATO : Gastric Cancer Tissue
+        CONTROLLO: Adjacent Normal Stomach Tissue
+    [GSE142000] n_trattati=5 vs n_controlli=2
+        TRATTATO : Gastric cancer tissue (Donor X697023)
+        CONTROLLO: Adjacent normal gastric tissue (Donor X696970)
+    [GSE172032] n_trattati=3 vs n_controlli=3
+        TRATTATO : Gastric cancer tissue donor 6
+        CONTROLLO: Matched adjacent tissue donor 1
+    [GSE174237] n_trattati=5 vs n_controlli=6
+        TRATTATO : gastric cancer
+        CONTROLLO: normal gastric mucosa
+    [GSE46597] n_trattati=2 vs n_controlli=2
+        TRATTATO : Gastric cancer stem cell
+        CONTROLLO: Differentiated cell
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE121445] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE142000] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE172032] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Gastric cancer tissue → Matched adjacent normal tissue
+    [GSE174237] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE46597] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE184336] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Gastric Cancer Tissue (Stage IIA)
+        era CONTROLLO: Normal Gastric Tissue (Stage IIA)
+
+## GRUPPO cgroup_L5_f956ef98
+- entita dichiarata : CHEBI:28119  (TCDD)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 1.7   piu pesante: 74%
+- geni significativi: 665   I2 mediano: 43.6
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 5 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE104869] n_trattati=2 vs n_controlli=2
+        TRATTATO : TCDD
+        CONTROLLO: DMSO
+    [GSE160981] n_trattati=2 vs n_controlli=3
+        TRATTATO : Endoderm TCDD 2
+        CONTROLLO: Endoderm DMSO
+    [GSE160981] n_trattati=2 vs n_controlli=3
+        TRATTATO : Mesoderm TCDD 2
+        CONTROLLO: Mesoderm DMSO
+    [GSE217334] n_trattati=4 vs n_controlli=8
+        TRATTATO : TCDD 3 hours
+        CONTROLLO: DMSO 3 hours
+    [GSE217334] n_trattati=4 vs n_controlli=8
+        TRATTATO : TCDD 24 hours
+        CONTROLLO: DMSO 24 hours
+    [GSE217334] n_trattati=4 vs n_controlli=8
+        TRATTATO : TCDD Day 3
+        CONTROLLO: DMSO Day 3
+    [GSE217334] n_trattati=4 vs n_controlli=8
+        TRATTATO : TCDD Day 17
+        CONTROLLO: DMSO Day 17
+    [GSE76608] n_trattati=4 vs n_controlli=4
+        TRATTATO : MCF-7 cells treated with TCDD
+        CONTROLLO: MCF-7 cells treated with DMSO
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE104869] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE160981] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            hESC H9 derived neural progenitors, TCDD → hESC H9 derived neural progenitors, DMSO
+    [GSE217334] stesso gruppo ma i CONFRONTI CAMBIANO (4 ora, 5 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            TCDD 10nM 24h → DMSO 24h
+            TCDD 10nM 3h → DMSO 3h
+            TCDD 10nM Day 17 → DMSO Day 17
+            TCDD 10nM Day 3 → DMSO Day 3
+            TCDD 10nM Day 7 → DMSO Day 7
+    [GSE76608] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE226045] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Primary keratinocytes treated with TCDD for 24 hours
+        era CONTROLLO: Primary keratinocytes treated with DMSO for 24 hours
+
+## GRUPPO cgroup_L5_f832048f
+- entita dichiarata : MeSH:D001943  (Breast Neoplasms)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 3.4   piu pesante: 37%
+- geni significativi: 3586   I2 mediano: 62.7
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 5 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE117970] n_trattati=34 vs n_controlli=13
+        TRATTATO : Monocytes - Breast Cancer
+        CONTROLLO: Monocytes - Normal
+    [GSE117970] n_trattati=3 vs n_controlli=4
+        TRATTATO : TAMs - Breast Cancer
+        CONTROLLO: TAMs - Normal Breast
+    [GSE183947] n_trattati=30 vs n_controlli=15
+        TRATTATO : Breast Tumor
+        CONTROLLO: Normal Breast Tissue
+    [GSE210787] n_trattati=4 vs n_controlli=5
+        TRATTATO : Breast Cancer Tissue (Age 46)
+        CONTROLLO: Normal Tissue
+    [GSE210787] n_trattati=2 vs n_controlli=5
+        TRATTATO : Breast Cancer Tissue (Age 49)
+        CONTROLLO: Normal Tissue
+    [GSE225846] n_trattati=6 vs n_controlli=3
+        TRATTATO : transitional_Kenyan_KAIC017
+        CONTROLLO: unclear_Kenyan_KAIC017
+    [GSE225846] n_trattati=2 vs n_controlli=6
+        TRATTATO : transitional_African_American_25692
+        CONTROLLO: normal_African_American_25649
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE117970] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Monocytes - Breast Cancer Patients → Monocytes - Healthy Controls
+            TAMs - Breast Cancer Patient 3 → TAMs - Normal Breast Control 2
+    [GSE183947] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Breast Tumor → Normal Breast Tissue (Donor 109745)
+    [GSE210787] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Breast Cancer Tissue → Normal Tissue
+    [GSE225846] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 4 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Transitional_Breast_Cancer_Kenyan_Stage_3 → Normal_Kenyan_Stage_3
+            Transitional_Breast_Cancer_Kenyan_Stage_3 → Normal_Kenyan_Stage_3
+            Transitional_Breast_Tumors_Kenyan_Stage_3 → Normal_Kenyan_Stage_3
+            Transitional_Breast_Tumors_Kenyan_Stage_3 → Normal_Kenyan_Stage_3
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE157086] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Breast Cancer
+        era CONTROLLO: Healthy Control
+
+## GRUPPO cgroup_L5_862cd9b9
+- entita dichiarata : CHEBI:167670  (SCH772984)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.0   piu pesante: 60%
+- geni significativi: 5182   I2 mediano: 87.9
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE228090] n_trattati=3 vs n_controlli=2
+        TRATTATO : PDX4_SCH772984
+        CONTROLLO: PDX4_DMSO
+    [GSE228090] n_trattati=3 vs n_controlli=3
+        TRATTATO : UM004_SCH772984
+        CONTROLLO: UM004_DMSO
+    [GSE237177] n_trattati=2 vs n_controlli=3
+        TRATTATO : CFPAC1 treated with SCH772984 1uM for x8 weeks
+        CONTROLLO: CFPAC1 treated with DMSO 1:1000 for 1 week
+    [GSE237177] n_trattati=3 vs n_controlli=3
+        TRATTATO : CFPAC1 treated with SCH772984 1uM for 1 week
+        CONTROLLO: CFPAC1 treated with DMSO 1:1000 for 1 week
+    [GSE237177] n_trattati=2 vs n_controlli=3
+        TRATTATO : MIA PaCa-2 treated with SCH772984 1uM for 1 week
+        CONTROLLO: MIA PaCa-2 treated with DMSO 1:1000 for 1 week
+    [GSE237177] n_trattati=3 vs n_controlli=3
+        TRATTATO : MIA PaCa-2 treated with SCH772984 1uM for x8 weeks
+        CONTROLLO: MIA PaCa-2 treated with DMSO 1:1000 for 1 week
+    [GSE237177] n_trattati=3 vs n_controlli=3
+        TRATTATO : SW1573 treated with SCH772984 1uM for x8 weeks
+        CONTROLLO: SW1573 treated with DMSO 1:1000 for 1 week
+    [GSE237177] n_trattati=3 vs n_controlli=3
+        TRATTATO : SW1573 treated with SCH772984 1uM for 1 week
+        CONTROLLO: SW1573 treated with DMSO 1:1000 for 1 week
+    [GSE237177] n_trattati=3 vs n_controlli=3
+        TRATTATO : SW620 treated with SCH772984 1uM for x8 weeks
+        CONTROLLO: SW620 treated with DMSO 1:1000 for 1 week
+    [GSE237177] n_trattati=3 vs n_controlli=3
+        TRATTATO : SW620 treated with SCH772984 1uM for 1 week
+        CONTROLLO: SW620 treated with DMSO 1:1000 for 1 week
+    [GSE252002] n_trattati=4 vs n_controlli=14
+        TRATTATO : ASPC1 + SCH772984
+        CONTROLLO: ASPC1 + DMSO
+    [GSE252002] n_trattati=2 vs n_controlli=3
+        TRATTATO : PANC1 + SCH772984
+        CONTROLLO: PANC1 + DMSO
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE228090] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE237177] stesso gruppo ma i CONFRONTI CAMBIANO (8 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            CFPAC1 treated with SCH772984 1uM x8weeks → CFPAC1 treated with DMSO
+            MIA PaCa-2 treated with SCH772984 1uM x8weeks → MIA PaCa-2 treated with DMSO
+    [GSE252002] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            ASPC1 + SCH772984 → ASPC1 + DMSO
+
+## GRUPPO cgroup_L5_5b9a08fb
+- entita dichiarata : CHEBI:44185  (methotrexate)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.2   piu pesante: 56%
+- geni significativi: 1151   I2 mediano: 89.6
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 1, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE163377] n_trattati=2 vs n_controlli=3
+        TRATTATO : MTX 1uM 20h
+        CONTROLLO: Untreated 20h
+    [GSE163377] n_trattati=2 vs n_controlli=3
+        TRATTATO : MTX 1uM 10h
+        CONTROLLO: Untreated 10h
+    [GSE183062] n_trattati=2 vs n_controlli=3
+        TRATTATO : B-ALL cell line, >96% European, Methotrexate
+        CONTROLLO: B-ALL cell line, >96% European, no treatment
+    [GSE225731] n_trattati=50 vs n_controlli=13
+        TRATTATO : RA mtx
+        CONTROLLO: RA untreated
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE163377] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            MTX 1uM 10h → Untreated 10h
+    [GSE183062] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE225731] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            RA MTX → RA untreated
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE199800] nel riferimento era in QUESTO gruppo; ora sta in: CHEBI:91450||gain||vehicle_untreated ; CHEBI:49375||gain||vehicle_untreated ; CHEBI:50924||gain||vehicle_untreated ; CHEBI:45863||gain||vehicle_untreated ; CHEBI:2038||gain||vehicle_untreated ; CHEBI:45716||gain||vehicle_untreated
+        era TRATTATO : DU145_Methotrexate_0.01_24h
+        era CONTROLLO: DU145_UNTREATED
+
+## GRUPPO cgroup_L5_05322ba1
+- entita dichiarata : CHEBI:71019  (omacetaxine)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 66%
+- geni significativi: 7542   I2 mediano: 71.4
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE180243] n_trattati=2 vs n_controlli=2
+        TRATTATO : Homoharringtonine 1µM
+        CONTROLLO: Control
+    [GSE180243] n_trattati=2 vs n_controlli=2
+        TRATTATO : Homoharringtonine 5µM
+        CONTROLLO: Control
+    [GSE193897] n_trattati=2 vs n_controlli=2
+        TRATTATO : Hep3B Homoharringtonine
+        CONTROLLO: Hep3B Control
+    [GSE193897] n_trattati=2 vs n_controlli=2
+        TRATTATO : HepG2 Homoharringtonine 1uM
+        CONTROLLO: HepG2 Control
+    [GSE193897] n_trattati=2 vs n_controlli=2
+        TRATTATO : HepG2 Homoharringtonine 10uM
+        CONTROLLO: HepG2 Control
+    [GSE193897] n_trattati=2 vs n_controlli=2
+        TRATTATO : HepG2 Homoharringtonine 100nM
+        CONTROLLO: HepG2 Control
+    [GSE193897] n_trattati=2 vs n_controlli=2
+        TRATTATO : Huh6 Homoharringtonine
+        CONTROLLO: Huh6 Control
+    [GSE193897] n_trattati=2 vs n_controlli=2
+        TRATTATO : Huh7 Homoharringtonine
+        CONTROLLO: Huh7 Control
+    [GSE193897] n_trattati=2 vs n_controlli=2
+        TRATTATO : PLC Homoharringtonine
+        CONTROLLO: PLC Control
+    [GSE252740] n_trattati=3 vs n_controlli=4
+        TRATTATO : Transgene Stable Homoharringtonine
+        CONTROLLO: Transgene Stable Control
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE180243] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE193897] stesso gruppo ma i CONFRONTI CAMBIANO (7 ora, 8 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Hep3B Homoharringtonine → Hep3B Control
+            HepG2 Homoharringtonine 100nM → HepG2 Control
+            HepG2 Homoharringtonine 10uM → HepG2 Control
+            HepG2 Homoharringtonine 1uM → HepG2 Control
+            HepG2 Homoharringtonine 500nM → HepG2 Control
+            Huh6 Homoharringtonine → Huh6 Control
+            Huh7 Homoharringtonine → Huh7 Control
+            PLC Homoharringtonine → PLC Control
+    [GSE252740] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Homoharringtonine (mtRunx1) → Control (mtRunx1)
+            Homoharringtonine (transgene_stable) → Control (transgene_stable)
+
+## GRUPPO cgroup_L5_2d53def6
+- entita dichiarata : HGNC:6005  (IL21)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.9   piu pesante: 65%
+- geni significativi: 94   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE120904] n_trattati=4 vs n_controlli=5
+        TRATTATO : Intestinal epithelial cells treated with IL21
+        CONTROLLO: Intestinal epithelial cells treated with vehicle_only
+    [GSE120904] n_trattati=2 vs n_controlli=2
+        TRATTATO : Intestinal intraepithelial cytotoxic T cells treated with IL21 and CP
+        CONTROLLO: Intestinal intraepithelial cytotoxic T cells treated with vehicle_only
+    [GSE120904] n_trattati=3 vs n_controlli=2
+        TRATTATO : Intestinal intraepithelial cytotoxic T cells treated with IL21
+        CONTROLLO: Intestinal intraepithelial cytotoxic T cells treated with vehicle_only
+    [GSE120904] n_trattati=2 vs n_controlli=2
+        TRATTATO : Intestinal intraepithelial cytotoxic T cells treated with IL21
+        CONTROLLO: Intestinal intraepithelial cytotoxic T cells treated with vehicle_only
+    [GSE126409] n_trattati=3 vs n_controlli=4
+        TRATTATO : Healthy IEIL cells stimulated with IL21 for 24 hours
+        CONTROLLO: Healthy IEIL cells vehicle control (time zero)
+    [GSE126409] n_trattati=2 vs n_controlli=4
+        TRATTATO : Healthy IEIL cells stimulated with IL21 for 30 minutes
+        CONTROLLO: Healthy IEIL cells vehicle control (time zero)
+    [GSE126409] n_trattati=2 vs n_controlli=4
+        TRATTATO : Healthy IEIL cells stimulated with IL21 for 4 hours
+        CONTROLLO: Healthy IEIL cells vehicle control (time zero)
+    [GSE198963] n_trattati=2 vs n_controlli=2
+        TRATTATO : IL21 Transgene (Age 30, Male)
+        CONTROLLO: Unstimulated Transgene (Age 30, Male)
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE120904] stesso gruppo ma i CONFRONTI CAMBIANO (4 ora, 7 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Intestinal epithelial cells treated with IL21 (alternative) → Intestinal epithelial cells treated with vehicle only
+            Intestinal epithelial cells treated with IL21 → Intestinal epithelial cells treated with vehicle only
+            Intestinal intraepithelial cytotoxic T cells treated with IL21 (alternative 4) → Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+            Intestinal intraepithelial cytotoxic T cells treated with IL21 → Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+            Intestinal intraepithelial cytotoxic T cells treated with IL21 and CP (alternative 2) → Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+            Intestinal intraepithelial cytotoxic T cells treated with IL21 and CP (alternative) → Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+            Intestinal intraepithelial cytotoxic T cells treated with IL21 and CP → Intestinal intraepithelial cytotoxic T cells treated with vehicle only
+    [GSE126409] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 9 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Celiac IL21 24h → Celiac Control
+            Celiac IL21 30min → Celiac Control
+            Celiac IL21 3h → Celiac Control
+            Celiac IL21 4h → Celiac Control
+            Healthy IL21 24h → Healthy Vehicle Control
+            Healthy IL21 30min → Healthy Vehicle Control
+            Healthy IL21 3h → Healthy Vehicle Control
+            Healthy IL21 3h → Healthy Vehicle Control
+            Healthy IL21 4h → Healthy Vehicle Control
+    [GSE198963] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            IL21 stimulated WT CD4+ T-cells (Age 45, Female) → Unstimulated WT CD4+ T-cells (Age 45, Female)
+
+## GRUPPO cgroup_L5_96c9f7bf
+- entita dichiarata : STR:bipolar_disorder  (bipolar disorder)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.3   piu pesante: 57%
+- geni significativi: 1551   I2 mediano: 65.6
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE134497] n_trattati=9 vs n_controlli=11
+        TRATTATO : Bipolar Disorder
+        CONTROLLO: Healthy Control
+    [GSE78936] n_trattati=5 vs n_controlli=4
+        TRATTATO : Bipolar_Disorder_Brain
+        CONTROLLO: Control_Brain_Vehicle
+    [GSE78936] n_trattati=13 vs n_controlli=11
+        TRATTATO : Bipolar_Disorder_BA11
+        CONTROLLO: Control_BA11
+    [GSE78936] n_trattati=7 vs n_controlli=4
+        TRATTATO : Bipolar_Disorder_BA24
+        CONTROLLO: Control_BA24
+    [GSE78936] n_trattati=5 vs n_controlli=5
+        TRATTATO : Bipolar_Disorder_BA9
+        CONTROLLO: Control_BA9
+    [GSE80655] n_trattati=23 vs n_controlli=2
+        TRATTATO : Bipolar_Disorder_AnCg
+        CONTROLLO: Control_AnCg
+    [GSE80655] n_trattati=12 vs n_controlli=19
+        TRATTATO : Bipolar_Disorder_DLPFC
+        CONTROLLO: Control_DLPFC
+    [GSE80655] n_trattati=2 vs n_controlli=19
+        TRATTATO : Bipolar_Disorder_DLPFC
+        CONTROLLO: Control_DLPFC
+    [GSE80655] n_trattati=3 vs n_controlli=19
+        TRATTATO : Bipolar_Disorder_DLPFC
+        CONTROLLO: Control_DLPFC
+    [GSE80655] n_trattati=6 vs n_controlli=19
+        TRATTATO : Bipolar_Disorder_DLPFC
+        CONTROLLO: Control_DLPFC
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE134497] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Bipolar Disorder - Differentiation → Healthy Control - Differentiation
+    [GSE78936] stesso gruppo ma i CONFRONTI CAMBIANO (4 ora, 4 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Bipolar Disorder (BA11) → Control (BA11)
+            Bipolar Disorder (BA24) → Control (BA24)
+            Bipolar Disorder (BA9) → Control (BA9)
+            Bipolar Disorder (Brain) → Control (Vehicle)
+    [GSE80655] stesso gruppo ma i CONFRONTI CAMBIANO (5 ora, 6 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Bipolar_Disorder_brain_Age36 → Control_brain_Age41
+            Bipolar_Disorder_brain_Age56 → Control_brain_Age70
+            Bipolar_Disorder_brain_Age69 → Control_brain_Age41
+            Bipolar_Disorder_DLPFC_Age32 → Control_DLPFC_Age32
+            Bipolar_Disorder_DLPFC_Age40 → Control_DLPFC_Age65
+            Bipolar_Disorder_DLPFC_Age69 → Control_DLPFC_Age65
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE234795] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Bipolar Disorder Case Pool
+        era CONTROLLO: Healthy Control
+
+## GRUPPO cgroup_L5_f9cc41b3
+- entita dichiarata : STR:vtp50469  (vtp50469)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.0   piu pesante: 57%
+- geni significativi: 450   I2 mediano: 94.1
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE168462] n_trattati=5 vs n_controlli=2
+        TRATTATO : CBAM-68552 PDX cells, VTP50469, 21 days
+        CONTROLLO: CBAM-68552 PDX cells, vehicle control, 21 days
+    [GSE183487] n_trattati=2 vs n_controlli=2
+        TRATTATO : DHL10_VTP50469
+        CONTROLLO: DHL10_DMSO
+    [GSE183487] n_trattati=2 vs n_controlli=4
+        TRATTATO : Karpas422_VTP50469
+        CONTROLLO: Karpas422_DMSO
+    [GSE186709] n_trattati=2 vs n_controlli=2
+        TRATTATO : Acute myeloid leukemia PDX derived cell line bone marrow VTP50469
+        CONTROLLO: Acute myeloid leukemia PDX derived cell line bone marrow Vehicle
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE168462] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE183487] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            DHL10 + VTP50469 → DHL10 + DMSO
+            Karpas422 + VTP50469 → Karpas422 + DMSO
+    [GSE186709] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            AML PDX Case VTP50469 → AML PDX Case Vehicle
+

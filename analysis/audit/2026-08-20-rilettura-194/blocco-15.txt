@@ -1,0 +1,662 @@
+# BLOCCO 15 — 12 meta-analisi
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable. I confronti elencati
+sono quelli EFFETTIVAMENTE POOLATI (replica del dispatch di produzione, validata
+contro il registro degli scarti e contro per_study_de). Le etichette sono INTERE.
+
+La riga [CONFRONTO] e' cio' che il gruppo mette insieme. La riga [RIFERIMENTO]
+dice dov'era quello studio nell'altra esecuzione della stessa catena, che
+differisce SOLO per gli stadi LLM.
+
+## GRUPPO cgroup_L5_aecd610f
+- entita dichiarata : STR:schizophrenia  (schizophrenia)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 13   studi efficaci (Kish): NA   piu pesante: NA%
+- geni significativi: 0   I2 mediano: 14.0
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 14 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE107638] n_trattati=21 vs n_controlli=2
+        TRATTATO : NeuN Schizophrenia
+        CONTROLLO: NeuN Control
+    [GSE107638] n_trattati=16 vs n_controlli=22
+        TRATTATO : OLIG2 Schizophrenia
+        CONTROLLO: OLIG2 Vehicle
+    [GSE112523] n_trattati=5 vs n_controlli=15
+        TRATTATO : Schizophrenia (Donor 9)
+        CONTROLLO: Control (Donor 10)
+    [GSE118313] n_trattati=2 vs n_controlli=7
+        TRATTATO : Schizophrenia Case 2
+        CONTROLLO: Healthy Control
+    [GSE121376] n_trattati=28 vs n_controlli=27
+        TRATTATO : Schizophrenia Case
+        CONTROLLO: Healthy Control (Negative)
+    [GSE132689] n_trattati=3 vs n_controlli=7
+        TRATTATO : Schizophrenia Case + Stress
+        CONTROLLO: Normal Control + Stress
+    [GSE182875] n_trattati=7 vs n_controlli=3
+        TRATTATO : Schizophrenia Neural Progenitor Cells
+        CONTROLLO: Control Neural Progenitor Cells
+    [GSE184102] n_trattati=2 vs n_controlli=2
+        TRATTATO : Schizophrenia Case 1
+        CONTROLLO: Control 1
+    [GSE191248] n_trattati=3 vs n_controlli=11
+        TRATTATO : Schizophrenia Case (Age 66, Male)
+        CONTROLLO: Healthy Control (Age 47, Female)
+    [GSE228881] n_trattati=5 vs n_controlli=10
+        TRATTATO : Schizophrenia Case 1
+        CONTROLLO: Healthy Control
+    [GSE263180] n_trattati=9 vs n_controlli=2
+        TRATTATO : Schizophrenia
+        CONTROLLO: Healthy Control (No Treatment)
+    [GSE78936] n_trattati=26 vs n_controlli=4
+        TRATTATO : Schizophrenia_Brain
+        CONTROLLO: Control_Brain_Vehicle
+    [GSE78936] n_trattati=2 vs n_controlli=4
+        TRATTATO : Schizophrenia_BA24
+        CONTROLLO: Control_BA24
+    [GSE80655] n_trattati=15 vs n_controlli=2
+        TRATTATO : Schizophrenia_AnCg
+        CONTROLLO: Control_AnCg
+    [GSE80655] n_trattati=8 vs n_controlli=2
+        TRATTATO : Schizophrenia_AnCg
+        CONTROLLO: Control_AnCg
+    [GSE80655] n_trattati=24 vs n_controlli=19
+        TRATTATO : Schizophrenia_DLPFC
+        CONTROLLO: Control_DLPFC
+    [GSE86906] n_trattati=4 vs n_controlli=7
+        TRATTATO : Schizophrenia Case, Age 17, Male
+        CONTROLLO: Healthy Control, Age 26, Male
+    [GSE86906] n_trattati=18 vs n_controlli=2
+        TRATTATO : Schizophrenia Case, Age 12, Male
+        CONTROLLO: Healthy Control, Age 25, Male
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE107638] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Cyto Schizophrenia → Cyto Control
+            NeuN Schizophrenia → NeuN Control
+            OLIG2 Schizophrenia → OLIG2 Control
+    [GSE112523] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia (Donor 20) → Control (Donor 21)
+            Schizophrenia (Donor 9) → Control (Donor 21)
+    [GSE118313] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE121376] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia → Healthy Control
+    [GSE132689] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE182875] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia Neural Progenitor Cell → Control Neural Progenitor Cell 353
+    [GSE184102] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia Case 1 → Healthy Control
+    [GSE191248] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia → Healthy Control 3
+    [GSE228881] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE263180] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia → Healthy Control (None)
+    [GSE78936] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia (BA24) → Control (BA24)
+            Schizophrenia (Brain) → Control (Vehicle)
+    [GSE80655] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 5 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia_brain_Age31 → Control_brain_Age41
+            Schizophrenia_brain_Age35 → Control_brain_Age70
+            Schizophrenia_brain_Age36 → Control_brain_Age70
+            Schizophrenia_brain_Age63 → Control_brain_Age41
+            Schizophrenia_DLPFC_Age35 → Control_DLPFC_Age32
+    [GSE86906] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Schizophrenia Case 1 → Healthy Control 1
+            Schizophrenia Case 2 → Healthy Control 1
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE138082] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : CA1 schizophrenia OFF
+        era CONTROLLO: CA1 control OFF
+
+## GRUPPO cgroup_L5_444e7fc2
+- entita dichiarata : NCBITaxon:10359  (HCMV (human cytomegalovirus))
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 9   studi efficaci (Kish): 5.9   piu pesante: 22%
+- geni significativi: 529   I2 mediano: 87.5
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 9 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE120891] n_trattati=2 vs n_controlli=2
+        TRATTATO : ARPE19 cells infected with CMV/TB40e (MOI=3) for 48 hours
+        CONTROLLO: ARPE19 cells mock-infected for 48 hours
+    [GSE120891] n_trattati=2 vs n_controlli=2
+        TRATTATO : MRC5 cells infected with CMV/AD169 (MOI=3) for 48 hours
+        CONTROLLO: MRC5 cells mock-infected for 48 hours
+    [GSE120891] n_trattati=2 vs n_controlli=2
+        TRATTATO : MRC5 cells infected with CMV/TB40 (MOI=3) for 48 hours
+        CONTROLLO: MRC5 cells mock-infected for 48 hours
+    [GSE120891] n_trattati=2 vs n_controlli=2
+        TRATTATO : MRC5 cells infected with CMV/TB40e (MOI=3) for 48 hours
+        CONTROLLO: MRC5 cells mock-infected for 48 hours
+    [GSE130665] n_trattati=2 vs n_controlli=2
+        TRATTATO : siNT + CMV/TB40 strain
+        CONTROLLO: siNT + mock infected
+    [GSE141236] n_trattati=3 vs n_controlli=3
+        TRATTATO : HCMV infection
+        CONTROLLO: Vehicle control
+    [GSE141236] n_trattati=3 vs n_controlli=3
+        TRATTATO : HCMV/M. mass co-infection
+        CONTROLLO: Vehicle control
+    [GSE159235] n_trattati=2 vs n_controlli=2
+        TRATTATO : virus CMV strain TB40
+        CONTROLLO: mock
+    [GSE179609] n_trattati=2 vs n_controlli=4
+        TRATTATO : CD4_CMV
+        CONTROLLO: CD4
+    [GSE179609] n_trattati=2 vs n_controlli=10
+        TRATTATO : CD8_CM_CMV
+        CONTROLLO: CD8_CM
+    [GSE179609] n_trattati=2 vs n_controlli=8
+        TRATTATO : CD8_EM1_CMV
+        CONTROLLO: CD8_EM1
+    [GSE179609] n_trattati=2 vs n_controlli=9
+        TRATTATO : CD8_EM2_CMV
+        CONTROLLO: CD8_EM2
+    [GSE179609] n_trattati=2 vs n_controlli=2
+        TRATTATO : CD8_naive_CMV
+        CONTROLLO: CD8_naive
+    [GSE203395] n_trattati=7 vs n_controlli=53
+        TRATTATO : CMV infected, non-BCG
+        CONTROLLO: Control, non-BCG
+    [GSE203395] n_trattati=29 vs n_controlli=2
+        TRATTATO : CMV infected, BCG vaccinated
+        CONTROLLO: Control, BCG vaccinated
+    [GSE210989] n_trattati=3 vs n_controlli=3
+        TRATTATO : MRC5 cells infected with HCMV strain AD169 for 48 hours
+        CONTROLLO: MRC5 cells mock-treated for 48 hours
+    [GSE248927] n_trattati=2 vs n_controlli=2
+        TRATTATO : HCMV (TB40E) treated
+        CONTROLLO: Mock treated
+    [GSE94724] n_trattati=2 vs n_controlli=2
+        TRATTATO : HCMV infected decidua
+        CONTROLLO: Mock infected decidua
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE120891] stesso gruppo ma i CONFRONTI CAMBIANO (4 ora, 4 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            ARPE19 cells exposed to CMV/TB40e → ARPE19 cells mock-infected
+            MRC5 cells exposed to CMV/AD169 → MRC5 cells mock-infected for 48 hours
+            MRC5 cells exposed to CMV/TB40 → MRC5 cells mock-infected for 48 hours
+            MRC5 cells exposed to CMV/TB40e → MRC5 cells mock-infected for 48 hours
+    [GSE130665] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE141236] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Monocytes exposed to HCMV → Uninfected THP-1 cells (control)
+    [GSE159235] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE179609] stesso gruppo ma i CONFRONTI CAMBIANO (5 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Naive CD8+ T Cells Exposed to CMV → Naive CD8+ T Cells Control
+    [GSE203395] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 6 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            CMV-infected, 7 days → D-7, 7 days
+            CMV-infected, D-7, 7 days → D-7, 7 days
+            CMV-infected, D-7, 7 days → D-7, 7 days
+            CMV-infected, D-7, 7 days, BCG vaccinated → M.tb-uninfected, D-7, 7 days, BCG vaccinated
+            CMV-infected, D-7, 7 days, BCG vaccinated → M.tb-uninfected, D-7, 7 days, BCG vaccinated
+            M.tb-uninfected, CMV-infected, D-7, 7 days, BCG vaccinated → M.tb-uninfected, D-7, 7 days, BCG vaccinated
+    [GSE210989] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            MRC5 cells infected with HCMV strain AD169 for 48 hours → Vehicle-only MRC5 cells for 48 hours
+    [GSE248927] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE94724] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+
+## GRUPPO cgroup_L5_b32ab7f6
+- entita dichiarata : HGNC:5981  (IL17A)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 7   studi efficaci (Kish): 2.2   piu pesante: 59%
+- geni significativi: 895   I2 mediano: 38.9
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 9 studi; entrati ora: 0, usciti: 2
+- CONFRONTI POOLATI (etichette intere):
+    [GSE103930] n_trattati=3 vs n_controlli=4
+        TRATTATO : IL17A stimulation
+        CONTROLLO: Untreated
+    [GSE119047] n_trattati=3 vs n_controlli=2
+        TRATTATO : IL17A
+        CONTROLLO: PBS
+    [GSE171170] n_trattati=3 vs n_controlli=3
+        TRATTATO : IL-17A (100 ng/ml)
+        CONTROLLO: PBS
+    [GSE171952] n_trattati=6 vs n_controlli=6
+        TRATTATO : Chondrocytes_P33_IL-17A
+        CONTROLLO: Chondrocytes_P33_Vehicle
+    [GSE171952] n_trattati=2 vs n_controlli=3
+        TRATTATO : Synovial_fibroblasts_P330_IL-17A
+        CONTROLLO: Synovial_fibroblasts_P330_Vehicle
+    [GSE171952] n_trattati=2 vs n_controlli=3
+        TRATTATO : Synovial_fibroblasts_P299_IL-17A
+        CONTROLLO: Synovial_fibroblasts_P299_Vehicle
+    [GSE182957] n_trattati=4 vs n_controlli=4
+        TRATTATO : IL17
+        CONTROLLO: Bronchial epithelial cells differentiated on porous membrane under air-liquid interface condition
+    [GSE190634] n_trattati=4 vs n_controlli=3
+        TRATTATO : Colonic organoid, donor 1, IL17A 50ng/mL
+        CONTROLLO: Colonic organoid, donor 1, no treatment
+    [GSE198683] n_trattati=2 vs n_controlli=4
+        TRATTATO : IL-17 (DonorID 1)
+        CONTROLLO: Control (DonorID 1)
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE103930] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            PBMC CD4 + IL17A → PBMC CD4 (untreated)
+    [GSE119047] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            IL17A → PBS
+            IL17A TGFlo → PBS
+    [GSE171170] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE171952] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Chondrocytes_P33_IL-17A → Chondrocytes_P33_Control_vehicle
+            Synovial_fibroblasts_P330_IL-17A → Synovial_fibroblasts_P330_Control_vehicle
+    [GSE182957] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE190634] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Colonic Organoid Donor 1 IL17A 50ng/mL → Colonic Organoid Donor 1 Control
+    [GSE198683] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            IL-17 (DonorID 1) → Control
+- STUDI USCITI rispetto al riferimento (2) >>> DIVERGENZA:
+    [GSE122305] nel riferimento era in QUESTO gruppo; ora sta in: HGNC:11766||gain||vehicle_untreated ; HGNC:11892||gain||vehicle_untreated
+        era TRATTATO : IL-17A
+        era CONTROLLO: Control (PBS-0.1%BSA)
+    [GSE179354] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : IL17a
+        era CONTROLLO: Control
+
+## GRUPPO cgroup_L5_7805eee6
+- entita dichiarata : STR:covid_19  (covid 19)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 3.2   piu pesante: 43%
+- geni significativi: 786   I2 mediano: 71.7
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 7 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE154311] n_trattati=3 vs n_controlli=2
+        TRATTATO : COVID-19 CD16High
+        CONTROLLO: Healthy NDN
+    [GSE154311] n_trattati=3 vs n_controlli=2
+        TRATTATO : COVID-19 CD16Int
+        CONTROLLO: Healthy NDN
+    [GSE159585] n_trattati=7 vs n_controlli=13
+        TRATTATO : COVID-19
+        CONTROLLO: Healthy Control
+    [GSE164332] n_trattati=2 vs n_controlli=2
+        TRATTATO : COVID-19 Frontal Cortex
+        CONTROLLO: Healthy Control Frontal Cortex
+    [GSE164332] n_trattati=6 vs n_controlli=2
+        TRATTATO : COVID-19 Frontal Cortex
+        CONTROLLO: Healthy Control Frontal Cortex
+    [GSE183533] n_trattati=31 vs n_controlli=3
+        TRATTATO : COVID-19 infected lung tissue
+        CONTROLLO: Healthy male lung tissue
+    [GSE189199] n_trattati=21 vs n_controlli=28
+        TRATTATO : COVID-19 lymph node
+        CONTROLLO: Healthy lymph node
+    [GSE190496] n_trattati=5 vs n_controlli=2
+        TRATTATO : COVID-19 Bronchoalveolar Lavage
+        CONTROLLO: Healthy Normal Human Bronchoalveolar Lavage Cells
+    [GSE190496] n_trattati=8 vs n_controlli=4
+        TRATTATO : COVID-19 Lung Tissue
+        CONTROLLO: Healthy Normal Human Lung
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE154311] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            CD16High COVID-19 → Normal Density Neutrophils Healthy
+            CD16Int COVID-19 → Normal Density Neutrophils Healthy
+    [GSE159585] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE164332] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            COVID-19 Frontal Cortex → Control Frontal Cortex 2
+            COVID-19 Frontal Cortex 3 → Control Frontal Cortex 2
+    [GSE183533] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE189199] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE190496] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            COVID-19 Bronchoalveolar Lavage Cells → Healthy Normal Human Bronchoalveolar Lavage Cells
+            COVID-19 Lung Tissue → Healthy Normal Human Lung Tissue
+            COVID-19 Lung Tissue → Healthy Normal Human Lung Tissue
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE165461] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : COVID-19 Untreated
+        era CONTROLLO: Healthy Control
+        era TRATTATO : COVID-19 Untreated (smaller cohort)
+        era CONTROLLO: Healthy Control
+
+## GRUPPO cgroup_L5_c13b1103
+- entita dichiarata : MeSH:D065626  (Non-alcoholic Fatty Liver Disease)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 5   studi efficaci (Kish): 3.6   piu pesante: 39%
+- geni significativi: 828   I2 mediano: 82.2
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 5 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE115193] n_trattati=3 vs n_controlli=2
+        TRATTATO : NAFLD
+        CONTROLLO: Healthy Control
+    [GSE126848] n_trattati=15 vs n_controlli=14
+        TRATTATO : NAFLD
+        CONTROLLO: Healthy
+    [GSE135251] n_trattati=6 vs n_controlli=5
+        TRATTATO : NAFLD early stage (patient 3)
+        CONTROLLO: Control
+    [GSE135251] n_trattati=4 vs n_controlli=5
+        TRATTATO : NAFLD early stage (patient 115)
+        CONTROLLO: Control
+    [GSE135251] n_trattati=26 vs n_controlli=5
+        TRATTATO : NAFLD early stage (patient 112)
+        CONTROLLO: Control
+    [GSE135251] n_trattati=7 vs n_controlli=5
+        TRATTATO : NAFLD early stage (patient 25)
+        CONTROLLO: Control
+    [GSE160016] n_trattati=5 vs n_controlli=6
+        TRATTATO : NAFLD
+        CONTROLLO: Normal
+    [GSE185051] n_trattati=16 vs n_controlli=2
+        TRATTATO : NAFLD disease
+        CONTROLLO: Normal
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE115193] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE126848] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            NAFLD Male → Healthy
+    [GSE135251] stesso gruppo ma i CONFRONTI CAMBIANO (4 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            NAFLD early stage (donor 112) → Healthy Control
+    [GSE160016] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE185051] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+
+## GRUPPO cgroup_L5_49e290ae
+- entita dichiarata : CHEBI:4031  (cyclosporin A)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 1.2   piu pesante: 92%
+- geni significativi: 532   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 1, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE217421] n_trattati=2 vs n_controlli=12
+        TRATTATO : Cyclosporine-treated cardiac myocytes
+        CONTROLLO: DMSO-treated cardiac myocytes
+    [GSE217423] n_trattati=8 vs n_controlli=16
+        TRATTATO : Cardiac myocytes treated with Cyclosporine
+        CONTROLLO: Cardiac myocytes treated with DMSO
+    [GSE236896] n_trattati=2 vs n_controlli=6
+        TRATTATO : HCT-116, Cyclosporin A, 5 uM, 3 days, passage 4-5
+        CONTROLLO: HCT-116, DMSO, 3 days, passage 4-5
+    [GSE259282] n_trattati=2 vs n_controlli=4
+        TRATTATO : Neutrophils treated with Cyclosporine A
+        CONTROLLO: Control neutrophils (non-treated)
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE217421] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Cyclosporine-treated cardiac myocytes → DMSO-treated cardiac myocytes
+            Cyclosporine-treated MSN01 cardiac myocytes → DMSO-treated cardiac myocytes
+            Cyclosporine-treated MSN06 cardiac myocytes → DMSO-treated cardiac myocytes
+    [GSE217423] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Cardiac Myocytes treated with Cyclosporine 125nM for 48 hours → Cardiac Myocytes treated with DMSO
+    [GSE236896] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            HCT-116, Cyclosporin A, 5 uM, 3 days, 4-5 passages → HCT-116, DMSO, 3 days, 4-5 passages
+    [GSE259282] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE208405] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Atopic Dermatitis Ciclosporin Treated
+        era CONTROLLO: Atopic Dermatitis Before Dupilumab Treatment
+        era TRATTATO : Atopic Dermatitis Ciclosporin Treated
+        era CONTROLLO: Atopic Dermatitis Before Dupilumab Treatment
+
+## GRUPPO cgroup_L5_8c9339f5
+- entita dichiarata : NCBITaxon:64320  (Zika virus)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.9   piu pesante: 42%
+- geni significativi: 3462   I2 mediano: 63.1
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 5 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE131605] n_trattati=15 vs n_controlli=20
+        TRATTATO : zika_virus_infection_2016_19
+        CONTROLLO: mock_infection
+    [GSE131605] n_trattati=3 vs n_controlli=20
+        TRATTATO : zika_virus_infection_2017_17
+        CONTROLLO: mock_infection
+    [GSE147093] n_trattati=3 vs n_controlli=3
+        TRATTATO : Zika-exposed HepG2 cells
+        CONTROLLO: Mock-treated HepG2 cells
+    [GSE233049] n_trattati=3 vs n_controlli=2
+        TRATTATO : Wild-Type ZIKV Infection
+        CONTROLLO: Wild-Type Mock Infection
+    [GSE93385] n_trattati=3 vs n_controlli=3
+        TRATTATO : G010 ZIKV infected
+        CONTROLLO: G010 Mock infected
+    [GSE93385] n_trattati=3 vs n_controlli=3
+        TRATTATO : K048 ZIKV infected
+        CONTROLLO: K048 Mock infected
+    [GSE93385] n_trattati=3 vs n_controlli=3
+        TRATTATO : K054 ZIKV infected
+        CONTROLLO: K054 Mock infected
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE131605] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Zika virus infection (Donor 2016_19) → Mock infection
+            Zika virus infection (Donor 2017_17) → Mock infection
+    [GSE147093] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE233049] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            ATF3-/- ZIKV Infection (2) → ATF3-/- Mock Infection (2)
+            Wild Type ZIKV Infection → Wild Type Mock Infection
+    [GSE93385] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE235210] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : ZIKV-infected hSeC (12h) - replicate
+        era CONTROLLO: Mock-infected hSeC (12h)
+
+## GRUPPO cgroup_L5_8341bee7
+- entita dichiarata : CHEBI:17026  (progesterone)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.7   piu pesante: 74%
+- geni significativi: 210   I2 mediano: 72.3
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE149640] n_trattati=3 vs n_controlli=3
+        TRATTATO : HTR8/SVneo + Progesterone + Ethanol
+        CONTROLLO: HTR8/SVneo + Ethanol
+    [GSE220806] n_trattati=4 vs n_controlli=4
+        TRATTATO : Cervical insufficiency, progesterone
+        CONTROLLO: Cervical insufficiency, untreated
+    [GSE220806] n_trattati=3 vs n_controlli=3
+        TRATTATO : Healthy, progesterone
+        CONTROLLO: Healthy, untreated
+    [GSE99626] n_trattati=2 vs n_controlli=3
+        TRATTATO : T47D cells treated with E2 and Progesterone
+        CONTROLLO: T47D cells treated with Vehicle
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE149640] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            HTR8/SVneo + progesterone + ethanol → HTR8/SVneo + ethanol
+    [GSE220806] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE99626] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+
+## GRUPPO cgroup_L5_d800c4f2
+- entita dichiarata : CHEBI:45716  (vorinostat)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.0   piu pesante: 55%
+- geni significativi: 4604   I2 mediano: 86.0
+- verdetto attuale  : coherent
+- nel riferimento   : QUESTO GRUPPO NON ESISTEVA (meta-analisi nuova)
+- CONFRONTI POOLATI (etichette intere):
+    [GSE115205] n_trattati=2 vs n_controlli=2
+        TRATTATO : SAHA 2.5uM 8330-8-RC1
+        CONTROLLO: DMSO 8330-8-RC1
+    [GSE199800] n_trattati=2 vs n_controlli=33
+        TRATTATO : Vorinostat
+        CONTROLLO: Control
+    [GSE246045] n_trattati=3 vs n_controlli=3
+        TRATTATO : Patient 19, SAHA
+        CONTROLLO: Patient 19, DMSO
+    [GSE246045] n_trattati=3 vs n_controlli=2
+        TRATTATO : Patient 71, SAHA
+        CONTROLLO: Patient 71, DMSO
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE115205] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE199800] SPOSTATO: nel riferimento lo stesso studio stava sotto un'ALTRA chiave >>> DIVERGENZA
+        era in CHEBI:8499||gain||vehicle_untreated
+            DU145_Propranolol_1.5_24h → DU145_UNTREATED
+        era in CHEBI:44185||gain||vehicle_untreated
+            DU145_Methotrexate_0.01_24h → DU145_UNTREATED
+        era in CHEBI:41774||gain||vehicle_untreated
+            DU145_Tamoxifen_24h → DU145_UNTREATED
+        era in CHEBI:230508||gain||vehicle_untreated
+            DU145_prostate_cancer_OTX015 → DU145_prostate_cancer_DMSO
+    [GSE246045] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+
+## GRUPPO cgroup_L5_8ac307e0
+- entita dichiarata : CHEBI:72317  (cabozantinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.4   piu pesante: 85%
+- geni significativi: 1428   I2 mediano: 55.1
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE171358] n_trattati=2 vs n_controlli=3
+        TRATTATO : ACHN cells treated with cabozantinib
+        CONTROLLO: Untreated ACHN cells
+    [GSE186341] n_trattati=2 vs n_controlli=44
+        TRATTATO : DU145 + Cabozantinib 1 µM 24h
+        CONTROLLO: DU145 + UNTREATED
+    [GSE186341] n_trattati=2 vs n_controlli=34
+        TRATTATO : HF2597 Cabozantinib
+        CONTROLLO: HF2597 DMSO
+    [GSE186341] n_trattati=2 vs n_controlli=28
+        TRATTATO : HSTS_Cabozantinib
+        CONTROLLO: HSTS_DMSO
+    [GSE186341] n_trattati=2 vs n_controlli=33
+        TRATTATO : KRJ1 cells treated with Cabozantinib
+        CONTROLLO: KRJ1 cells treated with DMSO
+    [GSE186341] n_trattati=2 vs n_controlli=22
+        TRATTATO : NCI-H1793_Cabozantinib_1.0944uM_24h
+        CONTROLLO: NCI-H1793_DMSO_24h
+    [GSE186341] n_trattati=2 vs n_controlli=4
+        TRATTATO : PANC-1_Cabozantinib
+        CONTROLLO: PANC-1_Untreated
+    [GSE217421] n_trattati=7 vs n_controlli=12
+        TRATTATO : Cabozantinib-treated MSN01 cells
+        CONTROLLO: DMSO-treated cardiac myocytes
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE171358] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            ACHN cells treated with Cabozantinib → Untreated ACHN cells
+    [GSE186341] stesso gruppo ma i CONFRONTI CAMBIANO (6 ora, 4 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            HF2597_Cabozantinib_0.5_uM_24h → HF2597_DMSO_24h
+            HSTS Cabozantinib → HSTS DMSO
+            NCI-H1793_Cabozantinib → NCI-H1793_DMSO
+            PANC-1 Cabozantinib 24h → PANC-1 DMSO 24h
+    [GSE217421] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Cabozantinib-treated cardiac myocytes (donor 1) → DMSO-treated cardiac myocytes
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE146096] nel riferimento era in QUESTO gruppo; ora sta in: CHEBI:49603||gain||vehicle_untreated ; CHEBI:50924||gain||vehicle_untreated
+        era TRATTATO : Cabozantinib 2uM 48h
+        era CONTROLLO: Vehicle Control
+        era TRATTATO : Cabozantinib 2uM
+        era CONTROLLO: Vehicle Control
+        era TRATTATO : Cabozantinib 2uM
+        era CONTROLLO: Vehicle Control
+        era TRATTATO : Cabozantinib 2uM
+        era CONTROLLO: Vehicle Control
+
+## GRUPPO cgroup_L5_f29dd3b3
+- entita dichiarata : MeSH:D001172  (Arthritis, Rheumatoid)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.0   piu pesante: 98%
+- geni significativi: 2833   I2 mediano: 16.7
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 5 studi; entrati ora: 0, usciti: 2
+- CONFRONTI POOLATI (etichette intere):
+    [GSE116899] n_trattati=5 vs n_controlli=2
+        TRATTATO : RA Neutrophils (Blood)
+        CONTROLLO: Healthy Neutrophils (Blood)
+    [GSE120178] n_trattati=20 vs n_controlli=20
+        TRATTATO : RA Day 1
+        CONTROLLO: Healthy
+    [GSE120178] n_trattati=10 vs n_controlli=20
+        TRATTATO : RA L1397526-42 Day 1
+        CONTROLLO: Healthy
+    [GSE120178] n_trattati=67 vs n_controlli=20
+        TRATTATO : RA Day 1 Blood
+        CONTROLLO: Healthy
+    [GSE120178] n_trattati=2 vs n_controlli=20
+        TRATTATO : RA E9730864 Day 1
+        CONTROLLO: Healthy
+    [GSE120178] n_trattati=28 vs n_controlli=20
+        TRATTATO : RA L1524577-41 Day 1
+        CONTROLLO: Healthy
+    [GSE89408] n_trattati=2 vs n_controlli=24
+        TRATTATO : Rheumatoid arthritis (early)
+        CONTROLLO: Normal
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE116899] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            RA blood neutrophils → Healthy blood neutrophils
+    [GSE120178] stesso gruppo ma i CONFRONTI CAMBIANO (5 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            RA Day 1 (Group 1) → Healthy Controls
+    [GSE89408] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Rheumatoid arthritis established (80M) → Healthy control (13M)
+- STUDI USCITI rispetto al riferimento (2) >>> DIVERGENZA:
+    [GSE117769] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Rheumatoid arthritis patient SN393
+        era CONTROLLO: Healthy donor C137
+    [GSE189136] nel riferimento era in QUESTO gruppo; ora sta in: HGNC:5992||gain||vehicle_untreated ; CHEBI:16412||gain||vehicle_untreated
+        era TRATTATO : RA PBMCs Untreated
+        era CONTROLLO: Healthy PBMCs Untreated
+
+## GRUPPO cgroup_L5_17b55386
+- entita dichiarata : STR:fshd  (fshd)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.1   piu pesante: 60%
+- geni significativi: 1651   I2 mediano: 84.3
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE115650] n_trattati=2 vs n_controlli=5
+        TRATTATO : FSHD male age 25
+        CONTROLLO: Control
+    [GSE115650] n_trattati=29 vs n_controlli=5
+        TRATTATO : FSHD male age 59
+        CONTROLLO: Control
+    [GSE123468] n_trattati=6 vs n_controlli=2
+        TRATTATO : FSHD
+        CONTROLLO: Control
+    [GSE254310] n_trattati=3 vs n_controlli=3
+        TRATTATO : AB1080 FSHD myotubes
+        CONTROLLO: AB1190 healthy myotubes
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE115650] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            FSHD male 25 years old → Control 2
+            FSHD male 59 years old → Control 2
+    [GSE123468] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            FSHD Patient 1 → Control
+            FSHD Patient 3 → Control
+            FSHD Patient 4 → Control
+    [GSE254310] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            AB1080 myotubes FSHD → AB1190
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE102812] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : FSHD
+        era CONTROLLO: Control
+

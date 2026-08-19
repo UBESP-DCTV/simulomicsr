@@ -1,0 +1,772 @@
+# BLOCCO 06 — 13 meta-analisi
+
+Ogni gruppo qui sotto e' una META-ANALISI del deliverable. I confronti elencati
+sono quelli EFFETTIVAMENTE POOLATI (replica del dispatch di produzione, validata
+contro il registro degli scarti e contro per_study_de). Le etichette sono INTERE.
+
+La riga [CONFRONTO] e' cio' che il gruppo mette insieme. La riga [RIFERIMENTO]
+dice dov'era quello studio nell'altra esecuzione della stessa catena, che
+differisce SOLO per gli stadi LLM.
+
+## GRUPPO cgroup_L5_871ae09e
+- entita dichiarata : NCBITaxon:2697049  (SARS-CoV-2)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 25   studi efficaci (Kish): 22.2   piu pesante: 5%
+- geni significativi: 816   I2 mediano: 91.7
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 36 studi; entrati ora: 2, usciti: 13
+- CONFRONTI POOLATI (etichette intere):
+    [GSE147507] n_trattati=3 vs n_controlli=6
+        TRATTATO : A549 SARS-CoV-2 MOI 2 24h
+        CONTROLLO: A549 Mock treatment 24h
+    [GSE147507] n_trattati=2 vs n_controlli=2
+        TRATTATO : A549 SARS-CoV-2 MOI 0.2 24h
+        CONTROLLO: A549 Mock treatment 24h
+    [GSE147507] n_trattati=2 vs n_controlli=2
+        TRATTATO : Calu-3 SARS-CoV-2 MOI 2 24h
+        CONTROLLO: Calu-3 Mock treatment 24h
+    [GSE147507] n_trattati=3 vs n_controlli=3
+        TRATTATO : NHBE SARS-CoV-2 MOI 2 24h
+        CONTROLLO: NHBE Mock treatment 24h
+    [GSE148696] n_trattati=2 vs n_controlli=2
+        TRATTATO : SARS-CoV-2 infected Hesc cells
+        CONTROLLO: Mock infected Hesc cells
+    [GSE148697] n_trattati=3 vs n_controlli=3
+        TRATTATO : SARS-CoV-2-infected Hesc cells (lung)
+        CONTROLLO: Mock-treated Hesc cells (lung)
+    [GSE150819] n_trattati=3 vs n_controlli=3
+        TRATTATO : human bronchial organoids SARS-CoV-2
+        CONTROLLO: human bronchial organoids
+    [GSE151803] n_trattati=2 vs n_controlli=3
+        TRATTATO : COVID-19 Lung
+        CONTROLLO: hESC Mock
+    [GSE151803] n_trattati=3 vs n_controlli=3
+        TRATTATO : hESC sars-Cov2
+        CONTROLLO: hESC Mock
+    [GSE151879] n_trattati=3 vs n_controlli=3
+        TRATTATO : Adult human cardiomyocytes SARS-CoV-2
+        CONTROLLO: Adult human cardiomyocytes Mock
+    [GSE151879] n_trattati=3 vs n_controlli=3
+        TRATTATO : hESC-derived cardiomyocytes SARS-CoV-2
+        CONTROLLO: hESC-derived cardiomyocytes Mock
+    [GSE155518] n_trattati=3 vs n_controlli=3
+        TRATTATO : Infected with SARS-CoV-2
+        CONTROLLO: Mock-infected
+    [GSE159201] n_trattati=3 vs n_controlli=3
+        TRATTATO : colon, CK+DCI, SARS-CoV-2, 1 day
+        CONTROLLO: colon, CK+DCI, Mock, 1 day
+    [GSE159201] n_trattati=3 vs n_controlli=2
+        TRATTATO : colon, CK+DCI, SARS-CoV-2, 4 days
+        CONTROLLO: colon, CK+DCI, Mock, 4 days
+    [GSE163959] n_trattati=2 vs n_controlli=2
+        TRATTATO : LS4 SARS-CoV-2 Infected
+        CONTROLLO: LM4 Mock Infected
+    [GSE163959] n_trattati=2 vs n_controlli=2
+        TRATTATO : LS5 SARS-CoV-2 Infected
+        CONTROLLO: LM5 Mock Infected
+    [GSE163959] n_trattati=3 vs n_controlli=2
+        TRATTATO : Lung Tissue SARS-CoV-2 Infected
+        CONTROLLO: LM7 Mock Infected
+    [GSE164073] n_trattati=3 vs n_controlli=3
+        TRATTATO : Sclera_SARS-CoV-2
+        CONTROLLO: Sclera_mock
+    [GSE174745] n_trattati=3 vs n_controlli=2
+        TRATTATO : Dopaminergic Neuron, SARS-CoV-2
+        CONTROLLO: Dopaminergic Neuron, Control
+    [GSE188382] n_trattati=3 vs n_controlli=4
+        TRATTATO : Wild-Type SARS-CoV-2
+        CONTROLLO: Wild-Type Mock
+    [GSE188382] n_trattati=4 vs n_controlli=4
+        TRATTATO : SIRT5-KO SARS-CoV-2 (Replicate)
+        CONTROLLO: SIRT5-KO Mock
+    [GSE190350] n_trattati=3 vs n_controlli=3
+        TRATTATO : HRT18 SARS-CoV2 p11
+        CONTROLLO: HRT18 mock
+    [GSE193330] n_trattati=2 vs n_controlli=3
+        TRATTATO : hepatocytes of bv-LoC, SARS-CoV-2 infection
+        CONTROLLO: hepatocytes of bv-LoC, control
+    [GSE193330] n_trattati=2 vs n_controlli=3
+        TRATTATO : HuCCT1, SARS-CoV-2 infection
+        CONTROLLO: HuCCT1, control
+    [GSE196113] n_trattati=3 vs n_controlli=3
+        TRATTATO : SARS-CoV-2
+        CONTROLLO: Control
+    [GSE198722] n_trattati=6 vs n_controlli=6
+        TRATTATO : Astrocytes infected with SARS-CoV-2 (MOI=1)
+        CONTROLLO: Mock-infected astrocytes
+    [GSE198722] n_trattati=6 vs n_controlli=6
+        TRATTATO : Astrocytes infected with SARS-CoV-2 (MOI=5)
+        CONTROLLO: Mock-infected astrocytes
+    [GSE199743] n_trattati=4 vs n_controlli=4
+        TRATTATO : SARS-CoV-2 infected WD-PNEC 48h
+        CONTROLLO: Mock infected WD-PNEC 48h
+    [GSE199743] n_trattati=4 vs n_controlli=4
+        TRATTATO : SARS-CoV-2 infected WD-PNEC 96h
+        CONTROLLO: Mock infected WD-PNEC 96h
+    [GSE205621] n_trattati=3 vs n_controlli=2
+        TRATTATO : A549-ACE cells SARS-CoV-2 DelARKSAP 24h
+        CONTROLLO: A549-ACE cells Mock 24h
+    [GSE205621] n_trattati=3 vs n_controlli=2
+        TRATTATO : A549-ACE cells SARS-CoV-2 DelARKSAP 48h
+        CONTROLLO: A549-ACE cells Mock 48h
+    [GSE205621] n_trattati=3 vs n_controlli=2
+        TRATTATO : A549-ACE cells SARS-CoV-2 DelOrf8 24h
+        CONTROLLO: A549-ACE cells Mock 24h
+    [GSE205621] n_trattati=3 vs n_controlli=2
+        TRATTATO : A549-ACE cells SARS-CoV-2 DelOrf8 48h
+        CONTROLLO: A549-ACE cells Mock 48h
+    [GSE205621] n_trattati=3 vs n_controlli=2
+        TRATTATO : A549-ACE cells SARS-CoV-2 WT 24h
+        CONTROLLO: A549-ACE cells Mock 24h
+    [GSE205621] n_trattati=3 vs n_controlli=2
+        TRATTATO : A549-ACE cells SARS-CoV-2 WT 48h
+        CONTROLLO: A549-ACE cells Mock 48h
+    [GSE217099] n_trattati=3 vs n_controlli=2
+        TRATTATO : SARS-CoV-2-infected (4 dpi)
+        CONTROLLO: Mock-treated (4 dpi)
+    [GSE225517] n_trattati=4 vs n_controlli=4
+        TRATTATO : Midbrain organoid Line 15 SARS-CoV-2
+        CONTROLLO: Midbrain organoid Line 15 Mock infection
+    [GSE225517] n_trattati=4 vs n_controlli=4
+        TRATTATO : Midbrain organoid SARS-CoV-2
+        CONTROLLO: Midbrain organoid Line 11 Mock infection
+    [GSE225564] n_trattati=2 vs n_controlli=3
+        TRATTATO : RUES2 lung cells infected with SARS-CoV-2 for 24 hours
+        CONTROLLO: RUES2 lung cells mock-infected for 24 hours
+    [GSE226702] n_trattati=2 vs n_controlli=2
+        TRATTATO : SARS-CoV-2 48h
+        CONTROLLO: Mock infection
+    [GSE226702] n_trattati=2 vs n_controlli=2
+        TRATTATO : SARS-CoV-2 72h
+        CONTROLLO: Mock infection
+    [GSE226702] n_trattati=2 vs n_controlli=2
+        TRATTATO : SARS-CoV-2 96h
+        CONTROLLO: Mock infection
+    [GSE244485] n_trattati=12 vs n_controlli=6
+        TRATTATO : SARS-CoV-2-infected A549-ACE2
+        CONTROLLO: Mock-treated A549-ACE2
+    [GSE244486] n_trattati=12 vs n_controlli=6
+        TRATTATO : SARS-CoV-2-infected A549-ACE2
+        CONTROLLO: Mock-treated A549-ACE2
+    [GSE253542] n_trattati=3 vs n_controlli=2
+        TRATTATO : SARS-CoV-2 96hpi
+        CONTROLLO: Mock Infected 96hpi
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE147507] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE148696] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE148697] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            SARS-CoV-2-infected Hesc cells → Mock-treated Hesc cells
+    [GSE150819] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Human bronchial organoids, SARS-CoV-2 → Human bronchial organoids, no treatment
+    [GSE151803] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Liver Organoid sars-Cov2 → Liver Organoid Mock
+    [GSE151879] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Adult human cardiomyocytes SARS-CoV-2 → Adult human cardiomyocytes Mock
+            hESC-derived cardiomyocytes SARS-CoV-2 → hESC-derived cardiomyocytes Mock
+            Macrophages SARS-CoV-2 → Macrophages Mock
+    [GSE155518] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Infected with SARS-CoV2 → Mock-infected
+    [GSE159201] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            colonic organoid, SARS-CoV-2, 1 day → colonic organoid, mock, 1 day
+            colonic organoid, SARS-CoV-2, 4 days → colonic organoid, mock, 4 days
+    [GSE163959] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 4 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            LS4 SARS-CoV-2 Infected → LM4 Mock Infected
+            LS5 SARS-CoV-2 Infected → LM5 Mock Infected
+            LS6 SARS-CoV-2 Infected → LM6 Mock Infected
+            Nasal Turbinate SARS-CoV-2 Infected → TM2 Mock Infected
+    [GSE164073] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Limbus_SARS-CoV-2 → Limbus_mock
+            Sclera_SARS-CoV-2 → Sclera_mock
+    [GSE174745] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE188382] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Wild-Type SARS-CoV-2 → Wild-Type Mock
+    [GSE190350] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            HRT18 SARS-CoV2 passage 11 → HRT18 mock-infected
+    [GSE193330] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            hepatocytes of bv-LoC infected with SARS-CoV-2 → hepatocytes of bv-LoC control
+            HuCCT1 infected with SARS-CoV-2 → HuCCT1 control
+    [GSE196113] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE198722] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE199743] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE205621] stesso gruppo ma i CONFRONTI CAMBIANO (6 ora, 6 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            SARS-CoV-2 DelARKSAP 24h → Mock 24h
+            SARS-CoV-2 DelARKSAP 48h → Mock 48h
+            SARS-CoV-2 DelOrf8 24h → Mock 24h
+            SARS-CoV-2 DelOrf8 48h → Mock 48h
+            SARS-CoV-2 WT 24h → Mock 24h
+            SARS-CoV-2 WT 48h → Mock 48h
+    [GSE217099] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            SARS-CoV-2 → mock
+    [GSE225517] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE225564] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            RUES2 lung cells infected with SARS-CoV-2 for 48 hours → RUES2 lung cells mock-infected for 48 hours
+            RUES2 lung cells infected with SARS-CoV-2 for 48 hours → RUES2 lung cells mock-infected for 48 hours
+    [GSE226702] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE244485] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE244486] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE253542] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (13) >>> DIVERGENZA:
+    [GSE153277] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 MOI 140 1dpi
+        era CONTROLLO: Control (CK+DCI)
+        era TRATTATO : SARS-CoV-2 MOI 140 4days
+        era CONTROLLO: Control (CK+DCI)
+    [GSE161281] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 infected hESC-derived peripheral neurons
+        era CONTROLLO: Uninfected hESC-derived peripheral neurons
+    [GSE169241] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : human heart, SARS-CoV-2 infected person
+        era CONTROLLO: human ES-derived macrophage, No treatment
+    [GSE181238] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2-infected Term placenta
+        era CONTROLLO: Mock-treated Term placenta
+    [GSE183850] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Heart Failure SARS-CoV-2
+        era CONTROLLO: Heart Failure Mock
+        era TRATTATO : Healthy SARS-CoV-2
+        era CONTROLLO: Healthy Mock
+    [GSE183999] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 + siRNA against non-targeting control
+        era CONTROLLO: Mock + siRNA against non-targeting control
+        era TRATTATO : SARS-CoV-2 + siRNA against non-targeting control
+        era CONTROLLO: Mock + siRNA against non-targeting control
+    [GSE196464] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 1 DPI
+        era CONTROLLO: Mock 1 DPI
+        era TRATTATO : SARS-CoV-2 3 DPI
+        era CONTROLLO: Mock 3 DPI
+    [GSE198449] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+        era TRATTATO : SARS-CoV-2 Later Surveillance
+        era CONTROLLO: Vehicle Control Later Surveillance
+    [GSE202963] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Airway Organoids SARS-CoV-2 MOI=1 48h
+        era CONTROLLO: Airway Organoids Mock
+    [GSE206677] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 infection 72hpi
+        era CONTROLLO: Control
+    [GSE233732] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 infected vagus nerve
+        era CONTROLLO: Control vagus nerve
+    [GSE237059] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 WA1 (non-sheared)
+        era CONTROLLO: Uninfected (non-sheared)
+    [GSE244484] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : SARS-CoV-2 MOI 1 24h
+        era CONTROLLO: mock
+
+## GRUPPO cgroup_L5_dde29fb4
+- entita dichiarata : CHEBI:16240  (hydrogen peroxide)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 10   studi efficaci (Kish): 4.6   piu pesante: 30%
+- geni significativi: 1426   I2 mediano: 83.1
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 8 studi; entrati ora: 2, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE126750] n_trattati=3 vs n_controlli=3
+        TRATTATO : H2O2-treated cerebellar astrocytes
+        CONTROLLO: DMSO-treated cerebellar astrocytes
+    [GSE130664] n_trattati=4 vs n_controlli=3
+        TRATTATO : H2O2 Treated (PolyA RNA)
+        CONTROLLO: Control
+    [GSE161860] n_trattati=2 vs n_controlli=2
+        TRATTATO : H2O2 after ATRA differentiation
+        CONTROLLO: Untreated SH-SY5Y
+    [GSE188458] n_trattati=3 vs n_controlli=3
+        TRATTATO : H2O2 300 uM 24h
+        CONTROLLO: Untreated
+    [GSE188458] n_trattati=3 vs n_controlli=3
+        TRATTATO : H2O2 300 uM 4h
+        CONTROLLO: Untreated
+    [GSE188458] n_trattati=3 vs n_controlli=3
+        TRATTATO : H2O2 300 uM 8h
+        CONTROLLO: Untreated
+    [GSE204781] n_trattati=5 vs n_controlli=5
+        TRATTATO : H2O2-treated T-cells
+        CONTROLLO: Untreated T-cells
+    [GSE222749] n_trattati=3 vs n_controlli=6
+        TRATTATO : H2O2 Treated
+        CONTROLLO: Control
+    [GSE225095] n_trattati=3 vs n_controlli=4
+        TRATTATO : IMR90 cells (Replicative Exhaustion) + H2O2
+        CONTROLLO: IMR90 cells (Proliferating)
+    [GSE227554] n_trattati=3 vs n_controlli=3
+        TRATTATO : MCF7 + H2O2 (50 uM)
+        CONTROLLO: MCF7 + PBS
+    [GSE227554] n_trattati=3 vs n_controlli=3
+        TRATTATO : MCF7 + H2O2 (75 uM)
+        CONTROLLO: MCF7 + PBS
+    [GSE227554] n_trattati=3 vs n_controlli=3
+        TRATTATO : MCF7_SRXN1 + H2O2 (50 uM)
+        CONTROLLO: MCF7_SRXN1 + PBS
+    [GSE227554] n_trattati=2 vs n_controlli=3
+        TRATTATO : MCF7_SRXN1 + H2O2 (75 uM)
+        CONTROLLO: MCF7_SRXN1 + PBS
+    [GSE60340] n_trattati=3 vs n_controlli=3
+        TRATTATO : H2O2 treated
+        CONTROLLO: Untreated control
+    [GSE75962] n_trattati=2 vs n_controlli=2
+        TRATTATO : H2O2
+        CONTROLLO: Control
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE126750] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE130664] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE161860] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE188458] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE204781] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE222749] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            H2O2-treated → Control
+    [GSE225095] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            IMR90 replicative exhaustion cells (H2O2) → IMR90 proliferating cells (vehicle)
+    [GSE227554] stesso gruppo ma i CONFRONTI CAMBIANO (4 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            MCF7_SRXN1 + H2O2 (50 uM) → MCF7_SRXN1 + PBS (control)
+            MCF7_SRXN1 + H2O2 (75 uM) → MCF7_SRXN1 + PBS (control)
+    [GSE60340] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE75962] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+
+## GRUPPO cgroup_L5_79a73ac5
+- entita dichiarata : NCBITaxon:11320  (Influenza A virus)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 8   studi efficaci (Kish): 6.1   piu pesante: 20%
+- geni significativi: 837   I2 mediano: 88.9
+- verdetto attuale  : incoherent — resta incoerente sul poolato: GSE113210 ('influenza at AV' => 'Control CV') e' sorveglianza clinica indicata con sigle di visita, ed e' fra i 7 studi poolati. Il rapporto peggiora da 1 su 9 a 1 su 7 perche' sono caduti due studi sperimentali (GSE134817, GSE162632)
+- nel riferimento   : esisteva con 7 studi; entrati ora: 2, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE113210] n_trattati=3 vs n_controlli=11
+        TRATTATO : influenza
+        CONTROLLO: control
+    [GSE121155] n_trattati=3 vs n_controlli=2
+        TRATTATO : Influenza virus PR8
+        CONTROLLO: Mock infection
+    [GSE134817] n_trattati=6 vs n_controlli=12
+        TRATTATO : THP-1 cells treated with Flu for 6 hours
+        CONTROLLO: THP-1 cells treated with vehicle for 6 hours
+    [GSE147507] n_trattati=4 vs n_controlli=2
+        TRATTATO : PHBE IAV MOI 3 12h
+        CONTROLLO: PHBE Mock treatment 12h
+    [GSE147507] n_trattati=2 vs n_controlli=2
+        TRATTATO : A549 IAV MOI 5 9h differentiated
+        CONTROLLO: A549 Mock treatment 9h
+    [GSE163959] n_trattati=10 vs n_controlli=2
+        TRATTATO : Lung Tissue Influenza A Infected
+        CONTROLLO: LM4 Mock Infected
+    [GSE163959] n_trattati=3 vs n_controlli=2
+        TRATTATO : Nasal Turbinate Influenza A Infected
+        CONTROLLO: TM1 Mock Infected
+    [GSE163959] n_trattati=2 vs n_controlli=2
+        TRATTATO : TH3 Influenza A Infected
+        CONTROLLO: TM3 Mock Infected
+    [GSE184017] n_trattati=30 vs n_controlli=2
+        TRATTATO : Bronchial epithelial cells exposed to Influenza
+        CONTROLLO: Mock-treated bronchial epithelial cells
+    [GSE239726] n_trattati=14 vs n_controlli=30
+        TRATTATO : Influenza A (H3N2) infected
+        CONTROLLO: Mock treated
+    [GSE253542] n_trattati=2 vs n_controlli=5
+        TRATTATO : IAV (H1N1) 48hpi
+        CONTROLLO: Mock Infected 48hpi
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE113210] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            influenza at AV → Control CV
+    [GSE121155] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE134817] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE147507] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE163959] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Lung Tissue Influenza A Infected → LM7 Mock Infected
+            Nasal Turbinate Influenza A Infected → TM3 Mock Infected
+    [GSE184017] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE239726] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Influenza A (H3N2) infected → Mock infected
+    [GSE253542] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE197143] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Influenza B 48hpi
+        era CONTROLLO: Mock 48hpi
+
+## GRUPPO cgroup_L5_d7ad915e
+- entita dichiarata : CHEBI:39867  (valproic acid)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 6   studi efficaci (Kish): 3.8   piu pesante: 36%
+- geni significativi: 2971   I2 mediano: 68.6
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 7 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE167762] n_trattati=3 vs n_controlli=2
+        TRATTATO : VPA
+        CONTROLLO: untreated
+    [GSE187006] n_trattati=3 vs n_controlli=3
+        TRATTATO : U1M Organoid VPA Treated
+        CONTROLLO: U1M Organoid Vehicle Control
+    [GSE187006] n_trattati=3 vs n_controlli=2
+        TRATTATO : U2F Organoid VPA Treated
+        CONTROLLO: U2F Organoid Vehicle Control
+    [GSE200186] n_trattati=3 vs n_controlli=3
+        TRATTATO : Dermal fibroblasts VPA
+        CONTROLLO: Dermal fibroblasts Control
+    [GSE229014] n_trattati=6 vs n_controlli=2
+        TRATTATO : Valproic Acid Treated PBMCs
+        CONTROLLO: Untreated PBMCs (Control)
+    [GSE232218] n_trattati=3 vs n_controlli=3
+        TRATTATO : VPA 200 uM
+        CONTROLLO: vehicle control
+    [GSE232218] n_trattati=3 vs n_controlli=3
+        TRATTATO : VPA 400 uM
+        CONTROLLO: vehicle control
+    [GSE241903] n_trattati=3 vs n_controlli=3
+        TRATTATO : VPA
+        CONTROLLO: Vehicle
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE167762] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE187006] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            U1M organoid + VPA → U1M organoid + vehicle
+            U2F organoid + VPA → U2F organoid + vehicle
+    [GSE200186] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE229014] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Valproic Acid treated PBMCs → Untreated PBMCs
+    [GSE232218] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            iPSC-derived brain organoids treated with VPA (200 uM) → iPSC-derived brain organoids vehicle control
+            iPSC-derived brain organoids treated with VPA (400 uM) → iPSC-derived brain organoids vehicle control
+    [GSE241903] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE159487] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : Neurons - Control - VPA
+        era CONTROLLO: Neurons - Control - Vehicle Only
+
+## GRUPPO cgroup_L5_a6fd82fa
+- entita dichiarata : CHEBI:44616  (afimoxifene)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 5   studi efficaci (Kish): 2.6   piu pesante: 50%
+- geni significativi: 917   I2 mediano: 66.1
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 5 studi; entrati ora: 1, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE104872] n_trattati=6 vs n_controlli=4
+        TRATTATO : MCF7 + 4-hydroxytamoxifen 24h
+        CONTROLLO: MCF7 + ethanol 24h
+    [GSE163908] n_trattati=3 vs n_controlli=3
+        TRATTATO : MRC5 cells treated with 4-OHT
+        CONTROLLO: MRC5 cells control group
+    [GSE179381] n_trattati=3 vs n_controlli=2
+        TRATTATO : 4-OHT Treated
+        CONTROLLO: Compound Solvent Control
+    [GSE200029] n_trattati=2 vs n_controlli=3
+        TRATTATO : T47D, Breast cancer, 4-OHT, 120h
+        CONTROLLO: T47D, Breast cancer, DMSO, 120h
+    [GSE219159] n_trattati=2 vs n_controlli=6
+        TRATTATO : TeloHAEC hERα-WT treated with 4-OHT for 6 hours (2 replicates)
+        CONTROLLO: TeloHAEC hERα-WT treated with DMSO for 6 hours
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE104872] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE163908] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE179381] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE200029] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            T47D + 4-OHT → T47D + DMSO
+    [GSE219159] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE184156] nel riferimento era in QUESTO gruppo; ora sta in: CHEBI:31638||gain||vehicle_untreated ; CHEBI:85993||gain||vehicle_untreated
+        era TRATTATO : MCF7-ESR1Y537S + 4-hydroxytamoxifen
+        era CONTROLLO: MCF7-ESR1Y537S + Vehicle
+
+## GRUPPO cgroup_L5_37942548
+- entita dichiarata : CHEBI:15367  (all-trans-retinoic acid)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.4   piu pesante: 51%
+- geni significativi: 1143   I2 mediano: 89.3
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE100855] n_trattati=2 vs n_controlli=3
+        TRATTATO : HeLa cells treated with retinoic acid
+        CONTROLLO: HeLa cells treated with DMSO
+    [GSE100855] n_trattati=3 vs n_controlli=4
+        TRATTATO : HeLa cells treated with retinoic acid (fourth batch)
+        CONTROLLO: HeLa cells treated with DMSO (fourth batch)
+    [GSE100855] n_trattati=3 vs n_controlli=2
+        TRATTATO : Skin fibroblasts treated with retinoic acid (second batch)
+        CONTROLLO: Skin fibroblasts treated with DMSO (second batch)
+    [GSE100855] n_trattati=3 vs n_controlli=2
+        TRATTATO : Skin fibroblasts treated with retinoic acid (third batch)
+        CONTROLLO: Skin fibroblasts treated with DMSO (third batch)
+    [GSE166214] n_trattati=3 vs n_controlli=5
+        TRATTATO : Retinoic Acid Treated (30 µM) Neuroblastoma
+        CONTROLLO: DMSO Control Neuroblastoma
+    [GSE166214] n_trattati=2 vs n_controlli=5
+        TRATTATO : Retinoic Acid Treated (30 µM) Neuroblastoma
+        CONTROLLO: DMSO Control Neuroblastoma
+    [GSE179347] n_trattati=2 vs n_controlli=9
+        TRATTATO : SGBS cells treated with RETINOIC ACID
+        CONTROLLO: SGBS CONTROL (EMPTY EMEM MEDIUM)
+    [GSE69121] n_trattati=2 vs n_controlli=2
+        TRATTATO : Retinoic acid-treated wild-type SK-N-SH cells
+        CONTROLLO: Untreated wild-type SK-N-SH cells
+    [GSE69121] n_trattati=2 vs n_controlli=2
+        TRATTATO : Retinoic acid-treated MAML3 overexpressing SK-N-SH cells
+        CONTROLLO: Untreated MAML3 overexpressing SK-N-SH cells
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE100855] stesso gruppo ma i CONFRONTI CAMBIANO (4 ora, 4 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Engineered HeLa S3 cells treated with 1 uM retinoic acid for 7 hours (replicates 2) → Engineered HeLa S3 cells treated with DMSO (replicates 2)
+            Engineered skin fibroblasts treated with 10 uM retinoic acid for 7 hours → Engineered skin fibroblasts treated with DMSO
+            HeLa S3 cells treated with 1 uM retinoic acid for 7 hours (replicates) → HeLa S3 cells treated with DMSO (replicates)
+            Skin fibroblasts treated with 10 uM retinoic acid for 7 hours (replicates 2) → Skin fibroblasts treated with DMSO (replicates 2)
+    [GSE166214] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            SH-SY5Y Retinoic Acid (30 µM) → SH-SY5Y Control (DMSO)
+            SH-SY5Y Retinoic Acid (30 µM) → SH-SY5Y Control (DMSO)
+    [GSE179347] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE69121] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Retinoic Acid Treated MAML3 Overexpressing SK-N-SH → Untreated MAML3 Overexpressing SK-N-SH
+
+## GRUPPO cgroup_L5_99d7941a
+- entita dichiarata : CHEBI:72564  (temozolomide)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.8   piu pesante: 48%
+- geni significativi: 2273   I2 mediano: 80.1
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 5 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE104917] n_trattati=2 vs n_controlli=3
+        TRATTATO : Temozolomide 72h
+        CONTROLLO: DMSO 72h
+    [GSE151680] n_trattati=2 vs n_controlli=3
+        TRATTATO : U251TR temozolomide
+        CONTROLLO: U251MG untreated
+    [GSE218860] n_trattati=2 vs n_controlli=5
+        TRATTATO : MGG4 temozolomide 25uM 2
+        CONTROLLO: MGG4 DMSO
+    [GSE218860] n_trattati=2 vs n_controlli=5
+        TRATTATO : MGG4 temozolomide 10mg/kg
+        CONTROLLO: MGG4 DMSO
+    [GSE229136] n_trattati=3 vs n_controlli=3
+        TRATTATO : G816 cells treated with TMZ for 4 days
+        CONTROLLO: G816 cells untreated
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE104917] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Temozolomide 24h → DMSO 24h
+            Temozolomide 72h → DMSO 72h
+    [GSE151680] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE218860] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            MGG4 temozolomide 10mg/kg → MGG4 DMSO
+            MGG4 temozolomide 25uM → MGG4 DMSO
+    [GSE229136] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Glioblastoma G816 cells treated with TMZ for 4 days → Glioblastoma G816 cells untreated
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE229600] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : U251 + TMZ
+        era CONTROLLO: U251 + DMSO
+
+## GRUPPO cgroup_L5_74daf1c9
+- entita dichiarata : STR:oscc  (oscc)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.5   piu pesante: 50%
+- geni significativi: 3915   I2 mediano: 5.6
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE125866] n_trattati=3 vs n_controlli=2
+        TRATTATO : OSCC_mucosa
+        CONTROLLO: Normal_mucosa
+    [GSE171638] n_trattati=3 vs n_controlli=3
+        TRATTATO : Treg_Donor_1_OSCC
+        CONTROLLO: Treg_Donor_1_no_treatment
+    [GSE221398] n_trattati=3 vs n_controlli=3
+        TRATTATO : OSCC tissues
+        CONTROLLO: Normal tissues
+    [GSE246050] n_trattati=2 vs n_controlli=3
+        TRATTATO : OSCC
+        CONTROLLO: Normal Mucosa
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE125866] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE171638] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE221398] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE246050] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            OSCC (case) → Normal mucosa (control)
+
+## GRUPPO cgroup_L5_57810d6c
+- entita dichiarata : CHEBI:27881  (resveratrol)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.0   piu pesante: 63%
+- geni significativi: 3223   I2 mediano: 79.0
+- verdetto attuale  : coherent
+- nel riferimento   : QUESTO GRUPPO NON ESISTEVA (meta-analisi nuova)
+- CONFRONTI POOLATI (etichette intere):
+    [GSE104869] n_trattati=2 vs n_controlli=2
+        TRATTATO : Resveratrol
+        CONTROLLO: DMSO
+    [GSE117620] n_trattati=3 vs n_controlli=2
+        TRATTATO : TB98 cells treated with 10 nM resveratrol
+        CONTROLLO: TB98 cells treated with DMSO
+    [GSE117620] n_trattati=3 vs n_controlli=2
+        TRATTATO : TB98 cells treated with 20 uM resveratrol
+        CONTROLLO: TB98 cells treated with DMSO
+    [GSE65634] n_trattati=2 vs n_controlli=2
+        TRATTATO : C2_resveratrol
+        CONTROLLO: C2_DMSO
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE104869] SPOSTATO: nel riferimento lo stesso studio stava sotto un'ALTRA chiave >>> DIVERGENZA
+        era in CHEBI:63637||gain||vehicle_untreated
+            Vemurafenib → DMSO
+        era in CHEBI:28119||gain||vehicle_untreated
+            TCDD → DMSO
+    [GSE117620] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE65634] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+
+## GRUPPO cgroup_L5_f640365a
+- entita dichiarata : CHEBI:50385  (hemin)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.1   piu pesante: 55%
+- geni significativi: 1820   I2 mediano: 69.5
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 1, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE110947] n_trattati=5 vs n_controlli=2
+        TRATTATO : Hemin (4h)
+        CONTROLLO: Vehicle control (4h)
+    [GSE182350] n_trattati=4 vs n_controlli=4
+        TRATTATO : Hemin Day 15
+        CONTROLLO: Control Day 15
+    [GSE182350] n_trattati=3 vs n_controlli=4
+        TRATTATO : Hemin Day 16
+        CONTROLLO: Control Day 16
+    [GSE211130] n_trattati=2 vs n_controlli=2
+        TRATTATO : hemin 4h
+        CONTROLLO: DMSO 4h
+    [GSE211130] n_trattati=2 vs n_controlli=2
+        TRATTATO : hemin 8h
+        CONTROLLO: DMSO 8h
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE110947] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE182350] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Hemin Day 15 → Control Day 15
+    [GSE211130] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE232390] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : K562 cells treated with hemin
+        era CONTROLLO: Untreated K562 cells
+
+## GRUPPO cgroup_L5_f2481870
+- entita dichiarata : CHEMBL:CHEMBL2022968  (DUBERMATINIB)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.2   piu pesante: 58%
+- geni significativi: 2280   I2 mediano: 30.7
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE180180] n_trattati=7 vs n_controlli=10
+        TRATTATO : TP0903 60mg/kg
+        CONTROLLO: Vehicle Control
+    [GSE180181] n_trattati=7 vs n_controlli=8
+        TRATTATO : TP0903 60mg/kg
+        CONTROLLO: Vehicle Control
+    [GSE231611] n_trattati=3 vs n_controlli=3
+        TRATTATO : CART19 cells treated with TP-0903
+        CONTROLLO: CART19 cells treated with DMSO
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE180180] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE180181] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE231611] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            CART19 + TP-0903 → CART19 + DMSO
+
+## GRUPPO cgroup_L5_6ee86f02
+- entita dichiarata : MeSH:D013167  (Spondylitis, Ankylosing)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.4   piu pesante: 82%
+- geni significativi: 123   I2 mediano: 11.9
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE181364] n_trattati=5 vs n_controlli=3
+        TRATTATO : Ankylosing Spondylitis Patients
+        CONTROLLO: Healthy Controls
+    [GSE205812] n_trattati=3 vs n_controlli=3
+        TRATTATO : Ankylosing Spondylitis
+        CONTROLLO: Normal Control
+    [GSE212613] n_trattati=3 vs n_controlli=2
+        TRATTATO : Ankylosing Spondylitis Day 10 Adipogenic Differentiation
+        CONTROLLO: Healthy Donor 2 Day 10 Adipogenic Differentiation
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE181364] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE205812] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE212613] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Ankylosing Spondylitis Patients - Adipogenic Differentiation Day 10 → Healthy Donors - Adipogenic Differentiation Day 10
+
+## GRUPPO cgroup_L5_469db990
+- entita dichiarata : STR:nahs  (nahs)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.4   piu pesante: 82%
+- geni significativi: 864   I2 mediano: 24.7
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE125342] n_trattati=3 vs n_controlli=3
+        TRATTATO : NaHS
+        CONTROLLO: Control
+    [GSE148985] n_trattati=4 vs n_controlli=2
+        TRATTATO : NaHS 0.25 mM 24h
+        CONTROLLO: Untreated (control)
+    [GSE193660] n_trattati=3 vs n_controlli=3
+        TRATTATO : NaHS Treated
+        CONTROLLO: Control
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE125342] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE148985] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Human keratinocytes treated with NaHS (0.25 mM) - epidermal cell sheets → Untreated human keratinocytes - replicate
+            Human keratinocytes treated with NaHS (0.25 mM) → Untreated human keratinocytes
+    [GSE193660] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            NaHS-treated → Control (vehicle)
+
