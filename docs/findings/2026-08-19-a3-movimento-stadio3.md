@@ -105,3 +105,59 @@ in 141,7 minuti — più veloce della stima di 4-6 ore che avevo dato.
 
 **Da fare prima del re-pool:** verificare se la stessa taratura di memoria regge,
 o se anche lì il numero di worker di default porta all'OOM.
+
+---
+
+## 6. Il movimento arriva fino al deliverable (misurato il 2026-08-19)
+
+Il re-pool di A3 è stato eseguito (16 pezzi, 71 minuti) e ricomposto. Confronto
+col deliverable di riferimento v16b, per **chiave del contrasto** — non per
+`cluster_id`, che è un hash e cambierebbe comunque:
+
+| | v16b | A3 |
+|---|---:|---:|
+| meta-analisi | **211** | **194** (−17) |
+| restano in entrambi | | 173 |
+| escono | | **38** |
+| entrano | | **21** |
+
+**Il 18% delle meta-analisi di v16b non sopravvive** al re-run degli stadi LLM, e
+ne compaiono 21 nuove. Quasi tutte quelle che escono sono a k=3-5: sono i gruppi
+appena sopra la soglia, che un movimento di due o tre studi butta sotto.
+
+Sui **173 gruppi presenti in entrambi**: k invariato in 68, in calo in 76, in
+crescita in 29, per una perdita netta di **111 studi-slot**. La mediana del
+cambiamento nei geni significativi è **+2,9%**, cioè al centro della
+distribuzione il risultato è stabile: il movimento si concentra nelle code.
+
+Le cinque bandiera, nel deliverable poolato:
+
+| entità | k v16b | k A3 | geni significativi |
+|---|---:|---:|---:|
+| SARS-CoV-2 | 36 | 25 | **−62,3%** |
+| LPS | 35 | 33 | −26,1% |
+| TGF-β1 | 59 | 54 | +3,7% |
+| enzalutamide | 19 | 18 | −3,4% |
+| vemurafenib | 9 | 5 | **+249,9%** |
+
+Vemurafenib merita una nota: perde quattro studi su nove e i geni significativi
+**quadruplicano**. Meno studi ma più segnale è il comportamento atteso quando i
+rimasti sono più omogenei — τ² si contrae e gli errori standard con lui. È il
+promemoria che *k* e potenza non sono la stessa cosa.
+
+### Perché questo non è un campione
+
+Il sottoinsieme A3 non è casuale: è definito come *gli studi dei cluster con
+k≥2, uniti agli studi poolati nel deliverable* — 2.566 studi, che contengono
+**tutti e 1.123 gli studi che formano v16b**. Il movimento misurato non è quindi
+un'estrapolazione da un campione: per il deliverable è l'effetto completo.
+
+### Due verdetti di coerenza tolti, con la prova
+
+La ricomposizione si è fermata sulla guardia dei verdetti orfani: `CHEBI:59132`
+e `STR:adenoma`, entrambi fra gli undici gruppi incoerenti, crollano da k=3 e
+k=4 a **k=1** e non sono più poolabili. La verifica che conta — che l'entità non
+ricompaia nel poolato sotto un'altra chiave, il difetto pagato il 2026-08-01 —
+dà **0 gruppi su 194** per entrambe. Dettaglio e procedura:
+`analysis/audit/2026-08-16-A3/VERDETTI-ORFANI-A3.md`. La guardia non è stata
+toccata.
