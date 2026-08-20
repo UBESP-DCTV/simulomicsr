@@ -17,10 +17,27 @@ Sono state lette tutte e 194, una per una, nessuna esclusa. **116 sono corrette
 (59,8%), 62 hanno almeno un confronto difettoso (32,0%), 16 non sono decidibili
 dall'etichetta (8,2%).**
 
-E il difetto non e' distribuito a caso: **cresce con la dimensione del gruppo.**
 Fra le 114 meta-analisi a k=3-4 e' difettoso il 22,8%; fra le 14 con k≥15 e'
-difettoso il **78,6%**. Delle quattordici piu' grandi, **una sola e' pulita**
+difettoso il **78,6%**. Delle quattordici piu' grandi, una sola e' pulita
 (TNF, k=36).
+
+> ⚠️ **Questo NON vuol dire che i gruppi grandi siano costruiti peggio, ed e'
+> l'errore di lettura che la prima stesura di questo finding induceva.** Il tasso
+> di difetto e' **8,2% per studio** (97 difetti su 1.178 coppie gruppo-studio) ed
+> e' costante: un gruppo con 54 studi ha 54 occasioni di contenerne uno cattivo.
+> Confrontando l'osservato con quello che si otterrebbe dalla sola dimensione, a
+> tasso costante:
+>
+> | fascia | difettose osservate | attese dalla sola dimensione |
+> |---|---:|---:|
+> | k = 3-4 | 22,8% | 24,6% |
+> | k = 5-9 | 40,4% | 42,5% |
+> | k = 10-14 | 22,2% | 61,0% |
+> | k ≥ 15 | 78,6% | 83,0% |
+>
+> **L'osservato non supera mai l'atteso.** La dimensione spiega il gradiente per
+> intero; i gruppi grandi non sono peggiori, sono piu' esposti. La conseguenza
+> operativa e' al §10bis.
 
 ---
 
@@ -302,6 +319,39 @@ non un verdetto — e questa e' la prima volta che tutti e 194 vengono letti.
    studio offre la coppia appaiata, va preferita.
 4. **La normalizzazione del tipo di controllo** (13,7% delle uscite). Reale, ma
    vale meno di quanto ci si aspettasse.
+
+---
+
+## 10bis. Siamo punto e a capo? No, e si misura
+
+La domanda va posta perche' l'audit ha gia' dichiarato «finito» piu' volte a
+sproposito. La risposta e' un confronto fra due misure della **stessa** cosa.
+
+| | 2026-07-23 | oggi |
+|---|---|---|
+| meta-analisi difendibili | **26 su 184 (14%)** | **116 su 194 (60%)** |
+| natura del problema | **strutturale**: l'ancoraggio poolava contrasti diversi (i «minestroni») | **locale**: singoli membri sbagliati in gruppi altrimenti buoni |
+| che cosa serviva per chiuderlo | rifare l'ancoraggio a monte (fatto: v12 → v16) | togliere una lista di studi, e due regole |
+
+**La prova che il problema residuo e' locale e non strutturale:** togliendo i
+**85 studi accusati**,
+
+- **173 meta-analisi su 194 restano con k ≥ 3** (21 scendono sotto);
+- le grandi si muovono appena: **TGF-β1 54 → 47**, LPS 33 → 30, ipossia 27 → 23,
+  SARS-CoV-2 25 → 24, JQ1 25 → 24, palbociclib 15 → 14;
+- **43 delle 62 difettose hanno un solo studio da togliere.**
+
+Il problema e' passato da «i gruppi sono sbagliati» a «una lista di 85 studi e'
+sbagliata». Non e' la stessa domanda con una risposta peggiore: e' una domanda
+piu' stretta, posta per la prima volta su tutti e 194.
+
+**Quello che invece si ripete davvero**, e va scritto: non e' la qualita' che
+torna indietro, e' che **ogni sessione misura una cosa che le precedenti non
+guardavano** — la coerenza di contrasto non era mai stata verificata prima di
+luglio, le 194 non erano mai state lette prima di oggi. Ogni misura nuova trova
+qualcosa, e questo continuera' finche' restano assi non misurati. L'asse aperto
+piu' grande e' la **validazione esterna**
+(`docs/superpowers/specs/2026-08-08-validazione-esterna-HANDOUT.md`).
 
 ---
 
