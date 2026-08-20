@@ -13,7 +13,48 @@ Tutto quello che serve sta in tre file, in questa cartella:
 
 ---
 
-## La catena, in cinque passi
+## La catena in un colpo d'occhio
+
+```
+ARCHS4 H5            888.821 campioni
+   │  STADIO 0 — 7 filtri deterministici
+   ▼
+bacino               508.037 campioni          (24.394 studi)
+   │  STADIO 1 — LLM, un campione alla volta
+   ▼
+fatti per campione   508.037 record
+   │  STADIO 2 — LLM, uno studio alla volta
+   ▼
+gruppi + confronti   24.394 studi
+   │  STADIO 3 — deterministico, chiave del contrasto
+   ▼
+cluster              325.059 cluster / 571.680 assegnazioni
+   │  GATE — n_min, dedup, k>=3
+   ▼
+194 meta-analisi     1.903 confronti · 1.178 coppie studio-gruppo · 15.559 campioni
+```
+
+---
+
+## La catena, passo per passo
+
+### Passo 0 — lo Stadio 0 decide chi entra
+
+Filtro **deterministico**, nessun modello. `R/etl-archs4-utils.R::is_sample_classifiable()`.
+
+**Entra:** i 888.821 campioni umani dell'H5 ARCHS4 v2.5, coi loro campi GEO.
+**Esce:** 508.037 campioni, ognuno con una `string` unica costruita da titolo +
+sorgente + caratteristiche.
+
+Sette motivi di esclusione, in quest'ordine, e il primo che scatta vince:
+`not_human` · `not_bulk_rnaseq` · `library_source_not_transcriptomic` ·
+`string_too_short` (<20 caratteri) · `single_cell_protocol_match` ·
+`lib_size_too_small` (<500.000) · `single_cell_probability_high` (≥0.9).
+
+> **Questo passo spiega quasi tutti i «campioni mancanti».** GSE200186 ha 1.179
+> campioni in GEO e ne manda 27: gli altri 1.152 escono per
+> `single_cell_protocol_match`. Non sono persi, sono esclusi con un motivo.
+> Per sapere il motivo di un campione qualsiasi: `A2-filtro-stadio0.R`.
 
 ### Passo 1 — il campione grezzo
 
@@ -39,22 +80,52 @@ stringa non distingue trattato e controllo, nessun passo a valle puo' farlo.
 
 ### Passo 2 — lo Stadio 1 legge il singolo campione
 
-Un modello (Mistral, self-hosted) legge quella stringa e ne estrae i fatti del
-singolo campione: che cellula e', che perturbazione ha subito, a che dose, per
-quanto tempo. **Non decide ancora chi e' trattato e chi e' controllo**: guarda un
-campione alla volta e non sa che esistono gli altri.
+Modello Mistral-Small-3.2 self-hosted, `temperature = 0`, output vincolato allo
+schema `sample_facts.stage1.v3`.
+
+**Entra:** un campione alla volta — `geo_accession`, `series_id`, la `string`,
+`organism`, `library_strategy`, `molecule_ch1`. Nient'altro: **non vede gli altri
+campioni dello studio**, quindi non puo' ancora sapere chi e' trattato e chi
+controllo.
+
+**Esce:** un record per campione, coi blocchi
+- `cell_context` — tipo cellulare, tessuto, `context_kind`, stato, modifiche ingegnerizzate, co-colture;
+- `disease_state` — termine grezzo, candidato MeSH, stato;
+- `perturbations[]` — `kind`, `agent_raw`, `agent_normalized`, dose, durata;
+- `patient_metadata` — donatore, eta', sesso, etnia, visita;
+- `extraction` — versione dello schema, confidenza, `ambiguity_flags`.
+
+**Dove si sbaglia:** l'agente normalizzato. E' qui che `IL-1β` puo' diventare
+un altro gene (vedi `98-greche-tutti-i-resolver.R`).
 
 ### Passo 3 — lo Stadio 2 guarda lo STUDIO intero e forma i confronti
 
-Qui nasce il confronto. Il modello vede tutti i campioni di uno studio insieme e
-fa due cose:
+**Entra:** un record per studio, con **tutti** i suoi campioni e i fatti che lo
+Stadio 1 ha estratto per ciascuno (`record_id`, `series_id`, `samples[]` con
+`geo_accession` + `sample_facts`).
 
-1. raggruppa i campioni che sono **repliche della stessa condizione** (i
-   *replicate group*): nelle schede e' la riga `gruppo Stadio 2:`;
-2. decide **quale gruppo e' il trattato e quale il controllo**, e li appaia in un
-   *confronto*. Nelle schede e' il blocco `CONFRONTO`.
+**Esce:** un record per studio con sette campi:
+`series_id` · `design_summary` · `design_kind` · `factors[]` ·
+**`replicate_groups[]`** · **`comparisons[]`** · `extraction`.
 
-L'etichetta leggibile che vedi (`etichetta Stadio 2:`) e' prodotta qui.
+I due che contano:
+
+```
+replicate_group: {group_id, label_human, sample_ids[], primary_role, factor_levels[]}
+comparison     : {comparison_id, treated_group, control_group, control_type,
+                  design_kind, varying_factor, fixed_factors[], study_internal_score}
+```
+
+`label_human` e' l'etichetta che leggi nelle schede; `factor_levels` e' cio' su
+cui lo Stadio 3 calcolera' la differenza fra i bracci.
+
+> **Qui si perde qualcosa senza motivo dichiarato.** Un campione ricevuto puo'
+> non finire in nessun `replicate_group`, e allora sparisce: **1.993 su 37.800
+> (5,3%)**, in 97 studi su 993. Non c'e' un campo che lo registri — si vede solo
+> confrontando entrata e uscita (`A1-campioni-persi.R`).
+
+Nelle schede: il `replicate_group` e' la riga `gruppo Stadio 2:`, la `comparison`
+e' il blocco `CONFRONTO`.
 
 ```
 CONFRONTO  GSE123456__cmp_3__1
@@ -76,6 +147,21 @@ CONFRONTO  GSE123456__cmp_3__1
   `normoxia 0h`, il confronto misura ipossia **e** tempo insieme.
 
 ### Passo 4 — lo Stadio 3 assegna a ogni confronto una CHIAVE
+
+**Deterministico**, nessun modello: l'unica cosa che serve dall'esterno sono le
+ontologie (ChEBI 205k composti, HGNC 45k geni, MeSH 31k, ChEMBL, NCBI Taxonomy).
+
+**Entra:** i 24.394 record dello Stadio 2.
+**Esce:** due file —
+- `clusters.rds` (325.059 righe): `cluster_id`, `mode`, `level`, `anchor_key`,
+  `k`, `n_total`, **`contrast_entity`**, **`contrast_direction`**,
+  **`contrast_control_key`**;
+- `assignments.parquet` (571.680 righe): `record_id`, `cluster_id`, `mode`,
+  `level`, `anchor_key` — cioe' **quale confronto sta in quale cluster**.
+
+Il `record_id` e' `<serie>__<comparison_id>__<indice>`: e' il confronto, non il
+campione. L'entita' si ricava dalla **differenza** fra i `factor_levels` dei due
+bracci, non dal solo braccio trattato.
 
 Ogni confronto riceve una chiave di tre pezzi, e **la chiave e' la meta-analisi**:
 
@@ -107,8 +193,8 @@ diversi finiti sotto lo stesso nome.
 
 ### Passo 5 — il gate, poi la meta-analisi
 
-Prima di poolare, due porte scartano materiale. **Questo e' il motivo per cui i
-campioni nelle schede sono MENO di quelli che lo studio contiene:**
+Prima di poolare, tre porte scartano materiale. **E' il motivo per cui i campioni
+nelle schede sono meno di quelli che lo Stadio 2 ha collocato:**
 
 1. **`n_min = 2`** — un braccio serve almeno due repliche *biologiche*. Due
    letture della stessa libreria su corsie diverse **non** sono due repliche e
@@ -120,8 +206,25 @@ campioni nelle schede sono MENO di quelli che lo studio contiene:**
    distinti. Sotto tre, non nasce.
 
 Quello che passa tutte e tre le porte e' esattamente quello che vedi nelle
-schede. Solo dopo si calcola la meta-analisi vera e propria (effetto per studio,
-poi combinazione a effetti casuali con I² e τ²).
+schede: **1.903 confronti**, da 316 cluster candidati a **194 meta-analisi**.
+
+**Entra nel gate:** `assignments.parquet` + i `replicate_groups` dello Stadio 2.
+**Esce dal gate:** il *dispatch*, cioe' una lista di tuple
+`{cluster_id, study_id, campioni_trattati[], campioni_controllo[]}`, piu' il
+registro di TUTTO cio' che e' caduto (`qc_report$dispatch_drops`: 3.319 righe con
+`cluster_id`, `study_id`, `treated_group`, `motivo`, i quattro conteggi).
+
+**Poi il calcolo**, in due tempi:
+
+| | entra | esce |
+|---|---|---|
+| **DE per studio** (limma-voom) | conte grezze dall'H5 dei campioni del dispatch, piu' le covariate `instrument_model` e `aligner_class` | `per_study_de.parquet` — `cluster_id`, `study_id`, `gene_id`, `gene_symbol`, `logFC`, `SE`, `p_value`, `n_treated`, `n_control` |
+| **combinazione** (REM, REML) | le stime per studio | `cluster_pooled.parquet` — `logFC_pool`, `SE_pool`, `p_value_pool`, **`tau2`**, **`I2`**, `Q`, `k_effective`, `FDR_BH_within_cluster` |
+
+Fra i due c'e' un passaggio che vale la pena sapere: i bracci multipli dello
+stesso studio vengono **collassati in una stima sola per studio** (varianza
+inversa, effetti fissi) prima della combinazione, altrimenti uno studio con
+cinque confronti peserebbe cinque volte.
 
 ---
 
@@ -133,6 +236,7 @@ poi combinazione a effetti casuali con I² e τ²).
 | **1.178** | coppie (meta-analisi, studio) — la somma dei `k` |
 | **1.903** | confronti poolati (uno studio puo' portarne piu' di uno) |
 | **993** | studi distinti |
+| **15.559** | campioni distinti (20.713 righe nelle schede: un controllo serve piu' confronti) |
 
 I campioni nelle schede sono quelli **effettivamente entrati nel calcolo**, non
 quelli censiti: l'insieme e' stato ricostruito replicando il dispatch di
@@ -148,10 +252,14 @@ completo degli scarti sta nel `qc_report.rds` del deliverable.
 | se sbaglia... | lo vedi confrontando... | e la colpa e' del... |
 |---|---|---|
 | la stringa non dice abbastanza | `grezzo` con i campi `H5` | dato GEO di partenza |
+| manca un campione dello studio | il motivo in `A2-filtro-stadio0.R` | Stadio 0 — **e allora non e' un difetto** |
+| un campione ricevuto non sta in nessun gruppo | `ricevuti` con `collocati`, in fondo alla scheda | Stadio 2 (LLM) — 5,3% |
 | l'etichetta non corrisponde ai campioni | `etichetta Stadio 2` con i `grezzo` sotto | Stadio 2 (LLM) |
 | i due bracci non sono appaiati | `TRATTATO` con `CONTROLLO` | Stadio 2 (LLM) |
 | il gruppo mette insieme cose diverse | i vari `CONFRONTO` fra loro | Stadio 3 (chiave) |
+| l'entita' del gruppo e' il composto sbagliato | `entita (ID)` con le etichette | Stadio 3 (resolver/ontologie) |
 | manca uno studio che ti aspettavi | `k studi` con `qc_report$dispatch_drops` | il gate (`n_min`, `k>=3`) |
+| il numero di campioni non torna | `n=` del braccio coi GSM elencati | il collasso delle corsie (due letture di una libreria valgono uno) |
 
 Il verdetto che la rilettura automatica ha dato a ciascuna e' in testa alla
 scheda (`verdetto della rilettura`), cosi' puoi confrontare il tuo giudizio col
