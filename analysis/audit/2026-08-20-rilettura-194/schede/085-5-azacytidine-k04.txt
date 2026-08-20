@@ -1,0 +1,456 @@
+META-ANALISI 085 di 194
+==============================================================================
+nome            : 5-azacytidine
+entita (ID)     : CHEBI:2038
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_93068469
+studi poolati   : 4   confronti: 8   campioni: 73
+geni significativi: 2523   I2 mediano: 88.8
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE117446__GSE117446__grp_0005_vs_grp_0006__1
+  studio: GSE117446
+  TRATTATO  (n=2)  etichetta Stadio 2: Tumor-derived cell-line 5-azacytidine
+      gruppo Stadio 2: mg63
+      GSM3295001
+        grezzo (Stadio 1): title: BT245-KO-5AZA-R1,source: Tumor-derived cell-line,genotype: H3.3K27M-KO,treatment: 5-azacytidine,tissue: glioma tumor
+        H5 titolo        : BT245-KO-5AZA-R1
+        H5 caratteristiche: genotype: H3.3K27M-KO,treatment: 5-azacytidine,tissue: glioma tumor
+        H5 sorgente      : Tumor-derived cell-line
+      GSM3295002
+        grezzo (Stadio 1): title: BT245-KO-5AZA-R2,source: Tumor-derived cell-line,genotype: H3.3K27M-KO,treatment: 5-azacytidine,tissue: glioma tumor
+        H5 titolo        : BT245-KO-5AZA-R2
+        H5 caratteristiche: genotype: H3.3K27M-KO,treatment: 5-azacytidine,tissue: glioma tumor
+        H5 sorgente      : Tumor-derived cell-line
+  CONTROLLO  (n=2)  etichetta Stadio 2: Tumor-derived cell-line DMSO
+      gruppo Stadio 2: mg64
+      GSM3294997
+        grezzo (Stadio 1): title: BT245-KO-DMSO-R1,source: Tumor-derived cell-line,genotype: H3.3K27M-KO,treatment: None,tissue: glioma tumor
+        H5 titolo        : BT245-KO-DMSO-R1
+        H5 caratteristiche: genotype: H3.3K27M-KO,treatment: None,tissue: glioma tumor
+        H5 sorgente      : Tumor-derived cell-line
+      GSM3294998
+        grezzo (Stadio 1): title: BT245-KO-DMSO-R2,source: Tumor-derived cell-line,genotype: H3.3K27M-KO,treatment: None,tissue: glioma tumor
+        H5 titolo        : BT245-KO-DMSO-R2
+        H5 caratteristiche: genotype: H3.3K27M-KO,treatment: None,tissue: glioma tumor
+        H5 sorgente      : Tumor-derived cell-line
+
+CONFRONTO  GSE145560__GSE145560__grp_0005_vs_grp_0004__1
+  studio: GSE145560
+  TRATTATO  (n=2)  etichetta Stadio 2: HUVEC + 5-azacytidine
+      gruppo Stadio 2: grp_0005
+      GSM4321505
+        grezzo (Stadio 1): title: HUVEC_aza_5uM_rep1,source: vascular endothelium,cell type: HUVEC,passages: 20-25,treatments: 5-azacytidine 5uM
+        H5 titolo        : HUVEC_aza_5uM_rep1
+        H5 caratteristiche: cell type: HUVEC,passages: 20-25,treatments: 5-azacytidine 5uM
+        H5 sorgente      : vascular endothelium
+      GSM4321507
+        grezzo (Stadio 1): title: HUVEC_aza_5uM_rep3,source: vascular endothelium,cell type: HUVEC,passages: 20-25,treatments: 5-azacytidine 5uM
+        H5 titolo        : HUVEC_aza_5uM_rep3
+        H5 caratteristiche: cell type: HUVEC,passages: 20-25,treatments: 5-azacytidine 5uM
+        H5 sorgente      : vascular endothelium
+  CONTROLLO  (n=2)  etichetta Stadio 2: HUVEC + DMSO
+      gruppo Stadio 2: grp_0004
+      GSM4321497
+        grezzo (Stadio 1): title: HUVEC_DMSO_rep1,source: vascular endothelium,cell type: HUVEC,passages: 20-25,treatments: DMSO
+        H5 titolo        : HUVEC_DMSO_rep1
+        H5 caratteristiche: cell type: HUVEC,passages: 20-25,treatments: DMSO
+        H5 sorgente      : vascular endothelium
+      GSM4321498
+        grezzo (Stadio 1): title: HUVEC_DMSO_rep2,source: vascular endothelium,cell type: HUVEC,passages: 20-25,treatments: DMSO
+        H5 titolo        : HUVEC_DMSO_rep2
+        H5 caratteristiche: cell type: HUVEC,passages: 20-25,treatments: DMSO
+        H5 sorgente      : vascular endothelium
+
+CONFRONTO  GSE184891__GSE184891__grp_HL60_Azacitidine_24h_vs_grp_HL60_no_treatment__1
+  studio: GSE184891
+  TRATTATO  (n=3)  etichetta Stadio 2: HL60 Azacitidine 24h
+      gruppo Stadio 2: grp_HL60_Azacitidine_24h
+      GSM5599668
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 1 [HL60day1Rep1],source: HL60 + 1uM AZA Day 1,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 24h
+        H5 titolo        : HL60 + 1uM AZA Day 1 [HL60day1Rep1]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 24h
+        H5 sorgente      : HL60 + 1uM AZA Day 1
+      GSM5599669
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 2_rep 2 [HL60day1Rep2],source: HL60 + 1uM AZA Day 2,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 24h
+        H5 titolo        : HL60 + 1uM AZA Day 2_rep 2 [HL60day1Rep2]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 24h
+        H5 sorgente      : HL60 + 1uM AZA Day 2
+      GSM5599670
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 3_rep 3 [HL60day1Rep3],source: HL60 + 1uM AZA Day 3,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 24h
+        H5 titolo        : HL60 + 1uM AZA Day 3_rep 3 [HL60day1Rep3]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 24h
+        H5 sorgente      : HL60 + 1uM AZA Day 3
+  CONTROLLO  (n=3)  etichetta Stadio 2: HL60 No Treatment
+      gruppo Stadio 2: grp_HL60_no_treatment
+      GSM5599665
+        grezzo (Stadio 1): title: HL60- No AZA  [HL60day0Rep1],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA  [HL60day0Rep1]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+      GSM5599666
+        grezzo (Stadio 1): title: HL60- No AZA_rep 2 [HL60day0Rep2],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA_rep 2 [HL60day0Rep2]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+      GSM5599667
+        grezzo (Stadio 1): title: HL60- No AZA_rep 3 [HL60day0Rep3],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA_rep 3 [HL60day0Rep3]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+
+CONFRONTO  GSE184891__GSE184891__grp_HL60_Azacitidine_4d_vs_grp_HL60_no_treatment__1
+  studio: GSE184891
+  TRATTATO  (n=3)  etichetta Stadio 2: HL60 Azacitidine 4d
+      gruppo Stadio 2: grp_HL60_Azacitidine_4d
+      GSM5599671
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 4 [HL60day4Rep1],source: HL60 + 1uM AZA Day 4,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 titolo        : HL60 + 1uM AZA Day 4 [HL60day4Rep1]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 sorgente      : HL60 + 1uM AZA Day 4
+      GSM5599672
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 4_rep 2 [HL60day4Rep2],source: HL60 + 1uM AZA Day 4,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 titolo        : HL60 + 1uM AZA Day 4_rep 2 [HL60day4Rep2]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 sorgente      : HL60 + 1uM AZA Day 4
+      GSM5599673
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 4_rep 3 [HL60day4Rep3],source: HL60 + 1uM AZA Day 4,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 titolo        : HL60 + 1uM AZA Day 4_rep 3 [HL60day4Rep3]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 sorgente      : HL60 + 1uM AZA Day 4
+  CONTROLLO  (n=3)  etichetta Stadio 2: HL60 No Treatment
+      gruppo Stadio 2: grp_HL60_no_treatment
+      GSM5599665
+        grezzo (Stadio 1): title: HL60- No AZA  [HL60day0Rep1],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA  [HL60day0Rep1]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+      GSM5599666
+        grezzo (Stadio 1): title: HL60- No AZA_rep 2 [HL60day0Rep2],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA_rep 2 [HL60day0Rep2]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+      GSM5599667
+        grezzo (Stadio 1): title: HL60- No AZA_rep 3 [HL60day0Rep3],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA_rep 3 [HL60day0Rep3]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+
+CONFRONTO  GSE184891__GSE184891__grp_HL60_Azacitidine_8d_vs_grp_HL60_no_treatment__1
+  studio: GSE184891
+  TRATTATO  (n=3)  etichetta Stadio 2: HL60 Azacitidine 8d
+      gruppo Stadio 2: grp_HL60_Azacitidine_8d
+      GSM5599674
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 8 [HL60day8Rep1],source: HL60 + 1uM AZA Day 8,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 titolo        : HL60 + 1uM AZA Day 8 [HL60day8Rep1]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 sorgente      : HL60 + 1uM AZA Day 8
+      GSM5599675
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 8_rep 2 [HL60day8Rep2],source: HL60 + 1uM AZA Day 8,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 titolo        : HL60 + 1uM AZA Day 8_rep 2 [HL60day8Rep2]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 sorgente      : HL60 + 1uM AZA Day 8
+      GSM5599676
+        grezzo (Stadio 1): title: HL60 + 1uM AZA Day 8_rep 3 [HL60day8Rep3],source: HL60 + 1uM AZA Day 8,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 titolo        : HL60 + 1uM AZA Day 8_rep 3 [HL60day8Rep3]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 sorgente      : HL60 + 1uM AZA Day 8
+  CONTROLLO  (n=3)  etichetta Stadio 2: HL60 No Treatment
+      gruppo Stadio 2: grp_HL60_no_treatment
+      GSM5599665
+        grezzo (Stadio 1): title: HL60- No AZA  [HL60day0Rep1],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA  [HL60day0Rep1]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+      GSM5599666
+        grezzo (Stadio 1): title: HL60- No AZA_rep 2 [HL60day0Rep2],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA_rep 2 [HL60day0Rep2]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+      GSM5599667
+        grezzo (Stadio 1): title: HL60- No AZA_rep 3 [HL60day0Rep3],source: HL60- No AZA,cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 titolo        : HL60- No AZA_rep 3 [HL60day0Rep3]
+        H5 caratteristiche: cell line: HL60,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 35yo woman with AML (FAB M2 Classification),cell treatment: No Treatment
+        H5 sorgente      : HL60- No AZA
+
+CONFRONTO  GSE184891__GSE184891__grp_OCIAML3_Azacitidine_4d_vs_grp_OCIAML3_no_treatment__1
+  studio: GSE184891
+  TRATTATO  (n=3)  etichetta Stadio 2: OCI-AML3 Azacitidine 4d
+      gruppo Stadio 2: grp_OCIAML3_Azacitidine_4d
+      GSM5599683
+        grezzo (Stadio 1): title: OCI-AML3 + 1uM AZA Day 4 [OCIday4rep1],source: OCI-AML3 + 1uM AZA Day 4,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 titolo        : OCI-AML3 + 1uM AZA Day 4 [OCIday4rep1]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 sorgente      : OCI-AML3 + 1uM AZA Day 4
+      GSM5599684
+        grezzo (Stadio 1): title: OCI-AML3 + 1uM AZA Day 4_rep 2 [OCIday4rep2],source: OCI-AML3 + 1uM AZA Day 4,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 titolo        : OCI-AML3 + 1uM AZA Day 4_rep 2 [OCIday4rep2]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 sorgente      : OCI-AML3 + 1uM AZA Day 4
+      GSM5599685
+        grezzo (Stadio 1): title: OCI-AML3 + 1uM AZA Day 4_rep 3 [OCIday4rep3],source: OCI-AML3 + 1uM AZA Day 4,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 titolo        : OCI-AML3 + 1uM AZA Day 4_rep 3 [OCIday4rep3]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 4 days
+        H5 sorgente      : OCI-AML3 + 1uM AZA Day 4
+  CONTROLLO  (n=3)  etichetta Stadio 2: OCI-AML3 No Treatment
+      gruppo Stadio 2: grp_OCIAML3_no_treatment
+      GSM5599677
+        grezzo (Stadio 1): title: OCI-AML3- No AZA  [OCIday0rep1],source: OCI-AML3- No AZA,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 titolo        : OCI-AML3- No AZA  [OCIday0rep1]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 sorgente      : OCI-AML3- No AZA
+      GSM5599678
+        grezzo (Stadio 1): title: OCI-AML3- No AZA_rep 2 [OCIday0rep2],source: OCI-AML3- No AZA,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 titolo        : OCI-AML3- No AZA_rep 2 [OCIday0rep2]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 sorgente      : OCI-AML3- No AZA
+      GSM5599679
+        grezzo (Stadio 1): title: OCI-AML3- No AZA_rep 3 [OCIday0rep3],source: OCI-AML3- No AZA,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 titolo        : OCI-AML3- No AZA_rep 3 [OCIday0rep3]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 sorgente      : OCI-AML3- No AZA
+
+CONFRONTO  GSE184891__GSE184891__grp_OCIAML3_Azacitidine_8d_vs_grp_OCIAML3_no_treatment__1
+  studio: GSE184891
+  TRATTATO  (n=3)  etichetta Stadio 2: OCI-AML3 Azacitidine 8d
+      gruppo Stadio 2: grp_OCIAML3_Azacitidine_8d
+      GSM5599686
+        grezzo (Stadio 1): title: OCI-AML3 + 1uM AZA Day 8 [OCIday8rep1],source: OCI-AML3 + 1uM AZA Day 8,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 titolo        : OCI-AML3 + 1uM AZA Day 8 [OCIday8rep1]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 sorgente      : OCI-AML3 + 1uM AZA Day 8
+      GSM5599687
+        grezzo (Stadio 1): title: OCI-AML3 + 1uM AZA Day 8_rep 2 [OCIday8rep2],source: OCI-AML3 + 1uM AZA Day 8,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 titolo        : OCI-AML3 + 1uM AZA Day 8_rep 2 [OCIday8rep2]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 sorgente      : OCI-AML3 + 1uM AZA Day 8
+      GSM5599688
+        grezzo (Stadio 1): title: OCI-AML3 + 1uM AZA Day 8_rep3 [OCIday8rep3],source: OCI-AML3 + 1uM AZA Day 8,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 titolo        : OCI-AML3 + 1uM AZA Day 8_rep3 [OCIday8rep3]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: 1uM Azacitidine Treatment for 8days
+        H5 sorgente      : OCI-AML3 + 1uM AZA Day 8
+  CONTROLLO  (n=3)  etichetta Stadio 2: OCI-AML3 No Treatment
+      gruppo Stadio 2: grp_OCIAML3_no_treatment
+      GSM5599677
+        grezzo (Stadio 1): title: OCI-AML3- No AZA  [OCIday0rep1],source: OCI-AML3- No AZA,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 titolo        : OCI-AML3- No AZA  [OCIday0rep1]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 sorgente      : OCI-AML3- No AZA
+      GSM5599678
+        grezzo (Stadio 1): title: OCI-AML3- No AZA_rep 2 [OCIday0rep2],source: OCI-AML3- No AZA,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 titolo        : OCI-AML3- No AZA_rep 2 [OCIday0rep2]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 sorgente      : OCI-AML3- No AZA
+      GSM5599679
+        grezzo (Stadio 1): title: OCI-AML3- No AZA_rep 3 [OCIday0rep3],source: OCI-AML3- No AZA,cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 titolo        : OCI-AML3- No AZA_rep 3 [OCIday0rep3]
+        H5 caratteristiche: cell line: OCI-AML3,cell type: Acute myeloid leukemia,origin: Peripheral Blood of 57yo man with AML (FAB M4) with NPM1 and DNMT3A R882C mutations,cell treatment: No Treatment
+        H5 sorgente      : OCI-AML3- No AZA
+
+CONFRONTO  GSE199800__GSE199800__Azacitidine_vs_DMSO__1
+  studio: GSE199800
+  TRATTATO  (n=2)  etichetta Stadio 2: Azacitidine
+      gruppo Stadio 2: mg373
+      GSM5985214
+        grezzo (Stadio 1): title: du145_DU145PS2A_C5_Azacitidine_0.02_24,source: prostate cancer,treatment: Azacitidine,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_C5_Azacitidine_0.02_24
+        H5 caratteristiche: treatment: Azacitidine,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985310
+        grezzo (Stadio 1): title: du145_DU145PS2B_C05_Azacitidine_0.02_24,source: prostate cancer,treatment: Azacitidine,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_C05_Azacitidine_0.02_24
+        H5 caratteristiche: treatment: Azacitidine,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+  CONTROLLO  (n=33)  etichetta Stadio 2: Control
+      gruppo Stadio 2: mg399
+      GSM5985007
+        grezzo (Stadio 1): title: du145_DU145PS1A_B2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1A_B2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985023
+        grezzo (Stadio 1): title: du145_DU145PS1A_C6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1A_C6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985091
+        grezzo (Stadio 1): title: du145_DU145PS1B_A2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1B_A2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985103
+        grezzo (Stadio 1): title: du145_DU145PS1B_B2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1B_B2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985187
+        grezzo (Stadio 1): title: du145_DU145PS2A_A2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_A2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985215
+        grezzo (Stadio 1): title: du145_DU145PS2A_C6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_C6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985227
+        grezzo (Stadio 1): title: du145_DU145PS2A_D6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_D6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985256
+        grezzo (Stadio 1): title: du145_DU145PS2A_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985283
+        grezzo (Stadio 1): title: du145_DU145PS2B_A02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_A02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985295
+        grezzo (Stadio 1): title: du145_DU145PS2B_B02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_B02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985311
+        grezzo (Stadio 1): title: du145_DU145PS2B_C06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_C06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985323
+        grezzo (Stadio 1): title: du145_DU145PS2B_D06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_D06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985340
+        grezzo (Stadio 1): title: du145_DU145PS2B_E11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_E11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985352
+        grezzo (Stadio 1): title: du145_DU145PS2B_F11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_F11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985379
+        grezzo (Stadio 1): title: du145_DU145PS3A_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985391
+        grezzo (Stadio 1): title: du145_DU145PS3A_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985407
+        grezzo (Stadio 1): title: du145_DU145PS3A_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985419
+        grezzo (Stadio 1): title: du145_DU145PS3A_D06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_D06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985448
+        grezzo (Stadio 1): title: du145_DU145PS3A_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985475
+        grezzo (Stadio 1): title: du145_DU145PS3B_A02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_A02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985487
+        grezzo (Stadio 1): title: du145_DU145PS3B_B02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_B02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985503
+        grezzo (Stadio 1): title: du145_DU145PS3B_C06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_C06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985515
+        grezzo (Stadio 1): title: du145_DU145PS3B_D06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_D06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985532
+        grezzo (Stadio 1): title: du145_DU145PS3B_E11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_E11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985544
+        grezzo (Stadio 1): title: du145_DU145PS3B_F11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_F11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985571
+        grezzo (Stadio 1): title: du145_DU145PS4A_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985583
+        grezzo (Stadio 1): title: du145_DU145PS4A_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985599
+        grezzo (Stadio 1): title: du145_DU145PS4A_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985667
+        grezzo (Stadio 1): title: du145_DU145PS4B_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985679
+        grezzo (Stadio 1): title: du145_DU145PS4B_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985695
+        grezzo (Stadio 1): title: du145_DU145PS4B_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985707
+        grezzo (Stadio 1): title: du145_DU145PS4B_D06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_D06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985736
+        grezzo (Stadio 1): title: du145_DU145PS4B_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE117446     campioni nell'H5:   92 | collocati dallo Stadio 2:   91 | MAI COLLOCATI:    1 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+      mai collocati: GSM3295003
+  GSE145560     campioni nell'H5:   16 | collocati dallo Stadio 2:    7 | MAI COLLOCATI:    9 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4321493, GSM4321495, GSM4321496, GSM4321500, GSM4321501, GSM4321502, GSM4321503, GSM4321504, GSM4321506
+  GSE184891     campioni nell'H5:   24 | collocati dallo Stadio 2:   22 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 21 campioni distinti (30 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5599680, GSM5599682
+  GSE199800     campioni nell'H5: 1655 | collocati dallo Stadio 2: 1489 | MAI COLLOCATI:  166 | usati in questa meta-analisi: 35 campioni distinti (35 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5985001, GSM5985002, GSM5985033, GSM5985054, GSM5985058, GSM5985081, GSM5985083, GSM5985108, GSM5985157, GSM5985173, GSM5985179, GSM5985186 ... (+154)
+

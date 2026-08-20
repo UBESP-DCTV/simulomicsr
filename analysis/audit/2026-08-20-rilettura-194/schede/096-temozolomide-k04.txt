@@ -1,0 +1,216 @@
+META-ANALISI 096 di 194
+==============================================================================
+nome            : temozolomide
+entita (ID)     : CHEBI:72564
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_99d7941a
+studi poolati   : 4   confronti: 5   campioni: 30
+geni significativi: 2273   I2 mediano: 80.1
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE104917__GSE104917__Temozolomide_72h_vs_DMSO_72h__1
+  studio: GSE104917
+  TRATTATO  (n=2)  etichetta Stadio 2: Temozolomide 72h
+      gruppo Stadio 2: grp_Temozolomide_72h
+      GSM2810005
+        grezzo (Stadio 1): title: NB1691_TMZ_72hr_n=1,source: Neuroblastoma,cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: Temozolomide 72h
+        H5 titolo        : NB1691_TMZ_72hr_n=1
+        H5 caratteristiche: cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: Temozolomide 72h
+        H5 sorgente      : Neuroblastoma
+      GSM2810006
+        grezzo (Stadio 1): title: NB1691_TMZ_72hr_n=2,source: Neuroblastoma,cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: Temozolomide 72h
+        H5 titolo        : NB1691_TMZ_72hr_n=2
+        H5 caratteristiche: cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: Temozolomide 72h
+        H5 sorgente      : Neuroblastoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO 72h
+      gruppo Stadio 2: grp_DMSO_72h
+      GSM2809987
+        grezzo (Stadio 1): title: NB1691_DMSO_72hr_n=1,source: Neuroblastoma,cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: DMSO 72h
+        H5 titolo        : NB1691_DMSO_72hr_n=1
+        H5 caratteristiche: cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: DMSO 72h
+        H5 sorgente      : Neuroblastoma
+      GSM2809988
+        grezzo (Stadio 1): title: NB1691_DMSO_72hr_n=2,source: Neuroblastoma,cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: DMSO 72h
+        H5 titolo        : NB1691_DMSO_72hr_n=2
+        H5 caratteristiche: cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: DMSO 72h
+        H5 sorgente      : Neuroblastoma
+      GSM2809989
+        grezzo (Stadio 1): title: NB1691_DMSO_72hr_n=3,source: Neuroblastoma,cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: DMSO 72h
+        H5 titolo        : NB1691_DMSO_72hr_n=3
+        H5 caratteristiche: cell line: NB1691,mycn status: MYCN amplified,tp53 status: WT,treatment: DMSO 72h
+        H5 sorgente      : Neuroblastoma
+
+CONFRONTO  GSE151680__GSE151680__grp_0002_vs_grp_0001__1
+  studio: GSE151680
+  TRATTATO  (n=2)  etichetta Stadio 2: U251TR temozolomide
+      gruppo Stadio 2: grp_0002
+      GSM4588132
+        grezzo (Stadio 1): title: U251TR rep1,source: glioblastoma cells,tissue: glioblastoma,cell line: U251TR,phenotype: temozolomide resistant cells
+        H5 titolo        : U251TR rep1
+        H5 caratteristiche: tissue: glioblastoma,cell line: U251TR,phenotype: temozolomide resistant cells
+        H5 sorgente      : glioblastoma cells
+      GSM4588134
+        grezzo (Stadio 1): title: U251TR rep3,source: glioblastoma cells,tissue: glioblastoma,cell line: U251TR,phenotype: temozolomide resistant cells
+        H5 titolo        : U251TR rep3
+        H5 caratteristiche: tissue: glioblastoma,cell line: U251TR,phenotype: temozolomide resistant cells
+        H5 sorgente      : glioblastoma cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: U251MG untreated
+      gruppo Stadio 2: grp_0001
+      GSM4588126
+        grezzo (Stadio 1): title: U251MG rep1,source: glioblastoma cells,tissue: glioblastoma,cell line: U251MG,phenotype: Malignant Glioma cells
+        H5 titolo        : U251MG rep1
+        H5 caratteristiche: tissue: glioblastoma,cell line: U251MG,phenotype: Malignant Glioma cells
+        H5 sorgente      : glioblastoma cells
+      GSM4588127
+        grezzo (Stadio 1): title: U251MG rep2,source: glioblastoma cells,tissue: glioblastoma,cell line: U251MG,phenotype: Malignant Glioma cells
+        H5 titolo        : U251MG rep2
+        H5 caratteristiche: tissue: glioblastoma,cell line: U251MG,phenotype: Malignant Glioma cells
+        H5 sorgente      : glioblastoma cells
+      GSM4588128
+        grezzo (Stadio 1): title: U251MG rep3,source: glioblastoma cells,tissue: glioblastoma,cell line: U251MG,phenotype: Malignant Glioma cells
+        H5 titolo        : U251MG rep3
+        H5 caratteristiche: tissue: glioblastoma,cell line: U251MG,phenotype: Malignant Glioma cells
+        H5 sorgente      : glioblastoma cells
+
+CONFRONTO  GSE218860__GSE218860__grp_MGG4_temozolomide_10mgkg_vs_grp_MGG4_DMSO__1
+  studio: GSE218860
+  TRATTATO  (n=2)  etichetta Stadio 2: MGG4 temozolomide 10mg/kg
+      gruppo Stadio 2: grp_MGG4_temozolomide_10mgkg
+      GSM6757889
+        grezzo (Stadio 1): title: MGG4-vivo-TMZ-1,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: temozolomide, 10mg/kg,group: in vivo
+        H5 titolo        : MGG4-vivo-TMZ-1
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: temozolomide, 10mg/kg,group: in vivo
+        H5 sorgente      : brain
+      GSM6757890
+        grezzo (Stadio 1): title: MGG4-vivo-TMZ-2,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: temozolomide, 10mg/kg,group: in vivo
+        H5 titolo        : MGG4-vivo-TMZ-2
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: temozolomide, 10mg/kg,group: in vivo
+        H5 sorgente      : brain
+  CONTROLLO  (n=5)  etichetta Stadio 2: MGG4 DMSO
+      gruppo Stadio 2: grp_MGG4_DMSO
+      GSM6757891
+        grezzo (Stadio 1): title: MGG4-vivo-DMSO-1,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vivo
+        H5 titolo        : MGG4-vivo-DMSO-1
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vivo
+        H5 sorgente      : brain
+      GSM6757892
+        grezzo (Stadio 1): title: MGG4-vivo-DMSO-2,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vivo
+        H5 titolo        : MGG4-vivo-DMSO-2
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vivo
+        H5 sorgente      : brain
+      GSM6757901
+        grezzo (Stadio 1): title: MGG4-vitro-DMSO-1,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 titolo        : MGG4-vitro-DMSO-1
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 sorgente      : brain
+      GSM6757902
+        grezzo (Stadio 1): title: MGG4-vitro-DMSO-3,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 titolo        : MGG4-vitro-DMSO-3
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 sorgente      : brain
+      GSM6757903
+        grezzo (Stadio 1): title: MGG4-vitro-DMSO-2,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 titolo        : MGG4-vitro-DMSO-2
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 sorgente      : brain
+
+CONFRONTO  GSE218860__GSE218860__grp_MGG4_temozolomide_25uM_2_vs_grp_MGG4_DMSO__1
+  studio: GSE218860
+  TRATTATO  (n=2)  etichetta Stadio 2: MGG4 temozolomide 25uM 2
+      gruppo Stadio 2: grp_MGG4_temozolomide_25uM_2
+      GSM6757899
+        grezzo (Stadio 1): title: MGG4-vitro-TMZ-2,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: temozolomide, 25uM,group: in vitro
+        H5 titolo        : MGG4-vitro-TMZ-2
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: temozolomide, 25uM,group: in vitro
+        H5 sorgente      : brain
+      GSM6757904
+        grezzo (Stadio 1): title: MGG4-vitro-TMZ-3,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: temozolomide, 25uM,group: in vitro
+        H5 titolo        : MGG4-vitro-TMZ-3
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: temozolomide, 25uM,group: in vitro
+        H5 sorgente      : brain
+  CONTROLLO  (n=5)  etichetta Stadio 2: MGG4 DMSO
+      gruppo Stadio 2: grp_MGG4_DMSO
+      GSM6757891
+        grezzo (Stadio 1): title: MGG4-vivo-DMSO-1,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vivo
+        H5 titolo        : MGG4-vivo-DMSO-1
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vivo
+        H5 sorgente      : brain
+      GSM6757892
+        grezzo (Stadio 1): title: MGG4-vivo-DMSO-2,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vivo
+        H5 titolo        : MGG4-vivo-DMSO-2
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vivo
+        H5 sorgente      : brain
+      GSM6757901
+        grezzo (Stadio 1): title: MGG4-vitro-DMSO-1,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 titolo        : MGG4-vitro-DMSO-1
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 sorgente      : brain
+      GSM6757902
+        grezzo (Stadio 1): title: MGG4-vitro-DMSO-3,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 titolo        : MGG4-vitro-DMSO-3
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 sorgente      : brain
+      GSM6757903
+        grezzo (Stadio 1): title: MGG4-vitro-DMSO-2,source: brain,tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 titolo        : MGG4-vitro-DMSO-2
+        H5 caratteristiche: tissue: brain,cell line: MGG4,cell type: patient-derived glioblastoma cell line,treatment: DMSO,group: in vitro
+        H5 sorgente      : brain
+
+CONFRONTO  GSE229136__GSE229136__TMZ_vs_Untreated__1
+  studio: GSE229136
+  TRATTATO  (n=3)  etichetta Stadio 2: G816 cells treated with TMZ for 4 days
+      gruppo Stadio 2: grp_TMZ
+      GSM7153088
+        grezzo (Stadio 1): title: TMZ rep 1,source: glioblastoma,tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: TMZ 4 days
+        H5 titolo        : TMZ rep 1
+        H5 caratteristiche: tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: TMZ 4 days
+        H5 sorgente      : glioblastoma
+      GSM7153089
+        grezzo (Stadio 1): title: TMZ rep 2,source: glioblastoma,tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: TMZ 4 days
+        H5 titolo        : TMZ rep 2
+        H5 caratteristiche: tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: TMZ 4 days
+        H5 sorgente      : glioblastoma
+      GSM7153090
+        grezzo (Stadio 1): title: TMZ rep 3,source: glioblastoma,tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: TMZ 4 days
+        H5 titolo        : TMZ rep 3
+        H5 caratteristiche: tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: TMZ 4 days
+        H5 sorgente      : glioblastoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: G816 cells untreated
+      gruppo Stadio 2: grp_Untreated
+      GSM7153082
+        grezzo (Stadio 1): title: Untreated rep 1,source: glioblastoma,tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: Untreated
+        H5 titolo        : Untreated rep 1
+        H5 caratteristiche: tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: Untreated
+        H5 sorgente      : glioblastoma
+      GSM7153083
+        grezzo (Stadio 1): title: Untreated rep 2,source: glioblastoma,tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: Untreated
+        H5 titolo        : Untreated rep 2
+        H5 caratteristiche: tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: Untreated
+        H5 sorgente      : glioblastoma
+      GSM7153084
+        grezzo (Stadio 1): title: Untreated rep 3,source: glioblastoma,tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: Untreated
+        H5 titolo        : Untreated rep 3
+        H5 caratteristiche: tissue: glioblastoma,cell line: G816,cell type: glioma-initiating,treatment: Untreated
+        H5 sorgente      : glioblastoma
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE104917     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE151680     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE218860     campioni nell'H5:   32 | collocati dallo Stadio 2:   32 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (14 righe: i controlli servono piu' confronti)
+  GSE229136     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

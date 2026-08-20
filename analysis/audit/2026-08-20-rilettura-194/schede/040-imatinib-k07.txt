@@ -1,0 +1,593 @@
+META-ANALISI 040 di 194
+==============================================================================
+nome            : imatinib
+entita (ID)     : CHEBI:45783
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_535d97f6
+studi poolati   : 7   confronti: 10   campioni: 97
+geni significativi: 972   I2 mediano: 59.9
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE102209__GSE102209__grp_0006_vs_grp_0001__1
+  studio: GSE102209
+  TRATTATO  (n=3)  etichetta Stadio 2: xenograft of patient sample + imatinib
+      gruppo Stadio 2: grp_0006
+      GSM2730360
+        grezzo (Stadio 1): title: X12-M433-IM,source: xenograft of patient sample,tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: imatinib
+        H5 titolo        : X12-M433-IM
+        H5 caratteristiche: tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: imatinib
+        H5 sorgente      : xenograft of patient sample
+      GSM2730362
+        grezzo (Stadio 1): title: X12-M434-IM,source: xenograft of patient sample,tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: imatinib
+        H5 titolo        : X12-M434-IM
+        H5 caratteristiche: tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: imatinib
+        H5 sorgente      : xenograft of patient sample
+      GSM2730364
+        grezzo (Stadio 1): title: X12-M435-IM,source: xenograft of patient sample,tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: imatinib
+        H5 titolo        : X12-M435-IM
+        H5 caratteristiche: tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: imatinib
+        H5 sorgente      : xenograft of patient sample
+  CONTROLLO  (n=4)  etichetta Stadio 2: xenograft of patient sample + DMSO
+      gruppo Stadio 2: grp_0001
+      GSM2730359
+        grezzo (Stadio 1): title: X12-M433-DMSO,source: xenograft of patient sample,tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: DMSO
+        H5 titolo        : X12-M433-DMSO
+        H5 caratteristiche: tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: DMSO
+        H5 sorgente      : xenograft of patient sample
+      GSM2730361
+        grezzo (Stadio 1): title: X12-M434-DMSO,source: xenograft of patient sample,tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: DMSO
+        H5 titolo        : X12-M434-DMSO
+        H5 caratteristiche: tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: DMSO
+        H5 sorgente      : xenograft of patient sample
+      GSM2730363
+        grezzo (Stadio 1): title: X12-M435-DMSO,source: xenograft of patient sample,tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: DMSO
+        H5 titolo        : X12-M435-DMSO
+        H5 caratteristiche: tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: DMSO
+        H5 sorgente      : xenograft of patient sample
+      GSM2730365
+        grezzo (Stadio 1): title: X12-M436-DMSO,source: xenograft of patient sample,tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: DMSO
+        H5 titolo        : X12-M436-DMSO
+        H5 caratteristiche: tissue: xenograft of patient sample,genotype: NUP214-ABL1 positive, TLX3 positive,treatment: DMSO
+        H5 sorgente      : xenograft of patient sample
+
+CONFRONTO  GSE155800__GSE155800__grp_0003_vs_grp_0002__1
+  studio: GSE155800
+  TRATTATO  (n=2)  etichetta Stadio 2: Gastrointestinal stromal tumor treated with imatinib
+      gruppo Stadio 2: grp_0003
+      GSM4712344
+        grezzo (Stadio 1): title: Tumor sample 3,source: Gastrointestinal stromal,tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 titolo        : Tumor sample 3
+        H5 caratteristiche: tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 sorgente      : Gastrointestinal stromal
+      GSM4712345
+        grezzo (Stadio 1): title: Tumor sample 4,source: Gastrointestinal stromal,tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 titolo        : Tumor sample 4
+        H5 caratteristiche: tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 sorgente      : Gastrointestinal stromal
+  CONTROLLO  (n=4)  etichetta Stadio 2: Gastrointestinal stromal tumor
+      gruppo Stadio 2: grp_0002
+      GSM4712342
+        grezzo (Stadio 1): title: Tumor sample 1,source: Gastrointestinal stromal,tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 titolo        : Tumor sample 1
+        H5 caratteristiche: tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 sorgente      : Gastrointestinal stromal
+      GSM4712343
+        grezzo (Stadio 1): title: Tumor sample 2,source: Gastrointestinal stromal,tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 titolo        : Tumor sample 2
+        H5 caratteristiche: tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 sorgente      : Gastrointestinal stromal
+      GSM4712346
+        grezzo (Stadio 1): title: Tumor sample 5,source: Gastrointestinal stromal,tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 titolo        : Tumor sample 5
+        H5 caratteristiche: tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib sensitive patient
+        H5 sorgente      : Gastrointestinal stromal
+      GSM4712356
+        grezzo (Stadio 1): title: Tumor sample 10,source: Gastrointestinal stromal,tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib resistant patient
+        H5 titolo        : Tumor sample 10
+        H5 caratteristiche: tissue: Gastrointestinal stromal,disease: Gastrointestinal stromal tumor,group: Imatinib resistant patient
+        H5 sorgente      : Gastrointestinal stromal
+
+CONFRONTO  GSE184427__GSE184427__LuCaP_73_Imatinib_vs_LuCaP_73_PBS__1
+  studio: GSE184427
+  TRATTATO  (n=2)  etichetta Stadio 2: LuCaP 73 Imatinib
+      gruppo Stadio 2: mg18
+      GSM5588781
+        grezzo (Stadio 1): title: LuCaP73 Imatinib,source: Prostate PDX,xenograft line: LuCaP 73,host: Intact,treatment: Imatinib
+        H5 titolo        : LuCaP73 Imatinib
+        H5 caratteristiche: xenograft line: LuCaP 73,host: Intact,treatment: Imatinib
+        H5 sorgente      : Prostate PDX
+      GSM5588795
+        grezzo (Stadio 1): title: LuCaP73 castrated Imatinib,source: Prostate PDX,xenograft line: LuCaP 73,host: Castrated,treatment: Imatinib
+        H5 titolo        : LuCaP73 castrated Imatinib
+        H5 caratteristiche: xenograft line: LuCaP 73,host: Castrated,treatment: Imatinib
+        H5 sorgente      : Prostate PDX
+  CONTROLLO  (n=2)  etichetta Stadio 2: LuCaP 73 PBS Control
+      gruppo Stadio 2: mg14
+      GSM5588804
+        grezzo (Stadio 1): title: LuCaP147 PBS (vehicle),source: Prostate PDX,xenograft line: LuCaP 147,host: Intact,treatment: PBS (vehicle)
+        H5 titolo        : LuCaP147 PBS (vehicle)
+        H5 caratteristiche: xenograft line: LuCaP 147,host: Intact,treatment: PBS (vehicle)
+        H5 sorgente      : Prostate PDX
+      GSM5588818
+        grezzo (Stadio 1): title: LuCaP147 castrated PBS (vehicle),source: Prostate PDX,xenograft line: LuCaP 147,host: Castrated,treatment: PBS (vehicle)
+        H5 titolo        : LuCaP147 castrated PBS (vehicle)
+        H5 caratteristiche: xenograft line: LuCaP 147,host: Castrated,treatment: PBS (vehicle)
+        H5 sorgente      : Prostate PDX
+
+CONFRONTO  GSE186341__GSE186341__NCI-H1793_Imatinib_5.4553uM_24h_vs_NCI-H1793_DMSO_24h__1
+  studio: GSE186341
+  TRATTATO  (n=2)  etichetta Stadio 2: NCI-H1793_Imatinib_5.4553uM_24h
+      gruppo Stadio 2: mg359
+      GSM5644666
+        grezzo (Stadio 1): title: h1793_C12_Imatinib_5.455337_24 1793PS1AA01_TAGCATAC_91.gz,source: lung cancer,treatment: Imatinib,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_C12_Imatinib_5.455337_24 1793PS1AA01_TAGCATAC_91.gz
+        H5 caratteristiche: treatment: Imatinib,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644684
+        grezzo (Stadio 1): title: h1793_C12_Imatinib_5.455337_24 1793PS1BA01_TAGCATAC_91.gz,source: lung cancer,treatment: Imatinib,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_C12_Imatinib_5.455337_24 1793PS1BA01_TAGCATAC_91.gz
+        H5 caratteristiche: treatment: Imatinib,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+  CONTROLLO  (n=22)  etichetta Stadio 2: NCI-H1793_DMSO_24h
+      gruppo Stadio 2: mg355
+      GSM5644654
+        grezzo (Stadio 1): title: h1793_D5_DMSO_0_24 1793PS1AA01_ACGACCTC_36.gz,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D5_DMSO_0_24 1793PS1AA01_ACGACCTC_36.gz
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644657
+        grezzo (Stadio 1): title: h1793_D6_DMSO_0_24 1793PS1AA01_ACACGCCA_44.gz,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D6_DMSO_0_24 1793PS1AA01_ACACGCCA_44.gz
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644672
+        grezzo (Stadio 1): title: h1793_D5_DMSO_0_24 1793PS1BA01_ACGACCTC_36.gz,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D5_DMSO_0_24 1793PS1BA01_ACGACCTC_36.gz
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644675
+        grezzo (Stadio 1): title: h1793_D6_DMSO_0_24 1793PS1BA01_ACACGCCA_44.gz,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D6_DMSO_0_24 1793PS1BA01_ACACGCCA_44.gz
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644689
+        grezzo (Stadio 1): title: h1793_D5_DMSO_0_24 NCIH1793PS2AD05_ACGACCTC,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D5_DMSO_0_24 NCIH1793PS2AD05_ACGACCTC
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644691
+        grezzo (Stadio 1): title: h1793_D6_DMSO_0_24 NCIH1793PS2AD06_ACACGCCA,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D6_DMSO_0_24 NCIH1793PS2AD06_ACACGCCA
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644702
+        grezzo (Stadio 1): title: h1793_D5_DMSO_0_24 NCIH1793PS2BD05_ACGACCTC,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D5_DMSO_0_24 NCIH1793PS2BD05_ACGACCTC
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644704
+        grezzo (Stadio 1): title: h1793_D6_DMSO_0_24 NCIH1793PS2BD06_ACACGCCA,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D6_DMSO_0_24 NCIH1793PS2BD06_ACACGCCA
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644712
+        grezzo (Stadio 1): title: h1793_D5_DMSO_0_24 NCIH1793PS3AD05_ACGACCTC,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D5_DMSO_0_24 NCIH1793PS3AD05_ACGACCTC
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644714
+        grezzo (Stadio 1): title: h1793_D6_DMSO_0_24 NCIH1793PS3AD06_ACACGCCA,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D6_DMSO_0_24 NCIH1793PS3AD06_ACACGCCA
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644723
+        grezzo (Stadio 1): title: h1793_D5_DMSO_0_24 1793PS3CD05_ACGACCTC,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D5_DMSO_0_24 1793PS3CD05_ACGACCTC
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644725
+        grezzo (Stadio 1): title: h1793_D6_DMSO_0_24 1793PS3CD06_ACACGCCA,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D6_DMSO_0_24 1793PS3CD06_ACACGCCA
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644735
+        grezzo (Stadio 1): title: h1793_D5_DMSO_0_24 1793PS4AD05_ACGACCTC,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D5_DMSO_0_24 1793PS4AD05_ACGACCTC
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644737
+        grezzo (Stadio 1): title: h1793_D6_DMSO_0_24 1793PS4AD06_ACACGCCA,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D6_DMSO_0_24 1793PS4AD06_ACACGCCA
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644741
+        grezzo (Stadio 1): title: h1793_D5_DMSO_0_24 1793PS4BD05_ACGACCTC,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D5_DMSO_0_24 1793PS4BD05_ACGACCTC
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644743
+        grezzo (Stadio 1): title: h1793_D6_DMSO_0_24 1793PS4BD06_ACACGCCA,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D6_DMSO_0_24 1793PS4BD06_ACACGCCA
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644747
+        grezzo (Stadio 1): title: h1793_B2_DMSO_0_24 1793PS5AB02_CAGTACCT,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_B2_DMSO_0_24 1793PS5AB02_CAGTACCT
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644750
+        grezzo (Stadio 1): title: h1793_C6_DMSO_0_24 1793PS5AC06_AACAGTTG,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_C6_DMSO_0_24 1793PS5AC06_AACAGTTG
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644754
+        grezzo (Stadio 1): title: h1793_E11_DMSO_0_24 1793PS5AE11_CTAGCATC,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E11_DMSO_0_24 1793PS5AE11_CTAGCATC
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644759
+        grezzo (Stadio 1): title: h1793_B2_DMSO_0_24 1793PS5BB02_CAGTACCT,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_B2_DMSO_0_24 1793PS5BB02_CAGTACCT
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644762
+        grezzo (Stadio 1): title: h1793_C6_DMSO_0_24 1793PS5BC06_AACAGTTG,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_C6_DMSO_0_24 1793PS5BC06_AACAGTTG
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644766
+        grezzo (Stadio 1): title: h1793_E11_DMSO_0_24 1793PS5BE11_CTAGCATC,source: lung cancer,treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E11_DMSO_0_24 1793PS5BE11_CTAGCATC
+        H5 caratteristiche: treatment: DMSO,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+
+CONFRONTO  GSE186341__GSE186341__PANC-1_Imatinib_vs_PANC-1_Untreated__1
+  studio: GSE186341
+  TRATTATO  (n=2)  etichetta Stadio 2: PANC-1_Imatinib
+      gruppo Stadio 2: mg387
+      GSM5645600
+        grezzo (Stadio 1): title: panc1_C7_Imatinib_0.005_24 PANC1PS1AS223_GTATTCCT,source: pancreatic cancer,treatment: Imatinib,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_C7_Imatinib_0.005_24 PANC1PS1AS223_GTATTCCT
+        H5 caratteristiche: treatment: Imatinib,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+      GSM5645622
+        grezzo (Stadio 1): title: panc1_C7_Imatinib_0.005_24 PANC1PS1BS319_ACGGTAGG,source: pancreatic cancer,treatment: Imatinib,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_C7_Imatinib_0.005_24 PANC1PS1BS319_ACGGTAGG
+        H5 caratteristiche: treatment: Imatinib,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+  CONTROLLO  (n=4)  etichetta Stadio 2: PANC-1_Untreated
+      gruppo Stadio 2: mg396
+      GSM5645615
+        grezzo (Stadio 1): title: panc1_H11_UNTREATED__24 PANC1PS1AS287_GCACTAAT,source: pancreatic cancer,treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_H11_UNTREATED__24 PANC1PS1AS287_GCACTAAT
+        H5 caratteristiche: treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+      GSM5645660
+        grezzo (Stadio 1): title: panc1_H11_UNTREATED__24 PANC1PS2AS479_GCGACGAA,source: pancreatic cancer,treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_H11_UNTREATED__24 PANC1PS2AS479_GCGACGAA
+        H5 caratteristiche: treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+      GSM5645682
+        grezzo (Stadio 1): title: panc1_G11_UNTREATED__24 PANC1PS2BS563_ATAGGGCG,source: pancreatic cancer,treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_G11_UNTREATED__24 PANC1PS2BS563_ATAGGGCG
+        H5 caratteristiche: treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+      GSM5645741
+        grezzo (Stadio 1): title: panc1_H11_UNTREATED__24 PANC1PS4AS191_TGTCGTGA,source: pancreatic cancer,treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_H11_UNTREATED__24 PANC1PS4AS191_TGTCGTGA
+        H5 caratteristiche: treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+
+CONFRONTO  GSE193398__GSE193398__grp_0003_vs_grp_0001__1
+  studio: GSE193398
+  TRATTATO  (n=2)  etichetta Stadio 2: Imatinib 1uM
+      gruppo Stadio 2: grp_0003
+      GSM5799558
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (1uM Imatinib) - rep1,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Treated with 1uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 titolo        : Pulmonary LAM Tumor cells  (1uM Imatinib) - rep1
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Treated with 1uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+      GSM5799559
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (1uM Imatinib) - rep2,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Treated with 1uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 titolo        : Pulmonary LAM Tumor cells  (1uM Imatinib) - rep2
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Treated with 1uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0001
+      GSM5799552
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells (untreated) - rep1,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 titolo        : Pulmonary LAM Tumor cells (untreated) - rep1
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+      GSM5799553
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (untreated) - rep2,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 titolo        : Pulmonary LAM Tumor cells  (untreated) - rep2
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+
+CONFRONTO  GSE193398__GSE193398__grp_0004_vs_grp_0001__1
+  studio: GSE193398
+  TRATTATO  (n=2)  etichetta Stadio 2: Imatinib 10uM
+      gruppo Stadio 2: grp_0004
+      GSM5799562
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (10uM Imatinib) - rep1,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Treated with 10uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 titolo        : Pulmonary LAM Tumor cells  (10uM Imatinib) - rep1
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Treated with 10uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+      GSM5799563
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (10uM Imatinib) - rep2,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Treated with 10uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 titolo        : Pulmonary LAM Tumor cells  (10uM Imatinib) - rep2
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Treated with 10uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0001
+      GSM5799552
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells (untreated) - rep1,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 titolo        : Pulmonary LAM Tumor cells (untreated) - rep1
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+      GSM5799553
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (untreated) - rep2,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 titolo        : Pulmonary LAM Tumor cells  (untreated) - rep2
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+
+CONFRONTO  GSE193398__GSE193398__grp_0005_vs_grp_0001__1
+  studio: GSE193398
+  TRATTATO  (n=2)  etichetta Stadio 2: Imatinib 5uM
+      gruppo Stadio 2: grp_0005
+      GSM5799560
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (5uM Imatinib) - rep1,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Treated with 5uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 titolo        : Pulmonary LAM Tumor cells  (5uM Imatinib) - rep1
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Treated with 5uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+      GSM5799561
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (5uM Imatinib) - rep2,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Treated with 5uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 titolo        : Pulmonary LAM Tumor cells  (5uM Imatinib) - rep2
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Treated with 5uM Imatinib for 24hrs,drug: Imatinib (Novartis)
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0001
+      GSM5799552
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells (untreated) - rep1,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 titolo        : Pulmonary LAM Tumor cells (untreated) - rep1
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+      GSM5799553
+        grezzo (Stadio 1): title: Pulmonary LAM Tumor cells  (untreated) - rep2,source: Pulmonary LAM Tumor Biopsy,disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 titolo        : Pulmonary LAM Tumor cells  (untreated) - rep2
+        H5 caratteristiche: disease: Lymphangioleiomyomatosis,treatment: Untreated,drug: None
+        H5 sorgente      : Pulmonary LAM Tumor Biopsy
+
+CONFRONTO  GSE217421__GSE217421__DMSO_1_vs_Imatinib__1
+  studio: GSE217421
+  TRATTATO  (n=2)  etichetta Stadio 2: Imatinib-treated cardiac myocytes
+      gruppo Stadio 2: mg79
+      GSM6717760
+        grezzo (Stadio 1): title: IMA MSN02-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: F11,investigative unit: 193,sample id: 13,rna amount (ng): 200,rin: 9.2,rna conc (ng/ul): 222,rna volume (ul): 0.900900900900901,h2o volume (ul): 16.0990990990991
+        H5 titolo        : IMA MSN02-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: F11,investigative unit: 193,sample id: 13,rna amount (ng): 200,rin: 9.2,rna conc (ng/ul): 222,rna volume (ul): 0.900900900900901,h2o volume (ul): 16.0990990990991
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717769
+        grezzo (Stadio 1): title: IMA MSN08-13R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: E8,investigative unit: 126,sample id: 2,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 80.8,rna volume (ul): 2.47524752475248,h2o volume (ul): 14.5247524752475
+        H5 titolo        : IMA MSN08-13R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: E8,investigative unit: 126,sample id: 2,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 80.8,rna volume (ul): 2.47524752475248,h2o volume (ul): 14.5247524752475
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE217423__GSE217423__Imatinib_vs_DMSO__1
+  studio: GSE217423
+  TRATTATO  (n=8)  etichetta Stadio 2: Cardiac myocytes treated with Imatinib
+      gruppo Stadio 2: mg18
+      GSM6718467
+        grezzo (Stadio 1): title: IMA MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: A5,investigative unit: 116,sample id: 6,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 214,rna volume (ul): 0.934579,h2o volume (ul): 19.065421
+        H5 titolo        : IMA MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: A5,investigative unit: 116,sample id: 6,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 214,rna volume (ul): 0.934579,h2o volume (ul): 19.065421
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718468
+        grezzo (Stadio 1): title: IMA MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: C22,investigative unit: 119,sample id: 6,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 65.8,rna volume (ul): 3.039514,h2o volume (ul): 16.960486
+        H5 titolo        : IMA MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: C22,investigative unit: 119,sample id: 6,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 65.8,rna volume (ul): 3.039514,h2o volume (ul): 16.960486
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718469
+        grezzo (Stadio 1): title: IMA MSN02-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: M9,investigative unit: 132,sample id: 6,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 82.2,rna volume (ul): 2.43309,h2o volume (ul): 17.56691
+        H5 titolo        : IMA MSN02-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: M9,investigative unit: 132,sample id: 6,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 82.2,rna volume (ul): 2.43309,h2o volume (ul): 17.56691
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718470
+        grezzo (Stadio 1): title: IMA MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: N16,investigative unit: 132,sample id: 52,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 89.8,rna volume (ul): 2.227171,h2o volume (ul): 17.772829
+        H5 titolo        : IMA MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: N16,investigative unit: 132,sample id: 52,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 89.8,rna volume (ul): 2.227171,h2o volume (ul): 17.772829
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718471
+        grezzo (Stadio 1): title: IMA MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: G1,investigative unit: 124,sample id: 4,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 48.6,rna volume (ul): 4.115226,h2o volume (ul): 15.884774
+        H5 titolo        : IMA MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: G1,investigative unit: 124,sample id: 4,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 48.6,rna volume (ul): 4.115226,h2o volume (ul): 15.884774
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718472
+        grezzo (Stadio 1): title: IMA MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: I2,investigative unit: 128,sample id: 6,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 45,rna volume (ul): 4.444444,h2o volume (ul): 15.555556
+        H5 titolo        : IMA MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: I2,investigative unit: 128,sample id: 6,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 45,rna volume (ul): 4.444444,h2o volume (ul): 15.555556
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718473
+        grezzo (Stadio 1): title: IMA MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: I23,investigative unit: 129,sample id: 6,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 38.4,rna volume (ul): 5.208333,h2o volume (ul): 14.791667
+        H5 titolo        : IMA MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: I23,investigative unit: 129,sample id: 6,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 38.4,rna volume (ul): 5.208333,h2o volume (ul): 14.791667
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718474
+        grezzo (Stadio 1): title: IMA MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: K16,investigative unit: 130,sample id: 6,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 57.6,rna volume (ul): 3.472222,h2o volume (ul): 16.527778
+        H5 titolo        : IMA MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: IMA,drug name: Imatinib,concentration: 5uM,well: K16,investigative unit: 130,sample id: 6,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 57.6,rna volume (ul): 3.472222,h2o volume (ul): 16.527778
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=16)  etichetta Stadio 2: Cardiac myocytes treated with DMSO
+      gruppo Stadio 2: mg1
+      GSM6718347
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 titolo        : CTRL MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718348
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 titolo        : CTRL MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718349
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 titolo        : CTRL MSN02-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718350
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718351
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 titolo        : CTRL MSN02-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718352
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 titolo        : CTRL MSN02-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718353
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 titolo        : CTRL MSN02-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718354
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 titolo        : CTRL MSN02-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718355
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 titolo        : CTRL MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718356
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 titolo        : CTRL MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718357
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 titolo        : CTRL MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718358
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 titolo        : CTRL MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718359
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 titolo        : CTRL MSN09-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718360
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 titolo        : CTRL MSN09-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718361
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 titolo        : CTRL MSN09-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718362
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 titolo        : CTRL MSN09-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 sorgente      : induced pluripotent stem cell
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE102209     campioni nell'H5:   20 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE155800     campioni nell'H5:   19 | collocati dallo Stadio 2:   19 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE184427     campioni nell'H5:  128 | collocati dallo Stadio 2:  109 | MAI COLLOCATI:   19 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5588772, GSM5588774, GSM5588778, GSM5588779, GSM5588784, GSM5588787, GSM5588789, GSM5588794, GSM5588796, GSM5588798, GSM5588799, GSM5588803 ... (+7)
+  GSE186341     campioni nell'H5: 1726 | collocati dallo Stadio 2: 1291 | MAI COLLOCATI:  435 | usati in questa meta-analisi: 30 campioni distinti (30 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5644169, GSM5644211, GSM5644212, GSM5644214, GSM5644216, GSM5644233, GSM5644246, GSM5644247, GSM5644252, GSM5644254, GSM5644255, GSM5644259 ... (+423)
+  GSE193398     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE217421     campioni nell'H5: 1170 | collocati dallo Stadio 2:  913 | MAI COLLOCATI:  257 | usati in questa meta-analisi: 14 campioni distinti (14 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6717095, GSM6717097, GSM6717100, GSM6717101, GSM6717102, GSM6717103, GSM6717104, GSM6717106, GSM6717107, GSM6717108, GSM6717111, GSM6717112 ... (+245)
+  GSE217423     campioni nell'H5:  344 | collocati dallo Stadio 2:  264 | MAI COLLOCATI:   80 | usati in questa meta-analisi: 24 campioni distinti (24 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6718283, GSM6718285, GSM6718287, GSM6718288, GSM6718289, GSM6718290, GSM6718299, GSM6718306, GSM6718317, GSM6718324, GSM6718325, GSM6718326 ... (+68)
+

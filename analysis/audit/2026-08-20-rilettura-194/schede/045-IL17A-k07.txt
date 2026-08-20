@@ -1,0 +1,402 @@
+META-ANALISI 045 di 194
+==============================================================================
+nome            : IL17A
+entita (ID)     : HGNC:5981
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_b32ab7f6
+studi poolati   : 7   confronti: 9   campioni: 61
+geni significativi: 895   I2 mediano: 38.9
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE103930__GSE103930__grp_0002_vs_grp_0003__1
+  studio: GSE103930
+  TRATTATO  (n=3)  etichetta Stadio 2: IL17A stimulation
+      gruppo Stadio 2: grp_0002
+      GSM2786458
+        grezzo (Stadio 1): title: KNI1766A275,source: IL17A+,tissue: blood,cell type: PBMC CD4,cell subtype: IL17A+,replicate number: 1
+        H5 titolo        : KNI1766A275
+        H5 caratteristiche: tissue: blood,cell type: PBMC CD4,cell subtype: IL17A+,replicate number: 1
+        H5 sorgente      : IL17A+
+      GSM2786464
+        grezzo (Stadio 1): title: KNI1766A281,source: IL17A+,tissue: blood,cell type: PBMC CD4,cell subtype: IL17A+,replicate number: 3
+        H5 titolo        : KNI1766A281
+        H5 caratteristiche: tissue: blood,cell type: PBMC CD4,cell subtype: IL17A+,replicate number: 3
+        H5 sorgente      : IL17A+
+      GSM2786468
+        grezzo (Stadio 1): title: KNI1766A285,source: IL17A+,tissue: blood,cell type: PBMC CD4,cell subtype: IL17A+,replicate number: 4
+        H5 titolo        : KNI1766A285
+        H5 caratteristiche: tissue: blood,cell type: PBMC CD4,cell subtype: IL17A+,replicate number: 4
+        H5 sorgente      : IL17A+
+  CONTROLLO  (n=4)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0003
+      GSM2786456
+        grezzo (Stadio 1): title: KNI1766A273,source: CD45RA+Cyt-,tissue: blood,cell type: PBMC CD4,cell subtype: CD45RA+Cyt-,replicate number: 1
+        H5 titolo        : KNI1766A273
+        H5 caratteristiche: tissue: blood,cell type: PBMC CD4,cell subtype: CD45RA+Cyt-,replicate number: 1
+        H5 sorgente      : CD45RA+Cyt-
+      GSM2786461
+        grezzo (Stadio 1): title: KNI1766A278,source: CD45RA+Cyt-,tissue: blood,cell type: PBMC CD4,cell subtype: CD45RA+Cyt-,replicate number: 3
+        H5 titolo        : KNI1766A278
+        H5 caratteristiche: tissue: blood,cell type: PBMC CD4,cell subtype: CD45RA+Cyt-,replicate number: 3
+        H5 sorgente      : CD45RA+Cyt-
+      GSM2786466
+        grezzo (Stadio 1): title: KNI1766A283,source: CD45RA+Cyt-,tissue: blood,cell type: PBMC CD4,cell subtype: CD45RA+Cyt-,replicate number: 4
+        H5 titolo        : KNI1766A283
+        H5 caratteristiche: tissue: blood,cell type: PBMC CD4,cell subtype: CD45RA+Cyt-,replicate number: 4
+        H5 sorgente      : CD45RA+Cyt-
+      GSM2786471
+        grezzo (Stadio 1): title: KNI1766A288,source: CD45RA+Cyt-,tissue: blood,cell type: PBMC CD4,cell subtype: CD45RA+Cyt-,replicate number: 2
+        H5 titolo        : KNI1766A288
+        H5 caratteristiche: tissue: blood,cell type: PBMC CD4,cell subtype: CD45RA+Cyt-,replicate number: 2
+        H5 sorgente      : CD45RA+Cyt-
+
+CONFRONTO  GSE119047__GSE119047__IL17A_vs_PBS__1
+  studio: GSE119047
+  TRATTATO  (n=3)  etichetta Stadio 2: IL17A
+      gruppo Stadio 2: grp_0007
+      GSM3357028
+        grezzo (Stadio 1): title: Blue IL17A,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: IL17A,lot: Blue,barcode: MPS087814
+        H5 titolo        : Blue IL17A
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: IL17A,lot: Blue,barcode: MPS087814
+        H5 sorgente      : Primary Hepatic Stellate Cells
+      GSM3357035
+        grezzo (Stadio 1): title: Grey IL17A,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: IL17A,lot: Grey,barcode: MPS087828
+        H5 titolo        : Grey IL17A
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: IL17A,lot: Grey,barcode: MPS087828
+        H5 sorgente      : Primary Hepatic Stellate Cells
+      GSM3357042
+        grezzo (Stadio 1): title: Yellow IL17A,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: IL17A,lot: Yellow,barcode: MPS087821
+        H5 titolo        : Yellow IL17A
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: IL17A,lot: Yellow,barcode: MPS087821
+        H5 sorgente      : Primary Hepatic Stellate Cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0001
+      GSM3357032
+        grezzo (Stadio 1): title: Blue PBS,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Blue,barcode: MPS087811
+        H5 titolo        : Blue PBS
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Blue,barcode: MPS087811
+        H5 sorgente      : Primary Hepatic Stellate Cells
+      GSM3357046
+        grezzo (Stadio 1): title: Yellow PBS,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Yellow,barcode: MPS087818
+        H5 titolo        : Yellow PBS
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Yellow,barcode: MPS087818
+        H5 sorgente      : Primary Hepatic Stellate Cells
+
+CONFRONTO  GSE171170__GSE171170__IL-17A_vs_PBS__1
+  studio: GSE171170
+  TRATTATO  (n=3)  etichetta Stadio 2: IL-17A (100 ng/ml)
+      gruppo Stadio 2: grp_0003
+      GSM5220270
+        grezzo (Stadio 1): title: 10_IL_17_1_10,source: Skin Keratinocyte_IL-17A stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: IL-17A (100 ng/ml) stimulated
+        H5 titolo        : 10_IL_17_1_10
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: IL-17A (100 ng/ml) stimulated
+        H5 sorgente      : Skin Keratinocyte_IL-17A stimulated
+      GSM5220271
+        grezzo (Stadio 1): title: 11_IL_17_2_11,source: Skin Keratinocyte_IL-17A stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: IL-17A (100 ng/ml) stimulated
+        H5 titolo        : 11_IL_17_2_11
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: IL-17A (100 ng/ml) stimulated
+        H5 sorgente      : Skin Keratinocyte_IL-17A stimulated
+      GSM5220272
+        grezzo (Stadio 1): title: 12_IL_17_3_12,source: Skin Keratinocyte_IL-17A stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: IL-17A (100 ng/ml) stimulated
+        H5 titolo        : 12_IL_17_3_12
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: IL-17A (100 ng/ml) stimulated
+        H5 sorgente      : Skin Keratinocyte_IL-17A stimulated
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0004
+      GSM5220261
+        grezzo (Stadio 1): title: 1_C1_1,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 1_C1_1
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+      GSM5220262
+        grezzo (Stadio 1): title: 2_C2_2,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 2_C2_2
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+      GSM5220263
+        grezzo (Stadio 1): title: 3_C3_3,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 3_C3_3
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+
+CONFRONTO  GSE171952__GSE171952__Chondrocytes_P33_IL-17A_vs_Chondrocytes_P33_Vehicle__1
+  studio: GSE171952
+  TRATTATO  (n=6)  etichetta Stadio 2: Chondrocytes_P33_IL-17A
+      gruppo Stadio 2: grp_0004
+      GSM5238683
+        grezzo (Stadio 1): title: i02_HAC2_P33_A2_S18,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P33
+        H5 titolo        : i02_HAC2_P33_A2_S18
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P33
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238687
+        grezzo (Stadio 1): title: i06_HAC2_P332_A2_S20,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P332
+        H5 titolo        : i06_HAC2_P332_A2_S20
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P332
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238691
+        grezzo (Stadio 1): title: i10_HAC2_P3_A2_S9,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P3
+        H5 titolo        : i10_HAC2_P3_A2_S9
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P3
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238695
+        grezzo (Stadio 1): title: i14_HAC2_P39_A2_S13,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P39
+        H5 titolo        : i14_HAC2_P39_A2_S13
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P39
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238699
+        grezzo (Stadio 1): title: i18_HAC2_P226_A2_S10,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P226
+        H5 titolo        : i18_HAC2_P226_A2_S10
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P226
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238703
+        grezzo (Stadio 1): title: i22_HAC2_P4_A2_S12,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P4
+        H5 titolo        : i22_HAC2_P4_A2_S12
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P4
+        H5 sorgente      : Osteoarthritic knee cartilage
+  CONTROLLO  (n=6)  etichetta Stadio 2: Chondrocytes_P33_Vehicle
+      gruppo Stadio 2: grp_0001
+      GSM5238682
+        grezzo (Stadio 1): title: i01_HAC2_P33_C2_S8,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P33
+        H5 titolo        : i01_HAC2_P33_C2_S8
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P33
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238686
+        grezzo (Stadio 1): title: i05_HAC2_P332_C2_S21,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P332
+        H5 titolo        : i05_HAC2_P332_C2_S21
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P332
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238690
+        grezzo (Stadio 1): title: i09_HAC2_P3_C2_S17,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P3
+        H5 titolo        : i09_HAC2_P3_C2_S17
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P3
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238694
+        grezzo (Stadio 1): title: i13_HAC2_P39_C2_S4,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P39
+        H5 titolo        : i13_HAC2_P39_C2_S4
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P39
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238698
+        grezzo (Stadio 1): title: i17_HAC2_P226_C2_S15,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P226
+        H5 titolo        : i17_HAC2_P226_C2_S15
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P226
+        H5 sorgente      : Osteoarthritic knee cartilage
+      GSM5238702
+        grezzo (Stadio 1): title: i21_HAC2_P4_C2_S22,source: Osteoarthritic knee cartilage,tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P4
+        H5 titolo        : i21_HAC2_P4_C2_S22
+        H5 caratteristiche: tissue: Cartilage (knee),cells: Chondrocytes,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P4
+        H5 sorgente      : Osteoarthritic knee cartilage
+
+CONFRONTO  GSE171952__GSE171952__Synovial_fibroblasts_P299_IL-17A_vs_Synovial_fibroblasts_P299_Vehicle__1
+  studio: GSE171952
+  TRATTATO  (n=2)  etichetta Stadio 2: Synovial_fibroblasts_P299_IL-17A
+      gruppo Stadio 2: grp_0018
+      GSM5238711
+        grezzo (Stadio 1): title: i30_SF_P299_A2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P299
+        H5 titolo        : i30_SF_P299_A2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P299
+        H5 sorgente      : Osteoarthritic knee synovium
+      GSM5238715
+        grezzo (Stadio 1): title: i34_SF_P368_A2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P368
+        H5 titolo        : i34_SF_P368_A2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P368
+        H5 sorgente      : Osteoarthritic knee synovium
+  CONTROLLO  (n=3)  etichetta Stadio 2: Synovial_fibroblasts_P299_Vehicle
+      gruppo Stadio 2: grp_0012
+      GSM5238710
+        grezzo (Stadio 1): title: i29_SF_P299_C2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P299
+        H5 titolo        : i29_SF_P299_C2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P299
+        H5 sorgente      : Osteoarthritic knee synovium
+      GSM5238714
+        grezzo (Stadio 1): title: i33_SF_P368_C2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P368
+        H5 titolo        : i33_SF_P368_C2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P368
+        H5 sorgente      : Osteoarthritic knee synovium
+      GSM5238722
+        grezzo (Stadio 1): title: i41_SF_P317_C2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P317
+        H5 titolo        : i41_SF_P317_C2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P317
+        H5 sorgente      : Osteoarthritic knee synovium
+
+CONFRONTO  GSE171952__GSE171952__Synovial_fibroblasts_P330_IL-17A_vs_Synovial_fibroblasts_P330_Vehicle__1
+  studio: GSE171952
+  TRATTATO  (n=2)  etichetta Stadio 2: Synovial_fibroblasts_P330_IL-17A
+      gruppo Stadio 2: grp_0011
+      GSM5238707
+        grezzo (Stadio 1): title: i26_SF_P330_A2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P330
+        H5 titolo        : i26_SF_P330_A2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P330
+        H5 sorgente      : Osteoarthritic knee synovium
+      GSM5238727
+        grezzo (Stadio 1): title: i46_SF_P310_A2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P310
+        H5 titolo        : i46_SF_P310_A2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: IL-17A (10 ng/ml) for 24 hours,patient id: P310
+        H5 sorgente      : Osteoarthritic knee synovium
+  CONTROLLO  (n=3)  etichetta Stadio 2: Synovial_fibroblasts_P330_Vehicle
+      gruppo Stadio 2: grp_0007
+      GSM5238706
+        grezzo (Stadio 1): title: i25_SF_P330_C2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P330
+        H5 titolo        : i25_SF_P330_C2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P330
+        H5 sorgente      : Osteoarthritic knee synovium
+      GSM5238718
+        grezzo (Stadio 1): title: i37_SF_P377_C2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P377
+        H5 titolo        : i37_SF_P377_C2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P377
+        H5 sorgente      : Osteoarthritic knee synovium
+      GSM5238726
+        grezzo (Stadio 1): title: i45_SF_P310_C2,source: Osteoarthritic knee synovium,tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P310
+        H5 titolo        : i45_SF_P310_C2
+        H5 caratteristiche: tissue: Synovium (knee),cells: Synovial fibroblasts,disease state: End-stage osteoarthritis,treatment: Control (vehicle) for 24 hours,patient id: P310
+        H5 sorgente      : Osteoarthritic knee synovium
+
+CONFRONTO  GSE182957__GSE182957__IL17_vs_control__1
+  studio: GSE182957
+  TRATTATO  (n=4)  etichetta Stadio 2: IL17
+      gruppo Stadio 2: grp_0005
+      GSM5543684
+        grezzo (Stadio 1): title: BE121_IL17_1,source: bronchial epithelial cells,cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition, treated with IL17 (20 ng/ml; 72 hours)
+        H5 titolo        : BE121_IL17_1
+        H5 caratteristiche: cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition, treated with IL17 (20 ng/ml; 72 hours)
+        H5 sorgente      : bronchial epithelial cells
+      GSM5543685
+        grezzo (Stadio 1): title: BE121_IL17_2,source: bronchial epithelial cells,cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition, treated with IL17 (20 ng/ml; 72 hours)
+        H5 titolo        : BE121_IL17_2
+        H5 caratteristiche: cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition, treated with IL17 (20 ng/ml; 72 hours)
+        H5 sorgente      : bronchial epithelial cells
+      GSM5543686
+        grezzo (Stadio 1): title: BE121_IL17_3,source: bronchial epithelial cells,cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition, treated with IL17 (20 ng/ml; 72 hours)
+        H5 titolo        : BE121_IL17_3
+        H5 caratteristiche: cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition, treated with IL17 (20 ng/ml; 72 hours)
+        H5 sorgente      : bronchial epithelial cells
+      GSM5543687
+        grezzo (Stadio 1): title: BE121_IL17_4,source: bronchial epithelial cells,cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition, treated with IL17 (20 ng/ml; 72 hours)
+        H5 titolo        : BE121_IL17_4
+        H5 caratteristiche: cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition, treated with IL17 (20 ng/ml; 72 hours)
+        H5 sorgente      : bronchial epithelial cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: Bronchial epithelial cells differentiated on porous membrane under air-liquid interface condition
+      gruppo Stadio 2: grp_0001
+      GSM5543676
+        grezzo (Stadio 1): title: BE121_CTR_1,source: bronchial epithelial cells,cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition
+        H5 titolo        : BE121_CTR_1
+        H5 caratteristiche: cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition
+        H5 sorgente      : bronchial epithelial cells
+      GSM5543677
+        grezzo (Stadio 1): title: BE121_CTR_2,source: bronchial epithelial cells,cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition
+        H5 titolo        : BE121_CTR_2
+        H5 caratteristiche: cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition
+        H5 sorgente      : bronchial epithelial cells
+      GSM5543678
+        grezzo (Stadio 1): title: BE121_CTR_3,source: bronchial epithelial cells,cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition
+        H5 titolo        : BE121_CTR_3
+        H5 caratteristiche: cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition
+        H5 sorgente      : bronchial epithelial cells
+      GSM5543679
+        grezzo (Stadio 1): title: BE121_CTR_4,source: bronchial epithelial cells,cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition
+        H5 titolo        : BE121_CTR_4
+        H5 caratteristiche: cell type: bronchial epithelial cells,treatment: Bronchial epithelial cells differentiated on porous  membrane under air-liquid interface condition
+        H5 sorgente      : bronchial epithelial cells
+
+CONFRONTO  GSE190634__GSE190634__IL17A_donor1_vs_none_donor1__1
+  studio: GSE190634
+  TRATTATO  (n=4)  etichetta Stadio 2: Colonic organoid, donor 1, IL17A 50ng/mL
+      gruppo Stadio 2: grp_IL17A_donor1
+      GSM5726848
+        grezzo (Stadio 1): title: IL17A treated colonoid donor 1 [IL17_1],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IL17A 50ng/mL,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 titolo        : IL17A treated colonoid donor 1 [IL17_1]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IL17A 50ng/mL,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726849
+        grezzo (Stadio 1): title: IL17A treated colonoid donor 2 [IL17_2],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IL17A 50ng/mL,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 titolo        : IL17A treated colonoid donor 2 [IL17_2]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IL17A 50ng/mL,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726850
+        grezzo (Stadio 1): title: IL17A treated colonoid donor 3 [IL17_3],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IL17A 50ng/mL,treatment duration: 24 hours,donor id: 3,experiment: 1
+        H5 titolo        : IL17A treated colonoid donor 3 [IL17_3]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IL17A 50ng/mL,treatment duration: 24 hours,donor id: 3,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726851
+        grezzo (Stadio 1): title: IL17A treated colonoid donor 4 [IL17_4],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IL17A 50ng/mL,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 titolo        : IL17A treated colonoid donor 4 [IL17_4]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IL17A 50ng/mL,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 sorgente      : colonic organoid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Colonic organoid, donor 1, no treatment
+      gruppo Stadio 2: grp_none_donor1
+      GSM5726840
+        grezzo (Stadio 1): title: Untreated colonoid donor 1 [Control_1],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 titolo        : Untreated colonoid donor 1 [Control_1]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726841
+        grezzo (Stadio 1): title: Untreated colonoid donor 2 [Control_2],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 titolo        : Untreated colonoid donor 2 [Control_2]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726843
+        grezzo (Stadio 1): title: Untreated colonoid donor 4 [Control_4],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 titolo        : Untreated colonoid donor 4 [Control_4]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 sorgente      : colonic organoid
+
+CONFRONTO  GSE198683__GSE198683__grp_0007_vs_grp_0001__1
+  studio: GSE198683
+  TRATTATO  (n=2)  etichetta Stadio 2: IL-17 (DonorID 1)
+      gruppo Stadio 2: grp_0007
+      GSM5954970
+        grezzo (Stadio 1): title: hAECs, Donor 1 - IL17,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 1,dexamethasone: No,il-17: Yes
+        H5 titolo        : hAECs, Donor 1 - IL17
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 1,dexamethasone: No,il-17: Yes
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+      GSM5954978
+        grezzo (Stadio 1): title: hAECs, Donor 3 - IL17,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 3,dexamethasone: No,il-17: Yes
+        H5 titolo        : hAECs, Donor 3 - IL17
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 3,dexamethasone: No,il-17: Yes
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control (DonorID 1)
+      gruppo Stadio 2: grp_0001
+      GSM5954969
+        grezzo (Stadio 1): title: hAECs, Donor 1 - Control,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 1,dexamethasone: No,il-17: No
+        H5 titolo        : hAECs, Donor 1 - Control
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 1,dexamethasone: No,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+      GSM5954973
+        grezzo (Stadio 1): title: hAECs, Donor 2 - Control,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 2,dexamethasone: No,il-17: No
+        H5 titolo        : hAECs, Donor 2 - Control
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 2,dexamethasone: No,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+      GSM5954977
+        grezzo (Stadio 1): title: hAECs, Donor 3 - Control,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 3,dexamethasone: No,il-17: No
+        H5 titolo        : hAECs, Donor 3 - Control
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 3,dexamethasone: No,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+      GSM5954981
+        grezzo (Stadio 1): title: hAECs, Donor 4 - Control,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 4,dexamethasone: No,il-17: No
+        H5 titolo        : hAECs, Donor 4 - Control
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 4,dexamethasone: No,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE103930     campioni nell'H5:   20 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE119047     campioni nell'H5:   20 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE171170     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE171952     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 22 campioni distinti (22 righe: i controlli servono piu' confronti)
+  GSE182957     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE190634     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE198683     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

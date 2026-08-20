@@ -1,0 +1,154 @@
+META-ANALISI 086 di 194
+==============================================================================
+nome            : Pladienolide B
+entita (ID)     : CHEBI:205761
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_e37b838c
+studi poolati   : 4   confronti: 4   campioni: 19
+geni significativi: 1371   I2 mediano: 94.8
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE132782__GSE132782__group_0023_vs_group_0035__1
+  studio: GSE132782
+  TRATTATO  (n=2)  etichetta Stadio 2: Keratinocytes treated with Pladienolide B and Rn7sk knockdown for 4 hours
+      gruppo Stadio 2: group_0023
+      GSM3891875
+        grezzo (Stadio 1): title: 7SK.4h_PlaB.repl1.4SU,source: human primary keratinocytes,cell type: Keratinocytes,sirna: Rn7sk,treatment: Pladienolide B,time point: 4h
+        H5 titolo        : 7SK.4h_PlaB.repl1.4SU
+        H5 caratteristiche: cell type: Keratinocytes,sirna: Rn7sk,treatment: Pladienolide B,time point: 4h
+        H5 sorgente      : human primary keratinocytes
+      GSM3891902
+        grezzo (Stadio 1): title: 7SK.4h_PlaB.repl4.Total,source: human primary keratinocytes,cell type: Keratinocytes,sirna: Rn7sk,treatment: Pladienolide B,time point: 4h
+        H5 titolo        : 7SK.4h_PlaB.repl4.Total
+        H5 caratteristiche: cell type: Keratinocytes,sirna: Rn7sk,treatment: Pladienolide B,time point: 4h
+        H5 sorgente      : human primary keratinocytes
+  CONTROLLO  (n=2)  etichetta Stadio 2: Keratinocytes treated with Rn7sk knockdown and DMSO technical treatment
+      gruppo Stadio 2: group_0035
+      GSM3891905
+        grezzo (Stadio 1): title: 7SK.no_PlaB.repl3.Total,source: human primary keratinocytes,cell type: Keratinocytes,sirna: Rn7sk,treatment: DMSO,time point: no
+        H5 titolo        : 7SK.no_PlaB.repl3.Total
+        H5 caratteristiche: cell type: Keratinocytes,sirna: Rn7sk,treatment: DMSO,time point: no
+        H5 sorgente      : human primary keratinocytes
+      GSM3891906
+        grezzo (Stadio 1): title: 7SK.no_PlaB.repl4.Total,source: human primary keratinocytes,cell type: Keratinocytes,sirna: Rn7sk,treatment: DMSO,time point: no
+        H5 titolo        : 7SK.no_PlaB.repl4.Total
+        H5 caratteristiche: cell type: Keratinocytes,sirna: Rn7sk,treatment: DMSO,time point: no
+        H5 sorgente      : human primary keratinocytes
+
+CONFRONTO  GSE157725__GSE157725__Pladienolide_B_vs_DMSO__1
+  studio: GSE157725
+  TRATTATO  (n=2)  etichetta Stadio 2: Pladienolide B
+      gruppo Stadio 2: grp_Pladienolide_B
+      GSM4773866
+        grezzo (Stadio 1): title: PC3 Pladienolide B 0.5 ÂµM treated for 24 h rep1,source: Human prostate cancer,cell line: PC3,treatment: Pladienolide B 0.5 ÂµM for 24 h
+        H5 titolo        : PC3 Pladienolide B 0.5 ÂµM treated for 24 h rep1
+        H5 caratteristiche: cell line: PC3,treatment: Pladienolide B 0.5 ÂµM for 24 h
+        H5 sorgente      : Human prostate cancer
+      GSM4773867
+        grezzo (Stadio 1): title: PC3 Pladienolide B 0.5 ÂµM treated for 24 h rep2,source: Human prostate cancer,cell line: PC3,treatment: Pladienolide B 0.5 ÂµM for 24 h
+        H5 titolo        : PC3 Pladienolide B 0.5 ÂµM treated for 24 h rep2
+        H5 caratteristiche: cell line: PC3,treatment: Pladienolide B 0.5 ÂµM for 24 h
+        H5 sorgente      : Human prostate cancer
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM4773864
+        grezzo (Stadio 1): title: PC3 DMSO treated rep1,source: Human prostate cancer,cell line: PC3,treatment: DMSO
+        H5 titolo        : PC3 DMSO treated rep1
+        H5 caratteristiche: cell line: PC3,treatment: DMSO
+        H5 sorgente      : Human prostate cancer
+      GSM4773865
+        grezzo (Stadio 1): title: PC3 DMSO treated rep2,source: Human prostate cancer,cell line: PC3,treatment: DMSO
+        H5 titolo        : PC3 DMSO treated rep2
+        H5 caratteristiche: cell line: PC3,treatment: DMSO
+        H5 sorgente      : Human prostate cancer
+
+CONFRONTO  GSE185373__GSE185373__grp_Pladienolide_B_8h_vs_grp_DMSO_8h__1
+  studio: GSE185373
+  TRATTATO  (n=2)  etichetta Stadio 2: Pladienolide B 8 hours
+      gruppo Stadio 2: grp_Pladienolide_B_8h
+      GSM5612131
+        grezzo (Stadio 1): title: Total_RNAseq_22Rv1_8hours_PladienolideB_Replicate2,source: Prostate carcinoma,cell line: 22Rv1,time point: 8 hours,agent: Pladienolide B,dose: 10nM
+        H5 titolo        : Total_RNAseq_22Rv1_8hours_PladienolideB_Replicate2
+        H5 caratteristiche: cell line: 22Rv1,time point: 8 hours,agent: Pladienolide B,dose: 10nM
+        H5 sorgente      : Prostate carcinoma
+      GSM5612132
+        grezzo (Stadio 1): title: Total_RNAseq_22Rv1_8hours_PladienolideB_Replicate3,source: Prostate carcinoma,cell line: 22Rv1,time point: 8 hours,agent: Pladienolide B,dose: 10nM
+        H5 titolo        : Total_RNAseq_22Rv1_8hours_PladienolideB_Replicate3
+        H5 caratteristiche: cell line: 22Rv1,time point: 8 hours,agent: Pladienolide B,dose: 10nM
+        H5 sorgente      : Prostate carcinoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO 8 hours
+      gruppo Stadio 2: grp_DMSO_8h
+      GSM5612127
+        grezzo (Stadio 1): title: Total_RNAseq_22Rv1_8hours_DMSO_Replicate1,source: Prostate carcinoma,cell line: 22Rv1,time point: 8 hours,agent: DMSO
+        H5 titolo        : Total_RNAseq_22Rv1_8hours_DMSO_Replicate1
+        H5 caratteristiche: cell line: 22Rv1,time point: 8 hours,agent: DMSO
+        H5 sorgente      : Prostate carcinoma
+      GSM5612128
+        grezzo (Stadio 1): title: Total_RNAseq_22Rv1_8hours_DMSO_Replicate2,source: Prostate carcinoma,cell line: 22Rv1,time point: 8 hours,agent: DMSO
+        H5 titolo        : Total_RNAseq_22Rv1_8hours_DMSO_Replicate2
+        H5 caratteristiche: cell line: 22Rv1,time point: 8 hours,agent: DMSO
+        H5 sorgente      : Prostate carcinoma
+      GSM5612129
+        grezzo (Stadio 1): title: Total_RNAseq_22Rv1_8hours_DMSO_Replicate3,source: Prostate carcinoma,cell line: 22Rv1,time point: 8 hours,agent: DMSO
+        H5 titolo        : Total_RNAseq_22Rv1_8hours_DMSO_Replicate3
+        H5 caratteristiche: cell line: 22Rv1,time point: 8 hours,agent: DMSO
+        H5 sorgente      : Prostate carcinoma
+
+CONFRONTO  GSE222199__GSE222199__grp_0002_vs_grp_0001__1
+  studio: GSE222199
+  TRATTATO  (n=3)  etichetta Stadio 2: OVCAR8 + pladienolide B
+      gruppo Stadio 2: grp_0002
+      GSM6917820
+        grezzo (Stadio 1): title: OVCAR8-pladienolide B-1,source: ovary,tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: pladienolide B
+        H5 titolo        : OVCAR8-pladienolide B-1
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: pladienolide B
+        H5 sorgente      : ovary
+      GSM6917821
+        grezzo (Stadio 1): title: OVCAR8-pladienolide B-2,source: ovary,tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: pladienolide B
+        H5 titolo        : OVCAR8-pladienolide B-2
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: pladienolide B
+        H5 sorgente      : ovary
+      GSM6917822
+        grezzo (Stadio 1): title: OVCAR8-pladienolide B-3,source: ovary,tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: pladienolide B
+        H5 titolo        : OVCAR8-pladienolide B-3
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: pladienolide B
+        H5 sorgente      : ovary
+  CONTROLLO  (n=3)  etichetta Stadio 2: OVCAR8 + DMSO
+      gruppo Stadio 2: grp_0001
+      GSM6917817
+        grezzo (Stadio 1): title: OVCAR8-DMSO-1,source: ovary,tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: DMSO
+        H5 titolo        : OVCAR8-DMSO-1
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: DMSO
+        H5 sorgente      : ovary
+      GSM6917818
+        grezzo (Stadio 1): title: OVCAR8-DMSO-2,source: ovary,tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: DMSO
+        H5 titolo        : OVCAR8-DMSO-2
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: DMSO
+        H5 sorgente      : ovary
+      GSM6917819
+        grezzo (Stadio 1): title: OVCAR8-DMSO-3,source: ovary,tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: DMSO
+        H5 titolo        : OVCAR8-DMSO-3
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR8,cell type: ovarian cancer cell,genotype: wild type,treatment: DMSO
+        H5 sorgente      : ovary
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE132782     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE157725     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE185373     campioni nell'H5:   20 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE222199     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

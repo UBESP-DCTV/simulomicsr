@@ -1,0 +1,706 @@
+META-ANALISI 176 di 194
+==============================================================================
+nome            : asthma
+entita (ID)     : STR:asthma
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_2a225fda
+studi poolati   : 3   confronti: 5   campioni: 128
+geni significativi: 650   I2 mediano: 31.7
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE195599__GSE195599__ast_vs_ctl__1
+  studio: GSE195599
+  TRATTATO  (n=4)  etichetta Stadio 2: Asthma patient
+      gruppo Stadio 2: grp_ast
+      GSM5841557
+        grezzo (Stadio 1): title: Asthma_rep1 [X5],source: Peripheral whole blood,subject status: patient with asthma,Sex: Female,age: 49,bmi: 25.24,tissue: Peripheral whole blood
+        H5 titolo        : Asthma_rep1 [X5]
+        H5 caratteristiche: subject status: patient with asthma,Sex: Female,age: 49,bmi: 25.24,tissue: Peripheral whole blood
+        H5 sorgente      : Peripheral whole blood
+      GSM5841558
+        grezzo (Stadio 1): title: Asthma_rep2 [X12],source: Peripheral whole blood,subject status: patient with asthma,Sex: Female,age: 37,bmi: 23.5,tissue: Peripheral whole blood
+        H5 titolo        : Asthma_rep2 [X12]
+        H5 caratteristiche: subject status: patient with asthma,Sex: Female,age: 37,bmi: 23.5,tissue: Peripheral whole blood
+        H5 sorgente      : Peripheral whole blood
+      GSM5841559
+        grezzo (Stadio 1): title: Asthma_rep3 [X13],source: Peripheral whole blood,subject status: patient with asthma,Sex: Male,age: 36,bmi: 25.46,tissue: Peripheral whole blood
+        H5 titolo        : Asthma_rep3 [X13]
+        H5 caratteristiche: subject status: patient with asthma,Sex: Male,age: 36,bmi: 25.46,tissue: Peripheral whole blood
+        H5 sorgente      : Peripheral whole blood
+      GSM5841560
+        grezzo (Stadio 1): title: Asthma_rep4 [X15],source: Peripheral whole blood,subject status: patient with asthma,Sex: Female,age: 38,bmi: 20.07,tissue: Peripheral whole blood
+        H5 titolo        : Asthma_rep4 [X15]
+        H5 caratteristiche: subject status: patient with asthma,Sex: Female,age: 38,bmi: 20.07,tissue: Peripheral whole blood
+        H5 sorgente      : Peripheral whole blood
+  CONTROLLO  (n=3)  etichetta Stadio 2: Healthy control
+      gruppo Stadio 2: grp_ctl
+      GSM5841554
+        grezzo (Stadio 1): title: Healthy_rep1 [X7],source: Peripheral whole blood,subject status: healthy,Sex: Female,age: 48,bmi: 23.56,tissue: Peripheral whole blood
+        H5 titolo        : Healthy_rep1 [X7]
+        H5 caratteristiche: subject status: healthy,Sex: Female,age: 48,bmi: 23.56,tissue: Peripheral whole blood
+        H5 sorgente      : Peripheral whole blood
+      GSM5841555
+        grezzo (Stadio 1): title: Healthy_rep2 [X42],source: Peripheral whole blood,subject status: healthy,Sex: Female,age: 46,bmi: 20.96,tissue: Peripheral whole blood
+        H5 titolo        : Healthy_rep2 [X42]
+        H5 caratteristiche: subject status: healthy,Sex: Female,age: 46,bmi: 20.96,tissue: Peripheral whole blood
+        H5 sorgente      : Peripheral whole blood
+      GSM5841556
+        grezzo (Stadio 1): title: Healthy_rep3 [X45],source: Peripheral whole blood,subject status: healthy,Sex: Male,age: 38,bmi: 20.55,tissue: Peripheral whole blood
+        H5 titolo        : Healthy_rep3 [X45]
+        H5 caratteristiche: subject status: healthy,Sex: Male,age: 38,bmi: 20.55,tissue: Peripheral whole blood
+        H5 sorgente      : Peripheral whole blood
+
+CONFRONTO  GSE206510__GSE206510__grp_asthma_il13_vs_grp_control_il13__1
+  studio: GSE206510
+  TRATTATO  (n=4)  etichetta Stadio 2: Asthma IL-13
+      gruppo Stadio 2: grp_asthma_il13
+      GSM6255656
+        grezzo (Stadio 1): title: B117, IL-13,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B117, IL-13
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255660
+        grezzo (Stadio 1): title: B99, IL-13,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B99, IL-13
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255662
+        grezzo (Stadio 1): title: B111, IL-13,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B111, IL-13
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255664
+        grezzo (Stadio 1): title: B121, IL-13,source: primary bronchial epithelial cells,disease state: Asthma,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B121, IL-13
+        H5 caratteristiche: disease state: Asthma,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control IL-13
+      gruppo Stadio 2: grp_control_il13
+      GSM6255646
+        grezzo (Stadio 1): title: B86, IL-13,source: primary bronchial epithelial cells,disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B86, IL-13
+        H5 caratteristiche: disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255648
+        grezzo (Stadio 1): title: B113, IL-13,source: primary bronchial epithelial cells,disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B113, IL-13
+        H5 caratteristiche: disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255654
+        grezzo (Stadio 1): title: B87, IL-13,source: primary bronchial epithelial cells,disease state: Control,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B87, IL-13
+        H5 caratteristiche: disease state: Control,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+
+CONFRONTO  GSE206510__GSE206510__grp_asthma_untreated_vs_grp_control_vehicle__1
+  studio: GSE206510
+  TRATTATO  (n=3)  etichetta Stadio 2: Asthma untreated
+      gruppo Stadio 2: grp_asthma_untreated
+      GSM6255655
+        grezzo (Stadio 1): title: B117, unstimulated,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B117, unstimulated
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255659
+        grezzo (Stadio 1): title: B99, unstimulated,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B99, unstimulated
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255663
+        grezzo (Stadio 1): title: B121, unstimulated,source: primary bronchial epithelial cells,disease state: Asthma,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B121, unstimulated
+        H5 caratteristiche: disease state: Asthma,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control vehicle
+      gruppo Stadio 2: grp_control_vehicle
+      GSM6255645
+        grezzo (Stadio 1): title: B86, unstimulated,source: primary bronchial epithelial cells,disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B86, unstimulated
+        H5 caratteristiche: disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255647
+        grezzo (Stadio 1): title: B113, unstimulated,source: primary bronchial epithelial cells,disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B113, unstimulated
+        H5 caratteristiche: disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255653
+        grezzo (Stadio 1): title: B87, unstimulated,source: primary bronchial epithelial cells,disease state: Control,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B87, unstimulated
+        H5 caratteristiche: disease state: Control,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+
+CONFRONTO  GSE85567__GSE85567__Asthma_airway_epithelial_cells_vs_Healthy_airway_epithelial_cells__1
+  studio: GSE85567
+  TRATTATO  (n=52)  etichetta Stadio 2: Asthma Airway Epithelial Cells
+      gruppo Stadio 2: grp_Asthma_airway_epithelial_cells
+      GSM2277340
+        grezzo (Stadio 1): title: AEC RNAseq_0447_47e4,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_0447_47e4
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277342
+        grezzo (Stadio 1): title: AEC RNAseq_06f5_4503,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_06f5_4503
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277343
+        grezzo (Stadio 1): title: AEC RNAseq_07f4_4e79,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_07f4_4e79
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277344
+        grezzo (Stadio 1): title: AEC RNAseq_0d7e_4fec,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_0d7e_4fec
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277345
+        grezzo (Stadio 1): title: AEC RNAseq_107e_4776,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_107e_4776
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277346
+        grezzo (Stadio 1): title: AEC RNAseq_1299_419b,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_1299_419b
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277348
+        grezzo (Stadio 1): title: AEC RNAseq_15e4_4e17,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_15e4_4e17
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277349
+        grezzo (Stadio 1): title: AEC RNAseq_179c_43ec,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_179c_43ec
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277352
+        grezzo (Stadio 1): title: AEC RNAseq_1ca9_4a88,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_1ca9_4a88
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277354
+        grezzo (Stadio 1): title: AEC RNAseq_2239_4ef1,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_2239_4ef1
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277355
+        grezzo (Stadio 1): title: AEC RNAseq_22ea_40a1,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_22ea_40a1
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277356
+        grezzo (Stadio 1): title: AEC RNAseq_273e_4084,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_273e_4084
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277358
+        grezzo (Stadio 1): title: AEC RNAseq_29ed_4409,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_29ed_4409
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277359
+        grezzo (Stadio 1): title: AEC RNAseq_2cfc_42e1,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_2cfc_42e1
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277363
+        grezzo (Stadio 1): title: AEC RNAseq_36b7_4822,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_36b7_4822
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277365
+        grezzo (Stadio 1): title: AEC RNAseq_3a8f_4120,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_3a8f_4120
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277366
+        grezzo (Stadio 1): title: AEC RNAseq_3b7f_4689,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_3b7f_4689
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277368
+        grezzo (Stadio 1): title: AEC RNAseq_411a_4fba,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_411a_4fba
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277369
+        grezzo (Stadio 1): title: AEC RNAseq_44df_487e,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_44df_487e
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277370
+        grezzo (Stadio 1): title: AEC RNAseq_4ba3_4efe,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_4ba3_4efe
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277372
+        grezzo (Stadio 1): title: AEC RNAseq_502d_4e7d,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_502d_4e7d
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277373
+        grezzo (Stadio 1): title: AEC RNAseq_53ff_4183,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_53ff_4183
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277375
+        grezzo (Stadio 1): title: AEC RNAseq_5f2e_48a8,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_5f2e_48a8
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277377
+        grezzo (Stadio 1): title: AEC RNAseq_690e_45c3,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_690e_45c3
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277378
+        grezzo (Stadio 1): title: AEC RNAseq_6ebc_47ef,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_6ebc_47ef
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277379
+        grezzo (Stadio 1): title: AEC RNAseq_74f3_4f8a,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_74f3_4f8a
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277380
+        grezzo (Stadio 1): title: AEC RNAseq_75cf_477a,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_75cf_477a
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277381
+        grezzo (Stadio 1): title: AEC RNAseq_767f_4e2a,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_767f_4e2a
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277384
+        grezzo (Stadio 1): title: AEC RNAseq_7bfd_4bf0,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_7bfd_4bf0
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277385
+        grezzo (Stadio 1): title: AEC RNAseq_7ed8_4eff,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_7ed8_4eff
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277387
+        grezzo (Stadio 1): title: AEC RNAseq_86aa_4206,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_86aa_4206
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277389
+        grezzo (Stadio 1): title: AEC RNAseq_87f0_42ad,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_87f0_42ad
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277390
+        grezzo (Stadio 1): title: AEC RNAseq_8cd5_4d95,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_8cd5_4d95
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277392
+        grezzo (Stadio 1): title: AEC RNAseq_8ebb_4e23,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_8ebb_4e23
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277394
+        grezzo (Stadio 1): title: AEC RNAseq_9c8b_4a61,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_9c8b_4a61
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277395
+        grezzo (Stadio 1): title: AEC RNAseq_a6d0_4327,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_a6d0_4327
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277398
+        grezzo (Stadio 1): title: AEC RNAseq_acb6_4308,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_acb6_4308
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277400
+        grezzo (Stadio 1): title: AEC RNAseq_ae28_4608,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_ae28_4608
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277402
+        grezzo (Stadio 1): title: AEC RNAseq_b3c4_45a5,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_b3c4_45a5
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277403
+        grezzo (Stadio 1): title: AEC RNAseq_b65a_44b4,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_b65a_44b4
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277405
+        grezzo (Stadio 1): title: AEC RNAseq_b9fb_4080,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_b9fb_4080
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277408
+        grezzo (Stadio 1): title: AEC RNAseq_cd0c_4cca,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_cd0c_4cca
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277410
+        grezzo (Stadio 1): title: AEC RNAseq_d93e_43a4,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_d93e_43a4
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277413
+        grezzo (Stadio 1): title: AEC RNAseq_e207_4fcd,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_e207_4fcd
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277415
+        grezzo (Stadio 1): title: AEC RNAseq_e549_49d1,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_e549_49d1
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277416
+        grezzo (Stadio 1): title: AEC RNAseq_ed81_42cb,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_ed81_42cb
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277418
+        grezzo (Stadio 1): title: AEC RNAseq_f0b3_4ef4,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_f0b3_4ef4
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277420
+        grezzo (Stadio 1): title: AEC RNAseq_f5d3_41dd,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_f5d3_41dd
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277421
+        grezzo (Stadio 1): title: AEC RNAseq_f964_47ea,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_f964_47ea
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277422
+        grezzo (Stadio 1): title: AEC RNAseq_f9c8_4025,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_f9c8_4025
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277423
+        grezzo (Stadio 1): title: AEC RNAseq_fb20_4736,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_fb20_4736
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277424
+        grezzo (Stadio 1): title: AEC RNAseq_fff9_43b1,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_fff9_43b1
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+  CONTROLLO  (n=26)  etichetta Stadio 2: Healthy Airway Epithelial Cells
+      gruppo Stadio 2: grp_Healthy_airway_epithelial_cells
+      GSM2277341
+        grezzo (Stadio 1): title: AEC RNAseq_0610_40f0,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_0610_40f0
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277347
+        grezzo (Stadio 1): title: AEC RNAseq_154f_455f,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_154f_455f
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277350
+        grezzo (Stadio 1): title: AEC RNAseq_1ba9_4d79,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_1ba9_4d79
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277351
+        grezzo (Stadio 1): title: AEC RNAseq_1c7d_4407,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_1c7d_4407
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277353
+        grezzo (Stadio 1): title: AEC RNAseq_1f64_4727,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_1f64_4727
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277357
+        grezzo (Stadio 1): title: AEC RNAseq_2800_4691,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_2800_4691
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277360
+        grezzo (Stadio 1): title: AEC RNAseq_2d00_4023,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_2d00_4023
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277361
+        grezzo (Stadio 1): title: AEC RNAseq_307c_4037,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_307c_4037
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277362
+        grezzo (Stadio 1): title: AEC RNAseq_3348_4c75,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_3348_4c75
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277364
+        grezzo (Stadio 1): title: AEC RNAseq_39e9_4475,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_39e9_4475
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277367
+        grezzo (Stadio 1): title: AEC RNAseq_3d3b_40f5,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_3d3b_40f5
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277371
+        grezzo (Stadio 1): title: AEC RNAseq_4c83_4965,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_4c83_4965
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277374
+        grezzo (Stadio 1): title: AEC RNAseq_5e70_4f6c,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_5e70_4f6c
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277376
+        grezzo (Stadio 1): title: AEC RNAseq_6132_4c18,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_6132_4c18
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277382
+        grezzo (Stadio 1): title: AEC RNAseq_78d1_4946,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_78d1_4946
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277383
+        grezzo (Stadio 1): title: AEC RNAseq_7a9e_4793,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_7a9e_4793
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277386
+        grezzo (Stadio 1): title: AEC RNAseq_84e5_4094,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_84e5_4094
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277388
+        grezzo (Stadio 1): title: AEC RNAseq_86b9_4119,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_86b9_4119
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277391
+        grezzo (Stadio 1): title: AEC RNAseq_8d5d_424a,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_8d5d_424a
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277393
+        grezzo (Stadio 1): title: AEC RNAseq_9c18_4eb2,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_9c18_4eb2
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277396
+        grezzo (Stadio 1): title: AEC RNAseq_a7d1_4fec,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_a7d1_4fec
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277397
+        grezzo (Stadio 1): title: AEC RNAseq_a8b2_474d,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_a8b2_474d
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277399
+        grezzo (Stadio 1): title: AEC RNAseq_ad5c_4ce5,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_ad5c_4ce5
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277401
+        grezzo (Stadio 1): title: AEC RNAseq_b3ae_412f,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_b3ae_412f
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277404
+        grezzo (Stadio 1): title: AEC RNAseq_b75e_4b56,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_b75e_4b56
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277419
+        grezzo (Stadio 1): title: AEC RNAseq_f4fe_4560,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_f4fe_4560
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+
+CONFRONTO  GSE85567__GSE85567__Asthma_airway_tissue_vs_Healthy_airway_epithelial_cells__1
+  studio: GSE85567
+  TRATTATO  (n=4)  etichetta Stadio 2: Asthma Airway Tissue
+      gruppo Stadio 2: grp_Asthma_airway_tissue
+      GSM2277406
+        grezzo (Stadio 1): title: AEC RNAseq_bf1e_4b60,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_bf1e_4b60
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277407
+        grezzo (Stadio 1): title: AEC RNAseq_c3df_4109,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_c3df_4109
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277409
+        grezzo (Stadio 1): title: AEC RNAseq_cf2d_4e5f,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_cf2d_4e5f
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277417
+        grezzo (Stadio 1): title: AEC RNAseq_efe7_4deb,source: Airway Epithelial cells,disease status: Asthma,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_efe7_4deb
+        H5 caratteristiche: disease status: Asthma,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+  CONTROLLO  (n=26)  etichetta Stadio 2: Healthy Airway Epithelial Cells
+      gruppo Stadio 2: grp_Healthy_airway_epithelial_cells
+      GSM2277341
+        grezzo (Stadio 1): title: AEC RNAseq_0610_40f0,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_0610_40f0
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277347
+        grezzo (Stadio 1): title: AEC RNAseq_154f_455f,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_154f_455f
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277350
+        grezzo (Stadio 1): title: AEC RNAseq_1ba9_4d79,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_1ba9_4d79
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277351
+        grezzo (Stadio 1): title: AEC RNAseq_1c7d_4407,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_1c7d_4407
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277353
+        grezzo (Stadio 1): title: AEC RNAseq_1f64_4727,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_1f64_4727
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277357
+        grezzo (Stadio 1): title: AEC RNAseq_2800_4691,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_2800_4691
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277360
+        grezzo (Stadio 1): title: AEC RNAseq_2d00_4023,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_2d00_4023
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277361
+        grezzo (Stadio 1): title: AEC RNAseq_307c_4037,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_307c_4037
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277362
+        grezzo (Stadio 1): title: AEC RNAseq_3348_4c75,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_3348_4c75
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277364
+        grezzo (Stadio 1): title: AEC RNAseq_39e9_4475,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_39e9_4475
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277367
+        grezzo (Stadio 1): title: AEC RNAseq_3d3b_40f5,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_3d3b_40f5
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277371
+        grezzo (Stadio 1): title: AEC RNAseq_4c83_4965,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_4c83_4965
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277374
+        grezzo (Stadio 1): title: AEC RNAseq_5e70_4f6c,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_5e70_4f6c
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277376
+        grezzo (Stadio 1): title: AEC RNAseq_6132_4c18,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_6132_4c18
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277382
+        grezzo (Stadio 1): title: AEC RNAseq_78d1_4946,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_78d1_4946
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277383
+        grezzo (Stadio 1): title: AEC RNAseq_7a9e_4793,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_7a9e_4793
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277386
+        grezzo (Stadio 1): title: AEC RNAseq_84e5_4094,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_84e5_4094
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277388
+        grezzo (Stadio 1): title: AEC RNAseq_86b9_4119,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_86b9_4119
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277391
+        grezzo (Stadio 1): title: AEC RNAseq_8d5d_424a,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_8d5d_424a
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277393
+        grezzo (Stadio 1): title: AEC RNAseq_9c18_4eb2,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_9c18_4eb2
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277396
+        grezzo (Stadio 1): title: AEC RNAseq_a7d1_4fec,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_a7d1_4fec
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277397
+        grezzo (Stadio 1): title: AEC RNAseq_a8b2_474d,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_a8b2_474d
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277399
+        grezzo (Stadio 1): title: AEC RNAseq_ad5c_4ce5,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_ad5c_4ce5
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277401
+        grezzo (Stadio 1): title: AEC RNAseq_b3ae_412f,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_b3ae_412f
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277404
+        grezzo (Stadio 1): title: AEC RNAseq_b75e_4b56,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_b75e_4b56
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+      GSM2277419
+        grezzo (Stadio 1): title: AEC RNAseq_f4fe_4560,source: Airway Epithelial cells,disease status: Control,cell type: Airway Epithelial cells
+        H5 titolo        : AEC RNAseq_f4fe_4560
+        H5 caratteristiche: disease status: Control,cell type: Airway Epithelial cells
+        H5 sorgente      : Airway Epithelial cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE195599     campioni nell'H5:    7 | collocati dallo Stadio 2:    7 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE206510     campioni nell'H5:   20 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6255649, GSM6255650, GSM6255651, GSM6255652, GSM6255657, GSM6255658
+  GSE85567      campioni nell'H5:   83 | collocati dallo Stadio 2:   83 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 82 campioni distinti (108 righe: i controlli servono piu' confronti)
+

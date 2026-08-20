@@ -1,0 +1,955 @@
+META-ANALISI 031 di 194
+==============================================================================
+nome            : psoriasis
+entita (ID)     : STR:psoriasis
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_4b901bf1
+studi poolati   : 9   confronti: 16   campioni: 161
+geni significativi: 543   I2 mediano: 60.6
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE108743__GSE108743__grp_0001_vs_grp_0002__1
+  studio: GSE108743
+  TRATTATO  (n=3)  etichetta Stadio 2: Psoriasis Skin-derived MSC Passage 5
+      gruppo Stadio 2: grp_0001
+      GSM2912793
+        grezzo (Stadio 1): title: 15Y15Passage5,source: Mesenchymal stem cells (MSC),cell type: Skin-derived MSC,passage: 5,disease state: Psoriasis
+        H5 titolo        : 15Y15Passage5
+        H5 caratteristiche: cell type: Skin-derived MSC,passage: 5,disease state: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells (MSC)
+      GSM2912794
+        grezzo (Stadio 1): title: 15Y26Passage5,source: Mesenchymal stem cells (MSC),cell type: Skin-derived MSC,passage: 5,disease state: Psoriasis
+        H5 titolo        : 15Y26Passage5
+        H5 caratteristiche: cell type: Skin-derived MSC,passage: 5,disease state: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells (MSC)
+      GSM2912795
+        grezzo (Stadio 1): title: 15Y29Passage5,source: Mesenchymal stem cells (MSC),cell type: Skin-derived MSC,passage: 5,disease state: Psoriasis
+        H5 titolo        : 15Y29Passage5
+        H5 caratteristiche: cell type: Skin-derived MSC,passage: 5,disease state: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells (MSC)
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal Skin-derived MSC Passage 5
+      gruppo Stadio 2: grp_0002
+      GSM2912792
+        grezzo (Stadio 1): title: 14Z70Passage5,source: Mesenchymal stem cells (MSC),cell type: Skin-derived MSC,passage: 5,disease state: Normal
+        H5 titolo        : 14Z70Passage5
+        H5 caratteristiche: cell type: Skin-derived MSC,passage: 5,disease state: Normal
+        H5 sorgente      : Mesenchymal stem cells (MSC)
+      GSM2912796
+        grezzo (Stadio 1): title: 15Z3Passage5,source: Mesenchymal stem cells (MSC),cell type: Skin-derived MSC,passage: 5,disease state: Normal
+        H5 titolo        : 15Z3Passage5
+        H5 caratteristiche: cell type: Skin-derived MSC,passage: 5,disease state: Normal
+        H5 sorgente      : Mesenchymal stem cells (MSC)
+
+CONFRONTO  GSE117405__GSE117405__grp_psoriatic_skin_conventional_2_vs_grp_healthy_control_Control_skin__1
+  studio: GSE117405
+  TRATTATO  (n=7)  etichetta Stadio 2: Conventional Psoriatic Skin 2
+      gruppo Stadio 2: grp_psoriatic_skin_conventional_2
+      GSM3293909
+        grezzo (Stadio 1): title: CP_1,source: Conventional psoriatic skin,tissue: skin,disease state: psoriasis
+        H5 titolo        : CP_1
+        H5 caratteristiche: tissue: skin,disease state: psoriasis
+        H5 sorgente      : Conventional psoriatic skin
+      GSM3293910
+        grezzo (Stadio 1): title: CP_2,source: Conventional psoriatic skin,tissue: skin,disease state: psoriasis
+        H5 titolo        : CP_2
+        H5 caratteristiche: tissue: skin,disease state: psoriasis
+        H5 sorgente      : Conventional psoriatic skin
+      GSM3293911
+        grezzo (Stadio 1): title: CP_3,source: Conventional psoriatic skin,tissue: skin,disease state: psoriasis
+        H5 titolo        : CP_3
+        H5 caratteristiche: tissue: skin,disease state: psoriasis
+        H5 sorgente      : Conventional psoriatic skin
+      GSM3293912
+        grezzo (Stadio 1): title: CP_4,source: Conventional psoriatic skin,tissue: skin,disease state: psoriasis
+        H5 titolo        : CP_4
+        H5 caratteristiche: tissue: skin,disease state: psoriasis
+        H5 sorgente      : Conventional psoriatic skin
+      GSM3293913
+        grezzo (Stadio 1): title: CP_5,source: Conventional psoriatic skin,tissue: skin,disease state: psoriasis
+        H5 titolo        : CP_5
+        H5 caratteristiche: tissue: skin,disease state: psoriasis
+        H5 sorgente      : Conventional psoriatic skin
+      GSM3293914
+        grezzo (Stadio 1): title: CP_6,source: Conventional psoriatic skin,tissue: skin,disease state: psoriasis
+        H5 titolo        : CP_6
+        H5 caratteristiche: tissue: skin,disease state: psoriasis
+        H5 sorgente      : Conventional psoriatic skin
+      GSM3293916
+        grezzo (Stadio 1): title: CP_8,source: Conventional psoriatic skin,tissue: skin,disease state: psoriasis
+        H5 titolo        : CP_8
+        H5 caratteristiche: tissue: skin,disease state: psoriasis
+        H5 sorgente      : Conventional psoriatic skin
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy Control Skin
+      gruppo Stadio 2: grp_healthy_control_Control_skin
+      GSM3293900
+        grezzo (Stadio 1): title: C35,source: Control skin,tissue: skin,disease state: healthy control
+        H5 titolo        : C35
+        H5 caratteristiche: tissue: skin,disease state: healthy control
+        H5 sorgente      : Control skin
+      GSM3293903
+        grezzo (Stadio 1): title: C39,source: Control skin,tissue: skin,disease state: healthy control
+        H5 titolo        : C39
+        H5 caratteristiche: tissue: skin,disease state: healthy control
+        H5 sorgente      : Control skin
+
+CONFRONTO  GSE139341__GSE139341__Teff_psoriasis_vs_Teff_healthy__1
+  studio: GSE139341
+  TRATTATO  (n=4)  etichetta Stadio 2: Teff_psoriasis
+      gruppo Stadio 2: grp_0001
+      GSM4138485
+        grezzo (Stadio 1): title: PSOTeff1,source: psoriatic lesion,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: psoriasis,cell type: Teff
+        H5 titolo        : PSOTeff1
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: psoriasis,cell type: Teff
+        H5 sorgente      : psoriatic lesion
+      GSM4138486
+        grezzo (Stadio 1): title: PSOTeff2,source: psoriatic lesion,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: psoriasis,cell type: Teff
+        H5 titolo        : PSOTeff2
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: psoriasis,cell type: Teff
+        H5 sorgente      : psoriatic lesion
+      GSM4138487
+        grezzo (Stadio 1): title: PSOTeff4,source: psoriatic lesion,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: psoriasis,cell type: Teff
+        H5 titolo        : PSOTeff4
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: psoriasis,cell type: Teff
+        H5 sorgente      : psoriatic lesion
+      GSM4138488
+        grezzo (Stadio 1): title: PSOTeff5,source: psoriatic lesion,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: psoriasis,cell type: Teff
+        H5 titolo        : PSOTeff5
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: psoriasis,cell type: Teff
+        H5 sorgente      : psoriatic lesion
+  CONTROLLO  (n=5)  etichetta Stadio 2: Teff_healthy
+      gruppo Stadio 2: grp_0002
+      GSM4138480
+        grezzo (Stadio 1): title: NormalTeff1,source: healthy human skin,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 titolo        : NormalTeff1
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 sorgente      : healthy human skin
+      GSM4138481
+        grezzo (Stadio 1): title: NormalTeff2,source: healthy human skin,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 titolo        : NormalTeff2
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 sorgente      : healthy human skin
+      GSM4138482
+        grezzo (Stadio 1): title: NormalTeff3,source: healthy human skin,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 titolo        : NormalTeff3
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 sorgente      : healthy human skin
+      GSM4138483
+        grezzo (Stadio 1): title: NormalTeff4,source: healthy human skin,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 titolo        : NormalTeff4
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 sorgente      : healthy human skin
+      GSM4138484
+        grezzo (Stadio 1): title: NormalTeff5,source: healthy human skin,sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 titolo        : NormalTeff5
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25-CD27-,tissue: skin,diagnosis: healthy,cell type: Teff
+        H5 sorgente      : healthy human skin
+
+CONFRONTO  GSE139341__GSE139341__Treg_psoriasis_alt_vs_Treg_healthy__1
+  studio: GSE139341
+  TRATTATO  (n=3)  etichetta Stadio 2: Treg_psoriasis_alt
+      gruppo Stadio 2: grp_0005
+      GSM4138475
+        grezzo (Stadio 1): title: PSOTreg1,source: psoriatic lesion,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 titolo        : PSOTreg1
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 sorgente      : psoriatic lesion
+      GSM4138476
+        grezzo (Stadio 1): title: PSOTreg2,source: psoriatic lesion,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 titolo        : PSOTreg2
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 sorgente      : psoriatic lesion
+      GSM4138477
+        grezzo (Stadio 1): title: PSOTreg3,source: psoriatic lesion,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 titolo        : PSOTreg3
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 sorgente      : psoriatic lesion
+  CONTROLLO  (n=5)  etichetta Stadio 2: Treg_healthy
+      gruppo Stadio 2: grp_0004
+      GSM4138470
+        grezzo (Stadio 1): title: NormalTreg1,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg1
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+      GSM4138471
+        grezzo (Stadio 1): title: NormalTreg2,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg2
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+      GSM4138472
+        grezzo (Stadio 1): title: NormalTreg3,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg3
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+      GSM4138473
+        grezzo (Stadio 1): title: NormalTreg4,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg4
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+      GSM4138474
+        grezzo (Stadio 1): title: NormalTreg5,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg5
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+
+CONFRONTO  GSE139341__GSE139341__Treg_psoriasis_vs_Treg_healthy__1
+  studio: GSE139341
+  TRATTATO  (n=2)  etichetta Stadio 2: Treg_psoriasis
+      gruppo Stadio 2: grp_0003
+      GSM4138478
+        grezzo (Stadio 1): title: PSOTreg4,source: psoriatic lesion,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 titolo        : PSOTreg4
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 sorgente      : psoriatic lesion
+      GSM4138479
+        grezzo (Stadio 1): title: PSOTreg5,source: psoriatic lesion,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 titolo        : PSOTreg5
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: psoriasis,cell type: Treg
+        H5 sorgente      : psoriatic lesion
+  CONTROLLO  (n=5)  etichetta Stadio 2: Treg_healthy
+      gruppo Stadio 2: grp_0004
+      GSM4138470
+        grezzo (Stadio 1): title: NormalTreg1,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg1
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+      GSM4138471
+        grezzo (Stadio 1): title: NormalTreg2,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg2
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+      GSM4138472
+        grezzo (Stadio 1): title: NormalTreg3,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg3
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+      GSM4138473
+        grezzo (Stadio 1): title: NormalTreg4,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg4
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+      GSM4138474
+        grezzo (Stadio 1): title: NormalTreg5,source: healthy human skin,sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 titolo        : NormalTreg5
+        H5 caratteristiche: sort purification strategy: Cells were sort-purified as live, singlet, CD45+, CD3+, CD4+CD8- CD25+CD27+,tissue: skin,diagnosis: healthy,cell type: Treg
+        H5 sorgente      : healthy human skin
+
+CONFRONTO  GSE142582__GSE142582__grp_0002_vs_grp_0001__1
+  studio: GSE142582
+  TRATTATO  (n=5)  etichetta Stadio 2: Psoriasis lesion
+      gruppo Stadio 2: grp_0002
+      GSM4232392
+        grezzo (Stadio 1): title: Psoriasis lesion rep1 [PS_1],source: Psoriasis lesion,subject status: psoriasis patient,age: 33,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 titolo        : Psoriasis lesion rep1 [PS_1]
+        H5 caratteristiche: subject status: psoriasis patient,age: 33,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 sorgente      : Psoriasis lesion
+      GSM4232393
+        grezzo (Stadio 1): title: Psoriasis lesion rep2 [PS_2],source: Psoriasis lesion,subject status: psoriasis patient,age: 56,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 titolo        : Psoriasis lesion rep2 [PS_2]
+        H5 caratteristiche: subject status: psoriasis patient,age: 56,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 sorgente      : Psoriasis lesion
+      GSM4232394
+        grezzo (Stadio 1): title: Psoriasis lesion rep3 [PS_3],source: Psoriasis lesion,subject status: psoriasis patient,age: 20,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 titolo        : Psoriasis lesion rep3 [PS_3]
+        H5 caratteristiche: subject status: psoriasis patient,age: 20,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 sorgente      : Psoriasis lesion
+      GSM4232395
+        grezzo (Stadio 1): title: Psoriasis lesion rep4 [PS_4],source: Psoriasis lesion,subject status: psoriasis patient,age: 23,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 titolo        : Psoriasis lesion rep4 [PS_4]
+        H5 caratteristiche: subject status: psoriasis patient,age: 23,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 sorgente      : Psoriasis lesion
+      GSM4232396
+        grezzo (Stadio 1): title: Psoriasis lesion rep5 [PS_5],source: Psoriasis lesion,subject status: psoriasis patient,age: 42,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 titolo        : Psoriasis lesion rep5 [PS_5]
+        H5 caratteristiche: subject status: psoriasis patient,age: 42,tissue: skin,tissue subtype: Psoriatic plaque tissue (PS)
+        H5 sorgente      : Psoriasis lesion
+  CONTROLLO  (n=5)  etichetta Stadio 2: Healthy skin control
+      gruppo Stadio 2: grp_0001
+      GSM4232382
+        grezzo (Stadio 1): title: Healthy rep1 [NN_1],source: healthy skin control,subject status: healthy control,age: 43,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep1 [NN_1]
+        H5 caratteristiche: subject status: healthy control,age: 43,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+      GSM4232383
+        grezzo (Stadio 1): title: Healthy rep2 [NN_2],source: healthy skin control,subject status: healthy control,age: 31,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep2 [NN_2]
+        H5 caratteristiche: subject status: healthy control,age: 31,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+      GSM4232384
+        grezzo (Stadio 1): title: Healthy rep3 [NN_3],source: healthy skin control,subject status: healthy control,age: 48,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep3 [NN_3]
+        H5 caratteristiche: subject status: healthy control,age: 48,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+      GSM4232385
+        grezzo (Stadio 1): title: Healthy rep4 [NN_4],source: healthy skin control,subject status: healthy control,age: 30,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep4 [NN_4]
+        H5 caratteristiche: subject status: healthy control,age: 30,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+      GSM4232386
+        grezzo (Stadio 1): title: Healthy rep5 [NN_5],source: healthy skin control,subject status: healthy control,age: 24,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep5 [NN_5]
+        H5 caratteristiche: subject status: healthy control,age: 24,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+
+CONFRONTO  GSE142582__GSE142582__grp_0003_vs_grp_0001__1
+  studio: GSE142582
+  TRATTATO  (n=5)  etichetta Stadio 2: Psoriasis non-lesion
+      gruppo Stadio 2: grp_0003
+      GSM4232387
+        grezzo (Stadio 1): title: Psoriasis Non-lesion rep1 [PN_1],source: Psoriasis Non-lesion,subject status: psoriasis patient,age: 33,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 titolo        : Psoriasis Non-lesion rep1 [PN_1]
+        H5 caratteristiche: subject status: psoriasis patient,age: 33,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 sorgente      : Psoriasis Non-lesion
+      GSM4232388
+        grezzo (Stadio 1): title: Psoriasis Non-lesion rep2 [PN_2],source: Psoriasis Non-lesion,subject status: psoriasis patient,age: 56,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 titolo        : Psoriasis Non-lesion rep2 [PN_2]
+        H5 caratteristiche: subject status: psoriasis patient,age: 56,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 sorgente      : Psoriasis Non-lesion
+      GSM4232389
+        grezzo (Stadio 1): title: Psoriasis Non-lesion rep3 [PN_3],source: Psoriasis Non-lesion,subject status: psoriasis patient,age: 20,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 titolo        : Psoriasis Non-lesion rep3 [PN_3]
+        H5 caratteristiche: subject status: psoriasis patient,age: 20,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 sorgente      : Psoriasis Non-lesion
+      GSM4232390
+        grezzo (Stadio 1): title: Psoriasis Non-lesion rep4 [PN_4],source: Psoriasis Non-lesion,subject status: psoriasis patient,age: 23,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 titolo        : Psoriasis Non-lesion rep4 [PN_4]
+        H5 caratteristiche: subject status: psoriasis patient,age: 23,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 sorgente      : Psoriasis Non-lesion
+      GSM4232391
+        grezzo (Stadio 1): title: Psoriasis Non-lesion rep5 [PN_5],source: Psoriasis Non-lesion,subject status: psoriasis patient,age: 42,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 titolo        : Psoriasis Non-lesion rep5 [PN_5]
+        H5 caratteristiche: subject status: psoriasis patient,age: 42,tissue: skin,tissue subtype: adjacent normal skin tissue (PN)
+        H5 sorgente      : Psoriasis Non-lesion
+  CONTROLLO  (n=5)  etichetta Stadio 2: Healthy skin control
+      gruppo Stadio 2: grp_0001
+      GSM4232382
+        grezzo (Stadio 1): title: Healthy rep1 [NN_1],source: healthy skin control,subject status: healthy control,age: 43,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep1 [NN_1]
+        H5 caratteristiche: subject status: healthy control,age: 43,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+      GSM4232383
+        grezzo (Stadio 1): title: Healthy rep2 [NN_2],source: healthy skin control,subject status: healthy control,age: 31,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep2 [NN_2]
+        H5 caratteristiche: subject status: healthy control,age: 31,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+      GSM4232384
+        grezzo (Stadio 1): title: Healthy rep3 [NN_3],source: healthy skin control,subject status: healthy control,age: 48,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep3 [NN_3]
+        H5 caratteristiche: subject status: healthy control,age: 48,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+      GSM4232385
+        grezzo (Stadio 1): title: Healthy rep4 [NN_4],source: healthy skin control,subject status: healthy control,age: 30,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep4 [NN_4]
+        H5 caratteristiche: subject status: healthy control,age: 30,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+      GSM4232386
+        grezzo (Stadio 1): title: Healthy rep5 [NN_5],source: healthy skin control,subject status: healthy control,age: 24,tissue: skin,tissue subtype: healthy skin control
+        H5 titolo        : Healthy rep5 [NN_5]
+        H5 caratteristiche: subject status: healthy control,age: 24,tissue: skin,tissue subtype: healthy skin control
+        H5 sorgente      : healthy skin control
+
+CONFRONTO  GSE147339__GSE147339__psoriasis_vs_control__1
+  studio: GSE147339
+  TRATTATO  (n=10)  etichetta Stadio 2: Psoriasis patients
+      gruppo Stadio 2: grp_psoriasis
+      GSM4426267
+        grezzo (Stadio 1): title: 4: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 4: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426270
+        grezzo (Stadio 1): title: 10: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 10: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426272
+        grezzo (Stadio 1): title: 19: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 19: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426273
+        grezzo (Stadio 1): title: 20: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 20: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426274
+        grezzo (Stadio 1): title: 22: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 22: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426275
+        grezzo (Stadio 1): title: 25: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 25: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426276
+        grezzo (Stadio 1): title: 26: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 26: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426277
+        grezzo (Stadio 1): title: 27: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 27: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426279
+        grezzo (Stadio 1): title: 29: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 29: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426285
+        grezzo (Stadio 1): title: 46: Psoriasis,source: Whole blood RNA,disease state: Psoriasis,tissue: Whole blood
+        H5 titolo        : 46: Psoriasis
+        H5 caratteristiche: disease state: Psoriasis,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+  CONTROLLO  (n=10)  etichetta Stadio 2: Healthy controls
+      gruppo Stadio 2: grp_control
+      GSM4426266
+        grezzo (Stadio 1): title: 1: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 1: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426268
+        grezzo (Stadio 1): title: 6: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 6: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426269
+        grezzo (Stadio 1): title: 9: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 9: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426271
+        grezzo (Stadio 1): title: 16: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 16: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426278
+        grezzo (Stadio 1): title: 28: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 28: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426280
+        grezzo (Stadio 1): title: 32: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 32: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426281
+        grezzo (Stadio 1): title: 34: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 34: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426282
+        grezzo (Stadio 1): title: 35: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 35: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426283
+        grezzo (Stadio 1): title: 36: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 36: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+      GSM4426284
+        grezzo (Stadio 1): title: 37: Control,source: Whole blood RNA,disease state: Control,tissue: Whole blood
+        H5 titolo        : 37: Control
+        H5 caratteristiche: disease state: Control,tissue: Whole blood
+        H5 sorgente      : Whole blood RNA
+
+CONFRONTO  GSE150851__GSE150851__grp_0001_vs_grp_0003__1
+  studio: GSE150851
+  TRATTATO  (n=4)  etichetta Stadio 2: Psoriasis Case 1
+      gruppo Stadio 2: grp_0001
+      GSM4559678
+        grezzo (Stadio 1): title: 7301: PSO.2,source: sigmoidal biopsies,disease state: psoriasis,age: 37,pasi: 27.8,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7301: PSO.2
+        H5 caratteristiche: disease state: psoriasis,age: 37,pasi: 27.8,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559688
+        grezzo (Stadio 1): title: 7312: PSO.12,source: sigmoidal biopsies,disease state: psoriasis,age: 38,pasi: 4.3,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7312: PSO.12
+        H5 caratteristiche: disease state: psoriasis,age: 38,pasi: 4.3,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559690
+        grezzo (Stadio 1): title: 7314: PSO.14,source: sigmoidal biopsies,disease state: psoriasis,age: 29,pasi: 4,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7314: PSO.14
+        H5 caratteristiche: disease state: psoriasis,age: 29,pasi: 4,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559695
+        grezzo (Stadio 1): title: 7323: PSO.19,source: sigmoidal biopsies,disease state: psoriasis,age: 53,pasi: 31.1,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7323: PSO.19
+        H5 caratteristiche: disease state: psoriasis,age: 53,pasi: 31.1,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+  CONTROLLO  (n=7)  etichetta Stadio 2: Healthy Control 1
+      gruppo Stadio 2: grp_0003
+      GSM4559708
+        grezzo (Stadio 1): title: 7360: Healthy.7,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7360: Healthy.7
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559711
+        grezzo (Stadio 1): title: 7368: Healthy.10,source: sigmoidal biopsies,disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7368: Healthy.10
+        H5 caratteristiche: disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559712
+        grezzo (Stadio 1): title: 7369: Healthy.11,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7369: Healthy.11
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559713
+        grezzo (Stadio 1): title: 7371: Healthy.12,source: sigmoidal biopsies,disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7371: Healthy.12
+        H5 caratteristiche: disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559714
+        grezzo (Stadio 1): title: 7372: Healthy.13,source: sigmoidal biopsies,disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7372: Healthy.13
+        H5 caratteristiche: disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559715
+        grezzo (Stadio 1): title: 7374: Healthy.14,source: sigmoidal biopsies,disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7374: Healthy.14
+        H5 caratteristiche: disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559716
+        grezzo (Stadio 1): title: 7375: Healthy.15,source: sigmoidal biopsies,disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7375: Healthy.15
+        H5 caratteristiche: disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+
+CONFRONTO  GSE150851__GSE150851__grp_0002_vs_grp_0003__1
+  studio: GSE150851
+  TRATTATO  (n=9)  etichetta Stadio 2: Psoriasis Case 2
+      gruppo Stadio 2: grp_0002
+      GSM4559677
+        grezzo (Stadio 1): title: 7300: PSO.1,source: sigmoidal biopsies,disease state: psoriasis,age: 58,pasi: 5.9,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7300: PSO.1
+        H5 caratteristiche: disease state: psoriasis,age: 58,pasi: 5.9,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559682
+        grezzo (Stadio 1): title: 7306: PSO.6,source: sigmoidal biopsies,disease state: psoriasis,age: 70,pasi: 2.1,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7306: PSO.6
+        H5 caratteristiche: disease state: psoriasis,age: 70,pasi: 2.1,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559686
+        grezzo (Stadio 1): title: 7310: PSO.10,source: sigmoidal biopsies,disease state: psoriasis,age: 54,pasi: 7.7,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7310: PSO.10
+        H5 caratteristiche: disease state: psoriasis,age: 54,pasi: 7.7,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559687
+        grezzo (Stadio 1): title: 7311: PSO.11,source: sigmoidal biopsies,disease state: psoriasis,age: 58,pasi: 5.6,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7311: PSO.11
+        H5 caratteristiche: disease state: psoriasis,age: 58,pasi: 5.6,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559689
+        grezzo (Stadio 1): title: 7313: PSO.13,source: sigmoidal biopsies,disease state: psoriasis,age: 76,pasi: 7.5,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7313: PSO.13
+        H5 caratteristiche: disease state: psoriasis,age: 76,pasi: 7.5,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559691
+        grezzo (Stadio 1): title: 7315: PSO.15,source: sigmoidal biopsies,disease state: psoriasis,age: 55,pasi: 3.9,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7315: PSO.15
+        H5 caratteristiche: disease state: psoriasis,age: 55,pasi: 3.9,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559693
+        grezzo (Stadio 1): title: 7320: PSO.17,source: sigmoidal biopsies,disease state: psoriasis,age: 60,pasi: 13.2,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7320: PSO.17
+        H5 caratteristiche: disease state: psoriasis,age: 60,pasi: 13.2,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559694
+        grezzo (Stadio 1): title: 7322: PSO.18,source: sigmoidal biopsies,disease state: psoriasis,age: 42,pasi: 3.4,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7322: PSO.18
+        H5 caratteristiche: disease state: psoriasis,age: 42,pasi: 3.4,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559696
+        grezzo (Stadio 1): title: 7324: PSO.20,source: sigmoidal biopsies,disease state: psoriasis,age: 57,pasi: 7.8,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7324: PSO.20
+        H5 caratteristiche: disease state: psoriasis,age: 57,pasi: 7.8,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+  CONTROLLO  (n=7)  etichetta Stadio 2: Healthy Control 1
+      gruppo Stadio 2: grp_0003
+      GSM4559708
+        grezzo (Stadio 1): title: 7360: Healthy.7,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7360: Healthy.7
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559711
+        grezzo (Stadio 1): title: 7368: Healthy.10,source: sigmoidal biopsies,disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7368: Healthy.10
+        H5 caratteristiche: disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559712
+        grezzo (Stadio 1): title: 7369: Healthy.11,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7369: Healthy.11
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559713
+        grezzo (Stadio 1): title: 7371: Healthy.12,source: sigmoidal biopsies,disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7371: Healthy.12
+        H5 caratteristiche: disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559714
+        grezzo (Stadio 1): title: 7372: Healthy.13,source: sigmoidal biopsies,disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7372: Healthy.13
+        H5 caratteristiche: disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559715
+        grezzo (Stadio 1): title: 7374: Healthy.14,source: sigmoidal biopsies,disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7374: Healthy.14
+        H5 caratteristiche: disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559716
+        grezzo (Stadio 1): title: 7375: Healthy.15,source: sigmoidal biopsies,disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7375: Healthy.15
+        H5 caratteristiche: disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+
+CONFRONTO  GSE150851__GSE150851__grp_0004_vs_grp_0003__1
+  studio: GSE150851
+  TRATTATO  (n=4)  etichetta Stadio 2: Psoriasis Case 3
+      gruppo Stadio 2: grp_0004
+      GSM4559681
+        grezzo (Stadio 1): title: 7305: PSO.5,source: sigmoidal biopsies,disease state: psoriasis,age: 57,pasi: 19.4,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7305: PSO.5
+        H5 caratteristiche: disease state: psoriasis,age: 57,pasi: 19.4,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559697
+        grezzo (Stadio 1): title: 7325: PSO.21,source: sigmoidal biopsies,disease state: psoriasis,age: 22,pasi: 27.8,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7325: PSO.21
+        H5 caratteristiche: disease state: psoriasis,age: 22,pasi: 27.8,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559700
+        grezzo (Stadio 1): title: 7330: PSO.24,source: sigmoidal biopsies,disease state: psoriasis,age: 28,pasi: 16.1,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7330: PSO.24
+        H5 caratteristiche: disease state: psoriasis,age: 28,pasi: 16.1,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559702
+        grezzo (Stadio 1): title: 7332: PSO.26,source: sigmoidal biopsies,disease state: psoriasis,age: 28,pasi: 19.8,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7332: PSO.26
+        H5 caratteristiche: disease state: psoriasis,age: 28,pasi: 19.8,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+  CONTROLLO  (n=7)  etichetta Stadio 2: Healthy Control 1
+      gruppo Stadio 2: grp_0003
+      GSM4559708
+        grezzo (Stadio 1): title: 7360: Healthy.7,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7360: Healthy.7
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559711
+        grezzo (Stadio 1): title: 7368: Healthy.10,source: sigmoidal biopsies,disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7368: Healthy.10
+        H5 caratteristiche: disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559712
+        grezzo (Stadio 1): title: 7369: Healthy.11,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7369: Healthy.11
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559713
+        grezzo (Stadio 1): title: 7371: Healthy.12,source: sigmoidal biopsies,disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7371: Healthy.12
+        H5 caratteristiche: disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559714
+        grezzo (Stadio 1): title: 7372: Healthy.13,source: sigmoidal biopsies,disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7372: Healthy.13
+        H5 caratteristiche: disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559715
+        grezzo (Stadio 1): title: 7374: Healthy.14,source: sigmoidal biopsies,disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7374: Healthy.14
+        H5 caratteristiche: disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559716
+        grezzo (Stadio 1): title: 7375: Healthy.15,source: sigmoidal biopsies,disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7375: Healthy.15
+        H5 caratteristiche: disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+
+CONFRONTO  GSE150851__GSE150851__grp_0005_vs_grp_0003__1
+  studio: GSE150851
+  TRATTATO  (n=5)  etichetta Stadio 2: Psoriasis Case 4
+      gruppo Stadio 2: grp_0005
+      GSM4559679
+        grezzo (Stadio 1): title: 7303: PSO.3,source: sigmoidal biopsies,disease state: psoriasis,age: 35,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7303: PSO.3
+        H5 caratteristiche: disease state: psoriasis,age: 35,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559683
+        grezzo (Stadio 1): title: 7307: PSO.7,source: sigmoidal biopsies,disease state: psoriasis,age: 58,pasi: 15.6,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7307: PSO.7
+        H5 caratteristiche: disease state: psoriasis,age: 58,pasi: 15.6,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559685
+        grezzo (Stadio 1): title: 7309: PSO.9,source: sigmoidal biopsies,disease state: psoriasis,age: 28,pasi: 0.2,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7309: PSO.9
+        H5 caratteristiche: disease state: psoriasis,age: 28,pasi: 0.2,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559698
+        grezzo (Stadio 1): title: 7327: PSO.22,source: sigmoidal biopsies,disease state: psoriasis,age: 29,pasi: 11.3,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7327: PSO.22
+        H5 caratteristiche: disease state: psoriasis,age: 29,pasi: 11.3,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559699
+        grezzo (Stadio 1): title: 7328: PSO.23,source: sigmoidal biopsies,disease state: psoriasis,age: 28,pasi: 13.2,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7328: PSO.23
+        H5 caratteristiche: disease state: psoriasis,age: 28,pasi: 13.2,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+  CONTROLLO  (n=7)  etichetta Stadio 2: Healthy Control 1
+      gruppo Stadio 2: grp_0003
+      GSM4559708
+        grezzo (Stadio 1): title: 7360: Healthy.7,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7360: Healthy.7
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559711
+        grezzo (Stadio 1): title: 7368: Healthy.10,source: sigmoidal biopsies,disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7368: Healthy.10
+        H5 caratteristiche: disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559712
+        grezzo (Stadio 1): title: 7369: Healthy.11,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7369: Healthy.11
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559713
+        grezzo (Stadio 1): title: 7371: Healthy.12,source: sigmoidal biopsies,disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7371: Healthy.12
+        H5 caratteristiche: disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559714
+        grezzo (Stadio 1): title: 7372: Healthy.13,source: sigmoidal biopsies,disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7372: Healthy.13
+        H5 caratteristiche: disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559715
+        grezzo (Stadio 1): title: 7374: Healthy.14,source: sigmoidal biopsies,disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7374: Healthy.14
+        H5 caratteristiche: disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559716
+        grezzo (Stadio 1): title: 7375: Healthy.15,source: sigmoidal biopsies,disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7375: Healthy.15
+        H5 caratteristiche: disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+
+CONFRONTO  GSE150851__GSE150851__grp_0006_vs_grp_0003__1
+  studio: GSE150851
+  TRATTATO  (n=3)  etichetta Stadio 2: Psoriasis Case 5
+      gruppo Stadio 2: grp_0006
+      GSM4559680
+        grezzo (Stadio 1): title: 7304: PSO.4,source: sigmoidal biopsies,disease state: psoriasis,age: 41,pasi: 1.2,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7304: PSO.4
+        H5 caratteristiche: disease state: psoriasis,age: 41,pasi: 1.2,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559684
+        grezzo (Stadio 1): title: 7308: PSO.8,source: sigmoidal biopsies,disease state: psoriasis,age: 60,pasi: 5.2,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7308: PSO.8
+        H5 caratteristiche: disease state: psoriasis,age: 60,pasi: 5.2,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559692
+        grezzo (Stadio 1): title: 7317: PSO.16,source: sigmoidal biopsies,disease state: psoriasis,age: 27,pasi: 2.6,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7317: PSO.16
+        H5 caratteristiche: disease state: psoriasis,age: 27,pasi: 2.6,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+  CONTROLLO  (n=7)  etichetta Stadio 2: Healthy Control 1
+      gruppo Stadio 2: grp_0003
+      GSM4559708
+        grezzo (Stadio 1): title: 7360: Healthy.7,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7360: Healthy.7
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559711
+        grezzo (Stadio 1): title: 7368: Healthy.10,source: sigmoidal biopsies,disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 titolo        : 7368: Healthy.10
+        H5 caratteristiche: disease state: healthy,age: 49,pasi: NA,gender: F,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559712
+        grezzo (Stadio 1): title: 7369: Healthy.11,source: sigmoidal biopsies,disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7369: Healthy.11
+        H5 caratteristiche: disease state: healthy,age: 38,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559713
+        grezzo (Stadio 1): title: 7371: Healthy.12,source: sigmoidal biopsies,disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7371: Healthy.12
+        H5 caratteristiche: disease state: healthy,age: 47,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559714
+        grezzo (Stadio 1): title: 7372: Healthy.13,source: sigmoidal biopsies,disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7372: Healthy.13
+        H5 caratteristiche: disease state: healthy,age: 59,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559715
+        grezzo (Stadio 1): title: 7374: Healthy.14,source: sigmoidal biopsies,disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7374: Healthy.14
+        H5 caratteristiche: disease state: healthy,age: 35,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+      GSM4559716
+        grezzo (Stadio 1): title: 7375: Healthy.15,source: sigmoidal biopsies,disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 titolo        : 7375: Healthy.15
+        H5 caratteristiche: disease state: healthy,age: 36,pasi: NA,gender: M,tissue: sigmoidal colon
+        H5 sorgente      : sigmoidal biopsies
+
+CONFRONTO  GSE74697__GSE74697__grp_0004_vs_grp_0009__1
+  studio: GSE74697
+  TRATTATO  (n=3)  etichetta Stadio 2: Psoriasis Lesional Skin
+      gruppo Stadio 2: grp_0004
+      GSM1930383
+        grezzo (Stadio 1): title: HuMPre1,source: Pre-Treated Psoriasis,subject status: psoriasis patient,tissue type: lesional skin from psoriasis patient,time point: before adalimumab treatment
+        H5 titolo        : HuMPre1
+        H5 caratteristiche: subject status: psoriasis patient,tissue type: lesional skin from psoriasis patient,time point: before adalimumab treatment
+        H5 sorgente      : Pre-Treated Psoriasis
+      GSM1930388
+        grezzo (Stadio 1): title: HuMPre8,source: Pre-Treated Psoriasis,subject status: psoriasis patient,tissue type: lesional skin from psoriasis patient,time point: before adalimumab treatment
+        H5 titolo        : HuMPre8
+        H5 caratteristiche: subject status: psoriasis patient,tissue type: lesional skin from psoriasis patient,time point: before adalimumab treatment
+        H5 sorgente      : Pre-Treated Psoriasis
+      GSM1930400
+        grezzo (Stadio 1): title: HuMPre30,source: Pre-Treated Psoriasis,subject status: psoriasis patient,tissue type: lesional skin from psoriasis patient,time point: before adalimumab treatment
+        H5 titolo        : HuMPre30
+        H5 caratteristiche: subject status: psoriasis patient,tissue type: lesional skin from psoriasis patient,time point: before adalimumab treatment
+        H5 sorgente      : Pre-Treated Psoriasis
+  CONTROLLO  (n=9)  etichetta Stadio 2: Healthy Normal Skin
+      gruppo Stadio 2: grp_0009
+      GSM1930367
+        grezzo (Stadio 1): title: C2,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : C2
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+      GSM1930368
+        grezzo (Stadio 1): title: C3,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : C3
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+      GSM1930369
+        grezzo (Stadio 1): title: C4,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : C4
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+      GSM1930370
+        grezzo (Stadio 1): title: C5,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : C5
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+      GSM1930373
+        grezzo (Stadio 1): title: C9,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : C9
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+      GSM1930376
+        grezzo (Stadio 1): title: C12,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : C12
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+      GSM1930377
+        grezzo (Stadio 1): title: C13,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : C13
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+      GSM1930378
+        grezzo (Stadio 1): title: C15,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : C15
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+      GSM1930379
+        grezzo (Stadio 1): title: 107,source: Normal Skin,subject status: healthy control,tissue type: normal skin
+        H5 titolo        : 107
+        H5 caratteristiche: subject status: healthy control,tissue type: normal skin
+        H5 sorgente      : Normal Skin
+
+CONFRONTO  GSE81106__GSE81106__grp_0001_vs_grp_0002__1
+  studio: GSE81106
+  TRATTATO  (n=3)  etichetta Stadio 2: Mesenchymal stem cells from Psoriasis patient 15Y15P5
+      gruppo Stadio 2: grp_0001
+      GSM2142963
+        grezzo (Stadio 1): title: 15Y15P5,source: Mesenchymal stem cells,tissue: Skin-derived MSC,passages: 5,status: Psoriasis
+        H5 titolo        : 15Y15P5
+        H5 caratteristiche: tissue: Skin-derived MSC,passages: 5,status: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells
+      GSM2142964
+        grezzo (Stadio 1): title: 15Y26P5,source: Mesenchymal stem cells,tissue: Skin-derived MSC,passages: 5,status: Psoriasis
+        H5 titolo        : 15Y26P5
+        H5 caratteristiche: tissue: Skin-derived MSC,passages: 5,status: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells
+      GSM2142965
+        grezzo (Stadio 1): title: 15Y29P5,source: Mesenchymal stem cells,tissue: Skin-derived MSC,passages: 5,status: Psoriasis
+        H5 titolo        : 15Y29P5
+        H5 caratteristiche: tissue: Skin-derived MSC,passages: 5,status: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Mesenchymal stem cells from Normal donor
+      gruppo Stadio 2: grp_0002
+      GSM2142961
+        grezzo (Stadio 1): title: 14Z66P5,source: Mesenchymal stem cells,tissue: Skin-derived MSC,passages: 5,status: Normal
+        H5 titolo        : 14Z66P5
+        H5 caratteristiche: tissue: Skin-derived MSC,passages: 5,status: Normal
+        H5 sorgente      : Mesenchymal stem cells
+      GSM2142962
+        grezzo (Stadio 1): title: 14Z70P5,source: Mesenchymal stem cells,tissue: Skin-derived MSC,passages: 5,status: Normal
+        H5 titolo        : 14Z70P5
+        H5 caratteristiche: tissue: Skin-derived MSC,passages: 5,status: Normal
+        H5 sorgente      : Mesenchymal stem cells
+      GSM2142966
+        grezzo (Stadio 1): title: 15Z3P5,source: Mesenchymal stem cells,tissue: Skin-derived MSC,passages: 5,status: Normal
+        H5 titolo        : 15Z3P5
+        H5 caratteristiche: tissue: Skin-derived MSC,passages: 5,status: Normal
+        H5 sorgente      : Mesenchymal stem cells
+
+CONFRONTO  GSE89725__GSE89725__Psoriasis_vs_Normal__1
+  studio: GSE89725
+  TRATTATO  (n=3)  etichetta Stadio 2: Psoriasis
+      gruppo Stadio 2: grp_0001
+      GSM2387324
+        grezzo (Stadio 1): title: 15Y15P5 (RNA-seq),source: Mesenchymal stem cells,tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Psoriasis
+        H5 titolo        : 15Y15P5 (RNA-seq)
+        H5 caratteristiche: tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells
+      GSM2387325
+        grezzo (Stadio 1): title: 15Y26P5 (RNA-seq),source: Mesenchymal stem cells,tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Psoriasis
+        H5 titolo        : 15Y26P5 (RNA-seq)
+        H5 caratteristiche: tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells
+      GSM2387326
+        grezzo (Stadio 1): title: 15Y29P5 (RNA-seq),source: Mesenchymal stem cells,tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Psoriasis
+        H5 titolo        : 15Y29P5 (RNA-seq)
+        H5 caratteristiche: tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Psoriasis
+        H5 sorgente      : Mesenchymal stem cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal
+      gruppo Stadio 2: grp_0002
+      GSM2387323
+        grezzo (Stadio 1): title: 14Z70P5 (RNA-seq),source: Mesenchymal stem cells,tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Normal
+        H5 titolo        : 14Z70P5 (RNA-seq)
+        H5 caratteristiche: tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Normal
+        H5 sorgente      : Mesenchymal stem cells
+      GSM2387327
+        grezzo (Stadio 1): title: 15Z3P5 (RNA-seq),source: Mesenchymal stem cells,tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Normal
+        H5 titolo        : 15Z3P5 (RNA-seq)
+        H5 caratteristiche: tissue: Skin,cell type: Skin-derived Mesenchymal stem cells,disease status: Normal
+        H5 sorgente      : Mesenchymal stem cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE108743     campioni nell'H5:    6 | collocati dallo Stadio 2:    5 | MAI COLLOCATI:    1 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+      mai collocati: GSM2912791
+  GSE117405     campioni nell'H5:   28 | collocati dallo Stadio 2:   28 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE139341     campioni nell'H5:   19 | collocati dallo Stadio 2:   19 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 19 campioni distinti (24 righe: i controlli servono piu' confronti)
+  GSE142582     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 15 campioni distinti (20 righe: i controlli servono piu' confronti)
+  GSE147339     campioni nell'H5:   20 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 20 campioni distinti (20 righe: i controlli servono piu' confronti)
+  GSE150851     campioni nell'H5:   42 | collocati dallo Stadio 2:   42 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 32 campioni distinti (60 righe: i controlli servono piu' confronti)
+  GSE74697      campioni nell'H5:   52 | collocati dallo Stadio 2:   52 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE81106      campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE89725      campioni nell'H5:    6 | collocati dallo Stadio 2:    5 | MAI COLLOCATI:    1 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+      mai collocati: GSM2387322
+

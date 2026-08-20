@@ -1,0 +1,242 @@
+META-ANALISI 065 di 194
+==============================================================================
+nome            : pinometostat
+entita (ID)     : CHEBI:230493
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_dc7451b1
+studi poolati   : 5   confronti: 5   campioni: 35
+geni significativi: 40   I2 mediano: 0.0
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE149280__GSE149280__grp_0009_vs_grp_0008__1
+  studio: GSE149280
+  TRATTATO  (n=2)  etichetta Stadio 2: WM989 + EPZ5676 (melanoma)
+      gruppo Stadio 2: grp_0009
+      GSM4495458
+        grezzo (Stadio 1): title: preTBulk_1,source: melanoma cells,cell line: WM989,cell type: melanoma,treatment: Pre-treated with EPZ5676 for one week,cell population: Bulk population
+        H5 titolo        : preTBulk_1
+        H5 caratteristiche: cell line: WM989,cell type: melanoma,treatment: Pre-treated with EPZ5676 for one week,cell population: Bulk population
+        H5 sorgente      : melanoma cells
+      GSM4495461
+        grezzo (Stadio 1): title: preTBulk_2,source: melanoma cells,cell line: WM989,cell type: melanoma,treatment: Pre-treated with EPZ5676 for one week,cell population: Bulk population
+        H5 titolo        : preTBulk_2
+        H5 caratteristiche: cell line: WM989,cell type: melanoma,treatment: Pre-treated with EPZ5676 for one week,cell population: Bulk population
+        H5 sorgente      : melanoma cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: WM989 + DMSO (melanoma)
+      gruppo Stadio 2: grp_0008
+      GSM4495449
+        grezzo (Stadio 1): title: dmsoBulk_1,source: melanoma cells,cell line: WM989,cell type: melanoma,treatment: Pre-treated with DMSO for 1 week,cell population: Bulk population
+        H5 titolo        : dmsoBulk_1
+        H5 caratteristiche: cell line: WM989,cell type: melanoma,treatment: Pre-treated with DMSO for 1 week,cell population: Bulk population
+        H5 sorgente      : melanoma cells
+      GSM4495455
+        grezzo (Stadio 1): title: dmsoBulk_3,source: melanoma cells,cell line: WM989,cell type: melanoma,treatment: Pre-treated with DMSO for 1 week,cell population: Bulk population
+        H5 titolo        : dmsoBulk_3
+        H5 caratteristiche: cell line: WM989,cell type: melanoma,treatment: Pre-treated with DMSO for 1 week,cell population: Bulk population
+        H5 sorgente      : melanoma cells
+
+CONFRONTO  GSE174167__GSE174167__grp_0001_vs_grp_0003__1
+  studio: GSE174167
+  TRATTATO  (n=2)  etichetta Stadio 2: Y79 retinoblastoma cells treated with EPZ5676
+      gruppo Stadio 2: grp_0001
+      GSM5288344
+        grezzo (Stadio 1): title: EPZ-1,source: Retina,cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: EPZ5676
+        H5 titolo        : EPZ-1
+        H5 caratteristiche: cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: EPZ5676
+        H5 sorgente      : Retina
+      GSM5288346
+        grezzo (Stadio 1): title: EPZ-3,source: Retina,cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: EPZ5676
+        H5 titolo        : EPZ-3
+        H5 caratteristiche: cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: EPZ5676
+        H5 sorgente      : Retina
+  CONTROLLO  (n=3)  etichetta Stadio 2: Y79 retinoblastoma cells treated with DMSO
+      gruppo Stadio 2: grp_0003
+      GSM5288341
+        grezzo (Stadio 1): title: CTL-1,source: Retina,cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: DMSO (vehicle control)
+        H5 titolo        : CTL-1
+        H5 caratteristiche: cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: DMSO (vehicle control)
+        H5 sorgente      : Retina
+      GSM5288342
+        grezzo (Stadio 1): title: CTL-2,source: Retina,cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: DMSO (vehicle control)
+        H5 titolo        : CTL-2
+        H5 caratteristiche: cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: DMSO (vehicle control)
+        H5 sorgente      : Retina
+      GSM5288343
+        grezzo (Stadio 1): title: CTL-3,source: Retina,cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: DMSO (vehicle control)
+        H5 titolo        : CTL-3
+        H5 caratteristiche: cell type: Y79 retinoblastoma cell line (ATCC HTB18),treatment: DMSO (vehicle control)
+        H5 sorgente      : Retina
+
+CONFRONTO  GSE194434__GSE194434__grp_0002_vs_grp_0001__1
+  studio: GSE194434
+  TRATTATO  (n=6)  etichetta Stadio 2: MDA-MB-468 ALDH1+ treated with EPZ5676 for 10 days
+      gruppo Stadio 2: grp_0002
+      GSM5835651
+        grezzo (Stadio 1): title: EPZ5676 treated ALDH1+ _rep1,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 titolo        : EPZ5676 treated ALDH1+ _rep1
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835652
+        grezzo (Stadio 1): title: EPZ5676 treated ALDH1+ _rep2,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 titolo        : EPZ5676 treated ALDH1+ _rep2
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835653
+        grezzo (Stadio 1): title: EPZ5676 treated ALDH1+ _rep3,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 titolo        : EPZ5676 treated ALDH1+ _rep3
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835654
+        grezzo (Stadio 1): title: EPZ5676 treated ALDH1- _rep1,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 titolo        : EPZ5676 treated ALDH1- _rep1
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835655
+        grezzo (Stadio 1): title: EPZ5676 treated ALDH1- _rep2,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 titolo        : EPZ5676 treated ALDH1- _rep2
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835656
+        grezzo (Stadio 1): title: EPZ5676 treated ALDH1- _rep3,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 titolo        : EPZ5676 treated ALDH1- _rep3
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days EPZ5676 treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+  CONTROLLO  (n=6)  etichetta Stadio 2: MDA-MB-468 ALDH1+ treated with DMSO for 10 days
+      gruppo Stadio 2: grp_0001
+      GSM5835645
+        grezzo (Stadio 1): title: DMSO treated ALDH1+ _rep1,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 titolo        : DMSO treated ALDH1+ _rep1
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835646
+        grezzo (Stadio 1): title: DMSO treated ALDH1+ _rep2,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 titolo        : DMSO treated ALDH1+ _rep2
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835647
+        grezzo (Stadio 1): title: DMSO treated ALDH1+ _rep3,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 titolo        : DMSO treated ALDH1+ _rep3
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1+
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835648
+        grezzo (Stadio 1): title: DMSO treated ALDH1- _rep1,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 titolo        : DMSO treated ALDH1- _rep1
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835649
+        grezzo (Stadio 1): title: DMSO treated ALDH1- _rep2,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 titolo        : DMSO treated ALDH1- _rep2
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+      GSM5835650
+        grezzo (Stadio 1): title: DMSO treated ALDH1- _rep3,source: MDA-MB-468 Triple negative breast cancer cells,cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 titolo        : DMSO treated ALDH1- _rep3
+        H5 caratteristiche: cell type: Human breast cancer cell,treatment: 10 days DMSO treatment,cell line: MDA-MB-468,cell population: ALDH1-
+        H5 sorgente      : MDA-MB-468 Triple negative breast cancer cells
+
+CONFRONTO  GSE230791__GSE230791__grp_0005_vs_grp_0004__1
+  studio: GSE230791
+  TRATTATO  (n=5)  etichetta Stadio 2: Pinometostat Treated
+      gruppo Stadio 2: grp_0005
+      GSM7234352
+        grezzo (Stadio 1): title: SEM_DOT1Li_biol rep 1 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 titolo        : SEM_DOT1Li_biol rep 1 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 sorgente      : cell line
+      GSM7234353
+        grezzo (Stadio 1): title: SEM_DOT1Li_biol rep 2 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 titolo        : SEM_DOT1Li_biol rep 2 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 sorgente      : cell line
+      GSM7234354
+        grezzo (Stadio 1): title: SEM_DOT1Li_biol rep 3 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 titolo        : SEM_DOT1Li_biol rep 3 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 sorgente      : cell line
+      GSM7234355
+        grezzo (Stadio 1): title: SEM_DOT1Li_biol rep 4 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 titolo        : SEM_DOT1Li_biol rep 4 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 sorgente      : cell line
+      GSM7234362
+        grezzo (Stadio 1): title: SEM_PINO_RES_DOT1Li_biol rep 3 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 titolo        : SEM_PINO_RES_DOT1Li_biol rep 3 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: 50uM pinometostat for 7 days
+        H5 sorgente      : cell line
+  CONTROLLO  (n=5)  etichetta Stadio 2: Untreated Control
+      gruppo Stadio 2: grp_0004
+      GSM7234348
+        grezzo (Stadio 1): title: SEM_biol rep 1 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 titolo        : SEM_biol rep 1 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 sorgente      : cell line
+      GSM7234350
+        grezzo (Stadio 1): title: SEM_biol rep 3 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 titolo        : SEM_biol rep 3 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 sorgente      : cell line
+      GSM7234351
+        grezzo (Stadio 1): title: SEM_biol rep 4 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 titolo        : SEM_biol rep 4 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 sorgente      : cell line
+      GSM7234357
+        grezzo (Stadio 1): title: SEM_PINO_RES_biol rep 2 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 titolo        : SEM_PINO_RES_biol rep 2 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 sorgente      : cell line
+      GSM7234359
+        grezzo (Stadio 1): title: SEM_PINO_RES_biol rep 4 RNA,source: cell line,tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 titolo        : SEM_PINO_RES_biol rep 4 RNA
+        H5 caratteristiche: tissue: cell line,cell line: Acute Lymphoblastic Leukemia cell line SEM,cell type: Paediatric pro B-cell line derived from ALL with t(4;11)(q21;q23) translocation,genotype: t(4;11)(q21;q23) translocation,treatment: None
+        H5 sorgente      : cell line
+
+CONFRONTO  GSE234615__GSE234615__grp_0003_vs_grp_0001__1
+  studio: GSE234615
+  TRATTATO  (n=2)  etichetta Stadio 2: EPZ-5676
+      gruppo Stadio 2: grp_0003
+      GSM7471921
+        grezzo (Stadio 1): title: HCT116, shCTL, EPZ-5676, replicate1,source: colon,tissue: colon,cell line: HCT116,cell type: Colorectal carcinoma,genotype: Control,treatment: EPZ-5676
+        H5 titolo        : HCT116, shCTL, EPZ-5676, replicate1
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: Colorectal carcinoma,genotype: Control,treatment: EPZ-5676
+        H5 sorgente      : colon
+      GSM7471922
+        grezzo (Stadio 1): title: HCT116, shCTL, EPZ-5676, replicate2,source: colon,tissue: colon,cell line: HCT116,cell type: Colorectal carcinoma,genotype: Control,treatment: EPZ-5676
+        H5 titolo        : HCT116, shCTL, EPZ-5676, replicate2
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: Colorectal carcinoma,genotype: Control,treatment: EPZ-5676
+        H5 sorgente      : colon
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_0001
+      GSM7471917
+        grezzo (Stadio 1): title: HCT116, shCTL, DMSO, replicate1,source: colon,tissue: colon,cell line: HCT116,cell type: Colorectal carcinoma,genotype: Control,treatment: DMSO
+        H5 titolo        : HCT116, shCTL, DMSO, replicate1
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: Colorectal carcinoma,genotype: Control,treatment: DMSO
+        H5 sorgente      : colon
+      GSM7471918
+        grezzo (Stadio 1): title: HCT116, shCTL, DMSO, replicate2,source: colon,tissue: colon,cell line: HCT116,cell type: Colorectal carcinoma,genotype: Control,treatment: DMSO
+        H5 titolo        : HCT116, shCTL, DMSO, replicate2
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: Colorectal carcinoma,genotype: Control,treatment: DMSO
+        H5 sorgente      : colon
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE149280     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE174167     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE194434     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE230791     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE234615     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+

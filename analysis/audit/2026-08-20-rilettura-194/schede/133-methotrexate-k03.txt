@@ -1,0 +1,448 @@
+META-ANALISI 133 di 194
+==============================================================================
+nome            : methotrexate
+entita (ID)     : CHEBI:44185
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_5b9a08fb
+studi poolati   : 3   confronti: 4   campioni: 78
+geni significativi: 1151   I2 mediano: 89.6
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE163377__GSE163377__grp_0013_vs_grp_0016__1
+  studio: GSE163377
+  TRATTATO  (n=2)  etichetta Stadio 2: MTX 1uM 20h
+      gruppo Stadio 2: grp_0013
+      GSM4977835
+        grezzo (Stadio 1): title: MTX 20h rep1,source: A375,cell line: A375,cell type: Human melanoma,treatment: MTX 1uM,recovery time: 20 hours
+        H5 titolo        : MTX 20h rep1
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: MTX 1uM,recovery time: 20 hours
+        H5 sorgente      : A375
+      GSM4977837
+        grezzo (Stadio 1): title: MTX 20h rep3,source: A375,cell line: A375,cell type: Human melanoma,treatment: MTX 1uM,recovery time: 20 hours
+        H5 titolo        : MTX 20h rep3
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: MTX 1uM,recovery time: 20 hours
+        H5 sorgente      : A375
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated 20h
+      gruppo Stadio 2: grp_0016
+      GSM4977817
+        grezzo (Stadio 1): title: CTRL 20h rep1,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 20 hours
+        H5 titolo        : CTRL 20h rep1
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 20 hours
+        H5 sorgente      : A375
+      GSM4977818
+        grezzo (Stadio 1): title: CTRL 20h rep2,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 20 hours
+        H5 titolo        : CTRL 20h rep2
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 20 hours
+        H5 sorgente      : A375
+      GSM4977819
+        grezzo (Stadio 1): title: CTRL 20h rep3,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 20 hours
+        H5 titolo        : CTRL 20h rep3
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 20 hours
+        H5 sorgente      : A375
+
+CONFRONTO  GSE163377__GSE163377__grp_0018_vs_grp_0015__1
+  studio: GSE163377
+  TRATTATO  (n=2)  etichetta Stadio 2: MTX 1uM 10h
+      gruppo Stadio 2: grp_0018
+      GSM4977833
+        grezzo (Stadio 1): title: MTX 10h rep2,source: A375,cell line: A375,cell type: Human melanoma,treatment: MTX 1uM,recovery time: 10 hours
+        H5 titolo        : MTX 10h rep2
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: MTX 1uM,recovery time: 10 hours
+        H5 sorgente      : A375
+      GSM4977834
+        grezzo (Stadio 1): title: MTX 10h rep3,source: A375,cell line: A375,cell type: Human melanoma,treatment: MTX 1uM,recovery time: 10 hours
+        H5 titolo        : MTX 10h rep3
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: MTX 1uM,recovery time: 10 hours
+        H5 sorgente      : A375
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated 10h
+      gruppo Stadio 2: grp_0015
+      GSM4977814
+        grezzo (Stadio 1): title: CTRL 10h rep1,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 titolo        : CTRL 10h rep1
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 sorgente      : A375
+      GSM4977815
+        grezzo (Stadio 1): title: CTRL 10h rep2,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 titolo        : CTRL 10h rep2
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 sorgente      : A375
+      GSM4977816
+        grezzo (Stadio 1): title: CTRL 10h rep3,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 titolo        : CTRL 10h rep3
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 sorgente      : A375
+
+CONFRONTO  GSE183062__GSE183062__grp_0002_vs_grp_0001__1
+  studio: GSE183062
+  TRATTATO  (n=2)  etichetta Stadio 2: B-ALL cell line, >96% European, Methotrexate
+      gruppo Stadio 2: grp_0002
+      GSM5550337
+        grezzo (Stadio 1): title: RCHAcV_RA_ACM_Pos_MTX,source: B-ALL cell line,disease: B-cell acute lymphoblastic leukemia,treament: Methotrexate,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 titolo        : RCHAcV_RA_ACM_Pos_MTX
+        H5 caratteristiche: disease: B-cell acute lymphoblastic leukemia,treament: Methotrexate,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 sorgente      : B-ALL cell line
+      GSM5550341
+        grezzo (Stadio 1): title: RCHAcV_RA_SCM_Pos_MTX,source: B-ALL cell line,disease: B-cell acute lymphoblastic leukemia,treament: Methotrexate,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 titolo        : RCHAcV_RA_SCM_Pos_MTX
+        H5 caratteristiche: disease: B-cell acute lymphoblastic leukemia,treament: Methotrexate,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 sorgente      : B-ALL cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: B-ALL cell line, >96% European, no treatment
+      gruppo Stadio 2: grp_0001
+      GSM5550338
+        grezzo (Stadio 1): title: RCHAcV_RA_ACM,source: B-ALL cell line,disease: B-cell acute lymphoblastic leukemia,treament: No treatment,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 titolo        : RCHAcV_RA_ACM
+        H5 caratteristiche: disease: B-cell acute lymphoblastic leukemia,treament: No treatment,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 sorgente      : B-ALL cell line
+      GSM5550340
+        grezzo (Stadio 1): title: RCHAcV_RA_RPMI,source: B-ALL cell line,disease: B-cell acute lymphoblastic leukemia,treament: No treatment,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 titolo        : RCHAcV_RA_RPMI
+        H5 caratteristiche: disease: B-cell acute lymphoblastic leukemia,treament: No treatment,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 sorgente      : B-ALL cell line
+      GSM5550342
+        grezzo (Stadio 1): title: RCHAcV_RA_SCM,source: B-ALL cell line,disease: B-cell acute lymphoblastic leukemia,treament: No treatment,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 titolo        : RCHAcV_RA_SCM
+        H5 caratteristiche: disease: B-cell acute lymphoblastic leukemia,treament: No treatment,mutation: chromosome translocation 1;19 and trisomy 8,origin: >96% European (bone marrow sample)
+        H5 sorgente      : B-ALL cell line
+
+CONFRONTO  GSE225731__GSE225731__RA_mtx_vs_RA_untreated__1
+  studio: GSE225731
+  TRATTATO  (n=50)  etichetta Stadio 2: RA mtx
+      gruppo Stadio 2: group_0004
+      GSM7054886
+        grezzo (Stadio 1): title: 0000010_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 60.77,joint_bps: W,tjc28_bl: 15,sjc28_bl: 12,crp_bl (mg/dl): 4.51,vasm_bl: 70,vasp_bl: 99,haq_bl: 2.88,das28crp_bl: 6.86,tjc28_3m: 4,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 10,vasp_3m: 47,haq_3m: 0.88,das28crp_3m: 2.99
+        H5 titolo        : 0000010_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 60.77,joint_bps: W,tjc28_bl: 15,sjc28_bl: 12,crp_bl (mg/dl): 4.51,vasm_bl: 70,vasp_bl: 99,haq_bl: 2.88,das28crp_bl: 6.86,tjc28_3m: 4,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 10,vasp_3m: 47,haq_3m: 0.88,das28crp_3m: 2.99
+        H5 sorgente      : bulk synovial tissue
+      GSM7054887
+        grezzo (Stadio 1): title: 0000012_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 1,age_start_dmard: 68.84,joint_bps: K,tjc28_bl: 18,sjc28_bl: 20,crp_bl (mg/dl): 1.1,vasm_bl: 50,vasp_bl: 90,haq_bl: 1.5,das28crp_bl: 6.74,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 0.31,vasm_3m: 20,vasp_3m: 10,haq_3m: 1.25,das28crp_3m: 2.8
+        H5 titolo        : 0000012_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 1,age_start_dmard: 68.84,joint_bps: K,tjc28_bl: 18,sjc28_bl: 20,crp_bl (mg/dl): 1.1,vasm_bl: 50,vasp_bl: 90,haq_bl: 1.5,das28crp_bl: 6.74,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 0.31,vasm_3m: 20,vasp_3m: 10,haq_3m: 1.25,das28crp_3m: 2.8
+        H5 sorgente      : bulk synovial tissue
+      GSM7054888
+        grezzo (Stadio 1): title: 0000028_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.60,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 68.38,joint_bps: W,tjc28_bl: 6,sjc28_bl: 18,crp_bl (mg/dl): 18.56,vasm_bl: 80,vasp_bl: 100,haq_bl: 2.5,das28crp_bl: 6.8,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.53,vasm_3m: 10,vasp_3m: 35,haq_3m: 1.38,das28crp_3m: 2.11
+        H5 titolo        : 0000028_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.60,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 68.38,joint_bps: W,tjc28_bl: 6,sjc28_bl: 18,crp_bl (mg/dl): 18.56,vasm_bl: 80,vasp_bl: 100,haq_bl: 2.5,das28crp_bl: 6.8,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.53,vasm_3m: 10,vasp_3m: 35,haq_3m: 1.38,das28crp_3m: 2.11
+        H5 sorgente      : bulk synovial tissue
+      GSM7054889
+        grezzo (Stadio 1): title: 0000145_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.50,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 70.95,joint_bps: K,tjc28_bl: 6,sjc28_bl: 11,crp_bl (mg/dl): 11.03,vasm_bl: 60,vasp_bl: 89,haq_bl: 2.63,das28crp_bl: 6.2,tjc28_3m: 0,sjc28_3m: 1,crp_3m: 1.84,vasm_3m: 10,vasp_3m: 13,haq_3m: 2.25,das28crp_3m: 2.49
+        H5 titolo        : 0000145_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.50,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 70.95,joint_bps: K,tjc28_bl: 6,sjc28_bl: 11,crp_bl (mg/dl): 11.03,vasm_bl: 60,vasp_bl: 89,haq_bl: 2.63,das28crp_bl: 6.2,tjc28_3m: 0,sjc28_3m: 1,crp_3m: 1.84,vasm_3m: 10,vasp_3m: 13,haq_3m: 2.25,das28crp_3m: 2.49
+        H5 sorgente      : bulk synovial tissue
+      GSM7054890
+        grezzo (Stadio 1): title: 0000177_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 6.80,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 51.77,joint_bps: K,tjc28_bl: 4,sjc28_bl: 8,crp_bl (mg/dl): 0.4,vasm_bl: 25,vasp_bl: 60,haq_bl: 0.88,das28crp_bl: 4.29,tjc28_3m: 4,sjc28_3m: 7,crp_3m: 0.4,vasm_3m: 30,vasp_3m: 40,haq_3m: 0.5,das28crp_3m: 3.96
+        H5 titolo        : 0000177_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 6.80,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 51.77,joint_bps: K,tjc28_bl: 4,sjc28_bl: 8,crp_bl (mg/dl): 0.4,vasm_bl: 25,vasp_bl: 60,haq_bl: 0.88,das28crp_bl: 4.29,tjc28_3m: 4,sjc28_3m: 7,crp_3m: 0.4,vasm_3m: 30,vasp_3m: 40,haq_3m: 0.5,das28crp_3m: 3.96
+        H5 sorgente      : bulk synovial tissue
+      GSM7054891
+        grezzo (Stadio 1): title: 0000180_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.90,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 45.85,joint_bps: K,tjc28_bl: 14,sjc28_bl: 11,crp_bl (mg/dl): 2.3,vasm_bl: 55,vasp_bl: 83,haq_bl: 2.5,das28crp_bl: 6.29,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 1.9,vasm_3m: 25,vasp_3m: 48,haq_3m: 1.25,das28crp_3m: 3.9
+        H5 titolo        : 0000180_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.90,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 45.85,joint_bps: K,tjc28_bl: 14,sjc28_bl: 11,crp_bl (mg/dl): 2.3,vasm_bl: 55,vasp_bl: 83,haq_bl: 2.5,das28crp_bl: 6.29,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 1.9,vasm_3m: 25,vasp_3m: 48,haq_3m: 1.25,das28crp_3m: 3.9
+        H5 sorgente      : bulk synovial tissue
+      GSM7054892
+        grezzo (Stadio 1): title: 0000181_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 6.40,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 66.93,joint_bps: K,tjc28_bl: 2,sjc28_bl: 2,crp_bl (mg/dl): 2.5,vasm_bl: 30,vasp_bl: 60,haq_bl: 1,das28crp_bl: 4.17,tjc28_3m: 5,sjc28_3m: 4,crp_3m: 1.3,vasm_3m: 23,vasp_3m: 74,haq_3m: 0.75,das28crp_3m: 4.76
+        H5 titolo        : 0000181_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 6.40,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 66.93,joint_bps: K,tjc28_bl: 2,sjc28_bl: 2,crp_bl (mg/dl): 2.5,vasm_bl: 30,vasp_bl: 60,haq_bl: 1,das28crp_bl: 4.17,tjc28_3m: 5,sjc28_3m: 4,crp_3m: 1.3,vasm_3m: 23,vasp_3m: 74,haq_3m: 0.75,das28crp_3m: 4.76
+        H5 sorgente      : bulk synovial tissue
+      GSM7054893
+        grezzo (Stadio 1): title: 0000185_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.90,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 44.87,joint_bps: K,tjc28_bl: 6,sjc28_bl: 3,crp_bl (mg/dl): 1,vasm_bl: 50,vasp_bl: 40,haq_bl: 0.88,das28crp_bl: 3.42,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 2,vasm_3m: 10,vasp_3m: 5,haq_3m: 0.38,das28crp_3m: 2.13
+        H5 titolo        : 0000185_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.90,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 44.87,joint_bps: K,tjc28_bl: 6,sjc28_bl: 3,crp_bl (mg/dl): 1,vasm_bl: 50,vasp_bl: 40,haq_bl: 0.88,das28crp_bl: 3.42,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 2,vasm_3m: 10,vasp_3m: 5,haq_3m: 0.38,das28crp_3m: 2.13
+        H5 sorgente      : bulk synovial tissue
+      GSM7054894
+        grezzo (Stadio 1): title: 0000187_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.80,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 0,baseline_erosion: 0,age_start_dmard: 57.17,joint_bps: K,tjc28_bl: 1,sjc28_bl: 1,crp_bl (mg/dl): 0.7,vasm_bl: 30,vasp_bl: 17,haq_bl: 0.25,das28crp_bl: 2.79,tjc28_3m: 0,sjc28_3m: 1,crp_3m: 0.2,vasm_3m: 5,vasp_3m: 10,haq_3m: 0,das28crp_3m: 1.78
+        H5 titolo        : 0000187_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.80,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 0,baseline_erosion: 0,age_start_dmard: 57.17,joint_bps: K,tjc28_bl: 1,sjc28_bl: 1,crp_bl (mg/dl): 0.7,vasm_bl: 30,vasp_bl: 17,haq_bl: 0.25,das28crp_bl: 2.79,tjc28_3m: 0,sjc28_3m: 1,crp_3m: 0.2,vasm_3m: 5,vasp_3m: 10,haq_3m: 0,das28crp_3m: 1.78
+        H5 sorgente      : bulk synovial tissue
+      GSM7054895
+        grezzo (Stadio 1): title: 0000188_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 5.50,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 43.88,joint_bps: K,tjc28_bl: 10,sjc28_bl: 6,crp_bl (mg/dl): 1,vasm_bl: 50,vasp_bl: 90,haq_bl: 1.63,das28crp_bl: 5.55,tjc28_3m: 5,sjc28_3m: 4,crp_3m: 1.1,vasm_3m: 40,vasp_3m: 60,haq_3m: 1.63,das28crp_3m: 4.51
+        H5 titolo        : 0000188_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 5.50,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 43.88,joint_bps: K,tjc28_bl: 10,sjc28_bl: 6,crp_bl (mg/dl): 1,vasm_bl: 50,vasp_bl: 90,haq_bl: 1.63,das28crp_bl: 5.55,tjc28_3m: 5,sjc28_3m: 4,crp_3m: 1.1,vasm_3m: 40,vasp_3m: 60,haq_3m: 1.63,das28crp_3m: 4.51
+        H5 sorgente      : bulk synovial tissue
+      GSM7054897
+        grezzo (Stadio 1): title: 0000553_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 22.19,joint_bps: K,tjc28_bl: 4,sjc28_bl: 6,crp_bl (mg/dl): 0.1,vasm_bl: 31,vasp_bl: 25,haq_bl: 1.25,das28crp_bl: 3.37,tjc28_3m: 6,sjc28_3m: 9,crp_3m: 0.1,vasm_3m: 60,vasp_3m: 40,haq_3m: 1.75,das28crp_3m: 3.98
+        H5 titolo        : 0000553_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 22.19,joint_bps: K,tjc28_bl: 4,sjc28_bl: 6,crp_bl (mg/dl): 0.1,vasm_bl: 31,vasp_bl: 25,haq_bl: 1.25,das28crp_bl: 3.37,tjc28_3m: 6,sjc28_3m: 9,crp_3m: 0.1,vasm_3m: 60,vasp_3m: 40,haq_3m: 1.75,das28crp_3m: 3.98
+        H5 sorgente      : bulk synovial tissue
+      GSM7054898
+        grezzo (Stadio 1): title: 0000554_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 1,baseline_erosion: 0,age_start_dmard: 25.31,joint_bps: K,tjc28_bl: 12,sjc28_bl: 13,crp_bl (mg/dl): 0.9,vasm_bl: 56,vasp_bl: 18,haq_bl: 1.88,das28crp_bl: 4.99,tjc28_3m: 7,sjc28_3m: 6,crp_3m: 0.1,vasm_3m: 40,vasp_3m: 25,haq_3m: 1.5,das28crp_3m: 3.73
+        H5 titolo        : 0000554_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 1,baseline_erosion: 0,age_start_dmard: 25.31,joint_bps: K,tjc28_bl: 12,sjc28_bl: 13,crp_bl (mg/dl): 0.9,vasm_bl: 56,vasp_bl: 18,haq_bl: 1.88,das28crp_bl: 4.99,tjc28_3m: 7,sjc28_3m: 6,crp_3m: 0.1,vasm_3m: 40,vasp_3m: 25,haq_3m: 1.5,das28crp_3m: 3.73
+        H5 sorgente      : bulk synovial tissue
+      GSM7054899
+        grezzo (Stadio 1): title: 0000555_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 57.68,joint_bps: K,tjc28_bl: 3,sjc28_bl: 5,crp_bl (mg/dl): 4.9,vasm_bl: 34,vasp_bl: 89,haq_bl: 2.25,das28crp_bl: 5.21,tjc28_3m: 1,sjc28_3m: 1,crp_3m: 1,vasm_3m: 20,vasp_3m: 15,haq_3m: 0.75,das28crp_3m: 2.87
+        H5 titolo        : 0000555_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 57.68,joint_bps: K,tjc28_bl: 3,sjc28_bl: 5,crp_bl (mg/dl): 4.9,vasm_bl: 34,vasp_bl: 89,haq_bl: 2.25,das28crp_bl: 5.21,tjc28_3m: 1,sjc28_3m: 1,crp_3m: 1,vasm_3m: 20,vasp_3m: 15,haq_3m: 0.75,das28crp_3m: 2.87
+        H5 sorgente      : bulk synovial tissue
+      GSM7054900
+        grezzo (Stadio 1): title: 0000556_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 5.90,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 46.26,joint_bps: K,tjc28_bl: 9,sjc28_bl: 17,crp_bl (mg/dl): 1.3,vasm_bl: 80,vasp_bl: 87,haq_bl: 2.25,das28crp_bl: 5.96,tjc28_3m: 3,sjc28_3m: 4,crp_3m: 0.3,vasm_3m: 33,vasp_3m: 39,haq_3m: 1.5,das28crp_3m: 3.54
+        H5 titolo        : 0000556_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 5.90,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 46.26,joint_bps: K,tjc28_bl: 9,sjc28_bl: 17,crp_bl (mg/dl): 1.3,vasm_bl: 80,vasp_bl: 87,haq_bl: 2.25,das28crp_bl: 5.96,tjc28_3m: 3,sjc28_3m: 4,crp_3m: 0.3,vasm_3m: 33,vasp_3m: 39,haq_3m: 1.5,das28crp_3m: 3.54
+        H5 sorgente      : bulk synovial tissue
+      GSM7054901
+        grezzo (Stadio 1): title: 0000557_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.00,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 47.82,joint_bps: K,tjc28_bl: 18,sjc28_bl: 2,crp_bl (mg/dl): 2.6,vasm_bl: 42,vasp_bl: 40,haq_bl: 1,das28crp_bl: 5.48,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 1.9,vasm_3m: 0,vasp_3m: ND,haq_3m: 0,das28crp_3m: 2.46
+        H5 titolo        : 0000557_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.00,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 47.82,joint_bps: K,tjc28_bl: 18,sjc28_bl: 2,crp_bl (mg/dl): 2.6,vasm_bl: 42,vasp_bl: 40,haq_bl: 1,das28crp_bl: 5.48,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 1.9,vasm_3m: 0,vasp_3m: ND,haq_3m: 0,das28crp_3m: 2.46
+        H5 sorgente      : bulk synovial tissue
+      GSM7054902
+        grezzo (Stadio 1): title: 0000558_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 1,baseline_erosion: 1,age_start_dmard: 67.57,joint_bps: K,tjc28_bl: 2,sjc28_bl: 1,crp_bl (mg/dl): 1.7,vasm_bl: 50,vasp_bl: 50,haq_bl: 0.88,das28crp_bl: 3.77,tjc28_3m: 1,sjc28_3m: 0,crp_3m: 0.62,vasm_3m: 42,vasp_3m: 60,haq_3m: 0.63,das28crp_3m: 3.07
+        H5 titolo        : 0000558_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 1,baseline_erosion: 1,age_start_dmard: 67.57,joint_bps: K,tjc28_bl: 2,sjc28_bl: 1,crp_bl (mg/dl): 1.7,vasm_bl: 50,vasp_bl: 50,haq_bl: 0.88,das28crp_bl: 3.77,tjc28_3m: 1,sjc28_3m: 0,crp_3m: 0.62,vasm_3m: 42,vasp_3m: 60,haq_3m: 0.63,das28crp_3m: 3.07
+        H5 sorgente      : bulk synovial tissue
+      GSM7054903
+        grezzo (Stadio 1): title: 0000561_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.90,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 40.45,joint_bps: K,tjc28_bl: 9,sjc28_bl: 4,crp_bl (mg/dl): 1.6,vasm_bl: 62,vasp_bl: 85,haq_bl: 2.25,das28crp_bl: 5.41,tjc28_3m: 5,sjc28_3m: 5,crp_3m: 0.8,vasm_3m: 44,vasp_3m: 77,haq_3m: 1.5,das28crp_3m: 4.71
+        H5 titolo        : 0000561_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.90,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 40.45,joint_bps: K,tjc28_bl: 9,sjc28_bl: 4,crp_bl (mg/dl): 1.6,vasm_bl: 62,vasp_bl: 85,haq_bl: 2.25,das28crp_bl: 5.41,tjc28_3m: 5,sjc28_3m: 5,crp_3m: 0.8,vasm_3m: 44,vasp_3m: 77,haq_3m: 1.5,das28crp_3m: 4.71
+        H5 sorgente      : bulk synovial tissue
+      GSM7054904
+        grezzo (Stadio 1): title: 0000564_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 27.77,joint_bps: K,tjc28_bl: 1,sjc28_bl: 4,crp_bl (mg/dl): 0.1,vasm_bl: 53,vasp_bl: 23,haq_bl: 0.38,das28crp_bl: 2.65,tjc28_3m: 3,sjc28_3m: 3,crp_3m: 0.7,vasm_3m: 30,vasp_3m: 5,haq_3m: ND,das28crp_3m: 3.23
+        H5 titolo        : 0000564_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 27.77,joint_bps: K,tjc28_bl: 1,sjc28_bl: 4,crp_bl (mg/dl): 0.1,vasm_bl: 53,vasp_bl: 23,haq_bl: 0.38,das28crp_bl: 2.65,tjc28_3m: 3,sjc28_3m: 3,crp_3m: 0.7,vasm_3m: 30,vasp_3m: 5,haq_3m: ND,das28crp_3m: 3.23
+        H5 sorgente      : bulk synovial tissue
+      GSM7054905
+        grezzo (Stadio 1): title: 0000567_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 5.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 38.91,joint_bps: MCP,tjc28_bl: 12,sjc28_bl: 13,crp_bl (mg/dl): 1.7,vasm_bl: 60,vasp_bl: 60,haq_bl: 1.75,das28crp_bl: 5.79,tjc28_3m: 4,sjc28_3m: 3,crp_3m: 0.2,vasm_3m: 30,vasp_3m: 24,haq_3m: 0.13,das28crp_3m: 3.3
+        H5 titolo        : 0000567_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 5.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 38.91,joint_bps: MCP,tjc28_bl: 12,sjc28_bl: 13,crp_bl (mg/dl): 1.7,vasm_bl: 60,vasp_bl: 60,haq_bl: 1.75,das28crp_bl: 5.79,tjc28_3m: 4,sjc28_3m: 3,crp_3m: 0.2,vasm_3m: 30,vasp_3m: 24,haq_3m: 0.13,das28crp_3m: 3.3
+        H5 sorgente      : bulk synovial tissue
+      GSM7054906
+        grezzo (Stadio 1): title: 0000570_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 6.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 33.9,joint_bps: K,tjc28_bl: 4,sjc28_bl: 1,crp_bl (mg/dl): 0.4,vasm_bl: 9,vasp_bl: 40,haq_bl: 2,das28crp_bl: 3.5,tjc28_3m: 14,sjc28_3m: 6,crp_3m: 0.5,vasm_3m: 50,vasp_3m: 83,haq_3m: 0.63,das28crp_3m: 5.55
+        H5 titolo        : 0000570_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 6.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 33.9,joint_bps: K,tjc28_bl: 4,sjc28_bl: 1,crp_bl (mg/dl): 0.4,vasm_bl: 9,vasp_bl: 40,haq_bl: 2,das28crp_bl: 3.5,tjc28_3m: 14,sjc28_3m: 6,crp_3m: 0.5,vasm_3m: 50,vasp_3m: 83,haq_3m: 0.63,das28crp_3m: 5.55
+        H5 sorgente      : bulk synovial tissue
+      GSM7054907
+        grezzo (Stadio 1): title: 0000579_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.80,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 49.67,joint_bps: K,tjc28_bl: 0,sjc28_bl: 7,crp_bl (mg/dl): 1.1,vasm_bl: 13,vasp_bl: 31,haq_bl: 1.38,das28crp_bl: 3.03,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 1.1,vasm_3m: 4,vasp_3m: 55,haq_3m: 1.13,das28crp_3m: 2.62
+        H5 titolo        : 0000579_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.80,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 49.67,joint_bps: K,tjc28_bl: 0,sjc28_bl: 7,crp_bl (mg/dl): 1.1,vasm_bl: 13,vasp_bl: 31,haq_bl: 1.38,das28crp_bl: 3.03,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 1.1,vasm_3m: 4,vasp_3m: 55,haq_3m: 1.13,das28crp_3m: 2.62
+        H5 sorgente      : bulk synovial tissue
+      GSM7054908
+        grezzo (Stadio 1): title: 0000580_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.30,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 54.85,joint_bps: K,tjc28_bl: 6,sjc28_bl: 5,crp_bl (mg/dl): 1.7,vasm_bl: 40,vasp_bl: 79,haq_bl: 0.75,das28crp_bl: 5.1,tjc28_3m: 2,sjc28_3m: 4,crp_3m: 1.38,vasm_3m: 20,vasp_3m: 51,haq_3m: 0.38,das28crp_3m: 4
+        H5 titolo        : 0000580_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.30,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 54.85,joint_bps: K,tjc28_bl: 6,sjc28_bl: 5,crp_bl (mg/dl): 1.7,vasm_bl: 40,vasp_bl: 79,haq_bl: 0.75,das28crp_bl: 5.1,tjc28_3m: 2,sjc28_3m: 4,crp_3m: 1.38,vasm_3m: 20,vasp_3m: 51,haq_3m: 0.38,das28crp_3m: 4
+        H5 sorgente      : bulk synovial tissue
+      GSM7054909
+        grezzo (Stadio 1): title: 0000581_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.50,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 62.05,joint_bps: K,tjc28_bl: 5,sjc28_bl: 11,crp_bl (mg/dl): 6,vasm_bl: 53,vasp_bl: 72,haq_bl: 1.88,das28crp_bl: 5.63,tjc28_3m: 3,sjc28_3m: 4,crp_3m: 0.9,vasm_3m: 20,vasp_3m: 52,haq_3m: 1.13,das28crp_3m: 4.05
+        H5 titolo        : 0000581_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.50,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 62.05,joint_bps: K,tjc28_bl: 5,sjc28_bl: 11,crp_bl (mg/dl): 6,vasm_bl: 53,vasp_bl: 72,haq_bl: 1.88,das28crp_bl: 5.63,tjc28_3m: 3,sjc28_3m: 4,crp_3m: 0.9,vasm_3m: 20,vasp_3m: 52,haq_3m: 1.13,das28crp_3m: 4.05
+        H5 sorgente      : bulk synovial tissue
+      GSM7054910
+        grezzo (Stadio 1): title: 0000582_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 41.54,joint_bps: K,tjc28_bl: 1,sjc28_bl: 3,crp_bl (mg/dl): 2.5,vasm_bl: 21,vasp_bl: 2,haq_bl: 0,das28crp_bl: 3.21,tjc28_3m: 1,sjc28_3m: 1,crp_3m: 0.9,vasm_3m: 7,vasp_3m: 2,haq_3m: 0,das28crp_3m: 2.66
+        H5 titolo        : 0000582_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 41.54,joint_bps: K,tjc28_bl: 1,sjc28_bl: 3,crp_bl (mg/dl): 2.5,vasm_bl: 21,vasp_bl: 2,haq_bl: 0,das28crp_bl: 3.21,tjc28_3m: 1,sjc28_3m: 1,crp_3m: 0.9,vasm_3m: 7,vasp_3m: 2,haq_3m: 0,das28crp_3m: 2.66
+        H5 sorgente      : bulk synovial tissue
+      GSM7054911
+        grezzo (Stadio 1): title: 0000583_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.60,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 67.88,joint_bps: K,tjc28_bl: 15,sjc28_bl: 10,crp_bl (mg/dl): 6.36,vasm_bl: ND,vasp_bl: ND,haq_bl: 2,das28crp_bl: 6.63,tjc28_3m: 15,sjc28_3m: 11,crp_3m: 7.13,vasm_3m: ND,vasp_3m: ND,haq_3m: 1.75,das28crp_3m: 6.17
+        H5 titolo        : 0000583_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.60,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 67.88,joint_bps: K,tjc28_bl: 15,sjc28_bl: 10,crp_bl (mg/dl): 6.36,vasm_bl: ND,vasp_bl: ND,haq_bl: 2,das28crp_bl: 6.63,tjc28_3m: 15,sjc28_3m: 11,crp_3m: 7.13,vasm_3m: ND,vasp_3m: ND,haq_3m: 1.75,das28crp_3m: 6.17
+        H5 sorgente      : bulk synovial tissue
+      GSM7054912
+        grezzo (Stadio 1): title: 0000584_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 59.87,joint_bps: K,tjc28_bl: 2,sjc28_bl: 2,crp_bl (mg/dl): 4.7,vasm_bl: 17,vasp_bl: 63,haq_bl: 0.63,das28crp_bl: 4.42,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.4,vasm_3m: 0,vasp_3m: 5,haq_3m: 0,das28crp_3m: 1.61
+        H5 titolo        : 0000584_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 59.87,joint_bps: K,tjc28_bl: 2,sjc28_bl: 2,crp_bl (mg/dl): 4.7,vasm_bl: 17,vasp_bl: 63,haq_bl: 0.63,das28crp_bl: 4.42,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.4,vasm_3m: 0,vasp_3m: 5,haq_3m: 0,das28crp_3m: 1.61
+        H5 sorgente      : bulk synovial tissue
+      GSM7054913
+        grezzo (Stadio 1): title: 0000585_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.40,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 1,baseline_erosion: 1,age_start_dmard: 45.56,joint_bps: K,tjc28_bl: 28,sjc28_bl: 14,crp_bl (mg/dl): 0.9,vasm_bl: 62,vasp_bl: 50,haq_bl: 2,das28crp_bl: 6.5,tjc28_3m: 24,sjc28_3m: 16,crp_3m: 0.7,vasm_3m: 50,vasp_3m: 49,haq_3m: 1,das28crp_3m: 6.26
+        H5 titolo        : 0000585_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.40,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 1,baseline_erosion: 1,age_start_dmard: 45.56,joint_bps: K,tjc28_bl: 28,sjc28_bl: 14,crp_bl (mg/dl): 0.9,vasm_bl: 62,vasp_bl: 50,haq_bl: 2,das28crp_bl: 6.5,tjc28_3m: 24,sjc28_3m: 16,crp_3m: 0.7,vasm_3m: 50,vasp_3m: 49,haq_3m: 1,das28crp_3m: 6.26
+        H5 sorgente      : bulk synovial tissue
+      GSM7054914
+        grezzo (Stadio 1): title: 0000587_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.20,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 41.47,joint_bps: K,tjc28_bl: 11,sjc28_bl: 3,crp_bl (mg/dl): 3,vasm_bl: 46,vasp_bl: 76,haq_bl: 2.75,das28crp_bl: 5.6,tjc28_3m: 5,sjc28_3m: 2,crp_3m: 1.8,vasm_3m: 25,vasp_3m: 82,haq_3m: 1.63,das28crp_3m: 4.82
+        H5 titolo        : 0000587_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.20,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 41.47,joint_bps: K,tjc28_bl: 11,sjc28_bl: 3,crp_bl (mg/dl): 3,vasm_bl: 46,vasp_bl: 76,haq_bl: 2.75,das28crp_bl: 5.6,tjc28_3m: 5,sjc28_3m: 2,crp_3m: 1.8,vasm_3m: 25,vasp_3m: 82,haq_3m: 1.63,das28crp_3m: 4.82
+        H5 sorgente      : bulk synovial tissue
+      GSM7054915
+        grezzo (Stadio 1): title: 0000588_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.50,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 53.43,joint_bps: K,tjc28_bl: 2,sjc28_bl: 2,crp_bl (mg/dl): 0.5,vasm_bl: 33,vasp_bl: 52,haq_bl: 1,das28crp_bl: 3.52,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 0.6,vasm_3m: 10,vasp_3m: 33,haq_3m: 0.38,das28crp_3m: 3.31
+        H5 titolo        : 0000588_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.50,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 53.43,joint_bps: K,tjc28_bl: 2,sjc28_bl: 2,crp_bl (mg/dl): 0.5,vasm_bl: 33,vasp_bl: 52,haq_bl: 1,das28crp_bl: 3.52,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 0.6,vasm_3m: 10,vasp_3m: 33,haq_3m: 0.38,das28crp_3m: 3.31
+        H5 sorgente      : bulk synovial tissue
+      GSM7054916
+        grezzo (Stadio 1): title: 0000590_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.40,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 80.77,joint_bps: K,tjc28_bl: 1,sjc28_bl: 9,crp_bl (mg/dl): 1.2,vasm_bl: 34,vasp_bl: 39,haq_bl: 0,das28crp_bl: 3.83,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 2.6,vasm_3m: 10,vasp_3m: 60,haq_3m: 0.13,das28crp_3m: 4.17
+        H5 titolo        : 0000590_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.40,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 80.77,joint_bps: K,tjc28_bl: 1,sjc28_bl: 9,crp_bl (mg/dl): 1.2,vasm_bl: 34,vasp_bl: 39,haq_bl: 0,das28crp_bl: 3.83,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 2.6,vasm_3m: 10,vasp_3m: 60,haq_3m: 0.13,das28crp_3m: 4.17
+        H5 sorgente      : bulk synovial tissue
+      GSM7054918
+        grezzo (Stadio 1): title: 0000602_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.40,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 71.29,joint_bps: MCP,tjc28_bl: 15,sjc28_bl: 16,crp_bl (mg/dl): 3.1,vasm_bl: 50,vasp_bl: 90,haq_bl: 1.5,das28crp_bl: 6.77,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0,vasm_3m: 0,vasp_3m: 0,haq_3m: 0.13,das28crp_3m: 0.96
+        H5 titolo        : 0000602_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.40,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 71.29,joint_bps: MCP,tjc28_bl: 15,sjc28_bl: 16,crp_bl (mg/dl): 3.1,vasm_bl: 50,vasp_bl: 90,haq_bl: 1.5,das28crp_bl: 6.77,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0,vasm_3m: 0,vasp_3m: 0,haq_3m: 0.13,das28crp_3m: 0.96
+        H5 sorgente      : bulk synovial tissue
+      GSM7054919
+        grezzo (Stadio 1): title: 0000605_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.70,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 74.35,joint_bps: W,tjc28_bl: 2,sjc28_bl: 3,crp_bl (mg/dl): 3.8,vasm_bl: 40,vasp_bl: 48,haq_bl: 1.63,das28crp_bl: 4.23,tjc28_3m: 0,sjc28_3m: 2,crp_3m: 1,vasm_3m: 30,vasp_3m: 52,haq_3m: 1,das28crp_3m: 2.95
+        H5 titolo        : 0000605_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.70,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 74.35,joint_bps: W,tjc28_bl: 2,sjc28_bl: 3,crp_bl (mg/dl): 3.8,vasm_bl: 40,vasp_bl: 48,haq_bl: 1.63,das28crp_bl: 4.23,tjc28_3m: 0,sjc28_3m: 2,crp_3m: 1,vasm_3m: 30,vasp_3m: 52,haq_3m: 1,das28crp_3m: 2.95
+        H5 sorgente      : bulk synovial tissue
+      GSM7054920
+        grezzo (Stadio 1): title: 0000637_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 56.75,joint_bps: W,tjc28_bl: 0,sjc28_bl: 5,crp_bl (mg/dl): 0.7,vasm_bl: 30,vasp_bl: 37,haq_bl: 0.63,das28crp_bl: 2.85,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.2,vasm_3m: 0,vasp_3m: 6,haq_3m: 0.13,das28crp_3m: 1.44
+        H5 titolo        : 0000637_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 56.75,joint_bps: W,tjc28_bl: 0,sjc28_bl: 5,crp_bl (mg/dl): 0.7,vasm_bl: 30,vasp_bl: 37,haq_bl: 0.63,das28crp_bl: 2.85,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.2,vasm_3m: 0,vasp_3m: 6,haq_3m: 0.13,das28crp_3m: 1.44
+        H5 sorgente      : bulk synovial tissue
+      GSM7054921
+        grezzo (Stadio 1): title: 0000639_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.80,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 1,baseline_erosion: 0,age_start_dmard: 79.62,joint_bps: MCP,tjc28_bl: 10,sjc28_bl: 11,crp_bl (mg/dl): 0.5,vasm_bl: 55,vasp_bl: 12,haq_bl: 1,das28crp_bl: 4.47,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 0.4,vasm_3m: 15,vasp_3m: 6,haq_3m: 0,das28crp_3m: 2.81
+        H5 titolo        : 0000639_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.80,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 1,baseline_erosion: 0,age_start_dmard: 79.62,joint_bps: MCP,tjc28_bl: 10,sjc28_bl: 11,crp_bl (mg/dl): 0.5,vasm_bl: 55,vasp_bl: 12,haq_bl: 1,das28crp_bl: 4.47,tjc28_3m: 2,sjc28_3m: 2,crp_3m: 0.4,vasm_3m: 15,vasp_3m: 6,haq_3m: 0,das28crp_3m: 2.81
+        H5 sorgente      : bulk synovial tissue
+      GSM7054922
+        grezzo (Stadio 1): title: 0000646_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.80,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 52.27,joint_bps: PIP,tjc28_bl: 8,sjc28_bl: 4,crp_bl (mg/dl): 0.7,vasm_bl: 40,vasp_bl: 60,haq_bl: 0.75,das28crp_bl: 4.69,tjc28_3m: 10,sjc28_3m: 4,crp_3m: 0.5,vasm_3m: 20,vasp_3m: 78,haq_3m: 0.88,das28crp_3m: 5.03
+        H5 titolo        : 0000646_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.80,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 52.27,joint_bps: PIP,tjc28_bl: 8,sjc28_bl: 4,crp_bl (mg/dl): 0.7,vasm_bl: 40,vasp_bl: 60,haq_bl: 0.75,das28crp_bl: 4.69,tjc28_3m: 10,sjc28_3m: 4,crp_3m: 0.5,vasm_3m: 20,vasp_3m: 78,haq_3m: 0.88,das28crp_3m: 5.03
+        H5 sorgente      : bulk synovial tissue
+      GSM7054923
+        grezzo (Stadio 1): title: 0000647_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.20,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 28.41,joint_bps: W,tjc28_bl: 21,sjc28_bl: 20,crp_bl (mg/dl): 0.12,vasm_bl: 40,vasp_bl: 30,haq_bl: 1.75,das28crp_bl: 5.48,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 0,vasp_3m: 29,haq_3m: 0.38,das28crp_3m: 1.62
+        H5 titolo        : 0000647_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.20,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 28.41,joint_bps: W,tjc28_bl: 21,sjc28_bl: 20,crp_bl (mg/dl): 0.12,vasm_bl: 40,vasp_bl: 30,haq_bl: 1.75,das28crp_bl: 5.48,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 0,vasp_3m: 29,haq_3m: 0.38,das28crp_3m: 1.62
+        H5 sorgente      : bulk synovial tissue
+      GSM7054924
+        grezzo (Stadio 1): title: 0000652_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.60,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 31.8,joint_bps: K,tjc28_bl: 1,sjc28_bl: 1,crp_bl (mg/dl): 0.4,vasm_bl: 5,vasp_bl: 56,haq_bl: 1.88,das28crp_bl: 3.16,tjc28_3m: 3,sjc28_3m: 1,crp_3m: 0.5,vasm_3m: 10,vasp_3m: 51,haq_3m: 1.38,das28crp_3m: 3.57
+        H5 titolo        : 0000652_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.60,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 31.8,joint_bps: K,tjc28_bl: 1,sjc28_bl: 1,crp_bl (mg/dl): 0.4,vasm_bl: 5,vasp_bl: 56,haq_bl: 1.88,das28crp_bl: 3.16,tjc28_3m: 3,sjc28_3m: 1,crp_3m: 0.5,vasm_3m: 10,vasp_3m: 51,haq_3m: 1.38,das28crp_3m: 3.57
+        H5 sorgente      : bulk synovial tissue
+      GSM7054925
+        grezzo (Stadio 1): title: 0000786_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 46.09,joint_bps: MCP,tjc28_bl: 11,sjc28_bl: 20,crp_bl (mg/dl): 3,vasm_bl: ND,vasp_bl: ND,haq_bl: 2.4,das28crp_bl: 5.69,tjc28_3m: 0,sjc28_3m: 6,crp_3m: 0.4,vasm_3m: ND,vasp_3m: ND,haq_3m: 0.13,das28crp_3m: 2.2
+        H5 titolo        : 0000786_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 46.09,joint_bps: MCP,tjc28_bl: 11,sjc28_bl: 20,crp_bl (mg/dl): 3,vasm_bl: ND,vasp_bl: ND,haq_bl: 2.4,das28crp_bl: 5.69,tjc28_3m: 0,sjc28_3m: 6,crp_3m: 0.4,vasm_3m: ND,vasp_3m: ND,haq_3m: 0.13,das28crp_3m: 2.2
+        H5 sorgente      : bulk synovial tissue
+      GSM7054926
+        grezzo (Stadio 1): title: 0000858_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 9.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 68.11,joint_bps: K,tjc28_bl: 3,sjc28_bl: 7,crp_bl (mg/dl): 0.4,vasm_bl: 50,vasp_bl: 80,haq_bl: 2.38,das28crp_bl: 5.42,tjc28_3m: 0,sjc28_3m: 1,crp_3m: 0.1,vasm_3m: 10,vasp_3m: 16,haq_3m: 0.63,das28crp_3m: 1.71
+        H5 titolo        : 0000858_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 9.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 68.11,joint_bps: K,tjc28_bl: 3,sjc28_bl: 7,crp_bl (mg/dl): 0.4,vasm_bl: 50,vasp_bl: 80,haq_bl: 2.38,das28crp_bl: 5.42,tjc28_3m: 0,sjc28_3m: 1,crp_3m: 0.1,vasm_3m: 10,vasp_3m: 16,haq_3m: 0.63,das28crp_3m: 1.71
+        H5 sorgente      : bulk synovial tissue
+      GSM7054927
+        grezzo (Stadio 1): title: 0000861_B_RNA,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 27.68,joint_bps: K,tjc28_bl: 6,sjc28_bl: 4,crp_bl (mg/dl): 1.8,vasm_bl: 30,vasp_bl: 90,haq_bl: 1.75,das28crp_bl: 4.09,tjc28_3m: 5,sjc28_3m: 5,crp_3m: 0.8,vasm_3m: 40,vasp_3m: 89,haq_3m: 1.63,das28crp_3m: 4.88
+        H5 titolo        : 0000861_B_RNA
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 27.68,joint_bps: K,tjc28_bl: 6,sjc28_bl: 4,crp_bl (mg/dl): 1.8,vasm_bl: 30,vasp_bl: 90,haq_bl: 1.75,das28crp_bl: 4.09,tjc28_3m: 5,sjc28_3m: 5,crp_3m: 0.8,vasm_3m: 40,vasp_3m: 89,haq_3m: 1.63,das28crp_3m: 4.88
+        H5 sorgente      : bulk synovial tissue
+      GSM7054930
+        grezzo (Stadio 1): title: RNA0000435,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 6.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 54.21,joint_bps: K,tjc28_bl: 4,sjc28_bl: 11,crp_bl (mg/dl): 3.61,vasm_bl: 60,vasp_bl: 80,haq_bl: 1.63,das28crp_bl: 5.42,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.3,vasm_3m: 20,vasp_3m: ND,haq_3m: 0.25,das28crp_3m: 1.47
+        H5 titolo        : RNA0000435
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 6.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 54.21,joint_bps: K,tjc28_bl: 4,sjc28_bl: 11,crp_bl (mg/dl): 3.61,vasm_bl: 60,vasp_bl: 80,haq_bl: 1.63,das28crp_bl: 5.42,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.3,vasm_3m: 20,vasp_3m: ND,haq_3m: 0.25,das28crp_3m: 1.47
+        H5 sorgente      : bulk synovial tissue
+      GSM7054931
+        grezzo (Stadio 1): title: RNA0000815,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.60,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 50.01,joint_bps: PIP,tjc28_bl: 17,sjc28_bl: 14,crp_bl (mg/dl): 2.87,vasm_bl: 60,vasp_bl: 80,haq_bl: 2.38,das28crp_bl: 6.67,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.33,vasm_3m: 0,vasp_3m: 40,haq_3m: 0.75,das28crp_3m: 2.05
+        H5 titolo        : RNA0000815
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.60,Sex: M,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 50.01,joint_bps: PIP,tjc28_bl: 17,sjc28_bl: 14,crp_bl (mg/dl): 2.87,vasm_bl: 60,vasp_bl: 80,haq_bl: 2.38,das28crp_bl: 6.67,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.33,vasm_3m: 0,vasp_3m: 40,haq_3m: 0.75,das28crp_3m: 2.05
+        H5 sorgente      : bulk synovial tissue
+      GSM7054932
+        grezzo (Stadio 1): title: RNA0000816,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 35.02,joint_bps: K,tjc28_bl: 4,sjc28_bl: 11,crp_bl (mg/dl): 3.43,vasm_bl: 30,vasp_bl: 40,haq_bl: 1.13,das28crp_bl: 4.86,tjc28_3m: 5,sjc28_3m: 2,crp_3m: 4.4,vasm_3m: 30,vasp_3m: 69,haq_3m: 0.88,das28crp_3m: 4.94
+        H5 titolo        : RNA0000816
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 35.02,joint_bps: K,tjc28_bl: 4,sjc28_bl: 11,crp_bl (mg/dl): 3.43,vasm_bl: 30,vasp_bl: 40,haq_bl: 1.13,das28crp_bl: 4.86,tjc28_3m: 5,sjc28_3m: 2,crp_3m: 4.4,vasm_3m: 30,vasp_3m: 69,haq_3m: 0.88,das28crp_3m: 4.94
+        H5 sorgente      : bulk synovial tissue
+      GSM7054933
+        grezzo (Stadio 1): title: RNA0000822,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 58.37,joint_bps: W,tjc28_bl: 10,sjc28_bl: 10,crp_bl (mg/dl): 1.99,vasm_bl: 60,vasp_bl: 70,haq_bl: 1.88,das28crp_bl: 5.7,tjc28_3m: 5,sjc28_3m: 1,crp_3m: 0.18,vasm_3m: 30,vasp_3m: 75,haq_3m: 1.25,das28crp_3m: 3.91
+        H5 titolo        : RNA0000822
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.10,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 58.37,joint_bps: W,tjc28_bl: 10,sjc28_bl: 10,crp_bl (mg/dl): 1.99,vasm_bl: 60,vasp_bl: 70,haq_bl: 1.88,das28crp_bl: 5.7,tjc28_3m: 5,sjc28_3m: 1,crp_3m: 0.18,vasm_3m: 30,vasp_3m: 75,haq_3m: 1.25,das28crp_3m: 3.91
+        H5 sorgente      : bulk synovial tissue
+      GSM7054934
+        grezzo (Stadio 1): title: RNA0000823,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 64.26,joint_bps: W,tjc28_bl: 6,sjc28_bl: 5,crp_bl (mg/dl): 2.3,vasm_bl: ND,vasp_bl: 80,haq_bl: 1.77,das28crp_bl: 5.36,tjc28_3m: 6,sjc28_3m: 4,crp_3m: 1,vasm_3m: 30,vasp_3m: 78,haq_3m: 1.25,das28crp_3m: 4.85
+        H5 titolo        : RNA0000823
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 64.26,joint_bps: W,tjc28_bl: 6,sjc28_bl: 5,crp_bl (mg/dl): 2.3,vasm_bl: ND,vasp_bl: 80,haq_bl: 1.77,das28crp_bl: 5.36,tjc28_3m: 6,sjc28_3m: 4,crp_3m: 1,vasm_3m: 30,vasp_3m: 78,haq_3m: 1.25,das28crp_3m: 4.85
+        H5 sorgente      : bulk synovial tissue
+      GSM7054935
+        grezzo (Stadio 1): title: RNA0000824,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 78.00,joint_bps: K,tjc28_bl: 6,sjc28_bl: 11,crp_bl (mg/dl): 5.49,vasm_bl: 60,vasp_bl: 80,haq_bl: 1.88,das28crp_bl: 6.5,tjc28_3m: 9,sjc28_3m: 2,crp_3m: 2.69,vasm_3m: 30,vasp_3m: 75,haq_3m: 1.75,das28crp_3m: 5.28
+        H5 titolo        : RNA0000824
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: Y,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 78.00,joint_bps: K,tjc28_bl: 6,sjc28_bl: 11,crp_bl (mg/dl): 5.49,vasm_bl: 60,vasp_bl: 80,haq_bl: 1.88,das28crp_bl: 6.5,tjc28_3m: 9,sjc28_3m: 2,crp_3m: 2.69,vasm_3m: 30,vasp_3m: 75,haq_3m: 1.75,das28crp_3m: 5.28
+        H5 sorgente      : bulk synovial tissue
+      GSM7054936
+        grezzo (Stadio 1): title: RNA0000827,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 64.33,joint_bps: W,tjc28_bl: 5,sjc28_bl: 4,crp_bl (mg/dl): 0.5,vasm_bl: 30,vasp_bl: 40,haq_bl: 1.5,das28crp_bl: 3.98,tjc28_3m: 6,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 10,vasp_3m: 5,haq_3m: 1,das28crp_3m: 2.65
+        H5 titolo        : RNA0000827
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 64.33,joint_bps: W,tjc28_bl: 5,sjc28_bl: 4,crp_bl (mg/dl): 0.5,vasm_bl: 30,vasp_bl: 40,haq_bl: 1.5,das28crp_bl: 3.98,tjc28_3m: 6,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 10,vasp_3m: 5,haq_3m: 1,das28crp_3m: 2.65
+        H5 sorgente      : bulk synovial tissue
+      GSM7054952
+        grezzo (Stadio 1): title: RNA0000894,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: ND,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 37.88,joint_bps: K,tjc28_bl: 5,sjc28_bl: 5,crp_bl (mg/dl): 0.3,vasm_bl: 36,vasp_bl: 18,haq_bl: 0.25,das28crp_bl: 3.59,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: ND,vasp_3m: ND,haq_3m: 0,das28crp_3m: ND
+        H5 titolo        : RNA0000894
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.00,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: ND,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 37.88,joint_bps: K,tjc28_bl: 5,sjc28_bl: 5,crp_bl (mg/dl): 0.3,vasm_bl: 36,vasp_bl: 18,haq_bl: 0.25,das28crp_bl: 3.59,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: ND,vasp_3m: ND,haq_3m: 0,das28crp_3m: ND
+        H5 sorgente      : bulk synovial tissue
+      GSM7054955
+        grezzo (Stadio 1): title: RNA0000903,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 9.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 53.69,joint_bps: W,tjc28_bl: 14,sjc28_bl: 14,crp_bl (mg/dl): 0.3,vasm_bl: 60,vasp_bl: 50,haq_bl: 0.88,das28crp_bl: 5.31,tjc28_3m: 3,sjc28_3m: 10,crp_3m: 0.1,vasm_3m: 40,vasp_3m: 20,haq_3m: 0.63,das28crp_3m: 3.34
+        H5 titolo        : RNA0000903
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 9.30,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 53.69,joint_bps: W,tjc28_bl: 14,sjc28_bl: 14,crp_bl (mg/dl): 0.3,vasm_bl: 60,vasp_bl: 50,haq_bl: 0.88,das28crp_bl: 5.31,tjc28_3m: 3,sjc28_3m: 10,crp_3m: 0.1,vasm_3m: 40,vasp_3m: 20,haq_3m: 0.63,das28crp_3m: 3.34
+        H5 sorgente      : bulk synovial tissue
+      GSM7054956
+        grezzo (Stadio 1): title: RNA0000904,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 78.96,joint_bps: K,tjc28_bl: 3,sjc28_bl: 3,crp_bl (mg/dl): 4,vasm_bl: ND,vasp_bl: 50,haq_bl: 2.63,das28crp_bl: 4.45,tjc28_3m: 3,sjc28_3m: 3,crp_3m: 1.4,vasm_3m: 25,vasp_3m: 20,haq_3m: 2.5,das28crp_3m: 3.67
+        H5 titolo        : RNA0000904
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.70,Sex: F,first_treat: mtx,bitherapy_mtx+steroid: N,acpa: 1,rf: 1,baseline_erosion: 1,age_start_dmard: 78.96,joint_bps: K,tjc28_bl: 3,sjc28_bl: 3,crp_bl (mg/dl): 4,vasm_bl: ND,vasp_bl: 50,haq_bl: 2.63,das28crp_bl: 4.45,tjc28_3m: 3,sjc28_3m: 3,crp_3m: 1.4,vasm_3m: 25,vasp_3m: 20,haq_3m: 2.5,das28crp_3m: 3.67
+        H5 sorgente      : bulk synovial tissue
+  CONTROLLO  (n=13)  etichetta Stadio 2: RA untreated
+      gruppo Stadio 2: group_0001
+      GSM7054928
+        grezzo (Stadio 1): title: RNA0000173,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.20,Sex: M,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 1,age_start_dmard: 19.65,joint_bps: K,tjc28_bl: 4,sjc28_bl: 4,crp_bl (mg/dl): 6,vasm_bl: 40,vasp_bl: 48,haq_bl: 0.25,das28crp_bl: 4.8,tjc28_3m: 0,sjc28_3m: 0,crp_3m: ND,vasm_3m: 3,vasp_3m: 14,haq_3m: 0,das28crp_3m: ND
+        H5 titolo        : RNA0000173
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.20,Sex: M,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 1,age_start_dmard: 19.65,joint_bps: K,tjc28_bl: 4,sjc28_bl: 4,crp_bl (mg/dl): 6,vasm_bl: 40,vasp_bl: 48,haq_bl: 0.25,das28crp_bl: 4.8,tjc28_3m: 0,sjc28_3m: 0,crp_3m: ND,vasm_3m: 3,vasp_3m: 14,haq_3m: 0,das28crp_3m: ND
+        H5 sorgente      : bulk synovial tissue
+      GSM7054929
+        grezzo (Stadio 1): title: RNA0000191,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 64.6,joint_bps: MTP,tjc28_bl: 10,sjc28_bl: 19,crp_bl (mg/dl): 3.3,vasm_bl: 70,vasp_bl: 57,haq_bl: 1.38,das28crp_bl: 6.02,tjc28_3m: 1,sjc28_3m: 11,crp_3m: 0,vasm_3m: 60,vasp_3m: 5,haq_3m: 0.63,das28crp_3m: 2.52
+        H5 titolo        : RNA0000191
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 64.6,joint_bps: MTP,tjc28_bl: 10,sjc28_bl: 19,crp_bl (mg/dl): 3.3,vasm_bl: 70,vasp_bl: 57,haq_bl: 1.38,das28crp_bl: 6.02,tjc28_3m: 1,sjc28_3m: 11,crp_3m: 0,vasm_3m: 60,vasp_3m: 5,haq_3m: 0.63,das28crp_3m: 2.52
+        H5 sorgente      : bulk synovial tissue
+      GSM7054937
+        grezzo (Stadio 1): title: RNA0000857,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 0,baseline_erosion: 0,age_start_dmard: 39.29,joint_bps: K,tjc28_bl: 3,sjc28_bl: 1,crp_bl (mg/dl): 0.41,vasm_bl: 10,vasp_bl: 30,haq_bl: 0.63,das28crp_bl: 3.21,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 0,vasp_3m: 1,haq_3m: 0,das28crp_3m: 1.22
+        H5 titolo        : RNA0000857
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.10,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 0,baseline_erosion: 0,age_start_dmard: 39.29,joint_bps: K,tjc28_bl: 3,sjc28_bl: 1,crp_bl (mg/dl): 0.41,vasm_bl: 10,vasp_bl: 30,haq_bl: 0.63,das28crp_bl: 3.21,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 0,vasp_3m: 1,haq_3m: 0,das28crp_3m: 1.22
+        H5 sorgente      : bulk synovial tissue
+      GSM7054940
+        grezzo (Stadio 1): title: RNA0000882,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 41.34,joint_bps: K,tjc28_bl: 9,sjc28_bl: 8,crp_bl (mg/dl): 4.2,vasm_bl: 60,vasp_bl: 83,haq_bl: 1.38,das28crp_bl: 5.95,tjc28_3m: 4,sjc28_3m: 1,crp_3m: 0.1,vasm_3m: 12,vasp_3m: 51,haq_3m: 0.75,das28crp_3m: 3.33
+        H5 titolo        : RNA0000882
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 41.34,joint_bps: K,tjc28_bl: 9,sjc28_bl: 8,crp_bl (mg/dl): 4.2,vasm_bl: 60,vasp_bl: 83,haq_bl: 1.38,das28crp_bl: 5.95,tjc28_3m: 4,sjc28_3m: 1,crp_3m: 0.1,vasm_3m: 12,vasp_3m: 51,haq_3m: 0.75,das28crp_3m: 3.33
+        H5 sorgente      : bulk synovial tissue
+      GSM7054941
+        grezzo (Stadio 1): title: RNA0000883,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.50,Sex: M,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 0,baseline_erosion: 0,age_start_dmard: 48.44,joint_bps: K,tjc28_bl: 3,sjc28_bl: 5,crp_bl (mg/dl): 0.6,vasm_bl: 40,vasp_bl: 59,haq_bl: 0.38,das28crp_bl: 4.09,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 0,vasp_3m: 18,haq_3m: 0,das28crp_3m: 1.47
+        H5 titolo        : RNA0000883
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.50,Sex: M,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 0,baseline_erosion: 0,age_start_dmard: 48.44,joint_bps: K,tjc28_bl: 3,sjc28_bl: 5,crp_bl (mg/dl): 0.6,vasm_bl: 40,vasp_bl: 59,haq_bl: 0.38,das28crp_bl: 4.09,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 0,vasp_3m: 18,haq_3m: 0,das28crp_3m: 1.47
+        H5 sorgente      : bulk synovial tissue
+      GSM7054943
+        grezzo (Stadio 1): title: RNA0000885,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.70,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 1,age_start_dmard: 25.87,joint_bps: K,tjc28_bl: 9,sjc28_bl: 9,crp_bl (mg/dl): 0.8,vasm_bl: 40,vasp_bl: 84,haq_bl: 1.38,das28crp_bl: 5.46,tjc28_3m: 6,sjc28_3m: 1,crp_3m: 0.1,vasm_3m: 13,vasp_3m: 71,haq_3m: 0.75,das28crp_3m: 3.86
+        H5 titolo        : RNA0000885
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.70,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 1,age_start_dmard: 25.87,joint_bps: K,tjc28_bl: 9,sjc28_bl: 9,crp_bl (mg/dl): 0.8,vasm_bl: 40,vasp_bl: 84,haq_bl: 1.38,das28crp_bl: 5.46,tjc28_3m: 6,sjc28_3m: 1,crp_3m: 0.1,vasm_3m: 13,vasp_3m: 71,haq_3m: 0.75,das28crp_3m: 3.86
+        H5 sorgente      : bulk synovial tissue
+      GSM7054944
+        grezzo (Stadio 1): title: RNA0000886,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.60,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: ND,baseline_erosion: 0,age_start_dmard: 60.95,joint_bps: K,tjc28_bl: 2,sjc28_bl: 12,crp_bl (mg/dl): 2.3,vasm_bl: 50,vasp_bl: 8,haq_bl: 0.25,das28crp_bl: 3.99,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 1,vasp_3m: 2,haq_3m: 0.13,das28crp_3m: 1.24
+        H5 titolo        : RNA0000886
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.60,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: ND,baseline_erosion: 0,age_start_dmard: 60.95,joint_bps: K,tjc28_bl: 2,sjc28_bl: 12,crp_bl (mg/dl): 2.3,vasm_bl: 50,vasp_bl: 8,haq_bl: 0.25,das28crp_bl: 3.99,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 1,vasp_3m: 2,haq_3m: 0.13,das28crp_3m: 1.24
+        H5 sorgente      : bulk synovial tissue
+      GSM7054946
+        grezzo (Stadio 1): title: RNA0000888,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.60,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 66.65,joint_bps: K,tjc28_bl: 1,sjc28_bl: 8,crp_bl (mg/dl): 0.2,vasm_bl: 35,vasp_bl: 76,haq_bl: 1.13,das28crp_bl: 3.79,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 5,vasp_3m: 63,haq_3m: 1,das28crp_3m: 2.1
+        H5 titolo        : RNA0000888
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.60,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 66.65,joint_bps: K,tjc28_bl: 1,sjc28_bl: 8,crp_bl (mg/dl): 0.2,vasm_bl: 35,vasp_bl: 76,haq_bl: 1.13,das28crp_bl: 3.79,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 5,vasp_3m: 63,haq_3m: 1,das28crp_3m: 2.1
+        H5 sorgente      : bulk synovial tissue
+      GSM7054947
+        grezzo (Stadio 1): title: RNA0000889,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 1,baseline_erosion: 0,age_start_dmard: 48.62,joint_bps: K,tjc28_bl: 3,sjc28_bl: 8,crp_bl (mg/dl): 1.6,vasm_bl: 50,vasp_bl: 96,haq_bl: 1.75,das28crp_bl: 5.11,tjc28_3m: 2,sjc28_3m: 4,crp_3m: 0.1,vasm_3m: 9,vasp_3m: 8,haq_3m: 0,das28crp_3m: 2.68
+        H5 titolo        : RNA0000889
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 7.30,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 1,baseline_erosion: 0,age_start_dmard: 48.62,joint_bps: K,tjc28_bl: 3,sjc28_bl: 8,crp_bl (mg/dl): 1.6,vasm_bl: 50,vasp_bl: 96,haq_bl: 1.75,das28crp_bl: 5.11,tjc28_3m: 2,sjc28_3m: 4,crp_3m: 0.1,vasm_3m: 9,vasp_3m: 8,haq_3m: 0,das28crp_3m: 2.68
+        H5 sorgente      : bulk synovial tissue
+      GSM7054948
+        grezzo (Stadio 1): title: RNA0000890,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.80,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 60.67,joint_bps: K,tjc28_bl: 12,sjc28_bl: 14,crp_bl (mg/dl): 12,vasm_bl: ND,vasp_bl: 75,haq_bl: 2.5,das28crp_bl: 6.4,tjc28_3m: 3,sjc28_3m: 6,crp_3m: 1.36,vasm_3m: 50,vasp_3m: 66,haq_3m: 2.13,das28crp_3m: 4.53
+        H5 titolo        : RNA0000890
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.80,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 60.67,joint_bps: K,tjc28_bl: 12,sjc28_bl: 14,crp_bl (mg/dl): 12,vasm_bl: ND,vasp_bl: 75,haq_bl: 2.5,das28crp_bl: 6.4,tjc28_3m: 3,sjc28_3m: 6,crp_3m: 1.36,vasm_3m: 50,vasp_3m: 66,haq_3m: 2.13,das28crp_3m: 4.53
+        H5 sorgente      : bulk synovial tissue
+      GSM7054949
+        grezzo (Stadio 1): title: RNA0000891,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.80,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 28.2,joint_bps: K,tjc28_bl: 14,sjc28_bl: 14,crp_bl (mg/dl): 2.75,vasm_bl: 55,vasp_bl: 83,haq_bl: 1.63,das28crp_bl: 6.48,tjc28_3m: 0,sjc28_3m: 3,crp_3m: 0.53,vasm_3m: 3,vasp_3m: 40,haq_3m: 0.88,das28crp_3m: 2.17
+        H5 titolo        : RNA0000891
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.80,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 1,rf: 1,baseline_erosion: 0,age_start_dmard: 28.2,joint_bps: K,tjc28_bl: 14,sjc28_bl: 14,crp_bl (mg/dl): 2.75,vasm_bl: 55,vasp_bl: 83,haq_bl: 1.63,das28crp_bl: 6.48,tjc28_3m: 0,sjc28_3m: 3,crp_3m: 0.53,vasm_3m: 3,vasp_3m: 40,haq_3m: 0.88,das28crp_3m: 2.17
+        H5 sorgente      : bulk synovial tissue
+      GSM7054957
+        grezzo (Stadio 1): title: RNA0000905,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 9.10,Sex: M,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 56.98,joint_bps: W,tjc28_bl: 26,sjc28_bl: 6,crp_bl (mg/dl): 5.7,vasm_bl: 80,vasp_bl: 70,haq_bl: 1.63,das28crp_bl: 7.05,tjc28_3m: 0,sjc28_3m: 2,crp_3m: 1,vasm_3m: 25,vasp_3m: 5,haq_3m: 0.88,das28crp_3m: 1.68
+        H5 titolo        : RNA0000905
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 9.10,Sex: M,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 56.98,joint_bps: W,tjc28_bl: 26,sjc28_bl: 6,crp_bl (mg/dl): 5.7,vasm_bl: 80,vasp_bl: 70,haq_bl: 1.63,das28crp_bl: 7.05,tjc28_3m: 0,sjc28_3m: 2,crp_3m: 1,vasm_3m: 25,vasp_3m: 5,haq_3m: 0.88,das28crp_3m: 1.68
+        H5 sorgente      : bulk synovial tissue
+      GSM7054958
+        grezzo (Stadio 1): title: RNA0000906,source: bulk synovial tissue,disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.60,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 43.24,joint_bps: K,tjc28_bl: 21,sjc28_bl: 8,crp_bl (mg/dl): 0.2,vasm_bl: 30,vasp_bl: 70,haq_bl: 1.13,das28crp_bl: 5.69,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 10,vasp_3m: 23,haq_3m: 0.5,das28crp_3m: 1.54
+        H5 titolo        : RNA0000906
+        H5 caratteristiche: disease state: rheumatoid arthritis,tissue: bulk synovial tissue,rin: 8.60,Sex: F,first_treat: bio,bitherapy_mtx+steroid: NA,acpa: 0,rf: 0,baseline_erosion: 0,age_start_dmard: 43.24,joint_bps: K,tjc28_bl: 21,sjc28_bl: 8,crp_bl (mg/dl): 0.2,vasm_bl: 30,vasp_bl: 70,haq_bl: 1.13,das28crp_bl: 5.69,tjc28_3m: 0,sjc28_3m: 0,crp_3m: 0.1,vasm_3m: 10,vasp_3m: 23,haq_3m: 0.5,das28crp_3m: 1.54
+        H5 sorgente      : bulk synovial tissue
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE163377     campioni nell'H5:   39 | collocati dallo Stadio 2:   39 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE183062     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE225731     campioni nell'H5:   74 | collocati dallo Stadio 2:   74 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 63 campioni distinti (63 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,995 @@
+META-ANALISI 007 di 194
+==============================================================================
+nome            : IL1B
+entita (ID)     : HGNC:5992
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_905be893
+studi poolati   : 19   confronti: 27   campioni: 152
+geni significativi: 1875   I2 mediano: 81.1
+verdetto della rilettura: incerta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE101868__GSE101868__A549_IL1beta_vs_media__1
+  studio: GSE101868
+  TRATTATO  (n=3)  etichetta Stadio 2: A549 IL1beta
+      gruppo Stadio 2: grp_0002
+      GSM2717395
+        grezzo (Stadio 1): title: Human_Epithelial_A549_IL1B_1,source: Human alveolar A549 epithelial cells,cell type: Human alveolar A549 epithelial cells,treatment: IL1beta
+        H5 titolo        : Human_Epithelial_A549_IL1B_1
+        H5 caratteristiche: cell type: Human alveolar A549 epithelial cells,treatment: IL1beta
+        H5 sorgente      : Human alveolar A549 epithelial cells
+      GSM2717396
+        grezzo (Stadio 1): title: Human_Epithelial_A549_IL1B_2,source: Human alveolar A549 epithelial cells,cell type: Human alveolar A549 epithelial cells,treatment: IL1beta
+        H5 titolo        : Human_Epithelial_A549_IL1B_2
+        H5 caratteristiche: cell type: Human alveolar A549 epithelial cells,treatment: IL1beta
+        H5 sorgente      : Human alveolar A549 epithelial cells
+      GSM2717397
+        grezzo (Stadio 1): title: Human_Epithelial_A549_IL1B_3,source: Human alveolar A549 epithelial cells,cell type: Human alveolar A549 epithelial cells,treatment: IL1beta
+        H5 titolo        : Human_Epithelial_A549_IL1B_3
+        H5 caratteristiche: cell type: Human alveolar A549 epithelial cells,treatment: IL1beta
+        H5 sorgente      : Human alveolar A549 epithelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: A549 media
+      gruppo Stadio 2: grp_0001
+      GSM2717392
+        grezzo (Stadio 1): title: Human_Epithelial_A549_Control_1,source: Human alveolar A549 epithelial cells,cell type: Human alveolar A549 epithelial cells,treatment: media
+        H5 titolo        : Human_Epithelial_A549_Control_1
+        H5 caratteristiche: cell type: Human alveolar A549 epithelial cells,treatment: media
+        H5 sorgente      : Human alveolar A549 epithelial cells
+      GSM2717393
+        grezzo (Stadio 1): title: Human_Epithelial_A549_Control_2,source: Human alveolar A549 epithelial cells,cell type: Human alveolar A549 epithelial cells,treatment: media
+        H5 titolo        : Human_Epithelial_A549_Control_2
+        H5 caratteristiche: cell type: Human alveolar A549 epithelial cells,treatment: media
+        H5 sorgente      : Human alveolar A549 epithelial cells
+      GSM2717394
+        grezzo (Stadio 1): title: Human_Epithelial_A549_Control_3,source: Human alveolar A549 epithelial cells,cell type: Human alveolar A549 epithelial cells,treatment: media
+        H5 titolo        : Human_Epithelial_A549_Control_3
+        H5 caratteristiche: cell type: Human alveolar A549 epithelial cells,treatment: media
+        H5 sorgente      : Human alveolar A549 epithelial cells
+
+CONFRONTO  GSE105088__GSE105088__LNCaP_IL-1β_vs_LNCaP_PBS__1
+  studio: GSE105088
+  TRATTATO  (n=3)  etichetta Stadio 2: LNCaP_IL-1β
+      gruppo Stadio 2: grp_0003
+      GSM2817826
+        grezzo (Stadio 1): title: LnCAP 25 ng/ml IL-1Î², 1,source: LNCaP,tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: 25 ng/ml IL-1Î² (R&D Systems; 201-LB-005)
+        H5 titolo        : LnCAP 25 ng/ml IL-1Î², 1
+        H5 caratteristiche: tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: 25 ng/ml IL-1Î² (R&D Systems; 201-LB-005)
+        H5 sorgente      : LNCaP
+      GSM2817827
+        grezzo (Stadio 1): title: LnCAP 25 ng/ml IL-1Î², 2,source: LNCaP,tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: 25 ng/ml IL-1Î² (R&D Systems; 201-LB-005)
+        H5 titolo        : LnCAP 25 ng/ml IL-1Î², 2
+        H5 caratteristiche: tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: 25 ng/ml IL-1Î² (R&D Systems; 201-LB-005)
+        H5 sorgente      : LNCaP
+      GSM2817828
+        grezzo (Stadio 1): title: LnCAP 25 ng/ml IL-1Î², 3,source: LNCaP,tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: 25 ng/ml IL-1Î² (R&D Systems; 201-LB-005)
+        H5 titolo        : LnCAP 25 ng/ml IL-1Î², 3
+        H5 caratteristiche: tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: 25 ng/ml IL-1Î² (R&D Systems; 201-LB-005)
+        H5 sorgente      : LNCaP
+  CONTROLLO  (n=3)  etichetta Stadio 2: LNCaP_PBS
+      gruppo Stadio 2: grp_0004
+      GSM2817823
+        grezzo (Stadio 1): title: LnCAP PBS (Vehicle control), 1,source: LNCaP,tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: phosphate buffered saline (PBS, vehicle control)
+        H5 titolo        : LnCAP PBS (Vehicle control), 1
+        H5 caratteristiche: tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: phosphate buffered saline (PBS, vehicle control)
+        H5 sorgente      : LNCaP
+      GSM2817824
+        grezzo (Stadio 1): title: LnCAP PBS (Vehicle control), 2,source: LNCaP,tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: phosphate buffered saline (PBS, vehicle control)
+        H5 titolo        : LnCAP PBS (Vehicle control), 2
+        H5 caratteristiche: tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: phosphate buffered saline (PBS, vehicle control)
+        H5 sorgente      : LNCaP
+      GSM2817825
+        grezzo (Stadio 1): title: LnCAP PBS (Vehicle control), 3,source: LNCaP,tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: phosphate buffered saline (PBS, vehicle control)
+        H5 titolo        : LnCAP PBS (Vehicle control), 3
+        H5 caratteristiche: tissue: Prostate,cell line: LNCaP,time: 3 days,treatment: phosphate buffered saline (PBS, vehicle control)
+        H5 sorgente      : LNCaP
+
+CONFRONTO  GSE120784__GSE120784__grp_0002_vs_grp_0001__1
+  studio: GSE120784
+  TRATTATO  (n=2)  etichetta Stadio 2: dermal endothelial cells IL-1b
+      gruppo Stadio 2: grp_0002
+      GSM3415536
+        grezzo (Stadio 1): title: dermal endothelial cells_IL-1b-stimulated_2,source: blood of healthy donors,cell type: dermal endothelial cells,treatment: IL-1b-stimulated
+        H5 titolo        : dermal endothelial cells_IL-1b-stimulated_2
+        H5 caratteristiche: cell type: dermal endothelial cells,treatment: IL-1b-stimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415537
+        grezzo (Stadio 1): title: dermal endothelial cells_IL-1b-stimulated_3,source: blood of healthy donors,cell type: dermal endothelial cells,treatment: IL-1b-stimulated
+        H5 titolo        : dermal endothelial cells_IL-1b-stimulated_3
+        H5 caratteristiche: cell type: dermal endothelial cells,treatment: IL-1b-stimulated
+        H5 sorgente      : blood of healthy donors
+  CONTROLLO  (n=3)  etichetta Stadio 2: dermal endothelial cells unstimulated
+      gruppo Stadio 2: grp_0001
+      GSM3415532
+        grezzo (Stadio 1): title: dermal endothelial cells_unstimulated_1,source: blood of healthy donors,cell type: dermal endothelial cells,treatment: unstimulated
+        H5 titolo        : dermal endothelial cells_unstimulated_1
+        H5 caratteristiche: cell type: dermal endothelial cells,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415533
+        grezzo (Stadio 1): title: dermal endothelial cells_unstimulated_2,source: blood of healthy donors,cell type: dermal endothelial cells,treatment: unstimulated
+        H5 titolo        : dermal endothelial cells_unstimulated_2
+        H5 caratteristiche: cell type: dermal endothelial cells,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415534
+        grezzo (Stadio 1): title: dermal endothelial cells_unstimulated_3,source: blood of healthy donors,cell type: dermal endothelial cells,treatment: unstimulated
+        H5 titolo        : dermal endothelial cells_unstimulated_3
+        H5 caratteristiche: cell type: dermal endothelial cells,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+
+CONFRONTO  GSE120784__GSE120784__grp_0005_vs_grp_0004__1
+  studio: GSE120784
+  TRATTATO  (n=2)  etichetta Stadio 2: dermal fibroblasts IL-1b
+      gruppo Stadio 2: grp_0005
+      GSM3415530
+        grezzo (Stadio 1): title: dermal fibroblasts_IL-1b-stimulated_2,source: blood of healthy donors,cell type: dermal fibroblasts,treatment: IL-1b-stimulated
+        H5 titolo        : dermal fibroblasts_IL-1b-stimulated_2
+        H5 caratteristiche: cell type: dermal fibroblasts,treatment: IL-1b-stimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415531
+        grezzo (Stadio 1): title: dermal fibroblasts_IL-1b-stimulated_3,source: blood of healthy donors,cell type: dermal fibroblasts,treatment: IL-1b-stimulated
+        H5 titolo        : dermal fibroblasts_IL-1b-stimulated_3
+        H5 caratteristiche: cell type: dermal fibroblasts,treatment: IL-1b-stimulated
+        H5 sorgente      : blood of healthy donors
+  CONTROLLO  (n=3)  etichetta Stadio 2: dermal fibroblasts unstimulated
+      gruppo Stadio 2: grp_0004
+      GSM3415526
+        grezzo (Stadio 1): title: dermal fibroblasts_unstimulated_1,source: blood of healthy donors,cell type: dermal fibroblasts,treatment: unstimulated
+        H5 titolo        : dermal fibroblasts_unstimulated_1
+        H5 caratteristiche: cell type: dermal fibroblasts,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415527
+        grezzo (Stadio 1): title: dermal fibroblasts_unstimulated_2,source: blood of healthy donors,cell type: dermal fibroblasts,treatment: unstimulated
+        H5 titolo        : dermal fibroblasts_unstimulated_2
+        H5 caratteristiche: cell type: dermal fibroblasts,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415528
+        grezzo (Stadio 1): title: dermal fibroblasts_unstimulated_3,source: blood of healthy donors,cell type: dermal fibroblasts,treatment: unstimulated
+        H5 titolo        : dermal fibroblasts_unstimulated_3
+        H5 caratteristiche: cell type: dermal fibroblasts,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+
+CONFRONTO  GSE120784__GSE120784__grp_0009_vs_grp_0007__1
+  studio: GSE120784
+  TRATTATO  (n=2)  etichetta Stadio 2: immune cells IL-1b
+      gruppo Stadio 2: grp_0009
+      GSM3415541
+        grezzo (Stadio 1): title: immune cells_IL-1b-stimulated_1,source: blood of healthy donors,cell type: immune cells,treatment: IL-1b-stimulated
+        H5 titolo        : immune cells_IL-1b-stimulated_1
+        H5 caratteristiche: cell type: immune cells,treatment: IL-1b-stimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415542
+        grezzo (Stadio 1): title: immune cells_IL-1b-stimulated_2,source: blood of healthy donors,cell type: immune cells,treatment: IL-1b-stimulated
+        H5 titolo        : immune cells_IL-1b-stimulated_2
+        H5 caratteristiche: cell type: immune cells,treatment: IL-1b-stimulated
+        H5 sorgente      : blood of healthy donors
+  CONTROLLO  (n=3)  etichetta Stadio 2: immune cells unstimulated
+      gruppo Stadio 2: grp_0007
+      GSM3415538
+        grezzo (Stadio 1): title: immune cells_unstimulated_1,source: blood of healthy donors,cell type: immune cells,treatment: unstimulated
+        H5 titolo        : immune cells_unstimulated_1
+        H5 caratteristiche: cell type: immune cells,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415539
+        grezzo (Stadio 1): title: immune cells_unstimulated_2,source: blood of healthy donors,cell type: immune cells,treatment: unstimulated
+        H5 titolo        : immune cells_unstimulated_2
+        H5 caratteristiche: cell type: immune cells,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415540
+        grezzo (Stadio 1): title: immune cells_unstimulated_3,source: blood of healthy donors,cell type: immune cells,treatment: unstimulated
+        H5 titolo        : immune cells_unstimulated_3
+        H5 caratteristiche: cell type: immune cells,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+
+CONFRONTO  GSE120784__GSE120784__grp_0011_vs_grp_0012__1
+  studio: GSE120784
+  TRATTATO  (n=2)  etichetta Stadio 2: keratinocytes IL-1b
+      gruppo Stadio 2: grp_0011
+      GSM3415523
+        grezzo (Stadio 1): title: keratinocytes_IL-1b-stimulated_1,source: blood of healthy donors,cell type: keratinocytes,treatment: IL-1b-stimulated
+        H5 titolo        : keratinocytes_IL-1b-stimulated_1
+        H5 caratteristiche: cell type: keratinocytes,treatment: IL-1b-stimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415525
+        grezzo (Stadio 1): title: keratinocytes_IL-1b-stimulated_3,source: blood of healthy donors,cell type: keratinocytes,treatment: IL-1b-stimulated
+        H5 titolo        : keratinocytes_IL-1b-stimulated_3
+        H5 caratteristiche: cell type: keratinocytes,treatment: IL-1b-stimulated
+        H5 sorgente      : blood of healthy donors
+  CONTROLLO  (n=3)  etichetta Stadio 2: keratinocytes unstimulated
+      gruppo Stadio 2: grp_0012
+      GSM3415520
+        grezzo (Stadio 1): title: keratinocytes_unstimulated_1,source: blood of healthy donors,cell type: keratinocytes,treatment: unstimulated
+        H5 titolo        : keratinocytes_unstimulated_1
+        H5 caratteristiche: cell type: keratinocytes,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415521
+        grezzo (Stadio 1): title: keratinocytes_unstimulated_2,source: blood of healthy donors,cell type: keratinocytes,treatment: unstimulated
+        H5 titolo        : keratinocytes_unstimulated_2
+        H5 caratteristiche: cell type: keratinocytes,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+      GSM3415522
+        grezzo (Stadio 1): title: keratinocytes_unstimulated_3,source: blood of healthy donors,cell type: keratinocytes,treatment: unstimulated
+        H5 titolo        : keratinocytes_unstimulated_3
+        H5 caratteristiche: cell type: keratinocytes,treatment: unstimulated
+        H5 sorgente      : blood of healthy donors
+
+CONFRONTO  GSE126750__GSE126750__IL1b_vs_DMSO__1
+  studio: GSE126750
+  TRATTATO  (n=3)  etichetta Stadio 2: IL1β-treated cerebellar astrocytes
+      gruppo Stadio 2: grp_IL1b
+      GSM3612130
+        grezzo (Stadio 1): title: IL1b_A,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: 3 ng/ml IL1b, 24h
+        H5 titolo        : IL1b_A
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: 3 ng/ml IL1b, 24h
+        H5 sorgente      : primary fetal
+      GSM3612131
+        grezzo (Stadio 1): title: IL1b_B,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: 3 ng/ml IL1b, 24h
+        H5 titolo        : IL1b_B
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: 3 ng/ml IL1b, 24h
+        H5 sorgente      : primary fetal
+      GSM3612132
+        grezzo (Stadio 1): title: IL1b_C,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: 3 ng/ml IL1b, 24h
+        H5 titolo        : IL1b_C
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: 3 ng/ml IL1b, 24h
+        H5 sorgente      : primary fetal
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO-treated cerebellar astrocytes
+      gruppo Stadio 2: grp_DMSO
+      GSM3612118
+        grezzo (Stadio 1): title: DMSO_A,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 titolo        : DMSO_A
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 sorgente      : primary fetal
+      GSM3612119
+        grezzo (Stadio 1): title: DMSO_B,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 titolo        : DMSO_B
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 sorgente      : primary fetal
+      GSM3612120
+        grezzo (Stadio 1): title: DMSO_C,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 titolo        : DMSO_C
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 sorgente      : primary fetal
+
+CONFRONTO  GSE134896__GSE134896__IL-1beta_vs_vehicle__1
+  studio: GSE134896
+  TRATTATO  (n=3)  etichetta Stadio 2: IL-1beta
+      gruppo Stadio 2: grp_0003
+      GSM3976584
+        grezzo (Stadio 1): title: IL-1beta_1,source: myometrium,cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: Yes
+        H5 titolo        : IL-1beta_1
+        H5 caratteristiche: cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: Yes
+        H5 sorgente      : myometrium
+      GSM3976585
+        grezzo (Stadio 1): title: IL-1beta_2,source: myometrium,cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: Yes
+        H5 titolo        : IL-1beta_2
+        H5 caratteristiche: cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: Yes
+        H5 sorgente      : myometrium
+      GSM3976586
+        grezzo (Stadio 1): title: IL-1beta_3,source: myometrium,cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: Yes
+        H5 titolo        : IL-1beta_3
+        H5 caratteristiche: cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: Yes
+        H5 sorgente      : myometrium
+  CONTROLLO  (n=3)  etichetta Stadio 2: vehicle
+      gruppo Stadio 2: grp_0004
+      GSM3976578
+        grezzo (Stadio 1): title: Control_1,source: myometrium,cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: No
+        H5 titolo        : Control_1
+        H5 caratteristiche: cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: No
+        H5 sorgente      : myometrium
+      GSM3976579
+        grezzo (Stadio 1): title: Control_2,source: myometrium,cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: No
+        H5 titolo        : Control_2
+        H5 caratteristiche: cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: No
+        H5 sorgente      : myometrium
+      GSM3976580
+        grezzo (Stadio 1): title: Control_3,source: myometrium,cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: No
+        H5 titolo        : Control_3
+        H5 caratteristiche: cell type: hTERT-HM^(A/B),p4 treatment: No,fsk treatment: No,il-1beta treatment: No
+        H5 sorgente      : myometrium
+
+CONFRONTO  GSE142620__GSE142620__IL1beta_day_15_vs_Control_day_15__1
+  studio: GSE142620
+  TRATTATO  (n=2)  etichetta Stadio 2: IL1beta day 15
+      gruppo Stadio 2: grp_0007
+      GSM4233012
+        grezzo (Stadio 1): title: A549_IL1b_15d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 15
+        H5 titolo        : A549_IL1b_15d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 15
+        H5 sorgente      : A549 cell line
+      GSM4233024
+        grezzo (Stadio 1): title: A549_IL1b_15d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 15
+        H5 titolo        : A549_IL1b_15d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 15
+        H5 sorgente      : A549 cell line
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control day 15
+      gruppo Stadio 2: grp_0004
+      GSM4232999
+        grezzo (Stadio 1): title: A549_Ctrl_15d_repA,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 15
+        H5 titolo        : A549_Ctrl_15d_repA
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 15
+        H5 sorgente      : A549 cell line
+      GSM4233005
+        grezzo (Stadio 1): title: A549_Ctrl_w15d_repA,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 15 posttreatment
+        H5 titolo        : A549_Ctrl_w15d_repA
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 15 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233017
+        grezzo (Stadio 1): title: A549_Ctrl_w15d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 15 posttreatment
+        H5 titolo        : A549_Ctrl_w15d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 15 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233029
+        grezzo (Stadio 1): title: A549_Ctrl_w15d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 15 posttreatment
+        H5 titolo        : A549_Ctrl_w15d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 15 posttreatment
+        H5 sorgente      : A549 cell line
+
+CONFRONTO  GSE142620__GSE142620__IL1beta_day_21_vs_Control_day_21__1
+  studio: GSE142620
+  TRATTATO  (n=2)  etichetta Stadio 2: IL1beta day 21
+      gruppo Stadio 2: grp_0005
+      GSM4233002
+        grezzo (Stadio 1): title: A549_IL1b_21d_repA,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 21
+        H5 titolo        : A549_IL1b_21d_repA
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 21
+        H5 sorgente      : A549 cell line
+      GSM4233026
+        grezzo (Stadio 1): title: A549_IL1b_21d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 21
+        H5 titolo        : A549_IL1b_21d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 21
+        H5 sorgente      : A549 cell line
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control day 21
+      gruppo Stadio 2: grp_0001
+      GSM4233013
+        grezzo (Stadio 1): title: A549_Ctrl_21d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 21
+        H5 titolo        : A549_Ctrl_21d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 21
+        H5 sorgente      : A549 cell line
+      GSM4233025
+        grezzo (Stadio 1): title: A549_Ctrl_21d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 21
+        H5 titolo        : A549_Ctrl_21d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 21
+        H5 sorgente      : A549 cell line
+
+CONFRONTO  GSE142620__GSE142620__IL1beta_day_30_posttreatment_vs_Control_day_30_posttreatment__1
+  studio: GSE142620
+  TRATTATO  (n=2)  etichetta Stadio 2: IL1beta day 30 posttreatment
+      gruppo Stadio 2: grp_0009
+      GSM4233020
+        grezzo (Stadio 1): title: A549_IL1b_w30d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 30 posttreatment
+        H5 titolo        : A549_IL1b_w30d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 30 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233032
+        grezzo (Stadio 1): title: A549_IL1b_w30d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 30 posttreatment
+        H5 titolo        : A549_IL1b_w30d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 30 posttreatment
+        H5 sorgente      : A549 cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control day 30 posttreatment
+      gruppo Stadio 2: grp_0003
+      GSM4233007
+        grezzo (Stadio 1): title: A549_Ctrl_w30d_repA,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 30 posttreatment
+        H5 titolo        : A549_Ctrl_w30d_repA
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 30 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233019
+        grezzo (Stadio 1): title: A549_Ctrl_w30d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 30 posttreatment
+        H5 titolo        : A549_Ctrl_w30d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 30 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233031
+        grezzo (Stadio 1): title: A549_Ctrl_w30d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 30 posttreatment
+        H5 titolo        : A549_Ctrl_w30d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 30 posttreatment
+        H5 sorgente      : A549 cell line
+
+CONFRONTO  GSE142620__GSE142620__IL1beta_day_6_posttreatment_vs_Control_day_6_posttreatment__1
+  studio: GSE142620
+  TRATTATO  (n=3)  etichetta Stadio 2: IL1beta day 6 posttreatment
+      gruppo Stadio 2: grp_0014
+      GSM4233004
+        grezzo (Stadio 1): title: A549_IL1b_w6d_repA,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6 posttreatment
+        H5 titolo        : A549_IL1b_w6d_repA
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233016
+        grezzo (Stadio 1): title: A549_IL1b_w6d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6 posttreatment
+        H5 titolo        : A549_IL1b_w6d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233028
+        grezzo (Stadio 1): title: A549_IL1b_w6d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6 posttreatment
+        H5 titolo        : A549_IL1b_w6d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6 posttreatment
+        H5 sorgente      : A549 cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control day 6 posttreatment
+      gruppo Stadio 2: grp_0012
+      GSM4233003
+        grezzo (Stadio 1): title: A549_Ctrl_w6d_repA,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6 posttreatment
+        H5 titolo        : A549_Ctrl_w6d_repA
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233015
+        grezzo (Stadio 1): title: A549_Ctrl_w6d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6 posttreatment
+        H5 titolo        : A549_Ctrl_w6d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6 posttreatment
+        H5 sorgente      : A549 cell line
+      GSM4233027
+        grezzo (Stadio 1): title: A549_Ctrl_w6d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6 posttreatment
+        H5 titolo        : A549_Ctrl_w6d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6 posttreatment
+        H5 sorgente      : A549 cell line
+
+CONFRONTO  GSE142620__GSE142620__IL1beta_day_6_vs_Control_day_6__1
+  studio: GSE142620
+  TRATTATO  (n=3)  etichetta Stadio 2: IL1beta day 6
+      gruppo Stadio 2: grp_0006
+      GSM4232998
+        grezzo (Stadio 1): title: A549_IL1b_6d_repA,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6
+        H5 titolo        : A549_IL1b_6d_repA
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6
+        H5 sorgente      : A549 cell line
+      GSM4233010
+        grezzo (Stadio 1): title: A549_IL1b_6d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6
+        H5 titolo        : A549_IL1b_6d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6
+        H5 sorgente      : A549 cell line
+      GSM4233022
+        grezzo (Stadio 1): title: A549_IL1b_6d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6
+        H5 titolo        : A549_IL1b_6d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: IL1beta treated,time point: day 6
+        H5 sorgente      : A549 cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control day 6
+      gruppo Stadio 2: grp_0002
+      GSM4232997
+        grezzo (Stadio 1): title: A549_Ctrl_6d_repA,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6
+        H5 titolo        : A549_Ctrl_6d_repA
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6
+        H5 sorgente      : A549 cell line
+      GSM4233009
+        grezzo (Stadio 1): title: A549_Ctrl_6d_repB,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6
+        H5 titolo        : A549_Ctrl_6d_repB
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6
+        H5 sorgente      : A549 cell line
+      GSM4233021
+        grezzo (Stadio 1): title: A549_Ctrl_6d_repC,source: A549 cell line,tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6
+        H5 titolo        : A549_Ctrl_6d_repC
+        H5 caratteristiche: tissue: lung,cell type: non-small cell lung cancer,treatment: Control,time point: day 6
+        H5 sorgente      : A549 cell line
+
+CONFRONTO  GSE155141__GSE155141__grp_0003_vs_grp_0002__1
+  studio: GSE155141
+  TRATTATO  (n=2)  etichetta Stadio 2: Non-lesional human skin, IL-1β treated
+      gruppo Stadio 2: grp_0003
+      GSM4696230
+        grezzo (Stadio 1): title: S1_nonlesional_IL1 [1F-AR12],source: nonlesional_IL1,subject age: 82,tissue: facial skin,tissue type: non-lesional human skin,treatment: 50ng/mL IL-1Î²
+        H5 titolo        : S1_nonlesional_IL1 [1F-AR12]
+        H5 caratteristiche: subject age: 82,tissue: facial skin,tissue type: non-lesional human skin,treatment: 50ng/mL IL-1Î²
+        H5 sorgente      : nonlesional_IL1
+      GSM4696236
+        grezzo (Stadio 1): title: S3_nonlesional_IL1 [3F-AR11],source: nonlesional_IL1,subject age: 92,tissue: facial skin,tissue type: non-lesional human skin,treatment: 50ng/mL IL-1Î²
+        H5 titolo        : S3_nonlesional_IL1 [3F-AR11]
+        H5 caratteristiche: subject age: 92,tissue: facial skin,tissue type: non-lesional human skin,treatment: 50ng/mL IL-1Î²
+        H5 sorgente      : nonlesional_IL1
+  CONTROLLO  (n=4)  etichetta Stadio 2: Non-lesional human skin, no treatment
+      gruppo Stadio 2: grp_0002
+      GSM4696229
+        grezzo (Stadio 1): title: S1_nonlesional_no Tx [1E-AR7],source: nonlesional_no Tx,subject age: 82,tissue: facial skin,tissue type: non-lesional human skin,treatment: none (no treatment)
+        H5 titolo        : S1_nonlesional_no Tx [1E-AR7]
+        H5 caratteristiche: subject age: 82,tissue: facial skin,tissue type: non-lesional human skin,treatment: none (no treatment)
+        H5 sorgente      : nonlesional_no Tx
+      GSM4696235
+        grezzo (Stadio 1): title: S3_nonlesional_no Tx [3E-AR10],source: nonlesional_no Tx,subject age: 92,tissue: facial skin,tissue type: non-lesional human skin,treatment: none (no treatment)
+        H5 titolo        : S3_nonlesional_no Tx [3E-AR10]
+        H5 caratteristiche: subject age: 92,tissue: facial skin,tissue type: non-lesional human skin,treatment: none (no treatment)
+        H5 sorgente      : nonlesional_no Tx
+      GSM4696238
+        grezzo (Stadio 1): title: S4_nonlesional_no Tx [4E-AR25],source: nonlesional_no Tx,subject age: 64,tissue: facial skin,tissue type: non-lesional human skin,treatment: none (no treatment)
+        H5 titolo        : S4_nonlesional_no Tx [4E-AR25]
+        H5 caratteristiche: subject age: 64,tissue: facial skin,tissue type: non-lesional human skin,treatment: none (no treatment)
+        H5 sorgente      : nonlesional_no Tx
+      GSM4696241
+        grezzo (Stadio 1): title: S5_nonlesional_no Tx [5E-AR7],source: nonlesional_no Tx,subject age: 73,tissue: facial skin,tissue type: non-lesional human skin,treatment: none (no treatment)
+        H5 titolo        : S5_nonlesional_no Tx [5E-AR7]
+        H5 caratteristiche: subject age: 73,tissue: facial skin,tissue type: non-lesional human skin,treatment: none (no treatment)
+        H5 sorgente      : nonlesional_no Tx
+
+CONFRONTO  GSE161916__GSE161916__IL1b_vs_Untreated__1
+  studio: GSE161916
+  TRATTATO  (n=3)  etichetta Stadio 2: IL1b
+      gruppo Stadio 2: grp_0013
+      GSM4923343
+        grezzo (Stadio 1): title: RNA-seq-HPPT_IL1b_rep1,source: human primary proximal tubule cells,treatment: IL1b,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_IL1b_rep1
+        H5 caratteristiche: treatment: IL1b,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923344
+        grezzo (Stadio 1): title: RNA-seq-HPPT_IL1b_rep2,source: human primary proximal tubule cells,treatment: IL1b,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_IL1b_rep2
+        H5 caratteristiche: treatment: IL1b,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923345
+        grezzo (Stadio 1): title: RNA-seq-HPPT_IL1b_rep3,source: human primary proximal tubule cells,treatment: IL1b,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_IL1b_rep3
+        H5 caratteristiche: treatment: IL1b,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0010
+      GSM4923346
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep1,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep1
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923347
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep2,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep2
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923348
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep3,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep3
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+
+CONFRONTO  GSE162691__GSE162691__grp_0005_vs_grp_0002__1
+  studio: GSE162691
+  TRATTATO  (n=2)  etichetta Stadio 2: AD microtissue IL-1Beta
+      gruppo Stadio 2: grp_0005
+      GSM4957287
+        grezzo (Stadio 1): title: IL-1b+NPX_AD_repeat1,source: AD,microtissue: AD,model: IL-1Beta+NPX,tissue_culture_weeks: 9
+        H5 titolo        : IL-1b+NPX_AD_repeat1
+        H5 caratteristiche: microtissue: AD,model: IL-1Beta+NPX,tissue_culture_weeks: 9
+        H5 sorgente      : AD
+      GSM4957289
+        grezzo (Stadio 1): title: IL-1b+NPX_AD_repeat3,source: AD,microtissue: AD,model: IL-1Beta+NPX,tissue_culture_weeks: 9
+        H5 titolo        : IL-1b+NPX_AD_repeat3
+        H5 caratteristiche: microtissue: AD,model: IL-1Beta+NPX,tissue_culture_weeks: 9
+        H5 sorgente      : AD
+  CONTROLLO  (n=2)  etichetta Stadio 2: Unspecified AD Control
+      gruppo Stadio 2: grp_0002
+      GSM4957263
+        grezzo (Stadio 1): title: Control_AD_repeat1,source: AD,microtissue: AD,model: Control,tissue_culture_weeks: 9
+        H5 titolo        : Control_AD_repeat1
+        H5 caratteristiche: microtissue: AD,model: Control,tissue_culture_weeks: 9
+        H5 sorgente      : AD
+      GSM4957264
+        grezzo (Stadio 1): title: Control_AD_repeat2,source: AD,microtissue: AD,model: Control,tissue_culture_weeks: 9
+        H5 titolo        : Control_AD_repeat2
+        H5 caratteristiche: microtissue: AD,model: Control,tissue_culture_weeks: 9
+        H5 sorgente      : AD
+
+CONFRONTO  GSE171652__GSE171652__IL-1β_Stimulated_Meniscus_vs_Untreated_Meniscus__1
+  studio: GSE171652
+  TRATTATO  (n=3)  etichetta Stadio 2: IL-1β Stimulated Meniscus
+      gruppo Stadio 2: grp_0002
+      GSM5229762
+        grezzo (Stadio 1): title: RNA-Seq OA004_IL.1b rep1,source: meniscus,tissues: meniscus
+        H5 titolo        : RNA-Seq OA004_IL.1b rep1
+        H5 caratteristiche: tissues: meniscus
+        H5 sorgente      : meniscus
+      GSM5229763
+        grezzo (Stadio 1): title: RNA-Seq OA004_IL.1b rep2,source: meniscus,tissues: meniscus
+        H5 titolo        : RNA-Seq OA004_IL.1b rep2
+        H5 caratteristiche: tissues: meniscus
+        H5 sorgente      : meniscus
+      GSM5229764
+        grezzo (Stadio 1): title: RNA-Seq OA004_IL.1b rep3,source: meniscus,tissues: meniscus
+        H5 titolo        : RNA-Seq OA004_IL.1b rep3
+        H5 caratteristiche: tissues: meniscus
+        H5 sorgente      : meniscus
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated Meniscus
+      gruppo Stadio 2: grp_0001
+      GSM5229759
+        grezzo (Stadio 1): title: RNA-Seq OA004_NC rep1,source: meniscus,tissues: meniscus
+        H5 titolo        : RNA-Seq OA004_NC rep1
+        H5 caratteristiche: tissues: meniscus
+        H5 sorgente      : meniscus
+      GSM5229760
+        grezzo (Stadio 1): title: RNA-Seq OA004_NC rep2,source: meniscus,tissues: meniscus
+        H5 titolo        : RNA-Seq OA004_NC rep2
+        H5 caratteristiche: tissues: meniscus
+        H5 sorgente      : meniscus
+      GSM5229761
+        grezzo (Stadio 1): title: RNA-Seq OA004_NC rep3,source: meniscus,tissues: meniscus
+        H5 titolo        : RNA-Seq OA004_NC rep3
+        H5 caratteristiche: tissues: meniscus
+        H5 sorgente      : meniscus
+
+CONFRONTO  GSE189136__GSE189136__grp_0008_vs_grp_0005__1
+  studio: GSE189136
+  TRATTATO  (n=3)  etichetta Stadio 2: RA PBMCs IL-1β
+      gruppo Stadio 2: grp_0008
+      GSM5694899
+        grezzo (Stadio 1): title: PBMC_RA2_IL-1B,source: PBMC,tissue: PBMC,treatment: IL-1[beta],diagnosis: Rheumatoid arthritis
+        H5 titolo        : PBMC_RA2_IL-1B
+        H5 caratteristiche: tissue: PBMC,treatment: IL-1[beta],diagnosis: Rheumatoid arthritis
+        H5 sorgente      : PBMC
+      GSM5694900
+        grezzo (Stadio 1): title: PBMC_RA3_IL-1B,source: PBMC,tissue: PBMC,treatment: IL-1[beta],diagnosis: Rheumatoid arthritis
+        H5 titolo        : PBMC_RA3_IL-1B
+        H5 caratteristiche: tissue: PBMC,treatment: IL-1[beta],diagnosis: Rheumatoid arthritis
+        H5 sorgente      : PBMC
+      GSM5694901
+        grezzo (Stadio 1): title: PBMC_RA4_IL-1B,source: PBMC,tissue: PBMC,treatment: IL-1[beta],diagnosis: Rheumatoid arthritis
+        H5 titolo        : PBMC_RA4_IL-1B
+        H5 caratteristiche: tissue: PBMC,treatment: IL-1[beta],diagnosis: Rheumatoid arthritis
+        H5 sorgente      : PBMC
+  CONTROLLO  (n=2)  etichetta Stadio 2: RA PBMCs Untreated
+      gruppo Stadio 2: grp_0005
+      GSM5694894
+        grezzo (Stadio 1): title: PBMC_RA3_UTx,source: PBMC,tissue: PBMC,treatment: Untreated,diagnosis: Rheumatoid arthritis
+        H5 titolo        : PBMC_RA3_UTx
+        H5 caratteristiche: tissue: PBMC,treatment: Untreated,diagnosis: Rheumatoid arthritis
+        H5 sorgente      : PBMC
+      GSM5694895
+        grezzo (Stadio 1): title: PBMC_RA4_UTx,source: PBMC,tissue: PBMC,treatment: Untreated,diagnosis: Rheumatoid arthritis
+        H5 titolo        : PBMC_RA4_UTx
+        H5 caratteristiche: tissue: PBMC,treatment: Untreated,diagnosis: Rheumatoid arthritis
+        H5 sorgente      : PBMC
+
+CONFRONTO  GSE196195__GSE196195__grp_0005_vs_grp_0002__1
+  studio: GSE196195
+  TRATTATO  (n=5)  etichetta Stadio 2: IL-1B Stimulated (Female Donor)
+      gruppo Stadio 2: grp_0005
+      GSM5862463
+        grezzo (Stadio 1): title: hVCF-IL-1B-557-cd4+,source: Human ventricular cardiac fibroblasts (hVCF) , IL1B,cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot#67771),tissue: hVCF derived from explant during human heart transplant,age: 67,Sex: Female,cells population: cd4+,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 titolo        : hVCF-IL-1B-557-cd4+
+        H5 caratteristiche: cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot#67771),tissue: hVCF derived from explant during human heart transplant,age: 67,Sex: Female,cells population: cd4+,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 sorgente      : Human ventricular cardiac fibroblasts (hVCF) , IL1B
+      GSM5862464
+        grezzo (Stadio 1): title: hVCF-IL-1B-557-cd4-,source: Human ventricular cardiac fibroblasts (hVCF) , IL1B,cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 67771),tissue: hVCF derived from explant during human heart transplant,age: 67,Sex: Female,cells population: cd4-,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 titolo        : hVCF-IL-1B-557-cd4-
+        H5 caratteristiche: cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 67771),tissue: hVCF derived from explant during human heart transplant,age: 67,Sex: Female,cells population: cd4-,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 sorgente      : Human ventricular cardiac fibroblasts (hVCF) , IL1B
+      GSM5862465
+        grezzo (Stadio 1): title: hVCF-IL-1B-282-cd4+,source: Human ventricular cardiac fibroblasts (hVCF) , IL1B,cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 534282),tissue: hVCF derived from explant during human heart transplant,age: 63,Sex: Female,cells population: cd4+,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 titolo        : hVCF-IL-1B-282-cd4+
+        H5 caratteristiche: cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 534282),tissue: hVCF derived from explant during human heart transplant,age: 63,Sex: Female,cells population: cd4+,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 sorgente      : Human ventricular cardiac fibroblasts (hVCF) , IL1B
+      GSM5862466
+        grezzo (Stadio 1): title: hVCF-IL-1B-282-cd4-,source: Human ventricular cardiac fibroblasts (hVCF) , IL1B,cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 534282),tissue: hVCF derived from explant during human heart transplant,age: 63,Sex: Female,cells population: cd4-,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 titolo        : hVCF-IL-1B-282-cd4-
+        H5 caratteristiche: cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 534282),tissue: hVCF derived from explant during human heart transplant,age: 63,Sex: Female,cells population: cd4-,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 sorgente      : Human ventricular cardiac fibroblasts (hVCF) , IL1B
+      GSM5862468
+        grezzo (Stadio 1): title: hVCF-IL-1B-202-cd4-,source: Human ventricular cardiac fibroblasts (hVCF) , IL1B,cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 1281202),tissue: hVCF derived from explant during human heart transplant,age: 67,Sex: Male,cells population: cd4-,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 titolo        : hVCF-IL-1B-202-cd4-
+        H5 caratteristiche: cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 1281202),tissue: hVCF derived from explant during human heart transplant,age: 67,Sex: Male,cells population: cd4-,treatment: treated with IL-1B (10ng/mL) for 10 days,site: Human Ventricle
+        H5 sorgente      : Human ventricular cardiac fibroblasts (hVCF) , IL1B
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle Control (Donor 2, Replicate 1)
+      gruppo Stadio 2: grp_0002
+      GSM5862458
+        grezzo (Stadio 1): title: hVCF-veh-557-cd4-,source: Human ventricular cardiac fibroblasts (hVCF) , Veh,cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 67771),tissue: hVCF derived from explant during human heart transplant,age: 67,Sex: Female,cells population: cd4-,treatment: untreated,site: Human Ventricle
+        H5 titolo        : hVCF-veh-557-cd4-
+        H5 caratteristiche: cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 67771),tissue: hVCF derived from explant during human heart transplant,age: 67,Sex: Female,cells population: cd4-,treatment: untreated,site: Human Ventricle
+        H5 sorgente      : Human ventricular cardiac fibroblasts (hVCF) , Veh
+      GSM5862460
+        grezzo (Stadio 1): title: hVCF-veh-282-cd4-,source: Human ventricular cardiac fibroblasts (hVCF) , Veh,cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 534282),tissue: hVCF derived from explant during human heart transplant,age: 63,Sex: Female,cells population: cd4-,treatment: untreated,site: Human Ventricle
+        H5 titolo        : hVCF-veh-282-cd4-
+        H5 caratteristiche: cell type: human ventricular cardiac fibroblast cells (hVCFs),donor info: hVCF (Lonza; Cat# CC-2904; Lot# 534282),tissue: hVCF derived from explant during human heart transplant,age: 63,Sex: Female,cells population: cd4-,treatment: untreated,site: Human Ventricle
+        H5 sorgente      : Human ventricular cardiac fibroblasts (hVCF) , Veh
+
+CONFRONTO  GSE205851__GSE205851__IL1Beta_4h_vs_Untreated__1
+  studio: GSE205851
+  TRATTATO  (n=2)  etichetta Stadio 2: IL1Beta 4h
+      gruppo Stadio 2: grp_0002
+      GSM6234498
+        grezzo (Stadio 1): title: sample_5,source: kidney epithelial cell line A498, treated with IL1Î², 4 hours,cell line: A498,treatment: IL1Beta, 4 hours
+        H5 titolo        : sample_5
+        H5 caratteristiche: cell line: A498,treatment: IL1Beta, 4 hours
+        H5 sorgente      : kidney epithelial cell line A498, treated with IL1Î², 4 hours
+      GSM6234499
+        grezzo (Stadio 1): title: sample_6,source: kidney epithelial cell line A498, treated with IL1Î², 4 hours,cell line: A498,treatment: IL1Beta, 4 hours
+        H5 titolo        : sample_6
+        H5 caratteristiche: cell line: A498,treatment: IL1Beta, 4 hours
+        H5 sorgente      : kidney epithelial cell line A498, treated with IL1Î², 4 hours
+  CONTROLLO  (n=4)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0001
+      GSM6234494
+        grezzo (Stadio 1): title: sample_1,source: kidney epithelial cell line A498, untreated,cell line: A498,treatment: untreated
+        H5 titolo        : sample_1
+        H5 caratteristiche: cell line: A498,treatment: untreated
+        H5 sorgente      : kidney epithelial cell line A498, untreated
+      GSM6234495
+        grezzo (Stadio 1): title: sample_2,source: kidney epithelial cell line A498, untreated,cell line: A498,treatment: untreated
+        H5 titolo        : sample_2
+        H5 caratteristiche: cell line: A498,treatment: untreated
+        H5 sorgente      : kidney epithelial cell line A498, untreated
+      GSM6234496
+        grezzo (Stadio 1): title: sample_3,source: kidney epithelial cell line A498, untreated,cell line: A498,treatment: untreated
+        H5 titolo        : sample_3
+        H5 caratteristiche: cell line: A498,treatment: untreated
+        H5 sorgente      : kidney epithelial cell line A498, untreated
+      GSM6234497
+        grezzo (Stadio 1): title: sample_4,source: kidney epithelial cell line A498, untreated,cell line: A498,treatment: untreated
+        H5 titolo        : sample_4
+        H5 caratteristiche: cell line: A498,treatment: untreated
+        H5 sorgente      : kidney epithelial cell line A498, untreated
+
+CONFRONTO  GSE205851__GSE205851__IL1Beta_4h_vs_Untreated__2
+  studio: GSE205851
+  TRATTATO  (n=2)  etichetta Stadio 2: IL1Beta 4h
+      gruppo Stadio 2: grp_0003
+      GSM6234500
+        grezzo (Stadio 1): title: sample_7,source: kidney epithelial cell line A498, treated with IL1Î², 4 hours,cell line: A498,treatment: IL1Beta, 4 hours
+        H5 titolo        : sample_7
+        H5 caratteristiche: cell line: A498,treatment: IL1Beta, 4 hours
+        H5 sorgente      : kidney epithelial cell line A498, treated with IL1Î², 4 hours
+      GSM6234501
+        grezzo (Stadio 1): title: sample_8,source: kidney epithelial cell line A498, treated with IL1Î², 4 hours,cell line: A498,treatment: IL1Beta, 4 hours
+        H5 titolo        : sample_8
+        H5 caratteristiche: cell line: A498,treatment: IL1Beta, 4 hours
+        H5 sorgente      : kidney epithelial cell line A498, treated with IL1Î², 4 hours
+  CONTROLLO  (n=4)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0001
+      GSM6234494
+        grezzo (Stadio 1): title: sample_1,source: kidney epithelial cell line A498, untreated,cell line: A498,treatment: untreated
+        H5 titolo        : sample_1
+        H5 caratteristiche: cell line: A498,treatment: untreated
+        H5 sorgente      : kidney epithelial cell line A498, untreated
+      GSM6234495
+        grezzo (Stadio 1): title: sample_2,source: kidney epithelial cell line A498, untreated,cell line: A498,treatment: untreated
+        H5 titolo        : sample_2
+        H5 caratteristiche: cell line: A498,treatment: untreated
+        H5 sorgente      : kidney epithelial cell line A498, untreated
+      GSM6234496
+        grezzo (Stadio 1): title: sample_3,source: kidney epithelial cell line A498, untreated,cell line: A498,treatment: untreated
+        H5 titolo        : sample_3
+        H5 caratteristiche: cell line: A498,treatment: untreated
+        H5 sorgente      : kidney epithelial cell line A498, untreated
+      GSM6234497
+        grezzo (Stadio 1): title: sample_4,source: kidney epithelial cell line A498, untreated,cell line: A498,treatment: untreated
+        H5 titolo        : sample_4
+        H5 caratteristiche: cell line: A498,treatment: untreated
+        H5 sorgente      : kidney epithelial cell line A498, untreated
+
+CONFRONTO  GSE215039__GSE215039__nonOA_IL1b_rep_vs_nonOA_no_treatment__1
+  studio: GSE215039
+  TRATTATO  (n=4)  etichetta Stadio 2: non-OA IL-1b rep
+      gruppo Stadio 2: grp_nonOA_IL1b_rep
+      GSM6620293
+        grezzo (Stadio 1): title: NC, IL-1b, biol rep1,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-1b
+        H5 titolo        : NC, IL-1b, biol rep1
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-1b
+        H5 sorgente      : Chondrocytes
+      GSM6620294
+        grezzo (Stadio 1): title: NC, IL-1b, biol rep2,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-1b
+        H5 titolo        : NC, IL-1b, biol rep2
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-1b
+        H5 sorgente      : Chondrocytes
+      GSM6620296
+        grezzo (Stadio 1): title: NC, IL-1b, biol rep4,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-1b
+        H5 titolo        : NC, IL-1b, biol rep4
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-1b
+        H5 sorgente      : Chondrocytes
+      GSM6620297
+        grezzo (Stadio 1): title: NC, IL-1b, biol rep5,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-1b
+        H5 titolo        : NC, IL-1b, biol rep5
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-1b
+        H5 sorgente      : Chondrocytes
+  CONTROLLO  (n=5)  etichetta Stadio 2: non-OA No treatment
+      gruppo Stadio 2: grp_nonOA_no_treatment
+      GSM6620288
+        grezzo (Stadio 1): title: NC, No treatment, biol rep1,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep1
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620289
+        grezzo (Stadio 1): title: NC, No treatment, biol rep2,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep2
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620290
+        grezzo (Stadio 1): title: NC, No treatment, biol rep3,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep3
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620291
+        grezzo (Stadio 1): title: NC, No treatment, biol rep4,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep4
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620292
+        grezzo (Stadio 1): title: NC, No treatment, biol rep5,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep5
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+
+CONFRONTO  GSE243421__GSE243421__IL1B_vs_untreated__1
+  studio: GSE243421
+  TRATTATO  (n=3)  etichetta Stadio 2: IL-1β
+      gruppo Stadio 2: grp_0004
+      GSM7785450
+        grezzo (Stadio 1): title: human articular chondrocytes-IL-Î² - F1,source: human articular chondrocytes,cell type: human articular chondrocytes,treatment: IL-Î²
+        H5 titolo        : human articular chondrocytes-IL-Î² - F1
+        H5 caratteristiche: cell type: human articular chondrocytes,treatment: IL-Î²
+        H5 sorgente      : human articular chondrocytes
+      GSM7785451
+        grezzo (Stadio 1): title: human articular chondrocytes-IL-Î² - F2,source: human articular chondrocytes,cell type: human articular chondrocytes,treatment: IL-Î²
+        H5 titolo        : human articular chondrocytes-IL-Î² - F2
+        H5 caratteristiche: cell type: human articular chondrocytes,treatment: IL-Î²
+        H5 sorgente      : human articular chondrocytes
+      GSM7785452
+        grezzo (Stadio 1): title: human articular chondrocytes-IL-Î² - F3,source: human articular chondrocytes,cell type: human articular chondrocytes,treatment: IL-Î²
+        H5 titolo        : human articular chondrocytes-IL-Î² - F3
+        H5 caratteristiche: cell type: human articular chondrocytes,treatment: IL-Î²
+        H5 sorgente      : human articular chondrocytes
+  CONTROLLO  (n=3)  etichetta Stadio 2: untreated
+      gruppo Stadio 2: grp_0005
+      GSM7785447
+        grezzo (Stadio 1): title: human articular chondrocytes - E1,source: human articular chondrocytes,cell type: human articular chondrocytes,treatment: none
+        H5 titolo        : human articular chondrocytes - E1
+        H5 caratteristiche: cell type: human articular chondrocytes,treatment: none
+        H5 sorgente      : human articular chondrocytes
+      GSM7785448
+        grezzo (Stadio 1): title: human articular chondrocytes - E2,source: human articular chondrocytes,cell type: human articular chondrocytes,treatment: none
+        H5 titolo        : human articular chondrocytes - E2
+        H5 caratteristiche: cell type: human articular chondrocytes,treatment: none
+        H5 sorgente      : human articular chondrocytes
+      GSM7785449
+        grezzo (Stadio 1): title: human articular chondrocytes - E3,source: human articular chondrocytes,cell type: human articular chondrocytes,treatment: none
+        H5 titolo        : human articular chondrocytes - E3
+        H5 caratteristiche: cell type: human articular chondrocytes,treatment: none
+        H5 sorgente      : human articular chondrocytes
+
+CONFRONTO  GSE246493__GSE246493__grp_0006_vs_grp_0001__1
+  studio: GSE246493
+  TRATTATO  (n=2)  etichetta Stadio 2: IL1b Stimulated NDUFA4 KO
+      gruppo Stadio 2: grp_0006
+      GSM7869818
+        grezzo (Stadio 1): title: 47625_A2-IL1b,source: Colorectal carcinoma,tissue: Colorectal carcinoma,cell line: HCT116,cell type: Epithelial cells,genotype: NDUFA4 KO,treatment: IL1b
+        H5 titolo        : 47625_A2-IL1b
+        H5 caratteristiche: tissue: Colorectal carcinoma,cell line: HCT116,cell type: Epithelial cells,genotype: NDUFA4 KO,treatment: IL1b
+        H5 sorgente      : Colorectal carcinoma
+      GSM7869820
+        grezzo (Stadio 1): title: 47627_B2-IL1b,source: Colorectal carcinoma,tissue: Colorectal carcinoma,cell line: HCT116,cell type: Epithelial cells,genotype: NDUFA4 KO,treatment: IL1b
+        H5 titolo        : 47627_B2-IL1b
+        H5 caratteristiche: tissue: Colorectal carcinoma,cell line: HCT116,cell type: Epithelial cells,genotype: NDUFA4 KO,treatment: IL1b
+        H5 sorgente      : Colorectal carcinoma
+  CONTROLLO  (n=2)  etichetta Stadio 2: NDUFA4 KO
+      gruppo Stadio 2: grp_0001
+      GSM7869817
+        grezzo (Stadio 1): title: 47624_A2,source: Colorectal carcinoma,tissue: Colorectal carcinoma,cell line: HCT116,cell type: Epithelial cells,genotype: NDUFA4 KO,treatment: none
+        H5 titolo        : 47624_A2
+        H5 caratteristiche: tissue: Colorectal carcinoma,cell line: HCT116,cell type: Epithelial cells,genotype: NDUFA4 KO,treatment: none
+        H5 sorgente      : Colorectal carcinoma
+      GSM7869819
+        grezzo (Stadio 1): title: 47626_B2,source: Colorectal carcinoma,tissue: Colorectal carcinoma,cell line: HCT116,cell type: Epithelial cells,genotype: NDUFA4 KO,treatment: none
+        H5 titolo        : 47626_B2
+        H5 caratteristiche: tissue: Colorectal carcinoma,cell line: HCT116,cell type: Epithelial cells,genotype: NDUFA4 KO,treatment: none
+        H5 sorgente      : Colorectal carcinoma
+
+CONFRONTO  GSE72460__GSE72460__grp_0001_vs_grp_0002__1
+  studio: GSE72460
+  TRATTATO  (n=3)  etichetta Stadio 2: IL-1β stimulated ILC2
+      gruppo Stadio 2: grp_0001
+      GSM1862901
+        grezzo (Stadio 1): title: ILC2 cultured with IL-1b #1,source: peripheral blood, ex vivo culture,donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: additionally cultured with IL-1b (10 ng/ml)
+        H5 titolo        : ILC2 cultured with IL-1b #1
+        H5 caratteristiche: donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: additionally cultured with IL-1b (10 ng/ml)
+        H5 sorgente      : peripheral blood, ex vivo culture
+      GSM1862902
+        grezzo (Stadio 1): title: ILC2 cultured with IL-1b #2,source: peripheral blood, ex vivo culture,donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: additionally cultured with IL-1b (10 ng/ml)
+        H5 titolo        : ILC2 cultured with IL-1b #2
+        H5 caratteristiche: donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: additionally cultured with IL-1b (10 ng/ml)
+        H5 sorgente      : peripheral blood, ex vivo culture
+      GSM1862903
+        grezzo (Stadio 1): title: ILC2 cultured with IL-1b #3,source: peripheral blood, ex vivo culture,donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: additionally cultured with IL-1b (10 ng/ml)
+        H5 titolo        : ILC2 cultured with IL-1b #3
+        H5 caratteristiche: donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: additionally cultured with IL-1b (10 ng/ml)
+        H5 sorgente      : peripheral blood, ex vivo culture
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated ILC2
+      gruppo Stadio 2: grp_0002
+      GSM1862898
+        grezzo (Stadio 1): title: freshly isolated ILC2s #1,source: peripheral blood,donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: freshly isolated
+        H5 titolo        : freshly isolated ILC2s #1
+        H5 caratteristiche: donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: freshly isolated
+        H5 sorgente      : peripheral blood
+      GSM1862899
+        grezzo (Stadio 1): title: freshly isolated ILC2s #2,source: peripheral blood,donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: freshly isolated
+        H5 titolo        : freshly isolated ILC2s #2
+        H5 caratteristiche: donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: freshly isolated
+        H5 sorgente      : peripheral blood
+      GSM1862900
+        grezzo (Stadio 1): title: freshly isolated ILC2s #3,source: peripheral blood,donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: freshly isolated
+        H5 titolo        : freshly isolated ILC2s #3
+        H5 caratteristiche: donor type: healthy donor,tissue: peripheral blood,cell type: innate lymphoid cells (ILC2),culture type: freshly isolated
+        H5 sorgente      : peripheral blood
+
+CONFRONTO  GSE74220__GSE74220__grp_0001_vs_grp_0002__1
+  studio: GSE74220
+  TRATTATO  (n=3)  etichetta Stadio 2: IL-1beta stimulated chondrocytes
+      gruppo Stadio 2: grp_0001
+      GSM1914780
+        grezzo (Stadio 1): title: IL1b 1,source: Chondrocyte cells,tissue: Cartilage,passage: P0,treatment: 4h IL-1beta
+        H5 titolo        : IL1b 1
+        H5 caratteristiche: tissue: Cartilage,passage: P0,treatment: 4h IL-1beta
+        H5 sorgente      : Chondrocyte cells
+      GSM1914781
+        grezzo (Stadio 1): title: IL1b 2,source: Chondrocyte cells,tissue: Cartilage,passage: P0,treatment: 4h IL-1beta
+        H5 titolo        : IL1b 2
+        H5 caratteristiche: tissue: Cartilage,passage: P0,treatment: 4h IL-1beta
+        H5 sorgente      : Chondrocyte cells
+      GSM1914782
+        grezzo (Stadio 1): title: IL1b 3,source: Chondrocyte cells,tissue: Cartilage,passage: P0,treatment: 4h IL-1beta
+        H5 titolo        : IL1b 3
+        H5 caratteristiche: tissue: Cartilage,passage: P0,treatment: 4h IL-1beta
+        H5 sorgente      : Chondrocyte cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle-only control chondrocytes
+      gruppo Stadio 2: grp_0002
+      GSM1914777
+        grezzo (Stadio 1): title: Control 1,source: Chondrocyte cells,tissue: Cartilage,passage: P0,treatment: No stimulation
+        H5 titolo        : Control 1
+        H5 caratteristiche: tissue: Cartilage,passage: P0,treatment: No stimulation
+        H5 sorgente      : Chondrocyte cells
+      GSM1914778
+        grezzo (Stadio 1): title: Control 2,source: Chondrocyte cells,tissue: Cartilage,passage: P0,treatment: No stimulation
+        H5 titolo        : Control 2
+        H5 caratteristiche: tissue: Cartilage,passage: P0,treatment: No stimulation
+        H5 sorgente      : Chondrocyte cells
+      GSM1914779
+        grezzo (Stadio 1): title: Control 3,source: Chondrocyte cells,tissue: Cartilage,passage: P0,treatment: No stimulation
+        H5 titolo        : Control 3
+        H5 caratteristiche: tissue: Cartilage,passage: P0,treatment: No stimulation
+        H5 sorgente      : Chondrocyte cells
+
+CONFRONTO  GSE97619__GSE97619__grp_primary_astro_il1beta_vs_grp_primary_astro_untreated__1
+  studio: GSE97619
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary Astrocytes IL1beta
+      gruppo Stadio 2: grp_primary_astro_il1beta
+      GSM2573297
+        grezzo (Stadio 1): title: PrimaryAstrocytes_activated_rep1,source: cerebellum,cell type: primary astrocytes,age: fetal,treatment: Il1beta
+        H5 titolo        : PrimaryAstrocytes_activated_rep1
+        H5 caratteristiche: cell type: primary astrocytes,age: fetal,treatment: Il1beta
+        H5 sorgente      : cerebellum
+      GSM2573298
+        grezzo (Stadio 1): title: PrimaryAstrocytes_activated_rep2,source: cerebellum,cell type: primary astrocytes,age: fetal,treatment: Il1beta
+        H5 titolo        : PrimaryAstrocytes_activated_rep2
+        H5 caratteristiche: cell type: primary astrocytes,age: fetal,treatment: Il1beta
+        H5 sorgente      : cerebellum
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary Astrocytes Untreated
+      gruppo Stadio 2: grp_primary_astro_untreated
+      GSM2573299
+        grezzo (Stadio 1): title: PrimaryAstrocytes_non_activated_rep1,source: cerebellum,cell type: primary astrocytes,age: fetal,treatment: none
+        H5 titolo        : PrimaryAstrocytes_non_activated_rep1
+        H5 caratteristiche: cell type: primary astrocytes,age: fetal,treatment: none
+        H5 sorgente      : cerebellum
+      GSM2573300
+        grezzo (Stadio 1): title: PrimaryAstrocytes_non_activated_rep2,source: cerebellum,cell type: primary astrocytes,age: fetal,treatment: none
+        H5 titolo        : PrimaryAstrocytes_non_activated_rep2
+        H5 caratteristiche: cell type: primary astrocytes,age: fetal,treatment: none
+        H5 sorgente      : cerebellum
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE101868     campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE105088     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE120784     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 20 campioni distinti (20 righe: i controlli servono piu' confronti)
+  GSE126750     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE134896     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE142620     campioni nell'H5:   36 | collocati dallo Stadio 2:   36 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 27 campioni distinti (27 righe: i controlli servono piu' confronti)
+  GSE155141     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE161916     campioni nell'H5:   27 | collocati dallo Stadio 2:   27 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE162691     campioni nell'H5:   36 | collocati dallo Stadio 2:   36 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE171652     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE189136     campioni nell'H5:   19 | collocati dallo Stadio 2:   19 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE196195     campioni nell'H5:   11 | collocati dallo Stadio 2:   11 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE205851     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE215039     campioni nell'H5:   40 | collocati dallo Stadio 2:   40 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE243421     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE246493     campioni nell'H5:   11 | collocati dallo Stadio 2:   11 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE72460      campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE74220      campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE97619      campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,283 @@
+META-ANALISI 068 di 194
+==============================================================================
+nome            : vemurafenib
+entita (ID)     : CHEBI:63637
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_03b38818
+studi poolati   : 5   confronti: 5   campioni: 43
+geni significativi: 2348   I2 mediano: 89.2
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE145990__GSE145990__Vemurafenib_vs_DMSO__1
+  studio: GSE145990
+  TRATTATO  (n=2)  etichetta Stadio 2: Vemurafenib
+      gruppo Stadio 2: grp_0008
+      GSM4344479
+        grezzo (Stadio 1): title: RV2: Vemurafenib_1,source: Human Melanoma Cells,tissue: Human Melanoma Cells,cell line: M229R
+        H5 titolo        : RV2: Vemurafenib_1
+        H5 caratteristiche: tissue: Human Melanoma Cells,cell line: M229R
+        H5 sorgente      : Human Melanoma Cells
+      GSM4344482
+        grezzo (Stadio 1): title: RV4: Vemurafenib_3,source: Human Melanoma Cells,tissue: Human Melanoma Cells,cell line: M229R
+        H5 titolo        : RV4: Vemurafenib_3
+        H5 caratteristiche: tissue: Human Melanoma Cells,cell line: M229R
+        H5 sorgente      : Human Melanoma Cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_0003
+      GSM4344476
+        grezzo (Stadio 1): title: RD2: DMSO_1,source: Human Melanoma Cells,tissue: Human Melanoma Cells,cell line: M229R
+        H5 titolo        : RD2: DMSO_1
+        H5 caratteristiche: tissue: Human Melanoma Cells,cell line: M229R
+        H5 sorgente      : Human Melanoma Cells
+      GSM4344477
+        grezzo (Stadio 1): title: RD3: DMSO_2,source: Human Melanoma Cells,tissue: Human Melanoma Cells,cell line: M229R
+        H5 titolo        : RD3: DMSO_2
+        H5 caratteristiche: tissue: Human Melanoma Cells,cell line: M229R
+        H5 sorgente      : Human Melanoma Cells
+      GSM4344478
+        grezzo (Stadio 1): title: RD4: DMSO_3,source: Human Melanoma Cells,tissue: Human Melanoma Cells,cell line: M229R
+        H5 titolo        : RD4: DMSO_3
+        H5 caratteristiche: tissue: Human Melanoma Cells,cell line: M229R
+        H5 sorgente      : Human Melanoma Cells
+
+CONFRONTO  GSE152699__GSE152699__A375s_Vemurafenib_vs_A375s_untreated__1
+  studio: GSE152699
+  TRATTATO  (n=3)  etichetta Stadio 2: A375s Vemurafenib
+      gruppo Stadio 2: grp_A375s_Vemurafenib
+      GSM4624030
+        grezzo (Stadio 1): title: Melanoma, Verafinib, A20-1_S31,source: Melanoma, Verafinib,cell line: A375s,genotype: BRAFV600E,treatment: 2 ÂµM Verafinib for 20 days
+        H5 titolo        : Melanoma, Verafinib, A20-1_S31
+        H5 caratteristiche: cell line: A375s,genotype: BRAFV600E,treatment: 2 ÂµM Verafinib for 20 days
+        H5 sorgente      : Melanoma, Verafinib
+      GSM4624031
+        grezzo (Stadio 1): title: Melanoma, Verafinib, A20-2_S32,source: Melanoma, Verafinib,cell line: A375s,genotype: BRAFV600E,treatment: 2 ÂµM Verafinib for 20 days
+        H5 titolo        : Melanoma, Verafinib, A20-2_S32
+        H5 caratteristiche: cell line: A375s,genotype: BRAFV600E,treatment: 2 ÂµM Verafinib for 20 days
+        H5 sorgente      : Melanoma, Verafinib
+      GSM4624032
+        grezzo (Stadio 1): title: Melanoma, Verafinib, A20-3_S33,source: Melanoma, Verafinib,cell line: A375s,genotype: BRAFV600E,treatment: 2 ÂµM Verafinib for 20 days
+        H5 titolo        : Melanoma, Verafinib, A20-3_S33
+        H5 caratteristiche: cell line: A375s,genotype: BRAFV600E,treatment: 2 ÂµM Verafinib for 20 days
+        H5 sorgente      : Melanoma, Verafinib
+  CONTROLLO  (n=3)  etichetta Stadio 2: A375s untreated
+      gruppo Stadio 2: grp_A375s_untreated
+      GSM4624027
+        grezzo (Stadio 1): title: Melanoma, untreated, A0-2_S28,source: Melanoma, untreated,cell line: A375s,genotype: BRAFV600E,treatment: untreated
+        H5 titolo        : Melanoma, untreated, A0-2_S28
+        H5 caratteristiche: cell line: A375s,genotype: BRAFV600E,treatment: untreated
+        H5 sorgente      : Melanoma, untreated
+      GSM4624028
+        grezzo (Stadio 1): title: Melanoma, untreated, A0-3_S29,source: Melanoma, untreated,cell line: A375s,genotype: BRAFV600E,treatment: untreated
+        H5 titolo        : Melanoma, untreated, A0-3_S29
+        H5 caratteristiche: cell line: A375s,genotype: BRAFV600E,treatment: untreated
+        H5 sorgente      : Melanoma, untreated
+      GSM4624029
+        grezzo (Stadio 1): title: Melanoma, untreated, A0-4_S30,source: Melanoma, untreated,cell line: A375s,genotype: BRAFV600E,treatment: untreated
+        H5 titolo        : Melanoma, untreated, A0-4_S30
+        H5 caratteristiche: cell line: A375s,genotype: BRAFV600E,treatment: untreated
+        H5 sorgente      : Melanoma, untreated
+
+CONFRONTO  GSE188469__GSE188469__grp_0022_vs_grp_0021__1
+  studio: GSE188469
+  TRATTATO  (n=2)  etichetta Stadio 2: MaMel63a, Vemurafenib, 24h
+      gruppo Stadio 2: grp_0022
+      GSM5683486
+        grezzo (Stadio 1): title: MaMel63a - PLX4032-treated (24 h) - rep 1,source: malignant melanoma,cell line: MaMel63a,cell type: human malignant melanoma,tissue: skin metastasis,tumor stage: stage IV,gender: female,genotype: BRAF V600E-positive,treatment: vemurafenib (PLX4032) for 24 hours
+        H5 titolo        : MaMel63a - PLX4032-treated (24 h) - rep 1
+        H5 caratteristiche: cell line: MaMel63a,cell type: human malignant melanoma,tissue: skin metastasis,tumor stage: stage IV,gender: female,genotype: BRAF V600E-positive,treatment: vemurafenib (PLX4032) for 24 hours
+        H5 sorgente      : malignant melanoma
+      GSM5683487
+        grezzo (Stadio 1): title: MaMel63a - PLX4032-treated (24 h) - rep 2,source: malignant melanoma,cell line: MaMel63a,cell type: human malignant melanoma,tissue: skin metastasis,tumor stage: stage IV,gender: female,genotype: BRAF V600E-positive,treatment: vemurafenib (PLX4032) for 24 hours
+        H5 titolo        : MaMel63a - PLX4032-treated (24 h) - rep 2
+        H5 caratteristiche: cell line: MaMel63a,cell type: human malignant melanoma,tissue: skin metastasis,tumor stage: stage IV,gender: female,genotype: BRAF V600E-positive,treatment: vemurafenib (PLX4032) for 24 hours
+        H5 sorgente      : malignant melanoma
+  CONTROLLO  (n=2)  etichetta Stadio 2: MaMel63a, DMSO, 24h
+      gruppo Stadio 2: grp_0021
+      GSM5683470
+        grezzo (Stadio 1): title: MaMel63a - DMSO-treated (24 h) - rep 1,source: malignant melanoma,cell line: MaMel63a,cell type: human malignant melanoma,tissue: skin metastasis,tumor stage: stage IV,gender: female,genotype: BRAF V600E-positive,treatment: DMSO (control) for 24 hours
+        H5 titolo        : MaMel63a - DMSO-treated (24 h) - rep 1
+        H5 caratteristiche: cell line: MaMel63a,cell type: human malignant melanoma,tissue: skin metastasis,tumor stage: stage IV,gender: female,genotype: BRAF V600E-positive,treatment: DMSO (control) for 24 hours
+        H5 sorgente      : malignant melanoma
+      GSM5683471
+        grezzo (Stadio 1): title: MaMel63a - DMSO-treated (24 h) - rep 2,source: malignant melanoma,cell line: MaMel63a,cell type: human malignant melanoma,tissue: skin metastasis,tumor stage: stage IV,gender: female,genotype: BRAF V600E-positive,treatment: DMSO (control) for 24 hours
+        H5 titolo        : MaMel63a - DMSO-treated (24 h) - rep 2
+        H5 caratteristiche: cell line: MaMel63a,cell type: human malignant melanoma,tissue: skin metastasis,tumor stage: stage IV,gender: female,genotype: BRAF V600E-positive,treatment: DMSO (control) for 24 hours
+        H5 sorgente      : malignant melanoma
+
+CONFRONTO  GSE209769__GSE209769__grp_0001_vs_grp_0002__1
+  studio: GSE209769
+  TRATTATO  (n=2)  etichetta Stadio 2: A375 cells treated with vemurafenib
+      gruppo Stadio 2: grp_0001
+      GSM6395048
+        grezzo (Stadio 1): title: A375Vem rep2,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Vemurafenib
+        H5 titolo        : A375Vem rep2
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Vemurafenib
+        H5 sorgente      : skin
+      GSM6395049
+        grezzo (Stadio 1): title: A375Vem rep3,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Vemurafenib
+        H5 titolo        : A375Vem rep3
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Vemurafenib
+        H5 sorgente      : skin
+  CONTROLLO  (n=3)  etichetta Stadio 2: A375 cells with normal culture
+      gruppo Stadio 2: grp_0002
+      GSM6395044
+        grezzo (Stadio 1): title: A375NC rep1,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 titolo        : A375NC rep1
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 sorgente      : skin
+      GSM6395045
+        grezzo (Stadio 1): title: A375NC rep2,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 titolo        : A375NC rep2
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 sorgente      : skin
+      GSM6395046
+        grezzo (Stadio 1): title: A375NC rep3,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 titolo        : A375NC rep3
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 sorgente      : skin
+
+CONFRONTO  GSE217423__GSE217423__Vemurafenib_vs_DMSO__1
+  studio: GSE217423
+  TRATTATO  (n=7)  etichetta Stadio 2: Cardiac myocytes treated with Vemurafenib
+      gruppo Stadio 2: mg4
+      GSM6718611
+        grezzo (Stadio 1): title: VEM MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: A22,investigative unit: 116,sample id: 36,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 184,rna volume (ul): 1.086957,h2o volume (ul): 18.913043
+        H5 titolo        : VEM MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: A22,investigative unit: 116,sample id: 36,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 184,rna volume (ul): 1.086957,h2o volume (ul): 18.913043
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718612
+        grezzo (Stadio 1): title: VEM MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: E1,investigative unit: 119,sample id: 36,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 60.8,rna volume (ul): 3.289474,h2o volume (ul): 16.710526
+        H5 titolo        : VEM MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: E1,investigative unit: 119,sample id: 36,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 60.8,rna volume (ul): 3.289474,h2o volume (ul): 16.710526
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718614
+        grezzo (Stadio 1): title: VEM MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: N6,investigative unit: 132,sample id: 36,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 titolo        : VEM MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: N6,investigative unit: 132,sample id: 36,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718615
+        grezzo (Stadio 1): title: VEM MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: C14,investigative unit: 118,sample id: 11,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 44,rna volume (ul): 4.545455,h2o volume (ul): 15.454545
+        H5 titolo        : VEM MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: C14,investigative unit: 118,sample id: 11,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 44,rna volume (ul): 4.545455,h2o volume (ul): 15.454545
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718616
+        grezzo (Stadio 1): title: VEM MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: G20,investigative unit: 124,sample id: 36,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 56.2,rna volume (ul): 3.558719,h2o volume (ul): 16.441281
+        H5 titolo        : VEM MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: G20,investigative unit: 124,sample id: 36,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 56.2,rna volume (ul): 3.558719,h2o volume (ul): 16.441281
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718617
+        grezzo (Stadio 1): title: VEM MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: K1,investigative unit: 129,sample id: 36,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 55.4,rna volume (ul): 3.610108,h2o volume (ul): 16.389892
+        H5 titolo        : VEM MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: K1,investigative unit: 129,sample id: 36,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 55.4,rna volume (ul): 3.610108,h2o volume (ul): 16.389892
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718618
+        grezzo (Stadio 1): title: VEM MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: L19,investigative unit: 130,sample id: 36,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 79.8,rna volume (ul): 2.506266,h2o volume (ul): 17.493734
+        H5 titolo        : VEM MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: VEM,drug name: Vemurafenib,concentration: 2uM,well: L19,investigative unit: 130,sample id: 36,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 79.8,rna volume (ul): 2.506266,h2o volume (ul): 17.493734
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=16)  etichetta Stadio 2: Cardiac myocytes treated with DMSO
+      gruppo Stadio 2: mg1
+      GSM6718347
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 titolo        : CTRL MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718348
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 titolo        : CTRL MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718349
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 titolo        : CTRL MSN02-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718350
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718351
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 titolo        : CTRL MSN02-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718352
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 titolo        : CTRL MSN02-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718353
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 titolo        : CTRL MSN02-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718354
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 titolo        : CTRL MSN02-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718355
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 titolo        : CTRL MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718356
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 titolo        : CTRL MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718357
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 titolo        : CTRL MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718358
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 titolo        : CTRL MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718359
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 titolo        : CTRL MSN09-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718360
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 titolo        : CTRL MSN09-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718361
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 titolo        : CTRL MSN09-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718362
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 titolo        : CTRL MSN09-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 sorgente      : induced pluripotent stem cell
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE145990     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE152699     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE188469     campioni nell'H5:   52 | collocati dallo Stadio 2:   52 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE209769     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE217423     campioni nell'H5:  344 | collocati dallo Stadio 2:  264 | MAI COLLOCATI:   80 | usati in questa meta-analisi: 23 campioni distinti (23 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6718283, GSM6718285, GSM6718287, GSM6718288, GSM6718289, GSM6718290, GSM6718299, GSM6718306, GSM6718317, GSM6718324, GSM6718325, GSM6718326 ... (+68)
+

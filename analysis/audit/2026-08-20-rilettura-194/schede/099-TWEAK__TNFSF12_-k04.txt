@@ -1,0 +1,271 @@
+META-ANALISI 099 di 194
+==============================================================================
+nome            : TWEAK (TNFSF12)
+entita (ID)     : HGNC:11927
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_828ae0cb
+studi poolati   : 4   confronti: 7   campioni: 38
+geni significativi: 1437   I2 mediano: 74.3
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE171170__GSE171170__TWEAK_vs_PBS__2
+  studio: GSE171170
+  TRATTATO  (n=2)  etichetta Stadio 2: TWEAK (100 ng/ml)
+      gruppo Stadio 2: grp_0007
+      GSM5220265
+        grezzo (Stadio 1): title: 5_TW2_5,source: Skin Keratinocyte_TWEAK stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TWEAK (100ng/ml) stimulated
+        H5 titolo        : 5_TW2_5
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TWEAK (100ng/ml) stimulated
+        H5 sorgente      : Skin Keratinocyte_TWEAK stimulated
+      GSM5220266
+        grezzo (Stadio 1): title: 6_TW3_6,source: Skin Keratinocyte_TWEAK stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TWEAK (100ng/ml) stimulated
+        H5 titolo        : 6_TW3_6
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TWEAK (100ng/ml) stimulated
+        H5 sorgente      : Skin Keratinocyte_TWEAK stimulated
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0004
+      GSM5220261
+        grezzo (Stadio 1): title: 1_C1_1,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 1_C1_1
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+      GSM5220262
+        grezzo (Stadio 1): title: 2_C2_2,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 2_C2_2
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+      GSM5220263
+        grezzo (Stadio 1): title: 3_C3_3,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 3_C3_3
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+
+CONFRONTO  GSE214503__GSE214503__TWEAK_vs_PBS__1
+  studio: GSE214503
+  TRATTATO  (n=3)  etichetta Stadio 2: TWEAK
+      gruppo Stadio 2: grp_0002
+      GSM6607401
+        grezzo (Stadio 1): title: TW1,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml TWEAK stimulation, 24 hr
+        H5 titolo        : TW1
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml TWEAK stimulation, 24 hr
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607402
+        grezzo (Stadio 1): title: TW2,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml TWEAK stimulation, 24 hr
+        H5 titolo        : TW2
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml TWEAK stimulation, 24 hr
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607403
+        grezzo (Stadio 1): title: TW3,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml TWEAK stimulation, 24 hr
+        H5 titolo        : TW3
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml TWEAK stimulation, 24 hr
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0001
+      GSM6607392
+        grezzo (Stadio 1): title: PBS_1,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_1
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607393
+        grezzo (Stadio 1): title: PBS_2,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_2
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607394
+        grezzo (Stadio 1): title: PBS_3,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_3
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+
+CONFRONTO  GSE231480__GSE231480__grp_CAMA1_TWEAK_vs_grp_CAMA1_Untreated__1
+  studio: GSE231480
+  TRATTATO  (n=3)  etichetta Stadio 2: CAMA1 TWEAK
+      gruppo Stadio 2: grp_CAMA1_TWEAK
+      GSM7286633
+        grezzo (Stadio 1): title: CAMA1_TWEAK_RNA-seq_rep1,source: Breast,tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : CAMA1_TWEAK_RNA-seq_rep1
+        H5 caratteristiche: tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7286634
+        grezzo (Stadio 1): title: CAMA1_TWEAK_RNA-seq_rep2,source: Breast,tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : CAMA1_TWEAK_RNA-seq_rep2
+        H5 caratteristiche: tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7286635
+        grezzo (Stadio 1): title: CAMA1_TWEAK_RNA-seq_rep3,source: Breast,tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : CAMA1_TWEAK_RNA-seq_rep3
+        H5 caratteristiche: tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+  CONTROLLO  (n=2)  etichetta Stadio 2: CAMA1 Untreated
+      gruppo Stadio 2: grp_CAMA1_Untreated
+      GSM7286630
+        grezzo (Stadio 1): title: CAMA1_UT_RNA-seq_rep1,source: Breast,tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : CAMA1_UT_RNA-seq_rep1
+        H5 caratteristiche: tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+      GSM7286632
+        grezzo (Stadio 1): title: CAMA1_UT_RNA-seq_rep3,source: Breast,tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : CAMA1_UT_RNA-seq_rep3
+        H5 caratteristiche: tissue: Breast,cell line: CAMA1,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+
+CONFRONTO  GSE231480__GSE231480__grp_Hs578T_TWEAK_vs_grp_Hs578T_Untreated__1
+  studio: GSE231480
+  TRATTATO  (n=2)  etichetta Stadio 2: Hs578T TWEAK
+      gruppo Stadio 2: grp_Hs578T_TWEAK
+      GSM7286622
+        grezzo (Stadio 1): title: Hs578T_TWEAK_RNA-seq_rep2,source: Breast,tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : Hs578T_TWEAK_RNA-seq_rep2
+        H5 caratteristiche: tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7286623
+        grezzo (Stadio 1): title: Hs578T_TWEAK_RNA-seq_rep3,source: Breast,tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : Hs578T_TWEAK_RNA-seq_rep3
+        H5 caratteristiche: tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+  CONTROLLO  (n=3)  etichetta Stadio 2: Hs578T Untreated
+      gruppo Stadio 2: grp_Hs578T_Untreated
+      GSM7286618
+        grezzo (Stadio 1): title: Hs578T_UT_RNA-seq_rep1,source: Breast,tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : Hs578T_UT_RNA-seq_rep1
+        H5 caratteristiche: tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+      GSM7286619
+        grezzo (Stadio 1): title: Hs578T_UT_RNA-seq_rep2,source: Breast,tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : Hs578T_UT_RNA-seq_rep2
+        H5 caratteristiche: tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+      GSM7286620
+        grezzo (Stadio 1): title: Hs578T_UT_RNA-seq_rep3,source: Breast,tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : Hs578T_UT_RNA-seq_rep3
+        H5 caratteristiche: tissue: Breast,cell line: Hs578T,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+
+CONFRONTO  GSE231480__GSE231480__grp_MCF7_TWEAK_vs_grp_MCF7_Untreated__1
+  studio: GSE231480
+  TRATTATO  (n=3)  etichetta Stadio 2: MCF7 TWEAK
+      gruppo Stadio 2: grp_MCF7_TWEAK
+      GSM7286627
+        grezzo (Stadio 1): title: MCF7_TWEAK_RNA-seq_rep1,source: Breast,tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : MCF7_TWEAK_RNA-seq_rep1
+        H5 caratteristiche: tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7286628
+        grezzo (Stadio 1): title: MCF7_TWEAK_RNA-seq_rep2,source: Breast,tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : MCF7_TWEAK_RNA-seq_rep2
+        H5 caratteristiche: tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7286629
+        grezzo (Stadio 1): title: MCF7_TWEAK_RNA-seq_rep3,source: Breast,tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : MCF7_TWEAK_RNA-seq_rep3
+        H5 caratteristiche: tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+  CONTROLLO  (n=3)  etichetta Stadio 2: MCF7 Untreated
+      gruppo Stadio 2: grp_MCF7_Untreated
+      GSM7286624
+        grezzo (Stadio 1): title: MCF7_UT_RNA-seq_rep1,source: Breast,tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : MCF7_UT_RNA-seq_rep1
+        H5 caratteristiche: tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+      GSM7286625
+        grezzo (Stadio 1): title: MCF7_UT_RNA-seq_rep2,source: Breast,tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : MCF7_UT_RNA-seq_rep2
+        H5 caratteristiche: tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+      GSM7286626
+        grezzo (Stadio 1): title: MCF7_UT_RNA-seq_rep3,source: Breast,tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : MCF7_UT_RNA-seq_rep3
+        H5 caratteristiche: tissue: Breast,cell line: MCF7,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+
+CONFRONTO  GSE251869__GSE251869__MDA-MB-453_TWEAK_vs_Untreated__1
+  studio: GSE251869
+  TRATTATO  (n=3)  etichetta Stadio 2: MDA-MB-453 TWEAK
+      gruppo Stadio 2: grp_0002
+      GSM7989338
+        grezzo (Stadio 1): title: MB453_TWEAK_rep1,source: Breast,tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : MB453_TWEAK_rep1
+        H5 caratteristiche: tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7989339
+        grezzo (Stadio 1): title: MB453_TWEAK_rep2,source: Breast,tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : MB453_TWEAK_rep2
+        H5 caratteristiche: tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7989340
+        grezzo (Stadio 1): title: MB453_TWEAK_rep3,source: Breast,tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : MB453_TWEAK_rep3
+        H5 caratteristiche: tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+  CONTROLLO  (n=2)  etichetta Stadio 2: MDA-MB-453 Untreated
+      gruppo Stadio 2: grp_0001
+      GSM7989335
+        grezzo (Stadio 1): title: MB453_UT_rep1,source: Breast,tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : MB453_UT_rep1
+        H5 caratteristiche: tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+      GSM7989336
+        grezzo (Stadio 1): title: MB453_UT_rep2,source: Breast,tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : MB453_UT_rep2
+        H5 caratteristiche: tissue: Breast,cell line: MDA-MB-453,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+
+CONFRONTO  GSE251869__GSE251869__SKBR3_TWEAK_vs_Untreated__1
+  studio: GSE251869
+  TRATTATO  (n=3)  etichetta Stadio 2: SKBR3 TWEAK
+      gruppo Stadio 2: grp_0004
+      GSM7989332
+        grezzo (Stadio 1): title: SKBR3_TWEAK_rep1,source: Breast,tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : SKBR3_TWEAK_rep1
+        H5 caratteristiche: tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7989333
+        grezzo (Stadio 1): title: SKBR3_TWEAK_rep2,source: Breast,tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : SKBR3_TWEAK_rep2
+        H5 caratteristiche: tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+      GSM7989334
+        grezzo (Stadio 1): title: SKBR3_TWEAK_rep3,source: Breast,tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: TWEAK
+        H5 titolo        : SKBR3_TWEAK_rep3
+        H5 caratteristiche: tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: TWEAK
+        H5 sorgente      : Breast
+  CONTROLLO  (n=3)  etichetta Stadio 2: SKBR3 Untreated
+      gruppo Stadio 2: grp_0005
+      GSM7989329
+        grezzo (Stadio 1): title: SKBR3_UT_rep1,source: Breast,tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : SKBR3_UT_rep1
+        H5 caratteristiche: tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+      GSM7989330
+        grezzo (Stadio 1): title: SKBR3_UT_rep2,source: Breast,tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : SKBR3_UT_rep2
+        H5 caratteristiche: tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+      GSM7989331
+        grezzo (Stadio 1): title: SKBR3_UT_rep3,source: Breast,tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: Untreated
+        H5 titolo        : SKBR3_UT_rep3
+        H5 caratteristiche: tissue: Breast,cell line: SKBR3,cell type: Breast Cancer,treatment: Untreated
+        H5 sorgente      : Breast
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE171170     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE214503     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE231480     campioni nell'H5:   23 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    5 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+      mai collocati: GSM7286612, GSM7286614, GSM7286616, GSM7286617, GSM7286631
+  GSE251869     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+

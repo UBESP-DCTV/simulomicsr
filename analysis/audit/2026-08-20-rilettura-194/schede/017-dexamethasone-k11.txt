@@ -1,0 +1,604 @@
+META-ANALISI 017 di 194
+==============================================================================
+nome            : dexamethasone
+entita (ID)     : CHEBI:41879
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_eb5e1e65
+studi poolati   : 11   confronti: 17   campioni: 89
+geni significativi: 609   I2 mediano: 80.7
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE179347__GSE179347__HMCL7304_EMEM_vs_HMCL7304_DEXAMETHASONE__1
+  studio: GSE179347
+  TRATTATO  (n=3)  etichetta Stadio 2: HMCL-7304 cells treated with DEXAMETHASONE
+      gruppo Stadio 2: mg71
+      GSM5415929
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 treated with DEXAMETHASONE at 1uM concentration K_08_01,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 titolo        : RNA-Seq of  HMCL-7304 treated with DEXAMETHASONE at 1uM concentration K_08_01
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 sorgente      : muscle skeletal
+      GSM5415930
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 treated with DEXAMETHASONE at 1uM concentration K_08_02,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 titolo        : RNA-Seq of  HMCL-7304 treated with DEXAMETHASONE at 1uM concentration K_08_02
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 sorgente      : muscle skeletal
+      GSM5415931
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 treated with DEXAMETHASONE at 1uM concentration K_08_03,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 titolo        : RNA-Seq of  HMCL-7304 treated with DEXAMETHASONE at 1uM concentration K_08_03
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 sorgente      : muscle skeletal
+  CONTROLLO  (n=2)  etichetta Stadio 2: HMCL-7304 CONTROL (EMPTY EMEM MEDIUM)
+      gruppo Stadio 2: mg4
+      GSM5415910
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 CONTROL K_01_03,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 1,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  HMCL-7304 CONTROL K_01_03
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 1,treatment_concentration: N/A
+        H5 sorgente      : muscle skeletal
+      GSM5415980
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 CONTROL K_25_01,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  HMCL-7304 CONTROL K_25_01
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : muscle skeletal
+
+CONFRONTO  GSE179347__GSE179347__SGBS_EMEM_vs_SGBS_DEXAMETHASONE__1
+  studio: GSE179347
+  TRATTATO  (n=2)  etichetta Stadio 2: SGBS cells treated with DEXAMETHASONE
+      gruppo Stadio 2: mg91
+      GSM5415853
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with DEXAMETHASONE at 1uM concentration B_8_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 titolo        : RNA-Seq of  SGBS treated with DEXAMETHASONE at 1uM concentration B_8_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 sorgente      : adipose
+      GSM5415854
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with DEXAMETHASONE at 1uM concentration B_8_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 titolo        : RNA-Seq of  SGBS treated with DEXAMETHASONE at 1uM concentration B_8_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: DEXAMETHASONE,treatment_concentration: 1uM
+        H5 sorgente      : adipose
+  CONTROLLO  (n=9)  etichetta Stadio 2: SGBS CONTROL (EMPTY EMEM MEDIUM)
+      gruppo Stadio 2: mg8
+      GSM5415855
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415856
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415857
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415878
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415879
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415880
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415902
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415903
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415904
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+
+CONFRONTO  GSE198683__GSE198683__grp_0004_vs_grp_0001__1
+  studio: GSE198683
+  TRATTATO  (n=2)  etichetta Stadio 2: Dexamethasone (DonorID 3)
+      gruppo Stadio 2: grp_0004
+      GSM5954980
+        grezzo (Stadio 1): title: hAECs, Donor 3 - Dexamethasone,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 3,dexamethasone: Yes,il-17: No
+        H5 titolo        : hAECs, Donor 3 - Dexamethasone
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 3,dexamethasone: Yes,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+      GSM5954984
+        grezzo (Stadio 1): title: hAECs, Donor 4 - Dexamethasone,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 4,dexamethasone: Yes,il-17: No
+        H5 titolo        : hAECs, Donor 4 - Dexamethasone
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 4,dexamethasone: Yes,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control (DonorID 1)
+      gruppo Stadio 2: grp_0001
+      GSM5954969
+        grezzo (Stadio 1): title: hAECs, Donor 1 - Control,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 1,dexamethasone: No,il-17: No
+        H5 titolo        : hAECs, Donor 1 - Control
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 1,dexamethasone: No,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+      GSM5954973
+        grezzo (Stadio 1): title: hAECs, Donor 2 - Control,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 2,dexamethasone: No,il-17: No
+        H5 titolo        : hAECs, Donor 2 - Control
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 2,dexamethasone: No,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+      GSM5954977
+        grezzo (Stadio 1): title: hAECs, Donor 3 - Control,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 3,dexamethasone: No,il-17: No
+        H5 titolo        : hAECs, Donor 3 - Control
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 3,dexamethasone: No,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+      GSM5954981
+        grezzo (Stadio 1): title: hAECs, Donor 4 - Control,source: primary human airway epithelial cells (hAECs),cell type: primary human airway epithelial cells (hAECs),individual: DonorID 4,dexamethasone: No,il-17: No
+        H5 titolo        : hAECs, Donor 4 - Control
+        H5 caratteristiche: cell type: primary human airway epithelial cells (hAECs),individual: DonorID 4,dexamethasone: No,il-17: No
+        H5 sorgente      : primary human airway epithelial cells (hAECs)
+
+CONFRONTO  GSE205890__GSE205890__H1_Dexamethasone_vs_H1_DMSO__1
+  studio: GSE205890
+  TRATTATO  (n=3)  etichetta Stadio 2: H1_Dexamethasone
+      gruppo Stadio 2: grp_0003
+      GSM6234940
+        grezzo (Stadio 1): title: D1-28,source: Dex treated neural culture 1,tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour 1ÂµM Dexamethasone
+        H5 titolo        : D1-28
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour 1ÂµM Dexamethasone
+        H5 sorgente      : Dex treated neural culture 1
+      GSM6234941
+        grezzo (Stadio 1): title: D2-29,source: Dex treated neural culture 2,tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour 1ÂµM Dexamethasone
+        H5 titolo        : D2-29
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour 1ÂµM Dexamethasone
+        H5 sorgente      : Dex treated neural culture 2
+      GSM6234942
+        grezzo (Stadio 1): title: D3-30,source: Dex treated neural culture 3,tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour 1ÂµM Dexamethasone
+        H5 titolo        : D3-30
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour 1ÂµM Dexamethasone
+        H5 sorgente      : Dex treated neural culture 3
+  CONTROLLO  (n=2)  etichetta Stadio 2: H1_DMSO
+      gruppo Stadio 2: grp_0001
+      GSM6234937
+        grezzo (Stadio 1): title: C1-25,source: Vehicle treated neural culture 1,tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour DMSO
+        H5 titolo        : C1-25
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour DMSO
+        H5 sorgente      : Vehicle treated neural culture 1
+      GSM6234938
+        grezzo (Stadio 1): title: C2-26,source: Vehicle treated neural culture 2,tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour DMSO
+        H5 titolo        : C2-26
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H1,condition: 6 hour DMSO
+        H5 sorgente      : Vehicle treated neural culture 2
+
+CONFRONTO  GSE205890__GSE205890__H9_Dexamethasone_vs_H9_DMSO__1
+  studio: GSE205890
+  TRATTATO  (n=2)  etichetta Stadio 2: H9_Dexamethasone
+      gruppo Stadio 2: grp_0006
+      GSM6234935
+        grezzo (Stadio 1): title: D2-17,source: Dex treated neural culture 2,tissue: hESC-derived neural culture,cell line: H9,condition: 6 hour 1ÂµM Dexamethasone
+        H5 titolo        : D2-17
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H9,condition: 6 hour 1ÂµM Dexamethasone
+        H5 sorgente      : Dex treated neural culture 2
+      GSM6234936
+        grezzo (Stadio 1): title: D3-18,source: Dex treated neural culture 3,tissue: hESC-derived neural culture,cell line: H9,condition: 6 hour 1ÂµM Dexamethasone
+        H5 titolo        : D3-18
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H9,condition: 6 hour 1ÂµM Dexamethasone
+        H5 sorgente      : Dex treated neural culture 3
+  CONTROLLO  (n=2)  etichetta Stadio 2: H9_DMSO
+      gruppo Stadio 2: grp_0005
+      GSM6234931
+        grezzo (Stadio 1): title: C1-13,source: Vehicle treated neural culture 1,tissue: hESC-derived neural culture,cell line: H9,condition: 6 hour DMSO
+        H5 titolo        : C1-13
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H9,condition: 6 hour DMSO
+        H5 sorgente      : Vehicle treated neural culture 1
+      GSM6234932
+        grezzo (Stadio 1): title: C2-14,source: Vehicle treated neural culture 2,tissue: hESC-derived neural culture,cell line: H9,condition: 6 hour DMSO
+        H5 titolo        : C2-14
+        H5 caratteristiche: tissue: hESC-derived neural culture,cell line: H9,condition: 6 hour DMSO
+        H5 sorgente      : Vehicle treated neural culture 2
+
+CONFRONTO  GSE207409__GSE207409__Dexamethasone_1h_vs_Vehicle__1
+  studio: GSE207409
+  TRATTATO  (n=2)  etichetta Stadio 2: Dexamethasone 1h
+      gruppo Stadio 2: grp_0005
+      GSM6285700
+        grezzo (Stadio 1): title: GFP 1HR REP1,source: HeLa,cell line: HeLa,cell type: Cervical cancer cells,treatment: Dexamethasone,time (hours): 1
+        H5 titolo        : GFP 1HR REP1
+        H5 caratteristiche: cell line: HeLa,cell type: Cervical cancer cells,treatment: Dexamethasone,time (hours): 1
+        H5 sorgente      : HeLa
+      GSM6285702
+        grezzo (Stadio 1): title: GFP 1HR REP3,source: HeLa,cell line: HeLa,cell type: Cervical cancer cells,treatment: Dexamethasone,time (hours): 1
+        H5 titolo        : GFP 1HR REP3
+        H5 caratteristiche: cell line: HeLa,cell type: Cervical cancer cells,treatment: Dexamethasone,time (hours): 1
+        H5 sorgente      : HeLa
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle
+      gruppo Stadio 2: grp_0002
+      GSM6285677
+        grezzo (Stadio 1): title: CTERM_0HR_REP2,source: HeLa,cell line: HeLa,cell type: Cervical cancer cells,treatment: NA
+        H5 titolo        : CTERM_0HR_REP2
+        H5 caratteristiche: cell line: HeLa,cell type: Cervical cancer cells,treatment: NA
+        H5 sorgente      : HeLa
+      GSM6285678
+        grezzo (Stadio 1): title: CTERM_0HR_REP3,source: HeLa,cell line: HeLa,cell type: Cervical cancer cells,treatment: NA
+        H5 titolo        : CTERM_0HR_REP3
+        H5 caratteristiche: cell line: HeLa,cell type: Cervical cancer cells,treatment: NA
+        H5 sorgente      : HeLa
+
+CONFRONTO  GSE207409__GSE207409__Dexamethasone_3h_vs_Vehicle__1
+  studio: GSE207409
+  TRATTATO  (n=2)  etichetta Stadio 2: Dexamethasone 3h
+      gruppo Stadio 2: grp_0001
+      GSM6285688
+        grezzo (Stadio 1): title: GFP 3HR REP1,source: HeLa,cell line: HeLa,cell type: Cervical cancer cells,treatment: Dexamethasone,time (hours): 3
+        H5 titolo        : GFP 3HR REP1
+        H5 caratteristiche: cell line: HeLa,cell type: Cervical cancer cells,treatment: Dexamethasone,time (hours): 3
+        H5 sorgente      : HeLa
+      GSM6285691
+        grezzo (Stadio 1): title: GFP 3HR REP4,source: HeLa,cell line: HeLa,cell type: Cervical cancer cells,treatment: Dexamethasone,time (hours): 3
+        H5 titolo        : GFP 3HR REP4
+        H5 caratteristiche: cell line: HeLa,cell type: Cervical cancer cells,treatment: Dexamethasone,time (hours): 3
+        H5 sorgente      : HeLa
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle
+      gruppo Stadio 2: grp_0002
+      GSM6285677
+        grezzo (Stadio 1): title: CTERM_0HR_REP2,source: HeLa,cell line: HeLa,cell type: Cervical cancer cells,treatment: NA
+        H5 titolo        : CTERM_0HR_REP2
+        H5 caratteristiche: cell line: HeLa,cell type: Cervical cancer cells,treatment: NA
+        H5 sorgente      : HeLa
+      GSM6285678
+        grezzo (Stadio 1): title: CTERM_0HR_REP3,source: HeLa,cell line: HeLa,cell type: Cervical cancer cells,treatment: NA
+        H5 titolo        : CTERM_0HR_REP3
+        H5 caratteristiche: cell line: HeLa,cell type: Cervical cancer cells,treatment: NA
+        H5 sorgente      : HeLa
+
+CONFRONTO  GSE225901__GSE225901__grp_0004_vs_grp_0001__1
+  studio: GSE225901
+  TRATTATO  (n=2)  etichetta Stadio 2: Human Islet + Dexamethasone (Donor 3)
+      gruppo Stadio 2: grp_0004
+      GSM7060178
+        grezzo (Stadio 1): title: Human Islet, Dexamethasone, donor 3,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: Dexamethasone
+        H5 titolo        : Human Islet, Dexamethasone, donor 3
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: Dexamethasone
+        H5 sorgente      : Human pancreatic islets
+      GSM7060179
+        grezzo (Stadio 1): title: Human Islet, Dexamethasone, donor 4,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: Dexamethasone
+        H5 titolo        : Human Islet, Dexamethasone, donor 4
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: Dexamethasone
+        H5 sorgente      : Human pancreatic islets
+  CONTROLLO  (n=4)  etichetta Stadio 2: Human Islet + DMSO
+      gruppo Stadio 2: grp_0001
+      GSM7060172
+        grezzo (Stadio 1): title: Human Islet, Control, donor 1,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: DMSO
+        H5 titolo        : Human Islet, Control, donor 1
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: DMSO
+        H5 sorgente      : Human pancreatic islets
+      GSM7060173
+        grezzo (Stadio 1): title: Human Islet, Control, donor 2,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: DMSO
+        H5 titolo        : Human Islet, Control, donor 2
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: DMSO
+        H5 sorgente      : Human pancreatic islets
+      GSM7060174
+        grezzo (Stadio 1): title: Human Islet, Control, donor 3,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: DMSO
+        H5 titolo        : Human Islet, Control, donor 3
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: DMSO
+        H5 sorgente      : Human pancreatic islets
+      GSM7060175
+        grezzo (Stadio 1): title: Human Islet, Control, donor 4,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: DMSO
+        H5 titolo        : Human Islet, Control, donor 4
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: DMSO
+        H5 sorgente      : Human pancreatic islets
+
+CONFRONTO  GSE225901__GSE225901__grp_0005_vs_grp_0001__1
+  studio: GSE225901
+  TRATTATO  (n=2)  etichetta Stadio 2: Human Islet + Dexamethasone (Donor 1)
+      gruppo Stadio 2: grp_0005
+      GSM7060176
+        grezzo (Stadio 1): title: Human Islet, Dexamethasone, donor 1,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: Dexamethasone
+        H5 titolo        : Human Islet, Dexamethasone, donor 1
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: Dexamethasone
+        H5 sorgente      : Human pancreatic islets
+      GSM7060177
+        grezzo (Stadio 1): title: Human Islet, Dexamethasone, donor 2,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: Dexamethasone
+        H5 titolo        : Human Islet, Dexamethasone, donor 2
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: Dexamethasone
+        H5 sorgente      : Human pancreatic islets
+  CONTROLLO  (n=4)  etichetta Stadio 2: Human Islet + DMSO
+      gruppo Stadio 2: grp_0001
+      GSM7060172
+        grezzo (Stadio 1): title: Human Islet, Control, donor 1,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: DMSO
+        H5 titolo        : Human Islet, Control, donor 1
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: DMSO
+        H5 sorgente      : Human pancreatic islets
+      GSM7060173
+        grezzo (Stadio 1): title: Human Islet, Control, donor 2,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: DMSO
+        H5 titolo        : Human Islet, Control, donor 2
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: DMSO
+        H5 sorgente      : Human pancreatic islets
+      GSM7060174
+        grezzo (Stadio 1): title: Human Islet, Control, donor 3,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: DMSO
+        H5 titolo        : Human Islet, Control, donor 3
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: DMSO
+        H5 sorgente      : Human pancreatic islets
+      GSM7060175
+        grezzo (Stadio 1): title: Human Islet, Control, donor 4,source: Human pancreatic islets,tissue: Human pancreatic islets,treatment: DMSO
+        H5 titolo        : Human Islet, Control, donor 4
+        H5 caratteristiche: tissue: Human pancreatic islets,treatment: DMSO
+        H5 sorgente      : Human pancreatic islets
+
+CONFRONTO  GSE237803__GSE237803__grp_0004_vs_grp_0003__1
+  studio: GSE237803
+  TRATTATO  (n=2)  etichetta Stadio 2: Prostate cancer cells, AR KO, Dexamethasone
+      gruppo Stadio 2: grp_0004
+      GSM7653757
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A AR KO, Dex 4h, biol rep 2,source: R1-AD1 FLAGHA-H3F3A, AR KO,cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: 100 nM Dexamethasone 4h
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A AR KO, Dex 4h, biol rep 2
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: 100 nM Dexamethasone 4h
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, AR KO
+      GSM7653758
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A AR KO, Dex 4h, biol rep 3,source: R1-AD1 FLAGHA-H3F3A, AR KO,cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: 100 nM Dexamethasone 4h
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A AR KO, Dex 4h, biol rep 3
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: 100 nM Dexamethasone 4h
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, AR KO
+  CONTROLLO  (n=3)  etichetta Stadio 2: Prostate cancer cells, AR KO, No treatment
+      gruppo Stadio 2: grp_0003
+      GSM7653744
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A AR KO, biol rep 1,source: R1-AD1 FLAGHA-H3F3A, AR KO,cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: No treatment
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A AR KO, biol rep 1
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: No treatment
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, AR KO
+      GSM7653745
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A AR KO, biol rep 2,source: R1-AD1 FLAGHA-H3F3A, AR KO,cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: No treatment
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A AR KO, biol rep 2
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: No treatment
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, AR KO
+      GSM7653746
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A AR KO, biol rep 3,source: R1-AD1 FLAGHA-H3F3A, AR KO,cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: No treatment
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A AR KO, biol rep 3
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, AR KO,cell type: Prostate cancer cells,genotype: FLAG-HA knock-in 5' ORF of H3F3A gene, AR KO,treatment: No treatment
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, AR KO
+
+CONFRONTO  GSE237803__GSE237803__grp_0006_vs_grp_0005__1
+  studio: GSE237803
+  TRATTATO  (n=2)  etichetta Stadio 2: Prostate cancer cells, DAXX KO, Dexamethasone
+      gruppo Stadio 2: grp_0006
+      GSM7653762
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A DAXX KO, Dex 4h, biol rep 1,source: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: 100 nM Dexamethasone 4h
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A DAXX KO, Dex 4h, biol rep 1
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: 100 nM Dexamethasone 4h
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, DAXX KO
+      GSM7653764
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A DAXX KO, Dex 4h, biol rep 3,source: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: 100 nM Dexamethasone 4h
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A DAXX KO, Dex 4h, biol rep 3
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: 100 nM Dexamethasone 4h
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, DAXX KO
+  CONTROLLO  (n=3)  etichetta Stadio 2: Prostate cancer cells, DAXX KO, No treatment
+      gruppo Stadio 2: grp_0005
+      GSM7653750
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A DAXX KO, biol rep 1,source: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: No treatment
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A DAXX KO, biol rep 1
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: No treatment
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, DAXX KO
+      GSM7653751
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A DAXX KO, biol rep 2,source: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: No treatment
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A DAXX KO, biol rep 2
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: No treatment
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, DAXX KO
+      GSM7653752
+        grezzo (Stadio 1): title: R1-AD1 FLAGHA-H3F3A DAXX KO, biol rep 3,source: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: No treatment
+        H5 titolo        : R1-AD1 FLAGHA-H3F3A DAXX KO, biol rep 3
+        H5 caratteristiche: cell line: R1-AD1 FLAGHA-H3F3A, DAXX KO,cell type: Prostate cancer cells,genotype: AR WT, FLAG-HA knock-in 5' ORF of H3F3A gene, DAXX KO,treatment: No treatment
+        H5 sorgente      : R1-AD1 FLAGHA-H3F3A, DAXX KO
+
+CONFRONTO  GSE52778__GSE52778__grp_0002_vs_grp_0007__1
+  studio: GSE52778
+  TRATTATO  (n=2)  etichetta Stadio 2: Airway smooth muscle cells treated with Dexamethasone and ERCC mix
+      gruppo Stadio 2: grp_0002
+      GSM1275867
+        grezzo (Stadio 1): title: N052611_Dex,source: airway smooth muscle cells,treatment: Dexamethasone,tissue: human airway smooth muscle cells,ercc_mix: 1,cell line: N052611,cell type: airway smooth muscle cells
+        H5 titolo        : N052611_Dex
+        H5 caratteristiche: treatment: Dexamethasone,tissue: human airway smooth muscle cells,ercc_mix: 1,cell line: N052611,cell type: airway smooth muscle cells
+        H5 sorgente      : airway smooth muscle cells
+      GSM1275875
+        grezzo (Stadio 1): title: N061011_Dex,source: airway smooth muscle cells,treatment: Dexamethasone,tissue: human airway smooth muscle cells,ercc_mix: 1,cell line: N061011,cell type: airway smooth muscle cells
+        H5 titolo        : N061011_Dex
+        H5 caratteristiche: treatment: Dexamethasone,tissue: human airway smooth muscle cells,ercc_mix: 1,cell line: N061011,cell type: airway smooth muscle cells
+        H5 sorgente      : airway smooth muscle cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Primary human airway smooth muscle cells untreated
+      gruppo Stadio 2: grp_0007
+      GSM1275862
+        grezzo (Stadio 1): title: N61311_untreated,source: airway smooth muscle cells,treatment: Untreated,tissue: human airway smooth muscle cells,ercc_mix: -,cell line: N61311,cell type: airway smooth muscle cells
+        H5 titolo        : N61311_untreated
+        H5 caratteristiche: treatment: Untreated,tissue: human airway smooth muscle cells,ercc_mix: -,cell line: N61311,cell type: airway smooth muscle cells
+        H5 sorgente      : airway smooth muscle cells
+      GSM1275866
+        grezzo (Stadio 1): title: N052611_untreated,source: airway smooth muscle cells,treatment: Untreated,tissue: human airway smooth muscle cells,ercc_mix: -,cell line: N052611,cell type: airway smooth muscle cells
+        H5 titolo        : N052611_untreated
+        H5 caratteristiche: treatment: Untreated,tissue: human airway smooth muscle cells,ercc_mix: -,cell line: N052611,cell type: airway smooth muscle cells
+        H5 sorgente      : airway smooth muscle cells
+      GSM1275874
+        grezzo (Stadio 1): title: N061011_untreated,source: airway smooth muscle cells,treatment: Untreated,tissue: human airway smooth muscle cells,ercc_mix: 1,cell line: N061011,cell type: airway smooth muscle cells
+        H5 titolo        : N061011_untreated
+        H5 caratteristiche: treatment: Untreated,tissue: human airway smooth muscle cells,ercc_mix: 1,cell line: N061011,cell type: airway smooth muscle cells
+        H5 sorgente      : airway smooth muscle cells
+
+CONFRONTO  GSE56022__GSE56022__Dexamethasone_2h_vs_Vehicle__1
+  studio: GSE56022
+  TRATTATO  (n=2)  etichetta Stadio 2: MDA-MB-231 + Dexamethasone 2h
+      gruppo Stadio 2: grp_0004
+      GSM1700776
+        grezzo (Stadio 1): title: RNA_Dexamethasone 2h_1,source: RNA_Dexamethasone 2h_1,cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 titolo        : RNA_Dexamethasone 2h_1
+        H5 caratteristiche: cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 sorgente      : RNA_Dexamethasone 2h_1
+      GSM1700777
+        grezzo (Stadio 1): title: RNA_Dexamethasone 2h_2,source: RNA_Dexamethasone 2h_2,cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 titolo        : RNA_Dexamethasone 2h_2
+        H5 caratteristiche: cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 sorgente      : RNA_Dexamethasone 2h_2
+  CONTROLLO  (n=2)  etichetta Stadio 2: MDA-MB-231 + Vehicle
+      gruppo Stadio 2: grp_0006
+      GSM1700774
+        grezzo (Stadio 1): title: RNA_Vehicle_1,source: RNA_Vehicle_1,cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 titolo        : RNA_Vehicle_1
+        H5 caratteristiche: cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 sorgente      : RNA_Vehicle_1
+      GSM1700775
+        grezzo (Stadio 1): title: RNA_Vehicle_2,source: RNA_Vehicle_2,cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 titolo        : RNA_Vehicle_2
+        H5 caratteristiche: cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 sorgente      : RNA_Vehicle_2
+
+CONFRONTO  GSE56022__GSE56022__Dexamethasone_4h_vs_Vehicle__1
+  studio: GSE56022
+  TRATTATO  (n=2)  etichetta Stadio 2: MDA-MB-231 + Dexamethasone 4h
+      gruppo Stadio 2: grp_0005
+      GSM1700778
+        grezzo (Stadio 1): title: RNA_Dexamethasone 4h_1,source: RNA_Dexamethasone 4h_1,cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 titolo        : RNA_Dexamethasone 4h_1
+        H5 caratteristiche: cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 sorgente      : RNA_Dexamethasone 4h_1
+      GSM1700779
+        grezzo (Stadio 1): title: RNA_Dexamethasone 4h_2,source: RNA_Dexamethasone 4h_2,cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 titolo        : RNA_Dexamethasone 4h_2
+        H5 caratteristiche: cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 sorgente      : RNA_Dexamethasone 4h_2
+  CONTROLLO  (n=2)  etichetta Stadio 2: MDA-MB-231 + Vehicle
+      gruppo Stadio 2: grp_0006
+      GSM1700774
+        grezzo (Stadio 1): title: RNA_Vehicle_1,source: RNA_Vehicle_1,cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 titolo        : RNA_Vehicle_1
+        H5 caratteristiche: cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 sorgente      : RNA_Vehicle_1
+      GSM1700775
+        grezzo (Stadio 1): title: RNA_Vehicle_2,source: RNA_Vehicle_2,cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 titolo        : RNA_Vehicle_2
+        H5 caratteristiche: cell line: MDA-MB-231,cancer: Breast adenocarcinoma,type: TNBC
+        H5 sorgente      : RNA_Vehicle_2
+
+CONFRONTO  GSE80651__GSE80651__grp_0002_vs_grp_0001__1
+  studio: GSE80651
+  TRATTATO  (n=2)  etichetta Stadio 2: Dexamethasone Treated
+      gruppo Stadio 2: grp_0002
+      GSM2132131
+        grezzo (Stadio 1): title: CL2_DEX,source: Podocytes derived from human kidneys_dexamethasone,cell type: Podocytes,tissue: kidney
+        H5 titolo        : CL2_DEX
+        H5 caratteristiche: cell type: Podocytes,tissue: kidney
+        H5 sorgente      : Podocytes derived from human kidneys_dexamethasone
+      GSM2132133
+        grezzo (Stadio 1): title: CL3_DEX,source: Podocytes derived from human kidneys_dexamethasone,cell type: Podocytes,tissue: kidney
+        H5 titolo        : CL3_DEX
+        H5 caratteristiche: cell type: Podocytes,tissue: kidney
+        H5 sorgente      : Podocytes derived from human kidneys_dexamethasone
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle Control
+      gruppo Stadio 2: grp_0001
+      GSM2132128
+        grezzo (Stadio 1): title: CL1_CON,source: Podocytes derived from human kidneys_control,cell type: Podocytes,tissue: kidney
+        H5 titolo        : CL1_CON
+        H5 caratteristiche: cell type: Podocytes,tissue: kidney
+        H5 sorgente      : Podocytes derived from human kidneys_control
+      GSM2132130
+        grezzo (Stadio 1): title: CL2_CON,source: Podocytes derived from human kidneys_control,cell type: Podocytes,tissue: kidney
+        H5 titolo        : CL2_CON
+        H5 caratteristiche: cell type: Podocytes,tissue: kidney
+        H5 sorgente      : Podocytes derived from human kidneys_control
+      GSM2132132
+        grezzo (Stadio 1): title: CL3_CON,source: Podocytes derived from human kidneys_control,cell type: Podocytes,tissue: kidney
+        H5 titolo        : CL3_CON
+        H5 caratteristiche: cell type: Podocytes,tissue: kidney
+        H5 sorgente      : Podocytes derived from human kidneys_control
+
+CONFRONTO  GSE96649__GSE96649__grp_0006_vs_grp_0005__1
+  studio: GSE96649
+  TRATTATO  (n=3)  etichetta Stadio 2: A549 cells treated with dexamethasone
+      gruppo Stadio 2: grp_0006
+      GSM2537182
+        grezzo (Stadio 1): title: Dexamethasone treated rep1,source: A549 cells,cell line: A549,cell type: lung epithelial cells
+        H5 titolo        : Dexamethasone treated rep1
+        H5 caratteristiche: cell line: A549,cell type: lung epithelial cells
+        H5 sorgente      : A549 cells
+      GSM2537183
+        grezzo (Stadio 1): title: Dexamethasone treated rep2,source: A549 cells,cell line: A549,cell type: lung epithelial cells
+        H5 titolo        : Dexamethasone treated rep2
+        H5 caratteristiche: cell line: A549,cell type: lung epithelial cells
+        H5 sorgente      : A549 cells
+      GSM2537184
+        grezzo (Stadio 1): title: Dexamethasone treated rep3,source: A549 cells,cell line: A549,cell type: lung epithelial cells
+        H5 titolo        : Dexamethasone treated rep3
+        H5 caratteristiche: cell line: A549,cell type: lung epithelial cells
+        H5 sorgente      : A549 cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle-treated A549 cells
+      gruppo Stadio 2: grp_0005
+      GSM2537176
+        grezzo (Stadio 1): title: Untreated rep1,source: A549 cells,cell line: A549,cell type: lung epithelial cells
+        H5 titolo        : Untreated rep1
+        H5 caratteristiche: cell line: A549,cell type: lung epithelial cells
+        H5 sorgente      : A549 cells
+      GSM2537178
+        grezzo (Stadio 1): title: Untreated rep3,source: A549 cells,cell line: A549,cell type: lung epithelial cells
+        H5 titolo        : Untreated rep3
+        H5 caratteristiche: cell line: A549,cell type: lung epithelial cells
+        H5 sorgente      : A549 cells
+
+CONFRONTO  GSE99626__GSE99626__grp_T47D_E2_Dexamethasone_vs_grp_T47D_Vehicle__1
+  studio: GSE99626
+  TRATTATO  (n=2)  etichetta Stadio 2: T47D cells treated with E2 and Dexamethasone
+      gruppo Stadio 2: grp_T47D_E2_Dexamethasone
+      GSM3595505
+        grezzo (Stadio 1): title: AI012_T47D_24h_E2+Dex_rep1,source: T47D breast cancer cells,treatment: 10nM E2 + 10nM Dexamethasone,time: 24h,replicate: rep1
+        H5 titolo        : AI012_T47D_24h_E2+Dex_rep1
+        H5 caratteristiche: treatment: 10nM E2 + 10nM Dexamethasone,time: 24h,replicate: rep1
+        H5 sorgente      : T47D breast cancer cells
+      GSM3595511
+        grezzo (Stadio 1): title: AI012_T47D_24h_E2+Dex_rep2,source: T47D breast cancer cells,treatment: 10nM E2 + 10nM Dexamethasone,time: 24h,replicate: rep2
+        H5 titolo        : AI012_T47D_24h_E2+Dex_rep2
+        H5 caratteristiche: treatment: 10nM E2 + 10nM Dexamethasone,time: 24h,replicate: rep2
+        H5 sorgente      : T47D breast cancer cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: T47D cells treated with Vehicle
+      gruppo Stadio 2: grp_T47D_Vehicle
+      GSM3595502
+        grezzo (Stadio 1): title: AI012_T47D_24h_veh_rep1,source: T47D breast cancer cells,treatment: Vehicle,time: 24h,replicate: rep1
+        H5 titolo        : AI012_T47D_24h_veh_rep1
+        H5 caratteristiche: treatment: Vehicle,time: 24h,replicate: rep1
+        H5 sorgente      : T47D breast cancer cells
+      GSM3595508
+        grezzo (Stadio 1): title: AI012_T47D_24h_veh_rep2,source: T47D breast cancer cells,treatment: Vehicle,time: 24h,replicate: rep2
+        H5 titolo        : AI012_T47D_24h_veh_rep2
+        H5 caratteristiche: treatment: Vehicle,time: 24h,replicate: rep2
+        H5 sorgente      : T47D breast cancer cells
+      GSM3595514
+        grezzo (Stadio 1): title: AI012_T47D_24h_veh_rep3,source: T47D breast cancer cells,treatment: Vehicle,time: 24h,replicate: rep3
+        H5 titolo        : AI012_T47D_24h_veh_rep3
+        H5 caratteristiche: treatment: Vehicle,time: 24h,replicate: rep3
+        H5 sorgente      : T47D breast cancer cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE179347     campioni nell'H5:  238 | collocati dallo Stadio 2:  238 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE198683     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE205890     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE207409     campioni nell'H5:   32 | collocati dallo Stadio 2:   32 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE225901     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE237803     campioni nell'H5:   24 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+      mai collocati: GSM7653743, GSM7653747, GSM7653754, GSM7653755, GSM7653756, GSM7653763
+  GSE52778      campioni nell'H5:   16 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+      mai collocati: GSM1275870, GSM1275876
+  GSE56022      campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE80651      campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE96649      campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE99626      campioni nell'H5:   28 | collocati dallo Stadio 2:   28 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,401 @@
+META-ANALISI 166 di 194
+==============================================================================
+nome            : Carcinoma, Renal Cell
+entita (ID)     : MeSH:D002292
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_c040a36d
+studi poolati   : 3   confronti: 8   campioni: 63
+geni significativi: 4189   I2 mediano: 76.3
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE117313__GSE117313__group_0005_vs_group_0001__1
+  studio: GSE117313
+  TRATTATO  (n=2)  etichetta Stadio 2: Renal Cell Carcinoma Cultures (Donor 62)
+      gruppo Stadio 2: group_0005
+      GSM3290921
+        grezzo (Stadio 1): title: HIM15_Human_renal_cell_carcinoma_rep1_DS37925,source: Human renal cell carcinoma cultures,patient age: 62,gender: Male
+        H5 titolo        : HIM15_Human_renal_cell_carcinoma_rep1_DS37925
+        H5 caratteristiche: patient age: 62,gender: Male
+        H5 sorgente      : Human renal cell carcinoma cultures
+      GSM3290922
+        grezzo (Stadio 1): title: HIM15_Human_renal_cell_carcinoma_rep2_DS37926,source: Human renal cell carcinoma cultures,patient age: 62,gender: Male
+        H5 titolo        : HIM15_Human_renal_cell_carcinoma_rep2_DS37926
+        H5 caratteristiche: patient age: 62,gender: Male
+        H5 sorgente      : Human renal cell carcinoma cultures
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy Kidney Cortex Tubule Cultures (Donor 62)
+      gruppo Stadio 2: group_0001
+      GSM3290919
+        grezzo (Stadio 1): title: HIM15_Human_kidney_tubule_rep1_DS37923,source: Human kidney cortex tubule cultures,patient age: 62,gender: Male
+        H5 titolo        : HIM15_Human_kidney_tubule_rep1_DS37923
+        H5 caratteristiche: patient age: 62,gender: Male
+        H5 sorgente      : Human kidney cortex tubule cultures
+      GSM3290920
+        grezzo (Stadio 1): title: HIM15_Human_kidney_tubule_rep2_DS37924,source: Human kidney cortex tubule cultures,patient age: 62,gender: Male
+        H5 titolo        : HIM15_Human_kidney_tubule_rep2_DS37924
+        H5 caratteristiche: patient age: 62,gender: Male
+        H5 sorgente      : Human kidney cortex tubule cultures
+
+CONFRONTO  GSE124453__GSE124453__group_0002_vs_group_0001__1
+  studio: GSE124453
+  TRATTATO  (n=3)  etichetta Stadio 2: Clear Cell Renal cell carcinoma
+      gruppo Stadio 2: group_0002
+      GSM3533491
+        grezzo (Stadio 1): title: Sample_60T,source: Clear Cell Renal cell carcinoma tissue,subject status: Clear Cell Renal cell carcinoma,tissue type: Clear Cell Renal cell carcinoma tissue
+        H5 titolo        : Sample_60T
+        H5 caratteristiche: subject status: Clear Cell Renal cell carcinoma,tissue type: Clear Cell Renal cell carcinoma tissue
+        H5 sorgente      : Clear Cell Renal cell carcinoma tissue
+      GSM3533493
+        grezzo (Stadio 1): title: Sample_65T,source: Clear Cell Renal cell carcinoma tissue,subject status: Clear Cell Renal cell carcinoma,tissue type: Clear Cell Renal cell carcinoma tissue
+        H5 titolo        : Sample_65T
+        H5 caratteristiche: subject status: Clear Cell Renal cell carcinoma,tissue type: Clear Cell Renal cell carcinoma tissue
+        H5 sorgente      : Clear Cell Renal cell carcinoma tissue
+      GSM3533495
+        grezzo (Stadio 1): title: Sample_72T,source: Clear Cell Renal cell carcinoma tissue,subject status: Clear Cell Renal cell carcinoma,tissue type: Clear Cell Renal cell carcinoma tissue
+        H5 titolo        : Sample_72T
+        H5 caratteristiche: subject status: Clear Cell Renal cell carcinoma,tissue type: Clear Cell Renal cell carcinoma tissue
+        H5 sorgente      : Clear Cell Renal cell carcinoma tissue
+  CONTROLLO  (n=3)  etichetta Stadio 2: Adjacent Normal Tissue
+      gruppo Stadio 2: group_0001
+      GSM3533490
+        grezzo (Stadio 1): title: Sample_60N,source: adjacent normal tissue,subject status: Clear Cell Renal cell carcinoma,tissue type: adjacent normal tissue
+        H5 titolo        : Sample_60N
+        H5 caratteristiche: subject status: Clear Cell Renal cell carcinoma,tissue type: adjacent normal tissue
+        H5 sorgente      : adjacent normal tissue
+      GSM3533492
+        grezzo (Stadio 1): title: Sample_65N,source: adjacent normal tissue,subject status: Clear Cell Renal cell carcinoma,tissue type: adjacent normal tissue
+        H5 titolo        : Sample_65N
+        H5 caratteristiche: subject status: Clear Cell Renal cell carcinoma,tissue type: adjacent normal tissue
+        H5 sorgente      : adjacent normal tissue
+      GSM3533494
+        grezzo (Stadio 1): title: Sample_72N,source: adjacent normal tissue,subject status: Clear Cell Renal cell carcinoma,tissue type: adjacent normal tissue
+        H5 titolo        : Sample_72N
+        H5 caratteristiche: subject status: Clear Cell Renal cell carcinoma,tissue type: adjacent normal tissue
+        H5 sorgente      : adjacent normal tissue
+
+CONFRONTO  GSE126964__GSE126964__ccRCC_T1a_Grade1_M_71_vs_Normal_T1a_M_64__1
+  studio: GSE126964
+  TRATTATO  (n=4)  etichetta Stadio 2: ccRCC_T1a_Grade1_M_71
+      gruppo Stadio 2: group_0006
+      GSM3619164
+        grezzo (Stadio 1): title: CKC47_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 71,Stage: T1a,grade: Grade1
+        H5 titolo        : CKC47_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 71,Stage: T1a,grade: Grade1
+        H5 sorgente      : kidney tumor tissue
+      GSM3619172
+        grezzo (Stadio 1): title: CKC59_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 71,Stage: T1a,grade: Grade1
+        H5 titolo        : CKC59_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 71,Stage: T1a,grade: Grade1
+        H5 sorgente      : kidney tumor tissue
+      GSM3619175
+        grezzo (Stadio 1): title: CKC62_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 56,Stage: T1a,grade: Grade1
+        H5 titolo        : CKC62_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 56,Stage: T1a,grade: Grade1
+        H5 sorgente      : kidney tumor tissue
+      GSM3619181
+        grezzo (Stadio 1): title: CKC69_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 63,Stage: T1a,grade: Grade1
+        H5 titolo        : CKC69_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 63,Stage: T1a,grade: Grade1
+        H5 sorgente      : kidney tumor tissue
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal_T1a_M_64
+      gruppo Stadio 2: group_0018
+      GSM3619194
+        grezzo (Stadio 1): title: CKC34_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 64,Stage: T1a,grade: Grade3
+        H5 titolo        : CKC34_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 64,Stage: T1a,grade: Grade3
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619199
+        grezzo (Stadio 1): title: CKC41_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 76,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC41_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 76,Stage: T1a,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+
+CONFRONTO  GSE126964__GSE126964__ccRCC_T1a_Grade2_F_56_vs_Normal_T1a_M_64__1
+  studio: GSE126964
+  TRATTATO  (n=15)  etichetta Stadio 2: ccRCC_T1a_Grade2_F_56
+      gruppo Stadio 2: group_0008
+      GSM3619137
+        grezzo (Stadio 1): title: CKC1_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 56,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC1_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 56,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619138
+        grezzo (Stadio 1): title: CKC2_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 55,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC2_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 55,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619140
+        grezzo (Stadio 1): title: CKC5_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 38,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC5_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 38,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619142
+        grezzo (Stadio 1): title: CKC12_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 52,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC12_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 52,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619143
+        grezzo (Stadio 1): title: CKC13_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 56,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC13_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 56,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619144
+        grezzo (Stadio 1): title: CKC14_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 60,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC14_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 60,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619147
+        grezzo (Stadio 1): title: CKC18_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 54,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC18_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 54,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619149
+        grezzo (Stadio 1): title: CKC22_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 61,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC22_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 61,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619153
+        grezzo (Stadio 1): title: CKC31_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 53,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC31_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 53,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619156
+        grezzo (Stadio 1): title: CKC36_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 58,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC36_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 58,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619160
+        grezzo (Stadio 1): title: CKC41_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 76,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC41_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 76,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619166
+        grezzo (Stadio 1): title: CKC50_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 46,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC50_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 46,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619168
+        grezzo (Stadio 1): title: CKC54_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 60,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC54_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 60,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619170
+        grezzo (Stadio 1): title: CKC57_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 63,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC57_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 63,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619176
+        grezzo (Stadio 1): title: CKC63_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 80,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC63_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 80,Stage: T1a,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal_T1a_M_64
+      gruppo Stadio 2: group_0018
+      GSM3619194
+        grezzo (Stadio 1): title: CKC34_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 64,Stage: T1a,grade: Grade3
+        H5 titolo        : CKC34_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 64,Stage: T1a,grade: Grade3
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619199
+        grezzo (Stadio 1): title: CKC41_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 76,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC41_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 76,Stage: T1a,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+
+CONFRONTO  GSE126964__GSE126964__ccRCC_T1a_Grade3_M_64_vs_Normal_T1a_M_64__1
+  studio: GSE126964
+  TRATTATO  (n=2)  etichetta Stadio 2: ccRCC_T1a_Grade3_M_64
+      gruppo Stadio 2: group_0012
+      GSM3619154
+        grezzo (Stadio 1): title: CKC34_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 64,Stage: T1a,grade: Grade3
+        H5 titolo        : CKC34_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 64,Stage: T1a,grade: Grade3
+        H5 sorgente      : kidney tumor tissue
+      GSM3619171
+        grezzo (Stadio 1): title: CKC58_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 52,Stage: T1a,grade: Grade3
+        H5 titolo        : CKC58_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 52,Stage: T1a,grade: Grade3
+        H5 sorgente      : kidney tumor tissue
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal_T1a_M_64
+      gruppo Stadio 2: group_0018
+      GSM3619194
+        grezzo (Stadio 1): title: CKC34_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 64,Stage: T1a,grade: Grade3
+        H5 titolo        : CKC34_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 64,Stage: T1a,grade: Grade3
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619199
+        grezzo (Stadio 1): title: CKC41_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 76,Stage: T1a,grade: Grade2
+        H5 titolo        : CKC41_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 76,Stage: T1a,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+
+CONFRONTO  GSE126964__GSE126964__ccRCC_T1b_F_50_vs_Normal_T1b_F_50__1
+  studio: GSE126964
+  TRATTATO  (n=8)  etichetta Stadio 2: ccRCC_T1b_F_50
+      gruppo Stadio 2: group_0003
+      GSM3619155
+        grezzo (Stadio 1): title: CKC35_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 50,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC35_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 50,Stage: T1b,grade: Grade3
+        H5 sorgente      : kidney tumor tissue
+      GSM3619161
+        grezzo (Stadio 1): title: CKC42_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 49,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC42_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 49,Stage: T1b,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619165
+        grezzo (Stadio 1): title: CKC49_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 63,Stage: T1b,grade: Grade1
+        H5 titolo        : CKC49_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 63,Stage: T1b,grade: Grade1
+        H5 sorgente      : kidney tumor tissue
+      GSM3619174
+        grezzo (Stadio 1): title: CKC61_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 67,Stage: T1b,grade: Grade1
+        H5 titolo        : CKC61_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 67,Stage: T1b,grade: Grade1
+        H5 sorgente      : kidney tumor tissue
+      GSM3619178
+        grezzo (Stadio 1): title: CKC65_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 63,Stage: T1b,grade: Grade4
+        H5 titolo        : CKC65_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 63,Stage: T1b,grade: Grade4
+        H5 sorgente      : kidney tumor tissue
+      GSM3619185
+        grezzo (Stadio 1): title: CKC74_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 47,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC74_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 47,Stage: T1b,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619188
+        grezzo (Stadio 1): title: CKC78_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 47,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC78_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 47,Stage: T1b,grade: Grade3
+        H5 sorgente      : kidney tumor tissue
+      GSM3619191
+        grezzo (Stadio 1): title: CKC82_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 67,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC82_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 67,Stage: T1b,grade: Grade3
+        H5 sorgente      : kidney tumor tissue
+  CONTROLLO  (n=4)  etichetta Stadio 2: Normal_T1b_F_50
+      gruppo Stadio 2: group_0022
+      GSM3619195
+        grezzo (Stadio 1): title: CKC35_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: F,age: 50,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC35_Normal
+        H5 caratteristiche: subtype: normal,gender: F,age: 50,Stage: T1b,grade: Grade3
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619196
+        grezzo (Stadio 1): title: CKC37_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 56,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC37_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 56,Stage: T1b,grade: Grade3
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619197
+        grezzo (Stadio 1): title: CKC38_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: F,age: 52,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC38_Normal
+        H5 caratteristiche: subtype: normal,gender: F,age: 52,Stage: T1b,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619200
+        grezzo (Stadio 1): title: CKC42_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 49,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC42_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 49,Stage: T1b,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+
+CONFRONTO  GSE126964__GSE126964__ccRCC_T1b_Grade2_F_45_vs_Normal_T1b_F_50__1
+  studio: GSE126964
+  TRATTATO  (n=6)  etichetta Stadio 2: ccRCC_T1b_Grade2_F_45
+      gruppo Stadio 2: group_0009
+      GSM3619141
+        grezzo (Stadio 1): title: CKC10_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 45,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC10_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 45,Stage: T1b,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619150
+        grezzo (Stadio 1): title: CKC26_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 55,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC26_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 55,Stage: T1b,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619151
+        grezzo (Stadio 1): title: CKC29_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 61,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC29_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 61,Stage: T1b,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619158
+        grezzo (Stadio 1): title: CKC38_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: F,age: 52,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC38_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: F,age: 52,Stage: T1b,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619159
+        grezzo (Stadio 1): title: CKC39_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 25,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC39_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 25,Stage: T1b,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+      GSM3619163
+        grezzo (Stadio 1): title: CKC46_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 59,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC46_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 59,Stage: T1b,grade: Grade2
+        H5 sorgente      : kidney tumor tissue
+  CONTROLLO  (n=4)  etichetta Stadio 2: Normal_T1b_F_50
+      gruppo Stadio 2: group_0022
+      GSM3619195
+        grezzo (Stadio 1): title: CKC35_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: F,age: 50,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC35_Normal
+        H5 caratteristiche: subtype: normal,gender: F,age: 50,Stage: T1b,grade: Grade3
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619196
+        grezzo (Stadio 1): title: CKC37_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 56,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC37_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 56,Stage: T1b,grade: Grade3
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619197
+        grezzo (Stadio 1): title: CKC38_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: F,age: 52,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC38_Normal
+        H5 caratteristiche: subtype: normal,gender: F,age: 52,Stage: T1b,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619200
+        grezzo (Stadio 1): title: CKC42_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 49,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC42_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 49,Stage: T1b,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+
+CONFRONTO  GSE126964__GSE126964__ccRCC_T1b_Grade3_M_65_vs_Normal_T1b_M_61__1
+  studio: GSE126964
+  TRATTATO  (n=2)  etichetta Stadio 2: ccRCC_T1b_Grade3_M_65
+      gruppo Stadio 2: group_0013
+      GSM3619148
+        grezzo (Stadio 1): title: CKC21_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 65,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC21_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 65,Stage: T1b,grade: Grade3
+        H5 sorgente      : kidney tumor tissue
+      GSM3619157
+        grezzo (Stadio 1): title: CKC37_Tumor,source: kidney tumor tissue,subtype: clear cell renal cell carcinoma,gender: M,age: 56,Stage: T1b,grade: Grade3
+        H5 titolo        : CKC37_Tumor
+        H5 caratteristiche: subtype: clear cell renal cell carcinoma,gender: M,age: 56,Stage: T1b,grade: Grade3
+        H5 sorgente      : kidney tumor tissue
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal_T1b_M_61
+      gruppo Stadio 2: group_0019
+      GSM3619192
+        grezzo (Stadio 1): title: CKC29_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 61,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC29_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 61,Stage: T1b,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+      GSM3619198
+        grezzo (Stadio 1): title: CKC39_Normal,source: non-cancerous matched kidney tissue,subtype: normal,gender: M,age: 25,Stage: T1b,grade: Grade2
+        H5 titolo        : CKC39_Normal
+        H5 caratteristiche: subtype: normal,gender: M,age: 25,Stage: T1b,grade: Grade2
+        H5 sorgente      : non-cancerous matched kidney tissue
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE117313     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE124453     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE126964     campioni nell'H5:   66 | collocati dallo Stadio 2:   66 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 45 campioni distinti (53 righe: i controlli servono piu' confronti)
+

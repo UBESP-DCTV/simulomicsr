@@ -1,0 +1,644 @@
+META-ANALISI 022 di 194
+==============================================================================
+nome            : tazemetostat
+entita (ID)     : CHEBI:231598
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_7934174c
+studi poolati   : 10   confronti: 15   campioni: 100
+geni significativi: 1439   I2 mediano: 86.2
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE107781__GSE107781__EPZ6438_vs_DMSO__1
+  studio: GSE107781
+  TRATTATO  (n=2)  etichetta Stadio 2: C4-2B + EPZ6438
+      gruppo Stadio 2: grp_EPZ6438
+      GSM2879099
+        grezzo (Stadio 1): title: RNA-seq_C4-2B EPZ 1#,source: Derived from metastatic site: Left supraclavicular lymph node [PMID 8168083],cell line: C4-2B,tissue source: prostate,treatment/infection: EPZ6438 1 uM
+        H5 titolo        : RNA-seq_C4-2B EPZ 1#
+        H5 caratteristiche: cell line: C4-2B,tissue source: prostate,treatment/infection: EPZ6438 1 uM
+        H5 sorgente      : Derived from metastatic site: Left supraclavicular lymph node [PMID 8168083]
+      GSM2879100
+        grezzo (Stadio 1): title: RNA-seq_C4-2B EPZ 2#,source: Derived from metastatic site: Left supraclavicular lymph node [PMID 8168083],cell line: C4-2B,tissue source: prostate,treatment/infection: EPZ6438 1 uM
+        H5 titolo        : RNA-seq_C4-2B EPZ 2#
+        H5 caratteristiche: cell line: C4-2B,tissue source: prostate,treatment/infection: EPZ6438 1 uM
+        H5 sorgente      : Derived from metastatic site: Left supraclavicular lymph node [PMID 8168083]
+  CONTROLLO  (n=2)  etichetta Stadio 2: C4-2B + DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM2879095
+        grezzo (Stadio 1): title: RNA-seq_C4-2B DMSO 1#,source: Derived from metastatic site: Left supraclavicular lymph node [PMID 8168083],cell line: C4-2B,tissue source: prostate,treatment/infection: control DMSO
+        H5 titolo        : RNA-seq_C4-2B DMSO 1#
+        H5 caratteristiche: cell line: C4-2B,tissue source: prostate,treatment/infection: control DMSO
+        H5 sorgente      : Derived from metastatic site: Left supraclavicular lymph node [PMID 8168083]
+      GSM2879096
+        grezzo (Stadio 1): title: RNA-seq_C4-2B DMSO 2#,source: Derived from metastatic site: Left supraclavicular lymph node [PMID 8168083],cell line: C4-2B,tissue source: prostate,treatment/infection: control DMSO
+        H5 titolo        : RNA-seq_C4-2B DMSO 2#
+        H5 caratteristiche: cell line: C4-2B,tissue source: prostate,treatment/infection: control DMSO
+        H5 sorgente      : Derived from metastatic site: Left supraclavicular lymph node [PMID 8168083]
+
+CONFRONTO  GSE119088__GSE119088__Pfeiffer_EPZ-6438_vs_Pfeiffer_DMSO__1
+  studio: GSE119088
+  TRATTATO  (n=3)  etichetta Stadio 2: Pfeiffer_EPZ-6438
+      gruppo Stadio 2: grp_0002
+      GSM3357699
+        grezzo (Stadio 1): title: pfeif_E1,source: Diffuse large B-cell lymphoma,cell strain: Pfeiffer,treatment: EPZ-6438
+        H5 titolo        : pfeif_E1
+        H5 caratteristiche: cell strain: Pfeiffer,treatment: EPZ-6438
+        H5 sorgente      : Diffuse large B-cell lymphoma
+      GSM3357700
+        grezzo (Stadio 1): title: pfeif_E2,source: Diffuse large B-cell lymphoma,cell strain: Pfeiffer,treatment: EPZ-6438
+        H5 titolo        : pfeif_E2
+        H5 caratteristiche: cell strain: Pfeiffer,treatment: EPZ-6438
+        H5 sorgente      : Diffuse large B-cell lymphoma
+      GSM3357701
+        grezzo (Stadio 1): title: pfeif_E3,source: Diffuse large B-cell lymphoma,cell strain: Pfeiffer,treatment: EPZ-6438
+        H5 titolo        : pfeif_E3
+        H5 caratteristiche: cell strain: Pfeiffer,treatment: EPZ-6438
+        H5 sorgente      : Diffuse large B-cell lymphoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: Pfeiffer_DMSO
+      gruppo Stadio 2: grp_0001
+      GSM3357696
+        grezzo (Stadio 1): title: pfeif_c1,source: Diffuse large B-cell lymphoma,cell strain: Pfeiffer,treatment: DMSO
+        H5 titolo        : pfeif_c1
+        H5 caratteristiche: cell strain: Pfeiffer,treatment: DMSO
+        H5 sorgente      : Diffuse large B-cell lymphoma
+      GSM3357697
+        grezzo (Stadio 1): title: pfeif_c2,source: Diffuse large B-cell lymphoma,cell strain: Pfeiffer,treatment: DMSO
+        H5 titolo        : pfeif_c2
+        H5 caratteristiche: cell strain: Pfeiffer,treatment: DMSO
+        H5 sorgente      : Diffuse large B-cell lymphoma
+      GSM3357698
+        grezzo (Stadio 1): title: pfeif_c3,source: Diffuse large B-cell lymphoma,cell strain: Pfeiffer,treatment: DMSO
+        H5 titolo        : pfeif_c3
+        H5 caratteristiche: cell strain: Pfeiffer,treatment: DMSO
+        H5 sorgente      : Diffuse large B-cell lymphoma
+
+CONFRONTO  GSE119088__GSE119088__U2932_EPZ-6438_vs_U2932_DMSO__1
+  studio: GSE119088
+  TRATTATO  (n=3)  etichetta Stadio 2: U2932_EPZ-6438
+      gruppo Stadio 2: grp_0006
+      GSM3357711
+        grezzo (Stadio 1): title: U2932_E1,source: Diffuse large B-cell lymphoma,cell strain: U2932,treatment: EPZ-6438
+        H5 titolo        : U2932_E1
+        H5 caratteristiche: cell strain: U2932,treatment: EPZ-6438
+        H5 sorgente      : Diffuse large B-cell lymphoma
+      GSM3357712
+        grezzo (Stadio 1): title: U2932_E2,source: Diffuse large B-cell lymphoma,cell strain: U2932,treatment: EPZ-6438
+        H5 titolo        : U2932_E2
+        H5 caratteristiche: cell strain: U2932,treatment: EPZ-6438
+        H5 sorgente      : Diffuse large B-cell lymphoma
+      GSM3357713
+        grezzo (Stadio 1): title: U2932_E3,source: Diffuse large B-cell lymphoma,cell strain: U2932,treatment: EPZ-6438
+        H5 titolo        : U2932_E3
+        H5 caratteristiche: cell strain: U2932,treatment: EPZ-6438
+        H5 sorgente      : Diffuse large B-cell lymphoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: U2932_DMSO
+      gruppo Stadio 2: grp_0005
+      GSM3357708
+        grezzo (Stadio 1): title: U2932_c1,source: Diffuse large B-cell lymphoma,cell strain: U2932,treatment: DMSO
+        H5 titolo        : U2932_c1
+        H5 caratteristiche: cell strain: U2932,treatment: DMSO
+        H5 sorgente      : Diffuse large B-cell lymphoma
+      GSM3357709
+        grezzo (Stadio 1): title: U2932_c2,source: Diffuse large B-cell lymphoma,cell strain: U2932,treatment: DMSO
+        H5 titolo        : U2932_c2
+        H5 caratteristiche: cell strain: U2932,treatment: DMSO
+        H5 sorgente      : Diffuse large B-cell lymphoma
+      GSM3357710
+        grezzo (Stadio 1): title: U2932_c3,source: Diffuse large B-cell lymphoma,cell strain: U2932,treatment: DMSO
+        H5 titolo        : U2932_c3
+        H5 caratteristiche: cell strain: U2932,treatment: DMSO
+        H5 sorgente      : Diffuse large B-cell lymphoma
+
+CONFRONTO  GSE126395__GSE126395__EPZ-6438_vs_DMSO__1
+  studio: GSE126395
+  TRATTATO  (n=9)  etichetta Stadio 2: EPZ-6438
+      gruppo Stadio 2: grp_EPZ-6438
+      GSM3597711
+        grezzo (Stadio 1): title: Untransformed_EZH2i_rep1,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 1
+        H5 titolo        : Untransformed_EZH2i_rep1
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 1
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597712
+        grezzo (Stadio 1): title: Untransformed_EZH2i_rep2,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 2
+        H5 titolo        : Untransformed_EZH2i_rep2
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 2
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597713
+        grezzo (Stadio 1): title: Untransformed_EZH2i_rep3,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 3
+        H5 titolo        : Untransformed_EZH2i_rep3
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 3
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597717
+        grezzo (Stadio 1): title: Preneoplastic_EZH2i_rep1,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 1
+        H5 titolo        : Preneoplastic_EZH2i_rep1
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 1
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597718
+        grezzo (Stadio 1): title: Preneoplastic_EZH2i_rep2,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 2
+        H5 titolo        : Preneoplastic_EZH2i_rep2
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 2
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597719
+        grezzo (Stadio 1): title: Preneoplastic_EZH2i_rep3,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 3
+        H5 titolo        : Preneoplastic_EZH2i_rep3
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 3
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597723
+        grezzo (Stadio 1): title: Transformed_EZH2i_rep1,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 1
+        H5 titolo        : Transformed_EZH2i_rep1
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 1
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597724
+        grezzo (Stadio 1): title: Transformed_EZH2i_rep2,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 2
+        H5 titolo        : Transformed_EZH2i_rep2
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 2
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597725
+        grezzo (Stadio 1): title: Transformed_EZH2i_rep3,source: Dermal fibroblasts,treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 3
+        H5 titolo        : Transformed_EZH2i_rep3
+        H5 caratteristiche: treatment: 3uM EPZ-6438 (EZH2 inhibitor),treatment time: 12 days,replicate number: 3
+        H5 sorgente      : Dermal fibroblasts
+  CONTROLLO  (n=9)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM3597708
+        grezzo (Stadio 1): title: Untransformed_DMSO_rep1,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 1
+        H5 titolo        : Untransformed_DMSO_rep1
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 1
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597709
+        grezzo (Stadio 1): title: Untransformed_DMSO_rep2,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 2
+        H5 titolo        : Untransformed_DMSO_rep2
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 2
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597710
+        grezzo (Stadio 1): title: Untransformed_DMSO_rep3,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 3
+        H5 titolo        : Untransformed_DMSO_rep3
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 3
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597714
+        grezzo (Stadio 1): title: Preneoplastic_DMSO_rep1,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 1
+        H5 titolo        : Preneoplastic_DMSO_rep1
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 1
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597715
+        grezzo (Stadio 1): title: Preneoplastic_DMSO_rep2,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 2
+        H5 titolo        : Preneoplastic_DMSO_rep2
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 2
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597716
+        grezzo (Stadio 1): title: Preneoplastic_DMSO_rep3,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 3
+        H5 titolo        : Preneoplastic_DMSO_rep3
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 3
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597720
+        grezzo (Stadio 1): title: Transformed_DMSO_rep1,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 1
+        H5 titolo        : Transformed_DMSO_rep1
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 1
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597721
+        grezzo (Stadio 1): title: Transformed_DMSO_rep2,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 2
+        H5 titolo        : Transformed_DMSO_rep2
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 2
+        H5 sorgente      : Dermal fibroblasts
+      GSM3597722
+        grezzo (Stadio 1): title: Transformed_DMSO_rep3,source: Dermal fibroblasts,treatment: DMSO,treatment time: 12 days,replicate number: 3
+        H5 titolo        : Transformed_DMSO_rep3
+        H5 caratteristiche: treatment: DMSO,treatment time: 12 days,replicate number: 3
+        H5 sorgente      : Dermal fibroblasts
+
+CONFRONTO  GSE182144__GSE182144__EPZ-6438_vs_DMSO__1
+  studio: GSE182144
+  TRATTATO  (n=3)  etichetta Stadio 2: EPZ-6438-treated LNCaP cells
+      gruppo Stadio 2: grp_0003
+      GSM5519199
+        grezzo (Stadio 1): title: LNCaP_Epz_1,source: Human prostate cancer cells,cell line: LNCaP,tissue: prostate,treatment/infection: EPZ-6438,genotype: WT
+        H5 titolo        : LNCaP_Epz_1
+        H5 caratteristiche: cell line: LNCaP,tissue: prostate,treatment/infection: EPZ-6438,genotype: WT
+        H5 sorgente      : Human prostate cancer cells
+      GSM5519200
+        grezzo (Stadio 1): title: LNCaP_Epz_2,source: Human prostate cancer cells,cell line: LNCaP,tissue: prostate,treatment/infection: EPZ-6438,genotype: WT
+        H5 titolo        : LNCaP_Epz_2
+        H5 caratteristiche: cell line: LNCaP,tissue: prostate,treatment/infection: EPZ-6438,genotype: WT
+        H5 sorgente      : Human prostate cancer cells
+      GSM5519201
+        grezzo (Stadio 1): title: LNCaP_Epz_3,source: Human prostate cancer cells,cell line: LNCaP,tissue: prostate,treatment/infection: EPZ-6438,genotype: WT
+        H5 titolo        : LNCaP_Epz_3
+        H5 caratteristiche: cell line: LNCaP,tissue: prostate,treatment/infection: EPZ-6438,genotype: WT
+        H5 sorgente      : Human prostate cancer cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO-treated LNCaP cells
+      gruppo Stadio 2: grp_0002
+      GSM5519202
+        grezzo (Stadio 1): title: LNCaP_DMSO_1,source: Human prostate cancer cells,cell line: LNCaP,tissue: prostate,treatment/infection: DMSO,genotype: WT
+        H5 titolo        : LNCaP_DMSO_1
+        H5 caratteristiche: cell line: LNCaP,tissue: prostate,treatment/infection: DMSO,genotype: WT
+        H5 sorgente      : Human prostate cancer cells
+      GSM5519203
+        grezzo (Stadio 1): title: LNCaP_DMSO_2,source: Human prostate cancer cells,cell line: LNCaP,tissue: prostate,treatment/infection: DMSO,genotype: WT
+        H5 titolo        : LNCaP_DMSO_2
+        H5 caratteristiche: cell line: LNCaP,tissue: prostate,treatment/infection: DMSO,genotype: WT
+        H5 sorgente      : Human prostate cancer cells
+      GSM5519204
+        grezzo (Stadio 1): title: LNCaP_DMSO_3,source: Human prostate cancer cells,cell line: LNCaP,tissue: prostate,treatment/infection: DMSO,genotype: WT
+        H5 titolo        : LNCaP_DMSO_3
+        H5 caratteristiche: cell line: LNCaP,tissue: prostate,treatment/infection: DMSO,genotype: WT
+        H5 sorgente      : Human prostate cancer cells
+
+CONFRONTO  GSE183487__GSE183487__Karpas422_EPZ6438_vs_Karpas422_DMSO__1
+  studio: GSE183487
+  TRATTATO  (n=2)  etichetta Stadio 2: Karpas422_EPZ6438
+      gruppo Stadio 2: grp_0011
+      GSM6840388
+        grezzo (Stadio 1): title: K422_EPZ1,source: Cell line,tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by EPZ6438
+        H5 titolo        : K422_EPZ1
+        H5 caratteristiche: tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by EPZ6438
+        H5 sorgente      : Cell line
+      GSM6840393
+        grezzo (Stadio 1): title: K422_EPZ2,source: Cell line,tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by EPZ6438
+        H5 titolo        : K422_EPZ2
+        H5 caratteristiche: tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by EPZ6438
+        H5 sorgente      : Cell line
+  CONTROLLO  (n=4)  etichetta Stadio 2: Karpas422_DMSO
+      gruppo Stadio 2: grp_0009
+      GSM5558280
+        grezzo (Stadio 1): title: K422-DMSO-1,source: Cell line,tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by DMSO
+        H5 titolo        : K422-DMSO-1
+        H5 caratteristiche: tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by DMSO
+        H5 sorgente      : Cell line
+      GSM5558281
+        grezzo (Stadio 1): title: K422-DMSO-2,source: Cell line,tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by DMSO
+        H5 titolo        : K422-DMSO-2
+        H5 caratteristiche: tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by DMSO
+        H5 sorgente      : Cell line
+      GSM6840378
+        grezzo (Stadio 1): title: K422_CTR1,source: Cell line,tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by DMSO
+        H5 titolo        : K422_CTR1
+        H5 caratteristiche: tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by DMSO
+        H5 sorgente      : Cell line
+      GSM6840383
+        grezzo (Stadio 1): title: K422_CTR2,source: Cell line,tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by DMSO
+        H5 titolo        : K422_CTR2
+        H5 caratteristiche: tissue: DLBCL cell line,cell line: Karpas422,treatment: Treated by DMSO
+        H5 sorgente      : Cell line
+
+CONFRONTO  GSE205086__GSE205086__A204_1_EPZ_6438_vs_A204_1_control__1
+  studio: GSE205086
+  TRATTATO  (n=3)  etichetta Stadio 2: A204.1 EPZ-6438
+      gruppo Stadio 2: grp_A204_1_EPZ_6438
+      GSM6205040
+        grezzo (Stadio 1): title: A204.1 cells, EPZ-6438, rep1,source: A204.1,cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: EPZ-6438
+        H5 titolo        : A204.1 cells, EPZ-6438, rep1
+        H5 caratteristiche: cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: EPZ-6438
+        H5 sorgente      : A204.1
+      GSM6205041
+        grezzo (Stadio 1): title: A204.1 cells, EPZ-6438, rep2,source: A204.1,cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: EPZ-6438
+        H5 titolo        : A204.1 cells, EPZ-6438, rep2
+        H5 caratteristiche: cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: EPZ-6438
+        H5 sorgente      : A204.1
+      GSM6205042
+        grezzo (Stadio 1): title: A204.1 cells, EPZ-6438, rep3,source: A204.1,cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: EPZ-6438
+        H5 titolo        : A204.1 cells, EPZ-6438, rep3
+        H5 caratteristiche: cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: EPZ-6438
+        H5 sorgente      : A204.1
+  CONTROLLO  (n=3)  etichetta Stadio 2: A204.1 Control
+      gruppo Stadio 2: grp_A204_1_control
+      GSM6205034
+        grezzo (Stadio 1): title: A204.1 cells, Control, rep1,source: A204.1,cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: Control
+        H5 titolo        : A204.1 cells, Control, rep1
+        H5 caratteristiche: cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: Control
+        H5 sorgente      : A204.1
+      GSM6205035
+        grezzo (Stadio 1): title: A204.1 cells, Control, rep2,source: A204.1,cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: Control
+        H5 titolo        : A204.1 cells, Control, rep2
+        H5 caratteristiche: cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: Control
+        H5 sorgente      : A204.1
+      GSM6205036
+        grezzo (Stadio 1): title: A204.1 cells, Control, rep3,source: A204.1,cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: Control
+        H5 titolo        : A204.1 cells, Control, rep3
+        H5 caratteristiche: cell line: A204.1,cell type: malignant rhabdoid tumor,treatment: Control
+        H5 sorgente      : A204.1
+
+CONFRONTO  GSE205261__GSE205261__EPZ-6438_vs_DMSO__1
+  studio: GSE205261
+  TRATTATO  (n=3)  etichetta Stadio 2: EPZ-6438-treated NCI-H295R cells
+      gruppo Stadio 2: grp_0004
+      GSM6209452
+        grezzo (Stadio 1): title: s_138224,source: NCI-H295R, EZH2i,cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: EPZ-6438
+        H5 titolo        : s_138224
+        H5 caratteristiche: cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: EPZ-6438
+        H5 sorgente      : NCI-H295R, EZH2i
+      GSM6209453
+        grezzo (Stadio 1): title: s_138225,source: NCI-H295R, EZH2i,cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: EPZ-6438
+        H5 titolo        : s_138225
+        H5 caratteristiche: cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: EPZ-6438
+        H5 sorgente      : NCI-H295R, EZH2i
+      GSM6209454
+        grezzo (Stadio 1): title: s_138226,source: NCI-H295R, EZH2i,cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: EPZ-6438
+        H5 titolo        : s_138226
+        H5 caratteristiche: cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: EPZ-6438
+        H5 sorgente      : NCI-H295R, EZH2i
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO-treated NCI-H295R cells (two replicates)
+      gruppo Stadio 2: grp_0003
+      GSM6209450
+        grezzo (Stadio 1): title: s_138222,source: NCI-H295R, baseline,cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: DMSO
+        H5 titolo        : s_138222
+        H5 caratteristiche: cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: DMSO
+        H5 sorgente      : NCI-H295R, baseline
+      GSM6209451
+        grezzo (Stadio 1): title: s_138223,source: NCI-H295R, baseline,cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: DMSO
+        H5 titolo        : s_138223
+        H5 caratteristiche: cell line: NCI-H295R,cell type: human adrenocortical carcinoma,treatment: DMSO
+        H5 sorgente      : NCI-H295R, baseline
+
+CONFRONTO  GSE236896__GSE236896__grp_0009_vs_grp_0007__1
+  studio: GSE236896
+  TRATTATO  (n=3)  etichetta Stadio 2: HCT-116, EPZ-6438, 1 uM, 6 days, passage 5-6
+      gruppo Stadio 2: grp_0009
+      GSM7585006
+        grezzo (Stadio 1): title: TAZ_RNA_D6_rep1,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: EPZ-6438 (1 uM),time: 6 days,batch: 2
+        H5 titolo        : TAZ_RNA_D6_rep1
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: EPZ-6438 (1 uM),time: 6 days,batch: 2
+        H5 sorgente      : HCT-116
+      GSM7585007
+        grezzo (Stadio 1): title: TAZ_RNA_D6_rep2,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: EPZ-6438 (1 uM),time: 6 days,batch: 2
+        H5 titolo        : TAZ_RNA_D6_rep2
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: EPZ-6438 (1 uM),time: 6 days,batch: 2
+        H5 sorgente      : HCT-116
+      GSM7585008
+        grezzo (Stadio 1): title: TAZ_RNA_D6_rep3,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: EPZ-6438 (1 uM),time: 6 days,batch: 2
+        H5 titolo        : TAZ_RNA_D6_rep3
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: EPZ-6438 (1 uM),time: 6 days,batch: 2
+        H5 sorgente      : HCT-116
+  CONTROLLO  (n=3)  etichetta Stadio 2: HCT-116, DMSO, 6 days, passage 5-6
+      gruppo Stadio 2: grp_0007
+      GSM7585000
+        grezzo (Stadio 1): title: Veh_RNA_D6_rep1,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: DMSO,time: 6 days,batch: 2
+        H5 titolo        : Veh_RNA_D6_rep1
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: DMSO,time: 6 days,batch: 2
+        H5 sorgente      : HCT-116
+      GSM7585001
+        grezzo (Stadio 1): title: Veh_RNA_D6_rep2,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: DMSO,time: 6 days,batch: 2
+        H5 titolo        : Veh_RNA_D6_rep2
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: DMSO,time: 6 days,batch: 2
+        H5 sorgente      : HCT-116
+      GSM7585002
+        grezzo (Stadio 1): title: Veh_RNA_D6_rep3,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: DMSO,time: 6 days,batch: 2
+        H5 titolo        : Veh_RNA_D6_rep3
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 5-6 passages,treatment: DMSO,time: 6 days,batch: 2
+        H5 sorgente      : HCT-116
+
+CONFRONTO  GSE236896__GSE236896__grp_0010_vs_grp_0008__1
+  studio: GSE236896
+  TRATTATO  (n=3)  etichetta Stadio 2: HCT-116, EPZ-6438, 1 uM, 3 days, passage 4-5
+      gruppo Stadio 2: grp_0010
+      GSM7584985
+        grezzo (Stadio 1): title: TAZ_RNA_D3_rep1,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: EPZ-6438 (1 uM),time: 3 days,batch: 1
+        H5 titolo        : TAZ_RNA_D3_rep1
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: EPZ-6438 (1 uM),time: 3 days,batch: 1
+        H5 sorgente      : HCT-116
+      GSM7584986
+        grezzo (Stadio 1): title: TAZ_RNA_D3_rep2,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: EPZ-6438 (1 uM),time: 3 days,batch: 1
+        H5 titolo        : TAZ_RNA_D3_rep2
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: EPZ-6438 (1 uM),time: 3 days,batch: 1
+        H5 sorgente      : HCT-116
+      GSM7584987
+        grezzo (Stadio 1): title: TAZ_RNA_D3_rep3,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: EPZ-6438 (1 uM),time: 3 days,batch: 1
+        H5 titolo        : TAZ_RNA_D3_rep3
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: EPZ-6438 (1 uM),time: 3 days,batch: 1
+        H5 sorgente      : HCT-116
+  CONTROLLO  (n=6)  etichetta Stadio 2: HCT-116, DMSO, 3 days, passage 4-5
+      gruppo Stadio 2: grp_0008
+      GSM7584979
+        grezzo (Stadio 1): title: Veh_RNA_D3_B1_rep1,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 1
+        H5 titolo        : Veh_RNA_D3_B1_rep1
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 1
+        H5 sorgente      : HCT-116
+      GSM7584980
+        grezzo (Stadio 1): title: Veh_RNA_D3_B1_rep2,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 1
+        H5 titolo        : Veh_RNA_D3_B1_rep2
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 1
+        H5 sorgente      : HCT-116
+      GSM7584981
+        grezzo (Stadio 1): title: Veh_RNA_D3_B1_rep3,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 1
+        H5 titolo        : Veh_RNA_D3_B1_rep3
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 1
+        H5 sorgente      : HCT-116
+      GSM7584991
+        grezzo (Stadio 1): title: Veh_RNA_D3_B2_rep1,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 2
+        H5 titolo        : Veh_RNA_D3_B2_rep1
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 2
+        H5 sorgente      : HCT-116
+      GSM7584992
+        grezzo (Stadio 1): title: Veh_RNA_D3_B2_rep2,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 2
+        H5 titolo        : Veh_RNA_D3_B2_rep2
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 2
+        H5 sorgente      : HCT-116
+      GSM7584993
+        grezzo (Stadio 1): title: Veh_RNA_D3_B2_rep3,source: HCT-116,cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 2
+        H5 titolo        : Veh_RNA_D3_B2_rep3
+        H5 caratteristiche: cell line: HCT-116,cell type: colorectal carcinoma,passages: 4-5 passages,treatment: DMSO,time: 3 days,batch: 2
+        H5 sorgente      : HCT-116
+
+CONFRONTO  GSE247275__GSE247275__grp_0002_vs_grp_0004__1
+  studio: GSE247275
+  TRATTATO  (n=2)  etichetta Stadio 2: HPDEC + Tazemetostat (EPZ)
+      gruppo Stadio 2: grp_0002
+      GSM7886467
+        grezzo (Stadio 1): title: HPDE_EPZ_1,source: Pancreatic cell line,tissue: Pancreatic cell line,cell line: HPDEC,cell type: Human Pancreatic Ductal Epithelial Cells,treatment: 1. Tazemetostat (EPZ 1 Î¼M ) for 24hrs, 2.Tazemetostat (EPZ 1 Î¼M ) for 24hrs, total treatment 48hours
+        H5 titolo        : HPDE_EPZ_1
+        H5 caratteristiche: tissue: Pancreatic cell line,cell line: HPDEC,cell type: Human Pancreatic Ductal Epithelial Cells,treatment: 1. Tazemetostat (EPZ 1 Î¼M ) for 24hrs, 2.Tazemetostat (EPZ 1 Î¼M ) for 24hrs, total treatment 48hours
+        H5 sorgente      : Pancreatic cell line
+      GSM7886468
+        grezzo (Stadio 1): title: HPDE_EPZ_2,source: Pancreatic cell line,tissue: Pancreatic cell line,cell line: HPDEC,cell type: Human Pancreatic Ductal Epithelial Cells,treatment: 1. Tazemetostat (EPZ 1 Î¼M ) for 24hrs, 2.Tazemetostat (EPZ 1 Î¼M ) for 24hrs, total treatment 48hours
+        H5 titolo        : HPDE_EPZ_2
+        H5 caratteristiche: tissue: Pancreatic cell line,cell line: HPDEC,cell type: Human Pancreatic Ductal Epithelial Cells,treatment: 1. Tazemetostat (EPZ 1 Î¼M ) for 24hrs, 2.Tazemetostat (EPZ 1 Î¼M ) for 24hrs, total treatment 48hours
+        H5 sorgente      : Pancreatic cell line
+  CONTROLLO  (n=2)  etichetta Stadio 2: HPDEC + DMSO
+      gruppo Stadio 2: grp_0004
+      GSM7886465
+        grezzo (Stadio 1): title: HPDE_DMSO_2,source: Pancreatic cell line,tissue: Pancreatic cell line,cell line: HPDEC,cell type: Human Pancreatic Ductal Epithelial Cells,treatment: 1. Vehicle (DMSO) for 24hrs, 2.Vehicle (DMSO) for 24hrs, total treatment 48hours
+        H5 titolo        : HPDE_DMSO_2
+        H5 caratteristiche: tissue: Pancreatic cell line,cell line: HPDEC,cell type: Human Pancreatic Ductal Epithelial Cells,treatment: 1. Vehicle (DMSO) for 24hrs, 2.Vehicle (DMSO) for 24hrs, total treatment 48hours
+        H5 sorgente      : Pancreatic cell line
+      GSM7886466
+        grezzo (Stadio 1): title: HPDE_DMSO_3,source: Pancreatic cell line,tissue: Pancreatic cell line,cell line: HPDEC,cell type: Human Pancreatic Ductal Epithelial Cells,treatment: 1. Vehicle (DMSO) for 24hrs, 2.Vehicle (DMSO) for 24hrs, total treatment 48hours
+        H5 titolo        : HPDE_DMSO_3
+        H5 caratteristiche: tissue: Pancreatic cell line,cell line: HPDEC,cell type: Human Pancreatic Ductal Epithelial Cells,treatment: 1. Vehicle (DMSO) for 24hrs, 2.Vehicle (DMSO) for 24hrs, total treatment 48hours
+        H5 sorgente      : Pancreatic cell line
+
+CONFRONTO  GSE262877__GSE262877__grp_0003_vs_grp_0004__1
+  studio: GSE262877
+  TRATTATO  (n=3)  etichetta Stadio 2: LNCaP + tazemetostat
+      gruppo Stadio 2: grp_0003
+      GSM8180951
+        grezzo (Stadio 1): title: prlnc_taz1,source: prostate,tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: 5 uM tazemetostat,group: PRAD
+        H5 titolo        : prlnc_taz1
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: 5 uM tazemetostat,group: PRAD
+        H5 sorgente      : prostate
+      GSM8180952
+        grezzo (Stadio 1): title: prlnc_taz2,source: prostate,tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: 5 uM tazemetostat,group: PRAD
+        H5 titolo        : prlnc_taz2
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: 5 uM tazemetostat,group: PRAD
+        H5 sorgente      : prostate
+      GSM8180953
+        grezzo (Stadio 1): title: prlnc_taz3,source: prostate,tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: 5 uM tazemetostat,group: PRAD
+        H5 titolo        : prlnc_taz3
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: 5 uM tazemetostat,group: PRAD
+        H5 sorgente      : prostate
+  CONTROLLO  (n=3)  etichetta Stadio 2: LNCaP + vehicle
+      gruppo Stadio 2: grp_0004
+      GSM8180954
+        grezzo (Stadio 1): title: prlnc_veh1,source: prostate,tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: vehicle,group: PRAD
+        H5 titolo        : prlnc_veh1
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: vehicle,group: PRAD
+        H5 sorgente      : prostate
+      GSM8180955
+        grezzo (Stadio 1): title: prlnc_veh2,source: prostate,tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: vehicle,group: PRAD
+        H5 titolo        : prlnc_veh2
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: vehicle,group: PRAD
+        H5 sorgente      : prostate
+      GSM8180956
+        grezzo (Stadio 1): title: prlnc_veh3,source: prostate,tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: vehicle,group: PRAD
+        H5 titolo        : prlnc_veh3
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: cell line,genotype: WT,treatment: vehicle,group: PRAD
+        H5 sorgente      : prostate
+
+CONFRONTO  GSE262877__GSE262877__grp_0005_vs_grp_0006__1
+  studio: GSE262877
+  TRATTATO  (n=3)  etichetta Stadio 2: WCM1262 + tazemetostat
+      gruppo Stadio 2: grp_0005
+      GSM8180927
+        grezzo (Stadio 1): title: ne1262_taz1,source: prostate,tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne1262_taz1
+        H5 caratteristiche: tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180928
+        grezzo (Stadio 1): title: ne1262_taz2,source: prostate,tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne1262_taz2
+        H5 caratteristiche: tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180929
+        grezzo (Stadio 1): title: ne1262_taz3,source: prostate,tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne1262_taz3
+        H5 caratteristiche: tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+  CONTROLLO  (n=3)  etichetta Stadio 2: WCM1262 + vehicle
+      gruppo Stadio 2: grp_0006
+      GSM8180930
+        grezzo (Stadio 1): title: ne1262_veh1,source: prostate,tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne1262_veh1
+        H5 caratteristiche: tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180931
+        grezzo (Stadio 1): title: ne1262_veh2,source: prostate,tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne1262_veh2
+        H5 caratteristiche: tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180932
+        grezzo (Stadio 1): title: ne1262_veh3,source: prostate,tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne1262_veh3
+        H5 caratteristiche: tissue: prostate,cell line: WCM1262,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+
+CONFRONTO  GSE262877__GSE262877__grp_0007_vs_grp_0008__1
+  studio: GSE262877
+  TRATTATO  (n=3)  etichetta Stadio 2: WCM154 + tazemetostat
+      gruppo Stadio 2: grp_0007
+      GSM8180933
+        grezzo (Stadio 1): title: ne154_taz1,source: prostate,tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne154_taz1
+        H5 caratteristiche: tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180934
+        grezzo (Stadio 1): title: ne154_taz2,source: prostate,tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne154_taz2
+        H5 caratteristiche: tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180935
+        grezzo (Stadio 1): title: ne154_taz3,source: prostate,tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne154_taz3
+        H5 caratteristiche: tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+  CONTROLLO  (n=3)  etichetta Stadio 2: WCM154 + vehicle
+      gruppo Stadio 2: grp_0008
+      GSM8180936
+        grezzo (Stadio 1): title: ne154_veh1,source: prostate,tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne154_veh1
+        H5 caratteristiche: tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180937
+        grezzo (Stadio 1): title: ne154_veh2,source: prostate,tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne154_veh2
+        H5 caratteristiche: tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180938
+        grezzo (Stadio 1): title: ne154_veh3,source: prostate,tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne154_veh3
+        H5 caratteristiche: tissue: prostate,cell line: WCM154,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+
+CONFRONTO  GSE262877__GSE262877__grp_0009_vs_grp_0010__1
+  studio: GSE262877
+  TRATTATO  (n=3)  etichetta Stadio 2: WCM155 + tazemetostat
+      gruppo Stadio 2: grp_0009
+      GSM8180939
+        grezzo (Stadio 1): title: ne155_taz1,source: prostate,tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne155_taz1
+        H5 caratteristiche: tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180940
+        grezzo (Stadio 1): title: ne155_taz2,source: prostate,tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne155_taz2
+        H5 caratteristiche: tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180941
+        grezzo (Stadio 1): title: ne155_taz3,source: prostate,tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 titolo        : ne155_taz3
+        H5 caratteristiche: tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: 5 uM tazemetostat,group: NEPC
+        H5 sorgente      : prostate
+  CONTROLLO  (n=3)  etichetta Stadio 2: WCM155 + vehicle
+      gruppo Stadio 2: grp_0010
+      GSM8180942
+        grezzo (Stadio 1): title: ne155_veh1,source: prostate,tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne155_veh1
+        H5 caratteristiche: tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180943
+        grezzo (Stadio 1): title: ne155_veh2,source: prostate,tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne155_veh2
+        H5 caratteristiche: tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+      GSM8180944
+        grezzo (Stadio 1): title: ne155_veh3,source: prostate,tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 titolo        : ne155_veh3
+        H5 caratteristiche: tissue: prostate,cell line: WCM155,cell type: patient-derived organoids,genotype: WT,treatment: vehicle,group: NEPC
+        H5 sorgente      : prostate
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE107781     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE119088     campioni nell'H5:   18 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+      mai collocati: GSM3357705, GSM3357707
+  GSE126395     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 18 campioni distinti (18 righe: i controlli servono piu' confronti)
+  GSE182144     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE183487     campioni nell'H5:   31 | collocati dallo Stadio 2:   31 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE205086     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE205261     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE236896     campioni nell'H5:   33 | collocati dallo Stadio 2:   33 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 15 campioni distinti (15 righe: i controlli servono piu' confronti)
+  GSE247275     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE262877     campioni nell'H5:   30 | collocati dallo Stadio 2:   28 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 24 campioni distinti (24 righe: i controlli servono piu' confronti)
+      mai collocati: GSM8180946, GSM8180947
+

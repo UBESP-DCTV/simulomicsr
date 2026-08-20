@@ -1,0 +1,712 @@
+META-ANALISI 024 di 194
+==============================================================================
+nome            : 17β-estradiol
+entita (ID)     : CHEBI:16469
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_a12414d4
+studi poolati   : 9   confronti: 15   campioni: 114
+geni significativi: 357   I2 mediano: 87.4
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE108308__GSE108308__grp_0006_vs_grp_0005__1
+  studio: GSE108308
+  TRATTATO  (n=2)  etichetta Stadio 2: MCF-7 + estradiol (10 nM)
+      gruppo Stadio 2: grp_0006
+      GSM2895239
+        grezzo (Stadio 1): title: E2_Rep1,source: human breast adenocarcinoma cell line,cell type: Breast cancer cell,cell line: MCF-7,treatment: estradiol (10 nM)
+        H5 titolo        : E2_Rep1
+        H5 caratteristiche: cell type: Breast cancer cell,cell line: MCF-7,treatment: estradiol (10 nM)
+        H5 sorgente      : human breast adenocarcinoma cell line
+      GSM2895240
+        grezzo (Stadio 1): title: E2_Rep2,source: human breast adenocarcinoma cell line,cell type: Breast cancer cell,cell line: MCF-7,treatment: estradiol (10 nM)
+        H5 titolo        : E2_Rep2
+        H5 caratteristiche: cell type: Breast cancer cell,cell line: MCF-7,treatment: estradiol (10 nM)
+        H5 sorgente      : human breast adenocarcinoma cell line
+  CONTROLLO  (n=2)  etichetta Stadio 2: MCF-7 + vehicle
+      gruppo Stadio 2: grp_0005
+      GSM2895237
+        grezzo (Stadio 1): title: Veh_Rep1,source: human breast adenocarcinoma cell line,cell type: Breast cancer cell,cell line: MCF-7,treatment: vehicle
+        H5 titolo        : Veh_Rep1
+        H5 caratteristiche: cell type: Breast cancer cell,cell line: MCF-7,treatment: vehicle
+        H5 sorgente      : human breast adenocarcinoma cell line
+      GSM2895238
+        grezzo (Stadio 1): title: Veh_Rep2,source: human breast adenocarcinoma cell line,cell type: Breast cancer cell,cell line: MCF-7,treatment: vehicle
+        H5 titolo        : Veh_Rep2
+        H5 caratteristiche: cell type: Breast cancer cell,cell line: MCF-7,treatment: vehicle
+        H5 sorgente      : human breast adenocarcinoma cell line
+
+CONFRONTO  GSE112983__GSE112983__estradiol_vs_DMSO__1
+  studio: GSE112983
+  TRATTATO  (n=2)  etichetta Stadio 2: Estradiol-treated HepG2 cells
+      gruppo Stadio 2: grp_estradiol
+      GSM3092641
+        grezzo (Stadio 1): title: E2 1,source: Liver,tissue: Hepatocellular Carcinoma,cell line: HepG2,treatment: estradiol
+        H5 titolo        : E2 1
+        H5 caratteristiche: tissue: Hepatocellular Carcinoma,cell line: HepG2,treatment: estradiol
+        H5 sorgente      : Liver
+      GSM3092642
+        grezzo (Stadio 1): title: E2 2,source: Liver,tissue: Hepatocellular Carcinoma,cell line: HepG2,treatment: estradiol
+        H5 titolo        : E2 2
+        H5 caratteristiche: tissue: Hepatocellular Carcinoma,cell line: HepG2,treatment: estradiol
+        H5 sorgente      : Liver
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO-treated HepG2 cells
+      gruppo Stadio 2: grp_DMSO
+      GSM3092639
+        grezzo (Stadio 1): title: Control 1,source: Liver,tissue: Hepatocellular Carcinoma,cell line: HepG2,treatment: DMSO
+        H5 titolo        : Control 1
+        H5 caratteristiche: tissue: Hepatocellular Carcinoma,cell line: HepG2,treatment: DMSO
+        H5 sorgente      : Liver
+      GSM3092640
+        grezzo (Stadio 1): title: Control 2,source: Liver,tissue: Hepatocellular Carcinoma,cell line: HepG2,treatment: DMSO
+        H5 titolo        : Control 2
+        H5 caratteristiche: tissue: Hepatocellular Carcinoma,cell line: HepG2,treatment: DMSO
+        H5 sorgente      : Liver
+
+CONFRONTO  GSE150683__GSE150683__estradiol_vs_vehicle__1
+  studio: GSE150683
+  TRATTATO  (n=2)  etichetta Stadio 2: T47D + estradiol
+      gruppo Stadio 2: grp_0001
+      GSM4556397
+        grezzo (Stadio 1): title: E2_a,source: breast cancer cell line T47D,tissue: breast,cell line: T47D,treatment: estradiol
+        H5 titolo        : E2_a
+        H5 caratteristiche: tissue: breast,cell line: T47D,treatment: estradiol
+        H5 sorgente      : breast cancer cell line T47D
+      GSM4556399
+        grezzo (Stadio 1): title: E2_c,source: breast cancer cell line T47D,tissue: breast,cell line: T47D,treatment: estradiol
+        H5 titolo        : E2_c
+        H5 caratteristiche: tissue: breast,cell line: T47D,treatment: estradiol
+        H5 sorgente      : breast cancer cell line T47D
+  CONTROLLO  (n=3)  etichetta Stadio 2: T47D + vehicle
+      gruppo Stadio 2: grp_0006
+      GSM4556391
+        grezzo (Stadio 1): title: Vehicle_a,source: breast cancer cell line T47D,tissue: breast,cell line: T47D,treatment: vehicle
+        H5 titolo        : Vehicle_a
+        H5 caratteristiche: tissue: breast,cell line: T47D,treatment: vehicle
+        H5 sorgente      : breast cancer cell line T47D
+      GSM4556392
+        grezzo (Stadio 1): title: Vehicle_b,source: breast cancer cell line T47D,tissue: breast,cell line: T47D,treatment: vehicle
+        H5 titolo        : Vehicle_b
+        H5 caratteristiche: tissue: breast,cell line: T47D,treatment: vehicle
+        H5 sorgente      : breast cancer cell line T47D
+      GSM4556393
+        grezzo (Stadio 1): title: Vehicle_c,source: breast cancer cell line T47D,tissue: breast,cell line: T47D,treatment: vehicle
+        H5 titolo        : Vehicle_c
+        H5 caratteristiche: tissue: breast,cell line: T47D,treatment: vehicle
+        H5 sorgente      : breast cancer cell line T47D
+
+CONFRONTO  GSE217423__GSE217423__Estradiol_vs_DMSO__1
+  studio: GSE217423
+  TRATTATO  (n=8)  etichetta Stadio 2: Cardiac myocytes treated with Estradiol
+      gruppo Stadio 2: mg19
+      GSM6718435
+        grezzo (Stadio 1): title: EST MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: B2,investigative unit: 116,sample id: 41,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 202,rna volume (ul): 0.990099,h2o volume (ul): 19.009901
+        H5 titolo        : EST MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: B2,investigative unit: 116,sample id: 41,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 202,rna volume (ul): 0.990099,h2o volume (ul): 19.009901
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718436
+        grezzo (Stadio 1): title: EST MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: C1,investigative unit: 116,sample id: 82,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 86.4,rna volume (ul): 2.314815,h2o volume (ul): 17.685185
+        H5 titolo        : EST MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: C1,investigative unit: 116,sample id: 82,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 86.4,rna volume (ul): 2.314815,h2o volume (ul): 17.685185
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718437
+        grezzo (Stadio 1): title: EST MSN02-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: E6,investigative unit: 119,sample id: 41,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 65.8,rna volume (ul): 3.039514,h2o volume (ul): 16.960486
+        H5 titolo        : EST MSN02-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: E6,investigative unit: 119,sample id: 41,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 65.8,rna volume (ul): 3.039514,h2o volume (ul): 16.960486
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718438
+        grezzo (Stadio 1): title: EST MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: N10,investigative unit: 132,sample id: 41,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 111,rna volume (ul): 1.801802,h2o volume (ul): 18.198198
+        H5 titolo        : EST MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: N10,investigative unit: 132,sample id: 41,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 111,rna volume (ul): 1.801802,h2o volume (ul): 18.198198
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718439
+        grezzo (Stadio 1): title: EST MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: H1,investigative unit: 124,sample id: 41,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 42,rna volume (ul): 4.761905,h2o volume (ul): 15.238095
+        H5 titolo        : EST MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: H1,investigative unit: 124,sample id: 41,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 42,rna volume (ul): 4.761905,h2o volume (ul): 15.238095
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718440
+        grezzo (Stadio 1): title: EST MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: H18,investigative unit: 124,sample id: 65,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 32.6,rna volume (ul): 6.134969,h2o volume (ul): 13.865031
+        H5 titolo        : EST MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: H18,investigative unit: 124,sample id: 65,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 32.6,rna volume (ul): 6.134969,h2o volume (ul): 13.865031
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718441
+        grezzo (Stadio 1): title: EST MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: K6,investigative unit: 129,sample id: 41,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 66.6,rna volume (ul): 3.003003,h2o volume (ul): 16.996997
+        H5 titolo        : EST MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: K6,investigative unit: 129,sample id: 41,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 66.6,rna volume (ul): 3.003003,h2o volume (ul): 16.996997
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718442
+        grezzo (Stadio 1): title: EST MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: L24,investigative unit: 130,sample id: 41,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 titolo        : EST MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: EST,drug name: Estradiol,concentration: 5nM,well: L24,investigative unit: 130,sample id: 41,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=16)  etichetta Stadio 2: Cardiac myocytes treated with DMSO
+      gruppo Stadio 2: mg1
+      GSM6718347
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 titolo        : CTRL MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718348
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 titolo        : CTRL MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718349
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 titolo        : CTRL MSN02-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718350
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718351
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 titolo        : CTRL MSN02-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718352
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 titolo        : CTRL MSN02-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718353
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 titolo        : CTRL MSN02-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718354
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 titolo        : CTRL MSN02-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718355
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 titolo        : CTRL MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718356
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 titolo        : CTRL MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718357
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 titolo        : CTRL MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718358
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 titolo        : CTRL MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718359
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 titolo        : CTRL MSN09-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718360
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 titolo        : CTRL MSN09-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718361
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 titolo        : CTRL MSN09-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718362
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 titolo        : CTRL MSN09-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE237784__GSE237784__MCF7_Estradiol_vs_MCF7_Vehicle_control__1
+  studio: GSE237784
+  TRATTATO  (n=3)  etichetta Stadio 2: MCF7 cells treated with Estradiol
+      gruppo Stadio 2: grp_MCF7_Estradiol
+      GSM7653256
+        grezzo (Stadio 1): title: M7P-24h E2-A,source: Breast cancer,tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 titolo        : M7P-24h E2-A
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+      GSM7653257
+        grezzo (Stadio 1): title: M7P-24h E2-B,source: Breast cancer,tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 titolo        : M7P-24h E2-B
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+      GSM7653258
+        grezzo (Stadio 1): title: M7P-24h E2-C,source: Breast cancer,tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 titolo        : M7P-24h E2-C
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: MCF7 cells treated with Vehicle control
+      gruppo Stadio 2: grp_MCF7_Vehicle_control
+      GSM7653253
+        grezzo (Stadio 1): title: M7P-24h VC-A,source: Breast cancer,tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 titolo        : M7P-24h VC-A
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+      GSM7653254
+        grezzo (Stadio 1): title: M7P-24h VC-B,source: Breast cancer,tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 titolo        : M7P-24h VC-B
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+      GSM7653255
+        grezzo (Stadio 1): title: M7P-24h VC-C,source: Breast cancer,tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 titolo        : M7P-24h VC-C
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+
+CONFRONTO  GSE237784__GSE237784__MCF7_TAMR_Estradiol_vs_MCF7_TAMR_Vehicle_control__1
+  studio: GSE237784
+  TRATTATO  (n=3)  etichetta Stadio 2: MCF7 (TAMR) cells treated with Estradiol
+      gruppo Stadio 2: grp_MCF7_TAMR_Estradiol
+      GSM7653274
+        grezzo (Stadio 1): title: M7T-24h E2-A,source: Breast cancer,tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Estradiol
+        H5 titolo        : M7T-24h E2-A
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+      GSM7653275
+        grezzo (Stadio 1): title: M7T-24h E2-B,source: Breast cancer,tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Estradiol
+        H5 titolo        : M7T-24h E2-B
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+      GSM7653276
+        grezzo (Stadio 1): title: M7T-24h E2-C,source: Breast cancer,tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Estradiol
+        H5 titolo        : M7T-24h E2-C
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: MCF7 (TAMR) cells treated with Vehicle control
+      gruppo Stadio 2: grp_MCF7_TAMR_Vehicle_control
+      GSM7653271
+        grezzo (Stadio 1): title: M7T-24h VC-A,source: Breast cancer,tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Vehicle control
+        H5 titolo        : M7T-24h VC-A
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+      GSM7653272
+        grezzo (Stadio 1): title: M7T-24h VC-B,source: Breast cancer,tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Vehicle control
+        H5 titolo        : M7T-24h VC-B
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+      GSM7653273
+        grezzo (Stadio 1): title: M7T-24h VC-C,source: Breast cancer,tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Vehicle control
+        H5 titolo        : M7T-24h VC-C
+        H5 caratteristiche: tissue: Breast cancer,cell line: MCF7 (TAMR),cell type: epithelial cell,genotype: tamoxifen resistant,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+
+CONFRONTO  GSE237784__GSE237784__UCD12_Estradiol_vs_UCD12_Vehicle_control__1
+  studio: GSE237784
+  TRATTATO  (n=3)  etichetta Stadio 2: UCD12 cells treated with Estradiol
+      gruppo Stadio 2: grp_UCD12_Estradiol
+      GSM7653292
+        grezzo (Stadio 1): title: P12-24h E2-A,source: Breast cancer,tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 titolo        : P12-24h E2-A
+        H5 caratteristiche: tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+      GSM7653293
+        grezzo (Stadio 1): title: P12-24h E2-B,source: Breast cancer,tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 titolo        : P12-24h E2-B
+        H5 caratteristiche: tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+      GSM7653294
+        grezzo (Stadio 1): title: P12-24h E2-C,source: Breast cancer,tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 titolo        : P12-24h E2-C
+        H5 caratteristiche: tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Estradiol
+        H5 sorgente      : Breast cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: UCD12 cells treated with Vehicle control
+      gruppo Stadio 2: grp_UCD12_Vehicle_control
+      GSM7653289
+        grezzo (Stadio 1): title: P12-24h VC-A,source: Breast cancer,tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 titolo        : P12-24h VC-A
+        H5 caratteristiche: tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+      GSM7653290
+        grezzo (Stadio 1): title: P12-24h VC-B,source: Breast cancer,tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 titolo        : P12-24h VC-B
+        H5 caratteristiche: tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+      GSM7653291
+        grezzo (Stadio 1): title: P12-24h VC-C,source: Breast cancer,tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 titolo        : P12-24h VC-C
+        H5 caratteristiche: tissue: Breast cancer,cell line: UCD12,cell type: epithelial cell,genotype: tamoxifen sensitive,treatment: Vehicle control
+        H5 sorgente      : Breast cancer
+
+CONFRONTO  GSE241942__GSE241942__grp_0012_vs_grp_0008__1
+  studio: GSE241942
+  TRATTATO  (n=2)  etichetta Stadio 2: Estradiol (no duration)
+      gruppo Stadio 2: grp_0012
+      GSM7746238
+        grezzo (Stadio 1): title: Estradiol 1,source: CAMA-1,cell line: CAMA-1,cell type: breast cancer cell line,treatment: Estradiol
+        H5 titolo        : Estradiol 1
+        H5 caratteristiche: cell line: CAMA-1,cell type: breast cancer cell line,treatment: Estradiol
+        H5 sorgente      : CAMA-1
+      GSM7746239
+        grezzo (Stadio 1): title: Estradiol 2,source: CAMA-1,cell line: CAMA-1,cell type: breast cancer cell line,treatment: Estradiol
+        H5 titolo        : Estradiol 2
+        H5 caratteristiche: cell line: CAMA-1,cell type: breast cancer cell line,treatment: Estradiol
+        H5 sorgente      : CAMA-1
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle control
+      gruppo Stadio 2: grp_0008
+      GSM7746235
+        grezzo (Stadio 1): title: Vehicle 1,source: CAMA-1,cell line: CAMA-1,cell type: breast cancer cell line,treatment: Vehicle
+        H5 titolo        : Vehicle 1
+        H5 caratteristiche: cell line: CAMA-1,cell type: breast cancer cell line,treatment: Vehicle
+        H5 sorgente      : CAMA-1
+      GSM7746236
+        grezzo (Stadio 1): title: Vehicle 2,source: CAMA-1,cell line: CAMA-1,cell type: breast cancer cell line,treatment: Vehicle
+        H5 titolo        : Vehicle 2
+        H5 caratteristiche: cell line: CAMA-1,cell type: breast cancer cell line,treatment: Vehicle
+        H5 sorgente      : CAMA-1
+      GSM7746237
+        grezzo (Stadio 1): title: Vehicle 3,source: CAMA-1,cell line: CAMA-1,cell type: breast cancer cell line,treatment: Vehicle
+        H5 titolo        : Vehicle 3
+        H5 caratteristiche: cell line: CAMA-1,cell type: breast cancer cell line,treatment: Vehicle
+        H5 sorgente      : CAMA-1
+
+CONFRONTO  GSE252576__GSE252576__grp_C42_Estradiol_vs_grp_C42_Vehicle__1
+  studio: GSE252576
+  TRATTATO  (n=3)  etichetta Stadio 2: C42 cells treated with Estradiol (100nM)
+      gruppo Stadio 2: grp_C42_Estradiol
+      GSM8003463
+        grezzo (Stadio 1): title: C42.E.1,source: prostate,tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 titolo        : C42.E.1
+        H5 caratteristiche: tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 sorgente      : prostate
+      GSM8003464
+        grezzo (Stadio 1): title: C42.E.2,source: prostate,tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 titolo        : C42.E.2
+        H5 caratteristiche: tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 sorgente      : prostate
+      GSM8003465
+        grezzo (Stadio 1): title: C42.E.3,source: prostate,tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 titolo        : C42.E.3
+        H5 caratteristiche: tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 sorgente      : prostate
+  CONTROLLO  (n=2)  etichetta Stadio 2: C42 cells treated with Vehicle
+      gruppo Stadio 2: grp_C42_Vehicle
+      GSM8003461
+        grezzo (Stadio 1): title: C42.C.2,source: prostate,tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : C42.C.2
+        H5 caratteristiche: tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+      GSM8003462
+        grezzo (Stadio 1): title: C42.C.3,source: prostate,tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : C42.C.3
+        H5 caratteristiche: tissue: prostate,cell line: C42,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+
+CONFRONTO  GSE252576__GSE252576__grp_LNCaP_Estradiol_vs_grp_LNCaP_Vehicle__1
+  studio: GSE252576
+  TRATTATO  (n=2)  etichetta Stadio 2: LNCaP cells treated with Estradiol (100nM)
+      gruppo Stadio 2: grp_LNCaP_Estradiol
+      GSM8003427
+        grezzo (Stadio 1): title: LNC.E.1,source: prostate,tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 titolo        : LNC.E.1
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 sorgente      : prostate
+      GSM8003428
+        grezzo (Stadio 1): title: LNC.E.2,source: prostate,tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 titolo        : LNC.E.2
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 sorgente      : prostate
+  CONTROLLO  (n=3)  etichetta Stadio 2: LNCaP cells treated with Vehicle
+      gruppo Stadio 2: grp_LNCaP_Vehicle
+      GSM8003424
+        grezzo (Stadio 1): title: LNC.C.1,source: prostate,tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : LNC.C.1
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+      GSM8003425
+        grezzo (Stadio 1): title: LNC.C.2,source: prostate,tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : LNC.C.2
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+      GSM8003426
+        grezzo (Stadio 1): title: LNC.C.3,source: prostate,tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : LNC.C.3
+        H5 caratteristiche: tissue: prostate,cell line: LNCaP,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+
+CONFRONTO  GSE252576__GSE252576__grp_RV1_Estradiol_vs_grp_RV1_Vehicle__1
+  studio: GSE252576
+  TRATTATO  (n=3)  etichetta Stadio 2: RV1 cells treated with Estradiol (100nM)
+      gruppo Stadio 2: grp_RV1_Estradiol
+      GSM8003445
+        grezzo (Stadio 1): title: RV1.E.1,source: prostate,tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 titolo        : RV1.E.1
+        H5 caratteristiche: tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 sorgente      : prostate
+      GSM8003446
+        grezzo (Stadio 1): title: RV1.E.2,source: prostate,tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 titolo        : RV1.E.2
+        H5 caratteristiche: tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 sorgente      : prostate
+      GSM8003447
+        grezzo (Stadio 1): title: RV1.E.3,source: prostate,tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 titolo        : RV1.E.3
+        H5 caratteristiche: tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Estradiol (100nM, 12h)
+        H5 sorgente      : prostate
+  CONTROLLO  (n=4)  etichetta Stadio 2: RV1 cells treated with Vehicle
+      gruppo Stadio 2: grp_RV1_Vehicle
+      GSM8003442
+        grezzo (Stadio 1): title: RV1.C.1,source: prostate,tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : RV1.C.1
+        H5 caratteristiche: tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+      GSM8003443
+        grezzo (Stadio 1): title: RV1.C.2,source: prostate,tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : RV1.C.2
+        H5 caratteristiche: tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+      GSM8003444
+        grezzo (Stadio 1): title: RV1.C.3,source: prostate,tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : RV1.C.3
+        H5 caratteristiche: tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+      GSM8003460
+        grezzo (Stadio 1): title: C42.C.1,source: prostate,tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 titolo        : C42.C.1
+        H5 caratteristiche: tissue: prostate,cell line: RV1,cell type: prostate cancer,genotype: WT,treatment: Vehicle
+        H5 sorgente      : prostate
+
+CONFRONTO  GSE256370__GSE256370__grp_0004_vs_grp_0001__1
+  studio: GSE256370
+  TRATTATO  (n=3)  etichetta Stadio 2: VCaP + 17β-estradiol 10 nM
+      gruppo Stadio 2: grp_0004
+      GSM8096347
+        grezzo (Stadio 1): title: VCaP, Estradiol, rep 1,source: VCaP,cell line: VCaP,cell type: Prostate cancer,treatment: 17Î²-Estradiol 10 nM,time: 24h
+        H5 titolo        : VCaP, Estradiol, rep 1
+        H5 caratteristiche: cell line: VCaP,cell type: Prostate cancer,treatment: 17Î²-Estradiol 10 nM,time: 24h
+        H5 sorgente      : VCaP
+      GSM8096348
+        grezzo (Stadio 1): title: VCaP, Estradiol, rep 2,source: VCaP,cell line: VCaP,cell type: Prostate cancer,treatment: 17Î²-Estradiol 10 nM,time: 24h
+        H5 titolo        : VCaP, Estradiol, rep 2
+        H5 caratteristiche: cell line: VCaP,cell type: Prostate cancer,treatment: 17Î²-Estradiol 10 nM,time: 24h
+        H5 sorgente      : VCaP
+      GSM8096349
+        grezzo (Stadio 1): title: VCaP, Estradiol, rep 3,source: VCaP,cell line: VCaP,cell type: Prostate cancer,treatment: 17Î²-Estradiol 10 nM,time: 24h
+        H5 titolo        : VCaP, Estradiol, rep 3
+        H5 caratteristiche: cell line: VCaP,cell type: Prostate cancer,treatment: 17Î²-Estradiol 10 nM,time: 24h
+        H5 sorgente      : VCaP
+  CONTROLLO  (n=3)  etichetta Stadio 2: VCaP + Ethanol
+      gruppo Stadio 2: grp_0001
+      GSM8096344
+        grezzo (Stadio 1): title: VCaP, Control, rep 1,source: VCaP,cell line: VCaP,cell type: Prostate cancer,treatment: Ethanol 96 percent,time: 24h
+        H5 titolo        : VCaP, Control, rep 1
+        H5 caratteristiche: cell line: VCaP,cell type: Prostate cancer,treatment: Ethanol 96 percent,time: 24h
+        H5 sorgente      : VCaP
+      GSM8096345
+        grezzo (Stadio 1): title: VCaP, Control, rep 2,source: VCaP,cell line: VCaP,cell type: Prostate cancer,treatment: Ethanol 96 percent,time: 24h
+        H5 titolo        : VCaP, Control, rep 2
+        H5 caratteristiche: cell line: VCaP,cell type: Prostate cancer,treatment: Ethanol 96 percent,time: 24h
+        H5 sorgente      : VCaP
+      GSM8096346
+        grezzo (Stadio 1): title: VCaP, Control, rep 3,source: VCaP,cell line: VCaP,cell type: Prostate cancer,treatment: Ethanol 96 percent,time: 24h
+        H5 titolo        : VCaP, Control, rep 3
+        H5 caratteristiche: cell line: VCaP,cell type: Prostate cancer,treatment: Ethanol 96 percent,time: 24h
+        H5 sorgente      : VCaP
+
+CONFRONTO  GSE80365__GSE80365__grp_0016_vs_grp_0003__1
+  studio: GSE80365
+  TRATTATO  (n=4)  etichetta Stadio 2: Estradiol 10 nM 24h
+      gruppo Stadio 2: grp_0016
+      GSM2112720
+        grezzo (Stadio 1): title: Tumor_P1_E2_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P1_E2_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112728
+        grezzo (Stadio 1): title: Tumor_P3_E2_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P3_E2_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112744
+        grezzo (Stadio 1): title: Tumor_P7_E2_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P7_E2_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112748
+        grezzo (Stadio 1): title: Tumor_P8_E2_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P8_E2_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+  CONTROLLO  (n=7)  etichetta Stadio 2: Vehicle 24h
+      gruppo Stadio 2: grp_0003
+      GSM2112719
+        grezzo (Stadio 1): title: Tumor_P1_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P1_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112723
+        grezzo (Stadio 1): title: Tumor_P2_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P2_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112727
+        grezzo (Stadio 1): title: Tumor_P3_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P3_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112743
+        grezzo (Stadio 1): title: Tumor_P7_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P7_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112747
+        grezzo (Stadio 1): title: Tumor_P8_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P8_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112751
+        grezzo (Stadio 1): title: Tumor_N1_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_N1_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112763
+        grezzo (Stadio 1): title: Tumor_N4_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_N4_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+
+CONFRONTO  GSE80365__GSE80365__grp_0017_vs_grp_0004__1
+  studio: GSE80365
+  TRATTATO  (n=5)  etichetta Stadio 2: Estradiol 10 nM 48h
+      gruppo Stadio 2: grp_0017
+      GSM2112732
+        grezzo (Stadio 1): title: Tumor_P4_E2_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_P4_E2_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112736
+        grezzo (Stadio 1): title: Tumor_P5_E2_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_P5_E2_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112740
+        grezzo (Stadio 1): title: Tumor_P6_E2_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_P6_E2_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112756
+        grezzo (Stadio 1): title: Tumor_N2_E2_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_N2_E2_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112760
+        grezzo (Stadio 1): title: Tumor_N3_E2_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_N3_E2_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: 10 nM Estradiol,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+  CONTROLLO  (n=5)  etichetta Stadio 2: Vehicle 48h
+      gruppo Stadio 2: grp_0004
+      GSM2112731
+        grezzo (Stadio 1): title: Tumor_P4_Vehicle_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_P4_Vehicle_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112735
+        grezzo (Stadio 1): title: Tumor_P5_Vehicle_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_P5_Vehicle_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112739
+        grezzo (Stadio 1): title: Tumor_P6_Vehicle_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_P6_Vehicle_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112755
+        grezzo (Stadio 1): title: Tumor_N2_Vehicle_48Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_N2_Vehicle_48Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112759
+        grezzo (Stadio 1): title: Tumor_N3_Vehicle_48 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 titolo        : Tumor_N3_Vehicle_48 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 48 Hours
+        H5 sorgente      : Breast cancer cells
+
+CONFRONTO  GSE80365__GSE80365__grp_0018_vs_grp_0003__1
+  studio: GSE80365
+  TRATTATO  (n=3)  etichetta Stadio 2: Estradiol 10 nM 24h
+      gruppo Stadio 2: grp_0018
+      GSM2112724
+        grezzo (Stadio 1): title: Tumor_P2_E2_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P2_E2_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112752
+        grezzo (Stadio 1): title: Tumor_N1_E2_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_N1_E2_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112764
+        grezzo (Stadio 1): title: Tumor_N4_E2_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_N4_E2_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: 10 nM Estradiol,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+  CONTROLLO  (n=7)  etichetta Stadio 2: Vehicle 24h
+      gruppo Stadio 2: grp_0003
+      GSM2112719
+        grezzo (Stadio 1): title: Tumor_P1_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P1_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112723
+        grezzo (Stadio 1): title: Tumor_P2_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P2_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112727
+        grezzo (Stadio 1): title: Tumor_P3_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P3_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112743
+        grezzo (Stadio 1): title: Tumor_P7_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P7_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112747
+        grezzo (Stadio 1): title: Tumor_P8_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_P8_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR+ Human tumor explants,er/pr status: ER+/PR+,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112751
+        grezzo (Stadio 1): title: Tumor_N1_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_N1_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+      GSM2112763
+        grezzo (Stadio 1): title: Tumor_N4_Vehicle_24 Hours_RNAseq,source: Breast cancer cells,tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 titolo        : Tumor_N4_Vehicle_24 Hours_RNAseq
+        H5 caratteristiche: tissue type: ER+/PR- Human tumor explants,er/pr status: ER+/PR-,drug treatment: Vehicle,hormone exposure time: 24 Hours
+        H5 sorgente      : Breast cancer cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE108308     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE112983     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE150683     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE217423     campioni nell'H5:  344 | collocati dallo Stadio 2:  264 | MAI COLLOCATI:   80 | usati in questa meta-analisi: 24 campioni distinti (24 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6718283, GSM6718285, GSM6718287, GSM6718288, GSM6718289, GSM6718290, GSM6718299, GSM6718306, GSM6718317, GSM6718324, GSM6718325, GSM6718326 ... (+68)
+  GSE237784     campioni nell'H5:   53 | collocati dallo Stadio 2:   53 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 18 campioni distinti (18 righe: i controlli servono piu' confronti)
+  GSE241942     campioni nell'H5:   21 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE252576     campioni nell'H5:   54 | collocati dallo Stadio 2:   54 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 17 campioni distinti (17 righe: i controlli servono piu' confronti)
+  GSE256370     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE80365      campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 24 campioni distinti (31 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,707 @@
+META-ANALISI 187 di 194
+==============================================================================
+nome            : osteoarthritis
+entita (ID)     : STR:osteoarthritis
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_3fa847fe
+studi poolati   : 3   confronti: 6   campioni: 127
+geni significativi: 1475   I2 mediano: 0.0
+verdetto della rilettura: incerta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE163552__GSE163552__OA_patients_vs_healthy_controls__1
+  studio: GSE163552
+  TRATTATO  (n=3)  etichetta Stadio 2: OA patients
+      gruppo Stadio 2: grp_OA_patients
+      GSM4981616
+        grezzo (Stadio 1): title: PBMCs, Osteoarthritis rep1,source: Blood,cell type: Peripheral blood mononuclear cell,disease state: Osteoarthritis patients,gender: female
+        H5 titolo        : PBMCs, Osteoarthritis rep1
+        H5 caratteristiche: cell type: Peripheral blood mononuclear cell,disease state: Osteoarthritis patients,gender: female
+        H5 sorgente      : Blood
+      GSM4981617
+        grezzo (Stadio 1): title: PBMCs, Osteoarthritis rep2,source: Blood,cell type: Peripheral blood mononuclear cell,disease state: Osteoarthritis patients,gender: male
+        H5 titolo        : PBMCs, Osteoarthritis rep2
+        H5 caratteristiche: cell type: Peripheral blood mononuclear cell,disease state: Osteoarthritis patients,gender: male
+        H5 sorgente      : Blood
+      GSM4981618
+        grezzo (Stadio 1): title: PBMCs, Osteoarthritis rep3,source: Blood,cell type: Peripheral blood mononuclear cell,disease state: Osteoarthritis patients,gender: female
+        H5 titolo        : PBMCs, Osteoarthritis rep3
+        H5 caratteristiche: cell type: Peripheral blood mononuclear cell,disease state: Osteoarthritis patients,gender: female
+        H5 sorgente      : Blood
+  CONTROLLO  (n=3)  etichetta Stadio 2: Healthy controls
+      gruppo Stadio 2: grp_healthy_controls
+      GSM4981613
+        grezzo (Stadio 1): title: PBMCs, Healthy rep1,source: Blood,cell type: Peripheral blood mononuclear cell,disease state: Healthy Control,gender: female
+        H5 titolo        : PBMCs, Healthy rep1
+        H5 caratteristiche: cell type: Peripheral blood mononuclear cell,disease state: Healthy Control,gender: female
+        H5 sorgente      : Blood
+      GSM4981614
+        grezzo (Stadio 1): title: PBMCs, Healthy rep2,source: Blood,cell type: Peripheral blood mononuclear cell,disease state: Healthy Control,gender: female
+        H5 titolo        : PBMCs, Healthy rep2
+        H5 caratteristiche: cell type: Peripheral blood mononuclear cell,disease state: Healthy Control,gender: female
+        H5 sorgente      : Blood
+      GSM4981615
+        grezzo (Stadio 1): title: PBMCs, Healthy rep3,source: Blood,cell type: Peripheral blood mononuclear cell,disease state: Healthy Control,gender: male
+        H5 titolo        : PBMCs, Healthy rep3
+        H5 caratteristiche: cell type: Peripheral blood mononuclear cell,disease state: Healthy Control,gender: male
+        H5 sorgente      : Blood
+
+CONFRONTO  GSE185064__GSE185064__osteoarthritis_vs_healthy__1
+  studio: GSE185064
+  TRATTATO  (n=3)  etichetta Stadio 2: Human primary meniscus cells from osteoarthritis patients
+      gruppo Stadio 2: group_osteoarthritis
+      GSM5605540
+        grezzo (Stadio 1): title: OA2,source: Osteoarthritis_meniscus,tissue: meniscus,cell type: human primary meniscus cells,subject status: Osteoarthritis
+        H5 titolo        : OA2
+        H5 caratteristiche: tissue: meniscus,cell type: human primary meniscus cells,subject status: Osteoarthritis
+        H5 sorgente      : Osteoarthritis_meniscus
+      GSM5605541
+        grezzo (Stadio 1): title: OA3,source: Osteoarthritis_meniscus,tissue: meniscus,cell type: human primary meniscus cells,subject status: Osteoarthritis
+        H5 titolo        : OA3
+        H5 caratteristiche: tissue: meniscus,cell type: human primary meniscus cells,subject status: Osteoarthritis
+        H5 sorgente      : Osteoarthritis_meniscus
+      GSM5605542
+        grezzo (Stadio 1): title: OA4,source: Osteoarthritis_meniscus,tissue: meniscus,cell type: human primary meniscus cells,subject status: Osteoarthritis
+        H5 titolo        : OA4
+        H5 caratteristiche: tissue: meniscus,cell type: human primary meniscus cells,subject status: Osteoarthritis
+        H5 sorgente      : Osteoarthritis_meniscus
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy human primary meniscus cells
+      gruppo Stadio 2: group_healthy
+      GSM5605535
+        grezzo (Stadio 1): title: NA1,source: Healthy_meniscus,tissue: meniscus,cell type: human primary meniscus cells,subject status: Healthy
+        H5 titolo        : NA1
+        H5 caratteristiche: tissue: meniscus,cell type: human primary meniscus cells,subject status: Healthy
+        H5 sorgente      : Healthy_meniscus
+      GSM5605536
+        grezzo (Stadio 1): title: NA2,source: Healthy_meniscus,tissue: meniscus,cell type: human primary meniscus cells,subject status: Healthy
+        H5 titolo        : NA2
+        H5 caratteristiche: tissue: meniscus,cell type: human primary meniscus cells,subject status: Healthy
+        H5 sorgente      : Healthy_meniscus
+      GSM5605537
+        grezzo (Stadio 1): title: NA3,source: Healthy_meniscus,tissue: meniscus,cell type: human primary meniscus cells,subject status: Healthy
+        H5 titolo        : NA3
+        H5 caratteristiche: tissue: meniscus,cell type: human primary meniscus cells,subject status: Healthy
+        H5 sorgente      : Healthy_meniscus
+      GSM5605538
+        grezzo (Stadio 1): title: NA4,source: Healthy_meniscus,tissue: meniscus,cell type: human primary meniscus cells,subject status: Healthy
+        H5 titolo        : NA4
+        H5 caratteristiche: tissue: meniscus,cell type: human primary meniscus cells,subject status: Healthy
+        H5 sorgente      : Healthy_meniscus
+
+CONFRONTO  GSE89408__GSE89408__oa_1_vs_normal_2__1
+  studio: GSE89408
+  TRATTATO  (n=2)  etichetta Stadio 2: Osteoarthritis
+      gruppo Stadio 2: grp_oa_1
+      GSM2371007
+        grezzo (Stadio 1): title: osteoarthritis tissue 10,source: synovial biopsy,Sex: F,age: 51,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 10
+        H5 caratteristiche: Sex: F,age: 51,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371009
+        grezzo (Stadio 1): title: osteoarthritis tissue 12,source: synovial biopsy,Sex: F,age: 60,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 12
+        H5 caratteristiche: Sex: F,age: 60,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+  CONTROLLO  (n=24)  etichetta Stadio 2: Normal
+      gruppo Stadio 2: grp_normal_2
+      GSM2370970
+        grezzo (Stadio 1): title: healthy tissue 1,source: synovial biopsy,Sex: M,age: 13,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 1
+        H5 caratteristiche: Sex: M,age: 13,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370971
+        grezzo (Stadio 1): title: healthy tissue 2,source: synovial biopsy,Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 2
+        H5 caratteristiche: Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370972
+        grezzo (Stadio 1): title: healthy tissue 3,source: synovial biopsy,Sex: M,age: 22,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 3
+        H5 caratteristiche: Sex: M,age: 22,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370973
+        grezzo (Stadio 1): title: healthy tissue 4,source: synovial biopsy,Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 4
+        H5 caratteristiche: Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370974
+        grezzo (Stadio 1): title: healthy tissue 5,source: synovial biopsy,Sex: M,age: 27,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 5
+        H5 caratteristiche: Sex: M,age: 27,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370975
+        grezzo (Stadio 1): title: healthy tissue 6,source: synovial biopsy,Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 6
+        H5 caratteristiche: Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370976
+        grezzo (Stadio 1): title: healthy tissue 7,source: synovial biopsy,Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 7
+        H5 caratteristiche: Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370977
+        grezzo (Stadio 1): title: healthy tissue 8,source: synovial biopsy,Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 8
+        H5 caratteristiche: Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370978
+        grezzo (Stadio 1): title: healthy tissue 9,source: synovial biopsy,Sex: F,age: 15,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 9
+        H5 caratteristiche: Sex: F,age: 15,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370979
+        grezzo (Stadio 1): title: healthy tissue 10,source: synovial biopsy,Sex: M,age: 66,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 10
+        H5 caratteristiche: Sex: M,age: 66,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370980
+        grezzo (Stadio 1): title: healthy tissue 11,source: synovial biopsy,Sex: M,age: 28,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 11
+        H5 caratteristiche: Sex: M,age: 28,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370981
+        grezzo (Stadio 1): title: healthy tissue 12,source: synovial biopsy,Sex: M,age: 63,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 12
+        H5 caratteristiche: Sex: M,age: 63,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370982
+        grezzo (Stadio 1): title: healthy tissue 13,source: synovial biopsy,Sex: M,age: 15,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 13
+        H5 caratteristiche: Sex: M,age: 15,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370984
+        grezzo (Stadio 1): title: healthy tissue 15,source: synovial biopsy,Sex: F,age: 56,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 15
+        H5 caratteristiche: Sex: F,age: 56,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370986
+        grezzo (Stadio 1): title: healthy tissue 17,source: synovial biopsy,Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 17
+        H5 caratteristiche: Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370987
+        grezzo (Stadio 1): title: healthy tissue 18,source: synovial biopsy,Sex: F,age: 73,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 18
+        H5 caratteristiche: Sex: F,age: 73,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370988
+        grezzo (Stadio 1): title: healthy tissue 19,source: synovial biopsy,Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 19
+        H5 caratteristiche: Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370990
+        grezzo (Stadio 1): title: healthy tissue 21,source: synovial biopsy,Sex: M,age: 33,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 21
+        H5 caratteristiche: Sex: M,age: 33,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370991
+        grezzo (Stadio 1): title: healthy tissue 22,source: synovial biopsy,Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 22
+        H5 caratteristiche: Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370992
+        grezzo (Stadio 1): title: healthy tissue 23,source: synovial biopsy,Sex: F,age: 52,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 23
+        H5 caratteristiche: Sex: F,age: 52,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370993
+        grezzo (Stadio 1): title: healthy tissue 24,source: synovial biopsy,Sex: F,age: 24,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 24
+        H5 caratteristiche: Sex: F,age: 24,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370994
+        grezzo (Stadio 1): title: healthy tissue 25,source: synovial biopsy,Sex: F,age: 28,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 25
+        H5 caratteristiche: Sex: F,age: 28,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370996
+        grezzo (Stadio 1): title: healthy tissue 27,source: synovial biopsy,Sex: F,age: 23,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 27
+        H5 caratteristiche: Sex: F,age: 23,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370997
+        grezzo (Stadio 1): title: healthy tissue 28,source: synovial biopsy,Sex: M,age: 29,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 28
+        H5 caratteristiche: Sex: M,age: 29,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+
+CONFRONTO  GSE89408__GSE89408__oa_2_vs_normal_2__1
+  studio: GSE89408
+  TRATTATO  (n=5)  etichetta Stadio 2: Osteoarthritis
+      gruppo Stadio 2: grp_oa_2
+      GSM2371014
+        grezzo (Stadio 1): title: osteoarthritis tissue 17,source: synovial biopsy,Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 17
+        H5 caratteristiche: Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371015
+        grezzo (Stadio 1): title: osteoarthritis tissue 18,source: synovial biopsy,Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 18
+        H5 caratteristiche: Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371016
+        grezzo (Stadio 1): title: osteoarthritis tissue 19,source: synovial biopsy,Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 19
+        H5 caratteristiche: Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371017
+        grezzo (Stadio 1): title: osteoarthritis tissue 20,source: synovial biopsy,Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 20
+        H5 caratteristiche: Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371018
+        grezzo (Stadio 1): title: osteoarthritis tissue 21,source: synovial biopsy,Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 21
+        H5 caratteristiche: Sex: F,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+  CONTROLLO  (n=24)  etichetta Stadio 2: Normal
+      gruppo Stadio 2: grp_normal_2
+      GSM2370970
+        grezzo (Stadio 1): title: healthy tissue 1,source: synovial biopsy,Sex: M,age: 13,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 1
+        H5 caratteristiche: Sex: M,age: 13,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370971
+        grezzo (Stadio 1): title: healthy tissue 2,source: synovial biopsy,Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 2
+        H5 caratteristiche: Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370972
+        grezzo (Stadio 1): title: healthy tissue 3,source: synovial biopsy,Sex: M,age: 22,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 3
+        H5 caratteristiche: Sex: M,age: 22,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370973
+        grezzo (Stadio 1): title: healthy tissue 4,source: synovial biopsy,Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 4
+        H5 caratteristiche: Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370974
+        grezzo (Stadio 1): title: healthy tissue 5,source: synovial biopsy,Sex: M,age: 27,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 5
+        H5 caratteristiche: Sex: M,age: 27,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370975
+        grezzo (Stadio 1): title: healthy tissue 6,source: synovial biopsy,Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 6
+        H5 caratteristiche: Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370976
+        grezzo (Stadio 1): title: healthy tissue 7,source: synovial biopsy,Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 7
+        H5 caratteristiche: Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370977
+        grezzo (Stadio 1): title: healthy tissue 8,source: synovial biopsy,Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 8
+        H5 caratteristiche: Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370978
+        grezzo (Stadio 1): title: healthy tissue 9,source: synovial biopsy,Sex: F,age: 15,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 9
+        H5 caratteristiche: Sex: F,age: 15,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370979
+        grezzo (Stadio 1): title: healthy tissue 10,source: synovial biopsy,Sex: M,age: 66,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 10
+        H5 caratteristiche: Sex: M,age: 66,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370980
+        grezzo (Stadio 1): title: healthy tissue 11,source: synovial biopsy,Sex: M,age: 28,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 11
+        H5 caratteristiche: Sex: M,age: 28,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370981
+        grezzo (Stadio 1): title: healthy tissue 12,source: synovial biopsy,Sex: M,age: 63,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 12
+        H5 caratteristiche: Sex: M,age: 63,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370982
+        grezzo (Stadio 1): title: healthy tissue 13,source: synovial biopsy,Sex: M,age: 15,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 13
+        H5 caratteristiche: Sex: M,age: 15,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370984
+        grezzo (Stadio 1): title: healthy tissue 15,source: synovial biopsy,Sex: F,age: 56,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 15
+        H5 caratteristiche: Sex: F,age: 56,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370986
+        grezzo (Stadio 1): title: healthy tissue 17,source: synovial biopsy,Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 17
+        H5 caratteristiche: Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370987
+        grezzo (Stadio 1): title: healthy tissue 18,source: synovial biopsy,Sex: F,age: 73,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 18
+        H5 caratteristiche: Sex: F,age: 73,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370988
+        grezzo (Stadio 1): title: healthy tissue 19,source: synovial biopsy,Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 19
+        H5 caratteristiche: Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370990
+        grezzo (Stadio 1): title: healthy tissue 21,source: synovial biopsy,Sex: M,age: 33,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 21
+        H5 caratteristiche: Sex: M,age: 33,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370991
+        grezzo (Stadio 1): title: healthy tissue 22,source: synovial biopsy,Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 22
+        H5 caratteristiche: Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370992
+        grezzo (Stadio 1): title: healthy tissue 23,source: synovial biopsy,Sex: F,age: 52,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 23
+        H5 caratteristiche: Sex: F,age: 52,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370993
+        grezzo (Stadio 1): title: healthy tissue 24,source: synovial biopsy,Sex: F,age: 24,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 24
+        H5 caratteristiche: Sex: F,age: 24,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370994
+        grezzo (Stadio 1): title: healthy tissue 25,source: synovial biopsy,Sex: F,age: 28,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 25
+        H5 caratteristiche: Sex: F,age: 28,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370996
+        grezzo (Stadio 1): title: healthy tissue 27,source: synovial biopsy,Sex: F,age: 23,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 27
+        H5 caratteristiche: Sex: F,age: 23,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370997
+        grezzo (Stadio 1): title: healthy tissue 28,source: synovial biopsy,Sex: M,age: 29,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 28
+        H5 caratteristiche: Sex: M,age: 29,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+
+CONFRONTO  GSE89408__GSE89408__oa_3_vs_normal_2__1
+  studio: GSE89408
+  TRATTATO  (n=8)  etichetta Stadio 2: Osteoarthritis
+      gruppo Stadio 2: grp_oa_3
+      GSM2371000
+        grezzo (Stadio 1): title: osteoarthritis tissue 3,source: synovial biopsy,Sex: F,age: 58,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 3
+        H5 caratteristiche: Sex: F,age: 58,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371001
+        grezzo (Stadio 1): title: osteoarthritis tissue 4,source: synovial biopsy,Sex: M,age: 63,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 4
+        H5 caratteristiche: Sex: M,age: 63,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371003
+        grezzo (Stadio 1): title: osteoarthritis tissue 6,source: synovial biopsy,Sex: M,age: 17,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 6
+        H5 caratteristiche: Sex: M,age: 17,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371005
+        grezzo (Stadio 1): title: osteoarthritis tissue 8,source: synovial biopsy,Sex: F,age: 69,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 8
+        H5 caratteristiche: Sex: F,age: 69,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371010
+        grezzo (Stadio 1): title: osteoarthritis tissue 13,source: synovial biopsy,Sex: F,age: 63,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 13
+        H5 caratteristiche: Sex: F,age: 63,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371012
+        grezzo (Stadio 1): title: osteoarthritis tissue 15,source: synovial biopsy,Sex: F,age: 53,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 15
+        H5 caratteristiche: Sex: F,age: 53,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371013
+        grezzo (Stadio 1): title: osteoarthritis tissue 16,source: synovial biopsy,Sex: M,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 16
+        H5 caratteristiche: Sex: M,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371019
+        grezzo (Stadio 1): title: osteoarthritis tissue 22,source: synovial biopsy,Sex: M,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 22
+        H5 caratteristiche: Sex: M,age: NA,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+  CONTROLLO  (n=24)  etichetta Stadio 2: Normal
+      gruppo Stadio 2: grp_normal_2
+      GSM2370970
+        grezzo (Stadio 1): title: healthy tissue 1,source: synovial biopsy,Sex: M,age: 13,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 1
+        H5 caratteristiche: Sex: M,age: 13,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370971
+        grezzo (Stadio 1): title: healthy tissue 2,source: synovial biopsy,Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 2
+        H5 caratteristiche: Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370972
+        grezzo (Stadio 1): title: healthy tissue 3,source: synovial biopsy,Sex: M,age: 22,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 3
+        H5 caratteristiche: Sex: M,age: 22,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370973
+        grezzo (Stadio 1): title: healthy tissue 4,source: synovial biopsy,Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 4
+        H5 caratteristiche: Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370974
+        grezzo (Stadio 1): title: healthy tissue 5,source: synovial biopsy,Sex: M,age: 27,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 5
+        H5 caratteristiche: Sex: M,age: 27,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370975
+        grezzo (Stadio 1): title: healthy tissue 6,source: synovial biopsy,Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 6
+        H5 caratteristiche: Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370976
+        grezzo (Stadio 1): title: healthy tissue 7,source: synovial biopsy,Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 7
+        H5 caratteristiche: Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370977
+        grezzo (Stadio 1): title: healthy tissue 8,source: synovial biopsy,Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 8
+        H5 caratteristiche: Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370978
+        grezzo (Stadio 1): title: healthy tissue 9,source: synovial biopsy,Sex: F,age: 15,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 9
+        H5 caratteristiche: Sex: F,age: 15,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370979
+        grezzo (Stadio 1): title: healthy tissue 10,source: synovial biopsy,Sex: M,age: 66,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 10
+        H5 caratteristiche: Sex: M,age: 66,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370980
+        grezzo (Stadio 1): title: healthy tissue 11,source: synovial biopsy,Sex: M,age: 28,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 11
+        H5 caratteristiche: Sex: M,age: 28,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370981
+        grezzo (Stadio 1): title: healthy tissue 12,source: synovial biopsy,Sex: M,age: 63,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 12
+        H5 caratteristiche: Sex: M,age: 63,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370982
+        grezzo (Stadio 1): title: healthy tissue 13,source: synovial biopsy,Sex: M,age: 15,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 13
+        H5 caratteristiche: Sex: M,age: 15,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370984
+        grezzo (Stadio 1): title: healthy tissue 15,source: synovial biopsy,Sex: F,age: 56,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 15
+        H5 caratteristiche: Sex: F,age: 56,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370986
+        grezzo (Stadio 1): title: healthy tissue 17,source: synovial biopsy,Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 17
+        H5 caratteristiche: Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370987
+        grezzo (Stadio 1): title: healthy tissue 18,source: synovial biopsy,Sex: F,age: 73,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 18
+        H5 caratteristiche: Sex: F,age: 73,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370988
+        grezzo (Stadio 1): title: healthy tissue 19,source: synovial biopsy,Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 19
+        H5 caratteristiche: Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370990
+        grezzo (Stadio 1): title: healthy tissue 21,source: synovial biopsy,Sex: M,age: 33,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 21
+        H5 caratteristiche: Sex: M,age: 33,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370991
+        grezzo (Stadio 1): title: healthy tissue 22,source: synovial biopsy,Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 22
+        H5 caratteristiche: Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370992
+        grezzo (Stadio 1): title: healthy tissue 23,source: synovial biopsy,Sex: F,age: 52,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 23
+        H5 caratteristiche: Sex: F,age: 52,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370993
+        grezzo (Stadio 1): title: healthy tissue 24,source: synovial biopsy,Sex: F,age: 24,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 24
+        H5 caratteristiche: Sex: F,age: 24,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370994
+        grezzo (Stadio 1): title: healthy tissue 25,source: synovial biopsy,Sex: F,age: 28,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 25
+        H5 caratteristiche: Sex: F,age: 28,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370996
+        grezzo (Stadio 1): title: healthy tissue 27,source: synovial biopsy,Sex: F,age: 23,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 27
+        H5 caratteristiche: Sex: F,age: 23,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370997
+        grezzo (Stadio 1): title: healthy tissue 28,source: synovial biopsy,Sex: M,age: 29,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 28
+        H5 caratteristiche: Sex: M,age: 29,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+
+CONFRONTO  GSE89408__GSE89408__oa_4_vs_normal_2__1
+  studio: GSE89408
+  TRATTATO  (n=3)  etichetta Stadio 2: Osteoarthritis
+      gruppo Stadio 2: grp_oa_4
+      GSM2370998
+        grezzo (Stadio 1): title: osteoarthritis tissue 1,source: synovial biopsy,Sex: M,age: 33,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 1
+        H5 caratteristiche: Sex: M,age: 33,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371008
+        grezzo (Stadio 1): title: osteoarthritis tissue 11,source: synovial biopsy,Sex: M,age: 19,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 11
+        H5 caratteristiche: Sex: M,age: 19,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2371011
+        grezzo (Stadio 1): title: osteoarthritis tissue 14,source: synovial biopsy,Sex: M,age: 19,disease: Osteoarthritis,acpa positivity: NA
+        H5 titolo        : osteoarthritis tissue 14
+        H5 caratteristiche: Sex: M,age: 19,disease: Osteoarthritis,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+  CONTROLLO  (n=24)  etichetta Stadio 2: Normal
+      gruppo Stadio 2: grp_normal_2
+      GSM2370970
+        grezzo (Stadio 1): title: healthy tissue 1,source: synovial biopsy,Sex: M,age: 13,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 1
+        H5 caratteristiche: Sex: M,age: 13,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370971
+        grezzo (Stadio 1): title: healthy tissue 2,source: synovial biopsy,Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 2
+        H5 caratteristiche: Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370972
+        grezzo (Stadio 1): title: healthy tissue 3,source: synovial biopsy,Sex: M,age: 22,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 3
+        H5 caratteristiche: Sex: M,age: 22,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370973
+        grezzo (Stadio 1): title: healthy tissue 4,source: synovial biopsy,Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 4
+        H5 caratteristiche: Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370974
+        grezzo (Stadio 1): title: healthy tissue 5,source: synovial biopsy,Sex: M,age: 27,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 5
+        H5 caratteristiche: Sex: M,age: 27,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370975
+        grezzo (Stadio 1): title: healthy tissue 6,source: synovial biopsy,Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 6
+        H5 caratteristiche: Sex: M,age: 47,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370976
+        grezzo (Stadio 1): title: healthy tissue 7,source: synovial biopsy,Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 7
+        H5 caratteristiche: Sex: F,age: 32,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370977
+        grezzo (Stadio 1): title: healthy tissue 8,source: synovial biopsy,Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 8
+        H5 caratteristiche: Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370978
+        grezzo (Stadio 1): title: healthy tissue 9,source: synovial biopsy,Sex: F,age: 15,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 9
+        H5 caratteristiche: Sex: F,age: 15,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370979
+        grezzo (Stadio 1): title: healthy tissue 10,source: synovial biopsy,Sex: M,age: 66,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 10
+        H5 caratteristiche: Sex: M,age: 66,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370980
+        grezzo (Stadio 1): title: healthy tissue 11,source: synovial biopsy,Sex: M,age: 28,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 11
+        H5 caratteristiche: Sex: M,age: 28,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370981
+        grezzo (Stadio 1): title: healthy tissue 12,source: synovial biopsy,Sex: M,age: 63,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 12
+        H5 caratteristiche: Sex: M,age: 63,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370982
+        grezzo (Stadio 1): title: healthy tissue 13,source: synovial biopsy,Sex: M,age: 15,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 13
+        H5 caratteristiche: Sex: M,age: 15,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370984
+        grezzo (Stadio 1): title: healthy tissue 15,source: synovial biopsy,Sex: F,age: 56,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 15
+        H5 caratteristiche: Sex: F,age: 56,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370986
+        grezzo (Stadio 1): title: healthy tissue 17,source: synovial biopsy,Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 17
+        H5 caratteristiche: Sex: F,age: 31,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370987
+        grezzo (Stadio 1): title: healthy tissue 18,source: synovial biopsy,Sex: F,age: 73,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 18
+        H5 caratteristiche: Sex: F,age: 73,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370988
+        grezzo (Stadio 1): title: healthy tissue 19,source: synovial biopsy,Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 19
+        H5 caratteristiche: Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370990
+        grezzo (Stadio 1): title: healthy tissue 21,source: synovial biopsy,Sex: M,age: 33,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 21
+        H5 caratteristiche: Sex: M,age: 33,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370991
+        grezzo (Stadio 1): title: healthy tissue 22,source: synovial biopsy,Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 22
+        H5 caratteristiche: Sex: M,age: 20,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370992
+        grezzo (Stadio 1): title: healthy tissue 23,source: synovial biopsy,Sex: F,age: 52,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 23
+        H5 caratteristiche: Sex: F,age: 52,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370993
+        grezzo (Stadio 1): title: healthy tissue 24,source: synovial biopsy,Sex: F,age: 24,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 24
+        H5 caratteristiche: Sex: F,age: 24,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370994
+        grezzo (Stadio 1): title: healthy tissue 25,source: synovial biopsy,Sex: F,age: 28,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 25
+        H5 caratteristiche: Sex: F,age: 28,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370996
+        grezzo (Stadio 1): title: healthy tissue 27,source: synovial biopsy,Sex: F,age: 23,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 27
+        H5 caratteristiche: Sex: F,age: 23,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+      GSM2370997
+        grezzo (Stadio 1): title: healthy tissue 28,source: synovial biopsy,Sex: M,age: 29,disease: Normal,acpa positivity: NA
+        H5 titolo        : healthy tissue 28
+        H5 caratteristiche: Sex: M,age: 29,disease: Normal,acpa positivity: NA
+        H5 sorgente      : synovial biopsy
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE163552     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE185064     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE89408      campioni nell'H5:  181 | collocati dallo Stadio 2:  181 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 42 campioni distinti (114 righe: i controlli servono piu' confronti)
+

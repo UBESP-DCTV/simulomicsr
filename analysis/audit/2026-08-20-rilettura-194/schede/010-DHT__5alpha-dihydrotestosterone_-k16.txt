@@ -1,0 +1,846 @@
+META-ANALISI 010 di 194
+==============================================================================
+nome            : DHT (5alpha-dihydrotestosterone)
+entita (ID)     : CHEBI:16330
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_930c8dcf
+studi poolati   : 16   confronti: 21   campioni: 131
+geni significativi: 2372   I2 mediano: 80.8
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE118152__GSE118152__DHT_ENZ_vs_EtOH_DMSO__1
+  studio: GSE118152
+  TRATTATO  (n=2)  etichetta Stadio 2: DHT_ENZ
+      gruppo Stadio 2: grp_0005
+      GSM3319572
+        grezzo (Stadio 1): title: LNCaP_DHT_ENZ rep1,source: LNCaP_DHT_ENZ,cell line: LNCaP-FGC prostate adenocarcinoma cancer cell line,treatment: DHT_ENZ
+        H5 titolo        : LNCaP_DHT_ENZ rep1
+        H5 caratteristiche: cell line: LNCaP-FGC prostate adenocarcinoma cancer cell line,treatment: DHT_ENZ
+        H5 sorgente      : LNCaP_DHT_ENZ
+      GSM3319573
+        grezzo (Stadio 1): title: LNCaP_DHT ENZ rep2,source: LNCaP_DHT ENZ,cell line: LNCaP-FGC prostate adenocarcinoma cancer cell line,treatment: DHT_ENZ
+        H5 titolo        : LNCaP_DHT ENZ rep2
+        H5 caratteristiche: cell line: LNCaP-FGC prostate adenocarcinoma cancer cell line,treatment: DHT_ENZ
+        H5 sorgente      : LNCaP_DHT ENZ
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control (EtOH_DMSO)
+      gruppo Stadio 2: grp_0001
+      GSM3319568
+        grezzo (Stadio 1): title: LNCaP_EtOH_DMSO rep1,source: LNCaP_EtOH_DMSO,cell line: LNCaP-FGC prostate adenocarcinoma cancer cell line,treatment: EtOH_DMSO
+        H5 titolo        : LNCaP_EtOH_DMSO rep1
+        H5 caratteristiche: cell line: LNCaP-FGC prostate adenocarcinoma cancer cell line,treatment: EtOH_DMSO
+        H5 sorgente      : LNCaP_EtOH_DMSO
+      GSM3319569
+        grezzo (Stadio 1): title: LNCaP_EtOH_DMSO rep2,source: LNCaP_EtOH_DMSO,cell line: LNCaP-FGC prostate adenocarcinoma cancer cell line,treatment: EtOH_DMSO
+        H5 titolo        : LNCaP_EtOH_DMSO rep2
+        H5 caratteristiche: cell line: LNCaP-FGC prostate adenocarcinoma cancer cell line,treatment: EtOH_DMSO
+        H5 sorgente      : LNCaP_EtOH_DMSO
+
+CONFRONTO  GSE123763__GSE123763__HCI-005_DHT_vs_HCI-005_Vehicle__1
+  studio: GSE123763
+  TRATTATO  (n=3)  etichetta Stadio 2: HCI-005_DHT
+      gruppo Stadio 2: grp_0006
+      GSM3511043
+        grezzo (Stadio 1): title: HCI-005 DHT 1,source: HCI-005 DHT tumor,tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: DHT,replicate: 1
+        H5 titolo        : HCI-005 DHT 1
+        H5 caratteristiche: tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: DHT,replicate: 1
+        H5 sorgente      : HCI-005 DHT tumor
+      GSM3511044
+        grezzo (Stadio 1): title: HCI-005 DHT 2,source: HCI-005 DHT tumor,tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: DHT,replicate: 2
+        H5 titolo        : HCI-005 DHT 2
+        H5 caratteristiche: tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: DHT,replicate: 2
+        H5 sorgente      : HCI-005 DHT tumor
+      GSM3511045
+        grezzo (Stadio 1): title: HCI-005 DHT 3,source: HCI-005 DHT tumor,tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: DHT,replicate: 3
+        H5 titolo        : HCI-005 DHT 3
+        H5 caratteristiche: tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: DHT,replicate: 3
+        H5 sorgente      : HCI-005 DHT tumor
+  CONTROLLO  (n=3)  etichetta Stadio 2: HCI-005_Vehicle
+      gruppo Stadio 2: grp_0008
+      GSM3511040
+        grezzo (Stadio 1): title: HCI-005 Veh 2,source: HCI-005 Veh tumor,tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: Vehicle,replicate: 2
+        H5 titolo        : HCI-005 Veh 2
+        H5 caratteristiche: tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: Vehicle,replicate: 2
+        H5 sorgente      : HCI-005 Veh tumor
+      GSM3511041
+        grezzo (Stadio 1): title: HCI-005 Veh 3,source: HCI-005 Veh tumor,tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: Vehicle,replicate: 3
+        H5 titolo        : HCI-005 Veh 3
+        H5 caratteristiche: tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: Vehicle,replicate: 3
+        H5 sorgente      : HCI-005 Veh tumor
+      GSM3511042
+        grezzo (Stadio 1): title: HCI-005 Veh 4,source: HCI-005 Veh tumor,tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: Vehicle,replicate: 4
+        H5 titolo        : HCI-005 Veh 4
+        H5 caratteristiche: tissue: Breast cancer PDX model HCI-005 tumor,time point: Short-term (5 days treatment),treatment: Vehicle,replicate: 4
+        H5 sorgente      : HCI-005 Veh tumor
+
+CONFRONTO  GSE131726__GSE131726__grp_0007_vs_grp_0001__1
+  studio: GSE131726
+  TRATTATO  (n=2)  etichetta Stadio 2: LNCaP + DHT
+      gruppo Stadio 2: grp_0007
+      GSM3814769
+        grezzo (Stadio 1): title: LNCaP NSPsiRNA_DHT2,source: prostate cancer cell line,cell line: LNCaP,transfection: non-specific siRNA,treatment: 2.5nM Dihydrotestosterone(DHT) for 24 hours
+        H5 titolo        : LNCaP NSPsiRNA_DHT2
+        H5 caratteristiche: cell line: LNCaP,transfection: non-specific siRNA,treatment: 2.5nM Dihydrotestosterone(DHT) for 24 hours
+        H5 sorgente      : prostate cancer cell line
+      GSM3814770
+        grezzo (Stadio 1): title: LNCaP NSPsiRNA_DHT3,source: prostate cancer cell line,cell line: LNCaP,transfection: non-specific siRNA,treatment: 2.5nM Dihydrotestosterone(DHT) for 24 hours
+        H5 titolo        : LNCaP NSPsiRNA_DHT3
+        H5 caratteristiche: cell line: LNCaP,transfection: non-specific siRNA,treatment: 2.5nM Dihydrotestosterone(DHT) for 24 hours
+        H5 sorgente      : prostate cancer cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: LNCaP + ethanol (control)
+      gruppo Stadio 2: grp_0001
+      GSM3814765
+        grezzo (Stadio 1): title: LNCaP NSPsiRNA_Ctrl1,source: prostate cancer cell line,cell line: LNCaP,transfection: non-specific siRNA,treatment: ethanol for 24 hrs
+        H5 titolo        : LNCaP NSPsiRNA_Ctrl1
+        H5 caratteristiche: cell line: LNCaP,transfection: non-specific siRNA,treatment: ethanol for 24 hrs
+        H5 sorgente      : prostate cancer cell line
+      GSM3814766
+        grezzo (Stadio 1): title: LNCaP NSPsiRNA_Ctrl2,source: prostate cancer cell line,cell line: LNCaP,transfection: non-specific siRNA,treatment: ethanol for 24 hrs
+        H5 titolo        : LNCaP NSPsiRNA_Ctrl2
+        H5 caratteristiche: cell line: LNCaP,transfection: non-specific siRNA,treatment: ethanol for 24 hrs
+        H5 sorgente      : prostate cancer cell line
+      GSM3814767
+        grezzo (Stadio 1): title: LNCaP NSPsiRNA_Ctrl3,source: prostate cancer cell line,cell line: LNCaP,transfection: non-specific siRNA,treatment: ethanol for 24 hrs
+        H5 titolo        : LNCaP NSPsiRNA_Ctrl3
+        H5 caratteristiche: cell line: LNCaP,transfection: non-specific siRNA,treatment: ethanol for 24 hrs
+        H5 sorgente      : prostate cancer cell line
+
+CONFRONTO  GSE138053__GSE138053__DHT_iPSC_Donor6_vs_EtOH_iPSC_Donor6__1
+  studio: GSE138053
+  TRATTATO  (n=3)  etichetta Stadio 2: DHT-treated iPSC (Donor 6)
+      gruppo Stadio 2: grp_DHT_iPSC_Donor6
+      GSM4097476
+        grezzo (Stadio 1): title: SBMA_iPSC_DHT_Bioreplicate_1,source: iPSC,tissue: iPSC,culture condition: DHT,biological replicate: 1,sample group: SBMA,donor: Donor_6,age: 59,gender: MaleÂ ,race: Caucasian,author sample id: S16171857,author reference id: SB1
+        H5 titolo        : SBMA_iPSC_DHT_Bioreplicate_1
+        H5 caratteristiche: tissue: iPSC,culture condition: DHT,biological replicate: 1,sample group: SBMA,donor: Donor_6,age: 59,gender: MaleÂ ,race: Caucasian,author sample id: S16171857,author reference id: SB1
+        H5 sorgente      : iPSC
+      GSM4097478
+        grezzo (Stadio 1): title: SBMA_iPSC_DHT_Bioreplicate_2,source: iPSC,tissue: iPSC,culture condition: DHT,biological replicate: 2,sample group: SBMA,donor: Donor_7,age: 49,gender: MaleÂ ,race: Caucasian,author sample id: S16171865,author reference id: SB15
+        H5 titolo        : SBMA_iPSC_DHT_Bioreplicate_2
+        H5 caratteristiche: tissue: iPSC,culture condition: DHT,biological replicate: 2,sample group: SBMA,donor: Donor_7,age: 49,gender: MaleÂ ,race: Caucasian,author sample id: S16171865,author reference id: SB15
+        H5 sorgente      : iPSC
+      GSM4097480
+        grezzo (Stadio 1): title: SBMA_iPSC_DHT_Bioreplicate_3,source: iPSC,tissue: iPSC,culture condition: DHT,biological replicate: 3,sample group: SBMA,donor: Donor_8,age: 68,gender: MaleÂ ,race: Caucasian,author sample id: S16171856,author reference id: SB3
+        H5 titolo        : SBMA_iPSC_DHT_Bioreplicate_3
+        H5 caratteristiche: tissue: iPSC,culture condition: DHT,biological replicate: 3,sample group: SBMA,donor: Donor_8,age: 68,gender: MaleÂ ,race: Caucasian,author sample id: S16171856,author reference id: SB3
+        H5 sorgente      : iPSC
+  CONTROLLO  (n=5)  etichetta Stadio 2: EtOH-treated iPSC (Donor 6)
+      gruppo Stadio 2: grp_EtOH_iPSC_Donor6
+      GSM4097477
+        grezzo (Stadio 1): title: SBMA_iPSC_EtOH_Bioreplicate_1,source: iPSC,tissue: iPSC,culture condition: EtOH,biological replicate: 1,sample group: SBMA,donor: Donor_6,age: 59,gender: MaleÂ ,race: Caucasian,author sample id: S16171863,author reference id: SB1
+        H5 titolo        : SBMA_iPSC_EtOH_Bioreplicate_1
+        H5 caratteristiche: tissue: iPSC,culture condition: EtOH,biological replicate: 1,sample group: SBMA,donor: Donor_6,age: 59,gender: MaleÂ ,race: Caucasian,author sample id: S16171863,author reference id: SB1
+        H5 sorgente      : iPSC
+      GSM4097479
+        grezzo (Stadio 1): title: SBMA_iPSC_EtOH_Bioreplicate_2,source: iPSC,tissue: iPSC,culture condition: EtOH,biological replicate: 2,sample group: SBMA,donor: Donor_7,age: 49,gender: MaleÂ ,race: Caucasian,author sample id: S16171854,author reference id: SB15
+        H5 titolo        : SBMA_iPSC_EtOH_Bioreplicate_2
+        H5 caratteristiche: tissue: iPSC,culture condition: EtOH,biological replicate: 2,sample group: SBMA,donor: Donor_7,age: 49,gender: MaleÂ ,race: Caucasian,author sample id: S16171854,author reference id: SB15
+        H5 sorgente      : iPSC
+      GSM4097481
+        grezzo (Stadio 1): title: SBMA_iPSC_EtOH_Bioreplicate_3,source: iPSC,tissue: iPSC,culture condition: EtOH,biological replicate: 3,sample group: SBMA,donor: Donor_8,age: 68,gender: MaleÂ ,race: Caucasian,author sample id: S16171862,author reference id: SB3
+        H5 titolo        : SBMA_iPSC_EtOH_Bioreplicate_3
+        H5 caratteristiche: tissue: iPSC,culture condition: EtOH,biological replicate: 3,sample group: SBMA,donor: Donor_8,age: 68,gender: MaleÂ ,race: Caucasian,author sample id: S16171862,author reference id: SB3
+        H5 sorgente      : iPSC
+      GSM4097483
+        grezzo (Stadio 1): title: Control_iPSC_EtOH_Bioreplicate_1,source: iPSC,tissue: iPSC,culture condition: EtOH,biological replicate: 1,sample group: Control,donor: Donor_9,age: 60,gender: MaleÂ ,race: Caucasian,author sample id: S16171861,author reference id: HT180
+        H5 titolo        : Control_iPSC_EtOH_Bioreplicate_1
+        H5 caratteristiche: tissue: iPSC,culture condition: EtOH,biological replicate: 1,sample group: Control,donor: Donor_9,age: 60,gender: MaleÂ ,race: Caucasian,author sample id: S16171861,author reference id: HT180
+        H5 sorgente      : iPSC
+      GSM4097487
+        grezzo (Stadio 1): title: Control_iPSC_EtOH_Bioreplicate_3,source: iPSC,tissue: iPSC,culture condition: EtOH,biological replicate: 3,sample group: Control,donor: Donor_10,age: 30,gender: MaleÂ ,race: Asian,author sample id: S16171859,author reference id: WTC11
+        H5 titolo        : Control_iPSC_EtOH_Bioreplicate_3
+        H5 caratteristiche: tissue: iPSC,culture condition: EtOH,biological replicate: 3,sample group: Control,donor: Donor_10,age: 30,gender: MaleÂ ,race: Asian,author sample id: S16171859,author reference id: WTC11
+        H5 sorgente      : iPSC
+
+CONFRONTO  GSE141806__GSE141806__grp_0002_vs_grp_0003__1
+  studio: GSE141806
+  TRATTATO  (n=2)  etichetta Stadio 2: 22Rv1 cells treated with DHT
+      gruppo Stadio 2: grp_0002
+      GSM4213591
+        grezzo (Stadio 1): title: 22Rv1_DHT_Ct,source: prostate cancer cells,cell line: 22Rv1 cells,agent: DHT 10 nM treatment,sirna: Control
+        H5 titolo        : 22Rv1_DHT_Ct
+        H5 caratteristiche: cell line: 22Rv1 cells,agent: DHT 10 nM treatment,sirna: Control
+        H5 sorgente      : prostate cancer cells
+      GSM4213595
+        grezzo (Stadio 1): title: 22Rv1_DHT_R,source: prostate cancer cells,cell line: 22Rv1 cells,agent: DHT 10 nM treatment,sirna: R
+        H5 titolo        : 22Rv1_DHT_R
+        H5 caratteristiche: cell line: 22Rv1 cells,agent: DHT 10 nM treatment,sirna: R
+        H5 sorgente      : prostate cancer cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: 22Rv1 cells treated with ethanol
+      gruppo Stadio 2: grp_0003
+      GSM4213590
+        grezzo (Stadio 1): title: 22Rv1_Et_Ct,source: prostate cancer cells,cell line: 22Rv1 cells,agent: ethanol (Vehicle) treatment,sirna: Control
+        H5 titolo        : 22Rv1_Et_Ct
+        H5 caratteristiche: cell line: 22Rv1 cells,agent: ethanol (Vehicle) treatment,sirna: Control
+        H5 sorgente      : prostate cancer cells
+      GSM4213592
+        grezzo (Stadio 1): title: 22Rv1_Et_siAR,source: prostate cancer cells,cell line: 22Rv1 cells,agent: ethanol (Vehicle) treatment,sirna: siAR
+        H5 titolo        : 22Rv1_Et_siAR
+        H5 caratteristiche: cell line: 22Rv1 cells,agent: ethanol (Vehicle) treatment,sirna: siAR
+        H5 sorgente      : prostate cancer cells
+      GSM4213594
+        grezzo (Stadio 1): title: 22Rv1_Et_R,source: prostate cancer cells,cell line: 22Rv1 cells,agent: ethanol (Vehicle) treatment,sirna: R
+        H5 titolo        : 22Rv1_Et_R
+        H5 caratteristiche: cell line: 22Rv1 cells,agent: ethanol (Vehicle) treatment,sirna: R
+        H5 sorgente      : prostate cancer cells
+
+CONFRONTO  GSE157104__GSE157104__grp_0004_vs_grp_0007__1
+  studio: GSE157104
+  TRATTATO  (n=2)  etichetta Stadio 2: VCaP cells treated with DHT for 10 hours
+      gruppo Stadio 2: grp_0004
+      GSM4753151
+        grezzo (Stadio 1): title: RNASeq_VCaP_DHT_10hr_REP1,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : RNASeq_VCaP_DHT_10hr_REP1
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+      GSM4753152
+        grezzo (Stadio 1): title: RNASeq_VCaP_DHT_10hr_REP2,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : RNASeq_VCaP_DHT_10hr_REP2
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+  CONTROLLO  (n=6)  etichetta Stadio 2: VCaP cells treated with Vehicle
+      gruppo Stadio 2: grp_0007
+      GSM4753155
+        grezzo (Stadio 1): title: RNASeq_VCaP_Veh_REP1,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : RNASeq_VCaP_Veh_REP1
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+      GSM4753156
+        grezzo (Stadio 1): title: RNASeq_VCaP_Veh_REP2,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : RNASeq_VCaP_Veh_REP2
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+      GSM4753157
+        grezzo (Stadio 1): title: RNASeq_VCaP_Veh_siCtrl_REP1,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : RNASeq_VCaP_Veh_siCtrl_REP1
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+      GSM4753158
+        grezzo (Stadio 1): title: RNASeq_VCaP_Veh_siCtrl_REP2,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : RNASeq_VCaP_Veh_siCtrl_REP2
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+      GSM4753159
+        grezzo (Stadio 1): title: RNASeq_VCaP_Veh_siMYC_REP1,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : RNASeq_VCaP_Veh_siMYC_REP1
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+      GSM4753160
+        grezzo (Stadio 1): title: RNASeq_VCaP_Veh_siMYC_REP2,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : RNASeq_VCaP_Veh_siMYC_REP2
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+
+CONFRONTO  GSE157104__GSE157104__grp_0006_vs_grp_0008__1
+  studio: GSE157104
+  TRATTATO  (n=2)  etichetta Stadio 2: VCaP cells treated with DHT for 24 hours
+      gruppo Stadio 2: grp_0006
+      GSM4753161
+        grezzo (Stadio 1): title: VCAP_RNASeq_DHT_24hr_REP1,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : VCAP_RNASeq_DHT_24hr_REP1
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+      GSM4753162
+        grezzo (Stadio 1): title: VCAP_RNASeq_DHT_24hr_REP2,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : VCAP_RNASeq_DHT_24hr_REP2
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: VCaP cells treated with Vehicle for 24 hours
+      gruppo Stadio 2: grp_0008
+      GSM4753163
+        grezzo (Stadio 1): title: VCAP_RNASeq_Veh_24hr_REP1,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : VCAP_RNASeq_Veh_24hr_REP1
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+      GSM4753164
+        grezzo (Stadio 1): title: VCAP_RNASeq_Veh_24hr_REP2,source: VCaP cells,tissue: VCaP cells,cell type: prostate cancer
+        H5 titolo        : VCAP_RNASeq_Veh_24hr_REP2
+        H5 caratteristiche: tissue: VCaP cells,cell type: prostate cancer
+        H5 sorgente      : VCaP cells
+
+CONFRONTO  GSE158557__GSE158557__grp_0002_vs_grp_0001__1
+  studio: GSE158557
+  TRATTATO  (n=3)  etichetta Stadio 2: EGFP-ARQ640X + Doxycycline + DHT
+      gruppo Stadio 2: grp_0002
+      GSM4802793
+        grezzo (Stadio 1): title: Q640X_DHT rep1,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 titolo        : Q640X_DHT rep1
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+      GSM4802794
+        grezzo (Stadio 1): title: Q640X_DHT rep2,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 titolo        : Q640X_DHT rep2
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+      GSM4802795
+        grezzo (Stadio 1): title: Q640X_DHT rep3,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 titolo        : Q640X_DHT rep3
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: EGFP-ARQ640X + Doxycycline + Ethanol
+      gruppo Stadio 2: grp_0001
+      GSM4802796
+        grezzo (Stadio 1): title: Q640X_EtOH rep1,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 titolo        : Q640X_EtOH rep1
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+      GSM4802797
+        grezzo (Stadio 1): title: Q640X_EtOH rep2,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 titolo        : Q640X_EtOH rep2
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+      GSM4802798
+        grezzo (Stadio 1): title: Q640X_EtOH rep3,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 titolo        : Q640X_EtOH rep3
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARQ640X,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+
+CONFRONTO  GSE158557__GSE158557__grp_0005_vs_grp_0006__1
+  studio: GSE158557
+  TRATTATO  (n=3)  etichetta Stadio 2: EGFP-ARWT + Doxycycline + DHT
+      gruppo Stadio 2: grp_0005
+      GSM4802787
+        grezzo (Stadio 1): title: WT DHT 24h rep1,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 titolo        : WT DHT 24h rep1
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+      GSM4802788
+        grezzo (Stadio 1): title: WT DHT 24h rep2,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 titolo        : WT DHT 24h rep2
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+      GSM4802789
+        grezzo (Stadio 1): title: WT DHT 24h rep3,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 titolo        : WT DHT 24h rep3
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: EGFP-ARWT + Doxycycline + Ethanol
+      gruppo Stadio 2: grp_0006
+      GSM4802790
+        grezzo (Stadio 1): title: WT_EtOH rep1,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 titolo        : WT_EtOH rep1
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+      GSM4802791
+        grezzo (Stadio 1): title: WT_EtOH rep2,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 titolo        : WT_EtOH rep2
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+      GSM4802792
+        grezzo (Stadio 1): title: WT_EtOH rep3,source: LNCaP cell line,cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 titolo        : WT_EtOH rep3
+        H5 caratteristiche: cell type: Prostate cancer cell,cell line: LNCaP,transduction: Transduction with lentiviral particles for doxycyclinbe-induced expression of EGFP-ARWT,agent: 20 ng/mL of Doxycycline and Ethanol as vehicle in place of 10 nM DHT
+        H5 sorgente      : LNCaP cell line
+
+CONFRONTO  GSE159606__GSE159606__DHT_vs_VehicleControl__1
+  studio: GSE159606
+  TRATTATO  (n=3)  etichetta Stadio 2: DHT
+      gruppo Stadio 2: grp_DHT
+      GSM4835633
+        grezzo (Stadio 1): title: DHT_rep1,source: LNCaP,cell type: prostate cancer cells,treatment: DHT
+        H5 titolo        : DHT_rep1
+        H5 caratteristiche: cell type: prostate cancer cells,treatment: DHT
+        H5 sorgente      : LNCaP
+      GSM4835634
+        grezzo (Stadio 1): title: DHT_rep2,source: LNCaP,cell type: prostate cancer cells,treatment: DHT
+        H5 titolo        : DHT_rep2
+        H5 caratteristiche: cell type: prostate cancer cells,treatment: DHT
+        H5 sorgente      : LNCaP
+      GSM4835635
+        grezzo (Stadio 1): title: DHT_rep3,source: LNCaP,cell type: prostate cancer cells,treatment: DHT
+        H5 titolo        : DHT_rep3
+        H5 caratteristiche: cell type: prostate cancer cells,treatment: DHT
+        H5 sorgente      : LNCaP
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle Control
+      gruppo Stadio 2: grp_VehicleControl
+      GSM4835630
+        grezzo (Stadio 1): title: Vehicle_rep1,source: LNCaP,cell type: prostate cancer cells,treatment: Vehicle Control
+        H5 titolo        : Vehicle_rep1
+        H5 caratteristiche: cell type: prostate cancer cells,treatment: Vehicle Control
+        H5 sorgente      : LNCaP
+      GSM4835631
+        grezzo (Stadio 1): title: Vehicle_rep2,source: LNCaP,cell type: prostate cancer cells,treatment: Vehicle Control
+        H5 titolo        : Vehicle_rep2
+        H5 caratteristiche: cell type: prostate cancer cells,treatment: Vehicle Control
+        H5 sorgente      : LNCaP
+      GSM4835632
+        grezzo (Stadio 1): title: Vehicle_rep3,source: LNCaP,cell type: prostate cancer cells,treatment: Vehicle Control
+        H5 titolo        : Vehicle_rep3
+        H5 caratteristiche: cell type: prostate cancer cells,treatment: Vehicle Control
+        H5 sorgente      : LNCaP
+
+CONFRONTO  GSE174618__GSE174618__DHT_24h_vs_Vehicle__1
+  studio: GSE174618
+  TRATTATO  (n=4)  etichetta Stadio 2: DHT 10 nM 24 hours
+      gruppo Stadio 2: grp_0003
+      GSM5320641
+        grezzo (Stadio 1): title: HPr1AR_DHT_24hr_R1,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 24hr
+        H5 titolo        : HPr1AR_DHT_24hr_R1
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 24hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320645
+        grezzo (Stadio 1): title: HPr1AR_DHT_24hr_R2,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 24hr
+        H5 titolo        : HPr1AR_DHT_24hr_R2
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 24hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320649
+        grezzo (Stadio 1): title: HPr1AR_DHT_24hr_R3,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 24hr
+        H5 titolo        : HPr1AR_DHT_24hr_R3
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 24hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320653
+        grezzo (Stadio 1): title: HPr1AR_DHT_24hr_R4,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 24hr
+        H5 titolo        : HPr1AR_DHT_24hr_R4
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 24hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+  CONTROLLO  (n=4)  etichetta Stadio 2: Vehicle Control (EtOH)
+      gruppo Stadio 2: grp_0001
+      GSM5320639
+        grezzo (Stadio 1): title: HPr1AR_DHT_0hr_R1,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 titolo        : HPr1AR_DHT_0hr_R1
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320643
+        grezzo (Stadio 1): title: HPr1AR_DHT_0hr_R2,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 titolo        : HPr1AR_DHT_0hr_R2
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320647
+        grezzo (Stadio 1): title: HPr1AR_DHT_0hr_R3,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 titolo        : HPr1AR_DHT_0hr_R3
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320651
+        grezzo (Stadio 1): title: HPr1AR_DHT_0hr_R4,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 titolo        : HPr1AR_DHT_0hr_R4
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+
+CONFRONTO  GSE174618__GSE174618__DHT_96h_vs_Vehicle__1
+  studio: GSE174618
+  TRATTATO  (n=3)  etichetta Stadio 2: DHT 10 nM 96 hours
+      gruppo Stadio 2: grp_0004
+      GSM5320642
+        grezzo (Stadio 1): title: HPr1AR_DHT_96hr_R1,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 96hr
+        H5 titolo        : HPr1AR_DHT_96hr_R1
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 96hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320646
+        grezzo (Stadio 1): title: HPr1AR_DHT_96hr_R2,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 96hr
+        H5 titolo        : HPr1AR_DHT_96hr_R2
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 96hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320650
+        grezzo (Stadio 1): title: HPr1AR_DHT_96hr_R3,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 96hr
+        H5 titolo        : HPr1AR_DHT_96hr_R3
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: 10nm DHT,time: 96hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+  CONTROLLO  (n=4)  etichetta Stadio 2: Vehicle Control (EtOH)
+      gruppo Stadio 2: grp_0001
+      GSM5320639
+        grezzo (Stadio 1): title: HPr1AR_DHT_0hr_R1,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 titolo        : HPr1AR_DHT_0hr_R1
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320643
+        grezzo (Stadio 1): title: HPr1AR_DHT_0hr_R2,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 titolo        : HPr1AR_DHT_0hr_R2
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320647
+        grezzo (Stadio 1): title: HPr1AR_DHT_0hr_R3,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 titolo        : HPr1AR_DHT_0hr_R3
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+      GSM5320651
+        grezzo (Stadio 1): title: HPr1AR_DHT_0hr_R4,source: Prostate Epithelial Cell Line,tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 titolo        : HPr1AR_DHT_0hr_R4
+        H5 caratteristiche: tissue: Prostate Epithelial Cell Line,cell line: HPr1-AR,gender: male,treatment: EtOH,time: 0hr
+        H5 sorgente      : Prostate Epithelial Cell Line
+
+CONFRONTO  GSE176006__GSE176006__grp_0003_vs_grp_0002__1
+  studio: GSE176006
+  TRATTATO  (n=5)  etichetta Stadio 2: MDA-MB-453 passage 1 treated with DHT
+      gruppo Stadio 2: grp_0003
+      GSM5352598
+        grezzo (Stadio 1): title: MDA-MB-453_DHT_passage_1,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: DHT,replicate: 1
+        H5 titolo        : MDA-MB-453_DHT_passage_1
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: DHT,replicate: 1
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352599
+        grezzo (Stadio 1): title: MDA-MB-453_DHT_passage_2,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: DHT,replicate: 2
+        H5 titolo        : MDA-MB-453_DHT_passage_2
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: DHT,replicate: 2
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352600
+        grezzo (Stadio 1): title: MDA-MB-453_DHT_passage_3,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: DHT,replicate: 3
+        H5 titolo        : MDA-MB-453_DHT_passage_3
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: DHT,replicate: 3
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352601
+        grezzo (Stadio 1): title: MDA-MB-453_DHT_passage_4,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: DHT,replicate: 4
+        H5 titolo        : MDA-MB-453_DHT_passage_4
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: DHT,replicate: 4
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352603
+        grezzo (Stadio 1): title: MDA-MB-453_DHT_passage_6,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: DHT,replicate: 6
+        H5 titolo        : MDA-MB-453_DHT_passage_6
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: DHT,replicate: 6
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+  CONTROLLO  (n=6)  etichetta Stadio 2: MDA-MB-453 passage 1 treated with Vehicle
+      gruppo Stadio 2: grp_0002
+      GSM5352592
+        grezzo (Stadio 1): title: MDA-MB-453_Veh_passage_1,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: Veh,replicate: 1
+        H5 titolo        : MDA-MB-453_Veh_passage_1
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: Veh,replicate: 1
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352593
+        grezzo (Stadio 1): title: MDA-MB-453_Veh_passage_2,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: Veh,replicate: 2
+        H5 titolo        : MDA-MB-453_Veh_passage_2
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: Veh,replicate: 2
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352594
+        grezzo (Stadio 1): title: MDA-MB-453_Veh_passage_3,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: Veh,replicate: 3
+        H5 titolo        : MDA-MB-453_Veh_passage_3
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: Veh,replicate: 3
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352595
+        grezzo (Stadio 1): title: MDA-MB-453_Veh_passage_4,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: Veh,replicate: 4
+        H5 titolo        : MDA-MB-453_Veh_passage_4
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: Veh,replicate: 4
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352596
+        grezzo (Stadio 1): title: MDA-MB-453_Veh_passage_5,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: Veh,replicate: 5
+        H5 titolo        : MDA-MB-453_Veh_passage_5
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: Veh,replicate: 5
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+      GSM5352597
+        grezzo (Stadio 1): title: MDA-MB-453_Veh_passage_6,source: MDA-MB-453 breast cancer cell line,cell line: MDA-MB-453,treatment: Veh,replicate: 6
+        H5 titolo        : MDA-MB-453_Veh_passage_6
+        H5 caratteristiche: cell line: MDA-MB-453,treatment: Veh,replicate: 6
+        H5 sorgente      : MDA-MB-453 breast cancer cell line
+
+CONFRONTO  GSE178374__GSE178374__group_0003_vs_group_0002__1
+  studio: GSE178374
+  TRATTATO  (n=5)  etichetta Stadio 2: 2D-cultured dermal papilla cells treated with DHT
+      gruppo Stadio 2: group_0003
+      GSM5388468
+        grezzo (Stadio 1): title: DHT2D1,source: DHT treated dermal papilla cells,cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated two-dimensional (2D)-cultured
+        H5 titolo        : DHT2D1
+        H5 caratteristiche: cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated two-dimensional (2D)-cultured
+        H5 sorgente      : DHT treated dermal papilla cells
+      GSM5388469
+        grezzo (Stadio 1): title: DHT2D2,source: DHT treated dermal papilla cells,cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated two-dimensional (2D)-cultured
+        H5 titolo        : DHT2D2
+        H5 caratteristiche: cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated two-dimensional (2D)-cultured
+        H5 sorgente      : DHT treated dermal papilla cells
+      GSM5388471
+        grezzo (Stadio 1): title: DHT3D1,source: DHT treated dermal papilla cell aggregates,cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated 3D-cultured
+        H5 titolo        : DHT3D1
+        H5 caratteristiche: cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated 3D-cultured
+        H5 sorgente      : DHT treated dermal papilla cell aggregates
+      GSM5388472
+        grezzo (Stadio 1): title: DHT3D2,source: DHT treated dermal papilla cell aggregates,cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated 3D-cultured
+        H5 titolo        : DHT3D2
+        H5 caratteristiche: cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated 3D-cultured
+        H5 sorgente      : DHT treated dermal papilla cell aggregates
+      GSM5388473
+        grezzo (Stadio 1): title: DHT3D3,source: DHT treated dermal papilla cell aggregates,cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated 3D-cultured
+        H5 titolo        : DHT3D3
+        H5 caratteristiche: cell type: dermal papilla cells,treatment: dihydrotestosterone (DHT)-treated 3D-cultured
+        H5 sorgente      : DHT treated dermal papilla cell aggregates
+  CONTROLLO  (n=3)  etichetta Stadio 2: 2D-cultured dermal papilla cells
+      gruppo Stadio 2: group_0002
+      GSM5388474
+        grezzo (Stadio 1): title: empty2D1,source: dermal papilla cells,cell type: dermal papilla cells,treatment: two-dimensional (2D)-cultured
+        H5 titolo        : empty2D1
+        H5 caratteristiche: cell type: dermal papilla cells,treatment: two-dimensional (2D)-cultured
+        H5 sorgente      : dermal papilla cells
+      GSM5388475
+        grezzo (Stadio 1): title: empty2D2,source: dermal papilla cells,cell type: dermal papilla cells,treatment: two-dimensional (2D)-cultured
+        H5 titolo        : empty2D2
+        H5 caratteristiche: cell type: dermal papilla cells,treatment: two-dimensional (2D)-cultured
+        H5 sorgente      : dermal papilla cells
+      GSM5388476
+        grezzo (Stadio 1): title: empty2D3,source: dermal papilla cells,cell type: dermal papilla cells,treatment: two-dimensional (2D)-cultured
+        H5 titolo        : empty2D3
+        H5 caratteristiche: cell type: dermal papilla cells,treatment: two-dimensional (2D)-cultured
+        H5 sorgente      : dermal papilla cells
+
+CONFRONTO  GSE210765__GSE210765__DHT_vs_EtOH__1
+  studio: GSE210765
+  TRATTATO  (n=3)  etichetta Stadio 2: DHT
+      gruppo Stadio 2: grp_0002
+      GSM6436840
+        grezzo (Stadio 1): title: siRBAP48-DHT rep1,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: RBAP48 knockdown,treatment: DHT
+        H5 titolo        : siRBAP48-DHT rep1
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: RBAP48 knockdown,treatment: DHT
+        H5 sorgente      : Oral squamous cell carcinoma
+      GSM6436841
+        grezzo (Stadio 1): title: siRBAP48-DHT rep2,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: RBAP48 knockdown,treatment: DHT
+        H5 titolo        : siRBAP48-DHT rep2
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: RBAP48 knockdown,treatment: DHT
+        H5 sorgente      : Oral squamous cell carcinoma
+      GSM6436842
+        grezzo (Stadio 1): title: siRBAP48-DHT rep3,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: RBAP48 knockdown,treatment: DHT
+        H5 titolo        : siRBAP48-DHT rep3
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: RBAP48 knockdown,treatment: DHT
+        H5 sorgente      : Oral squamous cell carcinoma
+  CONTROLLO  (n=6)  etichetta Stadio 2: Control (EtOH)
+      gruppo Stadio 2: grp_0001
+      GSM6436831
+        grezzo (Stadio 1): title: siCtrl-EtOH rep1,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 titolo        : siCtrl-EtOH rep1
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 sorgente      : Oral squamous cell carcinoma
+      GSM6436832
+        grezzo (Stadio 1): title: siCtrl-EtOH rep2,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 titolo        : siCtrl-EtOH rep2
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 sorgente      : Oral squamous cell carcinoma
+      GSM6436833
+        grezzo (Stadio 1): title: siCtrl-EtOH rep3,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 titolo        : siCtrl-EtOH rep3
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 sorgente      : Oral squamous cell carcinoma
+      GSM6436834
+        grezzo (Stadio 1): title: siCtrl-DHT rep1,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 titolo        : siCtrl-DHT rep1
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 sorgente      : Oral squamous cell carcinoma
+      GSM6436835
+        grezzo (Stadio 1): title: siCtrl-DHT rep2,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 titolo        : siCtrl-DHT rep2
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 sorgente      : Oral squamous cell carcinoma
+      GSM6436836
+        grezzo (Stadio 1): title: siCtrl-DHT rep3,source: Oral squamous cell carcinoma,tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 titolo        : siCtrl-DHT rep3
+        H5 caratteristiche: tissue: Oral squamous cell carcinoma,cell line: Oral squamous  carcinoma,cell type: CAL-27 cell,genotype: wild type,treatment: EtOH
+        H5 sorgente      : Oral squamous cell carcinoma
+
+CONFRONTO  GSE218556__GSE218556__grp_LNCaP_DHT_10nM_vs_grp_LNCaP_Vehicle__1
+  studio: GSE218556
+  TRATTATO  (n=3)  etichetta Stadio 2: LNCaP treated with DHT (10 nM)
+      gruppo Stadio 2: grp_LNCaP_DHT_10nM
+      GSM6752479
+        grezzo (Stadio 1): title: LNCaP DHT rep1,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT (10 nM)
+        H5 titolo        : LNCaP DHT rep1
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT (10 nM)
+        H5 sorgente      : LNCaP
+      GSM6752480
+        grezzo (Stadio 1): title: LNCaP DHT rep2,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT (10 nM)
+        H5 titolo        : LNCaP DHT rep2
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT (10 nM)
+        H5 sorgente      : LNCaP
+      GSM6752481
+        grezzo (Stadio 1): title: LNCaP DHT rep3,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT (10 nM)
+        H5 titolo        : LNCaP DHT rep3
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT (10 nM)
+        H5 sorgente      : LNCaP
+  CONTROLLO  (n=3)  etichetta Stadio 2: LNCaP treated with Vehicle (DMSO)
+      gruppo Stadio 2: grp_LNCaP_Vehicle
+      GSM6752476
+        grezzo (Stadio 1): title: LNCaP Vehicle rep1,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 titolo        : LNCaP Vehicle rep1
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 sorgente      : LNCaP
+      GSM6752477
+        grezzo (Stadio 1): title: LNCaP Vehicle rep2,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 titolo        : LNCaP Vehicle rep2
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 sorgente      : LNCaP
+      GSM6752478
+        grezzo (Stadio 1): title: LNCaP Vehicle rep3,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 titolo        : LNCaP Vehicle rep3
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 sorgente      : LNCaP
+
+CONFRONTO  GSE218556__GSE218556__grp_LNCaP_DHT_X15695_vs_grp_LNCaP_Vehicle__1
+  studio: GSE218556
+  TRATTATO  (n=3)  etichetta Stadio 2: LNCaP treated with DHT and X15695
+      gruppo Stadio 2: grp_LNCaP_DHT_X15695
+      GSM6752482
+        grezzo (Stadio 1): title: LNCaP DHT + X15695 rep1,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT + X15695
+        H5 titolo        : LNCaP DHT + X15695 rep1
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT + X15695
+        H5 sorgente      : LNCaP
+      GSM6752483
+        grezzo (Stadio 1): title: LNCaP DHT + X15695 rep2,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT + X15695
+        H5 titolo        : LNCaP DHT + X15695 rep2
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT + X15695
+        H5 sorgente      : LNCaP
+      GSM6752484
+        grezzo (Stadio 1): title: LNCaP DHT + X15695 rep3,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT + X15695
+        H5 titolo        : LNCaP DHT + X15695 rep3
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: DHT + X15695
+        H5 sorgente      : LNCaP
+  CONTROLLO  (n=3)  etichetta Stadio 2: LNCaP treated with Vehicle (DMSO)
+      gruppo Stadio 2: grp_LNCaP_Vehicle
+      GSM6752476
+        grezzo (Stadio 1): title: LNCaP Vehicle rep1,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 titolo        : LNCaP Vehicle rep1
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 sorgente      : LNCaP
+      GSM6752477
+        grezzo (Stadio 1): title: LNCaP Vehicle rep2,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 titolo        : LNCaP Vehicle rep2
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 sorgente      : LNCaP
+      GSM6752478
+        grezzo (Stadio 1): title: LNCaP Vehicle rep3,source: LNCaP,cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 titolo        : LNCaP Vehicle rep3
+        H5 caratteristiche: cell line: LNCaP,cell type: Prostate cancer cells,treatment: Vehicle (DMSO)
+        H5 sorgente      : LNCaP
+
+CONFRONTO  GSE227511__GSE227511__grp_LNCaP_DHT_ACP_coating_vs_grp_LNCaP_control_media_ACP_coating__1
+  studio: GSE227511
+  TRATTATO  (n=2)  etichetta Stadio 2: LNCaP cells treated with DHT and ACP-coating
+      gruppo Stadio 2: grp_LNCaP_DHT_ACP_coating
+      GSM7101961
+        grezzo (Stadio 1): title: LNCaP. ACP-coating. 100 mM DHT Replicate 1,source: Prostate epitehlium. Lymph node metastatic,cell line: LNCaP,tissue: Prostate epitehlium. Lymph node metastatic,condition: ACP-coating. 100mM testosterone,time: Day 4
+        H5 titolo        : LNCaP. ACP-coating. 100 mM DHT Replicate 1
+        H5 caratteristiche: cell line: LNCaP,tissue: Prostate epitehlium. Lymph node metastatic,condition: ACP-coating. 100mM testosterone,time: Day 4
+        H5 sorgente      : Prostate epitehlium. Lymph node metastatic
+      GSM7101962
+        grezzo (Stadio 1): title: LNCaP. ACP-coating. 100 mM DHT Replicate 2,source: Prostate epitehlium. Lymph node metastatic,cell line: LNCaP,tissue: Prostate epitehlium. Lymph node metastatic,condition: ACP-coating. 100mM testosterone,time: Day 4
+        H5 titolo        : LNCaP. ACP-coating. 100 mM DHT Replicate 2
+        H5 caratteristiche: cell line: LNCaP,tissue: Prostate epitehlium. Lymph node metastatic,condition: ACP-coating. 100mM testosterone,time: Day 4
+        H5 sorgente      : Prostate epitehlium. Lymph node metastatic
+  CONTROLLO  (n=2)  etichetta Stadio 2: LNCaP cells treated with control media and ACP-coating
+      gruppo Stadio 2: grp_LNCaP_control_media_ACP_coating
+      GSM7101957
+        grezzo (Stadio 1): title: LNCaP. ACP-coating. Control Media. Replicate 1,source: Prostate epitehlium. Lymph node metastatic,cell line: LNCaP,tissue: Prostate epitehlium. Lymph node metastatic,condition: ACP-coating control media,time: Day 4
+        H5 titolo        : LNCaP. ACP-coating. Control Media. Replicate 1
+        H5 caratteristiche: cell line: LNCaP,tissue: Prostate epitehlium. Lymph node metastatic,condition: ACP-coating control media,time: Day 4
+        H5 sorgente      : Prostate epitehlium. Lymph node metastatic
+      GSM7101958
+        grezzo (Stadio 1): title: LNCaP. ACP-coating. Control Media. Replicate 2,source: Prostate epitehlium. Lymph node metastatic,cell line: LNCaP,tissue: Prostate epitehlium. Lymph node metastatic,condition: ACP-coating control media,time: Day 4
+        H5 titolo        : LNCaP. ACP-coating. Control Media. Replicate 2
+        H5 caratteristiche: cell line: LNCaP,tissue: Prostate epitehlium. Lymph node metastatic,condition: ACP-coating control media,time: Day 4
+        H5 sorgente      : Prostate epitehlium. Lymph node metastatic
+
+CONFRONTO  GSE227511__GSE227511__grp_MDaPCa2a_DHT_ACP_coating_vs_grp_MDaPCa2a_control_media__1
+  studio: GSE227511
+  TRATTATO  (n=2)  etichetta Stadio 2: MDaPCa2a cells treated with DHT and ACP-coating
+      gruppo Stadio 2: grp_MDaPCa2a_DHT_ACP_coating
+      GSM7101978
+        grezzo (Stadio 1): title: MDAPCa2a. ACP-coating. 100 mM DHT Replicate 1,source: Prostate epithelium. Bone metastatic,cell line: MDaPCa2a,tissue: Prostate epithelium. Bone metastatic,condition: ACP-coating. 100mM testosterone,time: Day 4
+        H5 titolo        : MDAPCa2a. ACP-coating. 100 mM DHT Replicate 1
+        H5 caratteristiche: cell line: MDaPCa2a,tissue: Prostate epithelium. Bone metastatic,condition: ACP-coating. 100mM testosterone,time: Day 4
+        H5 sorgente      : Prostate epithelium. Bone metastatic
+      GSM7101979
+        grezzo (Stadio 1): title: MDAPCa2a. ACP-coating. 100 mM DHT Replicate 2,source: Prostate epithelium. Bone metastatic,cell line: MDaPCa2a,tissue: Prostate epithelium. Bone metastatic,condition: ACP-coating. 100mM testosterone,time: Day 4
+        H5 titolo        : MDAPCa2a. ACP-coating. 100 mM DHT Replicate 2
+        H5 caratteristiche: cell line: MDaPCa2a,tissue: Prostate epithelium. Bone metastatic,condition: ACP-coating. 100mM testosterone,time: Day 4
+        H5 sorgente      : Prostate epithelium. Bone metastatic
+  CONTROLLO  (n=2)  etichetta Stadio 2: MDaPCa2a cells treated with control media
+      gruppo Stadio 2: grp_MDaPCa2a_control_media
+      GSM7101972
+        grezzo (Stadio 1): title: MDAPCa2a. Plastic Control media Replicate 1,source: Prostate epithelium. Bone metastatic,cell line: MDaPCa2a,tissue: Prostate epithelium. Bone metastatic,condition: Plastic. Control Media,time: Continuous culture
+        H5 titolo        : MDAPCa2a. Plastic Control media Replicate 1
+        H5 caratteristiche: cell line: MDaPCa2a,tissue: Prostate epithelium. Bone metastatic,condition: Plastic. Control Media,time: Continuous culture
+        H5 sorgente      : Prostate epithelium. Bone metastatic
+      GSM7101973
+        grezzo (Stadio 1): title: MDAPCa2a. Plastic Control media Replicate 2,source: Prostate epithelium. Bone metastatic,cell line: MDaPCa2a,tissue: Prostate epithelium. Bone metastatic,condition: Plastic. Control Media,time: Continuous culture
+        H5 titolo        : MDAPCa2a. Plastic Control media Replicate 2
+        H5 caratteristiche: cell line: MDaPCa2a,tissue: Prostate epithelium. Bone metastatic,condition: Plastic. Control Media,time: Continuous culture
+        H5 sorgente      : Prostate epithelium. Bone metastatic
+
+CONFRONTO  GSE236286__GSE236286__DHT_vs_Vehicle__1
+  studio: GSE236286
+  TRATTATO  (n=2)  etichetta Stadio 2: DHT
+      gruppo Stadio 2: grp_0005
+      GSM7527521
+        grezzo (Stadio 1): title: RNA-Seq LNCaPabl_DHT_1,source: LNCaP-ABL,cell line: LNCaP-ABL,cell type: prostate,treatment: DHT
+        H5 titolo        : RNA-Seq LNCaPabl_DHT_1
+        H5 caratteristiche: cell line: LNCaP-ABL,cell type: prostate,treatment: DHT
+        H5 sorgente      : LNCaP-ABL
+      GSM7527522
+        grezzo (Stadio 1): title: RNA-Seq LNCaPabl_DHT_2,source: LNCaP-ABL,cell line: LNCaP-ABL,cell type: prostate,treatment: DHT
+        H5 titolo        : RNA-Seq LNCaPabl_DHT_2
+        H5 caratteristiche: cell line: LNCaP-ABL,cell type: prostate,treatment: DHT
+        H5 sorgente      : LNCaP-ABL
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle
+      gruppo Stadio 2: grp_0004
+      GSM7527525
+        grezzo (Stadio 1): title: RNA-Seq LNCaPabl_Vehicle_1,source: LNCaP-ABL,cell line: LNCaP-ABL,cell type: prostate,treatment: Vehicle
+        H5 titolo        : RNA-Seq LNCaPabl_Vehicle_1
+        H5 caratteristiche: cell line: LNCaP-ABL,cell type: prostate,treatment: Vehicle
+        H5 sorgente      : LNCaP-ABL
+      GSM7527526
+        grezzo (Stadio 1): title: RNA-Seq LNCaPabl_Vehicle_2,source: LNCaP-ABL,cell line: LNCaP-ABL,cell type: prostate,treatment: Vehicle
+        H5 titolo        : RNA-Seq LNCaPabl_Vehicle_2
+        H5 caratteristiche: cell line: LNCaP-ABL,cell type: prostate,treatment: Vehicle
+        H5 sorgente      : LNCaP-ABL
+
+CONFRONTO  GSE64529__GSE64529__grp_DHT_vs_grp_control__1
+  studio: GSE64529
+  TRATTATO  (n=3)  etichetta Stadio 2: DHT-treated LNCaP cells
+      gruppo Stadio 2: grp_DHT
+      GSM1573661
+        grezzo (Stadio 1): title: LNCaP cells DHT treated biological replicate 1,source: LNCaP cells,cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: DHT
+        H5 titolo        : LNCaP cells DHT treated biological replicate 1
+        H5 caratteristiche: cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: DHT
+        H5 sorgente      : LNCaP cells
+      GSM1573662
+        grezzo (Stadio 1): title: LNCaP cells DHT treated biological replicate 2,source: LNCaP cells,cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: DHT
+        H5 titolo        : LNCaP cells DHT treated biological replicate 2
+        H5 caratteristiche: cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: DHT
+        H5 sorgente      : LNCaP cells
+      GSM1573663
+        grezzo (Stadio 1): title: LNCaP cells DHT treated biological replicate 3,source: LNCaP cells,cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: DHT
+        H5 titolo        : LNCaP cells DHT treated biological replicate 3
+        H5 caratteristiche: cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: DHT
+        H5 sorgente      : LNCaP cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control LNCaP cells
+      gruppo Stadio 2: grp_control
+      GSM1573658
+        grezzo (Stadio 1): title: LNCaP cells Control, biological replicate 1,source: LNCaP cells,cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: control
+        H5 titolo        : LNCaP cells Control, biological replicate 1
+        H5 caratteristiche: cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: control
+        H5 sorgente      : LNCaP cells
+      GSM1573659
+        grezzo (Stadio 1): title: LNCaP cells Control, biological replicate 2,source: LNCaP cells,cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: control
+        H5 titolo        : LNCaP cells Control, biological replicate 2
+        H5 caratteristiche: cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: control
+        H5 sorgente      : LNCaP cells
+      GSM1573660
+        grezzo (Stadio 1): title: LNCaP cells Control, biological replicate 3,source: LNCaP cells,cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: control
+        H5 titolo        : LNCaP cells Control, biological replicate 3
+        H5 caratteristiche: cell line: LNCaP prostate cancer cells,genotype: WT,passages: 10,treatment: control
+        H5 sorgente      : LNCaP cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE118152     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE123763     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE131726     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE138053     campioni nell'H5:   25 | collocati dallo Stadio 2:   25 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE141806     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE157104     campioni nell'H5:   28 | collocati dallo Stadio 2:   28 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE158557     campioni nell'H5:   24 | collocati dallo Stadio 2:   19 | MAI COLLOCATI:    5 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4802781, GSM4802784, GSM4802786, GSM4802800, GSM4802801
+  GSE159606     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE174618     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (15 righe: i controlli servono piu' confronti)
+  GSE176006     campioni nell'H5:   22 | collocati dallo Stadio 2:   22 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE178374     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE210765     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE218556     campioni nell'H5:   36 | collocati dallo Stadio 2:   36 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE227511     campioni nell'H5:   34 | collocati dallo Stadio 2:   34 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE236286     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE64529      campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

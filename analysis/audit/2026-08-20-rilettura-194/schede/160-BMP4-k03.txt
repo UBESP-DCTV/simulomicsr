@@ -1,0 +1,345 @@
+META-ANALISI 160 di 194
+==============================================================================
+nome            : BMP4
+entita (ID)     : HGNC:1071
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_344e058f
+studi poolati   : 3   confronti: 5   campioni: 56
+geni significativi: 2470   I2 mediano: 72.0
+verdetto della rilettura: incerta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE131998__GSE131998__BMP4_vs_untreated__1
+  studio: GSE131998
+  TRATTATO  (n=5)  etichetta Stadio 2: BMP4-treated HPASMCs
+      gruppo Stadio 2: grp_BMP4
+      GSM3834168
+        grezzo (Stadio 1): title: BMP4_EV_2,source: HPASMC,tissue: HPASMC,treatment: BMP4,rna source (evs/cells): EVs,replicate: replicate 2
+        H5 titolo        : BMP4_EV_2
+        H5 caratteristiche: tissue: HPASMC,treatment: BMP4,rna source (evs/cells): EVs,replicate: replicate 2
+        H5 sorgente      : HPASMC
+      GSM3834169
+        grezzo (Stadio 1): title: BMP4_EV_3,source: HPASMC,tissue: HPASMC,treatment: BMP4,rna source (evs/cells): EVs,replicate: replicate 3
+        H5 titolo        : BMP4_EV_3
+        H5 caratteristiche: tissue: HPASMC,treatment: BMP4,rna source (evs/cells): EVs,replicate: replicate 3
+        H5 sorgente      : HPASMC
+      GSM3834176
+        grezzo (Stadio 1): title: BMP4_Cells_1,source: HPASMC,tissue: HPASMC,treatment: BMP4,rna source (evs/cells): Cells,replicate: replicate 1
+        H5 titolo        : BMP4_Cells_1
+        H5 caratteristiche: tissue: HPASMC,treatment: BMP4,rna source (evs/cells): Cells,replicate: replicate 1
+        H5 sorgente      : HPASMC
+      GSM3834177
+        grezzo (Stadio 1): title: BMP4_Cells_2,source: HPASMC,tissue: HPASMC,treatment: BMP4,rna source (evs/cells): Cells,replicate: replicate 2
+        H5 titolo        : BMP4_Cells_2
+        H5 caratteristiche: tissue: HPASMC,treatment: BMP4,rna source (evs/cells): Cells,replicate: replicate 2
+        H5 sorgente      : HPASMC
+      GSM3834178
+        grezzo (Stadio 1): title: BMP4_Cells_3,source: HPASMC,tissue: HPASMC,treatment: BMP4,rna source (evs/cells): Cells,replicate: replicate 3
+        H5 titolo        : BMP4_Cells_3
+        H5 caratteristiche: tissue: HPASMC,treatment: BMP4,rna source (evs/cells): Cells,replicate: replicate 3
+        H5 sorgente      : HPASMC
+  CONTROLLO  (n=5)  etichetta Stadio 2: Untreated HPASMCs
+      gruppo Stadio 2: grp_untreated
+      GSM3834166
+        grezzo (Stadio 1): title: Untreated_EV_2,source: HPASMC,tissue: HPASMC,treatment: Untreated,rna source (evs/cells): EVs,replicate: replicate 2
+        H5 titolo        : Untreated_EV_2
+        H5 caratteristiche: tissue: HPASMC,treatment: Untreated,rna source (evs/cells): EVs,replicate: replicate 2
+        H5 sorgente      : HPASMC
+      GSM3834167
+        grezzo (Stadio 1): title: Untreated_EV_3,source: HPASMC,tissue: HPASMC,treatment: Untreated,rna source (evs/cells): EVs,replicate: replicate 3
+        H5 titolo        : Untreated_EV_3
+        H5 caratteristiche: tissue: HPASMC,treatment: Untreated,rna source (evs/cells): EVs,replicate: replicate 3
+        H5 sorgente      : HPASMC
+      GSM3834173
+        grezzo (Stadio 1): title: Untreated_Cells_1,source: HPASMC,tissue: HPASMC,treatment: Untreated,rna source (evs/cells): Cells,replicate: replicate 1
+        H5 titolo        : Untreated_Cells_1
+        H5 caratteristiche: tissue: HPASMC,treatment: Untreated,rna source (evs/cells): Cells,replicate: replicate 1
+        H5 sorgente      : HPASMC
+      GSM3834174
+        grezzo (Stadio 1): title: Untreated_Cells_2,source: HPASMC,tissue: HPASMC,treatment: Untreated,rna source (evs/cells): Cells,replicate: replicate 2
+        H5 titolo        : Untreated_Cells_2
+        H5 caratteristiche: tissue: HPASMC,treatment: Untreated,rna source (evs/cells): Cells,replicate: replicate 2
+        H5 sorgente      : HPASMC
+      GSM3834175
+        grezzo (Stadio 1): title: Untreated_Cells_3,source: HPASMC,tissue: HPASMC,treatment: Untreated,rna source (evs/cells): Cells,replicate: replicate 3
+        H5 titolo        : Untreated_Cells_3
+        H5 caratteristiche: tissue: HPASMC,treatment: Untreated,rna source (evs/cells): Cells,replicate: replicate 3
+        H5 sorgente      : HPASMC
+
+CONFRONTO  GSE134045__GSE134045__grp_0012_vs_grp_0004__1
+  studio: GSE134045
+  TRATTATO  (n=3)  etichetta Stadio 2: GBM2 Passage 14 Bmp4 100ng/ml 3 days
+      gruppo Stadio 2: grp_0012
+      GSM3934402
+        grezzo (Stadio 1): title: Gbm2_Bmp4_1,source: Glioblastoma tumor propagating cells,cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Bmp4 (100ng/ml),treatment time: 3 days
+        H5 titolo        : Gbm2_Bmp4_1
+        H5 caratteristiche: cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Bmp4 (100ng/ml),treatment time: 3 days
+        H5 sorgente      : Glioblastoma tumor propagating cells
+      GSM3934403
+        grezzo (Stadio 1): title: Gbm2_Bmp4_2,source: Glioblastoma tumor propagating cells,cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Bmp4 (100ng/ml),treatment time: 3 days
+        H5 titolo        : Gbm2_Bmp4_2
+        H5 caratteristiche: cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Bmp4 (100ng/ml),treatment time: 3 days
+        H5 sorgente      : Glioblastoma tumor propagating cells
+      GSM3934404
+        grezzo (Stadio 1): title: Gbm2_Bmp4_3,source: Glioblastoma tumor propagating cells,cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Bmp4 (100ng/ml),treatment time: 3 days
+        H5 titolo        : Gbm2_Bmp4_3
+        H5 caratteristiche: cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Bmp4 (100ng/ml),treatment time: 3 days
+        H5 sorgente      : Glioblastoma tumor propagating cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: GBM2 Passage 14 Untreated Control 3 days
+      gruppo Stadio 2: grp_0004
+      GSM3934396
+        grezzo (Stadio 1): title: Gbm2_Control_1,source: Glioblastoma tumor propagating cells,cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Untreated Control,treatment time: 3 days
+        H5 titolo        : Gbm2_Control_1
+        H5 caratteristiche: cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Untreated Control,treatment time: 3 days
+        H5 sorgente      : Glioblastoma tumor propagating cells
+      GSM3934397
+        grezzo (Stadio 1): title: Gbm2_Control_2,source: Glioblastoma tumor propagating cells,cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Untreated Control,treatment time: 3 days
+        H5 titolo        : Gbm2_Control_2
+        H5 caratteristiche: cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Untreated Control,treatment time: 3 days
+        H5 sorgente      : Glioblastoma tumor propagating cells
+      GSM3934398
+        grezzo (Stadio 1): title: Gbm2_Control_3,source: Glioblastoma tumor propagating cells,cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Untreated Control,treatment time: 3 days
+        H5 titolo        : Gbm2_Control_3
+        H5 caratteristiche: cell line: GBM2,cell type: Glioblastoma tumor propagating cells,passage: Passage 14,treatment: Untreated Control,treatment time: 3 days
+        H5 sorgente      : Glioblastoma tumor propagating cells
+
+CONFRONTO  GSE213245__GSE213245__grp_0011_vs_grp_0001__1
+  studio: GSE213245
+  TRATTATO  (n=2)  etichetta Stadio 2: 1363.1 BMP4 day 61-91
+      gruppo Stadio 2: grp_0011
+      GSM6576403
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Individual Ligand exposed, day 61-91_9,source: organoid,tissue: organoid,cell line: 1363.1,treatment: BMP4 Exposed
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Individual Ligand exposed, day 61-91_9
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: BMP4 Exposed
+        H5 sorgente      : organoid
+      GSM6576404
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Individual Ligand exposed, day 61-91_10,source: organoid,tissue: organoid,cell line: 1363.1,treatment: BMP4 Exposed
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Individual Ligand exposed, day 61-91_10
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: BMP4 Exposed
+        H5 sorgente      : organoid
+  CONTROLLO  (n=14)  etichetta Stadio 2: 1363.1 Control
+      gruppo Stadio 2: grp_0001
+      GSM6576381
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Control, day 61-91_1,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Control, day 61-91_1
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576382
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Control, day 61-91_2,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Control, day 61-91_2
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576383
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Control, day 61-91_3,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Control, day 61-91_3
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576384
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Control, day 61-91_4,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Control, day 61-91_4
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576388
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Control, day 90-120_1,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Control, day 90-120_1
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576389
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Control, day 90-120_2,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Control, day 90-120_2
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576390
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Control, day 90-120_3,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Control, day 90-120_3
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576391
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Control, day 90-120_4,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Control, day 90-120_4
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576405
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Individual Control, day 61-91_1,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Individual Control, day 61-91_1
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576406
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Individual Control, day 61-91_2,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Individual Control, day 61-91_2
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576417
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Individual Control, day 90-120_1,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Individual Control, day 90-120_1
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576418
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Individual Control, day 90-120_2,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Individual Control, day 90-120_2
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576419
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Individual Control, day 90-120_3,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Individual Control, day 90-120_3
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576420
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 1363.1, Individual Control, day 90-120_4,source: organoid,tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 1363.1, Individual Control, day 90-120_4
+        H5 caratteristiche: tissue: organoid,cell line: 1363.1,treatment: Control
+        H5 sorgente      : organoid
+
+CONFRONTO  GSE213245__GSE213245__grp_0026_vs_grp_0019__1
+  studio: GSE213245
+  TRATTATO  (n=3)  etichetta Stadio 2: 8858.3 BMP4 day 90-120
+      gruppo Stadio 2: grp_0026
+      GSM6576454
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 90-120_13,source: organoid,tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 90-120_13
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 sorgente      : organoid
+      GSM6576455
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 90-120_14,source: organoid,tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 90-120_14
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 sorgente      : organoid
+      GSM6576456
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 90-120_15,source: organoid,tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 90-120_15
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 sorgente      : organoid
+  CONTROLLO  (n=9)  etichetta Stadio 2: 8858.3 Control
+      gruppo Stadio 2: grp_0019
+      GSM6576439
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 61-91_1,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 61-91_1
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576440
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 61-91_2,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 61-91_2
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576441
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 61-91_3,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 61-91_3
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576460
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_1,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_1
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576461
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_2,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_2
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576462
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_3,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_3
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576463
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_4,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_4
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576464
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_5,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_5
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576465
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_6,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_6
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+
+CONFRONTO  GSE213245__GSE213245__grp_0027_vs_grp_0019__1
+  studio: GSE213245
+  TRATTATO  (n=3)  etichetta Stadio 2: 8858.3 BMP4 day 61-91
+      gruppo Stadio 2: grp_0027
+      GSM6576433
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 61-91_13,source: organoid,tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 61-91_13
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 sorgente      : organoid
+      GSM6576434
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 61-91_14,source: organoid,tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 61-91_14
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 sorgente      : organoid
+      GSM6576435
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 61-91_15,source: organoid,tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Individual Ligand exposed, day 61-91_15
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: BMP4 Exposed
+        H5 sorgente      : organoid
+  CONTROLLO  (n=9)  etichetta Stadio 2: 8858.3 Control
+      gruppo Stadio 2: grp_0019
+      GSM6576439
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 61-91_1,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 61-91_1
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576440
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 61-91_2,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 61-91_2
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576441
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 61-91_3,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 61-91_3
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576460
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_1,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_1
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576461
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_2,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_2
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576462
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_3,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_3
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576463
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_4,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_4
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576464
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_5,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_5
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+      GSM6576465
+        grezzo (Stadio 1): title: Bulk RNA-Seq, 8858.3, Control, day 90-120_6,source: organoid,tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 titolo        : Bulk RNA-Seq, 8858.3, Control, day 90-120_6
+        H5 caratteristiche: tissue: organoid,cell line: 8858.3,treatment: Control
+        H5 sorgente      : organoid
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE131998     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE134045     campioni nell'H5:   21 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE213245     campioni nell'H5:  101 | collocati dallo Stadio 2:  101 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 31 campioni distinti (40 righe: i controlli servono piu' confronti)
+

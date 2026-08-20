@@ -1,0 +1,272 @@
+META-ANALISI 050 di 194
+==============================================================================
+nome            : tunicamycin
+entita (ID)     : CHEBI:29699
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_d411c435
+studi poolati   : 6   confronti: 7   campioni: 38
+geni significativi: 2209   I2 mediano: 82.9
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE102505__GSE102505__grp_0003_vs_grp_0002__1
+  studio: GSE102505
+  TRATTATO  (n=3)  etichetta Stadio 2: glioblastoma derived (ATCC) + Tunicamycin
+      gruppo Stadio 2: grp_0003
+      GSM2739761
+        grezzo (Stadio 1): title: U251_Tun_1,source: glioblastoma,cell type: glioblastoma derived (ATCC),passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 titolo        : U251_Tun_1
+        H5 caratteristiche: cell type: glioblastoma derived (ATCC),passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 sorgente      : glioblastoma
+      GSM2739762
+        grezzo (Stadio 1): title: U251_Tun_2,source: glioblastoma,cell type: glioblastoma derived (ATCC),passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 titolo        : U251_Tun_2
+        H5 caratteristiche: cell type: glioblastoma derived (ATCC),passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 sorgente      : glioblastoma
+      GSM2739763
+        grezzo (Stadio 1): title: U251_Tun_3,source: glioblastoma,cell type: glioblastoma derived (ATCC),passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 titolo        : U251_Tun_3
+        H5 caratteristiche: cell type: glioblastoma derived (ATCC),passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 sorgente      : glioblastoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: glioblastoma derived (ATCC) + DMSO
+      gruppo Stadio 2: grp_0002
+      GSM2739755
+        grezzo (Stadio 1): title: U251_DMSO_1,source: glioblastoma,cell type: glioblastoma derived (ATCC),passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 titolo        : U251_DMSO_1
+        H5 caratteristiche: cell type: glioblastoma derived (ATCC),passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 sorgente      : glioblastoma
+      GSM2739756
+        grezzo (Stadio 1): title: U251_DMSO_2,source: glioblastoma,cell type: glioblastoma derived (ATCC),passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 titolo        : U251_DMSO_2
+        H5 caratteristiche: cell type: glioblastoma derived (ATCC),passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 sorgente      : glioblastoma
+      GSM2739757
+        grezzo (Stadio 1): title: U251_DMSO_3,source: glioblastoma,cell type: glioblastoma derived (ATCC),passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 titolo        : U251_DMSO_3
+        H5 caratteristiche: cell type: glioblastoma derived (ATCC),passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 sorgente      : glioblastoma
+
+CONFRONTO  GSE102505__GSE102505__grp_0005_vs_grp_0004__1
+  studio: GSE102505
+  TRATTATO  (n=3)  etichetta Stadio 2: glioma derived stem cells + Tunicamycin
+      gruppo Stadio 2: grp_0005
+      GSM2739752
+        grezzo (Stadio 1): title: T4213_Tun_1,source: glioblastoma,cell type: glioma derived stem cells,passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 titolo        : T4213_Tun_1
+        H5 caratteristiche: cell type: glioma derived stem cells,passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 sorgente      : glioblastoma
+      GSM2739753
+        grezzo (Stadio 1): title: T4213_Tun_2,source: glioblastoma,cell type: glioma derived stem cells,passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 titolo        : T4213_Tun_2
+        H5 caratteristiche: cell type: glioma derived stem cells,passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 sorgente      : glioblastoma
+      GSM2739754
+        grezzo (Stadio 1): title: T4213_Tun_3,source: glioblastoma,cell type: glioma derived stem cells,passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 titolo        : T4213_Tun_3
+        H5 caratteristiche: cell type: glioma derived stem cells,passages: <10,treatment: 1.0 mcg/mL Tunicamycin
+        H5 sorgente      : glioblastoma
+  CONTROLLO  (n=2)  etichetta Stadio 2: glioma derived stem cells + DMSO
+      gruppo Stadio 2: grp_0004
+      GSM2739746
+        grezzo (Stadio 1): title: T4213_DMSO_1,source: glioblastoma,cell type: glioma derived stem cells,passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 titolo        : T4213_DMSO_1
+        H5 caratteristiche: cell type: glioma derived stem cells,passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 sorgente      : glioblastoma
+      GSM2739747
+        grezzo (Stadio 1): title: T4213_DMSO_2,source: glioblastoma,cell type: glioma derived stem cells,passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 titolo        : T4213_DMSO_2
+        H5 caratteristiche: cell type: glioma derived stem cells,passages: <10,treatment: 0.1% DMSO (vehicle)
+        H5 sorgente      : glioblastoma
+
+CONFRONTO  GSE125218__GSE125218__Tunicamycin_HEK293T_vs_DMSO_HEK293T__1
+  studio: GSE125218
+  TRATTATO  (n=2)  etichetta Stadio 2: Tunicamycin-treated HEK293T
+      gruppo Stadio 2: grp_Tunicamycin_HEK293T
+      GSM3566424
+        grezzo (Stadio 1): title: 293T_TotRNA_TM_rep1,source: HEK293T (Human Embryonic Kidney),cell line: HEK293T,cell type: Human Embryonic Kidney,treatment: Tunicamycin
+        H5 titolo        : 293T_TotRNA_TM_rep1
+        H5 caratteristiche: cell line: HEK293T,cell type: Human Embryonic Kidney,treatment: Tunicamycin
+        H5 sorgente      : HEK293T (Human Embryonic Kidney)
+      GSM3566425
+        grezzo (Stadio 1): title: 293T_TotRNA_TM_rep2,source: HEK293T (Human Embryonic Kidney),cell line: HEK293T,cell type: Human Embryonic Kidney,treatment: Tunicamycin
+        H5 titolo        : 293T_TotRNA_TM_rep2
+        H5 caratteristiche: cell line: HEK293T,cell type: Human Embryonic Kidney,treatment: Tunicamycin
+        H5 sorgente      : HEK293T (Human Embryonic Kidney)
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO-treated HEK293T
+      gruppo Stadio 2: grp_DMSO_HEK293T
+      GSM3566422
+        grezzo (Stadio 1): title: 293T_TotRNA_DMSO_rep1,source: HEK293T (Human Embryonic Kidney),cell line: HEK293T,cell type: Human Embryonic Kidney,treatment: DMSO
+        H5 titolo        : 293T_TotRNA_DMSO_rep1
+        H5 caratteristiche: cell line: HEK293T,cell type: Human Embryonic Kidney,treatment: DMSO
+        H5 sorgente      : HEK293T (Human Embryonic Kidney)
+      GSM3566423
+        grezzo (Stadio 1): title: 293T_TotRNA_DMSO_rep2,source: HEK293T (Human Embryonic Kidney),cell line: HEK293T,cell type: Human Embryonic Kidney,treatment: DMSO
+        H5 titolo        : 293T_TotRNA_DMSO_rep2
+        H5 caratteristiche: cell line: HEK293T,cell type: Human Embryonic Kidney,treatment: DMSO
+        H5 sorgente      : HEK293T (Human Embryonic Kidney)
+
+CONFRONTO  GSE148342__GSE148342__tunicamycin_vs_none__1
+  studio: GSE148342
+  TRATTATO  (n=2)  etichetta Stadio 2: Tunicamycin (0.14 uM)
+      gruppo Stadio 2: grp_tunicamycin
+      GSM4460616
+        grezzo (Stadio 1): title: 778 R Tunicamycin 03/01/2014,source: Human well differentiated liposarcoma,cell type: 94T778 cells,treatment: tunicamycin 0.14 uM
+        H5 titolo        : 778 R Tunicamycin 03/01/2014
+        H5 caratteristiche: cell type: 94T778 cells,treatment: tunicamycin 0.14 uM
+        H5 sorgente      : Human well differentiated liposarcoma
+      GSM4460617
+        grezzo (Stadio 1): title: 778 R Tunicamycin 04/02/2014,source: Human well differentiated liposarcoma,cell type: 94T778 cells,treatment: tunicamycin 0.14 uM
+        H5 titolo        : 778 R Tunicamycin 04/02/2014
+        H5 caratteristiche: cell type: 94T778 cells,treatment: tunicamycin 0.14 uM
+        H5 sorgente      : Human well differentiated liposarcoma
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control (no treatment)
+      gruppo Stadio 2: grp_none
+      GSM4460608
+        grezzo (Stadio 1): title: 778 parental 04/02/2014,source: Human well differentiated liposarcoma,cell type: 94T778 cells
+        H5 titolo        : 778 parental 04/02/2014
+        H5 caratteristiche: cell type: 94T778 cells
+        H5 sorgente      : Human well differentiated liposarcoma
+      GSM4460609
+        grezzo (Stadio 1): title: 778 parental 08/04/2014,source: Human well differentiated liposarcoma,cell type: 94T778 cells
+        H5 titolo        : 778 parental 08/04/2014
+        H5 caratteristiche: cell type: 94T778 cells
+        H5 sorgente      : Human well differentiated liposarcoma
+      GSM4460610
+        grezzo (Stadio 1): title: 778 parental 16/05/2014,source: Human well differentiated liposarcoma,cell type: 94T778 cells
+        H5 titolo        : 778 parental 16/05/2014
+        H5 caratteristiche: cell type: 94T778 cells
+        H5 sorgente      : Human well differentiated liposarcoma
+      GSM4460611
+        grezzo (Stadio 1): title: 778 parental 24/03/2014,source: Human well differentiated liposarcoma,cell type: 94T778 cells
+        H5 titolo        : 778 parental 24/03/2014
+        H5 caratteristiche: cell type: 94T778 cells
+        H5 sorgente      : Human well differentiated liposarcoma
+
+CONFRONTO  GSE157069__GSE157069__tunicamycin_vs_vehicle__1
+  studio: GSE157069
+  TRATTATO  (n=2)  etichetta Stadio 2: tunicamycin
+      gruppo Stadio 2: grp_0004
+      GSM4751915
+        grezzo (Stadio 1): title: WT_tunicamycin_rep1,source: invasive breast cancer cells,cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: tunicamycin
+        H5 titolo        : WT_tunicamycin_rep1
+        H5 caratteristiche: cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: tunicamycin
+        H5 sorgente      : invasive breast cancer cells
+      GSM4751916
+        grezzo (Stadio 1): title: WT_tunicamycin_rep2,source: invasive breast cancer cells,cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: tunicamycin
+        H5 titolo        : WT_tunicamycin_rep2
+        H5 caratteristiche: cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: tunicamycin
+        H5 sorgente      : invasive breast cancer cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: vehicle
+      gruppo Stadio 2: grp_0003
+      GSM4751909
+        grezzo (Stadio 1): title: WT_Control_rep1,source: invasive breast cancer cells,cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: control
+        H5 titolo        : WT_Control_rep1
+        H5 caratteristiche: cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: control
+        H5 sorgente      : invasive breast cancer cells
+      GSM4751910
+        grezzo (Stadio 1): title: WT_Control_rep2,source: invasive breast cancer cells,cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: control
+        H5 titolo        : WT_Control_rep2
+        H5 caratteristiche: cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: control
+        H5 sorgente      : invasive breast cancer cells
+
+CONFRONTO  GSE211244__GSE211244__grp_0008_vs_grp_0009__1
+  studio: GSE211244
+  TRATTATO  (n=5)  etichetta Stadio 2: HCT116 TP53-/- + tunicamycin
+      gruppo Stadio 2: grp_0008
+      GSM6459609
+        grezzo (Stadio 1): title: WT_Tun_1_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep1,source: colon,tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53+/+,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 titolo        : WT_Tun_1_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep1
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53+/+,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 sorgente      : colon
+      GSM6459611
+        grezzo (Stadio 1): title: WT_Tun_3_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep3,source: colon,tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53+/+,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 titolo        : WT_Tun_3_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep3
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53+/+,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 sorgente      : colon
+      GSM6459624
+        grezzo (Stadio 1): title: PKO_Tun_1_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep1,source: colon,tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 titolo        : PKO_Tun_1_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep1
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 sorgente      : colon
+      GSM6459625
+        grezzo (Stadio 1): title: PKO_Tun_2_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep2,source: colon,tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 titolo        : PKO_Tun_2_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep2
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 sorgente      : colon
+      GSM6459626
+        grezzo (Stadio 1): title: PKO_Tun_3_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep3,source: colon,tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 titolo        : PKO_Tun_3_RNAseq_tunicamycin, 2 micromolar, 6hrs_rep3
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: tunicamycin, 2 micromolar, 6hrs
+        H5 sorgente      : colon
+  CONTROLLO  (n=3)  etichetta Stadio 2: HCT116 TP53-/- + DMSO
+      gruppo Stadio 2: grp_0009
+      GSM6459612
+        grezzo (Stadio 1): title: PKO_DMSO_1_RNAseq_DMSO, 6hrs_rep1,source: colon,tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: DMSO, 6hrs
+        H5 titolo        : PKO_DMSO_1_RNAseq_DMSO, 6hrs_rep1
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: DMSO, 6hrs
+        H5 sorgente      : colon
+      GSM6459613
+        grezzo (Stadio 1): title: PKO_DMSO_2_RNAseq_DMSO, 6hrs_rep2,source: colon,tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: DMSO, 6hrs
+        H5 titolo        : PKO_DMSO_2_RNAseq_DMSO, 6hrs_rep2
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: DMSO, 6hrs
+        H5 sorgente      : colon
+      GSM6459614
+        grezzo (Stadio 1): title: PKO_DMSO_3_RNAseq_DMSO, 6hrs_rep3,source: colon,tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: DMSO, 6hrs
+        H5 titolo        : PKO_DMSO_3_RNAseq_DMSO, 6hrs_rep3
+        H5 caratteristiche: tissue: colon,cell line: HCT116,cell type: colon carcinoma,genotype: TP53-/-,treatment: DMSO, 6hrs
+        H5 sorgente      : colon
+
+CONFRONTO  GSE226549__GSE226549__tunicamycin_vs_DMSO__1
+  studio: GSE226549
+  TRATTATO  (n=2)  etichetta Stadio 2: Tunicamycin-treated HCT116 cells (batch 1)
+      gruppo Stadio 2: grp_tunicamycin_1
+      GSM7078641
+        grezzo (Stadio 1): title: HCT116 cells, tunicamycin, 24h, biol rep 1 [TN1],source: HCT116,cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: tunicamycin,time: 24h
+        H5 titolo        : HCT116 cells, tunicamycin, 24h, biol rep 1 [TN1]
+        H5 caratteristiche: cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: tunicamycin,time: 24h
+        H5 sorgente      : HCT116
+      GSM7078642
+        grezzo (Stadio 1): title: HCT116 cells, tunicamycin, 24h, biol rep 2 [TN2],source: HCT116,cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: tunicamycin,time: 24h
+        H5 titolo        : HCT116 cells, tunicamycin, 24h, biol rep 2 [TN2]
+        H5 caratteristiche: cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: tunicamycin,time: 24h
+        H5 sorgente      : HCT116
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO-treated HCT116 cells
+      gruppo Stadio 2: grp_DMSO
+      GSM7078632
+        grezzo (Stadio 1): title: HCT116 cells, DMSO, 24h, biol rep 1 [OActrl1],source: HCT116,cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: DMSO,time: 24h
+        H5 titolo        : HCT116 cells, DMSO, 24h, biol rep 1 [OActrl1]
+        H5 caratteristiche: cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: DMSO,time: 24h
+        H5 sorgente      : HCT116
+      GSM7078633
+        grezzo (Stadio 1): title: HCT116 cells, DMSO, 24h, biol rep 2 [OActrl2],source: HCT116,cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: DMSO,time: 24h
+        H5 titolo        : HCT116 cells, DMSO, 24h, biol rep 2 [OActrl2]
+        H5 caratteristiche: cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: DMSO,time: 24h
+        H5 sorgente      : HCT116
+      GSM7078638
+        grezzo (Stadio 1): title: HCT116 cells, DMSO, 24h, biol rep 1 [TNctrl1],source: HCT116,cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: DMSO,time: 24h
+        H5 titolo        : HCT116 cells, DMSO, 24h, biol rep 1 [TNctrl1]
+        H5 caratteristiche: cell line: HCT116,cell type: human colon cancer cell,genotype: WT,treatment: DMSO,time: 24h
+        H5 sorgente      : HCT116
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE102505     campioni nell'H5:   27 | collocati dallo Stadio 2:   27 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE125218     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE148342     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE157069     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE211244     campioni nell'H5:   30 | collocati dallo Stadio 2:   30 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE226549     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

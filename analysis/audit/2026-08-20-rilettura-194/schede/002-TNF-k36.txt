@@ -1,0 +1,1965 @@
+META-ANALISI 002 di 194
+==============================================================================
+nome            : TNF
+entita (ID)     : HGNC:11892
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_d9e23e09
+studi poolati   : 36   confronti: 52   campioni: 307
+geni significativi: 7285   I2 mediano: 83.2
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE108621__GSE108621__TNF_vs_DMSO__1
+  studio: GSE108621
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF-α
+      gruppo Stadio 2: grp_TNF
+      GSM2907091
+        grezzo (Stadio 1): title: TNF-Î±_mRNA_Seq_rep1,source: TNF-Î±, HT-29 cells,tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: TNF-Î±
+        H5 titolo        : TNF-Î±_mRNA_Seq_rep1
+        H5 caratteristiche: tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: TNF-Î±
+        H5 sorgente      : TNF-Î±, HT-29 cells
+      GSM2907092
+        grezzo (Stadio 1): title: TNF-Î±_mRNA_Seq_rep2,source: TNF-Î±, HT-29 cells,tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: TNF-Î±
+        H5 titolo        : TNF-Î±_mRNA_Seq_rep2
+        H5 caratteristiche: tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: TNF-Î±
+        H5 sorgente      : TNF-Î±, HT-29 cells
+      GSM2907093
+        grezzo (Stadio 1): title: TNF-Î±_mRNA_Seq_rep3,source: TNF-Î±, HT-29 cells,tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: TNF-Î±
+        H5 titolo        : TNF-Î±_mRNA_Seq_rep3
+        H5 caratteristiche: tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: TNF-Î±
+        H5 sorgente      : TNF-Î±, HT-29 cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM2907088
+        grezzo (Stadio 1): title: DMSO_mRNA_Seq_rep1,source: DMSO, HT-29 cells,tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: DMSO
+        H5 titolo        : DMSO_mRNA_Seq_rep1
+        H5 caratteristiche: tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: DMSO
+        H5 sorgente      : DMSO, HT-29 cells
+      GSM2907089
+        grezzo (Stadio 1): title: DMSO_mRNA_Seq_rep2,source: DMSO, HT-29 cells,tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: DMSO
+        H5 titolo        : DMSO_mRNA_Seq_rep2
+        H5 caratteristiche: tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: DMSO
+        H5 sorgente      : DMSO, HT-29 cells
+      GSM2907090
+        grezzo (Stadio 1): title: DMSO_mRNA_Seq_rep3,source: DMSO, HT-29 cells,tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: DMSO
+        H5 titolo        : DMSO_mRNA_Seq_rep3
+        H5 caratteristiche: tissue: colon,cell line: colon adenocarcinoma cell line HT29,treatment: DMSO
+        H5 sorgente      : DMSO, HT-29 cells
+
+CONFRONTO  GSE115311__GSE115311__grp_0019_vs_grp_0018__1
+  studio: GSE115311
+  TRATTATO  (n=2)  etichetta Stadio 2: ES-derived vascular smooth muscle cells, TNFa stimulation
+      gruppo Stadio 2: grp_0019
+      GSM3175352
+        grezzo (Stadio 1): title: VSMC_WT_TNFa_rep1,source: vascular smooth muscle cells,cell type: ES-derived vascular smooth muscle cells,genotype: WT,passage: p1
+        H5 titolo        : VSMC_WT_TNFa_rep1
+        H5 caratteristiche: cell type: ES-derived vascular smooth muscle cells,genotype: WT,passage: p1
+        H5 sorgente      : vascular smooth muscle cells
+      GSM3175353
+        grezzo (Stadio 1): title: VSMC_WT_TNFa_rep2,source: vascular smooth muscle cells,cell type: ES-derived vascular smooth muscle cells,genotype: WT,passage: p1
+        H5 titolo        : VSMC_WT_TNFa_rep2
+        H5 caratteristiche: cell type: ES-derived vascular smooth muscle cells,genotype: WT,passage: p1
+        H5 sorgente      : vascular smooth muscle cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: ES-derived vascular smooth muscle cells, untreated
+      gruppo Stadio 2: grp_0018
+      GSM3175354
+        grezzo (Stadio 1): title: VSMC_WT_basal_rep1,source: vascular smooth muscle cells,cell type: ES-derived vascular smooth muscle cells,genotype: WT,passage: p1
+        H5 titolo        : VSMC_WT_basal_rep1
+        H5 caratteristiche: cell type: ES-derived vascular smooth muscle cells,genotype: WT,passage: p1
+        H5 sorgente      : vascular smooth muscle cells
+      GSM3175355
+        grezzo (Stadio 1): title: VSMC_WT_basal_rep2,source: vascular smooth muscle cells,cell type: ES-derived vascular smooth muscle cells,genotype: WT,passage: p1
+        H5 titolo        : VSMC_WT_basal_rep2
+        H5 caratteristiche: cell type: ES-derived vascular smooth muscle cells,genotype: WT,passage: p1
+        H5 sorgente      : vascular smooth muscle cells
+
+CONFRONTO  GSE122305__GSE122305__TNF_vs_PBS-0.1%BSA__1
+  studio: GSE122305
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF
+      gruppo Stadio 2: grp_0006
+      GSM3463732
+        grezzo (Stadio 1): title: TNF_rep1,source: TNF_skin,tissue: Skin,treatment: TNF
+        H5 titolo        : TNF_rep1
+        H5 caratteristiche: tissue: Skin,treatment: TNF
+        H5 sorgente      : TNF_skin
+      GSM3463733
+        grezzo (Stadio 1): title: TNF_rep2,source: TNF_skin,tissue: Skin,treatment: TNF
+        H5 titolo        : TNF_rep2
+        H5 caratteristiche: tissue: Skin,treatment: TNF
+        H5 sorgente      : TNF_skin
+      GSM3463734
+        grezzo (Stadio 1): title: TNF_rep3,source: TNF_skin,tissue: Skin,treatment: TNF
+        H5 titolo        : TNF_rep3
+        H5 caratteristiche: tissue: Skin,treatment: TNF
+        H5 sorgente      : TNF_skin
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control (PBS-0.1%BSA)
+      gruppo Stadio 2: grp_0001
+      GSM3463717
+        grezzo (Stadio 1): title: CTRL_rep1,source: CTRL_skin,tissue: Skin,treatment: PBS-0.1%BSA
+        H5 titolo        : CTRL_rep1
+        H5 caratteristiche: tissue: Skin,treatment: PBS-0.1%BSA
+        H5 sorgente      : CTRL_skin
+      GSM3463718
+        grezzo (Stadio 1): title: CTRL_rep2,source: CTRL_skin,tissue: Skin,treatment: PBS-0.1%BSA
+        H5 titolo        : CTRL_rep2
+        H5 caratteristiche: tissue: Skin,treatment: PBS-0.1%BSA
+        H5 sorgente      : CTRL_skin
+      GSM3463719
+        grezzo (Stadio 1): title: CTRL_rep3,source: CTRL_skin,tissue: Skin,treatment: PBS-0.1%BSA
+        H5 titolo        : CTRL_rep3
+        H5 caratteristiche: tissue: Skin,treatment: PBS-0.1%BSA
+        H5 sorgente      : CTRL_skin
+
+CONFRONTO  GSE126101__GSE126101__TNFα_vs_Control__1
+  studio: GSE126101
+  TRATTATO  (n=4)  etichetta Stadio 2: TNFα
+      gruppo Stadio 2: grp_0003
+      GSM3591619
+        grezzo (Stadio 1): title: hSMCs_P5 TNFa Rep1 [RNA-seq],source: hSMCs_P5 TNFa,cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P5,replicate: 1,treatment: TNFa
+        H5 titolo        : hSMCs_P5 TNFa Rep1 [RNA-seq]
+        H5 caratteristiche: cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P5,replicate: 1,treatment: TNFa
+        H5 sorgente      : hSMCs_P5 TNFa
+      GSM3591620
+        grezzo (Stadio 1): title: hSMCs_P5 TNFa Rep2 [RNA-seq],source: hSMCs_P5 TNFa,cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P5,replicate: 2,treatment: TNFa
+        H5 titolo        : hSMCs_P5 TNFa Rep2 [RNA-seq]
+        H5 caratteristiche: cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P5,replicate: 2,treatment: TNFa
+        H5 sorgente      : hSMCs_P5 TNFa
+      GSM3591625
+        grezzo (Stadio 1): title: hSMCs_P6 TNFa Rep1 [RNA-seq],source: hSMCs_P6 TNFa,cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P6,replicate: 1,treatment: TNFa
+        H5 titolo        : hSMCs_P6 TNFa Rep1 [RNA-seq]
+        H5 caratteristiche: cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P6,replicate: 1,treatment: TNFa
+        H5 sorgente      : hSMCs_P6 TNFa
+      GSM3591626
+        grezzo (Stadio 1): title: hSMCs_P6 TNFa Rep2 [RNA-seq],source: hSMCs_P6 TNFa,cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P6,replicate: 2,treatment: TNFa
+        H5 titolo        : hSMCs_P6 TNFa Rep2 [RNA-seq]
+        H5 caratteristiche: cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P6,replicate: 2,treatment: TNFa
+        H5 sorgente      : hSMCs_P6 TNFa
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control (Ctrl)
+      gruppo Stadio 2: grp_0001
+      GSM3591615
+        grezzo (Stadio 1): title: hSMCs_P5 Ctrl Rep1 [RNA-seq],source: hSMCs_P5 Ctrl,cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P5,replicate: 1,treatment: control (Ctrl)
+        H5 titolo        : hSMCs_P5 Ctrl Rep1 [RNA-seq]
+        H5 caratteristiche: cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P5,replicate: 1,treatment: control (Ctrl)
+        H5 sorgente      : hSMCs_P5 Ctrl
+      GSM3591616
+        grezzo (Stadio 1): title: hSMCs_P5 Ctrl Rep2 [RNA-seq],source: hSMCs_P5 Ctrl,cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P5,replicate: 2,treatment: control (Ctrl)
+        H5 titolo        : hSMCs_P5 Ctrl Rep2 [RNA-seq]
+        H5 caratteristiche: cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P5,replicate: 2,treatment: control (Ctrl)
+        H5 sorgente      : hSMCs_P5 Ctrl
+      GSM3591621
+        grezzo (Stadio 1): title: hSMCs_P6 Ctrl Rep1 [RNA-seq],source: hSMCs_P6 Ctrl,cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P6,replicate: 1,treatment: control (Ctrl)
+        H5 titolo        : hSMCs_P6 Ctrl Rep1 [RNA-seq]
+        H5 caratteristiche: cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P6,replicate: 1,treatment: control (Ctrl)
+        H5 sorgente      : hSMCs_P6 Ctrl
+      GSM3591622
+        grezzo (Stadio 1): title: hSMCs_P6 Ctrl Rep2 [RNA-seq],source: hSMCs_P6 Ctrl,cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P6,replicate: 2,treatment: control (Ctrl)
+        H5 titolo        : hSMCs_P6 Ctrl Rep2 [RNA-seq]
+        H5 caratteristiche: cell type: Primary Human Skeletal Muscle cells (hSMCs),passage: P6,replicate: 2,treatment: control (Ctrl)
+        H5 sorgente      : hSMCs_P6 Ctrl
+
+CONFRONTO  GSE129210__GSE129210__TNF_vs_Untreated__1
+  studio: GSE129210
+  TRATTATO  (n=5)  etichetta Stadio 2: TNF
+      gruppo Stadio 2: grp_0009
+      GSM3702373
+        grezzo (Stadio 1): title: RNAseq_1_TNF_1,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours
+        H5 titolo        : RNAseq_1_TNF_1
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours
+        H5 sorgente      : Primary human monocyte-derived macrophages
+      GSM3702374
+        grezzo (Stadio 1): title: RNAseq_1_TNF_2,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours
+        H5 titolo        : RNAseq_1_TNF_2
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours
+        H5 sorgente      : Primary human monocyte-derived macrophages
+      GSM3702375
+        grezzo (Stadio 1): title: RNAseq_1_TNF_3,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours
+        H5 titolo        : RNAseq_1_TNF_3
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours
+        H5 sorgente      : Primary human monocyte-derived macrophages
+      GSM3702392
+        grezzo (Stadio 1): title: RNAseq_3_TNF_1,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours
+        H5 titolo        : RNAseq_3_TNF_1
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours
+        H5 sorgente      : Primary human monocyte-derived macrophages
+      GSM3702396
+        grezzo (Stadio 1): title: RNAseq_3_TNF_DMSO_2,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours,inhibitors: DMSO
+        H5 titolo        : RNAseq_3_TNF_DMSO_2
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: TNF (10ng/ml) for 16 hours,inhibitors: DMSO
+        H5 sorgente      : Primary human monocyte-derived macrophages
+  CONTROLLO  (n=4)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0006
+      GSM3702370
+        grezzo (Stadio 1): title: RNAseq_1_CTL_1,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: untreated
+        H5 titolo        : RNAseq_1_CTL_1
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: untreated
+        H5 sorgente      : Primary human monocyte-derived macrophages
+      GSM3702371
+        grezzo (Stadio 1): title: RNAseq_1_CTL_2,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: untreated
+        H5 titolo        : RNAseq_1_CTL_2
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: untreated
+        H5 sorgente      : Primary human monocyte-derived macrophages
+      GSM3702372
+        grezzo (Stadio 1): title: RNAseq_1_CTL_3,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: untreated
+        H5 titolo        : RNAseq_1_CTL_3
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: untreated
+        H5 sorgente      : Primary human monocyte-derived macrophages
+      GSM3702388
+        grezzo (Stadio 1): title: RNAseq_3_CTL_1,source: Primary human monocyte-derived macrophages,tissue: peripheral blood,cell type: monocytes,treatment: untreated
+        H5 titolo        : RNAseq_3_CTL_1
+        H5 caratteristiche: tissue: peripheral blood,cell type: monocytes,treatment: untreated
+        H5 sorgente      : Primary human monocyte-derived macrophages
+
+CONFRONTO  GSE130226__GSE130226__CFTRpos_TNFa_2_vs_CFTRpos_untreated__1
+  studio: GSE130226
+  TRATTATO  (n=2)  etichetta Stadio 2: CFTRpos TNFα 2
+      gruppo Stadio 2: grp_CFTRpos_TNFa_2
+      GSM3734151
+        grezzo (Stadio 1): title: CFTRpos_Treated_2,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRpos_Treated_2
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+      GSM3734155
+        grezzo (Stadio 1): title: CFTRpos_Treated_6,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRpos_Treated_6
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: CFTRpos Untreated
+      gruppo Stadio 2: grp_CFTRpos_untreated
+      GSM3734145
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_2,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_2
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734147
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_4,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_4
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734148
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_5,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_5
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734149
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_6,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_6
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 sorgente      : Caco2 cells
+
+CONFRONTO  GSE130226__GSE130226__CFTRpos_TNFa_3_vs_CFTRpos_untreated__1
+  studio: GSE130226
+  TRATTATO  (n=2)  etichetta Stadio 2: CFTRpos TNFα 3
+      gruppo Stadio 2: grp_CFTRpos_TNFa_3
+      GSM3734152
+        grezzo (Stadio 1): title: CFTRpos_Treated_3,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: N14,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRpos_Treated_3
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: N14,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+      GSM3734154
+        grezzo (Stadio 1): title: CFTRpos_Treated_5,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRpos_Treated_5
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: CFTRpos Untreated
+      gruppo Stadio 2: grp_CFTRpos_untreated
+      GSM3734145
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_2,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_2
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734147
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_4,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_4
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734148
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_5,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_5
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734149
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_6,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_6
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 sorgente      : Caco2 cells
+
+CONFRONTO  GSE130226__GSE130226__CFTRpos_TNFa_4_vs_CFTRpos_untreated__1
+  studio: GSE130226
+  TRATTATO  (n=3)  etichetta Stadio 2: CFTRpos TNFα 4
+      gruppo Stadio 2: grp_CFTRpos_TNFa_4
+      GSM3734162
+        grezzo (Stadio 1): title: CFTRneg_Treated_1,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: C9,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRneg_Treated_1
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: C9,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+      GSM3734163
+        grezzo (Stadio 1): title: CFTRneg_Treated_2,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: S1,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRneg_Treated_2
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: S1,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+      GSM3734167
+        grezzo (Stadio 1): title: CFTRneg_Treated_6,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: M5,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRneg_Treated_6
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: M5,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: CFTRpos Untreated
+      gruppo Stadio 2: grp_CFTRpos_untreated
+      GSM3734145
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_2,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_2
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734147
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_4,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_4
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734148
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_5,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_5
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734149
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_6,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_6
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 sorgente      : Caco2 cells
+
+CONFRONTO  GSE130226__GSE130226__CFTRpos_TNFa_5_vs_CFTRpos_untreated__1
+  studio: GSE130226
+  TRATTATO  (n=2)  etichetta Stadio 2: CFTRpos TNFα 5
+      gruppo Stadio 2: grp_CFTRpos_TNFa_5
+      GSM3734164
+        grezzo (Stadio 1): title: CFTRneg_Treated_3,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: N5,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRneg_Treated_3
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: N5,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+      GSM3734165
+        grezzo (Stadio 1): title: CFTRneg_Treated_4,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: N6,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRneg_Treated_4
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: CFTR null,clone: N6,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: CFTRpos Untreated
+      gruppo Stadio 2: grp_CFTRpos_untreated
+      GSM3734145
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_2,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_2
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734147
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_4,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_4
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734148
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_5,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_5
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734149
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_6,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_6
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 sorgente      : Caco2 cells
+
+CONFRONTO  GSE130226__GSE130226__CFTRpos_TNFa_vs_CFTRpos_untreated__1
+  studio: GSE130226
+  TRATTATO  (n=2)  etichetta Stadio 2: CFTRpos TNFα
+      gruppo Stadio 2: grp_CFTRpos_TNFa
+      GSM3734150
+        grezzo (Stadio 1): title: CFTRpos_Treated_1,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y4,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRpos_Treated_1
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y4,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+      GSM3734153
+        grezzo (Stadio 1): title: CFTRpos_Treated_4,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: 100ng/ml TNFa for 2 hours
+        H5 titolo        : CFTRpos_Treated_4
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: 100ng/ml TNFa for 2 hours
+        H5 sorgente      : Caco2 cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: CFTRpos Untreated
+      gruppo Stadio 2: grp_CFTRpos_untreated
+      GSM3734145
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_2,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_2
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y15,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734147
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_4,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_4
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y5,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734148
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_5,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_5
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y21,treatment: none
+        H5 sorgente      : Caco2 cells
+      GSM3734149
+        grezzo (Stadio 1): title: CFTRpos_Nontreated_6,source: Caco2 cells,tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 titolo        : CFTRpos_Nontreated_6
+        H5 caratteristiche: tissue: Colonic adenocarcinoma-derived cell line,genotype: NonCF,clone: Y27,treatment: none
+        H5 sorgente      : Caco2 cells
+
+CONFRONTO  GSE132958__GSE132958__grp_0002_vs_grp_0001__1
+  studio: GSE132958
+  TRATTATO  (n=2)  etichetta Stadio 2: TNF-alpha
+      gruppo Stadio 2: grp_0002
+      GSM3897511
+        grezzo (Stadio 1): title: NT_TNFa_Rep1,source: intervertebral disc - nucleus pulposus,cell type: Pathological intervertebral disc cells from the nucleus pulposus,Sex: Male,age: 26 yr,genotype/variation: Nontargeting control,treatment: 10ng/ml TNF-alpha
+        H5 titolo        : NT_TNFa_Rep1
+        H5 caratteristiche: cell type: Pathological intervertebral disc cells from the nucleus pulposus,Sex: Male,age: 26 yr,genotype/variation: Nontargeting control,treatment: 10ng/ml TNF-alpha
+        H5 sorgente      : intervertebral disc - nucleus pulposus
+      GSM3897512
+        grezzo (Stadio 1): title: NT_TNFa_Rep2,source: intervertebral disc - nucleus pulposus,cell type: Pathological intervertebral disc cells from the nucleus pulposus,Sex: Male,age: 26 yr,genotype/variation: Nontargeting control,treatment: 10ng/ml TNF-alpha
+        H5 titolo        : NT_TNFa_Rep2
+        H5 caratteristiche: cell type: Pathological intervertebral disc cells from the nucleus pulposus,Sex: Male,age: 26 yr,genotype/variation: Nontargeting control,treatment: 10ng/ml TNF-alpha
+        H5 sorgente      : intervertebral disc - nucleus pulposus
+  CONTROLLO  (n=2)  etichetta Stadio 2: Nontargeting control
+      gruppo Stadio 2: grp_0001
+      GSM3897507
+        grezzo (Stadio 1): title: NT_Rep1,source: intervertebral disc - nucleus pulposus,cell type: Pathological intervertebral disc cells from the nucleus pulposus,Sex: Male,age: 26 yr,genotype/variation: Nontargeting control,treatment: 0ng/ml TNF-alpha
+        H5 titolo        : NT_Rep1
+        H5 caratteristiche: cell type: Pathological intervertebral disc cells from the nucleus pulposus,Sex: Male,age: 26 yr,genotype/variation: Nontargeting control,treatment: 0ng/ml TNF-alpha
+        H5 sorgente      : intervertebral disc - nucleus pulposus
+      GSM3897508
+        grezzo (Stadio 1): title: NT_Rep2,source: intervertebral disc - nucleus pulposus,cell type: Pathological intervertebral disc cells from the nucleus pulposus,Sex: Male,age: 26 yr,genotype/variation: Nontargeting control,treatment: 0ng/ml TNF-alpha
+        H5 titolo        : NT_Rep2
+        H5 caratteristiche: cell type: Pathological intervertebral disc cells from the nucleus pulposus,Sex: Male,age: 26 yr,genotype/variation: Nontargeting control,treatment: 0ng/ml TNF-alpha
+        H5 sorgente      : intervertebral disc - nucleus pulposus
+
+CONFRONTO  GSE147045__GSE147045__grp_0004_vs_grp_0002__1
+  studio: GSE147045
+  TRATTATO  (n=3)  etichetta Stadio 2: Intestinal Epithelial Cells (IEC) treated with TNF
+      gruppo Stadio 2: grp_0004
+      GSM4413652
+        grezzo (Stadio 1): title: Sample-2-ALET-UNT-4ST-TNF,source: IEC,cell type: Intestinal Epithelial Cells (IEC),stimulation: TNF,randomization code: ALET-UNT-4ST,barcode: MPS12344052-D03
+        H5 titolo        : Sample-2-ALET-UNT-4ST-TNF
+        H5 caratteristiche: cell type: Intestinal Epithelial Cells (IEC),stimulation: TNF,randomization code: ALET-UNT-4ST,barcode: MPS12344052-D03
+        H5 sorgente      : IEC
+      GSM4413660
+        grezzo (Stadio 1): title: Sample-10-AS1303-TNF,source: IEC,cell type: Intestinal Epithelial Cells (IEC),stimulation: TNF,randomization code: AS1303,barcode: MPS12344052-D04
+        H5 titolo        : Sample-10-AS1303-TNF
+        H5 caratteristiche: cell type: Intestinal Epithelial Cells (IEC),stimulation: TNF,randomization code: AS1303,barcode: MPS12344052-D04
+        H5 sorgente      : IEC
+      GSM4413664
+        grezzo (Stadio 1): title: Sample-14-HT-29-TNF,source: IEC,cell type: Intestinal Epithelial Cells (IEC),stimulation: TNF,randomization code: HT-29 (IEC),barcode: MPS12344052-H04
+        H5 titolo        : Sample-14-HT-29-TNF
+        H5 caratteristiche: cell type: Intestinal Epithelial Cells (IEC),stimulation: TNF,randomization code: HT-29 (IEC),barcode: MPS12344052-H04
+        H5 sorgente      : IEC
+  CONTROLLO  (n=2)  etichetta Stadio 2: Intestinal Epithelial Cells (IEC) treated with Medium
+      gruppo Stadio 2: grp_0002
+      GSM4413659
+        grezzo (Stadio 1): title: Sample-9-AS1303-Medium,source: IEC,cell type: Intestinal Epithelial Cells (IEC),stimulation: Medium,randomization code: AS1303,barcode: MPS12344052-C04
+        H5 titolo        : Sample-9-AS1303-Medium
+        H5 caratteristiche: cell type: Intestinal Epithelial Cells (IEC),stimulation: Medium,randomization code: AS1303,barcode: MPS12344052-C04
+        H5 sorgente      : IEC
+      GSM4413663
+        grezzo (Stadio 1): title: Sample-13-HT-29-Medium,source: IEC,cell type: Intestinal Epithelial Cells (IEC),stimulation: Medium,randomization code: HT-29 (IEC),barcode: MPS12344052-G04
+        H5 titolo        : Sample-13-HT-29-Medium
+        H5 caratteristiche: cell type: Intestinal Epithelial Cells (IEC),stimulation: Medium,randomization code: HT-29 (IEC),barcode: MPS12344052-G04
+        H5 sorgente      : IEC
+
+CONFRONTO  GSE157364__GSE157364__grp_0004_vs_grp_0003__1
+  studio: GSE157364
+  TRATTATO  (n=4)  etichetta Stadio 2: Primary fibroblast-like synoviocytes treated with TNF
+      gruppo Stadio 2: grp_0004
+      GSM4763723
+        grezzo (Stadio 1): title: Fibroblasts_TNF_24 hours [TNF_rep1],source: Fibroblasts_TNF_24 hours,donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: TNF_24 hours
+        H5 titolo        : Fibroblasts_TNF_24 hours [TNF_rep1]
+        H5 caratteristiche: donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: TNF_24 hours
+        H5 sorgente      : Fibroblasts_TNF_24 hours
+      GSM4763727
+        grezzo (Stadio 1): title: Fibroblasts_TNF_24 hours [TNF_rep2],source: Fibroblasts_TNF_24 hours,donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: TNF_24 hours
+        H5 titolo        : Fibroblasts_TNF_24 hours [TNF_rep2]
+        H5 caratteristiche: donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: TNF_24 hours
+        H5 sorgente      : Fibroblasts_TNF_24 hours
+      GSM4763731
+        grezzo (Stadio 1): title: Fibroblasts_TNF_24 hours [TNF_rep3],source: Fibroblasts_TNF_24 hours,donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: TNF_24 hours
+        H5 titolo        : Fibroblasts_TNF_24 hours [TNF_rep3]
+        H5 caratteristiche: donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: TNF_24 hours
+        H5 sorgente      : Fibroblasts_TNF_24 hours
+      GSM4763735
+        grezzo (Stadio 1): title: Fibroblasts_TNF_24 hours [TNF_rep4],source: Fibroblasts_TNF_24 hours,donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: TNF_24 hours
+        H5 titolo        : Fibroblasts_TNF_24 hours [TNF_rep4]
+        H5 caratteristiche: donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: TNF_24 hours
+        H5 sorgente      : Fibroblasts_TNF_24 hours
+  CONTROLLO  (n=4)  etichetta Stadio 2: Primary fibroblast-like synoviocytes untreated
+      gruppo Stadio 2: grp_0003
+      GSM4763721
+        grezzo (Stadio 1): title: Fibroblasts_untreated [FBS_rep1],source: Fibroblasts_untreated,donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: untreated
+        H5 titolo        : Fibroblasts_untreated [FBS_rep1]
+        H5 caratteristiche: donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: untreated
+        H5 sorgente      : Fibroblasts_untreated
+      GSM4763725
+        grezzo (Stadio 1): title: Fibroblasts_untreated [FBS_rep2],source: Fibroblasts_untreated,donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: untreated
+        H5 titolo        : Fibroblasts_untreated [FBS_rep2]
+        H5 caratteristiche: donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: untreated
+        H5 sorgente      : Fibroblasts_untreated
+      GSM4763729
+        grezzo (Stadio 1): title: Fibroblasts_untreated [FBS_rep3],source: Fibroblasts_untreated,donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: untreated
+        H5 titolo        : Fibroblasts_untreated [FBS_rep3]
+        H5 caratteristiche: donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: untreated
+        H5 sorgente      : Fibroblasts_untreated
+      GSM4763733
+        grezzo (Stadio 1): title: Fibroblasts_untreated [FBS_rep4],source: Fibroblasts_untreated,donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: untreated
+        H5 titolo        : Fibroblasts_untreated [FBS_rep4]
+        H5 caratteristiche: donor age: adult,tissue: synovial tissue,cell type: Primary fibroblast-like synoviocytes (fibroblasts),treatment: untreated
+        H5 sorgente      : Fibroblasts_untreated
+
+CONFRONTO  GSE157364__GSE157364__grp_0007_vs_grp_0009__1
+  studio: GSE157364
+  TRATTATO  (n=4)  etichetta Stadio 2: Primary macrophages treated with TNF
+      gruppo Stadio 2: grp_0007
+      GSM4763708
+        grezzo (Stadio 1): title: Macrophages_TNF_24 hours [TNF_rep1],source: Macrophages_TNF_24 hours,donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: TNF_24 hours
+        H5 titolo        : Macrophages_TNF_24 hours [TNF_rep1]
+        H5 caratteristiche: donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: TNF_24 hours
+        H5 sorgente      : Macrophages_TNF_24 hours
+      GSM4763712
+        grezzo (Stadio 1): title: Macrophages_TNF_24 hours [TNF_rep2],source: Macrophages_TNF_24 hours,donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: TNF_24 hours
+        H5 titolo        : Macrophages_TNF_24 hours [TNF_rep2]
+        H5 caratteristiche: donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: TNF_24 hours
+        H5 sorgente      : Macrophages_TNF_24 hours
+      GSM4763716
+        grezzo (Stadio 1): title: Macrophages_TNF_24 hours [TNF_rep3],source: Macrophages_TNF_24 hours,donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: TNF_24 hours
+        H5 titolo        : Macrophages_TNF_24 hours [TNF_rep3]
+        H5 caratteristiche: donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: TNF_24 hours
+        H5 sorgente      : Macrophages_TNF_24 hours
+      GSM4763720
+        grezzo (Stadio 1): title: Macrophages_TNF_24 hours [TNF_rep4],source: Macrophages_TNF_24 hours,donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: TNF_24 hours
+        H5 titolo        : Macrophages_TNF_24 hours [TNF_rep4]
+        H5 caratteristiche: donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: TNF_24 hours
+        H5 sorgente      : Macrophages_TNF_24 hours
+  CONTROLLO  (n=3)  etichetta Stadio 2: Primary macrophages untreated
+      gruppo Stadio 2: grp_0009
+      GSM4763705
+        grezzo (Stadio 1): title: Macrophages_untreated [FBS_rep1],source: Macrophages_untreated,donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: untreated
+        H5 titolo        : Macrophages_untreated [FBS_rep1]
+        H5 caratteristiche: donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: untreated
+        H5 sorgente      : Macrophages_untreated
+      GSM4763709
+        grezzo (Stadio 1): title: Macrophages_untreated [FBS_rep2],source: Macrophages_untreated,donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: untreated
+        H5 titolo        : Macrophages_untreated [FBS_rep2]
+        H5 caratteristiche: donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: untreated
+        H5 sorgente      : Macrophages_untreated
+      GSM4763713
+        grezzo (Stadio 1): title: Macrophages_untreated [FBS_rep3],source: Macrophages_untreated,donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: untreated
+        H5 titolo        : Macrophages_untreated [FBS_rep3]
+        H5 caratteristiche: donor age: adult,tissue: blood,cell type: Primary macrophages differentiated from cd14+ monocytes,treatment: untreated
+        H5 sorgente      : Macrophages_untreated
+
+CONFRONTO  GSE161021__GSE161021__grp_0002_vs_grp_0001__1
+  studio: GSE161021
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF Stimulation
+      gruppo Stadio 2: grp_0002
+      GSM4888075
+        grezzo (Stadio 1): title: HDMEC cells treated with TNF replicate 1,source: Human dermal microvascular endothelial cells, primary isolates,tissue: Capillary,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 titolo        : HDMEC cells treated with TNF replicate 1
+        H5 caratteristiche: tissue: Capillary,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 sorgente      : Human dermal microvascular endothelial cells, primary isolates
+      GSM4888076
+        grezzo (Stadio 1): title: HDMEC cells treated with TNF replicate 2,source: Human dermal microvascular endothelial cells, primary isolates,tissue: Capillary,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 titolo        : HDMEC cells treated with TNF replicate 2
+        H5 caratteristiche: tissue: Capillary,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 sorgente      : Human dermal microvascular endothelial cells, primary isolates
+      GSM4888077
+        grezzo (Stadio 1): title: HDMEC cells treated with TNF replicate 3,source: Human dermal microvascular endothelial cells, primary isolates,tissue: Capillary,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 titolo        : HDMEC cells treated with TNF replicate 3
+        H5 caratteristiche: tissue: Capillary,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 sorgente      : Human dermal microvascular endothelial cells, primary isolates
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control (PBS)
+      gruppo Stadio 2: grp_0001
+      GSM4888072
+        grezzo (Stadio 1): title: HDMEC cells treated with PBS replicate 1,source: Human dermal microvascular endothelial cells, primary isolates,tissue: Capillary,cell type: Endothelial cell,treatment: PBS
+        H5 titolo        : HDMEC cells treated with PBS replicate 1
+        H5 caratteristiche: tissue: Capillary,cell type: Endothelial cell,treatment: PBS
+        H5 sorgente      : Human dermal microvascular endothelial cells, primary isolates
+      GSM4888073
+        grezzo (Stadio 1): title: HDMEC cells treated with PBS replicate 2,source: Human dermal microvascular endothelial cells, primary isolates,tissue: Capillary,cell type: Endothelial cell,treatment: PBS
+        H5 titolo        : HDMEC cells treated with PBS replicate 2
+        H5 caratteristiche: tissue: Capillary,cell type: Endothelial cell,treatment: PBS
+        H5 sorgente      : Human dermal microvascular endothelial cells, primary isolates
+      GSM4888074
+        grezzo (Stadio 1): title: HDMEC cells treated with PBS replicate 3,source: Human dermal microvascular endothelial cells, primary isolates,tissue: Capillary,cell type: Endothelial cell,treatment: PBS
+        H5 titolo        : HDMEC cells treated with PBS replicate 3
+        H5 caratteristiche: tissue: Capillary,cell type: Endothelial cell,treatment: PBS
+        H5 sorgente      : Human dermal microvascular endothelial cells, primary isolates
+
+CONFRONTO  GSE161761__GSE161761__TNF_14_days_vs_untreated__1
+  studio: GSE161761
+  TRATTATO  (n=2)  etichetta Stadio 2: TNF for 14 days
+      gruppo Stadio 2: grp_TNF_14_days
+      GSM4914124
+        grezzo (Stadio 1): title: Long stimulation TNF rep1,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: treated with TNF for 14 days
+        H5 titolo        : Long stimulation TNF rep1
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: treated with TNF for 14 days
+        H5 sorgente      : Bone marrow
+      GSM4914132
+        grezzo (Stadio 1): title: Long stimulation TNF rep2,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: treated with TNF for 14 days
+        H5 titolo        : Long stimulation TNF rep2
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: treated with TNF for 14 days
+        H5 sorgente      : Bone marrow
+  CONTROLLO  (n=5)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_untreated
+      GSM4914118
+        grezzo (Stadio 1): title: Short stimulation control rep1,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Short stimulation control rep1
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+      GSM4914122
+        grezzo (Stadio 1): title: Long stimulation control rep1,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Long stimulation control rep1
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+      GSM4914126
+        grezzo (Stadio 1): title: Short stimulation control rep2,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Short stimulation control rep2
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+      GSM4914130
+        grezzo (Stadio 1): title: Long stimulation control rep2,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Long stimulation control rep2
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+      GSM4914138
+        grezzo (Stadio 1): title: Long stimulation control rep3,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Long stimulation control rep3
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+
+CONFRONTO  GSE161761__GSE161761__TNF_2_days_vs_untreated__1
+  studio: GSE161761
+  TRATTATO  (n=2)  etichetta Stadio 2: TNF for 2 days
+      gruppo Stadio 2: grp_TNF_2_days
+      GSM4914120
+        grezzo (Stadio 1): title: Short stimulation TNF rep1,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: treated with TNF for 2 days
+        H5 titolo        : Short stimulation TNF rep1
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: treated with TNF for 2 days
+        H5 sorgente      : Bone marrow
+      GSM4914128
+        grezzo (Stadio 1): title: Short stimulation TNF rep2,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: treated with TNF for 2 days
+        H5 titolo        : Short stimulation TNF rep2
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: treated with TNF for 2 days
+        H5 sorgente      : Bone marrow
+  CONTROLLO  (n=5)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_untreated
+      GSM4914118
+        grezzo (Stadio 1): title: Short stimulation control rep1,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Short stimulation control rep1
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+      GSM4914122
+        grezzo (Stadio 1): title: Long stimulation control rep1,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Long stimulation control rep1
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+      GSM4914126
+        grezzo (Stadio 1): title: Short stimulation control rep2,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Short stimulation control rep2
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+      GSM4914130
+        grezzo (Stadio 1): title: Long stimulation control rep2,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Long stimulation control rep2
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+      GSM4914138
+        grezzo (Stadio 1): title: Long stimulation control rep3,source: Bone marrow,cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 titolo        : Long stimulation control rep3
+        H5 caratteristiche: cell type: primary bone marrow-derived MSCs,tissue: Bone marrow,treatment: untreated
+        H5 sorgente      : Bone marrow
+
+CONFRONTO  GSE163548__GSE163548__grp_0005_vs_grp_0015__1
+  studio: GSE163548
+  TRATTATO  (n=6)  etichetta Stadio 2: TNF-treated Knee FLS
+      gruppo Stadio 2: grp_0005
+      GSM4981532
+        grezzo (Stadio 1): title: SF_336_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: SF_336_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: Knee,disease state: Rheumatoid Arthritis
+        H5 titolo        : SF_336_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: SF_336_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: Knee,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981534
+        grezzo (Stadio 1): title: SF_346_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: SF_346_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: Knee,disease state: Rheumatoid Arthritis
+        H5 titolo        : SF_346_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: SF_346_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: Knee,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981558
+        grezzo (Stadio 1): title: 427_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: 427_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: knee,disease state: Rheumatoid Arthritis
+        H5 titolo        : 427_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: 427_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: knee,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981560
+        grezzo (Stadio 1): title: 217_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: 217_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: knee,disease state: Rheumatoid Arthritis
+        H5 titolo        : 217_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: 217_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: knee,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981564
+        grezzo (Stadio 1): title: 427_TNF: CAGE-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: 427_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: knee,disease state: Rheumatoid Arthritis
+        H5 titolo        : 427_TNF: CAGE-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: 427_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: knee,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981572
+        grezzo (Stadio 1): title: 276_TNF: CAGE-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: 276_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: knee,disease state: Rheumatoid Arthritis
+        H5 titolo        : 276_TNF: CAGE-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: 276_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: knee,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control Knee FLS
+      gruppo Stadio 2: grp_0015
+      GSM4981531
+        grezzo (Stadio 1): title: SF_336: RNA-seq, Primary FLS, unstimulated,source: Primary FLS,sample id: SF_336,stimulation: None,joint: Knee,disease state: Rheumatoid Arthritis
+        H5 titolo        : SF_336: RNA-seq, Primary FLS, unstimulated
+        H5 caratteristiche: sample id: SF_336,stimulation: None,joint: Knee,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981533
+        grezzo (Stadio 1): title: SF_346: RNA-seq, Primary FLS, unstimulated,source: Primary FLS,sample id: SF_346,stimulation: None,joint: Knee,disease state: Rheumatoid Arthritis
+        H5 titolo        : SF_346: RNA-seq, Primary FLS, unstimulated
+        H5 caratteristiche: sample id: SF_346,stimulation: None,joint: Knee,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+
+CONFRONTO  GSE163548__GSE163548__grp_0008_vs_grp_0007__1
+  studio: GSE163548
+  TRATTATO  (n=2)  etichetta Stadio 2: TNF-treated Shoulder FLS
+      gruppo Stadio 2: grp_0008
+      GSM4981536
+        grezzo (Stadio 1): title: SF_407_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: SF_407_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: Shoulder,disease state: Rheumatoid Arthritis
+        H5 titolo        : SF_407_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: SF_407_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: Shoulder,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981540
+        grezzo (Stadio 1): title: SF_435_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: SF_435_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: Shoulder,disease state: Rheumatoid Arthritis
+        H5 titolo        : SF_435_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: SF_435_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: Shoulder,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control Shoulder FLS
+      gruppo Stadio 2: grp_0007
+      GSM4981535
+        grezzo (Stadio 1): title: SF_407: RNA-seq, Primary FLS, unstimulated,source: Primary FLS,sample id: SF_407,stimulation: None,joint: Shoulder,disease state: Rheumatoid Arthritis
+        H5 titolo        : SF_407: RNA-seq, Primary FLS, unstimulated
+        H5 caratteristiche: sample id: SF_407,stimulation: None,joint: Shoulder,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981539
+        grezzo (Stadio 1): title: SF_435: RNA-seq, Primary FLS, unstimulated,source: Primary FLS,sample id: SF_435,stimulation: None,joint: Shoulder,disease state: Rheumatoid Arthritis
+        H5 titolo        : SF_435: RNA-seq, Primary FLS, unstimulated
+        H5 caratteristiche: sample id: SF_435,stimulation: None,joint: Shoulder,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+
+CONFRONTO  GSE163548__GSE163548__grp_0009_vs_grp_0014__1
+  studio: GSE163548
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF-treated Wrist FLS
+      gruppo Stadio 2: grp_0009
+      GSM4981542
+        grezzo (Stadio 1): title: 230_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: 230_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 titolo        : 230_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: 230_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981544
+        grezzo (Stadio 1): title: 387_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: 387_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 titolo        : 387_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: 387_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981546
+        grezzo (Stadio 1): title: 285_TNF: RNA-seq, Primary FLS, TNF stimulated,source: Primary FLS,sample id: 285_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 titolo        : 285_TNF: RNA-seq, Primary FLS, TNF stimulated
+        H5 caratteristiche: sample id: 285_TNF,stimulation: 10 ng/ml TNF for 24 hours,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control Wrist FLS
+      gruppo Stadio 2: grp_0014
+      GSM4981541
+        grezzo (Stadio 1): title: 230: RNA-seq, Primary FLS, unstimulated,source: Primary FLS,sample id: 230,stimulation: None,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 titolo        : 230: RNA-seq, Primary FLS, unstimulated
+        H5 caratteristiche: sample id: 230,stimulation: None,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981543
+        grezzo (Stadio 1): title: 387: RNA-seq, Primary FLS, unstimulated,source: Primary FLS,sample id: 387,stimulation: None,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 titolo        : 387: RNA-seq, Primary FLS, unstimulated
+        H5 caratteristiche: sample id: 387,stimulation: None,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+      GSM4981545
+        grezzo (Stadio 1): title: 285: RNA-seq, Primary FLS, unstimulated,source: Primary FLS,sample id: 285,stimulation: None,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 titolo        : 285: RNA-seq, Primary FLS, unstimulated
+        H5 caratteristiche: sample id: 285,stimulation: None,joint: wrist,disease state: Rheumatoid Arthritis
+        H5 sorgente      : Primary FLS
+
+CONFRONTO  GSE171170__GSE171170__TNF_vs_PBS__1
+  studio: GSE171170
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF (10 ng/ml)
+      gruppo Stadio 2: grp_0002
+      GSM5220267
+        grezzo (Stadio 1): title: 7_TNF_1_7,source: Skin Keratinocyte_TNF stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TNF (10 ng/ml) stimulated
+        H5 titolo        : 7_TNF_1_7
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TNF (10 ng/ml) stimulated
+        H5 sorgente      : Skin Keratinocyte_TNF stimulated
+      GSM5220268
+        grezzo (Stadio 1): title: 8_TNF_2_8,source: Skin Keratinocyte_TNF stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TNF (10 ng/ml) stimulated
+        H5 titolo        : 8_TNF_2_8
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TNF (10 ng/ml) stimulated
+        H5 sorgente      : Skin Keratinocyte_TNF stimulated
+      GSM5220269
+        grezzo (Stadio 1): title: 9_TNF_3_9,source: Skin Keratinocyte_TNF stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TNF (10 ng/ml) stimulated
+        H5 titolo        : 9_TNF_3_9
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: TNF (10 ng/ml) stimulated
+        H5 sorgente      : Skin Keratinocyte_TNF stimulated
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0004
+      GSM5220261
+        grezzo (Stadio 1): title: 1_C1_1,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 1_C1_1
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+      GSM5220262
+        grezzo (Stadio 1): title: 2_C2_2,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 2_C2_2
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+      GSM5220263
+        grezzo (Stadio 1): title: 3_C3_3,source: Skin Keratinocyte_PBS Stimulated,cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 titolo        : 3_C3_3
+        H5 caratteristiche: cell line: nHEK,cell type: Human epidermal keratinocytes from neonates (nHEK),treatment: PBS Stimulated
+        H5 sorgente      : Skin Keratinocyte_PBS Stimulated
+
+CONFRONTO  GSE186396__GSE186396__grp_0009_vs_grp_0003__1
+  studio: GSE186396
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary Melanoma BLM cells, Untreated, TNF 6h
+      gruppo Stadio 2: grp_0009
+      GSM5649970
+        grezzo (Stadio 1): title: 7_BLM_sgCtl_T6_R1,source: Human melanoma,cell type: melanoma BLM cells,genotype: sgCtl,treatment: TNF 6h,treatment: untreated
+        H5 titolo        : 7_BLM_sgCtl_T6_R1
+        H5 caratteristiche: cell type: melanoma BLM cells,genotype: sgCtl,treatment: TNF 6h,treatment: untreated
+        H5 sorgente      : Human melanoma
+      GSM5649971
+        grezzo (Stadio 1): title: 8_BLM_sgCtl_T6_R2,source: Human melanoma,cell type: melanoma BLM cells,genotype: sgCtl,treatment: TNF 6h,treatment: untreated
+        H5 titolo        : 8_BLM_sgCtl_T6_R2
+        H5 caratteristiche: cell type: melanoma BLM cells,genotype: sgCtl,treatment: TNF 6h,treatment: untreated
+        H5 sorgente      : Human melanoma
+  CONTROLLO  (n=2)  etichetta Stadio 2: Melanoma BLM cells, Untreated
+      gruppo Stadio 2: grp_0003
+      GSM5649964
+        grezzo (Stadio 1): title: 1_BLM_sgCtl_T0_R1,source: Human melanoma,cell type: melanoma BLM cells,genotype: sgCtl,treatment: TNF 0h,treatment: untreated
+        H5 titolo        : 1_BLM_sgCtl_T0_R1
+        H5 caratteristiche: cell type: melanoma BLM cells,genotype: sgCtl,treatment: TNF 0h,treatment: untreated
+        H5 sorgente      : Human melanoma
+      GSM5649965
+        grezzo (Stadio 1): title: 2_BLM_sgCtl_T0_R2,source: Human melanoma,cell type: melanoma BLM cells,genotype: sgCtl,treatment: TNF 0h,treatment: untreated
+        H5 titolo        : 2_BLM_sgCtl_T0_R2
+        H5 caratteristiche: cell type: melanoma BLM cells,genotype: sgCtl,treatment: TNF 0h,treatment: untreated
+        H5 sorgente      : Human melanoma
+
+CONFRONTO  GSE190181__GSE190181__TNF_vs_PBS__1
+  studio: GSE190181
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF
+      gruppo Stadio 2: grp_0002
+      GSM5717721
+        grezzo (Stadio 1): title: HUVECs treated with TNF replicate 1,source: Human umbilical vein endothelial cells, primary isolates,tissue: Umbilical vein,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 titolo        : HUVECs treated with TNF replicate 1
+        H5 caratteristiche: tissue: Umbilical vein,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 sorgente      : Human umbilical vein endothelial cells, primary isolates
+      GSM5717722
+        grezzo (Stadio 1): title: HUVECs treated with TNF replicate 2,source: Human umbilical vein endothelial cells, primary isolates,tissue: Umbilical vein,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 titolo        : HUVECs treated with TNF replicate 2
+        H5 caratteristiche: tissue: Umbilical vein,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 sorgente      : Human umbilical vein endothelial cells, primary isolates
+      GSM5717723
+        grezzo (Stadio 1): title: HUVECs treated with TNF replicate 3,source: Human umbilical vein endothelial cells, primary isolates,tissue: Umbilical vein,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 titolo        : HUVECs treated with TNF replicate 3
+        H5 caratteristiche: tissue: Umbilical vein,cell type: Endothelial cell,treatment: Tumor Necrosis factor
+        H5 sorgente      : Human umbilical vein endothelial cells, primary isolates
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0001
+      GSM5717718
+        grezzo (Stadio 1): title: HUVECs treated with PBS replicate 1,source: Human umbilical vein endothelial cells, primary isolates,tissue: Umbilical vein,cell type: Endothelial cell,treatment: PBS
+        H5 titolo        : HUVECs treated with PBS replicate 1
+        H5 caratteristiche: tissue: Umbilical vein,cell type: Endothelial cell,treatment: PBS
+        H5 sorgente      : Human umbilical vein endothelial cells, primary isolates
+      GSM5717719
+        grezzo (Stadio 1): title: HUVECs treated with PBS replicate 2,source: Human umbilical vein endothelial cells, primary isolates,tissue: Umbilical vein,cell type: Endothelial cell,treatment: PBS
+        H5 titolo        : HUVECs treated with PBS replicate 2
+        H5 caratteristiche: tissue: Umbilical vein,cell type: Endothelial cell,treatment: PBS
+        H5 sorgente      : Human umbilical vein endothelial cells, primary isolates
+      GSM5717720
+        grezzo (Stadio 1): title: HUVECs treated with PBS replicate 3,source: Human umbilical vein endothelial cells, primary isolates,tissue: Umbilical vein,cell type: Endothelial cell,treatment: PBS
+        H5 titolo        : HUVECs treated with PBS replicate 3
+        H5 caratteristiche: tissue: Umbilical vein,cell type: Endothelial cell,treatment: PBS
+        H5 sorgente      : Human umbilical vein endothelial cells, primary isolates
+
+CONFRONTO  GSE190634__GSE190634__TNF_donor1_vs_none_donor1__1
+  studio: GSE190634
+  TRATTATO  (n=3)  etichetta Stadio 2: Colonic organoid, donor 1, TNF 10ng/mL
+      gruppo Stadio 2: grp_TNF_donor1
+      GSM5726860
+        grezzo (Stadio 1): title: TNF treated colonoid donor 1 [TNFa_1],source: colonic organoid,tissue/cell type: colonic organoid,treatment: TNF 10ng/mL,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 titolo        : TNF treated colonoid donor 1 [TNFa_1]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: TNF 10ng/mL,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726861
+        grezzo (Stadio 1): title: TNF treated colonoid donor 2 [TNFa_2],source: colonic organoid,tissue/cell type: colonic organoid,treatment: TNF 10ng/mL,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 titolo        : TNF treated colonoid donor 2 [TNFa_2]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: TNF 10ng/mL,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726863
+        grezzo (Stadio 1): title: TNF treated colonoid donor 4 [TNFa_4],source: colonic organoid,tissue/cell type: colonic organoid,treatment: TNF 10ng/mL,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 titolo        : TNF treated colonoid donor 4 [TNFa_4]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: TNF 10ng/mL,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 sorgente      : colonic organoid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Colonic organoid, donor 1, no treatment
+      gruppo Stadio 2: grp_none_donor1
+      GSM5726840
+        grezzo (Stadio 1): title: Untreated colonoid donor 1 [Control_1],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 titolo        : Untreated colonoid donor 1 [Control_1]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726841
+        grezzo (Stadio 1): title: Untreated colonoid donor 2 [Control_2],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 titolo        : Untreated colonoid donor 2 [Control_2]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726843
+        grezzo (Stadio 1): title: Untreated colonoid donor 4 [Control_4],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 titolo        : Untreated colonoid donor 4 [Control_4]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 sorgente      : colonic organoid
+
+CONFRONTO  GSE191101__GSE191101__TNFa_vs_DMSO__1
+  studio: GSE191101
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα
+      gruppo Stadio 2: grp_TNFa
+      GSM5739053
+        grezzo (Stadio 1): title: MH7A cell line_TNF_treat_rep_1,source: MH7A cell line,cell type: human rheumatoid arthritis synovial cells,cell line: MH7A,treatment: treated with 20 ng/ul TNFa for 24h
+        H5 titolo        : MH7A cell line_TNF_treat_rep_1
+        H5 caratteristiche: cell type: human rheumatoid arthritis synovial cells,cell line: MH7A,treatment: treated with 20 ng/ul TNFa for 24h
+        H5 sorgente      : MH7A cell line
+      GSM5739054
+        grezzo (Stadio 1): title: MH7A cell line_TNF_treat_rep_2,source: MH7A cell line,cell type: human rheumatoid arthritis synovial cells,cell line: MH7A,treatment: treated with 20 ng/ul TNFa for 24h
+        H5 titolo        : MH7A cell line_TNF_treat_rep_2
+        H5 caratteristiche: cell type: human rheumatoid arthritis synovial cells,cell line: MH7A,treatment: treated with 20 ng/ul TNFa for 24h
+        H5 sorgente      : MH7A cell line
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM5739051
+        grezzo (Stadio 1): title: MH7A cell line_Mock_rep_1,source: MH7A cell line,cell type: human rheumatoid arthritis synovial cells,cell line: MH7A,treatment: DMSO
+        H5 titolo        : MH7A cell line_Mock_rep_1
+        H5 caratteristiche: cell type: human rheumatoid arthritis synovial cells,cell line: MH7A,treatment: DMSO
+        H5 sorgente      : MH7A cell line
+      GSM5739052
+        grezzo (Stadio 1): title: MH7A cell line_Mock_rep_2,source: MH7A cell line,cell type: human rheumatoid arthritis synovial cells,cell line: MH7A,treatment: DMSO
+        H5 titolo        : MH7A cell line_Mock_rep_2
+        H5 caratteristiche: cell type: human rheumatoid arthritis synovial cells,cell line: MH7A,treatment: DMSO
+        H5 sorgente      : MH7A cell line
+
+CONFRONTO  GSE196243__GSE196243__DF_TNF_IIU040_vs_DF_Untreated__1
+  studio: GSE196243
+  TRATTATO  (n=3)  etichetta Stadio 2: Dermal Fibroblast TNF IIU040
+      gruppo Stadio 2: grp_DF_TNF_IIU040
+      GSM5866157
+        grezzo (Stadio 1): title: Figure2_140521_P1_s08_TNF,source: Patient IIU040,treatment: TNF,run: 140521,disease: NDAS,cell type: Dermal Fibroblast
+        H5 titolo        : Figure2_140521_P1_s08_TNF
+        H5 caratteristiche: treatment: TNF,run: 140521,disease: NDAS,cell type: Dermal Fibroblast
+        H5 sorgente      : Patient IIU040
+      GSM5866159
+        grezzo (Stadio 1): title: Figure2_140617_P1_s02_TNF,source: Patient IIU040,treatment: TNF,run: 140617,disease: NDAS,cell type: Dermal Fibroblast
+        H5 titolo        : Figure2_140617_P1_s02_TNF
+        H5 caratteristiche: treatment: TNF,run: 140617,disease: NDAS,cell type: Dermal Fibroblast
+        H5 sorgente      : Patient IIU040
+      GSM5866165
+        grezzo (Stadio 1): title: Figure2_140617_P1_s08_TNF,source: Patient IIU040,treatment: TNF,run: 140617,disease: NDAS,cell type: Dermal Fibroblast
+        H5 titolo        : Figure2_140617_P1_s08_TNF
+        H5 caratteristiche: treatment: TNF,run: 140617,disease: NDAS,cell type: Dermal Fibroblast
+        H5 sorgente      : Patient IIU040
+  CONTROLLO  (n=5)  etichetta Stadio 2: Dermal Fibroblast Untreated
+      gruppo Stadio 2: grp_DF_Untreated
+      GSM5866142
+        grezzo (Stadio 1): title: Figure2_140429_P1_s01_unstimulated,source: Patient IIU040,treatment: unstimulated,run: 140429,disease: NDAS,cell type: Dermal Fibroblast
+        H5 titolo        : Figure2_140429_P1_s01_unstimulated
+        H5 caratteristiche: treatment: unstimulated,run: 140429,disease: NDAS,cell type: Dermal Fibroblast
+        H5 sorgente      : Patient IIU040
+      GSM5866150
+        grezzo (Stadio 1): title: Figure2_140521_P1_s01_unstimulated,source: Patient IIU040,treatment: unstimulated,run: 140521,disease: NDAS,cell type: Dermal Fibroblast
+        H5 titolo        : Figure2_140521_P1_s01_unstimulated
+        H5 caratteristiche: treatment: unstimulated,run: 140521,disease: NDAS,cell type: Dermal Fibroblast
+        H5 sorgente      : Patient IIU040
+      GSM5866156
+        grezzo (Stadio 1): title: Figure2_140521_P1_s07_unstimulated,source: Patient IIU040,treatment: unstimulated,run: 140521,disease: NDAS,cell type: Dermal Fibroblast
+        H5 titolo        : Figure2_140521_P1_s07_unstimulated
+        H5 caratteristiche: treatment: unstimulated,run: 140521,disease: NDAS,cell type: Dermal Fibroblast
+        H5 sorgente      : Patient IIU040
+      GSM5866158
+        grezzo (Stadio 1): title: Figure2_140617_P1_s01_unstimulated,source: Patient IIU040,treatment: unstimulated,run: 140617,disease: NDAS,cell type: Dermal Fibroblast
+        H5 titolo        : Figure2_140617_P1_s01_unstimulated
+        H5 caratteristiche: treatment: unstimulated,run: 140617,disease: NDAS,cell type: Dermal Fibroblast
+        H5 sorgente      : Patient IIU040
+      GSM5866164
+        grezzo (Stadio 1): title: Figure2_140617_P1_s07_unstimulated,source: Patient IIU040,treatment: unstimulated,run: 140617,disease: NDAS,cell type: Dermal Fibroblast
+        H5 titolo        : Figure2_140617_P1_s07_unstimulated
+        H5 caratteristiche: treatment: unstimulated,run: 140617,disease: NDAS,cell type: Dermal Fibroblast
+        H5 sorgente      : Patient IIU040
+
+CONFRONTO  GSE202436__GSE202436__TNF_18h_2_vs_VEHICLE_18h_2__1
+  studio: GSE202436
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα 18h
+      gruppo Stadio 2: grp_TNF_18h_2
+      GSM6122546
+        grezzo (Stadio 1): title: TNFÎ±-treated, 18h, biol rep1,source: Right Lung,age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 titolo        : TNFÎ±-treated, 18h, biol rep1
+        H5 caratteristiche: age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 sorgente      : Right Lung
+      GSM6122549
+        grezzo (Stadio 1): title: TNFÎ±-treated, 18h, biol rep4,source: Right Lung,age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 titolo        : TNFÎ±-treated, 18h, biol rep4
+        H5 caratteristiche: age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 sorgente      : Right Lung
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle 18h
+      gruppo Stadio 2: grp_VEHICLE_18h_2
+      GSM6122541
+        grezzo (Stadio 1): title: Vehicle-treated, 18h, biol rep1,source: Right Lung,age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 titolo        : Vehicle-treated, 18h, biol rep1
+        H5 caratteristiche: age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 sorgente      : Right Lung
+      GSM6122544
+        grezzo (Stadio 1): title: Vehicle-treated, 18h, biol rep4,source: Right Lung,age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 titolo        : Vehicle-treated, 18h, biol rep4
+        H5 caratteristiche: age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 sorgente      : Right Lung
+
+CONFRONTO  GSE202436__GSE202436__TNF_18h_vs_VEHICLE_18h__1
+  studio: GSE202436
+  TRATTATO  (n=3)  etichetta Stadio 2: TNFα 18h
+      gruppo Stadio 2: grp_TNF_18h
+      GSM6122547
+        grezzo (Stadio 1): title: TNFÎ±-treated, 18h, biol rep2,source: Left Lung,age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 titolo        : TNFÎ±-treated, 18h, biol rep2
+        H5 caratteristiche: age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 sorgente      : Left Lung
+      GSM6122548
+        grezzo (Stadio 1): title: TNFÎ±-treated, 18h, biol rep3,source: Left Lung,age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 titolo        : TNFÎ±-treated, 18h, biol rep3
+        H5 caratteristiche: age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 sorgente      : Left Lung
+      GSM6122550
+        grezzo (Stadio 1): title: TNFÎ±-treated, 18h, biol rep5,source: Left Lung,age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 titolo        : TNFÎ±-treated, 18h, biol rep5
+        H5 caratteristiche: age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 18h
+        H5 sorgente      : Left Lung
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle 18h
+      gruppo Stadio 2: grp_VEHICLE_18h
+      GSM6122542
+        grezzo (Stadio 1): title: Vehicle-treated, 18h, biol rep2,source: Left Lung,age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 titolo        : Vehicle-treated, 18h, biol rep2
+        H5 caratteristiche: age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 sorgente      : Left Lung
+      GSM6122543
+        grezzo (Stadio 1): title: Vehicle-treated, 18h, biol rep3,source: Left Lung,age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 titolo        : Vehicle-treated, 18h, biol rep3
+        H5 caratteristiche: age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 sorgente      : Left Lung
+      GSM6122545
+        grezzo (Stadio 1): title: Vehicle-treated, 18h, biol rep5,source: Left Lung,age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 titolo        : Vehicle-treated, 18h, biol rep5
+        H5 caratteristiche: age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 18h
+        H5 sorgente      : Left Lung
+
+CONFRONTO  GSE202436__GSE202436__TNF_1h_2_vs_VEHICLE_1h_2__1
+  studio: GSE202436
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα 1h
+      gruppo Stadio 2: grp_TNF_1h_2
+      GSM6122471
+        grezzo (Stadio 1): title: TNFÎ±-treated, 1h, biol rep1,source: Right Lung,age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 titolo        : TNFÎ±-treated, 1h, biol rep1
+        H5 caratteristiche: age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 sorgente      : Right Lung
+      GSM6122474
+        grezzo (Stadio 1): title: TNFÎ±-treated, 1h, biol rep4,source: Right Lung,age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 titolo        : TNFÎ±-treated, 1h, biol rep4
+        H5 caratteristiche: age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 sorgente      : Right Lung
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle 1h
+      gruppo Stadio 2: grp_VEHICLE_1h_2
+      GSM6122466
+        grezzo (Stadio 1): title: Vehicle-treated, 1h, biol rep1,source: Right Lung,age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 titolo        : Vehicle-treated, 1h, biol rep1
+        H5 caratteristiche: age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 sorgente      : Right Lung
+      GSM6122469
+        grezzo (Stadio 1): title: Vehicle-treated, 1h, biol rep4,source: Right Lung,age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 titolo        : Vehicle-treated, 1h, biol rep4
+        H5 caratteristiche: age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 sorgente      : Right Lung
+
+CONFRONTO  GSE202436__GSE202436__TNF_1h_vs_VEHICLE_1h__1
+  studio: GSE202436
+  TRATTATO  (n=3)  etichetta Stadio 2: TNFα 1h
+      gruppo Stadio 2: grp_TNF_1h
+      GSM6122472
+        grezzo (Stadio 1): title: TNFÎ±-treated, 1h, biol rep2,source: Left Lung,age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 titolo        : TNFÎ±-treated, 1h, biol rep2
+        H5 caratteristiche: age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 sorgente      : Left Lung
+      GSM6122473
+        grezzo (Stadio 1): title: TNFÎ±-treated, 1h, biol rep3,source: Left Lung,age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 titolo        : TNFÎ±-treated, 1h, biol rep3
+        H5 caratteristiche: age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 sorgente      : Left Lung
+      GSM6122475
+        grezzo (Stadio 1): title: TNFÎ±-treated, 1h, biol rep5,source: Left Lung,age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 titolo        : TNFÎ±-treated, 1h, biol rep5
+        H5 caratteristiche: age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 1h
+        H5 sorgente      : Left Lung
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle 1h
+      gruppo Stadio 2: grp_VEHICLE_1h
+      GSM6122467
+        grezzo (Stadio 1): title: Vehicle-treated, 1h, biol rep2,source: Left Lung,age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 titolo        : Vehicle-treated, 1h, biol rep2
+        H5 caratteristiche: age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 sorgente      : Left Lung
+      GSM6122468
+        grezzo (Stadio 1): title: Vehicle-treated, 1h, biol rep3,source: Left Lung,age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 titolo        : Vehicle-treated, 1h, biol rep3
+        H5 caratteristiche: age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 sorgente      : Left Lung
+      GSM6122470
+        grezzo (Stadio 1): title: Vehicle-treated, 1h, biol rep5,source: Left Lung,age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 titolo        : Vehicle-treated, 1h, biol rep5
+        H5 caratteristiche: age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 1h
+        H5 sorgente      : Left Lung
+
+CONFRONTO  GSE202436__GSE202436__TNF_2h_2_vs_VEHICLE_2h_3__1
+  studio: GSE202436
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα 2h
+      gruppo Stadio 2: grp_TNF_2h_2
+      GSM6122496
+        grezzo (Stadio 1): title: TNFÎ±-treated, 2h, biol rep1,source: Right Lung,age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 titolo        : TNFÎ±-treated, 2h, biol rep1
+        H5 caratteristiche: age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 sorgente      : Right Lung
+      GSM6122499
+        grezzo (Stadio 1): title: TNFÎ±-treated, 2h, biol rep4,source: Right Lung,age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 titolo        : TNFÎ±-treated, 2h, biol rep4
+        H5 caratteristiche: age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 sorgente      : Right Lung
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle 2h
+      gruppo Stadio 2: grp_VEHICLE_2h_3
+      GSM6122491
+        grezzo (Stadio 1): title: Vehicle-treated, 2h, biol rep1,source: Right Lung,age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 2h
+        H5 titolo        : Vehicle-treated, 2h, biol rep1
+        H5 caratteristiche: age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 2h
+        H5 sorgente      : Right Lung
+      GSM6122494
+        grezzo (Stadio 1): title: Vehicle-treated, 2h, biol rep4,source: Right Lung,age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 2h
+        H5 titolo        : Vehicle-treated, 2h, biol rep4
+        H5 caratteristiche: age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 2h
+        H5 sorgente      : Right Lung
+
+CONFRONTO  GSE202436__GSE202436__TNF_2h_vs_VEHICLE_2h__1
+  studio: GSE202436
+  TRATTATO  (n=3)  etichetta Stadio 2: TNFα 2h
+      gruppo Stadio 2: grp_TNF_2h
+      GSM6122497
+        grezzo (Stadio 1): title: TNFÎ±-treated, 2h, biol rep2,source: Left Lung,age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 titolo        : TNFÎ±-treated, 2h, biol rep2
+        H5 caratteristiche: age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 sorgente      : Left Lung
+      GSM6122498
+        grezzo (Stadio 1): title: TNFÎ±-treated, 2h, biol rep3,source: Left Lung,age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 titolo        : TNFÎ±-treated, 2h, biol rep3
+        H5 caratteristiche: age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 sorgente      : Left Lung
+      GSM6122500
+        grezzo (Stadio 1): title: TNFÎ±-treated, 2h, biol rep5,source: Left Lung,age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 titolo        : TNFÎ±-treated, 2h, biol rep5
+        H5 caratteristiche: age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 2h
+        H5 sorgente      : Left Lung
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle 2h
+      gruppo Stadio 2: grp_VEHICLE_2h
+      GSM6122492
+        grezzo (Stadio 1): title: Vehicle-treated, 2h, biol rep2,source: Left Lung,age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 2h
+        H5 titolo        : Vehicle-treated, 2h, biol rep2
+        H5 caratteristiche: age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 2h
+        H5 sorgente      : Left Lung
+      GSM6122495
+        grezzo (Stadio 1): title: Vehicle-treated, 2h, biol rep5,source: Left Lung,age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 2h
+        H5 titolo        : Vehicle-treated, 2h, biol rep5
+        H5 caratteristiche: age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 2h
+        H5 sorgente      : Left Lung
+
+CONFRONTO  GSE202436__GSE202436__TNF_6h_2_vs_VEHICLE_6h_2__1
+  studio: GSE202436
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα 6h
+      gruppo Stadio 2: grp_TNF_6h_2
+      GSM6122521
+        grezzo (Stadio 1): title: TNFÎ±-treated, 6h, biol rep1,source: Right Lung,age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 titolo        : TNFÎ±-treated, 6h, biol rep1
+        H5 caratteristiche: age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 sorgente      : Right Lung
+      GSM6122524
+        grezzo (Stadio 1): title: TNFÎ±-treated, 6h, biol rep4,source: Right Lung,age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 titolo        : TNFÎ±-treated, 6h, biol rep4
+        H5 caratteristiche: age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 sorgente      : Right Lung
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle 6h
+      gruppo Stadio 2: grp_VEHICLE_6h_2
+      GSM6122516
+        grezzo (Stadio 1): title: Vehicle-treated, 6h, biol rep1,source: Right Lung,age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 titolo        : Vehicle-treated, 6h, biol rep1
+        H5 caratteristiche: age: 49,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 sorgente      : Right Lung
+      GSM6122519
+        grezzo (Stadio 1): title: Vehicle-treated, 6h, biol rep4,source: Right Lung,age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 titolo        : Vehicle-treated, 6h, biol rep4
+        H5 caratteristiche: age: 42,Sex: Male,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Right Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 sorgente      : Right Lung
+
+CONFRONTO  GSE202436__GSE202436__TNF_6h_vs_VEHICLE_6h__1
+  studio: GSE202436
+  TRATTATO  (n=3)  etichetta Stadio 2: TNFα 6h
+      gruppo Stadio 2: grp_TNF_6h
+      GSM6122522
+        grezzo (Stadio 1): title: TNFÎ±-treated, 6h, biol rep2,source: Left Lung,age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 titolo        : TNFÎ±-treated, 6h, biol rep2
+        H5 caratteristiche: age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 sorgente      : Left Lung
+      GSM6122523
+        grezzo (Stadio 1): title: TNFÎ±-treated, 6h, biol rep3,source: Left Lung,age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 titolo        : TNFÎ±-treated, 6h, biol rep3
+        H5 caratteristiche: age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 sorgente      : Left Lung
+      GSM6122525
+        grezzo (Stadio 1): title: TNFÎ±-treated, 6h, biol rep5,source: Left Lung,age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 titolo        : TNFÎ±-treated, 6h, biol rep5
+        H5 caratteristiche: age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: TNFÎ±,time: 6h
+        H5 sorgente      : Left Lung
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle 6h
+      gruppo Stadio 2: grp_VEHICLE_6h
+      GSM6122517
+        grezzo (Stadio 1): title: Vehicle-treated, 6h, biol rep2,source: Left Lung,age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 titolo        : Vehicle-treated, 6h, biol rep2
+        H5 caratteristiche: age: 51,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 sorgente      : Left Lung
+      GSM6122518
+        grezzo (Stadio 1): title: Vehicle-treated, 6h, biol rep3,source: Left Lung,age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 titolo        : Vehicle-treated, 6h, biol rep3
+        H5 caratteristiche: age: 48,Sex: Female,ethnicity: Hispanic/Latino,cause of_death: CNS Tumor,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 sorgente      : Left Lung
+      GSM6122520
+        grezzo (Stadio 1): title: Vehicle-treated, 6h, biol rep5,source: Left Lung,age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 titolo        : Vehicle-treated, 6h, biol rep5
+        H5 caratteristiche: age: 57,Sex: Female,ethnicity: Caucasian,cause of_death: Intracerebral Haemorrhage,tissue: Left Lung,cell type: Human primary bronchial epithelial cells,treatment: Vehicle,time: 6h
+        H5 sorgente      : Left Lung
+
+CONFRONTO  GSE202576__GSE202576__grp_0002_vs_grp_0001__1
+  studio: GSE202576
+  TRATTATO  (n=3)  etichetta Stadio 2: TNFα stimulated
+      gruppo Stadio 2: grp_0002
+      GSM6124690
+        grezzo (Stadio 1): title: RT4, treated, 24h, biol rep 1,source: RT4,cell line: RT4,cell type: urothelial cells,treatment: TNFa (20 ng/ml)
+        H5 titolo        : RT4, treated, 24h, biol rep 1
+        H5 caratteristiche: cell line: RT4,cell type: urothelial cells,treatment: TNFa (20 ng/ml)
+        H5 sorgente      : RT4
+      GSM6124691
+        grezzo (Stadio 1): title: RT4, treated, 24h, biol rep 2,source: RT4,cell line: RT4,cell type: urothelial cells,treatment: TNFa (20 ng/ml)
+        H5 titolo        : RT4, treated, 24h, biol rep 2
+        H5 caratteristiche: cell line: RT4,cell type: urothelial cells,treatment: TNFa (20 ng/ml)
+        H5 sorgente      : RT4
+      GSM6124692
+        grezzo (Stadio 1): title: RT4, treated, 24h, biol rep 3,source: RT4,cell line: RT4,cell type: urothelial cells,treatment: TNFa (20 ng/ml)
+        H5 titolo        : RT4, treated, 24h, biol rep 3
+        H5 caratteristiche: cell line: RT4,cell type: urothelial cells,treatment: TNFa (20 ng/ml)
+        H5 sorgente      : RT4
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM6124687
+        grezzo (Stadio 1): title: RT4, control, 24h, biol rep 1,source: RT4,cell line: RT4,cell type: urothelial cells,treatment: 0
+        H5 titolo        : RT4, control, 24h, biol rep 1
+        H5 caratteristiche: cell line: RT4,cell type: urothelial cells,treatment: 0
+        H5 sorgente      : RT4
+      GSM6124688
+        grezzo (Stadio 1): title: RT4, control, 24h, biol rep 2,source: RT4,cell line: RT4,cell type: urothelial cells,treatment: 0
+        H5 titolo        : RT4, control, 24h, biol rep 2
+        H5 caratteristiche: cell line: RT4,cell type: urothelial cells,treatment: 0
+        H5 sorgente      : RT4
+      GSM6124689
+        grezzo (Stadio 1): title: RT4, control, 24h, biol rep 3,source: RT4,cell line: RT4,cell type: urothelial cells,treatment: 0
+        H5 titolo        : RT4, control, 24h, biol rep 3
+        H5 caratteristiche: cell line: RT4,cell type: urothelial cells,treatment: 0
+        H5 sorgente      : RT4
+
+CONFRONTO  GSE210522__GSE210522__group_0026_vs_group_0024__1
+  studio: GSE210522
+  TRATTATO  (n=3)  etichetta Stadio 2: Eahy926_TNFalpha
+      gruppo Stadio 2: group_0026
+      GSM6431723
+        grezzo (Stadio 1): title: Eahy926_TNFa_1.1,source: Vascular,tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: growth media supplemented with 10ng/ml TNF-alpha for 24hrs
+        H5 titolo        : Eahy926_TNFa_1.1
+        H5 caratteristiche: tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: growth media supplemented with 10ng/ml TNF-alpha for 24hrs
+        H5 sorgente      : Vascular
+      GSM6431724
+        grezzo (Stadio 1): title: Eahy926_TNFa_1.2,source: Vascular,tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: growth media supplemented with 10ng/ml TNF-alpha for 24hrs
+        H5 titolo        : Eahy926_TNFa_1.2
+        H5 caratteristiche: tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: growth media supplemented with 10ng/ml TNF-alpha for 24hrs
+        H5 sorgente      : Vascular
+      GSM6431725
+        grezzo (Stadio 1): title: Eahy926_TNFa_1.3,source: Vascular,tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: growth media supplemented with 10ng/ml TNF-alpha for 24hrs
+        H5 titolo        : Eahy926_TNFa_1.3
+        H5 caratteristiche: tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: growth media supplemented with 10ng/ml TNF-alpha for 24hrs
+        H5 sorgente      : Vascular
+  CONTROLLO  (n=3)  etichetta Stadio 2: Eahy926_Vehicle
+      gruppo Stadio 2: group_0024
+      GSM6431717
+        grezzo (Stadio 1): title: Eahy926_ctrl_1.1,source: Vascular,tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: normal growth medium
+        H5 titolo        : Eahy926_ctrl_1.1
+        H5 caratteristiche: tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: normal growth medium
+        H5 sorgente      : Vascular
+      GSM6431718
+        grezzo (Stadio 1): title: Eahy926_ctrl_1.2,source: Vascular,tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: normal growth medium
+        H5 titolo        : Eahy926_ctrl_1.2
+        H5 caratteristiche: tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: normal growth medium
+        H5 sorgente      : Vascular
+      GSM6431719
+        grezzo (Stadio 1): title: Eahy926_ctrl_1.3,source: Vascular,tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: normal growth medium
+        H5 titolo        : Eahy926_ctrl_1.3
+        H5 caratteristiche: tissue: Vascular,cell line: Eahy926,cell type: Endothelial,genotype: parental,treatment: normal growth medium
+        H5 sorgente      : Vascular
+
+CONFRONTO  GSE211439__GSE211439__TNF_alpha_vs_media_control__1
+  studio: GSE211439
+  TRATTATO  (n=5)  etichetta Stadio 2: TNF-alpha-stimulated HBMEC
+      gruppo Stadio 2: grp_TNF_alpha
+      GSM6470151
+        grezzo (Stadio 1): title: HBMEC_cells_TNF-alpha_rep1_lane1 [T1_S8_L001],source: brain,tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 titolo        : HBMEC_cells_TNF-alpha_rep1_lane1 [T1_S8_L001]
+        H5 caratteristiche: tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 sorgente      : brain
+      GSM6470153
+        grezzo (Stadio 1): title: HBMEC_cells_TNF-alpha_rep2_lane1 [T2_S16_L001],source: brain,tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 titolo        : HBMEC_cells_TNF-alpha_rep2_lane1 [T2_S16_L001]
+        H5 caratteristiche: tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 sorgente      : brain
+      GSM6470154
+        grezzo (Stadio 1): title: HBMEC_cells_TNF-alpha_rep2_lane2 [T2_S16_L002],source: brain,tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 titolo        : HBMEC_cells_TNF-alpha_rep2_lane2 [T2_S16_L002]
+        H5 caratteristiche: tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 sorgente      : brain
+      GSM6470155
+        grezzo (Stadio 1): title: HBMEC_cells_TNF-alpha_rep3_lane1 [T3_S24_L001],source: brain,tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 titolo        : HBMEC_cells_TNF-alpha_rep3_lane1 [T3_S24_L001]
+        H5 caratteristiche: tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 sorgente      : brain
+      GSM6470156
+        grezzo (Stadio 1): title: HBMEC_cells_TNF-alpha_rep3_lane2 [T3_S24_L002],source: brain,tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 titolo        : HBMEC_cells_TNF-alpha_rep3_lane2 [T3_S24_L002]
+        H5 caratteristiche: tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: TNF-alpha
+        H5 sorgente      : brain
+  CONTROLLO  (n=3)  etichetta Stadio 2: Media control HBMEC
+      gruppo Stadio 2: grp_media_control
+      GSM6470147
+        grezzo (Stadio 1): title: HBMEC_cells_control_rep2_lane1 [M2_S15_L001],source: brain,tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: Media control
+        H5 titolo        : HBMEC_cells_control_rep2_lane1 [M2_S15_L001]
+        H5 caratteristiche: tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: Media control
+        H5 sorgente      : brain
+      GSM6470148
+        grezzo (Stadio 1): title: HBMEC_cells_control_rep2_lane2 [M2_S15_L002],source: brain,tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: Media control
+        H5 titolo        : HBMEC_cells_control_rep2_lane2 [M2_S15_L002]
+        H5 caratteristiche: tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: Media control
+        H5 sorgente      : brain
+      GSM6470150
+        grezzo (Stadio 1): title: HBMEC_cells_control_rep3_lane2 [M3_S23_L002],source: brain,tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: Media control
+        H5 titolo        : HBMEC_cells_control_rep3_lane2 [M3_S23_L002]
+        H5 caratteristiche: tissue: brain,cell line: HBMEC,cell type: endothelial,genotype: WT,treatment: Media control
+        H5 sorgente      : brain
+
+CONFRONTO  GSE215039__GSE215039__nonOA_TNF_rep_vs_nonOA_no_treatment__1
+  studio: GSE215039
+  TRATTATO  (n=3)  etichetta Stadio 2: non-OA TNF rep
+      gruppo Stadio 2: grp_nonOA_TNF_rep
+      GSM6620300
+        grezzo (Stadio 1): title: NC, TNF, biol rep3,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 titolo        : NC, TNF, biol rep3
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 sorgente      : Chondrocytes
+      GSM6620301
+        grezzo (Stadio 1): title: NC, TNF, biol rep4,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 titolo        : NC, TNF, biol rep4
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 sorgente      : Chondrocytes
+      GSM6620302
+        grezzo (Stadio 1): title: NC, TNF, biol rep5,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 titolo        : NC, TNF, biol rep5
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 sorgente      : Chondrocytes
+  CONTROLLO  (n=5)  etichetta Stadio 2: non-OA No treatment
+      gruppo Stadio 2: grp_nonOA_no_treatment
+      GSM6620288
+        grezzo (Stadio 1): title: NC, No treatment, biol rep1,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep1
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620289
+        grezzo (Stadio 1): title: NC, No treatment, biol rep2,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep2
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620290
+        grezzo (Stadio 1): title: NC, No treatment, biol rep3,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep3
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620291
+        grezzo (Stadio 1): title: NC, No treatment, biol rep4,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep4
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620292
+        grezzo (Stadio 1): title: NC, No treatment, biol rep5,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep5
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+
+CONFRONTO  GSE215039__GSE215039__nonOA_TNF_vs_nonOA_no_treatment__1
+  studio: GSE215039
+  TRATTATO  (n=2)  etichetta Stadio 2: non-OA TNF
+      gruppo Stadio 2: grp_nonOA_TNF
+      GSM6620298
+        grezzo (Stadio 1): title: NC, TNF, biol rep1,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 titolo        : NC, TNF, biol rep1
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 sorgente      : Chondrocytes
+      GSM6620299
+        grezzo (Stadio 1): title: NC, TNF, biol rep2,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 titolo        : NC, TNF, biol rep2
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: TNF
+        H5 sorgente      : Chondrocytes
+  CONTROLLO  (n=5)  etichetta Stadio 2: non-OA No treatment
+      gruppo Stadio 2: grp_nonOA_no_treatment
+      GSM6620288
+        grezzo (Stadio 1): title: NC, No treatment, biol rep1,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep1
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620289
+        grezzo (Stadio 1): title: NC, No treatment, biol rep2,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep2
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620290
+        grezzo (Stadio 1): title: NC, No treatment, biol rep3,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep3
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620291
+        grezzo (Stadio 1): title: NC, No treatment, biol rep4,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep4
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620292
+        grezzo (Stadio 1): title: NC, No treatment, biol rep5,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep5
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+
+CONFRONTO  GSE215275__GSE215275__grp_0004_vs_grp_0002__1
+  studio: GSE215275
+  TRATTATO  (n=3)  etichetta Stadio 2: oral epithelial cells treated with TNF (subject 1)
+      gruppo Stadio 2: grp_0004
+      GSM6630832
+        grezzo (Stadio 1): title: TNF, subject 1 [K186TNF_S2],source: gingiva,tissue: gingiva,subject id: subject 1,cell type: oral epithelial cells,treatment: TNF
+        H5 titolo        : TNF, subject 1 [K186TNF_S2]
+        H5 caratteristiche: tissue: gingiva,subject id: subject 1,cell type: oral epithelial cells,treatment: TNF
+        H5 sorgente      : gingiva
+      GSM6630840
+        grezzo (Stadio 1): title: TNF, subject 3 [K38TNF_2_S15],source: gingiva,tissue: gingiva,subject id: subject 3,cell type: oral epithelial cells,treatment: TNF
+        H5 titolo        : TNF, subject 3 [K38TNF_2_S15]
+        H5 caratteristiche: tissue: gingiva,subject id: subject 3,cell type: oral epithelial cells,treatment: TNF
+        H5 sorgente      : gingiva
+      GSM6630844
+        grezzo (Stadio 1): title: TNF, subject 4 [K210TNF_S14],source: gingiva,tissue: gingiva,subject id: subject 4,cell type: oral epithelial cells,treatment: TNF
+        H5 titolo        : TNF, subject 4 [K210TNF_S14]
+        H5 caratteristiche: tissue: gingiva,subject id: subject 4,cell type: oral epithelial cells,treatment: TNF
+        H5 sorgente      : gingiva
+  CONTROLLO  (n=4)  etichetta Stadio 2: oral epithelial cells treated with vehicle control
+      gruppo Stadio 2: grp_0002
+      GSM6630831
+        grezzo (Stadio 1): title: vehicle control, subject 1 [K186vehiclectr_S1],source: gingiva,tissue: gingiva,subject id: subject 1,cell type: oral epithelial cells,treatment: vehicle control
+        H5 titolo        : vehicle control, subject 1 [K186vehiclectr_S1]
+        H5 caratteristiche: tissue: gingiva,subject id: subject 1,cell type: oral epithelial cells,treatment: vehicle control
+        H5 sorgente      : gingiva
+      GSM6630835
+        grezzo (Stadio 1): title: vehicle control, subject 2 [K169vehiclectr_S5],source: gingiva,tissue: gingiva,subject id: subject 2,cell type: oral epithelial cells,treatment: vehicle control
+        H5 titolo        : vehicle control, subject 2 [K169vehiclectr_S5]
+        H5 caratteristiche: tissue: gingiva,subject id: subject 2,cell type: oral epithelial cells,treatment: vehicle control
+        H5 sorgente      : gingiva
+      GSM6630839
+        grezzo (Stadio 1): title: vehicle control, subject 3 [K38vehiclectr_S9],source: gingiva,tissue: gingiva,subject id: subject 3,cell type: oral epithelial cells,treatment: vehicle control
+        H5 titolo        : vehicle control, subject 3 [K38vehiclectr_S9]
+        H5 caratteristiche: tissue: gingiva,subject id: subject 3,cell type: oral epithelial cells,treatment: vehicle control
+        H5 sorgente      : gingiva
+      GSM6630843
+        grezzo (Stadio 1): title: vehicle control, subject 4 [K210vehiclectr_S13],source: gingiva,tissue: gingiva,subject id: subject 4,cell type: oral epithelial cells,treatment: vehicle control
+        H5 titolo        : vehicle control, subject 4 [K210vehiclectr_S13]
+        H5 caratteristiche: tissue: gingiva,subject id: subject 4,cell type: oral epithelial cells,treatment: vehicle control
+        H5 sorgente      : gingiva
+
+CONFRONTO  GSE218167__GSE218167__grp_0002_vs_grp_0001__1
+  studio: GSE218167
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα Stimulation
+      gruppo Stadio 2: grp_0002
+      GSM6735820
+        grezzo (Stadio 1): title: NPC43 EBV-ve , TNFÎ±,source: NPC43,cell line: NPC43,cell type: nasopharyngeal carcinoma,genotype: WT,treatment: 10ng/ml TNFÎ±,time: 18 hours
+        H5 titolo        : NPC43 EBV-ve , TNFÎ±
+        H5 caratteristiche: cell line: NPC43,cell type: nasopharyngeal carcinoma,genotype: WT,treatment: 10ng/ml TNFÎ±,time: 18 hours
+        H5 sorgente      : NPC43
+      GSM6735822
+        grezzo (Stadio 1): title: NPC43 EBV+ve, TNFÎ±,source: NPC43,cell line: NPC43,cell type: nasopharyngeal carcinoma,genotype: WT,treatment: 10ng/ml TNFÎ±,time: 18 hours
+        H5 titolo        : NPC43 EBV+ve, TNFÎ±
+        H5 caratteristiche: cell line: NPC43,cell type: nasopharyngeal carcinoma,genotype: WT,treatment: 10ng/ml TNFÎ±,time: 18 hours
+        H5 sorgente      : NPC43
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle Control
+      gruppo Stadio 2: grp_0001
+      GSM6735819
+        grezzo (Stadio 1): title: NPC43 EBV-ve,source: NPC43,cell line: NPC43,cell type: nasopharyngeal carcinoma,genotype: WT,treatment: control,time: 18 hours
+        H5 titolo        : NPC43 EBV-ve
+        H5 caratteristiche: cell line: NPC43,cell type: nasopharyngeal carcinoma,genotype: WT,treatment: control,time: 18 hours
+        H5 sorgente      : NPC43
+      GSM6735821
+        grezzo (Stadio 1): title: NPC43 EBV+ve,source: NPC43,cell line: NPC43,cell type: nasopharyngeal carcinoma,genotype: WT,treatment: control,time: 18 hours
+        H5 titolo        : NPC43 EBV+ve
+        H5 caratteristiche: cell line: NPC43,cell type: nasopharyngeal carcinoma,genotype: WT,treatment: control,time: 18 hours
+        H5 sorgente      : NPC43
+
+CONFRONTO  GSE225274__GSE225274__grp_0002_vs_grp_0003__1
+  studio: GSE225274
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα-treated human gastric antral organoids
+      gruppo Stadio 2: grp_0002
+      GSM7043166
+        grezzo (Stadio 1): title: TNFa treated human gastric antral organoids-1,source: Gastric antral organoids,strategy: RNA-Seq,genotype: Sleeve gastric surgery,treatment: Treated with TNFa 2 days
+        H5 titolo        : TNFa treated human gastric antral organoids-1
+        H5 caratteristiche: strategy: RNA-Seq,genotype: Sleeve gastric surgery,treatment: Treated with TNFa 2 days
+        H5 sorgente      : Gastric antral organoids
+      GSM7043167
+        grezzo (Stadio 1): title: TNFa treated human gastric antral organoids-2,source: Gastric antral organoids,strategy: RNA-Seq,genotype: Sleeve gastric surgery,treatment: Treated with TNFa 2 days
+        H5 titolo        : TNFa treated human gastric antral organoids-2
+        H5 caratteristiche: strategy: RNA-Seq,genotype: Sleeve gastric surgery,treatment: Treated with TNFa 2 days
+        H5 sorgente      : Gastric antral organoids
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated WT human gastric antral organoids
+      gruppo Stadio 2: grp_0003
+      GSM7043164
+        grezzo (Stadio 1): title: WT human gastric antral organoids-1,source: Gastric antral organoids,strategy: RNA-Seq,genotype: Sleeve gastric surgery,treatment: Untreated
+        H5 titolo        : WT human gastric antral organoids-1
+        H5 caratteristiche: strategy: RNA-Seq,genotype: Sleeve gastric surgery,treatment: Untreated
+        H5 sorgente      : Gastric antral organoids
+      GSM7043165
+        grezzo (Stadio 1): title: WT human gastric antral organoids-2,source: Gastric antral organoids,strategy: RNA-Seq,genotype: Sleeve gastric surgery,treatment: Untreated
+        H5 titolo        : WT human gastric antral organoids-2
+        H5 caratteristiche: strategy: RNA-Seq,genotype: Sleeve gastric surgery,treatment: Untreated
+        H5 sorgente      : Gastric antral organoids
+
+CONFRONTO  GSE226186__GSE226186__grp_0004_vs_grp_0001__1
+  studio: GSE226186
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF-alpha Only
+      gruppo Stadio 2: grp_0004
+      GSM7067538
+        grezzo (Stadio 1): title: TNF-Î±-group1,source: primary nucleus pulposus cells,cell type: primary nucleus pulposus cells,treatment: TNF-alpha,time: Day 2
+        H5 titolo        : TNF-Î±-group1
+        H5 caratteristiche: cell type: primary nucleus pulposus cells,treatment: TNF-alpha,time: Day 2
+        H5 sorgente      : primary nucleus pulposus cells
+      GSM7067539
+        grezzo (Stadio 1): title: TNF-Î±-group2,source: primary nucleus pulposus cells,cell type: primary nucleus pulposus cells,treatment: TNF-alpha,time: Day 2
+        H5 titolo        : TNF-Î±-group2
+        H5 caratteristiche: cell type: primary nucleus pulposus cells,treatment: TNF-alpha,time: Day 2
+        H5 sorgente      : primary nucleus pulposus cells
+      GSM7067540
+        grezzo (Stadio 1): title: TNF-Î±-group3,source: primary nucleus pulposus cells,cell type: primary nucleus pulposus cells,treatment: TNF-alpha,time: Day 2
+        H5 titolo        : TNF-Î±-group3
+        H5 caratteristiche: cell type: primary nucleus pulposus cells,treatment: TNF-alpha,time: Day 2
+        H5 sorgente      : primary nucleus pulposus cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle Control
+      gruppo Stadio 2: grp_0001
+      GSM7067535
+        grezzo (Stadio 1): title: NC-group1,source: primary nucleus pulposus cells,cell type: primary nucleus pulposus cells,treatment: no,time: Day 2
+        H5 titolo        : NC-group1
+        H5 caratteristiche: cell type: primary nucleus pulposus cells,treatment: no,time: Day 2
+        H5 sorgente      : primary nucleus pulposus cells
+      GSM7067536
+        grezzo (Stadio 1): title: NC-group2,source: primary nucleus pulposus cells,cell type: primary nucleus pulposus cells,treatment: no,time: Day 2
+        H5 titolo        : NC-group2
+        H5 caratteristiche: cell type: primary nucleus pulposus cells,treatment: no,time: Day 2
+        H5 sorgente      : primary nucleus pulposus cells
+      GSM7067537
+        grezzo (Stadio 1): title: NC-group3,source: primary nucleus pulposus cells,cell type: primary nucleus pulposus cells,treatment: no,time: Day 2
+        H5 titolo        : NC-group3
+        H5 caratteristiche: cell type: primary nucleus pulposus cells,treatment: no,time: Day 2
+        H5 sorgente      : primary nucleus pulposus cells
+
+CONFRONTO  GSE226232__GSE226232__grp_0002_vs_grp_0001__1
+  studio: GSE226232
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF-α stimulated mesenchymal stem cells
+      gruppo Stadio 2: grp_0002
+      GSM7068481
+        grezzo (Stadio 1): title: t-ADSCs_1,source: fat,tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT,treatment: TNF-Î±-Activated
+        H5 titolo        : t-ADSCs_1
+        H5 caratteristiche: tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT,treatment: TNF-Î±-Activated
+        H5 sorgente      : fat
+      GSM7068482
+        grezzo (Stadio 1): title: t-ADSCs_2,source: fat,tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT,treatment: TNF-Î±-Activated
+        H5 titolo        : t-ADSCs_2
+        H5 caratteristiche: tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT,treatment: TNF-Î±-Activated
+        H5 sorgente      : fat
+      GSM7068483
+        grezzo (Stadio 1): title: t-ADSCs_3,source: fat,tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT,treatment: TNF-Î±-Activated
+        H5 titolo        : t-ADSCs_3
+        H5 caratteristiche: tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT,treatment: TNF-Î±-Activated
+        H5 sorgente      : fat
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated mesenchymal stem cells
+      gruppo Stadio 2: grp_0001
+      GSM7068478
+        grezzo (Stadio 1): title: ADSCs_1,source: fat,tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT
+        H5 titolo        : ADSCs_1
+        H5 caratteristiche: tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT
+        H5 sorgente      : fat
+      GSM7068479
+        grezzo (Stadio 1): title: ADSCs_2,source: fat,tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT
+        H5 titolo        : ADSCs_2
+        H5 caratteristiche: tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT
+        H5 sorgente      : fat
+      GSM7068480
+        grezzo (Stadio 1): title: ADSCs_3,source: fat,tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT
+        H5 titolo        : ADSCs_3
+        H5 caratteristiche: tissue: fat,cell line: primary cell,cell type: mesenchymal stem cells,genotype: WT
+        H5 sorgente      : fat
+
+CONFRONTO  GSE231460__GSE231460__grp_0002_vs_grp_0001__1
+  studio: GSE231460
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα stimulated
+      gruppo Stadio 2: grp_0002
+      GSM7286424
+        grezzo (Stadio 1): title: si-control-transfeced and TNFÎ±-treated HUVECs no1,source: HUVECs,cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: TNFÎ± treated,time: 26 hours
+        H5 titolo        : si-control-transfeced and TNFÎ±-treated HUVECs no1
+        H5 caratteristiche: cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: TNFÎ± treated,time: 26 hours
+        H5 sorgente      : HUVECs
+      GSM7286426
+        grezzo (Stadio 1): title: si-control-transfeced and TNFÎ±-treated HUVECs no3,source: HUVECs,cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: TNFÎ± treated,time: 26 hours
+        H5 titolo        : si-control-transfeced and TNFÎ±-treated HUVECs no3
+        H5 caratteristiche: cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: TNFÎ± treated,time: 26 hours
+        H5 sorgente      : HUVECs
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control (vehicle)
+      gruppo Stadio 2: grp_0001
+      GSM7286421
+        grezzo (Stadio 1): title: si-control-transfected HUVECs no1,source: HUVECs,cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: control,time: 26 hours
+        H5 titolo        : si-control-transfected HUVECs no1
+        H5 caratteristiche: cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: control,time: 26 hours
+        H5 sorgente      : HUVECs
+      GSM7286422
+        grezzo (Stadio 1): title: si-control-transfected HUVECs no2,source: HUVECs,cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: control,time: 26 hours
+        H5 titolo        : si-control-transfected HUVECs no2
+        H5 caratteristiche: cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: control,time: 26 hours
+        H5 sorgente      : HUVECs
+      GSM7286423
+        grezzo (Stadio 1): title: si-control-transfected HUVECs no3,source: HUVECs,cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: control,time: 26 hours
+        H5 titolo        : si-control-transfected HUVECs no3
+        H5 caratteristiche: cell line: HUVECs,cell type: human umbilical vein endothelial cells,genotype: wild type,treatment: control,time: 26 hours
+        H5 sorgente      : HUVECs
+
+CONFRONTO  GSE236122__GSE236122__grp_0006_vs_grp_0005__1
+  studio: GSE236122
+  TRATTATO  (n=3)  etichetta Stadio 2: wild type TNF stimulated finger
+      gruppo Stadio 2: grp_0006
+      GSM7518500
+        grezzo (Stadio 1): title: F_292_CTRL_TNF,source: RA synovial tissue (finger),tissue: RA synovial tissue (finger),cell line: 292,cell type: synovial fibroblast,genotype: gap_control,treatment: TNF
+        H5 titolo        : F_292_CTRL_TNF
+        H5 caratteristiche: tissue: RA synovial tissue (finger),cell line: 292,cell type: synovial fibroblast,genotype: gap_control,treatment: TNF
+        H5 sorgente      : RA synovial tissue (finger)
+      GSM7518506
+        grezzo (Stadio 1): title: F_379_CTRL_TNF,source: RA synovial tissue (finger),tissue: RA synovial tissue (finger),cell line: 379,cell type: synovial fibroblast,genotype: gap_control,treatment: TNF
+        H5 titolo        : F_379_CTRL_TNF
+        H5 caratteristiche: tissue: RA synovial tissue (finger),cell line: 379,cell type: synovial fibroblast,genotype: gap_control,treatment: TNF
+        H5 sorgente      : RA synovial tissue (finger)
+      GSM7518512
+        grezzo (Stadio 1): title: F_408_CTRL_TNF,source: RA synovial tissue (finger),tissue: RA synovial tissue (finger),cell line: 408,cell type: synovial fibroblast,genotype: gap_control,treatment: TNF
+        H5 titolo        : F_408_CTRL_TNF
+        H5 caratteristiche: tissue: RA synovial tissue (finger),cell line: 408,cell type: synovial fibroblast,genotype: gap_control,treatment: TNF
+        H5 sorgente      : RA synovial tissue (finger)
+  CONTROLLO  (n=3)  etichetta Stadio 2: wild type unstimulated finger
+      gruppo Stadio 2: grp_0005
+      GSM7518497
+        grezzo (Stadio 1): title: F_292_CTRL,source: RA synovial tissue (finger),tissue: RA synovial tissue (finger),cell line: 292,cell type: synovial fibroblast,genotype: gap_control,treatment: unstimulated
+        H5 titolo        : F_292_CTRL
+        H5 caratteristiche: tissue: RA synovial tissue (finger),cell line: 292,cell type: synovial fibroblast,genotype: gap_control,treatment: unstimulated
+        H5 sorgente      : RA synovial tissue (finger)
+      GSM7518503
+        grezzo (Stadio 1): title: F_379_CTRL,source: RA synovial tissue (finger),tissue: RA synovial tissue (finger),cell line: 379,cell type: synovial fibroblast,genotype: gap_control,treatment: unstimulated
+        H5 titolo        : F_379_CTRL
+        H5 caratteristiche: tissue: RA synovial tissue (finger),cell line: 379,cell type: synovial fibroblast,genotype: gap_control,treatment: unstimulated
+        H5 sorgente      : RA synovial tissue (finger)
+      GSM7518509
+        grezzo (Stadio 1): title: F_408_CTRL,source: RA synovial tissue (finger),tissue: RA synovial tissue (finger),cell line: 408,cell type: synovial fibroblast,genotype: gap_control,treatment: unstimulated
+        H5 titolo        : F_408_CTRL
+        H5 caratteristiche: tissue: RA synovial tissue (finger),cell line: 408,cell type: synovial fibroblast,genotype: gap_control,treatment: unstimulated
+        H5 sorgente      : RA synovial tissue (finger)
+
+CONFRONTO  GSE246340__GSE246340__grp_0004_vs_grp_0002__1
+  studio: GSE246340
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF-α
+      gruppo Stadio 2: grp_0004
+      GSM7867477
+        grezzo (Stadio 1): title: RNA-Seq of sicontrol-TNFa-1,source: bone marrow,tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: TNF-Î±
+        H5 titolo        : RNA-Seq of sicontrol-TNFa-1
+        H5 caratteristiche: tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: TNF-Î±
+        H5 sorgente      : bone marrow
+      GSM7867478
+        grezzo (Stadio 1): title: RNA-Seq of sicontrol-TNFa-2,source: bone marrow,tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: TNF-Î±
+        H5 titolo        : RNA-Seq of sicontrol-TNFa-2
+        H5 caratteristiche: tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: TNF-Î±
+        H5 sorgente      : bone marrow
+      GSM7867479
+        grezzo (Stadio 1): title: RNA-Seq of sicontrol-TNFa-3,source: bone marrow,tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: TNF-Î±
+        H5 titolo        : RNA-Seq of sicontrol-TNFa-3
+        H5 caratteristiche: tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: TNF-Î±
+        H5 sorgente      : bone marrow
+  CONTROLLO  (n=5)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0002
+      GSM7867474
+        grezzo (Stadio 1): title: RNA-Seq of sicontrol-NS-1,source: bone marrow,tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 titolo        : RNA-Seq of sicontrol-NS-1
+        H5 caratteristiche: tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 sorgente      : bone marrow
+      GSM7867475
+        grezzo (Stadio 1): title: RNA-Seq of sicontrol-NS-2,source: bone marrow,tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 titolo        : RNA-Seq of sicontrol-NS-2
+        H5 caratteristiche: tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 sorgente      : bone marrow
+      GSM7867476
+        grezzo (Stadio 1): title: RNA-Seq of sicontrol-NS-3,source: bone marrow,tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 titolo        : RNA-Seq of sicontrol-NS-3
+        H5 caratteristiche: tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 sorgente      : bone marrow
+      GSM7867480
+        grezzo (Stadio 1): title: RNA-Seq of siYZ-NS-1,source: bone marrow,tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 titolo        : RNA-Seq of siYZ-NS-1
+        H5 caratteristiche: tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 sorgente      : bone marrow
+      GSM7867482
+        grezzo (Stadio 1): title: RNA-Seq of siYZ-NS-3,source: bone marrow,tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 titolo        : RNA-Seq of siYZ-NS-3
+        H5 caratteristiche: tissue: bone marrow,cell line: primary mscs,cell type: mesenchymal stem cells,treatment: none
+        H5 sorgente      : bone marrow
+
+CONFRONTO  GSE267930__GSE267930__grp_0003_vs_grp_0001__1
+  studio: GSE267930
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF-alpha Stimulation
+      gruppo Stadio 2: grp_0003
+      GSM8281740
+        grezzo (Stadio 1): title: HUVEC, TNF-alpha stimulated, biological replicate 1 (T1),source: HUVEC,cell line: HUVEC,cell type: vascular endothelial,treatment: TNF-alpha
+        H5 titolo        : HUVEC, TNF-alpha stimulated, biological replicate 1 (T1)
+        H5 caratteristiche: cell line: HUVEC,cell type: vascular endothelial,treatment: TNF-alpha
+        H5 sorgente      : HUVEC
+      GSM8281741
+        grezzo (Stadio 1): title: HUVEC, TNF-alpha stimulated, biological replicate 2 (T2),source: HUVEC,cell line: HUVEC,cell type: vascular endothelial,treatment: TNF-alpha
+        H5 titolo        : HUVEC, TNF-alpha stimulated, biological replicate 2 (T2)
+        H5 caratteristiche: cell line: HUVEC,cell type: vascular endothelial,treatment: TNF-alpha
+        H5 sorgente      : HUVEC
+      GSM8281742
+        grezzo (Stadio 1): title: HUVEC, TNF-alpha stimulated, biological replicate 3 (T3),source: HUVEC,cell line: HUVEC,cell type: vascular endothelial,treatment: TNF-alpha
+        H5 titolo        : HUVEC, TNF-alpha stimulated, biological replicate 3 (T3)
+        H5 caratteristiche: cell line: HUVEC,cell type: vascular endothelial,treatment: TNF-alpha
+        H5 sorgente      : HUVEC
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM8281734
+        grezzo (Stadio 1): title: HUVEC, control, biological replicate 1 (C1),source: HUVEC,cell line: HUVEC,cell type: vascular endothelial,treatment: control
+        H5 titolo        : HUVEC, control, biological replicate 1 (C1)
+        H5 caratteristiche: cell line: HUVEC,cell type: vascular endothelial,treatment: control
+        H5 sorgente      : HUVEC
+      GSM8281736
+        grezzo (Stadio 1): title: HUVEC, control, biological replicate 3 (C3),source: HUVEC,cell line: HUVEC,cell type: vascular endothelial,treatment: control
+        H5 titolo        : HUVEC, control, biological replicate 3 (C3)
+        H5 caratteristiche: cell line: HUVEC,cell type: vascular endothelial,treatment: control
+        H5 sorgente      : HUVEC
+
+CONFRONTO  GSE64233__GSE64233__shp65_TNF_1_vs_shp65_Vehicle__1
+  studio: GSE64233
+  TRATTATO  (n=3)  etichetta Stadio 2: shp65 TNF 1
+      gruppo Stadio 2: grp_0008
+      GSM1566749
+        grezzo (Stadio 1): title: RNA-seq shp65 TNF 1,source: Adipocyte,cell type: SGBS adipocyte D10
+        H5 titolo        : RNA-seq shp65 TNF 1
+        H5 caratteristiche: cell type: SGBS adipocyte D10
+        H5 sorgente      : Adipocyte
+      GSM1566750
+        grezzo (Stadio 1): title: RNA-seq shp65 TNF 2,source: Adipocyte,cell type: SGBS adipocyte D10
+        H5 titolo        : RNA-seq shp65 TNF 2
+        H5 caratteristiche: cell type: SGBS adipocyte D10
+        H5 sorgente      : Adipocyte
+      GSM1566751
+        grezzo (Stadio 1): title: RNA-seq shp65 TNF 3,source: Adipocyte,cell type: SGBS adipocyte D10
+        H5 titolo        : RNA-seq shp65 TNF 3
+        H5 caratteristiche: cell type: SGBS adipocyte D10
+        H5 sorgente      : Adipocyte
+  CONTROLLO  (n=3)  etichetta Stadio 2: shp65 Vehicle
+      gruppo Stadio 2: grp_0003
+      GSM1566746
+        grezzo (Stadio 1): title: RNA-seq shp65 Vehicle 1,source: Adipocyte,cell type: SGBS adipocyte D10
+        H5 titolo        : RNA-seq shp65 Vehicle 1
+        H5 caratteristiche: cell type: SGBS adipocyte D10
+        H5 sorgente      : Adipocyte
+      GSM1566747
+        grezzo (Stadio 1): title: RNA-seq shp65 Vehicle 2,source: Adipocyte,cell type: SGBS adipocyte D10
+        H5 titolo        : RNA-seq shp65 Vehicle 2
+        H5 caratteristiche: cell type: SGBS adipocyte D10
+        H5 sorgente      : Adipocyte
+      GSM1566748
+        grezzo (Stadio 1): title: RNA-seq shp65 Vehicle 3,source: Adipocyte,cell type: SGBS adipocyte D10
+        H5 titolo        : RNA-seq shp65 Vehicle 3
+        H5 caratteristiche: cell type: SGBS adipocyte D10
+        H5 sorgente      : Adipocyte
+
+CONFRONTO  GSE70068__GSE70068__TNF_alpha_vs_untreated__1
+  studio: GSE70068
+  TRATTATO  (n=2)  etichetta Stadio 2: Neutrophils treated with TNF-alpha
+      gruppo Stadio 2: grp_0001
+      GSM1716668
+        grezzo (Stadio 1): title: Healthy Control PMN from Donor 1 isolated by Polymorphprep, TNF-alpha treated,source: Peripheral blood neutrophils,cell type: Neutrophils,isolation method: Polymorphprep (poly),treatment: TNF-alpha (10ng/mL) 1h
+        H5 titolo        : Healthy Control PMN from Donor 1 isolated by Polymorphprep, TNF-alpha treated
+        H5 caratteristiche: cell type: Neutrophils,isolation method: Polymorphprep (poly),treatment: TNF-alpha (10ng/mL) 1h
+        H5 sorgente      : Peripheral blood neutrophils
+      GSM1716674
+        grezzo (Stadio 1): title: Healthy Control PMN from Donor 2 isolated by Polymorphprep, TNF-alpha treated,source: Peripheral blood neutrophils,cell type: Neutrophils,isolation method: Polymorphprep (poly),treatment: TNF-alpha (10ng/mL) 1h
+        H5 titolo        : Healthy Control PMN from Donor 2 isolated by Polymorphprep, TNF-alpha treated
+        H5 caratteristiche: cell type: Neutrophils,isolation method: Polymorphprep (poly),treatment: TNF-alpha (10ng/mL) 1h
+        H5 sorgente      : Peripheral blood neutrophils
+  CONTROLLO  (n=4)  etichetta Stadio 2: Untreated neutrophils
+      gruppo Stadio 2: grp_0002
+      GSM1716663
+        grezzo (Stadio 1): title: Healthy Control PMN from Donor 1 isolated by negative selection, untreated,source: Peripheral blood neutrophils,cell type: Neutrophils,isolation method: Negative selection (beads),treatment: Untreated 1h
+        H5 titolo        : Healthy Control PMN from Donor 1 isolated by negative selection, untreated
+        H5 caratteristiche: cell type: Neutrophils,isolation method: Negative selection (beads),treatment: Untreated 1h
+        H5 sorgente      : Peripheral blood neutrophils
+      GSM1716664
+        grezzo (Stadio 1): title: Healthy Control PMN from Donor 1 isolated by Polymorphprep, untreated,source: Peripheral blood neutrophils,cell type: Neutrophils,isolation method: Polymorphprep (poly),treatment: Untreated 1h
+        H5 titolo        : Healthy Control PMN from Donor 1 isolated by Polymorphprep, untreated
+        H5 caratteristiche: cell type: Neutrophils,isolation method: Polymorphprep (poly),treatment: Untreated 1h
+        H5 sorgente      : Peripheral blood neutrophils
+      GSM1716669
+        grezzo (Stadio 1): title: Healthy Control PMN from Donor 2 isolated by negative selection, untreated,source: Peripheral blood neutrophils,cell type: Neutrophils,isolation method: Negative selection (beads),treatment: Untreated 1h
+        H5 titolo        : Healthy Control PMN from Donor 2 isolated by negative selection, untreated
+        H5 caratteristiche: cell type: Neutrophils,isolation method: Negative selection (beads),treatment: Untreated 1h
+        H5 sorgente      : Peripheral blood neutrophils
+      GSM1716670
+        grezzo (Stadio 1): title: Healthy Control PMN from Donor 2 isolated by Polymorphprep, untreated,source: Peripheral blood neutrophils,cell type: Neutrophils,isolation method: Polymorphprep (poly),treatment: Untreated 1h
+        H5 titolo        : Healthy Control PMN from Donor 2 isolated by Polymorphprep, untreated
+        H5 caratteristiche: cell type: Neutrophils,isolation method: Polymorphprep (poly),treatment: Untreated 1h
+        H5 sorgente      : Peripheral blood neutrophils
+
+CONFRONTO  GSE93330__GSE93330__TNF_vs_Control__1
+  studio: GSE93330
+  TRATTATO  (n=3)  etichetta Stadio 2: TNF
+      gruppo Stadio 2: grp_0002
+      GSM2451438
+        grezzo (Stadio 1): title: TNF_DMSO_1,source: HMVECL,cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 titolo        : TNF_DMSO_1
+        H5 caratteristiche: cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 sorgente      : HMVECL
+      GSM2451439
+        grezzo (Stadio 1): title: TNF_DMSO_2,source: HMVECL,cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 titolo        : TNF_DMSO_2
+        H5 caratteristiche: cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 sorgente      : HMVECL
+      GSM2451440
+        grezzo (Stadio 1): title: TNF_DMSO_3,source: HMVECL,cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 titolo        : TNF_DMSO_3
+        H5 caratteristiche: cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 sorgente      : HMVECL
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM2451435
+        grezzo (Stadio 1): title: Control_1,source: HMVECL,cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 titolo        : Control_1
+        H5 caratteristiche: cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 sorgente      : HMVECL
+      GSM2451436
+        grezzo (Stadio 1): title: Control_2,source: HMVECL,cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 titolo        : Control_2
+        H5 caratteristiche: cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 sorgente      : HMVECL
+      GSM2451437
+        grezzo (Stadio 1): title: Control_3,source: HMVECL,cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 titolo        : Control_3
+        H5 caratteristiche: cell line: HMVEC-L,cell type: lung microvascular endothelial cells
+        H5 sorgente      : HMVECL
+
+CONFRONTO  GSE98984__GSE98984__TNFα_vs_untreated__1
+  studio: GSE98984
+  TRATTATO  (n=2)  etichetta Stadio 2: TNFα
+      gruppo Stadio 2: grp_0003
+      GSM2629614
+        grezzo (Stadio 1): title: treated rep1_RNA-seq,source: human hepatocellular carcinoma HepG2_TNFÎ±-treated,cell line: HepG2,cell type: primary epithelial cells,tissue: liver
+        H5 titolo        : treated rep1_RNA-seq
+        H5 caratteristiche: cell line: HepG2,cell type: primary epithelial cells,tissue: liver
+        H5 sorgente      : human hepatocellular carcinoma HepG2_TNFÎ±-treated
+      GSM2629615
+        grezzo (Stadio 1): title: treated rep2_RNA-seq,source: human hepatocellular carcinoma HepG2_TNFÎ±-treated,cell line: HepG2,cell type: primary epithelial cells,tissue: liver
+        H5 titolo        : treated rep2_RNA-seq
+        H5 caratteristiche: cell line: HepG2,cell type: primary epithelial cells,tissue: liver
+        H5 sorgente      : human hepatocellular carcinoma HepG2_TNFÎ±-treated
+  CONTROLLO  (n=2)  etichetta Stadio 2: untreated
+      gruppo Stadio 2: grp_0002
+      GSM2629612
+        grezzo (Stadio 1): title: untreated rep1_RNA-seq,source: human hepatocellular carcinoma HepG2_untreated,cell line: HepG2,cell type: primary epithelial cells,tissue: liver
+        H5 titolo        : untreated rep1_RNA-seq
+        H5 caratteristiche: cell line: HepG2,cell type: primary epithelial cells,tissue: liver
+        H5 sorgente      : human hepatocellular carcinoma HepG2_untreated
+      GSM2629613
+        grezzo (Stadio 1): title: untreated rep2_RNA-seq,source: human hepatocellular carcinoma HepG2_untreated,cell line: HepG2,cell type: primary epithelial cells,tissue: liver
+        H5 titolo        : untreated rep2_RNA-seq
+        H5 caratteristiche: cell line: HepG2,cell type: primary epithelial cells,tissue: liver
+        H5 sorgente      : human hepatocellular carcinoma HepG2_untreated
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE108621     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE115311     campioni nell'H5:   42 | collocati dallo Stadio 2:   42 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE122305     campioni nell'H5:   18 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+      mai collocati: GSM3463721, GSM3463722
+  GSE126101     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE129210     campioni nell'H5:   28 | collocati dallo Stadio 2:   28 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE130226     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 15 campioni distinti (31 righe: i controlli servono piu' confronti)
+  GSE132958     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE147045     campioni nell'H5:   11 | collocati dallo Stadio 2:   11 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE157364     campioni nell'H5:   32 | collocati dallo Stadio 2:   32 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 15 campioni distinti (15 righe: i controlli servono piu' confronti)
+  GSE161021     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE161761     campioni nell'H5:   24 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    3 | usati in questa meta-analisi: 9 campioni distinti (14 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4914134, GSM4914136, GSM4914140
+  GSE163548     campioni nell'H5:   46 | collocati dallo Stadio 2:   46 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 18 campioni distinti (18 righe: i controlli servono piu' confronti)
+  GSE171170     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE186396     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE190181     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE190634     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE191101     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE196243     campioni nell'H5:  253 | collocati dallo Stadio 2:  253 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE202436     campioni nell'H5:  100 | collocati dallo Stadio 2:  100 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 39 campioni distinti (39 righe: i controlli servono piu' confronti)
+  GSE202576     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE210522     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE211439     campioni nell'H5:   24 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    3 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6470145, GSM6470146, GSM6470149
+  GSE215039     campioni nell'H5:   40 | collocati dallo Stadio 2:   40 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (15 righe: i controlli servono piu' confronti)
+  GSE215275     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE218167     campioni nell'H5:    4 | collocati dallo Stadio 2:    4 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE225274     campioni nell'H5:    5 | collocati dallo Stadio 2:    5 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE226186     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE226232     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE231460     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE236122     campioni nell'H5:   36 | collocati dallo Stadio 2:   36 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE246340     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE267930     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE64233      campioni nell'H5:   22 | collocati dallo Stadio 2:   22 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE70068      campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE93330      campioni nell'H5:   11 | collocati dallo Stadio 2:   11 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE98984      campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+

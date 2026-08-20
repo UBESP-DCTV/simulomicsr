@@ -1,0 +1,508 @@
+META-ANALISI 044 di 194
+==============================================================================
+nome            : IFNB1
+entita (ID)     : HGNC:5434
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_fea19ca0
+studi poolati   : 7   confronti: 12   campioni: 78
+geni significativi: 2109   I2 mediano: 75.8
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE104348__GSE104348__IFNB_fetal_vs_Mock_fetal__1
+  studio: GSE104348
+  TRATTATO  (n=2)  etichetta Stadio 2: IFNB, fetal
+      gruppo Stadio 2: grp_0004
+      GSM2795888
+        grezzo (Stadio 1): title: 2_S2_R1_001,source: Chorionic villus explant,treatment: IFNB,tissue: Placenta,tissue compartment: Chorionic villus,gestational age: 18-22,tissue code: P029,Sex: Male
+        H5 titolo        : 2_S2_R1_001
+        H5 caratteristiche: treatment: IFNB,tissue: Placenta,tissue compartment: Chorionic villus,gestational age: 18-22,tissue code: P029,Sex: Male
+        H5 sorgente      : Chorionic villus explant
+      GSM2795891
+        grezzo (Stadio 1): title: 5_S5_R1_001,source: Chorionic villus explant,treatment: IFNB,tissue: Placenta,tissue compartment: Chorionic villus,gestational age: 21-23,tissue code: P001,Sex: Female
+        H5 titolo        : 5_S5_R1_001
+        H5 caratteristiche: treatment: IFNB,tissue: Placenta,tissue compartment: Chorionic villus,gestational age: 21-23,tissue code: P001,Sex: Female
+        H5 sorgente      : Chorionic villus explant
+  CONTROLLO  (n=2)  etichetta Stadio 2: Mock, fetal
+      gruppo Stadio 2: grp_0006
+      GSM2795887
+        grezzo (Stadio 1): title: 1_S1_R1_001,source: Chorionic villus explant,treatment: Mock,tissue: Placenta,tissue compartment: Chorionic villus,gestational age: 18-22,tissue code: P029,Sex: Male
+        H5 titolo        : 1_S1_R1_001
+        H5 caratteristiche: treatment: Mock,tissue: Placenta,tissue compartment: Chorionic villus,gestational age: 18-22,tissue code: P029,Sex: Male
+        H5 sorgente      : Chorionic villus explant
+      GSM2795890
+        grezzo (Stadio 1): title: 4_S4_R1_001,source: Chorionic villus explant,treatment: Mock,tissue: Placenta,tissue compartment: Chorionic villus,gestational age: 21-23,tissue code: P001,Sex: Female
+        H5 titolo        : 4_S4_R1_001
+        H5 caratteristiche: treatment: Mock,tissue: Placenta,tissue compartment: Chorionic villus,gestational age: 21-23,tissue code: P001,Sex: Female
+        H5 sorgente      : Chorionic villus explant
+
+CONFRONTO  GSE114284__GSE114284__grp_0002_vs_grp_0003__1
+  studio: GSE114284
+  TRATTATO  (n=3)  etichetta Stadio 2: BEAS-2B + IFNβ (0.2 ng/ml)
+      gruppo Stadio 2: grp_0002
+      GSM3138798
+        grezzo (Stadio 1): title: Parent_IFN_B_rep1,source: BEAS-2B_Parent_IFN_B,cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: 0.2 ng/ml IFNÎ² for 24h
+        H5 titolo        : Parent_IFN_B_rep1
+        H5 caratteristiche: cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: 0.2 ng/ml IFNÎ² for 24h
+        H5 sorgente      : BEAS-2B_Parent_IFN_B
+      GSM3138801
+        grezzo (Stadio 1): title: Parent_IFN_B_rep2,source: BEAS-2B_Parent_IFN_B,cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: 0.2 ng/ml IFNÎ² for 24h
+        H5 titolo        : Parent_IFN_B_rep2
+        H5 caratteristiche: cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: 0.2 ng/ml IFNÎ² for 24h
+        H5 sorgente      : BEAS-2B_Parent_IFN_B
+      GSM3138804
+        grezzo (Stadio 1): title: Parent_IFN_B_rep3,source: BEAS-2B_Parent_IFN_B,cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: 0.2 ng/ml IFNÎ² for 24h
+        H5 titolo        : Parent_IFN_B_rep3
+        H5 caratteristiche: cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: 0.2 ng/ml IFNÎ² for 24h
+        H5 sorgente      : BEAS-2B_Parent_IFN_B
+  CONTROLLO  (n=3)  etichetta Stadio 2: BEAS-2B untreated (wild-type)
+      gruppo Stadio 2: grp_0003
+      GSM3138797
+        grezzo (Stadio 1): title: Parent_no_IFN_rep1,source: BEAS-2B_Parent_no_IFN,cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: none
+        H5 titolo        : Parent_no_IFN_rep1
+        H5 caratteristiche: cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: none
+        H5 sorgente      : BEAS-2B_Parent_no_IFN
+      GSM3138800
+        grezzo (Stadio 1): title: Parent_no_IFN_rep2,source: BEAS-2B_Parent_no_IFN,cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: none
+        H5 titolo        : Parent_no_IFN_rep2
+        H5 caratteristiche: cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: none
+        H5 sorgente      : BEAS-2B_Parent_no_IFN
+      GSM3138803
+        grezzo (Stadio 1): title: Parent_no_IFN_rep3,source: BEAS-2B_Parent_no_IFN,cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: none
+        H5 titolo        : Parent_no_IFN_rep3
+        H5 caratteristiche: cell line: BEAS-2B,cell type: respiratory epithelial cells,genotype/variation: Wild type,treated with: none
+        H5 sorgente      : BEAS-2B_Parent_no_IFN
+
+CONFRONTO  GSE125066__GSE125066__grp_0001_vs_grp_0002__1
+  studio: GSE125066
+  TRATTATO  (n=3)  etichetta Stadio 2: IFN-β treated
+      gruppo Stadio 2: grp_0001
+      GSM3562053
+        grezzo (Stadio 1): title: UI_IFNB_RepA,source: UI_IFNB,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: IFN-Î²,replicate: A
+        H5 titolo        : UI_IFNB_RepA
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: IFN-Î²,replicate: A
+        H5 sorgente      : UI_IFNB
+      GSM3562059
+        grezzo (Stadio 1): title: UI_IFNB_RepB,source: UI_IFNB,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: IFN-Î²,replicate: B
+        H5 titolo        : UI_IFNB_RepB
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: IFN-Î²,replicate: B
+        H5 sorgente      : UI_IFNB
+      GSM3562065
+        grezzo (Stadio 1): title: UI_IFNB_RepC,source: UI_IFNB,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: IFN-Î²,replicate: C
+        H5 titolo        : UI_IFNB_RepC
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: IFN-Î²,replicate: C
+        H5 sorgente      : UI_IFNB
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0002
+      GSM3562052
+        grezzo (Stadio 1): title: UI_UT_RepA,source: UI_UT,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: A
+        H5 titolo        : UI_UT_RepA
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: A
+        H5 sorgente      : UI_UT
+      GSM3562058
+        grezzo (Stadio 1): title: UI_UT_RepB,source: UI_UT,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: B
+        H5 titolo        : UI_UT_RepB
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: B
+        H5 sorgente      : UI_UT
+      GSM3562064
+        grezzo (Stadio 1): title: UI_UT_RepC,source: UI_UT,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: C
+        H5 titolo        : UI_UT_RepC
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: C
+        H5 sorgente      : UI_UT
+
+CONFRONTO  GSE125066__GSE125066__grp_0003_vs_grp_0002__1
+  studio: GSE125066
+  TRATTATO  (n=3)  etichetta Stadio 2: Wild-type T. gondii + IFN-β
+      gruppo Stadio 2: grp_0003
+      GSM3562055
+        grezzo (Stadio 1): title: RH_IFNB_RepA,source: RH_IFNB,cell line: HFF,cell type: Fibroblasts (Skin),infection: wild type (RH) T. gondii parasites for 12 hrs,treatment: IFN-Î²,replicate: A
+        H5 titolo        : RH_IFNB_RepA
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: wild type (RH) T. gondii parasites for 12 hrs,treatment: IFN-Î²,replicate: A
+        H5 sorgente      : RH_IFNB
+      GSM3562061
+        grezzo (Stadio 1): title: RH_IFNB_RepB,source: RH_IFNB,cell line: HFF,cell type: Fibroblasts (Skin),infection: wild type (RH) T. gondii parasites for 12 hrs,treatment: IFN-Î²,replicate: B
+        H5 titolo        : RH_IFNB_RepB
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: wild type (RH) T. gondii parasites for 12 hrs,treatment: IFN-Î²,replicate: B
+        H5 sorgente      : RH_IFNB
+      GSM3562067
+        grezzo (Stadio 1): title: RH_IFNB_RepC,source: RH_IFNB,cell line: HFF,cell type: Fibroblasts (Skin),infection: wild type (RH) T. gondii parasites for 12 hrs,treatment: IFN-Î²,replicate: C
+        H5 titolo        : RH_IFNB_RepC
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: wild type (RH) T. gondii parasites for 12 hrs,treatment: IFN-Î²,replicate: C
+        H5 sorgente      : RH_IFNB
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0002
+      GSM3562052
+        grezzo (Stadio 1): title: UI_UT_RepA,source: UI_UT,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: A
+        H5 titolo        : UI_UT_RepA
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: A
+        H5 sorgente      : UI_UT
+      GSM3562058
+        grezzo (Stadio 1): title: UI_UT_RepB,source: UI_UT,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: B
+        H5 titolo        : UI_UT_RepB
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: B
+        H5 sorgente      : UI_UT
+      GSM3562064
+        grezzo (Stadio 1): title: UI_UT_RepC,source: UI_UT,cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: C
+        H5 titolo        : UI_UT_RepC
+        H5 caratteristiche: cell line: HFF,cell type: Fibroblasts (Skin),infection: Uninfected,treatment: Untreated,replicate: C
+        H5 sorgente      : UI_UT
+
+CONFRONTO  GSE126409__GSE126409__grp_0022_vs_grp_0027__1
+  studio: GSE126409
+  TRATTATO  (n=4)  etichetta Stadio 2: Healthy IEIL cells stimulated with IFN-beta for 30 minutes
+      gruppo Stadio 2: grp_0022
+      GSM3597901
+        grezzo (Stadio 1): title: A1_30_min_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A1,stimulation: IFNb,time point: 30min
+        H5 titolo        : A1_30_min_IFNb
+        H5 caratteristiche: type: Control,donor: A1,stimulation: IFNb,time point: 30min
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597914
+        grezzo (Stadio 1): title: A2_30_min_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A2,stimulation: IFNb,time point: 30min
+        H5 titolo        : A2_30_min_IFNb
+        H5 caratteristiche: type: Control,donor: A2,stimulation: IFNb,time point: 30min
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597927
+        grezzo (Stadio 1): title: A3_30_min_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A3,stimulation: IFNb,time point: 30min
+        H5 titolo        : A3_30_min_IFNb
+        H5 caratteristiche: type: Control,donor: A3,stimulation: IFNb,time point: 30min
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597940
+        grezzo (Stadio 1): title: A4_30_min_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A4,stimulation: IFNb,time point: 30min
+        H5 titolo        : A4_30_min_IFNb
+        H5 caratteristiche: type: Control,donor: A4,stimulation: IFNb,time point: 30min
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy IEIL cells vehicle control (time zero)
+      gruppo Stadio 2: grp_0027
+      GSM3597910
+        grezzo (Stadio 1): title: A1_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A1,stimulation: unsti,time point: 0
+        H5 titolo        : A1_unsti
+        H5 caratteristiche: type: Control,donor: A1,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597923
+        grezzo (Stadio 1): title: A2_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A2,stimulation: unsti,time point: 0
+        H5 titolo        : A2_unsti
+        H5 caratteristiche: type: Control,donor: A2,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597936
+        grezzo (Stadio 1): title: A3_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A3,stimulation: unsti,time point: 0
+        H5 titolo        : A3_unsti
+        H5 caratteristiche: type: Control,donor: A3,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597949
+        grezzo (Stadio 1): title: A4_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A4,stimulation: unsti,time point: 0
+        H5 titolo        : A4_unsti
+        H5 caratteristiche: type: Control,donor: A4,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+
+CONFRONTO  GSE126409__GSE126409__grp_0023_vs_grp_0027__1
+  studio: GSE126409
+  TRATTATO  (n=3)  etichetta Stadio 2: Healthy IEIL cells stimulated with IFN-beta for 24 hours
+      gruppo Stadio 2: grp_0023
+      GSM3597911
+        grezzo (Stadio 1): title: A2_24h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A2,stimulation: IFNb,time point: 24h
+        H5 titolo        : A2_24h_IFNb
+        H5 caratteristiche: type: Control,donor: A2,stimulation: IFNb,time point: 24h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597924
+        grezzo (Stadio 1): title: A3_24h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A3,stimulation: IFNb,time point: 24h
+        H5 titolo        : A3_24h_IFNb
+        H5 caratteristiche: type: Control,donor: A3,stimulation: IFNb,time point: 24h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597937
+        grezzo (Stadio 1): title: A4_24h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A4,stimulation: IFNb,time point: 24h
+        H5 titolo        : A4_24h_IFNb
+        H5 caratteristiche: type: Control,donor: A4,stimulation: IFNb,time point: 24h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy IEIL cells vehicle control (time zero)
+      gruppo Stadio 2: grp_0027
+      GSM3597910
+        grezzo (Stadio 1): title: A1_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A1,stimulation: unsti,time point: 0
+        H5 titolo        : A1_unsti
+        H5 caratteristiche: type: Control,donor: A1,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597923
+        grezzo (Stadio 1): title: A2_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A2,stimulation: unsti,time point: 0
+        H5 titolo        : A2_unsti
+        H5 caratteristiche: type: Control,donor: A2,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597936
+        grezzo (Stadio 1): title: A3_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A3,stimulation: unsti,time point: 0
+        H5 titolo        : A3_unsti
+        H5 caratteristiche: type: Control,donor: A3,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597949
+        grezzo (Stadio 1): title: A4_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A4,stimulation: unsti,time point: 0
+        H5 titolo        : A4_unsti
+        H5 caratteristiche: type: Control,donor: A4,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+
+CONFRONTO  GSE126409__GSE126409__grp_0024_vs_grp_0027__1
+  studio: GSE126409
+  TRATTATO  (n=4)  etichetta Stadio 2: Healthy IEIL cells stimulated with IFN-beta for 3 hours
+      gruppo Stadio 2: grp_0024
+      GSM3597904
+        grezzo (Stadio 1): title: A1_3h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A1,stimulation: IFNb,time point: 3h
+        H5 titolo        : A1_3h_IFNb
+        H5 caratteristiche: type: Control,donor: A1,stimulation: IFNb,time point: 3h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597917
+        grezzo (Stadio 1): title: A2_3h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A2,stimulation: IFNb,time point: 3h
+        H5 titolo        : A2_3h_IFNb
+        H5 caratteristiche: type: Control,donor: A2,stimulation: IFNb,time point: 3h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597930
+        grezzo (Stadio 1): title: A3_3h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A3,stimulation: IFNb,time point: 3h
+        H5 titolo        : A3_3h_IFNb
+        H5 caratteristiche: type: Control,donor: A3,stimulation: IFNb,time point: 3h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597943
+        grezzo (Stadio 1): title: A4_3h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A4,stimulation: IFNb,time point: 3h
+        H5 titolo        : A4_3h_IFNb
+        H5 caratteristiche: type: Control,donor: A4,stimulation: IFNb,time point: 3h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy IEIL cells vehicle control (time zero)
+      gruppo Stadio 2: grp_0027
+      GSM3597910
+        grezzo (Stadio 1): title: A1_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A1,stimulation: unsti,time point: 0
+        H5 titolo        : A1_unsti
+        H5 caratteristiche: type: Control,donor: A1,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597923
+        grezzo (Stadio 1): title: A2_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A2,stimulation: unsti,time point: 0
+        H5 titolo        : A2_unsti
+        H5 caratteristiche: type: Control,donor: A2,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597936
+        grezzo (Stadio 1): title: A3_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A3,stimulation: unsti,time point: 0
+        H5 titolo        : A3_unsti
+        H5 caratteristiche: type: Control,donor: A3,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597949
+        grezzo (Stadio 1): title: A4_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A4,stimulation: unsti,time point: 0
+        H5 titolo        : A4_unsti
+        H5 caratteristiche: type: Control,donor: A4,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+
+CONFRONTO  GSE126409__GSE126409__grp_0025_vs_grp_0027__1
+  studio: GSE126409
+  TRATTATO  (n=4)  etichetta Stadio 2: Healthy IEIL cells stimulated with IFN-beta for 4 hours
+      gruppo Stadio 2: grp_0025
+      GSM3597907
+        grezzo (Stadio 1): title: A1_4h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A1,stimulation: IFNb,time point: 4h
+        H5 titolo        : A1_4h_IFNb
+        H5 caratteristiche: type: Control,donor: A1,stimulation: IFNb,time point: 4h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597920
+        grezzo (Stadio 1): title: A2_4h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A2,stimulation: IFNb,time point: 4h
+        H5 titolo        : A2_4h_IFNb
+        H5 caratteristiche: type: Control,donor: A2,stimulation: IFNb,time point: 4h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597933
+        grezzo (Stadio 1): title: A3_4h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A3,stimulation: IFNb,time point: 4h
+        H5 titolo        : A3_4h_IFNb
+        H5 caratteristiche: type: Control,donor: A3,stimulation: IFNb,time point: 4h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597946
+        grezzo (Stadio 1): title: A4_4h_IFNb,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A4,stimulation: IFNb,time point: 4h
+        H5 titolo        : A4_4h_IFNb
+        H5 caratteristiche: type: Control,donor: A4,stimulation: IFNb,time point: 4h
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy IEIL cells vehicle control (time zero)
+      gruppo Stadio 2: grp_0027
+      GSM3597910
+        grezzo (Stadio 1): title: A1_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A1,stimulation: unsti,time point: 0
+        H5 titolo        : A1_unsti
+        H5 caratteristiche: type: Control,donor: A1,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597923
+        grezzo (Stadio 1): title: A2_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A2,stimulation: unsti,time point: 0
+        H5 titolo        : A2_unsti
+        H5 caratteristiche: type: Control,donor: A2,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597936
+        grezzo (Stadio 1): title: A3_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A3,stimulation: unsti,time point: 0
+        H5 titolo        : A3_unsti
+        H5 caratteristiche: type: Control,donor: A3,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+      GSM3597949
+        grezzo (Stadio 1): title: A4_unsti,source: IEIL cell line derived from Intestinal biopsies,type: Control,donor: A4,stimulation: unsti,time point: 0
+        H5 titolo        : A4_unsti
+        H5 caratteristiche: type: Control,donor: A4,stimulation: unsti,time point: 0
+        H5 sorgente      : IEIL cell line derived from Intestinal biopsies
+
+CONFRONTO  GSE161664__GSE161664__IFNb_vs_Control__1
+  studio: GSE161664
+  TRATTATO  (n=3)  etichetta Stadio 2: IFNb
+      gruppo Stadio 2: grp_0014
+      GSM4912459
+        grezzo (Stadio 1): title: RNA-seq-SAEC_IFNb_rep1,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: IFNb
+        H5 titolo        : RNA-seq-SAEC_IFNb_rep1
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: IFNb
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912460
+        grezzo (Stadio 1): title: RNA-seq-SAEC_IFNb_rep2,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: IFNb
+        H5 titolo        : RNA-seq-SAEC_IFNb_rep2
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: IFNb
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912461
+        grezzo (Stadio 1): title: RNA-seq-SAEC_IFNb_rep3,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: IFNb
+        H5 titolo        : RNA-seq-SAEC_IFNb_rep3
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: IFNb
+        H5 sorgente      : small airway epithelial cells (SAEC)
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0004
+      GSM4912446
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep1,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep1
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912447
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep2,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep2
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912448
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep3,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep3
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912449
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep4,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep4
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+
+CONFRONTO  GSE161916__GSE161916__IFNb_vs_Untreated__3
+  studio: GSE161916
+  TRATTATO  (n=3)  etichetta Stadio 2: IFNb
+      gruppo Stadio 2: grp_0009
+      GSM4923337
+        grezzo (Stadio 1): title: RNA-seq-HPPT_IFNb_rep1,source: human primary proximal tubule cells,treatment: IFNb,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_IFNb_rep1
+        H5 caratteristiche: treatment: IFNb,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923338
+        grezzo (Stadio 1): title: RNA-seq-HPPT_IFNb_rep2,source: human primary proximal tubule cells,treatment: IFNb,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_IFNb_rep2
+        H5 caratteristiche: treatment: IFNb,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923339
+        grezzo (Stadio 1): title: RNA-seq-HPPT_IFNb_rep3,source: human primary proximal tubule cells,treatment: IFNb,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_IFNb_rep3
+        H5 caratteristiche: treatment: IFNb,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0010
+      GSM4923346
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep1,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep1
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923347
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep2,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep2
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923348
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep3,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep3
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+
+CONFRONTO  GSE178901__GSE178901__grp_0002_vs_grp_0001__1
+  studio: GSE178901
+  TRATTATO  (n=3)  etichetta Stadio 2: Human IFNβ 100 U/mL 24h
+      gruppo Stadio 2: grp_0002
+      GSM5400629
+        grezzo (Stadio 1): title: SUIT2 100 U/mL IFNÎ² 24 hour 1,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 24 hours
+        H5 titolo        : SUIT2 100 U/mL IFNÎ² 24 hour 1
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 24 hours
+        H5 sorgente      : pancreas cancer cells
+      GSM5400630
+        grezzo (Stadio 1): title: SUIT2 100 U/mL IFNÎ² 24 hour 2,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 24 hours
+        H5 titolo        : SUIT2 100 U/mL IFNÎ² 24 hour 2
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 24 hours
+        H5 sorgente      : pancreas cancer cells
+      GSM5400631
+        grezzo (Stadio 1): title: SUIT2 100 U/mL IFNÎ² 24 hour 3,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 24 hours
+        H5 titolo        : SUIT2 100 U/mL IFNÎ² 24 hour 3
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 24 hours
+        H5 sorgente      : pancreas cancer cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control treated
+      gruppo Stadio 2: grp_0001
+      GSM5400623
+        grezzo (Stadio 1): title: SUIT2 control treated 1,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 titolo        : SUIT2 control treated 1
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 sorgente      : pancreas cancer cells
+      GSM5400624
+        grezzo (Stadio 1): title: SUIT2 control treated 2,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 titolo        : SUIT2 control treated 2
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 sorgente      : pancreas cancer cells
+      GSM5400625
+        grezzo (Stadio 1): title: SUIT2 control treated 3,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 titolo        : SUIT2 control treated 3
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 sorgente      : pancreas cancer cells
+
+CONFRONTO  GSE178901__GSE178901__grp_0003_vs_grp_0001__1
+  studio: GSE178901
+  TRATTATO  (n=3)  etichetta Stadio 2: Human IFNβ 100 U/mL 6h
+      gruppo Stadio 2: grp_0003
+      GSM5400626
+        grezzo (Stadio 1): title: SUIT2 100 U/mL IFNÎ² 6 hour 1,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 6 hours
+        H5 titolo        : SUIT2 100 U/mL IFNÎ² 6 hour 1
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 6 hours
+        H5 sorgente      : pancreas cancer cells
+      GSM5400627
+        grezzo (Stadio 1): title: SUIT2 100 U/mL IFNÎ² 6 hour 2,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 6 hours
+        H5 titolo        : SUIT2 100 U/mL IFNÎ² 6 hour 2
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 6 hours
+        H5 sorgente      : pancreas cancer cells
+      GSM5400628
+        grezzo (Stadio 1): title: SUIT2 100 U/mL IFNÎ² 6 hour 3,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 6 hours
+        H5 titolo        : SUIT2 100 U/mL IFNÎ² 6 hour 3
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: 100 U/mL human IFNÎ² for 6 hours
+        H5 sorgente      : pancreas cancer cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control treated
+      gruppo Stadio 2: grp_0001
+      GSM5400623
+        grezzo (Stadio 1): title: SUIT2 control treated 1,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 titolo        : SUIT2 control treated 1
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 sorgente      : pancreas cancer cells
+      GSM5400624
+        grezzo (Stadio 1): title: SUIT2 control treated 2,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 titolo        : SUIT2 control treated 2
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 sorgente      : pancreas cancer cells
+      GSM5400625
+        grezzo (Stadio 1): title: SUIT2 control treated 3,source: pancreas cancer cells,cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 titolo        : SUIT2 control treated 3
+        H5 caratteristiche: cell line: SUIT2,cell type: pancreas cancer cells,treatment: control treated
+        H5 sorgente      : pancreas cancer cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE104348     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE114284     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE125066     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE126409     campioni nell'H5:  104 | collocati dallo Stadio 2:  104 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 19 campioni distinti (31 righe: i controlli servono piu' confronti)
+  GSE161664     campioni nell'H5:   37 | collocati dallo Stadio 2:   37 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE161916     campioni nell'H5:   27 | collocati dallo Stadio 2:   27 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE178901     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (12 righe: i controlli servono piu' confronti)
+

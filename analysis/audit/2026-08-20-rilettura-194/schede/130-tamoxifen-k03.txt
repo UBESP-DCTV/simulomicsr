@@ -1,0 +1,589 @@
+META-ANALISI 130 di 194
+==============================================================================
+nome            : tamoxifen
+entita (ID)     : CHEBI:41774
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_8b61f50b
+studi poolati   : 3   confronti: 7   campioni: 102
+geni significativi: 367   I2 mediano: 95.2
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE123285__GSE123285__grp_0015_vs_grp_0003__1
+  studio: GSE123285
+  TRATTATO  (n=2)  etichetta Stadio 2: MCF7 + 4-hydroxy tamoxifen (100 nM)
+      gruppo Stadio 2: grp_0015
+      GSM3499231
+        grezzo (Stadio 1): title: jc4894_mcf7_4_hydroxy_tamoxifen_wild_type Clone 219 rep 4,source: 4_hydroxy_tamoxifen_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4894_mcf7_4_hydroxy_tamoxifen_wild_type Clone 219 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_WT_CLONE_219
+      GSM3499234
+        grezzo (Stadio 1): title: jc4909_mcf7_4_hydroxy_tamoxifen_wild_type Clone 221 rep 3,source: 4_hydroxy_tamoxifen_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4909_mcf7_4_hydroxy_tamoxifen_wild_type Clone 221 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_WT_CLONE_221
+  CONTROLLO  (n=16)  etichetta Stadio 2: MCF7 + DMSO Vehicle
+      gruppo Stadio 2: grp_0003
+      GSM3499287
+        grezzo (Stadio 1): title: jc4934_mcf7_vehicle_arid1a Clone 11 rep 4,source: Vehicle_ARID1A_CLONE_11,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4934_mcf7_vehicle_arid1a Clone 11 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_11
+      GSM3499291
+        grezzo (Stadio 1): title: jc4950_mcf7_vehicle_arid1a Clone 14 rep 4,source: Vehicle_ARID1A_CLONE_14,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4950_mcf7_vehicle_arid1a Clone 14 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_14
+      GSM3499293
+        grezzo (Stadio 1): title: jc4916_mcf7_vehicle_parental_cell_line  rep 2,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4916_mcf7_vehicle_parental_cell_line  rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499294
+        grezzo (Stadio 1): title: jc4917_mcf7_vehicle_parental_cell_line  rep 3,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4917_mcf7_vehicle_parental_cell_line  rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499295
+        grezzo (Stadio 1): title: jc4918_mcf7_vehicle_parental_cell_line  rep 4,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4918_mcf7_vehicle_parental_cell_line  rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499296
+        grezzo (Stadio 1): title: jc4867_mcf7_vehicle_wild_type Clone 216 rep 1,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4867_mcf7_vehicle_wild_type Clone 216 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499297
+        grezzo (Stadio 1): title: jc4868_mcf7_vehicle_wild_type Clone 216 rep 2,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4868_mcf7_vehicle_wild_type Clone 216 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499298
+        grezzo (Stadio 1): title: jc4869_mcf7_vehicle_wild_type Clone 216 rep 3,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4869_mcf7_vehicle_wild_type Clone 216 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499299
+        grezzo (Stadio 1): title: jc4870_mcf7_vehicle_wild_type Clone 216 rep 4,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4870_mcf7_vehicle_wild_type Clone 216 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499300
+        grezzo (Stadio 1): title: jc4883_mcf7_vehicle_wild_type Clone 219 rep 1,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4883_mcf7_vehicle_wild_type Clone 219 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499301
+        grezzo (Stadio 1): title: jc4884_mcf7_vehicle_wild_type Clone 219 rep 2,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4884_mcf7_vehicle_wild_type Clone 219 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499302
+        grezzo (Stadio 1): title: jc4885_mcf7_vehicle_wild_type Clone 219 rep 3,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4885_mcf7_vehicle_wild_type Clone 219 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499303
+        grezzo (Stadio 1): title: jc4886_mcf7_vehicle_wild_type Clone 219 rep 4,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4886_mcf7_vehicle_wild_type Clone 219 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499304
+        grezzo (Stadio 1): title: jc4899_mcf7_vehicle_wild_type Clone 221 rep 1,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4899_mcf7_vehicle_wild_type Clone 221 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499305
+        grezzo (Stadio 1): title: jc4900_mcf7_vehicle_wild_type Clone 221 rep 2,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4900_mcf7_vehicle_wild_type Clone 221 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499307
+        grezzo (Stadio 1): title: jc4902_mcf7_vehicle_wild_type Clone 221 rep 4,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4902_mcf7_vehicle_wild_type Clone 221 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+
+CONFRONTO  GSE123285__GSE123285__grp_0016_vs_grp_0003__1
+  studio: GSE123285
+  TRATTATO  (n=2)  etichetta Stadio 2: MCF7 + 4-hydroxy tamoxifen (100 nM)
+      gruppo Stadio 2: grp_0016
+      GSM3499224
+        grezzo (Stadio 1): title: jc4875_mcf7_4_hydroxy_tamoxifen_wild_type Clone 216 rep 1,source: 4_hydroxy_tamoxifen_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4875_mcf7_4_hydroxy_tamoxifen_wild_type Clone 216 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_WT_CLONE_216
+      GSM3499232
+        grezzo (Stadio 1): title: jc4907_mcf7_4_hydroxy_tamoxifen_wild_type Clone 221 rep 1,source: 4_hydroxy_tamoxifen_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4907_mcf7_4_hydroxy_tamoxifen_wild_type Clone 221 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_WT_CLONE_221
+  CONTROLLO  (n=16)  etichetta Stadio 2: MCF7 + DMSO Vehicle
+      gruppo Stadio 2: grp_0003
+      GSM3499287
+        grezzo (Stadio 1): title: jc4934_mcf7_vehicle_arid1a Clone 11 rep 4,source: Vehicle_ARID1A_CLONE_11,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4934_mcf7_vehicle_arid1a Clone 11 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_11
+      GSM3499291
+        grezzo (Stadio 1): title: jc4950_mcf7_vehicle_arid1a Clone 14 rep 4,source: Vehicle_ARID1A_CLONE_14,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4950_mcf7_vehicle_arid1a Clone 14 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_14
+      GSM3499293
+        grezzo (Stadio 1): title: jc4916_mcf7_vehicle_parental_cell_line  rep 2,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4916_mcf7_vehicle_parental_cell_line  rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499294
+        grezzo (Stadio 1): title: jc4917_mcf7_vehicle_parental_cell_line  rep 3,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4917_mcf7_vehicle_parental_cell_line  rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499295
+        grezzo (Stadio 1): title: jc4918_mcf7_vehicle_parental_cell_line  rep 4,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4918_mcf7_vehicle_parental_cell_line  rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499296
+        grezzo (Stadio 1): title: jc4867_mcf7_vehicle_wild_type Clone 216 rep 1,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4867_mcf7_vehicle_wild_type Clone 216 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499297
+        grezzo (Stadio 1): title: jc4868_mcf7_vehicle_wild_type Clone 216 rep 2,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4868_mcf7_vehicle_wild_type Clone 216 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499298
+        grezzo (Stadio 1): title: jc4869_mcf7_vehicle_wild_type Clone 216 rep 3,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4869_mcf7_vehicle_wild_type Clone 216 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499299
+        grezzo (Stadio 1): title: jc4870_mcf7_vehicle_wild_type Clone 216 rep 4,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4870_mcf7_vehicle_wild_type Clone 216 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499300
+        grezzo (Stadio 1): title: jc4883_mcf7_vehicle_wild_type Clone 219 rep 1,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4883_mcf7_vehicle_wild_type Clone 219 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499301
+        grezzo (Stadio 1): title: jc4884_mcf7_vehicle_wild_type Clone 219 rep 2,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4884_mcf7_vehicle_wild_type Clone 219 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499302
+        grezzo (Stadio 1): title: jc4885_mcf7_vehicle_wild_type Clone 219 rep 3,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4885_mcf7_vehicle_wild_type Clone 219 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499303
+        grezzo (Stadio 1): title: jc4886_mcf7_vehicle_wild_type Clone 219 rep 4,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4886_mcf7_vehicle_wild_type Clone 219 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499304
+        grezzo (Stadio 1): title: jc4899_mcf7_vehicle_wild_type Clone 221 rep 1,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4899_mcf7_vehicle_wild_type Clone 221 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499305
+        grezzo (Stadio 1): title: jc4900_mcf7_vehicle_wild_type Clone 221 rep 2,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4900_mcf7_vehicle_wild_type Clone 221 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499307
+        grezzo (Stadio 1): title: jc4902_mcf7_vehicle_wild_type Clone 221 rep 4,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4902_mcf7_vehicle_wild_type Clone 221 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+
+CONFRONTO  GSE123285__GSE123285__grp_0020_vs_grp_0003__1
+  studio: GSE123285
+  TRATTATO  (n=2)  etichetta Stadio 2: MCF7 + 4-hydroxy tamoxifen (100 nM)
+      gruppo Stadio 2: grp_0020
+      GSM3499226
+        grezzo (Stadio 1): title: jc4877_mcf7_4_hydroxy_tamoxifen_wild_type Clone 216 rep 3,source: 4_hydroxy_tamoxifen_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4877_mcf7_4_hydroxy_tamoxifen_wild_type Clone 216 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_WT_CLONE_216
+      GSM3499228
+        grezzo (Stadio 1): title: jc4891_mcf7_4_hydroxy_tamoxifen_wild_type Clone 219 rep 1,source: 4_hydroxy_tamoxifen_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4891_mcf7_4_hydroxy_tamoxifen_wild_type Clone 219 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_WT_CLONE_219
+  CONTROLLO  (n=16)  etichetta Stadio 2: MCF7 + DMSO Vehicle
+      gruppo Stadio 2: grp_0003
+      GSM3499287
+        grezzo (Stadio 1): title: jc4934_mcf7_vehicle_arid1a Clone 11 rep 4,source: Vehicle_ARID1A_CLONE_11,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4934_mcf7_vehicle_arid1a Clone 11 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_11
+      GSM3499291
+        grezzo (Stadio 1): title: jc4950_mcf7_vehicle_arid1a Clone 14 rep 4,source: Vehicle_ARID1A_CLONE_14,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4950_mcf7_vehicle_arid1a Clone 14 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_14
+      GSM3499293
+        grezzo (Stadio 1): title: jc4916_mcf7_vehicle_parental_cell_line  rep 2,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4916_mcf7_vehicle_parental_cell_line  rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499294
+        grezzo (Stadio 1): title: jc4917_mcf7_vehicle_parental_cell_line  rep 3,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4917_mcf7_vehicle_parental_cell_line  rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499295
+        grezzo (Stadio 1): title: jc4918_mcf7_vehicle_parental_cell_line  rep 4,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4918_mcf7_vehicle_parental_cell_line  rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499296
+        grezzo (Stadio 1): title: jc4867_mcf7_vehicle_wild_type Clone 216 rep 1,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4867_mcf7_vehicle_wild_type Clone 216 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499297
+        grezzo (Stadio 1): title: jc4868_mcf7_vehicle_wild_type Clone 216 rep 2,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4868_mcf7_vehicle_wild_type Clone 216 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499298
+        grezzo (Stadio 1): title: jc4869_mcf7_vehicle_wild_type Clone 216 rep 3,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4869_mcf7_vehicle_wild_type Clone 216 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499299
+        grezzo (Stadio 1): title: jc4870_mcf7_vehicle_wild_type Clone 216 rep 4,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4870_mcf7_vehicle_wild_type Clone 216 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499300
+        grezzo (Stadio 1): title: jc4883_mcf7_vehicle_wild_type Clone 219 rep 1,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4883_mcf7_vehicle_wild_type Clone 219 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499301
+        grezzo (Stadio 1): title: jc4884_mcf7_vehicle_wild_type Clone 219 rep 2,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4884_mcf7_vehicle_wild_type Clone 219 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499302
+        grezzo (Stadio 1): title: jc4885_mcf7_vehicle_wild_type Clone 219 rep 3,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4885_mcf7_vehicle_wild_type Clone 219 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499303
+        grezzo (Stadio 1): title: jc4886_mcf7_vehicle_wild_type Clone 219 rep 4,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4886_mcf7_vehicle_wild_type Clone 219 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499304
+        grezzo (Stadio 1): title: jc4899_mcf7_vehicle_wild_type Clone 221 rep 1,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4899_mcf7_vehicle_wild_type Clone 221 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499305
+        grezzo (Stadio 1): title: jc4900_mcf7_vehicle_wild_type Clone 221 rep 2,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4900_mcf7_vehicle_wild_type Clone 221 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499307
+        grezzo (Stadio 1): title: jc4902_mcf7_vehicle_wild_type Clone 221 rep 4,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4902_mcf7_vehicle_wild_type Clone 221 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+
+CONFRONTO  GSE123285__GSE123285__grp_0026_vs_grp_0003__1
+  studio: GSE123285
+  TRATTATO  (n=3)  etichetta Stadio 2: MCF7 + 4-hydroxy tamoxifen (100 nM)
+      gruppo Stadio 2: grp_0026
+      GSM3499221
+        grezzo (Stadio 1): title: jc4924_mcf7_4_hydroxy_tamoxifen_parental_cell_line  rep 2,source: 4_hydroxy_tamoxifen_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4924_mcf7_4_hydroxy_tamoxifen_parental_cell_line  rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_PARENTAL_CELL_LINE
+      GSM3499223
+        grezzo (Stadio 1): title: jc4926_mcf7_4_hydroxy_tamoxifen_parental_cell_line  rep 4,source: 4_hydroxy_tamoxifen_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4926_mcf7_4_hydroxy_tamoxifen_parental_cell_line  rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_PARENTAL_CELL_LINE
+      GSM3499230
+        grezzo (Stadio 1): title: jc4893_mcf7_4_hydroxy_tamoxifen_wild_type Clone 219 rep 3,source: 4_hydroxy_tamoxifen_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4893_mcf7_4_hydroxy_tamoxifen_wild_type Clone 219 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_WT_CLONE_219
+  CONTROLLO  (n=16)  etichetta Stadio 2: MCF7 + DMSO Vehicle
+      gruppo Stadio 2: grp_0003
+      GSM3499287
+        grezzo (Stadio 1): title: jc4934_mcf7_vehicle_arid1a Clone 11 rep 4,source: Vehicle_ARID1A_CLONE_11,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4934_mcf7_vehicle_arid1a Clone 11 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_11
+      GSM3499291
+        grezzo (Stadio 1): title: jc4950_mcf7_vehicle_arid1a Clone 14 rep 4,source: Vehicle_ARID1A_CLONE_14,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4950_mcf7_vehicle_arid1a Clone 14 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_14
+      GSM3499293
+        grezzo (Stadio 1): title: jc4916_mcf7_vehicle_parental_cell_line  rep 2,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4916_mcf7_vehicle_parental_cell_line  rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499294
+        grezzo (Stadio 1): title: jc4917_mcf7_vehicle_parental_cell_line  rep 3,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4917_mcf7_vehicle_parental_cell_line  rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499295
+        grezzo (Stadio 1): title: jc4918_mcf7_vehicle_parental_cell_line  rep 4,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4918_mcf7_vehicle_parental_cell_line  rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499296
+        grezzo (Stadio 1): title: jc4867_mcf7_vehicle_wild_type Clone 216 rep 1,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4867_mcf7_vehicle_wild_type Clone 216 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499297
+        grezzo (Stadio 1): title: jc4868_mcf7_vehicle_wild_type Clone 216 rep 2,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4868_mcf7_vehicle_wild_type Clone 216 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499298
+        grezzo (Stadio 1): title: jc4869_mcf7_vehicle_wild_type Clone 216 rep 3,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4869_mcf7_vehicle_wild_type Clone 216 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499299
+        grezzo (Stadio 1): title: jc4870_mcf7_vehicle_wild_type Clone 216 rep 4,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4870_mcf7_vehicle_wild_type Clone 216 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499300
+        grezzo (Stadio 1): title: jc4883_mcf7_vehicle_wild_type Clone 219 rep 1,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4883_mcf7_vehicle_wild_type Clone 219 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499301
+        grezzo (Stadio 1): title: jc4884_mcf7_vehicle_wild_type Clone 219 rep 2,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4884_mcf7_vehicle_wild_type Clone 219 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499302
+        grezzo (Stadio 1): title: jc4885_mcf7_vehicle_wild_type Clone 219 rep 3,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4885_mcf7_vehicle_wild_type Clone 219 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499303
+        grezzo (Stadio 1): title: jc4886_mcf7_vehicle_wild_type Clone 219 rep 4,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4886_mcf7_vehicle_wild_type Clone 219 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499304
+        grezzo (Stadio 1): title: jc4899_mcf7_vehicle_wild_type Clone 221 rep 1,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4899_mcf7_vehicle_wild_type Clone 221 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499305
+        grezzo (Stadio 1): title: jc4900_mcf7_vehicle_wild_type Clone 221 rep 2,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4900_mcf7_vehicle_wild_type Clone 221 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499307
+        grezzo (Stadio 1): title: jc4902_mcf7_vehicle_wild_type Clone 221 rep 4,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4902_mcf7_vehicle_wild_type Clone 221 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+
+CONFRONTO  GSE123285__GSE123285__grp_0030_vs_grp_0003__1
+  studio: GSE123285
+  TRATTATO  (n=2)  etichetta Stadio 2: MCF7 + 4-hydroxy tamoxifen (100 nM)
+      gruppo Stadio 2: grp_0030
+      GSM3499217
+        grezzo (Stadio 1): title: jc4956_mcf7_4_hydroxy_tamoxifen_arid1a Clone 14 rep 2,source: 4_hydroxy_tamoxifen_ARID1A_CLONE_14,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4956_mcf7_4_hydroxy_tamoxifen_arid1a Clone 14 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_ARID1A_CLONE_14
+      GSM3499219
+        grezzo (Stadio 1): title: jc4958_mcf7_4_hydroxy_tamoxifen_arid1a Clone 14 rep 4,source: 4_hydroxy_tamoxifen_ARID1A_CLONE_14,cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 titolo        : jc4958_mcf7_4_hydroxy_tamoxifen_arid1a Clone 14 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: 100 nM 4-hydroxy tamoxifen for 6 hours
+        H5 sorgente      : 4_hydroxy_tamoxifen_ARID1A_CLONE_14
+  CONTROLLO  (n=16)  etichetta Stadio 2: MCF7 + DMSO Vehicle
+      gruppo Stadio 2: grp_0003
+      GSM3499287
+        grezzo (Stadio 1): title: jc4934_mcf7_vehicle_arid1a Clone 11 rep 4,source: Vehicle_ARID1A_CLONE_11,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4934_mcf7_vehicle_arid1a Clone 11 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_11
+      GSM3499291
+        grezzo (Stadio 1): title: jc4950_mcf7_vehicle_arid1a Clone 14 rep 4,source: Vehicle_ARID1A_CLONE_14,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4950_mcf7_vehicle_arid1a Clone 14 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_ARID1A_CLONE_14
+      GSM3499293
+        grezzo (Stadio 1): title: jc4916_mcf7_vehicle_parental_cell_line  rep 2,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4916_mcf7_vehicle_parental_cell_line  rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499294
+        grezzo (Stadio 1): title: jc4917_mcf7_vehicle_parental_cell_line  rep 3,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4917_mcf7_vehicle_parental_cell_line  rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499295
+        grezzo (Stadio 1): title: jc4918_mcf7_vehicle_parental_cell_line  rep 4,source: Vehicle_PARENTAL_CELL_LINE,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4918_mcf7_vehicle_parental_cell_line  rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_PARENTAL_CELL_LINE
+      GSM3499296
+        grezzo (Stadio 1): title: jc4867_mcf7_vehicle_wild_type Clone 216 rep 1,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4867_mcf7_vehicle_wild_type Clone 216 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499297
+        grezzo (Stadio 1): title: jc4868_mcf7_vehicle_wild_type Clone 216 rep 2,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4868_mcf7_vehicle_wild_type Clone 216 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499298
+        grezzo (Stadio 1): title: jc4869_mcf7_vehicle_wild_type Clone 216 rep 3,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4869_mcf7_vehicle_wild_type Clone 216 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499299
+        grezzo (Stadio 1): title: jc4870_mcf7_vehicle_wild_type Clone 216 rep 4,source: Vehicle_WT_CLONE_216,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4870_mcf7_vehicle_wild_type Clone 216 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_216
+      GSM3499300
+        grezzo (Stadio 1): title: jc4883_mcf7_vehicle_wild_type Clone 219 rep 1,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4883_mcf7_vehicle_wild_type Clone 219 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499301
+        grezzo (Stadio 1): title: jc4884_mcf7_vehicle_wild_type Clone 219 rep 2,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4884_mcf7_vehicle_wild_type Clone 219 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499302
+        grezzo (Stadio 1): title: jc4885_mcf7_vehicle_wild_type Clone 219 rep 3,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4885_mcf7_vehicle_wild_type Clone 219 rep 3
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499303
+        grezzo (Stadio 1): title: jc4886_mcf7_vehicle_wild_type Clone 219 rep 4,source: Vehicle_WT_CLONE_219,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4886_mcf7_vehicle_wild_type Clone 219 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_219
+      GSM3499304
+        grezzo (Stadio 1): title: jc4899_mcf7_vehicle_wild_type Clone 221 rep 1,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4899_mcf7_vehicle_wild_type Clone 221 rep 1
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499305
+        grezzo (Stadio 1): title: jc4900_mcf7_vehicle_wild_type Clone 221 rep 2,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4900_mcf7_vehicle_wild_type Clone 221 rep 2
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+      GSM3499307
+        grezzo (Stadio 1): title: jc4902_mcf7_vehicle_wild_type Clone 221 rep 4,source: Vehicle_WT_CLONE_221,cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 titolo        : jc4902_mcf7_vehicle_wild_type Clone 221 rep 4
+        H5 caratteristiche: cell line: MCF7,cell type: breast cancer cell line,treatment: DMSO Vehicle for 6 hours
+        H5 sorgente      : Vehicle_WT_CLONE_221
+
+CONFRONTO  GSE144378__GSE144378__grp_T47D_tamoxifen_vs_grp_T47D_none__1
+  studio: GSE144378
+  TRATTATO  (n=3)  etichetta Stadio 2: T47D tamoxifen
+      gruppo Stadio 2: grp_T47D_tamoxifen
+      GSM4287020
+        grezzo (Stadio 1): title: RNAseq_T47D_TamR_rep1,source: RNAseq_T47D_TamR,cell line background: T47D,cell type: breast cancer cell line,phenotype: tamoxifen resistant,passages: 3-10
+        H5 titolo        : RNAseq_T47D_TamR_rep1
+        H5 caratteristiche: cell line background: T47D,cell type: breast cancer cell line,phenotype: tamoxifen resistant,passages: 3-10
+        H5 sorgente      : RNAseq_T47D_TamR
+      GSM4287021
+        grezzo (Stadio 1): title: RNAseq_T47D_TamR_rep2,source: RNAseq_T47D_TamR,cell line background: T47D,cell type: breast cancer cell line,phenotype: tamoxifen resistant,passages: 3-10
+        H5 titolo        : RNAseq_T47D_TamR_rep2
+        H5 caratteristiche: cell line background: T47D,cell type: breast cancer cell line,phenotype: tamoxifen resistant,passages: 3-10
+        H5 sorgente      : RNAseq_T47D_TamR
+      GSM4287022
+        grezzo (Stadio 1): title: RNAseq_T47D_TamR_rep3,source: RNAseq_T47D_TamR,cell line background: T47D,cell type: breast cancer cell line,phenotype: tamoxifen resistant,passages: 3-10
+        H5 titolo        : RNAseq_T47D_TamR_rep3
+        H5 caratteristiche: cell line background: T47D,cell type: breast cancer cell line,phenotype: tamoxifen resistant,passages: 3-10
+        H5 sorgente      : RNAseq_T47D_TamR
+  CONTROLLO  (n=3)  etichetta Stadio 2: T47D untreated
+      gruppo Stadio 2: grp_T47D_none
+      GSM4287017
+        grezzo (Stadio 1): title: RNAseq_T47D_parental_rep1,source: RNAseq_T47D_parental,cell line background: T47D,cell type: breast cancer cell line,passages: 3-10
+        H5 titolo        : RNAseq_T47D_parental_rep1
+        H5 caratteristiche: cell line background: T47D,cell type: breast cancer cell line,passages: 3-10
+        H5 sorgente      : RNAseq_T47D_parental
+      GSM4287018
+        grezzo (Stadio 1): title: RNAseq_T47D_parental_rep2,source: RNAseq_T47D_parental,cell line background: T47D,cell type: breast cancer cell line,passages: 3-10
+        H5 titolo        : RNAseq_T47D_parental_rep2
+        H5 caratteristiche: cell line background: T47D,cell type: breast cancer cell line,passages: 3-10
+        H5 sorgente      : RNAseq_T47D_parental
+      GSM4287019
+        grezzo (Stadio 1): title: RNAseq_T47D_parental_rep3,source: RNAseq_T47D_parental,cell line background: T47D,cell type: breast cancer cell line,passages: 3-10
+        H5 titolo        : RNAseq_T47D_parental_rep3
+        H5 caratteristiche: cell line background: T47D,cell type: breast cancer cell line,passages: 3-10
+        H5 sorgente      : RNAseq_T47D_parental
+
+CONFRONTO  GSE152360__GSE152360__grp_0003_vs_grp_0001__1
+  studio: GSE152360
+  TRATTATO  (n=2)  etichetta Stadio 2: MCF7 Tamoxifen 10nm 12hrs
+      gruppo Stadio 2: grp_0003
+      GSM4613530
+        grezzo (Stadio 1): title: MCF7-WM-Tam RNA-seq rep1,source: MCF7-WM-Tam,cell line: MCF7 breast carcinoma cell line,agent: Tamoxifen,genotype/growth protocol: Ductal and Lobular cells were grown in estrogen deprived media for 3 days and treated with 10nm Tamoxifen for 12hrs
+        H5 titolo        : MCF7-WM-Tam RNA-seq rep1
+        H5 caratteristiche: cell line: MCF7 breast carcinoma cell line,agent: Tamoxifen,genotype/growth protocol: Ductal and Lobular cells were grown in estrogen deprived media for 3 days and treated with 10nm Tamoxifen for 12hrs
+        H5 sorgente      : MCF7-WM-Tam
+      GSM4613531
+        grezzo (Stadio 1): title: MCF7-WM-Tam RNA-seq rep2,source: MCF7-WM-Tam,cell line: MCF7 breast carcinoma cell line,agent: Tamoxifen,genotype/growth protocol: Ductal and Lobular cells were grown in estrogen deprived media for 3 days and treated with 10nm Tamoxifen for 12hrs
+        H5 titolo        : MCF7-WM-Tam RNA-seq rep2
+        H5 caratteristiche: cell line: MCF7 breast carcinoma cell line,agent: Tamoxifen,genotype/growth protocol: Ductal and Lobular cells were grown in estrogen deprived media for 3 days and treated with 10nm Tamoxifen for 12hrs
+        H5 sorgente      : MCF7-WM-Tam
+  CONTROLLO  (n=3)  etichetta Stadio 2: MCF7 Full Media
+      gruppo Stadio 2: grp_0001
+      GSM4613464
+        grezzo (Stadio 1): title: MCF7-FM RNA-seq rep1,source: MCF7-FM,cell line: MCF7 breast carcinoma cell line,agent: Full Media,genotype/growth protocol: Ductal and Lobular cells were grown in their own mediaÂ 
+        H5 titolo        : MCF7-FM RNA-seq rep1
+        H5 caratteristiche: cell line: MCF7 breast carcinoma cell line,agent: Full Media,genotype/growth protocol: Ductal and Lobular cells were grown in their own mediaÂ 
+        H5 sorgente      : MCF7-FM
+      GSM4613465
+        grezzo (Stadio 1): title: MCF7-FM RNA-seq rep2,source: MCF7-FM,cell line: MCF7 breast carcinoma cell line,agent: Full Media,genotype/growth protocol: Ductal and Lobular cells were grown in their own mediaÂ 
+        H5 titolo        : MCF7-FM RNA-seq rep2
+        H5 caratteristiche: cell line: MCF7 breast carcinoma cell line,agent: Full Media,genotype/growth protocol: Ductal and Lobular cells were grown in their own mediaÂ 
+        H5 sorgente      : MCF7-FM
+      GSM4613466
+        grezzo (Stadio 1): title: MCF7-FM RNA-seq rep3,source: MCF7-FM,cell line: MCF7 breast carcinoma cell line,agent: Full Media,genotype/growth protocol: Ductal and Lobular cells were grown in their own mediaÂ 
+        H5 titolo        : MCF7-FM RNA-seq rep3
+        H5 caratteristiche: cell line: MCF7 breast carcinoma cell line,agent: Full Media,genotype/growth protocol: Ductal and Lobular cells were grown in their own mediaÂ 
+        H5 sorgente      : MCF7-FM
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE123285     campioni nell'H5:   96 | collocati dallo Stadio 2:   96 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 27 campioni distinti (91 righe: i controlli servono piu' confronti)
+  GSE144378     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE152360     campioni nell'H5:   89 | collocati dallo Stadio 2:   89 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,331 @@
+META-ANALISI 051 di 194
+==============================================================================
+nome            : valproic acid
+entita (ID)     : CHEBI:39867
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_d7ad915e
+studi poolati   : 6   confronti: 8   campioni: 48
+geni significativi: 2971   I2 mediano: 68.6
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE167762__GSE167762__VPA_vs_untreated__1
+  studio: GSE167762
+  TRATTATO  (n=3)  etichetta Stadio 2: VPA
+      gruppo Stadio 2: grp_0005
+      GSM6063685
+        grezzo (Stadio 1): title: RNAseq_VPA_R1,source: embryonic kidney,cell-type: HEK293T,treatment: VPA,library strategy: RNA-seq
+        H5 titolo        : RNAseq_VPA_R1
+        H5 caratteristiche: cell-type: HEK293T,treatment: VPA,library strategy: RNA-seq
+        H5 sorgente      : embryonic kidney
+      GSM6063686
+        grezzo (Stadio 1): title: RNAseq_VPA_R2,source: embryonic kidney,cell-type: HEK293T,treatment: VPA,library strategy: RNA-seq
+        H5 titolo        : RNAseq_VPA_R2
+        H5 caratteristiche: cell-type: HEK293T,treatment: VPA,library strategy: RNA-seq
+        H5 sorgente      : embryonic kidney
+      GSM6063687
+        grezzo (Stadio 1): title: RNAseq_VPA_R3,source: embryonic kidney,cell-type: HEK293T,treatment: VPA,library strategy: RNA-seq
+        H5 titolo        : RNAseq_VPA_R3
+        H5 caratteristiche: cell-type: HEK293T,treatment: VPA,library strategy: RNA-seq
+        H5 sorgente      : embryonic kidney
+  CONTROLLO  (n=2)  etichetta Stadio 2: untreated
+      gruppo Stadio 2: grp_0003
+      GSM6063682
+        grezzo (Stadio 1): title: RNAseq_CTR_R1,source: embryonic kidney,cell-type: HEK293T,treatment: untreated,library strategy: RNA-seq
+        H5 titolo        : RNAseq_CTR_R1
+        H5 caratteristiche: cell-type: HEK293T,treatment: untreated,library strategy: RNA-seq
+        H5 sorgente      : embryonic kidney
+      GSM6063684
+        grezzo (Stadio 1): title: RNAseq_CTR_R3,source: embryonic kidney,cell-type: HEK293T,treatment: untreated,library strategy: RNA-seq
+        H5 titolo        : RNAseq_CTR_R3
+        H5 caratteristiche: cell-type: HEK293T,treatment: untreated,library strategy: RNA-seq
+        H5 sorgente      : embryonic kidney
+
+CONFRONTO  GSE187006__GSE187006__grp_0002_vs_grp_0001__1
+  studio: GSE187006
+  TRATTATO  (n=3)  etichetta Stadio 2: U1M Organoid VPA Treated
+      gruppo Stadio 2: grp_0002
+      GSM5665705
+        grezzo (Stadio 1): title: U1M-V1,source: U1M organoid,tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: VPA
+        H5 titolo        : U1M-V1
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: VPA
+        H5 sorgente      : U1M organoid
+      GSM5665706
+        grezzo (Stadio 1): title: U1M-V2,source: U1M organoid,tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: VPA
+        H5 titolo        : U1M-V2
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: VPA
+        H5 sorgente      : U1M organoid
+      GSM5665707
+        grezzo (Stadio 1): title: U1M-V3,source: U1M organoid,tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: VPA
+        H5 titolo        : U1M-V3
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: VPA
+        H5 sorgente      : U1M organoid
+  CONTROLLO  (n=3)  etichetta Stadio 2: U1M Organoid Vehicle Control
+      gruppo Stadio 2: grp_0001
+      GSM5665702
+        grezzo (Stadio 1): title: U1M-NC1,source: U1M organoid,tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: control
+        H5 titolo        : U1M-NC1
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: control
+        H5 sorgente      : U1M organoid
+      GSM5665703
+        grezzo (Stadio 1): title: U1M-NC2,source: U1M organoid,tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: control
+        H5 titolo        : U1M-NC2
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: control
+        H5 sorgente      : U1M organoid
+      GSM5665704
+        grezzo (Stadio 1): title: U1M-NC3,source: U1M organoid,tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: control
+        H5 titolo        : U1M-NC3
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U1M iPS cell line,treatment: control
+        H5 sorgente      : U1M organoid
+
+CONFRONTO  GSE187006__GSE187006__grp_0004_vs_grp_0003__1
+  studio: GSE187006
+  TRATTATO  (n=3)  etichetta Stadio 2: U2F Organoid VPA Treated
+      gruppo Stadio 2: grp_0004
+      GSM5665711
+        grezzo (Stadio 1): title: U2F-V2,source: U2F organoid,tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: VPA
+        H5 titolo        : U2F-V2
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: VPA
+        H5 sorgente      : U2F organoid
+      GSM5665712
+        grezzo (Stadio 1): title: U2F-V3,source: U2F organoid,tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: VPA
+        H5 titolo        : U2F-V3
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: VPA
+        H5 sorgente      : U2F organoid
+      GSM5665713
+        grezzo (Stadio 1): title: U2F-V4,source: U2F organoid,tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: VPA
+        H5 titolo        : U2F-V4
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: VPA
+        H5 sorgente      : U2F organoid
+  CONTROLLO  (n=2)  etichetta Stadio 2: U2F Organoid Vehicle Control
+      gruppo Stadio 2: grp_0003
+      GSM5665708
+        grezzo (Stadio 1): title: U2F-NC2,source: U2F organoid,tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: control
+        H5 titolo        : U2F-NC2
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: control
+        H5 sorgente      : U2F organoid
+      GSM5665709
+        grezzo (Stadio 1): title: U2F-NC3,source: U2F organoid,tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: control
+        H5 titolo        : U2F-NC3
+        H5 caratteristiche: tissue: forebrain organoids,tissue derived from: U2F iPS cell line,treatment: control
+        H5 sorgente      : U2F organoid
+
+CONFRONTO  GSE200186__GSE200186__dermal_fibroblasts_vpa_vs_dermal_fibroblasts_control__1
+  studio: GSE200186
+  TRATTATO  (n=3)  etichetta Stadio 2: Dermal fibroblasts VPA
+      gruppo Stadio 2: grp_dermal_fibroblasts_vpa
+      GSM6020539
+        grezzo (Stadio 1): title: Drug_response_fibroblasts_bulk.BF-VPA-1,source: Dermal fibroblasts, neonatal,treatment: VPA
+        H5 titolo        : Drug_response_fibroblasts_bulk.BF-VPA-1
+        H5 caratteristiche: treatment: VPA
+        H5 sorgente      : Dermal fibroblasts, neonatal
+      GSM6020540
+        grezzo (Stadio 1): title: Drug_response_fibroblasts_bulk.BF-VPA-2,source: Dermal fibroblasts, neonatal,treatment: VPA
+        H5 titolo        : Drug_response_fibroblasts_bulk.BF-VPA-2
+        H5 caratteristiche: treatment: VPA
+        H5 sorgente      : Dermal fibroblasts, neonatal
+      GSM6020541
+        grezzo (Stadio 1): title: Drug_response_fibroblasts_bulk.BF-VPA-3,source: Dermal fibroblasts, neonatal,treatment: VPA
+        H5 titolo        : Drug_response_fibroblasts_bulk.BF-VPA-3
+        H5 caratteristiche: treatment: VPA
+        H5 sorgente      : Dermal fibroblasts, neonatal
+  CONTROLLO  (n=3)  etichetta Stadio 2: Dermal fibroblasts Control
+      gruppo Stadio 2: grp_dermal_fibroblasts_control
+      GSM6020533
+        grezzo (Stadio 1): title: Drug_response_fibroblasts_bulk.BF-NR-1,source: Dermal fibroblasts, neonatal,treatment: Control
+        H5 titolo        : Drug_response_fibroblasts_bulk.BF-NR-1
+        H5 caratteristiche: treatment: Control
+        H5 sorgente      : Dermal fibroblasts, neonatal
+      GSM6020534
+        grezzo (Stadio 1): title: Drug_response_fibroblasts_bulk.BF-NR-2,source: Dermal fibroblasts, neonatal,treatment: Control
+        H5 titolo        : Drug_response_fibroblasts_bulk.BF-NR-2
+        H5 caratteristiche: treatment: Control
+        H5 sorgente      : Dermal fibroblasts, neonatal
+      GSM6020535
+        grezzo (Stadio 1): title: Drug_response_fibroblasts_bulk.BF-NR-3,source: Dermal fibroblasts, neonatal,treatment: Control
+        H5 titolo        : Drug_response_fibroblasts_bulk.BF-NR-3
+        H5 caratteristiche: treatment: Control
+        H5 sorgente      : Dermal fibroblasts, neonatal
+
+CONFRONTO  GSE229014__GSE229014__grp_0008_vs_grp_0001__1
+  studio: GSE229014
+  TRATTATO  (n=6)  etichetta Stadio 2: Valproic Acid Treated PBMCs
+      gruppo Stadio 2: grp_0008
+      GSM7147829
+        grezzo (Stadio 1): title: NB6,source: Blood,tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 titolo        : NB6
+        H5 caratteristiche: tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 sorgente      : Blood
+      GSM7147841
+        grezzo (Stadio 1): title: NB28,source: Blood,tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 titolo        : NB28
+        H5 caratteristiche: tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 sorgente      : Blood
+      GSM7147844
+        grezzo (Stadio 1): title: NB31,source: Blood,tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 titolo        : NB31
+        H5 caratteristiche: tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 sorgente      : Blood
+      GSM7147848
+        grezzo (Stadio 1): title: NB36,source: Blood,tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 titolo        : NB36
+        H5 caratteristiche: tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 sorgente      : Blood
+      GSM7147852
+        grezzo (Stadio 1): title: NB41,source: Blood,tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 titolo        : NB41
+        H5 caratteristiche: tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 sorgente      : Blood
+      GSM7147856
+        grezzo (Stadio 1): title: NB45,source: Blood,tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 titolo        : NB45
+        H5 caratteristiche: tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: Valproic acid
+        H5 sorgente      : Blood
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated PBMCs (Control)
+      gruppo Stadio 2: grp_0001
+      GSM7147825
+        grezzo (Stadio 1): title: NB1,source: Blood,tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: None
+        H5 titolo        : NB1
+        H5 caratteristiche: tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: None
+        H5 sorgente      : Blood
+      GSM7147836
+        grezzo (Stadio 1): title: NB23,source: Blood,tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: None
+        H5 titolo        : NB23
+        H5 caratteristiche: tissue: Blood,cell type: Peripheral blood mononuclear cells,treatment: None
+        H5 sorgente      : Blood
+
+CONFRONTO  GSE232218__GSE232218__VPA_200_uM_vs_vehicle_control__2
+  studio: GSE232218
+  TRATTATO  (n=3)  etichetta Stadio 2: VPA 200 uM
+      gruppo Stadio 2: grp_0006
+      GSM7321026
+        grezzo (Stadio 1): title: brain organoids, VPA200; rep1,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 200 uM
+        H5 titolo        : brain organoids, VPA200; rep1
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 200 uM
+        H5 sorgente      : brain organoids (day 6)
+      GSM7321030
+        grezzo (Stadio 1): title: brain organoids, VPA200; rep2,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 200 uM
+        H5 titolo        : brain organoids, VPA200; rep2
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 200 uM
+        H5 sorgente      : brain organoids (day 6)
+      GSM7321033
+        grezzo (Stadio 1): title: brain organoids, VPA200; rep3,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 200 uM
+        H5 titolo        : brain organoids, VPA200; rep3
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 200 uM
+        H5 sorgente      : brain organoids (day 6)
+  CONTROLLO  (n=3)  etichetta Stadio 2: vehicle control
+      gruppo Stadio 2: grp_0005
+      GSM7321025
+        grezzo (Stadio 1): title: brain organoids, Vehicle; rep2,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 titolo        : brain organoids, Vehicle; rep2
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 sorgente      : brain organoids (day 6)
+      GSM7321029
+        grezzo (Stadio 1): title: brain organoids, Vehicle; rep3,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 titolo        : brain organoids, Vehicle; rep3
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 sorgente      : brain organoids (day 6)
+      GSM7321035
+        grezzo (Stadio 1): title: brain organoids, Vehicle; rep4,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 titolo        : brain organoids, Vehicle; rep4
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 sorgente      : brain organoids (day 6)
+
+CONFRONTO  GSE232218__GSE232218__VPA_400_uM_vs_vehicle_control__2
+  studio: GSE232218
+  TRATTATO  (n=3)  etichetta Stadio 2: VPA 400 uM
+      gruppo Stadio 2: grp_0007
+      GSM7321027
+        grezzo (Stadio 1): title: brain organoids, VPA400; rep1,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 400 uM
+        H5 titolo        : brain organoids, VPA400; rep1
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 400 uM
+        H5 sorgente      : brain organoids (day 6)
+      GSM7321031
+        grezzo (Stadio 1): title: brain organoids, VPA400; rep2,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 400 uM
+        H5 titolo        : brain organoids, VPA400; rep2
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 400 uM
+        H5 sorgente      : brain organoids (day 6)
+      GSM7321034
+        grezzo (Stadio 1): title: brain organoids, VPA400; rep3,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 400 uM
+        H5 titolo        : brain organoids, VPA400; rep3
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: VPA; 400 uM
+        H5 sorgente      : brain organoids (day 6)
+  CONTROLLO  (n=3)  etichetta Stadio 2: vehicle control
+      gruppo Stadio 2: grp_0005
+      GSM7321025
+        grezzo (Stadio 1): title: brain organoids, Vehicle; rep2,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 titolo        : brain organoids, Vehicle; rep2
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 sorgente      : brain organoids (day 6)
+      GSM7321029
+        grezzo (Stadio 1): title: brain organoids, Vehicle; rep3,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 titolo        : brain organoids, Vehicle; rep3
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 sorgente      : brain organoids (day 6)
+      GSM7321035
+        grezzo (Stadio 1): title: brain organoids, Vehicle; rep4,source: brain organoids (day 6),tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 titolo        : brain organoids, Vehicle; rep4
+        H5 caratteristiche: tissue: brain organoids (day 6),cell line: iPSC (AICS-0023),Sex: male,treatment: vehicle control
+        H5 sorgente      : brain organoids (day 6)
+
+CONFRONTO  GSE241903__GSE241903__VPA_vs_Vehicle__1
+  studio: GSE241903
+  TRATTATO  (n=3)  etichetta Stadio 2: VPA
+      gruppo Stadio 2: grp_0003
+      GSM7745346
+        grezzo (Stadio 1): title: Spinal cord organoids, VPA 1,source: Whole spinal cord organoid,tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: VPA
+        H5 titolo        : Spinal cord organoids, VPA 1
+        H5 caratteristiche: tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: VPA
+        H5 sorgente      : Whole spinal cord organoid
+      GSM7745347
+        grezzo (Stadio 1): title: Spinal cord organoids, VPA 2,source: Whole spinal cord organoid,tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: VPA
+        H5 titolo        : Spinal cord organoids, VPA 2
+        H5 caratteristiche: tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: VPA
+        H5 sorgente      : Whole spinal cord organoid
+      GSM7745348
+        grezzo (Stadio 1): title: Spinal cord organoids, VPA 3,source: Whole spinal cord organoid,tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: VPA
+        H5 titolo        : Spinal cord organoids, VPA 3
+        H5 caratteristiche: tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: VPA
+        H5 sorgente      : Whole spinal cord organoid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle
+      gruppo Stadio 2: grp_0001
+      GSM7745343
+        grezzo (Stadio 1): title: Spinal cord organoids, FGF 1,source: Whole spinal cord organoid,tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: Vehicle
+        H5 titolo        : Spinal cord organoids, FGF 1
+        H5 caratteristiche: tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Whole spinal cord organoid
+      GSM7745344
+        grezzo (Stadio 1): title: Spinal cord organoids, FGF 2,source: Whole spinal cord organoid,tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: Vehicle
+        H5 titolo        : Spinal cord organoids, FGF 2
+        H5 caratteristiche: tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Whole spinal cord organoid
+      GSM7745345
+        grezzo (Stadio 1): title: Spinal cord organoids, FGF 3,source: Whole spinal cord organoid,tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: Vehicle
+        H5 titolo        : Spinal cord organoids, FGF 3
+        H5 caratteristiche: tissue: Whole spinal cord organoid,cell line: WTC,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Whole spinal cord organoid
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE167762     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE187006     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE200186     campioni nell'H5: 1179 | collocati dallo Stadio 2:   27 | MAI COLLOCATI: 1152 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6020560, GSM6020561, GSM6020562, GSM6020563, GSM6020564, GSM6020565, GSM6020566, GSM6020567, GSM6020568, GSM6020569, GSM6020570, GSM6020571 ... (+1140)
+  GSE229014     campioni nell'H5:   39 | collocati dallo Stadio 2:   38 | MAI COLLOCATI:    1 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+      mai collocati: GSM7147833
+  GSE232218     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE241903     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

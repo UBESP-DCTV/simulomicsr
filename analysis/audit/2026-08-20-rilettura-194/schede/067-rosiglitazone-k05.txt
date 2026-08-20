@@ -1,0 +1,431 @@
+META-ANALISI 067 di 194
+==============================================================================
+nome            : rosiglitazone
+entita (ID)     : CHEBI:50122
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_3eaa92c9
+studi poolati   : 5   confronti: 6   campioni: 71
+geni significativi: 562   I2 mediano: 58.6
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE115421__GSE115421__grp_0009_vs_grp_0005__1
+  studio: GSE115421
+  TRATTATO  (n=4)  etichetta Stadio 2: hASC-derived_adipocytes_rosiglitazone
+      gruppo Stadio 2: grp_0009
+      GSM3177935
+        grezzo (Stadio 1): title: P3_Adipocytes_Rosi_1,source: Adipocytes,agent: rosiglitazone,cell type: hASC-derived adipocytes
+        H5 titolo        : P3_Adipocytes_Rosi_1
+        H5 caratteristiche: agent: rosiglitazone,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177936
+        grezzo (Stadio 1): title: P3_Adipocytes_Rosi_2,source: Adipocytes,agent: rosiglitazone,cell type: hASC-derived adipocytes
+        H5 titolo        : P3_Adipocytes_Rosi_2
+        H5 caratteristiche: agent: rosiglitazone,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177937
+        grezzo (Stadio 1): title: P3_Adipocytes_Rosi_3,source: Adipocytes,agent: rosiglitazone,cell type: hASC-derived adipocytes
+        H5 titolo        : P3_Adipocytes_Rosi_3
+        H5 caratteristiche: agent: rosiglitazone,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177942
+        grezzo (Stadio 1): title: P4_Adipocytes_Rosi_2,source: Adipocytes,agent: rosiglitazone,cell type: hASC-derived adipocytes
+        H5 titolo        : P4_Adipocytes_Rosi_2
+        H5 caratteristiche: agent: rosiglitazone,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+  CONTROLLO  (n=15)  etichetta Stadio 2: hASC-derived_adipocytes_DMSO
+      gruppo Stadio 2: grp_0005
+      GSM3177920
+        grezzo (Stadio 1): title: P1_Adipocytes_DMSO_1,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P1_Adipocytes_DMSO_1
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177921
+        grezzo (Stadio 1): title: P1_Adipocytes_DMSO_2,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P1_Adipocytes_DMSO_2
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177922
+        grezzo (Stadio 1): title: P1_Adipocytes_DMSO_3,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P1_Adipocytes_DMSO_3
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177926
+        grezzo (Stadio 1): title: P2_Adipocytes_DMSO_1,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P2_Adipocytes_DMSO_1
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177927
+        grezzo (Stadio 1): title: P2_Adipocytes_DMSO_2,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P2_Adipocytes_DMSO_2
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177928
+        grezzo (Stadio 1): title: P2_Adipocytes_DMSO_3,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P2_Adipocytes_DMSO_3
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177932
+        grezzo (Stadio 1): title: P3_Adipocytes_DMSO_1,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P3_Adipocytes_DMSO_1
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177933
+        grezzo (Stadio 1): title: P3_Adipocytes_DMSO_2,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P3_Adipocytes_DMSO_2
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177934
+        grezzo (Stadio 1): title: P3_Adipocytes_DMSO_3,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P3_Adipocytes_DMSO_3
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177938
+        grezzo (Stadio 1): title: P4_Adipocytes_DMSO_1,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P4_Adipocytes_DMSO_1
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177939
+        grezzo (Stadio 1): title: P4_Adipocytes_DMSO_2,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P4_Adipocytes_DMSO_2
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177940
+        grezzo (Stadio 1): title: P4_Adipocytes_DMSO_3,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P4_Adipocytes_DMSO_3
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177944
+        grezzo (Stadio 1): title: P5_Adipocytes_DMSO_1,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P5_Adipocytes_DMSO_1
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177945
+        grezzo (Stadio 1): title: P5_Adipocytes_DMSO_2,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P5_Adipocytes_DMSO_2
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+      GSM3177946
+        grezzo (Stadio 1): title: P5_Adipocytes_DMSO_3,source: Adipocytes,agent: DMSO,cell type: hASC-derived adipocytes
+        H5 titolo        : P5_Adipocytes_DMSO_3
+        H5 caratteristiche: agent: DMSO,cell type: hASC-derived adipocytes
+        H5 sorgente      : Adipocytes
+
+CONFRONTO  GSE179347__GSE179347__HMCL7304_EMEM_vs_HMCL7304_ROSIGLITAZONE__1
+  studio: GSE179347
+  TRATTATO  (n=3)  etichetta Stadio 2: HMCL-7304 cells treated with ROSIGLITAZONE
+      gruppo Stadio 2: mg65
+      GSM5415926
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 treated with ROSIGLITAZONE at 2uM concentration K_07_01,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 titolo        : RNA-Seq of  HMCL-7304 treated with ROSIGLITAZONE at 2uM concentration K_07_01
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 sorgente      : muscle skeletal
+      GSM5415927
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 treated with ROSIGLITAZONE at 2uM concentration K_07_02,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 titolo        : RNA-Seq of  HMCL-7304 treated with ROSIGLITAZONE at 2uM concentration K_07_02
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 sorgente      : muscle skeletal
+      GSM5415928
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 treated with ROSIGLITAZONE at 2uM concentration K_07_03,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 titolo        : RNA-Seq of  HMCL-7304 treated with ROSIGLITAZONE at 2uM concentration K_07_03
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 sorgente      : muscle skeletal
+  CONTROLLO  (n=2)  etichetta Stadio 2: HMCL-7304 CONTROL (EMPTY EMEM MEDIUM)
+      gruppo Stadio 2: mg4
+      GSM5415910
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 CONTROL K_01_03,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 1,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  HMCL-7304 CONTROL K_01_03
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 1,treatment_concentration: N/A
+        H5 sorgente      : muscle skeletal
+      GSM5415980
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 CONTROL K_25_01,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  HMCL-7304 CONTROL K_25_01
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : muscle skeletal
+
+CONFRONTO  GSE179347__GSE179347__SGBS_EMEM_vs_SGBS_ROSIGLITAZONE__1
+  studio: GSE179347
+  TRATTATO  (n=3)  etichetta Stadio 2: SGBS cells treated with ROSIGLITAZONE
+      gruppo Stadio 2: mg85
+      GSM5415849
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with ROSIGLITAZONE at 2uM concentration B_7_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 titolo        : RNA-Seq of  SGBS treated with ROSIGLITAZONE at 2uM concentration B_7_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 sorgente      : adipose
+      GSM5415850
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with ROSIGLITAZONE at 2uM concentration B_7_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 titolo        : RNA-Seq of  SGBS treated with ROSIGLITAZONE at 2uM concentration B_7_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 sorgente      : adipose
+      GSM5415851
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with ROSIGLITAZONE at 2uM concentration B_7_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 titolo        : RNA-Seq of  SGBS treated with ROSIGLITAZONE at 2uM concentration B_7_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: ROSIGLITAZONE,treatment_concentration: 2uM
+        H5 sorgente      : adipose
+  CONTROLLO  (n=9)  etichetta Stadio 2: SGBS CONTROL (EMPTY EMEM MEDIUM)
+      gruppo Stadio 2: mg8
+      GSM5415855
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415856
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415857
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415878
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415879
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415880
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415902
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415903
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415904
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+
+CONFRONTO  GSE210693__GSE210693__grp_0004_vs_grp_0007__1
+  studio: GSE210693
+  TRATTATO  (n=2)  etichetta Stadio 2: HT-1197 + rosiglitazone
+      gruppo Stadio 2: grp_0004
+      GSM6435562
+        grezzo (Stadio 1): title: HT-1197_Rosiglitazone_rep_1,source: HT-1197,cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: rosiglitazone 500nM,time: 24 hours
+        H5 titolo        : HT-1197_Rosiglitazone_rep_1
+        H5 caratteristiche: cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: rosiglitazone 500nM,time: 24 hours
+        H5 sorgente      : HT-1197
+      GSM6435563
+        grezzo (Stadio 1): title: HT-1197_Rosiglitazone_rep_2,source: HT-1197,cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: rosiglitazone 500nM,time: 24 hours
+        H5 titolo        : HT-1197_Rosiglitazone_rep_2
+        H5 caratteristiche: cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: rosiglitazone 500nM,time: 24 hours
+        H5 sorgente      : HT-1197
+  CONTROLLO  (n=3)  etichetta Stadio 2: HT-1197 + DMSO
+      gruppo Stadio 2: grp_0007
+      GSM6435559
+        grezzo (Stadio 1): title: HT-1197_DMSO_rep_1,source: HT-1197,cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: DMSO (Vehicle),time: 24 hours
+        H5 titolo        : HT-1197_DMSO_rep_1
+        H5 caratteristiche: cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: DMSO (Vehicle),time: 24 hours
+        H5 sorgente      : HT-1197
+      GSM6435560
+        grezzo (Stadio 1): title: HT-1197_DMSO_rep_2,source: HT-1197,cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: DMSO (Vehicle),time: 24 hours
+        H5 titolo        : HT-1197_DMSO_rep_2
+        H5 caratteristiche: cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: DMSO (Vehicle),time: 24 hours
+        H5 sorgente      : HT-1197
+      GSM6435561
+        grezzo (Stadio 1): title: HT-1197_DMSO_rep_3,source: HT-1197,cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: DMSO (Vehicle),time: 24 hours
+        H5 titolo        : HT-1197_DMSO_rep_3
+        H5 caratteristiche: cell line: HT-1197,cell type: Urinary Bladder Carcinoma,treatment: DMSO (Vehicle),time: 24 hours
+        H5 sorgente      : HT-1197
+
+CONFRONTO  GSE217421__GSE217421__DMSO_1_vs_Rosiglitazone__1
+  studio: GSE217421
+  TRATTATO  (n=12)  etichetta Stadio 2: Rosiglitazone-treated cardiac myocytes
+      gruppo Stadio 2: mg80
+      GSM6717999
+        grezzo (Stadio 1): title: ROS MSN01-03R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: C12,investigative unit: 150,sample id: 41,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 37,rna volume (ul): 5.40540540540541,h2o volume (ul): 11.5945945945946
+        H5 titolo        : ROS MSN01-03R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: C12,investigative unit: 150,sample id: 41,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 37,rna volume (ul): 5.40540540540541,h2o volume (ul): 11.5945945945946
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718000
+        grezzo (Stadio 1): title: ROS MSN01-03R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: G8,investigative unit: 164,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 40.4,rna volume (ul): 4.95049504950495,h2o volume (ul): 12.049504950495
+        H5 titolo        : ROS MSN01-03R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: G8,investigative unit: 164,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 40.4,rna volume (ul): 4.95049504950495,h2o volume (ul): 12.049504950495
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718001
+        grezzo (Stadio 1): title: ROS MSN01-03R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: F9,investigative unit: 176,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 40.4,rna volume (ul): 4.95049504950495,h2o volume (ul): 12.049504950495
+        H5 titolo        : ROS MSN01-03R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: F9,investigative unit: 176,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 40.4,rna volume (ul): 4.95049504950495,h2o volume (ul): 12.049504950495
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718004
+        grezzo (Stadio 1): title: ROS MSN02-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: E4,investigative unit: 148,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 39.8,rna volume (ul): 5.0251256281407,h2o volume (ul): 11.9748743718593
+        H5 titolo        : ROS MSN02-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: E4,investigative unit: 148,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 39.8,rna volume (ul): 5.0251256281407,h2o volume (ul): 11.9748743718593
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718005
+        grezzo (Stadio 1): title: ROS MSN02-04R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: E5,investigative unit: 152,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 59.8,rna volume (ul): 3.34448160535117,h2o volume (ul): 13.6555183946488
+        H5 titolo        : ROS MSN02-04R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: E5,investigative unit: 152,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 59.8,rna volume (ul): 3.34448160535117,h2o volume (ul): 13.6555183946488
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718006
+        grezzo (Stadio 1): title: ROS MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: E6,investigative unit: 153,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 48,rna volume (ul): 4.16666666666667,h2o volume (ul): 12.8333333333333
+        H5 titolo        : ROS MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: E6,investigative unit: 153,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 48,rna volume (ul): 4.16666666666667,h2o volume (ul): 12.8333333333333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718008
+        grezzo (Stadio 1): title: ROS MSN05-01R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: G7,investigative unit: 184,sample id: 41,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 82.8,rna volume (ul): 2.41545893719807,h2o volume (ul): 14.5845410628019
+        H5 titolo        : ROS MSN05-01R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: G7,investigative unit: 184,sample id: 41,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 82.8,rna volume (ul): 2.41545893719807,h2o volume (ul): 14.5845410628019
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718010
+        grezzo (Stadio 1): title: ROS MSN05-01R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: C4,investigative unit: 188,sample id: 3,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 78,rna volume (ul): 2.56410256410256,h2o volume (ul): 14.4358974358974
+        H5 titolo        : ROS MSN05-01R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: C4,investigative unit: 188,sample id: 3,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 78,rna volume (ul): 2.56410256410256,h2o volume (ul): 14.4358974358974
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718011
+        grezzo (Stadio 1): title: ROS MSN06-07R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: G8,investigative unit: 149,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 58,rna volume (ul): 3.44827586206897,h2o volume (ul): 13.551724137931
+        H5 titolo        : ROS MSN06-07R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: G8,investigative unit: 149,sample id: 2,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 58,rna volume (ul): 3.44827586206897,h2o volume (ul): 13.551724137931
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718012
+        grezzo (Stadio 1): title: ROS MSN06-07R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: B10,investigative unit: 160,sample id: 3,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 43.8,rna volume (ul): 4.5662100456621,h2o volume (ul): 12.4337899543379
+        H5 titolo        : ROS MSN06-07R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: B10,investigative unit: 160,sample id: 3,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 43.8,rna volume (ul): 4.5662100456621,h2o volume (ul): 12.4337899543379
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718014
+        grezzo (Stadio 1): title: ROS MSN08-13R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: C1,investigative unit: 162,sample id: 27,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 49,rna volume (ul): 4.08163265306122,h2o volume (ul): 12.9183673469388
+        H5 titolo        : ROS MSN08-13R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: C1,investigative unit: 162,sample id: 27,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 49,rna volume (ul): 4.08163265306122,h2o volume (ul): 12.9183673469388
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718018
+        grezzo (Stadio 1): title: ROS MSN09-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: H8,investigative unit: 166,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 49.8,rna volume (ul): 4.01606425702811,h2o volume (ul): 12.9839357429719
+        H5 titolo        : ROS MSN09-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: ROS,drug name: Rosiglitazone,concentration: 1uM,well: H8,investigative unit: 166,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 49.8,rna volume (ul): 4.01606425702811,h2o volume (ul): 12.9839357429719
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE77039__GSE77039__Rosiglitazone_48hr_vs_DMSO_48hr__1
+  studio: GSE77039
+  TRATTATO  (n=2)  etichetta Stadio 2: Rosiglitazone 48hr
+      gruppo Stadio 2: grp_Rosiglitazone_48hr
+      GSM2042945
+        grezzo (Stadio 1): title: HT29_RNAseq_48h_Rosiglitazone_Rep1,source: HT29_RNAseq_48h_Rosiglitazone,cell line: HT29,cell type: colorectal adenocarcinoma,agent: Rosiglitazone,time: 48hr,chip antibody: N/A
+        H5 titolo        : HT29_RNAseq_48h_Rosiglitazone_Rep1
+        H5 caratteristiche: cell line: HT29,cell type: colorectal adenocarcinoma,agent: Rosiglitazone,time: 48hr,chip antibody: N/A
+        H5 sorgente      : HT29_RNAseq_48h_Rosiglitazone
+      GSM2042946
+        grezzo (Stadio 1): title: HT29_RNAseq_48h_Rosiglitazone_Rep2,source: HT29_RNAseq_48h_Rosiglitazone,cell line: HT29,cell type: colorectal adenocarcinoma,agent: Rosiglitazone,time: 48hr,chip antibody: N/A
+        H5 titolo        : HT29_RNAseq_48h_Rosiglitazone_Rep2
+        H5 caratteristiche: cell line: HT29,cell type: colorectal adenocarcinoma,agent: Rosiglitazone,time: 48hr,chip antibody: N/A
+        H5 sorgente      : HT29_RNAseq_48h_Rosiglitazone
+  CONTROLLO  (n=4)  etichetta Stadio 2: DMSO 48hr
+      gruppo Stadio 2: grp_DMSO_48hr
+      GSM2042933
+        grezzo (Stadio 1): title: HT29_RNAseq_48h_DMSO_Rep1,source: HT29_RNAseq_48h_DMSO,cell line: HT29,cell type: colorectal adenocarcinoma,agent: DMSO,time: 48hr,chip antibody: N/A
+        H5 titolo        : HT29_RNAseq_48h_DMSO_Rep1
+        H5 caratteristiche: cell line: HT29,cell type: colorectal adenocarcinoma,agent: DMSO,time: 48hr,chip antibody: N/A
+        H5 sorgente      : HT29_RNAseq_48h_DMSO
+      GSM2042934
+        grezzo (Stadio 1): title: HT29_RNAseq_48h_DMSO_Rep2,source: HT29_RNAseq_48h_DMSO,cell line: HT29,cell type: colorectal adenocarcinoma,agent: DMSO,time: 48hr,chip antibody: N/A
+        H5 titolo        : HT29_RNAseq_48h_DMSO_Rep2
+        H5 caratteristiche: cell line: HT29,cell type: colorectal adenocarcinoma,agent: DMSO,time: 48hr,chip antibody: N/A
+        H5 sorgente      : HT29_RNAseq_48h_DMSO
+      GSM2042935
+        grezzo (Stadio 1): title: HT29_RNAseq_48h_DMSO_Rep3,source: HT29_RNAseq_48h_DMSO,cell line: HT29,cell type: colorectal adenocarcinoma,agent: DMSO,time: 48hr,chip antibody: N/A
+        H5 titolo        : HT29_RNAseq_48h_DMSO_Rep3
+        H5 caratteristiche: cell line: HT29,cell type: colorectal adenocarcinoma,agent: DMSO,time: 48hr,chip antibody: N/A
+        H5 sorgente      : HT29_RNAseq_48h_DMSO
+      GSM2042936
+        grezzo (Stadio 1): title: HT29_RNAseq_48h_DMSO_Rep4,source: HT29_RNAseq_48h_DMSO,cell line: HT29,cell type: colorectal adenocarcinoma,agent: DMSO,time: 48hr,chip antibody: N/A
+        H5 titolo        : HT29_RNAseq_48h_DMSO_Rep4
+        H5 caratteristiche: cell line: HT29,cell type: colorectal adenocarcinoma,agent: DMSO,time: 48hr,chip antibody: N/A
+        H5 sorgente      : HT29_RNAseq_48h_DMSO
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE115421     campioni nell'H5:   51 | collocati dallo Stadio 2:   51 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 19 campioni distinti (19 righe: i controlli servono piu' confronti)
+  GSE179347     campioni nell'H5:  238 | collocati dallo Stadio 2:  238 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 17 campioni distinti (17 righe: i controlli servono piu' confronti)
+  GSE210693     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE217421     campioni nell'H5: 1170 | collocati dallo Stadio 2:  913 | MAI COLLOCATI:  257 | usati in questa meta-analisi: 24 campioni distinti (24 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6717095, GSM6717097, GSM6717100, GSM6717101, GSM6717102, GSM6717103, GSM6717104, GSM6717106, GSM6717107, GSM6717108, GSM6717111, GSM6717112 ... (+245)
+  GSE77039      campioni nell'H5:   32 | collocati dallo Stadio 2:   26 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+      mai collocati: GSM2042924, GSM2042927, GSM2042929, GSM2042941, GSM2042943, GSM2042947
+

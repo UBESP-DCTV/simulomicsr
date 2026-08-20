@@ -1,0 +1,856 @@
+META-ANALISI 012 di 194
+==============================================================================
+nome            : IFNG
+entita (ID)     : HGNC:5438
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_87c40ebb
+studi poolati   : 16   confronti: 23   campioni: 130
+geni significativi: 1939   I2 mediano: 91.9
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE135458__GSE135458__grp_0002_vs_grp_0001__1
+  studio: GSE135458
+  TRATTATO  (n=2)  etichetta Stadio 2: HCT116 E33Q MED12 knock-in IFN-gamma
+      gruppo Stadio 2: grp_0002
+      GSM4010653
+        grezzo (Stadio 1): title: KI1_24h,source: HCT116 E33Q MED12 knock-in,cell line: HCT116 E33Q MED12 knock-in,tissue: colon,crispr-cas9 knock-in: E33Q MED12,treatment: 24 hours treatment with  Interferon-gamma (IFN-gamma)
+        H5 titolo        : KI1_24h
+        H5 caratteristiche: cell line: HCT116 E33Q MED12 knock-in,tissue: colon,crispr-cas9 knock-in: E33Q MED12,treatment: 24 hours treatment with  Interferon-gamma (IFN-gamma)
+        H5 sorgente      : HCT116 E33Q MED12 knock-in
+      GSM4010654
+        grezzo (Stadio 1): title: KI2_24h,source: HCT116 E33Q MED12 knock-in,cell line: HCT116 E33Q MED12 knock-in,tissue: colon,crispr-cas9 knock-in: E33Q MED12,treatment: 24 hours treatment with  Interferon-gamma (IFN-gamma)
+        H5 titolo        : KI2_24h
+        H5 caratteristiche: cell line: HCT116 E33Q MED12 knock-in,tissue: colon,crispr-cas9 knock-in: E33Q MED12,treatment: 24 hours treatment with  Interferon-gamma (IFN-gamma)
+        H5 sorgente      : HCT116 E33Q MED12 knock-in
+  CONTROLLO  (n=2)  etichetta Stadio 2: HCT116 E33Q MED12 knock-in untreated
+      gruppo Stadio 2: grp_0001
+      GSM4010651
+        grezzo (Stadio 1): title: KI1_0h,source: HCT116 E33Q MED12 knock-in,cell line: HCT116 E33Q MED12 knock-in,tissue: colon,crispr-cas9 knock-in: E33Q MED12,treatment: untreated
+        H5 titolo        : KI1_0h
+        H5 caratteristiche: cell line: HCT116 E33Q MED12 knock-in,tissue: colon,crispr-cas9 knock-in: E33Q MED12,treatment: untreated
+        H5 sorgente      : HCT116 E33Q MED12 knock-in
+      GSM4010652
+        grezzo (Stadio 1): title: KI2_0h,source: HCT116 E33Q MED12 knock-in,cell line: HCT116 E33Q MED12 knock-in,tissue: colon,crispr-cas9 knock-in: E33Q MED12,treatment: untreated
+        H5 titolo        : KI2_0h
+        H5 caratteristiche: cell line: HCT116 E33Q MED12 knock-in,tissue: colon,crispr-cas9 knock-in: E33Q MED12,treatment: untreated
+        H5 sorgente      : HCT116 E33Q MED12 knock-in
+
+CONFRONTO  GSE135458__GSE135458__grp_0004_vs_grp_0003__1
+  studio: GSE135458
+  TRATTATO  (n=2)  etichetta Stadio 2: HCT116 IFN-gamma
+      gruppo Stadio 2: grp_0004
+      GSM4010649
+        grezzo (Stadio 1): title: WT1_24h,source: HCT116,cell line: HCT116,tissue: colon,crispr-cas9 knock-in: Wild-type,treatment: 24 hours treatment with  Interferon-gamma (IFN-gamma)
+        H5 titolo        : WT1_24h
+        H5 caratteristiche: cell line: HCT116,tissue: colon,crispr-cas9 knock-in: Wild-type,treatment: 24 hours treatment with  Interferon-gamma (IFN-gamma)
+        H5 sorgente      : HCT116
+      GSM4010650
+        grezzo (Stadio 1): title: WT2_24h,source: HCT116,cell line: HCT116,tissue: colon,crispr-cas9 knock-in: Wild-type,treatment: 24 hours treatment with  Interferon-gamma (IFN-gamma)
+        H5 titolo        : WT2_24h
+        H5 caratteristiche: cell line: HCT116,tissue: colon,crispr-cas9 knock-in: Wild-type,treatment: 24 hours treatment with  Interferon-gamma (IFN-gamma)
+        H5 sorgente      : HCT116
+  CONTROLLO  (n=2)  etichetta Stadio 2: HCT116 untreated
+      gruppo Stadio 2: grp_0003
+      GSM4010647
+        grezzo (Stadio 1): title: WT1_0h,source: HCT116,cell line: HCT116,tissue: colon,crispr-cas9 knock-in: Wild-type,treatment: untreated
+        H5 titolo        : WT1_0h
+        H5 caratteristiche: cell line: HCT116,tissue: colon,crispr-cas9 knock-in: Wild-type,treatment: untreated
+        H5 sorgente      : HCT116
+      GSM4010648
+        grezzo (Stadio 1): title: WT2_0h,source: HCT116,cell line: HCT116,tissue: colon,crispr-cas9 knock-in: Wild-type,treatment: untreated
+        H5 titolo        : WT2_0h
+        H5 caratteristiche: cell line: HCT116,tissue: colon,crispr-cas9 knock-in: Wild-type,treatment: untreated
+        H5 sorgente      : HCT116
+
+CONFRONTO  GSE141585__GSE141585__grp_0004_vs_grp_0001__1
+  studio: GSE141585
+  TRATTATO  (n=3)  etichetta Stadio 2: IFN-γ
+      gruppo Stadio 2: grp_0004
+      GSM4209227
+        grezzo (Stadio 1): title: IFN-Î³ 1,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: IFN-Î³
+        H5 titolo        : IFN-Î³ 1
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: IFN-Î³
+        H5 sorgente      : malignant melanoma
+      GSM4209228
+        grezzo (Stadio 1): title: IFN-Î³ 2,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: IFN-Î³
+        H5 titolo        : IFN-Î³ 2
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: IFN-Î³
+        H5 sorgente      : malignant melanoma
+      GSM4209229
+        grezzo (Stadio 1): title: IFN-Î³ 3,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: IFN-Î³
+        H5 titolo        : IFN-Î³ 3
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: IFN-Î³
+        H5 sorgente      : malignant melanoma
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM4209221
+        grezzo (Stadio 1): title: Control 1,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: none
+        H5 titolo        : Control 1
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: none
+        H5 sorgente      : malignant melanoma
+      GSM4209223
+        grezzo (Stadio 1): title: Control 3,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: none
+        H5 titolo        : Control 3
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: none
+        H5 sorgente      : malignant melanoma
+
+CONFRONTO  GSE141585__GSE141585__grp_0005_vs_grp_0001__1
+  studio: GSE141585
+  TRATTATO  (n=2)  etichetta Stadio 2: SB-3CT + IFN-γ
+      gruppo Stadio 2: grp_0005
+      GSM4209231
+        grezzo (Stadio 1): title: SB-3CT+IFN-Î³ 2,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: SB-3CT + IFN-Î³
+        H5 titolo        : SB-3CT+IFN-Î³ 2
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: SB-3CT + IFN-Î³
+        H5 sorgente      : malignant melanoma
+      GSM4209232
+        grezzo (Stadio 1): title: SB-3CT+IFN-Î³ 3,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: SB-3CT + IFN-Î³
+        H5 titolo        : SB-3CT+IFN-Î³ 3
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: SB-3CT + IFN-Î³
+        H5 sorgente      : malignant melanoma
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM4209221
+        grezzo (Stadio 1): title: Control 1,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: none
+        H5 titolo        : Control 1
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: none
+        H5 sorgente      : malignant melanoma
+      GSM4209223
+        grezzo (Stadio 1): title: Control 3,source: malignant melanoma,cell line: A375 melanoma,tissue: skin,treated: none
+        H5 titolo        : Control 3
+        H5 caratteristiche: cell line: A375 melanoma,tissue: skin,treated: none
+        H5 sorgente      : malignant melanoma
+
+CONFRONTO  GSE144484__GSE144484__grp_0002_vs_grp_0001__1
+  studio: GSE144484
+  TRATTATO  (n=3)  etichetta Stadio 2: U2OS Osteosarcoma + IFNG
+      gruppo Stadio 2: grp_0002
+      GSM4289036
+        grezzo (Stadio 1): title: Mock cells with IFNG - replicate 1,source: Bone,cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 titolo        : Mock cells with IFNG - replicate 1
+        H5 caratteristiche: cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 sorgente      : Bone
+      GSM4289037
+        grezzo (Stadio 1): title: Mock cells with IFNG - replicate 2,source: Bone,cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 titolo        : Mock cells with IFNG - replicate 2
+        H5 caratteristiche: cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 sorgente      : Bone
+      GSM4289038
+        grezzo (Stadio 1): title: Mock cells with IFNG - replicate 3,source: Bone,cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 titolo        : Mock cells with IFNG - replicate 3
+        H5 caratteristiche: cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 sorgente      : Bone
+  CONTROLLO  (n=3)  etichetta Stadio 2: U2OS Osteosarcoma Control
+      gruppo Stadio 2: grp_0001
+      GSM4289033
+        grezzo (Stadio 1): title: Mock cells without IFNG - replicate 1,source: Bone,cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 titolo        : Mock cells without IFNG - replicate 1
+        H5 caratteristiche: cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 sorgente      : Bone
+      GSM4289034
+        grezzo (Stadio 1): title: Mock cells without IFNG - replicate 2,source: Bone,cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 titolo        : Mock cells without IFNG - replicate 2
+        H5 caratteristiche: cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 sorgente      : Bone
+      GSM4289035
+        grezzo (Stadio 1): title: Mock cells without IFNG - replicate 3,source: Bone,cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 titolo        : Mock cells without IFNG - replicate 3
+        H5 caratteristiche: cell line: U2OS,tumor type: Osteosarcoma,genotype: MLLT6-wildtype
+        H5 sorgente      : Bone
+
+CONFRONTO  GSE158434__GSE158434__Interferon_gamma_vs_Mock__1
+  studio: GSE158434
+  TRATTATO  (n=3)  etichetta Stadio 2: Interferon-gamma
+      gruppo Stadio 2: grp_Interferon_gamma
+      GSM4800189
+        grezzo (Stadio 1): title: 14566X10 Interferon-gamma,source: Peripheral blood monocyte-derived macrophages,cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Interferon-gamma
+        H5 titolo        : 14566X10 Interferon-gamma
+        H5 caratteristiche: cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Interferon-gamma
+        H5 sorgente      : Peripheral blood monocyte-derived macrophages
+      GSM4800190
+        grezzo (Stadio 1): title: 14566X11 Interferon-gamma,source: Peripheral blood monocyte-derived macrophages,cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Interferon-gamma
+        H5 titolo        : 14566X11 Interferon-gamma
+        H5 caratteristiche: cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Interferon-gamma
+        H5 sorgente      : Peripheral blood monocyte-derived macrophages
+      GSM4800191
+        grezzo (Stadio 1): title: 14566X12 Interferon-gamma,source: Peripheral blood monocyte-derived macrophages,cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Interferon-gamma
+        H5 titolo        : 14566X12 Interferon-gamma
+        H5 caratteristiche: cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Interferon-gamma
+        H5 sorgente      : Peripheral blood monocyte-derived macrophages
+  CONTROLLO  (n=3)  etichetta Stadio 2: Mock
+      gruppo Stadio 2: grp_Mock
+      GSM4800180
+        grezzo (Stadio 1): title: 14566X1 Mock,source: Peripheral blood monocyte-derived macrophages,cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Mock
+        H5 titolo        : 14566X1 Mock
+        H5 caratteristiche: cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Mock
+        H5 sorgente      : Peripheral blood monocyte-derived macrophages
+      GSM4800181
+        grezzo (Stadio 1): title: 14566X2 Mock,source: Peripheral blood monocyte-derived macrophages,cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Mock
+        H5 titolo        : 14566X2 Mock
+        H5 caratteristiche: cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Mock
+        H5 sorgente      : Peripheral blood monocyte-derived macrophages
+      GSM4800182
+        grezzo (Stadio 1): title: 14566X3 Mock,source: Peripheral blood monocyte-derived macrophages,cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Mock
+        H5 titolo        : 14566X3 Mock
+        H5 caratteristiche: cell type: Peripheral blood monocyte-derived macrophages,age: 29,Sex: male,treatment: Mock
+        H5 sorgente      : Peripheral blood monocyte-derived macrophages
+
+CONFRONTO  GSE158814__GSE158814__IFNgamma_44hrs_vs_untreated__1
+  studio: GSE158814
+  TRATTATO  (n=2)  etichetta Stadio 2: IFN-γ stimulation (44hrs)
+      gruppo Stadio 2: grp_0003
+      GSM4811107
+        grezzo (Stadio 1): title: IFN-Î³ 44_Ctrl_1,source: cervix,tissue: cervix,cell line: HeLa229,treatment: IFN-É£ treatment for 44hrs
+        H5 titolo        : IFN-Î³ 44_Ctrl_1
+        H5 caratteristiche: tissue: cervix,cell line: HeLa229,treatment: IFN-É£ treatment for 44hrs
+        H5 sorgente      : cervix
+      GSM4811108
+        grezzo (Stadio 1): title: IFN-Î³ 44_Ctrl_2,source: cervix,tissue: cervix,cell line: HeLa229,treatment: IFN-É£ treatment for 44hrs
+        H5 titolo        : IFN-Î³ 44_Ctrl_2
+        H5 caratteristiche: tissue: cervix,cell line: HeLa229,treatment: IFN-É£ treatment for 44hrs
+        H5 sorgente      : cervix
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0004
+      GSM4811091
+        grezzo (Stadio 1): title: NC_1,source: cervix,tissue: cervix,cell line: HeLa229,treatment: untreated
+        H5 titolo        : NC_1
+        H5 caratteristiche: tissue: cervix,cell line: HeLa229,treatment: untreated
+        H5 sorgente      : cervix
+      GSM4811092
+        grezzo (Stadio 1): title: NC_2,source: cervix,tissue: cervix,cell line: HeLa229,treatment: untreated
+        H5 titolo        : NC_2
+        H5 caratteristiche: tissue: cervix,cell line: HeLa229,treatment: untreated
+        H5 sorgente      : cervix
+
+CONFRONTO  GSE161664__GSE161664__IFNg_vs_Control__1
+  studio: GSE161664
+  TRATTATO  (n=3)  etichetta Stadio 2: IFNg
+      gruppo Stadio 2: grp_0012
+      GSM4912465
+        grezzo (Stadio 1): title: RNA-seq-SAEC_IFNg_rep1,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: IFNg
+        H5 titolo        : RNA-seq-SAEC_IFNg_rep1
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: IFNg
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912466
+        grezzo (Stadio 1): title: RNA-seq-SAEC_IFNg_rep2,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: IFNg
+        H5 titolo        : RNA-seq-SAEC_IFNg_rep2
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: IFNg
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912467
+        grezzo (Stadio 1): title: RNA-seq-SAEC_IFNg_rep3,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: IFNg
+        H5 titolo        : RNA-seq-SAEC_IFNg_rep3
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: IFNg
+        H5 sorgente      : small airway epithelial cells (SAEC)
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0004
+      GSM4912446
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep1,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep1
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912447
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep2,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep2
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912448
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep3,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep3
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912449
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep4,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep4
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+
+CONFRONTO  GSE161916__GSE161916__IFNg_vs_Untreated__1
+  studio: GSE161916
+  TRATTATO  (n=2)  etichetta Stadio 2: IFNg
+      gruppo Stadio 2: grp_0011
+      GSM4923340
+        grezzo (Stadio 1): title: RNA-seq-HPPT_IFNg_rep1,source: human primary proximal tubule cells,treatment: IFNg,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_IFNg_rep1
+        H5 caratteristiche: treatment: IFNg,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923342
+        grezzo (Stadio 1): title: RNA-seq-HPPT_IFNg_rep3,source: human primary proximal tubule cells,treatment: IFNg,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_IFNg_rep3
+        H5 caratteristiche: treatment: IFNg,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0010
+      GSM4923346
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep1,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep1
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923347
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep2,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep2
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+      GSM4923348
+        grezzo (Stadio 1): title: RNA-seq-HPPT_untreated_rep3,source: human primary proximal tubule cells,treatment: untreated,cell type: primary proximal tubule cells
+        H5 titolo        : RNA-seq-HPPT_untreated_rep3
+        H5 caratteristiche: treatment: untreated,cell type: primary proximal tubule cells
+        H5 sorgente      : human primary proximal tubule cells
+
+CONFRONTO  GSE163067__GSE163067__IFNg_vs_No_treatment__1
+  studio: GSE163067
+  TRATTATO  (n=2)  etichetta Stadio 2: IFNg 50 IU 48h
+      gruppo Stadio 2: grp_0001
+      GSM4971606
+        grezzo (Stadio 1): title: MDA-MB-231 IFNÎ³ treated replicate 1,source: Breast carcinoma,cell line: MDA-MB-231,treatment: IFNy treatment (50IU, 48 hrs)
+        H5 titolo        : MDA-MB-231 IFNÎ³ treated replicate 1
+        H5 caratteristiche: cell line: MDA-MB-231,treatment: IFNy treatment (50IU, 48 hrs)
+        H5 sorgente      : Breast carcinoma
+      GSM4971607
+        grezzo (Stadio 1): title: MDA-MB-231 IFNÎ³ treated replicate 2,source: Breast carcinoma,cell line: MDA-MB-231,treatment: IFNy treatment (50IU, 48 hrs)
+        H5 titolo        : MDA-MB-231 IFNÎ³ treated replicate 2
+        H5 caratteristiche: cell line: MDA-MB-231,treatment: IFNy treatment (50IU, 48 hrs)
+        H5 sorgente      : Breast carcinoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: No treatment
+      gruppo Stadio 2: grp_0003
+      GSM4971603
+        grezzo (Stadio 1): title: MDA-MB-231 untreated replicate 1,source: Breast carcinoma,cell line: MDA-MB-231,treatment: No treatment
+        H5 titolo        : MDA-MB-231 untreated replicate 1
+        H5 caratteristiche: cell line: MDA-MB-231,treatment: No treatment
+        H5 sorgente      : Breast carcinoma
+      GSM4971604
+        grezzo (Stadio 1): title: MDA-MB-231 untreated replicate 2,source: Breast carcinoma,cell line: MDA-MB-231,treatment: No treatment
+        H5 titolo        : MDA-MB-231 untreated replicate 2
+        H5 caratteristiche: cell line: MDA-MB-231,treatment: No treatment
+        H5 sorgente      : Breast carcinoma
+      GSM4971605
+        grezzo (Stadio 1): title: MDA-MB-231 untreated replicate 3,source: Breast carcinoma,cell line: MDA-MB-231,treatment: No treatment
+        H5 titolo        : MDA-MB-231 untreated replicate 3
+        H5 caratteristiche: cell line: MDA-MB-231,treatment: No treatment
+        H5 sorgente      : Breast carcinoma
+
+CONFRONTO  GSE190634__GSE190634__IFNG_donor1_vs_none_donor1__1
+  studio: GSE190634
+  TRATTATO  (n=3)  etichetta Stadio 2: Colonic organoid, donor 1, IFNG 20ng/mL
+      gruppo Stadio 2: grp_IFNG_donor1
+      GSM5726844
+        grezzo (Stadio 1): title: IFNG treated colonoid donor 1 [IFNg_1],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IFNG 20ng/mL,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 titolo        : IFNG treated colonoid donor 1 [IFNg_1]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IFNG 20ng/mL,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726846
+        grezzo (Stadio 1): title: IFNG treated colonoid donor 3 [IFNg_3],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IFNG 20ng/mL,treatment duration: 24 hours,donor id: 3,experiment: 1
+        H5 titolo        : IFNG treated colonoid donor 3 [IFNg_3]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IFNG 20ng/mL,treatment duration: 24 hours,donor id: 3,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726847
+        grezzo (Stadio 1): title: IFNG treated colonoid donor 4 [IFNg_4],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IFNG 20ng/mL,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 titolo        : IFNG treated colonoid donor 4 [IFNg_4]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IFNG 20ng/mL,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 sorgente      : colonic organoid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Colonic organoid, donor 1, no treatment
+      gruppo Stadio 2: grp_none_donor1
+      GSM5726840
+        grezzo (Stadio 1): title: Untreated colonoid donor 1 [Control_1],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 titolo        : Untreated colonoid donor 1 [Control_1]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726841
+        grezzo (Stadio 1): title: Untreated colonoid donor 2 [Control_2],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 titolo        : Untreated colonoid donor 2 [Control_2]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726843
+        grezzo (Stadio 1): title: Untreated colonoid donor 4 [Control_4],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 titolo        : Untreated colonoid donor 4 [Control_4]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 sorgente      : colonic organoid
+
+CONFRONTO  GSE198460__GSE198460__PDX_Cell_Lines_IFNg_vs_PDX_Cell_Lines_Untreated__1
+  studio: GSE198460
+  TRATTATO  (n=2)  etichetta Stadio 2: PDX Cell Lines IFNg
+      gruppo Stadio 2: grp_0014
+      GSM5949091
+        grezzo (Stadio 1): title: M061R DP IFNg_24h,source: Patient derived xenograft (PDX) established low passage cell lines,treatment: IFNg_24h,tissue: Patient tumor material
+        H5 titolo        : M061R DP IFNg_24h
+        H5 caratteristiche: treatment: IFNg_24h,tissue: Patient tumor material
+        H5 sorgente      : Patient derived xenograft (PDX) established low passage cell lines
+      GSM5949096
+        grezzo (Stadio 1): title: M063R DP IFNg_24h,source: Patient derived xenograft (PDX) established low passage cell lines,treatment: IFNg_24h,tissue: Patient tumor material
+        H5 titolo        : M063R DP IFNg_24h
+        H5 caratteristiche: treatment: IFNg_24h,tissue: Patient tumor material
+        H5 sorgente      : Patient derived xenograft (PDX) established low passage cell lines
+  CONTROLLO  (n=3)  etichetta Stadio 2: PDX Cell Lines Untreated
+      gruppo Stadio 2: grp_0015
+      GSM5949092
+        grezzo (Stadio 1): title: M011-5R TS Untreated,source: Patient derived xenograft (PDX) established low passage cell lines,treatment: Untreated,tissue: Patient tumor material
+        H5 titolo        : M011-5R TS Untreated
+        H5 caratteristiche: treatment: Untreated,tissue: Patient tumor material
+        H5 sorgente      : Patient derived xenograft (PDX) established low passage cell lines
+      GSM5949114
+        grezzo (Stadio 1): title: M011-5R DP Untreated,source: Patient derived xenograft (PDX) established low passage cell lines,treatment: Untreated,tissue: Patient tumor material
+        H5 titolo        : M011-5R DP Untreated
+        H5 caratteristiche: treatment: Untreated,tissue: Patient tumor material
+        H5 sorgente      : Patient derived xenograft (PDX) established low passage cell lines
+      GSM5949149
+        grezzo (Stadio 1): title: M048R DP Untreated,source: Patient derived xenograft (PDX) established low passage cell lines,treatment: Untreated,tissue: Patient tumor material
+        H5 titolo        : M048R DP Untreated
+        H5 caratteristiche: treatment: Untreated,tissue: Patient tumor material
+        H5 sorgente      : Patient derived xenograft (PDX) established low passage cell lines
+
+CONFRONTO  GSE209536__GSE209536__grp_0002_vs_grp_0001__1
+  studio: GSE209536
+  TRATTATO  (n=2)  etichetta Stadio 2: IFN-gamma Stimulated Human TSC
+      gruppo Stadio 2: grp_0002
+      GSM6373975
+        grezzo (Stadio 1): title: hTSC, IFN-gamma stimulated, RNA-Seq, rep1,source: Human TSC,tissue: Human TSC,genotype: Wild-type
+        H5 titolo        : hTSC, IFN-gamma stimulated, RNA-Seq, rep1
+        H5 caratteristiche: tissue: Human TSC,genotype: Wild-type
+        H5 sorgente      : Human TSC
+      GSM6373976
+        grezzo (Stadio 1): title: hTSC, IFN-gamma stimulated, RNA-Seq, rep2,source: Human TSC,tissue: Human TSC,genotype: Wild-type
+        H5 titolo        : hTSC, IFN-gamma stimulated, RNA-Seq, rep2
+        H5 caratteristiche: tissue: Human TSC,genotype: Wild-type
+        H5 sorgente      : Human TSC
+  CONTROLLO  (n=2)  etichetta Stadio 2: Unstimulated Human TSC
+      gruppo Stadio 2: grp_0001
+      GSM6373977
+        grezzo (Stadio 1): title: hTSC, unstimulated, RNA-Seq, rep1,source: Human TSC,tissue: Human TSC,genotype: Wild-type
+        H5 titolo        : hTSC, unstimulated, RNA-Seq, rep1
+        H5 caratteristiche: tissue: Human TSC,genotype: Wild-type
+        H5 sorgente      : Human TSC
+      GSM6373978
+        grezzo (Stadio 1): title: hTSC, unstimulated, RNA-Seq, rep2,source: Human TSC,tissue: Human TSC,genotype: Wild-type
+        H5 titolo        : hTSC, unstimulated, RNA-Seq, rep2
+        H5 caratteristiche: tissue: Human TSC,genotype: Wild-type
+        H5 sorgente      : Human TSC
+
+CONFRONTO  GSE215771__GSE215771__grp_0003_vs_grp_0001__1
+  studio: GSE215771
+  TRATTATO  (n=3)  etichetta Stadio 2: A549 Wild-Type IFN-γ Stimulated
+      gruppo Stadio 2: grp_0003
+      GSM6638920
+        grezzo (Stadio 1): title: WT, IFNg, RepA,source: WT, IFNg,cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: IFN-Î³,replicate: A
+        H5 titolo        : WT, IFNg, RepA
+        H5 caratteristiche: cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: IFN-Î³,replicate: A
+        H5 sorgente      : WT, IFNg
+      GSM6638927
+        grezzo (Stadio 1): title: WT, IFNg, RepB,source: WT, IFNg,cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: IFN-Î³,replicate: B
+        H5 titolo        : WT, IFNg, RepB
+        H5 caratteristiche: cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: IFN-Î³,replicate: B
+        H5 sorgente      : WT, IFNg
+      GSM6638934
+        grezzo (Stadio 1): title: WT, IFNg, RepC,source: WT, IFNg,cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: IFN-Î³,replicate: C
+        H5 titolo        : WT, IFNg, RepC
+        H5 caratteristiche: cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: IFN-Î³,replicate: C
+        H5 sorgente      : WT, IFNg
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549 Wild-Type Vehicle Control
+      gruppo Stadio 2: grp_0001
+      GSM6638919
+        grezzo (Stadio 1): title: WT, Control, RepA,source: WT, Control,cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: Control,replicate: A
+        H5 titolo        : WT, Control, RepA
+        H5 caratteristiche: cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: Control,replicate: A
+        H5 sorgente      : WT, Control
+      GSM6638926
+        grezzo (Stadio 1): title: WT, Control, RepB,source: WT, Control,cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: Control,replicate: B
+        H5 titolo        : WT, Control, RepB
+        H5 caratteristiche: cell line: A549,cell type: Epithelial (Lung),genotype: WT,treatment: Control,replicate: B
+        H5 sorgente      : WT, Control
+
+CONFRONTO  GSE221804__GSE221804__grp_0008_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN gamma, 24h
+      gruppo Stadio 2: mg8
+      GSM6899885
+        grezzo (Stadio 1): title: HuhWT_IFNy_24h_rep1,source: IFN gamma stimulated Huh7.5 wild type cells, 24h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 24h
+        H5 titolo        : HuhWT_IFNy_24h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 24h
+        H5 sorgente      : IFN gamma stimulated Huh7.5 wild type cells, 24h
+      GSM6899886
+        grezzo (Stadio 1): title: HuhWT_IFNy_24h_rep2,source: IFN gamma stimulated Huh7.5 wild type cells, 24h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 24h
+        H5 titolo        : HuhWT_IFNy_24h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 24h
+        H5 sorgente      : IFN gamma stimulated Huh7.5 wild type cells, 24h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0009_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN gamma, 4h
+      gruppo Stadio 2: mg9
+      GSM6899881
+        grezzo (Stadio 1): title: HuhWT_IFNy_4h_rep1,source: IFN gamma stimulated Huh7.5 wild type cells, 4h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 4h
+        H5 titolo        : HuhWT_IFNy_4h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 4h
+        H5 sorgente      : IFN gamma stimulated Huh7.5 wild type cells, 4h
+      GSM6899882
+        grezzo (Stadio 1): title: HuhWT_IFNy_4h_rep2,source: IFN gamma stimulated Huh7.5 wild type cells, 4h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 4h
+        H5 titolo        : HuhWT_IFNy_4h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 4h
+        H5 sorgente      : IFN gamma stimulated Huh7.5 wild type cells, 4h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0010_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN gamma, 8h
+      gruppo Stadio 2: mg10
+      GSM6899883
+        grezzo (Stadio 1): title: HuhWT_IFNy_8h_rep1,source: IFN gamma stimulated Huh7.5 wild type cells, 8h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 8h
+        H5 titolo        : HuhWT_IFNy_8h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 8h
+        H5 sorgente      : IFN gamma stimulated Huh7.5 wild type cells, 8h
+      GSM6899884
+        grezzo (Stadio 1): title: HuhWT_IFNy_8h_rep2,source: IFN gamma stimulated Huh7.5 wild type cells, 8h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 8h
+        H5 titolo        : HuhWT_IFNy_8h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN gamma, 10 ng/ml,time: 8h
+        H5 sorgente      : IFN gamma stimulated Huh7.5 wild type cells, 8h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE228173__GSE228173__grp_0001_vs_grp_0006__1
+  studio: GSE228173
+  TRATTATO  (n=3)  etichetta Stadio 2: Endothelial cells treated with BI-3802 and IFNγ
+      gruppo Stadio 2: grp_0001
+      GSM7116058
+        grezzo (Stadio 1): title: BI-3802 30min_IFNÎ³ 24hr_EC1,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3802 30min_IFNÎ³ 24hr
+        H5 titolo        : BI-3802 30min_IFNÎ³ 24hr_EC1
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3802 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+      GSM7116059
+        grezzo (Stadio 1): title: BI-3802 30min_IFNÎ³ 24hr_EC2,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3802 30min_IFNÎ³ 24hr
+        H5 titolo        : BI-3802 30min_IFNÎ³ 24hr_EC2
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3802 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+      GSM7116060
+        grezzo (Stadio 1): title: BI-3802 30min_IFNÎ³ 24hr_EC3,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3802 30min_IFNÎ³ 24hr
+        H5 titolo        : BI-3802 30min_IFNÎ³ 24hr_EC3
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3802 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated endothelial cells
+      gruppo Stadio 2: grp_0006
+      GSM7116043
+        grezzo (Stadio 1): title: untreated 24hr_EC1,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC1
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+      GSM7116044
+        grezzo (Stadio 1): title: untreated 24hr_EC2,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC2
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+      GSM7116045
+        grezzo (Stadio 1): title: untreated 24hr_EC3,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC3
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+
+CONFRONTO  GSE228173__GSE228173__grp_0002_vs_grp_0006__1
+  studio: GSE228173
+  TRATTATO  (n=3)  etichetta Stadio 2: Endothelial cells treated with BI-3812 and IFNγ
+      gruppo Stadio 2: grp_0002
+      GSM7116055
+        grezzo (Stadio 1): title: BI-3812 30min_IFNÎ³ 24hr_EC1,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3812 30min_IFNÎ³ 24hr
+        H5 titolo        : BI-3812 30min_IFNÎ³ 24hr_EC1
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3812 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+      GSM7116056
+        grezzo (Stadio 1): title: BI-3812 30min_IFNÎ³ 24hr_EC2,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3812 30min_IFNÎ³ 24hr
+        H5 titolo        : BI-3812 30min_IFNÎ³ 24hr_EC2
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3812 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+      GSM7116057
+        grezzo (Stadio 1): title: BI-3812 30min_IFNÎ³ 24hr_EC3,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3812 30min_IFNÎ³ 24hr
+        H5 titolo        : BI-3812 30min_IFNÎ³ 24hr_EC3
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: BI-3812 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated endothelial cells
+      gruppo Stadio 2: grp_0006
+      GSM7116043
+        grezzo (Stadio 1): title: untreated 24hr_EC1,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC1
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+      GSM7116044
+        grezzo (Stadio 1): title: untreated 24hr_EC2,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC2
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+      GSM7116045
+        grezzo (Stadio 1): title: untreated 24hr_EC3,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC3
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+
+CONFRONTO  GSE228173__GSE228173__grp_0004_vs_grp_0006__1
+  studio: GSE228173
+  TRATTATO  (n=3)  etichetta Stadio 2: Endothelial cells treated with IFNγ
+      gruppo Stadio 2: grp_0004
+      GSM7116046
+        grezzo (Stadio 1): title: IFNÎ³ 24hr_EC1,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: IFNÎ³ 24hr
+        H5 titolo        : IFNÎ³ 24hr_EC1
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: IFNÎ³ 24hr
+        H5 sorgente      : aorta
+      GSM7116047
+        grezzo (Stadio 1): title: IFNÎ³ 24hr_EC2,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: IFNÎ³ 24hr
+        H5 titolo        : IFNÎ³ 24hr_EC2
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: IFNÎ³ 24hr
+        H5 sorgente      : aorta
+      GSM7116048
+        grezzo (Stadio 1): title: IFNÎ³ 24hr_EC3,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: IFNÎ³ 24hr
+        H5 titolo        : IFNÎ³ 24hr_EC3
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: IFNÎ³ 24hr
+        H5 sorgente      : aorta
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated endothelial cells
+      gruppo Stadio 2: grp_0006
+      GSM7116043
+        grezzo (Stadio 1): title: untreated 24hr_EC1,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC1
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+      GSM7116044
+        grezzo (Stadio 1): title: untreated 24hr_EC2,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC2
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+      GSM7116045
+        grezzo (Stadio 1): title: untreated 24hr_EC3,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC3
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+
+CONFRONTO  GSE228173__GSE228173__grp_0005_vs_grp_0006__1
+  studio: GSE228173
+  TRATTATO  (n=3)  etichetta Stadio 2: Endothelial cells treated with ruxo and IFNγ
+      gruppo Stadio 2: grp_0005
+      GSM7116049
+        grezzo (Stadio 1): title: ruxo 30min_IFNÎ³ 24hr_EC1,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: ruxo 30min_IFNÎ³ 24hr
+        H5 titolo        : ruxo 30min_IFNÎ³ 24hr_EC1
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: ruxo 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+      GSM7116050
+        grezzo (Stadio 1): title: ruxo 30min_IFNÎ³ 24hr_EC2,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: ruxo 30min_IFNÎ³ 24hr
+        H5 titolo        : ruxo 30min_IFNÎ³ 24hr_EC2
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: ruxo 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+      GSM7116051
+        grezzo (Stadio 1): title: ruxo 30min_IFNÎ³ 24hr_EC3,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: ruxo 30min_IFNÎ³ 24hr
+        H5 titolo        : ruxo 30min_IFNÎ³ 24hr_EC3
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: ruxo 30min_IFNÎ³ 24hr
+        H5 sorgente      : aorta
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated endothelial cells
+      gruppo Stadio 2: grp_0006
+      GSM7116043
+        grezzo (Stadio 1): title: untreated 24hr_EC1,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC1
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+      GSM7116044
+        grezzo (Stadio 1): title: untreated 24hr_EC2,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC2
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+      GSM7116045
+        grezzo (Stadio 1): title: untreated 24hr_EC3,source: aorta,tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 titolo        : untreated 24hr_EC3
+        H5 caratteristiche: tissue: aorta,cell line: primary,cell type: endothelial cell,treatment: untreated 24hr
+        H5 sorgente      : aorta
+
+CONFRONTO  GSE233548__GSE233548__grp_0003_vs_grp_0001__1
+  studio: GSE233548
+  TRATTATO  (n=3)  etichetta Stadio 2: Huh7.5 + IFN-γ
+      gruppo Stadio 2: grp_0003
+      GSM7430060
+        grezzo (Stadio 1): title: WT_IFN_rep1 [DX4],source: Huh7.5,cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: IFN-Î³
+        H5 titolo        : WT_IFN_rep1 [DX4]
+        H5 caratteristiche: cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: IFN-Î³
+        H5 sorgente      : Huh7.5
+      GSM7430061
+        grezzo (Stadio 1): title: WT_IFN_rep2 [DX5],source: Huh7.5,cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: IFN-Î³
+        H5 titolo        : WT_IFN_rep2 [DX5]
+        H5 caratteristiche: cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: IFN-Î³
+        H5 sorgente      : Huh7.5
+      GSM7430062
+        grezzo (Stadio 1): title: WT_IFN_rep3 [DX6],source: Huh7.5,cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: IFN-Î³
+        H5 titolo        : WT_IFN_rep3 [DX6]
+        H5 caratteristiche: cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: IFN-Î³
+        H5 sorgente      : Huh7.5
+  CONTROLLO  (n=3)  etichetta Stadio 2: Huh7.5 untreated
+      gruppo Stadio 2: grp_0001
+      GSM7430057
+        grezzo (Stadio 1): title: WT_untreated_rep1 [DX1],source: Huh7.5,cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: untreated
+        H5 titolo        : WT_untreated_rep1 [DX1]
+        H5 caratteristiche: cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: untreated
+        H5 sorgente      : Huh7.5
+      GSM7430058
+        grezzo (Stadio 1): title: WT_untreated_rep2 [DX2],source: Huh7.5,cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: untreated
+        H5 titolo        : WT_untreated_rep2 [DX2]
+        H5 caratteristiche: cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: untreated
+        H5 sorgente      : Huh7.5
+      GSM7430059
+        grezzo (Stadio 1): title: WT_untreated_rep3 [DX3],source: Huh7.5,cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: untreated
+        H5 titolo        : WT_untreated_rep3 [DX3]
+        H5 caratteristiche: cell line: Huh7.5,cell type: Hepatocyte,genotype: WT,treatment: untreated
+        H5 sorgente      : Huh7.5
+
+CONFRONTO  GSE99299__GSE99299__A375_Ptpn2ko_IFNg_vs_A375_nontargeting_control__1
+  studio: GSE99299
+  TRATTATO  (n=3)  etichetta Stadio 2: A375 Ptpn2ko IFNg
+      gruppo Stadio 2: grp_A375_Ptpn2ko_IFNg
+      GSM2640691
+        grezzo (Stadio 1): title: A375_Ptpn2_IFNg_rep1,source: A375_Ptpn2_IFNg,cell line: A375,cell type: melanoma,genotype/variation: Ptpn2ko,infected with lentivirus containing sgrna against: Ptpn2sg3,treated with: IFNg
+        H5 titolo        : A375_Ptpn2_IFNg_rep1
+        H5 caratteristiche: cell line: A375,cell type: melanoma,genotype/variation: Ptpn2ko,infected with lentivirus containing sgrna against: Ptpn2sg3,treated with: IFNg
+        H5 sorgente      : A375_Ptpn2_IFNg
+      GSM2640692
+        grezzo (Stadio 1): title: A375_Ptpn2_IFNg_rep2,source: A375_Ptpn2_IFNg,cell line: A375,cell type: melanoma,genotype/variation: Ptpn2ko,infected with lentivirus containing sgrna against: Ptpn2sg3,treated with: IFNg
+        H5 titolo        : A375_Ptpn2_IFNg_rep2
+        H5 caratteristiche: cell line: A375,cell type: melanoma,genotype/variation: Ptpn2ko,infected with lentivirus containing sgrna against: Ptpn2sg3,treated with: IFNg
+        H5 sorgente      : A375_Ptpn2_IFNg
+      GSM2640693
+        grezzo (Stadio 1): title: A375_Ptpn2_IFNg_rep3,source: A375_Ptpn2_IFNg,cell line: A375,cell type: melanoma,genotype/variation: Ptpn2ko,infected with lentivirus containing sgrna against: Ptpn2sg3,treated with: IFNg
+        H5 titolo        : A375_Ptpn2_IFNg_rep3
+        H5 caratteristiche: cell line: A375,cell type: melanoma,genotype/variation: Ptpn2ko,infected with lentivirus containing sgrna against: Ptpn2sg3,treated with: IFNg
+        H5 sorgente      : A375_Ptpn2_IFNg
+  CONTROLLO  (n=3)  etichetta Stadio 2: A375 non-targeting control
+      gruppo Stadio 2: grp_A375_nontargeting_control
+      GSM2640686
+        grezzo (Stadio 1): title: A375_Ctrl_IFNg_rep1,source: A375_Ctrl_IFNg,cell line: A375,cell type: melanoma,genotype/variation: Control,infected with lentivirus containing sgrna against: non-targeting sequence Bro4,treated with: IFNg
+        H5 titolo        : A375_Ctrl_IFNg_rep1
+        H5 caratteristiche: cell line: A375,cell type: melanoma,genotype/variation: Control,infected with lentivirus containing sgrna against: non-targeting sequence Bro4,treated with: IFNg
+        H5 sorgente      : A375_Ctrl_IFNg
+      GSM2640687
+        grezzo (Stadio 1): title: A375_Ctrl_IFNg_rep2,source: A375_Ctrl_IFNg,cell line: A375,cell type: melanoma,genotype/variation: Control,infected with lentivirus containing sgrna against: non-targeting sequence Bro4,treated with: IFNg
+        H5 titolo        : A375_Ctrl_IFNg_rep2
+        H5 caratteristiche: cell line: A375,cell type: melanoma,genotype/variation: Control,infected with lentivirus containing sgrna against: non-targeting sequence Bro4,treated with: IFNg
+        H5 sorgente      : A375_Ctrl_IFNg
+      GSM2640688
+        grezzo (Stadio 1): title: A375_Ctrl_IFNg_rep3,source: A375_Ctrl_IFNg,cell line: A375,cell type: melanoma,genotype/variation: Control,infected with lentivirus containing sgrna against: non-targeting sequence Bro4,treated with: IFNg
+        H5 titolo        : A375_Ctrl_IFNg_rep3
+        H5 caratteristiche: cell line: A375,cell type: melanoma,genotype/variation: Control,infected with lentivirus containing sgrna against: non-targeting sequence Bro4,treated with: IFNg
+        H5 sorgente      : A375_Ctrl_IFNg
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE135458     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE141585     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE144484     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE158434     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE158814     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE161664     campioni nell'H5:   37 | collocati dallo Stadio 2:   37 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE161916     campioni nell'H5:   27 | collocati dallo Stadio 2:   27 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE163067     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE190634     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE198460     campioni nell'H5:   64 | collocati dallo Stadio 2:   64 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE209536     campioni nell'H5:    4 | collocati dallo Stadio 2:    4 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE215771     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE221804     campioni nell'H5:  110 | collocati dallo Stadio 2:  108 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 12 campioni distinti (24 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6899818, GSM6899831
+  GSE228173     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 15 campioni distinti (24 righe: i controlli servono piu' confronti)
+  GSE233548     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE99299      campioni nell'H5:   39 | collocati dallo Stadio 2:   32 | MAI COLLOCATI:    7 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+      mai collocati: GSM2640699, GSM2640703, GSM2640704, GSM2640705, GSM2640711, GSM2640722, GSM2640723
+

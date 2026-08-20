@@ -1,0 +1,183 @@
+META-ANALISI 120 di 194
+==============================================================================
+nome            : progesterone
+entita (ID)     : CHEBI:17026
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_8341bee7
+studi poolati   : 3   confronti: 4   campioni: 25
+geni significativi: 210   I2 mediano: 72.3
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE149640__GSE149640__grp_0001_vs_grp_0002__1
+  studio: GSE149640
+  TRATTATO  (n=3)  etichetta Stadio 2: HTR8/SVneo + Progesterone + Ethanol
+      gruppo Stadio 2: grp_0001
+      GSM4506414
+        grezzo (Stadio 1): title: negative + progesterone, sample1,source: placenta,cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: progesterone + ethanol
+        H5 titolo        : negative + progesterone, sample1
+        H5 caratteristiche: cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: progesterone + ethanol
+        H5 sorgente      : placenta
+      GSM4506415
+        grezzo (Stadio 1): title: negative + progesterone, sample2,source: placenta,cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: progesterone + ethanol
+        H5 titolo        : negative + progesterone, sample2
+        H5 caratteristiche: cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: progesterone + ethanol
+        H5 sorgente      : placenta
+      GSM4506416
+        grezzo (Stadio 1): title: negative + progesterone, sample3,source: placenta,cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: progesterone + ethanol
+        H5 titolo        : negative + progesterone, sample3
+        H5 caratteristiche: cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: progesterone + ethanol
+        H5 sorgente      : placenta
+  CONTROLLO  (n=3)  etichetta Stadio 2: HTR8/SVneo + Ethanol
+      gruppo Stadio 2: grp_0002
+      GSM4506420
+        grezzo (Stadio 1): title: negative + ethanol, sample1,source: placenta,cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: ethanol
+        H5 titolo        : negative + ethanol, sample1
+        H5 caratteristiche: cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: ethanol
+        H5 sorgente      : placenta
+      GSM4506421
+        grezzo (Stadio 1): title: negative + ethanol, sample2,source: placenta,cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: ethanol
+        H5 titolo        : negative + ethanol, sample2
+        H5 caratteristiche: cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: ethanol
+        H5 sorgente      : placenta
+      GSM4506422
+        grezzo (Stadio 1): title: negative + ethanol, sample3,source: placenta,cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: ethanol
+        H5 titolo        : negative + ethanol, sample3
+        H5 caratteristiche: cell line: HTR8/SVneo,tissue: placenta,rna interference: non-targeting siRNA,treatment: ethanol
+        H5 sorgente      : placenta
+
+CONFRONTO  GSE220806__GSE220806__group_0002_vs_group_0001__1
+  studio: GSE220806
+  TRATTATO  (n=4)  etichetta Stadio 2: Cervical insufficiency, progesterone
+      gruppo Stadio 2: group_0002
+      GSM6820447
+        grezzo (Stadio 1): title: CI_1_P4_1,source: human uterine cervical fibroblast,condition: progesterone treated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 titolo        : CI_1_P4_1
+        H5 caratteristiche: condition: progesterone treated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820448
+        grezzo (Stadio 1): title: CI_1_P4_2,source: human uterine cervical fibroblast,condition: progesterone treated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 titolo        : CI_1_P4_2
+        H5 caratteristiche: condition: progesterone treated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820451
+        grezzo (Stadio 1): title: CI_2_P4_1,source: human uterine cervical fibroblast,condition: progesterone treated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 titolo        : CI_2_P4_1
+        H5 caratteristiche: condition: progesterone treated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820452
+        grezzo (Stadio 1): title: CI_2_P4_2,source: human uterine cervical fibroblast,condition: progesterone treated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 titolo        : CI_2_P4_2
+        H5 caratteristiche: condition: progesterone treated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 sorgente      : human uterine cervical fibroblast
+  CONTROLLO  (n=4)  etichetta Stadio 2: Cervical insufficiency, untreated
+      gruppo Stadio 2: group_0001
+      GSM6820445
+        grezzo (Stadio 1): title: CI_1_notx_1,source: human uterine cervical fibroblast,condition: untreated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 titolo        : CI_1_notx_1
+        H5 caratteristiche: condition: untreated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820446
+        grezzo (Stadio 1): title: CI_1_notx_2,source: human uterine cervical fibroblast,condition: untreated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 titolo        : CI_1_notx_2
+        H5 caratteristiche: condition: untreated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820449
+        grezzo (Stadio 1): title: CI_2_notx_1,source: human uterine cervical fibroblast,condition: untreated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 titolo        : CI_2_notx_1
+        H5 caratteristiche: condition: untreated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820450
+        grezzo (Stadio 1): title: CI_2_notx_2,source: human uterine cervical fibroblast,condition: untreated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 titolo        : CI_2_notx_2
+        H5 caratteristiche: condition: untreated cells derived from cervical insufficiency,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 sorgente      : human uterine cervical fibroblast
+
+CONFRONTO  GSE220806__GSE220806__group_0004_vs_group_0003__1
+  studio: GSE220806
+  TRATTATO  (n=3)  etichetta Stadio 2: Healthy, progesterone
+      gruppo Stadio 2: group_0004
+      GSM6820440
+        grezzo (Stadio 1): title: control_1_P4_2,source: human uterine cervical fibroblast,condition: progesterone treated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 titolo        : control_1_P4_2
+        H5 caratteristiche: condition: progesterone treated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820443
+        grezzo (Stadio 1): title: control_2_P4_1,source: human uterine cervical fibroblast,condition: progesterone treated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 titolo        : control_2_P4_1
+        H5 caratteristiche: condition: progesterone treated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820444
+        grezzo (Stadio 1): title: control_2_P4_2,source: human uterine cervical fibroblast,condition: progesterone treated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 titolo        : control_2_P4_2
+        H5 caratteristiche: condition: progesterone treated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: progesterone treated
+        H5 sorgente      : human uterine cervical fibroblast
+  CONTROLLO  (n=3)  etichetta Stadio 2: Healthy, untreated
+      gruppo Stadio 2: group_0003
+      GSM6820437
+        grezzo (Stadio 1): title: control_1_notx_1,source: human uterine cervical fibroblast,condition: untreated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 titolo        : control_1_notx_1
+        H5 caratteristiche: condition: untreated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820438
+        grezzo (Stadio 1): title: control_1_notx_2,source: human uterine cervical fibroblast,condition: untreated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 titolo        : control_1_notx_2
+        H5 caratteristiche: condition: untreated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 sorgente      : human uterine cervical fibroblast
+      GSM6820442
+        grezzo (Stadio 1): title: control_2_notx_2,source: human uterine cervical fibroblast,condition: untreated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 titolo        : control_2_notx_2
+        H5 caratteristiche: condition: untreated cells derived from unripend cervix,cell type: human uterine cervical fibroblast,passage: 4-8,treatment: untreated
+        H5 sorgente      : human uterine cervical fibroblast
+
+CONFRONTO  GSE99626__GSE99626__grp_T47D_E2_Progesterone_vs_grp_T47D_Vehicle__1
+  studio: GSE99626
+  TRATTATO  (n=2)  etichetta Stadio 2: T47D cells treated with E2 and Progesterone
+      gruppo Stadio 2: grp_T47D_E2_Progesterone
+      GSM3595504
+        grezzo (Stadio 1): title: AI012_T47D_24h_E2+Prog_rep1,source: T47D breast cancer cells,treatment: 10nM E2 + 10nM Progesterone,time: 24h,replicate: rep1
+        H5 titolo        : AI012_T47D_24h_E2+Prog_rep1
+        H5 caratteristiche: treatment: 10nM E2 + 10nM Progesterone,time: 24h,replicate: rep1
+        H5 sorgente      : T47D breast cancer cells
+      GSM3595516
+        grezzo (Stadio 1): title: AI012_T47D_24h_E2+Prog_rep3,source: T47D breast cancer cells,treatment: 10nM E2 + 10nM Progesterone,time: 24h,replicate: rep3
+        H5 titolo        : AI012_T47D_24h_E2+Prog_rep3
+        H5 caratteristiche: treatment: 10nM E2 + 10nM Progesterone,time: 24h,replicate: rep3
+        H5 sorgente      : T47D breast cancer cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: T47D cells treated with Vehicle
+      gruppo Stadio 2: grp_T47D_Vehicle
+      GSM3595502
+        grezzo (Stadio 1): title: AI012_T47D_24h_veh_rep1,source: T47D breast cancer cells,treatment: Vehicle,time: 24h,replicate: rep1
+        H5 titolo        : AI012_T47D_24h_veh_rep1
+        H5 caratteristiche: treatment: Vehicle,time: 24h,replicate: rep1
+        H5 sorgente      : T47D breast cancer cells
+      GSM3595508
+        grezzo (Stadio 1): title: AI012_T47D_24h_veh_rep2,source: T47D breast cancer cells,treatment: Vehicle,time: 24h,replicate: rep2
+        H5 titolo        : AI012_T47D_24h_veh_rep2
+        H5 caratteristiche: treatment: Vehicle,time: 24h,replicate: rep2
+        H5 sorgente      : T47D breast cancer cells
+      GSM3595514
+        grezzo (Stadio 1): title: AI012_T47D_24h_veh_rep3,source: T47D breast cancer cells,treatment: Vehicle,time: 24h,replicate: rep3
+        H5 titolo        : AI012_T47D_24h_veh_rep3
+        H5 caratteristiche: treatment: Vehicle,time: 24h,replicate: rep3
+        H5 sorgente      : T47D breast cancer cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE149640     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE220806     campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 14 campioni distinti (14 righe: i controlli servono piu' confronti)
+  GSE99626      campioni nell'H5:   28 | collocati dallo Stadio 2:   28 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

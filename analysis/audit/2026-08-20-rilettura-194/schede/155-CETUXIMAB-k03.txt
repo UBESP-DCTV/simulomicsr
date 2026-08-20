@@ -1,0 +1,615 @@
+META-ANALISI 155 di 194
+==============================================================================
+nome            : CETUXIMAB
+entita (ID)     : CHEMBL:CHEMBL1201577
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_b2645a34
+studi poolati   : 3   confronti: 4   campioni: 111
+geni significativi: 26   I2 mediano: 0.0
+verdetto della rilettura: incerta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE162104__GSE162104__grp_0006_vs_grp_0001__1
+  studio: GSE162104
+  TRATTATO  (n=3)  etichetta Stadio 2: Cetuximab treated (medium CD44v6 expression)
+      gruppo Stadio 2: grp_0006
+      GSM4933234
+        grezzo (Stadio 1): title: B5_S10,source: colorectal cancer,disease state: primary colorectal cancer cell line,cetuximab resistance: resistant,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): medium
+        H5 titolo        : B5_S10
+        H5 caratteristiche: disease state: primary colorectal cancer cell line,cetuximab resistance: resistant,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): medium
+        H5 sorgente      : colorectal cancer
+      GSM4933244
+        grezzo (Stadio 1): title: D6_S20,source: colorectal cancer,disease state: primary colorectal cancer cell line,cetuximab resistance: resistant,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): low
+        H5 titolo        : D6_S20
+        H5 caratteristiche: disease state: primary colorectal cancer cell line,cetuximab resistance: resistant,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): low
+        H5 sorgente      : colorectal cancer
+      GSM4933255
+        grezzo (Stadio 1): title: G7_S31,source: colorectal cancer,disease state: primary colorectal cancer cell line,cetuximab resistance: resistant,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): high
+        H5 titolo        : G7_S31
+        H5 caratteristiche: disease state: primary colorectal cancer cell line,cetuximab resistance: resistant,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): high
+        H5 sorgente      : colorectal cancer
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary colorectal cancer (control)
+      gruppo Stadio 2: grp_0001
+      GSM4933253
+        grezzo (Stadio 1): title: E7_S29,source: colorectal cancer,disease state: primary colorectal cancer cell line,cetuximab resistance: nd,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): high
+        H5 titolo        : E7_S29
+        H5 caratteristiche: disease state: primary colorectal cancer cell line,cetuximab resistance: nd,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): high
+        H5 sorgente      : colorectal cancer
+      GSM4933254
+        grezzo (Stadio 1): title: F7_S30,source: colorectal cancer,disease state: primary colorectal cancer cell line,cetuximab resistance: nd,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): high
+        H5 titolo        : F7_S30
+        H5 caratteristiche: disease state: primary colorectal cancer cell line,cetuximab resistance: nd,mutation (wt, braf, kras): wt,cd44v6 expression (high, medium, low): high
+        H5 sorgente      : colorectal cancer
+
+CONFRONTO  GSE217421__GSE217421__DMSO_1_vs_Cetuximab_MSN01__1
+  studio: GSE217421
+  TRATTATO  (n=19)  etichetta Stadio 2: Cetuximab-treated cardiac myocytes (MSN01)
+      gruppo Stadio 2: mg102
+      GSM6717384
+        grezzo (Stadio 1): title: CTX MSN01-03R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C1,investigative unit: 110,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 66.2,rna volume (ul): 3.02114803625378,h2o volume (ul): 13.9788519637462
+        H5 titolo        : CTX MSN01-03R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C1,investigative unit: 110,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 66.2,rna volume (ul): 3.02114803625378,h2o volume (ul): 13.9788519637462
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717386
+        grezzo (Stadio 1): title: CTX MSN01-03R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: B10,investigative unit: 136,sample id: 3,rna amount (ng): 200,rin: 8.8,rna conc (ng/ul): 36.8,rna volume (ul): 5.43478260869565,h2o volume (ul): 11.5652173913043
+        H5 titolo        : CTX MSN01-03R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: B10,investigative unit: 136,sample id: 3,rna amount (ng): 200,rin: 8.8,rna conc (ng/ul): 36.8,rna volume (ul): 5.43478260869565,h2o volume (ul): 11.5652173913043
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717387
+        grezzo (Stadio 1): title: CTX MSN01-03R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E6,investigative unit: 144,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 39,rna volume (ul): 5.12820512820513,h2o volume (ul): 11.8717948717949
+        H5 titolo        : CTX MSN01-03R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E6,investigative unit: 144,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 39,rna volume (ul): 5.12820512820513,h2o volume (ul): 11.8717948717949
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717388
+        grezzo (Stadio 1): title: CTX MSN02-04R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E7,investigative unit: 174,sample id: 8,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56.6,rna volume (ul): 3.53356890459364,h2o volume (ul): 13.4664310954064
+        H5 titolo        : CTX MSN02-04R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E7,investigative unit: 174,sample id: 8,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56.6,rna volume (ul): 3.53356890459364,h2o volume (ul): 13.4664310954064
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717389
+        grezzo (Stadio 1): title: CTX MSN02-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: D9,investigative unit: 183,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 120,rna volume (ul): 1.66666666666667,h2o volume (ul): 15.3333333333333
+        H5 titolo        : CTX MSN02-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: D9,investigative unit: 183,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 120,rna volume (ul): 1.66666666666667,h2o volume (ul): 15.3333333333333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717390
+        grezzo (Stadio 1): title: CTX MSN05-01R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: B1,investigative unit: 123,sample id: 3,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 51.4,rna volume (ul): 3.89105058365759,h2o volume (ul): 13.1089494163424
+        H5 titolo        : CTX MSN05-01R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: B1,investigative unit: 123,sample id: 3,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 51.4,rna volume (ul): 3.89105058365759,h2o volume (ul): 13.1089494163424
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717391
+        grezzo (Stadio 1): title: CTX MSN05-01R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: A4,investigative unit: 157,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 50,rna volume (ul): 4,h2o volume (ul): 13
+        H5 titolo        : CTX MSN05-01R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: A4,investigative unit: 157,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 50,rna volume (ul): 4,h2o volume (ul): 13
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717392
+        grezzo (Stadio 1): title: CTX MSN05-01R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C4,investigative unit: 184,sample id: 7,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 74.4,rna volume (ul): 2.68817204301075,h2o volume (ul): 14.3118279569892
+        H5 titolo        : CTX MSN05-01R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C4,investigative unit: 184,sample id: 7,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 74.4,rna volume (ul): 2.68817204301075,h2o volume (ul): 14.3118279569892
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717393
+        grezzo (Stadio 1): title: CTX MSN05-01R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: H8,investigative unit: 186,sample id: 3,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 50.2,rna volume (ul): 3.98406374501992,h2o volume (ul): 13.0159362549801
+        H5 titolo        : CTX MSN05-01R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: H8,investigative unit: 186,sample id: 3,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 50.2,rna volume (ul): 3.98406374501992,h2o volume (ul): 13.0159362549801
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717394
+        grezzo (Stadio 1): title: CTX MSN06-07R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: B1,investigative unit: 127,sample id: 3,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 50,rna volume (ul): 4,h2o volume (ul): 13
+        H5 titolo        : CTX MSN06-07R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: B1,investigative unit: 127,sample id: 3,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 50,rna volume (ul): 4,h2o volume (ul): 13
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717395
+        grezzo (Stadio 1): title: CTX MSN06-07R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: D6,investigative unit: 131,sample id: 51,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56.4,rna volume (ul): 3.54609929078014,h2o volume (ul): 13.4539007092199
+        H5 titolo        : CTX MSN06-07R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: D6,investigative unit: 131,sample id: 51,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56.4,rna volume (ul): 3.54609929078014,h2o volume (ul): 13.4539007092199
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717396
+        grezzo (Stadio 1): title: CTX MSN06-07R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E9,investigative unit: 135,sample id: 3,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 37,rna volume (ul): 5.40540540540541,h2o volume (ul): 11.5945945945946
+        H5 titolo        : CTX MSN06-07R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E9,investigative unit: 135,sample id: 3,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 37,rna volume (ul): 5.40540540540541,h2o volume (ul): 11.5945945945946
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717397
+        grezzo (Stadio 1): title: CTX MSN06-07R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: B3,investigative unit: 145,sample id: 3,rna amount (ng): 200,rin: 9.4,rna conc (ng/ul): 39,rna volume (ul): 5.12820512820513,h2o volume (ul): 11.8717948717949
+        H5 titolo        : CTX MSN06-07R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: B3,investigative unit: 145,sample id: 3,rna amount (ng): 200,rin: 9.4,rna conc (ng/ul): 39,rna volume (ul): 5.12820512820513,h2o volume (ul): 11.8717948717949
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717398
+        grezzo (Stadio 1): title: CTX MSN08-13R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C1,investigative unit: 112,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 93.4,rna volume (ul): 2.14132762312634,h2o volume (ul): 14.8586723768737
+        H5 titolo        : CTX MSN08-13R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C1,investigative unit: 112,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 93.4,rna volume (ul): 2.14132762312634,h2o volume (ul): 14.8586723768737
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717399
+        grezzo (Stadio 1): title: CTX MSN08-13R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: F3,investigative unit: 122,sample id: 3,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 39.6,rna volume (ul): 5.05050505050505,h2o volume (ul): 11.9494949494949
+        H5 titolo        : CTX MSN08-13R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: F3,investigative unit: 122,sample id: 3,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 39.6,rna volume (ul): 5.05050505050505,h2o volume (ul): 11.9494949494949
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717400
+        grezzo (Stadio 1): title: CTX MSN08-13R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: A10,investigative unit: 162,sample id: 6,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 60.8,rna volume (ul): 3.28947368421053,h2o volume (ul): 13.7105263157895
+        H5 titolo        : CTX MSN08-13R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: A10,investigative unit: 162,sample id: 6,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 60.8,rna volume (ul): 3.28947368421053,h2o volume (ul): 13.7105263157895
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717401
+        grezzo (Stadio 1): title: CTX MSN08-13R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: A8,investigative unit: 190,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 140,rna volume (ul): 1.42857142857143,h2o volume (ul): 15.5714285714286
+        H5 titolo        : CTX MSN08-13R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: A8,investigative unit: 190,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 140,rna volume (ul): 1.42857142857143,h2o volume (ul): 15.5714285714286
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717402
+        grezzo (Stadio 1): title: CTX MSN09-04R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E2,investigative unit: 124,sample id: 2,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 52,rna volume (ul): 3.84615384615385,h2o volume (ul): 13.1538461538462
+        H5 titolo        : CTX MSN09-04R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E2,investigative unit: 124,sample id: 2,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 52,rna volume (ul): 3.84615384615385,h2o volume (ul): 13.1538461538462
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717404
+        grezzo (Stadio 1): title: CTX MSN09-04R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E11,investigative unit: 171,sample id: 14,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 68.8,rna volume (ul): 2.90697674418605,h2o volume (ul): 14.093023255814
+        H5 titolo        : CTX MSN09-04R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: E11,investigative unit: 171,sample id: 14,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 68.8,rna volume (ul): 2.90697674418605,h2o volume (ul): 14.093023255814
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE217421__GSE217421__grp_Cetuximab_MSN01_vs_grp_DMSO_2__1
+  studio: GSE217421
+  TRATTATO  (n=2)  etichetta Stadio 2: Cetuximab-treated MSN01 cardiac myocytes
+      gruppo Stadio 2: mg160
+      GSM6717385
+        grezzo (Stadio 1): title: CTX MSN01-03R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C7,investigative unit: 134,sample id: 3,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 25.4,rna volume (ul): 7.8740157480315,h2o volume (ul): 9.1259842519685
+        H5 titolo        : CTX MSN01-03R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C7,investigative unit: 134,sample id: 3,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 25.4,rna volume (ul): 7.8740157480315,h2o volume (ul): 9.1259842519685
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717403
+        grezzo (Stadio 1): title: CTX MSN09-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: H2,investigative unit: 133,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 72,rna volume (ul): 2.77777777777778,h2o volume (ul): 14.2222222222222
+        H5 titolo        : CTX MSN09-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: H2,investigative unit: 133,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 72,rna volume (ul): 2.77777777777778,h2o volume (ul): 14.2222222222222
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=51)  etichetta Stadio 2: DMSO-treated MSN01 cardiac myocytes
+      gruppo Stadio 2: mg18
+      GSM6717321
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A1,investigative unit: 110,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 149,rna volume (ul): 1.34228187919463,h2o volume (ul): 15.6577181208054
+        H5 titolo        : CTRL MSN01-03R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A1,investigative unit: 110,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 149,rna volume (ul): 1.34228187919463,h2o volume (ul): 15.6577181208054
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717322
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D2,investigative unit: 110,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 112,rna volume (ul): 1.78571428571429,h2o volume (ul): 15.2142857142857
+        H5 titolo        : CTRL MSN01-03R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D2,investigative unit: 110,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 112,rna volume (ul): 1.78571428571429,h2o volume (ul): 15.2142857142857
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717323
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A4,investigative unit: 110,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 196,rna volume (ul): 1.02040816326531,h2o volume (ul): 15.9795918367347
+        H5 titolo        : CTRL MSN01-03R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A4,investigative unit: 110,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 196,rna volume (ul): 1.02040816326531,h2o volume (ul): 15.9795918367347
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717324
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A7,investigative unit: 134,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 53.2,rna volume (ul): 3.7593984962406,h2o volume (ul): 13.2406015037594
+        H5 titolo        : CTRL MSN01-03R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A7,investigative unit: 134,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 53.2,rna volume (ul): 3.7593984962406,h2o volume (ul): 13.2406015037594
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717329
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 9 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C6,investigative unit: 144,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 9 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C6,investigative unit: 144,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717333
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G2,investigative unit: 132,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 58.4,rna volume (ul): 3.42465753424658,h2o volume (ul): 13.5753424657534
+        H5 titolo        : CTRL MSN02-04R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G2,investigative unit: 132,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 58.4,rna volume (ul): 3.42465753424658,h2o volume (ul): 13.5753424657534
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717334
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D4,investigative unit: 147,sample id: 17,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 52.4,rna volume (ul): 3.81679389312977,h2o volume (ul): 13.1832061068702
+        H5 titolo        : CTRL MSN02-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D4,investigative unit: 147,sample id: 17,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 52.4,rna volume (ul): 3.81679389312977,h2o volume (ul): 13.1832061068702
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717335
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B7,investigative unit: 174,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 59,rna volume (ul): 3.38983050847458,h2o volume (ul): 13.6101694915254
+        H5 titolo        : CTRL MSN02-04R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B7,investigative unit: 174,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 59,rna volume (ul): 3.38983050847458,h2o volume (ul): 13.6101694915254
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717337
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H10,investigative unit: 192,sample id: 24,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 101,rna volume (ul): 1.98019801980198,h2o volume (ul): 15.019801980198
+        H5 titolo        : CTRL MSN02-04R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H10,investigative unit: 192,sample id: 24,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 101,rna volume (ul): 1.98019801980198,h2o volume (ul): 15.019801980198
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717338
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C2,investigative unit: 123,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55,rna volume (ul): 3.63636363636364,h2o volume (ul): 13.3636363636364
+        H5 titolo        : CTRL MSN05-01R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C2,investigative unit: 123,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55,rna volume (ul): 3.63636363636364,h2o volume (ul): 13.3636363636364
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717339
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 157,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 53.8,rna volume (ul): 3.71747211895911,h2o volume (ul): 13.2825278810409
+        H5 titolo        : CTRL MSN05-01R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 157,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 53.8,rna volume (ul): 3.71747211895911,h2o volume (ul): 13.2825278810409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717340
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D6,investigative unit: 157,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 61.4,rna volume (ul): 3.25732899022801,h2o volume (ul): 13.742671009772
+        H5 titolo        : CTRL MSN05-01R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D6,investigative unit: 157,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 61.4,rna volume (ul): 3.25732899022801,h2o volume (ul): 13.742671009772
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717341
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B9,investigative unit: 165,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 45,rna volume (ul): 4.44444444444444,h2o volume (ul): 12.5555555555556
+        H5 titolo        : CTRL MSN05-01R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B9,investigative unit: 165,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 45,rna volume (ul): 4.44444444444444,h2o volume (ul): 12.5555555555556
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717342
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D10,investigative unit: 172,sample id: 1,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 146,rna volume (ul): 1.36986301369863,h2o volume (ul): 15.6301369863014
+        H5 titolo        : CTRL MSN05-01R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D10,investigative unit: 172,sample id: 1,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 146,rna volume (ul): 1.36986301369863,h2o volume (ul): 15.6301369863014
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717343
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 179,sample id: 1,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 173,rna volume (ul): 1.15606936416185,h2o volume (ul): 15.8439306358382
+        H5 titolo        : CTRL MSN05-01R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 179,sample id: 1,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 173,rna volume (ul): 1.15606936416185,h2o volume (ul): 15.8439306358382
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717344
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 184,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 76.2,rna volume (ul): 2.6246719160105,h2o volume (ul): 14.3753280839895
+        H5 titolo        : CTRL MSN05-01R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 184,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 76.2,rna volume (ul): 2.6246719160105,h2o volume (ul): 14.3753280839895
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717345
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A6,investigative unit: 184,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 65.6,rna volume (ul): 3.04878048780488,h2o volume (ul): 13.9512195121951
+        H5 titolo        : CTRL MSN05-01R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A6,investigative unit: 184,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 65.6,rna volume (ul): 3.04878048780488,h2o volume (ul): 13.9512195121951
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717346
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 9 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G8,investigative unit: 186,sample id: 1,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 64,rna volume (ul): 3.125,h2o volume (ul): 13.875
+        H5 titolo        : CTRL MSN05-01R-CM Rep 9 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G8,investigative unit: 186,sample id: 1,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 64,rna volume (ul): 3.125,h2o volume (ul): 13.875
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717349
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A4,investigative unit: 188,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 83.6,rna volume (ul): 2.39234449760766,h2o volume (ul): 14.6076555023923
+        H5 titolo        : CTRL MSN05-01R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A4,investigative unit: 188,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 83.6,rna volume (ul): 2.39234449760766,h2o volume (ul): 14.6076555023923
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717350
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A1,investigative unit: 127,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62.8,rna volume (ul): 3.18471337579618,h2o volume (ul): 13.8152866242038
+        H5 titolo        : CTRL MSN06-07R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A1,investigative unit: 127,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62.8,rna volume (ul): 3.18471337579618,h2o volume (ul): 13.8152866242038
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717351
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E3,investigative unit: 131,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56.4,rna volume (ul): 3.54609929078014,h2o volume (ul): 13.4539007092199
+        H5 titolo        : CTRL MSN06-07R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E3,investigative unit: 131,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56.4,rna volume (ul): 3.54609929078014,h2o volume (ul): 13.4539007092199
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717352
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 135,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 41.4,rna volume (ul): 4.83091787439614,h2o volume (ul): 12.1690821256039
+        H5 titolo        : CTRL MSN06-07R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 135,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 41.4,rna volume (ul): 4.83091787439614,h2o volume (ul): 12.1690821256039
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717353
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H11,investigative unit: 137,sample id: 25,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 47.4,rna volume (ul): 4.21940928270042,h2o volume (ul): 12.7805907172996
+        H5 titolo        : CTRL MSN06-07R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H11,investigative unit: 137,sample id: 25,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 47.4,rna volume (ul): 4.21940928270042,h2o volume (ul): 12.7805907172996
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717354
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E1,investigative unit: 138,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 42.4,rna volume (ul): 4.71698113207547,h2o volume (ul): 12.2830188679245
+        H5 titolo        : CTRL MSN06-07R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E1,investigative unit: 138,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 42.4,rna volume (ul): 4.71698113207547,h2o volume (ul): 12.2830188679245
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717355
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H2,investigative unit: 145,sample id: 1,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 41.8,rna volume (ul): 4.78468899521531,h2o volume (ul): 12.2153110047847
+        H5 titolo        : CTRL MSN06-07R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H2,investigative unit: 145,sample id: 1,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 41.8,rna volume (ul): 4.78468899521531,h2o volume (ul): 12.2153110047847
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717356
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 146,sample id: 17,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 41.2,rna volume (ul): 4.85436893203883,h2o volume (ul): 12.1456310679612
+        H5 titolo        : CTRL MSN06-07R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 146,sample id: 17,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 41.2,rna volume (ul): 4.85436893203883,h2o volume (ul): 12.1456310679612
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717357
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F9,investigative unit: 149,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 59.2,rna volume (ul): 3.37837837837838,h2o volume (ul): 13.6216216216216
+        H5 titolo        : CTRL MSN06-07R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F9,investigative unit: 149,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 59.2,rna volume (ul): 3.37837837837838,h2o volume (ul): 13.6216216216216
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717358
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 9 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A1,investigative unit: 175,sample id: 15,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 73.2,rna volume (ul): 2.73224043715847,h2o volume (ul): 14.2677595628415
+        H5 titolo        : CTRL MSN06-07R-CM Rep 9 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A1,investigative unit: 175,sample id: 15,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 73.2,rna volume (ul): 2.73224043715847,h2o volume (ul): 14.2677595628415
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717359
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B2,investigative unit: 178,sample id: 1,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 64.2,rna volume (ul): 3.11526479750779,h2o volume (ul): 13.8847352024922
+        H5 titolo        : CTRL MSN06-07R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B2,investigative unit: 178,sample id: 1,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 64.2,rna volume (ul): 3.11526479750779,h2o volume (ul): 13.8847352024922
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717360
+        grezzo (Stadio 1): title: CTRL MSN06-07R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 181,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 82.6,rna volume (ul): 2.42130750605327,h2o volume (ul): 14.5786924939467
+        H5 titolo        : CTRL MSN06-07R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 181,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 82.6,rna volume (ul): 2.42130750605327,h2o volume (ul): 14.5786924939467
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717361
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B1,investigative unit: 112,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 111,rna volume (ul): 1.8018018018018,h2o volume (ul): 15.1981981981982
+        H5 titolo        : CTRL MSN08-13R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B1,investigative unit: 112,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 111,rna volume (ul): 1.8018018018018,h2o volume (ul): 15.1981981981982
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717362
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 122,sample id: 12,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 30.2,rna volume (ul): 6.62251655629139,h2o volume (ul): 10.3774834437086
+        H5 titolo        : CTRL MSN08-13R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 122,sample id: 12,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 30.2,rna volume (ul): 6.62251655629139,h2o volume (ul): 10.3774834437086
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717363
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E3,investigative unit: 122,sample id: 25,rna amount (ng): 200,rin: 9.4,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN08-13R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E3,investigative unit: 122,sample id: 25,rna amount (ng): 200,rin: 9.4,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717364
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G7,investigative unit: 126,sample id: 1,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 104.6,rna volume (ul): 1.91204588910134,h2o volume (ul): 15.0879541108987
+        H5 titolo        : CTRL MSN08-13R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G7,investigative unit: 126,sample id: 1,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 104.6,rna volume (ul): 1.91204588910134,h2o volume (ul): 15.0879541108987
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717365
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H9,investigative unit: 162,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.8,rna volume (ul): 3.584229390681,h2o volume (ul): 13.415770609319
+        H5 titolo        : CTRL MSN08-13R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H9,investigative unit: 162,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.8,rna volume (ul): 3.584229390681,h2o volume (ul): 13.415770609319
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717366
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A3,investigative unit: 180,sample id: 1,rna amount (ng): 200,rin: 9.2,rna conc (ng/ul): 44.2,rna volume (ul): 4.52488687782805,h2o volume (ul): 12.4751131221719
+        H5 titolo        : CTRL MSN08-13R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A3,investigative unit: 180,sample id: 1,rna amount (ng): 200,rin: 9.2,rna conc (ng/ul): 44.2,rna volume (ul): 4.52488687782805,h2o volume (ul): 12.4751131221719
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717367
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G4,investigative unit: 182,sample id: 1,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 52.2,rna volume (ul): 3.83141762452107,h2o volume (ul): 13.1685823754789
+        H5 titolo        : CTRL MSN08-13R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G4,investigative unit: 182,sample id: 1,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 52.2,rna volume (ul): 3.83141762452107,h2o volume (ul): 13.1685823754789
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717368
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A7,investigative unit: 185,sample id: 1,rna amount (ng): 200,rin: 9,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN08-13R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A7,investigative unit: 185,sample id: 1,rna amount (ng): 200,rin: 9,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717369
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 9 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B7,investigative unit: 185,sample id: 12,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 28,rna volume (ul): 7.14285714285714,h2o volume (ul): 9.85714285714286
+        H5 titolo        : CTRL MSN08-13R-CM Rep 9 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B7,investigative unit: 185,sample id: 12,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 28,rna volume (ul): 7.14285714285714,h2o volume (ul): 9.85714285714286
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717370
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D9,investigative unit: 189,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 69.4,rna volume (ul): 2.88184438040346,h2o volume (ul): 14.1181556195965
+        H5 titolo        : CTRL MSN08-13R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D9,investigative unit: 189,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 69.4,rna volume (ul): 2.88184438040346,h2o volume (ul): 14.1181556195965
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717371
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G7,investigative unit: 190,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 98.8,rna volume (ul): 2.02429149797571,h2o volume (ul): 14.9757085020243
+        H5 titolo        : CTRL MSN08-13R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G7,investigative unit: 190,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 98.8,rna volume (ul): 2.02429149797571,h2o volume (ul): 14.9757085020243
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717372
+        grezzo (Stadio 1): title: CTRL MSN08-13R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H7,investigative unit: 190,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 115,rna volume (ul): 1.73913043478261,h2o volume (ul): 15.2608695652174
+        H5 titolo        : CTRL MSN08-13R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H7,investigative unit: 190,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 115,rna volume (ul): 1.73913043478261,h2o volume (ul): 15.2608695652174
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717373
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D2,investigative unit: 124,sample id: 1,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.66300366300366,h2o volume (ul): 13.3369963369963
+        H5 titolo        : CTRL MSN09-04R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D2,investigative unit: 124,sample id: 1,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.66300366300366,h2o volume (ul): 13.3369963369963
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717374
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H5,investigative unit: 124,sample id: 49,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 37,rna volume (ul): 5.40540540540541,h2o volume (ul): 11.5945945945946
+        H5 titolo        : CTRL MSN09-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H5,investigative unit: 124,sample id: 49,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 37,rna volume (ul): 5.40540540540541,h2o volume (ul): 11.5945945945946
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717375
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H9,investigative unit: 129,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.98507462686567,h2o volume (ul): 14.0149253731343
+        H5 titolo        : CTRL MSN09-04R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: H9,investigative unit: 129,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.98507462686567,h2o volume (ul): 14.0149253731343
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717376
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D11,investigative unit: 130,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.6525198938992,h2o volume (ul): 14.3474801061008
+        H5 titolo        : CTRL MSN09-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D11,investigative unit: 130,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.6525198938992,h2o volume (ul): 14.3474801061008
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717377
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 130,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 83,rna volume (ul): 2.40963855421687,h2o volume (ul): 14.5903614457831
+        H5 titolo        : CTRL MSN09-04R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 130,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 83,rna volume (ul): 2.40963855421687,h2o volume (ul): 14.5903614457831
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717378
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F2,investigative unit: 133,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 80.8,rna volume (ul): 2.47524752475248,h2o volume (ul): 14.5247524752475
+        H5 titolo        : CTRL MSN09-04R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F2,investigative unit: 133,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 80.8,rna volume (ul): 2.47524752475248,h2o volume (ul): 14.5247524752475
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717379
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F4,investigative unit: 133,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 74.8,rna volume (ul): 2.67379679144385,h2o volume (ul): 14.3262032085561
+        H5 titolo        : CTRL MSN09-04R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F4,investigative unit: 133,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 74.8,rna volume (ul): 2.67379679144385,h2o volume (ul): 14.3262032085561
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717380
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B9,investigative unit: 168,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 79.4,rna volume (ul): 2.51889168765743,h2o volume (ul): 14.4811083123426
+        H5 titolo        : CTRL MSN09-04R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B9,investigative unit: 168,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 79.4,rna volume (ul): 2.51889168765743,h2o volume (ul): 14.4811083123426
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717381
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 9 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 171,sample id: 1,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 66.6,rna volume (ul): 3.003003003003,h2o volume (ul): 13.996996996997
+        H5 titolo        : CTRL MSN09-04R-CM Rep 9 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 171,sample id: 1,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 66.6,rna volume (ul): 3.003003003003,h2o volume (ul): 13.996996996997
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE217423__GSE217423__Cetuximab_vs_DMSO__1
+  studio: GSE217423
+  TRATTATO  (n=6)  etichetta Stadio 2: Cardiac myocytes treated with Cetuximab
+      gruppo Stadio 2: mg26
+      GSM6718364
+        grezzo (Stadio 1): title: CTX MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C19,investigative unit: 119,sample id: 3,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 31.8,rna volume (ul): 6.289308,h2o volume (ul): 13.710692
+        H5 titolo        : CTX MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: C19,investigative unit: 119,sample id: 3,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 31.8,rna volume (ul): 6.289308,h2o volume (ul): 13.710692
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718366
+        grezzo (Stadio 1): title: CTX MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: M7,investigative unit: 132,sample id: 3,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 66.2,rna volume (ul): 3.021148,h2o volume (ul): 16.978852
+        H5 titolo        : CTX MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: M7,investigative unit: 132,sample id: 3,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 66.2,rna volume (ul): 3.021148,h2o volume (ul): 16.978852
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718367
+        grezzo (Stadio 1): title: CTX MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: F24,investigative unit: 124,sample id: 2,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 52,rna volume (ul): 3.846154,h2o volume (ul): 16.153846
+        H5 titolo        : CTX MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: F24,investigative unit: 124,sample id: 2,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 52,rna volume (ul): 3.846154,h2o volume (ul): 16.153846
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718368
+        grezzo (Stadio 1): title: CTX MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: H24,investigative unit: 128,sample id: 3,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 39.4,rna volume (ul): 5.076142,h2o volume (ul): 14.923858
+        H5 titolo        : CTX MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: H24,investigative unit: 128,sample id: 3,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 39.4,rna volume (ul): 5.076142,h2o volume (ul): 14.923858
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718369
+        grezzo (Stadio 1): title: CTX MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: I20,investigative unit: 129,sample id: 3,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 60.4,rna volume (ul): 3.311258,h2o volume (ul): 16.688742
+        H5 titolo        : CTX MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: I20,investigative unit: 129,sample id: 3,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 60.4,rna volume (ul): 3.311258,h2o volume (ul): 16.688742
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718370
+        grezzo (Stadio 1): title: CTX MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: K14,investigative unit: 130,sample id: 3,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 60,rna volume (ul): 3.333333,h2o volume (ul): 16.666667
+        H5 titolo        : CTX MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTX,drug name: Cetuximab,concentration: 1uM,well: K14,investigative unit: 130,sample id: 3,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 60,rna volume (ul): 3.333333,h2o volume (ul): 16.666667
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=16)  etichetta Stadio 2: Cardiac myocytes treated with DMSO
+      gruppo Stadio 2: mg1
+      GSM6718347
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 titolo        : CTRL MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718348
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 titolo        : CTRL MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718349
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 titolo        : CTRL MSN02-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718350
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718351
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 titolo        : CTRL MSN02-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718352
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 titolo        : CTRL MSN02-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718353
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 titolo        : CTRL MSN02-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718354
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 titolo        : CTRL MSN02-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718355
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 titolo        : CTRL MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718356
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 titolo        : CTRL MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718357
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 titolo        : CTRL MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718358
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 titolo        : CTRL MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718359
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 titolo        : CTRL MSN09-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718360
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 titolo        : CTRL MSN09-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718361
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 titolo        : CTRL MSN09-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718362
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 titolo        : CTRL MSN09-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 sorgente      : induced pluripotent stem cell
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE162104     campioni nell'H5:   60 | collocati dallo Stadio 2:   60 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE217421     campioni nell'H5: 1170 | collocati dallo Stadio 2:  913 | MAI COLLOCATI:  257 | usati in questa meta-analisi: 84 campioni distinti (84 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6717095, GSM6717097, GSM6717100, GSM6717101, GSM6717102, GSM6717103, GSM6717104, GSM6717106, GSM6717107, GSM6717108, GSM6717111, GSM6717112 ... (+245)
+  GSE217423     campioni nell'H5:  344 | collocati dallo Stadio 2:  264 | MAI COLLOCATI:   80 | usati in questa meta-analisi: 22 campioni distinti (22 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6718283, GSM6718285, GSM6718287, GSM6718288, GSM6718289, GSM6718290, GSM6718299, GSM6718306, GSM6718317, GSM6718324, GSM6718325, GSM6718326 ... (+68)
+

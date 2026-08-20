@@ -1,0 +1,769 @@
+META-ANALISI 147 di 194
+==============================================================================
+nome            : regorafenib
+entita (ID)     : CHEBI:68647
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_fd0c6a79
+studi poolati   : 3   confronti: 6   campioni: 139
+geni significativi: 51   I2 mediano: 0.0
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE186341__GSE186341__grp_0040_vs_grp_0010__1
+  studio: GSE186341
+  TRATTATO  (n=2)  etichetta Stadio 2: DU145 + Regorafenib 5 µM 24h
+      gruppo Stadio 2: mg95
+      GSM5644345
+        grezzo (Stadio 1): title: du145_E1_Regorafenib_5_24 DU145PS1AS529_TGAGAAAG,source: prostate cancer,treatment: Regorafenib,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E1_Regorafenib_5_24 DU145PS1AS529_TGAGAAAG
+        H5 caratteristiche: treatment: Regorafenib,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644370
+        grezzo (Stadio 1): title: du145_E1_Regorafenib_5_24 DU145PS1BS49_ACTGACTT,source: prostate cancer,treatment: Regorafenib,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E1_Regorafenib_5_24 DU145PS1BS49_ACTGACTT
+        H5 caratteristiche: treatment: Regorafenib,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+  CONTROLLO  (n=44)  etichetta Stadio 2: DU145 + UNTREATED
+      gruppo Stadio 2: mg65
+      GSM5644337
+        grezzo (Stadio 1): title: du145_C2_UNTREATED_0_24 DU145PS1AS506_CCCCTTCA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_C2_UNTREATED_0_24 DU145PS1AS506_CCCCTTCA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644342
+        grezzo (Stadio 1): title: du145_D2_UNTREATED_0_24 DU145PS1AS518_GACGACTC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_D2_UNTREATED_0_24 DU145PS1AS518_GACGACTC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644346
+        grezzo (Stadio 1): title: du145_E6_UNTREATED_0_24 DU145PS1AS534_ACTATCTG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E6_UNTREATED_0_24 DU145PS1AS534_ACTATCTG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644349
+        grezzo (Stadio 1): title: du145_F6_UNTREATED_0_24 DU145PS1AS546_CGAAGAGT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_F6_UNTREATED_0_24 DU145PS1AS546_CGAAGAGT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644353
+        grezzo (Stadio 1): title: du145_G11_UNTREATED_0_24 DU145PS1AS563_ATAGGGCG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_G11_UNTREATED_0_24 DU145PS1AS563_ATAGGGCG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644354
+        grezzo (Stadio 1): title: du145_H11_UNTREATED_0_24 DU145PS1AS575_AGAGTGTC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_H11_UNTREATED_0_24 DU145PS1AS575_AGAGTGTC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644362
+        grezzo (Stadio 1): title: du145_C2_UNTREATED_0_24 DU145PS1BS26_TTTTACCG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_C2_UNTREATED_0_24 DU145PS1BS26_TTTTACCG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644371
+        grezzo (Stadio 1): title: du145_E6_UNTREATED_0_24 DU145PS1BS54_TTTCTCCC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E6_UNTREATED_0_24 DU145PS1BS54_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644374
+        grezzo (Stadio 1): title: du145_F6_UNTREATED_0_24 DU145PS1BS66_TCATTGGA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_F6_UNTREATED_0_24 DU145PS1BS66_TCATTGGA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644378
+        grezzo (Stadio 1): title: du145_G11_UNTREATED_0_24 DU145PS1BS83_GTCGCACA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_G11_UNTREATED_0_24 DU145PS1BS83_GTCGCACA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644379
+        grezzo (Stadio 1): title: du145_H11_UNTREATED_0_24 DU145PS1BS95_CGGTGATA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_H11_UNTREATED_0_24 DU145PS1BS95_CGGTGATA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644385
+        grezzo (Stadio 1): title: du145_C2_UNTREATED_0_24 DU145PS2AS122_TGTCAACG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_C2_UNTREATED_0_24 DU145PS2AS122_TGTCAACG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644389
+        grezzo (Stadio 1): title: du145_D2_UNTREATED_0_24 DU145PS2AS134_TATGCGTG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_D2_UNTREATED_0_24 DU145PS2AS134_TATGCGTG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644395
+        grezzo (Stadio 1): title: du145_F6_UNTREATED_0_24 DU145PS2AS162_CTCTTACG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_F6_UNTREATED_0_24 DU145PS2AS162_CTCTTACG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644398
+        grezzo (Stadio 1): title: du145_G11_UNTREATED_0_24 DU145PS2AS179_TTCAGAGT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_G11_UNTREATED_0_24 DU145PS2AS179_TTCAGAGT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644407
+        grezzo (Stadio 1): title: du145_C02_UNTREATED__24 DU145PS2BS218_AATTCGTC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_C02_UNTREATED__24 DU145PS2BS218_AATTCGTC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644411
+        grezzo (Stadio 1): title: du145_D02_UNTREATED__24 DU145PS2BS230_TGACATGC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_D02_UNTREATED__24 DU145PS2BS230_TGACATGC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644413
+        grezzo (Stadio 1): title: du145_E06_UNTREATED__24 DU145PS2BS246_CACCTCTC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E06_UNTREATED__24 DU145PS2BS246_CACCTCTC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644417
+        grezzo (Stadio 1): title: du145_F06_UNTREATED__24 DU145PS2BS258_TCCCTGAC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_F06_UNTREATED__24 DU145PS2BS258_TCCCTGAC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644420
+        grezzo (Stadio 1): title: du145_G11_UNTREATED__24 DU145PS2BS275_GCCTCGAT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_G11_UNTREATED__24 DU145PS2BS275_GCCTCGAT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644423
+        grezzo (Stadio 1): title: du145_H11_UNTREATED__24 DU145PS2BS287_GCACTAAT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_H11_UNTREATED__24 DU145PS2BS287_GCACTAAT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644429
+        grezzo (Stadio 1): title: du145_C02_UNTREATED__24 DU145PS3AS314_TAAGTCGC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_C02_UNTREATED__24 DU145PS3AS314_TAAGTCGC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644431
+        grezzo (Stadio 1): title: du145_D02_UNTREATED__24 DU145PS3AS326_CATGAAGA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_D02_UNTREATED__24 DU145PS3AS326_CATGAAGA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644436
+        grezzo (Stadio 1): title: du145_E06_UNTREATED__24 DU145PS3AS342_GGAACTCA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E06_UNTREATED__24 DU145PS3AS342_GGAACTCA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644443
+        grezzo (Stadio 1): title: du145_G11_UNTREATED__24 DU145PS3AS371_GTGCGAAG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_G11_UNTREATED__24 DU145PS3AS371_GTGCGAAG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644444
+        grezzo (Stadio 1): title: du145_H11_UNTREATED__24 DU145PS3AS383_AAGTGGAT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_H11_UNTREATED__24 DU145PS3AS383_AAGTGGAT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644450
+        grezzo (Stadio 1): title: du145_C02_UNTREATED__24 DU145PS3BS410_CCGGCTAT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_C02_UNTREATED__24 DU145PS3BS410_CCGGCTAT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644452
+        grezzo (Stadio 1): title: du145_D02_UNTREATED__24 DU145PS3BS422_ACGTGGCA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_D02_UNTREATED__24 DU145PS3BS422_ACGTGGCA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644457
+        grezzo (Stadio 1): title: du145_E06_UNTREATED__24 DU145PS3BS438_CTGACGGT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E06_UNTREATED__24 DU145PS3BS438_CTGACGGT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644461
+        grezzo (Stadio 1): title: du145_F06_UNTREATED__24 DU145PS3BS450_GTGATAGT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_F06_UNTREATED__24 DU145PS3BS450_GTGATAGT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644464
+        grezzo (Stadio 1): title: du145_G11_UNTREATED__24 DU145PS3BS467_TCACAAGA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_G11_UNTREATED__24 DU145PS3BS467_TCACAAGA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644465
+        grezzo (Stadio 1): title: du145_H11_UNTREATED__24 DU145PS3BS479_GCGACGAA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_H11_UNTREATED__24 DU145PS3BS479_GCGACGAA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644468
+        grezzo (Stadio 1): title: du145_C02_UNTREATED__24 DU145PS4AS506_CCCCTTCA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_C02_UNTREATED__24 DU145PS4AS506_CCCCTTCA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644470
+        grezzo (Stadio 1): title: du145_D02_UNTREATED__24 DU145PS4AS518_GACGACTC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_D02_UNTREATED__24 DU145PS4AS518_GACGACTC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644472
+        grezzo (Stadio 1): title: du145_E06_UNTREATED__24 DU145PS4AS534_ACTATCTG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E06_UNTREATED__24 DU145PS4AS534_ACTATCTG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644474
+        grezzo (Stadio 1): title: du145_F06_UNTREATED__24 DU145PS4AS546_CGAAGAGT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_F06_UNTREATED__24 DU145PS4AS546_CGAAGAGT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644476
+        grezzo (Stadio 1): title: du145_G11_UNTREATED__24 DU145PS4AS563_ATAGGGCG,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_G11_UNTREATED__24 DU145PS4AS563_ATAGGGCG
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644477
+        grezzo (Stadio 1): title: du145_H11_UNTREATED__24 DU145PS4AS575_AGAGTGTC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_H11_UNTREATED__24 DU145PS4AS575_AGAGTGTC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644480
+        grezzo (Stadio 1): title: du145_C02_UNTREATED__24 DU145PS4BS602_GAGGTCTT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_C02_UNTREATED__24 DU145PS4BS602_GAGGTCTT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644482
+        grezzo (Stadio 1): title: du145_D02_UNTREATED__24 DU145PS4BS614_GGCGTTCA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_D02_UNTREATED__24 DU145PS4BS614_GGCGTTCA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644484
+        grezzo (Stadio 1): title: du145_E06_UNTREATED__24 DU145PS4BS630_AACTTGGC,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_E06_UNTREATED__24 DU145PS4BS630_AACTTGGC
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644486
+        grezzo (Stadio 1): title: du145_F06_UNTREATED__24 DU145PS4BS642_AGATAGGT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_F06_UNTREATED__24 DU145PS4BS642_AGATAGGT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644488
+        grezzo (Stadio 1): title: du145_G11_UNTREATED__24 DU145PS4BS659_ATACGCAT,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_G11_UNTREATED__24 DU145PS4BS659_ATACGCAT
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5644489
+        grezzo (Stadio 1): title: du145_H11_UNTREATED__24 DU145PS4BS671_TAACCCGA,source: prostate cancer,treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_H11_UNTREATED__24 DU145PS4BS671_TAACCCGA
+        H5 caratteristiche: treatment: UNTREATED,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+
+CONFRONTO  GSE186341__GSE186341__HF2597_Regorafenib_vs_HF2597_DMSO__1
+  studio: GSE186341
+  TRATTATO  (n=2)  etichetta Stadio 2: HF2597 Regorafenib
+      gruppo Stadio 2: mg230
+      GSM5644959
+        grezzo (Stadio 1): title: hf2597_C07_Regorafenib_0.31_24 HF2597PS1AS31_TAGCTAGC,source: glioblastoma,treatment: Regorafenib,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_C07_Regorafenib_0.31_24 HF2597PS1AS31_TAGCTAGC
+        H5 caratteristiche: treatment: Regorafenib,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644980
+        grezzo (Stadio 1): title: hf2597_C07_Regorafenib_0.31_24 HF2597PS1BS127_ATCAGGCT,source: glioblastoma,treatment: Regorafenib,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_C07_Regorafenib_0.31_24 HF2597PS1BS127_ATCAGGCT
+        H5 caratteristiche: treatment: Regorafenib,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+  CONTROLLO  (n=34)  etichetta Stadio 2: HF2597 DMSO
+      gruppo Stadio 2: mg233
+      GSM5644954
+        grezzo (Stadio 1): title: hf2597_A02_DMSO__24 HF2597PS1AS2_CGTTGTCA,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_A02_DMSO__24 HF2597PS1AS2_CGTTGTCA
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644962
+        grezzo (Stadio 1): title: hf2597_D06_DMSO__24 HF2597PS1AS42_ACACGCCA,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_D06_DMSO__24 HF2597PS1AS42_ACACGCCA
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644970
+        grezzo (Stadio 1): title: hf2597_F11_DMSO__24 HF2597PS1AS71_ATTGTGGC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_F11_DMSO__24 HF2597PS1AS71_ATTGTGGC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644975
+        grezzo (Stadio 1): title: hf2597_A02_DMSO__24 HF2597PS1BS98_ACATGTTG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_A02_DMSO__24 HF2597PS1BS98_ACATGTTG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644976
+        grezzo (Stadio 1): title: hf2597_B02_DMSO__24 HF2597PS1BS110_CTGAGGTC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_B02_DMSO__24 HF2597PS1BS110_CTGAGGTC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644979
+        grezzo (Stadio 1): title: hf2597_C06_DMSO__24 HF2597PS1BS126_CTGGTCAT,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_C06_DMSO__24 HF2597PS1BS126_CTGGTCAT
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644983
+        grezzo (Stadio 1): title: hf2597_D06_DMSO__24 HF2597PS1BS138_AGACAGTG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_D06_DMSO__24 HF2597PS1BS138_AGACAGTG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644988
+        grezzo (Stadio 1): title: hf2597_E11_DMSO__24 HF2597PS1BS155_TATACGCT,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_E11_DMSO__24 HF2597PS1BS155_TATACGCT
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644991
+        grezzo (Stadio 1): title: hf2597_F11_DMSO__24 HF2597PS1BS167_GCTAAGAC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_F11_DMSO__24 HF2597PS1BS167_GCTAAGAC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644996
+        grezzo (Stadio 1): title: hf2597_A02_DMSO__24 HF2597PS2AS194_GAGCTGGT,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_A02_DMSO__24 HF2597PS2AS194_GAGCTGGT
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5644998
+        grezzo (Stadio 1): title: hf2597_B02_DMSO__24 HF2597PS2AS206_GTCCGTTG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_B02_DMSO__24 HF2597PS2AS206_GTCCGTTG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645008
+        grezzo (Stadio 1): title: hf2597_E11_DMSO__24 HF2597PS2AS251_GGAAAAGC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_E11_DMSO__24 HF2597PS2AS251_GGAAAAGC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645017
+        grezzo (Stadio 1): title: hf2597_A02_DMSO__24 HF2597PS2BS290_CTATACCA,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_A02_DMSO__24 HF2597PS2BS290_CTATACCA
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645019
+        grezzo (Stadio 1): title: hf2597_B02_DMSO__24 HF2597PS2BS302_CATTTGCA,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_B02_DMSO__24 HF2597PS2BS302_CATTTGCA
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645022
+        grezzo (Stadio 1): title: hf2597_C06_DMSO__24 HF2597PS2BS318_AACGGTAC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_C06_DMSO__24 HF2597PS2BS318_AACGGTAC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645025
+        grezzo (Stadio 1): title: hf2597_D06_DMSO__24 HF2597PS2BS330_GAGTGTAG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_D06_DMSO__24 HF2597PS2BS330_GAGTGTAG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645029
+        grezzo (Stadio 1): title: hf2597_E11_DMSO__24 HF2597PS2BS347_GAACAGAC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_E11_DMSO__24 HF2597PS2BS347_GAACAGAC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645038
+        grezzo (Stadio 1): title: hf2597_A02_DMSO__24 HF2597PS3AS386_GTAACGCT,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_A02_DMSO__24 HF2597PS3AS386_GTAACGCT
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645039
+        grezzo (Stadio 1): title: hf2597_B02_DMSO__24 HF2597PS3AS398_GGGAGATT,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_B02_DMSO__24 HF2597PS3AS398_GGGAGATT
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645044
+        grezzo (Stadio 1): title: hf2597_C06_DMSO__24 HF2597PS3AS414_TGGTGGTG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_C06_DMSO__24 HF2597PS3AS414_TGGTGGTG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645051
+        grezzo (Stadio 1): title: hf2597_E11_DMSO__24 HF2597PS3AS443_AATGGCGT,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_E11_DMSO__24 HF2597PS3AS443_AATGGCGT
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645054
+        grezzo (Stadio 1): title: hf2597_F11_DMSO__24 HF2597PS3AS455_CACTTGAT,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_F11_DMSO__24 HF2597PS3AS455_CACTTGAT
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645061
+        grezzo (Stadio 1): title: hf2597_A02_DMSO__24 HF2597PS3BS482_CGAAGCCA,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_A02_DMSO__24 HF2597PS3BS482_CGAAGCCA
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645062
+        grezzo (Stadio 1): title: hf2597_B02_DMSO__24 HF2597PS3BS494_GACTGAGG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_B02_DMSO__24 HF2597PS3BS494_GACTGAGG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645099
+        grezzo (Stadio 1): title: hf2597_A02_DMSO__24 HF2597PS4BS98_ACATGTTG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_A02_DMSO__24 HF2597PS4BS98_ACATGTTG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645100
+        grezzo (Stadio 1): title: hf2597_B02_DMSO__24 HF2597PS4BS110_CTGAGGTC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_B02_DMSO__24 HF2597PS4BS110_CTGAGGTC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645110
+        grezzo (Stadio 1): title: hf2597_F11_DMSO__24 HF2597PS4BS167_GCTAAGAC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_F11_DMSO__24 HF2597PS4BS167_GCTAAGAC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645114
+        grezzo (Stadio 1): title: hf2597_A02_DMSO__24 HF2597PS5AS194_GAGCTGGT,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_A02_DMSO__24 HF2597PS5AS194_GAGCTGGT
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645115
+        grezzo (Stadio 1): title: hf2597_B02_DMSO__24 HF2597PS5AS206_GTCCGTTG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_B02_DMSO__24 HF2597PS5AS206_GTCCGTTG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645121
+        grezzo (Stadio 1): title: hf2597_E11_DMSO__24 HF2597PS5AS251_GGAAAAGC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_E11_DMSO__24 HF2597PS5AS251_GGAAAAGC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645127
+        grezzo (Stadio 1): title: hf2597_B02_DMSO__24 HF2597PS5BS302_CATTTGCA,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_B02_DMSO__24 HF2597PS5BS302_CATTTGCA
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645129
+        grezzo (Stadio 1): title: hf2597_C06_DMSO__24 HF2597PS5BS318_AACGGTAC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_C06_DMSO__24 HF2597PS5BS318_AACGGTAC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645131
+        grezzo (Stadio 1): title: hf2597_D06_DMSO__24 HF2597PS5BS330_GAGTGTAG,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_D06_DMSO__24 HF2597PS5BS330_GAGTGTAG
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+      GSM5645133
+        grezzo (Stadio 1): title: hf2597_E11_DMSO__24 HF2597PS5BS347_GAACAGAC,source: glioblastoma,treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 titolo        : hf2597_E11_DMSO__24 HF2597PS5BS347_GAACAGAC
+        H5 caratteristiche: treatment: DMSO,cell line: HF2597,provider: Henry Ford Fnd,vendor id: NA,age: NA,Sex: NA
+        H5 sorgente      : glioblastoma
+
+CONFRONTO  GSE186341__GSE186341__NCI-H1793_Regorafenib_vs_NCI-H1793_Untreated__1
+  studio: GSE186341
+  TRATTATO  (n=2)  etichetta Stadio 2: NCI-H1793_Regorafenib
+      gruppo Stadio 2: mg369
+      GSM5644665
+        grezzo (Stadio 1): title: h1793_B12_Regorafenib_5.177913_24 1793PS1AA01_TTGGAAAC_90.gz,source: lung cancer,treatment: Regorafenib,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_B12_Regorafenib_5.177913_24 1793PS1AA01_TTGGAAAC_90.gz
+        H5 caratteristiche: treatment: Regorafenib,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644683
+        grezzo (Stadio 1): title: h1793_B12_Regorafenib_5.177913_24 1793PS1BA01_TTGGAAAC_90.gz,source: lung cancer,treatment: Regorafenib,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_B12_Regorafenib_5.177913_24 1793PS1BA01_TTGGAAAC_90.gz
+        H5 caratteristiche: treatment: Regorafenib,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+  CONTROLLO  (n=28)  etichetta Stadio 2: NCI-H1793_Untreated
+      gruppo Stadio 2: mg373
+      GSM5644655
+        grezzo (Stadio 1): title: h1793_E5_UNTREATED_0_24 1793PS1AA01_GGTGATCT_37.gz,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E5_UNTREATED_0_24 1793PS1AA01_GGTGATCT_37.gz
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644658
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 1793PS1AA01_TTTCTCCC_45.gz,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 1793PS1AA01_TTTCTCCC_45.gz
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644673
+        grezzo (Stadio 1): title: h1793_E5_UNTREATED_0_24 1793PS1BA01_GGTGATCT_37.gz,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E5_UNTREATED_0_24 1793PS1BA01_GGTGATCT_37.gz
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644676
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 1793PS1BA01_TTTCTCCC_45.gz,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 1793PS1BA01_TTTCTCCC_45.gz
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644690
+        grezzo (Stadio 1): title: h1793_E5_UNTREATED_0_24 NCIH1793PS2AE05_GGTGATCT,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E5_UNTREATED_0_24 NCIH1793PS2AE05_GGTGATCT
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644692
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 NCIH1793PS2AE06_TTTCTCCC,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 NCIH1793PS2AE06_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644703
+        grezzo (Stadio 1): title: h1793_E5_UNTREATED_0_24 NCIH1793PS2BE05_GGTGATCT,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E5_UNTREATED_0_24 NCIH1793PS2BE05_GGTGATCT
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644705
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 NCIH1793PS2BE06_TTTCTCCC,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 NCIH1793PS2BE06_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644713
+        grezzo (Stadio 1): title: h1793_E5_UNTREATED_0_24 NCIH1793PS3AE05_GGTGATCT,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E5_UNTREATED_0_24 NCIH1793PS3AE05_GGTGATCT
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644715
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 NCIH1793PS3AE06_TTTCTCCC,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 NCIH1793PS3AE06_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644724
+        grezzo (Stadio 1): title: h1793_E5_UNTREATED_0_24 1793PS3CE05_GGTGATCT,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E5_UNTREATED_0_24 1793PS3CE05_GGTGATCT
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644726
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 1793PS3CE06_TTTCTCCC,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 1793PS3CE06_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644736
+        grezzo (Stadio 1): title: h1793_E5_UNTREATED_0_24 1793PS4AE05_GGTGATCT,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E5_UNTREATED_0_24 1793PS4AE05_GGTGATCT
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644738
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 1793PS4AE06_TTTCTCCC,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 1793PS4AE06_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644742
+        grezzo (Stadio 1): title: h1793_E5_UNTREATED_0_24 1793PS4BE05_GGTGATCT,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E5_UNTREATED_0_24 1793PS4BE05_GGTGATCT
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644744
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 1793PS4BE06_TTTCTCCC,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 1793PS4BE06_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644748
+        grezzo (Stadio 1): title: h1793_C2_UNTREATED_0_24 1793PS5AC02_TTTTACCG,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_C2_UNTREATED_0_24 1793PS5AC02_TTTTACCG
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644749
+        grezzo (Stadio 1): title: h1793_D2_UNTREATED_0_24 1793PS5AD02_ATCATGTG,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D2_UNTREATED_0_24 1793PS5AD02_ATCATGTG
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644752
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 1793PS5AE06_TTTCTCCC,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 1793PS5AE06_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644753
+        grezzo (Stadio 1): title: h1793_F6_UNTREATED_0_24 1793PS5AF06_TCATTGGA,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_F6_UNTREATED_0_24 1793PS5AF06_TCATTGGA
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644756
+        grezzo (Stadio 1): title: h1793_G11_UNTREATED_0_24 1793PS5AG11_GTCGCACA,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_G11_UNTREATED_0_24 1793PS5AG11_GTCGCACA
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644757
+        grezzo (Stadio 1): title: h1793_H11_UNTREATED_0_24 1793PS5AH11_CGGTGATA,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_H11_UNTREATED_0_24 1793PS5AH11_CGGTGATA
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644760
+        grezzo (Stadio 1): title: h1793_C2_UNTREATED_0_24 1793PS5BC02_TTTTACCG,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_C2_UNTREATED_0_24 1793PS5BC02_TTTTACCG
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644761
+        grezzo (Stadio 1): title: h1793_D2_UNTREATED_0_24 1793PS5BD02_ATCATGTG,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_D2_UNTREATED_0_24 1793PS5BD02_ATCATGTG
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644764
+        grezzo (Stadio 1): title: h1793_E6_UNTREATED_0_24 1793PS5BE06_TTTCTCCC,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_E6_UNTREATED_0_24 1793PS5BE06_TTTCTCCC
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644765
+        grezzo (Stadio 1): title: h1793_F6_UNTREATED_0_24 1793PS5BF06_TCATTGGA,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_F6_UNTREATED_0_24 1793PS5BF06_TCATTGGA
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644768
+        grezzo (Stadio 1): title: h1793_G11_UNTREATED_0_24 1793PS5BG11_GTCGCACA,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_G11_UNTREATED_0_24 1793PS5BG11_GTCGCACA
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+      GSM5644769
+        grezzo (Stadio 1): title: h1793_H11_UNTREATED_0_24 1793PS5BH11_CGGTGATA,source: lung cancer,treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 titolo        : h1793_H11_UNTREATED_0_24 1793PS5BH11_CGGTGATA
+        H5 caratteristiche: treatment: UNTREATED,cell line: NCI-H1793,provider: ATCC,vendor id: CRL-5896,age: 52,Sex: female
+        H5 sorgente      : lung cancer
+
+CONFRONTO  GSE186341__GSE186341__PANC-1_Regorafenib_vs_PANC-1_Untreated__1
+  studio: GSE186341
+  TRATTATO  (n=2)  etichetta Stadio 2: PANC-1_Regorafenib
+      gruppo Stadio 2: mg393
+      GSM5645655
+        grezzo (Stadio 1): title: panc1_G3_Regorafenib_5_24 PANC1PS2AS459_CACCTGGA,source: pancreatic cancer,treatment: Regorafenib,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_G3_Regorafenib_5_24 PANC1PS2AS459_CACCTGGA
+        H5 caratteristiche: treatment: Regorafenib,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+      GSM5645679
+        grezzo (Stadio 1): title: panc1_G3_Regorafenib_5_24 PANC1PS2BS555_TTCCGTAA,source: pancreatic cancer,treatment: Regorafenib,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_G3_Regorafenib_5_24 PANC1PS2BS555_TTCCGTAA
+        H5 caratteristiche: treatment: Regorafenib,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+  CONTROLLO  (n=4)  etichetta Stadio 2: PANC-1_Untreated
+      gruppo Stadio 2: mg396
+      GSM5645615
+        grezzo (Stadio 1): title: panc1_H11_UNTREATED__24 PANC1PS1AS287_GCACTAAT,source: pancreatic cancer,treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_H11_UNTREATED__24 PANC1PS1AS287_GCACTAAT
+        H5 caratteristiche: treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+      GSM5645660
+        grezzo (Stadio 1): title: panc1_H11_UNTREATED__24 PANC1PS2AS479_GCGACGAA,source: pancreatic cancer,treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_H11_UNTREATED__24 PANC1PS2AS479_GCGACGAA
+        H5 caratteristiche: treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+      GSM5645682
+        grezzo (Stadio 1): title: panc1_G11_UNTREATED__24 PANC1PS2BS563_ATAGGGCG,source: pancreatic cancer,treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_G11_UNTREATED__24 PANC1PS2BS563_ATAGGGCG
+        H5 caratteristiche: treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+      GSM5645741
+        grezzo (Stadio 1): title: panc1_H11_UNTREATED__24 PANC1PS4AS191_TGTCGTGA,source: pancreatic cancer,treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 titolo        : panc1_H11_UNTREATED__24 PANC1PS4AS191_TGTCGTGA
+        H5 caratteristiche: treatment: UNTREATED,cell line: PANC-1,provider: ATCC,vendor id: CRL-1469,age: 56,Sex: male
+        H5 sorgente      : pancreatic cancer
+
+CONFRONTO  GSE217421__GSE217421__DMSO_1_vs_Regorafenib_MSN05__1
+  studio: GSE217421
+  TRATTATO  (n=3)  etichetta Stadio 2: Regorafenib-treated cardiac myocytes (MSN05)
+      gruppo Stadio 2: mg105
+      GSM6717984
+        grezzo (Stadio 1): title: REG MSN05-01R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: REG,drug name: Regorafenib,concentration: 1uM,well: H2,investigative unit: 123,sample id: 33,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 53,rna volume (ul): 3.77358490566038,h2o volume (ul): 13.2264150943396
+        H5 titolo        : REG MSN05-01R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: REG,drug name: Regorafenib,concentration: 1uM,well: H2,investigative unit: 123,sample id: 33,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 53,rna volume (ul): 3.77358490566038,h2o volume (ul): 13.2264150943396
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717986
+        grezzo (Stadio 1): title: REG MSN05-01R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: REG,drug name: Regorafenib,concentration: 1uM,well: G1,investigative unit: 179,sample id: 9,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 117,rna volume (ul): 1.70940170940171,h2o volume (ul): 15.2905982905983
+        H5 titolo        : REG MSN05-01R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: REG,drug name: Regorafenib,concentration: 1uM,well: G1,investigative unit: 179,sample id: 9,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 117,rna volume (ul): 1.70940170940171,h2o volume (ul): 15.2905982905983
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717997
+        grezzo (Stadio 1): title: REG MSN09-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: REG,drug name: Regorafenib,concentration: 1uM,well: E5,investigative unit: 124,sample id: 57,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 44,rna volume (ul): 4.54545454545455,h2o volume (ul): 12.4545454545455
+        H5 titolo        : REG MSN09-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: REG,drug name: Regorafenib,concentration: 1uM,well: E5,investigative unit: 124,sample id: 57,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 44,rna volume (ul): 4.54545454545455,h2o volume (ul): 12.4545454545455
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE234647__GSE234647__grp_0002_vs_grp_0001__1
+  studio: GSE234647
+  TRATTATO  (n=3)  etichetta Stadio 2: SNU449 Wild-Type Regorafenib
+      gruppo Stadio 2: grp_0002
+      GSM7472798
+        grezzo (Stadio 1): title: SNU449_wt_plusRego_r1,source: liver,tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: Regorafenib long-term
+        H5 titolo        : SNU449_wt_plusRego_r1
+        H5 caratteristiche: tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: Regorafenib long-term
+        H5 sorgente      : liver
+      GSM7472799
+        grezzo (Stadio 1): title: SNU449_wt_plusRego_r2,source: liver,tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: Regorafenib long-term
+        H5 titolo        : SNU449_wt_plusRego_r2
+        H5 caratteristiche: tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: Regorafenib long-term
+        H5 sorgente      : liver
+      GSM7472800
+        grezzo (Stadio 1): title: SNU449_wt_plusRego_r3,source: liver,tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: Regorafenib long-term
+        H5 titolo        : SNU449_wt_plusRego_r3
+        H5 caratteristiche: tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: Regorafenib long-term
+        H5 sorgente      : liver
+  CONTROLLO  (n=3)  etichetta Stadio 2: SNU449 Wild-Type Naive
+      gruppo Stadio 2: grp_0001
+      GSM7472795
+        grezzo (Stadio 1): title: SNU449_wt_parental_r1,source: liver,tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: naive
+        H5 titolo        : SNU449_wt_parental_r1
+        H5 caratteristiche: tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: naive
+        H5 sorgente      : liver
+      GSM7472796
+        grezzo (Stadio 1): title: SNU449_wt_parental_r2,source: liver,tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: naive
+        H5 titolo        : SNU449_wt_parental_r2
+        H5 caratteristiche: tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: naive
+        H5 sorgente      : liver
+      GSM7472797
+        grezzo (Stadio 1): title: SNU449_wt_parental_r3,source: liver,tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: naive
+        H5 titolo        : SNU449_wt_parental_r3
+        H5 caratteristiche: tissue: liver,cell line: SNU449,cell type: Hepatocellular carcinoma cell line,genotype: WT,treatment: naive
+        H5 sorgente      : liver
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE186341     campioni nell'H5: 1726 | collocati dallo Stadio 2: 1291 | MAI COLLOCATI:  435 | usati in questa meta-analisi: 118 campioni distinti (118 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5644169, GSM5644211, GSM5644212, GSM5644214, GSM5644216, GSM5644233, GSM5644246, GSM5644247, GSM5644252, GSM5644254, GSM5644255, GSM5644259 ... (+423)
+  GSE217421     campioni nell'H5: 1170 | collocati dallo Stadio 2:  913 | MAI COLLOCATI:  257 | usati in questa meta-analisi: 15 campioni distinti (15 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6717095, GSM6717097, GSM6717100, GSM6717101, GSM6717102, GSM6717103, GSM6717104, GSM6717106, GSM6717107, GSM6717108, GSM6717111, GSM6717112 ... (+245)
+  GSE234647     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

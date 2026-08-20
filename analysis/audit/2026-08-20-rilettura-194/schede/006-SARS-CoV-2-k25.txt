@@ -1,0 +1,1814 @@
+META-ANALISI 006 di 194
+==============================================================================
+nome            : SARS-CoV-2
+entita (ID)     : NCBITaxon:2697049
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_871ae09e
+studi poolati   : 25   confronti: 45   campioni: 289
+geni significativi: 816   I2 mediano: 91.7
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE147507__GSE147507__A549_SARS-CoV-2_MOI0.2_24h_3_vs_A549_Mock_24h_4__1
+  studio: GSE147507
+  TRATTATO  (n=2)  etichetta Stadio 2: A549 SARS-CoV-2 MOI 0.2 24h
+      gruppo Stadio 2: grp_A549_SARS-CoV-2_MOI0.2_24h_3
+      GSM4462346
+        grezzo (Stadio 1): title: Series6_A549-ACE2_SARS-CoV-2_2,source: SARS-CoV-2 infected A549 cells trasnduced with a vector expressing human ACE2,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 0.2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 titolo        : Series6_A549-ACE2_SARS-CoV-2_2
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 0.2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 sorgente      : SARS-CoV-2 infected A549 cells trasnduced with a vector expressing human ACE2
+      GSM4462347
+        grezzo (Stadio 1): title: Series6_A549-ACE2_SARS-CoV-2_3,source: SARS-CoV-2 infected A549 cells trasnduced with a vector expressing human ACE2,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 0.2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 titolo        : Series6_A549-ACE2_SARS-CoV-2_3
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 0.2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 sorgente      : SARS-CoV-2 infected A549 cells trasnduced with a vector expressing human ACE2
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549 Mock treatment 24h
+      gruppo Stadio 2: grp_A549_Mock_24h_4
+      GSM4462343
+        grezzo (Stadio 1): title: Series6_A549-ACE2_Mock_2,source: Mock treated A549 cells trasnduced with a vector expressing human ACE2,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series6_A549-ACE2_Mock_2
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated A549 cells trasnduced with a vector expressing human ACE2
+      GSM4462344
+        grezzo (Stadio 1): title: Series6_A549-ACE2_Mock_3,source: Mock treated A549 cells trasnduced with a vector expressing human ACE2,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series6_A549-ACE2_Mock_3
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated A549 cells trasnduced with a vector expressing human ACE2
+
+CONFRONTO  GSE147507__GSE147507__A549_SARS-CoV-2_MOI2_24h_vs_A549_Mock_24h__1
+  studio: GSE147507
+  TRATTATO  (n=3)  etichetta Stadio 2: A549 SARS-CoV-2 MOI 2 24h
+      gruppo Stadio 2: grp_A549_SARS-CoV-2_MOI2_24h
+      GSM4462339
+        grezzo (Stadio 1): title: Series5_A549_SARS-CoV-2_1,source: SARS-CoV-2 infected A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 titolo        : Series5_A549_SARS-CoV-2_1
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 sorgente      : SARS-CoV-2 infected A549 cells
+      GSM4462340
+        grezzo (Stadio 1): title: Series5_A549_SARS-CoV-2_2,source: SARS-CoV-2 infected A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 titolo        : Series5_A549_SARS-CoV-2_2
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 sorgente      : SARS-CoV-2 infected A549 cells
+      GSM4462341
+        grezzo (Stadio 1): title: Series5_A549_SARS-CoV-2_3,source: SARS-CoV-2 infected A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 titolo        : Series5_A549_SARS-CoV-2_3
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 sorgente      : SARS-CoV-2 infected A549 cells
+  CONTROLLO  (n=6)  etichetta Stadio 2: A549 Mock treatment 24h
+      gruppo Stadio 2: grp_A549_Mock_24h
+      GSM4462336
+        grezzo (Stadio 1): title: Series5_A549_Mock_1,source: Mock treated A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series5_A549_Mock_1
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated A549 cells
+      GSM4462337
+        grezzo (Stadio 1): title: Series5_A549_Mock_2,source: Mock treated A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series5_A549_Mock_2
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated A549 cells
+      GSM4462338
+        grezzo (Stadio 1): title: Series5_A549_Mock_3,source: Mock treated A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series5_A549_Mock_3
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated A549 cells
+      GSM4462354
+        grezzo (Stadio 1): title: Series8_A549_Mock_1,source: Mock treated A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series8_A549_Mock_1
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated A549 cells
+      GSM4462355
+        grezzo (Stadio 1): title: Series8_A549_Mock_2,source: Mock treated A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series8_A549_Mock_2
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated A549 cells
+      GSM4462356
+        grezzo (Stadio 1): title: Series8_A549_Mock_3,source: Mock treated A549 cells,cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series8_A549_Mock_3
+        H5 caratteristiche: cell line: A549,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated A549 cells
+
+CONFRONTO  GSE147507__GSE147507__Calu-3_SARS-CoV-2_MOI2_24h_2_vs_Calu-3_Mock_24h_2__1
+  studio: GSE147507
+  TRATTATO  (n=2)  etichetta Stadio 2: Calu-3 SARS-CoV-2 MOI 2 24h
+      gruppo Stadio 2: grp_Calu-3_SARS-CoV-2_MOI2_24h_2
+      GSM4462351
+        grezzo (Stadio 1): title: Series7_Calu3_SARS-CoV-2_1,source: SARS-CoV-2 infected Calu-3 cells,cell line: Calu-3,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 titolo        : Series7_Calu3_SARS-CoV-2_1
+        H5 caratteristiche: cell line: Calu-3,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 sorgente      : SARS-CoV-2 infected Calu-3 cells
+      GSM4462353
+        grezzo (Stadio 1): title: Series7_Calu3_SARS-CoV-2_3,source: SARS-CoV-2 infected Calu-3 cells,cell line: Calu-3,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 titolo        : Series7_Calu3_SARS-CoV-2_3
+        H5 caratteristiche: cell line: Calu-3,tissue/cell type: Lung adenocarcinoma,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time after treatment: 24 hours
+        H5 sorgente      : SARS-CoV-2 infected Calu-3 cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Calu-3 Mock treatment 24h
+      gruppo Stadio 2: grp_Calu-3_Mock_24h_2
+      GSM4462348
+        grezzo (Stadio 1): title: Series7_Calu3_Mock_1,source: Mock treated Calu-3 cells,cell line: Calu-3,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series7_Calu3_Mock_1
+        H5 caratteristiche: cell line: Calu-3,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated Calu-3 cells
+      GSM4462349
+        grezzo (Stadio 1): title: Series7_Calu3_Mock_2,source: Mock treated Calu-3 cells,cell line: Calu-3,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 titolo        : Series7_Calu3_Mock_2
+        H5 caratteristiche: cell line: Calu-3,tissue/cell type: Lung adenocarcinoma,treatment: Mock treatment,strain: NA,time after treatment: 24 hours
+        H5 sorgente      : Mock treated Calu-3 cells
+
+CONFRONTO  GSE147507__GSE147507__NHBE_SARS-CoV-2_MOI2_24h_vs_NHBE_Mock_24h__1
+  studio: GSE147507
+  TRATTATO  (n=3)  etichetta Stadio 2: NHBE SARS-CoV-2 MOI 2 24h
+      gruppo Stadio 2: grp_NHBE_SARS-CoV-2_MOI2_24h
+      GSM4432381
+        grezzo (Stadio 1): title: Series1_NHBE_SARS-CoV-2_1,source: SARS-CoV-2 infected NHBE cells,cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time point: 24hrs after treatment
+        H5 titolo        : Series1_NHBE_SARS-CoV-2_1
+        H5 caratteristiche: cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time point: 24hrs after treatment
+        H5 sorgente      : SARS-CoV-2 infected NHBE cells
+      GSM4432382
+        grezzo (Stadio 1): title: Series1_NHBE_SARS-CoV-2_2,source: SARS-CoV-2 infected NHBE cells,cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time point: 24hrs after treatment
+        H5 titolo        : Series1_NHBE_SARS-CoV-2_2
+        H5 caratteristiche: cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time point: 24hrs after treatment
+        H5 sorgente      : SARS-CoV-2 infected NHBE cells
+      GSM4432383
+        grezzo (Stadio 1): title: Series1_NHBE_SARS-CoV-2_3,source: SARS-CoV-2 infected NHBE cells,cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time point: 24hrs after treatment
+        H5 titolo        : Series1_NHBE_SARS-CoV-2_3
+        H5 caratteristiche: cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: SARS-CoV-2 infected (MOI 2),strain: USA-WA1/2020,time point: 24hrs after treatment
+        H5 sorgente      : SARS-CoV-2 infected NHBE cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: NHBE Mock treatment 24h
+      gruppo Stadio 2: grp_NHBE_Mock_24h
+      GSM4432378
+        grezzo (Stadio 1): title: Series1_NHBE_Mock_1,source: Mock treated NHBE cells,cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: Mock treatment,time point: 24hrs after treatment
+        H5 titolo        : Series1_NHBE_Mock_1
+        H5 caratteristiche: cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: Mock treatment,time point: 24hrs after treatment
+        H5 sorgente      : Mock treated NHBE cells
+      GSM4432379
+        grezzo (Stadio 1): title: Series1_NHBE_Mock_2,source: Mock treated NHBE cells,cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: Mock treatment,time point: 24hrs after treatment
+        H5 titolo        : Series1_NHBE_Mock_2
+        H5 caratteristiche: cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: Mock treatment,time point: 24hrs after treatment
+        H5 sorgente      : Mock treated NHBE cells
+      GSM4432380
+        grezzo (Stadio 1): title: Series1_NHBE_Mock_3,source: Mock treated NHBE cells,cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: Mock treatment,time point: 24hrs after treatment
+        H5 titolo        : Series1_NHBE_Mock_3
+        H5 caratteristiche: cell line: NHBE,cell type: primary human bronchial epithelial cells,treatment: Mock treatment,time point: 24hrs after treatment
+        H5 sorgente      : Mock treated NHBE cells
+
+CONFRONTO  GSE148696__GSE148696__grp_0002_vs_grp_0001__1
+  studio: GSE148696
+  TRATTATO  (n=2)  etichetta Stadio 2: SARS-CoV-2 infected Hesc cells
+      gruppo Stadio 2: grp_0002
+      GSM4476796
+        grezzo (Stadio 1): title: Infected cells for the study of SAR-CoV-2, 1,source: Hesc cells,tissue: Colon,agent: sars-Cov2
+        H5 titolo        : Infected cells for the study of SAR-CoV-2, 1
+        H5 caratteristiche: tissue: Colon,agent: sars-Cov2
+        H5 sorgente      : Hesc cells
+      GSM4476797
+        grezzo (Stadio 1): title: Infected cells for the study of SAR-CoV-2, 2,source: Hesc cells,tissue: Colon,agent: sars-Cov2
+        H5 titolo        : Infected cells for the study of SAR-CoV-2, 2
+        H5 caratteristiche: tissue: Colon,agent: sars-Cov2
+        H5 sorgente      : Hesc cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Mock infected Hesc cells
+      gruppo Stadio 2: grp_0001
+      GSM4476794
+        grezzo (Stadio 1): title: Mock infected colon cells, 1,source: Hesc cells,tissue: Colon,agent: mock infected
+        H5 titolo        : Mock infected colon cells, 1
+        H5 caratteristiche: tissue: Colon,agent: mock infected
+        H5 sorgente      : Hesc cells
+      GSM4476795
+        grezzo (Stadio 1): title: Mock infected colon cells, 2,source: Hesc cells,tissue: Colon,agent: mock infected
+        H5 titolo        : Mock infected colon cells, 2
+        H5 caratteristiche: tissue: Colon,agent: mock infected
+        H5 sorgente      : Hesc cells
+
+CONFRONTO  GSE148697__GSE148697__grp_0002_vs_grp_0001__1
+  studio: GSE148697
+  TRATTATO  (n=3)  etichetta Stadio 2: SARS-CoV-2-infected Hesc cells (lung)
+      gruppo Stadio 2: grp_0002
+      GSM4476798
+        grezzo (Stadio 1): title: Infected cells from lung for the study of SAR-CoV-2, 1,source: Hesc cells,tissue: lung,agent: sars-Cov2
+        H5 titolo        : Infected cells from lung for the study of SAR-CoV-2, 1
+        H5 caratteristiche: tissue: lung,agent: sars-Cov2
+        H5 sorgente      : Hesc cells
+      GSM4476799
+        grezzo (Stadio 1): title: Infected cells from lung for the study of SAR-CoV-2, 2,source: Hesc cells,tissue: lung,agent: sars-Cov2
+        H5 titolo        : Infected cells from lung for the study of SAR-CoV-2, 2
+        H5 caratteristiche: tissue: lung,agent: sars-Cov2
+        H5 sorgente      : Hesc cells
+      GSM4476800
+        grezzo (Stadio 1): title: Infected cells from lung for the study of SAR-CoV-2, 3,source: Hesc cells,tissue: lung,agent: sars-Cov2
+        H5 titolo        : Infected cells from lung for the study of SAR-CoV-2, 3
+        H5 caratteristiche: tissue: lung,agent: sars-Cov2
+        H5 sorgente      : Hesc cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Mock-treated Hesc cells (lung)
+      gruppo Stadio 2: grp_0001
+      GSM4476801
+        grezzo (Stadio 1): title: Mock-infected lung, 1,source: Hesc cells,tissue: lung,agent: Mock
+        H5 titolo        : Mock-infected lung, 1
+        H5 caratteristiche: tissue: lung,agent: Mock
+        H5 sorgente      : Hesc cells
+      GSM4476802
+        grezzo (Stadio 1): title: Mock-infected lung, 2,source: Hesc cells,tissue: lung,agent: Mock
+        H5 titolo        : Mock-infected lung, 2
+        H5 caratteristiche: tissue: lung,agent: Mock
+        H5 sorgente      : Hesc cells
+      GSM4476803
+        grezzo (Stadio 1): title: Mock-infected lung, 3,source: Hesc cells,tissue: lung,agent: Mock
+        H5 titolo        : Mock-infected lung, 3
+        H5 caratteristiche: tissue: lung,agent: Mock
+        H5 sorgente      : Hesc cells
+
+CONFRONTO  GSE150819__GSE150819__grp_human_bronchial_organoids_SARS_CoV_2_vs_grp_human_bronchial_organoids__1
+  studio: GSE150819
+  TRATTATO  (n=3)  etichetta Stadio 2: human bronchial organoids SARS-CoV-2
+      gruppo Stadio 2: grp_human_bronchial_organoids_SARS_CoV_2
+      GSM4559196
+        grezzo (Stadio 1): title: V_1: SARS-CoV-2_rep1,source: SARS-CoV-2-infected human bronchial organoids_rep1,tissue: Bronchi
+        H5 titolo        : V_1: SARS-CoV-2_rep1
+        H5 caratteristiche: tissue: Bronchi
+        H5 sorgente      : SARS-CoV-2-infected human bronchial organoids_rep1
+      GSM4559197
+        grezzo (Stadio 1): title: V_2: SARS-CoV-2_rep2,source: SARS-CoV-2-infected human bronchial organoids_rep2,tissue: Bronchi
+        H5 titolo        : V_2: SARS-CoV-2_rep2
+        H5 caratteristiche: tissue: Bronchi
+        H5 sorgente      : SARS-CoV-2-infected human bronchial organoids_rep2
+      GSM4559198
+        grezzo (Stadio 1): title: V_3: SARS-CoV-2_rep3,source: SARS-CoV-2-infected human bronchial organoids_rep3,tissue: Bronchi
+        H5 titolo        : V_3: SARS-CoV-2_rep3
+        H5 caratteristiche: tissue: Bronchi
+        H5 sorgente      : SARS-CoV-2-infected human bronchial organoids_rep3
+  CONTROLLO  (n=3)  etichetta Stadio 2: human bronchial organoids
+      gruppo Stadio 2: grp_human_bronchial_organoids
+      GSM4559208
+        grezzo (Stadio 1): title: lungORG_1: hBO_rep1,source: human bronchial organoids_rep1,tissue: Bronchi
+        H5 titolo        : lungORG_1: hBO_rep1
+        H5 caratteristiche: tissue: Bronchi
+        H5 sorgente      : human bronchial organoids_rep1
+      GSM4559209
+        grezzo (Stadio 1): title: lungORG_2: hBO_rep2,source: human bronchial organoids_rep2,tissue: Bronchi
+        H5 titolo        : lungORG_2: hBO_rep2
+        H5 caratteristiche: tissue: Bronchi
+        H5 sorgente      : human bronchial organoids_rep2
+      GSM4559210
+        grezzo (Stadio 1): title: lungORG_3: hBO_rep3,source: human bronchial organoids_rep3,tissue: Bronchi
+        H5 titolo        : lungORG_3: hBO_rep3
+        H5 caratteristiche: tissue: Bronchi
+        H5 sorgente      : human bronchial organoids_rep3
+
+CONFRONTO  GSE151803__GSE151803__grp_0002_vs_grp_0003__1
+  studio: GSE151803
+  TRATTATO  (n=2)  etichetta Stadio 2: COVID-19 Lung
+      gruppo Stadio 2: grp_0002
+      GSM4591156
+        grezzo (Stadio 1): title: L.2: COVID-19 Lung 51L,source: Autopsy patient,tissue: Lung,infected: sars-Cov2
+        H5 titolo        : L.2: COVID-19 Lung 51L
+        H5 caratteristiche: tissue: Lung,infected: sars-Cov2
+        H5 sorgente      : Autopsy patient
+      GSM4591157
+        grezzo (Stadio 1): title: L.3: COVID-19 Lung 56L,source: Autopsy patient,tissue: Lung,infected: sars-Cov2
+        H5 titolo        : L.3: COVID-19 Lung 56L
+        H5 caratteristiche: tissue: Lung,infected: sars-Cov2
+        H5 sorgente      : Autopsy patient
+  CONTROLLO  (n=3)  etichetta Stadio 2: hESC Mock
+      gruppo Stadio 2: grp_0003
+      GSM4591162
+        grezzo (Stadio 1): title: hESC.Pancreas.mock.1,source: hESC,tissue: hESC Pancreas,infected: Mock
+        H5 titolo        : hESC.Pancreas.mock.1
+        H5 caratteristiche: tissue: hESC Pancreas,infected: Mock
+        H5 sorgente      : hESC
+      GSM4591163
+        grezzo (Stadio 1): title: hESC.Pancreas.mock.2,source: hESC,tissue: hESC Pancreas,infected: Mock
+        H5 titolo        : hESC.Pancreas.mock.2
+        H5 caratteristiche: tissue: hESC Pancreas,infected: Mock
+        H5 sorgente      : hESC
+      GSM4591164
+        grezzo (Stadio 1): title: hESC.Pancreas.mock.3,source: hESC,tissue: hESC Pancreas,infected: Mock
+        H5 titolo        : hESC.Pancreas.mock.3
+        H5 caratteristiche: tissue: hESC Pancreas,infected: Mock
+        H5 sorgente      : hESC
+
+CONFRONTO  GSE151803__GSE151803__grp_0004_vs_grp_0003__1
+  studio: GSE151803
+  TRATTATO  (n=3)  etichetta Stadio 2: hESC sars-Cov2
+      gruppo Stadio 2: grp_0004
+      GSM4591159
+        grezzo (Stadio 1): title: hESC.Pancreas.SARSCoV2.1,source: hESC,tissue: hESC Pancreas,infected: sars-Cov2
+        H5 titolo        : hESC.Pancreas.SARSCoV2.1
+        H5 caratteristiche: tissue: hESC Pancreas,infected: sars-Cov2
+        H5 sorgente      : hESC
+      GSM4591160
+        grezzo (Stadio 1): title: hESC.Pancreas.SARSCoV2.2,source: hESC,tissue: hESC Pancreas,infected: sars-Cov2
+        H5 titolo        : hESC.Pancreas.SARSCoV2.2
+        H5 caratteristiche: tissue: hESC Pancreas,infected: sars-Cov2
+        H5 sorgente      : hESC
+      GSM4591161
+        grezzo (Stadio 1): title: hESC.Pancreas.SARSCoV2.3,source: hESC,tissue: hESC Pancreas,infected: sars-Cov2
+        H5 titolo        : hESC.Pancreas.SARSCoV2.3
+        H5 caratteristiche: tissue: hESC Pancreas,infected: sars-Cov2
+        H5 sorgente      : hESC
+  CONTROLLO  (n=3)  etichetta Stadio 2: hESC Mock
+      gruppo Stadio 2: grp_0003
+      GSM4591162
+        grezzo (Stadio 1): title: hESC.Pancreas.mock.1,source: hESC,tissue: hESC Pancreas,infected: Mock
+        H5 titolo        : hESC.Pancreas.mock.1
+        H5 caratteristiche: tissue: hESC Pancreas,infected: Mock
+        H5 sorgente      : hESC
+      GSM4591163
+        grezzo (Stadio 1): title: hESC.Pancreas.mock.2,source: hESC,tissue: hESC Pancreas,infected: Mock
+        H5 titolo        : hESC.Pancreas.mock.2
+        H5 caratteristiche: tissue: hESC Pancreas,infected: Mock
+        H5 sorgente      : hESC
+      GSM4591164
+        grezzo (Stadio 1): title: hESC.Pancreas.mock.3,source: hESC,tissue: hESC Pancreas,infected: Mock
+        H5 titolo        : hESC.Pancreas.mock.3
+        H5 caratteristiche: tissue: hESC Pancreas,infected: Mock
+        H5 sorgente      : hESC
+
+CONFRONTO  GSE151879__GSE151879__grp_0002_vs_grp_0001__1
+  studio: GSE151879
+  TRATTATO  (n=3)  etichetta Stadio 2: Adult human cardiomyocytes SARS-CoV-2
+      gruppo Stadio 2: grp_0002
+      GSM4592635
+        grezzo (Stadio 1): title: Adult human cardiomyocytes_SARS-CoV-2_1,source: Adult human cardiomyocytes,tissue: Adult human cardiomyocytes
+        H5 titolo        : Adult human cardiomyocytes_SARS-CoV-2_1
+        H5 caratteristiche: tissue: Adult human cardiomyocytes
+        H5 sorgente      : Adult human cardiomyocytes
+      GSM4592636
+        grezzo (Stadio 1): title: Adult human cardiomyocytes_SARS-CoV-2_2,source: Adult human cardiomyocytes,tissue: Adult human cardiomyocytes
+        H5 titolo        : Adult human cardiomyocytes_SARS-CoV-2_2
+        H5 caratteristiche: tissue: Adult human cardiomyocytes
+        H5 sorgente      : Adult human cardiomyocytes
+      GSM4592637
+        grezzo (Stadio 1): title: Adult human cardiomyocytes_SARS-CoV-2_3,source: Adult human cardiomyocytes,tissue: Adult human cardiomyocytes
+        H5 titolo        : Adult human cardiomyocytes_SARS-CoV-2_3
+        H5 caratteristiche: tissue: Adult human cardiomyocytes
+        H5 sorgente      : Adult human cardiomyocytes
+  CONTROLLO  (n=3)  etichetta Stadio 2: Adult human cardiomyocytes Mock
+      gruppo Stadio 2: grp_0001
+      GSM4592632
+        grezzo (Stadio 1): title: Adult human cardiomyocytes_Mock_1,source: Adult human cardiomyocytes,tissue: Adult human cardiomyocytes
+        H5 titolo        : Adult human cardiomyocytes_Mock_1
+        H5 caratteristiche: tissue: Adult human cardiomyocytes
+        H5 sorgente      : Adult human cardiomyocytes
+      GSM4592633
+        grezzo (Stadio 1): title: Adult human cardiomyocytes_Mock_2,source: Adult human cardiomyocytes,tissue: Adult human cardiomyocytes
+        H5 titolo        : Adult human cardiomyocytes_Mock_2
+        H5 caratteristiche: tissue: Adult human cardiomyocytes
+        H5 sorgente      : Adult human cardiomyocytes
+      GSM4592634
+        grezzo (Stadio 1): title: Adult human cardiomyocytes_Mock_3,source: Adult human cardiomyocytes,tissue: Adult human cardiomyocytes
+        H5 titolo        : Adult human cardiomyocytes_Mock_3
+        H5 caratteristiche: tissue: Adult human cardiomyocytes
+        H5 sorgente      : Adult human cardiomyocytes
+
+CONFRONTO  GSE151879__GSE151879__grp_0004_vs_grp_0003__1
+  studio: GSE151879
+  TRATTATO  (n=3)  etichetta Stadio 2: hESC-derived cardiomyocytes SARS-CoV-2
+      gruppo Stadio 2: grp_0004
+      GSM4592629
+        grezzo (Stadio 1): title: hESC-derived cardiomyocytes_SARS-CoV-2_1,source: hESC-derived cardiomyocytes,tissue: hESC-derived cardiomyocytes
+        H5 titolo        : hESC-derived cardiomyocytes_SARS-CoV-2_1
+        H5 caratteristiche: tissue: hESC-derived cardiomyocytes
+        H5 sorgente      : hESC-derived cardiomyocytes
+      GSM4592630
+        grezzo (Stadio 1): title: hESC-derived cardiomyocytes_SARS-CoV-2_2,source: hESC-derived cardiomyocytes,tissue: hESC-derived cardiomyocytes
+        H5 titolo        : hESC-derived cardiomyocytes_SARS-CoV-2_2
+        H5 caratteristiche: tissue: hESC-derived cardiomyocytes
+        H5 sorgente      : hESC-derived cardiomyocytes
+      GSM4592631
+        grezzo (Stadio 1): title: hESC-derived cardiomyocytes_SARS-CoV-2_3,source: hESC-derived cardiomyocytes,tissue: hESC-derived cardiomyocytes
+        H5 titolo        : hESC-derived cardiomyocytes_SARS-CoV-2_3
+        H5 caratteristiche: tissue: hESC-derived cardiomyocytes
+        H5 sorgente      : hESC-derived cardiomyocytes
+  CONTROLLO  (n=3)  etichetta Stadio 2: hESC-derived cardiomyocytes Mock
+      gruppo Stadio 2: grp_0003
+      GSM4592626
+        grezzo (Stadio 1): title: hESC-derived cardiomyocytes_Mock_1,source: hESC-derived cardiomyocytes,tissue: hESC-derived cardiomyocytes
+        H5 titolo        : hESC-derived cardiomyocytes_Mock_1
+        H5 caratteristiche: tissue: hESC-derived cardiomyocytes
+        H5 sorgente      : hESC-derived cardiomyocytes
+      GSM4592627
+        grezzo (Stadio 1): title: hESC-derived cardiomyocytes_Mock_2,source: hESC-derived cardiomyocytes,tissue: hESC-derived cardiomyocytes
+        H5 titolo        : hESC-derived cardiomyocytes_Mock_2
+        H5 caratteristiche: tissue: hESC-derived cardiomyocytes
+        H5 sorgente      : hESC-derived cardiomyocytes
+      GSM4592628
+        grezzo (Stadio 1): title: hESC-derived cardiomyocytes_Mock_3,source: hESC-derived cardiomyocytes,tissue: hESC-derived cardiomyocytes
+        H5 titolo        : hESC-derived cardiomyocytes_Mock_3
+        H5 caratteristiche: tissue: hESC-derived cardiomyocytes
+        H5 sorgente      : hESC-derived cardiomyocytes
+
+CONFRONTO  GSE155518__GSE155518__infected_vs_mock__1
+  studio: GSE155518
+  TRATTATO  (n=3)  etichetta Stadio 2: Infected with SARS-CoV-2
+      gruppo Stadio 2: grp_infected
+      GSM4705648
+        grezzo (Stadio 1): title: CoV2-1,source: infected group,tissue: lung organoid,group: infected with SARS-CoV2
+        H5 titolo        : CoV2-1
+        H5 caratteristiche: tissue: lung organoid,group: infected with SARS-CoV2
+        H5 sorgente      : infected group
+      GSM4705649
+        grezzo (Stadio 1): title: CoV2-2,source: infected group,tissue: lung organoid,group: infected with SARS-CoV2
+        H5 titolo        : CoV2-2
+        H5 caratteristiche: tissue: lung organoid,group: infected with SARS-CoV2
+        H5 sorgente      : infected group
+      GSM4705650
+        grezzo (Stadio 1): title: CoV2-3,source: infected group,tissue: lung organoid,group: infected with SARS-CoV2
+        H5 titolo        : CoV2-3
+        H5 caratteristiche: tissue: lung organoid,group: infected with SARS-CoV2
+        H5 sorgente      : infected group
+  CONTROLLO  (n=3)  etichetta Stadio 2: Mock-infected
+      gruppo Stadio 2: grp_mock
+      GSM4705651
+        grezzo (Stadio 1): title: Mock1,source: Mock group,tissue: lung organoid,group: Mock
+        H5 titolo        : Mock1
+        H5 caratteristiche: tissue: lung organoid,group: Mock
+        H5 sorgente      : Mock group
+      GSM4705652
+        grezzo (Stadio 1): title: Mock2,source: Mock group,tissue: lung organoid,group: Mock
+        H5 titolo        : Mock2
+        H5 caratteristiche: tissue: lung organoid,group: Mock
+        H5 sorgente      : Mock group
+      GSM4705653
+        grezzo (Stadio 1): title: Mock3,source: Mock group,tissue: lung organoid,group: Mock
+        H5 titolo        : Mock3
+        H5 caratteristiche: tissue: lung organoid,group: Mock
+        H5 sorgente      : Mock group
+
+CONFRONTO  GSE159201__GSE159201__grp_0007_vs_grp_0005__1
+  studio: GSE159201
+  TRATTATO  (n=3)  etichetta Stadio 2: colon, CK+DCI, SARS-CoV-2, 1 day
+      gruppo Stadio 2: grp_0007
+      GSM4822512
+        grezzo (Stadio 1): title: Day 90 organoids Colonic SARS 1DPI Rep 1,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 1,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic SARS 1DPI Rep 1
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 1,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+      GSM4822513
+        grezzo (Stadio 1): title: Day 90 organoids Colonic SARS 1DPI Rep 2,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 1,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic SARS 1DPI Rep 2
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 1,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+      GSM4822514
+        grezzo (Stadio 1): title: Day 90 organoids Colonic SARS 1DPI Rep 3,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 1,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic SARS 1DPI Rep 3
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 1,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+  CONTROLLO  (n=3)  etichetta Stadio 2: colon, CK+DCI, Mock, 1 day
+      gruppo Stadio 2: grp_0005
+      GSM4822509
+        grezzo (Stadio 1): title: Day 90 organoids Colonic Mock 1DPI Rep 1,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 1,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic Mock 1DPI Rep 1
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 1,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+      GSM4822510
+        grezzo (Stadio 1): title: Day 90 Organoids colonic Mock 1DPI Rep 2,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 1,isolation method: whole organoids
+        H5 titolo        : Day 90 Organoids colonic Mock 1DPI Rep 2
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 1,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+      GSM4822511
+        grezzo (Stadio 1): title: Day 90 organoids Colonic Mock 1DPI Rep 3,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 1,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic Mock 1DPI Rep 3
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 1,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+
+CONFRONTO  GSE159201__GSE159201__grp_0008_vs_grp_0006__1
+  studio: GSE159201
+  TRATTATO  (n=3)  etichetta Stadio 2: colon, CK+DCI, SARS-CoV-2, 4 days
+      gruppo Stadio 2: grp_0008
+      GSM4822518
+        grezzo (Stadio 1): title: Day 90 organoids Colonic SARS 4DPI Rep 1,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 4,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic SARS 4DPI Rep 1
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 4,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+      GSM4822519
+        grezzo (Stadio 1): title: Day 90 organoids Colonic SARS 4DPI Rep 2,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 4,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic SARS 4DPI Rep 2
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 4,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+      GSM4822520
+        grezzo (Stadio 1): title: Day 90 organoids Colonic SARS 4DPI Rep 3,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 4,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic SARS 4DPI Rep 3
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: SARS-CoV-2 infected,days post treatment: 4,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+  CONTROLLO  (n=2)  etichetta Stadio 2: colon, CK+DCI, Mock, 4 days
+      gruppo Stadio 2: grp_0006
+      GSM4822515
+        grezzo (Stadio 1): title: Day 90 organoids Colonic Mock 4DPI Rep 1,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 4,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic Mock 4DPI Rep 1
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 4,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+      GSM4822517
+        grezzo (Stadio 1): title: Day 90 organoids Colonic Mock 4DPI Rep 3,source: BU1CG human iPSC,developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 4,isolation method: whole organoids
+        H5 titolo        : Day 90 organoids Colonic Mock 4DPI Rep 3
+        H5 caratteristiche: developmental stage: Day 90 colonic organoid directed differentiation,culture media: CK+DCI,treatment: Mock,days post treatment: 4,isolation method: whole organoids
+        H5 sorgente      : BU1CG human iPSC
+
+CONFRONTO  GSE163959__GSE163959__grp_0007_vs_grp_0001__1
+  studio: GSE163959
+  TRATTATO  (n=2)  etichetta Stadio 2: LS4 SARS-CoV-2 Infected
+      gruppo Stadio 2: grp_0007
+      GSM4991283
+        grezzo (Stadio 1): title: LS4, SARS-CoV-2 infected Donor4_rep1,source: Lung tissue,individual: Donor 4,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 titolo        : LS4, SARS-CoV-2 infected Donor4_rep1
+        H5 caratteristiche: individual: Donor 4,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+      GSM4991284
+        grezzo (Stadio 1): title: LS4, SARS-CoV-2 infected Donor4_rep2,source: Lung tissue,individual: Donor 4,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 titolo        : LS4, SARS-CoV-2 infected Donor4_rep2
+        H5 caratteristiche: individual: Donor 4,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+  CONTROLLO  (n=2)  etichetta Stadio 2: LM4 Mock Infected
+      gruppo Stadio 2: grp_0001
+      GSM4991263
+        grezzo (Stadio 1): title: LM4, Mock infected Donor4_rep1,source: Lung tissue,individual: Donor 4,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 titolo        : LM4, Mock infected Donor4_rep1
+        H5 caratteristiche: individual: Donor 4,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+      GSM4991264
+        grezzo (Stadio 1): title: LM4, Mock infected Donor4_rep2,source: Lung tissue,individual: Donor 4,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 titolo        : LM4, Mock infected Donor4_rep2
+        H5 caratteristiche: individual: Donor 4,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+
+CONFRONTO  GSE163959__GSE163959__grp_0008_vs_grp_0002__1
+  studio: GSE163959
+  TRATTATO  (n=2)  etichetta Stadio 2: LS5 SARS-CoV-2 Infected
+      gruppo Stadio 2: grp_0008
+      GSM4991285
+        grezzo (Stadio 1): title: LS5, SARS-CoV-2 infected Donor5_rep1,source: Lung tissue,individual: Donor 5,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 titolo        : LS5, SARS-CoV-2 infected Donor5_rep1
+        H5 caratteristiche: individual: Donor 5,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+      GSM4991286
+        grezzo (Stadio 1): title: LS5, SARS-CoV-2 infected Donor5_rep2,source: Lung tissue,individual: Donor 5,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 titolo        : LS5, SARS-CoV-2 infected Donor5_rep2
+        H5 caratteristiche: individual: Donor 5,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+  CONTROLLO  (n=2)  etichetta Stadio 2: LM5 Mock Infected
+      gruppo Stadio 2: grp_0002
+      GSM4991265
+        grezzo (Stadio 1): title: LM5, Mock infected Donor5_rep1,source: Lung tissue,individual: Donor 5,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 titolo        : LM5, Mock infected Donor5_rep1
+        H5 caratteristiche: individual: Donor 5,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+      GSM4991266
+        grezzo (Stadio 1): title: LM5, Mock infected Donor5_rep2,source: Lung tissue,individual: Donor 5,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 titolo        : LM5, Mock infected Donor5_rep2
+        H5 caratteristiche: individual: Donor 5,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+
+CONFRONTO  GSE163959__GSE163959__grp_0013_vs_grp_0004__1
+  studio: GSE163959
+  TRATTATO  (n=3)  etichetta Stadio 2: Lung Tissue SARS-CoV-2 Infected
+      gruppo Stadio 2: grp_0013
+      GSM4991289
+        grezzo (Stadio 1): title: LS7, SARS-CoV-2 infected Donor7_rep1,source: Lung tissue,individual: Donor 7,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 titolo        : LS7, SARS-CoV-2 infected Donor7_rep1
+        H5 caratteristiche: individual: Donor 7,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+      GSM4991290
+        grezzo (Stadio 1): title: LS7, SARS-CoV-2 infected Donor7_rep2,source: Lung tissue,individual: Donor 7,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 titolo        : LS7, SARS-CoV-2 infected Donor7_rep2
+        H5 caratteristiche: individual: Donor 7,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+      GSM4991292
+        grezzo (Stadio 1): title: LS8, SARS-CoV-2 infected Donor8_rep2,source: Lung tissue,individual: Donor 8,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 titolo        : LS8, SARS-CoV-2 infected Donor8_rep2
+        H5 caratteristiche: individual: Donor 8,tissue: Lung,infection: SARS-CoV-2,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+  CONTROLLO  (n=2)  etichetta Stadio 2: LM7 Mock Infected
+      gruppo Stadio 2: grp_0004
+      GSM4991269
+        grezzo (Stadio 1): title: LM7, Mock infected Donor7_rep1,source: Lung tissue,individual: Donor 7,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 titolo        : LM7, Mock infected Donor7_rep1
+        H5 caratteristiche: individual: Donor 7,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+      GSM4991270
+        grezzo (Stadio 1): title: LM7, Mock infected Donor7_rep2,source: Lung tissue,individual: Donor 7,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 titolo        : LM7, Mock infected Donor7_rep2
+        H5 caratteristiche: individual: Donor 7,tissue: Lung,infection: Uninfected,time point: 24 hours post infection
+        H5 sorgente      : Lung tissue
+
+CONFRONTO  GSE164073__GSE164073__Sclera_SARS-CoV-2_vs_Sclera_mock__1
+  studio: GSE164073
+  TRATTATO  (n=3)  etichetta Stadio 2: Sclera_SARS-CoV-2
+      gruppo Stadio 2: grp_0007
+      GSM4996099
+        grezzo (Stadio 1): title: Sclera_CoV2_1,source: cadaver donor eye tissue,tissue: sclera,infection: SARS-CoV-2, MOI = 1.0,time point: 24 hours
+        H5 titolo        : Sclera_CoV2_1
+        H5 caratteristiche: tissue: sclera,infection: SARS-CoV-2, MOI = 1.0,time point: 24 hours
+        H5 sorgente      : cadaver donor eye tissue
+      GSM4996100
+        grezzo (Stadio 1): title: Sclera_CoV2_2,source: cadaver donor eye tissue,tissue: sclera,infection: SARS-CoV-2, MOI = 1.0,time point: 24 hours
+        H5 titolo        : Sclera_CoV2_2
+        H5 caratteristiche: tissue: sclera,infection: SARS-CoV-2, MOI = 1.0,time point: 24 hours
+        H5 sorgente      : cadaver donor eye tissue
+      GSM4996101
+        grezzo (Stadio 1): title: Sclera_CoV2_3,source: cadaver donor eye tissue,tissue: sclera,infection: SARS-CoV-2, MOI = 1.0,time point: 24 hours
+        H5 titolo        : Sclera_CoV2_3
+        H5 caratteristiche: tissue: sclera,infection: SARS-CoV-2, MOI = 1.0,time point: 24 hours
+        H5 sorgente      : cadaver donor eye tissue
+  CONTROLLO  (n=3)  etichetta Stadio 2: Sclera_mock
+      gruppo Stadio 2: grp_0008
+      GSM4996096
+        grezzo (Stadio 1): title: Sclera_mock_1,source: cadaver donor eye tissue,tissue: sclera,infection: mock,time point: 24 hours
+        H5 titolo        : Sclera_mock_1
+        H5 caratteristiche: tissue: sclera,infection: mock,time point: 24 hours
+        H5 sorgente      : cadaver donor eye tissue
+      GSM4996097
+        grezzo (Stadio 1): title: Sclera_mock_2,source: cadaver donor eye tissue,tissue: sclera,infection: mock,time point: 24 hours
+        H5 titolo        : Sclera_mock_2
+        H5 caratteristiche: tissue: sclera,infection: mock,time point: 24 hours
+        H5 sorgente      : cadaver donor eye tissue
+      GSM4996098
+        grezzo (Stadio 1): title: Sclera_mock_3,source: cadaver donor eye tissue,tissue: sclera,infection: mock,time point: 24 hours
+        H5 titolo        : Sclera_mock_3
+        H5 caratteristiche: tissue: sclera,infection: mock,time point: 24 hours
+        H5 sorgente      : cadaver donor eye tissue
+
+CONFRONTO  GSE174745__GSE174745__grp_0003_vs_grp_0011__1
+  studio: GSE174745
+  TRATTATO  (n=3)  etichetta Stadio 2: Dopaminergic Neuron, SARS-CoV-2
+      gruppo Stadio 2: grp_0003
+      GSM5325439
+        grezzo (Stadio 1): title: Sample 4_dpamine neuron-48h-H-1,source: Neural cells,cell type: Dopaminergic Neuron,viral infected: SARS-Cov-2 infected 48 hours,treatment: no
+        H5 titolo        : Sample 4_dpamine neuron-48h-H-1
+        H5 caratteristiche: cell type: Dopaminergic Neuron,viral infected: SARS-Cov-2 infected 48 hours,treatment: no
+        H5 sorgente      : Neural cells
+      GSM5325440
+        grezzo (Stadio 1): title: Sample 5_dpamine neuron-48h-H-2,source: Neural cells,cell type: Dopaminergic Neuron,viral infected: SARS-Cov-2 infected 48 hours,treatment: no
+        H5 titolo        : Sample 5_dpamine neuron-48h-H-2
+        H5 caratteristiche: cell type: Dopaminergic Neuron,viral infected: SARS-Cov-2 infected 48 hours,treatment: no
+        H5 sorgente      : Neural cells
+      GSM5325441
+        grezzo (Stadio 1): title: Sample 6_dpamine neuron-48h-H-3,source: Neural cells,cell type: Dopaminergic Neuron,viral infected: SARS-Cov-2 infected 48 hours,treatment: no
+        H5 titolo        : Sample 6_dpamine neuron-48h-H-3
+        H5 caratteristiche: cell type: Dopaminergic Neuron,viral infected: SARS-Cov-2 infected 48 hours,treatment: no
+        H5 sorgente      : Neural cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Dopaminergic Neuron, Control
+      gruppo Stadio 2: grp_0011
+      GSM5325437
+        grezzo (Stadio 1): title: Sample 2_dpamine neuron-48h-mock-2,source: Neural cells,cell type: Dopaminergic Neuron,viral infected: no,treatment: no
+        H5 titolo        : Sample 2_dpamine neuron-48h-mock-2
+        H5 caratteristiche: cell type: Dopaminergic Neuron,viral infected: no,treatment: no
+        H5 sorgente      : Neural cells
+      GSM5325438
+        grezzo (Stadio 1): title: Sample 3_dpamine neuron-48h-mock-3,source: Neural cells,cell type: Dopaminergic Neuron,viral infected: no,treatment: no
+        H5 titolo        : Sample 3_dpamine neuron-48h-mock-3
+        H5 caratteristiche: cell type: Dopaminergic Neuron,viral infected: no,treatment: no
+        H5 sorgente      : Neural cells
+
+CONFRONTO  GSE188382__GSE188382__grp_0002_vs_grp_0001__1
+  studio: GSE188382
+  TRATTATO  (n=3)  etichetta Stadio 2: Wild-Type SARS-CoV-2
+      gruppo Stadio 2: grp_0002
+      GSM5678447
+        grezzo (Stadio 1): title: B1: WT_infected_rep1,source: A549 cells,genotype: WT,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 titolo        : B1: WT_infected_rep1
+        H5 caratteristiche: genotype: WT,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678448
+        grezzo (Stadio 1): title: B2: WT_infected_rep2,source: A549 cells,genotype: WT,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 titolo        : B2: WT_infected_rep2
+        H5 caratteristiche: genotype: WT,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678450
+        grezzo (Stadio 1): title: B4: WT_infected_rep4,source: A549 cells,genotype: WT,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 titolo        : B4: WT_infected_rep4
+        H5 caratteristiche: genotype: WT,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: Wild-Type Mock
+      gruppo Stadio 2: grp_0001
+      GSM5678439
+        grezzo (Stadio 1): title: A1: WT_Mock_rep1,source: A549 cells,genotype: WT,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 titolo        : A1: WT_Mock_rep1
+        H5 caratteristiche: genotype: WT,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678440
+        grezzo (Stadio 1): title: A2: WT_Mock_rep2,source: A549 cells,genotype: WT,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 titolo        : A2: WT_Mock_rep2
+        H5 caratteristiche: genotype: WT,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678441
+        grezzo (Stadio 1): title: A3: WT_Mock_rep3,source: A549 cells,genotype: WT,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 titolo        : A3: WT_Mock_rep3
+        H5 caratteristiche: genotype: WT,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678442
+        grezzo (Stadio 1): title: A4: WT_Mock_rep4,source: A549 cells,genotype: WT,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 titolo        : A4: WT_Mock_rep4
+        H5 caratteristiche: genotype: WT,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+
+CONFRONTO  GSE188382__GSE188382__grp_0005_vs_grp_0003__1
+  studio: GSE188382
+  TRATTATO  (n=4)  etichetta Stadio 2: SIRT5-KO SARS-CoV-2 (Replicate)
+      gruppo Stadio 2: grp_0005
+      GSM5678451
+        grezzo (Stadio 1): title: B5: KO_infected_rep1,source: A549 cells,genotype: SIRT5-KO,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 titolo        : B5: KO_infected_rep1
+        H5 caratteristiche: genotype: SIRT5-KO,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678452
+        grezzo (Stadio 1): title: B6: KO_infected_rep2,source: A549 cells,genotype: SIRT5-KO,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 titolo        : B6: KO_infected_rep2
+        H5 caratteristiche: genotype: SIRT5-KO,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678453
+        grezzo (Stadio 1): title: B7: KO_infected_rep3,source: A549 cells,genotype: SIRT5-KO,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 titolo        : B7: KO_infected_rep3
+        H5 caratteristiche: genotype: SIRT5-KO,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678454
+        grezzo (Stadio 1): title: B8: KO_infected_rep4,source: A549 cells,genotype: SIRT5-KO,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 titolo        : B8: KO_infected_rep4
+        H5 caratteristiche: genotype: SIRT5-KO,treatment: SARS-CoV-2 Infected,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: SIRT5-KO Mock
+      gruppo Stadio 2: grp_0003
+      GSM5678443
+        grezzo (Stadio 1): title: A5: KO_Mock_rep1,source: A549 cells,genotype: SIRT5-KO,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 titolo        : A5: KO_Mock_rep1
+        H5 caratteristiche: genotype: SIRT5-KO,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678444
+        grezzo (Stadio 1): title: A6: KO_Mock_rep2,source: A549 cells,genotype: SIRT5-KO,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 titolo        : A6: KO_Mock_rep2
+        H5 caratteristiche: genotype: SIRT5-KO,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678445
+        grezzo (Stadio 1): title: A7: KO_Mock_rep3,source: A549 cells,genotype: SIRT5-KO,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 titolo        : A7: KO_Mock_rep3
+        H5 caratteristiche: genotype: SIRT5-KO,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+      GSM5678446
+        grezzo (Stadio 1): title: A8: KO_Mock_rep4,source: A549 cells,genotype: SIRT5-KO,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 titolo        : A8: KO_Mock_rep4
+        H5 caratteristiche: genotype: SIRT5-KO,treatment: Mock,cell line: lung adenocarcinoma A549
+        H5 sorgente      : A549 cells
+
+CONFRONTO  GSE190350__GSE190350__grp_HRT18_SARS-CoV2_p11_vs_grp_HRT18_mock__1
+  studio: GSE190350
+  TRATTATO  (n=3)  etichetta Stadio 2: HRT18 SARS-CoV2 p11
+      gruppo Stadio 2: grp_HRT18_SARS-CoV2_p11
+      GSM5720169
+        grezzo (Stadio 1): title: HRT18-P12-1,source: HRT18,tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 p11
+        H5 titolo        : HRT18-P12-1
+        H5 caratteristiche: tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 p11
+        H5 sorgente      : HRT18
+      GSM5720170
+        grezzo (Stadio 1): title: HRT18-P12-2,source: HRT18,tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 p11
+        H5 titolo        : HRT18-P12-2
+        H5 caratteristiche: tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 p11
+        H5 sorgente      : HRT18
+      GSM5720171
+        grezzo (Stadio 1): title: HRT18-P12-3,source: HRT18,tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 p11
+        H5 titolo        : HRT18-P12-3
+        H5 caratteristiche: tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 p11
+        H5 sorgente      : HRT18
+  CONTROLLO  (n=3)  etichetta Stadio 2: HRT18 mock
+      gruppo Stadio 2: grp_HRT18_mock
+      GSM5720166
+        grezzo (Stadio 1): title: HRT18-P1-1,source: HRT18,tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 stock
+        H5 titolo        : HRT18-P1-1
+        H5 caratteristiche: tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 stock
+        H5 sorgente      : HRT18
+      GSM5720167
+        grezzo (Stadio 1): title: HRT18-P1-2,source: HRT18,tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 stock
+        H5 titolo        : HRT18-P1-2
+        H5 caratteristiche: tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 stock
+        H5 sorgente      : HRT18
+      GSM5720168
+        grezzo (Stadio 1): title: HRT18-P1-3,source: HRT18,tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 stock
+        H5 titolo        : HRT18-P1-3
+        H5 caratteristiche: tissue: Colon,cell type: Epithelial cells,cell line: HRT18,treatment: infected with SARS-CoV2 stock
+        H5 sorgente      : HRT18
+
+CONFRONTO  GSE193330__GSE193330__grp_0001_vs_grp_0002__1
+  studio: GSE193330
+  TRATTATO  (n=2)  etichetta Stadio 2: hepatocytes of bv-LoC, SARS-CoV-2 infection
+      gruppo Stadio 2: grp_0001
+      GSM5792295
+        grezzo (Stadio 1): title: hepatocytes of SARS-CoV-2 infected bv-LoC rep2,source: hepatocytes,cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: SARS-CoV-2 infection
+        H5 titolo        : hepatocytes of SARS-CoV-2 infected bv-LoC rep2
+        H5 caratteristiche: cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: SARS-CoV-2 infection
+        H5 sorgente      : hepatocytes
+      GSM5792296
+        grezzo (Stadio 1): title: hepatocytes of SARS-CoV-2 infected bv-LoC rep3,source: hepatocytes,cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: SARS-CoV-2 infection
+        H5 titolo        : hepatocytes of SARS-CoV-2 infected bv-LoC rep3
+        H5 caratteristiche: cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: SARS-CoV-2 infection
+        H5 sorgente      : hepatocytes
+  CONTROLLO  (n=3)  etichetta Stadio 2: hepatocytes of bv-LoC, control
+      gruppo Stadio 2: grp_0002
+      GSM5792291
+        grezzo (Stadio 1): title: hepatocytes of uninfected bv-LoC rep1,source: hepatocytes,cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: control
+        H5 titolo        : hepatocytes of uninfected bv-LoC rep1
+        H5 caratteristiche: cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: control
+        H5 sorgente      : hepatocytes
+      GSM5792292
+        grezzo (Stadio 1): title: hepatocytes of uninfected bv-LoC rep2,source: hepatocytes,cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: control
+        H5 titolo        : hepatocytes of uninfected bv-LoC rep2
+        H5 caratteristiche: cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: control
+        H5 sorgente      : hepatocytes
+      GSM5792293
+        grezzo (Stadio 1): title: hepatocytes of uninfected bv-LoC rep3,source: hepatocytes,cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: control
+        H5 titolo        : hepatocytes of uninfected bv-LoC rep3
+        H5 caratteristiche: cell line: HUVEC,cell type: hepatocytes of bv-LoC,treatment: control
+        H5 sorgente      : hepatocytes
+
+CONFRONTO  GSE193330__GSE193330__grp_0006_vs_grp_0004__1
+  studio: GSE193330
+  TRATTATO  (n=2)  etichetta Stadio 2: HuCCT1, SARS-CoV-2 infection
+      gruppo Stadio 2: grp_0006
+      GSM5792288
+        grezzo (Stadio 1): title: hepatocytes of SARS-CoV-2 infected ibd-LoC rep1,source: hepatocytes,cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: SARS-CoV-2 infection
+        H5 titolo        : hepatocytes of SARS-CoV-2 infected ibd-LoC rep1
+        H5 caratteristiche: cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: SARS-CoV-2 infection
+        H5 sorgente      : hepatocytes
+      GSM5792289
+        grezzo (Stadio 1): title: hepatocytes of SARS-CoV-2 infected ibd-LoC rep2,source: hepatocytes,cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: SARS-CoV-2 infection
+        H5 titolo        : hepatocytes of SARS-CoV-2 infected ibd-LoC rep2
+        H5 caratteristiche: cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: SARS-CoV-2 infection
+        H5 sorgente      : hepatocytes
+  CONTROLLO  (n=3)  etichetta Stadio 2: HuCCT1, control
+      gruppo Stadio 2: grp_0004
+      GSM5792285
+        grezzo (Stadio 1): title: hepatocytes of uninfected ibd-LoC rep1,source: hepatocytes,cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: control
+        H5 titolo        : hepatocytes of uninfected ibd-LoC rep1
+        H5 caratteristiche: cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: control
+        H5 sorgente      : hepatocytes
+      GSM5792286
+        grezzo (Stadio 1): title: hepatocytes of uninfected ibd-LoC rep2,source: hepatocytes,cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: control
+        H5 titolo        : hepatocytes of uninfected ibd-LoC rep2
+        H5 caratteristiche: cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: control
+        H5 sorgente      : hepatocytes
+      GSM5792287
+        grezzo (Stadio 1): title: hepatocytes of uninfected ibd-LoC rep3,source: hepatocytes,cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: control
+        H5 titolo        : hepatocytes of uninfected ibd-LoC rep3
+        H5 caratteristiche: cell line: HuCCT1,cell type: hepatocytes of ibd-LoC,treatment: control
+        H5 sorgente      : hepatocytes
+
+CONFRONTO  GSE196113__GSE196113__SARS-CoV-2_vs_control__1
+  studio: GSE196113
+  TRATTATO  (n=3)  etichetta Stadio 2: SARS-CoV-2
+      gruppo Stadio 2: grp_0002
+      GSM5860226
+        grezzo (Stadio 1): title: HMVEC-L of SARS-CoV-2 infected airway-on-a-chips rep1,source: human lung microvascular endothelial cells (HMVEC-L),cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: SARS-CoV-2
+        H5 titolo        : HMVEC-L of SARS-CoV-2 infected airway-on-a-chips rep1
+        H5 caratteristiche: cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: SARS-CoV-2
+        H5 sorgente      : human lung microvascular endothelial cells (HMVEC-L)
+      GSM5860227
+        grezzo (Stadio 1): title: HMVEC-L of SARS-CoV-2 infected airway-on-a-chips rep2,source: human lung microvascular endothelial cells (HMVEC-L),cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: SARS-CoV-2
+        H5 titolo        : HMVEC-L of SARS-CoV-2 infected airway-on-a-chips rep2
+        H5 caratteristiche: cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: SARS-CoV-2
+        H5 sorgente      : human lung microvascular endothelial cells (HMVEC-L)
+      GSM5860228
+        grezzo (Stadio 1): title: HMVEC-L of SARS-CoV-2 infected airway-on-a-chips rep3,source: human lung microvascular endothelial cells (HMVEC-L),cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: SARS-CoV-2
+        H5 titolo        : HMVEC-L of SARS-CoV-2 infected airway-on-a-chips rep3
+        H5 caratteristiche: cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: SARS-CoV-2
+        H5 sorgente      : human lung microvascular endothelial cells (HMVEC-L)
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM5860223
+        grezzo (Stadio 1): title: HMVEC-L of uninfected airway-on-a-chips rep1,source: human lung microvascular endothelial cells (HMVEC-L),cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: control
+        H5 titolo        : HMVEC-L of uninfected airway-on-a-chips rep1
+        H5 caratteristiche: cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: control
+        H5 sorgente      : human lung microvascular endothelial cells (HMVEC-L)
+      GSM5860224
+        grezzo (Stadio 1): title: HMVEC-L of uninfected airway-on-a-chips rep2,source: human lung microvascular endothelial cells (HMVEC-L),cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: control
+        H5 titolo        : HMVEC-L of uninfected airway-on-a-chips rep2
+        H5 caratteristiche: cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: control
+        H5 sorgente      : human lung microvascular endothelial cells (HMVEC-L)
+      GSM5860225
+        grezzo (Stadio 1): title: HMVEC-L of uninfected airway-on-a-chips rep3,source: human lung microvascular endothelial cells (HMVEC-L),cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: control
+        H5 titolo        : HMVEC-L of uninfected airway-on-a-chips rep3
+        H5 caratteristiche: cell type: human lung microvascular endothelial cells (HMVEC-L),cell source: HMVEC-L of airway-on-a-chips,infection: control
+        H5 sorgente      : human lung microvascular endothelial cells (HMVEC-L)
+
+CONFRONTO  GSE198722__GSE198722__SARS-CoV-2_MOI_1_vs_mock__1
+  studio: GSE198722
+  TRATTATO  (n=6)  etichetta Stadio 2: Astrocytes infected with SARS-CoV-2 (MOI=1)
+      gruppo Stadio 2: grp_0002
+      GSM5955764
+        grezzo (Stadio 1): title: MOI1_R1,source: SARS-CoV-2-astrocytes MOI=1,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 titolo        : MOI1_R1
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=1
+      GSM5955765
+        grezzo (Stadio 1): title: MOI1_R2,source: SARS-CoV-2-astrocytes MOI=1,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 titolo        : MOI1_R2
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=1
+      GSM5955766
+        grezzo (Stadio 1): title: MOI1_R3,source: SARS-CoV-2-astrocytes MOI=1,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 titolo        : MOI1_R3
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=1
+      GSM5955767
+        grezzo (Stadio 1): title: MOI1_R4,source: SARS-CoV-2-astrocytes MOI=1,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 titolo        : MOI1_R4
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=1
+      GSM5955768
+        grezzo (Stadio 1): title: MOI1_R5,source: SARS-CoV-2-astrocytes MOI=1,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 titolo        : MOI1_R5
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=1
+      GSM5955769
+        grezzo (Stadio 1): title: MOI1_R6,source: SARS-CoV-2-astrocytes MOI=1,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 titolo        : MOI1_R6
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=1
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=1
+  CONTROLLO  (n=6)  etichetta Stadio 2: Mock-infected astrocytes
+      gruppo Stadio 2: grp_0001
+      GSM5955758
+        grezzo (Stadio 1): title: Mock_R1,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R1
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955759
+        grezzo (Stadio 1): title: Mock_R2,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R2
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955760
+        grezzo (Stadio 1): title: Mock_R3,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R3
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955761
+        grezzo (Stadio 1): title: Mock_R4,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R4
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955762
+        grezzo (Stadio 1): title: Mock_R5,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R5
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955763
+        grezzo (Stadio 1): title: Mock_R6,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R6
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+
+CONFRONTO  GSE198722__GSE198722__SARS-CoV-2_MOI_5_vs_mock__1
+  studio: GSE198722
+  TRATTATO  (n=6)  etichetta Stadio 2: Astrocytes infected with SARS-CoV-2 (MOI=5)
+      gruppo Stadio 2: grp_0003
+      GSM5955770
+        grezzo (Stadio 1): title: MOI-5_R1,source: SARS-CoV-2-astrocytes MOI=5,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 titolo        : MOI-5_R1
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=5
+      GSM5955771
+        grezzo (Stadio 1): title: MOI-5_R2,source: SARS-CoV-2-astrocytes MOI=5,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 titolo        : MOI-5_R2
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=5
+      GSM5955772
+        grezzo (Stadio 1): title: MOI-5_R3,source: SARS-CoV-2-astrocytes MOI=5,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 titolo        : MOI-5_R3
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=5
+      GSM5955773
+        grezzo (Stadio 1): title: MOI-5_R4,source: SARS-CoV-2-astrocytes MOI=5,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 titolo        : MOI-5_R4
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=5
+      GSM5955774
+        grezzo (Stadio 1): title: MOI-5_R5,source: SARS-CoV-2-astrocytes MOI=5,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 titolo        : MOI-5_R5
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=5
+      GSM5955775
+        grezzo (Stadio 1): title: MOI-5_R6,source: SARS-CoV-2-astrocytes MOI=5,tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 titolo        : MOI-5_R6
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: SARS-CoV-2 MOI=5
+        H5 sorgente      : SARS-CoV-2-astrocytes MOI=5
+  CONTROLLO  (n=6)  etichetta Stadio 2: Mock-infected astrocytes
+      gruppo Stadio 2: grp_0001
+      GSM5955758
+        grezzo (Stadio 1): title: Mock_R1,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R1
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955759
+        grezzo (Stadio 1): title: Mock_R2,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R2
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955760
+        grezzo (Stadio 1): title: Mock_R3,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R3
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955761
+        grezzo (Stadio 1): title: Mock_R4,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R4
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955762
+        grezzo (Stadio 1): title: Mock_R5,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R5
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+      GSM5955763
+        grezzo (Stadio 1): title: Mock_R6,source: Mock-astrocytes,tissue: brain,cell type: astrocytes,infected with: mock
+        H5 titolo        : Mock_R6
+        H5 caratteristiche: tissue: brain,cell type: astrocytes,infected with: mock
+        H5 sorgente      : Mock-astrocytes
+
+CONFRONTO  GSE199743__GSE199743__grp_0003_vs_grp_0001__1
+  studio: GSE199743
+  TRATTATO  (n=4)  etichetta Stadio 2: SARS-CoV-2 infected WD-PNEC 48h
+      gruppo Stadio 2: grp_0003
+      GSM5983619
+        grezzo (Stadio 1): title: WD-PNEC, infected, 48, 32,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: SARS-CoV-2 infected,donor: 32,Sex: Male,age: 32
+        H5 titolo        : WD-PNEC, infected, 48, 32
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: SARS-CoV-2 infected,donor: 32,Sex: Male,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983623
+        grezzo (Stadio 1): title: WD-PNEC, infected, 48, 43,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: SARS-CoV-2 infected,donor: 43,Sex: Male,age: 32
+        H5 titolo        : WD-PNEC, infected, 48, 43
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: SARS-CoV-2 infected,donor: 43,Sex: Male,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983627
+        grezzo (Stadio 1): title: WD-PNEC, infected, 48, 122,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: SARS-CoV-2 infected,donor: 122,Sex: Female,age: 32
+        H5 titolo        : WD-PNEC, infected, 48, 122
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: SARS-CoV-2 infected,donor: 122,Sex: Female,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983631
+        grezzo (Stadio 1): title: WD-PNEC, infected, 48, 311,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: SARS-CoV-2 infected,donor: 311,Sex: Female,age: 31
+        H5 titolo        : WD-PNEC, infected, 48, 311
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: SARS-CoV-2 infected,donor: 311,Sex: Female,age: 31
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+  CONTROLLO  (n=4)  etichetta Stadio 2: Mock infected WD-PNEC 48h
+      gruppo Stadio 2: grp_0001
+      GSM5983617
+        grezzo (Stadio 1): title: WD-PNEC, mock, 48, 32,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: mock infected,donor: 32,Sex: Male,age: 32
+        H5 titolo        : WD-PNEC, mock, 48, 32
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: mock infected,donor: 32,Sex: Male,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983621
+        grezzo (Stadio 1): title: WD-PNEC, mock, 48, 43,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: mock infected,donor: 43,Sex: Male,age: 32
+        H5 titolo        : WD-PNEC, mock, 48, 43
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: mock infected,donor: 43,Sex: Male,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983625
+        grezzo (Stadio 1): title: WD-PNEC, mock, 48, 122,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: mock infected,donor: 122,Sex: Female,age: 32
+        H5 titolo        : WD-PNEC, mock, 48, 122
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: mock infected,donor: 122,Sex: Female,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983629
+        grezzo (Stadio 1): title: WD-PNEC, mock, 48, 311,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: mock infected,donor: 311,Sex: Female,age: 31
+        H5 titolo        : WD-PNEC, mock, 48, 311
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 48,infection: mock infected,donor: 311,Sex: Female,age: 31
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+
+CONFRONTO  GSE199743__GSE199743__grp_0004_vs_grp_0002__1
+  studio: GSE199743
+  TRATTATO  (n=4)  etichetta Stadio 2: SARS-CoV-2 infected WD-PNEC 96h
+      gruppo Stadio 2: grp_0004
+      GSM5983620
+        grezzo (Stadio 1): title: WD-PNEC, infected, 96, 32,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: SARS-CoV-2 infected,donor: 32,Sex: Male,age: 32
+        H5 titolo        : WD-PNEC, infected, 96, 32
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: SARS-CoV-2 infected,donor: 32,Sex: Male,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983624
+        grezzo (Stadio 1): title: WD-PNEC, infected, 96, 43,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: SARS-CoV-2 infected,donor: 43,Sex: Male,age: 32
+        H5 titolo        : WD-PNEC, infected, 96, 43
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: SARS-CoV-2 infected,donor: 43,Sex: Male,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983628
+        grezzo (Stadio 1): title: WD-PNEC, infected, 96, 122,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: SARS-CoV-2 infected,donor: 122,Sex: Female,age: 32
+        H5 titolo        : WD-PNEC, infected, 96, 122
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: SARS-CoV-2 infected,donor: 122,Sex: Female,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983632
+        grezzo (Stadio 1): title: WD-PNEC, infected, 96, 311,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: SARS-CoV-2 infected,donor: 311,Sex: Female,age: 31
+        H5 titolo        : WD-PNEC, infected, 96, 311
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: SARS-CoV-2 infected,donor: 311,Sex: Female,age: 31
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+  CONTROLLO  (n=4)  etichetta Stadio 2: Mock infected WD-PNEC 96h
+      gruppo Stadio 2: grp_0002
+      GSM5983618
+        grezzo (Stadio 1): title: WD-PNEC, mock, 96, 32,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: mock infected,donor: 32,Sex: Male,age: 32
+        H5 titolo        : WD-PNEC, mock, 96, 32
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: mock infected,donor: 32,Sex: Male,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983622
+        grezzo (Stadio 1): title: WD-PNEC, mock, 96, 43,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: mock infected,donor: 43,Sex: Male,age: 32
+        H5 titolo        : WD-PNEC, mock, 96, 43
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: mock infected,donor: 43,Sex: Male,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983626
+        grezzo (Stadio 1): title: WD-PNEC, mock, 96, 122,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: mock infected,donor: 122,Sex: Female,age: 32
+        H5 titolo        : WD-PNEC, mock, 96, 122
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: mock infected,donor: 122,Sex: Female,age: 32
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+      GSM5983630
+        grezzo (Stadio 1): title: WD-PNEC, mock, 96, 311,source: Well-differentiated primary nasal epithelial cell (WD-PNEC),cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: mock infected,donor: 311,Sex: Female,age: 31
+        H5 titolo        : WD-PNEC, mock, 96, 311
+        H5 caratteristiche: cell type: Well-differentiated primary nasal epithelial cell (WD-PNEC),post infection time (hours): 96,infection: mock infected,donor: 311,Sex: Female,age: 31
+        H5 sorgente      : Well-differentiated primary nasal epithelial cell (WD-PNEC)
+
+CONFRONTO  GSE205621__GSE205621__grp_0003_vs_grp_0009__1
+  studio: GSE205621
+  TRATTATO  (n=3)  etichetta Stadio 2: A549-ACE cells SARS-CoV-2 DelARKSAP 24h
+      gruppo Stadio 2: grp_0003
+      GSM6215596
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 DelARKSAP n1,source: 24hr-dOrf8-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 DelARKSAP n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 24 hour
+        H5 sorgente      : 24hr-dOrf8-N1
+      GSM6215597
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 DelARKSAP n2,source: 24hr-dOrf8-N2,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 DelARKSAP n2
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 24 hour
+        H5 sorgente      : 24hr-dOrf8-N2
+      GSM6215598
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 DelARKSAP n3,source: 24hr-dOrf8-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 DelARKSAP n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 24 hour
+        H5 sorgente      : 24hr-dOrf8-N3
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549-ACE cells Mock 24h
+      gruppo Stadio 2: grp_0009
+      GSM6215587
+        grezzo (Stadio 1): title: 24h Mock n1,source: 24hr-Mock-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 titolo        : 24h Mock n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 sorgente      : 24hr-Mock-N1
+      GSM6215589
+        grezzo (Stadio 1): title: 24h Mock n3,source: 24hr-Mock-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 titolo        : 24h Mock n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 sorgente      : 24hr-Mock-N3
+
+CONFRONTO  GSE205621__GSE205621__grp_0004_vs_grp_0010__1
+  studio: GSE205621
+  TRATTATO  (n=3)  etichetta Stadio 2: A549-ACE cells SARS-CoV-2 DelARKSAP 48h
+      gruppo Stadio 2: grp_0004
+      GSM6215608
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 DelARKSAP n1,source: 48hr-dOrf8-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 DelARKSAP n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 48 hour
+        H5 sorgente      : 48hr-dOrf8-N1
+      GSM6215609
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 DelARKSAP n2,source: 48hr-dOrf8-N2,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 DelARKSAP n2
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 48 hour
+        H5 sorgente      : 48hr-dOrf8-N2
+      GSM6215610
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 DelARKSAP n3,source: 48hr-dOrf8-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 DelARKSAP n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelARKSAP,time: 48 hour
+        H5 sorgente      : 48hr-dOrf8-N3
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549-ACE cells Mock 48h
+      gruppo Stadio 2: grp_0010
+      GSM6215599
+        grezzo (Stadio 1): title: 48h Mock n1,source: 48hr-Mock-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 titolo        : 48h Mock n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 sorgente      : 48hr-Mock-N1
+      GSM6215601
+        grezzo (Stadio 1): title: 48h Mock n3,source: 48hr-Mock-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 titolo        : 48h Mock n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 sorgente      : 48hr-Mock-N3
+
+CONFRONTO  GSE205621__GSE205621__grp_0005_vs_grp_0009__1
+  studio: GSE205621
+  TRATTATO  (n=3)  etichetta Stadio 2: A549-ACE cells SARS-CoV-2 DelOrf8 24h
+      gruppo Stadio 2: grp_0005
+      GSM6215593
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 DelOrf8 n1,source: 24hr-dARKSAP-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 DelOrf8 n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 24 hour
+        H5 sorgente      : 24hr-dARKSAP-N1
+      GSM6215594
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 DelOrf8 n2,source: 24hr-dARKSAP-N2,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 DelOrf8 n2
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 24 hour
+        H5 sorgente      : 24hr-dARKSAP-N2
+      GSM6215595
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 DelOrf8 n3,source: 24hr-dARKSAP-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 DelOrf8 n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 24 hour
+        H5 sorgente      : 24hr-dARKSAP-N3
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549-ACE cells Mock 24h
+      gruppo Stadio 2: grp_0009
+      GSM6215587
+        grezzo (Stadio 1): title: 24h Mock n1,source: 24hr-Mock-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 titolo        : 24h Mock n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 sorgente      : 24hr-Mock-N1
+      GSM6215589
+        grezzo (Stadio 1): title: 24h Mock n3,source: 24hr-Mock-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 titolo        : 24h Mock n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 sorgente      : 24hr-Mock-N3
+
+CONFRONTO  GSE205621__GSE205621__grp_0006_vs_grp_0010__1
+  studio: GSE205621
+  TRATTATO  (n=3)  etichetta Stadio 2: A549-ACE cells SARS-CoV-2 DelOrf8 48h
+      gruppo Stadio 2: grp_0006
+      GSM6215605
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 DelOrf8 n1,source: 48hr-dARKSAP-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 DelOrf8 n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 48 hour
+        H5 sorgente      : 48hr-dARKSAP-N1
+      GSM6215606
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 DelOrf8 n2,source: 48hr-dARKSAP-N2,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 DelOrf8 n2
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 48 hour
+        H5 sorgente      : 48hr-dARKSAP-N2
+      GSM6215607
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 DelOrf8 n3,source: 48hr-dARKSAP-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 DelOrf8 n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 DelOrf8,time: 48 hour
+        H5 sorgente      : 48hr-dARKSAP-N3
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549-ACE cells Mock 48h
+      gruppo Stadio 2: grp_0010
+      GSM6215599
+        grezzo (Stadio 1): title: 48h Mock n1,source: 48hr-Mock-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 titolo        : 48h Mock n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 sorgente      : 48hr-Mock-N1
+      GSM6215601
+        grezzo (Stadio 1): title: 48h Mock n3,source: 48hr-Mock-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 titolo        : 48h Mock n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 sorgente      : 48hr-Mock-N3
+
+CONFRONTO  GSE205621__GSE205621__grp_0007_vs_grp_0009__1
+  studio: GSE205621
+  TRATTATO  (n=3)  etichetta Stadio 2: A549-ACE cells SARS-CoV-2 WT 24h
+      gruppo Stadio 2: grp_0007
+      GSM6215590
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 WT n1,source: 24hr-WT-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 WT n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 24 hour
+        H5 sorgente      : 24hr-WT-N1
+      GSM6215591
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 WT n2,source: 24hr-WT-N2,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 WT n2
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 24 hour
+        H5 sorgente      : 24hr-WT-N2
+      GSM6215592
+        grezzo (Stadio 1): title: 24h SARS-CoV-2 WT n3,source: 24hr-WT-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 24 hour
+        H5 titolo        : 24h SARS-CoV-2 WT n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 24 hour
+        H5 sorgente      : 24hr-WT-N3
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549-ACE cells Mock 24h
+      gruppo Stadio 2: grp_0009
+      GSM6215587
+        grezzo (Stadio 1): title: 24h Mock n1,source: 24hr-Mock-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 titolo        : 24h Mock n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 sorgente      : 24hr-Mock-N1
+      GSM6215589
+        grezzo (Stadio 1): title: 24h Mock n3,source: 24hr-Mock-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 titolo        : 24h Mock n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 24 hour
+        H5 sorgente      : 24hr-Mock-N3
+
+CONFRONTO  GSE205621__GSE205621__grp_0008_vs_grp_0010__1
+  studio: GSE205621
+  TRATTATO  (n=3)  etichetta Stadio 2: A549-ACE cells SARS-CoV-2 WT 48h
+      gruppo Stadio 2: grp_0008
+      GSM6215602
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 WT n1,source: 48hr-WT-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 WT n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 48 hour
+        H5 sorgente      : 48hr-WT-N1
+      GSM6215603
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 WT n2,source: 48hr-WT-N2,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 WT n2
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 48 hour
+        H5 sorgente      : 48hr-WT-N2
+      GSM6215604
+        grezzo (Stadio 1): title: 48h SARS-CoV-2 WT n3,source: 48hr-WT-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 48 hour
+        H5 titolo        : 48h SARS-CoV-2 WT n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: SARS-CoV-2 WT,time: 48 hour
+        H5 sorgente      : 48hr-WT-N3
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549-ACE cells Mock 48h
+      gruppo Stadio 2: grp_0010
+      GSM6215599
+        grezzo (Stadio 1): title: 48h Mock n1,source: 48hr-Mock-N1,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 titolo        : 48h Mock n1
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 sorgente      : 48hr-Mock-N1
+      GSM6215601
+        grezzo (Stadio 1): title: 48h Mock n3,source: 48hr-Mock-N3,cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 titolo        : 48h Mock n3
+        H5 caratteristiche: cell line: A549-ACE cells,cell type: lung cell line expressing the ACE receptor,infection: Mock,time: 48 hour
+        H5 sorgente      : 48hr-Mock-N3
+
+CONFRONTO  GSE217099__GSE217099__grp_0007_vs_grp_0002__1
+  studio: GSE217099
+  TRATTATO  (n=3)  etichetta Stadio 2: SARS-CoV-2-infected (4 dpi)
+      gruppo Stadio 2: grp_0007
+      GSM6705103
+        grezzo (Stadio 1): title: Bronchioalveolar organoids, SARS-CoV-2, no drug 1,source: iPS cell-derived bronchioalveolar organoids,cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: SARS-CoV-2,time: 4 dpi
+        H5 titolo        : Bronchioalveolar organoids, SARS-CoV-2, no drug 1
+        H5 caratteristiche: cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: SARS-CoV-2,time: 4 dpi
+        H5 sorgente      : iPS cell-derived bronchioalveolar organoids
+      GSM6705104
+        grezzo (Stadio 1): title: Bronchioalveolar organoids, SARS-CoV-2, no drug 2,source: iPS cell-derived bronchioalveolar organoids,cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: SARS-CoV-2,time: 4 dpi
+        H5 titolo        : Bronchioalveolar organoids, SARS-CoV-2, no drug 2
+        H5 caratteristiche: cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: SARS-CoV-2,time: 4 dpi
+        H5 sorgente      : iPS cell-derived bronchioalveolar organoids
+      GSM6705105
+        grezzo (Stadio 1): title: Bronchioalveolar organoids, SARS-CoV-2, no drug 3,source: iPS cell-derived bronchioalveolar organoids,cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: SARS-CoV-2,time: 4 dpi
+        H5 titolo        : Bronchioalveolar organoids, SARS-CoV-2, no drug 3
+        H5 caratteristiche: cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: SARS-CoV-2,time: 4 dpi
+        H5 sorgente      : iPS cell-derived bronchioalveolar organoids
+  CONTROLLO  (n=2)  etichetta Stadio 2: Mock-treated (4 dpi)
+      gruppo Stadio 2: grp_0002
+      GSM6705100
+        grezzo (Stadio 1): title: Bronchioalveolar organoids, mock, no drug 1,source: iPS cell-derived bronchioalveolar organoids,cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: mock,time: 4 dpi
+        H5 titolo        : Bronchioalveolar organoids, mock, no drug 1
+        H5 caratteristiche: cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: mock,time: 4 dpi
+        H5 sorgente      : iPS cell-derived bronchioalveolar organoids
+      GSM6705101
+        grezzo (Stadio 1): title: Bronchioalveolar organoids, mock, no drug 2,source: iPS cell-derived bronchioalveolar organoids,cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: mock,time: 4 dpi
+        H5 titolo        : Bronchioalveolar organoids, mock, no drug 2
+        H5 caratteristiche: cell line: iPS cell-derived bronchioalveolar organoids,cell type: bronchioalveolar organoids,genotype: wild type,treatment: mock,time: 4 dpi
+        H5 sorgente      : iPS cell-derived bronchioalveolar organoids
+
+CONFRONTO  GSE225517__GSE225517__grp_0002_vs_grp_0001__1
+  studio: GSE225517
+  TRATTATO  (n=4)  etichetta Stadio 2: Midbrain organoid Line 15 SARS-CoV-2
+      gruppo Stadio 2: grp_0002
+      GSM7049765
+        grezzo (Stadio 1): title: Midbrain organoid Line 15 SARS-CoV-2 infection biol rep 1 [C19-MB-15_V1_R1C19OR_DVB_S5],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 titolo        : Midbrain organoid Line 15 SARS-CoV-2 infection biol rep 1 [C19-MB-15_V1_R1C19OR_DVB_S5]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049766
+        grezzo (Stadio 1): title: Midbrain organoid Line 15 SARS-CoV-2 infection biol rep 2 [C19-MB-15_V1_R2C19OR_DVB_S6],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 titolo        : Midbrain organoid Line 15 SARS-CoV-2 infection biol rep 2 [C19-MB-15_V1_R2C19OR_DVB_S6]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049767
+        grezzo (Stadio 1): title: Midbrain organoid Line 15 SARS-CoV-2 infection biol rep 3 [C19-MB-15_V1_R3C19OR_DVB_S7],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 titolo        : Midbrain organoid Line 15 SARS-CoV-2 infection biol rep 3 [C19-MB-15_V1_R3C19OR_DVB_S7]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049768
+        grezzo (Stadio 1): title: Midbrain organoid Line 15 SARS-CoV-2 infection biol rep 4 [C19-MB-15_V1_R4C19OR_DVB_S8],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 titolo        : Midbrain organoid Line 15 SARS-CoV-2 infection biol rep 4 [C19-MB-15_V1_R4C19OR_DVB_S8]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 sorgente      : Midbrain organoid
+  CONTROLLO  (n=4)  etichetta Stadio 2: Midbrain organoid Line 15 Mock infection
+      gruppo Stadio 2: grp_0001
+      GSM7049761
+        grezzo (Stadio 1): title: Midbrain organoid Line 15 Mock infection biol rep 1 [C19-MB-15_Un_R1C19OR_DVB_S1],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 titolo        : Midbrain organoid Line 15 Mock infection biol rep 1 [C19-MB-15_Un_R1C19OR_DVB_S1]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049762
+        grezzo (Stadio 1): title: Midbrain organoid Line 15 Mock infection biol rep 2 [C19-MB-15_Un_R2C19OR_DVB_S2],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 titolo        : Midbrain organoid Line 15 Mock infection biol rep 2 [C19-MB-15_Un_R2C19OR_DVB_S2]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049763
+        grezzo (Stadio 1): title: Midbrain organoid Line 15 Mock infection biol rep 3 [C19-MB-15_Un_R3C19OR_DVB_S3],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 titolo        : Midbrain organoid Line 15 Mock infection biol rep 3 [C19-MB-15_Un_R3C19OR_DVB_S3]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049764
+        grezzo (Stadio 1): title: Midbrain organoid Line 15 Mock infection biol rep 4 [C19-MB-15_Un_R4C19OR_DVB_S4],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 titolo        : Midbrain organoid Line 15 Mock infection biol rep 4 [C19-MB-15_Un_R4C19OR_DVB_S4]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 15,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 sorgente      : Midbrain organoid
+
+CONFRONTO  GSE225517__GSE225517__grp_0004_vs_grp_0003__1
+  studio: GSE225517
+  TRATTATO  (n=4)  etichetta Stadio 2: Midbrain organoid SARS-CoV-2
+      gruppo Stadio 2: grp_0004
+      GSM7049757
+        grezzo (Stadio 1): title: Midbrain organoid Line 11 SARS-CoV-2 infection biol rep 1 [C19-MB-11_V1_R1C19OR_DVB_S5],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 titolo        : Midbrain organoid Line 11 SARS-CoV-2 infection biol rep 1 [C19-MB-11_V1_R1C19OR_DVB_S5]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049758
+        grezzo (Stadio 1): title: Midbrain organoid Line 11 SARS-CoV-2 infection biol rep 2 [C19-MB-11_V1_R2C19OR_DVB_S6],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 titolo        : Midbrain organoid Line 11 SARS-CoV-2 infection biol rep 2 [C19-MB-11_V1_R2C19OR_DVB_S6]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049759
+        grezzo (Stadio 1): title: Midbrain organoid Line 11 SARS-CoV-2 infection biol rep 3 [C19-MB-11_V1_R3C19OR_DVB_S7],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 titolo        : Midbrain organoid Line 11 SARS-CoV-2 infection biol rep 3 [C19-MB-11_V1_R3C19OR_DVB_S7]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049760
+        grezzo (Stadio 1): title: Midbrain organoid Line 11 SARS-CoV-2 infection biol rep 4 [C19-MB-11_V1_R4C19OR_DVB_S8],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 titolo        : Midbrain organoid Line 11 SARS-CoV-2 infection biol rep 4 [C19-MB-11_V1_R4C19OR_DVB_S8]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: SARS-CoV-2 infection
+        H5 sorgente      : Midbrain organoid
+  CONTROLLO  (n=4)  etichetta Stadio 2: Midbrain organoid Line 11 Mock infection
+      gruppo Stadio 2: grp_0003
+      GSM7049753
+        grezzo (Stadio 1): title: Midbrain organoid Line 11 Mock infection biol rep 1 [C19-MB-11_Un_R1C19OR_DVB_S1],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 titolo        : Midbrain organoid Line 11 Mock infection biol rep 1 [C19-MB-11_Un_R1C19OR_DVB_S1]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049754
+        grezzo (Stadio 1): title: Midbrain organoid Line 11 Mock infection biol rep 2 [C19-MB-11_Un_R2C19OR_DVB_S2],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 titolo        : Midbrain organoid Line 11 Mock infection biol rep 2 [C19-MB-11_Un_R2C19OR_DVB_S2]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049755
+        grezzo (Stadio 1): title: Midbrain organoid Line 11 Mock infection biol rep 3 [C19-MB-11_Un_R3C19OR_DVB_S3],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 titolo        : Midbrain organoid Line 11 Mock infection biol rep 3 [C19-MB-11_Un_R3C19OR_DVB_S3]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 sorgente      : Midbrain organoid
+      GSM7049756
+        grezzo (Stadio 1): title: Midbrain organoid Line 11 Mock infection biol rep 4 [C19-MB-11_Un_R4C19OR_DVB_S4],source: Midbrain organoid,tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 titolo        : Midbrain organoid Line 11 Mock infection biol rep 4 [C19-MB-11_Un_R4C19OR_DVB_S4]
+        H5 caratteristiche: tissue: Midbrain organoid,cell line: 11,cell type: hiPSC,genotype: Wild type,treatment: Mock infection
+        H5 sorgente      : Midbrain organoid
+
+CONFRONTO  GSE225564__GSE225564__grp_0006_vs_grp_0003__1
+  studio: GSE225564
+  TRATTATO  (n=2)  etichetta Stadio 2: RUES2 lung cells infected with SARS-CoV-2 for 24 hours
+      gruppo Stadio 2: grp_0006
+      GSM7050349
+        grezzo (Stadio 1): title: S03_SARS2_24hpi,source: Lung,tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: SARS-CoV-2
+        H5 titolo        : S03_SARS2_24hpi
+        H5 caratteristiche: tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: SARS-CoV-2
+        H5 sorgente      : Lung
+      GSM7050360
+        grezzo (Stadio 1): title: S14_SARS2_24hpi,source: Lung,tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: SARS-CoV-2
+        H5 titolo        : S14_SARS2_24hpi
+        H5 caratteristiche: tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: SARS-CoV-2
+        H5 sorgente      : Lung
+  CONTROLLO  (n=3)  etichetta Stadio 2: RUES2 lung cells mock-infected for 24 hours
+      gruppo Stadio 2: grp_0003
+      GSM7050356
+        grezzo (Stadio 1): title: S10_Mock_24hpi,source: Lung,tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: Mock
+        H5 titolo        : S10_Mock_24hpi
+        H5 caratteristiche: tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: Mock
+        H5 sorgente      : Lung
+      GSM7050358
+        grezzo (Stadio 1): title: S12_Mock_24hpi,source: Lung,tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: Mock
+        H5 titolo        : S12_Mock_24hpi
+        H5 caratteristiche: tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: Mock
+        H5 sorgente      : Lung
+      GSM7050363
+        grezzo (Stadio 1): title: S17_Mock_24hpi,source: Lung,tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: Mock
+        H5 titolo        : S17_Mock_24hpi
+        H5 caratteristiche: tissue: Lung,cell line: RUES2,cell type: lung buds,genotype: wild-type,treatment: Mock
+        H5 sorgente      : Lung
+
+CONFRONTO  GSE226702__GSE226702__grp_0003_vs_grp_0001__1
+  studio: GSE226702
+  TRATTATO  (n=2)  etichetta Stadio 2: SARS-CoV-2 48h
+      gruppo Stadio 2: grp_0003
+      GSM7081949
+        grezzo (Stadio 1): title: COV48H_1,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 48h post infection
+        H5 titolo        : COV48H_1
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 48h post infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+      GSM7081950
+        grezzo (Stadio 1): title: COV48H_2,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 48h post infection
+        H5 titolo        : COV48H_2
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 48h post infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+  CONTROLLO  (n=2)  etichetta Stadio 2: Mock infection
+      gruppo Stadio 2: grp_0001
+      GSM7081955
+        grezzo (Stadio 1): title: COVM_1,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 titolo        : COVM_1
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+      GSM7081956
+        grezzo (Stadio 1): title: COVM_2,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 titolo        : COVM_2
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+
+CONFRONTO  GSE226702__GSE226702__grp_0004_vs_grp_0001__1
+  studio: GSE226702
+  TRATTATO  (n=2)  etichetta Stadio 2: SARS-CoV-2 72h
+      gruppo Stadio 2: grp_0004
+      GSM7081951
+        grezzo (Stadio 1): title: COV72H_1,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 72h post infection
+        H5 titolo        : COV72H_1
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 72h post infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+      GSM7081952
+        grezzo (Stadio 1): title: COV72H_2,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 72h post infection
+        H5 titolo        : COV72H_2
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 72h post infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+  CONTROLLO  (n=2)  etichetta Stadio 2: Mock infection
+      gruppo Stadio 2: grp_0001
+      GSM7081955
+        grezzo (Stadio 1): title: COVM_1,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 titolo        : COVM_1
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+      GSM7081956
+        grezzo (Stadio 1): title: COVM_2,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 titolo        : COVM_2
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+
+CONFRONTO  GSE226702__GSE226702__grp_0005_vs_grp_0001__1
+  studio: GSE226702
+  TRATTATO  (n=2)  etichetta Stadio 2: SARS-CoV-2 96h
+      gruppo Stadio 2: grp_0005
+      GSM7081953
+        grezzo (Stadio 1): title: COV96H_1,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 96h post infection
+        H5 titolo        : COV96H_1
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 96h post infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+      GSM7081954
+        grezzo (Stadio 1): title: COV96H_2,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 96h post infection
+        H5 titolo        : COV96H_2
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: SARS-CoV-2,time point: 96h post infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+  CONTROLLO  (n=2)  etichetta Stadio 2: Mock infection
+      gruppo Stadio 2: grp_0001
+      GSM7081955
+        grezzo (Stadio 1): title: COVM_1,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 titolo        : COVM_1
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+      GSM7081956
+        grezzo (Stadio 1): title: COVM_2,source: ex vivo human precision-cut lung slices,tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 titolo        : COVM_2
+        H5 caratteristiche: tissue: ex vivo human precision-cut lung slices,treatment: mock infection
+        H5 sorgente      : ex vivo human precision-cut lung slices
+
+CONFRONTO  GSE244485__GSE244485__grp_0002_vs_grp_0001__1
+  studio: GSE244485
+  TRATTATO  (n=12)  etichetta Stadio 2: SARS-CoV-2-infected A549-ACE2
+      gruppo Stadio 2: grp_0002
+      GSM7817936
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_cov_depleted_1,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_cov_depleted_1
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817937
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_cov_depleted_2,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_cov_depleted_2
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817938
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_cov_depleted_3,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_cov_depleted_3
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817939
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_cov_depleted_4,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_cov_depleted_4
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817940
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_cov_depleted_5,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_cov_depleted_5
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817941
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_cov_depleted_6,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_cov_depleted_6
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817942
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_cov_depleted_1,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_cov_depleted_1
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817943
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_cov_depleted_2,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_cov_depleted_2
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817944
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_cov_depleted_3,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_cov_depleted_3
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817945
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_cov_depleted_4,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_cov_depleted_4
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817946
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_cov_depleted_5,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_cov_depleted_5
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817947
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_cov_depleted_6,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_cov_depleted_6
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+  CONTROLLO  (n=6)  etichetta Stadio 2: Mock-treated A549-ACE2
+      gruppo Stadio 2: grp_0001
+      GSM7817930
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_cov_depleted_1,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_cov_depleted_1
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817931
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_cov_depleted_2,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_cov_depleted_2
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817932
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_cov_depleted_3,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_cov_depleted_3
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817933
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_cov_depleted_4,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_cov_depleted_4
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817934
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_cov_depleted_5,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_cov_depleted_5
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817935
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_cov_depleted_6,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_cov_depleted_6
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+
+CONFRONTO  GSE244486__GSE244486__grp_0002_vs_grp_0001__1
+  studio: GSE244486
+  TRATTATO  (n=12)  etichetta Stadio 2: SARS-CoV-2-infected A549-ACE2
+      gruppo Stadio 2: grp_0002
+      GSM7817954
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_1,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_1
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817955
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_2,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_2
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817956
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_3,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_3
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817957
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_4,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_4
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817958
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_5,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_5
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817959
+        grezzo (Stadio 1): title: A549-ACE2_bystander_total_6,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_bystander_total_6
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817960
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_1,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_1
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817961
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_2,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_2
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817962
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_3,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_3
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817963
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_4,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_4
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817964
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_5,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_5
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+      GSM7817965
+        grezzo (Stadio 1): title: A549-ACE2_infected_total_6,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 titolo        : A549-ACE2_infected_total_6
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: SARS-CoV-2 infection at MOI 1 during 24 h
+        H5 sorgente      : A549-ACE2
+  CONTROLLO  (n=6)  etichetta Stadio 2: Mock-treated A549-ACE2
+      gruppo Stadio 2: grp_0001
+      GSM7817948
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_1,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_1
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817949
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_2,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_2
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817950
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_3,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_3
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817951
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_4,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_4
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817952
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_5,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_5
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+      GSM7817953
+        grezzo (Stadio 1): title: A549-ACE2_mock_total_6,source: A549-ACE2,cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 titolo        : A549-ACE2_mock_total_6
+        H5 caratteristiche: cell line: A549-ACE2,cell type: human alveolar basal epithelial cells,treatment: mock
+        H5 sorgente      : A549-ACE2
+
+CONFRONTO  GSE253542__GSE253542__SARS-CoV-2_96hpi_vs_MockInfected_96hpi__1
+  studio: GSE253542
+  TRATTATO  (n=3)  etichetta Stadio 2: SARS-CoV-2 96hpi
+      gruppo Stadio 2: grp_0008
+      GSM8022904
+        grezzo (Stadio 1): title: Primary nasal epithelial cells, SARS-CoV-2 infected, 96hpi, rep 1,source: Primary nasal,cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: SARS-CoV-2 (WA/01) Infected,time: 96hpi
+        H5 titolo        : Primary nasal epithelial cells, SARS-CoV-2 infected, 96hpi, rep 1
+        H5 caratteristiche: cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: SARS-CoV-2 (WA/01) Infected,time: 96hpi
+        H5 sorgente      : Primary nasal
+      GSM8022905
+        grezzo (Stadio 1): title: Primary nasal epithelial cells, SARS-CoV-2 infected, 96hpi, rep 2,source: Primary nasal,cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: SARS-CoV-2 (WA/01) Infected,time: 96hpi
+        H5 titolo        : Primary nasal epithelial cells, SARS-CoV-2 infected, 96hpi, rep 2
+        H5 caratteristiche: cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: SARS-CoV-2 (WA/01) Infected,time: 96hpi
+        H5 sorgente      : Primary nasal
+      GSM8022906
+        grezzo (Stadio 1): title: Primary nasal epithelial cells, SARS-CoV-2 infected, 96hpi, rep 3,source: Primary nasal,cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: SARS-CoV-2 (WA/01) Infected,time: 96hpi
+        H5 titolo        : Primary nasal epithelial cells, SARS-CoV-2 infected, 96hpi, rep 3
+        H5 caratteristiche: cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: SARS-CoV-2 (WA/01) Infected,time: 96hpi
+        H5 sorgente      : Primary nasal
+  CONTROLLO  (n=2)  etichetta Stadio 2: Mock Infected 96hpi
+      gruppo Stadio 2: grp_0007
+      GSM8022899
+        grezzo (Stadio 1): title: Primary nasal epithelial cells, mock infected, 96hpi, rep 2 (for MERS, SARS-2, NL63 comparison),source: Primary nasal,cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: Mock Infected,time: 96hpi
+        H5 titolo        : Primary nasal epithelial cells, mock infected, 96hpi, rep 2 (for MERS, SARS-2, NL63 comparison)
+        H5 caratteristiche: cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: Mock Infected,time: 96hpi
+        H5 sorgente      : Primary nasal
+      GSM8022900
+        grezzo (Stadio 1): title: Primary nasal epithelial cells, mock infected, 96hpi, rep 3 (for MERS, SARS-2, NL63 comparison),source: Primary nasal,cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: Mock Infected,time: 96hpi
+        H5 titolo        : Primary nasal epithelial cells, mock infected, 96hpi, rep 3 (for MERS, SARS-2, NL63 comparison)
+        H5 caratteristiche: cell line: Primary nasal,cell type: Nasal epithelium,genotype: WT,treatment: Mock Infected,time: 96hpi
+        H5 sorgente      : Primary nasal
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE147507     campioni nell'H5:   78 | collocati dallo Stadio 2:   77 | MAI COLLOCATI:    1 | usati in questa meta-analisi: 23 campioni distinti (23 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4462415
+  GSE148696     campioni nell'H5:    4 | collocati dallo Stadio 2:    4 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE148697     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE150819     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE151803     campioni nell'H5:   21 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE151879     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE155518     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE159201     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE163959     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
+  GSE164073     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE174745     campioni nell'H5:   32 | collocati dallo Stadio 2:   32 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE188382     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 15 campioni distinti (15 righe: i controlli servono piu' confronti)
+  GSE190350     campioni nell'H5:   18 | collocati dallo Stadio 2:   17 | MAI COLLOCATI:    1 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5720165
+  GSE193330     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE196113     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE198722     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 18 campioni distinti (24 righe: i controlli servono piu' confronti)
+  GSE199743     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE205621     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 22 campioni distinti (30 righe: i controlli servono piu' confronti)
+  GSE217099     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE225517     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE225564     campioni nell'H5:   23 | collocati dallo Stadio 2:   23 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE226702     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE244485     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 18 campioni distinti (18 righe: i controlli servono piu' confronti)
+  GSE244486     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 18 campioni distinti (18 righe: i controlli servono piu' confronti)
+  GSE253542     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

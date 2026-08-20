@@ -1,0 +1,545 @@
+META-ANALISI 056 di 194
+==============================================================================
+nome            : EGF
+entita (ID)     : HGNC:3229
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_12228932
+studi poolati   : 6   confronti: 10   campioni: 88
+geni significativi: 1984   I2 mediano: 90.9
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE106716__GSE106716__grp_0001_vs_grp_0002__1
+  studio: GSE106716
+  TRATTATO  (n=2)  etichetta Stadio 2: SYK-KO + EGF
+      gruppo Stadio 2: grp_0001
+      GSM2849298
+        grezzo (Stadio 1): title: SYK-KO EGF rep1,source: OVISE ovarian carcinoma cells,cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-KO,treatment: EGF (50 ng/ml, 24h)
+        H5 titolo        : SYK-KO EGF rep1
+        H5 caratteristiche: cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-KO,treatment: EGF (50 ng/ml, 24h)
+        H5 sorgente      : OVISE ovarian carcinoma cells
+      GSM2849299
+        grezzo (Stadio 1): title: SYK-KO EGF rep2,source: OVISE ovarian carcinoma cells,cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-KO,treatment: EGF (50 ng/ml, 24h)
+        H5 titolo        : SYK-KO EGF rep2
+        H5 caratteristiche: cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-KO,treatment: EGF (50 ng/ml, 24h)
+        H5 sorgente      : OVISE ovarian carcinoma cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: SYK-KO
+      gruppo Stadio 2: grp_0002
+      GSM2849294
+        grezzo (Stadio 1): title: SYK-KO rep1,source: OVISE ovarian carcinoma cells,cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-KO,treatment: No treatment
+        H5 titolo        : SYK-KO rep1
+        H5 caratteristiche: cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-KO,treatment: No treatment
+        H5 sorgente      : OVISE ovarian carcinoma cells
+      GSM2849295
+        grezzo (Stadio 1): title: SYK-KO rep2,source: OVISE ovarian carcinoma cells,cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-KO,treatment: No treatment
+        H5 titolo        : SYK-KO rep2
+        H5 caratteristiche: cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-KO,treatment: No treatment
+        H5 sorgente      : OVISE ovarian carcinoma cells
+
+CONFRONTO  GSE106716__GSE106716__grp_0004_vs_grp_0003__1
+  studio: GSE106716
+  TRATTATO  (n=2)  etichetta Stadio 2: SYK-WT + EGF
+      gruppo Stadio 2: grp_0004
+      GSM2849296
+        grezzo (Stadio 1): title: SYK-WT EGF rep1,source: OVISE ovarian carcinoma cells,cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-WT,treatment: EGF (50 ng/ml, 24h)
+        H5 titolo        : SYK-WT EGF rep1
+        H5 caratteristiche: cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-WT,treatment: EGF (50 ng/ml, 24h)
+        H5 sorgente      : OVISE ovarian carcinoma cells
+      GSM2849297
+        grezzo (Stadio 1): title: SYK-WT EGF rep2,source: OVISE ovarian carcinoma cells,cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-WT,treatment: EGF (50 ng/ml, 24h)
+        H5 titolo        : SYK-WT EGF rep2
+        H5 caratteristiche: cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-WT,treatment: EGF (50 ng/ml, 24h)
+        H5 sorgente      : OVISE ovarian carcinoma cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: SYK-WT
+      gruppo Stadio 2: grp_0003
+      GSM2849292
+        grezzo (Stadio 1): title: SYK-WT rep1,source: OVISE ovarian carcinoma cells,cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-WT,treatment: No treatment
+        H5 titolo        : SYK-WT rep1
+        H5 caratteristiche: cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-WT,treatment: No treatment
+        H5 sorgente      : OVISE ovarian carcinoma cells
+      GSM2849293
+        grezzo (Stadio 1): title: SYK-WT rep2,source: OVISE ovarian carcinoma cells,cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-WT,treatment: No treatment
+        H5 titolo        : SYK-WT rep2
+        H5 caratteristiche: cell line: OVISE,cell type: ovarian carcinoma,genotype: SYK-WT,treatment: No treatment
+        H5 sorgente      : OVISE ovarian carcinoma cells
+
+CONFRONTO  GSE152409__GSE152409__EGF_24h_vs_PBS_24h__1
+  studio: GSE152409
+  TRATTATO  (n=3)  etichetta Stadio 2: EGF 24h
+      gruppo Stadio 2: grp_EGF_24h
+      GSM4614880
+        grezzo (Stadio 1): title: EGF_24_C1_A_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 24 h
+        H5 titolo        : EGF_24_C1_A_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 24 h
+        H5 sorgente      : breast epilthelial cells
+      GSM4614881
+        grezzo (Stadio 1): title: EGF_24_C1_B_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 24 h
+        H5 titolo        : EGF_24_C1_B_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 24 h
+        H5 sorgente      : breast epilthelial cells
+      GSM4614883
+        grezzo (Stadio 1): title: EGF_24_C1_D_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 24 h
+        H5 titolo        : EGF_24_C1_D_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 24 h
+        H5 sorgente      : breast epilthelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS 24h
+      gruppo Stadio 2: grp_PBS_24h
+      GSM4614844
+        grezzo (Stadio 1): title: PBS_24_C1_A_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 24 h
+        H5 titolo        : PBS_24_C1_A_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 24 h
+        H5 sorgente      : breast epilthelial cells
+      GSM4614845
+        grezzo (Stadio 1): title: PBS_24_C1_B_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 24 h
+        H5 titolo        : PBS_24_C1_B_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 24 h
+        H5 sorgente      : breast epilthelial cells
+      GSM4614846
+        grezzo (Stadio 1): title: PBS_24_C1_C_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 24 h
+        H5 titolo        : PBS_24_C1_C_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 24 h
+        H5 sorgente      : breast epilthelial cells
+
+CONFRONTO  GSE152409__GSE152409__EGF_48h_vs_PBS_48h__1
+  studio: GSE152409
+  TRATTATO  (n=3)  etichetta Stadio 2: EGF 48h
+      gruppo Stadio 2: grp_EGF_48h
+      GSM4614884
+        grezzo (Stadio 1): title: EGF_48_C1_A_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 48 h
+        H5 titolo        : EGF_48_C1_A_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 48 h
+        H5 sorgente      : breast epilthelial cells
+      GSM4614885
+        grezzo (Stadio 1): title: EGF_48_C1_B_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 48 h
+        H5 titolo        : EGF_48_C1_B_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 48 h
+        H5 sorgente      : breast epilthelial cells
+      GSM4614887
+        grezzo (Stadio 1): title: EGF_48_C1_D_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 48 h
+        H5 titolo        : EGF_48_C1_D_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: EGF,treatment concentration: 10 ng/ml,timepoint: 48 h
+        H5 sorgente      : breast epilthelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS 48h
+      gruppo Stadio 2: grp_PBS_48h
+      GSM4614847
+        grezzo (Stadio 1): title: PBS_48_C1_A_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 48 h
+        H5 titolo        : PBS_48_C1_A_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 48 h
+        H5 sorgente      : breast epilthelial cells
+      GSM4614848
+        grezzo (Stadio 1): title: PBS_48_C1_B_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 48 h
+        H5 titolo        : PBS_48_C1_B_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 48 h
+        H5 sorgente      : breast epilthelial cells
+      GSM4614849
+        grezzo (Stadio 1): title: PBS_48_C1_C_RNAseq,source: breast epilthelial cells,cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 48 h
+        H5 titolo        : PBS_48_C1_C_RNAseq
+        H5 caratteristiche: cell type: normal breast epithelium,cell line: MCF10A,treatment: PBS,treatment concentration: 0 ng/ml,timepoint: 48 h
+        H5 sorgente      : breast epilthelial cells
+
+CONFRONTO  GSE226358__GSE226358__grp_0002_vs_grp_0001__1
+  studio: GSE226358
+  TRATTATO  (n=12)  etichetta Stadio 2: HAoSMC EGF
+      gruppo Stadio 2: grp_0002
+      GSM7073880
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao01,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao01,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao01
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao01,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073882
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao02,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao02,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao02
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao02,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073884
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao03,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao03,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao03
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao03,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073886
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao04,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao04,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao04
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao04,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073888
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao05,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao05,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao05
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao05,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073890
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao06,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao06,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao06
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao06,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073892
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao07,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao07,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao07
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao07,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073894
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao08,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao08,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao08
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao08,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073896
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao09,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao09,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao09
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao09,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073898
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao10,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao10,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao10
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao10,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073900
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao11,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao11,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao11
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao11,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073902
+        grezzo (Stadio 1): title: HAoSMC, EGF, Ao12,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao12,treatment: EGF
+        H5 titolo        : HAoSMC, EGF, Ao12
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao12,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+  CONTROLLO  (n=12)  etichetta Stadio 2: HAoSMC Control
+      gruppo Stadio 2: grp_0001
+      GSM7073879
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao01,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao01,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao01
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao01,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073881
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao02,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao02,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao02
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao02,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073883
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao03,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao03,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao03
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao03,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073885
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao04,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao04,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao04
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao04,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073887
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao05,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao05,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao05
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao05,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073889
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao06,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao06,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao06
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao06,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073891
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao07,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao07,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao07
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao07,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073893
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao08,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao08,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao08
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 1,replicate: Ao08,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073895
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao09,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao09,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao09
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao09,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073897
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao10,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao10,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao10
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao10,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073899
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao11,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao11,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao11
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao11,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073901
+        grezzo (Stadio 1): title: HAoSMC, Control, Ao12,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao12,treatment: Control
+        H5 titolo        : HAoSMC, Control, Ao12
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HAoSMC,gender: female,donor: 2,replicate: Ao12,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+
+CONFRONTO  GSE226358__GSE226358__grp_0004_vs_grp_0003__1
+  studio: GSE226358
+  TRATTATO  (n=9)  etichetta Stadio 2: HCASMC EGF
+      gruppo Stadio 2: grp_0004
+      GSM7073904
+        grezzo (Stadio 1): title: HCASMC, EGF, CA01,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA01,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA01
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA01,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073906
+        grezzo (Stadio 1): title: HCASMC, EGF, CA02,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA02,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA02
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA02,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073908
+        grezzo (Stadio 1): title: HCASMC, EGF, CA03,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA03,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA03
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA03,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073910
+        grezzo (Stadio 1): title: HCASMC, EGF, CA04,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA04,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA04
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA04,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073912
+        grezzo (Stadio 1): title: HCASMC, EGF, CA05,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA05,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA05
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA05,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073914
+        grezzo (Stadio 1): title: HCASMC, EGF, CA06,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA06,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA06
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA06,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073916
+        grezzo (Stadio 1): title: HCASMC, EGF, CA07,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA07,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA07
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA07,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073918
+        grezzo (Stadio 1): title: HCASMC, EGF, CA08,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA08,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA08
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA08,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073922
+        grezzo (Stadio 1): title: HCASMC, EGF, CA10,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA10,treatment: EGF
+        H5 titolo        : HCASMC, EGF, CA10
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA10,treatment: EGF
+        H5 sorgente      : Human aortic smooth muscle
+  CONTROLLO  (n=10)  etichetta Stadio 2: HCASMC Control
+      gruppo Stadio 2: grp_0003
+      GSM7073903
+        grezzo (Stadio 1): title: HCASMC, Control, CA01,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA01,treatment: Control
+        H5 titolo        : HCASMC, Control, CA01
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA01,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073905
+        grezzo (Stadio 1): title: HCASMC, Control, CA02,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA02,treatment: Control
+        H5 titolo        : HCASMC, Control, CA02
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA02,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073907
+        grezzo (Stadio 1): title: HCASMC, Control, CA03,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA03,treatment: Control
+        H5 titolo        : HCASMC, Control, CA03
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA03,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073909
+        grezzo (Stadio 1): title: HCASMC, Control, CA04,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA04,treatment: Control
+        H5 titolo        : HCASMC, Control, CA04
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA04,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073911
+        grezzo (Stadio 1): title: HCASMC, Control, CA05,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA05,treatment: Control
+        H5 titolo        : HCASMC, Control, CA05
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA05,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073913
+        grezzo (Stadio 1): title: HCASMC, Control, CA06,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA06,treatment: Control
+        H5 titolo        : HCASMC, Control, CA06
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA06,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073915
+        grezzo (Stadio 1): title: HCASMC, Control, CA07,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA07,treatment: Control
+        H5 titolo        : HCASMC, Control, CA07
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA07,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073917
+        grezzo (Stadio 1): title: HCASMC, Control, CA08,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA08,treatment: Control
+        H5 titolo        : HCASMC, Control, CA08
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA08,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073919
+        grezzo (Stadio 1): title: HCASMC, Control, CA09,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA09,treatment: Control
+        H5 titolo        : HCASMC, Control, CA09
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA09,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+      GSM7073921
+        grezzo (Stadio 1): title: HCASMC, Control, CA10,source: Human aortic smooth muscle,tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA10,treatment: Control
+        H5 titolo        : HCASMC, Control, CA10
+        H5 caratteristiche: tissue: Human aortic smooth muscle,cell type: HCASMC,gender: female,donor: 3,replicate: CA10,treatment: Control
+        H5 sorgente      : Human aortic smooth muscle
+
+CONFRONTO  GSE247637__GSE247637__grp_0009_vs_grp_0001__1
+  studio: GSE247637
+  TRATTATO  (n=3)  etichetta Stadio 2: EGF (60 min) + NTC-siRNA
+      gruppo Stadio 2: grp_0009
+      GSM7898224
+        grezzo (Stadio 1): title: EGF60-NTC_RNA_1,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : EGF60-NTC_RNA_1
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898225
+        grezzo (Stadio 1): title: EGF60-NTC_RNA_2,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : EGF60-NTC_RNA_2
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898226
+        grezzo (Stadio 1): title: EGF60-NTC_RNA_3,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : EGF60-NTC_RNA_3
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+  CONTROLLO  (n=4)  etichetta Stadio 2: PBS + NTC-siRNA
+      gruppo Stadio 2: grp_0001
+      GSM7898216
+        grezzo (Stadio 1): title: PBS-NTC_RNA_1,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : PBS-NTC_RNA_1
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898217
+        grezzo (Stadio 1): title: PBS-NTC_RNA_2,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : PBS-NTC_RNA_2
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898218
+        grezzo (Stadio 1): title: PBS-NTC_RNA_3,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : PBS-NTC_RNA_3
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898219
+        grezzo (Stadio 1): title: PBS-NTC_RNA_4,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : PBS-NTC_RNA_4
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+
+CONFRONTO  GSE247637__GSE247637__grp_0010_vs_grp_0001__1
+  studio: GSE247637
+  TRATTATO  (n=3)  etichetta Stadio 2: EGF (30 min) + NTC-siRNA
+      gruppo Stadio 2: grp_0010
+      GSM7898220
+        grezzo (Stadio 1): title: EGF30-NTC_RNA_1,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 30 minutes,treatment: NTC-siRNA
+        H5 titolo        : EGF30-NTC_RNA_1
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 30 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898221
+        grezzo (Stadio 1): title: EGF30-NTC_RNA_2,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 30 minutes,treatment: NTC-siRNA
+        H5 titolo        : EGF30-NTC_RNA_2
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 30 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898223
+        grezzo (Stadio 1): title: EGF30-NTC_RNA_4,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 30 minutes,treatment: NTC-siRNA
+        H5 titolo        : EGF30-NTC_RNA_4
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: EGF,time: 30 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+  CONTROLLO  (n=4)  etichetta Stadio 2: PBS + NTC-siRNA
+      gruppo Stadio 2: grp_0001
+      GSM7898216
+        grezzo (Stadio 1): title: PBS-NTC_RNA_1,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : PBS-NTC_RNA_1
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898217
+        grezzo (Stadio 1): title: PBS-NTC_RNA_2,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : PBS-NTC_RNA_2
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898218
+        grezzo (Stadio 1): title: PBS-NTC_RNA_3,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : PBS-NTC_RNA_3
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+      GSM7898219
+        grezzo (Stadio 1): title: PBS-NTC_RNA_4,source: IMR90,cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 titolo        : PBS-NTC_RNA_4
+        H5 caratteristiche: cell line: IMR90,cell type: human lung fibroblasts,treatment: PBS,time: 60 minutes,treatment: NTC-siRNA
+        H5 sorgente      : IMR90
+
+CONFRONTO  GSE254479__GSE254479__EGF_alone_vs_Starvation_control__1
+  studio: GSE254479
+  TRATTATO  (n=2)  etichetta Stadio 2: EGF alone
+      gruppo Stadio 2: grp_0008
+      GSM8042972
+        grezzo (Stadio 1): title: MCF-10A cells, EGF, 9h, biol rep 1,source: Cell line,tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Cell cycle release with EGF 9h
+        H5 titolo        : MCF-10A cells, EGF, 9h, biol rep 1
+        H5 caratteristiche: tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Cell cycle release with EGF 9h
+        H5 sorgente      : Cell line
+      GSM8042982
+        grezzo (Stadio 1): title: MCF-10A cells, EGF, 9h, biol rep 2,source: Cell line,tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Cell cycle release with EGF 9h
+        H5 titolo        : MCF-10A cells, EGF, 9h, biol rep 2
+        H5 caratteristiche: tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Cell cycle release with EGF 9h
+        H5 sorgente      : Cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: Starvation control
+      gruppo Stadio 2: grp_0009
+      GSM8042971
+        grezzo (Stadio 1): title: MCF-10A cells, starved, 0h, biol rep 1,source: Cell line,tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Starvation control
+        H5 titolo        : MCF-10A cells, starved, 0h, biol rep 1
+        H5 caratteristiche: tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Starvation control
+        H5 sorgente      : Cell line
+      GSM8042981
+        grezzo (Stadio 1): title: MCF-10A cells, starved, 0h, biol rep 2,source: Cell line,tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Starvation control
+        H5 titolo        : MCF-10A cells, starved, 0h, biol rep 2
+        H5 caratteristiche: tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Starvation control
+        H5 sorgente      : Cell line
+      GSM8042991
+        grezzo (Stadio 1): title: MCF-10A cells, starved, 0h, biol rep 3,source: Cell line,tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Starvation control
+        H5 titolo        : MCF-10A cells, starved, 0h, biol rep 3
+        H5 caratteristiche: tissue: Cell line,cell line: MCF-10A,cell type: Breast epithelial cell,genotype: WT,treatment: Starvation control
+        H5 sorgente      : Cell line
+
+CONFRONTO  GSE269441__GSE269441__EGF_vs_vehicle__1
+  studio: GSE269441
+  TRATTATO  (n=3)  etichetta Stadio 2: EGF stimulated
+      gruppo Stadio 2: grp_EGF
+      GSM8315862
+        grezzo (Stadio 1): title: 0628-EGF1,source: NCI-H1975,cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: EGF
+        H5 titolo        : 0628-EGF1
+        H5 caratteristiche: cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: EGF
+        H5 sorgente      : NCI-H1975
+      GSM8315863
+        grezzo (Stadio 1): title: 0628-EGF2,source: NCI-H1975,cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: EGF
+        H5 titolo        : 0628-EGF2
+        H5 caratteristiche: cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: EGF
+        H5 sorgente      : NCI-H1975
+      GSM8315864
+        grezzo (Stadio 1): title: 0628-EGF3,source: NCI-H1975,cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: EGF
+        H5 titolo        : 0628-EGF3
+        H5 caratteristiche: cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: EGF
+        H5 sorgente      : NCI-H1975
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle control
+      gruppo Stadio 2: grp_vehicle
+      GSM8315856
+        grezzo (Stadio 1): title: 0628-Control1,source: NCI-H1975,cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: control
+        H5 titolo        : 0628-Control1
+        H5 caratteristiche: cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: control
+        H5 sorgente      : NCI-H1975
+      GSM8315857
+        grezzo (Stadio 1): title: 0628-Control2,source: NCI-H1975,cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: control
+        H5 titolo        : 0628-Control2
+        H5 caratteristiche: cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: control
+        H5 sorgente      : NCI-H1975
+      GSM8315858
+        grezzo (Stadio 1): title: 0628-Control3,source: NCI-H1975,cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: control
+        H5 titolo        : 0628-Control3
+        H5 caratteristiche: cell line: NCI-H1975,cell type: non-small cell lung cancer,treatment: control
+        H5 sorgente      : NCI-H1975
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE106716     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE152409     campioni nell'H5:   48 | collocati dallo Stadio 2:   44 | MAI COLLOCATI:    4 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4614840, GSM4614864, GSM4614882, GSM4614886
+  GSE226358     campioni nell'H5:   44 | collocati dallo Stadio 2:   44 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 43 campioni distinti (43 righe: i controlli servono piu' confronti)
+  GSE247637     campioni nell'H5:   22 | collocati dallo Stadio 2:   22 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (14 righe: i controlli servono piu' confronti)
+  GSE254479     campioni nell'H5:   30 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    9 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+      mai collocati: GSM8042976, GSM8042977, GSM8042980, GSM8042987, GSM8042990, GSM8042992, GSM8042993, GSM8042994, GSM8043000
+  GSE269441     campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

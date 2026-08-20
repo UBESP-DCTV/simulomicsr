@@ -1,0 +1,222 @@
+META-ANALISI 170 di 194
+==============================================================================
+nome            : Pituitary Neoplasms
+entita (ID)     : MeSH:D010911
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_dac1b45f
+studi poolati   : 3   confronti: 3   campioni: 34
+geni significativi: 213   I2 mediano: 17.3
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE182180__GSE182180__pituitary_tumors_vs_normal_pituitary__1
+  studio: GSE182180
+  TRATTATO  (n=6)  etichetta Stadio 2: Pituitary Tumors
+      gruppo Stadio 2: grp_0002
+      GSM5520140
+        grezzo (Stadio 1): title: RNA-seq_T1,source: pituitaryÂ tumors,tissue: pituitaryÂ tumors
+        H5 titolo        : RNA-seq_T1
+        H5 caratteristiche: tissue: pituitaryÂ tumors
+        H5 sorgente      : pituitaryÂ tumors
+      GSM5520141
+        grezzo (Stadio 1): title: RNA-seq_T2,source: pituitaryÂ tumors,tissue: pituitaryÂ tumors
+        H5 titolo        : RNA-seq_T2
+        H5 caratteristiche: tissue: pituitaryÂ tumors
+        H5 sorgente      : pituitaryÂ tumors
+      GSM5520142
+        grezzo (Stadio 1): title: RNA-seq_T3,source: pituitaryÂ tumors,tissue: pituitaryÂ tumors
+        H5 titolo        : RNA-seq_T3
+        H5 caratteristiche: tissue: pituitaryÂ tumors
+        H5 sorgente      : pituitaryÂ tumors
+      GSM5520143
+        grezzo (Stadio 1): title: RNA-seq_T4,source: pituitaryÂ tumors,tissue: pituitaryÂ tumors
+        H5 titolo        : RNA-seq_T4
+        H5 caratteristiche: tissue: pituitaryÂ tumors
+        H5 sorgente      : pituitaryÂ tumors
+      GSM5520144
+        grezzo (Stadio 1): title: RNA-seq_T5,source: pituitaryÂ tumors,tissue: pituitaryÂ tumors
+        H5 titolo        : RNA-seq_T5
+        H5 caratteristiche: tissue: pituitaryÂ tumors
+        H5 sorgente      : pituitaryÂ tumors
+      GSM5520145
+        grezzo (Stadio 1): title: RNA-seq_T6,source: pituitaryÂ tumors,tissue: pituitaryÂ tumors
+        H5 titolo        : RNA-seq_T6
+        H5 caratteristiche: tissue: pituitaryÂ tumors
+        H5 sorgente      : pituitaryÂ tumors
+  CONTROLLO  (n=3)  etichetta Stadio 2: Normal Pituitary Tissues
+      gruppo Stadio 2: grp_0001
+      GSM5520134
+        grezzo (Stadio 1): title: RNA-seq_N1,source: normalÂ pituitaryÂ tissuesÂ ,tissue: normalÂ pituitaryÂ tissuesÂ 
+        H5 titolo        : RNA-seq_N1
+        H5 caratteristiche: tissue: normalÂ pituitaryÂ tissuesÂ 
+        H5 sorgente      : normalÂ pituitaryÂ tissuesÂ 
+      GSM5520137
+        grezzo (Stadio 1): title: RNA-seq_N4,source: normalÂ pituitaryÂ tissuesÂ ,tissue: normalÂ pituitaryÂ tissuesÂ 
+        H5 titolo        : RNA-seq_N4
+        H5 caratteristiche: tissue: normalÂ pituitaryÂ tissuesÂ 
+        H5 sorgente      : normalÂ pituitaryÂ tissuesÂ 
+      GSM5520139
+        grezzo (Stadio 1): title: RNA-seq_N6,source: normalÂ pituitaryÂ tissuesÂ ,tissue: normalÂ pituitaryÂ tissuesÂ 
+        H5 titolo        : RNA-seq_N6
+        H5 caratteristiche: tissue: normalÂ pituitaryÂ tissuesÂ 
+        H5 sorgente      : normalÂ pituitaryÂ tissuesÂ 
+
+CONFRONTO  GSE208107__GSE208107__adenoma_vs_healthy__1
+  studio: GSE208107
+  TRATTATO  (n=2)  etichetta Stadio 2: Pituitary Adenoma
+      gruppo Stadio 2: group_adenoma
+      GSM6337426
+        grezzo (Stadio 1): title: JB2_CD_Adenoma,source: Pituitary cells,cell type: Pituitary cells,group: Adenoma
+        H5 titolo        : JB2_CD_Adenoma
+        H5 caratteristiche: cell type: Pituitary cells,group: Adenoma
+        H5 sorgente      : Pituitary cells
+      GSM6337430
+        grezzo (Stadio 1): title: JB10_CD_Adenoma,source: Pituitary cells,cell type: Pituitary cells,group: Adenoma
+        H5 titolo        : JB10_CD_Adenoma
+        H5 caratteristiche: cell type: Pituitary cells,group: Adenoma
+        H5 sorgente      : Pituitary cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Healthy Pituitary Tissue
+      gruppo Stadio 2: group_healthy
+      GSM6337425
+        grezzo (Stadio 1): title: JB1_CD_Normal,source: Pituitary cells,cell type: Pituitary cells,group: Normal
+        H5 titolo        : JB1_CD_Normal
+        H5 caratteristiche: cell type: Pituitary cells,group: Normal
+        H5 sorgente      : Pituitary cells
+      GSM6337427
+        grezzo (Stadio 1): title: JB3_CD_Normal,source: Pituitary cells,cell type: Pituitary cells,group: Normal (adjacent)
+        H5 titolo        : JB3_CD_Normal
+        H5 caratteristiche: cell type: Pituitary cells,group: Normal (adjacent)
+        H5 sorgente      : Pituitary cells
+      GSM6337428
+        grezzo (Stadio 1): title: JB7_CD_Normal,source: Pituitary cells,cell type: Pituitary cells,group: Normal
+        H5 titolo        : JB7_CD_Normal
+        H5 caratteristiche: cell type: Pituitary cells,group: Normal
+        H5 sorgente      : Pituitary cells
+
+CONFRONTO  GSE264621__GSE264621__adenoma_vs_healthy__1
+  studio: GSE264621
+  TRATTATO  (n=18)  etichetta Stadio 2: Pituitary adenoma
+      gruppo Stadio 2: group_0001
+      GSM8224122
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 1,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 1
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224123
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 2,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 2
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224124
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 3,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 3
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224125
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 4,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 4
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224126
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 5,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 5
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224127
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 6,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 6
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224128
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 7,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 7
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224129
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 8,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 8
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224130
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 9,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 9
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224131
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 10,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 10
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224132
+        grezzo (Stadio 1): title: Densely granulated somatotroph adenoma 11,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Densely granulated somatotroph adenoma 11
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224139
+        grezzo (Stadio 1): title: Sparsely granulated somatotroph adenoma 1,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Sparsely granulated somatotroph adenoma 1
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224140
+        grezzo (Stadio 1): title: Sparsely granulated somatotroph adenoma 2,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Sparsely granulated somatotroph adenoma 2
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224141
+        grezzo (Stadio 1): title: Sparsely granulated somatotroph adenoma 3,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Sparsely granulated somatotroph adenoma 3
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224142
+        grezzo (Stadio 1): title: Sparsely granulated somatotroph adenoma 4,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Sparsely granulated somatotroph adenoma 4
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224143
+        grezzo (Stadio 1): title: Sparsely granulated somatotroph adenoma 5,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Sparsely granulated somatotroph adenoma 5
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224144
+        grezzo (Stadio 1): title: Sparsely granulated somatotroph adenoma 6,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Sparsely granulated somatotroph adenoma 6
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+      GSM8224145
+        grezzo (Stadio 1): title: Sparsely granulated somatotroph adenoma 7,source: Pituitary gland,cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 titolo        : Sparsely granulated somatotroph adenoma 7
+        H5 caratteristiche: cell type: Pituitary cell,disease: adenoma,disease: adenoma
+        H5 sorgente      : Pituitary gland
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy pituitary
+      gruppo Stadio 2: group_0002
+      GSM8224135
+        grezzo (Stadio 1): title: Normal pituitary 3,source: Pituitary gland,cell type: Pituitary cell,disease: Healthy,disease: Healthy
+        H5 titolo        : Normal pituitary 3
+        H5 caratteristiche: cell type: Pituitary cell,disease: Healthy,disease: Healthy
+        H5 sorgente      : Pituitary gland
+      GSM8224137
+        grezzo (Stadio 1): title: Normal pituitary 5,source: Pituitary gland,cell type: Pituitary cell,disease: Healthy,disease: Healthy
+        H5 titolo        : Normal pituitary 5
+        H5 caratteristiche: cell type: Pituitary cell,disease: Healthy,disease: Healthy
+        H5 sorgente      : Pituitary gland
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE182180     campioni nell'H5:   12 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    3 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5520135, GSM5520136, GSM5520138
+  GSE208107     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE264621     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 20 campioni distinti (20 righe: i controlli servono piu' confronti)
+

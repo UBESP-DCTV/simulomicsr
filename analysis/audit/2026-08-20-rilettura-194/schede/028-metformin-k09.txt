@@ -1,0 +1,546 @@
+META-ANALISI 028 di 194
+==============================================================================
+nome            : metformin
+entita (ID)     : CHEBI:6801
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_2ec87595
+studi poolati   : 9   confronti: 10   campioni: 88
+geni significativi: 357   I2 mediano: 91.9
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE102677__GSE102677__grp_0001_vs_grp_0004__1
+  studio: GSE102677
+  TRATTATO  (n=5)  etichetta Stadio 2: PBMC + Metformin + MtbLysate
+      gruppo Stadio 2: grp_0001
+      GSM2742766
+        grezzo (Stadio 1): title: Metformin_patient_1_Mtb,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 1,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_1_Mtb
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 1,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742794
+        grezzo (Stadio 1): title: Metformin_patient_8_Mtb,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 8,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_8_Mtb
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 8,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742798
+        grezzo (Stadio 1): title: Metformin_patient_9_Mtb,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 9,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_9_Mtb
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 9,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742802
+        grezzo (Stadio 1): title: Metformin_patient_10_Mtb,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 10,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_10_Mtb
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 10,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742806
+        grezzo (Stadio 1): title: Metformin_patient_11_Mtb,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 11,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_11_Mtb
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 11,stimulation: MtbLysate,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBMC unstimulated
+      gruppo Stadio 2: grp_0004
+      GSM2742767
+        grezzo (Stadio 1): title: Baseline_patient_2_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 2,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Baseline_patient_2_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 2,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742771
+        grezzo (Stadio 1): title: Baseline_patient_3_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 3,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Baseline_patient_3_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 3,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742791
+        grezzo (Stadio 1): title: Baseline_patient_8_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 8,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Baseline_patient_8_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 8,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+
+CONFRONTO  GSE102677__GSE102677__grp_0002_vs_grp_0004__1
+  studio: GSE102677
+  TRATTATO  (n=7)  etichetta Stadio 2: PBMC + Metformin
+      gruppo Stadio 2: grp_0002
+      GSM2742765
+        grezzo (Stadio 1): title: Metformin_patient_1_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 1,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_1_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 1,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742781
+        grezzo (Stadio 1): title: Metformin_patient_5_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 5,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_5_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 5,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742786
+        grezzo (Stadio 1): title: Metformin_patient_6_Mtb,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 6,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_6_Mtb
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 6,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742793
+        grezzo (Stadio 1): title: Metformin_patient_8_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 8,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_8_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 8,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742797
+        grezzo (Stadio 1): title: Metformin_patient_9_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 9,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_9_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 9,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742801
+        grezzo (Stadio 1): title: Metformin_patient_10_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 10,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_10_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 10,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742805
+        grezzo (Stadio 1): title: Metformin_patient_11_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 11,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Metformin_patient_11_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 11,stimulation: unstimulated,treatment: metformin,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBMC unstimulated
+      gruppo Stadio 2: grp_0004
+      GSM2742767
+        grezzo (Stadio 1): title: Baseline_patient_2_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 2,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Baseline_patient_2_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 2,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742771
+        grezzo (Stadio 1): title: Baseline_patient_3_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 3,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Baseline_patient_3_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 3,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+      GSM2742791
+        grezzo (Stadio 1): title: Baseline_patient_8_Unstim,source: Peripheral Blood Mononuclear Cells,disease state: Healthy volunteer,patient id: 8,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 titolo        : Baseline_patient_8_Unstim
+        H5 caratteristiche: disease state: Healthy volunteer,patient id: 8,stimulation: unstimulated,treatment: none,tissue: Peripheral Blood Mononuclear Cells
+        H5 sorgente      : Peripheral Blood Mononuclear Cells
+
+CONFRONTO  GSE140714__GSE140714__grp_0002_vs_grp_0001__1
+  studio: GSE140714
+  TRATTATO  (n=2)  etichetta Stadio 2: Metformin-treated
+      gruppo Stadio 2: grp_0002
+      GSM4182424
+        grezzo (Stadio 1): title: Met-2,source: Human adipose-derived mesenchymal stem cells,origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: Metformin treatment 6 days
+        H5 titolo        : Met-2
+        H5 caratteristiche: origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: Metformin treatment 6 days
+        H5 sorgente      : Human adipose-derived mesenchymal stem cells
+      GSM4182425
+        grezzo (Stadio 1): title: Met-3,source: Human adipose-derived mesenchymal stem cells,origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: Metformin treatment 6 days
+        H5 titolo        : Met-3
+        H5 caratteristiche: origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: Metformin treatment 6 days
+        H5 sorgente      : Human adipose-derived mesenchymal stem cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0001
+      GSM4182420
+        grezzo (Stadio 1): title: Ctrl-1,source: Human adipose-derived mesenchymal stem cells,origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: none
+        H5 titolo        : Ctrl-1
+        H5 caratteristiche: origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: none
+        H5 sorgente      : Human adipose-derived mesenchymal stem cells
+      GSM4182421
+        grezzo (Stadio 1): title: Ctrl-2,source: Human adipose-derived mesenchymal stem cells,origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: none
+        H5 titolo        : Ctrl-2
+        H5 caratteristiche: origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: none
+        H5 sorgente      : Human adipose-derived mesenchymal stem cells
+      GSM4182422
+        grezzo (Stadio 1): title: Ctrl-3,source: Human adipose-derived mesenchymal stem cells,origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: none
+        H5 titolo        : Ctrl-3
+        H5 caratteristiche: origin: China,tissue: adipose-derived mesenchymal stem cells,age: adult,treatment: none
+        H5 sorgente      : Human adipose-derived mesenchymal stem cells
+
+CONFRONTO  GSE146982__GSE146982__grp_0013_vs_grp_0011__1
+  studio: GSE146982
+  TRATTATO  (n=2)  etichetta Stadio 2: A549 Vector Control Metformin
+      gruppo Stadio 2: grp_0013
+      GSM4411736
+        grezzo (Stadio 1): title: A549-VectorControl_Metformin-rep2,source: A549 Cell Line,cell line: A549,genotype/variation: Vector Control,cancer type: Lung cancer,treatment: metformin
+        H5 titolo        : A549-VectorControl_Metformin-rep2
+        H5 caratteristiche: cell line: A549,genotype/variation: Vector Control,cancer type: Lung cancer,treatment: metformin
+        H5 sorgente      : A549 Cell Line
+      GSM4411737
+        grezzo (Stadio 1): title: A549-VectorControl_Metformin-rep3,source: A549 Cell Line,cell line: A549,genotype/variation: Vector Control,cancer type: Lung cancer,treatment: metformin
+        H5 titolo        : A549-VectorControl_Metformin-rep3
+        H5 caratteristiche: cell line: A549,genotype/variation: Vector Control,cancer type: Lung cancer,treatment: metformin
+        H5 sorgente      : A549 Cell Line
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549 Vector Control
+      gruppo Stadio 2: grp_0011
+      GSM4411738
+        grezzo (Stadio 1): title: A549-VectorControl_rep1,source: A549 Cell Line,cell line: A549,genotype/variation: Vector Control,cancer type: Lung cancer,treatment: none
+        H5 titolo        : A549-VectorControl_rep1
+        H5 caratteristiche: cell line: A549,genotype/variation: Vector Control,cancer type: Lung cancer,treatment: none
+        H5 sorgente      : A549 Cell Line
+      GSM4411740
+        grezzo (Stadio 1): title: A549-VectorControl_rep3,source: A549 Cell Line,cell line: A549,genotype/variation: Vector Control,cancer type: Lung cancer,treatment: none
+        H5 titolo        : A549-VectorControl_rep3
+        H5 caratteristiche: cell line: A549,genotype/variation: Vector Control,cancer type: Lung cancer,treatment: none
+        H5 sorgente      : A549 Cell Line
+
+CONFRONTO  GSE179347__GSE179347__SGBS_EMEM_vs_SGBS_METFORMIN__1
+  studio: GSE179347
+  TRATTATO  (n=3)  etichetta Stadio 2: SGBS cells treated with METFORMIN
+      gruppo Stadio 2: mg93
+      GSM5415872
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with METFORMIN at 1mM concentration B_15_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: METFORMIN,treatment_concentration: 1mM
+        H5 titolo        : RNA-Seq of  SGBS treated with METFORMIN at 1mM concentration B_15_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: METFORMIN,treatment_concentration: 1mM
+        H5 sorgente      : adipose
+      GSM5415873
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with METFORMIN at 1mM concentration B_15_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: METFORMIN,treatment_concentration: 1mM
+        H5 titolo        : RNA-Seq of  SGBS treated with METFORMIN at 1mM concentration B_15_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: METFORMIN,treatment_concentration: 1mM
+        H5 sorgente      : adipose
+      GSM5415874
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with METFORMIN at 1mM concentration B_15_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: METFORMIN,treatment_concentration: 1mM
+        H5 titolo        : RNA-Seq of  SGBS treated with METFORMIN at 1mM concentration B_15_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: METFORMIN,treatment_concentration: 1mM
+        H5 sorgente      : adipose
+  CONTROLLO  (n=9)  etichetta Stadio 2: SGBS CONTROL (EMPTY EMEM MEDIUM)
+      gruppo Stadio 2: mg8
+      GSM5415855
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415856
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415857
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415878
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415879
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415880
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415902
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415903
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415904
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+
+CONFRONTO  GSE185624__GSE185624__XRT_plus_Metformin_vs_untreated_control__1
+  studio: GSE185624
+  TRATTATO  (n=6)  etichetta Stadio 2: XRT plus Metformin
+      gruppo Stadio 2: grp_0003
+      GSM5620847
+        grezzo (Stadio 1): title: NuTxMet_XRT_plus_Metformin [NuTxMet 501],source: NuTxMet_XRT_plus_Metformin,tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 titolo        : NuTxMet_XRT_plus_Metformin [NuTxMet 501]
+        H5 caratteristiche: tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 sorgente      : NuTxMet_XRT_plus_Metformin
+      GSM5620848
+        grezzo (Stadio 1): title: NuTxMet_XRT_plus_Metformin [NuTxMet 502],source: NuTxMet_XRT_plus_Metformin,tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 titolo        : NuTxMet_XRT_plus_Metformin [NuTxMet 502]
+        H5 caratteristiche: tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 sorgente      : NuTxMet_XRT_plus_Metformin
+      GSM5620852
+        grezzo (Stadio 1): title: NuTxMet_XRT_plus_Metformin [NuTxMet 506],source: NuTxMet_XRT_plus_Metformin,tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 titolo        : NuTxMet_XRT_plus_Metformin [NuTxMet 506]
+        H5 caratteristiche: tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 sorgente      : NuTxMet_XRT_plus_Metformin
+      GSM5620853
+        grezzo (Stadio 1): title: NuTxMet_XRT_plus_Metformin [NuTxMet 507],source: NuTxMet_XRT_plus_Metformin,tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 titolo        : NuTxMet_XRT_plus_Metformin [NuTxMet 507]
+        H5 caratteristiche: tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 sorgente      : NuTxMet_XRT_plus_Metformin
+      GSM5620866
+        grezzo (Stadio 1): title: NuTxMet_XRT_plus_Metformin [NuTxMet 521],source: NuTxMet_XRT_plus_Metformin,tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 titolo        : NuTxMet_XRT_plus_Metformin [NuTxMet 521]
+        H5 caratteristiche: tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 sorgente      : NuTxMet_XRT_plus_Metformin
+      GSM5620867
+        grezzo (Stadio 1): title: NuTxMet_XRT_plus_Metformin [NuTxMet 522],source: NuTxMet_XRT_plus_Metformin,tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 titolo        : NuTxMet_XRT_plus_Metformin [NuTxMet 522]
+        H5 caratteristiche: tissue: head and neck cells,treatment: XRT_plus_Metformin
+        H5 sorgente      : NuTxMet_XRT_plus_Metformin
+  CONTROLLO  (n=4)  etichetta Stadio 2: Untreated Control
+      gruppo Stadio 2: grp_0001
+      GSM5620857
+        grezzo (Stadio 1): title: NuTxMet_untreated_control [NuTxMet 511],source: NuTxMet_untreated_control,tissue: head and neck cells,treatment: untreated_control
+        H5 titolo        : NuTxMet_untreated_control [NuTxMet 511]
+        H5 caratteristiche: tissue: head and neck cells,treatment: untreated_control
+        H5 sorgente      : NuTxMet_untreated_control
+      GSM5620858
+        grezzo (Stadio 1): title: NuTxMet_untreated_control [NuTxMet 512],source: NuTxMet_untreated_control,tissue: head and neck cells,treatment: untreated_control
+        H5 titolo        : NuTxMet_untreated_control [NuTxMet 512]
+        H5 caratteristiche: tissue: head and neck cells,treatment: untreated_control
+        H5 sorgente      : NuTxMet_untreated_control
+      GSM5620864
+        grezzo (Stadio 1): title: NuTxMet_untreated_control [NuTxMet 519],source: NuTxMet_untreated_control,tissue: head and neck cells,treatment: untreated_control
+        H5 titolo        : NuTxMet_untreated_control [NuTxMet 519]
+        H5 caratteristiche: tissue: head and neck cells,treatment: untreated_control
+        H5 sorgente      : NuTxMet_untreated_control
+      GSM5620865
+        grezzo (Stadio 1): title: NuTxMet_untreated_control [NuTxMet 520],source: NuTxMet_untreated_control,tissue: head and neck cells,treatment: untreated_control
+        H5 titolo        : NuTxMet_untreated_control [NuTxMet 520]
+        H5 caratteristiche: tissue: head and neck cells,treatment: untreated_control
+        H5 sorgente      : NuTxMet_untreated_control
+
+CONFRONTO  GSE196343__GSE196343__Metformin_rep_vs_PBS_rep__1
+  studio: GSE196343
+  TRATTATO  (n=2)  etichetta Stadio 2: Metformin-treated C4-2 cells (replicates)
+      gruppo Stadio 2: grp_0004
+      GSM5874800
+        grezzo (Stadio 1): title: C42 cells Metformin 5mM replicate 2,source: C4-2 prostate cancer tissue culture,experimental condition: 5mM Metformin 24 hour,cell line: C4-2
+        H5 titolo        : C42 cells Metformin 5mM replicate 2
+        H5 caratteristiche: experimental condition: 5mM Metformin 24 hour,cell line: C4-2
+        H5 sorgente      : C4-2 prostate cancer tissue culture
+      GSM5874802
+        grezzo (Stadio 1): title: C42 cells Metformin 5mM replicate 3,source: C4-2 prostate cancer tissue culture,experimental condition: 5mM Metformin 24 hour,cell line: C4-2
+        H5 titolo        : C42 cells Metformin 5mM replicate 3
+        H5 caratteristiche: experimental condition: 5mM Metformin 24 hour,cell line: C4-2
+        H5 sorgente      : C4-2 prostate cancer tissue culture
+  CONTROLLO  (n=2)  etichetta Stadio 2: PBS-treated C4-2 cells (replicates)
+      gruppo Stadio 2: grp_0003
+      GSM5874795
+        grezzo (Stadio 1): title: C42 cells Control PBS replicate 2,source: C4-2 prostate cancer tissue culture,experimental condition: PBS Control 24 hour,cell line: C4-2
+        H5 titolo        : C42 cells Control PBS replicate 2
+        H5 caratteristiche: experimental condition: PBS Control 24 hour,cell line: C4-2
+        H5 sorgente      : C4-2 prostate cancer tissue culture
+      GSM5874797
+        grezzo (Stadio 1): title: C42 cells Control PBS replicate 3,source: C4-2 prostate cancer tissue culture,experimental condition: PBS Control 24 hour,cell line: C4-2
+        H5 titolo        : C42 cells Control PBS replicate 3
+        H5 caratteristiche: experimental condition: PBS Control 24 hour,cell line: C4-2
+        H5 sorgente      : C4-2 prostate cancer tissue culture
+
+CONFRONTO  GSE207122__GSE207122__grp_0001_vs_grp_0002__1
+  studio: GSE207122
+  TRATTATO  (n=3)  etichetta Stadio 2: CAL27 + Metformin 30 mM 48h
+      gruppo Stadio 2: grp_0001
+      GSM6278771
+        grezzo (Stadio 1): title: CAL27 cells Metformin 30mM replicate 1,source: Tongue,tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Metformin 30mM,time: 48h
+        H5 titolo        : CAL27 cells Metformin 30mM replicate 1
+        H5 caratteristiche: tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Metformin 30mM,time: 48h
+        H5 sorgente      : Tongue
+      GSM6278772
+        grezzo (Stadio 1): title: CAL27 cells Metformin 30mM replicate 2,source: Tongue,tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Metformin 30mM,time: 48h
+        H5 titolo        : CAL27 cells Metformin 30mM replicate 2
+        H5 caratteristiche: tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Metformin 30mM,time: 48h
+        H5 sorgente      : Tongue
+      GSM6278773
+        grezzo (Stadio 1): title: CAL27 cells Metformin 30mM replicate 3,source: Tongue,tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Metformin 30mM,time: 48h
+        H5 titolo        : CAL27 cells Metformin 30mM replicate 3
+        H5 caratteristiche: tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Metformin 30mM,time: 48h
+        H5 sorgente      : Tongue
+  CONTROLLO  (n=3)  etichetta Stadio 2: CAL27 + PBS 48h
+      gruppo Stadio 2: grp_0002
+      GSM6278768
+        grezzo (Stadio 1): title: CAL27 cells Control PBS replicate 1,source: Tongue,tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Control PBS,time: 48h
+        H5 titolo        : CAL27 cells Control PBS replicate 1
+        H5 caratteristiche: tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Control PBS,time: 48h
+        H5 sorgente      : Tongue
+      GSM6278769
+        grezzo (Stadio 1): title: CAL27 cells Control PBS replicate 2,source: Tongue,tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Control PBS,time: 48h
+        H5 titolo        : CAL27 cells Control PBS replicate 2
+        H5 caratteristiche: tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Control PBS,time: 48h
+        H5 sorgente      : Tongue
+      GSM6278770
+        grezzo (Stadio 1): title: CAL27 cells Control PBS replicate 3,source: Tongue,tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Control PBS,time: 48h
+        H5 titolo        : CAL27 cells Control PBS replicate 3
+        H5 caratteristiche: tissue: Tongue,cell line: CAL27,cell type: epithelial cell,disease: Squamous Cell Carcinoma,treatment: Control PBS,time: 48h
+        H5 sorgente      : Tongue
+
+CONFRONTO  GSE210562__GSE210562__Metformin_vs_DMSO__1
+  studio: GSE210562
+  TRATTATO  (n=3)  etichetta Stadio 2: Metformin
+      gruppo Stadio 2: grp_Metformin
+      GSM6432581
+        grezzo (Stadio 1): title: KP4 cells, Metformin-Replicate1,source: KP4,cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: Metformin,time: 24hours
+        H5 titolo        : KP4 cells, Metformin-Replicate1
+        H5 caratteristiche: cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: Metformin,time: 24hours
+        H5 sorgente      : KP4
+      GSM6432582
+        grezzo (Stadio 1): title: KP4 cells, Metformin-Replicate2,source: KP4,cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: Metformin,time: 24hours
+        H5 titolo        : KP4 cells, Metformin-Replicate2
+        H5 caratteristiche: cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: Metformin,time: 24hours
+        H5 sorgente      : KP4
+      GSM6432583
+        grezzo (Stadio 1): title: KP4 cells, Metformin-Replicate3,source: KP4,cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: Metformin,time: 24hours
+        H5 titolo        : KP4 cells, Metformin-Replicate3
+        H5 caratteristiche: cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: Metformin,time: 24hours
+        H5 sorgente      : KP4
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM6432578
+        grezzo (Stadio 1): title: KP4 cells, DMSO-Replicate1,source: KP4,cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: DMSO,time: 24hours
+        H5 titolo        : KP4 cells, DMSO-Replicate1
+        H5 caratteristiche: cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: DMSO,time: 24hours
+        H5 sorgente      : KP4
+      GSM6432579
+        grezzo (Stadio 1): title: KP4 cells, DMSO-Replicate2,source: KP4,cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: DMSO,time: 24hours
+        H5 titolo        : KP4 cells, DMSO-Replicate2
+        H5 caratteristiche: cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: DMSO,time: 24hours
+        H5 sorgente      : KP4
+      GSM6432580
+        grezzo (Stadio 1): title: KP4 cells, DMSO-Replicate3,source: KP4,cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: DMSO,time: 24hours
+        H5 titolo        : KP4 cells, DMSO-Replicate3
+        H5 caratteristiche: cell line: KP4,cell type: Pancreatic ductal cell carcinoma,genotype: WT,treatment: DMSO,time: 24hours
+        H5 sorgente      : KP4
+
+CONFRONTO  GSE247159__GSE247159__grp_0004_vs_grp_0003__1
+  studio: GSE247159
+  TRATTATO  (n=10)  etichetta Stadio 2: Metformin (Primary Culture)
+      gruppo Stadio 2: grp_0004
+      GSM7884613
+        grezzo (Stadio 1): title: HA836_5_Ped_Apos_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA836_5_Ped_Apos_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884615
+        grezzo (Stadio 1): title: HA838_2_Ped_Apos_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA838_2_Ped_Apos_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884617
+        grezzo (Stadio 1): title: HA841_2_Ped_Apos_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA841_2_Ped_Apos_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884619
+        grezzo (Stadio 1): title: HA834_2_Adult_Apos_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA834_2_Adult_Apos_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884620
+        grezzo (Stadio 1): title: HA842_2_Adult_Apos_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA842_2_Adult_Apos_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884621
+        grezzo (Stadio 1): title: HA842_6_Adult_Aneg_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA842_6_Adult_Aneg_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884622
+        grezzo (Stadio 1): title: HA843_3_Ped_Apos_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA843_3_Ped_Apos_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884625
+        grezzo (Stadio 1): title: HA847_8_Adult_Aneg_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA847_8_Adult_Aneg_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884626
+        grezzo (Stadio 1): title: HA834_5_Adult_Aneg_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA834_5_Adult_Aneg_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+      GSM7884627
+        grezzo (Stadio 1): title: HA835_5_Adult_Apos_MET,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 titolo        : HA835_5_Adult_Apos_MET
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Metformin
+        H5 sorgente      : Brain
+  CONTROLLO  (n=13)  etichetta Stadio 2: Control (Primary Culture)
+      gruppo Stadio 2: grp_0003
+      GSM7884599
+        grezzo (Stadio 1): title: HA834_4_Adult_Aneg_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA834_4_Adult_Aneg_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884600
+        grezzo (Stadio 1): title: HA835_1_Adult_Apos_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA835_1_Adult_Apos_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884601
+        grezzo (Stadio 1): title: HA836_1_Ped_Apos_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA836_1_Ped_Apos_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884602
+        grezzo (Stadio 1): title: HA836_6_Ped_Aneg_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA836_6_Ped_Aneg_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884603
+        grezzo (Stadio 1): title: HA838_1_Ped_Apos_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA838_1_Ped_Apos_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884605
+        grezzo (Stadio 1): title: HA841_1_Ped_Apos_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA841_1_Ped_Apos_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884606
+        grezzo (Stadio 1): title: HA841_7_Ped_Aneg_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA841_7_Ped_Aneg_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884607
+        grezzo (Stadio 1): title: HA842_1_Adult_Apos_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA842_1_Adult_Apos_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884608
+        grezzo (Stadio 1): title: HA842_5_Adult_Aneg_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA842_5_Adult_Aneg_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884609
+        grezzo (Stadio 1): title: HA843_1_Ped_Apos_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA843_1_Ped_Apos_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884610
+        grezzo (Stadio 1): title: HA843_4_Ped_Aneg_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA843_4_Ped_Aneg_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884611
+        grezzo (Stadio 1): title: HA847_1_Adult_Apos_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA847_1_Adult_Apos_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+      GSM7884612
+        grezzo (Stadio 1): title: HA847_7_Adult_Aneg_N1,source: Brain,tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 titolo        : HA847_7_Adult_Aneg_N1
+        H5 caratteristiche: tissue: Brain,cell line: Oligodendrocyte lineage,cell type: Oligodendrocyte lineage,treatment: Control
+        H5 sorgente      : Brain
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE102677     campioni nell'H5:   26 | collocati dallo Stadio 2:   26 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 15 campioni distinti (18 righe: i controlli servono piu' confronti)
+  GSE140714     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE146982     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE179347     campioni nell'H5:  238 | collocati dallo Stadio 2:  238 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE185624     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE196343     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE207122     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE210562     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE247159     campioni nell'H5:   29 | collocati dallo Stadio 2:   29 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 23 campioni distinti (23 righe: i controlli servono piu' confronti)
+

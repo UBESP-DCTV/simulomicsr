@@ -1,0 +1,544 @@
+META-ANALISI 095 di 194
+==============================================================================
+nome            : carfilzomib
+entita (ID)     : CHEBI:65347
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_5927750b
+studi poolati   : 4   confronti: 10   campioni: 88
+geni significativi: 1414   I2 mediano: 95.1
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE184029__GSE184029__grp_CAPAN-2_Carfilzomib_rep_vs_grp_CAPAN-2_DMSO_rep__1
+  studio: GSE184029
+  TRATTATO  (n=2)  etichetta Stadio 2: CAPAN-2 + Carfilzomib (rep)
+      gruppo Stadio 2: grp_CAPAN-2_Carfilzomib_rep
+      GSM5576199
+        grezzo (Stadio 1): title: S855Nr41_CAPAN2_C2,source: Pancreatic Cancer,treatment: Carfilzomib,cell line: CAPAN-2,tissue: Pancreatic Cancer
+        H5 titolo        : S855Nr41_CAPAN2_C2
+        H5 caratteristiche: treatment: Carfilzomib,cell line: CAPAN-2,tissue: Pancreatic Cancer
+        H5 sorgente      : Pancreatic Cancer
+      GSM5576200
+        grezzo (Stadio 1): title: S855Nr42_CAPAN2_C3,source: Pancreatic Cancer,treatment: Carfilzomib,cell line: CAPAN-2,tissue: Pancreatic Cancer
+        H5 titolo        : S855Nr42_CAPAN2_C3
+        H5 caratteristiche: treatment: Carfilzomib,cell line: CAPAN-2,tissue: Pancreatic Cancer
+        H5 sorgente      : Pancreatic Cancer
+  CONTROLLO  (n=2)  etichetta Stadio 2: CAPAN-2 + DMSO (rep)
+      gruppo Stadio 2: grp_CAPAN-2_DMSO_rep
+      GSM5576195
+        grezzo (Stadio 1): title: S855Nr37_CAPAN2_D1,source: Pancreatic Cancer,treatment: DMSO,cell line: CAPAN-2,tissue: Pancreatic Cancer
+        H5 titolo        : S855Nr37_CAPAN2_D1
+        H5 caratteristiche: treatment: DMSO,cell line: CAPAN-2,tissue: Pancreatic Cancer
+        H5 sorgente      : Pancreatic Cancer
+      GSM5576196
+        grezzo (Stadio 1): title: S855Nr38_CAPAN2_D2,source: Pancreatic Cancer,treatment: DMSO,cell line: CAPAN-2,tissue: Pancreatic Cancer
+        H5 titolo        : S855Nr38_CAPAN2_D2
+        H5 caratteristiche: treatment: DMSO,cell line: CAPAN-2,tissue: Pancreatic Cancer
+        H5 sorgente      : Pancreatic Cancer
+
+CONFRONTO  GSE184029__GSE184029__grp_DLD-1_Carfilzomib_vs_grp_DLD-1_DMSO__1
+  studio: GSE184029
+  TRATTATO  (n=3)  etichetta Stadio 2: DLD-1 + Carfilzomib
+      gruppo Stadio 2: grp_DLD-1_Carfilzomib
+      GSM5576180
+        grezzo (Stadio 1): title: S855Nr22_DLD1_C1,source: Colon Cancer,treatment: Carfilzomib,cell line: DLD-1,tissue: Colon Cancer
+        H5 titolo        : S855Nr22_DLD1_C1
+        H5 caratteristiche: treatment: Carfilzomib,cell line: DLD-1,tissue: Colon Cancer
+        H5 sorgente      : Colon Cancer
+      GSM5576181
+        grezzo (Stadio 1): title: S855Nr23_DLD1_C2,source: Colon Cancer,treatment: Carfilzomib,cell line: DLD-1,tissue: Colon Cancer
+        H5 titolo        : S855Nr23_DLD1_C2
+        H5 caratteristiche: treatment: Carfilzomib,cell line: DLD-1,tissue: Colon Cancer
+        H5 sorgente      : Colon Cancer
+      GSM5576182
+        grezzo (Stadio 1): title: S855Nr24_DLD1_C3,source: Colon Cancer,treatment: Carfilzomib,cell line: DLD-1,tissue: Colon Cancer
+        H5 titolo        : S855Nr24_DLD1_C3
+        H5 caratteristiche: treatment: Carfilzomib,cell line: DLD-1,tissue: Colon Cancer
+        H5 sorgente      : Colon Cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: DLD-1 + DMSO
+      gruppo Stadio 2: grp_DLD-1_DMSO
+      GSM5576177
+        grezzo (Stadio 1): title: S855Nr19_DLD1_D1,source: Colon Cancer,treatment: DMSO,cell line: DLD-1,tissue: Colon Cancer
+        H5 titolo        : S855Nr19_DLD1_D1
+        H5 caratteristiche: treatment: DMSO,cell line: DLD-1,tissue: Colon Cancer
+        H5 sorgente      : Colon Cancer
+      GSM5576178
+        grezzo (Stadio 1): title: S855Nr20_DLD1_D2,source: Colon Cancer,treatment: DMSO,cell line: DLD-1,tissue: Colon Cancer
+        H5 titolo        : S855Nr20_DLD1_D2
+        H5 caratteristiche: treatment: DMSO,cell line: DLD-1,tissue: Colon Cancer
+        H5 sorgente      : Colon Cancer
+      GSM5576179
+        grezzo (Stadio 1): title: S855Nr21_DLD1_D3,source: Colon Cancer,treatment: DMSO,cell line: DLD-1,tissue: Colon Cancer
+        H5 titolo        : S855Nr21_DLD1_D3
+        H5 caratteristiche: treatment: DMSO,cell line: DLD-1,tissue: Colon Cancer
+        H5 sorgente      : Colon Cancer
+
+CONFRONTO  GSE184029__GSE184029__grp_H-1299_Carfilzomib_vs_grp_H-1299_DMSO__1
+  studio: GSE184029
+  TRATTATO  (n=3)  etichetta Stadio 2: H-1299 + Carfilzomib
+      gruppo Stadio 2: grp_H-1299_Carfilzomib
+      GSM5576192
+        grezzo (Stadio 1): title: S855Nr34_H1299_C1,source: Lung Cancer,treatment: Carfilzomib,cell line: H-1299,tissue: Lung Cancer
+        H5 titolo        : S855Nr34_H1299_C1
+        H5 caratteristiche: treatment: Carfilzomib,cell line: H-1299,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+      GSM5576193
+        grezzo (Stadio 1): title: S855Nr35_H1299_C2,source: Lung Cancer,treatment: Carfilzomib,cell line: H-1299,tissue: Lung Cancer
+        H5 titolo        : S855Nr35_H1299_C2
+        H5 caratteristiche: treatment: Carfilzomib,cell line: H-1299,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+      GSM5576194
+        grezzo (Stadio 1): title: S855Nr36_H1299_C3,source: Lung Cancer,treatment: Carfilzomib,cell line: H-1299,tissue: Lung Cancer
+        H5 titolo        : S855Nr36_H1299_C3
+        H5 caratteristiche: treatment: Carfilzomib,cell line: H-1299,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+  CONTROLLO  (n=2)  etichetta Stadio 2: H-1299 + DMSO
+      gruppo Stadio 2: grp_H-1299_DMSO
+      GSM5576189
+        grezzo (Stadio 1): title: S855Nr31_H1299_D1,source: Lung Cancer,treatment: DMSO,cell line: H-1299,tissue: Lung Cancer
+        H5 titolo        : S855Nr31_H1299_D1
+        H5 caratteristiche: treatment: DMSO,cell line: H-1299,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+      GSM5576191
+        grezzo (Stadio 1): title: S855Nr33_H1299_D3,source: Lung Cancer,treatment: DMSO,cell line: H-1299,tissue: Lung Cancer
+        H5 titolo        : S855Nr33_H1299_D3
+        H5 caratteristiche: treatment: DMSO,cell line: H-1299,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+
+CONFRONTO  GSE184029__GSE184029__grp_H-23_Carfilzomib_vs_grp_H-23_DMSO__1
+  studio: GSE184029
+  TRATTATO  (n=3)  etichetta Stadio 2: H-23 + Carfilzomib
+      gruppo Stadio 2: grp_H-23_Carfilzomib
+      GSM5576186
+        grezzo (Stadio 1): title: S855Nr28_H23_C1,source: Lung Cancer,treatment: Carfilzomib,cell line: H-23,tissue: Lung Cancer
+        H5 titolo        : S855Nr28_H23_C1
+        H5 caratteristiche: treatment: Carfilzomib,cell line: H-23,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+      GSM5576187
+        grezzo (Stadio 1): title: S855Nr29_H23_C2,source: Lung Cancer,treatment: Carfilzomib,cell line: H-23,tissue: Lung Cancer
+        H5 titolo        : S855Nr29_H23_C2
+        H5 caratteristiche: treatment: Carfilzomib,cell line: H-23,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+      GSM5576188
+        grezzo (Stadio 1): title: S855Nr30_H23_C3,source: Lung Cancer,treatment: Carfilzomib,cell line: H-23,tissue: Lung Cancer
+        H5 titolo        : S855Nr30_H23_C3
+        H5 caratteristiche: treatment: Carfilzomib,cell line: H-23,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: H-23 + DMSO
+      gruppo Stadio 2: grp_H-23_DMSO
+      GSM5576183
+        grezzo (Stadio 1): title: S855Nr25_H23_D1,source: Lung Cancer,treatment: DMSO,cell line: H-23,tissue: Lung Cancer
+        H5 titolo        : S855Nr25_H23_D1
+        H5 caratteristiche: treatment: DMSO,cell line: H-23,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+      GSM5576184
+        grezzo (Stadio 1): title: S855Nr26_H23_D2,source: Lung Cancer,treatment: DMSO,cell line: H-23,tissue: Lung Cancer
+        H5 titolo        : S855Nr26_H23_D2
+        H5 caratteristiche: treatment: DMSO,cell line: H-23,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+      GSM5576185
+        grezzo (Stadio 1): title: S855Nr27_H23_D3,source: Lung Cancer,treatment: DMSO,cell line: H-23,tissue: Lung Cancer
+        H5 titolo        : S855Nr27_H23_D3
+        H5 caratteristiche: treatment: DMSO,cell line: H-23,tissue: Lung Cancer
+        H5 sorgente      : Lung Cancer
+
+CONFRONTO  GSE217421__GSE217421__DMSO_1_vs_Carfilzomib_1__1
+  studio: GSE217421
+  TRATTATO  (n=17)  etichetta Stadio 2: Carfilzomib-treated cardiac myocytes
+      gruppo Stadio 2: mg116
+      GSM6717261
+        grezzo (Stadio 1): title: CAR MSN01-03R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: H8,investigative unit: 164,sample id: 3,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 19.2,rna volume (ul): 10.4166666666667,h2o volume (ul): 6.58333333333333
+        H5 titolo        : CAR MSN01-03R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: H8,investigative unit: 164,sample id: 3,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 19.2,rna volume (ul): 10.4166666666667,h2o volume (ul): 6.58333333333333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717263
+        grezzo (Stadio 1): title: CAR MSN01-03R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A11,investigative unit: 177,sample id: 5,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 52.6,rna volume (ul): 3.80228136882129,h2o volume (ul): 13.1977186311787
+        H5 titolo        : CAR MSN01-03R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A11,investigative unit: 177,sample id: 5,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 52.6,rna volume (ul): 3.80228136882129,h2o volume (ul): 13.1977186311787
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717264
+        grezzo (Stadio 1): title: CAR MSN02-04R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: F3,investigative unit: 147,sample id: 4,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 49.4,rna volume (ul): 4.04858299595142,h2o volume (ul): 12.9514170040486
+        H5 titolo        : CAR MSN02-04R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: F3,investigative unit: 147,sample id: 4,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 49.4,rna volume (ul): 4.04858299595142,h2o volume (ul): 12.9514170040486
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717265
+        grezzo (Stadio 1): title: CAR MSN02-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: G5,investigative unit: 152,sample id: 4,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 37.8,rna volume (ul): 5.29100529100529,h2o volume (ul): 11.7089947089947
+        H5 titolo        : CAR MSN02-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: G5,investigative unit: 152,sample id: 4,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 37.8,rna volume (ul): 5.29100529100529,h2o volume (ul): 11.7089947089947
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717266
+        grezzo (Stadio 1): title: CAR MSN02-04R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: F6,investigative unit: 153,sample id: 3,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 36.8,rna volume (ul): 5.43478260869565,h2o volume (ul): 11.5652173913043
+        H5 titolo        : CAR MSN02-04R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: F6,investigative unit: 153,sample id: 3,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 36.8,rna volume (ul): 5.43478260869565,h2o volume (ul): 11.5652173913043
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717267
+        grezzo (Stadio 1): title: CAR MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: B11,investigative unit: 193,sample id: 5,rna amount (ng): 200,rin: 9.4,rna conc (ng/ul): 78.8,rna volume (ul): 2.53807106598985,h2o volume (ul): 14.4619289340102
+        H5 titolo        : CAR MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: B11,investigative unit: 193,sample id: 5,rna amount (ng): 200,rin: 9.4,rna conc (ng/ul): 78.8,rna volume (ul): 2.53807106598985,h2o volume (ul): 14.4619289340102
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717268
+        grezzo (Stadio 1): title: CAR MSN05-01R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: H11,investigative unit: 172,sample id: 15,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 78,rna volume (ul): 2.56410256410256,h2o volume (ul): 14.4358974358974
+        H5 titolo        : CAR MSN05-01R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: H11,investigative unit: 172,sample id: 15,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 78,rna volume (ul): 2.56410256410256,h2o volume (ul): 14.4358974358974
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717269
+        grezzo (Stadio 1): title: CAR MSN05-01R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A8,investigative unit: 184,sample id: 43,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 66.6,rna volume (ul): 3.003003003003,h2o volume (ul): 13.996996996997
+        H5 titolo        : CAR MSN05-01R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A8,investigative unit: 184,sample id: 43,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 66.6,rna volume (ul): 3.003003003003,h2o volume (ul): 13.996996996997
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717270
+        grezzo (Stadio 1): title: CAR MSN05-01R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A11,investigative unit: 186,sample id: 22,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 39.8,rna volume (ul): 5.0251256281407,h2o volume (ul): 11.9748743718593
+        H5 titolo        : CAR MSN05-01R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A11,investigative unit: 186,sample id: 22,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 39.8,rna volume (ul): 5.0251256281407,h2o volume (ul): 11.9748743718593
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717272
+        grezzo (Stadio 1): title: CAR MSN06-07R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A9,investigative unit: 149,sample id: 4,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 45.2,rna volume (ul): 4.42477876106195,h2o volume (ul): 12.5752212389381
+        H5 titolo        : CAR MSN06-07R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A9,investigative unit: 149,sample id: 4,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 45.2,rna volume (ul): 4.42477876106195,h2o volume (ul): 12.5752212389381
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717273
+        grezzo (Stadio 1): title: CAR MSN06-07R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: D10,investigative unit: 160,sample id: 5,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 28.6,rna volume (ul): 6.99300699300699,h2o volume (ul): 10.006993006993
+        H5 titolo        : CAR MSN06-07R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: D10,investigative unit: 160,sample id: 5,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 28.6,rna volume (ul): 6.99300699300699,h2o volume (ul): 10.006993006993
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717275
+        grezzo (Stadio 1): title: CAR MSN08-13R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: E12,investigative unit: 162,sample id: 29,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CAR MSN08-13R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: E12,investigative unit: 162,sample id: 29,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717277
+        grezzo (Stadio 1): title: CAR MSN08-13R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A6,investigative unit: 182,sample id: 5,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 36,rna volume (ul): 5.55555555555556,h2o volume (ul): 11.4444444444444
+        H5 titolo        : CAR MSN08-13R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A6,investigative unit: 182,sample id: 5,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 36,rna volume (ul): 5.55555555555556,h2o volume (ul): 11.4444444444444
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717278
+        grezzo (Stadio 1): title: CAR MSN08-13R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: H11,investigative unit: 189,sample id: 29,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 30.8,rna volume (ul): 6.49350649350649,h2o volume (ul): 10.5064935064935
+        H5 titolo        : CAR MSN08-13R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: H11,investigative unit: 189,sample id: 29,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 30.8,rna volume (ul): 6.49350649350649,h2o volume (ul): 10.5064935064935
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717279
+        grezzo (Stadio 1): title: CAR MSN09-04R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A7,investigative unit: 158,sample id: 4,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 33.2,rna volume (ul): 6.02409638554217,h2o volume (ul): 10.9759036144578
+        H5 titolo        : CAR MSN09-04R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A7,investigative unit: 158,sample id: 4,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 33.2,rna volume (ul): 6.02409638554217,h2o volume (ul): 10.9759036144578
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717280
+        grezzo (Stadio 1): title: CAR MSN09-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: C8,investigative unit: 166,sample id: 5,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 33,rna volume (ul): 6.06060606060606,h2o volume (ul): 10.9393939393939
+        H5 titolo        : CAR MSN09-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: C8,investigative unit: 166,sample id: 5,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 33,rna volume (ul): 6.06060606060606,h2o volume (ul): 10.9393939393939
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717281
+        grezzo (Stadio 1): title: CAR MSN09-04R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A12,investigative unit: 171,sample id: 24,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 54.8,rna volume (ul): 3.64963503649635,h2o volume (ul): 13.3503649635036
+        H5 titolo        : CAR MSN09-04R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A12,investigative unit: 171,sample id: 24,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 54.8,rna volume (ul): 3.64963503649635,h2o volume (ul): 13.3503649635036
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE217421__GSE217421__DMSO_1_vs_Carfilzomib_2__1
+  studio: GSE217421
+  TRATTATO  (n=5)  etichetta Stadio 2: Carfilzomib-treated cardiac myocytes
+      gruppo Stadio 2: mg117
+      GSM6717262
+        grezzo (Stadio 1): title: CAR MSN01-03R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: H9,investigative unit: 176,sample id: 4,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 39.6,rna volume (ul): 5.05050505050505,h2o volume (ul): 11.9494949494949
+        H5 titolo        : CAR MSN01-03R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: H9,investigative unit: 176,sample id: 4,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 39.6,rna volume (ul): 5.05050505050505,h2o volume (ul): 11.9494949494949
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717271
+        grezzo (Stadio 1): title: CAR MSN05-01R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A2,investigative unit: 187,sample id: 5,rna amount (ng): 200,rin: 9.1,rna conc (ng/ul): 55.4,rna volume (ul): 3.6101083032491,h2o volume (ul): 13.3898916967509
+        H5 titolo        : CAR MSN05-01R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A2,investigative unit: 187,sample id: 5,rna amount (ng): 200,rin: 9.1,rna conc (ng/ul): 55.4,rna volume (ul): 3.6101083032491,h2o volume (ul): 13.3898916967509
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717274
+        grezzo (Stadio 1): title: CAR MSN06-07R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A4,investigative unit: 181,sample id: 5,rna amount (ng): 200,rin: 9.2,rna conc (ng/ul): 115,rna volume (ul): 1.73913043478261,h2o volume (ul): 15.2608695652174
+        H5 titolo        : CAR MSN06-07R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: A4,investigative unit: 181,sample id: 5,rna amount (ng): 200,rin: 9.2,rna conc (ng/ul): 115,rna volume (ul): 1.73913043478261,h2o volume (ul): 15.2608695652174
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717276
+        grezzo (Stadio 1): title: CAR MSN08-13R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: G3,investigative unit: 180,sample id: 5,rna amount (ng): 200,rin: 9.3,rna conc (ng/ul): 61.4,rna volume (ul): 3.25732899022801,h2o volume (ul): 13.742671009772
+        H5 titolo        : CAR MSN08-13R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: G3,investigative unit: 180,sample id: 5,rna amount (ng): 200,rin: 9.3,rna conc (ng/ul): 61.4,rna volume (ul): 3.25732899022801,h2o volume (ul): 13.742671009772
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717282
+        grezzo (Stadio 1): title: CAR MSN09-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: D12,investigative unit: 173,sample id: 5,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 37.6,rna volume (ul): 5.31914893617021,h2o volume (ul): 11.6808510638298
+        H5 titolo        : CAR MSN09-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CAR,drug name: Carfilzomib,concentration: 3uM,well: D12,investigative unit: 173,sample id: 5,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 37.6,rna volume (ul): 5.31914893617021,h2o volume (ul): 11.6808510638298
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE217898__GSE217898__grp_0032_vs_grp_0017__1
+  studio: GSE217898
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, Carfilzomib, 24h
+      gruppo Stadio 2: grp_0032
+      GSM6729602
+        grezzo (Stadio 1): title: PAE1_24_Carfilzomib,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Carfilzomib (0.025 uM),time: 24 hours
+        H5 titolo        : PAE1_24_Carfilzomib
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Carfilzomib (0.025 uM),time: 24 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729620
+        grezzo (Stadio 1): title: PAE2_24_Carfilzomib,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Carfilzomib (0.025 uM),time: 24 hours
+        H5 titolo        : PAE2_24_Carfilzomib
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Carfilzomib (0.025 uM),time: 24 hours
+        H5 sorgente      : Endothelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, DMSO, 24h
+      gruppo Stadio 2: grp_0017
+      GSM6729605
+        grezzo (Stadio 1): title: PAE1_24_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 titolo        : PAE1_24_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729623
+        grezzo (Stadio 1): title: PAE2_24_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 titolo        : PAE2_24_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Endothelial cells
+
+CONFRONTO  GSE217898__GSE217898__grp_0033_vs_grp_0018__1
+  studio: GSE217898
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, Carfilzomib, 72h
+      gruppo Stadio 2: grp_0033
+      GSM6729611
+        grezzo (Stadio 1): title: PAE1_72_Carfilzomib,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Carfilzomib (0.025 uM),time: 72 hours
+        H5 titolo        : PAE1_72_Carfilzomib
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Carfilzomib (0.025 uM),time: 72 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729629
+        grezzo (Stadio 1): title: PAE2_72_Carfilzomib,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Carfilzomib (0.025 uM),time: 72 hours
+        H5 titolo        : PAE2_72_Carfilzomib
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Carfilzomib (0.025 uM),time: 72 hours
+        H5 sorgente      : Endothelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, DMSO, 72h
+      gruppo Stadio 2: grp_0018
+      GSM6729614
+        grezzo (Stadio 1): title: PAE1_72_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 titolo        : PAE1_72_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729632
+        grezzo (Stadio 1): title: PAE2_72_dmso,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 titolo        : PAE2_72_dmso
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 sorgente      : Endothelial cells
+
+CONFRONTO  GSE266011__GSE266011__grp_0006_vs_grp_0002__1
+  studio: GSE266011
+  TRATTATO  (n=3)  etichetta Stadio 2: SHP1705 (10 µM) + Carfilzomib (10 nM) for 24hr
+      gruppo Stadio 2: grp_0006
+      GSM8239424
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_drug combination-treated, 24-hour treatment, rep1,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 24hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_drug combination-treated, 24-hour treatment, rep1
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 24hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239425
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_drug combination-treated, 24-hour treatment, rep2,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 24hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_drug combination-treated, 24-hour treatment, rep2
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 24hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239426
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_drug combination-treated, 24-hour treatment, rep3,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 24hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_drug combination-treated, 24-hour treatment, rep3
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 24hr
+        H5 sorgente      : MDA-MB-231
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO for 24hr
+      gruppo Stadio 2: grp_0002
+      GSM8239415
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_DMSO-treated, 24-hour treatment, rep1,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 24hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_DMSO-treated, 24-hour treatment, rep1
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 24hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239416
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_DMSO-treated, 24-hour treatment, rep2,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 24hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_DMSO-treated, 24-hour treatment, rep2
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 24hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239417
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_DMSO-treated, 24-hour treatment, rep3,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 24hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_DMSO-treated, 24-hour treatment, rep3
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 24hr
+        H5 sorgente      : MDA-MB-231
+
+CONFRONTO  GSE266011__GSE266011__grp_0007_vs_grp_0003__1
+  studio: GSE266011
+  TRATTATO  (n=3)  etichetta Stadio 2: SHP1705 (10 µM) + Carfilzomib (10 nM) for 8hr
+      gruppo Stadio 2: grp_0007
+      GSM8239412
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_drug combination-treated, 8-hour treatment, rep1,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 8hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_drug combination-treated, 8-hour treatment, rep1
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 8hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239413
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_drug combination-treated, 8-hour treatment, rep2,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 8hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_drug combination-treated, 8-hour treatment, rep2
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 8hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239414
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_drug combination-treated, 8-hour treatment, rep3,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 8hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_drug combination-treated, 8-hour treatment, rep3
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: SHP1705 (10 ÂµM) + Carfilzomib (10 nM),time: 8hr
+        H5 sorgente      : MDA-MB-231
+  CONTROLLO  (n=4)  etichetta Stadio 2: DMSO for 8hr
+      gruppo Stadio 2: grp_0003
+      GSM8239391
+        grezzo (Stadio 1): title: MDA-MB-231, MG_combination_DMSO-treated, 8-hour treatment, rep1,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 8hr
+        H5 titolo        : MDA-MB-231, MG_combination_DMSO-treated, 8-hour treatment, rep1
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 8hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239392
+        grezzo (Stadio 1): title: MDA-MB-231, MG_combination_DMSO-treated, 8-hour treatment, rep2,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 8hr
+        H5 titolo        : MDA-MB-231, MG_combination_DMSO-treated, 8-hour treatment, rep2
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 8hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239403
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_DMSO-treated, 8-hour treatment, rep1,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 8hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_DMSO-treated, 8-hour treatment, rep1
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 8hr
+        H5 sorgente      : MDA-MB-231
+      GSM8239405
+        grezzo (Stadio 1): title: MDA-MB-231, CFZ_combination_DMSO-treated, 8-hour treatment, rep3,source: MDA-MB-231,cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 8hr
+        H5 titolo        : MDA-MB-231, CFZ_combination_DMSO-treated, 8-hour treatment, rep3
+        H5 caratteristiche: cell line: MDA-MB-231,cell type: Breast Cancer Cells,treatment: DMSO,time: 8hr
+        H5 sorgente      : MDA-MB-231
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE184029     campioni nell'H5:   48 | collocati dallo Stadio 2:   36 | MAI COLLOCATI:   12 | usati in questa meta-analisi: 21 campioni distinti (21 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5576159, GSM5576160, GSM5576161, GSM5576162, GSM5576163, GSM5576164, GSM5576165, GSM5576166, GSM5576167, GSM5576168, GSM5576169, GSM5576170
+  GSE217421     campioni nell'H5: 1170 | collocati dallo Stadio 2:  913 | MAI COLLOCATI:  257 | usati in questa meta-analisi: 34 campioni distinti (46 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6717095, GSM6717097, GSM6717100, GSM6717101, GSM6717102, GSM6717103, GSM6717104, GSM6717106, GSM6717107, GSM6717108, GSM6717111, GSM6717112 ... (+245)
+  GSE217898     campioni nell'H5:   72 | collocati dallo Stadio 2:   60 | MAI COLLOCATI:   12 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6729571, GSM6729582, GSM6729586, GSM6729589, GSM6729590, GSM6729591, GSM6729598, GSM6729599, GSM6729613, GSM6729622, GSM6729626, GSM6729635
+  GSE266011     campioni nell'H5:   35 | collocati dallo Stadio 2:   35 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
+

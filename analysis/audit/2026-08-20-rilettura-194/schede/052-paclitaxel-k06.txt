@@ -1,0 +1,551 @@
+META-ANALISI 052 di 194
+==============================================================================
+nome            : paclitaxel
+entita (ID)     : CHEBI:45863
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_81b706c4
+studi poolati   : 6   confronti: 11   campioni: 88
+geni significativi: 288   I2 mediano: 78.6
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE113685__GSE113685__grp_0004_vs_grp_0001__1
+  studio: GSE113685
+  TRATTATO  (n=3)  etichetta Stadio 2: HS 578T breast Paclitaxel 20nM
+      gruppo Stadio 2: grp_0004
+      GSM3111127
+        grezzo (Stadio 1): title: Human HS_20C_PAC-1,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: Taxol-resistant,replicate: GD_RNA_20 and 30,agent: 20nM Paclitaxel
+        H5 titolo        : Human HS_20C_PAC-1
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: Taxol-resistant,replicate: GD_RNA_20 and 30,agent: 20nM Paclitaxel
+        H5 sorgente      : HS 578T
+      GSM3111136
+        grezzo (Stadio 1): title: Human HS_20B_PAC-2,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: Taxol-resistant,replicate: GD_RNA_9 and 29,agent: 20nM Paclitaxel
+        H5 titolo        : Human HS_20B_PAC-2
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: Taxol-resistant,replicate: GD_RNA_9 and 29,agent: 20nM Paclitaxel
+        H5 sorgente      : HS 578T
+      GSM3111146
+        grezzo (Stadio 1): title: Human HS_20B_PAC-3,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: Taxol-resistant,replicate: GD_RNA_19 and 9,agent: 20nM Paclitaxel
+        H5 titolo        : Human HS_20B_PAC-3
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: Taxol-resistant,replicate: GD_RNA_19 and 9,agent: 20nM Paclitaxel
+        H5 sorgente      : HS 578T
+  CONTROLLO  (n=2)  etichetta Stadio 2: HS 578T TNBC DMSO
+      gruppo Stadio 2: grp_0001
+      GSM3111123
+        grezzo (Stadio 1): title: Human HS_DMSO-1,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive,replicate: GD_RNA_16 and 26,agent: 1:1000 DMSO
+        H5 titolo        : Human HS_DMSO-1
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive,replicate: GD_RNA_16 and 26,agent: 1:1000 DMSO
+        H5 sorgente      : HS 578T
+      GSM3111143
+        grezzo (Stadio 1): title: Human HS_DMSO-3,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive,replicate: GD_RNA_16 and 6,agent: 1:1000 DMSO
+        H5 titolo        : Human HS_DMSO-3
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive,replicate: GD_RNA_16 and 6,agent: 1:1000 DMSO
+        H5 sorgente      : HS 578T
+
+CONFRONTO  GSE113685__GSE113685__grp_0007_vs_grp_0001__1
+  studio: GSE113685
+  TRATTATO  (n=2)  etichetta Stadio 2: HS 578T breast Paclitaxel 20nM 72h
+      gruppo Stadio 2: grp_0007
+      GSM3111124
+        grezzo (Stadio 1): title: Human HS_PAC-1,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive  treated with paclitaxel 72h,replicate: GD_RNA_17 and 27,agent: 20nM Paclitaxel, 72h
+        H5 titolo        : Human HS_PAC-1
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive  treated with paclitaxel 72h,replicate: GD_RNA_17 and 27,agent: 20nM Paclitaxel, 72h
+        H5 sorgente      : HS 578T
+      GSM3111134
+        grezzo (Stadio 1): title: Human HS_PAC-2,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive  treated with paclitaxel 72h,replicate: GD_RNA_7 and 27,agent: 20nM Paclitaxel, 72h
+        H5 titolo        : Human HS_PAC-2
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive  treated with paclitaxel 72h,replicate: GD_RNA_7 and 27,agent: 20nM Paclitaxel, 72h
+        H5 sorgente      : HS 578T
+  CONTROLLO  (n=2)  etichetta Stadio 2: HS 578T TNBC DMSO
+      gruppo Stadio 2: grp_0001
+      GSM3111123
+        grezzo (Stadio 1): title: Human HS_DMSO-1,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive,replicate: GD_RNA_16 and 26,agent: 1:1000 DMSO
+        H5 titolo        : Human HS_DMSO-1
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive,replicate: GD_RNA_16 and 26,agent: 1:1000 DMSO
+        H5 sorgente      : HS 578T
+      GSM3111143
+        grezzo (Stadio 1): title: Human HS_DMSO-3,source: HS 578T,cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive,replicate: GD_RNA_16 and 6,agent: 1:1000 DMSO
+        H5 titolo        : Human HS_DMSO-3
+        H5 caratteristiche: cell type: TNBC,paclitaxel sensitivity: parental taxol-sensitive,replicate: GD_RNA_16 and 6,agent: 1:1000 DMSO
+        H5 sorgente      : HS 578T
+
+CONFRONTO  GSE135215__GSE135215__grp_0039_vs_grp_0038__1
+  studio: GSE135215
+  TRATTATO  (n=2)  etichetta Stadio 2: Panc-410_Taxol_24h
+      gruppo Stadio 2: grp_0039
+      GSM4015460
+        grezzo (Stadio 1): title: 3.B 24h.1,source: Pancreatic cancer,cell line: Panc-410,cell type: Pancreatic cancer cell line,treatment: Taxol,time-point: 24 hours
+        H5 titolo        : 3.B 24h.1
+        H5 caratteristiche: cell line: Panc-410,cell type: Pancreatic cancer cell line,treatment: Taxol,time-point: 24 hours
+        H5 sorgente      : Pancreatic cancer
+      GSM4015461
+        grezzo (Stadio 1): title: 3.B 24h.2,source: Pancreatic cancer,cell line: Panc-410,cell type: Pancreatic cancer cell line,treatment: Taxol,time-point: 24 hours
+        H5 titolo        : 3.B 24h.2
+        H5 caratteristiche: cell line: Panc-410,cell type: Pancreatic cancer cell line,treatment: Taxol,time-point: 24 hours
+        H5 sorgente      : Pancreatic cancer
+  CONTROLLO  (n=2)  etichetta Stadio 2: Panc-410_DMSO_24h
+      gruppo Stadio 2: grp_0038
+      GSM4015458
+        grezzo (Stadio 1): title: 3.A 24h.1,source: Pancreatic cancer,cell line: Panc-410,cell type: Pancreatic cancer cell line,treatment: DMSO,time-point: 24 hours
+        H5 titolo        : 3.A 24h.1
+        H5 caratteristiche: cell line: Panc-410,cell type: Pancreatic cancer cell line,treatment: DMSO,time-point: 24 hours
+        H5 sorgente      : Pancreatic cancer
+      GSM4015459
+        grezzo (Stadio 1): title: 3.A 24h.2,source: Pancreatic cancer,cell line: Panc-410,cell type: Pancreatic cancer cell line,treatment: DMSO,time-point: 24 hours
+        H5 titolo        : 3.A 24h.2
+        H5 caratteristiche: cell line: Panc-410,cell type: Pancreatic cancer cell line,treatment: DMSO,time-point: 24 hours
+        H5 sorgente      : Pancreatic cancer
+
+CONFRONTO  GSE199800__GSE199800__Paclitaxel_vs_DMSO__1
+  studio: GSE199800
+  TRATTATO  (n=2)  etichetta Stadio 2: Paclitaxel
+      gruppo Stadio 2: mg357
+      GSM5985029
+        grezzo (Stadio 1): title: du145_DU145PS1A_C12_Paclitaxel_0.00225_24,source: prostate cancer,treatment: Paclitaxel,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1A_C12_Paclitaxel_0.00225_24
+        H5 caratteristiche: treatment: Paclitaxel,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985125
+        grezzo (Stadio 1): title: du145_DU145PS1B_C12_Paclitaxel_0.00225_24,source: prostate cancer,treatment: Paclitaxel,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1B_C12_Paclitaxel_0.00225_24
+        H5 caratteristiche: treatment: Paclitaxel,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+  CONTROLLO  (n=33)  etichetta Stadio 2: Control
+      gruppo Stadio 2: mg399
+      GSM5985007
+        grezzo (Stadio 1): title: du145_DU145PS1A_B2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1A_B2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985023
+        grezzo (Stadio 1): title: du145_DU145PS1A_C6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1A_C6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985091
+        grezzo (Stadio 1): title: du145_DU145PS1B_A2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1B_A2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985103
+        grezzo (Stadio 1): title: du145_DU145PS1B_B2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1B_B2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985187
+        grezzo (Stadio 1): title: du145_DU145PS2A_A2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_A2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985215
+        grezzo (Stadio 1): title: du145_DU145PS2A_C6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_C6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985227
+        grezzo (Stadio 1): title: du145_DU145PS2A_D6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_D6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985256
+        grezzo (Stadio 1): title: du145_DU145PS2A_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985283
+        grezzo (Stadio 1): title: du145_DU145PS2B_A02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_A02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985295
+        grezzo (Stadio 1): title: du145_DU145PS2B_B02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_B02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985311
+        grezzo (Stadio 1): title: du145_DU145PS2B_C06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_C06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985323
+        grezzo (Stadio 1): title: du145_DU145PS2B_D06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_D06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985340
+        grezzo (Stadio 1): title: du145_DU145PS2B_E11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_E11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985352
+        grezzo (Stadio 1): title: du145_DU145PS2B_F11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_F11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985379
+        grezzo (Stadio 1): title: du145_DU145PS3A_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985391
+        grezzo (Stadio 1): title: du145_DU145PS3A_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985407
+        grezzo (Stadio 1): title: du145_DU145PS3A_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985419
+        grezzo (Stadio 1): title: du145_DU145PS3A_D06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_D06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985448
+        grezzo (Stadio 1): title: du145_DU145PS3A_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985475
+        grezzo (Stadio 1): title: du145_DU145PS3B_A02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_A02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985487
+        grezzo (Stadio 1): title: du145_DU145PS3B_B02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_B02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985503
+        grezzo (Stadio 1): title: du145_DU145PS3B_C06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_C06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985515
+        grezzo (Stadio 1): title: du145_DU145PS3B_D06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_D06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985532
+        grezzo (Stadio 1): title: du145_DU145PS3B_E11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_E11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985544
+        grezzo (Stadio 1): title: du145_DU145PS3B_F11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_F11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985571
+        grezzo (Stadio 1): title: du145_DU145PS4A_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985583
+        grezzo (Stadio 1): title: du145_DU145PS4A_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985599
+        grezzo (Stadio 1): title: du145_DU145PS4A_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985667
+        grezzo (Stadio 1): title: du145_DU145PS4B_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985679
+        grezzo (Stadio 1): title: du145_DU145PS4B_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985695
+        grezzo (Stadio 1): title: du145_DU145PS4B_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985707
+        grezzo (Stadio 1): title: du145_DU145PS4B_D06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_D06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985736
+        grezzo (Stadio 1): title: du145_DU145PS4B_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+
+CONFRONTO  GSE204825__GSE204825__BTY10_Paclitaxel_vs_BTY10_Vehicle__1
+  studio: GSE204825
+  TRATTATO  (n=3)  etichetta Stadio 2: BTY10 Paclitaxel
+      gruppo Stadio 2: grp_BTY10_Paclitaxel
+      GSM6195715
+        grezzo (Stadio 1): title: BTY10 Paclitaxel treated replicate 1,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 titolo        : BTY10 Paclitaxel treated replicate 1
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 sorgente      : Patient derived xenograft
+      GSM6195716
+        grezzo (Stadio 1): title: BTY10 Paclitaxel treated replicate 2,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 titolo        : BTY10 Paclitaxel treated replicate 2
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 sorgente      : Patient derived xenograft
+      GSM6195718
+        grezzo (Stadio 1): title: BTY10 Paclitaxel treated replicate 4,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 titolo        : BTY10 Paclitaxel treated replicate 4
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 sorgente      : Patient derived xenograft
+  CONTROLLO  (n=5)  etichetta Stadio 2: BTY10 Vehicle
+      gruppo Stadio 2: grp_BTY10_Vehicle
+      GSM6195706
+        grezzo (Stadio 1): title: BTY10 Vehicle treated replicate 1,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY10 Vehicle treated replicate 1
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195707
+        grezzo (Stadio 1): title: BTY10 Vehicle treated replicate 2,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY10 Vehicle treated replicate 2
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195708
+        grezzo (Stadio 1): title: BTY10 Vehicle treated replicate 3,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY10 Vehicle treated replicate 3
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195709
+        grezzo (Stadio 1): title: BTY10 Vehicle treated replicate 4,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY10 Vehicle treated replicate 4
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195710
+        grezzo (Stadio 1): title: BTY10 Vehicle treated replicate 5,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY10 Vehicle treated replicate 5
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY10,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+
+CONFRONTO  GSE204825__GSE204825__BTY14_Paclitaxel_3_vs_BTY14_Vehicle__1
+  studio: GSE204825
+  TRATTATO  (n=2)  etichetta Stadio 2: BTY14 Paclitaxel (3)
+      gruppo Stadio 2: grp_BTY14_Paclitaxel_3
+      GSM6195687
+        grezzo (Stadio 1): title: BTY14 Paclitaxel treated replicate 2,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 titolo        : BTY14 Paclitaxel treated replicate 2
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 sorgente      : Patient derived xenograft
+      GSM6195688
+        grezzo (Stadio 1): title: BTY14 Paclitaxel treated replicate 3,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 titolo        : BTY14 Paclitaxel treated replicate 3
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 sorgente      : Patient derived xenograft
+  CONTROLLO  (n=4)  etichetta Stadio 2: BTY14 Vehicle
+      gruppo Stadio 2: grp_BTY14_Vehicle
+      GSM6195678
+        grezzo (Stadio 1): title: BTY14 Vehicle treated replicate 1,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY14 Vehicle treated replicate 1
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195679
+        grezzo (Stadio 1): title: BTY14 Vehicle treated replicate 2,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY14 Vehicle treated replicate 2
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195680
+        grezzo (Stadio 1): title: BTY14 Vehicle treated replicate 3,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY14 Vehicle treated replicate 3
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195681
+        grezzo (Stadio 1): title: BTY14 Vehicle treated replicate 4,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY14 Vehicle treated replicate 4
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY14,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+
+CONFRONTO  GSE204825__GSE204825__BTY25_Paclitaxel_vs_BTY25_Vehicle__1
+  studio: GSE204825
+  TRATTATO  (n=2)  etichetta Stadio 2: BTY25 Paclitaxel
+      gruppo Stadio 2: grp_BTY25_Paclitaxel
+      GSM6195734
+        grezzo (Stadio 1): title: BTY25 Paclitaxel treated replicate 1,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 titolo        : BTY25 Paclitaxel treated replicate 1
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 sorgente      : Patient derived xenograft
+      GSM6195736
+        grezzo (Stadio 1): title: BTY25 Paclitaxel treated replicate 3,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 titolo        : BTY25 Paclitaxel treated replicate 3
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Paclitaxel
+        H5 sorgente      : Patient derived xenograft
+  CONTROLLO  (n=5)  etichetta Stadio 2: BTY25 Vehicle
+      gruppo Stadio 2: grp_BTY25_Vehicle
+      GSM6195724
+        grezzo (Stadio 1): title: BTY25 Vehicle treated replicate 1,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY25 Vehicle treated replicate 1
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195725
+        grezzo (Stadio 1): title: BTY25 Vehicle treated replicate 2,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY25 Vehicle treated replicate 2
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195726
+        grezzo (Stadio 1): title: BTY25 Vehicle treated replicate 3,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY25 Vehicle treated replicate 3
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195727
+        grezzo (Stadio 1): title: BTY25 Vehicle treated replicate 4,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY25 Vehicle treated replicate 4
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+      GSM6195728
+        grezzo (Stadio 1): title: BTY25 Vehicle treated replicate 5,source: Patient derived xenograft,tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 titolo        : BTY25 Vehicle treated replicate 5
+        H5 caratteristiche: tissue: Patient derived xenograft,cell line: BTY25,cell type: Primary triple negative breast cancer,treatment: Vehicle
+        H5 sorgente      : Patient derived xenograft
+
+CONFRONTO  GSE215975__GSE215975__grp_0004_vs_grp_0005__1
+  studio: GSE215975
+  TRATTATO  (n=2)  etichetta Stadio 2: CTNNB1-mutated Endometrial Cancer + Paclitaxel
+      gruppo Stadio 2: grp_0004
+      GSM6652339
+        grezzo (Stadio 1): title: SNGM_Paclitaxel_1,source: SNGM,cell line: SNGM,cell type: Endometrial Cancer,genotype: CTNNB1-mutated,treatment: Paclitaxel
+        H5 titolo        : SNGM_Paclitaxel_1
+        H5 caratteristiche: cell line: SNGM,cell type: Endometrial Cancer,genotype: CTNNB1-mutated,treatment: Paclitaxel
+        H5 sorgente      : SNGM
+      GSM6652340
+        grezzo (Stadio 1): title: SNGM_Paclitaxel_2,source: SNGM,cell line: SNGM,cell type: Endometrial Cancer,genotype: CTNNB1-mutated,treatment: Paclitaxel
+        H5 titolo        : SNGM_Paclitaxel_2
+        H5 caratteristiche: cell line: SNGM,cell type: Endometrial Cancer,genotype: CTNNB1-mutated,treatment: Paclitaxel
+        H5 sorgente      : SNGM
+  CONTROLLO  (n=2)  etichetta Stadio 2: CTNNB1-mutated Endometrial Cancer + Vehicle Control
+      gruppo Stadio 2: grp_0005
+      GSM6652337
+        grezzo (Stadio 1): title: SNGM_Vehicle Control_1,source: SNGM,cell line: SNGM,cell type: Endometrial Cancer,genotype: CTNNB1-mutated,treatment: Vehicle Control
+        H5 titolo        : SNGM_Vehicle Control_1
+        H5 caratteristiche: cell line: SNGM,cell type: Endometrial Cancer,genotype: CTNNB1-mutated,treatment: Vehicle Control
+        H5 sorgente      : SNGM
+      GSM6652338
+        grezzo (Stadio 1): title: SNGM_Vehicle Control_2,source: SNGM,cell line: SNGM,cell type: Endometrial Cancer,genotype: CTNNB1-mutated,treatment: Vehicle Control
+        H5 titolo        : SNGM_Vehicle Control_2
+        H5 caratteristiche: cell line: SNGM,cell type: Endometrial Cancer,genotype: CTNNB1-mutated,treatment: Vehicle Control
+        H5 sorgente      : SNGM
+
+CONFRONTO  GSE215975__GSE215975__grp_0019_vs_grp_0022__1
+  studio: GSE215975
+  TRATTATO  (n=2)  etichetta Stadio 2: Ishikawa + Paclitaxel
+      gruppo Stadio 2: grp_0019
+      GSM6652323
+        grezzo (Stadio 1): title: Ishikawa_Paclitaxel_1,source: Ishikawa,cell line: Ishikawa,cell type: Endometrial Cancer,genotype: CTNNB1-wildtype,treatment: Paclitaxel
+        H5 titolo        : Ishikawa_Paclitaxel_1
+        H5 caratteristiche: cell line: Ishikawa,cell type: Endometrial Cancer,genotype: CTNNB1-wildtype,treatment: Paclitaxel
+        H5 sorgente      : Ishikawa
+      GSM6652324
+        grezzo (Stadio 1): title: Ishikawa_Paclitaxel_2,source: Ishikawa,cell line: Ishikawa,cell type: Endometrial Cancer,genotype: CTNNB1-wildtype,treatment: Paclitaxel
+        H5 titolo        : Ishikawa_Paclitaxel_2
+        H5 caratteristiche: cell line: Ishikawa,cell type: Endometrial Cancer,genotype: CTNNB1-wildtype,treatment: Paclitaxel
+        H5 sorgente      : Ishikawa
+  CONTROLLO  (n=2)  etichetta Stadio 2: Ishikawa + Vehicle Control
+      gruppo Stadio 2: grp_0022
+      GSM6652321
+        grezzo (Stadio 1): title: Ishikawa_Vehicle Control_1,source: Ishikawa,cell line: Ishikawa,cell type: Endometrial Cancer,genotype: CTNNB1-wildtype,treatment: Vehicle Control
+        H5 titolo        : Ishikawa_Vehicle Control_1
+        H5 caratteristiche: cell line: Ishikawa,cell type: Endometrial Cancer,genotype: CTNNB1-wildtype,treatment: Vehicle Control
+        H5 sorgente      : Ishikawa
+      GSM6652322
+        grezzo (Stadio 1): title: Ishikawa_Vehicle Control_2,source: Ishikawa,cell line: Ishikawa,cell type: Endometrial Cancer,genotype: CTNNB1-wildtype,treatment: Vehicle Control
+        H5 titolo        : Ishikawa_Vehicle Control_2
+        H5 caratteristiche: cell line: Ishikawa,cell type: Endometrial Cancer,genotype: CTNNB1-wildtype,treatment: Vehicle Control
+        H5 sorgente      : Ishikawa
+
+CONFRONTO  GSE236502__GSE236502__grp_0001_vs_grp_0002__1
+  studio: GSE236502
+  TRATTATO  (n=3)  etichetta Stadio 2: PMCA-3 Paclitaxel
+      gruppo Stadio 2: grp_0001
+      GSM7548877
+        grezzo (Stadio 1): title: PMCA-3_PTX1,source: PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 1),tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 titolo        : PMCA-3_PTX1
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 sorgente      : PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 1)
+      GSM7548878
+        grezzo (Stadio 1): title: PMCA-3_PTX2,source: PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 2),tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 titolo        : PMCA-3_PTX2
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 sorgente      : PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 2)
+      GSM7548879
+        grezzo (Stadio 1): title: PMCA-3_PTX3,source: PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 3),tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 titolo        : PMCA-3_PTX3
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 sorgente      : PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 3)
+  CONTROLLO  (n=3)  etichetta Stadio 2: PMCA-3 Saline Control
+      gruppo Stadio 2: grp_0002
+      GSM7548880
+        grezzo (Stadio 1): title: PMCA-3_CTL1,source: PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 1),tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 titolo        : PMCA-3_CTL1
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 sorgente      : PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 1)
+      GSM7548881
+        grezzo (Stadio 1): title: PMCA-3_CTL2,source: PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 2),tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 titolo        : PMCA-3_CTL2
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 sorgente      : PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 2)
+      GSM7548882
+        grezzo (Stadio 1): title: PMCA-3_CTL3,source: PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 3),tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 titolo        : PMCA-3_CTL3
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 sorgente      : PMCA-3 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 3)
+
+CONFRONTO  GSE236502__GSE236502__grp_0003_vs_grp_0004__1
+  studio: GSE236502
+  TRATTATO  (n=3)  etichetta Stadio 2: TM00351 Paclitaxel
+      gruppo Stadio 2: grp_0003
+      GSM7548871
+        grezzo (Stadio 1): title: TM00351_PTX1,source: TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 1),tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 titolo        : TM00351_PTX1
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 sorgente      : TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 1)
+      GSM7548872
+        grezzo (Stadio 1): title: TM00351_PTX2,source: TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 2),tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 titolo        : TM00351_PTX2
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 sorgente      : TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 2)
+      GSM7548873
+        grezzo (Stadio 1): title: TM00351_PTX3,source: TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 3),tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 titolo        : TM00351_PTX3
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Intraperitoneal paclitaxel
+        H5 sorgente      : TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Intraperitoneal paclitaxel (Replicate 3)
+  CONTROLLO  (n=2)  etichetta Stadio 2: TM00351 Saline Control
+      gruppo Stadio 2: grp_0004
+      GSM7548874
+        grezzo (Stadio 1): title: TM00351_CTL1,source: TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 1),tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 titolo        : TM00351_CTL1
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 sorgente      : TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 1)
+      GSM7548875
+        grezzo (Stadio 1): title: TM00351_CTL2,source: TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 2),tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 titolo        : TM00351_CTL2
+        H5 caratteristiche: tissue: Appendiceal Adenocarcinoma,treatment: Saline control
+        H5 sorgente      : TM00351 PDX Model of Appendiceal Adenocarcinoma tumor treated with Saline control (Replicate 2)
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE113685     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE135215     campioni nell'H5:   65 | collocati dallo Stadio 2:   65 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE199800     campioni nell'H5: 1655 | collocati dallo Stadio 2: 1489 | MAI COLLOCATI:  166 | usati in questa meta-analisi: 35 campioni distinti (35 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5985001, GSM5985002, GSM5985033, GSM5985054, GSM5985058, GSM5985081, GSM5985083, GSM5985108, GSM5985157, GSM5985173, GSM5985179, GSM5985186 ... (+154)
+  GSE204825     campioni nell'H5:   64 | collocati dallo Stadio 2:   64 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 21 campioni distinti (21 righe: i controlli servono piu' confronti)
+  GSE215975     campioni nell'H5:   32 | collocati dallo Stadio 2:   32 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE236502     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+

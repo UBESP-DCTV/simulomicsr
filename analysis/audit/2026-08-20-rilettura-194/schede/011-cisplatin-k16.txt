@@ -1,0 +1,857 @@
+META-ANALISI 011 di 194
+==============================================================================
+nome            : cisplatin
+entita (ID)     : CHEBI:27899
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_021e875e
+studi poolati   : 16   confronti: 25   campioni: 127
+geni significativi: 1027   I2 mediano: 97.4
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE119978__GSE119978__H358_Cisplatin_vs_H358_Vehicle__1
+  studio: GSE119978
+  TRATTATO  (n=2)  etichetta Stadio 2: H358 Cisplatin
+      gruppo Stadio 2: grp_0008
+      GSM3389670
+        grezzo (Stadio 1): title: H358-CDDP-T-1,source: Non-small cell lung cancer cell line,cell line: H358,treatment: Cisplatin,extract: Total cells
+        H5 titolo        : H358-CDDP-T-1
+        H5 caratteristiche: cell line: H358,treatment: Cisplatin,extract: Total cells
+        H5 sorgente      : Non-small cell lung cancer cell line
+      GSM3389673
+        grezzo (Stadio 1): title: H358-CDDP-T-2,source: Non-small cell lung cancer cell line,cell line: H358,treatment: Cisplatin,extract: Total cells
+        H5 titolo        : H358-CDDP-T-2
+        H5 caratteristiche: cell line: H358,treatment: Cisplatin,extract: Total cells
+        H5 sorgente      : Non-small cell lung cancer cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: H358 Vehicle (DMSO)
+      gruppo Stadio 2: grp_0007
+      GSM3389669
+        grezzo (Stadio 1): title: H358-DMSO-T-1,source: Non-small cell lung cancer cell line,cell line: H358,treatment: Vehicle (DMSO),extract: Total cells
+        H5 titolo        : H358-DMSO-T-1
+        H5 caratteristiche: cell line: H358,treatment: Vehicle (DMSO),extract: Total cells
+        H5 sorgente      : Non-small cell lung cancer cell line
+      GSM3389672
+        grezzo (Stadio 1): title: H358-DMSO-T-2,source: Non-small cell lung cancer cell line,cell line: H358,treatment: Vehicle (DMSO),extract: Total cells
+        H5 titolo        : H358-DMSO-T-2
+        H5 caratteristiche: cell line: H358,treatment: Vehicle (DMSO),extract: Total cells
+        H5 sorgente      : Non-small cell lung cancer cell line
+      GSM3389675
+        grezzo (Stadio 1): title: H358-DMSO-T-3,source: Non-small cell lung cancer cell line,cell line: H358,treatment: Vehicle (DMSO),extract: Total cells
+        H5 titolo        : H358-DMSO-T-3
+        H5 caratteristiche: cell line: H358,treatment: Vehicle (DMSO),extract: Total cells
+        H5 sorgente      : Non-small cell lung cancer cell line
+
+CONFRONTO  GSE145085__GSE145085__grp_0001_vs_grp_0002__1
+  studio: GSE145085
+  TRATTATO  (n=4)  etichetta Stadio 2: Kidney Organoids Treated with Cisplatin
+      gruppo Stadio 2: grp_0001
+      GSM4306272
+        grezzo (Stadio 1): title: Cisplatin-1,source: kidney organoids,tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: 4 x 5 ÂµM cisplatin
+        H5 titolo        : Cisplatin-1
+        H5 caratteristiche: tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: 4 x 5 ÂµM cisplatin
+        H5 sorgente      : kidney organoids
+      GSM4306273
+        grezzo (Stadio 1): title: Cisplatin-2,source: kidney organoids,tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: 4 x 5 ÂµM cisplatin
+        H5 titolo        : Cisplatin-2
+        H5 caratteristiche: tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: 4 x 5 ÂµM cisplatin
+        H5 sorgente      : kidney organoids
+      GSM4306274
+        grezzo (Stadio 1): title: Cisplatin-3,source: kidney organoids,tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: 4 x 5 ÂµM cisplatin
+        H5 titolo        : Cisplatin-3
+        H5 caratteristiche: tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: 4 x 5 ÂµM cisplatin
+        H5 sorgente      : kidney organoids
+      GSM4306275
+        grezzo (Stadio 1): title: Cisplatin-4,source: kidney organoids,tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: 4 x 5 ÂµM cisplatin
+        H5 titolo        : Cisplatin-4
+        H5 caratteristiche: tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: 4 x 5 ÂµM cisplatin
+        H5 sorgente      : kidney organoids
+  CONTROLLO  (n=4)  etichetta Stadio 2: Untreated Kidney Organoids
+      gruppo Stadio 2: grp_0002
+      GSM4306268
+        grezzo (Stadio 1): title: Control-1,source: kidney organoids,tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: untreated
+        H5 titolo        : Control-1
+        H5 caratteristiche: tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: untreated
+        H5 sorgente      : kidney organoids
+      GSM4306269
+        grezzo (Stadio 1): title: Control-2,source: kidney organoids,tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: untreated
+        H5 titolo        : Control-2
+        H5 caratteristiche: tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: untreated
+        H5 sorgente      : kidney organoids
+      GSM4306270
+        grezzo (Stadio 1): title: Control-3,source: kidney organoids,tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: untreated
+        H5 titolo        : Control-3
+        H5 caratteristiche: tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: untreated
+        H5 sorgente      : kidney organoids
+      GSM4306271
+        grezzo (Stadio 1): title: Control-4,source: kidney organoids,tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: untreated
+        H5 titolo        : Control-4
+        H5 caratteristiche: tissue: kidney organoids,cell line: MANZ-2-2 iPSC line,genotype: wild-type,treatment: untreated
+        H5 sorgente      : kidney organoids
+
+CONFRONTO  GSE157069__GSE157069__cisplatin_vs_vehicle__1
+  studio: GSE157069
+  TRATTATO  (n=2)  etichetta Stadio 2: cisplatin
+      gruppo Stadio 2: grp_0002
+      GSM4751911
+        grezzo (Stadio 1): title: WT_cisplatin_rep1,source: invasive breast cancer cells,cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: cisplatin
+        H5 titolo        : WT_cisplatin_rep1
+        H5 caratteristiche: cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: cisplatin
+        H5 sorgente      : invasive breast cancer cells
+      GSM4751912
+        grezzo (Stadio 1): title: WT_cisplatin_rep2,source: invasive breast cancer cells,cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: cisplatin
+        H5 titolo        : WT_cisplatin_rep2
+        H5 caratteristiche: cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: cisplatin
+        H5 sorgente      : invasive breast cancer cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: vehicle
+      gruppo Stadio 2: grp_0003
+      GSM4751909
+        grezzo (Stadio 1): title: WT_Control_rep1,source: invasive breast cancer cells,cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: control
+        H5 titolo        : WT_Control_rep1
+        H5 caratteristiche: cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: control
+        H5 sorgente      : invasive breast cancer cells
+      GSM4751910
+        grezzo (Stadio 1): title: WT_Control_rep2,source: invasive breast cancer cells,cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: control
+        H5 titolo        : WT_Control_rep2
+        H5 caratteristiche: cell line: MDA-MB-231,passage: 10-15,genotype: Wild type,treatment: control
+        H5 sorgente      : invasive breast cancer cells
+
+CONFRONTO  GSE161800__GSE161800__grp_0003_vs_grp_0004__1
+  studio: GSE161800
+  TRATTATO  (n=2)  etichetta Stadio 2: Cisplatin-treated Proliferative Cells (Sample 2)
+      gruppo Stadio 2: grp_0003
+      GSM4914646
+        grezzo (Stadio 1): title: A549 Cisplatin Post-Sort Proliferative#1,source: Adenocarcinomic human alveolar basal epithelial cells,cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Post-sorted,phenotype: Proliferative,treatment: Cisplatin pulse
+        H5 titolo        : A549 Cisplatin Post-Sort Proliferative#1
+        H5 caratteristiche: cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Post-sorted,phenotype: Proliferative,treatment: Cisplatin pulse
+        H5 sorgente      : Adenocarcinomic human alveolar basal epithelial cells
+      GSM4914648
+        grezzo (Stadio 1): title: A549 Cisplatin Post-Sort Proliferative#3,source: Adenocarcinomic human alveolar basal epithelial cells,cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Post-sorted,phenotype: Proliferative,treatment: Cisplatin pulse
+        H5 titolo        : A549 Cisplatin Post-Sort Proliferative#3
+        H5 caratteristiche: cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Post-sorted,phenotype: Proliferative,treatment: Cisplatin pulse
+        H5 sorgente      : Adenocarcinomic human alveolar basal epithelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated Control
+      gruppo Stadio 2: grp_0004
+      GSM4914637
+        grezzo (Stadio 1): title: A549 Control#1,source: Adenocarcinomic human alveolar basal epithelial cells,cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Pre-sorted,phenotype: Asynchronous,treatment: Untreated
+        H5 titolo        : A549 Control#1
+        H5 caratteristiche: cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Pre-sorted,phenotype: Asynchronous,treatment: Untreated
+        H5 sorgente      : Adenocarcinomic human alveolar basal epithelial cells
+      GSM4914638
+        grezzo (Stadio 1): title: A549 Control#2,source: Adenocarcinomic human alveolar basal epithelial cells,cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Pre-sorted,phenotype: Asynchronous,treatment: Untreated
+        H5 titolo        : A549 Control#2
+        H5 caratteristiche: cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Pre-sorted,phenotype: Asynchronous,treatment: Untreated
+        H5 sorgente      : Adenocarcinomic human alveolar basal epithelial cells
+      GSM4914639
+        grezzo (Stadio 1): title: A549 Control#3,source: Adenocarcinomic human alveolar basal epithelial cells,cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Pre-sorted,phenotype: Asynchronous,treatment: Untreated
+        H5 titolo        : A549 Control#3
+        H5 caratteristiche: cell line: A549,cell type: Lung adenocarcinoma cell line,facs sorting: Pre-sorted,phenotype: Asynchronous,treatment: Untreated
+        H5 sorgente      : Adenocarcinomic human alveolar basal epithelial cells
+
+CONFRONTO  GSE163377__GSE163377__grp_0020_vs_grp_0015__1
+  studio: GSE163377
+  TRATTATO  (n=2)  etichetta Stadio 2: CDDP 50uM 10h
+      gruppo Stadio 2: grp_0020
+      GSM4977824
+        grezzo (Stadio 1): title: CDDP 10h rep2,source: A375,cell line: A375,cell type: Human melanoma,treatment: CDDP 50uM,recovery time: 10 hours
+        H5 titolo        : CDDP 10h rep2
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: CDDP 50uM,recovery time: 10 hours
+        H5 sorgente      : A375
+      GSM4977825
+        grezzo (Stadio 1): title: CDDP 10h rep3,source: A375,cell line: A375,cell type: Human melanoma,treatment: CDDP 50uM,recovery time: 10 hours
+        H5 titolo        : CDDP 10h rep3
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: CDDP 50uM,recovery time: 10 hours
+        H5 sorgente      : A375
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated 10h
+      gruppo Stadio 2: grp_0015
+      GSM4977814
+        grezzo (Stadio 1): title: CTRL 10h rep1,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 titolo        : CTRL 10h rep1
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 sorgente      : A375
+      GSM4977815
+        grezzo (Stadio 1): title: CTRL 10h rep2,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 titolo        : CTRL 10h rep2
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 sorgente      : A375
+      GSM4977816
+        grezzo (Stadio 1): title: CTRL 10h rep3,source: A375,cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 titolo        : CTRL 10h rep3
+        H5 caratteristiche: cell line: A375,cell type: Human melanoma,treatment: untreated,recovery time: 10 hours
+        H5 sorgente      : A375
+
+CONFRONTO  GSE165767__GSE165767__grp_0001_vs_grp_0003__1
+  studio: GSE165767
+  TRATTATO  (n=2)  etichetta Stadio 2: T24 + cisplatin
+      gruppo Stadio 2: grp_0001
+      GSM5049705
+        grezzo (Stadio 1): title: T24-DDP2,source: human bladder cancer cell line T24,tissue: bladder,treatment: cisplatin,cell line: T24
+        H5 titolo        : T24-DDP2
+        H5 caratteristiche: tissue: bladder,treatment: cisplatin,cell line: T24
+        H5 sorgente      : human bladder cancer cell line T24
+      GSM5049706
+        grezzo (Stadio 1): title: T24-DDP3,source: human bladder cancer cell line T24,tissue: bladder,treatment: cisplatin,cell line: T24
+        H5 titolo        : T24-DDP3
+        H5 caratteristiche: tissue: bladder,treatment: cisplatin,cell line: T24
+        H5 sorgente      : human bladder cancer cell line T24
+  CONTROLLO  (n=3)  etichetta Stadio 2: T24 + PBS
+      gruppo Stadio 2: grp_0003
+      GSM5049701
+        grezzo (Stadio 1): title: T24-NC1,source: human bladder cancer cell line T24,tissue: bladder,treatment: PBS,cell line: T24
+        H5 titolo        : T24-NC1
+        H5 caratteristiche: tissue: bladder,treatment: PBS,cell line: T24
+        H5 sorgente      : human bladder cancer cell line T24
+      GSM5049702
+        grezzo (Stadio 1): title: T24-NC2,source: human bladder cancer cell line T24,tissue: bladder,treatment: PBS,cell line: T24
+        H5 titolo        : T24-NC2
+        H5 caratteristiche: tissue: bladder,treatment: PBS,cell line: T24
+        H5 sorgente      : human bladder cancer cell line T24
+      GSM5049703
+        grezzo (Stadio 1): title: T24-NC3,source: human bladder cancer cell line T24,tissue: bladder,treatment: PBS,cell line: T24
+        H5 titolo        : T24-NC3
+        H5 caratteristiche: tissue: bladder,treatment: PBS,cell line: T24
+        H5 sorgente      : human bladder cancer cell line T24
+
+CONFRONTO  GSE173201__GSE173201__A2780_cisplatin_vs_A2780_control__1
+  studio: GSE173201
+  TRATTATO  (n=3)  etichetta Stadio 2: A2780 cells treated with cisplatin
+      gruppo Stadio 2: grp_A2780_cisplatin
+      GSM5261781
+        grezzo (Stadio 1): title: RNA-Seq A2780 cisplatin rep1,source: ovarian carcinoma,cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780 cisplatin rep1
+        H5 caratteristiche: cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+      GSM5261782
+        grezzo (Stadio 1): title: RNA-Seq A2780 cisplatin rep2,source: ovarian carcinoma,cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780 cisplatin rep2
+        H5 caratteristiche: cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+      GSM5261783
+        grezzo (Stadio 1): title: RNA-Seq A2780 cisplatin rep3,source: ovarian carcinoma,cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780 cisplatin rep3
+        H5 caratteristiche: cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: A2780 cells treated with vehicle control
+      gruppo Stadio 2: grp_A2780_control
+      GSM5261775
+        grezzo (Stadio 1): title: RNA-Seq A2780 control rep1,source: ovarian carcinoma,cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780 control rep1
+        H5 caratteristiche: cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+      GSM5261776
+        grezzo (Stadio 1): title: RNA-Seq A2780 control rep2,source: ovarian carcinoma,cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780 control rep2
+        H5 caratteristiche: cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+      GSM5261777
+        grezzo (Stadio 1): title: RNA-Seq A2780 control rep3,source: ovarian carcinoma,cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780 control rep3
+        H5 caratteristiche: cell line: A2780,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+
+CONFRONTO  GSE173201__GSE173201__A2780cis_cisplatin_vs_A2780cis_control__1
+  studio: GSE173201
+  TRATTATO  (n=2)  etichetta Stadio 2: A2780cis cells treated with cisplatin
+      gruppo Stadio 2: grp_A2780cis_cisplatin
+      GSM5261784
+        grezzo (Stadio 1): title: RNA-Seq A2780cis cisplatin rep1,source: ovarian carcinoma,cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780cis cisplatin rep1
+        H5 caratteristiche: cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+      GSM5261786
+        grezzo (Stadio 1): title: RNA-Seq A2780cis cisplatin rep3,source: ovarian carcinoma,cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780cis cisplatin rep3
+        H5 caratteristiche: cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: 200Î¼M,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: A2780cis cells treated with vehicle control
+      gruppo Stadio 2: grp_A2780cis_control
+      GSM5261778
+        grezzo (Stadio 1): title: RNA-Seq A2780cis control rep1,source: ovarian carcinoma,cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780cis control rep1
+        H5 caratteristiche: cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+      GSM5261779
+        grezzo (Stadio 1): title: RNA-Seq A2780cis control rep2,source: ovarian carcinoma,cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780cis control rep2
+        H5 caratteristiche: cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+      GSM5261780
+        grezzo (Stadio 1): title: RNA-Seq A2780cis control rep3,source: ovarian carcinoma,cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 titolo        : RNA-Seq A2780cis control rep3
+        H5 caratteristiche: cell line: A2780cis,tissue: ovarian carcinoma,cisplatin treatment: control,treatment duration: 3h
+        H5 sorgente      : ovarian carcinoma
+
+CONFRONTO  GSE209769__GSE209769__grp_0003_vs_grp_0002__1
+  studio: GSE209769
+  TRATTATO  (n=3)  etichetta Stadio 2: A375 cells treated with cisplatin
+      gruppo Stadio 2: grp_0003
+      GSM6395050
+        grezzo (Stadio 1): title: A375CDDP rep1,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Cisplatin
+        H5 titolo        : A375CDDP rep1
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Cisplatin
+        H5 sorgente      : skin
+      GSM6395051
+        grezzo (Stadio 1): title: A375CDDP rep2,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Cisplatin
+        H5 titolo        : A375CDDP rep2
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Cisplatin
+        H5 sorgente      : skin
+      GSM6395052
+        grezzo (Stadio 1): title: A375CDDP rep3,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Cisplatin
+        H5 titolo        : A375CDDP rep3
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Cisplatin
+        H5 sorgente      : skin
+  CONTROLLO  (n=3)  etichetta Stadio 2: A375 cells with normal culture
+      gruppo Stadio 2: grp_0002
+      GSM6395044
+        grezzo (Stadio 1): title: A375NC rep1,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 titolo        : A375NC rep1
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 sorgente      : skin
+      GSM6395045
+        grezzo (Stadio 1): title: A375NC rep2,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 titolo        : A375NC rep2
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 sorgente      : skin
+      GSM6395046
+        grezzo (Stadio 1): title: A375NC rep3,source: skin,tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 titolo        : A375NC rep3
+        H5 caratteristiche: tissue: skin,cell line: A375,cell type: Melanoma cells,genotype: BRAFV600E,treatment: Normal culture
+        H5 sorgente      : skin
+
+CONFRONTO  GSE213102__GSE213102__3B1A_Cisplatin_vs_3B1A_Ctrl__1
+  studio: GSE213102
+  TRATTATO  (n=2)  etichetta Stadio 2: 3B1A Cisplatin
+      gruppo Stadio 2: grp_3B1A_Cisplatin
+      GSM6571708
+        grezzo (Stadio 1): title: 3B1A cells, CDDP, biol rep1,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: 3B1A,genotype: WT,treatment: Cisplatin
+        H5 titolo        : 3B1A cells, CDDP, biol rep1
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: 3B1A,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571710
+        grezzo (Stadio 1): title: 3B1A cells, CDDP, biol rep3,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: 3B1A,genotype: WT,treatment: Cisplatin
+        H5 titolo        : 3B1A cells, CDDP, biol rep3
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: 3B1A,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+  CONTROLLO  (n=2)  etichetta Stadio 2: 3B1A Control
+      gruppo Stadio 2: grp_3B1A_Ctrl
+      GSM6571706
+        grezzo (Stadio 1): title: 3B1A cells, CT, biol rep2,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: 3B1A,genotype: WT,treatment: Control
+        H5 titolo        : 3B1A cells, CT, biol rep2
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: 3B1A,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571707
+        grezzo (Stadio 1): title: 3B1A cells, CT, biol rep3,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: 3B1A,genotype: WT,treatment: Control
+        H5 titolo        : 3B1A cells, CT, biol rep3
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: 3B1A,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+
+CONFRONTO  GSE213102__GSE213102__A549_Cisplatin_vs_A549_Ctrl__1
+  studio: GSE213102
+  TRATTATO  (n=2)  etichetta Stadio 2: A549 Cisplatin
+      gruppo Stadio 2: grp_A549_Cisplatin
+      GSM6571690
+        grezzo (Stadio 1): title: A549 cells, CDDP,  biol rep1,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Cisplatin
+        H5 titolo        : A549 cells, CDDP,  biol rep1
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571691
+        grezzo (Stadio 1): title: A549 cells, CDDP, biol rep2,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Cisplatin
+        H5 titolo        : A549 cells, CDDP, biol rep2
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: A549 Control
+      gruppo Stadio 2: grp_A549_Ctrl
+      GSM6571687
+        grezzo (Stadio 1): title: A549 cells, CT, biol rep1,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Control
+        H5 titolo        : A549 cells, CT, biol rep1
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571688
+        grezzo (Stadio 1): title: A549 cells, CT, biol rep2,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Control
+        H5 titolo        : A549 cells, CT, biol rep2
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571689
+        grezzo (Stadio 1): title: A549 cells, CT, biol rep3,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Control
+        H5 titolo        : A549 cells, CT, biol rep3
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: A549,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+
+CONFRONTO  GSE213102__GSE213102__H1299_Cisplatin_vs_H1299_Ctrl__1
+  studio: GSE213102
+  TRATTATO  (n=3)  etichetta Stadio 2: H1299 Cisplatin
+      gruppo Stadio 2: grp_H1299_Cisplatin
+      GSM6571696
+        grezzo (Stadio 1): title: H1299 cells, CDDP, biol rep1,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Cisplatin
+        H5 titolo        : H1299 cells, CDDP, biol rep1
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571697
+        grezzo (Stadio 1): title: H1299 cells, CDDP, biol rep2,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Cisplatin
+        H5 titolo        : H1299 cells, CDDP, biol rep2
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571698
+        grezzo (Stadio 1): title: H1299 cells, CDDP, biol rep3,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Cisplatin
+        H5 titolo        : H1299 cells, CDDP, biol rep3
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: H1299 Control
+      gruppo Stadio 2: grp_H1299_Ctrl
+      GSM6571693
+        grezzo (Stadio 1): title: H1299 cells, CT, biol rep1,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Control
+        H5 titolo        : H1299 cells, CT, biol rep1
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571694
+        grezzo (Stadio 1): title: H1299 cells, CT, biol rep2,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Control
+        H5 titolo        : H1299 cells, CT, biol rep2
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571695
+        grezzo (Stadio 1): title: H1299 cells, CT, biol rep3,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Control
+        H5 titolo        : H1299 cells, CT, biol rep3
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1299,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+
+CONFRONTO  GSE213102__GSE213102__H1573_Cisplatin_vs_H1573_Ctrl__1
+  studio: GSE213102
+  TRATTATO  (n=2)  etichetta Stadio 2: H1573 Cisplatin
+      gruppo Stadio 2: grp_H1573_Cisplatin
+      GSM6571702
+        grezzo (Stadio 1): title: H1573 cells, CDDP, biol rep1,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Cisplatin
+        H5 titolo        : H1573 cells, CDDP, biol rep1
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571704
+        grezzo (Stadio 1): title: H1573 cells, CDDP, biol rep3,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Cisplatin
+        H5 titolo        : H1573 cells, CDDP, biol rep3
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Non-small cell lung cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: H1573 Control
+      gruppo Stadio 2: grp_H1573_Ctrl
+      GSM6571699
+        grezzo (Stadio 1): title: H1573 cells, CT, biol rep1,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Control
+        H5 titolo        : H1573 cells, CT, biol rep1
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571700
+        grezzo (Stadio 1): title: H1573 cells, CT, biol rep2,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Control
+        H5 titolo        : H1573 cells, CT, biol rep2
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+      GSM6571701
+        grezzo (Stadio 1): title: H1573 cells, CT, biol rep3,source: Non-small cell lung cancer,tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Control
+        H5 titolo        : H1573 cells, CT, biol rep3
+        H5 caratteristiche: tissue: Non-small cell lung cancer,cell line: H1573,genotype: WT,treatment: Control
+        H5 sorgente      : Non-small cell lung cancer
+
+CONFRONTO  GSE215254__GSE215254__Cisplatin_3D_48h_vs_Vehicle_3D_48h__4
+  studio: GSE215254
+  TRATTATO  (n=2)  etichetta Stadio 2: Cisplatin 3D 48h
+      gruppo Stadio 2: grp_0018
+      GSM6630455
+        grezzo (Stadio 1): title: 48hr_cisplatin_2D_replicate2_52,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 48hour
+        H5 titolo        : 48hr_cisplatin_2D_replicate2_52
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 48hour
+        H5 sorgente      : RPTEC
+      GSM6630458
+        grezzo (Stadio 1): title: 48hr_cisplatin_3D_replicate2_55,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 48hour
+        H5 titolo        : 48hr_cisplatin_3D_replicate2_55
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 48hour
+        H5 sorgente      : RPTEC
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle 3D 48h
+      gruppo Stadio 2: grp_0009
+      GSM6630463
+        grezzo (Stadio 1): title: 48hr_control_3D_replicate1_48,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 48hour
+        H5 titolo        : 48hr_control_3D_replicate1_48
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 48hour
+        H5 sorgente      : RPTEC
+      GSM6630465
+        grezzo (Stadio 1): title: 48hr_control_3D_replicate3_60,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 48hour
+        H5 titolo        : 48hr_control_3D_replicate3_60
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 48hour
+        H5 sorgente      : RPTEC
+
+CONFRONTO  GSE215254__GSE215254__Cisplatin_3D_4h_vs_Vehicle_3D_4h__1
+  studio: GSE215254
+  TRATTATO  (n=2)  etichetta Stadio 2: Cisplatin 3D 4h
+      gruppo Stadio 2: grp_0012
+      GSM6630473
+        grezzo (Stadio 1): title: 4hr_cisplatin_2D_replicate2_16,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 4hour
+        H5 titolo        : 4hr_cisplatin_2D_replicate2_16
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 4hour
+        H5 sorgente      : RPTEC
+      GSM6630474
+        grezzo (Stadio 1): title: 4hr_cisplatin_2D_replicate3_22,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 4hour
+        H5 titolo        : 4hr_cisplatin_2D_replicate3_22
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 4hour
+        H5 sorgente      : RPTEC
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle 3D 4h
+      gruppo Stadio 2: grp_0008
+      GSM6630481
+        grezzo (Stadio 1): title: 4hr_control_3D_replicate1_12,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 4hour
+        H5 titolo        : 4hr_control_3D_replicate1_12
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 4hour
+        H5 sorgente      : RPTEC
+      GSM6630483
+        grezzo (Stadio 1): title: 4hr_control_3D_replicate3_24,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 4hour
+        H5 titolo        : 4hr_control_3D_replicate3_24
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 4hour
+        H5 sorgente      : RPTEC
+
+CONFRONTO  GSE215254__GSE215254__Cisplatin_3D_4h_vs_Vehicle_3D_4h__3
+  studio: GSE215254
+  TRATTATO  (n=2)  etichetta Stadio 2: Cisplatin 3D 4h
+      gruppo Stadio 2: grp_0017
+      GSM6630475
+        grezzo (Stadio 1): title: 4hr_cisplatin_3D_replicate1_13,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 4hour
+        H5 titolo        : 4hr_cisplatin_3D_replicate1_13
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 4hour
+        H5 sorgente      : RPTEC
+      GSM6630477
+        grezzo (Stadio 1): title: 4hr_cisplatin_3D_replicate3_25,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 4hour
+        H5 titolo        : 4hr_cisplatin_3D_replicate3_25
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: cisplatin_10uM,time: 4hour
+        H5 sorgente      : RPTEC
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle 3D 4h
+      gruppo Stadio 2: grp_0008
+      GSM6630481
+        grezzo (Stadio 1): title: 4hr_control_3D_replicate1_12,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 4hour
+        H5 titolo        : 4hr_control_3D_replicate1_12
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 4hour
+        H5 sorgente      : RPTEC
+      GSM6630483
+        grezzo (Stadio 1): title: 4hr_control_3D_replicate3_24,source: RPTEC,cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 4hour
+        H5 titolo        : 4hr_control_3D_replicate3_24
+        H5 caratteristiche: cell line: RPTEC,cell type: proximal tubule epithelial cells,treatment: vehicle_0uM,time: 4hour
+        H5 sorgente      : RPTEC
+
+CONFRONTO  GSE223839__GSE223839__grp_0015_vs_grp_0014__1
+  studio: GSE223839
+  TRATTATO  (n=2)  etichetta Stadio 2: HepG2 + Cisplatin (3.125 uM) + RTD Overexpression
+      gruppo Stadio 2: grp_0015
+      GSM6997653
+        grezzo (Stadio 1): title: HepG2 RTD cells, Cisplatin treated Rep 1,source: Liver,tissue: Liver,cell line: HepG2,cell type: Hepatocyte,genotype: RTD Overexpression,treatment: Cisplatin 3.125 uM
+        H5 titolo        : HepG2 RTD cells, Cisplatin treated Rep 1
+        H5 caratteristiche: tissue: Liver,cell line: HepG2,cell type: Hepatocyte,genotype: RTD Overexpression,treatment: Cisplatin 3.125 uM
+        H5 sorgente      : Liver
+      GSM6997654
+        grezzo (Stadio 1): title: HepG2 RTD cells, Cisplatin treated Rep 2,source: Liver,tissue: Liver,cell line: HepG2,cell type: Hepatocyte,genotype: RTD Overexpression,treatment: Cisplatin 3.125 uM
+        H5 titolo        : HepG2 RTD cells, Cisplatin treated Rep 2
+        H5 caratteristiche: tissue: Liver,cell line: HepG2,cell type: Hepatocyte,genotype: RTD Overexpression,treatment: Cisplatin 3.125 uM
+        H5 sorgente      : Liver
+  CONTROLLO  (n=2)  etichetta Stadio 2: HepG2 RTD Overexpression
+      gruppo Stadio 2: grp_0014
+      GSM6997651
+        grezzo (Stadio 1): title: HepG2 RTD cells, untreated Rep 1,source: Liver,tissue: Liver,cell line: HepG2,cell type: Hepatocyte,genotype: RTD Overexpression,treatment: Untreated
+        H5 titolo        : HepG2 RTD cells, untreated Rep 1
+        H5 caratteristiche: tissue: Liver,cell line: HepG2,cell type: Hepatocyte,genotype: RTD Overexpression,treatment: Untreated
+        H5 sorgente      : Liver
+      GSM6997652
+        grezzo (Stadio 1): title: HepG2 RTD cells, untreated Rep 2,source: Liver,tissue: Liver,cell line: HepG2,cell type: Hepatocyte,genotype: RTD Overexpression,treatment: Untreated
+        H5 titolo        : HepG2 RTD cells, untreated Rep 2
+        H5 caratteristiche: tissue: Liver,cell line: HepG2,cell type: Hepatocyte,genotype: RTD Overexpression,treatment: Untreated
+        H5 sorgente      : Liver
+
+CONFRONTO  GSE235549__GSE235549__grp_0001_vs_grp_0002__1
+  studio: GSE235549
+  TRATTATO  (n=2)  etichetta Stadio 2: Cisplatin 0 days
+      gruppo Stadio 2: grp_0001
+      GSM7505112
+        grezzo (Stadio 1): title: HCC1806 Cells, Platinum treated 0 days post treatment, R2,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin,time point: 0 days
+        H5 titolo        : HCC1806 Cells, Platinum treated 0 days post treatment, R2
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin,time point: 0 days
+        H5 sorgente      : Breast
+      GSM7505113
+        grezzo (Stadio 1): title: HCC1806 Cells, Platinum treated 0 days post treatment, R3,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin,time point: 0 days
+        H5 titolo        : HCC1806 Cells, Platinum treated 0 days post treatment, R3
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin,time point: 0 days
+        H5 sorgente      : Breast
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle
+      gruppo Stadio 2: grp_0002
+      GSM7505108
+        grezzo (Stadio 1): title: HCC1806 Cells, Control, R1,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : HCC1806 Cells, Control, R1
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Breast
+      GSM7505109
+        grezzo (Stadio 1): title: HCC1806 Cells, Control, R2,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : HCC1806 Cells, Control, R2
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Breast
+      GSM7505110
+        grezzo (Stadio 1): title: HCC1806 Cells, Control, R3,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : HCC1806 Cells, Control, R3
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Breast
+
+CONFRONTO  GSE235549__GSE235549__grp_0007_vs_grp_0002__1
+  studio: GSE235549
+  TRATTATO  (n=2)  etichetta Stadio 2: Cisplatin 5 days
+      gruppo Stadio 2: grp_0007
+      GSM7505114
+        grezzo (Stadio 1): title: HCC1806 Cells, Platinum treated 5 days post treatment, R1,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin,time point: 5 days
+        H5 titolo        : HCC1806 Cells, Platinum treated 5 days post treatment, R1
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin,time point: 5 days
+        H5 sorgente      : Breast
+      GSM7505116
+        grezzo (Stadio 1): title: HCC1806 Cells, Platinum treated 5 days post treatment, R3,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin,time point: 5 days
+        H5 titolo        : HCC1806 Cells, Platinum treated 5 days post treatment, R3
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin,time point: 5 days
+        H5 sorgente      : Breast
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle
+      gruppo Stadio 2: grp_0002
+      GSM7505108
+        grezzo (Stadio 1): title: HCC1806 Cells, Control, R1,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : HCC1806 Cells, Control, R1
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Breast
+      GSM7505109
+        grezzo (Stadio 1): title: HCC1806 Cells, Control, R2,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : HCC1806 Cells, Control, R2
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Breast
+      GSM7505110
+        grezzo (Stadio 1): title: HCC1806 Cells, Control, R3,source: Breast,tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : HCC1806 Cells, Control, R3
+        H5 caratteristiche: tissue: Breast,cell line: HCC1806,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Breast
+
+CONFRONTO  GSE235681__GSE235681__A549_cisplatin_vs_A549_untreated__1
+  studio: GSE235681
+  TRATTATO  (n=2)  etichetta Stadio 2: A549 cells treated with cisplatin
+      gruppo Stadio 2: grp_A549_cisplatin
+      GSM7507617
+        grezzo (Stadio 1): title: RNA-Seq A549 Cisplatin rep2,source: Non-small cell lung cancer,cell line: A549,tissue: Non-small cell lung cancer,treatment: 200Î¼M of cisplatin,treatment duration: 6h
+        H5 titolo        : RNA-Seq A549 Cisplatin rep2
+        H5 caratteristiche: cell line: A549,tissue: Non-small cell lung cancer,treatment: 200Î¼M of cisplatin,treatment duration: 6h
+        H5 sorgente      : Non-small cell lung cancer
+      GSM7507618
+        grezzo (Stadio 1): title: RNA-Seq A549 Cisplatin rep3,source: Non-small cell lung cancer,cell line: A549,tissue: Non-small cell lung cancer,treatment: 200Î¼M of cisplatin,treatment duration: 6h
+        H5 titolo        : RNA-Seq A549 Cisplatin rep3
+        H5 caratteristiche: cell line: A549,tissue: Non-small cell lung cancer,treatment: 200Î¼M of cisplatin,treatment duration: 6h
+        H5 sorgente      : Non-small cell lung cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: A549 cells untreated
+      gruppo Stadio 2: grp_A549_untreated
+      GSM7507619
+        grezzo (Stadio 1): title: RNA-Seq A549 control rep1,source: Non-small cell lung cancer,cell line: A549,tissue: Non-small cell lung cancer,treatment: untreated,treatment duration: 6h
+        H5 titolo        : RNA-Seq A549 control rep1
+        H5 caratteristiche: cell line: A549,tissue: Non-small cell lung cancer,treatment: untreated,treatment duration: 6h
+        H5 sorgente      : Non-small cell lung cancer
+      GSM7507620
+        grezzo (Stadio 1): title: RNA-Seq A549 control rep2,source: Non-small cell lung cancer,cell line: A549,tissue: Non-small cell lung cancer,treatment: untreated,treatment duration: 6h
+        H5 titolo        : RNA-Seq A549 control rep2
+        H5 caratteristiche: cell line: A549,tissue: Non-small cell lung cancer,treatment: untreated,treatment duration: 6h
+        H5 sorgente      : Non-small cell lung cancer
+      GSM7507621
+        grezzo (Stadio 1): title: RNA-Seq A549 control rep3,source: Non-small cell lung cancer,cell line: A549,tissue: Non-small cell lung cancer,treatment: untreated,treatment duration: 6h
+        H5 titolo        : RNA-Seq A549 control rep3
+        H5 caratteristiche: cell line: A549,tissue: Non-small cell lung cancer,treatment: untreated,treatment duration: 6h
+        H5 sorgente      : Non-small cell lung cancer
+
+CONFRONTO  GSE235681__GSE235681__GM12878_cisplatin_vs_GM12878_untreated__1
+  studio: GSE235681
+  TRATTATO  (n=2)  etichetta Stadio 2: GM12878 cells treated with cisplatin
+      gruppo Stadio 2: grp_GM12878_cisplatin
+      GSM7507628
+        grezzo (Stadio 1): title: RNA-Seq GM12878 Cisplatin rep1,source: B-cells lymphoblastoid,cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: 200Î¼M of cisplatin,treatment duration: 6h
+        H5 titolo        : RNA-Seq GM12878 Cisplatin rep1
+        H5 caratteristiche: cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: 200Î¼M of cisplatin,treatment duration: 6h
+        H5 sorgente      : B-cells lymphoblastoid
+      GSM7507630
+        grezzo (Stadio 1): title: RNA-Seq GM12878 Cisplatin rep3,source: B-cells lymphoblastoid,cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: 200Î¼M of cisplatin,treatment duration: 6h
+        H5 titolo        : RNA-Seq GM12878 Cisplatin rep3
+        H5 caratteristiche: cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: 200Î¼M of cisplatin,treatment duration: 6h
+        H5 sorgente      : B-cells lymphoblastoid
+  CONTROLLO  (n=3)  etichetta Stadio 2: GM12878 cells untreated
+      gruppo Stadio 2: grp_GM12878_untreated
+      GSM7507631
+        grezzo (Stadio 1): title: RNA-Seq GM12878 control rep1,source: B-cells lymphoblastoid,cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: untreated,treatment duration: 6h
+        H5 titolo        : RNA-Seq GM12878 control rep1
+        H5 caratteristiche: cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: untreated,treatment duration: 6h
+        H5 sorgente      : B-cells lymphoblastoid
+      GSM7507632
+        grezzo (Stadio 1): title: RNA-Seq GM12878 control rep2,source: B-cells lymphoblastoid,cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: untreated,treatment duration: 6h
+        H5 titolo        : RNA-Seq GM12878 control rep2
+        H5 caratteristiche: cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: untreated,treatment duration: 6h
+        H5 sorgente      : B-cells lymphoblastoid
+      GSM7507633
+        grezzo (Stadio 1): title: RNA-Seq GM12878 control rep3,source: B-cells lymphoblastoid,cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: untreated,treatment duration: 6h
+        H5 titolo        : RNA-Seq GM12878 control rep3
+        H5 caratteristiche: cell line: GM12878,tissue: B-cells lymphoblastoid,treatment: untreated,treatment duration: 6h
+        H5 sorgente      : B-cells lymphoblastoid
+
+CONFRONTO  GSE235908__GSE235908__grp_0001_vs_grp_0002__1
+  studio: GSE235908
+  TRATTATO  (n=3)  etichetta Stadio 2: 786-0 Cisplatin
+      gruppo Stadio 2: grp_0001
+      GSM7511773
+        grezzo (Stadio 1): title: 786-0 Cells, Platinum treated, Replicate1,source: Kidney,tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin
+        H5 titolo        : 786-0 Cells, Platinum treated, Replicate1
+        H5 caratteristiche: tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Kidney
+      GSM7511774
+        grezzo (Stadio 1): title: 786-0 Cells, Platinum treated, Replicate2,source: Kidney,tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin
+        H5 titolo        : 786-0 Cells, Platinum treated, Replicate2
+        H5 caratteristiche: tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Kidney
+      GSM7511775
+        grezzo (Stadio 1): title: 786-0 Cells, Platinum treated, Replicate3,source: Kidney,tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin
+        H5 titolo        : 786-0 Cells, Platinum treated, Replicate3
+        H5 caratteristiche: tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Kidney
+  CONTROLLO  (n=3)  etichetta Stadio 2: 786-0 Vehicle
+      gruppo Stadio 2: grp_0002
+      GSM7511770
+        grezzo (Stadio 1): title: 786-0 Cells, Control, Replicate1,source: Kidney,tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : 786-0 Cells, Control, Replicate1
+        H5 caratteristiche: tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Kidney
+      GSM7511771
+        grezzo (Stadio 1): title: 786-0 Cells, Control, Replicate2,source: Kidney,tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : 786-0 Cells, Control, Replicate2
+        H5 caratteristiche: tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Kidney
+      GSM7511772
+        grezzo (Stadio 1): title: 786-0 Cells, Control, Replicate3,source: Kidney,tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 titolo        : 786-0 Cells, Control, Replicate3
+        H5 caratteristiche: tissue: Kidney,cell line: 786-0,cell type: Cancer cell line,genotype: WT,treatment: Vehicle
+        H5 sorgente      : Kidney
+
+CONFRONTO  GSE249026__GSE249026__grp_0001_vs_grp_0002__1
+  studio: GSE249026
+  TRATTATO  (n=3)  etichetta Stadio 2: A2780 + Cisplatin
+      gruppo Stadio 2: grp_0001
+      GSM7925366
+        grezzo (Stadio 1): title: A2780 cells, Cispt, 96h, biol rep 1,source: ovary,tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.6 uM Cispt
+        H5 titolo        : A2780 cells, Cispt, 96h, biol rep 1
+        H5 caratteristiche: tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.6 uM Cispt
+        H5 sorgente      : ovary
+      GSM7925367
+        grezzo (Stadio 1): title: A2780 cells, Cispt, 96h, biol rep 2,source: ovary,tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.6 uM Cispt
+        H5 titolo        : A2780 cells, Cispt, 96h, biol rep 2
+        H5 caratteristiche: tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.6 uM Cispt
+        H5 sorgente      : ovary
+      GSM7925368
+        grezzo (Stadio 1): title: A2780 cells, Cispt, 96h, biol rep 3,source: ovary,tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.6 uM Cispt
+        H5 titolo        : A2780 cells, Cispt, 96h, biol rep 3
+        H5 caratteristiche: tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.6 uM Cispt
+        H5 sorgente      : ovary
+  CONTROLLO  (n=3)  etichetta Stadio 2: A2780 + DMSO
+      gruppo Stadio 2: grp_0002
+      GSM7925363
+        grezzo (Stadio 1): title: A2780 cells, UT(DMSO), 96h, biol rep 1,source: ovary,tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.5% DMSO
+        H5 titolo        : A2780 cells, UT(DMSO), 96h, biol rep 1
+        H5 caratteristiche: tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.5% DMSO
+        H5 sorgente      : ovary
+      GSM7925364
+        grezzo (Stadio 1): title: A2780 cells, UT(DMSO), 96h, biol rep 2,source: ovary,tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.5% DMSO
+        H5 titolo        : A2780 cells, UT(DMSO), 96h, biol rep 2
+        H5 caratteristiche: tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.5% DMSO
+        H5 sorgente      : ovary
+      GSM7925365
+        grezzo (Stadio 1): title: A2780 cells, UT(DMSO), 96h, biol rep 3,source: ovary,tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.5% DMSO
+        H5 titolo        : A2780 cells, UT(DMSO), 96h, biol rep 3
+        H5 caratteristiche: tissue: ovary,cell line: A2780,cell type: Human ovarian carcinoma,genotype: WT,treatment: 0.5% DMSO
+        H5 sorgente      : ovary
+
+CONFRONTO  GSE264575__GSE264575__Cisplatin_luciferase_vs_Control_luciferase__1
+  studio: GSE264575
+  TRATTATO  (n=2)  etichetta Stadio 2: Cisplatin (luciferase)
+      gruppo Stadio 2: grp_0007
+      GSM8222947
+        grezzo (Stadio 1): title: Figure 7-8, Dual tumor model,  Cisplatin 1 [CP1_404],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: Luciferase tagged,treatment: Cisplatin
+        H5 titolo        : Figure 7-8, Dual tumor model,  Cisplatin 1 [CP1_404]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: Luciferase tagged,treatment: Cisplatin
+        H5 sorgente      : Cancer cells
+      GSM8222949
+        grezzo (Stadio 1): title: Figure 7-8, Dual tumor model,  Cisplatin 3 [CP3_407],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: Luciferase tagged,treatment: Cisplatin
+        H5 titolo        : Figure 7-8, Dual tumor model,  Cisplatin 3 [CP3_407]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: Luciferase tagged,treatment: Cisplatin
+        H5 sorgente      : Cancer cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control (luciferase)
+      gruppo Stadio 2: grp_0011
+      GSM8222945
+        grezzo (Stadio 1): title: Figure 7-8, Dual tumor model,  Saline 1 [Sal1_411],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: Luciferase tagged,treatment: Control
+        H5 titolo        : Figure 7-8, Dual tumor model,  Saline 1 [Sal1_411]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: Luciferase tagged,treatment: Control
+        H5 sorgente      : Cancer cells
+      GSM8222946
+        grezzo (Stadio 1): title: Figure 7-8, Dual tumor model,  Saline 2 [Sal2_458],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: Luciferase tagged,treatment: Control
+        H5 titolo        : Figure 7-8, Dual tumor model,  Saline 2 [Sal2_458]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: Luciferase tagged,treatment: Control
+        H5 sorgente      : Cancer cells
+
+CONFRONTO  GSE264575__GSE264575__Cisplatin_vs_Control__1
+  studio: GSE264575
+  TRATTATO  (n=3)  etichetta Stadio 2: Cisplatin
+      gruppo Stadio 2: grp_0002
+      GSM8222933
+        grezzo (Stadio 1): title: Figure 4, Single tumor model, Cisplatin 1 [('sample4,Cisplatin,Perturbation')],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Cisplatin
+        H5 titolo        : Figure 4, Single tumor model, Cisplatin 1 [('sample4,Cisplatin,Perturbation')]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Cancer cells
+      GSM8222934
+        grezzo (Stadio 1): title: Figure 4, Single tumor model, Cisplatin 2 [('sample5,Cisplatin,Perturbation')],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Cisplatin
+        H5 titolo        : Figure 4, Single tumor model, Cisplatin 2 [('sample5,Cisplatin,Perturbation')]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Cancer cells
+      GSM8222935
+        grezzo (Stadio 1): title: Figure 4, Single tumor model, Cisplatin 3 [('sample6,Cisplatin,Perturbation')],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Cisplatin
+        H5 titolo        : Figure 4, Single tumor model, Cisplatin 3 [('sample6,Cisplatin,Perturbation')]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Cisplatin
+        H5 sorgente      : Cancer cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM8222924
+        grezzo (Stadio 1): title: Figure 2, MDA-MB-231-BR, Control 1 [C1],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Control
+        H5 titolo        : Figure 2, MDA-MB-231-BR, Control 1 [C1]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Control
+        H5 sorgente      : Cancer cells
+      GSM8222925
+        grezzo (Stadio 1): title: Figure 2, MDA-MB-231-BR, Control 2 [C2],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Control
+        H5 titolo        : Figure 2, MDA-MB-231-BR, Control 2 [C2]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Control
+        H5 sorgente      : Cancer cells
+      GSM8222926
+        grezzo (Stadio 1): title: Figure 2, MDA-MB-231-BR, Control 3 [C3],source: Cancer cells,tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Control
+        H5 titolo        : Figure 2, MDA-MB-231-BR, Control 3 [C3]
+        H5 caratteristiche: tissue: Cancer cells,cell line: MDA-MB-231-BR,cell type: Breast cancer brain metastasis,genotype: WT,treatment: Control
+        H5 sorgente      : Cancer cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE119978     campioni nell'H5:   27 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    3 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+      mai collocati: GSM3389690, GSM3389692, GSM3389694
+  GSE145085     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE157069     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE161800     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE163377     campioni nell'H5:   39 | collocati dallo Stadio 2:   39 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE165767     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE173201     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE209769     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE213102     campioni nell'H5:   24 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    4 | usati in questa meta-analisi: 20 campioni distinti (20 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6571692, GSM6571703, GSM6571705, GSM6571709
+  GSE215254     campioni nell'H5:   44 | collocati dallo Stadio 2:   44 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE223839     campioni nell'H5:   22 | collocati dallo Stadio 2:   22 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE235549     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE235681     campioni nell'H5:   24 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+      mai collocati: GSM7507616, GSM7507625, GSM7507627, GSM7507629, GSM7507635, GSM7507636
+  GSE235908     campioni nell'H5:   24 | collocati dallo Stadio 2:   17 | MAI COLLOCATI:    7 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+      mai collocati: GSM7511768, GSM7511769, GSM7511776, GSM7511777, GSM7511780, GSM7511786, GSM7511787
+  GSE249026     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE264575     campioni nell'H5:   29 | collocati dallo Stadio 2:   29 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+

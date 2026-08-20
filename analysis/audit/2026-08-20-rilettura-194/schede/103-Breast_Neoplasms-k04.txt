@@ -1,0 +1,740 @@
+META-ANALISI 103 di 194
+==============================================================================
+nome            : Breast Neoplasms
+entita (ID)     : MeSH:D001943
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_f832048f
+studi poolati   : 4   confronti: 7   campioni: 132
+geni significativi: 3586   I2 mediano: 62.7
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE117970__GSE117970__grp_0002_vs_grp_0001__1
+  studio: GSE117970
+  TRATTATO  (n=34)  etichetta Stadio 2: Monocytes - Breast Cancer
+      gruppo Stadio 2: grp_0002
+      GSM3316276
+        grezzo (Stadio 1): title: MON12: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 1,pathology: Invasive Breast cancer,age: 78
+        H5 titolo        : MON12: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 1,pathology: Invasive Breast cancer,age: 78
+        H5 sorgente      : Blood
+      GSM3316277
+        grezzo (Stadio 1): title: MON14: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 1,pathology: Invasive Breast cancer,age: 74
+        H5 titolo        : MON14: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 1,pathology: Invasive Breast cancer,age: 74
+        H5 sorgente      : Blood
+      GSM3316278
+        grezzo (Stadio 1): title: MON18: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 1,pathology: Invasive Breast cancer,age: 58
+        H5 titolo        : MON18: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 1,pathology: Invasive Breast cancer,age: 58
+        H5 sorgente      : Blood
+      GSM3316279
+        grezzo (Stadio 1): title: MON20: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 1,pathology: Invasive Breast cancer,age: 42
+        H5 titolo        : MON20: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 1,pathology: Invasive Breast cancer,age: 42
+        H5 sorgente      : Blood
+      GSM3316286
+        grezzo (Stadio 1): title: MON59: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 3,pathology: Invasive Breast cancer,age: 69
+        H5 titolo        : MON59: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 3,pathology: Invasive Breast cancer,age: 69
+        H5 sorgente      : Blood
+      GSM3316287
+        grezzo (Stadio 1): title: MON61: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 3,pathology: Invasive Breast cancer,age: 65
+        H5 titolo        : MON61: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 3,pathology: Invasive Breast cancer,age: 65
+        H5 sorgente      : Blood
+      GSM3316300
+        grezzo (Stadio 1): title: MON76: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: -
+        H5 titolo        : MON76: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: -
+        H5 sorgente      : Blood
+      GSM3316301
+        grezzo (Stadio 1): title: MON78: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: -,age: -
+        H5 titolo        : MON78: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: -,age: -
+        H5 sorgente      : Blood
+      GSM3316304
+        grezzo (Stadio 1): title: MON81: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 50
+        H5 titolo        : MON81: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 50
+        H5 sorgente      : Blood
+      GSM3316305
+        grezzo (Stadio 1): title: MON82: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 57
+        H5 titolo        : MON82: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 57
+        H5 sorgente      : Blood
+      GSM3316306
+        grezzo (Stadio 1): title: MON83: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 62
+        H5 titolo        : MON83: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 62
+        H5 sorgente      : Blood
+      GSM3316307
+        grezzo (Stadio 1): title: MON84: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 62
+        H5 titolo        : MON84: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 62
+        H5 sorgente      : Blood
+      GSM3316308
+        grezzo (Stadio 1): title: MON85: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 57
+        H5 titolo        : MON85: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 57
+        H5 sorgente      : Blood
+      GSM3316309
+        grezzo (Stadio 1): title: MON87: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 46
+        H5 titolo        : MON87: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 46
+        H5 sorgente      : Blood
+      GSM3316315
+        grezzo (Stadio 1): title: MON93: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 50
+        H5 titolo        : MON93: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 50
+        H5 sorgente      : Blood
+      GSM3316316
+        grezzo (Stadio 1): title: MON94: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 66
+        H5 titolo        : MON94: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 66
+        H5 sorgente      : Blood
+      GSM3316317
+        grezzo (Stadio 1): title: MON95: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 51
+        H5 titolo        : MON95: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 51
+        H5 sorgente      : Blood
+      GSM3316318
+        grezzo (Stadio 1): title: MON96: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 47
+        H5 titolo        : MON96: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 47
+        H5 sorgente      : Blood
+      GSM3316319
+        grezzo (Stadio 1): title: MON97: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 86
+        H5 titolo        : MON97: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 86
+        H5 sorgente      : Blood
+      GSM3316320
+        grezzo (Stadio 1): title: MON118: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 86
+        H5 titolo        : MON118: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 86
+        H5 sorgente      : Blood
+      GSM3316321
+        grezzo (Stadio 1): title: MON119: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 60
+        H5 titolo        : MON119: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 60
+        H5 sorgente      : Blood
+      GSM3316322
+        grezzo (Stadio 1): title: MON120: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 65
+        H5 titolo        : MON120: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 65
+        H5 sorgente      : Blood
+      GSM3316323
+        grezzo (Stadio 1): title: MON121: Breast cancer,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 64
+        H5 titolo        : MON121: Breast cancer
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 64
+        H5 sorgente      : Blood
+      GSM3585974
+        grezzo (Stadio 1): title: mon108,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 titolo        : mon108
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 sorgente      : Blood
+      GSM3585975
+        grezzo (Stadio 1): title: mon109,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 titolo        : mon109
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 sorgente      : Blood
+      GSM3585976
+        grezzo (Stadio 1): title: mon110,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: DCIS
+        H5 titolo        : mon110
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: DCIS
+        H5 sorgente      : Blood
+      GSM3585977
+        grezzo (Stadio 1): title: mon111,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 titolo        : mon111
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 sorgente      : Blood
+      GSM3585978
+        grezzo (Stadio 1): title: mon112,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: DCIS
+        H5 titolo        : mon112
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: DCIS
+        H5 sorgente      : Blood
+      GSM3585979
+        grezzo (Stadio 1): title: mon113,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: DCIS
+        H5 titolo        : mon113
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: DCIS
+        H5 sorgente      : Blood
+      GSM3585980
+        grezzo (Stadio 1): title: mon114,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 titolo        : mon114
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 sorgente      : Blood
+      GSM3585981
+        grezzo (Stadio 1): title: mon115,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 titolo        : mon115
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 sorgente      : Blood
+      GSM3585982
+        grezzo (Stadio 1): title: mon116,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 titolo        : mon116
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 sorgente      : Blood
+      GSM3585983
+        grezzo (Stadio 1): title: mon117,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 titolo        : mon117
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: Invasive_Breast_cancer
+        H5 sorgente      : Blood
+      GSM3585984
+        grezzo (Stadio 1): title: mon118,source: Blood,cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: DCIS
+        H5 titolo        : mon118
+        H5 caratteristiche: cell type: monocytes,condition: Breast cancer,sequencing batch: 6,pathology: DCIS
+        H5 sorgente      : Blood
+  CONTROLLO  (n=13)  etichetta Stadio 2: Monocytes - Normal
+      gruppo Stadio 2: grp_0001
+      GSM3316272
+        grezzo (Stadio 1): title: MON2: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 1,pathology: N/A,age: -
+        H5 titolo        : MON2: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 1,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316273
+        grezzo (Stadio 1): title: MON4: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 1,pathology: N/A,age: -
+        H5 titolo        : MON4: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 1,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316274
+        grezzo (Stadio 1): title: MON8: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 1,pathology: N/A,age: -
+        H5 titolo        : MON8: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 1,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316275
+        grezzo (Stadio 1): title: MON10: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 1,pathology: N/A,age: -
+        H5 titolo        : MON10: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 1,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316294
+        grezzo (Stadio 1): title: MON70: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 titolo        : MON70: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316295
+        grezzo (Stadio 1): title: MON71: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 titolo        : MON71: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316296
+        grezzo (Stadio 1): title: MON72: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 titolo        : MON72: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316297
+        grezzo (Stadio 1): title: MON73: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 titolo        : MON73: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316298
+        grezzo (Stadio 1): title: MON74: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 titolo        : MON74: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316299
+        grezzo (Stadio 1): title: MON75: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 titolo        : MON75: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 4,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316310
+        grezzo (Stadio 1): title: MON103: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 5,pathology: N/A,age: -
+        H5 titolo        : MON103: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 5,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316311
+        grezzo (Stadio 1): title: MON104: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 5,pathology: N/A,age: -
+        H5 titolo        : MON104: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 5,pathology: N/A,age: -
+        H5 sorgente      : Blood
+      GSM3316314
+        grezzo (Stadio 1): title: MON107: Normal,source: Blood,cell type: monocytes,condition: Normal,sequencing batch: Batch 5,pathology: N/A,age: -
+        H5 titolo        : MON107: Normal
+        H5 caratteristiche: cell type: monocytes,condition: Normal,sequencing batch: Batch 5,pathology: N/A,age: -
+        H5 sorgente      : Blood
+
+CONFRONTO  GSE117970__GSE117970__grp_0012_vs_grp_0009__1
+  studio: GSE117970
+  TRATTATO  (n=3)  etichetta Stadio 2: TAMs - Breast Cancer
+      gruppo Stadio 2: grp_0012
+      GSM3316328
+        grezzo (Stadio 1): title: MAC9: Breast cancer,source: Tissue,cell type: tumour associated macrophages,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 69
+        H5 titolo        : MAC9: Breast cancer
+        H5 caratteristiche: cell type: tumour associated macrophages,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 69
+        H5 sorgente      : Tissue
+      GSM3316345
+        grezzo (Stadio 1): title: MAC27: Breast cancer,source: Tissue,cell type: tumour associated macrophages,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 46
+        H5 titolo        : MAC27: Breast cancer
+        H5 caratteristiche: cell type: tumour associated macrophages,condition: Breast cancer,sequencing batch: Batch 4,pathology: Invasive Breast cancer,age: 46
+        H5 sorgente      : Tissue
+      GSM3316350
+        grezzo (Stadio 1): title: MAC29: Breast cancer,source: Tissue,cell type: tumour associated macrophages,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 57
+        H5 titolo        : MAC29: Breast cancer
+        H5 caratteristiche: cell type: tumour associated macrophages,condition: Breast cancer,sequencing batch: Batch 5,pathology: Invasive Breast cancer,age: 57
+        H5 sorgente      : Tissue
+  CONTROLLO  (n=4)  etichetta Stadio 2: TAMs - Normal Breast
+      gruppo Stadio 2: grp_0009
+      GSM3316325
+        grezzo (Stadio 1): title: MAC3: Normal Breast,source: Tissue,cell type: tumour associated macrophages,condition: Normal Breast,sequencing batch: Batch 4,pathology: Normal tissue,age: 52
+        H5 titolo        : MAC3: Normal Breast
+        H5 caratteristiche: cell type: tumour associated macrophages,condition: Normal Breast,sequencing batch: Batch 4,pathology: Normal tissue,age: 52
+        H5 sorgente      : Tissue
+      GSM3316326
+        grezzo (Stadio 1): title: MAC4: Normal Breast,source: Tissue,cell type: tumour associated macrophages,condition: Normal Breast,sequencing batch: Batch 4,pathology: Normal tissue,age: 62
+        H5 titolo        : MAC4: Normal Breast
+        H5 caratteristiche: cell type: tumour associated macrophages,condition: Normal Breast,sequencing batch: Batch 4,pathology: Normal tissue,age: 62
+        H5 sorgente      : Tissue
+      GSM3316327
+        grezzo (Stadio 1): title: MAC5: Normal Breast,source: Tissue,cell type: tumour associated macrophages,condition: Normal Breast,sequencing batch: Batch 4,pathology: Normal tissue,age: -
+        H5 titolo        : MAC5: Normal Breast
+        H5 caratteristiche: cell type: tumour associated macrophages,condition: Normal Breast,sequencing batch: Batch 4,pathology: Normal tissue,age: -
+        H5 sorgente      : Tissue
+      GSM3316347
+        grezzo (Stadio 1): title: MAC28: Normal Breast,source: Tissue,cell type: tumour associated macrophages,condition: Normal Breast,sequencing batch: Batch 5,pathology: Normal tissue,age: -
+        H5 titolo        : MAC28: Normal Breast
+        H5 caratteristiche: cell type: tumour associated macrophages,condition: Normal Breast,sequencing batch: Batch 5,pathology: Normal tissue,age: -
+        H5 sorgente      : Tissue
+
+CONFRONTO  GSE183947__GSE183947__grp_0001_vs_grp_0002__1
+  studio: GSE183947
+  TRATTATO  (n=30)  etichetta Stadio 2: Breast Tumor
+      gruppo Stadio 2: grp_0001
+      GSM5574685
+        grezzo (Stadio 1): title: tumor rep1,source: breast,tissue: breast tumor,metastasis: yes,donor: 102548
+        H5 titolo        : tumor rep1
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 102548
+        H5 sorgente      : breast
+      GSM5574686
+        grezzo (Stadio 1): title: tumor rep2,source: breast,tissue: breast tumor,metastasis: yes,donor: 104338
+        H5 titolo        : tumor rep2
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 104338
+        H5 sorgente      : breast
+      GSM5574687
+        grezzo (Stadio 1): title: tumor rep3,source: breast,tissue: breast tumor,metastasis: yes,donor: 105094
+        H5 titolo        : tumor rep3
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 105094
+        H5 sorgente      : breast
+      GSM5574688
+        grezzo (Stadio 1): title: tumor rep4,source: breast,tissue: breast tumor,metastasis: no,donor: 109745
+        H5 titolo        : tumor rep4
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 109745
+        H5 sorgente      : breast
+      GSM5574689
+        grezzo (Stadio 1): title: tumor rep5,source: breast,tissue: breast tumor,metastasis: no,donor: 1906415
+        H5 titolo        : tumor rep5
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 1906415
+        H5 sorgente      : breast
+      GSM5574690
+        grezzo (Stadio 1): title: tumor rep6,source: breast,tissue: breast tumor,metastasis: yes,donor: 1912627
+        H5 titolo        : tumor rep6
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 1912627
+        H5 sorgente      : breast
+      GSM5574691
+        grezzo (Stadio 1): title: tumor rep7,source: breast,tissue: breast tumor,metastasis: no,donor: 1924346
+        H5 titolo        : tumor rep7
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 1924346
+        H5 sorgente      : breast
+      GSM5574692
+        grezzo (Stadio 1): title: tumor rep8,source: breast,tissue: breast tumor,metastasis: no,donor: 1926760
+        H5 titolo        : tumor rep8
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 1926760
+        H5 sorgente      : breast
+      GSM5574693
+        grezzo (Stadio 1): title: tumor rep9,source: breast,tissue: breast tumor,metastasis: yes,donor: 1927842
+        H5 titolo        : tumor rep9
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 1927842
+        H5 sorgente      : breast
+      GSM5574694
+        grezzo (Stadio 1): title: tumor rep10,source: breast,tissue: breast tumor,metastasis: no,donor: 1933414
+        H5 titolo        : tumor rep10
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 1933414
+        H5 sorgente      : breast
+      GSM5574695
+        grezzo (Stadio 1): title: tumor rep11,source: breast,tissue: breast tumor,metastasis: yes,donor: 1940640
+        H5 titolo        : tumor rep11
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 1940640
+        H5 sorgente      : breast
+      GSM5574696
+        grezzo (Stadio 1): title: tumor rep12,source: breast,tissue: breast tumor,metastasis: no,donor: 2004407
+        H5 titolo        : tumor rep12
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 2004407
+        H5 sorgente      : breast
+      GSM5574697
+        grezzo (Stadio 1): title: tumor rep13,source: breast,tissue: breast tumor,metastasis: no,donor: 2005288
+        H5 titolo        : tumor rep13
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 2005288
+        H5 sorgente      : breast
+      GSM5574698
+        grezzo (Stadio 1): title: tumor rep14,source: breast,tissue: breast tumor,metastasis: yes,donor: 2006047
+        H5 titolo        : tumor rep14
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 2006047
+        H5 sorgente      : breast
+      GSM5574699
+        grezzo (Stadio 1): title: tumor rep15,source: breast,tissue: breast tumor,metastasis: no,donor: 2008260
+        H5 titolo        : tumor rep15
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 2008260
+        H5 sorgente      : breast
+      GSM5574700
+        grezzo (Stadio 1): title: tumor rep16,source: breast,tissue: breast tumor,metastasis: yes,donor: 2009329
+        H5 titolo        : tumor rep16
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 2009329
+        H5 sorgente      : breast
+      GSM5574701
+        grezzo (Stadio 1): title: tumor rep17,source: breast,tissue: breast tumor,metastasis: no,donor: 2009381
+        H5 titolo        : tumor rep17
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 2009381
+        H5 sorgente      : breast
+      GSM5574702
+        grezzo (Stadio 1): title: tumor rep18,source: breast,tissue: breast tumor,metastasis: yes,donor: 2009850
+        H5 titolo        : tumor rep18
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 2009850
+        H5 sorgente      : breast
+      GSM5574703
+        grezzo (Stadio 1): title: tumor rep19,source: breast,tissue: breast tumor,metastasis: yes,donor: 2017611
+        H5 titolo        : tumor rep19
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 2017611
+        H5 sorgente      : breast
+      GSM5574704
+        grezzo (Stadio 1): title: tumor rep20,source: breast,tissue: breast tumor,metastasis: yes,donor: 2039179
+        H5 titolo        : tumor rep20
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 2039179
+        H5 sorgente      : breast
+      GSM5574705
+        grezzo (Stadio 1): title: tumor rep21,source: breast,tissue: breast tumor,metastasis: no,donor: 2040686
+        H5 titolo        : tumor rep21
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 2040686
+        H5 sorgente      : breast
+      GSM5574706
+        grezzo (Stadio 1): title: tumor rep22,source: breast,tissue: breast tumor,metastasis: no,donor: 2045012
+        H5 titolo        : tumor rep22
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 2045012
+        H5 sorgente      : breast
+      GSM5574707
+        grezzo (Stadio 1): title: tumor rep23,source: breast,tissue: breast tumor,metastasis: yes,donor: 2046297
+        H5 titolo        : tumor rep23
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 2046297
+        H5 sorgente      : breast
+      GSM5574708
+        grezzo (Stadio 1): title: tumor rep24,source: breast,tissue: breast tumor,metastasis: yes,donor: 348981
+        H5 titolo        : tumor rep24
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 348981
+        H5 sorgente      : breast
+      GSM5574709
+        grezzo (Stadio 1): title: tumor rep25,source: breast,tissue: breast tumor,metastasis: no,donor: 354300
+        H5 titolo        : tumor rep25
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 354300
+        H5 sorgente      : breast
+      GSM5574710
+        grezzo (Stadio 1): title: tumor rep26,source: breast,tissue: breast tumor,metastasis: no,donor: 359448
+        H5 titolo        : tumor rep26
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 359448
+        H5 sorgente      : breast
+      GSM5574711
+        grezzo (Stadio 1): title: tumor rep27,source: breast,tissue: breast tumor,metastasis: yes,donor: 94377
+        H5 titolo        : tumor rep27
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 94377
+        H5 sorgente      : breast
+      GSM5574712
+        grezzo (Stadio 1): title: tumor rep28,source: breast,tissue: breast tumor,metastasis: no,donor: 98389
+        H5 titolo        : tumor rep28
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 98389
+        H5 sorgente      : breast
+      GSM5574713
+        grezzo (Stadio 1): title: tumor rep29,source: breast,tissue: breast tumor,metastasis: no,donor: 98475
+        H5 titolo        : tumor rep29
+        H5 caratteristiche: tissue: breast tumor,metastasis: no,donor: 98475
+        H5 sorgente      : breast
+      GSM5574714
+        grezzo (Stadio 1): title: tumor rep30,source: breast,tissue: breast tumor,metastasis: yes,donor: 99145
+        H5 titolo        : tumor rep30
+        H5 caratteristiche: tissue: breast tumor,metastasis: yes,donor: 99145
+        H5 sorgente      : breast
+  CONTROLLO  (n=15)  etichetta Stadio 2: Normal Breast Tissue
+      gruppo Stadio 2: grp_0002
+      GSM5574718
+        grezzo (Stadio 1): title: normal rep4,source: breast,tissue: normal breast tissue,metastasis: no,donor: 109745
+        H5 titolo        : normal rep4
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 109745
+        H5 sorgente      : breast
+      GSM5574719
+        grezzo (Stadio 1): title: normal rep5,source: breast,tissue: normal breast tissue,metastasis: no,donor: 1906415
+        H5 titolo        : normal rep5
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 1906415
+        H5 sorgente      : breast
+      GSM5574721
+        grezzo (Stadio 1): title: normal rep7,source: breast,tissue: normal breast tissue,metastasis: no,donor: 1924346
+        H5 titolo        : normal rep7
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 1924346
+        H5 sorgente      : breast
+      GSM5574722
+        grezzo (Stadio 1): title: normal rep8,source: breast,tissue: normal breast tissue,metastasis: no,donor: 1926760
+        H5 titolo        : normal rep8
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 1926760
+        H5 sorgente      : breast
+      GSM5574724
+        grezzo (Stadio 1): title: normal rep10,source: breast,tissue: normal breast tissue,metastasis: no,donor: 1933414
+        H5 titolo        : normal rep10
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 1933414
+        H5 sorgente      : breast
+      GSM5574726
+        grezzo (Stadio 1): title: normal rep12,source: breast,tissue: normal breast tissue,metastasis: no,donor: 2004407
+        H5 titolo        : normal rep12
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 2004407
+        H5 sorgente      : breast
+      GSM5574727
+        grezzo (Stadio 1): title: normal rep13,source: breast,tissue: normal breast tissue,metastasis: no,donor: 2005288
+        H5 titolo        : normal rep13
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 2005288
+        H5 sorgente      : breast
+      GSM5574729
+        grezzo (Stadio 1): title: normal rep15,source: breast,tissue: normal breast tissue,metastasis: no,donor: 2008260
+        H5 titolo        : normal rep15
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 2008260
+        H5 sorgente      : breast
+      GSM5574731
+        grezzo (Stadio 1): title: normal rep17,source: breast,tissue: normal breast tissue,metastasis: no,donor: 2009381
+        H5 titolo        : normal rep17
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 2009381
+        H5 sorgente      : breast
+      GSM5574735
+        grezzo (Stadio 1): title: normal rep21,source: breast,tissue: normal breast tissue,metastasis: no,donor: 2040686
+        H5 titolo        : normal rep21
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 2040686
+        H5 sorgente      : breast
+      GSM5574736
+        grezzo (Stadio 1): title: normal rep22,source: breast,tissue: normal breast tissue,metastasis: no,donor: 2046297
+        H5 titolo        : normal rep22
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 2046297
+        H5 sorgente      : breast
+      GSM5574739
+        grezzo (Stadio 1): title: normal rep25,source: breast,tissue: normal breast tissue,metastasis: no,donor: 354300
+        H5 titolo        : normal rep25
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 354300
+        H5 sorgente      : breast
+      GSM5574740
+        grezzo (Stadio 1): title: normal rep26,source: breast,tissue: normal breast tissue,metastasis: no,donor: 359448
+        H5 titolo        : normal rep26
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 359448
+        H5 sorgente      : breast
+      GSM5574742
+        grezzo (Stadio 1): title: normal rep28,source: breast,tissue: normal breast tissue,metastasis: no,donor: 98389
+        H5 titolo        : normal rep28
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 98389
+        H5 sorgente      : breast
+      GSM5574743
+        grezzo (Stadio 1): title: normal rep29,source: breast,tissue: normal breast tissue,metastasis: no,donor: 98475
+        H5 titolo        : normal rep29
+        H5 caratteristiche: tissue: normal breast tissue,metastasis: no,donor: 98475
+        H5 sorgente      : breast
+
+CONFRONTO  GSE210787__GSE210787__group_0002_vs_group_0001__1
+  studio: GSE210787
+  TRATTATO  (n=4)  etichetta Stadio 2: Breast Cancer Tissue (Age 46)
+      gruppo Stadio 2: group_0002
+      GSM6437631
+        grezzo (Stadio 1): title: T1 (RNA-seq),source: cancer tissue,Sex: female,age: 46,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: breast cancer tissue
+        H5 titolo        : T1 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 46,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: breast cancer tissue
+        H5 sorgente      : cancer tissue
+      GSM6437632
+        grezzo (Stadio 1): title: T2 (RNA-seq),source: cancer tissue,Sex: female,age: 52,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: breast cancer tissue
+        H5 titolo        : T2 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 52,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: breast cancer tissue
+        H5 sorgente      : cancer tissue
+      GSM6437633
+        grezzo (Stadio 1): title: T3 (RNA-seq),source: cancer tissue,Sex: female,age: 47,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: breast cancer tissue
+        H5 titolo        : T3 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 47,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: breast cancer tissue
+        H5 sorgente      : cancer tissue
+      GSM6437634
+        grezzo (Stadio 1): title: T4 (RNA-seq),source: cancer tissue,Sex: female,age: 56,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: breast cancer tissue
+        H5 titolo        : T4 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 56,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: breast cancer tissue
+        H5 sorgente      : cancer tissue
+  CONTROLLO  (n=5)  etichetta Stadio 2: Normal Tissue
+      gruppo Stadio 2: group_0001
+      GSM6437626
+        grezzo (Stadio 1): title: N2 (RNA-seq),source: normal tissue,Sex: female,age: 52,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N2 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 52,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+      GSM6437627
+        grezzo (Stadio 1): title: N3 (RNA-seq),source: normal tissue,Sex: female,age: 47,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N3 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 47,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+      GSM6437628
+        grezzo (Stadio 1): title: N4 (RNA-seq),source: normal tissue,Sex: female,age: 56,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N4 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 56,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+      GSM6437629
+        grezzo (Stadio 1): title: N5 (RNA-seq),source: normal tissue,Sex: female,age: 49,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N5 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 49,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+      GSM6437630
+        grezzo (Stadio 1): title: N6 (RNA-seq),source: normal tissue,Sex: female,age: 51,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N6 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 51,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+
+CONFRONTO  GSE210787__GSE210787__group_0003_vs_group_0001__1
+  studio: GSE210787
+  TRATTATO  (n=2)  etichetta Stadio 2: Breast Cancer Tissue (Age 49)
+      gruppo Stadio 2: group_0003
+      GSM6437635
+        grezzo (Stadio 1): title: T5 (RNA-seq),source: cancer tissue,Sex: female,age: 49,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: breast cancer tissue
+        H5 titolo        : T5 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 49,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: breast cancer tissue
+        H5 sorgente      : cancer tissue
+      GSM6437636
+        grezzo (Stadio 1): title: T6 (RNA-seq),source: cancer tissue,Sex: female,age: 51,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: breast cancer tissue
+        H5 titolo        : T6 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 51,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: breast cancer tissue
+        H5 sorgente      : cancer tissue
+  CONTROLLO  (n=5)  etichetta Stadio 2: Normal Tissue
+      gruppo Stadio 2: group_0001
+      GSM6437626
+        grezzo (Stadio 1): title: N2 (RNA-seq),source: normal tissue,Sex: female,age: 52,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N2 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 52,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+      GSM6437627
+        grezzo (Stadio 1): title: N3 (RNA-seq),source: normal tissue,Sex: female,age: 47,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N3 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 47,ethnicity: Han nationality,tumor grade: III,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+      GSM6437628
+        grezzo (Stadio 1): title: N4 (RNA-seq),source: normal tissue,Sex: female,age: 56,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N4 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 56,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+      GSM6437629
+        grezzo (Stadio 1): title: N5 (RNA-seq),source: normal tissue,Sex: female,age: 49,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N5 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 49,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+      GSM6437630
+        grezzo (Stadio 1): title: N6 (RNA-seq),source: normal tissue,Sex: female,age: 51,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 titolo        : N6 (RNA-seq)
+        H5 caratteristiche: Sex: female,age: 51,ethnicity: Han nationality,tumor grade: II,outcome: recovery,tissue: normal tissue
+        H5 sorgente      : normal tissue
+
+CONFRONTO  GSE225846__GSE225846__transitional_vs_normal__1
+  studio: GSE225846
+  TRATTATO  (n=6)  etichetta Stadio 2: transitional_Kenyan_KAIC017
+      gruppo Stadio 2: grp_0018
+      GSM7058245
+        grezzo (Stadio 1): title: S_11_Ambs_211,source: frozen breast tumors,accession: KAIC017,type: tumor,age (at surgery): 45,race: Kenyan,er status: Negative,pr: Negative,her2: Positive,Stage: 2
+        H5 titolo        : S_11_Ambs_211
+        H5 caratteristiche: accession: KAIC017,type: tumor,age (at surgery): 45,race: Kenyan,er status: Negative,pr: Negative,her2: Positive,Stage: 2
+        H5 sorgente      : frozen breast tumors
+      GSM7058247
+        grezzo (Stadio 1): title: S_13_Ambs_213,source: frozen breast tumors,accession: KAIC018,type: tumor,age (at surgery): 43,race: Kenyan,er status: Positive,pr: Positive,her2: Negative,Stage: 2
+        H5 titolo        : S_13_Ambs_213
+        H5 caratteristiche: accession: KAIC018,type: tumor,age (at surgery): 43,race: Kenyan,er status: Positive,pr: Positive,her2: Negative,Stage: 2
+        H5 sorgente      : frozen breast tumors
+      GSM7058251
+        grezzo (Stadio 1): title: S_17_Ambs_217,source: frozen breast tumors,accession: KAIC026,type: tumor,age (at surgery): 41,race: Kenyan,er status: Positive,pr: Positive,her2: Positive,Stage: 2
+        H5 titolo        : S_17_Ambs_217
+        H5 caratteristiche: accession: KAIC026,type: tumor,age (at surgery): 41,race: Kenyan,er status: Positive,pr: Positive,her2: Positive,Stage: 2
+        H5 sorgente      : frozen breast tumors
+      GSM7058253
+        grezzo (Stadio 1): title: S_19_Ambs_219,source: frozen breast tumors,accession: KAIC027,type: tumor,age (at surgery): 36,race: Kenyan,er status: Positive,pr: Positive,her2: Positive,Stage: 2
+        H5 titolo        : S_19_Ambs_219
+        H5 caratteristiche: accession: KAIC027,type: tumor,age (at surgery): 36,race: Kenyan,er status: Positive,pr: Positive,her2: Positive,Stage: 2
+        H5 sorgente      : frozen breast tumors
+      GSM7058255
+        grezzo (Stadio 1): title: S_21_Ambs_221,source: frozen breast tumors,accession: KAIC029,type: tumor,age (at surgery): 53,race: Kenyan,er status: Positive,pr: Positive,her2: Negative,Stage: 2
+        H5 titolo        : S_21_Ambs_221
+        H5 caratteristiche: accession: KAIC029,type: tumor,age (at surgery): 53,race: Kenyan,er status: Positive,pr: Positive,her2: Negative,Stage: 2
+        H5 sorgente      : frozen breast tumors
+      GSM7058261
+        grezzo (Stadio 1): title: S_27_Ambs_227,source: frozen breast tumors,accession: KAIC033,type: tumor,age (at surgery): 60,race: Kenyan,er status: Positive,pr: Positive,her2: Negative,Stage: 2
+        H5 titolo        : S_27_Ambs_227
+        H5 caratteristiche: accession: KAIC033,type: tumor,age (at surgery): 60,race: Kenyan,er status: Positive,pr: Positive,her2: Negative,Stage: 2
+        H5 sorgente      : frozen breast tumors
+  CONTROLLO  (n=3)  etichetta Stadio 2: unclear_Kenyan_KAIC017
+      gruppo Stadio 2: grp_0031
+      GSM7058246
+        grezzo (Stadio 1): title: S_12_Ambs_212,source: frozen breast tumors,accession: KAIC017,type: normal,age (at surgery): 45,race: Kenyan,er status: Negative,pr: Negative,her2: Positive,Stage: 2
+        H5 titolo        : S_12_Ambs_212
+        H5 caratteristiche: accession: KAIC017,type: normal,age (at surgery): 45,race: Kenyan,er status: Negative,pr: Negative,her2: Positive,Stage: 2
+        H5 sorgente      : frozen breast tumors
+      GSM7058248
+        grezzo (Stadio 1): title: S_14_Ambs_214,source: frozen breast tumors,accession: KAIC018,type: normal,age (at surgery): 43,race: Kenyan,er status: Positive,pr: Positive,her2: Negative,Stage: 2
+        H5 titolo        : S_14_Ambs_214
+        H5 caratteristiche: accession: KAIC018,type: normal,age (at surgery): 43,race: Kenyan,er status: Positive,pr: Positive,her2: Negative,Stage: 2
+        H5 sorgente      : frozen breast tumors
+      GSM7058252
+        grezzo (Stadio 1): title: S_18_Ambs_218,source: frozen breast tumors,accession: KAIC026,type: normal,age (at surgery): 41,race: Kenyan,er status: Positive,pr: Positive,her2: Positive,Stage: 2
+        H5 titolo        : S_18_Ambs_218
+        H5 caratteristiche: accession: KAIC026,type: normal,age (at surgery): 41,race: Kenyan,er status: Positive,pr: Positive,her2: Positive,Stage: 2
+        H5 sorgente      : frozen breast tumors
+
+CONFRONTO  GSE225846__GSE225846__transitional_vs_normal__5
+  studio: GSE225846
+  TRATTATO  (n=2)  etichetta Stadio 2: transitional_African_American_25692
+      gruppo Stadio 2: grp_0022
+      GSM7058144
+        grezzo (Stadio 1): title: S_109_Gati_569_redo,source: frozen breast tumors,accession: 25692,type: tumor,age (at surgery): 72,race: African American,er status: Positive,pr: Positive,her2: Negative,Stage: IIA
+        H5 titolo        : S_109_Gati_569_redo
+        H5 caratteristiche: accession: 25692,type: tumor,age (at surgery): 72,race: African American,er status: Positive,pr: Positive,her2: Negative,Stage: IIA
+        H5 sorgente      : frozen breast tumors
+      GSM7058205
+        grezzo (Stadio 1): title: S_145_Gati_607_redo,source: frozen breast tumors,accession: 30823,type: tumor,age (at surgery): 68,race: African American,er status: Positive,pr: Positive,her2: Negative,Stage: IIA
+        H5 titolo        : S_145_Gati_607_redo
+        H5 caratteristiche: accession: 30823,type: tumor,age (at surgery): 68,race: African American,er status: Positive,pr: Positive,her2: Negative,Stage: IIA
+        H5 sorgente      : frozen breast tumors
+  CONTROLLO  (n=6)  etichetta Stadio 2: normal_African_American_25649
+      gruppo Stadio 2: grp_0010
+      GSM7058142
+        grezzo (Stadio 1): title: S_107_Gati_567_redo,source: frozen breast tumors,accession: 25649,type: normal,age (at surgery): 45,race: African American,er status: Negative,pr: Negative,her2: Negative,Stage: IIA
+        H5 titolo        : S_107_Gati_567_redo
+        H5 caratteristiche: accession: 25649,type: normal,age (at surgery): 45,race: African American,er status: Negative,pr: Negative,her2: Negative,Stage: IIA
+        H5 sorgente      : frozen breast tumors
+      GSM7058145
+        grezzo (Stadio 1): title: S_88_Gati_546_redo,source: frozen breast tumors,accession: 25801,type: normal,age (at surgery): 53,race: African American,er status: Positive,pr: Positive,her2: Negative,Stage: IIA
+        H5 titolo        : S_88_Gati_546_redo
+        H5 caratteristiche: accession: 25801,type: normal,age (at surgery): 53,race: African American,er status: Positive,pr: Positive,her2: Negative,Stage: IIA
+        H5 sorgente      : frozen breast tumors
+      GSM7058174
+        grezzo (Stadio 1): title: S_102_Gati_562_redo,source: frozen breast tumors,accession: 28525,type: normal,age (at surgery): 84,race: African American,er status: Weak Positive,pr: Negative,her2: Negative,Stage: IIA
+        H5 titolo        : S_102_Gati_562_redo
+        H5 caratteristiche: accession: 28525,type: normal,age (at surgery): 84,race: African American,er status: Weak Positive,pr: Negative,her2: Negative,Stage: IIA
+        H5 sorgente      : frozen breast tumors
+      GSM7058188
+        grezzo (Stadio 1): title: S_114_Gati_574_redo,source: frozen breast tumors,accession: 29367,type: normal,age (at surgery): 58,race: Caucasian,er status: Negative,pr: Negative,her2: Negative,Stage: IIA
+        H5 titolo        : S_114_Gati_574_redo
+        H5 caratteristiche: accession: 29367,type: normal,age (at surgery): 58,race: Caucasian,er status: Negative,pr: Negative,her2: Negative,Stage: IIA
+        H5 sorgente      : frozen breast tumors
+      GSM7058192
+        grezzo (Stadio 1): title: S_118_Gati_578_redo,source: frozen breast tumors,accession: 29493,type: normal,age (at surgery): 38,race: Caucasian,er status: Positive,pr: Positive,her2: Negative,Stage: IIA
+        H5 titolo        : S_118_Gati_578_redo
+        H5 caratteristiche: accession: 29493,type: normal,age (at surgery): 38,race: Caucasian,er status: Positive,pr: Positive,her2: Negative,Stage: IIA
+        H5 sorgente      : frozen breast tumors
+      GSM7058198
+        grezzo (Stadio 1): title: S_104_Gati_564_redo,source: frozen breast tumors,accession: 29901,type: normal,age (at surgery): 71,race: African American,er status: Negative,pr: Negative,her2: Negative,Stage: IIA
+        H5 titolo        : S_104_Gati_564_redo
+        H5 caratteristiche: accession: 29901,type: normal,age (at surgery): 71,race: African American,er status: Negative,pr: Negative,her2: Negative,Stage: IIA
+        H5 sorgente      : frozen breast tumors
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE117970     campioni nell'H5:  116 | collocati dallo Stadio 2:  116 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 54 campioni distinti (54 righe: i controlli servono piu' confronti)
+  GSE183947     campioni nell'H5:   59 | collocati dallo Stadio 2:   59 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 45 campioni distinti (45 righe: i controlli servono piu' confronti)
+  GSE210787     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE225846     campioni nell'H5:  155 | collocati dallo Stadio 2:  155 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 17 campioni distinti (17 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,787 @@
+META-ANALISI 080 di 194
+==============================================================================
+nome            : sepsis
+entita (ID)     : STR:sepsis
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_df599af1
+studi poolati   : 5   confronti: 12   campioni: 134
+geni significativi: 224   I2 mediano: 75.5
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE122274__GSE122274__grp_0005_vs_grp_0003__1
+  studio: GSE122274
+  TRATTATO  (n=2)  etichetta Stadio 2: ATN_sepsis
+      gruppo Stadio 2: grp_0005
+      GSM3462988
+        grezzo (Stadio 1): title: T1 (ATR5): Renal Biopsy ATN,source: Kidney,tissue: Kidney,disease: ATN,sepsis: Y,age: 46,storage: OCT at -80C,gender: male
+        H5 titolo        : T1 (ATR5): Renal Biopsy ATN
+        H5 caratteristiche: tissue: Kidney,disease: ATN,sepsis: Y,age: 46,storage: OCT at -80C,gender: male
+        H5 sorgente      : Kidney
+      GSM3462993
+        grezzo (Stadio 1): title: T6 (ATR18): Renal Biopsy ATN,source: Kidney,tissue: Kidney,disease: ATN,sepsis: Y,age: 33,storage: OCT at -80C,gender: Female
+        H5 titolo        : T6 (ATR18): Renal Biopsy ATN
+        H5 caratteristiche: tissue: Kidney,disease: ATN,sepsis: Y,age: 33,storage: OCT at -80C,gender: Female
+        H5 sorgente      : Kidney
+  CONTROLLO  (n=5)  etichetta Stadio 2: ATN
+      gruppo Stadio 2: grp_0003
+      GSM3462990
+        grezzo (Stadio 1): title: T3 (ATR10): Renal Biopsy ATN,source: Kidney,tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 26,storage: OCT at -80C,gender: Female
+        H5 titolo        : T3 (ATR10): Renal Biopsy ATN
+        H5 caratteristiche: tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 26,storage: OCT at -80C,gender: Female
+        H5 sorgente      : Kidney
+      GSM3462992
+        grezzo (Stadio 1): title: T5 (ATR15): Renal Biopsy ATN,source: Kidney,tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 29,storage: OCT at -80C,gender: Female
+        H5 titolo        : T5 (ATR15): Renal Biopsy ATN
+        H5 caratteristiche: tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 29,storage: OCT at -80C,gender: Female
+        H5 sorgente      : Kidney
+      GSM3462994
+        grezzo (Stadio 1): title: T7 (ATR22): Renal Biopsy ATN,source: Kidney,tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 53,storage: OCT at -80C,gender: Female
+        H5 titolo        : T7 (ATR22): Renal Biopsy ATN
+        H5 caratteristiche: tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 53,storage: OCT at -80C,gender: Female
+        H5 sorgente      : Kidney
+      GSM3462996
+        grezzo (Stadio 1): title: T9 (ATR25): Renal Biopsy ATN,source: Kidney,tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 55,storage: OCT at -80C,gender: male
+        H5 titolo        : T9 (ATR25): Renal Biopsy ATN
+        H5 caratteristiche: tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 55,storage: OCT at -80C,gender: male
+        H5 sorgente      : Kidney
+      GSM3462997
+        grezzo (Stadio 1): title: T10 (ATR26): Renal Biopsy ATN,source: Kidney,tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 57,storage: OCT at -80C,gender: male
+        H5 titolo        : T10 (ATR26): Renal Biopsy ATN
+        H5 caratteristiche: tissue: Kidney,disease: ATN,sepsis: not included in comparison,age: 57,storage: OCT at -80C,gender: male
+        H5 sorgente      : Kidney
+
+CONFRONTO  GSE163196__GSE163196__grp_sepsis_patient7_vs_grp_healthy_patient7__1
+  studio: GSE163196
+  TRATTATO  (n=5)  etichetta Stadio 2: Sepsis Patient 7
+      gruppo Stadio 2: grp_sepsis_patient7
+      GSM4974422
+        grezzo (Stadio 1): title: B1: sepsis 1 (December 2020),source: Blood leucocytes,patient: Patient 7,gender: Male,age: 1 Month,cell counts /Ã109/l: 12.43,tissue: Blood leucocytes
+        H5 titolo        : B1: sepsis 1 (December 2020)
+        H5 caratteristiche: patient: Patient 7,gender: Male,age: 1 Month,cell counts /Ã109/l: 12.43,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+      GSM4974423
+        grezzo (Stadio 1): title: B2: sepsis 2 (December 2020),source: Blood leucocytes,patient: Patient 7,gender: Male,age: 1 Month,cell counts /Ã109/l: 10.82,tissue: Blood leucocytes
+        H5 titolo        : B2: sepsis 2 (December 2020)
+        H5 caratteristiche: patient: Patient 7,gender: Male,age: 1 Month,cell counts /Ã109/l: 10.82,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+      GSM4974425
+        grezzo (Stadio 1): title: B4: sepsis 3 (December 2020),source: Blood leucocytes,patient: Patient 8,gender: Male,age: 9 Month,cell counts /Ã109/l: 11.89,tissue: Blood leucocytes
+        H5 titolo        : B4: sepsis 3 (December 2020)
+        H5 caratteristiche: patient: Patient 8,gender: Male,age: 9 Month,cell counts /Ã109/l: 11.89,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+      GSM4974426
+        grezzo (Stadio 1): title: B5: sepsis 4 (December 2020),source: Blood leucocytes,patient: Patient 9,gender: Female,age: 29 Day,cell counts /Ã109/l: 13.07,tissue: Blood leucocytes
+        H5 titolo        : B5: sepsis 4 (December 2020)
+        H5 caratteristiche: patient: Patient 9,gender: Female,age: 29 Day,cell counts /Ã109/l: 13.07,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+      GSM4974431
+        grezzo (Stadio 1): title: B10: sepsis 6 (December 2020),source: Blood leucocytes,patient: Patient 13,gender: Male,age: 1 Month,cell counts /Ã109/l: 21.72,tissue: Blood leucocytes
+        H5 titolo        : B10: sepsis 6 (December 2020)
+        H5 caratteristiche: patient: Patient 13,gender: Male,age: 1 Month,cell counts /Ã109/l: 21.72,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy Patient 7
+      gruppo Stadio 2: grp_healthy_patient7
+      GSM4974424
+        grezzo (Stadio 1): title: B3: normal 1 (December 2020),source: Blood leucocytes,patient: Patient 7,gender: Male,age: 1 Month,cell counts /Ã109/l: 5.94,tissue: Blood leucocytes
+        H5 titolo        : B3: normal 1 (December 2020)
+        H5 caratteristiche: patient: Patient 7,gender: Male,age: 1 Month,cell counts /Ã109/l: 5.94,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+      GSM4974429
+        grezzo (Stadio 1): title: B8: normal 4 (December 2020),source: Blood leucocytes,patient: Patient 12,gender: Male,age: 2 Month,cell counts /Ã109/l: 5.76,tissue: Blood leucocytes
+        H5 titolo        : B8: normal 4 (December 2020)
+        H5 caratteristiche: patient: Patient 12,gender: Male,age: 2 Month,cell counts /Ã109/l: 5.76,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+      GSM4974432
+        grezzo (Stadio 1): title: B11: normal 5 (December 2020),source: Blood leucocytes,patient: Patient 13,gender: Male,age: 1 Month,cell counts /Ã109/l: 5.7,tissue: Blood leucocytes
+        H5 titolo        : B11: normal 5 (December 2020)
+        H5 caratteristiche: patient: Patient 13,gender: Male,age: 1 Month,cell counts /Ã109/l: 5.7,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+      GSM4974433
+        grezzo (Stadio 1): title: B12: normal 6 (December 2020),source: Blood leucocytes,patient: Patient 13,gender: Male,age: 1 Month,cell counts /Ã109/l: 4.62,tissue: Blood leucocytes
+        H5 titolo        : B12: normal 6 (December 2020)
+        H5 caratteristiche: patient: Patient 13,gender: Male,age: 1 Month,cell counts /Ã109/l: 4.62,tissue: Blood leucocytes
+        H5 sorgente      : Blood leucocytes
+
+CONFRONTO  GSE186054__GSE186054__sepsis_vs_healthy__1
+  studio: GSE186054
+  TRATTATO  (n=3)  etichetta Stadio 2: Sepsis
+      gruppo Stadio 2: grp_sepsis
+      GSM5629814
+        grezzo (Stadio 1): title: C 1,source: CD15+CD16+neutrophils,tissue: Blood,disease state: sepsis,Sex: Male,age: 33
+        H5 titolo        : C 1
+        H5 caratteristiche: tissue: Blood,disease state: sepsis,Sex: Male,age: 33
+        H5 sorgente      : CD15+CD16+neutrophils
+      GSM5629815
+        grezzo (Stadio 1): title: C 5,source: CD15+CD16+neutrophils,tissue: Blood,disease state: sepsis,Sex: Male,age: 28
+        H5 titolo        : C 5
+        H5 caratteristiche: tissue: Blood,disease state: sepsis,Sex: Male,age: 28
+        H5 sorgente      : CD15+CD16+neutrophils
+      GSM5629816
+        grezzo (Stadio 1): title: C 3,source: CD15+CD16+neutrophils,tissue: Blood,disease state: sepsis,Sex: Female,age: 36
+        H5 titolo        : C 3
+        H5 caratteristiche: tissue: Blood,disease state: sepsis,Sex: Female,age: 36
+        H5 sorgente      : CD15+CD16+neutrophils
+  CONTROLLO  (n=3)  etichetta Stadio 2: Healthy
+      gruppo Stadio 2: grp_healthy
+      GSM5629817
+        grezzo (Stadio 1): title: A,source: CD15+CD16+neutrophils,tissue: Blood,disease state: Healthy,Sex: Male,age: 28
+        H5 titolo        : A
+        H5 caratteristiche: tissue: Blood,disease state: Healthy,Sex: Male,age: 28
+        H5 sorgente      : CD15+CD16+neutrophils
+      GSM5629818
+        grezzo (Stadio 1): title: B,source: CD15+CD16+neutrophils,tissue: Blood,disease state: Healthy,Sex: Female,age: 25
+        H5 titolo        : B
+        H5 caratteristiche: tissue: Blood,disease state: Healthy,Sex: Female,age: 25
+        H5 sorgente      : CD15+CD16+neutrophils
+      GSM5629819
+        grezzo (Stadio 1): title: C,source: CD15+CD16+neutrophils,tissue: Blood,disease state: Healthy,Sex: Female,age: 31
+        H5 titolo        : C
+        H5 caratteristiche: tissue: Blood,disease state: Healthy,Sex: Female,age: 31
+        H5 sorgente      : CD15+CD16+neutrophils
+
+CONFRONTO  GSE232753__GSE232753__sepsis_vs_none__1
+  studio: GSE232753
+  TRATTATO  (n=20)  etichetta Stadio 2: Sepsis patients
+      gruppo Stadio 2: grp_sepsis
+      GSM7373356
+        grezzo (Stadio 1): title: Sepsis 1,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 1,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373357
+        grezzo (Stadio 1): title: Sepsis2,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis2,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373358
+        grezzo (Stadio 1): title: Sepsis 3,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 3,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373359
+        grezzo (Stadio 1): title: Sepsis 4,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 4,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373360
+        grezzo (Stadio 1): title: Sepsis 5,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 5,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373361
+        grezzo (Stadio 1): title: Sepsis 6,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 6,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373362
+        grezzo (Stadio 1): title: Sepsis 7,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 7,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373363
+        grezzo (Stadio 1): title: Sepsis 8,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 8,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373364
+        grezzo (Stadio 1): title: Sepsis 9,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 9,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373365
+        grezzo (Stadio 1): title: Sepsis 10,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 10,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373366
+        grezzo (Stadio 1): title: Sepsis 11,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 11,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373367
+        grezzo (Stadio 1): title: Sepsis 12,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 12,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373368
+        grezzo (Stadio 1): title: Sepsis 13,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 13,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373369
+        grezzo (Stadio 1): title: Sepsis 14,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 14,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373370
+        grezzo (Stadio 1): title: Sepsis 15,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 15,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373371
+        grezzo (Stadio 1): title: Sepsis 16,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 16,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373372
+        grezzo (Stadio 1): title: Sepsis 17,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 17,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373373
+        grezzo (Stadio 1): title: Sepsis 18,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 18,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373374
+        grezzo (Stadio 1): title: Sepsis 19,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 19,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+      GSM7373375
+        grezzo (Stadio 1): title: Sepsis 20,Human, Blood,source: blood,tissue: blood,disease state: sepsis,time: Day 0
+        H5 titolo        : Sepsis 20,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: sepsis,time: Day 0
+        H5 sorgente      : blood
+  CONTROLLO  (n=8)  etichetta Stadio 2: Healthy controls
+      gruppo Stadio 2: grp_control
+      GSM7373348
+        grezzo (Stadio 1): title: Control 1,Human, Blood,source: blood,tissue: blood,disease state: none,time: Day 0
+        H5 titolo        : Control 1,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: none,time: Day 0
+        H5 sorgente      : blood
+      GSM7373349
+        grezzo (Stadio 1): title: Control 2,Human, Blood,source: blood,tissue: blood,disease state: none,time: Day 0
+        H5 titolo        : Control 2,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: none,time: Day 0
+        H5 sorgente      : blood
+      GSM7373350
+        grezzo (Stadio 1): title: Control 3,Human, Blood,source: blood,tissue: blood,disease state: none,time: Day 0
+        H5 titolo        : Control 3,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: none,time: Day 0
+        H5 sorgente      : blood
+      GSM7373351
+        grezzo (Stadio 1): title: Control 4,Human, Blood,source: blood,tissue: blood,disease state: none,time: Day 0
+        H5 titolo        : Control 4,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: none,time: Day 0
+        H5 sorgente      : blood
+      GSM7373352
+        grezzo (Stadio 1): title: Control 5,Human, Blood,source: blood,tissue: blood,disease state: none,time: Day 0
+        H5 titolo        : Control 5,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: none,time: Day 0
+        H5 sorgente      : blood
+      GSM7373353
+        grezzo (Stadio 1): title: Control 6,Human, Blood,source: blood,tissue: blood,disease state: none,time: Day 0
+        H5 titolo        : Control 6,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: none,time: Day 0
+        H5 sorgente      : blood
+      GSM7373354
+        grezzo (Stadio 1): title: Control 7,Human, Blood,source: blood,tissue: blood,disease state: none,time: Day 0
+        H5 titolo        : Control 7,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: none,time: Day 0
+        H5 sorgente      : blood
+      GSM7373355
+        grezzo (Stadio 1): title: Control 8,Human, Blood,source: blood,tissue: blood,disease state: none,time: Day 0
+        H5 titolo        : Control 8,Human, Blood
+        H5 caratteristiche: tissue: blood,disease state: none,time: Day 0
+        H5 sorgente      : blood
+
+CONFRONTO  GSE237861__GSE237861__brain_prefrontal_cortex_sepsis_vs_control__1
+  studio: GSE237861
+  TRATTATO  (n=5)  etichetta Stadio 2: Brain Prefrontal Cortex Sepsis
+      gruppo Stadio 2: grp_brain_prefrontal_cortex_sepsis
+      GSM7655459
+        grezzo (Stadio 1): title: sepsis2_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : sepsis2_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655470
+        grezzo (Stadio 1): title: sepsis4_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : sepsis4_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655476
+        grezzo (Stadio 1): title: sepsis5_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : sepsis5_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655482
+        grezzo (Stadio 1): title: sepsis6_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : sepsis6_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655487
+        grezzo (Stadio 1): title: sepsis7_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : sepsis7_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+  CONTROLLO  (n=7)  etichetta Stadio 2: Brain Prefrontal Cortex Control
+      gruppo Stadio 2: grp_brain_prefrontal_cortex_control
+      GSM7655493
+        grezzo (Stadio 1): title: control1_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : control1_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655499
+        grezzo (Stadio 1): title: control2_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : control2_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655505
+        grezzo (Stadio 1): title: control3_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : control3_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655511
+        grezzo (Stadio 1): title: control4_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : control4_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655517
+        grezzo (Stadio 1): title: control5_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : control5_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655523
+        grezzo (Stadio 1): title: control6_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : control6_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+      GSM7655529
+        grezzo (Stadio 1): title: control7_cortex,source: brain prefrontal cortex,tissue: brain prefrontal cortex
+        H5 titolo        : control7_cortex
+        H5 caratteristiche: tissue: brain prefrontal cortex
+        H5 sorgente      : brain prefrontal cortex
+
+CONFRONTO  GSE237861__GSE237861__colon_sepsis_vs_control__1
+  studio: GSE237861
+  TRATTATO  (n=5)  etichetta Stadio 2: Colon Sepsis
+      gruppo Stadio 2: grp_colon_sepsis
+      GSM7655458
+        grezzo (Stadio 1): title: sepsis1_colon,source: colon,tissue: colon
+        H5 titolo        : sepsis1_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655475
+        grezzo (Stadio 1): title: sepsis4_colon,source: colon,tissue: colon
+        H5 titolo        : sepsis4_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655481
+        grezzo (Stadio 1): title: sepsis5_colon,source: colon,tissue: colon
+        H5 titolo        : sepsis5_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655486
+        grezzo (Stadio 1): title: sepsis6_colon,source: colon,tissue: colon
+        H5 titolo        : sepsis6_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655492
+        grezzo (Stadio 1): title: sepsis7_colon,source: colon,tissue: colon
+        H5 titolo        : sepsis7_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+  CONTROLLO  (n=7)  etichetta Stadio 2: Colon Control
+      gruppo Stadio 2: grp_colon_control
+      GSM7655498
+        grezzo (Stadio 1): title: control1_colon,source: colon,tissue: colon
+        H5 titolo        : control1_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655504
+        grezzo (Stadio 1): title: control2_colon,source: colon,tissue: colon
+        H5 titolo        : control2_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655510
+        grezzo (Stadio 1): title: control3_colon,source: colon,tissue: colon
+        H5 titolo        : control3_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655516
+        grezzo (Stadio 1): title: control4_colon,source: colon,tissue: colon
+        H5 titolo        : control4_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655522
+        grezzo (Stadio 1): title: control5_colon,source: colon,tissue: colon
+        H5 titolo        : control5_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655528
+        grezzo (Stadio 1): title: control6_colon,source: colon,tissue: colon
+        H5 titolo        : control6_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+      GSM7655534
+        grezzo (Stadio 1): title: control7_colon,source: colon,tissue: colon
+        H5 titolo        : control7_colon
+        H5 caratteristiche: tissue: colon
+        H5 sorgente      : colon
+
+CONFRONTO  GSE237861__GSE237861__heart_sepsis_induced_vs_control__1
+  studio: GSE237861
+  TRATTATO  (n=5)  etichetta Stadio 2: Heart Sepsis Induced
+      gruppo Stadio 2: grp_heart_sepsis_induced
+      GSM7655455
+        grezzo (Stadio 1): title: sepsis1_heart,source: heart,tissue: heart
+        H5 titolo        : sepsis1_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655461
+        grezzo (Stadio 1): title: sepsis2_heart,source: heart,tissue: heart
+        H5 titolo        : sepsis2_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655472
+        grezzo (Stadio 1): title: sepsis4_heart,source: heart,tissue: heart
+        H5 titolo        : sepsis4_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655484
+        grezzo (Stadio 1): title: sepsis6_heart,source: heart,tissue: heart
+        H5 titolo        : sepsis6_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655489
+        grezzo (Stadio 1): title: sepsis7_heart,source: heart,tissue: heart
+        H5 titolo        : sepsis7_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+  CONTROLLO  (n=7)  etichetta Stadio 2: Heart Control
+      gruppo Stadio 2: grp_heart_control
+      GSM7655495
+        grezzo (Stadio 1): title: control1_heart,source: heart,tissue: heart
+        H5 titolo        : control1_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655501
+        grezzo (Stadio 1): title: control2_heart,source: heart,tissue: heart
+        H5 titolo        : control2_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655507
+        grezzo (Stadio 1): title: control3_heart,source: heart,tissue: heart
+        H5 titolo        : control3_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655513
+        grezzo (Stadio 1): title: control4_heart,source: heart,tissue: heart
+        H5 titolo        : control4_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655519
+        grezzo (Stadio 1): title: control5_heart,source: heart,tissue: heart
+        H5 titolo        : control5_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655525
+        grezzo (Stadio 1): title: control6_heart,source: heart,tissue: heart
+        H5 titolo        : control6_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655531
+        grezzo (Stadio 1): title: control7_heart,source: heart,tissue: heart
+        H5 titolo        : control7_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+
+CONFRONTO  GSE237861__GSE237861__heart_sepsis_vs_control__1
+  studio: GSE237861
+  TRATTATO  (n=2)  etichetta Stadio 2: Heart Sepsis
+      gruppo Stadio 2: grp_heart_sepsis
+      GSM7655466
+        grezzo (Stadio 1): title: sepsis3_heart,source: heart,tissue: heart
+        H5 titolo        : sepsis3_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655478
+        grezzo (Stadio 1): title: sepsis5_heart,source: heart,tissue: heart
+        H5 titolo        : sepsis5_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+  CONTROLLO  (n=7)  etichetta Stadio 2: Heart Control
+      gruppo Stadio 2: grp_heart_control
+      GSM7655495
+        grezzo (Stadio 1): title: control1_heart,source: heart,tissue: heart
+        H5 titolo        : control1_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655501
+        grezzo (Stadio 1): title: control2_heart,source: heart,tissue: heart
+        H5 titolo        : control2_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655507
+        grezzo (Stadio 1): title: control3_heart,source: heart,tissue: heart
+        H5 titolo        : control3_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655513
+        grezzo (Stadio 1): title: control4_heart,source: heart,tissue: heart
+        H5 titolo        : control4_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655519
+        grezzo (Stadio 1): title: control5_heart,source: heart,tissue: heart
+        H5 titolo        : control5_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655525
+        grezzo (Stadio 1): title: control6_heart,source: heart,tissue: heart
+        H5 titolo        : control6_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+      GSM7655531
+        grezzo (Stadio 1): title: control7_heart,source: heart,tissue: heart
+        H5 titolo        : control7_heart
+        H5 caratteristiche: tissue: heart
+        H5 sorgente      : heart
+
+CONFRONTO  GSE237861__GSE237861__hippocampus_sepsis_induced_vs_control__1
+  studio: GSE237861
+  TRATTATO  (n=4)  etichetta Stadio 2: Hippocampus Sepsis Induced
+      gruppo Stadio 2: grp_hippocampus_sepsis_induced
+      GSM7655454
+        grezzo (Stadio 1): title: sepsis1_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : sepsis1_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655471
+        grezzo (Stadio 1): title: sepsis4_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : sepsis4_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655483
+        grezzo (Stadio 1): title: sepsis6_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : sepsis6_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655488
+        grezzo (Stadio 1): title: sepsis7_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : sepsis7_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+  CONTROLLO  (n=7)  etichetta Stadio 2: Hippocampus Control
+      gruppo Stadio 2: grp_hippocampus_control
+      GSM7655494
+        grezzo (Stadio 1): title: control1_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control1_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655500
+        grezzo (Stadio 1): title: control2_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control2_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655506
+        grezzo (Stadio 1): title: control3_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control3_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655512
+        grezzo (Stadio 1): title: control4_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control4_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655518
+        grezzo (Stadio 1): title: control5_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control5_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655524
+        grezzo (Stadio 1): title: control6_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control6_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655530
+        grezzo (Stadio 1): title: control7_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control7_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+
+CONFRONTO  GSE237861__GSE237861__hippocampus_sepsis_vs_control__1
+  studio: GSE237861
+  TRATTATO  (n=3)  etichetta Stadio 2: Hippocampus Sepsis
+      gruppo Stadio 2: grp_hippocampus_sepsis
+      GSM7655460
+        grezzo (Stadio 1): title: sepsis2_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : sepsis2_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655465
+        grezzo (Stadio 1): title: sepsis3_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : sepsis3_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655477
+        grezzo (Stadio 1): title: sepsis5_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : sepsis5_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+  CONTROLLO  (n=7)  etichetta Stadio 2: Hippocampus Control
+      gruppo Stadio 2: grp_hippocampus_control
+      GSM7655494
+        grezzo (Stadio 1): title: control1_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control1_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655500
+        grezzo (Stadio 1): title: control2_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control2_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655506
+        grezzo (Stadio 1): title: control3_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control3_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655512
+        grezzo (Stadio 1): title: control4_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control4_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655518
+        grezzo (Stadio 1): title: control5_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control5_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655524
+        grezzo (Stadio 1): title: control6_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control6_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+      GSM7655530
+        grezzo (Stadio 1): title: control7_hippocampus,source: hippocampus,tissue: hippocampus
+        H5 titolo        : control7_hippocampus
+        H5 caratteristiche: tissue: hippocampus
+        H5 sorgente      : hippocampus
+
+CONFRONTO  GSE237861__GSE237861__kidney_sepsis_vs_control__1
+  studio: GSE237861
+  TRATTATO  (n=4)  etichetta Stadio 2: Kidney Sepsis
+      gruppo Stadio 2: grp_kidney_sepsis
+      GSM7655457
+        grezzo (Stadio 1): title: sepsis1_kidney,source: kidney,tissue: kidney
+        H5 titolo        : sepsis1_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+      GSM7655474
+        grezzo (Stadio 1): title: sepsis4_kidney,source: kidney,tissue: kidney
+        H5 titolo        : sepsis4_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+      GSM7655480
+        grezzo (Stadio 1): title: sepsis5_kidney,source: kidney,tissue: kidney
+        H5 titolo        : sepsis5_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+      GSM7655491
+        grezzo (Stadio 1): title: sepsis7_kidney,source: kidney,tissue: kidney
+        H5 titolo        : sepsis7_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+  CONTROLLO  (n=6)  etichetta Stadio 2: Kidney Control
+      gruppo Stadio 2: grp_kidney_control
+      GSM7655497
+        grezzo (Stadio 1): title: control1_kidney,source: kidney,tissue: kidney
+        H5 titolo        : control1_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+      GSM7655503
+        grezzo (Stadio 1): title: control2_kidney,source: kidney,tissue: kidney
+        H5 titolo        : control2_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+      GSM7655509
+        grezzo (Stadio 1): title: control3_kidney,source: kidney,tissue: kidney
+        H5 titolo        : control3_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+      GSM7655515
+        grezzo (Stadio 1): title: control4_kidney,source: kidney,tissue: kidney
+        H5 titolo        : control4_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+      GSM7655521
+        grezzo (Stadio 1): title: control5_kidney,source: kidney,tissue: kidney
+        H5 titolo        : control5_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+      GSM7655533
+        grezzo (Stadio 1): title: control7_kidney,source: kidney,tissue: kidney
+        H5 titolo        : control7_kidney
+        H5 caratteristiche: tissue: kidney
+        H5 sorgente      : kidney
+
+CONFRONTO  GSE237861__GSE237861__lung_sepsis_vs_control__1
+  studio: GSE237861
+  TRATTATO  (n=3)  etichetta Stadio 2: Lung Sepsis
+      gruppo Stadio 2: grp_lung_sepsis
+      GSM7655456
+        grezzo (Stadio 1): title: sepsis1_lungs,source: lung,tissue: lung
+        H5 titolo        : sepsis1_lungs
+        H5 caratteristiche: tissue: lung
+        H5 sorgente      : lung
+      GSM7655473
+        grezzo (Stadio 1): title: sepsis4_lungs,source: lung,tissue: lung
+        H5 titolo        : sepsis4_lungs
+        H5 caratteristiche: tissue: lung
+        H5 sorgente      : lung
+      GSM7655479
+        grezzo (Stadio 1): title: sepsis5_lungs,source: lung,tissue: lung
+        H5 titolo        : sepsis5_lungs
+        H5 caratteristiche: tissue: lung
+        H5 sorgente      : lung
+  CONTROLLO  (n=5)  etichetta Stadio 2: Lung Control
+      gruppo Stadio 2: grp_lung_control
+      GSM7655496
+        grezzo (Stadio 1): title: control1_lungs,source: lung,tissue: lung
+        H5 titolo        : control1_lungs
+        H5 caratteristiche: tissue: lung
+        H5 sorgente      : lung
+      GSM7655502
+        grezzo (Stadio 1): title: control2_lungs,source: lung,tissue: lung
+        H5 titolo        : control2_lungs
+        H5 caratteristiche: tissue: lung
+        H5 sorgente      : lung
+      GSM7655514
+        grezzo (Stadio 1): title: control4_lungs,source: lung,tissue: lung
+        H5 titolo        : control4_lungs
+        H5 caratteristiche: tissue: lung
+        H5 sorgente      : lung
+      GSM7655520
+        grezzo (Stadio 1): title: control5_lungs,source: lung,tissue: lung
+        H5 titolo        : control5_lungs
+        H5 caratteristiche: tissue: lung
+        H5 sorgente      : lung
+      GSM7655532
+        grezzo (Stadio 1): title: control7_lungs,source: lung,tissue: lung
+        H5 titolo        : control7_lungs
+        H5 caratteristiche: tissue: lung
+        H5 sorgente      : lung
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE122274     campioni nell'H5:   27 | collocati dallo Stadio 2:   27 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE163196     campioni nell'H5:   25 | collocati dallo Stadio 2:   25 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE186054     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE232753     campioni nell'H5:   28 | collocati dallo Stadio 2:   28 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 28 campioni distinti (28 righe: i controlli servono piu' confronti)
+  GSE237861     campioni nell'H5:   82 | collocati dallo Stadio 2:   80 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 70 campioni distinti (84 righe: i controlli servono piu' confronti)
+      mai collocati: GSM7655462, GSM7655467
+

@@ -1,0 +1,148 @@
+META-ANALISI 126 di 194
+==============================================================================
+nome            : resveratrol
+entita (ID)     : CHEBI:27881
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_57810d6c
+studi poolati   : 3   confronti: 4   campioni: 18
+geni significativi: 3223   I2 mediano: 79.0
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE104869__GSE104869__Resveratrol_vs_DMSO__1
+  studio: GSE104869
+  TRATTATO  (n=2)  etichetta Stadio 2: Resveratrol
+      gruppo Stadio 2: grp_Resveratrol
+      GSM2809134
+        grezzo (Stadio 1): title: 501Mel R1,source: 501Mel cells treated with Resveratrol (5E-6) during 48h,tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.2
+        H5 titolo        : 501Mel R1
+        H5 caratteristiche: tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.2
+        H5 sorgente      : 501Mel cells treated with Resveratrol (5E-6) during 48h
+      GSM2809135
+        grezzo (Stadio 1): title: 501Mel R2,source: 501Mel cells treated with Resveratrol (5E-6) during 48h,tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.5
+        H5 titolo        : 501Mel R2
+        H5 caratteristiche: tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.5
+        H5 sorgente      : 501Mel cells treated with Resveratrol (5E-6) during 48h
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM2809130
+        grezzo (Stadio 1): title: 501Mel Ctrl1,source: 501Mel cells treated with DMSO during 48h,tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.4
+        H5 titolo        : 501Mel Ctrl1
+        H5 caratteristiche: tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.4
+        H5 sorgente      : 501Mel cells treated with DMSO during 48h
+      GSM2809131
+        grezzo (Stadio 1): title: 501Mel Ctrl2,source: 501Mel cells treated with DMSO during 48h,tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.6
+        H5 titolo        : 501Mel Ctrl2
+        H5 caratteristiche: tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.6
+        H5 sorgente      : 501Mel cells treated with DMSO during 48h
+
+CONFRONTO  GSE117620__GSE117620__grp_0007_vs_grp_0004__1
+  studio: GSE117620
+  TRATTATO  (n=3)  etichetta Stadio 2: TB98 cells treated with 10 nM resveratrol
+      gruppo Stadio 2: grp_0007
+      GSM3305246
+        grezzo (Stadio 1): title: RSV_10nM_rep1_batch2,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 10nM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 titolo        : RSV_10nM_rep1_batch2
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 10nM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 sorgente      : anaplastic astrocytoma cell culture
+      GSM3305247
+        grezzo (Stadio 1): title: RSV_10nM_rep2_batch2,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 10nM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 titolo        : RSV_10nM_rep2_batch2
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 10nM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 sorgente      : anaplastic astrocytoma cell culture
+      GSM3305248
+        grezzo (Stadio 1): title: RSV_10nM_rep3_batch2,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 10nM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 titolo        : RSV_10nM_rep3_batch2
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 10nM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 sorgente      : anaplastic astrocytoma cell culture
+  CONTROLLO  (n=2)  etichetta Stadio 2: TB98 cells treated with DMSO
+      gruppo Stadio 2: grp_0004
+      GSM3305253
+        grezzo (Stadio 1): title: DMSO_rep2_batch2,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: DMSO,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 titolo        : DMSO_rep2_batch2
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: DMSO,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 sorgente      : anaplastic astrocytoma cell culture
+      GSM3305254
+        grezzo (Stadio 1): title: DMSO_rep3_batch2,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: DMSO,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 titolo        : DMSO_rep3_batch2
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: DMSO,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 sorgente      : anaplastic astrocytoma cell culture
+
+CONFRONTO  GSE117620__GSE117620__grp_0009_vs_grp_0004__1
+  studio: GSE117620
+  TRATTATO  (n=3)  etichetta Stadio 2: TB98 cells treated with 20 uM resveratrol
+      gruppo Stadio 2: grp_0009
+      GSM3305240
+        grezzo (Stadio 1): title: RSV_20uM_rep1_batch1,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 20uM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #1
+        H5 titolo        : RSV_20uM_rep1_batch1
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 20uM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #1
+        H5 sorgente      : anaplastic astrocytoma cell culture
+      GSM3305241
+        grezzo (Stadio 1): title: RSV_20uM_rep2_batch1,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 20uM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #1
+        H5 titolo        : RSV_20uM_rep2_batch1
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 20uM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #1
+        H5 sorgente      : anaplastic astrocytoma cell culture
+      GSM3305242
+        grezzo (Stadio 1): title: RSV_20uM_rep3_batch1,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 20uM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #1
+        H5 titolo        : RSV_20uM_rep3_batch1
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: 20uM resveratrol,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #1
+        H5 sorgente      : anaplastic astrocytoma cell culture
+  CONTROLLO  (n=2)  etichetta Stadio 2: TB98 cells treated with DMSO
+      gruppo Stadio 2: grp_0004
+      GSM3305253
+        grezzo (Stadio 1): title: DMSO_rep2_batch2,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: DMSO,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 titolo        : DMSO_rep2_batch2
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: DMSO,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 sorgente      : anaplastic astrocytoma cell culture
+      GSM3305254
+        grezzo (Stadio 1): title: DMSO_rep3_batch2,source: anaplastic astrocytoma cell culture,cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: DMSO,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 titolo        : DMSO_rep3_batch2
+        H5 caratteristiche: cell line: TB98,cell type: anaplastic astrocytoma cells,treatment: DMSO,treatment duration: 24h,passages: 5,idh1 status in tumor tissue: IDH1 mutation,experiment: #2
+        H5 sorgente      : anaplastic astrocytoma cell culture
+
+CONFRONTO  GSE65634__GSE65634__C2_resveratrol_vs_C2_DMSO__1
+  studio: GSE65634
+  TRATTATO  (n=2)  etichetta Stadio 2: C2_resveratrol
+      gruppo Stadio 2: grp_0003
+      GSM1602261
+        grezzo (Stadio 1): title: C2_RES_1,source: Fibroblasts,cell line: C2,cell type: fibroblast,passages: 15-20,genotype: control,agent: resveratrol
+        H5 titolo        : C2_RES_1
+        H5 caratteristiche: cell line: C2,cell type: fibroblast,passages: 15-20,genotype: control,agent: resveratrol
+        H5 sorgente      : Fibroblasts
+      GSM1602262
+        grezzo (Stadio 1): title: C2_RES_2,source: Fibroblasts,cell line: C2,cell type: fibroblast,passages: 15-20,genotype: control,agent: resveratrol
+        H5 titolo        : C2_RES_2
+        H5 caratteristiche: cell line: C2,cell type: fibroblast,passages: 15-20,genotype: control,agent: resveratrol
+        H5 sorgente      : Fibroblasts
+  CONTROLLO  (n=2)  etichetta Stadio 2: C2_DMSO
+      gruppo Stadio 2: grp_0001
+      GSM1602259
+        grezzo (Stadio 1): title: C2_DMSO_1,source: Fibroblasts,cell line: C2,cell type: fibroblast,passages: 15-20,genotype: control,agent: DMSO
+        H5 titolo        : C2_DMSO_1
+        H5 caratteristiche: cell line: C2,cell type: fibroblast,passages: 15-20,genotype: control,agent: DMSO
+        H5 sorgente      : Fibroblasts
+      GSM1602260
+        grezzo (Stadio 1): title: C2_DMSO_2,source: Fibroblasts,cell line: C2,cell type: fibroblast,passages: 15-20,genotype: control,agent: DMSO
+        H5 titolo        : C2_DMSO_2
+        H5 caratteristiche: cell line: C2,cell type: fibroblast,passages: 15-20,genotype: control,agent: DMSO
+        H5 sorgente      : Fibroblasts
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE104869     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE117620     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE65634      campioni nell'H5:   32 | collocati dallo Stadio 2:   32 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+

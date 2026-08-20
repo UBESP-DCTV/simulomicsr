@@ -1,0 +1,294 @@
+META-ANALISI 070 di 194
+==============================================================================
+nome            : IL22
+entita (ID)     : HGNC:14900
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_2ab433c8
+studi poolati   : 5   confronti: 8   campioni: 41
+geni significativi: 1258   I2 mediano: 40.2
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE119047__GSE119047__IL22_TGFlo_vs_PBS__1
+  studio: GSE119047
+  TRATTATO  (n=3)  etichetta Stadio 2: IL22 TGFlo
+      gruppo Stadio 2: grp_0010
+      GSM3357031
+        grezzo (Stadio 1): title: Blue IL22 TGFlo,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: IL22 TGFlo,lot: Blue,barcode: MPS087817
+        H5 titolo        : Blue IL22 TGFlo
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: IL22 TGFlo,lot: Blue,barcode: MPS087817
+        H5 sorgente      : Primary Hepatic Stellate Cells
+      GSM3357038
+        grezzo (Stadio 1): title: Grey IL22 TGFlo,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: IL22 TGFlo,lot: Grey,barcode: MPS087831
+        H5 titolo        : Grey IL22 TGFlo
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: IL22 TGFlo,lot: Grey,barcode: MPS087831
+        H5 sorgente      : Primary Hepatic Stellate Cells
+      GSM3357045
+        grezzo (Stadio 1): title: Yellow IL22 TGFlo,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: IL22 TGFlo,lot: Yellow,barcode: MPS087824
+        H5 titolo        : Yellow IL22 TGFlo
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: IL22 TGFlo,lot: Yellow,barcode: MPS087824
+        H5 sorgente      : Primary Hepatic Stellate Cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0001
+      GSM3357032
+        grezzo (Stadio 1): title: Blue PBS,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Blue,barcode: MPS087811
+        H5 titolo        : Blue PBS
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Blue,barcode: MPS087811
+        H5 sorgente      : Primary Hepatic Stellate Cells
+      GSM3357046
+        grezzo (Stadio 1): title: Yellow PBS,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Yellow,barcode: MPS087818
+        H5 titolo        : Yellow PBS
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Yellow,barcode: MPS087818
+        H5 sorgente      : Primary Hepatic Stellate Cells
+
+CONFRONTO  GSE119047__GSE119047__IL22_vs_PBS__1
+  studio: GSE119047
+  TRATTATO  (n=2)  etichetta Stadio 2: IL22
+      gruppo Stadio 2: grp_0008
+      GSM3357030
+        grezzo (Stadio 1): title: Blue IL22,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: IL22,lot: Blue,barcode: MPS087815
+        H5 titolo        : Blue IL22
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: IL22,lot: Blue,barcode: MPS087815
+        H5 sorgente      : Primary Hepatic Stellate Cells
+      GSM3357037
+        grezzo (Stadio 1): title: Grey IL22,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: IL22,lot: Grey,barcode: MPS087829
+        H5 titolo        : Grey IL22
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: IL22,lot: Grey,barcode: MPS087829
+        H5 sorgente      : Primary Hepatic Stellate Cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0001
+      GSM3357032
+        grezzo (Stadio 1): title: Blue PBS,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Blue,barcode: MPS087811
+        H5 titolo        : Blue PBS
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Blue,barcode: MPS087811
+        H5 sorgente      : Primary Hepatic Stellate Cells
+      GSM3357046
+        grezzo (Stadio 1): title: Yellow PBS,source: Primary Hepatic Stellate Cells,cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Yellow,barcode: MPS087818
+        H5 titolo        : Yellow PBS
+        H5 caratteristiche: cell type: Primary hepatic stellate cells,stimulation: PBS,lot: Yellow,barcode: MPS087818
+        H5 sorgente      : Primary Hepatic Stellate Cells
+
+CONFRONTO  GSE149262__GSE149262__grp_0006_vs_grp_0002__1
+  studio: GSE149262
+  TRATTATO  (n=3)  etichetta Stadio 2: DLD-1 KRAS (+/-) passage 6, IL-22 10 ng/mL 2h
+      gruppo Stadio 2: grp_0006
+      GSM4495073
+        grezzo (Stadio 1): title: WT_IL22_2h_1,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 2h,experimental replicate: 1,passage: 6
+        H5 titolo        : WT_IL22_2h_1
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 2h,experimental replicate: 1,passage: 6
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495079
+        grezzo (Stadio 1): title: WT_IL22_2h_2,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 2h,experimental replicate: 2,passage: 7
+        H5 titolo        : WT_IL22_2h_2
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 2h,experimental replicate: 2,passage: 7
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495085
+        grezzo (Stadio 1): title: WT_IL22_2h_3,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 2h,experimental replicate: 3,passage: 8
+        H5 titolo        : WT_IL22_2h_3
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 2h,experimental replicate: 3,passage: 8
+        H5 sorgente      : colorectal cancer cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: DLD-1 KRAS (+/-) passage 6, untreated 2h
+      gruppo Stadio 2: grp_0002
+      GSM4495072
+        grezzo (Stadio 1): title: WT_NT_2h_1,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 1,passage: 6
+        H5 titolo        : WT_NT_2h_1
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 1,passage: 6
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495078
+        grezzo (Stadio 1): title: WT_NT_2h_2,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 2,passage: 7
+        H5 titolo        : WT_NT_2h_2
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 2,passage: 7
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495084
+        grezzo (Stadio 1): title: WT_NT_2h_3,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 3,passage: 8
+        H5 titolo        : WT_NT_2h_3
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 3,passage: 8
+        H5 sorgente      : colorectal cancer cell line
+
+CONFRONTO  GSE149262__GSE149262__grp_0007_vs_grp_0003__1
+  studio: GSE149262
+  TRATTATO  (n=2)  etichetta Stadio 2: DLD-1 KRAS (+/-) passage 6, IL-22 10 ng/mL 24h
+      gruppo Stadio 2: grp_0007
+      GSM4495091
+        grezzo (Stadio 1): title: WT_IL22_24h_1,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 24h,experimental replicate: 1,passage: 6
+        H5 titolo        : WT_IL22_24h_1
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 24h,experimental replicate: 1,passage: 6
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495097
+        grezzo (Stadio 1): title: WT_IL22_24h_2,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 24h,experimental replicate: 2,passage: 7
+        H5 titolo        : WT_IL22_24h_2
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-22,stimulation time: 24h,experimental replicate: 2,passage: 7
+        H5 sorgente      : colorectal cancer cell line
+  CONTROLLO  (n=2)  etichetta Stadio 2: DLD-1 KRAS (+/-) passage 7, untreated 24h
+      gruppo Stadio 2: grp_0003
+      GSM4495096
+        grezzo (Stadio 1): title: WT_NT_24h_2,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 24h,experimental replicate: 2,passage: 7
+        H5 titolo        : WT_NT_24h_2
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 24h,experimental replicate: 2,passage: 7
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495102
+        grezzo (Stadio 1): title: WT_NT_24h_3,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 24h,experimental replicate: 3,passage: 8
+        H5 titolo        : WT_NT_24h_3
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 24h,experimental replicate: 3,passage: 8
+        H5 sorgente      : colorectal cancer cell line
+
+CONFRONTO  GSE190634__GSE190634__IL22_donor1_vs_none_donor1__1
+  studio: GSE190634
+  TRATTATO  (n=3)  etichetta Stadio 2: Colonic organoid, donor 1, IL22 10ng/mL
+      gruppo Stadio 2: grp_IL22_donor1
+      GSM5726856
+        grezzo (Stadio 1): title: IL22 treated colonoid donor 1 [IL22_1],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IL22 10ng/mL,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 titolo        : IL22 treated colonoid donor 1 [IL22_1]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IL22 10ng/mL,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726858
+        grezzo (Stadio 1): title: IL22 treated colonoid donor 3 [IL22_3],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IL22 10ng/mL,treatment duration: 24 hours,donor id: 3,experiment: 1
+        H5 titolo        : IL22 treated colonoid donor 3 [IL22_3]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IL22 10ng/mL,treatment duration: 24 hours,donor id: 3,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726859
+        grezzo (Stadio 1): title: IL22 treated colonoid donor 4 [IL22_4],source: colonic organoid,tissue/cell type: colonic organoid,treatment: IL22 10ng/mL,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 titolo        : IL22 treated colonoid donor 4 [IL22_4]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: IL22 10ng/mL,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 sorgente      : colonic organoid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Colonic organoid, donor 1, no treatment
+      gruppo Stadio 2: grp_none_donor1
+      GSM5726840
+        grezzo (Stadio 1): title: Untreated colonoid donor 1 [Control_1],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 titolo        : Untreated colonoid donor 1 [Control_1]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 1,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726841
+        grezzo (Stadio 1): title: Untreated colonoid donor 2 [Control_2],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 titolo        : Untreated colonoid donor 2 [Control_2]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 2,experiment: 1
+        H5 sorgente      : colonic organoid
+      GSM5726843
+        grezzo (Stadio 1): title: Untreated colonoid donor 4 [Control_4],source: colonic organoid,tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 titolo        : Untreated colonoid donor 4 [Control_4]
+        H5 caratteristiche: tissue/cell type: colonic organoid,treatment: none,treatment duration: 24 hours,donor id: 4,experiment: 1
+        H5 sorgente      : colonic organoid
+
+CONFRONTO  GSE214503__GSE214503__IL22_vs_PBS__1
+  studio: GSE214503
+  TRATTATO  (n=3)  etichetta Stadio 2: IL22
+      gruppo Stadio 2: grp_0005
+      GSM6607389
+        grezzo (Stadio 1): title: IL_22_1,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL22 stimulation, 24 hr
+        H5 titolo        : IL_22_1
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL22 stimulation, 24 hr
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607390
+        grezzo (Stadio 1): title: IL_22_2,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL22 stimulation, 24 hr
+        H5 titolo        : IL_22_2
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL22 stimulation, 24 hr
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607391
+        grezzo (Stadio 1): title: IL_22_3,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL22 stimulation, 24 hr
+        H5 titolo        : IL_22_3
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL22 stimulation, 24 hr
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0001
+      GSM6607392
+        grezzo (Stadio 1): title: PBS_1,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_1
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607393
+        grezzo (Stadio 1): title: PBS_2,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_2
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607394
+        grezzo (Stadio 1): title: PBS_3,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_3
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+
+CONFRONTO  GSE243230__GSE243230__grp_IL-22_24h_vs_grp_none_24h__1
+  studio: GSE243230
+  TRATTATO  (n=2)  etichetta Stadio 2: T84 cells treated with IL-22 for 24 hours
+      gruppo Stadio 2: grp_IL-22_24h
+      GSM7781164
+        grezzo (Stadio 1): title: IL22 24h-2,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: 100ng/mL IL-22
+        H5 titolo        : IL22 24h-2
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: 100ng/mL IL-22
+        H5 sorgente      : T84
+      GSM7781165
+        grezzo (Stadio 1): title: IL22 24h-3,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: 100ng/mL IL-22
+        H5 titolo        : IL22 24h-3
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: 100ng/mL IL-22
+        H5 sorgente      : T84
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated T84 cells for 24 hours
+      gruppo Stadio 2: grp_none_24h
+      GSM7781139
+        grezzo (Stadio 1): title: mock 24h-1,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 titolo        : mock 24h-1
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 sorgente      : T84
+      GSM7781140
+        grezzo (Stadio 1): title: mock 24h-2,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 titolo        : mock 24h-2
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 sorgente      : T84
+      GSM7781141
+        grezzo (Stadio 1): title: mock 24h-3,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 titolo        : mock 24h-3
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 sorgente      : T84
+
+CONFRONTO  GSE243230__GSE243230__grp_IL-22_6h_vs_grp_none_6h__1
+  studio: GSE243230
+  TRATTATO  (n=2)  etichetta Stadio 2: T84 cells treated with IL-22 for 6 hours
+      gruppo Stadio 2: grp_IL-22_6h
+      GSM7781158
+        grezzo (Stadio 1): title: IL22 6h-2,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: 100ng/mL IL-22
+        H5 titolo        : IL22 6h-2
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: 100ng/mL IL-22
+        H5 sorgente      : T84
+      GSM7781159
+        grezzo (Stadio 1): title: IL22 6h-3,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: 100ng/mL IL-22
+        H5 titolo        : IL22 6h-3
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: 100ng/mL IL-22
+        H5 sorgente      : T84
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated T84 cells for 6 hours
+      gruppo Stadio 2: grp_none_6h
+      GSM7781133
+        grezzo (Stadio 1): title: mock 6h-1,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 titolo        : mock 6h-1
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 sorgente      : T84
+      GSM7781134
+        grezzo (Stadio 1): title: mock 6h-2,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 titolo        : mock 6h-2
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 sorgente      : T84
+      GSM7781135
+        grezzo (Stadio 1): title: mock 6h-3,source: T84,cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 titolo        : mock 6h-3
+        H5 caratteristiche: cell line: T84,cell type: human colon carcinoma,genotype: WT,treatment: none
+        H5 sorgente      : T84
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE119047     campioni nell'H5:   20 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE149262     campioni nell'H5:   36 | collocati dallo Stadio 2:   36 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE190634     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE214503     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE243230     campioni nell'H5:   48 | collocati dallo Stadio 2:   39 | MAI COLLOCATI:    9 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+      mai collocati: GSM7781154, GSM7781155, GSM7781157, GSM7781160, GSM7781161, GSM7781163, GSM7781167, GSM7781169, GSM7781171
+

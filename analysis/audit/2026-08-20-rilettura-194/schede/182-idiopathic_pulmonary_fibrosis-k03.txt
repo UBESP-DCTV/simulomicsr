@@ -1,0 +1,297 @@
+META-ANALISI 182 di 194
+==============================================================================
+nome            : idiopathic pulmonary fibrosis
+entita (ID)     : STR:idiopathic_pulmonary_fibrosis
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_dd2a13de
+studi poolati   : 3   confronti: 3   campioni: 49
+geni significativi: 14   I2 mediano: 3.8
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE248485__GSE248485__grp_0004_vs_grp_0001__1
+  studio: GSE248485
+  TRATTATO  (n=3)  etichetta Stadio 2: IPF patient age 76
+      gruppo Stadio 2: grp_0004
+      GSM7915827
+        grezzo (Stadio 1): title: IPF (before PFD) [DK21068_03],source: PBMC,disease: Idiopathic Pulmonary Fibrosis,tissue: PBMC,age: 76,Sex: Male,race: Asian,treatment: None
+        H5 titolo        : IPF (before PFD) [DK21068_03]
+        H5 caratteristiche: disease: Idiopathic Pulmonary Fibrosis,tissue: PBMC,age: 76,Sex: Male,race: Asian,treatment: None
+        H5 sorgente      : PBMC
+      GSM7915830
+        grezzo (Stadio 1): title: IPF (before NTD) [DK21068_01],source: PBMC,disease: Idiopathic Pulmonary Fibrosis,tissue: PBMC,age: 77,Sex: Male,race: Asian,treatment: None
+        H5 titolo        : IPF (before NTD) [DK21068_01]
+        H5 caratteristiche: disease: Idiopathic Pulmonary Fibrosis,tissue: PBMC,age: 77,Sex: Male,race: Asian,treatment: None
+        H5 sorgente      : PBMC
+      GSM7915831
+        grezzo (Stadio 1): title: IPF (before NTD) [DK22190_05],source: PBMC,disease: Idiopathic Pulmonary Fibrosis,tissue: PBMC,age: 66,Sex: Male,race: Asian,treatment: None
+        H5 titolo        : IPF (before NTD) [DK22190_05]
+        H5 caratteristiche: disease: Idiopathic Pulmonary Fibrosis,tissue: PBMC,age: 66,Sex: Male,race: Asian,treatment: None
+        H5 sorgente      : PBMC
+  CONTROLLO  (n=5)  etichetta Stadio 2: Healthy donor DK22269_01
+      gruppo Stadio 2: grp_0001
+      GSM7915821
+        grezzo (Stadio 1): title: Healthy control [DK22269_01],source: PBMC,disease: Healthy,tissue: PBMC,age: 70,Sex: Male,race: Asian,treatment: None
+        H5 titolo        : Healthy control [DK22269_01]
+        H5 caratteristiche: disease: Healthy,tissue: PBMC,age: 70,Sex: Male,race: Asian,treatment: None
+        H5 sorgente      : PBMC
+      GSM7915822
+        grezzo (Stadio 1): title: Healthy control [DK22269_03],source: PBMC,disease: Healthy,tissue: PBMC,age: 67,Sex: Male,race: Asian,treatment: None
+        H5 titolo        : Healthy control [DK22269_03]
+        H5 caratteristiche: disease: Healthy,tissue: PBMC,age: 67,Sex: Male,race: Asian,treatment: None
+        H5 sorgente      : PBMC
+      GSM7915823
+        grezzo (Stadio 1): title: Healthy control [DK22269_04],source: PBMC,disease: Healthy,tissue: PBMC,age: 67,Sex: Male,race: Asian,treatment: None
+        H5 titolo        : Healthy control [DK22269_04]
+        H5 caratteristiche: disease: Healthy,tissue: PBMC,age: 67,Sex: Male,race: Asian,treatment: None
+        H5 sorgente      : PBMC
+      GSM7915825
+        grezzo (Stadio 1): title: Healthy control [DK21222_17],source: PBMC,disease: Healthy,tissue: PBMC,age: 63,Sex: Male,race: Asian,treatment: None
+        H5 titolo        : Healthy control [DK21222_17]
+        H5 caratteristiche: disease: Healthy,tissue: PBMC,age: 63,Sex: Male,race: Asian,treatment: None
+        H5 sorgente      : PBMC
+      GSM7915826
+        grezzo (Stadio 1): title: Healthy control [DK21222_19],source: PBMC,disease: Healthy,tissue: PBMC,age: 81,Sex: Male,race: Asian,treatment: None
+        H5 titolo        : Healthy control [DK21222_19]
+        H5 caratteristiche: disease: Healthy,tissue: PBMC,age: 81,Sex: Male,race: Asian,treatment: None
+        H5 sorgente      : PBMC
+
+CONFRONTO  GSE79544__GSE79544__IPF_smokers_vs_Healthy_smokers__1
+  studio: GSE79544
+  TRATTATO  (n=12)  etichetta Stadio 2: IPF smokers
+      gruppo Stadio 2: grp_0002
+      GSM2097615
+        grezzo (Stadio 1): title: CS3 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 61.1,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [Ex smoker]
+        H5 titolo        : CS3 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 61.1,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [Ex smoker]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2097616
+        grezzo (Stadio 1): title: CS7 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 77.8,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes
+        H5 titolo        : CS7 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 77.8,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2097618
+        grezzo (Stadio 1): title: CS 9 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 59.5,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS 9 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 59.5,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2097619
+        grezzo (Stadio 1): title: CS11 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 61.7,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS11 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 61.7,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2097620
+        grezzo (Stadio 1): title: CS15 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 61.2,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS15 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 61.2,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2097621
+        grezzo (Stadio 1): title: CS16 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 60.8,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS16 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 60.8,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608029
+        grezzo (Stadio 1): title: CS6 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 71.3,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS6 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 71.3,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608030
+        grezzo (Stadio 1): title: CS10 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 75.2,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS10 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 75.2,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608032
+        grezzo (Stadio 1): title: CS13 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 63.8,Sex: female,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS13 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 63.8,Sex: female,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608034
+        grezzo (Stadio 1): title: CS17 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 63.8,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS17 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 63.8,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608036
+        grezzo (Stadio 1): title: CS20 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 77.1,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS20 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 77.1,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608037
+        grezzo (Stadio 1): title: CS22 BAL_IPF,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 71.8,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 titolo        : CS22 BAL_IPF
+        H5 caratteristiche: tissue: BAL macrophages,age: 71.8,Sex: male,disease: Idiopathic pulmonary fibrosis,smoker: Yes [ex]
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+  CONTROLLO  (n=7)  etichetta Stadio 2: Healthy smokers
+      gruppo Stadio 2: grp_0003
+      GSM2097611
+        grezzo (Stadio 1): title: CS1 BAL_Control,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 39.5,Sex: male,disease: Control,smoker: Yes
+        H5 titolo        : CS1 BAL_Control
+        H5 caratteristiche: tissue: BAL macrophages,age: 39.5,Sex: male,disease: Control,smoker: Yes
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2097612
+        grezzo (Stadio 1): title: CS2 BAL_Control,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 45.3,Sex: female,disease: Control,smoker: Yes
+        H5 titolo        : CS2 BAL_Control
+        H5 caratteristiche: tissue: BAL macrophages,age: 45.3,Sex: female,disease: Control,smoker: Yes
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2097613
+        grezzo (Stadio 1): title: CS4 BAL_Control,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 44.2,Sex: female,disease: Control,smoker: Yes
+        H5 titolo        : CS4 BAL_Control
+        H5 caratteristiche: tissue: BAL macrophages,age: 44.2,Sex: female,disease: Control,smoker: Yes
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2097614
+        grezzo (Stadio 1): title: CS5 BAL_Control,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 58.8,Sex: male,disease: Control,smoker: Yes
+        H5 titolo        : CS5 BAL_Control
+        H5 caratteristiche: tissue: BAL macrophages,age: 58.8,Sex: male,disease: Control,smoker: Yes
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608026
+        grezzo (Stadio 1): title: CS23 BAL_Control,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 41.8,Sex: male,disease: Control,smoker: Yes
+        H5 titolo        : CS23 BAL_Control
+        H5 caratteristiche: tissue: BAL macrophages,age: 41.8,Sex: male,disease: Control,smoker: Yes
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608027
+        grezzo (Stadio 1): title: CS24 BAL_Control,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 45.5,Sex: female,disease: Control,smoker: Yes
+        H5 titolo        : CS24 BAL_Control
+        H5 caratteristiche: tissue: BAL macrophages,age: 45.5,Sex: female,disease: Control,smoker: Yes
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+      GSM2608028
+        grezzo (Stadio 1): title: CS25 BAL_Control,source: lung bronchoalveolar lavage(BAL),tissue: BAL macrophages,age: 49.5,Sex: female,disease: Control,smoker: Yes
+        H5 titolo        : CS25 BAL_Control
+        H5 caratteristiche: tissue: BAL macrophages,age: 49.5,Sex: female,disease: Control,smoker: Yes
+        H5 sorgente      : lung bronchoalveolar lavage(BAL)
+
+CONFRONTO  GSE92592__GSE92592__ipf_vs_control__1
+  studio: GSE92592
+  TRATTATO  (n=20)  etichetta Stadio 2: IPF Lung Tissue
+      gruppo Stadio 2: ipf
+      GSM2433098
+        grezzo (Stadio 1): title: s_282634,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_282634
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433099
+        grezzo (Stadio 1): title: s_039545,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_039545
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433100
+        grezzo (Stadio 1): title: s_111533,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_111533
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433101
+        grezzo (Stadio 1): title: s_131648,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_131648
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433102
+        grezzo (Stadio 1): title: s_254200,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_254200
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433103
+        grezzo (Stadio 1): title: s_152649,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_152649
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433104
+        grezzo (Stadio 1): title: s_133378,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_133378
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433105
+        grezzo (Stadio 1): title: s_263234,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_263234
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433106
+        grezzo (Stadio 1): title: s_133583,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_133583
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433107
+        grezzo (Stadio 1): title: s_022562,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_022562
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433108
+        grezzo (Stadio 1): title: s_258760,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_258760
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433109
+        grezzo (Stadio 1): title: s_186024,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_186024
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433110
+        grezzo (Stadio 1): title: s_102021,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_102021
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433111
+        grezzo (Stadio 1): title: s_284489,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_284489
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433112
+        grezzo (Stadio 1): title: s_059846,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_059846
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433113
+        grezzo (Stadio 1): title: s_228552,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_228552
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433114
+        grezzo (Stadio 1): title: s_137431,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_137431
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433115
+        grezzo (Stadio 1): title: s_280263,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_280263
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433116
+        grezzo (Stadio 1): title: s_149517,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_149517
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+      GSM2433117
+        grezzo (Stadio 1): title: s_116004,source: lung tissue,tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 titolo        : s_116004
+        H5 caratteristiche: tissue: lung,disease state: Idiopathic Pulmonary Fibrosis
+        H5 sorgente      : lung tissue
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy Control Lung Tissue
+      gruppo Stadio 2: control
+      GSM2433129
+        grezzo (Stadio 1): title: s_298223,source: lung tissue,tissue: lung,disease state: Control
+        H5 titolo        : s_298223
+        H5 caratteristiche: tissue: lung,disease state: Control
+        H5 sorgente      : lung tissue
+      GSM2433130
+        grezzo (Stadio 1): title: s_020096,source: lung tissue,tissue: lung,disease state: Control
+        H5 titolo        : s_020096
+        H5 caratteristiche: tissue: lung,disease state: Control
+        H5 sorgente      : lung tissue
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE248485     campioni nell'H5:   17 | collocati dallo Stadio 2:   17 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE79544      campioni nell'H5:   23 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 19 campioni distinti (19 righe: i controlli servono piu' confronti)
+      mai collocati: GSM2608033, GSM2608035
+  GSE92592      campioni nell'H5:   38 | collocati dallo Stadio 2:   38 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 22 campioni distinti (22 righe: i controlli servono piu' confronti)
+

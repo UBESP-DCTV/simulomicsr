@@ -1,0 +1,310 @@
+META-ANALISI 135 di 194
+==============================================================================
+nome            : vorinostat
+entita (ID)     : CHEBI:45716
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_d800c4f2
+studi poolati   : 3   confronti: 4   campioni: 50
+geni significativi: 4604   I2 mediano: 86.0
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE115205__GSE115205__SAHA_2.5uM_8330-8-RC1_vs_DMSO_8330-8-RC1__1
+  studio: GSE115205
+  TRATTATO  (n=2)  etichetta Stadio 2: SAHA 2.5uM 8330-8-RC1
+      gruppo Stadio 2: grp_SAHA_2.5uM_8330-8-RC1
+      GSM3169287
+        grezzo (Stadio 1): title: H8: iPSC-derived Neurons,source: iPSC-derived Neurons,tissue: iPSC-derived Neurons,diagnosis/patient: Control (8330-8-RC1),saha dose: 2.5uM SAHA,batch: B
+        H5 titolo        : H8: iPSC-derived Neurons
+        H5 caratteristiche: tissue: iPSC-derived Neurons,diagnosis/patient: Control (8330-8-RC1),saha dose: 2.5uM SAHA,batch: B
+        H5 sorgente      : iPSC-derived Neurons
+      GSM3169297
+        grezzo (Stadio 1): title: H18: iPSC-derived Neurons,source: iPSC-derived Neurons,tissue: iPSC-derived Neurons,diagnosis/patient: Control (8330-8-RC1),saha dose: 2.5uM SAHA,batch: E
+        H5 titolo        : H18: iPSC-derived Neurons
+        H5 caratteristiche: tissue: iPSC-derived Neurons,diagnosis/patient: Control (8330-8-RC1),saha dose: 2.5uM SAHA,batch: E
+        H5 sorgente      : iPSC-derived Neurons
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO 8330-8-RC1
+      gruppo Stadio 2: grp_DMSO_8330-8-RC1
+      GSM3169280
+        grezzo (Stadio 1): title: H1: iPSC-derived Neurons,source: iPSC-derived Neurons,tissue: iPSC-derived Neurons,diagnosis/patient: Control (8330-8-RC1),saha dose: DMSO,batch: A
+        H5 titolo        : H1: iPSC-derived Neurons
+        H5 caratteristiche: tissue: iPSC-derived Neurons,diagnosis/patient: Control (8330-8-RC1),saha dose: DMSO,batch: A
+        H5 sorgente      : iPSC-derived Neurons
+      GSM3169284
+        grezzo (Stadio 1): title: H5: iPSC-derived Neurons,source: iPSC-derived Neurons,tissue: iPSC-derived Neurons,diagnosis/patient: Control (8330-8-RC1),saha dose: DMSO,batch: B
+        H5 titolo        : H5: iPSC-derived Neurons
+        H5 caratteristiche: tissue: iPSC-derived Neurons,diagnosis/patient: Control (8330-8-RC1),saha dose: DMSO,batch: B
+        H5 sorgente      : iPSC-derived Neurons
+
+CONFRONTO  GSE199800__GSE199800__Vorinostat_vs_DMSO__1
+  studio: GSE199800
+  TRATTATO  (n=2)  etichetta Stadio 2: Vorinostat
+      gruppo Stadio 2: mg381
+      GSM5985189
+        grezzo (Stadio 1): title: du145_DU145PS2A_A4_Vorinostat_0.5_24,source: prostate cancer,treatment: Vorinostat,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_A4_Vorinostat_0.5_24
+        H5 caratteristiche: treatment: Vorinostat,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985285
+        grezzo (Stadio 1): title: du145_DU145PS2B_A04_Vorinostat_0.5_24,source: prostate cancer,treatment: Vorinostat,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_A04_Vorinostat_0.5_24
+        H5 caratteristiche: treatment: Vorinostat,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+  CONTROLLO  (n=33)  etichetta Stadio 2: Control
+      gruppo Stadio 2: mg399
+      GSM5985007
+        grezzo (Stadio 1): title: du145_DU145PS1A_B2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1A_B2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985023
+        grezzo (Stadio 1): title: du145_DU145PS1A_C6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1A_C6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985091
+        grezzo (Stadio 1): title: du145_DU145PS1B_A2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1B_A2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985103
+        grezzo (Stadio 1): title: du145_DU145PS1B_B2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS1B_B2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985187
+        grezzo (Stadio 1): title: du145_DU145PS2A_A2_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_A2_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985215
+        grezzo (Stadio 1): title: du145_DU145PS2A_C6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_C6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985227
+        grezzo (Stadio 1): title: du145_DU145PS2A_D6_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_D6_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985256
+        grezzo (Stadio 1): title: du145_DU145PS2A_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2A_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985283
+        grezzo (Stadio 1): title: du145_DU145PS2B_A02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_A02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985295
+        grezzo (Stadio 1): title: du145_DU145PS2B_B02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_B02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985311
+        grezzo (Stadio 1): title: du145_DU145PS2B_C06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_C06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985323
+        grezzo (Stadio 1): title: du145_DU145PS2B_D06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_D06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985340
+        grezzo (Stadio 1): title: du145_DU145PS2B_E11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_E11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985352
+        grezzo (Stadio 1): title: du145_DU145PS2B_F11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS2B_F11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985379
+        grezzo (Stadio 1): title: du145_DU145PS3A_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985391
+        grezzo (Stadio 1): title: du145_DU145PS3A_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985407
+        grezzo (Stadio 1): title: du145_DU145PS3A_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985419
+        grezzo (Stadio 1): title: du145_DU145PS3A_D06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_D06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985448
+        grezzo (Stadio 1): title: du145_DU145PS3A_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3A_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985475
+        grezzo (Stadio 1): title: du145_DU145PS3B_A02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_A02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985487
+        grezzo (Stadio 1): title: du145_DU145PS3B_B02_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_B02_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985503
+        grezzo (Stadio 1): title: du145_DU145PS3B_C06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_C06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985515
+        grezzo (Stadio 1): title: du145_DU145PS3B_D06_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_D06_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985532
+        grezzo (Stadio 1): title: du145_DU145PS3B_E11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_E11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985544
+        grezzo (Stadio 1): title: du145_DU145PS3B_F11_DMSO__24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS3B_F11_DMSO__24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985571
+        grezzo (Stadio 1): title: du145_DU145PS4A_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985583
+        grezzo (Stadio 1): title: du145_DU145PS4A_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985599
+        grezzo (Stadio 1): title: du145_DU145PS4A_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4A_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985667
+        grezzo (Stadio 1): title: du145_DU145PS4B_A02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_A02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985679
+        grezzo (Stadio 1): title: du145_DU145PS4B_B02_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_B02_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985695
+        grezzo (Stadio 1): title: du145_DU145PS4B_C06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_C06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985707
+        grezzo (Stadio 1): title: du145_DU145PS4B_D06_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_D06_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+      GSM5985736
+        grezzo (Stadio 1): title: du145_DU145PS4B_F11_DMSO_0_24,source: prostate cancer,treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 titolo        : du145_DU145PS4B_F11_DMSO_0_24
+        H5 caratteristiche: treatment: DMSO,cell line: DU145,provider: ATCC,vendor id: HTB-81,age: 69,Sex: male
+        H5 sorgente      : prostate cancer
+
+CONFRONTO  GSE246045__GSE246045__grp_0001_vs_grp_0006__1
+  studio: GSE246045
+  TRATTATO  (n=3)  etichetta Stadio 2: Patient 19, SAHA
+      gruppo Stadio 2: grp_0001
+      GSM7854464
+        grezzo (Stadio 1): title: PDO19 SAHA rep1 [1740R-251-02],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: SAHA 5ÂµM,replicate: 1,time: 6 hours
+        H5 titolo        : PDO19 SAHA rep1 [1740R-251-02]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: SAHA 5ÂµM,replicate: 1,time: 6 hours
+        H5 sorgente      : Colon cancer
+      GSM7854470
+        grezzo (Stadio 1): title: PDO19 SAHA rep2 [1740R-251-08],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: SAHA 5ÂµM,replicate: 2,time: 6 hours
+        H5 titolo        : PDO19 SAHA rep2 [1740R-251-08]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: SAHA 5ÂµM,replicate: 2,time: 6 hours
+        H5 sorgente      : Colon cancer
+      GSM7854476
+        grezzo (Stadio 1): title: PDO19 SAHA rep3 [1740R-251-14],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: SAHA 5ÂµM,replicate: 3,time: 6 hours
+        H5 titolo        : PDO19 SAHA rep3 [1740R-251-14]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: SAHA 5ÂµM,replicate: 3,time: 6 hours
+        H5 sorgente      : Colon cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: Patient 19, DMSO
+      gruppo Stadio 2: grp_0006
+      GSM7854463
+        grezzo (Stadio 1): title: PDO19 (control) rep 1 [1740R-251-01],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: DMSO,replicate: 1,time: 6 hours
+        H5 titolo        : PDO19 (control) rep 1 [1740R-251-01]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: DMSO,replicate: 1,time: 6 hours
+        H5 sorgente      : Colon cancer
+      GSM7854469
+        grezzo (Stadio 1): title: PDO19 (control) rep 2 [1740R-251-07],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: DMSO,replicate: 2,time: 6 hours
+        H5 titolo        : PDO19 (control) rep 2 [1740R-251-07]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: DMSO,replicate: 2,time: 6 hours
+        H5 sorgente      : Colon cancer
+      GSM7854475
+        grezzo (Stadio 1): title: PDO19 (control) rep 3 [1740R-251-13],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: DMSO,replicate: 3,time: 6 hours
+        H5 titolo        : PDO19 (control) rep 3 [1740R-251-13]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 19,treatment: DMSO,replicate: 3,time: 6 hours
+        H5 sorgente      : Colon cancer
+
+CONFRONTO  GSE246045__GSE246045__grp_0005_vs_grp_0003__1
+  studio: GSE246045
+  TRATTATO  (n=3)  etichetta Stadio 2: Patient 71, SAHA
+      gruppo Stadio 2: grp_0005
+      GSM7854467
+        grezzo (Stadio 1): title: PDO71 SAHA rep1 [1740R-251-05],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: SAHA 5ÂµM,replicate: 1,time: 6 hours
+        H5 titolo        : PDO71 SAHA rep1 [1740R-251-05]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: SAHA 5ÂµM,replicate: 1,time: 6 hours
+        H5 sorgente      : Colon cancer
+      GSM7854473
+        grezzo (Stadio 1): title: PDO71 SAHA rep2 [1740R-251-11],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: SAHA 5ÂµM,replicate: 2,time: 6 hours
+        H5 titolo        : PDO71 SAHA rep2 [1740R-251-11]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: SAHA 5ÂµM,replicate: 2,time: 6 hours
+        H5 sorgente      : Colon cancer
+      GSM7854479
+        grezzo (Stadio 1): title: PDO71 SAHA rep3 [1740R-251-17],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: SAHA 5ÂµM,replicate: 3,time: 6 hours
+        H5 titolo        : PDO71 SAHA rep3 [1740R-251-17]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: SAHA 5ÂµM,replicate: 3,time: 6 hours
+        H5 sorgente      : Colon cancer
+  CONTROLLO  (n=2)  etichetta Stadio 2: Patient 71, DMSO
+      gruppo Stadio 2: grp_0003
+      GSM7854472
+        grezzo (Stadio 1): title: PDO71 (control) rep 2 [1740R-251-10],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: DMSO,replicate: 2,time: 6 hours
+        H5 titolo        : PDO71 (control) rep 2 [1740R-251-10]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: DMSO,replicate: 2,time: 6 hours
+        H5 sorgente      : Colon cancer
+      GSM7854478
+        grezzo (Stadio 1): title: PDO71 (control) rep 3 [1740R-251-16],source: Colon cancer,tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: DMSO,replicate: 3,time: 6 hours
+        H5 titolo        : PDO71 (control) rep 3 [1740R-251-16]
+        H5 caratteristiche: tissue: Colon cancer,cell line: patient-derived organoid,cell type: Patient 71,treatment: DMSO,replicate: 3,time: 6 hours
+        H5 sorgente      : Colon cancer
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE115205     campioni nell'H5:   36 | collocati dallo Stadio 2:   17 | MAI COLLOCATI:   19 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+      mai collocati: GSM3169281, GSM3169283, GSM3169288, GSM3169289, GSM3169290, GSM3169291, GSM3169292, GSM3169293, GSM3169294, GSM3169295, GSM3169296, GSM3169300 ... (+7)
+  GSE199800     campioni nell'H5: 1655 | collocati dallo Stadio 2: 1489 | MAI COLLOCATI:  166 | usati in questa meta-analisi: 35 campioni distinti (35 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5985001, GSM5985002, GSM5985033, GSM5985054, GSM5985058, GSM5985081, GSM5985083, GSM5985108, GSM5985157, GSM5985173, GSM5985179, GSM5985186 ... (+154)
+  GSE246045     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+

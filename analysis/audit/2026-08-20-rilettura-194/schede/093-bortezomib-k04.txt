@@ -1,0 +1,204 @@
+META-ANALISI 093 di 194
+==============================================================================
+nome            : bortezomib
+entita (ID)     : CHEBI:52717
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_089ccae5
+studi poolati   : 4   confronti: 6   campioni: 26
+geni significativi: 1791   I2 mediano: 73.1
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE123637__GSE123637__grp_0003_vs_grp_0002__1
+  studio: GSE123637
+  TRATTATO  (n=2)  etichetta Stadio 2: MM.1S in vitro treated with Bortezomib
+      gruppo Stadio 2: grp_0003
+      GSM3508492
+        grezzo (Stadio 1): title: Bortezomib 1,source: bone marrow,cell line: MM.1S,xenografts host mice: SCID-beige mice,agent: Bortezomib
+        H5 titolo        : Bortezomib 1
+        H5 caratteristiche: cell line: MM.1S,xenografts host mice: SCID-beige mice,agent: Bortezomib
+        H5 sorgente      : bone marrow
+      GSM3508493
+        grezzo (Stadio 1): title: Bortezomib 2,source: bone marrow,cell line: MM.1S,xenografts host mice: SCID-beige mice,agent: Bortezomib
+        H5 titolo        : Bortezomib 2
+        H5 caratteristiche: cell line: MM.1S,xenografts host mice: SCID-beige mice,agent: Bortezomib
+        H5 sorgente      : bone marrow
+  CONTROLLO  (n=2)  etichetta Stadio 2: MM.1S in vitro treated with PBS
+      gruppo Stadio 2: grp_0002
+      GSM3508489
+        grezzo (Stadio 1): title: PBS 1,source: bone marrow,cell line: MM.1S,xenografts host mice: SCID-beige mice,agent: PBS
+        H5 titolo        : PBS 1
+        H5 caratteristiche: cell line: MM.1S,xenografts host mice: SCID-beige mice,agent: PBS
+        H5 sorgente      : bone marrow
+      GSM3508491
+        grezzo (Stadio 1): title: PBS 3,source: bone marrow,cell line: MM.1S,xenografts host mice: SCID-beige mice,agent: PBS
+        H5 titolo        : PBS 3
+        H5 caratteristiche: cell line: MM.1S,xenografts host mice: SCID-beige mice,agent: PBS
+        H5 sorgente      : bone marrow
+
+CONFRONTO  GSE123638__GSE123638__grp_0002_vs_grp_0001__1
+  studio: GSE123638
+  TRATTATO  (n=2)  etichetta Stadio 2: Bortezomib, shPSMD2
+      gruppo Stadio 2: grp_0002
+      GSM3508514
+        grezzo (Stadio 1): title: Dox_Bortz_2,source: breast,cell line: T47D,shRNA: Dox induced shPSMD2,agent: 20nM Bortezomib
+        H5 titolo        : Dox_Bortz_2
+        H5 caratteristiche: cell line: T47D,shRNA: Dox induced shPSMD2,agent: 20nM Bortezomib
+        H5 sorgente      : breast
+      GSM3508515
+        grezzo (Stadio 1): title: Dox_Bortz_3,source: breast,cell line: T47D,shRNA: Dox induced shPSMD2,agent: 20nM Bortezomib
+        H5 titolo        : Dox_Bortz_3
+        H5 caratteristiche: cell line: T47D,shRNA: Dox induced shPSMD2,agent: 20nM Bortezomib
+        H5 sorgente      : breast
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO, shPSMD2
+      gruppo Stadio 2: grp_0001
+      GSM3508507
+        grezzo (Stadio 1): title: Dox_1,source: breast,cell line: T47D,shRNA: Dox induced shPSMD2,agent: DMSO
+        H5 titolo        : Dox_1
+        H5 caratteristiche: cell line: T47D,shRNA: Dox induced shPSMD2,agent: DMSO
+        H5 sorgente      : breast
+      GSM3508508
+        grezzo (Stadio 1): title: Dox_2,source: breast,cell line: T47D,shRNA: Dox induced shPSMD2,agent: DMSO
+        H5 titolo        : Dox_2
+        H5 caratteristiche: cell line: T47D,shRNA: Dox induced shPSMD2,agent: DMSO
+        H5 sorgente      : breast
+      GSM3508509
+        grezzo (Stadio 1): title: Dox_3,source: breast,cell line: T47D,shRNA: Dox induced shPSMD2,agent: DMSO
+        H5 titolo        : Dox_3
+        H5 caratteristiche: cell line: T47D,shRNA: Dox induced shPSMD2,agent: DMSO
+        H5 sorgente      : breast
+
+CONFRONTO  GSE123638__GSE123638__grp_0005_vs_grp_0004__1
+  studio: GSE123638
+  TRATTATO  (n=2)  etichetta Stadio 2: Bortezomib, uninduced shPSMD2
+      gruppo Stadio 2: grp_0005
+      GSM3508511
+        grezzo (Stadio 1): title: Control_bortz_2,source: breast,cell line: T47D,shRNA: uninduced shPSMD2,agent: 20nM Bortezomib
+        H5 titolo        : Control_bortz_2
+        H5 caratteristiche: cell line: T47D,shRNA: uninduced shPSMD2,agent: 20nM Bortezomib
+        H5 sorgente      : breast
+      GSM3508512
+        grezzo (Stadio 1): title: Control_bortz_3,source: breast,cell line: T47D,shRNA: uninduced shPSMD2,agent: 20nM Bortezomib
+        H5 titolo        : Control_bortz_3
+        H5 caratteristiche: cell line: T47D,shRNA: uninduced shPSMD2,agent: 20nM Bortezomib
+        H5 sorgente      : breast
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO, uninduced shPSMD2
+      gruppo Stadio 2: grp_0004
+      GSM3508504
+        grezzo (Stadio 1): title: Control_1,source: breast,cell line: T47D,shRNA: uninduced shPSMD2,agent: DMSO
+        H5 titolo        : Control_1
+        H5 caratteristiche: cell line: T47D,shRNA: uninduced shPSMD2,agent: DMSO
+        H5 sorgente      : breast
+      GSM3508505
+        grezzo (Stadio 1): title: Control_2,source: breast,cell line: T47D,shRNA: uninduced shPSMD2,agent: DMSO
+        H5 titolo        : Control_2
+        H5 caratteristiche: cell line: T47D,shRNA: uninduced shPSMD2,agent: DMSO
+        H5 sorgente      : breast
+      GSM3508506
+        grezzo (Stadio 1): title: Control_3,source: breast,cell line: T47D,shRNA: uninduced shPSMD2,agent: DMSO
+        H5 titolo        : Control_3
+        H5 caratteristiche: cell line: T47D,shRNA: uninduced shPSMD2,agent: DMSO
+        H5 sorgente      : breast
+
+CONFRONTO  GSE136725__GSE136725__grp_0002_vs_grp_0001__1
+  studio: GSE136725
+  TRATTATO  (n=2)  etichetta Stadio 2: Bortezomib-treated MM1.S
+      gruppo Stadio 2: grp_0002
+      GSM4056775
+        grezzo (Stadio 1): title: MM1.S_parental,source: Multiple myeloma cell line MM1.S,tissue: Multiple myeloma,cell line: Multiple myeloma cell line MM1.S,drug treatment: Bortezomib
+        H5 titolo        : MM1.S_parental
+        H5 caratteristiche: tissue: Multiple myeloma,cell line: Multiple myeloma cell line MM1.S,drug treatment: Bortezomib
+        H5 sorgente      : Multiple myeloma cell line MM1.S
+      GSM4056783
+        grezzo (Stadio 1): title: MM_tumor_rev_2,source: Multiple myeloma cell line MM1.S,tissue: Multiple myeloma,cell line: Multiple myeloma cell line MM1.S,drug treatment: Bortezomib
+        H5 titolo        : MM_tumor_rev_2
+        H5 caratteristiche: tissue: Multiple myeloma,cell line: Multiple myeloma cell line MM1.S,drug treatment: Bortezomib
+        H5 sorgente      : Multiple myeloma cell line MM1.S
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated MM1.S
+      gruppo Stadio 2: grp_0001
+      GSM4056778
+        grezzo (Stadio 1): title: MM_tumor_ctrl_1,source: Multiple myeloma cell line MM1.S,tissue: Multiple myeloma,cell line: Multiple myeloma cell line MM1.S,drug treatment: NA
+        H5 titolo        : MM_tumor_ctrl_1
+        H5 caratteristiche: tissue: Multiple myeloma,cell line: Multiple myeloma cell line MM1.S,drug treatment: NA
+        H5 sorgente      : Multiple myeloma cell line MM1.S
+      GSM4056779
+        grezzo (Stadio 1): title: MM_tumor_ctrl_2,source: Multiple myeloma cell line MM1.S,tissue: Multiple myeloma,cell line: Multiple myeloma cell line MM1.S,drug treatment: NA
+        H5 titolo        : MM_tumor_ctrl_2
+        H5 caratteristiche: tissue: Multiple myeloma,cell line: Multiple myeloma cell line MM1.S,drug treatment: NA
+        H5 sorgente      : Multiple myeloma cell line MM1.S
+
+CONFRONTO  GSE217898__GSE217898__grp_0026_vs_grp_0017__1
+  studio: GSE217898
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, Bortezomib, 24h
+      gruppo Stadio 2: grp_0026
+      GSM6729601
+        grezzo (Stadio 1): title: PAE1_24_Bortezomib,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Bortezomib (0.002 uM),time: 24 hours
+        H5 titolo        : PAE1_24_Bortezomib
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Bortezomib (0.002 uM),time: 24 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729619
+        grezzo (Stadio 1): title: PAE2_24_Bortezomib,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Bortezomib (0.002 uM),time: 24 hours
+        H5 titolo        : PAE2_24_Bortezomib
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Bortezomib (0.002 uM),time: 24 hours
+        H5 sorgente      : Endothelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, DMSO, 24h
+      gruppo Stadio 2: grp_0017
+      GSM6729605
+        grezzo (Stadio 1): title: PAE1_24_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 titolo        : PAE1_24_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729623
+        grezzo (Stadio 1): title: PAE2_24_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 titolo        : PAE2_24_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Endothelial cells
+
+CONFRONTO  GSE217898__GSE217898__grp_0027_vs_grp_0018__1
+  studio: GSE217898
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, Bortezomib, 72h
+      gruppo Stadio 2: grp_0027
+      GSM6729610
+        grezzo (Stadio 1): title: PAE1_72_Bortezomib,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Bortezomib (0.002 uM),time: 72 hours
+        H5 titolo        : PAE1_72_Bortezomib
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Bortezomib (0.002 uM),time: 72 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729628
+        grezzo (Stadio 1): title: PAE2_72_Bortezomib,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Bortezomib (0.002 uM),time: 72 hours
+        H5 titolo        : PAE2_72_Bortezomib
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Bortezomib (0.002 uM),time: 72 hours
+        H5 sorgente      : Endothelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, DMSO, 72h
+      gruppo Stadio 2: grp_0018
+      GSM6729614
+        grezzo (Stadio 1): title: PAE1_72_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 titolo        : PAE1_72_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729632
+        grezzo (Stadio 1): title: PAE2_72_dmso,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 titolo        : PAE2_72_dmso
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 sorgente      : Endothelial cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE123637     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE123638     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE136725     campioni nell'H5:   19 | collocati dallo Stadio 2:   19 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE217898     campioni nell'H5:   72 | collocati dallo Stadio 2:   60 | MAI COLLOCATI:   12 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6729571, GSM6729582, GSM6729586, GSM6729589, GSM6729590, GSM6729591, GSM6729598, GSM6729599, GSM6729613, GSM6729622, GSM6729626, GSM6729635
+

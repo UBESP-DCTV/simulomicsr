@@ -1,0 +1,163 @@
+META-ANALISI 117 di 194
+==============================================================================
+nome            : prostaglandin E2
+entita (ID)     : CHEBI:15551
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_3a58e5f5
+studi poolati   : 3   confronti: 4   campioni: 21
+geni significativi: 2353   I2 mediano: 74.9
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE163831__GSE163831__PGE2_6hr_vs_Control_6hr__1
+  studio: GSE163831
+  TRATTATO  (n=3)  etichetta Stadio 2: PGE2 (6hr)
+      gruppo Stadio 2: grp_0003
+      GSM4988051
+        grezzo (Stadio 1): title: E2MF6_2 [RNA-Seq],source: normal adult human lung fibroblasts,cell line: CCL210 (ATCC),treatment: PGE2,time point: 6hr
+        H5 titolo        : E2MF6_2 [RNA-Seq]
+        H5 caratteristiche: cell line: CCL210 (ATCC),treatment: PGE2,time point: 6hr
+        H5 sorgente      : normal adult human lung fibroblasts
+      GSM4988055
+        grezzo (Stadio 1): title: E2MF6_6 [RNA-Seq],source: normal adult human lung fibroblasts,cell line: CCL210 (ATCC),treatment: PGE2,time point: 6hr
+        H5 titolo        : E2MF6_6 [RNA-Seq]
+        H5 caratteristiche: cell line: CCL210 (ATCC),treatment: PGE2,time point: 6hr
+        H5 sorgente      : normal adult human lung fibroblasts
+      GSM4988059
+        grezzo (Stadio 1): title: E2MF6_10 [RNA-Seq],source: normal adult human lung fibroblasts,cell line: CCL210 (ATCC),treatment: PGE2,time point: 6hr
+        H5 titolo        : E2MF6_10 [RNA-Seq]
+        H5 caratteristiche: cell line: CCL210 (ATCC),treatment: PGE2,time point: 6hr
+        H5 sorgente      : normal adult human lung fibroblasts
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control (6hr)
+      gruppo Stadio 2: grp_0002
+      GSM4988050
+        grezzo (Stadio 1): title: MF6_1 [RNA-Seq],source: normal adult human lung fibroblasts,cell line: CCL210 (ATCC),treatment: Control,time point: 6hr
+        H5 titolo        : MF6_1 [RNA-Seq]
+        H5 caratteristiche: cell line: CCL210 (ATCC),treatment: Control,time point: 6hr
+        H5 sorgente      : normal adult human lung fibroblasts
+      GSM4988054
+        grezzo (Stadio 1): title: MF6_5 [RNA-Seq],source: normal adult human lung fibroblasts,cell line: CCL210 (ATCC),treatment: Control,time point: 6hr
+        H5 titolo        : MF6_5 [RNA-Seq]
+        H5 caratteristiche: cell line: CCL210 (ATCC),treatment: Control,time point: 6hr
+        H5 sorgente      : normal adult human lung fibroblasts
+      GSM4988058
+        grezzo (Stadio 1): title: MF6_9 [RNA-Seq],source: normal adult human lung fibroblasts,cell line: CCL210 (ATCC),treatment: Control,time point: 6hr
+        H5 titolo        : MF6_9 [RNA-Seq]
+        H5 caratteristiche: cell line: CCL210 (ATCC),treatment: Control,time point: 6hr
+        H5 sorgente      : normal adult human lung fibroblasts
+
+CONFRONTO  GSE213691__GSE213691__grp_0003_vs_grp_0002__1
+  studio: GSE213691
+  TRATTATO  (n=3)  etichetta Stadio 2: PGE2 + poly I:C
+      gruppo Stadio 2: grp_0003
+      GSM6592091
+        grezzo (Stadio 1): title: PGE2TL_A,source: peripheral blood cDC1,biological replicate: A,tissue: peripheral blood,treatment: PGE2 (1microg/ml)  24h + poly I:C (10microg/ml) 4h,biological replicate: A
+        H5 titolo        : PGE2TL_A
+        H5 caratteristiche: biological replicate: A,tissue: peripheral blood,treatment: PGE2 (1microg/ml)  24h + poly I:C (10microg/ml) 4h,biological replicate: A
+        H5 sorgente      : peripheral blood cDC1
+      GSM6592092
+        grezzo (Stadio 1): title: PGE2TL_B,source: peripheral blood cDC1,biological replicate: B,tissue: peripheral blood,treatment: PGE2 (1microg/ml)  24h + poly I:C (10microg/ml) 4h,biological replicate: B
+        H5 titolo        : PGE2TL_B
+        H5 caratteristiche: biological replicate: B,tissue: peripheral blood,treatment: PGE2 (1microg/ml)  24h + poly I:C (10microg/ml) 4h,biological replicate: B
+        H5 sorgente      : peripheral blood cDC1
+      GSM6592094
+        grezzo (Stadio 1): title: PGE2TL_D,source: peripheral blood cDC1,biological replicate: D,tissue: peripheral blood,treatment: PGE2 (1microg/ml)  24h + poly I:C (10microg/ml) 4h,biological replicate: D
+        H5 titolo        : PGE2TL_D
+        H5 caratteristiche: biological replicate: D,tissue: peripheral blood,treatment: PGE2 (1microg/ml)  24h + poly I:C (10microg/ml) 4h,biological replicate: D
+        H5 sorgente      : peripheral blood cDC1
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle control (none)
+      gruppo Stadio 2: grp_0002
+      GSM6592079
+        grezzo (Stadio 1): title: ctrl_A,source: peripheral blood cDC1,biological replicate: A,tissue: peripheral blood,treatment: none 24h,biological replicate: A
+        H5 titolo        : ctrl_A
+        H5 caratteristiche: biological replicate: A,tissue: peripheral blood,treatment: none 24h,biological replicate: A
+        H5 sorgente      : peripheral blood cDC1
+      GSM6592081
+        grezzo (Stadio 1): title: ctrl_C,source: peripheral blood cDC1,biological replicate: C,tissue: peripheral blood,treatment: none 24h,biological replicate: C
+        H5 titolo        : ctrl_C
+        H5 caratteristiche: biological replicate: C,tissue: peripheral blood,treatment: none 24h,biological replicate: C
+        H5 sorgente      : peripheral blood cDC1
+
+CONFRONTO  GSE213691__GSE213691__grp_0006_vs_grp_0002__1
+  studio: GSE213691
+  TRATTATO  (n=4)  etichetta Stadio 2: PGE2
+      gruppo Stadio 2: grp_0006
+      GSM6592083
+        grezzo (Stadio 1): title: PGE2_A,source: peripheral blood cDC1,biological replicate: A,tissue: peripheral blood,treatment: PGE2 (1microg/ml) 24h,biological replicate: A
+        H5 titolo        : PGE2_A
+        H5 caratteristiche: biological replicate: A,tissue: peripheral blood,treatment: PGE2 (1microg/ml) 24h,biological replicate: A
+        H5 sorgente      : peripheral blood cDC1
+      GSM6592084
+        grezzo (Stadio 1): title: PGE2_B,source: peripheral blood cDC1,biological replicate: B,tissue: peripheral blood,treatment: PGE2 (1microg/ml) 24h,biological replicate: B
+        H5 titolo        : PGE2_B
+        H5 caratteristiche: biological replicate: B,tissue: peripheral blood,treatment: PGE2 (1microg/ml) 24h,biological replicate: B
+        H5 sorgente      : peripheral blood cDC1
+      GSM6592085
+        grezzo (Stadio 1): title: PGE2_C,source: peripheral blood cDC1,biological replicate: C,tissue: peripheral blood,treatment: PGE2 (1microg/ml) 24h,biological replicate: C
+        H5 titolo        : PGE2_C
+        H5 caratteristiche: biological replicate: C,tissue: peripheral blood,treatment: PGE2 (1microg/ml) 24h,biological replicate: C
+        H5 sorgente      : peripheral blood cDC1
+      GSM6592086
+        grezzo (Stadio 1): title: PGE2_D,source: peripheral blood cDC1,biological replicate: D,tissue: peripheral blood,treatment: PGE2 (1microg/ml) 24h,biological replicate: D
+        H5 titolo        : PGE2_D
+        H5 caratteristiche: biological replicate: D,tissue: peripheral blood,treatment: PGE2 (1microg/ml) 24h,biological replicate: D
+        H5 sorgente      : peripheral blood cDC1
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle control (none)
+      gruppo Stadio 2: grp_0002
+      GSM6592079
+        grezzo (Stadio 1): title: ctrl_A,source: peripheral blood cDC1,biological replicate: A,tissue: peripheral blood,treatment: none 24h,biological replicate: A
+        H5 titolo        : ctrl_A
+        H5 caratteristiche: biological replicate: A,tissue: peripheral blood,treatment: none 24h,biological replicate: A
+        H5 sorgente      : peripheral blood cDC1
+      GSM6592081
+        grezzo (Stadio 1): title: ctrl_C,source: peripheral blood cDC1,biological replicate: C,tissue: peripheral blood,treatment: none 24h,biological replicate: C
+        H5 titolo        : ctrl_C
+        H5 caratteristiche: biological replicate: C,tissue: peripheral blood,treatment: none 24h,biological replicate: C
+        H5 sorgente      : peripheral blood cDC1
+
+CONFRONTO  GSE99392__GSE99392__PGE2_24h_vs_DMSO_24h__1
+  studio: GSE99392
+  TRATTATO  (n=2)  etichetta Stadio 2: PGE2 24h
+      gruppo Stadio 2: grp_0003
+      GSM2643395
+        grezzo (Stadio 1): title: 24h_P1,source: cervical stroma,cell type: explant derived cells in culture,agent: PGE2,time point: 24h
+        H5 titolo        : 24h_P1
+        H5 caratteristiche: cell type: explant derived cells in culture,agent: PGE2,time point: 24h
+        H5 sorgente      : cervical stroma
+      GSM2643396
+        grezzo (Stadio 1): title: 24h_P2,source: cervical stroma,cell type: explant derived cells in culture,agent: PGE2,time point: 24h
+        H5 titolo        : 24h_P2
+        H5 caratteristiche: cell type: explant derived cells in culture,agent: PGE2,time point: 24h
+        H5 sorgente      : cervical stroma
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO 24h
+      gruppo Stadio 2: grp_0004
+      GSM2643393
+        grezzo (Stadio 1): title: 24h_D1,source: cervical stroma,cell type: explant derived cells in culture,agent: DMSO,time point: 24h
+        H5 titolo        : 24h_D1
+        H5 caratteristiche: cell type: explant derived cells in culture,agent: DMSO,time point: 24h
+        H5 sorgente      : cervical stroma
+      GSM2643394
+        grezzo (Stadio 1): title: 24h_D2,source: cervical stroma,cell type: explant derived cells in culture,agent: DMSO,time point: 24h
+        H5 titolo        : 24h_D2
+        H5 caratteristiche: cell type: explant derived cells in culture,agent: DMSO,time point: 24h
+        H5 sorgente      : cervical stroma
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE163831     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE213691     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE99392      campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+

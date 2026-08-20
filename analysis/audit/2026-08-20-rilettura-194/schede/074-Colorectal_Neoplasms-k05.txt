@@ -1,0 +1,695 @@
+META-ANALISI 074 di 194
+==============================================================================
+nome            : Colorectal Neoplasms
+entita (ID)     : MeSH:D015179
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_889ec305
+studi poolati   : 5   confronti: 9   campioni: 120
+geni significativi: 2397   I2 mediano: 67.8
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE104178__GSE104178__grp_0001_vs_grp_0002__1
+  studio: GSE104178
+  TRATTATO  (n=3)  etichetta Stadio 2: Colorectal Cancer Tissue
+      gruppo Stadio 2: grp_0001
+      GSM2791405
+        grezzo (Stadio 1): title: CXIR56SE6-CRC: colorectal cancer,source: frozen mucosal tissue,tissue: frozen mucosal tissue,tissue type: CRC: colorectal cancer,source id: CXIR56SE6
+        H5 titolo        : CXIR56SE6-CRC: colorectal cancer
+        H5 caratteristiche: tissue: frozen mucosal tissue,tissue type: CRC: colorectal cancer,source id: CXIR56SE6
+        H5 sorgente      : frozen mucosal tissue
+      GSM2791406
+        grezzo (Stadio 1): title: CXIR60OC4-CRC: colorectal cancer,source: frozen mucosal tissue,tissue: frozen mucosal tissue,tissue type: CRC: colorectal cancer,source id: CXIR60OC4
+        H5 titolo        : CXIR60OC4-CRC: colorectal cancer
+        H5 caratteristiche: tissue: frozen mucosal tissue,tissue type: CRC: colorectal cancer,source id: CXIR60OC4
+        H5 sorgente      : frozen mucosal tissue
+      GSM2791407
+        grezzo (Stadio 1): title: CXIR66OC21-CRC: colorectal cancer,source: frozen mucosal tissue,tissue: frozen mucosal tissue,tissue type: CRC: colorectal cancer,source id: CXIR66OC21
+        H5 titolo        : CXIR66OC21-CRC: colorectal cancer
+        H5 caratteristiche: tissue: frozen mucosal tissue,tissue type: CRC: colorectal cancer,source id: CXIR66OC21
+        H5 sorgente      : frozen mucosal tissue
+  CONTROLLO  (n=3)  etichetta Stadio 2: Matched Normal Mucosa
+      gruppo Stadio 2: grp_0002
+      GSM2791408
+        grezzo (Stadio 1): title: CXIR56SE6-matched normal mucosa (NM),source: frozen mucosal tissue,tissue: frozen mucosal tissue,tissue type: matched normal mucosa (NM),source id: CXIR56SE6
+        H5 titolo        : CXIR56SE6-matched normal mucosa (NM)
+        H5 caratteristiche: tissue: frozen mucosal tissue,tissue type: matched normal mucosa (NM),source id: CXIR56SE6
+        H5 sorgente      : frozen mucosal tissue
+      GSM2791409
+        grezzo (Stadio 1): title: CXIR60OC4-matched normal mucosa (NM),source: frozen mucosal tissue,tissue: frozen mucosal tissue,tissue type: matched normal mucosa (NM),source id: CXIR60OC4
+        H5 titolo        : CXIR60OC4-matched normal mucosa (NM)
+        H5 caratteristiche: tissue: frozen mucosal tissue,tissue type: matched normal mucosa (NM),source id: CXIR60OC4
+        H5 sorgente      : frozen mucosal tissue
+      GSM2791410
+        grezzo (Stadio 1): title: CXIR66OC21-matched normal mucosa (NM),source: frozen mucosal tissue,tissue: frozen mucosal tissue,tissue type: matched normal mucosa (NM),source id: CXIR66OC21
+        H5 titolo        : CXIR66OC21-matched normal mucosa (NM)
+        H5 caratteristiche: tissue: frozen mucosal tissue,tissue type: matched normal mucosa (NM),source id: CXIR66OC21
+        H5 sorgente      : frozen mucosal tissue
+
+CONFRONTO  GSE164541__GSE164541__CRC_vs_Normal__1
+  studio: GSE164541
+  TRATTATO  (n=5)  etichetta Stadio 2: Colorectal Cancer Tissue (Patient 1)
+      gruppo Stadio 2: group_0001
+      GSM5013475
+        grezzo (Stadio 1): title: adenoma tissue from patient1 [PA1],source: adenoma tissue,subject status/id: colorectal cancer (CRC) patient1,tissue: adenoma tissue
+        H5 titolo        : adenoma tissue from patient1 [PA1]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient1,tissue: adenoma tissue
+        H5 sorgente      : adenoma tissue
+      GSM5013476
+        grezzo (Stadio 1): title: adenoma tissue from patient2 [PA2],source: adenoma tissue,subject status/id: colorectal cancer (CRC) patient2,tissue: adenoma tissue
+        H5 titolo        : adenoma tissue from patient2 [PA2]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient2,tissue: adenoma tissue
+        H5 sorgente      : adenoma tissue
+      GSM5013477
+        grezzo (Stadio 1): title: adenoma tissue from patient3 [PA3],source: adenoma tissue,subject status/id: colorectal cancer (CRC) patient3,tissue: adenoma tissue
+        H5 titolo        : adenoma tissue from patient3 [PA3]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient3,tissue: adenoma tissue
+        H5 sorgente      : adenoma tissue
+      GSM5013478
+        grezzo (Stadio 1): title: adenoma tissue from patient4 [PA4],source: adenoma tissue,subject status/id: colorectal cancer (CRC) patient4,tissue: adenoma tissue
+        H5 titolo        : adenoma tissue from patient4 [PA4]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient4,tissue: adenoma tissue
+        H5 sorgente      : adenoma tissue
+      GSM5013479
+        grezzo (Stadio 1): title: adenoma tissue from patient5 [PA5],source: adenoma tissue,subject status/id: colorectal cancer (CRC) patient5,tissue: adenoma tissue
+        H5 titolo        : adenoma tissue from patient5 [PA5]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient5,tissue: adenoma tissue
+        H5 sorgente      : adenoma tissue
+  CONTROLLO  (n=5)  etichetta Stadio 2: Normal Colon Epithelium Tissue (Patient 1)
+      gruppo Stadio 2: group_0002
+      GSM5013470
+        grezzo (Stadio 1): title: adjacent normal tissue from patient1 [PN1],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient1,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient1 [PN1]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient1,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+      GSM5013471
+        grezzo (Stadio 1): title: adjacent normal tissue from patient2 [PN2],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient2,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient2 [PN2]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient2,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+      GSM5013472
+        grezzo (Stadio 1): title: adjacent normal tissue from patient3 [PN3],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient3,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient3 [PN3]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient3,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+      GSM5013473
+        grezzo (Stadio 1): title: adjacent normal tissue from patient4 [PN4],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient4,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient4 [PN4]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient4,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+      GSM5013474
+        grezzo (Stadio 1): title: adjacent normal tissue from patient5 [PN5],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient5,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient5 [PN5]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient5,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+
+CONFRONTO  GSE164541__GSE164541__Primary_CRC_vs_Normal__1
+  studio: GSE164541
+  TRATTATO  (n=5)  etichetta Stadio 2: Primary CRC Tissue (Patient 1)
+      gruppo Stadio 2: group_0003
+      GSM5013480
+        grezzo (Stadio 1): title: primary CRC tissue from patient 1 [PT1],source: primary CRC tissue,subject status/id: colorectal cancer (CRC) patient1,tissue: primary CRC tissue
+        H5 titolo        : primary CRC tissue from patient 1 [PT1]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient1,tissue: primary CRC tissue
+        H5 sorgente      : primary CRC tissue
+      GSM5013481
+        grezzo (Stadio 1): title: primary CRC tissue from patient 2 [PT2],source: primary CRC tissue,subject status/id: colorectal cancer (CRC) patient2,tissue: primary CRC tissue
+        H5 titolo        : primary CRC tissue from patient 2 [PT2]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient2,tissue: primary CRC tissue
+        H5 sorgente      : primary CRC tissue
+      GSM5013482
+        grezzo (Stadio 1): title: primary CRC tissue from patient 3 [PT3],source: primary CRC tissue,subject status/id: colorectal cancer (CRC) patient3,tissue: primary CRC tissue
+        H5 titolo        : primary CRC tissue from patient 3 [PT3]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient3,tissue: primary CRC tissue
+        H5 sorgente      : primary CRC tissue
+      GSM5013483
+        grezzo (Stadio 1): title: primary CRC tissue from patient 4 [PT4],source: primary CRC tissue,subject status/id: colorectal cancer (CRC) patient4,tissue: primary CRC tissue
+        H5 titolo        : primary CRC tissue from patient 4 [PT4]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient4,tissue: primary CRC tissue
+        H5 sorgente      : primary CRC tissue
+      GSM5013484
+        grezzo (Stadio 1): title: primary CRC tissue from patient 5 [PT5],source: primary CRC tissue,subject status/id: colorectal cancer (CRC) patient5,tissue: primary CRC tissue
+        H5 titolo        : primary CRC tissue from patient 5 [PT5]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient5,tissue: primary CRC tissue
+        H5 sorgente      : primary CRC tissue
+  CONTROLLO  (n=5)  etichetta Stadio 2: Normal Colon Epithelium Tissue (Patient 1)
+      gruppo Stadio 2: group_0002
+      GSM5013470
+        grezzo (Stadio 1): title: adjacent normal tissue from patient1 [PN1],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient1,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient1 [PN1]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient1,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+      GSM5013471
+        grezzo (Stadio 1): title: adjacent normal tissue from patient2 [PN2],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient2,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient2 [PN2]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient2,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+      GSM5013472
+        grezzo (Stadio 1): title: adjacent normal tissue from patient3 [PN3],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient3,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient3 [PN3]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient3,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+      GSM5013473
+        grezzo (Stadio 1): title: adjacent normal tissue from patient4 [PN4],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient4,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient4 [PN4]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient4,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+      GSM5013474
+        grezzo (Stadio 1): title: adjacent normal tissue from patient5 [PN5],source: normal colon epithelium tissue,subject status/id: colorectal cancer (CRC) patient5,tissue: normal colon epithelium tissue
+        H5 titolo        : adjacent normal tissue from patient5 [PN5]
+        H5 caratteristiche: subject status/id: colorectal cancer (CRC) patient5,tissue: normal colon epithelium tissue
+        H5 sorgente      : normal colon epithelium tissue
+
+CONFRONTO  GSE205787__GSE205787__grp_0001_vs_grp_0005__1
+  studio: GSE205787
+  TRATTATO  (n=15)  etichetta Stadio 2: Colorectal cancer stem cell spheroids (untreated)
+      gruppo Stadio 2: grp_0001
+      GSM6226393
+        grezzo (Stadio 1): title: CRC_HC6T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC6T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226394
+        grezzo (Stadio 1): title: CRC_HC7T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC7T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226397
+        grezzo (Stadio 1): title: CRC_HC10T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC10T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226398
+        grezzo (Stadio 1): title: CRC_HC11T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC11T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226399
+        grezzo (Stadio 1): title: CRC_HC16T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC16T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226400
+        grezzo (Stadio 1): title: CRC_HC20T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC20T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226401
+        grezzo (Stadio 1): title: CRC_HC21T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC21T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226404
+        grezzo (Stadio 1): title: CRC_HC40T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC40T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226405
+        grezzo (Stadio 1): title: CRC_HC67T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC67T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226408
+        grezzo (Stadio 1): title: CRC_HC80T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC80T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226413
+        grezzo (Stadio 1): title: CRC_HC120T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC120T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226423
+        grezzo (Stadio 1): title: CRC_HC24T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC24T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226426
+        grezzo (Stadio 1): title: CRC_HC183T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC183T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226427
+        grezzo (Stadio 1): title: CRC_HC35T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC35T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226429
+        grezzo (Stadio 1): title: CRC_HC193T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC193T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal colorectal epithelial stem cell spheroids (untreated)
+      gruppo Stadio 2: grp_0005
+      GSM6226421
+        grezzo (Stadio 1): title: Healthy_HC9N,source: Normal colorectal epithelial stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 titolo        : Healthy_HC9N
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 sorgente      : Normal colorectal epithelial stem cell spheroids
+      GSM6226422
+        grezzo (Stadio 1): title: Healthy_HC20N,source: Normal colorectal epithelial stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 titolo        : Healthy_HC20N
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 sorgente      : Normal colorectal epithelial stem cell spheroids
+
+CONFRONTO  GSE205787__GSE205787__grp_0002_vs_grp_0005__1
+  studio: GSE205787
+  TRATTATO  (n=19)  etichetta Stadio 2: CRC patient-derived spheroids (untreated)
+      gruppo Stadio 2: grp_0002
+      GSM6226392
+        grezzo (Stadio 1): title: CRC_HC1T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC1T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226395
+        grezzo (Stadio 1): title: CRC_HC8T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC8T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226396
+        grezzo (Stadio 1): title: CRC_HC9T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC9T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226402
+        grezzo (Stadio 1): title: CRC_HC22T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC22T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226403
+        grezzo (Stadio 1): title: CRC_HC28T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC28T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226406
+        grezzo (Stadio 1): title: CRC_HC73T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC73T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226407
+        grezzo (Stadio 1): title: CRC_HC74T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC74T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226409
+        grezzo (Stadio 1): title: CRC_HC93T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC93T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226411
+        grezzo (Stadio 1): title: CRC_HC108T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC108T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226424
+        grezzo (Stadio 1): title: CRC_HC83T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC83T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226428
+        grezzo (Stadio 1): title: CRC_HC90T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC90T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226432
+        grezzo (Stadio 1): title: CRC_HC91T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC91T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226435
+        grezzo (Stadio 1): title: CRC_HC185T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC185T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226436
+        grezzo (Stadio 1): title: CRC_HC46T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC46T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226437
+        grezzo (Stadio 1): title: CRC_HC94T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC94T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226439
+        grezzo (Stadio 1): title: CRC_HC178T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC178T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226440
+        grezzo (Stadio 1): title: CRC_HC195T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC195T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226441
+        grezzo (Stadio 1): title: CRC_HC72T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC72T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226442
+        grezzo (Stadio 1): title: CRC_HC97T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC97T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal colorectal epithelial stem cell spheroids (untreated)
+      gruppo Stadio 2: grp_0005
+      GSM6226421
+        grezzo (Stadio 1): title: Healthy_HC9N,source: Normal colorectal epithelial stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 titolo        : Healthy_HC9N
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 sorgente      : Normal colorectal epithelial stem cell spheroids
+      GSM6226422
+        grezzo (Stadio 1): title: Healthy_HC20N,source: Normal colorectal epithelial stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 titolo        : Healthy_HC20N
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 sorgente      : Normal colorectal epithelial stem cell spheroids
+
+CONFRONTO  GSE205787__GSE205787__grp_0003_vs_grp_0005__1
+  studio: GSE205787
+  TRATTATO  (n=13)  etichetta Stadio 2: CRC patient-derived spheroids (untreated)
+      gruppo Stadio 2: grp_0003
+      GSM6226410
+        grezzo (Stadio 1): title: CRC_HC106T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC106T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226412
+        grezzo (Stadio 1): title: CRC_HC117T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC117T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226414
+        grezzo (Stadio 1): title: CRC_HC129T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC129T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226415
+        grezzo (Stadio 1): title: CRC_HC142T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC142T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226416
+        grezzo (Stadio 1): title: CRC_HC146T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC146T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226425
+        grezzo (Stadio 1): title: CRC_HC149T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC149T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226430
+        grezzo (Stadio 1): title: CRC_HC137T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC137T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226431
+        grezzo (Stadio 1): title: CRC_HC128T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC128T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226433
+        grezzo (Stadio 1): title: CRC_HC102T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC102T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226434
+        grezzo (Stadio 1): title: CRC_HC172T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC172T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226438
+        grezzo (Stadio 1): title: CRC_HC122T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC122T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226443
+        grezzo (Stadio 1): title: CRC_HC127T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC127T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+      GSM6226444
+        grezzo (Stadio 1): title: CRC_HC179T,source: Colorectal cancer stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC179T
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer stem cell spheroids
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal colorectal epithelial stem cell spheroids (untreated)
+      gruppo Stadio 2: grp_0005
+      GSM6226421
+        grezzo (Stadio 1): title: Healthy_HC9N,source: Normal colorectal epithelial stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 titolo        : Healthy_HC9N
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 sorgente      : Normal colorectal epithelial stem cell spheroids
+      GSM6226422
+        grezzo (Stadio 1): title: Healthy_HC20N,source: Normal colorectal epithelial stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 titolo        : Healthy_HC20N
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 sorgente      : Normal colorectal epithelial stem cell spheroids
+
+CONFRONTO  GSE205787__GSE205787__grp_0004_vs_grp_0005__1
+  studio: GSE205787
+  TRATTATO  (n=3)  etichetta Stadio 2: Colorectal cancer whole tissues (untreated)
+      gruppo Stadio 2: grp_0004
+      GSM6226417
+        grezzo (Stadio 1): title: CRC_HC6TT,source: Colorectal cancer whole tissues,tissue: CRC whole tissues,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC6TT
+        H5 caratteristiche: tissue: CRC whole tissues,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer whole tissues
+      GSM6226418
+        grezzo (Stadio 1): title: CRC_HC9TT,source: Colorectal cancer whole tissues,tissue: CRC whole tissues,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC9TT
+        H5 caratteristiche: tissue: CRC whole tissues,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer whole tissues
+      GSM6226419
+        grezzo (Stadio 1): title: CRC_HC20TT,source: Colorectal cancer whole tissues,tissue: CRC whole tissues,treatment: Untreated,disease state: Colorectal cancer
+        H5 titolo        : CRC_HC20TT
+        H5 caratteristiche: tissue: CRC whole tissues,treatment: Untreated,disease state: Colorectal cancer
+        H5 sorgente      : Colorectal cancer whole tissues
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal colorectal epithelial stem cell spheroids (untreated)
+      gruppo Stadio 2: grp_0005
+      GSM6226421
+        grezzo (Stadio 1): title: Healthy_HC9N,source: Normal colorectal epithelial stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 titolo        : Healthy_HC9N
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 sorgente      : Normal colorectal epithelial stem cell spheroids
+      GSM6226422
+        grezzo (Stadio 1): title: Healthy_HC20N,source: Normal colorectal epithelial stem cell spheroids,tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 titolo        : Healthy_HC20N
+        H5 caratteristiche: tissue: CRC patient-derived spheroids,treatment: Untreated,disease state: healthy
+        H5 sorgente      : Normal colorectal epithelial stem cell spheroids
+
+CONFRONTO  GSE223119__GSE223119__grp_0018_vs_grp_0019__1
+  studio: GSE223119
+  TRATTATO  (n=3)  etichetta Stadio 2: Colorectal carcinoma
+      gruppo Stadio 2: grp_0018
+      GSM6939931
+        grezzo (Stadio 1): title: Colorectal carcinoma tissue C15,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: colorectal carcinoma tissue C15
+        H5 titolo        : Colorectal carcinoma tissue C15
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: colorectal carcinoma tissue C15
+        H5 sorgente      : Colorectum
+      GSM6939938
+        grezzo (Stadio 1): title: Colorectal carcinoma tissue C3,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: colorectal carcinoma tissue C3
+        H5 titolo        : Colorectal carcinoma tissue C3
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: colorectal carcinoma tissue C3
+        H5 sorgente      : Colorectum
+      GSM6939944
+        grezzo (Stadio 1): title: Colorectal carcinoma tissue C9,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: colorectal carcinoma tissue C9
+        H5 titolo        : Colorectal carcinoma tissue C9
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: colorectal carcinoma tissue C9
+        H5 sorgente      : Colorectum
+  CONTROLLO  (n=20)  etichetta Stadio 2: Normal Colorectum
+      gruppo Stadio 2: grp_0019
+      GSM6939945
+        grezzo (Stadio 1): title: Para-carcinoma tissue P1,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P1
+        H5 titolo        : Para-carcinoma tissue P1
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P1
+        H5 sorgente      : Colorectum
+      GSM6939946
+        grezzo (Stadio 1): title: Para-carcinoma tissue P10,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P10
+        H5 titolo        : Para-carcinoma tissue P10
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P10
+        H5 sorgente      : Colorectum
+      GSM6939947
+        grezzo (Stadio 1): title: Para-carcinoma tissue P11,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P11
+        H5 titolo        : Para-carcinoma tissue P11
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P11
+        H5 sorgente      : Colorectum
+      GSM6939948
+        grezzo (Stadio 1): title: Para-carcinoma tissue P12,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P12
+        H5 titolo        : Para-carcinoma tissue P12
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P12
+        H5 sorgente      : Colorectum
+      GSM6939949
+        grezzo (Stadio 1): title: Para-carcinoma tissue P13,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P13
+        H5 titolo        : Para-carcinoma tissue P13
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P13
+        H5 sorgente      : Colorectum
+      GSM6939950
+        grezzo (Stadio 1): title: Para-carcinoma tissue P14,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P14
+        H5 titolo        : Para-carcinoma tissue P14
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P14
+        H5 sorgente      : Colorectum
+      GSM6939951
+        grezzo (Stadio 1): title: Para-carcinoma tissue P15,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P15
+        H5 titolo        : Para-carcinoma tissue P15
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P15
+        H5 sorgente      : Colorectum
+      GSM6939952
+        grezzo (Stadio 1): title: Para-carcinoma tissue P18,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P18
+        H5 titolo        : Para-carcinoma tissue P18
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P18
+        H5 sorgente      : Colorectum
+      GSM6939953
+        grezzo (Stadio 1): title: Para-carcinoma tissue P20,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P20
+        H5 titolo        : Para-carcinoma tissue P20
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P20
+        H5 sorgente      : Colorectum
+      GSM6939954
+        grezzo (Stadio 1): title: Para-carcinoma tissue P22,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P22
+        H5 titolo        : Para-carcinoma tissue P22
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P22
+        H5 sorgente      : Colorectum
+      GSM6939955
+        grezzo (Stadio 1): title: Para-carcinoma tissue P23,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P23
+        H5 titolo        : Para-carcinoma tissue P23
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P23
+        H5 sorgente      : Colorectum
+      GSM6939956
+        grezzo (Stadio 1): title: Para-carcinoma tissue P24,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P24
+        H5 titolo        : Para-carcinoma tissue P24
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P24
+        H5 sorgente      : Colorectum
+      GSM6939957
+        grezzo (Stadio 1): title: Para-carcinoma tissue P25,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P25
+        H5 titolo        : Para-carcinoma tissue P25
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P25
+        H5 sorgente      : Colorectum
+      GSM6939958
+        grezzo (Stadio 1): title: Para-carcinoma tissue P3,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P3
+        H5 titolo        : Para-carcinoma tissue P3
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P3
+        H5 sorgente      : Colorectum
+      GSM6939959
+        grezzo (Stadio 1): title: Para-carcinoma tissue P4,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P4
+        H5 titolo        : Para-carcinoma tissue P4
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P4
+        H5 sorgente      : Colorectum
+      GSM6939960
+        grezzo (Stadio 1): title: Para-carcinoma tissue P5,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P5
+        H5 titolo        : Para-carcinoma tissue P5
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P5
+        H5 sorgente      : Colorectum
+      GSM6939961
+        grezzo (Stadio 1): title: Para-carcinoma tissue P6,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P6
+        H5 titolo        : Para-carcinoma tissue P6
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P6
+        H5 sorgente      : Colorectum
+      GSM6939962
+        grezzo (Stadio 1): title: Para-carcinoma tissue P7,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P7
+        H5 titolo        : Para-carcinoma tissue P7
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P7
+        H5 sorgente      : Colorectum
+      GSM6939963
+        grezzo (Stadio 1): title: Para-carcinoma tissue P8,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P8
+        H5 titolo        : Para-carcinoma tissue P8
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P8
+        H5 sorgente      : Colorectum
+      GSM6939964
+        grezzo (Stadio 1): title: Para-carcinoma tissue P9,source: Colorectum,tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P9
+        H5 titolo        : Para-carcinoma tissue P9
+        H5 caratteristiche: tissue: Colorectum,tissue pair: tissue pair: para-carcinoma tissue P9
+        H5 sorgente      : Colorectum
+
+CONFRONTO  GSE93904__GSE93904__grp_0001_vs_grp_0002__1
+  studio: GSE93904
+  TRATTATO  (n=10)  etichetta Stadio 2: Colorectal cancer
+      gruppo Stadio 2: grp_0001
+      GSM2464771
+        grezzo (Stadio 1): title: CRC_1,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_1
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464772
+        grezzo (Stadio 1): title: CRC_2,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_2
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464773
+        grezzo (Stadio 1): title: CRC_9,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_9
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464774
+        grezzo (Stadio 1): title: CRC_12,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_12
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464775
+        grezzo (Stadio 1): title: CRC_15,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_15
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464776
+        grezzo (Stadio 1): title: CRC_17,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_17
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464777
+        grezzo (Stadio 1): title: CRC_20,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_20
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464778
+        grezzo (Stadio 1): title: CRC_25,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_25
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464779
+        grezzo (Stadio 1): title: CRC_26,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_26
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+      GSM2464780
+        grezzo (Stadio 1): title: CRC_29,source: CRC_colonic mucosa,subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : CRC_29
+        H5 caratteristiche: subject status: Colorectal cancer,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : CRC_colonic mucosa
+  CONTROLLO  (n=3)  etichetta Stadio 2: Healthy control
+      gruppo Stadio 2: grp_0002
+      GSM2464761
+        grezzo (Stadio 1): title: Healthy_301,source: healthy_colonic mucosa,subject status: Healthy control,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : Healthy_301
+        H5 caratteristiche: subject status: Healthy control,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : healthy_colonic mucosa
+      GSM2464768
+        grezzo (Stadio 1): title: Healthy_475,source: healthy_colonic mucosa,subject status: Healthy control,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : Healthy_475
+        H5 caratteristiche: subject status: Healthy control,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : healthy_colonic mucosa
+      GSM2464769
+        grezzo (Stadio 1): title: Healthy_478,source: healthy_colonic mucosa,subject status: Healthy control,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 titolo        : Healthy_478
+        H5 caratteristiche: subject status: Healthy control,cell type: Human Intestinal Lymphatic Endothelial cells (HILEC)
+        H5 sorgente      : healthy_colonic mucosa
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE104178     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE164541     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 15 campioni distinti (20 righe: i controlli servono piu' confronti)
+  GSE205787     campioni nell'H5:   53 | collocati dallo Stadio 2:   53 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 52 campioni distinti (58 righe: i controlli servono piu' confronti)
+  GSE223119     campioni nell'H5:   40 | collocati dallo Stadio 2:   40 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 23 campioni distinti (23 righe: i controlli servono piu' confronti)
+  GSE93904      campioni nell'H5:   20 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
+

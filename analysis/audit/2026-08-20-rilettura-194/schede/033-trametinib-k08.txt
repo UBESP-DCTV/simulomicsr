@@ -1,0 +1,518 @@
+META-ANALISI 033 di 194
+==============================================================================
+nome            : trametinib
+entita (ID)     : CHEBI:75998
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_702a5dea
+studi poolati   : 8   confronti: 10   campioni: 82
+geni significativi: 5716   I2 mediano: 92.1
+verdetto della rilettura: incerta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE110397__GSE110397__H2030_Trametinib_vs_H2030_Vehicle__1
+  studio: GSE110397
+  TRATTATO  (n=2)  etichetta Stadio 2: H2030 Trametinib
+      gruppo Stadio 2: grp_H2030_Trametinib
+      GSM2990635
+        grezzo (Stadio 1): title: H2030 Tramet 1,source: Lung cell line,cell line: H2030,treatment: Trametinib
+        H5 titolo        : H2030 Tramet 1
+        H5 caratteristiche: cell line: H2030,treatment: Trametinib
+        H5 sorgente      : Lung cell line
+      GSM2990639
+        grezzo (Stadio 1): title: H2030 Tramet 2,source: Lung cell line,cell line: H2030,treatment: Trametinib
+        H5 titolo        : H2030 Tramet 2
+        H5 caratteristiche: cell line: H2030,treatment: Trametinib
+        H5 sorgente      : Lung cell line
+  CONTROLLO  (n=2)  etichetta Stadio 2: H2030 Vehicle
+      gruppo Stadio 2: grp_H2030_Vehicle
+      GSM2990634
+        grezzo (Stadio 1): title: H2030 Vehicle 1,source: Lung cell line,cell line: H2030,treatment: Vehicle
+        H5 titolo        : H2030 Vehicle 1
+        H5 caratteristiche: cell line: H2030,treatment: Vehicle
+        H5 sorgente      : Lung cell line
+      GSM2990638
+        grezzo (Stadio 1): title: H2030 Vehicle 2,source: Lung cell line,cell line: H2030,treatment: Vehicle
+        H5 titolo        : H2030 Vehicle 2
+        H5 caratteristiche: cell line: H2030,treatment: Vehicle
+        H5 sorgente      : Lung cell line
+
+CONFRONTO  GSE118548__GSE118548__Trametinib_vs_DMSO__1
+  studio: GSE118548
+  TRATTATO  (n=2)  etichetta Stadio 2: Trametinib
+      gruppo Stadio 2: grp_Trametinib
+      GSM3332285
+        grezzo (Stadio 1): title: T84 trametinib Rep2,source: T84 trametinib, colorectal cancer cell line,cell line: T84 colon carcinoma cell line,treatment: Trametinib 30nM,time of treatment: 24h
+        H5 titolo        : T84 trametinib Rep2
+        H5 caratteristiche: cell line: T84 colon carcinoma cell line,treatment: Trametinib 30nM,time of treatment: 24h
+        H5 sorgente      : T84 trametinib, colorectal cancer cell line
+      GSM3332286
+        grezzo (Stadio 1): title: T84 trametinib Rep3,source: T84 trametinib, colorectal cancer cell line,cell line: T84 colon carcinoma cell line,treatment: Trametinib 30nM,time of treatment: 24h
+        H5 titolo        : T84 trametinib Rep3
+        H5 caratteristiche: cell line: T84 colon carcinoma cell line,treatment: Trametinib 30nM,time of treatment: 24h
+        H5 sorgente      : T84 trametinib, colorectal cancer cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM3332281
+        grezzo (Stadio 1): title: T84 DMSO Rep1,source: T84 DMSO, colorectal cancer cell line,cell line: T84 colon carcinoma cell line,treatment: DMSO,time of treatment: 24h
+        H5 titolo        : T84 DMSO Rep1
+        H5 caratteristiche: cell line: T84 colon carcinoma cell line,treatment: DMSO,time of treatment: 24h
+        H5 sorgente      : T84 DMSO, colorectal cancer cell line
+      GSM3332282
+        grezzo (Stadio 1): title: T84 DMSO Rep2,source: T84 DMSO, colorectal cancer cell line,cell line: T84 colon carcinoma cell line,treatment: DMSO,time of treatment: 24h
+        H5 titolo        : T84 DMSO Rep2
+        H5 caratteristiche: cell line: T84 colon carcinoma cell line,treatment: DMSO,time of treatment: 24h
+        H5 sorgente      : T84 DMSO, colorectal cancer cell line
+      GSM3332283
+        grezzo (Stadio 1): title: T84 DMSO Rep3,source: T84 DMSO, colorectal cancer cell line,cell line: T84 colon carcinoma cell line,treatment: DMSO,time of treatment: 24h
+        H5 titolo        : T84 DMSO Rep3
+        H5 caratteristiche: cell line: T84 colon carcinoma cell line,treatment: DMSO,time of treatment: 24h
+        H5 sorgente      : T84 DMSO, colorectal cancer cell line
+
+CONFRONTO  GSE206267__GSE206267__grp_KP4_Trametinib_vs_grp_KP4_DMSO__1
+  studio: GSE206267
+  TRATTATO  (n=3)  etichetta Stadio 2: KP4 + Trametinib
+      gruppo Stadio 2: grp_KP4_Trametinib
+      GSM6249071
+        grezzo (Stadio 1): title: KP4 cells-T100-rep.1,source: KP4,cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 titolo        : KP4 cells-T100-rep.1
+        H5 caratteristiche: cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 sorgente      : KP4
+      GSM6249072
+        grezzo (Stadio 1): title: KP4 cells-T100-rep.2,source: KP4,cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 titolo        : KP4 cells-T100-rep.2
+        H5 caratteristiche: cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 sorgente      : KP4
+      GSM6249073
+        grezzo (Stadio 1): title: KP4 cells-T100-rep.3,source: KP4,cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 titolo        : KP4 cells-T100-rep.3
+        H5 caratteristiche: cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 sorgente      : KP4
+  CONTROLLO  (n=3)  etichetta Stadio 2: KP4 + DMSO
+      gruppo Stadio 2: grp_KP4_DMSO
+      GSM6249068
+        grezzo (Stadio 1): title: KP4 cells-DMSO-rep.1,source: KP4,cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 titolo        : KP4 cells-DMSO-rep.1
+        H5 caratteristiche: cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 sorgente      : KP4
+      GSM6249069
+        grezzo (Stadio 1): title: KP4 cells-DMSO-rep.2,source: KP4,cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 titolo        : KP4 cells-DMSO-rep.2
+        H5 caratteristiche: cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 sorgente      : KP4
+      GSM6249070
+        grezzo (Stadio 1): title: KP4 cells-DMSO-rep.3,source: KP4,cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 titolo        : KP4 cells-DMSO-rep.3
+        H5 caratteristiche: cell line: KP4,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 sorgente      : KP4
+
+CONFRONTO  GSE206267__GSE206267__grp_MiaPaca2_Trametinib_vs_grp_MiaPaca2_DMSO__1
+  studio: GSE206267
+  TRATTATO  (n=3)  etichetta Stadio 2: MiaPaca2 + Trametinib
+      gruppo Stadio 2: grp_MiaPaca2_Trametinib
+      GSM6249077
+        grezzo (Stadio 1): title: Mia cells-T100-rep.1,source: MiaPaca2,cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 titolo        : Mia cells-T100-rep.1
+        H5 caratteristiche: cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 sorgente      : MiaPaca2
+      GSM6249078
+        grezzo (Stadio 1): title: Mia cells-T100-rep.2,source: MiaPaca2,cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 titolo        : Mia cells-T100-rep.2
+        H5 caratteristiche: cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 sorgente      : MiaPaca2
+      GSM6249079
+        grezzo (Stadio 1): title: Mia cells-T100-rep.3,source: MiaPaca2,cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 titolo        : Mia cells-T100-rep.3
+        H5 caratteristiche: cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: 100nM Trametinib (48h)
+        H5 sorgente      : MiaPaca2
+  CONTROLLO  (n=3)  etichetta Stadio 2: MiaPaca2 + DMSO
+      gruppo Stadio 2: grp_MiaPaca2_DMSO
+      GSM6249074
+        grezzo (Stadio 1): title: Mia cells-DMSO-rep.1,source: MiaPaca2,cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 titolo        : Mia cells-DMSO-rep.1
+        H5 caratteristiche: cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 sorgente      : MiaPaca2
+      GSM6249075
+        grezzo (Stadio 1): title: Mia cells-DMSO-rep.2,source: MiaPaca2,cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 titolo        : Mia cells-DMSO-rep.2
+        H5 caratteristiche: cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 sorgente      : MiaPaca2
+      GSM6249076
+        grezzo (Stadio 1): title: Mia cells-DMSO-rep.3,source: MiaPaca2,cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 titolo        : Mia cells-DMSO-rep.3
+        H5 caratteristiche: cell line: MiaPaca2,cell type: Human pancreatic ductal adenocarcinoma cells,treatment: DMSO (48h)
+        H5 sorgente      : MiaPaca2
+
+CONFRONTO  GSE207645__GSE207645__Trametinib_vs_DMSO__1
+  studio: GSE207645
+  TRATTATO  (n=2)  etichetta Stadio 2: Trametinib
+      gruppo Stadio 2: grp_0006
+      GSM6304282
+        grezzo (Stadio 1): title: MM27_Trametinib_rep1,source: metastasis of cutaneous melanoma,cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: Trametinib treated (100 nM)
+        H5 titolo        : MM27_Trametinib_rep1
+        H5 caratteristiche: cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: Trametinib treated (100 nM)
+        H5 sorgente      : metastasis of cutaneous melanoma
+      GSM6304283
+        grezzo (Stadio 1): title: MM27_Trametinib_rep2,source: metastasis of cutaneous melanoma,cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: Trametinib treated (100 nM)
+        H5 titolo        : MM27_Trametinib_rep2
+        H5 caratteristiche: cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: Trametinib treated (100 nM)
+        H5 sorgente      : metastasis of cutaneous melanoma
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_0003
+      GSM6304279
+        grezzo (Stadio 1): title: MM27_Untreated_rep1,source: metastasis of cutaneous melanoma,cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: DMSO treated control
+        H5 titolo        : MM27_Untreated_rep1
+        H5 caratteristiche: cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: DMSO treated control
+        H5 sorgente      : metastasis of cutaneous melanoma
+      GSM6304280
+        grezzo (Stadio 1): title: MM27_Untreated_rep2,source: metastasis of cutaneous melanoma,cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: DMSO treated control
+        H5 titolo        : MM27_Untreated_rep2
+        H5 caratteristiche: cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: DMSO treated control
+        H5 sorgente      : metastasis of cutaneous melanoma
+      GSM6304281
+        grezzo (Stadio 1): title: MM27_Untreated_rep3,source: metastasis of cutaneous melanoma,cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: DMSO treated control
+        H5 titolo        : MM27_Untreated_rep3
+        H5 caratteristiche: cell type: patient derived xenograft cells,passage: 2,melanoma mutation: BRAFV600E,drug treated pdx cells: DMSO treated control
+        H5 sorgente      : metastasis of cutaneous melanoma
+
+CONFRONTO  GSE213588__GSE213588__MeWo_Trametinib_vs_MeWo_DMSO__1
+  studio: GSE213588
+  TRATTATO  (n=3)  etichetta Stadio 2: MeWo_Trametinib
+      gruppo Stadio 2: grp_0002
+      GSM6589489
+        grezzo (Stadio 1): title: MeWo, Tram, 24h, Rep1,source: MeWo,cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: Trametinib (0.1 ÂµM),time: 24 hours
+        H5 titolo        : MeWo, Tram, 24h, Rep1
+        H5 caratteristiche: cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: Trametinib (0.1 ÂµM),time: 24 hours
+        H5 sorgente      : MeWo
+      GSM6589490
+        grezzo (Stadio 1): title: MeWo, Tram, 24h, Rep2,source: MeWo,cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: Trametinib (0.1 ÂµM),time: 24 hours
+        H5 titolo        : MeWo, Tram, 24h, Rep2
+        H5 caratteristiche: cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: Trametinib (0.1 ÂµM),time: 24 hours
+        H5 sorgente      : MeWo
+      GSM6589491
+        grezzo (Stadio 1): title: MeWo, Tram, 24h, Rep3,source: MeWo,cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: Trametinib (0.1 ÂµM),time: 24 hours
+        H5 titolo        : MeWo, Tram, 24h, Rep3
+        H5 caratteristiche: cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: Trametinib (0.1 ÂµM),time: 24 hours
+        H5 sorgente      : MeWo
+  CONTROLLO  (n=3)  etichetta Stadio 2: MeWo_DMSO
+      gruppo Stadio 2: grp_0001
+      GSM6589477
+        grezzo (Stadio 1): title: MeWo, DMSO, 24h, Rep1,source: MeWo,cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: DMSO,time: 24 hours
+        H5 titolo        : MeWo, DMSO, 24h, Rep1
+        H5 caratteristiche: cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: DMSO,time: 24 hours
+        H5 sorgente      : MeWo
+      GSM6589478
+        grezzo (Stadio 1): title: MeWo, DMSO, 24h, Rep2,source: MeWo,cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: DMSO,time: 24 hours
+        H5 titolo        : MeWo, DMSO, 24h, Rep2
+        H5 caratteristiche: cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: DMSO,time: 24 hours
+        H5 sorgente      : MeWo
+      GSM6589479
+        grezzo (Stadio 1): title: MeWo, DMSO, 24h, Rep3,source: MeWo,cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: DMSO,time: 24 hours
+        H5 titolo        : MeWo, DMSO, 24h, Rep3
+        H5 caratteristiche: cell line: MeWo,cell type: melanoma cells,genotype: NF1 loss-of-function,treatment: DMSO,time: 24 hours
+        H5 sorgente      : MeWo
+
+CONFRONTO  GSE217421__GSE217421__grp_Trametinib_1_vs_grp_DMSO_1__1
+  studio: GSE217421
+  TRATTATO  (n=8)  etichetta Stadio 2: Trametinib-treated cardiac myocytes
+      gruppo Stadio 2: mg151
+      GSM6718166
+        grezzo (Stadio 1): title: TRA MSN01-03R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F5,investigative unit: 110,sample id: 38,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 95.6,rna volume (ul): 2.09205020920502,h2o volume (ul): 14.907949790795
+        H5 titolo        : TRA MSN01-03R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F5,investigative unit: 110,sample id: 38,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 95.6,rna volume (ul): 2.09205020920502,h2o volume (ul): 14.907949790795
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718169
+        grezzo (Stadio 1): title: TRA MSN01-03R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F10,investigative unit: 144,sample id: 38,rna amount (ng): 200,rin: 8.7,rna conc (ng/ul): 37.8,rna volume (ul): 5.29100529100529,h2o volume (ul): 11.7089947089947
+        H5 titolo        : TRA MSN01-03R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F10,investigative unit: 144,sample id: 38,rna amount (ng): 200,rin: 8.7,rna conc (ng/ul): 37.8,rna volume (ul): 5.29100529100529,h2o volume (ul): 11.7089947089947
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718172
+        grezzo (Stadio 1): title: TRA MSN05-01R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: C2,investigative unit: 179,sample id: 14,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 93.4,rna volume (ul): 2.14132762312634,h2o volume (ul): 14.8586723768737
+        H5 titolo        : TRA MSN05-01R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: C2,investigative unit: 179,sample id: 14,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 93.4,rna volume (ul): 2.14132762312634,h2o volume (ul): 14.8586723768737
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718173
+        grezzo (Stadio 1): title: TRA MSN05-01R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F12,investigative unit: 186,sample id: 38,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 44.8,rna volume (ul): 4.46428571428571,h2o volume (ul): 12.5357142857143
+        H5 titolo        : TRA MSN05-01R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F12,investigative unit: 186,sample id: 38,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 44.8,rna volume (ul): 4.46428571428571,h2o volume (ul): 12.5357142857143
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718180
+        grezzo (Stadio 1): title: TRA MSN08-13R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: A11,investigative unit: 190,sample id: 38,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 65.8,rna volume (ul): 3.03951367781155,h2o volume (ul): 13.9604863221884
+        H5 titolo        : TRA MSN08-13R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: A11,investigative unit: 190,sample id: 38,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 65.8,rna volume (ul): 3.03951367781155,h2o volume (ul): 13.9604863221884
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718181
+        grezzo (Stadio 1): title: TRA MSN09-04R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: D6,investigative unit: 124,sample id: 62,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 48.6,rna volume (ul): 4.11522633744856,h2o volume (ul): 12.8847736625514
+        H5 titolo        : TRA MSN09-04R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: D6,investigative unit: 124,sample id: 62,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 48.6,rna volume (ul): 4.11522633744856,h2o volume (ul): 12.8847736625514
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718183
+        grezzo (Stadio 1): title: TRA MSN09-04R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F7,investigative unit: 161,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.8,rna volume (ul): 5.91715976331361,h2o volume (ul): 11.0828402366864
+        H5 titolo        : TRA MSN09-04R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F7,investigative unit: 161,sample id: 3,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.8,rna volume (ul): 5.91715976331361,h2o volume (ul): 11.0828402366864
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718184
+        grezzo (Stadio 1): title: TRA MSN09-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: H4,investigative unit: 191,sample id: 35,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 44.8,rna volume (ul): 4.46428571428571,h2o volume (ul): 12.5357142857143
+        H5 titolo        : TRA MSN09-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: H4,investigative unit: 191,sample id: 35,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 44.8,rna volume (ul): 4.46428571428571,h2o volume (ul): 12.5357142857143
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE217421__GSE217421__Trametinib_MSN01_vs_DMSO_MSN01__1
+  studio: GSE217421
+  TRATTATO  (n=8)  etichetta Stadio 2: Trametinib-treated MSN01 cells
+      gruppo Stadio 2: mg146
+      GSM6718167
+        grezzo (Stadio 1): title: TRA MSN01-03R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: B2,investigative unit: 136,sample id: 38,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 19.6,rna volume (ul): 10.2040816326531,h2o volume (ul): 6.79591836734694
+        H5 titolo        : TRA MSN01-03R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: B2,investigative unit: 136,sample id: 38,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 19.6,rna volume (ul): 10.2040816326531,h2o volume (ul): 6.79591836734694
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718168
+        grezzo (Stadio 1): title: TRA MSN01-03R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: H4,investigative unit: 139,sample id: 38,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 22.8,rna volume (ul): 8.7719298245614,h2o volume (ul): 8.2280701754386
+        H5 titolo        : TRA MSN01-03R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: H4,investigative unit: 139,sample id: 38,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 22.8,rna volume (ul): 8.7719298245614,h2o volume (ul): 8.2280701754386
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718171
+        grezzo (Stadio 1): title: TRA MSN05-01R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: A8,investigative unit: 157,sample id: 38,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 48,rna volume (ul): 4.16666666666667,h2o volume (ul): 12.8333333333333
+        H5 titolo        : TRA MSN05-01R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: A8,investigative unit: 157,sample id: 38,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 48,rna volume (ul): 4.16666666666667,h2o volume (ul): 12.8333333333333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718174
+        grezzo (Stadio 1): title: TRA MSN06-07R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: G5,investigative unit: 131,sample id: 38,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 36.8,rna volume (ul): 5.43478260869565,h2o volume (ul): 11.5652173913043
+        H5 titolo        : TRA MSN06-07R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: G5,investigative unit: 131,sample id: 38,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 36.8,rna volume (ul): 5.43478260869565,h2o volume (ul): 11.5652173913043
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718175
+        grezzo (Stadio 1): title: TRA MSN06-07R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: E2,investigative unit: 138,sample id: 38,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 28.4,rna volume (ul): 7.04225352112676,h2o volume (ul): 9.95774647887324
+        H5 titolo        : TRA MSN06-07R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: E2,investigative unit: 138,sample id: 38,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 28.4,rna volume (ul): 7.04225352112676,h2o volume (ul): 9.95774647887324
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718176
+        grezzo (Stadio 1): title: TRA MSN06-07R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F6,investigative unit: 145,sample id: 38,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 38.2,rna volume (ul): 5.23560209424084,h2o volume (ul): 11.7643979057592
+        H5 titolo        : TRA MSN06-07R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: F6,investigative unit: 145,sample id: 38,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 38.2,rna volume (ul): 5.23560209424084,h2o volume (ul): 11.7643979057592
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718177
+        grezzo (Stadio 1): title: TRA MSN08-13R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: H6,investigative unit: 122,sample id: 38,rna amount (ng): 200,rin: 9.4,rna conc (ng/ul): 47.4,rna volume (ul): 4.21940928270042,h2o volume (ul): 12.7805907172996
+        H5 titolo        : TRA MSN08-13R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: H6,investigative unit: 122,sample id: 38,rna amount (ng): 200,rin: 9.4,rna conc (ng/ul): 47.4,rna volume (ul): 4.21940928270042,h2o volume (ul): 12.7805907172996
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718182
+        grezzo (Stadio 1): title: TRA MSN09-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: A6,investigative unit: 133,sample id: 38,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 54.2,rna volume (ul): 3.690036900369,h2o volume (ul): 13.309963099631
+        H5 titolo        : TRA MSN09-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: TRA,drug name: Trametinib,concentration: 100nM,well: A6,investigative unit: 133,sample id: 38,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 54.2,rna volume (ul): 3.690036900369,h2o volume (ul): 13.309963099631
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE228090__GSE228090__UM004_trametinib_vs_UM004_DMSO__1
+  studio: GSE228090
+  TRATTATO  (n=3)  etichetta Stadio 2: UM004_trametinib_rna
+      gruppo Stadio 2: grp_0012
+      GSM7113755
+        grezzo (Stadio 1): title: UM004 trametinib S1,source: metastatic uveal melanoma cells,cell line: UM004,treatment: trametinib,treatment type: MEKi,sample number: S1
+        H5 titolo        : UM004 trametinib S1
+        H5 caratteristiche: cell line: UM004,treatment: trametinib,treatment type: MEKi,sample number: S1
+        H5 sorgente      : metastatic uveal melanoma cells
+      GSM7113756
+        grezzo (Stadio 1): title: UM004 trametinib S2,source: metastatic uveal melanoma cells,cell line: UM004,treatment: trametinib,treatment type: MEKi,sample number: S2
+        H5 titolo        : UM004 trametinib S2
+        H5 caratteristiche: cell line: UM004,treatment: trametinib,treatment type: MEKi,sample number: S2
+        H5 sorgente      : metastatic uveal melanoma cells
+      GSM7113757
+        grezzo (Stadio 1): title: UM004 trametinib S3,source: metastatic uveal melanoma cells,cell line: UM004,treatment: trametinib,treatment type: MEKi,sample number: S3
+        H5 titolo        : UM004 trametinib S3
+        H5 caratteristiche: cell line: UM004,treatment: trametinib,treatment type: MEKi,sample number: S3
+        H5 sorgente      : metastatic uveal melanoma cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: UM004_DMSO
+      gruppo Stadio 2: grp_0014
+      GSM7113749
+        grezzo (Stadio 1): title: UM004 DMSO S1,source: metastatic uveal melanoma cells,cell line: UM004,treatment: DMSO,treatment type: DMSO,sample number: S1
+        H5 titolo        : UM004 DMSO S1
+        H5 caratteristiche: cell line: UM004,treatment: DMSO,treatment type: DMSO,sample number: S1
+        H5 sorgente      : metastatic uveal melanoma cells
+      GSM7113750
+        grezzo (Stadio 1): title: UM004 DMSO S2,source: metastatic uveal melanoma cells,cell line: UM004,treatment: DMSO,treatment type: DMSO,sample number: S2
+        H5 titolo        : UM004 DMSO S2
+        H5 caratteristiche: cell line: UM004,treatment: DMSO,treatment type: DMSO,sample number: S2
+        H5 sorgente      : metastatic uveal melanoma cells
+      GSM7113751
+        grezzo (Stadio 1): title: UM004 DMSO S3,source: metastatic uveal melanoma cells,cell line: UM004,treatment: DMSO,treatment type: DMSO,sample number: S3
+        H5 titolo        : UM004 DMSO S3
+        H5 caratteristiche: cell line: UM004,treatment: DMSO,treatment type: DMSO,sample number: S3
+        H5 sorgente      : metastatic uveal melanoma cells
+
+CONFRONTO  GSE64550__GSE64550__grp_0004_vs_grp_0006__1
+  studio: GSE64550
+  TRATTATO  (n=2)  etichetta Stadio 2: HCC364 + trametinib + shYAP1
+      gruppo Stadio 2: grp_0004
+      GSM1574061
+        grezzo (Stadio 1): title: hcc364_shY12_tra,source: HCC364 cells, infected with shRNA against YAP1 & treated with Trametinib,tissue: Lung adenocarcinoma,cell line: HCC364,treatment: infected with shRNA against YAP1 & treated with Trametinib
+        H5 titolo        : hcc364_shY12_tra
+        H5 caratteristiche: tissue: Lung adenocarcinoma,cell line: HCC364,treatment: infected with shRNA against YAP1 & treated with Trametinib
+        H5 sorgente      : HCC364 cells, infected with shRNA against YAP1 & treated with Trametinib
+      GSM1574064
+        grezzo (Stadio 1): title: hcc364_shY13_tra,source: HCC364 cells, infected with shRNA against YAP1 & treated with Trametinib,tissue: Lung adenocarcinoma,cell line: HCC364,treatment: infected with shRNA against YAP1 & treated with Trametinib
+        H5 titolo        : hcc364_shY13_tra
+        H5 caratteristiche: tissue: Lung adenocarcinoma,cell line: HCC364,treatment: infected with shRNA against YAP1 & treated with Trametinib
+        H5 sorgente      : HCC364 cells, infected with shRNA against YAP1 & treated with Trametinib
+  CONTROLLO  (n=2)  etichetta Stadio 2: HCC364 + DMSO + shYAP1
+      gruppo Stadio 2: grp_0006
+      GSM1574059
+        grezzo (Stadio 1): title: hcc364_shY12_dmso,source: HCC364 cells, infected with shRNA against YAP1 & treated with DMSO,tissue: Lung adenocarcinoma,cell line: HCC364,treatment: infected with shRNA against YAP1 & treated with DMSO
+        H5 titolo        : hcc364_shY12_dmso
+        H5 caratteristiche: tissue: Lung adenocarcinoma,cell line: HCC364,treatment: infected with shRNA against YAP1 & treated with DMSO
+        H5 sorgente      : HCC364 cells, infected with shRNA against YAP1 & treated with DMSO
+      GSM1574062
+        grezzo (Stadio 1): title: hcc364_shY13_dmso,source: HCC364 cells, infected with shRNA against YAP1 & treated with DMSO,tissue: Lung adenocarcinoma,cell line: HCC364,treatment: infected with shRNA against YAP1 & treated with DMSO
+        H5 titolo        : hcc364_shY13_dmso
+        H5 caratteristiche: tissue: Lung adenocarcinoma,cell line: HCC364,treatment: infected with shRNA against YAP1 & treated with DMSO
+        H5 sorgente      : HCC364 cells, infected with shRNA against YAP1 & treated with DMSO
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE110397     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE118548     campioni nell'H5:   12 | collocati dallo Stadio 2:   11 | MAI COLLOCATI:    1 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+      mai collocati: GSM3332284
+  GSE206267     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE207645     campioni nell'H5:   11 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6304284, GSM6304286
+  GSE213588     campioni nell'H5:   42 | collocati dallo Stadio 2:   42 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE217421     campioni nell'H5: 1170 | collocati dallo Stadio 2:  913 | MAI COLLOCATI:  257 | usati in questa meta-analisi: 28 campioni distinti (40 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6717095, GSM6717097, GSM6717100, GSM6717101, GSM6717102, GSM6717103, GSM6717104, GSM6717106, GSM6717107, GSM6717108, GSM6717111, GSM6717112 ... (+245)
+  GSE228090     campioni nell'H5:   29 | collocati dallo Stadio 2:   29 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE64550      campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+

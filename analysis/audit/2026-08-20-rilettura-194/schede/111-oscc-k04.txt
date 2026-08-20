@@ -1,0 +1,169 @@
+META-ANALISI 111 di 194
+==============================================================================
+nome            : oscc
+entita (ID)     : STR:oscc
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_74daf1c9
+studi poolati   : 4   confronti: 4   campioni: 22
+geni significativi: 3915   I2 mediano: 5.6
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE125866__GSE125866__OSCC_mucosa_vs_Normal_mucosa__1
+  studio: GSE125866
+  TRATTATO  (n=3)  etichetta Stadio 2: OSCC_mucosa
+      gruppo Stadio 2: grp_0003
+      GSM3583670
+        grezzo (Stadio 1): title: 01T,source: mucosa,tissue: oral,Sex: female,condition: OSCC
+        H5 titolo        : 01T
+        H5 caratteristiche: tissue: oral,Sex: female,condition: OSCC
+        H5 sorgente      : mucosa
+      GSM3583676
+        grezzo (Stadio 1): title: 06T,source: mucosa,tissue: oral,Sex: female,condition: OSCC
+        H5 titolo        : 06T
+        H5 caratteristiche: tissue: oral,Sex: female,condition: OSCC
+        H5 sorgente      : mucosa
+      GSM3583680
+        grezzo (Stadio 1): title: 08T,source: mucosa,tissue: oral,Sex: female,condition: OSCC
+        H5 titolo        : 08T
+        H5 caratteristiche: tissue: oral,Sex: female,condition: OSCC
+        H5 sorgente      : mucosa
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal_mucosa
+      gruppo Stadio 2: grp_0006
+      GSM3583681
+        grezzo (Stadio 1): title: 0N1,source: mucosa,tissue: oral,Sex: female,condition: N
+        H5 titolo        : 0N1
+        H5 caratteristiche: tissue: oral,Sex: female,condition: N
+        H5 sorgente      : mucosa
+      GSM3583682
+        grezzo (Stadio 1): title: ON2,source: mucosa,tissue: oral,Sex: female,condition: N
+        H5 titolo        : ON2
+        H5 caratteristiche: tissue: oral,Sex: female,condition: N
+        H5 sorgente      : mucosa
+
+CONFRONTO  GSE171638__GSE171638__Treg_Donor_1_OSCC_vs_Treg_Donor_1_no_treatment__1
+  studio: GSE171638
+  TRATTATO  (n=3)  etichetta Stadio 2: Treg_Donor_1_OSCC
+      gruppo Stadio 2: grp_0005
+      GSM5229591
+        grezzo (Stadio 1): title: CO11_Treg_1_S1,source: Peripheral Blood Tregs,cell type: Treg,secretome: OSCC,donor: Donor_1
+        H5 titolo        : CO11_Treg_1_S1
+        H5 caratteristiche: cell type: Treg,secretome: OSCC,donor: Donor_1
+        H5 sorgente      : Peripheral Blood Tregs
+      GSM5229593
+        grezzo (Stadio 1): title: CO12_Treg_1_S3,source: Peripheral Blood Tregs,cell type: Treg,secretome: OSCC,donor: Donor_1
+        H5 titolo        : CO12_Treg_1_S3
+        H5 caratteristiche: cell type: Treg,secretome: OSCC,donor: Donor_1
+        H5 sorgente      : Peripheral Blood Tregs
+      GSM5229599
+        grezzo (Stadio 1): title: CO25_Treg_2_S9,source: Peripheral Blood Tregs,cell type: Treg,secretome: OSCC,donor: Donor_2
+        H5 titolo        : CO25_Treg_2_S9
+        H5 caratteristiche: cell type: Treg,secretome: OSCC,donor: Donor_2
+        H5 sorgente      : Peripheral Blood Tregs
+  CONTROLLO  (n=3)  etichetta Stadio 2: Treg_Donor_1_no_treatment
+      gruppo Stadio 2: grp_0004
+      GSM5229595
+        grezzo (Stadio 1): title: CO16_Treg_1_S5,source: Peripheral Blood Tregs,cell type: Treg,secretome: Not Malignant,donor: Donor_1
+        H5 titolo        : CO16_Treg_1_S5
+        H5 caratteristiche: cell type: Treg,secretome: Not Malignant,donor: Donor_1
+        H5 sorgente      : Peripheral Blood Tregs
+      GSM5229597
+        grezzo (Stadio 1): title: CO19_Treg_1_S7,source: Peripheral Blood Tregs,cell type: Treg,secretome: Not Malignant,donor: Donor_1
+        H5 titolo        : CO19_Treg_1_S7
+        H5 caratteristiche: cell type: Treg,secretome: Not Malignant,donor: Donor_1
+        H5 sorgente      : Peripheral Blood Tregs
+      GSM5229601
+        grezzo (Stadio 1): title: CO16_Treg_2_S11,source: Peripheral Blood Tregs,cell type: Treg,secretome: Not Malignant,donor: Donor_2
+        H5 titolo        : CO16_Treg_2_S11
+        H5 caratteristiche: cell type: Treg,secretome: Not Malignant,donor: Donor_2
+        H5 sorgente      : Peripheral Blood Tregs
+
+CONFRONTO  GSE221398__GSE221398__OSCC_vs_Normal__1
+  studio: GSE221398
+  TRATTATO  (n=3)  etichetta Stadio 2: OSCC tissues
+      gruppo Stadio 2: group_0002
+      GSM6865254
+        grezzo (Stadio 1): title: cancer1, RNA-seq,source: OSCC tissues,tissue: OSCC tissues,merip antibody: none
+        H5 titolo        : cancer1, RNA-seq
+        H5 caratteristiche: tissue: OSCC tissues,merip antibody: none
+        H5 sorgente      : OSCC tissues
+      GSM6865255
+        grezzo (Stadio 1): title: cancer2, RNA-seq,source: OSCC tissues,tissue: OSCC tissues,merip antibody: none
+        H5 titolo        : cancer2, RNA-seq
+        H5 caratteristiche: tissue: OSCC tissues,merip antibody: none
+        H5 sorgente      : OSCC tissues
+      GSM6865256
+        grezzo (Stadio 1): title: cancer3, RNA-seq,source: OSCC tissues,tissue: OSCC tissues,merip antibody: none
+        H5 titolo        : cancer3, RNA-seq
+        H5 caratteristiche: tissue: OSCC tissues,merip antibody: none
+        H5 sorgente      : OSCC tissues
+  CONTROLLO  (n=3)  etichetta Stadio 2: Normal tissues
+      gruppo Stadio 2: group_0001
+      GSM6865257
+        grezzo (Stadio 1): title: normal1, RNA-seq,source: normal tissues,tissue: normal tissues,merip antibody: none
+        H5 titolo        : normal1, RNA-seq
+        H5 caratteristiche: tissue: normal tissues,merip antibody: none
+        H5 sorgente      : normal tissues
+      GSM6865258
+        grezzo (Stadio 1): title: normal2, RNA-seq,source: normal tissues,tissue: normal tissues,merip antibody: none
+        H5 titolo        : normal2, RNA-seq
+        H5 caratteristiche: tissue: normal tissues,merip antibody: none
+        H5 sorgente      : normal tissues
+      GSM6865259
+        grezzo (Stadio 1): title: normal3, RNA-seq,source: normal tissues,tissue: normal tissues,merip antibody: none
+        H5 titolo        : normal3, RNA-seq
+        H5 caratteristiche: tissue: normal tissues,merip antibody: none
+        H5 sorgente      : normal tissues
+
+CONFRONTO  GSE246050__GSE246050__oscc_vs_normal__1
+  studio: GSE246050
+  TRATTATO  (n=2)  etichetta Stadio 2: OSCC
+      gruppo Stadio 2: grp_oscc
+      GSM7854540
+        grezzo (Stadio 1): title: OSCC_2,source: mucosa,tissue: mucosa,group: OSCC
+        H5 titolo        : OSCC_2
+        H5 caratteristiche: tissue: mucosa,group: OSCC
+        H5 sorgente      : mucosa
+      GSM7854541
+        grezzo (Stadio 1): title: OSCC_3,source: mucosa,tissue: mucosa,group: OSCC
+        H5 titolo        : OSCC_3
+        H5 caratteristiche: tissue: mucosa,group: OSCC
+        H5 sorgente      : mucosa
+  CONTROLLO  (n=3)  etichetta Stadio 2: Normal Mucosa
+      gruppo Stadio 2: grp_normal
+      GSM7854530
+        grezzo (Stadio 1): title: normal_1,source: mucosa,tissue: mucosa,group: normal
+        H5 titolo        : normal_1
+        H5 caratteristiche: tissue: mucosa,group: normal
+        H5 sorgente      : mucosa
+      GSM7854531
+        grezzo (Stadio 1): title: normal_2,source: mucosa,tissue: mucosa,group: normal
+        H5 titolo        : normal_2
+        H5 caratteristiche: tissue: mucosa,group: normal
+        H5 sorgente      : mucosa
+      GSM7854532
+        grezzo (Stadio 1): title: normal_3,source: mucosa,tissue: mucosa,group: normal
+        H5 titolo        : normal_3
+        H5 caratteristiche: tissue: mucosa,group: normal
+        H5 sorgente      : mucosa
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE125866     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE171638     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE221398     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE246050     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,1155 @@
+META-ANALISI 184 di 194
+==============================================================================
+nome            : medulloblastoma
+entita (ID)     : STR:medulloblastoma
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_70f8671b
+studi poolati   : 3   confronti: 9   campioni: 212
+geni significativi: 2480   I2 mediano: 84.0
+verdetto della rilettura: incerta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE148389__GSE148389__medulloblastoma_1_vs_healthy_1__1
+  studio: GSE148389
+  TRATTATO  (n=96)  etichetta Stadio 2: Medulloblastoma (Age 1, Male)
+      gruppo Stadio 2: grp_medulloblastoma_1
+      GSM4466902
+        grezzo (Stadio 1): title: Q11_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: Group 3,survival_years: 0.2,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q11_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: Group 3,survival_years: 0.2,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466903
+        grezzo (Stadio 1): title: Q11_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: Group 3,survival_years: 0.2,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q11_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: Group 3,survival_years: 0.2,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466904
+        grezzo (Stadio 1): title: Q11_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: Group 3,survival_years: 0.2,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q11_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: Group 3,survival_years: 0.2,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466905
+        grezzo (Stadio 1): title: Q11_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: Group 3,survival_years: 0.2,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q11_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: Group 3,survival_years: 0.2,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466906
+        grezzo (Stadio 1): title: Q15_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 1.33,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: YES
+        H5 titolo        : Q15_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 1.33,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466907
+        grezzo (Stadio 1): title: Q15_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 1.33,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: YES
+        H5 titolo        : Q15_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 1.33,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466908
+        grezzo (Stadio 1): title: Q15_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 1.33,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: YES
+        H5 titolo        : Q15_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 1.33,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466909
+        grezzo (Stadio 1): title: Q15_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 1.33,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: YES
+        H5 titolo        : Q15_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 1.33,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466910
+        grezzo (Stadio 1): title: Q18_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: M,subgroup: Group 3,survival_years: 2.57,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q18_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: M,subgroup: Group 3,survival_years: 2.57,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466911
+        grezzo (Stadio 1): title: Q18_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: M,subgroup: Group 3,survival_years: 2.57,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q18_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: M,subgroup: Group 3,survival_years: 2.57,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466912
+        grezzo (Stadio 1): title: Q18_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: M,subgroup: Group 3,survival_years: 2.57,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q18_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: M,subgroup: Group 3,survival_years: 2.57,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466913
+        grezzo (Stadio 1): title: Q18_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: M,subgroup: Group 3,survival_years: 2.57,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q18_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: M,subgroup: Group 3,survival_years: 2.57,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466914
+        grezzo (Stadio 1): title: Q2_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 9,Sex: M,subgroup: Group 4,survival_years: 10.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q2_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 9,Sex: M,subgroup: Group 4,survival_years: 10.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466915
+        grezzo (Stadio 1): title: Q2_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 9,Sex: M,subgroup: Group 4,survival_years: 10.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q2_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 9,Sex: M,subgroup: Group 4,survival_years: 10.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466916
+        grezzo (Stadio 1): title: Q2_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 9,Sex: M,subgroup: Group 4,survival_years: 10.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q2_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 9,Sex: M,subgroup: Group 4,survival_years: 10.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466917
+        grezzo (Stadio 1): title: Q2_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 9,Sex: M,subgroup: Group 4,survival_years: 10.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q2_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 9,Sex: M,subgroup: Group 4,survival_years: 10.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466918
+        grezzo (Stadio 1): title: Q21_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: M,subgroup: SHH,survival_years: 12.7,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q21_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: M,subgroup: SHH,survival_years: 12.7,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466919
+        grezzo (Stadio 1): title: Q21_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: M,subgroup: SHH,survival_years: 12.7,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q21_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: M,subgroup: SHH,survival_years: 12.7,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466920
+        grezzo (Stadio 1): title: Q21_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: M,subgroup: SHH,survival_years: 12.7,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q21_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: M,subgroup: SHH,survival_years: 12.7,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466921
+        grezzo (Stadio 1): title: Q21_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: M,subgroup: SHH,survival_years: 12.7,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q21_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: M,subgroup: SHH,survival_years: 12.7,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466922
+        grezzo (Stadio 1): title: Q22_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 0.6,Sex: F,subgroup: SHH,survival_years: 12.44,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q22_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 0.6,Sex: F,subgroup: SHH,survival_years: 12.44,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466926
+        grezzo (Stadio 1): title: Q23_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: F,subgroup: Group 4,survival_years: 12.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q23_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: F,subgroup: Group 4,survival_years: 12.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466927
+        grezzo (Stadio 1): title: Q23_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: F,subgroup: Group 4,survival_years: 12.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q23_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: F,subgroup: Group 4,survival_years: 12.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466928
+        grezzo (Stadio 1): title: Q23_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: F,subgroup: Group 4,survival_years: 12.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q23_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: F,subgroup: Group 4,survival_years: 12.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466929
+        grezzo (Stadio 1): title: Q23_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: F,subgroup: Group 4,survival_years: 12.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q23_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: F,subgroup: Group 4,survival_years: 12.35,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466930
+        grezzo (Stadio 1): title: Q24_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 3,survival_years: 0.98,survival_status_20220901: deceased,histology: CLASSIC,metastasis: YES,recurrence: YES
+        H5 titolo        : Q24_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 3,survival_years: 0.98,survival_status_20220901: deceased,histology: CLASSIC,metastasis: YES,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466931
+        grezzo (Stadio 1): title: Q24_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 3,survival_years: 0.98,survival_status_20220901: deceased,histology: CLASSIC,metastasis: YES,recurrence: YES
+        H5 titolo        : Q24_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 3,survival_years: 0.98,survival_status_20220901: deceased,histology: CLASSIC,metastasis: YES,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466932
+        grezzo (Stadio 1): title: Q24_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 3,survival_years: 0.98,survival_status_20220901: deceased,histology: CLASSIC,metastasis: YES,recurrence: YES
+        H5 titolo        : Q24_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 3,survival_years: 0.98,survival_status_20220901: deceased,histology: CLASSIC,metastasis: YES,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466933
+        grezzo (Stadio 1): title: Q24_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 3,survival_years: 0.98,survival_status_20220901: deceased,histology: CLASSIC,metastasis: YES,recurrence: YES
+        H5 titolo        : Q24_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 3,survival_years: 0.98,survival_status_20220901: deceased,histology: CLASSIC,metastasis: YES,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466934
+        grezzo (Stadio 1): title: Q25_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 4,survival_years: 7.06,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q25_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 4,survival_years: 7.06,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466935
+        grezzo (Stadio 1): title: Q25_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 4,survival_years: 7.06,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q25_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 4,survival_years: 7.06,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466936
+        grezzo (Stadio 1): title: Q25_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 4,survival_years: 7.06,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q25_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 4,survival_years: 7.06,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466937
+        grezzo (Stadio 1): title: Q25_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 4,survival_years: 7.06,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q25_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: M,subgroup: Group 4,survival_years: 7.06,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466938
+        grezzo (Stadio 1): title: Q26_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 7.36,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q26_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 7.36,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466939
+        grezzo (Stadio 1): title: Q26_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 7.36,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q26_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 7.36,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466940
+        grezzo (Stadio 1): title: Q26_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 7.36,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q26_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 7.36,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466941
+        grezzo (Stadio 1): title: Q26_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 7.36,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q26_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 7.36,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466942
+        grezzo (Stadio 1): title: Q27_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: SHH,survival_years: 7.27,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q27_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: SHH,survival_years: 7.27,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466943
+        grezzo (Stadio 1): title: Q27_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: SHH,survival_years: 7.27,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q27_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: SHH,survival_years: 7.27,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466944
+        grezzo (Stadio 1): title: Q27_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: SHH,survival_years: 7.27,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q27_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: SHH,survival_years: 7.27,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466945
+        grezzo (Stadio 1): title: Q27_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: SHH,survival_years: 7.27,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q27_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: SHH,survival_years: 7.27,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466946
+        grezzo (Stadio 1): title: Q29_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 3,survival_years: 6.37,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q29_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 3,survival_years: 6.37,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466947
+        grezzo (Stadio 1): title: Q29_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 3,survival_years: 6.37,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q29_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 3,survival_years: 6.37,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466948
+        grezzo (Stadio 1): title: Q29_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 3,survival_years: 6.37,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q29_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 3,survival_years: 6.37,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466949
+        grezzo (Stadio 1): title: Q29_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 3,survival_years: 6.37,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q29_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 3,survival_years: 6.37,survival_status_20220901: alive,histology: CLASSIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466950
+        grezzo (Stadio 1): title: Q3_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 4,survival_years: 0.8,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q3_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 4,survival_years: 0.8,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466951
+        grezzo (Stadio 1): title: Q3_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 4,survival_years: 0.8,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q3_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 4,survival_years: 0.8,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466952
+        grezzo (Stadio 1): title: Q3_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 4,survival_years: 0.8,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q3_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 4,survival_years: 0.8,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466953
+        grezzo (Stadio 1): title: Q3_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 4,survival_years: 0.8,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q3_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 7,Sex: M,subgroup: Group 4,survival_years: 0.8,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466954
+        grezzo (Stadio 1): title: Q30_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 15,Sex: M,subgroup: Group 4,survival_years: 6.78,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q30_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 15,Sex: M,subgroup: Group 4,survival_years: 6.78,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466955
+        grezzo (Stadio 1): title: Q30_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 15,Sex: M,subgroup: Group 4,survival_years: 6.78,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q30_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 15,Sex: M,subgroup: Group 4,survival_years: 6.78,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466956
+        grezzo (Stadio 1): title: Q30_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 15,Sex: M,subgroup: Group 4,survival_years: 6.78,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q30_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 15,Sex: M,subgroup: Group 4,survival_years: 6.78,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466957
+        grezzo (Stadio 1): title: Q30_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 15,Sex: M,subgroup: Group 4,survival_years: 6.78,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q30_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 15,Sex: M,subgroup: Group 4,survival_years: 6.78,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466958
+        grezzo (Stadio 1): title: Q31_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 5.65,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q31_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 5.65,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466959
+        grezzo (Stadio 1): title: Q31_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 5.65,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q31_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 5.65,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466960
+        grezzo (Stadio 1): title: Q31_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 5.65,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q31_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 5.65,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466961
+        grezzo (Stadio 1): title: Q31_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 5.65,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q31_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 5.65,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466962
+        grezzo (Stadio 1): title: Q32_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 4,Sex: M,subgroup: Group 3,survival_years: 0.59,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q32_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 4,Sex: M,subgroup: Group 3,survival_years: 0.59,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466963
+        grezzo (Stadio 1): title: Q32_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 4,Sex: M,subgroup: Group 3,survival_years: 0.59,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q32_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 4,Sex: M,subgroup: Group 3,survival_years: 0.59,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466964
+        grezzo (Stadio 1): title: Q32_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 4,Sex: M,subgroup: Group 3,survival_years: 0.59,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q32_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 4,Sex: M,subgroup: Group 3,survival_years: 0.59,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466965
+        grezzo (Stadio 1): title: Q32_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 4,Sex: M,subgroup: Group 3,survival_years: 0.59,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q32_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 4,Sex: M,subgroup: Group 3,survival_years: 0.59,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466966
+        grezzo (Stadio 1): title: Q33_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 11,Sex: M,subgroup: Group 4,survival_years: 4.62,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q33_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 11,Sex: M,subgroup: Group 4,survival_years: 4.62,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466967
+        grezzo (Stadio 1): title: Q33_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 11,Sex: M,subgroup: Group 4,survival_years: 4.62,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q33_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 11,Sex: M,subgroup: Group 4,survival_years: 4.62,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466968
+        grezzo (Stadio 1): title: Q33_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 11,Sex: M,subgroup: Group 4,survival_years: 4.62,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q33_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 11,Sex: M,subgroup: Group 4,survival_years: 4.62,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466969
+        grezzo (Stadio 1): title: Q33_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 11,Sex: M,subgroup: Group 4,survival_years: 4.62,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q33_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 11,Sex: M,subgroup: Group 4,survival_years: 4.62,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466970
+        grezzo (Stadio 1): title: Q34_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 4.41,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q34_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 4.41,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466971
+        grezzo (Stadio 1): title: Q34_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 4.41,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q34_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 4.41,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466972
+        grezzo (Stadio 1): title: Q34_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 4.41,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q34_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 4.41,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466973
+        grezzo (Stadio 1): title: Q34_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 4.41,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 titolo        : Q34_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 3,Sex: M,subgroup: Group 3,survival_years: 4.41,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: YES,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466974
+        grezzo (Stadio 1): title: Q4_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: F,subgroup: Group 4,survival_years: 9.23,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q4_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: F,subgroup: Group 4,survival_years: 9.23,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466975
+        grezzo (Stadio 1): title: Q4_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: F,subgroup: Group 4,survival_years: 9.23,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q4_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: F,subgroup: Group 4,survival_years: 9.23,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466976
+        grezzo (Stadio 1): title: Q4_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: F,subgroup: Group 4,survival_years: 9.23,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q4_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: F,subgroup: Group 4,survival_years: 9.23,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466977
+        grezzo (Stadio 1): title: Q4_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: F,subgroup: Group 4,survival_years: 9.23,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q4_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 2,Sex: F,subgroup: Group 4,survival_years: 9.23,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466980
+        grezzo (Stadio 1): title: Q5_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 14,Sex: F,subgroup: SHH,survival_years: 5.17,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q5_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 14,Sex: F,subgroup: SHH,survival_years: 5.17,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466981
+        grezzo (Stadio 1): title: Q5_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 14,Sex: F,subgroup: SHH,survival_years: 5.17,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q5_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 14,Sex: F,subgroup: SHH,survival_years: 5.17,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466982
+        grezzo (Stadio 1): title: Q6_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 9.4,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q6_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 9.4,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466983
+        grezzo (Stadio 1): title: Q6_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 9.4,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q6_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 9.4,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466984
+        grezzo (Stadio 1): title: Q6_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 9.4,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q6_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 9.4,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466985
+        grezzo (Stadio 1): title: Q6_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 9.4,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q6_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 6,Sex: F,subgroup: Group 4,survival_years: 9.4,survival_status_20220901: alive,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466986
+        grezzo (Stadio 1): title: Q7_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: SHH,survival_years: 6.72,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q7_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: SHH,survival_years: 6.72,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466987
+        grezzo (Stadio 1): title: Q7_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: SHH,survival_years: 6.72,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q7_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: SHH,survival_years: 6.72,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466988
+        grezzo (Stadio 1): title: Q7_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: SHH,survival_years: 6.72,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q7_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: SHH,survival_years: 6.72,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466989
+        grezzo (Stadio 1): title: Q7_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: SHH,survival_years: 6.72,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q7_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 1,Sex: M,subgroup: SHH,survival_years: 6.72,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466990
+        grezzo (Stadio 1): title: Q8_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 12,Sex: M,subgroup: Group 4,survival_years: 17.67,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q8_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 12,Sex: M,subgroup: Group 4,survival_years: 17.67,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466991
+        grezzo (Stadio 1): title: Q8_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 12,Sex: M,subgroup: Group 4,survival_years: 17.67,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q8_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 12,Sex: M,subgroup: Group 4,survival_years: 17.67,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466992
+        grezzo (Stadio 1): title: Q8_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 12,Sex: M,subgroup: Group 4,survival_years: 17.67,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q8_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 12,Sex: M,subgroup: Group 4,survival_years: 17.67,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466993
+        grezzo (Stadio 1): title: Q8_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 12,Sex: M,subgroup: Group 4,survival_years: 17.67,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q8_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 12,Sex: M,subgroup: Group 4,survival_years: 17.67,survival_status_20220901: alive,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466994
+        grezzo (Stadio 1): title: Q37_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 0.4,Sex: F,subgroup: SHH,survival_years: 16.5,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q37_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 0.4,Sex: F,subgroup: SHH,survival_years: 16.5,survival_status_20220901: alive,histology: DESMOPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466998
+        grezzo (Stadio 1): title: Q38_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: F,subgroup: Group 4,survival_years: 13.93,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q38_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: F,subgroup: Group 4,survival_years: 13.93,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4466999
+        grezzo (Stadio 1): title: Q38_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: F,subgroup: Group 4,survival_years: 13.93,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q38_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: F,subgroup: Group 4,survival_years: 13.93,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4467000
+        grezzo (Stadio 1): title: Q38_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: F,subgroup: Group 4,survival_years: 13.93,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q38_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: F,subgroup: Group 4,survival_years: 13.93,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4467001
+        grezzo (Stadio 1): title: Q38_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: F,subgroup: Group 4,survival_years: 13.93,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 titolo        : Q38_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 8,Sex: F,subgroup: Group 4,survival_years: 13.93,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: YES
+        H5 sorgente      : Brain
+      GSM4467002
+        grezzo (Stadio 1): title: Q49_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 17,Sex: F,subgroup: UNKNOWN,survival_years: 0.86,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q49_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 17,Sex: F,subgroup: UNKNOWN,survival_years: 0.86,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4467003
+        grezzo (Stadio 1): title: Q49_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 17,Sex: F,subgroup: UNKNOWN,survival_years: 0.86,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q49_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 17,Sex: F,subgroup: UNKNOWN,survival_years: 0.86,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4467004
+        grezzo (Stadio 1): title: Q49_3_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 17,Sex: F,subgroup: UNKNOWN,survival_years: 0.86,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q49_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 17,Sex: F,subgroup: UNKNOWN,survival_years: 0.86,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4467005
+        grezzo (Stadio 1): title: Q49_4_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 17,Sex: F,subgroup: UNKNOWN,survival_years: 0.86,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q49_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 17,Sex: F,subgroup: UNKNOWN,survival_years: 0.86,survival_status_20220901: deceased,histology: CLASSIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+  CONTROLLO  (n=6)  etichetta Stadio 2: Healthy Brain (Age 14)
+      gruppo Stadio 2: grp_healthy_1
+      GSM4466849
+        grezzo (Stadio 1): title: NC1_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 14,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC1_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 14,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466865
+        grezzo (Stadio 1): title: NC16_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 5,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC16_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 5,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466898
+        grezzo (Stadio 1): title: NC6_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC6_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466899
+        grezzo (Stadio 1): title: NC6_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC6_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466900
+        grezzo (Stadio 1): title: NC6_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC6_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466901
+        grezzo (Stadio 1): title: NC6_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC6_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+
+CONFRONTO  GSE148389__GSE148389__medulloblastoma_2_vs_healthy_2__1
+  studio: GSE148389
+  TRATTATO  (n=2)  etichetta Stadio 2: Medulloblastoma (Age 14, Female, Deceased)
+      gruppo Stadio 2: grp_medulloblastoma_2
+      GSM4466978
+        grezzo (Stadio 1): title: Q5_1_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 14,Sex: F,subgroup: SHH,survival_years: 5.17,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q5_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 14,Sex: F,subgroup: SHH,survival_years: 5.17,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+      GSM4466979
+        grezzo (Stadio 1): title: Q5_2_RNA-seq,source: Brain,tissue: Brain,disease state: Medulloblastoma,age: 14,Sex: F,subgroup: SHH,survival_years: 5.17,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 titolo        : Q5_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Medulloblastoma,age: 14,Sex: F,subgroup: SHH,survival_years: 5.17,survival_status_20220901: deceased,histology: LARGE CELL/ANAPLASTIC,metastasis: NO,recurrence: NO
+        H5 sorgente      : Brain
+  CONTROLLO  (n=42)  etichetta Stadio 2: Healthy Brain (Age 14)
+      gruppo Stadio 2: grp_healthy_2
+      GSM4466846
+        grezzo (Stadio 1): title: NC1_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 14,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC1_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 14,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466847
+        grezzo (Stadio 1): title: NC1_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 14,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC1_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 14,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466848
+        grezzo (Stadio 1): title: NC1_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 14,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC1_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 14,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466854
+        grezzo (Stadio 1): title: NC14_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 24,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC14_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 24,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466855
+        grezzo (Stadio 1): title: NC14_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 24,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC14_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 24,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466856
+        grezzo (Stadio 1): title: NC14_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 24,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC14_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 24,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466857
+        grezzo (Stadio 1): title: NC14_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 24,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC14_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 24,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466858
+        grezzo (Stadio 1): title: NC15_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 13,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC15_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 13,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466859
+        grezzo (Stadio 1): title: NC15_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 13,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC15_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 13,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466860
+        grezzo (Stadio 1): title: NC15_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 13,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC15_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 13,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466861
+        grezzo (Stadio 1): title: NC15_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 13,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC15_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 13,Sex: not collected,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466862
+        grezzo (Stadio 1): title: NC16_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 5,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC16_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 5,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466863
+        grezzo (Stadio 1): title: NC16_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 5,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC16_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 5,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466864
+        grezzo (Stadio 1): title: NC16_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 5,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC16_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 5,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466866
+        grezzo (Stadio 1): title: NC18_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 15,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC18_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 15,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466867
+        grezzo (Stadio 1): title: NC18_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 15,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC18_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 15,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466868
+        grezzo (Stadio 1): title: NC18_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 15,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC18_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 15,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466869
+        grezzo (Stadio 1): title: NC18_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 15,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC18_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 15,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466870
+        grezzo (Stadio 1): title: NC20_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 10,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC20_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 10,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466871
+        grezzo (Stadio 1): title: NC20_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 10,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC20_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 10,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466872
+        grezzo (Stadio 1): title: NC20_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 10,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC20_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 10,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466873
+        grezzo (Stadio 1): title: NC20_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 10,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC20_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 10,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466874
+        grezzo (Stadio 1): title: NC21_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 3,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC21_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 3,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466875
+        grezzo (Stadio 1): title: NC21_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 3,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC21_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 3,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466876
+        grezzo (Stadio 1): title: NC21_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 3,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC21_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 3,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466877
+        grezzo (Stadio 1): title: NC21_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 3,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC21_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 3,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466878
+        grezzo (Stadio 1): title: NC23_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 17,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC23_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 17,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466879
+        grezzo (Stadio 1): title: NC23_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 17,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC23_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 17,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466880
+        grezzo (Stadio 1): title: NC23_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 17,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC23_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 17,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466881
+        grezzo (Stadio 1): title: NC23_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 17,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC23_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 17,Sex: M,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466886
+        grezzo (Stadio 1): title: NC25_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 2,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC25_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 2,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466887
+        grezzo (Stadio 1): title: NC25_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 2,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC25_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 2,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466888
+        grezzo (Stadio 1): title: NC25_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 2,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC25_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 2,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466889
+        grezzo (Stadio 1): title: NC25_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 2,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC25_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 2,Sex: F,subgroup: Normal pediatric,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466890
+        grezzo (Stadio 1): title: NC4_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC4_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466891
+        grezzo (Stadio 1): title: NC4_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC4_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466892
+        grezzo (Stadio 1): title: NC4_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC4_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466893
+        grezzo (Stadio 1): title: NC4_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC4_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 32,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466894
+        grezzo (Stadio 1): title: NC5_1_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 26,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC5_1_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 26,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466895
+        grezzo (Stadio 1): title: NC5_2_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 26,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC5_2_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 26,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466896
+        grezzo (Stadio 1): title: NC5_3_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 26,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC5_3_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 26,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+      GSM4466897
+        grezzo (Stadio 1): title: NC5_4_RNA-seq,source: Brain,tissue: Brain,disease state: Healthy Control,age: 26,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 titolo        : NC5_4_RNA-seq
+        H5 caratteristiche: tissue: Brain,disease state: Healthy Control,age: 26,Sex: not collected,subgroup: Normal adult,survival_years: NA,survival_status_20220901: NA,histology: NA,metastasis: NA,recurrence: NA
+        H5 sorgente      : Brain
+
+CONFRONTO  GSE189919__GSE189919__medullo_1_vs_normal_no_rna__1
+  studio: GSE189919
+  TRATTATO  (n=4)  etichetta Stadio 2: Medulloblastoma patient 1
+      gruppo Stadio 2: grp_medullo_1
+      GSM5709906
+        grezzo (Stadio 1): title: JHACH_1629,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: WNT
+        H5 titolo        : JHACH_1629
+        H5 caratteristiche: disease: Medulloblastoma,sub group: WNT
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709907
+        grezzo (Stadio 1): title: JHACH_2493,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: WNT
+        H5 titolo        : JHACH_2493
+        H5 caratteristiche: disease: Medulloblastoma,sub group: WNT
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709934
+        grezzo (Stadio 1): title: Chetan_8104,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : Chetan_8104
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709935
+        grezzo (Stadio 1): title: Chetan_88425,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : Chetan_88425
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Normal CSF without RNA extraction
+      gruppo Stadio 2: grp_normal_no_rna
+      GSM5709893
+        grezzo (Stadio 1): title: Discovery_75288,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_75288
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709896
+        grezzo (Stadio 1): title: Discovery_07363,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_07363
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709900
+        grezzo (Stadio 1): title: BioIVT_798,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : BioIVT_798
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+
+CONFRONTO  GSE189919__GSE189919__medullo_2_vs_normal_no_rna__1
+  studio: GSE189919
+  TRATTATO  (n=2)  etichetta Stadio 2: Medulloblastoma patient 2
+      gruppo Stadio 2: grp_medullo_2
+      GSM5709911
+        grezzo (Stadio 1): title: JHACH_6867,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: SHH
+        H5 titolo        : JHACH_6867
+        H5 caratteristiche: disease: Medulloblastoma,sub group: SHH
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709917
+        grezzo (Stadio 1): title: JHACH_2518,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 3/4
+        H5 titolo        : JHACH_2518
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 3/4
+        H5 sorgente      : Cerebrospinal fluid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Normal CSF without RNA extraction
+      gruppo Stadio 2: grp_normal_no_rna
+      GSM5709893
+        grezzo (Stadio 1): title: Discovery_75288,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_75288
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709896
+        grezzo (Stadio 1): title: Discovery_07363,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_07363
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709900
+        grezzo (Stadio 1): title: BioIVT_798,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : BioIVT_798
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+
+CONFRONTO  GSE189919__GSE189919__medullo_3_vs_normal_no_rna__1
+  studio: GSE189919
+  TRATTATO  (n=2)  etichetta Stadio 2: Medulloblastoma patient 3
+      gruppo Stadio 2: grp_medullo_3
+      GSM5709933
+        grezzo (Stadio 1): title: Chetan_8045-2,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : Chetan_8045-2
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709936
+        grezzo (Stadio 1): title: Chetan_9637-4,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : Chetan_9637-4
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Normal CSF without RNA extraction
+      gruppo Stadio 2: grp_normal_no_rna
+      GSM5709893
+        grezzo (Stadio 1): title: Discovery_75288,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_75288
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709896
+        grezzo (Stadio 1): title: Discovery_07363,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_07363
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709900
+        grezzo (Stadio 1): title: BioIVT_798,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : BioIVT_798
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+
+CONFRONTO  GSE189919__GSE189919__medullo_6_vs_normal_no_rna__1
+  studio: GSE189919
+  TRATTATO  (n=2)  etichetta Stadio 2: Medulloblastoma patient 6
+      gruppo Stadio 2: grp_medullo_6
+      GSM5709914
+        grezzo (Stadio 1): title: JHACH_1192,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 3/4
+        H5 titolo        : JHACH_1192
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 3/4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709932
+        grezzo (Stadio 1): title: CBTTC_6054,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_6054
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Normal CSF without RNA extraction
+      gruppo Stadio 2: grp_normal_no_rna
+      GSM5709893
+        grezzo (Stadio 1): title: Discovery_75288,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_75288
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709896
+        grezzo (Stadio 1): title: Discovery_07363,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_07363
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709900
+        grezzo (Stadio 1): title: BioIVT_798,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : BioIVT_798
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+
+CONFRONTO  GSE189919__GSE189919__medullo_pool_vs_normal_no_rna__1
+  studio: GSE189919
+  TRATTATO  (n=27)  etichetta Stadio 2: Pooled Medulloblastoma patients
+      gruppo Stadio 2: grp_medullo_pool
+      GSM5709904
+        grezzo (Stadio 1): title: CBTTC_2934,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: WNT
+        H5 titolo        : CBTTC_2934
+        H5 caratteristiche: disease: Medulloblastoma,sub group: WNT
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709905
+        grezzo (Stadio 1): title: CBTTC_3025,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: WNT
+        H5 titolo        : CBTTC_3025
+        H5 caratteristiche: disease: Medulloblastoma,sub group: WNT
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709908
+        grezzo (Stadio 1): title: CBTTC_2118,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: SHH
+        H5 titolo        : CBTTC_2118
+        H5 caratteristiche: disease: Medulloblastoma,sub group: SHH
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709909
+        grezzo (Stadio 1): title: CBTTC_922,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: SHH
+        H5 titolo        : CBTTC_922
+        H5 caratteristiche: disease: Medulloblastoma,sub group: SHH
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709910
+        grezzo (Stadio 1): title: CBTTC_4221,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: SHH
+        H5 titolo        : CBTTC_4221
+        H5 caratteristiche: disease: Medulloblastoma,sub group: SHH
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709912
+        grezzo (Stadio 1): title: CBTTC_931,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: SHH
+        H5 titolo        : CBTTC_931
+        H5 caratteristiche: disease: Medulloblastoma,sub group: SHH
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709913
+        grezzo (Stadio 1): title: CBTTC_4681,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: SHH
+        H5 titolo        : CBTTC_4681
+        H5 caratteristiche: disease: Medulloblastoma,sub group: SHH
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709915
+        grezzo (Stadio 1): title: CBTTC_3949,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 3/4
+        H5 titolo        : CBTTC_3949
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 3/4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709916
+        grezzo (Stadio 1): title: CBTTC_2169,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 3/4
+        H5 titolo        : CBTTC_2169
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 3/4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709918
+        grezzo (Stadio 1): title: CBTTC_6781,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 3/4
+        H5 titolo        : CBTTC_6781
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 3/4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709919
+        grezzo (Stadio 1): title: CBTTC_4345,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 3/4
+        H5 titolo        : CBTTC_4345
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 3/4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709920
+        grezzo (Stadio 1): title: CBTTC_747,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 4
+        H5 titolo        : CBTTC_747
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709921
+        grezzo (Stadio 1): title: CBTTC_3931,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 4
+        H5 titolo        : CBTTC_3931
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709922
+        grezzo (Stadio 1): title: CBTTC_5187,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 4
+        H5 titolo        : CBTTC_5187
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709923
+        grezzo (Stadio 1): title: CBTTC_5463,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: Group 4
+        H5 titolo        : CBTTC_5463
+        H5 caratteristiche: disease: Medulloblastoma,sub group: Group 4
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709924
+        grezzo (Stadio 1): title: CBTTC_4188,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_4188
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709925
+        grezzo (Stadio 1): title: CBTTC_4940,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_4940
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709926
+        grezzo (Stadio 1): title: CBTTC_4956,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_4956
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709928
+        grezzo (Stadio 1): title: CBTTC_5238,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_5238
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709929
+        grezzo (Stadio 1): title: CBTTC_7286,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_7286
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709930
+        grezzo (Stadio 1): title: CBTTC_6785,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_6785
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709931
+        grezzo (Stadio 1): title: CBTTC_7495,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_7495
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709937
+        grezzo (Stadio 1): title: CBTTC_3459,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_3459
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709939
+        grezzo (Stadio 1): title: CBTTC_6289,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_6289
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709940
+        grezzo (Stadio 1): title: CBTTC_5459,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_5459
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709942
+        grezzo (Stadio 1): title: CBTTC_4509,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_4509
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709943
+        grezzo (Stadio 1): title: CBTTC_5294,source: Cerebrospinal fluid,disease: Medulloblastoma,sub group: not available
+        H5 titolo        : CBTTC_5294
+        H5 caratteristiche: disease: Medulloblastoma,sub group: not available
+        H5 sorgente      : Cerebrospinal fluid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Normal CSF without RNA extraction
+      gruppo Stadio 2: grp_normal_no_rna
+      GSM5709893
+        grezzo (Stadio 1): title: Discovery_75288,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_75288
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709896
+        grezzo (Stadio 1): title: Discovery_07363,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : Discovery_07363
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+      GSM5709900
+        grezzo (Stadio 1): title: BioIVT_798,source: Cerebrospinal fluid,disease: Normal
+        H5 titolo        : BioIVT_798
+        H5 caratteristiche: disease: Normal
+        H5 sorgente      : Cerebrospinal fluid
+
+CONFRONTO  GSE203174__GSE203174__medulloblastoma_C138498_vs_normal_A508112__1
+  studio: GSE203174
+  TRATTATO  (n=2)  etichetta Stadio 2: Medulloblastoma C138498
+      gruppo Stadio 2: grp_medulloblastoma_C138498
+      GSM6161168
+        grezzo (Stadio 1): title: Group4-5-m,source: Medullobalstoma Group 4,disease state: Medulloblastoma,sample location: Ventricles,medulloblastoma subgroup: Group4,biospecimen id: 7316-735,research subject id: C138498,molecule subtype: mRNA / poly(A)
+        H5 titolo        : Group4-5-m
+        H5 caratteristiche: disease state: Medulloblastoma,sample location: Ventricles,medulloblastoma subgroup: Group4,biospecimen id: 7316-735,research subject id: C138498,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Medullobalstoma Group 4
+      GSM6161181
+        grezzo (Stadio 1): title: Group4-18-m,source: Medullobalstoma Group 4,disease state: Medulloblastoma,sample location: Ventricles,medulloblastoma subgroup: Group4,biospecimen id: 7316-2398,research subject id: C530130,molecule subtype: mRNA / poly(A)
+        H5 titolo        : Group4-18-m
+        H5 caratteristiche: disease state: Medulloblastoma,sample location: Ventricles,medulloblastoma subgroup: Group4,biospecimen id: 7316-2398,research subject id: C530130,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Medullobalstoma Group 4
+  CONTROLLO  (n=5)  etichetta Stadio 2: Normal Cerebellum A508112
+      gruppo Stadio 2: grp_normal_A508112
+      GSM6161209
+        grezzo (Stadio 1): title: CB-82-m,source: Cerebellum Normal,disease state: normal,sample location: Amsbio_Human nomral cerebellum, Total RNA , Male 26 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. A508112,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-82-m
+        H5 caratteristiche: disease state: normal,sample location: Amsbio_Human nomral cerebellum, Total RNA , Male 26 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. A508112,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+      GSM6161210
+        grezzo (Stadio 1): title: CB-83-m,source: Cerebellum Normal,disease state: normal,sample location: Amsbio_Human brain cerebellum (left), Total RNA, Male 24 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234040-10,research subject id: Lot. B307003,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-83-m
+        H5 caratteristiche: disease state: normal,sample location: Amsbio_Human brain cerebellum (left), Total RNA, Male 24 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234040-10,research subject id: Lot. B307003,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+      GSM6161211
+        grezzo (Stadio 1): title: CB-84-m,source: Cerebellum Normal,disease state: normal,sample location: Takara _Human normal Cerebellum RNA, Pool from 3 Asian Males 21-29 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. 636535,research subject id: Lot. 1802037,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-84-m
+        H5 caratteristiche: disease state: normal,sample location: Takara _Human normal Cerebellum RNA, Pool from 3 Asian Males 21-29 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. 636535,research subject id: Lot. 1802037,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+      GSM6161212
+        grezzo (Stadio 1): title: CB-85-m,source: Cerebellum Normal,disease state: normal,sample location: Amsbio/BioChain _Human normal Cerebellum RNA, Male 29 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. B910013,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-85-m
+        H5 caratteristiche: disease state: normal,sample location: Amsbio/BioChain _Human normal Cerebellum RNA, Male 29 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. B910013,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+      GSM6161213
+        grezzo (Stadio 1): title: CB-86-m,source: Cerebellum Normal,disease state: normal,sample location: Amsbio/BioChain _Human normal Cerebellum RNA, Male 24 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. C409088,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-86-m
+        H5 caratteristiche: disease state: normal,sample location: Amsbio/BioChain _Human normal Cerebellum RNA, Male 24 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. C409088,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+
+CONFRONTO  GSE203174__GSE203174__medulloblastoma_C17466_vs_normal_A508112__1
+  studio: GSE203174
+  TRATTATO  (n=2)  etichetta Stadio 2: Medulloblastoma C17466
+      gruppo Stadio 2: grp_medulloblastoma_C17466
+      GSM6161169
+        grezzo (Stadio 1): title: Group4-6-m,source: Medullobalstoma Group 4,disease state: Medulloblastoma,sample location: Cerebellum/Posterior Fossa,Spinal Cord- Cervical,Spinal Cord- Lumbar/Thecal Sac,Spinal Cord- Thoracic,medulloblastoma subgroup: Group4,biospecimen id: 7316-38,research subject id: C17466,molecule subtype: mRNA / poly(A)
+        H5 titolo        : Group4-6-m
+        H5 caratteristiche: disease state: Medulloblastoma,sample location: Cerebellum/Posterior Fossa,Spinal Cord- Cervical,Spinal Cord- Lumbar/Thecal Sac,Spinal Cord- Thoracic,medulloblastoma subgroup: Group4,biospecimen id: 7316-38,research subject id: C17466,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Medullobalstoma Group 4
+      GSM6161188
+        grezzo (Stadio 1): title: Group4-25-m,source: Medullobalstoma Group 4,disease state: Medulloblastoma,sample location: Cerebellum/Posterior Fossa,Spinal Cord- Cervical,Spinal Cord- Lumbar/Thecal Sac,Spinal Cord- Thoracic,medulloblastoma subgroup: Group4,biospecimen id: 7316-221,research subject id: C68265,molecule subtype: mRNA / poly(A)
+        H5 titolo        : Group4-25-m
+        H5 caratteristiche: disease state: Medulloblastoma,sample location: Cerebellum/Posterior Fossa,Spinal Cord- Cervical,Spinal Cord- Lumbar/Thecal Sac,Spinal Cord- Thoracic,medulloblastoma subgroup: Group4,biospecimen id: 7316-221,research subject id: C68265,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Medullobalstoma Group 4
+  CONTROLLO  (n=5)  etichetta Stadio 2: Normal Cerebellum A508112
+      gruppo Stadio 2: grp_normal_A508112
+      GSM6161209
+        grezzo (Stadio 1): title: CB-82-m,source: Cerebellum Normal,disease state: normal,sample location: Amsbio_Human nomral cerebellum, Total RNA , Male 26 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. A508112,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-82-m
+        H5 caratteristiche: disease state: normal,sample location: Amsbio_Human nomral cerebellum, Total RNA , Male 26 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. A508112,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+      GSM6161210
+        grezzo (Stadio 1): title: CB-83-m,source: Cerebellum Normal,disease state: normal,sample location: Amsbio_Human brain cerebellum (left), Total RNA, Male 24 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234040-10,research subject id: Lot. B307003,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-83-m
+        H5 caratteristiche: disease state: normal,sample location: Amsbio_Human brain cerebellum (left), Total RNA, Male 24 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234040-10,research subject id: Lot. B307003,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+      GSM6161211
+        grezzo (Stadio 1): title: CB-84-m,source: Cerebellum Normal,disease state: normal,sample location: Takara _Human normal Cerebellum RNA, Pool from 3 Asian Males 21-29 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. 636535,research subject id: Lot. 1802037,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-84-m
+        H5 caratteristiche: disease state: normal,sample location: Takara _Human normal Cerebellum RNA, Pool from 3 Asian Males 21-29 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. 636535,research subject id: Lot. 1802037,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+      GSM6161212
+        grezzo (Stadio 1): title: CB-85-m,source: Cerebellum Normal,disease state: normal,sample location: Amsbio/BioChain _Human normal Cerebellum RNA, Male 29 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. B910013,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-85-m
+        H5 caratteristiche: disease state: normal,sample location: Amsbio/BioChain _Human normal Cerebellum RNA, Male 29 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. B910013,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+      GSM6161213
+        grezzo (Stadio 1): title: CB-86-m,source: Cerebellum Normal,disease state: normal,sample location: Amsbio/BioChain _Human normal Cerebellum RNA, Male 24 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. C409088,molecule subtype: mRNA / poly(A)
+        H5 titolo        : CB-86-m
+        H5 caratteristiche: disease state: normal,sample location: Amsbio/BioChain _Human normal Cerebellum RNA, Male 24 Y,medulloblastoma subgroup: CB,biospecimen id: Cat. R1234039-50,research subject id: Lot. C409088,molecule subtype: mRNA / poly(A)
+        H5 sorgente      : Cerebellum Normal
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE148389     campioni nell'H5:  160 | collocati dallo Stadio 2:  156 | MAI COLLOCATI:    4 | usati in questa meta-analisi: 146 campioni distinti (146 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4466882, GSM4466883, GSM4466884, GSM4466885
+  GSE189919     campioni nell'H5:   51 | collocati dallo Stadio 2:   45 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 40 campioni distinti (52 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5709897, GSM5709898, GSM5709899, GSM5709902, GSM5709903, GSM5709927
+  GSE203174     campioni nell'H5:   86 | collocati dallo Stadio 2:   86 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (14 righe: i controlli servono piu' confronti)
+

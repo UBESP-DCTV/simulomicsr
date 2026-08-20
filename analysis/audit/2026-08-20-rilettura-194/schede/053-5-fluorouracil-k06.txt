@@ -1,0 +1,299 @@
+META-ANALISI 053 di 194
+==============================================================================
+nome            : 5-fluorouracil
+entita (ID)     : CHEBI:46345
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_29cb04f8
+studi poolati   : 6   confronti: 8   campioni: 42
+geni significativi: 1200   I2 mediano: 87.7
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE145356__GSE145356__5-FU_LV_vs_DMSO__1
+  studio: GSE145356
+  TRATTATO  (n=3)  etichetta Stadio 2: 5-FU/LV treated
+      gruppo Stadio 2: grp_0001
+      GSM4315314
+        grezzo (Stadio 1): title: 66_BRCD_T3-3_S11,source: Colorectal cancer,origin: xenograft - 5-FU/LV,treatment: 5-FU/LV,treatment duration: 8 weeks
+        H5 titolo        : 66_BRCD_T3-3_S11
+        H5 caratteristiche: origin: xenograft - 5-FU/LV,treatment: 5-FU/LV,treatment duration: 8 weeks
+        H5 sorgente      : Colorectal cancer
+      GSM4315315
+        grezzo (Stadio 1): title: 66_BRCD_T3-4_S1,source: Colorectal cancer,origin: xenograft - 5-FU/LV,treatment: 5-FU/LV,treatment duration: 8 weeks
+        H5 titolo        : 66_BRCD_T3-4_S1
+        H5 caratteristiche: origin: xenograft - 5-FU/LV,treatment: 5-FU/LV,treatment duration: 8 weeks
+        H5 sorgente      : Colorectal cancer
+      GSM4315316
+        grezzo (Stadio 1): title: 66_BRCD_T3-8_S2,source: Colorectal cancer,origin: xenograft - 5-FU/LV,treatment: 5-FU/LV,treatment duration: 8 weeks
+        H5 titolo        : 66_BRCD_T3-8_S2
+        H5 caratteristiche: origin: xenograft - 5-FU/LV,treatment: 5-FU/LV,treatment duration: 8 weeks
+        H5 sorgente      : Colorectal cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO control
+      gruppo Stadio 2: grp_0005
+      GSM4315311
+        grezzo (Stadio 1): title: 66_BRCD_T2-4_S8,source: Colorectal cancer,origin: xenograft - DMSO,treatment: DMSO,treatment duration: 8 weeks
+        H5 titolo        : 66_BRCD_T2-4_S8
+        H5 caratteristiche: origin: xenograft - DMSO,treatment: DMSO,treatment duration: 8 weeks
+        H5 sorgente      : Colorectal cancer
+      GSM4315312
+        grezzo (Stadio 1): title: 66_BRCD_T2-6_S9,source: Colorectal cancer,origin: xenograft - DMSO,treatment: DMSO,treatment duration: 8 weeks
+        H5 titolo        : 66_BRCD_T2-6_S9
+        H5 caratteristiche: origin: xenograft - DMSO,treatment: DMSO,treatment duration: 8 weeks
+        H5 sorgente      : Colorectal cancer
+      GSM4315313
+        grezzo (Stadio 1): title: 66_BRCD_T2-9_S10,source: Colorectal cancer,origin: xenograft - DMSO,treatment: DMSO,treatment duration: 8 weeks
+        H5 titolo        : 66_BRCD_T2-9_S10
+        H5 caratteristiche: origin: xenograft - DMSO,treatment: DMSO,treatment duration: 8 weeks
+        H5 sorgente      : Colorectal cancer
+
+CONFRONTO  GSE157300__GSE157300__grp_0001_vs_grp_0004__1
+  studio: GSE157300
+  TRATTATO  (n=2)  etichetta Stadio 2: HCT116 5-FU 6h
+      gruppo Stadio 2: grp_0001
+      GSM4761153
+        grezzo (Stadio 1): title: HCT116-5-FU for 6 hours rep 1,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 6 hours
+        H5 titolo        : HCT116-5-FU for 6 hours rep 1
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 6 hours
+        H5 sorgente      : Colon Cancer Cells
+      GSM4761154
+        grezzo (Stadio 1): title: HCT116-5-FU for 6 hours rep 2,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 6 hours
+        H5 titolo        : HCT116-5-FU for 6 hours rep 2
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 6 hours
+        H5 sorgente      : Colon Cancer Cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: HCT116 DMSO 6h
+      gruppo Stadio 2: grp_0004
+      GSM4761147
+        grezzo (Stadio 1): title: HCT116-DMSO for 6 hours rep 1,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 6 hours
+        H5 titolo        : HCT116-DMSO for 6 hours rep 1
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 6 hours
+        H5 sorgente      : Colon Cancer Cells
+      GSM4761148
+        grezzo (Stadio 1): title: HCT116-DMSO for 6 hours rep 2,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 6 hours
+        H5 titolo        : HCT116-DMSO for 6 hours rep 2
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 6 hours
+        H5 sorgente      : Colon Cancer Cells
+
+CONFRONTO  GSE157300__GSE157300__grp_0002_vs_grp_0005__1
+  studio: GSE157300
+  TRATTATO  (n=2)  etichetta Stadio 2: HCT116 5-FU 12h
+      gruppo Stadio 2: grp_0002
+      GSM4761155
+        grezzo (Stadio 1): title: HCT116-5-FU for 12 hours rep 1,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 12 hours
+        H5 titolo        : HCT116-5-FU for 12 hours rep 1
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 12 hours
+        H5 sorgente      : Colon Cancer Cells
+      GSM4761156
+        grezzo (Stadio 1): title: HCT116-5-FU for 12 hours rep 2,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 12 hours
+        H5 titolo        : HCT116-5-FU for 12 hours rep 2
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 12 hours
+        H5 sorgente      : Colon Cancer Cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: HCT116 DMSO 12h
+      gruppo Stadio 2: grp_0005
+      GSM4761149
+        grezzo (Stadio 1): title: HCT116-DMSO for 12 hours rep 1,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 12 hours
+        H5 titolo        : HCT116-DMSO for 12 hours rep 1
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 12 hours
+        H5 sorgente      : Colon Cancer Cells
+      GSM4761150
+        grezzo (Stadio 1): title: HCT116-DMSO for 12 hours rep 2,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 12 hours
+        H5 titolo        : HCT116-DMSO for 12 hours rep 2
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 12 hours
+        H5 sorgente      : Colon Cancer Cells
+
+CONFRONTO  GSE157300__GSE157300__grp_0003_vs_grp_0006__1
+  studio: GSE157300
+  TRATTATO  (n=2)  etichetta Stadio 2: HCT116 5-FU 24h
+      gruppo Stadio 2: grp_0003
+      GSM4761157
+        grezzo (Stadio 1): title: HCT116-5-FU for 24 hours rep 1,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 24 hours
+        H5 titolo        : HCT116-5-FU for 24 hours rep 1
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 24 hours
+        H5 sorgente      : Colon Cancer Cells
+      GSM4761158
+        grezzo (Stadio 1): title: HCT116-5-FU for 24 hours rep 2,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 24 hours
+        H5 titolo        : HCT116-5-FU for 24 hours rep 2
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: 5-FU,time: 24 hours
+        H5 sorgente      : Colon Cancer Cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: HCT116 DMSO 24h
+      gruppo Stadio 2: grp_0006
+      GSM4761151
+        grezzo (Stadio 1): title: HCT116-DMSO for 24 hours rep 1,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 24 hours
+        H5 titolo        : HCT116-DMSO for 24 hours rep 1
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Colon Cancer Cells
+      GSM4761152
+        grezzo (Stadio 1): title: HCT116-DMSO for 24 hours rep 2,source: Colon Cancer Cells,cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 24 hours
+        H5 titolo        : HCT116-DMSO for 24 hours rep 2
+        H5 caratteristiche: cell line: HCT116,cell type: Colon,disease state: colorectal carcinoma,p53 genotype: wildtype,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Colon Cancer Cells
+
+CONFRONTO  GSE180146__GSE180146__grp_0006_vs_grp_0007__1
+  studio: GSE180146
+  TRATTATO  (n=3)  etichetta Stadio 2: HepG2 cell line, 5-fluorouracil (5-FU), 350 uM, 48 hours
+      gruppo Stadio 2: grp_0006
+      GSM5454385
+        grezzo (Stadio 1): title: HepG2-5FU-48h replicate 1,source: HepG2 cell line,cell type: liver cancer cell line,treatment: 350 uM 5-fluorouracil (5-FU) treatment for 48 hours,cell line: HepG2 cell line
+        H5 titolo        : HepG2-5FU-48h replicate 1
+        H5 caratteristiche: cell type: liver cancer cell line,treatment: 350 uM 5-fluorouracil (5-FU) treatment for 48 hours,cell line: HepG2 cell line
+        H5 sorgente      : HepG2 cell line
+      GSM5454386
+        grezzo (Stadio 1): title: HepG2-5FU-48h replicate 2,source: HepG2 cell line,cell type: liver cancer cell line,treatment: 350 uM 5-fluorouracil (5-FU) treatment for 48 hours,cell line: HepG2 cell line
+        H5 titolo        : HepG2-5FU-48h replicate 2
+        H5 caratteristiche: cell type: liver cancer cell line,treatment: 350 uM 5-fluorouracil (5-FU) treatment for 48 hours,cell line: HepG2 cell line
+        H5 sorgente      : HepG2 cell line
+      GSM5454387
+        grezzo (Stadio 1): title: HepG2-5FU-48h replicate 3,source: HepG2 cell line,cell type: liver cancer cell line,treatment: 350 uM 5-fluorouracil (5-FU) treatment for 48 hours,cell line: HepG2 cell line
+        H5 titolo        : HepG2-5FU-48h replicate 3
+        H5 caratteristiche: cell type: liver cancer cell line,treatment: 350 uM 5-fluorouracil (5-FU) treatment for 48 hours,cell line: HepG2 cell line
+        H5 sorgente      : HepG2 cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: HepG2 cell line, mock control
+      gruppo Stadio 2: grp_0007
+      GSM5454370
+        grezzo (Stadio 1): title: HepG2-Control replicate 1,source: HepG2 cell line,cell type: liver cancer cell line,treatment: Mock control,cell line: HepG2 cell line
+        H5 titolo        : HepG2-Control replicate 1
+        H5 caratteristiche: cell type: liver cancer cell line,treatment: Mock control,cell line: HepG2 cell line
+        H5 sorgente      : HepG2 cell line
+      GSM5454371
+        grezzo (Stadio 1): title: HepG2-Control replicate 2,source: HepG2 cell line,cell type: liver cancer cell line,treatment: Mock control,cell line: HepG2 cell line
+        H5 titolo        : HepG2-Control replicate 2
+        H5 caratteristiche: cell type: liver cancer cell line,treatment: Mock control,cell line: HepG2 cell line
+        H5 sorgente      : HepG2 cell line
+      GSM5454372
+        grezzo (Stadio 1): title: HepG2-Control replicate 3,source: HepG2 cell line,cell type: liver cancer cell line,treatment: Mock control,cell line: HepG2 cell line
+        H5 titolo        : HepG2-Control replicate 3
+        H5 caratteristiche: cell type: liver cancer cell line,treatment: Mock control,cell line: HepG2 cell line
+        H5 sorgente      : HepG2 cell line
+
+CONFRONTO  GSE193865__GSE193865__grp_0001_vs_grp_0002__1
+  studio: GSE193865
+  TRATTATO  (n=2)  etichetta Stadio 2: 5-fu treated
+      gruppo Stadio 2: grp_0001
+      GSM5822778
+        grezzo (Stadio 1): title: T2: 5-FU tratemt HCT-8 rep2,source: T2,cancer: colon cancer,cell line: HCT-8,treatment: 5-fu treatment
+        H5 titolo        : T2: 5-FU tratemt HCT-8 rep2
+        H5 caratteristiche: cancer: colon cancer,cell line: HCT-8,treatment: 5-fu treatment
+        H5 sorgente      : T2
+      GSM5822779
+        grezzo (Stadio 1): title: T3: 5-FU tratemt HCT-8 rep3,source: T3,cancer: colon cancer,cell line: HCT-8,treatment: 5-fu treatment
+        H5 titolo        : T3: 5-FU tratemt HCT-8 rep3
+        H5 caratteristiche: cancer: colon cancer,cell line: HCT-8,treatment: 5-fu treatment
+        H5 sorgente      : T3
+  CONTROLLO  (n=3)  etichetta Stadio 2: untreated control
+      gruppo Stadio 2: grp_0002
+      GSM5822774
+        grezzo (Stadio 1): title: C1: HCT-8 rep1,source: C1,cancer: colon cancer,cell line: HCT-8,treatment: no treatment
+        H5 titolo        : C1: HCT-8 rep1
+        H5 caratteristiche: cancer: colon cancer,cell line: HCT-8,treatment: no treatment
+        H5 sorgente      : C1
+      GSM5822775
+        grezzo (Stadio 1): title: C2: HCT-8 rep2,source: C2,cancer: colon cancer,cell line: HCT-8,treatment: no treatment
+        H5 titolo        : C2: HCT-8 rep2
+        H5 caratteristiche: cancer: colon cancer,cell line: HCT-8,treatment: no treatment
+        H5 sorgente      : C2
+      GSM5822776
+        grezzo (Stadio 1): title: C3: HCT-8 rep3,source: C3,cancer: colon cancer,cell line: HCT-8,treatment: no treatment
+        H5 titolo        : C3: HCT-8 rep3
+        H5 caratteristiche: cancer: colon cancer,cell line: HCT-8,treatment: no treatment
+        H5 sorgente      : C3
+
+CONFRONTO  GSE264144__GSE264144__grp_0005_vs_grp_0004__1
+  studio: GSE264144
+  TRATTATO  (n=3)  etichetta Stadio 2: gastric cancer patient-derived tissue, 5-FU, 100mg/kg
+      gruppo Stadio 2: grp_0005
+      GSM8212817
+        grezzo (Stadio 1): title: JSC15-3 5-FU-1 (3),source: JSC15-3,tissue: JSC15-3,cell type: gastric cancer patient-derived cells,treatment: Treatment of 5-FU (100mg/kg)
+        H5 titolo        : JSC15-3 5-FU-1 (3)
+        H5 caratteristiche: tissue: JSC15-3,cell type: gastric cancer patient-derived cells,treatment: Treatment of 5-FU (100mg/kg)
+        H5 sorgente      : JSC15-3
+      GSM8212821
+        grezzo (Stadio 1): title: JSC18-1 5-FU-1 (3),source: JSC18-1,tissue: JSC18-1,cell type: gastric cancer patient-derived cells,treatment: Treatment of 5-FU (100mg/kg)
+        H5 titolo        : JSC18-1 5-FU-1 (3)
+        H5 caratteristiche: tissue: JSC18-1,cell type: gastric cancer patient-derived cells,treatment: Treatment of 5-FU (100mg/kg)
+        H5 sorgente      : JSC18-1
+      GSM8212822
+        grezzo (Stadio 1): title: JSC18-1 5-FU-2 (3),source: JSC18-1,tissue: JSC18-1,cell type: gastric cancer patient-derived cells,treatment: Treatment of 5-FU (100mg/kg)
+        H5 titolo        : JSC18-1 5-FU-2 (3)
+        H5 caratteristiche: tissue: JSC18-1,cell type: gastric cancer patient-derived cells,treatment: Treatment of 5-FU (100mg/kg)
+        H5 sorgente      : JSC18-1
+  CONTROLLO  (n=4)  etichetta Stadio 2: gastric cancer patient-derived tissue, PBS
+      gruppo Stadio 2: grp_0004
+      GSM8212815
+        grezzo (Stadio 1): title: JSC15-3 Vehicle-1 (3),source: JSC15-3,tissue: JSC15-3,cell type: gastric cancer patient-derived cells,treatment: Treatment of PBS
+        H5 titolo        : JSC15-3 Vehicle-1 (3)
+        H5 caratteristiche: tissue: JSC15-3,cell type: gastric cancer patient-derived cells,treatment: Treatment of PBS
+        H5 sorgente      : JSC15-3
+      GSM8212816
+        grezzo (Stadio 1): title: JSC15-3 Vehicle-2 (3),source: JSC15-3,tissue: JSC15-3,cell type: gastric cancer patient-derived cells,treatment: Treatment of PBS
+        H5 titolo        : JSC15-3 Vehicle-2 (3)
+        H5 caratteristiche: tissue: JSC15-3,cell type: gastric cancer patient-derived cells,treatment: Treatment of PBS
+        H5 sorgente      : JSC15-3
+      GSM8212819
+        grezzo (Stadio 1): title: JSC18-1 Vehicle-1 (3),source: JSC18-1,tissue: JSC18-1,cell type: gastric cancer patient-derived cells,treatment: Treatment of PBS
+        H5 titolo        : JSC18-1 Vehicle-1 (3)
+        H5 caratteristiche: tissue: JSC18-1,cell type: gastric cancer patient-derived cells,treatment: Treatment of PBS
+        H5 sorgente      : JSC18-1
+      GSM8212820
+        grezzo (Stadio 1): title: JSC18-1 Vehicle-2 (3),source: JSC18-1,tissue: JSC18-1,cell type: gastric cancer patient-derived cells,treatment: Treatment of PBS
+        H5 titolo        : JSC18-1 Vehicle-2 (3)
+        H5 caratteristiche: tissue: JSC18-1,cell type: gastric cancer patient-derived cells,treatment: Treatment of PBS
+        H5 sorgente      : JSC18-1
+
+CONFRONTO  GSE267150__GSE267150__grp_0003_vs_grp_0007__1
+  studio: GSE267150
+  TRATTATO  (n=2)  etichetta Stadio 2: U2OS_MDM2_W329G_5-FU_24h_rep3
+      gruppo Stadio 2: grp_0003
+      GSM8260924
+        grezzo (Stadio 1): title: U2OS MDM2 W329G cells #1, 5-FU, 24 hours, experiment 1,source: U2OS,cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: 5-FU, 50 uM, 24 hr
+        H5 titolo        : U2OS MDM2 W329G cells #1, 5-FU, 24 hours, experiment 1
+        H5 caratteristiche: cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: 5-FU, 50 uM, 24 hr
+        H5 sorgente      : U2OS
+      GSM8260925
+        grezzo (Stadio 1): title: U2OS MDM2 W329G cells #2, 5-FU, 24 hours, experiment 1,source: U2OS,cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: 5-FU, 50 uM, 24 hr
+        H5 titolo        : U2OS MDM2 W329G cells #2, 5-FU, 24 hours, experiment 1
+        H5 caratteristiche: cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: 5-FU, 50 uM, 24 hr
+        H5 sorgente      : U2OS
+  CONTROLLO  (n=4)  etichetta Stadio 2: U2OS_MDM2_W329G_DMSO_24h
+      gruppo Stadio 2: grp_0007
+      GSM8260920
+        grezzo (Stadio 1): title: U2OS MDM2 W329G cells #1, DMSO, 24 hours, experiment 1,source: U2OS,cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: DMSO, 24 hr
+        H5 titolo        : U2OS MDM2 W329G cells #1, DMSO, 24 hours, experiment 1
+        H5 caratteristiche: cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: DMSO, 24 hr
+        H5 sorgente      : U2OS
+      GSM8260921
+        grezzo (Stadio 1): title: U2OS MDM2 W329G cells #2, DMSO, 24 hours, experiment 1,source: U2OS,cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: DMSO, 24 hr
+        H5 titolo        : U2OS MDM2 W329G cells #2, DMSO, 24 hours, experiment 1
+        H5 caratteristiche: cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: DMSO, 24 hr
+        H5 sorgente      : U2OS
+      GSM8260928
+        grezzo (Stadio 1): title: U2OS MDM2 W329G cells #1, DMSO, 24 hours, experiment 2,source: U2OS,cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: DMSO, 24 hr
+        H5 titolo        : U2OS MDM2 W329G cells #1, DMSO, 24 hours, experiment 2
+        H5 caratteristiche: cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: DMSO, 24 hr
+        H5 sorgente      : U2OS
+      GSM8260929
+        grezzo (Stadio 1): title: U2OS MDM2 W329G cells #2, DMSO, 24 hours, experiment 2,source: U2OS,cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: DMSO, 24 hr
+        H5 titolo        : U2OS MDM2 W329G cells #2, DMSO, 24 hours, experiment 2
+        H5 caratteristiche: cell line: U2OS,cell type: human osteosarcoma cells,genotype: MDM2 W329G,treatment: DMSO, 24 hr
+        H5 sorgente      : U2OS
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE145356     campioni nell'H5:   25 | collocati dallo Stadio 2:   25 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE157300     campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE180146     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE193865     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE264144     campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE267150     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

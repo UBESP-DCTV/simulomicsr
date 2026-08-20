@@ -1,0 +1,136 @@
+META-ANALISI 157 di 194
+==============================================================================
+nome            : IPATASERTIB
+entita (ID)     : CHEMBL:CHEMBL2177390
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_f56d966d
+studi poolati   : 3   confronti: 3   campioni: 17
+geni significativi: 3704   I2 mediano: 85.6
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE137200__GSE137200__grp_0001_vs_grp_0002__1
+  studio: GSE137200
+  TRATTATO  (n=3)  etichetta Stadio 2: PC-3 cells treated with GDC-0068
+      gruppo Stadio 2: grp_0001
+      GSM4072894
+        grezzo (Stadio 1): title: PC-3_GDC-R_Rep1,source: prostate,cell type: prostate cancer,cell line: PC-3,treatment: continuous treatment of GDC-0068,passages: 20-30
+        H5 titolo        : PC-3_GDC-R_Rep1
+        H5 caratteristiche: cell type: prostate cancer,cell line: PC-3,treatment: continuous treatment of GDC-0068,passages: 20-30
+        H5 sorgente      : prostate
+      GSM4072895
+        grezzo (Stadio 1): title: PC-3_GDC-R_Rep2,source: prostate,cell type: prostate cancer,cell line: PC-3,treatment: continuous treatment of GDC-0068,passages: 20-30
+        H5 titolo        : PC-3_GDC-R_Rep2
+        H5 caratteristiche: cell type: prostate cancer,cell line: PC-3,treatment: continuous treatment of GDC-0068,passages: 20-30
+        H5 sorgente      : prostate
+      GSM4072896
+        grezzo (Stadio 1): title: PC-3_GDC-R_Rep3,source: prostate,cell type: prostate cancer,cell line: PC-3,treatment: continuous treatment of GDC-0068,passages: 20-30
+        H5 titolo        : PC-3_GDC-R_Rep3
+        H5 caratteristiche: cell type: prostate cancer,cell line: PC-3,treatment: continuous treatment of GDC-0068,passages: 20-30
+        H5 sorgente      : prostate
+  CONTROLLO  (n=3)  etichetta Stadio 2: PC-3 cells treated with vehicle
+      gruppo Stadio 2: grp_0002
+      GSM4072891
+        grezzo (Stadio 1): title: PC-3_control_Rep1,source: prostate,cell type: prostate cancer,cell line: PC-3,treatment: control,passages: 20-30
+        H5 titolo        : PC-3_control_Rep1
+        H5 caratteristiche: cell type: prostate cancer,cell line: PC-3,treatment: control,passages: 20-30
+        H5 sorgente      : prostate
+      GSM4072892
+        grezzo (Stadio 1): title: PC-3_control_Rep2,source: prostate,cell type: prostate cancer,cell line: PC-3,treatment: control,passages: 20-30
+        H5 titolo        : PC-3_control_Rep2
+        H5 caratteristiche: cell type: prostate cancer,cell line: PC-3,treatment: control,passages: 20-30
+        H5 sorgente      : prostate
+      GSM4072893
+        grezzo (Stadio 1): title: PC-3_control_Rep3,source: prostate,cell type: prostate cancer,cell line: PC-3,treatment: control,passages: 20-30
+        H5 titolo        : PC-3_control_Rep3
+        H5 caratteristiche: cell type: prostate cancer,cell line: PC-3,treatment: control,passages: 20-30
+        H5 sorgente      : prostate
+
+CONFRONTO  GSE205730__GSE205730__Ipatasertib_vs_DMSO__1
+  studio: GSE205730
+  TRATTATO  (n=3)  etichetta Stadio 2: Ipatasertib
+      gruppo Stadio 2: grp_Ipatasertib
+      GSM6222373
+        grezzo (Stadio 1): title: SUM149PT IPATASERTIB REP A,source: SUM149PT,cell line: SUM149PT,cell type: breast cancer,treatment: Ipatasertib
+        H5 titolo        : SUM149PT IPATASERTIB REP A
+        H5 caratteristiche: cell line: SUM149PT,cell type: breast cancer,treatment: Ipatasertib
+        H5 sorgente      : SUM149PT
+      GSM6222374
+        grezzo (Stadio 1): title: SUM149PT IPATASERTIB REP B,source: SUM149PT,cell line: SUM149PT,cell type: breast cancer,treatment: Ipatasertib
+        H5 titolo        : SUM149PT IPATASERTIB REP B
+        H5 caratteristiche: cell line: SUM149PT,cell type: breast cancer,treatment: Ipatasertib
+        H5 sorgente      : SUM149PT
+      GSM6222375
+        grezzo (Stadio 1): title: SUM149PT IPATASERTIB REP C,source: SUM149PT,cell line: SUM149PT,cell type: breast cancer,treatment: Ipatasertib
+        H5 titolo        : SUM149PT IPATASERTIB REP C
+        H5 caratteristiche: cell line: SUM149PT,cell type: breast cancer,treatment: Ipatasertib
+        H5 sorgente      : SUM149PT
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM6222370
+        grezzo (Stadio 1): title: SUM149PT DMSO REP A,source: SUM149PT,cell line: SUM149PT,cell type: breast cancer,treatment: DMSO
+        H5 titolo        : SUM149PT DMSO REP A
+        H5 caratteristiche: cell line: SUM149PT,cell type: breast cancer,treatment: DMSO
+        H5 sorgente      : SUM149PT
+      GSM6222371
+        grezzo (Stadio 1): title: SUM149PT DMSO REP B,source: SUM149PT,cell line: SUM149PT,cell type: breast cancer,treatment: DMSO
+        H5 titolo        : SUM149PT DMSO REP B
+        H5 caratteristiche: cell line: SUM149PT,cell type: breast cancer,treatment: DMSO
+        H5 sorgente      : SUM149PT
+      GSM6222372
+        grezzo (Stadio 1): title: SUM149PT DMSO REP C,source: SUM149PT,cell line: SUM149PT,cell type: breast cancer,treatment: DMSO
+        H5 titolo        : SUM149PT DMSO REP C
+        H5 caratteristiche: cell line: SUM149PT,cell type: breast cancer,treatment: DMSO
+        H5 sorgente      : SUM149PT
+
+CONFRONTO  GSE223758__GSE223758__grp_0008_vs_grp_0010__1
+  studio: GSE223758
+  TRATTATO  (n=2)  etichetta Stadio 2: NCI-H660 + Ipatasertib (1uM, 24h)
+      gruppo Stadio 2: grp_0010
+      GSM6994912
+        grezzo (Stadio 1): title: NCI-H660_Ipata_I,source: NCI-H660 cell line,gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: 1uM Ipatasertib,timepoint: 24 hours
+        H5 titolo        : NCI-H660_Ipata_I
+        H5 caratteristiche: gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: 1uM Ipatasertib,timepoint: 24 hours
+        H5 sorgente      : NCI-H660 cell line
+      GSM6994913
+        grezzo (Stadio 1): title: NCI-H660_Ipata_II,source: NCI-H660 cell line,gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: 1uM Ipatasertib,timepoint: 24 hours
+        H5 titolo        : NCI-H660_Ipata_II
+        H5 caratteristiche: gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: 1uM Ipatasertib,timepoint: 24 hours
+        H5 sorgente      : NCI-H660 cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: NCI-H660 + vehicle (24h)
+      gruppo Stadio 2: grp_0008
+      GSM6994894
+        grezzo (Stadio 1): title: NCI-H660_control_A_13,source: NCI-H660 cell line,gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: vehicle,timepoint: 24 hours
+        H5 titolo        : NCI-H660_control_A_13
+        H5 caratteristiche: gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: vehicle,timepoint: 24 hours
+        H5 sorgente      : NCI-H660 cell line
+      GSM6994895
+        grezzo (Stadio 1): title: NCI-H660_control_B_15,source: NCI-H660 cell line,gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: vehicle,timepoint: 24 hours
+        H5 titolo        : NCI-H660_control_B_15
+        H5 caratteristiche: gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: vehicle,timepoint: 24 hours
+        H5 sorgente      : NCI-H660 cell line
+      GSM6994909
+        grezzo (Stadio 1): title: NCI-H660_Control_II,source: NCI-H660 cell line,gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: vehicle,timepoint: 24 hours
+        H5 titolo        : NCI-H660_Control_II
+        H5 caratteristiche: gender: male,sample type: in vitro culture of dissociated prostate tumor patient-derived xenograft (PDX) tumor,cell type: prostate cancer,treatment: vehicle,timepoint: 24 hours
+        H5 sorgente      : NCI-H660 cell line
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE137200     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE205730     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE223758     campioni nell'H5:   46 | collocati dallo Stadio 2:   46 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

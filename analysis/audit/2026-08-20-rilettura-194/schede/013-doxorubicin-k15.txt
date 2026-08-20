@@ -1,0 +1,1340 @@
+META-ANALISI 013 di 194
+==============================================================================
+nome            : doxorubicin
+entita (ID)     : CHEBI:28748
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_8a54ddd6
+studi poolati   : 15   confronti: 27   campioni: 221
+geni significativi: 6348   I2 mediano: 93.9
+verdetto della rilettura: incerta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE124622__GSE124622__Adriamycin_rep_vs_none__1
+  studio: GSE124622
+  TRATTATO  (n=2)  etichetta Stadio 2: Adriamycin-treated (replicate)
+      gruppo Stadio 2: grp_0005
+      GSM3538056
+        grezzo (Stadio 1): title: Adriamycin Set 1,source: Adriamycin,differentiation status: Differentiated,cell type: Podocytes (Glomerulus cells),differentiation duration: 14 day differentiation
+        H5 titolo        : Adriamycin Set 1
+        H5 caratteristiche: differentiation status: Differentiated,cell type: Podocytes (Glomerulus cells),differentiation duration: 14 day differentiation
+        H5 sorgente      : Adriamycin
+      GSM3538057
+        grezzo (Stadio 1): title: Adriamycin Set 2,source: Adriamycin,differentiation status: Differentiated,cell type: Podocytes (Glomerulus cells),differentiation duration: 14 day differentiation
+        H5 titolo        : Adriamycin Set 2
+        H5 caratteristiche: differentiation status: Differentiated,cell type: Podocytes (Glomerulus cells),differentiation duration: 14 day differentiation
+        H5 sorgente      : Adriamycin
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM3538050
+        grezzo (Stadio 1): title: Untreated Set 1,source: Control/Untreated,differentiation status: Differentiated,cell type: Podocytes (Glomerulus cells),differentiation duration: 14 day differentiation
+        H5 titolo        : Untreated Set 1
+        H5 caratteristiche: differentiation status: Differentiated,cell type: Podocytes (Glomerulus cells),differentiation duration: 14 day differentiation
+        H5 sorgente      : Control/Untreated
+      GSM3538052
+        grezzo (Stadio 1): title: Untreated Set 3,source: Control/Untreated,differentiation status: Differentiated,cell type: Podocytes (Glomerulus cells),differentiation duration: 14 day differentiation
+        H5 titolo        : Untreated Set 3
+        H5 caratteristiche: differentiation status: Differentiated,cell type: Podocytes (Glomerulus cells),differentiation duration: 14 day differentiation
+        H5 sorgente      : Control/Untreated
+
+CONFRONTO  GSE128728__GSE128728__grp_doxorubicin_bm_case_vs_grp_vehicle_bm_case__1
+  studio: GSE128728
+  TRATTATO  (n=2)  etichetta Stadio 2: Doxorubicin-treated B cell double-hit lymphoma (Bone Marrow, Case)
+      gruppo Stadio 2: grp_doxorubicin_bm_case
+      GSM3683873
+        grezzo (Stadio 1): title: DB1_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Bone marrow
+        H5 titolo        : DB1_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Bone marrow
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683875
+        grezzo (Stadio 1): title: DB3_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Bone marrow
+        H5 titolo        : DB3_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Bone marrow
+        H5 sorgente      : Lymphoma PDX cells
+  CONTROLLO  (n=5)  etichetta Stadio 2: Vehicle-treated B cell double-hit lymphoma (Bone Marrow, Case)
+      gruppo Stadio 2: grp_vehicle_bm_case
+      GSM3683852
+        grezzo (Stadio 1): title: VB1_PDX1,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 titolo        : VB1_PDX1
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683854
+        grezzo (Stadio 1): title: VB3_PDX1,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 titolo        : VB3_PDX1
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683870
+        grezzo (Stadio 1): title: VB1_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 titolo        : VB1_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683871
+        grezzo (Stadio 1): title: VB2_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 titolo        : VB2_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683872
+        grezzo (Stadio 1): title: VB3_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 titolo        : VB3_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Bone marrow
+        H5 sorgente      : Lymphoma PDX cells
+
+CONFRONTO  GSE128728__GSE128728__grp_doxorubicin_spleen_case_vs_grp_vehicle_spleen_model__1
+  studio: GSE128728
+  TRATTATO  (n=6)  etichetta Stadio 2: Doxorubicin-treated B cell double-hit lymphoma (Spleen, Case)
+      gruppo Stadio 2: grp_doxorubicin_spleen_case
+      GSM3683846
+        grezzo (Stadio 1): title: DS1_PDX1,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 titolo        : DS1_PDX1
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683847
+        grezzo (Stadio 1): title: DS2_PDX1,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 titolo        : DS2_PDX1
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683848
+        grezzo (Stadio 1): title: DS3_PDX1,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 titolo        : DS3_PDX1
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683876
+        grezzo (Stadio 1): title: DS1_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 titolo        : DS1_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683877
+        grezzo (Stadio 1): title: DS2_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 titolo        : DS2_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683878
+        grezzo (Stadio 1): title: DS3_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 titolo        : DS3_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Doxorubicin,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: Vehicle-treated B cell double-hit lymphoma (Spleen, Model)
+      gruppo Stadio 2: grp_vehicle_spleen_model
+      GSM3683843
+        grezzo (Stadio 1): title: VS1_PDX1,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Spleen
+        H5 titolo        : VS1_PDX1
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683844
+        grezzo (Stadio 1): title: VS2_PDX1,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Spleen
+        H5 titolo        : VS2_PDX1
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683865
+        grezzo (Stadio 1): title: VS2_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Spleen
+        H5 titolo        : VS2_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+      GSM3683866
+        grezzo (Stadio 1): title: VS3_PDX2,source: Lymphoma PDX cells,cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Spleen
+        H5 titolo        : VS3_PDX2
+        H5 caratteristiche: cell type: B cell double-hit lymphoma,treatment: Vehicle,tissue: Spleen
+        H5 sorgente      : Lymphoma PDX cells
+
+CONFRONTO  GSE137056__GSE137056__grp_0010_vs_grp_0001__1
+  studio: GSE137056
+  TRATTATO  (n=2)  etichetta Stadio 2: Doxorubicin (0.4)
+      gruppo Stadio 2: grp_0010
+      GSM4066289
+        grezzo (Stadio 1): title: LNCaP CSS 0.4 Dox-1,source: LNCaP,cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: Medium
+        H5 titolo        : LNCaP CSS 0.4 Dox-1
+        H5 caratteristiche: cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: Medium
+        H5 sorgente      : LNCaP
+      GSM4066291
+        grezzo (Stadio 1): title: LNCaP CSS 0.4 Dox-3,source: LNCaP,cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: Medium
+        H5 titolo        : LNCaP CSS 0.4 Dox-3
+        H5 caratteristiche: cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: Medium
+        H5 sorgente      : LNCaP
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control (No Treatment)
+      gruppo Stadio 2: grp_0001
+      GSM4066284
+        grezzo (Stadio 1): title: LNCaP CSS-2,source: LNCaP,cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: None
+        H5 titolo        : LNCaP CSS-2
+        H5 caratteristiche: cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: None
+        H5 sorgente      : LNCaP
+      GSM4066285
+        grezzo (Stadio 1): title: LNCaP CSS-3,source: LNCaP,cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: None
+        H5 titolo        : LNCaP CSS-3
+        H5 caratteristiche: cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: None
+        H5 sorgente      : LNCaP
+
+CONFRONTO  GSE137056__GSE137056__grp_0011_vs_grp_0001__1
+  studio: GSE137056
+  TRATTATO  (n=2)  etichetta Stadio 2: Doxorubicin (High)
+      gruppo Stadio 2: grp_0011
+      GSM4066292
+        grezzo (Stadio 1): title: LNCaP CSS 0.7 Dox-1,source: LNCaP,cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: High
+        H5 titolo        : LNCaP CSS 0.7 Dox-1
+        H5 caratteristiche: cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: High
+        H5 sorgente      : LNCaP
+      GSM4066294
+        grezzo (Stadio 1): title: LNCaP CSS 0.7 Dox-3,source: LNCaP,cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: High
+        H5 titolo        : LNCaP CSS 0.7 Dox-3
+        H5 caratteristiche: cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: High
+        H5 sorgente      : LNCaP
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control (No Treatment)
+      gruppo Stadio 2: grp_0001
+      GSM4066284
+        grezzo (Stadio 1): title: LNCaP CSS-2,source: LNCaP,cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: None
+        H5 titolo        : LNCaP CSS-2
+        H5 caratteristiche: cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: None
+        H5 sorgente      : LNCaP
+      GSM4066285
+        grezzo (Stadio 1): title: LNCaP CSS-3,source: LNCaP,cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: None
+        H5 titolo        : LNCaP CSS-3
+        H5 caratteristiche: cell type: Prostate Adenocarcinoma,passage: passage 30-50,doxorubicin treatment: None
+        H5 sorgente      : LNCaP
+
+CONFRONTO  GSE139862__GSE139862__grp_0004_vs_grp_0001__1
+  studio: GSE139862
+  TRATTATO  (n=2)  etichetta Stadio 2: PAEC passage 3 treated with Doxorubicin
+      gruppo Stadio 2: grp_0004
+      GSM4147906
+        grezzo (Stadio 1): title: RNA-Seq PAEC Dox Replicate 1,source: Lung,cell type: PAEC, healthy donor,passages: 3,pharmacological treatment: Doxorubicin (0.5 Âµg/ml) for 24 h
+        H5 titolo        : RNA-Seq PAEC Dox Replicate 1
+        H5 caratteristiche: cell type: PAEC, healthy donor,passages: 3,pharmacological treatment: Doxorubicin (0.5 Âµg/ml) for 24 h
+        H5 sorgente      : Lung
+      GSM4147907
+        grezzo (Stadio 1): title: RNA-Seq PAEC Dox Replicate 2,source: Lung,cell type: PAEC, healthy donor,passages: 4,pharmacological treatment: Doxorubicin (0.5 Âµg/ml) for 24 h
+        H5 titolo        : RNA-Seq PAEC Dox Replicate 2
+        H5 caratteristiche: cell type: PAEC, healthy donor,passages: 4,pharmacological treatment: Doxorubicin (0.5 Âµg/ml) for 24 h
+        H5 sorgente      : Lung
+  CONTROLLO  (n=2)  etichetta Stadio 2: PAEC passage 3 treated with DMSO
+      gruppo Stadio 2: grp_0001
+      GSM4147915
+        grezzo (Stadio 1): title: RNA-Seq PAEC DMSO Replicate 1,source: Lung,cell type: PAEC, healthy donor,passages: 3,pharmacological treatment: DMSO (10 ÂµL) for 24 h
+        H5 titolo        : RNA-Seq PAEC DMSO Replicate 1
+        H5 caratteristiche: cell type: PAEC, healthy donor,passages: 3,pharmacological treatment: DMSO (10 ÂµL) for 24 h
+        H5 sorgente      : Lung
+      GSM4147917
+        grezzo (Stadio 1): title: RNA-Seq PAEC DMSO Replicate 3,source: Lung,cell type: PAEC, healthy donor,passages: 5,pharmacological treatment: DMSO (10 ÂµL) for 24 h
+        H5 titolo        : RNA-Seq PAEC DMSO Replicate 3
+        H5 caratteristiche: cell type: PAEC, healthy donor,passages: 5,pharmacological treatment: DMSO (10 ÂµL) for 24 h
+        H5 sorgente      : Lung
+
+CONFRONTO  GSE154118__GSE154118__Doxorubicin_vs_PBS_DMSO__1
+  studio: GSE154118
+  TRATTATO  (n=2)  etichetta Stadio 2: Doxorubicin treated PASMCs
+      gruppo Stadio 2: grp_Doxorubicin
+      GSM4664120
+        grezzo (Stadio 1): title: RNA-Seq PASMC Dox Replicate 1,source: Lung,cell type: PASMC, healthy donor 1,passages: 2,pharmacological treatment: Doxorubicin (0.5 Âµg/ml) for 24 h
+        H5 titolo        : RNA-Seq PASMC Dox Replicate 1
+        H5 caratteristiche: cell type: PASMC, healthy donor 1,passages: 2,pharmacological treatment: Doxorubicin (0.5 Âµg/ml) for 24 h
+        H5 sorgente      : Lung
+      GSM4664121
+        grezzo (Stadio 1): title: RNA-Seq PASMC Dox Replicate 2,source: Lung,cell type: PASMC, healthy donor 2,passages: 2,pharmacological treatment: Doxorubicin (0.5 Âµg/ml) for 24 h
+        H5 titolo        : RNA-Seq PASMC Dox Replicate 2
+        H5 caratteristiche: cell type: PASMC, healthy donor 2,passages: 2,pharmacological treatment: Doxorubicin (0.5 Âµg/ml) for 24 h
+        H5 sorgente      : Lung
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle control (PBS/DMSO) PASMCs
+      gruppo Stadio 2: grp_PBS_DMSO
+      GSM4664122
+        grezzo (Stadio 1): title: RNA-Seq PASMC Vehicle Replicate 1,source: Lung,cell type: PASMC, healthy donor 1,passages: 2,pharmacological treatment: PBS (20 ÂµL)/DMSO (10ÂµL) for 24 h
+        H5 titolo        : RNA-Seq PASMC Vehicle Replicate 1
+        H5 caratteristiche: cell type: PASMC, healthy donor 1,passages: 2,pharmacological treatment: PBS (20 ÂµL)/DMSO (10ÂµL) for 24 h
+        H5 sorgente      : Lung
+      GSM4664123
+        grezzo (Stadio 1): title: RNA-Seq PASMC Vehicle Replicate 2,source: Lung,cell type: PASMC, healthy donor 2,passages: 2,pharmacological treatment: PBS (20 ÂµL)/DMSO (10ÂµL) for 24 h
+        H5 titolo        : RNA-Seq PASMC Vehicle Replicate 2
+        H5 caratteristiche: cell type: PASMC, healthy donor 2,passages: 2,pharmacological treatment: PBS (20 ÂµL)/DMSO (10ÂµL) for 24 h
+        H5 sorgente      : Lung
+
+CONFRONTO  GSE166033__GSE166033__Doxorubicin_vs_DMSO__1
+  studio: GSE166033
+  TRATTATO  (n=5)  etichetta Stadio 2: Doxorubicin
+      gruppo Stadio 2: grp_Doxorubicin
+      GSM5060471
+        grezzo (Stadio 1): title: Doxorubicin_919,source: Normal human bronchial epithelial cells,sample_id: SAM24336919,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 titolo        : Doxorubicin_919
+        H5 caratteristiche: sample_id: SAM24336919,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 sorgente      : Normal human bronchial epithelial cells
+      GSM5060472
+        grezzo (Stadio 1): title: Doxorubicin_921,source: Normal human bronchial epithelial cells,sample_id: SAM24336921,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 titolo        : Doxorubicin_921
+        H5 caratteristiche: sample_id: SAM24336921,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 sorgente      : Normal human bronchial epithelial cells
+      GSM5060473
+        grezzo (Stadio 1): title: Doxorubicin_923,source: Normal human bronchial epithelial cells,sample_id: SAM24336923,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 titolo        : Doxorubicin_923
+        H5 caratteristiche: sample_id: SAM24336923,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 sorgente      : Normal human bronchial epithelial cells
+      GSM5060474
+        grezzo (Stadio 1): title: Doxorubicin_925,source: Normal human bronchial epithelial cells,sample_id: SAM24336925,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 titolo        : Doxorubicin_925
+        H5 caratteristiche: sample_id: SAM24336925,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 sorgente      : Normal human bronchial epithelial cells
+      GSM5060475
+        grezzo (Stadio 1): title: Doxorubicin_927,source: Normal human bronchial epithelial cells,sample_id: SAM24336927,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 titolo        : Doxorubicin_927
+        H5 caratteristiche: sample_id: SAM24336927,cell type: NHBE,tissue: lung,treatment: Doxorubicin 500 nM
+        H5 sorgente      : Normal human bronchial epithelial cells
+  CONTROLLO  (n=5)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM5060466
+        grezzo (Stadio 1): title: DMSO_918,source: Normal human bronchial epithelial cells,sample_id: SAM24336918,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 titolo        : DMSO_918
+        H5 caratteristiche: sample_id: SAM24336918,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 sorgente      : Normal human bronchial epithelial cells
+      GSM5060467
+        grezzo (Stadio 1): title: DMSO_920,source: Normal human bronchial epithelial cells,sample_id: SAM24336920,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 titolo        : DMSO_920
+        H5 caratteristiche: sample_id: SAM24336920,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 sorgente      : Normal human bronchial epithelial cells
+      GSM5060468
+        grezzo (Stadio 1): title: DMSO_922,source: Normal human bronchial epithelial cells,sample_id: SAM24336922,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 titolo        : DMSO_922
+        H5 caratteristiche: sample_id: SAM24336922,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 sorgente      : Normal human bronchial epithelial cells
+      GSM5060469
+        grezzo (Stadio 1): title: DMSO_924,source: Normal human bronchial epithelial cells,sample_id: SAM24336924,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 titolo        : DMSO_924
+        H5 caratteristiche: sample_id: SAM24336924,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 sorgente      : Normal human bronchial epithelial cells
+      GSM5060470
+        grezzo (Stadio 1): title: DMSO_926,source: Normal human bronchial epithelial cells,sample_id: SAM24336926,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 titolo        : DMSO_926
+        H5 caratteristiche: sample_id: SAM24336926,cell type: NHBE,tissue: lung,treatment: DMSO
+        H5 sorgente      : Normal human bronchial epithelial cells
+
+CONFRONTO  GSE196724__GSE196724__grp_0004_vs_grp_0001__1
+  studio: GSE196724
+  TRATTATO  (n=3)  etichetta Stadio 2: Artery, Donor 1, Doxorubicin
+      gruppo Stadio 2: grp_0004
+      GSM5899446
+        grezzo (Stadio 1): title: S-1 Donor 1,source: Donor 1,tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : S-1 Donor 1
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 1
+      GSM5899447
+        grezzo (Stadio 1): title: S-2 Donor 1,source: Donor 1,tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : S-2 Donor 1
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 1
+      GSM5899448
+        grezzo (Stadio 1): title: S-3 Donor 1,source: Donor 1,tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : S-3 Donor 1
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 1
+  CONTROLLO  (n=3)  etichetta Stadio 2: Artery, Donor 1, No Treatment
+      gruppo Stadio 2: grp_0001
+      GSM5899443
+        grezzo (Stadio 1): title: NS-1 Donor 1,source: Donor 1,tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 titolo        : NS-1 Donor 1
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 sorgente      : Donor 1
+      GSM5899444
+        grezzo (Stadio 1): title: NS-2 Donor 1,source: Donor 1,tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 titolo        : NS-2 Donor 1
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 sorgente      : Donor 1
+      GSM5899445
+        grezzo (Stadio 1): title: NS-3 Donor 1,source: Donor 1,tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 titolo        : NS-3 Donor 1
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Artery,age: 23,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 sorgente      : Donor 1
+
+CONFRONTO  GSE196724__GSE196724__grp_0010_vs_grp_0008__1
+  studio: GSE196724
+  TRATTATO  (n=6)  etichetta Stadio 2: Vein, Donor 2, Doxorubicin
+      gruppo Stadio 2: grp_0010
+      GSM5899458
+        grezzo (Stadio 1): title: NS-1 Donor 2,source: Donor 2,tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : NS-1 Donor 2
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 2
+      GSM5899459
+        grezzo (Stadio 1): title: NS-2 Donor 2,source: Donor 2,tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : NS-2 Donor 2
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 2
+      GSM5899460
+        grezzo (Stadio 1): title: NS-3 Donor 2,source: Donor 2,tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : NS-3 Donor 2
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 2
+      GSM5899470
+        grezzo (Stadio 1): title: S-1 Donor 3,source: Donor 3,tissue: Endothelial cells,tissue: Vein,age: 22,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : S-1 Donor 3
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 22,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 3
+      GSM5899471
+        grezzo (Stadio 1): title: S-2 Donor 3,source: Donor 3,tissue: Endothelial cells,tissue: Vein,age: 22,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : S-2 Donor 3
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 22,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 3
+      GSM5899472
+        grezzo (Stadio 1): title: S-3 Donor 3,source: Donor 3,tissue: Endothelial cells,tissue: Vein,age: 22,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 titolo        : S-3 Donor 3
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 22,genotype: wild type,cell line: Primary Endothelial cells,treatment: Doxorubicin
+        H5 sorgente      : Donor 3
+  CONTROLLO  (n=4)  etichetta Stadio 2: Vein, Donor 2, No Treatment
+      gruppo Stadio 2: grp_0008
+      GSM5899455
+        grezzo (Stadio 1): title: S-1 Donor 2,source: Donor 2,tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 titolo        : S-1 Donor 2
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 sorgente      : Donor 2
+      GSM5899456
+        grezzo (Stadio 1): title: S-2 Donor 2,source: Donor 2,tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 titolo        : S-2 Donor 2
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 sorgente      : Donor 2
+      GSM5899457
+        grezzo (Stadio 1): title: S-3 Donor 2,source: Donor 2,tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 titolo        : S-3 Donor 2
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 21,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 sorgente      : Donor 2
+      GSM5899469
+        grezzo (Stadio 1): title: NS-3 Donor 3,source: Donor 3,tissue: Endothelial cells,tissue: Vein,age: 22,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 titolo        : NS-3 Donor 3
+        H5 caratteristiche: tissue: Endothelial cells,tissue: Vein,age: 22,genotype: wild type,cell line: Primary Endothelial cells,treatment: no treatment
+        H5 sorgente      : Donor 3
+
+CONFRONTO  GSE197243__GSE197243__grp_0005_vs_grp_0003__1
+  studio: GSE197243
+  TRATTATO  (n=3)  etichetta Stadio 2: SH-SY5Y GFP + puromycin TRPM2 knockout + doxorubicin
+      gruppo Stadio 2: grp_0005
+      GSM5911473
+        grezzo (Stadio 1): title: SH-SY5Y TRPM2 KO11 - Doxo 24h - replicate 1,source: SH-SY5Y TRPM2 KO11 - Doxo 24h,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 titolo        : SH-SY5Y TRPM2 KO11 - Doxo 24h - replicate 1
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 sorgente      : SH-SY5Y TRPM2 KO11 - Doxo 24h
+      GSM5911474
+        grezzo (Stadio 1): title: SH-SY5Y TRPM2 KO11 - Doxo 24h - replicate 2,source: SH-SY5Y TRPM2 KO11 - Doxo 24h,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 titolo        : SH-SY5Y TRPM2 KO11 - Doxo 24h - replicate 2
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 sorgente      : SH-SY5Y TRPM2 KO11 - Doxo 24h
+      GSM5911486
+        grezzo (Stadio 1): title: SH-SY5Y TRPM2 KO28 - Doxo 24h - replicate 2,source: SH-SY5Y TRPM2 KO28 - Doxo 24h,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 titolo        : SH-SY5Y TRPM2 KO28 - Doxo 24h - replicate 2
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 sorgente      : SH-SY5Y TRPM2 KO28 - Doxo 24h
+  CONTROLLO  (n=2)  etichetta Stadio 2: SH-SY5Y GFP + puromycin TRPM2 knockout
+      gruppo Stadio 2: grp_0003
+      GSM5911471
+        grezzo (Stadio 1): title: SH-SY5Y TRPM2 KO11 - untreated - replicate 1,source: SH-SY5Y TRPM2 KO11 - untreated,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: untreated
+        H5 titolo        : SH-SY5Y TRPM2 KO11 - untreated - replicate 1
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: untreated
+        H5 sorgente      : SH-SY5Y TRPM2 KO11 - untreated
+      GSM5911484
+        grezzo (Stadio 1): title: SH-SY5Y TRPM2 KO28 - untreated - replicate 2,source: SH-SY5Y TRPM2 KO28 - untreated,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: untreated
+        H5 titolo        : SH-SY5Y TRPM2 KO28 - untreated - replicate 2
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with TRPM2 gRNA,genotype: TRPM2 KO,markers: GFP + puromycin,treatment: untreated
+        H5 sorgente      : SH-SY5Y TRPM2 KO28 - untreated
+
+CONFRONTO  GSE197243__GSE197243__grp_0006_vs_grp_0002__1
+  studio: GSE197243
+  TRATTATO  (n=4)  etichetta Stadio 2: SH-SY5Y GFP + puromycin doxorubicin
+      gruppo Stadio 2: grp_0006
+      GSM5911477
+        grezzo (Stadio 1): title: SH-SY5Y Scr13 - Doxo 24h - replicate 1,source: SH-SY5Y Scr13 - Doxo 24h,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 titolo        : SH-SY5Y Scr13 - Doxo 24h - replicate 1
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 sorgente      : SH-SY5Y Scr13 - Doxo 24h
+      GSM5911478
+        grezzo (Stadio 1): title: SH-SY5Y Scr13 - Doxo 24h - replicate 2,source: SH-SY5Y Scr13 - Doxo 24h,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 titolo        : SH-SY5Y Scr13 - Doxo 24h - replicate 2
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 sorgente      : SH-SY5Y Scr13 - Doxo 24h
+      GSM5911481
+        grezzo (Stadio 1): title: SH-SY5Y Scr16 - Doxo 24h - replicate 1,source: SH-SY5Y Scr16 - Doxo 24h,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 titolo        : SH-SY5Y Scr16 - Doxo 24h - replicate 1
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 sorgente      : SH-SY5Y Scr16 - Doxo 24h
+      GSM5911482
+        grezzo (Stadio 1): title: SH-SY5Y Scr16 - Doxo 24h - replicate 2,source: SH-SY5Y Scr16 - Doxo 24h,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 titolo        : SH-SY5Y Scr16 - Doxo 24h - replicate 2
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: Doxorubicin
+        H5 sorgente      : SH-SY5Y Scr16 - Doxo 24h
+  CONTROLLO  (n=3)  etichetta Stadio 2: SH-SY5Y GFP + puromycin untreated
+      gruppo Stadio 2: grp_0002
+      GSM5911475
+        grezzo (Stadio 1): title: SH-SY5Y Scr13 - untreated - replicate 1,source: SH-SY5Y Scr13 - untreated,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: untreated
+        H5 titolo        : SH-SY5Y Scr13 - untreated - replicate 1
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: untreated
+        H5 sorgente      : SH-SY5Y Scr13 - untreated
+      GSM5911476
+        grezzo (Stadio 1): title: SH-SY5Y Scr13 - untreated - replicate 2,source: SH-SY5Y Scr13 - untreated,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: untreated
+        H5 titolo        : SH-SY5Y Scr13 - untreated - replicate 2
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: untreated
+        H5 sorgente      : SH-SY5Y Scr13 - untreated
+      GSM5911479
+        grezzo (Stadio 1): title: SH-SY5Y Scr16 - untreated - replicate 1,source: SH-SY5Y Scr16 - untreated,cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: untreated
+        H5 titolo        : SH-SY5Y Scr16 - untreated - replicate 1
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: neuroblastoma,vector: pCas9-guide vector with Scramble gRNA,genotype: control,markers: GFP + puromycin,treatment: untreated
+        H5 sorgente      : SH-SY5Y Scr16 - untreated
+
+CONFRONTO  GSE216137__GSE216137__doxorubicin_1_nM_vs_DMSO__1
+  studio: GSE216137
+  TRATTATO  (n=3)  etichetta Stadio 2: doxorubicin (1 nM)
+      gruppo Stadio 2: grp_doxorubicin_1_nM
+      GSM6659154
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 1 nM, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 1 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 1 nM, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 1 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659155
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 1 nM, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 1 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 1 nM, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 1 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659156
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 1 nM, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 1 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 1 nM, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 1 nM
+        H5 sorgente      : Breast adenocarcinoma
+  CONTROLLO  (n=6)  etichetta Stadio 2: DMSO (0.1%)
+      gruppo Stadio 2: grp_DMSO
+      GSM6659151
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659152
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659153
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659175
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659176
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659177
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+
+CONFRONTO  GSE216137__GSE216137__doxorubicin_10_nM_vs_DMSO__1
+  studio: GSE216137
+  TRATTATO  (n=3)  etichetta Stadio 2: doxorubicin (10 nM)
+      gruppo Stadio 2: grp_doxorubicin_10_nM
+      GSM6659160
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 10 nM, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 10 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 10 nM, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 10 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659161
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 10 nM, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 10 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 10 nM, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 10 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659162
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 10 nM, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 10 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 10 nM, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 10 nM
+        H5 sorgente      : Breast adenocarcinoma
+  CONTROLLO  (n=6)  etichetta Stadio 2: DMSO (0.1%)
+      gruppo Stadio 2: grp_DMSO
+      GSM6659151
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659152
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659153
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659175
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659176
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659177
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+
+CONFRONTO  GSE216137__GSE216137__doxorubicin_100_nM_vs_DMSO__1
+  studio: GSE216137
+  TRATTATO  (n=3)  etichetta Stadio 2: doxorubicin (100 nM)
+      gruppo Stadio 2: grp_doxorubicin_100_nM
+      GSM6659172
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 100 nM, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 100 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 100 nM, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 100 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659173
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 100 nM, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 100 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 100 nM, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 100 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659174
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 100 nM, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 100 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 100 nM, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 100 nM
+        H5 sorgente      : Breast adenocarcinoma
+  CONTROLLO  (n=6)  etichetta Stadio 2: DMSO (0.1%)
+      gruppo Stadio 2: grp_DMSO
+      GSM6659151
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659152
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659153
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659175
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659176
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659177
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+
+CONFRONTO  GSE216137__GSE216137__doxorubicin_15_nM_vs_DMSO__1
+  studio: GSE216137
+  TRATTATO  (n=3)  etichetta Stadio 2: doxorubicin (15 nM)
+      gruppo Stadio 2: grp_doxorubicin_15_nM
+      GSM6659163
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 15 nM, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 15 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 15 nM, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 15 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659164
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 15 nM, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 15 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 15 nM, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 15 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659165
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 15 nM, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 15 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 15 nM, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 15 nM
+        H5 sorgente      : Breast adenocarcinoma
+  CONTROLLO  (n=6)  etichetta Stadio 2: DMSO (0.1%)
+      gruppo Stadio 2: grp_DMSO
+      GSM6659151
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659152
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659153
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659175
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659176
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659177
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+
+CONFRONTO  GSE216137__GSE216137__doxorubicin_25_nM_vs_DMSO__1
+  studio: GSE216137
+  TRATTATO  (n=3)  etichetta Stadio 2: doxorubicin (25 nM)
+      gruppo Stadio 2: grp_doxorubicin_25_nM
+      GSM6659166
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 25 nM, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 25 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 25 nM, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 25 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659167
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 25 nM, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 25 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 25 nM, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 25 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659168
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 25 nM, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 25 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 25 nM, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 25 nM
+        H5 sorgente      : Breast adenocarcinoma
+  CONTROLLO  (n=6)  etichetta Stadio 2: DMSO (0.1%)
+      gruppo Stadio 2: grp_DMSO
+      GSM6659151
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659152
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659153
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659175
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659176
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659177
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+
+CONFRONTO  GSE216137__GSE216137__doxorubicin_5_nM_vs_DMSO__1
+  studio: GSE216137
+  TRATTATO  (n=3)  etichetta Stadio 2: doxorubicin (5 nM)
+      gruppo Stadio 2: grp_doxorubicin_5_nM
+      GSM6659157
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 5 nM, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 5 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 5 nM, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 5 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659158
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 5 nM, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 5 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 5 nM, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 5 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659159
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 5 nM, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 5 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 5 nM, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 5 nM
+        H5 sorgente      : Breast adenocarcinoma
+  CONTROLLO  (n=6)  etichetta Stadio 2: DMSO (0.1%)
+      gruppo Stadio 2: grp_DMSO
+      GSM6659151
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659152
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659153
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659175
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659176
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659177
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+
+CONFRONTO  GSE216137__GSE216137__doxorubicin_50_nM_vs_DMSO__1
+  studio: GSE216137
+  TRATTATO  (n=3)  etichetta Stadio 2: doxorubicin (50 nM)
+      gruppo Stadio 2: grp_doxorubicin_50_nM
+      GSM6659169
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 50 nM, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 50 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 50 nM, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 50 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659170
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 50 nM, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 50 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 50 nM, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 50 nM
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659171
+        grezzo (Stadio 1): title: MCF7 cells, doxorubicin, 50 nM, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 50 nM
+        H5 titolo        : MCF7 cells, doxorubicin, 50 nM, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: doxorubicin 50 nM
+        H5 sorgente      : Breast adenocarcinoma
+  CONTROLLO  (n=6)  etichetta Stadio 2: DMSO (0.1%)
+      gruppo Stadio 2: grp_DMSO
+      GSM6659151
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659152
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659153
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659175
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep1,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep1
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659176
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep2,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep2
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+      GSM6659177
+        grezzo (Stadio 1): title: MCF7 cells, DMSO control for epirubicin, rep3,source: Breast adenocarcinoma,tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 titolo        : MCF7 cells, DMSO control for epirubicin, rep3
+        H5 caratteristiche: tissue: Breast adenocarcinoma,cell line: MCF7,treatment: DMSO (0.1%)
+        H5 sorgente      : Breast adenocarcinoma
+
+CONFRONTO  GSE217421__GSE217421__Doxorubicin_vs_DMSO__1
+  studio: GSE217421
+  TRATTATO  (n=19)  etichetta Stadio 2: Doxorubicin-treated cardiac myocytes
+      gruppo Stadio 2: mg13
+      GSM6717575
+        grezzo (Stadio 1): title: DOX MSN01-03R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: G6,investigative unit: 110,sample id: 47,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 60.8,rna volume (ul): 3.28947368421053,h2o volume (ul): 13.7105263157895
+        H5 titolo        : DOX MSN01-03R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: G6,investigative unit: 110,sample id: 47,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 60.8,rna volume (ul): 3.28947368421053,h2o volume (ul): 13.7105263157895
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717576
+        grezzo (Stadio 1): title: DOX MSN01-03R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: B3,investigative unit: 136,sample id: 47,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 46.2,rna volume (ul): 4.32900432900433,h2o volume (ul): 12.6709956709957
+        H5 titolo        : DOX MSN01-03R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: B3,investigative unit: 136,sample id: 47,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 46.2,rna volume (ul): 4.32900432900433,h2o volume (ul): 12.6709956709957
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717577
+        grezzo (Stadio 1): title: DOX MSN01-03R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: A6,investigative unit: 139,sample id: 47,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 18.4,rna volume (ul): 10.8695652173913,h2o volume (ul): 6.1304347826087
+        H5 titolo        : DOX MSN01-03R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: A6,investigative unit: 139,sample id: 47,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 18.4,rna volume (ul): 10.8695652173913,h2o volume (ul): 6.1304347826087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717578
+        grezzo (Stadio 1): title: DOX MSN01-03R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: G11,investigative unit: 144,sample id: 47,rna amount (ng): 200,rin: 8.7,rna conc (ng/ul): 10.2,rna volume (ul): 19.6078431372549,h2o volume (ul): -2.6078431372549
+        H5 titolo        : DOX MSN01-03R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: G11,investigative unit: 144,sample id: 47,rna amount (ng): 200,rin: 8.7,rna conc (ng/ul): 10.2,rna volume (ul): 19.6078431372549,h2o volume (ul): -2.6078431372549
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717579
+        grezzo (Stadio 1): title: DOX MSN05-01R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: A9,investigative unit: 123,sample id: 47,rna amount (ng): 200,rin: 8.6,rna conc (ng/ul): 31.6,rna volume (ul): 6.32911392405063,h2o volume (ul): 10.6708860759494
+        H5 titolo        : DOX MSN05-01R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: A9,investigative unit: 123,sample id: 47,rna amount (ng): 200,rin: 8.6,rna conc (ng/ul): 31.6,rna volume (ul): 6.32911392405063,h2o volume (ul): 10.6708860759494
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717580
+        grezzo (Stadio 1): title: DOX MSN05-01R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: D3,investigative unit: 179,sample id: 23,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 53.8,rna volume (ul): 3.71747211895911,h2o volume (ul): 13.2825278810409
+        H5 titolo        : DOX MSN05-01R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: D3,investigative unit: 179,sample id: 23,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 53.8,rna volume (ul): 3.71747211895911,h2o volume (ul): 13.2825278810409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717581
+        grezzo (Stadio 1): title: DOX MSN05-01R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: G4,investigative unit: 184,sample id: 13,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 34.6,rna volume (ul): 5.78034682080925,h2o volume (ul): 11.2196531791908
+        H5 titolo        : DOX MSN05-01R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: G4,investigative unit: 184,sample id: 13,rna amount (ng): 200,rin: 9.7,rna conc (ng/ul): 34.6,rna volume (ul): 5.78034682080925,h2o volume (ul): 11.2196531791908
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717582
+        grezzo (Stadio 1): title: DOX MSN05-01R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: H1,investigative unit: 186,sample id: 47,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 30.6,rna volume (ul): 6.5359477124183,h2o volume (ul): 10.4640522875817
+        H5 titolo        : DOX MSN05-01R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: H1,investigative unit: 186,sample id: 47,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 30.6,rna volume (ul): 6.5359477124183,h2o volume (ul): 10.4640522875817
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717583
+        grezzo (Stadio 1): title: DOX MSN06-07R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: A9,investigative unit: 131,sample id: 95,rna amount (ng): 200,rin: 8.7,rna conc (ng/ul): 76.8,rna volume (ul): 2.60416666666667,h2o volume (ul): 14.3958333333333
+        H5 titolo        : DOX MSN06-07R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: A9,investigative unit: 131,sample id: 95,rna amount (ng): 200,rin: 8.7,rna conc (ng/ul): 76.8,rna volume (ul): 2.60416666666667,h2o volume (ul): 14.3958333333333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717584
+        grezzo (Stadio 1): title: DOX MSN06-07R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: D1,investigative unit: 137,sample id: 47,rna amount (ng): 200,rin: 9.3,rna conc (ng/ul): 22.6,rna volume (ul): 8.84955752212389,h2o volume (ul): 8.15044247787611
+        H5 titolo        : DOX MSN06-07R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: D1,investigative unit: 137,sample id: 47,rna amount (ng): 200,rin: 9.3,rna conc (ng/ul): 22.6,rna volume (ul): 8.84955752212389,h2o volume (ul): 8.15044247787611
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717585
+        grezzo (Stadio 1): title: DOX MSN06-07R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: C12,investigative unit: 175,sample id: 10,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 44.2,rna volume (ul): 4.52488687782805,h2o volume (ul): 12.4751131221719
+        H5 titolo        : DOX MSN06-07R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: C12,investigative unit: 175,sample id: 10,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 44.2,rna volume (ul): 4.52488687782805,h2o volume (ul): 12.4751131221719
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717586
+        grezzo (Stadio 1): title: DOX MSN06-07R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: A5,investigative unit: 181,sample id: 16,rna amount (ng): 200,rin: 9.2,rna conc (ng/ul): 59.2,rna volume (ul): 3.37837837837838,h2o volume (ul): 13.6216216216216
+        H5 titolo        : DOX MSN06-07R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN06,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: A5,investigative unit: 181,sample id: 16,rna amount (ng): 200,rin: 9.2,rna conc (ng/ul): 59.2,rna volume (ul): 3.37837837837838,h2o volume (ul): 13.6216216216216
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717587
+        grezzo (Stadio 1): title: DOX MSN08-13R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: B4,investigative unit: 122,sample id: 47,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 21.6,rna volume (ul): 9.25925925925926,h2o volume (ul): 7.74074074074074
+        H5 titolo        : DOX MSN08-13R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: B4,investigative unit: 122,sample id: 47,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 21.6,rna volume (ul): 9.25925925925926,h2o volume (ul): 7.74074074074074
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717588
+        grezzo (Stadio 1): title: DOX MSN08-13R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: F10,investigative unit: 162,sample id: 11,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 33,rna volume (ul): 6.06060606060606,h2o volume (ul): 10.9393939393939
+        H5 titolo        : DOX MSN08-13R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: F10,investigative unit: 162,sample id: 11,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 33,rna volume (ul): 6.06060606060606,h2o volume (ul): 10.9393939393939
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717589
+        grezzo (Stadio 1): title: DOX MSN08-13R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: C5,investigative unit: 182,sample id: 13,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 30,rna volume (ul): 6.66666666666667,h2o volume (ul): 10.3333333333333
+        H5 titolo        : DOX MSN08-13R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: C5,investigative unit: 182,sample id: 13,rna amount (ng): 200,rin: 9.8,rna conc (ng/ul): 30,rna volume (ul): 6.66666666666667,h2o volume (ul): 10.3333333333333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717590
+        grezzo (Stadio 1): title: DOX MSN08-13R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: E8,investigative unit: 190,sample id: 47,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62.8,rna volume (ul): 3.18471337579618,h2o volume (ul): 13.8152866242038
+        H5 titolo        : DOX MSN08-13R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN08,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: E8,investigative unit: 190,sample id: 47,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62.8,rna volume (ul): 3.18471337579618,h2o volume (ul): 13.8152866242038
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717591
+        grezzo (Stadio 1): title: DOX MSN09-04R-CM Rep 1 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: E2,investigative unit: 168,sample id: 10,rna amount (ng): 200,rin: 9.3,rna conc (ng/ul): 37.8,rna volume (ul): 5.29100529100529,h2o volume (ul): 11.7089947089947
+        H5 titolo        : DOX MSN09-04R-CM Rep 1 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: E2,investigative unit: 168,sample id: 10,rna amount (ng): 200,rin: 9.3,rna conc (ng/ul): 37.8,rna volume (ul): 5.29100529100529,h2o volume (ul): 11.7089947089947
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717592
+        grezzo (Stadio 1): title: DOX MSN09-04R-CM Rep 2 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: B10,investigative unit: 168,sample id: 11,rna amount (ng): 200,rin: 9.3,rna conc (ng/ul): 47.8,rna volume (ul): 4.18410041841004,h2o volume (ul): 12.81589958159
+        H5 titolo        : DOX MSN09-04R-CM Rep 2 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: B10,investigative unit: 168,sample id: 11,rna amount (ng): 200,rin: 9.3,rna conc (ng/ul): 47.8,rna volume (ul): 4.18410041841004,h2o volume (ul): 12.81589958159
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717593
+        grezzo (Stadio 1): title: DOX MSN09-04R-CM Rep 3 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: F5,investigative unit: 191,sample id: 44,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 29.4,rna volume (ul): 6.80272108843537,h2o volume (ul): 10.1972789115646
+        H5 titolo        : DOX MSN09-04R-CM Rep 3 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: F5,investigative unit: 191,sample id: 44,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 29.4,rna volume (ul): 6.80272108843537,h2o volume (ul): 10.1972789115646
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=12)  etichetta Stadio 2: DMSO-treated cardiac myocytes
+      gruppo Stadio 2: mg1
+      GSM6717325
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 5 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 titolo        : CTRL MSN01-03R-CM Rep 5 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D8,investigative unit: 134,sample id: 12,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 57.4,rna volume (ul): 3.48432055749129,h2o volume (ul): 13.5156794425087
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717326
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 6 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 titolo        : CTRL MSN01-03R-CM Rep 6 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C11,investigative unit: 136,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 38.6,rna volume (ul): 5.18134715025907,h2o volume (ul): 11.8186528497409
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717327
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 7 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 titolo        : CTRL MSN01-03R-CM Rep 7 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F12,investigative unit: 136,sample id: 25,rna amount (ng): 200,rin: 9.9,rna conc (ng/ul): 35.8,rna volume (ul): 5.58659217877095,h2o volume (ul): 11.4134078212291
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717328
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 8 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 titolo        : CTRL MSN01-03R-CM Rep 8 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D3,investigative unit: 139,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 33.6,rna volume (ul): 5.95238095238095,h2o volume (ul): 11.047619047619
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717330
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 titolo        : CTRL MSN01-03R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: A9,investigative unit: 144,sample id: 25,rna amount (ng): 200,rin: 9.5,rna conc (ng/ul): 46.4,rna volume (ul): 4.31034482758621,h2o volume (ul): 12.6896551724138
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717331
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 titolo        : CTRL MSN01-03R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: B12,investigative unit: 150,sample id: 9,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 31.8,rna volume (ul): 6.28930817610063,h2o volume (ul): 10.7106918238994
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717332
+        grezzo (Stadio 1): title: CTRL MSN01-03R-CM Rep 12 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN01-03R-CM Rep 12 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN01,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: E10,investigative unit: 177,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717336
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: C9,investigative unit: 183,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 56,rna volume (ul): 3.57142857142857,h2o volume (ul): 13.4285714285714
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717347
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 titolo        : CTRL MSN05-01R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G9,investigative unit: 186,sample id: 12,rna amount (ng): 200,rin: 9.6,rna conc (ng/ul): 51.8,rna volume (ul): 3.86100386100386,h2o volume (ul): 13.1389961389961
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717348
+        grezzo (Stadio 1): title: CTRL MSN05-01R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 titolo        : CTRL MSN05-01R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN05,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: F3,investigative unit: 187,sample id: 20,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 90.8,rna volume (ul): 2.20264317180617,h2o volume (ul): 14.7973568281938
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717382
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 10 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 titolo        : CTRL MSN09-04R-CM Rep 10 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: D1,investigative unit: 191,sample id: 1,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 62,rna volume (ul): 3.2258064516129,h2o volume (ul): 13.7741935483871
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6717383
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 11 (Conv),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 titolo        : CTRL MSN09-04R-CM Rep 11 (Conv)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: DMSO,concentration: 0nM,well: G3,investigative unit: 191,sample id: 25,rna amount (ng): 200,rin: 10,rna conc (ng/ul): 55.6,rna volume (ul): 3.59712230215827,h2o volume (ul): 13.4028776978417
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE217423__GSE217423__Doxorubicin_vs_DMSO__1
+  studio: GSE217423
+  TRATTATO  (n=8)  etichetta Stadio 2: Cardiac myocytes treated with Doxorubicin
+      gruppo Stadio 2: mg13
+      GSM6718411
+        grezzo (Stadio 1): title: DOX MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: C4,investigative unit: 116,sample id: 87,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 45.6,rna volume (ul): 4.385965,h2o volume (ul): 15.614035
+        H5 titolo        : DOX MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: C4,investigative unit: 116,sample id: 87,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 45.6,rna volume (ul): 4.385965,h2o volume (ul): 15.614035
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718412
+        grezzo (Stadio 1): title: DOX MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: E10,investigative unit: 119,sample id: 47,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 40.6,rna volume (ul): 4.926108,h2o volume (ul): 15.073892
+        H5 titolo        : DOX MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: E10,investigative unit: 119,sample id: 47,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 40.6,rna volume (ul): 4.926108,h2o volume (ul): 15.073892
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718413
+        grezzo (Stadio 1): title: DOX MSN02-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: F12,investigative unit: 120,sample id: 29,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 57,rna volume (ul): 3.508772,h2o volume (ul): 16.491228
+        H5 titolo        : DOX MSN02-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: F12,investigative unit: 120,sample id: 29,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 57,rna volume (ul): 3.508772,h2o volume (ul): 16.491228
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718414
+        grezzo (Stadio 1): title: DOX MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: O6,investigative unit: 132,sample id: 71,rna amount (ng): 300,rin: 9,rna conc (ng/ul): 40.4,rna volume (ul): 4.950495,h2o volume (ul): 15.049505
+        H5 titolo        : DOX MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: O6,investigative unit: 132,sample id: 71,rna amount (ng): 300,rin: 9,rna conc (ng/ul): 40.4,rna volume (ul): 4.950495,h2o volume (ul): 15.049505
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718415
+        grezzo (Stadio 1): title: DOX MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: C15,investigative unit: 118,sample id: 13,rna amount (ng): 300,rin: 9,rna conc (ng/ul): 23,rna volume (ul): 8.695652,h2o volume (ul): 11.304348
+        H5 titolo        : DOX MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: C15,investigative unit: 118,sample id: 13,rna amount (ng): 300,rin: 9,rna conc (ng/ul): 23,rna volume (ul): 8.695652,h2o volume (ul): 11.304348
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718416
+        grezzo (Stadio 1): title: DOX MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: F21,investigative unit: 121,sample id: 9,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 74.8,rna volume (ul): 2.673797,h2o volume (ul): 17.326203
+        H5 titolo        : DOX MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: F21,investigative unit: 121,sample id: 9,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 74.8,rna volume (ul): 2.673797,h2o volume (ul): 17.326203
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718417
+        grezzo (Stadio 1): title: DOX MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: K10,investigative unit: 129,sample id: 47,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 33.1,rna volume (ul): 6.042296,h2o volume (ul): 13.957704
+        H5 titolo        : DOX MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: K10,investigative unit: 129,sample id: 47,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 33.1,rna volume (ul): 6.042296,h2o volume (ul): 13.957704
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718418
+        grezzo (Stadio 1): title: DOX MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: M4,investigative unit: 130,sample id: 47,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 40.2,rna volume (ul): 4.975124,h2o volume (ul): 15.024876
+        H5 titolo        : DOX MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: DOX,drug name: Doxorubicin,concentration: 1uM,well: M4,investigative unit: 130,sample id: 47,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 40.2,rna volume (ul): 4.975124,h2o volume (ul): 15.024876
+        H5 sorgente      : induced pluripotent stem cell
+  CONTROLLO  (n=16)  etichetta Stadio 2: Cardiac myocytes treated with DMSO
+      gruppo Stadio 2: mg1
+      GSM6718347
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 titolo        : CTRL MSN02-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A2,investigative unit: 116,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 192,rna volume (ul): 1.041667,h2o volume (ul): 18.958333
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718348
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 titolo        : CTRL MSN02-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: A17,investigative unit: 116,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 212,rna volume (ul): 0.943396,h2o volume (ul): 19.056604
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718349
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 titolo        : CTRL MSN02-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C17,investigative unit: 119,sample id: 1,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 54.4,rna volume (ul): 3.676471,h2o volume (ul): 16.323529
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718350
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 titolo        : CTRL MSN02-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: D15,investigative unit: 119,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 50.8,rna volume (ul): 3.937008,h2o volume (ul): 16.062992
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718351
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 titolo        : CTRL MSN02-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E12,investigative unit: 120,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 53.2,rna volume (ul): 3.759398,h2o volume (ul): 16.240602
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718352
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 titolo        : CTRL MSN02-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: E21,investigative unit: 120,sample id: 12,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 64.8,rna volume (ul): 3.08642,h2o volume (ul): 16.91358
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718353
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 titolo        : CTRL MSN02-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: M14,investigative unit: 132,sample id: 12,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 69,rna volume (ul): 2.898551,h2o volume (ul): 17.101449
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718354
+        grezzo (Stadio 1): title: CTRL MSN02-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 titolo        : CTRL MSN02-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN02,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: N14,investigative unit: 132,sample id: 49,rna amount (ng): 300,rin: 9.8,rna conc (ng/ul): 76,rna volume (ul): 2.631579,h2o volume (ul): 17.368421
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718355
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 1 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 titolo        : CTRL MSN09-04R-CM Rep 1 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: C5,investigative unit: 118,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 59.4,rna volume (ul): 3.367003,h2o volume (ul): 16.632997
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718356
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 2 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 titolo        : CTRL MSN09-04R-CM Rep 2 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F14,investigative unit: 121,sample id: 1,rna amount (ng): 300,rin: 9.5,rna conc (ng/ul): 101,rna volume (ul): 1.980198,h2o volume (ul): 18.019802
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718357
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 3 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 titolo        : CTRL MSN09-04R-CM Rep 3 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: F23,investigative unit: 124,sample id: 1,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 54.6,rna volume (ul): 3.663004,h2o volume (ul): 16.336996
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718358
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 4 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 titolo        : CTRL MSN09-04R-CM Rep 4 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: G10,investigative unit: 124,sample id: 25,rna amount (ng): 300,rin: 9.9,rna conc (ng/ul): 58.4,rna volume (ul): 3.424658,h2o volume (ul): 16.575342
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718359
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 5 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 titolo        : CTRL MSN09-04R-CM Rep 5 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: I8,investigative unit: 128,sample id: 12,rna amount (ng): 300,rin: 9.7,rna conc (ng/ul): 50.4,rna volume (ul): 3.968254,h2o volume (ul): 16.031746
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718360
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 6 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 titolo        : CTRL MSN09-04R-CM Rep 6 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: J14,investigative unit: 129,sample id: 25,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 67,rna volume (ul): 2.985075,h2o volume (ul): 17.014925
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718361
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 7 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 titolo        : CTRL MSN09-04R-CM Rep 7 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: K12,investigative unit: 130,sample id: 1,rna amount (ng): 300,rin: 10,rna conc (ng/ul): 75.4,rna volume (ul): 2.65252,h2o volume (ul): 17.34748
+        H5 sorgente      : induced pluripotent stem cell
+      GSM6718362
+        grezzo (Stadio 1): title: CTRL MSN09-04R-CM Rep 8 (DGE),source: induced pluripotent stem cell,tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 titolo        : CTRL MSN09-04R-CM Rep 8 (DGE)
+        H5 caratteristiche: tissue: skin,cell type: cardiac myocytes,cell line: MSN09,treatment time (hrs): 48,treatment condition: CTRL,drug name: Dimethyl sulfoxide,concentration: 0,well: L9,investigative unit: 130,sample id: 25,rna amount (ng): 300,rin: 9.6,rna conc (ng/ul): 60.6,rna volume (ul): 3.30033,h2o volume (ul): 16.69967
+        H5 sorgente      : induced pluripotent stem cell
+
+CONFRONTO  GSE217898__GSE217898__grp_0024_vs_grp_0017__1
+  studio: GSE217898
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, Doxorubicin, 24h
+      gruppo Stadio 2: grp_0024
+      GSM6729606
+        grezzo (Stadio 1): title: PAE1_24_Doxorubicin,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Doxorubicin (0.05 uM),time: 24 hours
+        H5 titolo        : PAE1_24_Doxorubicin
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Doxorubicin (0.05 uM),time: 24 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729624
+        grezzo (Stadio 1): title: PAE2_24_Doxorubicin,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Doxorubicin (0.05 uM),time: 24 hours
+        H5 titolo        : PAE2_24_Doxorubicin
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Doxorubicin (0.05 uM),time: 24 hours
+        H5 sorgente      : Endothelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, DMSO, 24h
+      gruppo Stadio 2: grp_0017
+      GSM6729605
+        grezzo (Stadio 1): title: PAE1_24_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 titolo        : PAE1_24_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729623
+        grezzo (Stadio 1): title: PAE2_24_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 titolo        : PAE2_24_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Endothelial cells
+
+CONFRONTO  GSE217898__GSE217898__grp_0025_vs_grp_0018__1
+  studio: GSE217898
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, Doxorubicin, 72h
+      gruppo Stadio 2: grp_0025
+      GSM6729615
+        grezzo (Stadio 1): title: PAE1_72_Doxorubicin,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Doxorubicin (0.05 uM),time: 72 hours
+        H5 titolo        : PAE1_72_Doxorubicin
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Doxorubicin (0.05 uM),time: 72 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729633
+        grezzo (Stadio 1): title: PAE2_72_Doxorubicin,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Doxorubicin (0.05 uM),time: 72 hours
+        H5 titolo        : PAE2_72_Doxorubicin
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Doxorubicin (0.05 uM),time: 72 hours
+        H5 sorgente      : Endothelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, DMSO, 72h
+      gruppo Stadio 2: grp_0018
+      GSM6729614
+        grezzo (Stadio 1): title: PAE1_72_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 titolo        : PAE1_72_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729632
+        grezzo (Stadio 1): title: PAE2_72_dmso,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 titolo        : PAE2_72_dmso
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 sorgente      : Endothelial cells
+
+CONFRONTO  GSE226115__GSE226115__doxorubicin_total_RNA_vs_saline__1
+  studio: GSE226115
+  TRATTATO  (n=2)  etichetta Stadio 2: doxorubicin (total RNA)
+      gruppo Stadio 2: grp_0004
+      GSM7064368
+        grezzo (Stadio 1): title: STING siRNA DOX repeat1,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: STING knockdown,treatment: doxorubicin
+        H5 titolo        : STING siRNA DOX repeat1
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: STING knockdown,treatment: doxorubicin
+        H5 sorgente      : human cardiac microvascular endothelial cells
+      GSM7064370
+        grezzo (Stadio 1): title: STING siRNA DOX repeat3,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: STING knockdown,treatment: doxorubicin
+        H5 titolo        : STING siRNA DOX repeat3
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: STING knockdown,treatment: doxorubicin
+        H5 sorgente      : human cardiac microvascular endothelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: saline
+      gruppo Stadio 2: grp_0001
+      GSM7064362
+        grezzo (Stadio 1): title: control siRNA saline repeat1,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 titolo        : control siRNA saline repeat1
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 sorgente      : human cardiac microvascular endothelial cells
+      GSM7064363
+        grezzo (Stadio 1): title: control siRNA saline repeat2,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 titolo        : control siRNA saline repeat2
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 sorgente      : human cardiac microvascular endothelial cells
+      GSM7064364
+        grezzo (Stadio 1): title: control siRNA saline repeat3,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 titolo        : control siRNA saline repeat3
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 sorgente      : human cardiac microvascular endothelial cells
+
+CONFRONTO  GSE226115__GSE226115__doxorubicin_vs_saline__1
+  studio: GSE226115
+  TRATTATO  (n=3)  etichetta Stadio 2: doxorubicin
+      gruppo Stadio 2: grp_0002
+      GSM7064365
+        grezzo (Stadio 1): title: control siRNA DOX repeat1,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: doxorubicin
+        H5 titolo        : control siRNA DOX repeat1
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: doxorubicin
+        H5 sorgente      : human cardiac microvascular endothelial cells
+      GSM7064366
+        grezzo (Stadio 1): title: control siRNA DOX repeat2,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: doxorubicin
+        H5 titolo        : control siRNA DOX repeat2
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: doxorubicin
+        H5 sorgente      : human cardiac microvascular endothelial cells
+      GSM7064367
+        grezzo (Stadio 1): title: control siRNA DOX repeat3,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: doxorubicin
+        H5 titolo        : control siRNA DOX repeat3
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: doxorubicin
+        H5 sorgente      : human cardiac microvascular endothelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: saline
+      gruppo Stadio 2: grp_0001
+      GSM7064362
+        grezzo (Stadio 1): title: control siRNA saline repeat1,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 titolo        : control siRNA saline repeat1
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 sorgente      : human cardiac microvascular endothelial cells
+      GSM7064363
+        grezzo (Stadio 1): title: control siRNA saline repeat2,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 titolo        : control siRNA saline repeat2
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 sorgente      : human cardiac microvascular endothelial cells
+      GSM7064364
+        grezzo (Stadio 1): title: control siRNA saline repeat3,source: human cardiac microvascular endothelial cells,cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 titolo        : control siRNA saline repeat3
+        H5 caratteristiche: cell type: human cardiac microvascular endothelial cells,genotype: nc,treatment: saline
+        H5 sorgente      : human cardiac microvascular endothelial cells
+
+CONFRONTO  GSE55727__GSE55727__grp_0002_vs_grp_0001__1
+  studio: GSE55727
+  TRATTATO  (n=2)  etichetta Stadio 2: GM00011 doxorubicin
+      gruppo Stadio 2: grp_0002
+      GSM1342491
+        grezzo (Stadio 1): title: GM00011_RNA_dox_rep1,source: Fetal skin fibroblasts,treatment: 0.2 ug/ml Doxorubicin 12 hours,cell line: GM00011
+        H5 titolo        : GM00011_RNA_dox_rep1
+        H5 caratteristiche: treatment: 0.2 ug/ml Doxorubicin 12 hours,cell line: GM00011
+        H5 sorgente      : Fetal skin fibroblasts
+      GSM1342492
+        grezzo (Stadio 1): title: GM00011_RNA_dox_rep2,source: Fetal skin fibroblasts,treatment: 0.2 ug/ml Doxorubicin 12 hours,cell line: GM00011
+        H5 titolo        : GM00011_RNA_dox_rep2
+        H5 caratteristiche: treatment: 0.2 ug/ml Doxorubicin 12 hours,cell line: GM00011
+        H5 sorgente      : Fetal skin fibroblasts
+  CONTROLLO  (n=2)  etichetta Stadio 2: GM00011 vehicle
+      gruppo Stadio 2: grp_0001
+      GSM1342489
+        grezzo (Stadio 1): title: GM00011_RNA_unt_rep1,source: Fetal skin fibroblasts,treatment: None,cell line: GM00011
+        H5 titolo        : GM00011_RNA_unt_rep1
+        H5 caratteristiche: treatment: None,cell line: GM00011
+        H5 sorgente      : Fetal skin fibroblasts
+      GSM1342490
+        grezzo (Stadio 1): title: GM00011_RNA_unt_rep2,source: Fetal skin fibroblasts,treatment: None,cell line: GM00011
+        H5 titolo        : GM00011_RNA_unt_rep2
+        H5 caratteristiche: treatment: None,cell line: GM00011
+        H5 sorgente      : Fetal skin fibroblasts
+
+CONFRONTO  GSE60340__GSE60340__grp_0008_vs_grp_0001__1
+  studio: GSE60340
+  TRATTATO  (n=2)  etichetta Stadio 2: Adriamycin treated (senescent)
+      gruppo Stadio 2: grp_0008
+      GSM1473790
+        grezzo (Stadio 1): title: Adria 1,source: MDAH041_Adria,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: Adriamycin,sample group: induced into senescence
+        H5 titolo        : Adria 1
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: Adriamycin,sample group: induced into senescence
+        H5 sorgente      : MDAH041_Adria
+      GSM1473794
+        grezzo (Stadio 1): title: Adria 3,source: MDAH041_Adria,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: Adriamycin,sample group: induced into senescence
+        H5 titolo        : Adria 3
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: Adriamycin,sample group: induced into senescence
+        H5 sorgente      : MDAH041_Adria
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated control
+      gruppo Stadio 2: grp_0001
+      GSM1473759
+        grezzo (Stadio 1): title: Immortal 1,source: MDAH041_Immortal,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 titolo        : Immortal 1
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 sorgente      : MDAH041_Immortal
+      GSM1473764
+        grezzo (Stadio 1): title: Immortal 2,source: MDAH041_Immortal,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 titolo        : Immortal 2
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 sorgente      : MDAH041_Immortal
+      GSM1473767
+        grezzo (Stadio 1): title: Immortal 3,source: MDAH041_Immortal,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 titolo        : Immortal 3
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 sorgente      : MDAH041_Immortal
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE124622     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE128728     campioni nell'H5:   34 | collocati dallo Stadio 2:   31 | MAI COLLOCATI:    3 | usati in questa meta-analisi: 17 campioni distinti (17 righe: i controlli servono piu' confronti)
+      mai collocati: GSM3683851, GSM3683859, GSM3683867
+  GSE137056     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE139862     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE154118     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE166033     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE196724     campioni nell'H5:   36 | collocati dallo Stadio 2:   36 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE197243     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE216137     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 27 campioni distinti (63 righe: i controlli servono piu' confronti)
+  GSE217421     campioni nell'H5: 1170 | collocati dallo Stadio 2:  913 | MAI COLLOCATI:  257 | usati in questa meta-analisi: 31 campioni distinti (31 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6717095, GSM6717097, GSM6717100, GSM6717101, GSM6717102, GSM6717103, GSM6717104, GSM6717106, GSM6717107, GSM6717108, GSM6717111, GSM6717112 ... (+245)
+  GSE217423     campioni nell'H5:  344 | collocati dallo Stadio 2:  264 | MAI COLLOCATI:   80 | usati in questa meta-analisi: 24 campioni distinti (24 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6718283, GSM6718285, GSM6718287, GSM6718288, GSM6718289, GSM6718290, GSM6718299, GSM6718306, GSM6718317, GSM6718324, GSM6718325, GSM6718326 ... (+68)
+  GSE217898     campioni nell'H5:   72 | collocati dallo Stadio 2:   60 | MAI COLLOCATI:   12 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6729571, GSM6729582, GSM6729586, GSM6729589, GSM6729590, GSM6729591, GSM6729598, GSM6729599, GSM6729613, GSM6729622, GSM6729626, GSM6729635
+  GSE226115     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE55727      campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE60340      campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,727 @@
+META-ANALISI 020 di 194
+==============================================================================
+nome            : IL13
+entita (ID)     : HGNC:5973
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_be15b706
+studi poolati   : 11   confronti: 14   campioni: 118
+geni significativi: 1375   I2 mediano: 71.8
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE116927__GSE116927__grp_0006_vs_grp_0004__1
+  studio: GSE116927
+  TRATTATO  (n=8)  etichetta Stadio 2: Primary human airway tissue treated with IL13
+      gruppo Stadio 2: grp_0006
+      GSM3264371
+        grezzo (Stadio 1): title: Batch2_IL13_Biological_Replicate_1,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: IL13
+        H5 titolo        : Batch2_IL13_Biological_Replicate_1
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: IL13
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264374
+        grezzo (Stadio 1): title: Batch2_IL13_Biological_Replicate_2,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: IL13
+        H5 titolo        : Batch2_IL13_Biological_Replicate_2
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: IL13
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264377
+        grezzo (Stadio 1): title: Batch2_IL13_Biological_Replicate_3,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: IL13
+        H5 titolo        : Batch2_IL13_Biological_Replicate_3
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: IL13
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264380
+        grezzo (Stadio 1): title: Batch2_IL13_Biological_Replicate_4,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: IL13
+        H5 titolo        : Batch2_IL13_Biological_Replicate_4
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: IL13
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264383
+        grezzo (Stadio 1): title: Batch2_IL13_Biological_Replicate_5,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: IL13
+        H5 titolo        : Batch2_IL13_Biological_Replicate_5
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: IL13
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264386
+        grezzo (Stadio 1): title: Batch2_IL13_Biological_Replicate_6,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: IL13
+        H5 titolo        : Batch2_IL13_Biological_Replicate_6
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: IL13
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264389
+        grezzo (Stadio 1): title: Batch2_IL13_Biological_Replicate_7,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: IL13
+        H5 titolo        : Batch2_IL13_Biological_Replicate_7
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: IL13
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264392
+        grezzo (Stadio 1): title: Batch2_IL13_Biological_Replicate_8,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: IL13
+        H5 titolo        : Batch2_IL13_Biological_Replicate_8
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: IL13
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+  CONTROLLO  (n=16)  etichetta Stadio 2: Primary human airway epithelia treated with Vehicle
+      gruppo Stadio 2: grp_0004
+      GSM3264346
+        grezzo (Stadio 1): title: Batch1_Vehicle_Biological_Replicate_1,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch1_Vehicle_Biological_Replicate_1
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264349
+        grezzo (Stadio 1): title: Batch1_Vehicle_Biological_Replicate_2,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch1_Vehicle_Biological_Replicate_2
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264352
+        grezzo (Stadio 1): title: Batch1_Vehicle_Biological_Replicate_3,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch1_Vehicle_Biological_Replicate_3
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264355
+        grezzo (Stadio 1): title: Batch1_Vehicle_Biological_Replicate_4,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch1_Vehicle_Biological_Replicate_4
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264358
+        grezzo (Stadio 1): title: Batch1_Vehicle_Biological_Replicate_5,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch1_Vehicle_Biological_Replicate_5
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264361
+        grezzo (Stadio 1): title: Batch1_Vehicle_Biological_Replicate_6,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch1_Vehicle_Biological_Replicate_6
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264364
+        grezzo (Stadio 1): title: Batch1_Vehicle_Biological_Replicate_7,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch1_Vehicle_Biological_Replicate_7
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264367
+        grezzo (Stadio 1): title: Batch1_Vehicle_Biological_Replicate_8,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch1_Vehicle_Biological_Replicate_8
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264370
+        grezzo (Stadio 1): title: Batch2_Vehicle_Biological_Replicate_1,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch2_Vehicle_Biological_Replicate_1
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264373
+        grezzo (Stadio 1): title: Batch2_Vehicle_Biological_Replicate_2,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch2_Vehicle_Biological_Replicate_2
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264376
+        grezzo (Stadio 1): title: Batch2_Vehicle_Biological_Replicate_3,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch2_Vehicle_Biological_Replicate_3
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264379
+        grezzo (Stadio 1): title: Batch2_Vehicle_Biological_Replicate_4,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch2_Vehicle_Biological_Replicate_4
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264382
+        grezzo (Stadio 1): title: Batch2_Vehicle_Biological_Replicate_5,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch2_Vehicle_Biological_Replicate_5
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264385
+        grezzo (Stadio 1): title: Batch2_Vehicle_Biological_Replicate_6,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch2_Vehicle_Biological_Replicate_6
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264388
+        grezzo (Stadio 1): title: Batch2_Vehicle_Biological_Replicate_7,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch2_Vehicle_Biological_Replicate_7
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+      GSM3264391
+        grezzo (Stadio 1): title: Batch2_Vehicle_Biological_Replicate_8,source: Cultured primary human airway epithelia at air-liquid interface,cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 titolo        : Batch2_Vehicle_Biological_Replicate_8
+        H5 caratteristiche: cell type: Primary human airway epithelia,treatment: Vehicle
+        H5 sorgente      : Cultured primary human airway epithelia at air-liquid interface
+
+CONFRONTO  GSE140900__GSE140900__grp_0006_vs_grp_0004__1
+  studio: GSE140900
+  TRATTATO  (n=3)  etichetta Stadio 2: IL13
+      gruppo Stadio 2: grp_0006
+      GSM4190051
+        grezzo (Stadio 1): title: 1030438: IL13,source: bone marrow-derived mast cells,tissue: bone marrow-derived mast cells,treatment: IL13
+        H5 titolo        : 1030438: IL13
+        H5 caratteristiche: tissue: bone marrow-derived mast cells,treatment: IL13
+        H5 sorgente      : bone marrow-derived mast cells
+      GSM4190052
+        grezzo (Stadio 1): title: 1030439: IL13,source: bone marrow-derived mast cells,tissue: bone marrow-derived mast cells,treatment: IL13
+        H5 titolo        : 1030439: IL13
+        H5 caratteristiche: tissue: bone marrow-derived mast cells,treatment: IL13
+        H5 sorgente      : bone marrow-derived mast cells
+      GSM4190053
+        grezzo (Stadio 1): title: 1030440: IL13,source: bone marrow-derived mast cells,tissue: bone marrow-derived mast cells,treatment: IL13
+        H5 titolo        : 1030440: IL13
+        H5 caratteristiche: tissue: bone marrow-derived mast cells,treatment: IL13
+        H5 sorgente      : bone marrow-derived mast cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: no treatment
+      gruppo Stadio 2: grp_0004
+      GSM4190035
+        grezzo (Stadio 1): title: 1030422: no treatment,source: bone marrow-derived mast cells,tissue: bone marrow-derived mast cells,treatment: no treatment
+        H5 titolo        : 1030422: no treatment
+        H5 caratteristiche: tissue: bone marrow-derived mast cells,treatment: no treatment
+        H5 sorgente      : bone marrow-derived mast cells
+      GSM4190037
+        grezzo (Stadio 1): title: 1030424: no treatment,source: bone marrow-derived mast cells,tissue: bone marrow-derived mast cells,treatment: no treatment
+        H5 titolo        : 1030424: no treatment
+        H5 caratteristiche: tissue: bone marrow-derived mast cells,treatment: no treatment
+        H5 sorgente      : bone marrow-derived mast cells
+
+CONFRONTO  GSE159196__GSE159196__IL13_Nasal_vs_Control__1
+  studio: GSE159196
+  TRATTATO  (n=3)  etichetta Stadio 2: IL13 (Nasal airway epithelium) - 72h
+      gruppo Stadio 2: grp_0003
+      GSM4822431
+        grezzo (Stadio 1): title: 72hr IL13 - 1723,source: Nasal brush,tissue: Nasal airway epithelium,treatment: 72hr IL13
+        H5 titolo        : 72hr IL13 - 1723
+        H5 caratteristiche: tissue: Nasal airway epithelium,treatment: 72hr IL13
+        H5 sorgente      : Nasal brush
+      GSM4822440
+        grezzo (Stadio 1): title: 72hr IL13 - 5148,source: Nasal brush,tissue: Nasal airway epithelium,treatment: 72hr IL13
+        H5 titolo        : 72hr IL13 - 5148
+        H5 caratteristiche: tissue: Nasal airway epithelium,treatment: 72hr IL13
+        H5 sorgente      : Nasal brush
+      GSM4822442
+        grezzo (Stadio 1): title: 72hr IL13 - 5686,source: Nasal brush,tissue: Nasal airway epithelium,treatment: 72hr IL13
+        H5 titolo        : 72hr IL13 - 5686
+        H5 caratteristiche: tissue: Nasal airway epithelium,treatment: 72hr IL13
+        H5 sorgente      : Nasal brush
+  CONTROLLO  (n=5)  etichetta Stadio 2: Control (Nasal airway epithelium)
+      gruppo Stadio 2: grp_0001
+      GSM4822428
+        grezzo (Stadio 1): title: Control - 5681,source: Nasal brush,tissue: Nasal airway epithelium,treatment: Control
+        H5 titolo        : Control - 5681
+        H5 caratteristiche: tissue: Nasal airway epithelium,treatment: Control
+        H5 sorgente      : Nasal brush
+      GSM4822433
+        grezzo (Stadio 1): title: Control - 5148,source: Nasal brush,tissue: Nasal airway epithelium,treatment: Control
+        H5 titolo        : Control - 5148
+        H5 caratteristiche: tissue: Nasal airway epithelium,treatment: Control
+        H5 sorgente      : Nasal brush
+      GSM4822435
+        grezzo (Stadio 1): title: Control - 5686,source: Nasal brush,tissue: Nasal airway epithelium,treatment: Control
+        H5 titolo        : Control - 5686
+        H5 caratteristiche: tissue: Nasal airway epithelium,treatment: Control
+        H5 sorgente      : Nasal brush
+      GSM4822436
+        grezzo (Stadio 1): title: Control - 1723,source: Nasal brush,tissue: Nasal airway epithelium,treatment: Control
+        H5 titolo        : Control - 1723
+        H5 caratteristiche: tissue: Nasal airway epithelium,treatment: Control
+        H5 sorgente      : Nasal brush
+      GSM4822439
+        grezzo (Stadio 1): title: Control - 5398,source: Nasal brush,tissue: Nasal airway epithelium,treatment: Control
+        H5 titolo        : Control - 5398
+        H5 caratteristiche: tissue: Nasal airway epithelium,treatment: Control
+        H5 sorgente      : Nasal brush
+
+CONFRONTO  GSE162696__GSE162696__grp_0007_vs_grp_0005__1
+  studio: GSE162696
+  TRATTATO  (n=4)  etichetta Stadio 2: miR-141-Targeted IL-13 Stimulated
+      gruppo Stadio 2: grp_0007
+      GSM4957492
+        grezzo (Stadio 1): title: 141KO_13_1828,source: Human bronchial epithelial cells,treatment: IL-13,genotype: miR-141-targeted
+        H5 titolo        : 141KO_13_1828
+        H5 caratteristiche: treatment: IL-13,genotype: miR-141-targeted
+        H5 sorgente      : Human bronchial epithelial cells
+      GSM4957493
+        grezzo (Stadio 1): title: 141KO_13_1601,source: Human bronchial epithelial cells,treatment: IL-13,genotype: miR-141-targeted
+        H5 titolo        : 141KO_13_1601
+        H5 caratteristiche: treatment: IL-13,genotype: miR-141-targeted
+        H5 sorgente      : Human bronchial epithelial cells
+      GSM4957494
+        grezzo (Stadio 1): title: 141KO_13_1721,source: Human bronchial epithelial cells,treatment: IL-13,genotype: miR-141-targeted
+        H5 titolo        : 141KO_13_1721
+        H5 caratteristiche: treatment: IL-13,genotype: miR-141-targeted
+        H5 sorgente      : Human bronchial epithelial cells
+      GSM4957495
+        grezzo (Stadio 1): title: 141KO_13_1734,source: Human bronchial epithelial cells,treatment: IL-13,genotype: miR-141-targeted
+        H5 titolo        : 141KO_13_1734
+        H5 caratteristiche: treatment: IL-13,genotype: miR-141-targeted
+        H5 sorgente      : Human bronchial epithelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: miR-141-Targeted Untreated
+      gruppo Stadio 2: grp_0005
+      GSM4957500
+        grezzo (Stadio 1): title: 141KO_1601,source: Human bronchial epithelial cells,treatment: Untreated,genotype: miR-141-targeted
+        H5 titolo        : 141KO_1601
+        H5 caratteristiche: treatment: Untreated,genotype: miR-141-targeted
+        H5 sorgente      : Human bronchial epithelial cells
+      GSM4957501
+        grezzo (Stadio 1): title: 141KO_1721,source: Human bronchial epithelial cells,treatment: Untreated,genotype: miR-141-targeted
+        H5 titolo        : 141KO_1721
+        H5 caratteristiche: treatment: Untreated,genotype: miR-141-targeted
+        H5 sorgente      : Human bronchial epithelial cells
+
+CONFRONTO  GSE190705__GSE190705__IL13_vs_untreated__1
+  studio: GSE190705
+  TRATTATO  (n=3)  etichetta Stadio 2: Colonic Organoid Donor 5 IL13 Stimulated
+      gruppo Stadio 2: grp_0002
+      GSM5729382
+        grezzo (Stadio 1): title: IL13: IL13 treated colonoid donor 5,source: colonic organoid,disease state: healthy,tissue: colonic organoid,treatment: IL13 10ng/mL,treatment duration: 24 hours,donor: 5,experiment: 2
+        H5 titolo        : IL13: IL13 treated colonoid donor 5
+        H5 caratteristiche: disease state: healthy,tissue: colonic organoid,treatment: IL13 10ng/mL,treatment duration: 24 hours,donor: 5,experiment: 2
+        H5 sorgente      : colonic organoid
+      GSM5729385
+        grezzo (Stadio 1): title: IL13: IL13 treated colonoid donor 6,source: colonic organoid,disease state: healthy,tissue: colonic organoid,treatment: IL13 10ng/mL,treatment duration: 24 hours,donor: 6,experiment: 2
+        H5 titolo        : IL13: IL13 treated colonoid donor 6
+        H5 caratteristiche: disease state: healthy,tissue: colonic organoid,treatment: IL13 10ng/mL,treatment duration: 24 hours,donor: 6,experiment: 2
+        H5 sorgente      : colonic organoid
+      GSM5729388
+        grezzo (Stadio 1): title: IL13: IL13 treated colonoid donor 4,source: colonic organoid,disease state: healthy,tissue: colonic organoid,treatment: IL13 10ng/mL,treatment duration: 24 hours,donor: 4,experiment: 2
+        H5 titolo        : IL13: IL13 treated colonoid donor 4
+        H5 caratteristiche: disease state: healthy,tissue: colonic organoid,treatment: IL13 10ng/mL,treatment duration: 24 hours,donor: 4,experiment: 2
+        H5 sorgente      : colonic organoid
+  CONTROLLO  (n=3)  etichetta Stadio 2: Colonic Organoid Donor 5 Untreated
+      gruppo Stadio 2: grp_0001
+      GSM5729381
+        grezzo (Stadio 1): title: CTL: untreated colonoid donor 5,source: colonic organoid,disease state: healthy,tissue: colonic organoid,treatment: untreated,treatment duration: 24 hours,donor: 5,experiment: 2
+        H5 titolo        : CTL: untreated colonoid donor 5
+        H5 caratteristiche: disease state: healthy,tissue: colonic organoid,treatment: untreated,treatment duration: 24 hours,donor: 5,experiment: 2
+        H5 sorgente      : colonic organoid
+      GSM5729384
+        grezzo (Stadio 1): title: CTL: untreated colonoid donor 6,source: colonic organoid,disease state: healthy,tissue: colonic organoid,treatment: untreated,treatment duration: 24 hours,donor: 6,experiment: 2
+        H5 titolo        : CTL: untreated colonoid donor 6
+        H5 caratteristiche: disease state: healthy,tissue: colonic organoid,treatment: untreated,treatment duration: 24 hours,donor: 6,experiment: 2
+        H5 sorgente      : colonic organoid
+      GSM5729387
+        grezzo (Stadio 1): title: CTL: untreated colonoid donor 4,source: colonic organoid,disease state: healthy,tissue: colonic organoid,treatment: untreated,treatment duration: 24 hours,donor: 4,experiment: 2
+        H5 titolo        : CTL: untreated colonoid donor 4
+        H5 caratteristiche: disease state: healthy,tissue: colonic organoid,treatment: untreated,treatment duration: 24 hours,donor: 4,experiment: 2
+        H5 sorgente      : colonic organoid
+
+CONFRONTO  GSE202866__GSE202866__grp_0004_vs_grp_0003__1
+  studio: GSE202866
+  TRATTATO  (n=4)  etichetta Stadio 2: IL-13
+      gruppo Stadio 2: grp_0004
+      GSM6134793
+        grezzo (Stadio 1): title: IL-13-treated ALI #1,source: Primary human bronchial epithelial cells Lonza batch #646466,cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: IL-13
+        H5 titolo        : IL-13-treated ALI #1
+        H5 caratteristiche: cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: IL-13
+        H5 sorgente      : Primary human bronchial epithelial cells Lonza batch #646466
+      GSM6134794
+        grezzo (Stadio 1): title: IL-13-treated ALI #2,source: Primary human bronchial epithelial cells Lonza batch #646466,cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: IL-13
+        H5 titolo        : IL-13-treated ALI #2
+        H5 caratteristiche: cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: IL-13
+        H5 sorgente      : Primary human bronchial epithelial cells Lonza batch #646466
+      GSM6134795
+        grezzo (Stadio 1): title: IL-13-treated ALI #3,source: Primary human bronchial epithelial cells Lonza batch #646466,cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: IL-13
+        H5 titolo        : IL-13-treated ALI #3
+        H5 caratteristiche: cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: IL-13
+        H5 sorgente      : Primary human bronchial epithelial cells Lonza batch #646466
+      GSM6134796
+        grezzo (Stadio 1): title: IL-13-treated ALI #4,source: Primary human bronchial epithelial cells Lonza batch #646466,cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: IL-13
+        H5 titolo        : IL-13-treated ALI #4
+        H5 caratteristiche: cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: IL-13
+        H5 sorgente      : Primary human bronchial epithelial cells Lonza batch #646466
+  CONTROLLO  (n=3)  etichetta Stadio 2: Vehicle Control 2
+      gruppo Stadio 2: grp_0003
+      GSM6134789
+        grezzo (Stadio 1): title: Control ALI (no IL-13, no labetuzumab) #1,source: Primary human bronchial epithelial cells Lonza batch #646466,cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: None
+        H5 titolo        : Control ALI (no IL-13, no labetuzumab) #1
+        H5 caratteristiche: cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: None
+        H5 sorgente      : Primary human bronchial epithelial cells Lonza batch #646466
+      GSM6134790
+        grezzo (Stadio 1): title: Control ALI (no IL-13, no labetuzumab) #2,source: Primary human bronchial epithelial cells Lonza batch #646466,cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: None
+        H5 titolo        : Control ALI (no IL-13, no labetuzumab) #2
+        H5 caratteristiche: cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: None
+        H5 sorgente      : Primary human bronchial epithelial cells Lonza batch #646466
+      GSM6134791
+        grezzo (Stadio 1): title: Control ALI (no IL-13, no labetuzumab) #3,source: Primary human bronchial epithelial cells Lonza batch #646466,cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: None
+        H5 titolo        : Control ALI (no IL-13, no labetuzumab) #3
+        H5 caratteristiche: cell type: Primary human bronchial epithelial cells Lonza batch #646466,age: 38,Sex: male,genotype: wild-type,treatment: None
+        H5 sorgente      : Primary human bronchial epithelial cells Lonza batch #646466
+
+CONFRONTO  GSE206510__GSE206510__grp_asthma_il13_vs_grp_asthma_untreated__1
+  studio: GSE206510
+  TRATTATO  (n=4)  etichetta Stadio 2: Asthma IL-13
+      gruppo Stadio 2: grp_asthma_il13
+      GSM6255656
+        grezzo (Stadio 1): title: B117, IL-13,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B117, IL-13
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255660
+        grezzo (Stadio 1): title: B99, IL-13,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B99, IL-13
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255662
+        grezzo (Stadio 1): title: B111, IL-13,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B111, IL-13
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255664
+        grezzo (Stadio 1): title: B121, IL-13,source: primary bronchial epithelial cells,disease state: Asthma,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B121, IL-13
+        H5 caratteristiche: disease state: Asthma,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Asthma untreated
+      gruppo Stadio 2: grp_asthma_untreated
+      GSM6255655
+        grezzo (Stadio 1): title: B117, unstimulated,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B117, unstimulated
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255659
+        grezzo (Stadio 1): title: B99, unstimulated,source: primary bronchial epithelial cells,disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B99, unstimulated
+        H5 caratteristiche: disease state: Asthma,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255663
+        grezzo (Stadio 1): title: B121, unstimulated,source: primary bronchial epithelial cells,disease state: Asthma,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B121, unstimulated
+        H5 caratteristiche: disease state: Asthma,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+
+CONFRONTO  GSE206510__GSE206510__grp_control_il13_vs_grp_control_vehicle__1
+  studio: GSE206510
+  TRATTATO  (n=3)  etichetta Stadio 2: Control IL-13
+      gruppo Stadio 2: grp_control_il13
+      GSM6255646
+        grezzo (Stadio 1): title: B86, IL-13,source: primary bronchial epithelial cells,disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B86, IL-13
+        H5 caratteristiche: disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255648
+        grezzo (Stadio 1): title: B113, IL-13,source: primary bronchial epithelial cells,disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B113, IL-13
+        H5 caratteristiche: disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255654
+        grezzo (Stadio 1): title: B87, IL-13,source: primary bronchial epithelial cells,disease state: Control,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 titolo        : B87, IL-13
+        H5 caratteristiche: disease state: Control,gender: female,cell type: primary bronchial epithelial cells,treatment: IL-13,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control vehicle
+      gruppo Stadio 2: grp_control_vehicle
+      GSM6255645
+        grezzo (Stadio 1): title: B86, unstimulated,source: primary bronchial epithelial cells,disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B86, unstimulated
+        H5 caratteristiche: disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255647
+        grezzo (Stadio 1): title: B113, unstimulated,source: primary bronchial epithelial cells,disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B113, unstimulated
+        H5 caratteristiche: disease state: Control,gender: male,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+      GSM6255653
+        grezzo (Stadio 1): title: B87, unstimulated,source: primary bronchial epithelial cells,disease state: Control,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 titolo        : B87, unstimulated
+        H5 caratteristiche: disease state: Control,gender: female,cell type: primary bronchial epithelial cells,treatment: untreated,time: 24h
+        H5 sorgente      : primary bronchial epithelial cells
+
+CONFRONTO  GSE214503__GSE214503__IL13_vs_PBS__1
+  studio: GSE214503
+  TRATTATO  (n=2)  etichetta Stadio 2: IL13
+      gruppo Stadio 2: grp_0003
+      GSM6607387
+        grezzo (Stadio 1): title: IL_13_2,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL13 stimulation, 24 hr
+        H5 titolo        : IL_13_2
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL13 stimulation, 24 hr
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607388
+        grezzo (Stadio 1): title: IL_13_3,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL13 stimulation, 24 hr
+        H5 titolo        : IL_13_3
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: 100 ng/ml IL13 stimulation, 24 hr
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+  CONTROLLO  (n=3)  etichetta Stadio 2: PBS
+      gruppo Stadio 2: grp_0001
+      GSM6607392
+        grezzo (Stadio 1): title: PBS_1,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_1
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607393
+        grezzo (Stadio 1): title: PBS_2,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_2
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+      GSM6607394
+        grezzo (Stadio 1): title: PBS_3,source: HEK (Primary human keratinocyte cells from skin),cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 titolo        : PBS_3
+        H5 caratteristiche: cell type: Human Epidermal Keratinocyte,treatment: PBS
+        H5 sorgente      : HEK (Primary human keratinocyte cells from skin)
+
+CONFRONTO  GSE220972__GSE220972__grp_0003_vs_grp_0002__1
+  studio: GSE220972
+  TRATTATO  (n=2)  etichetta Stadio 2: IL-13 Stimulation
+      gruppo Stadio 2: grp_0003
+      GSM6833370
+        grezzo (Stadio 1): title: 104462_IL-13_2,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 104462_IL-13_2
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833371
+        grezzo (Stadio 1): title: 104462_IL-13_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 104462_IL-13_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+  CONTROLLO  (n=9)  etichetta Stadio 2: Control (Vehicle Only)
+      gruppo Stadio 2: grp_0002
+      GSM6833367
+        grezzo (Stadio 1): title: 104462_Control_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 104462_Control_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833368
+        grezzo (Stadio 1): title: 104462_Control_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 104462_Control_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833375
+        grezzo (Stadio 1): title: 127528_Control_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 127528_Control_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833376
+        grezzo (Stadio 1): title: 127528_Control_2,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 127528_Control_2
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833377
+        grezzo (Stadio 1): title: 127528_Control_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 127528_Control_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833384
+        grezzo (Stadio 1): title: 138668_Control_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 138668_Control_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833385
+        grezzo (Stadio 1): title: 138668_Control_2,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 138668_Control_2
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833393
+        grezzo (Stadio 1): title: 581076_Control_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 581076_Control_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833395
+        grezzo (Stadio 1): title: 581076_Control_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 581076_Control_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+
+CONFRONTO  GSE220972__GSE220972__grp_0004_vs_grp_0002__1
+  studio: GSE220972
+  TRATTATO  (n=9)  etichetta Stadio 2: IL-13 Stimulation
+      gruppo Stadio 2: grp_0004
+      GSM6833369
+        grezzo (Stadio 1): title: 104462_IL-13_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 104462_IL-13_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833378
+        grezzo (Stadio 1): title: 127528_IL-13_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 127528_IL-13_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833379
+        grezzo (Stadio 1): title: 127528_IL-13_2,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 127528_IL-13_2
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833380
+        grezzo (Stadio 1): title: 127528_IL-13_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 127528_IL-13_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833388
+        grezzo (Stadio 1): title: 138668_IL-13_2,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 138668_IL-13_2
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833389
+        grezzo (Stadio 1): title: 138668_IL-13_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 138668_IL-13_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833396
+        grezzo (Stadio 1): title: 581076_IL-13_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 581076_IL-13_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833397
+        grezzo (Stadio 1): title: 581076_IL-13_2,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 581076_IL-13_2
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833398
+        grezzo (Stadio 1): title: 581076_IL-13_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 titolo        : 581076_IL-13_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: IL-13,time: 7 days
+        H5 sorgente      : hBSMCs
+  CONTROLLO  (n=9)  etichetta Stadio 2: Control (Vehicle Only)
+      gruppo Stadio 2: grp_0002
+      GSM6833367
+        grezzo (Stadio 1): title: 104462_Control_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 104462_Control_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833368
+        grezzo (Stadio 1): title: 104462_Control_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 104462_Control_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833375
+        grezzo (Stadio 1): title: 127528_Control_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 127528_Control_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833376
+        grezzo (Stadio 1): title: 127528_Control_2,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 127528_Control_2
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833377
+        grezzo (Stadio 1): title: 127528_Control_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 127528_Control_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833384
+        grezzo (Stadio 1): title: 138668_Control_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 138668_Control_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833385
+        grezzo (Stadio 1): title: 138668_Control_2,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 138668_Control_2
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833393
+        grezzo (Stadio 1): title: 581076_Control_1,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 581076_Control_1
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+      GSM6833395
+        grezzo (Stadio 1): title: 581076_Control_3,source: hBSMCs,cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 titolo        : 581076_Control_3
+        H5 caratteristiche: cell line: hBSMCs,cell type: Human Bronchial Smooth Muscle Cells,treatment: Control,time: 7 days
+        H5 sorgente      : hBSMCs
+
+CONFRONTO  GSE65335__GSE65335__grp_0004_vs_grp_0002__1
+  studio: GSE65335
+  TRATTATO  (n=3)  etichetta Stadio 2: IL-13 stimulated EPC2-hTERT (100 ng/mL)
+      gruppo Stadio 2: grp_0004
+      GSM1592615
+        grezzo (Stadio 1): title: EPC2_Day6_IL13_1,source: hTERT-immortalized human esophageal epithelial cell line_ALI_IL13,growth conditions: ALI (day 14),treatment: IL-13 (100 ng/mL),cell line: EPC2-hTERT
+        H5 titolo        : EPC2_Day6_IL13_1
+        H5 caratteristiche: growth conditions: ALI (day 14),treatment: IL-13 (100 ng/mL),cell line: EPC2-hTERT
+        H5 sorgente      : hTERT-immortalized human esophageal epithelial cell line_ALI_IL13
+      GSM1592616
+        grezzo (Stadio 1): title: EPC2_Day6_IL13_2,source: hTERT-immortalized human esophageal epithelial cell line_ALI_IL13,growth conditions: ALI (day 14),treatment: IL-13 (100 ng/mL),cell line: EPC2-hTERT
+        H5 titolo        : EPC2_Day6_IL13_2
+        H5 caratteristiche: growth conditions: ALI (day 14),treatment: IL-13 (100 ng/mL),cell line: EPC2-hTERT
+        H5 sorgente      : hTERT-immortalized human esophageal epithelial cell line_ALI_IL13
+      GSM1592617
+        grezzo (Stadio 1): title: EPC2_Day6_IL13_3,source: hTERT-immortalized human esophageal epithelial cell line_ALI_IL13,growth conditions: ALI (day 14),treatment: IL-13 (100 ng/mL),cell line: EPC2-hTERT
+        H5 titolo        : EPC2_Day6_IL13_3
+        H5 caratteristiche: growth conditions: ALI (day 14),treatment: IL-13 (100 ng/mL),cell line: EPC2-hTERT
+        H5 sorgente      : hTERT-immortalized human esophageal epithelial cell line_ALI_IL13
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated EPC2-hTERT (untreated)
+      gruppo Stadio 2: grp_0002
+      GSM1592610
+        grezzo (Stadio 1): title: EPC2_Day0_2,source: hTERT-immortalized human esophageal epithelial cell line_submerged,growth conditions: submerged (day 8),treatment: untreated,cell line: EPC2-hTERT
+        H5 titolo        : EPC2_Day0_2
+        H5 caratteristiche: growth conditions: submerged (day 8),treatment: untreated,cell line: EPC2-hTERT
+        H5 sorgente      : hTERT-immortalized human esophageal epithelial cell line_submerged
+      GSM1592611
+        grezzo (Stadio 1): title: EPC2_Day0_3,source: hTERT-immortalized human esophageal epithelial cell line_submerged,growth conditions: submerged (day 8),treatment: untreated,cell line: EPC2-hTERT
+        H5 titolo        : EPC2_Day0_3
+        H5 caratteristiche: growth conditions: submerged (day 8),treatment: untreated,cell line: EPC2-hTERT
+        H5 sorgente      : hTERT-immortalized human esophageal epithelial cell line_submerged
+
+CONFRONTO  GSE79027__GSE79027__grp_0009_vs_grp_0010__1
+  studio: GSE79027
+  TRATTATO  (n=2)  etichetta Stadio 2: Donor 2: IL-13 Stimulated PBMCs (rep2)
+      gruppo Stadio 2: grp_0009
+      GSM2084142
+        grezzo (Stadio 1): title: Donor 2: IL-13 Stimulated PBMCs technical rep2,source: Donor 2,tissue: Blood (PBMC),timepoint: 24 hours,treatment: IL-13,antibodystimulation: No
+        H5 titolo        : Donor 2: IL-13 Stimulated PBMCs technical rep2
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: IL-13,antibodystimulation: No
+        H5 sorgente      : Donor 2
+      GSM2084143
+        grezzo (Stadio 1): title: Donor 2: IL-13 Stimulated PBMCs technical rep3,source: Donor 2,tissue: Blood (PBMC),timepoint: 24 hours,treatment: IL-13,antibodystimulation: No
+        H5 titolo        : Donor 2: IL-13 Stimulated PBMCs technical rep3
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: IL-13,antibodystimulation: No
+        H5 sorgente      : Donor 2
+  CONTROLLO  (n=3)  etichetta Stadio 2: Donor 2: Untreated
+      gruppo Stadio 2: grp_0010
+      GSM2084138
+        grezzo (Stadio 1): title: Donor 2: Control sample technical rep1,source: Donor 2,tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 titolo        : Donor 2: Control sample technical rep1
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 sorgente      : Donor 2
+      GSM2084139
+        grezzo (Stadio 1): title: Donor 2: Control sample technical rep2,source: Donor 2,tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 titolo        : Donor 2: Control sample technical rep2
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 sorgente      : Donor 2
+      GSM2084140
+        grezzo (Stadio 1): title: Donor 2: Control sample technical rep3,source: Donor 2,tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 titolo        : Donor 2: Control sample technical rep3
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 sorgente      : Donor 2
+
+CONFRONTO  GSE79027__GSE79027__grp_0011_vs_grp_0013__1
+  studio: GSE79027
+  TRATTATO  (n=2)  etichetta Stadio 2: Donor 3: IL-13 Stimulated PBMCs (rep1)
+      gruppo Stadio 2: grp_0011
+      GSM2084148
+        grezzo (Stadio 1): title: Donor 3: IL-13 Stimulated PBMCs technical rep2,source: Donor 3,tissue: Blood (PBMC),timepoint: 24 hours,treatment: IL-13,antibodystimulation: No
+        H5 titolo        : Donor 3: IL-13 Stimulated PBMCs technical rep2
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: IL-13,antibodystimulation: No
+        H5 sorgente      : Donor 3
+      GSM2084149
+        grezzo (Stadio 1): title: Donor 3: IL-13 Stimulated PBMCs technical rep3,source: Donor 3,tissue: Blood (PBMC),timepoint: 24 hours,treatment: IL-13,antibodystimulation: No
+        H5 titolo        : Donor 3: IL-13 Stimulated PBMCs technical rep3
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: IL-13,antibodystimulation: No
+        H5 sorgente      : Donor 3
+  CONTROLLO  (n=3)  etichetta Stadio 2: Donor 3: Untreated
+      gruppo Stadio 2: grp_0013
+      GSM2084144
+        grezzo (Stadio 1): title: Donor 3: Control sample technical rep1,source: Donor 3,tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 titolo        : Donor 3: Control sample technical rep1
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 sorgente      : Donor 3
+      GSM2084145
+        grezzo (Stadio 1): title: Donor 3: Control sample technical rep2,source: Donor 3,tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 titolo        : Donor 3: Control sample technical rep2
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 sorgente      : Donor 3
+      GSM2084146
+        grezzo (Stadio 1): title: Donor 3: Control sample technical rep3,source: Donor 3,tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 titolo        : Donor 3: Control sample technical rep3
+        H5 caratteristiche: tissue: Blood (PBMC),timepoint: 24 hours,treatment: Untreated,antibodystimulation: No
+        H5 sorgente      : Donor 3
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE116927     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 24 campioni distinti (24 righe: i controlli servono piu' confronti)
+  GSE140900     campioni nell'H5:   23 | collocati dallo Stadio 2:   23 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE159196     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE162696     campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE190705     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE202866     campioni nell'H5:   11 | collocati dallo Stadio 2:   11 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE206510     campioni nell'H5:   20 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6255649, GSM6255650, GSM6255651, GSM6255652, GSM6255657, GSM6255658
+  GSE214503     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE220972     campioni nell'H5:   34 | collocati dallo Stadio 2:   34 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 20 campioni distinti (29 righe: i controlli servono piu' confronti)
+  GSE65335      campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE79027      campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+

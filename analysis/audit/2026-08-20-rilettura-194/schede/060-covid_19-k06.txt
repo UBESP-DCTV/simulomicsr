@@ -1,0 +1,818 @@
+META-ANALISI 060 di 194
+==============================================================================
+nome            : covid 19
+entita (ID)     : STR:covid_19
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_7805eee6
+studi poolati   : 6   confronti: 9   campioni: 144
+geni significativi: 786   I2 mediano: 71.7
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE154311__GSE154311__grp_0001_vs_grp_0003__1
+  studio: GSE154311
+  TRATTATO  (n=3)  etichetta Stadio 2: COVID-19 CD16High
+      gruppo Stadio 2: grp_0001
+      GSM4668816
+        grezzo (Stadio 1): title: CD16High, replicate 1,source: CD16High, replicate 1,disease: COVID-19,neutrophils: CD16High,tissue: peripheral blood
+        H5 titolo        : CD16High, replicate 1
+        H5 caratteristiche: disease: COVID-19,neutrophils: CD16High,tissue: peripheral blood
+        H5 sorgente      : CD16High, replicate 1
+      GSM4668817
+        grezzo (Stadio 1): title: CD16High, replicate 2,source: CD16High, replicate 2,disease: COVID-19,neutrophils: CD16High,tissue: peripheral blood
+        H5 titolo        : CD16High, replicate 2
+        H5 caratteristiche: disease: COVID-19,neutrophils: CD16High,tissue: peripheral blood
+        H5 sorgente      : CD16High, replicate 2
+      GSM4668818
+        grezzo (Stadio 1): title: CD16High, replicate 3,source: CD16High, replicate 3,disease: COVID-19,neutrophils: CD16High,tissue: peripheral blood
+        H5 titolo        : CD16High, replicate 3
+        H5 caratteristiche: disease: COVID-19,neutrophils: CD16High,tissue: peripheral blood
+        H5 sorgente      : CD16High, replicate 3
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy NDN
+      gruppo Stadio 2: grp_0003
+      GSM4668814
+        grezzo (Stadio 1): title: Healthy donor, normal density neutrophils (NDN), replicate 2,source: Healthy donor, normal density neutrophils (NDN), replicate 2,disease: Healthy,neutrophils: NDN,tissue: peripheral blood
+        H5 titolo        : Healthy donor, normal density neutrophils (NDN), replicate 2
+        H5 caratteristiche: disease: Healthy,neutrophils: NDN,tissue: peripheral blood
+        H5 sorgente      : Healthy donor, normal density neutrophils (NDN), replicate 2
+      GSM4668815
+        grezzo (Stadio 1): title: Healthy donor, normal density neutrophils (NDN), replicate 3,source: Healthy donor, normal density neutrophils (NDN), replicate 3,disease: Healthy,neutrophils: NDN,tissue: peripheral blood
+        H5 titolo        : Healthy donor, normal density neutrophils (NDN), replicate 3
+        H5 caratteristiche: disease: Healthy,neutrophils: NDN,tissue: peripheral blood
+        H5 sorgente      : Healthy donor, normal density neutrophils (NDN), replicate 3
+
+CONFRONTO  GSE154311__GSE154311__grp_0002_vs_grp_0003__1
+  studio: GSE154311
+  TRATTATO  (n=3)  etichetta Stadio 2: COVID-19 CD16Int
+      gruppo Stadio 2: grp_0002
+      GSM4668819
+        grezzo (Stadio 1): title: CD16Int, replicate 1,source: CD16Int, replicate 1,disease: COVID-19,neutrophils: CD16Int,tissue: peripheral blood
+        H5 titolo        : CD16Int, replicate 1
+        H5 caratteristiche: disease: COVID-19,neutrophils: CD16Int,tissue: peripheral blood
+        H5 sorgente      : CD16Int, replicate 1
+      GSM4668820
+        grezzo (Stadio 1): title: CD16Int, replicate 2,source: CD16Int, replicate 2,disease: COVID-19,neutrophils: CD16Int,tissue: peripheral blood
+        H5 titolo        : CD16Int, replicate 2
+        H5 caratteristiche: disease: COVID-19,neutrophils: CD16Int,tissue: peripheral blood
+        H5 sorgente      : CD16Int, replicate 2
+      GSM4668821
+        grezzo (Stadio 1): title: CD16Int, replicate 3,source: CD16Int, replicate 3,disease: COVID-19,neutrophils: CD16Int,tissue: peripheral blood
+        H5 titolo        : CD16Int, replicate 3
+        H5 caratteristiche: disease: COVID-19,neutrophils: CD16Int,tissue: peripheral blood
+        H5 sorgente      : CD16Int, replicate 3
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy NDN
+      gruppo Stadio 2: grp_0003
+      GSM4668814
+        grezzo (Stadio 1): title: Healthy donor, normal density neutrophils (NDN), replicate 2,source: Healthy donor, normal density neutrophils (NDN), replicate 2,disease: Healthy,neutrophils: NDN,tissue: peripheral blood
+        H5 titolo        : Healthy donor, normal density neutrophils (NDN), replicate 2
+        H5 caratteristiche: disease: Healthy,neutrophils: NDN,tissue: peripheral blood
+        H5 sorgente      : Healthy donor, normal density neutrophils (NDN), replicate 2
+      GSM4668815
+        grezzo (Stadio 1): title: Healthy donor, normal density neutrophils (NDN), replicate 3,source: Healthy donor, normal density neutrophils (NDN), replicate 3,disease: Healthy,neutrophils: NDN,tissue: peripheral blood
+        H5 titolo        : Healthy donor, normal density neutrophils (NDN), replicate 3
+        H5 caratteristiche: disease: Healthy,neutrophils: NDN,tissue: peripheral blood
+        H5 sorgente      : Healthy donor, normal density neutrophils (NDN), replicate 3
+
+CONFRONTO  GSE159585__GSE159585__COVID-19_vs_Healthy_Control__1
+  studio: GSE159585
+  TRATTATO  (n=7)  etichetta Stadio 2: COVID-19
+      gruppo Stadio 2: grp_0001
+      GSM4832785
+        grezzo (Stadio 1): title: covid-19_pt1 [GC1003242],source: lung,condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 titolo        : covid-19_pt1 [GC1003242]
+        H5 caratteristiche: condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832786
+        grezzo (Stadio 1): title: covid-19_pt2 [GC1003243],source: lung,condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 titolo        : covid-19_pt2 [GC1003243]
+        H5 caratteristiche: condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832787
+        grezzo (Stadio 1): title: covid-19_pt3 [GC1003244],source: lung,condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 titolo        : covid-19_pt3 [GC1003244]
+        H5 caratteristiche: condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832788
+        grezzo (Stadio 1): title: covid-19_pt4 [GC1003245],source: lung,condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 titolo        : covid-19_pt4 [GC1003245]
+        H5 caratteristiche: condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832789
+        grezzo (Stadio 1): title: covid-19_pt5 [GC1003246],source: lung,condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 titolo        : covid-19_pt5 [GC1003246]
+        H5 caratteristiche: condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832790
+        grezzo (Stadio 1): title: covid-19_pt6 [GC1003247],source: lung,condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 titolo        : covid-19_pt6 [GC1003247]
+        H5 caratteristiche: condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832791
+        grezzo (Stadio 1): title: covid-19_pt7 [GC1003248],source: lung,condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 titolo        : covid-19_pt7 [GC1003248]
+        H5 caratteristiche: condition: COVID-19,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+  CONTROLLO  (n=13)  etichetta Stadio 2: Healthy Control
+      gruppo Stadio 2: grp_0003
+      GSM4832764
+        grezzo (Stadio 1): title: Non-COV24 [GC1003221],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV24 [GC1003221]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832765
+        grezzo (Stadio 1): title: Non-COV4 [GC1003222],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV4 [GC1003222]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832767
+        grezzo (Stadio 1): title: Non-COV1 [GC1003224],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV1 [GC1003224]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832768
+        grezzo (Stadio 1): title: Non-COV23 [GC1003225],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV23 [GC1003225]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832769
+        grezzo (Stadio 1): title: Non-COV22 [GC1003226],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV22 [GC1003226]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832770
+        grezzo (Stadio 1): title: Non-COV2 [GC1003227],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV2 [GC1003227]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832771
+        grezzo (Stadio 1): title: Non-COV3 [GC1003228],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV3 [GC1003228]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832772
+        grezzo (Stadio 1): title: Non-COV21 [GC1003229],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV21 [GC1003229]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832773
+        grezzo (Stadio 1): title: Non-COV20 [GC1003230],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV20 [GC1003230]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832774
+        grezzo (Stadio 1): title: Non-COV6 [GC1003231],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV6 [GC1003231]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832775
+        grezzo (Stadio 1): title: Non-COV5 [GC1003232],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV5 [GC1003232]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832776
+        grezzo (Stadio 1): title: Non-COV19 [GC1003233],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV19 [GC1003233]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+      GSM4832777
+        grezzo (Stadio 1): title: Non-COV18 [GC1003234],source: lung,condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 titolo        : Non-COV18 [GC1003234]
+        H5 caratteristiche: condition: non_covid_control,tissue: lung,sample type: autopsy
+        H5 sorgente      : lung
+
+CONFRONTO  GSE164332__GSE164332__grp_0001_vs_grp_0002__1
+  studio: GSE164332
+  TRATTATO  (n=2)  etichetta Stadio 2: COVID-19 Frontal Cortex
+      gruppo Stadio 2: grp_0001
+      GSM5006437
+        grezzo (Stadio 1): title: COV1: COVID sample 1,source: Frontal cortex,disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : COV1: COVID sample 1
+        H5 caratteristiche: disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+      GSM5006445
+        grezzo (Stadio 1): title: COV10: COVID sample 10,source: Frontal cortex,disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : COV10: COVID sample 10
+        H5 caratteristiche: disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy Control Frontal Cortex
+      gruppo Stadio 2: grp_0002
+      GSM5006430
+        grezzo (Stadio 1): title: BB47: CTRL sample 47,source: Frontal cortex,disease: Control,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : BB47: CTRL sample 47
+        H5 caratteristiche: disease: Control,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+      GSM5006434
+        grezzo (Stadio 1): title: BB236: CTRL sample 236,source: Frontal cortex,disease: Control,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : BB236: CTRL sample 236
+        H5 caratteristiche: disease: Control,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+
+CONFRONTO  GSE164332__GSE164332__grp_0005_vs_grp_0002__1
+  studio: GSE164332
+  TRATTATO  (n=6)  etichetta Stadio 2: COVID-19 Frontal Cortex
+      gruppo Stadio 2: grp_0005
+      GSM5006438
+        grezzo (Stadio 1): title: COV3: COVID sample 3,source: Frontal cortex,disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : COV3: COVID sample 3
+        H5 caratteristiche: disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+      GSM5006439
+        grezzo (Stadio 1): title: COV4: COVID sample 4,source: Frontal cortex,disease: COVID-19,dementia status: No Dementia,tissue: Frontal cortex
+        H5 titolo        : COV4: COVID sample 4
+        H5 caratteristiche: disease: COVID-19,dementia status: No Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+      GSM5006440
+        grezzo (Stadio 1): title: COV5: COVID sample 5,source: Frontal cortex,disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : COV5: COVID sample 5
+        H5 caratteristiche: disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+      GSM5006441
+        grezzo (Stadio 1): title: COV6: COVID sample 6,source: Frontal cortex,disease: COVID-19,dementia status: No Dementia,tissue: Frontal cortex
+        H5 titolo        : COV6: COVID sample 6
+        H5 caratteristiche: disease: COVID-19,dementia status: No Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+      GSM5006442
+        grezzo (Stadio 1): title: COV7: COVID sample 7,source: Frontal cortex,disease: COVID-19,dementia status: No Dementia,tissue: Frontal cortex
+        H5 titolo        : COV7: COVID sample 7
+        H5 caratteristiche: disease: COVID-19,dementia status: No Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+      GSM5006443
+        grezzo (Stadio 1): title: COV8: COVID sample 8,source: Frontal cortex,disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : COV8: COVID sample 8
+        H5 caratteristiche: disease: COVID-19,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy Control Frontal Cortex
+      gruppo Stadio 2: grp_0002
+      GSM5006430
+        grezzo (Stadio 1): title: BB47: CTRL sample 47,source: Frontal cortex,disease: Control,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : BB47: CTRL sample 47
+        H5 caratteristiche: disease: Control,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+      GSM5006434
+        grezzo (Stadio 1): title: BB236: CTRL sample 236,source: Frontal cortex,disease: Control,dementia status: Dementia,tissue: Frontal cortex
+        H5 titolo        : BB236: CTRL sample 236
+        H5 caratteristiche: disease: Control,dementia status: Dementia,tissue: Frontal cortex
+        H5 sorgente      : Frontal cortex
+
+CONFRONTO  GSE183533__GSE183533__grp_0001_vs_grp_0002__1
+  studio: GSE183533
+  TRATTATO  (n=31)  etichetta Stadio 2: COVID-19 infected lung tissue
+      gruppo Stadio 2: grp_0001
+      GSM5558945
+        grezzo (Stadio 1): title: covid-19_lung_cov2,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov2
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558946
+        grezzo (Stadio 1): title: covid-19_lung_cov8,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov8
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558947
+        grezzo (Stadio 1): title: covid-19_lung_cov11,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov11
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558948
+        grezzo (Stadio 1): title: covid-19_lung_cov16,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov16
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558949
+        grezzo (Stadio 1): title: covid-19_lung_cov18,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov18
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558950
+        grezzo (Stadio 1): title: covid-19_lung_cov19,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov19
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558951
+        grezzo (Stadio 1): title: covid-19_lung_cov20,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov20
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558952
+        grezzo (Stadio 1): title: covid-19_lung_cov23,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov23
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558953
+        grezzo (Stadio 1): title: covid-19_lung_cov26,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov26
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558954
+        grezzo (Stadio 1): title: covid-19_lung_cov27,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov27
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558955
+        grezzo (Stadio 1): title: covid-19_lung_cov30,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov30
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558956
+        grezzo (Stadio 1): title: covid-19_lung_cov6,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov6
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558957
+        grezzo (Stadio 1): title: covid-19_lung_cov21,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov21
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558958
+        grezzo (Stadio 1): title: covid-19_lung_cov22,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov22
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558959
+        grezzo (Stadio 1): title: covid-19_lung_cov25,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov25
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558960
+        grezzo (Stadio 1): title: covid-19_lung_cov32,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov32
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558961
+        grezzo (Stadio 1): title: covid-19_lung_cov33,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov33
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558962
+        grezzo (Stadio 1): title: covid-19_lung_cov36,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov36
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558963
+        grezzo (Stadio 1): title: covid-19_lung_cov38,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov38
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558964
+        grezzo (Stadio 1): title: covid-19_lung_cov39,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov39
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558965
+        grezzo (Stadio 1): title: covid-19_lung_cov40,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov40
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558966
+        grezzo (Stadio 1): title: covid-19_lung_cov41,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov41
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558967
+        grezzo (Stadio 1): title: covid-19_lung_cov42,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov42
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558968
+        grezzo (Stadio 1): title: covid-19_lung_cov47,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov47
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558969
+        grezzo (Stadio 1): title: covid-19_lung_cov48,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov48
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558970
+        grezzo (Stadio 1): title: covid-19_lung_cov49,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov49
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558971
+        grezzo (Stadio 1): title: covid-19_lung_cov50,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov50
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558972
+        grezzo (Stadio 1): title: covid-19_lung_cov53,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov53
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558973
+        grezzo (Stadio 1): title: covid-19_lung_cov54,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov54
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558974
+        grezzo (Stadio 1): title: covid-19_lung_cov55,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov55
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+      GSM5558975
+        grezzo (Stadio 1): title: covid-19_lung_cov60,source: Dead covid-19 patient lung,tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 titolo        : covid-19_lung_cov60
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: covid-19
+        H5 sorgente      : Dead covid-19 patient lung
+  CONTROLLO  (n=3)  etichetta Stadio 2: Healthy male lung tissue
+      gruppo Stadio 2: grp_0002
+      GSM5558935
+        grezzo (Stadio 1): title: Normal_lung_N10,source: normal human lung,tissue: lung tissue,gender: Male,disease state: normal
+        H5 titolo        : Normal_lung_N10
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: normal
+        H5 sorgente      : normal human lung
+      GSM5558936
+        grezzo (Stadio 1): title: Normal_lung_N11,source: normal human lung,tissue: lung tissue,gender: Male,disease state: normal
+        H5 titolo        : Normal_lung_N11
+        H5 caratteristiche: tissue: lung tissue,gender: Male,disease state: normal
+        H5 sorgente      : normal human lung
+      GSM5558941
+        grezzo (Stadio 1): title: Normal_lung_7N,source: normal human lung,tissue: lung tissue,gender: Female,disease state: normal
+        H5 titolo        : Normal_lung_7N
+        H5 caratteristiche: tissue: lung tissue,gender: Female,disease state: normal
+        H5 sorgente      : normal human lung
+
+CONFRONTO  GSE189199__GSE189199__grp_0003_vs_grp_0002__1
+  studio: GSE189199
+  TRATTATO  (n=21)  etichetta Stadio 2: COVID-19 lymph node
+      gruppo Stadio 2: grp_0003
+      GSM5695996
+        grezzo (Stadio 1): title: 178-A031846,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031846
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5695997
+        grezzo (Stadio 1): title: 178-A031847,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031847
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5695998
+        grezzo (Stadio 1): title: 178-A031849,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031849
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696000
+        grezzo (Stadio 1): title: 178-A031851,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031851
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696001
+        grezzo (Stadio 1): title: 178-A031852,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031852
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696002
+        grezzo (Stadio 1): title: 178-A031853,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031853
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696003
+        grezzo (Stadio 1): title: 178-A031855,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031855
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696004
+        grezzo (Stadio 1): title: 178-A031856,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031856
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696005
+        grezzo (Stadio 1): title: 178-A031858,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031858
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696006
+        grezzo (Stadio 1): title: 178-A031861,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031861
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696007
+        grezzo (Stadio 1): title: 178-A031862,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031862
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696008
+        grezzo (Stadio 1): title: 178-A031866,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031866
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696009
+        grezzo (Stadio 1): title: 178-A031868,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031868
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696016
+        grezzo (Stadio 1): title: 178-A031880,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031880
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696025
+        grezzo (Stadio 1): title: 178-A031897,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031897
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696026
+        grezzo (Stadio 1): title: 178-A031898,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031898
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696033
+        grezzo (Stadio 1): title: 178-A031907,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031907
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696034
+        grezzo (Stadio 1): title: 178-A031908,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031908
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696035
+        grezzo (Stadio 1): title: 178-A031909,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031909
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696043
+        grezzo (Stadio 1): title: 178-A031918,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031918
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+      GSM5696044
+        grezzo (Stadio 1): title: 178-A031919,source: COVID-19_lymph node,group: COVID-19,tissue: lymph node
+        H5 titolo        : 178-A031919
+        H5 caratteristiche: group: COVID-19,tissue: lymph node
+        H5 sorgente      : COVID-19_lymph node
+  CONTROLLO  (n=28)  etichetta Stadio 2: Healthy lymph node
+      gruppo Stadio 2: grp_0002
+      GSM5696010
+        grezzo (Stadio 1): title: 178-A031869,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031869
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696011
+        grezzo (Stadio 1): title: 178-A031871,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031871
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696012
+        grezzo (Stadio 1): title: 178-A031872,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031872
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696013
+        grezzo (Stadio 1): title: 178-A031873,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031873
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696014
+        grezzo (Stadio 1): title: 178-A031874,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031874
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696015
+        grezzo (Stadio 1): title: 178-A031878,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031878
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696017
+        grezzo (Stadio 1): title: 178-A031881,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031881
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696018
+        grezzo (Stadio 1): title: 178-A031882,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031882
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696019
+        grezzo (Stadio 1): title: 178-A031884,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031884
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696020
+        grezzo (Stadio 1): title: 178-A031885,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031885
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696021
+        grezzo (Stadio 1): title: 178-A031887,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031887
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696022
+        grezzo (Stadio 1): title: 178-A031889,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031889
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696023
+        grezzo (Stadio 1): title: 178-A031890,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031890
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696024
+        grezzo (Stadio 1): title: 178-A031892,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031892
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696027
+        grezzo (Stadio 1): title: 178-A031901,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031901
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696028
+        grezzo (Stadio 1): title: 178-A031902,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031902
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696029
+        grezzo (Stadio 1): title: 178-A031903,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031903
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696030
+        grezzo (Stadio 1): title: 178-A031904,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031904
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696031
+        grezzo (Stadio 1): title: 178-A031905,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031905
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696032
+        grezzo (Stadio 1): title: 178-A031906,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031906
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696036
+        grezzo (Stadio 1): title: 178-A031910,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031910
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696037
+        grezzo (Stadio 1): title: 178-A031911,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031911
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696038
+        grezzo (Stadio 1): title: 178-A031912,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031912
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696039
+        grezzo (Stadio 1): title: 178-A031914,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031914
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696040
+        grezzo (Stadio 1): title: 178-A031915,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031915
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696041
+        grezzo (Stadio 1): title: 178-A031916,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031916
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696042
+        grezzo (Stadio 1): title: 178-A031917,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031917
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+      GSM5696045
+        grezzo (Stadio 1): title: 178-A031921,source: Control_lymph node,group: Control,tissue: lymph node
+        H5 titolo        : 178-A031921
+        H5 caratteristiche: group: Control,tissue: lymph node
+        H5 sorgente      : Control_lymph node
+
+CONFRONTO  GSE190496__GSE190496__grp_0002_vs_grp_0008__1
+  studio: GSE190496
+  TRATTATO  (n=5)  etichetta Stadio 2: COVID-19 Bronchoalveolar Lavage
+      gruppo Stadio 2: grp_0002
+      GSM5724772
+        grezzo (Stadio 1): title: CB1,source: FFPE COVI19 Patient brochoalveolar lavage cells,tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 titolo        : CB1
+        H5 caratteristiche: tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE COVI19 Patient brochoalveolar lavage cells
+      GSM5724773
+        grezzo (Stadio 1): title: CB2,source: FFPE COVI19 Patient brochoalveolar lavage cells,tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 titolo        : CB2
+        H5 caratteristiche: tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE COVI19 Patient brochoalveolar lavage cells
+      GSM5724775
+        grezzo (Stadio 1): title: Cb4,source: FFPE COVI19 Patient brochoalveolar lavage cells,tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 titolo        : Cb4
+        H5 caratteristiche: tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE COVI19 Patient brochoalveolar lavage cells
+      GSM5724776
+        grezzo (Stadio 1): title: CB5,source: FFPE COVI19 Patient brochoalveolar lavage cells,tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 titolo        : CB5
+        H5 caratteristiche: tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE COVI19 Patient brochoalveolar lavage cells
+      GSM5724779
+        grezzo (Stadio 1): title: CB8,source: FFPE COVI19 Patient brochoalveolar lavage cells,tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 titolo        : CB8
+        H5 caratteristiche: tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE COVI19 Patient brochoalveolar lavage cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy Normal Human Bronchoalveolar Lavage Cells
+      gruppo Stadio 2: grp_0008
+      GSM5724767
+        grezzo (Stadio 1): title: NB1,source: FFPE Normal human brochoalveolar lavage cells,tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 titolo        : NB1
+        H5 caratteristiche: tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE Normal human brochoalveolar lavage cells
+      GSM5724771
+        grezzo (Stadio 1): title: NB5,source: FFPE Normal human brochoalveolar lavage cells,tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 titolo        : NB5
+        H5 caratteristiche: tissue: bronchoalveolar lavage,tissue processing: FFPE and sectioned cell pellets,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE Normal human brochoalveolar lavage cells
+
+CONFRONTO  GSE190496__GSE190496__grp_0005_vs_grp_0009__1
+  studio: GSE190496
+  TRATTATO  (n=8)  etichetta Stadio 2: COVID-19 Lung Tissue
+      gruppo Stadio 2: grp_0005
+      GSM5724756
+        grezzo (Stadio 1): title: C2,source: FFPE COVID19 patient lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 titolo        : C2
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 sorgente      : FFPE COVID19 patient lung
+      GSM5724757
+        grezzo (Stadio 1): title: C3,source: FFPE COVID19 patient lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 titolo        : C3
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 sorgente      : FFPE COVID19 patient lung
+      GSM5724758
+        grezzo (Stadio 1): title: C4,source: FFPE COVID19 patient lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 titolo        : C4
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 sorgente      : FFPE COVID19 patient lung
+      GSM5724759
+        grezzo (Stadio 1): title: C5,source: FFPE COVID19 patient lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 titolo        : C5
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 sorgente      : FFPE COVID19 patient lung
+      GSM5724761
+        grezzo (Stadio 1): title: C7,source: FFPE COVID19 patient lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 titolo        : C7
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 sorgente      : FFPE COVID19 patient lung
+      GSM5724763
+        grezzo (Stadio 1): title: C11,source: FFPE COVID19 patient lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 titolo        : C11
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 sorgente      : FFPE COVID19 patient lung
+      GSM5724764
+        grezzo (Stadio 1): title: C12,source: FFPE COVID19 patient lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 titolo        : C12
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 sorgente      : FFPE COVID19 patient lung
+      GSM5724766
+        grezzo (Stadio 1): title: C14,source: FFPE COVID19 patient lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 titolo        : C14
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: COVID-19,tissue from postmortem or living patient: Postmortem
+        H5 sorgente      : FFPE COVID19 patient lung
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy Normal Human Lung
+      gruppo Stadio 2: grp_0009
+      GSM5724750
+        grezzo (Stadio 1): title: N1,source: FFPE Normal human lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 titolo        : N1
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE Normal human lung
+      GSM5724752
+        grezzo (Stadio 1): title: N3,source: FFPE Normal human lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 titolo        : N3
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE Normal human lung
+      GSM5724753
+        grezzo (Stadio 1): title: N4,source: FFPE Normal human lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 titolo        : N4
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE Normal human lung
+      GSM5724754
+        grezzo (Stadio 1): title: N5,source: FFPE Normal human lung,tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 titolo        : N5
+        H5 caratteristiche: tissue: lung,tissue processing: FFPE tissue section,normal vs covid-19: Normal,tissue from postmortem or living patient: Living
+        H5 sorgente      : FFPE Normal human lung
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE154311     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE159585     campioni nell'H5:   53 | collocati dallo Stadio 2:   28 | MAI COLLOCATI:   25 | usati in questa meta-analisi: 20 campioni distinti (20 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5068919, GSM5068920, GSM5068921, GSM5068922, GSM5068923, GSM5068924, GSM5068925, GSM5068926, GSM5068927, GSM5068928, GSM5068929, GSM5068930 ... (+13)
+  GSE164332     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE183533     campioni nell'H5:   41 | collocati dallo Stadio 2:   41 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 34 campioni distinti (34 righe: i controlli servono piu' confronti)
+  GSE189199     campioni nell'H5:   50 | collocati dallo Stadio 2:   50 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 49 campioni distinti (49 righe: i controlli servono piu' confronti)
+  GSE190496     campioni nell'H5:   29 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    5 | usati in questa meta-analisi: 19 campioni distinti (19 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5724765, GSM5724769, GSM5724774, GSM5724777, GSM5724778
+

@@ -1,0 +1,716 @@
+META-ANALISI 077 di 194
+==============================================================================
+nome            : heart failure
+entita (ID)     : STR:heart_failure
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_dd2a1a58
+studi poolati   : 5   confronti: 9   campioni: 124
+geni significativi: 3034   I2 mediano: 40.8
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE138252__GSE138252__group_0021_vs_group_0001__1
+  studio: GSE138252
+  TRATTATO  (n=3)  etichetta Stadio 2: Heart Failure Heart Left Atrium
+      gruppo Stadio 2: group_0021
+      GSM4775487
+        grezzo (Stadio 1): title: Heart Failure only LA biological replicate 1,source: Heart,tissue: Heart left atrium
+        H5 titolo        : Heart Failure only LA biological replicate 1
+        H5 caratteristiche: tissue: Heart left atrium
+        H5 sorgente      : Heart
+      GSM4775489
+        grezzo (Stadio 1): title: Heart Failure only LA biological replicate 2,source: Heart,tissue: Heart left atrium
+        H5 titolo        : Heart Failure only LA biological replicate 2
+        H5 caratteristiche: tissue: Heart left atrium
+        H5 sorgente      : Heart
+      GSM4775491
+        grezzo (Stadio 1): title: Heart Failure only LA biological replicate 3,source: Heart,tissue: Heart left atrium
+        H5 titolo        : Heart Failure only LA biological replicate 3
+        H5 caratteristiche: tissue: Heart left atrium
+        H5 sorgente      : Heart
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control Heart Left Atrium
+      gruppo Stadio 2: group_0001
+      GSM4775493
+        grezzo (Stadio 1): title: Control LA biological replicate 1,source: Heart,tissue: Heart left atrium
+        H5 titolo        : Control LA biological replicate 1
+        H5 caratteristiche: tissue: Heart left atrium
+        H5 sorgente      : Heart
+      GSM4775495
+        grezzo (Stadio 1): title: Control LA biological replicate 2,source: Heart,tissue: Heart left atrium
+        H5 titolo        : Control LA biological replicate 2
+        H5 caratteristiche: tissue: Heart left atrium
+        H5 sorgente      : Heart
+      GSM4775499
+        grezzo (Stadio 1): title: Control LA biological replicate 4,source: Heart,tissue: Heart left atrium
+        H5 titolo        : Control LA biological replicate 4
+        H5 caratteristiche: tissue: Heart left atrium
+        H5 sorgente      : Heart
+
+CONFRONTO  GSE138252__GSE138252__group_0022_vs_group_0023__1
+  studio: GSE138252
+  TRATTATO  (n=3)  etichetta Stadio 2: Heart Failure Heart Right Atrium
+      gruppo Stadio 2: group_0022
+      GSM4775488
+        grezzo (Stadio 1): title: Heart Failure only RA biological replicate 1,source: Heart,tissue: Heart right atrium
+        H5 titolo        : Heart Failure only RA biological replicate 1
+        H5 caratteristiche: tissue: Heart right atrium
+        H5 sorgente      : Heart
+      GSM4775490
+        grezzo (Stadio 1): title: Heart Failure only RA biological replicate 2,source: Heart,tissue: Heart right atrium
+        H5 titolo        : Heart Failure only RA biological replicate 2
+        H5 caratteristiche: tissue: Heart right atrium
+        H5 sorgente      : Heart
+      GSM4775492
+        grezzo (Stadio 1): title: Heart Failure only RA biological replicate 3,source: Heart,tissue: Heart right atrium
+        H5 titolo        : Heart Failure only RA biological replicate 3
+        H5 caratteristiche: tissue: Heart right atrium
+        H5 sorgente      : Heart
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control Heart Right Atrium
+      gruppo Stadio 2: group_0023
+      GSM4775498
+        grezzo (Stadio 1): title: Control RA biological replicate 3,source: Heart,tissue: Heart right atrium
+        H5 titolo        : Control RA biological replicate 3
+        H5 caratteristiche: tissue: Heart right atrium
+        H5 sorgente      : Heart
+      GSM4775500
+        grezzo (Stadio 1): title: Control RA biological replicate 4,source: Heart,tissue: Heart right atrium
+        H5 titolo        : Control RA biological replicate 4
+        H5 caratteristiche: tissue: Heart right atrium
+        H5 sorgente      : Heart
+      GSM4775506
+        grezzo (Stadio 1): title: Control RA biological replicate 7,source: Heart,tissue: Heart right atrium
+        H5 titolo        : Control RA biological replicate 7
+        H5 caratteristiche: tissue: Heart right atrium
+        H5 sorgente      : Heart
+
+CONFRONTO  GSE145154__GSE145154__grp_0005_vs_grp_0006__1
+  studio: GSE145154
+  TRATTATO  (n=52)  etichetta Stadio 2: Whole cells from left ventricle (heart failure)
+      gruppo Stadio 2: grp_0005
+      GSM4307557
+        grezzo (Stadio 1): title: BRCM-1 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-1 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307558
+        grezzo (Stadio 1): title: BRCM-2 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-2 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307559
+        grezzo (Stadio 1): title: BRCM-3 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-3 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307560
+        grezzo (Stadio 1): title: BRCM-4 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-4 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307561
+        grezzo (Stadio 1): title: BRCM-5 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-5 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307562
+        grezzo (Stadio 1): title: BRCM-6 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-6 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307563
+        grezzo (Stadio 1): title: BRCM-7 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-7 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307564
+        grezzo (Stadio 1): title: BRCM-8 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-8 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307565
+        grezzo (Stadio 1): title: BRCM-9 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-9 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307566
+        grezzo (Stadio 1): title: BRCM-10 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-10 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307567
+        grezzo (Stadio 1): title: BRCM-13 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-13 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307569
+        grezzo (Stadio 1): title: BRCM-15 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-15 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307570
+        grezzo (Stadio 1): title: BRCM-16 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-16 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307571
+        grezzo (Stadio 1): title: BRCM-17 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-17 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307572
+        grezzo (Stadio 1): title: BRCM-18 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-18 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307573
+        grezzo (Stadio 1): title: BRCM-19 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-19 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307574
+        grezzo (Stadio 1): title: BRCM-20 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-20 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307575
+        grezzo (Stadio 1): title: BRCM-21 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-21 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307576
+        grezzo (Stadio 1): title: BRCM-23 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-23 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307577
+        grezzo (Stadio 1): title: BRCM-24 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-24 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307578
+        grezzo (Stadio 1): title: BRCM-25 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-25 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307579
+        grezzo (Stadio 1): title: BRCM-27 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-27 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307580
+        grezzo (Stadio 1): title: BRCM-28 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-28 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307581
+        grezzo (Stadio 1): title: BRCM-29 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-29 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307582
+        grezzo (Stadio 1): title: BRCM-30 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-30 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307583
+        grezzo (Stadio 1): title: BRCM-31 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-31 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307584
+        grezzo (Stadio 1): title: BRCM-32 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-32 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307585
+        grezzo (Stadio 1): title: BRCM-33 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-33 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307586
+        grezzo (Stadio 1): title: BRCM-34 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-34 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307587
+        grezzo (Stadio 1): title: BRCM-35 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-35 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307588
+        grezzo (Stadio 1): title: BRCM-36 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-36 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307589
+        grezzo (Stadio 1): title: BRCM-37 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-37 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307590
+        grezzo (Stadio 1): title: BRCM-38 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-38 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307591
+        grezzo (Stadio 1): title: BRCM-39 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-39 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307592
+        grezzo (Stadio 1): title: BRCM-40 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-40 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307593
+        grezzo (Stadio 1): title: BRCM-41 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-41 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307594
+        grezzo (Stadio 1): title: BRCM-42 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-42 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307595
+        grezzo (Stadio 1): title: BRCM-43 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-43 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307596
+        grezzo (Stadio 1): title: BRCM-44 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-44 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307597
+        grezzo (Stadio 1): title: BRCM-45 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-45 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307598
+        grezzo (Stadio 1): title: BRCM-46 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-46 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307599
+        grezzo (Stadio 1): title: BRCM-47 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-47 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307600
+        grezzo (Stadio 1): title: BRCM-48 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-48 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307601
+        grezzo (Stadio 1): title: BRCM-49 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-49 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307602
+        grezzo (Stadio 1): title: BRCM-50 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-50 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307603
+        grezzo (Stadio 1): title: BRCM-51 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-51 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307604
+        grezzo (Stadio 1): title: BRCM-52 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-52 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307605
+        grezzo (Stadio 1): title: BRCM-53 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-53 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307606
+        grezzo (Stadio 1): title: BRCM-55 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-55 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307607
+        grezzo (Stadio 1): title: BRCM-56 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-56 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307621
+        grezzo (Stadio 1): title: BRCM-73 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-73 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307622
+        grezzo (Stadio 1): title: BRCM-78 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-78 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, heart failure,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+  CONTROLLO  (n=15)  etichetta Stadio 2: Whole cells from left ventricle (healthy)
+      gruppo Stadio 2: grp_0006
+      GSM4307568
+        grezzo (Stadio 1): title: BRCM-14 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-14 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307608
+        grezzo (Stadio 1): title: BRCM-57 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-57 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307609
+        grezzo (Stadio 1): title: BRCM-58 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-58 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307610
+        grezzo (Stadio 1): title: BRCM-60 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-60 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307611
+        grezzo (Stadio 1): title: BRCM-61 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-61 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307612
+        grezzo (Stadio 1): title: BRCM-62 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-62 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307613
+        grezzo (Stadio 1): title: BRCM-64 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-64 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307614
+        grezzo (Stadio 1): title: BRCM-65 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-65 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307615
+        grezzo (Stadio 1): title: BRCM-66 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-66 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307616
+        grezzo (Stadio 1): title: BRCM-67 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-67 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307617
+        grezzo (Stadio 1): title: BRCM-68 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-68 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307618
+        grezzo (Stadio 1): title: BRCM-69 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-69 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307619
+        grezzo (Stadio 1): title: BRCM-70 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-70 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307620
+        grezzo (Stadio 1): title: BRCM-71 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-71 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+      GSM4307623
+        grezzo (Stadio 1): title: BRCM-82 tissue bulk RNA,source: Myocardium,cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 titolo        : BRCM-82 tissue bulk RNA
+        H5 caratteristiche: cell type: whole cells,tissue: heart,tissue type: left ventricle, normal heart,other: bulk RNAseq (total mRNA)
+        H5 sorgente      : Myocardium
+
+CONFRONTO  GSE147236__GSE147236__Heart_Failure_vs_Healthy__1
+  studio: GSE147236
+  TRATTATO  (n=2)  etichetta Stadio 2: Heart Failure Case 1
+      gruppo Stadio 2: grp_0001
+      GSM4421324
+        grezzo (Stadio 1): title: Failed Ventricle 1 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Heart Failure
+        H5 titolo        : Failed Ventricle 1 CAGE-Seq
+        H5 caratteristiche: phenotype: Heart Failure
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421326
+        grezzo (Stadio 1): title: Failed Ventricle 3 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Heart Failure
+        H5 titolo        : Failed Ventricle 3 CAGE-Seq
+        H5 caratteristiche: phenotype: Heart Failure
+        H5 sorgente      : Human Left Ventrice Tissue
+  CONTROLLO  (n=6)  etichetta Stadio 2: Healthy Control
+      gruppo Stadio 2: grp_0005
+      GSM4421321
+        grezzo (Stadio 1): title: Healthy Ventricle 1 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 1 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421322
+        grezzo (Stadio 1): title: Healthy Ventricle 2 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 2 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421323
+        grezzo (Stadio 1): title: Healthy Ventricle 3 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 3 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421328
+        grezzo (Stadio 1): title: Healthy Ventricle 1 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 1 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421329
+        grezzo (Stadio 1): title: Healthy Ventricle 2 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 2 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421330
+        grezzo (Stadio 1): title: Healthy Ventricle 3 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 3 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+
+CONFRONTO  GSE147236__GSE147236__Heart_Failure_vs_Healthy__2
+  studio: GSE147236
+  TRATTATO  (n=2)  etichetta Stadio 2: Heart Failure Case 2
+      gruppo Stadio 2: grp_0002
+      GSM4421325
+        grezzo (Stadio 1): title: Failed Ventricle 2 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Heart Failure
+        H5 titolo        : Failed Ventricle 2 CAGE-Seq
+        H5 caratteristiche: phenotype: Heart Failure
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421327
+        grezzo (Stadio 1): title: Failed Ventricle 4 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Heart Failure
+        H5 titolo        : Failed Ventricle 4 CAGE-Seq
+        H5 caratteristiche: phenotype: Heart Failure
+        H5 sorgente      : Human Left Ventrice Tissue
+  CONTROLLO  (n=6)  etichetta Stadio 2: Healthy Control
+      gruppo Stadio 2: grp_0005
+      GSM4421321
+        grezzo (Stadio 1): title: Healthy Ventricle 1 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 1 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421322
+        grezzo (Stadio 1): title: Healthy Ventricle 2 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 2 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421323
+        grezzo (Stadio 1): title: Healthy Ventricle 3 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 3 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421328
+        grezzo (Stadio 1): title: Healthy Ventricle 1 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 1 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421329
+        grezzo (Stadio 1): title: Healthy Ventricle 2 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 2 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421330
+        grezzo (Stadio 1): title: Healthy Ventricle 3 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 3 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+
+CONFRONTO  GSE147236__GSE147236__Heart_Failure_vs_Healthy__3
+  studio: GSE147236
+  TRATTATO  (n=2)  etichetta Stadio 2: Heart Failure Case 3
+      gruppo Stadio 2: grp_0003
+      GSM4421331
+        grezzo (Stadio 1): title: Failed Ventricle 1 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Heart Failure
+        H5 titolo        : Failed Ventricle 1 RNA-Seq
+        H5 caratteristiche: phenotype: Heart Failure
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421333
+        grezzo (Stadio 1): title: Failed Ventricle 3 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Heart Failure
+        H5 titolo        : Failed Ventricle 3 RNA-Seq
+        H5 caratteristiche: phenotype: Heart Failure
+        H5 sorgente      : Human Left Ventrice Tissue
+  CONTROLLO  (n=6)  etichetta Stadio 2: Healthy Control
+      gruppo Stadio 2: grp_0005
+      GSM4421321
+        grezzo (Stadio 1): title: Healthy Ventricle 1 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 1 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421322
+        grezzo (Stadio 1): title: Healthy Ventricle 2 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 2 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421323
+        grezzo (Stadio 1): title: Healthy Ventricle 3 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 3 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421328
+        grezzo (Stadio 1): title: Healthy Ventricle 1 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 1 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421329
+        grezzo (Stadio 1): title: Healthy Ventricle 2 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 2 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421330
+        grezzo (Stadio 1): title: Healthy Ventricle 3 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 3 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+
+CONFRONTO  GSE147236__GSE147236__Heart_Failure_vs_Healthy__4
+  studio: GSE147236
+  TRATTATO  (n=2)  etichetta Stadio 2: Heart Failure Case 4
+      gruppo Stadio 2: grp_0004
+      GSM4421332
+        grezzo (Stadio 1): title: Failed Ventricle 2 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Heart Failure
+        H5 titolo        : Failed Ventricle 2 RNA-Seq
+        H5 caratteristiche: phenotype: Heart Failure
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421334
+        grezzo (Stadio 1): title: Failed Ventricle 4 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Heart Failure
+        H5 titolo        : Failed Ventricle 4 RNA-Seq
+        H5 caratteristiche: phenotype: Heart Failure
+        H5 sorgente      : Human Left Ventrice Tissue
+  CONTROLLO  (n=6)  etichetta Stadio 2: Healthy Control
+      gruppo Stadio 2: grp_0005
+      GSM4421321
+        grezzo (Stadio 1): title: Healthy Ventricle 1 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 1 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421322
+        grezzo (Stadio 1): title: Healthy Ventricle 2 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 2 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421323
+        grezzo (Stadio 1): title: Healthy Ventricle 3 CAGE-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 3 CAGE-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421328
+        grezzo (Stadio 1): title: Healthy Ventricle 1 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 1 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421329
+        grezzo (Stadio 1): title: Healthy Ventricle 2 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 2 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+      GSM4421330
+        grezzo (Stadio 1): title: Healthy Ventricle 3 RNA-Seq,source: Human Left Ventrice Tissue,phenotype: Healthy
+        H5 titolo        : Healthy Ventricle 3 RNA-Seq
+        H5 caratteristiche: phenotype: Healthy
+        H5 sorgente      : Human Left Ventrice Tissue
+
+CONFRONTO  GSE175764__GSE175764__grp_0001_vs_grp_0002__1
+  studio: GSE175764
+  TRATTATO  (n=4)  etichetta Stadio 2: Heart failure
+      gruppo Stadio 2: grp_0001
+      GSM5346050
+        grezzo (Stadio 1): title: Heart failure [2-044LV],source: Human whole heart,tissue: Whole heart,diagnosis: Heart failure
+        H5 titolo        : Heart failure [2-044LV]
+        H5 caratteristiche: tissue: Whole heart,diagnosis: Heart failure
+        H5 sorgente      : Human whole heart
+      GSM5346051
+        grezzo (Stadio 1): title: Heart failure [2-048LV],source: Human whole heart,tissue: Whole heart,diagnosis: Heart failure
+        H5 titolo        : Heart failure [2-048LV]
+        H5 caratteristiche: tissue: Whole heart,diagnosis: Heart failure
+        H5 sorgente      : Human whole heart
+      GSM5346054
+        grezzo (Stadio 1): title: Heart failure [4-070LV11],source: Human whole heart,tissue: Whole heart,diagnosis: Heart failure
+        H5 titolo        : Heart failure [4-070LV11]
+        H5 caratteristiche: tissue: Whole heart,diagnosis: Heart failure
+        H5 sorgente      : Human whole heart
+      GSM5346058
+        grezzo (Stadio 1): title: Heart failure [7-0201HD],source: Human whole heart,tissue: Whole heart,diagnosis: Heart failure
+        H5 titolo        : Heart failure [7-0201HD]
+        H5 caratteristiche: tissue: Whole heart,diagnosis: Heart failure
+        H5 sorgente      : Human whole heart
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy control
+      gruppo Stadio 2: grp_0002
+      GSM5346053
+        grezzo (Stadio 1): title: Control [4-062LV19],source: Human whole heart,tissue: Whole heart,diagnosis: Healthy
+        H5 titolo        : Control [4-062LV19]
+        H5 caratteristiche: tissue: Whole heart,diagnosis: Healthy
+        H5 sorgente      : Human whole heart
+      GSM5346055
+        grezzo (Stadio 1): title: Control [4-083LV3],source: Human whole heart,tissue: Whole heart,diagnosis: Healthy
+        H5 titolo        : Control [4-083LV3]
+        H5 caratteristiche: tissue: Whole heart,diagnosis: Healthy
+        H5 sorgente      : Human whole heart
+      GSM5346056
+        grezzo (Stadio 1): title: Control [6-038LV14],source: Human whole heart,tissue: Whole heart,diagnosis: Healthy
+        H5 titolo        : Control [6-038LV14]
+        H5 caratteristiche: tissue: Whole heart,diagnosis: Healthy
+        H5 sorgente      : Human whole heart
+      GSM5346059
+        grezzo (Stadio 1): title: Control [7044M63],source: Human whole heart,tissue: Whole heart,diagnosis: Healthy
+        H5 titolo        : Control [7044M63]
+        H5 caratteristiche: tissue: Whole heart,diagnosis: Healthy
+        H5 sorgente      : Human whole heart
+
+CONFRONTO  GSE196656__GSE196656__grp_0002_vs_grp_0005__1
+  studio: GSE196656
+  TRATTATO  (n=3)  etichetta Stadio 2: Heart failure patient (age 82)
+      gruppo Stadio 2: grp_0002
+      GSM5897796
+        grezzo (Stadio 1): title: heart failure atient group (GH) [H3-BA],source: heart failure atient group (GH),tissue: blood,subject status: heart failure atient,age: 82
+        H5 titolo        : heart failure atient group (GH) [H3-BA]
+        H5 caratteristiche: tissue: blood,subject status: heart failure atient,age: 82
+        H5 sorgente      : heart failure atient group (GH)
+      GSM5897797
+        grezzo (Stadio 1): title: heart failure atient group (GH) [H4-BA],source: heart failure atient group (GH),tissue: blood,subject status: heart failure atient,age: 69
+        H5 titolo        : heart failure atient group (GH) [H4-BA]
+        H5 caratteristiche: tissue: blood,subject status: heart failure atient,age: 69
+        H5 sorgente      : heart failure atient group (GH)
+      GSM5897798
+        grezzo (Stadio 1): title: heart failure atient group (GH) [H5-BA],source: heart failure atient group (GH),tissue: blood,subject status: heart failure atient,age: 80
+        H5 titolo        : heart failure atient group (GH) [H5-BA]
+        H5 caratteristiche: tissue: blood,subject status: heart failure atient,age: 80
+        H5 sorgente      : heart failure atient group (GH)
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy control group (GD) (age 81)
+      gruppo Stadio 2: grp_0005
+      GSM5897790
+        grezzo (Stadio 1): title: healthy controls group (GD) [D1-BA],source: healthy controls group (GD),tissue: blood,subject status: healthy controls,age: 81
+        H5 titolo        : healthy controls group (GD) [D1-BA]
+        H5 caratteristiche: tissue: blood,subject status: healthy controls,age: 81
+        H5 sorgente      : healthy controls group (GD)
+      GSM5897791
+        grezzo (Stadio 1): title: healthy controls group (GD) [D2-BA],source: healthy controls group (GD),tissue: blood,subject status: healthy controls,age: 54
+        H5 titolo        : healthy controls group (GD) [D2-BA]
+        H5 caratteristiche: tissue: blood,subject status: healthy controls,age: 54
+        H5 sorgente      : healthy controls group (GD)
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE138252     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+  GSE145154     campioni nell'H5:   79 | collocati dallo Stadio 2:   73 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 67 campioni distinti (67 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4307545, GSM4307546, GSM4307549, GSM4307550, GSM4307551, GSM4307552
+  GSE147236     campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 14 campioni distinti (32 righe: i controlli servono piu' confronti)
+  GSE175764     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE196656     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+

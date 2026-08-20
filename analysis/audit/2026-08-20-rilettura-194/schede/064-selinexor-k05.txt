@@ -1,0 +1,415 @@
+META-ANALISI 064 di 194
+==============================================================================
+nome            : selinexor
+entita (ID)     : CHEBI:229764
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_b5db4aff
+studi poolati   : 5   confronti: 11   campioni: 61
+geni significativi: 1999   I2 mediano: 83.2
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE137702__GSE137702__BT-245_selinexor_vs_BT-245_control__1
+  studio: GSE137702
+  TRATTATO  (n=2)  etichetta Stadio 2: BT-245 selinexor
+      gruppo Stadio 2: grp_BT-245_selinexor
+      GSM4085157
+        grezzo (Stadio 1): title: BT-245-selinexor  rep1,source: Cultured tumor cells,tumor type: Diffuse midline glioma (thalamus),cell line: BT-245,treatment: selinexor 365 nM
+        H5 titolo        : BT-245-selinexor  rep1
+        H5 caratteristiche: tumor type: Diffuse midline glioma (thalamus),cell line: BT-245,treatment: selinexor 365 nM
+        H5 sorgente      : Cultured tumor cells
+      GSM4085158
+        grezzo (Stadio 1): title: BT-245-selinexor  rep2,source: Cultured tumor cells,tumor type: Diffuse midline glioma (thalamus),cell line: BT-245,treatment: selinexor 365 nM
+        H5 titolo        : BT-245-selinexor  rep2
+        H5 caratteristiche: tumor type: Diffuse midline glioma (thalamus),cell line: BT-245,treatment: selinexor 365 nM
+        H5 sorgente      : Cultured tumor cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: BT-245 control
+      gruppo Stadio 2: grp_BT-245_control
+      GSM4085155
+        grezzo (Stadio 1): title: BT-245-vehicle rep1,source: Cultured tumor cells,tumor type: Diffuse midline glioma (thalamus),cell line: BT-245,treatment: control
+        H5 titolo        : BT-245-vehicle rep1
+        H5 caratteristiche: tumor type: Diffuse midline glioma (thalamus),cell line: BT-245,treatment: control
+        H5 sorgente      : Cultured tumor cells
+      GSM4085156
+        grezzo (Stadio 1): title: BT-245-vehicle rep2,source: Cultured tumor cells,tumor type: Diffuse midline glioma (thalamus),cell line: BT-245,treatment: control
+        H5 titolo        : BT-245-vehicle rep2
+        H5 caratteristiche: tumor type: Diffuse midline glioma (thalamus),cell line: BT-245,treatment: control
+        H5 sorgente      : Cultured tumor cells
+
+CONFRONTO  GSE181003__GSE181003__MOLM-13_Selinexor_75nM_vs_MOLM-13_DMSO__1
+  studio: GSE181003
+  TRATTATO  (n=2)  etichetta Stadio 2: MOLM-13_Selinexor_75nM
+      gruppo Stadio 2: grp_0002
+      GSM5481926
+        grezzo (Stadio 1): title: MOLM13_Selinexor_rep1,source: MOLM-13 cell line,tissue: Leukemic blasts,disease: AML,treatment: Selinexor (75nM) 36hours
+        H5 titolo        : MOLM13_Selinexor_rep1
+        H5 caratteristiche: tissue: Leukemic blasts,disease: AML,treatment: Selinexor (75nM) 36hours
+        H5 sorgente      : MOLM-13 cell line
+      GSM5481928
+        grezzo (Stadio 1): title: MOLM13_Selinexor_rep3,source: MOLM-13 cell line,tissue: Leukemic blasts,disease: AML,treatment: Selinexor (75nM) 36hours
+        H5 titolo        : MOLM13_Selinexor_rep3
+        H5 caratteristiche: tissue: Leukemic blasts,disease: AML,treatment: Selinexor (75nM) 36hours
+        H5 sorgente      : MOLM-13 cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: MOLM-13_DMSO
+      gruppo Stadio 2: grp_0001
+      GSM5481923
+        grezzo (Stadio 1): title: MOLM13_DMSO_rep1,source: MOLM-13 cell line,tissue: Leukemic blasts,disease: AML,treatment: DMSO
+        H5 titolo        : MOLM13_DMSO_rep1
+        H5 caratteristiche: tissue: Leukemic blasts,disease: AML,treatment: DMSO
+        H5 sorgente      : MOLM-13 cell line
+      GSM5481924
+        grezzo (Stadio 1): title: MOLM13_DMSO_rep2,source: MOLM-13 cell line,tissue: Leukemic blasts,disease: AML,treatment: DMSO
+        H5 titolo        : MOLM13_DMSO_rep2
+        H5 caratteristiche: tissue: Leukemic blasts,disease: AML,treatment: DMSO
+        H5 sorgente      : MOLM-13 cell line
+      GSM5481925
+        grezzo (Stadio 1): title: MOLM13_DMSO_rep3,source: MOLM-13 cell line,tissue: Leukemic blasts,disease: AML,treatment: DMSO
+        H5 titolo        : MOLM13_DMSO_rep3
+        H5 caratteristiche: tissue: Leukemic blasts,disease: AML,treatment: DMSO
+        H5 sorgente      : MOLM-13 cell line
+
+CONFRONTO  GSE181176__GSE181176__grp_0003_vs_grp_0001__1
+  studio: GSE181176
+  TRATTATO  (n=2)  etichetta Stadio 2: OCI-AML3 + Selinexor 24h
+      gruppo Stadio 2: grp_0003
+      GSM5492057
+        grezzo (Stadio 1): title: O3_330_24_0,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 24 hours
+        H5 titolo        : O3_330_24_0
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 24 hours
+        H5 sorgente      : OCI-AML3 cells
+      GSM5492058
+        grezzo (Stadio 1): title: O3_330_24_1,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 24 hours
+        H5 titolo        : O3_330_24_1
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 24 hours
+        H5 sorgente      : OCI-AML3 cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: OCI-AML3 + DMSO 24h
+      gruppo Stadio 2: grp_0001
+      GSM5492055
+        grezzo (Stadio 1): title: O3_DMSO_24_0,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: DMSO 24 hours
+        H5 titolo        : O3_DMSO_24_0
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: DMSO 24 hours
+        H5 sorgente      : OCI-AML3 cells
+      GSM5492056
+        grezzo (Stadio 1): title: O3_DMSO_24_1,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: DMSO 24 hours
+        H5 titolo        : O3_DMSO_24_1
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: DMSO 24 hours
+        H5 sorgente      : OCI-AML3 cells
+
+CONFRONTO  GSE181176__GSE181176__grp_0004_vs_grp_0002__1
+  studio: GSE181176
+  TRATTATO  (n=4)  etichetta Stadio 2: OCI-AML3 + Selinexor 72h
+      gruppo Stadio 2: grp_0004
+      GSM5492061
+        grezzo (Stadio 1): title: O3_330_72_0,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 72 hours continous treatment
+        H5 titolo        : O3_330_72_0
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 72 hours continous treatment
+        H5 sorgente      : OCI-AML3 cells
+      GSM5492062
+        grezzo (Stadio 1): title: O3_330_72_1,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 72 hours continous treatment
+        H5 titolo        : O3_330_72_1
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 72 hours continous treatment
+        H5 sorgente      : OCI-AML3 cells
+      GSM5492063
+        grezzo (Stadio 1): title: O3_330WO_72_0,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 72 hours short treatment
+        H5 titolo        : O3_330WO_72_0
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 72 hours short treatment
+        H5 sorgente      : OCI-AML3 cells
+      GSM5492064
+        grezzo (Stadio 1): title: O3_330WO_72_1,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 72 hours short treatment
+        H5 titolo        : O3_330WO_72_1
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: Selinexor 72 hours short treatment
+        H5 sorgente      : OCI-AML3 cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: OCI-AML3 + DMSO 72h
+      gruppo Stadio 2: grp_0002
+      GSM5492059
+        grezzo (Stadio 1): title: O3_DMSO_72_0,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: DMSO 72 hours
+        H5 titolo        : O3_DMSO_72_0
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: DMSO 72 hours
+        H5 sorgente      : OCI-AML3 cells
+      GSM5492060
+        grezzo (Stadio 1): title: O3_DMSO_72_1,source: OCI-AML3 cells,cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: DMSO 72 hours
+        H5 titolo        : O3_DMSO_72_1
+        H5 caratteristiche: cell ine: OCI-AML3,tissue source: Blood and bone marrow,cell type: AML cell line,treatment: DMSO 72 hours
+        H5 sorgente      : OCI-AML3 cells
+
+CONFRONTO  GSE198000__GSE198000__KP_MRT_NS_Selinexor_0.003uM_6h_vs_KP_MRT_NS_DMSO_6h__1
+  studio: GSE198000
+  TRATTATO  (n=3)  etichetta Stadio 2: KP-MRT-NS cells treated with Selinexor 0.003 uM for 6 hours
+      gruppo Stadio 2: grp_KP_MRT_NS_Selinexor_0.003uM_6h
+      GSM5935539
+        grezzo (Stadio 1): title: KP-MRT-NS-Selinexor, 0.003, 6, Replicate1,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 titolo        : KP-MRT-NS-Selinexor, 0.003, 6, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+      GSM5935540
+        grezzo (Stadio 1): title: KP-MRT-NS-Selinexor, 0.003, 6, Replicate2,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 titolo        : KP-MRT-NS-Selinexor, 0.003, 6, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+      GSM5935541
+        grezzo (Stadio 1): title: KP-MRT-NS-Selinexor, 0.003, 6, Replicate3,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 titolo        : KP-MRT-NS-Selinexor, 0.003, 6, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+  CONTROLLO  (n=3)  etichetta Stadio 2: KP-MRT-NS cells treated with DMSO for 6 hours
+      gruppo Stadio 2: grp_KP_MRT_NS_DMSO_6h
+      GSM5935536
+        grezzo (Stadio 1): title: KP-MRT-NS-DMSO, 0, 6, Replicate1,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-NS-DMSO, 0, 6, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+      GSM5935537
+        grezzo (Stadio 1): title: KP-MRT-NS-DMSO, 0, 6, Replicate2,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-NS-DMSO, 0, 6, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+      GSM5935538
+        grezzo (Stadio 1): title: KP-MRT-NS-DMSO, 0, 6, Replicate3,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-NS-DMSO, 0, 6, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+
+CONFRONTO  GSE198000__GSE198000__KP_MRT_NS_Selinexor_0.030uM_6h_vs_KP_MRT_NS_DMSO_6h__1
+  studio: GSE198000
+  TRATTATO  (n=3)  etichetta Stadio 2: KP-MRT-NS cells treated with Selinexor 0.030 uM for 6 hours
+      gruppo Stadio 2: grp_KP_MRT_NS_Selinexor_0.030uM_6h
+      GSM5935542
+        grezzo (Stadio 1): title: KP-MRT-NS-Selinexor, 0.030, 6, Replicate1,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 titolo        : KP-MRT-NS-Selinexor, 0.030, 6, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+      GSM5935543
+        grezzo (Stadio 1): title: KP-MRT-NS-Selinexor, 0.030, 6, Replicate2,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 titolo        : KP-MRT-NS-Selinexor, 0.030, 6, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+      GSM5935544
+        grezzo (Stadio 1): title: KP-MRT-NS-Selinexor, 0.030, 6, Replicate3,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 titolo        : KP-MRT-NS-Selinexor, 0.030, 6, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+  CONTROLLO  (n=3)  etichetta Stadio 2: KP-MRT-NS cells treated with DMSO for 6 hours
+      gruppo Stadio 2: grp_KP_MRT_NS_DMSO_6h
+      GSM5935536
+        grezzo (Stadio 1): title: KP-MRT-NS-DMSO, 0, 6, Replicate1,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-NS-DMSO, 0, 6, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+      GSM5935537
+        grezzo (Stadio 1): title: KP-MRT-NS-DMSO, 0, 6, Replicate2,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-NS-DMSO, 0, 6, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+      GSM5935538
+        grezzo (Stadio 1): title: KP-MRT-NS-DMSO, 0, 6, Replicate3,source: KP-MRT-NS Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-NS-DMSO, 0, 6, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-NS,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-NS Malignant Rhabdoid Tumor Cell Line
+
+CONFRONTO  GSE198000__GSE198000__KP_MRT_RY_Selinexor_0.003uM_24h_vs_KP_MRT_RY_DMSO_24h__1
+  studio: GSE198000
+  TRATTATO  (n=3)  etichetta Stadio 2: KP-MRT-RY cells treated with Selinexor 0.003 uM for 24 hours
+      gruppo Stadio 2: grp_KP_MRT_RY_Selinexor_0.003uM_24h
+      GSM5935575
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.003, 24, Replicate1,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 24 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.003, 24, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935576
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.003, 24, Replicate2,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 24 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.003, 24, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935577
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.003, 24, Replicate3,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 24 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.003, 24, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+  CONTROLLO  (n=3)  etichetta Stadio 2: KP-MRT-RY cells treated with DMSO for 24 hours
+      gruppo Stadio 2: grp_KP_MRT_RY_DMSO_24h
+      GSM5935572
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 24, Replicate1,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 24, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935573
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 24, Replicate2,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 24, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935574
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 24, Replicate3,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 24, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+
+CONFRONTO  GSE198000__GSE198000__KP_MRT_RY_Selinexor_0.003uM_6h_vs_KP_MRT_RY_DMSO_6h__1
+  studio: GSE198000
+  TRATTATO  (n=3)  etichetta Stadio 2: KP-MRT-RY cells treated with Selinexor 0.003 uM for 6 hours
+      gruppo Stadio 2: grp_KP_MRT_RY_Selinexor_0.003uM_6h
+      GSM5935563
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.003, 6, Replicate1,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.003, 6, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935564
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.003, 6, Replicate2,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.003, 6, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935565
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.003, 6, Replicate3,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.003, 6, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.003 uM at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+  CONTROLLO  (n=3)  etichetta Stadio 2: KP-MRT-RY cells treated with DMSO for 6 hours
+      gruppo Stadio 2: grp_KP_MRT_RY_DMSO_6h
+      GSM5935560
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 6, Replicate1,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 6, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935561
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 6, Replicate2,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 6, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935562
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 6, Replicate3,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 6, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+
+CONFRONTO  GSE198000__GSE198000__KP_MRT_RY_Selinexor_0.030uM_24h_vs_KP_MRT_RY_DMSO_24h__1
+  studio: GSE198000
+  TRATTATO  (n=3)  etichetta Stadio 2: KP-MRT-RY cells treated with Selinexor 0.030 uM for 24 hours
+      gruppo Stadio 2: grp_KP_MRT_RY_Selinexor_0.030uM_24h
+      GSM5935578
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.030, 24, Replicate1,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 24 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.030, 24, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935579
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.030, 24, Replicate2,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 24 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.030, 24, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935580
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.030, 24, Replicate3,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 24 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.030, 24, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+  CONTROLLO  (n=3)  etichetta Stadio 2: KP-MRT-RY cells treated with DMSO for 24 hours
+      gruppo Stadio 2: grp_KP_MRT_RY_DMSO_24h
+      GSM5935572
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 24, Replicate1,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 24, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935573
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 24, Replicate2,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 24, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935574
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 24, Replicate3,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 24, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 24 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+
+CONFRONTO  GSE198000__GSE198000__KP_MRT_RY_Selinexor_0.030uM_6h_vs_KP_MRT_RY_DMSO_6h__1
+  studio: GSE198000
+  TRATTATO  (n=3)  etichetta Stadio 2: KP-MRT-RY cells treated with Selinexor 0.030 uM for 6 hours
+      gruppo Stadio 2: grp_KP_MRT_RY_Selinexor_0.030uM_6h
+      GSM5935566
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.030, 6, Replicate1,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.030, 6, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935567
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.030, 6, Replicate2,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.030, 6, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935568
+        grezzo (Stadio 1): title: KP-MRT-RY-Selinexor, 0.030, 6, Replicate3,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 titolo        : KP-MRT-RY-Selinexor, 0.030, 6, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: Selinexor 0.030 uM at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+  CONTROLLO  (n=3)  etichetta Stadio 2: KP-MRT-RY cells treated with DMSO for 6 hours
+      gruppo Stadio 2: grp_KP_MRT_RY_DMSO_6h
+      GSM5935560
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 6, Replicate1,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 6, Replicate1
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935561
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 6, Replicate2,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 6, Replicate2
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+      GSM5935562
+        grezzo (Stadio 1): title: KP-MRT-RY-DMSO, 0, 6, Replicate3,source: KP-MRT-RY Malignant Rhabdoid Tumor Cell Line,cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 titolo        : KP-MRT-RY-DMSO, 0, 6, Replicate3
+        H5 caratteristiche: cell line: KP-MRT-RY,cell type: Malignant Rhabdoid Tumor Cell,treatment: DMSO at 6 hours
+        H5 sorgente      : KP-MRT-RY Malignant Rhabdoid Tumor Cell Line
+
+CONFRONTO  GSE228210__GSE228210__Sel_vs_DMSO__1
+  studio: GSE228210
+  TRATTATO  (n=3)  etichetta Stadio 2: Selinexor
+      gruppo Stadio 2: grp_Sel
+      GSM7116872
+        grezzo (Stadio 1): title: Jurkat cells, Selinexor, 6 hours, rep 1,source: Peripheral blood mononuclear cells,tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: Selinexor
+        H5 titolo        : Jurkat cells, Selinexor, 6 hours, rep 1
+        H5 caratteristiche: tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: Selinexor
+        H5 sorgente      : Peripheral blood mononuclear cells
+      GSM7116873
+        grezzo (Stadio 1): title: Jurkat cells, Selinexor, 6 hours, rep 2,source: Peripheral blood mononuclear cells,tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: Selinexor
+        H5 titolo        : Jurkat cells, Selinexor, 6 hours, rep 2
+        H5 caratteristiche: tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: Selinexor
+        H5 sorgente      : Peripheral blood mononuclear cells
+      GSM7116874
+        grezzo (Stadio 1): title: Jurkat cells, Selinexor, 6 hours, rep 3,source: Peripheral blood mononuclear cells,tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: Selinexor
+        H5 titolo        : Jurkat cells, Selinexor, 6 hours, rep 3
+        H5 caratteristiche: tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: Selinexor
+        H5 sorgente      : Peripheral blood mononuclear cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM7116866
+        grezzo (Stadio 1): title: Jurkat cells, DMSO, 6 hours, rep 1,source: Peripheral blood mononuclear cells,tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: DMSO
+        H5 titolo        : Jurkat cells, DMSO, 6 hours, rep 1
+        H5 caratteristiche: tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: DMSO
+        H5 sorgente      : Peripheral blood mononuclear cells
+      GSM7116867
+        grezzo (Stadio 1): title: Jurkat cells, DMSO, 6 hours, rep 2,source: Peripheral blood mononuclear cells,tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: DMSO
+        H5 titolo        : Jurkat cells, DMSO, 6 hours, rep 2
+        H5 caratteristiche: tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: DMSO
+        H5 sorgente      : Peripheral blood mononuclear cells
+      GSM7116868
+        grezzo (Stadio 1): title: Jurkat cells, DMSO, 6 hours, rep 3,source: Peripheral blood mononuclear cells,tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: DMSO
+        H5 titolo        : Jurkat cells, DMSO, 6 hours, rep 3
+        H5 caratteristiche: tissue: Peripheral blood mononuclear cells,cell line: Jurkat E6-1,cell type: T cell,genotype: WT,treatment: DMSO
+        H5 sorgente      : Peripheral blood mononuclear cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE137702     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE181003     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE181176     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE198000     campioni nell'H5:  119 | collocati dallo Stadio 2:   60 | MAI COLLOCATI:   59 | usati in questa meta-analisi: 27 campioni distinti (36 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5935476, GSM5935477, GSM5935478, GSM5935480, GSM5935481, GSM5935482, GSM5935483, GSM5935484, GSM5935488, GSM5935489, GSM5935490, GSM5935492 ... (+47)
+  GSE228210     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+

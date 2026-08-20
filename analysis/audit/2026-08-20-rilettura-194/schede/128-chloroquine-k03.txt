@@ -1,0 +1,165 @@
+META-ANALISI 128 di 194
+==============================================================================
+nome            : chloroquine
+entita (ID)     : CHEBI:3638
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_1c7b64af
+studi poolati   : 3   confronti: 4   campioni: 21
+geni significativi: 698   I2 mediano: 78.0
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE197302__GSE197302__Chloroquine_vs_Vehicle__1
+  studio: GSE197302
+  TRATTATO  (n=3)  etichetta Stadio 2: BM-MSC + Chloroquine
+      gruppo Stadio 2: grp_0001
+      GSM5912855
+        grezzo (Stadio 1): title: MIAMI CQ_rep1,source: Subtype of bone marrow MSCs,tissue: Bone marrow,treatment: chloroquin 10 microM,cell line: BM-MSC
+        H5 titolo        : MIAMI CQ_rep1
+        H5 caratteristiche: tissue: Bone marrow,treatment: chloroquin 10 microM,cell line: BM-MSC
+        H5 sorgente      : Subtype of bone marrow MSCs
+      GSM5912856
+        grezzo (Stadio 1): title: MIAMI CQ_rep2,source: Subtype of bone marrow MSCs,tissue: Bone marrow,treatment: chloroquin 10 microM,cell line: BM-MSC
+        H5 titolo        : MIAMI CQ_rep2
+        H5 caratteristiche: tissue: Bone marrow,treatment: chloroquin 10 microM,cell line: BM-MSC
+        H5 sorgente      : Subtype of bone marrow MSCs
+      GSM5912857
+        grezzo (Stadio 1): title: MIAMI CQ_rep3,source: Subtype of bone marrow MSCs,tissue: Bone marrow,treatment: chloroquin 10 microM,cell line: BM-MSC
+        H5 titolo        : MIAMI CQ_rep3
+        H5 caratteristiche: tissue: Bone marrow,treatment: chloroquin 10 microM,cell line: BM-MSC
+        H5 sorgente      : Subtype of bone marrow MSCs
+  CONTROLLO  (n=3)  etichetta Stadio 2: BM-MSC + Vehicle
+      gruppo Stadio 2: grp_0003
+      GSM5912849
+        grezzo (Stadio 1): title: MIAMI Control_rep1,source: Subtype of bone marrow MSCs,tissue: Bone marrow,treatment: vehicle,cell line: BM-MSC
+        H5 titolo        : MIAMI Control_rep1
+        H5 caratteristiche: tissue: Bone marrow,treatment: vehicle,cell line: BM-MSC
+        H5 sorgente      : Subtype of bone marrow MSCs
+      GSM5912850
+        grezzo (Stadio 1): title: MIAMI Control_rep2,source: Subtype of bone marrow MSCs,tissue: Bone marrow,treatment: vehicle,cell line: BM-MSC
+        H5 titolo        : MIAMI Control_rep2
+        H5 caratteristiche: tissue: Bone marrow,treatment: vehicle,cell line: BM-MSC
+        H5 sorgente      : Subtype of bone marrow MSCs
+      GSM5912851
+        grezzo (Stadio 1): title: MIAMI Control_rep3,source: Subtype of bone marrow MSCs,tissue: Bone marrow,treatment: vehicle,cell line: BM-MSC
+        H5 titolo        : MIAMI Control_rep3
+        H5 caratteristiche: tissue: Bone marrow,treatment: vehicle,cell line: BM-MSC
+        H5 sorgente      : Subtype of bone marrow MSCs
+
+CONFRONTO  GSE209582__GSE209582__Chloroquine_vs_DMSO__1
+  studio: GSE209582
+  TRATTATO  (n=3)  etichetta Stadio 2: TE11 + Chloroquine (10 uM)
+      gruppo Stadio 2: grp_0001
+      GSM6380077
+        grezzo (Stadio 1): title: TE11 cells, Chloroquine and 5 Fluorouracil replicate 1,source: TE11,cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 10 uM of Chloroquine + 25 uM of 5 Fluorouracil
+        H5 titolo        : TE11 cells, Chloroquine and 5 Fluorouracil replicate 1
+        H5 caratteristiche: cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 10 uM of Chloroquine + 25 uM of 5 Fluorouracil
+        H5 sorgente      : TE11
+      GSM6380078
+        grezzo (Stadio 1): title: TE11 cells, Chloroquine and 5 Fluorouracil replicate 2,source: TE11,cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 10 uM of Chloroquine + 25 uM of 5 Fluorouracil
+        H5 titolo        : TE11 cells, Chloroquine and 5 Fluorouracil replicate 2
+        H5 caratteristiche: cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 10 uM of Chloroquine + 25 uM of 5 Fluorouracil
+        H5 sorgente      : TE11
+      GSM6380079
+        grezzo (Stadio 1): title: TE11 cells, Chloroquine and 5 Fluorouracil replicate 3,source: TE11,cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 10 uM of Chloroquine + 25 uM of 5 Fluorouracil
+        H5 titolo        : TE11 cells, Chloroquine and 5 Fluorouracil replicate 3
+        H5 caratteristiche: cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 10 uM of Chloroquine + 25 uM of 5 Fluorouracil
+        H5 sorgente      : TE11
+  CONTROLLO  (n=4)  etichetta Stadio 2: TE11 + DMSO (0.1%)
+      gruppo Stadio 2: grp_0006
+      GSM6380067
+        grezzo (Stadio 1): title: TE11 cells, vehicle control replicate 1,source: TE11,cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 0.1% DMSO
+        H5 titolo        : TE11 cells, vehicle control replicate 1
+        H5 caratteristiche: cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 0.1% DMSO
+        H5 sorgente      : TE11
+      GSM6380068
+        grezzo (Stadio 1): title: TE11 cells, vehicle control replicate 2,source: TE11,cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 0.1% DMSO
+        H5 titolo        : TE11 cells, vehicle control replicate 2
+        H5 caratteristiche: cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 0.1% DMSO
+        H5 sorgente      : TE11
+      GSM6380069
+        grezzo (Stadio 1): title: TE11 cells, vehicle control replicate 3,source: TE11,cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 0.1% DMSO
+        H5 titolo        : TE11 cells, vehicle control replicate 3
+        H5 caratteristiche: cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 0.1% DMSO
+        H5 sorgente      : TE11
+      GSM6380070
+        grezzo (Stadio 1): title: TE11 cells, vehicle control replicate 4,source: TE11,cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 0.1% DMSO
+        H5 titolo        : TE11 cells, vehicle control replicate 4
+        H5 caratteristiche: cell line: TE11,cell type: Esophageal squamous cell carcinoma cells,treatment: 0.1% DMSO
+        H5 sorgente      : TE11
+
+CONFRONTO  GSE217898__GSE217898__grp_0020_vs_grp_0017__1
+  studio: GSE217898
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, Chloroquine, 24h
+      gruppo Stadio 2: grp_0020
+      GSM6729603
+        grezzo (Stadio 1): title: PAE1_24_Chloroquine,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Chloroquine (1 uM),time: 24 hours
+        H5 titolo        : PAE1_24_Chloroquine
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Chloroquine (1 uM),time: 24 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729621
+        grezzo (Stadio 1): title: PAE2_24_Chloroquine,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Chloroquine (1 uM),time: 24 hours
+        H5 titolo        : PAE2_24_Chloroquine
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Chloroquine (1 uM),time: 24 hours
+        H5 sorgente      : Endothelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, DMSO, 24h
+      gruppo Stadio 2: grp_0017
+      GSM6729605
+        grezzo (Stadio 1): title: PAE1_24_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 titolo        : PAE1_24_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729623
+        grezzo (Stadio 1): title: PAE2_24_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 titolo        : PAE2_24_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 24 hours
+        H5 sorgente      : Endothelial cells
+
+CONFRONTO  GSE217898__GSE217898__grp_0021_vs_grp_0018__1
+  studio: GSE217898
+  TRATTATO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, Chloroquine, 72h
+      gruppo Stadio 2: grp_0021
+      GSM6729612
+        grezzo (Stadio 1): title: PAE1_72_Chloroquine,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Chloroquine (1 uM),time: 72 hours
+        H5 titolo        : PAE1_72_Chloroquine
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: Chloroquine (1 uM),time: 72 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729630
+        grezzo (Stadio 1): title: PAE2_72_Chloroquine,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Chloroquine (1 uM),time: 72 hours
+        H5 titolo        : PAE2_72_Chloroquine
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: Chloroquine (1 uM),time: 72 hours
+        H5 sorgente      : Endothelial cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary aorta endothelial cells, DMSO, 72h
+      gruppo Stadio 2: grp_0018
+      GSM6729614
+        grezzo (Stadio 1): title: PAE1_72_DMSO,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 titolo        : PAE1_72_DMSO
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: PromoCell: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 sorgente      : Endothelial cells
+      GSM6729632
+        grezzo (Stadio 1): title: PAE2_72_dmso,source: Endothelial cells,cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 titolo        : PAE2_72_dmso
+        H5 caratteristiche: cell type: Primary aorta endothelial cells,cell line: ATCC: Human Aortic EC,treatment: DMSO,time: 72 hours
+        H5 sorgente      : Endothelial cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE197302     campioni nell'H5:   18 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5912852, GSM5912854, GSM5912858, GSM5912860, GSM5912862, GSM5912863
+  GSE209582     campioni nell'H5:   13 | collocati dallo Stadio 2:   13 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE217898     campioni nell'H5:   72 | collocati dallo Stadio 2:   60 | MAI COLLOCATI:   12 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6729571, GSM6729582, GSM6729586, GSM6729589, GSM6729590, GSM6729591, GSM6729598, GSM6729599, GSM6729613, GSM6729622, GSM6729626, GSM6729635
+

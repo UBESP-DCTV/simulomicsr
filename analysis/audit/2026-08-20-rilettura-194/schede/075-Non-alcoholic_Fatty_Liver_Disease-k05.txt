@@ -1,0 +1,718 @@
+META-ANALISI 075 di 194
+==============================================================================
+nome            : Non-alcoholic Fatty Liver Disease
+entita (ID)     : MeSH:D065626
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_c13b1103
+studi poolati   : 5   confronti: 8   campioni: 126
+geni significativi: 828   I2 mediano: 82.2
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE115193__GSE115193__NAFLD_vs_healthy__1
+  studio: GSE115193
+  TRATTATO  (n=3)  etichetta Stadio 2: NAFLD
+      gruppo Stadio 2: group_NAFLD
+      GSM3169092
+        grezzo (Stadio 1): title: BWF--003_Human,source: patient liver,gender: M,age: 52,bmi: 51.9,group: NAFLD
+        H5 titolo        : BWF--003_Human
+        H5 caratteristiche: gender: M,age: 52,bmi: 51.9,group: NAFLD
+        H5 sorgente      : patient liver
+      GSM3169093
+        grezzo (Stadio 1): title: BWF--004_Human,source: patient liver,gender: M,age: 59,bmi: 49.6,group: NAFLD
+        H5 titolo        : BWF--004_Human
+        H5 caratteristiche: gender: M,age: 59,bmi: 49.6,group: NAFLD
+        H5 sorgente      : patient liver
+      GSM3169094
+        grezzo (Stadio 1): title: BWF--005_Human,source: patient liver,gender: M,age: 30,bmi: 45.5,group: NAFLD
+        H5 titolo        : BWF--005_Human
+        H5 caratteristiche: gender: M,age: 30,bmi: 45.5,group: NAFLD
+        H5 sorgente      : patient liver
+  CONTROLLO  (n=2)  etichetta Stadio 2: Healthy Control
+      gruppo Stadio 2: group_healthy
+      GSM3169089
+        grezzo (Stadio 1): title: BWF--000_Human,source: patient liver,gender: M,age: 33,bmi: 39.9,group: heathy
+        H5 titolo        : BWF--000_Human
+        H5 caratteristiche: gender: M,age: 33,bmi: 39.9,group: heathy
+        H5 sorgente      : patient liver
+      GSM3169091
+        grezzo (Stadio 1): title: BWF--002_Human,source: patient liver,gender: M,age: 47,bmi: 40.5,group: heathy
+        H5 titolo        : BWF--002_Human
+        H5 caratteristiche: gender: M,age: 47,bmi: 40.5,group: heathy
+        H5 sorgente      : patient liver
+
+CONFRONTO  GSE126848__GSE126848__NAFLD_vs_healthy__1
+  studio: GSE126848
+  TRATTATO  (n=15)  etichetta Stadio 2: NAFLD
+      gruppo Stadio 2: grp_NAFLD
+      GSM3615293
+        grezzo (Stadio 1): title: NAFL_1,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_1
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615294
+        grezzo (Stadio 1): title: NAFL_2,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_2
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615295
+        grezzo (Stadio 1): title: NAFL_3,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_3
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615296
+        grezzo (Stadio 1): title: NAFL_4,source: Liver needle biopsy,gender: Female,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_4
+        H5 caratteristiche: gender: Female,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615297
+        grezzo (Stadio 1): title: NAFL_5,source: Liver needle biopsy,gender: Female,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_5
+        H5 caratteristiche: gender: Female,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615298
+        grezzo (Stadio 1): title: NAFL_6,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_6
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615299
+        grezzo (Stadio 1): title: NAFL_7,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_7
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615300
+        grezzo (Stadio 1): title: NAFL_8,source: Liver needle biopsy,gender: Female,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_8
+        H5 caratteristiche: gender: Female,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615301
+        grezzo (Stadio 1): title: NAFL_9,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_9
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615302
+        grezzo (Stadio 1): title: NAFL_10,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_10
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615303
+        grezzo (Stadio 1): title: NAFL_11,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_11
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615304
+        grezzo (Stadio 1): title: NAFL_12,source: Liver needle biopsy,gender: Female,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_12
+        H5 caratteristiche: gender: Female,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615305
+        grezzo (Stadio 1): title: NAFL_13,source: Liver needle biopsy,gender: Female,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_13
+        H5 caratteristiche: gender: Female,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615306
+        grezzo (Stadio 1): title: NAFL_14,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_14
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+      GSM3615307
+        grezzo (Stadio 1): title: NAFL_15,source: Liver needle biopsy,gender: Female,tissue: Liver,disease: NAFLD
+        H5 titolo        : NAFL_15
+        H5 caratteristiche: gender: Female,tissue: Liver,disease: NAFLD
+        H5 sorgente      : Liver needle biopsy
+  CONTROLLO  (n=14)  etichetta Stadio 2: Healthy
+      gruppo Stadio 2: grp_healthy
+      GSM3615324
+        grezzo (Stadio 1): title: Normal-weight_1,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_1
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615325
+        grezzo (Stadio 1): title: Normal-weight_2,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_2
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615326
+        grezzo (Stadio 1): title: Normal-weight_3,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_3
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615327
+        grezzo (Stadio 1): title: Normal-weight_4,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_4
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615328
+        grezzo (Stadio 1): title: Normal-weight_5,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_5
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615329
+        grezzo (Stadio 1): title: Normal-weight_6,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_6
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615330
+        grezzo (Stadio 1): title: Normal-weight_7,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_7
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615331
+        grezzo (Stadio 1): title: Normal-weight_8,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_8
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615332
+        grezzo (Stadio 1): title: Normal-weight_9,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_9
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615333
+        grezzo (Stadio 1): title: Normal-weight_10,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_10
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615334
+        grezzo (Stadio 1): title: Normal-weight_11,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_11
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615335
+        grezzo (Stadio 1): title: Normal-weight_12,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_12
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615336
+        grezzo (Stadio 1): title: Normal-weight_13,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_13
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+      GSM3615337
+        grezzo (Stadio 1): title: Normal-weight_14,source: Liver needle biopsy,gender: Male,tissue: Liver,disease: healthy
+        H5 titolo        : Normal-weight_14
+        H5 caratteristiche: gender: Male,tissue: Liver,disease: healthy
+        H5 sorgente      : Liver needle biopsy
+
+CONFRONTO  GSE135251__GSE135251__NAFLD_early_vs_Control__1
+  studio: GSE135251
+  TRATTATO  (n=6)  etichetta Stadio 2: NAFLD early stage (patient 3)
+      gruppo Stadio 2: group_0001
+      GSM3998196
+        grezzo (Stadio 1): title: Liver patient 3,source: NAFLD_early_liver biopsy,nas score: 4,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 3
+        H5 caratteristiche: nas score: 4,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998205
+        grezzo (Stadio 1): title: Liver patient 172,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 172
+        H5 caratteristiche: nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998213
+        grezzo (Stadio 1): title: Liver patient 195,source: NAFLD_early_liver biopsy,nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 195
+        H5 caratteristiche: nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998290
+        grezzo (Stadio 1): title: Liver patient 111,source: NAFLD_early_liver biopsy,nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 111
+        H5 caratteristiche: nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998304
+        grezzo (Stadio 1): title: Liver patient 96,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 96
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998344
+        grezzo (Stadio 1): title: Liver patient 140,source: NAFLD_early_liver biopsy,nas score: 1,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 140
+        H5 caratteristiche: nas score: 1,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+  CONTROLLO  (n=5)  etichetta Stadio 2: Control
+      gruppo Stadio 2: group_0009
+      GSM3998218
+        grezzo (Stadio 1): title: Liver control sample 5,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 5
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998220
+        grezzo (Stadio 1): title: Liver control sample 6,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 6
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998223
+        grezzo (Stadio 1): title: Liver control sample 9,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 9
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998224
+        grezzo (Stadio 1): title: Liver control sample 10,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 1,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 10
+        H5 caratteristiche: nas score: 0,fibrosis stage: 1,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998342
+        grezzo (Stadio 1): title: Liver control sample 4,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 4
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+
+CONFRONTO  GSE135251__GSE135251__NAFLD_early_vs_Control__2
+  studio: GSE135251
+  TRATTATO  (n=4)  etichetta Stadio 2: NAFLD early stage (patient 115)
+      gruppo Stadio 2: group_0002
+      GSM3998177
+        grezzo (Stadio 1): title: Liver patient 115,source: NAFLD_early_liver biopsy,nas score: 1,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 115
+        H5 caratteristiche: nas score: 1,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998254
+        grezzo (Stadio 1): title: Liver patient 5,source: NAFLD_early_liver biopsy,nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 5
+        H5 caratteristiche: nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998281
+        grezzo (Stadio 1): title: Liver patient 122,source: NAFLD_early_liver biopsy,nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 122
+        H5 caratteristiche: nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998361
+        grezzo (Stadio 1): title: Liver patient 157,source: NAFLD_early_liver biopsy,nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 157
+        H5 caratteristiche: nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+  CONTROLLO  (n=5)  etichetta Stadio 2: Control
+      gruppo Stadio 2: group_0009
+      GSM3998218
+        grezzo (Stadio 1): title: Liver control sample 5,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 5
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998220
+        grezzo (Stadio 1): title: Liver control sample 6,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 6
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998223
+        grezzo (Stadio 1): title: Liver control sample 9,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 9
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998224
+        grezzo (Stadio 1): title: Liver control sample 10,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 1,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 10
+        H5 caratteristiche: nas score: 0,fibrosis stage: 1,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998342
+        grezzo (Stadio 1): title: Liver control sample 4,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 4
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+
+CONFRONTO  GSE135251__GSE135251__NAFLD_early_vs_Control__3
+  studio: GSE135251
+  TRATTATO  (n=26)  etichetta Stadio 2: NAFLD early stage (patient 112)
+      gruppo Stadio 2: group_0014
+      GSM3998175
+        grezzo (Stadio 1): title: Liver patient 112,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 112
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998189
+        grezzo (Stadio 1): title: Liver patient 15,source: NAFLD_early_liver biopsy,nas score: 5,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 15
+        H5 caratteristiche: nas score: 5,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998194
+        grezzo (Stadio 1): title: Liver patient 84,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 84
+        H5 caratteristiche: nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998197
+        grezzo (Stadio 1): title: Liver patient 203,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 203
+        H5 caratteristiche: nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998198
+        grezzo (Stadio 1): title: Liver patient 205,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 205
+        H5 caratteristiche: nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998202
+        grezzo (Stadio 1): title: Liver patient 169,source: NAFLD_early_liver biopsy,nas score: 5,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 169
+        H5 caratteristiche: nas score: 5,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998236
+        grezzo (Stadio 1): title: Liver patient 82,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 82
+        H5 caratteristiche: nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998244
+        grezzo (Stadio 1): title: Liver patient 80,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 80
+        H5 caratteristiche: nas score: 3,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998267
+        grezzo (Stadio 1): title: Liver patient 42,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 42
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998270
+        grezzo (Stadio 1): title: Liver patient 31,source: NAFLD_early_liver biopsy,nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 31
+        H5 caratteristiche: nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998272
+        grezzo (Stadio 1): title: Liver patient 35,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 35
+        H5 caratteristiche: nas score: 3,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998276
+        grezzo (Stadio 1): title: Liver patient 43,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 43
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998279
+        grezzo (Stadio 1): title: Liver patient 76,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 76
+        H5 caratteristiche: nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998286
+        grezzo (Stadio 1): title: Liver patient 52,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 52
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998288
+        grezzo (Stadio 1): title: Liver patient 49,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 49
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998289
+        grezzo (Stadio 1): title: Liver patient 63,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 63
+        H5 caratteristiche: nas score: 3,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998294
+        grezzo (Stadio 1): title: Liver patient 54,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 54
+        H5 caratteristiche: nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998295
+        grezzo (Stadio 1): title: Liver patient 55,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 55
+        H5 caratteristiche: nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998302
+        grezzo (Stadio 1): title: Liver patient 94,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 94
+        H5 caratteristiche: nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998303
+        grezzo (Stadio 1): title: Liver patient 95,source: NAFLD_early_liver biopsy,nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 95
+        H5 caratteristiche: nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998325
+        grezzo (Stadio 1): title: Liver patient 66,source: NAFLD_early_liver biopsy,nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 66
+        H5 caratteristiche: nas score: 4,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998345
+        grezzo (Stadio 1): title: Liver patient 141,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 141
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998346
+        grezzo (Stadio 1): title: Liver patient 142,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 142
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998352
+        grezzo (Stadio 1): title: Liver patient 148,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 148
+        H5 caratteristiche: nas score: 3,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998353
+        grezzo (Stadio 1): title: Liver patient 149,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 149
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998366
+        grezzo (Stadio 1): title: Liver patient 162,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 162
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+  CONTROLLO  (n=5)  etichetta Stadio 2: Control
+      gruppo Stadio 2: group_0009
+      GSM3998218
+        grezzo (Stadio 1): title: Liver control sample 5,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 5
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998220
+        grezzo (Stadio 1): title: Liver control sample 6,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 6
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998223
+        grezzo (Stadio 1): title: Liver control sample 9,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 9
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998224
+        grezzo (Stadio 1): title: Liver control sample 10,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 1,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 10
+        H5 caratteristiche: nas score: 0,fibrosis stage: 1,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998342
+        grezzo (Stadio 1): title: Liver control sample 4,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 4
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+
+CONFRONTO  GSE135251__GSE135251__NAFLD_early_vs_Control__4
+  studio: GSE135251
+  TRATTATO  (n=7)  etichetta Stadio 2: NAFLD early stage (patient 25)
+      gruppo Stadio 2: group_0015
+      GSM3998283
+        grezzo (Stadio 1): title: Liver patient 25,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 25
+        H5 caratteristiche: nas score: 2,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998293
+        grezzo (Stadio 1): title: Liver patient 50,source: NAFLD_early_liver biopsy,nas score: 3,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 50
+        H5 caratteristiche: nas score: 3,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998305
+        grezzo (Stadio 1): title: Liver patient 20,source: NAFLD_early_liver biopsy,nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 20
+        H5 caratteristiche: nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998310
+        grezzo (Stadio 1): title: Liver patient 18,source: NAFLD_early_liver biopsy,nas score: 1,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 18
+        H5 caratteristiche: nas score: 1,fibrosis stage: 1,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998326
+        grezzo (Stadio 1): title: Liver patient 67,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 67
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998336
+        grezzo (Stadio 1): title: Liver patient 27,source: NAFLD_early_liver biopsy,nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 27
+        H5 caratteristiche: nas score: 2,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+      GSM3998349
+        grezzo (Stadio 1): title: Liver patient 145,source: NAFLD_early_liver biopsy,nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 titolo        : Liver patient 145
+        H5 caratteristiche: nas score: 1,fibrosis stage: 0,group in paper: NAFL,disease: NAFLD,Stage: early
+        H5 sorgente      : NAFLD_early_liver biopsy
+  CONTROLLO  (n=5)  etichetta Stadio 2: Control
+      gruppo Stadio 2: group_0009
+      GSM3998218
+        grezzo (Stadio 1): title: Liver control sample 5,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 5
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998220
+        grezzo (Stadio 1): title: Liver control sample 6,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 6
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998223
+        grezzo (Stadio 1): title: Liver control sample 9,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 9
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998224
+        grezzo (Stadio 1): title: Liver control sample 10,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 1,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 10
+        H5 caratteristiche: nas score: 0,fibrosis stage: 1,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+      GSM3998342
+        grezzo (Stadio 1): title: Liver control sample 4,source: Control_control_liver biopsy,nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 titolo        : Liver control sample 4
+        H5 caratteristiche: nas score: 0,fibrosis stage: 0,group in paper: control,disease: Control,Stage: control
+        H5 sorgente      : Control_control_liver biopsy
+
+CONFRONTO  GSE160016__GSE160016__NAFLD_vs_Normal__1
+  studio: GSE160016
+  TRATTATO  (n=5)  etichetta Stadio 2: NAFLD
+      gruppo Stadio 2: group_0001
+      GSM4852532
+        grezzo (Stadio 1): title: Liver, D1_22,source: Liver,tissue: Liver,Sex: Female,age: 37,donor type: NAFLD
+        H5 titolo        : Liver, D1_22
+        H5 caratteristiche: tissue: Liver,Sex: Female,age: 37,donor type: NAFLD
+        H5 sorgente      : Liver
+      GSM4852533
+        grezzo (Stadio 1): title: Liver, D1_30,source: Liver,tissue: Liver,Sex: Male,age: 37,donor type: NAFLD
+        H5 titolo        : Liver, D1_30
+        H5 caratteristiche: tissue: Liver,Sex: Male,age: 37,donor type: NAFLD
+        H5 sorgente      : Liver
+      GSM4852534
+        grezzo (Stadio 1): title: Liver, ZY10,source: Liver,tissue: Liver,Sex: Male,age: 46,donor type: NAFLD
+        H5 titolo        : Liver, ZY10
+        H5 caratteristiche: tissue: Liver,Sex: Male,age: 46,donor type: NAFLD
+        H5 sorgente      : Liver
+      GSM4852535
+        grezzo (Stadio 1): title: Liver, ZY24,source: Liver,tissue: Liver,Sex: Male,age: 40,donor type: NAFLD
+        H5 titolo        : Liver, ZY24
+        H5 caratteristiche: tissue: Liver,Sex: Male,age: 40,donor type: NAFLD
+        H5 sorgente      : Liver
+      GSM4852536
+        grezzo (Stadio 1): title: Liver, ZY6,source: Liver,tissue: Liver,Sex: Female,age: 51,donor type: NAFLD
+        H5 titolo        : Liver, ZY6
+        H5 caratteristiche: tissue: Liver,Sex: Female,age: 51,donor type: NAFLD
+        H5 sorgente      : Liver
+  CONTROLLO  (n=6)  etichetta Stadio 2: Normal
+      gruppo Stadio 2: group_0002
+      GSM4852526
+        grezzo (Stadio 1): title: Liver, D2_17,source: Liver,tissue: Liver,Sex: Female,age: 50,donor type: non-NAFLD
+        H5 titolo        : Liver, D2_17
+        H5 caratteristiche: tissue: Liver,Sex: Female,age: 50,donor type: non-NAFLD
+        H5 sorgente      : Liver
+      GSM4852527
+        grezzo (Stadio 1): title: Liver, D2_21,source: Liver,tissue: Liver,Sex: Male,age: 46,donor type: non-NAFLD
+        H5 titolo        : Liver, D2_21
+        H5 caratteristiche: tissue: Liver,Sex: Male,age: 46,donor type: non-NAFLD
+        H5 sorgente      : Liver
+      GSM4852528
+        grezzo (Stadio 1): title: Liver, D2_25,source: Liver,tissue: Liver,Sex: Female,age: 16,donor type: non-NAFLD
+        H5 titolo        : Liver, D2_25
+        H5 caratteristiche: tissue: Liver,Sex: Female,age: 16,donor type: non-NAFLD
+        H5 sorgente      : Liver
+      GSM4852529
+        grezzo (Stadio 1): title: Liver, D2_26,source: Liver,tissue: Liver,Sex: Male,age: 51,donor type: non-NAFLD
+        H5 titolo        : Liver, D2_26
+        H5 caratteristiche: tissue: Liver,Sex: Male,age: 51,donor type: non-NAFLD
+        H5 sorgente      : Liver
+      GSM4852530
+        grezzo (Stadio 1): title: Liver, D2_8,source: Liver,tissue: Liver,Sex: Female,age: 18,donor type: non-NAFLD
+        H5 titolo        : Liver, D2_8
+        H5 caratteristiche: tissue: Liver,Sex: Female,age: 18,donor type: non-NAFLD
+        H5 sorgente      : Liver
+      GSM4852531
+        grezzo (Stadio 1): title: Liver, ZY12,source: Liver,tissue: Liver,Sex: Male,age: 33,donor type: non-NAFLD
+        H5 titolo        : Liver, ZY12
+        H5 caratteristiche: tissue: Liver,Sex: Male,age: 33,donor type: non-NAFLD
+        H5 sorgente      : Liver
+
+CONFRONTO  GSE185051__GSE185051__nafld_vs_normal__1
+  studio: GSE185051
+  TRATTATO  (n=16)  etichetta Stadio 2: NAFLD disease
+      gruppo Stadio 2: group_nafld
+      GSM5604618
+        grezzo (Stadio 1): title: LB-01,source: liver,disease: NAFLD disease,gender: F,nas: 3,nash_status: Steatosis,fibrosis_stage: 0,age: 9
+        H5 titolo        : LB-01
+        H5 caratteristiche: disease: NAFLD disease,gender: F,nas: 3,nash_status: Steatosis,fibrosis_stage: 0,age: 9
+        H5 sorgente      : liver
+      GSM5604620
+        grezzo (Stadio 1): title: LB-11,source: liver,disease: NAFLD disease,gender: M,nas: 5,nash_status: NASH,fibrosis_stage: 0,age: 17
+        H5 titolo        : LB-11
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 5,nash_status: NASH,fibrosis_stage: 0,age: 17
+        H5 sorgente      : liver
+      GSM5604621
+        grezzo (Stadio 1): title: LB-12,source: liver,disease: NAFLD disease,gender: M,nas: 5,nash_status: NASH,fibrosis_stage: 0,age: 16
+        H5 titolo        : LB-12
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 5,nash_status: NASH,fibrosis_stage: 0,age: 16
+        H5 sorgente      : liver
+      GSM5604622
+        grezzo (Stadio 1): title: LB-13,source: liver,disease: NAFLD disease,gender: F,nas: 3,nash_status: Steatosis,fibrosis_stage: 1,age: 15
+        H5 titolo        : LB-13
+        H5 caratteristiche: disease: NAFLD disease,gender: F,nas: 3,nash_status: Steatosis,fibrosis_stage: 1,age: 15
+        H5 sorgente      : liver
+      GSM5604623
+        grezzo (Stadio 1): title: LB-14,source: liver,disease: NAFLD disease,gender: M,nas: 5,nash_status: NASH,fibrosis_stage: 1,age: 12
+        H5 titolo        : LB-14
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 5,nash_status: NASH,fibrosis_stage: 1,age: 12
+        H5 sorgente      : liver
+      GSM5604624
+        grezzo (Stadio 1): title: LB-15,source: liver,disease: NAFLD disease,gender: M,nas: 3,nash_status: Steatosis,fibrosis_stage: 1,age: 12
+        H5 titolo        : LB-15
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 3,nash_status: Steatosis,fibrosis_stage: 1,age: 12
+        H5 sorgente      : liver
+      GSM5604626
+        grezzo (Stadio 1): title: LB-17,source: liver,disease: NAFLD disease,gender: F,nas: 4,nash_status: Borderline,fibrosis_stage: 1,age: 17
+        H5 titolo        : LB-17
+        H5 caratteristiche: disease: NAFLD disease,gender: F,nas: 4,nash_status: Borderline,fibrosis_stage: 1,age: 17
+        H5 sorgente      : liver
+      GSM5604637
+        grezzo (Stadio 1): title: LB-05,source: liver,disease: NAFLD disease,gender: F,nas: 4,nash_status: Borderline,fibrosis_stage: 2,age: 10
+        H5 titolo        : LB-05
+        H5 caratteristiche: disease: NAFLD disease,gender: F,nas: 4,nash_status: Borderline,fibrosis_stage: 2,age: 10
+        H5 sorgente      : liver
+      GSM5604639
+        grezzo (Stadio 1): title: LB-09,source: liver,disease: NAFLD disease,gender: M,nas: 4,nash_status: Borderline,fibrosis_stage: 0,age: 11
+        H5 titolo        : LB-09
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 4,nash_status: Borderline,fibrosis_stage: 0,age: 11
+        H5 sorgente      : liver
+      GSM5604640
+        grezzo (Stadio 1): title: LB-02,source: liver,disease: NAFLD disease,gender: M,nas: 1,nash_status: Steatosis,fibrosis_stage: 0,age: 9
+        H5 titolo        : LB-02
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 1,nash_status: Steatosis,fibrosis_stage: 0,age: 9
+        H5 sorgente      : liver
+      GSM5604641
+        grezzo (Stadio 1): title: LB-06,source: liver,disease: NAFLD disease,gender: M,nas: 5,nash_status: NASH,fibrosis_stage: 2,age: 13
+        H5 titolo        : LB-06
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 5,nash_status: NASH,fibrosis_stage: 2,age: 13
+        H5 sorgente      : liver
+      GSM5604642
+        grezzo (Stadio 1): title: LB-04,source: liver,disease: NAFLD disease,gender: M,nas: 4,nash_status: Borderline,fibrosis_stage: 0,age: 9
+        H5 titolo        : LB-04
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 4,nash_status: Borderline,fibrosis_stage: 0,age: 9
+        H5 sorgente      : liver
+      GSM5604645
+        grezzo (Stadio 1): title: LB-31,source: liver,disease: NAFLD disease,gender: M,nas: 6,nash_status: NASH,fibrosis_stage: 1,age: 11
+        H5 titolo        : LB-31
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 6,nash_status: NASH,fibrosis_stage: 1,age: 11
+        H5 sorgente      : liver
+      GSM5604648
+        grezzo (Stadio 1): title: LB-03,source: liver,disease: NAFLD disease,gender: F,nas: 6,nash_status: NASH,fibrosis_stage: 1,age: 17
+        H5 titolo        : LB-03
+        H5 caratteristiche: disease: NAFLD disease,gender: F,nas: 6,nash_status: NASH,fibrosis_stage: 1,age: 17
+        H5 sorgente      : liver
+      GSM5604656
+        grezzo (Stadio 1): title: LB-07,source: liver,disease: NAFLD disease,gender: M,nas: 3,nash_status: Steatosis,fibrosis_stage: 2,age: 13
+        H5 titolo        : LB-07
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 3,nash_status: Steatosis,fibrosis_stage: 2,age: 13
+        H5 sorgente      : liver
+      GSM5604666
+        grezzo (Stadio 1): title: LB-50,source: liver,disease: NAFLD disease,gender: M,nas: 4,nash_status: Borderline,fibrosis_stage: 1,age: 14
+        H5 titolo        : LB-50
+        H5 caratteristiche: disease: NAFLD disease,gender: M,nas: 4,nash_status: Borderline,fibrosis_stage: 1,age: 14
+        H5 sorgente      : liver
+  CONTROLLO  (n=2)  etichetta Stadio 2: Normal
+      gruppo Stadio 2: group_normal
+      GSM5604671
+        grezzo (Stadio 1): title: MS-38,source: liver,disease: Normal,gender: F,nas: 0,nash_status: Normal,fibrosis_stage: 0,age: 68
+        H5 titolo        : MS-38
+        H5 caratteristiche: disease: Normal,gender: F,nas: 0,nash_status: Normal,fibrosis_stage: 0,age: 68
+        H5 sorgente      : liver
+      GSM5604672
+        grezzo (Stadio 1): title: PITT-04,source: liver,disease: Normal,gender: F,nas: 0,nash_status: Normal,fibrosis_stage: 0,age: 41
+        H5 titolo        : PITT-04
+        H5 caratteristiche: disease: Normal,gender: F,nas: 0,nash_status: Normal,fibrosis_stage: 0,age: 41
+        H5 sorgente      : liver
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE115193     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE126848     campioni nell'H5:   57 | collocati dallo Stadio 2:   57 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 29 campioni distinti (29 righe: i controlli servono piu' confronti)
+  GSE135251     campioni nell'H5:  194 | collocati dallo Stadio 2:  194 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 48 campioni distinti (63 righe: i controlli servono piu' confronti)
+  GSE160016     campioni nell'H5:   11 | collocati dallo Stadio 2:   11 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+  GSE185051     campioni nell'H5:   57 | collocati dallo Stadio 2:   57 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 18 campioni distinti (18 righe: i controlli servono piu' confronti)
+

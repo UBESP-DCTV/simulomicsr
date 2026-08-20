@@ -1,0 +1,438 @@
+META-ANALISI 088 di 194
+==============================================================================
+nome            : TCDD
+entita (ID)     : CHEBI:28119
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_f956ef98
+studi poolati   : 4   confronti: 8   campioni: 70
+geni significativi: 665   I2 mediano: 43.6
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE104869__GSE104869__TCDD_vs_DMSO__1
+  studio: GSE104869
+  TRATTATO  (n=2)  etichetta Stadio 2: TCDD
+      gruppo Stadio 2: grp_TCDD
+      GSM2809138
+        grezzo (Stadio 1): title: 501Mel T1,source: 501Mel cells treated with TCDD (10E-9) during 48h,tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.3
+        H5 titolo        : 501Mel T1
+        H5 caratteristiche: tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.3
+        H5 sorgente      : 501Mel cells treated with TCDD (10E-9) during 48h
+      GSM2809139
+        grezzo (Stadio 1): title: 501Mel T2,source: 501Mel cells treated with TCDD (10E-9) during 48h,tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.2
+        H5 titolo        : 501Mel T2
+        H5 caratteristiche: tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.2
+        H5 sorgente      : 501Mel cells treated with TCDD (10E-9) during 48h
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM2809130
+        grezzo (Stadio 1): title: 501Mel Ctrl1,source: 501Mel cells treated with DMSO during 48h,tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.4
+        H5 titolo        : 501Mel Ctrl1
+        H5 caratteristiche: tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.4
+        H5 sorgente      : 501Mel cells treated with DMSO during 48h
+      GSM2809131
+        grezzo (Stadio 1): title: 501Mel Ctrl2,source: 501Mel cells treated with DMSO during 48h,tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.6
+        H5 titolo        : 501Mel Ctrl2
+        H5 caratteristiche: tissue: Skin,cell type: Melanoma cells,cell line: 501Mel,rin number: 9.6
+        H5 sorgente      : 501Mel cells treated with DMSO during 48h
+
+CONFRONTO  GSE160981__GSE160981__endoderm_TCDD_2_vs_endoderm_DMSO__1
+  studio: GSE160981
+  TRATTATO  (n=2)  etichetta Stadio 2: Endoderm TCDD 2
+      gruppo Stadio 2: grp_endoderm_TCDD_2
+      GSM4887245
+        grezzo (Stadio 1): title: EIM_TCDD_RNA-seq_rep1,source: endoderm,cell type: hESC H9 derived endoderm,cell line: H9,treatment: TCDD
+        H5 titolo        : EIM_TCDD_RNA-seq_rep1
+        H5 caratteristiche: cell type: hESC H9 derived endoderm,cell line: H9,treatment: TCDD
+        H5 sorgente      : endoderm
+      GSM4887249
+        grezzo (Stadio 1): title: EIM_TCDD_RNA-seq_rep2,source: endoderm,cell type: hESC H9 derived endoderm,cell line: H9,treatment: TCDD
+        H5 titolo        : EIM_TCDD_RNA-seq_rep2
+        H5 caratteristiche: cell type: hESC H9 derived endoderm,cell line: H9,treatment: TCDD
+        H5 sorgente      : endoderm
+  CONTROLLO  (n=3)  etichetta Stadio 2: Endoderm DMSO
+      gruppo Stadio 2: grp_endoderm_DMSO
+      GSM4887236
+        grezzo (Stadio 1): title: EIM_DMSO_RNA-seq_rep1,source: endoderm,cell type: hESC H9 derived endoderm,cell line: H9,treatment: DMSO
+        H5 titolo        : EIM_DMSO_RNA-seq_rep1
+        H5 caratteristiche: cell type: hESC H9 derived endoderm,cell line: H9,treatment: DMSO
+        H5 sorgente      : endoderm
+      GSM4887239
+        grezzo (Stadio 1): title: EIM_DMSO_RNA-seq_rep2,source: endoderm,cell type: hESC H9 derived endoderm,cell line: H9,treatment: DMSO
+        H5 titolo        : EIM_DMSO_RNA-seq_rep2
+        H5 caratteristiche: cell type: hESC H9 derived endoderm,cell line: H9,treatment: DMSO
+        H5 sorgente      : endoderm
+      GSM4887242
+        grezzo (Stadio 1): title: EIM_DMSO_RNA-seq_rep3,source: endoderm,cell type: hESC H9 derived endoderm,cell line: H9,treatment: DMSO
+        H5 titolo        : EIM_DMSO_RNA-seq_rep3
+        H5 caratteristiche: cell type: hESC H9 derived endoderm,cell line: H9,treatment: DMSO
+        H5 sorgente      : endoderm
+
+CONFRONTO  GSE160981__GSE160981__mesoderm_TCDD_2_vs_mesoderm_DMSO__1
+  studio: GSE160981
+  TRATTATO  (n=2)  etichetta Stadio 2: Mesoderm TCDD 2
+      gruppo Stadio 2: grp_mesoderm_TCDD_2
+      GSM4887290
+        grezzo (Stadio 1): title: MIM_TCDD_RNA-seq_rep1,source: mesoderm,cell type: hESC H9 derived mesoderm,cell line: H9,treatment: TCDD
+        H5 titolo        : MIM_TCDD_RNA-seq_rep1
+        H5 caratteristiche: cell type: hESC H9 derived mesoderm,cell line: H9,treatment: TCDD
+        H5 sorgente      : mesoderm
+      GSM4887293
+        grezzo (Stadio 1): title: MIM_TCDD_RNA-seq_rep2,source: mesoderm,cell type: hESC H9 derived mesoderm,cell line: H9,treatment: TCDD
+        H5 titolo        : MIM_TCDD_RNA-seq_rep2
+        H5 caratteristiche: cell type: hESC H9 derived mesoderm,cell line: H9,treatment: TCDD
+        H5 sorgente      : mesoderm
+  CONTROLLO  (n=3)  etichetta Stadio 2: Mesoderm DMSO
+      gruppo Stadio 2: grp_mesoderm_DMSO
+      GSM4887279
+        grezzo (Stadio 1): title: MIM_DMSO_RNA-seq_rep1,source: mesoderm,cell type: hESC H9 derived mesoderm,cell line: H9,treatment: DMSO
+        H5 titolo        : MIM_DMSO_RNA-seq_rep1
+        H5 caratteristiche: cell type: hESC H9 derived mesoderm,cell line: H9,treatment: DMSO
+        H5 sorgente      : mesoderm
+      GSM4887282
+        grezzo (Stadio 1): title: MIM_DMSO_RNA-seq_rep2,source: mesoderm,cell type: hESC H9 derived mesoderm,cell line: H9,treatment: DMSO
+        H5 titolo        : MIM_DMSO_RNA-seq_rep2
+        H5 caratteristiche: cell type: hESC H9 derived mesoderm,cell line: H9,treatment: DMSO
+        H5 sorgente      : mesoderm
+      GSM4887286
+        grezzo (Stadio 1): title: MIM_DMSO_RNA-seq_rep3,source: mesoderm,cell type: hESC H9 derived mesoderm,cell line: H9,treatment: DMSO
+        H5 titolo        : MIM_DMSO_RNA-seq_rep3
+        H5 caratteristiche: cell type: hESC H9 derived mesoderm,cell line: H9,treatment: DMSO
+        H5 sorgente      : mesoderm
+
+CONFRONTO  GSE217334__GSE217334__TCDD_24h_vs_DMSO_24h__1
+  studio: GSE217334
+  TRATTATO  (n=4)  etichetta Stadio 2: TCDD 24 hours
+      gruppo Stadio 2: grp_TCDD_24h
+      GSM6714234
+        grezzo (Stadio 1): title: S24h-9-o_S36_L006_R1_24h_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S24h-9-o_S36_L006_R1_24h_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714235
+        grezzo (Stadio 1): title: S24h-10-o_S37_L006_R1_24h_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S24h-10-o_S37_L006_R1_24h_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714236
+        grezzo (Stadio 1): title: S24h-11-o_S38_L006_R1_24h_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S24h-11-o_S38_L006_R1_24h_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714237
+        grezzo (Stadio 1): title: S24h-12-o_S39_L006_R1_24h_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S24h-12-o_S39_L006_R1_24h_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+  CONTROLLO  (n=8)  etichetta Stadio 2: DMSO 24 hours
+      gruppo Stadio 2: grp_DMSO_24h
+      GSM6714224
+        grezzo (Stadio 1): title: S24h-1-g_S28_L006_R1_24h_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S24h-1-g_S28_L006_R1_24h_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714226
+        grezzo (Stadio 1): title: S24h-2-g_S29_L006_R1_24h_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S24h-2-g_S29_L006_R1_24h_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714227
+        grezzo (Stadio 1): title: S24h-3-g_S30_L006_R1_24h_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S24h-3-g_S30_L006_R1_24h_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714228
+        grezzo (Stadio 1): title: S24h-4-g_S31_L006_R1_24h_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S24h-4-g_S31_L006_R1_24h_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714229
+        grezzo (Stadio 1): title: S24h-5-o_S32_L006_R1_24h_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S24h-5-o_S32_L006_R1_24h_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714230
+        grezzo (Stadio 1): title: S24h-6-o_S33_L006_R1_24h_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S24h-6-o_S33_L006_R1_24h_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714231
+        grezzo (Stadio 1): title: S24h-7-o_S34_L006_R1_24h_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S24h-7-o_S34_L006_R1_24h_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714232
+        grezzo (Stadio 1): title: S24h-8-o_S35_L006_R1_24h_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S24h-8-o_S35_L006_R1_24h_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 24 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+
+CONFRONTO  GSE217334__GSE217334__TCDD_3h_vs_DMSO_3h__1
+  studio: GSE217334
+  TRATTATO  (n=4)  etichetta Stadio 2: TCDD 3 hours
+      gruppo Stadio 2: grp_TCDD_3h
+      GSM6714192
+        grezzo (Stadio 1): title: S3h-9-o_S24_L005_R1_3h_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3h-9-o_S24_L005_R1_3h_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714194
+        grezzo (Stadio 1): title: S3h-10-o_S25_L005_R1_3h_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3h-10-o_S25_L005_R1_3h_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714195
+        grezzo (Stadio 1): title: S3h-11-o_S26_L005_R1_3h_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3h-11-o_S26_L005_R1_3h_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714196
+        grezzo (Stadio 1): title: S3h-12-o_S27_L005_R1_3h_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3h-12-o_S27_L005_R1_3h_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+  CONTROLLO  (n=8)  etichetta Stadio 2: DMSO 3 hours
+      gruppo Stadio 2: grp_DMSO_3h
+      GSM6714180
+        grezzo (Stadio 1): title: S3h-1-g_S16_L005_R1_3h_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3h-1-g_S16_L005_R1_3h_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714182
+        grezzo (Stadio 1): title: S3h-2-g_S17_L005_R1_3h_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3h-2-g_S17_L005_R1_3h_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714183
+        grezzo (Stadio 1): title: S3h-3-g_S18_L005_R1_3h_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3h-3-g_S18_L005_R1_3h_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714185
+        grezzo (Stadio 1): title: S3h-4-g_S19_L005_R1_3h_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3h-4-g_S19_L005_R1_3h_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714186
+        grezzo (Stadio 1): title: S3h-5-o_S20_L005_R1_3h_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3h-5-o_S20_L005_R1_3h_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714188
+        grezzo (Stadio 1): title: S3h-6-o_S21_L005_R1_3h_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3h-6-o_S21_L005_R1_3h_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714189
+        grezzo (Stadio 1): title: S3h-7-o_S22_L005_R1_3h_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3h-7-o_S22_L005_R1_3h_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714191
+        grezzo (Stadio 1): title: S3h-8-o_S23_L005_R1_3h_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3h-8-o_S23_L005_R1_3h_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: 3 hours,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+
+CONFRONTO  GSE217334__GSE217334__TCDD_Day17_vs_DMSO_Day17__1
+  studio: GSE217334
+  TRATTATO  (n=4)  etichetta Stadio 2: TCDD Day 17
+      gruppo Stadio 2: grp_TCDD_Day17
+      GSM6714220
+        grezzo (Stadio 1): title: S9_S60_L007_17d_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S9_S60_L007_17d_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714221
+        grezzo (Stadio 1): title: S10_S61_L007_R1_17d_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S10_S61_L007_R1_17d_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714222
+        grezzo (Stadio 1): title: S11_S62_L007_R1_17d_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S11_S62_L007_R1_17d_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714223
+        grezzo (Stadio 1): title: S12_S63_L007_R1_17d_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S12_S63_L007_R1_17d_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+  CONTROLLO  (n=8)  etichetta Stadio 2: DMSO Day 17
+      gruppo Stadio 2: grp_DMSO_Day17
+      GSM6714211
+        grezzo (Stadio 1): title: S1_S52_L007_R1_17d_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S1_S52_L007_R1_17d_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714212
+        grezzo (Stadio 1): title: S2_S53_L007_R1_17d_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S2_S53_L007_R1_17d_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714213
+        grezzo (Stadio 1): title: S3_S54_L007_R1_17d_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3_S54_L007_R1_17d_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714214
+        grezzo (Stadio 1): title: S4_S55_L007_R1_17d_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S4_S55_L007_R1_17d_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714215
+        grezzo (Stadio 1): title: S5_S56_L007_R1_17d_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S5_S56_L007_R1_17d_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714217
+        grezzo (Stadio 1): title: S6_S57_L007_R1_17d_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S6_S57_L007_R1_17d_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714218
+        grezzo (Stadio 1): title: S7_S58_L007_R1_17d_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S7_S58_L007_R1_17d_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714219
+        grezzo (Stadio 1): title: S8_S59_L007_R1_17d_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S8_S59_L007_R1_17d_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 17,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+
+CONFRONTO  GSE217334__GSE217334__TCDD_Day3_vs_DMSO_Day3__1
+  studio: GSE217334
+  TRATTATO  (n=4)  etichetta Stadio 2: TCDD Day 3
+      gruppo Stadio 2: grp_TCDD_Day3
+      GSM6714174
+        grezzo (Stadio 1): title: S3-13-o_R1_3d_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3-13-o_R1_3d_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714176
+        grezzo (Stadio 1): title: S3-14-o_R1_3d_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3-14-o_R1_3d_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714177
+        grezzo (Stadio 1): title: S3-15-o_R1_3d_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3-15-o_R1_3d_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714179
+        grezzo (Stadio 1): title: S3-16-o_R1_3d_ODM_TCDD,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3-16-o_R1_3d_ODM_TCDD
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: 10nM TCDD,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+  CONTROLLO  (n=8)  etichetta Stadio 2: DMSO Day 3
+      gruppo Stadio 2: grp_DMSO_Day3
+      GSM6714162
+        grezzo (Stadio 1): title: S3-1-g_R1_3d_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3-1-g_R1_3d_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714164
+        grezzo (Stadio 1): title: S3-2-g_R1_3d_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3-2-g_R1_3d_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714165
+        grezzo (Stadio 1): title: S3-3-g_R1_3d_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3-3-g_R1_3d_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714167
+        grezzo (Stadio 1): title: S3-4-g_R1_3d_GM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: GM: Growth Media
+        H5 titolo        : S3-4-g_R1_3d_GM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: GM: Growth Media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714168
+        grezzo (Stadio 1): title: S3-5-o_R1_3d_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3-5-o_R1_3d_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714170
+        grezzo (Stadio 1): title: S3-6-o_R1_3d_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3-6-o_R1_3d_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714171
+        grezzo (Stadio 1): title: S3-7-o_R1_3d_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3-7-o_R1_3d_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+      GSM6714173
+        grezzo (Stadio 1): title: S3-8-o_R1_3d_ODM_DMSO,source: bone derived mesenchymal stem cells,source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 titolo        : S3-8-o_R1_3d_ODM_DMSO
+        H5 caratteristiche: source: 25-year-old, non-osteoporotic female,tissue: bone,treatment: DMSO,time: Day 3,characteristic: media_type: ODM: Osteogenic media
+        H5 sorgente      : bone derived mesenchymal stem cells
+
+CONFRONTO  GSE76608__GSE76608__TCDD_vs_DMSO__1
+  studio: GSE76608
+  TRATTATO  (n=4)  etichetta Stadio 2: MCF-7 cells treated with TCDD
+      gruppo Stadio 2: grp_TCDD
+      GSM2028923
+        grezzo (Stadio 1): title: MCF-7 cells treated with 10nM TCDD, replicate 1,source: MCF-7 breast cancer cells,treatment: TCDD,concentration: 10nM
+        H5 titolo        : MCF-7 cells treated with 10nM TCDD, replicate 1
+        H5 caratteristiche: treatment: TCDD,concentration: 10nM
+        H5 sorgente      : MCF-7 breast cancer cells
+      GSM2028924
+        grezzo (Stadio 1): title: MCF-7 cells treated with 10nM TCDD, replicate 2,source: MCF-7 breast cancer cells,treatment: TCDD,concentration: 10nM
+        H5 titolo        : MCF-7 cells treated with 10nM TCDD, replicate 2
+        H5 caratteristiche: treatment: TCDD,concentration: 10nM
+        H5 sorgente      : MCF-7 breast cancer cells
+      GSM2028925
+        grezzo (Stadio 1): title: MCF-7 cells treated with 10nM TCDD, replicate 3,source: MCF-7 breast cancer cells,treatment: TCDD,concentration: 10nM
+        H5 titolo        : MCF-7 cells treated with 10nM TCDD, replicate 3
+        H5 caratteristiche: treatment: TCDD,concentration: 10nM
+        H5 sorgente      : MCF-7 breast cancer cells
+      GSM2028926
+        grezzo (Stadio 1): title: MCF-7 cells treated with 10nM TCDD, replicate 4,source: MCF-7 breast cancer cells,treatment: TCDD,concentration: 10nM
+        H5 titolo        : MCF-7 cells treated with 10nM TCDD, replicate 4
+        H5 caratteristiche: treatment: TCDD,concentration: 10nM
+        H5 sorgente      : MCF-7 breast cancer cells
+  CONTROLLO  (n=4)  etichetta Stadio 2: MCF-7 cells treated with DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM2028919
+        grezzo (Stadio 1): title: MCF-7 cells treated with DMSO, replicate 1,source: MCF-7 breast cancer cells,treatment: DMSO,concentration: N/A
+        H5 titolo        : MCF-7 cells treated with DMSO, replicate 1
+        H5 caratteristiche: treatment: DMSO,concentration: N/A
+        H5 sorgente      : MCF-7 breast cancer cells
+      GSM2028920
+        grezzo (Stadio 1): title: MCF-7 cells treated with DMSO, replicate 2,source: MCF-7 breast cancer cells,treatment: DMSO,concentration: N/A
+        H5 titolo        : MCF-7 cells treated with DMSO, replicate 2
+        H5 caratteristiche: treatment: DMSO,concentration: N/A
+        H5 sorgente      : MCF-7 breast cancer cells
+      GSM2028921
+        grezzo (Stadio 1): title: MCF-7 cells treated with DMSO, replicate 3,source: MCF-7 breast cancer cells,treatment: DMSO,concentration: N/A
+        H5 titolo        : MCF-7 cells treated with DMSO, replicate 3
+        H5 caratteristiche: treatment: DMSO,concentration: N/A
+        H5 sorgente      : MCF-7 breast cancer cells
+      GSM2028922
+        grezzo (Stadio 1): title: MCF-7 cells treated with DMSO, replicate 4,source: MCF-7 breast cancer cells,treatment: DMSO,concentration: N/A
+        H5 titolo        : MCF-7 cells treated with DMSO, replicate 4
+        H5 caratteristiche: treatment: DMSO,concentration: N/A
+        H5 sorgente      : MCF-7 breast cancer cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE104869     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE160981     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE217334     campioni nell'H5:   60 | collocati dallo Stadio 2:   57 | MAI COLLOCATI:    3 | usati in questa meta-analisi: 48 campioni distinti (48 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6714207, GSM6714208, GSM6714209
+  GSE76608      campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+

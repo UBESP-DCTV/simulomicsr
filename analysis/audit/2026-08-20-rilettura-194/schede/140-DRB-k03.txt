@@ -1,0 +1,176 @@
+META-ANALISI 140 di 194
+==============================================================================
+nome            : DRB
+entita (ID)     : CHEBI:49852
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_e294a3bc
+studi poolati   : 3   confronti: 3   campioni: 25
+geni significativi: 2665   I2 mediano: 79.0
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE124979__GSE124979__grp_0002_vs_grp_0001__1
+  studio: GSE124979
+  TRATTATO  (n=2)  etichetta Stadio 2: DRB-treated
+      gruppo Stadio 2: grp_0002
+      GSM5331859
+        grezzo (Stadio 1): title: CDNIDRB RNA-seq rep1,source: normal human fetal lung fibroblasts,cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: DRB
+        H5 titolo        : CDNIDRB RNA-seq rep1
+        H5 caratteristiche: cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: DRB
+        H5 sorgente      : normal human fetal lung fibroblasts
+      GSM5331860
+        grezzo (Stadio 1): title: CDNIDRB RNA-seq rep2,source: normal human fetal lung fibroblasts,cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: DRB
+        H5 titolo        : CDNIDRB RNA-seq rep2
+        H5 caratteristiche: cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: DRB
+        H5 sorgente      : normal human fetal lung fibroblasts
+  CONTROLLO  (n=6)  etichetta Stadio 2: Control (vehicle)
+      gruppo Stadio 2: grp_0001
+      GSM5331853
+        grezzo (Stadio 1): title: NS RNA-seq rep1,source: normal human fetal lung fibroblasts,cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 titolo        : NS RNA-seq rep1
+        H5 caratteristiche: cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 sorgente      : normal human fetal lung fibroblasts
+      GSM5331854
+        grezzo (Stadio 1): title: NS RNA-seq rep2,source: normal human fetal lung fibroblasts,cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 titolo        : NS RNA-seq rep2
+        H5 caratteristiche: cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 sorgente      : normal human fetal lung fibroblasts
+      GSM5331855
+        grezzo (Stadio 1): title: CDNS RNA-seq rep1,source: normal human fetal lung fibroblasts,cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 titolo        : CDNS RNA-seq rep1
+        H5 caratteristiche: cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 sorgente      : normal human fetal lung fibroblasts
+      GSM5331856
+        grezzo (Stadio 1): title: CDNS RNA-seq rep2,source: normal human fetal lung fibroblasts,cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 titolo        : CDNS RNA-seq rep2
+        H5 caratteristiche: cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 sorgente      : normal human fetal lung fibroblasts
+      GSM5331857
+        grezzo (Stadio 1): title: CDNI RNA-seq rep1,source: normal human fetal lung fibroblasts,cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 titolo        : CDNI RNA-seq rep1
+        H5 caratteristiche: cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 sorgente      : normal human fetal lung fibroblasts
+      GSM5331858
+        grezzo (Stadio 1): title: CDNI RNA-seq rep2,source: normal human fetal lung fibroblasts,cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 titolo        : CDNI RNA-seq rep2
+        H5 caratteristiche: cell line: TIG-1,cell type: normal human fetal lung fibroblasts,treatment: control
+        H5 sorgente      : normal human fetal lung fibroblasts
+
+CONFRONTO  GSE153303__GSE153303__grp_0002_vs_grp_0003__1
+  studio: GSE153303
+  TRATTATO  (n=2)  etichetta Stadio 2: DRB 25 ug/ml
+      gruppo Stadio 2: grp_0002
+      GSM4639966
+        grezzo (Stadio 1): title: 25 ug/ml DRB-treated A549 cells_1,source: Lung adenocarcinoma,cell line: A549,treatment: 25 ug/ml DRB,replicate: 1
+        H5 titolo        : 25 ug/ml DRB-treated A549 cells_1
+        H5 caratteristiche: cell line: A549,treatment: 25 ug/ml DRB,replicate: 1
+        H5 sorgente      : Lung adenocarcinoma
+      GSM4639967
+        grezzo (Stadio 1): title: 25 ug/ml DRB-treated A549 cells_2,source: Lung adenocarcinoma,cell line: A549,treatment: 25 ug/ml DRB,replicate: 2
+        H5 titolo        : 25 ug/ml DRB-treated A549 cells_2
+        H5 caratteristiche: cell line: A549,treatment: 25 ug/ml DRB,replicate: 2
+        H5 sorgente      : Lung adenocarcinoma
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_0003
+      GSM4639962
+        grezzo (Stadio 1): title: DMSO-treated A549 cells_1,source: Lung adenocarcinoma,cell line: A549,treatment: DMSO,replicate: 1
+        H5 titolo        : DMSO-treated A549 cells_1
+        H5 caratteristiche: cell line: A549,treatment: DMSO,replicate: 1
+        H5 sorgente      : Lung adenocarcinoma
+      GSM4639963
+        grezzo (Stadio 1): title: DMSO-treated A549 cells_2,source: Lung adenocarcinoma,cell line: A549,treatment: DMSO,replicate: 2
+        H5 titolo        : DMSO-treated A549 cells_2
+        H5 caratteristiche: cell line: A549,treatment: DMSO,replicate: 2
+        H5 sorgente      : Lung adenocarcinoma
+
+CONFRONTO  GSE57116__GSE57116__DRB_vs_untreated__1
+  studio: GSE57116
+  TRATTATO  (n=10)  etichetta Stadio 2: DRB-treated HeLa cells
+      gruppo Stadio 2: grp_0001
+      GSM1375522
+        grezzo (Stadio 1): title: 0min-1,source: Human cervical cancer,cell line: HeLa,time: 0 min,treatment: 3 h DRB 0 min 4sU
+        H5 titolo        : 0min-1
+        H5 caratteristiche: cell line: HeLa,time: 0 min,treatment: 3 h DRB 0 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375523
+        grezzo (Stadio 1): title: 0min-2,source: Human cervical cancer,cell line: HeLa,time: 0 min,treatment: 3 h DRB 0 min 4sU
+        H5 titolo        : 0min-2
+        H5 caratteristiche: cell line: HeLa,time: 0 min,treatment: 3 h DRB 0 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375524
+        grezzo (Stadio 1): title: 0min-3,source: Human cervical cancer,cell line: HeLa,time: 0 min,treatment: 3 h DRB 0 min 4sU
+        H5 titolo        : 0min-3
+        H5 caratteristiche: cell line: HeLa,time: 0 min,treatment: 3 h DRB 0 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375525
+        grezzo (Stadio 1): title: 0min-4,source: Human cervical cancer,cell line: HeLa,time: 0 min,treatment: 3 h DRB 0 min 4sU
+        H5 titolo        : 0min-4
+        H5 caratteristiche: cell line: HeLa,time: 0 min,treatment: 3 h DRB 0 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375526
+        grezzo (Stadio 1): title: 4min-1,source: Human cervical cancer,cell line: HeLa,time: 4 min,treatment: 3 h DRB 4 min 4sU
+        H5 titolo        : 4min-1
+        H5 caratteristiche: cell line: HeLa,time: 4 min,treatment: 3 h DRB 4 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375527
+        grezzo (Stadio 1): title: 4min-2,source: Human cervical cancer,cell line: HeLa,time: 4 min,treatment: 3 h DRB 4 min 4sU
+        H5 titolo        : 4min-2
+        H5 caratteristiche: cell line: HeLa,time: 4 min,treatment: 3 h DRB 4 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375528
+        grezzo (Stadio 1): title: 8min-1,source: Human cervical cancer,cell line: HeLa,time: 8 min,treatment: 3 h DRB 8 min 4sU
+        H5 titolo        : 8min-1
+        H5 caratteristiche: cell line: HeLa,time: 8 min,treatment: 3 h DRB 8 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375529
+        grezzo (Stadio 1): title: 8min-2,source: Human cervical cancer,cell line: HeLa,time: 8 min,treatment: 3 h DRB 8 min 4sU
+        H5 titolo        : 8min-2
+        H5 caratteristiche: cell line: HeLa,time: 8 min,treatment: 3 h DRB 8 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375530
+        grezzo (Stadio 1): title: 8min-3,source: Human cervical cancer,cell line: HeLa,time: 8 min,treatment: 3 h DRB 8 min 4sU
+        H5 titolo        : 8min-3
+        H5 caratteristiche: cell line: HeLa,time: 8 min,treatment: 3 h DRB 8 min 4sU
+        H5 sorgente      : Human cervical cancer
+      GSM1375531
+        grezzo (Stadio 1): title: 8min-4,source: Human cervical cancer,cell line: HeLa,time: 8 min,treatment: 3 h DRB 8 min 4sU
+        H5 titolo        : 8min-4
+        H5 caratteristiche: cell line: HeLa,time: 8 min,treatment: 3 h DRB 8 min 4sU
+        H5 sorgente      : Human cervical cancer
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated HeLa cells
+      gruppo Stadio 2: grp_0002
+      GSM1375518
+        grezzo (Stadio 1): title: NT-1,source: Human cervical cancer,cell line: HeLa,time: control,treatment: untreated
+        H5 titolo        : NT-1
+        H5 caratteristiche: cell line: HeLa,time: control,treatment: untreated
+        H5 sorgente      : Human cervical cancer
+      GSM1375519
+        grezzo (Stadio 1): title: NT-2,source: Human cervical cancer,cell line: HeLa,time: control,treatment: untreated
+        H5 titolo        : NT-2
+        H5 caratteristiche: cell line: HeLa,time: control,treatment: untreated
+        H5 sorgente      : Human cervical cancer
+      GSM1375520
+        grezzo (Stadio 1): title: NT-3,source: Human cervical cancer,cell line: HeLa,time: control,treatment: untreated
+        H5 titolo        : NT-3
+        H5 caratteristiche: cell line: HeLa,time: control,treatment: untreated
+        H5 sorgente      : Human cervical cancer
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE124979     campioni nell'H5:    8 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE153303     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE57116      campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
+

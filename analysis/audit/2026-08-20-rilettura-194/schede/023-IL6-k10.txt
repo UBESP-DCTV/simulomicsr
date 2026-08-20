@@ -1,0 +1,613 @@
+META-ANALISI 023 di 194
+==============================================================================
+nome            : IL6
+entita (ID)     : HGNC:6018
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_a25d0964
+studi poolati   : 10   confronti: 14   campioni: 95
+geni significativi: 198   I2 mediano: 41.4
+verdetto della rilettura: corretta
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE126003__GSE126003__grp_0033_vs_grp_0032__1
+  studio: GSE126003
+  TRATTATO  (n=3)  etichetta Stadio 2: WT_MCF7 + IL6
+      gruppo Stadio 2: grp_0033
+      GSM3587660
+        grezzo (Stadio 1): title: JC4359_WT_ICI_IL6_1,source: WT_MCF7 clonal cell line,tissue: Breast cancer cell line,replicate: 1
+        H5 titolo        : JC4359_WT_ICI_IL6_1
+        H5 caratteristiche: tissue: Breast cancer cell line,replicate: 1
+        H5 sorgente      : WT_MCF7 clonal cell line
+      GSM3587668
+        grezzo (Stadio 1): title: JC4367_WT_ICI_IL6_2,source: WT_MCF7 clonal cell line,tissue: Breast cancer cell line,replicate: 2
+        H5 titolo        : JC4367_WT_ICI_IL6_2
+        H5 caratteristiche: tissue: Breast cancer cell line,replicate: 2
+        H5 sorgente      : WT_MCF7 clonal cell line
+      GSM3587676
+        grezzo (Stadio 1): title: JC4375_WT_ICI_IL6_3,source: WT_MCF7 clonal cell line,tissue: Breast cancer cell line,replicate: 3
+        H5 titolo        : JC4375_WT_ICI_IL6_3
+        H5 caratteristiche: tissue: Breast cancer cell line,replicate: 3
+        H5 sorgente      : WT_MCF7 clonal cell line
+  CONTROLLO  (n=4)  etichetta Stadio 2: WT_MCF7 + PBS
+      gruppo Stadio 2: grp_0032
+      GSM3587659
+        grezzo (Stadio 1): title: JC4358_WT_ICI_PBS_1,source: WT_MCF7 clonal cell line,tissue: Breast cancer cell line,replicate: 1
+        H5 titolo        : JC4358_WT_ICI_PBS_1
+        H5 caratteristiche: tissue: Breast cancer cell line,replicate: 1
+        H5 sorgente      : WT_MCF7 clonal cell line
+      GSM3587667
+        grezzo (Stadio 1): title: JC4366_WT_ICI_PBS_2,source: WT_MCF7 clonal cell line,tissue: Breast cancer cell line,replicate: 2
+        H5 titolo        : JC4366_WT_ICI_PBS_2
+        H5 caratteristiche: tissue: Breast cancer cell line,replicate: 2
+        H5 sorgente      : WT_MCF7 clonal cell line
+      GSM3587675
+        grezzo (Stadio 1): title: JC4374_WT_ICI_PBS_3,source: WT_MCF7 clonal cell line,tissue: Breast cancer cell line,replicate: 3
+        H5 titolo        : JC4374_WT_ICI_PBS_3
+        H5 caratteristiche: tissue: Breast cancer cell line,replicate: 3
+        H5 sorgente      : WT_MCF7 clonal cell line
+      GSM3587683
+        grezzo (Stadio 1): title: JC4382_WT_ICI_PBS_4,source: WT_MCF7 clonal cell line,tissue: Breast cancer cell line,replicate: 4
+        H5 titolo        : JC4382_WT_ICI_PBS_4
+        H5 caratteristiche: tissue: Breast cancer cell line,replicate: 4
+        H5 sorgente      : WT_MCF7 clonal cell line
+
+CONFRONTO  GSE138309__GSE138309__grp_0002_vs_grp_0001__1
+  studio: GSE138309
+  TRATTATO  (n=3)  etichetta Stadio 2: Interleukin-6 treated hCMEC/D3 cells
+      gruppo Stadio 2: grp_0002
+      GSM4105184
+        grezzo (Stadio 1): title: 20ng-72h-1,source: Brain,cell line: hCMEC/D3,treatment: 20 ng/mL interleukin-6 for 72h
+        H5 titolo        : 20ng-72h-1
+        H5 caratteristiche: cell line: hCMEC/D3,treatment: 20 ng/mL interleukin-6 for 72h
+        H5 sorgente      : Brain
+      GSM4105185
+        grezzo (Stadio 1): title: 20ng-72h-2,source: Brain,cell line: hCMEC/D3,treatment: 20 ng/mL interleukin-6 for 72h
+        H5 titolo        : 20ng-72h-2
+        H5 caratteristiche: cell line: hCMEC/D3,treatment: 20 ng/mL interleukin-6 for 72h
+        H5 sorgente      : Brain
+      GSM4105186
+        grezzo (Stadio 1): title: 20ng-72h-3,source: Brain,cell line: hCMEC/D3,treatment: 20 ng/mL interleukin-6 for 72h
+        H5 titolo        : 20ng-72h-3
+        H5 caratteristiche: cell line: hCMEC/D3,treatment: 20 ng/mL interleukin-6 for 72h
+        H5 sorgente      : Brain
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated hCMEC/D3 cells
+      gruppo Stadio 2: grp_0001
+      GSM4105181
+        grezzo (Stadio 1): title: Tneg-1,source: Brain,cell line: hCMEC/D3,treatment: none
+        H5 titolo        : Tneg-1
+        H5 caratteristiche: cell line: hCMEC/D3,treatment: none
+        H5 sorgente      : Brain
+      GSM4105182
+        grezzo (Stadio 1): title: Tneg-2,source: Brain,cell line: hCMEC/D3,treatment: none
+        H5 titolo        : Tneg-2
+        H5 caratteristiche: cell line: hCMEC/D3,treatment: none
+        H5 sorgente      : Brain
+      GSM4105183
+        grezzo (Stadio 1): title: Tneg-3,source: Brain,cell line: hCMEC/D3,treatment: none
+        H5 titolo        : Tneg-3
+        H5 caratteristiche: cell line: hCMEC/D3,treatment: none
+        H5 sorgente      : Brain
+
+CONFRONTO  GSE143443__GSE143443__grp_0002_vs_grp_0001__1
+  studio: GSE143443
+  TRATTATO  (n=5)  etichetta Stadio 2: RA synovial fibroblasts, IL6 stimulated
+      gruppo Stadio 2: grp_0002
+      GSM4259543
+        grezzo (Stadio 1): title: 1624IL6_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 1624IL6_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+      GSM4259545
+        grezzo (Stadio 1): title: 1784IL6_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 1784IL6_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+      GSM4259547
+        grezzo (Stadio 1): title: 2600IL6_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 2600IL6_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+      GSM4259549
+        grezzo (Stadio 1): title: 630IL6_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 630IL6_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+      GSM4259551
+        grezzo (Stadio 1): title: 952IL6_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 952IL6_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+  CONTROLLO  (n=5)  etichetta Stadio 2: RA synovial fibroblasts, untreated
+      gruppo Stadio 2: grp_0001
+      GSM4259544
+        grezzo (Stadio 1): title: 1624Med_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 1624Med_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+      GSM4259546
+        grezzo (Stadio 1): title: 1784Med_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 1784Med_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+      GSM4259548
+        grezzo (Stadio 1): title: 2600Med_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 2600Med_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+      GSM4259550
+        grezzo (Stadio 1): title: 630Med_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 630Med_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+      GSM4259552
+        grezzo (Stadio 1): title: 952Med_H,source: RA hip,disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 titolo        : 952Med_H
+        H5 caratteristiche: disease state: Rheumatoid Arthritis,tissue: Fibroblast-like Synoviocytes,site: Hip
+        H5 sorgente      : RA hip
+
+CONFRONTO  GSE149262__GSE149262__grp_0009_vs_grp_0002__1
+  studio: GSE149262
+  TRATTATO  (n=2)  etichetta Stadio 2: DLD-1 KRAS (+/-) passage 6, IL-6 10 ng/mL 2h
+      gruppo Stadio 2: grp_0009
+      GSM4495074
+        grezzo (Stadio 1): title: WT_IL6_2h_1,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-6,stimulation time: 2h,experimental replicate: 1,passage: 6
+        H5 titolo        : WT_IL6_2h_1
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-6,stimulation time: 2h,experimental replicate: 1,passage: 6
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495086
+        grezzo (Stadio 1): title: WT_IL6_2h_3,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-6,stimulation time: 2h,experimental replicate: 3,passage: 8
+        H5 titolo        : WT_IL6_2h_3
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: 10ng/mL IL-6,stimulation time: 2h,experimental replicate: 3,passage: 8
+        H5 sorgente      : colorectal cancer cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: DLD-1 KRAS (+/-) passage 6, untreated 2h
+      gruppo Stadio 2: grp_0002
+      GSM4495072
+        grezzo (Stadio 1): title: WT_NT_2h_1,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 1,passage: 6
+        H5 titolo        : WT_NT_2h_1
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 1,passage: 6
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495078
+        grezzo (Stadio 1): title: WT_NT_2h_2,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 2,passage: 7
+        H5 titolo        : WT_NT_2h_2
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 2,passage: 7
+        H5 sorgente      : colorectal cancer cell line
+      GSM4495084
+        grezzo (Stadio 1): title: WT_NT_2h_3,source: colorectal cancer cell line,cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 3,passage: 8
+        H5 titolo        : WT_NT_2h_3
+        H5 caratteristiche: cell line: DLD-1 KRAS (+/-) (HD-105-040 P4),tissue source: colon (Colon adenocarcinoma Dukes Type C),genotype/variation: KRAS WT,cytokine stimulation: untreated,stimulation time: 2h,experimental replicate: 3,passage: 8
+        H5 sorgente      : colorectal cancer cell line
+
+CONFRONTO  GSE161664__GSE161664__IL6_vs_Control__1
+  studio: GSE161664
+  TRATTATO  (n=2)  etichetta Stadio 2: IL6
+      gruppo Stadio 2: grp_0016
+      GSM4912472
+        grezzo (Stadio 1): title: RNA-seq-SAEC_IL6_rep2,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: IL6
+        H5 titolo        : RNA-seq-SAEC_IL6_rep2
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: IL6
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912473
+        grezzo (Stadio 1): title: RNA-seq-SAEC_IL6_rep3,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: IL6
+        H5 titolo        : RNA-seq-SAEC_IL6_rep3
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: IL6
+        H5 sorgente      : small airway epithelial cells (SAEC)
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0004
+      GSM4912446
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep1,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep1
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912447
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep2,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep2
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912448
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep3,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep3
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+      GSM4912449
+        grezzo (Stadio 1): title: RNA-seq-SAEC_Control_rep4,source: small airway epithelial cells (SAEC),cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 titolo        : RNA-seq-SAEC_Control_rep4
+        H5 caratteristiche: cell type: small airway epithelial cells (SAEC),treatment: Control
+        H5 sorgente      : small airway epithelial cells (SAEC)
+
+CONFRONTO  GSE179347__GSE179347__HMCL7304_EMEM_vs_HMCL7304_IL6_1__1
+  studio: GSE179347
+  TRATTATO  (n=2)  etichetta Stadio 2: HMCL-7304 cells treated with IL-6
+      gruppo Stadio 2: mg79
+      GSM5415923
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 treated with IL-6 at 20ng/ml concentration K_06_01,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 titolo        : RNA-Seq of  HMCL-7304 treated with IL-6 at 20ng/ml concentration K_06_01
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 sorgente      : muscle skeletal
+      GSM5415924
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 treated with IL-6 at 20ng/ml concentration K_06_02,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 titolo        : RNA-Seq of  HMCL-7304 treated with IL-6 at 20ng/ml concentration K_06_02
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 sorgente      : muscle skeletal
+  CONTROLLO  (n=2)  etichetta Stadio 2: HMCL-7304 CONTROL (EMPTY EMEM MEDIUM)
+      gruppo Stadio 2: mg4
+      GSM5415910
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 CONTROL K_01_03,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 1,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  HMCL-7304 CONTROL K_01_03
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 1,treatment_concentration: N/A
+        H5 sorgente      : muscle skeletal
+      GSM5415980
+        grezzo (Stadio 1): title: RNA-Seq of  HMCL-7304 CONTROL K_25_01,source: muscle skeletal,tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  HMCL-7304 CONTROL K_25_01
+        H5 caratteristiche: tissue: muscle skeletal,cell type: myocyte,cell line: HMCL-7304,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : muscle skeletal
+
+CONFRONTO  GSE179347__GSE179347__SGBS_EMEM_vs_SGBS_IL6__1
+  studio: GSE179347
+  TRATTATO  (n=3)  etichetta Stadio 2: SGBS cells treated with IL-6
+      gruppo Stadio 2: mg105
+      GSM5415846
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with IL-6 at 20ng/ml concentration B_6_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 titolo        : RNA-Seq of  SGBS treated with IL-6 at 20ng/ml concentration B_6_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 sorgente      : adipose
+      GSM5415847
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with IL-6 at 20ng/ml concentration B_6_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 titolo        : RNA-Seq of  SGBS treated with IL-6 at 20ng/ml concentration B_6_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 sorgente      : adipose
+      GSM5415848
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS treated with IL-6 at 20ng/ml concentration B_6_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 titolo        : RNA-Seq of  SGBS treated with IL-6 at 20ng/ml concentration B_6_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: IL-6,treatment_concentration: 20ng/ml
+        H5 sorgente      : adipose
+  CONTROLLO  (n=9)  etichetta Stadio 2: SGBS CONTROL (EMPTY EMEM MEDIUM)
+      gruppo Stadio 2: mg8
+      GSM5415855
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415856
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415857
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_9_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_9_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 2,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415878
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415879
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415880
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_17_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_17_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 3,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415902
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_01,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_01
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415903
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_02,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_02
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+      GSM5415904
+        grezzo (Stadio 1): title: RNA-Seq of  SGBS CONTROL B_25_03,source: adipose,tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 titolo        : RNA-Seq of  SGBS CONTROL B_25_03
+        H5 caratteristiche: tissue: adipose,cell type: adipocyte,cell line: SGBS,treatment: CONTROL (EMPTY EMEM MEDIUM) 4,treatment_concentration: N/A
+        H5 sorgente      : adipose
+
+CONFRONTO  GSE189997__GSE189997__CD4Memory_IL-6_vs_CD4Memory_Unstim__1
+  studio: GSE189997
+  TRATTATO  (n=3)  etichetta Stadio 2: CD4 Memory IL-6
+      gruppo Stadio 2: grp_CD4Memory_IL-6
+      GSM5711129
+        grezzo (Stadio 1): title: CD4_Memory_IL6_HD_GU0003,source: PBMC,t-cell type: CD4Memory,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU0003
+        H5 titolo        : CD4_Memory_IL6_HD_GU0003
+        H5 caratteristiche: t-cell type: CD4Memory,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU0003
+        H5 sorgente      : PBMC
+      GSM5711169
+        grezzo (Stadio 1): title: CD4_Memory_IL6_HD_GU1111,source: PBMC,t-cell type: CD4Memory,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1111
+        H5 titolo        : CD4_Memory_IL6_HD_GU1111
+        H5 caratteristiche: t-cell type: CD4Memory,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1111
+        H5 sorgente      : PBMC
+      GSM5711183
+        grezzo (Stadio 1): title: CD4_Memory_IL6_HD_GU1118,source: PBMC,t-cell type: CD4Memory,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1118
+        H5 titolo        : CD4_Memory_IL6_HD_GU1118
+        H5 caratteristiche: t-cell type: CD4Memory,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1118
+        H5 sorgente      : PBMC
+  CONTROLLO  (n=2)  etichetta Stadio 2: CD4 Memory Unstim
+      gruppo Stadio 2: grp_CD4Memory_Unstim
+      GSM5711170
+        grezzo (Stadio 1): title: CD4_Memory_Unstim_HD_GU1111,source: PBMC,t-cell type: CD4Memory,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1111
+        H5 titolo        : CD4_Memory_Unstim_HD_GU1111
+        H5 caratteristiche: t-cell type: CD4Memory,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1111
+        H5 sorgente      : PBMC
+      GSM5711184
+        grezzo (Stadio 1): title: CD4_Memory_Unstim_HD_GU1118,source: PBMC,t-cell type: CD4Memory,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1118
+        H5 titolo        : CD4_Memory_Unstim_HD_GU1118
+        H5 caratteristiche: t-cell type: CD4Memory,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1118
+        H5 sorgente      : PBMC
+
+CONFRONTO  GSE189997__GSE189997__CD4Naive_IL-6_vs_CD4Naive_Unstim__1
+  studio: GSE189997
+  TRATTATO  (n=3)  etichetta Stadio 2: CD4 Naive IL-6
+      gruppo Stadio 2: grp_CD4Naive_IL-6
+      GSM5711133
+        grezzo (Stadio 1): title: CD4_Naive_IL6_HD_GU0003,source: PBMC,t-cell type: CD4Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU0003
+        H5 titolo        : CD4_Naive_IL6_HD_GU0003
+        H5 caratteristiche: t-cell type: CD4Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU0003
+        H5 sorgente      : PBMC
+      GSM5711173
+        grezzo (Stadio 1): title: CD4_Naive_IL6_HD_GU1111,source: PBMC,t-cell type: CD4Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1111
+        H5 titolo        : CD4_Naive_IL6_HD_GU1111
+        H5 caratteristiche: t-cell type: CD4Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1111
+        H5 sorgente      : PBMC
+      GSM5711187
+        grezzo (Stadio 1): title: CD4_Naive_IL6_HD_GU1118,source: PBMC,t-cell type: CD4Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1118
+        H5 titolo        : CD4_Naive_IL6_HD_GU1118
+        H5 caratteristiche: t-cell type: CD4Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1118
+        H5 sorgente      : PBMC
+  CONTROLLO  (n=3)  etichetta Stadio 2: CD4 Naive Unstim
+      gruppo Stadio 2: grp_CD4Naive_Unstim
+      GSM5711134
+        grezzo (Stadio 1): title: CD4_Naive_Unstim_HD_GU0003,source: PBMC,t-cell type: CD4Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU0003
+        H5 titolo        : CD4_Naive_Unstim_HD_GU0003
+        H5 caratteristiche: t-cell type: CD4Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU0003
+        H5 sorgente      : PBMC
+      GSM5711174
+        grezzo (Stadio 1): title: CD4_Naive_Unstim_HD_GU1111,source: PBMC,t-cell type: CD4Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1111
+        H5 titolo        : CD4_Naive_Unstim_HD_GU1111
+        H5 caratteristiche: t-cell type: CD4Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1111
+        H5 sorgente      : PBMC
+      GSM5711188
+        grezzo (Stadio 1): title: CD4_Naive_Unstim_HD_GU1118,source: PBMC,t-cell type: CD4Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1118
+        H5 titolo        : CD4_Naive_Unstim_HD_GU1118
+        H5 caratteristiche: t-cell type: CD4Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1118
+        H5 sorgente      : PBMC
+
+CONFRONTO  GSE189997__GSE189997__CD8Naive_IL-6_vs_CD8Naive_Unstim__1
+  studio: GSE189997
+  TRATTATO  (n=2)  etichetta Stadio 2: CD8 Naive IL-6
+      gruppo Stadio 2: grp_CD8Naive_IL-6
+      GSM5711137
+        grezzo (Stadio 1): title: CD8_Naive_IL6_HD_GU0003,source: PBMC,t-cell type: CD8Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU0003
+        H5 titolo        : CD8_Naive_IL6_HD_GU0003
+        H5 caratteristiche: t-cell type: CD8Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU0003
+        H5 sorgente      : PBMC
+      GSM5711179
+        grezzo (Stadio 1): title: CD8_Naive_IL6_HD_GU1111,source: PBMC,t-cell type: CD8Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1111
+        H5 titolo        : CD8_Naive_IL6_HD_GU1111
+        H5 caratteristiche: t-cell type: CD8Naive,ex-vivo stimulation: IL-6,donor hiv status: HD,donorid: GU1111
+        H5 sorgente      : PBMC
+  CONTROLLO  (n=2)  etichetta Stadio 2: CD8 Naive Unstim
+      gruppo Stadio 2: grp_CD8Naive_Unstim
+      GSM5711138
+        grezzo (Stadio 1): title: CD8_Naive_Unstim_HD_GU0003,source: PBMC,t-cell type: CD8Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU0003
+        H5 titolo        : CD8_Naive_Unstim_HD_GU0003
+        H5 caratteristiche: t-cell type: CD8Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU0003
+        H5 sorgente      : PBMC
+      GSM5711180
+        grezzo (Stadio 1): title: CD8_Naive_Unstim_HD_GU1111,source: PBMC,t-cell type: CD8Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1111
+        H5 titolo        : CD8_Naive_Unstim_HD_GU1111
+        H5 caratteristiche: t-cell type: CD8Naive,ex-vivo stimulation: Unstim,donor hiv status: HD,donorid: GU1111
+        H5 sorgente      : PBMC
+
+CONFRONTO  GSE202045__GSE202045__primary_hepatocytes_IL6_24h_vs_primary_hepatocytes_no_treatment_24h__1
+  studio: GSE202045
+  TRATTATO  (n=3)  etichetta Stadio 2: Primary hepatocytes, IL6, 24h
+      gruppo Stadio 2: grp_primary_hepatocytes_IL6_24h
+      GSM6090245
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 positive, 24h, rep1,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 1
+        H5 titolo        : Human primary hepatocytes, IL6 positive, 24h, rep1
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 1
+        H5 sorgente      : Primary hepatocytes
+      GSM6090251
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 positive, 24h, rep2,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 1
+        H5 titolo        : Human primary hepatocytes, IL6 positive, 24h, rep2
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 1
+        H5 sorgente      : Primary hepatocytes
+      GSM6090257
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 positive, 24h, rep3,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 1
+        H5 titolo        : Human primary hepatocytes, IL6 positive, 24h, rep3
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 1
+        H5 sorgente      : Primary hepatocytes
+  CONTROLLO  (n=2)  etichetta Stadio 2: Primary hepatocytes, No treatment, 24h
+      gruppo Stadio 2: grp_primary_hepatocytes_no_treatment_24h
+      GSM6090242
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 negative, 24h, rep1,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 1
+        H5 titolo        : Human primary hepatocytes, IL6 negative, 24h, rep1
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 1
+        H5 sorgente      : Primary hepatocytes
+      GSM6090254
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 negative, 24h, rep3,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 1
+        H5 titolo        : Human primary hepatocytes, IL6 negative, 24h, rep3
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 1
+        H5 sorgente      : Primary hepatocytes
+
+CONFRONTO  GSE202045__GSE202045__primary_hepatocytes_IL6_6h_vs_primary_hepatocytes_no_treatment_6h__1
+  studio: GSE202045
+  TRATTATO  (n=3)  etichetta Stadio 2: Primary hepatocytes, IL6, 6h
+      gruppo Stadio 2: grp_primary_hepatocytes_IL6_6h
+      GSM6090246
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 positive, 6h, rep1,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 6h
+        H5 titolo        : Human primary hepatocytes, IL6 positive, 6h, rep1
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 6h
+        H5 sorgente      : Primary hepatocytes
+      GSM6090252
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 positive, 6h, rep2,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 6h
+        H5 titolo        : Human primary hepatocytes, IL6 positive, 6h, rep2
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 6h
+        H5 sorgente      : Primary hepatocytes
+      GSM6090258
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 positive, 6h, rep3,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 6h
+        H5 titolo        : Human primary hepatocytes, IL6 positive, 6h, rep3
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: IL6 stimulated,time: 6h
+        H5 sorgente      : Primary hepatocytes
+  CONTROLLO  (n=3)  etichetta Stadio 2: Primary hepatocytes, No treatment, 6h
+      gruppo Stadio 2: grp_primary_hepatocytes_no_treatment_6h
+      GSM6090243
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 negative, 6h, rep1,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 6h
+        H5 titolo        : Human primary hepatocytes, IL6 negative, 6h, rep1
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 6h
+        H5 sorgente      : Primary hepatocytes
+      GSM6090249
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 negative, 6h, rep2,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 6h
+        H5 titolo        : Human primary hepatocytes, IL6 negative, 6h, rep2
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 6h
+        H5 sorgente      : Primary hepatocytes
+      GSM6090255
+        grezzo (Stadio 1): title: Human primary hepatocytes, IL6 negative, 6h, rep3,source: Primary hepatocytes,cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 6h
+        H5 titolo        : Human primary hepatocytes, IL6 negative, 6h, rep3
+        H5 caratteristiche: cell line: Primary hepatocytes,cell type: Hepatocytes,genotype: WT,treatment: No treatment,time: 6h
+        H5 sorgente      : Primary hepatocytes
+
+CONFRONTO  GSE215039__GSE215039__nonOA_IL6_vs_nonOA_no_treatment__1
+  studio: GSE215039
+  TRATTATO  (n=5)  etichetta Stadio 2: non-OA IL-6
+      gruppo Stadio 2: grp_nonOA_IL6
+      GSM6620303
+        grezzo (Stadio 1): title: NC, IL-6, biol rep1,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 titolo        : NC, IL-6, biol rep1
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 sorgente      : Chondrocytes
+      GSM6620304
+        grezzo (Stadio 1): title: NC, IL-6, biol rep2,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 titolo        : NC, IL-6, biol rep2
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 sorgente      : Chondrocytes
+      GSM6620305
+        grezzo (Stadio 1): title: NC, IL-6, biol rep3,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 titolo        : NC, IL-6, biol rep3
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 sorgente      : Chondrocytes
+      GSM6620306
+        grezzo (Stadio 1): title: NC, IL-6, biol rep4,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 titolo        : NC, IL-6, biol rep4
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 sorgente      : Chondrocytes
+      GSM6620307
+        grezzo (Stadio 1): title: NC, IL-6, biol rep5,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 titolo        : NC, IL-6, biol rep5
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: IL-6
+        H5 sorgente      : Chondrocytes
+  CONTROLLO  (n=5)  etichetta Stadio 2: non-OA No treatment
+      gruppo Stadio 2: grp_nonOA_no_treatment
+      GSM6620288
+        grezzo (Stadio 1): title: NC, No treatment, biol rep1,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep1
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620289
+        grezzo (Stadio 1): title: NC, No treatment, biol rep2,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep2
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620290
+        grezzo (Stadio 1): title: NC, No treatment, biol rep3,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep3
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620291
+        grezzo (Stadio 1): title: NC, No treatment, biol rep4,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep4
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+      GSM6620292
+        grezzo (Stadio 1): title: NC, No treatment, biol rep5,source: Chondrocytes,disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 titolo        : NC, No treatment, biol rep5
+        H5 caratteristiche: disease: non-OA,cell type: Chondrocytes,treatment: No treatment
+        H5 sorgente      : Chondrocytes
+
+CONFRONTO  GSE78922__GSE78922__IL-6_vs_unstimulated__1
+  studio: GSE78922
+  TRATTATO  (n=2)  etichetta Stadio 2: IL-6 stimulated CD4+CD25- T cells
+      gruppo Stadio 2: grp_0002
+      GSM2081227
+        grezzo (Stadio 1): title: S17-B (ii),source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: 10 ng/ml IL-6,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S17-B (ii)
+        H5 caratteristiche: treatment: 10 ng/ml IL-6,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+      GSM2081228
+        grezzo (Stadio 1): title: S18-A (ii),source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: 10 ng/ml IL-6,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S18-A (ii)
+        H5 caratteristiche: treatment: 10 ng/ml IL-6,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+  CONTROLLO  (n=7)  etichetta Stadio 2: Unstimulated CD4+CD25- T cells
+      gruppo Stadio 2: grp_0001
+      GSM2081215
+        grezzo (Stadio 1): title: S32-B,source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S32-B
+        H5 caratteristiche: treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+      GSM2081216
+        grezzo (Stadio 1): title: S16-A,source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S16-A
+        H5 caratteristiche: treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+      GSM2081217
+        grezzo (Stadio 1): title: S41-A,source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S41-A
+        H5 caratteristiche: treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+      GSM2081218
+        grezzo (Stadio 1): title: S10-A,source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S10-A
+        H5 caratteristiche: treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+      GSM2081219
+        grezzo (Stadio 1): title: S31-B,source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S31-B
+        H5 caratteristiche: treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+      GSM2081220
+        grezzo (Stadio 1): title: S17-B,source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S17-B
+        H5 caratteristiche: treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+      GSM2081221
+        grezzo (Stadio 1): title: S18-A,source: CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS),treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 titolo        : S18-A
+        H5 caratteristiche: treatment: unstimulated,time: 24 hours,cells: MACS sorted CD4+CD25- T cells from PBMC
+        H5 sorgente      : CD4+CD25- T cells purified from PBMC using magnetic- activated cell sorting (MACS)
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE126003     campioni nell'H5:   84 | collocati dallo Stadio 2:   81 | MAI COLLOCATI:    3 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+      mai collocati: GSM3587670, GSM3587672, GSM3587680
+  GSE138309     campioni nell'H5:    6 | collocati dallo Stadio 2:    6 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE143443     campioni nell'H5:   20 | collocati dallo Stadio 2:   20 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE149262     campioni nell'H5:   36 | collocati dallo Stadio 2:   36 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE161664     campioni nell'H5:   37 | collocati dallo Stadio 2:   37 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE179347     campioni nell'H5:  238 | collocati dallo Stadio 2:  238 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE189997     campioni nell'H5:   81 | collocati dallo Stadio 2:   79 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 15 campioni distinti (15 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5711146, GSM5711171
+  GSE202045     campioni nell'H5:   29 | collocati dallo Stadio 2:   25 | MAI COLLOCATI:    4 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6090233, GSM6090238, GSM6090240, GSM6090250
+  GSE215039     campioni nell'H5:   40 | collocati dallo Stadio 2:   40 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE78922      campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+

@@ -1,0 +1,515 @@
+META-ANALISI 102 di 194
+==============================================================================
+nome            : IL3
+entita (ID)     : HGNC:6011
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_d631ee89
+studi poolati   : 4   confronti: 7   campioni: 87
+geni significativi: 410   I2 mediano: 85.6
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE110041__GSE110041__grp_0001_vs_grp_0003__1
+  studio: GSE110041
+  TRATTATO  (n=5)  etichetta Stadio 2: IL3 6h
+      gruppo Stadio 2: grp_0001
+      GSM2976790
+        grezzo (Stadio 1): title: H50 6h IL3+ [1_C4EANACXX_ATCACG_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H50,age: 29,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H50 6h IL3+ [1_C4EANACXX_ATCACG_L006]
+        H5 caratteristiche: tissue: blood,donor: H50,age: 29,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976810
+        grezzo (Stadio 1): title: H44 6h IL3+ [11_C4EANACXX_GGCTAC_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H44 6h IL3+ [11_C4EANACXX_GGCTAC_L006]
+        H5 caratteristiche: tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976814
+        grezzo (Stadio 1): title: H45 6h IL3+ [13_C4EANACXX_AGTCAA_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H45 6h IL3+ [13_C4EANACXX_AGTCAA_L006]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976827
+        grezzo (Stadio 1): title: H48 6h IL3+ [20_C4EANACXX_GTTTCG_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H48 6h IL3+ [20_C4EANACXX_GTTTCG_L007]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976828
+        grezzo (Stadio 1): title: H48 6h IL3+ [20_C4EANACXX_GTTTCG_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H48 6h IL3+ [20_C4EANACXX_GTTTCG_L008]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+  CONTROLLO  (n=8)  etichetta Stadio 2: Untreated 6h
+      gruppo Stadio 2: grp_0003
+      GSM2976811
+        grezzo (Stadio 1): title: H47 6h [12_C4EANACXX_CTTGTA_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H47 6h [12_C4EANACXX_CTTGTA_L005]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976812
+        grezzo (Stadio 1): title: H47 6h [12_C4EANACXX_CTTGTA_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H47 6h [12_C4EANACXX_CTTGTA_L006]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976817
+        grezzo (Stadio 1): title: H45 6h [15_C4EANACXX_ATGTCA_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H45 6h [15_C4EANACXX_ATGTCA_L007]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976818
+        grezzo (Stadio 1): title: H45 6h [15_C4EANACXX_ATGTCA_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H45 6h [15_C4EANACXX_ATGTCA_L008]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976829
+        grezzo (Stadio 1): title: H48 6h [21_C4EANACXX_CGTACG_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H48 6h [21_C4EANACXX_CGTACG_L007]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976830
+        grezzo (Stadio 1): title: H48 6h [21_C4EANACXX_CGTACG_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H48 6h [21_C4EANACXX_CGTACG_L008]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976841
+        grezzo (Stadio 1): title: H44 6h [27_C4EANACXX_TTAGGC_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H44 6h [27_C4EANACXX_TTAGGC_L007]
+        H5 caratteristiche: tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976842
+        grezzo (Stadio 1): title: H44 6h [27_C4EANACXX_TTAGGC_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H44 6h [27_C4EANACXX_TTAGGC_L008]
+        H5 caratteristiche: tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+
+CONFRONTO  GSE110041__GSE110041__grp_0006_vs_grp_0002__1
+  studio: GSE110041
+  TRATTATO  (n=12)  etichetta Stadio 2: IL3 24h
+      gruppo Stadio 2: grp_0006
+      GSM2976791
+        grezzo (Stadio 1): title: H47 24h IL3+ [2_C4EANACXX_CGATGT_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H47 24h IL3+ [2_C4EANACXX_CGATGT_L005]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976792
+        grezzo (Stadio 1): title: H47 24h IL3+ [2_C4EANACXX_CGATGT_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H47 24h IL3+ [2_C4EANACXX_CGATGT_L006]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976799
+        grezzo (Stadio 1): title: H48 24h IL3+ [6_C4EANACXX_GCCAAT_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H48 24h IL3+ [6_C4EANACXX_GCCAAT_L005]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976800
+        grezzo (Stadio 1): title: H48 24h IL3+ [6_C4EANACXX_GCCAAT_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H48 24h IL3+ [6_C4EANACXX_GCCAAT_L006]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976801
+        grezzo (Stadio 1): title: H45 24h IL3+ [7_C4EANACXX_CAGATC_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H45 24h IL3+ [7_C4EANACXX_CAGATC_L005]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976802
+        grezzo (Stadio 1): title: H45 24h IL3+ [7_C4EANACXX_CAGATC_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H45 24h IL3+ [7_C4EANACXX_CAGATC_L006]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976825
+        grezzo (Stadio 1): title: H50 24h IL3+ [19_C4EANACXX_GTGGCC_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H50,age: 29,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H50 24h IL3+ [19_C4EANACXX_GTGGCC_L007]
+        H5 caratteristiche: tissue: blood,donor: H50,age: 29,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976826
+        grezzo (Stadio 1): title: H50 24h IL3+ [19_C4EANACXX_GTGGCC_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H50,age: 29,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H50 24h IL3+ [19_C4EANACXX_GTGGCC_L008]
+        H5 caratteristiche: tissue: blood,donor: H50,age: 29,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976835
+        grezzo (Stadio 1): title: H49 24h IL3+ [24_C4EANACXX_ATTCCT_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H49 24h IL3+ [24_C4EANACXX_ATTCCT_L007]
+        H5 caratteristiche: tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976836
+        grezzo (Stadio 1): title: H49 24h IL3+ [24_C4EANACXX_ATTCCT_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H49 24h IL3+ [24_C4EANACXX_ATTCCT_L008]
+        H5 caratteristiche: tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976843
+        grezzo (Stadio 1): title: H46 24h IL3+ [28_C4EANACXX_TGACCA_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H46 24h IL3+ [28_C4EANACXX_TGACCA_L007]
+        H5 caratteristiche: tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976844
+        grezzo (Stadio 1): title: H46 24h IL3+ [28_C4EANACXX_TGACCA_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 titolo        : H46 24h IL3+ [28_C4EANACXX_TGACCA_L008]
+        H5 caratteristiche: tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+  CONTROLLO  (n=9)  etichetta Stadio 2: Untreated 24h
+      gruppo Stadio 2: grp_0002
+      GSM2976793
+        grezzo (Stadio 1): title: H44 24h [3_C4EANACXX_TTAGGC_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H44 24h [3_C4EANACXX_TTAGGC_L005]
+        H5 caratteristiche: tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976794
+        grezzo (Stadio 1): title: H44 24h [3_C4EANACXX_TTAGGC_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H44 24h [3_C4EANACXX_TTAGGC_L006]
+        H5 caratteristiche: tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976815
+        grezzo (Stadio 1): title: H46 24h [14_C4EANACXX_AGTTCC_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H46 24h [14_C4EANACXX_AGTTCC_L005]
+        H5 caratteristiche: tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976819
+        grezzo (Stadio 1): title: H47 24h [16_C4EANACXX_CCGTCC_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H47 24h [16_C4EANACXX_CCGTCC_L007]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976820
+        grezzo (Stadio 1): title: H47 24h [16_C4EANACXX_CCGTCC_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H47 24h [16_C4EANACXX_CCGTCC_L008]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976822
+        grezzo (Stadio 1): title: H49 24h [17_C4EANACXX_GTCCGC_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H49 24h [17_C4EANACXX_GTCCGC_L008]
+        H5 caratteristiche: tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976823
+        grezzo (Stadio 1): title: H45 24h [18_C4EANACXX_GTGAAA_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H45 24h [18_C4EANACXX_GTGAAA_L007]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976824
+        grezzo (Stadio 1): title: H45 24h [18_C4EANACXX_GTGAAA_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H45 24h [18_C4EANACXX_GTGAAA_L008]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976837
+        grezzo (Stadio 1): title: H48 24h [25_C4EANACXX_ATCACG_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 24h
+        H5 titolo        : H48 24h [25_C4EANACXX_ATCACG_L007]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 24h
+        H5 sorgente      : RNA from lysed whole blood cells
+
+CONFRONTO  GSE110041__GSE110041__grp_0007_vs_grp_0003__1
+  studio: GSE110041
+  TRATTATO  (n=7)  etichetta Stadio 2: IL3 6h
+      gruppo Stadio 2: grp_0007
+      GSM2976805
+        grezzo (Stadio 1): title: H47 6h IL3+ [9_C4EANACXX_GATCAG_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H47 6h IL3+ [9_C4EANACXX_GATCAG_L005]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976806
+        grezzo (Stadio 1): title: H47 6h IL3+ [9_C4EANACXX_GATCAG_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H47 6h IL3+ [9_C4EANACXX_GATCAG_L006]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976807
+        grezzo (Stadio 1): title: H49 6h IL3+ [10_C4EANACXX_TAGCTT_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H49 6h IL3+ [10_C4EANACXX_TAGCTT_L005]
+        H5 caratteristiche: tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976808
+        grezzo (Stadio 1): title: H49 6h IL3+ [10_C4EANACXX_TAGCTT_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H49 6h IL3+ [10_C4EANACXX_TAGCTT_L006]
+        H5 caratteristiche: tissue: blood,donor: H49,age: 29,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976809
+        grezzo (Stadio 1): title: H44 6h IL3+ [11_C4EANACXX_GGCTAC_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H44 6h IL3+ [11_C4EANACXX_GGCTAC_L005]
+        H5 caratteristiche: tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976839
+        grezzo (Stadio 1): title: H46 6h IL3+ [26_C4EANACXX_CGATGT_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H46 6h IL3+ [26_C4EANACXX_CGATGT_L007]
+        H5 caratteristiche: tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976840
+        grezzo (Stadio 1): title: H46 6h IL3+ [26_C4EANACXX_CGATGT_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 titolo        : H46 6h IL3+ [26_C4EANACXX_CGATGT_L008]
+        H5 caratteristiche: tissue: blood,donor: H46,age: 27,gender: Female,ancestry: Indian,disease status: Healthy,treatment: IL3,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+  CONTROLLO  (n=8)  etichetta Stadio 2: Untreated 6h
+      gruppo Stadio 2: grp_0003
+      GSM2976811
+        grezzo (Stadio 1): title: H47 6h [12_C4EANACXX_CTTGTA_L005],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H47 6h [12_C4EANACXX_CTTGTA_L005]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976812
+        grezzo (Stadio 1): title: H47 6h [12_C4EANACXX_CTTGTA_L006],source: RNA from lysed whole blood cells,tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H47 6h [12_C4EANACXX_CTTGTA_L006]
+        H5 caratteristiche: tissue: blood,donor: H47,age: 48,gender: Female,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976817
+        grezzo (Stadio 1): title: H45 6h [15_C4EANACXX_ATGTCA_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H45 6h [15_C4EANACXX_ATGTCA_L007]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976818
+        grezzo (Stadio 1): title: H45 6h [15_C4EANACXX_ATGTCA_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H45 6h [15_C4EANACXX_ATGTCA_L008]
+        H5 caratteristiche: tissue: blood,donor: H45,age: 33,gender: Male,ancestry: Caucasian,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976829
+        grezzo (Stadio 1): title: H48 6h [21_C4EANACXX_CGTACG_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H48 6h [21_C4EANACXX_CGTACG_L007]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976830
+        grezzo (Stadio 1): title: H48 6h [21_C4EANACXX_CGTACG_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H48 6h [21_C4EANACXX_CGTACG_L008]
+        H5 caratteristiche: tissue: blood,donor: H48,age: 32,gender: Female,ancestry: German,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976841
+        grezzo (Stadio 1): title: H44 6h [27_C4EANACXX_TTAGGC_L007],source: RNA from lysed whole blood cells,tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H44 6h [27_C4EANACXX_TTAGGC_L007]
+        H5 caratteristiche: tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+      GSM2976842
+        grezzo (Stadio 1): title: H44 6h [27_C4EANACXX_TTAGGC_L008],source: RNA from lysed whole blood cells,tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 6h
+        H5 titolo        : H44 6h [27_C4EANACXX_TTAGGC_L008]
+        H5 caratteristiche: tissue: blood,donor: H44,age: 31,gender: Male,ancestry: Aboriginal,disease status: Healthy,treatment: None,time point: 6h
+        H5 sorgente      : RNA from lysed whole blood cells
+
+CONFRONTO  GSE159782__GSE159782__grp_0002_vs_grp_0001__1
+  studio: GSE159782
+  TRATTATO  (n=6)  etichetta Stadio 2: Subject 1, Blood eosinophils, Allergy and Mild Asthma, IL-3 Stimulated, 4h
+      gruppo Stadio 2: grp_0002
+      GSM4844561
+        grezzo (Stadio 1): title: A-4h-IL3-rep1,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 titolo        : A-4h-IL3-rep1
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 sorgente      : Eosinophils
+      GSM4844562
+        grezzo (Stadio 1): title: A-4h-IL3-rep2,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 titolo        : A-4h-IL3-rep2
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 sorgente      : Eosinophils
+      GSM4844569
+        grezzo (Stadio 1): title: B-4h-IL3-rep1,source: Eosinophils,individual: subject 2,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 titolo        : B-4h-IL3-rep1
+        H5 caratteristiche: individual: subject 2,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 sorgente      : Eosinophils
+      GSM4844570
+        grezzo (Stadio 1): title: B-4h-IL3-rep2,source: Eosinophils,individual: subject 2,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 titolo        : B-4h-IL3-rep2
+        H5 caratteristiche: individual: subject 2,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 sorgente      : Eosinophils
+      GSM4844577
+        grezzo (Stadio 1): title: C-4h-IL3-rep1,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 titolo        : C-4h-IL3-rep1
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 sorgente      : Eosinophils
+      GSM4844578
+        grezzo (Stadio 1): title: C-4h-IL3-rep2,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 titolo        : C-4h-IL3-rep2
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 4h
+        H5 sorgente      : Eosinophils
+  CONTROLLO  (n=8)  etichetta Stadio 2: Subject 1, Blood eosinophils, Allergy and Mild Asthma, No Treatment
+      gruppo Stadio 2: grp_0001
+      GSM4844557
+        grezzo (Stadio 1): title: A-4h-resting-rep1,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : A-4h-resting-rep1
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844558
+        grezzo (Stadio 1): title: A-4h-resting-rep2,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : A-4h-resting-rep2
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844559
+        grezzo (Stadio 1): title: A-20h-resting-rep1,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : A-20h-resting-rep1
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844560
+        grezzo (Stadio 1): title: A-20h-resting-rep2,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : A-20h-resting-rep2
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844573
+        grezzo (Stadio 1): title: C-4h-resting-rep1,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : C-4h-resting-rep1
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844574
+        grezzo (Stadio 1): title: C-4h-resting-rep2,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : C-4h-resting-rep2
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844575
+        grezzo (Stadio 1): title: C-20h-resting-rep1,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : C-20h-resting-rep1
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844576
+        grezzo (Stadio 1): title: C-20h-resting-rep2,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : C-20h-resting-rep2
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+
+CONFRONTO  GSE159782__GSE159782__grp_0003_vs_grp_0001__1
+  studio: GSE159782
+  TRATTATO  (n=6)  etichetta Stadio 2: Subject 1, Blood eosinophils, Allergy and Mild Asthma, IL-3 Stimulated, 20h
+      gruppo Stadio 2: grp_0003
+      GSM4844563
+        grezzo (Stadio 1): title: A-20h-IL3-rep1,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 titolo        : A-20h-IL3-rep1
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 sorgente      : Eosinophils
+      GSM4844564
+        grezzo (Stadio 1): title: A-20h-IL3-rep2,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 titolo        : A-20h-IL3-rep2
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 sorgente      : Eosinophils
+      GSM4844571
+        grezzo (Stadio 1): title: B-20h-IL3-rep1,source: Eosinophils,individual: subject 2,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 titolo        : B-20h-IL3-rep1
+        H5 caratteristiche: individual: subject 2,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 sorgente      : Eosinophils
+      GSM4844572
+        grezzo (Stadio 1): title: B-20h-IL3-rep2,source: Eosinophils,individual: subject 2,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 titolo        : B-20h-IL3-rep2
+        H5 caratteristiche: individual: subject 2,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 sorgente      : Eosinophils
+      GSM4844579
+        grezzo (Stadio 1): title: C-20h-IL3-rep1,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 titolo        : C-20h-IL3-rep1
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 sorgente      : Eosinophils
+      GSM4844580
+        grezzo (Stadio 1): title: C-20h-IL3-rep2,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 titolo        : C-20h-IL3-rep2
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: treated with IL-3 for 20h
+        H5 sorgente      : Eosinophils
+  CONTROLLO  (n=8)  etichetta Stadio 2: Subject 1, Blood eosinophils, Allergy and Mild Asthma, No Treatment
+      gruppo Stadio 2: grp_0001
+      GSM4844557
+        grezzo (Stadio 1): title: A-4h-resting-rep1,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : A-4h-resting-rep1
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844558
+        grezzo (Stadio 1): title: A-4h-resting-rep2,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : A-4h-resting-rep2
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844559
+        grezzo (Stadio 1): title: A-20h-resting-rep1,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : A-20h-resting-rep1
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844560
+        grezzo (Stadio 1): title: A-20h-resting-rep2,source: Eosinophils,individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : A-20h-resting-rep2
+        H5 caratteristiche: individual: subject 1,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844573
+        grezzo (Stadio 1): title: C-4h-resting-rep1,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : C-4h-resting-rep1
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844574
+        grezzo (Stadio 1): title: C-4h-resting-rep2,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : C-4h-resting-rep2
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844575
+        grezzo (Stadio 1): title: C-20h-resting-rep1,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : C-20h-resting-rep1
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+      GSM4844576
+        grezzo (Stadio 1): title: C-20h-resting-rep2,source: Eosinophils,individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 titolo        : C-20h-resting-rep2
+        H5 caratteristiche: individual: subject 3,condition: allergy and mild asthma,cell type: Blood eosinophils,treatment: untreated
+        H5 sorgente      : Eosinophils
+
+CONFRONTO  GSE89442__GSE89442__grp_0004_vs_grp_0005__1
+  studio: GSE89442
+  TRATTATO  (n=3)  etichetta Stadio 2: pDC, IL3
+      gruppo Stadio 2: grp_0004
+      GSM2372278
+        grezzo (Stadio 1): title: pDC IL3_donor 1,source: Blood,health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 titolo        : pDC IL3_donor 1
+        H5 caratteristiche: health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 sorgente      : Blood
+      GSM2372279
+        grezzo (Stadio 1): title: pDC IL3_donor 2,source: Blood,health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 titolo        : pDC IL3_donor 2
+        H5 caratteristiche: health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 sorgente      : Blood
+      GSM2372280
+        grezzo (Stadio 1): title: pDC IL3_donor 3,source: Blood,health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 titolo        : pDC IL3_donor 3
+        H5 caratteristiche: health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 sorgente      : Blood
+  CONTROLLO  (n=3)  etichetta Stadio 2: pDC, no treatment
+      gruppo Stadio 2: grp_0005
+      GSM2372284
+        grezzo (Stadio 1): title: pDC pRNA_donor 1,source: Blood,health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 titolo        : pDC pRNA_donor 1
+        H5 caratteristiche: health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 sorgente      : Blood
+      GSM2372285
+        grezzo (Stadio 1): title: pDC pRNA_donor 2,source: Blood,health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 titolo        : pDC pRNA_donor 2
+        H5 caratteristiche: health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 sorgente      : Blood
+      GSM2372286
+        grezzo (Stadio 1): title: pDC pRNA_donor 3,source: Blood,health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 titolo        : pDC pRNA_donor 3
+        H5 caratteristiche: health condition: Healthy Volunteer,tissue: Blood,isolation method: MACS
+        H5 sorgente      : Blood
+
+CONFRONTO  GSE93620__GSE93620__grp_0002_vs_grp_0001__1
+  studio: GSE93620
+  TRATTATO  (n=2)  etichetta Stadio 2: HT-29-MTX, Colorectal carcinoma, A. ceylanicum iL3 larvae
+      gruppo Stadio 2: grp_0002
+      GSM2458808
+        grezzo (Stadio 1): title: HT-29-MTX, A. ceylanicum treated #1,source: HT-29-MTX cells from Dr. ThÃ©cla Lesuffleur, INSERM U560, Lille France,cell line: HT-29-MTX,tissue: Intestinal epithelium,disease: Colorectal carcinoma,treatment: treated for 24 hours with A. ceylanicum iL3 larvae
+        H5 titolo        : HT-29-MTX, A. ceylanicum treated #1
+        H5 caratteristiche: cell line: HT-29-MTX,tissue: Intestinal epithelium,disease: Colorectal carcinoma,treatment: treated for 24 hours with A. ceylanicum iL3 larvae
+        H5 sorgente      : HT-29-MTX cells from Dr. ThÃ©cla Lesuffleur, INSERM U560, Lille France
+      GSM2458809
+        grezzo (Stadio 1): title: HT-29-MTX, A. ceylanicum treated #2,source: HT-29-MTX cells from Dr. ThÃ©cla Lesuffleur, INSERM U560, Lille France,cell line: HT-29-MTX,tissue: Intestinal epithelium,disease: Colorectal carcinoma,treatment: treated for 24 hours with A. ceylanicum iL3 larvae
+        H5 titolo        : HT-29-MTX, A. ceylanicum treated #2
+        H5 caratteristiche: cell line: HT-29-MTX,tissue: Intestinal epithelium,disease: Colorectal carcinoma,treatment: treated for 24 hours with A. ceylanicum iL3 larvae
+        H5 sorgente      : HT-29-MTX cells from Dr. ThÃ©cla Lesuffleur, INSERM U560, Lille France
+  CONTROLLO  (n=2)  etichetta Stadio 2: HT-29-MTX, Colorectal carcinoma, untreated
+      gruppo Stadio 2: grp_0001
+      GSM2458810
+        grezzo (Stadio 1): title: HT-29-MTX, untreated #1,source: HT-29-MTX cells from Dr. ThÃ©cla Lesuffleur, INSERM U560, Lille France,cell line: HT-29-MTX,tissue: Intestinal epithelium,disease: Colorectal carcinoma,treatment: untreated
+        H5 titolo        : HT-29-MTX, untreated #1
+        H5 caratteristiche: cell line: HT-29-MTX,tissue: Intestinal epithelium,disease: Colorectal carcinoma,treatment: untreated
+        H5 sorgente      : HT-29-MTX cells from Dr. ThÃ©cla Lesuffleur, INSERM U560, Lille France
+      GSM2458811
+        grezzo (Stadio 1): title: HT-29-MTX, untreated #2,source: HT-29-MTX cells from Dr. ThÃ©cla Lesuffleur, INSERM U560, Lille France,cell line: HT-29-MTX,tissue: Intestinal epithelium,disease: Colorectal carcinoma,treatment: untreated
+        H5 titolo        : HT-29-MTX, untreated #2
+        H5 caratteristiche: cell line: HT-29-MTX,tissue: Intestinal epithelium,disease: Colorectal carcinoma,treatment: untreated
+        H5 sorgente      : HT-29-MTX cells from Dr. ThÃ©cla Lesuffleur, INSERM U560, Lille France
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE110041     campioni nell'H5:   50 | collocati dallo Stadio 2:   50 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 41 campioni distinti (49 righe: i controlli servono piu' confronti)
+  GSE159782     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 20 campioni distinti (28 righe: i controlli servono piu' confronti)
+  GSE89442      campioni nell'H5:   23 | collocati dallo Stadio 2:   23 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE93620      campioni nell'H5:    4 | collocati dallo Stadio 2:    4 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+

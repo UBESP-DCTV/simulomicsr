@@ -1,0 +1,613 @@
+META-ANALISI 021 di 194
+==============================================================================
+nome            : hydrogen peroxide
+entita (ID)     : CHEBI:16240
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_dde29fb4
+studi poolati   : 10   confronti: 15   campioni: 94
+geni significativi: 1426   I2 mediano: 83.1
+verdetto della rilettura: difettosa
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE126750__GSE126750__H2O2_vs_DMSO__1
+  studio: GSE126750
+  TRATTATO  (n=3)  etichetta Stadio 2: H2O2-treated cerebellar astrocytes
+      gruppo Stadio 2: grp_H2O2
+      GSM3612124
+        grezzo (Stadio 1): title: H2O2_A,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: 150 ÂµM H2O2, 2 h
+        H5 titolo        : H2O2_A
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: 150 ÂµM H2O2, 2 h
+        H5 sorgente      : primary fetal
+      GSM3612125
+        grezzo (Stadio 1): title: H2O2_B,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: 150 ÂµM H2O2, 2 h
+        H5 titolo        : H2O2_B
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: 150 ÂµM H2O2, 2 h
+        H5 sorgente      : primary fetal
+      GSM3612126
+        grezzo (Stadio 1): title: H2O2_C,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: 150 ÂµM H2O2, 2 h
+        H5 titolo        : H2O2_C
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: 150 ÂµM H2O2, 2 h
+        H5 sorgente      : primary fetal
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO-treated cerebellar astrocytes
+      gruppo Stadio 2: grp_DMSO
+      GSM3612118
+        grezzo (Stadio 1): title: DMSO_A,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 titolo        : DMSO_A
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 sorgente      : primary fetal
+      GSM3612119
+        grezzo (Stadio 1): title: DMSO_B,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 titolo        : DMSO_B
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 sorgente      : primary fetal
+      GSM3612120
+        grezzo (Stadio 1): title: DMSO_C,source: primary fetal,cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 titolo        : DMSO_C
+        H5 caratteristiche: cell type: cerebellar astrocytes,passage: 5,treatment: control
+        H5 sorgente      : primary fetal
+
+CONFRONTO  GSE130664__GSE130664__grp_0004_vs_grp_0001__1
+  studio: GSE130664
+  TRATTATO  (n=4)  etichetta Stadio 2: H2O2 Treated (PolyA RNA)
+      gruppo Stadio 2: grp_0004
+      GSM4162516
+        grezzo (Stadio 1): title: IDH1_H2O2_1: bulk RNA seq,source: Human granulosa cell line,tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 titolo        : IDH1_H2O2_1: bulk RNA seq
+        H5 caratteristiche: tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 sorgente      : Human granulosa cell line
+      GSM4162517
+        grezzo (Stadio 1): title: IDH1_H2O2_2: bulk RNA seq,source: Human granulosa cell line,tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 titolo        : IDH1_H2O2_2: bulk RNA seq
+        H5 caratteristiche: tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 sorgente      : Human granulosa cell line
+      GSM4162524
+        grezzo (Stadio 1): title: NDUFB10_H2O2_1: bulk RNA seq,source: Human granulosa cell line,tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 titolo        : NDUFB10_H2O2_1: bulk RNA seq
+        H5 caratteristiche: tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 sorgente      : Human granulosa cell line
+      GSM4162525
+        grezzo (Stadio 1): title: NDUFB10_H2O2_2: bulk RNA seq,source: Human granulosa cell line,tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 titolo        : NDUFB10_H2O2_2: bulk RNA seq
+        H5 caratteristiche: tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 sorgente      : Human granulosa cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM4162514
+        grezzo (Stadio 1): title: IDH1_B_1: bulk RNA seq,source: Human granulosa cell line,tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 titolo        : IDH1_B_1: bulk RNA seq
+        H5 caratteristiche: tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 sorgente      : Human granulosa cell line
+      GSM4162515
+        grezzo (Stadio 1): title: IDH1_B_2: bulk RNA seq,source: Human granulosa cell line,tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 titolo        : IDH1_B_2: bulk RNA seq
+        H5 caratteristiche: tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 sorgente      : Human granulosa cell line
+      GSM4162523
+        grezzo (Stadio 1): title: NDUFB10_B_2: bulk RNA seq,source: Human granulosa cell line,tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 titolo        : NDUFB10_B_2: bulk RNA seq
+        H5 caratteristiche: tissue: Human granulosa cell line,cell type: Granulosa cells
+        H5 sorgente      : Human granulosa cell line
+
+CONFRONTO  GSE161860__GSE161860__grp_0003_vs_grp_0001__1
+  studio: GSE161860
+  TRATTATO  (n=2)  etichetta Stadio 2: H2O2 after ATRA differentiation
+      gruppo Stadio 2: grp_0003
+      GSM4916142
+        grezzo (Stadio 1): title: Treat 1- Pre,source: Bone marrow-derived cell line SK-N-SH,cell line: SH-SY5Y,cell type: Neuroblastoma,treatment: Treated (H2O2 72 hours before commencement of the ATRA differentiation protocol)
+        H5 titolo        : Treat 1- Pre
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: Neuroblastoma,treatment: Treated (H2O2 72 hours before commencement of the ATRA differentiation protocol)
+        H5 sorgente      : Bone marrow-derived cell line SK-N-SH
+      GSM4916144
+        grezzo (Stadio 1): title: Treat 3- Pre,source: Bone marrow-derived cell line SK-N-SH,cell line: SH-SY5Y,cell type: Neuroblastoma,treatment: Treated (H2O2 72 hours before commencement of the ATRA differentiation protocol)
+        H5 titolo        : Treat 3- Pre
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: Neuroblastoma,treatment: Treated (H2O2 72 hours before commencement of the ATRA differentiation protocol)
+        H5 sorgente      : Bone marrow-derived cell line SK-N-SH
+  CONTROLLO  (n=2)  etichetta Stadio 2: Untreated SH-SY5Y
+      gruppo Stadio 2: grp_0001
+      GSM4916135
+        grezzo (Stadio 1): title: Control 2- Pre,source: Bone marrow-derived cell line SK-N-SH,cell line: SH-SY5Y,cell type: Neuroblastoma,treatment: Untreated
+        H5 titolo        : Control 2- Pre
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: Neuroblastoma,treatment: Untreated
+        H5 sorgente      : Bone marrow-derived cell line SK-N-SH
+      GSM4916137
+        grezzo (Stadio 1): title: Control 3- Pre,source: Bone marrow-derived cell line SK-N-SH,cell line: SH-SY5Y,cell type: Neuroblastoma,treatment: Untreated
+        H5 titolo        : Control 3- Pre
+        H5 caratteristiche: cell line: SH-SY5Y,cell type: Neuroblastoma,treatment: Untreated
+        H5 sorgente      : Bone marrow-derived cell line SK-N-SH
+
+CONFRONTO  GSE188458__GSE188458__H2O2_300_uM_24h_vs_Untreated__1
+  studio: GSE188458
+  TRATTATO  (n=3)  etichetta Stadio 2: H2O2 300 uM 24h
+      gruppo Stadio 2: grp_0006
+      GSM5683288
+        grezzo (Stadio 1): title: H2O2 24 rep 1,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 24
+        H5 titolo        : H2O2 24 rep 1
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 24
+        H5 sorgente      : pancreatic cell line
+      GSM5683289
+        grezzo (Stadio 1): title: H2O2 24 rep 2,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 24
+        H5 titolo        : H2O2 24 rep 2
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 24
+        H5 sorgente      : pancreatic cell line
+      GSM5683290
+        grezzo (Stadio 1): title: H2O2 24 rep 3,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 24
+        H5 titolo        : H2O2 24 rep 3
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 24
+        H5 sorgente      : pancreatic cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0004
+      GSM5683279
+        grezzo (Stadio 1): title: H2O2 0 rep 1,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 1
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+      GSM5683280
+        grezzo (Stadio 1): title: H2O2 0 rep 2,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 2
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+      GSM5683281
+        grezzo (Stadio 1): title: H2O2 0 rep 3,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 3
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+
+CONFRONTO  GSE188458__GSE188458__H2O2_300_uM_4h_vs_Untreated__1
+  studio: GSE188458
+  TRATTATO  (n=3)  etichetta Stadio 2: H2O2 300 uM 4h
+      gruppo Stadio 2: grp_0007
+      GSM5683282
+        grezzo (Stadio 1): title: H2O2 4 rep 1,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 4
+        H5 titolo        : H2O2 4 rep 1
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 4
+        H5 sorgente      : pancreatic cell line
+      GSM5683283
+        grezzo (Stadio 1): title: H2O2 4 rep 2,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 4
+        H5 titolo        : H2O2 4 rep 2
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 4
+        H5 sorgente      : pancreatic cell line
+      GSM5683284
+        grezzo (Stadio 1): title: H2O2 4 rep 3,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 4
+        H5 titolo        : H2O2 4 rep 3
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 4
+        H5 sorgente      : pancreatic cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0004
+      GSM5683279
+        grezzo (Stadio 1): title: H2O2 0 rep 1,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 1
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+      GSM5683280
+        grezzo (Stadio 1): title: H2O2 0 rep 2,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 2
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+      GSM5683281
+        grezzo (Stadio 1): title: H2O2 0 rep 3,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 3
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+
+CONFRONTO  GSE188458__GSE188458__H2O2_300_uM_8h_vs_Untreated__1
+  studio: GSE188458
+  TRATTATO  (n=3)  etichetta Stadio 2: H2O2 300 uM 8h
+      gruppo Stadio 2: grp_0008
+      GSM5683285
+        grezzo (Stadio 1): title: H2O2 8 rep 1,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 8
+        H5 titolo        : H2O2 8 rep 1
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 8
+        H5 sorgente      : pancreatic cell line
+      GSM5683286
+        grezzo (Stadio 1): title: H2O2 8 rep 2,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 8
+        H5 titolo        : H2O2 8 rep 2
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 8
+        H5 sorgente      : pancreatic cell line
+      GSM5683287
+        grezzo (Stadio 1): title: H2O2 8 rep 3,source: pancreatic cell line,treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 8
+        H5 titolo        : H2O2 8 rep 3
+        H5 caratteristiche: treatment: 300 uM H2O2,cell line: hTERT-HPNE,time point: 8
+        H5 sorgente      : pancreatic cell line
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated
+      gruppo Stadio 2: grp_0004
+      GSM5683279
+        grezzo (Stadio 1): title: H2O2 0 rep 1,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 1
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+      GSM5683280
+        grezzo (Stadio 1): title: H2O2 0 rep 2,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 2
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+      GSM5683281
+        grezzo (Stadio 1): title: H2O2 0 rep 3,source: pancreatic cell line,treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 titolo        : H2O2 0 rep 3
+        H5 caratteristiche: treatment: Untreated,cell line: hTERT-HPNE,time point: 0
+        H5 sorgente      : pancreatic cell line
+
+CONFRONTO  GSE204781__GSE204781__H2O2_untreated__1
+  studio: GSE204781
+  TRATTATO  (n=5)  etichetta Stadio 2: H2O2-treated T-cells
+      gruppo Stadio 2: grp_0001
+      GSM6191284
+        grezzo (Stadio 1): title: T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 1 [H2O2.K374],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 titolo        : T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 1 [H2O2.K374]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 sorgente      : peripheral blood
+      GSM6191286
+        grezzo (Stadio 1): title: T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 2 [H2O2.K375],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 titolo        : T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 2 [H2O2.K375]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 sorgente      : peripheral blood
+      GSM6191288
+        grezzo (Stadio 1): title: T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 3 [H2O2.K379],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 titolo        : T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 3 [H2O2.K379]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 sorgente      : peripheral blood
+      GSM6191290
+        grezzo (Stadio 1): title: T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 4 [H2O2.K384],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 titolo        : T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 4 [H2O2.K384]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 sorgente      : peripheral blood
+      GSM6191292
+        grezzo (Stadio 1): title: T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 5 [H2O2.K392],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 titolo        : T-cells of healthy donors, 72h stimulation + H2O2 treatment, donor 5 [H2O2.K392]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: H2O2
+        H5 sorgente      : peripheral blood
+  CONTROLLO  (n=5)  etichetta Stadio 2: Untreated T-cells
+      gruppo Stadio 2: grp_0002
+      GSM6191283
+        grezzo (Stadio 1): title: T-cells of healthy donors, control, 72h stimulation, donor 1 [Ctrl.K374],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 titolo        : T-cells of healthy donors, control, 72h stimulation, donor 1 [Ctrl.K374]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 sorgente      : peripheral blood
+      GSM6191285
+        grezzo (Stadio 1): title: T-cells of healthy donors, control, 72h stimulation, donor 2 [Ctrl.K375],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 titolo        : T-cells of healthy donors, control, 72h stimulation, donor 2 [Ctrl.K375]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 sorgente      : peripheral blood
+      GSM6191287
+        grezzo (Stadio 1): title: T-cells of healthy donors, control, 72h stimulation, donor 3 [Ctrl.K379],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 titolo        : T-cells of healthy donors, control, 72h stimulation, donor 3 [Ctrl.K379]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 sorgente      : peripheral blood
+      GSM6191289
+        grezzo (Stadio 1): title: T-cells of healthy donors, control, 72h stimulation, donor 4 [Ctrl.K384],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 titolo        : T-cells of healthy donors, control, 72h stimulation, donor 4 [Ctrl.K384]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 sorgente      : peripheral blood
+      GSM6191291
+        grezzo (Stadio 1): title: T-cells of healthy donors, control, 72h stimulation, donor 5 [Ctrl.K392],source: peripheral blood,disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 titolo        : T-cells of healthy donors, control, 72h stimulation, donor 5 [Ctrl.K392]
+        H5 caratteristiche: disease state: healthy donor,tissue: peripheral blood,cell type: primary T-cells,treatment: untreated
+        H5 sorgente      : peripheral blood
+
+CONFRONTO  GSE222749__GSE222749__H2O2_vs_control__1
+  studio: GSE222749
+  TRATTATO  (n=3)  etichetta Stadio 2: H2O2 Treated
+      gruppo Stadio 2: grp_0002
+      GSM6930573
+        grezzo (Stadio 1): title: P1_812_H2O2_C857,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: H2O2,subject status: overweight woman,gender: female
+        H5 titolo        : P1_812_H2O2_C857
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: H2O2,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+      GSM6930574
+        grezzo (Stadio 1): title: P1_813_H2O2_C858,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: H2O2,subject status: overweight woman,gender: female
+        H5 titolo        : P1_813_H2O2_C858
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: H2O2,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+      GSM6930575
+        grezzo (Stadio 1): title: P1_867 _H2O2_C859,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: H2O2,subject status: overweight woman,gender: female
+        H5 titolo        : P1_867 _H2O2_C859
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: H2O2,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+  CONTROLLO  (n=6)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM6930570
+        grezzo (Stadio 1): title: P1_812_C854,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: control,subject status: overweight woman,gender: female
+        H5 titolo        : P1_812_C854
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: control,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+      GSM6930571
+        grezzo (Stadio 1): title: P1_813_C855,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: control,subject status: overweight woman,gender: female
+        H5 titolo        : P1_813_C855
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: control,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+      GSM6930572
+        grezzo (Stadio 1): title: P1_867_C856,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: control,subject status: overweight woman,gender: female
+        H5 titolo        : P1_867_C856
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 1,treatment: control,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+      GSM6930576
+        grezzo (Stadio 1): title: P6_812_C860,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 6,treatment: control,subject status: overweight woman,gender: female
+        H5 titolo        : P6_812_C860
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 6,treatment: control,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+      GSM6930577
+        grezzo (Stadio 1): title: P6_813_C861,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 6,treatment: control,subject status: overweight woman,gender: female
+        H5 titolo        : P6_813_C861
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 6,treatment: control,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+      GSM6930578
+        grezzo (Stadio 1): title: P6_867_C862,source: subcutaneous adipose tissue,tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 6,treatment: control,subject status: overweight woman,gender: female
+        H5 titolo        : P6_867_C862
+        H5 caratteristiche: tissue: subcutaneous adipose tissue,cell line: primary cells,cell type: progenitor cells,passage: 6,treatment: control,subject status: overweight woman,gender: female
+        H5 sorgente      : subcutaneous adipose tissue
+
+CONFRONTO  GSE225095__GSE225095__grp_0002_vs_grp_0001__1
+  studio: GSE225095
+  TRATTATO  (n=3)  etichetta Stadio 2: IMR90 cells (Replicative Exhaustion) + H2O2
+      gruppo Stadio 2: grp_0002
+      GSM7039252
+        grezzo (Stadio 1): title: IMR90 cells, H2O2 treatment (stress), replicate 1,Ribo-seq,source: IMR90,cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: H2O2 treatment,treatment: Senescence (Replicative exhaustion) + H2O2 treatment
+        H5 titolo        : IMR90 cells, H2O2 treatment (stress), replicate 1,Ribo-seq
+        H5 caratteristiche: cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: H2O2 treatment,treatment: Senescence (Replicative exhaustion) + H2O2 treatment
+        H5 sorgente      : IMR90
+      GSM7039258
+        grezzo (Stadio 1): title: IMR90 cells, H2O2 treatment (stress), replicate 1,RNA-seq,source: IMR90,cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: H2O2 treatment,treatment: Senescence (Replicative exhaustion) + H2O2 treatment
+        H5 titolo        : IMR90 cells, H2O2 treatment (stress), replicate 1,RNA-seq
+        H5 caratteristiche: cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: H2O2 treatment,treatment: Senescence (Replicative exhaustion) + H2O2 treatment
+        H5 sorgente      : IMR90
+      GSM7039259
+        grezzo (Stadio 1): title: IMR90 cells, H2O2 treatment (stress), replicate 2,RNA-seq,source: IMR90,cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: H2O2 treatment,treatment: Senescence (Replicative exhaustion) + H2O2 treatment
+        H5 titolo        : IMR90 cells, H2O2 treatment (stress), replicate 2,RNA-seq
+        H5 caratteristiche: cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: H2O2 treatment,treatment: Senescence (Replicative exhaustion) + H2O2 treatment
+        H5 sorgente      : IMR90
+  CONTROLLO  (n=4)  etichetta Stadio 2: IMR90 cells (Proliferating)
+      gruppo Stadio 2: grp_0001
+      GSM7039256
+        grezzo (Stadio 1): title: IMR90 cells, normal Proliferating conditions, replicate 1, control sample,Ribo-seq,source: IMR90,cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: control,treatment: (normal Proliferating cells)
+        H5 titolo        : IMR90 cells, normal Proliferating conditions, replicate 1, control sample,Ribo-seq
+        H5 caratteristiche: cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: control,treatment: (normal Proliferating cells)
+        H5 sorgente      : IMR90
+      GSM7039257
+        grezzo (Stadio 1): title: IMR90 cells, normal Proliferating conditions, replicate 2, control sample,Ribo-seq,source: IMR90,cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: control,treatment: (normal Proliferating cells)
+        H5 titolo        : IMR90 cells, normal Proliferating conditions, replicate 2, control sample,Ribo-seq
+        H5 caratteristiche: cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: control,treatment: (normal Proliferating cells)
+        H5 sorgente      : IMR90
+      GSM7039262
+        grezzo (Stadio 1): title: IMR90 cells, normal Proliferating conditions, replicate 1, control sample,RNA-seq,source: IMR90,cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: control,treatment: (normal Proliferating cells)
+        H5 titolo        : IMR90 cells, normal Proliferating conditions, replicate 1, control sample,RNA-seq
+        H5 caratteristiche: cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: control,treatment: (normal Proliferating cells)
+        H5 sorgente      : IMR90
+      GSM7039263
+        grezzo (Stadio 1): title: IMR90 cells, normal Proliferating conditions, replicate 2, control sample,RNA-seq,source: IMR90,cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: control,treatment: (normal Proliferating cells)
+        H5 titolo        : IMR90 cells, normal Proliferating conditions, replicate 2, control sample,RNA-seq
+        H5 caratteristiche: cell line: IMR90,cell type: IMR90 cells(fibroblasts isolated from normal lung tissue),genotype: control,treatment: (normal Proliferating cells)
+        H5 sorgente      : IMR90
+
+CONFRONTO  GSE227554__GSE227554__grp_0004_vs_grp_0006__1
+  studio: GSE227554
+  TRATTATO  (n=3)  etichetta Stadio 2: MCF7 + H2O2 (50 uM)
+      gruppo Stadio 2: grp_0004
+      GSM7102665
+        grezzo (Stadio 1): title: WT_50_1,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 50 uM H2O2
+        H5 titolo        : WT_50_1
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 50 uM H2O2
+        H5 sorgente      : MCF7
+      GSM7102666
+        grezzo (Stadio 1): title: WT_50_2,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 50 uM H2O2
+        H5 titolo        : WT_50_2
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 50 uM H2O2
+        H5 sorgente      : MCF7
+      GSM7102667
+        grezzo (Stadio 1): title: WT_50_3,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 50 uM H2O2
+        H5 titolo        : WT_50_3
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 50 uM H2O2
+        H5 sorgente      : MCF7
+  CONTROLLO  (n=3)  etichetta Stadio 2: MCF7 + PBS
+      gruppo Stadio 2: grp_0006
+      GSM7102671
+        grezzo (Stadio 1): title: WT_UT_1,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 titolo        : WT_UT_1
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 sorgente      : MCF7
+      GSM7102672
+        grezzo (Stadio 1): title: WT_UT_2,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 titolo        : WT_UT_2
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 sorgente      : MCF7
+      GSM7102673
+        grezzo (Stadio 1): title: WT_UT_3,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 titolo        : WT_UT_3
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 sorgente      : MCF7
+
+CONFRONTO  GSE227554__GSE227554__grp_0005_vs_grp_0006__1
+  studio: GSE227554
+  TRATTATO  (n=3)  etichetta Stadio 2: MCF7 + H2O2 (75 uM)
+      gruppo Stadio 2: grp_0005
+      GSM7102668
+        grezzo (Stadio 1): title: WT_75_1,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 75 uM H2O2
+        H5 titolo        : WT_75_1
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 75 uM H2O2
+        H5 sorgente      : MCF7
+      GSM7102669
+        grezzo (Stadio 1): title: WT_75_2,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 75 uM H2O2
+        H5 titolo        : WT_75_2
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 75 uM H2O2
+        H5 sorgente      : MCF7
+      GSM7102670
+        grezzo (Stadio 1): title: WT_75_3,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 75 uM H2O2
+        H5 titolo        : WT_75_3
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: 75 uM H2O2
+        H5 sorgente      : MCF7
+  CONTROLLO  (n=3)  etichetta Stadio 2: MCF7 + PBS
+      gruppo Stadio 2: grp_0006
+      GSM7102671
+        grezzo (Stadio 1): title: WT_UT_1,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 titolo        : WT_UT_1
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 sorgente      : MCF7
+      GSM7102672
+        grezzo (Stadio 1): title: WT_UT_2,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 titolo        : WT_UT_2
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 sorgente      : MCF7
+      GSM7102673
+        grezzo (Stadio 1): title: WT_UT_3,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 titolo        : WT_UT_3
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: WT,treatment: PBS Control
+        H5 sorgente      : MCF7
+
+CONFRONTO  GSE227554__GSE227554__grp_0008_vs_grp_0007__1
+  studio: GSE227554
+  TRATTATO  (n=3)  etichetta Stadio 2: MCF7_SRXN1 + H2O2 (50 uM)
+      gruppo Stadio 2: grp_0008
+      GSM7102656
+        grezzo (Stadio 1): title: SFRX_50_1,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 50 uM H2O2
+        H5 titolo        : SFRX_50_1
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 50 uM H2O2
+        H5 sorgente      : MCF7
+      GSM7102657
+        grezzo (Stadio 1): title: SFRX_50_2,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 50 uM H2O2
+        H5 titolo        : SFRX_50_2
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 50 uM H2O2
+        H5 sorgente      : MCF7
+      GSM7102658
+        grezzo (Stadio 1): title: SFRX_50_3,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 50 uM H2O2
+        H5 titolo        : SFRX_50_3
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 50 uM H2O2
+        H5 sorgente      : MCF7
+  CONTROLLO  (n=3)  etichetta Stadio 2: MCF7_SRXN1 + PBS
+      gruppo Stadio 2: grp_0007
+      GSM7102662
+        grezzo (Stadio 1): title: SFRX_UT_1,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 titolo        : SFRX_UT_1
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 sorgente      : MCF7
+      GSM7102663
+        grezzo (Stadio 1): title: SFRX_UT_2,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 titolo        : SFRX_UT_2
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 sorgente      : MCF7
+      GSM7102664
+        grezzo (Stadio 1): title: SFRX_UT_3,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 titolo        : SFRX_UT_3
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 sorgente      : MCF7
+
+CONFRONTO  GSE227554__GSE227554__grp_0009_vs_grp_0007__1
+  studio: GSE227554
+  TRATTATO  (n=2)  etichetta Stadio 2: MCF7_SRXN1 + H2O2 (75 uM)
+      gruppo Stadio 2: grp_0009
+      GSM7102659
+        grezzo (Stadio 1): title: SFRX_75_1,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 75 uM H2O2
+        H5 titolo        : SFRX_75_1
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 75 uM H2O2
+        H5 sorgente      : MCF7
+      GSM7102660
+        grezzo (Stadio 1): title: SFRX_75_2,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 75 uM H2O2
+        H5 titolo        : SFRX_75_2
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: 75 uM H2O2
+        H5 sorgente      : MCF7
+  CONTROLLO  (n=3)  etichetta Stadio 2: MCF7_SRXN1 + PBS
+      gruppo Stadio 2: grp_0007
+      GSM7102662
+        grezzo (Stadio 1): title: SFRX_UT_1,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 titolo        : SFRX_UT_1
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 sorgente      : MCF7
+      GSM7102663
+        grezzo (Stadio 1): title: SFRX_UT_2,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 titolo        : SFRX_UT_2
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 sorgente      : MCF7
+      GSM7102664
+        grezzo (Stadio 1): title: SFRX_UT_3,source: MCF7,cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 titolo        : SFRX_UT_3
+        H5 caratteristiche: cell line: MCF7,cell type: Breast epithelia, adenocarcinoma,genotype: SRXN1 Overexpression,treatment: PBS Control
+        H5 sorgente      : MCF7
+
+CONFRONTO  GSE60340__GSE60340__grp_0004_vs_grp_0001__1
+  studio: GSE60340
+  TRATTATO  (n=3)  etichetta Stadio 2: H2O2 treated
+      gruppo Stadio 2: grp_0004
+      GSM1473803
+        grezzo (Stadio 1): title: H2O2 1,source: MDAH041_H2O2,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: H2O2,sample group: induced into senescence
+        H5 titolo        : H2O2 1
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: H2O2,sample group: induced into senescence
+        H5 sorgente      : MDAH041_H2O2
+      GSM1473805
+        grezzo (Stadio 1): title: H2O2 2,source: MDAH041_H2O2,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: H2O2,sample group: induced into senescence
+        H5 titolo        : H2O2 2
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: H2O2,sample group: induced into senescence
+        H5 sorgente      : MDAH041_H2O2
+      GSM1473807
+        grezzo (Stadio 1): title: H2O2 3,source: MDAH041_H2O2,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: H2O2,sample group: induced into senescence
+        H5 titolo        : H2O2 3
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: H2O2,sample group: induced into senescence
+        H5 sorgente      : MDAH041_H2O2
+  CONTROLLO  (n=3)  etichetta Stadio 2: Untreated control
+      gruppo Stadio 2: grp_0001
+      GSM1473759
+        grezzo (Stadio 1): title: Immortal 1,source: MDAH041_Immortal,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 titolo        : Immortal 1
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 sorgente      : MDAH041_Immortal
+      GSM1473764
+        grezzo (Stadio 1): title: Immortal 2,source: MDAH041_Immortal,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 titolo        : Immortal 2
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 sorgente      : MDAH041_Immortal
+      GSM1473767
+        grezzo (Stadio 1): title: Immortal 3,source: MDAH041_Immortal,tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 titolo        : Immortal 3
+        H5 caratteristiche: tissue origin: Skin,cell type: MDAH041 LFS fibroblasts,passages: >200,treated with: None (spontaneously immortal),sample group: spontaneously immortal cells
+        H5 sorgente      : MDAH041_Immortal
+
+CONFRONTO  GSE75962__GSE75962__grp_0002_vs_grp_0001__1
+  studio: GSE75962
+  TRATTATO  (n=2)  etichetta Stadio 2: H2O2
+      gruppo Stadio 2: grp_0002
+      GSM1971013
+        grezzo (Stadio 1): title: RNA-seq_H2O2_rep1,source: human colon cancer cells,cell line: HCT116,agent: H2O2,cell type: colon cancer cells
+        H5 titolo        : RNA-seq_H2O2_rep1
+        H5 caratteristiche: cell line: HCT116,agent: H2O2,cell type: colon cancer cells
+        H5 sorgente      : human colon cancer cells
+      GSM1971015
+        grezzo (Stadio 1): title: RNA-seq_H2O2_rep2,source: human colon cancer cells,cell line: HCT116,agent: H2O2,cell type: colon cancer cells
+        H5 titolo        : RNA-seq_H2O2_rep2
+        H5 caratteristiche: cell line: HCT116,agent: H2O2,cell type: colon cancer cells
+        H5 sorgente      : human colon cancer cells
+  CONTROLLO  (n=2)  etichetta Stadio 2: Control
+      gruppo Stadio 2: grp_0001
+      GSM1971012
+        grezzo (Stadio 1): title: RNA-seq_Control_rep1,source: human colon cancer cells,cell line: HCT116,agent: Control,cell type: colon cancer cells
+        H5 titolo        : RNA-seq_Control_rep1
+        H5 caratteristiche: cell line: HCT116,agent: Control,cell type: colon cancer cells
+        H5 sorgente      : human colon cancer cells
+      GSM1971014
+        grezzo (Stadio 1): title: RNA-seq_Control_rep2,source: human colon cancer cells,cell line: HCT116,agent: Control,cell type: colon cancer cells
+        H5 titolo        : RNA-seq_Control_rep2
+        H5 caratteristiche: cell line: HCT116,agent: Control,cell type: colon cancer cells
+        H5 sorgente      : human colon cancer cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+
+  GSE126750     campioni nell'H5:   15 | collocati dallo Stadio 2:   15 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE130664     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE161860     campioni nell'H5:   12 | collocati dallo Stadio 2:    8 | MAI COLLOCATI:    4 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4916133, GSM4916134, GSM4916136, GSM4916139
+  GSE188458     campioni nell'H5:   21 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 12 campioni distinti (18 righe: i controlli servono piu' confronti)
+  GSE204781     campioni nell'H5:   10 | collocati dallo Stadio 2:   10 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE222749     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 9 campioni distinti (9 righe: i controlli servono piu' confronti)
+  GSE225095     campioni nell'H5:   12 | collocati dallo Stadio 2:   12 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE227554     campioni nell'H5:   27 | collocati dallo Stadio 2:   27 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 17 campioni distinti (23 righe: i controlli servono piu' confronti)
+  GSE60340      campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE75962      campioni nell'H5:    4 | collocati dallo Stadio 2:    4 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+
