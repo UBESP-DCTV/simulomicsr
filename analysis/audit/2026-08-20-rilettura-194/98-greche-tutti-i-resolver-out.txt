@@ -1,0 +1,71 @@
+Warning message:
+
+── Le lettere greche, su tutti i punti di risoluzione ──────────────────────────
+ℹ resolver interrogati: 9 | coppie: 10 | prove: 90
+
+── Esito complessivo ──
+
+
+entrambe vuote    GRECA CIECA  GRECA DIVERSA         uguale 
+             8             11             45             26 
+── Per resolver (solo dove la forma ASCII risolve qualcosa: li' la greca DOVREBBE) ──
+
+                               
+                                GRECA CIECA GRECA DIVERSA uguale
+  .ca_agent_id                            2             1      7
+  .extract_compound_candidates            0            10      0
+  .hgnc_lookup_symbol                     3             0      0
+  .normalize_biological_mention           0             0     10
+  .normalize_compound_to_chebi            0             9      1
+  .normalize_cytokine_to_hgnc             0             3      7
+  .normalize_disease_to_mesh              0            10      0
+  .normalize_pathogen_to_taxid            0            10      0
+  .rp_agents                              6             2      1
+── I casi in cui la forma greca da' un'IDENTITA' DIVERSA (peggio del silenzio) ──
+
+✖ .rp_agents                      IL-1β             -> HGNC:5991                ma  IL-1beta           -> HGNC:5992
+✖ .rp_agents                      TNF-α             -> HGNC:11892               ma  TNF-alpha          -> CHEMBL:CHEMBL265582
+✖ .ca_agent_id                    TNF-α             -> HGNC:11892               ma  TNF-alpha          -> CHEMBL:CHEMBL265582
+✖ .normalize_cytokine_to_hgnc     IFN-α             -> STR:ifn                  ma  IFN-alpha          -> HGNC:5417
+✖ .normalize_cytokine_to_hgnc     17β-estradiol     -> STR:17_estradiol         ma  17beta-estradiol   -> STR:17beta_estradiol
+✖ .normalize_cytokine_to_hgnc     NF-κB             -> STR:nf_b                 ma  NF-kappaB          -> STR:nf_kappab
+✖ .normalize_compound_to_chebi    TGF-β1            -> STR:tgf_1                ma  TGF-beta1          -> STR:tgf_beta1
+✖ .normalize_compound_to_chebi    TGF-β             -> STR:tgf                  ma  TGF-beta           -> STR:tgf_beta
+✖ .normalize_compound_to_chebi    IFN-γ             -> STR:ifn                  ma  IFN-gamma          -> STR:ifn_gamma
+✖ .normalize_compound_to_chebi    IFN-α             -> STR:ifn                  ma  IFN-alpha          -> STR:ifn_alpha
+✖ .normalize_compound_to_chebi    IFN-β             -> STR:ifn                  ma  IFN-beta           -> STR:ifn_beta
+✖ .normalize_compound_to_chebi    IL-1β             -> STR:il_1                 ma  IL-1beta           -> STR:il_1beta
+✖ .normalize_compound_to_chebi    IL-1α             -> STR:il_1                 ma  IL-1alpha          -> STR:il_1alpha
+✖ .normalize_compound_to_chebi    TNF-α             -> STR:tnf                  ma  TNF-alpha          -> CHEMBL:CHEMBL265582
+✖ .normalize_compound_to_chebi    NF-κB             -> STR:nf_b                 ma  NF-kappaB          -> STR:nf_kappab
+✖ .normalize_disease_to_mesh      TGF-β1            -> STR:tgf_1                ma  TGF-beta1          -> MeSH:D053773
+✖ .normalize_disease_to_mesh      TGF-β             -> STR:tgf                  ma  TGF-beta           -> MeSH:D016212
+✖ .normalize_disease_to_mesh      IFN-γ             -> STR:ifn                  ma  IFN-gamma          -> STR:ifn_gamma
+✖ .normalize_disease_to_mesh      IFN-α             -> STR:ifn                  ma  IFN-alpha          -> STR:ifn_alpha
+✖ .normalize_disease_to_mesh      IFN-β             -> STR:ifn                  ma  IFN-beta           -> STR:ifn_beta
+✖ .normalize_disease_to_mesh      IL-1β             -> STR:il_1                 ma  IL-1beta           -> STR:il_1beta
+✖ .normalize_disease_to_mesh      IL-1α             -> STR:il_1                 ma  IL-1alpha          -> STR:il_1alpha
+✖ .normalize_disease_to_mesh      TNF-α             -> STR:tnf                  ma  TNF-alpha          -> MeSH:D014409
+✖ .normalize_disease_to_mesh      17β-estradiol     -> STR:17_estradiol         ma  17beta-estradiol   -> STR:17beta_estradiol
+✖ .normalize_disease_to_mesh      NF-κB             -> STR:nf_b                 ma  NF-kappaB          -> MeSH:D016328
+✖ .normalize_pathogen_to_taxid    TGF-β1            -> STR:tgf_1                ma  TGF-beta1          -> STR:tgf_beta1
+✖ .normalize_pathogen_to_taxid    TGF-β             -> STR:tgf                  ma  TGF-beta           -> STR:tgf_beta
+✖ .normalize_pathogen_to_taxid    IFN-γ             -> STR:ifn                  ma  IFN-gamma          -> STR:ifn_gamma
+✖ .normalize_pathogen_to_taxid    IFN-α             -> STR:ifn                  ma  IFN-alpha          -> STR:ifn_alpha
+✖ .normalize_pathogen_to_taxid    IFN-β             -> STR:ifn                  ma  IFN-beta           -> STR:ifn_beta
+✖ .normalize_pathogen_to_taxid    IL-1β             -> STR:il_1                 ma  IL-1beta           -> STR:il_1beta
+✖ .normalize_pathogen_to_taxid    IL-1α             -> STR:il_1                 ma  IL-1alpha          -> STR:il_1alpha
+✖ .normalize_pathogen_to_taxid    TNF-α             -> STR:tnf                  ma  TNF-alpha          -> STR:tnf_alpha
+✖ .normalize_pathogen_to_taxid    17β-estradiol     -> STR:17_estradiol         ma  17beta-estradiol   -> STR:17beta_estradiol
+✖ .normalize_pathogen_to_taxid    NF-κB             -> STR:nf_b                 ma  NF-kappaB          -> STR:nf_kappab
+✖ .extract_compound_candidates    TGF-β1            -> tgf-β1                  ma  TGF-beta1          -> tgf-beta1
+✖ .extract_compound_candidates    TGF-β             -> tgf-β                   ma  TGF-beta           -> tgf-beta
+✖ .extract_compound_candidates    IFN-γ             -> ifn-γ                   ma  IFN-gamma          -> ifn-gamma
+✖ .extract_compound_candidates    IFN-α             -> ifn-α                   ma  IFN-alpha          -> ifn-alpha
+✖ .extract_compound_candidates    IFN-β             -> ifn-β                   ma  IFN-beta           -> ifn-beta
+✖ .extract_compound_candidates    IL-1β             -> il-1β                   ma  IL-1beta           -> il-1beta
+✖ .extract_compound_candidates    IL-1α             -> il-1α                   ma  IL-1alpha          -> il-1alpha
+✖ .extract_compound_candidates    TNF-α             -> tnf-α                   ma  TNF-alpha          -> tnf-alpha
+✖ .extract_compound_candidates    17β-estradiol     -> 17β-estradiol           ma  17beta-estradiol   -> 17beta-estradiol
+✖ .extract_compound_candidates    NF-κB             -> nf-κb                   ma  NF-kappaB          -> nf-kappab
+✔ Scritto 98-greche-tutti-i-resolver.csv

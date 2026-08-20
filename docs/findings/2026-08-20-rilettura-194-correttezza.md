@@ -440,3 +440,70 @@ allarmi** sui 1.703 confronti giudicati puliti. Il primo rilevatore di righe di
 questo progetto segnalava 186 casi di cui 96 veri (52%); il metro attuale dice
 0,1% di falsi allarmi solo perche' la regola non scatta quasi mai. Alzarne la
 sensibilita' senza rimisurare la precisione e' l'errore gia' pagato.
+
+---
+
+## 13. Le lettere greche: due «regole generali» che erano due funzioni
+
+**Obiezione dell'utente:** «IL-1β l'hai toccata trenta volte e tutte le volte dici
+sia quella giusta». Verificata, e regge.
+
+### La storia, dal registro dei commit
+
+| quando | che cosa | dove |
+|---|---|---|
+| 2026-07-07 (`36756ac`) | `.normalize_greek_stereo` | `R/name-cleanup.R` |
+| **2026-07-25** (`3dcaf0d`) | nasce `R/stage3-row-pairing.R` con `.rp_agents` | — nessuna gestione delle greche |
+| 2026-07-26 (`3bb5446`) | `.ca_latinize_greek` | `R/stage3-contrast-anchor.R` |
+
+Il messaggio del commit del 26 luglio dice testualmente: «**LE LETTERE GRECHE SI
+TRADUCONO** quando si cerca un gene. […] **Regola generale, non una lista.** […]
+la sanitizzazione toglie la lettera greca e lascia "tgf- 1"».
+
+Non era una regola generale: era una funzione. `.rp_agents`, scritta il giorno
+prima, sanitizza con `gsub("[^A-Za-z0-9 -]", " ", x)` — cioe' fa **esattamente**
+quello che quel commit descriveva come il difetto, mentre lo correggeva altrove.
+
+### La misura, su tutti i punti di risoluzione invece che su uno
+
+Nove funzioni risolvono un testo in un ID (`98-greche-tutti-i-resolver.R`).
+Interrogate con dieci coppie (forma greca, forma ASCII) della **stessa** entita',
+prese dalle etichette vere: 90 prove.
+
+| esito | prove |
+|---|---:|
+| la greca e l'ASCII danno la stessa risposta | **26** |
+| **la greca da' un'identita' DIVERSA** | **45** |
+| la greca non risolve nulla (ASCII si') | 11 |
+| entrambe vuote | 8 |
+
+Il difetto peggiore non e' il silenzio, e' il **collasso di entita' distinte**:
+in `.normalize_compound_to_chebi`, `.normalize_disease_to_mesh` e
+`.normalize_pathogen_to_taxid`, `IFN-γ`, `IFN-α` e `IFN-β` diventano tutte e tre
+`STR:ifn`; `IL-1β` e `IL-1α` diventano `STR:il_1`. In `.rp_agents`, `IL-1β` da'
+`HGNC:5991` (**IL1A**) mentre `IL-1beta` da' `HGNC:5992` (IL1B).
+E in due casi e' la forma ASCII a sbagliare: `TNF-alpha` finisce su
+`CHEMBL:CHEMBL265582` mentre `TNF-α` da' correttamente `HGNC:11892`.
+
+### ⚠️ Ma il deliverable NON e' toccato, e va detto
+
+Verificato su tutte e 194 (`99-collasso-nel-deliverable.R`): **nessuna delle
+sette forme collassate e' l'entita' di un gruppo**. Le 44 entita' `STR:` sono
+tutte stringhe sensate (`STR:hypoxia`, `STR:schizophrenia`, `STR:psoriasis`…).
+
+Il motivo e' che il fix del 26 luglio e' stato applicato **proprio** al percorso
+che risolve l'entita' del cluster, e li' funziona. Il numero 45 su 90 e' reale ma
+descrive i resolver, **non il prodotto**: il danno misurato si ferma alla regola
+che rileva i difetti (§12), che resta inerte.
+
+### La lezione, che e' diversa dal fix
+
+Il problema non e' «manca una riga in `.rp_agents`»: e' che «corretto» e' stato
+dichiarato due volte senza che nessuno contasse **quanti punti di risoluzione
+esistono**. Sono nove. Finche' «corretto» resta una frase in un messaggio di
+commit, la terza dichiarazione varra' quanto le prime due.
+
+`98-greche-tutti-i-resolver.R` esiste per questo: interroga tutti e nove con la
+stessa tabella e stampa quali sono rossi. Chi sistemera' una funzione sola vedra'
+le altre otto ancora rosse. **Nessun fix e' stato applicato in questa sessione**:
+questa e' la misura, e la misura viene prima.
