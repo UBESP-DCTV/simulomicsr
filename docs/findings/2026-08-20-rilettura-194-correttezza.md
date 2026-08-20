@@ -369,3 +369,74 @@ piu' grande e' la **validazione esterna**
 | `divergenze-per-studio.csv` | divergenze vere contro cosmetiche, sui campioni |
 | `blocco-01..15.txt` | il materiale letto, con le etichette intere |
 | `00-materiale.R` … `80-usciti.R` | gli script, in ordine |
+
+---
+
+## 12. Le regole ci sono gia', e sono INERTI (misurato 2026-08-20)
+
+Domanda posta dall'utente: i due meccanismi dominanti si correggono con **regole
+di pipeline** o con una lista una tantum? Risposta: sono regole, **due delle tre
+esistono gia' e sono chiamate in produzione**, e non funzionano.
+
+`.rp_row_defect()` (`R/stage3-row-pairing.R`, 67 test) e' invocata da
+`R/stage3-contrast-anchor.R:684` e `:787`. Contiene quattro regole: tempo non
+appaiato, soggetto diverso, genetica asimmetrica, **combinazione non vista** —
+quest'ultima e' esattamente «il secondo agente e' solo nel braccio trattato».
+
+**L'esperimento** (`95-regole-esistenti.R`): si passa la funzione DI PRODUZIONE
+su tutti i **1.903 confronti effettivamente poolati**.
+
+| | |
+|---|---:|
+| confronti segnalati in tutto | **2 su 1.903** |
+| confronti di studi ACCUSATI dalla rilettura, segnalati | **1 su 199 (0,5%)** |
+| confronti giudicati puliti, segnalati (falsi allarmi) | 1 su 1.703 (0,1%) |
+
+Tace su ogni caso di scuola: `Hypoxia + TGF-β1` contro `PBS (Vehicle Control)`;
+`Circulating macrophage + IFN-γ and LPS` contro `Circulating macrophage
+untreated`; `Non-fibrotic tissue, TGFB+AR` contro `Non-fibrotic tissue, Vehicle`;
+`PCOS EPS TGFB iHP10` contro `PCOS no treatment iHP10`.
+
+### Perche', in tre cause distinte
+
+**(1) Le lettere greche non sono normalizzate nel riconoscitore di agenti**
+(`.rp_agents`, `97-lettere-greche.R`):
+
+| scritto | risolve a |
+|---|---|
+| `TGF-β1` | **NESSUNO** |
+| `TGF-beta1` / `TGFB1` / `TGFb1` | HGNC:11766 (TGFB1) ✓ |
+| `IFN-γ` | **NESSUNO** |
+| `IFN-gamma` / `IFNG` | HGNC:5438 (IFNG) ✓ |
+| `IL-1β` | **HGNC:5991 = IL1A** ⟵ **gene sbagliato** |
+| `IL-1beta` / `IL1B` | HGNC:5992 (IL1B) ✓ |
+
+Non e' solo un'omissione: la forma con la lettera greca di IL-1β restituisce
+**IL1A**, un altro gene. Il progetto aveva gia' annotato la trappola delle
+lettere greche (2026-07-30 §8) come cecita' di uno **strumento di misura**;
+nessuno aveva verificato che fosse anche dentro la **regola di produzione**.
+
+**(2) La soglia ha la forma sbagliata.** `.rp_uncaptured_combination` chiede
+`length(setdiff(agenti_trattato, agenti_controllo)) >= 2`, perche' uno dei due e'
+l'entita' del gruppo. Ma quando il secondo agente non e' riconosciuto (`AR`,
+`EPS`, `Hypoxia`) il conto si ferma a 1 e la regola tace; e quando non e'
+riconosciuta nemmeno l'entita' (caso `TGF-β1`) servirebbero due agenti *oltre* a
+quello atteso. Il test giusto e': **agenti del trattato, tolta l'entita' del
+gruppo, tolti quelli del controllo, ≥ 1**.
+
+**(3) La terza famiglia non ha regola.** «Materiale / tipo cellulare diverso fra
+i bracci» (22,4% dei difetti, §4) non e' fra le quattro regole. E su
+`MSC iPSC-derived TGF-β 21 days` contro `MSC Primary Culture Vehicle Only`
+entrambi i bracci risolvono allo **stesso** `CHEMBL:CHEMBL5095486` — risoluzione
+spuria, qui simmetrica e quindi innocua, ma e' un difetto di precisione a se'.
+
+### Che cosa comporta
+
+Le regole agiscono nello **Stadio 3**: applicarle richiede un re-cluster (~2,5 h)
+e un re-pool (~2,5 h). **Non e' una correzione una tantum.**
+
+⚠️ **Prima di accendere qualunque regola nuova va misurato il tasso di falsi
+allarmi** sui 1.703 confronti giudicati puliti. Il primo rilevatore di righe di
+questo progetto segnalava 186 casi di cui 96 veri (52%); il metro attuale dice
+0,1% di falsi allarmi solo perche' la regola non scatta quasi mai. Alzarne la
+sensibilita' senza rimisurare la precisione e' l'errore gia' pagato.

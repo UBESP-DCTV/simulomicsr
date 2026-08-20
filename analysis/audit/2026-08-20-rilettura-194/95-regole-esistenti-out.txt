@@ -1,0 +1,52 @@
+Warning message:
+ℹ confronti poolati da passare alla regola: 1903
+
+── Che cosa segnala la regola di produzione, sui confronti poolati ──
+
+
+(nessun difetto) soggetto_diverso 
+            1901                2 
+── La regola prende i difetti che la rilettura ha trovato? ──
+
+         rilettura
+regola    accusato pulito
+  segnala        1      1
+  tace         198   1703
+ℹ dei confronti di studi ACCUSATI, la regola ne segnala il 0.5%
+ℹ dei confronti giudicati PULITI, ne segnala il 0.1%
+
+── I casi di scuola: la regola li vede? ──
+
+→ GSE139963  [HGNC:11766]
+TRATTATO : Hypoxia + TGF-β1
+CONTROLLO: PBS (Vehicle Control)
+regola -> TACE
+→ GSE139963  [HGNC:11766]
+TRATTATO : TGF-β1
+CONTROLLO: PBS (Vehicle Control)
+regola -> TACE
+→ GSE199225  [HGNC:11766]
+TRATTATO : PCOS EPS TGFB iHP10
+CONTROLLO: PCOS no treatment iHP10
+regola -> TACE
+→ GSE199225  [HGNC:11766]
+TRATTATO : PCOS TGFB iHP10
+CONTROLLO: PCOS no treatment iHP10
+regola -> TACE
+→ GSE240476  [HGNC:11766]
+TRATTATO : Non-fibrotic tissue, TGFB+AR
+CONTROLLO: Non-fibrotic tissue, Vehicle
+regola -> TACE
+→ GSE210984  [HGNC:11766]
+TRATTATO : MSC iPSC-derived TGF-β 21 days
+CONTROLLO: MSC Primary Culture Vehicle Only
+regola -> TACE
+→ GSE210984  [HGNC:11766]
+TRATTATO : MSC Primary Culture TGF-β 14 days
+CONTROLLO: MSC Primary Culture Vehicle Only
+regola -> TACE
+→ GSE97744  [CHEBI:16412]
+TRATTATO : Circulating macrophage + IFN-γ and LPS
+CONTROLLO: Circulating macrophage untreated
+regola -> TACE
+✔ Scritto regole-esistenti-esito.csv
