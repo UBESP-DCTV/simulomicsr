@@ -706,22 +706,30 @@ CONFRONTO  GSE79027__GSE79027__grp_0011_vs_grp_0013__1
 ------------------------------------------------------------------------------
 COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
 
-  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
   (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
   (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
       braccio trattato): il registro completo e' in qc_report$dispatch_drops;
-  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
 
-  GSE116927     campioni nell'H5:   48 | collocati dallo Stadio 2:   48 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 24 campioni distinti (24 righe: i controlli servono piu' confronti)
-  GSE140900     campioni nell'H5:   23 | collocati dallo Stadio 2:   23 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
-  GSE159196     campioni nell'H5:   16 | collocati dallo Stadio 2:   16 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
-  GSE162696     campioni nell'H5:   14 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
-  GSE190705     campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
-  GSE202866     campioni nell'H5:   11 | collocati dallo Stadio 2:   11 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
-  GSE206510     campioni nell'H5:   20 | collocati dallo Stadio 2:   14 | MAI COLLOCATI:    6 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
-      mai collocati: GSM6255649, GSM6255650, GSM6255651, GSM6255652, GSM6255657, GSM6255658
-  GSE214503     campioni nell'H5:   18 | collocati dallo Stadio 2:   18 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
-  GSE220972     campioni nell'H5:   34 | collocati dallo Stadio 2:   34 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 20 campioni distinti (29 righe: i controlli servono piu' confronti)
-  GSE65335      campioni nell'H5:    9 | collocati dallo Stadio 2:    9 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
-  GSE79027      campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE116927     ricevuti dallo Stadio 2:   48 | collocati in un gruppo:   48 | PERSI:    0 | usati in questa meta-analisi: 24 campioni distinti (24 righe: i controlli servono piu' confronti)
+  GSE140900     ricevuti dallo Stadio 2:   23 | collocati in un gruppo:   23 | PERSI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE159196     ricevuti dallo Stadio 2:   16 | collocati in un gruppo:   16 | PERSI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE162696     ricevuti dallo Stadio 2:   14 | collocati in un gruppo:   14 | PERSI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE190705     ricevuti dallo Stadio 2:    9 | collocati in un gruppo:    9 | PERSI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE202866     ricevuti dallo Stadio 2:   11 | collocati in un gruppo:   11 | PERSI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE206510     ricevuti dallo Stadio 2:   14 | collocati in un gruppo:   14 | PERSI:    0 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
+  GSE214503     ricevuti dallo Stadio 2:   18 | collocati in un gruppo:   18 | PERSI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE220972     ricevuti dallo Stadio 2:   34 | collocati in un gruppo:   34 | PERSI:    0 | usati in questa meta-analisi: 20 campioni distinti (29 righe: i controlli servono piu' confronti)
+  GSE65335      ricevuti dallo Stadio 2:    9 | collocati in un gruppo:    9 | PERSI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE79027      ricevuti dallo Stadio 2:   24 | collocati in un gruppo:   24 | PERSI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
 

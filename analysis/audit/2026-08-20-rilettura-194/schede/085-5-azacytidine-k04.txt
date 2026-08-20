@@ -439,18 +439,27 @@ CONFRONTO  GSE199800__GSE199800__Azacitidine_vs_DMSO__1
 ------------------------------------------------------------------------------
 COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
 
-  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
   (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
   (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
       braccio trattato): il registro completo e' in qc_report$dispatch_drops;
-  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
 
-  GSE117446     campioni nell'H5:   92 | collocati dallo Stadio 2:   91 | MAI COLLOCATI:    1 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE117446     ricevuti dallo Stadio 2:   92 | collocati in un gruppo:   91 | PERSI:    1 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
       mai collocati: GSM3295003
-  GSE145560     campioni nell'H5:   16 | collocati dallo Stadio 2:    7 | MAI COLLOCATI:    9 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
-      mai collocati: GSM4321493, GSM4321495, GSM4321496, GSM4321500, GSM4321501, GSM4321502, GSM4321503, GSM4321504, GSM4321506
-  GSE184891     campioni nell'H5:   24 | collocati dallo Stadio 2:   22 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 21 campioni distinti (30 righe: i controlli servono piu' confronti)
+  GSE145560     ricevuti dallo Stadio 2:   15 | collocati in un gruppo:    7 | PERSI:    8 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+      mai collocati: GSM4321495, GSM4321496, GSM4321500, GSM4321501, GSM4321502, GSM4321503, GSM4321504, GSM4321506
+  GSE184891     ricevuti dallo Stadio 2:   24 | collocati in un gruppo:   22 | PERSI:    2 | usati in questa meta-analisi: 21 campioni distinti (30 righe: i controlli servono piu' confronti)
       mai collocati: GSM5599680, GSM5599682
-  GSE199800     campioni nell'H5: 1655 | collocati dallo Stadio 2: 1489 | MAI COLLOCATI:  166 | usati in questa meta-analisi: 35 campioni distinti (35 righe: i controlli servono piu' confronti)
-      mai collocati: GSM5985001, GSM5985002, GSM5985033, GSM5985054, GSM5985058, GSM5985081, GSM5985083, GSM5985108, GSM5985157, GSM5985173, GSM5985179, GSM5985186 ... (+154)
+  GSE199800     ricevuti dallo Stadio 2: 1564 | collocati in un gruppo: 1489 | PERSI:   75 | usati in questa meta-analisi: 35 campioni distinti (35 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5985001, GSM5985002, GSM5985033, GSM5985054, GSM5985058, GSM5985081, GSM5985083, GSM5985108, GSM5985157, GSM5985173, GSM5985179, GSM5985186 ... (+63)
 

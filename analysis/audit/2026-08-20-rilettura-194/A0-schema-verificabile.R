@@ -163,11 +163,20 @@ for (n in seq_along(ord)) {
   L <- c(L, strrep("-", 78),
          "COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni",
          "",
-         "  Un campione dello studio puo' non essere qui per tre motivi diversi:",
+         "  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con",
+         "  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,",
+         "  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,",
+         "  protocollo single-cell, libreria troppo piccola, stringa troppo corta.",
+         "  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono",
+         "  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27",
+         "  allo Stadio 2 perche' gli altri 1.152 sono single-cell.",
+         "",
+         "  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:",
          "  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;",
          "  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso",
          "      braccio trattato): il registro completo e' in qc_report$dispatch_drops;",
-         "  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.",
+         "  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo",
+         "      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.",
          "")
   for (g in sort(unique(s$studio))) {
     k <- match(g, PERSI$studio)
@@ -178,8 +187,8 @@ for (n in seq_along(ord)) {
     # 18 campioni in tutto — un numero che sembra un errore e non lo e'.
     qui <- length(unique(s$gsm[s$studio == g]))
     righe_qui <- sum(s$studio == g)
-    L <- c(L, sprintf("  %-12s  campioni nell'H5: %4d | collocati dallo Stadio 2: %4d | MAI COLLOCATI: %4d | usati in questa meta-analisi: %d campioni distinti (%d righe: i controlli servono piu' confronti)",
-                      g, PERSI$n_h5[k], PERSI$n_in_gruppi[k], PERSI$n_persi[k], qui, righe_qui))
+    L <- c(L, sprintf("  %-12s  ricevuti dallo Stadio 2: %4d | collocati in un gruppo: %4d | PERSI: %4d | usati in questa meta-analisi: %d campioni distinti (%d righe: i controlli servono piu' confronti)",
+                      g, PERSI$n_ricevuti[k], PERSI$n_collocati[k], PERSI$n_persi[k], qui, righe_qui))
     if (PERSI$n_persi[k] > 0) {
       pp <- strsplit(PERSI$persi[k], ",", fixed = TRUE)[[1L]]
       L <- c(L, sprintf("      mai collocati: %s%s",

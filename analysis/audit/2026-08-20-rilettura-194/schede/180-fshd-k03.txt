@@ -321,14 +321,23 @@ CONFRONTO  GSE254310__GSE254310__grp_0006_vs_grp_0008__1
 ------------------------------------------------------------------------------
 COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
 
-  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
   (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
   (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
       braccio trattato): il registro completo e' in qc_report$dispatch_drops;
-  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
 
-  GSE115650     campioni nell'H5:   43 | collocati dallo Stadio 2:   43 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 36 campioni distinti (41 righe: i controlli servono piu' confronti)
-  GSE123468     campioni nell'H5:   63 | collocati dallo Stadio 2:   39 | MAI COLLOCATI:   24 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE115650     ricevuti dallo Stadio 2:   43 | collocati in un gruppo:   43 | PERSI:    0 | usati in questa meta-analisi: 36 campioni distinti (41 righe: i controlli servono piu' confronti)
+  GSE123468     ricevuti dallo Stadio 2:   63 | collocati in un gruppo:   39 | PERSI:   24 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
       mai collocati: GSM3504538, GSM3504539, GSM3504540, GSM3504542, GSM3504543, GSM3504545, GSM3504546, GSM3504547, GSM3504548, GSM3504549, GSM3504550, GSM3504551 ... (+12)
-  GSE254310     campioni nell'H5:   24 | collocati dallo Stadio 2:   24 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE254310     ricevuti dallo Stadio 2:   24 | collocati in un gruppo:   24 | PERSI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
 

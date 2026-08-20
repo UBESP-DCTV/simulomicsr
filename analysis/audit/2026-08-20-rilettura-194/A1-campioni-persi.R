@@ -1,87 +1,87 @@
 #!/usr/bin/env Rscript
 # analysis/audit/2026-08-20-rilettura-194/A1-campioni-persi.R
 #
-# I CAMPIONI CHE ESISTONO MA NON SONO IN NESSUN GRUPPO.
+# CHE FINE FANNO I CAMPIONI DI UNO STUDIO, misurato a ogni porta.
 #
-# Controllando a mano la scheda 194 (YKL-5-124) si vede che GSE172442 ha i
-# campioni GSM5256097..GSM5256114 (diciotto, numerati di seguito) ma i gruppi
-# dello Stadio 2 ne contengono quindici: GSM5256102, GSM5256108 e GSM5256110 non
-# stanno in NESSUN gruppo. Esistono nell'H5, sono di quello studio, e sono spariti.
+# ⚠️ LA PRIMA VERSIONE DI QUESTO SCRIPT ERA SBAGLIATA, e l'utente l'ha presa:
+# confrontava i gruppi dello Stadio 2 con i campioni dell'H5, e chiamava «persi
+# dallo Stadio 2» tutto quello che mancava — 3.564 campioni, il 9,1%. Ma la
+# pipeline non parte dall'H5: parte da un bacino gia' filtrato dallo Stadio 0.
+# Il caso peggiore che avevo riportato, «GSE200186: 1.179 campioni nell'H5, 27
+# collocati», e' in realta' 1.152 campioni esclusi da `single_cell_protocol_match`,
+# cioe' un controllo di qualita' che funziona: i 27 tenuti sono i bulk, e i titoli
+# lo dicono («Drug_response_fibroblasts_bulk...»). Nessuno li aveva persi.
 #
-# E' il «coverage gap» gia' noto al progetto, ma nelle schede non si vedeva: chi
-# controlla a mano trova un braccio con n=2 dove il numero dei GSM dice 3 e non
-# ha modo di sapere se e' un taglio del gate o una perdita a monte. Sono due cose
-# diverse e vanno distinte:
+# Il denominatore giusto e' quello che lo Stadio 2 HA RICEVUTO, non quello che
+# esiste in GEO. Qui si misurano le porte una per una:
 #
-#   (a) il campione sta in un ALTRO gruppo dello studio -> normale, quel gruppo
-#       serve un altro confronto e non c'entra con questo contrasto;
-#   (b) il campione non sta in NESSUN gruppo -> lo Stadio 2 l'ha perso.
+#   H5  --[Stadio 0: 7 filtri]-->  bacino  --[input Stadio 2]-->  gruppi Stadio 2
 #
-# Questo script misura (b) su tutti gli studi del deliverable e scrive il
-# risultato, che poi A0 aggiunge in fondo a ogni scheda.
+# e si separa cio' che e' stato ESCLUSO con un motivo da cio' che e' stato PERSO
+# senza motivo. Solo il secondo e' un difetto.
 #
 # Uso: Rscript analysis/audit/2026-08-20-rilettura-194/A1-campioni-persi.R
 
 Sys.setenv(OPENBLAS_NUM_THREADS = "1", OMP_NUM_THREADS = "1")
 suppressPackageStartupMessages({ library(cli); devtools::load_all(".", quiet = TRUE) })
-OUT <- "analysis/audit/2026-08-20-rilettura-194"
-H5  <- "analysis/input/human_gene_v2.5.h5"
-S2  <- "analysis/p4-output/A3-stage2-master-innestato.jsonl"
+OUT   <- "analysis/audit/2026-08-20-rilettura-194"
+S2IN  <- "analysis/input/A3-stage2-input.jsonl"
+S2OUT <- "analysis/p4-output/A3-stage2-master-innestato.jsonl"
+stopifnot(file.exists(S2IN), file.exists(S2OUT))
 
 A <- readRDS(file.path(OUT, "dispatch-A3.rds"))$tenuti
 studi <- sort(unique(A$study_id))
 cli_alert_info("studi nel deliverable: {length(studi)}")
 
-s2  <- simulomicsr:::.load_stage2_master(S2)
-s2i <- simulomicsr:::.index_stage2_master(s2)
-
-ga  <- as.character(rhdf5::h5read(H5, "meta/samples/geo_accession"))
-ser <- as.character(rhdf5::h5read(H5, "meta/samples/series_id"))
-rhdf5::h5closeAll()
-
-# UN CAMPIONE PUO' APPARTENERE A PIU' SERIE (super-series): il campo e' una lista
-# separata da virgole e va SPEZZATA.
-# ⚠️ La prima versione faceva grepl(gse, ser, fixed = TRUE), e «GSE1234» matcha
-# dentro «GSE12345»: attribuiva a uno studio i campioni di un altro con lo stesso
-# prefisso, e faceva risultare «GSE200186: 1152 persi su 1179». Indice esatto.
-idx_serie <- new.env(hash = TRUE, parent = emptyenv())
-for (k in seq_along(ser)) {
-  for (s in strsplit(ser[k], "[,;\\s]+", perl = TRUE)[[1L]]) {
-    if (!nzchar(s)) next
-    assign(s, c(if (exists(s, envir = idx_serie, inherits = FALSE))
-                  get(s, envir = idx_serie, inherits = FALSE), ga[k]), envir = idx_serie)
+# --- 1. che cosa lo Stadio 2 ha RICEVUTO -------------------------------------
+# l'input e' un record per studio; i campioni si leggono dai GSM citati.
+cli_alert_info("leggo l'input dello Stadio 2 ({round(file.size(S2IN)/1e6)} MB)...")
+ricevuti <- new.env(hash = TRUE, parent = emptyenv())
+con <- file(S2IN, "r")
+repeat {
+  ln <- readLines(con, n = 2000L, warn = FALSE)
+  if (!length(ln)) break
+  sid <- sub('^.*"series_id"\\s*:\\s*"([^"]*)".*$', "\\1", ln)
+  k <- which(sid %in% studi)
+  for (j in k) {
+    g <- unique(regmatches(ln[j], gregexpr("GSM[0-9]+", ln[j]))[[1L]])
+    assign(sid[j], unique(c(if (exists(sid[j], envir = ricevuti, inherits = FALSE))
+      get(sid[j], envir = ricevuti, inherits = FALSE), g)), envir = ricevuti)
   }
 }
-appartiene <- function(gse) {
-  if (exists(gse, envir = idx_serie, inherits = FALSE))
-    unique(get(gse, envir = idx_serie, inherits = FALSE)) else character(0)
-}
+close(con)
+cli_alert_info("studi trovati nell'input: {length(ls(ricevuti))}")
 
-righe <- list()
-for (g in studi) {
-  if (!exists(g, envir = s2i, inherits = FALSE)) next
-  st <- get(g, envir = s2i, inherits = FALSE)
-  in_gruppi <- unique(unlist(lapply(st$replicate_groups, function(r) as.character(unlist(r$sample_ids)))))
-  in_h5 <- appartiene(g)
-  persi <- setdiff(in_h5, in_gruppi)
-  righe[[length(righe) + 1L]] <- data.frame(
-    studio = g, n_h5 = length(in_h5), n_in_gruppi = length(intersect(in_gruppi, in_h5)),
-    n_persi = length(persi), persi = paste(sort(persi), collapse = ","),
-    stringsAsFactors = FALSE)
-}
+# --- 2. che cosa lo Stadio 2 ha COLLOCATO in un gruppo -----------------------
+s2  <- simulomicsr:::.load_stage2_master(S2OUT)
+s2i <- simulomicsr:::.index_stage2_master(s2)
+
+righe <- lapply(studi, function(g) {
+  rec <- if (exists(g, envir = ricevuti, inherits = FALSE))
+    get(g, envir = ricevuti, inherits = FALSE) else character(0)
+  col <- if (exists(g, envir = s2i, inherits = FALSE))
+    unique(unlist(lapply(get(g, envir = s2i, inherits = FALSE)$replicate_groups,
+                         function(r) as.character(unlist(r$sample_ids))))) else character(0)
+  persi <- setdiff(rec, col)
+  data.frame(studio = g, n_ricevuti = length(rec), n_collocati = length(intersect(col, rec)),
+             n_persi = length(persi), persi = paste(sort(persi), collapse = ","),
+             stringsAsFactors = FALSE)
+})
 P <- do.call(rbind, righe)
 
-cli_h2("Campioni che esistono nell'H5 ma non stanno in nessun gruppo dello Stadio 2")
-cli_alert_info("studi esaminati: {nrow(P)}")
-cli_alert_info("campioni dei loro studi nell'H5: {sum(P$n_h5)}")
-cli_alert_info("collocati in un gruppo: {sum(P$n_in_gruppi)}")
-cli_alert_info("PERSI (in nessun gruppo): {sum(P$n_persi)}  ({sprintf('%.1f%%', 100*sum(P$n_persi)/max(1,sum(P$n_h5)))})")
+cli_h1("La porta che conta: che cosa lo Stadio 2 ha ricevuto e che cosa ne ha fatto")
+cli_alert_info("campioni RICEVUTI dallo Stadio 2 (gia' passati dallo Stadio 0): {sum(P$n_ricevuti)}")
+cli_alert_info("collocati in un gruppo: {sum(P$n_collocati)}")
+cli_alert_info("PERSI senza motivo: {sum(P$n_persi)}  ({sprintf('%.1f%%', 100*sum(P$n_persi)/max(1,sum(P$n_ricevuti)))})")
 cli_alert_info("studi con almeno un campione perso: {sum(P$n_persi > 0)} su {nrow(P)}")
 
 cli_h2("I dieci studi che ne perdono di piu'")
 q <- P[order(-P$n_persi), ][1:min(10, nrow(P)), ]
-for (i in seq_len(nrow(q))) cli_alert(sprintf(
-  "%s  %d su %d persi", q$studio[i], q$n_persi[i], q$n_h5[i]))
+for (i in seq_len(nrow(q))) if (q$n_persi[i] > 0) cli_alert(sprintf(
+  "%s  %d persi su %d ricevuti", q$studio[i], q$n_persi[i], q$n_ricevuti[i]))
+
+cli_h2("La distribuzione: quanti ne perde uno studio, quando ne perde")
+print(table(P$n_persi[P$n_persi > 0]))
 
 utils::write.csv(P, file.path(OUT, "campioni-persi-per-studio.csv"), row.names = FALSE)
 cli_alert_success("Scritto campioni-persi-per-studio.csv")

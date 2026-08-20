@@ -776,14 +776,23 @@ CONFRONTO  GSE255074__GSE255074__grp_0006_vs_grp_0012__1
 ------------------------------------------------------------------------------
 COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
 
-  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
   (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
   (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
       braccio trattato): il registro completo e' in qc_report$dispatch_drops;
-  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
 
-  GSE255071     campioni nell'H5:  130 | collocati dallo Stadio 2:  130 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 117 campioni distinti (117 righe: i controlli servono piu' confronti)
-  GSE255073     campioni nell'H5:   61 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:   40 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
+  GSE255071     ricevuti dallo Stadio 2:  130 | collocati in un gruppo:  130 | PERSI:    0 | usati in questa meta-analisi: 117 campioni distinti (117 righe: i controlli servono piu' confronti)
+  GSE255073     ricevuti dallo Stadio 2:   61 | collocati in un gruppo:   21 | PERSI:   40 | usati in questa meta-analisi: 13 campioni distinti (13 righe: i controlli servono piu' confronti)
       mai collocati: GSM8063454, GSM8063455, GSM8063456, GSM8063457, GSM8063458, GSM8063459, GSM8063460, GSM8063461, GSM8063462, GSM8063463, GSM8063464, GSM8063465 ... (+28)
-  GSE255074     campioni nell'H5:   60 | collocati dallo Stadio 2:   60 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE255074     ricevuti dallo Stadio 2:   60 | collocati in un gruppo:   60 | PERSI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
 

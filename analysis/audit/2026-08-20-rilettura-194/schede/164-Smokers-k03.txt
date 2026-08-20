@@ -604,14 +604,23 @@ CONFRONTO  GSE79544__GSE79544__IPF_smokers_vs_IPF_non_smokers__1
 ------------------------------------------------------------------------------
 COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
 
-  Un campione dello studio puo' non essere qui per tre motivi diversi:
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
   (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
   (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
       braccio trattato): il registro completo e' in qc_report$dispatch_drops;
-  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso. Questo si vede qui.
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
 
-  GSE177034     campioni nell'H5:  196 | collocati dallo Stadio 2:  196 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 80 campioni distinti (80 righe: i controlli servono piu' confronti)
-  GSE213001     campioni nell'H5:  139 | collocati dallo Stadio 2:  139 | MAI COLLOCATI:    0 | usati in questa meta-analisi: 19 campioni distinti (19 righe: i controlli servono piu' confronti)
-  GSE79544      campioni nell'H5:   23 | collocati dallo Stadio 2:   21 | MAI COLLOCATI:    2 | usati in questa meta-analisi: 14 campioni distinti (14 righe: i controlli servono piu' confronti)
+  GSE177034     ricevuti dallo Stadio 2:  196 | collocati in un gruppo:  196 | PERSI:    0 | usati in questa meta-analisi: 80 campioni distinti (80 righe: i controlli servono piu' confronti)
+  GSE213001     ricevuti dallo Stadio 2:  139 | collocati in un gruppo:  139 | PERSI:    0 | usati in questa meta-analisi: 19 campioni distinti (19 righe: i controlli servono piu' confronti)
+  GSE79544      ricevuti dallo Stadio 2:   23 | collocati in un gruppo:   21 | PERSI:    2 | usati in questa meta-analisi: 14 campioni distinti (14 righe: i controlli servono piu' confronti)
       mai collocati: GSM2608033, GSM2608035
 
