@@ -1,0 +1,294 @@
+LETTURA CIECA — S3 (2026-08-21) — scheda 05 di 20
+==============================================================================
+Il verdetto del modello NON e' in questa scheda. Dai il tuo, e scrivilo in
+umano/RISPOSTE.csv (istruzioni in umano/ISTRUZIONI.md).
+
+PARTE 1 — IL MATERIALE CHE IL MODELLO HA LETTO (blocco 11, invariato).
+  Le etichette sono quelle dello Stadio 2, intere. La riga «verdetto attuale» e'
+  il gate automatico della pipeline (Stadio 3), visto anche dal modello: NON e'
+  il verdetto della rilettura. Le righe [RIFERIMENTO]/DIVERGENZA confrontano con
+  l'altra esecuzione: per il tuo verdetto non servono, guarda i CONFRONTI POOLATI.
+  Dai il verdetto su questa parte, PRIMA di leggere la seconda.
+
+PARTE 2 — LE STRINGHE GREZZE PER CAMPIONE (scheda di A0, senza verdetto).
+  Qui vedi piu' di quanto il modello vedesse. Se cambia il tuo verdetto, scrivilo
+  nella colonna verdetto_dopo_parte2: misura quanto l'etichetta nasconde.
+==============================================================================
+
+########## PARTE 1 — materiale del modello ##########
+
+## GRUPPO cgroup_L5_3d8c29f4
+- entita dichiarata : HGNC:6001  (IL2)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.7   piu pesante: 48%
+- geni significativi: 392   I2 mediano: 87.6
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE122409] n_trattati=2 vs n_controlli=3
+        TRATTATO : CD3+ Vd2+ CD26- CD94hi +IL2
+        CONTROLLO: CD3+ Vd2+ CD26- CD94hi untreated
+    [GSE122409] n_trattati=2 vs n_controlli=3
+        TRATTATO : CD3+ Vd2+ CD26- CD94lo +IL2
+        CONTROLLO: CD3+ Vd2+ CD26- CD94lo untreated
+    [GSE130284] n_trattati=2 vs n_controlli=3
+        TRATTATO : Natural Killer Cells - IL-2 - 16 Hours
+        CONTROLLO: Natural Killer Cells - Untreated
+    [GSE138698] n_trattati=3 vs n_controlli=3
+        TRATTATO : CD8+ T cells, IL2 stimulation
+        CONTROLLO: CD8+ T cells, no treatment
+    [GSE221563] n_trattati=5 vs n_controlli=6
+        TRATTATO : Gamma-delta T cells treated with IL2 (additional batch)
+        CONTROLLO: Untreated gamma-delta T cells
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE122409] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 3 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            CD3+ Vd2+ CD26- CD94hi +IL2 → CD3+ Vd2+ CD26- CD94hi
+            CD3+ Vd2+ CD26- CD94lo +IL2 → CD3+ Vd2+ CD26- CD94lo
+            CD3+ Vd2+ CD26+ CD94lo +IL2 → CD3+ Vd2+ CD26+ CD94lo
+    [GSE130284] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Natural Killer Cells - IL-2 - 16h → Natural Killer Cells - Untreated
+    [GSE138698] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE221563] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Gamma-delta T cells treated with IL2 → Untreated gamma-delta T cells
+
+
+########## PARTE 2 — stringhe grezze per campione ##########
+
+META-ANALISI (scheda cieca 05)
+==============================================================================
+nome            : IL2
+entita (ID)     : HGNC:6001
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_3d8c29f4
+studi poolati   : 4   confronti: 5   campioni: 32
+geni significativi: 392   I2 mediano: 87.6
+verdetto della rilettura: [NASCOSTO - lettura cieca]
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE122409__GSE122409__grp_0001_vs_grp_0003__1
+  studio: GSE122409
+  TRATTATO  (n=2)  etichetta Stadio 2: CD3+ Vd2+ CD26- CD94hi +IL2
+      gruppo Stadio 2: grp_0001
+      GSM4417227
+        grezzo (Stadio 1): title: Donor 4 CD26- CD94hi +IL2 (D4 94 IL2),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi +IL2
+        H5 titolo        : Donor 4 CD26- CD94hi +IL2 (D4 94 IL2)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi +IL2
+        H5 sorgente      : Human PBMC
+      GSM4417234
+        grezzo (Stadio 1): title: Donor 5 CD26- CD94hi +IL2 (D5 94 IL2),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi +IL2
+        H5 titolo        : Donor 5 CD26- CD94hi +IL2 (D5 94 IL2)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi +IL2
+        H5 sorgente      : Human PBMC
+  CONTROLLO  (n=3)  etichetta Stadio 2: CD3+ Vd2+ CD26- CD94hi untreated
+      gruppo Stadio 2: grp_0003
+      GSM3466251
+        grezzo (Stadio 1): title: Donor 1 CD26- CD94hi (D1 94),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi
+        H5 titolo        : Donor 1 CD26- CD94hi (D1 94)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi
+        H5 sorgente      : Human PBMC
+      GSM3466255
+        grezzo (Stadio 1): title: Donor 2 CD26- CD94hi (D2 94),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi
+        H5 titolo        : Donor 2 CD26- CD94hi (D2 94)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi
+        H5 sorgente      : Human PBMC
+      GSM3466259
+        grezzo (Stadio 1): title: Donor 3 CD26- CD94hi (D3 94),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi
+        H5 titolo        : Donor 3 CD26- CD94hi (D3 94)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94hi
+        H5 sorgente      : Human PBMC
+
+CONFRONTO  GSE122409__GSE122409__grp_0005_vs_grp_0007__1
+  studio: GSE122409
+  TRATTATO  (n=2)  etichetta Stadio 2: CD3+ Vd2+ CD26- CD94lo +IL2
+      gruppo Stadio 2: grp_0005
+      GSM4417223
+        grezzo (Stadio 1): title: Donor 4 CD26- CD94lo +IL2 (D4 DN IL2),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo +IL2
+        H5 titolo        : Donor 4 CD26- CD94lo +IL2 (D4 DN IL2)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo +IL2
+        H5 sorgente      : Human PBMC
+      GSM4417230
+        grezzo (Stadio 1): title: Donor 5 CD26- CD94lo +IL2 (D5 DN IL2),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo +IL2
+        H5 titolo        : Donor 5 CD26- CD94lo +IL2 (D5 DN IL2)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo +IL2
+        H5 sorgente      : Human PBMC
+  CONTROLLO  (n=3)  etichetta Stadio 2: CD3+ Vd2+ CD26- CD94lo untreated
+      gruppo Stadio 2: grp_0007
+      GSM3466253
+        grezzo (Stadio 1): title: Donor 1 CD26- CD94lo (D1 DN),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo
+        H5 titolo        : Donor 1 CD26- CD94lo (D1 DN)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo
+        H5 sorgente      : Human PBMC
+      GSM3466257
+        grezzo (Stadio 1): title: Donor 2 CD26- CD94lo (D2 DN),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo
+        H5 titolo        : Donor 2 CD26- CD94lo (D2 DN)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo
+        H5 sorgente      : Human PBMC
+      GSM3466261
+        grezzo (Stadio 1): title: Donor 3 CD26- CD94lo (D3 DN),source: Human PBMC,tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo
+        H5 titolo        : Donor 3 CD26- CD94lo (D3 DN)
+        H5 caratteristiche: tissue: PBMC,cell type: CD3+ Vd2+ CD26- CD94lo
+        H5 sorgente      : Human PBMC
+
+CONFRONTO  GSE130284__GSE130284__grp_0005_vs_grp_0003__1
+  studio: GSE130284
+  TRATTATO  (n=2)  etichetta Stadio 2: Natural Killer Cells - IL-2 - 16 Hours
+      gruppo Stadio 2: grp_0005
+      GSM3735260
+        grezzo (Stadio 1): title: NK IL-2 donor 1_RNA-seq,source: natural killer cells,tissue: peripheral blood,cell type: natural killer cells,stimulation: 16 hours
+        H5 titolo        : NK IL-2 donor 1_RNA-seq
+        H5 caratteristiche: tissue: peripheral blood,cell type: natural killer cells,stimulation: 16 hours
+        H5 sorgente      : natural killer cells
+      GSM3735264
+        grezzo (Stadio 1): title: NK IL-2 donor 3_RNA-seq,source: natural killer cells,tissue: peripheral blood,cell type: natural killer cells,stimulation: 16 hours
+        H5 titolo        : NK IL-2 donor 3_RNA-seq
+        H5 caratteristiche: tissue: peripheral blood,cell type: natural killer cells,stimulation: 16 hours
+        H5 sorgente      : natural killer cells
+  CONTROLLO  (n=3)  etichetta Stadio 2: Natural Killer Cells - Untreated
+      gruppo Stadio 2: grp_0003
+      GSM3735242
+        grezzo (Stadio 1): title: NK alone donor 1_RNA-seq,source: natural killer cells,tissue: peripheral blood,cell type: natural killer cells,stimulation: none
+        H5 titolo        : NK alone donor 1_RNA-seq
+        H5 caratteristiche: tissue: peripheral blood,cell type: natural killer cells,stimulation: none
+        H5 sorgente      : natural killer cells
+      GSM3735244
+        grezzo (Stadio 1): title: NK alone donor 2_RNA-seq,source: natural killer cells,tissue: peripheral blood,cell type: natural killer cells,stimulation: none
+        H5 titolo        : NK alone donor 2_RNA-seq
+        H5 caratteristiche: tissue: peripheral blood,cell type: natural killer cells,stimulation: none
+        H5 sorgente      : natural killer cells
+      GSM3735246
+        grezzo (Stadio 1): title: NK alone donor 3_RNA-seq,source: natural killer cells,tissue: peripheral blood,cell type: natural killer cells,stimulation: none
+        H5 titolo        : NK alone donor 3_RNA-seq
+        H5 caratteristiche: tissue: peripheral blood,cell type: natural killer cells,stimulation: none
+        H5 sorgente      : natural killer cells
+
+CONFRONTO  GSE138698__GSE138698__IL2_vs_none__1
+  studio: GSE138698
+  TRATTATO  (n=3)  etichetta Stadio 2: CD8+ T cells, IL2 stimulation
+      gruppo Stadio 2: grp_IL2
+      GSM4976193
+        grezzo (Stadio 1): title: RNA-seq human CD8+ T IL2 24h donor1,source: PBMC,strain: Healthy donors,antibody: CD8+ T cells
+        H5 titolo        : RNA-seq human CD8+ T IL2 24h donor1
+        H5 caratteristiche: strain: Healthy donors,antibody: CD8+ T cells
+        H5 sorgente      : PBMC
+      GSM4976197
+        grezzo (Stadio 1): title: RNA-seq human CD8+ T IL2 24h donor2,source: PBMC,strain: Healthy donors,antibody: CD8+ T cells
+        H5 titolo        : RNA-seq human CD8+ T IL2 24h donor2
+        H5 caratteristiche: strain: Healthy donors,antibody: CD8+ T cells
+        H5 sorgente      : PBMC
+      GSM4976201
+        grezzo (Stadio 1): title: RNA-seq human CD8+ T IL2 24h donor3,source: PBMC,strain: Healthy donors,antibody: CD8+ T cells
+        H5 titolo        : RNA-seq human CD8+ T IL2 24h donor3
+        H5 caratteristiche: strain: Healthy donors,antibody: CD8+ T cells
+        H5 sorgente      : PBMC
+  CONTROLLO  (n=3)  etichetta Stadio 2: CD8+ T cells, no treatment
+      gruppo Stadio 2: grp_none
+      GSM4976194
+        grezzo (Stadio 1): title: RNA-seq human CD8+ T H9T 24h donor1,source: PBMC,strain: Healthy donors,antibody: CD8+ T cells
+        H5 titolo        : RNA-seq human CD8+ T H9T 24h donor1
+        H5 caratteristiche: strain: Healthy donors,antibody: CD8+ T cells
+        H5 sorgente      : PBMC
+      GSM4976198
+        grezzo (Stadio 1): title: RNA-seq human CD8+ T H9T 24h donor2,source: PBMC,strain: Healthy donors,antibody: CD8+ T cells
+        H5 titolo        : RNA-seq human CD8+ T H9T 24h donor2
+        H5 caratteristiche: strain: Healthy donors,antibody: CD8+ T cells
+        H5 sorgente      : PBMC
+      GSM4976202
+        grezzo (Stadio 1): title: RNA-seq human CD8+ T H9T 24h donor3,source: PBMC,strain: Healthy donors,antibody: CD8+ T cells
+        H5 titolo        : RNA-seq human CD8+ T H9T 24h donor3
+        H5 caratteristiche: strain: Healthy donors,antibody: CD8+ T cells
+        H5 sorgente      : PBMC
+
+CONFRONTO  GSE221563__GSE221563__grp_0007_vs_grp_0003__1
+  studio: GSE221563
+  TRATTATO  (n=5)  etichetta Stadio 2: Gamma-delta T cells treated with IL2 (additional batch)
+      gruppo Stadio 2: grp_0007
+      GSM6886333
+        grezzo (Stadio 1): title: D13_IL2_REP1,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 titolo        : D13_IL2_REP1
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 sorgente      : BLOOD
+      GSM6886335
+        grezzo (Stadio 1): title: D13_IL2_REP3,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 titolo        : D13_IL2_REP3
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 sorgente      : BLOOD
+      GSM6886336
+        grezzo (Stadio 1): title: D13_IL2_REP4,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 titolo        : D13_IL2_REP4
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 sorgente      : BLOOD
+      GSM6886337
+        grezzo (Stadio 1): title: D13_IL2_REP5,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 titolo        : D13_IL2_REP5
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 sorgente      : BLOOD
+      GSM6886338
+        grezzo (Stadio 1): title: D13_IL2_REP6,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 titolo        : D13_IL2_REP6
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: IL2
+        H5 sorgente      : BLOOD
+  CONTROLLO  (n=6)  etichetta Stadio 2: Untreated gamma-delta T cells
+      gruppo Stadio 2: grp_0003
+      GSM6886327
+        grezzo (Stadio 1): title: D0_REP1,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 titolo        : D0_REP1
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 sorgente      : BLOOD
+      GSM6886328
+        grezzo (Stadio 1): title: D0_REP2,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 titolo        : D0_REP2
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 sorgente      : BLOOD
+      GSM6886329
+        grezzo (Stadio 1): title: D0_REP3,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 titolo        : D0_REP3
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 sorgente      : BLOOD
+      GSM6886330
+        grezzo (Stadio 1): title: D0_REP4,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 titolo        : D0_REP4
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 sorgente      : BLOOD
+      GSM6886331
+        grezzo (Stadio 1): title: D0_REP5,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 titolo        : D0_REP5
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 sorgente      : BLOOD
+      GSM6886332
+        grezzo (Stadio 1): title: D0_REP6,source: BLOOD,tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 titolo        : D0_REP6
+        H5 caratteristiche: tissue: BLOOD,cell type: GAMMA-DELTA T CELLS,treatment: NONE
+        H5 sorgente      : BLOOD
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
+
+  GSE122409     ricevuti dallo Stadio 2:   28 | collocati in un gruppo:   28 | PERSI:    0 | usati in questa meta-analisi: 10 campioni distinti (10 righe: i controlli servono piu' confronti)
+  GSE130284     ricevuti dallo Stadio 2:   12 | collocati in un gruppo:   12 | PERSI:    0 | usati in questa meta-analisi: 5 campioni distinti (5 righe: i controlli servono piu' confronti)
+  GSE138698     ricevuti dallo Stadio 2:   12 | collocati in un gruppo:   12 | PERSI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE221563     ricevuti dallo Stadio 2:   30 | collocati in un gruppo:   30 | PERSI:    0 | usati in questa meta-analisi: 11 campioni distinti (11 righe: i controlli servono piu' confronti)
+

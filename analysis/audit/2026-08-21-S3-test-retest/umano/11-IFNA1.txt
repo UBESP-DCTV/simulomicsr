@@ -1,0 +1,597 @@
+LETTURA CIECA — S3 (2026-08-21) — scheda 11 di 20
+==============================================================================
+Il verdetto del modello NON e' in questa scheda. Dai il tuo, e scrivilo in
+umano/RISPOSTE.csv (istruzioni in umano/ISTRUZIONI.md).
+
+PARTE 1 — IL MATERIALE CHE IL MODELLO HA LETTO (blocco 10, invariato).
+  Le etichette sono quelle dello Stadio 2, intere. La riga «verdetto attuale» e'
+  il gate automatico della pipeline (Stadio 3), visto anche dal modello: NON e'
+  il verdetto della rilettura. Le righe [RIFERIMENTO]/DIVERGENZA confrontano con
+  l'altra esecuzione: per il tuo verdetto non servono, guarda i CONFRONTI POOLATI.
+  Dai il verdetto su questa parte, PRIMA di leggere la seconda.
+
+PARTE 2 — LE STRINGHE GREZZE PER CAMPIONE (scheda di A0, senza verdetto).
+  Qui vedi piu' di quanto il modello vedesse. Se cambia il tuo verdetto, scrivilo
+  nella colonna verdetto_dopo_parte2: misura quanto l'etichetta nasconde.
+==============================================================================
+
+########## PARTE 1 — materiale del modello ##########
+
+## GRUPPO cgroup_L5_3be7454c
+- entita dichiarata : HGNC:5417  (IFNA1)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 4   studi efficaci (Kish): 2.6   piu pesante: 50%
+- geni significativi: 882   I2 mediano: 69.4
+- verdetto attuale  : incoherent — RITRATTATO il 2026-07-30 (il verdetto precedente era stato dato su un'etichetta TRONCATA a 58 caratteri). Il testo intero di GSE126517 e' 'R5020 for 6 hours AND IFN-alpha for 18 hours' contro 'EtOH for 6 hours and water for 18 hours': l'interferone c'e' davvero, ma il confronto misura la COMBINAZIONE R5020+IFN-alfa contro doppio veicolo, mentre gli altri due studi poolati misurano IFN-alfa da solo. Resta incoerente per combinazione non catturata (categoria nota), NON perche' misuri un'altra entita'. Lo stesso studio compare correttamente nel gruppo STR:r5020 col braccio R5020 puro
+- nel riferimento   : esisteva con 3 studi; entrati ora: 1, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE126517] n_trattati=4 vs n_controlli=2
+        TRATTATO : T47D breast cancer cells treated with R5020 for 6 hours and IFN-alpha for 18 hours
+        CONTROLLO: T47D breast cancer cells treated with EtOH for 6 hours and water for 18 hours
+    [GSE202350] n_trattati=3 vs n_controlli=3
+        TRATTATO : IFNα
+        CONTROLLO: DMSO
+    [GSE206784] n_trattati=2 vs n_controlli=2
+        TRATTATO : A549 NINL KO + IFN alpha
+        CONTROLLO: A549 NINL KO + no treatment
+    [GSE221804] n_trattati=2 vs n_controlli=6
+        TRATTATO : Wild-type, IFN alpha, 2h
+        CONTROLLO: Wild-type, unstimulated
+    [GSE221804] n_trattati=2 vs n_controlli=6
+        TRATTATO : Wild-type, IFN alpha, 2h
+        CONTROLLO: Wild-type, unstimulated
+    [GSE221804] n_trattati=2 vs n_controlli=6
+        TRATTATO : Wild-type, IFN alpha, 24h
+        CONTROLLO: Wild-type, unstimulated
+    [GSE221804] n_trattati=2 vs n_controlli=6
+        TRATTATO : Wild-type, IFN alpha, 4h
+        CONTROLLO: Wild-type, unstimulated
+    [GSE221804] n_trattati=2 vs n_controlli=6
+        TRATTATO : Wild-type, IFN alpha, 48h
+        CONTROLLO: Wild-type, unstimulated
+    [GSE221804] n_trattati=2 vs n_controlli=6
+        TRATTATO : Wild-type, IFN alpha, 72h
+        CONTROLLO: Wild-type, unstimulated
+    [GSE221804] n_trattati=3 vs n_controlli=6
+        TRATTATO : Wild-type, IFN alpha, 8h
+        CONTROLLO: Wild-type, unstimulated
+    [GSE221804] n_trattati=2 vs n_controlli=6
+        TRATTATO : Wild-type, IFN alpha, 0h
+        CONTROLLO: Wild-type, unstimulated
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE126517] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            T47D breast cancer cells treated with R5020 for 6 hours and IFN-alpha for 18 hours → T47D breast cancer cells treated with EtOH for 6 hours and water for 18 hours
+            T47D breast cancer cells treated with R5020 for 6 hours and IFN-alpha for 18 hours → T47D breast cancer cells treated with EtOH for 6 hours and water for 18 hours
+    [GSE202350] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE206784] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            A549 NINL KO IFN alpha 100 µg/mL 24h → A549 NINL KO no treatment 24h
+    [GSE221804] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+
+
+########## PARTE 2 — stringhe grezze per campione ##########
+
+META-ANALISI (scheda cieca 11)
+==============================================================================
+nome            : IFNA1
+entita (ID)     : HGNC:5417
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_3be7454c
+studi poolati   : 4   confronti: 11   campioni: 81
+geni significativi: 882   I2 mediano: 69.4
+verdetto della rilettura: [NASCOSTO - lettura cieca]
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE126517__GSE126517__grp_0009_vs_grp_0001__1
+  studio: GSE126517
+  TRATTATO  (n=4)  etichetta Stadio 2: T47D breast cancer cells treated with R5020 for 6 hours and IFN-alpha for 18 hours
+      gruppo Stadio 2: grp_0009
+      GSM3602905
+        grezzo (Stadio 1): title: T47D-Y R5020(6hr)+IFN-alpha(18hr) rep1,source: breast cancer cell line,agent: R5020+IFN-alpha,cell line: T47D breast cancer cell line variants
+        H5 titolo        : T47D-Y R5020(6hr)+IFN-alpha(18hr) rep1
+        H5 caratteristiche: agent: R5020+IFN-alpha,cell line: T47D breast cancer cell line variants
+        H5 sorgente      : breast cancer cell line
+      GSM3602906
+        grezzo (Stadio 1): title: T47D-Y R5020(6hr)+IFN-alpha(18hr) rep2,source: breast cancer cell line,agent: R5020+IFN-alpha,cell line: T47D breast cancer cell line variants
+        H5 titolo        : T47D-Y R5020(6hr)+IFN-alpha(18hr) rep2
+        H5 caratteristiche: agent: R5020+IFN-alpha,cell line: T47D breast cancer cell line variants
+        H5 sorgente      : breast cancer cell line
+      GSM3602907
+        grezzo (Stadio 1): title: T47D-Y R5020(6hr)+IFN-alpha(18hr) rep3,source: breast cancer cell line,agent: R5020+IFN-alpha,cell line: T47D breast cancer cell line variants
+        H5 titolo        : T47D-Y R5020(6hr)+IFN-alpha(18hr) rep3
+        H5 caratteristiche: agent: R5020+IFN-alpha,cell line: T47D breast cancer cell line variants
+        H5 sorgente      : breast cancer cell line
+      GSM3602918
+        grezzo (Stadio 1): title: T47D-co R5020(6hr)+IFN-alpha(18hr) rep2,source: breast cancer cell line,agent: R5020+IFN-alpha,cell line: T47D breast cancer cell line variants
+        H5 titolo        : T47D-co R5020(6hr)+IFN-alpha(18hr) rep2
+        H5 caratteristiche: agent: R5020+IFN-alpha,cell line: T47D breast cancer cell line variants
+        H5 sorgente      : breast cancer cell line
+  CONTROLLO  (n=2)  etichetta Stadio 2: T47D breast cancer cells treated with EtOH for 6 hours and water for 18 hours
+      gruppo Stadio 2: grp_0001
+      GSM3602898
+        grezzo (Stadio 1): title: T47D-Y EtOH(6hr)+water(18hr) rep3,source: breast cancer cell line,agent: EtOH+water,cell line: T47D breast cancer cell line variants
+        H5 titolo        : T47D-Y EtOH(6hr)+water(18hr) rep3
+        H5 caratteristiche: agent: EtOH+water,cell line: T47D breast cancer cell line variants
+        H5 sorgente      : breast cancer cell line
+      GSM3602908
+        grezzo (Stadio 1): title: T47D-co EtOH(6hr)+water(18hr) rep1,source: breast cancer cell line,agent: EtOH+water,cell line: T47D breast cancer cell line variants
+        H5 titolo        : T47D-co EtOH(6hr)+water(18hr) rep1
+        H5 caratteristiche: agent: EtOH+water,cell line: T47D breast cancer cell line variants
+        H5 sorgente      : breast cancer cell line
+
+CONFRONTO  GSE202350__GSE202350__INF_alpha_vs_DMSO__1
+  studio: GSE202350
+  TRATTATO  (n=3)  etichetta Stadio 2: IFNα
+      gruppo Stadio 2: grp_INF_alpha
+      GSM6111790
+        grezzo (Stadio 1): title: OVCAR-3, IFNÎ±, 6 hours, rep1 [S3341Nr19],source: ovary,tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: IFNÎ± (interferon alpha)
+        H5 titolo        : OVCAR-3, IFNÎ±, 6 hours, rep1 [S3341Nr19]
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: IFNÎ± (interferon alpha)
+        H5 sorgente      : ovary
+      GSM6111791
+        grezzo (Stadio 1): title: OVCAR-3, IFNÎ±, 6 hours, rep2 [S3341Nr20],source: ovary,tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: IFNÎ± (interferon alpha)
+        H5 titolo        : OVCAR-3, IFNÎ±, 6 hours, rep2 [S3341Nr20]
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: IFNÎ± (interferon alpha)
+        H5 sorgente      : ovary
+      GSM6111792
+        grezzo (Stadio 1): title: OVCAR-3, IFNÎ±, 6 hours, rep3 [S3341Nr21],source: ovary,tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: IFNÎ± (interferon alpha)
+        H5 titolo        : OVCAR-3, IFNÎ±, 6 hours, rep3 [S3341Nr21]
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: IFNÎ± (interferon alpha)
+        H5 sorgente      : ovary
+  CONTROLLO  (n=3)  etichetta Stadio 2: DMSO
+      gruppo Stadio 2: grp_DMSO
+      GSM6111784
+        grezzo (Stadio 1): title: OVCAR-3, DMSO control, 6 hours, rep1 [S3341Nr13],source: ovary,tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: DMSO
+        H5 titolo        : OVCAR-3, DMSO control, 6 hours, rep1 [S3341Nr13]
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: DMSO
+        H5 sorgente      : ovary
+      GSM6111785
+        grezzo (Stadio 1): title: OVCAR-3, DMSO control, 6 hours, rep2 [S3341Nr14],source: ovary,tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: DMSO
+        H5 titolo        : OVCAR-3, DMSO control, 6 hours, rep2 [S3341Nr14]
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: DMSO
+        H5 sorgente      : ovary
+      GSM6111786
+        grezzo (Stadio 1): title: OVCAR-3, DMSO control, 6 hours, rep3 [S3341Nr15],source: ovary,tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: DMSO
+        H5 titolo        : OVCAR-3, DMSO control, 6 hours, rep3 [S3341Nr15]
+        H5 caratteristiche: tissue: ovary,cell line: OVCAR-3,cell type: epithelial cell,genotype: wt,disease: Adenocarcinoma,time: 6 hours,treatment: DMSO
+        H5 sorgente      : ovary
+
+CONFRONTO  GSE206784__GSE206784__grp_0006_vs_grp_0003__1
+  studio: GSE206784
+  TRATTATO  (n=2)  etichetta Stadio 2: A549 NINL KO + IFN alpha
+      gruppo Stadio 2: grp_0006
+      GSM6262617
+        grezzo (Stadio 1): title: A549 NINL KO, interferon, 24h, rep1,source: A549,cell line: A549,cell type: epithelial cells,genotype: NINL KO,treatment: 100u IFN alpha,time: 24h
+        H5 titolo        : A549 NINL KO, interferon, 24h, rep1
+        H5 caratteristiche: cell line: A549,cell type: epithelial cells,genotype: NINL KO,treatment: 100u IFN alpha,time: 24h
+        H5 sorgente      : A549
+      GSM6262619
+        grezzo (Stadio 1): title: A549 NINL KO, interferon, 24h, rep3,source: A549,cell line: A549,cell type: epithelial cells,genotype: NINL KO,treatment: 100u IFN alpha,time: 24h
+        H5 titolo        : A549 NINL KO, interferon, 24h, rep3
+        H5 caratteristiche: cell line: A549,cell type: epithelial cells,genotype: NINL KO,treatment: 100u IFN alpha,time: 24h
+        H5 sorgente      : A549
+  CONTROLLO  (n=2)  etichetta Stadio 2: A549 NINL KO + no treatment
+      gruppo Stadio 2: grp_0003
+      GSM6262614
+        grezzo (Stadio 1): title: A549 NINL KO, no treatment, 24h, rep1,source: A549,cell line: A549,cell type: epithelial cells,genotype: NINL KO,treatment: no treatment,time: 24h
+        H5 titolo        : A549 NINL KO, no treatment, 24h, rep1
+        H5 caratteristiche: cell line: A549,cell type: epithelial cells,genotype: NINL KO,treatment: no treatment,time: 24h
+        H5 sorgente      : A549
+      GSM6262615
+        grezzo (Stadio 1): title: A549 NINL KO, no treatment, 24h, rep2,source: A549,cell line: A549,cell type: epithelial cells,genotype: NINL KO,treatment: no treatment,time: 24h
+        H5 titolo        : A549 NINL KO, no treatment, 24h, rep2
+        H5 caratteristiche: cell line: A549,cell type: epithelial cells,genotype: NINL KO,treatment: no treatment,time: 24h
+        H5 sorgente      : A549
+
+CONFRONTO  GSE221804__GSE221804__grp_0005_vs_grp_0001__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN alpha, 0h
+      gruppo Stadio 2: mg25
+      GSM6899765
+        grezzo (Stadio 1): title: Huh-dKO_UN_rep1,source: unstimulated Huh-dKO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 0h
+        H5 titolo        : Huh-dKO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 0h
+        H5 sorgente      : unstimulated Huh-dKO cells
+      GSM6899766
+        grezzo (Stadio 1): title: Huh-dKO_UN_rep2,source: unstimulated Huh-dKO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 0h
+        H5 titolo        : Huh-dKO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 0h
+        H5 sorgente      : unstimulated Huh-dKO cells
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0026_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN alpha, 2h
+      gruppo Stadio 2: mg26
+      GSM6899867
+        grezzo (Stadio 1): title: HuhWT_IFNa_2h_rep1,source: IFN alpha stimulated Huh7.5 wild type cells, 2h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 2h
+        H5 titolo        : HuhWT_IFNa_2h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 2h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 2h
+      GSM6899868
+        grezzo (Stadio 1): title: HuhWT_IFNa_2h_rep2,source: IFN alpha stimulated Huh7.5 wild type cells, 2h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 2h
+        H5 titolo        : HuhWT_IFNa_2h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 2h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 2h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0027_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN alpha, 2h
+      gruppo Stadio 2: mg27
+      GSM6899767
+        grezzo (Stadio 1): title: Huh-dKO_IFNa_2h_rep1,source: IFN alpha stimulated Huh-dKO cells, 2h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 2h
+        H5 titolo        : Huh-dKO_IFNa_2h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 2h
+        H5 sorgente      : IFN alpha stimulated Huh-dKO cells, 2h
+      GSM6899768
+        grezzo (Stadio 1): title: Huh-dKO_IFNa_2h_rep2,source: IFN alpha stimulated Huh-dKO cells, 2h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 2h
+        H5 titolo        : Huh-dKO_IFNa_2h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 2h
+        H5 sorgente      : IFN alpha stimulated Huh-dKO cells, 2h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0028_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN alpha, 24h
+      gruppo Stadio 2: mg28
+      GSM6899873
+        grezzo (Stadio 1): title: HuhWT_IFNa_24h_rep1,source: IFN alpha stimulated Huh7.5 wild type cells, 24h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 24h
+        H5 titolo        : HuhWT_IFNa_24h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 24h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 24h
+      GSM6899874
+        grezzo (Stadio 1): title: HuhWT_IFNa_24h_rep2,source: IFN alpha stimulated Huh7.5 wild type cells, 24h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 24h
+        H5 titolo        : HuhWT_IFNa_24h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 24h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 24h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0030_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN alpha, 4h
+      gruppo Stadio 2: mg30
+      GSM6899869
+        grezzo (Stadio 1): title: HuhWT_IFNa_4h_rep1,source: IFN alpha stimulated Huh7.5 wild type cells, 4h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 4h
+        H5 titolo        : HuhWT_IFNa_4h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 4h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 4h
+      GSM6899870
+        grezzo (Stadio 1): title: HuhWT_IFNa_4h_rep2,source: IFN alpha stimulated Huh7.5 wild type cells, 4h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 4h
+        H5 titolo        : HuhWT_IFNa_4h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 4h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 4h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0032_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN alpha, 48h
+      gruppo Stadio 2: mg32
+      GSM6899875
+        grezzo (Stadio 1): title: HuhWT_IFNa_48h_rep1,source: IFN alpha stimulated Huh7.5 wild type cells, 48h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 48h
+        H5 titolo        : HuhWT_IFNa_48h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 48h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 48h
+      GSM6899876
+        grezzo (Stadio 1): title: HuhWT_IFNa_48h_rep2,source: IFN alpha stimulated Huh7.5 wild type cells, 48h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 48h
+        H5 titolo        : HuhWT_IFNa_48h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 48h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 48h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0034_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=2)  etichetta Stadio 2: Wild-type, IFN alpha, 72h
+      gruppo Stadio 2: mg34
+      GSM6899775
+        grezzo (Stadio 1): title: Huh-dKO_IFNa_72h_rep1,source: IFN alpha stimulated Huh-dKO cells, 72h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 72h
+        H5 titolo        : Huh-dKO_IFNa_72h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 72h
+        H5 sorgente      : IFN alpha stimulated Huh-dKO cells, 72h
+      GSM6899776
+        grezzo (Stadio 1): title: Huh-dKO_IFNa_72h_rep2,source: IFN alpha stimulated Huh-dKO cells, 72h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 72h
+        H5 titolo        : Huh-dKO_IFNa_72h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 72h
+        H5 sorgente      : IFN alpha stimulated Huh-dKO cells, 72h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+CONFRONTO  GSE221804__GSE221804__grp_0035_vs_grp_0004__1
+  studio: GSE221804
+  TRATTATO  (n=3)  etichetta Stadio 2: Wild-type, IFN alpha, 8h
+      gruppo Stadio 2: mg35
+      GSM6899772
+        grezzo (Stadio 1): title: Huh-dKO_IFNa_8h_rep2,source: IFN alpha stimulated Huh-dKO cells, 8h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 8h
+        H5 titolo        : Huh-dKO_IFNa_8h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9/IRF1 double knockout,treatment: IFN alpha, 1000U/ml,time: 8h
+        H5 sorgente      : IFN alpha stimulated Huh-dKO cells, 8h
+      GSM6899871
+        grezzo (Stadio 1): title: HuhWT_IFNa_8h_rep1,source: IFN alpha stimulated Huh7.5 wild type cells, 8h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 8h
+        H5 titolo        : HuhWT_IFNa_8h_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 8h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 8h
+      GSM6899872
+        grezzo (Stadio 1): title: HuhWT_IFNa_8h_rep2,source: IFN alpha stimulated Huh7.5 wild type cells, 8h,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 8h
+        H5 titolo        : HuhWT_IFNa_8h_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: IFN alpha, 1000U/ml,time: 8h
+        H5 sorgente      : IFN alpha stimulated Huh7.5 wild type cells, 8h
+  CONTROLLO  (n=6)  etichetta Stadio 2: Wild-type, unstimulated
+      gruppo Stadio 2: mg4
+      GSM6899787
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep1,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899788
+        grezzo (Stadio 1): title: HuhIRF1KO_UN_rep2,source: unstimulated HuhIRF1KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF1KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF1 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF1KO cells
+      GSM6899810
+        grezzo (Stadio 1): title: HuhIRF9KO_UN_rep2,source: unstimulated HuhIRF9KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhIRF9KO_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: IRF9 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhIRF9KO cells
+      GSM6899843
+        grezzo (Stadio 1): title: HuhST2KO_UN_rep1,source: unstimulated HuhST2KO cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhST2KO_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: STAT2 knockout,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated HuhST2KO cells
+      GSM6899865
+        grezzo (Stadio 1): title: HuhWT_UN_rep1,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep1
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+      GSM6899866
+        grezzo (Stadio 1): title: HuhWT_UN_rep2,source: unstimulated Huh7.5 wild type cells,cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 titolo        : HuhWT_UN_rep2
+        H5 caratteristiche: cell line: Huh7.5,cell type: human hepatocellular carcinoma cells,genotype: wild type,treatment: unstimulated,time: 0h
+        H5 sorgente      : unstimulated Huh7.5 wild type cells
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
+
+  GSE126517     ricevuti dallo Stadio 2:   24 | collocati in un gruppo:   24 | PERSI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE202350     ricevuti dallo Stadio 2:   12 | collocati in un gruppo:   12 | PERSI:    0 | usati in questa meta-analisi: 6 campioni distinti (6 righe: i controlli servono piu' confronti)
+  GSE206784     ricevuti dallo Stadio 2:   11 | collocati in un gruppo:   11 | PERSI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+  GSE221804     ricevuti dallo Stadio 2:  110 | collocati in un gruppo:  108 | PERSI:    2 | usati in questa meta-analisi: 23 campioni distinti (65 righe: i controlli servono piu' confronti)
+      mai collocati: GSM6899818, GSM6899831
+

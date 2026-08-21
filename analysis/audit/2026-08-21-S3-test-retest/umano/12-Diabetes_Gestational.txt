@@ -1,0 +1,473 @@
+LETTURA CIECA — S3 (2026-08-21) — scheda 12 di 20
+==============================================================================
+Il verdetto del modello NON e' in questa scheda. Dai il tuo, e scrivilo in
+umano/RISPOSTE.csv (istruzioni in umano/ISTRUZIONI.md).
+
+PARTE 1 — IL MATERIALE CHE IL MODELLO HA LETTO (blocco 07, invariato).
+  Le etichette sono quelle dello Stadio 2, intere. La riga «verdetto attuale» e'
+  il gate automatico della pipeline (Stadio 3), visto anche dal modello: NON e'
+  il verdetto della rilettura. Le righe [RIFERIMENTO]/DIVERGENZA confrontano con
+  l'altra esecuzione: per il tuo verdetto non servono, guarda i CONFRONTI POOLATI.
+  Dai il verdetto su questa parte, PRIMA di leggere la seconda.
+
+PARTE 2 — LE STRINGHE GREZZE PER CAMPIONE (scheda di A0, senza verdetto).
+  Qui vedi piu' di quanto il modello vedesse. Se cambia il tuo verdetto, scrivilo
+  nella colonna verdetto_dopo_parte2: misura quanto l'etichetta nasconde.
+==============================================================================
+
+########## PARTE 1 — materiale del modello ##########
+
+## GRUPPO cgroup_L5_729b276d
+- entita dichiarata : MeSH:D016640  (Diabetes, Gestational)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.4   piu pesante: 84%
+- geni significativi: 24   I2 mediano: 0.0
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE154377] n_trattati=5 vs n_controlli=6
+        TRATTATO : Gestational Diabetes 1st Trimester
+        CONTROLLO: Normal Pregnancy 1st Trimester
+    [GSE154377] n_trattati=4 vs n_controlli=6
+        TRATTATO : Gestational Diabetes 2nd Trimester
+        CONTROLLO: Normal Pregnancy 2nd Trimester
+    [GSE154377] n_trattati=2 vs n_controlli=6
+        TRATTATO : Gestational Diabetes 1st Trimester Patient 1
+        CONTROLLO: Normal Pregnancy 1st Trimester
+    [GSE154414] n_trattati=4 vs n_controlli=4
+        TRATTATO : Placental tissue from gestational diabetes mellitus patients
+        CONTROLLO: Healthy control placental tissue
+    [GSE228990] n_trattati=18 vs n_controlli=14
+        TRATTATO : Endothelial progenitor cells from donor with gestational diabetes (Donor 21)
+        CONTROLLO: Endothelial progenitor cells from healthy donor (Donor 1)
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE154377] stesso gruppo ma i CONFRONTI CAMBIANO (3 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Gestational Diabetes Cord Blood Patient 1 → Normal Pregnancy Cord Blood Patient 1
+    [GSE154414] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE228990] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Endothelial progenitor cells from donor 21 with gestational diabetes → Endothelial progenitor cells from donor 1 (healthy)
+
+
+########## PARTE 2 — stringhe grezze per campione ##########
+
+META-ANALISI (scheda cieca 12)
+==============================================================================
+nome            : Diabetes, Gestational
+entita (ID)     : MeSH:D016640
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_729b276d
+studi poolati   : 3   confronti: 5   campioni: 69
+geni significativi: 24   I2 mediano: 0.0
+verdetto della rilettura: [NASCOSTO - lettura cieca]
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE154377__GSE154377__group_0010_vs_group_0002__1
+  studio: GSE154377
+  TRATTATO  (n=5)  etichetta Stadio 2: Gestational Diabetes 1st Trimester
+      gruppo Stadio 2: group_0010
+      GSM4669944
+        grezzo (Stadio 1): title: Gestational diabetes Patient 2, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 2, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+      GSM4669948
+        grezzo (Stadio 1): title: Gestational diabetes Patient 3, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 3, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+      GSM4669953
+        grezzo (Stadio 1): title: Gestational diabetes Patient 4, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 4, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+      GSM4669957
+        grezzo (Stadio 1): title: Gestational diabetes Patient 5, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 5, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+      GSM4669962
+        grezzo (Stadio 1): title: Gestational diabetes Patient 6, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 6, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+  CONTROLLO  (n=6)  etichetta Stadio 2: Normal Pregnancy 1st Trimester
+      gruppo Stadio 2: group_0002
+      GSM4669899
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 2, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 2, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669904
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 3, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 3, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669909
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 4, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 4, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669914
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 5, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 5, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669919
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 6, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 6, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669924
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 7, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 7, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+
+CONFRONTO  GSE154377__GSE154377__group_0034_vs_group_0003__1
+  studio: GSE154377
+  TRATTATO  (n=4)  etichetta Stadio 2: Gestational Diabetes 2nd Trimester
+      gruppo Stadio 2: group_0034
+      GSM4669945
+        grezzo (Stadio 1): title: Gestational diabetes Patient 2, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 2, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+      GSM4669949
+        grezzo (Stadio 1): title: Gestational diabetes Patient 3, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 3, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+      GSM4669954
+        grezzo (Stadio 1): title: Gestational diabetes Patient 4, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 4, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+      GSM4669963
+        grezzo (Stadio 1): title: Gestational diabetes Patient 6, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 6, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+  CONTROLLO  (n=6)  etichetta Stadio 2: Normal Pregnancy 2nd Trimester
+      gruppo Stadio 2: group_0003
+      GSM4669900
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 2, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 2, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669905
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 3, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 3, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669910
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 4, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 4, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669915
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 5, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 5, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669920
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 6, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 6, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669935
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 9, 2nd Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 9, 2nd Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+
+CONFRONTO  GSE154377__GSE154377__group_0037_vs_group_0002__1
+  studio: GSE154377
+  TRATTATO  (n=2)  etichetta Stadio 2: Gestational Diabetes 1st Trimester Patient 1
+      gruppo Stadio 2: group_0037
+      GSM4669939
+        grezzo (Stadio 1): title: Gestational diabetes Patient 1, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 1, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+      GSM4669967
+        grezzo (Stadio 1): title: Gestational diabetes Patient 7, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: Gestational Diabetes
+        H5 titolo        : Gestational diabetes Patient 7, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: Gestational Diabetes
+        H5 sorgente      : Plasma
+  CONTROLLO  (n=6)  etichetta Stadio 2: Normal Pregnancy 1st Trimester
+      gruppo Stadio 2: group_0002
+      GSM4669899
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 2, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 2, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669904
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 3, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 3, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669909
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 4, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 4, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669914
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 5, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 5, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669919
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 6, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 6, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+      GSM4669924
+        grezzo (Stadio 1): title: Normal Pregnancy Patient 7, 1st Trimester (RNA-seq),source: Plasma,complication during pregnancy: No Complications
+        H5 titolo        : Normal Pregnancy Patient 7, 1st Trimester (RNA-seq)
+        H5 caratteristiche: complication during pregnancy: No Complications
+        H5 sorgente      : Plasma
+
+CONFRONTO  GSE154414__GSE154414__grp_0001_vs_grp_0002__1
+  studio: GSE154414
+  TRATTATO  (n=4)  etichetta Stadio 2: Placental tissue from gestational diabetes mellitus patients
+      gruppo Stadio 2: grp_0001
+      GSM4670790
+        grezzo (Stadio 1): title: RNA-seq_GDM001,source: placenta,tissue: placenta,gestational age: 37.2,patient diagnosis: gestational diabetes mellitus
+        H5 titolo        : RNA-seq_GDM001
+        H5 caratteristiche: tissue: placenta,gestational age: 37.2,patient diagnosis: gestational diabetes mellitus
+        H5 sorgente      : placenta
+      GSM4670791
+        grezzo (Stadio 1): title: RNA-seq_GDM002,source: placenta,tissue: placenta,gestational age: 38.3,patient diagnosis: gestational diabetes mellitus
+        H5 titolo        : RNA-seq_GDM002
+        H5 caratteristiche: tissue: placenta,gestational age: 38.3,patient diagnosis: gestational diabetes mellitus
+        H5 sorgente      : placenta
+      GSM4670792
+        grezzo (Stadio 1): title: RNA-seq_GDM003,source: placenta,tissue: placenta,gestational age: 38.2,patient diagnosis: gestational diabetes mellitus
+        H5 titolo        : RNA-seq_GDM003
+        H5 caratteristiche: tissue: placenta,gestational age: 38.2,patient diagnosis: gestational diabetes mellitus
+        H5 sorgente      : placenta
+      GSM4670793
+        grezzo (Stadio 1): title: RNA-seq_GDM004,source: placenta,tissue: placenta,gestational age: 37.5,patient diagnosis: gestational diabetes mellitus
+        H5 titolo        : RNA-seq_GDM004
+        H5 caratteristiche: tissue: placenta,gestational age: 37.5,patient diagnosis: gestational diabetes mellitus
+        H5 sorgente      : placenta
+  CONTROLLO  (n=4)  etichetta Stadio 2: Healthy control placental tissue
+      gruppo Stadio 2: grp_0002
+      GSM4670794
+        grezzo (Stadio 1): title: RNA-seq_NEG002,source: placenta,tissue: placenta,gestational age: 37.6,patient diagnosis: healthy control
+        H5 titolo        : RNA-seq_NEG002
+        H5 caratteristiche: tissue: placenta,gestational age: 37.6,patient diagnosis: healthy control
+        H5 sorgente      : placenta
+      GSM4670795
+        grezzo (Stadio 1): title: RNA-seq_NEG003,source: placenta,tissue: placenta,gestational age: 38.2,patient diagnosis: healthy control
+        H5 titolo        : RNA-seq_NEG003
+        H5 caratteristiche: tissue: placenta,gestational age: 38.2,patient diagnosis: healthy control
+        H5 sorgente      : placenta
+      GSM4670796
+        grezzo (Stadio 1): title: RNA-seq_NEG004,source: placenta,tissue: placenta,gestational age: 38.4,patient diagnosis: healthy control
+        H5 titolo        : RNA-seq_NEG004
+        H5 caratteristiche: tissue: placenta,gestational age: 38.4,patient diagnosis: healthy control
+        H5 sorgente      : placenta
+      GSM4670797
+        grezzo (Stadio 1): title: RNA-seq_NEG005,source: placenta,tissue: placenta,gestational age: 38.5,patient diagnosis: healthy control
+        H5 titolo        : RNA-seq_NEG005
+        H5 caratteristiche: tissue: placenta,gestational age: 38.5,patient diagnosis: healthy control
+        H5 sorgente      : placenta
+
+CONFRONTO  GSE228990__GSE228990__grp_0002_vs_grp_0003__1
+  studio: GSE228990
+  TRATTATO  (n=18)  etichetta Stadio 2: Endothelial progenitor cells from donor with gestational diabetes (Donor 21)
+      gruppo Stadio 2: grp_0002
+      GSM7147072
+        grezzo (Stadio 1): title: ECFC_08d4b,source: Human Umbilical Cord Blood,individual: Donor 21,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_08d4b
+        H5 caratteristiche: individual: Donor 21,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147073
+        grezzo (Stadio 1): title: ECFC_09d4b,source: Human Umbilical Cord Blood,individual: Donor 22,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_09d4b
+        H5 caratteristiche: individual: Donor 22,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147074
+        grezzo (Stadio 1): title: ECFC_10d4b,source: Human Umbilical Cord Blood,individual: Donor 23,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_10d4b
+        H5 caratteristiche: individual: Donor 23,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147075
+        grezzo (Stadio 1): title: ECFC_15d4b,source: Human Umbilical Cord Blood,individual: Donor 24,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_15d4b
+        H5 caratteristiche: individual: Donor 24,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147076
+        grezzo (Stadio 1): title: ECFC_16d4b,source: Human Umbilical Cord Blood,individual: Donor 25,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_16d4b
+        H5 caratteristiche: individual: Donor 25,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147077
+        grezzo (Stadio 1): title: ECFC_17d4b,source: Human Umbilical Cord Blood,individual: Donor 26,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_17d4b
+        H5 caratteristiche: individual: Donor 26,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147078
+        grezzo (Stadio 1): title: ECFC_20d4b,source: Human Umbilical Cord Blood,individual: Donor 27,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_20d4b
+        H5 caratteristiche: individual: Donor 27,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147079
+        grezzo (Stadio 1): title: ECFC_26d4b,source: Human Umbilical Cord Blood,individual: Donor 28,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_26d4b
+        H5 caratteristiche: individual: Donor 28,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147080
+        grezzo (Stadio 1): title: ECFC_27d4b,source: Human Umbilical Cord Blood,individual: Donor 29,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_27d4b
+        H5 caratteristiche: individual: Donor 29,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147081
+        grezzo (Stadio 1): title: ECFC_34d5b,source: Human Umbilical Cord Blood,individual: Donor 30,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 titolo        : ECFC_34d5b
+        H5 caratteristiche: individual: Donor 30,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147082
+        grezzo (Stadio 1): title: ECFC_12d4b,source: Human Umbilical Cord Blood,individual: Donor 31,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 titolo        : ECFC_12d4b
+        H5 caratteristiche: individual: Donor 31,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147083
+        grezzo (Stadio 1): title: ECFC_22d4b,source: Human Umbilical Cord Blood,individual: Donor 32,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 titolo        : ECFC_22d4b
+        H5 caratteristiche: individual: Donor 32,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147084
+        grezzo (Stadio 1): title: ECFC_25d4b,source: Human Umbilical Cord Blood,individual: Donor 33,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 titolo        : ECFC_25d4b
+        H5 caratteristiche: individual: Donor 33,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147086
+        grezzo (Stadio 1): title: ECFC_29d4b,source: Human Umbilical Cord Blood,individual: Donor 35,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 titolo        : ECFC_29d4b
+        H5 caratteristiche: individual: Donor 35,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147088
+        grezzo (Stadio 1): title: ECFC_33d5b,source: Human Umbilical Cord Blood,individual: Donor 37,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 titolo        : ECFC_33d5b
+        H5 caratteristiche: individual: Donor 37,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147089
+        grezzo (Stadio 1): title: ECFC_36d4b,source: Human Umbilical Cord Blood,individual: Donor 38,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 titolo        : ECFC_36d4b
+        H5 caratteristiche: individual: Donor 38,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147090
+        grezzo (Stadio 1): title: ECFC_39d4b,source: Human Umbilical Cord Blood,individual: Donor 39,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 titolo        : ECFC_39d4b
+        H5 caratteristiche: individual: Donor 39,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147091
+        grezzo (Stadio 1): title: ECFC_40d3b,source: Human Umbilical Cord Blood,individual: Donor 40,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 titolo        : ECFC_40d3b
+        H5 caratteristiche: individual: Donor 40,cell type: endothelial progenitor cell,group: gestational diabetes,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+  CONTROLLO  (n=14)  etichetta Stadio 2: Endothelial progenitor cells from healthy donor (Donor 1)
+      gruppo Stadio 2: grp_0003
+      GSM7147052
+        grezzo (Stadio 1): title: ECFC_09n6b,source: Human Umbilical Cord Blood,individual: Donor 1,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_09n6b
+        H5 caratteristiche: individual: Donor 1,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147053
+        grezzo (Stadio 1): title: ECFC_12n4b,source: Human Umbilical Cord Blood,individual: Donor 2,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_12n4b
+        H5 caratteristiche: individual: Donor 2,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147054
+        grezzo (Stadio 1): title: ECFC_13n4b,source: Human Umbilical Cord Blood,individual: Donor 3,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_13n4b
+        H5 caratteristiche: individual: Donor 3,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147055
+        grezzo (Stadio 1): title: ECFC_17n4b,source: Human Umbilical Cord Blood,individual: Donor 4,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_17n4b
+        H5 caratteristiche: individual: Donor 4,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147056
+        grezzo (Stadio 1): title: ECFC_18n5b,source: Human Umbilical Cord Blood,individual: Donor 5,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_18n5b
+        H5 caratteristiche: individual: Donor 5,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147057
+        grezzo (Stadio 1): title: ECFC_22n5b,source: Human Umbilical Cord Blood,individual: Donor 6,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_22n5b
+        H5 caratteristiche: individual: Donor 6,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147058
+        grezzo (Stadio 1): title: ECFC_29n4b,source: Human Umbilical Cord Blood,individual: Donor 7,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_29n4b
+        H5 caratteristiche: individual: Donor 7,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147060
+        grezzo (Stadio 1): title: ECFC_47n4b,source: Human Umbilical Cord Blood,individual: Donor 9,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_47n4b
+        H5 caratteristiche: individual: Donor 9,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147061
+        grezzo (Stadio 1): title: ECFC_66n4b,source: Human Umbilical Cord Blood,individual: Donor 10,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 titolo        : ECFC_66n4b
+        H5 caratteristiche: individual: Donor 10,cell type: endothelial progenitor cell,group: lean,Sex: female
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147062
+        grezzo (Stadio 1): title: ECFC_11n4b,source: Human Umbilical Cord Blood,individual: Donor 11,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 titolo        : ECFC_11n4b
+        H5 caratteristiche: individual: Donor 11,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147066
+        grezzo (Stadio 1): title: ECFC_31n4b,source: Human Umbilical Cord Blood,individual: Donor 15,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 titolo        : ECFC_31n4b
+        H5 caratteristiche: individual: Donor 15,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147067
+        grezzo (Stadio 1): title: ECFC_39n4b,source: Human Umbilical Cord Blood,individual: Donor 16,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 titolo        : ECFC_39n4b
+        H5 caratteristiche: individual: Donor 16,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147069
+        grezzo (Stadio 1): title: ECFC_41n4b,source: Human Umbilical Cord Blood,individual: Donor 18,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 titolo        : ECFC_41n4b
+        H5 caratteristiche: individual: Donor 18,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+      GSM7147070
+        grezzo (Stadio 1): title: ECFC_69n4b,source: Human Umbilical Cord Blood,individual: Donor 19,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 titolo        : ECFC_69n4b
+        H5 caratteristiche: individual: Donor 19,cell type: endothelial progenitor cell,group: lean,Sex: male
+        H5 sorgente      : Human Umbilical Cord Blood
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
+
+  GSE154377     ricevuti dallo Stadio 2:  133 | collocati in un gruppo:  133 | PERSI:    0 | usati in questa meta-analisi: 23 campioni distinti (29 righe: i controlli servono piu' confronti)
+  GSE154414     ricevuti dallo Stadio 2:    8 | collocati in un gruppo:    8 | PERSI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+  GSE228990     ricevuti dallo Stadio 2:   60 | collocati in un gruppo:   60 | PERSI:    0 | usati in questa meta-analisi: 32 campioni distinti (32 righe: i controlli servono piu' confronti)
+

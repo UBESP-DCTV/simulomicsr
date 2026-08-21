@@ -1,0 +1,287 @@
+LETTURA CIECA — S3 (2026-08-21) — scheda 07 di 20
+==============================================================================
+Il verdetto del modello NON e' in questa scheda. Dai il tuo, e scrivilo in
+umano/RISPOSTE.csv (istruzioni in umano/ISTRUZIONI.md).
+
+PARTE 1 — IL MATERIALE CHE IL MODELLO HA LETTO (blocco 01, invariato).
+  Le etichette sono quelle dello Stadio 2, intere. La riga «verdetto attuale» e'
+  il gate automatico della pipeline (Stadio 3), visto anche dal modello: NON e'
+  il verdetto della rilettura. Le righe [RIFERIMENTO]/DIVERGENZA confrontano con
+  l'altra esecuzione: per il tuo verdetto non servono, guarda i CONFRONTI POOLATI.
+  Dai il verdetto su questa parte, PRIMA di leggere la seconda.
+
+PARTE 2 — LE STRINGHE GREZZE PER CAMPIONE (scheda di A0, senza verdetto).
+  Qui vedi piu' di quanto il modello vedesse. Se cambia il tuo verdetto, scrivilo
+  nella colonna verdetto_dopo_parte2: misura quanto l'etichetta nasconde.
+==============================================================================
+
+########## PARTE 1 — materiale del modello ##########
+
+## GRUPPO cgroup_L5_56d531e8
+- entita dichiarata : CHEBI:17154  (nicotinamide)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 1.7   piu pesante: 74%
+- geni significativi: 2355   I2 mediano: 46.8
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 0, usciti: 0
+- CONFRONTI POOLATI (etichette intere):
+    [GSE164884] n_trattati=4 vs n_controlli=4
+        TRATTATO : Nicotinamide Day 7
+        CONTROLLO: Control Day 7
+    [GSE164884] n_trattati=4 vs n_controlli=4
+        TRATTATO : Nicotinamide Day 4
+        CONTROLLO: Control Day 4
+    [GSE172494] n_trattati=3 vs n_controlli=3
+        TRATTATO : MDA-MB-231 cells treated with 20 mM Nicotinamide for 48 hours
+        CONTROLLO: MDA-MB-231 cells untreated
+    [GSE172494] n_trattati=3 vs n_controlli=3
+        TRATTATO : MDA-MB-468 cells treated with 20 mM Nicotinamide for 48 hours
+        CONTROLLO: MDA-MB-468 cells untreated
+    [GSE90889] n_trattati=2 vs n_controlli=2
+        TRATTATO : hiPSC-RPE Control Cornea Nicotinamide
+        CONTROLLO: hiPSC-RPE Control Cornea Vehicle
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE164884] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE172494] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            MDA-MB-468 TNBC cells treated with Nicotinamide → MDA-MB-468 TNBC cells untreated
+    [GSE90889] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+
+
+########## PARTE 2 — stringhe grezze per campione ##########
+
+META-ANALISI (scheda cieca 07)
+==============================================================================
+nome            : nicotinamide
+entita (ID)     : CHEBI:17154
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_56d531e8
+studi poolati   : 3   confronti: 5   campioni: 32
+geni significativi: 2355   I2 mediano: 46.8
+verdetto della rilettura: [NASCOSTO - lettura cieca]
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE164884__GSE164884__grp_0003_vs_grp_0002__1
+  studio: GSE164884
+  TRATTATO  (n=4)  etichetta Stadio 2: Nicotinamide Day 7
+      gruppo Stadio 2: grp_0003
+      GSM5022420
+        grezzo (Stadio 1): title: D7_hiPSC3_NAM_1,source: Retinal Organoid,tissue: Retinal Organoid,time: D7,treatment: Nicotinamide,source line: hiPSC3
+        H5 titolo        : D7_hiPSC3_NAM_1
+        H5 caratteristiche: tissue: Retinal Organoid,time: D7,treatment: Nicotinamide,source line: hiPSC3
+        H5 sorgente      : Retinal Organoid
+      GSM5022421
+        grezzo (Stadio 1): title: D7_hiPSC3_NAM_2,source: Retinal Organoid,tissue: Retinal Organoid,time: D7,treatment: Nicotinamide,source line: hiPSC3
+        H5 titolo        : D7_hiPSC3_NAM_2
+        H5 caratteristiche: tissue: Retinal Organoid,time: D7,treatment: Nicotinamide,source line: hiPSC3
+        H5 sorgente      : Retinal Organoid
+      GSM5022424
+        grezzo (Stadio 1): title: D7_hiPSC1_NAM_1,source: Retinal Organoid,tissue: Retinal Organoid,time: D7,treatment: Nicotinamide,source line: hiPSC1
+        H5 titolo        : D7_hiPSC1_NAM_1
+        H5 caratteristiche: tissue: Retinal Organoid,time: D7,treatment: Nicotinamide,source line: hiPSC1
+        H5 sorgente      : Retinal Organoid
+      GSM5022425
+        grezzo (Stadio 1): title: D7_hiPSC1_NAM_2,source: Retinal Organoid,tissue: Retinal Organoid,time: D7,treatment: Nicotinamide,source line: hiPSC1
+        H5 titolo        : D7_hiPSC1_NAM_2
+        H5 caratteristiche: tissue: Retinal Organoid,time: D7,treatment: Nicotinamide,source line: hiPSC1
+        H5 sorgente      : Retinal Organoid
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control Day 7
+      gruppo Stadio 2: grp_0002
+      GSM5022418
+        grezzo (Stadio 1): title: D7_hiPSC3_NT_1,source: Retinal Organoid,tissue: Retinal Organoid,time: D7,treatment: Control,source line: hiPSC3
+        H5 titolo        : D7_hiPSC3_NT_1
+        H5 caratteristiche: tissue: Retinal Organoid,time: D7,treatment: Control,source line: hiPSC3
+        H5 sorgente      : Retinal Organoid
+      GSM5022419
+        grezzo (Stadio 1): title: D7_hiPSC3_NT_2,source: Retinal Organoid,tissue: Retinal Organoid,time: D7,treatment: Control,source line: hiPSC3
+        H5 titolo        : D7_hiPSC3_NT_2
+        H5 caratteristiche: tissue: Retinal Organoid,time: D7,treatment: Control,source line: hiPSC3
+        H5 sorgente      : Retinal Organoid
+      GSM5022422
+        grezzo (Stadio 1): title: D7_hiPSC1_NT_1,source: Retinal Organoid,tissue: Retinal Organoid,time: D7,treatment: Control,source line: hiPSC1
+        H5 titolo        : D7_hiPSC1_NT_1
+        H5 caratteristiche: tissue: Retinal Organoid,time: D7,treatment: Control,source line: hiPSC1
+        H5 sorgente      : Retinal Organoid
+      GSM5022423
+        grezzo (Stadio 1): title: D7_hiPSC1_NT_2,source: Retinal Organoid,tissue: Retinal Organoid,time: D7,treatment: Control,source line: hiPSC1
+        H5 titolo        : D7_hiPSC1_NT_2
+        H5 caratteristiche: tissue: Retinal Organoid,time: D7,treatment: Control,source line: hiPSC1
+        H5 sorgente      : Retinal Organoid
+
+CONFRONTO  GSE164884__GSE164884__grp_0004_vs_grp_0001__1
+  studio: GSE164884
+  TRATTATO  (n=4)  etichetta Stadio 2: Nicotinamide Day 4
+      gruppo Stadio 2: grp_0004
+      GSM5022412
+        grezzo (Stadio 1): title: D4_hiPSC3_NAM_1,source: Retinal Organoid,tissue: Retinal Organoid,time: D4,treatment: Nicotinamide,source line: hiPSC3
+        H5 titolo        : D4_hiPSC3_NAM_1
+        H5 caratteristiche: tissue: Retinal Organoid,time: D4,treatment: Nicotinamide,source line: hiPSC3
+        H5 sorgente      : Retinal Organoid
+      GSM5022413
+        grezzo (Stadio 1): title: D4_hiPSC3_NAM_2,source: Retinal Organoid,tissue: Retinal Organoid,time: D4,treatment: Nicotinamide,source line: hiPSC3
+        H5 titolo        : D4_hiPSC3_NAM_2
+        H5 caratteristiche: tissue: Retinal Organoid,time: D4,treatment: Nicotinamide,source line: hiPSC3
+        H5 sorgente      : Retinal Organoid
+      GSM5022416
+        grezzo (Stadio 1): title: D4_hiPSC1_NAM_1,source: Retinal Organoid,tissue: Retinal Organoid,time: D4,treatment: Nicotinamide,source line: hiPSC1
+        H5 titolo        : D4_hiPSC1_NAM_1
+        H5 caratteristiche: tissue: Retinal Organoid,time: D4,treatment: Nicotinamide,source line: hiPSC1
+        H5 sorgente      : Retinal Organoid
+      GSM5022417
+        grezzo (Stadio 1): title: D4_hiPSC1_NAM_2,source: Retinal Organoid,tissue: Retinal Organoid,time: D4,treatment: Nicotinamide,source line: hiPSC1
+        H5 titolo        : D4_hiPSC1_NAM_2
+        H5 caratteristiche: tissue: Retinal Organoid,time: D4,treatment: Nicotinamide,source line: hiPSC1
+        H5 sorgente      : Retinal Organoid
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control Day 4
+      gruppo Stadio 2: grp_0001
+      GSM5022410
+        grezzo (Stadio 1): title: D4_hiPSC3_NT_1,source: Retinal Organoid,tissue: Retinal Organoid,time: D4,treatment: Control,source line: hiPSC3
+        H5 titolo        : D4_hiPSC3_NT_1
+        H5 caratteristiche: tissue: Retinal Organoid,time: D4,treatment: Control,source line: hiPSC3
+        H5 sorgente      : Retinal Organoid
+      GSM5022411
+        grezzo (Stadio 1): title: D4_hiPSC3_NT_2,source: Retinal Organoid,tissue: Retinal Organoid,time: D4,treatment: Control,source line: hiPSC3
+        H5 titolo        : D4_hiPSC3_NT_2
+        H5 caratteristiche: tissue: Retinal Organoid,time: D4,treatment: Control,source line: hiPSC3
+        H5 sorgente      : Retinal Organoid
+      GSM5022414
+        grezzo (Stadio 1): title: D4_hiPSC1_NT_1,source: Retinal Organoid,tissue: Retinal Organoid,time: D4,treatment: Control,source line: hiPSC1
+        H5 titolo        : D4_hiPSC1_NT_1
+        H5 caratteristiche: tissue: Retinal Organoid,time: D4,treatment: Control,source line: hiPSC1
+        H5 sorgente      : Retinal Organoid
+      GSM5022415
+        grezzo (Stadio 1): title: D4_hiPSC1_NT_2,source: Retinal Organoid,tissue: Retinal Organoid,time: D4,treatment: Control,source line: hiPSC1
+        H5 titolo        : D4_hiPSC1_NT_2
+        H5 caratteristiche: tissue: Retinal Organoid,time: D4,treatment: Control,source line: hiPSC1
+        H5 sorgente      : Retinal Organoid
+
+CONFRONTO  GSE172494__GSE172494__MDA-MB-231_nicotinamide_vs_MDA-MB-231_untreated__1
+  studio: GSE172494
+  TRATTATO  (n=3)  etichetta Stadio 2: MDA-MB-231 cells treated with 20 mM Nicotinamide for 48 hours
+      gruppo Stadio 2: grp_MDA-MB-231_nicotinamide
+      GSM5257964
+        grezzo (Stadio 1): title: MDA-MB-231 NAM treated - rep1,source: TNBC cell MDA-MB-231,treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-231 NAM treated - rep1
+        H5 caratteristiche: treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-231
+      GSM5257965
+        grezzo (Stadio 1): title: MDA-MB-231 NAM treated - rep2,source: TNBC cell MDA-MB-231,treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-231 NAM treated - rep2
+        H5 caratteristiche: treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-231
+      GSM5257966
+        grezzo (Stadio 1): title: MDA-MB-231 NAM treated - rep3,source: TNBC cell MDA-MB-231,treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-231 NAM treated - rep3
+        H5 caratteristiche: treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-231
+  CONTROLLO  (n=3)  etichetta Stadio 2: MDA-MB-231 cells untreated
+      gruppo Stadio 2: grp_MDA-MB-231_untreated
+      GSM5257961
+        grezzo (Stadio 1): title: MDA-MB-231 control - rep1,source: TNBC cell MDA-MB-231,treatment: untreated,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-231 control - rep1
+        H5 caratteristiche: treatment: untreated,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-231
+      GSM5257962
+        grezzo (Stadio 1): title: MDA-MB-231 control - rep2,source: TNBC cell MDA-MB-231,treatment: untreated,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-231 control - rep2
+        H5 caratteristiche: treatment: untreated,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-231
+      GSM5257963
+        grezzo (Stadio 1): title: MDA-MB-231 control - rep3,source: TNBC cell MDA-MB-231,treatment: untreated,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-231 control - rep3
+        H5 caratteristiche: treatment: untreated,cell line: MDA-MB-231,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-231
+
+CONFRONTO  GSE172494__GSE172494__MDA-MB-468_nicotinamide_vs_MDA-MB-468_untreated__1
+  studio: GSE172494
+  TRATTATO  (n=3)  etichetta Stadio 2: MDA-MB-468 cells treated with 20 mM Nicotinamide for 48 hours
+      gruppo Stadio 2: grp_MDA-MB-468_nicotinamide
+      GSM5257958
+        grezzo (Stadio 1): title: MDA-MB-468 NAM treated - rep1,source: TNBC cell MDA-MB-468,treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-468 NAM treated - rep1
+        H5 caratteristiche: treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-468
+      GSM5257959
+        grezzo (Stadio 1): title: MDA-MB-468 NAM treated - rep2,source: TNBC cell MDA-MB-468,treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-468 NAM treated - rep2
+        H5 caratteristiche: treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-468
+      GSM5257960
+        grezzo (Stadio 1): title: MDA-MB-468 NAM treated - rep3,source: TNBC cell MDA-MB-468,treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-468 NAM treated - rep3
+        H5 caratteristiche: treatment: 20mM nicotinamide treated, 48hrs,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-468
+  CONTROLLO  (n=3)  etichetta Stadio 2: MDA-MB-468 cells untreated
+      gruppo Stadio 2: grp_MDA-MB-468_untreated
+      GSM5257955
+        grezzo (Stadio 1): title: MDA-MB-468 control - rep1,source: TNBC cell MDA-MB-468,treatment: untreated,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-468 control - rep1
+        H5 caratteristiche: treatment: untreated,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-468
+      GSM5257956
+        grezzo (Stadio 1): title: MDA-MB-468 control - rep2,source: TNBC cell MDA-MB-468,treatment: untreated,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-468 control - rep2
+        H5 caratteristiche: treatment: untreated,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-468
+      GSM5257957
+        grezzo (Stadio 1): title: MDA-MB-468 control - rep3,source: TNBC cell MDA-MB-468,treatment: untreated,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 titolo        : MDA-MB-468 control - rep3
+        H5 caratteristiche: treatment: untreated,cell line: MDA-MB-468,cell type: Human breast TNBC
+        H5 sorgente      : TNBC cell MDA-MB-468
+
+CONFRONTO  GSE90889__GSE90889__grp_control_nicotinamide_cornea_vs_grp_control_vehicle_cornea__1
+  studio: GSE90889
+  TRATTATO  (n=2)  etichetta Stadio 2: hiPSC-RPE Control Cornea Nicotinamide
+      gruppo Stadio 2: grp_control_nicotinamide_cornea
+      GSM2417030
+        grezzo (Stadio 1): title: hiPSC-RPE 1 (Control 1) NAM,source: hiPSC-RPE 52 treated with Nicotinamide for 3 weeks,gender: Female,age: 91,disease status: Control,treatment: Nicotinamide,tissue of origin: Cornea
+        H5 titolo        : hiPSC-RPE 1 (Control 1) NAM
+        H5 caratteristiche: gender: Female,age: 91,disease status: Control,treatment: Nicotinamide,tissue of origin: Cornea
+        H5 sorgente      : hiPSC-RPE 52 treated with Nicotinamide for 3 weeks
+      GSM2417034
+        grezzo (Stadio 1): title: hiPSC-RPE 3 (Control 3) NAM,source: hiPSC-RPE 7 treated with Nicotinamide for 3 weeks,gender: Female,age: 71,disease status: Control,treatment: Nicotinamide,tissue of origin: Cornea
+        H5 titolo        : hiPSC-RPE 3 (Control 3) NAM
+        H5 caratteristiche: gender: Female,age: 71,disease status: Control,treatment: Nicotinamide,tissue of origin: Cornea
+        H5 sorgente      : hiPSC-RPE 7 treated with Nicotinamide for 3 weeks
+  CONTROLLO  (n=2)  etichetta Stadio 2: hiPSC-RPE Control Cornea Vehicle
+      gruppo Stadio 2: grp_control_vehicle_cornea
+      GSM2417029
+        grezzo (Stadio 1): title: hiPSC-RPE 1 (Control 1) vehicle,source: hiPSC-RPE 5 treated with vehicle for 3 weeks,gender: Female,age: 91,disease status: Control,treatment: Vehicle,tissue of origin: Cornea
+        H5 titolo        : hiPSC-RPE 1 (Control 1) vehicle
+        H5 caratteristiche: gender: Female,age: 91,disease status: Control,treatment: Vehicle,tissue of origin: Cornea
+        H5 sorgente      : hiPSC-RPE 5 treated with vehicle for 3 weeks
+      GSM2417033
+        grezzo (Stadio 1): title: hiPSC-RPE 3 (Control 3) vehicle,source: hiPSC-RPE 7 treated with vehicle for 3 weeks,gender: Female,age: 71,disease status: Control,treatment: Vehicle,tissue of origin: Cornea
+        H5 titolo        : hiPSC-RPE 3 (Control 3) vehicle
+        H5 caratteristiche: gender: Female,age: 71,disease status: Control,treatment: Vehicle,tissue of origin: Cornea
+        H5 sorgente      : hiPSC-RPE 7 treated with vehicle for 3 weeks
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
+
+  GSE164884     ricevuti dallo Stadio 2:   16 | collocati in un gruppo:   16 | PERSI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE172494     ricevuti dallo Stadio 2:   18 | collocati in un gruppo:   17 | PERSI:    1 | usati in questa meta-analisi: 12 campioni distinti (12 righe: i controlli servono piu' confronti)
+      mai collocati: GSM5257952
+  GSE90889      ricevuti dallo Stadio 2:   12 | collocati in un gruppo:   12 | PERSI:    0 | usati in questa meta-analisi: 4 campioni distinti (4 righe: i controlli servono piu' confronti)
+

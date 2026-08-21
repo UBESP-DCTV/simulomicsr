@@ -1,0 +1,280 @@
+LETTURA CIECA — S3 (2026-08-21) — scheda 13 di 20
+==============================================================================
+Il verdetto del modello NON e' in questa scheda. Dai il tuo, e scrivilo in
+umano/RISPOSTE.csv (istruzioni in umano/ISTRUZIONI.md).
+
+PARTE 1 — IL MATERIALE CHE IL MODELLO HA LETTO (blocco 06, invariato).
+  Le etichette sono quelle dello Stadio 2, intere. La riga «verdetto attuale» e'
+  il gate automatico della pipeline (Stadio 3), visto anche dal modello: NON e'
+  il verdetto della rilettura. Le righe [RIFERIMENTO]/DIVERGENZA confrontano con
+  l'altra esecuzione: per il tuo verdetto non servono, guarda i CONFRONTI POOLATI.
+  Dai il verdetto su questa parte, PRIMA di leggere la seconda.
+
+PARTE 2 — LE STRINGHE GREZZE PER CAMPIONE (scheda di A0, senza verdetto).
+  Qui vedi piu' di quanto il modello vedesse. Se cambia il tuo verdetto, scrivilo
+  nella colonna verdetto_dopo_parte2: misura quanto l'etichetta nasconde.
+==============================================================================
+
+########## PARTE 1 — materiale del modello ##########
+
+## GRUPPO cgroup_L5_f640365a
+- entita dichiarata : CHEBI:50385  (hemin)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.1   piu pesante: 55%
+- geni significativi: 1820   I2 mediano: 69.5
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 3 studi; entrati ora: 1, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE110947] n_trattati=5 vs n_controlli=2
+        TRATTATO : Hemin (4h)
+        CONTROLLO: Vehicle control (4h)
+    [GSE182350] n_trattati=4 vs n_controlli=4
+        TRATTATO : Hemin Day 15
+        CONTROLLO: Control Day 15
+    [GSE182350] n_trattati=3 vs n_controlli=4
+        TRATTATO : Hemin Day 16
+        CONTROLLO: Control Day 16
+    [GSE211130] n_trattati=2 vs n_controlli=2
+        TRATTATO : hemin 4h
+        CONTROLLO: DMSO 4h
+    [GSE211130] n_trattati=2 vs n_controlli=2
+        TRATTATO : hemin 8h
+        CONTROLLO: DMSO 8h
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE110947] ENTRATO: nel riferimento questo studio non era poolato in NESSUNA meta-analisi >>> DIVERGENZA
+    [GSE182350] stesso gruppo ma i CONFRONTI CAMBIANO (2 ora, 1 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            Hemin Day 15 → Control Day 15
+    [GSE211130] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE232390] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : K562 cells treated with hemin
+        era CONTROLLO: Untreated K562 cells
+
+
+########## PARTE 2 — stringhe grezze per campione ##########
+
+META-ANALISI (scheda cieca 13)
+==============================================================================
+nome            : hemin
+entita (ID)     : CHEBI:50385
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_f640365a
+studi poolati   : 3   confronti: 5   campioni: 30
+geni significativi: 1820   I2 mediano: 69.5
+verdetto della rilettura: [NASCOSTO - lettura cieca]
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE110947__GSE110947__grp_0012_vs_grp_0001__1
+  studio: GSE110947
+  TRATTATO  (n=5)  etichetta Stadio 2: Hemin (4h)
+      gruppo Stadio 2: grp_0012
+      GSM3019181
+        grezzo (Stadio 1): title: HD34_Hemin_4h_RNA-seq,source: Adult Human Peripheral Blood,tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_34
+        H5 titolo        : HD34_Hemin_4h_RNA-seq
+        H5 caratteristiche: tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_34
+        H5 sorgente      : Adult Human Peripheral Blood
+      GSM3019195
+        grezzo (Stadio 1): title: HD37_Hemin_4h_RNA-seq,source: Adult Human Peripheral Blood,tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_37
+        H5 titolo        : HD37_Hemin_4h_RNA-seq
+        H5 caratteristiche: tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_37
+        H5 sorgente      : Adult Human Peripheral Blood
+      GSM3019209
+        grezzo (Stadio 1): title: HD48_Hemin_4h_RNA-seq,source: Adult Human Peripheral Blood,tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_48
+        H5 titolo        : HD48_Hemin_4h_RNA-seq
+        H5 caratteristiche: tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_48
+        H5 sorgente      : Adult Human Peripheral Blood
+      GSM3019223
+        grezzo (Stadio 1): title: HD49_Hemin_4h_RNA-seq,source: Adult Human Peripheral Blood,tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_49
+        H5 titolo        : HD49_Hemin_4h_RNA-seq
+        H5 caratteristiche: tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_49
+        H5 sorgente      : Adult Human Peripheral Blood
+      GSM3019238
+        grezzo (Stadio 1): title: HD51_Hemin_4h_RNA-seq,source: Adult Human Peripheral Blood,tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_51
+        H5 titolo        : HD51_Hemin_4h_RNA-seq
+        H5 caratteristiche: tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media with Hemin,donor: Healthy_Donor_51
+        H5 sorgente      : Adult Human Peripheral Blood
+  CONTROLLO  (n=2)  etichetta Stadio 2: Vehicle control (4h)
+      gruppo Stadio 2: grp_0001
+      GSM3019180
+        grezzo (Stadio 1): title: HD34_RPMI_4h_RNA-seq,source: Adult Human Peripheral Blood,tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media,donor: Healthy_Donor_34
+        H5 titolo        : HD34_RPMI_4h_RNA-seq
+        H5 caratteristiche: tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media,donor: Healthy_Donor_34
+        H5 sorgente      : Adult Human Peripheral Blood
+      GSM3019194
+        grezzo (Stadio 1): title: HD37_RPMI_4h_RNA-seq,source: Adult Human Peripheral Blood,tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media,donor: Healthy_Donor_37
+        H5 titolo        : HD37_RPMI_4h_RNA-seq
+        H5 caratteristiche: tissue: blood,cell type: Monocyte,treatment protocol: 4 hours in media,donor: Healthy_Donor_37
+        H5 sorgente      : Adult Human Peripheral Blood
+
+CONFRONTO  GSE182350__GSE182350__Hemin_Day_15_vs_Control_Day_15__1
+  studio: GSE182350
+  TRATTATO  (n=4)  etichetta Stadio 2: Hemin Day 15
+      gruppo Stadio 2: grp_0005
+      GSM5527458
+        grezzo (Stadio 1): title: D15-H2,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 15 of assay
+        H5 titolo        : D15-H2
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 15 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527459
+        grezzo (Stadio 1): title: D15-H3,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 15 of assay
+        H5 titolo        : D15-H3
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 15 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527460
+        grezzo (Stadio 1): title: D15-H4,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 15 of assay
+        H5 titolo        : D15-H4
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 15 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527461
+        grezzo (Stadio 1): title: D15-H7,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 15 of assay
+        H5 titolo        : D15-H7
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 15 of assay
+        H5 sorgente      : Kidney organoids
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control Day 15
+      gruppo Stadio 2: grp_0003
+      GSM5527454
+        grezzo (Stadio 1): title: D15-C1,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 15 of assay
+        H5 titolo        : D15-C1
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 15 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527455
+        grezzo (Stadio 1): title: D15-C2,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 15 of assay
+        H5 titolo        : D15-C2
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 15 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527456
+        grezzo (Stadio 1): title: D15-C3,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 15 of assay
+        H5 titolo        : D15-C3
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 15 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527457
+        grezzo (Stadio 1): title: D15-C4,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 15 of assay
+        H5 titolo        : D15-C4
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 15 of assay
+        H5 sorgente      : Kidney organoids
+
+CONFRONTO  GSE182350__GSE182350__Hemin_Day_16_vs_Control_Day_16__1
+  studio: GSE182350
+  TRATTATO  (n=3)  etichetta Stadio 2: Hemin Day 16
+      gruppo Stadio 2: grp_0006
+      GSM5527466
+        grezzo (Stadio 1): title: D16_H1,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 16 of assay
+        H5 titolo        : D16_H1
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 16 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527467
+        grezzo (Stadio 1): title: D16_H2,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 16 of assay
+        H5 titolo        : D16_H2
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 16 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527468
+        grezzo (Stadio 1): title: D16_H3,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 16 of assay
+        H5 titolo        : D16_H3
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Hemin,time: Day 16 of assay
+        H5 sorgente      : Kidney organoids
+  CONTROLLO  (n=4)  etichetta Stadio 2: Control Day 16
+      gruppo Stadio 2: grp_0004
+      GSM5527462
+        grezzo (Stadio 1): title: D16-C4,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 16 of assay
+        H5 titolo        : D16-C4
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 16 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527463
+        grezzo (Stadio 1): title: D16-C5,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 16 of assay
+        H5 titolo        : D16-C5
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 16 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527464
+        grezzo (Stadio 1): title: D16-C6,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 16 of assay
+        H5 titolo        : D16-C6
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 16 of assay
+        H5 sorgente      : Kidney organoids
+      GSM5527465
+        grezzo (Stadio 1): title: D16-C7,source: Kidney organoids,cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 16 of assay
+        H5 titolo        : D16-C7
+        H5 caratteristiche: cell type: induced pluripotent stem cells,cell line: MANZ2-2,tissue: Kidney organoids,treatment: Control,time: Day 16 of assay
+        H5 sorgente      : Kidney organoids
+
+CONFRONTO  GSE211130__GSE211130__hemin_4h_vs_DMSO_4h__1
+  studio: GSE211130
+  TRATTATO  (n=2)  etichetta Stadio 2: hemin 4h
+      gruppo Stadio 2: grp_hemin_4h
+      GSM6451066
+        grezzo (Stadio 1): title: Hemin_4h_1,source: hek293,treatment: hemin treated_4 hours,tissue: kidney,cell line: hek293,time: 4 hours
+        H5 titolo        : Hemin_4h_1
+        H5 caratteristiche: treatment: hemin treated_4 hours,tissue: kidney,cell line: hek293,time: 4 hours
+        H5 sorgente      : hek293
+      GSM6451067
+        grezzo (Stadio 1): title: Hemin_4h_2,source: hek293,treatment: hemin treated_4 hours,tissue: kidney,cell line: hek293,time: 4 hours
+        H5 titolo        : Hemin_4h_2
+        H5 caratteristiche: treatment: hemin treated_4 hours,tissue: kidney,cell line: hek293,time: 4 hours
+        H5 sorgente      : hek293
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO 4h
+      gruppo Stadio 2: grp_DMSO_4h
+      GSM6451064
+        grezzo (Stadio 1): title: Veh_4h_1,source: hek293,treatment: vehicle (DMSO)_4,tissue: kidney,cell line: hek293,time: 4 hours
+        H5 titolo        : Veh_4h_1
+        H5 caratteristiche: treatment: vehicle (DMSO)_4,tissue: kidney,cell line: hek293,time: 4 hours
+        H5 sorgente      : hek293
+      GSM6451065
+        grezzo (Stadio 1): title: Veh_4h_2,source: hek293,treatment: vehicle (DMSO)_4,tissue: kidney,cell line: hek293,time: 4 hours
+        H5 titolo        : Veh_4h_2
+        H5 caratteristiche: treatment: vehicle (DMSO)_4,tissue: kidney,cell line: hek293,time: 4 hours
+        H5 sorgente      : hek293
+
+CONFRONTO  GSE211130__GSE211130__hemin_8h_vs_DMSO_8h__1
+  studio: GSE211130
+  TRATTATO  (n=2)  etichetta Stadio 2: hemin 8h
+      gruppo Stadio 2: grp_hemin_8h
+      GSM6451076
+        grezzo (Stadio 1): title: Hemin_8h_1,source: hek293,treatment: hemin treated_8 hours,tissue: kidney,cell line: hek293,time: 8 hours
+        H5 titolo        : Hemin_8h_1
+        H5 caratteristiche: treatment: hemin treated_8 hours,tissue: kidney,cell line: hek293,time: 8 hours
+        H5 sorgente      : hek293
+      GSM6451077
+        grezzo (Stadio 1): title: Hemin_8h_2,source: hek293,treatment: hemin treated_8 hours,tissue: kidney,cell line: hek293,time: 8 hours
+        H5 titolo        : Hemin_8h_2
+        H5 caratteristiche: treatment: hemin treated_8 hours,tissue: kidney,cell line: hek293,time: 8 hours
+        H5 sorgente      : hek293
+  CONTROLLO  (n=2)  etichetta Stadio 2: DMSO 8h
+      gruppo Stadio 2: grp_DMSO_8h
+      GSM6451074
+        grezzo (Stadio 1): title: Vehicle_8h_1,source: hek293,treatment: vehicle (DMSO)_8,tissue: kidney,cell line: hek293,time: 8 hours
+        H5 titolo        : Vehicle_8h_1
+        H5 caratteristiche: treatment: vehicle (DMSO)_8,tissue: kidney,cell line: hek293,time: 8 hours
+        H5 sorgente      : hek293
+      GSM6451075
+        grezzo (Stadio 1): title: Vehicle_8h_2,source: hek293,treatment: vehicle (DMSO)_8,tissue: kidney,cell line: hek293,time: 8 hours
+        H5 titolo        : Vehicle_8h_2
+        H5 caratteristiche: treatment: vehicle (DMSO)_8,tissue: kidney,cell line: hek293,time: 8 hours
+        H5 sorgente      : hek293
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
+
+  GSE110947     ricevuti dallo Stadio 2:   70 | collocati in un gruppo:   70 | PERSI:    0 | usati in questa meta-analisi: 7 campioni distinti (7 righe: i controlli servono piu' confronti)
+  GSE182350     ricevuti dallo Stadio 2:   17 | collocati in un gruppo:   17 | PERSI:    0 | usati in questa meta-analisi: 15 campioni distinti (15 righe: i controlli servono piu' confronti)
+  GSE211130     ricevuti dallo Stadio 2:   22 | collocati in un gruppo:   22 | PERSI:    0 | usati in questa meta-analisi: 8 campioni distinti (8 righe: i controlli servono piu' confronti)
+

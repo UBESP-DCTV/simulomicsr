@@ -1,0 +1,442 @@
+LETTURA CIECA — S3 (2026-08-21) — scheda 01 di 20
+==============================================================================
+Il verdetto del modello NON e' in questa scheda. Dai il tuo, e scrivilo in
+umano/RISPOSTE.csv (istruzioni in umano/ISTRUZIONI.md).
+
+PARTE 1 — IL MATERIALE CHE IL MODELLO HA LETTO (blocco 10, invariato).
+  Le etichette sono quelle dello Stadio 2, intere. La riga «verdetto attuale» e'
+  il gate automatico della pipeline (Stadio 3), visto anche dal modello: NON e'
+  il verdetto della rilettura. Le righe [RIFERIMENTO]/DIVERGENZA confrontano con
+  l'altra esecuzione: per il tuo verdetto non servono, guarda i CONFRONTI POOLATI.
+  Dai il verdetto su questa parte, PRIMA di leggere la seconda.
+
+PARTE 2 — LE STRINGHE GREZZE PER CAMPIONE (scheda di A0, senza verdetto).
+  Qui vedi piu' di quanto il modello vedesse. Se cambia il tuo verdetto, scrivilo
+  nella colonna verdetto_dopo_parte2: misura quanto l'etichetta nasconde.
+==============================================================================
+
+########## PARTE 1 — materiale del modello ##########
+
+## GRUPPO cgroup_L5_3370a794
+- entita dichiarata : CHEBI:145372  (gilteritinib)
+- verso / controllo : gain / vehicle_untreated
+- studi poolati     : 3   studi efficaci (Kish): 2.1   piu pesante: 55%
+- geni significativi: 1094   I2 mediano: 87.3
+- verdetto attuale  : coherent
+- nel riferimento   : esisteva con 4 studi; entrati ora: 0, usciti: 1
+- CONFRONTI POOLATI (etichette intere):
+    [GSE180180] n_trattati=6 vs n_controlli=10
+        TRATTATO : Gilteritinib 30mg/kg
+        CONTROLLO: Vehicle Control
+    [GSE180181] n_trattati=9 vs n_controlli=8
+        TRATTATO : Gilteritinib 30mg/kg
+        CONTROLLO: Vehicle Control
+    [GSE227839] n_trattati=14 vs n_controlli=19
+        TRATTATO : AML gilteritinib
+        CONTROLLO: AML no treatment
+- CONFRONTO CON L'ALTRA ESECUZIONE, studio per studio:
+    [GSE180180] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE180181] STABILE: stesso gruppo, stessi confronti, stesse etichette.
+    [GSE227839] stesso gruppo ma i CONFRONTI CAMBIANO (1 ora, 2 nel riferimento) >>> DIVERGENZA
+        nel riferimento erano:
+            acute myeloid leukemia, gilteritinib → acute myeloid leukemia, no treatment
+            acute myeloid leukemia, gilteritinib → acute myeloid leukemia, no treatment
+- STUDI USCITI rispetto al riferimento (1) >>> DIVERGENZA:
+    [GSE181586] nel riferimento era in QUESTO gruppo; ora NON e' poolato in nessuna meta-analisi
+        era TRATTATO : MOLM14 gilteritinib
+        era CONTROLLO: MOLM14 DMSO
+
+
+########## PARTE 2 — stringhe grezze per campione ##########
+
+META-ANALISI (scheda cieca 01)
+==============================================================================
+nome            : gilteritinib
+entita (ID)     : CHEBI:145372
+verso           : gain
+tipo di controllo: vehicle_untreated
+cluster_id      : cgroup_L5_3370a794
+studi poolati   : 3   confronti: 3   campioni: 66
+geni significativi: 1094   I2 mediano: 87.3
+verdetto della rilettura: [NASCOSTO - lettura cieca]
+
+COME SI LEGGE: ogni confronto ha due bracci. Per ogni campione trovi la
+STRINGA GREZZA che lo Stadio 1 ha letto (invariata) e, sopra, l'ETICHETTA
+che lo Stadio 2 ha prodotto per il braccio. Il controllo da fare e': la
+stringa grezza giustifica l'etichetta? I due bracci sono appaiati?
+------------------------------------------------------------------------------
+
+CONFRONTO  GSE180180__GSE180180__Gilteritinib_30mg/kg_vs_Vehicle__1
+  studio: GSE180180
+  TRATTATO  (n=6)  etichetta Stadio 2: Gilteritinib 30mg/kg
+      gruppo Stadio 2: grp_0001
+      GSM5454817
+        grezzo (Stadio 1): title: 654,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 654
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454818
+        grezzo (Stadio 1): title: 656,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 656
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454819
+        grezzo (Stadio 1): title: 661,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 661
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454820
+        grezzo (Stadio 1): title: 668,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 668
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454821
+        grezzo (Stadio 1): title: 675,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 675
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454822
+        grezzo (Stadio 1): title: 679,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 679
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+  CONTROLLO  (n=10)  etichetta Stadio 2: Vehicle Control
+      gruppo Stadio 2: grp_0003
+      GSM5454800
+        grezzo (Stadio 1): title: 652,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 652
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454801
+        grezzo (Stadio 1): title: 653,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 653
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454802
+        grezzo (Stadio 1): title: 657,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 657
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454803
+        grezzo (Stadio 1): title: 671,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 671
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454804
+        grezzo (Stadio 1): title: 676,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 676
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454805
+        grezzo (Stadio 1): title: 655,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 655
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454806
+        grezzo (Stadio 1): title: 659,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 659
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454807
+        grezzo (Stadio 1): title: 660,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 660
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454808
+        grezzo (Stadio 1): title: 665,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 665
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454809
+        grezzo (Stadio 1): title: 666,source: Bone marrow: AML,cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 titolo        : 666
+        H5 caratteristiche: cell line: MOLM13-RES,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+
+CONFRONTO  GSE180181__GSE180181__Gilteritinib_30mg/kg_vs_Vehicle__1
+  studio: GSE180181
+  TRATTATO  (n=9)  etichetta Stadio 2: Gilteritinib 30mg/kg
+      gruppo Stadio 2: grp_0001
+      GSM5454831
+        grezzo (Stadio 1): title: 906,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 906
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454832
+        grezzo (Stadio 1): title: 908,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 908
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454833
+        grezzo (Stadio 1): title: 917,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 917
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454834
+        grezzo (Stadio 1): title: 914,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 914
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454835
+        grezzo (Stadio 1): title: 923,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 923
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454836
+        grezzo (Stadio 1): title: 925,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 925
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454837
+        grezzo (Stadio 1): title: 904,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 904
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454838
+        grezzo (Stadio 1): title: 905,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 905
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+      GSM5454839
+        grezzo (Stadio 1): title: 921,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 titolo        : 921
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Gilteritinib 30mg/kg
+        H5 sorgente      : Bone marrow: AML
+  CONTROLLO  (n=8)  etichetta Stadio 2: Vehicle Control
+      gruppo Stadio 2: grp_0003
+      GSM5454823
+        grezzo (Stadio 1): title: 918,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Vehicle
+        H5 titolo        : 918
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454824
+        grezzo (Stadio 1): title: 916,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Vehicle
+        H5 titolo        : 916
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454825
+        grezzo (Stadio 1): title: 927,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Vehicle
+        H5 titolo        : 927
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454826
+        grezzo (Stadio 1): title: 922,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Vehicle
+        H5 titolo        : 922
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454827
+        grezzo (Stadio 1): title: 913,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Vehicle
+        H5 titolo        : 913
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454828
+        grezzo (Stadio 1): title: 915,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Vehicle
+        H5 titolo        : 915
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454829
+        grezzo (Stadio 1): title: 909,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Vehicle
+        H5 titolo        : 909
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+      GSM5454830
+        grezzo (Stadio 1): title: 910,source: Bone marrow: AML,cell line: MOLM13,treatment cohort: Vehicle
+        H5 titolo        : 910
+        H5 caratteristiche: cell line: MOLM13,treatment cohort: Vehicle
+        H5 sorgente      : Bone marrow: AML
+
+CONFRONTO  GSE227839__GSE227839__AML_gilteritinib_vs_AML_no_treatment__2
+  studio: GSE227839
+  TRATTATO  (n=14)  etichetta Stadio 2: AML gilteritinib
+      gruppo Stadio 2: grp_0003
+      GSM7109558
+        grezzo (Stadio 1): title: L1982c,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : L1982c
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109560
+        grezzo (Stadio 1): title: L2196d,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : L2196d
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109563
+        grezzo (Stadio 1): title: L2240k,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : L2240k
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109568
+        grezzo (Stadio 1): title: X203_post,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X203_post
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109571
+        grezzo (Stadio 1): title: X205_post,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X205_post
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109573
+        grezzo (Stadio 1): title: X206_post,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X206_post
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109575
+        grezzo (Stadio 1): title: X207_post,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X207_post
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109578
+        grezzo (Stadio 1): title: X13,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X13
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109580
+        grezzo (Stadio 1): title: X15,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X15
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109582
+        grezzo (Stadio 1): title: X17,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X17
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109585
+        grezzo (Stadio 1): title: X20,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X20
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109589
+        grezzo (Stadio 1): title: X_3,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X_3
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109593
+        grezzo (Stadio 1): title: X_7,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X_7
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+      GSM7109595
+        grezzo (Stadio 1): title: X_9,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 titolo        : X_9
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: gilteritinib
+        H5 sorgente      : hematopoietic
+  CONTROLLO  (n=19)  etichetta Stadio 2: AML no treatment
+      gruppo Stadio 2: grp_0001
+      GSM7109557
+        grezzo (Stadio 1): title: L1982b,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : L1982b
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109559
+        grezzo (Stadio 1): title: L2196c,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : L2196c
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109562
+        grezzo (Stadio 1): title: L2240j,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : L2240j
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109565
+        grezzo (Stadio 1): title: X152_Bef,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X152_Bef
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109567
+        grezzo (Stadio 1): title: X203_Bef,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X203_Bef
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109570
+        grezzo (Stadio 1): title: X205_Bef,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X205_Bef
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109572
+        grezzo (Stadio 1): title: X206_Bef,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X206_Bef
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109574
+        grezzo (Stadio 1): title: X207_Bef,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X207_Bef
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109576
+        grezzo (Stadio 1): title: X10,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X10
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109577
+        grezzo (Stadio 1): title: X11,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X11
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109579
+        grezzo (Stadio 1): title: X14,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X14
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109581
+        grezzo (Stadio 1): title: X16,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X16
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109583
+        grezzo (Stadio 1): title: X18,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X18
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109584
+        grezzo (Stadio 1): title: X19,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X19
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109586
+        grezzo (Stadio 1): title: X21,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X21
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109587
+        grezzo (Stadio 1): title: X_1,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X_1
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109590
+        grezzo (Stadio 1): title: X_4,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X_4
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109592
+        grezzo (Stadio 1): title: X_6,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X_6
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+      GSM7109594
+        grezzo (Stadio 1): title: X_8,source: hematopoietic,tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 titolo        : X_8
+        H5 caratteristiche: tissue: hematopoietic,cell type: acute myeloid leukemia,treatment: no treatment
+        H5 sorgente      : hematopoietic
+
+------------------------------------------------------------------------------
+COPERTURA DEGLI STUDI — che fine hanno fatto gli altri campioni
+
+  ⚠️ IL CONFRONTO E' CON QUELLO CHE LO STADIO 2 HA RICEVUTO, non con
+  quello che lo studio ha in GEO. Prima dello Stadio 2 c'e' lo Stadio 0,
+  che esclude con un motivo dichiarato: non umano, non RNA-Seq bulk,
+  protocollo single-cell, libreria troppo piccola, stringa troppo corta.
+  Quelle esclusioni sono controlli di qualita' che funzionano e NON sono
+  perdite: GSE200186, per esempio, ha 1.179 campioni in GEO e ne manda 27
+  allo Stadio 2 perche' gli altri 1.152 sono single-cell.
+
+  Un campione RICEVUTO dallo Stadio 2 puo' non essere qui per tre motivi:
+  (a) sta in un ALTRO gruppo dello Stadio 2, che serve un altro confronto;
+  (b) e' caduto al gate (n_min<2 sul braccio, o doppione dello stesso
+      braccio trattato): il registro completo e' in qc_report$dispatch_drops;
+  (c) non sta in NESSUN gruppo: lo Stadio 2 l'ha perso, senza motivo
+      dichiarato. Questo si vede qui, ed e' l'unico che sia un difetto.
+
+  GSE180180     ricevuti dallo Stadio 2:   23 | collocati in un gruppo:   23 | PERSI:    0 | usati in questa meta-analisi: 16 campioni distinti (16 righe: i controlli servono piu' confronti)
+  GSE180181     ricevuti dallo Stadio 2:   24 | collocati in un gruppo:   24 | PERSI:    0 | usati in questa meta-analisi: 17 campioni distinti (17 righe: i controlli servono piu' confronti)
+  GSE227839     ricevuti dallo Stadio 2:   39 | collocati in un gruppo:   36 | PERSI:    3 | usati in questa meta-analisi: 33 campioni distinti (33 righe: i controlli servono piu' confronti)
+      mai collocati: GSM7109561, GSM7109564, GSM7109569
+
