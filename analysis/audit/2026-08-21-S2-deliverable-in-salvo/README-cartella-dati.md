@@ -11,14 +11,17 @@ lo verifica (`10-manifesto-e-copia.sh verifica [DEST]`).
 
 Le quattro cartelle hanno lo stesso suffisso (`stage4-v16-3e31e59d`: versione
 del codice e run_id dello Stadio 4) e la stessa forma. Si distinguono **solo
-dal timestamp**. Ecco che cosa sono:
+dal timestamp**. Dal 2026-08-21 (decisione dell'utente) **nella radice sta solo
+il deliverable**; le altre tre sono in `archivio/`, intatte. I documenti scritti
+prima di quella data le citano senza `archivio/`; gli script vivi sono stati
+aggiornati. Ecco che cosa sono:
 
 | cartella | che cos'è | meta-analisi | Stadio 3 da cui viene (`analysis/p4-output/`) | master Stadio 1 / Stadio 2 |
 |---|---|---:|---|---|
-| **`20260819T185517Z`** | **DELIVERABLE CORRENTE — A3 v16.** Re-pool (16 pezzi ricomposti, 11 verdetti applicabili meno 2 orfani = `verdetti-A3.csv`) sullo Stadio 3 A3; Stadi 1 e 2 rigenerati su un sottoinsieme congelato di 2.566 studi con `VLLM_BATCH_INVARIANT=1`, innestati nei master vecchi. Annotato (`deliverable-annotato.*`). | **194** | `20260818T110906Z-stage3-v16-7f986159` — `clusters.rds` sha256 `43f3c6fe…8826d750` | `A3-stage1-master-innestato.jsonl` (508.037 record, sha256 `53f7f49a…c513eab`) · `A3-stage2-master-innestato.jsonl` (24.394 studi, sha256 `b9947746…fc05dd3`) |
-| `20260819T184204Z` | **Duplicato senza annotazione** dello stesso re-pool: la ricomposizione dei 16 pezzi scritta 13 minuti prima. I suoi 5 file sono **byte-identici** ai 5 omologhi del deliverable (stesso `run_metadata.json`, timestamp interno `2026-08-19T18:40:05Z`); mancano solo `deliverable-annotato.csv/.rds`. Non contiene nulla che il deliverable non abbia. | — (non annotato) | idem | idem |
-| `20260815T193851Z` | **RIFERIMENTO v16b** (master LLM vecchi): il deliverable precedente, oggi usato come termine di confronto per A3 (`10-blocchi.R`, `90-confronto-v16b.R`, rilettura delle 194). Corsie di sequenziamento collassate (18 collassi registrati). | 211 | `20260814T025911Z-stage3-v16-7f986159` — `clusters.rds` sha256 `b55e5ff2…cfc94e1f`. ⚠️ `CLAUDE.md` e alcuni script indicano `20260815T231154Z-stage3-v16-7f986159`: è **la stessa cosa**, byte-identica file per file (re-cluster parallelo a 8 worker, prova E3), differisce solo il timestamp dentro `run_metadata.json`. Il `run_metadata.json` dello Stadio 4 dice `20260814T025911Z`. | `p4-fase-f2-stage1-master-predictions-rescued.jsonl` · `p4-fase-f4-stage2-master-v3.jsonl` — il `run_metadata.json` dello Stadio 3 vecchio registra solo i conteggi (508.037 / 24.394), non percorso né sha |
-| `20260815T121010Z` | **v16, superata**: primo re-pool sullo stesso Stadio 3 del riferimento, in cui il collasso delle corsie **non si accendeva** (`collapse_technical_lanes = TRUE` nel config ma `lane_collapses` 0 righe; 18 in v16b) e non esiste il registro `covariate_drops`. Usata dalle prove E1/E2/V16c di `analysis/audit/2026-08-13-rerun-prep/`. | 212 | `20260814T025911Z…` (idem riferimento) | idem riferimento |
+| **`20260819T185517Z`** (nella radice) | **DELIVERABLE CORRENTE — A3 v16.** Re-pool (16 pezzi ricomposti, 11 verdetti applicabili meno 2 orfani = `verdetti-A3.csv`) sullo Stadio 3 A3; Stadi 1 e 2 rigenerati su un sottoinsieme congelato di 2.566 studi con `VLLM_BATCH_INVARIANT=1`, innestati nei master vecchi. Annotato (`deliverable-annotato.*`). | **194** | `20260818T110906Z-stage3-v16-7f986159` — `clusters.rds` sha256 `43f3c6fe…8826d750` | `A3-stage1-master-innestato.jsonl` (508.037 record, sha256 `53f7f49a…c513eab`) · `A3-stage2-master-innestato.jsonl` (24.394 studi, sha256 `b9947746…fc05dd3`) |
+| `archivio/20260819T184204Z` | **Duplicato senza annotazione** dello stesso re-pool: la ricomposizione dei 16 pezzi scritta 13 minuti prima. I suoi 5 file sono **byte-identici** ai 5 omologhi del deliverable (stesso `run_metadata.json`, timestamp interno `2026-08-19T18:40:05Z`); mancano solo `deliverable-annotato.csv/.rds`. Non contiene nulla che il deliverable non abbia. | — (non annotato) | idem | idem |
+| `archivio/20260815T193851Z` | **RIFERIMENTO v16b** (master LLM vecchi): il deliverable precedente, oggi usato come termine di confronto per A3 (`10-blocchi.R`, `90-confronto-v16b.R`, rilettura delle 194). Corsie di sequenziamento collassate (18 collassi registrati). | 211 | `20260814T025911Z-stage3-v16-7f986159` — `clusters.rds` sha256 `b55e5ff2…cfc94e1f`. ⚠️ `CLAUDE.md` e alcuni script indicano `20260815T231154Z-stage3-v16-7f986159`: è **la stessa cosa**, byte-identica file per file (re-cluster parallelo a 8 worker, prova E3), differisce solo il timestamp dentro `run_metadata.json`. Il `run_metadata.json` dello Stadio 4 dice `20260814T025911Z`. | `p4-fase-f2-stage1-master-predictions-rescued.jsonl` · `p4-fase-f4-stage2-master-v3.jsonl` — il `run_metadata.json` dello Stadio 3 vecchio registra solo i conteggi (508.037 / 24.394), non percorso né sha |
+| `archivio/20260815T121010Z` | **v16, superata**: primo re-pool sullo stesso Stadio 3 del riferimento, in cui il collasso delle corsie **non si accendeva** (`collapse_technical_lanes = TRUE` nel config ma `lane_collapses` 0 righe; 18 in v16b) e non esiste il registro `covariate_drops`. Usata dalle prove E1/E2/V16c di `analysis/audit/2026-08-13-rerun-prep/`. | 212 | `20260814T025911Z…` (idem riferimento) | idem riferimento |
 
 **Dove sta scritto che cosa.** Il `run_metadata.json` dello **Stadio 4** registra
 lo Stadio 3 (`stage3$dir`, `stage3$clusters_sha256` = sha256 del file
@@ -40,10 +43,9 @@ riferimento ha i soli conteggi).
   (`VLLM_BATCH_INVARIANT=1` rende riproducibile un run, non due run diversi).
 
 **Copia di sicurezza.** Su un altro dispositivo fisico, con lo stesso manifesto:
-vedi `docs/findings/2026-08-21-S2-deliverable-in-salvo.md` per il percorso.
+`/mnt/micron/simulomicsr-salvataggio/` (NVMe interno, altro dispositivo; stesso layout).
 Verifica: `10-manifesto-e-copia.sh verifica <DEST>`.
 
-**Nessuna delle quattro cartelle è stata cancellata o spostata** (decisione che
-spetta all'utente). Se si archiviano, la prima candidata è `20260819T184204Z`
-(duplicato byte-identico), poi `20260815T121010Z` (superata, ma citata da tre
-script di prova).
+**Nessuna cartella è stata cancellata.** Le tre vecchie sono in `archivio/`
+(spostate, byte-identiche: il manifesto le copre con il nuovo percorso), sia qui
+sia nella copia di sicurezza.

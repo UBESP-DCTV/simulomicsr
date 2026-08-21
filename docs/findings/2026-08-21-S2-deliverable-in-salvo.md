@@ -10,7 +10,7 @@ ricostruirlo stanno ora in **un manifesto SHA-256 di 73 file versionato in git**
 in **una copia verificata su un altro dispositivo fisico**
 (`/mnt/micron/simulomicsr-salvataggio/`, 9,4 GB), e la cartella sul disco esterno
 ha un `README.md` che dice quale delle quattro directory omonime è il deliverable.
-**Nulla è stato cancellato né spostato.**
+**Nulla è stato cancellato**; le tre cartelle vecchie sono state archiviate (§4).
 
 ## 1. Che cosa sono le quattro cartelle (misurato, non ricordato)
 
@@ -77,27 +77,29 @@ analysis/audit/2026-08-21-S2-deliverable-in-salvo/10-manifesto-e-copia.sh verifi
 - **La copia è sulla stessa macchina.** Protegge dal guasto del disco esterno e da
   una sessione che lavora sull'oggetto sbagliato; **non** protegge da furto,
   incendio o guasto della macchina. Per quello serve una copia fuori sede: vedi §4.
-- Le quattro cartelle e i due Stadio 3 gemelli **restano dove sono**, come chiede
-  l'handout.
+- I due Stadio 3 gemelli restano dove sono; le tre cartelle Stadio 4 vecchie
+  sono in `archivio/` (decisione dell'utente, §4), intatte.
 
-## 4. Le decisioni che spettano all'utente
+## 4. Le decisioni prese dall'utente (2026-08-21, stessa sessione)
 
-1. **Una seconda copia fuori dalla macchina?** Opzioni, tutte con lo stesso
-   script (`copia <DEST>` + `verifica <DEST>`):
-   - SSD esterno **Extreme 55AE** (`/dev/sdb`, 3,6 TB, oggi collegato ma **non
-     montato**): portabile, separabile dalla macchina; va montato a mano.
-   - **DGX UniPD**, `/mnt/projects/dctv/dgx/u0044/` (NFS di gruppo, senza cap):
-     fuori sede, ma è un'infrastruttura condivisa e la rete NFS ha già avuto
-     un guasto (luglio 2026).
-   - Entrambe. *Preferenza:* l'SSD esterno per il deliverable (9,4 GB, minuti),
-     il DGX quando si farà S14, che comunque deve portare lì i master.
-2. **Le tre cartelle vecchie: tenere o archiviare.** *Preferenza:* archiviare
-   (spostare in una sottocartella `archivio/` con il loro hash già nel
-   manifesto) `20260819T184204Z`, che è un duplicato byte-identico e serve solo a
-   confondere; tenere `20260815T193851Z` (riferimento, usato dagli script di
-   confronto) e `20260815T121010Z` (citata da E1/E2/V16c) finché gli script che
-   le leggono non sono chiusi. Nessuna cancellazione.
-3. **La licenza del codice.** `LICENSE` dice «Copyright 2021 UBEP. All rights
-   reserved.»: incompatibile con qualunque dichiarazione di disponibilità del
-   codice. Va scelta (la bozza propone MIT o GPL-3, da decidere con UBEP) prima
-   di depositare.
+1. **Copia fuori dalla macchina: no, basta `/mnt/micron`.** Resta il limite di
+   §3 (stessa macchina); lo si dichiara, non lo si chiude. Chi farà S14 porterà
+   comunque i master sul DGX.
+2. **Le tre cartelle vecchie: archiviate.** Spostate — non cancellate, byte-identiche —
+   in `simulomicsr-stage4-v16/archivio/` sia sul disco esterno sia nella copia;
+   nella radice resta solo il deliverable. Il manifesto è stato rigenerato col
+   nuovo percorso (`stage4-v16/archivio/...`) e riverificato su origini e copia
+   (73/73). I dieci script vivi che leggevano il riferimento v16b o la v16
+   (`2026-08-20-rilettura-194/{00,10,20,70}-*.R`, `2026-08-16-A3/{00,90}-*.R`,
+   `2026-08-13-rerun-prep/{E1,E2,V16c,V18}-*.R`) puntano ora ad `archivio/`;
+   i documenti scritti prima (findings, handout del 16 e del 20 agosto, STORIA)
+   citano il percorso vecchio e **non sono stati toccati**: sono storia.
+3. **Licenza: Creative Commons Attribution-NonCommercial (CC BY-NC 4.0) «o simile».**
+   Scritta nella bozza della dichiarazione, con due avvertenze che restano da
+   valutare prima del deposito: (a) Creative Commons sconsiglia le CC per il
+   *software* (niente clausole su brevetti e codice sorgente) — l'equivalente
+   pensato per il codice è **PolyForm Noncommercial 1.0.0**; (b) una licenza
+   non commerciale **non è open source** secondo OSI, e alcune riviste chiedono
+   una licenza OSI per il codice: va controllata la policy della rivista scelta.
+   `LICENSE` e `DESCRIPTION` (`License: CC BY-NC 4.0` è una stringa che R
+   riconosce) **non sono stati cambiati**: è un atto di UBEP, non di una sessione.

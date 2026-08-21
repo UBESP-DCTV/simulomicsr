@@ -16,7 +16,7 @@
 suppressPackageStartupMessages({ library(cli) })
 OUT    <- "analysis/audit/2026-08-20-rilettura-194"
 A3_POOL  <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d"
-RIF_POOL <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T193851Z-stage4-v16-3e31e59d"
+RIF_POOL <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/archivio/20260815T193851Z-stage4-v16-3e31e59d"
 BLOCCO <- as.integer(Sys.getenv("PER_BLOCCO", "13"))
 `%||%` <- function(a, b) if (is.null(a) || !length(a) || !nzchar(a)) b else a
 

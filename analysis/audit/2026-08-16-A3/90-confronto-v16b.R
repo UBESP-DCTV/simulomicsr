@@ -12,7 +12,7 @@
 
 suppressPackageStartupMessages({ library(cli); devtools::load_all(".", quiet = TRUE) })
 
-RIF <- Sys.getenv("RIF_POOL", "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T193851Z-stage4-v16-3e31e59d")
+RIF <- Sys.getenv("RIF_POOL", "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/archivio/20260815T193851Z-stage4-v16-3e31e59d")
 A3  <- Sys.getenv("A3_POOL",  "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d")
 OUT <- "analysis/audit/2026-08-16-A3"
 

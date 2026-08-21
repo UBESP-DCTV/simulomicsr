@@ -32,11 +32,11 @@ PREFISSI=(stage4-v16 p4-output input cache)
 
 # Oggetti censiti, relativi al prefisso. Una directory => tutti i file sotto di essa.
 OGGETTI=(
-  # Stadio 4: le QUATTRO cartelle omonime, tutte (quale sia il deliverable lo dice README-cartella-dati.md)
+  # Stadio 4: il deliverable, e le tre cartelle omonime archiviate il 2026-08-21 (README-cartella-dati.md)
   stage4-v16/20260819T185517Z-stage4-v16-3e31e59d
-  stage4-v16/20260819T184204Z-stage4-v16-3e31e59d
-  stage4-v16/20260815T193851Z-stage4-v16-3e31e59d
-  stage4-v16/20260815T121010Z-stage4-v16-3e31e59d
+  stage4-v16/archivio/20260819T184204Z-stage4-v16-3e31e59d
+  stage4-v16/archivio/20260815T193851Z-stage4-v16-3e31e59d
+  stage4-v16/archivio/20260815T121010Z-stage4-v16-3e31e59d
   # Stadio 3: quello del deliverable (A3) e quello del riferimento (in due copie identiche)
   p4-output/20260818T110906Z-stage3-v16-7f986159
   p4-output/20260814T025911Z-stage3-v16-7f986159

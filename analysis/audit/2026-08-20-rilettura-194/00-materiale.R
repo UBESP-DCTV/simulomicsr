@@ -41,7 +41,7 @@ suppressPackageStartupMessages({
 A3_POOL   <- Sys.getenv("A3_POOL",   "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d")
 A3_S3     <- Sys.getenv("A3_S3",     "analysis/p4-output/20260818T110906Z-stage3-v16-7f986159")
 A3_S2     <- Sys.getenv("A3_S2",     "analysis/p4-output/A3-stage2-master-innestato.jsonl")
-RIF_POOL  <- Sys.getenv("RIF_POOL",  "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T193851Z-stage4-v16-3e31e59d")
+RIF_POOL  <- Sys.getenv("RIF_POOL",  "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/archivio/20260815T193851Z-stage4-v16-3e31e59d")
 RIF_S3    <- Sys.getenv("RIF_S3",    "analysis/p4-output/20260815T231154Z-stage3-v16-7f986159")
 RIF_S2    <- Sys.getenv("RIF_S2",    "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl")
 H5        <- Sys.getenv("H5_PATH",   "analysis/input/human_gene_v2.5.h5")

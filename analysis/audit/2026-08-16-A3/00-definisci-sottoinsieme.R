@@ -30,7 +30,7 @@ S3_DIR <- Sys.getenv(
   "analysis/p4-output/20260814T025911Z-stage3-v16-7f986159")
 POOL_DIR <- Sys.getenv(
   "POOL_DIR",
-  "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T193851Z-stage4-v16-3e31e59d")
+  "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/archivio/20260815T193851Z-stage4-v16-3e31e59d")
 S1_INPUT <- Sys.getenv(
   "S1_INPUT", "analysis/input/archs4-human-stage1-input-v2.jsonl")
 OUT_DIR  <- Sys.getenv("OUT_DIR", "analysis/audit/2026-08-16-A3")

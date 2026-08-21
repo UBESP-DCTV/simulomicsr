@@ -14,7 +14,7 @@ dir.create(SC, showWarnings = FALSE, recursive = TRUE)
 V16  <- "analysis/p4-output/20260814T025911Z-stage3-v16-7f986159"
 H5   <- "analysis/input/human_gene_v2.5.h5"
 S2P  <- "analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl"
-DEL  <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T121010Z-stage4-v16-3e31e59d"
+DEL  <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/archivio/20260815T121010Z-stage4-v16-3e31e59d"
 MODO <- Sys.getenv("MODO", "seriale")
 
 # --- i cluster del test: scelti per taglia, piu' uno che cade sotto il gate ---

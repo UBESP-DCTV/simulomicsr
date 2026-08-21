@@ -14,8 +14,8 @@ commit di riferimento al momento della bozza: `d4117012` (branch
 **Code.** `simulomicsr` is an R package implementing the full pipeline (ETL from
 ARCHS4, LLM-based sample and study-design classification, contrast-derived
 clustering, and random-effects pooling). Source code is available at
-https://github.com/UBESP-DCTV/simulomicsr under the [MIT / GPL-3 — **to be
-decided**, see note 1] license; the exact version used for the results reported
+https://github.com/UBESP-DCTV/simulomicsr under the Creative Commons Attribution-NonCommercial 4.0 International
+(CC BY-NC 4.0) license [or PolyForm Noncommercial 1.0.0 for the code — see note 1]; the exact version used for the results reported
 here is archived at Zenodo ([DOI **to be obtained**], package version 0.0.0.9028,
 git tag [**to be created**]). The repository also includes the `renv` lockfile,
 the prompts and JSON schemas used at every LLM stage, the deterministic gate and
@@ -59,11 +59,17 @@ not expected to reproduce the deposited outputs exactly (see Methods, §
 
 ## Note (italiano, non vanno nell'articolo)
 
-1. **Licenza del codice — BLOCCANTE.** `LICENSE` oggi dice «Copyright 2021
-   UBEP. All rights reserved.». Con questa licenza il codice *non è* disponibile
-   nel senso richiesto dalle riviste. Va scelta una licenza aperta (MIT: semplice,
-   permissiva; GPL-3: copyleft, coerente con molti pacchetti Bioconductor) e va
-   aggiornato il campo `License:` di `DESCRIPTION`. Decisione dell'utente con UBEP.
+1. **Licenza — decisa dall'utente il 2026-08-21: CC BY-NC 4.0 «o simile».**
+   `LICENSE` oggi dice ancora «Copyright 2021 UBEP. All rights reserved.» e
+   `DESCRIPTION` ha `License: file LICENSE`: vanno aggiornati (`License: CC BY-NC 4.0`
+   è riconosciuta da R; il testo della licenza va in `LICENSE`). Due avvertenze
+   prima di farlo: (a) Creative Commons sconsiglia le proprie licenze per il
+   software (nessuna clausola su brevetti e sorgente); l'equivalente non
+   commerciale scritto per il codice è **PolyForm Noncommercial 1.0.0** — si può
+   usare CC BY-NC 4.0 per i dati depositati e PolyForm NC per il pacchetto;
+   (b) NC non è open source secondo OSI, e alcune riviste (es. PLOS, Bioinformatics)
+   chiedono licenza OSI per il codice: controllare la policy della rivista.
+   Atto formale di UBEP, non di una sessione.
 2. **Dove depositare.** Zenodo accetta 50 GB per record (estendibili) e dà DOI
    versionato: basta per tutto tranne l'H5 (che è pubblico e non va ridepositato).
    Alternativa: figshare. Decidere anche **se depositare `per_study_de.parquet`**

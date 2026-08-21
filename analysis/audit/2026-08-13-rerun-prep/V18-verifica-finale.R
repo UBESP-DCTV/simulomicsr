@@ -1,6 +1,6 @@
 # La verifica finale del deliverable v16b, contro le previsioni depositate.
 suppressMessages(devtools::load_all(".", quiet = TRUE))
-P <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260815T193851Z-stage4-v16-3e31e59d"
+P <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/archivio/20260815T193851Z-stage4-v16-3e31e59d"
 D15 <- "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v15/20260805T004943Z-stage4-v15-d29545c7"
 d <- readRDS(file.path(P, "deliverable-annotato.rds"))
 d15 <- readRDS(file.path(D15, "deliverable-annotato.rds"))
