@@ -2,19 +2,20 @@
 # analysis/audit/2026-08-21-S3-test-retest/20-consolida-retest.py
 # Dal JSON persistito del workflow di retest ai due CSV, con le stesse colonne del
 # run originale (30-consolida.py di 2026-08-20-rilettura-194).
-# Uso: python3 20-consolida-retest.py <wf_XXXX.json>
+# Uso: python3 20-consolida-retest.py <wf_XXXX.json> [suffisso, default 'retest']
 import json, sys, csv, os, collections
 SRC = sys.argv[1]
+SUF = sys.argv[2] if len(sys.argv) > 2 else 'retest'
 S = 'analysis/audit/2026-08-21-S3-test-retest'
 d = json.load(open(SRC, errors='ignore'))
 gruppi = d['result']['gruppi']
 meta = {k: d.get(k) for k in ('runId', 'timestamp', 'workflowName', 'agentCount', 'durationMs',
                               'defaultModel', 'totalTokens', 'status')}
 json.dump({**meta, 'result': d['result'], 'logs': d.get('logs')},
-          open(os.path.join(S, 'risultato-retest.json'), 'w'), ensure_ascii=False, indent=1)
+          open(os.path.join(S, f'risultato-{SUF}.json'), 'w'), ensure_ascii=False, indent=1)
 print(f"run {meta['runId']} {meta['status']}: {len(gruppi)} gruppi, {meta['agentCount']} agenti, "
       f"{(meta['durationMs'] or 0)/60000:.1f} min, {meta['totalTokens']} token")
-with open(os.path.join(S, 'verdetti-retest.csv'), 'w', newline='') as f:
+with open(os.path.join(S, f'verdetti-{SUF}.csv'), 'w', newline='') as f:
     w = csv.writer(f)
     w.writerow(['cluster_id', 'verdetto_finale', 'n_studi_difettosi', 'etichetta_non_chiude',
                 'rilievi_accettati', 'rilievi_respinti', 'motivo'])
@@ -24,7 +25,7 @@ with open(os.path.join(S, 'verdetti-retest.csv'), 'w', newline='') as f:
                     g.get('rilievi_respinti', ''), g['motivo']])
 righe = [{'cluster_id': g['cluster_id'], 'study_id': s['study_id'], 'categoria': s['categoria'],
           'etichetta': s['etichetta_citata']} for g in gruppi for s in g.get('studi_difettosi', [])]
-with open(os.path.join(S, 'difetti-retest.csv'), 'w', newline='') as f:
+with open(os.path.join(S, f'difetti-{SUF}.csv'), 'w', newline='') as f:
     w = csv.DictWriter(f, fieldnames=['cluster_id', 'study_id', 'categoria', 'etichetta'])
     w.writeheader(); w.writerows(righe)
 c = collections.Counter(g['verdetto_finale'] for g in gruppi)

@@ -7,13 +7,14 @@
 # binario, per blocco, per fascia di k, sulle coppie gruppo-studio accusate, e
 # le previsioni di 00-previsioni.md valutate una per una.
 #
-# Uso: python3 analysis/audit/2026-08-21-S3-test-retest/30-accordo-metodo.py [verdetti-retest.csv] [difetti-retest.csv]
+# Uso: python3 analysis/audit/2026-08-21-S3-test-retest/30-accordo-metodo.py [verdetti-retest.csv] [difetti-retest.csv] [suffisso output]
 import csv, os, sys, re, glob, collections
 sys.path.insert(0, 'analysis/audit/2026-08-21-S3-test-retest')
 from lib_accordo import *
 S = 'analysis/audit/2026-08-21-S3-test-retest'; R = 'analysis/audit/2026-08-20-rilettura-194'
 P_RET = sys.argv[1] if len(sys.argv) > 1 else os.path.join(S, 'verdetti-retest.csv')
 P_DIF = sys.argv[2] if len(sys.argv) > 2 else os.path.join(S, 'difetti-retest.csv')
+SUF = sys.argv[3] if len(sys.argv) > 3 else 'retest'
 
 orig = {r['cluster_id']: r for r in csv.DictReader(open(os.path.join(R, 'verdetti-194.csv')))}
 ret  = {r['cluster_id']: r for r in csv.DictReader(open(P_RET))}
@@ -61,7 +62,7 @@ print(f"  delle {len(inc_orig)} incerte originali restano incerte: {inc_stabili}
 print("\n=== 5. PER BLOCCO (stesso lettore/critici/arbitro, contesto identico) ===")
 per_b = collections.defaultdict(list)
 for i, x, y in zip(ids, a, b): per_b[blocco_di[i]].append(x == y)
-with open(os.path.join(S, 'accordo-per-blocco.csv'), 'w', newline='') as f:
+with open(os.path.join(S, f'accordo-per-blocco-{SUF}.csv'), 'w', newline='') as f:
     w = csv.writer(f); w.writerow(['blocco', 'n', 'concordi', 'accordo'])
     for bl in sorted(per_b):
         v = per_b[bl]; w.writerow([bl, len(v), sum(v), round(sum(v)/len(v), 3)])
@@ -100,8 +101,8 @@ for nome, cid in [('IL22', None), ('obese', None), ('sals', None)]:
             print(f"  caso di coda {nome:6s}: originale {orig[i]['verdetto_finale']:10s} retest {ret[i]['verdetto_finale']:10s} "
                   f"studi accusati orig={sorted(so.get(i, []))} ret={sorted(sr.get(i, []))}")
 
-print("\n=== 9. I DISACCORDI, uno per riga (disaccordi.csv) ===")
-with open(os.path.join(S, 'disaccordi.csv'), 'w', newline='') as f:
+print("\n=== 9. I DISACCORDI, uno per riga (disaccordi-<suffisso>.csv) ===")
+with open(os.path.join(S, f'disaccordi-{SUF}.csv'), 'w', newline='') as f:
     w = csv.writer(f); w.writerow(['cluster_id', 'nome', 'k', 'blocco', 'originale', 'retest', 'motivo_originale', 'motivo_retest'])
     for i, x, y in zip(ids, a, b):
         if x != y:

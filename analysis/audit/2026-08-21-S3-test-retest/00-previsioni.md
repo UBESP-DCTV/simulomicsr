@@ -1,4 +1,4 @@
-# S3 — Previsioni depositate PRIMA del run (2026-08-21, 23:40)
+# S3 — Previsioni depositate PRIMA del run (2026-08-21, 23:10; run lanciato alle 23:12)
 
 **Run:** `C3-workflow-retest.js` su **tutti e 15 i blocchi** (194 meta-analisi),
 modello `claude-opus-5` (lo stesso del run originale `wf_40052108-a99`,
@@ -33,3 +33,14 @@ basso* → la rilettura va rifatta prima di tutto il resto, e l'handout va riscr
 
 Nessun verdetto delle 194 viene cambiato. Il retest produce un secondo insieme
 di verdetti che serve a misurare, non a sostituire.
+
+## Nota aggiunta dopo il primo retest (2026-08-22, 00:10) — senza toccare le previsioni
+
+Il primo retest (`wf_62d20ef5-167`) è risultato **contaminato**: 11 agenti su 60
+hanno letto, nella stessa cartella del blocco, file scritti *dopo* il run
+originale — le stringhe grezze per campione (`campioni-per-meta-analisi.csv`) e i
+verdetti originali stessi (`verdetti-194.csv`, `difetti.csv`). Misurato con
+`25-cosa-hanno-letto.py`: originale 0/60. **Le previsioni qui sopra si valutano
+sul retest 2** (`C4-workflow-retest-congelato.js`, `wf_a0a37108-046`), lanciato
+in una cartella fuori dal repo che contiene solo ciò che esisteva il 19/08 alle
+23:32. Il retest 1 si riporta comunque, come misura di un metodo *diverso*.
