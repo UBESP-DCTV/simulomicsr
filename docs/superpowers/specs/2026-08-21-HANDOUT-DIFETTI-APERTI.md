@@ -51,7 +51,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 |---|---|---|
 | 1 | `CLAUDE.md` è 2.364 righe e nessuno lo pota | S1 |
 | 2 | Il deliverable esiste in una copia sola, fuori dal repository, fra quattro cartelle omonime | S2 |
-| 3 | Non sappiamo se la lettura delle 194 sia riproducibile: **da lì viene ogni altro numero** | S3 |
+| 3 | ~~Non sappiamo se la lettura delle 194 sia riproducibile~~ **riproducibile: kappa 0,78 (S3, 22/08)**; resta la lettura umana | S3 |
 | 4 | I bracci che **condividono il controllo** gonfiano il peso, e con esso il taglio 113→37 | S4 |
 | 5 | Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3 | S5 |
 | 6 | Nessuna verifica usa dati esterni al corpus | S6 → S7 |
@@ -75,7 +75,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 |---|---|---|---|---|
 | **S1** | Pulizia di `CLAUDE.md` | igiene | ~3 h | — |
 | **S2** | Mettere in salvo il deliverable | igiene | ~2 h | — |
-| **S3** | Il metro concorda con se stesso? | misura | ~4 h | — |
+| **S3** | Il metro concorda con se stesso? ✅ retest fatto; lettura umana aperta | misura | ~4 h | — |
 | **S4** | Il controllo condiviso, e il peso che gonfia | misura | ~3 h | — |
 | **S5** | Le due decisioni: il gate, e «37 o 173» | **decisione** | ~4 h | *meglio S3 e S4* |
 | **S6** | Validazione esterna: il disegno | disegno | ~3 h | *robusto a S5, o dopo S5* |
@@ -230,6 +230,18 @@ Non cancellare niente. Dimmi dove mettere la copia.
 # S3 — Il metro concorda con se stesso?
 
 > **Va fatta presto, e costa mezzo pomeriggio.** Non dipende da nulla.
+
+> ✅ **Punto 1 fatto il 2026-08-22** (`docs/findings/2026-08-21-S3-il-metro-concorda.md`):
+> test-retest su **tutti e 15 i blocchi** (194), stesso modello (Opus 5), prompt
+> verificati byte-identici, **ambiente congelato al 19/08**. Accordo **88,1%**
+> [83,5; 92,8], **kappa 0,78** [0,70; 0,86], binario 93,3% → **alto** secondo la
+> soglia depositata prima del run. Solo 5/194 saltano fra *corretta* e *difettosa*;
+> 18 dei 23 disaccordi hanno «incerta» da un lato. `IL22`/`obese`/`sals` confermati.
+> Totali 116/62/16 → 113/55/26. **Il primo retest era contaminato** (11/60 agenti
+> avevano letto le stringhe grezze e i verdetti originali, scritti dopo il run):
+> con agenti dotati di strumenti si congela l'ambiente, non solo il prompt.
+> **Punto 2 (la lettura umana) è aperto e spetta a te**: 20 schede cieche in
+> `analysis/audit/2026-08-21-S3-test-retest/umano/`, istruzioni lì, conteggio con `40-accordo-umano.py`.
 
 ### Perché
 

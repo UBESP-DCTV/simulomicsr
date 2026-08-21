@@ -3,7 +3,7 @@
 Seme dell'estrazione: **20260821** (`10-campione-umano.py`). Le 20 sono estratte a
 caso dalle 194; l'ordine dei file e' rimescolato. **Il verdetto del modello non e'
 scritto da nessuna parte in questa cartella**: non aprire `verdetti-194.csv`,
-`INDICE-194.csv` o `quadro-194.csv` prima di aver finito.
+`INDICE-194.csv`, `quadro-194.csv`, i `disaccordi-*.csv` né i §3–§4 del finding `docs/findings/2026-08-21-S3-il-metro-concorda.md` prima di aver finito.
 
 Per ogni scheda `NN-nome.txt`, compila la riga corrispondente di `RISPOSTE.csv`:
 

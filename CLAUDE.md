@@ -45,6 +45,11 @@ aperte, 17 sessioni numerate nell'ordine in cui vanno fatte, ognuna con che cosa
 NON fare e la decisione che spetta all'utente. Leggi S0 e la sessione che tocca.
 **S1 e S2 sono fatte il 2026-08-21** (S2: copia solo su micron, cartelle vecchie archiviate,
 licenza CC BY-NC 4.0 decisa ma `LICENSE`/`DESCRIPTION` ancora da aggiornare — finding S2 §4).
+**S3 fatta il 2026-08-22** (punto 1): test-retest della rilettura in ambiente congelato,
+accordo 88,1%, **kappa 0,78 [0,70; 0,86]**, binario 93,3% → «alto»; 116/62/16 → 113/55/26,
+solo 5/194 saltano fra corretta e difettosa (`docs/findings/2026-08-21-S3-il-metro-concorda.md`).
+**Aperto il punto 2**: la lettura umana delle 20 schede cieche in
+`analysis/audit/2026-08-21-S3-test-retest/umano/` è dell'utente. Prossima: **S4**.
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -128,6 +133,10 @@ Rami `mega`, `mega_aug`, `rem` restano nel codice ma **fuori dal deliverable**
 - **Le variabili d'ambiente vanno verificate sul processo**, non nello script
   (`tr '\0' '\n' < /proc/<pid>/environ | grep VLLM`): una flag scritta e non
   passata è come il collasso delle corsie che non si accendeva.
+- **Congela l'ambiente, non solo il prompt**: il primo retest di S3 aveva prompt
+  byte-identici e 11 agenti su 60 hanno letto file scritti *dopo* il run originale
+  (stringhe grezze, verdetti). Gli agenti hanno strumenti: materiale in cartella
+  congelata fuori dal repo, e conta le fonti sui transcript **dopo** (`25-cosa-hanno-letto.py`).
 - **Una lista scritta a mano non è una regola**: scarta per costruzione, non per
   elenco di chiavi; i verdetti umani si marcano, non si sovrascrivono
   (`canonical_name` non è mai sovrascritto).
@@ -264,7 +273,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`

@@ -1,0 +1,93 @@
+gruppi confrontati: 194 (originale 194, retest 194)
+
+=== 1. I TOTALI ===
+  corretta   originale  116   retest  113   delta -3
+  difettosa  originale   62   retest   55   delta -7
+  incerta    originale   16   retest   26   delta +10
+
+=== 2. ACCORDO A TRE CLASSI ===
+  accordo grezzo : 88.1%  [IC95 83.5, 92.8]
+  kappa di Cohen : 0.784  [IC95 bootstrap 0.697, 0.861]
+  originale \     retest   corretta  difettosa    incerta      tot
+               corretta        107          2          7      116
+              difettosa          3         52          7       62
+                incerta          3          1         12       16
+                    tot        113         55         26
+
+=== 3. ACCORDO BINARIO ===
+  difettosa / non-difettosa : accordo 93.3%   kappa 0.841 [0.752, 0.922]
+  corretta  / non-corretta  : accordo 92.3%   kappa 0.840
+
+=== 4. IL VERSO DEL DISACCORDO ===
+  verso il peggio (corretta->incerta/difettosa, incerta->difettosa): 10
+  verso il meglio: 13
+  delle 16 incerte originali restano incerte: 12
+
+=== 5. PER BLOCCO (stesso lettore/critici/arbitro, contesto identico) ===
+  blocco 01: 12/13   92.3%
+  blocco 02: 12/13   92.3%
+  blocco 03: 12/13   92.3%
+  blocco 04: 11/13   84.6%
+  blocco 05: 13/13  100.0%
+  blocco 06: 13/13  100.0%
+  blocco 07: 10/13   76.9%
+  blocco 08: 11/13   84.6%
+  blocco 09:  8/13   61.5%
+  blocco 10: 13/13  100.0%
+  blocco 11: 13/13  100.0%
+  blocco 12: 12/13   92.3%
+  blocco 13: 10/13   76.9%
+  blocco 14: 10/13   76.9%
+  blocco 15: 11/12   91.7%
+
+=== 6. PER FASCIA DI k (studi poolati) ===
+  k=3     n= 81  accordo  88.9%  kappa 0.76
+  k=4-5   n= 50  accordo  90.0%  kappa 0.80
+  k=6-10  n= 43  accordo  86.0%  kappa 0.77
+  k>10    n= 20  accordo  85.0%  kappa 0.73
+
+=== 7. L'ETICHETTA NON CHIUDE ===
+  originale 32  retest 40  concordi 172/194  entrambi true 25
+
+=== 8. LE COPPIE GRUPPO-STUDIO ACCUSATE ===
+  coppie originale 94  retest 80  comuni 72  ritrovate 76.6%  Jaccard 0.706
+  studi distinti accusati: originale 85  retest 72  comuni 65
+  gruppi con >=1 difetto: originale 66  retest 55  comuni 52
+  caso di coda IL22  : originale difettosa  retest difettosa  studi accusati orig=['GSE149262'] ret=['GSE149262']
+  caso di coda obese : originale difettosa  retest difettosa  studi accusati orig=['GSE205668'] ret=['GSE205668']
+  caso di coda sals  : originale difettosa  retest difettosa  studi accusati orig=['GSE138691'] ret=['GSE138691']
+
+=== 9. I DISACCORDI, uno per riga (disaccordi-<suffisso>.csv) ===
+  vemurafenib                  k=  5 b08  corretta   -> incerta
+  multiple sclerosis           k=  7 b03  corretta   -> incerta
+  poly(I:C)                    k= 11 b04  incerta    -> difettosa
+  erlotinib                    k=  7 b07  difettosa  -> incerta
+  PMA (phorbol 12-myristate 13 k=  3 b09  difettosa  -> incerta
+  everolimus                   k=  5 b09  difettosa  -> incerta
+  nilotinib                    k=  3 b08  difettosa  -> corretta
+  Neoplasm Metastasis          k=  3 b04  incerta    -> corretta
+  osteoarthritis               k=  3 b07  incerta    -> corretta
+  gefitinib                    k=  7 b12  corretta   -> incerta
+  calcitriol                   k=  4 b09  corretta   -> incerta
+  Diabetes, Gestational        k=  3 b07  corretta   -> incerta
+  doxorubicin                  k= 15 b13  incerta    -> corretta
+  cabozantinib                 k=  3 b15  corretta   -> difettosa
+  taz + yap                    k=  3 b09  difettosa  -> incerta
+  tofacitinib                  k=  3 b14  corretta   -> incerta
+  Pre-Eclampsia                k=  6 b14  difettosa  -> corretta
+  palbociclib                  k= 15 b14  difettosa  -> incerta
+  Carcinoma, Hepatocellular    k=  6 b13  difettosa  -> corretta
+  Carcinoma, Renal Cell        k=  3 b01  corretta   -> difettosa
+  cystic fibrosis              k=  4 b02  difettosa  -> incerta
+  sunitinib                    k=  7 b09  corretta   -> incerta
+  Breast Neoplasms             k=  4 b13  difettosa  -> incerta
+
+=== 10. LE PREVISIONI (00-previsioni.md) ===
+  VERA   P1 accordo 3 classi 78-90% e kappa 0,55-0,80            -> 88.1%, kappa 0.78
+  VERA   P2 accordo binario >= 85%                               -> 93.3%
+  FALSA  P3 meno di meta' delle incerte resta incerta            -> 12/16
+  VERA   P4 totali entro +-12                                    -> corretta -3, difettosa -7, incerta +10
+  VERA   P5 coppie accusate ritrovate >= 60% (Jaccard >= 0,45)   -> 76.6%, Jaccard 0.71
+  FALSA  P6 piu' verso il peggio che verso il meglio             -> 10 contro 13
+
+  DECISIONE secondo la soglia fissata prima del run: accordo ALTO  (kappa 0.78 [0.70, 0.86], binario 93.3%)
