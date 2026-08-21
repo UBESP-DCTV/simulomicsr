@@ -69,11 +69,14 @@ analysis/audit/2026-08-21-S2-deliverable-in-salvo/10-manifesto-e-copia.sh verifi
 
 ## 3. Limiti di questa sessione
 
-- **La verifica della copia è stata fatta subito dopo la scrittura** (12 s per
+- ~~**La verifica della copia è stata fatta subito dopo la scrittura** (12 s per
   9,4 GB: i dati erano quasi certamente ancora nella page cache). Va ripetuta
-  **a freddo** — dopo un riavvio, o su un'altra sessione — con il comando sopra.
-  Non è un dubbio sul contenuto, è che la lettura da disco non è ancora stata
-  esercitata.
+  **a freddo**.~~ **Fatta a freddo il 2026-08-21 sera** (sessione successiva,
+  uptime 16 giorni, nessun riavvio): il sospetto era fondato — `mincore` dava
+  **100% delle pagine residenti** (9,35 GiB) e la verifica passava in 5,4 s.
+  Espulse con `posix_fadvise(DONTNEED)` (`20-sfratta-page-cache.py sfratta`,
+  0% residenti dopo), la verifica ha letto dal disco: **73/73 OK in 10,9 s**.
+  Il limite è chiuso.
 - **La copia è sulla stessa macchina.** Protegge dal guasto del disco esterno e da
   una sessione che lavora sull'oggetto sbagliato; **non** protegge da furto,
   incendio o guasto della macchina. Per quello serve una copia fuori sede: vedi §4.
