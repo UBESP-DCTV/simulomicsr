@@ -233,3 +233,49 @@ gravi».
 | `B2-influenza-loo.R` · `.csv` | influenza a blocco, 66 gruppi, con la prova di accettazione |
 | `B3-nulli.R` · `.csv` | i nulli appaiati, 20 per gruppo |
 | `B4-lettura.R` · `B4-quadro-influenza.csv` | le tre misure insieme, aritmetica scorporata |
+
+---
+
+## 5. «Se teniamo le 173, sono inattaccabili?» — no, e il motivo non sono i difetti
+
+Domanda dell'utente. La risposta richiede prima di sciogliere un equivoco: **i 173
+non sono 173 puliti.** Sono 128 senza alcun difetto letto **più 45 che i difetti
+li contengono ancora** — «sopravvivono» vuol dire soltanto che toglierli non li
+ucciderebbe.
+
+- Tenendoli **così come sono**: 45 hanno studi difettosi dentro, peso contaminato
+  mediano **14,7%**, massimo 47,7%, 7 sopra il 25%.
+- Tenendoli **ripuliti**: k mediano scende a 4 e **73 su 173 restano a k=3**.
+
+### Il setaccio, che dice dov'è il vincolo vero
+
+| criterio, applicato uno sopra l'altro | restano |
+|---|---:|
+| tutte | 194 |
+| nessun difetto letto | 128 |
+| verdetto «corretta», non «incerta» | 116 |
+| il verdetto è chiuso dall'etichetta | **113** |
+| nessuno studio pesa più della metà | **37** |
+| almeno 2 studi efficaci (Kish ≥ 2) | **37** |
+
+**I filtri sui difetti portano da 194 a 113. È la dominanza a tagliare da 113 a
+37.** Il vincolo che morde non è la contaminazione: è che nella maggior parte dei
+gruppi rimasti un solo studio porta più della metà del peso — dei 128 senza
+difetti, **87 (69%) sono dominati** e **53 (42%) valgono meno di due studi
+efficaci**. Non è un errore (la pesatura per varianza inversa deve fare così), ma
+una meta-analisi dominata al 90% da uno studio *è* quello studio.
+
+### Il nocciolo
+
+**37 meta-analisi**, k mediano 5, mediana ~2.000 geni significativi. Una sola a
+k ≥ 15: **TNF (k=36, 7.285 geni significativi)**, che è anche l'unica delle
+quattordici più grandi che la rilettura ha giudicato corretta. Seguono decitabina
+(k=12), sorafenib e IL13 (k=11), tazemetostat e IL6 (k=10).
+
+### E comunque «inattaccabile» non si può dire
+
+Per il punto cieco del §3.1: un difetto **concorde** — che spinge nella stessa
+direzione degli altri studi — è invisibile a tutte e tre le misure di questa
+notte. Nessun numero prodotto qui lo esclude.
+
+Strumenti: `B6-setaccio.R`, `B7-i-173.R`.
