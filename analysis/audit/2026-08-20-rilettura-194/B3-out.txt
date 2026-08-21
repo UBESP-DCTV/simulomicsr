@@ -1,0 +1,56 @@
+Warning message:
+ℹ leggo per_study_de dei 66 gruppi accusati...
+ℹ gruppi in memoria: 66
+ℹ giro 66 gruppi x 20 nulli su 40 worker...
+✔ fatto in 292.3 min
+
+── Gli accusati spostano piu' di studi puliti equivalenti? ─────────────────────
+ℹ gruppi con un nullo costruibile: 45 su 66
+ℹ motivi di esclusione: nulli non costruibili 8 | troppo pochi nulli riusciti 13
+
+── Percentile della rimozione accusata fra le pulite (0,50 = indistinguibile) ──
+
+ℹ percentile_spearman: mediana 0.500 | sopra 0,90: 12/45 | Wilcoxon p = 0.5856
+ℹ percentile_sig: mediana 0.333 | sopra 0,90: 9/45 | Wilcoxon p = 0.4598
+ℹ percentile_delta: mediana 0.500 | sopra 0,90: 7/45 | Wilcoxon p = 0.3912
+
+── Il nullo e' appaiato? (bracci tolti: accusati contro nulli) ──
+
+ℹ rapporto mediano bracci_nulli / bracci_accusati: 1.00
+ℹ (1,00 = appaiato; il nullo del 2026-08-10 stava a 1,35 sugli studi)
+
+── I quindici gruppi in cui gli accusati spostano di piu' del previsto ──
+
+                           entita n_accusati pct_sig_vero pct_sig_nulli_mediana
+                        erlotinib          1        0.570                0.2457
+                             IL22          1        0.562                0.2405
+                       everolimus          2        0.552                0.4029
+                            obese          1        0.809                0.2937
+                             sals          1        0.867                0.4444
+                      osimertinib          1        0.486                0.2016
+                             THZ1          1        0.395                0.2488
+                    staurosporine          1        0.792                0.3874
+                             IFNG          3        0.385                0.2638
+                         covid 19          1        0.426                0.2977
+                    Pre-Eclampsia          1        0.434                0.2598
+        Carcinoma, Hepatocellular          1        0.457                0.0857
+                              IL4          1        0.407                0.2672
+ DHT (5alpha-dihydrotestosterone)          3        0.404                0.2759
+                      carfilzomib          1        0.373                0.2122
+ percentile_sig percentile_spearman
+          1.000               1.000
+          1.000               1.000
+          1.000               0.667
+          1.000               1.000
+          1.000               1.000
+          1.000               0.875
+          1.000               0.875
+          1.000               1.000
+          0.950               0.450
+          0.800               1.000
+          0.800               1.000
+          0.800               0.600
+          0.750               1.000
+          0.700               0.100
+          0.667               0.667
+✔ Scritto B3-nulli.csv

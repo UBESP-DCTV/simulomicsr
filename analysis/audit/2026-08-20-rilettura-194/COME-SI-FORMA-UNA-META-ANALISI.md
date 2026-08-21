@@ -247,6 +247,53 @@ completo degli scarti sta nel `qc_report.rds` del deliverable.
 
 ---
 
+## Quanto pesano i difetti
+
+Qualche confronto è difettoso: è un dato di fatto, non un gate. Nessuna
+meta-analisi viene esclusa per questo — la regola «almeno un difetto ⇒ fuori»
+azzererebbe **tutte** quelle con k ≥ 15, cioè quelle con potenza. Al posto del
+verdetto, tre misure.
+
+**Metodo.** (1) *Peso contaminato*: la quota di peso random-effects
+`1/(SE²+τ²)` degli studi difettosi, mediana sui geni, coi bracci collassati per
+studio. (2) *Influenza*: si tolgono in blocco e si rifà il pooling; si guardano
+Spearman del ranking, geni significativi persi, max |Δ logFC| fra i primi 30, su
+un insieme di geni fissato sul pooling pieno. (3) *Nulli*: la stessa rimozione
+contro 20 rimozioni casuali di studi **puliti**, con lo stesso numero di studi e
+di bracci; si riporta il percentile.
+Prova di accettazione: il ri-pooling pieno riproduce `cluster_pooled.parquet` —
+**66 gruppi su 66, scarto esattamente 0**.
+
+**Risultati.** 128 delle 194 (66%) non hanno alcun difetto letto. Sulle 66 che ne
+hanno, il peso e l'influenza **calano in modo monotono col crescere di k**:
+
+| | k=3-4 | k=5-9 | k=10-14 | k≥15 |
+|---|---:|---:|---:|---:|
+| gruppi accusati | 29 | 23 | 2 | 12 |
+| di cui **muoiono** (scendono sotto k=3) | 21 | 0 | 0 | 0 |
+| peso contaminato | 38,4% | 18,1% | 7,3% | **8,8%** |
+| geni significativi persi | 58,0% | 40,7% | 17,3% | **13,1%** |
+| Spearman del ranking | 0,473 | 0,632 | 0,840 | **0,864** |
+
+I gruppi grandi **contengono** quasi sempre un difetto — è aritmetica, a tasso
+costante dell'8,2% per studio — ma quel difetto **pesa poco**. I piccoli
+raramente ne contengono, ma quando capita domina, e in 21 casi su 29 toglierlo
+uccide la meta-analisi: quello però è un fatto sul **gate** `k ≥ 3`, non sul
+difetto. **Togliendo tutti i difetti, 173 meta-analisi su 194 restano in piedi.**
+
+**E il difetto conta più del semplice togliere dati?** In media no: il percentile
+della rimozione accusata fra 20 rimozioni pulite equivalenti è 0,50 / 0,33 / 0,50
+sulle tre statistiche (Wilcoxon p = 0,59 / 0,46 / 0,39). Ma la coda supera il
+caso: **12 gruppi su 45 stanno sopra il 90° percentile** sullo Spearman contro 4,5
+attesi (binomiale p = 0,0012). Non «non contano», e non «sono tutti gravi».
+
+> **Limite che vale per tutte e tre.** Una leave-one-out vede solo gli studi
+> **discordanti**. Un difetto che sposta il risultato *nella stessa direzione*
+> degli altri è invisibile a questo disegno. «Influenza piccola» non assolve il
+> difetto. Il dettaglio, coi limiti, sta in `INFLUENZA-DEI-DIFETTI.md`.
+
+---
+
 ## Dove ogni errore possibile si vede
 
 | se sbaglia... | lo vedi confrontando... | e la colpa e' del... |

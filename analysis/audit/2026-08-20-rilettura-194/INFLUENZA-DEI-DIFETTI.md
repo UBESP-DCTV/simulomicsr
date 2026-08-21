@@ -158,9 +158,45 @@ I 173 coincidono col conto fatto ieri per un'altra strada (togliere gli 85 studi
 accusati e contare quanti gruppi restano a k ≥ 3): due calcoli indipendenti,
 stesso risultato.
 
-### 2.5 I nulli — RISULTATO DA COMPILARE
+### 2.5 I nulli — è il difetto, o è il togliere dati?
 
-*(in esecuzione: 66 gruppi × 20 nulli)*
+66 gruppi × 20 rimozioni pulite, **292 minuti** su 40 worker. Nullo costruibile su
+**45 gruppi su 66** (8 non hanno abbastanza studi puliti, 13 non producono almeno
+tre nulli poolabili).
+
+**Il nullo è appaiato per davvero, stavolta:** rapporto mediano dei bracci tolti
+`nulli / accusati` = **1,00**. Quello del 2026-08-10 stava a 1,35 sugli studi.
+
+**In media, gli accusati sono indistinguibili dai puliti:**
+
+| percentile della rimozione accusata fra le pulite | mediana | Wilcoxon vs 0,50 |
+|---|---:|---:|
+| Spearman del ranking | **0,500** | p = 0,586 |
+| geni significativi persi | **0,333** | p = 0,460 |
+| max \|Δ logFC\| | **0,500** | p = 0,391 |
+
+Cioè: togliere uno studio accusato sposta la meta-analisi **quanto togliere uno
+studio pulito della stessa taglia**. L'influenza misurata al §2.2 è in larga parte
+l'influenza del *togliere dati*, non del *difetto*.
+
+**Ma la coda supera il caso**, e questo è il pezzo che non va perso:
+
+| | sopra il 90° percentile | attesi per caso | binomiale |
+|---|---:|---:|---:|
+| Spearman | **12 su 45** | 4,5 | **p = 0,0012** |
+| geni significativi | **9 su 45** | 4,5 | **p = 0,032** |
+| max \|Δ logFC\| | 7 su 45 | 4,5 | p = 0,159 |
+
+**Tre gruppi hanno tutti e tre i percentili sopra 0,90: IL22, `obese`, `sals`.**
+
+Il numero di studi accusati **non** predice il percentile (Spearman ρ = −0,10,
+p = 0,52): non è «più difetti, più danno».
+
+**La lettura onesta è doppia, e nessuna delle due metà va citata da sola:**
+i difetti *come classe* non spostano il risultato più di rimozioni pulite
+equivalenti; ma **circa un quarto dei gruppi** (12 su 45 sullo Spearman) sta nella
+coda, più di quanto il caso spieghi. Non è «non contano» e non è «sono tutti
+gravi».
 
 ---
 
@@ -180,6 +216,12 @@ stesso risultato.
    indipendente. Il 16,5% dei verdetti non è chiuso dall'etichetta.
 4. I gruppi a k=3 che «muoiono» non sono un risultato sul difetto: sono un
    risultato sul gate. Vanno riportati separatamente, come qui.
+5. **Il nullo copre 45 gruppi su 66.** Gli altri 21 non hanno abbastanza studi
+   puliti per costruire un confronto — e sono per definizione i gruppi piccoli e
+   più contaminati, cioè quelli su cui la domanda sarebbe più interessante. La
+   conclusione «indistinguibili» vale sui 45, non sui 66.
+6. Con 20 nulli per gruppo il percentile ha una risoluzione di 0,05: un valore di
+   1,00 vuol dire «più di tutte e venti», non «più di tutte le possibili».
 
 ---
 

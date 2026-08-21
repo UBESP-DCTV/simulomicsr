@@ -1,0 +1,66 @@
+Warning message:
+ℹ meta-analisi: 194 | studi accusati: 94 in 66 gruppi
+ℹ leggo per_study_de e cluster_pooled...
+ℹ righe per-braccio: 27504279 | righe poolate: 3210306
+ℹ cluster con un peso calcolato: 194
+
+── Peso contaminato, tutte e 194 ───────────────────────────────────────────────
+ℹ gruppi SENZA accuse: 128 -> peso 0 per costruzione
+ℹ gruppi CON accuse: 66
+ℹ   peso contaminato mediano: 21.2%
+ℹ   minimo 0.0% | massimo 88.0%
+ℹ   gruppi accusati ma con peso contaminato ZERO: 1
+ℹ   sopra il 50% del peso: 8 | sopra il 25%: 27
+
+── I venti gruppi piu' contaminati ──
+
+                                entita k n_studi_accusati peso_contaminato
+                             CETUXIMAB 3                2             88.0
+                             asthmatic 3                1             77.9
+                                  IL21 3                2             74.5
+                                  IL1A 3                2             66.2
+                                  IL15 3                2             63.9
+                        osteoarthritis 3                1             62.1
+                                asthma 3                1             61.7
+                             nilotinib 3                1             55.8
+                             SCH772984 3                1             49.0
+                            everolimus 5                2             47.7
+             myotonic dystrophy type 1 3                1             44.7
+                      Breast Neoplasms 4                2             44.2
+                          temozolomide 4                2             44.2
+                                 IFNA1 4                2             43.8
+                           gemcitabine 3                1             39.5
+                              afatinib 3                2             38.4
+                                 obese 5                1             34.7
+                             tamoxifen 3                1             34.2
+ PMA (phorbol 12-myristate 13-acetate) 3                1             33.5
+                                  IL22 5                1             33.4
+  verdetto
+   incerta
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+   incerta
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+ difettosa
+── Il peso contaminato cresce col numero di studi? ──
+
+   fascia peso_contaminato.n peso_contaminato.mediana
+1   k=3-4          29.000000                38.420906
+2   k=5-9          23.000000                18.054685
+3 k=10-14           2.000000                 7.306875
+4   k>=15          12.000000                 8.818706
+✔ Scritto B1-peso-contaminato.csv

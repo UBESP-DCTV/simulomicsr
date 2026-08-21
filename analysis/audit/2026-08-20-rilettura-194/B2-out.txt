@@ -1,0 +1,55 @@
+Warning message:
+ℹ gruppi con almeno un'accusa: 66 | studi accusati: 94
+ℹ leggo per_study_de dei gruppi accusati...
+ℹ righe per-braccio: 13431907
+ℹ leggo cluster_pooled (per la prova di accettazione)...
+ℹ giro 66 gruppi su 24 worker...
+✔ fatto in 33.7 min
+
+── PROVA DI ACCETTAZIONE: il ri-pooling pieno riproduce il deliverable? ────────
+ℹ gruppi verificati: 66 | scarto massimo su tutti: 0e+00
+✔ PROVA superata: scarto <= 1e-6 su tutti i gruppi.
+
+── Quanto si sposta il risultato togliendo gli accusati ────────────────────────
+ℹ gruppi misurati: 66
+ℹ   Spearman: mediana 0.673 | minimo -0.104
+ℹ   geni significativi persi: mediana 39.7% | massimo 100.0%
+ℹ   max |delta logFC| fra i primi 30: mediana 0.326
+ℹ   gruppi che perdono piu' della meta' dei geni significativi: 21
+ℹ   gruppi che scendono sotto k=3 togliendo gli accusati: 16
+
+── I quindici gruppi piu' spostati (per geni significativi persi) ──
+
+                    entita k n_studi_tolti spearman n_sig_pieno n_sig_persi
+                      IL21 3             2       NA          94          94
+                      IL1A 3             2       NA        2084        2084
+            osteoarthritis 3             1    0.231        1475        1475
+                  afatinib 3             2       NA        1811        1811
+                 CETUXIMAB 3             2       NA          26          26
+                      IL15 3             2       NA         198         198
+                 asthmatic 3             1    0.261        2749        2733
+                      pdac 3             1    0.101         170         169
+                    asthma 3             1    0.231         650         644
+ myotonic dystrophy type 1 3             1    0.323        1274        1150
+                 nilotinib 3             1    0.410         562         491
+                      sals 5             1   -0.104          45          39
+                     obese 5             1    0.309         446         361
+             staurosporine 4             1    0.360         777         615
+              progesterone 3             1    0.252         210         162
+ pct_sig_persi max_abs_delta_logFC
+         100.0                  NA
+         100.0                  NA
+         100.0               1.491
+         100.0                  NA
+         100.0                  NA
+         100.0                  NA
+          99.4               0.240
+          99.4               0.975
+          99.1               0.528
+          90.3               0.471
+          87.4               0.593
+          86.7               1.122
+          80.9               0.760
+          79.2               0.328
+          77.1               0.240
+✔ Scritto B2-influenza-loo.csv
