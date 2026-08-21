@@ -21,10 +21,17 @@
 corrente è `20260819T185517Z-stage4-v16-3e31e59d` **(194)**. Esistono entrambi,
 hanno la stessa forma, e il vecchio è usato come *riferimento* da `10-blocchi.R`:
 una sessione che si fida delle istruzioni permanenti **lavora sull'oggetto
-sbagliato** — che è il difetto tipico di questo progetto. **S1 lo corregge; fino
-ad allora, incolla il percorso giusto in testa a ogni prompt che tocca i dati**
-(S2, S6, S7a, S7b, S9a, S10, S13 lo richiedono, e nel testo di ciascuno è
-ripetuto).
+sbagliato** — che è il difetto tipico di questo progetto. **S1 lo corregge. Fino
+ad allora, aggiungi questa riga in testa a ogni prompt che tocca i dati:**
+
+```
+Il deliverable e'
+/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d
+(194 meta-analisi), NON quello che dice CLAUDE.md.
+```
+
+Serve a **tutti i prompt tranne S0, S1, S5 e S13**, che ce l'hanno già dentro o
+non toccano i dati.
 
 **2. Il comando R giusto è `Rscript` SENZA `--vanilla`.** `CLAUDE.md` dice il
 contrario per il laptop, e si sbaglia: con `--vanilla` mancano `devtools` e
@@ -49,7 +56,9 @@ rimozioni casuali di studi *puliti* della stessa taglia, in media sono
 **indistinguibili** (percentile 0,50 / 0,33 / 0,50; Wilcoxon p = 0,59 / 0,46 /
 0,39). Cioè l'influenza misurata è in gran parte quella del **togliere dati**, non
 del difetto. **Però la coda supera il caso**: 12 gruppi su 45 stanno sopra il 90°
-percentile contro 4,5 attesi (binomiale **p = 0,0012**), e **tre li superano su
+percentile contro 4,5 attesi (binomiale **p = 0,0012**; ⚠️ è il migliore dei tre
+test — gli altri due danno 0,032 e **0,159**, quest'ultimo non significativo, e la
+molteplicità non è corretta), e **tre li superano su
 tutte e tre le statistiche — `IL22`, `obese`, `sals`**.
 
 E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei
@@ -62,8 +71,9 @@ gruppi un solo studio porta più della metà del peso. Filtrando tutto si arriva
 > senza difetti più 45 che i difetti li contengono ancora** («sopravvivono»
 > significa solo che toglierli non li ucciderebbe). Quei 45 hanno peso contaminato
 > mediano **14,7%**, massimo **47,7%**, sette sopra il 25%. E dei 128 «puliti»,
-> **87 (69%) sono dominati** da un solo studio e **53 (42%) valgono meno di due
-> studi efficaci**. **`IL22`, `obese` e `sals` — i tre casi in cui l'evidenza dice
+> **87 su 128 sono dominati** da un solo studio e **53 valgono meno di due studi
+> efficaci** (68% e 41%; le percentuali pubblicate altrove dicono 69% e 42%
+> perché il denominatore lì è 126, i due con la misura mancante). **`IL22`, `obese` e `sals` — i tre casi in cui l'evidenza dice
 > che il difetto sposta davvero il risultato — stanno nei 173 e non nei 37.**
 
 ## Le tredici cose aperte, numerate
@@ -76,12 +86,12 @@ gruppi un solo studio porta più della metà del peso. Filtrando tutto si arriva
 | 3 | Nessuna verifica usa dati esterni al corpus | S3 → S4 |
 | 4 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi) | S5 → S9b |
 | 5 | Le lettere greche sbagliano in 45 prove su 90 | S6 |
-| 6 | `build_lane_library_lookup()` va in crash su un campione assente dall'H5 | S6 |
+| 6 | `.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()` | S6 |
 | 7 | Il rilevatore di difetti in produzione ne segnala 2 su 1.903 | S7a → S7b → S8 → S9a |
 | 8 | Le figure dell'articolo descrivono un deliverable che non esiste più | S10 |
 | 9 | I limiti misurati non sono scritti da nessuna parte | S11 |
 | 10 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S12 |
-| 11 | Lo stesso confronto contato due volte gonfia il peso, e con esso il taglio 113→37 | S13 |
+| 11 | I bracci che **condividono il controllo** gonfiano il peso, e con esso il taglio 113→37 | S13 |
 | 12 | Il deliverable esiste in una copia sola, fuori da git, fra quattro cartelle omonime | S14 |
 
 **Tre cose non si chiudono, si dichiarano** — sono materiale per S11, non
@@ -100,21 +110,29 @@ sbagliati).
 |---|---|---|---|---|
 | **S0** | Il metro concorda con se stesso? | misura | ~4 h | — |
 | **S1** | Pulizia di `CLAUDE.md` | igiene | ~3 h | — |
-| **S2** | Le due decisioni: il gate, e «37 o 173» | misura + decisione | ~4 h | — |
-| **S3** | Validazione esterna: il disegno | disegno | ~3 h | — |
+| **S14** | Mettere in salvo il deliverable | igiene | ~2 h | — |
+| **S13** | Il controllo condiviso, e il peso che gonfia | misura | ~3 h | — |
+| **S2** | Le due decisioni: il gate, e «37 o 173» | misura + decisione | ~4 h | *meglio dopo S0 e S13* |
+| **S3** | Validazione esterna: il disegno | disegno | ~3 h | *robusto a S2, o dopo S2* |
 | **S4** | Validazione esterna: l'esecuzione | misura | *da stimare in S3* | S3 |
-| **S5** | La decisione sul re-run completo | decisione | ~2 h | S2 |
+| **S5** | La decisione sul re-run completo | decisione | ~2 h | — |
 | **S6** | Le lettere greche + il crash delle corsie | misura + 1 fix | ~4 h | — |
-| **S7a** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | S2 |
+| **S7a** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio dopo S0* |
 | **S7b** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S7a* | S7a |
 | **S8** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | S7b |
-| **S9a** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | S8 |
+| **S9a** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | S8 *(+ S6 e S13 se hanno prodotto correzioni)* |
 | **S9b** | Il re-run completo degli stadi LLM | campagna | **40-60 h** | S5, S8 |
 | **S10** | Rifare le figure sul deliverable vero | produzione | ~4 h | S2 |
-| **S11** | Scrivere i Methods e le limitazioni | scrittura | ~4 h | S2 |
+| **S11** | Scrivere i Methods e le limitazioni | scrittura | ~4 h | S2, S5, S6, S13 *(le fonti dei numeri)* |
 | **S12** | Riverificare le meta-analisi cambiate | lettura | *dipende da S9b* | S9b |
-| **S13** | Il doppio conteggio del peso | misura | ~3 h | — |
-| **S14** | Mettere in salvo il deliverable | igiene | ~2 h | — |
+
+> **Le prime quattro non dipendono da nulla** e si possono fare in qualunque
+> ordine. «Meglio dopo» non è un blocco: è un avvertimento che il numero su cui
+> deciderai può muoversi.
+>
+> ⚠️ **Nessuna dipendenza è un cancello tranne quelle scritte per esteso** (S4←S3,
+> S7b←S7a, S8←S7b, S9a←S8, S9b←S5+S8, S12←S9b). Le altre dicono solo che il
+> risultato sarà più solido.
 
 ### ⚠️ La dipendenza che conta più di tutte
 
@@ -124,8 +142,7 @@ fai, *cambia quali meta-analisi esistono* — e non è un'ipotesi: il re-run
 
 Quindi S9b **manda in scadenza**: i denominatori di S7a, il setaccio di S2, la
 validazione di S4, **le figure di S10, i Methods di S11 e la misura di S13** (che
-nella mappa dipendono solo da S2, quindi qualcuno potrebbe farli prima e
-buttarli), e in parte la rilettura a mano delle 194 — l'oggetto più caro prodotto
+non hanno S9b come cancello, quindi qualcuno potrebbe farli prima e buttarli), e in parte la rilettura a mano delle 194 — l'oggetto più caro prodotto
 finora.
 
 Per questo **S5, la decisione se rifarlo, viene presto**. E per questo **S9a è
@@ -134,7 +151,13 @@ stesso e il lavoro di S7-S8 non resta in un cassetto.
 
 ### Se hai tempo per tre sessioni sole
 
-**S0, S2, S3.**
+**S0, S13, S2** — e se ne hai una quarta, **S3**.
+
+⚠️ **S13 è nelle tre per un motivo preciso**, ed è il conflitto che S2 stessa
+segnala: `quota_top1` — il criterio che porta da 113 a **37** — è gonfiato dai
+bracci che condividono il controllo, e **quattro gruppi stanno sul confine**
+(quattro a 0,50-0,51, due a 0,57). S13 costa 3 ore e dice se il 37 è 37. Decidere «37 o
+173» senza quel numero significa scegliere su un confine che può muoversi.
 
 **S0 prima di tutto**, e non per pedanteria: S2 sta per decidere «37 o 173» su
 numeri che escono da una lettura mai verificata, e S7a sta per misurare una
@@ -142,9 +165,14 @@ sensibilità contro lo stesso metro. Costa venti riletture. Se l'accordo è alto
 va avanti tranquilli; se è basso, si è evitato di costruire tre sessioni su
 sabbia.
 
-Poi **S2** (che cosa è l'articolo) e **S3** (la validazione, che va disegnata
-*prima* di guardare altri dati). S1 è breve e si ripaga alla terza sessione: falla
-in aggiunta, non al posto di una di queste.
+Poi **S13** (che dice se il 37 è 37), poi **S2** (che cosa è l'articolo). **S3**
+— la validazione, che va disegnata *prima* di guardare altri dati — se c'è una
+quarta sessione; e se il disegno lo scrivi robusto a entrambi gli insiemi, si può
+anticipare.
+
+**S1 e S14 sono brevi e vanno in aggiunta, non al posto**: la prima si ripaga alla
+terza sessione, la seconda mette in salvo in due ore un oggetto che a rifarlo ne
+costa quaranta.
 
 ---
 
@@ -171,12 +199,36 @@ tante.** È l'unico numero che manca, ed è quello da cui dipende tutto il resto
 Si prendono **venti** delle 194 — scelte a caso, col seme scritto prima — e si
 rilegge ciascuna **due volte**:
 
-1. **una seconda volta con lo stesso metodo** (lettore, due critici, arbitro; i
-   prompt sono in `analysis/audit/2026-08-20-rilettura-194/C1-workflow-rilettura.js`),
-   partendo dallo stesso materiale, per misurare **quanto il metodo concorda con se
-   stesso**;
-2. **una volta da te, a mano**, su cinque delle venti — le schede sono fatte per
-   questo — per misurare **quanto il metodo concorda con un umano**.
+1. **una seconda volta con lo stesso metodo** (lettore, due critici, arbitro),
+   partendo dallo stesso materiale, per misurare **quanto il metodo concorda con
+   se stesso**;
+2. **a mano da te**, per misurare **quanto il metodo concorda con un umano** — che
+   è la cosa che il precedente del progetto accusa (accordo 36,2%), quindi il
+   campione grosso va **qui**, non al confronto del metodo con sé stesso.
+   Dividile come preferisci fra le venti; se ne leggi solo cinque, con cinque non
+   si distingue un accordo del 36% da uno del 90%, e va scritto.
+
+⚠️ **Quattro cose che rendono il punto 1 meno banale di come suona, e vanno
+risolte prima di lanciare:**
+
+- **`10-blocchi.R` non sa selezionare venti gruppi.** L'unica manopola è
+  `PER_BLOCCO`; lo script ordina tutte e 194 e le distribuisce a giro. Serve un
+  modo di costruire il blocco dei venti estratti.
+- **Il workflow è cablato su 194.** In
+  `analysis/audit/2026-08-20-rilettura-194/C1-workflow-rilettura.js` c'è
+  `BLOCCHI = Array.from({length: 15}, …)` e il prompt del lettore dice «Sono 13
+  gruppi»: falso per un giro da venti.
+- **Cambiando la composizione del blocco si cambia il metodo**, perché i critici
+  ricevono i verdetti del lettore *di tutto il blocco* e l'arbitro rilegge il
+  blocco intero. Per un test-retest onesto conviene **rifare un blocco intero già
+  letto** invece di comporne uno nuovo coi venti estratti: si perde la casualità
+  della selezione e si guadagna che il metodo resta identico. **Scegli quale delle
+  due e dichiara perché.**
+- ⚠️ **E c'è un limite che va detto:** i prompt in `C1-workflow-rilettura.js` sono
+  stati **recuperati** il 2026-08-21 dopo essere andati persi. Sono lo script vero
+  del workflow eseguito, ma se per qualunque ragione non fossero verbatim, S0
+  misurerebbe una *ricostruzione* contro l'originale — che non è un test-retest.
+  Verificalo prima.
 
 Poi si confrontano i verdetti e si conta l'accordo.
 
@@ -186,7 +238,10 @@ Non si cambia nessun verdetto delle 194. Questa sessione **misura**, non corregg
 
 ### Come si sa che è finita
 
-Ci sono due numeri: accordo metodo-con-sé-stesso su 20, accordo metodo-con-te su 5.
+Ci sono **due numeri, ciascuno con scritto su quanti gruppi è calcolato** — e la
+ripartizione la scegli tu al punto 2, non è fissata qui. ⚠️ Se scegli di rifare un
+**blocco intero già letto** (l'opzione che tiene il metodo identico), i gruppi sono
+**13**, non 20: va bene, basta dichiararlo.
 
 ### La decisione che spetta a te
 
@@ -210,14 +265,23 @@ I 116/62/16 e tutto quello che ne discende vengono da UNA sola lettura fatta da 
 modello, mai controllata da un umano. Precedente: sugli stessi 213 gruppi, modello
 24 incoerenti contro 96 della lettura umana, accordo 36,2%.
 
-Prendi VENTI delle 194 a caso (scrivi il seme prima) e rileggile una seconda volta
-con lo stesso metodo - i prompt sono in
-analysis/audit/2026-08-20-rilettura-194/C1-workflow-rilettura.js, il materiale si
-rifa' con 00-materiale.R e 10-blocchi.R.
+PRIMA di lanciare, risolvi tre cose e dimmi come:
+- 10-blocchi.R non sa selezionare venti gruppi (l'unica manopola e' PER_BLOCCO, e
+  distribuisce tutte e 194 a giro);
+- il workflow in analysis/audit/2026-08-20-rilettura-194/C1-workflow-rilettura.js
+  e' cablato su 194 (BLOCCHI = 15, e il prompt del lettore dice "sono 13 gruppi");
+- cambiando la composizione del blocco CAMBIA IL METODO, perche' i critici
+  ricevono i verdetti del lettore di tutto il blocco. Valuta se convenga rifare un
+  BLOCCO INTERO gia' letto invece di comporne uno coi venti estratti, e dichiara
+  la scelta.
+E verifica che i prompt in quel file siano verbatim: sono stati recuperati dopo
+essere andati persi, e se non lo fossero misureresti una ricostruzione.
 
-Poi dammi CINQUE schede da leggere a mano io, e confrontiamo.
+Poi rileggi con lo stesso metodo e dammi le schede da leggere a mano IO - il
+campione grosso va sul confronto con l'umano, che e' quello che il precedente
+accusa (36,2%), non su quello del metodo con se stesso.
 
-Alla fine due numeri: accordo del metodo con se stesso su 20, accordo con me su 5.
+Alla fine due numeri, con scritto su quanti gruppi ciascuno.
 Non cambiare nessun verdetto: qui si misura, non si corregge.
 ```
 
@@ -319,12 +383,16 @@ a portare a 37.
 
 1. Si contano — non si stimano — le meta-analisi che **nascerebbero a k=2**: quante
    e con che k.
-   ⚠️ **E si dice quanto costa**, perché è una cosa che il progetto ha già
-   deciso una volta: a k=2 **τ² e I² non sono stimabili in modo informativo**, e
-   I² è una colonna di testa del deliverable. ADR-0026 tolse il ramo `mega`
-   proprio per questo («I² e τ² sono NA su tutte le 1,75 M di righe»). «Scendere a
-   2 dichiarando la fragilità» significa: rinunciare alla misura di eterogeneità
-   proprio sui gruppi nuovi.
+   ⚠️ **E si dice quanto costa, ma con l'argomento giusto.** A k=2 il ramo
+   `rem_group` un I² lo produce — provato: `k=2 REML → I² = 71,5, τ² = 0,129` —
+   quindi **non** è vero che si rinuncia alla misura di eterogeneità. Il costo è
+   un altro: con due studi quella stima ha un'incertezza enorme e un intervallo di
+   predizione che non esclude nulla. **Questa sessione deve misurarlo**, non
+   affermarlo: quanto valgono I² e τ² sui gruppi che nascerebbero a k=2, e con che
+   intervallo.
+   *(Nota: ADR-0026 riguarda il ramo `mega` e la sua specificazione del modello —
+   niente pendenza casuale sul trattamento — non il valore di k. E vive solo sul
+   branch `mega-recovery-2026-07-27`: qui non c'è.)*
    **La risposta è già su disco**: `non_processable.rds` nella cartella del
    deliverable ha 122 righe col motivo dello scarto, e **88 sono a `k_eff=2`** (27
    a 1, 7 a 0). Il gate è `config$rem_group$k_eff_min` in `run_metadata.json`.
@@ -353,8 +421,9 @@ finché la scelta non è depositata.
 `quota_top1`, che è il criterio del taglio 113→37, **è gonfiato dal controllo
 condiviso** e S13 misura di quanto (quattro gruppi stanno sul confine 0,50-0,51);
 e S7b può spostare righe di `difetti.csv`, da cui escono 128, 66, 173 e 37. Se
-puoi, fai **S0 e S13 prima**; se non puoi, **scrivi che la scelta decade** se S7b
-sposta più di N verdetti o se S9b viene eseguita.
+puoi, fai **S0 e S13 prima**; se non puoi, **scrivi che la scelta decade** se **S13**
+sposta il confine di `quota_top1`, se S7b sposta più di N verdetti, o se S9b viene
+eseguita.
 
 - **il gate resta a 3, scende a 2 dichiarando la fragilità, o resta a 3 e la
   fragilità si dichiara nei Methods?**
@@ -379,7 +448,21 @@ Devo prendere due decisioni e mi servono i materiali, non le tue preferenze.
 2) 37 o 173: fammi vedere i due insiemi - entita', k, geni significativi, e cosa
    andrebbe dichiarato accanto a ciascuno.
 
+E dimmi anche quanto valgono I2 e tau2 sui gruppi che nascerebbero a k=2, con che
+intervallo: MISURALO, non affermarlo. A k=2 un I2 esce (provato: REML da' I2=71,5,
+tau2=0,129), quindi non e' vero che si rinuncia all'eterogeneita': e' che quella
+stima ha un'incertezza enorme, e voglio vederla.
+
 Poi scrivimi tre o quattro modi di dichiarare il limite della dominanza.
+
+DUE COSE CHE DEVI DIRMI PRIMA CHE IO SCELGA, altrimenti scelgo al buio:
+- quota_top1, il criterio che taglia da 113 a 37, e' GONFIATO dai bracci che
+  condividono il controllo, e S13 misura di quanto: quattro gruppi stanno sul
+  confine (0,50 0,50 0,51 0,51). Se S13 non e' ancora stata fatta, dimmelo;
+- S7b puo' spostare righe di difetti.csv, da cui escono 128, 66, 173 e 37.
+Se possibile facciamo S0 e S13 PRIMA. Se non e' possibile, scrivi nel file che la
+mia scelta DECADE se S13 sposta il confine, se S7b sposta piu' di N verdetti, o se
+S9b viene eseguita.
 
 Scrivi tutto in analysis/audit/2026-08-21-decisioni/S2-opzioni.md e mettici
 dentro la mia scelta. La sessione finisce
@@ -421,19 +504,20 @@ Materiale: `analysis/audit/2026-08-08-validazione-esterna/` e
    dichiara quante delle 111 sopravvivono.
    ⚠️ **E si dichiara il soffitto, che è basso e strutturale.** LINCS mappa solo
    piccole molecole. Delle 194 entità: 107 sono `small_molecule`, ma **42 sono
-   malattie, 15 citochine, 9 patogeni, 11 ambientali, 9 genetiche** — fuori **per
-   costruzione**. Misurato: 91 delle 111 entità LINCS sono nelle 194, e **dei 37
+   malattie, 15 citochine, 9 patogeni, 11 ambientali, 9 genetiche e 1
+   differenziamento** — fuori **per costruzione**. Misurato: 91 delle 111 entità LINCS sono nelle 194, e **dei 37
    del nocciolo ne copre 21**. Cioè al meglio si valida **il 47% del deliverable e
    il 57% del nocciolo**. La domanda «quale fonte» va posta sapendo questo, e
    accanto va chiesto **che cosa valida l'altra metà** — o si dichiara che resta
    non validata.
-3. ⚠️ **Si misura la circolarità, e lo strumento esiste già.**
+2. ⚠️ **Si misura la circolarità, e lo strumento esiste già.**
    `analysis/audit/2026-08-08-validazione-esterna/30-geni-e-circolarita.R` conta
    gli **studi GEO in comune** fra il nostro corpus e LINCS. Una fonte «esterna»
    che condivide studi col corpus non è esterna: è la cosa che questa sessione
-   esiste per evitare, e il conto non è mai entrato nel disegno. Solo se si vuole valutare una fonte
-   *diversa* da LINCS si misura una copertura nuova — e allora serve almeno
-   l'indice della fonte: scaricare un indice è permesso, dati pesanti no.
+   esiste per evitare, e il conto non è mai entrato nel disegno.
+3. Solo se si vuole valutare una fonte **diversa** da LINCS si misura una
+   copertura nuova, e allora serve almeno l'indice: scaricare un indice è
+   permesso, dati pesanti no.
 4. Si scrive il disegno: quali meta-analisi si confrontano, che cosa si misura,
    **quale risultato conterebbe come fallimento**, quali limiti ha la fonte.
    ⚠️ Quali? **Dipende da S2** (37 o 173): il disegno va scritto robusto a
@@ -492,8 +576,9 @@ Se vuoi proporre una fonte DIVERSA da LINCS, allora misurane la copertura
 Poi il disegno: cosa si confronta, cosa si misura, e quale risultato conterebbe
 come FALLIMENTO.
 
-Dichiarami il SOFFITTO: LINCS mappa solo piccole molecole, e delle 194 entita' 42
-sono malattie, 15 citochine, 9 patogeni. Dei 37 del nocciolo ne copre 21. Dimmi
+Dichiarami il SOFFITTO: LINCS mappa solo piccole molecole, e delle 194 entita'
+107 sono small_molecule mentre 42 sono malattie, 15 citochine, 9 patogeni, 11
+ambientali, 9 genetiche e 1 differenziamento. Dei 37 del nocciolo ne copre 21. Dimmi
 che cosa valida l'altra meta', o dichiara che resta non validata.
 
 E misura la CIRCOLARITA': lo strumento c'e' gia',
@@ -703,9 +788,18 @@ sta già girando, in **entrambi** i rami:
 - se il re-run completo si fa (S9b), si paga con quello;
 - se non si fa, si paga con S9a, che si fa lo stesso.
 
-Il costo marginale è **~0**, non 6 ore. L'unico caso in cui costa davvero è se
-*anche* S8 viene abbandonata. La domanda vera è quindi solo: **quante meta-analisi
-cambierebbero?**
+Il costo marginale del **calcolo** è **~0**, non 6 ore, purché S8 non venga
+abbandonata (la via d'uscita di S7a può chiuderla, e con lei S9a).
+
+⚠️ **Ma il costo del calcolo non è tutto il costo, e l'handout finora lo taceva:
+nessuna sessione implementa il fix delle greche.** S6 lo *simula* e vieta di
+toccare i resolver; S8 è il rilevatore; S9a applica «le correzioni del
+rilevatore». Se la risposta è «sì, vale la pena», **questa sessione deve anche
+dire chi lo scrive e quanto costa** — nove funzioni in TDD non sono gratis — e
+quel lavoro va aggiunto alla mappa prima di S9a.
+
+La domanda resta: **quante meta-analisi cambierebbero?** — ma la risposta va
+pesata contro il costo di scrivere il fix, non solo di girarlo.
 
 ### Prompt
 
@@ -720,11 +814,13 @@ ho provato - sette, non tutte quelle possibili.
 
 1. Estendi il controllo del collasso oltre le sette forme, con un criterio di
    esaustivita' dichiarato.
-2. Simula il fix SENZA applicarlo: quante entita' cambiano, quanti gruppi si
+2. Conta le etichette vere che contengono lettere greche e dimmi in quali gruppi
+   stanno.
+3. Simula il fix SENZA applicarlo: quante entita' cambiano, quanti gruppi si
    fondono, quanti si spezzano. ATTENZIONE: le fusioni NON si vedono sulle 194
    righe, perche' un gruppo si fonde tirandosi dentro roba che oggi sta sotto
    k=3. Ri-deriva la chiave d'entita' su TUTTO lo Stadio 3.
-3. Correggi UNA cosa sola, che e' una riga. LA RIPRODUZIONE E' QUESTA:
+4. Correggi UNA cosa sola, che e' una riga. LA RIPRODUZIONE E' QUESTA:
      simulomicsr:::.lane_index(c("a_L001","a_L002", NA))
      -> Error: NAs are not allowed in subscripted assignments
    Il difetto e' in .lane_index(), R/stage4-technical-lanes.R:79-84. NON passare
@@ -733,12 +829,16 @@ ho provato - sette, non tutte quelle possibili.
    ci arriva solo se c'e' almeno un altro gruppo candidato corsia: il test deve
    esercitare quel caso, non la sola riga NA.
 
-Non toccare i resolver, non lanciare re-cluster.
-Alla fine dimmi se vale la pena. ATTENZIONE al costo: S9a (re-cluster + re-pool
-locale) gira COMUNQUE perche' dipende da S8, non da S5 - quindi il fix delle
-greche entra in una macchina gia' in moto in entrambi i rami, e il costo marginale
-e' ~0, non 6 ore. Costa davvero solo se abbandoniamo anche S8. Quindi la domanda
-e' solo: quante meta-analisi cambierebbero?
+Non toccare i resolver, non lanciare re-cluster. E alla fine RILANCIA
+98-greche-tutti-i-resolver.R: deve dare ancora 45 su 90. Se da' un numero diverso
+hai corretto qualcosa per sbaglio, ed e' proprio quello che non devi fare qui.
+Alla fine dimmi se vale la pena, e pesa DUE costi, non uno:
+- il CALCOLO costa ~0, perche' S9a (re-cluster + re-pool locale) gira comunque -
+  dipende da S8, non da S5. Costa davvero solo se abbandoniamo anche S8;
+- ma SCRIVERE il fix non e' gratis, e nessuna sessione lo implementa: S6 lo simula
+  e basta, S8 e' il rilevatore, S9a applica le correzioni del rilevatore. Se la
+  risposta e' "si' vale la pena", dimmi anche CHI lo scrive e quanto costa - nove
+  funzioni in TDD - e aggiungiamo quel lavoro alla mappa prima di S9a.
 ```
 
 ---
@@ -967,9 +1067,16 @@ cifra**. Suite intera verde.
 
 **Non si lancia niente.** L'applicazione è S9a.
 
+⚠️ **E si dichiara per iscritto se il cambio tocca una cache su disco.** Verificato:
+`.rp_row_defect` è memoizzata solo in environment di processo
+(`caches$agent`/`caches$token`) e **non** entra nel lookup del recupero-nome, che
+resta `v7` — quindi nessun bump. Va scritto lo stesso: questa verifica, saltata,
+è già costata otto ore.
+
 ### Come si sa che è finita
 
-I test passano, la suite è verde, la misura di S7a si riproduce esattamente.
+I test passano, la suite è verde, la misura di S7a si riproduce esattamente, e la
+verifica sulla cache è scritta.
 
 ### La decisione che spetta a te
 
@@ -1006,13 +1113,19 @@ codice corretto non cambia nulla. **Questa sessione è separata da S9b apposta**
 decidi di non rifare il run completo, le correzioni si applicano lo stesso e il
 lavoro di S7-S8 non resta in un cassetto.
 
+⚠️ **E può arrivare qui anche altro lavoro**: S6 conta il fix delle greche come
+«entra in una macchina che sta già girando», e S13 dice che una correzione del
+controllo condiviso «rientra in S9a». **Prima di lanciare, verifica che cosa
+dev'essere dentro**: girare la macchina per una correzione sola e poi riscoprire
+che ne mancava un'altra costa il doppio.
+
 ### Che cosa si fa
 
 Si depositano le previsioni **per iscritto** (quante meta-analisi, quali entità,
 quali k), si lancia re-cluster + re-pool in locale, si verificano le previsioni
 una per una.
 
-**Gli script sono questi, e vanno lanciati così** — senza queste cinque cose la
+**Gli script sono questi, e vanno lanciati così** — senza queste quattro cose la
 sessione non parte o produce spazzatura:
 
 | | |
@@ -1053,8 +1166,14 @@ Dopo: se il deliverable nuovo sostituisce quello attuale.
 Apri docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md e fai la
 SESSIONE S9a. Verifica che S8 sia chiusa.
 
-Prima di lanciare: deposita le previsioni per iscritto - quante meta-analisi,
-quali entita', quali k.
+PRIMA DI TUTTO verifica che cosa deve entrare in questo giro: oltre alle
+correzioni del rilevatore (S8), potrebbero doverci stare il fix delle greche (S6
+lo conta come "gratis perche' la macchina gira comunque") e una correzione del
+controllo condiviso (S13 dice che "rientra in S9a"). Girare per una sola e poi
+scoprire che ne mancava un'altra costa il doppio.
+
+Poi deposita le previsioni per iscritto - quante meta-analisi, quali entita',
+quali k.
 
 Gli script sono: analysis/p4-fase-f13-stage3-v16-tre-cambi.R (re-cluster,
 variabili STAGE1_MASTER/STAGE2_MASTER/H5_PATH/SUMMARIZE_WORKERS=32, prima
@@ -1144,8 +1263,10 @@ Quando finisce, aprimi S12.
 **Le figure destinate all'articolo descrivono un deliverable che non esiste più.**
 L'ultimo Layer B è `analysis/p4-output/20260808T063421Z-layer-b-81f379d3`, dell'8
 agosto: la scheda di TGF-β1 dice **k = 59**, mentre nel deliverable attuale TGF-β1
-è a **k = 54**. In più `CLAUDE.md` dice che le narrative dei bundle sono «BOZZE,
-marcate come tali: testo scientifico da rileggere e firmare».
+è a **k = 54**. In più le narrative dei bundle sono marcate «BOZZE, testo
+scientifico da rileggere e firmare» — lo dice `CLAUDE.md` oggi, **e S1 lo
+riscriverà**: se S1 è già stata fatta, la fonte è `docs/STORIA.md`, e la marcatura
+«bozza» si controlla direttamente nei file `narrative.qmd` dei bundle.
 
 È il prodotto visibile dell'articolo, ed è l'unico pezzo senza padrone.
 
@@ -1252,8 +1373,8 @@ Non si scrive prima che S2 abbia deciso: il testo cambia se l'articolo è 37 o 1
 
 ### Come si sa che è finita
 
-Ognuna delle sette ha un paragrafo, e ogni paragrafo ha accanto il file da cui
-viene il numero.
+**Ognuna delle undici** — le sette dei titoli più le quattro del ⚠️ qui sotto — ha
+un paragrafo, e ogni paragrafo ha accanto il file da cui viene il numero.
 
 ⚠️ **Ne vanno aggiunte altre quattro, che non sono nei titoli e chi scrive dai
 numeri di testa se le perde:**
@@ -1266,8 +1387,10 @@ numeri di testa se le perde:**
   incoerenti 24 e la lettura umana 96, **accordo 36,2%**. Tutto quello che sta in
   questo handout — 116/62/16, i 97 difetti, i 173, i 37 — poggia su un metro la cui
   riproducibilità **non è mai stata misurata**;
-- **il doppio conteggio del peso** (vedi sotto), che gonfia `quota_top1`, cioè il
-  criterio che taglia da 113 a 37;
+- **il peso gonfiato dai bracci che condividono il controllo** (S13), che alza
+  `quota_top1`, cioè il criterio che taglia da 113 a 37. ⚠️ **Non chiamarlo
+  «doppio conteggio»**: i trattati sono campioni diversi in 56 casi su 56, non è
+  una duplicazione;
 - **i 1.993 campioni persi non sono stati guardati per braccio.** La frase
   «potenza buttata, non risultati sbagliati» è un'**asserzione, non una misura**:
   se i persi di uno studio stanno tutti da un lato, il confronto è sbilanciato, non
@@ -1300,8 +1423,9 @@ E aggiungine altre quattro che nei titoli non ci sono:
 - i 194 verdetti vengono da un MODELLO e nessun umano li ha letti. Precedente:
   sugli stessi 213 gruppi Mistral ne dichiaro' incoerenti 24 e la lettura umana
   96, accordo 36,2%. La riproducibilita' del metro non e' mai stata misurata;
-- il doppio conteggio del peso (vedi la sezione in fondo all'handout), che gonfia
-  quota_top1, cioe' il criterio che taglia da 113 a 37;
+- il peso gonfiato dai bracci che CONDIVIDONO IL CONTROLLO (vedi S13): alza
+  quota_top1, il criterio che taglia da 113 a 37. NON chiamarlo "doppio
+  conteggio": i trattati sono campioni diversi in 56 casi su 56;
 - i 1.993 campioni persi non sono mai stati guardati PER BRACCIO: "potenza
   buttata, non risultati sbagliati" e' un'asserzione, non una misura. O la misuri
   o scrivi che non si sa.
@@ -1332,8 +1456,12 @@ Si isolano le meta-analisi **nuove o con composizione cambiata** e si rileggono
 
 **Il metodo è riproducibile, e i prompt esistono**: il materiale si rifà con
 `00-materiale.R` → `10-blocchi.R`, e i prompt di lettore, critici e arbitro sono
-salvati in `analysis/audit/2026-08-20-rilettura-194/C1-workflow-rilettura.js`
-(erano andati persi: recuperati il 2026-08-21 apposta per questa sessione).
+salvati in `analysis/audit/2026-08-20-rilettura-194/C1-workflow-rilettura.js`.
+
+⚠️ **Ma erano andati persi e sono stati recuperati il 2026-08-21.** S0 ha per
+compito di verificare che siano **verbatim**: se S0 è stata fatta, usa il suo
+esito; se non è stata fatta, **verificalo qui prima di usarli**, altrimenti stai
+rileggendo con una ricostruzione del metodo, non col metodo.
 
 ⚠️ **Ma non vanno ricopiati tali e quali.** La misura dice che i due critici hanno
 prodotto 69 rilievi contro 183 — rapporto 0,38. Il disegno era simmetrico, l'esito
@@ -1415,19 +1543,34 @@ Più in largo: **59 dei 113 hanno lo studio dominante con più di un braccio.**
 2. Si misura di quanto cambia `quota_top1` con un trattamento **corretto**, e le
    opzioni sono due — **non la deduplicazione**:
    - fondere i bracci che condividono il controllo in **un confronto solo**;
-   - applicare una correzione per baseline condivisa (la correzione di Franchini è
-     già nella config, `franchini_correction`).
+   - applicare una correzione per baseline condivisa. ⚠️ **Non è una spunta da
+     accendere**: `franchini_correction` sta in `config$mega_aug` — il ramo che
+     non è nel deliverable — e `.has_shared_baseline()` /
+     `.build_franchini_V_matrix()` **non hanno chiamanti** fuori dai propri test.
+     È codice scritto e mai chiamato: usarlo è implementazione nuova.
 3. Si dice **quante delle 113 entrerebbero o uscirebbero dai 37.**
 
 ### Che cosa NON si fa
 
 **Non si deduplica**: i trattati sono diversi in 56 casi su 56. E non si tocca
-`.collapse_arms_by_study()` prima di aver misurato.
+niente prima di aver misurato.
+
+⚠️ **La funzione da guardare per `quota_top1` è `.collapse_arm_se_by_study()`**
+(`R/stage4-pooling-effectiveness.R:30`), chiamata da
+`compute_pooling_effectiveness()`. `.collapse_arms_by_study()`
+(`R/stage4-orchestrator.R:218`) serve alle **stime poolate**, non a `quota_top1`:
+sono due catene diverse e vanno guardate tutte e due.
 
 ### Come si sa che è finita
 
 C'è il numero: **N bracci a controllo condiviso, e il setaccio 113→37 diventa
 113→M** con il trattamento scelto.
+
+**Lo script che produce questi numeri esiste**:
+`analysis/audit/2026-08-20-rilettura-194/C2-controllo-condiviso.R`. Riproduce 121
+entry / 56 chiavi / 0 su 56 trattati identici / 46 su 56 controlli identici / 41
+gruppi / 20 nei 113 / 59 dei 113, e ricalcola il setaccio 113→37 da zero. Parti da
+lì.
 
 ### La decisione che spetta a te
 
@@ -1451,14 +1594,25 @@ Il problema vero e' che .collapse_arms_by_study() (R/stage4-orchestrator.R:218) 
 combina a varianza inversa COME SE FOSSERO INDIPENDENTI, e il codice lo dichiara
 gia' alle righe 209-211 ("la SE combinata e' lievemente ottimistica"). E
 quota_top1 - il criterio che taglia da 113 a 37 - si calcola su quei pesi: dei 41
-gruppi coinvolti, 20 sono nei 113 e quattro stanno sul confine (0,50 0,50 0,51
-0,51).
+gruppi coinvolti, 20 sono nei 113 e sei stanno vicino al confine (0,50 0,50 0,51
+0,51 0,57 0,57). Lo script C2-controllo-condiviso.R riproduce tutti questi numeri:
+parti da li'.
 
 Contali, poi misura di quanto cambia quota_top1 con un trattamento CORRETTO - o
 fondendo i bracci a controllo condiviso in un confronto solo, o con la correzione
 per baseline condivisa - e dimmi quante delle 113 entrano o escono dai 37.
 
-Non toccare .collapse_arms_by_study() prima di avere il numero.
+ATTENZIONE alle funzioni: quota_top1 lo calcola .collapse_arm_se_by_study()
+(R/stage4-pooling-effectiveness.R:30) via compute_pooling_effectiveness();
+.collapse_arms_by_study() (R/stage4-orchestrator.R:218) serve alle STIME poolate.
+Sono due catene diverse, guardale entrambe.
+
+E la "correzione di Franchini" NON e' una spunta: franchini_correction sta in
+config$mega_aug, il ramo che non e' nel deliverable, e .has_shared_baseline() /
+.build_franchini_V_matrix() non hanno chiamanti fuori dai test. E' codice mai
+chiamato: usarlo e' implementazione nuova.
+
+Non toccare niente prima di avere il numero.
 ```
 
 ---
@@ -1467,9 +1621,10 @@ Non toccare .collapse_arms_by_study() prima di avere il numero.
 
 ### Perché
 
-**Il deliverable esiste in una copia sola, su un disco esterno, fuori da git.**
-Sta in `/mnt/wwn-0x5000039d58caca35/`, è `gitignored`, e ricostruirlo costa
-40-60 ore di macchina. Accanto ci sono **quattro cartelle con nomi quasi
+**Il deliverable esiste in una copia sola, su un disco esterno, fuori dal
+repository.** Sta in `/mnt/wwn-0x5000039d58caca35/`, e ricostruirlo costa 40-60
+ore di macchina — sempre che ci siano ancora gli ingressi, che stanno in
+`analysis/p4-output/` (gitignored, copia unica). Accanto ci sono **quattro cartelle con nomi quasi
 identici** — e questo handout si apre dicendo che una sessione ha già lavorato su
 quella sbagliata.
 
@@ -1481,8 +1636,16 @@ anche **l'unico esemplare**.
 1. Checksum di tutti i file del deliverable, scritti in un file versionato in git.
 2. Una copia su un supporto diverso.
 3. Un `README` nella cartella che dica **quale delle quattro** è il deliverable, da
-   quale Stadio 3 viene, e con quale master Stadio 2 — le informazioni ci sono già
-   in `run_metadata.json`, ma nessuno le legge prima di aprire una cartella.
+   quale Stadio 3 viene, e con quale master Stadio 2.
+   ⚠️ **Le informazioni stanno in due file, non in uno**: il `run_metadata.json`
+   dello *Stadio 4* ha `stage3$dir` e `clusters_sha256`, ma **il master Stadio 2 è
+   registrato nel `run_metadata.json` dello Stadio 3**.
+4. **E si salva anche quello che serve a ricostruirlo**, che è il pezzo che il
+   piano rischia di mancare: lo Stadio 3
+   `analysis/p4-output/20260818T110906Z-stage3-v16-7f986159` e i due master
+   `A3-stage1-master-innestato.jsonl` / `A3-stage2-master-innestato.jsonl` stanno
+   sotto `analysis/p4-output/`, che **è gitignored e in copia unica**. Senza
+   quelli, il deliverable non si rifà.
 4. La bozza della dichiarazione di disponibilità di dati e codice.
 
 ### Che cosa NON si fa
@@ -1504,14 +1667,22 @@ Dove va la copia, e se le tre cartelle vecchie si tengono o si archiviano.
 Apri docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md e fai la
 SESSIONE S14, solo quella.
 
-Il deliverable esiste in UNA copia sola, su un disco esterno, fuori da git, e
-ricostruirlo costa 40-60 ore. Accanto ci sono quattro cartelle con nomi quasi
-identici e una sessione ha gia' lavorato su quella sbagliata.
+Il deliverable esiste in UNA copia sola, su un disco esterno, fuori dal
+repository, e ricostruirlo costa 40-60 ore. Accanto ci sono quattro cartelle con
+nomi quasi identici, e CLAUDE.md punta a quella sbagliata - quindi una sessione
+che si fida delle istruzioni permanenti ci lavorerebbe.
 
 Fai: checksum di tutti i file, scritti in un file versionato in GIT; una copia su
 un supporto diverso; un README nella cartella che dica QUALE delle quattro e' il
-deliverable, da quale Stadio 3 viene e con quale master Stadio 2; e la bozza della
-dichiarazione di disponibilita' di dati e codice.
+deliverable, da quale Stadio 3 viene e con quale master Stadio 2 (attenzione: il
+master Stadio 2 e' registrato nel run_metadata.json dello STADIO 3, non in quello
+dello Stadio 4); e la bozza della dichiarazione di disponibilita' di dati e
+codice.
+
+E salva anche cio' che serve a RICOSTRUIRLO, che e' il pezzo che rischio di
+mancare: lo Stadio 3 analysis/p4-output/20260818T110906Z-stage3-v16-7f986159 e i
+due master A3-stage1/stage2-master-innestato.jsonl stanno sotto
+analysis/p4-output/, che e' gitignored e in copia unica.
 
 Non cancellare niente. Dimmi dove mettere la copia.
 ```
