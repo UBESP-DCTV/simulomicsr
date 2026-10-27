@@ -239,6 +239,12 @@ tutti gli stadi, anche a costo di efficienza.
 | Cache conte Stadio 4 · recupero-nome · Entrez | `stage4-counts/` (chiave method-independent, riusabile fra re-pool) · lookup **v7** (`.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`, §4) · `tools::R_user_dir("simulomicsr","cache")/geo-series-resolver-cache.rds` (~5-6 h con `NCBI_API_KEY`) | auto |
 | `OPENAI_API_KEY` · bundle DGX | `.Renviron.local` (gitignored; oggi risponde 401 → smoke E2E solo con `SIMULOMICSR_LLM_SMOKE=1`) · `analysis/p4-bundles/` | utente · `dgx_p4_build_bundle()` |
 
+**Dal 2026-10-27 i dati stanno fisicamente su `/mnt/micron/simulomicsr-dati/`**:
+`analysis/input`, `analysis/p4-bundles`, le 416 voci di `analysis/p4-output` e
+`~/.cache/R/simulomicsr` sono link (i 17 file tracciati di `p4-output` restano veri). I
+percorsi di sempre funzionano; i run **nuovi** in `analysis/p4-output/` cadono ancora
+sulla radice. Mai cancellare lì: non è una copia. `analysis/audit/2026-10-27-dati-su-micron/`.
+
 ---
 
 ## 10. Gold standard
