@@ -237,7 +237,7 @@ Una sessione per chat. Una sola chat alla volta sul repository.
 8. **Scrivi.** Scrivi il finding e l'evidenza. Scrivi il riassunto per ultimo e misuralo.
 9. **Aggiorna.** Aggiorna `CLAUDE.md` §1 e il riquadro della sessione nell'handout.
 10. **Committa.** Fai commit atomici in italiano. Non fare mai `git push`: lo fa il PI.
-11. **Riferisci.** Manda il riassunto così com'è. Se il PI lavora da remoto, manda i file in chat. Se la sessione è chiusa, l'ultima riga è: «La sessione è chiusa. Per la successiva apri una nuova chat e scrivi «sessione simulomicsr, S<n>».» Non aprire la sessione successiva.
+11. **Riferisci.** Manda il riassunto così com'è. Se il PI lavora da remoto, manda i file in chat. Se la sessione è chiusa, l'ultima riga è: «La sessione è chiusa. Apri la sessione S<n> e scrivi «sessione simulomicsr S<n>, leggi prima la skill di progetto».» S<n> è la sessione seguente nella mappa dell'handout. Questa riga è il segnale che il PI può andare avanti. Se la sessione non è chiusa, non scrivere questa riga: scrivi che cosa manca per chiuderla. Non aprire la sessione successiva.
 
 # Skill collegate
 
