@@ -251,7 +251,7 @@ controllate sulle schede, e **reggono tutte**:
 | `GSE256235` (HCC) | *Hepatocellular carcinoma* | 4 dei 10 «trattati» sono `background liver` |
 | `GSE138698` (IL2) | *no treatment* | il «controllo» è `H9T 24h`: un'altra forma ingegnerizzata di IL-2 (agonista parziale secondo la letteratura, non superagonista come nella nota: da confermare sulla fonte) |
 | `GSE221563` (IL2) | *IL2* contro *Untreated* | giorno 13 contro giorno 0 |
-| `GSE221804` (IFNA1) | *Wild-type, IFN alpha* | a 0 h, 2 h e 72 h sono doppi KO IRF9/IRF1; il «Wild-type» di controllo mescola WT, IRF1 KO, IRF9 KO e STAT2 KO |
+| `GSE221804` (IFNA1) | *Wild-type, IFN alpha* | a 0 h e 72 h sono doppi KO IRF9/IRF1, come uno dei due bracci a 2 h e un campione su tre a 8 h; il «Wild-type» di controllo mescola WT, IRF1 KO, IRF9 KO e STAT2 KO |
 | `GSE93153` (HBV) | *HBV D10 Donor2* | i 2 campioni sono `Mock`, giorno 8: niente HBV |
 | `GSE152004` (asma) | *Asthmatic small molecule* | 8 asmatici con metadati uguali agli altri: la molecola non esiste nel metadato |
 | `GSE226115` (doxorubicina) | *doxorubicin (total RNA)* | knockdown di STING + DOX contro siRNA di controllo + salina |
