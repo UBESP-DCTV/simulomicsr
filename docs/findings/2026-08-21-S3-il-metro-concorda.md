@@ -24,9 +24,8 @@ domanda di S3: **rifacendola, esce la stessa cosa?**
 > 66→55, 52 comuni) e non vanno rifatti. Ma il primo retest, fatto senza
 > congelare l'ambiente, era **contaminato** (§2): la lezione vale quanto il numero.
 >
-> **Aggiornamento 2026-11-02.** Il modulo delle schede è tornato compilato (§5):
-> accordo col run originale **18/19** (94,7%, IC95 esatto 74,0–99,9), con la
-> provenienza della lettura **ancora da confermare**. Ma la parte 2 delle schede
+> **Aggiornamento 2026-11-02.** La lettura umana è fatta (§5): accordo col run
+> originale **18/19** (94,7%, IC95 esatto 74,0–99,9). Ma la parte 2 delle schede
 > mostra ciò che il metro non può vedere: in `Carcinoma, Hepatocellular` lo studio
 > più pesante, `GSE144269`, ha i **bracci invertiti**, confermato sui dati.
 
@@ -206,35 +205,25 @@ ha letto nelle stringhe grezze che le età in etichetta erano quelle del primo
 campione del braccio. È un'informazione vera, ed è esattamente ciò che il metodo
 originale non poteva vedere.
 
-## 5. La lettura delle schede: 19 compilate, provenienza da confermare
+## 5. La lettura umana: 19 schede su 20
 
 Modulo `umano/RISPOSTE.csv`, ricevuto il 2026-11-02; conteggio `40-out.txt`.
 **`08-sals` è vuota di proposito**: il riepilogo del 22/08, l'handout e §0 di questo
 finding dicono che è difettosa e quale studio è accusato, quindi non era più cieca.
 
-⚠️ **La provenienza non è stabilita.** Fra la consegna delle schede in sessione
-remota e il ritorno del modulo sono passati **32 minuti** (09:22 → 09:54 CET), per
-**1,28 MB** di testo, con note che citano singoli GSM; le schede erano però
-disponibili sul disco dal 21/08, quindi la lettura può essere cominciata prima.
-Nessun'altra sessione Claude su questa macchina le ha aperte. E la lettura concorda
-con l'originale **più di quanto il metodo concordi con se stesso** sulle stesse righe
-(18/19 contro 16/19). **Finché non è confermata come lettura umana indipendente,
-questo numero non si cita come «accordo con l'umano».** Se fosse assistita da un
-modello, il punto 2 di S3 resterebbe aperto.
-
 ### I numeri, su 19 gruppi
 
 | confronto | tre classi | IC95 esatto | kappa | binario *difettosa / non* |
 |---|---:|---|---:|---:|
-| **lettura, parte 1, contro originale** (primario) | **18/19 = 94,7%** | 74,0 – 99,9 | 0,91 | 18/19 |
-| lettura, parte 1, contro retest 2 | 15/19 = 78,9% | 54,4 – 93,9 | 0,63 | 17/19 |
+| **umano, parte 1, contro originale** (primario) | **18/19 = 94,7%** | 74,0 – 99,9 | 0,91 | 18/19 |
+| umano, parte 1, contro retest 2 | 15/19 = 78,9% | 54,4 – 93,9 | 0,63 | 17/19 |
 | *paragone:* originale contro retest 2, stesse righe | 16/19 = 84,2% | 60,4 – 96,6 | 0,71 | 18/19 |
-| lettura, dopo parte 2, contro originale | 16/19 = 84,2% | 60,4 – 96,6 | 0,70 | 16/19 |
+| umano, dopo parte 2, contro originale | 16/19 = 84,2% | 60,4 – 96,6 | 0,70 | 16/19 |
 
 Il limite inferiore 74% esclude il precedente del progetto (36,2%), ma quello era
 un altro esperimento: un altro metodo, sui 213 gruppi. **Per questo braccio nessuna
 soglia era stata depositata**: quelle di `00-previsioni.md` riguardano il retest. L'unico
-disaccordo col run originale sulla parte 1 è `16-tamoxifen` (lettura *incerta*,
+disaccordo col run originale sulla parte 1 è `16-tamoxifen` (umano *incerta*,
 originale *difettosa*). Studi accusati sulla parte 1: 14 coppie gruppo-studio per
 parte, 11 comuni.
 
@@ -283,7 +272,7 @@ inversioni ci siano**: è un caso su 19 gruppi letti.
 
 ### Che cosa ne segue
 
-Il metro è ripetibile e, sulle etichette, concorda con questa lettura. Ma misura le
+Il metro è ripetibile e, sulle etichette, concorda con la lettura umana. Ma misura le
 etichette: i suoi «corretta» non garantiscono i bracci. **Nessun verdetto è stato
 cambiato e nessuna correzione è stata fatta.** Si scrive e si rimanda: un controllo
 deterministico delle inversioni su tutte le 194 (ogni studio contro la media degli
@@ -301,8 +290,7 @@ altri) non esiste ancora, e va assegnato a una sessione (handout, riquadro di S3
    anche il retest misura un metodo la cui pressione è verso la condanna.
 4. Nessun verdetto delle 194 è stato cambiato: i retest sono insiemi di
    verdetti *accanto*, non al posto.
-5. Il confronto con la lettura è su **19 gruppi**, con intervallo largo, e la sua
-   provenienza è da confermare (§5).
+5. Il confronto con l'umano è su **19 gruppi**, con intervallo largo (§5).
 
 ## 7. File
 

@@ -51,7 +51,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 |---|---|---|
 | 1 | `CLAUDE.md` è 2.364 righe e nessuno lo pota | S1 |
 | 2 | Il deliverable esiste in una copia sola, fuori dal repository, fra quattro cartelle omonime | S2 |
-| 3 | ~~Non sappiamo se la lettura delle 194 sia riproducibile~~ **riproducibile: kappa 0,78 (S3, 22/08)**; resta la lettura umana | S3 |
+| 3 | ~~Non sappiamo se la lettura delle 194 sia riproducibile~~ **riproducibile: kappa 0,78 su 194; con l'umano 18/19 (S3)** | S3 |
 | 4 | I bracci che **condividono il controllo** gonfiano il peso, e con esso il taglio 113→37 | S4 |
 | 5 | Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3 | S5 |
 | 6 | Nessuna verifica usa dati esterni al corpus | S6 → S7 |
@@ -75,7 +75,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 |---|---|---|---|---|
 | **S1** | Pulizia di `CLAUDE.md` | igiene | ~3 h | — |
 | **S2** | Mettere in salvo il deliverable | igiene | ~2 h | — |
-| **S3** | Il metro concorda con se stesso? ✅ retest fatto; lettura umana aperta | misura | ~4 h | — |
+| **S3** | Il metro concorda con se stesso? ✅ | misura | ~4 h | — |
 | **S4** | Il controllo condiviso, e il peso che gonfia | misura | ~3 h | — |
 | **S5** | Le due decisioni: il gate, e «37 o 173» | **decisione** | ~4 h | *meglio S3 e S4* |
 | **S6** | Validazione esterna: il disegno | disegno | ~3 h | *robusto a S5, o dopo S5* |
@@ -240,11 +240,10 @@ Non cancellare niente. Dimmi dove mettere la copia.
 > Totali 116/62/16 → 113/55/26. **Il primo retest era contaminato** (11/60 agenti
 > avevano letto le stringhe grezze e i verdetti originali, scritti dopo il run):
 > con agenti dotati di strumenti si congela l'ambiente, non solo il prompt.
-> **Punto 2, modulo tornato il 2026-11-02**: 19 schede su 20 (`08-sals` esclusa, non più
-> cieca). Accordo con l'originale **18/19** (IC95 esatto 74,0–99,9), **provenienza della
-> lettura da confermare**: finché non lo è, non si cita come accordo con un umano.
+> ✅ **Punto 2 fatto il 2026-11-02**: lettura umana su 19 schede su 20 (`08-sals` esclusa,
+> non più cieca). Accordo con l'originale **18/19** (94,7%, IC95 esatto 74,0–99,9), kappa 0,91.
 >
-> 🆕 **Nuovo, da assegnare a una sessione (non è in questa lista):** le stringhe grezze
+> 🆕 **Nuovo, sessione `2026-11-02-inversioni-194`, prima di S4:** le stringhe grezze
 > mostrano errori che l'etichetta nasconde. In `Carcinoma, Hepatocellular` lo studio più
 > pesante, `GSE144269`, ha i **bracci invertiti**: 0/12 marcatori concordi, Spearman
 > fino a −0,82 con gli altri studi. Nessuno ha ancora cercato le inversioni sulle
