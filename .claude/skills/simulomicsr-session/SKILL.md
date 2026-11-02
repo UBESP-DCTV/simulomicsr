@@ -3,7 +3,7 @@ name: simulomicsr-session
 description: "Protocollo di sessione del progetto simulomicsr (pipeline R di meta-analisi RNA-seq dai metadati GEO, deliverable A3 v16 con 194 meta-analisi, handout dei difetti aperti). Caricare all'inizio di OGNI sessione del progetto e per ogni altro lavoro in questo repository: quando l'utente dice sessione simulomicsr, nomina una sessione S4-S17 dell'handout, nomina le 194 meta-analisi, il deliverable, le 37 o le 173, oppure chiede di riprendere / continuare / andare avanti con il progetto."
 type: Playbook
 title: "simulomicsr: come si lavora una sessione"
-status: draft
+status: stable
 version: 1
 tags:
 - simulomicsr
