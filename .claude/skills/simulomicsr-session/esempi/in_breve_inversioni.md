@@ -1,11 +1,11 @@
 ---
 type: Example
 title: "Esempio di riassunto «In breve»: la ricerca delle inversioni"
-description: "Un riassunto nella forma del protocollo, scritto sui numeri della ricerca delle inversioni del 2026-11-02: modello di forma, non approvato dal PI."
-status: draft
+description: "Un riassunto nella forma del protocollo, scritto sui numeri della ricerca delle inversioni del 2026-11-02: modello di forma, approvato dal PI."
+status: stable
 tags: [simulomicsr, riassunto, esempio]
 generated: {by: simulomicsr-agent/skill-v1, at: '2026-11-02T14:21:54+01:00'}
-pi_approval: pending
+pi_approval: approved
 sources:
 - id: finding
   resource: "docs/findings/2026-11-02-inversioni-bracci-194.md"
@@ -15,7 +15,7 @@ sources:
 # Come si usa
 
 - Copia la forma, non i fatti: struttura, frasi in grassetto, parole, livello di precisione.
-- Il PI non ha approvato questo testo. Il primo riassunto che il PI approva sostituisce questo esempio.
+- Il PI ha approvato questo testo il 2026-11-02.
 - Questo testo non entra nel finding del 2026-11-02: il finding resta com'è.
 
 # Il riassunto
