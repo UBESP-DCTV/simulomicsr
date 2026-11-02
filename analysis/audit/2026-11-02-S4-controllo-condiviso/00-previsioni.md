@@ -102,3 +102,23 @@ popolazione: non hanno intervallo di confidenza e si giudicano direttamente.
 
 Correggere (e allora il lavoro entra nell'applicazione delle correzioni, S13), oppure dichiarare il
 limite nei Methods (S17). Questa sessione porta il numero, non la scelta.
+
+## Aggiunta del 2026-11-02, dopo il calcolo: una prova nuova per il cancello 4
+
+Questa sezione non cambia niente di quanto sta sopra. **Il cancello 4 è fallito come depositato**:
+scarto di `rho` +0,073 nella proporzione 1:1:1 (limite 0,05) e MAD² di T1 pari a 1,20 e 1,18
+(limite 1,15). Il cancello 3 è fallito come depositato: un braccio su 1.118 ha uno scarto.
+
+`31-perche-il-nullo-non-passa.R` indica due margini sbagliati: la mediana della correlazione fra geni
+non stima `rho` quando ci sono fattori nascosti, e uno z valido sui campioni veri non ha MAD² 1.
+Quella spiegazione è arrivata dopo aver visto i dati. Per questo la provo su dati non ancora usati:
+i **48 insiemi di controllo** esclusi dall'estrazione dei 40 (stesso seme, 88 disponibili).
+
+**Cancello 4-bis**, scritto prima di guardarli. Passa se, in tutte e due le proporzioni:
+
+- (a) `|media(rho empirico - rho formula)| <= 0,05`. Stesso limite di prima, sulla media;
+- (b) la mediana del rapporto MAD²(z T1) / MAD²(z T3) sta in [0,95; 1,05]. Il riferimento è la fusione,
+  un confronto singolo valido. Margine: giudizio, ±5% su MAD² è circa ±2,5% sull'errore standard;
+- (c) la mediana del rapporto MAD²(z T0) / MAD²(z T1) è almeno 1,15. Stesso limite di prima.
+
+Il cancello 4-bis non cancella il fallimento del cancello 4. Il PI decide se basta.
