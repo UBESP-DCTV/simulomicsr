@@ -82,8 +82,9 @@ analysis/p5-stage4-debug-*.run
 # targets config root (variante per cwd=root; canonico è analysis/_targets.yaml)
 /_targets.yaml
 
-# Local Claude Code project state (settings, scheduled tasks)
-.claude/
+# Local Claude Code project state (settings, scheduled tasks); le skill del progetto si tracciano
+.claude/*
+!.claude/skills/
 
 # Superpowers visual brainstorming session artifacts
 .superpowers/

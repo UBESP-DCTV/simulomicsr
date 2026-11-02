@@ -6,6 +6,11 @@
 > (preambolo RED ALERT + 44 blocchi di «Stato», maggio–agosto 2026) sta in
 > **`docs/STORIA.md`**, con l'indice delle ritrattazioni in testa. Qui sta lo
 > STATO, non la storia: non riportare qui blocchi di cronologia.
+>
+> **Protocollo di sessione:** all'inizio di ogni sessione carica la skill
+> `simulomicsr-session` (`.claude/skills/simulomicsr-session/`). Rispondi al PI in stile
+> ASD-STE100 all'80%, in italiano: le regole stanno nella skill. Vale dalla prima sessione
+> dopo il 2026-11-02 e non è retroattivo.
 
 ---
 
