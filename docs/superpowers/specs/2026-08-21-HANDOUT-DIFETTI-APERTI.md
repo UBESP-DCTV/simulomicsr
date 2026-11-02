@@ -240,8 +240,16 @@ Non cancellare niente. Dimmi dove mettere la copia.
 > Totali 116/62/16 → 113/55/26. **Il primo retest era contaminato** (11/60 agenti
 > avevano letto le stringhe grezze e i verdetti originali, scritti dopo il run):
 > con agenti dotati di strumenti si congela l'ambiente, non solo il prompt.
-> **Punto 2 (la lettura umana) è aperto e spetta a te**: 20 schede cieche in
-> `analysis/audit/2026-08-21-S3-test-retest/umano/`, istruzioni lì, conteggio con `40-accordo-umano.py`.
+> **Punto 2, modulo tornato il 2026-11-02**: 19 schede su 20 (`08-sals` esclusa, non più
+> cieca). Accordo con l'originale **18/19** (IC95 esatto 74,0–99,9), **provenienza della
+> lettura da confermare**: finché non lo è, non si cita come accordo con un umano.
+>
+> 🆕 **Nuovo, da assegnare a una sessione (non è in questa lista):** le stringhe grezze
+> mostrano errori che l'etichetta nasconde. In `Carcinoma, Hepatocellular` lo studio più
+> pesante, `GSE144269`, ha i **bracci invertiti**: 0/12 marcatori concordi, Spearman
+> fino a −0,82 con gli altri studi. Nessuno ha ancora cercato le inversioni sulle
+> altre meta-analisi: serve un controllo deterministico su tutte le 194 (ogni studio
+> contro la media degli altri). Finding S3 §5.
 
 ### Perché
 

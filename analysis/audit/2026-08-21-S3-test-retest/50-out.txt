@@ -1,0 +1,40 @@
+
+colonne: cluster_id study_id gene_id gene_symbol logFC SE p_value t_stat n_treated n_control direction_applied 
+studi: GSE120663 GSE77509 GSE144269 GSE159220 GSE164359 GSE256235 | colonna effetto: logFC 
+
+      g GSE144269 GSE159220 GSE164359 GSE256235 GSE77509 GSE120663 atteso
+   GPC3     -2.69      4.76      4.87      2.12     3.50      0.06     up
+    AFP     -0.54      0.50      2.04     -0.34     3.07        NA     up
+  MKI67     -3.16      4.08      3.65      0.53     2.30      0.41     up
+  TOP2A     -3.68      5.11      3.97      0.91     2.62      0.43     up
+  CDC20     -3.20      3.87      3.71      0.52     2.60      0.90     up
+  CCNB1     -2.85      3.29      3.14      0.52     2.44     -0.11     up
+ CYP2E1      4.44     -9.98     -3.58     -2.59    -4.84     -0.66   down
+ CYP3A4      5.00     -8.41     -5.31     -1.02    -4.89     -1.37   down
+    ALB      2.71     -4.79     -2.70     -1.12    -2.29        NA   down
+  APOA1      3.17     -5.11     -2.19     -0.86    -2.26        NA   down
+    CRP      2.71     -1.20      0.36     -0.81    -1.58        NA   down
+   SAA1      2.93     -2.57     -0.16     -1.70    -3.53        NA   down
+
+concordanza di segno coi marcatori attesi, per studio:
+  GSE120663     6/ 7
+  GSE77509     12/12
+  GSE144269     0/12
+  GSE159220    12/12
+  GSE164359    11/12
+  GSE256235    11/12
+
+correlazione di Spearman fra studi sull'effetto, tutti i geni:
+          GSE120663 GSE144269 GSE159220 GSE164359 GSE256235 GSE77509
+GSE120663      1.00      0.05      0.09      0.00     -0.09     0.03
+GSE144269      0.05      1.00     -0.68     -0.76     -0.13    -0.82
+GSE159220      0.09     -0.68      1.00      0.68      0.04     0.66
+GSE164359      0.00     -0.76      0.68      1.00      0.04     0.76
+GSE256235     -0.09     -0.13      0.04      0.04      1.00     0.08
+GSE77509       0.03     -0.82      0.66      0.76      0.08     1.00
+
+nel deliverable: k_effective=6 k_kish=2.66 quota_top1=53.6% n_sig=105
+
+quota mediana di peso 1/SE^2 su 14754 geni comuni:
+GSE144269  GSE77509 GSE120663 GSE164359 GSE256235 GSE159220 
+     34.8      28.1      17.4      12.1       2.2       1.3 

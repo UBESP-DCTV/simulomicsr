@@ -15,7 +15,8 @@ Finding: `docs/findings/2026-08-21-S3-il-metro-concorda.md`.
 | `20-consolida-retest.py` | dal JSON ai CSV (`<wf.json> <suffisso>`) |
 | `30-accordo-metodo.py` | accordo originale–retest: grezzo, kappa con IC bootstrap, matrice 3×3, per blocco, per fascia di k, sulle coppie accusate, previsioni valutate (`<verdetti> <difetti> <suffisso>`) |
 | `10-campione-umano.py` | estrae **20** delle 194 a caso (seme dichiarato nel file) e scrive le **schede cieche** in `umano/` + il modulo `umano/RISPOSTE.csv` |
-| `40-accordo-umano.py` | quando `RISPOSTE.csv` è compilato: accordo umano–originale e umano–retest, su quanti gruppi |
+| `40-accordo-umano.py` · `40-out.txt` | accordo della lettura con originale e retest 2, e il metodo con se stesso sulle stesse righe; conta solo le righe compilate |
+| `50-inversione-GSE144269.R` · `50-out.txt` | se l'inversione dei bracci di `GSE144269` si vede nei dati: marcatori, Spearman fra studi, peso |
 
 ## Le tre scelte dichiarate
 

@@ -1,5 +1,5 @@
 # funzioni condivise di S3: accordo grezzo, kappa di Cohen, IC bootstrap
-import random, collections
+import math, random, collections
 CLASSI = ['corretta', 'difettosa', 'incerta']
 def accordo(a, b):
     return sum(x == y for x, y in zip(a, b)) / len(a)
@@ -13,7 +13,22 @@ def ic_bootstrap(a, b, f, B=2000, seme=20260821):
     for _ in range(B):
         idx = [rng.randrange(n) for _ in range(n)]
         vals.append(f([a[i] for i in idx], [b[i] for i in idx]))
-    vals.sort(); return vals[int(0.025 * B)], vals[int(0.975 * B) - 1]
+    vals = sorted(v for v in vals if v == v)
+    return vals[int(0.025 * len(vals))], vals[int(0.975 * len(vals)) - 1]
+def binom_coda_sup(k, n, p):
+    return sum(math.comb(n, i) * p**i * (1 - p)**(n - i) for i in range(k, n + 1))
+def ic_esatto(k, n, alfa=0.05):
+    # Clopper-Pearson per bisezione: il bootstrap su meno di 20 gruppi e' troppo stretto
+    def biseca(f):
+        lo, hi = 0.0, 1.0
+        for _ in range(60):
+            m = (lo + hi) / 2
+            if f(m): lo = m
+            else: hi = m
+        return lo
+    inf = 0.0 if k == 0 else biseca(lambda p: binom_coda_sup(k, n, p) < alfa / 2)
+    sup = 1.0 if k == n else biseca(lambda p: 1 - binom_coda_sup(k + 1, n, p) > alfa / 2)
+    return inf, sup
 def matrice(a, b, classi=CLASSI):
     m = {x: {y: 0 for y in classi} for x in classi}
     for x, y in zip(a, b): m[x][y] += 1

@@ -48,8 +48,11 @@ licenza CC BY-NC 4.0 decisa ma `LICENSE`/`DESCRIPTION` ancora da aggiornare — 
 **S3 fatta il 2026-08-22** (punto 1): test-retest della rilettura in ambiente congelato,
 accordo 88,1%, **kappa 0,78 [0,70; 0,86]**, binario 93,3% → «alto»; 116/62/16 → 113/55/26,
 solo 5/194 saltano fra corretta e difettosa (`docs/findings/2026-08-21-S3-il-metro-concorda.md`).
-**Aperto il punto 2**: la lettura umana delle 20 schede cieche in
-`analysis/audit/2026-08-21-S3-test-retest/umano/` è dell'utente. Prossima: **S4**.
+**Punto 2** (2026-11-02): modulo compilato su 19 schede, accordo con l'originale 18/19
+(IC95 74,0–99,9), **provenienza da confermare**: non citarlo come accordo con un umano.
+**Scoperto lì, da assegnare:** `GSE144269` ha i bracci **invertiti** in `Carcinoma,
+Hepatocellular`, ed è lo studio più pesante; le inversioni non sono ancora state cercate
+sulle altre 193 (finding S3 §5). Prossima: **S4**.
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -268,7 +271,8 @@ leave-one-out; **16,5%** di verdetti che l'etichetta non chiude (32/194, insieme
 diverso dalle 16 incerte); **1.993 campioni** persi dallo Stadio 2 (potenza, non
 errori); il gate seleziona per controllo interno e **può concentrare l'errore**;
 l'FDR premia i consistenti, non i grandi; la correlazione da controllo condiviso
-non è modellata (S4). Il paper è per bioinformatici: niente frizioni
+non è modellata (S4); il verdetto sulle etichette **non vede i bracci invertiti**
+(`GSE144269`, finding S3 §5). Il paper è per bioinformatici: niente frizioni
 d'infrastruttura salvo impatto biologico diretto.
 
 ---

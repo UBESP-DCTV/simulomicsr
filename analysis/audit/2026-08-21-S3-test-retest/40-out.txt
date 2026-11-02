@@ -1,0 +1,75 @@
+schede compilate: 19 su 20
+  non compilate: 08-sals.txt
+
+########## PRIMARIO: PARTE 1, stessa informazione del modello ##########
+
+=== umano (verdetto_parte1) contro originale, su 19 gruppi ===
+  tre classi : 18/19 = 94.7%  [IC95 esatto 74.0, 99.9]   kappa 0.91 [bootstrap 0.72, 1.00]
+  binario    : 18/19 = 94.7%  [IC95 esatto 74.0, 99.9]   kappa 0.89
+  contro il precedente 36.2%: P(X>=18 | p=0.362) = 1.4e-07
+  umano \  originale   corretta  difettosa    incerta      tot
+               corretta          9          0          0        9
+              difettosa          0          8          0        8
+                incerta          0          1          1        2
+                    tot          9          9          1
+    disaccordo 16-tamoxifen.txt                         umano=incerta    originale=difettosa
+
+=== umano (verdetto_parte1) contro retest2, su 19 gruppi ===
+  tre classi : 15/19 = 78.9%  [IC95 esatto 54.4, 93.9]   kappa 0.63 [bootstrap 0.32, 0.90]
+  binario    : 17/19 = 89.5%  [IC95 esatto 66.9, 98.7]   kappa 0.78
+  contro il precedente 36.2%: P(X>=15 | p=0.362) = 0.00018
+  umano \    retest2   corretta  difettosa    incerta      tot
+               corretta          8          0          1        9
+              difettosa          1          7          0        8
+                incerta          1          1          0        2
+                    tot         10          8          1
+    disaccordo 03-Carcinoma_Hepatocellular.txt          umano=difettosa  retest2=corretta
+    disaccordo 12-Diabetes_Gestational.txt              umano=corretta   retest2=incerta
+    disaccordo 16-tamoxifen.txt                         umano=incerta    retest2=difettosa
+    disaccordo 19-doxorubicin.txt                       umano=incerta    retest2=corretta
+
+########## TERMINE DI PARAGONE: il metodo contro se stesso sulle stesse righe ##########
+
+=== originale contro retest2, su 19 gruppi ===
+  tre classi : 16/19 = 84.2%  [IC95 esatto 60.4, 96.6]   kappa 0.71 [bootstrap 0.42, 1.00]
+  binario    : 18/19 = 94.7%  [IC95 esatto 74.0, 99.9]   kappa 0.89
+  contro il precedente 36.2%: P(X>=16 | p=0.362) = 2.4e-05
+    disaccordo 03-Carcinoma_Hepatocellular.txt          originale=difettosa  retest2=corretta
+    disaccordo 12-Diabetes_Gestational.txt              originale=corretta   retest2=incerta
+    disaccordo 19-doxorubicin.txt                       originale=incerta    retest2=corretta
+
+########## PARTE 2: l'umano con le stringhe grezze, che il modello non aveva ##########
+verdetti cambiati dall'umano dopo la parte 2: 4 su 19
+    04-asthmatic.txt                         difettosa -> corretta
+    05-IL2.txt                               corretta -> difettosa
+    16-tamoxifen.txt                         incerta -> difettosa
+    19-doxorubicin.txt                       incerta -> difettosa
+
+=== umano (verdetto_dopo_parte2) contro originale, su 19 gruppi ===
+  tre classi : 16/19 = 84.2%  [IC95 esatto 60.4, 96.6]   kappa 0.70 [bootstrap 0.36, 1.00]
+  binario    : 16/19 = 84.2%  [IC95 esatto 60.4, 96.6]   kappa 0.69
+  contro il precedente 36.2%: P(X>=16 | p=0.362) = 2.4e-05
+  umano \  originale   corretta  difettosa    incerta      tot
+               corretta          8          1          0        9
+              difettosa          1          8          1       10
+                incerta          0          0          0        0
+                    tot          9          9          1
+    disaccordo 04-asthmatic.txt                         umano=corretta   originale=difettosa
+    disaccordo 05-IL2.txt                               umano=difettosa  originale=corretta
+    disaccordo 19-doxorubicin.txt                       umano=difettosa  originale=incerta
+
+########## TOTALI E STUDI ACCUSATI (parte 1) ##########
+  umano parte 1        corretta 9  difettosa 8  incerta 2
+  umano dopo parte 2   corretta 9  difettosa 10  incerta 0
+  originale            corretta 9  difettosa 9  incerta 1
+  retest2              corretta 10  difettosa 8  incerta 1
+  03-Carcinoma_Hepatocellular.txt      umano=['GSE120663', 'GSE77509'] originale=['GSE120663'] retest2=[]
+  04-asthmatic.txt                     umano=['GSE152004'] originale=['GSE152004'] retest2=['GSE152004']
+  09-afatinib.txt                      umano=['GSE186341'] originale=['GSE186341', 'GSE217421'] retest2=['GSE186341']
+  11-IFNA1.txt                         umano=['GSE126517', 'GSE221804'] originale=['GSE126517', 'GSE221804'] retest2=['GSE126517', 'GSE221804']
+  14-DHT_5alpha-dihydrotestosterone_.txt umano=['GSE118152', 'GSE218556', 'GSE227511'] originale=['GSE118152', 'GSE218556', 'GSE227511'] retest2=['GSE118152', 'GSE218556', 'GSE227511']
+  15-hepatitis_B_virus.txt             umano=['GSE194179'] originale=['GSE164266'] retest2=['GSE194179']
+  16-tamoxifen.txt                     umano=[] originale=['GSE123285'] retest2=['GSE123285']
+  17-metformin.txt                     umano=['GSE102677', 'GSE185624'] originale=['GSE102677', 'GSE185624'] retest2=['GSE102677', 'GSE185624']
+  18-osimertinib.txt                   umano=['GSE253742', 'GSE255958'] originale=['GSE255958'] retest2=['GSE253742']
+  coppie gruppo-studio: umano 14, originale 14, comuni 11

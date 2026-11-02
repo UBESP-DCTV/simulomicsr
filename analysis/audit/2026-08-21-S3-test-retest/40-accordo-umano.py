@@ -1,49 +1,73 @@
 #!/usr/bin/env python3
 # analysis/audit/2026-08-21-S3-test-retest/40-accordo-umano.py
 # Accordo fra la lettura umana (umano/RISPOSTE.csv) e il metodo: contro il run
-# originale e contro il retest. Conta SOLO le righe compilate e lo dice.
+# originale e contro il retest 2 (ambiente congelato), piu' il metodo contro se
+# stesso SULLE STESSE righe, che e' il termine di paragone. Conta SOLO le righe
+# compilate e lo dice. Il confronto primario e' la PARTE 1: stessa informazione
+# del modello. La PARTE 2 misura altro: quanto l'etichetta nasconde.
 # Uso: python3 analysis/audit/2026-08-21-S3-test-retest/40-accordo-umano.py
 import csv, os, sys
 sys.path.insert(0, 'analysis/audit/2026-08-21-S3-test-retest')
 from lib_accordo import *
 S = 'analysis/audit/2026-08-21-S3-test-retest'; R = 'analysis/audit/2026-08-20-rilettura-194'
+PRECEDENTE = 0.362
 ris = list(csv.DictReader(open(os.path.join(S, 'umano', 'RISPOSTE.csv'))))
 orig = {r['cluster_id']: r for r in csv.DictReader(open(os.path.join(R, 'verdetti-194.csv')))}
-p = os.path.join(S, 'verdetti-retest.csv')
-ret = {r['cluster_id']: r for r in csv.DictReader(open(p))} if os.path.exists(p) else {}
-dif_orig = {}
-for r in csv.DictReader(open(os.path.join(R, 'difetti.csv'))):
-    dif_orig.setdefault(r['cluster_id'], set()).add(r['study_id'])
+ret = {r['cluster_id']: r for r in csv.DictReader(open(os.path.join(S, 'verdetti-retest2.csv')))}
+def accusati(p):
+    d = {}
+    for r in csv.DictReader(open(p)): d.setdefault(r['cluster_id'], set()).add(r['study_id'])
+    return d
+dif_orig, dif_ret = accusati(os.path.join(R, 'difetti.csv')), accusati(os.path.join(S, 'difetti-retest2.csv'))
 
 def norm(v): return v.strip().lower()
 lette = [r for r in ris if norm(r['verdetto_parte1']) in CLASSI]
 print(f"schede compilate: {len(lette)} su {len(ris)}")
+print("  non compilate: " + (", ".join(r['file'] for r in ris if r not in lette) or "nessuna"))
 if not lette: sys.exit("niente da contare: compila umano/RISPOSTE.csv")
 if len(lette) < 10:
-    print("  ATTENZIONE: con meno di 10 gruppi l'intervallo copre quasi tutto (36% e 90% non si distinguono).")
+    print("  ATTENZIONE: con meno di 10 gruppi l'intervallo copre quasi tutto.")
+BIN = lambda v: ['difettosa' if x == 'difettosa' else 'non' for x in v]
 
+def misura(a, b, nome):
+    n = len(a); k = sum(x == y for x, y in zip(a, b)); lo, hi = ic_esatto(k, n)
+    kk = kappa(a, b); klo, khi = ic_bootstrap(a, b, kappa)
+    ab, bb = BIN(a), BIN(b); kb = sum(x == y for x, y in zip(ab, bb)); blo, bhi = ic_esatto(kb, n)
+    print(f"\n=== {nome}, su {n} gruppi ===")
+    print(f"  tre classi : {k}/{n} = {100*k/n:.1f}%  [IC95 esatto {100*lo:.1f}, {100*hi:.1f}]   kappa {kk:.2f} [bootstrap {klo:.2f}, {khi:.2f}]")
+    print(f"  binario    : {kb}/{n} = {100*kb/n:.1f}%  [IC95 esatto {100*blo:.1f}, {100*bhi:.1f}]   kappa {kappa(ab,bb):.2f}")
+    print(f"  contro il precedente {100*PRECEDENTE:.1f}%: P(X>={k} | p={PRECEDENTE}) = {binom_coda_sup(k, n, PRECEDENTE):.2g}")
+
+def verdetti_umano(colonna):
+    return [norm(r[colonna]) if norm(r[colonna]) in CLASSI else norm(r['verdetto_parte1']) for r in lette]
 def confronta(nome, ref, colonna):
-    a = [norm(r[colonna]) if norm(r[colonna]) in CLASSI else norm(r['verdetto_parte1']) for r in lette]
-    b = [ref[r['cluster_id']]['verdetto_finale'] for r in lette]
-    n = len(a); k = kappa(a, b); lo, hi = ic_bootstrap(a, b, kappa)
-    ab = ['difettosa' if x == 'difettosa' else 'non' for x in a]
-    bb = ['difettosa' if x == 'difettosa' else 'non' for x in b]
-    print(f"\n=== umano ({colonna}) contro {nome}, su {n} gruppi ===")
-    print(f"  accordo grezzo a tre classi : {100*accordo(a,b):.1f}%   kappa {k:.2f}  [IC95 bootstrap {lo:.2f}, {hi:.2f}]")
-    print(f"  accordo binario (difettosa) : {100*accordo(ab,bb):.1f}%   kappa {kappa(ab,bb):.2f}")
+    a = verdetti_umano(colonna); b = [ref[r['cluster_id']]['verdetto_finale'] for r in lette]
+    misura(a, b, f"umano ({colonna}) contro {nome}")
     stampa_matrice(matrice(a, b), 'umano', nome)
     for r, x, y in zip(lette, a, b):
         if x != y: print(f"    disaccordo {r['file']:40s} umano={x:10s} {nome}={y}")
 
+print("\n########## PRIMARIO: PARTE 1, stessa informazione del modello ##########")
 confronta('originale', orig, 'verdetto_parte1')
-if ret: confronta('retest', ret, 'verdetto_parte1')
-if any(norm(r['verdetto_dopo_parte2']) in CLASSI for r in lette):
-    n2 = sum(norm(r['verdetto_dopo_parte2']) in CLASSI for r in lette)
-    print(f"\n--- dopo le stringhe grezze (PARTE 2): {n2} verdetti cambiati dall'umano ---")
-    confronta('originale', orig, 'verdetto_dopo_parte2')
-# gli studi accusati: l'umano ritrova quelli del modello?
-print("\n=== studi accusati (PARTE 1) contro difetti.csv dell'originale ===")
+confronta('retest2', ret, 'verdetto_parte1')
+print("\n########## TERMINE DI PARAGONE: il metodo contro se stesso sulle stesse righe ##########")
+a = [orig[r['cluster_id']]['verdetto_finale'] for r in lette]; b = [ret[r['cluster_id']]['verdetto_finale'] for r in lette]
+misura(a, b, "originale contro retest2")
+for r, x, y in zip(lette, a, b):
+    if x != y: print(f"    disaccordo {r['file']:40s} originale={x:10s} retest2={y}")
+print("\n########## PARTE 2: l'umano con le stringhe grezze, che il modello non aveva ##########")
+camb = [r for r in lette if norm(r['verdetto_dopo_parte2']) in CLASSI and norm(r['verdetto_dopo_parte2']) != norm(r['verdetto_parte1'])]
+print(f"verdetti cambiati dall'umano dopo la parte 2: {len(camb)} su {len(lette)}")
+for r in camb: print(f"    {r['file']:40s} {norm(r['verdetto_parte1'])} -> {norm(r['verdetto_dopo_parte2'])}")
+confronta('originale', orig, 'verdetto_dopo_parte2')
+print("\n########## TOTALI E STUDI ACCUSATI (parte 1) ##########")
+for nome, v in [('umano parte 1', verdetti_umano('verdetto_parte1')), ('umano dopo parte 2', verdetti_umano('verdetto_dopo_parte2')),
+                ('originale', a), ('retest2', b)]:
+    print(f"  {nome:20s} " + "  ".join(f"{c} {v.count(c)}" for c in CLASSI))
+tu = to = tc = 0
 for r in lette:
     u = {s.strip() for s in r['studi_difettosi_parte1'].split(';') if s.strip()}
-    m = dif_orig.get(r['cluster_id'], set())
-    if u or m: print(f"  {r['file']:40s} umano={sorted(u)} modello={sorted(m)}  comuni={len(u & m)}")
+    m, q = dif_orig.get(r['cluster_id'], set()), dif_ret.get(r['cluster_id'], set())
+    tu += len(u); to += len(m); tc += len(u & m)
+    if u or m or q: print(f"  {r['file']:36s} umano={sorted(u)} originale={sorted(m)} retest2={sorted(q)}")
+print(f"  coppie gruppo-studio: umano {tu}, originale {to}, comuni {tc}")
