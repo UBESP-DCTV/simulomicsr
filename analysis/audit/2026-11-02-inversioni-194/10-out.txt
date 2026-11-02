@@ -1,0 +1,39 @@
+
+NOTE: Dependency discovery took 25 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+ℹ righe per braccio sulle 194: 27504279
+ℹ studi nei gruppi: 1178 | bracci: 1903
+✔ collasso identico a .collapse_arms_by_study su IFNA1
+ℹ 20/194 gruppi, 1.2 min
+ℹ 40/194 gruppi, 2.9 min
+ℹ 60/194 gruppi, 3.9 min
+ℹ 80/194 gruppi, 4.8 min
+ℹ 100/194 gruppi, 6.1 min
+ℹ 120/194 gruppi, 7.6 min
+ℹ 140/194 gruppi, 8.7 min
+ℹ 160/194 gruppi, 10.5 min
+ℹ 180/194 gruppi, 11.6 min
+
+quantili del nullo:
+                0.1%     1%     5%   50%   95%   99%
+studio_tutti  -0.362 -0.215 -0.128 0.013 0.190 0.304
+studio_top    -0.634 -0.386 -0.216 0.025 0.328 0.537
+braccio_tutti -0.320 -0.200 -0.126 0.011 0.180 0.284
+braccio_top   -0.543 -0.354 -0.208 0.022 0.316 0.529
+
+coppie gruppo-studio misurate: 1178 | candidati: 14 (1.2%) | su entrambe le misure: 6
+bracci di studi multi-braccio: 1118 | candidati: 12
+
+controllo positivo:
+                        nome  study_id  rho_tutti   rho_top candidato entrambe
+                      <char>    <char>      <num>     <num>    <lgcl>   <lgcl>
+1: Carcinoma, Hepatocellular GSE144269 -0.7748511 -0.962085      TRUE     TRUE
+
+durata: 12.2 min

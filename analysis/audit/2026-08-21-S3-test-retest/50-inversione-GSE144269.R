@@ -38,13 +38,4 @@ print(round(cor(W[, -1], use = "pairwise.complete.obs", method = "spearman"), 2)
 # quanto pesa: k_kish e quota del piu' pesante dal deliverable
 d <- readRDS(file.path(POOL, "deliverable-annotato.rds")); r <- d[d$cluster_id == CID, ]
 cat(sprintf("\nnel deliverable: k_effective=%s k_kish=%.2f quota_top1=%.1f%% n_sig=%s\n", r$k_effective, r$k_kish, 100*r$quota_top1, r$n_sig))
-# quanto pesa ciascuno studio: quota mediana per gene col peso a effetto fisso 1/SE^2,
-# solo sui geni testati in tutti gli studi. E' un'approssimazione del peso REM, che
-# dipende anche da tau^2: serve a dire chi pesa, non a rifare il pooling.
-x$w <- 1 / x$SE^2
-pieni <- names(which(table(unique(x[c("study_id", "gene_id")])$gene_id) == length(unique(x$study_id))))
-y <- x[x$gene_id %in% pieni, ]
-y <- aggregate(w ~ study_id + gene_id, y, sum)
-y$quota <- y$w / ave(y$w, y$gene_id, FUN = sum)
-cat(sprintf("\nquota mediana di peso 1/SE^2 su %d geni comuni:\n", length(pieni)))
-q <- tapply(y$quota, y$study_id, stats::median); print(round(100 * sort(q, decreasing = TRUE), 1))
+# Il peso REM vero degli studi sta in analysis/audit/2026-11-02-inversioni-194/30-pesi-rem.R

@@ -243,12 +243,12 @@ Non cancellare niente. Dimmi dove mettere la copia.
 > ✅ **Punto 2 fatto il 2026-11-02**: lettura umana su 19 schede su 20 (`08-sals` esclusa,
 > non più cieca). Accordo con l'originale **18/19** (94,7%, IC95 esatto 74,0–99,9), kappa 0,91.
 >
-> 🆕 **Nuovo, sessione `2026-11-02-inversioni-194`, prima di S4:** le stringhe grezze
-> mostrano errori che l'etichetta nasconde. In `Carcinoma, Hepatocellular` lo studio più
-> pesante, `GSE144269`, ha i **bracci invertiti**: 0/12 marcatori concordi, Spearman
-> fino a −0,82 con gli altri studi. Nessuno ha ancora cercato le inversioni sulle
-> altre meta-analisi: serve un controllo deterministico su tutte le 194 (ogni studio
-> contro la media degli altri). Finding S3 §5.
+> ✅ **Inversioni cercate su tutte le 194 il 2026-11-02**
+> (`docs/findings/2026-11-02-inversioni-bracci-194.md`): una confermata, `GSE144269` in
+> `Carcinoma, Hepatocellular`, che porta il gruppo da **6.590 a 105 geni significativi**;
+> 4 studi con un braccio sbagliato. Lo strumento avrebbe visto un'inversione nel 52% degli
+> studi. **Vale per S5, S10 e S13**: i 173 contengono errori che il setaccio non vede, e tutti
+> questi errori si leggono nelle stringhe grezze, non nell'etichetta. Prossima: **S4**.
 
 ### Perché
 

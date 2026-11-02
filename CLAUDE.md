@@ -49,9 +49,11 @@ licenza CC BY-NC 4.0 decisa ma `LICENSE`/`DESCRIPTION` ancora da aggiornare — 
 accordo 88,1%, **kappa 0,78 [0,70; 0,86]**, binario 93,3% → «alto»; 116/62/16 → 113/55/26,
 solo 5/194 saltano fra corretta e difettosa (`docs/findings/2026-08-21-S3-il-metro-concorda.md`).
 **Punto 2** (2026-11-02): lettura umana su 19 schede, accordo con l'originale 18/19
-(IC95 74,0–99,9), kappa 0,91. **Scoperto lì:** `GSE144269` ha i bracci **invertiti** in
-`Carcinoma, Hepatocellular`, ed è lo studio più pesante (finding S3 §5). Prossima: ricerca
-delle inversioni su tutte le 194 (`analysis/audit/2026-11-02-inversioni-194/`), poi **S4**.
+(IC95 74,0–99,9), kappa 0,91. **Inversioni cercate su tutte le 194** (2026-11-02,
+`docs/findings/2026-11-02-inversioni-bracci-194.md`): una confermata, `GSE144269` in
+`Carcinoma, Hepatocellular` (105 geni significativi, 6.590 col segno raddrizzato; **gruppo non
+citabile** finché non è corretto), più 4 studi con un braccio sbagliato. Lo strumento ne vede il 52%:
+non è la prova che non ce ne siano altre. Prossima: **S4**.
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -282,7 +284,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`

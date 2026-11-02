@@ -263,9 +263,11 @@ HCC: GPC3, AFP, MKI67, TOP2A, CDC20, CCNB1; down: CYP2E1, CYP3A4, ALB, APOA1, CR
 | `GSE256235` | 11/12 | −0,13 |
 | `GSE120663` (PBMC) | 6/7 | +0,05 |
 
-È anche lo studio **più pesante**: quota mediana **34,8%** col peso 1/SE² su 14.754
-geni comuni (approssimazione del peso REM, che dipende anche da tau²). La
-meta-analisi ha 105 geni significativi. **Nessuna delle due letture del modello l'ha
+È anche lo studio **più pesante**, di poco: quota mediana di peso REM **22,6%**, contro
+22,2% di `GSE77509` (`30-pesi-rem.R` della sessione `2026-11-02-inversioni-194`). Un
+primo calcolo con 1/SE² senza tau² dava 34,8%: era sbagliato, ed è la stessa
+approssimazione che il progetto aveva già ritirato il 2026-08-10. La meta-analisi ha 105
+geni significativi. **Nessuna delle due letture del modello l'ha
 visto**, né poteva: sull'etichetta il confronto è impeccabile (originale *difettosa*
 per `GSE120663`, retest 2 *corretta*). **Da qui non discende una stima di quante
 inversioni ci siano**: è un caso su 19 gruppi letti.
@@ -274,9 +276,8 @@ inversioni ci siano**: è un caso su 19 gruppi letti.
 
 Il metro è ripetibile e, sulle etichette, concorda con la lettura umana. Ma misura le
 etichette: i suoi «corretta» non garantiscono i bracci. **Nessun verdetto è stato
-cambiato e nessuna correzione è stata fatta.** Si scrive e si rimanda: un controllo
-deterministico delle inversioni su tutte le 194 (ogni studio contro la media degli
-altri) non esiste ancora, e va assegnato a una sessione (handout, riquadro di S3).
+cambiato e nessuna correzione è stata fatta.** Il controllo delle inversioni su tutte le
+194 è stato fatto dopo: `docs/findings/2026-11-02-inversioni-bracci-194.md`.
 
 ## 6. Limiti
 
