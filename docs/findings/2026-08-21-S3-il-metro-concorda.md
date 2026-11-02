@@ -179,9 +179,9 @@ Matrice (righe originale, colonne retest 2):
   di S10 — la sensibilità è dell'ordine di **±10 gruppi**, e va dichiarata lì.
 - Dove dipende dal confine *corretta/difettosa* — i 173 «che restano togliendo i
   difetti», i 37 del nocciolo — la sensibilità è di **5 gruppi su 194**.
-- **S5 e S10 possono procedere** sul metro esistente. Resta aperto il punto 2
-  (l'umano, §5), che è l'unico a poter dire se il metro è *giusto* oltre che
-  ripetibile.
+- **S5 e S10 possono procedere** sul metro esistente, sapendo che misura le etichette: la
+  lettura umana (§5) e `docs/findings/2026-11-02-inversioni-bracci-194.md` mostrano errori
+  che l'etichetta non rivela.
 
 ## 4. Il retest 1 accanto, per confronto
 
