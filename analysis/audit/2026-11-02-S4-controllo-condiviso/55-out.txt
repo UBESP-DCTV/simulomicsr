@@ -1,0 +1,97 @@
+
+
+
+gruppi toccati con geni significativi: 108
+variazione relativa di n_sig con T1, quantili 0, 5, 25, 50, 75, 95, 100%:
+    0%     5%    25%    50%    75%    95%   100% 
+-0.951 -0.532 -0.161 -0.021  0.009  0.058  0.136 
+gruppi che perdono oltre il 20% dei geni: T1 20 | T3 28 su 108
+i dieci che perdono di piu' con T1:
+                         nome     k  in113 in37_0  sig0  sig1  sig3     rs
+                       <char> <int> <lgcl> <lgcl> <int> <int> <int>  <num>
+ 1:        multiple sclerosis     7   TRUE  FALSE  1082    53     0 -0.951
+ 2:                      ptsd     3  FALSE  FALSE    66    11     8 -0.833
+ 3: myotonic dystrophy type 1     3  FALSE  FALSE  1274   293    32 -0.770
+ 4:                      IL21     3  FALSE  FALSE    94    29    15 -0.691
+ 5:     Arthritis, Rheumatoid     3   TRUE  FALSE  2833   932   792 -0.671
+ 6:                      IL15     3  FALSE  FALSE   198    92    96 -0.535
+ 7:                      copd     4   TRUE  FALSE    59    28    20 -0.525
+ 8: Diabetes Mellitus, Type 1     3   TRUE  FALSE   356   173   142 -0.514
+ 9:            osteoarthritis     3  FALSE  FALSE  1475   720   310 -0.512
+10:                calcitriol     4   TRUE  FALSE   189    98    96 -0.481
+       q0    q1
+    <num> <num>
+ 1: 0.669 0.536
+ 2: 0.735 0.759
+ 3: 0.597 0.556
+ 4: 0.650 0.584
+ 5: 0.978 0.946
+ 6: 0.537 0.606
+ 7: 0.678 0.784
+ 8: 0.667 0.643
+ 9: 0.769 0.717
+10: 0.774 0.883
+geni significativi nei 37: T0 77632, T1 77127 | somma: T0 341222, T1 330771 (-3.1%), T2 329094 (-3.6%), T3 324916 (-4.8%)
+gruppi senza misura:
+                 nome     k  sig0  sig1  sig3       q0        q1    q3  in113
+               <char> <int> <int> <int> <int>    <num>     <num> <num> <lgcl>
+1:      schizophrenia    13     0     0     0       NA        NA    NA   TRUE
+2: multiple sclerosis     7  1082    53     0 0.669456 0.5363958    NA   TRUE
+
+nei 113, dominante che condivide: 23 | Δquota T1: mediana -0.024, minimo -0.133, massimo 0.106 | canale pesi: mediana -0.026
+quei gruppi fuori dai 37 con T0:
+                         nome     k      dom0    q0    q1    q2    q3    qp
+                       <char> <int>    <char> <num> <num> <num> <num> <num>
+ 1:                 psoriasis     9 GSE150851 0.504 0.425 0.421 0.431 0.415
+ 2:         Parkinson Disease     8 GSE181029 0.516 0.486 0.483 0.444 0.478
+ 3:          bipolar disorder     3  GSE80655 0.569 0.491 0.491 0.461 0.505
+ 4:                 ykl 5 124     3 GSE172442 0.514 0.497 0.493 0.487 0.493
+ 5:             5-azacytidine     4 GSE184891 0.538 0.520 0.524 0.618 0.518
+ 6:        multiple sclerosis     7 GSE138614 0.669 0.536 0.606    NA 0.482
+ 7:     Carcinoma, Renal Cell     3 GSE126964 0.567 0.553 0.545 0.569 0.548
+ 8:               resveratrol     3 GSE117620 0.625 0.561 0.587 0.538 0.565
+ 9:                 neratinib     3 GSE188958 0.574 0.570 0.572 0.621 0.564
+10:                    sepsis     5 GSE237861 0.670 0.629 0.631 0.625 0.645
+11: Diabetes Mellitus, Type 1     3 GSE131526 0.667 0.643 0.641 0.640 0.634
+12:               omacetaxine     3 GSE193897 0.663 0.719 0.704 0.748 0.689
+13:                      PFOS     4 GSE144775 0.749 0.732 0.735 0.709 0.723
+14:                  imatinib     7 GSE193398 0.846 0.779 0.780 0.666 0.747
+15:                      copd     4 GSE268499 0.678 0.784 0.732 0.802 0.664
+16:         4'-epidoxorubicin     3 GSE216137 0.969 0.915 0.916 0.751 0.918
+17:     Arthritis, Rheumatoid     3 GSE120178 0.978 0.946 0.948 0.946 0.944
+
+nei 113, vicini al confine con T1, quota in [0,47; 0,53]:
+                          nome     k condivide    q0    q1    q2    q3
+                        <char> <int>    <lgcl> <num> <num> <num> <num>
+ 1:                       atra     5     FALSE 0.479 0.479 0.479 0.479
+ 2:                        IL2     4     FALSE 0.481 0.481 0.481 0.481
+ 3:                 crizotinib     9     FALSE 0.477 0.482 0.483 0.482
+ 4:                     GSK126     6     FALSE 0.484 0.484 0.484 0.484
+ 5:          Parkinson Disease     8      TRUE 0.516 0.486 0.483 0.444
+ 6: sirna pool against igf2bp1     3     FALSE 0.491 0.491 0.491 0.491
+ 7:                 MIVEBRESIB     3     FALSE 0.491 0.491 0.491 0.491
+ 8:           bipolar disorder     3      TRUE 0.569 0.491 0.491 0.461
+ 9:                  ykl 5 124     3      TRUE 0.514 0.497 0.493 0.487
+10:                afimoxifene     5     FALSE 0.505 0.505 0.505 0.505
+11:                  nutlin 3a     4     FALSE 0.508 0.508 0.508 0.508
+12:                trastuzumab     4     FALSE 0.508 0.516 0.520 0.514
+13:              5-azacytidine     4      TRUE 0.538 0.520 0.524 0.618
+14:    all-trans-retinoic acid     4     FALSE 0.508 0.521 0.520 0.515
+15:             Pladienolide B     4     FALSE 0.522 0.522 0.522 0.522
+16:                        DRB     3     FALSE 0.524 0.524 0.524 0.524
+17:                  lapatinib     7     FALSE 0.503 0.526 0.522 0.525
+18:                       pcos     6     FALSE 0.527 0.527 0.527 0.527
+
+su 194, chi attraversa 0,5 con T1:
+                nome     k  in113    q0    q1
+              <char> <int> <lgcl> <num> <num>
+1:         psoriasis     9   TRUE 0.504 0.425
+2: Parkinson Disease     8   TRUE 0.516 0.486
+3:             IFNA1     4  FALSE 0.495 0.519
+4:      temozolomide     4  FALSE 0.481 0.500
+5:         ykl 5 124     3   TRUE 0.514 0.497
+6:  bipolar disorder     3   TRUE 0.569 0.491
+7:       gemcitabine     3  FALSE 0.507 0.498
+
+dominante che cambia con T1: 16 gruppi | con T3: 27
+coppie con condivisione: 171 | SE T1/T0 mediana 1.20, IQR 1.14-1.26, massimo per gene 2.73 | sopra 1,10: 151

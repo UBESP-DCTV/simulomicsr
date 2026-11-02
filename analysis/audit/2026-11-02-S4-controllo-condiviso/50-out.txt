@@ -1,0 +1,57 @@
+
+
+
+=== CANCELLO 2 ===
+righe del deliverable sulle 194: 3210306 | mie: 3210306 | senza abbinamento: 0
+gruppi: 194 | scarto massimo logFC 8.43e-14, SE 3.56e-13, tau2 1.14e-13, FDR 7.42e-13, k 0
+righe con scarto > 1e-6 su logFC, SE, tau2 o FDR: 0, in 0 gruppi
+quota_top1: scarto massimo 1.33e-15 | k_kish: 7.99e-15 | gruppi senza misura: deliverable 1, miei 1
+In `[.data.table`(tab, , `:=`(in113, cluster_id %in% sel113)) :
+  A shallow copy of this data.table was taken so that := can add or remove 1 columns by reference. At an earlier point, this data.table was copied by R (or was created manually using structure() or similar). Avoid names<- and attr<- which in R currently (and oddly) may copy the whole data.table. Use set* syntax instead to avoid copying: ?set, ?setnames and ?setattr. It's also not unusual for data.table-agnostic packages to produce tables affected by this issue. If this message doesn't help, please report your use case to the data.table issue tracker so the root cause can be fixed or this message improved.
+
+=== IL TAGLIO, 113 -> M ===
+T0 37 (con kish>=2: 37) | T1 41 (41) | T1-pesi 41 | T2 41 (41) | T3 41 (41)
+entrano con 1: 4
+  psoriasis                          k= 9  quota 0.504 -> 0.425  kish 2.73 -> 2.98  geni 543 -> 356
+  Parkinson Disease                  k= 8  quota 0.516 -> 0.486  kish 2.79 -> 3.02  geni 838 -> 687
+  ykl 5 124                          k= 3  quota 0.514 -> 0.497  kish 2.33 -> 2.42  geni 2121 -> 1817
+  bipolar disorder                   k= 3  quota 0.569 -> 0.491  kish 2.27 -> 2.58  geni 1551 -> 1089
+escono con 1: 0
+entrano con 3: 4
+  psoriasis                          k= 9  quota 0.504 -> 0.431  kish 2.73 -> 2.96  geni 543 -> 378
+  Parkinson Disease                  k= 8  quota 0.516 -> 0.444  kish 2.79 -> 3.30  geni 838 -> 405
+  ykl 5 124                          k= 3  quota 0.514 -> 0.487  kish 2.33 -> 2.43  geni 2121 -> 1579
+  bipolar disorder                   k= 3  quota 0.569 -> 0.461  kish 2.27 -> 2.72  geni 1551 -> 767
+escono con 3: 0
+entrano con 2: 4
+  psoriasis                          k= 9  quota 0.504 -> 0.421  kish 2.73 -> 2.98  geni 543 -> 372
+  Parkinson Disease                  k= 8  quota 0.516 -> 0.483  kish 2.79 -> 3.00  geni 838 -> 681
+  ykl 5 124                          k= 3  quota 0.514 -> 0.493  kish 2.33 -> 2.42  geni 2121 -> 1893
+  bipolar disorder                   k= 3  quota 0.569 -> 0.491  kish 2.27 -> 2.57  geni 1551 -> 1109
+escono con 2: 0
+
+su tutte le 194: dominate (quota > 0,5) T0 116 | T1 113 | T3 114 | senza misura T0 1, T1 1, T3 2
+gruppi non toccati con quota cambiata: 0
+
+=== PREVISIONI ===
+P2   stima 1.199 [IC95 1.182; 1.220] n=171 | attesa 1,20, intervallo [1.1; 1.35] -> confermata
+     rapporto SE T1/T0: massimo 2.73, coppie sopra 1,5: 14 su 171 | per numero di bracci:
+Key: <bracci>
+    bracci coppie rapporto
+    <fctr>  <int>    <num>
+1:   (1,2]     96     1.19
+2:   (2,3]     30     1.15
+3:   (3,5]     28     1.26
+4:  (5,10]     16     1.38
+5: (10,30]      1     1.27
+P3   stima -0.024 [IC95 -0.048; -0.013] n=23 | attesa -0,04, intervallo [-0.08; -0.01] -> confermata
+P4   M(T1) = 41 | attesa 44, intervallo [39; 49] -> confermata
+P5   stima -0.021 [IC95 -0.056; -0.009] n=108 | attesa -0,08, intervallo [-0.15; -0.03] -> indeterminata
+     geni significativi, somma sulle 194: T0 341222 | T1 330771 | T2 329094 | T3 324916
+P6   uscite dai 37 con T1 = 0 | attesa 1, intervallo [0; 3] -> confermata
+P7   M(T3) - M(T1) = +0 | attesa +1, intervallo [-3; +5] -> confermata
+P8   stima 1.047 [IC95 1.018; 1.068] n=171 | attesa 1,10, intervallo [1; 1.3] -> confermata
+P9   |M(T2) - M(T1)| = 0 | attesa 1, intervallo [0; 3] -> confermata
+     mediana SE T2/T1: 0.994
+
+i due canali, sui 113: mediana di quota T1-pesi meno T0 0.000 | T1 meno T0 0.000

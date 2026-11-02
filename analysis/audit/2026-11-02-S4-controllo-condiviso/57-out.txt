@@ -1,0 +1,23 @@
+Parkinson Disease      nei 113: TRUE | quota deliverable 0.516, solo T1 0.486, T1 con ruoli giusti 0.483 | geni 838, 687, 696 | sotto 0,5: TRUE
+endometriosis          nei 113: TRUE | quota deliverable 0.445, solo T1 0.445, T1 con ruoli giusti 0.440 | geni 62, 62, 89 | sotto 0,5: TRUE
+R1881 (metribolone)    nei 113: FALSE | quota deliverable 0.064, solo T1 0.064, T1 con ruoli giusti 0.064 | geni 7956, 7965, 8030 | sotto 0,5: TRUE
+nelle 37: geni T0 77632, T1 77127 (-0.65%) | variazione per gruppo: mediana 0.000, minimo -0.260 | gruppi oltre -10%: 3 | toccati: 17
+                         nome     k  sig0  sig1     rs    q0    q1
+                       <char> <int> <int> <int>  <num> <num> <num>
+1: Non-alcoholic Fatty Liver      5   828   613 -0.260 0.386 0.338
+2:                  sunitinib     7   478   387 -0.190 0.402 0.432
+3:                       nash     6   677   568 -0.161 0.483 0.423
+4:        Colitis, Ulcerative     5  3115  2808 -0.099 0.440 0.422
+5:                Abemaciclib     3  2477  2435 -0.017 0.419 0.410
+                nome         cluster_id     k      dom0  sig0  sig1  sig3 kish0
+              <char>             <char> <int>    <char> <int> <int> <int> <num>
+1:         psoriasis cgroup_L5_4b901bf1     9 GSE150851   543   356   378  2.73
+2: Parkinson Disease cgroup_L5_85083e38     8 GSE181029   838   687   405  2.79
+3:         ykl 5 124 cgroup_L5_4d535f25     3 GSE172442  2121  1817  1579  2.33
+4:  bipolar disorder cgroup_L5_96c9f7bf     3  GSE80655  1551  1089   767  2.27
+   kish1
+   <num>
+1:  2.98
+2:  3.02
+3:  2.42
+4:  2.58
