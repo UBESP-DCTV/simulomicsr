@@ -58,7 +58,12 @@ solo 5/194 saltano fra corretta e difettosa (`docs/findings/2026-08-21-S3-il-met
 `docs/findings/2026-11-02-inversioni-bracci-194.md`): una confermata, `GSE144269` in
 `Carcinoma, Hepatocellular` (105 geni significativi, 6.590 col segno raddrizzato; **gruppo non
 citabile** finché non è corretto), più 4 studi con un braccio sbagliato. Lo strumento ne vede il 52%:
-non è la prova che non ce ne siano altre. Prossima: **S4**.
+non è la prova che non ce ne siano altre.
+**S4 misurata il 2026-11-02, non chiusa: aspetta 3 scelte del PI**
+(`docs/findings/2026-11-02-S4-controllo-condiviso.md`). 492 bracci su 1.118 condividono il controllo, errore
+standard corretto/attuale 1,20 in mediana, **taglio 113 → 41** con tutti e tre i trattamenti, 20 gruppi su 108
+perdono oltre il 20% dei geni. **Tre bracci hanno i ruoli sbagliati nel deliverable** (`GSE222992`, `GSE208347`,
+`GSE135485`): vedi §8.
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -228,6 +233,9 @@ tutti gli stadi, anche a costo di efficienza.
 - `write_parquet` perde gli attributi: i registri vanno in `qc_report`, non come
   `attr()`. La cache delle conte scrive su temporaneo + rename. `h5_metadata`
   senza i cinque campi delle corsie è **fatale** (prima: warning sepolto).
+- **La cache delle conte non conserva l'ordine dei campioni** (chiave ordinata) e `.run_per_study_de_all()` assegna
+  i ruoli per posizione: se la stessa matrice è stata chiesta con un'altra divisione, i ruoli cadono sui campioni
+  sbagliati. **Prima di ogni re-pool** va corretto (S13). Misurato: 3 bracci su 1.903 nel deliverable.
 - ARCHS4 v2.5: 4.638/67.186 simboli HGNC duplicati → asse dei geni `gene_id`
   Ensembl (`gene_symbol` è etichetta); tabelle per simbolo deduplicate
   (`.rank_and_dedup_genes()`); merge fra gruppi su `gene_id`.
@@ -277,7 +285,7 @@ leave-one-out; **16,5%** di verdetti che l'etichetta non chiude (32/194, insieme
 diverso dalle 16 incerte); **1.993 campioni** persi dallo Stadio 2 (potenza, non
 errori); il gate seleziona per controllo interno e **può concentrare l'errore**;
 l'FDR premia i consistenti, non i grandi; la correlazione da controllo condiviso
-non è modellata (S4); il verdetto sulle etichette **non vede i bracci invertiti**
+non è modellata (misurata in S4, scelta del PI aperta), e il batch fra bracci con campioni diversi resta non modellato comunque; il verdetto sulle etichette **non vede i bracci invertiti**
 (`GSE144269`, finding S3 §5). Il paper è per bioinformatici: niente frizioni
 d'infrastruttura salvo impatto biologico diretto.
 
@@ -289,7 +297,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`

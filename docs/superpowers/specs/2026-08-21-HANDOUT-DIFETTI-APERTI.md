@@ -52,7 +52,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 1 | `CLAUDE.md` è 2.364 righe e nessuno lo pota | S1 |
 | 2 | Il deliverable esiste in una copia sola, fuori dal repository, fra quattro cartelle omonime | S2 |
 | 3 | ~~Non sappiamo se la lettura delle 194 sia riproducibile~~ **riproducibile: kappa 0,78 su 194; con l'umano 18/19 (S3)** | S3 |
-| 4 | I bracci che **condividono il controllo** gonfiano il peso, e con esso il taglio 113→37 | S4 |
+| 4 | ~~I bracci che **condividono il controllo** gonfiano il peso~~ **misurato: taglio 113→41; aspetta 3 scelte del PI (S4)** | S4 |
 | 5 | Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3 | S5 |
 | 6 | Nessuna verifica usa dati esterni al corpus | S6 → S7 |
 | 7 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi) | S8 → S14 |
@@ -76,7 +76,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S1** | Pulizia di `CLAUDE.md` | igiene | ~3 h | — |
 | **S2** | Mettere in salvo il deliverable | igiene | ~2 h | — |
 | **S3** | Il metro concorda con se stesso? ✅ | misura | ~4 h | — |
-| **S4** | Il controllo condiviso, e il peso che gonfia | misura | ~3 h | — |
+| **S4** | Il controllo condiviso, e il peso che gonfia ⏳ | misura | ~3 h | — |
 | **S5** | Le due decisioni: il gate, e «37 o 173» | **decisione** | ~4 h | *meglio S3 e S4* |
 | **S6** | Validazione esterna: il disegno | disegno | ~3 h | *robusto a S5, o dopo S5* |
 | **S7** | Validazione esterna: l'esecuzione | misura | *stimata in S6* | **S6** |
@@ -327,6 +327,19 @@ Non cambiare nessun verdetto: qui si misura, non si corregge.
 
 # S4 — Il controllo condiviso, e il peso che gonfia
 
+> ⏳ **Misurata il 2026-11-02, non chiusa** (`docs/findings/2026-11-02-S4-controllo-condiviso.md`).
+> **492 bracci su 1.118** condividono il controllo (171 coppie, 109 gruppi). `SE` corretta/attuale:
+> **mediana 1,20**, massimo 2,73. **Taglio 113 → 41** con tutti e tre i trattamenti (varianza
+> corretta, GLS, fusione): entrano `psoriasis`, `Parkinson Disease`, `ykl 5 124`, `bipolar disorder`,
+> non esce nessuno. Geni significativi −3,1% nel totale, ma 20 gruppi su 108 ne perdono oltre il 20%
+> (`multiple sclerosis` 1.082 → 53, `Arthritis, Rheumatoid` 2.833 → 932).
+> ⚠️ **Il cancello di riproduzione ha trovato un difetto di produzione: 3 bracci con i ruoli sbagliati**
+> (`GSE222992`, `GSE208347`, `GSE135485`): la cache rende le colonne in un altro ordine e la pipeline
+> assegna i ruoli per posizione. **Due cancelli sono falliti come depositati**, spiegati nel finding.
+> **Manca per chiudere:** tre scelte del PI: correggere la varianza, correggere i ruoli, accettare i
+> due cancelli. I numeri qui sotto sono quelli di prima della misura, e `59 dei 113` conta tutti gli
+> studi multi-braccio: quelli col dominante che condivide il controllo sono **23**.
+
 ### Perché
 
 **Ventisei verdetti su 194 nominano lo stesso fenomeno, e nessuna sessione lo raccoglie.** L'arbitro l'ha escluso da `difetti.csv` per una regola corretta *per il suo compito*: «raddoppia il peso dello studio, ma **non rompe il contrasto**». Quindi è fuori dal setaccio, dalla leave-one-out, dai nulli, da S10-S11-S12.
@@ -412,6 +425,12 @@ Non toccare niente prima di avere il numero.
 ---
 
 # S5 — Le due decisioni: il gate, e «37 o 173»
+
+> **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** Il taglio dei 113 con
+> l'errore standard corretto è **41**, non 37: la clausola «la scelta decade se S4 sposta il confine»
+> è scattata. Dieci meta-analisi dei 113 perdono oltre il 20% dei geni significativi, fra cui
+> `multiple sclerosis` (1.082 → 53) e `Arthritis, Rheumatoid` (2.833 → 932). Il valore dipende dalla
+> scelta del PI in S4. Finding: `docs/findings/2026-11-02-S4-controllo-condiviso.md`.
 
 ### Perché
 
@@ -974,6 +993,14 @@ NON lanciare niente: l'applicazione e' S13. Suite verde prima di committare.
 
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
 
+> **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** (1) Prima di ogni
+> re-pool: `.run_per_study_de_all()` assegna i ruoli per posizione su una matrice che la cache rende
+> in un altro ordine. Va assegnato per nome, con un test, e guardati anche i rami `mega` e `mega_aug`.
+> Tre bracci del deliverable sono sbagliati per questo (finding S4 §5). (2) Se il PI sceglie la
+> correzione della varianza, entra in `.collapse_arms_by_study()` **e** in
+> `.collapse_arm_se_by_study()`, e i dati devono portare i campioni di ogni braccio. La frase
+> «lievemente ottimistica» (`R/stage4-orchestrator.R:210`) è sbagliata: va riscritta.
+
 ### Perché
 
 Le regole agiscono nello Stadio 3: finché non si rifà il cluster e il pool, il codice corretto non cambia nulla. **Questa sessione è separata da S14 apposta**: se decidi di non rifare il run completo, le correzioni si applicano lo stesso e il lavoro di S7-S12 non resta in un cassetto.
@@ -1046,6 +1073,10 @@ Alla fine verifica le previsioni una per una, comprese quelle che hai sbagliato.
 ---
 
 # S14 — Il re-run completo degli stadi LLM
+
+> **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** Uno Stadio 2 nuovo
+> cambia le divisioni in ruoli: con la cache delle conte già piena può creare altri bracci con i ruoli
+> sbagliati. La correzione dell'assegnazione dei ruoli (S13, punto 1) è un prerequisito anche qui.
 
 > Solo se S8 ha detto sì. **40-60 ore su più giorni.**
 
@@ -1215,6 +1246,11 @@ Proponimi i case study e fammi scegliere.
 ---
 
 # S17 — Scrivere i Methods e le limitazioni
+
+> **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** Da dichiarare: la
+> correlazione fra bracci con campioni diversi dello stesso laboratorio resta non modellata, anche
+> dopo la correzione della varianza. Se il PI non corregge: errore standard sottostimato (rapporto
+> mediano 1,20 in 171 coppie) e i ruoli sbagliati di tre bracci.
 
 ### Perché
 
