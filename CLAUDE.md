@@ -63,7 +63,12 @@ non è la prova che non ce ne siano altre.
 standard corretto/attuale 1,20 in mediana, **taglio 113 → 41** con tutti e tre i trattamenti, 20 gruppi su 108
 perdono oltre il 20% dei geni. **Tre bracci hanno i ruoli sbagliati nel deliverable** (`GSE222992`, `GSE208347`,
 `GSE135485`): vedi §8. **Decisioni del PI:** in S13 si corregge solo la varianza (T1) e si assegnano i ruoli per nome;
-la misura vale con i cancelli 3 e 4 falliti e spiegati. Il deliverable su disco resta a T0 fino a S13. **Prossima: S5.**
+la misura vale con i cancelli 3 e 4 falliti e spiegati. Il deliverable su disco resta a T0 fino a S13.
+**S5 misurata il 2026-11-03, aspetta 5 scelte del PI** (`docs/findings/2026-11-03-S5-gate-e-insiemi.md`, opzioni in
+`analysis/audit/2026-08-21-decisioni/S5-opzioni.md`). Col gate a 2 nascono **273** gruppi (non 88), mai letti, nessuno può
+entrare nelle 41, il movimento cambia poco. **Studi doppi:** due o tre numeri GEO con gli stessi dati in 13 gruppi; `sirna pool
+against igf2bp1` è un solo studio, quindi 41 → **40** e 173 → **172** se il PI li toglie. Confronto con studi non collegati:
+**3,04 volte nelle 41, 1,19 nelle 96 dominate**. Non aprire S6 prima della scelta.
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -236,6 +241,10 @@ tutti gli stadi, anche a costo di efficienza.
 - **La cache delle conte non conserva l'ordine dei campioni** (chiave ordinata) e `.run_per_study_de_all()` assegna
   i ruoli per posizione: se la stessa matrice è stata chiesta con un'altra divisione, i ruoli cadono sui campioni
   sbagliati. **Prima di ogni re-pool** va corretto (S13). Misurato: 3 bracci su 1.903 nel deliverable.
+- **`non_processable.rds` non conta tutti gli esclusi dal gate**: `k_eff_min` taglia anche il `k` censito in
+  `.identify_layer_a_clusters()`. A k_min=2 i candidati sono 700, non 316. Il registro ne vede 88 su 282.
+- **Il deliverable conta studi GEO, non dati distinti**: due numeri GEO possono avere le stesse conte (a meno del
+  riallineamento). `k_eff` e `quota_top1` ne risentono (finding S5 §6). Non usare l'impronta esatta: serve la distanza.
 - ARCHS4 v2.5: 4.638/67.186 simboli HGNC duplicati → asse dei geni `gene_id`
   Ensembl (`gene_symbol` è etichetta); tabelle per simbolo deduplicate
   (`.rank_and_dedup_genes()`); merge fra gruppi su `gene_id`.
@@ -286,7 +295,7 @@ diverso dalle 16 incerte); **1.993 campioni** persi dallo Stadio 2 (potenza, non
 errori); il gate seleziona per controllo interno e **può concentrare l'errore**;
 l'FDR premia i consistenti, non i grandi; la correlazione da controllo condiviso
 non è modellata nel deliverable (misurata in S4, si corregge in S13), e il batch fra bracci con campioni diversi resta non modellato comunque; il verdetto sulle etichette **non vede i bracci invertiti**
-(`GSE144269`, finding S3 §5). Il paper è per bioinformatici: niente frizioni
+(`GSE144269`, finding S3 §5); sotto i dieci studi l'I² è poco leggibile e la significatività dipende dal test z; il segno concorde non è una prova, e gli studi doppi non si vedono dalle etichette (finding S5). Il paper è per bioinformatici: niente frizioni
 d'infrastruttura salvo impatto biologico diretto.
 
 ---
@@ -297,7 +306,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`

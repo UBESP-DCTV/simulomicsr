@@ -62,6 +62,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
 | 12 | Le figure dell'articolo descrivono un deliverable che non esiste più | S16 |
 | 13 | I limiti misurati non sono scritti da nessuna parte | S17 |
+| 14 | **Studi doppi** (2026-11-03): due o tre numeri GEO con gli stessi dati, in 13 gruppi. Decisione in S5 | S5 → S12 → S13 |
 
 **Tre cose non si chiudono, si dichiarano** — sono materiale per S17, non sessioni: il **bias concorde** (invisibile a qualunque leave-one-out), il **16,5% di verdetti che l'etichetta non chiude** — 32 su 194, che sono un insieme **diverso** dai 16 con verdetto «incerta»: 16 incerte + 13 difettose + 3 corrette (il metadato GEO non dice abbastanza) — i **1.993 campioni persi dallo Stadio 2** (5,3%: potenza buttata, non risultati sbagliati).
 
@@ -428,6 +429,16 @@ Non toccare niente prima di avere il numero.
 
 # S5 — Le due decisioni: il gate, e «37 o 173»
 
+> 🔶 **Misurata il 2026-11-03, aspetta 5 scelte del PI** (`docs/findings/2026-11-03-S5-gate-e-insiemi.md`,
+> opzioni in `analysis/audit/2026-08-21-decisioni/S5-opzioni.md`). Il testo qui sotto è quello di prima
+> della misura, e tre cose vanno lette corrette. **(1)** I gruppi a due studi sono **282, non 88**: il
+> gate agisce anche sul numero di studi del censimento, e `non_processable.rds` non registra quei 194. Dopo
+> gli studi doppi sono **273**. **(2)** Fit e pooling non sono «tempo macchina da decidere a parte»: 35
+> minuti. **(3)** «Un intervallo di predizione che non esclude nulla» è vero solo con τ̂² > 0: a k=2 esclude 0
+> nel 27,3% dei geni significativi. Il numero per la scelta è **40**: 41 meno `sirna pool against igf2bp1`,
+> che è un solo studio con tre numeri GEO, se il PI sceglie di togliere gli studi doppi.
+> Confronto con studi non collegati, stessa precisione: **3,04 volte nelle 41, 1,19 nelle 96 dominate.**
+
 > **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** Il taglio dei 113 con
 > l'errore standard corretto è **41**, non 37: la clausola «la scelta decade se S4 sposta il confine»
 > è scattata. Dieci meta-analisi dei 113 perdono oltre il 20% dei geni significativi, fra cui
@@ -511,6 +522,14 @@ quando la scelta e' scritta, non prima. Non scegliere al posto mio.
 ---
 
 # S6 — Validazione esterna: il disegno
+
+> **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Il controllo negativo con
+> studi non collegati di precisione simile è una validazione interna che costa minuti, e separa gli insiemi:
+> 3,04 volte nelle 41, 1,19 nelle 96 dominate (`74-out.txt`). È stato fatto con **una sola estrazione per
+> gruppo**, quindi non dà un verdetto per singola meta-analisi, e non ha misurato le 36 non dominate fuori dalle
+> 41. **Che cosa serve per chiuderlo:** ripeterlo con molte estrazioni, dopo le correzioni, su tutti i gruppi.
+> Da decidere qui se entra nel disegno della validazione. Una risposta generica condivisa alza il nullo: va
+> dichiarato. Script: `analysis/audit/2026-11-03-S5-gate-e-insiemi/74-nullo-appaiato.R`.
 
 ### Perché
 
@@ -953,6 +972,15 @@ dedup, fusioni): contarla sulle 194 righe da' la risposta sbagliata.
 
 # S12 — Il rilevatore: portarlo in produzione
 
+> **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo, se il PI sceglie di togliere gli
+> studi doppi.** Serve una regola sulle conte, con i test: due campioni sono lo stesso dato se la distanza L1
+> relativa sta sotto 0,001 (190 coppie sotto, nessuna fra 0,001 e 0,03), due studi di un gruppo sono doppi se
+> condividono almeno metà dei campioni dello studio più piccolo, resta lo studio con più campioni. L'impronta
+> esatta non basta: lo stesso dato riallineato non dà conte identiche. Il `k_eff` va contato dopo questa regola.
+> Da verificare: se `.build_samn_dedupe_lookups()` vede questi casi. Controllo positivo:
+> `GSE154613`/`GSE159522`, `GSE108743`/`GSE89725`, `GSE156038`/`GSE156184`/`GSE222279`.
+> Elenco: `analysis/audit/2026-11-03-S5-gate-e-insiemi/48-coppie-di-studi-doppie.csv`.
+
 > Solo se S11 dice che ne vale la pena.
 
 ### Che cosa si fa
@@ -998,6 +1026,10 @@ NON lanciare niente: l'applicazione e' S13. Suite verde prima di committare.
 ---
 
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
+
+> **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Se il PI sceglie di togliere gli
+> studi doppi, si applicano qui, e `sirna pool against igf2bp1` non è più una meta-analisi. L'assegnazione dei
+> ruoli per nome corregge anche `GSE145896`, un quarto braccio con i ruoli sbagliati, fuori dalle 194.
 
 > **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** (1) Prima di ogni
 > re-pool: `.run_per_study_de_all()` assegna i ruoli per posizione su una matrice che la cache rende
@@ -1253,6 +1285,12 @@ Proponimi i case study e fammi scegliere.
 ---
 
 # S17 — Scrivere i Methods e le limitazioni
+
+> **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Tre limiti da scrivere, con i numeri
+> del finding. **(1)** L'I² è poco leggibile sotto i dieci studi: l'intervallo copre 95,6 punti a k=3 e 23,2 a k≥10.
+> **(2)** La significatività sotto i dieci studi dipende dal test z: con Knapp-Hartung almeno un gene resta nel 17% dei
+> gruppi a k=3 e nel 78% a k≥10. **(3)** Il segno concorde fra studi non è una prova: vale 99,2% anche con studi non
+> collegati, perché il REM seleziona i geni concordi. Non si cambia il test senza una decisione del PI.
 
 > **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** Da dichiarare: la
 > correlazione fra bracci con campioni diversi dello stesso laboratorio resta non modellata, anche
