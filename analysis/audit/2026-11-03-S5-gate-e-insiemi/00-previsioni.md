@@ -150,3 +150,28 @@ FDR < 0,05) calcolo la differenza mediana vero meno nullo, appaiata per gruppo, 
 
 Il controllo non dice quanto valgono i geni: studi non collegati possono condividere una risposta
 generica allo stress o alla coltura.
+
+## Terza aggiunta (2026-11-03, prima di eseguire `74-nullo-appaiato.R`)
+
+Il controllo negativo non passa la regola su nessuna quantità (`72-out.txt`). Gli altri studi estratti
+a caso sono però più precisi di quelli veri: errore standard mediano 0,165 contro 0,250 (`73-out.txt`).
+Il confronto quindi non è alla pari, e non ha misurato le 41.
+
+**Controllo negativo appaiato per precisione, su 137 gruppi: i 96 dominati e le 41.** Tengo lo studio
+che pesa di più (`dom1`). Sostituisco ogni altro studio con uno studio di un'altra meta-analisi, di
+entità diversa, assente dal gruppo e non doppio di un suo studio, con errore standard mediano entro il
+±25% di quello che sostituisce (se non ce n'è, il più vicino: conto questi casi). Una estrazione per
+gruppo, T1, seme 20261103. Bootstrap sui gruppi, B = 2000.
+
+| # | quantità | attesa | intervallo | da dove viene il margine |
+|---|---|---:|---:|---|
+| P16 | geni significativi veri / nulli, le 41 (mediana per gruppo) | 1,8 | [1,5; 3,0] | giudizio: sotto 1,5 il numero di geni non distingue il gruppo vero da studi non collegati |
+| P17 | la stessa quantità, i 96 dominati | 1,1 | [0,8; 1,5] | giudizio: stesso confine |
+
+**Regola.** Il numero di geni significativi distingue un insieme se l'IC95 sta tutto sopra 1,5.
+- Se le 41 passano e i 96 no, il controllo sostiene le 41 come insieme principale.
+- Se non passano né le 41 né i 96, il numero di geni significativi non si usa come prova di un effetto
+  condiviso in nessuno dei due insiemi, e lo porto al PI come risultato.
+- Il controllo non dice se un singolo gene è vero. Una risposta generica condivisa alza il nullo.
+
+Questa è l'ultima misura della sessione: qualunque esito va nel file delle opzioni.
