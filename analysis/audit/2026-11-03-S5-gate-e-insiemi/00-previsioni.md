@@ -128,3 +128,25 @@ stessi p di `metafor::rma(test = "knha")` su 2.000 geni per k in {2, 3, 4} (scar
 
 **Anomalia non prevista: gli studi doppi** (`45`-`48`). La ricerca è nata da P2 e non ha previsioni
 depositate. Si scrive come anomalia, con il suo controllo positivo sulle tre coppie a correlazione 1.
+
+## Seconda aggiunta (2026-11-03, prima di eseguire `72-nullo-senza-dominante.R`)
+
+P14 e P15 sono smentite verso l'alto: segno concorde 99,2% (98,9-99,4) contro [70%; 95%], `p < 0,05`
+63,6% (60,7-66,5) contro [10%; 50%] (`70-out.txt`). **Non basta come prova.** Il REM penalizza con τ²
+i geni discordanti, quindi i geni significativi possono essere concordi per selezione.
+
+**Controllo negativo.** Per ciascuno dei 96 gruppi dominati tengo lo studio dominante e sostituisco gli
+altri `k-1` studi con altrettanti studi estratti a caso da altre meta-analisi delle 194, con entità
+diversa e assenti dal gruppo. Una estrazione per gruppo, seme 20261103, T1. Rifaccio REM e geni
+significativi, tolgo lo studio dominante e misuro le stesse tre quantità.
+
+**Regola, scritta prima di guardare.** Per ciascuna quantità (segno concorde, `p < 0,05`, geni ancora
+FDR < 0,05) calcolo la differenza mediana vero meno nullo, appaiata per gruppo, con bootstrap sui gruppi
+(B = 2000, seme 20261103).
+- La quantità serve per dichiarare la dominanza solo se l'IC95 della differenza sta tutto sopra
+  **10 punti**. Il margine è un giudizio: sotto 10 punti il numero non distingue il gruppo vero da
+  studi non collegati.
+- Se non passa, nel file delle opzioni la quantità non si usa come prova, e lo scrivo.
+
+Il controllo non dice quanto valgono i geni: studi non collegati possono condividere una risposta
+generica allo stress o alla coltura.
