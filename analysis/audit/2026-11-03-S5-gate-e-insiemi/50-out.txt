@@ -1,0 +1,64 @@
+
+NOTE: Dependency discovery took 54 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+=== CANCELLO 4: il setaccio, dai file
+            tutte    nessun difetto verdetto corretta  etichetta chiude 
+              194               128               116               113 
+               T0                T1 
+               37                41 
+le 41 coincidono con in37_1: TRUE
+128 + 45 = 128 + 45 = 173; le 41 stanno nelle 173: TRUE; le 37 stanno nelle 41: TRUE
+
+--- le 41: 41 meta-analisi
+k: mediana 5, minimo 3, massimo 36; a k=3: 10, a k=3-4: 17, a k>=10: 6
+geni significativi T1: mediana 1817, totale 81076, con meno di 100: 1, zero: 0
+I2 mediano 82.9; k_kish T1 mediano 3.02; quota_top1 T1 mediana 0.427
+dominate T1 (q1>0,5): 0; k_kish T1 < 2: 0; con difetti: 0; verdetti: corretta 41
+retest: corretta 39, incerta 2
+avvisi: Parkinson Disease; endometriosis
+perdono oltre il 20% dei geni con T1: 3 (psoriasis 543->356; bipolar disorder 1551->1089; Non-alcoholic Fatty Liver Disease 828->613)
+
+--- le 173: 173 meta-analisi
+k: mediana 4, minimo 3, massimo 54; a k=3: 63, a k=3-4: 93, a k>=10: 23
+geni significativi T1: mediana 1151, totale 299854, con meno di 100: 16, zero: 1
+I2 mediano 73.1; k_kish T1 mediano 2.43; quota_top1 T1 mediana 0.524
+dominate T1 (q1>0,5): 96; k_kish T1 < 2: 56; con difetti: 45; verdetti: corretta 116, difettosa 44, incerta 13
+retest: corretta 111, difettosa 41, incerta 21
+avvisi: IL22; obese; sals; Parkinson Disease; endometriosis; Carcinoma, Hepatocellular; lipopolysaccharide; hepatitis B virus; R1881 (metribolone); vtp50469
+perdono oltre il 20% dei geni con T1: 14 (multiple sclerosis 1082->53; ptsd 66->11; Diabetes Mellitus, Type 1 356->173; dasatinib 425->317; calcitriol 189->98; psoriasis 543->356; PFOS 302->220; imatinib 972->609; bipolar disorder 1551->1089; copd 59->28; Carcinoma, Hepatocellular 105->79; Non-alcoholic Fatty Liver Disease 828->613; cystic fibrosis 710->496; Arthritis, Rheumatoid 2833->932)
+
+--- le 132 delle 173 fuori dalle 41: 132 meta-analisi
+k: mediana 4, minimo 3, massimo 54; a k=3: 53, a k=3-4: 76, a k>=10: 17
+geni significativi T1: mediana 992.5, totale 218778, con meno di 100: 15, zero: 1
+I2 mediano 71.9; k_kish T1 mediano 2.10; quota_top1 T1 mediana 0.572
+dominate T1 (q1>0,5): 96; k_kish T1 < 2: 56; con difetti: 45; verdetti: corretta 75, difettosa 44, incerta 13
+retest: corretta 72, difettosa 41, incerta 19
+avvisi: IL22; obese; sals; Carcinoma, Hepatocellular; lipopolysaccharide; hepatitis B virus; R1881 (metribolone); vtp50469
+perdono oltre il 20% dei geni con T1: 11 (multiple sclerosis 1082->53; ptsd 66->11; Diabetes Mellitus, Type 1 356->173; dasatinib 425->317; calcitriol 189->98; PFOS 302->220; imatinib 972->609; copd 59->28; Carcinoma, Hepatocellular 105->79; cystic fibrosis 710->496; Arthritis, Rheumatoid 2833->932)
+
+=== Perché le 132 stanno fuori dalle 41 (primo criterio che non passano)
+                                 motivo     N
+                                 <char> <int>
+1: un solo studio sopra il 50% del peso    72
+2:                     contiene difetti    45
+3:                     verdetto incerta    12
+4:                 etichetta non chiude     3
+le 45: peso contaminato mediana 14.7%, massimo 47.7%, sopra il 25%: 7
+le 128 con T1: dominate 83 (65%), k_kish<2 52 (41%), misura mancante 1
+
+=== Il gate a 2 sui due insiemi
+gruppi che escono togliendo i difetti: 21; a k_ridotto=2: 16; con k_ridotto mancante: 5
+con il gate a 2 le 173 diventano 189, e restano senza lettura i gruppi nuovi
+
+=== Una seconda lettura (retest): come si muovono i due insiemi
+128 -> 139 | 113 -> 109 | 41 -> 39 (restano 37, escono 4, entrano 2) | 173 -> 177 (restano 170, escono 3, entrano 7)
+escono dalle 41: vemurafenib (incerta, 0 difetti); bipolar disorder (corretta, 0 difetti); TNF (corretta, 0 difetti); sunitinib (incerta, 0 difetti) 
+entrano nelle 41: sjogren s syndrome; Pre-Eclampsia 
+salti corretta <-> difettosa sulle 194: 5; dentro le 41: 0; dentro le 173: 4

@@ -1,0 +1,19 @@
+
+NOTE: Dependency discovery took 19 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+gruppi nel parquet 115 (bracci 319) | gruppi nuovi 194 (bracci 574)
+bracci per coppia uguali fra dispatch e parquet in 203 coppie su 203
+893 bracci in 4.4 min con 48 processi (14.2 s per braccio x processo)
+errori: 0 | braccio non usabile per conflitto: 0 | bracci con conflitto: 0 | da cache: 398, dall'H5: 495
+=== CANCELLO 3, bracci del parquet: 319 | per nome 318 | per posizione 1 | senza spiegazione 0
+=== P13 bracci con ruoli sbagliati nel parquet fuori dalle 194: 1
+           cluster_id  study_id braccio   n_t   n_c  d_logFC pos_d_logFC
+               <char>    <char>   <int> <int> <int>    <num>       <num>
+1: cgroup_L5_545a48c6 GSE145896       1     2     5 6.758448           0

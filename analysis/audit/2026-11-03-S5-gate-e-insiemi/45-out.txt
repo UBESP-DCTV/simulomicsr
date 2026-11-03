@@ -1,0 +1,43 @@
+
+NOTE: Dependency discovery took 33 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+coppie di studi: 6884 in 476 gruppi
+    fonte                              tipo coppie gruppi
+   <char>                            <char>  <int>  <int>
+1:    194 stime identiche, campioni diversi      2      2
+2:     k2 stime identiche, campioni diversi      1      1
+
+nelle 194: gruppi toccati 2 | nelle 173: 2 | nelle 113: 2 | nelle 41: 2 
+           nome     k        q1   in41  in173         a         b cor_d comuni
+         <char> <int>     <num> <lgcl> <lgcl>    <char>    <char> <num>  <int>
+1: bleomycin A2     7 0.1559212   TRUE   TRUE GSE156038 GSE222279     1      0
+2:    psoriasis     9 0.4246294   TRUE   TRUE GSE108743  GSE89725     1      0
+      na    nb
+   <int> <int>
+1:     6     6
+2:     5     5
+
+gruppi a due studi toccati: 1 su 282 
+   canonical_name         a         b cor_d comuni    na    nb
+           <char>    <char>    <char> <num>  <int> <int> <int>
+1:     amlodipine GSE154613 GSE159522     1      0     5     5
+
+Distribuzione della correlazione fra studi diversi senza campioni in comune (per vedere il confine):
+      50%       90%       99%     99.9%      100% 
+0.1360999 0.4376076 0.6588841 0.8503828 1.0000000 
+           cluster_id         a         b  cor_d
+               <char>    <char>    <char>  <num>
+1: cgroup_L5_2356e32b GSE154613 GSE159522 1.0000
+2: cgroup_L5_4b901bf1 GSE108743  GSE89725 1.0000
+3: cgroup_L5_79ce3bd1 GSE156038 GSE222279 1.0000
+4: cgroup_L5_79ce3bd1 GSE156184 GSE222279 0.9956
+5: cgroup_L5_79ce3bd1 GSE156038 GSE156184 0.9956
+6: cgroup_L5_d03a3e00 GSE225522 GSE225523 0.9387
+7: cgroup_L5_871ae09e GSE244485 GSE244486 0.9205

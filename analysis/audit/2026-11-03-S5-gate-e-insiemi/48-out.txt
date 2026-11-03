@@ -1,0 +1,71 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+coppie di studi con campioni uguali: 18 in 15 gruppi; doppie (almeno meta'): 16 in 13 gruppi; parziali: 2 in 2 gruppi
+                          nome        s1        s2 uguali    n1    n2 frazione
+                        <char>    <char>    <char>  <int> <int> <int>    <num>
+ 1:                 amlodipine GSE154613 GSE159522      5     5     5     1.00
+ 2:           conjunctival scc GSE147449 GSE149004     10    10    18     1.00
+ 3:                  psoriasis GSE108743  GSE89725      5     5     5     1.00
+ 4:               bleomycin A2 GSE156038 GSE156184      5     6     5     1.00
+ 5:               bleomycin A2 GSE156038 GSE222279      6     6     6     1.00
+ 6:               bleomycin A2 GSE156184 GSE222279      5     5     6     1.00
+ 7: sirna pool against igf2bp1 GSE146547 GSE161087      5     5    10     1.00
+ 8:        R1881 (metribolone) GSE120660 GSE133876      5    21     5     1.00
+ 9:                       ARL3  GSE73628  GSE83083     16    17    21     0.94
+10:                        IL6  GSE73628  GSE83083     15    17    20     0.88
+11:                      APOA1  GSE73628  GSE83083     15    17    20     0.88
+12:                     EIF2S1  GSE73628  GSE83083     11    13    19     0.85
+13:       Lymphoma, Follicular GSE145842  GSE62241     10    16    12     0.83
+14: sirna pool against igf2bp1 GSE146805 GSE161087      4     5    10     0.80
+15:                       RAF1  GSE73628  GSE83083     12    17    17     0.71
+16:                       <NA> GSE124439 GSE153960     97   139  1099     0.70
+17:                       <NA> GSE124439 GSE153960      8    21   365     0.38
+18:                  dasatinib GSE186341 GSE199800      2   138    35     0.06
+    doppio  l1_max
+    <lgcl>   <num>
+ 1:   TRUE 0.0e+00
+ 2:   TRUE 0.0e+00
+ 3:   TRUE 1.5e-05
+ 4:   TRUE 8.6e-05
+ 5:   TRUE 8.6e-05
+ 6:   TRUE 4.2e-05
+ 7:   TRUE 1.0e-04
+ 8:   TRUE 1.6e-04
+ 9:   TRUE 0.0e+00
+10:   TRUE 0.0e+00
+11:   TRUE 0.0e+00
+12:   TRUE 0.0e+00
+13:   TRUE 8.2e-05
+14:   TRUE 6.5e-05
+15:   TRUE 0.0e+00
+16:   TRUE 9.0e-05
+17:  FALSE 7.6e-05
+18:  FALSE 0.0e+00
+gruppi: fra le 194 con doppi 4; fra i 282 9
+                        nome  k k_senza    q1 q_senza kish1 kish_senza sig1 sig_senza  in41 in41_senza in173 in173_senza               tolti
+1                  psoriasis  9       8 0.425   0.448  2.98       2.88  356       297  TRUE       TRUE  TRUE        TRUE            GSE89725
+2               bleomycin A2  7       5 0.156   0.220  6.94       4.95 4139      1515  TRUE       TRUE  TRUE        TRUE GSE222279,GSE156184
+3 sirna pool against igf2bp1  3       1 0.491      NA  2.62         NA 6177        NA  TRUE      FALSE  TRUE       FALSE GSE146547,GSE146805
+4        R1881 (metribolone) 18      17 0.064   0.068 17.37      16.33 7965      7002 FALSE      FALSE  TRUE        TRUE           GSE133876
+le 41 senza i doppi: 40 | le 173 senza i doppi: 172
+gruppi a due studi con doppi: 9, quindi con un solo studio vero; i 282 diventano 273
+Key: <cluster_id>
+           cluster_id tolti                 nome  sig1        q1
+               <char> <int>               <char> <int>     <num>
+1: cgroup_L5_2356e32b     1           amlodipine  9455 0.5000000
+2: cgroup_L5_236828b1     1     conjunctival scc  3581 0.5995693
+3: cgroup_L5_4c1f7501     1               EIF2S1  2668 0.6202678
+4: cgroup_L5_88514201     1                 ARL3  3759 0.5697197
+5: cgroup_L5_baab4e77     1                  IL6  3994 0.6162363
+6: cgroup_L5_c96d770f     1                 RAF1  5751 0.8087368
+7: cgroup_L5_d3089840     1                      12507 0.9213919
+8: cgroup_L5_d53bf74e     1 Lymphoma, Follicular  3888 0.7525557
+9: cgroup_L5_daa97c63     1                APOA1  4706 0.6060267

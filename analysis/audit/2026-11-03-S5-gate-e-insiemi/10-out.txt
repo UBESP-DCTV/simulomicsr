@@ -1,0 +1,63 @@
+
+NOTE: Dependency discovery took 18 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── A3 ──────────────────────────────────────────────────────────────────────────
+ℹ pre-filtro H5: 13/489998 campioni tolti (non in ARCHS4 v2.5)
+ℹ k_min=3: 316 candidati
+ℹ campioni: 24241; titolo NA: 0
+ℹ corsie: 74 campioni in 25 librerie
+[A3] scarti: produzione 3319, replica 3319, identici: TRUE
+[A3] candidati 316; k_eff>=3 194, =2 88, =1 27, =0 7
+[A3] non_processable 122 righe, k_eff uguale in 122
+[A3] deliverable 194 meta-analisi, k_eff uguale in 194
+[A3] coppie nel parquet 1381, nella replica 1381, identiche: TRUE; gruppi nel parquet 309
+ℹ k_min=2: 700 candidati
+ℹ campioni: 33321; titolo NA: 0
+ℹ corsie: 76 campioni in 26 librerie
+[A3] sui candidati del gate a 3, la replica col gate a 2 da' gli stessi bracci: TRUE
+[A3] gate a 2: candidati 700
+Key: <censito, k_eff>
+   censito k_eff     N
+    <char> <int> <int>
+1:       2     0    49
+2:       2     1   141
+3:       2     2   194
+4:     >=3     0     7
+5:     >=3     1    27
+6:     >=3     2    88
+7:     >=3     3   194
+
+── RIF ─────────────────────────────────────────────────────────────────────────
+ℹ pre-filtro H5: 15/491071 campioni tolti (non in ARCHS4 v2.5)
+ℹ k_min=3: 350 candidati
+ℹ campioni: 27788; titolo NA: 0
+ℹ corsie: 76 campioni in 26 librerie
+[RIF] scarti: produzione 3345, replica 3345, identici: TRUE
+[RIF] candidati 350; k_eff>=3 211, =2 83, =1 43, =0 13
+[RIF] non_processable 139 righe, k_eff uguale in 139
+[RIF] deliverable 211 meta-analisi, k_eff uguale in 211
+[RIF] coppie nel parquet 1552, nella replica 1552, identiche: TRUE; gruppi nel parquet 337
+ℹ k_min=2: 787 candidati
+ℹ campioni: 37694; titolo NA: 0
+ℹ corsie: 76 campioni in 26 librerie
+[RIF] sui candidati del gate a 3, la replica col gate a 2 da' gli stessi bracci: TRUE
+[RIF] gate a 2: candidati 787
+Key: <censito, k_eff>
+   censito k_eff     N
+    <char> <int> <int>
+1:       2     0    65
+2:       2     1   162
+3:       2     2   210
+4:     >=3     0    13
+5:     >=3     1    43
+6:     >=3     2    83
+7:     >=3     3   211
+durata: 3.2 min

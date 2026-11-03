@@ -1,0 +1,57 @@
+
+NOTE: Dependency discovery took 26 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+gruppi 476, studi 1386, campioni 23116
+errori di lettura: 0 
+23116 campioni letti in 7.6 min
+impronte condivise fra studi diversi: 77 (con GSM diversi: 77)
+
+coppie (gruppo, due studi) con campioni identici: 16 in 14 gruppi | nelle 194: 4 gruppi | nelle 173: 4 | nelle 113: 2 | nelle 41: 2 | a due studi: 10
+     fonte                 nome     k    q1      dom1   in41         a
+    <char>               <char> <int> <num>    <char> <lgcl>    <char>
+ 1:    194         bleomycin A2     7 0.156 GSE244305   TRUE GSE156184
+ 2:    194            psoriasis     9 0.425 GSE142582   TRUE GSE108743
+ 3:    194         bleomycin A2     7 0.156 GSE244305   TRUE GSE156038
+ 4:    194         bleomycin A2     7 0.156 GSE244305   TRUE GSE156038
+ 5:    194  R1881 (metribolone)    18 0.064 GSE225481  FALSE GSE120660
+ 6:    194            dasatinib     8 0.548 GSE135514  FALSE GSE186341
+ 7:     k2           amlodipine    NA    NA      <NA>     NA GSE154613
+ 8:     k2     conjunctival scc    NA    NA      <NA>     NA GSE147449
+ 9:     k2                 ARL3    NA    NA      <NA>     NA  GSE73628
+10:     k2                  IL6    NA    NA      <NA>     NA  GSE73628
+11:     k2                APOA1    NA    NA      <NA>     NA  GSE73628
+12:     k2               EIF2S1    NA    NA      <NA>     NA  GSE73628
+13:     k2                 RAF1    NA    NA      <NA>     NA  GSE73628
+14:     k2                 <NA>    NA    NA      <NA>     NA GSE124439
+15:     k2 Lymphoma, Follicular    NA    NA      <NA>     NA GSE145842
+16:     k2                 <NA>    NA    NA      <NA>     NA GSE124439
+            b uguali   n.a   n.b frazione
+       <char>  <int> <int> <int>    <num>
+ 1: GSE222279      3     5     6     0.60
+ 2:  GSE89725      2     5     5     0.40
+ 3: GSE156184      2     6     5     0.40
+ 4: GSE222279      1     6     6     0.17
+ 5: GSE133876      2    21     5     0.40
+ 6: GSE199800      2   138    35     0.06
+ 7: GSE159522      5     5     5     1.00
+ 8: GSE149004     10    10    18     1.00
+ 9:  GSE83083     16    17    21     0.94
+10:  GSE83083     15    17    20     0.88
+11:  GSE83083     15    17    20     0.88
+12:  GSE83083     11    13    19     0.85
+13:  GSE83083     12    17    17     0.71
+14: GSE153960     16   139  1099     0.12
+15:  GSE62241      1    16    12     0.08
+16: GSE153960      1    21   365     0.05
+
+CONTROLLO POSITIVO: le tre coppie con correlazione 1
+GSE154613 GSE159522 : 5 su 5 
+GSE108743 GSE89725 : 2 su 5 
+GSE156038 GSE222279 : 1 su 6 

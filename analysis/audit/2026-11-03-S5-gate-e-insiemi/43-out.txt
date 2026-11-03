@@ -1,0 +1,35 @@
+
+NOTE: Dependency discovery took 49 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+=== CANCELLO 5-BIS e controllo su Knapp-Hartung
+k=2: geni 2000 | tol 1e-10: scarto relativo massimo tau2 lo 2e-07, hi 4.8e-09 | tol predefinita: lo 0.45, hi 0.0026, scarto assoluto massimo 3.1e-05 | |Q - bersaglio| massimo 1.8e-15 | |p - p metafor| massimo 3.3e-16
+k=3: geni 1996 | tol 1e-10: scarto relativo massimo tau2 lo 2.4e-07, hi 2.3e-09 | tol predefinita: lo 0.47, hi 0.43, scarto assoluto massimo 4.3e-05 | |Q - bersaglio| massimo 4.4e-15 | |p - p metafor| massimo 3.3e-16
+k=4: geni 1646 | tol 1e-10: scarto relativo massimo tau2 lo 2e-07, hi 2.1e-09 | tol predefinita: lo 0.13, hi 0.0037, scarto assoluto massimo 3.1e-05 | |Q - bersaglio| massimo 5.3e-15 | |p - p metafor| massimo 6.7e-16
+
+=== Spiegazioni, per fascia di k (mediane per gruppo)
+  fascia gruppi tau0_tutti tau0_sig con_gene_KH quota_con_gene_KH
+1    k=2    282      0.430    0.807          17             0.060
+2    k=3     81      0.253    0.591          14             0.173
+3    k=4     33      0.153    0.410           6             0.182
+4  k=5-9     57      0.138    0.371          20             0.351
+5  k>=10     23      0.039    0.067          18             0.783
+  KH_geni_mediana geni_z_mediana
+1               0           1485
+2               0           1146
+3               0           1203
+4               0            837
+5             278           1877
+riferimento teorico: con due studi omogenei tau2 REML e' 0 se Q <= 1, P(chi2_1 <= 1) = 0.683
+  fascia gruppi PI_esclude0_se_tau0 PI_esclude0_se_tau_pos
+1    k=2    277               0.369                  0.000
+2    k=3     81               0.749                  0.158
+3    k=4     33               0.787                  0.281
+4  k=5-9     57               0.840                  0.389
+5  k>=10     22               0.756                  0.046

@@ -1,0 +1,41 @@
+
+NOTE: Dependency discovery took 17 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+    insieme     N
+     <char> <int>
+1: dominati    96
+2:       41    41
+studi sostituiti: 505; fuori dal margine del 25%: 0; rapporto degli errori standard, mediana 0.972
+gruppi con errore: 0 
+137 gruppi: 15.1 min
+=== 41, gruppi 41: geni veri mediana 1817, nulli 466; rapporto veri/nulli 3.04 [2.51; 4.29]; passa la regola (IC tutto sopra 1,5): TRUE; gruppi con veri > nulli: 39
+    I2 vero 82.9, nullo 85.4 | segno vero 0.999, nullo 0.995 | p<0,05 vero 0.856, nullo 0.828 | ancora FDR vero 0.561, nullo 0.498 | tau2=0 sui significativi, nullo 0.430
+=== dominati, gruppi 96: geni veri mediana 811.5, nulli 726; rapporto veri/nulli 1.19 [0.98; 1.32]; passa la regola (IC tutto sopra 1,5): FALSE; gruppi con veri > nulli: 57
+    I2 vero 57.7, nullo 71.4 | segno vero 0.992, nullo 0.992 | p<0,05 vero 0.636, nullo 0.658 | ancora FDR vero 0.213, nullo 0.253 | tau2=0 sui significativi, nullo 0.563
+
+le 41 per fascia di k:
+     k gruppi   veri nulli rapporto veri_maggiori
+1    3     10 2568.5   793     3.65            10
+2    4      7 1844.0   335     3.04             7
+3  5-9     18  778.0   496     2.33            16
+4 >=10      6 1414.5   179     9.47             6
+
+le 41 con rapporto piu' basso:
+                                nome k sig_v sig_n rapporto
+1                          sunitinib 7   387   614     0.63
+2  Non-alcoholic Fatty Liver Disease 5   613   785     0.78
+3                      endometriosis 7    62    60     1.03
+4                         crizotinib 9   492   466     1.06
+5                      17β-estradiol 9   377   350     1.08
+6                               atra 5   869   776     1.12
+7                      rosiglitazone 5   562   496     1.13
+8                       pevonedistat 3  1050   798     1.32
+9                                IL2 4   392   290     1.35
+10                            GSK126 6  1193   802     1.49

@@ -1,0 +1,21 @@
+
+NOTE: Dependency discovery took 33 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+gate 3: studi nel riferimento 1123, nel deliverable 993, usciti 271 (24.1%), entrati 141
+gate 2: studi nel riferimento 1537, nel deliverable 1386, usciti 330 (21.5%), entrati 179
+riproduzione: i 271 del finding coincidono con i miei usciti a gate 3: TRUE (271 e 271)
+dei 271 usciti a gate 3, stanno a gate 2 nel deliverable: 61 (22.5%)
+dei 169 usciti per il gate (stessa chiave), tornano con il gate a 2: 59 (34.9%)
+=== P12 quota di usciti gate 2 / gate 3: 0.890 [0.823; 0.961] (unita' studio, 1537 studi)
+meta-analisi, gate 3: riferimento 211, deliverable 194, in comune 173, Jaccard 0.746, del riferimento perse 18.0%
+meta-analisi, gate 2: riferimento 504, deliverable 476, in comune 411, Jaccard 0.722, del riferimento perse 18.5%
+coppie (meta-analisi, studio), gate 3: riferimento 1343, deliverable 1178, in comune 988, del riferimento perse 26.4%
+coppie (meta-analisi, studio), gate 2: riferimento 1929, deliverable 1742, in comune 1455, del riferimento perse 24.6%
+gruppi a k_eff=2 nel riferimento: 293, presenti come k>=2 nel deliverable: 206 (70.3%); gruppi a k_eff=3 nel riferimento: 77, presenti come k>=3 nel deliverable: 46 (59.7%)

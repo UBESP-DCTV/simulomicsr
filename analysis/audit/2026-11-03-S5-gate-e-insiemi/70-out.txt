@@ -1,0 +1,20 @@
+
+NOTE: Dependency discovery took 19 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+gruppi con errore: 0
+173 gruppi: 21.6 min
+=== P14 e P15 (stima, IC95, bootstrap per gruppo)
+dominate (96 gruppi): segno 0.992 0.989 0.994 | p<0,05 0.636 0.607 0.665 | geni ancora FDR<0,05, fra i significativi 0.213 0.156 0.290
+dominate a k=3 (53 gruppi): segno 0.990 0.986 0.994 | p<0,05 0.607 0.494 0.637 | geni ancora FDR<0,05, fra i significativi 0.201 0.111 0.282
+dominate a k>3 (43 gruppi): segno 0.993 0.990 0.995 | p<0,05 0.718 0.643 0.776 | geni ancora FDR<0,05, fra i significativi 0.273 0.157 0.368
+le 41 (41 gruppi): segno 0.999 0.998 0.999 | p<0,05 0.856 0.830 0.890 | geni ancora FDR<0,05, fra i significativi 0.561 0.436 0.586
+non dominate fuori dalle 41 (35 gruppi): segno 0.999 0.999 1.000 | p<0,05 0.970 0.946 0.991 | geni ancora FDR<0,05, fra i significativi 0.661 0.519 0.769
+dominate con segno concorde sotto il 70%: 0 su 96 ()
+dominate senza nessun gene FDR<0,05 dopo la rimozione: 6 su 96

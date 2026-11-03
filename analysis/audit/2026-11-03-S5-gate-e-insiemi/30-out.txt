@@ -1,0 +1,23 @@
+
+NOTE: Dependency discovery took 15 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+gruppi a k_eff=2 nel dispatch: 282 | bracci: 856 | bracci con fit: 856
+REM di 282 gruppi: 30.4 min
+errori: 0 
+gruppi senza nessun fit: 0
+=== P1 gruppi a k censito 2 che arrivano a k_eff=2: 194 | a k censito >= 3: 88 | totale: 282 
+   censito gruppi k_reale2 con_geni_sig
+    <char>  <int>    <int>        <int>
+1:       2    194      194          190
+2:     >=3     88       88           87
+=== P2 gruppi con quota_top1 <= 0,50 in T1: 1 | quota minima 0.500000 | kish massimo 2.0000 (gruppi con quota: 277)
+      I2_T1   tau2_T1 sig_T1 sig_T0     kish    quota sig0_gruppi
+      <num>     <num>  <num>  <num>    <num>    <num>       <int>
+1: 28.86646 0.0121261   1485 1596.5 1.574168 0.760054           5
