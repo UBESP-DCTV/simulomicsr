@@ -59,11 +59,11 @@ solo 5/194 saltano fra corretta e difettosa (`docs/findings/2026-08-21-S3-il-met
 `Carcinoma, Hepatocellular` (105 geni significativi, 6.590 col segno raddrizzato; **gruppo non
 citabile** finché non è corretto), più 4 studi con un braccio sbagliato. Lo strumento ne vede il 52%:
 non è la prova che non ce ne siano altre.
-**S4 misurata il 2026-11-02, non chiusa: aspetta 3 scelte del PI**
-(`docs/findings/2026-11-02-S4-controllo-condiviso.md`). 492 bracci su 1.118 condividono il controllo, errore
+**S4 chiusa il 2026-11-03** (`docs/findings/2026-11-02-S4-controllo-condiviso.md`). 492 bracci su 1.118 condividono il controllo, errore
 standard corretto/attuale 1,20 in mediana, **taglio 113 → 41** con tutti e tre i trattamenti, 20 gruppi su 108
 perdono oltre il 20% dei geni. **Tre bracci hanno i ruoli sbagliati nel deliverable** (`GSE222992`, `GSE208347`,
-`GSE135485`): vedi §8.
+`GSE135485`): vedi §8. **Decisioni del PI:** in S13 si corregge solo la varianza (T1) e si assegnano i ruoli per nome;
+la misura vale con i cancelli 3 e 4 falliti e spiegati. Il deliverable su disco resta a T0 fino a S13. **Prossima: S5.**
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -285,7 +285,7 @@ leave-one-out; **16,5%** di verdetti che l'etichetta non chiude (32/194, insieme
 diverso dalle 16 incerte); **1.993 campioni** persi dallo Stadio 2 (potenza, non
 errori); il gate seleziona per controllo interno e **può concentrare l'errore**;
 l'FDR premia i consistenti, non i grandi; la correlazione da controllo condiviso
-non è modellata (misurata in S4, scelta del PI aperta), e il batch fra bracci con campioni diversi resta non modellato comunque; il verdetto sulle etichette **non vede i bracci invertiti**
+non è modellata nel deliverable (misurata in S4, si corregge in S13), e il batch fra bracci con campioni diversi resta non modellato comunque; il verdetto sulle etichette **non vede i bracci invertiti**
 (`GSE144269`, finding S3 §5). Il paper è per bioinformatici: niente frizioni
 d'infrastruttura salvo impatto biologico diretto.
 

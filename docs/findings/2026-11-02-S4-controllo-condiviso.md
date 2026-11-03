@@ -56,6 +56,16 @@ sources:
 
 Appena decidi questi 3 punti, la sessione è chiusa.
 
+# Decisioni del PI (2026-11-03)
+
+Il PI ha accettato le tre proposte del riassunto. Il testo qui sopra resta com'era quando il PI l'ha letto.
+
+1. **Errore standard: si corregge solo la varianza (T1), nel calcolo che applica le correzioni (S13).** Le stime di ogni studio restano quelle di oggi. Il taglio di riferimento è 41. Fusione e GLS restano sensibilità.
+2. **Ruoli: si correggono per nome del campione, prima di ogni nuovo calcolo.** I tre bracci sbagliati si correggono nello stesso calcolo di S13. Nessun calcolo a parte.
+3. **La misura vale, con i cancelli 3 e 4 falliti come depositati e spiegati (§5, §6).** Il fallimento resta scritto in §1. Il cancello 4-bis non lo cancella.
+
+Fino al calcolo di S13 il deliverable resta com'è: `SE_pool`, `quota_top1` e i geni significativi su disco sono quelli di T0, e i tre bracci restano sbagliati. La lista delle 41 sta in `50-per-gruppo.csv`, colonna `in37_1`.
+
 # 1. I cancelli
 
 Testo depositato in `00-previsioni.md`[^previsioni], commit `bba1c18`. Il cancello 4-bis è del commit `889be2a`.
@@ -69,7 +79,7 @@ Testo depositato in `00-previsioni.md`[^previsioni], commit `bba1c18`. Il cancel
 | 4-bis | la stessa prova su 48 insiemi non usati, criteri scritti prima | **passa**: (a) scarto medio −0,019 e −0,007; (b) T1/T3 1,03 e 1,03; (c) T0/T1 1,46 e 1,30 | `32-out.txt` |
 | 5 | copertura e formula chiusa | **passa**: 194 gruppi su 194, 1.903 bracci su 1.903; formula chiusa con scarto < 1e-10; 0 gruppi non toccati con quota cambiata | `10-out.txt`, `50-out.txt` |
 
-Il protocollo dice che con un cancello fallito la sessione non vale. Non ho cambiato i cancelli 3 e 4 dopo il risultato. La decisione 3 del riassunto chiede al PI se le spiegazioni bastano.
+Il protocollo dice che con un cancello fallito la sessione non vale. Non ho cambiato i cancelli 3 e 4 dopo il risultato. Il PI ha accettato le spiegazioni il 2026-11-03 (decisione 3).
 
 # 2. Le previsioni
 
@@ -165,9 +175,9 @@ Dentro un gruppo di controllo vero non c'è un effetto. Divido a caso i campioni
 Scritto nelle sezioni dell'handout che lo ricevono.
 
 - **La scelta fra le 37 e le 173:** il taglio con il trattamento corretto è 41, e dieci meta-analisi dei 113 perdono più del 20% dei geni. Il criterio «la scelta decade se il confine si sposta» è scattato.
-- **L'applicazione delle correzioni:** correzione dell'assegnazione dei ruoli come primo passo; correzione della varianza se il PI la sceglie; la frase «lievemente ottimistica» va corretta.
+- **L'applicazione delle correzioni:** correzione dell'assegnazione dei ruoli come primo passo; correzione della varianza (T1), scelta dal PI; la frase «lievemente ottimistica» va corretta.
 - **Il re-run completo:** stesso prerequisito sui ruoli.
-- **I Methods:** il limite del batch fra bracci, e il limite dei ruoli se il PI non lo corregge.
+- **I Methods:** il limite del batch fra bracci, che resta anche dopo la correzione della varianza.
 
 # 9. Evidenza e come si rifà
 
