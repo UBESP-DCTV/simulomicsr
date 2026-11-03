@@ -105,3 +105,26 @@ gate. P14 e P15 danno il numero per il modo di dichiarare la dominanza con la ri
 - La rimozione dello studio dominante vede gli studi discordanti. Un bias concorde resta invisibile.
 - T1 corregge solo la correlazione dal controllo condiviso. Il batch fra bracci con campioni diversi
   resta non modellato.
+
+## Aggiunta dopo il primo risultato (2026-11-03, prima di eseguire `43-spiega.R`)
+
+Il testo sopra resta com'è. **Il cancello 5(a) fallisce come depositato:** scarto relativo massimo su
+τ² fino a 0,47 contro il limite 1e-3 (`42-out.txt`). Il cancello 5(b) passa. P6, P9, P10 e P11 sono
+smentite e P3 e P12 sono indeterminate, come da `40-out.txt` e `60-out.txt`.
+
+**Cancello 5-bis, criterio scritto prima di guardare.** L'ipotesi è la tolleranza di `uniroot` dentro
+`metafor::confint` (predefinita circa 1,2e-4 in valore assoluto), che pesa sugli estremi piccoli.
+Sugli stessi geni, con lo stesso seme, chiamo `confint` con `tol = 1e-10`. Passa se per k in {2, 3, 4}
+lo scarto relativo massimo su τ² sta sotto 1e-3 dove l'estremo supera 1e-6. Controllo in più: `Q`
+valutata nel mio estremo dista dal bersaglio meno di 1e-6.
+
+**Controlli sul test alternativo, stesso criterio di scarto.** La mia `knapp_hartung()` deve dare gli
+stessi p di `metafor::rma(test = "knha")` su 2.000 geni per k in {2, 3, 4} (scarto assoluto < 1e-6).
+
+**Spiegazioni da misurare, non previsioni:**
+- quota di geni con τ̂² = 0 su tutti i geni e sui significativi, per fascia di k;
+- quota di geni il cui intervallo di predizione esclude 0, separata per τ̂² = 0 e τ̂² > 0;
+- gruppi con almeno un gene significativo col test Knapp-Hartung, per fascia di k.
+
+**Anomalia non prevista: gli studi doppi** (`45`-`48`). La ricerca è nata da P2 e non ha previsioni
+depositate. Si scrive come anomalia, con il suo controllo positivo sulle tre coppie a correlazione 1.
