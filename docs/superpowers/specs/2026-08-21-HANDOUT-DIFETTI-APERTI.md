@@ -53,7 +53,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 2 | Il deliverable esiste in una copia sola, fuori dal repository, fra quattro cartelle omonime | S2 |
 | 3 | ~~Non sappiamo se la lettura delle 194 sia riproducibile~~ **riproducibile: kappa 0,78 su 194; con l'umano 18/19 (S3)** | S3 |
 | 4 | ~~I bracci che **condividono il controllo** gonfiano il peso~~ **misurato: taglio 113→41; il PI corregge varianza e ruoli in S13 (S4)** | S4 |
-| 5 | Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3 | S5 |
+| 5 | ~~Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3~~ **deciso: gate a 3 studi, le 40 come insieme principale, le altre 132 in supplementare (S5)** | S5 |
 | 6 | Nessuna verifica usa dati esterni al corpus | S6 → S7 |
 | 7 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi) | S8 → S14 |
 | 8 | Le lettere greche sbagliano in 45 prove su 90 | S9 |
@@ -62,7 +62,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
 | 12 | Le figure dell'articolo descrivono un deliverable che non esiste più | S16 |
 | 13 | I limiti misurati non sono scritti da nessuna parte | S17 |
-| 14 | **Studi doppi** (2026-11-03): due o tre numeri GEO con gli stessi dati, in 13 gruppi. Decisione in S5 | S5 → S12 → S13 |
+| 14 | **Studi doppi** (2026-11-03): due o tre numeri GEO con gli stessi dati, in 13 gruppi. **Il PI li toglie (2026-11-04)** con una regola sulle conte | S5 → S12 → S13 |
 
 **Tre cose non si chiudono, si dichiarano** — sono materiale per S17, non sessioni: il **bias concorde** (invisibile a qualunque leave-one-out), il **16,5% di verdetti che l'etichetta non chiude** — 32 su 194, che sono un insieme **diverso** dai 16 con verdetto «incerta»: 16 incerte + 13 difettose + 3 corrette (il metadato GEO non dice abbastanza) — i **1.993 campioni persi dallo Stadio 2** (5,3%: potenza buttata, non risultati sbagliati).
 
@@ -78,8 +78,8 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S2** | Mettere in salvo il deliverable | igiene | ~2 h | — |
 | **S3** | Il metro concorda con se stesso? ✅ | misura | ~4 h | — |
 | **S4** | Il controllo condiviso, e il peso che gonfia ✅ | misura | ~3 h | — |
-| **S5** | Le due decisioni: il gate, e «37 o 173» | **decisione** | ~4 h | *meglio S3 e S4* |
-| **S6** | Validazione esterna: il disegno | disegno | ~3 h | *robusto a S5, o dopo S5* |
+| **S5** | Le due decisioni: il gate, e «37 o 173» ✅ | **decisione** | ~4 h | *meglio S3 e S4* |
+| **S6** | Validazione esterna: il disegno | disegno | ~3 h | S5 ✅ |
 | **S7** | Validazione esterna: l'esecuzione | misura | *stimata in S6* | **S6** |
 | **S8** | La decisione sul re-run completo | **decisione** | ~2 h | — |
 | **S9** | Le lettere greche, e il crash delle corsie | misura + 1 fix | ~4 h | — |
@@ -429,14 +429,21 @@ Non toccare niente prima di avere il numero.
 
 # S5 — Le due decisioni: il gate, e «37 o 173»
 
-> 🔶 **Misurata il 2026-11-03, aspetta 5 scelte del PI** (`docs/findings/2026-11-03-S5-gate-e-insiemi.md`,
-> opzioni in `analysis/audit/2026-08-21-decisioni/S5-opzioni.md`). Il testo qui sotto è quello di prima
+> ✅ **Misurata il 2026-11-03, chiusa il 2026-11-04** (`docs/findings/2026-11-03-S5-gate-e-insiemi.md`,
+> opzioni e scelta in `analysis/audit/2026-08-21-decisioni/S5-opzioni.md`).
+> **Decisioni del PI (2026-11-04):** (1) la misura vale, con il cancello 5(a) fallito e spiegato; (2) il gate
+> resta a 3 studi, con il limite nei Methods; (3) le 40 nelle figure principali, le altre 132 in supplementare
+> con gli avvisi; (4) gli studi doppi si tolgono in S13, con una regola sulle conte, quindi 41 → 40, 173 → 172,
+> 194 → 193; (5) la dominanza si dichiara con una colonna, due livelli e il confronto con studi non collegati.
+> **La scelta decade** se S11 sposta più di 5 verdetti fra corretta e difettosa, o anche uno solo dentro le 40,
+> oppure se si esegue S14. S13 rigenera le liste con la stessa regola, e non fa decadere la scelta. Prossima: **S6**.
+> Il testo qui sotto è quello di prima
 > della misura, e tre cose vanno lette corrette. **(1)** I gruppi a due studi sono **282, non 88**: il
 > gate agisce anche sul numero di studi del censimento, e `non_processable.rds` non registra quei 194. Dopo
 > gli studi doppi sono **273**. **(2)** Fit e pooling non sono «tempo macchina da decidere a parte»: 35
 > minuti. **(3)** «Un intervallo di predizione che non esclude nulla» è vero solo con τ̂² > 0: a k=2 esclude 0
 > nel 27,3% dei geni significativi. Il numero per la scelta è **40**: 41 meno `sirna pool against igf2bp1`,
-> che è un solo studio con tre numeri GEO, se il PI sceglie di togliere gli studi doppi.
+> che è un solo studio con tre numeri GEO: il PI ha scelto di togliere gli studi doppi.
 > Confronto con studi non collegati, stessa precisione: **3,04 volte nelle 41, 1,19 nelle 96 dominate.**
 
 > **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** Il taglio dei 113 con
@@ -530,6 +537,9 @@ quando la scelta e' scritta, non prima. Non scegliere al posto mio.
 > 41. **Che cosa serve per chiuderlo:** ripeterlo con molte estrazioni, dopo le correzioni, su tutti i gruppi.
 > Da decidere qui se entra nel disegno della validazione. Una risposta generica condivisa alza il nullo: va
 > dichiarato. Script: `analysis/audit/2026-11-03-S5-gate-e-insiemi/74-nullo-appaiato.R`.
+> **Il PI ha scelto (2026-11-04):** il disegno riguarda le 40 come insieme principale e le altre 132 in
+> supplementare, e il confronto con studi non collegati entra nell'articolo. Il punto 4 qui sotto non dipende
+> più da «37 o 173».
 
 ### Perché
 
@@ -972,8 +982,9 @@ dedup, fusioni): contarla sulle 194 righe da' la risposta sbagliata.
 
 # S12 — Il rilevatore: portarlo in produzione
 
-> **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo, se il PI sceglie di togliere gli
-> studi doppi.** Serve una regola sulle conte, con i test: due campioni sono lo stesso dato se la distanza L1
+> **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo. Il PI ha scelto di togliere gli
+> studi doppi (2026-11-04).** La regola serve anche se S11 dice che questa sessione non vale la pena: in quel caso
+> si scrive in S13. Serve una regola sulle conte, con i test: due campioni sono lo stesso dato se la distanza L1
 > relativa sta sotto 0,001 (190 coppie sotto, nessuna fra 0,001 e 0,03), due studi di un gruppo sono doppi se
 > condividono almeno metà dei campioni dello studio più piccolo, resta lo studio con più campioni. L'impronta
 > esatta non basta: lo stesso dato riallineato non dà conte identiche. Il `k_eff` va contato dopo questa regola.
@@ -1027,8 +1038,10 @@ NON lanciare niente: l'applicazione e' S13. Suite verde prima di committare.
 
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
 
-> **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Se il PI sceglie di togliere gli
-> studi doppi, si applicano qui, e `sirna pool against igf2bp1` non è più una meta-analisi. L'assegnazione dei
+> **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Il PI ha scelto di togliere gli
+> studi doppi (2026-11-04): si applicano qui, con la regola sulle conte descritta in S12. Se S12 non è stata
+> eseguita, la regola e i suoi test si scrivono qui. `sirna pool against igf2bp1` non è più una meta-analisi,
+> quindi 41 → 40, 173 → 172, 194 → 193. Dopo il calcolo si rigenerano le liste con la stessa regola. L'assegnazione dei
 > ruoli per nome corregge anche `GSE145896`, un quarto braccio con i ruoli sbagliati, fuori dalle 194.
 
 > **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** (1) Prima di ogni
@@ -1236,7 +1249,8 @@ Il controllo finale è facile e non ammette scuse: `schede/001-TGFB1-k54.txt` di
 
 ### Che cosa NON si fa
 
-Non si sceglie quali case study prima che S5 abbia deciso «37 o 173».
+Non si sceglie quali case study prima che S5 abbia deciso «37 o 173». (S5 ha deciso il 2026-11-04: le 40 nelle
+figure principali, le altre 132 in supplementare.)
 
 ### Come si sa che è finita
 
@@ -1291,6 +1305,9 @@ Proponimi i case study e fammi scegliere.
 > **(2)** La significatività sotto i dieci studi dipende dal test z: con Knapp-Hartung almeno un gene resta nel 17% dei
 > gruppi a k=3 e nel 78% a k≥10. **(3)** Il segno concorde fra studi non è una prova: vale 99,2% anche con studi non
 > collegati, perché il REM seleziona i geni concordi. Non si cambia il test senza una decisione del PI.
+> **Il PI ha scelto (2026-11-04):** il gate resta a 3 studi e questo limite va nei Methods. L'articolo usa le 40 come
+> insieme principale e le altre 132 in supplementare. La dominanza si dichiara con una colonna, due livelli e il
+> confronto con studi non collegati.
 
 > **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** Da dichiarare: la
 > correlazione fra bracci con campioni diversi dello stesso laboratorio resta non modellata, anche

@@ -66,6 +66,20 @@ Le opzioni complete e l'elenco delle meta-analisi stanno in `analysis/audit/2026
 
 Appena decidi questi 5 punti, la sessione è chiusa.
 
+# Decisioni del PI (2026-11-04)
+
+Il PI ha chiesto una forma più semplice delle 5 decisioni, e a quella forma ha risposto «si a tutte». Il testo qui sopra resta com'era quando il PI l'ha letto.
+
+1. **La misura vale, con il cancello 5(a) fallito come depositato e spiegato (§1).** Il fallimento resta scritto in §1. Il cancello 5-bis non lo cancella.
+2. **Il gate resta a 3 studi, e il limite si scrive nei Methods (S17).** I 273 gruppi a due studi non entrano nell'articolo.
+3. **L'articolo usa due insiemi: le 40 nelle figure principali, le altre 132 in supplementare con gli avvisi.**
+4. **Gli studi doppi si tolgono nel calcolo che applica le correzioni (S13), con una regola sulle conte e con i test.** Nessun calcolo a parte. Quindi 41 → 40, 173 → 172, 194 → 193, e `sirna pool against igf2bp1` non è più una meta-analisi.
+5. **La dominanza si dichiara in tre modi insieme:** una colonna per ogni meta-analisi, due livelli di evidenza, il confronto con studi non collegati. Il confronto va rifatto con più estrazioni dopo le correzioni (rinviato a S6).
+
+Il numero della clausola di decadenza è **5 verdetti fra corretta e difettosa, o anche uno solo dentro le 40**. Viene dal riassunto letto dal PI, non era una delle 5 domande, e il PI non lo ha contestato. La scelta decade anche con il re-run completo degli stadi LLM (S14).
+
+Fino al calcolo di S13 il deliverable resta com'è: su disco ci sono 194 meta-analisi a T0, con gli studi doppi dentro. Le liste stanno in `80-insieme-40.csv` e `80-insieme-172.csv`. S13 le rigenera con la stessa regola.
+
 # 1. I cancelli
 
 Testo in `00-previsioni.md`[^previsioni], commit `cf2b07f`. Il cancello 5-bis è del commit `c0e398d`.

@@ -1,7 +1,7 @@
 # Le opzioni per il gate e per i due insiemi (sessione S5)
 
-**Stato (2026-11-03): aspetta la scelta del PI.** La sessione non è finita finché la scelta non è
-scritta qui sotto. Deliverable:
+**Stato (2026-11-04): il PI ha scelto.** La scelta è scritta nella sezione «La scelta del PI». Il testo
+delle opzioni resta com'era quando il PI ha scelto. Deliverable:
 `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d`.
 Finding: `docs/findings/2026-11-03-S5-gate-e-insiemi.md`.
 Evidenza: `analysis/audit/2026-11-03-S5-gate-e-insiemi/`.
@@ -173,14 +173,19 @@ passa il limite del 50%, la lista cambia e la regola resta. Quattro stanno vicin
 
 ## La scelta del PI
 
-*Da scrivere quando il PI sceglie. Finché è vuota, la sessione non è finita.*
+**2026-11-04.** Il PI ha chiesto una forma più semplice delle 5 decisioni e a quella forma ha risposto
+«si a tutte».
 
-- Accettazione della misura con il cancello 5(a) fallito e spiegato:
-- Gate:
-- Insiemi:
-- Studi doppi:
-- Modo di dichiarare la dominanza:
-- Numero N della clausola:
+- Accettazione della misura con il cancello 5(a) fallito e spiegato: **accettata.** Il fallimento resta scritto
+  nel finding, §1. Il cancello 5-bis non lo cancella.
+- Gate: **opzione A.** Il gate resta a 3 studi e il limite si scrive nei Methods (S17).
+- Insiemi: **opzione A.** Le 40 stanno nelle figure principali, le altre 132 in supplementare con gli avvisi.
+- Studi doppi: **opzione A.** Si tolgono nel calcolo che applica le correzioni (S13), con una regola sulle conte
+  e con i test. Quindi 41 → 40, 173 → 172, 194 → 193.
+- Modo di dichiarare la dominanza: **modi 1, 2 e 3 insieme.** La colonna, i due livelli e il confronto con
+  studi non collegati, da rifare con più estrazioni dopo le correzioni.
+- Numero N della clausola: **5**, o anche uno solo dentro le 40. Il numero viene dal riassunto letto dal PI.
+  Non era una delle 5 domande, e il PI non lo ha contestato.
 
 ## Tavola: le 40
 

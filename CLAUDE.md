@@ -64,11 +64,15 @@ standard corretto/attuale 1,20 in mediana, **taglio 113 → 41** con tutti e tre
 perdono oltre il 20% dei geni. **Tre bracci hanno i ruoli sbagliati nel deliverable** (`GSE222992`, `GSE208347`,
 `GSE135485`): vedi §8. **Decisioni del PI:** in S13 si corregge solo la varianza (T1) e si assegnano i ruoli per nome;
 la misura vale con i cancelli 3 e 4 falliti e spiegati. Il deliverable su disco resta a T0 fino a S13.
-**S5 misurata il 2026-11-03, aspetta 5 scelte del PI** (`docs/findings/2026-11-03-S5-gate-e-insiemi.md`, opzioni in
+**S5 chiusa il 2026-11-04** (`docs/findings/2026-11-03-S5-gate-e-insiemi.md`, opzioni e scelta in
 `analysis/audit/2026-08-21-decisioni/S5-opzioni.md`). Col gate a 2 nascono **273** gruppi (non 88), mai letti, nessuno può
 entrare nelle 41, il movimento cambia poco. **Studi doppi:** due o tre numeri GEO con gli stessi dati in 13 gruppi; `sirna pool
-against igf2bp1` è un solo studio, quindi 41 → **40** e 173 → **172** se il PI li toglie. Confronto con studi non collegati:
-**3,04 volte nelle 41, 1,19 nelle 96 dominate**. Non aprire S6 prima della scelta.
+against igf2bp1` è un solo studio. Confronto con studi non collegati: **3,04 volte nelle 41, 1,19 nelle 96 dominate**.
+**Decisioni del PI:** il gate resta a **3 studi**, col limite nei Methods; l'articolo usa **le 40** come insieme principale e **le
+altre 132** in supplementare con gli avvisi; gli studi doppi si tolgono in S13 con una regola sulle conte (41 → 40, 173 → 172,
+194 → 193); la dominanza si dichiara con colonna, due livelli e confronto con studi non collegati; la misura vale col cancello 5(a)
+fallito e spiegato. **La scelta decade** se S11 sposta più di 5 verdetti fra corretta e difettosa, o uno solo dentro le 40, o con S14.
+Il deliverable su disco resta 194 a T0 fino a S13. **Prossima: S6.**
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
