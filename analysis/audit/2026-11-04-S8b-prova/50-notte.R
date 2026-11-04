@@ -74,8 +74,8 @@ passo("s1-blocchi", {
   scrivi("record %d, outlier %d, blocchi %d", length(raw), length(idx), n)
 })
 blocchi <- c(as.character(fs::dir_ls(CHUNKS, glob = "*.jsonl")), if (file.exists(OUTL)) OUTL)
-# I blocchi si alternano fra i due nodi: la prova usa tutte le GPU e misura anche la differenza fra nodi.
-nodi1 <- rep_len(list(cfg02, cfg01), length(blocchi))
+# poddgx01 e' caduto alle 21:51 del 2026-11-04 (NODE_FAIL): tutto su poddgx02, il nodo di agosto, due job da 4 GPU alla volta.
+nodi1 <- rep_len(list(cfg02), length(blocchi))
 jobs1 <- Map(function(p, cc) invia(p, "stage1", paste0("s8b-s1-", sub("[.]jsonl$", "", basename(p))), "12:00:00", conf = cc), blocchi, nodi1)
 passo("s1-attesa", attendi(jobs1))
 passo("s1-raccolta", {
@@ -138,26 +138,19 @@ passo("s2-input", {
   if (!uguali) ferma("CANCELLO 5 fallito")
   sel <- n[sn %in% c(NUOVI, GIA)]; writeLines(sel, SUB2); scrivi("subset Stadio 2: %d record, %d studi", length(sel), length(unique(sn[sn %in% c(NUOVI, GIA)])))
 })
-# Quattro job da 4 GPU, due per nodo. I 300 studi gia' rigenerati stanno in un job per nodo: e' la prova di ripetibilita' e di nodo.
-PART2 <- sprintf("analysis/input/S8b-stage2-parte%d.jsonl", 1:4)
+# Due job da 4 GPU su poddgx02, le 8 GPU del nodo. I 300 studi gia' rigenerati stanno nel primo, mescolati ai nuovi.
+PART2 <- sprintf("analysis/input/S8b-stage2-parte%d.jsonl", 1:2)
 passo("s2-parti", {
   n <- readLines(SUB2, warn = FALSE); sn <- sub('^.*?"series_id":"([^"]+)".*$', "\\1", n, perl = TRUE); nc <- tapply(nchar(n), sn, sum)
-  bin <- c(sum(nc[GIA]), 0, sum(nc[GIA]), 0); dove <- list(); for (k in 1:4) dove[[k]] <- character(0)
+  bin <- c(sum(nc[GIA]), 0); dove <- list(GIA, character(0))
   for (s in NUOVI[NUOVI %in% names(nc)]) { b <- which.min(bin); bin[b] <- bin[b] + nc[[s]]; dove[[b]] <- c(dove[[b]], s) }
-  dove[[1]] <- c(dove[[1]], GIA); dove[[3]] <- c(dove[[3]], GIA)
-  for (k in 1:4) writeLines(n[sn %in% dove[[k]]], PART2[k]); scrivi("parti Stadio 2, caratteri: %s", paste(round(bin/1e6, 1), collapse = " "))
+  for (k in 1:2) writeLines(n[sn %in% dove[[k]]], PART2[k]); scrivi("parti Stadio 2, caratteri: %s", paste(round(bin/1e6, 1), collapse = " "))
   if (!setequal(sn, unlist(dove))) ferma("le parti non coprono il subset")
 })
-nodi2 <- list(cfg02, cfg02, cfg01, cfg01)
-jobs2 <- Map(function(p, cc, k) invia(p, "stage2", sprintf("s8b-s2-parte%d", k), "24:00:00", tiered = TRUE, conf = cc), PART2, nodi2, 1:4)
+jobs2 <- Map(function(p, k) invia(p, "stage2", sprintf("s8b-s2-parte%d", k), "24:00:00", tiered = TRUE, conf = cfg02), PART2, 1:2)
 passo("s2-attesa", attendi(jobs2, 300L))
-COLL2_01 <- "analysis/p4-output/S8b-stage2-collect-300-poddgx01.rds"
 passo("s2-raccolta", {
   ds <- lapply(jobs2, function(j) { d <- ssh_ripeti(function() dgx_p4_collect(j)); flag_ok(j); d })
-  dup <- function(x) sub("#.*$", "", x$record_id) %in% GIA
-  saveRDS(list(predictions = ds[[3]]$predictions[dup(ds[[3]]$predictions), ]), COLL2_01)
-  ds[[3]]$predictions <- ds[[3]]$predictions[!dup(ds[[3]]$predictions), ]
-  if (!is.null(ds[[3]]$errors) && nrow(ds[[3]]$errors)) ds[[3]]$errors <- ds[[3]]$errors[!dup(ds[[3]]$errors), ]
   d <- list(predictions = dplyr::bind_rows(lapply(ds, `[[`, "predictions")), errors = dplyr::bind_rows(lapply(ds, `[[`, "errors")), run_dir = vapply(ds, function(x) as.character(x$run_dir), character(1)))
   if (anyDuplicated(d$predictions$record_id)) ferma("record duplicati nella raccolta Stadio 2")
   saveRDS(d, COLL2); scrivi("Stadio 2: valide %d, errori %d", nrow(d$predictions), nrow(d$errors))
@@ -183,11 +176,7 @@ passo("s2-confronto", {
   dn <- readRDS(COLL2)$predictions; da <- readRDS("analysis/p4-output/A3-stage2-collect.rds")$predictions
   ds <- sub("#.*$", "", dn$record_id); dn <- dn[ds %in% g, ]; ii <- match(dn$record_id, da$record_id); rawug <- dn$raw_output == da$raw_output[ii]; rawug[is.na(rawug)] <- FALSE
   stud_raw <- tapply(rawug, sub("#.*$", "", dn$record_id), all); ci <- binom.test(sum(stud_raw), length(stud_raw))$conf.int; ci2 <- binom.test(sum(ug), length(ug))$conf.int
-  d1 <- readRDS(COLL2_01)$predictions; i1 <- match(d1$record_id, da$record_id); ru1 <- d1$raw_output == da$raw_output[i1]; ru1[is.na(ru1)] <- FALSE; st1 <- tapply(ru1, sub("#.*$", "", d1$record_id), all); ci1 <- binom.test(sum(st1), length(st1))$conf.int
-  i12 <- match(d1$record_id, dn$record_id); ru12 <- d1$raw_output == dn$raw_output[i12]; ru12[is.na(ru12)] <- FALSE; st12 <- tapply(ru12, sub("#.*$", "", d1$record_id), all)
   out <- c(sprintf("Q2 poddgx02, studi con uscita grezza identica ad agosto: %d su %d = %.1f%% [%.1f; %.1f]", sum(stud_raw), length(stud_raw), 100*mean(stud_raw), 100*ci[1], 100*ci[2]),
-           sprintf("Q7 poddgx01, studi con uscita grezza identica ad agosto: %d su %d = %.1f%% [%.1f; %.1f]", sum(st1), length(st1), 100*mean(st1), 100*ci1[1], 100*ci1[2]),
-           sprintf("poddgx01 contro poddgx02, stessi studi, uscita identica: %d su %d", sum(st12), length(st12)),
            sprintf("studi con record assemblato identico: %d su %d = %.1f%% [%.1f; %.1f]", sum(ug), length(ug), 100*mean(ug), 100*ci2[1], 100*ci2[2]),
            sprintf("cancello 4 negativo: vecchio senza flag contro agosto, identici %d su %d (riferimento 18,4%%)", sum(ug0), length(ug0)), sprintf("cancello 4 positivo: differenza piantata, viste %d", vis),
            sprintf("studi diversi: %s", paste(head(g[!ug], 30), collapse = " ")))

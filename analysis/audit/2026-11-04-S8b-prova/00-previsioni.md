@@ -67,3 +67,13 @@ Il PI ha scritto «Di DGX fallo andare a bomba» e ha precisato che la temperatu
 | Q7 | identità con agosto sul nodo `poddgx01`, come Q1 e Q2 | 100% e 95% | ≥ 99% e ≥ 90% | stessi margini di Q1 e Q2. Se regge, il re-run completo può usare due nodi e dura circa metà |
 
 Tutto il resto di questo file resta valido, leggendo 6.000 dove c'è scritto 2.000.
+
+## Seconda aggiunta (2026-11-04, sera): `poddgx01` è caduto
+
+Alle 21:51 `poddgx01` è passato a `DOWN+NOT_RESPONDING`, con `NODE_FAIL` sui due job in corsa dopo 13 minuti. Nessun risultato della prova è stato letto. Scelte tecniche:
+
+- Ho tolto dalla coda i 7 blocchi legati a `poddgx01`, parziali compresi, e li ho inviati di nuovo su `poddgx02` con un nuovo `run_id`. Il nodo può riprendere solo con un intervento esterno.
+- Tutti i job girano su `poddgx02`, due alla volta da 4 GPU. Lo Stadio 2 ha due parti, e i 300 studi stanno nella prima.
+- **Q7 non si misura**: la differenza fra nodi resta sconosciuta. Resta solo la prova di 20 record, 20 identici su 20.
+- **Q6 cambia:** la somma delle ore dei due job è attesa a 11,7, intervallo da 7,8 a 18,2, stessa proporzione. Le 0,9 ore della copia sul secondo nodo non ci sono più.
+- Il campione resta di 6.000 studi. La durata totale sale a circa 11 ore, oltre le 8 approvate. Il PI lo sa dal messaggio in chat e può chiedere di ridurre.
