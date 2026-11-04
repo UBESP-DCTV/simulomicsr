@@ -54,7 +54,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 3 | ~~Non sappiamo se la lettura delle 194 sia riproducibile~~ **riproducibile: kappa 0,78 su 194; con l'umano 18/19 (S3)** | S3 |
 | 4 | ~~I bracci che **condividono il controllo** gonfiano il peso~~ **misurato: taglio 113→41; il PI corregge varianza e ruoli in S13 (S4)** | S4 |
 | 5 | ~~Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3~~ **deciso: gate a 3 studi, le 40 come insieme principale, le altre 132 in supplementare (S5)** | S5 |
-| 6 | Nessuna verifica usa dati esterni al corpus. **Disegno scritto (S6), aspetta 5 scelte del PI** | S6 → S7 |
+| 6 | Nessuna verifica usa dati esterni al corpus. **Disegno congelato (S6), il PI ha scelto fonte e soglia** | S6 → S7 |
 | 7 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi) | S8 → S14 |
 | 8 | Le lettere greche sbagliano in 45 prove su 90 | S9 |
 | 9 | `.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()` | S9 |
@@ -79,8 +79,8 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S3** | Il metro concorda con se stesso? ✅ | misura | ~4 h | — |
 | **S4** | Il controllo condiviso, e il peso che gonfia ✅ | misura | ~3 h | — |
 | **S5** | Le due decisioni: il gate, e «37 o 173» ✅ | **decisione** | ~4 h | *meglio S3 e S4* |
-| **S6** | Validazione esterna: il disegno | disegno | ~3 h | S5 ✅ |
-| **S7** | Validazione esterna: l'esecuzione | misura | *stimata in S6* | **S6** |
+| **S6** | Validazione esterna: il disegno ✅ | disegno | ~3 h | S5 ✅ |
+| **S7** | Validazione esterna: l'esecuzione | misura | ~6 h | **S6** ✅ |
 | **S8** | La decisione sul re-run completo | **decisione** | ~2 h | — |
 | **S9** | Le lettere greche, e il crash delle corsie | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio S3* |
@@ -530,7 +530,8 @@ quando la scelta e' scritta, non prima. Non scegliere al posto mio.
 
 # S6 — Validazione esterna: il disegno
 
-> **Stato (2026-11-04): il disegno è scritto e aspetta 5 scelte del PI** (fonte, soglia, via d'uscita, momento, estrazioni).
+> **Chiusa il 2026-11-04.** Il PI ha scelto: LINCS per il verdetto, Tahoe-100M e TCGA con un ruolo limitato; almeno 8 composti su 19 nel primo 10%; se la causa è il
+> metodo, l'articolo dichiara il fallimento e tiene le stime come ipotesi; test adesso e di nuovo dopo le correzioni; 99 estrazioni.
 > Disegno: `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`. Finding: `docs/findings/2026-11-04-S6-validazione-disegno.md`.
 > **I numeri di questa sezione sono superati:** i «111» erano candidati (90 agganciati, 77 dei quali nelle 194). Le classi corrette sono 109
 > piccole molecole, 45 malattie, 20 ligandi, 8 patogeni, 5 ambientali, 5 biologici, 2 genetiche. La misura vale per 96 meta-analisi su 194 e 24 su 40.
@@ -630,7 +631,8 @@ Dammi anche la stima di durata dell'esecuzione. Non guardare nessun risultato.
 # S7 — Validazione esterna: l'esecuzione
 
 > **Ricevuto dal disegno (S6), da leggere per primo.** Il disegno è `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`.
-> Il passo A usa solo le fonti e si committa prima del passo B. Se la soglia o la fonte non sono ancora scelte dal PI, non si apre questa sessione.
+> È congelato con le scelte del PI: la soglia è T = 17%, cioè almeno 8 composti su 19 e 16 su 53. Il passo A usa solo le fonti e si committa prima del passo B. Il PI ha approvato il
+> calcolo, stimato in circa 6 ore. Copia le previsioni di §8 nel tuo `00-previsioni.md` senza cambiarle.
 
 ### Perché
 
@@ -1051,8 +1053,8 @@ NON lanciare niente: l'applicazione e' S13. Suite verde prima di committare.
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
 
 > **Ricevuto dal disegno della validazione esterna (S6), da leggere per primo.** Dopo il calcolo: (1) rigenera con le stesse regole l'insieme misurabile in LINCS;
-> (2) riesegui il test esterno con lo stesso codice e la stessa soglia, se il PI lo ha scelto; (3) esegui il confronto con studi non collegati su tutti i gruppi, con le
-> estrazioni scelte dal PI (disegno §11). **Che cosa serve per chiuderlo:** il risultato per gruppo. Lo script di partenza è
+> (2) riesegui il test esterno con lo stesso codice e la stessa soglia: il numero dell'articolo è questo, per scelta del PI; (3) esegui il confronto con studi non collegati su tutti i
+> gruppi, con 99 estrazioni scelte dal PI, al massimo 35 ore (disegno §11). **Che cosa serve per chiuderlo:** il risultato per gruppo. Lo script di partenza è
 > `analysis/audit/2026-11-03-S5-gate-e-insiemi/74-nullo-appaiato.R`, che misurava una sola estrazione e 137 gruppi.
 
 > **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Il PI ha scelto di togliere gli

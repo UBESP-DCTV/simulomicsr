@@ -73,9 +73,9 @@ altre 132** in supplementare con gli avvisi; gli studi doppi si tolgono in S13 c
 194 → 193); la dominanza si dichiara con colonna, due livelli e confronto con studi non collegati; la misura vale col cancello 5(a)
 fallito e spiegato. **La scelta decade** se S11 sposta più di 5 verdetti fra corretta e difettosa, o uno solo dentro le 40, o con S14.
 Il deliverable su disco resta 194 a T0 fino a S13.
-**S6 aspetta 5 scelte del PI** (2026-11-04, `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`, finding `docs/findings/2026-11-04-S6-validazione-disegno.md`).
+**S6 chiusa il 2026-11-04** (disegno congelato `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`, finding `docs/findings/2026-11-04-S6-validazione-disegno.md`).
 LINCS permette la misura per **96 meta-analisi su 194, 24 su 40**; il verdetto usa i composti: **19 nelle 40, 53 nelle 132**. I «111» dell'handout erano candidati: 90 agganciati, 77 nelle 194.
-`kind_effective_resolved` sbaglia il tipo: non usarla per dividere le entità. Le scelte: fonte, soglia, via d'uscita, momento, estrazioni.
+`kind_effective_resolved` sbaglia il tipo: non usarla per dividere le entità. **Decisioni del PI:** LINCS per il verdetto, Tahoe-100M e TCGA con un ruolo limitato; soglia T = 17%, cioè almeno 8 composti su 19 nel primo 10%; se la causa è il metodo, l'articolo dichiara il fallimento e tiene le stime come ipotesi; test adesso e di nuovo dopo S13, e il numero dell'articolo è il secondo; 99 estrazioni per il confronto con studi non collegati, dopo S13. **Nessuna correzione può guardare l'esito del test per una singola meta-analisi.** **Prossima: S7.**
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare

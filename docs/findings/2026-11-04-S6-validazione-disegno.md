@@ -69,6 +69,18 @@ Appena decidi questi 5 punti, la sessione è chiusa.
 
 Le 35 ore del confronto con studi non collegati vengono dai 15,1 minuti misurati per 137 gruppi. Lo script indica 32 processori, e il numero effettivo non è registrato.
 
+# Decisioni del PI (2026-11-04)
+
+Il PI ha risposto «va bene» al riassunto. L'agente legge questa risposta come un sì alle 5 raccomandazioni. Il testo qui sopra resta com'era quando il PI l'ha letto.
+
+1. **La fonte:** LINCS per il verdetto, con i ligandi come descrizione. Tahoe-100M serve per provare la fonte. TCGA serve come controllo positivo sul segno e come descrizione su 6 tumori.
+2. **La soglia:** T = 17%. Il test delle 19 passa con almeno 8 composti, quello delle 53 con almeno 16, e `T_eff = max(T, H_scambio)` può alzare questi numeri.
+3. **La via d'uscita:** se il test fallisce e la causa è il metodo, l'articolo tiene la catena, il catalogo dei confronti, le verifiche e i limiti. Dichiara il fallimento e lascia le stime in supplementare come ipotesi non validate. Il PI conferma dopo aver letto il risultato.
+4. **Il momento:** il test si esegue adesso sul deliverable di oggi e di nuovo con lo stesso codice dopo le correzioni. Il numero dell'articolo è il secondo. Nessuna correzione può guardare l'esito di una singola meta-analisi.
+5. **Le estrazioni:** 99, dopo le correzioni, su tutti i gruppi. Il calcolo dura al massimo 35 ore.
+
+La scelta approva anche il calcolo della sessione di esecuzione, stimato in circa 6 ore. Il disegno è congelato: `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`.
+
 # 1. I cancelli
 
 Testo in `00-previsioni.md`[^previsioni], commit `beb9723`.
@@ -111,7 +123,7 @@ I margini di P1, P2, P5, P7 sono un mio giudizio.
 
 **Sei studi delle 194 citano TCGA o TARGET (spiegato).** Nessuno sta nei 6 gruppi confrontati con TCGA (`60-out.txt`).
 
-Non resta nessun altro dubbio. Le scelte del PI sono cinque, §In breve.
+Non resta nessun altro dubbio. Le cinque scelte del PI stanno in §Decisioni.
 
 # 4. Copertura
 

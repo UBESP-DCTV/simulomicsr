@@ -1,7 +1,7 @@
 # Validazione esterna: il disegno (S6)
 
-**Scritto:** 2026-11-04. **Esegue:** la sessione S7. **Stato:** bozza, aspetta le scelte del PI segnate con ⚑.
-Dopo le scelte questo testo si congela: S7 lo esegue e non lo cambia. Se il disegno è sbagliato, S7 si ferma e si rifà S6.
+**Scritto:** 2026-11-04. **Esegue:** la sessione S7. **Stato:** congelato il 2026-11-04, con le scelte del PI segnate con ⚑.
+S7 lo esegue e non lo cambia. Se il disegno è sbagliato, S7 si ferma e si rifà S6.
 
 I numeri stanno in `docs/findings/2026-11-04-S6-validazione-disegno.md` e in
 `analysis/audit/2026-11-04-S6-validazione-disegno/`. Il seme è 20261104. L'unità è la meta-analisi.
@@ -23,7 +23,7 @@ dentro il corpus che ha prodotto le stime.
 | Aggancio, classe e misurabilità di ogni meta-analisi | `analysis/audit/2026-11-04-S6-validazione-disegno/50-copertura-con-tahoe.csv`, `40-aggancio-con-elenco.csv` |
 | Metadati LINCS | `/mnt/wwn-0x5000039d58caca35/lincs-meta/`, SHA-256 in `analysis/audit/2026-08-08-validazione-esterna/provenienza-file-scaricati.csv` |
 
-⚑ **Il momento.** Raccomandazione: S7 misura adesso il deliverable su disco, poi lo stesso codice si riesegue dopo
+⚑ **Il momento, scelta del PI.** S7 misura adesso il deliverable su disco, poi lo stesso codice si riesegue dopo
 il calcolo che applica le correzioni. Il numero dell'articolo è il secondo. Il primo resta in supplementare. Le
 correzioni già decise per gli errori noti non toccano l'insieme primario (§4): su quell'insieme agisce solo la varianza del
 controllo condiviso. Il rilevatore di difetti può aggiungere altre correzioni: il secondo calcolo le include.
@@ -33,7 +33,7 @@ una meta-analisi. Una meta-analisi corretta per quel motivo si marca come `a_pos
 
 ## 3. Le fonti
 
-⚑ **Scelta del PI.** La raccomandazione è la riga 1 con le righe 2 e 3 nel ruolo scritto.
+⚑ **Scelta del PI:** le righe 1, 1b, 2 e 3, ognuna nel ruolo scritto.
 
 | # | fonte | ruolo | copertura misurata (40 / 132 / altre 22) | circolarità | scarico |
 |---|---|---|---|---|---|
@@ -109,12 +109,12 @@ rango <- function(q, firme, giusto) {          # firme: matrice geni x composti,
 **Riferimenti dalla letteratura** (Lim e Pavlidis, Sci Rep 2021, 11:17624, stesso criterio del primo 10%): CMap 1 interroga CMap 2, 17% (99 su 588);
 CMap 2 interroga se stesso, 83% (486 su 588). La loro interrogazione è una sola condizione. La nostra è una media di più studi contro una media di più linee.
 
-⚑ **Scelta del PI: la soglia T.** Passa se il limite inferiore esatto di `H` supera `T_eff`, e se il limite inferiore bootstrap di `H - H_scambio` supera 0.
+⚑ **Scelta del PI: la riga B, T = 17%.** Passa se il limite inferiore esatto di `H` supera `T_eff`, e se il limite inferiore bootstrap di `H - H_scambio` supera 0.
 
 | | T | serve nelle 19 | serve nelle 53 | che cosa vuol dire se passa | probabilità di passare nelle 19, se la quota vera è 25% / 35% / 50% / 70% |
 |---|---:|---:|---:|---|---:|
 | A | 10% | 6 | 11 | Le stime contengono l'identità del composto più del caso. Non dice quanto bene. | 33% / 70% / 97% / 100% |
-| **B, raccomandata** | 17% | 8 | 16 | Le stime riconoscono il composto meglio di quanto due edizioni di CMap si riconoscono fra loro. | 8% / 33% / 82% / 100% |
+| **B, scelta** | 17% | 8 | 16 | Le stime riconoscono il composto meglio di quanto due edizioni di CMap si riconoscono fra loro. | 8% / 33% / 82% / 100% |
 | C | 30% | 11 | 24 | Più di metà dei composti sta nel primo 10%. Con 19 unità il test è severo anche con una quota vera buona. | 0% / 4% / 32% / 92% |
 
 La soglia e il verdetto delle 53 sono indipendenti da quelli delle 19. Il verdetto principale è quello delle 19.
@@ -185,11 +185,11 @@ La sessione sulle lettere greche (S9) non è ancora fatta, quindi un'etichetta c
 
 ## 10. La via d'uscita
 
-⚑ **Scelta del PI, da fare adesso:** che cosa resta dell'articolo se S7 fallisce e la prova dice «è il metodo». Decide il PI, dopo aver letto il finding di S7. Nessuna correzione parte prima.
+⚑ **Scelta del PI: l'opzione 1**, se S7 fallisce e la prova dice «è il metodo». Il PI conferma dopo aver letto il finding di S7. Nessuna correzione parte prima.
 
 | | che cosa resta | conseguenza |
 |---|---|---|
-| **1, raccomandata** | L'articolo tiene la catena, il catalogo dei confronti, le verifiche e i limiti. Il fallimento è un risultato dichiarato. Le stime restano in supplementare come ipotesi, senza la parola «validate». | Si pubblica un risultato onesto. La promessa sulle stime cade. |
+| **1, scelta** | L'articolo tiene la catena, il catalogo dei confronti, le verifiche e i limiti. Il fallimento è un risultato dichiarato. Le stime restano in supplementare come ipotesi, senza la parola «validate». | Si pubblica un risultato onesto. La promessa sulle stime cade. |
 | 2 | Si corregge il metodo e si rifà tutto, poi una nuova validazione su una fonte non ancora vista. | Costa settimane. LINCS e Tahoe sono già visti: serve una terza fonte, e oggi non è individuata. |
 | 3 | Si ferma l'articolo. | Si salva il lavoro futuro. Si perde il lavoro fatto. |
 
@@ -211,11 +211,11 @@ Entra nell'articolo per scelta del PI (2026-11-04). È un controllo **interno**:
 - **Regola per insieme:** il limite inferiore del rapporto mediano supera 1,5, come in S5.
 - **Limite dichiarato:** una risposta generica condivisa alza il nullo, quindi il controllo può non vedere un effetto vero.
 
-⚑ **Scelta del PI: B.** Il tempo misurato è 15,1 minuti per 137 gruppi. La testata dello script indica 32 processori, e il numero effettivo non è registrato. Su 193 gruppi diventa 21 minuti per estrazione al massimo.
+⚑ **Scelta del PI: 99 estrazioni.** Il tempo misurato è 15,1 minuti per 137 gruppi. La testata dello script indica 32 processori, e il numero effettivo non è registrato. Su 193 gruppi diventa 21 minuti per estrazione al massimo.
 
 | | B | tempo al massimo | valore empirico minimo | conseguenza |
 |---|---:|---:|---:|---|
-| **raccomandata** | 99 | 35 h | 0,01 | Il verdetto per gruppo regge la correzione per molti test. |
+| **scelta** | 99 | 35 h | 0,01 | Il verdetto per gruppo regge la correzione per molti test. |
 | | 19 | 7 h | 0,05 | Il verdetto per gruppo non regge la correzione: vale solo l'insieme. |
 
 ## 12. Che cosa questa validazione non dimostra
@@ -239,7 +239,7 @@ Stima dell'agente, dai tempi misurati il 2026-11-04.
 | Lettura delle firme e calcolo | ≤ 2 h | non misurato: la prima ora di S7 lo misura |
 | **Totale** | **circa 6 h** | quasi tutta attesa di rete |
 
-Con un PI che sceglie la sola riga 1 di §3, il totale scende a circa 4 h.
+Il PI ha scelto tutte le fonti di §3 e ha approvato questo calcolo.
 
 ## 14. Fonti
 
