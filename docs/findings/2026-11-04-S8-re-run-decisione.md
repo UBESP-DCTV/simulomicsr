@@ -53,6 +53,15 @@ Appena decidi questi 2 punti, la sessione è chiusa.
 
 **Sui tempi di calcolo.** Le stime sono mie e vengono dai tempi registrati dei job di agosto e di giugno, su 4 GPU H100. Il passo sul disegno ha richiesto 15,3 ore sul corpus senza l'opzione e 7,8 ore con l'opzione sugli studi che generano il 16,4% del testo. Il passo sui campioni ha richiesto 83 minuti per 86.898 record, con due blocchi insieme. La ricostruzione dei gruppi ha richiesto 2,2 ore con 8 processi. La prova somma 5,4 ore di modello e 2,2 ore locali.
 
+# Decisioni del PI (2026-11-04)
+
+Il PI ha risposto «va bene prova parziale in notturna di 8 ore. Il resto ok». Il testo qui sopra resta com'era quando il PI l'ha letto.
+
+1. **Il re-run completo non è deciso: prima la prova.** La prova rigenera 2.000 studi a caso fra i 21.828 e 300 studi già rigenerati, di notte, per circa 8 ore. Le attese sono in `analysis/audit/2026-11-04-S8b-prova/00-previsioni.md`.
+2. **La regola resta quella del riassunto:** sotto 50 studi stimati la risposta è no, sopra 250 è sì, in mezzo decide il PI con i numeri.
+3. **La sessione vale con il cancello 4(b) fallito e spiegato.** P3-P6 restano non giudicate e non si citano.
+4. **Il dubbio ricevuto dalla validazione esterna è chiuso:** la seconda esecuzione del test va sull'ultimo deliverable, dopo la risposta sul re-run.
+
 # 1. I cancelli
 
 Testo in `00-previsioni.md`[^previsioni], commit `665f102`.

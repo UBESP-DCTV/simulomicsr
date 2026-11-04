@@ -55,7 +55,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 4 | ~~I bracci che **condividono il controllo** gonfiano il peso~~ **misurato: taglio 113→41; il PI corregge varianza e ruoli in S13 (S4)** | S4 |
 | 5 | ~~Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3~~ **deciso: gate a 3 studi, le 40 come insieme principale, le altre 132 in supplementare (S5)** | S5 |
 | 6 | ~~Nessuna verifica usa dati esterni al corpus~~ **eseguita sul deliverable di oggi: 14 su 19 e 39 su 53 contro LINCS, 11 su 32 contro Tahoe (S7). Il numero dell'articolo viene dalla seconda esecuzione, in S13** | S6 → S7 → S13 |
-| 7 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi) | S8 → S14 |
+| 7 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi). **Il PI ha scelto una prova prima del sì o no (S8)** | S8 → prova → S14 |
 | 8 | Le lettere greche sbagliano in 45 prove su 90 | S9 |
 | 9 | `.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()` | S9 |
 | 10 | Il rilevatore di difetti in produzione ne segnala 2 su 1.903 | S10 → S11 → S12 → S13 |
@@ -81,7 +81,8 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S5** | Le due decisioni: il gate, e «37 o 173» ✅ | **decisione** | ~4 h | *meglio S3 e S4* |
 | **S6** | Validazione esterna: il disegno ✅ | disegno | ~3 h | S5 ✅ |
 | **S7** | Validazione esterna: l'esecuzione ✅ | misura | ~6 h | **S6** ✅ |
-| **S8** | La decisione sul re-run completo | **decisione** | ~2 h | — |
+| **S8** | La decisione sul re-run completo: prima una prova ✅ | **decisione** | ~2 h | — |
+| **S8b** | La prova: 2.000 studi a caso e 300 già rigenerati, poi sì o no | misura | ~8 h di notte | **S8** ✅ |
 | **S9** | Le lettere greche, e il crash delle corsie | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio S3* |
 | **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10* | **S10** |
@@ -682,6 +683,11 @@ discriminante gia' decisa in S6.
 
 > **Ricevuto dall'esecuzione della validazione esterna (S7), da leggere per primo.** Il test esterno passa sul deliverable di oggi. Se il PI sceglie il re-run completo, il numero
 > dell'articolo deve venire dal deliverable finale, quindi la seconda esecuzione del test va dopo S14 e non dopo S13. **Che cosa serve per chiuderlo:** scrivere nella decisione di S8 quando si riesegue il test.
+
+> **Esito della sessione (2026-11-04), da leggere per primo.** Il PI ha scelto una prova prima del sì o no: 2.000 studi a caso fra i 21.828 e 300 già rigenerati
+> (`analysis/audit/2026-11-04-S8b-prova/`). Regola: sotto 50 studi stimati no, sopra 250 sì, in mezzo decide il PI. **Correzioni al testo qui sotto** (finding `2026-11-04-S8-re-run-decisione`):
+> i 21.828 **non** sono tutti in gruppi da uno studio solo (4.994 hanno un gruppo, 11.175 hanno confronti fermati dalle regole, 5.659 non hanno confronti); i 141 studi entrati stanno tutti dentro i 2.566;
+> il netto di -130 dipende dal disegno del run parziale; il costo è da 38 a 70 ore, centrale 63. **Da verificare se la risposta è sì:** le tabelle di correzione dei nomi si agganciano ai `record_id` del run vecchio, e S14 non ne prevede la rigenerazione.
 
 ### Perché
 
