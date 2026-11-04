@@ -1,0 +1,20 @@
+#!/usr/bin/env Rscript
+# Rilegge dai file i numeri del finding.
+source("analysis/audit/2026-11-04-S6-validazione-disegno/01-comune.R")
+a <- fread(file.path(OUT6, "10-aggancio.csv")); ae <- fread(file.path(OUT6, "40-aggancio-con-elenco.csv"))
+vec <- as.data.table(readRDS(file.path(OLD, "20-entita-con-firme.rds")))
+cat("v15 candidati", nrow(vec), "agganciati", sum(vec$agganciata), "\n")
+cat("i 111 nelle 194:", sum(vec$contrast_entity %in% a$contrast_entity), "; i 90 agganciati nelle 194:", sum(vec[agganciata == TRUE]$contrast_entity %in% a$contrast_entity), "\n")
+cat("candidati nuovi nelle 194:", sum(a$nuova_rispetto_al_v15), "; agganciati fra i nuovi:", a[nuova_rispetto_al_v15 == TRUE & metodo_match != "nessuno", .N], "\n")
+cat("agganciati con identificativo:", a[metodo_match != "nessuno", .N], "; STR con elenco a mano agganciati:", ae[metodo_match == "nome_elenco_a_mano", .N], " -> ", ae[metodo_match == "nome_elenco_a_mano", contrast_entity], "\n")
+x <- fread(file.path(OUT6, "50-copertura-con-tahoe.csv"))
+print(x[, .(n = .N, firma = sum(firme > 0), misurabili = sum(misurabile), tahoe = sum(in_tahoe)), keyby = .(classe, insieme)])
+print(x[, .(n = .N, firma = sum(firme > 0), misurabili = sum(misurabile)), keyby = insieme])
+tum <- c("MeSH:D006528","MeSH:D013274","MeSH:D015179","MeSH:D001943","MeSH:D002292","STR:oscc")
+x[, tcga := contrast_entity %in% tum]
+cat("senza firma LINCS:", x[firme == 0, .N], round(100 * x[firme == 0, .N] / 194, 1), "; e senza TCGA:", x[firme == 0 & !tcga, .N], round(100 * x[firme == 0 & !tcga, .N] / 194, 1), "\n")
+cat("non misurabili LINCS:", x[misurabile == FALSE, .N], round(100 * x[misurabile == FALSE, .N] / 194, 1), "; e senza TCGA:", x[misurabile == FALSE & !tcga, .N], round(100 * x[misurabile == FALSE & !tcga, .N] / 194, 1), "\n")
+print(as.data.frame(x[insieme == "40" & misurabile == FALSE, .(nome, classe)]), right = FALSE)
+cat("978/21758:", round(100 * 978 / 21758, 1), "\n")
+si <- readRDS(file.path(PES6, "si.rds"))
+cat("exemplar trt_cp con qc_pass=1:", round(si[pert_type == "trt_cp" & is_exemplar_sig == "1", mean(qc_pass == "1")], 3), "\n")

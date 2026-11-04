@@ -1,0 +1,66 @@
+POTENZA: probabilita' di passare, se la quota vera e' p
+   n    T x_min quota pot_0.1 pot_0.17 pot_0.25 pot_0.35 pot_0.5 pot_0.7
+1 19 0.10     6 0.316   0.009    0.089    0.332    0.703   0.968   1.000
+2 19 0.17     8 0.421   0.000    0.009    0.077    0.334   0.820   0.997
+3 19 0.30    11 0.579   0.000    0.000    0.002    0.035   0.324   0.916
+4 53 0.10    11 0.208   0.014    0.283    0.807    0.992   1.000   1.000
+5 53 0.17    16 0.302   0.000    0.013    0.234    0.809   0.999   1.000
+6 53 0.30    24 0.453   0.000    0.000    0.001    0.079   0.795   1.000
+7 72 0.10    14 0.194   0.011    0.336    0.892    0.999   1.000   1.000
+8 72 0.17    20 0.278   0.000    0.015    0.335    0.923   1.000   1.000
+9 72 0.30    30 0.417   0.000    0.000    0.001    0.144   0.938   1.000
+mediana del percentile per puro caso, intervallo 95% (quantili della mediana di n uniformi):
+19 : 0.291 0.711 
+53 : 0.368 0.632 
+72 : 0.388 0.614 
+misurabili per classe, insieme, verdetto
+Key: <classe, insieme, verdetto>
+              classe insieme  verdetto     N
+              <char>  <char>    <char> <int>
+ 1:          ligando     132  corretta     2
+ 2:          ligando     132 difettosa     6
+ 3:          ligando     132   incerta     1
+ 4:          ligando      40  corretta     5
+ 5:          ligando   fuori      <NA>     2
+ 6: piccola molecola     132  corretta    33
+ 7: piccola molecola     132 difettosa    15
+ 8: piccola molecola     132   incerta     5
+ 9: piccola molecola      40  corretta    19
+10: piccola molecola   fuori      <NA>     8
+metodo di aggancio dei misurabili
+Key: <classe, metodo_match>
+             classe                  metodo_match     N
+             <char>                        <char> <int>
+1:          ligando        simbolo_esatto_trt_lig    16
+2: piccola molecola            nome_elenco_a_mano     3
+3: piccola molecola          nome_sinonimo_esatto     3
+4: piccola molecola struttura_blocco_connettivita     3
+5: piccola molecola   struttura_inchikey_completo    71
+STR:atra misurabile: TRUE 
+STR:nutlin_3a misurabile: TRUE 
+STR:1_25_oh_2d3 misurabile: TRUE 
+STR:r5020 misurabile: FALSE 
+STR:nahs misurabile: FALSE 
+coppie note con la stessa molecola: atra / all-trans-retinoic acid; nutlin_3a / Nutlin-3; 1_25_oh_2d3 / calcitriol
+   user  system elapsed 
+  5.212   0.294   2.522 
+stessa linea (limite superiore: cerco il nome nel testo della serie intera)
+Key: <insieme>
+   insieme  meta studi studi_stessa_linea meta_con_almeno_uno
+    <char> <int> <int>              <int>               <int>
+1:     132    53   464                 98                  38
+2:      40    19   180                 29                  11
+3:   fuori     8    41                  7                   3
+  contrast_entity nome                      insieme k progetto           
+1 MeSH:D006528    Carcinoma, Hepatocellular 132     6 TCGA-LIHC          
+2 MeSH:D013274    Stomach Neoplasms         132     5 TCGA-STAD          
+3 MeSH:D015179    Colorectal Neoplasms      132     5 TCGA-COAD+READ     
+4 STR:oscc        oscc                      132     4 TCGA-HNSC          
+5 MeSH:D002292    Carcinoma, Renal Cell     132     3 TCGA-KIRC/KIRP/KICH
+6 MeSH:D001943    Breast Neoplasms          fuori   4 TCGA-BRCA          
+GSE62944 nelle 194: FALSE 
+campioni del bacino che citano TCGA: 553 ; studi: 26 ; dentro i 6 gruppi: 0 ; dentro le 194: 6 
+[1] contrast_entity gse            
+<0 rows> (or 0-length row.names)
+firme exemplar attive del fondo: 36204 su 5466 composti
+controllo positivo ascorbico: metodo sul v15  nessuno 

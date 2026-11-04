@@ -72,7 +72,10 @@ against igf2bp1` è un solo studio. Confronto con studi non collegati: **3,04 vo
 altre 132** in supplementare con gli avvisi; gli studi doppi si tolgono in S13 con una regola sulle conte (41 → 40, 173 → 172,
 194 → 193); la dominanza si dichiara con colonna, due livelli e confronto con studi non collegati; la misura vale col cancello 5(a)
 fallito e spiegato. **La scelta decade** se S11 sposta più di 5 verdetti fra corretta e difettosa, o uno solo dentro le 40, o con S14.
-Il deliverable su disco resta 194 a T0 fino a S13. **Prossima: S6.**
+Il deliverable su disco resta 194 a T0 fino a S13.
+**S6 aspetta 5 scelte del PI** (2026-11-04, `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`, finding `docs/findings/2026-11-04-S6-validazione-disegno.md`).
+LINCS permette la misura per **96 meta-analisi su 194, 24 su 40**; il verdetto usa i composti: **19 nelle 40, 53 nelle 132**. I «111» dell'handout erano candidati: 90 agganciati, 77 nelle 194.
+`kind_effective_resolved` sbaglia il tipo: non usarla per dividere le entità. Le scelte: fonte, soglia, via d'uscita, momento, estrazioni.
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -310,7 +313,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`

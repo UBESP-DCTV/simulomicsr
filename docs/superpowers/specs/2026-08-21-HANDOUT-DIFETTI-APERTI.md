@@ -54,7 +54,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 3 | ~~Non sappiamo se la lettura delle 194 sia riproducibile~~ **riproducibile: kappa 0,78 su 194; con l'umano 18/19 (S3)** | S3 |
 | 4 | ~~I bracci che **condividono il controllo** gonfiano il peso~~ **misurato: taglio 113→41; il PI corregge varianza e ruoli in S13 (S4)** | S4 |
 | 5 | ~~Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3~~ **deciso: gate a 3 studi, le 40 come insieme principale, le altre 132 in supplementare (S5)** | S5 |
-| 6 | Nessuna verifica usa dati esterni al corpus | S6 → S7 |
+| 6 | Nessuna verifica usa dati esterni al corpus. **Disegno scritto (S6), aspetta 5 scelte del PI** | S6 → S7 |
 | 7 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi) | S8 → S14 |
 | 8 | Le lettere greche sbagliano in 45 prove su 90 | S9 |
 | 9 | `.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()` | S9 |
@@ -530,6 +530,11 @@ quando la scelta e' scritta, non prima. Non scegliere al posto mio.
 
 # S6 — Validazione esterna: il disegno
 
+> **Stato (2026-11-04): il disegno è scritto e aspetta 5 scelte del PI** (fonte, soglia, via d'uscita, momento, estrazioni).
+> Disegno: `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`. Finding: `docs/findings/2026-11-04-S6-validazione-disegno.md`.
+> **I numeri di questa sezione sono superati:** i «111» erano candidati (90 agganciati, 77 dei quali nelle 194). Le classi corrette sono 109
+> piccole molecole, 45 malattie, 20 ligandi, 8 patogeni, 5 ambientali, 5 biologici, 2 genetiche. La misura vale per 96 meta-analisi su 194 e 24 su 40.
+>
 > **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Il controllo negativo con
 > studi non collegati di precisione simile è una validazione interna che costa minuti, e separa gli insiemi:
 > 3,04 volte nelle 41, 1,19 nelle 96 dominate (`74-out.txt`). È stato fatto con **una sola estrazione per
@@ -623,6 +628,9 @@ Dammi anche la stima di durata dell'esecuzione. Non guardare nessun risultato.
 ---
 
 # S7 — Validazione esterna: l'esecuzione
+
+> **Ricevuto dal disegno (S6), da leggere per primo.** Il disegno è `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`.
+> Il passo A usa solo le fonti e si committa prima del passo B. Se la soglia o la fonte non sono ancora scelte dal PI, non si apre questa sessione.
 
 ### Perché
 
@@ -722,6 +730,10 @@ limitazione.
 ---
 
 # S9 — Le lettere greche, e il crash delle corsie
+
+> **Ricevuto dal disegno della validazione esterna (S6), da leggere per primo.** Nessuna correzione può scegliere che cosa correggere guardando
+> l'esito della validazione esterna per una meta-analisi. Vale anche per il rilevatore e per il calcolo delle correzioni. Fra i composti misurabili in
+> LINCS, uno solo ha una lettera greca nel nome: `17β-estradiol`, nell'insieme principale. Controllalo qui.
 
 ### Perché
 
@@ -1038,6 +1050,11 @@ NON lanciare niente: l'applicazione e' S13. Suite verde prima di committare.
 
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
 
+> **Ricevuto dal disegno della validazione esterna (S6), da leggere per primo.** Dopo il calcolo: (1) rigenera con le stesse regole l'insieme misurabile in LINCS;
+> (2) riesegui il test esterno con lo stesso codice e la stessa soglia, se il PI lo ha scelto; (3) esegui il confronto con studi non collegati su tutti i gruppi, con le
+> estrazioni scelte dal PI (disegno §11). **Che cosa serve per chiuderlo:** il risultato per gruppo. Lo script di partenza è
+> `analysis/audit/2026-11-03-S5-gate-e-insiemi/74-nullo-appaiato.R`, che misurava una sola estrazione e 137 gruppi.
+
 > **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Il PI ha scelto di togliere gli
 > studi doppi (2026-11-04): si applicano qui, con la regola sulle conte descritta in S12. Se S12 non è stata
 > eseguita, la regola e i suoi test si scrivono qui. `sirna pool against igf2bp1` non è più una meta-analisi,
@@ -1228,6 +1245,10 @@ riletti una seconda volta, per sapere se il metro e' rimasto lo stesso.
 ---
 
 # S16 — Rifare le figure sul deliverable vero
+
+> **Ricevuto dal disegno della validazione esterna (S6), da leggere per primo.** Non dividere le figure per `kind_effective_resolved`: la colonna sbaglia il tipo
+> (TGFB1 è `small_molecule`, IL6 è `genetic_knockout`, `g007_lk` è `disease_vs_normal`). Le classi per identificativo stanno in
+> `analysis/audit/2026-11-04-S6-validazione-disegno/40-copertura-194.csv`.
 
 ### Perché
 

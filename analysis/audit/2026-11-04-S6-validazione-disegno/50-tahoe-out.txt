@@ -1,0 +1,68 @@
+379 righe; colonne: drug targets moa-broad moa-fine human-approved clinical-trials gpt-notes-approval canonical_smiles pubchem_cid 
+         drug targets            moa-broad             moa-fine human-approved
+       <char>  <char>               <char>               <char>         <char>
+1:       Talc    <NA>              unclear              unclear            yes
+2: Bortezomib   PSMB5 inhibitor/antagonist Proteasome inhibitor            yes
+3:   Ixazomib   PSMB5 inhibitor/antagonist Proteasome inhibitor            yes
+   clinical-trials
+            <char>
+1:             yes
+2:             yes
+3:             yes
+                                                      gpt-notes-approval
+                                                                  <char>
+1: Talc used in pharma and cosmetics; safety under review for some uses.
+2:               Approved for multiple myeloma and mantle cell lymphoma.
+3:                              Approved for multiple myeloma treatment.
+                                                                          canonical_smiles
+                                                                                    <char>
+1: [OH-].[OH-].[O-][Si]12O[Si]3(O[Si](O1)(O[Si](O2)(O3)[O-])[O-])[O-].[Mg+2].[Mg+2].[Mg+2]
+2:                                  B(C(CC(C)C)NC(=O)C(CC1=CC=CC=C1)NC(=O)C2=NC=CN=C2)(O)O
+3:                                        B(C(CC(C)C)NC(=O)CNC(=O)C1=C(C=CC(=C1)Cl)Cl)(O)O
+   pubchem_cid
+         <num>
+1:   165411828
+2:      387447
+3:    25183872
+Key: <insieme>
+   insieme  meta in_tahoe in_tahoe_e_lincs lincs_misurabile
+    <char> <int>    <int>            <int>            <int>
+1:     132    75       24               24               53
+2:      40    25        8                8               19
+3:   fuori     9        2                2                8
+   nome                    insieme k  misurabile
+1  palbociclib             132     15 TRUE      
+2  dexamethasone           132     11 TRUE      
+3  fulvestrant             132      9 TRUE      
+4  trametinib              132      8 TRUE      
+5  erlotinib               132      7 TRUE      
+6  gefitinib               132      7 TRUE      
+7  sirolimus               132      7 TRUE      
+8  paclitaxel              132      6 TRUE      
+9  5-fluorouracil          132      6 TRUE      
+10 olaparib                132      6 TRUE      
+11 everolimus              132      5 TRUE      
+12 all-trans-retinoic acid 132      4 TRUE      
+13 5-azacytidine           132      4 TRUE      
+14 cyclosporin A           132      4 TRUE      
+15 bortezomib              132      4 TRUE      
+16 resveratrol             132      3 TRUE      
+17 methotrexate            132      3 TRUE      
+18 docetaxel               132      3 TRUE      
+19 neratinib               132      3 TRUE      
+20 regorafenib             132      3 TRUE      
+21 omacetaxine             132      3 TRUE      
+22 tofacitinib             132      3 TRUE      
+23 ponatinib               132      3 TRUE      
+24 sapanisertib            132      3 TRUE      
+25 5-aza-2'-deoxycytidine  40      12 TRUE      
+26 crizotinib              40       9 TRUE      
+27 sunitinib               40       7 TRUE      
+28 selinexor               40       5 TRUE      
+29 rosiglitazone           40       5 TRUE      
+30 vemurafenib             40       5 TRUE      
+31 Abemaciclib             40       3 TRUE      
+32 IPATASERTIB             40       3 TRUE      
+33 gemcitabine             fuori    3 TRUE      
+34 afatinib                fuori    3 TRUE      
+farmaci Tahoe: 379 ; con una firma LINCS misurabile, per nome: 142 
