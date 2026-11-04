@@ -80,7 +80,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S4** | Il controllo condiviso, e il peso che gonfia ✅ | misura | ~3 h | — |
 | **S5** | Le due decisioni: il gate, e «37 o 173» ✅ | **decisione** | ~4 h | *meglio S3 e S4* |
 | **S6** | Validazione esterna: il disegno ✅ | disegno | ~3 h | S5 ✅ |
-| **S7** | Validazione esterna: l'esecuzione (aspetta una scelta del PI) | misura | ~6 h | **S6** ✅ |
+| **S7** | Validazione esterna: l'esecuzione ✅ | misura | ~6 h | **S6** ✅ |
 | **S8** | La decisione sul re-run completo | **decisione** | ~2 h | — |
 | **S9** | Le lettere greche, e il crash delle corsie | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio S3* |
@@ -630,9 +630,9 @@ Dammi anche la stima di durata dell'esecuzione. Non guardare nessun risultato.
 
 # S7 — Validazione esterna: l'esecuzione
 
-> **Eseguita il 2026-11-04. Aspetta una scelta del PI: come si scrive il risultato.** Il test passa: 14 su 19 (soglia effettiva 23,9%) e 39 su 53 (26,4%).
+> **Chiusa il 2026-11-04.** Il test passa: 14 su 19 (soglia effettiva 23,9%) e 39 su 53 (26,4%).
 > Contro Tahoe: 11 su 32. Finding: `docs/findings/2026-11-04-S7-validazione-esecuzione.md`. Evidenza: `analysis/audit/2026-11-04-S7-validazione-esecuzione/`.
-> Il numero dell'articolo viene dalla seconda esecuzione, dopo le correzioni (S13).
+> Il numero dell'articolo viene dalla seconda esecuzione, dopo le correzioni (S13). **Il PI ha scelto:** l'articolo riporta insieme il numero di LINCS e quello di Tahoe-100M, che non ha un verdetto.
 >
 > **Ricevuto dal disegno (S6), da leggere per primo.** Il disegno è `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`.
 > È congelato con le scelte del PI: la soglia è T = 17%, cioè almeno 8 composti su 19 e 16 su 53. Il passo A usa solo le fonti e si committa prima del passo B. Il PI ha approvato il
@@ -679,6 +679,9 @@ discriminante gia' decisa in S6.
 ---
 
 # S8 — La decisione sul re-run completo
+
+> **Ricevuto dall'esecuzione della validazione esterna (S7), da leggere per primo.** Il test esterno passa sul deliverable di oggi. Se il PI sceglie il re-run completo, il numero
+> dell'articolo deve venire dal deliverable finale, quindi la seconda esecuzione del test va dopo S14 e non dopo S13. **Che cosa serve per chiuderlo:** scrivere nella decisione di S8 quando si riesegue il test.
 
 ### Perché
 
@@ -1336,7 +1339,7 @@ Proponimi i case study e fammi scegliere.
 
 > **Ricevuto dall'esecuzione della validazione esterna (S7), da leggere per primo.** Da dichiarare, con i numeri della seconda esecuzione: il valore contro LINCS dipende dal numero di linee (da 63% a 74%
 > sulle 19) e dalla forza del composto (Spearman 0,515 con `tas`); contro Tahoe il valore è molto più basso (11 su 32); il test non separa le 40 dalle altre 132 né le corrette dalle difettose;
-> 978 geni su 21.758, linee tumorali. La forma del testo aspetta la scelta del PI nel finding S7.
+> 978 geni su 21.758, linee tumorali. **Il PI ha scelto la forma del testo (2026-11-04):** i successi contro LINCS con il denominatore, l'intervallo di valori secondo il trattamento delle linee, i successi contro Tahoe-100M come seconda fonte senza verdetto, e le altre 21 delle 40 come non validate.
 
 > **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Tre limiti da scrivere, con i numeri
 > del finding. **(1)** L'I² è poco leggibile sotto i dieci studi: l'intervallo copre 95,6 punti a k=3 e 23,2 a k≥10.

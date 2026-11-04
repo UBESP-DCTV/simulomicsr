@@ -52,6 +52,12 @@ sources:
 
 Appena decidi questo punto, la sessione è chiusa.
 
+# Decisioni del PI (2026-11-04)
+
+Il PI ha risposto «si facciamo come suggerisci» al riassunto. Il testo qui sopra resta com'era quando il PI l'ha letto.
+
+**Come si scrive il risultato:** l'articolo riporta insieme il numero di LINCS e quello di Tahoe-100M. Il testo dà i successi contro LINCS con il denominatore, l'intervallo di valori secondo il trattamento delle linee, i successi contro Tahoe-100M e le altre 21 delle 40 come non validate. I valori saranno quelli della seconda esecuzione, dopo le correzioni. Tahoe-100M non ha un verdetto: l'articolo la presenta come seconda fonte, non come test passato o fallito.
+
 # 1. I cancelli
 
 Testo in `00-previsioni.md`[^previsioni]. Il disegno è stato controllato prima del calcolo: è scritto sulle 194 (`40-copertura.R` con `nrow(d) == 194L`, 194 righe in `50-copertura-con-tahoe.csv`), non sulle 214 di v15.
