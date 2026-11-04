@@ -1,0 +1,79 @@
+
+NOTE: Dependency discovery took 23 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+carico gli Stadi 3...
+
+== CANCELLO 2 ==
+A3 2566 studi, record 86898 su 508037
+meta-analisi 211 -> 194, escono 38, entrano 21, comuni 173
+studi poolati 1123 -> 993, usciti 271, entrati 141
+k invariato 68, in calo 76, in crescita 29
+cancello 2: PASSA 
+
+meta-analisi 194: entita' distinte 194; studi poolati fuori da A3: 0
+
+studi nel master 24394; A3 fuori dal master 0; fuori da A3 21828
+P1: fuori con almeno una coppia cgroup: 4994 su 21828 = 22.9%
+fuori in gruppi con k>=2 nello Stadio 3 A3: 17 studi; con k>=3: 0 studi; nel deliverable: 0
+distribuzione coppie per studio fuori:
+ 50%  90%  99% 100% 
+   1    3    9   49 
+P2: fuori con entita' e verso di una delle 194: 140 = 0.6% di 21828 (coppie 171 su 8647)
+
+studi di A3 nel calcolo 2566; coppie singole con entita' e verso nel deliverable 45; senza 2023
+r_stessa 0.0444, r_stessa_k2 0.1239 (den 113), r_altra 0.0188, f_pool 0.425
+
+41 agganciate: 41; 40 agganciate: 40
+
+== CONCENTRAZIONE DEGLI ARRIVI ==
+arrivi totali 40 in 19 studi su 2566; primi 1, 3, 5 studi: 20, 24, 26
+coppie singole: 2068 in 910 studi; primi 1, 3, 5 studi: 115, 235, 292
+           s den_s den_o arr_s arr_o arr_tot
+      <char> <int> <int> <int> <int>   <int>
+1: GSE199800     0   115     0    20      20
+2: GSE147976     0     3     0     2       2
+3: GSE161664     0     3     0     2       2
+4: GSE109720     0     2     0     1       1
+5: GSE122305     0     2     0     1       1
+6: GSE129210     0     6     0     1       1
+7: GSE140226     0     2     0     1       1
+8: GSE141350     0     1     0     1       1
+           s den_s den_o arr_s arr_o arr_tot
+      <char> <int> <int> <int> <int>   <int>
+1: GSE199800     0   115     0    20      20
+2: GSE115823     0    71     0     0       0
+3: GSE211183     0    49     0     0       0
+4: GSE115770     0    32     0     0       0
+5: GSE198449     1    24     0     0       0
+
+== 500 DIVISIONI, stimatore depositato: rapporto previsto/osservato ==
+ 2.5%   25%   50%   75% 97.5% 
+ 0.18  0.35  1.02  2.78  5.41 
+divisioni con i due rapporti in [0,7; 1,3]: 1 su 500
+senza i 3 studi con piu' arrivi:
+ 2.5%   25%   50%   75% 97.5% 
+ 0.33  0.70  1.00  1.42  3.05 
+divisioni con i due rapporti in [0,7; 1,3]: 174 su 500; tassi:    r_s    r_k    r_o      f 
+0.0444 0.1250 0.0074 0.6250 
+
+== IL FATTO SENZA STIMATORE ==
+studi di A3 non poolati prima 1443; entrati con sole chiavi nuove 10 = 0.69% [0.33; 1.27]
+ [1] "GSE100785" "GSE109720" "GSE129210" "GSE147507" "GSE157371" "GSE161031"
+ [7] "GSE163333" "GSE193677" "GSE247389" "GSE272030"
+            s chiavi_prima k_max
+       <char>        <int> <int>
+ 1: GSE129210            7     2
+ 2: GSE109720            3     5
+ 3: GSE193677            8    10
+ 4: GSE161031            3    13
+ 5: GSE247389            4     2
+ 6: GSE272030            2     2
+ 7: GSE163333            2    37
+ 8: GSE100785            1    13
+ 9: GSE157371            1    37
+10: GSE147507            1     8

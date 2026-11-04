@@ -1,0 +1,111 @@
+
+NOTE: Dependency discovery took 24 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+carico gli Stadi 3...
+
+== CANCELLO 2 ==
+A3 2566 studi, record 86898 su 508037
+meta-analisi 211 -> 194, escono 38, entrano 21, comuni 173
+studi poolati 1123 -> 993, usciti 271, entrati 141
+k invariato 68, in calo 76, in crescita 29
+cancello 2: PASSA 
+
+meta-analisi 194: entita' distinte 194; studi poolati fuori da A3: 0
+
+studi nel master 24394; A3 fuori dal master 0; fuori da A3 21828
+P1: fuori con almeno una coppia cgroup: 4994 su 21828 = 22.9%
+fuori in gruppi con k>=2 nello Stadio 3 A3: 17 studi; con k>=3: 0 studi; nel deliverable: 0
+distribuzione coppie per studio fuori:
+ 50%  90%  99% 100% 
+   1    3    9   49 
+P2: fuori con entita' e verso di una delle 194: 140 = 0.6% di 21828 (coppie 171 su 8647)
+
+studi di A3 nel calcolo 2566; coppie singole con entita' e verso nel deliverable 45; senza 2023
+r_stessa 0.0444, r_stessa_k2 0.1239 (den 113), r_altra 0.0188, f_pool 0.425
+
+41 agganciate: 41; 40 agganciate: 40
+
+== PREVISIONI (stima, IC95 bootstrap sugli studi di A3) ==
+P3         70.1  [27.9; 113.9]
+P4         53.2  [24.6; 76.2]
+P5         12.1  [5.5; 17.4]
+P5_40      11.9  [5.5; 17.1]
+P6          9.7  [1.7; 18.4]
+copertura q: 194 meta-analisi su 194 
+
+== CANCELLO 4a == entrati visti in una chiave del deliverable: 140 su 141
+141: con una chiave che lo studio aveva gia' 131; solo chiavi nuove 10
+k della chiave che avevano gia' (riferimento):
+
+ 2  3  4  5 
+ 3 26  9 93 
+
+== CANCELLO 4b ==
+        prev oss  rapporto
+v1 31.006711   7 4.4295302
+v2  7.412338  33 0.2246163
+
+FLUSSI: poolati 1123, escono 271 = 24.1%; non poolati dentro A3 1443, entrano 141 = 9.8%; fuori da A3 21828, entrano 0
+per annullare il netto -130 bastano 130 ingressi = 0.60% dei fuori
+
+entita'+verso senza meta-analisi con almeno 3 studi su tutti i controlli: 233; di cui con entita' nominata 169
+gruppi con k=2 per entita' senza meta-analisi: 393, entita' 387
+
+== AGGIUNTE NON DEPOSITATE ==
+arrivi attesi, via stessa entita': 3.2 (coppie 171); via altra entita': 67.7 (coppie 8476)
+studi di A3 senza gruppi condivisi persi: 2158 su 2566; r_altra 0.0085 (den 1407), r_stessa 0.0625 (den 32), f_pool 0.643
+stima con questi tassi:
+   P3    P4    P5 P5_40    P6 
+ 52.9  42.4   9.5   9.4   2.1 
+
+fuori da A3 nel master innestato: 21828; senza coppie 16834; di questi con almeno un confronto nello Stadio 2 11175; senza confronti 5659
+disegno degli studi fuori senza coppie:
+               design_kind     N
+                    <char> <int>
+ 1:    multi_arm_treatment  8410
+ 2:   case_control_disease  2876
+ 3:   treatment_vs_vehicle  1875
+ 4:        knockdown_panel  1558
+ 5:                unclear   829
+ 6:            time_course   435
+ 7: treatment_vs_untreated   362
+ 8: differentiation_course   315
+ 9:              factorial   118
+10:          dose_response    56
+motivi per i record dei fuori con confronti e senza coppie:
+                reason record studi
+                <char>  <int> <int>
+1:   tier_s_incomplete 124021  9132
+2:       contrast_gate  24324  6538
+3:  rem_eligibility_n1   6007  1662
+4: direction_ambiguous   1531   681
+riserva: 11175 studi x r_altra 0.0188 x f_pool 0.425 = 89.2 ingressi, se ogni studio avesse una sola coppia
+
+k_effective delle 21 nuove:
+
+ 3  4  6 
+18  2  1 
+k_effective delle 38 uscite:
+
+ 3  4  5 
+31  6  1 
+delle 21 nuove, entita' gia' nel riferimento con altra chiave: 0; delle 38 uscite, entita' ancora nel deliverable con altra chiave: 0
+
+le dieci piu' esposte:
+               entita     n coppie_fuori arrivi     p
+               <char> <int>        <int>  <num> <num>
+ 1:        HGNC:11766    54            6   3.22  0.96
+ 2:        HGNC:11892    36            9   2.24  0.89
+ 3:       CHEBI:16412    33            8   2.05  0.87
+ 4:       STR:hypoxia    27            2   1.59  0.80
+ 5: NCBITaxon:2697049    25            3   1.49  0.78
+ 6:      CHEBI:137113    25            1   1.45  0.77
+ 7:         HGNC:5992    19            2   1.13  0.68
+ 8:      CHEBI:379896    18            2   1.07  0.66
+ 9:       CHEBI:68534    18            2   1.07  0.66
+10:         HGNC:5438    16            4   0.99  0.63

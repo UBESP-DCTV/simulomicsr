@@ -1,0 +1,45 @@
+
+NOTE: Dependency discovery took 28 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+carico gli Stadi 3...
+
+== CANCELLO 2 ==
+A3 2566 studi, record 86898 su 508037
+meta-analisi 211 -> 194, escono 38, entrano 21, comuni 173
+studi poolati 1123 -> 993, usciti 271, entrati 141
+k invariato 68, in calo 76, in crescita 29
+cancello 2: PASSA 
+
+meta-analisi 194: entita' distinte 194; studi poolati fuori da A3: 0
+
+studi nel master 24394; A3 fuori dal master 0; fuori da A3 21828
+P1: fuori con almeno una coppia cgroup: 4994 su 21828 = 22.9%
+fuori in gruppi con k>=2 nello Stadio 3 A3: 17 studi; con k>=3: 0 studi; nel deliverable: 0
+distribuzione coppie per studio fuori:
+ 50%  90%  99% 100% 
+   1    3    9   49 
+P2: fuori con entita' e verso di una delle 194: 140 = 0.6% di 21828 (coppie 171 su 8647)
+
+studi di A3 nel calcolo 2566; coppie singole con entita' e verso nel deliverable 45; senza 2023
+r_stessa 0.0444, r_stessa_k2 0.1239 (den 113), r_altra 0.0188, f_pool 0.425
+
+41 agganciate: 41; 40 agganciate: 40
+
+== PREVISIONI (stima, IC95 bootstrap sugli studi di A3) ==
+P3         70.1  [29.1; 118.4]
+P4         53.2  [25.5; 78.2]
+P5         12.1  [5.7; 17.8]
+P5_40      11.9  [5.6; 17.5]
+P6          9.7  [2.0; 17.9]
+copertura q: 194 meta-analisi su 194 
+
+== CANCELLO 4a == entrati visti in una chiave del deliverable: 140 su 141
+Error in `[.data.table`(dec, , .(stessa = any(!is.na(k_old)), k_old_max = suppressWarnings(max(k_old,  : 
+  Column 2 of result for group 2 is type 'integer' but expecting type 'double'. Column types must be consistent for each group.
+Calls: [ -> [.data.table
+Execution halted
