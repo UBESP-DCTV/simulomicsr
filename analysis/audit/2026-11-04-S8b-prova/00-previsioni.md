@@ -51,3 +51,19 @@ Unità: lo studio. Intervalli di confidenza esatti, seme 20261104.
 ## Esecuzione
 
 Script `50-notte.R`, lanciato con `setsid`. Ogni passo scrive un file di stato e si ferma se un caso di accettazione fallisce. Il processore resta sotto il 90%: il re-cluster usa 8 processi. La temperatura si legge a ogni controllo.
+
+## Aggiunta prima di ogni sottomissione (2026-11-04, sera)
+
+Il PI ha scritto «Di DGX fallo andare a bomba» e ha precisato che la temperatura da controllare è quella del suo server con la RTX. Nessun risultato è stato visto: la sola corsa finora è una prova di 20 record per verificare il percorso. Scelte tecniche che cambiano questo file:
+
+- **Due nodi.** I job usano `poddgx01` e `poddgx02`, 4 GPU per job, quattro job insieme. La configurazione dei job non cambia.
+- **Campione: 6.000 studi nuovi, non 2.000**, sempre con i 300 già rigenerati. Le GPU in più stanno nelle 8 ore approvate, e con 2.000 studi la stima sarebbe imprecisa. Scala: 21.828 / 6.000 = 3,638.
+- **Differenza fra nodi, misura nuova.** I blocchi dello Stadio 1 si alternano fra i nodi. I 300 studi dello Stadio 2 girano una volta su ciascun nodo. Q1 e Q2 si leggono su `poddgx02`, il nodo di agosto.
+
+| # | quantità | atteso | intervallo di rilevanza | da dove viene l'intervallo |
+|---|---|---:|---:|---|
+| Q3 | arrivi fra i 6.000 (sostituisce la riga sopra) | 24 (circa 87 scalati) | da 14 a 69 (da 50 a 250 scalati) | soglie del PI, divise per 3,638 |
+| Q6 | somma delle ore dei quattro job dello Stadio 2 (sostituisce la riga sopra) | 12,6 | da 8,4 a 19,6 | stessa proporzione della riga sopra: sopra 19,6 ore il costo del re-run supera la stima alta |
+| Q7 | identità con agosto sul nodo `poddgx01`, come Q1 e Q2 | 100% e 95% | ≥ 99% e ≥ 90% | stessi margini di Q1 e Q2. Se regge, il re-run completo può usare due nodi e dura circa metà |
+
+Tutto il resto di questo file resta valido, leggendo 6.000 dove c'è scritto 2.000.
