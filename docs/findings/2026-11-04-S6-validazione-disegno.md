@@ -17,13 +17,13 @@ sources:
 
 ## In breve: come controlliamo le stime con dati che non vengono dal nostro corpus?
 
-**A cosa serviva.** Tutte le verifiche fatte finora usano gli stessi dati che hanno prodotto le stime. Questa sessione scrive il controllo con dati esterni prima di guardare un risultato: che cosa confrontiamo, quale esito è un fallimento, che cosa succede dopo un fallimento. Non ho confrontato nessuna stima con una fonte esterna.
+**A cosa serviva.** Tutte le verifiche fatte finora usano gli stessi dati che hanno prodotto le stime. Questa sessione scrive il controllo con dati esterni prima di guardare un risultato. Il testo dice che cosa confrontiamo, quale esito è un fallimento e che cosa succede dopo. Non ho confrontato nessuna stima con una fonte esterna.
 
 **Cosa abbiamo trovato.**
 
-1. **La validazione esterna può giudicare circa metà delle meta-analisi.** LINCS, una raccolta pubblica di profili di farmaci misurati su linee cellulari, permette la misura per 96 meta-analisi su 194, e per 24 delle 40 dell'insieme principale.
+1. **La validazione esterna può giudicare circa metà delle meta-analisi.** LINCS è una raccolta pubblica di profili di farmaci su linee cellulari. Permette la misura per 96 meta-analisi su 194, e per 24 delle 40 dell'insieme principale.
    - Il verdetto userà solo i composti: 19 nelle 40 e 53 nelle altre 132.
-   - I ligandi avranno solo una descrizione, perché il loro elenco di riferimento ha 164 voci invece di 5.466 e i nomi con lettere greche non sono ancora controllati.
+   - I ligandi avranno solo una descrizione, perché il loro elenco di riferimento ha 164 voci invece di 5.466. Inoltre i nomi con lettere greche non sono ancora controllati.
    - Nelle 40 restano senza validazione 16 meta-analisi, fra cui tutte le 8 malattie. Non conosco una fonte aperta e indipendente da GEO per queste malattie, e non ho fatto una ricerca sistematica.
 2. **LINCS è esterna rispetto al nostro corpus, per quello che possiamo vedere.** Nessuno dei 1.383 studi delle 194 sta fra le serie LINCS, usa la sua piattaforma o la cita nel metadato. La ricerca non legge il riassunto della serie GEO.
 3. **I numeri scritti nel piano sulla copertura erano da correggere.** I «111 composti già agganciati» erano candidati: LINCS ne aveva 90, e 77 di questi restano nelle 194. Con i composti nuovi il totale torna a 90 su 194, quindi il 47% del piano resta quasi giusto per compensazione.
@@ -39,7 +39,9 @@ sources:
 
 **Cosa devi decidere.**
 
-1. **Quale fonte? Consiglio LINCS per il verdetto, più Tahoe-100M e TCGA con un ruolo limitato.** Tahoe-100M è un atlante aperto di 379 farmaci, fuori da GEO. Copre 8 delle 19 meta-analisi, quindi serve per provare la fonte e non per il verdetto. TCGA copre 6 tumori, nessuno nelle 40. Serve a provare che il controllo vede l'inversione già nota nel carcinoma epatocellulare.
+1. **Quale fonte? Consiglio LINCS per il verdetto, più Tahoe-100M e TCGA con un ruolo limitato.**
+   - Tahoe-100M è un atlante aperto di 379 farmaci, fuori da GEO. Copre 8 delle 19 meta-analisi, quindi serve per provare la fonte e non per il verdetto.
+   - TCGA copre 6 tumori, nessuno nelle 40. Serve a provare che il controllo vede l'inversione già nota nel carcinoma epatocellulare.
    - In alternativa usiamo solo LINCS. Risparmiamo circa 2 ore, ma dopo un fallimento non abbiamo una seconda fonte per provare la causa.
    - In alternativa chiediamo anche dati ad accesso controllato per Parkinson e disturbo bipolare. L'attesa può durare mesi, e non ho misurato questa copertura.
 2. **Quale soglia? Consiglio almeno 8 composti su 19 nel primo 10%.** Questo esito dice che le stime riconoscono il composto meglio di quanto due edizioni della Connectivity Map si riconoscono fra loro. Se la quota vera è 50%, il test passa 82 volte su 100.
@@ -63,7 +65,9 @@ sources:
 
 Appena decidi questi 5 punti, la sessione è chiusa.
 
-**Sui tempi di calcolo.** La stima è mia. Lo scarico di LINCS dura 2,1 ore a 4,7 MB/s e quello di Tahoe-100M dura 0,7 ore a 35,7 MB/s, misurati su 100 MB. Per TCGA e per la lettura dei file conto al massimo 3 ore, senza una misura. Il test dura quindi circa 6 ore, quasi tutte di attesa della rete, e circa 4 ore con la sola LINCS. Le 35 ore del confronto con studi non collegati vengono dai 15,1 minuti misurati per 137 gruppi. Lo script indica 32 processori, e il numero effettivo non è registrato.
+**Sui tempi di calcolo.** La stima è mia. Lo scarico di LINCS dura 2,1 ore a 4,7 MB/s e quello di Tahoe-100M dura 0,7 ore a 35,7 MB/s, misurati su 100 MB. Per TCGA e per la lettura dei file conto al massimo 3 ore, senza una misura. Il test dura quindi circa 6 ore, quasi tutte di attesa della rete, e circa 4 ore con la sola LINCS.
+
+Le 35 ore del confronto con studi non collegati vengono dai 15,1 minuti misurati per 137 gruppi. Lo script indica 32 processori, e il numero effettivo non è registrato.
 
 # 1. I cancelli
 
