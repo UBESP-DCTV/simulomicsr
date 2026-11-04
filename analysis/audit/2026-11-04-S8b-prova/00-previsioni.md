@@ -77,3 +77,9 @@ Alle 21:51 `poddgx01` è passato a `DOWN+NOT_RESPONDING`, con `NODE_FAIL` sui du
 - **Q7 non si misura**: la differenza fra nodi resta sconosciuta. Resta solo la prova di 20 record, 20 identici su 20.
 - **Q6 cambia:** la somma delle ore dei due job è attesa a 11,7, intervallo da 7,8 a 18,2, stessa proporzione. Le 0,9 ore della copia sul secondo nodo non ci sono più.
 - Il campione resta di 6.000 studi. La durata totale sale a circa 11 ore, oltre le 8 approvate. Il PI lo sa dal messaggio in chat e può chiedere di ridurre.
+
+## Terza aggiunta (2026-11-04, sera): `poddgx01` è vietato
+
+Il PI ha ricordato che `poddgx01` non va usato. Il divieto è scritto in `docs/superpowers/specs/2026-07-07-name-cleanup-resolver-fix-NEXT-SESSION-handout.md:82` e nella memoria del progetto. Non l'ho cercato prima di usare quel nodo, e la scelta è stata mia: «a bomba» non autorizzava un altro nodo. Job lanciati su `poddgx01`: 441995 (2 s), 442040 (4 min 39 s), 442114 e 442116 (13 min, `NODE_FAIL` alle 21:51). La causa della caduta non è nota, e questi job non si possono escludere.
+
+Q7 non era una misura lecita e non si recupera in nessun caso. La prova di 20 record su `poddgx01` non si cita come prova di invarianza fra nodi. Il re-run completo userà solo `poddgx02`.

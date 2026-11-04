@@ -220,6 +220,7 @@ tutti gli stadi, anche a costo di efficienza.
 
 ## 7. DGX UniPD (P4 cluster)
 
+- **Usa solo `poddgx02`. Non usare `poddgx01`: lo ha vietato il PI.** Non usare `nodelist = NULL`, perché lo scheduler può scegliere `poddgx01`. Il 2026-11-04 la sessione S8b ha lanciato 4 job su `poddgx01` senza cercare il divieto, e il nodo è caduto con 2 di quei job in corsa (causa non nota). I testi `R/dgx-config.R` e `analysis/p5-name-cleanup-run.R` suggeriscono ancora gli altri nodi: non seguirli.
 - Path **`/home/u0044/`**, NON `/mnt/home/u0044/` (i compute node non lo montano;
   sintomo: `ExitCode 0:53` in 2 s senza log).
 - **Prima di sottomettere**: `sinfo` = `idle` non basta, verifica il mount con un
