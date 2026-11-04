@@ -75,7 +75,9 @@ fallito e spiegato. **La scelta decade** se S11 sposta più di 5 verdetti fra co
 Il deliverable su disco resta 194 a T0 fino a S13.
 **S6 chiusa il 2026-11-04** (disegno congelato `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`, finding `docs/findings/2026-11-04-S6-validazione-disegno.md`).
 LINCS permette la misura per **96 meta-analisi su 194, 24 su 40**; il verdetto usa i composti: **19 nelle 40, 53 nelle 132**. I «111» dell'handout erano candidati: 90 agganciati, 77 nelle 194.
-`kind_effective_resolved` sbaglia il tipo: non usarla per dividere le entità. **Decisioni del PI:** LINCS per il verdetto, Tahoe-100M e TCGA con un ruolo limitato; soglia T = 17%, cioè almeno 8 composti su 19 nel primo 10%; se la causa è il metodo, l'articolo dichiara il fallimento e tiene le stime come ipotesi; test adesso e di nuovo dopo S13, e il numero dell'articolo è il secondo; 99 estrazioni per il confronto con studi non collegati, dopo S13. **Nessuna correzione può guardare l'esito del test per una singola meta-analisi.** **Prossima: S7.**
+`kind_effective_resolved` sbaglia il tipo: non usarla per dividere le entità. **Decisioni del PI:** LINCS per il verdetto, Tahoe-100M e TCGA con un ruolo limitato; soglia T = 17%, cioè almeno 8 composti su 19 nel primo 10%; se la causa è il metodo, l'articolo dichiara il fallimento e tiene le stime come ipotesi; test adesso e di nuovo dopo S13, e il numero dell'articolo è il secondo; 99 estrazioni per il confronto con studi non collegati, dopo S13. **Nessuna correzione può guardare l'esito del test per una singola meta-analisi.**
+**S7 eseguita il 2026-11-04, aspetta una scelta del PI su come scrivere il risultato** (`docs/findings/2026-11-04-S7-validazione-esecuzione.md`). Il test passa: **14 su 19** e **39 su 53** contro LINCS, soglie effettive 23,9% e 26,4%,
+composti sbagliati 24% e 26%. Nessun errore di calcolo. Il valore dipende da linee e forza del composto: da 63% a 74% sulle 19. **Contro Tahoe: 11 su 32.** Non separa le 40 dalle altre 132. Tumori: 6 su 6 fra 16 progetti. Il numero dell'articolo verrà dalla seconda esecuzione, in S13.
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -252,6 +254,7 @@ tutti gli stadi, anche a costo di efficienza.
   `.identify_layer_a_clusters()`. A k_min=2 i candidati sono 700, non 316. Il registro ne vede 88 su 282.
 - **Il deliverable conta studi GEO, non dati distinti**: due numeri GEO possono avere le stesse conte (a meno del
   riallineamento). `k_eff` e `quota_top1` ne risentono (finding S5 §6). Non usare l'impronta esatta: serve la distanza.
+- **`data.table`: dentro `dt[...]` un nome di colonna vince sulla variabile esterna**, anche dentro una funzione anonima: `g[cluster_id == cluster_id[i]]` confronta `g` con se stessa. Ha dato 32 su 32 e 3 su 16 falsi in S7. Salva il valore in una variabile con un altro nome. Lo stesso vale per i parametri degli aiutanti (`k`).
 - ARCHS4 v2.5: 4.638/67.186 simboli HGNC duplicati → asse dei geni `gene_id`
   Ensembl (`gene_symbol` è etichetta); tabelle per simbolo deduplicate
   (`.rank_and_dedup_genes()`); merge fra gruppi su `gene_id`.
@@ -302,7 +305,7 @@ diverso dalle 16 incerte); **1.993 campioni** persi dallo Stadio 2 (potenza, non
 errori); il gate seleziona per controllo interno e **può concentrare l'errore**;
 l'FDR premia i consistenti, non i grandi; la correlazione da controllo condiviso
 non è modellata nel deliverable (misurata in S4, si corregge in S13), e il batch fra bracci con campioni diversi resta non modellato comunque; il verdetto sulle etichette **non vede i bracci invertiti**
-(`GSE144269`, finding S3 §5); sotto i dieci studi l'I² è poco leggibile e la significatività dipende dal test z; il segno concorde non è una prova, e gli studi doppi non si vedono dalle etichette (finding S5). Il paper è per bioinformatici: niente frizioni
+(`GSE144269`, finding S3 §5); sotto i dieci studi l'I² è poco leggibile e la significatività dipende dal test z; il segno concorde non è una prova, e gli studi doppi non si vedono dalle etichette (finding S5). La validazione esterna riconosce soprattutto i composti forti e molto studiati, e contro Tahoe il valore è molto più basso (finding S7). Il paper è per bioinformatici: niente frizioni
 d'infrastruttura salvo impatto biologico diretto.
 
 ---
@@ -313,7 +316,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`

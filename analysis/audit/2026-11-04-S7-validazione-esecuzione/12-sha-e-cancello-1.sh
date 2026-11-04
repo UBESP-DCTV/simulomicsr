@@ -10,8 +10,8 @@ done
 if [ "${1:-}" = scarichi ]; then
   ( cd "$L/level5" && sha256sum level5_beta_trt_cp_n720216x12328.gctx level5_beta_trt_misc_n8283x12328.gctx ) | tee "$E/12-sha256-lincs-level5.txt"
   ( cd "$L/level5/tahoe100m" && ls | grep parquet$ | xargs -P 16 -I{} sha256sum {} ) | sort -k2 > "$E/12-sha256-tahoe.txt"
-  awk -F'\t' '{n=split($1,a,"/"); print $3"  "a[n]}' "$E/10-tahoe-elenco.tsv" | sort -k2 > /tmp/claude-1000/atteso-tahoe.txt
-  diff -q /tmp/claude-1000/atteso-tahoe.txt "$E/12-sha256-tahoe.txt" && echo "OK tahoe: $(wc -l < "$E/12-sha256-tahoe.txt") file coincidono con l'oid LFS" || echo "FALLISCE tahoe"
+  A=$(mktemp); awk -F'\t' '{n=split($1,a,"/"); print $3"  "a[n]}' "$E/10-tahoe-elenco.tsv" | sort -k2 > "$A"
+  diff -q "$A" "$E/12-sha256-tahoe.txt" && echo "OK tahoe: $(wc -l < "$E/12-sha256-tahoe.txt") file coincidono con l'oid LFS" || echo "FALLISCE tahoe"
   python3 - <<'PY'
 import csv,hashlib,os
 d="/mnt/wwn-0x5000039d58caca35/lincs-meta/level5/tcga/"; ko=0; n=0

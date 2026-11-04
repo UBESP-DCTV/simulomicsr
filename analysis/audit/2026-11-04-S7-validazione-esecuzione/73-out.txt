@@ -1,0 +1,36 @@
+
+
+
+E5, composti con almeno 10 linee: 906 
+E6, varianza spiegata dalla prima componente: 0.224 
+fondo LINCS ristretto ai farmaci di Tahoe: 185 pert_id
+
+RIASSUNTO
+                                           controllo insieme  n     H  H_lo  H_hi H_scambio  Hs_lo Hs_hi  diff  d_lo  d_hi
+1                                           primaria      40 19 0.737 0.526 0.947     0.239 0.1917 0.284 0.498 0.279 0.691
+2                                           primaria     132 53 0.736 0.604 0.849     0.264 0.2373 0.291 0.472 0.344 0.589
+3                                E4 firme su 5 linee      40 19 0.639 0.429 0.840     0.158 0.1363 0.181 0.482 0.264 0.687
+4                                E4 firme su 5 linee     132 53 0.593 0.475 0.706     0.177 0.1646 0.189 0.416 0.299 0.529
+5                       E5 fondo con almeno 10 linee      40 19 0.632 0.421 0.842     0.094 0.0725 0.116 0.538 0.307 0.763
+6                       E5 fondo con almeno 10 linee     132 53 0.566 0.434 0.698     0.101 0.0926 0.109 0.465 0.331 0.598
+7                       E6 senza la prima componente      40 19 0.895 0.737 1.000     0.190 0.1618 0.220 0.705 0.553 0.817
+8                       E6 senza la prima componente     132 53 0.698 0.566 0.811     0.211 0.1934 0.228 0.487 0.352 0.607
+9  non depositato: L1000, fondo dei farmaci di Tahoe      40 19 0.632 0.421 0.842     0.149 0.1252 0.171 0.483 0.257 0.703
+10 non depositato: L1000, fondo dei farmaci di Tahoe     132 53 0.623 0.491 0.755     0.145 0.1328 0.157 0.478 0.345 0.607
+
+H_scambio contro Tahoe, sui composti agganciati:
+Key: <insieme>
+   insieme coppie H_scambio mediana_P
+    <char>  <int>     <num>     <num>
+1:     132    773        NA        NA
+2:      40    260        NA        NA
+Key: <insieme>
+   insieme x_L1000 x_Tahoe n_L1000 n_Tahoe
+    <char>   <int>   <int>   <int>   <int>
+1:     132      19       8      24      24
+2:      40       7       3       8       8
+Spearman fra P contro L1000 e P contro Tahoe, sui 32: 0.403 
+
+real	6m14.206s
+user	7m41.094s
+sys	3m37.552s

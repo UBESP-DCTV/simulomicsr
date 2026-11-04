@@ -1,0 +1,52 @@
+E1: differenza massima fra il rango di riferimento e quello del verdetto: 0 
+E2: entita' con un solo pert_id misurabile: 70 ; differenza massima con la colonna del fondo: 0 
+similarita' e rimescolamenti: 16.00836 mins 
+E3: H con i geni rimescolati, 99 ripetizioni sui 72: media 0.087, min 0.028, max 0.153; mediana di P 0.496
+linee per composto nel fondo: mediana 5 ; entita', mediana 14 
+E4: firme su 5 linee a caso, 20 estrazioni
+Key: <insieme>
+   insieme     H mediana_P H_scambio
+    <char> <num>     <num>     <num>
+1:     132 0.593     0.956     0.177
+2:      40 0.639     0.973     0.158
+E5: composti del fondo con almeno 10 linee: 906 
+Key: <insieme>
+   insieme     n     H mediana_P H_scambio coppie
+    <char> <int> <num>     <num>     <num>  <int>
+1:     132     0   NaN        NA     0.101   4111
+2:      40     0   NaN        NA     0.094   1478
+E6: varianza spiegata dalla prima componente: 0.224 
+Key: <insieme>
+   insieme     n     H mediana_P H_scambio coppie
+    <char> <int> <num>     <num>     <num>  <int>
+1:     132     0   NaN        NA     0.211   4111
+2:      40     0   NaN        NA     0.190   1478
+E7: H_fonti, Tahoe interroga LINCS, composti nel deliverable o no
+  nel_deliverable   n succ     H mediana_P    lo    hi
+1            TRUE  28   18 0.643     0.971 0.441 0.814
+2           FALSE 114   35 0.307     0.672 0.224 0.400
+E8: Spearman di P_e con le linee: 0.197 -0.038 0.417 
+    Spearman di P_e con tas mediano: 0.515 0.301 0.682 
+    composto sbagliato: Spearman fra la quota di volte nel primo 10% e le sue linee: 0.419 0.224 0.602 
+   contrast_entity medio  succ linee
+            <char> <num> <num> <int>
+1:     CHEBI:64310 0.839 0.690    30
+2:     CHEBI:38940 0.816 0.662    21
+3:     CHEBI:90943 0.824 0.620    16
+4:    CHEBI:229764 0.832 0.606     9
+5:     CHEBI:49668 0.800 0.588    27
+6:     CHEBI:85993 0.780 0.577    18
+7:     CHEBI:49603 0.758 0.574    32
+8:     CHEBI:44616 0.770 0.557     6
+AGGIUNTO: stessi composti, L1000 contro Tahoe
+Key: <insieme>
+   insieme     n L1000 Tahoe
+    <char> <int> <int> <int>
+1:     132    24    19     8
+2:      40     8     7     3
+H_scambio contro Tahoe, sui composti agganciati:
+Key: <insieme>
+   insieme coppie H_scambio mediana_P
+    <char>  <int>     <num>     <num>
+1:     132    773        NA        NA
+2:      40    260        NA        NA

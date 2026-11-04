@@ -41,7 +41,10 @@ li <- cop[classe == "ligando" & misurabile == TRUE]
 li[, chi := toupper(hid$symbol[match(suppressWarnings(as.integer(sub("^HGNC:", "", contrast_entity))), hid$hgnc_int)])]; li[contrast_entity == "STR:ifna", chi := "IFNA"]
 stopifnot(all(li$chi %in% toupper(colnames(Fl))))
 mp <- setNames(land$gene_id, land$ensembl_id)
-li[, P := vapply(seq_len(.N), function(i) { z <- g[cluster_id == cluster_id[i] & id %in% land$ensembl_id]; rango_gen(setNames(z$q, mp[z$id]), Fl, colnames(Fl)[toupper(colnames(Fl)) == chi[i]]) }, 0)]
+# Correzione: dentro g[...] cluster_id[i] era la colonna di g, quindi tutte le righe usavano la stessa meta-analisi.
+qlig <- lapply(li$cluster_id, function(cc) { z <- g[cluster_id == cc & id %in% land$ensembl_id]; stopifnot(nrow(z) > 800L); setNames(z$q, mp[z$id]) })
+stopifnot(!anyDuplicated(vapply(qlig, function(v) sum(v, na.rm = TRUE), 0)))
+li[, P := vapply(seq_len(.N), function(i) rango_gen(qlig[[i]], Fl, colnames(Fl)[toupper(colnames(Fl)) == chi[i]]), 0)]
 cat("\nLIGANDI, descrizione (fondo 164)\n"); print(as.data.frame(li[order(-P), .(nome, insieme, chi, k, P = round(P, 3))]), right = FALSE)
 cat("nel primo 10%:", sum(li$P >= .9), "su", nrow(li), "; mediana P:", round(median(li$P), 3), "\n"); fwrite(li[, .(contrast_entity, nome, insieme, chi, k, P)], file.path(E7, "71-ligandi.csv"))
 # ---- tumori: descrizione, tutti i geni in comune

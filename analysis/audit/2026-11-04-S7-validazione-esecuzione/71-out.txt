@@ -1,0 +1,80 @@
+
+
+
+Key: <insieme>
+   insieme     N
+    <char> <int>
+1:     132    24
+2:      40     8
+3:   fuori     2
+geni in Tahoe: 54289 ; farmaci: 379 ; landmark completi su tutti i farmaci: 965 
+
+TAHOE contro le stime
+  insieme  n H_land succ_land H_tutti succ_tutti med_land med_tutti lo_land lo_tutti
+1     132 24  0.333         8   0.333          8    0.712     0.647  0.1563   0.1563
+2      40  8  0.375         3   0.375          3    0.759     0.763  0.0852   0.0852
+   nome                    insieme drug              P_land P_tutti
+1  trametinib              132     Trametinib        1.000  0.995  
+2  ponatinib               132     Ponatinib         1.000  1.000  
+3  omacetaxine             132     Homoharringtonine 0.997  1.000  
+4  bortezomib              132     Bortezomib        0.995  0.971  
+5  sirolimus               132     Rapamycin         0.995  0.989  
+6  palbociclib             132     palbociclib       0.987  0.968  
+7  dexamethasone           132     Dexamethasone     0.971  1.000  
+8  tofacitinib             132     Tofacitinib       0.902  0.571  
+9  all-trans-retinoic acid 132     Retinoic acid     0.878  0.664  
+10 olaparib                132     olaparib          0.878  0.751  
+11 sapanisertib            132     Sapanisertib      0.857  0.698  
+12 erlotinib               132     Erlotinib         0.725  0.828  
+13 resveratrol             132     Resveratrol       0.698  0.484  
+14 neratinib               132     Neratinib         0.677  0.442  
+15 docetaxel               132     Docetaxel         0.675  0.497  
+16 paclitaxel              132     Paclitaxel        0.563  0.444  
+17 5-azacytidine           132     5-Azacytidine     0.516  0.630  
+18 methotrexate            132     Methotrexate      0.458  0.275  
+19 gefitinib               132     Gefitinib         0.444  0.259  
+20 regorafenib             132     Regorafenib       0.405  0.934  
+21 fulvestrant             132     Fulvestrant       0.378  0.362  
+22 cyclosporin A           132     Cyclosporin A     0.354  0.452  
+23 5-fluorouracil          132     5-Fluorouracil    0.257  0.135  
+24 everolimus              132     Everolimus        0.026  0.021  
+25 selinexor               40      Selinexor         0.992  0.997  
+26 Abemaciclib             40      Abemaciclib       0.987  0.984  
+27 vemurafenib             40      Vemurafenib       0.963  0.963  
+28 5-aza-2'-deoxycytidine  40      Decitabine        0.786  0.833  
+29 rosiglitazone           40      Rosiglitazone     0.733  0.685  
+30 sunitinib               40      Sunitinib         0.630  0.540  
+31 IPATASERTIB             40      Ipatasertib       0.431  0.399  
+32 crizotinib              40      crizotinib        0.421  0.693  
+33 afatinib                fuori   Afatinib          0.931  0.968  
+34 gemcitabine             fuori   Gemcitabine       0.579  0.476  
+
+LIGANDI, descrizione (fondo 164)
+   nome            insieme chi     k  P    
+1  IFNG            132     IFNG    16 1.000
+2  ifna            132     IFNA     3 1.000
+3  TNF             40      TNF     36 0.988
+4  EGF             40      EGF      6 0.988
+5  IL1A            fuori   IL1A     3 0.957
+6  IL6             40      IL6     10 0.859
+7  IL4             132     IL4      5 0.828
+8  TGFB1           132     TGFB1   54 0.791
+9  IL22            132     IL22     5 0.785
+10 IL2             40      IL2      4 0.761
+11 TWEAK (TNFSF12) 40      TNFSF12  4 0.607
+12 BMP4            132     BMP4     3 0.436
+13 IL17A           132     IL17A    7 0.380
+14 IL3             132     IL3      4 0.313
+15 IL15            fuori   IL15     3 0.294
+16 IFNB1           132     IFNB1    7 0.043
+nel primo 10%: 5 su 16 ; mediana P: 0.788 
+
+TCGA: geni con t in tutti i 16 progetti: 20754 
+TUMORI, descrizione
+        entita                      nome                      progetto k r_giusto P_16 r_land P_16_land max_altro
+1 MeSH:D006528 Carcinoma, Hepatocellular                     TCGA-LIHC 6    0.559    1  0.620         1 TCGA-STAD
+2 MeSH:D013274         Stomach Neoplasms                     TCGA-STAD 5    0.651    1  0.674         1 TCGA-ESCA
+3 MeSH:D015179      Colorectal Neoplasms           TCGA-COAD+TCGA-READ 5    0.574    1  0.669         1 TCGA-STAD
+4 MeSH:D001943          Breast Neoplasms                     TCGA-BRCA 4    0.716    1  0.738         1 TCGA-UCEC
+5 MeSH:D002292     Carcinoma, Renal Cell TCGA-KIRC+TCGA-KIRP+TCGA-KICH 3    0.415    1  0.361         1 TCGA-HNSC
+6     STR:oscc                      oscc                     TCGA-HNSC 4    0.687    1  0.693         1 TCGA-ESCA

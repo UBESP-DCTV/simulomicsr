@@ -54,7 +54,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 3 | ~~Non sappiamo se la lettura delle 194 sia riproducibile~~ **riproducibile: kappa 0,78 su 194; con l'umano 18/19 (S3)** | S3 |
 | 4 | ~~I bracci che **condividono il controllo** gonfiano il peso~~ **misurato: taglio 113→41; il PI corregge varianza e ruoli in S13 (S4)** | S4 |
 | 5 | ~~Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3~~ **deciso: gate a 3 studi, le 40 come insieme principale, le altre 132 in supplementare (S5)** | S5 |
-| 6 | Nessuna verifica usa dati esterni al corpus. **Disegno congelato (S6), il PI ha scelto fonte e soglia** | S6 → S7 |
+| 6 | ~~Nessuna verifica usa dati esterni al corpus~~ **eseguita sul deliverable di oggi: 14 su 19 e 39 su 53 contro LINCS, 11 su 32 contro Tahoe (S7). Il numero dell'articolo viene dalla seconda esecuzione, in S13** | S6 → S7 → S13 |
 | 7 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi) | S8 → S14 |
 | 8 | Le lettere greche sbagliano in 45 prove su 90 | S9 |
 | 9 | `.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()` | S9 |
@@ -80,7 +80,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S4** | Il controllo condiviso, e il peso che gonfia ✅ | misura | ~3 h | — |
 | **S5** | Le due decisioni: il gate, e «37 o 173» ✅ | **decisione** | ~4 h | *meglio S3 e S4* |
 | **S6** | Validazione esterna: il disegno ✅ | disegno | ~3 h | S5 ✅ |
-| **S7** | Validazione esterna: l'esecuzione | misura | ~6 h | **S6** ✅ |
+| **S7** | Validazione esterna: l'esecuzione (aspetta una scelta del PI) | misura | ~6 h | **S6** ✅ |
 | **S8** | La decisione sul re-run completo | **decisione** | ~2 h | — |
 | **S9** | Le lettere greche, e il crash delle corsie | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio S3* |
@@ -630,6 +630,10 @@ Dammi anche la stima di durata dell'esecuzione. Non guardare nessun risultato.
 
 # S7 — Validazione esterna: l'esecuzione
 
+> **Eseguita il 2026-11-04. Aspetta una scelta del PI: come si scrive il risultato.** Il test passa: 14 su 19 (soglia effettiva 23,9%) e 39 su 53 (26,4%).
+> Contro Tahoe: 11 su 32. Finding: `docs/findings/2026-11-04-S7-validazione-esecuzione.md`. Evidenza: `analysis/audit/2026-11-04-S7-validazione-esecuzione/`.
+> Il numero dell'articolo viene dalla seconda esecuzione, dopo le correzioni (S13).
+>
 > **Ricevuto dal disegno (S6), da leggere per primo.** Il disegno è `docs/superpowers/specs/2026-11-04-validazione-esterna-design.md`.
 > È congelato con le scelte del PI: la soglia è T = 17%, cioè almeno 8 composti su 19 e 16 su 53. Il passo A usa solo le fonti e si committa prima del passo B. Il PI ha approvato il
 > calcolo, stimato in circa 6 ore. Copia le previsioni di §8 nel tuo `00-previsioni.md` senza cambiarle.
@@ -1052,6 +1056,13 @@ NON lanciare niente: l'applicazione e' S13. Suite verde prima di committare.
 
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
 
+> **Ricevuto dall'esecuzione della validazione esterna (S7), da leggere per primo.** (1) Dopo il calcolo riesegui il passo B con `POOL_DIR` sul nuovo deliverable:
+> `analysis/audit/2026-11-04-S7-validazione-esecuzione/README.md` dice come. Il passo A non si rifà. Rigenera prima l'elenco degli 80 composti con le regole del disegno §4.
+> `69-cancello-5.R` legge le stime per studio di S4: puntalo alle stime nuove. (2) **Rinvio:** misura come descrizione la prova «Combinazione» del disegno §9 su tutti i composti, perché
+> un successo può descrivere bene uno studio dominante e oggi non sappiamo se la combinazione aggiunge qualcosa. **Che cosa serve per chiuderlo:** `d_e` con il suo intervallo. Non cambia il verdetto.
+> (3) **Regola di separazione (disegno §2):** i valori bassi di `metformin`, `nicotinamide`, `17β-estradiol`, `IFNB1`, e i due studi del carcinoma epatocellulare con correlazione vicina a 0 con TCGA
+> (`GSE256235`, `GSE120663`, `69-out.txt`), non possono scegliere una correzione. Una meta-analisi corretta per questo motivo si marca `a_posteriori` ed esce dal calcolo primario. Se un'altra regola tocca quei due studi, scrivi quale.
+
 > **Ricevuto dal disegno della validazione esterna (S6), da leggere per primo.** Dopo il calcolo: (1) rigenera con le stesse regole l'insieme misurabile in LINCS;
 > (2) riesegui il test esterno con lo stesso codice e la stessa soglia: il numero dell'articolo è questo, per scelta del PI; (3) esegui il confronto con studi non collegati su tutti i
 > gruppi, con 99 estrazioni scelte dal PI, al massimo 35 ore (disegno §11). **Che cosa serve per chiuderlo:** il risultato per gruppo. Lo script di partenza è
@@ -1322,6 +1333,10 @@ Proponimi i case study e fammi scegliere.
 ---
 
 # S17 — Scrivere i Methods e le limitazioni
+
+> **Ricevuto dall'esecuzione della validazione esterna (S7), da leggere per primo.** Da dichiarare, con i numeri della seconda esecuzione: il valore contro LINCS dipende dal numero di linee (da 63% a 74%
+> sulle 19) e dalla forza del composto (Spearman 0,515 con `tas`); contro Tahoe il valore è molto più basso (11 su 32); il test non separa le 40 dalle altre 132 né le corrette dalle difettose;
+> 978 geni su 21.758, linee tumorali. La forma del testo aspetta la scelta del PI nel finding S7.
 
 > **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo.** Tre limiti da scrivere, con i numeri
 > del finding. **(1)** L'I² è poco leggibile sotto i dieci studi: l'intervallo copre 95,6 punti a k=3 e 23,2 a k≥10.
