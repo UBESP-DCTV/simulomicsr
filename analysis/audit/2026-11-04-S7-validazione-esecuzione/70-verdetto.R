@@ -39,7 +39,7 @@ pm <- merge(pm, sc, by = "contrast_entity")
 pm[, d_e := as.numeric(successo) - H_scambio_e]
 # ---- verdetto per insieme
 verdetto <- function(d, nome, T_) {
-  n <- nrow(d); xx <- sum(d$successo); H <- xx / n; hs <- mean(d$H_scambio_e * 1) ; hs2 <- sum(d$H_scambio_e * d$coppie) / sum(d$coppie)
+  n <- nrow(d); xx <- sum(d$successo); H <- xx / n; hs2 <- sum(d$H_scambio_e * d$coppie) / sum(d$coppie)
   Teff <- max(T_, hs2); lo <- cp_lim(xx, n, "lo"); hi <- cp_lim(xx, n, "hi")
   set.seed(SEME); b <- replicate(BOOT, { i <- sample(n, replace = TRUE); c(mean(d$d_e[i]), median(d$P[i]), sum(d$H_scambio_e[i] * d$coppie[i]) / sum(d$coppie[i])) })
   ic_d <- quantile(b[1, ], c(.025, .975)); ic_m <- quantile(b[2, ], c(.025, .975)); ic_s <- quantile(b[3, ], c(.025, .975))
@@ -61,7 +61,6 @@ cat("strumento, geni rimescolati: H =", round(mean(per >= .9), 3), "su", length(
 # ---- punto 8: sensibilita'
 sens <- function(d, etichetta) { rbindlist(lapply(c("40","132"), function(s) { z <- d[insieme == s]; xx <- sum(z$P >= .9); data.table(sensibilita = etichetta, insieme = s, n = nrow(z), successi = xx, H = xx / nrow(z), lo = cp_lim(xx, nrow(z), "lo"), hi = cp_lim(xx, nrow(z), "hi"), mediana_P = median(z$P)) })) }
 S <- list(sens(pm, "primaria"), sens(pm[metodo_match == "struttura_inchikey_completo"], "solo InChIKey completo"))
-gr <- fread(file.path(S6, "65-out.txt"), sep = "\n", header = FALSE)
 S[[length(S) + 1L]] <- sens(pm[!grepl("estradiol", nome)], "senza lettere greche (65-out.txt)")
 # qc_pass: filtro su firme ed entita', regola di misurabilita' riapplicata
 M <- readRDS(file.path(PES7, "z-landmark-cp.rds")); da <- readRDS(file.path(PES7, "firme-attive-cp.rds"))
