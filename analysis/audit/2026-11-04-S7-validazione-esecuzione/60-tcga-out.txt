@@ -1,0 +1,81 @@
+
+NOTE: Dependency discovery took 33 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+coppie per progetto:
+Key: <progetto>
+     progetto coppie  file
+       <char>  <int> <int>
+ 1: TCGA-BLCA     19    38
+ 2: TCGA-BRCA    113   226
+ 3: TCGA-COAD     41    82
+ 4: TCGA-ESCA     13    26
+ 5: TCGA-HNSC     43    86
+ 6: TCGA-KICH     25    50
+ 7: TCGA-KIRC     72   144
+ 8: TCGA-KIRP     32    64
+ 9: TCGA-LIHC     50   100
+10: TCGA-LUAD     58   116
+11: TCGA-LUSC     51   102
+12: TCGA-PRAD     52   104
+13: TCGA-READ      9    18
+14: TCGA-STAD     33    66
+15: TCGA-THCA     59   118
+16: TCGA-UCEC     23    46
+calcNormFactors has been renamed to normLibSizes
+TCGA-BLCA fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-BRCA fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-COAD fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-ESCA fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-HNSC fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-KICH fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-KIRC fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-KIRP fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-LIHC fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-LUAD fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-LUSC fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-PRAD fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-READ fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-STAD fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-THCA fatto
+calcNormFactors has been renamed to normLibSizes
+TCGA-UCEC fatto
+     progetto coppie  geni   sig
+       <char>  <int> <int> <int>
+ 1: TCGA-BLCA     19 27057  9807
+ 2: TCGA-BRCA    113 37816 23930
+ 3: TCGA-COAD     41 27705 19169
+ 4: TCGA-ESCA     13 34703  5498
+ 5: TCGA-HNSC     43 28721 14785
+ 6: TCGA-KICH     25 27943 18152
+ 7: TCGA-KIRC     72 29927 22529
+ 8: TCGA-KIRP     32 29874 15597
+ 9: TCGA-LIHC     50 26342 14425
+10: TCGA-LUAD     58 35638 19447
+11: TCGA-LUSC     51 32364 23278
+12: TCGA-PRAD     52 30300 15906
+13: TCGA-READ      9 23472  8279
+14: TCGA-STAD     33 34649 12999
+15: TCGA-THCA     59 29776 19419
+16: TCGA-UCEC     23 27316 13992
+
+correlazione fra progetti sui landmark, mediana fuori diagonale: 0.369 
+COAD-READ: 0.897  KIRC-KIRP: 0.656  LUAD-LUSC: 0.833 
