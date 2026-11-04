@@ -12,8 +12,8 @@ M1 <- "analysis/p4-output/S8b-stage1-master-innestato.jsonl"; M2 <- "analysis/p4
 IN2 <- "analysis/input/S8b-stage2-input.jsonl"; SUB2 <- "analysis/input/S8b-stage2-subset.jsonl"; RES2 <- "analysis/input/S8b-stage2-rescue.jsonl"
 COLL2 <- "analysis/p4-output/S8b-stage2-collect.rds"; COLLR2 <- "analysis/p4-output/S8b-stage2-rescue-collect.rds"; PARZ <- "analysis/p4-output/S8b-stage2-master-parziale.jsonl"
 SMOKE <- nzchar(Sys.getenv("SOLO_SMOKE"))
-cfg <- dgx_config()
-cfg01 <- dgx_config(nodelist = "poddgx01"); cfg02 <- dgx_config(nodelist = "poddgx02")
+cfg <- dgx_config(nodelist = "poddgx02"); cfg02 <- cfg  # solo poddgx02: poddgx01 e' vietato dal PI
+stopifnot(identical(cfg02$nodelist, "poddgx02"))
 
 temp <- function() { x <- tryCatch(system("sensors 2>/dev/null | grep Tctl", intern = TRUE), error = function(e) "?"); g <- tryCatch(system("nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader", intern = TRUE), error = function(e) "?"); paste0(sub("^.*\\+([0-9.]+).*$", "\\1", x[1]), "C RTX=", g[1]) }
 scrivi <- function(...) { msg <- sprintf("[%s] T=%sC %s", format(Sys.time(), "%m-%d %H:%M:%S"), temp(), sprintf(...)); cat(msg, "\n", sep = ""); cat(msg, "\n", sep = "", file = file.path(DIR, "log/notte.log"), append = TRUE); flush.console() }
@@ -25,19 +25,31 @@ passo <- function(nome, expr) {
   writeLines(format(Sys.time()), f); scrivi("FINE %s (%.1f min)", nome, as.numeric(difftime(Sys.time(), t0, units = "mins")))
 }
 ssh_ripeti <- function(fun) { for (i in 1:30) { r <- tryCatch(fun(), error = function(e) e); if (!inherits(r, "error")) return(r); scrivi("ssh in errore (%d): %s", i, conditionMessage(r)); Sys.sleep(60) }; ferma("ssh non risponde da 30 minuti") }
+# Lo stato viene da una sola chiamata sacct per tutti i job. Una risposta vuota o incompleta non vale come stato:
+# una connessione rifiutata ha gia' fermato la catena il 2026-11-04 con un falso allarme.
+stati_sacct <- function(jobs) {
+  ids <- vapply(jobs, function(j) as.character(j$slurm_job_id), character(1))
+  for (i in 1:60) {
+    r <- tryCatch(.dgx_ssh(cfg, sprintf("sacct -X -n -P -j %s -o JobID,State,Elapsed", paste(ids, collapse = ","))), error = function(e) NULL)
+    righe <- if (is.null(r)) character(0) else grep("[|]", strsplit(r$stdout, "\n")[[1]], value = TRUE)
+    m <- do.call(rbind, strsplit(righe, "|", fixed = TRUE))
+    if (!is.null(m) && ncol(m) == 3L && all(ids %in% m[, 1])) return(m[match(ids, m[, 1]), , drop = FALSE])
+    scrivi("sacct senza risposta completa (%d), riprovo fra un minuto", i); Sys.sleep(60)
+  }
+  ferma("sacct non risponde da un'ora")
+}
 attendi <- function(jobs, ogni = 120L) {
+  fine <- "^(COMPLETED|FAILED|CANCELLED|TIMEOUT|NODE_FAIL|OUT_OF_MEMORY|PREEMPTED|BOOT_FAIL|DEADLINE)"
   repeat {
-    st <- vapply(jobs, function(j) ssh_ripeti(function() dgx_p4_status(j, fetch_status_json = FALSE, fetch_live = FALSE))$slurm_state, character(1))
-    if (all(st == "TERMINATED")) break
+    m <- stati_sacct(jobs); st <- sub(" .*$", "", m[, 2])
+    if (all(grepl(fine, st))) break
     scrivi("job: %s", paste(names(table(st)), table(st), collapse = ", ")); Sys.sleep(ogni)
   }
-  for (j in jobs) {
-    s <- ssh_ripeti(function() .dgx_ssh(cfg, sprintf("sacct -X -n -P -j %s -o State,Elapsed", j$slurm_job_id)))$stdout
-    scrivi("slurm %s: %s", j$slurm_job_id, trimws(s))
-    if (!grepl("^COMPLETED", trimws(s))) ferma("job %s non completato: %s", j$slurm_job_id, s)
-  }
+  for (i in seq_len(nrow(m))) scrivi("slurm %s: %s %s", m[i, 1], m[i, 2], m[i, 3])
+  if (!all(st == "COMPLETED")) ferma("job non completati: %s", paste(m[st != "COMPLETED", 1], collapse = " "))
 }
 invia <- function(p, stage, slug, time, tiered = NULL, gen_over = NULL, conf = cfg02) {
+  stopifnot(identical(conf$nodelist, "poddgx02"))
   f <- file.path(JOBS, paste0(slug, ".rds")); if (file.exists(f)) return(readRDS(f))
   args <- list(p, stage = stage, config = conf, metadata = list(slug = slug)); if (!is.null(tiered)) args$tiered_max_tokens <- tiered
   b <- ssh_ripeti(function() do.call(dgx_p4_build_bundle, args))
@@ -53,7 +65,7 @@ Rs <- function(script, env, log) { rc <- system2("Rscript", script, env = env, s
 # ---- prova breve, solo se richiesta ----------------------------------------------------------------------
 if (SMOKE) {
   p <- "analysis/input/S8b-smoke.jsonl"; if (!file.exists(p)) writeLines(readLines(IN1, n = 20L), p)
-  sl <- Sys.getenv("SOLO_SMOKE"); j <- invia(p, "stage1", sl, "00:30:00", conf = dgx_config(nodelist = Sys.getenv("SMOKE_NODO", "poddgx02"))); attendi(list(j), 30L)
+  sl <- Sys.getenv("SOLO_SMOKE"); j <- invia(p, "stage1", sl, "00:30:00"); attendi(list(j), 30L)
   d <- ssh_ripeti(function() dgx_p4_collect(j)); flag_ok(j)
   l <- readLines(file.path(d$run_dir, "predictions.jsonl")); scrivi("smoke: %d righe, valide %d", length(l), sum(valid(l)))
   ai <- rid_di(l); m <- readLines(M1A3); m_id <- rid_di(m); pos <- match(ai, m_id)
@@ -74,14 +86,13 @@ passo("s1-blocchi", {
   scrivi("record %d, outlier %d, blocchi %d", length(raw), length(idx), n)
 })
 blocchi <- c(as.character(fs::dir_ls(CHUNKS, glob = "*.jsonl")), if (file.exists(OUTL)) OUTL)
-# poddgx01 e' caduto alle 21:51 del 2026-11-04 (NODE_FAIL): tutto su poddgx02, il nodo di agosto, due job da 4 GPU alla volta.
+# Solo poddgx02, il nodo di agosto: due job da 4 GPU alla volta, tutte le 8 GPU del nodo.
 nodi1 <- rep_len(list(cfg02), length(blocchi))
 jobs1 <- Map(function(p, cc) invia(p, "stage1", paste0("s8b-s1-", sub("[.]jsonl$", "", basename(p))), "12:00:00", conf = cc), blocchi, nodi1)
 passo("s1-attesa", attendi(jobs1))
 passo("s1-raccolta", {
-  rr <- character(0); nn <- character(0)
-  for (j in jobs1) { d <- ssh_ripeti(function() dgx_p4_collect(j)); flag_ok(j); l <- readLines(file.path(d$run_dir, "predictions.jsonl"), warn = FALSE); rr <- c(rr, l); nn <- c(nn, rep(j$config$nodelist, length(l))) }
-  writeLines(paste(rid_di(rr), nn, sep = "\t"), file.path(DIR, "record-nodo-s1.tsv"))
+  rr <- character(0)
+  for (j in jobs1) { d <- ssh_ripeti(function() dgx_p4_collect(j)); flag_ok(j); rr <- c(rr, readLines(file.path(d$run_dir, "predictions.jsonl"), warn = FALSE)) }
   rid <- rid_di(rr); att <- sub('^.*"record_id":"([^"]+)".*$', "\\1", readLines(IN1, warn = FALSE))
   scrivi("raccolti %d, attesi %d, mancanti %d, estranei %d, duplicati %d, validi %d", length(rr), length(att), length(setdiff(att, rid)), length(setdiff(rid, att)), sum(duplicated(rid)), sum(valid(rr)))
   if (length(setdiff(rid, att)) || anyDuplicated(rid)) ferma("raccolta Stadio 1 non coerente")
@@ -108,14 +119,9 @@ passo("s1-confronto", {
   raw <- function(l) vapply(l, function(x) { v <- fromJSON(x)$raw_output; if (is.null(v)) NA_character_ else v }, character(1), USE.NAMES = FALSE)
   g <- intersect(gsm_gia, rid); rn <- raw(rr[match(g, rid)]); ra <- raw(m[match(g, m_id)]); ro <- raw(old[match(g, o_id)])
   ug <- rn == ra; ug[is.na(ug)] <- FALSE; ug0 <- ra == ro; ug0[is.na(ug0)] <- FALSE
-  # I record recuperati hanno girato su poddgx02 anche se il blocco stava su poddgx01
-  nt <- read.delim(file.path(DIR, "record-nodo-s1.tsv"), header = FALSE, col.names = c("r", "n")); nodo_g <- nt$n[match(g, nt$r)]
-  res_id <- unlist(lapply(fs::dir_ls("analysis/input", glob = "*S8b-stage1-rescue*.jsonl"), function(p) sub('^.*"record_id":"([^"]+)".*$', "\\1", readLines(p, warn = FALSE))), use.names = FALSE); nodo_g[g %in% res_id] <- "poddgx02"
-  cn <- function(k) { x <- ug[nodo_g == k]; if (!length(x)) return(sprintf("%s: nessun record", k)); ic <- binom.test(sum(x), length(x))$conf.int; sprintf("%s: %d su %d = %.3f%% [%.3f; %.3f]", k, sum(x), length(x), 100*mean(x), 100*ic[1], 100*ic[2]) }
   pl <- rn; pl[1] <- paste0(pl[1], "x"); vis <- sum(pl != rn, na.rm = TRUE)
   ci <- binom.test(sum(ug), length(ug))$conf.int
   out <- c(sprintf("Q1 record identici ad agosto, tutti: %d su %d = %.3f%% [%.3f; %.3f]", sum(ug), length(ug), 100*mean(ug), 100*ci[1], 100*ci[2]),
-           paste("Q1 per nodo,", cn("poddgx02")), paste("Q7 per nodo,", cn("poddgx01")),
            sprintf("cancello 4 negativo: vecchio senza flag contro agosto, identici %d su %d (deve essere meno di tutti)", sum(ug0), length(ug0)),
            sprintf("cancello 4 positivo: differenza piantata, viste %d", vis))
   writeLines(out, file.path(DIR, "60-s1-confronto.txt")); for (l in out) scrivi("%s", l)
