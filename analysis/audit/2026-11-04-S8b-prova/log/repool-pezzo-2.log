@@ -1,0 +1,78 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Stadio 4 Layer A re-pool v16 (Stadio 3 v16, solo ramo rem_group) ────────────
+ℹ PEZZO 2 di 16
+ℹ Stadio 3: 'analysis/p4-output/20261105T121343Z-stage3-v16-4e41ca5c'
+ℹ Stadio 2 master: 'analysis/p4-output/S8b-stage2-master-innestato.jsonl'
+✔ Master Stadio 2 coincide con quello dello Stadio 3 (sha256 dac2337819a3...)
+ℹ Loading stage3 + stage2_master...
+✔ Loaded: 327073 clusters / 570985 assignments / 24394 stage2 studies (wall 17.7 sec)
+ℹ Stadio 3 clusters.rds sha256: 1158505ba2b5bab4f7e18902b8b9a4a442284d7818cc49cadcf9cb57488ccfb2 (wall 0.11 sec)
+ℹ Pre-filter stage2_master vs ARCHS4 H5 sample axis...
+ℹ H5 sample axis: 888821 sample
+✔ Pre-filter done in 12.9 sec: 12/490686 sample droppati ("0.002%") — non in ARCHS4 H5 v2.5
+           used   (Mb) gc trigger   (Mb) max used   (Mb)
+Ncells 24906825 1330.2   42590358 2274.6 42590358 2274.6
+Vcells 66861813  510.2  114604592  874.4 79464299  606.3
+ℹ deliverable_methods: rem_group
+ℹ Layer A: 330 clusters (rem=0, mega=0, mega_aug=0, rem_group=330)
+✔ GATE: 330 cluster, tutti rem_group / cgroup_L5_
+ℹ MEGA-AUG baseline cluster matchati: 0
+ℹ Assignments rilevanti: 5696
+ℹ Sample IDs totali Layer A: 25748
+✔ h5_metadata: 25748 sample, 5 campi per le corsie
+
+── build_stage4_results ──
+
+ℹ dream_workers resolved: 32
+ℹ pezzo 2/16: 21 cluster su 330
+pezzo: 21 cluster su 330 ammessi
+fusioni: record di 6 cluster assorbiti spostati sul vincente
+corsie: 74 campioni in 25 librerie da piu' corsie (5 candidate scartate dalle guardie)
+[cluster 1/21] cgroup_L5_8be26844 (method=rem_group)
+[cluster 2/21] cgroup_L5_cc922d97 (method=rem_group)
+[cluster 3/21] cgroup_L5_93068469 (method=rem_group)
+  -> cgroup_L5_93068469 ok | wall 174.2s | RSS 4.7 GB
+[cluster 4/21] cgroup_L5_84b52570 (method=rem_group)
+[cluster 5/21] cgroup_L5_efced505 (method=rem_group)
+  -> cgroup_L5_efced505 ok | wall 280.3s | RSS 4.4 GB
+[cluster 6/21] cgroup_L5_356eedd3 (method=rem_group)
+  -> cgroup_L5_356eedd3 ok | wall 122.7s | RSS 4.4 GB
+[cluster 7/21] cgroup_L5_06ff1592 (method=rem_group)
+  -> cgroup_L5_06ff1592 ok | wall 118.9s | RSS 4.4 GB
+[cluster 8/21] cgroup_L5_1d96b9da (method=rem_group)
+  -> cgroup_L5_1d96b9da ok | wall 294.8s | RSS 4.7 GB
+[cluster 9/21] cgroup_L5_57ea5503 (method=rem_group)
+[cluster 10/21] cgroup_L5_4dc63a08 (method=rem_group)
+[cluster 11/21] cgroup_L5_3437775a (method=rem_group)
+  -> cgroup_L5_3437775a ok | wall 118.4s | RSS 4.7 GB
+[cluster 12/21] cgroup_L5_c054e202 (method=rem_group)
+  -> cgroup_L5_c054e202 ok | wall 203.8s | RSS 4.8 GB
+[cluster 13/21] cgroup_L5_f2481870 (method=rem_group)
+  -> cgroup_L5_f2481870 ok | wall 107.4s | RSS 4.8 GB
+[cluster 14/21] cgroup_L5_ff45f67e (method=rem_group)
+  -> cgroup_L5_ff45f67e ok | wall 127.9s | RSS 4.8 GB
+[cluster 15/21] cgroup_L5_d9e23e09 (method=rem_group)
+  -> cgroup_L5_d9e23e09 ok | wall 493.3s | RSS 5.3 GB
+[cluster 16/21] cgroup_L5_c3ae78cd (method=rem_group)
+  -> cgroup_L5_c3ae78cd ok | wall 387.8s | RSS 5.3 GB
+[cluster 17/21] cgroup_L5_a69fcae5 (method=rem_group)
+  -> cgroup_L5_a69fcae5 ok | wall 180.4s | RSS 5.3 GB
+[cluster 18/21] cgroup_L5_6c7f9e9e (method=rem_group)
+[cluster 19/21] cgroup_L5_a8ff7b6d (method=rem_group)
+  -> cgroup_L5_a8ff7b6d ok | wall 214.8s | RSS 5.3 GB
+[cluster 20/21] cgroup_L5_a9e6e36b (method=rem_group)
+[cluster 21/21] cgroup_L5_cfad03a8 (method=rem_group)
+There were 50 or more warnings (use warnings() to see the first 50)
+✔ Build complete in 62.2 min — run_id f90fdc5c
+✔ PEZZO 2/16 scritto: '/mnt/micron/simulomicsr-prove/S8b/pezzi/pezzo-02-di-16.rds' | pooled 209879 righe | 62.2 min

@@ -1,0 +1,36 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+Config: BUDGET_CHARS=80000  BROADCAST_MAX_FRAC=0.30
+Loading analysis/input/archs4-human-stage1-input-v2.jsonl (autorita' su series_id) ...
+Input Stadio 1: 508037 record, 24393 studi distinti
+Loading analysis/p4-output/S8b-stage1-master-innestato.jsonl ...
+Loaded 508037 stage1 predictions
+Guard is_zero_timepoint: 13033 flag corretti
+Scartati (series_id mancante/non-canonico): 3
+series_id alterato dal modello: 3 record (0.0006%) su 1 studi
+  registro: analysis/input/S8b-stage2-input.jsonl.series-divergenti.csv 
+Studi: 24393 
+[OK] nessuno studio fantasma (tutti e 24393 presenti nell'input)
+
+=== Done ===
+Output:             analysis/input/S8b-stage2-input.jsonl 
+Record totali:      24980 
+Studi chunkati:     244 (831 record chunk)
+Studi 1-record:     24149 
+
+Copertura: 508034 campioni input -> 508034 membri distinti (atteso uguale)
+OK -- nessun campione perso nelle condizioni
+
+Top 10 studi piu' chunkati:
+       key n_cond n_sample parts
+ GSE249377   3196     5323    67
+ GSE193677   1276     2489    23
+ GSE199800   1163     1564    22
+ GSE186121   1342     2746    21
+ GSE157657    691      760    18
+ GSE186507    889     1030    16
+ GSE162855    770     1115    14
+ GSE186341    583     1631    11
+ GSE110154    587     1443    10
+ GSE211183    463      746     9

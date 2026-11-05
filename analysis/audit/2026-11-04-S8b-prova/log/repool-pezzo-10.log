@@ -1,0 +1,79 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Stadio 4 Layer A re-pool v16 (Stadio 3 v16, solo ramo rem_group) ────────────
+ℹ PEZZO 10 di 16
+ℹ Stadio 3: 'analysis/p4-output/20261105T121343Z-stage3-v16-4e41ca5c'
+ℹ Stadio 2 master: 'analysis/p4-output/S8b-stage2-master-innestato.jsonl'
+✔ Master Stadio 2 coincide con quello dello Stadio 3 (sha256 dac2337819a3...)
+ℹ Loading stage3 + stage2_master...
+✔ Loaded: 327073 clusters / 570985 assignments / 24394 stage2 studies (wall 19.9 sec)
+ℹ Stadio 3 clusters.rds sha256: 1158505ba2b5bab4f7e18902b8b9a4a442284d7818cc49cadcf9cb57488ccfb2 (wall 0.11 sec)
+ℹ Pre-filter stage2_master vs ARCHS4 H5 sample axis...
+ℹ H5 sample axis: 888821 sample
+✔ Pre-filter done in 14.4 sec: 12/490686 sample droppati ("0.002%") — non in ARCHS4 H5 v2.5
+           used   (Mb) gc trigger   (Mb) max used   (Mb)
+Ncells 24906831 1330.2   39743197 2122.6 39743197 2122.6
+Vcells 66861817  510.2  109647704  836.6 83953800  640.6
+ℹ deliverable_methods: rem_group
+ℹ Layer A: 330 clusters (rem=0, mega=0, mega_aug=0, rem_group=330)
+✔ GATE: 330 cluster, tutti rem_group / cgroup_L5_
+ℹ MEGA-AUG baseline cluster matchati: 0
+ℹ Assignments rilevanti: 5696
+ℹ Sample IDs totali Layer A: 25748
+✔ h5_metadata: 25748 sample, 5 campi per le corsie
+
+── build_stage4_results ──
+
+ℹ dream_workers resolved: 32
+ℹ pezzo 10/16: 21 cluster su 330
+pezzo: 21 cluster su 330 ammessi
+fusioni: record di 6 cluster assorbiti spostati sul vincente
+corsie: 74 campioni in 25 librerie da piu' corsie (5 candidate scartate dalle guardie)
+[cluster 1/21] cgroup_L5_f44b01e2 (method=rem_group)
+[cluster 2/21] cgroup_L5_7934174c (method=rem_group)
+  -> cgroup_L5_7934174c ok | wall 313.2s | RSS 4.4 GB
+[cluster 3/21] cgroup_L5_57810d6c (method=rem_group)
+  -> cgroup_L5_57810d6c ok | wall 178.8s | RSS 4.4 GB
+[cluster 4/21] cgroup_L5_021e875e (method=rem_group)
+  -> cgroup_L5_021e875e ok | wall 402.5s | RSS 4.6 GB
+[cluster 5/21] cgroup_L5_f956ef98 (method=rem_group)
+  -> cgroup_L5_f956ef98 ok | wall 211.5s | RSS 4.6 GB
+[cluster 6/21] cgroup_L5_ff04c7c1 (method=rem_group)
+[cluster 7/21] cgroup_L5_17b35bdc (method=rem_group)
+  -> cgroup_L5_17b35bdc ok | wall 231.4s | RSS 4.6 GB
+[cluster 8/21] cgroup_L5_004d293d (method=rem_group)
+  -> cgroup_L5_004d293d ok | wall 302.0s | RSS 4.6 GB
+[cluster 9/21] cgroup_L5_92f4f307 (method=rem_group)
+  -> cgroup_L5_92f4f307 ok | wall 121.8s | RSS 4.6 GB
+[cluster 10/21] cgroup_L5_ae11259e (method=rem_group)
+  -> cgroup_L5_ae11259e ok | wall 139.5s | RSS 4.6 GB
+[cluster 11/21] cgroup_L5_7b545f77 (method=rem_group)
+[cluster 12/21] cgroup_L5_e3b42b2b (method=rem_group)
+[cluster 13/21] cgroup_L5_2ab433c8 (method=rem_group)
+  -> cgroup_L5_2ab433c8 ok | wall 257.4s | RSS 4.5 GB
+[cluster 14/21] cgroup_L5_6b7b8076 (method=rem_group)
+[cluster 15/21] cgroup_L5_387b0d1a (method=rem_group)
+  -> cgroup_L5_387b0d1a ok | wall 182.2s | RSS 4.5 GB
+[cluster 16/21] cgroup_L5_b2affd22 (method=rem_group)
+  -> cgroup_L5_b2affd22 ok | wall 247.5s | RSS 4.5 GB
+[cluster 17/21] cgroup_L5_debadb13 (method=rem_group)
+  -> cgroup_L5_debadb13 ok | wall 227.9s | RSS 4.5 GB
+[cluster 18/21] cgroup_L5_b2e5a74a (method=rem_group)
+  -> cgroup_L5_b2e5a74a ok | wall 156.0s | RSS 4.5 GB
+[cluster 19/21] cgroup_L5_42e2dc84 (method=rem_group)
+[cluster 20/21] cgroup_L5_79b3a442 (method=rem_group)
+  -> cgroup_L5_79b3a442 ok | wall 141.6s | RSS 4.5 GB
+[cluster 21/21] cgroup_L5_16aef109 (method=rem_group)
+There were 50 or more warnings (use warnings() to see the first 50)
+✔ Build complete in 66.6 min — run_id f90fdc5c
+✔ PEZZO 10/16 scritto: '/mnt/micron/simulomicsr-prove/S8b/pezzi/pezzo-10-di-16.rds' | pooled 226772 righe | 66.6 min

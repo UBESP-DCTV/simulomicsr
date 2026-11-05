@@ -1,0 +1,79 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Stadio 3 della prova: analysis/p4-output/20261105T121343Z-stage3-v16-4e41ca5c
+cluster cgroup: agosto 11551, prova 11571
+
+== Q3: GLI ARRIVI ==
+arrivi fra gli studi nuovi del campione: 26 su 6000 = 0.43% [0.28; 0.63]
+scalati su 21.828: 95 [62; 138]
+copertura: chiavi del deliverable nel calcolo 194 su 194
+            s                   e      v                 c     k
+       <char>              <char> <char>            <char> <int>
+ 1: GSE185324         CHEBI:16240   gain vehicle_untreated    20
+ 2: GSE176403         CHEBI:16330   gain vehicle_untreated    31
+ 3:  GSE40050         CHEBI:16330   gain vehicle_untreated    31
+ 4: GSE120502         CHEBI:16412   gain vehicle_untreated    47
+ 5: GSE263852         CHEBI:16412   gain vehicle_untreated    47
+ 6:  GSE97723         CHEBI:16412   gain vehicle_untreated    47
+ 7: GSE124422        CHEBI:232752   gain vehicle_untreated     5
+ 8: GSE168994          CHEBI:3139   gain vehicle_untreated    10
+ 9: GSE138329         CHEBI:41774   gain vehicle_untreated     8
+10: GSE223046         CHEBI:44616   gain vehicle_untreated     9
+11: GSE144990         CHEBI:45863   gain vehicle_untreated    13
+12: GSE178745         CHEBI:45863   gain vehicle_untreated    13
+13: GSE144990         CHEBI:49375   gain vehicle_untreated    12
+14: GSE144990         CHEBI:50924   gain vehicle_untreated    17
+15: GSE221386         CHEBI:61080   gain vehicle_untreated     7
+16: GSE144990         CHEBI:68647   gain vehicle_untreated     5
+17: GSE154163         CHEBI:84491   gain vehicle_untreated    18
+18: GSE231593         CHEBI:84491   gain vehicle_untreated    18
+19: GSE247028          HGNC:11766   gain vehicle_untreated    72
+20: GSE237606           HGNC:3229   gain vehicle_untreated    11
+21: GSE144990           HGNC:5438   gain vehicle_untreated    34
+22: GSE154996           HGNC:5438   gain vehicle_untreated    34
+23: GSE186169           HGNC:5438   gain vehicle_untreated    34
+24: GSE144990           HGNC:6014   gain vehicle_untreated    10
+25: GSE171936     MeSH:D000074285   gain        non smoker     4
+26: GSE193453        MeSH:D013274   gain vehicle_untreated     6
+27:  GSE75699     NCBITaxon:11320   gain vehicle_untreated     9
+28: GSE136587          STR:asthma   gain vehicle_untreated     5
+29: GSE248493            STR:copd   gain vehicle_untreated     6
+30: GSE245059 STR:cystic_fibrosis   gain vehicle_untreated     7
+31: GSE180502   STR:heart_failure   gain vehicle_untreated     7
+            s                   e      v                 c     k
+       <char>              <char> <char>            <char> <int>
+meta-analisi toccate nel campione: 24 su 194; fra le 41: 4; fra le 40: 4
+meta-analisi con almeno un arrivo atteso nel corpus, somma 1-exp(-a*scala): 23.5 su 194
+
+== Q4: LA RISERVA ==
+studi del campione senza coppie in agosto: 4611; ne ottengono una: 212 su 4611 = 4.60% [4.01; 5.24]
+studi del campione con coppie in agosto: 1389; le perdono tutte: 157 su 1389 = 11.30% [9.69; 13.09]
+studi del campione con coppie in agosto: stesse chiavi: 893 su 1389 = 64.29% [61.71; 66.81]
+arrivi da studi senza coppie in agosto: 17; da studi con coppie: 9
+
+== GRUPPI NUOVI ==
+gruppi a k>=3 nuovi rispetto ad agosto: 14, con entita' senza meta-analisi: 14
+                                                ck                     e     k
+                                            <char>                <char> <int>
+ 1:          CHEBI:233309||gain||vehicle_untreated          CHEBI:233309     3
+ 2:  CHEMBL:CHEMBL3989914||gain||vehicle_untreated  CHEMBL:CHEMBL3989914     3
+ 3: STR:colorectal_cancer||gain||vehicle_untreated STR:colorectal_cancer     3
+ 4:             HGNC:6407||gain||vehicle_untreated             HGNC:6407     3
+ 5:              STR:hgps||gain||vehicle_untreated              STR:hgps     3
+ 6:           CHEBI:77092||gain||vehicle_untreated           CHEBI:77092     3
+ 7:          CHEBI:231674||gain||vehicle_untreated          CHEBI:231674     3
+ 8:            HGNC:18318||gain||vehicle_untreated            HGNC:18318     3
+ 9:        NCBITaxon:4097||gain||vehicle_untreated        NCBITaxon:4097     3
+10:           CHEBI:66910||gain||vehicle_untreated           CHEBI:66910     3
+11:             STR:nsclc||gain||vehicle_untreated             STR:nsclc     3
+12:            CHEBI:9747||gain||vehicle_untreated            CHEBI:9747     3
+13:   STR:dermatomyositis||gain||vehicle_untreated   STR:dermatomyositis     3
+14:             HGNC:4390||gain||vehicle_untreated             HGNC:4390     3
+
+== Q5: GLI STUDI NON RIGENERATI ==
+studi non rigenerati con chiavi cambiate: 0 su 6010 = 0.00% [0.00; 0.06]
+  dentro i 2.566: 0; fuori: 0
+Key: <s>
+        s      a      p
+   <char> <char> <char>
+1:   <NA>   <NA>   <NA>
+meta-analisi con membri diversi nello Stadio 3: 24 su 194

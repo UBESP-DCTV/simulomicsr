@@ -1,0 +1,74 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 409 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+
+── Stadio 4 Layer A re-pool v16 (Stadio 3 v16, solo ramo rem_group) ────────────
+ℹ PEZZO 15 di 16
+ℹ Stadio 3: 'analysis/p4-output/20261105T121343Z-stage3-v16-4e41ca5c'
+ℹ Stadio 2 master: 'analysis/p4-output/S8b-stage2-master-innestato.jsonl'
+✔ Master Stadio 2 coincide con quello dello Stadio 3 (sha256 dac2337819a3...)
+ℹ Loading stage3 + stage2_master...
+✔ Loaded: 327073 clusters / 570985 assignments / 24394 stage2 studies (wall 18.1 sec)
+ℹ Stadio 3 clusters.rds sha256: 1158505ba2b5bab4f7e18902b8b9a4a442284d7818cc49cadcf9cb57488ccfb2 (wall 0.11 sec)
+ℹ Pre-filter stage2_master vs ARCHS4 H5 sample axis...
+ℹ H5 sample axis: 888821 sample
+✔ Pre-filter done in 13.4 sec: 12/490686 sample droppati ("0.002%") — non in ARCHS4 H5 v2.5
+           used   (Mb) gc trigger   (Mb) max used   (Mb)
+Ncells 24906843 1330.2   47326011 2527.5 47326011 2527.5
+Vcells 66861833  510.2  117446550  896.1 81290042  620.2
+ℹ deliverable_methods: rem_group
+ℹ Layer A: 330 clusters (rem=0, mega=0, mega_aug=0, rem_group=330)
+✔ GATE: 330 cluster, tutti rem_group / cgroup_L5_
+ℹ MEGA-AUG baseline cluster matchati: 0
+ℹ Assignments rilevanti: 5696
+ℹ Sample IDs totali Layer A: 25748
+✔ h5_metadata: 25748 sample, 5 campi per le corsie
+
+── build_stage4_results ──
+
+ℹ dream_workers resolved: 32
+ℹ pezzo 15/16: 20 cluster su 330
+pezzo: 20 cluster su 330 ammessi
+fusioni: record di 6 cluster assorbiti spostati sul vincente
+corsie: 74 campioni in 25 librerie da piu' corsie (5 candidate scartate dalle guardie)
+[cluster 1/20] cgroup_L5_dde29fb4 (method=rem_group)
+  -> cgroup_L5_dde29fb4 ok | wall 260.6s | RSS 4.7 GB
+[cluster 2/20] cgroup_L5_5d1a5c5f (method=rem_group)
+[cluster 3/20] cgroup_L5_b967c97c (method=rem_group)
+[cluster 4/20] cgroup_L5_9f0ea111 (method=rem_group)
+[cluster 5/20] cgroup_L5_2618c026 (method=rem_group)
+[cluster 6/20] cgroup_L5_49e290ae (method=rem_group)
+  -> cgroup_L5_49e290ae ok | wall 154.3s | RSS 4.7 GB
+[cluster 7/20] cgroup_L5_83135c89 (method=rem_group)
+[cluster 8/20] cgroup_L5_820ca5d9 (method=rem_group)
+[cluster 9/20] cgroup_L5_548236b5 (method=rem_group)
+[cluster 10/20] cgroup_L5_2d53def6 (method=rem_group)
+  -> cgroup_L5_2d53def6 ok | wall 195.5s | RSS 4.7 GB
+[cluster 11/20] cgroup_L5_63e69fdc (method=rem_group)
+  -> cgroup_L5_63e69fdc ok | wall 277.2s | RSS 4.7 GB
+[cluster 12/20] cgroup_L5_f29dd3b3 (method=rem_group)
+  -> cgroup_L5_f29dd3b3 ok | wall 213.6s | RSS 4.7 GB
+[cluster 13/20] cgroup_L5_964c6389 (method=rem_group)
+[cluster 14/20] cgroup_L5_85083e38 (method=rem_group)
+  -> cgroup_L5_85083e38 ok | wall 295.5s | RSS 4.7 GB
+[cluster 15/20] cgroup_L5_c4640631 (method=rem_group)
+[cluster 16/20] cgroup_L5_444e7fc2 (method=rem_group)
+  -> cgroup_L5_444e7fc2 ok | wall 355.4s | RSS 4.7 GB
+[cluster 17/20] cgroup_L5_034592d9 (method=rem_group)
+[cluster 18/20] cgroup_L5_469db990 (method=rem_group)
+  -> cgroup_L5_469db990 ok | wall 140.1s | RSS 4.7 GB
+[cluster 19/20] cgroup_L5_4753688f (method=rem_group)
+  -> cgroup_L5_4753688f ok | wall 285.5s | RSS 4.7 GB
+[cluster 20/20] cgroup_L5_eedd08cb (method=rem_group)
+  -> cgroup_L5_eedd08cb ok | wall 177.4s | RSS 4.7 GB
+There were 50 or more warnings (use warnings() to see the first 50)
+✔ Build complete in 53.3 min — run_id f90fdc5c
+✔ PEZZO 15/16 scritto: '/mnt/micron/simulomicsr-prove/S8b/pezzi/pezzo-15-di-16.rds' | pooled 167458 righe | 53.3 min

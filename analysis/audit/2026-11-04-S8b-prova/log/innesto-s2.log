@@ -1,0 +1,17 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+master: 24394 studi | nuovo: 6000 studi | A3: 6000 studi
+
+== casi di accettazione, PRIMA di scrivere ==
+  [OK] negativo: l'estrazione della series ha morso           0 righe non riconosciute
+  [OK] positivo: il nuovo copre esattamente A3                6000/6000
+  [OK] negativo: nessuno studio duplicato nel nuovo           0 duplicati
+  [OK] negativo: ogni studio nuovo esiste gia' nel master     0 assenti
+
+== controlli dopo l'innesto ==
+  [OK] positivo: stesso numero di studi                       24394 == 24394
+  [OK] positivo: stesse series, stesso ordine                 invariate
+  [OK] negativo: gli studi FUORI da A3 sono byte-identici     18394 intatti
+  studi di A3 col record CAMBIATO: 5064 / 6000 (84.4%)
+
+scritto: analysis/p4-output/S8b-stage2-master-innestato.jsonl 
+sha256 : dac2337819a399bc1757b23e4ff5df273d7b35850ddbdc2f040608f025511e33 

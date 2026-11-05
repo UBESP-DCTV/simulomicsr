@@ -1,0 +1,20 @@
+- The project is out-of-sync -- use `renv::status()` for details.
+Leggo il master...
+  master: 508037 record
+Leggo le predizioni nuove...
+  nuove : 124586 record
+  GSM attesi in A3: 124586
+
+== casi di accettazione ==
+  [OK] negativo: le predizioni nuove coprono TUTTO A3           0 mancanti
+  [OK] negativo: nessuna predizione fuori da A3                 0 intrusi
+  [OK] negativo: nessun record_id duplicato nelle nuove         0 duplicati
+
+== controlli dopo l'innesto ==
+  [OK] positivo: stesso numero di record                        508037 == 508037
+  [OK] positivo: stessi record_id, stesso ordine                invariati
+  [OK] negativo: i record FUORI da A3 sono byte-identici        383451 record intatti
+  ⚠️ estrazione di raw_output fallita: non riporto una percentuale.
+
+scritto: analysis/p4-output/S8b-stage1-master-innestato.jsonl 
+sha256 : 08d2ae2f1d446d76c11404e9806d6b663f488b00f90bd27242c90e825581be92 
