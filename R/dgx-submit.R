@@ -155,16 +155,55 @@ print.simulomicsr_dgx_job <- function(x, ...) {
   invisible(x)
 }
 
+#' Legge lo stato di un job da sacct, e non accetta una risposta vuota
+#'
+#' `.dgx_ssh()` restituisce stdout vuoto se la connessione e' rifiutata. Una
+#' risposta vuota non dice nulla del job: il 2026-11-04 valeva `TERMINATED` e ha
+#' fermato una catena con tutti i job in corsa. Vale come stato solo una riga di
+#' sacct con l'id del job chiesto.
+#'
+#' @param cfg `simulomicsr_dgx_config`.
+#' @param slurm_job_id id SLURM.
+#' @param tentativi quante volte chiedere prima di arrendersi.
+#' @param pausa secondi fra un tentativo e l'altro.
+#' @return character(1), lo stato senza le parole in piu' (`CANCELLED by 1044`
+#'   diventa `CANCELLED`). Senza risposta: errore di classe
+#'   `simulomicsr_dgx_status_no_response`.
+#' @keywords internal
+.dgx_job_state <- function(cfg, slurm_job_id, tentativi = 3L, pausa = 5L) {
+  id <- as.character(slurm_job_id)
+  cmd <- paste0("sacct -X -n -P -j ", id, " -o JobID,State")
+  res <- NULL
+  for (i in seq_len(tentativi)) {
+    if (i > 1L) Sys.sleep(pausa)
+    res <- .dgx_ssh(cfg, cmd)
+    righe <- strsplit(res$stdout %||% "", "\n", fixed = TRUE)[[1]]
+    campi <- strsplit(trimws(righe), "|", fixed = TRUE)
+    trovata <- Filter(function(f) length(f) == 2L && identical(f[[1]], id), campi)
+    if (identical(res$status, 0L) && length(trovata) > 0L)
+      return(sub(" .*$", "", trovata[[1]][[2]]))
+  }
+  cli::cli_abort(
+    c("Nessuna risposta da sacct per il job {id} dopo {tentativi} tentativ{?o/i}.",
+      "i" = "Lo stato del job resta sconosciuto: non vale come job finito.",
+      "x" = "status ssh = {res$status}; stderr: {trimws(res$stderr %||% '')}"),
+    class = "simulomicsr_dgx_status_no_response"
+  )
+}
+
 #' Stato corrente di un job P4
 #'
-#' Esegue \code{squeue -j <slurm_job_id> -h -o "\%T"} via SSH e (opzionalmente)
-#' scarica \code{status.json} dal cluster.
+#' Legge lo stato da \code{sacct} via SSH e (opzionalmente) scarica
+#' \code{status.json} dal cluster. Una risposta vuota non vale come stato: dopo
+#' tre tentativi la funzione si ferma con un errore di classe
+#' \code{simulomicsr_dgx_status_no_response}.
 #'
 #' @param job \code{simulomicsr_dgx_job}.
 #' @param fetch_status_json se TRUE, rsync di status.json dal remoto e
 #'   ritorna anche il contenuto.
 #' @param watch se TRUE, polling ogni \code{interval} secondi fino a stato
-#'   terminale (COMPLETED, FAILED, CANCELLED, TIMEOUT, TERMINATED).
+#'   terminale (COMPLETED, FAILED, CANCELLED, TIMEOUT, NODE_FAIL, OUT_OF_MEMORY,
+#'   PREEMPTED, BOOT_FAIL, DEADLINE). Senza risposta da sacct resta in attesa.
 #'   Stampa progress via cli.
 #' @param interval secondi tra polling (default 30).
 #' @param fetch_live se TRUE (default), conta le righe di
@@ -191,11 +230,7 @@ dgx_p4_status <- function(job,
                    class = "simulomicsr_dgx_status_no_jobid")
 
   poll_once <- function() {
-    cmd <- paste0("squeue -j ", job$slurm_job_id,
-                  " -h -o '%T' 2>/dev/null || echo TERMINATED")
-    res <- .dgx_ssh(cfg, cmd)
-    state <- trimws(res$stdout)
-    if (!nzchar(state)) state <- "TERMINATED"
+    state <- .dgx_job_state(cfg, job$slurm_job_id, pausa = min(interval, 5L))
 
     snapshot <- NULL
     remote_status_present <- FALSE
@@ -233,9 +268,18 @@ dgx_p4_status <- function(job,
   cli::cli_alert_info(
     "Watching {job$run_id} (slurm={job$slurm_job_id}). Ctrl-C per interrompere."
   )
-  terminal <- c("COMPLETED", "FAILED", "CANCELLED", "TIMEOUT", "TERMINATED")
+  terminal <- c("COMPLETED", "FAILED", "CANCELLED", "TIMEOUT", "NODE_FAIL",
+                "OUT_OF_MEMORY", "PREEMPTED", "BOOT_FAIL", "DEADLINE")
   repeat {
-    st <- poll_once()
+    # Senza risposta non sappiamo nulla del job: si resta in attesa, non si esce.
+    st <- tryCatch(poll_once(), simulomicsr_dgx_status_no_response = function(e) {
+      cli::cli_alert_warning(conditionMessage(e))
+      NULL
+    })
+    if (is.null(st)) {
+      Sys.sleep(interval)
+      next
+    }
     snap <- st$snapshot
     msg <- paste0("[", format(Sys.time(), "%H:%M:%S"), "] state=", st$slurm_state)
     if (!is.null(snap)) {

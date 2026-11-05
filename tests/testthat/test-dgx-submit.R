@@ -85,9 +85,9 @@ test_that("dgx_p4_status() ritorna struttura con campi required", {
     class = "simulomicsr_dgx_job"
   )
 
-  # Mock: squeue ritorna RUNNING, status.json scaricato (simuliamo con local file)
+  # Mock: sacct ritorna RUNNING, status.json scaricato (simuliamo con local file)
   local_mock_processx(
-    stdout = "RUNNING\n",
+    stdout = "999|RUNNING\n",
     status = 0L
   )
 
@@ -96,6 +96,69 @@ test_that("dgx_p4_status() ritorna struttura con campi required", {
                ignore.order = TRUE)
   expect_identical(st$slurm_state, "RUNNING")
   expect_null(st$live)
+})
+
+# Falso arresto del 2026-11-04: `.dgx_ssh()` restituisce stdout vuoto se la
+# connessione e' rifiutata, e la risposta vuota valeva TERMINATED.
+.job_finto <- function() structure(
+  list(run_id = "r1", slurm_job_id = "999", stage = "stage1", bundle_dir = "x",
+       submitted_at = "2026-11-05T09:00:00Z", config = dgx_config()),
+  class = "simulomicsr_dgx_job")
+
+test_that("dgx_p4_status(): connessione rifiutata non vale come job finito", {
+  local_mock_processx(stdout = "", stderr = "Connection refused", status = 255L)
+  expect_error(
+    dgx_p4_status(.job_finto(), fetch_status_json = FALSE, fetch_live = FALSE, interval = 0L),
+    class = "simulomicsr_dgx_status_no_response")
+})
+
+test_that("dgx_p4_status(): risposta vuota con status 0 non vale come job finito", {
+  local_mock_processx(stdout = "", status = 0L)
+  expect_error(
+    dgx_p4_status(.job_finto(), fetch_status_json = FALSE, fetch_live = FALSE, interval = 0L),
+    class = "simulomicsr_dgx_status_no_response")
+})
+
+test_that("dgx_p4_status(): una riga di un altro job non vale come risposta", {
+  local_mock_processx(stdout = "1000|RUNNING\n", status = 0L)
+  expect_error(
+    dgx_p4_status(.job_finto(), fetch_status_json = FALSE, fetch_live = FALSE, interval = 0L),
+    class = "simulomicsr_dgx_status_no_response")
+})
+
+test_that("dgx_p4_status(): lo stato finale viene da sacct, senza altre parole", {
+  local_mock_processx(stdout = "999|COMPLETED\n", status = 0L)
+  st <- dgx_p4_status(.job_finto(), fetch_status_json = FALSE, fetch_live = FALSE)
+  expect_identical(st$slurm_state, "COMPLETED")
+  local_mock_processx(stdout = "999|CANCELLED by 1044\n", status = 0L)
+  st <- dgx_p4_status(.job_finto(), fetch_status_json = FALSE, fetch_live = FALSE)
+  expect_identical(st$slurm_state, "CANCELLED")
+})
+
+test_that("dgx_p4_status(): riprova dopo una risposta vuota", {
+  n <- 0L
+  fake <- function(command, args = NULL, ...) {
+    n <<- n + 1L
+    if (n == 1L) list(stdout = "", stderr = "refused", status = 255L)
+    else list(stdout = "999|RUNNING\n", stderr = "", status = 0L)
+  }
+  testthat::local_mocked_bindings(run = fake, .package = "processx")
+  st <- dgx_p4_status(.job_finto(), fetch_status_json = FALSE, fetch_live = FALSE, interval = 0L)
+  expect_identical(st$slurm_state, "RUNNING")
+  expect_identical(n, 2L)
+})
+
+test_that("dgx_p4_status(watch = TRUE): resta in attesa finche' non ha una risposta vera", {
+  n <- 0L
+  fake <- function(command, args = NULL, ...) {
+    n <<- n + 1L
+    if (n <= 4L) list(stdout = "", stderr = "refused", status = 255L)
+    else list(stdout = "999|NODE_FAIL\n", stderr = "", status = 0L)
+  }
+  testthat::local_mocked_bindings(run = fake, .package = "processx")
+  st <- suppressMessages(dgx_p4_status(.job_finto(), fetch_status_json = FALSE, fetch_live = FALSE,
+                                       watch = TRUE, interval = 0L))
+  expect_identical(st$slurm_state, "NODE_FAIL")
 })
 
 test_that("dgx_p4_recover() ricostruisce job da bundle locale", {

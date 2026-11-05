@@ -31,9 +31,8 @@ Default \code{"luca.vedovelli@unipd.it"}.}
 
 \item{nodelist}{nodelist SLURM. Default \code{"poddgx02"} (nodo dell'utente
 nel pool \code{dgx12cluster}). Validato col job 19724 il 2026-05-07.
-Pass \code{NULL} se vuoi che lo scheduler scelga automaticamente
-(utile se poddgx02 e' DRAIN/DOWN; gli altri nodi del pool sono
-poddgx01 e poddgx03).}
+Usa solo \code{poddgx02}: il PI vieta \code{poddgx01}. Non passare \code{NULL}, perche'
+lo scheduler puo' scegliere un nodo vietato.}
 
 \item{remote_root}{root remoto del workspace P4. Default
 \code{"/home/<login_user>/simulomicsr-dgx"}. NOTA: \verb{/home/<user>/} (NON

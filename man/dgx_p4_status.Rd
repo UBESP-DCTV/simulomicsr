@@ -26,7 +26,8 @@ la generation lo snapshot resta a \code{state="starting"} con
 \code{records_already_done=0} fino al termine.}
 
 \item{watch}{se TRUE, polling ogni \code{interval} secondi fino a stato
-terminale (COMPLETED, FAILED, CANCELLED, TIMEOUT, TERMINATED).
+terminale (COMPLETED, FAILED, CANCELLED, TIMEOUT, NODE_FAIL, OUT_OF_MEMORY,
+PREEMPTED, BOOT_FAIL, DEADLINE). Senza risposta da sacct resta in attesa.
 Stampa progress via cli.}
 
 \item{interval}{secondi tra polling (default 30).}
@@ -39,6 +40,8 @@ list con \code{slurm_state}, \code{remote_status_present},
 \code{fetch_live=FALSE} o nessun predictions.worker_*.jsonl).
 }
 \description{
-Esegue \code{squeue -j <slurm_job_id> -h -o "\%T"} via SSH e (opzionalmente)
-scarica \code{status.json} dal cluster.
+Legge lo stato da \code{sacct} via SSH e (opzionalmente) scarica
+\code{status.json} dal cluster. Una risposta vuota non vale come stato: dopo
+tre tentativi la funzione si ferma con un errore di classe
+\code{simulomicsr_dgx_status_no_response}.
 }

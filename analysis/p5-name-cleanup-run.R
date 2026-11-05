@@ -3,8 +3,8 @@
 # submitta il bundle stage name_cleanup alla DGX, e (in un secondo passo, dopo
 # il COMPLETED) fa collect -> assemble side-table -> misura-B.
 #
-# Prerequisito: un nodo DGX che SCRIVA i log slurm (2026-07-06: poddgx02 rotto,
-#   0:53 zero-log; provare poddgx01/03 o dgx_config(nodelist=NULL/altro nodo)).
+# Prerequisito: poddgx02 deve scrivere i log slurm (2026-07-06: 0:53 senza log,
+#   poi riparato). Usa solo poddgx02: il PI vieta poddgx01 e nodelist=NULL.
 #
 # Uso:
 #   Rscript analysis/p5-name-cleanup-run.R triage   # genera il triage CSV da STAGE3 (.build_suspect_triage)
