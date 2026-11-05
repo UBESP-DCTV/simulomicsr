@@ -83,3 +83,15 @@ Alle 21:51 `poddgx01` è passato a `DOWN+NOT_RESPONDING`, con `NODE_FAIL` sui du
 Il PI ha ricordato che `poddgx01` non va usato. Il divieto è scritto in `docs/superpowers/specs/2026-07-07-name-cleanup-resolver-fix-NEXT-SESSION-handout.md:82` e nella memoria del progetto. Non l'ho cercato prima di usare quel nodo, e la scelta è stata mia: «a bomba» non autorizzava un altro nodo. Job lanciati su `poddgx01`: 441995 (2 s), 442040 (4 min 39 s), 442114 e 442116 (13 min, `NODE_FAIL` alle 21:51). La causa della caduta non è nota, e questi job non si possono escludere.
 
 Q7 non era una misura lecita e non si recupera in nessun caso. La prova di 20 record su `poddgx01` non si cita come prova di invarianza fra nodi. Il re-run completo userà solo `poddgx02`.
+
+## Quarta aggiunta (2026-11-05), dopo gli arrivi e prima del re-pool
+
+Gli arrivi fra i 6.000 sono 26, cioè 95 scalati, IC 62-138. L'IC non sta tutto sotto 50, quindi eseguo il re-pool come prescritto. Le uscite vanno in `/mnt/micron/simulomicsr-prove/S8b/`, non accanto al deliverable. Il re-pool usa il codice di oggi, con l'errore dei ruoli noto (S4): i risultati servono a contare studi e gruppi e non si citano come stime.
+
+| # | quantità | atteso | intervallo di rilevanza | da dove viene |
+|---|---|---:|---:|---|
+| Q8 | studi dei 6.000 davvero poolati nelle meta-analisi | 15 (55 scalati) | da 14 a 69 (da 50 a 250 scalati) | soglie del PI. Atteso: 26 arrivi per la frazione di agosto, da 0,43 a 0,64 |
+| Q9 | meta-analisi nuove nel campione, oltre le 194 | 6 | da 2 a 21 | variabilità misurata: da 1% a 10% delle 194, e 21 è il numero del run di agosto. Giudizio |
+| Q10 | meta-analisi perse rispetto alle 194 | 0 | ≤ 2 | dagli studi fermi: gli studi delle 194 non cambiano chiave (Q5 = 0). Giudizio |
+
+La regola del PI si applica a Q8.
