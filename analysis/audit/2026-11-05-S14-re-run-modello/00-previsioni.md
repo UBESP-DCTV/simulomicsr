@@ -56,3 +56,7 @@ Unità: il record per Q1 e Q3, lo studio per le altre. Intervalli di confidenza 
 ## Esecuzione
 
 Script `50-catena.R`, lanciato con `setsid`, solo dopo l'approvazione del PI. Costruttore del recupero `45-rescue-build-s2.R`. Ogni passo scrive un file di stato. La catena riparte dall'ultimo passo finito (`RIPRESA.md`). Durata stimata circa 40 ore: 39,1 ore di modello da `84-out.txt` più l'input e i confronti.
+
+## Decisioni del PI (2026-11-05, prima del lancio)
+
+Il PI ha letto gli script e ha scelto: «Lancia ora», «Controllo dentro il run» al posto della prova di invarianza separata. La prova breve era riuscita (199 record su 199, 12 studi su 12). Nessun risultato del re-run era stato visto.
