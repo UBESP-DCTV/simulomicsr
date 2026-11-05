@@ -95,7 +95,10 @@ if (PROVA) {
   j1 <- invia(p1, "stage1", "s14-prova-s1", "01:00:00", rif = "s8b-s1-chunk-00"); attendi(list(j1), 30L); d1 <- raccogli(j1)
   l1 <- readLines(file.path(d1$run_dir, "predictions.jsonl"), warn = FALSE); u1 <- cfr1(l1); out <- c(out, sprintf("Stadio 1: %d righe, valide %d, identiche al riferimento %d su %d", length(l1), sum(valid(l1)), sum(u1), length(u1)))
   s2 <- readLines("analysis/input/A3-stage2-subset.jsonl", warn = FALSE); s2 <- s2[!grepl("#[0-9]+of", rid_di(s2)) & nchar(s2) < 6000L]; p2 <- "analysis/input/S14-prova-stage2.jsonl"; writeLines(sample(s2, 12L), p2)
-  j2 <- invia(p2, "stage2", "s14-prova-s2", "01:00:00", tiered = TRUE, rif = "s8b-s2-parte1"); attendi(list(j2), 30L); d2 <- raccogli(j2)
+  # Solo nella prova breve: 12 record piccoli sono tutti di tier S, quindi il max_tokens globale di generation.json vale 4096 e non 32768.
+  # Il valore globale e' solo il ripiego: ogni record porta il suo. Nel run vero ogni parte ha record XL e il confronto resta su tutto il file.
+  j2 <- invia(p2, "stage2", "s14-prova-s2", "01:00:00", tiered = TRUE, rif = "s8b-s2-parte1", rif_file = c("prompt.txt", "schema.json")); attendi(list(j2), 30L); d2 <- raccogli(j2)
+  g2 <- read_json(file.path("analysis/p4-bundles", j2$run_id, "generation.json")); g0 <- read_json(file.path(as.character(fs::dir_ls("analysis/p4-bundles", glob = "*-s8b-s2-parte1-*")), "generation.json")); g2$max_tokens <- g0$max_tokens <- NULL; if (!identical(g2, g0)) ferma("CANCELLO 3: generation.json della prova breve diverso anche oltre max_tokens")
   u2 <- cfr2(d2$predictions); out <- c(out, sprintf("Stadio 2: %d record validi, errori %d, studi identici al riferimento %d su %d", nrow(d2$predictions), nrow(d2$errors), sum(u2), length(u2)))
   m <- stati_sacct(list(j1, j2)); out <- c(out, sprintf("slurm %s %s %s %s", m[, 1], m[, 2], m[, 3], m[, 4])); writeLines(out, file.path(DIR, "20-prova-breve.txt")); for (l in out) scrivi("%s", l)
   quit(save = "no")
