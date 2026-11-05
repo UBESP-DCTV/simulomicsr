@@ -79,6 +79,7 @@ LINCS permette la misura per **96 meta-analisi su 194, 24 su 40**; il verdetto u
 **S7 chiusa il 2026-11-04** (`docs/findings/2026-11-04-S7-validazione-esecuzione.md`). Il test passa: **14 su 19** e **39 su 53** contro LINCS, soglie effettive 23,9% e 26,4%,
 composti sbagliati 24% e 26%. Nessun errore di calcolo. Il valore dipende da linee e forza del composto: da 63% a 74% sulle 19. **Contro Tahoe: 11 su 32.** Non separa le 40 dalle altre 132. Tumori: 6 su 6 fra 16 progetti. Il numero dell'articolo verrà dalla seconda esecuzione, in S13 (dopo S14 se il PI sceglie il re-run). **Decisione del PI:** l'articolo riporta insieme LINCS e Tahoe-100M, che non ha un verdetto.
 **S8 chiusa il 2026-11-04** (`docs/findings/2026-11-04-S8-re-run-decisione.md`). Il conto dell'handout è riprodotto e corretto: netto -130 dipende dal disegno, solo 4.994 dei 21.828 studi hanno un gruppo, costo da 38 a 70 ore (centrale 63). Lo stimatore degli ingressi fallisce il proprio controllo: i suoi valori non si citano. **Decisione del PI:** prima una prova notturna di circa 8 ore su 2.000 studi a caso e 300 già rigenerati; sotto 50 studi stimati no, sopra 250 sì, in mezzo decide il PI. **Prossima: S8b, la prova** (`analysis/audit/2026-11-04-S8b-prova/`).
+**S8b chiusa il 2026-11-05** (`docs/findings/2026-11-05-S8b-prova-re-run.md`). Su 6.000 studi a caso ne entrano 19, circa 69 [42; 108] sul corpus. I 300 già rigenerati sono identici ad agosto (10.220/10.220 e 300/300). Cambiano 12 meta-analisi su 194, e ne nascono 8 con 3 studi, tutte dominate. **Decisione del PI: «Si rifa tutto»**, cioè 24.394 studi da zero in un solo run, 44,4 h di macchina con due job su `poddgx02`, senza le tabelle dei nomi. La scelta delle 40 e delle 132 decade quando il re-run finisce, e il numero della validazione esterna viene dal deliverable dopo il re-run. **Prossima: S9**, oppure i due passi col modello di S14 se il PI li anticipa (handout, S14).
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
 mesi si sono ottimizzati i NOMI dei cluster dichiarando «finale» senza verificare
@@ -139,6 +140,7 @@ Rami `mega`, `mega_aug`, `rem` restano nel codice ma **fuori dal deliverable**
 
 ## 4. Regole di metodo già pagate (una riga ciascuna, con il prezzo)
 
+- **Il costo non vale contro il mandato**: in S8b ho consigliato di non fare il re-run, per il costo e su un campione. Il PI: «Si rifa tutto, siamo scienziati». Un limite si dichiara nei Methods quando il lavoro non si può fare, non quando costa ore.
 - **validate-before-fullrun**: smoke + validazione scalata, poi STOP e sessione
   nuova per il run massivo. **Previsioni depositate PRIMA del run**, per iscritto.
 - **Lo strumento deve vedere il dato intero**: tre strumenti ciechi in due giorni
@@ -220,7 +222,7 @@ tutti gli stadi, anche a costo di efficienza.
 
 ## 7. DGX UniPD (P4 cluster)
 
-- **Usa solo `poddgx02`. Non usare `poddgx01`: lo ha vietato il PI.** Non usare `nodelist = NULL`, perché lo scheduler può scegliere `poddgx01`. Il 2026-11-04 la sessione S8b ha lanciato 4 job su `poddgx01` senza cercare il divieto, e il nodo è caduto con 2 di quei job in corsa (causa non nota). I testi `R/dgx-config.R` e `analysis/p5-name-cleanup-run.R` suggeriscono ancora gli altri nodi: non seguirli.
+- **Usa solo `poddgx02`. Non usare `poddgx01`: lo ha vietato il PI.** Non usare `nodelist = NULL`, perché lo scheduler può scegliere `poddgx01`. Il 2026-11-04 la sessione S8b ha lanciato 4 job su `poddgx01` senza cercare il divieto, e il nodo è caduto con 2 di quei job in corsa (causa non nota). I testi `R/dgx-config.R` e `analysis/p5-name-cleanup-run.R` suggeriscono ancora gli altri nodi: non seguirli. «Tutto il pod» (PI, 2026-11-05) vuol dire le 8 GPU di `poddgx02`, due job da 4 GPU: `poddgx05` sta su `shared-dgx`, con altri utenti, e serve una risposta esplicita del PI.
 - Path **`/home/u0044/`**, NON `/mnt/home/u0044/` (i compute node non lo montano;
   sintomo: `ExitCode 0:53` in 2 s senza log).
 - **Prima di sottomettere**: `sinfo` = `idle` non basta, verifica il mount con un
@@ -318,7 +320,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`

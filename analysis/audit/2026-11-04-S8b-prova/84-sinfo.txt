@@ -1,0 +1,8 @@
+Thu Nov  5 04:48:03 PM CET 2026
+NODELIST PARTITION STATE GRES
+poddgx01 dgx12cluster down* gpu:8(S:0-1)
+poddgx02 dgx12cluster idle gpu:8(S:0-1)
+poddgx05 shared-dgx mixed gpu:8(S:0-1)
+JOBID USER STATE NODELIST TRES_PER_NODE
+359495 u0107 PENDING  gres:gpu:1
+451161 u0369 RUNNING poddgx05 gres:gpu:1

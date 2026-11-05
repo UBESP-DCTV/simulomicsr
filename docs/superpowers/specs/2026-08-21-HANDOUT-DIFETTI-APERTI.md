@@ -55,7 +55,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 4 | ~~I bracci che **condividono il controllo** gonfiano il peso~~ **misurato: taglio 113→41; il PI corregge varianza e ruoli in S13 (S4)** | S4 |
 | 5 | ~~Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3~~ **deciso: gate a 3 studi, le 40 come insieme principale, le altre 132 in supplementare (S5)** | S5 |
 | 6 | ~~Nessuna verifica usa dati esterni al corpus~~ **eseguita sul deliverable di oggi: 14 su 19 e 39 su 53 contro LINCS, 11 su 32 contro Tahoe (S7). Il numero dell'articolo viene dalla seconda esecuzione, in S13** | S6 → S7 → S13 |
-| 7 | Non è deciso se rifare il run completo (oggi copre il 10,5% degli studi). **Il PI ha scelto una prova prima del sì o no (S8)** | S8 → prova → S14 |
+| 7 | ~~Non è deciso se rifare il run completo~~ **Il PI ha scelto il re-run completo dopo la prova (S8b, 2026-11-05): 24.394 studi da zero, in un solo run** | S8 → S8b ✅ → S14 |
 | 8 | Le lettere greche sbagliano in 45 prove su 90 | S9 |
 | 9 | `.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()` | S9 |
 | 10 | Il rilevatore di difetti in produzione ne segnala 2 su 1.903 | S10 → S11 → S12 → S13 |
@@ -82,13 +82,13 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S6** | Validazione esterna: il disegno ✅ | disegno | ~3 h | S5 ✅ |
 | **S7** | Validazione esterna: l'esecuzione ✅ | misura | ~6 h | **S6** ✅ |
 | **S8** | La decisione sul re-run completo: prima una prova ✅ | **decisione** | ~2 h | — |
-| **S8b** | La prova: 2.000 studi a caso e 300 già rigenerati, poi sì o no | misura | ~8 h di notte | **S8** ✅ |
+| **S8b** | La prova: 6.000 studi a caso e 300 già rigenerati, poi sì o no: **sì** ✅ | misura | ~17 h | **S8** ✅ |
 | **S9** | Le lettere greche, e il crash delle corsie | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio S3* |
 | **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10* | **S10** |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
 | **S13** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | **S12** *(+ S9 e S4 se hanno prodotto correzioni)* |
-| **S14** | Il re-run completo degli stadi LLM | campagna | **40-60 h** | **S8** (sì) **+ S12** |
+| **S14** | Il re-run completo degli stadi LLM | campagna | **~44 h di macchina** | **S8b** (sì) ✅ **+ S12** per raggruppamento e pooling; i due passi col modello possono andare prima, se lo sceglie il PI |
 | **S15** | Riverificare le meta-analisi cambiate | lettura | *dipende da S14* | **S14** |
 | **S16** | Rifare le figure sul deliverable vero | produzione | ~4 h | **S5**, e dopo S13/S14 |
 | **S17** | Scrivere i Methods e le limitazioni | scrittura | ~4 h | **S5, S8, S9, S4** |
@@ -100,7 +100,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 > ⚠️ **I veri cancelli sono sei**, quelli in grassetto: S7←S6, S11←S10, S12←S11,
 > S13←S12, S14←S8+S12, S15←S14. Tutto il resto è consiglio.
 >
-> **Se S8 dice «no» al re-run**, S14 e S15 si saltano e si va da S13 a S16.
+> **Se S8 dice «no» al re-run**, S14 e S15 si saltano e si va da S13 a S16. **S8b ha detto sì (2026-11-05):** S14 e S15 si fanno.
 
 ### Se hai tempo per poche sessioni
 
@@ -689,6 +689,9 @@ discriminante gia' decisa in S6.
 > i 21.828 **non** sono tutti in gruppi da uno studio solo (4.994 hanno un gruppo, 11.175 hanno confronti fermati dalle regole, 5.659 non hanno confronti); i 141 studi entrati stanno tutti dentro i 2.566;
 > il netto di -130 dipende dal disegno del run parziale; il costo è da 38 a 70 ore, centrale 63. **Da verificare se la risposta è sì:** le tabelle di correzione dei nomi si agganciano ai `record_id` del run vecchio, e S14 non ne prevede la rigenerazione.
 
+> **Esito della prova (S8b, 2026-11-05), da leggere per primo.** Il PI ha scelto il re-run completo: «Si rifa tutto, siamo scienziati». Su 6.000 studi a caso ne entrano 19, circa 69 [42; 108] sul corpus.
+> I 300 studi già rigenerati sono identici ad agosto. Finding `2026-11-05-S8b-prova-re-run`, sezione «Decisioni del PI». Il paragrafo dei Methods per il «no» non si usa.
+
 ### Perché
 
 Il mandato del 13 agosto diceva «re-run completo di **tutti** gli stadi». Quello che è stato fatto (A3) copre **2.566 studi su 24.394 — il 10,5% degli studi**.
@@ -852,6 +855,10 @@ Alla fine dimmi se vale la pena, e pesa DUE costi, non uno:
 ---
 
 # S10 — Il rilevatore di difetti: costruirlo e misurarlo
+
+> **Ricevuto dalla prova del re-run (S8b), da leggere per primo. Rinvio.** Le tabelle che correggono i nomi si agganciano al `record_id` del run vecchio. Se lo Stadio 2 rigenerato cambia il
+> significato di un gruppo, la correzione può cadere su altri campioni. Il dubbio tocca già il deliverable di agosto, non solo il re-run. **Che cosa serve per chiuderlo:** contare, su tutte le righe
+> delle tabelle dei nomi, quante puntano a un gruppo con un contenuto diverso nel run nuovo. Il dubbio riguarda S10, S11 e S12, e la misura può ripetersi quando esiste il master del re-run.
 
 ### Perché
 
@@ -1065,6 +1072,12 @@ NON lanciare niente: l'applicazione e' S13. Suite verde prima di committare.
 
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
 
+> **Ricevuto dalla prova del re-run (S8b), da leggere per primo.** (1) Il PI ha scelto il re-run completo, quindi il test esterno, il confronto con studi non collegati e il numero dell'articolo vengono
+> dopo S14, sul deliverable finale. Qui il calcolo serve a separare l'effetto delle correzioni dall'effetto del re-run. Se il re-run del modello è già fatto, scrivi quale master usi e perché.
+> (2) **Rinvio, da chiudere prima di ogni invio al DGX, quindi anche prima di S14:** `dgx_p4_status()` tratta una risposta vuota come `TERMINATED` (`R/dgx-submit.R`), e `.dgx_ssh()` restituisce una risposta vuota se la
+> connessione è rifiutata. Ha già dato un falso arresto il 2026-11-04. Il rimedio è in `analysis/audit/2026-11-04-S8b-prova/50-notte.R` (`stati_sacct`). Togli anche le frasi che suggeriscono gli altri nodi in `R/dgx-config.R` e
+> `analysis/p5-name-cleanup-run.R`. **Che cosa serve per chiuderlo:** il codice corretto con un test.
+
 > **Ricevuto dall'esecuzione della validazione esterna (S7), da leggere per primo.** (1) Dopo il calcolo riesegui il passo B con `POOL_DIR` sul nuovo deliverable:
 > `analysis/audit/2026-11-04-S7-validazione-esecuzione/README.md` dice come. Il passo A non si rifà. Rigenera prima l'elenco degli 80 composti con le regole del disegno §4.
 > `69-cancello-5.R` legge le stime per studio di S4: puntalo alle stime nuove. (2) **Rinvio:** misura come descrizione la prova «Combinazione» del disegno §9 su tutti i composti, perché
@@ -1165,11 +1178,21 @@ Alla fine verifica le previsioni una per una, comprese quelle che hai sbagliato.
 
 # S14 — Il re-run completo degli stadi LLM
 
+> **Ricevuto dalla prova del re-run (S8b), da leggere per primo. Il PI ha detto sì il 2026-11-05.**
+> (1) **Oggetto:** i 24.394 studi, Stadio 1 e Stadio 2, da zero, in un solo run e senza innesti (lettura della frase «Si rifa tutto», finding S8b, «Decisioni del PI»). Se il PI la corregge, vale la sua correzione.
+> (2) **Costo:** 44,4 h di macchina con due job alla volta (`analysis/audit/2026-11-04-S8b-prova/84-out.txt`), più la prova di invarianza. Non contiene la rigenerazione delle tabelle dei nomi.
+> (3) **Nodo:** tutte le 8 GPU di `poddgx02`, due job da 4 GPU. Non usare `poddgx01`, vietato dal PI. Non usare `nodelist = NULL`. Non usare `poddgx05` senza una risposta esplicita del PI: sta su `shared-dgx`, con altri utenti. La ripetibilità è provata su un solo nodo: dichiaralo.
+> (4) **Ordine, a scelta del PI.** I due passi col modello e i loro recuperi non dipendono da S12, perché S9-S13 agiscono solo su raggruppamento e pooling. Il PI può aprire questa sessione prima di S9, scrivendo «solo i due passi col modello»: in quel caso si ferma ai master. Re-cluster, re-pool e annotazione restano dopo S12 e dopo l'assegnazione dei ruoli per nome (S13, punto 1).
+> (5) **Base del codice:** `analysis/audit/2026-11-04-S8b-prova/50-notte.R` (catena riprendibile) e `45-rescue-build-s2.R`. Le tappe (gated) vanno approvate lo stesso, con gli script scritti prima.
+> (6) **Prima dell'invio:** il rinvio su `dgx_p4_status()` in S13, punto (2).
+> (7) **Da decidere nelle attese:** rigenerare o no le tabelle dei nomi, e con quale costo. Il dubbio è in S8b §6 e in S10.
+> (8) **Controllo in più:** gli 8.566 studi già rigenerati (agosto e prova) si confrontano record per record con il run nuovo. È il controllo di ripetibilità su tutti, oltre ai 300 della prova.
+
 > **Ricevuto dalla misura del controllo condiviso (S4), da leggere per primo.** Uno Stadio 2 nuovo
 > cambia le divisioni in ruoli: con la cache delle conte già piena può creare altri bracci con i ruoli
 > sbagliati. La correzione dell'assegnazione dei ruoli (S13, punto 1) è un prerequisito anche qui.
 
-> Solo se S8 ha detto sì. **40-60 ore su più giorni.**
+> S8b ha detto sì. **Circa 44 ore di macchina su più giorni.**
 
 ### Perché
 
@@ -1216,6 +1239,9 @@ Quando finisce, aprimi S15.
 ---
 
 # S15 — Riverificare le meta-analisi cambiate
+
+> **Ricevuto dalla prova del re-run (S8b), da leggere per primo.** La stima di circa 38 meta-analisi toccate viene dal campione, senza validazione: conta quelle vere sul deliverable nuovo. Dopo la lettura, il PI
+> rifà la scelta dell'insieme principale (le 40 e le 132), che decade con S14, e la regola sugli studi doppi si applica di nuovo.
 
 > Solo se S14 è stata fatta.
 
@@ -1342,6 +1368,9 @@ Proponimi i case study e fammi scegliere.
 ---
 
 # S17 — Scrivere i Methods e le limitazioni
+
+> **Ricevuto dalla prova del re-run (S8b), da leggere per primo.** Il PI ha scelto il re-run completo: il paragrafo «Scope of the model re-run» del finding S8b §7 e quello del finding S8 §7 non si usano. I Methods
+> descrivono un solo run su 24.394 studi, con i numeri del deliverable finale.
 
 > **Ricevuto dall'esecuzione della validazione esterna (S7), da leggere per primo.** Da dichiarare, con i numeri della seconda esecuzione: il valore contro LINCS dipende dal numero di linee (da 63% a 74%
 > sulle 19) e dalla forza del composto (Spearman 0,515 con `tas`); contro Tahoe il valore è molto più basso (11 su 32); il test non separa le 40 dalle altre 132 né le corrette dalle difettose;

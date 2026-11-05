@@ -1,7 +1,7 @@
 ---
 type: Finding
 title: "La prova prima del re-run completo: entrano pochi studi, il modello è ripetibile, il risultato principale non cambia"
-description: "Rigenerati 6.000 studi a caso e 300 già rigenerati. Entrano 19 studi, circa 69 sul corpus. I 300 studi sono identici ad agosto. Serve la scelta del PI, perché il numero sta fra le due soglie."
+description: "Rigenerati 6.000 studi a caso e 300 già rigenerati. Entrano 19 studi, circa 69 sul corpus. I 300 studi sono identici ad agosto. Il numero sta fra le due soglie e il PI ha scelto il re-run completo."
 status: draft
 generated: {by: simulomicsr-agent/skill-v1, at: '2026-11-05T15:30:00+01:00'}
 sources:
@@ -12,6 +12,8 @@ sources:
 - {id: s2, resource: "analysis/audit/2026-11-04-S8b-prova/62-s2-confronto.txt", title: "Ripetibilità dello Stadio 2"}
 - {id: nomi, resource: "analysis/audit/2026-11-04-S8b-prova/82-out.txt", title: "Tabelle dei nomi e stima delle toccate, non depositate"}
 - {id: costo, resource: "analysis/audit/2026-11-04-S8b-prova/83-out.txt", title: "Costo residuo"}
+- {id: costodazero, resource: "analysis/audit/2026-11-04-S8b-prova/84-out.txt", title: "Costo del corpus da zero"}
+- {id: nodi, resource: "analysis/audit/2026-11-04-S8b-prova/84-sinfo.txt", title: "Stato dei nodi il 2026-11-05"}
 - {id: s8, resource: "docs/findings/2026-11-04-S8-re-run-decisione.md", title: "La decisione che ha chiesto questa prova"}
 - {id: deliverable, resource: "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d", title: "Deliverable A3 v16, 194 meta-analisi"}
 ---
@@ -49,6 +51,18 @@ sources:
 Appena decidi questo punto, la sessione è chiusa.
 
 **Sui tempi di calcolo.** La stima è mia e viene dai tempi di questa prova su un nodo, con due job da 4 GPU. Il passo sul disegno ha richiesto 13,7 ore di job per 6.300 studi. Un blocco del passo sui campioni ha richiesto circa 17 minuti. La ricostruzione dei gruppi ha richiesto 2,8 ore con 8 processi, e il pooling 1,7 ore con 16 processi.
+
+# Decisioni del PI (2026-11-05)
+
+Il PI ha risposto citando l'opzione «In alternativa finiamo tutto»: «hai mandato di non dovere fare le cose di fretta e, come per pod1, non segui le regole. Si rifa tutto, siamo scienziati», e poi «puoi usare tutto il pod. E' a nostra disposizione». Il testo qui sopra resta com'era quando il PI l'ha letto.
+
+1. **Il re-run completo si fa.** Ho letto «tutto» alla lettera: i 24.394 studi, Stadio 1 e Stadio 2, da zero, in un solo run e senza innesti. Il PI può correggere questa lettura prima della campagna.
+2. **La mia raccomandazione «no» era sbagliata, e non per un numero.** Pesava il costo contro un mandato che chiedeva tutti gli stadi, e si appoggiava a un campione mentre la regola del progetto chiede di verificare tutto. Un limite si dichiara nei Methods quando il lavoro non si può fare, non quando costa ore. Regola ora in `CLAUDE.md` §4.
+3. **Correzione al riassunto.** «Tutti gli studi vengono dallo stesso run» non valeva per l'opzione dei 15.828 studi, che univa tre run (agosto, prova, nuovo) con le stesse impostazioni. Vale solo per il run da zero. Il run da zero confronta inoltre 8.566 studi con i run già fatti, invece di 300, sui due passi col modello.
+4. **Correzione al costo.** `83-costo.py` non scalava il recupero dello Stadio 2 (46,7 minuti misurati su 6.300 studi). I 15.828 studi passano da 28,3 a 29,5 h. **Il corpus da zero costa 44,4 h**, con due job alla volta[^costodazero]: Stadio 1 7,2 h e recupero 1,7 h, Stadio 2 27,2 h e recupero 3,0 h, locale 5,3 h. Sono escluse la prova di invarianza, stimata in 2 h, e la rigenerazione delle tabelle dei nomi, non misurata.
+5. **Nodo.** Ho letto «tutto il pod» come le 8 GPU di `poddgx02`, cioè due job da 4 GPU. Oggi `poddgx01` è `down*` e resta vietato. `poddgx05` sta sulla partizione `shared-dgx` con job di altri utenti, e non si usa senza una risposta esplicita del PI[^nodi].
+6. **Che cosa decade quando il re-run finisce.** La scelta delle 40 e delle 132. La lettura delle meta-analisi nuove o cambiate va fatta. Il numero della validazione esterna viene dal deliverable dopo il re-run. Il paragrafo del §7 qui sotto non si usa. Il deliverable A3 v16 resta il riferimento fino ad allora.
+7. **Ordine, che spetta al PI.** La mappa dell'handout mette il re-run dopo il rilevatore (S12). Il testo di S9-S13 agisce solo su raggruppamento e pooling, quindi i due passi col modello non dipendono da quelle sessioni. La mia raccomandazione è farli per primi, perché così le correzioni si costruiscono e si misurano sui record del run nuovo. Raggruppamento e pooling restano comunque dopo S12 e dopo l'assegnazione dei ruoli per nome. L'handout descrive le due strade in S14.
 
 # 1. I cancelli
 
@@ -145,3 +159,5 @@ Sostituisce quello del finding S8 §7. I numeri vanno riletti dopo il calcolo ch
 | 1,7 ore con 16 processi | `log/repool.log` | 13:21-15:04 |
 
 [^previsioni]: `analysis/audit/2026-11-04-S8b-prova/00-previsioni.md`.
+[^costodazero]: `analysis/audit/2026-11-04-S8b-prova/84-out.txt`.
+[^nodi]: `analysis/audit/2026-11-04-S8b-prova/84-sinfo.txt`.
