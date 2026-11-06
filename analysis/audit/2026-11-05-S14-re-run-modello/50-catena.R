@@ -62,12 +62,14 @@ cfr_bundle <- function(b, rif, file = c("prompt.txt", "schema.json", "generation
   dr <- dr[length(dr)]
   for (f in file) if (!identical(unname(tools::md5sum(fs::path(b$bundle_dir, f))), unname(tools::md5sum(fs::path(dr, f))))) ferma("CANCELLO 3: %s diverso dal bundle %s", f, rif)
 }
-invia <- function(p, stage, slug, time, tiered = NULL, gen_over = NULL, rif = NULL, rif_file = c("prompt.txt", "schema.json", "generation.json")) {
+invia <- function(p, stage, slug, time, tiered = NULL, gen_over = NULL, rif = NULL, rif_file = c("prompt.txt", "schema.json", "generation.json"), rif_senza = NULL) {
   f <- file.path(JOBS, paste0(slug, ".rds")); if (file.exists(f)) return(readRDS(f))
   args <- list(p, stage = stage, config = cfg, metadata = list(slug = slug)); if (!is.null(tiered)) args$tiered_max_tokens <- tiered
   b <- ssh_ripeti(function() do.call(dgx_p4_build_bundle, args))
   if (!is.null(gen_over)) { gp <- fs::path(b$bundle_dir, "generation.json"); g <- jsonlite::read_json(gp); for (n in names(gen_over)) g[[n]] <- gen_over[[n]]; jsonlite::write_json(g, gp, auto_unbox = TRUE, pretty = TRUE, null = "null") }
   if (!is.null(rif)) cfr_bundle(b, rif, rif_file)
+  # rif_senza: generation.json deve coincidere col riferimento a meno dei soli campi nominati (gli outlier, vedi sotto).
+  if (!is.null(rif_senza)) { dr <- as.character(fs::dir_ls("analysis/p4-bundles", glob = paste0("*-", rif, "-*"))); g1 <- read_json(fs::path(b$bundle_dir, "generation.json")); g0 <- read_json(fs::path(dr[length(dr)], "generation.json")); g1[rif_senza] <- NULL; g0[rif_senza] <- NULL; js <- function(x) as.character(toJSON(x, auto_unbox = TRUE, digits = NA)); if (!identical(js(g1), js(g0))) ferma("CANCELLO 3: generation.json di %s diverso dal bundle %s anche oltre %s", slug, rif, paste(rif_senza, collapse = " ")); scrivi("cancello 3: generation.json di %s uguale a %s a meno di %s", slug, rif, paste(rif_senza, collapse = " ")) }
   j <- ssh_ripeti(function() dgx_p4_submit(b, time = time, env = c(VLLM_BATCH_INVARIANT = "1")))
   saveRDS(j, f); scrivi("inviato %s slurm=%s run_id=%s", slug, j$slurm_job_id, j$run_id); j
 }
@@ -118,7 +120,11 @@ passo("s1-blocchi", {
 })
 if (nzchar(Sys.getenv("SOLO_BLOCCHI"))) quit(save = "no")
 blocchi <- c(as.character(fs::dir_ls(CHUNKS, glob = "*.jsonl")), if (file.exists(OUTL)) OUTL)
-jobs1 <- lapply(blocchi, function(p) invia(p, "stage1", paste0("s14-s1-", sub("[.]jsonl$", "", basename(p))), "72:00:00", rif = "s8b-s1-chunk-00"))
+# 2026-11-06: i 25 outlier contengono 5 record di GSE50445 da circa 9.800 caratteri, assenti nella prova S8b. Con max_model_len 4096
+# il job 452113 e' rimasto fermo 1 h senza errori, GPU allo 0% (vLLM #39734, come a maggio col job 20705). Il run di produzione F2
+# ha fatto gli stessi 25 record con max_model_len 32768: qui lo stesso valore, solo per gli outlier. Il job fermo sta in jobs/fermati/.
+OUTL_SLUG <- "s14-s1-S14-stage1-outliers-ml32768"
+jobs1 <- lapply(blocchi, function(p) if (identical(p, OUTL)) invia(p, "stage1", OUTL_SLUG, "72:00:00", gen_over = list(max_model_len = 32768L), rif = "s8b-s1-chunk-00", rif_file = c("prompt.txt", "schema.json"), rif_senza = "max_model_len") else invia(p, "stage1", paste0("s14-s1-", sub("[.]jsonl$", "", basename(p))), "72:00:00", rif = "s8b-s1-chunk-00"))
 passo("s1-cancello5", {
   fatti <- attendi_n(jobs1, 2L, 60L); rr <- unlist(lapply(fatti[1:2], function(j) readLines(file.path(raccogli(j)$run_dir, "predictions.jsonl"), warn = FALSE)), use.names = FALSE)
   ug <- cfr1(rr); msg <- sprintf("cancello 5, Stadio 1, primi due blocchi, record identici al riferimento: %s", ci_txt(sum(ug), length(ug))); writeLines(msg, file.path(DIR, "30-cancello5-s1.txt")); scrivi("%s", msg)
@@ -137,6 +143,9 @@ passo("s1-recupero", {
   conf <- list(list(rep = 1.2, mt = 4096L, ml = 8192L), list(rep = 1.3, mt = 8192L, ml = 16384L), list(rep = 1.4, mt = 8192L, ml = 16384L))
   for (k in seq_along(conf)) {
     rid <- rid_di(rr); dafare <- union(rid[!valid(rr)], setdiff(inp_id, rid)); scrivi("recupero %d: %d da rifare", k, length(dafare)); if (!length(dafare)) break
+    # I record oltre 5.000 caratteri si fermano con max_model_len 8192 (maggio, job 20705): meglio un FERMO visibile che un job fermo in silenzio.
+    o <- jsonlite::stream_in(file(OUTL), verbose = FALSE); lunghi <- o$record_id[nchar(o$string) > 5000L]
+    if (any(dafare %in% lunghi)) ferma("recupero %d: da rifare %s, record oltre 5.000 caratteri; con max_model_len %d il job si fermerebbe. Decidi prima di proseguire", k, paste(intersect(dafare, lunghi), collapse = " "), conf[[k]]$ml)
     p <- sprintf("analysis/input/S14-stage1-rescue%d.jsonl", k); writeLines(inp[inp_id %in% dafare], p)
     j <- invia(p, "stage1", sprintf("s14-s1-rescue%d", k), "72:00:00", gen_over = list(max_tokens = conf[[k]]$mt, repetition_penalty = conf[[k]]$rep, max_model_len = conf[[k]]$ml), rif = sprintf("s8b-s1-rescue%d", k))
     attendi(list(j), 60L); d <- raccogli(j)
