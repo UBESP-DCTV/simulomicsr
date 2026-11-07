@@ -44,7 +44,18 @@ for i, x in enumerate(alla, 1):
     righe.append(dict(n=f'E{i:02d}', sezione='E', record_id=x['record_id'], cluster_id=c['cluster_id'], study=c['study'],
                       trattato=c['tl'], controllo=c['cl'], insieme_S10=e['insieme'], combinazione=e['PROPOSTA'],
                       esito=x['esito'], fonte=x['fonte'], famiglia=x['famiglia'], motivo=x['motivo'], causa=x['causa'], classe_causa=''))
-assert len({r['record_id'] for r in righe}) == len(righe) == 116
+# decisione del PI dopo il riassunto: una differenza solo tecnica fra i bracci e' un errore (28-lettura-tecnica.py)
+idx_r = {r['record_id']: r for r in righe}; nt = 0
+for x in csv.DictReader(open(D + '28-lettura-tecnica.csv')):
+    if x['record_id'] in idx_r:
+        r = idx_r[x['record_id']]
+        r.update(esito=x['esito'], fonte=x['fonte'], famiglia=x['famiglia'], motivo=r['motivo'] + ' | DECISIONE TECNICA: ' + x['motivo'])
+    else:
+        nt += 1; c = conf[x['record_id']]; e = es[x['record_id']]
+        righe.append(dict(n=f'T{nt:02d}', sezione='T', record_id=x['record_id'], cluster_id=c['cluster_id'], study=c['study'],
+                          trattato=c['tl'], controllo=c['cl'], insieme_S10=e['insieme'], combinazione=e['PROPOSTA'],
+                          esito=x['esito'], fonte=x['fonte'], famiglia=x['famiglia'], motivo=x['motivo'], causa='', classe_causa=''))
+assert len({r['record_id'] for r in righe}) == len(righe) == 116 + nt, (len(righe), nt)
 w = csv.DictWriter(open(D + '30-lettura.csv', 'w'), fieldnames=list(righe[0].keys())); w.writeheader(); w.writerows(righe)
 L = {r['record_id']: r for r in righe}
 
@@ -57,6 +68,8 @@ p('righe A (elenco S10b):', len(A), '| con esito e motivo:', sum(bool(r['esito']
 tz = list(csv.DictReader(open(D + '22-candidati-tempo-zero.csv')))
 p('candidati a tempo zero (22):', len(tz), '| letti:', sum(t['record_id'] in L for t in tz))
 p('candidati allargati (24):', len(alla), '| letti:', sum(x['record_id'] in L for x in alla))
+tec = list(csv.DictReader(open(D + '27-candidati-tecnici.csv')))
+p('candidati tecnici (27):', len(tec), '| letti:', sum(x['record_id'] in L for x in tec))
 
 p('=== C4 controlli')
 attesi = {5: 'giusto', 23: 'sbagliato', 24: 'giusto', 55: 'sbagliato', 89: 'sbagliato'}
@@ -68,7 +81,7 @@ p('  GSE126409 nel censimento:', sum(t['study'] == 'GSE126409' for t in tz), 'su
 p('=== Esiti della lettura')
 p('righe A per insieme e esito:', sorted(Counter((r['insieme_S10'], r['esito']) for r in A).items()))
 p('righe A per fonte (sbagliato):', dict(Counter(r['fonte'] for r in A if r['esito'] == 'sbagliato')))
-for s in ('B', 'E'):
+for s in ('B', 'E', 'T'):
     X = [r for r in righe if r['sezione'] == s]
     p(f'sezione {s}:', len(X), sorted(Counter((r['insieme_S10'], r['esito']) for r in X).items()))
 

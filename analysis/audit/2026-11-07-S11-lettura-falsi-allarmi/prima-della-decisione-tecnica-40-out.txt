@@ -1,0 +1,55 @@
+=== C3 copertura
+righe A (elenco S10b): 56 | con esito e motivo: 56
+candidati a tempo zero (22): 54 | letti: 54
+candidati allargati (24): 27 | letti: 27
+=== C4 controlli
+  [005] GSE114686 'Lapatinib 1 µM 24h': atteso giusto, letto giusto -> OK
+  [023] GSE139963 'Hypoxia + TGF-β1': atteso sbagliato, letto sbagliato -> OK
+  [024] GSE139963 'TGF-β1': atteso giusto, letto giusto -> OK
+  [055] GSE210984 'MSC iPSC-derived TGF-β 21 days': atteso sbagliato, letto sbagliato -> OK
+  [089] GSE97744 'Circulating macrophage + IFN-γ and LPS': atteso sbagliato, letto sbagliato -> OK
+  GSE126409 nel censimento: 11 su 11; GSE221804: 10 su 10
+=== Esiti della lettura
+righe A per insieme e esito: [(('altro_negativo', 'giusto'), 2), (('altro_negativo', 'sbagliato'), 14), (('pulito', 'giusto'), 17), (('pulito', 'incerto'), 1), (('pulito', 'sbagliato'), 22)]
+righe A per fonte (sbagliato): {'metadato': 30, 'etichetta': 6}
+sezione B: 28 [(('altro_negativo', 'giusto'), 2), (('altro_negativo', 'sbagliato'), 1), (('difettoso', 'sbagliato'), 11), (('pulito', 'giusto'), 6), (('pulito', 'incerto'), 2), (('pulito', 'sbagliato'), 6)]
+sezione E: 27 [(('altro_negativo', 'giusto'), 1), (('difettoso', 'sbagliato'), 1), (('pulito', 'giusto'), 12), (('pulito', 'incerto'), 1), (('pulito', 'sbagliato'), 12)]
+=== Riferimento corretto
+difettosi prima: 129 | nuovi: 59 (provati 55 , non provati 4 ) | dopo: 188
+nuovi per fonte: {'metadato': 53, 'etichetta': 6} | per sezione: {'A': 37, 'B': 9, 'E': 13}
+nuovi per famiglia: [('tempo zero', 31), ('tempo zero; genotipo', 10), ('tempo non appaiato', 5), ('secondo agente solo nel trattato', 4), ('donatore / genotipo', 2), ('tempo zero; braccio misto', 2), ('secondo agente solo nel trattato; tempo zero', 1), ("entita' nel controllo", 1), ('secondo agente solo nel trattato; braccio misto', 1), ("entita' assente dal trattato", 1), ('tempo zero; formato di coltura', 1)]
+nuovi segnalati dalla combinazione: 37 su 59
+=== Sensibilita' della combinazione (bootstrap degli studi, B=2000, seme 20261107)
+  riferimento S10: 43/129 = 33.3% IC95 [21.7; 45.5]
+  riferimento corretto: 80/188 = 42.6% IC95 [30.1; 54.7]
+  corretto, solo provati: 79/184 = 42.9% IC95 [30.1; 55.2]
+  allarmi della combinazione: 99 | falsi allarmi prima (puliti): 40 | dopo la lettura: 19
+=== Per parte della combinazione: allarmi veri e falsi dopo la lettura
+  R1: allarmi 48 | difetti 35 | falsi 13
+  R2a: allarmi 46 | difetti 43 | falsi 3
+  R2b: allarmi 31 | difetti 31 | falsi 0
+  R6: allarmi 5 | difetti 2 | falsi 3
+  S10_pulita: allarmi 5 | difetti 5 | falsi 0
+=== Cause dei falsi allarmi (righe A lette giuste)
+   6  modifica genetica o condizione di sfondo scritta solo sul trattato
+   3  campo del passaggio: valori vicini o non un passaggio
+   3  agente comune ai due bracci marcato come controllo nel controllo
+   3  durata uguale scritta in modo diverso
+   2  nome dell'entita' non riconosciuto nell'agente
+   1  mutazione del paziente scritta come knockout
+   1  perturbazione vuota contata come agente
+  allarmi veri scattati per un motivo diverso dal difetto: [46, 50, 88]
+=== Tempo zero (decisione 1)
+confronti difettosi per tempo zero: 50 | studi: 17 | meta-analisi: 18
+  di cui gia' nel riferimento: 6 | segnalati dalla combinazione: 31
+P3 tempo zero leggibile nei metadati GEO senza tempo zero nello Stadio 1: 12 ['GSE221563', 'GSE139393', 'GSE135458', 'GSE135458', 'GSE184891', 'GSE184891', 'GSE184891', 'GSE184891', 'GSE184891', 'GSE198670', 'GSE198670', 'GSE65335']
+=== Previsione P2: righe A lette giuste (errori della regola)
+  giusto 19 | sbagliato 36 | incerto 1
+=== P1 verdetti delle 194
+meta-analisi con difetti nuovi: 29 | transizioni: [(('corretta', 'difettosa'), 12), (('difettosa', 'difettosa'), 14), (('incerta', 'difettosa'), 2), (('incerta', 'incerta'), 1)]
+da corretta a difettosa: 12 ['calcium atom', 'TNF', 'neratinib', 'copd', 'chloroquine', 'radiation', "5-aza-2'-deoxycytidine", 'EGF', 'DRB', 'IL2', '5-azacytidine', 'IL13']
+nelle 40: [('calcium atom', 'corretta', 'difettosa'), ('TNF', 'corretta', 'difettosa'), ("5-aza-2'-deoxycytidine", 'corretta', 'difettosa'), ('EGF', 'corretta', 'difettosa'), ('IL2', 'corretta', 'difettosa'), ('IL13', 'corretta', 'difettosa')]
+=== C2(c) studi distinti fra i confronti tenuti = k_effective del deliverable: 194 su 194
+meta-analisi sotto 3 studi togliendo i difettosi: riferimento S10 12 | riferimento corretto 19
+  nuove sotto 3: [('IFNA1', 4, 2), ('chloroquine', 3, 2), ('5 aza', 3, 2), ('neratinib', 3, 2), ('IL15', 3, 2), ('DRB', 3, 2), ('calcium atom', 3, 2)]
+  nuove sotto 3 nelle 40: ['calcium atom']
