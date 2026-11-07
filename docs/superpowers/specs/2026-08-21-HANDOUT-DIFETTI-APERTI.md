@@ -58,8 +58,8 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 7 | ~~Non è deciso se rifare il run completo~~ **Il PI ha scelto il re-run completo dopo la prova (S8b, 2026-11-05): 24.394 studi da zero, in un solo run** | S8 → S8b ✅ → S14 |
 | 8 | ~~Le lettere greche sbagliano in 45 prove su 90~~ **misurato su tutto lo Stadio 3 (S9): 7 meta-analisi su 194 cambiano; la sola traduzione toglie 15 studi a TNF. Il PI fa scrivere la correzione in S12b** | S9 ✅ → S12b → S13 |
 | 9 | ~~`.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()`~~ **corretto con due test (S9, `6996f73`)** | S9 ✅ |
-| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Decisione del PI in attesa** | S10 → S11 → S12 → S13 |
-| 16 | **Tabelle dei nomi agganciate per numero d'ordine** (S10, 2026-11-07): negli studi rigenerati il nome cade su altri campioni; nel deliverable 283 confronti su 1.903 hanno un nome diverso sul primo campione trattato, nel master da zero il 70% dei record agganciati cambia o manca. Decisione del PI in attesa | S10 → ? → S13, S14 |
+| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Il PI fa rifare la regola sui metadati dei campioni (S10b)** | S10 → S10b → S11 → S12 → S13 |
+| 16 | **Tabelle dei nomi agganciate per numero d'ordine** (S10, 2026-11-07): negli studi rigenerati il nome cade su altri campioni; nel deliverable 283 confronti su 1.903 hanno un nome diverso sul primo campione trattato, nel master da zero il 70% dei record agganciati cambia o manca. **Il PI fa correggere l'aggancio in S12d** | S10 → S12d → S13, S14 |
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
 | 12 | Le figure dell'articolo descrivono un deliverable che non esiste più | S16 |
 | 13 | I limiti misurati non sono scritti da nessuna parte | S17 |
@@ -86,12 +86,14 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S8** | La decisione sul re-run completo: prima una prova ✅ | **decisione** | ~2 h | — |
 | **S8b** | La prova: 6.000 studi a caso e 300 già rigenerati, poi sì o no: **sì** ✅ | misura | ~17 h | **S8** ✅ |
 | **S9** | Le lettere greche, e il crash delle corsie ✅ | misura + 1 fix | ~4 h | — |
-| **S10** | Il rilevatore: costruirlo e misurarlo (misurato, decisione del PI in attesa) | misura | ~4 h | *meglio S3* |
-| **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10* | **S10** |
+| **S10** | Il rilevatore: costruirlo e misurarlo ✅ | misura | ~4 h | *meglio S3* |
+| **S10b** | Il rilevatore sui metadati dei campioni (decisione del PI, 2026-11-07) | misura | ~4-6 h | **S10** ✅ |
+| **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10b* | **S10b** |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
 | **S12b** | La chiave d'entità: greche, citochine in lettere latine, negazione | codice (TDD) + misura | ~4-6 h | **S9** ✅ |
 | **S12c** | Una entità con più nomi: il nome scritto dal modello, regola generale | ADR + codice (TDD) + misura + lettura | *da stimare in apertura; più di una sessione S12b* | **S9**, **S12b** |
-| **S13** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | **S12, S12b, S12c** *(+ S4)* |
+| **S12d** | Le tabelle dei nomi agganciate ai campioni (decisione del PI, 2026-11-07) | codice (TDD) + misura | ~4 h | **S10** ✅; *meglio prima di S12c, che misura le chiavi con gli anchor* |
+| **S13** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | **S12, S12b, S12c, S12d** *(+ S4)* |
 | **S14** | Il re-run completo degli stadi LLM (i due passi col modello ✅ 2026-11-07; restano raggruppamento, pooling e annotazione) | campagna | **~44 h di macchina** (misurate 33 h per i due passi) | **S8b** (sì) ✅ **+ S12** per raggruppamento e pooling; i due passi col modello possono andare prima, se lo sceglie il PI |
 | **S15** | Riverificare le meta-analisi cambiate | lettura | *dipende da S14* | **S14** |
 | **S16** | Rifare le figure sul deliverable vero | produzione | ~4 h | **S5**, e dopo S13/S14 |
@@ -870,15 +872,17 @@ Alla fine dimmi se vale la pena, e pesa DUE costi, non uno:
 
 # S10 — Il rilevatore di difetti: costruirlo e misurarlo
 
-> **Misurata il 2026-11-07, non chiusa: due decisioni del PI in attesa** (`docs/findings/2026-11-07-S10-rilevatore.md`,
+> **Chiusa il 2026-11-07.** **Decisioni del PI** («sì alle tue proposte»): (1) il rilevatore si rifà sui metadati dei campioni
+> in **S10b**, con lo stesso riferimento e N = 85, e S11 aspetta S10b; (2) l'aggancio delle tabelle dei nomi si corregge in
+> **S12d**, prima di S13.
+>
+> **Misurata il 2026-11-07** (`docs/findings/2026-11-07-S10-rilevatore.md`,
 > evidenza `analysis/audit/2026-11-07-S10-rilevatore/`). Il PI ha fissato prima della misura N = 85 e la lettura a blocchi
 > di 150. Il riferimento è di **129 confronti difettosi**, non 97 (97 righe su 97 agganciate, 23 confronti a mano). La regola
 > corretta (V3: greche, soglia a un agente tolta l'entità, regola sul materiale) prende **10 su 129** (7,8%, tre per caso) con
 > **51 falsi allarmi su 1.704**: recuperabile per la soglia, ma vede meno di un difetto su dieci, perché i difetti sono
 > asimmetrici (l'informazione sta su un braccio solo). 32 dei 51 falsi allarmi vengono da TNF e calcitriolo (S12b, S12c).
-> Il dubbio sulle tabelle dei nomi qui sotto è misurato: §7 del finding. **Decisioni in attesa:** (1) che cosa fare del
-> rilevatore (raccomandazione: una regola sui metadati dello Stadio 1, con lo stesso riferimento e la stessa N);
-> (2) dove correggere l'aggancio delle tabelle dei nomi (raccomandazione: una sessione nuova prima di S13).
+> Il dubbio sulle tabelle dei nomi qui sotto è misurato (§7 del finding) e chiuso dalla decisione (2) del PI: S12d.
 
 > **Ricevuto dalla prova del re-run (S8b), da leggere per primo. Rinvio.** Le tabelle che correggono i nomi si agganciano al `record_id` del run vecchio. Se lo Stadio 2 rigenerato cambia il
 > significato di un gruppo, la correzione può cadere su altri campioni. Il dubbio tocca già il deliverable di agosto, non solo il re-run. **Che cosa serve per chiuderlo:** contare, su tutte le righe
@@ -969,13 +973,80 @@ NON leggere i falsi allarmi: producine l'elenco e dimmi quanti sono.
 
 ---
 
+# S10b — Il rilevatore sui metadati dei campioni
+
+> **Aperta dal PI il 2026-11-07, alla chiusura di S10** («sì alle tue proposte»). Fonte: `docs/findings/2026-11-07-S10-rilevatore.md`
+> §5. Evidenza riusabile in `analysis/audit/2026-11-07-S10-rilevatore/`: `20-ingressi-regola.rds` (gli ingressi veri della
+> regola di produzione sui 1.903 confronti), `30-riferimento.csv` (i 129 confronti difettosi), `40-esiti.csv` (gli esiti di
+> V0-V3), `45-perche-non-visti.csv` (per ogni difetto, che cosa le etichette dicono).
+
+### Perché
+
+La regola sulle etichette corretta in S10 prende 10 confronti difettosi su 129, tre per caso. I difetti sono asimmetrici:
+l'informazione che rompe il confronto sta su un braccio solo (il tempo sul solo trattato, il secondo agente con un codice di
+ricerca, l'etnia e il sesso in parole), e una regola che confronta le due etichette non ha niente da confrontare. Lo Stadio 1
+scrive per ogni campione i campi dove l'asimmetria si legge: `perturbations` (agenti uno per uno, `duration.value_hours`,
+`is_zero_timepoint`), `patient_metadata` (`donor_id`, `sex`, `ancestry_or_population`, `age`), `cell_context` (`context_kind`,
+`tissue`, `cell_line_cellosaurus_candidate`, `passage_or_state`).
+
+### Che cosa si fa
+
+1. Si scrive una regola deterministica, **fuori dal pacchetto**, che confronta i fatti dello Stadio 1 dei campioni trattati con
+   quelli dei campioni di controllo di ogni confronto (`gsm_t`, `gsm_c` di `dispatch-A3.rds`; master
+   `analysis/p4-output/A3-stage1-master-innestato.jsonl`). Le famiglie da coprire sono quelle della rilettura: secondo agente,
+   tempo, donatore/sesso/etnia, materiale, sede, passaggio. L'entità del gruppo si toglie come in V2 di S10.
+2. **La regola si congela e si committa con le previsioni, prima di misurare**: come si aggrega un braccio con più campioni,
+   che cosa conta come differenza, quali classi esenta (per esempio il caso-controllo per donatore nelle malattie).
+3. Si misura come in S10: sensibilità sui **129**, falsi allarmi sui **1.704**, altri negativi sui 70, bootstrap degli studi
+   (B = 2000, seme della data), una variante per sotto-regola, e il confronto con V3 di S10. Si produce l'elenco dei falsi
+   allarmi e il loro numero.
+4. Si dichiara che cosa la regola non vede: un campo vuoto nello Stadio 1 non è una prova di assenza.
+
+### Che cosa NON si fa
+
+Non si modifica `R/`. Non si leggono i falsi allarmi: è S11. Non si cambia la regola dopo il commit delle previsioni. Non si usa
+la validazione esterna per scegliere.
+
+### Come si sa che è finita
+
+La tabella a due entrate sui 129 e sui 1.704, la scala delle sotto-regole, l'elenco dei falsi allarmi e il loro numero.
+**Controlli positivi** da depositare prima, fra i casi che le etichette non vedono: `GSE139963` «Hypoxia + TGF-β1», un controllo
+a tempo zero di `GSE126409`, l'etnia di `GSE97358`. Se lo Stadio 1 non scrive l'informazione, il caso si dichiara invisibile
+prima della misura.
+
+### La decisione che spetta a te
+
+La stessa di S10, già presa: **N = 85** falsi allarmi su 1.704, oltre i quali la regola non è recuperabile; lettura a blocchi di
+150. Alla fine: quale regola, o quale combinazione con V3 di S10, va alla lettura in S11.
+
+### Prompt
+
+```
+sessione simulomicsr S10b, leggi prima la skill di progetto.
+
+Apri docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md e fai la
+SESSIONE S10b, solo quella. Leggi prima docs/findings/2026-11-07-S10-rilevatore.md
+§2-§5.
+
+La regola sulle etichette vede 10 difetti su 129 perche' i difetti sono
+asimmetrici. Costruisci, fuori dal pacchetto, una regola che confronta i fatti
+dello Stadio 1 dei campioni trattati e di controllo (agenti, durata, tempo zero,
+donatore, sesso, etnia, materiale, tessuto, linea, passaggio). Congela la regola
+e le previsioni PRIMA di misurare. Misura sullo stesso riferimento di S10
+(129 difettosi, 1.704 puliti) con la stessa N = 85. Non leggere i falsi allarmi.
+```
+
+------------------------------------------------------------------------
+
+---
+
 # S11 — Il rilevatore: leggere i falsi allarmi
 
 > **Ricevuto dalla misura del rilevatore (S10), da leggere per primo.** L'elenco è
 > `analysis/audit/2026-11-07-S10-rilevatore/40-falsi-allarmi.csv`: 54 allarmi (51 sui confronti puliti, 3 sugli altri
 > negativi), una sessione sola per la regola dei 150. Il denominatore della sensibilità è **129** confronti
 > (`30-riferimento.csv`), non 97. 25 allarmi su TNF e 7 sul calcitriolo vengono da difetti della chiave che S12b e S12c
-> cambiano. **Non aprire questa sessione prima della decisione del PI su S10.**
+> cambiano. **Il PI ha deciso (2026-11-07): questa sessione aspetta S10b**, e legge gli allarmi della regola che S10b sceglie.
 
 ### Perché
 
@@ -1264,6 +1335,66 @@ script di S9. Nessuna lista di entita'. Non lanciare il re-cluster.
 
 ------------------------------------------------------------------------
 
+# S12d — Le tabelle dei nomi agganciate ai campioni
+
+> **Aperta dal PI il 2026-11-07, alla chiusura di S10** («sì alle tue proposte»). Fonte: `docs/findings/2026-11-07-S10-rilevatore.md`
+> §7; evidenza `analysis/audit/2026-11-07-S10-rilevatore/50-*`, `51-*`, `52-*`.
+
+### Perché
+
+Le due tabelle che correggono i nomi (`name-cleanup-side-table-v1.rds`, `name-cleanup-fallback-side-table.rds`) sono state scritte
+sui gruppi dei run v9. La produzione le applica passando dal `record_id` del run v9 ai campioni di quel `record_id` **nel master
+corrente** (`R/stage3-name-cleanup-overlay.R:66`; nel re-cluster `analysis/p4-fase-f13-stage3-v16-tre-cambi.R:413` costruisce la
+mappa da `stage2_path`). Molti `record_id` portano il numero d'ordine del gruppo (`grp_0004`, `mg29`), e uno Stadio 2 rigenerato
+numera i gruppi in un altro modo. Misurato in S10: 4.583 record del deliverable non hanno più nessun campione in comune con il
+run vecchio; 283 confronti su 1.903 hanno un nome diverso sul primo campione trattato; nel master S14 il 69,9% dei record
+agganciati cambia o manca.
+
+### Che cosa si fa
+
+1. In TDD: l'overlay si costruisce con la mappa record → campioni del **master su cui le tabelle sono state scritte**
+   (`analysis/p4-output/p4-fase-f4-stage2-master-v3.jsonl`, che contiene il 99,3% dei `record_id` dei run v9), non del master
+   corrente. Il percorso e lo SHA-256 di quel master entrano in `run_metadata`. Una quota di `record_id` trovati sotto una soglia
+   dichiarata ferma il run con un errore diagnostico.
+2. Si verifica e si dichiara per iscritto se il cambio tocca una cache su disco: nel re-cluster l'overlay si applica in memoria
+   dopo il lookup del recupero (`build_name_recovery_lookup(cache_dir=)`), ma va controllato sul codice. Se il lookup cambia,
+   bump di `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`.
+3. Si misura l'effetto con gli script di S9 (`20-ingressi.R` con l'aggancio corretto, `30-due-regimi.R`, `40-analisi.R`): confronti
+   che cambiano entità, gruppi che si uniscono o si dividono, meta-analisi delle 194 e delle 40 che cambiano.
+
+### Che cosa NON si fa
+
+Non si rigenerano le tabelle con il modello. Non si lancia il re-cluster: è S13. Nessuna scelta guarda la validazione esterna.
+
+### Come si sa che è finita
+
+I test passano, la suite è verde, la tabella dei cambi su tutto lo Stadio 3 è scritta. **Controllo positivo:** in `GSE186341`
+«HCC1143 cells treated with Lapatinib» il primo campione trattato riceve `CHEBI:49603`, non `CHEBI:49375`. **Controllo negativo:**
+negli studi non rigenerati nessun nome cambia (S10: 84.584 record uguali, nessuno diverso).
+
+### La decisione che spetta a te
+
+Se l'effetto tocca le 40 meta-analisi dell'insieme principale, come dichiararlo. La correzione entra in S13 e nel raggruppamento
+di S14 comunque.
+
+### Prompt
+
+```
+sessione simulomicsr S12d, leggi prima la skill di progetto.
+
+Apri docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md e fai la
+SESSIONE S12d, solo quella. Leggi prima docs/findings/2026-11-07-S10-rilevatore.md §7.
+
+Le tabelle dei nomi si agganciano al record_id del run v9 e prendono i campioni dal
+master CORRENTE: negli studi rigenerati il nome cade su altri campioni. In TDD,
+aggancia l'overlay ai campioni del master su cui le tabelle sono state scritte
+(p4-fase-f4-stage2-master-v3.jsonl). Verifica e dichiara la cache su disco. Poi
+misura l'effetto su tutto lo Stadio 3 con gli script di S9. Non rigenerare le
+tabelle con il modello, non lanciare il re-cluster.
+```
+
+------------------------------------------------------------------------
+
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
 
 > **Ricevuto dalla sessione sulle lettere greche (S9), da leggere per primo.** S12b e S12c cambiano la chiave d'entità e
@@ -1382,8 +1513,9 @@ Alla fine verifica le previsioni una per una, comprese quelle che hai sbagliato.
 > **Da sapere prima di un altro run del modello sul corpus:** gli outlier dello Stadio 1 (oltre 3.500 caratteri) vanno con `max_model_len` 32768, come nel run di produzione F2. Con 4096 il job 452113 è rimasto fermo 1 h senza errori (vLLM #39734). La catena di S14 lo fa; i default di `dgx_p4_build_bundle()` no.
 > **Tabelle dei nomi (punto 7 qui sotto): misurate in S10 il 2026-11-07** (finding S10 §7). Le tabelle si agganciano al
 > `record_id` del run v9, quasi sempre con il numero d'ordine del gruppo. Nel master da zero il 69,9% dei record agganciati
-> ha altri campioni o non esiste più. **Il raggruppamento sul re-run non può usare le tabelle come sono oggi.** Come
-> correggere l'aggancio è una decisione del PI in attesa.
+> ha altri campioni o non esiste più. **Il raggruppamento sul re-run non può usare le tabelle come sono oggi.** Il PI ha
+> deciso (2026-11-07): l'aggancio si corregge in **S12d**, ai campioni del master su cui le tabelle sono state scritte, senza
+> rigenerarle con il modello. Raggruppamento e pooling di S14 vengono dopo S12d.
 
 > **Ricevuto dalla prova del re-run (S8b), da leggere per primo. Il PI ha detto sì il 2026-11-05.**
 > (1) **Oggetto:** i 24.394 studi, Stadio 1 e Stadio 2, da zero, in un solo run e senza innesti (lettura della frase «Si rifa tutto», finding S8b, «Decisioni del PI»). Se il PI la corregge, vale la sua correzione.

@@ -217,12 +217,21 @@ I conteggi di P5 sono censimenti di tutte le righe: non hanno intervallo di camp
 | tre difetti presi per caso | spiegato (§4): «DM1» → mertansina |
 | falsi allarmi concentrati | spiegato (§6): 32 su 51 da difetti della chiave già assegnati a S12b e S12c |
 | nove entità diverse fra membro e gruppo | spiegato (§3): fusioni |
-| P5b-P5d smentite | meccanismo spiegato (§7); effetto sulle meta-analisi non misurato: **decisione del PI** |
-| che cosa fare del rilevatore | **decisione del PI** |
+| P5b-P5d smentite | meccanismo spiegato (§7); effetto sulle meta-analisi **deciso** dal PI: si misura in S12d |
+| che cosa fare del rilevatore | **deciso** dal PI: S10b |
 
 # 10. Decisioni del PI
 
-*In attesa.*
+Il PI ha letto il riassunto e ha risposto il 2026-11-07: «si alle tue proposte».
+
+1. **Il rilevatore si rifà sui metadati dei campioni**, in una sessione nuova (S10b), con lo stesso riferimento di 129 confronti
+   difettosi e la stessa soglia N = 85. La lettura dei falsi allarmi (S11) aspetta S10b e legge gli allarmi della regola che S10b
+   sceglie.
+2. **L'aggancio delle tabelle dei nomi si corregge** in una sessione nuova (S12d), prima del calcolo che applica le correzioni
+   (S13) e prima del raggruppamento sul re-run (S14): ogni nome si aggancia ai campioni del master su cui la tabella è stata
+   scritta, senza il modello. La stessa sessione misura quante meta-analisi cambiano.
+
+Con queste due decisioni nessun dubbio di §9 resta aperto: la sessione è chiusa.
 
 # Da dove vengono i numeri del riassunto
 
