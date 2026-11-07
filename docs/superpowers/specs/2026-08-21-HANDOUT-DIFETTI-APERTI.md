@@ -89,7 +89,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10* | **S10** |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
 | **S12b** | La chiave d'entità: greche, citochine in lettere latine, negazione | codice (TDD) + misura | ~4-6 h | **S9** ✅ |
-| **S12c** | Una entità con più nomi | misura + lettura + codice | *da stimare in apertura* | **S9** ✅ |
+| **S12c** | Una entità con più nomi: il nome scritto dal modello, regola generale | ADR + codice (TDD) + misura + lettura | *da stimare in apertura; più di una sessione S12b* | **S9**, **S12b** |
 | **S13** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | **S12, S12b, S12c** *(+ S4)* |
 | **S14** | Il re-run completo degli stadi LLM (i due passi col modello ✅ 2026-11-07; restano raggruppamento, pooling e annotazione) | campagna | **~44 h di macchina** (misurate 33 h per i due passi) | **S8b** (sì) ✅ **+ S12** per raggruppamento e pooling; i due passi col modello possono andare prima, se lo sceglie il PI |
 | **S15** | Riverificare le meta-analisi cambiate | lettura | *dipende da S14* | **S14** |
@@ -1158,52 +1158,73 @@ quelli che S12c unisce. Non lanciare il re-cluster.
 
 ------------------------------------------------------------------------
 
-# S12c — Una entità con più nomi
+# S12c — Una entità con più nomi: il nome scritto dal modello
 
-> **Ricevuto dalla sessione sulle lettere greche (S9), da leggere per primo. Decisione del PI del 2026-11-07.**
-> (1) **Nota del PI: non limitarsi alle coppie.** Un'entità può avere più di due nomi: il calcitriolo ne ha quattro.
-> (2) **Il calcitriolo** sta in quattro gruppi con lo stesso verso e controllo: `CHEBI:17823` (9 studi), `STR:1_25_oh_2d3` (3),
-> `STR:1_25d3` (1), `STR:1alpha_25_oh_2d3` (1); 14 studi distinti; due sono meta-analisi del deliverable. Il dizionario non
-> riconosce la forma abbreviata «1,25(OH)2D3» (`46-out.txt` §A-B). `GSE221690` e `GSE223405` possono essere studi doppi.
-> (3) **Candidate dal nome, non verificate** (`46-out.txt` §C): irradiation e radiation (7 e 7 studi), asthma e asthmatic (4 e 3),
-> ifna e IFNA1 (6 e 6), nash e NAFLD (7 e 5, entrambe nelle 40). NASH e NAFLD possono essere due confronti diversi. Le
-> meta-analisi con un nome non risolto (`STR:`) sono 44.
-> (4) **Domanda del PI:** «l'LLM non dovrebbe avere problemi a classificare irradiation e radiation alla stessa maniera; l'ancora
-> dovrebbe essere uguale». Risposta misurata nel finding S9 §11: la chiave non è l'anchor (ADR-0025); il modello copia la parola
-> del metadato; **il modello scrive il nome giusto con un ID ChEBI sbagliato e il codice si fida dell'ID**: `CHEBI:16579`
-> (anisole) 117 volte, 83 con il nome «calcitriol»; `CHEBI:16635` (Met-tRNA) 996 volte, 327 «transforming growth factor
-> beta-1» e 241 «interferon gamma»; `CHEBI:17236` 646 volte, 105 «interferon-alpha». Noto dal 2026-07-23, mai deciso.
-> **Che cosa serve per chiuderlo:** il tasso di ID sbagliati su tutto il master dello Stadio 1, A3 e S14, e la scelta fra ID e nome.
+> **Decisione del PI del 2026-11-07: S12c risolve il problema con un comportamento generale.** Non è limitata al calcitriolo e
+> all'interferone alfa: quelli sono i controlli positivi della regola, non lo scopo. Nessuna lista di entità.
+
+> **Ricevuto dalla sessione sulle lettere greche (S9), da leggere per primo.** Fonti in
+> `analysis/audit/2026-11-07-S9-greche-e-corsie/` e nel finding S9 §11.
+> (1) **Nota del PI: classi, non coppie.** Un'entità può avere più di due nomi: il calcitriolo ne ha quattro.
+> (2) **Il modello scrive il nome giusto** (`47-out.txt`): «calcitriol» in tutti e quattro i gruppi del calcitriolo, anche per
+> «1α,25(OH)2D3» e «1,25D3», ma con sei ID ChEBI diversi e nessuno è `CHEBI:17823`; «interferon-alpha» nei due gruppi di
+> IFN-alfa; «Radiation» nella maggior parte dei confronti dei due gruppi delle radiazioni («irradiation» in 4).
+> (3) **Il codice perde il nome giusto in due punti.** (a) Si fida dell'ID scritto dal modello anche quando l'ID è di un'altra
+> molecola: `CHEBI:16579` (anisole) 117 volte, 83 con il nome «calcitriol»; `CHEBI:16635` (Met-tRNA) 996 volte, 327 «transforming
+> growth factor beta-1», 241 «interferon gamma»; `CHEBI:17236` 646 volte, 105 «interferon-alpha» (`46-out.txt` §E). ADR-0018
+> corregge gli ID inesistenti e i campi scambiati, non un ID valido con il nome di un'altra molecola. (b) La chiave del gruppo
+> legge il testo del confronto (ADR-0025): se il testo non si risolve diventa `STR:`, e il nome del modello non entra.
+> (4) **Casi noti**: calcitriolo in quattro gruppi con lo stesso verso e controllo (9 + 3 + 1 + 1 studi, 14 distinti; due
+> meta-analisi del deliverable); candidate dal nome: irradiation/radiation (7 e 7), asthma/asthmatic (4 e 3), ifna/IFNA1
+> (6 e 6), nash/NAFLD (7 e 5, entrambe nelle 40). Le meta-analisi `STR:` sono 44. `GSE221690` e `GSE223405` possono essere
+> studi doppi.
+> (5) **Domanda del PI:** «l'LLM non dovrebbe avere problemi a classificare irradiation e radiation alla stessa maniera; l'ancora
+> dovrebbe essere uguale». La risposta è (2) e (3): il modello li classifica quasi sempre allo stesso modo, il codice no.
 
 ### Perché
 
 Se una entità ha più nomi, i suoi studi si dividono fra più meta-analisi: l'articolo la conta più volte e ogni meta-analisi ha meno
-studi. Il calcitriolo è il caso certo; le altre coppie sono candidate dal nome.
+studi. Il modello conosce già l'identità giusta, ma il codice la perde. La correzione deve valere per tutte le entità, per
+costruzione.
 
 ### Che cosa si fa
 
-1. **Un criterio dichiarato di ricerca, su tutto lo Stadio 3**, non solo sulle 194: insiemi di gruppi con lo stesso verso e lo
-   stesso controllo la cui entità ha lo stesso significato. Classi, non coppie. Segnali da dichiarare con la loro sensibilità:
-   il nome scritto dal modello nello Stadio 1, l'anchor, i sinonimi dei dizionari, le notazioni abbreviate (la vitamina D).
-2. **Il tasso di ID ChEBI sbagliati scritti dal modello**: ID il cui nome in ChEBI non corrisponde al nome scritto dal modello, su
-   tutto il master dello Stadio 1, A3 e S14.
-3. **Lettura** delle classi candidate; poi una **regola**, in TDD, misurata con gli script di S9 (`20-ingressi.R`,
-   `30-due-regimi.R`, `40-analisi.R`).
+1. **Un ADR prima del codice**, che estende ADR-0018 e ADR-0025: quando l'ID e il nome scritti dal modello non corrispondono,
+   vince il nome; quando il testo del confronto non si risolve, entra il nome del modello. Il PI lo approva prima del codice.
+2. **Regola 1, l'ID contro il nome, per ogni ID scritto dal modello** nello Stadio 1, in tutti i database (ChEBI, ChEMBL, HGNC,
+   MeSH, NCBITaxon) e in tutti i campi che portano un ID (perturbazioni, malattia). Il codice confronta il nome dell'ID nel
+   dizionario con il nome scritto dal modello, con la stessa normalizzazione e gli stessi sinonimi dei resolver. Se non
+   corrispondono, risolve il nome e usa quell'ID; se il nome non si risolve, l'ID non si usa. Prima del codice: il tasso di
+   disaccordo per database su tutto il master dello Stadio 1, A3 e S14.
+3. **Regola 2, il nome del modello nella chiave.** Quando il testo del confronto non si risolve a un ID (oggi `STR:`), la chiave usa
+   il nome che il modello ha scritto per la stessa parola nel campione trattato. Vale solo se il modello ha letto la stessa parola
+   del confronto (uguaglianza normalizzata, dichiarata nell'ADR): così l'anchor non porta dentro una perturbazione diversa, che è il
+   motivo di ADR-0025. Vale per tutte le classi: farmaci, citochine, patogeni, malattie, genetica, ambiente.
+4. **Misura su tutto**, con gli script di S9 estesi al nome del modello (`20-ingressi.R`, `30-due-regimi.R`, `40-analisi.R`):
+   tutti gli 86.745 confronti, tutti i gruppi dello Stadio 3, la tabella dei gruppi che si uniscono e dei confronti che cambiano.
+5. **Le classi che restano.** Dopo le due regole: insiemi di gruppi con lo stesso verso e controllo e con nomi che i dizionari o il
+   modello dichiarano sinonimi. Si leggono tutti.
 
 ### Che cosa NON si fa
 
-Non si uniscono entità senza lettura. Non si cambia il recupero del nome senza il bump di `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`.
-Non si lancia il re-cluster: è S13.
+Nessuna lista di entità o di sinonimi scritta a mano: la regola vale per costruzione (`CLAUDE.md` §4). Non si uniscono gruppi per
+somiglianza di stringa. Non si lancia il re-cluster: è S13. Se cambia il recupero del nome, bump di
+`.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`. Nessuna scelta guarda la validazione esterna.
 
 ### Come si sa che è finita
 
-Il criterio è scritto e applicato a tutto lo Stadio 3; le classi candidate sono lette; il tasso di ID sbagliati è misurato; la
-regola ha test; c'è la tabella delle meta-analisi che si uniscono.
+- L'ADR è approvato dal PI; le due regole non contengono nomi di entità e hanno test.
+- Il disaccordo fra ID e nome è misurato su tutto lo Stadio 1, A3 e S14, per database.
+- La misura copre tutti i confronti e tutti i gruppi; la tabella dei cambi è letta.
+- **Controlli positivi** (devono vedersi, altrimenti la regola non funziona): il calcitriolo in un solo gruppo; l'interferone alfa
+  in un solo gruppo; le radiazioni unite almeno dove il modello scrive «Radiation».
+- **Controllo negativo:** nessun confronto che oggi si risolve a un ID cambia entità per la regola 2.
+- Le classi rimaste sono lette, e i casi dubbi sono decisi dal PI.
 
 ### La decisione che spetta a te
 
-Quali classi unire quando la lettura è incerta (per esempio NASH e NAFLD); se il codice usa il nome scritto dal modello al posto
-dell'ID quando i due non corrispondono.
+Prima del codice: l'ADR. Alla fine: le classi dubbie (per esempio NASH e NAFLD, l'interferone alfa come famiglia o come gene),
+e se la correzione entra in S13.
 
 ### Prompt
 
@@ -1211,14 +1232,16 @@ dell'ID quando i due non corrispondono.
 sessione simulomicsr S12c, leggi prima la skill di progetto.
 
 Apri docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md e fai la
-SESSIONE S12c, solo quella. Leggi prima il riquadro dei rinvii e il finding
-docs/findings/2026-11-07-S9-greche-e-corsie.md §11.
+SESSIONE S12c, solo quella, dopo S12b. Leggi prima i due riquadri e il finding
+docs/findings/2026-11-07-S9-greche-e-corsie.md §11-§12.
 
-Cerca su tutto lo Stadio 3, con un criterio dichiarato, le entità con piu'
-nomi: classi, non coppie. Misura su tutto il master dello Stadio 1 (A3 e S14)
-quante volte il modello scrive un ID ChEBI il cui nome non corrisponde al nome
-che scrive. Leggi le classi candidate, poi scrivi una regola in TDD e misurala
-con gli script di S9. Non lanciare il re-cluster.
+Il PI vuole un comportamento GENERALE, non una correzione per il calcitriolo e
+l'interferone alfa: quelli sono controlli positivi. Scrivi prima l'ADR e
+aspetta l'approvazione. Poi, in TDD: (1) l'ID scritto dal modello si controlla
+con il nome scritto dal modello, in tutti i database; se non corrispondono vince
+il nome; (2) quando il testo del confronto non si risolve, la chiave usa il nome
+del modello per la stessa parola. Misura su tutti gli 86.745 confronti con gli
+script di S9. Nessuna lista di entita'. Non lanciare il re-cluster.
 ```
 
 ------------------------------------------------------------------------

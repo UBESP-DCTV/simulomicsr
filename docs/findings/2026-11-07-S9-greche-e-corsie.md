@@ -18,6 +18,7 @@ sources:
 - {id: gruppi, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/40-gruppi-toccati.csv", title: "Le 290 chiavi di gruppo toccate"}
 - {id: anomalie, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/45-out.txt", title: "Spiegazioni e anomalie"}
 - {id: nomi, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/46-out.txt", title: "Calcitriolo, meta-analisi con più nomi, ID scritti dal modello"}
+- {id: modello, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/47-out.txt", title: "Il nome scritto dal modello nei gruppi con più nomi"}
 - {id: suite, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/40-suite-stage4.txt", title: "Suite stage4 dopo il fix delle corsie"}
 - {id: prove90, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/50-greche-90-prove.txt", title: "Le 90 prove sulle greche, rilanciate"}
 - {id: rilettura, resource: "docs/findings/2026-08-20-rilettura-194-correttezza.md", title: "Rilettura delle 194, §12-§13 sulle greche"}
@@ -279,7 +280,7 @@ L'handout chiedeva di pesare due costi.
 | regola dell'entità costante e negazione (241 confronti) | deciso dal PI; rinviato a S12b |
 | calcitriolo diviso in quattro gruppi | rinviato a S12c (§11, §12) |
 | meta-analisi con più nomi (domanda del PI) | deciso dal PI; rinviato a S12c |
-| anchor con l'ID ChEBI sbagliato scritto dal modello (domanda del PI) | spiegato (§11); rinviato a S12c |
+| anchor con l'ID ChEBI sbagliato scritto dal modello (domanda del PI) | spiegato (§11, `47-out.txt`); deciso dal PI (§12, punto 4); rinviato a S12c |
 | anchor non ricalcolato (2.142 confronti) | rinviato a S12b |
 | greche rovinate dalla codifica (272 nomi di anchor) | spiegato (§4); rinviato a S12b con l'anchor |
 
@@ -342,6 +343,13 @@ modello è giusto più spesso dell'ID. Rinviato a S12c.
 3. **Il calcitriolo va in S12c** (scelta tecnica dell'agente: il PI ha detto sì alle due sessioni e non ha risposto a parte
    sul calcitriolo). È lo stesso difetto di S12c, quattro nomi per una entità. S12b deve verificare che la traduzione non
    divida nessun gruppo, salvo i gruppi che S12c unisce; S13 parte dopo entrambe.
+4. **S12c risolve il problema, con un comportamento generale** (seconda domanda del PI: «rispondimi se nelle prossime sessioni
+   risolviamo la cosa o no»; risposta del PI: «sì, ma non deve essere limitata a questi due, deve essere un comportamento
+   generale»). Il modello scrive il nome giusto (`47-out.txt`): «calcitriol» in tutti e quattro i gruppi del calcitriolo, con sei
+   ID ChEBI diversi e nessuno giusto; «interferon-alpha» nei due gruppi di IFN-alfa; «Radiation» nella maggior parte dei
+   confronti delle radiazioni. S12c scrive un ADR e due regole senza nomi di entità: l'ID del modello si controlla con il nome
+   del modello, in tutti i database; quando il testo del confronto non si risolve, la chiave usa il nome del modello per la
+   stessa parola. Calcitriolo e interferone alfa sono controlli positivi. S12c viene dopo S12b.
 
 # Da dove vengono i numeri del riassunto
 
