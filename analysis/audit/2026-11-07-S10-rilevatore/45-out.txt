@@ -1,0 +1,87 @@
+== per famiglia: confronti, presi, e quante volte la sotto-regola ha i suoi ingressi ==
+                                                      famiglia confronti presi
+                                                        <char>     <int> <int>
+ 1:                           secondo agente solo nel trattato        41     3
+ 2:            materiale / tipo cellulare diverso fra i bracci        22     2
+ 3:                                         tempo non appaiato        19     0
+ 4:                                                      altro        15     1
+ 5:                donatore / soggetto / sesso / etnia diversi        14     0
+ 6:                                     sede anatomica diversa         6     3
+ 7:                entita del gruppo non isolata dal confronto         6     0
+ 8:                          passaggio di coltura non appaiato         2     0
+ 9:                                          dose non appaiata         2     0
+10: controllo non e un controllo / tipo di controllo sbagliato         1     0
+11:       genotipo / perturbazione genetica su un braccio solo         1     1
+    tempo_in_entrambi tempo_in_uno_solo soggetto_in_entrambi
+                <int>             <int>                <int>
+ 1:                 6                 4                   11
+ 2:                 0                 1                    4
+ 3:                 1                12                    8
+ 4:                 0                 2                    4
+ 5:                 0                 0                    0
+ 6:                 0                 0                    0
+ 7:                 0                 0                    6
+ 8:                 1                 1                    2
+ 9:                 0                 0                    2
+10:                 0                 0                    0
+11:                 0                 0                    1
+    sistema_in_entrambi con_parole_in_piu con_parola_riconosciuta
+                  <int>             <int>                   <int>
+ 1:                   1                37                      18
+ 2:                   2                18                       3
+ 3:                   0                16                       3
+ 4:                   0                13                       5
+ 5:                   0                 8                       3
+ 6:                   0                 4                       3
+ 7:                   0                 6                       0
+ 8:                   0                 1                       1
+ 9:                   0                 0                       0
+10:                   0                 0                       0
+11:                   0                 1                       1
+
+== secondo agente: le parole in piu' nel trattato, per confronto ==
+     preso riconosciute                          parole
+    <lgcl>        <int>                          <char>
+ 1:  FALSE            0                                
+ 2:  FALSE            0                        duration
+ 3:  FALSE            0                                
+ 4:  FALSE            0                                
+ 5:  FALSE            0                         75jours
+ 6:  FALSE            0                                
+ 7:  FALSE            1                            5-fu
+ 8:  FALSE            0                             and
+ 9:  FALSE            1               hypoxia tgf-beta1
+10:  FALSE            0                             eps
+11:  FALSE            1                            tgfb
+12:  FALSE            0                       mtblysate
+13:  FALSE            0                        xrt plus
+14:   TRUE            2              ifn-gamma il-1beta
+15:   TRUE            2     ifn-gamma il-1beta combined
+16:  FALSE            1                       pge2 poly
+17:  FALSE            1                 r5020 ifn-alpha
+18:  FALSE            0               mass co-infection
+19:  FALSE            0                        compound
+20:  FALSE            0                        compound
+21:  FALSE            0                         shp1705
+22:  FALSE            0                         shp1705
+23:  FALSE            0                             and
+24:  FALSE            1                sb-3ct ifn-gamma
+25:  FALSE            1               with and ifngamma
+26:  FALSE            1               with and ifngamma
+27:  FALSE            1               with and ifngamma
+28:  FALSE            1                         dht enz
+29:  FALSE            1                  dht and x15695
+30:  FALSE            0                  with and torin
+31:  FALSE            0                  with and torin
+32:  FALSE            0                        compound
+33:  FALSE            0                             and
+34:  FALSE            1                         and lps
+35:  FALSE            1                         and lps
+36:  FALSE            0                             and
+37:   TRUE            1                   ifn-gamma and
+38:  FALSE            1 h2o2 after atra differentiation
+39:  FALSE            0                             and
+40:  FALSE            0       prostate and atraric acid
+41:  FALSE            1              wild-type ifn-beta
+     preso riconosciute                          parole
+    <lgcl>        <int>                          <char>

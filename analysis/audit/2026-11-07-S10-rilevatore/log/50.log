@@ -1,0 +1,49 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 410 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 271791 record_id in 8.5 sec
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 271018 record_id in 6 sec
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 270860 record_id in 7.5 sec
+ℹ mappe record -> campioni costruite (0.5 min)
+ℹ v1: record_id del run trovati nei master: vecchio 0.9933, A3 0.9220, S14 0.7392
+ℹ fallback: record_id del run trovati nei master: vecchio 0.9933, A3 0.9220, S14 0.7392
+ℹ record agganciati: 115352 (4.2 min)
+== record_id agganciati alle righe override, per stato ==
+          stato_A3
+tabella    assente_entrambi assente_nuovo diverso uguale
+  fallback              532          4936    8393  63131
+  v1                    298          2490    7448  28124
+          stato_S14
+tabella    assente_entrambi assente_nuovo diverso uguale
+  fallback              532         20567   31768  24125
+  v1                    298          8870   18867  10325
+
+== righe override (una riga = un gruppo corretto), per stato peggiore dei suoi record ==
+
+ stato_A3 
+          esito
+tabella    almeno_un_diverso misto_uguale_assente tutti_assenti tutti_uguali
+  fallback              4808                  241          3393        41804
+  v1                    1269                  489            54         1834
+
+ stato_S14 
+          esito
+tabella    almeno_un_diverso misto_uguale_assente tutti_assenti tutti_uguali
+  fallback             19410                  195         13419        17222
+  v1                    2748                  377           203          318
+
+campioni con un nome arrivato da un record_id con contenuto diverso (A3): 11001
+confronti del deliverable (1.903) con almeno un campione trattato toccato: 189; col primo campione trattato toccato: 159
+  in quante meta-analisi: 84 e 73
+chiavi dei 1.903 non trovate nel master A3: 0
+✔ Scritti 50-tabelle-nomi.rds, 50-out.txt, 50-deliverable-toccati.csv (4.3 min)

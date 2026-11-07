@@ -1,0 +1,29 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 410 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 271791 record_id in 8.4 sec
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 271018 record_id in 6.1 sec
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 270860 record_id in 7.6 sec
+== campioni con un nome dalle tabelle: nome in produzione contro nome agganciato al run vecchio ==
+Key: <master>
+   master diverso solo_giusto solo_prod uguale
+   <char>   <int>       <int>     <int>  <int>
+1:     A3    2774       10343      4686  85914
+2:    S14    7708       37209     13105  54114
+
+== i 1.903 confronti del deliverable, per esito del nome sul primo campione trattato ==
+
+    diverso nessun_nome solo_giusto   solo_prod      uguale 
+         33        1336         169          81         284 
+confronti con un nome diverso sul primo campione trattato: 283, in 105 meta-analisi
+Scritti 51-out.txt, 51-nomi-per-campione.rds, 51-deliverable-nome-diverso.csv

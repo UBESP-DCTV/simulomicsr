@@ -1,0 +1,44 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 410 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+ℹ dizionari caricati (9.4 min)
+ℹ confronti: 1903; gruppi: 194
+Tracing function ".ca_entity_tokens" in package
+"namespace:simulomicsr"
+[1] ".ca_entity_tokens"
+Tracing function ".rp_row_defect" in package "namespace:simulomicsr"
+[1] ".rp_row_defect"
+Untracing function ".ca_entity_tokens" in package
+"namespace:simulomicsr"
+Untracing function ".rp_row_defect" in package
+"namespace:simulomicsr"
+ℹ cattura fatta (10.6 min)
+
+── C2(a) ──
+
+             scarto_vuoto              una_chiamata                  v0_vuoto 
+                     1903                      1903                      1903 
+entita_uguale_deliverable 
+                     1894 
+── C2(b): con gli ingressi di agosto la produzione segnala 2 confronti (attesi 2) ──
+
+── C4: controlli ──
+
+      study                               trattato  atteso          esito_V3
+1  GSE97744 Circulating macrophage + IFN-γ and LPS segnala     agente_in_piu
+2 GSE210984         MSC iPSC-derived TGF-β 21 days segnala materiale_diverso
+3 GSE139963                                 TGF-β1    tace                  
+4 GSE210984      MSC Primary Culture TGF-β 14 days    tace                  
+  visto
+1  TRUE
+2  TRUE
+3  TRUE
+4  TRUE
+✔ Scritto 20-ingressi-regola.rds (11.6 min)

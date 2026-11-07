@@ -1,0 +1,28 @@
+== record_id agganciati alle righe override, per stato ==
+          stato_A3
+tabella    assente_entrambi assente_nuovo diverso uguale
+  fallback              532          4936    8393  63131
+  v1                    298          2490    7448  28124
+          stato_S14
+tabella    assente_entrambi assente_nuovo diverso uguale
+  fallback              532         20567   31768  24125
+  v1                    298          8870   18867  10325
+
+== righe override (una riga = un gruppo corretto), per stato peggiore dei suoi record ==
+
+ stato_A3 
+          esito
+tabella    almeno_un_diverso misto_uguale_assente tutti_assenti tutti_uguali
+  fallback              4808                  241          3393        41804
+  v1                    1269                  489            54         1834
+
+ stato_S14 
+          esito
+tabella    almeno_un_diverso misto_uguale_assente tutti_assenti tutti_uguali
+  fallback             19410                  195         13419        17222
+  v1                    2748                  377           203          318
+
+campioni con un nome arrivato da un record_id con contenuto diverso (A3): 11001
+confronti del deliverable (1.903) con almeno un campione trattato toccato: 189; col primo campione trattato toccato: 159
+  in quante meta-analisi: 84 e 73
+chiavi dei 1.903 non trovate nel master A3: 0
