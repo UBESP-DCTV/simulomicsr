@@ -1,0 +1,119 @@
+== A. P1 scomposto (su 86745 confronti) ==
+G nelle quattro stringhe del confronto: 2615
+   di cui lettere greche diverse da mu (o ss): 858 = 0.99%
+   di cui solo micro (mu o segno di micro): 1757
+G solo nel nome dell'anchor: 1251
+
+== B. I confronti che cambiano nelle 194, contro difetti.csv ==
+           meta_off     study
+        1 25 oh 2d3 GSE223405
+              IFNB1 GSE125066
+               IFNG GSE141585
+               IFNG GSE158814
+               IL1A GSE205853
+ lipopolysaccharide  GSE97744
+              TGFB1 GSE139963
+              TGFB1 GSE163241
+                TNF GSE108621
+                TNF GSE126101
+                TNF GSE130226
+                TNF GSE138237
+                TNF GSE159894
+                TNF GSE191101
+                TNF GSE194220
+                TNF GSE202436
+                TNF GSE202576
+                TNF GSE218167
+                TNF GSE225274
+                TNF GSE226232
+                TNF GSE231460
+                TNF GSE246340
+                TNF  GSE98984
+                                                   stato_on confronti
+              STR:1alpha_25_oh_2d3||gain||vehicle_untreated         8
+ COMBO:ifn-beta+wild-type t gondii||gain||vehicle_untreated         1
+            COMBO:ifn-gamma+sb-3ct||gain||vehicle_untreated         2
+     COMBO:c trachomatis+ifn-gamma||gain||vehicle_untreated         1
+          COMBO:ifn-gamma+il-1beta||gain||vehicle_untreated         3
+               COMBO:ifn-gamma+lps||gain||vehicle_untreated         1
+           COMBO:hypoxia+tgf-beta1||gain||vehicle_untreated         1
+                                      FUORI:entita_costante         4
+               CHEMBL:CHEMBL265582||gain||vehicle_untreated         1
+                                         FUORI:id_blacklist         1
+                                         FUORI:id_blacklist         6
+                                         FUORI:id_blacklist         3
+               CHEMBL:CHEMBL265582||gain||vehicle_untreated         1
+                                         FUORI:id_blacklist         1
+                                         FUORI:id_blacklist         1
+                                         FUORI:id_blacklist         8
+                                         FUORI:id_blacklist         1
+                                         FUORI:id_blacklist         1
+                                         FUORI:id_blacklist         2
+               CHEMBL:CHEMBL265582||gain||vehicle_untreated         1
+                                         FUORI:id_blacklist         2
+               CHEMBL:CHEMBL265582||gain||vehicle_untreated         1
+                                         FUORI:id_blacklist         1
+ gia_difetto
+       FALSE
+        TRUE
+        TRUE
+       FALSE
+        TRUE
+        TRUE
+        TRUE
+        TRUE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+       FALSE
+studi (meta-analisi, studio) che cambiano: 23; gia' in difetti.csv per la stessa meta-analisi: 6
+
+== C. TNF-alpha scritto in ASCII ==
+   tnf-alpha  -> ChEBI/ChEMBL CHEMBL:CHEMBL265582 (TNF-ALPHA) | citochine HGNC:11892
+   tnfalpha   -> ChEBI/ChEMBL CHEBI:197439 (Recombinant Tumor Necrosis Factor TNF alpha (Zebrafish)) | citochine HGNC:11892
+   tnf alpha  -> ChEBI/ChEMBL STR:tnf_alpha (tnf alpha) | citochine HGNC:11892
+   tnfa       -> ChEBI/ChEMBL STR:tnfa (tnfa) | citochine HGNC:11892
+   tnf-α     -> ChEBI/ChEMBL STR:tnf (tnf-α) | citochine HGNC:11892
+   tnfα      -> ChEBI/ChEMBL STR:tnf (tnfα) | citochine HGNC:11892
+CHEBI:197439 nella lista nera dell'ancora del contrasto: TRUE
+studi nel gruppo TNF del deliverable: 42
+confronti eleggibili con TNF-alpha in ASCII nel trattato: 93; nel gruppo TNF: 2 (studi 1)
+   nel gruppo CHEMBL:CHEMBL265582: 6 confronti, 6 studi
+   scartati come id_blacklist: 11 confronti, 6 studi
+   studi fuori dal gruppo TNF per la forma ASCII: 12; non gia' nel gruppo: 12
+CHEMBL:CHEMBL265582 e' una meta-analisi del deliverable: FALSE
+
+== D. Interferon gamma scritto per esteso (gruppo nuovo di P4) ==
+   interferon gamma  -> ChEBI/ChEMBL CHEBI:5939+CHEMBL:CHEMBL2108494 (Interferon gamma-1b + INTERFERON) | citochine HGNC:5438
+   interferon γ     -> ChEBI/ChEMBL CHEMBL:CHEMBL2108494 (INTERFERON) | citochine HGNC:5438
+   interferon        -> ChEBI/ChEMBL CHEMBL:CHEMBL2108494 (INTERFERON) | citochine STR:interferon
+   ifn-gamma         -> ChEBI/ChEMBL STR:ifn_gamma (ifn-gamma) | citochine HGNC:5438
+
+== E. Entita' tenuta costante con un controllo che nega l'entita' ==
+scarti entita_costante (OFF): 1218; eleggibili: 706
+   con no/non/without/w/o/minus/absence nel controllo: 241 eleggibili in 92 studi
+
+== F. Greche rovinate dalla codifica ==
+nelle quattro stringhe del confronto: 0; nel nome dell'anchor: 272
+   in un gruppo: 72; in un gruppo con l'entita' presa dall'anchor: 3
+
+== G. IL1A nel deliverable ==
+     study                               tl                         cl
+ GSE120784              keratinocytes IL-1a keratinocytes unstimulated
+ GSE142706               LNas1 + IL-1 alpha            LNCaP untreated
+ GSE181229 MDA-PCa-2b + IL-1 alpha (3 days)       MDA-PCa-2b untreated
+ GSE181229 MDA-PCa-2b + IL-1 alpha (3 days)       MDA-PCa-2b untreated
+ GSE205853                     IFN-γ, IL-1β               No treatment
+ GSE205853         IFN-γ, IL-1β (high dose)               No treatment
+ GSE205853          IFN-γ, IL-1β (combined)               No treatment

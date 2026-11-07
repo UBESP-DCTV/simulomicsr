@@ -1,0 +1,45 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 410 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+✔ stage1_master: SHA-256 uguale al run_metadata dello Stadio 3 (53f7f49ac588...)
+✔ stage2_master: SHA-256 uguale al run_metadata dello Stadio 3 (b9947746ab19...)
+
+── 1-2. Stadio 2 + guardia di completezza (7.1 min) ──
+
+ℹ studi: 24394; guardia: 18923 campioni su 1448 studi
+
+── 3. Stadio 1 (8.2 min) ──
+
+<environment: 0x5a72c5f0ded8>
+ℹ GSM: 508037
+
+── 5. Pre-passaggio anchor senza recupero (10.8 min) ──
+
+ℹ chiavi anchor: 189966; GSM rappresentanti: 187288
+
+── 6. Lookup di recupero (cache su disco) (12.9 min) ──
+
+ℹ GSM con voce: 187288
+
+── 6b. Overlay v9 e fallback (13 min) ──
+
+[4b] Costruzione mappa record_id -> GSM membri dal master Stadio 2...
+  Mappa pronta: 271018 record_id in 24.5 sec
+ℹ overlay v9: 52437 GSM; overlay fallback: 41470 GSM
+
+── Fase 2.0: cache degli anchor con il recupero (18.1 min) ──
+
+ℹ anchor in cache: 189966
+
+── Confronti (19.3 min) ──
+
+ℹ confronti: 86745; saltati come nel build: malformata=79, braccio_vuoto=0, gsm_assente=2
+ℹ record_id unici: 86745; eleggibili: 45187
+✔ Scritto 20-ingressi.rds (20 min)

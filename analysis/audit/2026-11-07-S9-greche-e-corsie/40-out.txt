@@ -1,0 +1,69 @@
+== CANCELLO 2: il regime OFF riproduce lo Stadio 3 ==
+record cgroup costruiti (tenuti dal contrasto): 53915 (atteso 53.915)
+eleggibili tenuti: 27395; in assignments: 27395
+record di assignments ritrovati: 27395 su 27395
+chiave uguale ad anchor_key: 27395 su 27395
+non eleggibili: 26520 ricostruiti, 26520 in non_clusterable (tier_s_incomplete); insiemi uguali: TRUE
+scarti: 32830 ricostruiti, 32830 in non_clusterable (contrast_gate); ritrovati 32830; ragione uguale 32830
+altre ragioni cgroup in non_clusterable: nessuna
+CANCELLO 2: PASSATO
+
+== CANCELLO 3: copertura e controllo negativo ==
+confronti calcolati in entrambi i regimi: 86745 su 86745 (scarto NA: OFF 0, ON 0)
+confronti senza caratteri di G: 82879; con esito ON uguale a OFF in tutti i campi: 82879
+CANCELLO 3: PASSATO
+
+== P1 e punto 2: i confronti con caratteri di G ==
+P1: 3866 confronti su 86745 con almeno un carattere di G = 4.457% [3.788; 5.241] (B = 2000, seme 20261107, 18701 studi)
+per categoria (tutti i confronti con G):
+
+      greca greca+micro       micro 
+       1993          99        1774 
+studi con almeno un confronto con G: 1017
+confronti con G che OFF mette in un gruppo: 1547; per categoria:
+
+      greca greca+micro       micro 
+        775          55         717 
+di questi, in gruppi che sono meta-analisi del deliverable: 501 confronti in 64 meta-analisi
+
+== Che cosa cambia con la traduzione ==
+confronti il cui stato nello Stadio 3 cambia: 364 (tutti con G: TRUE)
+                          
+                           greca greca+micro micro
+  cambia gruppo              165           0    54
+  cambia ragione di scarto    78           0     4
+  entra in un gruppo          20           1     0
+  esce dal gruppo             39           1     2
+
+== Gruppi dello Stadio 3 ==
+gruppi OFF: 11551; gruppi ON: 11563
+chiavi di gruppo toccate (OFF o ON): 290
+entita' OFF dei confronti che cambiano: 131 distinte
+gruppi OFF che si spezzano (>= 2 destinazioni): 14
+gruppi ON che nascono da una fusione (>= 2 origini): 9
+chiavi nuove in ON: 142; chiavi che spariscono: 130
+P4: gruppi con almeno 3 studi in ON e meno di 3 in OFF: 1
+   CHEBI:5939+CHEMBL:CHEMBL2108494||gain||vehicle_untreated  k 2 -> 3
+gruppi con almeno 3 studi in OFF e meno di 3 in ON: 2
+   COMBO:il1+tnf||gain||vehicle_untreated  k 3 -> 2
+   STR:1_25_oh_2d3||gain||vehicle_untreated  k 3 -> 2
+
+== Le meta-analisi del deliverable ==
+controllo: studi del gruppo ricostruito uguali a n_studies del deliverable: 194 su 194
+P2: meta-analisi delle 194 il cui gruppo cambia (entra o esce almeno un confronto): 7
+    con almeno uno studio in piu' o in meno: 5
+P3: meta-analisi delle 40 il cui gruppo cambia: 1
+   TGFB1                                    in40=FALSE escono 5 (studi persi 1, di cui poolati 1), entrano 0 (studi nuovi 0), k 71 -> 70
+   TNF                                      in40=TRUE  escono 31 (studi persi 15, di cui poolati 12), entrano 0 (studi nuovi 0), k 42 -> 27
+   lipopolysaccharide                       in40=FALSE escono 1 (studi persi 1, di cui poolati 1), entrano 0 (studi nuovi 0), k 44 -> 43
+   IFNG                                     in40=FALSE escono 3 (studi persi 0, di cui poolati 0), entrano 0 (studi nuovi 0), k 31 -> 31
+   IFNB1                                    in40=FALSE escono 1 (studi persi 0, di cui poolati 0), entrano 0 (studi nuovi 0), k 8 -> 8
+   IL1A                                     in40=FALSE escono 3 (studi persi 1, di cui poolati 1), entrano 0 (studi nuovi 0), k 4 -> 3
+   1 25 oh 2d3                              in40=FALSE escono 8 (studi persi 1, di cui poolati 1), entrano 0 (studi nuovi 0), k 3 -> 2
+17beta-estradiolo (rinvio dalla validazione esterna): 17β-estradiol [CHEBI:16469] in40=TRUE cambia=FALSE
+
+== Che cosa lo strumento non vede (anchor non ricalcolato) ==
+confronti in un gruppo il cui anchor o i cui fatti dello Stadio 1 hanno un carattere di G: 2142
+   di cui con l'entita' presa dall'anchor (fonte = anchor): 137
+   di cui in meta-analisi del deliverable: 591 in 91 meta-analisi
+confronti eleggibili per il tier S su tutti: 45187; non eleggibili con fatti con G: 2838
