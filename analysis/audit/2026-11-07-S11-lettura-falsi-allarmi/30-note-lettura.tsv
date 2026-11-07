@@ -1,0 +1,90 @@
+n	esito	fonte	famiglia	motivo	causa
+1	sbagliato	metadato	tempo non appaiato	GEO: trattato "Total RNAseq 48h calcium high", controllo "24h control"; lo studio ha "calcium_high_negative_control". Il controllo contiene anche librerie 4SU	
+2	sbagliato	etichetta	secondo agente solo nel trattato	gia' accusato: "PBMC + Metformin + MtbLysate" contro "PBMC unstimulated". Decisione 1 non si applica: "Baseline" e' la visita prima del farmaco in vivo, il tempo del trattato non e' scritto	
+3	giusto		-	"PBMC + Metformin" contro "PBMC unstimulated": "Baseline_patient" e' la visita prima del farmaco in vivo; il trattato non ha un tempo scritto: decisione 1 non si applica. Nessun altro difetto	candidato a tempo zero per la parola "Baseline" (visita), non e' un allarme della regola
+4	giusto		-	"Irradiation" PD32 contro "No Treatment (Proliferating)" PD29 e PD34: il passaggio del trattato sta fra i due del controllo. OSSERVAZIONE: libreria paired nel trattato, single nel controllo (tecnica, fuori dalle famiglie)	R6: chiede un valore uguale; due passaggi vicini (PD29-PD34 contro PD32) contano come diversi
+5	giusto		-	CONTROLLO C: "Lapatinib 1 uM 24h" contro "DMSO 0.001 uM 24h", stesso tempo e stesse cellule	
+6	sbagliato	metadato	secondo agente solo nel trattato; tempo zero	GEO: trattato "Post LPS (time 4h, BC1215 treated)", controllo "Pre LPS (time 0h)": BC1215 solo nel trattato e controllo a tempo zero	
+7	sbagliato	metadato	tempo zero	GEO: trattato "Post LPS (time 4h; no intervention)", controllo "Pre LPS (time 0h)"	
+8	giusto		-	"Ulcerative Colitis, Never smoked" contro "Normal Control, Never smoked": caso-controllo di malattia, non fumatori su tutti e due i bracci	R1: lo Stadio 1 scrive "Never smoked" come agente; nel controllo e' marcato controllo negativo e la regola non lo conta, quindi diventa un agente in piu' del trattato
+9	giusto		-	"Bortezomib, shPSMD2" contro "DMSO, shPSMD2": GEO "shRNA: Dox induced shPSMD2" su tutti e due i bracci, bortezomib isolato	R1: lo Stadio 1 scrive shPSMD2 nei trattati e non nei controlli, che hanno la stessa shRNA nei metadati
+10	sbagliato	etichetta	tempo zero	gia' accusato: "IL21 for 24 hours" contro "vehicle control (time zero)"; GEO time point 24h contro 0	
+11	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IL21 for 30 minutes" contro "Healthy IEIL cells vehicle control (time zero)"; GEO time point 0 nel controllo	
+12	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IL21 for 4 hours" contro "Healthy IEIL cells vehicle control (time zero)"; GEO time point 0 nel controllo	
+13	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IL15 for 30 minutes" contro "Healthy IEIL cells vehicle control (time zero)"; GEO time point 0 nel controllo	
+14	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IL15 for 3 hours" contro "Healthy IEIL cells vehicle control (time zero)"; GEO time point 0 nel controllo	
+15	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IL15 for 4 hours" contro "Healthy IEIL cells vehicle control (time zero)"; GEO time point 0 nel controllo	
+16	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IL15 for 24 hours" contro "Healthy IEIL cells vehicle control (time zero)"; GEO time point 0 nel controllo	
+17	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IFN-beta for 30 minutes" contro "Healthy IEIL cells vehicle control (time zero)"; GEO time point 0 nel controllo	
+18	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IFN-beta for 24 hours" contro "Healthy IEIL cells vehicle control (time zero)"; GEO time point 0 nel controllo	
+19	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IFN-beta for 3 hours" contro "Healthy IEIL cells vehicle control (time zero)"	
+20	sbagliato	etichetta	tempo zero	"Healthy IEIL cells stimulated with IFN-beta for 4 hours" contro "Healthy IEIL cells vehicle control (time zero)"	
+21	giusto		-	"PR-B + R5020 (48h) + p53mut" contro "PR-B + vehicle (48h)": GEO "mutation: p53mut" anche nel controllo, stesso tempo 48 h; R5020 isolato. L'etichetta del controllo omette p53mut	R1: lo Stadio 1 scrive p53mut come perturbazione nei trattati e non nei controlli, che hanno la stessa mutazione nei metadati
+22	giusto		-	PlaB + Rn7sk knockdown 4 h contro Rn7sk knockdown + DMSO: GEO "time point: no" vuol dire senza farmaco, non tempo zero; decisione 1 non si applica. OSSERVAZIONE: un trattato e' una libreria 4SU, i controlli sono Total	candidato a tempo zero solo dallo Stadio 1, che legge "time point: no" come tempo zero
+23	sbagliato	etichetta	secondo agente solo nel trattato	CONTROLLO C: "Hypoxia + TGF-beta1" contro "PBS (Vehicle Control)"; GEO "treated with hypoxia and TGFb1"	
+24	giusto		-	CONTROLLO C: "TGF-beta1" contro "PBS (Vehicle Control)"; GEO "treated with TGFb1" contro "treated with PBS"	
+25	incerto	metadato	donatore / genotipo	"LPS 12h" (5 donatori TREML4 CT) contro "unstimulated" (9 campioni: gli stessi 5 donatori CT piu' donatori "non permissive (TT)"): il genotipo TT sta solo nel controllo. Tempo zero non leggibile: decisione 1 non si applica	
+26	incerto	metadato	donatore / genotipo	"LPS 8h" (5 CT e 1 TT) contro "unstimulated" (5 CT e 4 TT): composizione per genotipo diversa fra i bracci. Tempo zero non leggibile: decisione 1 non si applica	
+27	giusto		-	"BT-474 Herceptin" (6 giorni) contro "BT-474 untreated": GEO "treatment: untreated" senza tempo; decisione 1 non si applica	candidato a tempo zero solo dallo Stadio 1, che marca t0 su controlli senza tempo
+28	sbagliato	etichetta	secondo agente solo nel trattato	gia' accusato ("H2O2 after ATRA differentiation" contro "Untreated SH-SY5Y"). Tempo zero non leggibile: decisione 1 non si applica. NOTA: GEO dice "Pre" su tutti e due i bracci; l'accusa resta, ma i metadati non la confermano	
+29	sbagliato	metadato	tempo zero	gia' accusato per il passaggio; GEO: controllo "[SCC40p12TGF0h]" (TGF 0 h), trattato 48 h. NOTA: i passaggi sono appaiati nei metadati (trattato p13 e p8, controllo p12, p13, p8): l'accusa di agosto sul passaggio non regge, il difetto resta per il tempo zero	
+30	sbagliato	metadato	tempo zero	GEO: controllo "[SCC40p..TGF0h]" contro "TGF-beta1 treatment (72h)"	
+31	giusto		-	"VTP50469, 21 days" contro "vehicle control, 21 days": GEO "timepoint: 21 days" su tutti e due i bracci	R2a: lo Stadio 1 scrive 504 h nei trattati e 1008 h nei controlli per lo stesso "21 days" (conversione sbagliata)
+32	sbagliato	metadato	tempo zero	"DHT 10 nM 24 hours" contro "Vehicle Control (EtOH)": GEO controllo "time: 0hr"	
+33	sbagliato	metadato	tempo zero	"DHT 10 nM 96 hours" contro "Vehicle Control (EtOH)": GEO controllo "time: 0hr"	
+34	giusto		-	"BxPC3, SMAD2 and SMAD3 KO, TGFB, 24h" contro "BxPC3, SMAD2 and SMAD3 KO, no treatment": GEO "crispr: SMAD2 and SMAD3 KO" e "treatment_time: 24h" su tutti e due i bracci	R1: lo Stadio 1 scrive il knockout nei trattati e lascia vuote le perturbazioni dei controlli
+35	giusto		-	Parkinson con mutazioni PARK2 contro sani: caso-controllo di malattia, la mutazione e' la malattia	R1: lo Stadio 1 scrive la mutazione del paziente come knockout genetico, e la regola la conta come agente in piu' anche nelle malattie
+36	giusto		-	"LPS" (4 h) contro "Untreated": GEO controllo senza tempo; decisione 1 non si applica. La rilettura di agosto lo cita come coppia pulita	candidato a tempo zero solo dallo Stadio 1
+37	sbagliato	etichetta	secondo agente solo nel trattato	gia' accusato: "PW and LPS" contro "Untreated". Tempo zero non leggibile	
+38	sbagliato	metadato	tempo zero	"Primary Melanoma BLM cells, Untreated, TNF 6h" contro "Melanoma BLM cells, Untreated": GEO controllo "treatment: TNF 0h", titolo "T0". La regola non lo segnala	
+39	sbagliato	metadato	tempo zero	"H2O2 300 uM 24h" contro "Untreated": GEO controllo "time point: 0"	
+40	sbagliato	metadato	tempo zero	"H2O2 300 uM 4h" contro "Untreated": GEO controllo "time point: 0"	
+41	sbagliato	metadato	tempo zero	"H2O2 300 uM 8h" contro "Untreated": GEO controllo "time point: 0"	
+42	sbagliato	metadato	tempo zero	"SF268 neratinib 6h" contro "SF268 untreated": GEO controllo "timepoint: 0 hr". NOTA: titoli "SF268_GCN2cr3" nel trattato e "SF268_LC9B" nel controllo, forse cloni diversi	
+43	sbagliato	metadato	tempo zero	"SF268 neratinib 72h" contro "SF268 untreated": GEO controllo "timepoint: 0 hr". Stessa nota sui cloni	
+44	sbagliato	etichetta	secondo agente solo nel trattato	gia' accusato: Gemcitabine e Torin 1 contro "Untreated". GEO controllo "treatment time: None": decisione 1 non si applica	
+45	sbagliato	etichetta	secondo agente solo nel trattato	gia' accusato: Gemcitabine e Torin 1 (9 giorni piu' 12 di recupero) contro "Untreated". Decisione 1 non si applica	
+46	sbagliato	metadato	tempo non appaiato	"COPD, 7 days of culture" (3 campioni a 7 giorni) contro "Healthy, 7 days of culture": GEO, 18 controlli a 7 giorni e 6 a 13 giorni. Il passaggio della regola non c'entra	R6 scatta per un motivo sbagliato: lo Stadio 1 mette il tempo di coltura nel campo del passaggio, scritto in modo diverso nei due bracci
+47	giusto		-	"TRPM2 knockout + doxorubicin" contro "TRPM2 knockout": GEO stesso knockout e stessi cloni sui due bracci; controllo "treatment: untreated" senza tempo, decisione 1 non si applica	candidato a tempo zero solo dallo Stadio 1
+48	giusto		-	"puromycin doxorubicin" contro "puromycin untreated": stessi cloni Scramble; controllo senza tempo, decisione 1 non si applica	candidato a tempo zero solo dallo Stadio 1
+49	giusto		-	"TGF-beta1" (48 h) contro "Untreated": controllo senza tempo, decisione 1 non si applica	candidato a tempo zero solo dallo Stadio 1
+50	sbagliato	metadato	entita' nel controllo	"CMV infected, non-BCG" contro "Control, non-BCG": GEO, 11 dei 53 controlli sono "CMV-infected" e 8 "CMV-unknown"	R2a scatta per un motivo sbagliato: lo Stadio 1 legge "D-7" come -7 ore nei trattati e -168 ore nei controlli
+51	giusto		-	"EPZ-6438" contro "DMSO": "baseline" e' nella sorgente GEO del controllo trattato con DMSO, non un tempo; il trattato non ha un tempo. Decisione 1 non si applica	candidato a tempo zero dalla parola "baseline" nei metadati
+52	sbagliato	metadato	tempo zero	"Dexamethasone 1h" contro "Vehicle": GEO titolo del controllo "CTERM_0HR". NOTA: titoli "GFP" nel trattato e "CTERM" nel controllo, forse costrutti diversi	
+53	sbagliato	metadato	tempo zero	"Dexamethasone 3h" contro "Vehicle": GEO titolo del controllo "CTERM_0HR". Stessa nota sui costrutti	
+54	sbagliato	metadato	secondo agente solo nel trattato	"TE11 + Chloroquine (10 uM)" contro "TE11 + DMSO": GEO trattato "10 uM of Chloroquine + 25 uM of 5 Fluorouracil"	
+55	sbagliato	etichetta	materiale / formato diverso	CONTROLLO C: atteso sbagliato, e lo e'. NOTA: GEO dice midollo osseo per tutti e due i bracci, non "iPSC-derived"; la differenza vera e' "micromass chondrogenic differentiation for 21 days" contro MSC non differenziate	
+56	incerto	metadato	tempo non appaiato	"poly I:C" contro "Vehicle control (none)": GEO trattato "Untreated cDC1 24h + poly I:C 4h", controllo "none 24h". Se il poly I:C segue le 24 ore, i bracci differiscono di 4 ore; i metadati non lo decidono	R2a: confronta 4 h (solo il poly I:C) con 24 h (la coltura del controllo)
+57	sbagliato	metadato	tempo zero; genotipo	"Wild-type, IFN alpha, 2h" contro "Wild-type, unstimulated": GEO controllo "time: 0h", e i 6 controlli sono 2 wild type, 2 IRF1 KO, 1 IRF9 KO, 1 STAT2 KO	
+58	sbagliato	metadato	tempo zero; genotipo	etichetta "Wild-type, IFN alpha, 2h", GEO trattato "IRF9/IRF1 double knockout"; controllo misto a 0 h	
+59	sbagliato	metadato	tempo zero; genotipo	"Wild-type, IFN alpha, 24h" contro il controllo misto a 0 h	
+60	sbagliato	metadato	tempo zero; genotipo	"Wild-type, IFN alpha, 4h" contro il controllo misto a 0 h	
+61	sbagliato	metadato	tempo zero; genotipo	"Wild-type, IFN alpha, 48h" contro il controllo misto a 0 h	
+62	sbagliato	metadato	tempo zero; genotipo	etichetta "Wild-type, IFN alpha, 72h", GEO trattato "IRF9/IRF1 double knockout"; controllo misto a 0 h	
+63	sbagliato	metadato	tempo zero; genotipo	"Wild-type, IFN alpha, 8h": GEO trattato 1 double knockout e 2 wild type; controllo misto a 0 h	
+64	sbagliato	metadato	tempo zero; genotipo	"Wild-type, IFN gamma, 24h" contro "Wild-type, unstimulated": GEO controllo "time: 0h", con 4 controlli knockout su 6	
+65	sbagliato	metadato	tempo zero; genotipo	"Wild-type, IFN gamma, 4h" contro il controllo misto a 0 h	
+66	sbagliato	metadato	tempo zero; genotipo	"Wild-type, IFN gamma, 8h" contro il controllo misto a 0 h	
+67	sbagliato	metadato	secondo agente solo nel trattato	etichetta "SAS wild-type + radiation", GEO trattato "treatment: Radiation+CB-839", controllo "Control"	
+68	giusto		-	"IMR90 senescent cells treated with bleomycin" contro "IMR90 proliferating": la senescenza e' l'effetto della bleomicina, stesse cellule wild type	R6: lo Stadio 1 scrive lo stato (senescent, proliferating) nel campo del passaggio
+69	giusto		-	"Valvular interstitial cells - Poly (I:C)" contro "- Medium": GEO "Medium+Poly (I:C)" contro "Medium", tutti e due 72 h	R1: lo Stadio 1 scrive "Medium" come agente; nel controllo e' marcato controllo negativo e la regola non lo conta, quindi diventa un agente in piu' del trattato
+70	sbagliato	metadato	tempo zero	"SETD2 KO DAC Day5" contro "SETD2 KO Control": GEO titolo del controllo "Day0, control". La regola non lo segnala	
+71	sbagliato	metadato	tempo zero	"SETD2 KO DAC Day26" contro "SETD2 KO Control": GEO titolo del controllo "Day0, control". La regola non lo segnala	
+72	giusto		-	"LNCaP DHT and ACP-coating" contro "LNCaP control media and ACP-coating": ACP-coating su tutti e due i bracci, Day 4 su tutti e due	R1: lo Stadio 1 scrive ACP-coating come perturbazione nei trattati e non nei controlli
+73	sbagliato	metadato	secondo agente solo nel trattato	"Dasatinib 30 min" contro "DMSO 30 min": GEO trattato "treated with Dasatinib for 30 minutes, followed by treatment with Das-AI for 30 minutes"; Das-AI e' un composto diverso (lo studio ha un gruppo "Das-AI 30 min")	
+74	giusto		-	"DLD-1 gRNA hypoxia 6h" contro "DLD-1 gRNA normoxia": GEO "gRNA_ctrl" su tutti e due i bracci	R1: lo Stadio 1 scrive gRNA in tutti e due i bracci, ma nel controllo lo marca controllo negativo e la regola non lo conta
+75	giusto		-	"HPDEC + GSK126" contro "HPDEC + DMSO": GEO 2 x 24 h su tutti e due i bracci, 48 h in totale	R2a: lo Stadio 1 scrive 48 h nel trattato e due volte 24 h nel controllo
+76	giusto		-	"HPDEC + Tazemetostat (EPZ)" contro "HPDEC + DMSO": GEO 2 x 24 h su tutti e due i bracci	R2a: lo Stadio 1 scrive 48 h nel trattato e due volte 24 h nel controllo
+77	sbagliato	metadato	secondo agente solo nel trattato	etichetta "5-Aza-treated", GEO trattato "CPT (1uM)+GTA (2mM)+5-Aza (1uM)", controllo DMSO	
+78	sbagliato	metadato	tempo non appaiato	"EGF (30 min) + NTC-siRNA" contro "PBS + NTC-siRNA": GEO trattato "time: 30 minutes", controllo "time: 60 minutes". Lo studio non ha un PBS a 30 minuti: regola 6 della rilettura, la lettura che non sovrastima il dato	
+79	giusto		-	"BM3 monoculture Neratinib" contro "BM3 monoculture DMSO": GEO "treatment 1: Monoculture" su tutti e due i bracci	R1: lo Stadio 1 scrive "Monoculture" come perturbazione nei trattati e non nei controlli
+80	sbagliato	metadato	tempo zero	"EGF alone" (9 h) contro "Starvation control": GEO titolo del controllo "starved, 0h"	
+81	giusto		-	"TB Positive, HIV Negative" contro "TB Negative, HIV Negative": caso-controllo; GEO 2 HIV positivi su 68 nel trattato e 2 su 49 nel controllo, bilanciati	R1: l'agente "TB" dello Stadio 1 non si riconosce nell'entita' "tb positive" e conta come agente in piu'
+82	giusto		-	"TB Positive, HIV Negative" contro "TB Negative, HIV Negative": caso-controllo, tutti HIV negativi	R1: come la riga 81
+83	sbagliato	metadato	tempo non appaiato	"PC9 Osimertinib persister" (GEO "9d") contro "PC9 DMSO" (GEO "ctrl 48h"): 9 giorni contro 2. Lo studio non ha un DMSO a 9 giorni: regola 6 della rilettura	
+84	giusto		-	"Wild-type fibroblasts, TGFb Stimulation" contro "Vehicle Only": stessi donatori hc1-hc5, trasfezioni siNC e pcNC su tutti e due i bracci	R6: lo Stadio 1 scrive il codice della trasfezione ("pcnc-t", "pcnc-nt") nel campo del passaggio
+85	sbagliato	metadato	secondo agente solo nel trattato; braccio misto	"DRB-treated HeLa cells" contro "Untreated HeLa cells": GEO trattato "3 h DRB" poi 4sU per 0, 4 o 8 minuti (4sU solo nel trattato, tre tempi mescolati); controllo "time: control, untreated". La regola non lo segnala	
+86	giusto		-	"HCC364 + trametinib + shYAP1" contro "HCC364 + DMSO + shYAP1": GEO shRNA contro YAP1 su tutti e due i bracci	R1: lo Stadio 1 scrive l'shRNA nei trattati e non nei controlli
+87	giusto		-	"sALS Cerebellum" contro "Healthy Cerebellum": caso-controllo, stesso tessuto	R1: lo Stadio 1 scrive una perturbazione vuota "unclear" nei trattati, e la regola la conta come agente
+88	sbagliato	metadato	entita' assente dal trattato	etichetta "HBV D10 Donor2", GEO trattato "infection: Mock, time: D8" (donatori 1 e 2); controllo "Mock D10". Il confronto e' Mock contro Mock	R2a scatta per il tempo (8 contro 10 giorni), ma il difetto vero e' piu' grave: nel trattato non c'e' il virus
+89	sbagliato	etichetta	secondo agente solo nel trattato	CONTROLLO C: "Circulating macrophage + IFN-gamma and LPS" contro "untreated"; GEO "Extra 2 days in IFN-g and LPS"	
