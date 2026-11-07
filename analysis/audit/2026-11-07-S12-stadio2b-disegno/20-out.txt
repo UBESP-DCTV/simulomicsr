@@ -1,0 +1,58 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 410 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+confronti: 1903  gruppi: 194  gruppi nel deliverable: 194 
+campioni nell'H5: 888821  accession duplicati: 0  (lettura 14 s)
+
+P2 - lunghezze dei campi su tutto l'H5 (byte):
+                campo n_non_vuoti max_byte n_alla_max taglio_sospetto
+                title      888821      121          6           FALSE
+      source_name_ch1      888821      253          5           FALSE
+  characteristics_ch1      888821     9771          1           FALSE
+ extract_protocol_ch1      888821    14310         10            TRUE
+      data_processing      888821    10605          6            TRUE
+         molecule_ch1      888821       15        606           FALSE
+    library_selection      888821       18        876           FALSE
+       library_source      888821       26      30944           FALSE
+     library_strategy      888821        7     888821           FALSE
+     instrument_model      888821       21     177562           FALSE
+          platform_id      888821        8     888821           FALSE
+P2 - campi con taglio sospetto: 2 
+
+GSM distinti nei bracci: 15559  mancanti nell'H5: 0  confronti con un GSM in entrambi i bracci: 0 
+
+stringhe riparate dalla codifica doppia, sui 15559 campioni dei 1.903:
+  title                    194
+  source_name_ch1          104
+  characteristics_ch1      384
+  extract_protocol_ch1    7450
+  data_processing         2928
+  molecule_ch1               0
+  library_selection          0
+  library_source             0
+  library_strategy           0
+  instrument_model           0
+  platform_id                0
+ingressi costruiti ( 179 s)
+
+---- CANCELLI ----
+C2   PASSA  1903 confronti, 194 gruppi, GSM mancanti 0, conteggi per braccio giusti
+C3   PASSA  1903 su 1903 ingressi contengono ogni valore per intero
+
+---- PREVISIONI ----
+P1  confronti oltre il limite (26624 token): 1 su 1903
+P3  token stimati per confronto: mediana 3603, 99-esimo percentile 7817, massimo 39674
+    token del prompt di sistema: 2811; somma dei token stimati sui 1.903: 7468903
+    quantili: 50% 3603  90% 4637  95% 5364  99% 7817  100% 39674 
+    oltre il limite:
+                                             record_id n_t n_c token
+ GSE255071__GSE255071__TB_HIV_neg_vs_TB_neg_HIV_neg__1  68  49 39674
+
+file scritti; durata 180 s
