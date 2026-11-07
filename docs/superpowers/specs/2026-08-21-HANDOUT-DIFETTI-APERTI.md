@@ -58,7 +58,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 7 | ~~Non è deciso se rifare il run completo~~ **Il PI ha scelto il re-run completo dopo la prova (S8b, 2026-11-05): 24.394 studi da zero, in un solo run** | S8 → S8b ✅ → S14 |
 | 8 | ~~Le lettere greche sbagliano in 45 prove su 90~~ **misurato su tutto lo Stadio 3 (S9): 7 meta-analisi su 194 cambiano; la sola traduzione toglie 15 studi a TNF. Il PI fa scrivere la correzione in S12b** | S9 ✅ → S12b → S13 |
 | 9 | ~~`.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()`~~ **corretto con due test (S9, `6996f73`)** | S9 ✅ |
-| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Il PI fa rifare la regola sui metadati dei campioni (S10b)** | S10 → S10b → S11 → S12 → S13 |
+| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Sui fatti dei campioni (S10b, 2026-11-07) la combinazione proposta prende 43 su 129 con 40 falsi allarmi; il PI sceglie che cosa va alla lettura** | S10 → S10b → S11 → S12 → S13 |
 | 16 | **Tabelle dei nomi agganciate per numero d'ordine** (S10, 2026-11-07): negli studi rigenerati il nome cade su altri campioni; nel deliverable 283 confronti su 1.903 hanno un nome diverso sul primo campione trattato, nel master da zero il 70% dei record agganciati cambia o manca. **Il PI fa correggere l'aggancio in S12d** | S10 → S12d → S13, S14 |
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
 | 12 | Le figure dell'articolo descrivono un deliverable che non esiste più | S16 |
@@ -87,7 +87,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S8b** | La prova: 6.000 studi a caso e 300 già rigenerati, poi sì o no: **sì** ✅ | misura | ~17 h | **S8** ✅ |
 | **S9** | Le lettere greche, e il crash delle corsie ✅ | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo ✅ | misura | ~4 h | *meglio S3* |
-| **S10b** | Il rilevatore sui metadati dei campioni (decisione del PI, 2026-11-07) | misura | ~4-6 h | **S10** ✅ |
+| **S10b** | Il rilevatore sui metadati dei campioni (decisione del PI, 2026-11-07): misurata, decisione del PI in attesa | misura | ~4-6 h | **S10** ✅ |
 | **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10b* | **S10b** |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
 | **S12b** | La chiave d'entità: greche, citochine in lettere latine, negazione | codice (TDD) + misura | ~4-6 h | **S9** ✅ |
@@ -975,6 +975,15 @@ NON leggere i falsi allarmi: producine l'elenco e dimmi quanti sono.
 
 # S10b — Il rilevatore sui metadati dei campioni
 
+> **Misurata il 2026-11-07, decisione del PI in attesa** (`docs/findings/2026-11-07-S10b-rilevatore-metadati.md`, evidenza
+> `analysis/audit/2026-11-07-S10b-metadati-campioni/`, deposito `3defd61`). Cinque cancelli superati. La regola sui fatti
+> dello Stadio 1 (12 sotto-regole) prende **56 difettosi su 129** con **184 falsi allarmi su 1.704**: sopra N = 85. Il
+> criterio depositato propone **R1 + R2a + R2b + R6 + la parte di V3 senza la soglia a un agente**: **43 su 129** (33,3%,
+> ottimistica perché la scelta usa il riferimento) con **40 falsi allarmi** e 16 altri negativi, 56 righe da leggere. La
+> regola sul materiale (R4a) resta fuori per 2 falsi allarmi (87 con lei). I fatti dei campioni vedono il secondo agente
+> (29 su 41) e il tempo (10 su 19); non vedono materiale, soggetto e sede (bracci misti, `context_kind` troppo grossolano,
+> linea vuota). **Decisione del PI:** quale regola va alla lettura (S11).
+
 > **Aperta dal PI il 2026-11-07, alla chiusura di S10** («sì alle tue proposte»). Fonte: `docs/findings/2026-11-07-S10-rilevatore.md`
 > §5. Evidenza riusabile in `analysis/audit/2026-11-07-S10-rilevatore/`: `20-ingressi-regola.rds` (gli ingressi veri della
 > regola di produzione sui 1.903 confronti), `30-riferimento.csv` (i 129 confronti difettosi), `40-esiti.csv` (gli esiti di
@@ -1041,6 +1050,18 @@ e le previsioni PRIMA di misurare. Misura sullo stesso riferimento di S10
 ---
 
 # S11 — Il rilevatore: leggere i falsi allarmi
+
+> **Ricevuto dal rilevatore sui fatti dei campioni (S10b), da leggere per primo.** Se il PI sceglie la combinazione
+> proposta, l'elenco è `analysis/audit/2026-11-07-S10b-metadati-campioni/40-falsi-allarmi.csv`: 56 righe (40 puliti, 16
+> altri negativi), una sessione. La sensibilità della combinazione (43 su 129) è ottimistica: va ricalcolata sul
+> riferimento corretto a fine lettura. **Rinvio, anomalia del riferimento:** i controlli a tempo zero sono giudicati in
+> modo diverso nello stesso studio. In `GSE126409` gli 11 confronti hanno lo stesso controllo «vehicle control (time
+> zero)» e la rilettura ne accusa 5 (3 su 3 per IL-21, 1 su 4 per IL-15, 1 su 4 per IFN-β); in `GSE221804` 10 confronti
+> con controllo «unstimulated» a 0 h sono 7 altri negativi e 3 puliti. 13 dei 16 altri negativi dell'elenco hanno un
+> controllo a tempo zero. **Che cosa serve per chiuderlo:** decidere una volta se un controllo a tempo zero è un difetto,
+> applicarlo a tutti i confronti con un controllo a tempo zero, e registrare ogni riga di `difetti.csv` che cambia.
+> Alcuni falsi allarmi di R1 sembrano secondi agenti veri (bortezomib con shPSMD2, 5-fluorouracile con clorochina,
+> CB-839 con radiazione): §6 del finding S10b.
 
 > **Ricevuto dalla misura del rilevatore (S10), da leggere per primo.** L'elenco è
 > `analysis/audit/2026-11-07-S10-rilevatore/40-falsi-allarmi.csv`: 54 allarmi (51 sui confronti puliti, 3 sugli altri
@@ -1116,6 +1137,15 @@ dedup, fusioni): contarla sulle 194 righe da' la risposta sbagliata.
 ---
 
 # S12 — Il rilevatore: portarlo in produzione
+
+> **Ricevuto dal rilevatore sui fatti dei campioni (S10b), da leggere per primo. Rinvio.** La regola misurata in S10b
+> legge i fatti dello Stadio 1 dei campioni: in produzione il passo che appaia i bracci (`R/stage3-row-pairing.R`) oggi
+> legge solo le etichette, e deve ricevere i fatti dei campioni. Idee emerse dalla misura, **non applicate** (la regola
+> era congelata), da misurare qui come correzioni separate: (1) «plus» come separatore di combinazione («XRT plus
+> Metformin»); (2) `context_kind` incoerente fra «coltura primaria» e «tessuto primario» (27 dei 48 falsi allarmi di R4a);
+> (3) `cell_line_cellosaurus_candidate` quasi sempre vuoto: due linee diverse sono entrambe `cell_line_in_vitro`;
+> (4) condizioni di controllo scritte come agenti («normoxia», 10 falsi allarmi di R1c); (5) sinonimi della sede
+> («stomach» e «gastric»). Ogni correzione si misura sullo stesso riferimento, con N = 85.
 
 > **Ricevuto dalla sessione sul gate e i due insiemi (S5), da leggere per primo. Il PI ha scelto di togliere gli
 > studi doppi (2026-11-04).** La regola serve anche se S11 dice che questa sessione non vale la pena: in quel caso
