@@ -1,6 +1,6 @@
 ---
 name: simulomicsr-session
-description: "Protocollo di sessione del progetto simulomicsr (pipeline R di meta-analisi RNA-seq dai metadati GEO, deliverable A3 v16 con 194 meta-analisi, handout dei difetti aperti). Caricare all'inizio di OGNI sessione del progetto e per ogni altro lavoro in questo repository: quando l'utente dice sessione simulomicsr, nomina una sessione S4-S17 dell'handout, nomina le 194 meta-analisi, il deliverable, le 37 o le 173, oppure chiede di riprendere / continuare / andare avanti con il progetto."
+description: "Protocollo di sessione del progetto simulomicsr (pipeline R di meta-analisi RNA-seq dai metadati GEO, deliverable A3 v16 con 194 meta-analisi, handout dei difetti aperti). Caricare all'inizio di OGNI sessione del progetto e per ogni altro lavoro in questo repository: quando l'utente dice sessione simulomicsr, nomina una sessione S4-S17, S12p, S7b o S7c degli handout, nomina le 194 meta-analisi, il deliverable, le 37 o le 173, oppure chiede di riprendere / continuare / andare avanti con il progetto."
 type: Playbook
 title: "simulomicsr: come si lavora una sessione"
 status: stable
@@ -41,7 +41,7 @@ Il protocollo vale dalla prima sessione dopo il 2026-11-02. Non è retroattivo.
 # Dove sta tutto
 
 - **Stato e regole di metodo:** `CLAUDE.md`. Non sono ripetuti qui.
-- **Sessioni S1-S17:** `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`.
+- **Ordine delle sessioni e S12, S12p, S13, S15, S7c, S7b:** `docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md` (comanda l'ordine). **Sessioni chiuse S1-S11 e prompt di S12b, S12c, S12d, S16, S17:** `docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md`.
 - **Deliverable:** `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d`. Scrivi sempre il percorso per esteso.
 - **Finding:** `docs/findings/<data>-<tema>.md`. **Evidenza:** `analysis/audit/<data>-<tema>/`.
 

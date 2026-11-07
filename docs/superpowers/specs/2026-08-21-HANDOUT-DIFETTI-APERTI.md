@@ -7,6 +7,11 @@ editor_options:
 
 # HANDOUT — I difetti aperti, divisi in sessioni
 
+> ⚠️ **Superato in parte il 2026-11-07.** L'ordine delle sessioni e le voci «S12 — il rilevatore in
+> produzione» e «S14 seconda parte» sono sostituiti da **`2026-11-07-HANDOUT-PIANO-RIVISTO.md`**
+> (ADR-0028: lo Stadio 2b). Questo file resta per le sessioni già chiuse (S1-S11, S14 prima parte) e per i
+> prompt di S12b, S12c, S12d, S16, S17, che valgono ancora con le tre modifiche scritte nel piano rivisto.
+
 **Scritto:** 2026-08-21 · **Branch:** `review-scientific-consistency-2026-06-10` · master invariato **Deliverable corrente:** A3 v16 `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d` (194 meta-analisi)
 
 > **Come si usa.** Ogni sessione ha un obiettivo solo, dice che cosa fare e che cosa NON fare, dice come si capisce che è finita, e quasi tutte finiscono con **una decisione che spetta a te**. In fondo a ciascuna c'è il **prompt da incollare**.
