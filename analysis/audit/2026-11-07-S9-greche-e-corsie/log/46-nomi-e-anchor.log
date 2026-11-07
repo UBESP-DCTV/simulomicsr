@@ -1,0 +1,117 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 410 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+== A. Il dizionario e le forme del calcitriolo == 
+   calcitriol                       -> CHEBI:17823 (calcitriol) 
+   1,25(oh)2d3                      -> STR:1_25_oh_2d3 (1,25(oh)2d3) 
+   1α,25(oh)2d3                    -> STR:1_25_oh_2d3 (1α,25(oh)2d3) 
+   1alpha,25(oh)2d3                 -> STR:1alpha_25_oh_2d3 (1alpha,25(oh)2d3) 
+   1,25-dihydroxyvitamin d3         -> CHEBI:17823 (calcitriol) 
+   1alpha,25-dihydroxyvitamin d3    -> CHEBI:17823 (calcitriol) 
+   1,25d3                           -> STR:1_25d3 (1,25d3) 
+   25-hydroxyvitamin d3             -> CHEBI:17933 (calcidiol) 
+   vitamin d3                       -> CHEBI:28940 (calciol) 
+ 
+== B. I confronti che nominano il calcitriolo nel trattato == 
+confronti: 170 in 34 studi 
+                  CHEBI:17823||gain||vehicle_untreated 
+                                                     9 
+              STR:1_25_oh_2d3||gain||vehicle_untreated 
+                                                     3 
+                  CHEBI:28940||gain||vehicle_untreated 
+                                                     2 
+      CHEBI:17823+CHEBI:84491||gain||vehicle_untreated 
+                                                     1 
+               CHEBI:17823||gain||NA+vehicle_untreated 
+                                                     1 
+                  CHEBI:17933||gain||vehicle_untreated 
+                                                     1 
+COMBO:1 25 oh 2d3+osimertinib||gain||vehicle_untreated 
+                                                     1 
+                   STR:1_25d3||gain||vehicle_untreated 
+                                                     1 
+         STR:1alpha_25_oh_2d3||gain||vehicle_untreated 
+                                                     1 
+studi distinti nei quattro gruppi con verso gain e controllo vehicle_untreated: 14 
+meta-analisi del deliverable fra questi gruppi: 
+    contrast_entity_label                               anchor_key n_studies
+89             calcitriol     CHEBI:17823||gain||vehicle_untreated         9
+144           1 25 oh 2d3 STR:1_25_oh_2d3||gain||vehicle_untreated         3
+ 
+== C. Coppie candidate (dal nome; non verificate) == 
+   irradiation + radiation                  studi 7 e 7 | controllo vehicle_untreated | nelle 40 FALSE/FALSE 
+   asthma + asthmatic                       studi 4 e 3 | controllo vehicle_untreated | nelle 40 FALSE/FALSE 
+   ifna + IFNA1                             studi 6 e 6 | controllo vehicle_untreated | nelle 40 FALSE/FALSE 
+   nash + Non-alcoholic Fatty Liver Disease studi 7 e 5 | controllo vehicle_untreated | nelle 40 TRUE/TRUE 
+   1 25 oh 2d3 + calcitriol                 studi 3 e 9 | controllo vehicle_untreated | nelle 40 FALSE/FALSE 
+meta-analisi STR: nel deliverable: 44 
+ 
+== D. Anchor e fonte dell'entita' == 
+-- STR:irradiation: 13 confronti, 7 studi; fonte: anchor=4, STR=9 
+
+        Radiation [STR:radiation]     irradiation [STR:irradiation] 
+                                7                                 4 
+ionizing radiation [MeSH:D011839] 
+                                2 
+-- STR:radiation: 13 confronti, 7 studi; fonte: anchor=8, STR=5 
+
+        Radiation [STR:radiation]         radiation [STR:radiation] 
+                                7                                 3 
+      Radiotherapy [MeSH:D011878] ionizing radiation [MeSH:D011839] 
+                                2                                 1 
+-- STR:ifna: 13 confronti, 6 studi; fonte: STR=13 
+
+                   Interferon-alpha [MeSH:D016898] 
+                                                 8 
+2-hydroxy-6-oxohexa-2,4-dienoic acid [CHEBI:17236] 
+                                                 1 
+                                  ENO3 [HGNC:3354] 
+                                                 1 
+                            palmitate [CHEBI:7896] 
+                                                 1 
+                              SLC10A2 [HGNC:10906] 
+                                                 1 
+-- HGNC:5417: 25 confronti, 6 studi; fonte: onto=25 
+
+               2-hydroxy-6-oxohexa-2,4-dienoic acid [CHEBI:17236] 
+                                                               15 
+                                                IFNA1 [HGNC:5417] 
+                                                                3 
+Interferon-Stimulated Gene Factor 3, gamma Subunit [MeSH:D050834] 
+                                                                3 
+                                  Interferon-alpha [MeSH:D016898] 
+                                                                2 
+                                               IQGAP1 [HGNC:6110] 
+                                                                1 
+-- CHEBI:17823: 24 confronti, 9 studi; fonte: onto=24 
+
+                 3-ADP-glyceric acid [CHEBI:16515] 
+                                                 4 
+(<i>S</i>)-<em>N</em>-methylcanadine [CHEBI:16512] 
+                                                 3 
+    thiomorpholine-3-carboxylic acid [CHEBI:17195] 
+                                                 3 
+                  6-alkylaminopurine [CHEBI:17524] 
+                                                 2 
+            long-chain fatty alcohol [CHEBI:17135] 
+                                                 2 
+-- STR:1_25_oh_2d3: 18 confronti, 3 studi; fonte: STR=18 
+
+(<i>S</i>)-<em>N</em>-methylcanadine [CHEBI:16512] 
+                                                13 
+                             anisole [CHEBI:16579] 
+                                                 5 
+ 
+== E. Nome scritto dal modello contro ID scritto dal modello (master Stadio 1 A3) == 
+   CHEBI:16579 (nome in ChEBI: anisole): 117 occorrenze; nomi scritti dal modello piu' frequenti: calcitriol (83), oleic acid (30), transforming growth factor beta-1 (3), interferon-gamma (1) 
+   CHEBI:16512 (nome in ChEBI: (<i>S</i>)-<em>N</em>-methylcanadine): 47 occorrenze; nomi scritti dal modello piu' frequenti: calcitriol (46), oleic acid (1) 
+   CHEBI:17236 (nome in ChEBI: 2-hydroxy-6-oxohexa-2,4-dienoic acid): 646 occorrenze; nomi scritti dal modello piu' frequenti: interferon-alpha (105), prednisolone (58), interferon-beta (47), interferon gamma (41) 
+   CHEBI:16635 (nome in ChEBI: Met-tRNA<small><sup>Met</small></sup>): 996 occorrenze; nomi scritti dal modello piu' frequenti: transforming growth factor beta-1 (327), interferon gamma (241), transforming growth factor beta (225), epidermal growth factor (68) 
+   CHEBI:16515 (nome in ChEBI: 3-ADP-glyceric acid): 14 occorrenze; nomi scritti dal modello piu' frequenti: calcitriol (14) 

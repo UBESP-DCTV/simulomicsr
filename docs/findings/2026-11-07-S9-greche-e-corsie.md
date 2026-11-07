@@ -17,6 +17,7 @@ sources:
 - {id: cambi, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/40-confronti-che-cambiano.csv", title: "Tutti i 364 confronti che cambiano"}
 - {id: gruppi, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/40-gruppi-toccati.csv", title: "Le 290 chiavi di gruppo toccate"}
 - {id: anomalie, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/45-out.txt", title: "Spiegazioni e anomalie"}
+- {id: nomi, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/46-out.txt", title: "Calcitriolo, meta-analisi con più nomi, ID scritti dal modello"}
 - {id: suite, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/40-suite-stage4.txt", title: "Suite stage4 dopo il fix delle corsie"}
 - {id: prove90, resource: "analysis/audit/2026-11-07-S9-greche-e-corsie/50-greche-90-prove.txt", title: "Le 90 prove sulle greche, rilanciate"}
 - {id: rilettura, resource: "docs/findings/2026-08-20-rilettura-194-correttezza.md", title: "Rilettura delle 194, §12-§13 sulle greche"}
@@ -271,14 +272,76 @@ L'handout chiedeva di pesare due costi.
 | dubbio | come si chiude |
 |---|---|
 | P1 smentita | spiegato (§4): la quota include micro e nomi dell'anchor; le lettere greche nelle etichette sono lo 0,99% |
-| P2 smentita (7 invece di al massimo 5) | spiegato (§6): cinque cambi tolgono confronti sbagliati, due vengono da altri difetti; decide il PI se e come correggere |
-| P3 smentita (TNF nelle 40) | spiegato (§7.1); decide il PI |
-| TNF-alpha in ASCII fuori dal gruppo TNF (12 studi) | decide il PI (scopo della correzione); poi rinvio alla sessione che la scrive |
-| Interferon gamma per esteso | come sopra |
-| regola dell'entità costante e negazione (241 confronti) | decide il PI (scopo); poi rinvio |
-| calcitriolo nel ripiego `STR:` | come sopra |
-| anchor non ricalcolato (2.142 confronti) | rinvio alla sessione che scrive la correzione |
-| greche rovinate dalla codifica (272 nomi di anchor) | spiegato (§4): non stanno nelle etichette; rinvio con l'anchor |
+| P2 smentita (7 invece di al massimo 5) | spiegato (§6) e deciso dal PI (§12): la correzione si scrive in S12b |
+| P3 smentita (TNF nelle 40) | spiegato (§7.1) e deciso dal PI (§12) |
+| TNF-alpha in ASCII fuori dal gruppo TNF (12 studi) | deciso dal PI; rinviato a S12b |
+| Interferon gamma per esteso | deciso dal PI; rinviato a S12b |
+| regola dell'entità costante e negazione (241 confronti) | deciso dal PI; rinviato a S12b |
+| calcitriolo diviso in quattro gruppi | rinviato a S12c (§11, §12) |
+| meta-analisi con più nomi (domanda del PI) | deciso dal PI; rinviato a S12c |
+| anchor con l'ID ChEBI sbagliato scritto dal modello (domanda del PI) | spiegato (§11); rinviato a S12c |
+| anchor non ricalcolato (2.142 confronti) | rinviato a S12b |
+| greche rovinate dalla codifica (272 nomi di anchor) | spiegato (§4); rinviato a S12b con l'anchor |
+
+# 11. Dopo il riassunto: il calcitriolo, le meta-analisi con più nomi e l'anchor
+
+Fonte di tutta la sezione: `46-out.txt` (script `46-nomi-e-anchor.R`).
+
+**Il calcitriolo.** Il dizionario risolve `calcitriol`, `1,25-dihydroxyvitamin d3` e `1alpha,25-dihydroxyvitamin d3` a
+`CHEBI:17823`. Non risolve la forma abbreviata: `1,25(oh)2d3` e `1α,25(oh)2d3` danno `STR:1_25_oh_2d3`, `1alpha,25(oh)2d3`
+dà `STR:1alpha_25_oh_2d3`, `1,25d3` dà `STR:1_25d3`. 170 confronti in 34 studi nominano il calcitriolo nel trattato. Con
+verso `gain` e controllo `vehicle_untreated` stanno in quattro gruppi: `CHEBI:17823` (9 studi), `STR:1_25_oh_2d3` (3),
+`STR:1_25d3` (1), `STR:1alpha_25_oh_2d3` (1); 14 studi distinti. Due sono meta-analisi del deliverable: «calcitriol» (9) e
+«1 25 oh 2d3» (3). `GSE221690` e `GSE223405` usano le stesse quattro linee cellulari e possono essere studi doppi. Il
+problema non è la α: la traduzione lo mostra, perché oggi la cancellazione della α unisce per caso due delle quattro forme.
+
+**Altre meta-analisi con due nomi** (candidate dal nome, con lo stesso verso e lo stesso controllo; non verificate):
+
+| nomi | studi | nelle 40 |
+|---|---|---|
+| irradiation, radiation | 7 e 7 | no |
+| asthma, asthmatic | 4 e 3 | no |
+| ifna, IFNA1 | 6 e 6 | no |
+| nash, Non-alcoholic Fatty Liver Disease | 7 e 5 | sì, entrambe |
+| 1 25 oh 2d3, calcitriol | 3 e 9 | no |
+
+NASH e NAFLD possono essere due confronti diversi. Le meta-analisi con un nome non risolto (`STR:`) sono 44.
+
+**Perché l'anchor non unisce questi nomi** (domanda del PI: «l'LLM non dovrebbe avere problemi a classificare irradiation e
+radiation alla stessa maniera; l'ancora dovrebbe essere uguale»). Tre cause, misurate:
+
+1. **La chiave del gruppo non è l'anchor.** Dopo ADR-0025 la chiave viene dal testo del fattore che cambia fra i bracci,
+   scritto dallo Stadio 2 e risolto dai dizionari. L'anchor entra solo se tutte le parole distintive del suo nome stanno nel
+   testo del trattato. Nel gruppo `STR:irradiation` 4 confronti su 13 prendono l'entità dall'anchor e 9 dal testo; nel gruppo
+   `STR:ifna` 13 su 13 la prendono dal testo, anche se 8 hanno l'anchor «Interferon-alpha» (`MeSH:D016898`).
+2. **Il modello copia la parola del metadato.** Gli anchor dei due gruppi sono «Radiation», «irradiation», «ionizing radiation»
+   e «Radiotherapy»: le prime due non hanno un ID nei dizionari e restano due stringhe diverse.
+3. **Il modello scrive il nome giusto e un numero ChEBI sbagliato, e il codice si fida del numero.** Nel master dello Stadio 1:
+
+| ID scritto dal modello | nome in ChEBI | occorrenze | nomi scritti dal modello più frequenti |
+|---|---|---:|---|
+| `CHEBI:16579` | anisole | 117 | calcitriol (83), oleic acid (30) |
+| `CHEBI:16512` | (S)-N-methylcanadine | 47 | calcitriol (46) |
+| `CHEBI:16515` | 3-ADP-glyceric acid | 14 | calcitriol (14) |
+| `CHEBI:17236` | 2-hydroxy-6-oxohexa-2,4-dienoic acid | 646 | interferon-alpha (105), prednisolone (58), interferon-beta (47), interferon gamma (41) |
+| `CHEBI:16635` | Met-tRNA | 996 | transforming growth factor beta-1 (327), interferon gamma (241), transforming growth factor beta (225) |
+
+Il difetto è noto dal 2026-07-23 (`docs/findings/2026-07-23-stage3-cluster-coherence.md`: «`ethanol` è in realtà TNF,
+`Met-tRNA` è TGFB1, `anisole` è calcitriolo») e dal 2026-07-25 (`2026-07-25-stage3-contrast-anchor-v7-census.md` §5: «qualcuno
+deve deciderlo»). ADR-0018 lo chiama «probable LLM hallucination consistente». Non è mai stato deciso. Non cambia il nome delle
+meta-analisi del deliverable, che viene dalla chiave, ma rende l'anchor inutile per unire i sinonimi: il nome scritto dal
+modello è giusto più spesso dell'ID. Rinviato a S12c.
+
+# 12. Decisioni del PI (2026-11-07)
+
+1. **Sì alla correzione in una sessione nuova (S12b), prima di S13**, con tre parti: traduzione delle lettere greche in un
+   punto, nomi delle citochine in lettere latine risolti come citochine, negazione nella regola dell'entità costante.
+2. **Sì al problema nuovo «una entità con più nomi», con una sessione propria (S12c), prima di S13.** Nota del PI: non
+   limitarsi alle coppie, perché un'entità può avere più di due nomi (il calcitriolo ne ha quattro). Domanda del PI sull'anchor:
+   risposta in §11.
+3. **Il calcitriolo va in S12c** (scelta tecnica dell'agente: il PI ha detto sì alle due sessioni e non ha risposto a parte
+   sul calcitriolo). È lo stesso difetto di S12c, quattro nomi per una entità. S12b deve verificare che la traduzione non
+   divida nessun gruppo, salvo i gruppi che S12c unisce; S13 parte dopo entrambe.
 
 # Da dove vengono i numeri del riassunto
 

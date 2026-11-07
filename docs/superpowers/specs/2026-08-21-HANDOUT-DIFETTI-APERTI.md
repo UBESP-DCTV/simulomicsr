@@ -56,13 +56,14 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 5 | ~~Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3~~ **deciso: gate a 3 studi, le 40 come insieme principale, le altre 132 in supplementare (S5)** | S5 |
 | 6 | ~~Nessuna verifica usa dati esterni al corpus~~ **eseguita sul deliverable di oggi: 14 su 19 e 39 su 53 contro LINCS, 11 su 32 contro Tahoe (S7). Il numero dell'articolo viene dalla seconda esecuzione, in S13** | S6 → S7 → S13 |
 | 7 | ~~Non è deciso se rifare il run completo~~ **Il PI ha scelto il re-run completo dopo la prova (S8b, 2026-11-05): 24.394 studi da zero, in un solo run** | S8 → S8b ✅ → S14 |
-| 8 | Le lettere greche sbagliano in 45 prove su 90 | S9 |
-| 9 | `.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()` | S9 |
+| 8 | ~~Le lettere greche sbagliano in 45 prove su 90~~ **misurato su tutto lo Stadio 3 (S9): 7 meta-analisi su 194 cambiano; la sola traduzione toglie 15 studi a TNF. Il PI fa scrivere la correzione in S12b** | S9 ✅ → S12b → S13 |
+| 9 | ~~`.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()`~~ **corretto con due test (S9, `6996f73`)** | S9 ✅ |
 | 10 | Il rilevatore di difetti in produzione ne segnala 2 su 1.903 | S10 → S11 → S12 → S13 |
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
 | 12 | Le figure dell'articolo descrivono un deliverable che non esiste più | S16 |
 | 13 | I limiti misurati non sono scritti da nessuna parte | S17 |
 | 14 | **Studi doppi** (2026-11-03): due o tre numeri GEO con gli stessi dati, in 13 gruppi. **Il PI li toglie (2026-11-04)** con una regola sulle conte | S5 → S12 → S13 |
+| 15 | **Una entità con più nomi** (2026-11-07): il calcitriolo sta in quattro gruppi (14 studi, due meta-analisi del deliverable); altre candidate dal nome (irradiation/radiation, asthma/asthmatic, ifna/IFNA1, nash/NAFLD). Il modello scrive il nome giusto con un ID ChEBI sbagliato, e il codice si fida dell'ID. **Il PI apre una sessione (2026-11-07)** | S9 → S12c → S13 |
 
 **Tre cose non si chiudono, si dichiarano** — sono materiale per S17, non sessioni: il **bias concorde** (invisibile a qualunque leave-one-out), il **16,5% di verdetti che l'etichetta non chiude** — 32 su 194, che sono un insieme **diverso** dai 16 con verdetto «incerta»: 16 incerte + 13 difettose + 3 corrette (il metadato GEO non dice abbastanza) — i **1.993 campioni persi dallo Stadio 2** (5,3%: potenza buttata, non risultati sbagliati).
 
@@ -83,11 +84,13 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S7** | Validazione esterna: l'esecuzione ✅ | misura | ~6 h | **S6** ✅ |
 | **S8** | La decisione sul re-run completo: prima una prova ✅ | **decisione** | ~2 h | — |
 | **S8b** | La prova: 6.000 studi a caso e 300 già rigenerati, poi sì o no: **sì** ✅ | misura | ~17 h | **S8** ✅ |
-| **S9** | Le lettere greche, e il crash delle corsie | misura + 1 fix | ~4 h | — |
+| **S9** | Le lettere greche, e il crash delle corsie ✅ | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio S3* |
 | **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10* | **S10** |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
-| **S13** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | **S12** *(+ S9 e S4 se hanno prodotto correzioni)* |
+| **S12b** | La chiave d'entità: greche, citochine in lettere latine, negazione | codice (TDD) + misura | ~4-6 h | **S9** ✅ |
+| **S12c** | Una entità con più nomi | misura + lettura + codice | *da stimare in apertura* | **S9** ✅ |
+| **S13** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | **S12, S12b, S12c** *(+ S4)* |
 | **S14** | Il re-run completo degli stadi LLM (i due passi col modello ✅ 2026-11-07; restano raggruppamento, pooling e annotazione) | campagna | **~44 h di macchina** (misurate 33 h per i due passi) | **S8b** (sì) ✅ **+ S12** per raggruppamento e pooling; i due passi col modello possono andare prima, se lo sceglie il PI |
 | **S15** | Riverificare le meta-analisi cambiate | lettura | *dipende da S14* | **S14** |
 | **S16** | Rifare le figure sul deliverable vero | produzione | ~4 h | **S5**, e dopo S13/S14 |
@@ -96,6 +99,8 @@ sono i veri vincoli — ma se lo segui non sbagli.
 > **Le prime quattro non dipendono da nulla** e si possono fare in qualunque
 > ordine. «Meglio» non è un blocco: avverte che il numero su cui decidi può
 > muoversi.
+>
+> ⚠️ **S9 (2026-11-07) aggiunge due cancelli: S13←S12b e S13←S12c.** S12b e S12c non dipendono da S10-S12.
 >
 > ⚠️ **I veri cancelli sono sei**, quelli in grassetto: S7←S6, S11←S10, S12←S11,
 > S13←S12, S14←S8+S12, S15←S14. Tutto il resto è consiglio.
@@ -749,11 +754,12 @@ limitazione.
 
 # S9 — Le lettere greche, e il crash delle corsie
 
-> **Misura fatta il 2026-11-07, decisione del PI in attesa** (`docs/findings/2026-11-07-S9-greche-e-corsie.md`). La chiave
-> d'entità ricalcolata su tutti gli 86.745 confronti dello Stadio 3, senza e con traduzione delle greche: cambiano 364
-> confronti e 7 meta-analisi su 194, fra le 40 solo TNF (42 → 27 studi, per un difetto della forma ASCII `TNF-alpha`, che già
-> oggi lascia fuori 12 studi). Cinque cambi tolgono confronti già segnati difettosi. Crash di `.lane_index()` corretto
-> (`6996f73`); 45 su 90 confermato. **Decisione del PI:** se e con quale scopo scrivere la correzione (finding, «Cosa devi decidere»).
+> **Chiusa il 2026-11-07** (`docs/findings/2026-11-07-S9-greche-e-corsie.md`). La chiave d'entità ricalcolata su tutti gli
+> 86.745 confronti dello Stadio 3, senza e con traduzione delle greche: cambiano 364 confronti e 7 meta-analisi su 194, fra le
+> 40 solo TNF (42 → 27 studi, per un difetto della forma ASCII `TNF-alpha`, che già oggi lascia fuori 12 studi). Cinque cambi
+> tolgono confronti già segnati difettosi. Crash di `.lane_index()` corretto (`6996f73`); 45 su 90 confermato.
+> **Decisioni del PI:** la correzione si scrive in **S12b** (traduzione, citochine in lettere latine, negazione); il problema
+> nuovo «una entità con più nomi» va in **S12c**. Entrambe prima di S13. Il calcitriolo va in S12c (finding §12).
 
 > **Ricevuto dal disegno della validazione esterna (S6), da leggere per primo.** Nessuna correzione può scegliere che cosa correggere guardando
 > l'esito della validazione esterna per una meta-analisi. Vale anche per il rilevatore e per il calcolo delle correzioni. Fra i composti misurabili in
@@ -1076,7 +1082,152 @@ NON lanciare niente: l'applicazione e' S13. Suite verde prima di committare.
 
 ---
 
+# S12b — La chiave d'entità: greche, citochine in lettere latine, negazione
+
+> **Ricevuto dalla sessione sulle lettere greche (S9), da leggere per primo. Decisione del PI del 2026-11-07.** Rinvii, con
+> la fonte in `analysis/audit/2026-11-07-S9-greche-e-corsie/`:
+> (1) **TNF-alpha in lettere latine.** Nel ramo dei farmaci ChEBI e ChEMBL vengono prima delle citochine: `tnf-alpha` →
+> `CHEMBL:CHEMBL265582`, `tnfalpha` → `CHEBI:197439` (TNF del pesce zebra, in lista nera). Oggi 12 studi restano fuori dalla
+> meta-analisi su TNF, che ne ha 42 (`45-out.txt` §C). La sola traduzione delle greche porta TNF da 42 a 27 studi.
+> (2) **Interferon gamma per esteso** → `CHEBI:5939+CHEMBL:CHEMBL2108494` o `CHEMBL:CHEMBL2108494`; la tabella delle citochine dà
+> `HGNC:5438` (`45-out.txt` §D). Stesso difetto di (1).
+> (3) **La regola `entita_costante` non legge la negazione**: 241 confronti eleggibili in 92 studi con «no», «non», «without»,
+> «w/o», «minus» o «absence» nel controllo (`45-entita-costante-negata.csv`). Conto massimo: vanno letti.
+> (4) **L'anchor non è ricalcolato dalla misura di S9.** 2.142 confronti in un gruppo hanno un carattere greco nell'anchor o nei
+> fatti dello Stadio 1, 137 prendono l'entità dall'anchor (`40-out.txt`); 272 nomi di anchor hanno greche rovinate dalla codifica
+> (`45-out.txt` §F). **Che cosa serve per chiuderlo:** dire se la correzione tocca il recupero del nome; se lo tocca, misurarlo e
+> fare il bump di `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`.
+> (5) **Il calcitriolo è di S12c.** Qui la traduzione non deve dividere nessun gruppo, salvo i gruppi che S12c unisce.
+> (6) **Nessuna scelta guarda la validazione esterna** (regola di S6): TNF e `17β-estradiol` sono nell'insieme principale.
+
+### Perché
+
+S9 ha tradotto le greche in tutte le stringhe della chiave di tutti gli 86.745 confronti: cambiano 364 confronti e 7 meta-analisi.
+Cinque cambi tolgono confronti già segnati difettosi in `difetti.csv`, e IL1A perde uno studio di IL-1β. Ma la sola traduzione
+manda «TNF-α» sulla forma ASCII, che è risolta male, e TNF (nelle 40) perde 15 studi. Servono tre parti, misurate una alla volta.
+
+### Che cosa si fa
+
+1. **Riproduci prima di cambiare.** Con gli ingressi di S9 (`20-ingressi.rds`) il codice di oggi deve ridare le chiavi OFF di S9
+   (`30-due-regimi.rds`): 27.395 chiavi su 27.395, 32.830 scarti su 32.830.
+2. **TDD, una parte alla volta**, ognuna misurata sugli 86.745 confronti contro le chiavi OFF di S9, con la tabella dei confronti e
+   delle meta-analisi che cambiano:
+   a. la traduzione in **un punto**, all'ingresso di `.ca_member_contrast()`; la specifica è `01-traduzione.R` di S9 (μ e µ → `u`,
+      ß → `beta`, il resto della stringa intatto);
+   b. i nomi delle citochine in lettere latine risolti come citochine: una **regola** sull'ordine dei dizionari nel ramo dei
+      farmaci, non una lista; misura gli effetti su tutti i confronti, non solo su TNF e sull'interferone;
+   c. la negazione nella regola `entita_costante`, **dopo** la lettura dei 241 confronti.
+3. Il punto (4) del riquadro: il recupero del nome, misurato o dichiarato fuori.
+
+Gli ingressi non cambiano se cambia solo la chiave: una misura costa circa 15 minuti (dizionari + chiavi). Se cambia l'anchor, si
+rifà anche `20-ingressi.R` (20 minuti).
+
+### Che cosa NON si fa
+
+Non si lancia il re-cluster: è S13. Non si tocca il calcitriolo né le altre entità con più nomi: è S12c. Non si aggiungono voci a
+`.CA_VERIFIED_ALIASES` per far tornare un numero.
+
+### Come si sa che è finita
+
+Le tre parti hanno test e la suite è verde; per ogni parte c'è la tabella di che cosa cambia, letta; TNF non perde studi; la
+traduzione non divide nessun gruppo, salvo quelli che S12c unisce; `98-greche-tutti-i-resolver.R` è rilanciato e il suo numero è
+dichiarato; è scritto se il cambio tocca una cache su disco.
+
+### La decisione che spetta a te
+
+Dopo la lettura dei 241: quali negazioni contano come «entità assente». Alla fine: se la correzione entra in S13.
+
+### Prompt
+
+```
+sessione simulomicsr S12b, leggi prima la skill di progetto.
+
+Apri docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md e fai la
+SESSIONE S12b, solo quella. Leggi prima il riquadro dei rinvii e il finding
+docs/findings/2026-11-07-S9-greche-e-corsie.md (§6, §7, §9, §12).
+
+Riproduci prima le chiavi OFF di S9 con gli ingressi di S9. Poi, in TDD, una
+parte alla volta, ognuna misurata su tutti gli 86.745 confronti: (a) traduzione
+delle greche in un punto all'ingresso di .ca_member_contrast(); (b) nomi delle
+citochine in lettere latine risolti come citochine, con una regola; (c) la
+negazione nella regola entita_costante, dopo aver letto i 241 confronti.
+
+TNF non deve perdere studi. La traduzione non deve dividere gruppi, salvo
+quelli che S12c unisce. Non lanciare il re-cluster.
+```
+
+------------------------------------------------------------------------
+
+# S12c — Una entità con più nomi
+
+> **Ricevuto dalla sessione sulle lettere greche (S9), da leggere per primo. Decisione del PI del 2026-11-07.**
+> (1) **Nota del PI: non limitarsi alle coppie.** Un'entità può avere più di due nomi: il calcitriolo ne ha quattro.
+> (2) **Il calcitriolo** sta in quattro gruppi con lo stesso verso e controllo: `CHEBI:17823` (9 studi), `STR:1_25_oh_2d3` (3),
+> `STR:1_25d3` (1), `STR:1alpha_25_oh_2d3` (1); 14 studi distinti; due sono meta-analisi del deliverable. Il dizionario non
+> riconosce la forma abbreviata «1,25(OH)2D3» (`46-out.txt` §A-B). `GSE221690` e `GSE223405` possono essere studi doppi.
+> (3) **Candidate dal nome, non verificate** (`46-out.txt` §C): irradiation e radiation (7 e 7 studi), asthma e asthmatic (4 e 3),
+> ifna e IFNA1 (6 e 6), nash e NAFLD (7 e 5, entrambe nelle 40). NASH e NAFLD possono essere due confronti diversi. Le
+> meta-analisi con un nome non risolto (`STR:`) sono 44.
+> (4) **Domanda del PI:** «l'LLM non dovrebbe avere problemi a classificare irradiation e radiation alla stessa maniera; l'ancora
+> dovrebbe essere uguale». Risposta misurata nel finding S9 §11: la chiave non è l'anchor (ADR-0025); il modello copia la parola
+> del metadato; **il modello scrive il nome giusto con un ID ChEBI sbagliato e il codice si fida dell'ID**: `CHEBI:16579`
+> (anisole) 117 volte, 83 con il nome «calcitriol»; `CHEBI:16635` (Met-tRNA) 996 volte, 327 «transforming growth factor
+> beta-1» e 241 «interferon gamma»; `CHEBI:17236` 646 volte, 105 «interferon-alpha». Noto dal 2026-07-23, mai deciso.
+> **Che cosa serve per chiuderlo:** il tasso di ID sbagliati su tutto il master dello Stadio 1, A3 e S14, e la scelta fra ID e nome.
+
+### Perché
+
+Se una entità ha più nomi, i suoi studi si dividono fra più meta-analisi: l'articolo la conta più volte e ogni meta-analisi ha meno
+studi. Il calcitriolo è il caso certo; le altre coppie sono candidate dal nome.
+
+### Che cosa si fa
+
+1. **Un criterio dichiarato di ricerca, su tutto lo Stadio 3**, non solo sulle 194: insiemi di gruppi con lo stesso verso e lo
+   stesso controllo la cui entità ha lo stesso significato. Classi, non coppie. Segnali da dichiarare con la loro sensibilità:
+   il nome scritto dal modello nello Stadio 1, l'anchor, i sinonimi dei dizionari, le notazioni abbreviate (la vitamina D).
+2. **Il tasso di ID ChEBI sbagliati scritti dal modello**: ID il cui nome in ChEBI non corrisponde al nome scritto dal modello, su
+   tutto il master dello Stadio 1, A3 e S14.
+3. **Lettura** delle classi candidate; poi una **regola**, in TDD, misurata con gli script di S9 (`20-ingressi.R`,
+   `30-due-regimi.R`, `40-analisi.R`).
+
+### Che cosa NON si fa
+
+Non si uniscono entità senza lettura. Non si cambia il recupero del nome senza il bump di `.NAME_RECOVERY_LOOKUP_SCHEMA_VERSION`.
+Non si lancia il re-cluster: è S13.
+
+### Come si sa che è finita
+
+Il criterio è scritto e applicato a tutto lo Stadio 3; le classi candidate sono lette; il tasso di ID sbagliati è misurato; la
+regola ha test; c'è la tabella delle meta-analisi che si uniscono.
+
+### La decisione che spetta a te
+
+Quali classi unire quando la lettura è incerta (per esempio NASH e NAFLD); se il codice usa il nome scritto dal modello al posto
+dell'ID quando i due non corrispondono.
+
+### Prompt
+
+```
+sessione simulomicsr S12c, leggi prima la skill di progetto.
+
+Apri docs/superpowers/specs/2026-08-21-HANDOUT-DIFETTI-APERTI.md e fai la
+SESSIONE S12c, solo quella. Leggi prima il riquadro dei rinvii e il finding
+docs/findings/2026-11-07-S9-greche-e-corsie.md §11.
+
+Cerca su tutto lo Stadio 3, con un criterio dichiarato, le entità con piu'
+nomi: classi, non coppie. Misura su tutto il master dello Stadio 1 (A3 e S14)
+quante volte il modello scrive un ID ChEBI il cui nome non corrisponde al nome
+che scrive. Leggi le classi candidate, poi scrivi una regola in TDD e misurala
+con gli script di S9. Non lanciare il re-cluster.
+```
+
+------------------------------------------------------------------------
+
 # S13 — Applicare le correzioni (re-cluster + re-pool locali)
+
+> **Ricevuto dalla sessione sulle lettere greche (S9), da leggere per primo.** S12b e S12c cambiano la chiave d'entità e
+> vanno fatte prima. Prima del re-cluster, misura la chiave con gli script di S9 (`20-ingressi.R`, `30-due-regimi.R`,
+> `40-analisi.R`, circa 35 minuti): le chiavi devono essere quelle che S12b e S12c hanno misurato.
 
 > **Ricevuto dalla prova del re-run (S8b), da leggere per primo.** (1) Il PI ha scelto il re-run completo, quindi il test esterno, il confronto con studi non collegati e il numero dell'articolo vengono
 > dopo S14, sul deliverable finale. Qui il calcolo serve a separare l'effetto delle correzioni dall'effetto del re-run. Se il re-run del modello è già fatto, scrivi quale master usi e perché.
