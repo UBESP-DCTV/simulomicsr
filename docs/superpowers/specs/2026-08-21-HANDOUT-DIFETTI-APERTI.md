@@ -56,7 +56,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 5 | ~~Non è deciso se l'articolo è 37 o 173, né se il gate resta a k≥3~~ **deciso: gate a 3 studi, le 40 come insieme principale, le altre 132 in supplementare (S5)** | S5 |
 | 6 | ~~Nessuna verifica usa dati esterni al corpus~~ **eseguita sul deliverable di oggi: 14 su 19 e 39 su 53 contro LINCS, 11 su 32 contro Tahoe (S7). Il numero dell'articolo viene dalla seconda esecuzione, in S13** | S6 → S7 → S13 |
 | 7 | ~~Non è deciso se rifare il run completo~~ **Il PI ha scelto il re-run completo dopo la prova (S8b, 2026-11-05): 24.394 studi da zero, in un solo run** | S8 → S8b ✅ → S14 |
-| 8 | ~~Le lettere greche sbagliano in 45 prove su 90~~ **misurato su tutto lo Stadio 3 (S9): 7 meta-analisi su 194 cambiano; la sola traduzione toglie 15 studi a TNF. Il PI fa scrivere la correzione in S12b** | S9 ✅ → S12b → S13 |
+| 8 | ~~Le lettere greche sbagliano in 45 prove su 90~~ **misurato su tutto lo Stadio 3 (S9): 7 meta-analisi su 194 cambiano; la sola traduzione toglie 15 studi a TNF. Il PI fa scrivere la correzione in S12b** | S9 → S12b → S13 |
 | 9 | ~~`.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()`~~ **corretto con due test (S9, `6996f73`)** | S9 ✅ |
 | 10 | Il rilevatore di difetti in produzione ne segnala 2 su 1.903 | S10 → S11 → S12 → S13 |
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
@@ -84,7 +84,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S7** | Validazione esterna: l'esecuzione ✅ | misura | ~6 h | **S6** ✅ |
 | **S8** | La decisione sul re-run completo: prima una prova ✅ | **decisione** | ~2 h | — |
 | **S8b** | La prova: 6.000 studi a caso e 300 già rigenerati, poi sì o no: **sì** ✅ | misura | ~17 h | **S8** ✅ |
-| **S9** | Le lettere greche, e il crash delle corsie ✅ | misura + 1 fix | ~4 h | — |
+| **S9** | Le lettere greche, e il crash delle corsie | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio S3* |
 | **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10* | **S10** |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
@@ -754,7 +754,7 @@ limitazione.
 
 # S9 — Le lettere greche, e il crash delle corsie
 
-> **Chiusa il 2026-11-07** (`docs/findings/2026-11-07-S9-greche-e-corsie.md`). La chiave d'entità ricalcolata su tutti gli
+> **Decisioni del PI il 2026-11-07, sessione ancora aperta** (`docs/findings/2026-11-07-S9-greche-e-corsie.md`): resta da decidere se S12c risolve il problema dei nomi o lo misura soltanto. La chiave d'entità ricalcolata su tutti gli
 > 86.745 confronti dello Stadio 3, senza e con traduzione delle greche: cambiano 364 confronti e 7 meta-analisi su 194, fra le
 > 40 solo TNF (42 → 27 studi, per un difetto della forma ASCII `TNF-alpha`, che già oggi lascia fuori 12 studi). Cinque cambi
 > tolgono confronti già segnati difettosi. Crash di `.lane_index()` corretto (`6996f73`); 45 su 90 confermato.
