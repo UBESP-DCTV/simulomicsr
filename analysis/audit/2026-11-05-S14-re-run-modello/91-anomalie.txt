@@ -1,0 +1,63 @@
+== 1. Studi recuperati nello Stadio 2 e riferimento
+GSE140813	riferimento: fuori
+GSE157657	riferimento: agosto
+GSE162855	riferimento: fuori
+GSE192861	riferimento: prova
+GSE199208	riferimento: fuori
+GSE233774	riferimento: prova
+GSE235391	riferimento: fuori
+GSE245006	riferimento: fuori
+GSE246587	riferimento: fuori
+GSE249377	riferimento: prova
+GSE253260	riferimento: prova
+GSE68799	riferimento: fuori
+GSE157657: record di recupero agosto 57, run nuovo 57, righe identiche 0
+  chiavi del record, agosto: ['record_id', 'series_id', 'study_summary', 'samples']
+  chiavi del record, nuovo:  ['record_id', 'series_id', 'study_summary', 'samples', 'chunk_metadata']
+  chiavi del campione, agosto: ['condition_id', 'geo_accession', 'sample_facts', 'n_replicates', 'member_sample_ids', 'signature', 'n_char']
+  chiavi del campione, nuovo:  ['geo_accession', 'sample_facts', 'n_replicates', 'member_sample_ids', 'condition_id']
+  tipo di sample_facts.organism, agosto: str, nuovo: list
+  stessi campioni nello stesso ordine: True
+  stesso study_summary: True
+  formato di archs4-human-stage2-rescue-v3.jsonl: campione ['geo_accession', 'sample_facts', 'n_replicates', 'member_sample_ids', 'condition_id'], organism list
+  formato di S8b-stage2-rescue.jsonl: campione ['geo_accession', 'sample_facts', 'n_replicates', 'member_sample_ids', 'condition_id'], organism list
+  formato di S14-stage2-rescue.jsonl: campione ['geo_accession', 'sample_facts', 'n_replicates', 'member_sample_ids', 'condition_id'], organism list
+  formato di S14-stage2-input.jsonl: campione ['geo_accession', 'sample_facts', 'n_replicates', 'member_sample_ids', 'condition_id'], organism list
+  formato di A3-stage2-rescue.jsonl: campione ['condition_id', 'geo_accession', 'sample_facts', 'n_replicates', 'member_sample_ids', 'signature', 'n_char'], organism str
+Controllo positivo: studi recuperati nella prova e nel run nuovo
+  GSE192861: record 36, input di recupero identico alla prova: True
+  GSE233774: record 3, input di recupero identico alla prova: True
+  GSE249377: record 266, input di recupero identico alla prova: True
+  GSE253260: record 15, input di recupero identico alla prova: True
+  record assemblato di GSE157657 identico al riferimento: False
+  record assemblato di GSE192861 identico al riferimento: True
+  record assemblato di GSE233774 identico al riferimento: True
+  record assemblato di GSE249377 identico al riferimento: True
+  record assemblato di GSE253260 identico al riferimento: True
+
+== 2. Ordine degli studi nel master dello Stadio 2
+studi: nuovo 24393, vecchio 24394; nel vecchio e non nel nuovo ['GSE9135']; nel nuovo e non nel vecchio []
+stesso ordine dopo aver tolto gli studi assenti: True
+sigle divergenti fra input e modello (input Stadio 2):
+"gsm","series_input","series_modello"
+"GSM2422632","GSE91395","GSE9135"
+"GSM2422631","GSE91395","GSE9135"
+"GSM2422634","GSE91395","GSE9135"
+
+== 3. Outlier dello Stadio 1 (max_model_len 32768 nel run nuovo, 4096 nella prova)
+GSE212990 (prova): 20 record, identici al master della prova 20
+GSE50445 (fuori): 5 record, identici al master della prova 3
+  20261104T204149Z-s8b-s1-s8b-stage1-outliers-737461: max_model_len 4096, max_tokens 2048
+  20261106T005910Z-s14-s1-s14-stage1-outliers-ml32768-20c7e1: max_model_len 32768, max_tokens 2048
+
+== 4. Campioni senza record valido dopo il recupero dello Stadio 1
+GSM4763004	GSE157354	nel riferimento: True
+GSM4763053	GSE157354	nel riferimento: True
+GSM4763082	GSE157354	nel riferimento: True
+stessi residui della prova: True
+
+== 5. Tempi dal log della catena
+Q7, ore effettive dello Stadio 1: 8.95 (11-05 17:46:29 -> 11-06 02:43:31)
+ritardo della fermata degli outlier: 61.5 min (51 blocchi finiti 11-06 01:02:49, outlier finiti 11-06 02:04:20)
+durata della catena dal primo invio: 33.25 h (11-05 17:46:29 -> 11-07 03:01:32)
+errori ssh all'invio, ripresi dalla catena: 12
