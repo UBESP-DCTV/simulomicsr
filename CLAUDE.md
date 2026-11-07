@@ -53,6 +53,7 @@ il difetto tipico di questo progetto è lavorare sull'oggetto sbagliato.
 | Inversioni di braccio | `GSE144269` in HCC confermata (gruppo non citabile finché non è corretto) + 4 bracci; lo strumento vede il 52% | `2026-11-02-inversioni-bracci-194` |
 | Re-run Stadi 1-2 (S14, prima parte) | 24.393 studi da zero in 33 h; 211.484/211.484 record identici; master `analysis/p4-output/S14-stage{1,2}-master.jsonl` (copia su micron); outlier con `max_model_len` 32768 | `2026-11-07-S14-due-passi-col-modello`, `-S8b-prova-re-run` |
 | Soffitto e biologia | **455 entità** con ≥3 studi nello Stadio 3 (deliverable = 43%); controllo biologico **30/31**, DHT contro enzalutamide −0,944 | valutazione |
+| Stadio 2b, il disegno (S12) | schema, regola (segnali → tabella errore/avviso), ingresso senza tagli, prompt v1, test verdi; 1.902/1.903 ingressi nel limite (mediana 3.603 token); **codifica UTF-8 doppia e tripla nell'H5**, riparata nell'ingresso; `description` per campione assente dall'H5 (cambia fra i campioni in 22/40 studi) | `2026-11-07-S12-stadio2b-disegno` |
 
 **Decisione del PI (2026-11-07):** strada «tenere e sostituire un pezzo» (ADR-0028). Si tengono ETL,
 master S14, Stadio 4, gold, verdetti e strumenti di audit; **si sostituisce il giudice di confrontabilità**
@@ -67,7 +68,7 @@ singola meta-analisi · tempo zero e differenza tecnica fra i bracci sono **semp
 soglia di errore accettata**: ogni causa si corregge · solo `poddgx02`.
 
 **Che cosa fare adesso:** **`docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md`** comanda
-l'ordine: **S12** (Stadio 2b, il disegno) → **S12p** (la prova: tre modelli sui 1.903, conto cieco) →
+l'ordine: **S12** (Stadio 2b, il disegno: fatto, **4 decisioni del PI in attesa**, riquadro S12) → **S12p** (la prova: tre modelli sui 1.903, conto cieco) →
 S12c+S12b, S12d → **S13** (tutto sui master S14, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16,
 S17. L'handout del 2026-08-21 resta per le sessioni chiuse e per i prompt di S12b, S12c, S12d, S16, S17.
 Il deliverable su disco resta A3 v16 fino a S13.
@@ -251,6 +252,9 @@ tutti gli stadi, anche a costo di efficienza.
 - **Il deliverable conta studi GEO, non dati distinti**: due numeri GEO possono avere le stesse conte (a meno del
   riallineamento). `k_eff` e `quota_top1` ne risentono (finding S5 §6). Non usare l'impronta esatta: serve la distanza.
 - **`data.table`: dentro `dt[...]` un nome di colonna vince sulla variabile esterna**, anche dentro una funzione anonima: `g[cluster_id == cluster_id[i]]` confronta `g` con se stessa. Ha dato 32 su 32 e 3 su 16 falsi in S7. Salva il valore in una variabile con un altro nome. Lo stesso vale per i parametri degli aiutanti (`k`).
+- **I testi GEO nell'H5 sono in parte codificati due o tre volte** («Î²» per «β», «Â°C» per «°C»): li hanno letti
+  anche gli Stadi 1 e 2. Riparazione: `.s2b_norm_testo()` (`R/stage2b-input.R`). **`rhdf5::h5read(..., index=)`
+  sulle stringhe di `meta/samples` va in segfault**: leggi il campo intero (13 s per 13 campi).
 - ARCHS4 v2.5: 4.638/67.186 simboli HGNC duplicati → asse dei geni `gene_id`
   Ensembl (`gene_symbol` è etichetta); tabelle per simbolo deduplicate
   (`.rank_and_dedup_genes()`); merge fra gruppi su `gene_id`.
@@ -313,7 +317,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md` (ordine delle sessioni); quello del 2026-08-21 per le sessioni chiuse e i prompt di S12b-S12d, S16, S17;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-07-valutazione-autonoma-del-progetto` · `2026-11-07-S11-lettura-falsi-allarmi` · `2026-11-07-S10b-rilevatore-metadati` · `2026-11-07-S10-rilevatore` · `2026-11-07-S9-greche-e-corsie` · `2026-11-07-S14-due-passi-col-modello` · `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-07-S12-stadio2b-disegno` · `2026-11-07-valutazione-autonoma-del-progetto` · `2026-11-07-S11-lettura-falsi-allarmi` · `2026-11-07-S10b-rilevatore-metadati` · `2026-11-07-S10-rilevatore` · `2026-11-07-S9-greche-e-corsie` · `2026-11-07-S14-due-passi-col-modello` · `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`

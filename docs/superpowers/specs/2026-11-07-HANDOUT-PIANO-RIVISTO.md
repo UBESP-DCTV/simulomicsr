@@ -32,7 +32,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 
 | # | sessione | tipo | durata stimata (×2 nella pratica) | serve prima |
 |---|---|---|---|---|
-| **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) | carta + codice della regola (TDD) | ~4 h | — |
+| **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **fatto il 2026-11-07, 4 decisioni del PI in attesa** | carta + codice della regola (TDD) | ~4 h | — |
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco | notte DGX + 1 sessione | ~3 h + 1 notte | **S12** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
@@ -54,6 +54,18 @@ S15←S13, S7c←S13.
 ---
 
 # S12 — Stadio 2b: il disegno
+
+> **Stato (2026-11-07): disegno fatto, in attesa di quattro decisioni del PI.** Spec
+> `docs/superpowers/specs/2026-11-07-stadio-2b-design.md`, finding `docs/findings/2026-11-07-S12-stadio2b-disegno.md`
+> (riassunto «In breve» in testa). Su disco: schema `inst/schemas/comparison_check.stage2b.v1.json`, prompt
+> `inst/prompts/stage2b-v1.md`, regola `R/stage2b-rule.R`, ingresso `R/stage2b-input.R`, test verdi, ingresso
+> congelato dei 1.903 confronti con impronte (`analysis/audit/2026-11-07-S12-stadio2b-disegno/90-sha256.txt`).
+> Cancelli C1-C5 passati; P1 e P3 confermate, P2 smentita come scritta e spiegata (testo ripetuto, non tagliato;
+> codifica UTF-8 doppia e tripla dell'H5 trovata e riparata nell'ingresso). Decisioni del PI: (1) aggiungere
+> all'ingresso `description`, `treatment_protocol_ch1`, `growth_protocol_ch1` da GEO; (2) donatori diversi nei
+> confronti malati contro sani = avviso; (3) non detto e casi incerti = avviso; (4) voce aperta «altre differenze»
+> = errore. Se la (1) è sì, la sessione prepara lo scaricamento congelato per i 993 studi e rifà l'ingresso
+> prima di chiudere.
 
 ### Perché
 Il giudizio di confrontabilità deve vedere il testo intero dei due bracci. Prima del calcolo servono: la
@@ -96,6 +108,17 @@ Obiettivo: disegno dello Stadio 2b (schema, regola con test, prompt, previsioni)
 ---
 
 # S12p — La prova che decide
+
+> **Ricevuto da S12 (2026-11-07), da leggere per primo.** (a) Configurazione, ingresso congelato e conto: spec
+> `docs/superpowers/specs/2026-11-07-stadio-2b-design.md` §7; verifica le impronte di
+> `analysis/audit/2026-11-07-S12-stadio2b-disegno/90-sha256.txt` prima del lancio. (b) Il limite di 26.624 token
+> usa una stima di 3 caratteri per token: lo smoke misura il conteggio vero di vLLM. Un confronto su 1.903
+> (117 campioni, 39.674 token stimati) è oltre il limite e la regola lo scarta con `INGRESSO_INCOMPLETO`; se il
+> conteggio vero lo fa stare nel limite, va mandato al modello. (c) Nel conto, separa i segnali calcolati dal
+> codice (`TECNICA_H5_*`) da quelli del modello, e riporta la quota di citazioni trovate per intero
+> nell'ingresso. (d) Se il PI ha detto sì alla decisione 1 di S12, l'ingresso contiene anche testo GEO che i
+> lettori dei 193 non hanno visto: i falsi allarmi che nascono da lì si leggono come possibili errori del
+> riferimento (punto 5).
 
 ### Perché
 È l'unica misura che dice se lo Stadio 2b funziona: tre modelli, stesso prompt, 1.903 confronti del
@@ -152,6 +175,19 @@ Prompt e dettagli nell'handout del 2026-08-21 (sezioni S12b, S12c, S12d). Tre co
 ---
 
 # S13 — Applicare tutto sui master S14
+
+> **Ricevuto da S12 (2026-11-07), da leggere per primo. Due rinvii.**
+> (1) **Studi doppi**: la regola sulle conte e i suoi test si scrivono qui (rinvio di S5, che lo prevedeva se la
+> vecchia S12 non lo faceva). Regola: due campioni sono lo stesso dato se la distanza L1 relativa sta sotto 0,001;
+> due studi di un gruppo sono doppi se condividono almeno metà dei campioni dello studio più piccolo; resta lo
+> studio con più campioni; `k_eff` si conta dopo. Controllo positivo: `GSE154613`/`GSE159522`,
+> `GSE108743`/`GSE89725`, `GSE156038`/`GSE156184`/`GSE222279`. Elenco:
+> `analysis/audit/2026-11-03-S5-gate-e-insiemi/48-coppie-di-studi-doppie.csv`.
+> (2) **Codifica UTF-8 doppia e tripla nell'H5**: gli Stadi 1 e 2 di produzione hanno letto «TGF-Î²1» e simili
+> (finding S12 §4). Lo Stadio 2b la ripara (`.s2b_norm_testo()`). Va deciso se la stessa riparazione entra dove la
+> pipeline costruisce nomi e chiavi (Stadio 3, S12b/S12c); rifare i due passi col modello richiede una decisione
+> del PI. **L'entità proposta** che lo Stadio 2b riceve in produzione è il nome dell'entità della chiave dello
+> Stadio 3 del record (spec §2): va costruita prima di lanciare lo Stadio 2b sui candidati.
 
 ### Perché
 Un ricalcolo solo, sui master definitivi, con tutte le correzioni insieme: Stadio 2b, chiave, varianza del
@@ -215,6 +251,11 @@ bias dichiarato: coprono 3 entità su ~194, tutte malattie.
 ---
 
 # S16 e S17
+
+> **Ricevuto da S12 (2026-11-07), per S17.** (1) Lo Stadio 2 di produzione non ha mai ricevuto il riassunto dello
+> studio: l'ingresso v3 lo scrive vuoto (24.983 record su 24.983 dell'ingresso S14), senza un motivo scritto. Va
+> nei Methods. (2) La codifica UTF-8 doppia e tripla dell'H5 di ARCHS4 (finding S12 §4) e la sua riparazione nello
+> Stadio 2b vanno nei Methods. (3) La prova S12p è cieca sugli esempi ma non sulle categorie dei difetti (spec §8).
 
 Prompt nell'handout del 2026-08-21. Nei Methods entrano, in più: lo Stadio 2b (ADR-0028) con il suo tasso
 misurato in S12p e il residuo di S15; il soffitto (455 entità con ≥3 studi, resa del deliverable); il
