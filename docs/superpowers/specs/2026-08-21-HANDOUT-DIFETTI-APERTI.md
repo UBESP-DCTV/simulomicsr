@@ -58,7 +58,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 7 | ~~Non è deciso se rifare il run completo~~ **Il PI ha scelto il re-run completo dopo la prova (S8b, 2026-11-05): 24.394 studi da zero, in un solo run** | S8 → S8b ✅ → S14 |
 | 8 | ~~Le lettere greche sbagliano in 45 prove su 90~~ **misurato su tutto lo Stadio 3 (S9): 7 meta-analisi su 194 cambiano; la sola traduzione toglie 15 studi a TNF. Il PI fa scrivere la correzione in S12b** | S9 ✅ → S12b → S13 |
 | 9 | ~~`.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()`~~ **corretto con due test (S9, `6996f73`)** | S9 ✅ |
-| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Sui fatti dei campioni (S10b, 2026-11-07) la combinazione proposta prende 43 su 129 con 40 falsi allarmi; il PI sceglie che cosa va alla lettura** | S10 → S10b → S11 → S12 → S13 |
+| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Sui fatti dei campioni (S10b, 2026-11-07) la combinazione proposta prende 43 su 129 con 40 falsi allarmi; il PI la manda alla lettura (S11)** | S10 → S10b → S11 → S12 → S13 |
 | 16 | **Tabelle dei nomi agganciate per numero d'ordine** (S10, 2026-11-07): negli studi rigenerati il nome cade su altri campioni; nel deliverable 283 confronti su 1.903 hanno un nome diverso sul primo campione trattato, nel master da zero il 70% dei record agganciati cambia o manca. **Il PI fa correggere l'aggancio in S12d** | S10 → S12d → S13, S14 |
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
 | 12 | Le figure dell'articolo descrivono un deliverable che non esiste più | S16 |
@@ -87,8 +87,8 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S8b** | La prova: 6.000 studi a caso e 300 già rigenerati, poi sì o no: **sì** ✅ | misura | ~17 h | **S8** ✅ |
 | **S9** | Le lettere greche, e il crash delle corsie ✅ | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo ✅ | misura | ~4 h | *meglio S3* |
-| **S10b** | Il rilevatore sui metadati dei campioni (decisione del PI, 2026-11-07): misurata, decisione del PI in attesa | misura | ~4-6 h | **S10** ✅ |
-| **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10b* | **S10b** |
+| **S10b** | Il rilevatore sui metadati dei campioni (decisione del PI, 2026-11-07) ✅ | misura | ~4-6 h | **S10** ✅ |
+| **S11** | Il rilevatore: leggere i falsi allarmi (56 righe, elenco di S10b) | lettura | una sessione | **S10b** ✅ |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
 | **S12b** | La chiave d'entità: greche, citochine in lettere latine, negazione | codice (TDD) + misura | ~4-6 h | **S9** ✅ |
 | **S12c** | Una entità con più nomi: il nome scritto dal modello, regola generale | ADR + codice (TDD) + misura + lettura | *da stimare in apertura; più di una sessione S12b* | **S9**, **S12b** |
@@ -975,14 +975,18 @@ NON leggere i falsi allarmi: producine l'elenco e dimmi quanti sono.
 
 # S10b — Il rilevatore sui metadati dei campioni
 
-> **Misurata il 2026-11-07, decisione del PI in attesa** (`docs/findings/2026-11-07-S10b-rilevatore-metadati.md`, evidenza
+> **Chiusa il 2026-11-07.** **Decisione del PI** («ok va bene la combinazione scelta»): va alla lettura (S11) la combinazione
+> proposta dal criterio, con l'elenco `analysis/audit/2026-11-07-S10b-metadati-campioni/40-falsi-allarmi.csv` (56 righe).
+> La regola sul materiale resta fuori.
+>
+> **Misurata il 2026-11-07** (`docs/findings/2026-11-07-S10b-rilevatore-metadati.md`, evidenza
 > `analysis/audit/2026-11-07-S10b-metadati-campioni/`, deposito `3defd61`). Cinque cancelli superati. La regola sui fatti
 > dello Stadio 1 (12 sotto-regole) prende **56 difettosi su 129** con **184 falsi allarmi su 1.704**: sopra N = 85. Il
 > criterio depositato propone **R1 + R2a + R2b + R6 + la parte di V3 senza la soglia a un agente**: **43 su 129** (33,3%,
 > ottimistica perché la scelta usa il riferimento) con **40 falsi allarmi** e 16 altri negativi, 56 righe da leggere. La
 > regola sul materiale (R4a) resta fuori per 2 falsi allarmi (87 con lei). I fatti dei campioni vedono il secondo agente
 > (29 su 41) e il tempo (10 su 19); non vedono materiale, soggetto e sede (bracci misti, `context_kind` troppo grossolano,
-> linea vuota). **Decisione del PI:** quale regola va alla lettura (S11).
+> linea vuota).
 
 > **Aperta dal PI il 2026-11-07, alla chiusura di S10** («sì alle tue proposte»). Fonte: `docs/findings/2026-11-07-S10-rilevatore.md`
 > §5. Evidenza riusabile in `analysis/audit/2026-11-07-S10-rilevatore/`: `20-ingressi-regola.rds` (gli ingressi veri della
@@ -1051,9 +1055,10 @@ e le previsioni PRIMA di misurare. Misura sullo stesso riferimento di S10
 
 # S11 — Il rilevatore: leggere i falsi allarmi
 
-> **Ricevuto dal rilevatore sui fatti dei campioni (S10b), da leggere per primo.** Se il PI sceglie la combinazione
-> proposta, l'elenco è `analysis/audit/2026-11-07-S10b-metadati-campioni/40-falsi-allarmi.csv`: 56 righe (40 puliti, 16
-> altri negativi), una sessione. La sensibilità della combinazione (43 su 129) è ottimistica: va ricalcolata sul
+> **Ricevuto dal rilevatore sui fatti dei campioni (S10b), da leggere per primo.** Il PI ha scelto la combinazione
+> proposta (2026-11-07): l'elenco da leggere è `analysis/audit/2026-11-07-S10b-metadati-campioni/40-falsi-allarmi.csv`,
+> 56 righe (40 puliti, 16 altri negativi), una sessione. Sostituisce l'elenco della S10 citato qui sotto e nel prompt.
+> Le colonne `det_*` dicono quali valori dello Stadio 1 fanno scattare la regola. La sensibilità della combinazione (43 su 129) è ottimistica: va ricalcolata sul
 > riferimento corretto a fine lettura. **Rinvio, anomalia del riferimento:** i controlli a tempo zero sono giudicati in
 > modo diverso nello stesso studio. In `GSE126409` gli 11 confronti hanno lo stesso controllo «vehicle control (time
 > zero)» e la rilettura ne accusa 5 (3 su 3 per IL-21, 1 su 4 per IL-15, 1 su 4 per IFN-β); in `GSE221804` 10 confronti

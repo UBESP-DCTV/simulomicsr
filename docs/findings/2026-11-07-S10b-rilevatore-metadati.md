@@ -207,14 +207,20 @@ In `GSE126409` gli 11 confronti hanno lo stesso controllo, «Healthy IEIL cells 
 | P1 scritta con il valore atteso fuori dall'intervallo | spiegato (§8): la conclusione (M sopra la soglia) è quella attesa |
 | P2 indeterminata | spiegato (§8): non tocca la regola che va alla lettura |
 | P5 smentita | spiegato (§6) |
-| il materiale escluso per 2 falsi allarmi oltre la soglia | **decisione del PI** (§10) |
+| il materiale escluso per 2 falsi allarmi oltre la soglia | **deciso** dal PI (§10): resta fuori |
 | controlli a tempo zero giudicati in modo diverso nello stesso studio | **rinviato** alla lettura dei falsi allarmi (S11), scritto nel suo riquadro dell'handout |
 | sensibilità della proposta ottimistica | dichiarato (§4); la lettura dei falsi allarmi ricalcola la sensibilità sul riferimento corretto |
 | idee per migliorare la regola (separatore «plus», materiale incoerente, linea vuota, condizioni di controllo come agenti, sinonimi della sede) | **rinviato** al passaggio in produzione (S12), scritto nel suo riquadro dell'handout; non applicate qui |
 
 # 10. Decisioni del PI
 
-In attesa.
+Il PI ha letto il riassunto e ha risposto il 2026-11-07: «ok va bene la combinazione scelta».
+
+1. **Va alla lettura dei falsi allarmi (S11) la combinazione proposta dal criterio:** R1 + R2a + R2b + R6 + la parte di V3
+   senza la soglia a un agente. L'elenco è `40-falsi-allarmi.csv`: 56 righe, 40 sui puliti e 16 sugli altri negativi, una
+   sessione. La regola sul materiale (R4a) resta fuori.
+
+Con questa decisione nessun dubbio di §9 resta aperto: i due rinvii stanno nei riquadri di S11 e S12. La sessione è chiusa.
 
 # Da dove vengono i numeri del riassunto
 
