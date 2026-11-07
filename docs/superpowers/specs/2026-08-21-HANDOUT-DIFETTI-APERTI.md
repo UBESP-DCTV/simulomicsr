@@ -749,6 +749,12 @@ limitazione.
 
 # S9 — Le lettere greche, e il crash delle corsie
 
+> **Misura fatta il 2026-11-07, decisione del PI in attesa** (`docs/findings/2026-11-07-S9-greche-e-corsie.md`). La chiave
+> d'entità ricalcolata su tutti gli 86.745 confronti dello Stadio 3, senza e con traduzione delle greche: cambiano 364
+> confronti e 7 meta-analisi su 194, fra le 40 solo TNF (42 → 27 studi, per un difetto della forma ASCII `TNF-alpha`, che già
+> oggi lascia fuori 12 studi). Cinque cambi tolgono confronti già segnati difettosi. Crash di `.lane_index()` corretto
+> (`6996f73`); 45 su 90 confermato. **Decisione del PI:** se e con quale scopo scrivere la correzione (finding, «Cosa devi decidere»).
+
 > **Ricevuto dal disegno della validazione esterna (S6), da leggere per primo.** Nessuna correzione può scegliere che cosa correggere guardando
 > l'esito della validazione esterna per una meta-analisi. Vale anche per il rilevatore e per il calcolo delle correzioni. Fra i composti misurabili in
 > LINCS, uno solo ha una lettera greca nel nome: `17β-estradiol`, nell'insieme principale. Controllalo qui.
