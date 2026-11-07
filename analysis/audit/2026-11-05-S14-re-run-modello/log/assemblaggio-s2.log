@@ -1,0 +1,23 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 410 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+Carico predizioni fullrun...
+Carico predizioni rescue...
+Predizioni valide: fullrun=24966  rescue=472
+Studi colpiti (rescue): 12 -> GSE140813, GSE157657, GSE162855, GSE192861, GSE199208, GSE233774, GSE235391, GSE245006, GSE246587, GSE249377, GSE253260, GSE68799
+Input v3: 24860 record tenuti, 123 scartati (studi colpiti) + 472 record rescue
+Assemblo 24393 studi...
+Studi assemblati: 24393  (null/senza-predizione: 0)
+Guard one-record-per-series: OK (24393 series distinte)
+Campioni coperti dai replicate_groups (union): 489428
+
+=== Done ===
+Master: analysis/p4-output/S14-stage2-master.jsonl
+Studi: 24393
