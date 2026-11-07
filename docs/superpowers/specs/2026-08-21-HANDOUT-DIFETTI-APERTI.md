@@ -58,7 +58,8 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 7 | ~~Non è deciso se rifare il run completo~~ **Il PI ha scelto il re-run completo dopo la prova (S8b, 2026-11-05): 24.394 studi da zero, in un solo run** | S8 → S8b ✅ → S14 |
 | 8 | ~~Le lettere greche sbagliano in 45 prove su 90~~ **misurato su tutto lo Stadio 3 (S9): 7 meta-analisi su 194 cambiano; la sola traduzione toglie 15 studi a TNF. Il PI fa scrivere la correzione in S12b** | S9 ✅ → S12b → S13 |
 | 9 | ~~`.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()`~~ **corretto con due test (S9, `6996f73`)** | S9 ✅ |
-| 10 | Il rilevatore di difetti in produzione ne segnala 2 su 1.903 | S10 → S11 → S12 → S13 |
+| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Decisione del PI in attesa** | S10 → S11 → S12 → S13 |
+| 16 | **Tabelle dei nomi agganciate per numero d'ordine** (S10, 2026-11-07): negli studi rigenerati il nome cade su altri campioni; nel deliverable 283 confronti su 1.903 hanno un nome diverso sul primo campione trattato, nel master da zero il 70% dei record agganciati cambia o manca. Decisione del PI in attesa | S10 → ? → S13, S14 |
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
 | 12 | Le figure dell'articolo descrivono un deliverable che non esiste più | S16 |
 | 13 | I limiti misurati non sono scritti da nessuna parte | S17 |
@@ -85,7 +86,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S8** | La decisione sul re-run completo: prima una prova ✅ | **decisione** | ~2 h | — |
 | **S8b** | La prova: 6.000 studi a caso e 300 già rigenerati, poi sì o no: **sì** ✅ | misura | ~17 h | **S8** ✅ |
 | **S9** | Le lettere greche, e il crash delle corsie ✅ | misura + 1 fix | ~4 h | — |
-| **S10** | Il rilevatore: costruirlo e misurarlo | misura | ~4 h | *meglio S3* |
+| **S10** | Il rilevatore: costruirlo e misurarlo (misurato, decisione del PI in attesa) | misura | ~4 h | *meglio S3* |
 | **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10* | **S10** |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
 | **S12b** | La chiave d'entità: greche, citochine in lettere latine, negazione | codice (TDD) + misura | ~4-6 h | **S9** ✅ |
@@ -869,6 +870,16 @@ Alla fine dimmi se vale la pena, e pesa DUE costi, non uno:
 
 # S10 — Il rilevatore di difetti: costruirlo e misurarlo
 
+> **Misurata il 2026-11-07, non chiusa: due decisioni del PI in attesa** (`docs/findings/2026-11-07-S10-rilevatore.md`,
+> evidenza `analysis/audit/2026-11-07-S10-rilevatore/`). Il PI ha fissato prima della misura N = 85 e la lettura a blocchi
+> di 150. Il riferimento è di **129 confronti difettosi**, non 97 (97 righe su 97 agganciate, 23 confronti a mano). La regola
+> corretta (V3: greche, soglia a un agente tolta l'entità, regola sul materiale) prende **10 su 129** (7,8%, tre per caso) con
+> **51 falsi allarmi su 1.704**: recuperabile per la soglia, ma vede meno di un difetto su dieci, perché i difetti sono
+> asimmetrici (l'informazione sta su un braccio solo). 32 dei 51 falsi allarmi vengono da TNF e calcitriolo (S12b, S12c).
+> Il dubbio sulle tabelle dei nomi qui sotto è misurato: §7 del finding. **Decisioni in attesa:** (1) che cosa fare del
+> rilevatore (raccomandazione: una regola sui metadati dello Stadio 1, con lo stesso riferimento e la stessa N);
+> (2) dove correggere l'aggancio delle tabelle dei nomi (raccomandazione: una sessione nuova prima di S13).
+
 > **Ricevuto dalla prova del re-run (S8b), da leggere per primo. Rinvio.** Le tabelle che correggono i nomi si agganciano al `record_id` del run vecchio. Se lo Stadio 2 rigenerato cambia il
 > significato di un gruppo, la correzione può cadere su altri campioni. Il dubbio tocca già il deliverable di agosto, non solo il re-run. **Che cosa serve per chiuderlo:** contare, su tutte le righe
 > delle tabelle dei nomi, quante puntano a un gruppo con un contenuto diverso nel run nuovo. Il dubbio riguarda S10, S11 e S12, e la misura può ripetersi quando esiste il master del re-run.
@@ -959,6 +970,12 @@ NON leggere i falsi allarmi: producine l'elenco e dimmi quanti sono.
 ---
 
 # S11 — Il rilevatore: leggere i falsi allarmi
+
+> **Ricevuto dalla misura del rilevatore (S10), da leggere per primo.** L'elenco è
+> `analysis/audit/2026-11-07-S10-rilevatore/40-falsi-allarmi.csv`: 54 allarmi (51 sui confronti puliti, 3 sugli altri
+> negativi), una sessione sola per la regola dei 150. Il denominatore della sensibilità è **129** confronti
+> (`30-riferimento.csv`), non 97. 25 allarmi su TNF e 7 sul calcitriolo vengono da difetti della chiave che S12b e S12c
+> cambiano. **Non aprire questa sessione prima della decisione del PI su S10.**
 
 ### Perché
 
@@ -1363,7 +1380,10 @@ Alla fine verifica le previsioni una per una, comprese quelle che hai sbagliato.
 > Stadio 1 e Stadio 2 rifatti da zero su `poddgx02`, in un solo run di 33 h. Master nuovi: `analysis/p4-output/S14-stage1-master.jsonl` (508.037 record, 3 campioni senza record valido) e `analysis/p4-output/S14-stage2-master.jsonl` (24.393 studi: `GSE9135` dei master vecchi non esiste). Ripetibilità: 211.484 record su 211.484 e 8.565 studi su 8.566 identici al riferimento; `GSE157657` è spiegato nel finding, §4.1. Copia verificata in `/mnt/micron/simulomicsr-salvataggio/S14-master-2026-11-07/`.
 > **Che cosa resta di S14**, dopo S12 e dopo l'assegnazione dei ruoli per nome (S13, punto 1): re-cluster, re-pool e annotazione su questi due master, con le tappe gated scritte e approvate prima. Poi S15.
 > **Da sapere prima di un altro run del modello sul corpus:** gli outlier dello Stadio 1 (oltre 3.500 caratteri) vanno con `max_model_len` 32768, come nel run di produzione F2. Con 4096 il job 452113 è rimasto fermo 1 h senza errori (vLLM #39734). La catena di S14 lo fa; i default di `dgx_p4_build_bundle()` no.
-> **Tabelle dei nomi (punto 7 qui sotto):** la misura di S10 su tutte le righe ora si può fare, perché il master nuovo esiste.
+> **Tabelle dei nomi (punto 7 qui sotto): misurate in S10 il 2026-11-07** (finding S10 §7). Le tabelle si agganciano al
+> `record_id` del run v9, quasi sempre con il numero d'ordine del gruppo. Nel master da zero il 69,9% dei record agganciati
+> ha altri campioni o non esiste più. **Il raggruppamento sul re-run non può usare le tabelle come sono oggi.** Come
+> correggere l'aggancio è una decisione del PI in attesa.
 
 > **Ricevuto dalla prova del re-run (S8b), da leggere per primo. Il PI ha detto sì il 2026-11-05.**
 > (1) **Oggetto:** i 24.394 studi, Stadio 1 e Stadio 2, da zero, in un solo run e senza innesti (lettura della frase «Si rifa tutto», finding S8b, «Decisioni del PI»). Se il PI la corregge, vale la sua correzione.

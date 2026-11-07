@@ -1,0 +1,19 @@
+record distinti con campioni diversi (A3): 5416
+  con un identificativo numerico del gruppo: 5104
+   numerico                    classe     N
+     <lgcl>                    <char> <int>
+1:    FALSE   meno di meta' in comune    30
+2:    FALSE    meta' o piu' in comune   152
+3:    FALSE nessun campione in comune   130
+4:     TRUE   meno di meta' in comune    67
+5:     TRUE    meta' o piu' in comune   454
+6:     TRUE nessun campione in comune  4583
+
+record distinti agganciati, per stato e forma dell'identificativo:
+Key: <stato_A3>
+           stato_A3 FALSE  TRUE
+             <char> <int> <int>
+1: assente_entrambi   233     0
+2:    assente_nuovo  1046  1254
+3:          diverso   312  5104
+4:           uguale  7423 20429
