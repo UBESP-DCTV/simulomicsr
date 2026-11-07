@@ -1,0 +1,224 @@
+== Cancello C2(c): gli insiemi e V3 della S10 si riproducono ==
+insiemi: difettosi 129, puliti 1704, altri negativi 70; uguali a quelli di S10: TRUE
+S10 V3: difettosi 10, falsi allarmi 51 (attesi 10 e 51)
+S10 V1 + materiale: difettosi 5, falsi allarmi 0 (attesi 5 e 0)
+
+== Cancello C3: copertura ==
+confronti con un esito per tutte le sotto-regole: 1903 su 1903
+
+== Cancello C4: controlli ==
+                              controllo
+                                 <char>
+ 1:             pos R1 Hypoxia + TGF-b1
+ 2: pos R2a o R2b, tempo zero GSE126409
+ 3: pos R2a o R2b, tempo zero GSE126409
+ 4: pos R2a o R2b, tempo zero GSE126409
+ 5: pos R2a o R2b, tempo zero GSE126409
+ 6: pos R2a o R2b, tempo zero GSE126409
+ 7: pos R2a o R2b, tempo zero GSE126409
+ 8: pos R2a o R2b, tempo zero GSE126409
+ 9: pos R2a o R2b, tempo zero GSE126409
+10: pos R2a o R2b, tempo zero GSE126409
+11: pos R2a o R2b, tempo zero GSE126409
+12: pos R2a o R2b, tempo zero GSE126409
+13:              pos R3b etnia GSE97358
+14:              neg M GSE139963 TGF-b1
+15:  neg M GSE114686 Lapatinib 1 uM 24h
+                                                                   record_id
+                                                                      <char>
+ 1:                            GSE139963__GSE139963__grp_0002_vs_grp_0003__1
+ 2:                            GSE126409__GSE126409__grp_0029_vs_grp_0027__1
+ 3:                            GSE126409__GSE126409__grp_0034_vs_grp_0027__1
+ 4:                            GSE126409__GSE126409__grp_0042_vs_grp_0027__1
+ 5:                            GSE126409__GSE126409__grp_0035_vs_grp_0027__1
+ 6:                            GSE126409__GSE126409__grp_0036_vs_grp_0027__1
+ 7:                            GSE126409__GSE126409__grp_0037_vs_grp_0027__1
+ 8:                            GSE126409__GSE126409__grp_0043_vs_grp_0027__1
+ 9:                            GSE126409__GSE126409__grp_0022_vs_grp_0027__1
+10:                            GSE126409__GSE126409__grp_0023_vs_grp_0027__1
+11:                            GSE126409__GSE126409__grp_0024_vs_grp_0027__1
+12:                            GSE126409__GSE126409__grp_0025_vs_grp_0027__1
+13:                              GSE97358__GSE97358__grp_0002_vs_grp_0003__1
+14:                            GSE139963__GSE139963__grp_0004_vs_grp_0003__1
+15: GSE114686__GSE114686__grp_Lapatinib_1_uM_24h_vs_grp_DMSO_0.001_uM_24h__1
+    esito
+    <int>
+ 1:     1
+ 2:     1
+ 3:     1
+ 4:     1
+ 5:     1
+ 6:     1
+ 7:     1
+ 8:     1
+ 9:     1
+10:     1
+11:     1
+12:     1
+13:     1
+14:     0
+15:     0
+
+== Ogni sotto-regola da sola ==
+         sigla              regola segnalati      difettosi    sens_IC95
+        <char>              <char>     <int>         <char>       <char>
+ 1:         R1       agente_in_piu        48 30/129 (23.3%) [14.3; 33.8]
+ 2:        R1c    agente_solo_ctrl        26   1/129 (0.8%)   [0.0; 2.6]
+ 3:        R2a       tempo_diverso        46  11/129 (8.5%)  [0.8; 19.0]
+ 4:        R2b     ctrl_tempo_zero        31   5/129 (3.9%)  [0.0; 12.4]
+ 5:        R3a               sesso         2   0/129 (0.0%)   [0.0; 0.0]
+ 6:        R3b               etnia         2   1/129 (0.8%)   [0.0; 2.6]
+ 7:        R3c            donatore        15   0/129 (0.0%)   [0.0; 0.0]
+ 8:        R4a      materiale_tipo        62  11/129 (8.5%)  [3.9; 13.7]
+ 9:        R4b               linea         3   0/129 (0.0%)   [0.0; 0.0]
+10:         R5                sede        39   6/129 (4.7%)   [1.5; 8.7]
+11:         R6           passaggio         5   1/129 (0.8%)   [0.0; 2.8]
+12:         R7            genotipo        43   3/129 (2.3%)   [0.0; 5.6]
+13:        R1x agente_tolta_entita       669 53/129 (41.1%) [30.3; 53.1]
+14:     S10_V3              S10 V3        64  10/129 (7.8%)  [2.3; 14.4]
+15: S10_pulita  S10 V1 + materiale         5   5/129 (3.9%)   [0.7; 8.5]
+       falsi_allarmi    fa_IC95 altri_negativi        sui_199
+              <char>     <char>         <char>         <char>
+ 1:   16/1704 (0.9%)    [9; 25]    2/70 (2.9%) 32/199 (16.1%)
+ 2:   24/1704 (1.4%)   [14; 37]    1/70 (1.4%)   2/199 (1.0%)
+ 3:   21/1704 (1.2%)   [10; 35]  14/70 (20.0%) 25/199 (12.6%)
+ 4:   13/1704 (0.8%)    [4; 25]  13/70 (18.6%)  18/199 (9.0%)
+ 5:    2/1704 (0.1%)     [0; 5]    0/70 (0.0%)   0/199 (0.0%)
+ 6:    1/1704 (0.1%)     [0; 3]    0/70 (0.0%)   1/199 (0.5%)
+ 7:   15/1704 (0.9%)    [4; 30]    0/70 (0.0%)   0/199 (0.0%)
+ 8:   48/1704 (2.8%)   [30; 69]    3/70 (4.3%)  14/199 (7.0%)
+ 9:    3/1704 (0.2%)     [0; 7]    0/70 (0.0%)   0/199 (0.0%)
+10:   33/1704 (1.9%)   [20; 47]    0/70 (0.0%)   6/199 (3.0%)
+11:    4/1704 (0.2%)     [1; 9]    0/70 (0.0%)   1/199 (0.5%)
+12:   38/1704 (2.2%)   [23; 58]    2/70 (2.9%)   5/199 (2.5%)
+13: 589/1704 (34.6%) [515; 671]  27/70 (38.6%) 80/199 (40.2%)
+14:   51/1704 (3.0%)   [28; 78]    3/70 (4.3%)  13/199 (6.5%)
+15:    0/1704 (0.0%)     [0; 0]    0/70 (0.0%)   5/199 (2.5%)
+
+== Scala cumulativa, nell'ordine fissato ==
+    fino_a segnalati      difettosi    falsi_allarmi altri_negativi
+    <char>     <int>         <char>           <char>         <char>
+ 1:     R1        48 30/129 (23.3%)   16/1704 (0.9%)    2/70 (2.9%)
+ 2:    R1c        74 31/129 (24.0%)   40/1704 (2.3%)    3/70 (4.3%)
+ 3:    R2a       117 41/129 (31.8%)   59/1704 (3.5%)  17/70 (24.3%)
+ 4:    R2b       117 41/129 (31.8%)   59/1704 (3.5%)  17/70 (24.3%)
+ 5:    R3a       119 41/129 (31.8%)   61/1704 (3.6%)  17/70 (24.3%)
+ 6:    R3b       121 42/129 (32.6%)   62/1704 (3.6%)  17/70 (24.3%)
+ 7:    R3c       136 42/129 (32.6%)   77/1704 (4.5%)  17/70 (24.3%)
+ 8:    R4a       190 50/129 (38.8%)  120/1704 (7.0%)  20/70 (28.6%)
+ 9:    R4b       193 50/129 (38.8%)  123/1704 (7.2%)  20/70 (28.6%)
+10:     R5       222 52/129 (40.3%)  150/1704 (8.8%)  20/70 (28.6%)
+11:     R6       227 53/129 (41.1%)  154/1704 (9.0%)  20/70 (28.6%)
+12:     R7       261 56/129 (43.4%) 184/1704 (10.8%)  21/70 (30.0%)
+
+== Regola completa M e combinazioni con la S10 ==
+                   regola segnalati      difettosi    sens_IC95
+                   <char>     <int>         <char>       <char>
+1:    M (12 sotto-regole)       261 56/129 (43.4%) [31.8; 55.8]
+2:             M + S10 V3       312 60/129 (46.5%) [34.4; 59.1]
+3: M + S10 V1 e materiale       261 56/129 (43.4%) [31.8; 55.8]
+      falsi_allarmi    fa_IC95 altri_negativi        sui_199
+             <char>     <char>         <char>         <char>
+1: 184/1704 (10.8%) [148; 223]  21/70 (30.0%) 77/199 (38.7%)
+2: 228/1704 (13.4%) [188; 273]  24/70 (34.3%) 84/199 (42.2%)
+3: 184/1704 (10.8%) [148; 223]  21/70 (30.0%) 77/199 (38.7%)
+
+== Contributo marginale in M (che cosa si perde togliendo la sotto-regola) ==
+     sigla           regola difettosi_persi falsi_allarmi_persi
+    <char>           <char>           <int>               <int>
+ 1:     R1    agente_in_piu              27                  12
+ 2:    R1c agente_solo_ctrl               1                  18
+ 3:    R2a    tempo_diverso               5                   6
+ 4:    R2b  ctrl_tempo_zero               0                   0
+ 5:    R3a            sesso               0                   2
+ 6:    R3b            etnia               0                   1
+ 7:    R3c         donatore               0                  12
+ 8:    R4a   materiale_tipo               5                  38
+ 9:    R4b            linea               0                   2
+10:     R5             sede               2                  26
+11:     R6        passaggio               1                   4
+12:     R7         genotipo               3                  30
+
+== Tabella a due entrate, M ==
+         riferimento
+regola    altro_negativo difettoso pulito
+  segnala             21        56    184
+  tace                49        73   1520
+
+== Sensibilita' per famiglia del difetto: S10 V3, M, M + S10 V3 ==
+                                                      famiglia confronti    V3
+                                                        <char>     <int> <int>
+ 1:                           secondo agente solo nel trattato        41     3
+ 2:            materiale / tipo cellulare diverso fra i bracci        22     2
+ 3:                                         tempo non appaiato        19     0
+ 4:                                                      altro        15     1
+ 5:                donatore / soggetto / sesso / etnia diversi        14     0
+ 6:                                     sede anatomica diversa         6     3
+ 7:                entita del gruppo non isolata dal confronto         6     0
+ 8:                          passaggio di coltura non appaiato         2     0
+ 9:                                          dose non appaiata         2     0
+10: controllo non e un controllo / tipo di controllo sbagliato         1     0
+11:       genotipo / perturbazione genetica su un braccio solo         1     1
+        M  M_V3
+    <int> <int>
+ 1:    30    30
+ 2:     8     8
+ 3:    10    10
+ 4:     4     5
+ 5:     2     2
+ 6:     0     3
+ 7:     0     0
+ 8:     0     0
+ 9:     1     1
+10:     0     0
+11:     1     1
+
+== Visibilita': il campo della famiglia e' scritto su entrambi i bracci (difettosi) ==
+                                               famiglia difettosi campo_scritto
+                                                 <char>     <int>         <int>
+1:                     secondo agente solo nel trattato        41            41
+2:                                   tempo non appaiato        19            12
+3:          donatore / soggetto / sesso / etnia diversi        14            10
+4:      materiale / tipo cellulare diverso fra i bracci        22            22
+5:                               sede anatomica diversa         6             4
+6:                    passaggio di coltura non appaiato         2             2
+7: genotipo / perturbazione genetica su un braccio solo         1             1
+   presi_M presi_fra_scritti
+     <int>             <int>
+1:      30                30
+2:      10                10
+3:       2                 2
+4:       8                 8
+5:       0                 0
+6:       0                 0
+7:       1                 1
+
+== Scelta della combinazione per la lettura (criterio depositato) ==
+passo 1, tolte perche' prendono 0 difettosi con almeno un falso allarme: R3a, R3c, R4b 
+passo 2: falsi allarmi dell'unione 212 > 85; tolgo R3b (marginale: 0 difettosi, 1 falsi allarmi)
+passo 3: falsi allarmi dell'unione 211 > 85; tolgo R1c (marginale: 1 difettosi, 18 falsi allarmi)
+passo 4: falsi allarmi dell'unione 193 > 85; tolgo R5 (marginale: 2 difettosi, 29 falsi allarmi)
+passo 5: falsi allarmi dell'unione 164 > 85; tolgo R7 (marginale: 2 difettosi, 27 falsi allarmi)
+passo 6: falsi allarmi dell'unione 137 > 85; tolgo S10_V3 (marginale: 5 difettosi, 50 falsi allarmi)
+passo 7: falsi allarmi dell'unione 87 > 85; tolgo R4a (marginale: 7 difettosi, 47 falsi allarmi)
+combinazione proposta: R1 + R2a + R2b + R6 + S10_pulita 
+recuperabile (almeno un difettoso, falsi allarmi <= 85): TRUE 
+     regola segnalati      difettosi    sens_IC95  falsi_allarmi  fa_IC95
+     <char>     <int>         <char>       <char>         <char>   <char>
+1: PROPOSTA        99 43/129 (33.3%) [21.6; 46.2] 40/1704 (2.3%) [26; 55]
+   altri_negativi        sui_199
+           <char>         <char>
+1:  16/70 (22.9%) 59/199 (29.6%)
+
+== Previsioni ==
+P1 falsi allarmi di M sui puliti: 184 (atteso 150; soglia del PI 85). IC95 del conteggio [148; 223]
+P2 sensibilita' di M: 43.4% IC95 [31.8; 55.8] (atteso 35%; intervallo [20%; 50%])
+P3 difettosi presi da M e non da S10 V3: 50 (atteso 30; rilevante sotto 10)
+P4 per famiglia, presi da M contro S10 V3 (atteso: M prende almeno uno in piu' in ognuna delle quattro):
+                                          famiglia     n    V3     M
+                                            <char> <int> <int> <int>
+1:                secondo agente solo nel trattato    41     3    30
+2: materiale / tipo cellulare diverso fra i bracci    22     2     8
+3:                              tempo non appaiato    19     0    10
+4:     donatore / soggetto / sesso / etnia diversi    14     0     2
+P5 quota dei falsi allarmi di M segnalati da sede (R5) o donatore (R3c): 26.1% (atteso > 50%)
