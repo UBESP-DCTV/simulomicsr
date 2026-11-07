@@ -88,7 +88,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S11** | Il rilevatore: leggere i falsi allarmi | lettura | *dipende da S10* | **S10** |
 | **S12** | Il rilevatore: portarlo in produzione | codice (TDD) | ~4 h | **S11** |
 | **S13** | Applicare le correzioni (re-cluster + re-pool locali) | calcolo | ~6 h | **S12** *(+ S9 e S4 se hanno prodotto correzioni)* |
-| **S14** | Il re-run completo degli stadi LLM | campagna | **~44 h di macchina** | **S8b** (sì) ✅ **+ S12** per raggruppamento e pooling; i due passi col modello possono andare prima, se lo sceglie il PI |
+| **S14** | Il re-run completo degli stadi LLM (i due passi col modello ✅ 2026-11-07; restano raggruppamento, pooling e annotazione) | campagna | **~44 h di macchina** (misurate 33 h per i due passi) | **S8b** (sì) ✅ **+ S12** per raggruppamento e pooling; i due passi col modello possono andare prima, se lo sceglie il PI |
 | **S15** | Riverificare le meta-analisi cambiate | lettura | *dipende da S14* | **S14** |
 | **S16** | Rifare le figure sul deliverable vero | produzione | ~4 h | **S5**, e dopo S13/S14 |
 | **S17** | Scrivere i Methods e le limitazioni | scrittura | ~4 h | **S5, S8, S9, S4** |
@@ -1177,6 +1177,12 @@ Alla fine verifica le previsioni una per una, comprese quelle che hai sbagliato.
 ---
 
 # S14 — Il re-run completo degli stadi LLM
+
+> **Fatto il 2026-11-07: i due passi col modello** (`docs/findings/2026-11-07-S14-due-passi-col-modello.md`, evidenza `analysis/audit/2026-11-05-S14-re-run-modello/`).
+> Stadio 1 e Stadio 2 rifatti da zero su `poddgx02`, in un solo run di 33 h. Master nuovi: `analysis/p4-output/S14-stage1-master.jsonl` (508.037 record, 3 campioni senza record valido) e `analysis/p4-output/S14-stage2-master.jsonl` (24.393 studi: `GSE9135` dei master vecchi non esiste). Ripetibilità: 211.484 record su 211.484 e 8.565 studi su 8.566 identici al riferimento; `GSE157657` è spiegato nel finding, §4.1. Copia verificata in `/mnt/micron/simulomicsr-salvataggio/S14-master-2026-11-07/`.
+> **Che cosa resta di S14**, dopo S12 e dopo l'assegnazione dei ruoli per nome (S13, punto 1): re-cluster, re-pool e annotazione su questi due master, con le tappe gated scritte e approvate prima. Poi S15.
+> **Da sapere prima di un altro run del modello sul corpus:** gli outlier dello Stadio 1 (oltre 3.500 caratteri) vanno con `max_model_len` 32768, come nel run di produzione F2. Con 4096 il job 452113 è rimasto fermo 1 h senza errori (vLLM #39734). La catena di S14 lo fa; i default di `dgx_p4_build_bundle()` no.
+> **Tabelle dei nomi (punto 7 qui sotto):** la misura di S10 su tutte le righe ora si può fare, perché il master nuovo esiste.
 
 > **Ricevuto dalla prova del re-run (S8b), da leggere per primo. Il PI ha detto sì il 2026-11-05.**
 > (1) **Oggetto:** i 24.394 studi, Stadio 1 e Stadio 2, da zero, in un solo run e senza innesti (lettura della frase «Si rifa tutto», finding S8b, «Decisioni del PI»). Se il PI la corregge, vale la sua correzione.
