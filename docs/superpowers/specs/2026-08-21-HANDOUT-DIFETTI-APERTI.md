@@ -58,7 +58,7 @@ E il vero collo di bottiglia **non sono gli errori**: è che in gran parte dei g
 | 7 | ~~Non è deciso se rifare il run completo~~ **Il PI ha scelto il re-run completo dopo la prova (S8b, 2026-11-05): 24.394 studi da zero, in un solo run** | S8 → S8b ✅ → S14 |
 | 8 | ~~Le lettere greche sbagliano in 45 prove su 90~~ **misurato su tutto lo Stadio 3 (S9): 7 meta-analisi su 194 cambiano; la sola traduzione toglie 15 studi a TNF. Il PI fa scrivere la correzione in S12b** | S9 ✅ → S12b → S13 |
 | 9 | ~~`.lane_index()` va in crash su un **titolo NA**, e con lei `build_lane_library_lookup()`~~ **corretto con due test (S9, `6996f73`)** | S9 ✅ |
-| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Sui fatti dei campioni (S10b, 2026-11-07) la combinazione proposta prende 43 su 129 con 40 falsi allarmi; il PI la manda alla lettura (S11). Letta (S11, 2026-11-07): 36 allarmi su 56 sono errori veri, 19 errori della regola; il riferimento sale da 129 a 188 e il rilevatore ne vede 80. Il PI: nessuna soglia di errore, ogni causa si corregge in S12** | S10 → S10b → S11 → S12 → S13 |
+| 10 | ~~Il rilevatore di difetti in produzione ne segnala 2 su 1.903~~ **misurato (S10, 2026-11-07): la regola corretta sulle etichette prende 10 confronti difettosi su 129 con 51 falsi allarmi su 1.704; i difetti sono asimmetrici. Sui fatti dei campioni (S10b, 2026-11-07) la combinazione proposta prende 43 su 129 con 40 falsi allarmi; il PI la manda alla lettura (S11). Letta (S11, 2026-11-07): 37 allarmi su 56 sono errori veri, 18 errori della regola; il riferimento sale da 129 a 193 e il rilevatore ne vede 81. Il PI: nessuna soglia di errore, ogni causa si corregge in S12** | S10 → S10b → S11 → S12 → S13 |
 | 16 | **Tabelle dei nomi agganciate per numero d'ordine** (S10, 2026-11-07): negli studi rigenerati il nome cade su altri campioni; nel deliverable 283 confronti su 1.903 hanno un nome diverso sul primo campione trattato, nel master da zero il 70% dei record agganciati cambia o manca. **Il PI fa correggere l'aggancio in S12d** | S10 → S12d → S13, S14 |
 | 11 | Se si rifà il run, la rilettura a mano delle 194 va in parte rifatta | S15 |
 | 12 | Le figure dell'articolo descrivono un deliverable che non esiste più | S16 |
@@ -90,7 +90,7 @@ sono i veri vincoli — ma se lo segui non sbagli.
 | **S9** | Le lettere greche, e il crash delle corsie ✅ | misura + 1 fix | ~4 h | — |
 | **S10** | Il rilevatore: costruirlo e misurarlo ✅ | misura | ~4 h | *meglio S3* |
 | **S10b** | Il rilevatore sui metadati dei campioni (decisione del PI, 2026-11-07) ✅ | misura | ~4-6 h | **S10** ✅ |
-| **S11** | Il rilevatore: leggere i falsi allarmi (56 righe, elenco di S10b); una decisione del PI in attesa | lettura | una sessione | **S10b** ✅ |
+| **S11** | Il rilevatore: leggere i falsi allarmi (56 righe, elenco di S10b) ✅ | lettura | una sessione | **S10b** ✅ |
 | **S12** | Il rilevatore: portarlo in produzione, senza errori accettati (decisione del PI in S11) | piano + codice (TDD) + misura | *da stimare in apertura: il piano lo decide il PI* | **S11** |
 | **S12b** | La chiave d'entità: greche, citochine in lettere latine, negazione | codice (TDD) + misura | ~4-6 h | **S9** ✅ |
 | **S12c** | Una entità con più nomi: il nome scritto dal modello, regola generale | ADR + codice (TDD) + misura + lettura | *da stimare in apertura; più di una sessione S12b* | **S9**, **S12b** |
@@ -448,7 +448,7 @@ Non toccare niente prima di avere il numero.
 > 194 → 193; (5) la dominanza si dichiara con una colonna, due livelli e il confronto con studi non collegati.
 > **La scelta decade** se S11 sposta più di 5 verdetti fra corretta e difettosa, o anche uno solo dentro le 40,
 > oppure se si esegue S14. S13 rigenera le liste con la stessa regola, e non fa decadere la scelta. Prossima: **S6**.
-> ⚠️ **Decaduta in S11 (2026-11-07):** 12 verdetti passano da corretta a difettosa, 6 dentro le 40 (calcium atom,
+> ⚠️ **Decaduta in S11 (2026-11-07):** 13 verdetti passano da corretta a difettosa, 6 dentro le 40 (calcium atom,
 > TNF, 5-aza-2'-deoxycytidine, EGF, IL2, IL13). Nessuna sessione prima del re-run usa le 40: la scelta si rifà una
 > volta sola in S15, come già deciso in S8b.
 > Il testo qui sotto è quello di prima
@@ -1106,7 +1106,12 @@ e le previsioni PRIMA di misurare. Misura sullo stesso riferimento di S10
 
 # S11 — Il rilevatore: leggere i falsi allarmi
 
-> **Misurata il 2026-11-07, una decisione del PI in attesa** (`docs/findings/2026-11-07-S11-lettura-falsi-allarmi.md`,
+> **Chiusa il 2026-11-07.** **Decisione del PI dopo il riassunto** («si»): una differenza solo tecnica fra i bracci
+> (strumento, kit, paired-end contro single-end, RNA marcato) è un errore, per tutti i confronti. Applicata: 8 candidati
+> in 7 studi, 5 errori nuovi. **Numeri finali:** 37 errori veri, 18 errori della regola, 1 incerto; riferimento 129 → 193;
+> il rilevatore ne vede 81; 15 meta-analisi cambiano verdetto (13 da corretta a difettosa), 6 nelle 40.
+>
+> **Misurata il 2026-11-07** (`docs/findings/2026-11-07-S11-lettura-falsi-allarmi.md`,
 > evidenza `analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/`, deposito `c50228a`). **Decisioni del PI prese in
 > apertura:** (1) un controllo raccolto a tempo zero è sempre un errore, se il tempo zero si legge nell'etichetta o nei
 > metadati GEO; (2) un errore leggibile solo nei metadati GEO entra nel riferimento con la fonte marcata; (3) nessuna
@@ -1114,8 +1119,7 @@ e le previsioni PRIMA di misurare. Misura sullo stesso riferimento di S10
 > allarmi, 36 errori veri, 19 errori della regola, 1 incerto. Il tempo zero tocca 50 confronti in 17 studi. Il
 > riferimento passa da 129 a 188 confronti (`41-riferimento-dopo-S11.csv`, `42-difetti-dopo-S11.csv`); la sensibilità
 > della combinazione da 43/129 a 80/188 (ottimistica). 14 meta-analisi cambiano verdetto, 6 nelle 40: la scelta della
-> S5 decade. Il rilevatore vede 80 dei 188 errori noti. **In attesa:** se una differenza solo tecnica fra i bracci
-> (paired-end contro single-end, RNA marcato con 4sU) è un errore. Rinvii scritti in S12 e S15.
+> S5 decade. Il rilevatore vede 80 dei 188 errori noti (prima della decisione tecnica). Rinvii scritti in S12 e S15.
 
 > **Ricevuto dal rilevatore sui fatti dei campioni (S10b), da leggere per primo.** Il PI ha scelto la combinazione
 > proposta (2026-11-07): l'elenco da leggere è `analysis/audit/2026-11-07-S10b-metadati-campioni/40-falsi-allarmi.csv`,
@@ -1209,16 +1213,18 @@ dedup, fusioni): contarla sulle 194 righe da' la risposta sbagliata.
 > **Decisione del PI in S11: nessuna soglia di errore** («La pipeline non deve sbagliare. Sono dati fissi»). Quindi
 > la regola non va in produzione con un tasso di falsi allarmi «accettabile»: ogni causa si corregge, e ogni errore
 > noto non visto si spiega. Lo stato (finding `docs/findings/2026-11-07-S11-lettura-falsi-allarmi.md` §6-§7):
-> (1) **19 errori del rilevatore, sette cause**: modifica genetica o condizione comune scritta dallo Stadio 1 solo sul
+> (1) **18 errori del rilevatore, sette cause**: modifica genetica o condizione comune scritta dallo Stadio 1 solo sul
 > trattato (6); agente comune marcato «controllo negativo» solo nel controllo, e non contato (3); stesso tempo scritto
-> in due modi (3); campo del passaggio usato per altro o passaggi vicini (3); nome dell'entità non riconosciuto
+> in due modi (3); campo del passaggio usato per altro (2); nome dell'entità non riconosciuto
 > nell'agente (2); mutazione del paziente come knockout (1); perturbazione vuota contata come agente (1).
-> (2) **108 dei 188 errori noti non sono visti** (tempo 28, materiale 20, donatore 14, altro 13, secondo agente 12,
-> sede 6, entità 6, altre 9). In 12 confronti il tempo zero sta solo nei titoli GEO («D0», «Day0», «_0h», «T0») e lo
+> (2) **112 dei 193 errori noti non sono visti** (tempo 28, materiale 20, donatore 14, altro 13, secondo agente 12,
+> sede 6, entità 6, differenza tecnica 5, altre 8). Le differenze tecniche (decisione del PI) si leggono nei campi GEO
+> `instrument_model`, `platform_id`, `extract_protocol_ch1` e nei marcatori 4sU, paired-end, single-end
+> (`analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/27-differenze-tecniche.py`). In 12 confronti il tempo zero sta solo nei titoli GEO («D0», «Day0», «_0h», «T0») e lo
 > Stadio 1 non lo scrive; in 6 lo Stadio 1 scrive il tempo zero ma R2a e R2b non scattano (`GSE163241`, `GSE186396`,
 > `GSE207409`, `GSE223893`): da capire. (3) Il riferimento è ora
-> `analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/41-riferimento-dopo-S11.csv` (188 confronti, colonna `fonte`).
-> **Che cosa serve per chiuderlo:** in apertura, un piano che dica come la regola vede i 108 (per molti servono i
+> `analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/41-riferimento-dopo-S11.csv` (193 confronti, colonna `fonte`).
+> **Che cosa serve per chiuderlo:** in apertura, un piano che dica come la regola vede i 112 (per molti servono i
 > metadati GEO dei campioni, non solo i fatti dello Stadio 1) e come corregge le sette cause, con la stima del lavoro.
 > La durata di ~4 h scritta nella mappa non vale più: decide il PI sul piano.
 
@@ -1700,10 +1706,10 @@ Quando finisce, aprimi S15.
 > misti). Su 36 errori veri trovati in S11, 30 si leggono solo nei metadati GEO. **Che cosa serve:** la rilettura
 > deve leggere titolo, sorgente e caratteristiche GEO dei campioni, non solo le etichette (come le schede di
 > `analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/23-schede.py`), e applicare le decisioni del PI di S11
-> (tempo zero sempre errore; errori nei metadati con la fonte marcata). (2) **114 delle 129 accuse di agosto non sono
+> (tempo zero sempre errore; differenza tecnica sempre errore; errori nei metadati con la fonte marcata). (2) **114 delle 129 accuse di agosto non sono
 > state rilette sui metadati**; fra le 15 rilette, 3 hanno un motivo diverso (§9 del finding S11). (3) **La scelta
 > delle 40 e delle 132 è già decaduta in S11** (6 delle 40 cambiano verdetto): si rifà qui, una volta sola. (4) Il
-> riferimento da usare è `analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/41-riferimento-dopo-S11.csv` (188
+> riferimento da usare è `analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/41-riferimento-dopo-S11.csv` (193
 > confronti), non quello di agosto.
 
 > **Ricevuto dalla prova del re-run (S8b), da leggere per primo.** La stima di circa 38 meta-analisi toccate viene dal campione, senza validazione: conta quelle vere sul deliverable nuovo. Dopo la lettura, il PI

@@ -1,7 +1,7 @@
 ---
 type: Finding
-title: "Gli allarmi del rilevatore sono quasi due volte su tre errori veri, e la lista degli errori sale da 129 a 188"
-description: "La lettura uno per uno dei 56 allarmi del rilevatore sui fatti dei campioni, con i dati GEO, e la regola del PI sui controlli a tempo zero applicata a tutti i 1.903 confronti del deliverable. 36 allarmi sono errori veri, 19 errori del rilevatore, 1 incerto; la lista degli errori passa da 129 a 188 confronti e 14 meta-analisi cambiano verdetto."
+title: "Gli allarmi del rilevatore sono quasi due volte su tre errori veri, e la lista degli errori sale da 129 a 193"
+description: "La lettura uno per uno dei 56 allarmi del rilevatore sui fatti dei campioni, con i dati GEO, e la regola del PI sui controlli a tempo zero applicata a tutti i 1.903 confronti del deliverable. Con la decisione del PI sulle differenze tecniche, 37 allarmi sono errori veri, 18 errori del rilevatore, 1 incerto; la lista degli errori passa da 129 a 193 confronti e 15 meta-analisi cambiano verdetto."
 status: draft
 generated: {by: simulomicsr-agent/skill-v1, at: '2026-11-07T23:30:00+01:00'}
 sources:
@@ -15,6 +15,8 @@ sources:
 - {id: difetti, resource: "analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/42-difetti-dopo-S11.csv", title: "La lista degli errori nel formato di agosto, con la fonte"}
 - {id: verdetti, resource: "analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/45-verdetti-che-cambiano.csv", title: "Le 29 meta-analisi con errori nuovi"}
 - {id: nonvisti, resource: "analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/46-out.txt", title: "Gli errori noti che il rilevatore non vede"}
+- {id: tecnici, resource: "analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/27-out.txt", title: "Il censimento delle differenze tecniche fra i bracci"}
+- {id: lettecn, resource: "analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/28-lettura-tecnica.csv", title: "La lettura degli 8 candidati tecnici"}
 - {id: s10b, resource: "docs/findings/2026-11-07-S10b-rilevatore-metadati.md", title: "Il rilevatore sui fatti dei campioni e l'elenco dei 56"}
 - {id: deliverable, resource: "/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d", title: "Deliverable A3 v16, 194 meta-analisi, non toccato"}
 ---
@@ -22,6 +24,8 @@ sources:
 # In breve
 
 ## In breve: gli allarmi del rilevatore sono errori veri, o errori del rilevatore?
+
+*Questo è il riassunto che il PI ha letto, con i numeri prima della sua decisione sulle differenze tecniche. I numeri finali sono in §12.*
 
 **A cosa serviva.** Il rilevatore deve togliere dalle meta-analisi i confronti in cui trattati e controlli differiscono per più del solo trattamento. Nella sessione precedente ha segnalato 56 confronti che la rilettura di agosto giudicava buoni o non giudicava. Oggi li ho letti uno per uno, con il nome dei gruppi e con i dati GEO di ogni campione. Ho anche applicato la tua regola sui controlli raccolti a tempo zero a tutti i 1.903 confronti del deliverable.
 
@@ -61,7 +65,7 @@ Appena decidi questo punto, la sessione è chiusa.
 
 **Il materiale.** Per ogni confronto una scheda (`23-schede.py`, `23-schede.txt`[^schede]) con etichette dello Stadio 2, valori dello Stadio 1 che fanno scattare la regola, titolo, sorgente e caratteristiche GEO di ogni campione (H5 ARCHS4 v2.5, `21-metadati-geo.R`; 35.807 campioni su 35.808), e gli altri gruppi dello studio (master Stadio 2 A3, SHA-256 uguale a `run_metadata.json`, `20-studi-out.txt`).
 
-**Le schede lette.** 89: le 56 righe (sezione A), 28 candidati a tempo zero fuori dall'elenco (B), 5 controlli (C). Più 27 candidati del censimento allargato (E, §4). Totale 116 confronti in `30-lettura.csv`[^lettura]. Ogni esito ha la citazione del testo in `30-note-lettura.tsv`[^note] e `25-lettura-allargata.py`.
+**Le schede lette.** 89: le 56 righe (sezione A), 28 candidati a tempo zero fuori dall'elenco (B), 5 controlli (C). Più 27 candidati del censimento allargato (E, §4) e 3 del censimento tecnico (T, §12). Totale 119 confronti in `30-lettura.csv`[^lettura]. Ogni esito ha la citazione del testo in `30-note-lettura.tsv`[^note] e `25-lettura-allargata.py`.
 
 **Il lettore** è uno solo, l'agente, e sa che ogni riga della sezione A è un allarme. La lettura non è alla cieca. Dichiarato nel deposito.
 
@@ -73,7 +77,7 @@ Appena decidi questo punto, la sessione è chiusa.
 | C2(a) le 56 righe da `PROPOSTA` | 43 / 40 / 16, le 56 coincidono con l'elenco |
 | C2(b) la combinazione col riferimento S10 | 43 su 129 |
 | C2(c) studi distinti fra i confronti tenuti = `k_effective` | 194 su 194[^misura] |
-| C3 copertura | 56 su 56 con esito e citazione; 54 candidati a tempo zero su 54; 27 allargati su 27 |
+| C3 copertura | 56 su 56 con esito e citazione; 54 candidati a tempo zero su 54; 27 allargati su 27; 8 candidati tecnici su 8 |
 | C4 controlli | 5 controlli su 5 come attesi; censimento: `GSE126409` 11 su 11, `GSE221804` 10 su 10 |
 | C5 file intatti | `git diff --stat R/` vuoto; SHA-256 di `difetti.csv`, `30-riferimento.csv`, `40-esiti.csv`, `40-falsi-allarmi.csv` uguali (`90-sha-riferimenti-fine.txt`) |
 
@@ -83,11 +87,11 @@ Appena decidi questo punto, la sessione è chiusa.
 
 | insieme S10 | errore vero | errore della regola | incerto |
 |---|---:|---:|---:|
-| pulito (40) | 22 | 17 | 1 |
+| pulito (40) | 23 | 16 | 1 |
 | altro negativo (16) | 14 | 2 | 0 |
-| totale (56) | 36 | 19 | 1 |
+| totale (56) | 37 | 18 | 1 |
 
-Dei 36 errori veri, 30 si leggono solo nei metadati GEO e 6 anche nell'etichetta. Esempi:
+I numeri includono la decisione del PI sulle differenze tecniche (§12): la riga 4 (`GSE105951`, paired-end contro single-end) passa da errore della regola a errore vero. Dei 37 errori veri, 31 si leggono solo nei metadati GEO e 6 anche nell'etichetta. Esempi:
 
 - `GSE93153`, etichetta «HBV D10 Donor2»: i campioni del trattato sono «infection: Mock, time: D8». Il confronto è Mock contro Mock.
 - `GSE222658`, «SAS wild-type + radiation»: GEO «treatment: Radiation+CB-839».
@@ -97,9 +101,9 @@ Dei 36 errori veri, 30 si leggono solo nei metadati GEO e 6 anche nell'etichetta
 - `GSE203395`, «Control, non-BCG»: 11 dei 53 controlli sono «CMV-infected» in una meta-analisi sul CMV.
 - `GSE221804`: il controllo «Wild-type, unstimulated» contiene 4 campioni knockout su 6, e due trattati «Wild-type» sono doppi knockout IRF9/IRF1.
 
-Tre allarmi sono errori veri, ma scattano per un motivo diverso dall'errore: `GSE191279` (passaggio; l'errore è un controllo con 6 campioni a 13 giorni su 24), `GSE203395` (tempo «D-7» letto in due modi; l'errore è il CMV nel controllo), `GSE93153` (tempo; l'errore è il Mock nel trattato).
+Quattro allarmi sono errori veri, ma scattano per un motivo diverso dall'errore: `GSE105951` (passaggio; l'errore è la differenza tecnica), `GSE191279` (passaggio; l'errore è un controllo con 6 campioni a 13 giorni su 24), `GSE203395` (tempo «D-7» letto in due modi; l'errore è il CMV nel controllo), `GSE93153` (tempo; l'errore è il Mock nel trattato).
 
-Fuori dall'elenco (sezioni B ed E) la lettura ha trovato altri 19 confronti difettosi e 3 incerti, quasi tutti per il tempo zero (§4), più `GSE57116` (DRB e 4sU solo nel trattato, tre tempi mescolati).
+Fuori dall'elenco (sezioni B, E e T) la lettura ha trovato altri 23 confronti difettosi e 3 incerti: quasi tutti per il tempo zero (§4), 4 per una differenza tecnica (§12), più `GSE57116` (DRB e 4sU solo nel trattato, tre tempi mescolati).
 
 # 4. Il tempo zero (decisione 1 del PI)
 
@@ -116,26 +120,26 @@ Fuori dall'elenco (sezioni B ed E) la lettura ha trovato altri 19 confronti dife
 | | confronti |
 |---|---:|
 | difettosi nel riferimento S10 | 129 |
-| nuovi, provati | 55 |
+| nuovi, provati | 60 |
 | nuovi, non provati (incerti) | 4 |
-| difettosi nel riferimento corretto | 188 |
-| di cui nuovi dai metadati GEO / dall'etichetta | 53 / 6 |
+| difettosi nel riferimento corretto | 193 |
+| di cui nuovi dai metadati GEO / dall'etichetta | 58 / 6 |
 | altri negativi letti buoni, diventano puliti | 5 |
 | categoria cambiata (`GSE163241`, da passaggio a tempo zero) | 1 |
 
-Nuovi per famiglia: tempo zero 45 (anche con genotipo, braccio misto, formato o secondo agente), tempo non appaiato 5, secondo agente 5, donatore o genotipo 2, entità nel controllo 1, entità assente dal trattato 1.
+Nuovi per famiglia (una riga può averne più di una): tempo zero 45, genotipo 10, differenza tecnica 7, secondo agente 6, tempo non appaiato 5, braccio misto 3, donatore o genotipo 4, entità nel controllo 1, entità assente dal trattato 1, formato di coltura 1.
 
 **Sensibilità della combinazione** (bootstrap degli studi, B = 2000, seme 20261107):
 
 | riferimento | presi | IC95 |
 |---|---|---|
 | S10 | 43 / 129 = 33,3% | [21,7; 45,5] |
-| corretto | 80 / 188 = 42,6% | [30,1; 54,7] |
-| corretto, solo provati | 79 / 184 = 42,9% | [30,1; 55,2] |
+| corretto | 81 / 193 = 42,0% | [29,8; 53,8] |
+| corretto, solo provati | 80 / 189 = 42,3% | [29,7; 54,3] |
 
 **La sensibilità corretta è ottimistica.** I metadati GEO sono letti solo sugli allarmi e sui candidati a tempo zero. Gli errori nei metadati degli altri 1.787 confronti non sono cercati.
 
-**Falsi allarmi della combinazione:** 40 prima della lettura, 19 dopo.
+**Falsi allarmi della combinazione:** 40 prima della lettura, 18 dopo.
 
 # 6. Gli errori del rilevatore, per la sessione che lo porta in produzione
 
@@ -144,17 +148,17 @@ Nuovi per famiglia: tempo zero 45 (anche con genotipo, braccio misto, formato o 
 | R1 secondo agente | 48 | 35 | 13 |
 | R2a tempo diverso | 46 | 43 | 3 |
 | R2b controllo a tempo zero | 31 | 31 | 0 |
-| R6 passaggio | 5 | 2 | 3 |
+| R6 passaggio | 5 | 3 | 2 |
 | parte di V3 (greche, materiale nelle etichette) | 5 | 5 | 0 |
 
-Le cause dei 19 errori del rilevatore (`30-lettura.csv`, colonna `classe_causa`):
+Le cause dei 18 errori del rilevatore (`30-lettura.csv`, colonna `classe_causa`):
 
 | casi | causa | esempi |
 |---:|---|---|
 | 6 | una modifica genetica o una condizione comune ai due bracci è scritta dallo Stadio 1 solo sul trattato | shPSMD2 (`GSE123638`), p53mut (`GSE126775`), SMAD2/3 KO (`GSE178714`), ACP-coating, Monoculture, shYAP1 |
 | 3 | un agente comune ai due bracci è marcato «controllo negativo» nel controllo, e la regola non lo conta | «Never smoked», «Medium», gRNA di controllo |
 | 3 | lo stesso tempo è scritto in due modi | «21 days» come 504 e 1008 ore (`GSE168462`); 2 x 24 h come 48 h e 24 h |
-| 3 | il campo del passaggio contiene altro, o passaggi vicini | PD32 contro PD29 e PD34; «senescent» contro «proliferating»; codice della trasfezione |
+| 2 | il campo del passaggio contiene altro | «senescent» contro «proliferating»; codice della trasfezione |
 | 2 | il nome dell'entità non si riconosce nell'agente | «TB» contro l'entità «tb positive» |
 | 1 | la mutazione del paziente è scritta come knockout e conta come agente | PARK2 nel Parkinson |
 | 1 | una perturbazione vuota conta come agente | «unclear» nella SLA |
@@ -163,25 +167,25 @@ Per la decisione 3 del PI ognuna di queste cause va corretta prima della produzi
 
 # 7. Gli errori che il rilevatore non vede
 
-`46-non-visti.py`[^nonvisti]: dei 188 errori la combinazione ne vede 80. I 108 non visti sono 86 della rilettura di agosto e 22 di questa lettura. Per famiglia: tempo 28, materiale 20, donatore e soggetto 14, altro 13, secondo agente 12, sede 6, entità non isolata 6, altre 9. Dei 22 nuovi non visti, 13 hanno il tempo zero solo nei metadati GEO e lo Stadio 1 non lo scrive. 6 hanno il tempo zero scritto dallo Stadio 1, ma la regola non scatta (`GSE163241`, `GSE186396`, `GSE207409`, `GSE223893`): il motivo va cercato nella S12. 2 sono incerti per il genotipo dei donatori, 1 è il DRB con 4sU. Per la decisione 3 del PI questi errori non si accettano: rinvio scritto nel riquadro della S12.
+`46-non-visti.py`[^nonvisti]: dei 193 errori la combinazione ne vede 81. I 112 non visti sono 86 della rilettura di agosto e 26 di questa lettura. Per famiglia: tempo 28, materiale 20, donatore e soggetto 14, altro 13, secondo agente 12, sede 6, entità non isolata 6, differenza tecnica 5, altre 8. Dei 26 nuovi non visti, 13 hanno il tempo zero solo nei metadati GEO e lo Stadio 1 non lo scrive. 6 hanno il tempo zero scritto dallo Stadio 1, ma la regola non scatta (`GSE163241`, `GSE186396`, `GSE207409`, `GSE223893`): il motivo va cercato nella S12. 4 sono differenze tecniche, 2 sono incerti per il genotipo dei donatori, 1 è il DRB con 4sU. Per la decisione 3 del PI questi errori non si accettano: rinvio scritto nel riquadro della S12.
 
 # 8. Le meta-analisi che cambiano verdetto
 
-29 meta-analisi hanno almeno un errore nuovo (`45-verdetti-che-cambiano.csv`[^verdetti]). Il verdetto cambia in 14:
+32 meta-analisi hanno almeno un errore nuovo (`45-verdetti-che-cambiano.csv`[^verdetti]). Il verdetto cambia in 15:
 
-| da corretta a difettosa (12) | da incerta a difettosa (2) |
+| da corretta a difettosa (13) | da incerta a difettosa (2) |
 |---|---|
-| calcium atom, TNF, 5-aza-2'-deoxycytidine, EGF, IL2, IL13 (le sei nelle 40); 5-azacytidine, DRB, chloroquine, copd, neratinib, radiation | 5 aza, r5020 |
+| calcium atom, TNF, 5-aza-2'-deoxycytidine, EGF, IL2, IL13 (le sei nelle 40); 5-azacytidine, DRB, chloroquine, copd, neratinib, radiation, Pladienolide B | 5 aza, r5020 |
 
-Le altre 15 erano già difettose (14) o restano incerte (poly(I:C)).
+Le altre 17 erano già difettose (16) o restano incerte (poly(I:C)).
 
-**La regola della S5** dice che la scelta delle 40 e delle 132 decade se più di 5 verdetti passano fra corretta e difettosa, o uno solo nelle 40. Ne passano 12, e 6 nelle 40: la scelta decade. La decisione del PI nella S8b la faceva già decadere alla fine del run completo, e nessuna sessione prima del run usa le 40. Si rifà una volta sola dopo il run.
+**La regola della S5** dice che la scelta delle 40 e delle 132 decade se più di 5 verdetti passano fra corretta e difettosa, o uno solo nelle 40. Ne passano 13, e 6 nelle 40: la scelta decade. La decisione del PI nella S8b la faceva già decadere alla fine del run completo, e nessuna sessione prima del run usa le 40. Si rifà una volta sola dopo il run.
 
-**Studi per meta-analisi senza gli errori** (conteggio degli studi distinti fra i confronti tenuti, C2(c)): con la lista di agosto 12 meta-analisi scendono sotto 3 studi, con la lista corretta 19. Le 7 nuove sono IFNA1, chloroquine, 5 aza, neratinib, IL15, DRB e calcium atom (questa nelle 40).
+**Studi per meta-analisi senza gli errori** (conteggio degli studi distinti fra i confronti tenuti, C2(c)): con la lista di agosto 12 meta-analisi scendono sotto 3 studi, con la lista corretta 20. Le 8 nuove sono IFNA1, IL2, chloroquine, 5 aza, neratinib, IL15, DRB e calcium atom (IL2 e calcium atom nelle 40).
 
 # 9. Osservazioni fuori dalle famiglie
 
-- **Differenze tecniche fra i bracci.** `GSE105951`: trattati paired-end, controlli single-end. `GSE132782`: un trattato è una libreria 4SU, i controlli sono RNA totale. Letti buoni, perché le famiglie della rilettura non hanno una voce tecnica. **Decisione del PI** (§12).
+- **Differenze tecniche fra i bracci.** `GSE105951`: trattati paired-end, controlli single-end. `GSE132782`: un trattato è una libreria 4SU, i controlli sono RNA totale. Letti buoni in prima lettura, perché le famiglie della rilettura non hanno una voce tecnica. **Deciso dal PI: sono errori** (§12).
 - **Differenze di clone o costrutto** in confronti già difettosi per il tempo zero: `GSE188958` («GCN2cr3» contro «LC9B» nei titoli), `GSE207409` («GFP» contro «CTERM»). Il verdetto non cambia.
 - **Etichette dello Stadio 2 smentite dai metadati GEO** in almeno 9 studi (`GSE93153`, `GSE221804`, `GSE222658`, `GSE247389`, `GSE209582`, `GSE229331`, `GSE118566`, `GSE198670`, `GSE184891`). La rilettura di agosto leggeva solo le etichette: non poteva vederli. Rinvio alla rilettura dopo il run (S15).
 - **Accuse di agosto non confermate dai metadati**, fra le 15 rilette: `GSE163241` (i passaggi sono appaiati; resta errore per il tempo zero, categoria cambiata), `GSE161860` («Pre» su tutti e due i bracci; l'accusa resta), `GSE210984` (non «iPSC-derived»; resta errore per il formato). Le altre 114 accuse di agosto non sono state rilette sui metadati. Rinvio alla S15.
@@ -191,8 +195,8 @@ Le altre 15 erano già difettose (14) o restano incerte (poly(I:C)).
 
 | # | atteso | misurato | esito |
 |---|---|---|---|
-| P1 verdetti fra corretta e difettosa | 8; rilevante oltre 5 o uno nelle 40 | 12, 6 nelle 40 | **nella zona rilevante, come previsto**: la scelta delle 40 e delle 132 decade (§8). Censimento, senza intervallo |
-| P2 righe lette buone (errori della regola) | 20; rilevante oltre 0 | 19 | **confermata**: la regola non va in produzione così com'è |
+| P1 verdetti fra corretta e difettosa | 8; rilevante oltre 5 o uno nelle 40 | 13, 6 nelle 40 | **nella zona rilevante, come previsto**: la scelta delle 40 e delle 132 decade (§8). Censimento, senza intervallo |
+| P2 righe lette buone (errori della regola) | 20; rilevante oltre 0 | 18 (19 prima della decisione tecnica) | **confermata**: la regola non va in produzione così com'è |
 | P3 tempo zero solo nei metadati GEO | 3; rilevante oltre 0 | 12 | **nella zona rilevante, come previsto**, 4 volte l'atteso: lo Stadio 1 non legge il tempo zero nei titoli («D0», «Day0», «_0h», «T0») |
 
 # 11. Dubbi e come si chiudono
@@ -200,22 +204,61 @@ Le altre 15 erano già difettose (14) o restano incerte (poly(I:C)).
 | dubbio | chiusura |
 |---|---|
 | il censimento a tempo zero non vede forme attaccate ad altre lettere | **corretto**: censimento allargato (§4), dichiarato come aggiunta dopo il deposito |
-| 19 errori del rilevatore, sette cause | **rinviato** alla S12 (decisione 3 del PI), scritto nel suo riquadro |
-| 108 errori noti che il rilevatore non vede | **rinviato** alla S12, scritto nel suo riquadro con che cosa serve |
+| 18 errori del rilevatore, sette cause | **rinviato** alla S12 (decisione 3 del PI), scritto nel suo riquadro |
+| 112 errori noti che il rilevatore non vede | **rinviato** alla S12, scritto nel suo riquadro con che cosa serve |
 | la scelta delle 40 e delle 132 decade | **spiegato** (§8): decisione del PI nella S8b, si rifà dopo il run |
 | etichette dello Stadio 2 smentite dai metadati; 114 accuse di agosto non rilette sui metadati | **rinviato** alla S15, scritto nel suo riquadro |
-| differenze tecniche fra i bracci | **decisione del PI** (§12) |
+| differenze tecniche fra i bracci | **deciso** dal PI (§12): sono errori, applicato a tutti i confronti |
 | lettore unico, non alla cieca; sensibilità corretta ottimistica | **spiegato**: dichiarati nel deposito e in §1, §5 |
 | la proposta del PI di confrontarsi con meta-analisi pubblicate | **rinviato**: sessione nuova nell'handout |
 
 # 12. Decisioni del PI
 
-In attesa: una differenza solo tecnica fra trattati e controlli (metodo di sequenziamento, RNA marcato) è un errore?
+Il PI ha letto il riassunto e ha risposto il 2026-11-07: «si».
+
+1. **Una differenza solo tecnica fra trattati e controlli è un errore**: metodo di sequenziamento, strumento, kit di
+   preparazione, RNA marcato. Vale per tutti i confronti, come il tempo zero.
+
+**Applicazione a tutti i 1.903 confronti.** `26-campi-tecnici.R` estrae dall'H5 strumento, selezione, fonte e strategia
+della libreria, molecola, piattaforma e protocollo di estrazione. `27-differenze-tecniche.py` segnala un campo senza
+valori in comune fra i bracci, e i marcatori 4sU, paired-end, single-end, total RNA e polyA presenti su un braccio e
+non sull'altro. Una prima versione cercava i marcatori anche nel protocollo di estrazione, che è quasi sempre uguale
+in tutto lo studio, e non vedeva `GSE132782`: corretta prima di leggere i candidati. Candidati: 8 in 7 studi, tutti
+letti (`28-lettura-tecnica.py`):
+
+| studio | esito |
+|---|---|
+| `GSE105951` (irradiazione) | errore nuovo: paired-end contro single-end (riga 4) |
+| `GSE132782` (Pladienolide B) | errore nuovo: un trattato 4SU, controlli Total (riga 22) |
+| `GSE122409`, due confronti (IL2) | errori nuovi: NovaSeq 6000 e kit Zymo contro HiSeq 2500 e kit QIAGEN; anche donatori diversi |
+| `GSE150819` (SARS-CoV-2) | errore nuovo: NovaSeq 6000 con TruSeq contro NextSeq 500 con NEBNext |
+| `GSE57116`, `GSE101216` | già errori; la differenza tecnica si aggiunge alla famiglia |
+| `GSE207821` (Alzheimer) | buono: stesso strumento e stesso kit, cambia solo una frase del protocollo |
+
+**Che cosa il censimento tecnico non vede.** Paired-end e single-end non sono un campo GEO: si vedono solo se gli
+autori li scrivono nelle caratteristiche o nel titolo. Lo stesso vale per un kit diverso scritto in un protocollo
+unico per tutto lo studio.
+
+**I numeri finali**, dopo la decisione (`40-out.txt`, `46-out.txt`; quelli del riassunto sono nei file
+`prima-della-decisione-tecnica-*`):
+
+| | prima della decisione | dopo |
+|---|---:|---:|
+| righe dell'elenco: errori veri / errori della regola / incerti | 36 / 19 / 1 | 37 / 18 / 1 |
+| errori nel riferimento corretto | 188 | 193 |
+| visti dalla combinazione / non visti | 80 / 108 | 81 / 112 |
+| meta-analisi che cambiano verdetto (da corretta a difettosa) | 14 (12) | 15 (13) |
+| di cui nelle 40 | 6 | 6 |
+| meta-analisi sotto 3 studi senza gli errori | 19 | 20 |
+
+Con questa decisione nessun dubbio di §11 resta aperto: i rinvii stanno nei riquadri della S12 e della S15, e la
+proposta del PI sulle meta-analisi pubblicate è la sessione S7b dell'handout. La sessione è chiusa.
 
 # Da dove vengono i numeri del riassunto
 
 | nel riassunto | fonte | valore letto |
 |---|---|---|
+| *tutte le righe sotto, salvo dove indicato* | file `prima-della-decisione-tecnica-*`, cioè lo stato letto dal PI | |
 | «56 confronti», «1.903 confronti» | `40-out.txt`, C3; `20-confronti.csv` | 56; 1.903 |
 | «36 errori veri», «19 errori del rilevatore», «1 incerto» | `40-out.txt`, «Previsione P2» | 36, 19, 1 |
 | «30 dei 36 errori si leggono solo nei dati GEO» | `40-out.txt`, «righe A per fonte» | metadato 30, etichetta 6 |
