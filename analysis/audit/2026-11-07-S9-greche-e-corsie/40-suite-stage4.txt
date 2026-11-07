@@ -1,0 +1,178 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 410 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+ℹ Loading simulomicsr
+
+
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+stage4-anchor-matching: ..........................................
+stage4-baseline-pool-pairing: .........................
+stage4-build: W.........
+stage4-cgroup-branch: ......
+stage4-classify-comparison-kind: ..........
+stage4-coherence-annotation: ............
+stage4-config: .........................
+stage4-consistency: ............................
+stage4-counts-cache: ......
+stage4-dashboard: S.
+stage4-dedup-fusione: ................................................................
+stage4-deliverable-annotation: ............................
+stage4-deliverable-branches: .......
+stage4-direction-flip: ...
+stage4-dispatch-drops: .......................
+stage4-dispatch: ........................[cluster 1/1] pair_aug_k2 (method=mega_aug)
+  -> pair_aug_k2 ok | wall 34.0s | RSS 9.3 GB
+............
+stage4-dream-mega: .............
+stage4-e0b-schema-version: ..
+stage4-e0b-smoke: [cluster 1/1] mega_samn_x (method=mega)
+  -> mega_samn_x ok | wall 23.8s | RSS 9.1 GB
+......[cluster 1/1] pair_L4_test_samn (method=mega_aug)
+Coefficients not estimable: treatmenttreated 
+WNote: design matrix not of full rank (1 coef not estimable).
+Coefficients not estimable: treatmenttreated 
+[pool_runtime_error] cluster pair_L4_test_samn (method=mega_aug): missing value where TRUE/FALSE needed
+  -> pair_L4_test_samn FALLITO | wall 0.4s | RSS 9.1 GB
+....[cluster 1/1] mega_samn_x_b (method=mega)
+  -> mega_samn_x_b ok | wall 26.6s | RSS 9.1 GB
+..
+stage4-e1-cache-schema: ........
+stage4-e1-de-schema: .....................................................................
+stage4-e2-biotype-filter: ........WWWWWW...
+stage4-e2-robustness: ........................
+stage4-e3-covariates: ............W.....................................................
+stage4-e4-cascade: .......................
+stage4-e5-layer-b-schema: 
+-- Layer B build ---------------------------------------------------------------
+i B.1 Loader + validation
+! Deliverable annotato non trovato in /tmp/RtmpkCav1j/stage4_full_c7aee38fa145a/deliverable-annotato.rds: la scheda ripiega su .build_summary_card() (campi tecnici) e la narrativa resta uno stub TODO.
+i B.2 Asset generation (1 cluster)
+> Processing cl_mega_1...
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+v Layer B build OK in 80.3s: '/tmp/RtmpkCav1j/e5_smoke_c7aee2d471e59'
+..
+-- Layer B build ---------------------------------------------------------------
+i B.1 Loader + validation
+! Deliverable annotato non trovato in /tmp/RtmpkCav1j/stage4_full_c7aee52bb41e5/deliverable-annotato.rds: la scheda ripiega su .build_summary_card() (campi tecnici) e la narrativa resta uno stub TODO.
+i B.2 Asset generation (1 cluster)
+> Processing cl_mega_1...
+converting counts to integer mode
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+Found2batches
+Adjusting for1covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+'magick' package is suggested to install to give better rasterization.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+v Layer B build OK in 26s: '/tmp/RtmpkCav1j/e5_csv_c7aee63013d49'
+.....
+stage4-franchini-correction: ....................
+stage4-fusione-record: ..........
+stage4-gene-axis: .................................................W..
+stage4-helpers: .......
+stage4-io: ................
+stage4-limma-de: ..............
+stage4-loo-influence: ............................
+stage4-mega-aug-bidir: ...................................................................
+stage4-mega-aug-samn: ....................
+stage4-mega-aug: ..............
+stage4-mega-safe: ..............
+stage4-orchestrator: [cluster 1/3] mega_dup (method=mega)
+W  -> mega_dup ok | wall 12.5s | RSS 9.7 GB
+[cluster 2/3] mega_singleton (method=mega)
+[cluster 3/3] mega_ok (method=mega)
+WW  -> mega_ok ok | wall 14.2s | RSS 9.4 GB
+..........[cluster 1/1] mega_aug_nodisp (method=mega_aug)
+.......
+stage4-pooling-effectiveness: .........................................................
+stage4-qc: ................
+stage4-rem-group-integration: ...............[cluster 1/2] group_L4_multiarm (method=rem_group)
+[cluster 2/2] group_L4_3studi (method=rem_group)
+  -> group_L4_3studi ok | wall 0.0s | RSS 9.4 GB
+........................[cluster 1/1] group_L4_e2e (method=rem_group)
+  -> group_L4_e2e ok | wall 0.0s | RSS 9.4 GB
+......
+stage4-rem-group: ............W.......W..W.
+stage4-rem-pooling: .........
+stage4-replication: WW..
+stage4-role-conflict-integration: ...............
+stage4-role-conflict: .....................................
+stage4-samn-dedupe: ......................................
+stage4-samn-lookups: ..................
+stage4-shard: ..............................
+stage4-technical-lanes-integration: ................
+stage4-technical-lanes: ...............................................
+
+══ Skipped ═════════════════════════════════════════════════════════════════════
+1. render_stage4_dashboard skip gracefully se quarto non disponibile ('test-stage4-dashboard.R:2:3') - Reason: quarto installato; questo test verifica solo fallback path
+
+══ Warnings ════════════════════════════════════════════════════════════════════
+1. build_stage4_results end-to-end produce stage4_result list ('test-stage4-build.R:26:3') - fetch_fn esterno fornito + gene_biotype_filter non-NULL: il filter NON viene applicato automaticamente al fetch_fn override. Il chiamante deve implementare il filter all'interno del proprio fetch_fn, oppure passare gene_biotype_filter = NULL per disabilitarlo esplicitamente. run_metadata$gene_biotype_filter registrera' comunque il valore richiesto.
+
+2. E0b T6.2 MEGA-AUG: samn_dedupe_log propagato nei pooling_warnings dell'orchestrator ('test-stage4-e0b-smoke.R:184:3') - Partial NA coefficients for 60 probe(s)
+
+3. E2 T5.2 build_stage4_results run_metadata registra gene_biotype_filter effettivo ('test-stage4-e2-biotype-filter.R:107:3') - Unknown or uninitialised column: `usable_rem_strict`.
+
+4. E2 T5.2 build_stage4_results run_metadata registra gene_biotype_filter effettivo ('test-stage4-e2-biotype-filter.R:107:3') - Unknown or uninitialised column: `k`.
+
+5. E2 T5.2 build_stage4_results run_metadata registra gene_biotype_filter effettivo ('test-stage4-e2-biotype-filter.R:107:3') - Unknown or uninitialised column: `k`.
+
+6. E2 T5.2 build_stage4_results run_metadata registra gene_biotype_filter effettivo ('test-stage4-e2-biotype-filter.R:107:3') - Unknown or uninitialised column: `n_studies`.
+
+7. E2 T5.2 build_stage4_results run_metadata registra gene_biotype_filter effettivo ('test-stage4-e2-biotype-filter.R:107:3') - Unknown or uninitialised column: `k`.
+
+8. E2 T5.2 build_stage4_results run_metadata registra gene_biotype_filter effettivo ('test-stage4-e2-biotype-filter.R:107:3') - Unknown or uninitialised column: `usable_rem_relaxed`.
+
+9. E3 T1.3 .augment_de_design: covariata richiesta ma assente dal metadata -> skip + warning ('test-stage4-e3-covariates.R:81:3') - cluster TEST_T1.3: covariata 'aligner_class' richiesta ma assente dal metadata input -> skip
+
+10. E2 T2.5 apply_biotype_filter preserva NA biotype solo se nel filter NA-aware ('test-stage4-gene-axis.R:337:3') - gene_axis contiene 1 geni con biotype=NA: droppati silenziosamente dal filter 'protein_coding'
+
+11. .pool_all_clusters MEGA dedupa sample condivisi tra rg + skippa cluster rank-deficient ('test-stage4-orchestrator.R:74:3') - Model failed for 56 responses.
+  See errors with attr(., 'errors')
+
+12. .pool_all_clusters MEGA dedupa sample condivisi tra rg + skippa cluster rank-deficient ('test-stage4-orchestrator.R:74:3') - Model failed for 1 responses.
+  See errors with attr(., 'errors')
+
+13. .pool_all_clusters MEGA dedupa sample condivisi tra rg + skippa cluster rank-deficient ('test-stage4-orchestrator.R:74:3') - Model failed for 56 responses.
+  See errors with attr(., 'errors')
+
+14. i group legacy nominati NON entrano piu' nel ramo rem_group (ADR-0025) ('test-stage4-rem-group.R:59:3') - Unknown or uninitialised column: `method`.
+
+15. identify_layer_a_clusters tollera fixture priva di kind/agent_id_resolved ('test-stage4-rem-group.R:155:3') - Unknown or uninitialised column: `method`.
+
+16. identify_layer_a_clusters tollera fixture priva di usable_mega_strict, kind e agent ('test-stage4-rem-group.R:182:3') - Unknown or uninitialised column: `method`.
+
+17. build_stage4_results e' idempotente su stesso input ('test-stage4-replication.R:17:3') - fetch_fn esterno fornito + gene_biotype_filter non-NULL: il filter NON viene applicato automaticamente al fetch_fn override. Il chiamante deve implementare il filter all'interno del proprio fetch_fn, oppure passare gene_biotype_filter = NULL per disabilitarlo esplicitamente. run_metadata$gene_biotype_filter registrera' comunque il valore richiesto.
+
+18. build_stage4_results e' idempotente su stesso input ('test-stage4-replication.R:21:3') - fetch_fn esterno fornito + gene_biotype_filter non-NULL: il filter NON viene applicato automaticamente al fetch_fn override. Il chiamante deve implementare il filter all'interno del proprio fetch_fn, oppure passare gene_biotype_filter = NULL per disabilitarlo esplicitamente. run_metadata$gene_biotype_filter registrera' comunque il valore richiesto.
+
+══ DONE ════════════════════════════════════════════════════════════════════════
+
+real	14m5.882s
+user	19m27.963s
+sys	12m6.065s

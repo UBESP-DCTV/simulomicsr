@@ -223,3 +223,27 @@ test_that("i due registri arrivano dentro qc_report, non solo negli attributi", 
   expect_equal(names(r$log), c("libreria", "n_campioni", "campioni"))
   expect_equal(nrow(r$log), 2L)
 })
+
+test_that(".lane_index non va in crash su un titolo NA e tiene l'allineamento", {
+  # S9 (2026-11-07): `regexpr` su NA da' NA, `m > 0L & is.na(out)` contiene NA e
+  # `out[k] <- ...` esplode. Il NA in TESTA esercita anche `cumsum(m > 0L)`:
+  # se il NA passasse come «nessuna corsia» ma restasse NA nel cumsum, gli indici
+  # dopo di lui sarebbero NA e le corsie finirebbero sui campioni sbagliati.
+  expect_identical(.lane_index(c("a_L001", "a_L002", NA)), c(1L, 2L, NA))
+  expect_identical(.lane_index(c(NA, "a_L001", "a_L002")), c(NA, 1L, 2L))
+  expect_identical(.lane_index(c(NA, "b_lane 3", NA, "a_L002")), c(NA, 3L, NA, 2L))
+})
+
+test_that("build_lane_library_lookup regge un titolo NA quando c'e' un'altra libreria candidata", {
+  # Il grilletto vero: `.lane_index()` si chiama solo se ALMENO UNA libreria e'
+  # candidata (`any(cand)`). Con la sola riga NA il test passerebbe senza
+  # esercitare nulla. Il NA viene, nel deliverable, da un campione assente
+  # dall'H5 (`match()` -> NA), qui scritto direttamente.
+  m <- meta(paste0("GSM", 1:5),
+            c(NA, "ATRA1_S4_L001", "ATRA1_S4_L002", "ATRA2_S5_L001", "ATRA2_S5_L002"),
+            "GSE178340")
+  lk <- build_lane_library_lookup(m)
+  expect_false("GSM1" %in% names(lk))
+  expect_equal(sort(names(lk)), paste0("GSM", 2:5))
+  expect_equal(n_lib(m), 3L)
+})

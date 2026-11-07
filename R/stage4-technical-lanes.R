@@ -73,6 +73,7 @@
 #' @keywords internal
 .lane_index <- function(x) {
   y <- tolower(trimws(x))
+  y[is.na(y)] <- ""   # un titolo NA non dichiara una corsia (S9, 2026-11-07)
   out <- rep(NA_integer_, length(y))
   for (rx in c("[._-]l0*[0-9]{1,3}([._-]|$)",
                "[._-]lane[ _-]?0*[0-9]{1,3}([._-]|$)")) {
