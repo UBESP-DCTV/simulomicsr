@@ -1,0 +1,859 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://simulomicsr/schemas/comparison_check.stage2b.v1.json",
+  "title": "comparison_check.stage2b.v1",
+  "description": "Stadio 2b (ADR-0028): lista di controllo di un confronto, compilata dal modello dal testo grezzo dei campioni dei due bracci. Il verdetto lo da' la regola deterministica R/stage2b-rule.R, non il modello.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agents",
+    "collection_time",
+    "axes",
+    "other_differences",
+    "proposed_entity",
+    "isolated_difference"
+  ],
+  "properties": {
+    "agents": {
+      "type": "array",
+      "description": "every perturbation, exposure or intervention applied in the experiment to any sample of either arm, including vehicles and mock or negative-control reagents; one entry per agent",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "kind",
+          "in_treated",
+          "in_control",
+          "is_proposed_entity",
+          "evidence"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "agent name as written"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "chemical",
+              "biologic",
+              "genetic",
+              "infection",
+              "physical",
+              "vehicle_or_mock",
+              "other"
+            ]
+          },
+          "in_treated": {
+            "type": "string",
+            "enum": [
+              "all",
+              "some",
+              "none",
+              "not_stated"
+            ]
+          },
+          "in_control": {
+            "type": "string",
+            "enum": [
+              "all",
+              "some",
+              "none",
+              "not_stated"
+            ]
+          },
+          "is_proposed_entity": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "unclear",
+              "not_given"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "description": "verbatim excerpt of the input"
+          }
+        }
+      }
+    },
+    "collection_time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "treated",
+        "control",
+        "relation"
+      ],
+      "properties": {
+        "treated": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value_raw",
+            "hours",
+            "time_zero",
+            "evidence"
+          ],
+          "properties": {
+            "value_raw": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "time as written"
+            },
+            "hours": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "distinct collection times of the arm, in hours; empty if not stated"
+            },
+            "time_zero": {
+              "type": "string",
+              "enum": [
+                "all",
+                "some",
+                "none",
+                "not_stated"
+              ]
+            },
+            "evidence": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input"
+            }
+          }
+        },
+        "control": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value_raw",
+            "hours",
+            "time_zero",
+            "evidence"
+          ],
+          "properties": {
+            "value_raw": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "time as written"
+            },
+            "hours": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "distinct collection times of the arm, in hours; empty if not stated"
+            },
+            "time_zero": {
+              "type": "string",
+              "enum": [
+                "all",
+                "some",
+                "none",
+                "not_stated"
+              ]
+            },
+            "evidence": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input"
+            }
+          }
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "same",
+            "different",
+            "partial",
+            "not_stated"
+          ]
+        }
+      }
+    },
+    "axes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "material",
+        "cell_line",
+        "donor",
+        "genotype",
+        "sex",
+        "age_or_stage",
+        "anatomical_site",
+        "compartment",
+        "disease_or_condition",
+        "culture_conditions",
+        "technique"
+      ],
+      "properties": {
+        "material": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "type of biological material: established cell line, primary cells, tissue, organoid, blood, iPSC-derived cells, xenograft",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "cell_line": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "name of the established cell line",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "donor": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "identity of the donor, patient or subject",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "genotype": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "inherited or engineered genetic background, other than the agents listed",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "sex": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "sex of the donors or of the cell line",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "age_or_stage": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "age of the donors, developmental stage, or differentiation stage",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "anatomical_site": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "organ, tissue or anatomical region of origin",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "compartment": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "cell population or fraction profiled: sorted cell type, whole tissue, nuclear or cytoplasmic RNA",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "disease_or_condition": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "disease state of the sample or condition of the donors before sampling: disease, tumour or normal tissue, infection status, smoking, obesity, therapy received by patients",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "culture_conditions": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "baseline culture set-up: medium, serum, 2D or 3D format, density, passage, co-culture partners",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        },
+        "technique": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "library and sequencing method written in the text: paired-end or single-end, library kit, poly(A) selection or total RNA, metabolic labelling such as 4sU, instrument",
+          "required": [
+            "relation",
+            "treated",
+            "control",
+            "evidence_treated",
+            "evidence_control"
+          ],
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "partial",
+                "not_stated",
+                "not_applicable"
+              ]
+            },
+            "treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the treated arm, short, as written"
+            },
+            "control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "value in the control arm, short, as written"
+            },
+            "evidence_treated": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the treated arm"
+            },
+            "evidence_control": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "verbatim excerpt of the input for the control arm"
+            }
+          }
+        }
+      }
+    },
+    "other_differences": {
+      "type": "array",
+      "description": "other systematic differences in experimental conditions between the arms, not covered above",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "description",
+          "evidence_treated",
+          "evidence_control"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "evidence_treated": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence_control": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "proposed_entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "match",
+        "evidence"
+      ],
+      "properties": {
+        "match": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no",
+            "unclear",
+            "not_given"
+          ]
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "isolated_difference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "kind"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "what distinguishes the treated arm from the control arm, as written"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "agent",
+            "disease_or_condition",
+            "other",
+            "none"
+          ]
+        }
+      }
+    }
+  }
+}
