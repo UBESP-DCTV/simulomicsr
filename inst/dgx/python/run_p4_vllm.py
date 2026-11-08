@@ -172,6 +172,7 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     n_prompt: list = []   # stage2b: token del prompt contati prima della generazione
     n_per_record_max_tokens = 0
     max_model_len = int(llm_kwargs["max_model_len"])
+    tokenizer = llm.get_tokenizer() if stage == "stage2b" else None
     over_limit_path = output_dir / f"over_limit.worker_{worker_id}.jsonl"
     for r in records:
         user_msg = render_user_for_stage(stage, r)
@@ -181,7 +182,7 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
             # stesso percorso di llm.chat(); oltre max_model_len - max_tokens il
             # confronto non va al modello e la regola lo scarta
             # (INGRESSO_INCOMPLETO).
-            ntok = count_prompt_tokens(llm, conv)
+            ntok = count_prompt_tokens(tokenizer, conv)
             mt = int(r.get("max_tokens") or default_max_tokens)
             if ntok + mt > max_model_len:
                 with over_limit_path.open("a", encoding="utf-8") as fh:
@@ -273,17 +274,18 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
           f"({len(record_ids)} record)", flush=True)
 
 
-def count_prompt_tokens(llm, conv) -> int:
-    """Token del prompt come li conta llm.chat(): stesso percorso di
-    preparazione (LLM._preprocess_chat_one, vLLM 0.20.2). Se l'ingresso
-    preparato porta solo il testo, lo si tokenizza senza token speciali in piu'
-    (il template li ha gia' scritti)."""
-    ei = llm._preprocess_chat_one(conv)
-    ids = ei.get("prompt_token_ids") if isinstance(ei, dict) else getattr(ei, "prompt_token_ids", None)
-    if ids is not None:
-        return len(ids)
-    testo = ei.get("prompt") if isinstance(ei, dict) else getattr(ei, "prompt")
-    return len(llm.get_tokenizer().encode(testo, add_special_tokens=False))
+def count_prompt_tokens(tok, conv) -> int:
+    """Token del prompt con il template di chat del tokenizer del modello
+    (tokenizer di vLLM: MistralTokenizer o HF). Non usa LLM._preprocess_chat_one:
+    in S12p (2026-11-08) quella funzione si e' fermata senza errore su un prompt
+    piu' lungo di max_model_len (57.745 token), e il processo e' rimasto in
+    attesa per 30 minuti. Il conteggio si confronta poi con i token del prompt
+    riportati da vLLM per ogni confronto generato (cancello K4)."""
+    ids = tok.apply_chat_template(conv, add_generation_prompt=True, tokenize=True,
+                                  return_dict=False)
+    if hasattr(ids, "keys"):
+        ids = ids["input_ids"]
+    return len(ids)
 
 
 def main() -> int:

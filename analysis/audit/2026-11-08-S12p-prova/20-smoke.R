@@ -12,10 +12,16 @@ if (!file.exists(IN_TUTTI)) scrivi_ingresso(df, IN_TUTTI)
 oltre <- df$record_id[!df$completo]; if (length(oltre) != 1L) ferma("attesi 1 confronto oltre il limite stimato, trovati %d", length(oltre))
 dentro <- df[df$completo, ]; lungo <- dentro$record_id[which.max(dentro$token_stimati)]
 set.seed(SEME); caso <- sample(setdiff(dentro$record_id, lungo), 18L)
-scelti <- c(caso, lungo, oltre)
+# Aggiunto dopo il primo smoke (fermato): con il conteggio vero dei token (25-token-1903.tsv) il piu' lungo entro il
+# limite stimato e' oltre il limite vero. Per provare la memoria sul prompt piu' lungo che va al modello si aggiunge
+# il piu' lungo entro il limite vero per tutti e tre i modelli: 21 confronti.
+TOK <- read.delim(file.path(DIR, "25-token-1903.tsv"), stringsAsFactors = FALSE); LIM <- .S2B_MAX_MODEL_LEN - .S2B_RISERVA_RISPOSTA
+amm <- Reduce(intersect, lapply(split(TOK, TOK$modello), function(x) x$record_id[x$n_token <= LIM]))
+tm <- TOK[TOK$modello == "mistral" & TOK$record_id %in% amm, ]; lungo_vero <- tm$record_id[which.max(tm$n_token)]
+scelti <- c(caso, lungo, oltre, lungo_vero)
 writeLines(scelti, file.path(DIR, "20-smoke-confronti.txt"))
-P_SMOKE <- "analysis/input/S12p-stage2b-smoke20.jsonl"; scrivi_ingresso(df[match(scelti, df$record_id), ], P_SMOKE)
-scrivi("smoke: %d confronti (18 a caso, il piu' lungo %s, oltre il limite %s)", length(scelti), lungo, oltre)
+P_SMOKE <- "analysis/input/S12p-stage2b-smoke21.jsonl"; scrivi_ingresso(df[match(scelti, df$record_id), ], P_SMOKE)
+scrivi("smoke: %d confronti (18 a caso, il piu' lungo stimato %s, oltre il limite stimato %s, il piu' lungo vero %s)", length(scelti), lungo, oltre, lungo_vero)
 
 jobs <- lapply(names(MODELLI), function(m) invia(P_SMOKE, paste0("s12p-smoke-", m), MODELLI[[m]], df, time = "72:00:00"))
 names(jobs) <- names(MODELLI)
@@ -33,6 +39,8 @@ for (k in names(jobs)) {
                    sum(!is.na(r$saltato)), paste(sprintf("%s=%s", r$record_id[!is.na(r$saltato)], r$n_prompt[!is.na(r$saltato)]), collapse = " "),
                    sum(gen), sum(ok), paste(names(table(r$fine)), table(r$fine), collapse = " ")),
            sprintf("[%s] token del prompt contati = vLLM: %d su %d", k, sum(r$n_prompt[gen] == r$n_prompt_vllm[gen], na.rm = TRUE), sum(gen)),
+           sprintf("[%s] token del prompt contati nel job = conteggio su CPU (25-token-1903.tsv): %d su %d", k,
+                   sum(r$n_prompt == TOK$n_token[TOK$modello == k][match(r$record_id, TOK$record_id[TOK$modello == k])], na.rm = TRUE), nrow(r)),
            sprintf("[%s] token del prompt, mediana %.0f, massimo %.0f; token d'uscita, mediana %.0f, massimo %.0f", k,
                    median(r$n_prompt, na.rm = TRUE), max(r$n_prompt, na.rm = TRUE), median(r$n_out, na.rm = TRUE), max(r$n_out, na.rm = TRUE)))
   # rapporto caratteri / token sul prompt (sistema + testo), per la stima della spec

@@ -84,9 +84,29 @@ def test_stage2b_testo_identico():
             raise AssertionError("un record senza testo deve fermare il runner")
 
 
+def test_count_prompt_tokens_lista_e_dizionario():
+    # Il conteggio accetta la lista di token (MistralTokenizer di vLLM) e il
+    # dizionario con input_ids (tokenizer HF che restituisce un BatchEncoding).
+    from run_p4_vllm import count_prompt_tokens
+
+    class TokLista:
+        def apply_chat_template(self, messages, tools=None, **kw):
+            assert kw.get("add_generation_prompt") is True
+            return list(range(len(messages[-1]["content"])))
+
+    class TokDict:
+        def apply_chat_template(self, conversation, **kw):
+            return {"input_ids": [1] * 7, "attention_mask": [1] * 7}
+
+    conv = [{"role": "system", "content": "s"}, {"role": "user", "content": "abcde"}]
+    assert count_prompt_tokens(TokLista(), conv) == 5
+    assert count_prompt_tokens(TokDict(), conv) == 7
+
+
 if __name__ == "__main__":
     test_strip_member_sample_ids()
     test_chunk_line()
     test_name_cleanup_fields_present_no_top_theme()
     test_stage2b_testo_identico()
-    print("OK -- 4/4 sanity render_user_message_stage2/name_cleanup/stage2b")
+    test_count_prompt_tokens_lista_e_dizionario()
+    print("OK -- 5/5 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")
