@@ -1,0 +1,22 @@
+smoke S12p, 2026-11-08 14:59
+[mistral] slurm 470086, 00:07:03, poddgx02
+[mistral] righe 21 su 21; oltre il limite 2 (GSE146096__GSE146096__Lapatinib_2uM_48h_vs_Vehicle_Control__1=28038 GSE255071__GSE255071__TB_HIV_neg_vs_TB_neg_HIV_neg__1=57745); generate 19; valide sullo schema 18; motivo di fine: length 1 stop 18
+[mistral] token del prompt contati = vLLM: 19 su 19
+[mistral] token del prompt contati nel job = conteggio su CPU (25-token-1903.tsv): 21 su 21
+[mistral] token del prompt, mediana 3269, massimo 57745; token d'uscita, mediana 1150, massimo 6144
+[mistral] caratteri per token del prompt: mediana 3.99, minimo 2.08
+[mistral] non valide: GSE125583__GSE125583__Alzheimer's_disease_vs_Healthy_control__1
+[magistral] slurm 470087, 00:07:00, poddgx02
+[magistral] righe 21 su 21; oltre il limite 2 (GSE146096__GSE146096__Lapatinib_2uM_48h_vs_Vehicle_Control__1=28038 GSE255071__GSE255071__TB_HIV_neg_vs_TB_neg_HIV_neg__1=57745); generate 19; valide sullo schema 18; motivo di fine: length 1 stop 18
+[magistral] token del prompt contati = vLLM: 19 su 19
+[magistral] token del prompt contati nel job = conteggio su CPU (25-token-1903.tsv): 21 su 21
+[magistral] token del prompt, mediana 3269, massimo 57745; token d'uscita, mediana 1233, massimo 6144
+[magistral] caratteri per token del prompt: mediana 3.99, minimo 2.08
+[magistral] non valide: GSE125583__GSE125583__Alzheimer's_disease_vs_Healthy_control__1
+[gemma] slurm 470089, 00:06:04, poddgx02
+[gemma] righe 21 su 21; oltre il limite 2 (GSE146096__GSE146096__Lapatinib_2uM_48h_vs_Vehicle_Control__1=27588 GSE255071__GSE255071__TB_HIV_neg_vs_TB_neg_HIV_neg__1=59050); generate 19; valide sullo schema 19; motivo di fine: stop 19
+[gemma] token del prompt contati = vLLM: 0 su 19
+[gemma] token del prompt contati nel job = conteggio su CPU (25-token-1903.tsv): 21 su 21
+[gemma] token del prompt, mediana 3314, massimo 59050; token d'uscita, mediana 1135, massimo 1269
+[gemma] caratteri per token del prompt: mediana 3.93, minimo 2.04
+cancello K2: generation.json uguale fra i tre modelli a meno dei campi del modello: TRUE

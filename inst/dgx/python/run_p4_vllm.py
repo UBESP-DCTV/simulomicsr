@@ -184,7 +184,8 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
             # stesso percorso di llm.chat(); oltre max_model_len - max_tokens il
             # confronto non va al modello e la regola lo scarta
             # (INGRESSO_INCOMPLETO).
-            ntok = count_prompt_tokens(tokenizer, conv)
+            ids_tpl = prompt_token_ids(tokenizer, conv)
+            ntok = len(ids_tpl)
             mt = int(r.get("max_tokens") or default_max_tokens)
             if ntok + mt > max_model_len:
                 with over_limit_path.open("a", encoding="utf-8") as fh:
@@ -198,7 +199,7 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
                 print(f"[worker {worker_id}] oltre il limite: {r['record_id']} "
                       f"({ntok} token + {mt} > {max_model_len})", flush=True)
                 continue
-            n_prompt.append(ntok)
+            n_prompt.append(ids_tpl)
         conversations.append(conv)
         record_ids.append(str(r["record_id"]))
         rec_mt = r.get("max_tokens")
@@ -247,9 +248,12 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
                 if stage == "stage2b":
                     # token del prompt: contati prima (count_prompt_tokens) e
                     # riportati da vLLM; il confronto dei due e' un controllo.
-                    row["n_prompt_tokens"] = ntoks.pop(0) if ntoks else None
+                    ids_tpl = ntoks.pop(0) if ntoks else None
+                    row["n_prompt_tokens"] = len(ids_tpl) if ids_tpl is not None else None
                     row["n_prompt_tokens_vllm"] = (len(out.prompt_token_ids)
                                                    if out.prompt_token_ids is not None else None)
+                    if ids_tpl is not None and out.prompt_token_ids is not None:
+                        row["prompt_diff"] = first_difference(ids_tpl, out.prompt_token_ids)
                     o0 = out.outputs[0] if out.outputs else None
                     row["n_output_tokens"] = len(o0.token_ids) if o0 is not None else None
                     row["finish_reason"] = o0.finish_reason if o0 is not None else None
@@ -284,6 +288,26 @@ def gpus_per_worker(worker_id: int, tp: int) -> int | str:
     return ",".join(str(worker_id * tp + k) for k in range(tp))
 
 
+def prompt_token_ids(tok, conv) -> list:
+    """Gli id dei token del prompt secondo il template di chat del tokenizer."""
+    ids = tok.apply_chat_template(conv, add_generation_prompt=True, tokenize=True,
+                                  return_dict=False)
+    if hasattr(ids, "keys"):
+        ids = ids["input_ids"]
+    return list(ids)
+
+
+def first_difference(a, b, k: int = 4) -> dict | None:
+    """Primo indice in cui due sequenze di token differiscono, con k token
+    attorno in ciascuna; None se sono uguali."""
+    a = list(a); b = list(b)
+    if a == b:
+        return None
+    i = next((j for j, (x, y) in enumerate(zip(a, b)) if x != y), min(len(a), len(b)))
+    return {"pos": i, "len_a": len(a), "len_b": len(b),
+            "a": a[max(0, i - k): i + k], "b": b[max(0, i - k): i + k]}
+
+
 def count_prompt_tokens(tok, conv) -> int:
     """Token del prompt con il template di chat del tokenizer del modello
     (tokenizer di vLLM: MistralTokenizer o HF). Non usa LLM._preprocess_chat_one:
@@ -291,11 +315,7 @@ def count_prompt_tokens(tok, conv) -> int:
     piu' lungo di max_model_len (57.745 token), e il processo e' rimasto in
     attesa per 30 minuti. Il conteggio si confronta poi con i token del prompt
     riportati da vLLM per ogni confronto generato (cancello K4)."""
-    ids = tok.apply_chat_template(conv, add_generation_prompt=True, tokenize=True,
-                                  return_dict=False)
-    if hasattr(ids, "keys"):
-        ids = ids["input_ids"]
-    return len(ids)
+    return len(prompt_token_ids(tok, conv))
 
 
 def main() -> int:

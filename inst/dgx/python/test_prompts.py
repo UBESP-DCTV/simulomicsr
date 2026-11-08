@@ -103,6 +103,15 @@ def test_count_prompt_tokens_lista_e_dizionario():
     assert count_prompt_tokens(TokDict(), conv) == 7
 
 
+def test_first_difference():
+    from run_p4_vllm import first_difference
+    assert first_difference([1, 2, 3], [1, 2, 3]) is None
+    d = first_difference([2, 5, 6, 7], [2, 2, 5, 6, 7], k=1)
+    assert d["pos"] == 1 and d["len_a"] == 4 and d["len_b"] == 5
+    assert d["a"] == [2, 5] and d["b"] == [2, 2]
+    assert first_difference([1, 2], [1, 2, 9])["pos"] == 2
+
+
 def test_gpus_per_worker():
     from run_p4_vllm import gpus_per_worker
     assert [gpus_per_worker(i, 1) for i in range(4)] == [0, 1, 2, 3]
@@ -116,4 +125,5 @@ if __name__ == "__main__":
     test_stage2b_testo_identico()
     test_count_prompt_tokens_lista_e_dizionario()
     test_gpus_per_worker()
-    print("OK -- 6/6 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")
+    test_first_difference()
+    print("OK -- 7/7 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")

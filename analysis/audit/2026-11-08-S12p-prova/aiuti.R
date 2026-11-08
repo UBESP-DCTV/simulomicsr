@@ -126,5 +126,43 @@ righe_run <- function(run_id) {
              n_prompt_vllm = vapply(r, function(x) as.numeric(g(x, "n_prompt_tokens_vllm", NA)), 0),
              n_out = vapply(r, function(x) as.numeric(g(x, "n_output_tokens", NA)), 0),
              fine = vapply(r, g, "", "finish_reason", NA_character_),
+             # primo indice in cui i token del template e quelli di vLLM divergono (NA se uguali o non registrato)
+             diff_pos = vapply(r, function(x) { d <- x$prompt_diff; if (is.null(d)) NA_real_ else as.numeric(d$pos) }, 0),
+             diff_vllm = vapply(r, function(x) { d <- x$prompt_diff; if (is.null(d)) NA_character_ else paste(unlist(d$b), collapse = " ") }, ""),
              stringsAsFactors = FALSE)
+}
+
+# ---- esiti della regola dello Stadio 2b, senza riferimento ----------------------------------------------------
+# Per ogni confronto: la lista (solo se valida sullo schema), la tecnica dell'H5 calcolata dal codice, l'ingresso
+# completo (non oltre il limite) -> stage2b_decide(). Diagnostica: assi not_stated e citazioni trovate nel testo.
+H5_CAMPI <- function() readRDS(file.path(S12, "20-campi-h5-campioni.rds"))
+TENUTI <- function() readRDS("analysis/audit/2026-08-20-rilettura-194/dispatch-A3.rds")$tenuti
+citazioni <- function(x) {
+  out <- character()
+  vai <- function(v, nome) {
+    if (is.list(v)) { nn <- names(v); for (i in seq_along(v)) vai(v[[i]], if (is.null(nn)) nome else nn[i]) }
+    else if (!is.null(nome) && startsWith(nome, "evidence") && is.character(v) && length(v) == 1L && !is.na(v) && nzchar(v)) out <<- c(out, v)
+  }
+  vai(x, NULL); out
+}
+esiti_di <- function(fin, df, h5 = H5_CAMPI(), ten = TENUTI()) {
+  ok <- valida(fin$raw)
+  rows <- lapply(seq_len(nrow(fin)), function(i) {
+    rid <- fin$record_id[i]; t <- ten[ten$record_id == rid, ]
+    if (nrow(t) != 1L) ferma("confronto %s: %d righe nell'elenco dei tenuti", rid, nrow(t))
+    gt <- strsplit(t$gsm_t, ",")[[1]]; gc <- strsplit(t$gsm_c, ",")[[1]]
+    tec <- .s2b_tecnica_h5(h5[match(gt, h5$geo_accession), ], h5[match(gc, h5$geo_accession), ])
+    ck <- if (ok[i]) fromJSON(fin$raw[i], simplifyVector = FALSE) else NULL
+    d <- stage2b_decide(ck, tecnica_h5 = tec, ingresso_completo = is.na(fin$saltato[i]))
+    ns <- if (is.null(ck)) NA_integer_ else sum(vapply(ck$axes, function(a) identical(.s2b_chr(a$relation), "not_stated"), TRUE))
+    cit <- if (is.null(ck)) character() else citazioni(ck)
+    tx <- df$testo[match(rid, df$record_id)]
+    data.frame(record_id = rid, valida = ok[i], completo = is.na(fin$saltato[i]), passa = d$passa,
+               motivi = paste(d$motivi, collapse = " "), avvisi = paste(d$avvisi, collapse = " "),
+               differenza = d$differenza, entita_isolata = paste(d$entita_isolata, collapse = " | "),
+               assi_not_stated = ns, n_citazioni = length(cit),
+               citazioni_trovate = sum(vapply(cit, function(q) grepl(q, tx, fixed = TRUE), TRUE)),
+               stringsAsFactors = FALSE)
+  })
+  do.call(rbind, rows)
 }

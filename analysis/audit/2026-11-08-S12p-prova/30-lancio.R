@@ -59,8 +59,16 @@ passo("cancelli", {
     base <- righe_run(jobs[[k]]$run_id); sm <- righe_run(job_smoke[[k]]$run_id)
     b <- base[match(smoke, base$record_id), ]; s <- sm[match(smoke, sm$record_id), ]
     out <- c(out, sprintf("K4 [%s]: uscite dello smoke identiche nel run pieno: %d su %d", k, sum(b$raw == s$raw & is.na(b$saltato) == is.na(s$saltato)), length(smoke)))
-    gen <- is.na(base$saltato)
-    out <- c(out, sprintf("K4 [%s]: token del prompt contati = vLLM: %d su %d generati", k, sum(base$n_prompt[gen] == base$n_prompt_vllm[gen], na.rm = TRUE), sum(gen)))
+    gen <- is.na(base$saltato); dd <- base$n_prompt_vllm[gen] - base$n_prompt[gen]
+    out <- c(out, sprintf("K4 [%s]: token del prompt contati = vLLM: %d su %d generati; vLLM = template + 1: %d; altre differenze: %d", k,
+                          sum(dd == 0, na.rm = TRUE), sum(gen), sum(dd == 1, na.rm = TRUE), sum(!dd %in% c(0, 1))),
+             sprintf("K4 [%s]: posizioni e token di vLLM dove le sequenze divergono: %s", k,
+                     paste(names(table(paste(base$diff_pos[gen], base$diff_vllm[gen]))), table(paste(base$diff_pos[gen], base$diff_vllm[gen])), sep = " x", collapse = "; ")))
+    # Gli esiti della regola, calcolati e firmati prima che il conto apra il riferimento.
+    fr <- do.call(rbind, lapply(fin, function(x) data.frame(record_id = x$record_id, raw = if (is.null(x$raw)) NA_character_ else x$raw,
+                                                         saltato = if (is.null(x$saltato)) NA_character_ else x$saltato, stringsAsFactors = FALSE)))
+    e <- esiti_di(fr, df); write.table(e, file.path(USCITE, paste0(k, "-esiti.tsv")), sep = "\t", quote = FALSE, row.names = FALSE)
+    out <- c(out, sprintf("esiti [%s]: passano %d su %d; liste non valide %d; oltre il limite %d", k, sum(e$passa), nrow(e), sum(!e$valida & e$completo), sum(!e$completo)))
   }
   sh <- vapply(fs::dir_ls(USCITE), function(f) digest::digest(file = f, algo = "sha256"), "")
   writeLines(sprintf("%s  %s", sh, names(sh)), file.path(DIR, "40-uscite-sha256.txt"))
