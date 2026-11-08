@@ -2,9 +2,10 @@
 # S12p, cancello L3: che cosa hanno aperto e scritto i 42 lettori. Base: analysis/audit/2026-08-21-S3-test-retest/
 # 25-cosa-hanno-letto.py. Legge i transcript degli agenti (un JSONL per agente) e confronta ogni chiamata di strumento
 # con cio' che la scheda permette: SCHEDA.md, il proprio lotto, i propri pacchetti, il proprio file di risposta.
-# Uso: python3 -I 71-cosa-hanno-letto.py <cartella-transcript> <cartella-lettori>
+# Uso: python3 -I 71-cosa-hanno-letto.py <cartella-transcript> <cartella-lettori> [<marcatore nel prompt>]
+# Il marcatore separa i lettori di due letture diverse (per esempio «prova S12p» e «verifica S12p»).
 import json, glob, os, re, sys, collections
-TR, LET = sys.argv[1], sys.argv[2]
+TR, LET = sys.argv[1], sys.argv[2]; MARC = sys.argv[3] if len(sys.argv) > 3 else 'prova S12p'
 def testi(o, acc):
     if isinstance(o, str): acc.append(o)
     elif isinstance(o, dict): [testi(v, acc) for v in o.values()]
@@ -25,7 +26,7 @@ for f in sorted(glob.glob(os.path.join(TR, '*.output'))):
             acc = []; testi(c, acc)
             for t in acc:
                 mm = re.search(r'Il tuo lotto è il (\d\d)', t)
-                if mm: lotto = mm.group(1); break
+                if mm and MARC in t: lotto = mm.group(1); break
         if isinstance(c, list):
             for b in c:
                 if isinstance(b, dict) and b.get('type') == 'tool_use':
@@ -53,10 +54,11 @@ for f in sorted(glob.glob(os.path.join(TR, '*.output'))):
             estranei.append(f'{nome} {json.dumps(inp)[:160]}')
     risultati[lotto] = (len(ids), len(letti & ids), estranei)
     fuori += [(lotto, e) for e in estranei]
-print(f'transcript di lettori trovati: {len(risultati)} (attesi 42)')
+N_LOTTI = len(glob.glob(os.path.join(LET, 'lotto-*.txt')))
+print(f'transcript di lettori trovati: {len(risultati)} (attesi {N_LOTTI})')
 print(f'pacchetti aperti / assegnati: {sum(v[1] for v in risultati.values())} / {sum(v[0] for v in risultati.values())}')
 print('strumenti usati:', dict(strumenti))
 print(f'chiamate fuori da cio\' che la scheda permette: {len(fuori)}')
 for lotto, e in fuori: print(f'  lotto {lotto}: {e}')
-mancanti = sorted(set(f'{i:02d}' for i in range(1, 43)) - set(risultati))
+mancanti = sorted(set(f'{i:02d}' for i in range(1, N_LOTTI + 1)) - set(risultati))
 if mancanti: print('lotti senza transcript:', ' '.join(mancanti))

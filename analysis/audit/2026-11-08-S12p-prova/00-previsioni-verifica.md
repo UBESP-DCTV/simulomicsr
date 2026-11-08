@@ -52,3 +52,15 @@ usare una sola lettura come riferimento.
 I confronti giudicati non confrontabili da **tutte e due** le letture sono i candidati al riferimento allargato. Il PI
 decide se entrano nel riferimento; non legge nulla. Ogni conto futuro contro il riferimento allargato dichiara che questi
 difetti sono stati cercati fra le accuse di Gemma e Mistral.
+
+## Aggiunta (2026-11-08, dopo la raccolta della verifica e prima della lettura mirata)
+
+Dei 310 confronti non confrontabili per tutte e due le letture, 45 hanno come unico difetto, in tutte e due, il tipo
+`soggetti`. La scheda dei lettori non diceva che, per decisione 3 del PI (S12, 2026-11-08), una sovrapposizione
+**parziale** di donatori, sesso o età è un avviso e non un errore (`PARZIALE_DONATORE`, `PARZIALE_SESSO`,
+`PARZIALE_ETA_STADIO`); un lettore lo ha segnalato (lotto 07 della verifica). Una lettura mirata (`93-soggetti-pacchetti.R`,
+2 agenti nuovi, stessi pacchetti senza affermazioni) classifica ciascuno dei 45 in: **disgiunti** (nessun donatore, o
+nessun valore di sesso o di età, in comune fra i bracci: difetto, `DIVERSO_*`) o **parziali** (avviso: esce dai
+difetti). Nessuna previsione con intervallo di rilevanza: la lettura applica una regola già decisa dal PI. Controllo:
+tre confronti con donatori del tutto diversi per costruzione della lettura precedente (note concordi «donatori diversi»,
+uno per paziente) devono risultare disgiunti.

@@ -1,0 +1,33 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 422 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+V1 copertura: pacchetti attesi 438, letture valide 438, estranee 0
+V2 controllo positivo: difetti noti giudicati non confrontabili: 49 su 60 = 81.7% [70.1; 89.4]; incerti 1 (soglia 80%)
+Q1 i 318 ritrovati senza affermazioni: 310 su 318 = 97.5% [95.1; 98.7]; incerti 2
+Q2 confrontabili per la prima lettura, non confrontabili per la seconda: 0 su 60 = 0.0% [0.0; 6.0]; incerti 0
+Q3 accordo fra le due letture sui 438: kappa 0.94 [0.89; 0.98] (bootstrap sui confronti, B=2000); concordi 430
+
+ritrovati per tipo del primo difetto della prima lettura:
+                tipo1  n ritrovati
+     materiale_o_sede 87        86
+             soggetti 61        60
+                altro 28        24
+              coltura 24        24
+             genotipo 23        23
+        tempo_diverso 21        21
+       entita_diversa 17        17
+        braccio_misto 15        14
+              tecnica 14        14
+           tempo_zero 14        14
+ agente_nel_controllo  9         8
+       secondo_agente  5         5
+
+stesso primo tipo nelle due letture, fra i ritrovati: 283 su 310
+
+confronti puliti nel riferimento, non confrontabili per tutte e due le letture: 310, in 194 studi
+VERIFICA RACCOLTA
