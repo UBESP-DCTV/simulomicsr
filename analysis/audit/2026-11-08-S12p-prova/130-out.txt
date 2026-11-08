@@ -1,0 +1,122 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 422 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+impronte: 0567c32123d78ed7 analysis/input/A3-stage2-subset.jsonl | b79181370013f730 analysis/input/A3-stage2-rescue.jsonl | b981dd02af50504c analysis/p4-output/S14-stage2-master.jsonl
+G0 manifesto: OK
+condizioni lette per 993 studi su 993
+G1 bracci del dispatch = gruppi del master A3: 1903 su 1903
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells 12860387 686.9   20119661 1074.6  18042167  963.6
+Vcells 32916783 251.2  236133141 1801.6 269406027 2055.5
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells 13654517 729.3   20119661 1074.6  20119661 1074.6
+Vcells 28829620 220.0  188906513 1441.3 269406027 2055.5
+G2 fatti, condizioni e bracci fatti di condizioni intere: 1903 su 1903
+G3 firma uguale dentro la condizione: 3423 condizioni su 3423
+G4 controllo positivo dello strumento: OK (A-unione->A-unione, A-scelta->A-scelta, B->B, C->C, D->D)
+G5 difetti visibili nelle etichette dello Stadio 2 in classe A (tutte le famiglie): 104 su 129 = 80.6% [73.0; 86.5] (soglia 80%)
+
+== classi dei 473 difetti (per tipo) ==
+  A: 199 su 473 = 42.1% [37.7; 46.6]
+  B: 37 su 473 = 7.8% [5.7; 10.6]
+  C: 37 su 473 = 7.8% [5.7; 10.6]
+  D: 179 su 473 = 37.8% [33.6; 42.3]
+  E: 21 su 473 = 4.4% [2.9; 6.7]
+  di cui A-unione: 1 su 473 = 0.2% [0.0; 1.2]; A-scelta: 198 su 473 = 41.9% [37.5; 46.4]
+
+== classi con tutte le famiglie: difettosi e puliti ==
+  A: difettosi 282 su 473 = 59.6% [55.1; 63.9] | puliti 499 su 1430 = 34.9% [32.5; 37.4]
+  B: difettosi 49 su 473 = 10.4% [7.9; 13.4] | puliti 138 su 1430 = 9.7% [8.2; 11.3]
+  C: difettosi 40 su 473 = 8.5% [6.3; 11.3] | puliti 110 su 1430 = 7.7% [6.4; 9.2]
+  D: difettosi 102 su 473 = 21.6% [18.1; 25.5] | puliti 683 su 1430 = 47.8% [45.2; 50.4]
+  A-unione: difettosi 1 su 473 = 0.2% [0.0; 1.2] | puliti 23 su 1430 = 1.6% [1.1; 2.4]
+
+braccio di 2+ condizioni: difettosi 12 su 473 = 2.5% [1.5; 4.4] | puliti 45 su 1430 = 3.1% [2.4; 4.2]
+  trattato di 2+ condizioni: difettosi 10, puliti 34; controllo di 2+ condizioni: difettosi 2, puliti 18
+D7 classe A, difettosi meno puliti: +24.7 punti [+13.6; +34.7] (bootstrap per studio, B=2000)
+D8 braccio di 2+ condizioni, difettosi meno puliti: -0.6 punti [-3.1; +2.5]
+D9 stessi bracci nel master S14: difettosi 473 su 473 = 100.0% [99.2; 100.0] | puliti 1430 su 1430 = 100.0% [99.7; 100.0]
+
+== tipo per classe (difetti; un difetto con piu' tipi conta in ogni tipo) ==
+                      
+                        A  B  C  D  E
+  agente_nel_controllo  3  1  1  4  0
+  altro                18  1  2 18  0
+  braccio_misto        16  3  2  8  0
+  coltura              14  4  0 23  0
+  entita_diversa        4  1  0  7 21
+  genotipo             25  3  6  6  0
+  materiale_o_sede     41 19 27 44  0
+  secondo_agente       35  0  1 15  0
+  soggetti             40 13  1 15  0
+  tecnica               7  2  1 14  0
+  tempo_diverso        44  5  0 44  0
+  tempo_zero           32  1  0 29  0
+
+== i 193 e i 280 separati (per tipo) ==
+     
+      A-scelta A-unione   B   C   D   E
+  193      122        0   4   2  58   7
+  280       76        1  33  35 121  14
+
+== campi che fanno la classe A (per tipo): quante volte, fra i difetti ==
+
+    tempo  soggetti materiale    agente  genotipo   tecnica   coltura 
+       72        69        59        51        17        15         8 
+
+== campi fra i bracci (A-scelta, tutte le famiglie): difettosi contro puliti, quota dei confronti ==
+                             campo difettosi puliti q_dif q_pul scarto
+                         tempo:dur        53      5  11.2   0.3   10.9
+           tempo:is_zero_timepoint        31      0   6.6   0.0    6.6
+       agente:technical_treatments        52     72  11.0   5.0    6.0
+      tecnica:technical_treatments        52     72  11.0   5.0    6.0
+       agente:agenti_solo_trattato        30      6   6.3   0.4    5.9
+                 soggetti:donor_id        45     66   9.5   4.6    4.9
+ genotipo:engineered_modifications        28     40   5.9   2.8    3.1
+              coltura:context_kind        28     46   5.9   3.2    2.7
+            materiale:context_kind        28     46   5.9   3.2    2.7
+                soggetti:ds_status        45    111   9.5   7.8    1.7
+                  materiale:tissue        32     83   6.8   5.8    1.0
+                      soggetti:age        34     91   7.2   6.4    0.8
+          coltura:passage_or_state         6      8   1.3   0.6    0.7
+          materiale:tissue_segment         5      8   1.1   0.6    0.5
+            materiale:sort_markers         4      5   0.8   0.3    0.5
+                      soggetti:sex        15     41   3.2   2.9    0.3
+                      tempo:ordine         3      4   0.6   0.3    0.3
+   materiale:cell_type_or_line_raw        37    109   7.8   7.6    0.2
+                coltura:cell_state         1      0   0.2   0.0    0.2
+                       tempo:visit         1      0   0.2   0.0    0.2
+              genotipo:cellosaurus         3      8   0.6   0.6    0.0
+             materiale:cellosaurus         3      8   0.6   0.6    0.0
+                  soggetti:ds_mesh         0      1   0.0   0.1   -0.1
+                  soggetti:ds_term         9     29   1.9   2.0   -0.1
+                 soggetti:ancestry         3     15   0.6   1.0   -0.4
+
+== campi dentro un braccio (A-unione, tutte le famiglie): difettosi contro puliti ==
+                           campo difettosi puliti q_dif q_pul scarto
+                   agente:agenti         1      3   0.2   0.2    0.0
+            genotipo:cellosaurus         1      4   0.2   0.3   -0.1
+           materiale:cellosaurus         1      4   0.2   0.3   -0.1
+     agente:technical_treatments         0      1   0.0   0.1   -0.1
+            coltura:context_kind         0      2   0.0   0.1   -0.1
+        coltura:passage_or_state         0      2   0.0   0.1   -0.1
+          materiale:context_kind         0      2   0.0   0.1   -0.1
+               soggetti:ancestry         0      1   0.0   0.1   -0.1
+              soggetti:ds_status         0      2   0.0   0.1   -0.1
+                soggetti:ds_term         0      2   0.0   0.1   -0.1
+                  soggetti:stage         0      1   0.0   0.1   -0.1
+    tecnica:technical_treatments         0      1   0.0   0.1   -0.1
+                       tempo:dur         0      1   0.0   0.1   -0.1
+                materiale:tissue         0      4   0.0   0.3   -0.3
+                    soggetti:age         0      5   0.0   0.3   -0.3
+               soggetti:donor_id         0      4   0.0   0.3   -0.3
+                    soggetti:sex         0      4   0.0   0.3   -0.3
+ materiale:cell_type_or_line_raw         0      7   0.0   0.5   -0.5
+DIAGNOSI FINITA

@@ -1,0 +1,109 @@
+
+NOTE: Dependency discovery took 15 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 422 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+== tipo di controllo scritto dallo Stadio 2: difettosi e puliti ==
+                  
+                   difettosi puliti
+  disease_normal          70    260
+  genetic_negative         7     15
+  secondary_arm           16     37
+  untreated              139    226
+  vehicle                241    892
+
+controllo time_zero: 0 confronti, di cui difettosi 0 (0 su 0 = NaN% [NaN; NaN])
+difetti di tipo tempo_zero: 62; con control_type time_zero 0; con altri tipi di controllo: genetic_negative 2, untreated 47, vehicle 13
+
+== dove nasce il difetto (473) ==
+  S2 aveva l'informazione nei fatti        199 su 473 = 42.1% [37.7; 46.6]
+  S1 l'ha letta, non l'ha scritta          139 su 473 = 29.4% [25.5; 33.6]
+  S2 aveva l'informazione (etichetta)      41 su 473 = 8.7% [6.5; 11.5]
+  S1 l'ha scritta, la firma la esclude     36 su 473 = 7.6% [5.5; 10.4]
+  nessun passo legge il campo              35 su 473 = 7.4% [5.4; 10.1]
+  nome dell'entita'                        21 su 473 = 4.4% [2.9; 6.7]
+  non attribuito                           2 su 473 = 0.4% [0.1; 1.5]
+  totale «lo Stadio 2 aveva l'informazione»: 240 su 473 = 50.7% [46.2; 55.2]
+
+== dove nasce, per tipo (un difetto con piu' tipi conta in ogni tipo) ==
+                      
+                       nessun passo legge il campo nome dell'entita'
+  agente_nel_controllo                           0                 0
+  altro                                          6                 0
+  braccio_misto                                  0                 0
+  coltura                                        6                 0
+  entita_diversa                                 0                21
+  genotipo                                       0                 0
+  materiale_o_sede                               5                 0
+  secondo_agente                                 0                 0
+  soggetti                                       1                 0
+  tecnica                                        8                 0
+  tempo_diverso                                  5                 0
+  tempo_zero                                     7                 0
+                      
+                       non attribuito S1 l'ha letta, non l'ha scritta
+  agente_nel_controllo              2                               3
+  altro                             0                              13
+  braccio_misto                     0                              10
+  coltura                           0                              13
+  entita_diversa                    0                               6
+  genotipo                          0                              11
+  materiale_o_sede                  0                              58
+  secondo_agente                    0                               1
+  soggetti                          0                              12
+  tecnica                           0                               7
+  tempo_diverso                     0                              30
+  tempo_zero                        0                              21
+                      
+                       S1 l'ha scritta, la firma la esclude
+  agente_nel_controllo                                    1
+  altro                                                   1
+  braccio_misto                                           3
+  coltura                                                 4
+  entita_diversa                                          0
+  genotipo                                                3
+  materiale_o_sede                                       18
+  secondo_agente                                          0
+  soggetti                                               13
+  tecnica                                                 2
+  tempo_diverso                                           5
+  tempo_zero                                              1
+                      
+                       S2 aveva l'informazione (etichetta)
+  agente_nel_controllo                                   0
+  altro                                                  1
+  braccio_misto                                          0
+  coltura                                                4
+  entita_diversa                                         2
+  genotipo                                               1
+  materiale_o_sede                                       9
+  secondo_agente                                        15
+  soggetti                                               3
+  tecnica                                                0
+  tempo_diverso                                          9
+  tempo_zero                                             1
+                      
+                       S2 aveva l'informazione nei fatti
+  agente_nel_controllo                                 3
+  altro                                               18
+  braccio_misto                                       16
+  coltura                                             14
+  entita_diversa                                       4
+  genotipo                                            25
+  materiale_o_sede                                    41
+  secondo_agente                                      35
+  soggetti                                            40
+  tecnica                                              7
+  tempo_diverso                                       44
+  tempo_zero                                          32
+
+== fra i difetti dove lo Stadio 2 aveva l'informazione nei fatti: tipo di controllo ==
+
+         vehicle        untreated   disease_normal    secondary_arm 
+              84               55               44               11 
+genetic_negative 
+               5 
+FINITO
