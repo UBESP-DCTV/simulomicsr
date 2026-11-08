@@ -14,11 +14,16 @@ origine), il sesso e l'età dei campioni dei due bracci. Per ciascuno di questi 
 - **uguali**: gli stessi valori nei due bracci;
 - **non_detto**: il testo non lo riporta per almeno un braccio.
 
+Indica anche il **disegno** del confronto: "trattamento" se il braccio trattato riceve un intervento (farmaco,
+citochina, intervento genetico, infezione, stimolo fisico) e il controllo no; "malati_contro_sani" se i bracci
+differiscono per la malattia o la condizione dei donatori o dei campioni.
+
 Scrivi nel file `/home/user/S12p-soggetti-20261108/risposte/lotto-XX.jsonl` una riga JSON per pacchetto:
 
 ```
-{"id": "V0123", "donatori": "parziali", "sesso": "uguali", "eta": "non_detto", "citazione": "testo esatto che decide", "nota": "al massimo 25 parole"}
+{"id": "V0123", "disegno": "trattamento", "donatori": "parziali", "sesso": "uguali", "eta": "non_detto", "citazione": "testo esatto che decide", "nota": "al massimo 25 parole"}
 ```
 
-Valori ammessi per `donatori`, `sesso`, `eta`: "disgiunti", "parziali", "uguali", "non_detto". La citazione è una copia
+Valori ammessi per `disegno`: "trattamento", "malati_contro_sani". Per `donatori`, `sesso`, `eta`: "disgiunti",
+"parziali", "uguali", "non_detto". La citazione è una copia
 esatta dal pacchetto. Alla fine controlla che il file abbia una riga valida per ogni pacchetto del lotto.

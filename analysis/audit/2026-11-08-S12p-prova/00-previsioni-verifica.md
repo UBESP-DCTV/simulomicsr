@@ -61,6 +61,7 @@ Dei 310 confronti non confrontabili per tutte e due le letture, 45 hanno come un
 `PARZIALE_ETA_STADIO`); un lettore lo ha segnalato (lotto 07 della verifica). Una lettura mirata (`93-soggetti-pacchetti.R`,
 2 agenti nuovi, stessi pacchetti senza affermazioni) classifica ciascuno dei 45 in: **disgiunti** (nessun donatore, o
 nessun valore di sesso o di età, in comune fra i bracci: difetto, `DIVERSO_*`) o **parziali** (avviso: esce dai
-difetti). Nessuna previsione con intervallo di rilevanza: la lettura applica una regola già decisa dal PI. Controllo:
-tre confronti con donatori del tutto diversi per costruzione della lettura precedente (note concordi «donatori diversi»,
-uno per paziente) devono risultare disgiunti.
+difetti). Il lettore indica anche il disegno: nei confronti malati contro sani i donatori diversi sono il disegno
+(avviso), e solo sesso o età disgiunti sono un difetto (decisione 2 del PI). Nessuna previsione con intervallo di
+rilevanza: la lettura applica regole già decise dal PI. Controllo: due confronti con le note concordi delle due letture
+precedenti devono risultare disgiunti (GSE219065, un paziente per braccio; GSE185051, età senza valori in comune).
