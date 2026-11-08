@@ -1,9 +1,9 @@
 ---
 type: Finding
-title: "La prova cieca dello Stadio 2b: tre modelli prendono quasi tutti i difetti e accusano troppi confronti puliti"
+title: "La prova cieca dello Stadio 2b: nessun modello passa, e il riferimento dei difetti è incompleto"
 description: "S12p: Mistral-Small-3.2, Magistral-Small-2509 e Gemma-4-31B compilano la lista di controllo dello Stadio 2b sui 1.903 confronti del deliverable; la regola fissa decide; il conto cieco contro i 193 difettosi e i 1.710 puliti dice che nessun modello passa il cancello di ADR-0028 (almeno 130 presi, al massimo 40 falsi allarmi)."
 status: draft
-generated: {by: simulomicsr-agent/skill-v1, at: '2026-11-08T18:30:00+01:00'}
+generated: {by: simulomicsr-agent/skill-v1, at: '2026-11-08T19:20:00+01:00'}
 sources:
 - {id: prev, resource: "analysis/audit/2026-11-08-S12p-prova/00-previsioni.md", title: "Cancelli K1-K5 e previsioni P11-P14 (commit 56accde), con P4-P6 di S12 (commit f8228f5)"}
 - {id: spec, resource: "docs/superpowers/specs/2026-11-07-stadio-2b-design.md", title: "Spec dello Stadio 2b"}
@@ -16,39 +16,37 @@ sources:
 - {id: conto, resource: "analysis/audit/2026-11-08-S12p-prova/40-out.txt", title: "Il conto cieco (script 40-conto.R, commit 126a282)"}
 - {id: rip, resource: "analysis/audit/2026-11-08-S12p-prova/50-gemma-ripetizione-out.txt", title: "Gemma, seconda esecuzione sui 1.903"}
 - {id: rif, resource: "analysis/audit/2026-11-07-S11-lettura-falsi-allarmi/41-riferimento-dopo-S11.csv", title: "Il riferimento dei 193 confronti difettosi"}
+- {id: prevl, resource: "analysis/audit/2026-11-08-S12p-prova/00-previsioni-lettura.md", title: "Lettura dei falsi allarmi: cancelli L1-L3 e previsioni R1-R5 (commit a65d6b1)"}
+- {id: lett, resource: "analysis/audit/2026-11-08-S12p-prova/70-out.txt", title: "Lettura raccolta: L1, L2, classi, R1-R5"}
+- {id: l3, resource: "analysis/audit/2026-11-08-S12p-prova/71-out.txt", title: "Che cosa hanno aperto i lettori (L3)"}
 ---
 
 # In breve
 
 ## In breve: un modello che legge il testo dei campioni sa dire quali confronti sono difettosi?
 
-**A cosa serviva.** Il nuovo passo della pipeline fa leggere a un modello linguistico il testo grezzo dei campioni dei due bracci di ogni confronto. Il modello compila una lista di controllo, e una regola fissa decide se il confronto entra nella meta-analisi. Questa prova ha misurato il passo con tre modelli su tutti i 1.903 confronti del deliverable, contro i 193 confronti difettosi già noti. Il piano chiedeva almeno 130 difetti presi e al massimo 40 confronti puliti accusati, prima di mettere il passo nella pipeline.
+**A cosa serviva.** Il nuovo passo della pipeline fa leggere a un modello linguistico il testo grezzo dei campioni dei due bracci di ogni confronto. Il modello compila una lista di controllo, e una regola fissa decide se il confronto entra nella meta-analisi. Questa prova ha misurato il passo con tre modelli su tutti i 1.903 confronti del deliverable, contro i 193 confronti difettosi già noti. Il piano chiedeva almeno 130 difetti presi e al massimo 40 confronti puliti accusati. Poi agenti di revisione hanno riletto, alla cieca, i confronti puliti che Gemma e Mistral accusano, per sapere chi sbaglia.
 
 **Cosa abbiamo trovato.**
 
 1. **Nessuno dei tre modelli passa, perché tutti accusano troppi confronti puliti.** Mistral, il modello di produzione, prende 186 difetti su 193 e accusa 965 confronti puliti su 1.710. Magistral prende 177 difetti e accusa 887 confronti puliti. Gemma prende 155 difetti e accusa 364 confronti puliti.
-2. **I modelli vedono bene i difetti scritti nel testo dei campioni.** Mistral e Magistral prendono tutti i 48 difetti di tempo zero. Prendono anche tutti i 58 difetti che la lettura precedente aveva trovato nei metadati e non nelle etichette. Gemma prende 44 e 52 di questi difetti.
-3. **Due motivi compaiono nella maggior parte dei falsi allarmi di Mistral.** Mistral scrive la malattia del donatore come un trattamento, contro le istruzioni. Questo motivo compare in 315 dei confronti puliti accusati. La voce aperta «altre differenze», che hai deciso di trattare come errore, compare in 606. Un confronto può avere più di un motivo.
-4. **Una parte dei falsi allarmi può essere fatta di difetti veri che il riferimento non contiene.** Il riferimento non è un campione neutro, perché 64 dei 193 difetti vengono dagli allarmi di una regola che vedeva 81 difetti su 193. Gemma passerebbe solo se almeno 324 dei suoi 364 falsi allarmi fossero difetti veri.
-5. **Il conto è ripetibile.** Mistral e Magistral ridanno lo stesso testo nei 21 confronti rifatti. Gemma, rifatto da capo, cambia il testo nel 2% dei confronti, ma dà lo stesso verdetto in tutti i 1.903.
+2. **Il riferimento dei 193 difetti è incompleto: i lettori trovano difettosi altri 318 confronti che il riferimento dà per puliti.** Fra questi ci sono 238 dei 360 falsi allarmi di Gemma e 299 dei 962 di Mistral. Sono soprattutto bracci di composizione diversa: un braccio contiene linee, genotipi, frazioni o terreni che l'altro braccio non ha. Se i lettori hanno ragione, almeno un confronto su quattro del deliverable non è confrontabile, e non uno su dieci.
+3. **Anche contando questi difetti, nessun modello passa.** A Gemma restano circa 120 accuse sbagliate, a Mistral circa 650, e la soglia è 40.
+4. **Gli errori di Mistral sono soprattutto due.** Mistral scrive la malattia del donatore come un trattamento, e i lettori giudicano falsa questa affermazione in 301 casi su 315. La voce aperta «altre differenze» riporta fatti veri che non sono difetti in 334 casi su 606. Gli errori di Gemma sono sparsi su età, entità e tempo.
+5. **I lettori sono affidabili, ma nessuna persona ha ancora controllato questa lettura.** I lettori riconoscono 149 dei 177 difetti già noti, e citano il testo esatto in 682 casi su 683. Trovano difetti anche in 5 dei 60 confronti puliti che nessun modello accusa.
 
 **Cosa devi decidere.**
 
-1. **Leggiamo adesso tutti i 364 falsi allarmi di Gemma? Raccomando di sì, con i 155 difetti presi da Gemma mescolati, senza dire ai lettori quali sono quali.** Gemma è il modello che accusa meno confronti puliti. Per ogni falso allarme la lettura dice chi sbaglia: il modello, la regola o il riferimento. Questo dato serve a scegliere la strada, ma non cambia l'esito della prova. I lettori sono agenti di revisione interna con una scheda scritta prima. I 155 difetti presi servono a verificare che i lettori riconoscano un difetto vero. La lettura costa alcune ore e alcuni milioni di token.
-   - In alternativa leggiamo solo i 323 confronti puliti che tutti e tre i modelli accusano. Costa meno, ma non separa gli errori propri di Gemma.
-   - In alternativa rinviamo la lettura alla sessione in cui sceglierai la strada. Allora sceglierai senza sapere quanti falsi allarmi sono difetti veri.
-2. **Quale strada prendiamo al posto di questa? Raccomando di scegliere dopo la lettura.** Il piano prevede tre strade, e ognuna ha una conseguenza:
-   - regole scritte a mano, come in agosto: il rilevatore di allora prendeva 81 difetti su 193;
-   - un modello addestrato sui dati già letti del progetto: serve tenere da parte confronti che il modello non vede mai durante l'addestramento;
-   - un prompt e una regola nuovi: la tabella dei falsi allarmi dice dove intervenire.
+1. **Controlliamo a mano i difetti trovati dai lettori prima di cambiare il riferimento? Raccomando di sì: tu leggi 30 confronti senza sapere quali sono quali, 25 presi a caso fra i 318 e 5 che i lettori giudicano confrontabili.** Il riferimento decide ogni misura futura, e oggi i 318 difetti hanno solo il giudizio di agenti automatici. Nella rilettura delle 194 meta-analisi la tua lettura ha confermato 18 giudizi su 19. Il controllo costa circa due ore del tuo tempo.
+   - In alternativa accettiamo subito i 318 difetti. Il riferimento passa a 511 difetti, senza un controllo umano.
+   - In alternativa teniamo il riferimento com'è. Allora ogni prova futura misura contro un riferimento che non contiene più di metà dei difetti trovati finora.
+2. **Quale strada prendiamo al posto di questa? Raccomando di sceglierla dopo il controllo a mano, in una sessione dedicata.** Le strade restano tre: regole scritte a mano, un modello addestrato sui dati del progetto, oppure un prompt e una regola nuovi. La lettura dice dove intervenire. Per Mistral servono la malattia del donatore come condizione e la voce aperta. Per Gemma gli errori sono sparsi. Ogni versione nuova va misurata su confronti che nessuno ha usato per scriverla.
 
-   In ogni caso questi 1.903 confronti non sono più ciechi. Una versione nuova va misurata su confronti che nessuno ha usato per scriverla.
+**Comunque.** Il nuovo passo non entra nella pipeline, e il ricalcolo finale non parte. La decisione di novembre sul nuovo passo torna allo stato di proposta. Se il controllo a mano conferma i difetti, essi riguardano anche le 194 meta-analisi di oggi. Allora il ricalcolo finale dovrà toglierli, e la rilettura cieca delle meta-analisi nuove dovrà cercarli.
 
-**Comunque.** Il nuovo passo non entra nella pipeline, e il ricalcolo finale non parte. Il prompt, lo schema e la regola restano come sono, e la decisione di novembre sul nuovo passo torna allo stato di proposta. Le risposte dei tre modelli sono congelate con un'impronta, e una copia verificata sta sull'altro disco.
+Appena decidi questi 2 punti, la sessione è chiusa. Il controllo a mano, se lo scegli, apre la sessione successiva.
 
-Se scegli di leggere adesso, la sessione si chiude dopo la lettura. Se scegli un'alternativa, appena decidi questi 2 punti la sessione è chiusa.
-
-**Sui tempi di calcolo.** La mia stima era da 2 a 6 ore per i tre modelli. Il tempo misurato è stato di 30 minuti per Mistral, 29 per Magistral e 53 per Gemma, con 4 GPU H100 per modello. A questi si aggiungono 33 minuti di recupero delle risposte non valide. Il costo della lettura è una mia stima: circa 500 confronti, ognuno con qualche migliaio di token di testo.
+**Sui tempi di calcolo.** Sul DGX i tre modelli hanno lavorato 30 minuti (Mistral), 29 minuti (Magistral) e 53 minuti (Gemma), con 4 GPU H100 per modello. Il recupero delle risposte non valide ha richiesto 33 minuti, e la ripetizione di Gemma altri 53. I 42 lettori hanno lavorato circa 15 minuti in tutto, venti alla volta, con circa 155.000 token ciascuno.
 
 ---
 
@@ -243,7 +241,8 @@ Triton (kernel 2D forzato) sia NCCL (impostazioni deterministiche). La causa pre
 | P5 smentita per i tre modelli: il cancello di ADR-0028 non passa | **deciso** dall'handout: STOP, ADR-0028 torna `Proposed`, non si va al ricalcolo finale (S13); la via la sceglie il PI (§10) |
 | K4 fallito per Gemma | **spiegato** (§6): seconda esecuzione, verdetto uguale in 1.903 confronti su 1.903; la causa del testo che cambia (backend Triton, 2 GPU) non e' isolata, e serve solo se Gemma andasse in produzione |
 | P6 indeterminata (Mistral, Gemma), P13 indeterminata (Magistral) | **spiegato** (§3): non toccano una conclusione di questa sessione |
-| lettura dei falsi allarmi del modello migliore (handout, punto 5): quanti sono errori del modello, della regola o del riferimento | **decisione del PI** (riassunto, punto 1) |
+| lettura dei falsi allarmi del modello migliore (handout, punto 5) | **deciso** dal PI il 2026-11-08: letti i falsi allarmi di Gemma e di Mistral (§11) |
+| il riferimento manca 318 difetti secondo i lettori (§11) | **decisione del PI** (riassunto, punto 1) |
 | quale via dopo il cancello fallito (regole, addestramento, prompt nuovo) | **decisione del PI** (riassunto, punto 2) |
 
 # 10. Che cosa la prova vede e che cosa non vede
@@ -255,27 +254,101 @@ Triton (kernel 2D forzato) sia NCCL (impostazioni deterministiche). La causa pre
   §5 andrebbe misurata su confronti che nessuno ha usato per scriverla: i 1.903 del deliverable non sono piu' ciechi
   per una versione 2.
 
+# 11. La lettura dei falsi allarmi (decisione del PI, 2026-11-08)
+
+**Disegno**[^prevl]. 1.236 pacchetti ciechi: 988 falsi allarmi di Mistral o di Gemma con affermazioni (338 di tutti e
+due), 188 difetti presi (controllo positivo), 60 puliti non accusati da nessun modello (campione). Identificativo
+opaco, ordine mescolato, fonti anonime. 42 agenti di revisione interna (Claude, stesso modello della sessione), un lotto
+da 29-30 pacchetti ciascuno, con la scheda `61-scheda-lettura.md` (regole del progetto: §5 della spec e decisioni del
+PI). Pacchetti fuori dal repository, impronte in `61-manifesto-pacchetti.sha256`, chiave fuori dalla cartella dei
+lettori fino alla fine (`62-chiave.json`, stessa impronta). I lettori hanno lavorato circa 15 minuti in tutto, venti
+alla volta; circa 155.000 token ciascuno.
+
+**Cancelli**[^lett][^l3]
+
+| # | cancello | esito |
+|---|---|---|
+| L1 | 1.236 letture valide | **passa**: 1.236 su 1.236, nessuna difforme |
+| L2 | i lettori riconoscono almeno l'80% dei difetti noti (esclusi i «non provati») | **passa**: 149 su 177 = 84,2% [78,1; 88,8]; 3 incerti. Dei 11 «non provati», 7 giudicati non confrontabili |
+| L3 | ogni lettore apre solo scheda, lotto, pacchetti; scrive solo il suo file | **passa**: 1.236 pacchetti aperti su 1.236; una chiamata fuori dalla scheda (lotto 34: `ls` della cartella delle risposte, solo i nomi dei file, nessun contenuto) |
+
+Quattro lettori hanno scritto il file di risposta in modo diverso dalla scheda (in due volte, o con `cat >>`): il
+contenuto e' valido (L1).
+
+**Previsioni**
+
+| # | quantita' | atteso | rilevanza | risultato [IC 95%] | giudizio |
+|---|---|---|---|---|---|
+| R1 | falsi allarmi di Gemma giudicati non confrontabili | 20% | 10%-100% | **238 su 360 = 66,1%** [61,1; 70,8] | confermata (molto sopra l'atteso) |
+| R2 | falsi allarmi di Mistral giudicati non confrontabili | 12% | 10%-100% | **299 su 962 = 31,1%** [28,2; 34,1] | confermata |
+| R3 | `CONDIZIONE_CON_AGENTE` di Mistral giudicata falsa | 85% | 70%-100% | **301 su 315 = 95,6%** [93,0; 97,8] | confermata |
+| R4 | `ALTRA_DIFFERENZA` di Mistral vera ma non un difetto | 50% | 40%-100% | **334 su 606 = 55,1%** [51,2; 58,9]; falsa 135, vera e difetto 119 | confermata |
+| R5 | puliti non accusati giudicati non confrontabili (campione di 60) | 5% | 0%-10% | 5 su 60 = 8,3% [3,6; 18,1]; 1 incerto | indeterminata |
+
+R5 e' indeterminata e non tocca una conclusione: anche con l'estremo superiore (18%) i falsi allarmi giudicati difettosi
+(66% e 31%) restano molto sopra la base; e R5 va nella stessa direzione di R1 e R2 (il riferimento manca difetti anche
+dove nessun modello accusa).
+
+**Le classi dei falsi allarmi**
+
+| classe | Gemma (360) | Mistral (962) |
+|---|---|---|
+| riferimento (il lettore trova un difetto) | 238 (66,1%) | 299 (31,1%) |
+| modello (affermazione falsa, confronto confrontabile) | 70 (19,4%) | 462 (48,0%) |
+| regola (fatti veri che non sono difetti) | 48 (13,3%) | 186 (19,3%) |
+| incerto | 4 (1,1%) | 15 (1,6%) |
+
+**318 confronti** che il riferimento da' per puliti sono non confrontabili per i lettori (unione dei due modelli), in
+197 studi (`70-difetti-non-nel-riferimento.csv`). Primo tipo di difetto: materiale, linea o sede 87; soggetti 61; altro
+28; coltura 24; genotipo 23; tempo diverso 21; entita' 17; braccio misto 15; tecnica 14; tempo zero 14; agente nel
+controllo 9; secondo agente 5. Una lettura mia di 8 casi a caso (seme 20261108) trova difetti plausibili, quasi tutti
+di composizione: un braccio mescola campioni (frazioni, genotipi TP53+/+ e TP53-/-, terreni, linea parentale e cloni)
+che l'altro braccio non ha. Il riferimento di S11 e' stato costruito leggendo soprattutto le etichette (135 su 193) e non
+vede questo tipo di difetto.
+
+**Che cosa dice e che cosa non dice.**
+
+- Se i lettori hanno ragione, almeno 511 confronti su 1.903 (193 + 318 = 26,9%) non sono confrontabili, non 193 (10,1%).
+  Il numero vero e' piu' alto: i confronti che nessun modello accusa sono stati letti solo a campione (R5), e quelli
+  accusati solo da Magistral non sono stati letti.
+- Anche con questi difetti nessun modello passa: restano 122 accuse sbagliate per Gemma (360 − 238 riferimento − 4
+  incerti, piu' 4 confronti scartati senza lista) e 651 per Mistral (962 − 299 − 15, piu' 3). La soglia e' 40.
+- Gli errori di Mistral sono concentrati: la malattia del donatore scritta come agente (301 affermazioni false) e la
+  voce aperta (135 false, 334 vere ma non difetti). `DIVERSO_DONATORE` di Mistral e' vera ma non un difetto in 160 casi
+  su 182: nei confronti malati contro sani, quando la malattia e' scritta come agente, la regola non riconosce il
+  disegno caso-controllo e accusa i donatori diversi. Gli errori di Gemma sono sparsi: eta' o stadio (35 falsi),
+  entita' diversa (36 falsi), tempo (7 falsi e 14 non verificabili), nessuna differenza (9 falsi).
+- **Limite**: i lettori sono agenti automatici, non verificati da una persona su questa lettura; vedono le affermazioni
+  delle fonti, e questo puo' orientarli (pero' giudicano false 301 affermazioni su 315 in R3, quindi non le accettano
+  in blocco). Ogni nuovo conto contro un riferimento allargato da questa lettura favorisce i due modelli letti, perche'
+  i nuovi difetti sono stati cercati fra le loro accuse.
+
 # Da dove vengono i numeri del riassunto
 
 | frase del riassunto | file | valore letto |
 |---|---|---|
 | 1.903 confronti, 193 difettosi, 1.710 puliti | `40-out.txt`, riga «riferimento» | «193 difettosi, 1710 puliti, su 1903 confronti» |
 | almeno 130 presi, al massimo 40 accusati | `00-previsioni.md` di S12, P4 e P5 | «≥ 130», «≤ 40» |
-| Mistral 186 su 193, 965 su 1.710 | `40-out.txt`, «== mistral ==», P4 e P5 | «186 su 193», «965 su 1710» |
-| Magistral 177, 887 | `40-out.txt`, «== magistral ==» | «177 su 193», «887 su 1710» |
-| Gemma 155, 364 | `40-out.txt`, «== gemma ==» | «155 su 193», «364 su 1710» |
-| tutti i 48 difetti di tempo zero; Gemma 44 | `40-out.txt`, «presi per famiglia», riga «tempo zero» | 48 / 48 / 44 su 48 |
-| tutti i 58 difetti trovati nei metadati; Gemma 52 | `40-out.txt`, riga «fonte = metadato» | «58 su 58», «58 su 58», «52 su 58» |
-| 315 e 606 | `40-segnali.csv`, righe `CONDIZIONE_CON_AGENTE` e `ALTRA_DIFFERENZA`, colonna `falsi`, modello mistral | 315; 606 |
-| 64 dei 193 dagli allarmi di una regola che vedeva 81 su 193 | `docs/findings/2026-11-07-valutazione-autonoma-del-progetto.md`, «Qualita' misurata» | «64 vengono da allarmi di una regola che ne vede 81/193» |
-| almeno 324 dei 364 | 364 − 40 | 324 |
-| 21 confronti rifatti con lo stesso testo | `30-cancelli.txt`, righe K4 | «21 su 21» (Mistral, Magistral) |
-| Gemma cambia il testo nel 2%, stesso verdetto nei 1.903 | `50-gemma-ripetizione-out.txt` | «1855 su 1900» (45 diversi, 2,4%); «1903 su 1903» |
-| 155 difetti presi da Gemma; 364 falsi allarmi | `40-out.txt` | come sopra |
-| 323 puliti accusati da tutti e tre | `40-out.txt`, ultima riga | «falsi allarmi 323» |
-| il rilevatore di agosto prendeva 81 su 193 | `CLAUDE.md` §1, «Rilevatore a regole» | «vede 81/193» |
-| 30, 29 e 53 minuti; 4 GPU per modello | `30-sacct-pieno.txt`; `R/dgx-config`, template `run_p4.sh` (`--gres=gpu:4`) | 00:30:30, 00:29:10, 00:52:37 |
-| 33 minuti di recupero | `log/catena.log`, righe «FINE recupero-…» | 4,3 + 4,3 + 24,8 min |
-| circa 500 confronti da leggere | 364 + 155 | 519 |
+| Mistral 186 e 965; Magistral 177 e 887; Gemma 155 e 364 | `40-out.txt`, P4 e P5 per modello | «186 su 193», «965 su 1710»; «177», «887»; «155», «364» |
+| altri 318 confronti | `70-out.txt`, penultima riga | «318, in 197 studi» |
+| 238 dei 360 di Gemma, 299 dei 962 di Mistral | `70-out.txt`, R1 e R2 | «238 su 360», «299 su 962» |
+| bracci di composizione diversa | `70-letture.csv`, colonna `tipi`; lettura di 8 casi a caso, §11 | primo tipo: materiale/linea/sede 87, soggetti 61, coltura 24, genotipo 23 |
+| almeno uno su quattro, non uno su dieci | (193 + 318) / 1.903; 193 / 1.903 | 26,9%; 10,1% |
+| circa 120 per Gemma, circa 650 per Mistral | §11: 360 − 238 − 4 + 4; 962 − 299 − 15 + 3 | 122; 651 |
+| 301 su 315; 334 su 606 | `70-out.txt`, R3 e R4 | «301 su 315», «334 su 606» |
+| errori di Gemma su età, entità e tempo | `70-segnali-gemma.csv`, colonna `falso` | 35, 36, 7 (e 14 non verificabili) |
+| 149 dei 177 difetti noti | `70-out.txt`, L2 | «149 su 177» |
+| 682 citazioni su 683 | `70-out.txt`, riga «citazioni» | «682 su 683» |
+| 5 dei 60 puliti non accusati | `70-out.txt`, R5 | «5 su 60» |
+| 30 confronti: 25 dei 318 e 5 confrontabili | proposta, non un dato | — |
+| 18 giudizi su 19 | `CLAUDE.md` §1, riga «Le 194 lette tutte» | «umano 18/19» |
+| il riferimento passa a 511 | 193 + 318 | 511 |
+| più di metà dei difetti trovati finora | 318 / 511 | 62% |
+| 30, 29, 53 minuti; 4 GPU H100 | `30-sacct-pieno.txt`; `inst/dgx/slurm/run_p4.sh` (`--gres=gpu:4`) | 00:30:30, 00:29:10, 00:52:37 |
+| 33 minuti di recupero; 53 della ripetizione | `log/catena.log`, righe «FINE recupero-…»; `log/catena.log`, slurm 470099 | 4,3 + 4,3 + 24,8 min; 00:52:49 |
+| 42 lettori, circa 15 minuti, venti alla volta, circa 155.000 token | date dei file in `risposte-lettori/` (18:40-18:54); limite di 20 agenti; rapporti degli agenti | da 142.469 a 183.389 token per lettore |
 
 [^rip]: `analysis/audit/2026-11-08-S12p-prova/50-gemma-ripetizione-out.txt`
+[^prevl]: `analysis/audit/2026-11-08-S12p-prova/00-previsioni-lettura.md`
+[^lett]: `analysis/audit/2026-11-08-S12p-prova/70-out.txt`
+[^l3]: `analysis/audit/2026-11-08-S12p-prova/71-out.txt`

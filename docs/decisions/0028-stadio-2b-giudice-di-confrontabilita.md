@@ -1,6 +1,8 @@
 # ADR-0028: Lo Stadio 2b — il modello legge i due bracci, una regola decide
 
-- **Status:** Accepted (decisione del PI, 2026-11-07), con un cancello: la prova di S12p
+- **Status:** Proposed (2026-11-08: il cancello di S12p non e' passato, nessun modello prende almeno 130 difetti con al
+  massimo 40 falsi allarmi; finding `docs/findings/2026-11-08-S12p-prova-cieca-stadio2b.md`). Era Accepted (decisione del
+  PI, 2026-11-07) con quel cancello
 - **Date:** 2026-11-07
 - **Deciders:** Luca Vedovelli (PI); proposta di Claude dalla valutazione autonoma
 - **Supersedes:** il programma «rilevatore a regole in produzione» (handout 2026-08-21, voce 10, sessioni S10 → S12)

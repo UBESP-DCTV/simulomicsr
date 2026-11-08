@@ -14,7 +14,7 @@
 
 ---
 
-## 1. Dove siamo (2026-11-07)
+## 1. Dove siamo (2026-11-08)
 
 **Branch** `review-scientific-consistency-2026-06-10` · **master invariato** ·
 **mai `git push`** (lo fa l'utente).
@@ -54,12 +54,15 @@ il difetto tipico di questo progetto è lavorare sull'oggetto sbagliato.
 | Re-run Stadi 1-2 (S14, prima parte) | 24.393 studi da zero in 33 h; 211.484/211.484 record identici; master `analysis/p4-output/S14-stage{1,2}-master.jsonl` (copia su micron); outlier con `max_model_len` 32768 | `2026-11-07-S14-due-passi-col-modello`, `-S8b-prova-re-run` |
 | Soffitto e biologia | **455 entità** con ≥3 studi nello Stadio 3 (deliverable = 43%); controllo biologico **30/31**, DHT contro enzalutamide −0,944 | valutazione |
 | Stadio 2b, il disegno (S12) | schema, regola (segnali → tabella errore/avviso), ingresso senza tagli, prompt v1, test verdi; 1.902/1.903 ingressi nel limite (mediana 3.603 token); **codifica UTF-8 doppia e tripla nell'H5**, riparata nell'ingresso; parte 2 (2026-11-08): 4 decisioni del PI come raccomandato; `description` e protocolli **da GEO congelati** (993 studi) nell'ingresso `28-ingressi-1903.jsonl.gz`; la descrizione cambia fra i campioni in 419/993 studi; **2 campioni dei bracci cancellati da GEO** (GSE226005), marcati; S13 toglie i cancellati | `2026-11-07-S12-stadio2b-disegno` §10 |
+| Stadio 2b, la prova (S12p) | **nessun modello passa** il cancello: presi su 193 / puliti accusati su 1.710 = Mistral 186/965, Magistral 177/887, Gemma-4-31B 155/364; lettura cieca dei falsi allarmi di Gemma e Mistral (42 agenti, L2 84%): **318 confronti «puliti» non confrontabili** (soprattutto bracci di composizione diversa), quindi il riferimento dei 193 è incompleto; Mistral scrive la malattia del donatore come agente (301/315); Gemma ha bisogno di 2 GPU e non è ripetibile al carattere (verdetti 1.903/1.903 uguali); `_preprocess_chat_one` di vLLM si blocca su prompt oltre il contesto | `2026-11-08-S12p-prova-cieca-stadio2b` |
 
 **Decisione del PI (2026-11-07):** strada «tenere e sostituire un pezzo» (ADR-0028). Si tengono ETL,
 master S14, Stadio 4, gold, verdetti e strumenti di audit; **si sostituisce il giudice di confrontabilità**
 con lo **Stadio 2b**: il modello legge il testo grezzo dei due bracci e compila una lista di controllo, una
 regola deterministica decide. Cancello: la prova cieca di S12p (≥130/193 presi, ≤40/1.710 accusati). Il
 modello non cambia finché S12p non lo misura. Finding: `docs/findings/2026-11-07-valutazione-autonoma-del-progetto.md`.
+**S12p (2026-11-08): il cancello non è passato; ADR-0028 torna `Proposed`; non si va a S13.** Decisioni aperte del PI
+(riassunto del finding S12p): controllo a mano dei 318 difetti trovati dai lettori (S12q) e scelta della strada.
 
 **Decisioni del PI che restano valide, una riga ciascuna:** gate a 3 studi · S13 corregge la varianza del
 controllo condiviso (T1) e assegna i ruoli per nome · studi doppi tolti con una regola sulle conte · LINCS dà
@@ -68,8 +71,8 @@ singola meta-analisi · tempo zero e differenza tecnica fra i bracci sono **semp
 soglia di errore accettata**: ogni causa si corregge · i campioni cancellati da GEO si tolgono nel ricalcolo (S13) · solo `poddgx02`.
 
 **Che cosa fare adesso:** **`docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md`** comanda
-l'ordine: **S12** (Stadio 2b, il disegno: **chiusa** il 2026-11-08) → **S12p** (la prova: tre modelli sui 1.903, conto cieco) →
-S12c+S12b, S12d → **S13** (tutto sui master S14, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16,
+l'ordine: **S12** (Stadio 2b, il disegno: **chiusa** il 2026-11-08) → **S12p** (la prova: fatta il 2026-11-08,
+nessun modello passa) → **S12q** (controllo a mano del riferimento e scelta della strada) → S12c+S12b, S12d → **S13** (tutto sui master S14, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16,
 S17. L'handout del 2026-08-21 resta per le sessioni chiuse e per i prompt di S12b, S12c, S12d, S16, S17.
 Il deliverable su disco resta A3 v16 fino a S13.
 
