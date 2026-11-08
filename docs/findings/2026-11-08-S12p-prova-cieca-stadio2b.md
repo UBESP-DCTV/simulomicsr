@@ -372,6 +372,49 @@ di agenti, con un controllo del PI su 19 meta-analisi in S3). Il progetto non us
 validazione pubblicata: i 280 servono alle misure interne e alla scelta della strada; se una decisione della pipeline
 dovra' toglierli dal deliverable, la dovra' prendere un passo deterministico o il modello del progetto.
 
+# 13. A monte: il codice da solo, e un prompt nuovo (richiesta del PI, 2026-11-08)
+
+Il PI: «Mistral sbaglia anche se glielo diciamo... bisogna trovare un modo per non farlo sbagliare a monte»; poi «misura,
+dimmi esattamente cosa dice il prompt, forse basta cambiare quello, prova anche quest'ultima soluzione». Previsioni in
+`00-previsioni-monte.md` (commit `16a48ed`, correzione prima del calcolo `2d644f1`). Riferimento allargato (473 difetti,
+1.430 puliti); **nessuno di questi numeri è una prova cieca**.
+
+**A. Il codice da solo** (`100-senza-modello.R`, `100-out.txt`): le coppie «chiave: valore» di `characteristics_ch1` e
+`source_name_ch1` di ogni campione, confrontate per codice fra i bracci, esclusi identificativi, chiavi di replica e la
+chiave dell'entità.
+
+| # | quantità | atteso | rilevanza | risultato [IC 95%] | giudizio |
+|---|---|---|---|---|---|
+| A1 | difetti presi | 55% | 70%-100% | 242 su 473 = 51,2% [46,7; 55,6] | **smentita** |
+| A2 | puliti accusati | 20% | 0%-10% | 339 su 1.430 = 23,7% [21,6; 26,0] | **smentita** |
+| A3 | difetti con un braccio mescolato | 60% | — | 186 su 473 = 39,3% | — |
+| A4 | puliti con un braccio mescolato | 25% | — | 283 su 1.430 = 19,8% | — |
+| A5 | confronti con almeno 2 chiavi strutturate | 70% | — | 1.903 su 1.903 | — |
+
+Il codice non sa che cosa vuol dire una chiave: accusa per misure di qualità dell'RNA (RIN, concentrazione, volume),
+numeri di campione, dosi, e per l'età nei confronti malati contro sani. Il braccio mescolato è due volte più frequente
+fra i difetti (39%) che fra i puliti (20%), ma da solo non li separa. 212 confronti non hanno una chiave riconosciuta come
+entità.
+
+**B. Il prompt v2** (`inst/prompts/stage2b-v2.md`, SHA-256 `d1bbaad2…`): cambiano solo gli agenti (due domande prima di
+scrivere un agente: applicato dagli sperimentatori? non una condizione del donatore?) e le altre differenze (quattro
+condizioni). Schema, regola, configurazione invariati; Mistral, job 470101 (26 min 53 s), nessuna lista da recuperare,
+token contati = vLLM 1.900 su 1.900; uscite in `analysis/p4-output/S12p-uscite-v2/` (impronte `110-uscite-v2-sha256.txt`,
+copia su micron). Il prompt v2 è arrivato al modello (verificato sul bundle nel DGX); 62 uscite su 1.903 identiche a v1.
+
+| # | quantità | v1 | atteso v2 | rilevanza | v2 [IC 95%] | giudizio |
+|---|---|---|---|---|---|---|
+| B1 | puliti accusati, su 1.430 | 700 | 300 | 0-40 | **713** (49,9% [47,3; 52,4]) | **smentita** |
+| B2 | difetti presi, su 473 | 451 | 420 | 317-473 | 438 (92,6% [89,9; 94,6]) | confermata |
+| B3 | confronti con `CONDIZIONE_CON_AGENTE` | 347 | 50 | 0-35 | **198** | **smentita** |
+| B4 | confronti con `ALTRA_DIFFERENZA` | 707 | 300 | 0-70 | **731** | **smentita** |
+
+Il verdetto cambia in 182 confronti (puliti: 75 non più accusati, 88 accusati di nuovo; difetti: 16 persi, 3 nuovi). Fra i
+713 puliti accusati, 439 hanno un solo segnale: `ALTRA_DIFFERENZA` da solo 273, `CONDIZIONE_CON_AGENTE` da solo 45. Il
+prompt ha ridotto la malattia scritta come agente del 43%, non l'ha tolta; le quattro condizioni sulla voce aperta non
+hanno avuto effetto (707 → 731). **Cambiare il prompt non basta**: le istruzioni non vincolano il modello su questi due
+punti.
+
 # Da dove vengono i numeri del riassunto
 
 | frase del riassunto | file | valore letto |

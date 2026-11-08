@@ -1,0 +1,61 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 422 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+
+== Mistral v1 ==
+riferimento allargato: presi 451 su 473 = 95.3% [93.1; 96.9]; puliti accusati 700 su 1430 = 49.0% [46.4; 51.5]
+riferimento di S11:    presi 186 su 193 = 96.4% [92.7; 98.2]; puliti accusati 965 su 1710 = 56.4% [54.1; 58.8]
+confronti con CONDIZIONE_CON_AGENTE: 347; con ALTRA_DIFFERENZA: 707; liste non valide 0; oltre il limite 3
+assi not_stated (liste valide): 29.6%; citazioni trovate: 83.2%
+
+== Mistral v2 ==
+riferimento allargato: presi 438 su 473 = 92.6% [89.9; 94.6]; puliti accusati 713 su 1430 = 49.9% [47.3; 52.4]
+riferimento di S11:    presi 181 su 193 = 93.8% [89.4; 96.4]; puliti accusati 970 su 1710 = 56.7% [54.4; 59.1]
+confronti con CONDIZIONE_CON_AGENTE: 198; con ALTRA_DIFFERENZA: 731; liste non valide 0; oltre il limite 3
+assi not_stated (liste valide): 29.7%; citazioni trovate: 83.9%
+
+verdetto cambiato da v1 a v2: 182 confronti (difetti: presi da v1 e persi da v2 16, nuovi presi 3; puliti: non piu' accusati 75, nuovi accusati 88)
+
+segnali nei puliti accusati da v2 (riferimento allargato):
+
+      ALTRA_DIFFERENZA  CONDIZIONE_CON_AGENTE          TEMPO_DIVERSO 
+                   482                    142                    108 
+      DIVERSO_DONATORE         ENTITA_DIVERSA     DIVERSO_ETA_STADIO 
+                    79                     66                     57 
+        PARZIALE_LINEA         SECONDO_AGENTE             TEMPO_ZERO 
+                    27                     26                     23 
+      DIVERSO_GENOTIPO    PARZIALE_CONDIZIONE  AGENTE_SOLO_CONTROLLO 
+                    15                     14                      9 
+         BRACCIO_MISTO  DIVERSO_COMPARTIMENTO           DIVERSO_SEDE 
+                     8                      6                      5 
+     PARZIALE_GENOTIPO       PARZIALE_COLTURA        DIVERSO_COLTURA 
+                     5                      4                      3 
+         DIVERSO_LINEA    INGRESSO_INCOMPLETO     NESSUNA_DIFFERENZA 
+                     3                      3                      3 
+PARZIALE_COMPARTIMENTO          PARZIALE_SEDE          DIVERSO_SESSO 
+                     3                      3                      1 
+       DIVERSO_TECNICA       PARZIALE_TECNICA 
+                     1                      1 
+
+puliti accusati da v2 con un solo segnale: 439; i segnali soli:
+
+      ALTRA_DIFFERENZA  CONDIZIONE_CON_AGENTE         ENTITA_DIVERSA 
+                   273                     45                     27 
+        PARZIALE_LINEA          TEMPO_DIVERSO    PARZIALE_CONDIZIONE 
+                    26                     16                     12 
+    DIVERSO_ETA_STADIO       DIVERSO_GENOTIPO         SECONDO_AGENTE 
+                     6                      6                      6 
+            TEMPO_ZERO        DIVERSO_COLTURA    INGRESSO_INCOMPLETO 
+                     5                      3                      3 
+      PARZIALE_COLTURA PARZIALE_COMPARTIMENTO      PARZIALE_GENOTIPO 
+                     3                      2                      2 
+         BRACCIO_MISTO       DIVERSO_DONATORE          DIVERSO_LINEA 
+                     1                      1                      1 
+          DIVERSO_SEDE 
+                     1 
+CONTO V2 FINITO
