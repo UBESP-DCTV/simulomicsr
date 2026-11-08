@@ -20,14 +20,16 @@ MODELLI <- list(
                    config_format = "mistral", load_format = "mistral",
                    llm_extra = list(revision = "a31cc96ab10cf19bc42c628fedf1e359e0853c49",
                                     tokenizer_revision = "a31cc96ab10cf19bc42c628fedf1e359e0853c49")),
+  # Gemma 4 31B (62,6 GB di pesi) non lascia su una H100 i 15,8 GiB di cache per 32.768 token (job 470088): il
+  # modello si divide su 2 GPU, 2 worker per job. La modalita' batch invariant fissa NCCL in modo deterministico.
   gemma = list(model_id = "google/gemma-4-31B-it", tokenizer_mode = "auto", config_format = "auto",
-               load_format = "auto",
+               load_format = "auto", tensor_parallel_size = 2L,
                llm_extra = list(revision = "842da3794eaa0b77d5f08bae87a17459d91ff475",
                                 tokenizer_revision = "842da3794eaa0b77d5f08bae87a17459d91ff475",
                                 limit_mm_per_prompt = list(image = 0L, video = 0L)))
 )
 CAMPI_MODELLO <- c("model_id", "tokenizer_mode", "config_format", "load_format", "dtype",
-                   "gpu_memory_utilization", "llm_extra")
+                   "gpu_memory_utilization", "tensor_parallel_size", "llm_extra")
 ENV_JOB <- c(VLLM_BATCH_INVARIANT = "1", HF_HUB_OFFLINE = "1")
 
 scrivi <- function(...) { msg <- sprintf("[%s] %s", format(Sys.time(), "%m-%d %H:%M:%S"), sprintf(...)); cat(msg, "\n", sep = ""); cat(msg, "\n", sep = "", file = file.path(LOG, "catena.log"), append = TRUE); flush.console() }

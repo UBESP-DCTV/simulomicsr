@@ -47,7 +47,7 @@ dgx_p4_build_bundle <- function(input_jsonl,
       class = "simulomicsr_dgx_unknown_stage"
     )
   campi_modello <- c("model_id", "tokenizer_mode", "config_format", "load_format",
-                     "dtype", "gpu_memory_utilization", "llm_extra")
+                     "dtype", "gpu_memory_utilization", "tensor_parallel_size", "llm_extra")
   if (!is.null(modello)) {
     ignoti <- setdiff(names(modello), campi_modello)
     if (!is.list(modello) || is.null(names(modello)) || length(ignoti) > 0L)

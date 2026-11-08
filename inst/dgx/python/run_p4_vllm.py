@@ -94,10 +94,12 @@ def render_user_for_stage(stage: str, record: dict) -> str:
     raise ValueError(f"stage non noto: {stage!r}")
 
 
-def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict],
+def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: list[dict],
                 output_dir: Path, predictions_path: Path) -> None:
     """Funzione eseguita in subprocess. Carica vLLM su una sola GPU e
     genera in batch sui record assegnati."""
+    # Una GPU per worker, o piu' GPU se tensor_parallel_size > 1 (gpu_index e'
+    # allora una lista separata da virgole, vedi gpus_per_worker()).
     os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_index)
 
     from vllm import LLM, SamplingParams
@@ -274,6 +276,14 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
           f"({len(record_ids)} record)", flush=True)
 
 
+def gpus_per_worker(worker_id: int, tp: int) -> int | str:
+    """GPU del worker: l'indice (tp = 1, come prima) o la lista di tp indici
+    consecutivi separati da virgole (tp > 1)."""
+    if tp <= 1:
+        return worker_id
+    return ",".join(str(worker_id * tp + k) for k in range(tp))
+
+
 def count_prompt_tokens(tok, conv) -> int:
     """Token del prompt con il template di chat del tokenizer del modello
     (tokenizer di vLLM: MistralTokenizer o HF). Non usa LLM._preprocess_chat_one:
@@ -323,7 +333,10 @@ def main() -> int:
                                    "message": "Nothing to do (resume)"})
         return 0
 
-    n_workers = max(1, int(args.workers))
+    tp = int(bundle["generation"].get("tensor_parallel_size", 1) or 1)
+    n_workers = max(1, int(args.workers) // tp)
+    if tp > 1:
+        print(f"[main] tensor_parallel_size={tp}: {n_workers} worker da {tp} GPU", flush=True)
     shards = shard_round_robin(todo, n_workers)
 
     # Lancia worker
@@ -334,7 +347,7 @@ def main() -> int:
         worker_pred_path = output_dir / f"predictions.worker_{i}.jsonl"
         p = mp.Process(
             target=worker_main,
-            args=(i, i, bundle, shard, output_dir, worker_pred_path),
+            args=(i, gpus_per_worker(i, tp), bundle, shard, output_dir, worker_pred_path),
         )
         p.start()
         procs.append((i, p))

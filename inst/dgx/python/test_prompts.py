@@ -103,10 +103,17 @@ def test_count_prompt_tokens_lista_e_dizionario():
     assert count_prompt_tokens(TokDict(), conv) == 7
 
 
+def test_gpus_per_worker():
+    from run_p4_vllm import gpus_per_worker
+    assert [gpus_per_worker(i, 1) for i in range(4)] == [0, 1, 2, 3]
+    assert [gpus_per_worker(i, 2) for i in range(2)] == ["0,1", "2,3"]
+
+
 if __name__ == "__main__":
     test_strip_member_sample_ids()
     test_chunk_line()
     test_name_cleanup_fields_present_no_top_theme()
     test_stage2b_testo_identico()
     test_count_prompt_tokens_lista_e_dizionario()
-    print("OK -- 5/5 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")
+    test_gpus_per_worker()
+    print("OK -- 6/6 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")
