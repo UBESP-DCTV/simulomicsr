@@ -1,0 +1,45 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 422 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+confronti: 1903  studi: 993  campioni H5: 15559 
+campioni con campi GEO: 15557  cancellati da GEO: 2 GSM7061582 GSM7061583 
+
+---- CANCELLI ----
+R0   PASSA  1903 su 1903 testi ricostruiti con i soli campi H5 identici al congelato della prima parte
+G2   FALLISCE  15557 campioni su 15559 con i campi GEO; senza: 2, tutti cancellati da GEO: si'
+     confronti con un campione cancellato da GEO: 2 GSE226005__GSE226005__Hypoxia_vs_Vehicle__1 GSE226005__GSE226005__Hypoxia_rep_vs_Vehicle__1 
+G4   PASSA  1903 su 1903 ingressi contengono ogni valore per intero
+
+---- PREVISIONI ----
+P7  confronti oltre il limite (26624 token): 1 su 1903
+                                             record_id n_t n_c token
+ GSE255071__GSE255071__TB_HIV_neg_vs_TB_neg_HIV_neg__1  68  49 40081
+P8  token stimati per confronto: mediana 3920 (prima parte 3603); 99-esimo percentile 7977; massimo 40081
+    token del prompt di sistema: 2940; somma sui 1.903: 8120345 (prima parte 7468903)
+    aumento per confronto, quantili 0/50/90/99/100%: 129 / 281 / 588 / 1147 / 4515 
+P9  studi con la descrizione che cambia fra i campioni dei bracci: 419 su 993 (42.2%)
+    description              presente in  513 studi su 993 e in  7505 campioni su 15557
+    treatment_protocol_ch1   presente in  666 studi su 993 e in  8697 campioni su 15557
+    growth_protocol_ch1      presente in  675 studi su 993 e in  8275 campioni su 15557
+    confronti per modo di scrittura della descrizione:
+modo
+             assente comune ai due bracci          per braccio 
+                 882                  202                   90 
+        per campione 
+                 729 
+    codifica dei campi GEO (campioni):
+      description              cambiate dalla riparazione    0; con marcatore prima    0, dopo    0
+      treatment_protocol_ch1   cambiate dalla riparazione    0; con marcatore prima    0, dopo    0
+      growth_protocol_ch1      cambiate dalla riparazione    0; con marcatore prima    0, dopo    0
+    ingressi con marcatore dopo la riparazione: 0 su 1903
+P10 campioni con il titolo GEO uguale al titolo H5: 15557 su 15557 (100.00%, Wilson [100.0%, 100.0%])
+    titoli diversi scritti in 28-titoli-diversi.csv: 0 
+
+file scritti
