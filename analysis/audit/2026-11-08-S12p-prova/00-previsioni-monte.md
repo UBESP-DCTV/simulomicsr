@@ -16,7 +16,11 @@ Per ogni confronto, i campi `characteristics_ch1` dell'H5 di ogni campione si di
 virgola seguita da «chiave: » separa due coppie), più `source_name_ch1` come chiave a sé. Per ogni chiave il codice
 confronta gli insiemi di valori dei due bracci: uguali, in parte comuni, senza valori comuni.
 - **Chiavi escluse**, per costruzione e non per elenco: le chiavi i cui valori sono diversi in ogni campione dei due
-  bracci (identificativi), e le chiavi di replica (il nome contiene «replicate», «rep», «batch», «sample», «id»).
+  bracci (identificativi), e le chiavi di replica: una **parola** del nome è «replicate», «replica», «rep», «batch»,
+  «lane» o «run». *Correzione prima del calcolo (2026-11-08):* la prima stesura diceva «il nome contiene … «sample»,
+  «id»»; così cadevano anche «individual», «donor id», «patient id», cioè i donatori. Gli identificativi li toglie già
+  la regola dei valori tutti diversi. Conseguenza dichiarata: in un confronto con un campione per braccio ogni chiave
+  diversa ha valori tutti diversi, quindi il codice non può accusare nulla.
 - **Chiave dell'entità**: una chiave diversa fra i bracci i cui valori del trattato contengono una parola dell'entità
   proposta o dell'etichetta del trattato (dopo minuscole e senza punteggiatura). Si esclude dal giudizio.
 - **Accusa senza modello**: almeno una chiave non esclusa con insiemi diversi fra i bracci, oltre alla chiave
