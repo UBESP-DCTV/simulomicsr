@@ -34,7 +34,8 @@ tecnici (`.S2B_CAMPI_INGRESSO`). Un campo dell'elenco assente dai dati ferma la 
 (`simulomicsr_stage2b_campi_mancanti`): un campo non sparisce in silenzio. Un campione che GEO ha cancellato
 dopo la copia di ARCHS4 ha nei tre campi GEO il valore «(not available: sample deleted from GEO)»
 (`.s2b_aggiungi_campi_geo()`); un campione senza testo GEO e senza la pagina di cancellazione salvata ferma
-l'unione (`simulomicsr_stage2b_geo_mancante`). Se un campione cancellato resta nella pipeline lo decide il PI.
+l'unione (`simulomicsr_stage2b_geo_mancante`). Il PI ha deciso (2026-11-08) che il ricalcolo finale toglie ogni campione cancellato da GEO; la prova S12p
+tiene i due confronti toccati, perché misura il modello sul deliverable com'è.
 
 **In testa:** le etichette dei due bracci scritte dallo Stadio 2 e l'**entità proposta**, cioè il nome che la
 pipeline assegna al confronto (mai un ID). Nella prova S12p è `contrast_entity_label` del gruppo nel

@@ -1,7 +1,7 @@
 ---
 type: Finding
 title: "Stadio 2b, il disegno: la lista di controllo, la regola, l'ingresso e le previsioni per la prova cieca"
-description: "S12: schema della lista di controllo, regola deterministica con test, prompt e ingresso senza tagli per il nuovo giudice di confrontabilita' (ADR-0028); misura dell'ingresso sui 1.903 confronti del deliverable; previsioni per S12p. Nessun run del modello. Parte 2 (2026-11-08): quattro decisioni del PI, campi GEO congelati nell'ingresso, due campioni cancellati da GEO; una decisione del PI in attesa."
+description: "S12: schema della lista di controllo, regola deterministica con test, prompt e ingresso senza tagli per il nuovo giudice di confrontabilita' (ADR-0028); misura dell'ingresso sui 1.903 confronti del deliverable; previsioni per S12p. Nessun run del modello. Parte 2 (2026-11-08): quattro decisioni del PI, campi GEO congelati nell'ingresso, due campioni cancellati da GEO, che il ricalcolo finale toglie (decisione del PI)."
 status: draft
 generated: {by: simulomicsr-agent/skill-v1, at: '2026-11-08T13:30:00+01:00'}
 sources:
@@ -55,7 +55,7 @@ da GEO.
 5. **Il testo d'ingresso cresce poco, e 1.902 confronti su 1.903 restano nel limite di lunghezza.** La mediana
    sale da circa 3.600 a 3.920 token per confronto.
 
-**Cosa devi decidere.**
+**Cosa devi decidere.** Hai deciso il 2026-11-08: i campioni cancellati da GEO si tolgono nel ricalcolo finale.
 
 1. **I campioni che GEO ha cancellato restano nella pipeline? Raccomando di toglierli nel ricalcolo finale.**
    Un lettore dell'articolo non può ritrovare questi campioni in GEO. Lo staff di GEO li ha cancellati per un
@@ -71,7 +71,7 @@ prova cieca: tre modelli leggono i 1.903 confronti con il testo nuovo. Il conto 
 solo quando le uscite sono congelate. Il ricalcolo finale scarica da GEO il testo di tutti gli studi candidati
 con lo stesso script.
 
-Il controllo fallito ha una causa nota, e l'ingresso ora la scrive. Appena decidi questo punto, la sessione è
+Il controllo fallito ha una causa nota, e l'ingresso ora la scrive. Hai deciso questo punto: la sessione è
 chiusa.
 
 **Sui tempi di calcolo.** Lo scaricamento dei 993 studi ha richiesto 41 minuti misurati, con un solo processo e
@@ -280,7 +280,7 @@ confronti su 1.903 (`GSE226005__GSE226005__Hypoxia_vs_Vehicle__1`, `…Hypoxia_r
 `cgroup_L5_83f57274`). GEO oggi elenca 12 campioni dello studio, e i due non ci sono. Non ho giudicato i due
 confronti (la prova è cieca). L'ingresso scrive per i tre campi GEO di questi campioni «(not available: sample
 deleted from GEO)», e il prompt dice al modello che questo valore non descrive l'esperimento. Se resta nella
-pipeline un campione che GEO ha cancellato è una **decisione del PI** (riassunto).
+pipeline un campione che GEO ha cancellato l'ha deciso il PI il 2026-11-08: **no**, il ricalcolo finale lo toglie.
 
 **Che cosa mostra la misura**[^ingr2]. Sui 15.557 campioni che GEO ha ancora: `description` in 7.505 campioni e
 513 studi; `treatment_protocol_ch1` in 8.697 campioni e 666 studi; `growth_protocol_ch1` in 8.275 campioni e 675
@@ -305,13 +305,13 @@ pagina di cancellazione; ora la salva come prova (`26-out-ripresa.txt`, solo i d
 | dubbio | come si chiude |
 |---|---|
 | G2 fallito come scritto | **spiegato** (GEO ha cancellato i 2 campioni; pagina salvata) e **corretto** nell'ingresso (valore «not available», `.s2b_aggiungi_campi_geo()` con test: un campione senza testo e senza prova ferma il calcolo) |
-| un campione cancellato da GEO resta nella pipeline? | **decisione del PI** (riassunto) |
+| un campione cancellato da GEO resta nella pipeline? | **deciso** dal PI il 2026-11-08: no, il ricalcolo finale (S13) toglie ogni campione cancellato da GEO; la prova S12p tiene i 2 confronti |
 | il testo GEO per tutti gli studi candidati del ricalcolo finale | **rinviato** a S13 (sotto) |
 | spazio non separabile tolto dall'estrattore | **corretto** |
 
 **Rinvio a S13: il testo GEO di tutti i candidati.** Che cosa: scaricare e congelare il testo GEO di tutti gli
 studi candidati con `26-scarica-geo.py` e `27-estrai-campi-geo.py`, unire con `.s2b_aggiungi_campi_geo()`,
-elencare i campioni cancellati da GEO e applicare la decisione del PI su di loro. Perché: lo Stadio 2b in
+elencare i campioni cancellati da GEO e toglierli (decisione del PI, 2026-11-08). Perché: lo Stadio 2b in
 produzione deve leggere gli stessi campi della prova. Che cosa serve: il numero degli studi candidati, dichiarato
 prima; il tempo misurato qui è 2,5 s per studio (2.435 s per 993 studi), con un solo processo. Il 2026-11-08 le
 pagine HTML di GEO hanno mostrato un controllo reCAPTCHA, mentre il formato testo ha risposto: il lancio deve

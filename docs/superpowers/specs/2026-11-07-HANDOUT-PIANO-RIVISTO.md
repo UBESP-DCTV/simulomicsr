@@ -32,7 +32,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 
 | # | sessione | tipo | durata stimata (×2 nella pratica) | serve prima |
 |---|---|---|---|---|
-| **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **fatto il 2026-11-07; 4 decisioni prese il 2026-11-08, campi GEO nell'ingresso; 1 decisione del PI in attesa (campioni cancellati da GEO)** | carta + codice della regola (TDD) | ~4 h | — |
+| **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **chiusa il 2026-11-08** (4 decisioni + campioni cancellati da GEO tolti in S13; campi GEO nell'ingresso) | carta + codice della regola (TDD) | ~4 h | — |
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco | notte DGX + 1 sessione | ~3 h + 1 notte | **S12** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
@@ -55,8 +55,8 @@ S15←S13, S7c←S13.
 
 # S12 — Stadio 2b: il disegno
 
-> **Stato (2026-11-08): le quattro decisioni sono prese (tutte come raccomandato); l'ingresso contiene i campi GEO;
-> resta una decisione del PI: se un campione cancellato da GEO resta nella pipeline.** Parte 2: testi GEO di 993
+> **Stato (2026-11-08): sessione chiusa.** Le quattro decisioni sono prese (tutte come raccomandato); l'ingresso
+> contiene i campi GEO; decisione del PI: un campione cancellato da GEO **si toglie** nel ricalcolo finale (S13). Parte 2: testi GEO di 993
 > studi congelati (`analysis/p4-output/S12-geo-campioni-20261108/`, copia su micron), ingresso nuovo
 > `analysis/audit/2026-11-07-S12-stadio2b-disegno/28-ingressi-1903.jsonl.gz` (impronte `91-sha256.txt`); cancello
 > G2 fallito come scritto per 2 campioni su 15.559 cancellati dallo staff di GEO il 2024-10-12 (spiegato e marcato
@@ -201,7 +201,7 @@ Prompt e dettagli nell'handout del 2026-08-21 (sezioni S12b, S12c, S12d). Tre co
 > (3) **Testo GEO di tutti i candidati** (rinvio di S12 parte 2, 2026-11-08, finding S12 §10): scaricare e congelare
 > descrizione e protocolli di tutti gli studi candidati con `analysis/audit/2026-11-07-S12-stadio2b-disegno/26-scarica-geo.py`
 > e `27-estrai-campi-geo.py`, unire con `.s2b_aggiungi_campi_geo()`, elencare i campioni cancellati da GEO e
-> applicare la decisione del PI su di loro. Tempo misurato: 2,5 s per studio con un processo; le pagine HTML di GEO
+> **toglierli** (decisione del PI, 2026-11-08: un lettore non li ritrova in GEO). Contarli nelle previsioni. Tempo misurato: 2,5 s per studio con un processo; le pagine HTML di GEO
 > hanno mostrato un reCAPTCHA il 2026-11-08 (il formato testo ha risposto): lancio riprendibile. Dichiarare prima
 > il numero degli studi candidati.
 
