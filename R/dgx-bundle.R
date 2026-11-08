@@ -36,6 +36,9 @@
 #'   questi campi di \code{generation.json} e il \code{model_id} del manifest:
 #'   prompt, schema e parametri di campionamento restano quelli dello stadio.
 #'   Un campo fuori elenco ferma la costruzione.
+#' @param versione_prompt solo per stage2b: la versione del prompt di sistema
+#'   (\code{inst/prompts/stage2b-<versione>.md}); default \code{"v1"}. Va nel
+#'   manifest come \code{prompt_version}.
 #' @return oggetto \code{simulomicsr_dgx_bundle} con campi \code{run_id},
 #'   \code{bundle_dir}, \code{stage}, \code{config}, \code{record_count},
 #'   e (se `tiered_max_tokens=TRUE`) \code{tier_summary} con count per tier.
@@ -46,7 +49,8 @@ dgx_p4_build_bundle <- function(input_jsonl,
                                 metadata           = list(),
                                 bundle_dir_root    = "analysis/p4-bundles",
                                 tiered_max_tokens  = FALSE,
-                                modello            = NULL) {
+                                modello            = NULL,
+                                versione_prompt    = "v1") {
 
   # --- Validazione argomenti ---
   if (!stage %in% c("stage1", "stage2", "name_cleanup", "stage2b"))
@@ -149,7 +153,7 @@ dgx_p4_build_bundle <- function(input_jsonl,
   } else if (stage == "stage2") {
     simulomicsr:::.stage2_system_prompt(defaults$model_id)
   } else if (stage == "stage2b") {
-    simulomicsr:::.s2b_prompt_sistema()
+    simulomicsr:::.s2b_prompt_sistema(versione_prompt)
   } else {
     simulomicsr:::.name_cleanup_system_prompt()
   }
@@ -242,6 +246,7 @@ dgx_p4_build_bundle <- function(input_jsonl,
     stage          = stage,
     schema_file    = stage_def$schema_file,
     schema_version = stage_def$schema_version,
+    prompt_version = if (stage == "stage2b") versione_prompt else NULL,
     model_id       = gen$model_id,
     record_count   = record_count,
     tiered_max_tokens = isTRUE(tiered_max_tokens),

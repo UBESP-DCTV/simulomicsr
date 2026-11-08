@@ -11,7 +11,8 @@ dgx_p4_build_bundle(
   metadata = list(),
   bundle_dir_root = "analysis/p4-bundles",
   tiered_max_tokens = FALSE,
-  modello = NULL
+  modello = NULL,
+  versione_prompt = "v1"
 )
 }
 \arguments{
@@ -52,6 +53,10 @@ modelli): \code{model_id}, \code{tokenizer_mode}, \code{config_format},
 questi campi di \code{generation.json} e il \code{model_id} del manifest:
 prompt, schema e parametri di campionamento restano quelli dello stadio.
 Un campo fuori elenco ferma la costruzione.}
+
+\item{versione_prompt}{solo per stage2b: la versione del prompt di sistema
+(\code{inst/prompts/stage2b-<versione>.md}); default \code{"v1"}. Va nel
+manifest come \code{prompt_version}.}
 }
 \value{
 oggetto \code{simulomicsr_dgx_bundle} con campi \code{run_id},

@@ -78,9 +78,9 @@ scrivi_ingresso <- function(df, path) {
 }
 
 # K1: prompt, schema e testo del bundle identici agli oggetti congelati.
-controlla_bundle <- function(b, df) {
+controlla_bundle <- function(b, df, versione_prompt = "v1") {
   pp <- fs::path(b$bundle_dir, "prompt.txt"); p <- readChar(pp, fs::file_info(pp)$size, useBytes = TRUE); Encoding(p) <- "UTF-8"
-  if (!identical(p, .s2b_prompt_sistema())) ferma("CANCELLO K1: prompt del bundle %s diverso da .s2b_prompt_sistema()", b$run_id)
+  if (!identical(p, .s2b_prompt_sistema(versione_prompt))) ferma("CANCELLO K1: prompt del bundle %s diverso da .s2b_prompt_sistema(%s)", b$run_id, versione_prompt)
   sha <- function(f) unname(digest::digest(file = f, algo = "sha256"))
   imp <- read.table(file.path(S12, "91-sha256.txt"), col.names = c("sha", "file"), stringsAsFactors = FALSE)
   if (sha(fs::path(b$bundle_dir, "schema.json")) != imp$sha[imp$file == "inst/schemas/comparison_check.stage2b.v1.json"]) ferma("CANCELLO K1: schema del bundle %s diverso dalle impronte", b$run_id)
@@ -90,11 +90,11 @@ controlla_bundle <- function(b, df) {
   scrivi("cancello K1: bundle %s, prompt, schema e %d testi identici", b$run_id, length(id))
 }
 
-invia <- function(p, slug, modello, df, time = "72:00:00", gen_over = NULL) {
+invia <- function(p, slug, modello, df, time = "72:00:00", gen_over = NULL, versione_prompt = "v1") {
   f <- file.path(JOBS, paste0(slug, ".rds")); if (file.exists(f)) return(readRDS(f))
-  b <- dgx_p4_build_bundle(p, stage = "stage2b", config = cfg, metadata = list(slug = slug), modello = modello)
+  b <- dgx_p4_build_bundle(p, stage = "stage2b", config = cfg, metadata = list(slug = slug), modello = modello, versione_prompt = versione_prompt)
   if (!is.null(gen_over)) { gp <- fs::path(b$bundle_dir, "generation.json"); g <- read_json(gp); for (n in names(gen_over)) g[[n]] <- gen_over[[n]]; .dgx_write_generation_json(g, gp) }
-  controlla_bundle(b, df)
+  controlla_bundle(b, df, versione_prompt)
   j <- ssh_ripeti(function() dgx_p4_submit(b, time = time, env = ENV_JOB))
   saveRDS(j, f); scrivi("inviato %s slurm=%s run_id=%s", slug, j$slurm_job_id, j$run_id); j
 }

@@ -1,0 +1,72 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 422 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+riferimento allargato: 473 difettosi, 1430 puliti
+A1 difetti presi senza modello: 242 su 473 = 51.2% [46.7; 55.6]
+A2 puliti accusati senza modello: 339 su 1430 = 23.7% [21.6; 26.0]
+A3 difetti con un braccio mescolato: 186 su 473 = 39.3% [35.0; 43.8]
+A4 puliti con un braccio mescolato: 283 su 1430 = 19.8% [17.8; 21.9]
+A5 confronti con almeno 2 chiavi strutturate in ogni campione: 1903 su 1903 = 100.0% [99.8; 100.0]
+   confronti con un campione per braccio (il codice non puo' accusare): 0; confronti senza chiave dell'entita' trovata: 212
+   difetti presi solo dalla tecnica dell'H5: 10
+
+chiavi che accusano i puliti (le 20 piu' frequenti):
+
+                    age               treatment                dose(um) 
+                     67                      49                      28 
+            source_name                  gender           concentration 
+                     25                      22                      20 
+     investigative unit               sample id                     rin 
+                     18                      18                      16 
+    treatment condition                    dose                   donor 
+                     14                      13                      12 
+                    sex treatment_concentration            age at death 
+                     12                      11                      10 
+              ethnicity         h2o volume (ul)        rna conc (ng/ul) 
+                     10                      10                      10 
+        rna volume (ul)        age at diagnosis 
+                     10                       9 
+
+chiavi che accusano i difetti (le 20 piu' frequenti):
+
+                         rin                concentration 
+                          45                           42 
+          investigative unit                    sample id 
+                          42                           42 
+         treatment condition              h2o volume (ul) 
+                          42                           41 
+            rna conc (ng/ul)              rna volume (ul) 
+                          41                           41 
+                   cell line                         well 
+                          33                           26 
+                         age                     genotype 
+                          24                           19 
+                  time point                    treatment 
+                          15                           15 
+                        time                        donor 
+                          14                           10 
+                      gender                  source_name 
+                          10                           10 
+                         sex anonymized center identifier 
+                           5                            4 
+
+presi senza modello fra i 280, per tipo della seconda lettura:
+                   tipo  n presi
+1  agente_nel_controllo  6     2
+2                 altro 21     9
+3         braccio_misto 15     7
+4               coltura 23     9
+5        entita_diversa 22    11
+6              genotipo 25    17
+7      materiale_o_sede 89    63
+8        secondo_agente  5     3
+9              soggetti 27    23
+10              tecnica 13    10
+11        tempo_diverso 20     5
+12           tempo_zero 14     2
+MISURA FINITA

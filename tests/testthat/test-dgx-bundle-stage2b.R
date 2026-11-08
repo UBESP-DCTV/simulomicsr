@@ -83,3 +83,17 @@ test_that("dgx_p4_build_bundle() stage2b: ogni riga dell'ingresso ha record_id e
     class = "simulomicsr_dgx_stage2b_ingresso_non_valido"
   )
 })
+
+test_that("dgx_p4_build_bundle() stage2b: la versione del prompt si sceglie e finisce nel manifest", {
+  td <- withr::local_tempdir()
+  b <- dgx_p4_build_bundle(.s2b_ingresso_bundle(td), stage = "stage2b", config = dgx_config(),
+                           metadata = list(slug = "s2b-v2"), bundle_dir_root = td, versione_prompt = "v2")
+  pp <- fs::path(b$bundle_dir, "prompt.txt")
+  p <- readChar(pp, fs::file_info(pp)$size, useBytes = TRUE); Encoding(p) <- "UTF-8"
+  expect_identical(p, .s2b_prompt_sistema("v2"))
+  expect_false(identical(p, .s2b_prompt_sistema("v1")))
+  expect_identical(jsonlite::read_json(fs::path(b$bundle_dir, "manifest.json"))$prompt_version, "v2")
+  expect_error(dgx_p4_build_bundle(.s2b_ingresso_bundle(td), stage = "stage2b", config = dgx_config(),
+                                   bundle_dir_root = td, versione_prompt = "v9"),
+               class = "simulomicsr_prompt_missing")
+})
