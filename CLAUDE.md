@@ -53,7 +53,7 @@ il difetto tipico di questo progetto è lavorare sull'oggetto sbagliato.
 | Inversioni di braccio | `GSE144269` in HCC confermata (gruppo non citabile finché non è corretto) + 4 bracci; lo strumento vede il 52% | `2026-11-02-inversioni-bracci-194` |
 | Re-run Stadi 1-2 (S14, prima parte) | 24.393 studi da zero in 33 h; 211.484/211.484 record identici; master `analysis/p4-output/S14-stage{1,2}-master.jsonl` (copia su micron); outlier con `max_model_len` 32768 | `2026-11-07-S14-due-passi-col-modello`, `-S8b-prova-re-run` |
 | Soffitto e biologia | **455 entità** con ≥3 studi nello Stadio 3 (deliverable = 43%); controllo biologico **30/31**, DHT contro enzalutamide −0,944 | valutazione |
-| Stadio 2b, il disegno (S12) | schema, regola (segnali → tabella errore/avviso), ingresso senza tagli, prompt v1, test verdi; 1.902/1.903 ingressi nel limite (mediana 3.603 token); **codifica UTF-8 doppia e tripla nell'H5**, riparata nell'ingresso; `description` per campione assente dall'H5 (cambia fra i campioni in 22/40 studi) | `2026-11-07-S12-stadio2b-disegno` |
+| Stadio 2b, il disegno (S12) | schema, regola (segnali → tabella errore/avviso), ingresso senza tagli, prompt v1, test verdi; 1.902/1.903 ingressi nel limite (mediana 3.603 token); **codifica UTF-8 doppia e tripla nell'H5**, riparata nell'ingresso; parte 2 (2026-11-08): 4 decisioni del PI come raccomandato; `description` e protocolli **da GEO congelati** (993 studi) nell'ingresso `28-ingressi-1903.jsonl.gz`; la descrizione cambia fra i campioni in 419/993 studi; **2 campioni dei bracci cancellati da GEO** (GSE226005), marcati | `2026-11-07-S12-stadio2b-disegno` §10 |
 
 **Decisione del PI (2026-11-07):** strada «tenere e sostituire un pezzo» (ADR-0028). Si tengono ETL,
 master S14, Stadio 4, gold, verdetti e strumenti di audit; **si sostituisce il giudice di confrontabilità**
@@ -68,7 +68,7 @@ singola meta-analisi · tempo zero e differenza tecnica fra i bracci sono **semp
 soglia di errore accettata**: ogni causa si corregge · solo `poddgx02`.
 
 **Che cosa fare adesso:** **`docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md`** comanda
-l'ordine: **S12** (Stadio 2b, il disegno: fatto, **4 decisioni del PI in attesa**, riquadro S12) → **S12p** (la prova: tre modelli sui 1.903, conto cieco) →
+l'ordine: **S12** (Stadio 2b, il disegno: fatto; **1 decisione del PI in attesa**, i campioni cancellati da GEO, riquadro S12) → **S12p** (la prova: tre modelli sui 1.903, conto cieco) →
 S12c+S12b, S12d → **S13** (tutto sui master S14, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16,
 S17. L'handout del 2026-08-21 resta per le sessioni chiuse e per i prompt di S12b, S12c, S12d, S16, S17.
 Il deliverable su disco resta A3 v16 fino a S13.
@@ -115,7 +115,8 @@ Rami `mega`, `mega_aug`, `rem` restano nel codice ma **fuori dal deliverable**
 - **Run multi-ora: `setsid nohup ... < /dev/null &`**, poi verifica `SID == PID`
   (`ps -eo pid,sid,args | grep "[f]13-stage3"`). `run_in_background=true` ha
   **ucciso** un run di ore (stage4 v6 a cluster 76/533, senza OOM né errore).
-  Monitorare con `pgrep` sul nome dello script, non col PID.
+  Monitorare con `pgrep` sul nome dello script, non col PID. **Dentro un comando che contiene il nome,
+  `pgrep -f nome` trova se stesso** e il ciclo non finisce mai (S12, 2026-11-08: 30 min persi): usa `pgrep -f "[n]ome"`.
 - **Aggiornamento ORARIO durante i run pesanti**: «fatto + ETA» ogni ora, non
   solo a fine run. Niente poller `until … sleep` in background: check attivi.
 - **Re-cluster Stadio 3**: ~2 h 30 m con 32 worker (misurato; a 64 peggiora).

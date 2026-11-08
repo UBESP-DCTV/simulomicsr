@@ -32,7 +32,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 
 | # | sessione | tipo | durata stimata (×2 nella pratica) | serve prima |
 |---|---|---|---|---|
-| **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **fatto il 2026-11-07, 4 decisioni del PI in attesa** | carta + codice della regola (TDD) | ~4 h | — |
+| **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **fatto il 2026-11-07; 4 decisioni prese il 2026-11-08, campi GEO nell'ingresso; 1 decisione del PI in attesa (campioni cancellati da GEO)** | carta + codice della regola (TDD) | ~4 h | — |
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco | notte DGX + 1 sessione | ~3 h + 1 notte | **S12** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
@@ -55,6 +55,13 @@ S15←S13, S7c←S13.
 
 # S12 — Stadio 2b: il disegno
 
+> **Stato (2026-11-08): le quattro decisioni sono prese (tutte come raccomandato); l'ingresso contiene i campi GEO;
+> resta una decisione del PI: se un campione cancellato da GEO resta nella pipeline.** Parte 2: testi GEO di 993
+> studi congelati (`analysis/p4-output/S12-geo-campioni-20261108/`, copia su micron), ingresso nuovo
+> `analysis/audit/2026-11-07-S12-stadio2b-disegno/28-ingressi-1903.jsonl.gz` (impronte `91-sha256.txt`); cancello
+> G2 fallito come scritto per 2 campioni su 15.559 cancellati dallo staff di GEO il 2024-10-12 (spiegato e marcato
+> nell'ingresso); P7-P10 confermate (finding §10).
+>
 > **Stato (2026-11-07): disegno fatto, in attesa di quattro decisioni del PI.** Spec
 > `docs/superpowers/specs/2026-11-07-stadio-2b-design.md`, finding `docs/findings/2026-11-07-S12-stadio2b-disegno.md`
 > (riassunto «In breve» in testa). Su disco: schema `inst/schemas/comparison_check.stage2b.v1.json`, prompt
@@ -109,16 +116,19 @@ Obiettivo: disegno dello Stadio 2b (schema, regola con test, prompt, previsioni)
 
 # S12p — La prova che decide
 
-> **Ricevuto da S12 (2026-11-07), da leggere per primo.** (a) Configurazione, ingresso congelato e conto: spec
-> `docs/superpowers/specs/2026-11-07-stadio-2b-design.md` §7; verifica le impronte di
-> `analysis/audit/2026-11-07-S12-stadio2b-disegno/90-sha256.txt` prima del lancio. (b) Il limite di 26.624 token
+> **Ricevuto da S12 (2026-11-07 e 2026-11-08), da leggere per primo.** (a) Configurazione, ingresso congelato e
+> conto: spec `docs/superpowers/specs/2026-11-07-stadio-2b-design.md` §7. **L'ingresso è
+> `28-ingressi-1903.jsonl.gz`, non `20-…`**: verifica le impronte di
+> `analysis/audit/2026-11-07-S12-stadio2b-disegno/91-sha256.txt` prima del lancio. (b) Il limite di 26.624 token
 > usa una stima di 3 caratteri per token: lo smoke misura il conteggio vero di vLLM. Un confronto su 1.903
-> (117 campioni, 39.674 token stimati) è oltre il limite e la regola lo scarta con `INGRESSO_INCOMPLETO`; se il
+> (117 campioni; 40.081 token stimati con i campi GEO) è oltre il limite e la regola lo scarta con `INGRESSO_INCOMPLETO`; se il
 > conteggio vero lo fa stare nel limite, va mandato al modello. (c) Nel conto, separa i segnali calcolati dal
 > codice (`TECNICA_H5_*`) da quelli del modello, e riporta la quota di citazioni trovate per intero
-> nell'ingresso. (d) Se il PI ha detto sì alla decisione 1 di S12, l'ingresso contiene anche testo GEO che i
-> lettori dei 193 non hanno visto: i falsi allarmi che nascono da lì si leggono come possibili errori del
-> riferimento (punto 5).
+> nell'ingresso. (d) Il PI ha detto sì alla decisione 1 di S12: l'ingresso contiene anche descrizione e protocolli
+> presi da GEO, che i lettori dei 193 non hanno visto; i falsi allarmi che nascono da lì si leggono come possibili
+> errori del riferimento (punto 5). (e) Due confronti di GSE226005 (`…Hypoxia_vs_Vehicle__1`,
+> `…Hypoxia_rep_vs_Vehicle__1`) hanno il controllo fatto da 2 campioni cancellati da GEO: i loro campi GEO valgono
+> «(not available: sample deleted from GEO)». Restano nella prova; il conto li riporta a parte.
 
 ### Perché
 È l'unica misura che dice se lo Stadio 2b funziona: tre modelli, stesso prompt, 1.903 confronti del
@@ -188,6 +198,12 @@ Prompt e dettagli nell'handout del 2026-08-21 (sezioni S12b, S12c, S12d). Tre co
 > pipeline costruisce nomi e chiavi (Stadio 3, S12b/S12c); rifare i due passi col modello richiede una decisione
 > del PI. **L'entità proposta** che lo Stadio 2b riceve in produzione è il nome dell'entità della chiave dello
 > Stadio 3 del record (spec §2): va costruita prima di lanciare lo Stadio 2b sui candidati.
+> (3) **Testo GEO di tutti i candidati** (rinvio di S12 parte 2, 2026-11-08, finding S12 §10): scaricare e congelare
+> descrizione e protocolli di tutti gli studi candidati con `analysis/audit/2026-11-07-S12-stadio2b-disegno/26-scarica-geo.py`
+> e `27-estrai-campi-geo.py`, unire con `.s2b_aggiungi_campi_geo()`, elencare i campioni cancellati da GEO e
+> applicare la decisione del PI su di loro. Tempo misurato: 2,5 s per studio con un processo; le pagine HTML di GEO
+> hanno mostrato un reCAPTCHA il 2026-11-08 (il formato testo ha risposto): lancio riprendibile. Dichiarare prima
+> il numero degli studi candidati.
 
 ### Perché
 Un ricalcolo solo, sui master definitivi, con tutte le correzioni insieme: Stadio 2b, chiave, varianza del

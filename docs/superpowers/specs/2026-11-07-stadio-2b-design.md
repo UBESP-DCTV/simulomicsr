@@ -1,7 +1,7 @@
 # Stadio 2b — il disegno (spec)
 
 **Data:** 2026-11-07 · **Sessione:** S12 · **Decisione:** ADR-0028 (`docs/decisions/0028-stadio-2b-giudice-di-confrontabilita.md`)
-· **Stato:** proposta; la tabella degli esiti (§5) attende la decisione del PI · **Finding:**
+· **Stato:** deciso dal PI il 2026-11-08 (tabella degli esiti §5 senza cambi; campi GEO nell'ingresso §2) · **Finding:**
 `docs/findings/2026-11-07-S12-stadio2b-disegno.md` · **Evidenza:** `analysis/audit/2026-11-07-S12-stadio2b-disegno/`
 
 ## 1. Che cosa fa lo Stadio 2b
@@ -21,10 +21,20 @@ pacchetto con test, decide dalla lista se il confronto passa. Il modello non dà
 
 ## 2. L'ingresso
 
-**Fonte.** L'H5 di ARCHS4 v2.5 (`analysis/input/human_gene_v2.5.h5`, gruppo `meta/samples`), il dato fisso
-della pipeline. Campi, per ogni campione dei due bracci: `title`, `source_name_ch1`, `characteristics_ch1`,
-`extract_protocol_ch1`, `data_processing`, `molecule_ch1`, `library_selection`, `library_source`,
-`library_strategy`, `instrument_model`, `platform_id`.
+**Fonti.** (a) L'H5 di ARCHS4 v2.5 (`analysis/input/human_gene_v2.5.h5`, gruppo `meta/samples`), il dato fisso
+della pipeline: `title`, `source_name_ch1`, `characteristics_ch1`, `extract_protocol_ch1`, `data_processing`,
+`molecule_ch1`, `library_selection`, `library_source`, `library_strategy`, `instrument_model`, `platform_id`.
+(b) GEO, perché l'H5 non li contiene (decisione 1 del PI, 2026-11-08): `description`, `treatment_protocol_ch1`,
+`growth_protocol_ch1` (`.S2B_CAMPI_GEO`). Una richiesta per studio
+(`acc.cgi?acc=<GSE>&targ=gsm&form=text&view=brief`), testo grezzo salvato per intero e **congelato**: un file per
+risposta, con URL, data UTC e SHA-256 in un manifesto. Più righe dello stesso campo si uniscono con «,», come fa
+l'H5. In S13 lo stesso scaricamento, congelato una volta, serve tutti i candidati. Ordine di scrittura:
+`title`, `source_name`, `characteristics`, `description`, `treatment_protocol`, `growth_protocol`, poi i campi
+tecnici (`.S2B_CAMPI_INGRESSO`). Un campo dell'elenco assente dai dati ferma la costruzione
+(`simulomicsr_stage2b_campi_mancanti`): un campo non sparisce in silenzio. Un campione che GEO ha cancellato
+dopo la copia di ARCHS4 ha nei tre campi GEO il valore «(not available: sample deleted from GEO)»
+(`.s2b_aggiungi_campi_geo()`); un campione senza testo GEO e senza la pagina di cancellazione salvata ferma
+l'unione (`simulomicsr_stage2b_geo_mancante`). Se un campione cancellato resta nella pipeline lo decide il PI.
 
 **In testa:** le etichette dei due bracci scritte dallo Stadio 2 e l'**entità proposta**, cioè il nome che la
 pipeline assegna al confronto (mai un ID). Nella prova S12p è `contrast_entity_label` del gruppo nel
@@ -47,11 +57,8 @@ citazione del modello si verifica come sottostringa dell'ingresso.
 sistema e ingresso. Stima: caratteri / 3; la prova S12p misura il rapporto vero sullo smoke. Un confronto oltre
 il limite **non si taglia e non si manda al modello**: la regola lo scarta con `INGRESSO_INCOMPLETO`.
 
-**Che cosa l'ingresso non contiene.** L'H5 non ha `description`, `treatment_protocol_ch1`,
-`growth_protocol_ch1`, `label_ch1` dei campioni, né titolo, riassunto e disegno della serie. Su 40 studi
-scelti a caso fra i 993 dei 1.903 confronti, `description` esiste in 24 studi e cambia fra i campioni in 22
-(donatori, sesso, età, trattamento, tempo); i due protocolli esistono in 25 studi e sono uguali in tutti i
-campioni dello studio. Se aggiungerli è una decisione del PI (finding, decisione 1).
+**Che cosa l'ingresso non contiene.** `label_ch1` (vuoto nei campioni RNA-seq controllati) e il testo della
+serie (titolo, riassunto, disegno). Le misure dei campi GEO sui 1.903 confronti stanno nel finding (§5).
 
 ## 3. La lista di controllo (schema `comparison_check.stage2b.v1`)
 
@@ -107,7 +114,7 @@ trattato (prima quelli con controllo `none`, poi `not_stated`); altrimenti «con
 d'origine è diversa; altrimenti nessuna (`NESSUNA_DIFFERENZA`). `entita_isolata` dà il nome: l'agente o gli
 agenti, o il valore della condizione nel trattato. In S13 questo nome va alla chiave dello Stadio 3 (S12c).
 
-## 5. La regola, passo 2: errore o avviso (proposta, decide il PI)
+## 5. La regola, passo 2: errore o avviso (decisa dal PI il 2026-11-08)
 
 `stage2b_esiti_default()` assegna a ogni segnale «errore» (il confronto non passa) o «avviso» (passa e si conta).
 Un segnale senza esito ferma la regola (errore di classe `simulomicsr_stage2b_esito_mancante`). La decisione
@@ -122,6 +129,12 @@ Da decisioni già prese: tempo zero e differenza tecnica sono sempre errore (PI,
 tecnica in un solo campione è errore (il caso 4sU di S11), quindi anche il parziale tecnico; «non detto»
 passa con avviso (ADR-0028).
 
+**Decisioni del PI, 2026-11-08** (la tabella proposta resta com'era; un test la fissa):
+(2) nei confronti malati contro sani i donatori diversi sono un avviso (`DONATORI_DIVERSI_CONDIZIONE`), sesso o
+età senza valori in comune restano errore; (3) non detto e casi incerti sono avvisi (`NON_DETTO_*`,
+`TEMPO_NON_DETTO`, `PARZIALE_` dei soggetti, `AGENTE_NON_DETTO_CONTROLLO`, `ENTITA_INCERTA`); (4) la voce aperta
+`ALTRA_DIFFERENZA` è errore. La decisione (1) riguarda l'ingresso (§2).
+
 ## 6. Il prompt (`inst/prompts/stage2b-v1.md`)
 
 In inglese, come i prompt degli Stadi 1 e 2. Dice al modello che etichette ed entità proposta possono essere
@@ -135,8 +148,9 @@ S11 §12, i veicoli (DMSO, PBS, etanolo) sono generici. Il prompt non contiene a
 Come l'handout S12p: temperatura 0, `repetition_penalty` 1.1, `VLLM_BATCH_INVARIANT=1`, `max_model_len` 32.768,
 `max_tokens` 6.144, structured output sullo schema §3. Un'uscita che non passa `validate_json()` con lo schema
 va alla cascata di recupero dello Stadio 2 (`repetition_penalty` 1.2 → 1.3 → 1.4); se resta non valida, la
-regola dà `LISTA_NON_VALIDA` e il conto la riporta a parte. Ingresso congelato:
-`analysis/audit/2026-11-07-S12-stadio2b-disegno/20-ingressi-1903.jsonl.gz` (SHA-256 in `90-sha256.txt`).
+regola dà `LISTA_NON_VALIDA` e il conto la riporta a parte. Ingresso congelato, con i campi GEO:
+`analysis/audit/2026-11-07-S12-stadio2b-disegno/28-ingressi-1903.jsonl.gz` (SHA-256 in `91-sha256.txt`; il
+`20-ingressi-1903.jsonl.gz` della prima parte, solo H5, resta come evidenza e non va alla prova).
 Per la tecnica dell'H5 la prova usa `20-campi-h5-campioni.rds`.
 
 **Che cosa conta la prova** (previsioni P4-P6 in `00-previsioni.md`): difetti presi su 193, puliti accusati su
@@ -149,7 +163,9 @@ quota di citazioni trovate per intero nell'ingresso (diagnostica, non decide).
   categorie dei 193. La prova S12p è cieca sugli esempi (il prompt non ne usa) ma non sulle categorie: misura
   quanto il modello vede le classi note. La voce aperta `other_differences` e la rilettura cieca di S15 misurano
   la coda.
-- **Campi GEO assenti dall'H5** (§2), salvo decisione del PI.
+- **Due fonti, due date.** I campi dell'H5 sono la copia di ARCHS4 v2.5; i tre campi GEO sono scaricati il
+  2026-11-08. Un campione modificato in GEO dopo la copia di ARCHS4 ha due versioni nello stesso ingresso: il
+  finding misura quanti titoli differiscono (P10).
 - **Un confronto oltre il limite** di lunghezza su 1.903 (117 campioni): scartato, non tagliato.
 - **La regola si fida dei fatti del modello.** Le citazioni si verificano come sottostringhe, ma la v1 non
   scarta un confronto per una citazione non trovata: il dato serve a misurare l'affidabilità del modello.
