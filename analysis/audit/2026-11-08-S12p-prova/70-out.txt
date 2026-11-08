@@ -1,0 +1,110 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 422 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+L1 copertura: pacchetti attesi 1236, letture valide 1236; difformi 0; letture estranee 0; righe illeggibili 0
+affermazioni lette: 2974 (Mistral 2154, Gemma 820)
+L2 controllo positivo: difetti del riferimento (non «non provati») giudicati non confrontabili: 149 su 177 = 84.2% [78.1; 88.8]; incerti 3 (soglia 80%)
+   difetti «non provati» letti: 11, giudicati non confrontabili 7
+
+== falsi allarmi di gemma letti: 360 ==
+   riferimento  238 su 360 = 66.1% [61.1; 70.8]
+   modello      70 su 360 = 19.4% [15.7; 23.8]
+   regola       48 su 360 = 13.3% [10.2; 17.2]
+   incerto      4 su 360 = 1.1% [0.4; 2.8]
+R1 difetti veri (lettore: non confrontabile): 238 su 360 = 66.1% [61.1; 70.8]
+   tipi dei difetti trovati dai lettori nei falsi allarmi:
+
+    materiale_o_sede             soggetti             genotipo 
+                  96                   61                   28 
+             coltura                altro        tempo_diverso 
+                  26                   22                   21 
+       braccio_misto       entita_diversa              tecnica 
+                  20                   18                   15 
+          tempo_zero agente_nel_controllo       secondo_agente 
+                  12                   11                    5 
+   affermazioni per segnale (fatto e se conta):
+                segnale  n vero falso nv vero_conta vero_non_conta modello
+       ALTRA_DIFFERENZA 70   69     0  1         44             25   gemma
+     DIVERSO_ETA_STADIO 60   24    35  1         15              9   gemma
+         ENTITA_DIVERSA 55   19    36  0         19              0   gemma
+          TEMPO_DIVERSO 46   25     7 14         25              0   gemma
+         PARZIALE_LINEA 39   39     0  0         39              0   gemma
+       DIVERSO_GENOTIPO 35   24    11  0         19              5   gemma
+       DIVERSO_DONATORE 33   20    12  1         13              7   gemma
+          BRACCIO_MISTO 16   10     3  3          9              1   gemma
+     NESSUNA_DIFFERENZA 15    4     9  2          4              0   gemma
+          DIVERSO_LINEA 14   10     4  0          8              2   gemma
+             TEMPO_ZERO 14   11     3  0         11              0   gemma
+  DIVERSO_COMPARTIMENTO 12    8     4  0          3              5   gemma
+      PARZIALE_GENOTIPO 12   11     0  1         10              1   gemma
+        DIVERSO_COLTURA 10   10     0  0          8              2   gemma
+       PARZIALE_COLTURA 10   10     0  0         10              0   gemma
+  AGENTE_SOLO_CONTROLLO  9    8     1  0          8              0   gemma
+         SECONDO_AGENTE  8    5     2  1          5              0   gemma
+    TECNICA_H5_PARZIALE  8    8     0  0          8              0   gemma
+       PARZIALE_TECNICA  6    6     0  0          6              0   gemma
+ PARZIALE_COMPARTIMENTO  5    5     0  0          5              0   gemma
+           DIVERSO_SEDE  2    2     0  0          2              0   gemma
+          DIVERSO_SESSO  2    2     0  0          2              0   gemma
+    PARZIALE_CONDIZIONE  2    2     0  0          2              0   gemma
+  CONDIZIONE_CON_AGENTE  1    1     0  0          1              0   gemma
+          PARZIALE_SEDE  1    1     0  0          0              1   gemma
+
+== falsi allarmi di mistral letti: 962 ==
+   riferimento  299 su 962 = 31.1% [28.2; 34.1]
+   modello      462 su 962 = 48.0% [44.9; 51.2]
+   regola       186 su 962 = 19.3% [17.0; 22.0]
+   incerto      15 su 962 = 1.6% [0.9; 2.6]
+R2 difetti veri (lettore: non confrontabile): 299 su 962 = 31.1% [28.2; 34.1]
+   tipi dei difetti trovati dai lettori nei falsi allarmi:
+
+    materiale_o_sede             soggetti                altro 
+                 110                   81                   41 
+             coltura             genotipo        braccio_misto 
+                  30                   28                   27 
+       tempo_diverso       entita_diversa              tecnica 
+                  26                   20                   18 
+          tempo_zero agente_nel_controllo       secondo_agente 
+                  15                    9                    6 
+   affermazioni per segnale (fatto e se conta):
+                segnale   n vero falso nv vero_conta vero_non_conta modello
+       ALTRA_DIFFERENZA 606  453   135 18        119            334 mistral
+  CONDIZIONE_CON_AGENTE 315   14   301  0          1             13 mistral
+       DIVERSO_DONATORE 182  168    14  0          8            160 mistral
+          TEMPO_DIVERSO 116   25    56 35         25              0 mistral
+         ENTITA_DIVERSA  79    9    68  2          9              0 mistral
+         PARZIALE_LINEA  75   43    32  0         43              0 mistral
+     DIVERSO_ETA_STADIO  69   22    44  3         13              9 mistral
+       DIVERSO_GENOTIPO  39   22    17  0         16              6 mistral
+             TEMPO_ZERO  28   11    17  0         11              0 mistral
+          BRACCIO_MISTO  25   10    14  1          9              1 mistral
+         SECONDO_AGENTE  23    3    19  1          3              0 mistral
+  AGENTE_SOLO_CONTROLLO  21    6    15  0          6              0 mistral
+        DIVERSO_COLTURA  20   12     8  0         10              2 mistral
+    PARZIALE_CONDIZIONE  18    5    12  1          4              1 mistral
+      PARZIALE_GENOTIPO  14    9     5  0          9              0 mistral
+  DIVERSO_COMPARTIMENTO  13    9     4  0          3              6 mistral
+           DIVERSO_SEDE  12    4     8  0          4              0 mistral
+     NESSUNA_DIFFERENZA  10    3     7  0          3              0 mistral
+          DIVERSO_LINEA   8    6     2  0          4              2 mistral
+        DIVERSO_TECNICA   8    0     8  0          0              0 mistral
+    TECNICA_H5_PARZIALE   8    8     0  0          8              0 mistral
+       PARZIALE_TECNICA   6    4     2  0          4              0 mistral
+          PARZIALE_SEDE   5    1     4  0          1              0 mistral
+       PARZIALE_COLTURA   4    2     2  0          1              1 mistral
+          DIVERSO_SESSO   2    2     0  0          2              0 mistral
+ PARZIALE_COMPARTIMENTO   2    1     1  0          1              0 mistral
+
+R3 CONDIZIONE_CON_AGENTE (Mistral) giudicata falsa: 301 su 315 = 95.6% [93.0; 97.8] (bootstrap sui confronti)
+R4 ALTRA_DIFFERENZA (Mistral) vera ma non un difetto: 334 su 606 = 55.1% [51.2; 58.9]; falsa 135; vera e conta 119
+R5 puliti non accusati giudicati non confrontabili (campione di 60): 5 su 60 = 8.3% [3.6; 18.1]; incerti 1
+
+citazioni dei difetti trovate per intero nel pacchetto: 682 su 683 = 99.9% [99.2; 100.0]
+
+confronti puliti nel riferimento che i lettori giudicano non confrontabili (falsi allarmi letti): 318, in 197 studi
+LETTURA RACCOLTA
