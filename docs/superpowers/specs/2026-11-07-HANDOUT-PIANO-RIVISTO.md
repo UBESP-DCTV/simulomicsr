@@ -34,7 +34,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 |---|---|---|---|---|
 | **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **chiusa il 2026-11-08** (4 decisioni + campioni cancellati da GEO tolti in S13; campi GEO nell'ingresso) | carta + codice della regola (TDD) | ~4 h | — |
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco — **fatta il 2026-11-08: nessun modello passa** (presi 186/177/155 su 193, falsi allarmi 965/887/364 su 1.710); lettura dei falsi allarmi: 318 confronti «puliti» non confrontabili per i lettori | DGX + 1 sessione | ~3 h + 1 notte | **S12** |
-| **S12q** | Controllo a mano dei difetti trovati dai lettori; scelta della strada (regole, addestramento, prompt nuovo) | lettura del PI + decisione | 1 sessione | **S12p** |
+| **S12q** | La strada scelta dal PI dopo S12p (raccomandata: prompt e regola nuovi per Mistral, misurati su confronti nuovi) | disegno + prova | da definire | **S12p** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
 | **S13** | Applicare tutto sui master S14: Stadio 2b su tutti i candidati, chiave, varianza, ruoli, doppi, re-cluster, re-pool | calcolo | ~8 h | **S12p, S12c, S12d** |
@@ -124,7 +124,7 @@ Obiettivo: disegno dello Stadio 2b (schema, regola con test, prompt, previsioni)
 > sono non confrontabili per i lettori (318 confronti in tutto, 197 studi); Mistral scrive la malattia del donatore
 > come agente (301 su 315 false); la voce aperta riporta fatti veri che non sono difetti (334 su 606). ADR-0028 torna
 > `Proposed`; non si va a S13. Decisioni del PI aperte nel riassunto del finding: controllo a mano dei 318 difetti e
-> strada; se il PI sceglie il controllo, lo fa S12q.
+> strada (S12q). La verifica dei 318 l'ha fatta l'agente con una seconda lettura: 280 confermati.
 
 > **Ricevuto da S12 (2026-11-07 e 2026-11-08), da leggere per primo.** (a) Configurazione, ingresso congelato e
 > conto: spec `docs/superpowers/specs/2026-11-07-stadio-2b-design.md` §7. **L'ingresso è
@@ -182,22 +182,21 @@ Il riferimento si apre solo dopo che gli output sono su disco con SHA-256.
 
 ---
 
-# S12q — Controllo a mano del riferimento e scelta della strada
+# S12q — La strada dopo S12p
 
-> **Ricevuto da S12p (2026-11-08), da leggere per primo.** (1) I lettori automatici di S12p giudicano non confrontabili
-> 318 confronti che il riferimento di S11 da' per puliti (`analysis/audit/2026-11-08-S12p-prova/70-difetti-non-nel-riferimento.csv`),
-> soprattutto bracci di composizione diversa (un braccio contiene linee, genotipi, frazioni o terreni che l'altro non
-> ha). Nessuna persona li ha controllati. Proposta di S12p: il PI legge 30 confronti alla cieca, 25 a caso fra i 318 e 5
-> giudicati confrontabili, con la stessa scheda (`61-scheda-lettura.md`). (2) Con il riferimento deciso, il PI sceglie la
-> strada fra regole, addestramento e prompt nuovo (handout, «Se S12p fallisce»). Ogni versione nuova va misurata su
-> confronti che nessuno ha usato per scriverla: i 1.903 del deliverable non sono piu' ciechi. (3) Se i 318 sono
-> confermati, riguardano anche le 194 meta-analisi di oggi: S13 deve toglierli e S15 deve cercarli.
+> **Ricevuto da S12p (2026-11-08), da leggere per primo.** (1) Il riferimento: due letture automatiche indipendenti
+> (kappa 0,94) trovano 280 confronti non confrontabili che il riferimento di S11 da' per puliti
+> (`analysis/audit/2026-11-08-S12p-prova/94-difetti-finali.csv`); se entrano nel riferimento lo decide il PI nel
+> riassunto di S12p. Il PI non legge a mano: ogni conferma la fa l'agente. (2) La strada: la decide il PI nel riassunto
+> di S12p; la raccomandazione e' un prompt e una regola nuovi per Mistral (cause: la malattia del donatore scritta come
+> agente; la voce aperta «altre differenze»), misurati su confronti che nessuno ha usato per scriverli. I 1.903 del
+> deliverable non sono piu' ciechi. (3) Claude non entra nella pipeline: i 280 servono alle misure; togliere confronti dal
+> deliverable spetta a un passo deterministico o al modello del progetto (S13).
 
 ### Prompt
 ```
 sessione simulomicsr S12q, leggi prima la skill di progetto.
-Handout: docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md, sezione S12q. Finding di S12p.
-Obiettivo: controllo a mano dei difetti trovati dai lettori (se il PI lo ha scelto) e scelta della strada.
+Handout: docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md, sezione S12q. Finding di S12p e decisioni del PI.
 ```
 
 ---
