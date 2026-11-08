@@ -12,7 +12,10 @@
 #'   (lista).
 #'   Per name_cleanup (RED_ALERT F6 pulizia-nomi, scope A): campi
 #'   \code{record_id}, \code{current_label}, \code{kind}, \code{member_metadata}.
-#' @param stage \code{"stage1"}, \code{"stage2"} o \code{"name_cleanup"}.
+#'   Per stage2b (ADR-0028): campi \code{record_id} e \code{testo} (il messaggio
+#'   utente, gia' costruito da \code{.s2b_costruisci_ingresso()}).
+#' @param stage \code{"stage1"}, \code{"stage2"}, \code{"name_cleanup"} o
+#'   \code{"stage2b"}.
 #' @param config \code{simulomicsr_dgx_config} da \code{dgx_config()}.
 #' @param metadata list opzionale con \code{slug} (default: stage), aggiunta al
 #'   manifest e usata per costruire il \code{run_id}.
@@ -34,14 +37,25 @@ dgx_p4_build_bundle <- function(input_jsonl,
                                 config,
                                 metadata           = list(),
                                 bundle_dir_root    = "analysis/p4-bundles",
-                                tiered_max_tokens  = FALSE) {
+                                tiered_max_tokens  = FALSE,
+                                modello            = NULL) {
 
   # --- Validazione argomenti ---
-  if (!stage %in% c("stage1", "stage2", "name_cleanup"))
+  if (!stage %in% c("stage1", "stage2", "name_cleanup", "stage2b"))
     cli::cli_abort(
-      "stage deve essere {.val stage1}, {.val stage2} o {.val name_cleanup}, ricevuto {.val {stage}}.",
+      "stage deve essere {.val stage1}, {.val stage2}, {.val name_cleanup} o {.val stage2b}, ricevuto {.val {stage}}.",
       class = "simulomicsr_dgx_unknown_stage"
     )
+  campi_modello <- c("model_id", "tokenizer_mode", "config_format", "load_format",
+                     "dtype", "gpu_memory_utilization", "llm_extra")
+  if (!is.null(modello)) {
+    ignoti <- setdiff(names(modello), campi_modello)
+    if (!is.list(modello) || is.null(names(modello)) || length(ignoti) > 0L)
+      cli::cli_abort(
+        "modello: campi ammessi {.field {campi_modello}}, ricevuti fuori elenco {.field {ignoti}}.",
+        class = "simulomicsr_dgx_modello_campo_sconosciuto"
+      )
+  }
 
   if (!fs::file_exists(input_jsonl))
     cli::cli_abort(
@@ -72,6 +86,21 @@ dgx_p4_build_bundle <- function(input_jsonl,
   dest_input <- fs::path(bundle_dir, "input.jsonl")
   fs::file_copy(input_jsonl, dest_input)
   record_count <- length(readLines(dest_input, warn = FALSE))
+  if (stage == "stage2b") {
+    # Ogni riga deve portare record_id e testo: il runner manda `testo` al
+    # modello cosi' com'e', senza ricostruirlo.
+    righe <- readLines(dest_input, warn = FALSE, encoding = "UTF-8")
+    ok <- vapply(righe, function(l) {
+      r <- tryCatch(jsonlite::fromJSON(l, simplifyVector = FALSE), error = function(e) NULL)
+      is.list(r) && is.character(r$record_id) && length(r$record_id) == 1L &&
+        is.character(r$testo) && length(r$testo) == 1L && nzchar(r$testo)
+    }, logical(1), USE.NAMES = FALSE)
+    if (!all(ok))
+      cli::cli_abort(
+        "Ingresso stage2b: {sum(!ok)} righe su {length(ok)} senza {.field record_id} o {.field testo}.",
+        class = "simulomicsr_dgx_stage2b_ingresso_non_valido"
+      )
+  }
 
   # --- 1b. Tiered max_tokens (solo stage2): annota per-record max_tokens nel
   # JSONL in base alla dimensione bytes della riga. Default OFF.
@@ -111,10 +140,20 @@ dgx_p4_build_bundle <- function(input_jsonl,
     simulomicsr:::.stage1_system_prompt()
   } else if (stage == "stage2") {
     simulomicsr:::.stage2_system_prompt(defaults$model_id)
+  } else if (stage == "stage2b") {
+    simulomicsr:::.s2b_prompt_sistema()
   } else {
     simulomicsr:::.name_cleanup_system_prompt()
   }
-  writeLines(prompt_text, fs::path(bundle_dir, "prompt.txt"))
+  if (stage == "stage2b") {
+    # Byte per byte il messaggio di sistema di build_prompt_stage2b(): niente
+    # a capo aggiunto in coda (writeLines lo aggiungerebbe).
+    con <- file(fs::path(bundle_dir, "prompt.txt"), open = "wb")
+    writeBin(charToRaw(enc2utf8(prompt_text)), con)
+    close(con)
+  } else {
+    writeLines(prompt_text, fs::path(bundle_dir, "prompt.txt"))
+  }
 
   # --- 3. Schema JSON dal pacchetto ---
   schema_src <- system.file("schemas", stage_def$schema_file,
@@ -185,6 +224,8 @@ dgx_p4_build_bundle <- function(input_jsonl,
   if (!is.null(stage_def$max_num_seqs)) {
     gen$max_num_seqs <- as.integer(stage_def$max_num_seqs)
   }
+  # Modello diverso dal default (prova S12p): cambia solo i campi del modello.
+  if (!is.null(modello)) for (n in names(modello)) gen[[n]] <- modello[[n]]
   .dgx_write_generation_json(gen, fs::path(bundle_dir, "generation.json"))
 
   # --- 5. Manifest ---
@@ -193,7 +234,7 @@ dgx_p4_build_bundle <- function(input_jsonl,
     stage          = stage,
     schema_file    = stage_def$schema_file,
     schema_version = stage_def$schema_version,
-    model_id       = defaults$model_id,
+    model_id       = gen$model_id,
     record_count   = record_count,
     tiered_max_tokens = isTRUE(tiered_max_tokens),
     tier_summary   = tier_summary,

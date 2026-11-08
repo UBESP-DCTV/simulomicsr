@@ -10,7 +10,8 @@ dgx_p4_build_bundle(
   config,
   metadata = list(),
   bundle_dir_root = "analysis/p4-bundles",
-  tiered_max_tokens = FALSE
+  tiered_max_tokens = FALSE,
+  modello = NULL
 )
 }
 \arguments{
@@ -20,9 +21,12 @@ Per stage1: campi \code{record_id}, \code{geo_accession}, \code{series_id},
 Per stage2: campi \code{record_id}, \code{study_summary}, \code{samples}
 (lista).
 Per name_cleanup (RED_ALERT F6 pulizia-nomi, scope A): campi
-\code{record_id}, \code{current_label}, \code{kind}, \code{member_metadata}.}
+\code{record_id}, \code{current_label}, \code{kind}, \code{member_metadata}.
+Per stage2b (ADR-0028): campi \code{record_id} e \code{testo} (il messaggio
+utente, gia' costruito da \code{.s2b_costruisci_ingresso()}).}
 
-\item{stage}{\code{"stage1"}, \code{"stage2"} o \code{"name_cleanup"}.}
+\item{stage}{\code{"stage1"}, \code{"stage2"}, \code{"name_cleanup"} o
+\code{"stage2b"}.}
 
 \item{config}{\code{simulomicsr_dgx_config} da \code{dgx_config()}.}
 

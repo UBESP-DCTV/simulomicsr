@@ -131,6 +131,17 @@ def render_user_message_name_cleanup(record: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def render_user_message_stage2b(record: dict[str, Any]) -> str:
+    """Messaggio utente dello Stadio 2b (ADR-0028): il campo `testo` del record,
+    cosi' com'e'. Lo costruisce R (`.s2b_costruisci_ingresso()`) ed e' congelato
+    con SHA-256: qui non si ricostruisce e non si taglia nulla.
+    """
+    testo = record["testo"]
+    if not isinstance(testo, str) or not testo:
+        raise ValueError(f"stage2b: record {record.get('record_id')!r} senza testo")
+    return testo
+
+
 def build_messages(system_prompt: str, user_message: str) -> list[dict[str, str]]:
     """Restituisce la struttura messages standard OpenAI/vLLM."""
     return [

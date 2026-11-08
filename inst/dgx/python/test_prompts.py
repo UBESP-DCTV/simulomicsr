@@ -10,7 +10,8 @@ Verifica che il renderer v3:
 Esecuzione:  cd inst/dgx/python && python3 test_prompts.py
 """
 import json
-from prompts import render_user_message_name_cleanup, render_user_message_stage2
+from prompts import (render_user_message_name_cleanup, render_user_message_stage2,
+                     render_user_message_stage2b)
 
 
 def _v3_record(chunked=False):
@@ -69,8 +70,23 @@ def test_name_cleanup_fields_present_no_top_theme():
     assert "top_theme" not in out, "top_theme e' un oracolo indipendente, NON deve entrare nel prompt"
 
 
+def test_stage2b_testo_identico():
+    # Stadio 2b: il messaggio utente e' il testo congelato, byte per byte.
+    testo = "# Comparison under review\nTreated arm label (from the pipeline): compound K17 1 \u00b5M\n\n[title] T1: a  b"
+    out = render_user_message_stage2b({"record_id": "conf_1", "testo": testo})
+    assert out == testo, "il testo dello Stadio 2b deve passare identico"
+    for cattivo in ({"record_id": "conf_2"}, {"record_id": "conf_3", "testo": ""}):
+        try:
+            render_user_message_stage2b(cattivo)
+        except (KeyError, ValueError):
+            pass
+        else:
+            raise AssertionError("un record senza testo deve fermare il runner")
+
+
 if __name__ == "__main__":
     test_strip_member_sample_ids()
     test_chunk_line()
     test_name_cleanup_fields_present_no_top_theme()
-    print("OK -- 3/3 sanity render_user_message_stage2/name_cleanup")
+    test_stage2b_testo_identico()
+    print("OK -- 4/4 sanity render_user_message_stage2/name_cleanup/stage2b")

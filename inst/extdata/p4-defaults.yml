@@ -107,6 +107,24 @@ stages:
     repetition_penalty: 1.1
     schema_version: "name_cleanup.v1"
     model_prefix: "vllm-mistral-3.2"
+  stage2b:
+    # Stadio 2b (ADR-0028, spec 2026-11-07-stadio-2b-design.md §7): il modello
+    # legge il testo grezzo dei due bracci e compila la lista di controllo; la
+    # regola R/stage2b-rule.R decide. Contesto 32.768 token, 6.144 riservati alla
+    # risposta (.S2B_MAX_MODEL_LEN, .S2B_RISERVA_RISPOSTA). Un confronto il cui
+    # prompt supera max_model_len - max_tokens con il tokenizer del modello non
+    # si manda al modello (run_p4_vllm.py) e la regola lo scarta con
+    # INGRESSO_INCOMPLETO. max_num_seqs non fissato: con VLLM_BATCH_INVARIANT=1
+    # l'uscita non dipende dal lotto, e la memoria del contesto limita la
+    # concorrenza.
+    schema_file: "comparison_check.stage2b.v1.json"
+    max_tokens: 6144
+    max_model_len: 32768
+    microbatch: 50
+    temperature: 0.0
+    repetition_penalty: 1.1
+    schema_version: "stage2b.v1"
+    model_prefix: "vllm"
 
 slurm_defaults:
   partition: "dgx12cluster"

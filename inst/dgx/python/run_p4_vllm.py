@@ -37,6 +37,7 @@ from prompts import (
     render_user_message_name_cleanup,
     render_user_message_stage1,
     render_user_message_stage2,
+    render_user_message_stage2b,
 )
 from resume import existing_record_ids, filter_input_records, shard_round_robin
 
@@ -88,6 +89,8 @@ def render_user_for_stage(stage: str, record: dict) -> str:
         return render_user_message_stage2(record)
     if stage == "name_cleanup":
         return render_user_message_name_cleanup(record)
+    if stage == "stage2b":
+        return render_user_message_stage2b(record)
     raise ValueError(f"stage non noto: {stage!r}")
 
 
@@ -118,6 +121,11 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     if "max_num_seqs" in gen and gen["max_num_seqs"] is not None:
         llm_kwargs["max_num_seqs"] = int(gen["max_num_seqs"])
         print(f"[worker {worker_id}] max_num_seqs={llm_kwargs['max_num_seqs']}", flush=True)
+    # Argomenti in piu' per LLM() (prova S12p: un modello non Mistral, per
+    # esempio limit_mm_per_prompt per non caricare la parte visiva).
+    for k, v in (gen.get("llm_extra") or {}).items():
+        llm_kwargs[k] = v
+    print(f"[worker {worker_id}] LLM kwargs: {json.dumps(llm_kwargs, sort_keys=True)}", flush=True)
     llm = LLM(**llm_kwargs)
 
     # Param opzionali (presenti solo se override del default yaml).
@@ -161,10 +169,34 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     conversations: list = []
     record_ids: list = []
     samplings: list = []  # one per conversation
+    n_prompt: list = []   # stage2b: token del prompt contati prima della generazione
     n_per_record_max_tokens = 0
+    max_model_len = int(llm_kwargs["max_model_len"])
+    over_limit_path = output_dir / f"over_limit.worker_{worker_id}.jsonl"
     for r in records:
         user_msg = render_user_for_stage(stage, r)
-        conversations.append(build_messages(system_prompt, user_msg))
+        conv = build_messages(system_prompt, user_msg)
+        if stage == "stage2b":
+            # Stadio 2b: il prompt non si taglia mai. Si contano i token con lo
+            # stesso percorso di llm.chat(); oltre max_model_len - max_tokens il
+            # confronto non va al modello e la regola lo scarta
+            # (INGRESSO_INCOMPLETO).
+            ntok = count_prompt_tokens(llm, conv)
+            mt = int(r.get("max_tokens") or default_max_tokens)
+            if ntok + mt > max_model_len:
+                with over_limit_path.open("a", encoding="utf-8") as fh:
+                    fh.write(json.dumps({
+                        "record_id": str(r["record_id"]), "raw_output": "",
+                        "parsed_json": None, "valid_schema": False,
+                        "skipped": "over_limit", "n_prompt_tokens": ntok,
+                        "limit_prompt_tokens": max_model_len - mt,
+                        "worker_id": worker_id, "ts": now_utc_iso(),
+                    }) + "\n")
+                print(f"[worker {worker_id}] oltre il limite: {r['record_id']} "
+                      f"({ntok} token + {mt} > {max_model_len})", flush=True)
+                continue
+            n_prompt.append(ntok)
+        conversations.append(conv)
         record_ids.append(str(r["record_id"]))
         rec_mt = r.get("max_tokens")
         if rec_mt is not None:
@@ -186,7 +218,7 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
           f"(microbatch={MICROBATCH or 'all'})...", flush=True)
     t0 = time.time()
 
-    def _write_batch(rids, outs):
+    def _write_batch(rids, outs, ntoks=None):
         # Con vLLM 0.20+ e structured_outputs backend (xgrammar->outlines
         # fallback automatico) l'output e' parser-grade per construction.
         # Pre-ADR-0010 c'erano _strip_md_fences + _try_parse(missing-value
@@ -209,12 +241,21 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
                     "worker_id": worker_id,
                     "ts": now_utc_iso(),
                 }
+                if stage == "stage2b":
+                    # token del prompt: contati prima (count_prompt_tokens) e
+                    # riportati da vLLM; il confronto dei due e' un controllo.
+                    row["n_prompt_tokens"] = ntoks.pop(0) if ntoks else None
+                    row["n_prompt_tokens_vllm"] = (len(out.prompt_token_ids)
+                                                   if out.prompt_token_ids is not None else None)
+                    o0 = out.outputs[0] if out.outputs else None
+                    row["n_output_tokens"] = len(o0.token_ids) if o0 is not None else None
+                    row["finish_reason"] = o0.finish_reason if o0 is not None else None
                 fh.write(json.dumps(row) + "\n")
             fh.flush()
 
     if MICROBATCH is None:
         outputs = llm.chat(messages=conversations, sampling_params=samplings)
-        _write_batch(record_ids, outputs)
+        _write_batch(record_ids, outputs, list(n_prompt))
     else:
         n_total = len(conversations)
         for i in range(0, n_total, MICROBATCH):
@@ -222,7 +263,7 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
             t_b = time.time()
             outs = llm.chat(messages=conversations[i:j],
                             sampling_params=samplings[i:j])
-            _write_batch(record_ids[i:j], outs)
+            _write_batch(record_ids[i:j], outs, list(n_prompt[i:j]))
             print(f"[worker {worker_id}] microbatch {i+1}-{j}/{n_total} "
                   f"in {time.time()-t_b:.1f}s (cum {time.time()-t0:.1f}s)",
                   flush=True)
@@ -230,6 +271,19 @@ def worker_main(worker_id: int, gpu_index: int, bundle: dict, records: list[dict
     elapsed = time.time() - t0
     print(f"[worker {worker_id}] generazione completata in {elapsed:.1f}s "
           f"({len(record_ids)} record)", flush=True)
+
+
+def count_prompt_tokens(llm, conv) -> int:
+    """Token del prompt come li conta llm.chat(): stesso percorso di
+    preparazione (LLM._preprocess_chat_one, vLLM 0.20.2). Se l'ingresso
+    preparato porta solo il testo, lo si tokenizza senza token speciali in piu'
+    (il template li ha gia' scritti)."""
+    ei = llm._preprocess_chat_one(conv)
+    ids = ei.get("prompt_token_ids") if isinstance(ei, dict) else getattr(ei, "prompt_token_ids", None)
+    if ids is not None:
+        return len(ids)
+    testo = ei.get("prompt") if isinstance(ei, dict) else getattr(ei, "prompt")
+    return len(llm.get_tokenizer().encode(testo, add_special_tokens=False))
 
 
 def main() -> int:
@@ -320,7 +374,8 @@ def _concat_and_summarize(output_dir: Path, bundle: dict,
     failed = 0
 
     with final.open("w", encoding="utf-8") as fout:
-        for wp in sorted(output_dir.glob("predictions.worker_*.jsonl")):
+        for wp in (sorted(output_dir.glob("predictions.worker_*.jsonl"))
+                   + sorted(output_dir.glob("over_limit.worker_*.jsonl"))):
             with wp.open("r", encoding="utf-8") as fin:
                 for line in fin:
                     line = line.strip()
