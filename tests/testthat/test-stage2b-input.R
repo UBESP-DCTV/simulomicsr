@@ -4,10 +4,13 @@
 
 braccio <- function(acc, title, chars, proto = "RNA extracted with kit Z",
                     proc = "reads aligned to genome", instr = "Seq A") {
-  data.frame(geo_accession = acc, title = title, source_name_ch1 = "cell line ZX-4",
-             characteristics_ch1 = chars, extract_protocol_ch1 = proto,
-             data_processing = proc, instrument_model = instr,
-             stringsAsFactors = FALSE)
+  df <- data.frame(geo_accession = acc, title = title, source_name_ch1 = "cell line ZX-4",
+                   characteristics_ch1 = chars, extract_protocol_ch1 = proto,
+                   data_processing = proc, instrument_model = instr,
+                   stringsAsFactors = FALSE)
+  # ogni altro campo d'ingresso c'e', vuoto: un campo mancante ferma l'ingresso
+  for (f in setdiff(simulomicsr:::.S2B_CAMPI_INGRESSO, names(df))) df[[f]] <- ""
+  df
 }
 
 t_df <- braccio(c("acc_t2", "acc_t1"), c("K17_rep2", "K17_rep1"),
@@ -123,4 +126,41 @@ test_that("la codifica tripla si ripara in piu' passi", {
   triplo <- iconv(doppio, from = "latin1", to = "UTF-8")
   expect_identical(rip(triplo), buono)
   expect_identical(rip(c(triplo, doppio, buono)), rep(buono, 3))
+})
+
+# ---- campi presi da GEO (decisione 1 del PI, 2026-11-08) ----
+
+test_that("l'ingresso contiene la descrizione e i due protocolli presi da GEO", {
+  campi <- simulomicsr:::.S2B_CAMPI_INGRESSO
+  expect_true(all(c("description", "treatment_protocol_ch1", "growth_protocol_ch1") %in% campi))
+  # la descrizione viene subito dopo le caratteristiche, i protocolli prima dell'estrazione
+  expect_identical(match("description", campi), match("characteristics_ch1", campi) + 1L)
+  expect_lt(match("growth_protocol_ch1", campi), match("extract_protocol_ch1", campi))
+})
+
+test_that("descrizione per campione e protocolli comuni si scrivono con le loro etichette", {
+  t2 <- t_df; c2 <- c_df
+  t2$description <- c("donor 7 sample B", "donor 3 sample A")
+  c2$description <- c("donor 3 sample C", "donor 7 sample D")
+  t2$treatment_protocol_ch1 <- c2$treatment_protocol_ch1 <- "Cells were exposed for 24 h"
+  t2$growth_protocol_ch1 <- c2$growth_protocol_ch1 <- "Grown in medium W"
+  ing <- costruisci(t2, c2, "K17 24h", "vehicle 24h", "compound K17")
+  expect_match(ing$testo, "[treatment_protocol] Cells were exposed for 24 h", fixed = TRUE)
+  expect_match(ing$testo, "[growth_protocol] Grown in medium W", fixed = TRUE)
+  # t_df ha gli accession in ordine inverso: T1 e' acc_t1
+  expect_match(ing$testo, "T1 [description] donor 3 sample A", fixed = TRUE)
+  expect_match(ing$testo, "C2 [description] donor 7 sample D", fixed = TRUE)
+  expect_true(simulomicsr:::.s2b_ingresso_contiene_tutto(ing$testo, t2, c2))
+})
+
+test_that("un campo d'ingresso assente dai dati ferma l'ingresso (nessuna perdita silenziosa)", {
+  t2 <- t_df; t2$description <- NULL
+  expect_error(costruisci(t2, c_df, "K17 24h", "vehicle 24h", "compound K17"),
+               class = "simulomicsr_stage2b_campi_mancanti")
+  c2 <- c_df; c2$growth_protocol_ch1 <- NULL
+  expect_error(costruisci(t_df, c2, "K17 24h", "vehicle 24h", "compound K17"),
+               class = "simulomicsr_stage2b_campi_mancanti")
+  # con un elenco di campi esplicito, conta solo quell'elenco
+  expect_silent(costruisci(t2, c_df, "K17 24h", "vehicle 24h", "compound K17",
+                           campi = c("title", "characteristics_ch1")))
 })

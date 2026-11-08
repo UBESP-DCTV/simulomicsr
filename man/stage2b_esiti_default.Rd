@@ -10,8 +10,11 @@ stage2b_esiti_default()
 vettore nominato: nome = segnale, valore = "errore" o "avviso".
 }
 \description{
-Proposta di S12 (2026-11-07), da confermare dal PI. "Non detto" passa con
-avviso (ADR-0028). Tempo zero e differenza tecnica sono sempre errore
+Proposta di S12 (2026-11-07), decisa dal PI il 2026-11-08 senza cambi:
+donatori diversi nei confronti malati contro sani = avviso (sesso o eta'
+senza valori in comune restano errore); non detto e casi incerti = avviso
+(ADR-0028); la voce aperta "altre differenze" = errore. Tempo zero e
+differenza tecnica, anche in un solo campione, sono sempre errore
 (decisione del PI in S11).
 }
 \keyword{internal}

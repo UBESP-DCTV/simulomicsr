@@ -9,8 +9,13 @@
 # citazioni del modello si verificano come sottostringhe.
 # Spec: docs/superpowers/specs/2026-11-07-stadio-2b-design.md.
 
-# Campi dell'H5 letti dallo Stadio 2b (gruppo meta/samples), nell'ordine di scrittura.
+# Campi letti dallo Stadio 2b, nell'ordine di scrittura. Dall'H5 (gruppo
+# meta/samples): tutti tranne tre. Da GEO, scaricati e congelati con data e
+# SHA-256 perche' l'H5 non li contiene (decisione 1 del PI, 2026-11-08):
+# description, treatment_protocol_ch1, growth_protocol_ch1.
+.S2B_CAMPI_GEO <- c("description", "treatment_protocol_ch1", "growth_protocol_ch1")
 .S2B_CAMPI_INGRESSO <- c("title", "source_name_ch1", "characteristics_ch1",
+                         "description", "treatment_protocol_ch1", "growth_protocol_ch1",
                          "extract_protocol_ch1", "data_processing",
                          "molecule_ch1", "library_selection", "library_source",
                          "library_strategy", "instrument_model", "platform_id")
@@ -108,14 +113,23 @@
 #'   dallo Stadio 2.
 #' @param entita_proposta nome dell'entita' che la pipeline assegna al
 #'   confronto (mai un ID); NA se assente.
-#' @param campi campi H5 da scrivere.
+#' @param campi campi da scrivere. Ognuno deve esistere in `treated` e in
+#'   `control` (valori vuoti ammessi): un campo assente ferma la costruzione,
+#'   perche' l'ingresso non deve perdere un campo in silenzio.
 #' @return lista: `testo`, `n_caratteri`, `campi_comuni` (campi uguali in tutti
 #'   i campioni dei due bracci).
 #' @keywords internal
 .s2b_costruisci_ingresso <- function(treated, control, etichetta_trattato,
                                      etichetta_controllo, entita_proposta = NA_character_,
                                      campi = .S2B_CAMPI_INGRESSO) {
-  campi <- intersect(campi, intersect(names(treated), names(control)))
+  assenti <- union(setdiff(campi, names(treated)), setdiff(campi, names(control)))
+  if (length(assenti) > 0L) {
+    rlang::abort(
+      paste0("Stadio 2b: campi d'ingresso assenti dai dati dei bracci: ",
+             paste(assenti, collapse = ", ")),
+      class = "simulomicsr_stage2b_campi_mancanti"
+    )
+  }
   for (f in campi) {
     treated[[f]] <- .s2b_norm_testo(treated[[f]])
     control[[f]] <- .s2b_norm_testo(control[[f]])

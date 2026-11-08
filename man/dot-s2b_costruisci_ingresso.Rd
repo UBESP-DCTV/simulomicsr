@@ -23,7 +23,9 @@ dallo Stadio 2.}
 \item{entita_proposta}{nome dell'entita' che la pipeline assegna al
 confronto (mai un ID); NA se assente.}
 
-\item{campi}{campi H5 da scrivere.}
+\item{campi}{campi da scrivere. Ognuno deve esistere in \code{treated} e in
+\code{control} (valori vuoti ammessi): un campo assente ferma la costruzione,
+perche' l'ingresso non deve perdere un campo in silenzio.}
 }
 \value{
 lista: \code{testo}, \code{n_caratteri}, \code{campi_comuni} (campi uguali in tutti

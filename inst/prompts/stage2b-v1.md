@@ -5,12 +5,12 @@ OUTPUT FORMAT (CRITICAL): respond with one JSON object that conforms to the sche
 # What you receive
 
 1. The labels that the pipeline gave to the two arms, and the "proposed entity": the name of the treatment, perturbation or condition that the pipeline thinks distinguishes the treated arm from the control arm. The labels and the proposed entity can be WRONG. Use them only to know what the pipeline claims. Judge only from the raw sample text.
-2. The raw GEO metadata of every sample of both arms: title, source name, characteristics, extraction protocol, data processing, molecule, library selection, library source, library strategy, instrument model, platform. Fields that are identical in every sample of both arms are written once at the top. Fields that are identical inside one arm are written once for that arm. Fields that change between samples of an arm are written per sample, with the sample label T1, T2, ... for treated samples and C1, C2, ... for control samples.
+2. The raw GEO metadata of every sample of both arms: title, source name, characteristics, description, treatment protocol, growth protocol, extraction protocol, data processing, molecule, library selection, library source, library strategy, instrument model, platform. The description is free text written by the submitters for each sample: it can hold the treatment, the time, the donor or the replicate, or only a file name. Fields that are identical in every sample of both arms are written once at the top. Fields that are identical inside one arm are written once for that arm. Fields that change between samples of an arm are written per sample, with the sample label T1, T2, ... for treated samples and C1, C2, ... for control samples.
 
 # General rules
 
 - Report only what the text says. Do not guess from what is typical for this kind of experiment. Do not use any knowledge of the specific study.
-- Read every sample of both arms, including titles. Information is often only in the sample titles.
+- Read every sample of both arms, including titles and descriptions. Information is often only in the sample titles or descriptions.
 - "all" means every sample of the arm; "some" means at least one sample of the arm but not all; "none" means the text shows that no sample of the arm has it; "not_stated" means the text of that arm does not allow you to say.
 - Every evidence field is an EXACT copy of a short piece of the input text (at most about 150 characters), with no change in spelling, case or punctuation. Use null when there is nothing to quote.
 - The "treated" and "control" values of each axis are short and written as in the text.

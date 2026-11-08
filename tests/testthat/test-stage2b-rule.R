@@ -266,6 +266,26 @@ test_that("ogni segnale prodotto dalla regola ha un esito nella tabella", {
   expect_true(all(names(tab) %in% simulomicsr:::.s2b_tutti_i_segnali()))
 })
 
+test_that("la tabella degli esiti riporta le decisioni del PI (2026-11-08 e S11)", {
+  tab <- simulomicsr:::stage2b_esiti_default()
+  # decisione 2: malati contro sani, donatori diversi = avviso; sesso, eta' disgiunti = errore
+  expect_identical(tab[["DONATORI_DIVERSI_CONDIZIONE"]], "avviso")
+  expect_identical(tab[["DIVERSO_SESSO"]], "errore")
+  expect_identical(tab[["DIVERSO_ETA_STADIO"]], "errore")
+  # decisione 3: non detto e casi incerti = avviso
+  incerti <- c(grep("^NON_DETTO_", names(tab), value = TRUE), "TEMPO_NON_DETTO",
+               "PARZIALE_DONATORE", "PARZIALE_SESSO", "PARZIALE_ETA_STADIO",
+               "AGENTE_NON_DETTO_CONTROLLO", "ENTITA_INCERTA")
+  expect_length(grep("^NON_DETTO_", names(tab)), 11L)
+  for (s in incerti) expect_identical(tab[[s]], "avviso", info = s)
+  # decisione 4: la voce aperta «altre differenze» = errore
+  expect_identical(tab[["ALTRA_DIFFERENZA"]], "errore")
+  # S11: tempo zero e differenza tecnica, anche parziale, sempre errore
+  for (s in c("TEMPO_ZERO", "DIVERSO_TECNICA", "PARZIALE_TECNICA",
+              "TECNICA_H5_DISGIUNTA", "TECNICA_H5_PARZIALE"))
+    expect_identical(tab[[s]], "errore", info = s)
+})
+
 test_that("un segnale senza esito nella tabella ferma la regola", {
   tab <- simulomicsr:::stage2b_esiti_default()
   tab <- tab[names(tab) != "TEMPO_ZERO"]
