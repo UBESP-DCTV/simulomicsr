@@ -33,8 +33,8 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | # | sessione | tipo | durata stimata (×2 nella pratica) | serve prima |
 |---|---|---|---|---|
 | **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **chiusa il 2026-11-08** (4 decisioni + campioni cancellati da GEO tolti in S13; campi GEO nell'ingresso) | carta + codice della regola (TDD) | ~4 h | — |
-| **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco — **fatta il 2026-11-08: nessun modello passa** (presi 186/177/155 su 193, falsi allarmi 965/887/364 su 1.710); lettura dei falsi allarmi: 318 confronti «puliti» non confrontabili per i lettori | DGX + 1 sessione | ~3 h + 1 notte | **S12** |
-| **S12q** | La strada scelta dal PI dopo S12p (raccomandata: prompt e regola nuovi per Mistral, misurati su confronti nuovi) | disegno + prova | da definire | **S12p** |
+| **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco — **fatta il 2026-11-08: nessun modello passa** (presi 186/177/155 su 193, falsi allarmi 965/887/364 su 1.710); lettura dei falsi allarmi: 318 confronti «puliti» non confrontabili per i lettori (280 confermati); prompt v2 e codice da solo non bastano; **diagnosi: metà dei 473 difetti nasce nella scelta del confronto dello Stadio 2, tre su dieci nello Stadio 1** | DGX + 1 sessione | ~3 h + 1 notte | **S12** |
+| **S12q** | La strada scelta dal PI dopo S12p e la diagnosi (raccomandata: correzione a monte nello Stadio 2, confronti con bracci uguali tranne il trattamento e senza tempo zero come controllo, misurata contando difetti tolti e puliti persi) | disegno + prova | da definire | **S12p** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
 | **S13** | Applicare tutto sui master S14: Stadio 2b su tutti i candidati, chiave, varianza, ruoli, doppi, re-cluster, re-pool | calcolo | ~8 h | **S12p, S12c, S12d** |
@@ -124,7 +124,13 @@ Obiettivo: disegno dello Stadio 2b (schema, regola con test, prompt, previsioni)
 > sono non confrontabili per i lettori (318 confronti in tutto, 197 studi); Mistral scrive la malattia del donatore
 > come agente (301 su 315 false); la voce aperta riporta fatti veri che non sono difetti (334 su 606). ADR-0028 torna
 > `Proposed`; non si va a S13. Decisioni del PI aperte nel riassunto del finding: controllo a mano dei 318 difetti e
-> strada (S12q). La verifica dei 318 l'ha fatta l'agente con una seconda lettura: 280 confermati.
+> strada (S12q). La verifica dei 318 l'ha fatta l'agente con una seconda lettura: 280 confermati. Su richiesta del PI:
+> prompt v2 di Mistral e confronto per solo codice non bastano (finding §13); **diagnosi** (§14,
+> `00-previsioni-diagnosi.md`, `130`-`133`): 240 dei 473 difetti hanno la differenza nei fatti che lo Stadio 2 riceve
+> (il prompt dello Stadio 2 non chiede bracci uguali e permette il tempo zero come controllo), 139 nascono nello Stadio 1
+> (letta nel titolo o in `characteristics`, non scritta), 36 nella firma, 35 in campi che nessun passo legge, 21 nel
+> nome; i master S14 hanno gli stessi gruppi e confronti di A3 in 993 studi su 993. La sessione resta aperta: due
+> decisioni del PI nel riassunto (i 280 nel riferimento; dove correggere per primo).
 
 > **Ricevuto da S12 (2026-11-07 e 2026-11-08), da leggere per primo.** (a) Configurazione, ingresso congelato e
 > conto: spec `docs/superpowers/specs/2026-11-07-stadio-2b-design.md` §7. **L'ingresso è
@@ -188,9 +194,14 @@ Il riferimento si apre solo dopo che gli output sono su disco con SHA-256.
 > (kappa 0,94) trovano 280 confronti non confrontabili che il riferimento di S11 da' per puliti
 > (`analysis/audit/2026-11-08-S12p-prova/94-difetti-finali.csv`); se entrano nel riferimento lo decide il PI nel
 > riassunto di S12p. Il PI non legge a mano: ogni conferma la fa l'agente. (2) La strada: la decide il PI nel riassunto
-> di S12p; la raccomandazione e' un prompt e una regola nuovi per Mistral (cause: la malattia del donatore scritta come
-> agente; la voce aperta «altre differenze»), misurati su confronti che nessuno ha usato per scriverli. I 1.903 del
-> deliverable non sono piu' ciechi. (3) Claude non entra nella pipeline: i 280 servono alle misure; togliere confronti dal
+> di S12p. La raccomandazione **cambiata dopo la diagnosi** (finding §14): correggere dove nasce metà dei difetti, cioè
+> lo Stadio 2 quando sceglie il confronto (il suo prompt chiede condizioni identiche dentro un gruppo, e il modello unisce
+> condizioni diverse solo in 12 difetti su 473 e 45 puliti su 1.430; per un confronto chiede solo un controllo riconoscibile, e la RULE 2 rende il tempo
+> zero un controllo). Alternative: lo Stadio 1 (tre difetti su dieci, letti nel titolo e non scritti); le due in fila.
+> Il PI ha rifiutato le pezze (prompt v2 dello Stadio 2b, classificazione delle chiavi per codice): niente catene di
+> regole che sostituiscono il modello. La misura conta difetti tolti e confronti puliti persi: i fatti dello Stadio 1
+> differiscono anche in 499 puliti su 1.430. I 1.903 del deliverable non sono piu' ciechi. (4) I master S14 hanno gli
+> stessi gruppi e confronti di A3 in 993 studi su 993: senza un cambio della catena S13 riporta i 473 difetti. (3) Claude non entra nella pipeline: i 280 servono alle misure; togliere confronti dal
 > deliverable spetta a un passo deterministico o al modello del progetto (S13).
 
 ### Prompt

@@ -1,7 +1,7 @@
 ---
 type: Finding
-title: "La prova cieca dello Stadio 2b: nessun modello passa, e al riferimento mancano 280 difetti"
-description: "S12p: Mistral-Small-3.2, Magistral-Small-2509 e Gemma-4-31B compilano la lista di controllo dello Stadio 2b sui 1.903 confronti del deliverable; la regola fissa decide; il conto cieco contro i 193 difettosi e i 1.710 puliti dice che nessun modello passa il cancello di ADR-0028 (almeno 130 presi, al massimo 40 falsi allarmi)."
+title: "La prova cieca dello Stadio 2b: nessun modello passa, al riferimento mancano 280 difetti, e metà dei difetti nasce nella scelta del confronto"
+description: "S12p: Mistral-Small-3.2, Magistral-Small-2509 e Gemma-4-31B compilano la lista di controllo dello Stadio 2b sui 1.903 confronti del deliverable; la regola fissa decide; il conto cieco contro i 193 difettosi e i 1.710 puliti dice che nessun modello passa il cancello di ADR-0028 (almeno 130 presi, al massimo 40 falsi allarmi). La diagnosi dice che metà dei 473 difetti nasce quando lo Stadio 2 sceglie il confronto, e tre su dieci nello Stadio 1."
 status: draft
 generated: {by: simulomicsr-agent/skill-v1, at: '2026-11-08T19:20:00+01:00'}
 sources:
@@ -19,37 +19,39 @@ sources:
 - {id: prevl, resource: "analysis/audit/2026-11-08-S12p-prova/00-previsioni-lettura.md", title: "Lettura dei falsi allarmi: cancelli L1-L3 e previsioni R1-R5 (commit a65d6b1)"}
 - {id: lett, resource: "analysis/audit/2026-11-08-S12p-prova/70-out.txt", title: "Lettura raccolta: L1, L2, classi, R1-R5"}
 - {id: l3, resource: "analysis/audit/2026-11-08-S12p-prova/71-out.txt", title: "Che cosa hanno aperto i lettori (L3)"}
+- {id: diag, resource: "analysis/audit/2026-11-08-S12p-prova/00-previsioni-diagnosi.md", title: "Diagnosi di dove nascono i 473 difetti: regole, cancelli G0-G5, previsioni D1-D9 (commit a5897aa, correzione 9c4513b)"}
+- {id: diagout, resource: "analysis/audit/2026-11-08-S12p-prova/132-out.txt", title: "Dove nasce il difetto, tabella finale (con 130-out.txt, 131-out.txt, 133-out.txt)"}
 ---
 
 # In breve
 
-## In breve: un modello che legge il testo dei campioni sa dire quali confronti sono difettosi?
+## In breve: un modello sa trovare i confronti difettosi, e dove nascono i difetti?
 
-**A cosa serviva.** Il nuovo passo della pipeline fa leggere a un modello linguistico il testo grezzo dei campioni dei due bracci di ogni confronto. Il modello compila una lista di controllo, e una regola fissa decide se il confronto entra nella meta-analisi. Questa prova ha misurato il passo con tre modelli su tutti i 1.903 confronti del deliverable, contro i 193 confronti difettosi già noti. Il piano chiedeva almeno 130 difetti presi e al massimo 40 confronti puliti accusati. Poi due letture automatiche indipendenti hanno controllato i confronti puliti che Gemma e Mistral accusano.
+**A cosa serviva.** Il nuovo passo della pipeline fa leggere a un modello il testo dei campioni dei due bracci. Una regola fissa decide se il confronto entra nella meta-analisi. La prova ha misurato tre modelli su tutti i 1.903 confronti del deliverable. Poi, su tua richiesta, abbiamo cercato in quale passo della pipeline nasce ogni confronto difettoso, per correggere l'errore dove nasce e non dopo. Il modello lavora in due passi: il primo scrive i fatti di ogni campione, il secondo riceve solo questi fatti e sceglie i confronti.
 
 **Cosa abbiamo trovato.**
 
-1. **Nessuno dei tre modelli passa, perché tutti accusano troppi confronti puliti.** Mistral, il modello di produzione, prende 186 difetti su 193 e accusa 965 confronti puliti su 1.710. Magistral prende 177 difetti e accusa 887 confronti puliti. Gemma prende 155 difetti e accusa 364 confronti puliti.
-2. **Il riferimento dei 193 difetti è incompleto: altri 280 confronti dati per puliti non sono confrontabili.** Due letture indipendenti concordano su questi 280 confronti, con un accordo quasi completo, e le tue regole sui donatori sono applicate. Sono soprattutto bracci di composizione diversa: un braccio contiene linee, genotipi, frazioni o terreni che l'altro braccio non ha. Quindi un confronto su quattro del deliverable non è confrontabile, e non uno su dieci.
-3. **Anche con il riferimento corretto nessun modello passa.** Gemma accusa ancora 138 confronti puliti e Mistral 700, mentre la soglia è 40. Questo conto favorisce i due modelli, perché i 280 difetti sono stati cercati fra le loro accuse.
-4. **Gli errori di Mistral hanno due cause precise.** Mistral scrive la malattia del donatore come un trattamento, contro le istruzioni. La voce aperta «altre differenze» riporta fatti veri che non sono difetti. Una di queste due cause compare in 587 dei 700 falsi allarmi di Mistral.
-5. **Le due letture sono affidabili, ma sono automatiche.** Riconoscono più di quattro difetti noti su cinque, e la seconda lettura ritrova 310 dei 318 difetti della prima senza vedere le affermazioni dei modelli. Il progetto non usa Claude nella pipeline: questi difetti servono alle misure e alle scelte, non a togliere confronti in modo automatico.
+1. **Nessun modello passa la prova, e non bastano né un prompt nuovo né il codice da solo.** Mistral accusa metà dei confronti puliti anche con il prompt nuovo, 713 su 1.430, e la soglia è 40. Gemma ne accusa 138. Il confronto fatto solo dal codice prende metà dei difetti e accusa un confronto pulito su quattro.
+2. **Il riferimento dei 193 difetti è incompleto: altri 280 confronti non sono confrontabili.** Due letture indipendenti concordano quasi sempre su questi 280 confronti, e le tue regole sui donatori sono applicate. Quindi un confronto su quattro del deliverable non è confrontabile, e non uno su dieci.
+3. **In metà dei difetti il secondo passo aveva la differenza fra i bracci, e ha costruito il confronto lo stesso.** Il suo prompt chiede condizioni identiche dentro un gruppo, e il modello lo rispetta quasi sempre. Unisce condizioni diverse solo in 12 difetti su 473 e in 45 confronti puliti su 1.430. Per un confronto il prompt chiede solo un controllo riconoscibile, e permette il tempo zero come controllo. Le differenze più nette sono quasi assenti nei confronti puliti. I tempi diversi compaiono in 53 difetti e in 5 puliti, il controllo a tempo zero in 31 difetti e in nessun pulito, il secondo agente solo nel trattato in 30 difetti e in 6 puliti.
+4. **In tre difetti su dieci il primo passo ha letto la differenza, soprattutto nel titolo, e non l'ha scritta.** Senza la differenza nei fatti, il codice mette campioni diversi nella stessa condizione, e il secondo passo non li può separare. Il resto è piccolo: 36 difetti stanno in donatore, età, sesso o passaggio, che il codice ignora per costruzione. Altri 35 stanno solo nella descrizione o nei protocolli, che nessun passo legge, e 21 sono nomi di entità sbagliati.
+5. **Il ricalcolo finale riporterebbe tutti i 473 difetti.** Il nuovo calcolo dei due passi, fatto da zero a novembre, dà gruppi e confronti identici in tutti i 993 studi. Una correzione deve cambiare la catena, perché ripetere il calcolo non toglie niente.
 
 **Cosa devi decidere.**
 
 1. **Mettiamo i 280 difetti nel riferimento? Raccomando di sì, marcati come trovati da due letture automatiche concordi.** Il riferimento decide ogni misura futura, e oggi gli manca più di metà dei difetti noti.
    - Se rispondi sì, il riferimento passa da 193 a 473 difetti, e ogni prova futura usa quello.
    - Se rispondi no, ogni prova futura conta come falsi allarmi questi 280 difetti veri.
-2. **Quale strada prendiamo? Raccomando un prompt e una regola nuovi per Mistral, misurati su confronti nuovi.** Mistral è il modello di produzione, dà risultati ripetibili, e i suoi errori hanno due cause precise.
-   - Gemma accusa meno confronti puliti, ma richiede 2 GPU per processo, non ripete il testo al carattere, e cambierebbe il modello in uno solo degli stadi.
-   - Le regole scritte a mano, come in agosto, prendevano solo 81 difetti su 193.
-   - Un modello addestrato sui dati del progetto richiede etichette per ogni voce della lista, che oggi non abbiamo.
+2. **Dove correggiamo per primo? Raccomando il secondo passo: chiedere confronti con i bracci uguali in tutto tranne il trattamento, senza il tempo zero come controllo.** Lì nasce metà dei difetti, e il modello ha già l'informazione. Il modello rispetta già una regola dello stesso tipo per i gruppi. Il rischio: i fatti del primo passo differiscono anche in un confronto pulito su tre, per donatore, malattia o tessuto. Per questo la misura deve contare i difetti tolti e i confronti puliti persi.
+   - Se scegli il primo passo, la correzione tocca tre difetti su dieci, ma cambia i fatti di 508.037 campioni e tutto il calcolo a valle.
+   - Se scegli il secondo passo e poi il primo, la correzione tocca circa otto difetti su dieci. Servono due cicli di calcolo e di misura.
+   - Se tieni il passo che giudica dopo, resta il risultato di oggi: nessun modello passa, e le istruzioni non lo vincolano.
 
-**Comunque.** Il nuovo passo non entra nella pipeline, e il ricalcolo finale non parte. La decisione di novembre sul nuovo passo torna allo stato di proposta. Ogni versione nuova va misurata su confronti che nessuno ha usato per scriverla.
+**Comunque.** Il passo che giudica dopo non entra nella pipeline, e il ricalcolo finale non parte. La decisione di novembre sul nuovo passo resta una proposta. Ogni correzione va misurata prima del ricalcolo, su tutti i confronti, e la misura conta i difetti tolti e i confronti puliti persi.
 
 Appena decidi questi 2 punti, la sessione è chiusa.
 
-**Sui tempi di calcolo.** Sul DGX i tre modelli hanno lavorato 30 minuti (Mistral), 29 minuti (Magistral) e 53 minuti (Gemma), con 4 GPU H100 per modello. Il recupero delle risposte non valide ha richiesto 33 minuti, e la ripetizione di Gemma altri 53. Le tre letture automatiche hanno usato 59 agenti, ognuno con circa 150.000 token, per circa mezz'ora in tutto.
+**Sui tempi di calcolo.** Sul DGX i tre modelli hanno lavorato 30 minuti (Mistral), 29 minuti (Magistral) e 53 minuti (Gemma), con 4 GPU H100 per modello. Il recupero delle risposte non valide ha richiesto 33 minuti, la ripetizione di Gemma altri 53, il prompt nuovo di Mistral 27. Le tre letture automatiche hanno usato 59 agenti, ognuno con circa 150.000 token, per circa mezz'ora in tutto. La diagnosi non ha usato il DGX: ha letto i master su questo computer.
 
 ---
 
@@ -247,7 +249,10 @@ Triton (kernel 2D forzato) sia NCCL (impostazioni deterministiche). La causa pre
 | lettura dei falsi allarmi del modello migliore (handout, punto 5) | **deciso** dal PI il 2026-11-08: letti i falsi allarmi di Gemma e di Mistral (§11) |
 | il riferimento manca 318 difetti secondo i lettori (§11) | **spiegato** con una seconda lettura indipendente (§12): 280 confermati con le regole del PI; se entrano nel riferimento e' **decisione del PI** (riassunto, punto 1) |
 | la scheda della prima lettura non diceva che i soggetti parziali sono avvisi | **corretto** nella lettura mirata (§12): 30 confronti tornano avvisi |
-| quale via dopo il cancello fallito (regole, addestramento, prompt nuovo) | **decisione del PI** (riassunto, punto 2) |
+| prompt nuovo e codice da solo (richiesta del PI, §13) | **spiegato**: nessuno dei due basta (A1, A2, B1, B3, B4 smentite) |
+| dove nascono i 473 difetti (richiesta del PI, §14) | **spiegato**: metà nella scelta del confronto dello Stadio 2, tre su dieci nello Stadio 1; D1 e D5 smentite e spiegate (§14.4); D8 smentita: i bracci di più condizioni sono rari; G5 al limite, spiegato (§14.2) |
+| il ricalcolo finale sui master S14 riporta i 473 difetti (D9) | **spiegato** (§14.4): gruppi e confronti identici in 993 studi su 993; si chiude con la correzione scelta dal PI |
+| quale via dopo il cancello fallito e dopo la diagnosi | **decisione del PI** (riassunto, punto 2) |
 
 # 10. Che cosa la prova vede e che cosa non vede
 
@@ -415,27 +420,118 @@ prompt ha ridotto la malattia scritta come agente del 43%, non l'ha tolta; le qu
 hanno avuto effetto (707 → 731). **Cambiare il prompt non basta**: le istruzioni non vincolano il modello su questi due
 punti.
 
+# 14. Dove nascono i 473 difetti (diagnosi, richiesta del PI, 2026-11-08)
+
+Il PI: «fai la diagnosi». Domanda: per ogni confronto difettoso, qual è l'ultimo passo della pipeline che **aveva**
+l'informazione che rende i bracci non confrontabili. Previsioni, regole e cancelli in `00-previsioni-diagnosi.md`
+(commit `a5897aa`; correzione dello strumento dopo G3, prima delle classi, `9c4513b`)[^diag]. Script `130-diagnosi.R`
+(uscita `130-out.txt`, tabella `130-diagnosi.csv`), poi tre analisi descrittive dopo il calcolo, non nelle previsioni:
+`131-dove-sta-la-prova.R`, `132-sintesi.R`, `133-s14-uguale.py`. Nessun file della pipeline è cambiato.
+
+**14.1 La catena, letta nel codice.** Lo Stadio 1 legge per ogni campione `title`, `source` e `characteristics`
+(non la descrizione, non i protocolli, non i campi tecnici) e scrive i fatti. Il codice corregge il flag del tempo zero
+(`normalize_stage1_facts_zt()`), poi mette nella stessa **condizione** i campioni con la stessa firma di disegno; la
+firma esclude donatore, età, sesso, ascendenza, passaggio, trattamenti tecnici. Il modello dello Stadio 2 riceve
+**solo** i fatti di un campione rappresentante per condizione (con `n_replicates`); `study_summary` è vuoto in 2.728
+ingressi su 2.728. Scrive gruppi (unioni di condizioni) e confronti (coppie di gruppi). Lo Stadio 3 fa un record per
+confronto. Il prompt dello Stadio 2 (`R/llm-stage2.R::.stage2_system_prompt()`) dice, per i gruppi: «Group into the SAME
+replicate_group ONLY samples with IDENTICAL conditions (same treatment, dose, time, cell line, genotype)»; per i
+confronti dice solo: «Create comparisons only where a control_group is clearly identifiable», e «RULE 2 (time-zero =
+control): in time_course designs, samples with time=0 [...] are primary_role='control'». **Il prompt non chiede che i
+due bracci di un confronto differiscano solo per il trattamento.**
+
+**14.2 Cancelli.** G0 manifesto del deliverable e dei master: OK. G1 bracci del dispatch uguali ai gruppi del master A3:
+1.903 su 1.903. G2 fatti e condizioni per ogni campione, bracci fatti di condizioni intere: 1.903 su 1.903. G3 firma
+uguale dentro la condizione: prima 3.407 su 3.423; le 16 differenze erano solo `is_zero_timepoint`, perché il master
+conserva i fatti prima della correzione del tempo zero; con i fatti corretti 3.423 su 3.423 (correzione dichiarata nelle
+previsioni prima di vedere le classi). G4 cinque confronti finti, uno per classe: OK. G5 difetti dei 193 visibili nelle
+etichette dello Stadio 2 in classe A: 104 su 129 = 80,6% [73,0; 86,5], **al limite** della soglia dell'80%. I 25 mancati
+sono soprattutto secondi agenti scritti dallo Stadio 1 come un solo agente («T3 and LPS») e controlli condivisi fra bracci
+a tempi o donatori diversi: la regola conta gli agenti, non le parole. Lo strumento vede quindi meno di quanto lo Stadio 2
+vedeva.
+
+**14.3 Previsioni.** Unità: il confronto; Wilson al 95%; differenze con bootstrap per studio, B = 2000, seme 20261108.
+
+| # | quantità | atteso | rilevanza | risultato [IC 95%] | giudizio |
+|---|---|---|---|---|---|
+| D1 | classe A per tipo («lo Stadio 2 l'ha vista») | 55% | 50%-100% | 199 su 473 = 42,1% [37,7; 46,6] | **smentita**; spiegata in 14.4: con le etichette 240 su 473 = 50,7% [46,2; 55,2] |
+| D2 | A-unione (un braccio unisce condizioni diverse) | 15% | 20%-100% | 1 su 473 = 0,2% [0,0; 1,2] | fuori dall'intervallo: **non è una causa** |
+| D3 | classe B (la firma nasconde) | 8% | 15%-100% | 37 su 473 = 7,8% [5,7; 10,6] | fuori: non è una causa grande |
+| D4 | classe C (lo Stadio 1 legge una chiave e non scrive) | 15% | 25%-100% | 37 su 473 = 7,8% [5,7; 10,6] | fuori; ma vedi 14.4: con il titolo sono 139 |
+| D5 | classe D (nessun passo la legge) | 15% | 25%-100% | 179 su 473 = 37,8% [33,6; 42,3] | **smentita**; spiegata in 14.4: la prova sta quasi sempre nel titolo o in `characteristics` |
+| D6 | classe E (nome dell'entità) | 8% | — | 21 su 473 = 4,4% | — |
+| D7 | classe A con tutte le famiglie, difettosi meno puliti | +20 punti | +10 / +100 | 59,6% contro 34,9%: **+24,7 [+13,6; +34,7]** | confermata: la classe A distingue i difetti |
+| D8 | braccio di 2+ condizioni, difettosi meno puliti | +10 punti | +5 / +100 | 2,5% contro 3,1%: **−0,6 [−3,1; +2,5]** | **smentita**: i bracci di più condizioni sono rari e non distinguono i difetti |
+| D9 | stessi bracci nel master S14 dello Stadio 2 | 85% | 80%-100% | 473 su 473 (puliti 1.430 su 1.430) | confermata; spiegata: gruppi e confronti di S14 sono identici ad A3 in 993 studi su 993 (`133-out.txt`) |
+
+**14.4 Dove nasce il difetto** (`132-out.txt`). Unione dichiarata nello script prima del calcolo: classe A dello
+strumento; fra i 193, i difetti che il lettore di S11 ha visto nelle **etichette** (le scrive lo Stadio 2, che legge solo
+i fatti) contano come «lo Stadio 2 aveva l'informazione»; per i 280, ogni citazione del lettore si cerca nei campi GEO
+dei campioni dei due bracci (`131-out.txt`).
+
+| dove nasce | difetti su 473 [IC 95%] |
+|---|---|
+| lo Stadio 2 aveva l'informazione nei fatti, e ha costruito il confronto | 199 (42,1%) |
+| lo Stadio 2 aveva l'informazione e l'ha scritta nell'etichetta | 41 (8,7%) |
+| **totale: lo Stadio 2 aveva l'informazione** | **240 = 50,7% [46,2; 55,2]** |
+| lo Stadio 1 l'ha letta (titolo, `characteristics`, `source`) e non l'ha scritta | **139 = 29,4% [25,5; 33,6]** |
+| lo Stadio 1 l'ha scritta in un campo che la firma esclude (donatore, età, sesso, passaggio) | 36 = 7,6% [5,5; 10,4] |
+| nessun passo legge il campo (descrizione, protocolli, campi tecnici) | 35 = 7,4% [5,4; 10,1] |
+| nome dell'entità (chiave dello Stadio 3) | 21 = 4,4% [2,9; 6,7] |
+| non attribuito (citazione non trovata) | 2 |
+
+- **Il braccio misto non nasce nello Stadio 2.** In 461 difetti su 473 ogni braccio è una sola condizione; i bracci
+  fatti di più condizioni sono 12 su 473 fra i difettosi e 45 su 1.430 fra i puliti, e solo in 1 difetto le condizioni
+  unite differiscono nella famiglia del difetto. Il modello rispetta la regola dei
+  gruppi. Quando un braccio contiene campioni diversi, il codice li aveva già messi nella stessa condizione, perché i
+  fatti dello Stadio 1 erano uguali o differivano solo nei campi esclusi dalla firma.
+- **La prova sta nei campi che lo Stadio 1 legge.** Fra i 280, la citazione del lettore sta in un campo letto dallo
+  Stadio 1 in 233 casi, solo in campi non letti in 45, non si trova in 2. Fra i 121 della classe D, i campi più citati
+  sono il titolo (54) e `characteristics` (33); la descrizione 28, i protocolli 22 (un difetto può citare più campi).
+- **Segnali quasi esclusivi dei difetti**, fra i bracci, nei fatti che lo Stadio 2 ha ricevuto (`130-out.txt`): durate
+  diverse 53 difettosi contro 5 puliti; controllo a tempo zero 31 contro 0; due o più agenti solo nel trattato 30 contro 6.
+  Altri campi differiscono spesso anche fra i puliti: donatore 45 contro 66, stato di malattia 45 contro 111, tessuto 32
+  contro 83, linea o tipo cellulare 37 contro 109. Per questo la classe A con tutte le famiglie copre anche il 34,9% dei
+  puliti.
+- **Il tempo zero.** Nessuno dei 1.903 confronti ha `control_type = time_zero` (il master A3 ne ha 4.451 in tutto). I 62
+  difetti di tipo tempo zero hanno il controllo dichiarato `untreated` (47), `vehicle` (13), `genetic_negative` (2): lo
+  Stadio 2 ha usato un gruppo a tempo zero come controllo, come la RULE 2 permette, e lo ha dichiarato come non trattato.
+- **Il ricalcolo finale li riporta tutti.** Gruppi e confronti del master S14 sono identici a quelli di A3 in 993 studi su
+  993: senza un cambio nella catena, il ricalcolo sui master S14 porta gli stessi 473 difetti.
+
+**14.5 Che cosa la diagnosi non vede.** La classe dice dove l'informazione **c'era**, non che il passo dopo l'avrebbe
+usata bene. Le famiglie sono regole sui nomi dei campi, e G5 è al limite: la quota «lo Stadio 2 aveva l'informazione» è
+più probabilmente sotto la verità che sopra. La posizione della prova vale solo per i 280 (i lettori dei 193 non hanno
+scritto citazioni). L'unione 14.4 è descrittiva, scritta dopo il calcolo dello strumento.
+
 # Da dove vengono i numeri del riassunto
 
 | frase del riassunto | file | valore letto |
 |---|---|---|
-| 1.903 confronti, 193 difettosi, 1.710 puliti | `40-out.txt`, riga «riferimento» | «193 difettosi, 1710 puliti, su 1903 confronti» |
-| almeno 130 presi, al massimo 40 accusati | `00-previsioni.md` di S12, P4 e P5 | «≥ 130», «≤ 40» |
-| Mistral 186 e 965; Magistral 177 e 887; Gemma 155 e 364 | `40-out.txt`, P4 e P5 per modello | «186 su 193», «965 su 1710»; «177», «887»; «155», «364» |
+| 1.903 confronti del deliverable | `40-out.txt`, riga «riferimento» | «193 difettosi, 1710 puliti, su 1903 confronti» |
+| 713 su 1.430, soglia 40 | `120-out.txt`, Mistral v2; `00-previsioni.md` di S12, P5 | «713 su 1430»; «≤ 40» |
+| Gemma 138 | §12, conto descrittivo | «138» |
+| il codice prende metà dei difetti e accusa un pulito su quattro | `100-out.txt`, A1 e A2 | «242 su 473 = 51.2%»; «339 su 1430 = 23.7%» |
 | altri 280 confronti | `94-out.txt`, ultima riga | «280 (tolti 30 avvisi), in 171 studi» |
-| accordo quasi completo | `90-out.txt`, Q3 | «kappa 0.94» |
+| concordano quasi sempre | `90-out.txt`, Q3 | «kappa 0.94» |
 | tue regole sui donatori applicate | `94-out.txt`; §12 | 15 difetti, 30 avvisi |
-| composizione diversa | `70-letture.csv` e `90-letture-verifica.csv`, colonne dei tipi; §11 | materiale/linea/sede, genotipo, coltura |
 | uno su quattro, non uno su dieci | 473 / 1.903; 193 / 1.903 | 24,9%; 10,1% |
-| Gemma 138 e Mistral 700 | §12, conto descrittivo | «138», «700» |
-| 587 dei 700 | §12 | «587 hanno fra i motivi …» |
-| più di quattro difetti noti su cinque | `70-out.txt`, L2; `90-out.txt`, V2 | 84,2%; 81,7% |
-| 310 dei 318 | `90-out.txt`, Q1 | «310 su 318» |
-| da 193 a 473; più di metà dei difetti noti | 193 + 280; 280 / 473 | 473; 59% |
-| 81 difetti su 193 | `CLAUDE.md` §1, «Rilevatore a regole» | «vede 81/193» |
-| 2 GPU per processo; non ripete il testo al carattere | §7.4; `50-gemma-ripetizione-out.txt` | `tensor_parallel_size = 2`; «1855 su 1900» |
+| il secondo passo riceve solo i fatti | §14.1; `prompts.py::render_user_message_stage2`; ingresso | «study_summary» vuoto in 2.728 su 2.728 |
+| metà dei difetti: il secondo passo aveva la differenza | `132-out.txt`, «totale» | «240 su 473 = 50.7%» |
+| unisce condizioni diverse in 12 difetti su 473 e in 45 puliti su 1.430 | `130-out.txt`, «braccio di 2+ condizioni» | «12 su 473 = 2.5%»; «45 su 1430 = 3.1%» |
+| il prompt chiede solo un controllo riconoscibile e permette il tempo zero | `R/llm-stage2.R`, righe 137 e 171 | «Create comparisons only where a control_group is clearly identifiable»; «RULE 2 (time-zero = control)» |
+| 53 e 5; 31 e nessuno; 30 e 6 | `130-out.txt`, campi fra i bracci | `tempo:dur` 53/5; `tempo:is_zero_timepoint` 31/0; `agente:agenti_solo_trattato` 30/6 |
+| tre su dieci: il primo passo ha letto e non ha scritto | `132-out.txt` | «139 su 473 = 29.4%» |
+| soprattutto nel titolo | `131-out.txt`, campi della classe D | title 54, characteristics_ch1 33, description 28 |
+| 36, 35, 21 | `132-out.txt` | «36 su 473», «35 su 473», «21 su 473» |
+| identici in tutti i 993 studi; tutti i 473 | `133-out.txt`; `130-out.txt`, D9 | «gruppi e confronti identici: 993»; «473 su 473» |
+| più di metà dei difetti noti | 280 / 473 | 59% |
+| un confronto pulito su tre | `130-out.txt`, classe A con tutte le famiglie | «puliti 499 su 1430 = 34.9%» |
+| donatore, malattia o tessuto | `130-out.txt`, campi fra i bracci nei puliti | donor_id 66, ds_status 111, tissue 83, cell_type_or_line_raw 109 |
+| 508.037 campioni | `CLAUDE.md` §2, Stadio 0 | «bacino 508.037 campioni» |
+| circa otto su dieci | (240 + 139) / 473, `132-out.txt` | 80,1% |
 | 30, 29, 53 minuti; 4 GPU H100 | `30-sacct-pieno.txt`; `inst/dgx/slurm/run_p4.sh` | 00:30:30, 00:29:10, 00:52:37 |
-| 33 minuti di recupero; 53 della ripetizione | `log/catena.log` | 4,3 + 4,3 + 24,8 min; 00:52:49 |
+| 33 minuti di recupero; 53 della ripetizione; 27 del prompt nuovo | `log/catena.log`; §13 | 4,3 + 4,3 + 24,8 min; 00:52:49; 26 min 53 s |
 | 59 agenti, circa 150.000 token, circa mezz'ora | 42 + 15 + 2 agenti; rapporti degli agenti; date dei file di risposta (18:40-18:54, 19:39-19:49) | da 117.114 a 183.389 token per agente |
 
 [^rip]: `analysis/audit/2026-11-08-S12p-prova/50-gemma-ripetizione-out.txt`
@@ -443,3 +539,4 @@ punti.
 [^lett]: `analysis/audit/2026-11-08-S12p-prova/70-out.txt`
 [^l3]: `analysis/audit/2026-11-08-S12p-prova/71-out.txt`
 [^sogg]: `analysis/audit/2026-11-08-S12p-prova/94-out.txt`, `94-soggetti.csv`
+[^diag]: `analysis/audit/2026-11-08-S12p-prova/00-previsioni-diagnosi.md`, `130-out.txt`, `131-out.txt`, `132-out.txt`, `133-out.txt`
