@@ -164,3 +164,32 @@ test_that("un campo d'ingresso assente dai dati ferma l'ingresso (nessuna perdit
   expect_silent(costruisci(t2, c_df, "K17 24h", "vehicle 24h", "compound K17",
                            campi = c("title", "characteristics_ch1")))
 })
+
+test_that("i campi GEO si aggiungono per accession; un campione cancellato da GEO e' marcato", {
+  aggiungi <- simulomicsr:::.s2b_aggiungi_campi_geo
+  h5 <- data.frame(geo_accession = c("acc_b", "acc_a", "acc_c"), title = c("B", "A", "C"),
+                   stringsAsFactors = FALSE)
+  geo <- data.frame(gsm = c("acc_a", "acc_b"), description = c("donor 1", NA),
+                    treatment_protocol_ch1 = c("24 h", "24 h"),
+                    growth_protocol_ch1 = c("medium W", "medium W"), stringsAsFactors = FALSE)
+  x <- aggiungi(h5, geo, cancellati = "acc_c")
+  expect_identical(x$geo_accession, h5$geo_accession)          # ordine invariato
+  expect_identical(x$title, h5$title)
+  expect_identical(x$description, c("", "donor 1", simulomicsr:::.S2B_GEO_NON_DISPONIBILE))
+  for (f in simulomicsr:::.S2B_CAMPI_GEO)
+    expect_identical(x[[f]][3], simulomicsr:::.S2B_GEO_NON_DISPONIBILE, info = f)
+})
+
+test_that("un campione senza campi GEO e non dichiarato cancellato ferma l'unione", {
+  aggiungi <- simulomicsr:::.s2b_aggiungi_campi_geo
+  h5 <- data.frame(geo_accession = c("acc_a", "acc_c"), stringsAsFactors = FALSE)
+  geo <- data.frame(gsm = "acc_a", description = "d", treatment_protocol_ch1 = "",
+                    growth_protocol_ch1 = "", stringsAsFactors = FALSE)
+  expect_error(aggiungi(h5, geo), class = "simulomicsr_stage2b_geo_mancante")
+  # un campione dichiarato cancellato ma presente nei dati GEO e' una contraddizione
+  expect_error(aggiungi(h5, geo, cancellati = c("acc_a", "acc_c")),
+               class = "simulomicsr_stage2b_geo_mancante")
+  # accession ripetuti nei dati GEO
+  expect_error(aggiungi(h5, rbind(geo, geo), cancellati = "acc_c"),
+               class = "simulomicsr_stage2b_geo_mancante")
+})

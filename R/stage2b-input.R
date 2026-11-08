@@ -61,6 +61,40 @@
   .s2b_norm_spazi(x)
 }
 
+# Valore dei campi GEO di un campione che GEO ha cancellato dopo la copia di
+# ARCHS4: il testo non esiste piu', e l'ingresso lo dice invece di lasciarlo vuoto.
+.S2B_GEO_NON_DISPONIBILE <- "(not available: sample deleted from GEO)"
+
+#' Aggiunge ai campi dell'H5 i campi presi da GEO (decisione 1 del PI, 2026-11-08)
+#'
+#' @param h5 data.frame con `geo_accession` e i campi dell'H5, una riga per campione.
+#' @param geo data.frame con `gsm` e i campi di `.S2B_CAMPI_GEO`, dal testo GEO congelato.
+#' @param cancellati accession che GEO dichiara cancellati (pagina "was deleted
+#'   by the GEO staff"): i loro campi GEO valgono `.S2B_GEO_NON_DISPONIBILE`.
+#' @return `h5`, stesso ordine delle righe, con le colonne GEO (NA -> "").
+#'   Un campione senza campi GEO e non dichiarato cancellato, un campione
+#'   cancellato ma presente nei dati GEO, o un accession ripetuto fermano
+#'   l'unione (classe `simulomicsr_stage2b_geo_mancante`).
+#' @keywords internal
+.s2b_aggiungi_campi_geo <- function(h5, geo, cancellati = character()) {
+  ferma <- function(msg) rlang::abort(paste0("Stadio 2b, campi GEO: ", msg),
+                                      class = "simulomicsr_stage2b_geo_mancante")
+  if (anyDuplicated(geo$gsm)) ferma("accession ripetuti nei dati GEO")
+  doppi <- intersect(cancellati, geo$gsm)
+  if (length(doppi)) ferma(paste("dichiarati cancellati ma presenti:", paste(doppi, collapse = ", ")))
+  i <- match(h5$geo_accession, geo$gsm)
+  manca <- h5$geo_accession[is.na(i) & !h5$geo_accession %in% cancellati]
+  if (length(manca)) ferma(paste0(length(manca), " campioni senza testo GEO: ",
+                                  paste(utils::head(manca, 10), collapse = ", ")))
+  for (f in .S2B_CAMPI_GEO) {
+    v <- as.character(geo[[f]])[i]
+    v[is.na(v)] <- ""
+    v[h5$geo_accession %in% cancellati] <- .S2B_GEO_NON_DISPONIBILE
+    h5[[f]] <- v
+  }
+  h5
+}
+
 .s2b_etichetta_campo <- function(f) sub("_ch1$", "", f)
 
 #' Stima prudente dei token di un testo (caratteri / 3)
