@@ -28,6 +28,14 @@
 #'   yaml stage2). Il `gen$max_model_len` viene auto-bumpato a 65536 se
 #'   qualche record è L/XL. Strategy mira a single-pass coverage senza
 #'   rescue cycles. Solo per stage2.
+#' @param modello lista opzionale che cambia il modello (prova S12p con tre
+#'   modelli): \code{model_id}, \code{tokenizer_mode}, \code{config_format},
+#'   \code{load_format}, \code{dtype}, \code{gpu_memory_utilization},
+#'   \code{tensor_parallel_size} (GPU per worker: il runner usa 4 / tp worker),
+#'   \code{llm_extra} (argomenti in piu' per \code{vllm.LLM()}). Cambia solo
+#'   questi campi di \code{generation.json} e il \code{model_id} del manifest:
+#'   prompt, schema e parametri di campionamento restano quelli dello stadio.
+#'   Un campo fuori elenco ferma la costruzione.
 #' @return oggetto \code{simulomicsr_dgx_bundle} con campi \code{run_id},
 #'   \code{bundle_dir}, \code{stage}, \code{config}, \code{record_count},
 #'   e (se `tiered_max_tokens=TRUE`) \code{tier_summary} con count per tier.
