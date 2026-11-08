@@ -135,3 +135,14 @@ rilevanza sono **giudizi motivati** (nessuna soglia del progetto si applica qui)
 dovuta usare. Le famiglie e le chiavi sono regole sui nomi dei campi: una differenza scritta in un campo di un'altra
 famiglia non si vede (per questo la classe con tutte le famiglie). Il tipo dei 193 viene da una regola sul testo della
 categoria. Le differenze dei fatti dello Stadio 1 possono essere rumore: D7 e D8 lo misurano sui puliti.
+
+## Correzione dello strumento dopo G3, prima di vedere le classi (2026-11-08)
+
+G1 e G2 sono passati (1.903 su 1.903). G3 è fallito: in 16 condizioni su 3.423 la firma ricalcolata dal master non
+è uguale fra i campioni. In 3 casi su 3 controllati la sola differenza è `is_zero_timepoint`. Causa: fra lo Stadio 1 e
+l'ingresso dello Stadio 2 il codice applica una correzione deterministica del flag
+(`R/stage1-normalize.R::normalize_stage1_facts_zt()`: il flag segue `value_hours` e `value_raw`); il master conserva
+l'uscita del modello prima della correzione. La catena ha quindi un passo in più, **P1b · codice: correzione del tempo
+zero**, fra P1 e P2. Lo strumento legge i fatti dopo la correzione, cioè quelli che lo Stadio 2 ha letto. G3 si rifà
+con i fatti corretti. Nessuna altra regola, soglia o previsione cambia. Lo script si è fermato a G3: nessuna classe è
+stata calcolata.
