@@ -107,3 +107,110 @@
 [11-08 15:06:05] GSE113922__GSE113922__grp_0008_vs_grp_0009__1: template 5161, vLLM 5162, primo indice diverso 2023, template 88906 506 12162 236761 106 107 105 2364, vLLM 88906 506 12162 236761 236743 106 107 105
 [11-08 15:06:05] GSE138691__GSE138691__sALS_PBMC_vs_Control_whole_blood__1: template 2915, vLLM 2916, primo indice diverso 2023, template 88906 506 12162 236761 106 107 105 2364, vLLM 88906 506 12162 236761 236743 106 107 105
 [11-08 15:06:05] GSE120904__GSE120904__grp_0009_vs_grp_0006__1: template 3878, vLLM 3879, primo indice diverso 2023, template 88906 506 12162 236761 106 107 105 2364, vLLM 88906 506 12162 236761 236743 106 107 105
+[11-08 15:10:05] cancello K1: bundle 20261108T141005Z-s12p-mistral-12435a, prompt, schema e 1903 testi identici
+[11-08 15:10:11] inviato s12p-mistral slurm=470091 run_id=20261108T141005Z-s12p-mistral-12435a
+[11-08 15:10:13] cancello K1: bundle 20261108T141012Z-s12p-magistral-24c52f, prompt, schema e 1903 testi identici
+[11-08 15:10:18] inviato s12p-magistral slurm=470092 run_id=20261108T141012Z-s12p-magistral-24c52f
+[11-08 15:10:18] cancello K1: bundle 20261108T141018Z-s12p-gemma-7b19e9, prompt, schema e 1903 testi identici
+[11-08 15:10:22] inviato s12p-gemma slurm=470093 run_id=20261108T141018Z-s12p-gemma-7b19e9
+[11-08 15:10:22] INIZIO attesa
+[11-08 15:10:24] sacct senza risposta completa (1), riprovo fra un minuto
+[11-08 15:11:26] job: PENDING 1, RUNNING 2
+[11-08 15:16:28] job: PENDING 1, RUNNING 2
+[11-08 15:21:30] job: PENDING 1, RUNNING 2
+[11-08 15:26:32] job: PENDING 1, RUNNING 2
+[11-08 15:31:34] job: PENDING 1, RUNNING 2
+[11-08 15:36:35] job: PENDING 1, RUNNING 2
+[11-08 15:41:37] job: COMPLETED 2, RUNNING 1
+[11-08 15:46:39] job: COMPLETED 2, RUNNING 1
+[11-08 15:51:41] job: COMPLETED 2, RUNNING 1
+[11-08 15:56:43] job: COMPLETED 2, RUNNING 1
+[11-08 16:01:45] job: COMPLETED 2, RUNNING 1
+[11-08 16:06:47] job: COMPLETED 2, RUNNING 1
+[11-08 16:11:49] job: COMPLETED 2, RUNNING 1
+[11-08 16:16:52] job: COMPLETED 2, RUNNING 1
+[11-08 16:21:54] job: COMPLETED 2, RUNNING 1
+[11-08 16:26:56] job: COMPLETED 2, RUNNING 1
+[11-08 16:31:58] job: COMPLETED 2, RUNNING 1
+[11-08 16:37:00] slurm 470091: COMPLETED 00:30:30 poddgx02
+[11-08 16:37:00] slurm 470092: COMPLETED 00:29:10 poddgx02
+[11-08 16:37:00] slurm 470093: COMPLETED 00:52:37 poddgx02
+[11-08 16:37:00] FINE attesa (86.6 min)
+[11-08 16:37:00] INIZIO recupero-mistral
+[11-08 16:37:01] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T141005Z-s12p-mistral-12435a
+[11-08 16:37:03] [mistral] giro di recupero 1 (repetition_penalty 1.2): 1 confronti
+[11-08 16:37:03] cancello K1: bundle 20261108T153703Z-s12p-mistral-recupero1-92c1ed, prompt, schema e 1 testi identici
+[11-08 16:37:07] inviato s12p-mistral-recupero1 slurm=470094 run_id=20261108T153703Z-s12p-mistral-recupero1-92c1ed
+[11-08 16:37:08] job: PENDING 1
+[11-08 16:39:10] job: RUNNING 1
+[11-08 16:41:12] slurm 470094: COMPLETED 00:02:10 poddgx02
+[11-08 16:41:13] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T153703Z-s12p-mistral-recupero1-92c1ed
+[11-08 16:41:13] [mistral] giro 1: valide 1 su 1
+[11-08 16:41:13] [mistral] giro di recupero 2 (repetition_penalty 1.3): 0 confronti
+[11-08 16:41:15] [mistral] finale: valide 1900, non valide 0, oltre il limite 3
+[11-08 16:41:15] FINE recupero-mistral (4.3 min)
+[11-08 16:41:15] INIZIO recupero-magistral
+[11-08 16:41:16] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T141012Z-s12p-magistral-24c52f
+[11-08 16:41:18] [magistral] giro di recupero 1 (repetition_penalty 1.2): 1 confronti
+[11-08 16:41:18] cancello K1: bundle 20261108T154118Z-s12p-magistral-recupero1-755bb7, prompt, schema e 1 testi identici
+[11-08 16:41:22] inviato s12p-magistral-recupero1 slurm=470095 run_id=20261108T154118Z-s12p-magistral-recupero1-755bb7
+[11-08 16:41:23] job: PENDING 1
+[11-08 16:43:25] job: RUNNING 1
+[11-08 16:45:27] slurm 470095: COMPLETED 00:02:05 poddgx02
+[11-08 16:45:28] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T154118Z-s12p-magistral-recupero1-755bb7
+[11-08 16:45:28] [magistral] giro 1: valide 1 su 1
+[11-08 16:45:28] [magistral] giro di recupero 2 (repetition_penalty 1.3): 0 confronti
+[11-08 16:45:31] [magistral] finale: valide 1900, non valide 0, oltre il limite 3
+[11-08 16:45:31] FINE recupero-magistral (4.3 min)
+[11-08 16:45:31] INIZIO recupero-gemma
+[11-08 16:45:32] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T141018Z-s12p-gemma-7b19e9
+[11-08 16:45:33] [gemma] giro di recupero 1 (repetition_penalty 1.2): 10 confronti
+[11-08 16:45:33] cancello K1: bundle 20261108T154533Z-s12p-gemma-recupero1-7fb1a9, prompt, schema e 10 testi identici
+[11-08 16:45:38] inviato s12p-gemma-recupero1 slurm=470096 run_id=20261108T154533Z-s12p-gemma-recupero1-7fb1a9
+[11-08 16:45:39] job: PENDING 1
+[11-08 16:47:41] job: RUNNING 1
+[11-08 16:49:43] job: RUNNING 1
+[11-08 16:51:45] job: RUNNING 1
+[11-08 16:53:47] slurm 470096: COMPLETED 00:07:44 poddgx02
+[11-08 16:53:48] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T154533Z-s12p-gemma-recupero1-7fb1a9
+[11-08 16:53:48] [gemma] giro 1: valide 6 su 10
+[11-08 16:53:48] [gemma] giro di recupero 2 (repetition_penalty 1.3): 4 confronti
+[11-08 16:53:48] cancello K1: bundle 20261108T155348Z-s12p-gemma-recupero2-5b064e, prompt, schema e 4 testi identici
+[11-08 16:53:52] inviato s12p-gemma-recupero2 slurm=470097 run_id=20261108T155348Z-s12p-gemma-recupero2-5b064e
+[11-08 16:53:53] job: PENDING 1
+[11-08 16:55:55] job: RUNNING 1
+[11-08 16:57:57] job: RUNNING 1
+[11-08 16:59:59] job: RUNNING 1
+[11-08 17:02:01] slurm 470097: COMPLETED 00:07:31 poddgx02
+[11-08 17:02:02] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T155348Z-s12p-gemma-recupero2-5b064e
+[11-08 17:02:02] [gemma] giro 2: valide 2 su 4
+[11-08 17:02:02] [gemma] giro di recupero 3 (repetition_penalty 1.4): 2 confronti
+[11-08 17:02:02] cancello K1: bundle 20261108T160202Z-s12p-gemma-recupero3-00fee8, prompt, schema e 2 testi identici
+[11-08 17:02:06] inviato s12p-gemma-recupero3 slurm=470098 run_id=20261108T160202Z-s12p-gemma-recupero3-00fee8
+[11-08 17:02:07] job: RUNNING 1
+[11-08 17:04:09] job: RUNNING 1
+[11-08 17:06:11] job: RUNNING 1
+[11-08 17:08:13] job: RUNNING 1
+[11-08 17:10:15] slurm 470098: COMPLETED 00:07:29 poddgx02
+[11-08 17:10:16] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T160202Z-s12p-gemma-recupero3-00fee8
+[11-08 17:10:16] [gemma] giro 3: valide 1 su 2
+[11-08 17:10:18] [gemma] finale: valide 1899, non valide 1, oltre il limite 3
+[11-08 17:10:18] FINE recupero-gemma (24.8 min)
+[11-08 17:10:18] INIZIO cancelli
+[11-08 17:10:46] K3 [mistral]: confronti 1903, distinti 1903, uguali ai 1.903: TRUE
+[11-08 17:10:46] K4 [mistral]: uscite dello smoke identiche nel run pieno: 21 su 21
+[11-08 17:10:46] K4 [mistral]: token del prompt contati = vLLM: 1900 su 1900 generati; vLLM = template + 1: 0; altre differenze: 0
+[11-08 17:10:46] K4 [mistral]: posizioni e token di vLLM dove le sequenze divergono: NA NA x1900
+[11-08 17:10:46] esiti [mistral]: passano 752 su 1903; liste non valide 0; oltre il limite 3
+[11-08 17:10:46] K3 [magistral]: confronti 1903, distinti 1903, uguali ai 1.903: TRUE
+[11-08 17:10:46] K4 [magistral]: uscite dello smoke identiche nel run pieno: 21 su 21
+[11-08 17:10:46] K4 [magistral]: token del prompt contati = vLLM: 1900 su 1900 generati; vLLM = template + 1: 0; altre differenze: 0
+[11-08 17:10:46] K4 [magistral]: posizioni e token di vLLM dove le sequenze divergono: NA NA x1900
+[11-08 17:10:46] esiti [magistral]: passano 839 su 1903; liste non valide 0; oltre il limite 3
+[11-08 17:10:46] K3 [gemma]: confronti 1903, distinti 1903, uguali ai 1.903: TRUE
+[11-08 17:10:46] K4 [gemma]: uscite dello smoke identiche nel run pieno: 15 su 21
+[11-08 17:10:46] K4 [gemma]: token del prompt contati = vLLM: 0 su 1900 generati; vLLM = template + 1: 1900; altre differenze: 0
+[11-08 17:10:46] K4 [gemma]: posizioni e token di vLLM dove le sequenze divergono: 2023 88906 506 12162 236761 236743 106 107 105 x1900
+[11-08 17:10:46] esiti [gemma]: passano 1384 su 1903; liste non valide 1; oltre il limite 3
+[11-08 17:10:46] FINE cancelli (0.5 min)
+[11-08 17:10:46] LANCIO FINITO: committa 40-uscite-sha256.txt prima di scrivere ed eseguire il conto
