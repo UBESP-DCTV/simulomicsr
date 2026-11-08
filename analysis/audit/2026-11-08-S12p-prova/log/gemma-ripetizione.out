@@ -1,0 +1,103 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/man: 422 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+[11-08 17:16:31] cancello K1: bundle 20261108T161630Z-s12p-gemma-ripetizione-93c36d, prompt, schema e 1903 testi identici
+✔ Submitted: run_id=20261108T161630Z-s12p-gemma-ripetizione-93c36d slurm=470099
+[11-08 17:16:35] inviato s12p-gemma-ripetizione slurm=470099 run_id=20261108T161630Z-s12p-gemma-ripetizione-93c36d
+[11-08 17:16:38] job: RUNNING 1
+[11-08 17:21:40] job: RUNNING 1
+[11-08 17:26:42] job: RUNNING 1
+[11-08 17:31:44] job: RUNNING 1
+[11-08 17:36:46] job: RUNNING 1
+[11-08 17:41:48] job: RUNNING 1
+[11-08 17:46:50] job: RUNNING 1
+[11-08 17:51:52] job: RUNNING 1
+[11-08 17:56:54] job: RUNNING 1
+[11-08 18:01:56] job: RUNNING 1
+[11-08 18:06:58] job: RUNNING 1
+[11-08 18:12:00] slurm 470099: COMPLETED 00:52:49 poddgx02
+[11-08 18:12:01] cancello K2: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261108T161630Z-s12p-gemma-ripetizione-93c36d
+$predictions
+# A tibble: 1,890 × 7
+   record_id      raw_output parsed_json  valid_schema applied_patches worker_id
+   <chr>          <chr>      <list>       <lgl>        <list>              <int>
+ 1 GSE114686__GS… "{\"agent… <named list> TRUE         <chr [0]>               0
+ 2 GSE114686__GS… "{\"agent… <named list> TRUE         <chr [0]>               0
+ 3 GSE186341__GS… "{\"agent… <named list> TRUE         <chr [0]>               0
+ 4 GSE186341__GS… "{\n  \"a… <named list> TRUE         <chr [0]>               0
+ 5 GSE186341__GS… "{\n  \"a… <named list> TRUE         <chr [0]>               0
+ 6 GSE217421__GS… "{\n  \"a… <named list> TRUE         <chr [0]>               0
+ 7 GSE217898__GS… "{\n  \"a… <named list> TRUE         <chr [0]>               0
+ 8 GSE237413__GS… "{\n  \"a… <named list> TRUE         <chr [0]>               0
+ 9 GSE119978__GS… "{\"agent… <named list> TRUE         <chr [0]>               0
+10 GSE157069__GS… "{\"agent… <named list> TRUE         <chr [0]>               0
+# ℹ 1,880 more rows
+# ℹ 1 more variable: ts <chr>
+
+$errors
+# A tibble: 13 × 7
+   record_id raw_output parsed_json valid_schema applied_patches worker_id ts   
+   <chr>     <chr>      <list>      <lgl>        <list>              <int> <chr>
+ 1 GSE13672… "{\n  \"a… <NULL>      FALSE        <chr [0]>               0 2026…
+ 2 GSE24210… "{\n  \"a… <NULL>      FALSE        <chr [0]>               0 2026…
+ 3 GSE24475… "{\n  \"a… <NULL>      FALSE        <chr [0]>               0 2026…
+ 4 GSE24475… "{\n  \"a… <NULL>      FALSE        <chr [0]>               0 2026…
+ 5 GSE24448… "{\n  \"a… <NULL>      FALSE        <chr [0]>               0 2026…
+ 6 GSE17837… "{\n  \"a… <NULL>      FALSE        <chr [0]>               0 2026…
+ 7 GSE14834… "{\n  \"a… <NULL>      FALSE        <chr [0]>               0 2026…
+ 8 GSE24475… "{\n  \"a… <NULL>      FALSE        <chr [0]>               1 2026…
+ 9 GSE19035… "{\n  \"a… <NULL>      FALSE        <chr [0]>               1 2026…
+10 GSE23779… "{\n  \"a… <NULL>      FALSE        <chr [0]>               1 2026…
+11 GSE14609… ""         <NULL>      FALSE        <chr [0]>               0 2026…
+12 GSE25507… ""         <NULL>      FALSE        <chr [0]>               0 2026…
+13 GSE14609… ""         <NULL>      FALSE        <chr [0]>               1 2026…
+
+$summary
+$summary$run_id
+[1] "20261108T161630Z-s12p-gemma-ripetizione-93c36d"
+
+$summary$model_id
+[1] "google/gemma-4-31B-it"
+
+$summary$stage
+[1] "stage2b"
+
+$summary$records_total
+[1] 1903
+
+$summary$records_already_done_resume
+[1] 0
+
+$summary$records_todo_this_run
+[1] 1903
+
+$summary$records_completed_total
+[1] 1890
+
+$summary$records_failed_schema
+[1] 13
+
+$summary$workers_failed_count
+[1] 0
+
+$summary$finished_at
+[1] "2026-11-08T17:09:25Z"
+
+
+$run_dir
+analysis/p4-output/20261108T161630Z-s12p-gemma-ripetizione-93c36d
+
+[11-08 18:12:20] uscite grezze identiche: 1855 su 1900 generate
+[11-08 18:12:20] liste valide: prima 1890, seconda 1890
+[11-08 18:12:20] verdetto della regola uguale (passa / non passa): 1903 su 1903
+[11-08 18:12:20] motivi uguali: 1902 su 1903
+[11-08 18:12:20] verdetti che cambiano fra i difettosi: 0 su 193; fra i puliti: 0 su 1710
+[11-08 18:12:20] prima esecuzione, senza cascata: presi 155, falsi allarmi 367
+[11-08 18:12:20] seconda esecuzione, senza cascata: presi 155, falsi allarmi 367
