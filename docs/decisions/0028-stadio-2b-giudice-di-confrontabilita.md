@@ -1,12 +1,13 @@
 # ADR-0028: Lo Stadio 2b — il modello legge i due bracci, una regola decide
 
-- **Status:** Proposed (2026-11-08: il cancello di S12p non e' passato, nessun modello prende almeno 130 difetti con al
+- **Status:** Superseded da ADR-0029 (2026-11-09: il PI ha approvato il lettore dello studio, lo Stadio 2b esce dal
+  piano). Prima: Proposed (2026-11-08: il cancello di S12p non e' passato, nessun modello prende almeno 130 difetti con al
   massimo 40 falsi allarmi; finding `docs/findings/2026-11-08-S12p-prova-cieca-stadio2b.md`). Era Accepted (decisione del
   PI, 2026-11-07) con quel cancello
 - **Date:** 2026-11-07
 - **Deciders:** Luca Vedovelli (PI); proposta di Claude dalla valutazione autonoma
 - **Supersedes:** il programma «rilevatore a regole in produzione» (handout 2026-08-21, voce 10, sessioni S10 → S12)
-- **Superseded by:** —
+- **Superseded by:** ADR-0029 (`0029-lettore-dello-studio-tabella-dei-fattori.md`)
 
 ## Il problema
 

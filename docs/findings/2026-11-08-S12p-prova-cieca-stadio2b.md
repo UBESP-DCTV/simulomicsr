@@ -51,6 +51,12 @@ sources:
 
 Appena decidi questi 2 punti, la sessione è chiusa.
 
+> **Chiusura (2026-11-09).** Il PI ha scelto una strada diversa dalle due raccomandate: un lettore per studio che
+> scrive la tabella dei fattori (ADR-0029, spec `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`).
+> Le due decisioni qui sopra sono superate. I 280 difetti non entrano in un riferimento di giudizio: i 1.903 confronti
+> letti servono solo allo sviluppo, e il riferimento del giudizio è la curazione di Expression Atlas. La correzione
+> sostituisce i primi due passi, non uno dei due. La sessione è chiusa.
+
 **Sui tempi di calcolo.** Sul DGX i tre modelli hanno lavorato 30 minuti (Mistral), 29 minuti (Magistral) e 53 minuti (Gemma), con 4 GPU H100 per modello. Il recupero delle risposte non valide ha richiesto 33 minuti, la ripetizione di Gemma altri 53, il prompt nuovo di Mistral 27. Le tre letture automatiche hanno usato 59 agenti, ognuno con circa 150.000 token, per circa mezz'ora in tutto. La diagnosi non ha usato il DGX: ha letto i master su questo computer.
 
 ---

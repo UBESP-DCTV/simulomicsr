@@ -1,8 +1,8 @@
 # Il lettore dello studio e la tabella dei fattori — il disegno (spec)
 
 **Data:** 2026-11-09 · **Sessione:** S12q (la strada dopo la prova cieca S12p) · **Branch:** `p6-tabella-dei-fattori`
-· **Decisione:** ADR-0029, da scrivere dopo l'approvazione del PI (ADR-0028 esce dal piano) · **Stato:** bozza,
-in attesa dell'approvazione del PI · **Evidenza:** `analysis/audit/2026-11-09-lettore-studio/` · **Finding di
+· **Decisione:** ADR-0029 (ADR-0028 esce dal piano) · **Stato:** approvato dal PI il 2026-11-09 · **Piano:**
+`docs/superpowers/plans/2026-11-09-lettore-studio-tabella-dei-fattori-plan.md` · **Evidenza:** `analysis/audit/2026-11-09-lettore-studio/` · **Finding di
 partenza:** `docs/findings/2026-11-08-S12p-prova-cieca-stadio2b.md` (§14, la diagnosi)
 
 Chi scrive il piano di implementazione parte da questo documento. Le scelte marcate **[PI]** le ha fatte il PI
@@ -269,7 +269,8 @@ dell'H5, che contiene l'SRX.
 - **Divisione in tre parti, fissata prima di scrivere il prompt [agente].** I 12 studi che stanno anche fra i
   993 già letti vanno nello **sviluppo**, perché li abbiamo già guardati. Gli altri 117 si dividono con una
   regola deterministica sul numero GSE (da depositare nelle previsioni) in tre parti circa uguali: sviluppo,
-  **giudizio A**, **giudizio B**. In tutto circa 51 studi di sviluppo, 39 e 39 di giudizio.
+  **giudizio A**, **giudizio B**. La regola del piano (resto della divisione per 3 del numero GSE: 0 sviluppo,
+  1 giudizio A, 2 giudizio B) dà 47 studi di sviluppo, 42 di giudizio A e 40 di giudizio B.
 - **Che cosa è chiuso.** Degli studi di giudizio non si guardano fattori, livelli, confronti e uscite del
   modello fino all'apertura. Si possono eseguire prima i passi che usano solo identificativi: scarico dei file,
   lettura dell'XML, legame SRR-GSM, conteggio dei campioni legati. Gli script di questi passi non stampano

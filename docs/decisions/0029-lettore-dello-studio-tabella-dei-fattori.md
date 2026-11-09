@@ -1,0 +1,69 @@
+# ADR-0029: Il lettore dello studio — il modello scrive la tabella dei fattori, i confronti seguono da una definizione
+
+- **Status:** Accepted (disegno approvato dal PI il 2026-11-09), **con cancello**: la misura contro Expression Atlas
+  sui due insiemi di giudizio (spec §5.5) prima della corsa su tutti gli studi. Se il cancello non passa, questo ADR
+  torna `Proposed`
+- **Date:** 2026-11-09
+- **Deciders:** Luca Vedovelli (PI); proposta di Claude dopo la prova cieca S12p e la sua diagnosi
+- **Supersedes:** ADR-0028 (Stadio 2b, il giudice a valle); per gli Stadi 1 e 2, ADR-0020 (Stadio 2 per condizioni)
+  quando il cancello passa
+- **Superseded by:** —
+
+## Il problema
+
+Il 24,9% dei confronti del deliverable (473 su 1.903) non confronta bracci confrontabili. La diagnosi di S12p dice
+dove nasce il difetto: in 240 casi lo Stadio 2 aveva la differenza nei fatti e ha costruito il confronto lo stesso,
+in 139 lo Stadio 1 ha letto la differenza e non l'ha scritta. Un giudice a valle (ADR-0028) non ha passato il suo
+cancello con nessun modello. Il PI rifiuta le pezze e le catene di regole che sostituiscono il modello, e chiede che
+il modello veda quello che gli serve, anche in un passo solo.
+
+## Le forze
+
+- Nessuna soglia di errore accettata: ogni causa si corregge dove nasce.
+- Nessun Claude nella pipeline e nella validazione pubblicata. Pipeline deterministica dopo il modello.
+- Nessun curatore umano disponibile: il riferimento deve essere esterno e già esistente.
+- La tesi dell'articolo: un modello locale mette ordine nei metadati di GEO e trova i confronti confrontabili.
+- I 1.903 confronti del deliverable non sono più ciechi: servono allo sviluppo, non al giudizio.
+
+## Le opzioni
+
+1. **Correggere il prompt dello Stadio 2** (bracci uguali tranne il trattamento, niente tempo zero come controllo).
+   Tocca metà dei difetti. Lo Stadio 2 continua a ricevere fatti in cui manca la differenza per tre difetti su dieci.
+2. **Correggere Stadio 1 e Stadio 2 in fila.** Due cicli di calcolo e di misura, e il confronto resta una scelta del
+   modello caso per caso.
+3. **Tenere il giudice a valle con un modello più grande.** Il cancello di ADR-0028 è fallito con tre modelli, e le
+   istruzioni non vincolano il giudizio.
+4. **Un lettore per studio che scrive la tabella dei fattori (scelta).** Il modello legge il testo dello studio e la
+   tabella dei campioni in una chiamata, e scrive ruoli delle colonne, fattori, livelli, livello di base e
+   assegnazione. Un costruttore deterministico forma i confronti da una definizione sola.
+
+## La decisione
+
+Opzione 4. La definizione: due gruppi dello stesso studio sono un confronto se sono uguali in tutti i fattori tranne
+uno, e in quel fattore uno dei due è al livello di base. «Uguali» vale anche per i soggetti (donatore, sesso, età,
+passaggio), confrontati come insiemi. Il modello non sceglie confronti e non scrive identificativi di ontologia. Il
+disegno completo è `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`.
+
+**Cancello.** Riferimento esterno: la curazione di Expression Atlas su 129 studi del bacino, divisi in sviluppo (47),
+giudizio A (42) e giudizio B (40). Misure: gruppi uguali a quelli dei curatori, confronti dei curatori ritrovati,
+confronti non elencati giudicati con i fattori dei curatori. Termine di paragone: le stesse misure sul master S14
+dello Stadio 2. Due aperture (A, poi B) prima della corsa su tutti gli studi.
+
+## Le conseguenze
+
+- Lo Stadio 2b (ADR-0028) esce dal piano. Il suo codice (`R/stage2b-*.R`) resta: `.s2b_norm_testo()` e il percorso
+  di lancio servono al lettore.
+- Gli Stadi 1 e 2 di oggi restano come termine di paragone. I master S14 e il deliverable v16 non si toccano.
+- Restano Stadio 0, Stadio 3, Stadio 4 (meta-analisi a effetti casuali), dizionari, strumenti di audit.
+- Le due decisioni aperte di S12p (i 280 difetti nel riferimento, dove correggere per primo) sono superate: i
+  1.903 confronti letti diventano materiale di sviluppo, e la correzione è la sostituzione dei due stadi.
+- Servono i testi GEO dello studio per tutti i 24.393 studi (oggi 993).
+- Rischio principale: gli studi molto grandi rispetto al contesto del modello. Si misura, non si taglia.
+- Una prova piccola e da buttare precede ogni codice del lettore nel pacchetto (spec §5.6).
+
+## Link
+
+- Spec: `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`
+- Piano: `docs/superpowers/plans/2026-11-09-lettore-studio-tabella-dei-fattori-plan.md` (+ `-HUMANE.md`)
+- Finding di partenza: `docs/findings/2026-11-08-S12p-prova-cieca-stadio2b.md` (§14)
+- Evidenza esplorativa: `analysis/audit/2026-11-09-lettore-studio/`
