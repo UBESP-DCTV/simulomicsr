@@ -34,10 +34,12 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 |---|---|---|---|---|
 | **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **chiusa il 2026-11-08** (4 decisioni + campioni cancellati da GEO tolti in S13; campi GEO nell'ingresso) | carta + codice della regola (TDD) | ~4 h | — |
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco — **fatta il 2026-11-08: nessun modello passa** (presi 186/177/155 su 193, falsi allarmi 965/887/364 su 1.710); lettura dei falsi allarmi: 318 confronti «puliti» non confrontabili per i lettori (280 confermati); prompt v2 e codice da solo non bastano; **diagnosi: metà dei 473 difetti nasce nella scelta del confronto dello Stadio 2, tre su dieci nello Stadio 1** | DGX + 1 sessione | ~3 h + 1 notte | **S12** |
-| **S12q** | La strada scelta dal PI dopo S12p e la diagnosi (raccomandata: correzione a monte nello Stadio 2, confronti con bracci uguali tranne il trattamento e senza tempo zero come controllo, misurata contando difetti tolti e puliti persi) | disegno + prova | da definire | **S12p** |
+| **S12q** | La strada dopo S12p: **il lettore dello studio e la tabella dei fattori** (ADR-0029). Disegno approvato dal PI il 2026-11-09, piano scritto. **Chiusa quando il PI approva il piano** | disegno + piano | fatta | **S12p** |
+| **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. STOP e decisione del PI | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
+| **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
-| **S13** | Applicare tutto sui master S14: Stadio 2b su tutti i candidati, chiave, varianza, ruoli, doppi, re-cluster, re-pool | calcolo | ~8 h | **S12p, S12c, S12d** |
+| **S13** | Piano 3 (da scrivere dopo il cancello): corsa del lettore su tutti gli studi, chiave, varianza, ruoli, doppi, re-cluster, re-pool, deliverable v17 | calcolo | da definire | **S12s, S12c, S12d** |
 | **S15** | Rilettura cieca delle meta-analisi nuove | lettura | 1 sessione | **S13** |
 | **S7c** | Seconda validazione esterna con nullo + firme di consenso | misura | ~6 h | **S13** |
 | **S7b** | Meta-analisi pubblicate sugli stessi GSE (supplementare) | misura | ~3 h | **S13** |
@@ -45,8 +47,11 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S17** | Methods e limiti | scrittura | ~4 h | tutto |
 
 **Cancellate:** «S12 — il rilevatore in produzione» (handout di agosto) e «S14 seconda parte» (assorbita in
-S13: il re-cluster si fa una volta sola, sui master S14). **Cancelli veri:** S12p←S12, S13←S12p+S12c+S12d,
-S15←S13, S7c←S13.
+S13: il re-cluster si fa una volta sola). **Cancelli veri:** S12r←S12q, S12s←S12r (decisione del PI),
+S13←S12s (cancello su Atlas)+S12c+S12d, S15←S13, S7c←S13.
+
+**Dal 2026-11-09 (ADR-0029):** lo Stadio 2b esce dal piano. Dove questo handout scrive «Stadio 2b» nelle sezioni
+S13, S16 e S17, leggi «il lettore dello studio». Branch di lavoro: `p6-tabella-dei-fattori`.
 
 **Se S12p fallisce** (nessun modello prende ≥130/193 con ≤40 falsi allarmi su 1.710): STOP, ADR-0028 torna
 `Proposed`, sessione di decisione del PI fra (i) regole come in agosto, (ii) fine-tuning sul gold del progetto
@@ -190,24 +195,30 @@ Il riferimento si apre solo dopo che gli output sono su disco con SHA-256.
 
 # S12q — La strada dopo S12p
 
-> **Ricevuto da S12p (2026-11-08), da leggere per primo.** (1) Il riferimento: due letture automatiche indipendenti
-> (kappa 0,94) trovano 280 confronti non confrontabili che il riferimento di S11 da' per puliti
-> (`analysis/audit/2026-11-08-S12p-prova/94-difetti-finali.csv`); se entrano nel riferimento lo decide il PI nel
-> riassunto di S12p. Il PI non legge a mano: ogni conferma la fa l'agente. (2) La strada: la decide il PI nel riassunto
-> di S12p. La raccomandazione **cambiata dopo la diagnosi** (finding §14): correggere dove nasce metà dei difetti, cioè
-> lo Stadio 2 quando sceglie il confronto (il suo prompt chiede condizioni identiche dentro un gruppo, e il modello unisce
-> condizioni diverse solo in 12 difetti su 473 e 45 puliti su 1.430; per un confronto chiede solo un controllo riconoscibile, e la RULE 2 rende il tempo
-> zero un controllo). Alternative: lo Stadio 1 (tre difetti su dieci, letti nel titolo e non scritti); le due in fila.
-> Il PI ha rifiutato le pezze (prompt v2 dello Stadio 2b, classificazione delle chiavi per codice): niente catene di
-> regole che sostituiscono il modello. La misura conta difetti tolti e confronti puliti persi: i fatti dello Stadio 1
-> differiscono anche in 499 puliti su 1.430. I 1.903 del deliverable non sono piu' ciechi. (4) I master S14 hanno gli
-> stessi gruppi e confronti di A3 in 993 studi su 993: senza un cambio della catena S13 riporta i 473 difetti. (3) Claude non entra nella pipeline: i 280 servono alle misure; togliere confronti dal
-> deliverable spetta a un passo deterministico o al modello del progetto (S13).
+> **Chiusura.** Il PI ha approvato il disegno il 2026-11-09 («approvato»). Documenti: spec
+> `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`, ADR-0029, piano
+> `docs/superpowers/plans/2026-11-09-lettore-studio-tabella-dei-fattori-plan.md` con la versione leggibile
+> `…-HUMANE.md`. Le due decisioni aperte di S12p (i 280 difetti nel riferimento, dove correggere per primo) sono
+> superate. La sessione è chiusa quando il PI approva il piano e sceglie come eseguirlo.
+
+# S12r — Piano 1: fondamenta e prova
+
+> **Ricevuto da S12q, da leggere per primo.** (1) Niente è stato depositato: la divisione degli studi e le
+> previsioni sono il Task 1 del piano, e si committano prima di ogni calcolo. (2) Gli 82 studi di giudizio sono
+> chiusi: nessun agente e nessun subagente ne legge fattori, livelli, confronti o uscite del modello. (3)
+> `analysis/audit/2026-11-09-lettore-studio/20-atlas-studi-nostri.txt` contiene i nomi dei tipi di fattore di Atlas
+> per tutti i 129 studi: è una perdita già dichiarata nelle previsioni, non leggere quei campi. (4) Le dieci scelte
+> dell'agente elencate nel file HUMANE valgono se il PI non le ha rifiutate. (5) L'API di Gemma è andata due volte
+> in timeout: riprova nel Task 11. (6) Classe di disaccordo attesa: i curatori scrivono due agenti come un livello
+> solo («albuterol and dexamethasone»), il lettore come due fattori. Si conta a parte e si porta al PI.
+
+Il piano comanda. Il Task 11 chiude con STOP: il Piano 2 si scrive dopo la decisione del PI.
 
 ### Prompt
 ```
-sessione simulomicsr S12q, leggi prima la skill di progetto.
-Handout: docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md, sezione S12q. Finding di S12p e decisioni del PI.
+sessione simulomicsr S12r, leggi prima la skill di progetto.
+Piano: docs/superpowers/plans/2026-11-09-lettore-studio-tabella-dei-fattori-plan.md (Parte B, Piano 1).
+Spec: docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. Branch p6-tabella-dei-fattori.
 ```
 
 ---

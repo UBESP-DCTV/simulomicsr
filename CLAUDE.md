@@ -14,9 +14,9 @@
 
 ---
 
-## 1. Dove siamo (2026-11-08)
+## 1. Dove siamo (2026-11-09)
 
-**Branch** `review-scientific-consistency-2026-06-10` · **master invariato** ·
+**Branch** `p6-tabella-dei-fattori` (dal 2026-11-09, nato da `review-scientific-consistency-2026-06-10`) · **master invariato** ·
 **mai `git push`** (lo fa l'utente).
 
 **Deliverable corrente — A3 v16, 194 meta-analisi:**
@@ -61,8 +61,18 @@ master S14, Stadio 4, gold, verdetti e strumenti di audit; **si sostituisce il g
 con lo **Stadio 2b**: il modello legge il testo grezzo dei due bracci e compila una lista di controllo, una
 regola deterministica decide. Cancello: la prova cieca di S12p (≥130/193 presi, ≤40/1.710 accusati). Il
 modello non cambia finché S12p non lo misura. Finding: `docs/findings/2026-11-07-valutazione-autonoma-del-progetto.md`.
-**S12p (2026-11-08): il cancello non è passato; ADR-0028 torna `Proposed`; non si va a S13.** Decisioni aperte del PI
-(riassunto del finding S12p): i 280 difetti nel riferimento? dove correggere per primo (raccomandato dopo la diagnosi: lo Stadio 2 quando sceglie il confronto; il PI rifiuta pezze e catene di regole)?
+**S12p (2026-11-08): il cancello non è passato; non si va a S13.**
+
+**Decisione del PI (2026-11-09), ADR-0029: il lettore dello studio.** Un solo passo del modello per studio sostituisce
+gli Stadi 1 e 2: legge il testo dello studio e la tabella dei campioni e scrive la **tabella dei fattori** (ruoli delle
+colonne, fattori, livelli, livello di base, assegnazione). Un costruttore deterministico forma i confronti da una
+definizione sola: due gruppi uguali in tutti i fattori tranne uno, con uno dei due al livello di base; i soggetti
+(donatore, sesso, età, passaggio) si confrontano come insiemi. Lo Stadio 2b (ADR-0028) esce dal piano; le due
+decisioni aperte di S12p sono superate. **Cancello:** la curazione di Expression Atlas su 129 studi del bacino
+(47 sviluppo, 42 giudizio A, 40 giudizio B; **gli 82 studi di giudizio sono chiusi**: niente fattori, confronti o
+uscite del modello fino all'apertura), con le stesse misure sul master S14 come termine di paragone. Spec
+`docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`; piano in quattro parti
+`docs/superpowers/plans/2026-11-09-lettore-studio-tabella-dei-fattori-plan.md` (+ `-HUMANE.md`).
 
 **Decisioni del PI che restano valide, una riga ciascuna:** gate a 3 studi · S13 corregge la varianza del
 controllo condiviso (T1) e assegna i ruoli per nome · studi doppi tolti con una regola sulle conte · LINCS dà
@@ -72,8 +82,10 @@ soglia di errore accettata**: ogni causa si corregge · i campioni cancellati da
 
 **Che cosa fare adesso:** **`docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md`** comanda
 l'ordine: **S12** (Stadio 2b, il disegno: **chiusa** il 2026-11-08) → **S12p** (la prova: fatta il 2026-11-08,
-nessun modello passa) → **S12q** (la strada scelta dal PI dopo S12p) → S12c+S12b, S12d → **S13** (tutto sui master S14, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16,
-S17. L'handout del 2026-08-21 resta per le sessioni chiuse e per i prompt di S12b, S12c, S12d, S16, S17.
+nessun modello passa) → **S12q** (il lettore dello studio: disegno approvato, piano scritto il 2026-11-09, in attesa
+dell'approvazione del piano) → **S12r** (Piano 1: costruttore dei confronti, misure contro Atlas, misura di oggi, prova
+da buttare sui 47 studi di sviluppo; STOP) → **S12s** (Piano 2: il lettore nel pacchetto e il cancello; STOP) →
+S12c+S12b, S12d → **S13** (corsa intera, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16, S17. L'handout del 2026-08-21 resta per le sessioni chiuse e per i prompt di S12b, S12c, S12d, S16, S17.
 Il deliverable su disco resta A3 v16 fino a S13.
 
 **La regola che governa tutto (RED ALERT 2026-07-24, `docs/RED_ALERT.md`):** per
@@ -329,7 +341,7 @@ d'infrastruttura salvo impatto biologico diretto.
 - **ADR chiave** (`docs/decisions/`): 0006 positioning · 0008 sampling · 0016
   dream/gene-symbol · 0017 Layer B · 0019 metadati ARCHS4 v2 · 0020 Stadio 2 per
   condizioni · 0021 metrica di consistenza · 0022 ramo `rem_group` · 0023/0024
-  overlay e fallback nomi · 0025 record di gruppo dal contrasto · **0028** Stadio 2b, il modello legge e la regola decide · **0026** ramo
+  overlay e fallback nomi · 0025 record di gruppo dal contrasto · 0028 Stadio 2b (superato da 0029) · **0029** il lettore dello studio e la tabella dei fattori · **0026** ramo
   mega fuori dal deliverable — ⚠️ il file sta solo sul branch
   `mega-recovery-2026-07-27` (worktree `/home/user/simulomicsr-mega`), non in
   questo branch: da annotare · 0027 selezione dei case study.
