@@ -412,6 +412,8 @@ precedente. Non entra come seconda fonte.
 - `container-env.txt` delle corse contiene il token di Hugging Face. Non è committato e non è in nessun file del
   branch. Il valore è comparso una volta nell'uscita di un comando della sessione.
 
+**Le decisioni tecniche dell'agente.** Durante l'esecuzione l'agente ha preso 65 decisioni che il piano non fissava. Stanno tutte, col motivo e col costo se sono sbagliate, in `analysis/audit/2026-11-09-lettore-studio/68-decisioni-e-minori.md`, con gli 8 difetti minori che la revisione finale ha rinviato.
+
 # 11. Da dove vengono i numeri del riassunto
 
 | frase del riassunto | file e riga | valore letto |
