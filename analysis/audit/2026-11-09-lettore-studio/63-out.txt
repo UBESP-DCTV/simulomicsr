@@ -1,0 +1,30 @@
+63-lancia.R  PROVA DA BUTTARE
+inizio 2026-11-10T12:11:12Z, HEAD dcf71f6
+file committati: prompt b405d837f2bde284ada54729650c76f96d1e63be2c87b7c3f105d6a53fae8e7d, schema 733c5039b168501c14cab0bb46e6a29f41292773dfc951b5c479b10742a7fb6b, viste 2382a9ef97cf41d4f487078bd45e2d4c017dda104e8eb002f36881768eb6d86e
+ingresso analysis/input/S12r-lettore-v0-ingresso.jsonl: 47 studi, SHA-256 867f9787295b1df129bd6695aad908e5f7b9b16627691e8972c9301570296247
+mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+s12r-lettore-v0-corsa1: bundle 20261110T121115Z-s12r-lettore-v0-corsa1-9dbb50, prompt e schema uguali ai file committati, 47 testi uguali alle viste; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":16384,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.9,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+s12r-lettore-v0-corsa1: inviato, slurm 476592, run_id 20261110T121115Z-s12r-lettore-v0-corsa1-9dbb50
+s12r-lettore-v0-corsa1: PRIMO INVIO FALLITO. slurm 476592 FAILED (ExitCode 2:0, 1 min 30 s, poddgx02), 0 studi su 47 generati, 4 worker su 4 fermi all'avvio del motore. Causa letta in slurm-476592.out: "To serve at least one request with the models's max seq len (65536), (10.0 GiB KV cache is needed, which is larger than the available KV cache memory (8.36 GiB) ... estimated maximum model length is 54768". Pesi del modello 44,76 GiB, grafi CUDA stimati 2,93 GiB, gpu_memory_utilization 0.9. Le corse Mistral di S12p (max_model_len 32768) avevano la stessa cache KV: 8,36 GiB. Correzione: gpu_memory_utilization 0.95 in generation.json (max_model_len e max_tokens del piano restano). Il job fallito resta in jobs/s12r-lettore-v0-corsa1-fallito-476592.rds.
+inizio 2026-11-10T12:17:11Z, HEAD dcf71f6
+file committati: prompt b405d837f2bde284ada54729650c76f96d1e63be2c87b7c3f105d6a53fae8e7d, schema 733c5039b168501c14cab0bb46e6a29f41292773dfc951b5c479b10742a7fb6b, viste 2382a9ef97cf41d4f487078bd45e2d4c017dda104e8eb002f36881768eb6d86e
+ingresso analysis/input/S12r-lettore-v0-ingresso.jsonl: 47 studi, SHA-256 867f9787295b1df129bd6695aad908e5f7b9b16627691e8972c9301570296247
+mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+s12r-lettore-v0-corsa1: bundle 20261110T121714Z-s12r-lettore-v0-corsa1-a01693, prompt e schema uguali ai file committati, 47 testi uguali alle viste; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":16384,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+s12r-lettore-v0-corsa1: inviato, slurm 476642, run_id 20261110T121714Z-s12r-lettore-v0-corsa1-a01693
+corsa1: slurm 476642 COMPLETED, durata 00:12:19, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+corsa1: studi 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 1825 massimo 30952; token dell'uscita mediana 957 massimo 13324
+corsa1: [worker 3] generazione completata in 110.5s (11 record)
+corsa1: [worker 0] generazione completata in 141.0s (12 record)
+corsa1: [worker 2] generazione completata in 220.2s (12 record)
+corsa1: [worker 1] generazione completata in 646.9s (12 record)
+s12r-lettore-v0-corsa2: bundle 20261110T123133Z-s12r-lettore-v0-corsa2-8dbc2b, prompt e schema uguali ai file committati, 47 testi uguali alle viste; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":16384,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+s12r-lettore-v0-corsa2: inviato, slurm 476755, run_id 20261110T123133Z-s12r-lettore-v0-corsa2-8dbc2b
+corsa2: slurm 476755 COMPLETED, durata 00:12:22, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+corsa2: studi 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 1825 massimo 30952; token dell'uscita mediana 957 massimo 13324
+corsa2: [worker 3] generazione completata in 110.8s (11 record)
+corsa2: [worker 0] generazione completata in 141.0s (12 record)
+corsa2: [worker 2] generazione completata in 220.3s (12 record)
+corsa2: [worker 1] generazione completata in 646.9s (12 record)
+uscite congelate: 22 file in 63-uscite-sha256.txt (cartelle: analysis/p4-output/S12r-lettore-v0, analysis/p4-output/20261110T121714Z-s12r-lettore-v0-corsa1-a01693, analysis/p4-output/20261110T123133Z-s12r-lettore-v0-corsa2-8dbc2b)
+LANCIO FINITO 2026-11-10T12:45:53Z

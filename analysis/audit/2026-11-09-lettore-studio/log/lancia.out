@@ -1,0 +1,75 @@
+
+NOTE: Dependency discovery took 14 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 440 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+[11-10 13:11:12] inizio 2026-11-10T12:11:12Z, HEAD dcf71f6
+[11-10 13:11:12] file committati: prompt b405d837f2bde284ada54729650c76f96d1e63be2c87b7c3f105d6a53fae8e7d, schema 733c5039b168501c14cab0bb46e6a29f41292773dfc951b5c479b10742a7fb6b, viste 2382a9ef97cf41d4f487078bd45e2d4c017dda104e8eb002f36881768eb6d86e
+[11-10 13:11:12] ingresso analysis/input/S12r-lettore-v0-ingresso.jsonl: 47 studi, SHA-256 867f9787295b1df129bd6695aad908e5f7b9b16627691e8972c9301570296247
+[11-10 13:11:15] mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+[11-10 13:11:15] s12r-lettore-v0-corsa1: bundle 20261110T121115Z-s12r-lettore-v0-corsa1-9dbb50, prompt e schema uguali ai file committati, 47 testi uguali alle viste; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":16384,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.9,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+✔ Submitted: run_id=20261110T121115Z-s12r-lettore-v0-corsa1-9dbb50 slurm=476592
+[11-10 13:11:19] s12r-lettore-v0-corsa1: inviato, slurm 476592, run_id 20261110T121115Z-s12r-lettore-v0-corsa1-9dbb50
+[11-10 13:11:20] job: RUNNING 1
+[11-10 13:13:22] FERMO: job non completati: 476592 (FAILED)
+Error: job non completati: 476592 (FAILED)
+Execution halted
+
+NOTE: Dependency discovery took 15 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 440 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+[11-10 13:17:11] inizio 2026-11-10T12:17:11Z, HEAD dcf71f6
+[11-10 13:17:11] file committati: prompt b405d837f2bde284ada54729650c76f96d1e63be2c87b7c3f105d6a53fae8e7d, schema 733c5039b168501c14cab0bb46e6a29f41292773dfc951b5c479b10742a7fb6b, viste 2382a9ef97cf41d4f487078bd45e2d4c017dda104e8eb002f36881768eb6d86e
+[11-10 13:17:11] ingresso analysis/input/S12r-lettore-v0-ingresso.jsonl: 47 studi, SHA-256 867f9787295b1df129bd6695aad908e5f7b9b16627691e8972c9301570296247
+[11-10 13:17:14] mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+[11-10 13:17:14] s12r-lettore-v0-corsa1: bundle 20261110T121714Z-s12r-lettore-v0-corsa1-a01693, prompt e schema uguali ai file committati, 47 testi uguali alle viste; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":16384,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+✔ Submitted: run_id=20261110T121714Z-s12r-lettore-v0-corsa1-a01693 slurm=476642
+[11-10 13:17:18] s12r-lettore-v0-corsa1: inviato, slurm 476642, run_id 20261110T121714Z-s12r-lettore-v0-corsa1-a01693
+[11-10 13:17:19] job: RUNNING 1
+[11-10 13:19:21] job: RUNNING 1
+[11-10 13:21:22] job: RUNNING 1
+[11-10 13:23:24] job: RUNNING 1
+[11-10 13:25:26] job: RUNNING 1
+[11-10 13:27:28] job: RUNNING 1
+[11-10 13:29:29] job: RUNNING 1
+[11-10 13:31:31] slurm 476642: COMPLETED 00:12:19 poddgx02
+[11-10 13:31:32] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261110T121714Z-s12r-lettore-v0-corsa1-a01693
+[11-10 13:31:32] corsa1: slurm 476642 COMPLETED, durata 00:12:19, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+[11-10 13:31:32] corsa1: studi 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 1825 massimo 30952; token dell'uscita mediana 957 massimo 13324
+[11-10 13:31:32] corsa1: [worker 3] generazione completata in 110.5s (11 record)
+[11-10 13:31:32] corsa1: [worker 0] generazione completata in 141.0s (12 record)
+[11-10 13:31:32] corsa1: [worker 2] generazione completata in 220.2s (12 record)
+[11-10 13:31:32] corsa1: [worker 1] generazione completata in 646.9s (12 record)
+[11-10 13:31:33] s12r-lettore-v0-corsa2: bundle 20261110T123133Z-s12r-lettore-v0-corsa2-8dbc2b, prompt e schema uguali ai file committati, 47 testi uguali alle viste; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":16384,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+✔ Submitted: run_id=20261110T123133Z-s12r-lettore-v0-corsa2-8dbc2b slurm=476755
+[11-10 13:31:38] s12r-lettore-v0-corsa2: inviato, slurm 476755, run_id 20261110T123133Z-s12r-lettore-v0-corsa2-8dbc2b
+[11-10 13:31:40] job: RUNNING 1
+[11-10 13:33:41] job: RUNNING 1
+[11-10 13:35:43] job: RUNNING 1
+[11-10 13:37:45] job: RUNNING 1
+[11-10 13:39:47] job: RUNNING 1
+[11-10 13:41:49] job: RUNNING 1
+[11-10 13:43:51] job: RUNNING 1
+[11-10 13:45:52] slurm 476755: COMPLETED 00:12:22 poddgx02
+[11-10 13:45:53] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261110T123133Z-s12r-lettore-v0-corsa2-8dbc2b
+[11-10 13:45:53] corsa2: slurm 476755 COMPLETED, durata 00:12:22, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+[11-10 13:45:53] corsa2: studi 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 1825 massimo 30952; token dell'uscita mediana 957 massimo 13324
+[11-10 13:45:53] corsa2: [worker 3] generazione completata in 110.8s (11 record)
+[11-10 13:45:53] corsa2: [worker 0] generazione completata in 141.0s (12 record)
+[11-10 13:45:53] corsa2: [worker 2] generazione completata in 220.3s (12 record)
+[11-10 13:45:53] corsa2: [worker 1] generazione completata in 646.9s (12 record)
+[11-10 13:45:53] uscite congelate: 22 file in 63-uscite-sha256.txt (cartelle: analysis/p4-output/S12r-lettore-v0, analysis/p4-output/20261110T121714Z-s12r-lettore-v0-corsa1-a01693, analysis/p4-output/20261110T123133Z-s12r-lettore-v0-corsa2-8dbc2b)
+[11-10 13:45:53] LANCIO FINITO 2026-11-10T12:45:53Z
