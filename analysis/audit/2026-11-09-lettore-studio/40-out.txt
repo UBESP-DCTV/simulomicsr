@@ -1,0 +1,115 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 440 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+studi 47 
+GSM nei gruppi di Atlas: 1841  nell'universo (nel bacino): 1798  run dei gruppi senza GSM: 0 
+
+== K2: Atlas contro Atlas ==
+partizione identica: 47 su 47 
+confronti che rispettano la definizione: 93  ritrovati uguali: 93  non elencati: 1  di cui con un braccio fuori dall'universo: 1 
+K2 passato
+
+== La pipeline di oggi ==
+record nel master S14: 24393 
+studi di sviluppo con un record: 47 su 47 
+
+== Variante principale (almeno 2 campioni per braccio) ==
+(a) classi della partizione di oggi contro Atlas:
+
+  identica incrociata   piu_fine 
+        14          6         27 
+campioni dell'universo: 1798  comuni: 1657  solo in Atlas (oggi non li ha in un gruppo): 141 
+gruppi nell'universo: oggi 411  Atlas 172 
+(b) classi dei confronti di Atlas:
+
+non_formabile   piu_fattori      rispetta 
+            1            29            93 
+    ritrovati, fra quelli che rispettano la definizione:
+
+           no        uguale verso_opposto 
+           73            19             1 
+    studi con almeno un confronto di Atlas ritrovato: 13 su 41 che ne hanno
+(c) confronti di oggi: 118  non elencati da Atlas: 91 
+
+     braccio_misto           coerente        fuori_atlas nessuna_differenza 
+                 5                 56                 12                  4 
+       piu_fattori 
+                14 
+misure:
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           47 0.29787  0.17021 0.42553
+     b_confronti_ritrovati         19           93 0.20430  0.09375 0.34884
+     c_errori_non_elencati         19           79 0.24051  0.10619 0.39326
+             verso_opposto          1           93 0.01075  0.00000 0.04000
+         atlas_piu_fattori         29          123 0.23577  0.09612 0.38212
+ atlas_piu_fattori_formati          7           29 0.24138  0.00000 0.56250
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02778
+               ari_mediana         NA           47 0.77826  0.66437 0.86348
+
+== Variante secondaria (tutti i confronti di oggi) ==
+(a) classi della partizione di oggi contro Atlas:
+
+  identica incrociata   piu_fine 
+        14          6         27 
+campioni dell'universo: 1798  comuni: 1657  solo in Atlas (oggi non li ha in un gruppo): 141 
+gruppi nell'universo: oggi 411  Atlas 172 
+(b) classi dei confronti di Atlas:
+
+non_formabile   piu_fattori      rispetta 
+            1            29            93 
+    ritrovati, fra quelli che rispettano la definizione:
+
+           no        uguale verso_opposto 
+           73            19             1 
+    studi con almeno un confronto di Atlas ritrovato: 13 su 41 che ne hanno
+(c) confronti di oggi: 264  non elencati da Atlas: 237 
+
+     braccio_misto           coerente        fuori_atlas nessuna_differenza 
+                 7                144                 33                 22 
+       piu_fattori 
+                31 
+misure:
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           47 0.29787  0.17021 0.42553
+     b_confronti_ritrovati         19           93 0.20430  0.09375 0.34884
+     c_errori_non_elencati         38          204 0.18627  0.07441 0.36457
+             verso_opposto          1           93 0.01075  0.00000 0.04000
+         atlas_piu_fattori         29          123 0.23577  0.09612 0.38212
+ atlas_piu_fattori_formati          7           29 0.24138  0.00000 0.56250
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02778
+               ari_mediana         NA           47 0.77826  0.66437 0.86348
+
+== Sensibilità: fattori che i curatori non scrivono per un braccio ==
+confronti di Atlas con almeno un fattore non scritto in un braccio: 12 su 123 
+  di questi, classe con la regola usata:
+
+piu_fattori    rispetta 
+          1          11 
+  con la lettura stretta (non scritto = differenza): da `rispetta` a `piu_fattori`: 11 ; da `nessuna_differenza` a `rispetta`: 0 
+  ritrovati oggi fra i `rispetta` con un fattore non scritto: 1 su 11 
+
+== Confronti di Atlas con più di un fattore che cambia: 29 in 8 studi ==
+   studio                                        fattori Freq
+ GSE52194                  clinical information, disease    3
+ GSE69597 clinical information, disease, disease staging    6
+ GSE56691                           compound, dose, time    3
+ GSE65335                     compound, growth condition    1
+ GSE66207                       disease, disease staging    3
+ GSE56787                              disease, genotype    3
+ GSE57945                             disease, histology    5
+ GSE60340                           phenotype, treatment    5
+
+== Previsioni (variante principale; bootstrap sugli studi, B = 2000 , seme 20261109 ) ==
+P1  b_confronti_ritrovati: 19/93 = 20.4% (IC95 9.4-34.9%)  atteso 35%, rilevanza 20-50%  ->  indeterminata
+P2  a_gruppi_identici: 14/47 = 29.8% (IC95 17.0-42.6%)  atteso 30%, rilevanza 15-45%  ->  confermata
+P8  atlas_piu_fattori: 29/123 = 23.6% (IC95 9.6-38.2%)  atteso 10%, rilevanza 5-20%  ->  indeterminata
+K3 passato: la misura di oggi copre 47 studi su 47
+FINITO

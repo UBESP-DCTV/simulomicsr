@@ -12,3 +12,20 @@ fatte durante la discussione con il PI, **senza previsioni depositate**: servono
 
 Non salvati qui: i 129 file XML di Atlas (si riscaricano con `21-atlas-conta.py`), l'elenco degli esperimenti
 di Atlas, i file di CREEDS (0 studi in comune con i nostri: sono microarray).
+
+## S12r — Piano 1 del lettore dello studio (dal 2026-11-10)
+
+Da qui in poi le misure hanno cancelli e previsioni depositati prima del calcolo (`00-previsioni.md`).
+
+| file | che cosa |
+|---|---|
+| `00-previsioni.md` | cancelli K1-K5 e previsioni P1-P8, depositati prima di ogni calcolo |
+| `30-divisione.R`, `30-divisione.tsv` | i 129 studi divisi in 47 di sviluppo, 42 di giudizio A, 40 di giudizio B (**gli 82 di giudizio sono chiusi**) |
+| `31-scarica-atlas.py`, `31-manifesto-atlas.tsv` | scarico congelato dei file di Expression Atlas (configurazione per 129 studi, SDRF solo per i 47 di sviluppo) in `analysis/input/atlas-2026-11-09/` |
+| `32-scarica-ena.py`, `32-manifesto-ena.tsv` | scarico congelato dei rapporti di ENA (run → campione) in `analysis/input/ena-2026-11-09/` |
+| `33-legame.R`, `33-legame.tsv`, `33-out.txt` | il legame run (SRR) → campione (GSM) da due fonti, ENA e il campo `relation` di ARCHS4: cancello K1 |
+| `aiuti-misura.R` | Atlas e universo per i 47 studi di sviluppo, giudizio delle previsioni: lo usano la misura di oggi e la misura del lettore |
+| `40-misura-oggi.R`, `40-out.txt` | la pipeline di oggi (master S14 dello Stadio 2) contro Atlas sui 47 studi di sviluppo: cancelli K2 e K3, previsioni P1, P2, P8 |
+| `40-per-studio-oggi.csv`, `40-per-studio-oggi-secondaria.csv` | una riga per studio: variante principale (almeno 2 campioni per braccio) e secondaria (tutti i confronti) |
+| `40-misure-oggi.csv` | le misure con l'intervallo al 95% (bootstrap sugli studi, B = 2.000, seme 20261109) |
+| `40-confronti-atlas-oggi.csv`, `40-non-elencati-oggi.csv` | un confronto per riga: i confronti di Atlas con classe ed esito, i confronti di oggi che Atlas non elenca con il giudizio |
