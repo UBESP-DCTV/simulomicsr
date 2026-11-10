@@ -36,7 +36,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco — **fatta il 2026-11-08: nessun modello passa** (presi 186/177/155 su 193, falsi allarmi 965/887/364 su 1.710); lettura dei falsi allarmi: 318 confronti «puliti» non confrontabili per i lettori (280 confermati); prompt v2 e codice da solo non bastano; **diagnosi: metà dei 473 difetti nasce nella scelta del confronto dello Stadio 2, tre su dieci nello Stadio 1** | DGX + 1 sessione | ~3 h + 1 notte | **S12** |
 | **S12q** | La strada dopo S12p: **il lettore dello studio e la tabella dei fattori** (ADR-0029). Disegno approvato dal PI il 2026-11-09, piano approvato il 2026-11-10. **Chiusa il 2026-11-10** | disegno + piano | fatta | **S12p** |
 | **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. **Fatta il 2026-11-10: i 5 cancelli passano, la regola di esito non è soddisfatta** (gruppi identici 14/47 per il lettore e per oggi; confronti ritrovati 10 contro 19 su 93; 24 studi non chiusi, 18 per la forma delle voci). **Chiusa il 2026-11-10** con due decisioni del PI: prova ripetuta, tempo zero fuori dal riferimento | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
-| **S12r2** | La prova ripetuta sugli stessi 47 studi di sviluppo: schema e prompt corretti, Mistral e uno o due modelli più grandi, riferimento senza il tempo zero come controllo, previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2 | carta + codice (TDD) + DGX breve | ~1-2 sessioni | **S12r** |
+| **S12r2** | La prova ripetuta sugli stessi 47 studi di sviluppo: schema e prompt corretti, Mistral e uno o due modelli più grandi, riferimento senza il tempo zero come controllo, previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-10: la regola di esito dà no per i tre modelli; aspetta tre decisioni del PI** | carta + codice (TDD) + DGX breve | ~1-2 sessioni | **S12r** |
 | **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r2** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
@@ -273,6 +273,32 @@ Spec: docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-desig
 > difetti minori in `analysis/audit/2026-11-09-lettore-studio/68-decisioni-e-minori.md` (il conto degli «identica»
 > con campioni di Atlas omessi serve per il cancello). (6) `container-env.txt` delle corse porta il token di
 > Hugging Face: non stamparlo e non committarlo.
+
+> **Esito (2026-11-10), finding `docs/findings/2026-11-10-S12r2-prova-ripetuta-lettore-studio.md`.** Cancelli K1-K5
+> passati (K4 per M, M0, G1). Lettura principale (97 confronti): pipeline di oggi 14/47 gruppi identici e 13/97
+> confronti ritrovati; **Mistral-Small 3.2 con lo schema v1 31/47 e 50/97** (+38,1 punti, IC95 +19,0, +58,2), errori
+> fra i non elencati 0/4, due corse identiche al carattere; senza `repetition_penalty` 50/97; Mistral-Small-4-119B
+> 32/97 e 25/97 nelle due corse, identiche in 4 studi su 47; Qwen3.5-122B non parte in due tentativi: non misurato.
+> **13 studi non chiusi per Mistral-Small 3.2** (previsione L1 smentita: soglia 7). 63 disaccordi letti tutti: forma
+> 16, schema o vista con rimedio non misurato 30, lettura del modello 5, curatori 12. **Regola di esito: no per i tre
+> modelli** (Mistral-Small 3.2: tre condizioni su quattro; la quarta è no con la lettura severa, sì alla lettera).
+> **La sessione non è chiusa: aspetta tre decisioni del PI.** (1) Piano 2 adesso, oppure prima una terza prova
+> piccola sugli stessi 47 studi con lo schema generato per ogni studio a elenco chiuso (raccomandata la terza prova);
+> (2) quale modello (raccomandato Mistral-Small 3.2); (3) Qwen3.5-122B si riprova con 8 GPU oppure no (raccomandato
+> no, e cancellare i pesi).
+> **Rinvii per la sessione che segue (terza prova o S12s, secondo la decisione), da leggere per primi:**
+> (a) lo schema a elenco chiuso **non è misurato**: colonne e valori presi dalla tabella dei campioni come elenco
+> chiuso, una voce per ogni valore distinto; misurare prima la grandezza dello schema generato sugli studi con molte
+> colonne; (b) `schema/context_senza_base`: un confronto fra due tipi cellulari o due condizioni di coltura non ha
+> una base per schema (`GSE65335`, `GSE75852`): scelta di disegno da portare al PI; (c) `vista/sotto_serie`: in
+> `GSE147507` la vista porta 77 campioni contro i 14 di Atlas; (d) i pesi di Qwen3.5-122B (268 GB) stanno sul DGX in
+> `/home/u0044/simulomicsr-dgx/models/HF_HOME/hub/models--Qwen--Qwen3.5-122B-A10B`, con `/home/u0044` a 426 GB su
+> 500: si cancellano o si usano secondo la decisione 3; (e) Mistral-Small-4-119B non è ripetibile con
+> `tensor_parallel_size` 4 anche con la batch invariance: la causa non è diagnosticata, e la diagnosi serve solo se
+> il PI sceglie un modello che chiede più GPU per motore; (f) la misura (c) di Mistral-Small 3.2 ha 4 confronti
+> giudicabili: sugli 82 studi di giudizio va riportata col suo intervallo; (g) i difetti minori M8-M11 di S12r
+> restano come scritti; M12 (token di Hugging Face comparso una volta in S12r) resta una scelta del PI; (h) Gemma
+> (UBC) riprovata una volta, nessuna risposta: una sola fonte di curazione.
 
 ### Perché
 Il lettore v0 non ha fatto meglio della pipeline di oggi (gruppi identici 14/47 contro 14/47, confronti ritrovati
