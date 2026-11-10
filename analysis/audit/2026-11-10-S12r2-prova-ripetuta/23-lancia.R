@@ -44,7 +44,7 @@ MODELLI <- list(
   M0 = list(modello = list(model_id = "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
                            llm_extra = list(revision = REV_M, tokenizer_revision = REV_M)),
             rp = NULL, tp = 1L, kwargs = NULL, tempo = "04:00:00"),
-  G1 = list(modello = list(model_id = "mistralai/Mistral-Small-4-119B-2603", tensor_parallel_size = 2L,
+  G1 = list(modello = list(model_id = "mistralai/Mistral-Small-4-119B-2603", tensor_parallel_size = 4L,
                            llm_extra = list(revision = REV_G1, tokenizer_revision = REV_G1),
                            chat_template_kwargs = list(reasoning_effort = "none")),
             rp = 1.1, tp = 2L, kwargs = list(reasoning_effort = "none"), tempo = "08:00:00"),
