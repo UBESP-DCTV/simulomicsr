@@ -35,7 +35,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **chiusa il 2026-11-08** (4 decisioni + campioni cancellati da GEO tolti in S13; campi GEO nell'ingresso) | carta + codice della regola (TDD) | ~4 h | — |
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco — **fatta il 2026-11-08: nessun modello passa** (presi 186/177/155 su 193, falsi allarmi 965/887/364 su 1.710); lettura dei falsi allarmi: 318 confronti «puliti» non confrontabili per i lettori (280 confermati); prompt v2 e codice da solo non bastano; **diagnosi: metà dei 473 difetti nasce nella scelta del confronto dello Stadio 2, tre su dieci nello Stadio 1** | DGX + 1 sessione | ~3 h + 1 notte | **S12** |
 | **S12q** | La strada dopo S12p: **il lettore dello studio e la tabella dei fattori** (ADR-0029). Disegno approvato dal PI il 2026-11-09, piano approvato il 2026-11-10. **Chiusa il 2026-11-10** | disegno + piano | fatta | **S12p** |
-| **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. STOP e decisione del PI | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
+| **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. **Fatta il 2026-11-10: i 5 cancelli passano, la regola di esito non è soddisfatta** (gruppi identici 14/47 per il lettore e per oggi; confronti ritrovati 10 contro 19 su 93; 24 studi non chiusi, 18 per la forma delle voci). **STOP: non chiusa finché il PI non decide** | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
 | **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
@@ -221,6 +221,23 @@ Il riferimento si apre solo dopo che gli output sono su disco con SHA-256.
 > `stato.json`, correggi `stato.json` nello stesso commit.
 
 Il piano comanda. Il Task 11 chiude con STOP: il Piano 2 si scrive dopo la decisione del PI.
+
+> **Esito (2026-11-10), finding `docs/findings/2026-11-09-S12r-prova-lettore-studio.md`.** Cancelli K1-K5 passati.
+> Previsioni: P2 e P7 confermate; P4 (gruppi identici del lettore, 14/47 contro 65% atteso) e P6 (studi non chiusi,
+> 24 contro 4 attesi) smentite; P1, P3, P5, P8 indeterminate. Lettore v0 contro la pipeline di oggi sui 47 studi:
+> (a) 14/47 contro 14/47; (b) 10/93 contro 19/93 (−9,7 punti, IC95 −25,3, +4,3); (c) 1/5 contro 19/79. **La regola
+> di esito (spec §5.6) non è soddisfatta: decide il PI.** Cause (145 disaccordi letti tutti, audit interno): forma
+> delle voci di `assignment` 68 (18 studi non chiusi; sensibilità dichiarata dopo i numeri: 33 chiusi, (a) 20/47,
+> (b) 15/93); fattore letto dal titolo in 13 studi; fattore annidato in 4 studi (lo schema non lo sa scrivere);
+> scelte dei curatori 22 (tempo zero come controllo 10). «Livello combinato»: 0 disaccordi.
+> **Decisioni aperte del PI (2):** (1) che cosa fare del lettore: l'agente raccomanda di correggere lo schema e
+> ripetere la prova sugli stessi 47 studi, con Mistral e con uno o due modelli più grandi (spec §5.7), previsioni
+> nuove prima; (2) togliere dal riferimento i confronti di Atlas che usano il tempo zero come controllo, con una
+> regola scritta prima della prossima prova (raccomandato: sì, con la misura intera accanto).
+> **Dubbi rinviati a chi riceve la decisione:** Gemma (UBC) non risponde (5 timeout in due sessioni): una sola
+> fonte di curazione, da dichiarare come limite; l'uscita più lunga è all'81% di `max_tokens` (16.384); il DOI di
+> GEOAgent nel piano è sbagliato (vero: 10.64898/2026.06.06.730646); gli 82 studi di giudizio restano chiusi.
+> **Il Piano 2 non è scritto.**
 
 ### Prompt
 ```
