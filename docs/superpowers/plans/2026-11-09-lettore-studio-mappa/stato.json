@@ -1,10 +1,10 @@
 {
   "aggiornato": "2026-11-10",
-  "sessione": "nessuna sessione in corso: la sessione del Piano 1 (S12r) non è ancora aperta",
+  "sessione": "Sessione del Piano 1 (S12r), aperta il 2026-11-10",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Il PI apre la sessione del Piano 1 (S12r). Il primo passo è il passo 1: divisione degli studi e previsioni, committate prima di ogni calcolo.",
+  "prossimo_passo": "Passo 2: la tabella dei fattori e i gruppi (codice del pacchetto, con i test).",
   "piani": [
-    {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "scritto"},
+    {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "in_corso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
     {"n": 3, "titolo": "Corsa intera e deliverable nuovo (v17)", "sessioni": "S12c con S12b, S12d, S13", "stato": "da_scrivere"},
     {"n": 4, "titolo": "Validazione del risultato", "sessioni": "S15, S7c, S7b, poi S16 e S17", "stato": "da_scrivere"}
@@ -17,7 +17,7 @@
     {"n": 1, "gruppo": "Prima di ogni calcolo",
      "titolo": "Divisione degli studi e previsioni",
      "da": "La lista dei 129 studi divisa in 47, 42 e 40, e le otto previsioni. Il commit viene prima di ogni calcolo.",
-     "cancelli": [], "stato": "da_fare", "commit": "", "data": "", "nota": ""},
+     "cancelli": [], "stato": "fatto", "commit": "c78bb69", "data": "2026-11-10", "nota": ""},
     {"n": 2, "gruppo": "Il costruttore dei confronti (codice del pacchetto, con i test)",
      "titolo": "Tabella dei fattori e gruppi",
      "da": "La tabella «campione per fattore», controllata, e i gruppi di campioni uguali in tutti i fattori.",
@@ -105,6 +105,7 @@
      "dove": "si dichiara nelle previsioni del passo 1. Nessuno legge quei campi", "stato": "aperto", "chiusura": ""}
   ],
   "registro": [
-    {"data": "2026-11-10", "che_cosa": "Stato iniziale, scritto alla chiusura della sessione di disegno e piano (S12q). Nessun passo eseguito."}
+    {"data": "2026-11-10", "che_cosa": "Stato iniziale, scritto alla chiusura della sessione di disegno e piano (S12q). Nessun passo eseguito."},
+    {"data": "2026-11-10", "che_cosa": "Passo 1 fatto: 129 studi divisi in 47, 42 e 40. Cancelli e previsioni committati prima di ogni calcolo. I valori delle previsioni sono uguali a quelli di questa tabella."}
   ]
 }
