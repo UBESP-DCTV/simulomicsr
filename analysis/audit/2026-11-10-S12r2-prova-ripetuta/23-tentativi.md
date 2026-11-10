@@ -70,4 +70,7 @@
   del secondo tentativo non ha prodotto nessun numero: nessuna misura di questa sessione è in deroga.
 - I pesi di G2 (268 GB) restano sul DGX in `…/models/HF_HOME/hub/models--Qwen--Qwen3.5-122B-A10B`: `/home/u0044`
   occupa 426 GB su 500. Si cancellano quando il PI decide se G2 si riprova in una prova nuova.
+- **2026-11-10T18:44+01:00: il PI ha deciso che G2 non si riprova; pesi cancellati.** Prima della cancellazione:
+  `hub/models--Qwen--Qwen3.5-122B-A10B` 268 G, nessun job in coda, `/home` 400 G usati su 500. Dopo: resta solo
+  `hub/models--mistralai--Mistral-Small-3.2-24B-Instruct-2506` (101 G), `/home` 167 G usati su 500 (34%).
 - File del job: `jobs/falliti/G2-corsa1-tentativo2-478805.rds`.
