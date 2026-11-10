@@ -2,7 +2,7 @@
   "aggiornato": "2026-11-10",
   "sessione": "Sessione del Piano 1 (S12r), aperta il 2026-11-10",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Passo 9: preparare l'ingresso della prova (testo dello studio e tabella dei campioni da GEO, schema e prompt v0) per i 47 studi di sviluppo.",
+  "prossimo_passo": "Task 10: due corse del lettore v0 su poddgx02, uscite congelate, misura contro Atlas, lettura di tutti i disaccordi",
   "piani": [
     {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "in_corso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
@@ -49,7 +49,7 @@
     {"n": 9, "gruppo": "La prova da buttare",
      "titolo": "Ingresso della prova",
      "da": "I testi GEO dei 47 studi, la vista dello studio, lo schema e il prompt di prima versione.",
-     "cancelli": [], "stato": "da_fare", "commit": "", "data": "", "nota": ""},
+     "cancelli": [], "stato": "fatto", "commit": "4eed30d", "data": "2026-11-10", "nota": ""},
     {"n": 10, "gruppo": "La prova da buttare",
      "titolo": "Corsa, misura e lettura dei disaccordi",
      "da": "Mistral-Small 3.2 legge i 47 studi due volte su poddgx02. Poi le tre misure e la causa di ogni disaccordo.",
@@ -117,6 +117,7 @@
     {"data": "2026-11-10", "che_cosa": "Passo 5 fatto: il lettore dei file di Expression Atlas (gruppi, confronti, fattori dei curatori), con 32 controlli verdi."},
     {"data": "2026-11-10", "che_cosa": "Passo 6 fatto: file di Atlas scaricati (129 studi) e legame fra run e campioni: 6.253 run su 6.253 hanno un campione, nessun disaccordo fra le due fonti."},
     {"data": "2026-11-10", "che_cosa": "Passo 7 fatto: le tre misure contro Expression Atlas, con 63 controlli verdi."},
-    {"data": "2026-11-10", "che_cosa": "Passo 8: misurata la pipeline di oggi contro Expression Atlas sui 47 studi di sviluppo. Lo strumento, provato con i gruppi dei curatori, dà gruppi identici in 47 studi su 47 e ritrova 93 confronti su 93. Oggi: gruppi identici in 14 studi su 47, confronti dei curatori ritrovati 19 su 93, errori fra i confronti in più 19 su 79."}
+    {"data": "2026-11-10", "che_cosa": "Passo 8: misurata la pipeline di oggi contro Expression Atlas sui 47 studi di sviluppo. Lo strumento, provato con i gruppi dei curatori, dà gruppi identici in 47 studi su 47 e ritrova 93 confronti su 93. Oggi: gruppi identici in 14 studi su 47, confronti dei curatori ritrovati 19 su 93, errori fra i confronti in più 19 su 79."},
+    {"data": "2026-11-10", "che_cosa": "Task 9: ingresso della prova: testi GEO dei 47 studi di sviluppo congelati, vista v0 (1.883 campioni, 0 cancellati, massimo 37.692 token stimati), schema v0, prompt v0"}
   ]
 }
