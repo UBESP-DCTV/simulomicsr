@@ -15,3 +15,5 @@
 - Un solo cambio: `tensor_parallel_size = 4` (un worker su 4 GPU: circa 28 GiB di pesi per GPU). Prompt, schema,
   vista, revisione, `max_model_len`, `max_tokens`, `gpu_memory_utilization`, `repetition_penalty` e
   `chat_template_kwargs` restano uguali.
+- Nota: un primo rilancio (16:57) si è fermato sul cancello K4 **prima dell'invio**, perché il valore atteso `tp`
+  dello script era rimasto 2 mentre il bundle aveva 4. Nessun job inviato: non è un tentativo. Corretto `tp = 4`.

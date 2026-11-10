@@ -47,7 +47,7 @@ MODELLI <- list(
   G1 = list(modello = list(model_id = "mistralai/Mistral-Small-4-119B-2603", tensor_parallel_size = 4L,
                            llm_extra = list(revision = REV_G1, tokenizer_revision = REV_G1),
                            chat_template_kwargs = list(reasoning_effort = "none")),
-            rp = 1.1, tp = 2L, kwargs = list(reasoning_effort = "none"), tempo = "08:00:00"),
+            rp = 1.1, tp = 4L, kwargs = list(reasoning_effort = "none"), tempo = "08:00:00"),
   G2 = list(modello = list(model_id = "Qwen/Qwen3.5-122B-A10B", tokenizer_mode = "auto", config_format = "auto",
                            load_format = "auto", tensor_parallel_size = 4L,
                            llm_extra = list(revision = REV_G2, tokenizer_revision = REV_G2),
