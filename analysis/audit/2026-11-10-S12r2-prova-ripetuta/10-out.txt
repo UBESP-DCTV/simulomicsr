@@ -1,0 +1,313 @@
+
+NOTE: Dependency discovery took 10 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 444 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+studi 47 
+
+== Campi di tempo scelti dalla regola (nome con «time» all'inizio di una parola) ==
+GSE103501 | geo:timepoint | '00h'=11 [zero]; '06h'=18 [successivo]
+GSE147507 | atlas:time | '24 hour'=14 [successivo]
+GSE147507 | geo:time point | ''=57 [altro]; '24hrs after treatment'=16 [successivo]; '9hrs after treatment'=4 [successivo]
+GSE147507 | geo:time after treatment | ''=32 [altro]; '12 hours'=14 [successivo]; '24 hours'=27 [successivo]; '4 hours'=2 [successivo]; '6 hours'=2 [successivo]
+GSE46665 | geo:time | '180 days post LVAD'=7 [successivo]; '7 days post LVAD'=9 [successivo]; 'pre-LVAD'=9 [altro]
+GSE49608 | atlas:time | '0 hour'=8 [zero]; '2 hour'=8 [successivo]; '4 hour'=8 [successivo]; '7 hour'=8 [successivo]
+GSE49608 | geo:time-point | '0'=8 [zero]; '2'=8 [successivo]; '4'=8 [successivo]; '7'=8 [successivo]
+GSE56691 | atlas:time | '0 hour'=3 [zero]; '24 hour'=3 [successivo]; '48 hour'=3 [successivo]; '72 hour'=3 [successivo]
+GSE57116 | geo:time | '0 min'=4 [zero]; '4 min'=2 [successivo]; '8 min'=4 [successivo]; 'control'=4 [altro]
+GSE71289 | atlas:sampling time point | 'embryoid body, day 17'=20 [successivo]; 'embryoid body, day 50'=22 [successivo]
+GSE71289 | geo:differentiation time | 'Embryoid body, day 17'=20 [successivo]; 'Embryoid body, day 50'=22 [successivo]
+studi con almeno un campo di tempo: 7 su 47
+
+== K2: Atlas contro Atlas ==
+principale: partizione identica 47 su 47; denominatore di (b) 97, ritrovati uguali 97; giudicabili fra i non elencati 0
+intera: partizione identica 47 su 47; denominatore di (b) 93, ritrovati uguali 93; giudicabili fra i non elencati 0
+stretta: partizione identica 47 su 47; denominatore di (b) 86, ritrovati uguali 86; giudicabili fra i non elencati 0
+
+== Il riferimento: 123 confronti di Atlas ==
+principale : classi
+
+non_formabile   piu_fattori      rispetta 
+            1            15           107 
+intera : classi
+
+non_formabile   piu_fattori      rispetta 
+            1            29            93 
+stretta : classi
+
+non_formabile   piu_fattori      rispetta 
+            1            26            96 
+classe intera (righe) contro principale (colonne):
+               principale
+intera          non_formabile piu_fattori rispetta
+  non_formabile             1           0        0
+  piu_fattori               0          15       14
+  rispetta                  0           0       93
+classe principale (righe) contro stretta (colonne):
+               stretta
+principale      non_formabile piu_fattori rispetta
+  non_formabile             1           0        0
+  piu_fattori               0          15        0
+  rispetta                  0          11       96
+
+marca tempo_zero, per studio e verso (non dipende dalla lettura):
+           verso
+studio      zero_controllo
+  GSE103501              4
+  GSE49608               6
+  GSE56691               3
+marca tempo_zero per classe (lettura principale):
+               tempo_zero
+classe          FALSE TRUE
+  non_formabile     1    0
+  piu_fattori      12    3
+  rispetta         97   10
+confronti con la marca:
+    studio    id
+ GSE103501 g3_g1
+ GSE103501 g3_g2
+ GSE103501 g6_g4
+ GSE103501 g6_g5
+  GSE49608 g1_g2
+  GSE49608 g1_g3
+  GSE49608 g1_g4
+  GSE49608 g5_g6
+  GSE49608 g5_g7
+  GSE49608 g5_g8
+  GSE56691 g4_g1
+  GSE56691 g4_g2
+  GSE56691 g4_g3
+                                                                             nome
+                                            'Growth Medium' vs 'none' in 'normal'
+                                       'lipopolysaccharide' vs 'none' in 'normal'
+      'Growth Medium' vs 'none' in 'systemic-onset juvenile idiopathic arthritis'
+ 'lipopolysaccharide' vs 'none' in 'systemic-onset juvenile idiopathic arthritis'
+                                                '2 hour' vs '0 hour' in 'MDA-LM2'
+                                                '4 hour' vs '0 hour' in 'MDA-LM2'
+                                                '7 hour' vs '0 hour' in 'MDA-LM2'
+                                             '2 hour' vs '0 hour' in 'MDA-MB-231'
+                                             '4 hour' vs '0 hour' in 'MDA-MB-231'
+                                             '7 hour' vs '0 hour' in 'MDA-MB-231'
+                            'GSKJ4; 2 micromole per liter' vs 'none' at '24 hour'
+                            'GSKJ4; 2 micromole per liter' vs 'none' at '48 hour'
+                            'GSKJ4; 2 micromole per liter' vs 'none' at '72 hour'
+      classe tempo_zero_verso tempo_zero_campo
+    rispetta   zero_controllo    geo:timepoint
+    rispetta   zero_controllo    geo:timepoint
+    rispetta   zero_controllo    geo:timepoint
+    rispetta   zero_controllo    geo:timepoint
+    rispetta   zero_controllo       atlas:time
+    rispetta   zero_controllo       atlas:time
+    rispetta   zero_controllo       atlas:time
+    rispetta   zero_controllo       atlas:time
+    rispetta   zero_controllo       atlas:time
+    rispetta   zero_controllo       atlas:time
+ piu_fattori   zero_controllo       atlas:time
+ piu_fattori   zero_controllo       atlas:time
+ piu_fattori   zero_controllo       atlas:time
+confronti che la regola del fattore annidato tocca (lettura principale):
+   studio    id
+ GSE57945 g6_g1
+ GSE57945 g6_g2
+ GSE57945 g6_g3
+ GSE57945 g6_g4
+ GSE57945 g6_g5
+ GSE66207 g4_g3
+ GSE66207 g4_g2
+ GSE66207 g4_g1
+ GSE69597 g4_g2
+ GSE69597 g4_g5
+ GSE69597 g4_g6
+ GSE69597 g4_g3
+ GSE69597 g4_g7
+ GSE69597 g4_g1
+                                                                                                             nome
+    'Crohn's disease, macroscopic ileal inflammation with deep ulcer' vs 'non inflammatory bowel disease control'
+ 'Crohn's disease, macroscopic ileal inflammation without deep ulcer' vs 'non inflammatory bowel disease control'
+ 'Crohn's disease, microscopic ileal inflammation without deep ulcer' vs 'non inflammatory bowel disease control'
+                                            'Crohn's disease, normal' vs 'non inflammatory bowel disease control'
+                                      'Crohn's disease, undetermined' vs 'non inflammatory bowel disease control'
+                                   'Crohn's disease; B3, penetrating' vs 'non inflammatory bowel disease control'
+                                   'Crohn's disease; B2, stricturing' vs 'non inflammatory bowel disease control'
+               'Crohn's disease; B1, non-strictuing, non-penetrating' vs 'non inflammatory bowel disease control'
+                                                 'brucellosis; acute brucellosis; complete remission' vs 'normal'
+                                                        'brucellosis; acute brucellosis; reinfection' vs 'normal'
+                                                            'brucellosis; acute brucellosis; relapse' vs 'normal'
+                                               'brucellosis; chronic brucellosis; complete remission' vs 'normal'
+                                                          'brucellosis; chronic brucellosis; relapse' vs 'normal'
+                                                                                      'Leishmaniasis' vs 'normal'
+   classe fattori_diversi                      fattori_annidati
+ rispetta         disease                             histology
+ rispetta         disease                             histology
+ rispetta         disease                             histology
+ rispetta         disease                             histology
+ rispetta         disease                             histology
+ rispetta         disease                       disease staging
+ rispetta         disease                       disease staging
+ rispetta         disease                       disease staging
+ rispetta         disease clinical information, disease staging
+ rispetta         disease clinical information, disease staging
+ rispetta         disease clinical information, disease staging
+ rispetta         disease clinical information, disease staging
+ rispetta         disease clinical information, disease staging
+ rispetta         disease clinical information, disease staging
+confronti che cambiano classe fra intera e principale:
+   studio    id
+ GSE57945 g6_g1
+ GSE57945 g6_g2
+ GSE57945 g6_g3
+ GSE57945 g6_g4
+ GSE57945 g6_g5
+ GSE66207 g4_g3
+ GSE66207 g4_g2
+ GSE66207 g4_g1
+ GSE69597 g4_g2
+ GSE69597 g4_g5
+ GSE69597 g4_g6
+ GSE69597 g4_g3
+ GSE69597 g4_g7
+ GSE69597 g4_g1
+                                                                                                             nome
+    'Crohn's disease, macroscopic ileal inflammation with deep ulcer' vs 'non inflammatory bowel disease control'
+ 'Crohn's disease, macroscopic ileal inflammation without deep ulcer' vs 'non inflammatory bowel disease control'
+ 'Crohn's disease, microscopic ileal inflammation without deep ulcer' vs 'non inflammatory bowel disease control'
+                                            'Crohn's disease, normal' vs 'non inflammatory bowel disease control'
+                                      'Crohn's disease, undetermined' vs 'non inflammatory bowel disease control'
+                                   'Crohn's disease; B3, penetrating' vs 'non inflammatory bowel disease control'
+                                   'Crohn's disease; B2, stricturing' vs 'non inflammatory bowel disease control'
+               'Crohn's disease; B1, non-strictuing, non-penetrating' vs 'non inflammatory bowel disease control'
+                                                 'brucellosis; acute brucellosis; complete remission' vs 'normal'
+                                                        'brucellosis; acute brucellosis; reinfection' vs 'normal'
+                                                            'brucellosis; acute brucellosis; relapse' vs 'normal'
+                                               'brucellosis; chronic brucellosis; complete remission' vs 'normal'
+                                                          'brucellosis; chronic brucellosis; relapse' vs 'normal'
+                                                                                      'Leishmaniasis' vs 'normal'
+      intera                                 intera_diversi principale
+ piu_fattori                             disease, histology   rispetta
+ piu_fattori                             disease, histology   rispetta
+ piu_fattori                             disease, histology   rispetta
+ piu_fattori                             disease, histology   rispetta
+ piu_fattori                             disease, histology   rispetta
+ piu_fattori                       disease, disease staging   rispetta
+ piu_fattori                       disease, disease staging   rispetta
+ piu_fattori                       disease, disease staging   rispetta
+ piu_fattori clinical information, disease, disease staging   rispetta
+ piu_fattori clinical information, disease, disease staging   rispetta
+ piu_fattori clinical information, disease, disease staging   rispetta
+ piu_fattori clinical information, disease, disease staging   rispetta
+ piu_fattori clinical information, disease, disease staging   rispetta
+ piu_fattori clinical information, disease, disease staging   rispetta
+
+K2, caso noto: GSE49608 ha 6 confronti di Atlas; 6 con la marca
+    id                                 nome   classe tempo_zero
+ g1_g2    '2 hour' vs '0 hour' in 'MDA-LM2' rispetta       TRUE
+ g1_g3    '4 hour' vs '0 hour' in 'MDA-LM2' rispetta       TRUE
+ g1_g4    '7 hour' vs '0 hour' in 'MDA-LM2' rispetta       TRUE
+ g5_g6 '2 hour' vs '0 hour' in 'MDA-MB-231' rispetta       TRUE
+ g5_g7 '4 hour' vs '0 hour' in 'MDA-MB-231' rispetta       TRUE
+ g5_g8 '7 hour' vs '0 hour' in 'MDA-MB-231' rispetta       TRUE
+ tempo_zero_verso tempo_zero_campo
+   zero_controllo       atlas:time
+   zero_controllo       atlas:time
+   zero_controllo       atlas:time
+   zero_controllo       atlas:time
+   zero_controllo       atlas:time
+   zero_controllo       atlas:time
+K2 passato: 47 su 47 e tutto il denominatore nelle tre letture; la marca vede GSE49608
+
+== Previsioni sul riferimento ==
+R1  confronti di Atlas con la marca tempo_zero, su 123: 13; atteso 13, rilevanza 10-16  ->  confermata
+R2  denominatore di (b), lettura principale: 97; atteso 97, rilevanza 83-97  ->  confermata
+R3  denominatore di (b), lettura stretta: 86; atteso 86, rilevanza 72-86  ->  confermata
+denominatore di (b), lettura intera: 93 (S12r: 93)
+tempo zero fra i `rispetta`: principale 10 ; intera 10 ; stretta 10 
+
+== La pipeline di oggi (master S14, almeno 2 campioni per braccio) ==
+studi di sviluppo con un record: 47 su 47 
+
+-- lettura principale --
+(a) classi della partizione:
+
+  identica incrociata   piu_fine 
+        14          6         27 
+campioni di Atlas omessi da oggi (solo_atlas): 141 
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           47 0.29787  0.17021 0.42553
+     b_confronti_ritrovati         13           97 0.13402  0.06542 0.22222
+     c_errori_non_elencati         18           79 0.22785  0.08620 0.37500
+     a_identici_sui_comuni          0           47 0.00000  0.00000 0.00000
+             verso_opposto          1           97 0.01031  0.00000 0.03846
+          atlas_tempo_zero         13          123 0.10569  0.00000 0.22976
+         atlas_piu_fattori         15          123 0.12195  0.02830 0.23914
+ atlas_piu_fattori_formati          7           15 0.46667  0.00000 0.87500
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02857
+               ari_mediana         NA           47 0.77826  0.65772 0.86348
+
+-- lettura intera --
+(a) classi della partizione:
+
+  identica incrociata   piu_fine 
+        14          6         27 
+campioni di Atlas omessi da oggi (solo_atlas): 141 
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           47 0.29787  0.17021 0.42553
+     b_confronti_ritrovati         19           93 0.20430  0.09302 0.35296
+     c_errori_non_elencati         19           79 0.24051  0.09835 0.39218
+     a_identici_sui_comuni          0           47 0.00000  0.00000 0.00000
+             verso_opposto          1           93 0.01075  0.00000 0.03947
+          atlas_tempo_zero         13          123 0.10569  0.00000 0.22976
+         atlas_piu_fattori         29          123 0.23577  0.09091 0.38638
+ atlas_piu_fattori_formati          7           29 0.24138  0.00000 0.58341
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02857
+               ari_mediana         NA           47 0.77826  0.65772 0.86348
+
+-- lettura stretta --
+(a) classi della partizione:
+
+  identica incrociata   piu_fine 
+        14          6         27 
+campioni di Atlas omessi da oggi (solo_atlas): 141 
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           47 0.29787  0.17021 0.42553
+     b_confronti_ritrovati         12           86 0.13953  0.06521 0.24325
+     c_errori_non_elencati         21           79 0.26582  0.11627 0.42861
+     a_identici_sui_comuni          0           47 0.00000  0.00000 0.00000
+             verso_opposto          1           86 0.01163  0.00000 0.04349
+          atlas_tempo_zero         13          123 0.10569  0.00000 0.22976
+         atlas_piu_fattori         26          123 0.21138  0.08475 0.36434
+ atlas_piu_fattori_formati          8           26 0.30769  0.00000 0.53854
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02857
+               ari_mediana         NA           47 0.77826  0.65772 0.86348
+
+oggi ritrova, fra i confronti con la marca tempo_zero (lettura intera):
+         classe
+ritrovato piu_fattori rispetta
+   no               0        4
+   uguale           3        6
+giudizio dei non elencati di oggi, per lettura:
+                    
+                     intera principale stretta
+  braccio_misto           5          5       5
+  coerente               56         57      54
+  fuori_atlas            12         12      12
+  nessuna_differenza      4          4       4
+  piu_fattori            14         13      16
+
+== K1, la pipeline di oggi con la lettura intera ==
+(a) 14/47  (b) 19/93  (c) 19/79   [S12r: 14/47, 19/93, 19/79]
+studio per studio uguale a 40-per-studio-oggi.csv di S12r (classe dei gruppi, denominatore e numeratore di (b), errori e giudicabili): TRUE 
+K1 (oggi) passato
+K3 passato: la misura di oggi copre 47 studi su 47 in ogni lettura
+
+== Previsioni sulla pipeline di oggi (lettura principale; bootstrap sugli studi, B = 2000 , seme 20261110 ) ==
+O1  b_confronti_ritrovati: 13/97 = 13.4% (IC95 6.5-22.2%)  atteso 15%, rilevanza 8-25%  ->  indeterminata
+O2  oggi, (a) lettura principale, studi con partizione identica: 14; atteso 14, rilevanza 14-14  ->  confermata
+O3  c_errori_non_elencati: 18/79 = 22.8% (IC95 8.6-37.5%)  atteso 22%, rilevanza 10-35%  ->  indeterminata
+partizioni identiche solo sui campioni comuni (oggi omette campioni di Atlas): 0 
+FINITO

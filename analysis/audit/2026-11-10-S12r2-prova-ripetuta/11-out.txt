@@ -1,0 +1,74 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 444 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+definizioni prese da 64-adatta-e-misura.R: SENS, DIR_USCITE, NON_STATED, TIPI, SOGG, MOTIVI_PIANO, SEP, validatore, unisci, car, adatta, confronti_comuni, CONFRONTI_VUOTI 
+uscite v0: impronte uguali a 63-uscite-sha256.txt
+studi chiusi dal lettore v0: 23 su 47 [S12r: 23]
+
+-- lettore v0, lettura principale --
+
+  identica non_chiuso   piu_fine 
+        14         24          9 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         14           47 0.2979  0.17021  0.4255
+ b_confronti_ritrovati         10           97 0.1031  0.03771  0.2000
+ c_errori_non_elencati          1            5 0.2000  0.00000  1.0000
+lettore v0 meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.2979 0.2979    0.00000  -0.1277 0.12766
+ b_confronti_ritrovati  0.1031 0.1340   -0.03093  -0.1225 0.07001
+ c_errori_non_elencati  0.2000 0.2278   -0.02785  -0.3099 0.77810
+ ricampioni_senza_valore
+                       0
+                       0
+                      90
+
+-- lettore v0, lettura intera --
+
+  identica non_chiuso   piu_fine 
+        14         24          9 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         14           47 0.2979  0.17021  0.4255
+ b_confronti_ritrovati         10           93 0.1075  0.03883  0.1923
+ c_errori_non_elencati          1            5 0.2000  0.00000  1.0000
+lettore v0 meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.2979 0.2979    0.00000  -0.1277 0.12766
+ b_confronti_ritrovati  0.1075 0.2043   -0.09677  -0.2581 0.05007
+ c_errori_non_elencati  0.2000 0.2405   -0.04051  -0.3246 0.76000
+ ricampioni_senza_valore
+                       0
+                       0
+                      90
+
+-- lettore v0, lettura stretta --
+
+  identica non_chiuso   piu_fine 
+        14         24          9 
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         14           47 0.29787  0.17021  0.4255
+ b_confronti_ritrovati          8           86 0.09302  0.02352  0.1961
+ c_errori_non_elencati          1            5 0.20000  0.00000  1.0000
+lettore v0 meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici 0.29787 0.2979    0.00000  -0.1277 0.12766
+ b_confronti_ritrovati 0.09302 0.1395   -0.04651  -0.1463 0.06155
+ c_errori_non_elencati 0.20000 0.2658   -0.06582  -0.3571 0.73572
+ ricampioni_senza_valore
+                       0
+                       0
+                      90
+
+== K1, il lettore v0 con la lettura intera ==
+(a) 14/47  (b) 10/93  (c) 1/5   [S12r: 14/47, 10/93, 1/5]
+studio per studio uguale a 64-per-studio-lettore.csv di S12r: TRUE 
+K1 (lettore v0) passato
+FINITO
