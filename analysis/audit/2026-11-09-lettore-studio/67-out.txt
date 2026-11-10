@@ -1,0 +1,38 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 440 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+== 1. Fattore che i curatori non scrivono per un braccio: lettura larga (usata) e lettura stretta ==
+confronti `rispetta`: 93; di questi con un fattore non scritto in un braccio: 11, in 6 studi
+oggi: lettura larga 19/93 = 20.4%; ritrovati fra i 11 con un fattore non scritto: 1; lettura stretta 18/82 = 22.0%
+lettore: lettura larga 10/93 = 10.8%; ritrovati fra i 11 con un fattore non scritto: 2; lettura stretta 8/82 = 9.8%
+differenza lettore - oggi in (b): lettura larga -9.7 punti; lettura stretta -12.2 punti (senza intervallo: non e' una misura depositata)
+
+== 2. Unita' di disaccordo per esito (65-disaccordi-righe.csv) ==
+                         
+                          forma ignoto modello non_errore schema
+  atlas_non_ritrovato         8     11      52         28     12
+  lettore_errore              0      0       0          1      0
+  partizione_non_identica     0      0       6          3      0
+  studio_non_chiuso           6      4      10          3      1
+totale per esito:
+
+     forma     ignoto    modello non_errore     schema 
+        14         15         68         35         13 
+
+== 3. Studi in cui una sottoclasse compare: prima causa o resto, e con le note «in piu'» ==
+modello/fattore_dal_titolo: prima causa 7 studi; prima o resto 12 studi; anche con le note «in piu'» 13 studi; solo nota in: GSE83415
+schema/fattore_annidato: prima causa 0 studi; prima o resto 3 studi; anche con le note «in piu'» 4 studi; solo nota in: GSE63816
+valori distinti della colonna `anche`:
+
+modello/fattore_dal_titolo     modello/fattore_doppio 
+                         2                          3 
+    modello/ruolo_soggetto    schema/fattore_annidato 
+                        12                          3 
+                     vista 
+                         3 

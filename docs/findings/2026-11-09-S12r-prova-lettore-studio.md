@@ -13,6 +13,7 @@ sources:
 - {id: lettore, resource: "analysis/audit/2026-11-09-lettore-studio/64-out.txt", title: "Misura del lettore v0 contro Atlas (P3-P7)"}
 - {id: disaccordi, resource: "analysis/audit/2026-11-09-lettore-studio/65-disaccordi.md", title: "Lettura di tutti i 145 disaccordi, con la causa (audit interno)"}
 - {id: righe, resource: "analysis/audit/2026-11-09-lettore-studio/65-disaccordi-righe.csv", title: "Una riga per disaccordo"}
+- {id: revisione, resource: "analysis/audit/2026-11-09-lettore-studio/67-out.txt", title: "Conti chiesti dalla revisione finale del branch: lettura stretta del fattore non scritto, unità per esito, studi per causa (dopo i numeri)"}
 - {id: forma, resource: "analysis/audit/2026-11-09-lettore-studio/66-forma-out.txt", title: "Sensibilità sulla forma delle voci, dichiarata dopo i numeri"}
 - {id: bacino, resource: "analysis/audit/2026-11-09-lettore-studio/10-out.txt", title: "Token della tabella dei campioni su tutti i 24.393 studi"}
 - {id: spec, resource: "docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md", title: "Disegno del lettore dello studio (regola di esito §5.6, modelli §5.7, concorrenti §6)"}
@@ -34,7 +35,7 @@ sources:
 
 1. **La prima versione del lettore non fa meglio della pipeline di oggi.** Il lettore forma gli stessi gruppi dei curatori in 14 studi su 47, come la pipeline di oggi. Dei 93 confronti dei curatori che rispettano la nostra definizione, il lettore ne ritrova 10 e la pipeline di oggi 19. La regola scritta prima della prova chiedeva un lettore migliore di oggi: la regola non è soddisfatta.
 2. **Il lettore non completa 24 studi su 47, e in 18 la causa è la forma della risposta.** Lo schema chiede al modello una lista di valori per ogni livello, e il modello scrive liste di lunghezza sbagliata. Se il programma tollera quella forma, il lettore completa 33 studi, forma gli stessi gruppi dei curatori in 20 e ritrova 15 confronti. Ho fatto questo controllo dopo aver visto i numeri, quindi non è una misura.
-3. **Tolta la forma, restano errori di lettura del modello.** Ho letto tutti i 145 disaccordi fra il lettore e i curatori. In 13 studi il modello scrive un fattore preso dal titolo del campione, con un livello per ogni campione, e così divide i gruppi. In 4 studi un fattore esiste solo dentro un livello di un altro, per esempio lo stadio dentro la malattia, e lo schema non dice come scriverlo.
+3. **Tolta la forma, restano errori di lettura del modello.** Ho letto tutti i 145 disaccordi fra il lettore e i curatori. In 13 studi il modello scrive un fattore preso dal titolo del campione, con un livello per ogni campione. Un fattore così divide ogni gruppo in campioni singoli. In 4 studi un fattore esiste solo dentro un livello di un altro, per esempio lo stadio dentro la malattia, e lo schema non dice come scriverlo.
 4. **Dove il lettore forma gli stessi gruppi dei curatori, 12 dei 16 confronti che mancano sono scelte dei curatori.** In quei 14 studi i curatori hanno 26 confronti e il lettore ne ritrova 10. Dei 16 che mancano, 10 usano il tempo zero come controllo e 2 usano un riferimento che non è un controllo. Le tue regole vietano il tempo zero come controllo. La pipeline di oggi ritrova 6 di quei confronti, e li conta fra i suoi 19.
 5. **Anche la pipeline di oggi è lontana dai curatori.** Ritrova 19 confronti su 93, e 19 dei suoi 79 confronti giudicabili sono errori. Nei 14 studi dove forma gli stessi gruppi dei curatori ritrova 16 confronti su 19. Negli altri 33 studi ne ritrova 3 su 74, perché divide i campioni in più gruppi dei curatori.
 
@@ -102,11 +103,19 @@ sono un giudizio motivato dell'agente, non una soglia del progetto[^previsioni].
 - **(b) confronti:** quota dei confronti di Atlas che rispettano la definizione (due gruppi uguali in tutti i
   fattori tranne uno, con uno dei due al livello di base) ritrovati con gli stessi campioni e lo stesso verso.
 - **(c) errori:** quota dei nostri confronti non elencati da Atlas e giudicabili che lo strumento classifica come
-  errore (braccio misto, più di un fattore, nessuna differenza).
+  errore: un braccio misto, o più di un fattore di Atlas che cambia. Un nostro confronto senza nessuna differenza nei
+  fattori di Atlas è giudicabile: sta nel denominatore e non conta come errore (oggi 4 su 79).
 
 Universo: 1.798 campioni nei gruppi di Atlas e nel nostro bacino (1.841 nei gruppi di Atlas). Atlas elenca 123
 confronti nei 47 studi: 93 rispettano la definizione, 29 differiscono in più di un fattore di Atlas, 1 non è
 formabile (un braccio fuori dall'universo).
+
+**Il 93 dipende da una regola di lettura.** In 11 dei 93 confronti (6 studi) i curatori non scrivono un fattore per
+uno dei due bracci, di solito la dose per il controllo. La misura segue la regola del costruttore: un fattore non
+scritto in un braccio non conta come differenza. La regola è stata fissata prima di ogni misura, dopo che 6 studi si
+erano fermati nella lettura di Atlas. Con la lettura stretta (non scritto = differenza) gli 11 passano a «più di un
+fattore» e il denominatore è 82: oggi 18/82 (22,0%), lettore 8/82 (9,8%), differenza −12,2 punti contro −9,7
+(`67-out.txt`, lettura fatta dopo i numeri, senza intervallo). La conclusione non cambia.
 
 ## 3.1 La pipeline di oggi e il lettore v0, 47 studi
 
@@ -225,7 +234,7 @@ Senza disaccordi: GSE53280, GSE54846, GSE56235, GSE58326, GSE59781, GSE71421.
 Ogni unità ha una **prima causa** (il primo difetto che la misura incontra) e un **resto** (che cosa resta tolta la
 prima causa). Prima causa: modello 120, curatore 22, strumento 2, schema 1, vista 0.
 
-| causa | che cosa vuol dire | chi può toglierla | prima causa | resto | studi |
+| causa | che cosa vuol dire | chi può toglierla | prima causa | resto | studi (prima causa, resto o nota «in più») |
 |---|---|---|---|---|---|
 | modello/forma delle voci | una voce di `assignment` porta più valori delle colonne di fonte | schema (effetto misurato, §4) | 68 | 0 | 18 |
 | modello/fattore dal titolo | un fattore tecnico o di replica letto dal titolo: un livello per campione | modello | 27 | 18 | 13 |
@@ -266,7 +275,7 @@ curatore 3; livello 3; repliche del curatore 2.
 | confronto del lettore giudicato errore | 0 | 0 | 0 | 1 | 0 | 1 |
 
 Per la regola di esito: non «ogni» disaccordo ha una causa che vista, schema o modello più grande possono togliere.
-32 unità non sono errori del lettore (scelte o errori dei curatori, limiti della misura) e 15 restano di causa ignota
+35 unità non sono errori del lettore (scelte o errori dei curatori, limiti della misura) e 15 restano di causa ignota
 perché lo studio non chiude nemmeno nella sensibilità.
 
 **Sugli 83 confronti del denominatore di (b) non ritrovati:** forma 5, schema 6, modello 44, non errore 17, ignoto
@@ -378,7 +387,18 @@ precedente. Non entra come seconda fonte.
 - **Il riferimento ha scelte e errori dei curatori.** 22 unità su 145 hanno il curatore come prima causa. La lettura
   delle cause è un audit interno fatto da un agente, non una misura.
 - **Una sola fonte di curazione.** Gemma non risponde.
-- **La sensibilità sulla forma è stata decisa dopo aver visto i numeri.**
+- **Il conto degli studi per causa include le note.** «Fattore dal titolo in 13 studi» e «fattore annidato in 4 studi»
+  contano anche lo studio dove la causa è solo una nota (GSE83415 e GSE63816). Come prima causa o resto sono 12 e 3
+  (`67-out.txt` §3).
+- **Il denominatore 93 dipende dalla regola sul fattore non scritto** (§3): con la lettura stretta è 82.
+- **La penalità di ripetizione non è misurata.** Il lettore v0 gira con `repetition_penalty` 1,1, come la produzione.
+  La penalità può disturbare la ripetizione di valori uguali nelle voci di `assignment`. Questa prova attribuisce la
+  forma sbagliata delle voci allo schema e non separa le due cause: la prova ripetuta deve avere una corsa di
+  controllo senza penalità, con la previsione scritta prima.
+- **La causa «fattore annidato» è contata come limite dello schema.** Se si conta come scelta dei curatori, 16 unità
+  (resto) passano da «schema» a «non è un errore del lettore».
+- **La sensibilità sulla forma è stata decisa dopo aver visto i numeri.** Anche i conti di `67-out.txt`, chiesti
+  dalla revisione finale del branch.
 - **I valori attesi delle previsioni** erano un giudizio dell'agente, e due sono stati smentiti di molto (P4, P6):
   le attese sul lettore erano troppo ottimiste.
 
@@ -402,7 +422,7 @@ precedente. Non entra come seconda fonte.
 | in 18 la causa è la forma della risposta | `65-out.txt` riga 32 | `modello/forma_voci 18` (colonna `studio_non_chiuso`) |
 | con la forma tollerata: 33 studi, 20 con gli stessi gruppi, 15 confronti | `66-forma-out.txt` righe 22, 115, 116 | `33 su 47`; `a_gruppi_identici 20 47`; `b_confronti_ritrovati 15 93` |
 | 145 disaccordi | `65-out.txt` riga 10 | `unita' di disaccordo: 145` |
-| fattore dal titolo in 13 studi; fattore annidato in 4 studi | `65-disaccordi.md`, tabella «Le cause», colonna «studi» | `modello/fattore_dal_titolo … 13`; `schema/fattore_annidato … 4` |
+| fattore dal titolo in 13 studi; fattore annidato in 4 studi | `65-disaccordi.md`, tabella «Le cause», colonna «studi (prima, resto o in più)»; `67-out.txt` §3 | `modello/fattore_dal_titolo … 13`; `schema/fattore_annidato … 4` |
 | nei 14 studi con gli stessi gruppi: 26 confronti, 10 ritrovati | `64-per-studio-lettore.csv`, somma di `n_rispetta` e `n_rispetta_uguale` dove `classe_gruppi` = `identica` | 26; 10 |
 | dei 16 che mancano, 10 tempo zero e 2 riferimento | `65-disaccordi-righe.csv`, righe `atlas_non_ritrovato` con `classe` = `rispetta` negli stessi 14 studi | `curatore/tempo_zero` 10 (GSE49608 6, GSE103501 4); `curatore/riferimento` 2 (GSE60340) |
 | la pipeline di oggi ne ritrova 6 | `65-disaccordi-righe.csv`, colonna `oggi` = `uguale` nelle righe `curatore/tempo_zero` | 6 (GSE49608) |

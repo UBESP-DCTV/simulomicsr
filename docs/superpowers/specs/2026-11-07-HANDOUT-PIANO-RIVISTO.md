@@ -230,6 +230,10 @@ Il piano comanda. Il Task 11 chiude con STOP: il Piano 2 si scrive dopo la decis
 > delle voci di `assignment` 68 (18 studi non chiusi; sensibilità dichiarata dopo i numeri: 33 chiusi, (a) 20/47,
 > (b) 15/93); fattore letto dal titolo in 13 studi; fattore annidato in 4 studi (lo schema non lo sa scrivere);
 > scelte dei curatori 22 (tempo zero come controllo 10). «Livello combinato»: 0 disaccordi.
+> **Da fare nella prova ripetuta (dalla revisione finale del branch):** una corsa di controllo senza
+> `repetition_penalty` (la penalità 1,1 può disturbare la ripetizione di valori uguali nelle voci: non misurato);
+> `minItems`/`maxItems` o una forma a oggetto per le voci di `assignment`; scrivere prima della prova la regola sul
+> fattore che i curatori non scrivono per un braccio (lettura larga 93 confronti, stretta 82: oggi 18/82, lettore 8/82).
 > **Decisioni aperte del PI (2):** (1) che cosa fare del lettore: l'agente raccomanda di correggere lo schema e
 > ripetere la prova sugli stessi 47 studi, con Mistral e con uno o due modelli più grandi (spec §5.7), previsioni
 > nuove prima; (2) togliere dal riferimento i confronti di Atlas che usano il tempo zero come controllo, con una
