@@ -15,6 +15,9 @@
 # (modello, revisione, temperatura, repetition_penalty, chat_template_kwargs); VLLM_BATCH_INVARIANT=1 e
 # HF_HUB_OFFLINE=1 lette da container-env.txt (solo quelle due righe: il file porta il token di Hugging Face);
 # uscite congelate con SHA-256 (23-uscite-sha256.txt) prima di ogni misura. Nessuna misura qui.
+# DEROGA A K4 PER G2 (23-tentativi.md, scritta prima del secondo invio): vLLM 0.20.2 non ammette
+# VLLM_BATCH_INVARIANT=1 con gli strati GDN di Qwen3.5 (primo tentativo, job 478727). Il secondo tentativo di G2
+# parte senza quella variabile: il cancello verifica che HF_HUB_OFFLINE=1 ci sia e che VLLM_BATCH_INVARIANT non ci sia.
 # K5: solo studi di sviluppo (solo_sviluppo() ferma tutto il resto).
 #
 # Uso (run detached, poi verifica SID == PID). CORSE = elenco delle corse, separato da virgole:
@@ -52,8 +55,18 @@ MODELLI <- list(
                            load_format = "auto", tensor_parallel_size = 4L,
                            llm_extra = list(revision = REV_G2, tokenizer_revision = REV_G2),
                            chat_template_kwargs = list(enable_thinking = FALSE)),
-            rp = 1.1, tp = 4L, kwargs = list(enable_thinking = FALSE), tempo = "08:00:00")
+            rp = 1.1, tp = 4L, kwargs = list(enable_thinking = FALSE), tempo = "08:00:00",
+            env = c(HF_HUB_OFFLINE = "1"))             # deroga a K4: senza VLLM_BATCH_INVARIANT (vedi testata)
 )
+env_di <- function(mo) if (is.null(mo$env)) ENV_JOB else mo$env
+# K4 per una corsa in deroga: le variabili arrivate davvero al container sono quelle chieste, e la variabile tolta non c'e'.
+raccogli_deroga <- function(j, env) {
+  d <- ssh_ripeti(function() dgx_p4_collect(j))
+  p <- file.path("analysis/p4-output", j$run_id, "container-env.txt"); e <- if (file.exists(p)) readLines(p) else character()
+  if (!all(paste0(names(env), "=", env) %in% e)) ferma("CANCELLO K4: variabili assenti in %s", j$run_id)
+  if (any(grepl("^VLLM_BATCH_INVARIANT=", e))) ferma("CANCELLO K4 (deroga): VLLM_BATCH_INVARIANT presente in %s", j$run_id)
+  scrivi("cancello K4 (deroga): %s in %s, VLLM_BATCH_INVARIANT assente", paste0(names(env), "=", env, collapse = " "), j$run_id); d
+}
 CORSE <- strsplit(Sys.getenv("CORSE", ""), ",", fixed = TRUE)[[1]]
 AMMESSE <- c("M-corsa1", "M-corsa2", "M0-corsa1", "G1-corsa1", "G1-corsa2", "G2-corsa1", "G2-corsa2")
 if (!length(CORSE) || !all(CORSE %in% AMMESSE)) stop("CORSE deve elencare corse fra: ", paste(AMMESSE, collapse = ", "), call. = FALSE)
@@ -124,8 +137,9 @@ invia <- function(corsa) {
     ferma("CANCELLO K4: generation.json del bundle %s non e' quello atteso", b$run_id)
   nota("%s: bundle %s, prompt e schema uguali ai file committati, %d testi uguali alle viste; generation.json: %s",
        corsa, b$run_id, length(r), as.character(toJSON(g, auto_unbox = TRUE)))
-  j <- ssh_ripeti(function() dgx_p4_submit(b, time = mo$tempo, env = ENV_JOB))
-  saveRDS(j, f); nota("%s: inviato, slurm %s, run_id %s", corsa, j$slurm_job_id, j$run_id); j
+  j <- ssh_ripeti(function() dgx_p4_submit(b, time = mo$tempo, env = env_di(mo)))
+  saveRDS(j, f); nota("%s: inviato, slurm %s, run_id %s, ambiente chiesto: %s", corsa, j$slurm_job_id, j$run_id,
+                      paste0(names(env_di(mo)), "=", env_di(mo), collapse = " ")); j
 }
 
 leggi_corsa <- function(run_id) {
@@ -159,8 +173,11 @@ congela <- function() {
 for (corsa in CORSE) {
   uscita <- file.path(USCITE, paste0(corsa, ".jsonl"))
   if (file.exists(uscita)) { scrivi("%s: uscita gia' congelata, salto", corsa); next }
-  j <- invia(corsa); m <- attendi(list(j), 120L); raccogli(j)
-  nota("%s: slurm %s %s, durata %s, nodo %s; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1", corsa, m[1, 1], m[1, 2], m[1, 3], m[1, 4])
+  mo_c <- MODELLI[[sub("-.*$", "", corsa)]]
+  j <- invia(corsa); m <- attendi(list(j), 120L); if (is.null(mo_c$env)) raccogli(j) else raccogli_deroga(j, mo_c$env)
+  nota("%s: slurm %s %s, durata %s, nodo %s; container-env.txt: %s%s", corsa, m[1, 1], m[1, 2], m[1, 3], m[1, 4],
+       paste0(names(env_di(mo_c)), "=", env_di(mo_c), collapse = " e "),
+       if (is.null(mo_c$env)) "" else " (deroga a K4: VLLM_BATCH_INVARIANT assente)")
   d <- leggi_corsa(j$run_id); d$run_id <- j$run_id
   rr <- vapply(seq_len(nrow(d)), function(i) as.character(toJSON(as.list(d[i, ]), auto_unbox = TRUE, na = "null", digits = NA)), "")
   con <- file(uscita, "wb"); writeLines(enc2utf8(rr), con, useBytes = TRUE); close(con)
