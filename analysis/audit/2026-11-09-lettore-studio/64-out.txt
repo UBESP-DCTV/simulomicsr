@@ -1,0 +1,206 @@
+
+NOTE: Dependency discovery took 16 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 440 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore: passato (studio finto: 4 gruppi, 2 confronti; 8 esiti che chiudono visti)
+uscite congelate: 22 file, impronte uguali a 63-uscite-sha256.txt
+63-uscite-sha256.txt e' tracciato da git (le uscite sono congelate prima della misura)
+
+== P7: uscite identiche al carattere fra le due corse ==
+identiche: 47 su 47 
+
+== Esiti che chiudono lo studio senza misura ==
+studi chiusi dal lettore: 23 su 47 ; non chiusi: 24 
+studi per esito (uno studio puo' avere piu' esiti):
+
+  oltre_contesto       non_valida         troncata      non_coperta 
+               0                0                0               23 
+ livello_assente     base_assente base_non_ammessa    mappa_ambigua 
+               0                0                0                1 
+non chiusi per uno dei sette esiti del piano: 23 ; solo per un altro esito: 1 
+  GSE112057: non_coperta: disease_state: 6 combinazioni, 182 campioni, per esempio «Crohn's Disease»
+  GSE147507: non_coperta: cell_type: 1 combinazioni, 57 campioni, per esempio «» || non_coperta: agent: 6 combinazioni, 41 campioni, per esempio «SARS-CoV-2 infected (MOI 0.2) + USA-WA1/2020» || non_coperta: time_after_treatment: 1 combinazioni, 32 campioni, per esempio «» || non_coperta: tissue: 1 combinazioni, 68 campioni, per esempio «»
+  GSE44379: non_coperta: treatment: 2 combinazioni, 16 campioni, per esempio «no treatment (control)» || non_coperta: fraction: 16 combinazioni, 16 campioni, per esempio «RNAseq_Sucrose_Gradient_noarsenite_fraction1»
+  GSE46665: non_coperta: disease: 25 combinazioni, 25 campioni, per esempio «DCM_T0»
+  GSE49155: mappa_ambigua: cell_type: 1 combinazioni
+  GSE50760: non_coperta: disease_state: 3 combinazioni, 54 campioni, per esempio «primary colorectal cancer»
+  GSE52194: non_coperta: breast_cancer_subtype: 4 combinazioni, 20 campioni, per esempio «TNBC Breast Tumor»
+  GSE52778: non_coperta: agent: 4 combinazioni, 14 campioni, per esempio «Untreated»
+  GSE52946: non_coperta: disease_state: 3 combinazioni, 19 campioni, per esempio «sALS»
+  GSE56691: non_coperta: time: 12 combinazioni, 12 campioni, per esempio «RNASEQ_CUTLL1-GSKJ4_24h-replicate1»
+  GSE57027: non_coperta: construct: 3 combinazioni, 9 campioni, per esempio «Halo»
+  GSE57116: non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «NT-1» || non_coperta: time: 4 combinazioni, 14 campioni, per esempio «control» || non_coperta: treatment: 4 combinazioni, 14 campioni, per esempio «untreated»
+  GSE57945: non_coperta: disease: 1 combinazioni, 1 campioni, per esempio «not IBD» || non_coperta: inflammation_type: 1 combinazioni, 1 campioni, per esempio «not IBD» || non_coperta: deep_ulcer_presence: 1 combinazioni, 2 campioni, per esempio «no»
+  GSE63015: non_coperta: time: 6 combinazioni, 6 campioni, per esempio «Day 14 Control Neural Progenitior Cells, Replicate 1»
+  GSE63816: non_coperta: genotype: 22 combinazioni, 22 campioni, per esempio «ZRSR2 mutant MDS 1» || non_coperta: disease_state: 3 combinazioni, 22 campioni, per esempio «myelodysplastic syndrome (MDS)»
+  GSE66573: non_coperta: disease_state: 2 combinazioni, 14 campioni, per esempio «healthy» || non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «CTRL, 2343-TA-1»
+  GSE67196: non_coperta: disease: 3 combinazioni, 53 campioni, per esempio «c9ALS» || non_coperta: tissue: 2 combinazioni, 53 campioni, per esempio «Cerebellum» || non_coperta: sample: 53 combinazioni, 53 campioni, per esempio «1_cereb»
+  GSE68919: non_coperta: exosome: 8 combinazioni, 8 campioni, per esempio «BxPc3 Beta5 integrin KD exo 1»
+  GSE69597: non_coperta: stage: 6 combinazioni, 104 campioni, per esempio «Group 1»
+  GSE71289: non_coperta: replicate: 42 combinazioni, 42 campioni, per esempio «WT_d17_1»
+  GSE71595: non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «HC_A_min»
+  GSE78936: non_coperta: disease: 3 combinazioni, 82 campioni, per esempio «Bipolar Disorder» || non_coperta: region: 3 combinazioni, 82 campioni, per esempio «Brodmann's Area 11»
+  GSE83415: non_coperta: disease stage: 2 combinazioni, 21 campioni, per esempio «JIA patient with active, untreated disease»
+  GSE83687: non_coperta: tissue: 1 combinazioni, 1 campioni, per esempio «rightcolon_inflamed»
+note dell'adattatore (studi per nota):
+
+base_senza_campioni         voci_in_piu     voci_malformate 
+                 14                   2                  18 
+campioni dell'universo di Atlas assenti dalla vista: 0 in 0 studi
+
+== Il costruttore: coppie di gruppi che non diventano un confronto (64-registro-coppie.csv) ==
+
+fattore_senza_base              n_min nessuna_differenza    nessuno_al_base 
+               112                 24                 10                 41 
+ piu_di_un_fattore soggetti_disgiunti 
+               355                  1 
+
+== Confronti del lettore (n_min = 2) ==
+confronti: 20 in 10 studi; studi chiusi senza confronti: 13 
+esito
+           confronto confronto con avviso 
+                   9                   11 
+avvisi per tipo (un confronto puo' averne piu' di uno):
+
+ soggetti_diversi soggetti_in_parte 
+               10                 2 
+tipo del fattore che cambia:
+
+perturbazione         stato 
+            9            11 
+
+la misura di oggi riletta da 40-per-studio-oggi.csv ridà i numeri di 40-misure-oggi.csv
+
+== Lettore v0 contro Atlas, 47 studi (uno studio non chiuso: partizione non identica, zero confronti) ==
+(a) classi della partizione del lettore contro Atlas:
+
+  identica non_chiuso   piu_fine 
+        14         24          9 
+    oggi sugli stessi studi:
+            oggi
+lettore      identica incrociata piu_fine
+  identica          9          2        3
+  non_chiuso        4          3       17
+  piu_fine          1          1        7
+campioni dell'universo: 1798  comuni: 532  solo in Atlas: 1266 
+gruppi nell'universo: lettore 130  Atlas 172 
+(b) classi dei confronti di Atlas:
+
+non_formabile   piu_fattori      rispetta 
+            1            29            93 
+    ritrovati, fra quelli che rispettano la definizione:
+
+    no uguale 
+    83     10 
+    studi con almeno un confronto di Atlas ritrovato: 8 su 41 che ne hanno
+    confronti di Atlas con piu' fattori formati anche dal lettore: 2 su 29 
+(c) confronti del lettore: 20  non elencati da Atlas: 8 
+
+          coerente        fuori_atlas nessuna_differenza        piu_fattori 
+                 3                  3                  1                  1 
+    non elencati per giudizio e avviso:
+                    esito
+giudizio             confronto confronto con avviso
+  coerente                   2                    1
+  fuori_atlas                0                    3
+  nessuna_differenza         0                    1
+  piu_fattori                0                    1
+misure del lettore, 47 studi:
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           47 0.29787  0.17021 0.42553
+     b_confronti_ritrovati         10           93 0.10753  0.03883 0.19319
+     c_errori_non_elencati          1            5 0.20000  0.00000 1.00000
+             verso_opposto          0           93 0.00000  0.00000 0.00000
+         atlas_piu_fattori         29          123 0.23577  0.09612 0.38212
+ atlas_piu_fattori_formati          2           29 0.06897  0.00000 0.25000
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02778
+               ari_mediana         NA           23 1.00000  0.63625 1.00000
+misure di oggi, 47 studi (dal Task 8):
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           47 0.29787  0.17021 0.42553
+     b_confronti_ritrovati         19           93 0.20430  0.09375 0.34884
+     c_errori_non_elencati         19           79 0.24051  0.10619 0.39326
+             verso_opposto          1           93 0.01075  0.00000 0.04000
+         atlas_piu_fattori         29          123 0.23577  0.09612 0.38212
+ atlas_piu_fattori_formati          7           29 0.24138  0.00000 0.56250
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02778
+               ari_mediana         NA           47 0.77826  0.66437 0.86348
+
+== Soli studi chiusi dal lettore (23) ==
+lettore:
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           23 0.60870  0.39130 0.78261
+     b_confronti_ritrovati         10           41 0.24390  0.10524 0.42105
+     c_errori_non_elencati          1            5 0.20000  0.00000 1.00000
+             verso_opposto          0           41 0.00000  0.00000 0.00000
+         atlas_piu_fattori         12           54 0.22222  0.03844 0.41864
+ atlas_piu_fattori_formati          2           12 0.16667  0.00000 0.66667
+       atlas_non_formabile          1           54 0.01852  0.00000 0.06818
+               ari_mediana         NA           23 1.00000  0.63625 1.00000
+oggi, sugli stessi studi:
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         10           23 0.43478  0.21739 0.65217
+     b_confronti_ritrovati         14           41 0.34146  0.12500 0.60870
+     c_errori_non_elencati          5           21 0.23810  0.00000 0.57162
+             verso_opposto          0           41 0.00000  0.00000 0.00000
+         atlas_piu_fattori         12           54 0.22222  0.03844 0.41864
+ atlas_piu_fattori_formati          4           12 0.33333  0.00000 0.75000
+       atlas_non_formabile          1           54 0.01852  0.00000 0.06818
+               ari_mediana         NA           23 0.86348  0.83077 1.00000
+
+== Lettore meno oggi, appaiato sugli studi (B = 2000 , seme 20261109 ) ==
+47 studi:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.2979 0.2979    0.00000  -0.1277 0.12766
+ b_confronti_ritrovati  0.1075 0.2043   -0.09677  -0.2531 0.04349
+ c_errori_non_elencati  0.2000 0.2405   -0.04051  -0.3197 0.76252
+ ricampioni_senza_valore
+                       0
+                       0
+                     106
+soli studi chiusi:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.6087 0.4348    0.17391   0.0000  0.3478
+ b_confronti_ritrovati  0.2439 0.3415   -0.09756  -0.4167  0.1852
+ c_errori_non_elencati  0.2000 0.2381   -0.03810  -0.3158  0.6000
+ ricampioni_senza_valore
+                       0
+                       0
+                      83
+studi dove (b) migliora / resta / peggiora (numero di confronti ritrovati): 3 / 36 / 8 
+
+== Token veri (corsa 1) ==
+prompt, contati da vLLM:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1075    1560    1825    3314    2634   30952 
+uscita:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     66     489     957    1338    1456   13324 
+totale prompt 155775  totale uscita 62872 
+fine della generazione:
+
+stop 
+  47 
+
+== Tempo di generazione (dal log del job; il runner non registra il tempo per studio) ==
+corsa1: 4 worker, 47 studi, secondi per worker 110, 141, 220, 647; il piu' lento 647 s; secondi-GPU per studio 23.8
+corsa2: 4 worker, 47 studi, secondi per worker 111, 141, 220, 647; il piu' lento 647 s; secondi-GPU per studio 23.8
+
+== Previsioni (47 studi; bootstrap sugli studi, B = 2000 , seme 20261109 ) ==
+P3  lettore meno oggi su (b): -9.7 punti (IC95 -25.3, +4.3); atteso +30, rilevanza: IC95 sopra 0  ->  indeterminata
+P4  a_gruppi_identici: 14/47 = 29.8% (IC95 17.0-42.6%)  atteso 65%, rilevanza 50-80%  ->  smentita
+P5 lettore  c_errori_non_elencati: 1/5 = 20.0% (IC95 0.0-100.0%)  atteso 5%, rilevanza 0-10%  ->  indeterminata
+P5 oggi     c_errori_non_elencati: 19/79 = 24.1% (IC95 10.6-39.3%)  atteso 25%, rilevanza 15-35%  ->  indeterminata
+P6  studi non chiusi: 24 su 47 (per i sette esiti del piano: 23); atteso 4, rilevanza 0-7  ->  smentita
+P7  uscite identiche fra le due corse: 47 su 47; atteso 47, rilevanza 47  ->  confermata
+
+Regola di esito, le tre condizioni misurabili:
+  a_gruppi_identici: lettore 29.8%, oggi 29.8%, differenza +0.0 punti (IC95 -12.8, +12.8)
+  b_confronti_ritrovati: lettore 10.8%, oggi 20.4%, differenza -9.7 punti (IC95 -25.3, +4.3)
+  c_errori_non_elencati: lettore 20.0%, oggi 24.1%, differenza -4.1 punti (IC95 -32.0, +76.3)
+FINITO

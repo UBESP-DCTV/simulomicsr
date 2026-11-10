@@ -22,7 +22,19 @@
 #   - una base scritta fra i `levels` ma senza campioni: il fattore entra senza base (nessun confronto su quel
 #     fattore in tutti e due i casi). Si conta;
 #   - le voci di `assignment` con un numero di valori diverso dalle colonne fonte non si usano. Si contano.
+#
+# SENSIBILITA' aggiunta DOPO aver visto i numeri (2026-11-10): NON sostituisce la misura principale e le
+# previsioni NON si giudicano su di essa. In 13 studi il modello scrive in `values` un valore per OGNI colonna
+# della SAMPLE TABLE (nell'ordine dell'intestazione) invece di uno per colonna fonte. Con
+#   S12R_SENSIBILITA=forma Rscript .../64-adatta-e-misura.R > .../66-forma-out.txt 2>&1
+# l'adattatore legge anche quella forma (prende i valori alle posizioni delle colonne fonte), e solo quella: una
+# voce con un altro numero di valori resta non usata. Le tabelle escono col prefisso `66-forma-`. Serve a dire
+# quanta parte degli studi non chiusi dipende dalla forma delle voci. Senza la variabile lo script e' quello
+# committato prima della misura (le uscite sono uguali al byte: verificato).
 suppressMessages(devtools::load_all(".", quiet = TRUE))
+SENS <- Sys.getenv("S12R_SENSIBILITA", "")
+stopifnot(SENS %in% c("", "forma"))
+if (nzchar(SENS)) cat("*** SENSIBILITA' `", SENS, "`: NON e' la misura principale; le previsioni non si giudicano qui ***\n\n", sep = "")
 source("analysis/audit/2026-11-09-lettore-studio/aiuti-misura.R")
 DIR_USCITE <- "analysis/p4-output/S12r-lettore-v0"
 NON_STATED <- "not stated"
@@ -33,7 +45,8 @@ MOTIVI_PIANO <- c("oltre_contesto", "non_valida", "troncata", "non_coperta", "li
 SEP <- "\x1f"
 stopifnot(setequal(unname(TIPI), TF_TIPI), setequal(unname(SOGG), TF_SOGGETTI))
 validatore <- compile_schema(file.path(A, "61-schema-v0.json"))
-scrivi_csv <- function(d, f) utils::write.csv(d, file.path(A, f), row.names = FALSE, na = "")
+scrivi_csv <- function(d, f) utils::write.csv(d, file.path(A, if (nzchar(SENS)) sub("^64-", paste0("66-", SENS, "-"), f) else f),
+                                              row.names = FALSE, na = "")
 unisci <- function(x, sep = " | ") paste(x, collapse = sep)
 car <- function(x) if (is.null(x)) character(0) else as.character(unlist(x))
 
@@ -77,9 +90,15 @@ adatta <- function(v, raw, saltato, fine) {
     m <- lapply(fonti, valori)
     stopifnot(!any(grepl(SEP, unlist(m), fixed = TRUE)))
     k_camp <- if (length(m)) do.call(paste, c(m, sep = SEP)) else rep("", length(gsm))
+    intest <- car(v$colonne); per_colonna <- 0L
     k_voce <- vapply(f$assignment, function(a) {
-      x <- car(a$values); if (length(x) != length(fonti)) NA_character_ else paste(x, collapse = SEP)
+      x <- car(a$values)
+      if (SENS == "forma" && length(x) != length(fonti) && length(x) == length(intest) && all(fonti %in% intest)) {
+        x <- x[match(fonti, intest)]; per_colonna <<- per_colonna + 1L
+      }
+      if (length(x) != length(fonti)) NA_character_ else paste(x, collapse = SEP)
     }, "")
+    if (per_colonna) nt("voci_per_colonna_tabella", sprintf("%s: %d", nome, per_colonna))
     l_voce <- vapply(f$assignment, function(a) a$level, "")
     if (anyNA(k_voce)) nt("voci_malformate", sprintf("%s: %d", nome, sum(is.na(k_voce))))
     buone <- !is.na(k_voce)
@@ -410,6 +429,7 @@ scrivi_csv(ne, "64-non-elencati-lettore.csv")
 
 # ---- (6) Le previsioni ---------------------------------------------------------------------------------------
 cat("\n== Previsioni (47 studi; bootstrap sugli studi, B =", B, ", seme", SEME, ") ==\n")
+if (nzchar(SENS)) cat("*** SENSIBILITA': le righe qui sotto NON sono il giudizio delle previsioni (quello sta in 64-out.txt) ***\n")
 d <- diff47[diff47$misura == "b_confronti_ritrovati", ]
 cat(sprintf("P3  lettore meno oggi su (b): %+.1f punti (IC95 %+.1f, %+.1f); atteso +30, rilevanza: IC95 sopra 0  ->  %s\n",
             100 * d$differenza, 100 * d$ic_basso, 100 * d$ic_alto,
@@ -430,4 +450,7 @@ cat("\nRegola di esito, le tre condizioni misurabili:\n")
 for (i in seq_len(nrow(diff47))) cat(sprintf("  %s: lettore %.1f%%, oggi %.1f%%, differenza %+.1f punti (IC95 %+.1f, %+.1f)\n",
                                              diff47$misura[i], 100 * diff47$lettore[i], 100 * diff47$oggi[i],
                                              100 * diff47$differenza[i], 100 * diff47$ic_basso[i], 100 * diff47$ic_alto[i]))
+# Per la lettura dei disaccordi (65-materiale.R): gli oggetti per studio, solo se chiesto. Non cambia le tabelle.
+if (nzchar(Sys.getenv("S12R_OGGETTI", ""))) saveRDS(list(lett = lett, mm = mm, rif = rif, viste = viste, oggi = oggi),
+                                                    Sys.getenv("S12R_OGGETTI"))
 cat("FINITO\n")

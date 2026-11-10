@@ -40,3 +40,13 @@ Da qui in poi le misure hanno cancelli e previsioni depositati prima del calcolo
 | `60-viste-v0.jsonl` | una riga per studio: `record_id`, `testo`, `campioni`, `colonne`, `costanti`, `tabella` (per colonna, il valore di ogni campione) |
 | `61-schema-v0.json` | lo schema della tabella dei fattori, prima versione |
 | `62-prompt-v0.md` | il messaggio di sistema, prima versione: il file entra nel prompt byte per byte, quindi non porta il marchio «PROVA DA BUTTARE» |
+| `63-lancia.R`, `63-out.txt`, `jobs/`, `log/` | la corsa sul cluster: due corse uguali del lettore v0 su `poddgx02` (cancello K4: schema, prompt e variabili d'ambiente controllati prima dell'invio) |
+| `63-uscite-sha256.txt` | le impronte delle uscite delle due corse, committate prima di ogni misura |
+| `64-adatta-e-misura.R`, `64-out.txt` | l'adattatore (uscita del modello → tabella dei fattori), il costruttore e le tre misure contro Atlas; l'esito delle previsioni P3-P7. Script committato prima di leggere le uscite |
+| `64-per-studio-lettore.csv`, `64-misure-lettore.csv`, `64-lettore-meno-oggi.csv` | la misura per studio, le misure riassunte, il confronto appaiato lettore meno oggi |
+| `64-confronti-atlas-lettore.csv`, `64-confronti-lettore.csv`, `64-non-elencati-lettore.csv`, `64-fattori-lettore.csv`, `64-registro-coppie.csv` | ogni confronto di Atlas con l'esito, ogni confronto del lettore, i confronti che Atlas non elenca con il giudizio, i fattori scritti dal modello, il registro di tutte le coppie non formate |
+| `66-forma-out.txt`, `66-forma-*.csv` | **sensibilità dichiarata dopo aver visto i numeri** (`S12R_SENSIBILITA=forma`): le stesse tabelle quando l'adattatore legge anche le voci di `assignment` malformate. Non sostituisce la misura principale |
+| `65-materiale.R`, `65-materiale.txt` | il materiale letto per ogni studio: vista, uscita del modello, tabella di Atlas, incrocio dei gruppi, confronti, registro |
+| `65-cause-studi.txt`, `65-cause-confronti.txt` | le cause lette a mano (audit interno, agente Claude): una riga per studio, più i confronti con una causa diversa da quella dello studio |
+| `65-disaccordi.R`, `65-out.txt` | prende le 145 unità di disaccordo dalle tabelle della misura, dà a ognuna la causa letta, e si ferma se una resta senza causa o se una causa contraddice la misura |
+| `65-disaccordi.md`, `65-disaccordi-righe.csv` | la lettura di tutti i disaccordi: conti per causa, classe «livello combinato», una riga per studio e una per unità |

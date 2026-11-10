@@ -1,0 +1,205 @@
+
+NOTE: Dependency discovery took 17 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 440 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+*** SENSIBILITA' `forma`: NON e' la misura principale; le previsioni non si giudicano qui ***
+
+controllo positivo dell'adattatore: passato (studio finto: 4 gruppi, 2 confronti; 8 esiti che chiudono visti)
+uscite congelate: 22 file, impronte uguali a 63-uscite-sha256.txt
+63-uscite-sha256.txt e' tracciato da git (le uscite sono congelate prima della misura)
+
+== P7: uscite identiche al carattere fra le due corse ==
+identiche: 47 su 47 
+
+== Esiti che chiudono lo studio senza misura ==
+studi chiusi dal lettore: 33 su 47 ; non chiusi: 14 
+studi per esito (uno studio puo' avere piu' esiti):
+
+  oltre_contesto       non_valida         troncata      non_coperta 
+               0                0                0               13 
+ livello_assente     base_assente base_non_ammessa    mappa_ambigua 
+               0                0                0                2 
+non chiusi per uno dei sette esiti del piano: 13 ; solo per un altro esito: 1 
+  GSE147507: non_coperta: cell_type: 1 combinazioni, 57 campioni, per esempio «» || non_coperta: agent: 6 combinazioni, 41 campioni, per esempio «SARS-CoV-2 infected (MOI 0.2) + USA-WA1/2020» || non_coperta: time_after_treatment: 1 combinazioni, 32 campioni, per esempio «» || non_coperta: tissue: 1 combinazioni, 68 campioni, per esempio «»
+  GSE46665: non_coperta: disease: 25 combinazioni, 25 campioni, per esempio «DCM_T0»
+  GSE49155: mappa_ambigua: cell_type: 1 combinazioni
+  GSE56691: non_coperta: time: 12 combinazioni, 12 campioni, per esempio «RNASEQ_CUTLL1-GSKJ4_24h-replicate1»
+  GSE57027: non_coperta: construct: 3 combinazioni, 9 campioni, per esempio «Halo»
+  GSE57945: non_coperta: disease: 1 combinazioni, 1 campioni, per esempio «not IBD» || non_coperta: inflammation_type: 1 combinazioni, 1 campioni, per esempio «not IBD» || non_coperta: deep_ulcer_presence: 1 combinazioni, 2 campioni, per esempio «no»
+  GSE66573: non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «CTRL, 2343-TA-1»
+  GSE68919: non_coperta: exosome: 6 combinazioni, 6 campioni, per esempio «BxPc3 Beta5 integrin KD exo 1»
+  GSE69597: non_coperta: stage: 6 combinazioni, 104 campioni, per esempio «Group 1»
+  GSE71289: non_coperta: replicate: 42 combinazioni, 42 campioni, per esempio «WT_d17_1»
+  GSE71595: non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «HC_A_min»
+  GSE78936: mappa_ambigua: disease: 1 combinazioni || non_coperta: disease: 3 combinazioni, 82 campioni, per esempio «Bipolar Disorder»
+  GSE83415: non_coperta: disease stage: 2 combinazioni, 21 campioni, per esempio «JIA patient with active, untreated disease»
+  GSE83687: non_coperta: tissue: 1 combinazioni, 1 campioni, per esempio «rightcolon_inflamed»
+note dell'adattatore (studi per nota):
+
+     base_senza_campioni              voci_in_piu          voci_malformate 
+                       3                        4                        6 
+voci_per_colonna_tabella 
+                      13 
+campioni dell'universo di Atlas assenti dalla vista: 0 in 0 studi
+
+== Il costruttore: coppie di gruppi che non diventano un confronto (64-registro-coppie.csv) ==
+
+fattore_senza_base              n_min nessuna_differenza    nessuno_al_base 
+               397                 42                 10                 61 
+ piu_di_un_fattore soggetti_disgiunti 
+              1649                  6 
+
+== Confronti del lettore (n_min = 2) ==
+confronti: 31 in 15 studi; studi chiusi senza confronti: 18 
+esito
+           confronto confronto con avviso 
+                  15                   16 
+avvisi per tipo (un confronto puo' averne piu' di uno):
+
+ soggetti_diversi soggetti_in_parte 
+               12                 5 
+tipo del fattore che cambia:
+
+perturbazione         stato 
+           13            18 
+
+la misura di oggi riletta da 40-per-studio-oggi.csv ridà i numeri di 40-misure-oggi.csv
+
+== Lettore v0 contro Atlas, 47 studi (uno studio non chiuso: partizione non identica, zero confronti) ==
+(a) classi della partizione del lettore contro Atlas:
+
+  identica incrociata non_chiuso   piu_fine 
+        20          1         14         12 
+    oggi sugli stessi studi:
+            oggi
+lettore      identica incrociata piu_fine
+  identica          9          2        9
+  incrociata        0          0        1
+  non_chiuso        4          2        8
+  piu_fine          1          2        9
+campioni dell'universo: 1798  comuni: 925  solo in Atlas: 873 
+gruppi nell'universo: lettore 236  Atlas 172 
+(b) classi dei confronti di Atlas:
+
+non_formabile   piu_fattori      rispetta 
+            1            29            93 
+    ritrovati, fra quelli che rispettano la definizione:
+
+    no uguale 
+    78     15 
+    studi con almeno un confronto di Atlas ritrovato: 11 su 41 che ne hanno
+    confronti di Atlas con piu' fattori formati anche dal lettore: 5 su 29 
+(c) confronti del lettore: 31  non elencati da Atlas: 11 
+
+     braccio_misto           coerente        fuori_atlas nessuna_differenza 
+                 1                  4                  4                  1 
+       piu_fattori 
+                 1 
+    non elencati per giudizio e avviso:
+                    esito
+giudizio             confronto confronto con avviso
+  braccio_misto              0                    1
+  coerente                   2                    2
+  fuori_atlas                1                    3
+  nessuna_differenza         0                    1
+  piu_fattori                0                    1
+misure del lettore, 47 studi:
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         20           47 0.42553  0.29787 0.57447
+     b_confronti_ritrovati         15           93 0.16129  0.06897 0.27273
+     c_errori_non_elencati          2            7 0.28571  0.00000 1.00000
+             verso_opposto          0           93 0.00000  0.00000 0.00000
+         atlas_piu_fattori         29          123 0.23577  0.09612 0.38212
+ atlas_piu_fattori_formati          5           29 0.17241  0.00000 0.47059
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02778
+               ari_mediana         NA           33 1.00000  0.82899 1.00000
+misure di oggi, 47 studi (dal Task 8):
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         14           47 0.29787  0.17021 0.42553
+     b_confronti_ritrovati         19           93 0.20430  0.09375 0.34884
+     c_errori_non_elencati         19           79 0.24051  0.10619 0.39326
+             verso_opposto          1           93 0.01075  0.00000 0.04000
+         atlas_piu_fattori         29          123 0.23577  0.09612 0.38212
+ atlas_piu_fattori_formati          7           29 0.24138  0.00000 0.56250
+       atlas_non_formabile          1          123 0.00813  0.00000 0.02778
+               ari_mediana         NA           47 0.77826  0.66437 0.86348
+
+== Soli studi chiusi dal lettore (33) ==
+lettore:
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         20           33 0.60606  0.45455 0.75758
+     b_confronti_ritrovati         15           63 0.23810  0.10769 0.40000
+     c_errori_non_elencati          2            7 0.28571  0.00000 1.00000
+             verso_opposto          0           63 0.00000  0.00000 0.00000
+         atlas_piu_fattori         15           79 0.18987  0.04545 0.34487
+ atlas_piu_fattori_formati          5           15 0.33333  0.00000 0.83333
+       atlas_non_formabile          1           79 0.01266  0.00000 0.04616
+               ari_mediana         NA           33 1.00000  0.94390 1.00000
+oggi, sugli stessi studi:
+                    misura numeratore denominatore   quota ic_basso ic_alto
+         a_gruppi_identici         10           33 0.30303  0.15152 0.48485
+     b_confronti_ritrovati         15           63 0.23810  0.08926 0.44448
+     c_errori_non_elencati         10           47 0.21277  0.04688 0.43908
+             verso_opposto          0           63 0.00000  0.00000 0.00000
+         atlas_piu_fattori         15           79 0.18987  0.04545 0.34487
+ atlas_piu_fattori_formati          4           15 0.26667  0.00000 0.63158
+       atlas_non_formabile          1           79 0.01266  0.00000 0.04616
+               ari_mediana         NA           33 0.83077  0.65772 0.87988
+
+== Lettore meno oggi, appaiato sugli studi (B = 2000 , seme 20261109 ) ==
+47 studi:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.4255 0.2979    0.12766 -0.04255  0.2979
+ b_confronti_ritrovati  0.1613 0.2043   -0.04301 -0.21739  0.1183
+ c_errori_non_elencati  0.2857 0.2405    0.04521 -0.26448  0.6351
+ ricampioni_senza_valore
+                       0
+                       0
+                      42
+soli studi chiusi:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.6061 0.3030    0.30303   0.1212  0.4848
+ b_confronti_ritrovati  0.2381 0.2381    0.00000  -0.2565  0.2387
+ c_errori_non_elencati  0.2857 0.2128    0.07295  -0.2423  0.6509
+ ricampioni_senza_valore
+                       0
+                       0
+                      29
+studi dove (b) migliora / resta / peggiora (numero di confronti ritrovati): 6 / 33 / 8 
+
+== Token veri (corsa 1) ==
+prompt, contati da vLLM:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1075    1560    1825    3314    2634   30952 
+uscita:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     66     489     957    1338    1456   13324 
+totale prompt 155775  totale uscita 62872 
+fine della generazione:
+
+stop 
+  47 
+
+== Tempo di generazione (dal log del job; il runner non registra il tempo per studio) ==
+corsa1: 4 worker, 47 studi, secondi per worker 110, 141, 220, 647; il piu' lento 647 s; secondi-GPU per studio 23.8
+corsa2: 4 worker, 47 studi, secondi per worker 111, 141, 220, 647; il piu' lento 647 s; secondi-GPU per studio 23.8
+
+== Previsioni (47 studi; bootstrap sugli studi, B = 2000 , seme 20261109 ) ==
+*** SENSIBILITA': le righe qui sotto NON sono il giudizio delle previsioni (quello sta in 64-out.txt) ***
+P3  lettore meno oggi su (b): -4.3 punti (IC95 -21.7, +11.8); atteso +30, rilevanza: IC95 sopra 0  ->  indeterminata
+P4  a_gruppi_identici: 20/47 = 42.6% (IC95 29.8-57.4%)  atteso 65%, rilevanza 50-80%  ->  indeterminata
+P5 lettore  c_errori_non_elencati: 2/7 = 28.6% (IC95 0.0-100.0%)  atteso 5%, rilevanza 0-10%  ->  indeterminata
+P5 oggi     c_errori_non_elencati: 19/79 = 24.1% (IC95 10.6-39.3%)  atteso 25%, rilevanza 15-35%  ->  indeterminata
+P6  studi non chiusi: 14 su 47 (per i sette esiti del piano: 13); atteso 4, rilevanza 0-7  ->  smentita
+P7  uscite identiche fra le due corse: 47 su 47; atteso 47, rilevanza 47  ->  confermata
+
+Regola di esito, le tre condizioni misurabili:
+  a_gruppi_identici: lettore 42.6%, oggi 29.8%, differenza +12.8 punti (IC95 -4.3, +29.8)
+  b_confronti_ritrovati: lettore 16.1%, oggi 20.4%, differenza -4.3 punti (IC95 -21.7, +11.8)
+  c_errori_non_elencati: lettore 28.6%, oggi 24.1%, differenza +4.5 punti (IC95 -26.4, +63.5)
+FINITO

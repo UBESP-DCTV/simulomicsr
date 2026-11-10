@@ -1,0 +1,11 @@
+studio|tipo|id|causa|sotto|resto_causa|resto_sotto|differenza
+GSE57945|atlas|g6_g1|modello|non_coperta|schema|fattore_annidato|Atlas unisce malattia e istologia in un confronto (classe `piu_fattori`).
+GSE57945|atlas|g6_g2|modello|non_coperta|schema|fattore_annidato|Atlas unisce malattia e istologia in un confronto (classe `piu_fattori`).
+GSE57945|atlas|g6_g3|modello|non_coperta|schema|fattore_annidato|Atlas unisce malattia e istologia in un confronto (classe `piu_fattori`).
+GSE57945|atlas|g6_g4|modello|non_coperta|schema|fattore_annidato|Atlas unisce malattia e istologia in un confronto (classe `piu_fattori`).
+GSE57945|atlas|g6_g5|modello|non_coperta|schema|fattore_annidato|Atlas unisce malattia e istologia in un confronto (classe `piu_fattori`).
+GSE65335|atlas|g3_g1|curatore|fattori_combinati|niente_letto||Atlas confronta interleuchina 13 all'interfaccia aria-liquido (giorno 14) con il non trattato sommerso (giorno 8): due fattori diversi. La definizione del progetto non ammette questo confronto.
+GSE75852|atlas|g2_g4|modello|fattore_dal_titolo|schema|context_senza_base|Atlas confronta due tipi cellulari (staminale neurale contro iPSC): per schema un contesto non ha livello di base.
+GSE75852|atlas|g1_g3|modello|fattore_dal_titolo|schema|context_senza_base|Atlas confronta due tipi cellulari (staminale neurale contro iPSC): per schema un contesto non ha livello di base.
+GSE56787|lettore|g6_g9|strumento|fattori_ridondanti|niente_letto||Confronto del lettore FSHD2 contro controllo nei miotubi (3 contro 2). Non coincide con quello di Atlas per l'errore del curatore sul campione. La misura lo giudica `piu_fattori` perché Atlas scrive la stessa differenza in due fattori (`disease` e `genotype`).
+GSE50760|lettore_forma|g2_g1|curatore|errore_campione|niente_letto||Solo nella sensibilità: il braccio «metastasis» del lettore (18 campioni) contiene il campione che Atlas mette fra i normali, e la misura lo giudica `braccio_misto`. È l'errore del curatore già scritto per lo studio.

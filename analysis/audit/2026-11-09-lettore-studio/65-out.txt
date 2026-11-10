@@ -1,0 +1,282 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 440 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+unita' di disaccordo: 145 (studio_non_chiuso 24; partizione_non_identica 9; atlas_non_ritrovato 111; lettore_errore 1)
+studi con almeno un disaccordo: 41 su 47; studi senza: GSE53280, GSE54846, GSE56235, GSE58326, GSE59781, GSE71421
+
+prima causa per tipo di unita':
+                         
+                          vista schema modello curatore strumento
+  studio_non_chiuso           0      0      24        0         0
+  partizione_non_identica     0      0       7        2         0
+  atlas_non_ritrovato         0      1      89       20         1
+  lettore_errore              0      0       0        0         1
+
+prima causa e sottoclasse per tipo di unita':
+                              
+chiave                         studio_non_chiuso partizione_non_identica
+  curatore/errore_campione                     0                       1
+  curatore/fattore_ignorato                    0                       1
+  curatore/fattori_combinati                   0                       0
+  curatore/riferimento                         0                       0
+  curatore/tempo_zero                          0                       0
+  modello/base                                 0                       0
+  modello/fattore_dal_titolo                   1                       6
+  modello/fattore_doppio                       0                       0
+  modello/forma_voci                          18                       0
+  modello/livello                              0                       1
+  modello/mappa_ambigua                        1                       0
+  modello/non_coperta                          4                       0
+  modello/ruolo_soggetto                       0                       0
+  schema/context_senza_base                    0                       0
+  strumento/fattori_ridondanti                 0                       0
+  strumento/universo                           0                       0
+                              
+chiave                         atlas_non_ritrovato lettore_errore
+  curatore/errore_campione                       1              0
+  curatore/fattore_ignorato                      1              0
+  curatore/fattori_combinati                     1              0
+  curatore/riferimento                           7              0
+  curatore/tempo_zero                           10              0
+  modello/base                                   1              0
+  modello/fattore_dal_titolo                    20              0
+  modello/fattore_doppio                         1              0
+  modello/forma_voci                            50              0
+  modello/livello                                3              0
+  modello/mappa_ambigua                          2              0
+  modello/non_coperta                           11              0
+  modello/ruolo_soggetto                         1              0
+  schema/context_senza_base                      1              0
+  strumento/fattori_ridondanti                   0              1
+  strumento/universo                             1              0
+
+che cosa resta tolta la prima causa (righe: prima causa; colonne: resto):
+                              
+chiave                         curatore/errore_campione
+  curatore/errore_campione                            0
+  curatore/fattore_ignorato                           0
+  curatore/fattori_combinati                          0
+  curatore/riferimento                                0
+  curatore/tempo_zero                                 0
+  modello/base                                        0
+  modello/fattore_dal_titolo                          0
+  modello/fattore_doppio                              0
+  modello/forma_voci                                  3
+  modello/livello                                     0
+  modello/mappa_ambigua                               0
+  modello/non_coperta                                 0
+  modello/ruolo_soggetto                              0
+  schema/context_senza_base                           0
+  strumento/fattori_ridondanti                        0
+  strumento/universo                                  0
+                              
+chiave                         curatore/fattore_ignorato curatore/repliche
+  curatore/errore_campione                             0                 0
+  curatore/fattore_ignorato                            0                 0
+  curatore/fattori_combinati                           0                 0
+  curatore/riferimento                                 0                 0
+  curatore/tempo_zero                                  0                 0
+  modello/base                                         0                 0
+  modello/fattore_dal_titolo                           2                 0
+  modello/fattore_doppio                               0                 0
+  modello/forma_voci                                   0                 2
+  modello/livello                                      0                 0
+  modello/mappa_ambigua                                0                 0
+  modello/non_coperta                                  0                 0
+  modello/ruolo_soggetto                               0                 0
+  schema/context_senza_base                            0                 0
+  strumento/fattori_ridondanti                         0                 0
+  strumento/universo                                   0                 0
+                              
+chiave                         curatore/tempo_zero modello/fattore_dal_titolo
+  curatore/errore_campione                       0                          0
+  curatore/fattore_ignorato                      0                          0
+  curatore/fattori_combinati                     0                          0
+  curatore/riferimento                           0                          0
+  curatore/tempo_zero                            0                          0
+  modello/base                                   0                          0
+  modello/fattore_dal_titolo                     0                          0
+  modello/fattore_doppio                         0                          0
+  modello/forma_voci                             4                         15
+  modello/livello                                0                          0
+  modello/mappa_ambigua                          0                          0
+  modello/non_coperta                            0                          3
+  modello/ruolo_soggetto                         0                          0
+  schema/context_senza_base                      0                          0
+  strumento/fattori_ridondanti                   0                          0
+  strumento/universo                             0                          0
+                              
+chiave                         modello/fattore_doppio modello/livello
+  curatore/errore_campione                          0               0
+  curatore/fattore_ignorato                         0               0
+  curatore/fattori_combinati                        0               0
+  curatore/riferimento                              0               0
+  curatore/tempo_zero                               0               0
+  modello/base                                      0               0
+  modello/fattore_dal_titolo                       11               0
+  modello/fattore_doppio                            0               0
+  modello/forma_voci                                0               3
+  modello/livello                                   0               0
+  modello/mappa_ambigua                             0               0
+  modello/non_coperta                               0               0
+  modello/ruolo_soggetto                            0               0
+  schema/context_senza_base                         0               0
+  strumento/fattori_ridondanti                      0               0
+  strumento/universo                                0               0
+                              
+chiave                         niente_letto niente_misurato non_osservato
+  curatore/errore_campione                2               0             0
+  curatore/fattore_ignorato               2               0             0
+  curatore/fattori_combinati              1               0             0
+  curatore/riferimento                    7               0             0
+  curatore/tempo_zero                    10               0             0
+  modello/base                            1               0             0
+  modello/fattore_dal_titolo              5               0             7
+  modello/fattore_doppio                  1               0             0
+  modello/forma_voci                      0              14            15
+  modello/livello                         0               0             0
+  modello/mappa_ambigua                   0               0             3
+  modello/non_coperta                     0               0             7
+  modello/ruolo_soggetto                  1               0             0
+  schema/context_senza_base               1               0             0
+  strumento/fattori_ridondanti            1               0             0
+  strumento/universo                      1               0             0
+                              
+chiave                         schema/context_senza_base
+  curatore/errore_campione                             0
+  curatore/fattore_ignorato                            0
+  curatore/fattori_combinati                           0
+  curatore/riferimento                                 0
+  curatore/tempo_zero                                  0
+  modello/base                                         0
+  modello/fattore_dal_titolo                           2
+  modello/fattore_doppio                               0
+  modello/forma_voci                                   0
+  modello/livello                                      0
+  modello/mappa_ambigua                                0
+  modello/non_coperta                                  0
+  modello/ruolo_soggetto                               0
+  schema/context_senza_base                            0
+  strumento/fattori_ridondanti                         0
+  strumento/universo                                   0
+                              
+chiave                         schema/fattore_annidato schema/soggetto_NA
+  curatore/errore_campione                           0                  0
+  curatore/fattore_ignorato                          0                  0
+  curatore/fattori_combinati                         0                  0
+  curatore/riferimento                               0                  0
+  curatore/tempo_zero                                0                  0
+  modello/base                                       0                  0
+  modello/fattore_dal_titolo                         0                  0
+  modello/fattore_doppio                             0                  0
+  modello/forma_voci                                 7                  5
+  modello/livello                                    4                  0
+  modello/mappa_ambigua                              0                  0
+  modello/non_coperta                                5                  0
+  modello/ruolo_soggetto                             0                  0
+  schema/context_senza_base                          0                  0
+  strumento/fattori_ridondanti                       0                  0
+  strumento/universo                                 0                  0
+
+esito della catena per tipo di unita':
+                         
+                          forma ignoto modello non_errore schema
+  studio_non_chiuso           6      4      10          3      1
+  partizione_non_identica     0      0       6          3      0
+  atlas_non_ritrovato         8     11      52         28     12
+  lettore_errore              0      0       0          1      0
+
+confronti di Atlas nel denominatore della misura (b), non ritrovati: 83
+
+ curatore/fattore_ignorato       curatore/riferimento 
+                         1                          2 
+       curatore/tempo_zero               modello/base 
+                        10                          1 
+modello/fattore_dal_titolo     modello/fattore_doppio 
+                        20                          1 
+        modello/forma_voci      modello/mappa_ambigua 
+                        38                          2 
+       modello/non_coperta     modello/ruolo_soggetto 
+                         6                          1 
+ schema/context_senza_base 
+                         1 
+
+     forma     ignoto    modello non_errore     schema 
+         5         11         44         17          6 
+
+confronti `rispetta` non ritrovati, esito della catena contro la pipeline di oggi:
+            
+             no uguale verso_opposto
+  forma       5      0             0
+  ignoto      9      2             0
+  modello    38      5             1
+  non_errore 11      6             0
+  schema      5      1             0
+
+confronti di Atlas di classe piu_fattori o non_formabile, non ritrovati: 28
+                            
+                             forma modello non_errore schema
+  curatore/errore_campione       0       0          1      0
+  curatore/fattori_combinati     0       0          1      0
+  curatore/riferimento           0       0          5      0
+  modello/forma_voci             3       0          3      6
+  modello/livello                0       3          0      0
+  modello/non_coperta            0       5          0      0
+  strumento/universo             0       0          1      0
+
+sensibilita' di lettura, NON una misura: dei 93 confronti `rispetta` di Atlas, 17 hanno nella catena una scelta o un errore del curatore;
+senza quelli il denominatore e' 76: lettore 10, oggi 13 (oggi ne ritrova 6 fra quelli tolti)
+
+studi per prima causa (uno studio conta una volta per causa):
+
+    curatore/errore_campione    curatore/fattore_ignorato 
+                           1                            1 
+  curatore/fattori_combinati         curatore/riferimento 
+                           1                            1 
+         curatore/tempo_zero                 modello/base 
+                           2                            1 
+  modello/fattore_dal_titolo       modello/fattore_doppio 
+                           7                            1 
+          modello/forma_voci              modello/livello 
+                          18                            1 
+       modello/mappa_ambigua          modello/non_coperta 
+                           1                            4 
+      modello/ruolo_soggetto    schema/context_senza_base 
+                           1                            1 
+strumento/fattori_ridondanti           strumento/universo 
+                           1                            1 
+
+studi in cui la sottoclasse compare (prima causa, resto o «anche»):
+
+          modello/forma_voci   modello/fattore_dal_titolo 
+                          18                           13 
+      modello/fattore_doppio          modello/non_coperta 
+                           5                            4 
+     schema/fattore_annidato          curatore/tempo_zero 
+                           4                            3 
+      modello/ruolo_soggetto     curatore/errore_campione 
+                           3                            2 
+   curatore/fattore_ignorato              modello/livello 
+                           2                            2 
+   schema/context_senza_base   curatore/fattori_combinati 
+                           2                            1 
+           curatore/repliche         curatore/riferimento 
+                           1                            1 
+                modello/base        modello/mappa_ambigua 
+                           1                            1 
+          schema/soggetto_NA strumento/fattori_ridondanti 
+                           1                            1 
+          strumento/universo 
+                           1 
+
+errori del lettore nella sola sensibilita' `forma` (fuori dalle unita'):
+   studio    id    causa           sotto
+ GSE50760 g2_g1 curatore errore_campione
+
+scritti 65-disaccordi-righe.csv (145 righe) e 65-disaccordi.md

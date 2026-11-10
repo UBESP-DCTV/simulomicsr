@@ -1,0 +1,1414 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 440 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+
+=================== GSE103170 (E-GEOD-103170) campioni vista 6, universo Atlas 6
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/1 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/1 nostri 0 | OGGI: classe=identica ritrovati 1/1 nostri 1 errori 0/0
+TITOLO: Title: Neutrophils in systemic onset Juvenile Idiopathic Arthritis display sepsis-like features which can be reverted by IL-1 blockade 
+VISTA colonne:
+  title [6 distinti]: «NeuHC082» 1; «NeuHC085» 1; «NeuHC104» 1; «Neupt10» 1; «Neupt11» 1; «Neupt8» 1
+  disease state [2 distinti]: «healthy control» 3; «systemic JIA patient» 3
+MODELLO ruoli: title=factor; disease state=factor 
+MODELLO fattore «disease_state» (state; fonti: disease state; base: «healthy_control»); 2 voci, valori per voce: 2x1
+    livelli: healthy_control | systemic_jia_patient
+    voci: [healthy control]→healthy_control  [systemic JIA patient]→systemic_jia_patient
+MODELLO fattore «sample» (technical; fonti: title; base: «»); 6 voci, valori per voce: 6x1
+    livelli: NeuHC082 | NeuHC085 | NeuHC104 | Neupt10 | Neupt11 | Neupt8
+    voci: [NeuHC082]→NeuHC082  [NeuHC085]→NeuHC085  [NeuHC104]→NeuHC104  [Neupt10]→Neupt10  [Neupt11]→Neupt11  [Neupt8]→Neupt8
+ATLAS fattori: disease (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: disease_state (stato; base «healthy_control»); sample (tecnico; base «NA»)
+  A[disease=normal]  ×  L[disease_state=healthy_control & sample=NeuHC082]  n=1
+  A[disease=normal]  ×  L[disease_state=healthy_control & sample=NeuHC085]  n=1
+  A[disease=normal]  ×  L[disease_state=healthy_control & sample=NeuHC104]  n=1
+  A[disease=systemic-onset juvenile idiopathic arthritis]  ×  L[disease_state=systemic_jia_patient & sample=Neupt10]  n=1
+  A[disease=systemic-onset juvenile idiopathic arthritis]  ×  L[disease_state=systemic_jia_patient & sample=Neupt11]  n=1
+  A[disease=systemic-onset juvenile idiopathic arthritis]  ×  L[disease_state=systemic_jia_patient & sample=Neupt8]  n=1
+  REGISTRO coppie: fattore_senza_base 6; piu_di_un_fattore 9 
+  ATLAS confronto «'systemic-onset juvenile idiopathic arthritis' vs 'normal'» (3/3) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE103501 (E-GEOD-103501) campioni vista 29, universo Atlas 29
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 3/7 nostri 5 | FORMA: chiuso=TRUE classe=identica ritrovati 3/7 nostri 5 | OGGI: classe=piu_fine ritrovati 0/7 nostri 3 errori 0/3
+TITOLO: Title: A multidimensional blood stimulation assay reveals immune alterations underlying systemic juvenile idiopathic arthritis [RNA-Seq] 
+VISTA colonne:
+  title [29 distinti]: «H-391_exvivo» 1; «H-391_LPS» 1; «H-391_medium» 1; «H-392_exvivo» 1; «H-394_exvivo» 1; «H-394_LPS» 1; … altri 23 valori
+  cdna [29 distinti]: «cDNA2029» 1; «cDNA2031» 1; «cDNA2032» 1; «cDNA2033» 1; «cDNA2034» 1; «cDNA2035» 1; … altri 23 valori
+  treatment [3 distinti]: «exvivo» 11; «LPS» 10; «medium» 8
+  donor [13 distinti]: «H-391» 3; «H-394» 3; «H-398» 3; «SYS-177» 3; «SYS-180» 3; «SYS-205» 3; … altri 7 valori
+  disease [2 distinti]: «SYS» 16; «H» 13
+  group [2 distinti]: «invitro» 18; «exvivo» 11
+  timepoint [2 distinti]: «06h» 18; «00h» 11
+MODELLO ruoli: title=factor; cdna=replicate; treatment=factor; donor=subject/donor; disease=factor; group=factor; timepoint=factor 
+MODELLO fattore «treatment» (perturbation; fonti: treatment; base: «medium»); 3 voci, valori per voce: 3x1
+    livelli: medium | LPS | exvivo
+    voci: [medium]→medium  [LPS]→LPS  [exvivo]→exvivo
+MODELLO fattore «disease» (state; fonti: disease; base: «healthy»); 2 voci, valori per voce: 2x1
+    livelli: healthy | systemic_jia
+    voci: [H]→healthy  [SYS]→systemic_jia
+MODELLO fattore «group» (context; fonti: group; base: «»); 2 voci, valori per voce: 2x1
+    livelli: invitro | exvivo
+    voci: [invitro]→invitro  [exvivo]→exvivo
+MODELLO fattore «timepoint» (time; fonti: timepoint; base: «»); 2 voci, valori per voce: 2x1
+    livelli: 06h | 00h
+    voci: [06h]→06h  [00h]→00h
+ATLAS fattori: disease (contesto; base «NA»); stimulus (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: treatment (perturbazione; base «medium»); disease (stato; base «healthy»); group (contesto; base «NA»); timepoint (tempo; base «NA»)
+  A[disease=normal & stimulus=Growth Medium]  ×  L[treatment=medium & disease=healthy & group=invitro & timepoint=06h]  n=4
+  A[disease=normal & stimulus=lipopolysaccharide]  ×  L[treatment=LPS & disease=healthy & group=invitro & timepoint=06h]  n=4
+  A[disease=normal & stimulus=none]  ×  L[treatment=exvivo & disease=healthy & group=exvivo & timepoint=00h]  n=5
+  A[disease=systemic-onset juvenile idiopathic arthritis & stimulus=Growth Medium]  ×  L[treatment=medium & disease=systemic_jia & group=invitro & timepoint=06h]  n=4
+  A[disease=systemic-onset juvenile idiopathic arthritis & stimulus=lipopolysaccharide]  ×  L[treatment=LPS & disease=systemic_jia & group=invitro & timepoint=06h]  n=6
+  A[disease=systemic-onset juvenile idiopathic arthritis & stimulus=none]  ×  L[treatment=exvivo & disease=systemic_jia & group=exvivo & timepoint=00h]  n=6
+  LETTORE confronto disease: «systemic_jia» contro «healthy» (6/4) confronto con avviso 
+  LETTORE confronto treatment: «LPS» contro «medium» (4/4) confronto 
+  LETTORE confronto treatment: «LPS» contro «medium» (6/4) confronto con avviso 
+  LETTORE confronto disease: «systemic_jia» contro «healthy» (6/5) confronto con avviso 
+  LETTORE confronto disease: «systemic_jia» contro «healthy» (4/4) confronto con avviso 
+  REGISTRO coppie: piu_di_un_fattore 10 
+  NON ELENCATI da Atlas: g1_g5=coerente; g2_g6=coerente 
+  ATLAS confronto «'Growth Medium' vs 'none' in 'normal'» (4/5) classe=rispetta diversi=stimulus | principale: no | forma: no
+  ATLAS confronto «'systemic-onset juvenile idiopathic arthritis' vs 'normal' in 'Growth Medium'» (4/4) classe=rispetta diversi=disease | principale: uguale | forma: uguale
+  ATLAS confronto «'lipopolysaccharide' vs 'none' in 'normal'» (4/5) classe=rispetta diversi=stimulus | principale: no | forma: no
+  ATLAS confronto «'systemic-onset juvenile idiopathic arthritis' vs 'normal' in 'lipopolysaccharide'» (6/4) classe=rispetta diversi=disease | principale: uguale | forma: uguale
+  ATLAS confronto «'systemic-onset juvenile idiopathic arthritis' vs 'normal' in 'none'» (6/5) classe=rispetta diversi=disease | principale: uguale | forma: uguale
+  ATLAS confronto «'Growth Medium' vs 'none' in 'systemic-onset juvenile idiopathic arthritis'» (4/6) classe=rispetta diversi=stimulus | principale: no | forma: no
+  ATLAS confronto «'lipopolysaccharide' vs 'none' in 'systemic-onset juvenile idiopathic arthritis'» (6/6) classe=rispetta diversi=stimulus | principale: no | forma: no
+
+=================== GSE112057 (E-GEOD-112057) campioni vista 182, universo Atlas 182
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/5 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/5 nostri 0 | OGGI: classe=piu_fine ritrovati 1/5 nostri 9 errori 0/8
+motivi principale: non_coperta: disease_state: 6 combinazioni, 182 campioni, per esempio «Crohn's Disease» 
+note principale: voci_malformate: disease_state: 6 || base_senza_campioni: disease_state: control 
+TITOLO: Title: Whole Blood Transcriptome Profiling in Juvenile Idiopathic Arthritis and Inflammatory Bowel Disease 
+VISTA colonne:
+  title [182 distinti]: «Sample001_Crohn's Disease» 1; «Sample002_Crohn's Disease» 1; «Sample003_Crohn's Disease» 1; «Sample004_Ulcerative Colitis» 1; «Sample005_Crohn's Disease» 1; «Sample006_Crohn's Disease» 1; … altri 176 valori
+  gender [3 distinti]: «Female» 97; «Male» 74; «NA» 11
+  age at diagnosis [23 distinti]: «NA» 43; «14» 14; «9» 14; «5» 12; «10» 11; «13» 11; … altri 17 valori
+  ancestry [3 distinti]: «White» 127; «Black» 44; «NA» 11
+  disease state (diagnosis) [6 distinti]: «Crohn's Disease» 55; «Polyarticular JIA» 43; «Oligoarticular JIA» 37; «Systemic JIA» 22; «Ulcerative Colitis» 14; «Control» 11
+MODELLO ruoli: title=factor; gender=subject/sex; age at diagnosis=subject/age; ancestry=subject/donor; disease state (diagnosis)=factor 
+MODELLO fattore «disease_state» (state; fonti: disease state (diagnosis); base: «control»); 6 voci, valori per voce: 6x5
+    livelli: control | crohn_disease | ulcerative_colitis | oligo_jia | poly_jia | systemic_jia
+    voci: [ ¦  ¦  ¦  ¦ Control]→control  [ ¦  ¦  ¦  ¦ Crohn's Disease]→crohn_disease  [ ¦  ¦  ¦  ¦ Ulcerative Colitis]→ulcerative_colitis  [ ¦  ¦  ¦  ¦ Oligoarticular JIA]→oligo_jia  [ ¦  ¦  ¦  ¦ Polyarticular JIA]→poly_jia  [ ¦  ¦  ¦  ¦ Systemic JIA]→systemic_jia
+ATLAS fattori: disease (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: disease_state (stato; base «control»)
+  A[disease=Crohn disease]  ×  L[disease_state=crohn_disease]  n=55
+  A[disease=normal]  ×  L[disease_state=control]  n=11
+  A[disease=oligoarticular juvenile idiopathic arthritis]  ×  L[disease_state=oligo_jia]  n=37
+  A[disease=polyarticular juvenile idiopathic arthritis]  ×  L[disease_state=poly_jia]  n=43
+  A[disease=systemic-onset juvenile idiopathic arthritis]  ×  L[disease_state=systemic_jia]  n=22
+  A[disease=ulcerative colitis (disease)]  ×  L[disease_state=ulcerative_colitis]  n=14
+  REGISTRO coppie: nessuno_al_base 10; soggetti_disgiunti 5 
+  ATLAS confronto «'Crohn disease' vs 'normal'» (55/11) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'oligoarticular juvenile idiopathic arthritis' vs 'normal'» (37/11) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'polyarticular juvenile idiopathic arthritis' vs 'normal'» (43/11) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'systemic-onset juvenile idiopathic arthritis' vs 'normal'» (22/11) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'ulcerative colitis (disease)' vs 'normal'» (14/11) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE147507 (E-GEOD-147507) campioni vista 77, universo Atlas 14
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | OGGI: classe=identica ritrovati 1/2 nostri 10 errori 0/0
+motivi principale: non_coperta: cell_type: 1 combinazioni, 57 campioni, per esempio «» || non_coperta: agent: 6 combinazioni, 41 campioni, per esempio «SARS-CoV-2 infected (MOI 0.2) + USA-WA1/2020» || non_coperta: time_after_treatment: 1 combinazioni, 32 campioni, per esempio «» || non_coperta: tissue: 1 combinazioni, 68 campioni, per esempio «» 
+motivi forma: non_coperta: cell_type: 1 combinazioni, 57 campioni, per esempio «» || non_coperta: agent: 6 combinazioni, 41 campioni, per esempio «SARS-CoV-2 infected (MOI 0.2) + USA-WA1/2020» || non_coperta: time_after_treatment: 1 combinazioni, 32 campioni, per esempio «» || non_coperta: tissue: 1 combinazioni, 68 campioni, per esempio «» 
+note principale: voci_in_piu: agent: 1 || voci_in_piu: time_after_treatment: 1 || voci_in_piu: tissue: 2 
+TITOLO: Title: Transcriptional response to SARS-CoV-2 infection 
+VISTA colonne:
+  title [77 distinti]: «Series1_NHBE_Mock_1» 1; «Series1_NHBE_Mock_2» 1; «Series1_NHBE_Mock_3» 1; «Series1_NHBE_SARS-CoV-2_1» 1; «Series1_NHBE_SARS-CoV-2_2» 1; «Series1_NHBE_SARS-CoV-2_3» 1; … altri 71 valori
+  source_name_ch1 [17 distinti]: «Mock treated A549 cells» 13; «Mock treated NHBE cells» 7; «human IFNB treated NHBE cells» 6; «Mock treated A549 cells trasnduced with a vector e…» 6; «SARS-CoV-2 infected A549 cells» 6; «SARS-CoV-2 infected A549 cells trasnduced with a v…» 6; … altri 11 valori
+  cell line [4 distinti]: «A549» 35; «» 30; «Calu-3» 6; «NHBE» 6
+  cell type [3 distinti]: «» 57; «Lung adenocarcinoma» 14; «primary human bronchial epithelial cells» 6
+  treatment [11 distinti]: «Mock treatment» 29; «SARS-CoV-2 infected (MOI 2)» 15; «human IFNB treatment (100U/ml)» 6; «SARS-CoV-2 infected (MOI 0.2)» 6; «IAV infected (MOI 3)» 4; «IAVdNS1 infected (MOI 3)» 4; … altri 5 valori
+  time point [3 distinti]: «» 57; «24hrs after treatment» 16; «9hrs after treatment» 4
+  strain [7 distinti]: «NA» 28; «USA-WA1/2020» 21; «» 10; «A/Puerto Rico/8/1934 (H1N1)» 6; «A2» 5; «A/Puerto Rico/8/1934 (H1N1) (dNS1)» 4; … altri 1 valori
+  tissue/cell type [4 distinti]: «» 29; «Lung adenocarcinoma» 27; «primary human bronchial epithelial cells» 18; «Lung Biopsy» 3
+  time after treatment [5 distinti]: «» 32; «24 hours» 27; «12 hours» 14; «4 hours» 2; «6 hours» 2
+  subject status [4 distinti]: «» 74; «No treatment - healthy 72 years old, male» 1; «No treatment - healthy 77 years old, male» 1; «No treatment; >60 years old male COVID-19 deceased…» 1
+  tissue [2 distinti]: «» 68; «Lung adenocarcinoma» 9
+  description [77 distinti]: «3-9-mock1-13_S20 processed data file: RawReadCount…» 1; «3-9-mock2-14_S1 processed data file: RawReadCounts…» 1; «3-9-wt1-15_S2 processed data file: RawReadCounts_H…» 1; «3-9-wt2-16_S16 processed data file: RawReadCounts_…» 1; «A549-Adeno-GFP-ACE2-mock1 processed data file: Raw…» 1; «A549-Adeno-GFP-ACE2-mock2 processed data file: Raw…» 1; … altri 71 valori
+MODELLO ruoli: title=factor; source_name_ch1=uninformative; cell line=subject/batch; cell type=factor; treatment=factor; time point=uninformative; strain=factor; tissue/cell type=uninformative; time after treatment=factor; subject status=uninformative; tissue=factor; description=uninformative 
+MODELLO fattore «cell_type» (context; fonti: cell type; base: «»); 2 voci, valori per voce: 2x1
+    livelli: lung adenocarcinoma | primary human bronchial epithelial cells
+    voci: [Lung adenocarcinoma]→lung adenocarcinoma  [primary human bronchial epithe…]→primary human bronchial epithelial cells
+MODELLO fattore «agent» (perturbation; fonti: treatment, strain; base: «mock»); 7 voci, valori per voce: 7x2
+    livelli: mock | SARS-CoV-2 | RSV | IAV | HPIV3 | IAVdNS1 | IFNB
+    voci: [Mock treatment ¦ ]→mock  [SARS-CoV-2 infected (MOI 2) ¦ USA-WA1/2020]→SARS-CoV-2  [RSV infected (MOI 15) ¦ A2]→RSV  [IAV infected (MOI 5) ¦ A/Puerto Rico/8/1934 (H1N1)]→IAV  [HPIV3 infected (MOI 3) ¦ JS]→HPIV3  [IAVdNS1 infected (MOI 3) ¦ A/Puerto Rico/8/1934 (H1N1) (d…]→IAVdNS1
+MODELLO fattore «time_after_treatment» (time; fonti: time after treatment; base: «»); 5 voci, valori per voce: 5x1
+    livelli: 9 hours | 12 hours | 24 hours | 4 hours | 6 hours
+    voci: [9hrs after treatment]→9 hours  [12 hours]→12 hours  [24 hours]→24 hours  [4 hours]→4 hours  [6 hours]→6 hours
+MODELLO fattore «tissue» (context; fonti: tissue; base: «»); 3 voci, valori per voce: 3x1
+    livelli: lung adenocarcinoma | primary human bronchial epithelial cells | lung biopsy
+    voci: [Lung adenocarcinoma]→lung adenocarcinoma  [primary human bronchial epithe…]→primary human bronchial epithelial cells  [Lung Biopsy]→lung biopsy
+ATLAS fattori: cell line (contesto; base «NA»); infect (contesto; base «NA»); time (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[cell line=A549 & infect=mock & time=24 hour] n=5
+  A[cell line=A549 & infect=Severe acute respiratory syndrome coronavirus 2 (USA-WA1/2020) & time=24 hour] n=3
+  A[cell line=NHBE & infect=mock & time=24 hour] n=3
+  A[cell line=NHBE & infect=Severe acute respiratory syndrome coronavirus 2 (USA-WA1/2020) & time=24 hour] n=3
+  ATLAS confronto «'Severe acute respiratory syndrome coronavirus 2 (USA-WA1/2020)' vs 'mock' in 'A549' at '24 hour'» (3/5) classe=rispetta diversi=infect | principale: no | forma: no
+  ATLAS confronto «'Severe acute respiratory syndrome coronavirus 2 (USA-WA1/2020)' vs 'mock' in 'NHBE' at '24 hour'» (3/3) classe=rispetta diversi=infect | principale: no | forma: no
+
+=================== GSE41586 (E-GEOD-41586) campioni vista 9, universo Atlas 9
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/2 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/2 nostri 0 | OGGI: classe=piu_fine ritrovati 0/2 nostri 1 errori 0/1
+TITOLO: Title: Expression data for HT29 cells treated with 5-aza-deoxy-cytidine [RNA-Seq] 
+VISTA colonne:
+  title [9 distinti]: «HT29 at 0 μM of 5-Aza, biological rep1» 1; «HT29 at 0 μM of 5-Aza, biological rep2» 1; «HT29 at 0 μM of 5-Aza, biological rep3» 1; «HT29 at 10 μM of 5-Aza, biological rep1» 1; «HT29 at 10 μM of 5-Aza, biological rep2» 1; «HT29 at 10 μM of 5-Aza, biological rep3» 1; … altri 3 valori
+  source_name_ch1 [3 distinti]: «HT29 treated with 0 μM of 5-Aza» 3; «HT29 treated with 10 μM of 5-Aza» 3; «HT29 treated with 5 μM of 5-Aza» 3
+  treatment [3 distinti]: «5-Aza high» 3; «5-Aza low» 3; «control» 3
+MODELLO ruoli: title=factor; source_name_ch1=factor; treatment=factor 
+MODELLO fattore «agent» (perturbation; fonti: source_name_ch1; base: «vehicle»); 3 voci, valori per voce: 3x1
+    livelli: vehicle | low | high
+    voci: [HT29 treated with 0 μM of 5-Az…]→vehicle  [HT29 treated with 5 μM of 5-Az…]→low  [HT29 treated with 10 μM of 5-A…]→high
+MODELLO fattore «replicate» (technical; fonti: title; base: «»); 9 voci, valori per voce: 9x1
+    livelli: rep1 | rep2 | rep3
+    voci: [HT29 at 0 μM of 5-Aza, biologi…]→rep1  [HT29 at 0 μM of 5-Aza, biologi…]→rep2  [HT29 at 0 μM of 5-Aza, biologi…]→rep3  [HT29 at 5 μM of 5-Aza, biologi…]→rep1  [HT29 at 5 μM of 5-Aza, biologi…]→rep2  [HT29 at 5 μM of 5-Aza, biologi…]→rep3
+MODELLO fattore «treatment» (perturbation; fonti: treatment; base: «vehicle»); 3 voci, valori per voce: 3x1
+    livelli: vehicle | low | high
+    voci: [control]→vehicle  [5-Aza low]→low  [5-Aza high]→high
+ATLAS fattori: compound (contesto; base «NA»); dose (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: agent (perturbazione; base «vehicle»); replicate (tecnico; base «NA»); treatment (perturbazione; base «vehicle»)
+  A[compound=5-aza-deoxy-cytidine & dose=10 micromolar]  ×  L[agent=high & replicate=rep1 & treatment=high]  n=1
+  A[compound=5-aza-deoxy-cytidine & dose=10 micromolar]  ×  L[agent=high & replicate=rep2 & treatment=high]  n=1
+  A[compound=5-aza-deoxy-cytidine & dose=10 micromolar]  ×  L[agent=high & replicate=rep3 & treatment=high]  n=1
+  A[compound=5-aza-deoxy-cytidine & dose=5 micromolar]  ×  L[agent=low & replicate=rep1 & treatment=low]  n=1
+  A[compound=5-aza-deoxy-cytidine & dose=5 micromolar]  ×  L[agent=low & replicate=rep2 & treatment=low]  n=1
+  A[compound=5-aza-deoxy-cytidine & dose=5 micromolar]  ×  L[agent=low & replicate=rep3 & treatment=low]  n=1
+  A[compound=none & dose=non scritto]  ×  L[agent=vehicle & replicate=rep1 & treatment=vehicle]  n=1
+  A[compound=none & dose=non scritto]  ×  L[agent=vehicle & replicate=rep2 & treatment=vehicle]  n=1
+  A[compound=none & dose=non scritto]  ×  L[agent=vehicle & replicate=rep3 & treatment=vehicle]  n=1
+  REGISTRO coppie: fattore_senza_base 9; piu_di_un_fattore 27 
+  ATLAS confronto «'5-aza-deoxy-cytidine; 5 micromolar' vs 'none'» (3/3) classe=rispetta diversi=compound | principale: no | forma: no
+  ATLAS confronto «'5-aza-deoxy-cytidine; 10 micromolar' vs 'none'» (3/3) classe=rispetta diversi=compound | principale: no | forma: no
+
+=================== GSE44379 (E-GEOD-44379) campioni vista 16, universo Atlas 16
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/1 nostri 0 | OGGI: classe=piu_fine ritrovati 0/1 nostri 3 errori 0/3
+motivi principale: non_coperta: treatment: 2 combinazioni, 16 campioni, per esempio «no treatment (control)» || non_coperta: fraction: 16 combinazioni, 16 campioni, per esempio «RNAseq_Sucrose_Gradient_noarsenite_fraction1» 
+note principale: voci_malformate: treatment: 2 || base_senza_campioni: treatment: untreated || voci_malformate: fraction: 16 
+TITOLO: Title: Remodeling of Ago2-mRNA interactions upon cellular stress reflects miRNA complementarity and correlates with altered translation rates (part 4) 
+VISTA colonne:
+  title [16 distinti]: «RNAseq_Sucrose_Gradient_arsenite_fraction1» 1; «RNAseq_Sucrose_Gradient_arsenite_fraction2» 1; «RNAseq_Sucrose_Gradient_arsenite_fraction3» 1; «RNAseq_Sucrose_Gradient_arsenite_fraction4» 1; «RNAseq_Sucrose_Gradient_arsenite_fraction5» 1; «RNAseq_Sucrose_Gradient_arsenite_fraction6» 1; … altri 10 valori
+  treatment [2 distinti]: «arsenite» 8; «no treatment (control)» 8
+MODELLO ruoli: title=factor; treatment=factor 
+MODELLO fattore «treatment» (perturbation; fonti: treatment; base: «untreated»); 2 voci, valori per voce: 2x2
+    livelli: untreated | arsenite
+    voci: [ ¦ no treatment (control)]→untreated  [ ¦ arsenite]→arsenite
+MODELLO fattore «fraction» (technical; fonti: title; base: «»); 16 voci, valori per voce: 16x2
+    livelli: fraction1 | fraction2 | fraction3 | fraction4 | fraction5 | fraction6 | fraction7 | fraction8
+    voci: [RNAseq_Sucrose_Gradient_noarse… ¦ ]→fraction1  [RNAseq_Sucrose_Gradient_noarse… ¦ ]→fraction2  [RNAseq_Sucrose_Gradient_noarse… ¦ ]→fraction3  [RNAseq_Sucrose_Gradient_noarse… ¦ ]→fraction4  [RNAseq_Sucrose_Gradient_noarse… ¦ ]→fraction5  [RNAseq_Sucrose_Gradient_noarse… ¦ ]→fraction6
+ATLAS fattori: compound (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: treatment (perturbazione; base «untreated»); fraction (tecnico; base «NA»)
+  A[compound=arsenite]  ×  L[treatment=arsenite & fraction=fraction1]  n=1
+  A[compound=arsenite]  ×  L[treatment=arsenite & fraction=fraction2]  n=1
+  A[compound=arsenite]  ×  L[treatment=arsenite & fraction=fraction3]  n=1
+  A[compound=arsenite]  ×  L[treatment=arsenite & fraction=fraction4]  n=1
+  A[compound=arsenite]  ×  L[treatment=arsenite & fraction=fraction5]  n=1
+  A[compound=arsenite]  ×  L[treatment=arsenite & fraction=fraction6]  n=1
+  A[compound=arsenite]  ×  L[treatment=arsenite & fraction=fraction7]  n=1
+  A[compound=arsenite]  ×  L[treatment=arsenite & fraction=fraction8]  n=1
+  A[compound=control]  ×  L[treatment=untreated & fraction=fraction1]  n=1
+  A[compound=control]  ×  L[treatment=untreated & fraction=fraction2]  n=1
+  A[compound=control]  ×  L[treatment=untreated & fraction=fraction3]  n=1
+  A[compound=control]  ×  L[treatment=untreated & fraction=fraction4]  n=1
+  A[compound=control]  ×  L[treatment=untreated & fraction=fraction5]  n=1
+  A[compound=control]  ×  L[treatment=untreated & fraction=fraction6]  n=1
+  A[compound=control]  ×  L[treatment=untreated & fraction=fraction7]  n=1
+  A[compound=control]  ×  L[treatment=untreated & fraction=fraction8]  n=1
+  REGISTRO coppie: fattore_senza_base 56; n_min 8; piu_di_un_fattore 56 
+  ATLAS confronto «'arsenite' vs 'control'» (8/8) classe=rispetta diversi=compound | principale: no | forma: no
+
+=================== GSE46665 (E-GEOD-46665) campioni vista 25, universo Atlas 25
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | OGGI: classe=piu_fine ritrovati 0/2 nostri 2 errori 0/2
+motivi principale: non_coperta: disease: 25 combinazioni, 25 campioni, per esempio «DCM_T0» 
+motivi forma: non_coperta: disease: 25 combinazioni, 25 campioni, per esempio «DCM_T0» 
+note principale: voci_malformate: disease: 9 
+TITOLO: Title: Identification of differentially expressed transcripts and pathways one week and six months following implant of left ventricular devices 
+VISTA colonne:
+  title [25 distinti]: «Sample_1_0» 1; «Sample_1_180» 1; «Sample_1_7» 1; «Sample_2_0» 1; «Sample_2_7» 1; «Sample_3_0» 1; … altri 19 valori
+  source_name_ch1 [25 distinti]: «Sample_1_0» 1; «Sample_1_180» 1; «Sample_1_7» 1; «Sample_2_0» 1; «Sample_2_7» 1; «Sample_3_0» 1; … altri 19 valori
+  time [3 distinti]: «7 days post LVAD» 9; «pre-LVAD» 9; «180 days post LVAD» 7
+  description [25 distinti]: «DCM_T0» 1; «DCM_T1» 1; «DCM_T4» 1; «GCN_T0» 1; «GCN_T1» 1; «HSD_T0» 1; … altri 19 valori
+MODELLO ruoli: title=factor; source_name_ch1=subject/donor; time=factor; description=factor 
+MODELLO fattore «disease» (state; fonti: description; base: «»); 9 voci, valori per voce: 2x2 7x3
+    livelli: DCM | GCN | HSD | JDM | NMN | RAB | RDR | TCA | TLF
+    voci: [DCM_T0 ¦ DCM_T1 ¦ DCM_T4]→DCM  [GCN_T0 ¦ GCN_T1]→GCN  [HSD_T0 ¦ HSD_T1 ¦ HSD_T4]→HSD  [JDM_T0 ¦ JDM_T1 ¦ JDM_T4]→JDM  [NMN_T0 ¦ NMN_T1 ¦ NMN_T4]→NMN  [RAB_T0 ¦ RAB_T1 ¦ RAB_T4]→RAB
+MODELLO fattore «LVAD» (perturbation; fonti: time; base: «pre-LVAD»); 3 voci, valori per voce: 3x1
+    livelli: pre-LVAD | post-LVAD | post-LVAD long-term
+    voci: [pre-LVAD]→pre-LVAD  [7 days post LVAD]→post-LVAD  [180 days post LVAD]→post-LVAD long-term
+ATLAS fattori: treatment (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[treatment=180 days after left ventricular assist device placement] n=7
+  A[treatment=7 days after left ventricular assist device placement] n=9
+  A[treatment=control] n=9
+  ATLAS confronto «'180 days after left ventricular assist device placement' vs 'control'» (7/9) classe=rispetta diversi=treatment | principale: no | forma: no
+  ATLAS confronto «'7 days after left ventricular assist device placement' vs 'control'» (9/9) classe=rispetta diversi=treatment | principale: no | forma: no
+
+=================== GSE47718 (E-GEOD-47718) campioni vista 17, universo Atlas 17
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 0/1 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/1 nostri 0 | OGGI: classe=piu_fine ritrovati 0/1 nostri 2 errori 0/2
+TITOLO: Title: Smoking Dysregulates the Human Airway Basal Cell Transcriptome at COPD-linked Risk Locus 19q13.2 
+VISTA colonne:
+  title [17 distinti]: «DGM-01620_LA-BC» 1; «DGM-01657_LA-BC» 1; «DGM-01774_LA-BC» 1; «DGM-10194_LA-BC» 1; «DGM-10284_LA-BC» 1; «DGM-10503_LA-BC» 1; … altri 11 valori
+  source_name_ch1 [2 distinti]: «airway basal cells, nonsmoker» 10; «airway basal cells, smoker» 7
+  smoking status [2 distinti]: «nonsmoker» 10; «smoker» 7
+  description [17 distinti]: «DGM-01620 Basal cells cultured from airway epithel…» 1; «DGM-01657 Basal cells cultured from airway epithel…» 1; «DGM-01774 Basal cells cultured from airway epithel…» 1; «DGM-10194 Basal cells cultured from airway epithel…» 1; «DGM-10284 Basal cells cultured from airway epithel…» 1; «DGM-10503 Basal cells cultured from airway epithel…» 1; … altri 11 valori
+MODELLO ruoli: title=factor; source_name_ch1=subject/donor; smoking status=factor; description=uninformative 
+MODELLO fattore «smoking» (perturbation; fonti: smoking status; base: «nonsmoker»); 2 voci, valori per voce: 2x1
+    livelli: nonsmoker | smoker
+    voci: [nonsmoker]→nonsmoker  [smoker]→smoker
+ATLAS fattori: clinical information (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: smoking (perturbazione; base «nonsmoker»)
+  A[clinical information=non-smoker]  ×  L[smoking=nonsmoker]  n=10
+  A[clinical information=smoker]  ×  L[smoking=smoker]  n=7
+  REGISTRO coppie: soggetti_disgiunti 1 
+  ATLAS confronto «'smoker' vs 'non-smoker'» (7/10) classe=rispetta diversi=clinical information | principale: no | forma: no
+
+=================== GSE49155 (E-GEOD-49155) campioni vista 13, universo Atlas 13
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | OGGI: classe=piu_fine ritrovati 0/2 nostri 0 errori 0/0
+motivi principale: mappa_ambigua: cell_type: 1 combinazioni 
+motivi forma: mappa_ambigua: cell_type: 1 combinazioni 
+TITOLO: Title: Profiling premalignant lesions in lung squamous cell carcinomas identifies mechanisms involved in stepwise carcinogenesis 
+VISTA colonne:
+  title [13 distinti]: «Patient 3 normal 1» 1; «Patient 3 premalignant 1» 1; «Patient 3 premalignant 2» 1; «Patient 3 tumor 1» 1; «Patient 3 tumor 2» 1; «Patient 3 tumor 3» 1; … altri 7 valori
+  source_name_ch1 [3 distinti]: «Squamous cell carcinoma» 6; «Premalignant lesion» 4; «Normal basal cells» 3
+  patient [2 distinti]: «Patient 4» 7; «Patient 3» 6
+  pathology [3 distinti]: «Tumor» 6; «Premalignant» 4; «Normal» 3
+  cell type [2 distinti]: «» 10; «Normal basal cells» 3
+  tissue [3 distinti]: «Squamous cell carcinoma» 6; «Premalignant lesion» 4; «» 3
+  description [3 distinti]: «Laser-microdissected squamous cell carcinoma» 6; «Laser-microdissected premalignant lesion» 4; «Laser-microdissected normal basal cells» 3
+MODELLO ruoli: title=factor; source_name_ch1=factor; patient=subject/donor; pathology=factor; cell type=factor; tissue=uninformative; description=uninformative 
+MODELLO fattore «pathology» (state; fonti: pathology; base: «normal»); 3 voci, valori per voce: 3x1
+    livelli: normal | premalignant | tumor
+    voci: [Normal]→normal  [Premalignant]→premalignant  [Tumor]→tumor
+MODELLO fattore «cell_type» (context; fonti: cell type; base: «»); 3 voci, valori per voce: 3x1
+    livelli: normal_basal_cells | premalignant | tumor
+    voci: [Normal basal cells]→normal_basal_cells  []→premalignant  []→tumor
+MODELLO fattore «patient» (technical; fonti: patient; base: «»); 2 voci, valori per voce: 2x1
+    livelli: patient_3 | patient_4
+    voci: [Patient 3]→patient_3  [Patient 4]→patient_4
+ATLAS fattori: clinical information (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[clinical information=normal] n=3
+  A[clinical information=premalignant lesion] n=4
+  A[clinical information=squamous cell carcinoma] n=6
+  ATLAS confronto «'premalignant lesion' vs 'normal'» (4/3) classe=rispetta diversi=clinical information | principale: no | forma: no
+  ATLAS confronto «'squamous cell carcinoma' vs 'normal'» (6/3) classe=rispetta diversi=clinical information | principale: no | forma: no
+
+=================== GSE49608 (E-GEOD-49608) campioni vista 32, universo Atlas 32
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 0/6 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/6 nostri 0 | OGGI: classe=identica ritrovati 6/6 nostri 6 errori 0/0
+TITOLO: Title: Differential transcript stability measurements in MDA-MB-231 vs. MDA-LM2 cells 
+VISTA colonne:
+  title [32 distinti]: «LM2_0hr_1_1_RNA-seq» 1; «LM2_0hr_1_2_RNA-seq» 1; «LM2_0hr_2_1_RNA-seq» 1; «LM2_0hr_2_2_RNA-seq» 1; «LM2_2hr_1_1_RNA-seq» 1; «LM2_2hr_1_2_RNA-seq» 1; … altri 26 valori
+  source_name_ch1 [2 distinti]: «MDA-LM2» 16; «MDA-MB-231» 16
+  cell line [2 distinti]: «MDA-LM2» 16; «MDA-MB-231» 16
+  time-point [4 distinti]: «0» 8; «2» 8; «4» 8; «7» 8
+  rep [4 distinti]: «1» 8; «2» 8; «3» 8; «4» 8
+  description [2 distinti]: «4sU labeled/precepitated RNA processed data file: …» 16; «4sU labeled/precepitated RNA processed data file: …» 16
+MODELLO ruoli: title=factor; source_name_ch1=subject/batch; cell line=factor; time-point=factor; rep=replicate; description=uninformative 
+MODELLO fattore «cell_line» (context; fonti: cell line; base: «»); 2 voci, valori per voce: 2x1
+    livelli: MDA-MB-231 | MDA-LM2
+    voci: [MDA-MB-231]→MDA-MB-231  [MDA-LM2]→MDA-LM2
+MODELLO fattore «time» (time; fonti: time-point; base: «»); 4 voci, valori per voce: 4x1
+    livelli: 0h | 2h | 4h | 7h
+    voci: [0]→0h  [2]→2h  [4]→4h  [7]→7h
+ATLAS fattori: cell line (contesto; base «NA»); time (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: cell_line (contesto; base «NA»); time (tempo; base «NA»)
+  A[cell line=MDA-LM2 & time=0 hour]  ×  L[cell_line=MDA-LM2 & time=0h]  n=4
+  A[cell line=MDA-LM2 & time=2 hour]  ×  L[cell_line=MDA-LM2 & time=2h]  n=4
+  A[cell line=MDA-LM2 & time=4 hour]  ×  L[cell_line=MDA-LM2 & time=4h]  n=4
+  A[cell line=MDA-LM2 & time=7 hour]  ×  L[cell_line=MDA-LM2 & time=7h]  n=4
+  A[cell line=MDA-MB-231 & time=0 hour]  ×  L[cell_line=MDA-MB-231 & time=0h]  n=4
+  A[cell line=MDA-MB-231 & time=2 hour]  ×  L[cell_line=MDA-MB-231 & time=2h]  n=4
+  A[cell line=MDA-MB-231 & time=4 hour]  ×  L[cell_line=MDA-MB-231 & time=4h]  n=4
+  A[cell line=MDA-MB-231 & time=7 hour]  ×  L[cell_line=MDA-MB-231 & time=7h]  n=4
+  REGISTRO coppie: fattore_senza_base 16; piu_di_un_fattore 12 
+  ATLAS confronto «'2 hour' vs '0 hour' in 'MDA-LM2'» (4/4) classe=rispetta diversi=time | principale: no | forma: no
+  ATLAS confronto «'4 hour' vs '0 hour' in 'MDA-LM2'» (4/4) classe=rispetta diversi=time | principale: no | forma: no
+  ATLAS confronto «'7 hour' vs '0 hour' in 'MDA-LM2'» (4/4) classe=rispetta diversi=time | principale: no | forma: no
+  ATLAS confronto «'2 hour' vs '0 hour' in 'MDA-MB-231'» (4/4) classe=rispetta diversi=time | principale: no | forma: no
+  ATLAS confronto «'4 hour' vs '0 hour' in 'MDA-MB-231'» (4/4) classe=rispetta diversi=time | principale: no | forma: no
+  ATLAS confronto «'7 hour' vs '0 hour' in 'MDA-MB-231'» (4/4) classe=rispetta diversi=time | principale: no | forma: no
+
+=================== GSE50499 (E-GEOD-50499) campioni vista 8, universo Atlas 6
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 0/1 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/1 nostri 0 | OGGI: classe=identica ritrovati 1/1 nostri 2 errori 0/0
+TITOLO: Title: FMRP-associated MOV10 facilitates and antagonizes miRNA-mediated regulation 
+VISTA colonne:
+  title [8 distinti]: «irrelevant siRNA 1» 1; «irrelevant siRNA 2» 1; «irrelevant siRNA 3» 1; «MOV10 knockdown 2» 1; «MOV10 knockdown 3» 1; «MOV10 overexpression 1» 1; … altri 2 valori
+  treatment [3 distinti]: «control» 3; «MOV10 overexpression» 3; «MOV10 knockdown» 2
+  mov expression [3 distinti]: «high» 3; «normal» 3; «low» 2
+MODELLO ruoli: title=factor; treatment=factor; mov expression=factor 
+MODELLO fattore «treatment» (perturbation; fonti: treatment; base: «control»); 3 voci, valori per voce: 3x1
+    livelli: MOV10 knockdown | MOV10 overexpression | control
+    voci: [MOV10 knockdown]→MOV10 knockdown  [MOV10 overexpression]→MOV10 overexpression  [control]→control
+MODELLO fattore «expression» (technical; fonti: mov expression; base: «»); 3 voci, valori per voce: 3x1
+    livelli: low | high | normal
+    voci: [low]→low  [high]→high  [normal]→normal
+ATLAS fattori: phenotype (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: treatment (perturbazione; base «control»); expression (tecnico; base «NA»)
+  A[phenotype=control]  ×  L[treatment=control & expression=normal]  n=3
+  A[phenotype=MOV10 overexpression]  ×  L[treatment=MOV10 overexpression & expression=high]  n=3
+  REGISTRO coppie: piu_di_un_fattore 3 
+  ATLAS confronto «'MOV10 overexpression' vs 'control'» (3/3) classe=rispetta diversi=phenotype | principale: no | forma: no
+
+=================== GSE50760 (E-GEOD-50760) campioni vista 54, universo Atlas 54
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | FORMA: chiuso=TRUE classe=incrociata ritrovati 0/2 nostri 2 | OGGI: classe=piu_fine ritrovati 0/2 nostri 0 errori 0/0
+motivi principale: non_coperta: disease_state: 3 combinazioni, 54 campioni, per esempio «primary colorectal cancer» 
+note principale: voci_malformate: disease_state: 3 || base_senza_campioni: disease_state: healthy 
+TITOLO: Title: Gene expression profiling study by RNA-seq in colorectal cancer 
+VISTA colonne:
+  title [54 distinti]: «metastasized cancer AMC_10-3» 1; «metastasized cancer AMC_12-3» 1; «metastasized cancer AMC_13-3» 1; «metastasized cancer AMC_17-3» 1; «metastasized cancer AMC_18-3» 1; «metastasized cancer AMC_19-3» 1; … altri 48 valori
+  source_name_ch1 [3 distinti]: «metastasized cancer» 18; «normal colon» 18; «primary colorectal cancer» 18
+  tissue [3 distinti]: «metastatic colorectal cancer to the liver» 18; «normal-looking surrounding colonic epithelium» 18; «primary colorectal cancer» 18
+MODELLO ruoli: title=factor; source_name_ch1=subject/donor; tissue=factor 
+MODELLO fattore «disease_state» (state; fonti: tissue; base: «healthy»); 3 voci, valori per voce: 3x3
+    livelli: healthy | primary_cancer | metastasis
+    voci: [ ¦  ¦ normal-looking surrounding col…]→healthy  [ ¦  ¦ primary colorectal cancer]→primary_cancer  [ ¦  ¦ metastatic colorectal cancer t…]→metastasis
+ATLAS fattori: biopsy site (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: disease_state (stato; base «healthy»)
+  A[biopsy site=colorectal cancer metastatic in the liver]  ×  L[disease_state=metastasis]  n=17
+  A[biopsy site=normal]  ×  L[disease_state=healthy]  n=18
+  A[biopsy site=normal]  ×  L[disease_state=metastasis]  n=1
+  A[biopsy site=primary tumor]  ×  L[disease_state=primary_cancer]  n=18
+  LETTORE confronto disease_state: «metastasis» contro «healthy» (18/18) confronto con avviso 
+  LETTORE confronto disease_state: «primary_cancer» contro «healthy» (18/18) confronto con avviso 
+  REGISTRO coppie: nessuno_al_base 1 
+  NON ELENCATI da Atlas: g2_g1=braccio_misto; g3_g1=coerente 
+  ATLAS confronto «'colorectal cancer metastatic in the liver' vs 'normal'» (17/19) classe=rispetta diversi=biopsy site | principale: no | forma: no
+  ATLAS confronto «'primary tumor' vs 'normal'» (18/19) classe=rispetta diversi=biopsy site | principale: no | forma: no
+
+=================== GSE51261 (E-GEOD-51261) campioni vista 9, universo Atlas 9
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/2 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/2 nostri 0 | OGGI: classe=piu_fine ritrovati 0/2 nostri 2 errori 0/2
+TITOLO: Title: A histone H3.3 Lysine 36 Trimethylation Reader Connects Chromatin to Regulated Pre-mRNA Processing 
+VISTA colonne:
+  title [9 distinti]: «BS69-1 rep1» 1; «BS69-1 rep2» 1; «BS69-1 rep3» 1; «BS69-2 rep1» 1; «BS69-2 rep2» 1; «BS69-2 rep3» 1; … altri 3 valori
+  transfection [3 distinti]: «lentivirus carrying BS69-1 shRNA» 3; «lentivirus carrying BS69-2 shRNA» 3; «lentivirus carrying control shRNA» 3
+  description [3 distinti]: «BS69 knock down, siRNA-1» 3; «BS69 knock down, siRNA-2» 3; «Control Sample» 3
+MODELLO ruoli: title=factor; transfection=factor; description=uninformative 
+MODELLO fattore «shRNA» (perturbation; fonti: transfection; base: «control»); 3 voci, valori per voce: 3x1
+    livelli: control | BS69-1 | BS69-2
+    voci: [lentivirus carrying control sh…]→control  [lentivirus carrying BS69-1 shR…]→BS69-1  [lentivirus carrying BS69-2 shR…]→BS69-2
+MODELLO fattore «replicate» (technical; fonti: title; base: «»); 9 voci, valori per voce: 9x1
+    livelli: rep1 | rep2 | rep3 | rep1 | rep2 | rep3 | rep1 | rep2 | rep3
+    voci: [CTRL rep1]→rep1  [CTRL rep2]→rep2  [CTRL rep3]→rep3  [BS69-1 rep1]→rep1  [BS69-1 rep2]→rep2  [BS69-1 rep3]→rep3
+ATLAS fattori: phenotype (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: shRNA (perturbazione; base «control»); replicate (tecnico; base «NA»)
+  A[phenotype=BS69-1 knockdown]  ×  L[shRNA=BS69-1 & replicate=rep1]  n=1
+  A[phenotype=BS69-1 knockdown]  ×  L[shRNA=BS69-1 & replicate=rep2]  n=1
+  A[phenotype=BS69-1 knockdown]  ×  L[shRNA=BS69-1 & replicate=rep3]  n=1
+  A[phenotype=BS69-2 knockdown]  ×  L[shRNA=BS69-2 & replicate=rep1]  n=1
+  A[phenotype=BS69-2 knockdown]  ×  L[shRNA=BS69-2 & replicate=rep2]  n=1
+  A[phenotype=BS69-2 knockdown]  ×  L[shRNA=BS69-2 & replicate=rep3]  n=1
+  A[phenotype=control]  ×  L[shRNA=control & replicate=rep1]  n=1
+  A[phenotype=control]  ×  L[shRNA=control & replicate=rep2]  n=1
+  A[phenotype=control]  ×  L[shRNA=control & replicate=rep3]  n=1
+  REGISTRO coppie: fattore_senza_base 9; n_min 6; nessuno_al_base 3; piu_di_un_fattore 18 
+  ATLAS confronto «'BS69-1 knockdown' vs 'control'» (3/3) classe=rispetta diversi=phenotype | principale: no | forma: no
+  ATLAS confronto «'BS69-2 knockdown' vs 'control'» (3/3) classe=rispetta diversi=phenotype | principale: no | forma: no
+
+=================== GSE52194 (E-GEOD-52194) campioni vista 20, universo Atlas 19
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/0 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/0 nostri 3 | OGGI: classe=piu_fine ritrovati 0/0 nostri 4 errori 4/4
+motivi principale: non_coperta: breast_cancer_subtype: 4 combinazioni, 20 campioni, per esempio «TNBC Breast Tumor» 
+note principale: voci_malformate: breast_cancer_subtype: 4 || base_senza_campioni: breast_cancer_subtype: healthy 
+TITOLO: Title: mRNA-sequencing of breast cancer subtypes and normal tissue 
+VISTA colonne:
+  title [20 distinti]: «HER2-1» 1; «HER2-2» 1; «HER2-3» 1; «HER2-4» 1; «HER2-5» 1; «NBS1» 1; … altri 14 valori
+  source_name_ch1 [2 distinti]: «Primary Tumor» 17; «normal human breast organoids» 3
+  tumor type [4 distinti]: «Non-TNBC Breast Tumor» 6; «TNBC Breast Tumor» 6; «HER2 Positive Breast Tumor» 5; «Normal Breast Organoids» 3
+MODELLO ruoli: title=replicate; source_name_ch1=uninformative; tumor type=factor 
+MODELLO fattore «breast_cancer_subtype» (state; fonti: tumor type; base: «healthy»); 4 voci, valori per voce: 4x3
+    livelli: TNBC | non_TNBC | HER2_positive | healthy
+    voci: [ ¦  ¦ TNBC Breast Tumor]→TNBC  [ ¦  ¦ Non-TNBC Breast Tumor]→non_TNBC  [ ¦  ¦ HER2 Positive Breast Tumor]→HER2_positive  [ ¦  ¦ Normal Breast Organoids]→healthy
+ATLAS fattori: clinical information (contesto; base «NA»); disease (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: breast_cancer_subtype (stato; base «healthy»)
+  A[clinical information=HER2 Positive Breast Carcinoma & disease=breast carcinoma]  ×  L[breast_cancer_subtype=HER2_positive]  n=5
+  A[clinical information=non-triple-negative breast cancer & disease=breast carcinoma]  ×  L[breast_cancer_subtype=non_TNBC]  n=6
+  A[clinical information=normal & disease=normal]  ×  L[breast_cancer_subtype=healthy]  n=3
+  A[clinical information=triple-negative breast cancer & disease=breast carcinoma]  ×  L[breast_cancer_subtype=TNBC]  n=5
+  LETTORE confronto breast_cancer_subtype: «HER2_positive» contro «healthy» (5/3) confronto 
+  LETTORE confronto breast_cancer_subtype: «TNBC» contro «healthy» (6/3) confronto 
+  LETTORE confronto breast_cancer_subtype: «non_TNBC» contro «healthy» (6/3) confronto 
+  REGISTRO coppie: nessuno_al_base 3 
+  ATLAS confronto «'HER2 Positive Breast Carcinoma; breast carcinoma' vs 'normal'» (5/3) classe=piu_fattori diversi=clinical information, disease | principale: no | forma: uguale
+  ATLAS confronto «'triple-negative breast cancer; breast carcinoma' vs 'normal'» (5/3) classe=piu_fattori diversi=clinical information, disease | principale: no | forma: uguale
+  ATLAS confronto «'non-triple-negative breast cancer; breast carcinoma' vs 'normal'» (6/3) classe=piu_fattori diversi=clinical information, disease | principale: no | forma: uguale
+
+=================== GSE52778 (E-GEOD-52778) campioni vista 14, universo Atlas 14
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/3 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 3/3 nostri 3 | OGGI: classe=piu_fine ritrovati 0/3 nostri 3 errori 0/3
+motivi principale: non_coperta: agent: 4 combinazioni, 14 campioni, per esempio «Untreated» 
+note principale: voci_malformate: agent: 14 || base_senza_campioni: agent: untreated 
+TITOLO: Title: Human Airway Smooth Muscle Transcriptome Changes in Response to Asthma Medications 
+VISTA colonne:
+  title [14 distinti]: «N052611_Alb» 1; «N052611_Alb_Dex» 1; «N052611_Dex» 1; «N052611_untreated» 1; «N061011_Alb_Dex» 1; «N061011_Dex» 1; … altri 8 valori
+  treatment [4 distinti]: «Albuterol_Dexamethasone» 4; «Dexamethasone» 4; «Albuterol» 3; «Untreated» 3
+  ercc_mix [2 distinti]: «-» 8; «1» 6
+  cell line [4 distinti]: «N052611» 4; «N61311» 4; «N061011» 3; «N080611» 3
+MODELLO ruoli: title=factor; treatment=factor; ercc_mix=uninformative; cell line=subject/donor 
+MODELLO fattore «agent» (perturbation; fonti: treatment; base: «untreated»); 14 voci, valori per voce: 14x4
+    livelli: untreated | dexamethasone | albuterol | albuterol_dexamethasone
+    voci: [Untreated ¦  ¦ - ¦ N61311]→untreated  [N61311_Dex ¦ Dexamethasone ¦ - ¦ N61311]→dexamethasone  [N61311_Alb ¦ Albuterol ¦ - ¦ N61311]→albuterol  [N61311_Alb_Dex ¦ Albuterol_Dexamethasone ¦ - ¦ N61311]→albuterol_dexamethasone  [N052611_untreated ¦ Untreated ¦ - ¦ N052611]→untreated  [N052611_Dex ¦ Dexamethasone ¦ 1 ¦ N052611]→dexamethasone
+ATLAS fattori: treatment (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: agent (perturbazione; base «untreated»)
+  A[treatment=albuterol]  ×  L[agent=albuterol]  n=3
+  A[treatment=albuterol and dexamethasone]  ×  L[agent=albuterol_dexamethasone]  n=4
+  A[treatment=dexamethasone]  ×  L[agent=dexamethasone]  n=4
+  A[treatment=untreated]  ×  L[agent=untreated]  n=3
+  LETTORE confronto agent: «albuterol» contro «untreated» (3/3) confronto con avviso 
+  LETTORE confronto agent: «albuterol_dexamethasone» contro «untreated» (4/3) confronto con avviso 
+  LETTORE confronto agent: «dexamethasone» contro «untreated» (4/3) confronto con avviso 
+  REGISTRO coppie: nessuno_al_base 3 
+  ATLAS confronto «'albuterol' vs 'untreated'» (3/3) classe=rispetta diversi=treatment | principale: no | forma: uguale
+  ATLAS confronto «'dexamethasone' vs 'untreated'» (4/3) classe=rispetta diversi=treatment | principale: no | forma: uguale
+  ATLAS confronto «'albuterol and dexamethasone' vs 'untreated'» (4/3) classe=rispetta diversi=treatment | principale: no | forma: uguale
+
+=================== GSE52946 (E-GEOD-52946) campioni vista 19, universo Atlas 17
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 1/1 nostri 2 | OGGI: classe=piu_fine ritrovati 0/1 nostri 1 errori 0/1
+motivi principale: non_coperta: disease_state: 3 combinazioni, 19 campioni, per esempio «sALS» 
+note principale: voci_malformate: disease_state: 3 || base_senza_campioni: disease_state: healthy 
+TITOLO: Title: miR-155 plays a crucial role in ALS and is an immune therapeutic target [RNA-Seq] 
+VISTA colonne:
+  title [19 distinti]: «ALS-701-001» 1; «ALS-701-002» 1; «ALS-701-004» 1; «ALS-701-005» 1; «ALS-701-006 (fALS)» 1; «ALS-701-007» 1; … altri 13 valori
+  disease state [3 distinti]: «Healthy donor» 10; «sALS» 7; «fALS» 2
+MODELLO ruoli: title=replicate; disease state=factor 
+MODELLO fattore «disease_state» (state; fonti: disease state; base: «healthy»); 3 voci, valori per voce: 3x2
+    livelli: healthy | familial_ALS | sporadic_ALS
+    voci: [ ¦ Healthy donor]→healthy  [(fALS) ¦ fALS]→familial_ALS  [ ¦ sALS]→sporadic_ALS
+ATLAS fattori: disease (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: disease_state (stato; base «healthy»)
+  A[disease=normal]  ×  L[disease_state=healthy]  n=10
+  A[disease=sporadic ALS]  ×  L[disease_state=sporadic_ALS]  n=7
+  LETTORE confronto disease_state: «familial_ALS» contro «healthy» (2/10) confronto 
+  LETTORE confronto disease_state: «sporadic_ALS» contro «healthy» (7/10) confronto 
+  REGISTRO coppie: nessuno_al_base 1 
+  NON ELENCATI da Atlas: g1_g2=fuori_atlas 
+  ATLAS confronto «'sporadic ALS' vs 'normal'» (7/10) classe=rispetta diversi=disease | principale: no | forma: uguale
+
+=================== GSE53280 (E-GEOD-53280) campioni vista 6, universo Atlas 6
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | FORMA: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | OGGI: classe=identica ritrovati 1/1 nostri 1 errori 0/0
+TITOLO: Title: Transcriptomic profiling of HeLa cells infected with Salmonella Typhimurium 
+VISTA colonne:
+  title [6 distinti]: «Mock_1» 1; «Mock_2» 1; «Mock_3» 1; «Salmonella_infected_1» 1; «Salmonella_infected_2» 1; «Salmonella_infected_3» 1
+  source_name_ch1 [2 distinti]: «HeLa-229_mock» 3; «HeLa-229_Salmonella infected» 3
+  infection [2 distinti]: «mock» 3; «Salmonella Typhimurium, MOI 100» 3
+MODELLO ruoli: title=factor; source_name_ch1=uninformative; infection=factor 
+MODELLO fattore «infection» (perturbation; fonti: infection; base: «mock»); 2 voci, valori per voce: 2x1
+    livelli: mock | Salmonella Typhimurium
+    voci: [mock]→mock  [Salmonella Typhimurium, MOI 10…]→Salmonella Typhimurium
+ATLAS fattori: infect (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: infection (perturbazione; base «mock»)
+  A[infect=mock]  ×  L[infection=mock]  n=3
+  A[infect=Salmonella typhimurium]  ×  L[infection=Salmonella Typhimurium]  n=3
+  LETTORE confronto infection: «Salmonella Typhimurium» contro «mock» (3/3) confronto 
+  ATLAS confronto «'Salmonella typhimurium' vs 'mock'» (3/3) classe=rispetta diversi=infect | principale: uguale | forma: uguale
+
+=================== GSE54846 (E-GEOD-54846) campioni vista 6, universo Atlas 6
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | FORMA: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | OGGI: classe=identica ritrovati 1/1 nostri 1 errori 0/0
+TITOLO: Title: RNA-seq from control and macroH2A1-depleted IMR90 primary human lung fibroblasts 
+VISTA colonne:
+  title [6 distinti]: «Luc KD replicate 1» 1; «Luc KD replicate 2» 1; «Luc KD replicate 3» 1; «macroH2A1 KD replicate 1» 1; «macroH2A1 KD replicate 2» 1; «macroH2A1 KD replicate 3» 1
+  source_name_ch1 [2 distinti]: «IMR90_Luc KD» 3; «IMR90_macroH2A1 KD» 3
+  genotype/variation [2 distinti]: «expressing shRNA directed against luciferase as a …» 3; «expressing shRNA directed against macroH2A1» 3
+  description [6 distinti]: «Sample 1» 1; «Sample 2» 1; «Sample 3» 1; «Sample 4» 1; «Sample 5» 1; «Sample 6» 1
+MODELLO ruoli: title=factor; source_name_ch1=factor; genotype/variation=factor; description=uninformative 
+MODELLO fattore «knockdown» (perturbation; fonti: source_name_ch1, genotype/variation; base: «luciferase»); 2 voci, valori per voce: 2x2
+    livelli: luciferase | macroH2A1
+    voci: [IMR90_Luc KD ¦ expressing shRNA directed agai…]→luciferase  [IMR90_macroH2A1 KD ¦ expressing shRNA directed agai…]→macroH2A1
+ATLAS fattori: RNA interference (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: knockdown (perturbazione; base «luciferase»)
+  A[RNA interference=control]  ×  L[knockdown=luciferase]  n=3
+  A[RNA interference=expressing shRNA directed against macroH2A1]  ×  L[knockdown=macroH2A1]  n=3
+  LETTORE confronto knockdown: «macroH2A1» contro «luciferase» (3/3) confronto 
+  ATLAS confronto «'expressing shRNA directed against macroH2A1' vs 'control'» (3/3) classe=rispetta diversi=RNA interference | principale: uguale | forma: uguale
+
+=================== GSE56235 (E-GEOD-56235) campioni vista 6, universo Atlas 6
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | FORMA: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | OGGI: classe=identica ritrovati 1/1 nostri 1 errori 0/0
+TITOLO: Title: Effect of PRDM11 depletion in U2932 cells 
+VISTA colonne:
+  title [6 distinti]: «Knockdown of PRDM11 replicate 1» 1; «Knockdown of PRDM11 replicate 2» 1; «Knockdown of PRDM11 replicate 3» 1; «Scramble ShRNA control replicate 1» 1; «Scramble ShRNA control replicate 2» 1; «Scramble ShRNA control replicate 3» 1
+  plasmid [2 distinti]: «pLKO-puro-scramble shRNA (Addgene 1864)» 3; «TRCN0000358536/NM_020229.2-844s21c1» 3
+MODELLO ruoli: title=factor; plasmid=factor 
+MODELLO fattore «genetic perturbation» (perturbation; fonti: title, plasmid; base: «control siRNA»); 6 voci, valori per voce: 6x2
+    livelli: shPRDM11 | control siRNA
+    voci: [Knockdown of PRDM11 replicate … ¦ TRCN0000358536/NM_020229.2-844…]→shPRDM11  [Knockdown of PRDM11 replicate … ¦ TRCN0000358536/NM_020229.2-844…]→shPRDM11  [Knockdown of PRDM11 replicate … ¦ TRCN0000358536/NM_020229.2-844…]→shPRDM11  [Scramble ShRNA control replica… ¦ pLKO-puro-scramble shRNA (Addg…]→control siRNA  [Scramble ShRNA control replica… ¦ pLKO-puro-scramble shRNA (Addg…]→control siRNA  [Scramble ShRNA cont…
+ATLAS fattori: phenotype (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: genetic perturbation (perturbazione; base «control siRNA»)
+  A[phenotype=control]  ×  L[genetic perturbation=control siRNA]  n=3
+  A[phenotype=Knockdown of PRDM11]  ×  L[genetic perturbation=shPRDM11]  n=3
+  LETTORE confronto genetic perturbation: «shPRDM11» contro «control siRNA» (3/3) confronto 
+  ATLAS confronto «'Knockdown of PRDM11' vs 'control'» (3/3) classe=rispetta diversi=phenotype | principale: uguale | forma: uguale
+
+=================== GSE56691 (E-GEOD-56691) campioni vista 12, universo Atlas 12
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/0 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/0 nostri 0 | OGGI: classe=identica ritrovati 0/0 nostri 3 errori 0/0
+motivi principale: non_coperta: time: 12 combinazioni, 12 campioni, per esempio «RNASEQ_CUTLL1-GSKJ4_24h-replicate1» 
+motivi forma: non_coperta: time: 12 combinazioni, 12 campioni, per esempio «RNASEQ_CUTLL1-GSKJ4_24h-replicate1» 
+note principale: voci_malformate: time: 4 
+TITOLO: Title: Characterizing the contrasting roles of JMJD3 and UTX histone demethylases in T cell acute lymphoblastic leukemia [GSKJ4_RNA-seq] 
+VISTA colonne:
+  title [12 distinti]: «RNASEQ_CUTLL1-GSKJ4_24h-replicate1» 1; «RNASEQ_CUTLL1-GSKJ4_24h-replicate2» 1; «RNASEQ_CUTLL1-GSKJ4_24h-replicate3» 1; «RNASEQ_CUTLL1-GSKJ4_48h-replicate1» 1; «RNASEQ_CUTLL1-GSKJ4_48h-replicate2» 1; «RNASEQ_CUTLL1-GSKJ4_48h-replicate3» 1; … altri 6 valori
+  source_name_ch1 [4 distinti]: «CUTLL1-GSKJ4_24h» 3; «CUTLL1-GSKJ4_48h» 3; «CUTLL1-GSKJ4_72h» 3; «CUTLL1-untreated» 3
+  treated with [4 distinti]: «2µM GSKJ4 for 24hr» 3; «2µM GSKJ4 for 48hr» 3; «2µM GSKJ4 for 72hr» 3; «none (untreated control)» 3
+  description [12 distinti]: «processed data file: degexp.CUTLL1-GSKJ4_24h-RNA.v…» 1; «processed data file: degexp.CUTLL1-GSKJ4_24h-RNA.v…» 1; «processed data file: degexp.CUTLL1-GSKJ4_24h-RNA.v…» 1; «processed data file: degexp.CUTLL1-GSKJ4_24h-RNA.v…» 1; «processed data file: degexp.CUTLL1-GSKJ4_48h-RNA.v…» 1; «processed data file: degexp.CUTLL1-GSKJ4_48h-RNA.v…» 1; … altri 6 valori
+MODELLO ruoli: title=factor; source_name_ch1=factor; treated with=factor; description=uninformative 
+MODELLO fattore «agent» (perturbation; fonti: treated with; base: «untreated»); 4 voci, valori per voce: 4x1
+    livelli: GSKJ4 | GSKJ4 | GSKJ4 | untreated
+    voci: [2µM GSKJ4 for 24hr]→GSKJ4  [2µM GSKJ4 for 48hr]→GSKJ4  [2µM GSKJ4 for 72hr]→GSKJ4  [none (untreated control)]→untreated
+MODELLO fattore «time» (time; fonti: title; base: «»); 4 voci, valori per voce: 4x3
+    livelli: 24 hours | 48 hours | 72 hours | untreated
+    voci: [RNASEQ_CUTLL1-GSKJ4_24h-replic… ¦ RNASEQ_CUTLL1-GSKJ4_24h-replic… ¦ RNASEQ_CUTLL1-GSKJ4_24h-replic…]→24 hours  [RNASEQ_CUTLL1-GSKJ4_48h-replic… ¦ RNASEQ_CUTLL1-GSKJ4_48h-replic… ¦ RNASEQ_CUTLL1-GSKJ4_48h-replic…]→48 hours  [RNASEQ_CUTLL1-GSKJ4_72h-replic… ¦ RNASEQ_CUTLL1-GSKJ4_72h-replic… ¦ RNASEQ_CUTLL1-GSKJ4_72h-replic…]→72 hours  [RNASEQ_CUTLL1-untreated-replic… ¦ RNASEQ_CUTLL1-untreated-replic… ¦ RNASEQ_CUTLL1-u…
+ATLAS fattori: compound (contesto; base «NA»); dose (contesto; base «NA»); time (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[compound=GSKJ4 & dose=2 micromole per liter & time=24 hour] n=3
+  A[compound=GSKJ4 & dose=2 micromole per liter & time=48 hour] n=3
+  A[compound=GSKJ4 & dose=2 micromole per liter & time=72 hour] n=3
+  A[compound=none & dose=0 micromole per liter & time=0 hour] n=3
+  ATLAS confronto «'GSKJ4; 2 micromole per liter' vs 'none' at '24 hour'» (3/3) classe=piu_fattori diversi=compound, dose, time | principale: no | forma: no
+  ATLAS confronto «'GSKJ4; 2 micromole per liter' vs 'none' at '48 hour'» (3/3) classe=piu_fattori diversi=compound, dose, time | principale: no | forma: no
+  ATLAS confronto «'GSKJ4; 2 micromole per liter' vs 'none' at '72 hour'» (3/3) classe=piu_fattori diversi=compound, dose, time | principale: no | forma: no
+
+=================== GSE56787 (E-GEOD-56787) campioni vista 38, universo Atlas 29
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/0 nostri 6 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/0 nostri 6 | OGGI: classe=piu_fine ritrovati 0/0 nostri 2 errori 2/2
+TITOLO: Title: DUX4-induced gene expression is the major molecular signature in FSHD skeletal muscle 
+VISTA colonne:
+  title [38 distinti]: «C1» 1; «C2» 1; «C20_tubes» 1; «C21_blasts» 1; «C21_tubes» 1; «C22_blasts» 1; … altri 32 valori
+  source_name_ch1 [38 distinti]: «Female Control biopsy C6» 1; «Female Control biopsy C7» 1; «Female Control biopsy C8» 1; «Female Control biopsy C9» 1; «Female Control myoblasts C22» 1; «Female Control myotubes C20» 1; … altri 32 valori
+  gender [2 distinti]: «Female» 19; «Male» 19
+  tissue [9 distinti]: «Control Muscle biopsy» 9; «FSHD1 Muscle biopsy» 9; «FSHD2 Muscle biopsy» 6; «Control myotubes» 3; «FSHD2 myotubes» 3; «Control myoblasts» 2; … altri 3 valori
+MODELLO ruoli: title=factor; source_name_ch1=subject/donor; gender=subject/sex; tissue=factor 
+MODELLO fattore «disease» (state; fonti: tissue; base: «control»); 9 voci, valori per voce: 9x1
+    livelli: control | FSHD1 | FSHD2
+    voci: [Control Muscle biopsy]→control  [FSHD1 Muscle biopsy]→FSHD1  [FSHD2 Muscle biopsy]→FSHD2  [Control myotubes]→control  [Control myoblasts]→control  [FSHD2 myotubes]→FSHD2
+MODELLO fattore «cell_type» (context; fonti: tissue; base: «»); 9 voci, valori per voce: 9x1
+    livelli: biopsy | myotube | myoblast
+    voci: [Control Muscle biopsy]→biopsy  [FSHD1 Muscle biopsy]→biopsy  [FSHD2 Muscle biopsy]→biopsy  [Control myotubes]→myotube  [Control myoblasts]→myoblast  [FSHD2 myotubes]→myotube
+ATLAS fattori: disease (contesto; base «NA»); genotype (contesto; base «NA»); organism part (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: disease (stato; base «control»); cell_type (contesto; base «NA»)
+  A[disease=facioscapulohumeral dystrophy & genotype=FSHD1 mutation & organism part=muscle]  ×  L[disease=FSHD1 & cell_type=biopsy]  n=8
+  A[disease=facioscapulohumeral dystrophy & genotype=FSHD2 mutation & organism part=muscle]  ×  L[disease=FSHD2 & cell_type=biopsy]  n=6
+  A[disease=facioscapulohumeral dystrophy & genotype=FSHD2 mutation & organism part=myotube]  ×  L[disease=FSHD2 & cell_type=myotube]  n=3
+  A[disease=normal & genotype=control & organism part=muscle]  ×  L[disease=control & cell_type=biopsy]  n=9
+  A[disease=normal & genotype=control & organism part=myotube]  ×  L[disease=control & cell_type=myoblast]  n=1
+  A[disease=normal & genotype=control & organism part=myotube]  ×  L[disease=control & cell_type=myotube]  n=2
+  LETTORE confronto disease: «FSHD1» contro «control» (9/9) confronto con avviso 
+  LETTORE confronto disease: «FSHD1» contro «control» (2/2) confronto con avviso 
+  LETTORE confronto disease: «FSHD1» contro «control» (2/3) confronto con avviso 
+  LETTORE confronto disease: «FSHD2» contro «control» (6/9) confronto con avviso 
+  LETTORE confronto disease: «FSHD2» contro «control» (2/2) confronto con avviso 
+  LETTORE confronto disease: «FSHD2» contro «control» (3/3) confronto con avviso 
+  REGISTRO coppie: fattore_senza_base 9; nessuno_al_base 3; piu_di_un_fattore 18 
+  NON ELENCATI da Atlas: g2_g8=fuori_atlas; g3_g9=fuori_atlas; g5_g8=fuori_atlas; g6_g9=piu_fattori 
+  ATLAS confronto «'facioscapulohumeral dystrophy; FSDH1 mutation' vs 'normal' in 'muscle'» (8/9) classe=piu_fattori diversi=disease, genotype | principale: uguale | forma: uguale
+  ATLAS confronto «'facioscapulohumeral dystrophy; FSDH2 mutation' vs 'normal' in 'muscle'» (6/9) classe=piu_fattori diversi=disease, genotype | principale: uguale | forma: uguale
+  ATLAS confronto «'facioscapulohumeral dystrophy; FSDH2 mutation' vs 'normal' in 'myotube'» (3/3) classe=piu_fattori diversi=disease, genotype | principale: no | forma: no
+
+=================== GSE57027 (E-GEOD-57027) campioni vista 9, universo Atlas 9
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | OGGI: classe=identica ritrovati 2/2 nostri 2 errori 0/0
+motivi principale: non_coperta: construct: 3 combinazioni, 9 campioni, per esempio «Halo» 
+motivi forma: non_coperta: construct: 3 combinazioni, 9 campioni, per esempio «Halo» 
+note principale: voci_malformate: construct: 3 || base_senza_campioni: construct: halo 
+TITOLO: Title: Controlling for gene expression changes in transcription factor protein networks. 
+VISTA colonne:
+  title [9 distinti]: «Control_1» 1; «Control_2» 1; «Control_3» 1; «NFkB1_1» 1; «NFkB1_2» 1; «NFkB1_3» 1; … altri 3 valori
+  expression construct [3 distinti]: «Halo» 3; «Halo-NfkB1» 3; «Halo-RelA» 3
+  replicate [3 distinti]: «1» 3; «2» 3; «3» 3
+MODELLO ruoli: title=factor; expression construct=factor; replicate=replicate 
+MODELLO fattore «construct» (perturbation; fonti: expression construct; base: «halo»); 3 voci, valori per voce: 3x2
+    livelli: halo | halo-relA | halo-nfkB1
+    voci: [Halo ¦ ]→halo  [Halo-RelA ¦ ]→halo-relA  [Halo-NfkB1 ¦ ]→halo-nfkB1
+ATLAS fattori: phenotype (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[phenotype=control] n=3
+  A[phenotype=overexpression of Halo-NfkB1] n=3
+  A[phenotype=overexpression of Halo-RelA] n=3
+  ATLAS confronto «'overexpression of Halo-RelA' vs 'control'» (3/3) classe=rispetta diversi=phenotype | principale: no | forma: no
+  ATLAS confronto «'overexpression of Halo-NfkB1' vs 'control'» (3/3) classe=rispetta diversi=phenotype | principale: no | forma: no
+
+=================== GSE57116 (E-GEOD-57116) campioni vista 14, universo Atlas 12
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/2 nostri 0 | OGGI: classe=incrociata ritrovati 0/2 nostri 1 errori 1/1
+motivi principale: non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «NT-1» || non_coperta: time: 4 combinazioni, 14 campioni, per esempio «control» || non_coperta: treatment: 4 combinazioni, 14 campioni, per esempio «untreated» 
+note principale: voci_malformate: replicate: 14 || voci_malformate: time: 14 || voci_malformate: treatment: 14 || base_senza_campioni: treatment: untreated 
+TITOLO: Title: 4sUDRB-seq: measuring transcription elongation and initiation genomewide 
+VISTA colonne:
+  title [14 distinti]: «0min-1» 1; «0min-2» 1; «0min-3» 1; «0min-4» 1; «4min-1» 1; «4min-2» 1; … altri 8 valori
+  time [4 distinti]: «0 min» 4; «8 min» 4; «control» 4; «4 min» 2
+  treatment [4 distinti]: «3 h DRB 0 min 4sU» 4; «3 h DRB 8 min 4sU» 4; «untreated» 4; «3 h DRB 4 min 4sU» 2
+MODELLO ruoli: title=factor; time=factor; treatment=factor 
+MODELLO fattore «replicate» (technical; fonti: title; base: «»); 14 voci, valori per voce: 14x3
+    livelli: rep1 | rep2 | rep3 | rep4
+    voci: [NT-1 ¦ control ¦ untreated]→rep1  [NT-2 ¦ control ¦ untreated]→rep2  [NT-3 ¦ control ¦ untreated]→rep3  [NT-4 ¦ control ¦ untreated]→rep4  [0min-1 ¦ 0 min ¦ 3 h DRB 0 min 4sU]→rep1  [0min-2 ¦ 0 min ¦ 3 h DRB 0 min 4sU]→rep2
+MODELLO fattore «time» (time; fonti: time; base: «»); 14 voci, valori per voce: 14x3
+    livelli: 0 min | 4 min | 8 min
+    voci: [NT-1 ¦ control ¦ untreated]→not stated  [NT-2 ¦ control ¦ untreated]→not stated  [NT-3 ¦ control ¦ untreated]→not stated  [NT-4 ¦ control ¦ untreated]→not stated  [0min-1 ¦ 0 min ¦ 3 h DRB 0 min 4sU]→0 min  [0min-2 ¦ 0 min ¦ 3 h DRB 0 min 4sU]→0 min
+MODELLO fattore «treatment» (perturbation; fonti: treatment; base: «untreated»); 14 voci, valori per voce: 14x3
+    livelli: untreated | 3 h DRB 0 min 4sU | 3 h DRB 4 min 4sU | 3 h DRB 8 min 4sU
+    voci: [NT-1 ¦ control ¦ untreated]→untreated  [NT-2 ¦ control ¦ untreated]→untreated  [NT-3 ¦ control ¦ untreated]→untreated  [NT-4 ¦ control ¦ untreated]→untreated  [0min-1 ¦ 0 min ¦ 3 h DRB 0 min 4sU]→3 h DRB 0 min 4sU  [0min-2 ¦ 0 min ¦ 3 h DRB 0 min 4sU]→3 h DRB 0 min 4sU
+ATLAS fattori: treatment (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: replicate (tecnico; base «NA»); time (tempo; base «NA»); treatment (perturbazione; base «untreated»)
+  A[treatment=3 h DRB 0 min 4sU]  ×  L[replicate=rep1 & time=0 min & treatment=3 h DRB 0 min 4sU]  n=1
+  A[treatment=3 h DRB 0 min 4sU]  ×  L[replicate=rep2 & time=0 min & treatment=3 h DRB 0 min 4sU]  n=1
+  A[treatment=3 h DRB 0 min 4sU]  ×  L[replicate=rep3 & time=0 min & treatment=3 h DRB 0 min 4sU]  n=1
+  A[treatment=3 h DRB 0 min 4sU]  ×  L[replicate=rep4 & time=0 min & treatment=3 h DRB 0 min 4sU]  n=1
+  A[treatment=3 h DRB 8 min 4sU]  ×  L[replicate=rep1 & time=8 min & treatment=3 h DRB 8 min 4sU]  n=1
+  A[treatment=3 h DRB 8 min 4sU]  ×  L[replicate=rep2 & time=8 min & treatment=3 h DRB 8 min 4sU]  n=1
+  A[treatment=3 h DRB 8 min 4sU]  ×  L[replicate=rep3 & time=8 min & treatment=3 h DRB 8 min 4sU]  n=1
+  A[treatment=3 h DRB 8 min 4sU]  ×  L[replicate=rep4 & time=8 min & treatment=3 h DRB 8 min 4sU]  n=1
+  A[treatment=untreated]  ×  L[replicate=rep1 & time=non scritto & treatment=untreated]  n=1
+  A[treatment=untreated]  ×  L[replicate=rep2 & time=non scritto & treatment=untreated]  n=1
+  A[treatment=untreated]  ×  L[replicate=rep3 & time=non scritto & treatment=untreated]  n=1
+  A[treatment=untreated]  ×  L[replicate=rep4 & time=non scritto & treatment=untreated]  n=1
+  REGISTRO coppie: fattore_senza_base 19; n_min 10; piu_di_un_fattore 62 
+  ATLAS confronto «'3 h DRB 0 min 4sU' vs 'untreated'» (4/4) classe=rispetta diversi=treatment | principale: no | forma: no
+  ATLAS confronto «'3 h DRB 8 min 4sU' vs 'untreated'» (4/4) classe=rispetta diversi=treatment | principale: no | forma: no
+
+=================== GSE57945 (E-GEOD-57945) campioni vista 322, universo Atlas 321
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | OGGI: classe=incrociata ritrovati 0/1 nostri 3 errori 1/3
+motivi principale: non_coperta: disease: 1 combinazioni, 1 campioni, per esempio «not IBD» || non_coperta: inflammation_type: 1 combinazioni, 1 campioni, per esempio «not IBD» || non_coperta: deep_ulcer_presence: 1 combinazioni, 2 campioni, per esempio «no» 
+motivi forma: non_coperta: disease: 1 combinazioni, 1 campioni, per esempio «not IBD» || non_coperta: inflammation_type: 1 combinazioni, 1 campioni, per esempio «not IBD» || non_coperta: deep_ulcer_presence: 1 combinazioni, 2 campioni, per esempio «no» 
+TITOLO: Title: Core Ileal Transcriptome in Pediatric Crohn Disease 
+VISTA colonne:
+  title [322 distinti]: «CD Female with Macroscopic inflammation and Deep U…» 1; «CD Female with Macroscopic inflammation and Deep U…» 1; «CD Female with Macroscopic inflammation and Deep U…» 1; «CD Female with Macroscopic inflammation and Deep U…» 1; «CD Female with Macroscopic inflammation and Deep U…» 1; «CD Female with Macroscopic inflammation and Deep U…» 1; … altri 316 valori
+  source_name_ch1 [5 distinti]: «Ileal biopsy in treatment-naïve patient, CD» 204; «Ileal biopsy in treatment-naïve patient, UC» 59; «Ileal biopsy in treatment-naïve patient, not IBD» 40; «Ileal biopsy in treatment-naïve patient» 17; «Ileal biopsy in treatment naïve patient» 2
+  Sex [2 distinti]: «Male» 187; «Female» 135
+  age at diagnosis [126 distinti]: «10.67» 7; «10.83» 7; «15.75» 6; «15.83» 6; «10.33» 5; «12.00» 5; … altri 120 valori
+  paris age [2 distinti]: «A1b» 232; «A1a» 90
+  diagnosis [4 distinti]: «CD» 218; «UC» 62; «Not IBD» 41; «not IBD» 1
+  l2 type [5 distinti]: «iCD» 163; «UC» 62; «cCD» 55; «Not IBD» 41; «not IBD» 1
+  histopathology [5 distinti]: «Macroscopic inflammation» 162; «NA» 104; «Microscopic inflammation» 29; «Normal» 24; «Undetermined» 3
+  deep ulcer [4 distinti]: «No» 140; «NA» 104; «Yes» 76; «no» 2
+  description [322 distinti]: «CCFA_Risk_001 Female diagnosed at age 15.25 with C…» 1; «CCFA_Risk_002 Male diagnosed at age 14.41666667 wi…» 1; «CCFA_Risk_003 Female diagnosed at age 12.5 with CD…» 1; «CCFA_Risk_004 Male diagnosed at age 14.58333333 wi…» 1; «CCFA_Risk_005 Female diagnosed at age 10.16666667 …» 1; «CCFA_Risk_006 Female diagnosed at age 15.75 with C…» 1; … altri 316 valori
+MODELLO ruoli: title=factor; source_name_ch1=uninformative; Sex=subject/sex; age at diagnosis=subject/age; paris age=uninformative; diagnosis=factor; l2 type=factor; histopathology=factor; deep ulcer=factor; description=uninformative 
+MODELLO fattore «disease» (state; fonti: diagnosis; base: «healthy»); 3 voci, valori per voce: 3x1
+    livelli: healthy | crohn_disease | ulcerative_colitis
+    voci: [Not IBD]→healthy  [CD]→crohn_disease  [UC]→ulcerative_colitis
+MODELLO fattore «inflammation_type» (state; fonti: l2 type; base: «»); 4 voci, valori per voce: 4x1
+    livelli: ileal_involved_crohn_disease | colonic_crohn_disease | ulcerative_colitis | not_ibd
+    voci: [iCD]→ileal_involved_crohn_disease  [cCD]→colonic_crohn_disease  [UC]→ulcerative_colitis  [Not IBD]→not_ibd
+MODELLO fattore «histopathology_status» (state; fonti: histopathology; base: «normal»); 5 voci, valori per voce: 5x1
+    livelli: macroscopic_inflammation | microscopic_inflammation | normal | undetermined | na
+    voci: [Macroscopic inflammation]→macroscopic_inflammation  [Microscopic inflammation]→microscopic_inflammation  [Normal]→normal  [Undetermined]→undetermined  [NA]→na
+MODELLO fattore «deep_ulcer_presence» (state; fonti: deep ulcer; base: «no_deep_ulcer»); 3 voci, valori per voce: 3x1
+    livelli: no_deep_ulcer | deep_ulcer | na
+    voci: [No]→no_deep_ulcer  [Yes]→deep_ulcer  [NA]→na
+ATLAS fattori: disease (contesto; base «NA»); histology (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[disease=Crohn's disease & histology=macroscopic ileal inflammation with deep ulcer] n=75
+  A[disease=Crohn's disease & histology=macroscopic ileal inflammation without deep ulcer] n=86
+  A[disease=Crohn's disease & histology=microscopic ileal inflammation without deep ulcer] n=29
+  A[disease=Crohn's disease & histology=normal] n=24
+  A[disease=Crohn's disease & histology=undetermined] n=3
+  A[disease=non inflammatory bowel disease control & histology=not applicable] n=42
+  A[disease=ulcerative colitis & histology=not applicable] n=62
+  ATLAS confronto «'Crohn's disease, macroscopic ileal inflammation with deep ulcer' vs 'non inflammatory bowel disease control'» (75/42) classe=piu_fattori diversi=disease, histology | principale: no | forma: no
+  ATLAS confronto «'Crohn's disease, macroscopic ileal inflammation without deep ulcer' vs 'non inflammatory bowel disease contro…» (86/42) classe=piu_fattori diversi=disease, histology | principale: no | forma: no
+  ATLAS confronto «'Crohn's disease, microscopic ileal inflammation without deep ulcer' vs 'non inflammatory bowel disease contro…» (29/42) classe=piu_fattori diversi=disease, histology | principale: no | forma: no
+  ATLAS confronto «'Crohn's disease, normal' vs 'non inflammatory bowel disease control'» (24/42) classe=piu_fattori diversi=disease, histology | principale: no | forma: no
+  ATLAS confronto «'Crohn's disease, undetermined' vs 'non inflammatory bowel disease control'» (3/42) classe=piu_fattori diversi=disease, histology | principale: no | forma: no
+  ATLAS confronto «'ulcerative colitis' vs 'non inflammatory bowel disease control'» (62/42) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE58326 (E-GEOD-58326) campioni vista 6, universo Atlas 6
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | FORMA: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | OGGI: classe=identica ritrovati 1/1 nostri 1 errori 0/0
+TITOLO: Title: Global analysis of ZNF217 chromatin occupancy in the breast cancer cell genome reveals an association with Eralpha 
+VISTA colonne:
+  title [6 distinti]: «siScram_rep1» 1; «siScram_rep2» 1; «siScram_rep3» 1; «siZNF217_rep1» 1; «siZNF217_rep2» 1; «siZNF217_rep3» 1
+  source_name_ch1 [2 distinti]: «MCF7, siScram» 3; «MCF7, siZNF217» 3
+MODELLO ruoli: title=factor; source_name_ch1=factor 
+MODELLO fattore «genetic perturbation» (perturbation; fonti: source_name_ch1; base: «scrambled siRNA»); 2 voci, valori per voce: 2x1
+    livelli: scrambled siRNA | siZNF217
+    voci: [MCF7, siScram]→scrambled siRNA  [MCF7, siZNF217]→siZNF217
+ATLAS fattori: RNA interference (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: genetic perturbation (perturbazione; base «scrambled siRNA»)
+  A[RNA interference=control]  ×  L[genetic perturbation=scrambled siRNA]  n=3
+  A[RNA interference=siZNF217]  ×  L[genetic perturbation=siZNF217]  n=3
+  LETTORE confronto genetic perturbation: «siZNF217» contro «scrambled siRNA» (3/3) confronto 
+  ATLAS confronto «'siZNF217' vs 'control'» (3/3) classe=rispetta diversi=RNA interference | principale: uguale | forma: uguale
+
+=================== GSE58365 (E-GEOD-58365) campioni vista 6, universo Atlas 6
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 0/1 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/1 nostri 0 | OGGI: classe=identica ritrovati 0/1 nostri 0 errori 0/0
+TITOLO: Title: The BCL6 RD2 domain governs commitment of activated B-cells to form germinal centers 
+VISTA colonne:
+  title [6 distinti]: «RD1» 1; «RD2» 1; «RD3» 1; «WT1» 1; «WT2» 1; «WT3» 1
+  genotype [2 distinti]: «siBCL6;etopic expression of BCL6 RD2 mutant» 3; «siBCL6;etopic expression of WT BCL6» 3
+MODELLO ruoli: title=factor; genotype=factor 
+MODELLO fattore «genotype» (state; fonti: genotype; base: «»); 2 voci, valori per voce: 2x1
+    livelli: WT | RD
+    voci: [siBCL6;etopic expression of WT…]→WT  [siBCL6;etopic expression of BC…]→RD
+ATLAS fattori: genotype (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: genotype (stato; base «NA»)
+  A[genotype=BCL6 RD2 mutant]  ×  L[genotype=RD]  n=3
+  A[genotype=wild type genotype]  ×  L[genotype=WT]  n=3
+  REGISTRO coppie: fattore_senza_base 1 
+  ATLAS confronto «'BCL6 RD2 mutant' vs 'wild type'» (3/3) classe=rispetta diversi=genotype | principale: no | forma: no
+
+=================== GSE59781 (E-GEOD-59781) campioni vista 8, universo Atlas 8
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | FORMA: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | OGGI: classe=identica ritrovati 1/1 nostri 1 errori 0/0
+TITOLO: Title: Open chromatin mapping identifies transcriptional networks regulating human epididymis epithelial function [Rnase-Seq] 
+VISTA colonne:
+  title [8 distinti]: «REP control siRNA rep 1» 1; «REP control siRNA rep 2» 1; «REP control siRNA rep 3» 1; «REP control siRNA rep 4» 1; «REP PAX2 siRNA rep 1» 1; «REP PAX2 siRNA rep 2» 1; … altri 2 valori
+MODELLO ruoli: title=factor 
+MODELLO fattore «siRNA» (perturbation; fonti: title; base: «control siRNA»); 8 voci, valori per voce: 8x1
+    livelli: control siRNA | PAX2 siRNA
+    voci: [REP control siRNA rep 1]→control siRNA  [REP control siRNA rep 2]→control siRNA  [REP control siRNA rep 3]→control siRNA  [REP control siRNA rep 4]→control siRNA  [REP PAX2 siRNA rep 1]→PAX2 siRNA  [REP PAX2 siRNA rep 2]→PAX2 siRNA
+ATLAS fattori: RNA interference (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: siRNA (perturbazione; base «control siRNA»)
+  A[RNA interference=control]  ×  L[siRNA=control siRNA]  n=4
+  A[RNA interference=PAX2 siRNA]  ×  L[siRNA=PAX2 siRNA]  n=4
+  LETTORE confronto siRNA: «PAX2 siRNA» contro «control siRNA» (4/4) confronto 
+  ATLAS confronto «'PAX2 siRNA' vs 'control'» (4/4) classe=rispetta diversi=RNA interference | principale: uguale | forma: uguale
+
+=================== GSE60340 (E-GEOD-60340) campioni vista 24, universo Atlas 24
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 0/2 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/2 nostri 0 | OGGI: classe=incrociata ritrovati 0/2 nostri 5 errori 1/1
+TITOLO: Title: Pathway Profiling of Replicative and Induced Senescence 
+VISTA colonne:
+  title [24 distinti]: «5-aza 1» 1; «5-aza 2» 1; «5-aza 3» 1; «Adria 1» 1; «Adria 2» 1; «Adria 3» 1; … altri 18 valori
+  source_name_ch1 [8 distinti]: «MDAH041_5-aza» 3; «MDAH041_Adria» 3; «MDAH041_H2O2» 3; «MDAH041_Immortal» 3; «MDAH041_LLP» 3; «MDAH041_LP» 3; … altri 2 valori
+  passages [4 distinti]: «>200» 15; «10-12» 3; «17-19» 3; «28-30» 3
+  treated with [7 distinti]: «None» 6; «5-aza» 3; «Adriamycin» 3; «H2O2» 3; «None (grown until growth arrest)» 3; «None (spontaneously immortal)» 3; … altri 1 valori
+  sample group [6 distinti]: «induced into senescence» 9; «aging cells» 3; «induced into quiescence» 3; «replicatively senescent» 3; «spontaneously immortal cells» 3; «young cells» 3
+MODELLO ruoli: title=factor; source_name_ch1=uninformative; passages=factor; treated with=factor; sample group=factor 
+MODELLO fattore «senescence» (state; fonti: sample group; base: «young»); 6 voci, valori per voce: 6x1
+    livelli: immortal | young | aging | senescent | induced senescence | quiescent
+    voci: [spontaneously immortal cells]→immortal  [young cells]→young  [aging cells]→aging  [replicatively senescent]→senescent  [induced into senescence]→induced senescence  [induced into quiescence]→quiescent
+MODELLO fattore «agent» (perturbation; fonti: treated with; base: «none»); 7 voci, valori per voce: 7x1
+    livelli: none | none | none | adriamycin | 5-aza | h2o2 | serum starvation
+    voci: [None (spontaneously immortal)]→none  [None]→none  [None (grown until growth arres…]→none  [Adriamycin]→adriamycin  [5-aza]→5-aza  [H2O2]→h2o2
+MODELLO fattore «passage» (technical; fonti: passages; base: «»); 4 voci, valori per voce: 4x1
+    livelli: >200 | 10-12 | 17-19 | 28-30
+    voci: [>200]→>200  [10-12]→10-12  [17-19]→17-19  [28-30]→28-30
+ATLAS fattori: phenotype (contesto; base «NA»); treatment (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: senescence (stato; base «young»); agent (perturbazione; base «none»); passage (tecnico; base «NA»)
+  A[phenotype=aging cells & treatment=non scritto]  ×  L[senescence=aging & agent=none & passage=17-19]  n=3
+  A[phenotype=induced into quiescence & treatment=serum starved]  ×  L[senescence=quiescent & agent=serum starvation & passage=>200]  n=3
+  A[phenotype=induced into senescence & treatment=5-aza-2-deoxycytidine]  ×  L[senescence=induced senescence & agent=5-aza & passage=>200]  n=3
+  A[phenotype=induced into senescence & treatment=adriamycin]  ×  L[senescence=induced senescence & agent=adriamycin & passage=>200]  n=3
+  A[phenotype=induced into senescence & treatment=hydrogen peroxide]  ×  L[senescence=induced senescence & agent=h2o2 & passage=>200]  n=3
+  A[phenotype=replicatively senescent & treatment=grown until growth arrest]  ×  L[senescence=senescent & agent=none & passage=28-30]  n=3
+  A[phenotype=spontaneously immortal cells & treatment=control]  ×  L[senescence=immortal & agent=none & passage=>200]  n=3
+  A[phenotype=young cells & treatment=non scritto]  ×  L[senescence=young & agent=none & passage=10-12]  n=3
+  REGISTRO coppie: nessuno_al_base 3; piu_di_un_fattore 25 
+  ATLAS confronto «'replicatively senescent; grown until growth arrest' vs 'spontaneously immortal cells; control'» (3/3) classe=piu_fattori diversi=phenotype, treatment | principale: no | forma: no
+  ATLAS confronto «'aging cells' vs 'spontaneously immortal cells; control'» (3/3) classe=rispetta diversi=phenotype | principale: no | forma: no
+  ATLAS confronto «'young cells' vs 'spontaneously immortal cells; control'» (3/3) classe=rispetta diversi=phenotype | principale: no | forma: no
+  ATLAS confronto «'induced into quiescence; serum starved' vs 'spontaneously immortal cells; control'» (3/3) classe=piu_fattori diversi=phenotype, treatment | principale: no | forma: no
+  ATLAS confronto «'induced into senescence; 5-aza-2-deoxycytidine' vs 'spontaneously immortal cells; control'» (3/3) classe=piu_fattori diversi=phenotype, treatment | principale: no | forma: no
+  ATLAS confronto «'induced into senescence; adriamycin' vs 'spontaneously immortal cells; control'» (3/3) classe=piu_fattori diversi=phenotype, treatment | principale: no | forma: no
+  ATLAS confronto «'induced into senescence; hydrogen peroxide' vs 'spontaneously immortal cells; control'» (3/3) classe=piu_fattori diversi=phenotype, treatment | principale: no | forma: no
+
+=================== GSE60585 (E-GEOD-60585) campioni vista 18, universo Atlas 18
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/4 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/4 nostri 0 | OGGI: classe=incrociata ritrovati 0/4 nostri 0 errori 0/0
+TITOLO: Title: Integrator complex regulates NELF-mediated RNA Polymerase II pause/release and processivity at coding genes [RNA-seq] 
+VISTA colonne:
+  title [18 distinti]: «Int11 replicat1» 1; «Int11 replicat2» 1; «Int11 replicat3» 1; «NELF replicat1» 1; «NELF replicat2» 1; «NELF replicat3» 1; … altri 12 valori
+  source_name_ch1 [6 distinti]: «Int11» 3; «NELF» 3; «Scr» 3; «siInt11» 3; «siNELF» 3; «siScr» 3
+  treated with [3 distinti]: «si RNAs against control (scrambled)» 6; «si RNAs against Integrator 11» 6; «si RNAs against NELF» 6
+  molecule subtype [2 distinti]: «ribosomal RNA depleted whole cell RNA» 9; «whole-cell RNA» 9
+  molecule_ch1 [2 distinti]: «polyA RNA» 9; «total RNA» 9
+  description [6 distinti]: «processed data file: DESeq2_11_vs_S_ALLp-value.xls» 3; «processed data file: DESeq2_11_vs_S_ALLp-value.xls…» 3; «processed data file: DESeq2_N_vs_S_ALLp-value.xls» 3; «processed data file: DESeq2_siInt11_vs_siscr_ALLp-…» 3; «processed data file: DESeq2_siInt11_vs_siscr_ALLp-…» 3; «processed data file: DESeq2_siNE_vs_siscr_ALLp-val…» 3
+MODELLO ruoli: title=factor; source_name_ch1=factor; treated with=factor; molecule subtype=uninformative; molecule_ch1=uninformative; description=uninformative 
+MODELLO fattore «target» (perturbation; fonti: source_name_ch1; base: «control»); 6 voci, valori per voce: 6x1
+    livelli: Integrator 11 | NELF | control | not stated | not stated | not stated
+    voci: [Int11]→Integrator 11  [NELF]→NELF  [Scr]→control  [siInt11]→not stated  [siNELF]→not stated  [siScr]→not stated
+MODELLO fattore «transfection» (perturbation; fonti: treated with; base: «control»); 3 voci, valori per voce: 3x1
+    livelli: Integrator 11 | NELF | control
+    voci: [si RNAs against Integrator 11]→Integrator 11  [si RNAs against NELF]→NELF  [si RNAs against control (scram…]→control
+MODELLO fattore «replicate» (technical; fonti: title; base: «»); 18 voci, valori per voce: 18x1
+    livelli: 1 | 2 | 3
+    voci: [Int11 replicat1]→1  [Int11 replicat2]→2  [Int11 replicat3]→3  [NELF replicat1]→1  [NELF replicat2]→2  [NELF replicat3]→3
+ATLAS fattori: RNA (contesto; base «NA»); RNA interference (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: target (perturbazione; base «control»); transfection (perturbazione; base «control»); replicate (tecnico; base «NA»)
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=control]  ×  L[target=non scritto & transfection=control & replicate=1]  n=1
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=control]  ×  L[target=non scritto & transfection=control & replicate=2]  n=1
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=control]  ×  L[target=non scritto & transfection=control & replicate=3]  n=1
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=siRNAs against Integrator 11]  ×  L[target=non scritto & transfection=Integrator 11 & replicate=1]  n=1
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=siRNAs against Integrator 11]  ×  L[target=non scritto & transfection=Integrator 11 & replicate=2]  n=1
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=siRNAs against Integrator 11]  ×  L[target=non scritto & transfection=Integrator 11 & replicate=3]  n=1
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=siRNAs against NELF]  ×  L[target=non scritto & transfection=NELF & replicate=1]  n=1
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=siRNAs against NELF]  ×  L[target=non scritto & transfection=NELF & replicate=2]  n=1
+  A[RNA=ribosomal RNA depleted whole cell RNA & RNA interference=siRNAs against NELF]  ×  L[target=non scritto & transfection=NELF & replicate=3]  n=1
+  A[RNA=whole-cell RNA & RNA interference=control]  ×  L[target=control & transfection=control & replicate=1]  n=1
+  A[RNA=whole-cell RNA & RNA interference=control]  ×  L[target=control & transfection=control & replicate=2]  n=1
+  A[RNA=whole-cell RNA & RNA interference=control]  ×  L[target=control & transfection=control & replicate=3]  n=1
+  A[RNA=whole-cell RNA & RNA interference=siRNAs against Integrator 11]  ×  L[target=Integrator 11 & transfection=Integrator 11 & replicate=1]  n=1
+  A[RNA=whole-cell RNA & RNA interference=siRNAs against Integrator 11]  ×  L[target=Integrator 11 & transfection=Integrator 11 & replicate=2]  n=1
+  A[RNA=whole-cell RNA & RNA interference=siRNAs against Integrator 11]  ×  L[target=Integrator 11 & transfection=Integrator 11 & replicate=3]  n=1
+  A[RNA=whole-cell RNA & RNA interference=siRNAs against NELF]  ×  L[target=NELF & transfection=NELF & replicate=1]  n=1
+  A[RNA=whole-cell RNA & RNA interference=siRNAs against NELF]  ×  L[target=NELF & transfection=NELF & replicate=2]  n=1
+  A[RNA=whole-cell RNA & RNA interference=siRNAs against NELF]  ×  L[target=NELF & transfection=NELF & replicate=3]  n=1
+  REGISTRO coppie: fattore_senza_base 36; n_min 18; nessuna_differenza 9; nessuno_al_base 9; piu_di_un_fattore 81 
+  ATLAS confronto «'siRNAs against Integrator 11' vs 'control' in 'ribosomal RNA depleted whole cell RNA'» (3/3) classe=rispetta diversi=RNA interference | principale: no | forma: no
+  ATLAS confronto «'siRNAs against NELF' vs 'control' in 'ribosomal RNA depleted whole cell RNA'» (3/3) classe=rispetta diversi=RNA interference | principale: no | forma: no
+  ATLAS confronto «'siRNAs against Integrator 11' vs 'control' in 'whole-cell RNA'» (3/3) classe=rispetta diversi=RNA interference | principale: no | forma: no
+  ATLAS confronto «'siRNAs against NELF' vs 'control' in 'whole-cell RNA'» (3/3) classe=rispetta diversi=RNA interference | principale: no | forma: no
+
+=================== GSE63015 (E-GEOD-63015) campioni vista 6, universo Atlas 6
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | OGGI: classe=piu_fine ritrovati 0/1 nostri 1 errori 0/1
+motivi principale: non_coperta: time: 6 combinazioni, 6 campioni, per esempio «Day 14 Control Neural Progenitior Cells, Replicate 1» 
+note principale: voci_malformate: time: 6 
+TITOLO: Title: Self-organization of polarized cerebellar plate neuroepithelium in three-dimensional culture of human pluripotent stem cells 
+VISTA colonne:
+  title [6 distinti]: «Day 14 Control Neural Progenitior Cells, Replicate…» 1; «Day 14 Control Neural Progenitior Cells, Replicate…» 1; «Day 14 Control Neural Progenitior Cells, Replicate…» 1; «Day 14 Fgf2-treated Neural Progenitor Cells, Repli…» 1; «Day 14 Fgf2-treated Neural Progenitor Cells, Repli…» 1; «Day 14 Fgf2-treated Neural Progenitor Cells, Repli…» 1
+  treatment [2 distinti]: «control» 3; «Fgf2» 3
+MODELLO ruoli: title=factor; treatment=factor 
+MODELLO fattore «time» (technical; fonti: title; base: «»); 6 voci, valori per voce: 6x2
+    livelli: day 14
+    voci: [Day 14 Control Neural Progenit… ¦ control]→day 14  [Day 14 Control Neural Progenit… ¦ control]→day 14  [Day 14 Control Neural Progenit… ¦ control]→day 14  [Day 14 Fgf2-treated Neural Pro… ¦ Fgf2]→day 14  [Day 14 Fgf2-treated Neural Pro… ¦ Fgf2]→day 14  [Day 14 Fgf2-treated Neural Pro… ¦ Fgf2]→day 14
+MODELLO fattore «treatment» (perturbation; fonti: treatment; base: «untreated»); 2 voci, valori per voce: 2x1
+    livelli: untreated | fgf2
+    voci: [control]→untreated  [Fgf2]→fgf2
+ATLAS fattori: compound (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: time (tecnico; base «NA»); treatment (perturbazione; base «untreated»)
+  A[compound=control]  ×  L[time=day 14 & treatment=untreated]  n=3
+  A[compound=fibroblast growth factor 2]  ×  L[time=day 14 & treatment=fgf2]  n=3
+  LETTORE confronto treatment: «fgf2» contro «untreated» (3/3) confronto 
+  ATLAS confronto «'fibroblast growth factor 2' vs 'control'» (3/3) classe=rispetta diversi=compound | principale: no | forma: uguale
+
+=================== GSE63816 (E-GEOD-63816) campioni vista 22, universo Atlas 20
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/3 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/3 nostri 0 | OGGI: classe=piu_fine ritrovati 0/3 nostri 5 errori 0/3
+motivi principale: non_coperta: genotype: 22 combinazioni, 22 campioni, per esempio «ZRSR2 mutant MDS 1» || non_coperta: disease_state: 3 combinazioni, 22 campioni, per esempio «myelodysplastic syndrome (MDS)» 
+note principale: voci_malformate: genotype: 22 || base_senza_campioni: genotype: control || voci_malformate: disease_state: 3 || base_senza_campioni: disease_state: normal 
+TITOLO: Title: Aberrant splicing of U12-type introns is the hallmark of ZRSR2 mutant myelodysplastic syndrome 
+VISTA colonne:
+  title [22 distinti]: «Normal bone marrow 1» 1; «Normal bone marrow 2» 1; «Normal bone marrow 3» 1; «Normal bone marrow 4» 1; «TF-1 control shRNA experiment 1» 1; «TF-1 control shRNA experiment 2» 1; … altri 16 valori
+  source_name_ch1 [2 distinti]: «bone marrow» 16; «TF-1 cell line» 6
+  disease [3 distinti]: «myelodysplastic syndrome (MDS)» 12; «erythroleukemia» 6; «normal» 4
+  age [14 distinti]: «35» 6; «62» 2; «72» 2; «74» 2; «38» 1; «50» 1; … altri 8 valori
+  gender [2 distinti]: «Male» 21; «Female» 1
+MODELLO ruoli: title=factor; source_name_ch1=subject/donor; disease=factor; age=uninformative; gender=uninformative 
+MODELLO fattore «genotype» (state; fonti: title; base: «control»); 22 voci, valori per voce: 22x5
+    livelli: mutant | wild type | control | shRNA | control shRNA
+    voci: [ZRSR2 mutant MDS 1 ¦  ¦  ¦  ¦ ]→mutant  [ZRSR2 mutant MDS 2 ¦  ¦  ¦  ¦ ]→mutant  [ZRSR2 mutant MDS 3 ¦  ¦  ¦  ¦ ]→mutant  [ZRSR2 mutant MDS 4 ¦  ¦  ¦  ¦ ]→mutant  [ZRSR2 mutant MDS 5 ¦  ¦  ¦  ¦ ]→mutant  [ZRSR2 mutant MDS 6 ¦  ¦  ¦  ¦ ]→mutant
+MODELLO fattore «disease_state» (state; fonti: disease; base: «normal»); 3 voci, valori per voce: 3x5
+    livelli: MDS | normal | erythroleukemia
+    voci: [ ¦  ¦ myelodysplastic syndrome (MDS) ¦  ¦ ]→MDS  [ ¦  ¦ normal ¦  ¦ ]→normal  [ ¦  ¦ erythroleukemia ¦  ¦ ]→erythroleukemia
+ATLAS fattori: disease (contesto; base «NA»); genotype (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: genotype (stato; base «control»); disease_state (stato; base «normal»)
+  A[disease=erythroleukemia & genotype=ZRSR2 shRNA]  ×  L[genotype=shRNA & disease_state=erythroleukemia]  n=4
+  A[disease=myelodysplastic syndrome & genotype=ZRSR2 mutant]  ×  L[genotype=mutant & disease_state=MDS]  n=8
+  A[disease=myelodysplastic syndrome & genotype=ZRSR2 wild type]  ×  L[genotype=wild type & disease_state=MDS]  n=4
+  A[disease=normal & genotype=non scritto]  ×  L[genotype=control & disease_state=normal]  n=4
+  REGISTRO coppie: nessuno_al_base 2; piu_di_un_fattore 8 
+  ATLAS confronto «'erythroleukemia; ZRSR2 shRNA' vs 'normal'» (4/4) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'myelodysplastic syndrome; ZRSR2 mutant' vs 'normal'» (8/4) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'myelodysplastic syndrome; ZRSR2 wild type' vs 'normal'» (4/4) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE65335 (E-GEOD-65335) campioni vista 9, universo Atlas 9
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 1/2 nostri 1 | FORMA: chiuso=TRUE classe=identica ritrovati 1/2 nostri 1 | OGGI: classe=incrociata ritrovati 0/2 nostri 3 errori 2/3
+TITOLO: Title: Genome-wide expression profiling of an in vitro model for studying esophageal epithelial differentiation 
+VISTA colonne:
+  title [9 distinti]: «EPC2_Day0_1» 1; «EPC2_Day0_2» 1; «EPC2_Day0_3» 1; «EPC2_Day6_1» 1; «EPC2_Day6_2» 1; «EPC2_Day6_3» 1; … altri 3 valori
+  source_name_ch1 [3 distinti]: «hTERT-immortalized human esophageal epithelial cel…» 3; «hTERT-immortalized human esophageal epithelial cel…» 3; «hTERT-immortalized human esophageal epithelial cel…» 3
+  growth conditions [2 distinti]: «ALI (day 14)» 6; «submerged (day 8)» 3
+  treatment [2 distinti]: «untreated» 6; «IL-13 (100 ng/mL)» 3
+MODELLO ruoli: title=factor; source_name_ch1=uninformative; growth conditions=factor; treatment=factor 
+MODELLO fattore «differentiation» (context; fonti: growth conditions; base: «»); 2 voci, valori per voce: 2x1
+    livelli: submerged | air-liquid interface
+    voci: [submerged (day 8)]→submerged  [ALI (day 14)]→air-liquid interface
+MODELLO fattore «interleukin 13» (perturbation; fonti: treatment; base: «untreated»); 2 voci, valori per voce: 2x1
+    livelli: untreated | interleukin 13
+    voci: [untreated]→untreated  [IL-13 (100 ng/mL)]→interleukin 13
+ATLAS fattori: compound (contesto; base «NA»); dose (contesto; base «NA»); growth condition (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: differentiation (contesto; base «NA»); interleukin 13 (perturbazione; base «untreated»)
+  A[compound=interleukin 13 & dose=100 nanogram per milliliter & growth condition=air-liquid i…]  ×  L[differentiation=air-liquid interface & interleukin 13=interleukin 13]  n=3
+  A[compound=untreated & dose=non scritto & growth condition=air-liquid interface (day 14)]  ×  L[differentiation=air-liquid interface & interleukin 13=untreated]  n=3
+  A[compound=untreated & dose=non scritto & growth condition=submerged (day 8)]  ×  L[differentiation=submerged & interleukin 13=untreated]  n=3
+  LETTORE confronto interleukin 13: «interleukin 13» contro «untreated» (3/3) confronto 
+  REGISTRO coppie: fattore_senza_base 1; piu_di_un_fattore 1 
+  ATLAS confronto «'interleukin 13; 100 nanogram per milliliter' vs 'untreated' in 'air-liquid interface (day 14)'» (3/3) classe=rispetta diversi=compound | principale: uguale | forma: uguale
+  ATLAS confronto «'interleukin 13; 100 nanogram per milliliter; air-liquid interface (day 14)' vs 'untreated; submerged (day 8)'» (3/3) classe=piu_fattori diversi=compound, growth condition | principale: no | forma: no
+  ATLAS confronto «'untreated; air-liquid interface (day 14)' vs 'untreated; submerged (day 8)'» (3/3) classe=rispetta diversi=growth condition | principale: no | forma: no
+
+=================== GSE66207 (E-GEOD-66207) campioni vista 33, universo Atlas 33
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/0 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/0 nostri 0 | OGGI: classe=piu_fine ritrovati 0/0 nostri 0 errori 0/0
+TITOLO: Title: mRNA and small RNA associated with Crohn's disease behavior [RNA-Seq] 
+VISTA colonne:
+  title [33 distinti]: «B1/non-strituring, non-penetrating Crohn's disease…» 1; «B1/non-strituring, non-penetrating Crohn's disease…» 1; «B1/non-strituring, non-penetrating Crohn's disease…» 1; «B1/non-strituring, non-penetrating Crohn's disease…» 1; «B1/non-strituring, non-penetrating Crohn's disease…» 1; «B1/non-strituring, non-penetrating Crohn's disease…» 1; … altri 27 valori
+  age [27 distinti]: «49» 3; «20» 2; «45» 2; «52» 2; «70» 2; «15» 1; … altri 21 valori
+  Sex [2 distinti]: «female» 20; «male» 13
+  disease [10 distinti]: «Crohn's Disease» 20; «Normal, Colon cancer» 3; «Normal, Adenoma» 2; «Normal, diverticulitis» 2; «Normal» 1; «Normal control, large polyp» 1; … altri 4 valori
+  disease_stage [4 distinti]: «NA» 13; «B3/penetrating» 8; «B1/non-strictuing, non-penetrating» 6; «B2/stricturing» 6
+  montreal classification [13 distinti]: «NA» 13; «A2L3B3» 5; «A2L2B1» 3; «A1L2B1» 2; «A2L3B2» 2; «A1L1B2» 1; … altri 7 valori
+MODELLO ruoli: title=factor; age=subject/age; Sex=subject/sex; disease=factor; disease_stage=factor; montreal classification=factor 
+MODELLO fattore «disease» (state; fonti: disease; base: «normal»); 10 voci, valori per voce: 10x1
+    livelli: Crohn's Disease | normal | not stated | not stated | not stated | not stated | not stated | not stated | not stated | not stated
+    voci: [Crohn's Disease]→Crohn's Disease  [Normal]→normal  [Normal, Hartmann reversal afte…]→not stated  [Normal, diverticulitis]→not stated  [Normal, Colon cancer]→not stated  [Normal, colonic inertia, TI su…]→not stated
+MODELLO fattore «disease stage» (state; fonti: disease_stage; base: «not applicable»); 4 voci, valori per voce: 4x1
+    livelli: B1/non-stricturing, non-penetrating | B2/stricturing | B3/penetrating | not applicable
+    voci: [B1/non-strictuing, non-penetra…]→B1/non-stricturing, non-penetrating  [B2/stricturing]→B2/stricturing  [B3/penetrating]→B3/penetrating  [NA]→not applicable
+MODELLO fattore «Montreal classification» (state; fonti: montreal classification; base: «not applicable»); 20 voci, valori per voce: 20x1
+    livelli: A1L1B2 | A2L2B2 | A2L3B3 | A2L3B2 | A1L2B1 | A2L3B3 | A1L3B1 | A2L2B3p | A2L2B1 | A2L2B1 | A2L3B3 | A2L2B2p | A1L3B2 | A2L3B3 | A2L3B1 | A1L2B1 | A2L3B3 | A2L3B2 | A2L1B3 | not applicable
+    voci: [A1L1B2]→A1L1B2  [A2L2B2]→A2L2B2  [A2L3B3]→A2L3B3  [A2L3B2]→A2L3B2  [A1L2B1]→A1L2B1  [A2L3B3]→A2L3B3
+ATLAS fattori: disease (contesto; base «NA»); disease staging (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: disease (stato; base «normal»); disease stage (stato; base «not applicable»); Montreal classification (stato; base «not applicable»)
+  A[disease=Crohn's disease & disease staging=B1, non-strictuing, non-penetrating]  ×  L[disease=Crohn's Disease & disease stage=B1/non-stricturing, non-penetrating & Montreal classification=A1L2B1]  n=2
+  A[disease=Crohn's disease & disease staging=B1, non-strictuing, non-penetrating]  ×  L[disease=Crohn's Disease & disease stage=B1/non-stricturing, non-penetrating & Montreal classification=A1L3B1]  n=1
+  A[disease=Crohn's disease & disease staging=B1, non-strictuing, non-penetrating]  ×  L[disease=Crohn's Disease & disease stage=B1/non-stricturing, non-penetrating & Montreal classification=A2L2B1]  n=2
+  A[disease=Crohn's disease & disease staging=B1, non-strictuing, non-penetrating]  ×  L[disease=Crohn's Disease & disease stage=B1/non-stricturing, non-penetrating & Montreal classification=A2L3B1]  n=1
+  A[disease=Crohn's disease & disease staging=B2, stricturing]  ×  L[disease=Crohn's Disease & disease stage=B2/stricturing & Montreal classification=A1L1B2]  n=1
+  A[disease=Crohn's disease & disease staging=B2, stricturing]  ×  L[disease=Crohn's Disease & disease stage=B2/stricturing & Montreal classification=A1L3B2]  n=1
+  A[disease=Crohn's disease & disease staging=B2, stricturing]  ×  L[disease=Crohn's Disease & disease stage=B2/stricturing & Montreal classification=A2L2B2]  n=1
+  A[disease=Crohn's disease & disease staging=B2, stricturing]  ×  L[disease=Crohn's Disease & disease stage=B2/stricturing & Montreal classification=A2L2B2p]  n=1
+  A[disease=Crohn's disease & disease staging=B2, stricturing]  ×  L[disease=Crohn's Disease & disease stage=B2/stricturing & Montreal classification=A2L3B2]  n=2
+  A[disease=Crohn's disease & disease staging=B3, penetrating]  ×  L[disease=Crohn's Disease & disease stage=B3/penetrating & Montreal classification=A2L1B3]  n=1
+  A[disease=Crohn's disease & disease staging=B3, penetrating]  ×  L[disease=Crohn's Disease & disease stage=B3/penetrating & Montreal classification=A2L2B1]  n=1
+  A[disease=Crohn's disease & disease staging=B3, penetrating]  ×  L[disease=Crohn's Disease & disease stage=B3/penetrating & Montreal classification=A2L2B3p]  n=1
+  A[disease=Crohn's disease & disease staging=B3, penetrating]  ×  L[disease=Crohn's Disease & disease stage=B3/penetrating & Montreal classification=A2L3B3]  n=5
+  A[disease=non inflammatory bowel disease control & disease staging=not applicable]  ×  L[disease=non scritto & disease stage=not applicable & Montreal classification=not applicable]  n=12
+  A[disease=non inflammatory bowel disease control & disease staging=not applicable]  ×  L[disease=normal & disease stage=not applicable & Montreal classification=not applicable]  n=1
+  REGISTRO coppie: nessuna_differenza 1; nessuno_al_base 23; piu_di_un_fattore 81 
+  ATLAS confronto «'Crohn's disease; B3, penetrating' vs 'non inflammatory bowel disease control'» (8/13) classe=piu_fattori diversi=disease, disease staging | principale: no | forma: no
+  ATLAS confronto «'Crohn's disease; B2, stricturing' vs 'non inflammatory bowel disease control'» (6/13) classe=piu_fattori diversi=disease, disease staging | principale: no | forma: no
+  ATLAS confronto «'Crohn's disease; B1, non-strictuing, non-penetrating' vs 'non inflammatory bowel disease control'» (6/13) classe=piu_fattori diversi=disease, disease staging | principale: no | forma: no
+
+=================== GSE66573 (E-GEOD-66573) campioni vista 14, universo Atlas 14
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | OGGI: classe=piu_fine ritrovati 0/1 nostri 0 errori 0/0
+motivi principale: non_coperta: disease_state: 2 combinazioni, 14 campioni, per esempio «healthy» || non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «CTRL, 2343-TA-1» 
+motivi forma: non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «CTRL, 2343-TA-1» 
+note principale: voci_malformate: disease_state: 2 || base_senza_campioni: disease_state: healthy 
+TITOLO: Title: Defective structural RNA processing in relapsing-remitting multiple sclerosis 
+VISTA colonne:
+  title [14 distinti]: «CTRL, 2343-TA-1» 1; «CTRL, 2343-TA-4» 1; «CTRL, 2961-TA-43» 1; «CTRL, 2961-TA-44» 1; «CTRL, 2961-TA-45» 1; «CTRL, 2961-TA-46» 1; … altri 8 valori
+  source_name_ch1 [2 distinti]: «Peripheral whole blood draw, healthy control» 8; «Peripheral whole blood draw, RRMS» 6
+  disease state [2 distinti]: «healthy» 8; «relapsing-remitting multiple sclerosis (RRMS)» 6
+MODELLO ruoli: title=factor; source_name_ch1=subject/donor; disease state=factor 
+MODELLO fattore «disease_state» (state; fonti: disease state; base: «healthy»); 2 voci, valori per voce: 2x3
+    livelli: healthy | RRMS
+    voci: [ ¦  ¦ healthy]→healthy  [ ¦  ¦ relapsing-remitting multiple s…]→RRMS
+MODELLO fattore «replicate» (technical; fonti: title; base: «»); 0 voci, valori per voce: 
+    livelli: 
+    voci: 
+MODELLO non capito: [{"what":"title","why":"The title contains information about the replicate but it is unclear how to extract the replicate number from the title."}] 
+ATLAS fattori: disease (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[disease=normal] n=8
+  A[disease=relapsing-remitting multiple sclerosis] n=6
+  ATLAS confronto «'relapsing-remitting multiple sclerosis' vs 'normal'» (6/8) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE67196 (E-GEOD-67196) campioni vista 53, universo Atlas 53
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/4 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/4 nostri 0 | OGGI: classe=piu_fine ritrovati 0/4 nostri 2 errori 0/2
+motivi principale: non_coperta: disease: 3 combinazioni, 53 campioni, per esempio «c9ALS» || non_coperta: tissue: 2 combinazioni, 53 campioni, per esempio «Cerebellum» || non_coperta: sample: 53 combinazioni, 53 campioni, per esempio «1_cereb» 
+note principale: voci_malformate: disease: 3 || base_senza_campioni: disease: healthy || voci_malformate: tissue: 2 || voci_malformate: sample: 53 
+TITOLO: Title: Distinct brain transcriptome profiles in c9orf72-associated and sporadic ALS 
+VISTA colonne:
+  title [53 distinti]: «1_cereb» 1; «1_FCX» 1; «100_FCX» 1; «11_cereb» 1; «11_FCX» 1; «12_cereb» 1; … altri 47 valori
+  tissue [2 distinti]: «Frontal Cortex» 27; «Cerebellum» 26
+  genotype [3 distinti]: «sALS» 20; «Healthy» 17; «c9ALS» 16
+MODELLO ruoli: title=factor; tissue=factor; genotype=factor 
+MODELLO fattore «disease» (state; fonti: genotype; base: «healthy»); 3 voci, valori per voce: 3x3
+    livelli: healthy | c9ALS | sALS
+    voci: [ ¦  ¦ Healthy]→healthy  [ ¦  ¦ c9ALS]→c9ALS  [ ¦  ¦ sALS]→sALS
+MODELLO fattore «tissue» (context; fonti: tissue; base: «»); 2 voci, valori per voce: 2x3
+    livelli: cerebellum | frontal cortex
+    voci: [ ¦ Cerebellum ¦ ]→cerebellum  [ ¦ Frontal Cortex ¦ ]→frontal cortex
+MODELLO fattore «sample» (technical; fonti: title; base: «»); 53 voci, valori per voce: 53x3
+    livelli: 1_cereb | 1_FCX | 2_cereb | 2_FCX | 34_cereb | 34_FCX | 57_cereb | 57_FCX | 6_cereb | 6_FCX | 62_cereb | 62_FCX | 63_cereb | 63_FCX | 7_cereb_b | 7_FCX | 11_cereb | 11_FCX | 12_cereb | 12_FCX | 13_cereb | 13_FCX | 14_cereb | 14_FCX | 70_cereb | 70_FCX | 71_cereb | 71_FCX | 72_cereb | 72_FCX | 73_cer…
+    voci: [1_cereb ¦  ¦ ]→1_cereb  [1_FCX ¦  ¦ ]→1_FCX  [2_cereb ¦  ¦ ]→2_cereb  [2_FCX ¦  ¦ ]→2_FCX  [34_cereb ¦  ¦ ]→34_cereb  [34_FCX ¦  ¦ ]→34_FCX
+ATLAS fattori: disease (contesto; base «NA»); organism part (contesto; base «NA») 
+GRUPPI Atlas × lettore [DALLA SENSIBILITA' forma] (universo): lettore fattori: disease (stato; base «healthy»); tissue (contesto; base «NA»); sample (tecnico; base «NA»)
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=cerebe…]  ×  L[disease=c9ALS & tissue=cerebellum & sample=1_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=cerebe…]  ×  L[disease=c9ALS & tissue=cerebellum & sample=2_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=cerebe…]  ×  L[disease=c9ALS & tissue=cerebellum & sample=34_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=cerebe…]  ×  L[disease=c9ALS & tissue=cerebellum & sample=57_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=cerebe…]  ×  L[disease=c9ALS & tissue=cerebellum & sample=6_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=cerebe…]  ×  L[disease=c9ALS & tissue=cerebellum & sample=62_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=cerebe…]  ×  L[disease=c9ALS & tissue=cerebellum & sample=63_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=cerebe…]  ×  L[disease=c9ALS & tissue=cerebellum & sample=7_cereb_b]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=fronta…]  ×  L[disease=c9ALS & tissue=frontal cortex & sample=1_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=fronta…]  ×  L[disease=c9ALS & tissue=frontal cortex & sample=2_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=fronta…]  ×  L[disease=c9ALS & tissue=frontal cortex & sample=34_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=fronta…]  ×  L[disease=c9ALS & tissue=frontal cortex & sample=57_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=fronta…]  ×  L[disease=c9ALS & tissue=frontal cortex & sample=6_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=fronta…]  ×  L[disease=c9ALS & tissue=frontal cortex & sample=62_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=fronta…]  ×  L[disease=c9ALS & tissue=frontal cortex & sample=63_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis with C9orf72 repeat expansion & organism part=fronta…]  ×  L[disease=c9ALS & tissue=frontal cortex & sample=7_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=11_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=12_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=13_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=14_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=70_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=71_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=72_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=73_cereb_a]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=74_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=cer…]  ×  L[disease=sALS & tissue=cerebellum & sample=75_cereb]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=11_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=12_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=13_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=14_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=70_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=71_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=72_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=73_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=74_FCX]  n=1
+  A[disease=amyotrophic lateral sclerosis without C9orf72 repeat expansion & organism part=fro…]  ×  L[disease=sALS & tissue=frontal cortex & sample=75_FCX]  n=1
+  A[disease=normal & organism part=cerebellum]  ×  L[disease=healthy & tissue=cerebellum & sample=24_cereb]  n=1
+  A[disease=normal & organism part=cerebellum]  ×  L[disease=healthy & tissue=cerebellum & sample=86_cereb]  n=1
+  A[disease=normal & organism part=cerebellum]  ×  L[disease=healthy & tissue=cerebellum & sample=90_cereb]  n=1
+  A[disease=normal & organism part=cerebellum]  ×  L[disease=healthy & tissue=cerebellum & sample=91_cereb]  n=1
+  A[disease=normal & organism part=cerebellum]  ×  L[disease=healthy & tissue=cerebellum & sample=93_cereb]  n=1
+  A[disease=normal & organism part=cerebellum]  ×  L[disease=healthy & tissue=cerebellum & sample=94_cereb]  n=1
+  A[disease=normal & organism part=cerebellum]  ×  L[disease=healthy & tissue=cerebellum & sample=95_cereb]  n=1
+  A[disease=normal & organism part=cerebellum]  ×  L[disease=healthy & tissue=cerebellum & sample=97_cereb]  n=1
+  A[disease=normal & organism part=frontal cortex]  ×  L[disease=healthy & tissue=frontal cortex & sample=100_FCX]  n=1
+  … altre 8 righe
+  REGISTRO coppie: fattore_senza_base 210; piu_di_un_fattore 1168 
+  ATLAS confronto «'amyotrophic lateral sclerosis with C9orf72 repeat expansion' vs 'normal' in 'cerebellum'» (8/8) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'amyotrophic lateral sclerosis with C9orf72 repeat expansion' vs 'normal' in 'frontal cortex'» (8/9) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'amyotrophic lateral sclerosis without C9orf72 repeat expansion' vs 'normal' in 'cerebellum'» (10/8) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'amyotrophic lateral sclerosis without C9orf72 repeat expansion' vs 'normal' in 'frontal cortex'» (10/9) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE67812 (E-GEOD-67812) campioni vista 3, universo Atlas 3
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 0/0 nostri 0 | FORMA: chiuso=TRUE classe=identica ritrovati 0/0 nostri 0 | OGGI: classe=identica ritrovati 0/0 nostri 0 errori 0/0
+TITOLO: Title: RNA sequencing of heart samples of myotonic dystrophic (DM1) patients 
+VISTA colonne:
+  title [3 distinti]: «ALS11» 1; «ALS13» 1; «ALS14» 1
+MODELLO ruoli: title=replicate 
+ATLAS fattori: disease (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: 
+  A[disease=normal]  ×  L[(nessun fattore)]  n=3
+  ATLAS confronto «'Myotonic dystrophy' vs 'normal'» (0/3) classe=non_formabile diversi=NA | principale: no | forma: no
+
+=================== GSE68919 (E-GEOD-68919) campioni vista 8, universo Atlas 6
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | OGGI: classe=piu_fine ritrovati 0/1 nostri 0 errori 0/0
+motivi principale: non_coperta: exosome: 8 combinazioni, 8 campioni, per esempio «BxPc3 Beta5 integrin KD exo 1» 
+motivi forma: non_coperta: exosome: 6 combinazioni, 6 campioni, per esempio «BxPc3 Beta5 integrin KD exo 1» 
+note principale: voci_malformate: exosome: 3 || base_senza_campioni: exosome: control 
+TITOLO: Title: Tumor exosome integrins determine organotropic metastasis 
+VISTA colonne:
+  title [8 distinti]: «BxPc3 Beta5 integrin KD exo 1» 1; «BxPc3 Beta5 integrin KD exo 2» 1; «BxPc3exo 1» 1; «BxPc3exo 2» 1; «BxPc3exo 3» 1; «Control 1» 1; … altri 2 valori
+  treatment [3 distinti]: «BxPC-3 exosomes» 3; «PBS» 3; «BxPc3 Beta5KD exosomes» 2
+  description [3 distinti]: «Human_Kupffer_Cells_BxPC3exo» 3; «Human_Kupffer_Cells_Control» 3; «Human_Kupffer_Cells_Beta5KD» 2
+MODELLO ruoli: title=factor; treatment=factor; description=uninformative 
+MODELLO fattore «exosome» (perturbation; fonti: title; base: «control»); 3 voci, valori per voce: 1x2 2x3
+    livelli: BxPC-3 | Beta5KD | control
+    voci: [BxPc3 Beta5 integrin KD exo 1 ¦ BxPc3 Beta5 integrin KD exo 2]→Beta5KD  [Control 1 ¦ Control 2 ¦ Control 3]→control  [BxPc3exo 1 ¦ BxPc3exo 2 ¦ BxPc3exo 3]→BxPC-3
+ATLAS fattori: treatment (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[treatment=BxPC-3 exosomes] n=3
+  A[treatment=control] n=3
+  ATLAS confronto «'BxPC-3 exosomes' vs 'control'» (3/3) classe=rispetta diversi=treatment | principale: no | forma: no
+
+=================== GSE69597 (E-GEOD-69597) campioni vista 166, universo Atlas 166
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/0 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/0 nostri 0 | OGGI: classe=piu_fine ritrovati 0/0 nostri 1 errori 1/1
+motivi principale: non_coperta: stage: 6 combinazioni, 104 campioni, per esempio «Group 1» 
+motivi forma: non_coperta: stage: 6 combinazioni, 104 campioni, per esempio «Group 1» 
+note principale: voci_malformate: stage: 3 
+TITOLO: Title: Refining brucellosis diagnosis by blood transcriptional profiling. 
+VISTA colonne:
+  title [166 distinti]: «MK_003» 1; «MK_006» 1; «MK_007» 1; «MK_009» 1; «MK_010» 1; «MK_011» 1; … altri 160 valori
+  source_name_ch1 [3 distinti]: «patients with suspected brucellosis» 104; «healthy control» 46; «patients with leishmaniasis» 16
+  group [3 distinti]: «Brucellosis» 104; «Control» 46; «Leishmaniasis» 16
+  subgroup [8 distinti]: «Group 1» 57; «Control» 46; «Leishmaniasis» 16; «Group 5a» 14; «Group 3» 13; «Group 5b» 10; … altri 2 valori
+  history of brucellosis [5 distinti]: «Acute brucellosis» 76; «NA; healthy control» 46; «Chronic brucellosis (<10 years)» 24; «Leishmaniasis» 16; «Chronic brucellosis (>10 years)» 4
+  response to treatment of brucellosis [5 distinti]: «Complete remission» 75; «NA; healthy control» 46; «Leishmaniasis» 16; «Relapse» 16; «Reinfection» 13
+  country [2 distinti]: «Macedonia» 149; «Spain» 17
+MODELLO ruoli: title=factor; source_name_ch1=subject/donor; group=factor; subgroup=factor; history of brucellosis=factor; response to treatment of brucellosis=factor; country=factor 
+MODELLO fattore «disease» (state; fonti: group; base: «control»); 3 voci, valori per voce: 3x1
+    livelli: brucellosis | leishmaniasis | control
+    voci: [Brucellosis]→brucellosis  [Leishmaniasis]→leishmaniasis  [Control]→control
+MODELLO fattore «stage» (state; fonti: subgroup; base: «control»); 5 voci, valori per voce: 2x1 2x2 1x3
+    livelli: acute | chronic < 10y | chronic > 10y | leishmaniasis | control
+    voci: [Group 1 ¦ Group 2 ¦ Group 3]→acute  [Group 4a ¦ Group 4b]→chronic > 10y  [Group 5a ¦ Group 5b]→chronic < 10y  [Leishmaniasis]→leishmaniasis  [Control]→control
+MODELLO fattore «response» (state; fonti: response to treatment of brucellosis; base: «na»); 5 voci, valori per voce: 5x1
+    livelli: complete remission | relapse | reinfection | na | leishmaniasis
+    voci: [Complete remission]→complete remission  [Relapse]→relapse  [Reinfection]→reinfection  [NA; healthy control]→na  [Leishmaniasis]→leishmaniasis
+MODELLO fattore «country» (technical; fonti: country; base: «»); 2 voci, valori per voce: 2x1
+    livelli: macedonia | spain
+    voci: [Macedonia]→macedonia  [Spain]→spain
+ATLAS fattori: clinical information (contesto; base «NA»); disease (contesto; base «NA»); disease staging (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[clinical information=complete remission after treatment & disease=brucellosis & disease staging=acute brucellosis] n=57
+  A[clinical information=complete remission after treatment & disease=brucellosis & disease staging=chronic brucellosis, les…] n=18
+  A[clinical information=not applicable & disease=normal & disease staging=not applicable] n=46
+  A[clinical information=not available & disease=Leishmaniasis & disease staging=not available] n=16
+  A[clinical information=reinfection after treatment & disease=brucellosis & disease staging=acute brucellosis] n=13
+  A[clinical information=relapse after treatment & disease=brucellosis & disease staging=acute brucellosis] n=6
+  A[clinical information=relapse after treatment & disease=brucellosis & disease staging=chronic brucellosis, less than 10 y…] n=10
+  ATLAS confronto «'brucellosis; acute brucellosis; complete remission' vs 'normal'» (57/46) classe=piu_fattori diversi=clinical information, disease, disease staging | principale: no | forma: no
+  ATLAS confronto «'brucellosis; acute brucellosis; reinfection' vs 'normal'» (13/46) classe=piu_fattori diversi=clinical information, disease, disease staging | principale: no | forma: no
+  ATLAS confronto «'brucellosis; acute brucellosis; relapse' vs 'normal'» (6/46) classe=piu_fattori diversi=clinical information, disease, disease staging | principale: no | forma: no
+  ATLAS confronto «'brucellosis; chronic brucellosis; complete remission' vs 'normal'» (18/46) classe=piu_fattori diversi=clinical information, disease, disease staging | principale: no | forma: no
+  ATLAS confronto «'brucellosis; chronic brucellosis; relapse' vs 'normal'» (10/46) classe=piu_fattori diversi=clinical information, disease, disease staging | principale: no | forma: no
+  ATLAS confronto «'Leishmaniasis' vs 'normal'» (16/46) classe=piu_fattori diversi=clinical information, disease, disease staging | principale: no | forma: no
+
+=================== GSE71289 (E-GEOD-71289) campioni vista 42, universo Atlas 42
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/6 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/6 nostri 0 | OGGI: classe=piu_fine ritrovati 0/6 nostri 11 errori 5/11
+motivi principale: non_coperta: replicate: 42 combinazioni, 42 campioni, per esempio «WT_d17_1» 
+motivi forma: non_coperta: replicate: 42 combinazioni, 42 campioni, per esempio «WT_d17_1» 
+TITOLO: Title: Transcriptome profiling of human neural progenitor cells and neurons with DISC1 interruption 
+VISTA colonne:
+  title [42 distinti]: «ex2_mm_d17_1» 1; «ex2_mm_d17_2» 1; «ex2_mm_d17_3» 1; «ex2_mm_d17_4» 1; «ex2_mm_d17_5» 1; «ex2_mm_d17_6» 1; … altri 36 valori
+  source_name_ch1 [2 distinti]: «Neurons» 22; «Neural progenitor cells» 20
+  cell type [2 distinti]: «Human iPSC-derived neurons» 22; «Human iPSC-derived neural progenitor cells» 20
+  genotype [4 distinti]: «DISC1 exon 2 mut/mut» 12; «wild-type» 12; «DISC1 exon 8 mut/mut» 9; «DISC1 exon 8 wt/mut» 9
+  differentiation time [2 distinti]: «Embryoid body, day 50» 22; «Embryoid body, day 17» 20
+MODELLO ruoli: title=factor; source_name_ch1=uninformative; cell type=factor; genotype=factor; differentiation time=factor 
+MODELLO fattore «cell type» (context; fonti: cell type; base: «»); 2 voci, valori per voce: 2x1
+    livelli: neural progenitor cells | neurons
+    voci: [Human iPSC-derived neural prog…]→neural progenitor cells  [Human iPSC-derived neurons]→neurons
+MODELLO fattore «genotype» (state; fonti: genotype; base: «wild type»); 4 voci, valori per voce: 4x1
+    livelli: wild type | exon 8 wt/mut | exon 8 mut/mut | exon 2 mut/mut
+    voci: [wild-type]→wild type  [DISC1 exon 8 wt/mut]→exon 8 wt/mut  [DISC1 exon 8 mut/mut]→exon 8 mut/mut  [DISC1 exon 2 mut/mut]→exon 2 mut/mut
+MODELLO fattore «differentiation time» (time; fonti: differentiation time; base: «»); 2 voci, valori per voce: 2x1
+    livelli: day 17 | day 50
+    voci: [Embryoid body, day 17]→day 17  [Embryoid body, day 50]→day 50
+MODELLO fattore «replicate» (technical; fonti: title; base: «»); 0 voci, valori per voce: 
+    livelli: 
+    voci: 
+ATLAS fattori: cell type (contesto; base «NA»); genotype (contesto; base «NA»); sampling time point (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[cell type=neural progenitor cell & genotype=DISC1 exon 2 mut/mut & sampling time point=embryoid body, day 17] n=6
+  A[cell type=neural progenitor cell & genotype=DISC1 exon 8 mut/mut & sampling time point=embryoid body, day 17] n=5
+  A[cell type=neural progenitor cell & genotype=DISC1 exon 8 wt/mut & sampling time point=embryoid body, day 17] n=3
+  A[cell type=neural progenitor cell & genotype=wild type genotype & sampling time point=embryoid body, day 17] n=6
+  A[cell type=neuron & genotype=DISC1 exon 2 mut/mut & sampling time point=embryoid body, day 50] n=6
+  A[cell type=neuron & genotype=DISC1 exon 8 mut/mut & sampling time point=embryoid body, day 50] n=4
+  A[cell type=neuron & genotype=DISC1 exon 8 wt/mut & sampling time point=embryoid body, day 50] n=6
+  A[cell type=neuron & genotype=wild type genotype & sampling time point=embryoid body, day 50] n=6
+  ATLAS confronto «'DISC1 exon 2 mut/mut' vs 'wild type' in 'neural progenitor cell' at 'embryoid body, day 17'» (6/6) classe=rispetta diversi=genotype | principale: no | forma: no
+  ATLAS confronto «'DISC1 exon 8 mut/mut' vs 'wild type' in 'neural progenitor cell' at 'embryoid body, day 17'» (5/6) classe=rispetta diversi=genotype | principale: no | forma: no
+  ATLAS confronto «'DISC1 exon 8 wt/mut' vs 'wild type' in 'neural progenitor cell' at 'embryoid body, day 17'» (3/6) classe=rispetta diversi=genotype | principale: no | forma: no
+  ATLAS confronto «'DISC1 exon 2 mut/mut' vs 'wild type' in 'neuron' at 'embryoid body, day 50'» (6/6) classe=rispetta diversi=genotype | principale: no | forma: no
+  ATLAS confronto «'DISC1 exon 8 mut/mut' vs 'wild type' in 'neuron' at 'embryoid body, day 50'» (4/6) classe=rispetta diversi=genotype | principale: no | forma: no
+  ATLAS confronto «'DISC1 exon 8 wt/mut' vs 'wild type' in 'neuron' at 'embryoid body, day 50'» (6/6) classe=rispetta diversi=genotype | principale: no | forma: no
+
+=================== GSE71421 (E-GEOD-71421) campioni vista 6, universo Atlas 6
+LETTORE principale: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | FORMA: chiuso=TRUE classe=identica ritrovati 1/1 nostri 1 | OGGI: classe=piu_fine ritrovati 0/1 nostri 0 errori 0/0
+TITOLO: Title: EHMT1 and EHMT2 inhibition induce fetal hemoglobin expression [RNA-seq] 
+VISTA colonne:
+  title [6 distinti]: «DMSO1_RNA-seq» 1; «DMSO5_RNA-seq» 1; «DMSO6_RNA-seq» 1; «UNC0251_RNA-seq» 1; «UNC0255_RNA-seq» 1; «UNC0256_RNA-seq» 1
+  treatment [2 distinti]: «UNC0638 0.25 uM» 3; «vehicle control» 3
+  description [3 distinti]: «Biological replicate 1» 2; «Biological replicate 2» 2; «Biological replicate 3» 2
+MODELLO ruoli: title=factor; treatment=factor; description=replicate 
+MODELLO fattore «agent» (perturbation; fonti: treatment; base: «DMSO»); 2 voci, valori per voce: 2x1
+    livelli: DMSO | UNC0638
+    voci: [vehicle control]→DMSO  [UNC0638 0.25 uM]→UNC0638
+ATLAS fattori: compound (contesto; base «NA»); dose (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: agent (perturbazione; base «DMSO»)
+  A[compound=UNC0638 & dose=0.25 micromolar]  ×  L[agent=UNC0638]  n=3
+  A[compound=vehicle control & dose=non scritto]  ×  L[agent=DMSO]  n=3
+  LETTORE confronto agent: «UNC0638» contro «DMSO» (3/3) confronto 
+  ATLAS confronto «'treatment with 0.25 micromolar UNC0638' vs 'vehicle control' in 'hematopoietic cells'» (3/3) classe=rispetta diversi=compound | principale: uguale | forma: uguale
+
+=================== GSE71595 (E-GEOD-71595) campioni vista 14, universo Atlas 14
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/4 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/4 nostri 0 | OGGI: classe=piu_fine ritrovati 1/4 nostri 2 errori 0/1
+motivi principale: non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «HC_A_min» 
+motivi forma: non_coperta: replicate: 14 combinazioni, 14 campioni, per esempio «HC_A_min» 
+note principale: voci_malformate: replicate: 4 
+TITOLO: Title: RNA-sequencing of cells derived from the site of inflammation of Juvenile Idiopathic Arthritis patients 
+VISTA colonne:
+  title [14 distinti]: «HC_A_min» 1; «HC_A_plus» 1; «HC_B_min» 1; «HC_B_plus» 1; «HC_C_min» 1; «HC_C_plus» 1; … altri 8 valori
+  source_name_ch1 [2 distinti]: «Peripheral Blood» 8; «Synovial Fluid» 6
+  diagnosis [2 distinti]: «Healthy control» 8; «JIA patient» 6
+  tissue [2 distinti]: «Peripheral Blood» 8; «Synovial Fluid» 6
+  treatment [2 distinti]: «JQ1(-)» 7; «JQ1(+)» 7
+MODELLO ruoli: title=factor; source_name_ch1=subject/donor; diagnosis=factor; tissue=factor; treatment=factor 
+MODELLO fattore «disease_state» (state; fonti: diagnosis; base: «healthy»); 2 voci, valori per voce: 2x1
+    livelli: healthy | JIA
+    voci: [Healthy control]→healthy  [JIA patient]→JIA
+MODELLO fattore «tissue_type» (context; fonti: tissue; base: «»); 2 voci, valori per voce: 2x1
+    livelli: peripheral_blood | synovial_fluid
+    voci: [Peripheral Blood]→peripheral_blood  [Synovial Fluid]→synovial_fluid
+MODELLO fattore «treatment» (perturbation; fonti: treatment; base: «untreated»); 2 voci, valori per voce: 2x1
+    livelli: untreated | JQ1
+    voci: [JQ1(-)]→untreated  [JQ1(+)]→JQ1
+MODELLO fattore «replicate» (technical; fonti: title; base: «»); 4 voci, valori per voce: 1x2 3x4
+    livelli: A | B | C | D
+    voci: [HC_A_min ¦ HC_A_plus ¦ JIA_A_min ¦ JIA_A_plus]→A  [HC_B_min ¦ HC_B_plus ¦ JIA_B_min ¦ JIA_B_plus]→B  [HC_C_min ¦ HC_C_plus ¦ JIA_C_min ¦ JIA_C_plus]→C  [HC_D_min ¦ HC_D_plus]→D
+ATLAS fattori: compound (contesto; base «NA»); disease (contesto; base «NA»); dose (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[compound=JQ1 & disease=juvenile idiopathic arthritis & dose=300 nanomolar] n=3
+  A[compound=JQ1 & disease=normal & dose=300 nanomolar] n=4
+  A[compound=none & disease=juvenile idiopathic arthritis & dose=non scritto] n=3
+  A[compound=none & disease=normal & dose=non scritto] n=4
+  ATLAS confronto «'juvenile idiopathic arthritis' vs 'normal' in 'JQ1; 300 nanomolar'» (3/4) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'JQ1; 300 nanomolar' vs 'none' in 'juvenile idiopathic arthritis'» (3/3) classe=rispetta diversi=compound | principale: no | forma: no
+  ATLAS confronto «'JQ1; 300 nanomolar' vs 'none' in 'normal'» (4/4) classe=rispetta diversi=compound | principale: no | forma: no
+  ATLAS confronto «'juvenile idiopathic arthritis' vs 'normal' in 'none'» (3/4) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE75852 (E-GEOD-75852) campioni vista 12, universo Atlas 12
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/4 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/4 nostri 0 | OGGI: classe=piu_fine ritrovati 1/4 nostri 1 errori 0/0
+TITOLO: Title: Cerebellar differentiation in Ataxia-Telangiectasia 
+VISTA colonne:
+  title [12 distinti]: «iPSC ataxia 1» 1; «iPSC ataxia 2» 1; «iPSC ataxia 3» 1; «iPSC control 1» 1; «iPSC control 2» 1; «iPSC control 3» 1; … altri 6 valori
+  source_name_ch1 [2 distinti]: «induced pluripotent stem cell» 6; «neural progenitor» 6
+  cell type [2 distinti]: «induced pluripotent stem cell» 6; «neural progenitor» 6
+  disease state [2 distinti]: «Ataxia Telangiectasia» 6; «Normal» 6
+  description [12 distinti]: «C11d0_1» 1; «C11d0_2» 1; «C11d0_3» 1; «C11d34_1» 1; «C11d34_2» 1; «C11d34_3» 1; … altri 6 valori
+MODELLO ruoli: title=factor; source_name_ch1=factor; cell type=factor; disease state=factor; description=replicate 
+MODELLO fattore «cell_type» (context; fonti: cell type; base: «»); 2 voci, valori per voce: 2x1
+    livelli: iPSC | neural_progenitor
+    voci: [induced pluripotent stem cell]→iPSC  [neural progenitor]→neural_progenitor
+MODELLO fattore «disease_state» (state; fonti: disease state; base: «healthy»); 2 voci, valori per voce: 2x1
+    livelli: healthy | ataxia_telangiectasia
+    voci: [Normal]→healthy  [Ataxia Telangiectasia]→ataxia_telangiectasia
+MODELLO fattore «cell_line» (context; fonti: source_name_ch1; base: «»); 2 voci, valori per voce: 2x1
+    livelli: control | ataxia
+    voci: [induced pluripotent stem cell]→control  [neural progenitor]→ataxia
+MODELLO fattore «replicate» (technical; fonti: description; base: «»); 12 voci, valori per voce: 12x1
+    livelli: rep1 | rep2 | rep3 | rep4 | rep5 | rep6 | rep7 | rep8 | rep9 | rep10 | rep11 | rep12
+    voci: [C11d0_1]→rep1  [C11d0_2]→rep2  [C11d0_3]→rep3  [C11d34_1]→rep4  [C11d34_2]→rep5  [C11d34_3]→rep6
+ATLAS fattori: cell type (contesto; base «NA»); disease (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: cell_type (contesto; base «NA»); disease_state (stato; base «healthy»); cell_line (contesto; base «NA»); replicate (tecnico; base «NA»)
+  A[cell type=induced pluripotent stem cell & disease=Ataxia-telangiectasia]  ×  L[cell_type=iPSC & disease_state=ataxia_telangiectasia & cell_line=control & replicate=rep7]  n=1
+  A[cell type=induced pluripotent stem cell & disease=Ataxia-telangiectasia]  ×  L[cell_type=iPSC & disease_state=ataxia_telangiectasia & cell_line=control & replicate=rep8]  n=1
+  A[cell type=induced pluripotent stem cell & disease=Ataxia-telangiectasia]  ×  L[cell_type=iPSC & disease_state=ataxia_telangiectasia & cell_line=control & replicate=rep9]  n=1
+  A[cell type=induced pluripotent stem cell & disease=normal]  ×  L[cell_type=iPSC & disease_state=healthy & cell_line=control & replicate=rep1]  n=1
+  A[cell type=induced pluripotent stem cell & disease=normal]  ×  L[cell_type=iPSC & disease_state=healthy & cell_line=control & replicate=rep2]  n=1
+  A[cell type=induced pluripotent stem cell & disease=normal]  ×  L[cell_type=iPSC & disease_state=healthy & cell_line=control & replicate=rep3]  n=1
+  A[cell type=neural stem cell & disease=Ataxia-telangiectasia]  ×  L[cell_type=neural_progenitor & disease_state=ataxia_telangiectasia & cell_line=ataxia & replicate=rep10]  n=1
+  A[cell type=neural stem cell & disease=Ataxia-telangiectasia]  ×  L[cell_type=neural_progenitor & disease_state=ataxia_telangiectasia & cell_line=ataxia & replicate=rep11]  n=1
+  A[cell type=neural stem cell & disease=Ataxia-telangiectasia]  ×  L[cell_type=neural_progenitor & disease_state=ataxia_telangiectasia & cell_line=ataxia & replicate=rep12]  n=1
+  A[cell type=neural stem cell & disease=normal]  ×  L[cell_type=neural_progenitor & disease_state=healthy & cell_line=ataxia & replicate=rep4]  n=1
+  A[cell type=neural stem cell & disease=normal]  ×  L[cell_type=neural_progenitor & disease_state=healthy & cell_line=ataxia & replicate=rep5]  n=1
+  A[cell type=neural stem cell & disease=normal]  ×  L[cell_type=neural_progenitor & disease_state=healthy & cell_line=ataxia & replicate=rep6]  n=1
+  REGISTRO coppie: fattore_senza_base 12; piu_di_un_fattore 54 
+  ATLAS confronto «'Ataxia-telangiectasia' vs 'normal' in 'induced pluripotent stem cell'» (3/3) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'Ataxia-telangiectasia' vs 'normal' in 'neural stem cell'» (3/3) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «' neural stem cell' vs 'induced pluripotent stem cell' in 'normal'» (3/3) classe=rispetta diversi=cell type | principale: no | forma: no
+  ATLAS confronto «' neural stem cell' vs 'induced pluripotent stem cell' in 'Ataxia-telangiectasia'» (3/3) classe=rispetta diversi=cell type | principale: no | forma: no
+
+=================== GSE77598 (E-GEOD-77598) campioni vista 8, universo Atlas 8
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/1 nostri 0 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/1 nostri 0 | OGGI: classe=piu_fine ritrovati 0/1 nostri 1 errori 0/1
+TITOLO: Title: Expression of MERTK based on Multiple Sclerosis (MS) risk haplotype 
+VISTA colonne:
+  title [8 distinti]: «HC_1» 1; «HC_2» 1; «HC_3» 1; «MS_1» 1; «MS_2» 1; «MS_3» 1; … altri 2 valori
+  disease [2 distinti]: «Multiple Sclerosis» 5; «healthy control» 3
+  mertk haplotype [2 distinti]: «Homozyg. MS Risk» 5; «Homozyg. MS non-risk» 3
+  description [8 distinti]: «Binder_Mertk_Rnaseq.txt, Column "HC_1"» 1; «Binder_Mertk_Rnaseq.txt, Column "HC_2"» 1; «Binder_Mertk_Rnaseq.txt, Column "HC_3"» 1; «Binder_Mertk_Rnaseq.txt, Column "MS_1"» 1; «Binder_Mertk_Rnaseq.txt, Column "MS_2"» 1; «Binder_Mertk_Rnaseq.txt, Column "MS_3"» 1; … altri 2 valori
+MODELLO ruoli: title=factor; disease=factor; mertk haplotype=factor; description=uninformative 
+MODELLO fattore «disease» (state; fonti: disease; base: «healthy»); 2 voci, valori per voce: 2x1
+    livelli: healthy | multiple sclerosis
+    voci: [healthy control]→healthy  [Multiple Sclerosis]→multiple sclerosis
+MODELLO fattore «MERTK haplotype» (state; fonti: mertk haplotype; base: «homozygous non-risk»); 2 voci, valori per voce: 2x1
+    livelli: homozygous non-risk | homozygous risk
+    voci: [Homozyg. MS non-risk]→homozygous non-risk  [Homozyg. MS Risk]→homozygous risk
+MODELLO fattore «sample» (technical; fonti: title; base: «»); 8 voci, valori per voce: 8x1
+    livelli: HC_1 | HC_2 | HC_3 | MS_1 | MS_2 | MS_3 | MS_4 | MS_5
+    voci: [HC_1]→HC_1  [HC_2]→HC_2  [HC_3]→HC_3  [MS_1]→MS_1  [MS_2]→MS_2  [MS_3]→MS_3
+ATLAS fattori: disease (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: disease (stato; base «healthy»); MERTK haplotype (stato; base «homozygous non-risk»); sample (tecnico; base «NA»)
+  A[disease=multiple sclerosis]  ×  L[disease=multiple sclerosis & MERTK haplotype=homozygous risk & sample=MS_1]  n=1
+  A[disease=multiple sclerosis]  ×  L[disease=multiple sclerosis & MERTK haplotype=homozygous risk & sample=MS_2]  n=1
+  A[disease=multiple sclerosis]  ×  L[disease=multiple sclerosis & MERTK haplotype=homozygous risk & sample=MS_3]  n=1
+  A[disease=multiple sclerosis]  ×  L[disease=multiple sclerosis & MERTK haplotype=homozygous risk & sample=MS_4]  n=1
+  A[disease=multiple sclerosis]  ×  L[disease=multiple sclerosis & MERTK haplotype=homozygous risk & sample=MS_5]  n=1
+  A[disease=normal]  ×  L[disease=healthy & MERTK haplotype=homozygous non-risk & sample=HC_1]  n=1
+  A[disease=normal]  ×  L[disease=healthy & MERTK haplotype=homozygous non-risk & sample=HC_2]  n=1
+  A[disease=normal]  ×  L[disease=healthy & MERTK haplotype=homozygous non-risk & sample=HC_3]  n=1
+  REGISTRO coppie: fattore_senza_base 13; piu_di_un_fattore 15 
+  ATLAS confronto «'multiple sclerosis' vs 'normal'» (5/3) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE78936 (E-GEOD-78936) campioni vista 82, universo Atlas 82
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/6 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/6 nostri 0 | OGGI: classe=incrociata ritrovati 0/6 nostri 6 errori 2/6
+motivi principale: non_coperta: disease: 3 combinazioni, 82 campioni, per esempio «Bipolar Disorder» || non_coperta: region: 3 combinazioni, 82 campioni, per esempio «Brodmann's Area 11» 
+motivi forma: mappa_ambigua: disease: 1 combinazioni || non_coperta: disease: 3 combinazioni, 82 campioni, per esempio «Bipolar Disorder» 
+note principale: voci_malformate: disease: 3 || base_senza_campioni: disease: control || voci_malformate: region: 3 
+TITOLO: Title: Systematically characterizing dysfunctional long intergenic non-coding RNAs in multiple brain regions of major psychosis 
+VISTA colonne:
+  title [82 distinti]: «BD_BA11_1» 1; «BD_BA11_10» 1; «BD_BA11_11» 1; «BD_BA11_12» 1; «BD_BA11_13» 1; «BD_BA11_14» 1; … altri 76 valori
+  disease stage [3 distinti]: «Bipolar Disorder» 30; «Schizophrenia» 28; «Control» 24
+  brain region [3 distinti]: «Brodmann's Area 11» 44; «Brodmann's Area 24» 19; «Brodmann's Area 9» 19
+MODELLO ruoli: title=factor; disease stage=factor; brain region=factor 
+MODELLO fattore «disease» (state; fonti: disease stage; base: «control»); 3 voci, valori per voce: 3x3
+    livelli: bipolar disorder | schizophrenia | control
+    voci: [Bipolar Disorder ¦  ¦ ]→bipolar disorder  [Schizophrenia ¦  ¦ ]→schizophrenia  [Control ¦  ¦ ]→control
+MODELLO fattore «region» (context; fonti: brain region; base: «»); 3 voci, valori per voce: 3x3
+    livelli: ba11 | ba9 | ba24
+    voci: [ ¦  ¦ Brodmann's Area 11]→ba11  [ ¦  ¦ Brodmann's Area 9]→ba9  [ ¦  ¦ Brodmann's Area 24]→ba24
+ATLAS fattori: disease (contesto; base «NA»); organism part (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[disease=bipolar disorder & organism part=Brodmann (1909) area 11] n=16
+  A[disease=bipolar disorder & organism part=Brodmann (1909) area 24] n=7
+  A[disease=bipolar disorder & organism part=Brodmann (1909) area 9] n=7
+  A[disease=normal & organism part=Brodmann (1909) area 11] n=12
+  A[disease=normal & organism part=Brodmann (1909) area 24] n=6
+  A[disease=normal & organism part=Brodmann (1909) area 9] n=6
+  A[disease=schizophrenia & organism part=Brodmann (1909) area 11] n=16
+  A[disease=schizophrenia & organism part=Brodmann (1909) area 24] n=6
+  A[disease=schizophrenia & organism part=Brodmann (1909) area 9] n=6
+  ATLAS confronto «'bipolar disorder' vs 'normal' in 'Brodmann (1909) area 11'» (16/12) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'bipolar disorder' vs 'normal' in 'Brodmann (1909) area 24'» (7/6) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'bipolar disorder' vs 'normal' in 'Brodmann (1909) area 9'» (7/6) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'schizophrenia' vs 'normal' in 'Brodmann (1909) area 11'» (16/12) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'schizophrenia' vs 'normal' in 'Brodmann (1909) area 24'» (6/6) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'schizophrenia' vs 'normal' in 'Brodmann (1909) area 9'» (6/6) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE83415 (E-GEOD-83415) campioni vista 21, universo Atlas 21
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/1 nostri 0 | OGGI: classe=identica ritrovati 0/1 nostri 1 errori 0/0
+motivi principale: non_coperta: disease stage: 2 combinazioni, 21 campioni, per esempio «JIA patient with active, untreated disease» 
+motivi forma: non_coperta: disease stage: 2 combinazioni, 21 campioni, per esempio «JIA patient with active, untreated disease» 
+note principale: voci_in_piu: disease stage: 2 || base_senza_campioni: disease stage: clinical remission 
+TITOLO: Title: CD4+ T Cells Gene Expression-Based Biomarkers in Juvenile Idiopathic Arthritis (JIA) 
+VISTA colonne:
+  title [21 distinti]: «JIA patient 1_active_disease» 1; «JIA patient 10_active_disease» 1; «JIA patient 11_active_disease» 1; «JIA patient 12_clinical_remission» 1; «JIA patient 13_clinical_remission» 1; «JIA patient 14_clinical_remission» 1; … altri 15 valori
+  disease stage [2 distinti]: «JIA patient with active, untreated disease» 11; «JIA patient with clinical remission on medication» 10
+  description [21 distinti]: «JIA patient with active, untreated disease CD4TCel…» 1; «JIA patient with active, untreated disease CD4TCel…» 1; «JIA patient with active, untreated disease CD4TCel…» 1; «JIA patient with active, untreated disease CD4TCel…» 1; «JIA patient with active, untreated disease CD4TCel…» 1; «JIA patient with active, untreated disease CD4TCel…» 1; … altri 15 valori
+MODELLO ruoli: title=factor; disease stage=factor; description=uninformative 
+MODELLO fattore «disease stage» (state; fonti: disease stage; base: «clinical remission»); 2 voci, valori per voce: 2x1
+    livelli: active | clinical remission
+    voci: [active_disease]→active  [clinical_remission]→clinical remission
+MODELLO fattore «patient» (technical; fonti: title; base: «»); 21 voci, valori per voce: 21x1
+    livelli: patient 1 | patient 2 | patient 3 | patient 4 | patient 5 | patient 6 | patient 7 | patient 8 | patient 9 | patient 10 | patient 11 | patient 12 | patient 13 | patient 14 | patient 15 | patient 16 | patient 17 | patient 18 | patient 19 | patient 20 | patient 21
+    voci: [JIA patient 1_active_disease]→patient 1  [JIA patient 2_active_disease]→patient 2  [JIA patient 3_active_disease]→patient 3  [JIA patient 4_active_disease]→patient 4  [JIA patient 5_active_disease]→patient 5  [JIA patient 6_active_disease]→patient 6
+ATLAS fattori: disease staging (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[disease staging=active, on treatment] n=11
+  A[disease staging=remission, on treatment] n=10
+  ATLAS confronto «'active, on treatment' vs 'remission, on treatment'» (11/10) classe=rispetta diversi=disease staging | principale: no | forma: no
+
+=================== GSE83687 (E-GEOD-83687) campioni vista 134, universo Atlas 134
+LETTORE principale: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | FORMA: chiuso=FALSE classe=non_chiuso ritrovati 0/2 nostri 0 | OGGI: classe=piu_fine ritrovati 0/2 nostri 8 errori 0/8
+motivi principale: non_coperta: tissue: 1 combinazioni, 1 campioni, per esempio «rightcolon_inflamed» 
+motivi forma: non_coperta: tissue: 1 combinazioni, 1 campioni, per esempio «rightcolon_inflamed» 
+TITOLO: Title: A functional genomics predictive network model identifies regulators of inflammatory bowel disease: Mount Sinai Hospital (MSH) Population Specimen Collection and Profiling of Inflammatory Bowel… 
+VISTA colonne:
+  title [134 distinti]: «10E smallbowel female control S1» 1; «10F rectum male Ulcerative Colitis S2» 1; «10G rightcolon female control S3» 1; «10H leftcolon male Ulcerative Colitis S4» 1; «10J ileumcecum female Crohn's disease S5» 1; «10K smallbowel female Crohn's disease S6» 1; … altri 128 valori
+  source_name_ch1 [14 distinti]: «leftcolon» 33; «rightcolon» 21; «ileum» 20; «smallbowel» 20; «sigmoid» 14; «colon» 6; … altri 8 valori
+  gender [2 distinti]: «male» 71; «female» 63
+  age (yr) [62 distinti]: «57» 9; «39» 5; «27» 4; «48» 4; «50» 4; «58» 4; … altri 56 valori
+  clinical condition [3 distinti]: «control» 60; «Crohn's disease» 42; «Ulcerative Colitis» 32
+  description [134 distinti]: «10E smallbowel female control S1» 1; «10F rectum male Ulcerative Colitis S2» 1; «10G rightcolon female control S3» 1; «10H leftcolon male Ulcerative Colitis S4» 1; «10J ileumcecum female Crohn's disease S5» 1; «10K smallbowel female Crohn's disease S6» 1; … altri 128 valori
+MODELLO ruoli: title=factor; source_name_ch1=factor; gender=subject/sex; age (yr)=subject/age; clinical condition=factor; description=uninformative 
+MODELLO fattore «disease» (state; fonti: clinical condition; base: «healthy»); 3 voci, valori per voce: 3x1
+    livelli: healthy | ulcerative_colitis | crohns_disease
+    voci: [control]→healthy  [Ulcerative Colitis]→ulcerative_colitis  [Crohn's disease]→crohns_disease
+MODELLO fattore «tissue» (context; fonti: source_name_ch1; base: «»); 13 voci, valori per voce: 13x1
+    livelli: small_bowel | rectum | right_colon | left_colon | ileocecum | sigmoid | ileocolic | transverse_colon | colon | ileum | right_colon_non_inflamed | rectosigmoid | ileum_slightly_inflamed
+    voci: [smallbowel]→small_bowel  [rectum]→rectum  [rightcolon]→right_colon  [leftcolon]→left_colon  [ileumcecum]→ileocecum  [sigmoid]→sigmoid
+MODELLO fattore «sample» (technical; fonti: title; base: «»); 134 voci, valori per voce: 134x1
+    livelli: sample_1 | sample_2 | sample_3 | sample_4 | sample_5 | sample_6 | sample_7 | sample_8 | sample_9 | sample_10 | sample_11 | sample_12 | sample_13 | sample_14 | sample_15 | sample_16 | sample_17 | sample_18 | sample_19 | sample_20 | sample_21 | sample_22 | sample_23 | sample_24 | sample_25 | sample_26…
+    voci: [10E smallbowel female control …]→sample_1  [10F rectum male Ulcerative Col…]→sample_2  [10G rightcolon female control …]→sample_3  [10H leftcolon male Ulcerative …]→sample_4  [10J ileumcecum female Crohn's …]→sample_5  [10K smallbowel female Crohn's …]→sample_6
+ATLAS fattori: disease (contesto; base «NA») 
+GRUPPI Atlas (lettore non chiuso in nessuna delle due letture):
+  A[disease=Crohn's disease] n=42
+  A[disease=normal] n=60
+  A[disease=ulcerative colitis] n=32
+  ATLAS confronto «'Crohn's disease' vs 'normal'» (42/60) classe=rispetta diversi=disease | principale: no | forma: no
+  ATLAS confronto «'ulcerative colitis' vs 'normal'» (32/60) classe=rispetta diversi=disease | principale: no | forma: no
+
+=================== GSE93624 (E-GEOD-93624) campioni vista 245, universo Atlas 244
+LETTORE principale: chiuso=TRUE classe=piu_fine ritrovati 0/1 nostri 2 | FORMA: chiuso=TRUE classe=piu_fine ritrovati 0/1 nostri 2 | OGGI: classe=piu_fine ritrovati 0/1 nostri 6 errori 0/6
+TITOLO: Title: Profiling of Ileal Transcriptome in Pediatric Crohn Disease 
+VISTA colonne:
+  title [245 distinti]: «Sample1» 1; «Sample10» 1; «Sample100» 1; «Sample101» 1; «Sample102» 1; «Sample103» 1; … altri 239 valori
+  source_name_ch1 [2 distinti]: «Crohn's disease_Ileal biopsy» 210; «Non-IBD control_Ileal biopsy» 35
+  diagnosis [2 distinti]: «Crohn's disease» 210; «Non-IBD control» 35
+  gender [2 distinti]: «Male» 152; «Female» 93
+  age at diagnosis [115 distinti]: «10.33» 5; «10.67» 5; «10.83» 5; «12.00» 5; «8.83» 5; «10.50» 4; … altri 109 valori
+  paris age [2 distinti]: «A1b» 185; «A1a» 60
+  ancestry [3 distinti]: «European» 210; «Other/Mixed» 25; «African» 10
+  progression to complication [2 distinti]: «-» 218; «yes» 27
+MODELLO ruoli: title=factor; source_name_ch1=factor; diagnosis=factor; gender=subject/sex; age at diagnosis=subject/age; paris age=uninformative; ancestry=subject/batch; progression to complication=factor 
+MODELLO fattore «disease» (state; fonti: diagnosis; base: «healthy»); 2 voci, valori per voce: 2x1
+    livelli: healthy | Crohn's disease
+    voci: [Non-IBD control]→healthy  [Crohn's disease]→Crohn's disease
+MODELLO fattore «complication» (state; fonti: progression to complication; base: «no progression»); 2 voci, valori per voce: 2x1
+    livelli: no progression | progressed
+    voci: [-]→no progression  [yes]→progressed
+ATLAS fattori: disease (contesto; base «NA») 
+GRUPPI Atlas × lettore (universo): lettore fattori: disease (stato; base «healthy»); complication (stato; base «no progression»)
+  A[disease=Crohn's disease]  ×  L[disease=Crohn's disease & complication=no progression]  n=182
+  A[disease=Crohn's disease]  ×  L[disease=Crohn's disease & complication=progressed]  n=27
+  A[disease=non inflammatory bowel disease control]  ×  L[disease=healthy & complication=no progression]  n=35
+  LETTORE confronto complication: «progressed» contro «no progression» (27/183) confronto con avviso 
+  LETTORE confronto disease: «Crohn's disease» contro «healthy» (183/35) confronto 
+  REGISTRO coppie: piu_di_un_fattore 1 
+  NON ELENCATI da Atlas: g2_g1=nessuna_differenza; g1_g3=coerente 
+  ATLAS confronto «'Crohn's disease' vs 'non inflammatory bowel disease control'» (209/35) classe=rispetta diversi=disease | principale: no | forma: no
