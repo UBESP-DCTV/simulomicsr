@@ -2,7 +2,7 @@
   "aggiornato": "2026-11-10",
   "sessione": "Sessione del Piano 1 (S12r), aperta il 2026-11-10",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Task 10: due corse del lettore v0 su poddgx02, uscite congelate, misura contro Atlas, lettura di tutti i disaccordi",
+  "prossimo_passo": "Passo 11: finding, concorrenti letti per intero, handout e CLAUDE.md; poi STOP: la regola di esito non è soddisfatta, decide il PI",
   "piani": [
     {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "in_corso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
@@ -53,7 +53,7 @@
     {"n": 10, "gruppo": "La prova da buttare",
      "titolo": "Corsa, misura e lettura dei disaccordi",
      "da": "Mistral-Small 3.2 legge i 47 studi due volte su poddgx02. Poi le tre misure e la causa di ogni disaccordo.",
-     "cancelli": ["K4"], "stato": "da_fare", "commit": "", "data": "", "nota": ""},
+     "cancelli": ["K4"], "stato": "fatto", "commit": "65a48aa", "data": "2026-11-10", "nota": ""},
     {"n": 11, "gruppo": "Chiusura",
      "titolo": "Finding, riassunto, lavori concorrenti letti per intero",
      "da": "Il riassunto «In breve» con numeri e cause. Poi la sessione si ferma e il PI decide.",
@@ -71,7 +71,7 @@
      "stato": "passato", "nota": "47 studi su 47 hanno un record"},
     {"id": "K4", "task": 10,
      "testo": "Il job gira su poddgx02, in modo ripetibile, con il prompt e lo schema uguali per impronta SHA-256 ai file committati.",
-     "stato": "da_valutare", "nota": ""},
+     "stato": "passato", "nota": "schema, prompt e variabili del job controllati prima dell invio; due corse su poddgx02"},
     {"id": "K5", "task": 0,
      "testo": "Nessuno script riceve il contenuto di uno studio di giudizio. Sui 129 studi i passi usano solo identificativi e conteggi.",
      "stato": "da_valutare", "nota": ""}
@@ -118,6 +118,7 @@
     {"data": "2026-11-10", "che_cosa": "Passo 6 fatto: file di Atlas scaricati (129 studi) e legame fra run e campioni: 6.253 run su 6.253 hanno un campione, nessun disaccordo fra le due fonti."},
     {"data": "2026-11-10", "che_cosa": "Passo 7 fatto: le tre misure contro Expression Atlas, con 63 controlli verdi."},
     {"data": "2026-11-10", "che_cosa": "Passo 8: misurata la pipeline di oggi contro Expression Atlas sui 47 studi di sviluppo. Lo strumento, provato con i gruppi dei curatori, dà gruppi identici in 47 studi su 47 e ritrova 93 confronti su 93. Oggi: gruppi identici in 14 studi su 47, confronti dei curatori ritrovati 19 su 93, errori fra i confronti in più 19 su 79."},
-    {"data": "2026-11-10", "che_cosa": "Task 9: ingresso della prova: testi GEO dei 47 studi di sviluppo congelati, vista v0 (1.883 campioni, 0 cancellati, massimo 37.692 token stimati), schema v0, prompt v0"}
+    {"data": "2026-11-10", "che_cosa": "Task 9: ingresso della prova: testi GEO dei 47 studi di sviluppo congelati, vista v0 (1.883 campioni, 0 cancellati, massimo 37.692 token stimati), schema v0, prompt v0"},
+    {"data": "2026-11-10", "che_cosa": "Passo 10 fatto: il lettore v0 chiude 23 studi su 47; partizione identica 14/47 come oggi; confronti di Atlas ritrovati 10/93 contro 19/93 di oggi (differenza -9,7 punti, IC95 da -25,3 a +4,3); con le voci malformate lette 15/93. P3 indeterminata, P4 e P6 smentite, P7 confermata. Letti tutti i 145 disaccordi."}
   ]
 }
