@@ -20,6 +20,8 @@ principali: \code{a_gruppi_identici} (studi con classe \code{identica} su studi 
 A parte: \code{verso_opposto}, \code{atlas_piu_fattori} (su tutti i confronti di Atlas), \code{atlas_piu_fattori_formati},
 \code{atlas_non_formabile}, \code{ari_mediana} (la quota e' la mediana; il denominatore e' il numero di studi).
 Con denominatore zero la quota e' \code{NA}.
+Uno studio con \code{classe_gruppi} \code{NA} esce dal denominatore di (a), con un avviso di classe
+\code{simulomicsr_tf_studi_senza_classe} che lo nomina.
 }
 \description{
 L'unita' del bootstrap e' lo studio: si ricampionano le righe di \code{per_studio} e si ricalcola la quota come

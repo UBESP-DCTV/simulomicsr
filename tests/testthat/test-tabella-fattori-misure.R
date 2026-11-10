@@ -119,6 +119,9 @@ test_that("tf_riassumi_misure: numeratori, denominatori, quote e intervalli dal 
   misto <- tf_misura_studio("s3", stats::setNames(rep("x", 8), names(a2$partizione)),
                             nostro(g("g2"), g("g3")), a2, a2$tabella$campioni)$riga
   per_studio <- rbind(buono, vuoto, misto)
+  # `vuoto` non ha campioni comuni: classe NA, fuori dal denominatore di (a) con un avviso (test a parte).
+  tf_riassumi_misure <- function(...) suppressWarnings(simulomicsr:::tf_riassumi_misure(...),
+                                                       classes = "simulomicsr_tf_studi_senza_classe")
   r <- tf_riassumi_misure(per_studio, B = 200L, seme = 1L)
   riga <- function(m) r[r$misura == m, ]
   expect_equal(c(riga("a_gruppi_identici")$numeratore, riga("a_gruppi_identici")$denominatore), c(1, 2))
@@ -137,6 +140,17 @@ test_that("tf_riassumi_misure: numeratori, denominatori, quote e intervalli dal 
   tf_riassumi_misure(per_studio, B = 10L, seme = 1L)
   seme_dopo <- if (exists(".Random.seed", envir = globalenv())) get(".Random.seed", envir = globalenv()) else NULL
   expect_identical(seme_prima, seme_dopo)                                            # non tocca il generatore globale
+})
+
+test_that("tf_riassumi_misure: uno studio senza classe dei gruppi esce dal denominatore di (a) con un avviso che lo nomina", {
+  v <- atlas_vero(); a <- v$a; u <- a$tabella$campioni
+  buono <- tf_misura_studio("s1", a$partizione, a$confronti, a, u)$riga
+  vuoto <- tf_misura_studio("s2", character(0), a$confronti[0, c("studio", "id", "trattato", "controllo")], a, u)$riga
+  expect_true(is.na(vuoto$classe_gruppi))
+  expect_warning(r <- tf_riassumi_misure(rbind(buono, vuoto), B = 20L, seme = 1L),
+                 regexp = "s2", class = "simulomicsr_tf_studi_senza_classe")
+  expect_equal(r$denominatore[r$misura == "a_gruppi_identici"], 1)
+  expect_no_warning(tf_riassumi_misure(rbind(buono, buono), B = 20L, seme = 1L))
 })
 
 # Atlas finto con un fattore che i curatori non scrivono per il controllo: la dose.

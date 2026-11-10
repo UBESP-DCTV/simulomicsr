@@ -286,12 +286,21 @@ tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L
 #'   A parte: `verso_opposto`, `atlas_piu_fattori` (su tutti i confronti di Atlas), `atlas_piu_fattori_formati`,
 #'   `atlas_non_formabile`, `ari_mediana` (la quota e' la mediana; il denominatore e' il numero di studi).
 #'   Con denominatore zero la quota e' `NA`.
+#'   Uno studio con `classe_gruppi` `NA` esce dal denominatore di (a), con un avviso di classe
+#'   `simulomicsr_tf_studi_senza_classe` che lo nomina.
 #' @keywords internal
 tf_riassumi_misure <- function(per_studio, B = 2000L, seme = 20261109L) {
   if (!is.data.frame(per_studio) || nrow(per_studio) == 0L) {
     .tf_abort("`per_studio` deve essere un data.frame con almeno uno studio.", "ingresso_non_valido")
   }
   misurato <- !is.na(per_studio$classe_gruppi)
+  if (any(!misurato)) {
+    # Nessuna uscita silenziosa dal denominatore: chi vuole questi studi in (a) scrive la classe prima di chiamare.
+    rlang::warn(sprintf(paste0("%d studi su %d non hanno una classe dei gruppi (nessun campione comune) ed escono ",
+                               "dal denominatore di (a): %s. Restano nei denominatori di (b) e di (c)."),
+                        sum(!misurato), nrow(per_studio), .tf_elenca(per_studio$studio[!misurato])),
+                class = "simulomicsr_tf_studi_senza_classe")
+  }
   rapporti <- list(
     a_gruppi_identici = list(num = as.numeric(misurato & per_studio$classe_gruppi %in% "identica"),
                              den = as.numeric(misurato)),

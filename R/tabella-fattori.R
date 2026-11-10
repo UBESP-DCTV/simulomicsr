@@ -21,6 +21,10 @@ TF_TIPI_CON_BASE <- c("perturbazione", "stato")
 #' @keywords internal
 TF_SOGGETTI <- c("donatore", "sesso", "eta", "passaggio", "lotto", "coppia")
 
+#' Nomi che un fattore non puo' avere: sono le colonne fisse di `tf_gruppi()`
+#' @keywords internal
+TF_NOMI_RISERVATI <- c("gruppo", "n", "campioni")
+
 # Errore con classe `simulomicsr_tf_<classe>`.
 .tf_abort <- function(msg, classe) {
   rlang::abort(msg, class = paste0("simulomicsr_tf_", classe))
@@ -68,6 +72,7 @@ TF_SOGGETTI <- c("donatore", "sesso", "eta", "passaggio", "lotto", "coppia")
 #'   un livello che il testo non scrive vale `TF_NON_SCRITTO`.
 #' @param fattori `data.frame` con `nome`, `tipo` (in `TF_TIPI`) e `base`
 #'   (carattere o `NA`). La base e' ammessa solo per i tipi in `TF_TIPI_CON_BASE`.
+#'   Un nome in `TF_NOMI_RISERVATI` ferma con la classe `simulomicsr_tf_nome_riservato`.
 #' @param soggetti `data.frame` di caratteri come `livelli`, una colonna per
 #'   colonna di soggetto. I valori mancanti sono ammessi. `NULL` se non ce ne sono.
 #' @param tipo_soggetto Vettore di caratteri con nome: `c(<colonna> = <tipo in TF_SOGGETTI>)`.
@@ -96,6 +101,13 @@ tf_tabella <- function(campioni, livelli, fattori, soggetti = NULL, tipo_soggett
     .tf_abort(sprintf("I nomi dei fattori devono essere scritti e distinti. Nomi: %s.",
                       .tf_elenca(fattori$nome)),
               "ingresso_non_valido")
+  }
+  riservati <- intersect(fattori$nome, TF_NOMI_RISERVATI)
+  if (length(riservati)) {
+    .tf_abort(sprintf(paste0("Nome di fattore riservato: %s. I nomi %s sono le colonne fisse di tf_gruppi(): ",
+                             "un fattore con quel nome le sovrascrive. Cambia il nome del fattore a monte."),
+                      .tf_elenca(riservati), paste(sprintf("`%s`", TF_NOMI_RISERVATI), collapse = ", ")),
+              "nome_riservato")
   }
   ignoti <- !(fattori$tipo %in% TF_TIPI)
   if (any(ignoti)) {

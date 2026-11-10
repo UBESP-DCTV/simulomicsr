@@ -29,3 +29,12 @@ test_that("tf_gruppi: «non scritto» è un livello come gli altri nella chiave"
   t <- unclass(tf_finta()); t$livelli$tempo[1] <- TF_NON_SCRITTO      # GSM1 si stacca da GSM2
   expect_equal(nrow(tf_gruppi(tf_tabella(t$campioni, t$livelli, t$fattori))), 6L)
 })
+
+test_that("tf_tabella rifiuta un fattore col nome di una colonna di tf_gruppi(), con classe", {
+  t <- unclass(tf_finta())
+  for (riservato in c("gruppo", "n", "campioni")) {
+    liv <- t$livelli; names(liv)[names(liv) == "tempo"] <- riservato
+    f <- t$fattori; f$nome[f$nome == "tempo"] <- riservato
+    expect_error(tf_tabella(t$campioni, liv, f), class = "simulomicsr_tf_nome_riservato")
+  }
+})

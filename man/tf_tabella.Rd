@@ -14,7 +14,8 @@ tf_tabella(campioni, livelli, fattori, soggetti = NULL, tipo_soggetto = NULL)
 un livello che il testo non scrive vale \code{TF_NON_SCRITTO}.}
 
 \item{fattori}{\code{data.frame} con \code{nome}, \code{tipo} (in \code{TF_TIPI}) e \code{base}
-(carattere o \code{NA}). La base e' ammessa solo per i tipi in \code{TF_TIPI_CON_BASE}.}
+(carattere o \code{NA}). La base e' ammessa solo per i tipi in \code{TF_TIPI_CON_BASE}.
+Un nome in \code{TF_NOMI_RISERVATI} ferma con la classe \code{simulomicsr_tf_nome_riservato}.}
 
 \item{soggetti}{\code{data.frame} di caratteri come \code{livelli}, una colonna per
 colonna di soggetto. I valori mancanti sono ammessi. \code{NULL} se non ce ne sono.}
