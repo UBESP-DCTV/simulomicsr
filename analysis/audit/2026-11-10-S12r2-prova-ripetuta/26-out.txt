@@ -1,0 +1,208 @@
+
+NOTE: Dependency discovery took 23 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 444 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+
+=== M: unita' di disaccordo 63 (studio_non_chiuso 13; partizione_non_identica 3; atlas_non_ritrovato 47; lettore_errore 0), in 20 studi su 47
+prima causa per tipo di unita':
+                                 
+chiave                            studio_non_chiuso partizione_non_identica
+  curatore/errore_campione                        0                       1
+  curatore/fattore_ignorato                       0                       1
+  curatore/repliche                               0                       1
+  modello/colonna_non_letterale                   1                       0
+  modello/forma_voci                              2                       0
+  modello/mancante_non_dichiarato                 0                       0
+  modello/tipo_fattore                            0                       0
+  modello/valore_non_letterale                    1                       0
+  modello/valore_senza_voce                       8                       0
+  schema/annidato_colonna_padre                   1                       0
+  schema/context_senza_base                       0                       0
+                                 
+chiave                            atlas_non_ritrovato lettore_errore
+  curatore/errore_campione                          0              0
+  curatore/fattore_ignorato                         2              0
+  curatore/repliche                                 1              0
+  modello/colonna_non_letterale                     4              0
+  modello/forma_voci                                7              0
+  modello/mancante_non_dichiarato                   5              0
+  modello/tipo_fattore                              2              0
+  modello/valore_non_letterale                      1              0
+  modello/valore_senza_voce                        19              0
+  schema/annidato_colonna_padre                     3              0
+  schema/context_senza_base                         3              0
+esito della catena per tipo di unita':
+                         
+                          forma modello non_errore vista_schema
+  studio_non_chiuso           2       1          1            9
+  partizione_non_identica     0       0          3            0
+  atlas_non_ritrovato        14       4          8           21
+  lettore_errore              0       0          0            0
+unita' con esito «modello»: un modello piu' grande le toglie? (misurato)
+                           
+                            G1 nessuno
+  modello/valore_senza_voce  1       2
+  schema/context_senza_base  0       2
+tutte le unita' di atlas e di studio: stessa unita' nei modelli piu' grandi
+              
+               G1 nessuno
+  forma         7       9
+  modello       1       4
+  non_errore    2      10
+  vista_schema  3      27
+studi per prima causa (uno studio conta una volta per causa):
+
+      modello/valore_senza_voce       curatore/fattore_ignorato 
+                              8                               2 
+             modello/forma_voci       schema/context_senza_base 
+                              2                               2 
+       curatore/errore_campione               curatore/repliche 
+                              1                               1 
+  modello/colonna_non_letterale modello/mancante_non_dichiarato 
+                              1                               1 
+           modello/tipo_fattore    modello/valore_non_letterale 
+                              1                               1 
+  schema/annidato_colonna_padre 
+                              1 
+M: unita' con una causa di lettura del modello in un punto qualsiasi della catena: 16 (in 6 studi)
+              lettura_modello
+esito          FALSE TRUE
+  forma           16    0
+  modello          0    5
+  non_errore      10    2
+  vista_schema    21    9
+punto 4 della regola di esito, M: unita' con una causa 63 su 63; unita' con esito «modello» 5 (in 2 studi); di queste, tolte da un modello piu' grande misurato: 1
+
+=== M0: unita' di disaccordo 64 (studio_non_chiuso 14; partizione_non_identica 3; atlas_non_ritrovato 47; lettore_errore 0), in 21 studi su 47
+prima causa per tipo di unita':
+                                 
+chiave                            studio_non_chiuso partizione_non_identica
+  curatore/errore_campione                        0                       1
+  curatore/fattore_ignorato                       0                       1
+  curatore/repliche                               0                       1
+  modello/fattori_uniti                           1                       0
+  modello/forma_voci                              3                       0
+  modello/mancante_non_dichiarato                 0                       0
+  modello/tipo_fattore                            0                       0
+  modello/valore_non_letterale                    2                       0
+  modello/valore_senza_voce                       8                       0
+  schema/context_senza_base                       0                       0
+                                 
+chiave                            atlas_non_ritrovato lettore_errore
+  curatore/errore_campione                          0              0
+  curatore/fattore_ignorato                         2              0
+  curatore/repliche                                 1              0
+  modello/fattori_uniti                             2              0
+  modello/forma_voci                                7              0
+  modello/mancante_non_dichiarato                   5              0
+  modello/tipo_fattore                              2              0
+  modello/valore_non_letterale                      5              0
+  modello/valore_senza_voce                        20              0
+  schema/context_senza_base                         3              0
+esito della catena per tipo di unita':
+                         
+                          forma modello non_errore vista_schema
+  studio_non_chiuso           2       2          1            9
+  partizione_non_identica     0       0          3            0
+  atlas_non_ritrovato        11       6          8           22
+  lettore_errore              0       0          0            0
+unita' con esito «modello»: un modello piu' grande le toglie? (misurato)
+                           
+                            G1 nessuno
+  modello/fattori_uniti      0       3
+  modello/valore_senza_voce  1       2
+  schema/context_senza_base  0       2
+tutte le unita' di atlas e di studio: stessa unita' nei modelli piu' grandi
+              
+               G1 nessuno
+  forma         8       5
+  modello       1       7
+  non_errore    2      10
+  vista_schema  0      31
+studi per prima causa (uno studio conta una volta per causa):
+
+      modello/valore_senza_voce              modello/forma_voci 
+                              8                               3 
+      curatore/fattore_ignorato    modello/valore_non_letterale 
+                              2                               2 
+      schema/context_senza_base        curatore/errore_campione 
+                              2                               1 
+              curatore/repliche           modello/fattori_uniti 
+                              1                               1 
+modello/mancante_non_dichiarato            modello/tipo_fattore 
+                              1                               1 
+M0: unita' con una causa di lettura del modello in un punto qualsiasi della catena: 13 (in 5 studi)
+              lettura_modello
+esito          FALSE TRUE
+  forma           13    0
+  modello          0    8
+  non_errore      10    2
+  vista_schema    28    3
+punto 4 della regola di esito, M0: unita' con una causa 64 su 64; unita' con esito «modello» 8 (in 3 studi); di queste, tolte da un modello piu' grande misurato: 1
+
+=== G1: unita' di disaccordo 93 (studio_non_chiuso 17; partizione_non_identica 4; atlas_non_ritrovato 65; lettore_errore 7), in 24 studi su 47
+prima causa per tipo di unita':
+                               
+chiave                          studio_non_chiuso partizione_non_identica
+  curatore/errore_campione                      0                       1
+  curatore/fattore_ignorato                     0                       0
+  modello/colonna_fuori_fonti                   1                       0
+  modello/colonna_non_letterale                 1                       0
+  modello/fattore_doppio                        0                       0
+  modello/fattore_non_visto                     0                       1
+  modello/fattori_uniti                         3                       0
+  modello/forma_voci                            1                       0
+  modello/ruolo_soggetto                        0                       2
+  modello/valore_non_letterale                  6                       0
+  modello/valore_senza_voce                     5                       0
+  strumento/fattori_ridondanti                  0                       0
+                               
+chiave                          atlas_non_ritrovato lettore_errore
+  curatore/errore_campione                        2              1
+  curatore/fattore_ignorato                       3              0
+  modello/colonna_fuori_fonti                     2              0
+  modello/colonna_non_letterale                   6              0
+  modello/fattore_doppio                          2              0
+  modello/fattore_non_visto                       4              2
+  modello/fattori_uniti                           9              1
+  modello/forma_voci                              2              0
+  modello/ruolo_soggetto                          3              0
+  modello/valore_non_letterale                   13              0
+  modello/valore_senza_voce                      19              0
+  strumento/fattori_ridondanti                    0              3
+esito della catena per tipo di unita':
+                         
+                          forma modello non_errore vista_schema
+  studio_non_chiuso           1       3          0           13
+  partizione_non_identica     0       2          2            0
+  atlas_non_ritrovato         0      20          8           37
+  lettore_errore              0       3          4            0
+studi per prima causa (uno studio conta una volta per causa):
+
+ modello/valore_non_letterale     modello/valore_senza_voce 
+                            6                             5 
+        modello/fattori_uniti     curatore/fattore_ignorato 
+                            4                             2 
+       modello/ruolo_soggetto      curatore/errore_campione 
+                            2                             1 
+  modello/colonna_fuori_fonti modello/colonna_non_letterale 
+                            1                             1 
+       modello/fattore_doppio     modello/fattore_non_visto 
+                            1                             1 
+           modello/forma_voci  strumento/fattori_ridondanti 
+                            1                             1 
+G1: unita' con una causa di lettura del modello in un punto qualsiasi della catena: 53 (in 12 studi)
+              lettura_modello
+esito          FALSE TRUE
+  forma            0    1
+  modello          0   28
+  non_errore       7    7
+  vista_schema    33   17
+punto 4 della regola di esito, G1: unita' con una causa 93 su 93; unita' con esito «modello» 28 (in 8 studi)
+
+scritto 26-disaccordi.md (M, M0, G1)
