@@ -203,6 +203,55 @@ La dose è un attributo del livello, non un fattore a parte **[agente]**: «farm
 due livelli dello stesso fattore, ognuno confrontabile con il veicolo. La durata del trattamento invece è il
 fattore tempo quando lo studio ha più tempi: il confronto vale solo fra gruppi allo stesso tempo.
 
+**Aggiornamento 2026-11-10 (S12r2), scritto prima della prova ripetuta [agente].** La prova v0 (finding
+`2026-11-09-S12r-prova-lettore-studio` §5) ha lasciato quattro cause da togliere. La diagnosi sulle uscite v0
+(`analysis/audit/2026-11-10-S12r2-prova-ripetuta/05-out.txt`, `06-out.txt`) dice dove nascono:
+
+| causa di S12r | dove nasce | prova |
+|---|---|---|
+| forma delle voci (18 studi non chiusi) | schema v0: ogni voce di `assignment` è una lista di valori per posizione, senza vincolo; il modello scrive la riga intera della tabella dei campioni | 26 fattori in 18 studi hanno voci con più valori di quante sono le colonne di fonte; 97 fattori su 100 hanno una sola colonna di fonte |
+| base scritta senza campioni (14 studi) | la stessa forma: la voce che porta il livello di base non ha la forma giusta e non assegna campioni | 14 fattori su 15 (13 studi); il quindicesimo (`GSE83415`) scrive valori che la tabella non contiene |
+| fattore letto dal titolo, un livello per campione (13 studi) | schema v0: i ruoli delle colonne si chiedono **prima** dei fattori e sono esclusivi; prompt v0: «il titolo può essere fonte di un fattore e insieme contenere la replica»; il tipo `technical` non ha definizione | il titolo ha ruolo `factor` in 44 studi su 47, in 25 senza un fattore che lo usa; 7 studi hanno un fattore con un livello per campione, sempre di tipo `technical` |
+| fattore annidato (4 studi) | la spec non dice come scriverlo né come confrontarlo | finding S12r §5.2 |
+
+Le tre prime cause nascono da ciò che lo schema e il prompt chiedono, non da ciò che il modello non sa: si
+correggono lì, non con una regola a valle. I punti seguenti **sostituiscono** i punti 1, 5 e 6 qui sopra e
+completano il punto 2.
+
+1. **Prima i fattori, poi i ruoli.** Il modello scrive prima i fattori con le loro colonne di fonte. Il ruolo
+   `fattore` non si chiede: una colonna è fonte di un fattore oppure no. Per le sole colonne non costanti che
+   non sono fonte di un fattore il modello scrive un ruolo: `soggetto` (col tipo: donatore, sesso, età,
+   passaggio, lotto, coppia) · `replica` · `non informativa`. La frase sul titolo esce dal prompt: il titolo è
+   una colonna come le altre.
+2. **I tipi hanno una definizione.** `tecnico` è una variabile di misura che divide i campioni in pochi gruppi:
+   lotto, piattaforma, kit, corsa, centro. Il numero di replica e l'identificativo del campione non sono mai un
+   fattore. Una condizione di coltura che lo studio varia (terreno, ossigeno, substrato) è una perturbazione di
+   tipo esposizione e può avere un livello di base: non è un contesto (causa «contesto senza base» di S12r,
+   2 studi). Nessuna regola nel codice scarta un fattore con un livello per campione: quanti ne restano è una
+   previsione depositata e una misura.
+3. **L'assegnazione a condizioni nominate.** Ogni voce è
+   `{"when": [{"column": "<colonna>", "value": "<valore>"}, ...], "level": "<livello>"}`. `column` è una delle
+   colonne di fonte del fattore; `value` è un valore distinto di quella colonna, uguale carattere per carattere.
+   Un campione prende il livello di una voce quando soddisfa tutte le sue condizioni. Una voce con una sola
+   condizione copre il caso comune (97 fattori su 100 in v0). Lo schema non permette più una lista per
+   posizione. Un campione che soddisfa due voci con livelli diversi è una **mappa ambigua**; un campione che
+   non ne soddisfa nessuna è **non coperto**: tutti e due fermano lo studio con un errore contato (§5.3 punto 1).
+4. **Tre casi distinti per un livello che manca.**
+   - `non scritto` (`not stated`): il fattore vale per il campione, ma i metadati non dicono il livello (il
+     veicolo senza un tempo). Invariato.
+   - `non applicabile` (`not applicable`): il fattore **non esiste** per il campione, perché esiste solo dentro
+     un livello di un altro fattore. È il **fattore annidato**: lo stadio o il sottotipo di una malattia non
+     esistono per i sani. Il modello scrive il fattore annidato come un fattore a parte e dà ai campioni fuori
+     il livello riservato `not applicable`. Non scrive il sottotipo come livello in più del fattore malattia.
+   - assente: «nessun secondo agente», «nessun siRNA» sono il livello di base di quel fattore. Invariato.
+5. **I valori di soggetto che valgono «non scritto».** Per ogni colonna di ruolo `soggetto` il modello elenca
+   i valori che dicono «dato mancante» nello studio («NA», «unknown», «not available»). Il codice li tratta come
+   non scritti. L'elenco lo scrive il modello dallo studio, non il codice da una lista fissa (causa «soggetto
+   NA» di S12r).
+
+La dose resta un attributo del livello. `max_tokens` e il contesto si fissano nelle previsioni: l'uscita v0 più
+lunga era all'81% di 16.384 token.
+
 ### 5.3 Dal modello al confronto (codice, deterministico)
 
 1. Applica le mappe e costruisci la matrice «campione × fattore». Ogni campione ha un livello in ogni fattore,
@@ -239,6 +288,35 @@ Conseguenze da sapere **[agente, da confermare con il PI nel piano]**:
   trattamento finché il PI non decide diversamente.
 - Un fattore di stato (malattia contro sano) dà confronti fra persone diverse: i confondenti non dichiarati
   restano. È un limite già presente oggi, da scrivere nei Methods.
+
+**Aggiornamento 2026-11-10 (S12r2): il confronto dentro un livello [agente].** Scritto prima della prova
+ripetuta; completa i passi 3, 4 e 5.
+
+Per una coppia di gruppi, i fattori in cui i due gruppi hanno livelli diversi si dividono in tre insiemi:
+
+- **D**: tutti e due i livelli sono scritti e applicabili;
+- **N**: almeno uno dei due livelli è `non scritto`;
+- **X**: uno dei due livelli è `non applicabile` e l'altro è scritto.
+
+Un fattore B è **annidato in A** quando, sui campioni dello studio, ogni livello di A ha tutti i suoi campioni a
+`non applicabile` in B oppure nessuno, e A ha almeno un livello di ognuno dei due tipi. La proprietà si calcola
+dalla matrice «campione × fattore»: il modello non la dichiara.
+
+- Se D contiene un solo fattore A e ogni fattore di X è annidato in A, i fattori di X **non contano come
+  differenza**. La coppia si giudica su A con le regole di sempre (livello di base, numero di campioni,
+  soggetti). Il confronto porta l'avviso `annidato:<B>` e il livello scritto di B sta nel contesto. Così «malati
+  di stadio II contro sani» e «malati di stadio III contro sani» sono due confronti sul fattore malattia.
+- In ogni altro caso un fattore di X è una differenza ordinaria e si conta con D.
+- Un livello `non applicabile` non è mai il livello trattato né il livello di base. Una coppia che differisce
+  solo in un fattore di X non dà un confronto (motivo `non_applicabile` nel registro).
+- N resta com'è (passo 4).
+
+Due gruppi dentro lo stesso livello di A che differiscono nel fattore annidato B (stadio II contro stadio III)
+seguono la definizione ordinaria: B è il solo fattore di D, e dà un confronto solo se B ha un livello di base.
+
+**Soggetti, un buco dentro un braccio.** Quando una colonna di soggetto ha un valore non scritto per alcuni
+campioni di un braccio e valori scritti per altri, il confronto si giudica sui valori scritti e porta un avviso
+che nomina la colonna. Prima il valore mancante si ignorava senza traccia (minore M7 della revisione di S12r).
 
 **Disegno appaiato.** Oggi il modello per studio è `~ treatment` (`R/stage4-limma-de.R`). Con il donatore
 dichiarato si può stimare `~ donatore + trattamento` quando i due gruppi condividono i donatori. Il piano lo
@@ -307,6 +385,54 @@ dell'H5, che contiene l'SRX.
   cellulari rispetto al nostro bacino. Gemma ne ha di più, ma la sua API non ha risposto il 2026-11-09 (da
   riprovare: se risponde, entra come seconda fonte con la stessa divisione).
 
+**Aggiornamento 2026-11-10 (S12r2): il riferimento [PI: il tempo zero esce; agente: le regole].** Scritto
+prima della prova ripetuta. Le regole valgono per ogni misura contro Atlas da qui in avanti, cancello compreso.
+
+1. **La marca `tempo_zero`, per costruzione.** Ogni confronto di Atlas riceve una marca, indipendente dalla
+   classe.
+   - **Campo di tempo:** un fattore di Atlas, oppure una colonna non costante della tabella dei campioni di GEO,
+     il cui nome ha «time» all'inizio di una parola (espressione `(^|[^a-z])time`, senza distinzione fra
+     maiuscole e minuscole: «time», «timepoint», «time point», «sampling time point», «differentiation time»).
+   - **Valore zero:** il valore contiene un solo numero e quel numero è 0 («0», «00h», «0 hour», «0 min»,
+     «day 0»). **Valore successivo:** il valore contiene un solo numero e quel numero è maggiore di 0.
+   - `tempo_zero` è vero quando, in almeno un campo di tempo, tutti i campioni di un braccio hanno un valore
+     zero e l'altro braccio non ha campioni a zero e ne ha almeno uno a un valore successivo.
+   - La regola non guarda il verso: un confronto fra il tempo zero e un tempo successivo confonde il
+     trattamento col tempo, qualunque braccio i curatori chiamino riferimento. Il conto per verso si riporta.
+   - **Che cosa la regola non vede (limite dichiarato):** un tempo zero scritto solo nel titolo o nel testo
+     dello studio; un campo di tempo con un nome senza «time» («duration», «hours post infection», «day»); un
+     tempo di partenza scritto senza numero («pre-treatment», «baseline»). Questi confronti restano nel
+     riferimento. Nessun elenco di studi li toglie.
+2. **`not applicable` di Atlas.** Il valore «not applicable» di un fattore di Atlas (uguale a meno di
+   maiuscole e spazi ai bordi) diventa il livello riservato `non applicabile`. La classe di un confronto di
+   Atlas si calcola con la regola del fattore annidato di §5.3: è la stessa definizione del costruttore,
+   applicata ai fattori di Atlas. «not available» e ogni altro valore restano livelli ordinari.
+3. **Tre letture del riferimento**, tutte calcolate, una sola per la regola di esito:
+
+   | lettura | fattore annidato | tempo zero | fattore non scritto in un braccio | uso |
+   |---|---|---|---|---|
+   | **principale** | regola di §5.3 | fuori dal denominatore | non conta come differenza | regola di esito e cancello |
+   | intera | differenza ordinaria | dentro | non conta come differenza | la definizione di S12r (93 confronti): si riporta accanto |
+   | stretta | regola di §5.3 | fuori | conta come differenza | sensibilità: si riporta accanto |
+
+   La lettura principale segue il costruttore in tutto: il fattore non scritto è un avviso e non un errore
+   (decisione 3 del PI del 2026-11-08, §5.3 passo 4). La lettura stretta dice quanto il numero dipende da quella
+   regola. Il denominatore della misura (b) è «classe `rispetta` e `tempo_zero` falso» nella lettura principale
+   e nella stretta, «classe `rispetta`» nella intera. La misura (c) usa la stessa classificazione della lettura.
+4. **«Identica» chiede tutti i campioni.** Nella misura (a) una partizione vale «identica» solo se non omette
+   campioni di Atlas dell'universo. Il conto delle partizioni uguali sui campioni comuni ma con campioni omessi
+   si riporta a parte (in S12r erano 0 su 14 per la pipeline di oggi e 0 su 14 per il lettore: i numeri di S12r
+   non cambiano; minore M5 della revisione).
+5. **Gli stessi 47 studi servono due volte.** La prova ripetuta (§5.6) usa gli studi di sviluppo che la prova
+   v0 ha già letto: il suo risultato vale per lo sviluppo e non è un giudizio. Gli 82 studi di giudizio restano
+   chiusi.
+6. **Una sola fonte di curazione.** L'API di Gemma (UBC) non ha risposto in 5 tentativi su due sessioni. Il
+   cancello ha una sola fonte, Expression Atlas, e l'articolo lo dichiara. Se Gemma risponde, entra come seconda
+   fonte con la stessa divisione in tre parti, in una sessione a parte.
+7. **Che cosa la misura (c) conta due volte (limite dichiarato).** Quando i curatori scrivono la stessa
+   differenza in due fattori, la misura conta due fattori diversi (1 confronto in S12r). Non si corregge con una
+   regola: due fattori che dividono i campioni allo stesso modo possono essere anche un vero confondimento.
+
 **Linea 2 — il gold del PI.** `data-raw/relevant_sample_classified.xlsx`: ruolo trattato o controllo per
 130.784 campioni di 5.367 studi. Accordo del ruolo, come misura e non come cancello, perché la definizione del
 gold («qualunque intervento esplicito») è diversa.
@@ -342,6 +468,12 @@ corretto e prova ripetuta sugli stessi studi di sviluppo, anche con modelli più
 curatori col tempo zero come controllo escono dal riferimento di §5.5, con la misura intera accanto (ADR-0029,
 §Aggiornamento). I cambi a §5.2, §5.3 e §5.5 si scrivono nella sessione della prova ripetuta, prima del codice.
 
+**Aggiornamento 2026-11-10 (S12r2).** I cambi sono scritti: §5.2, §5.3, §5.5 e §5.7, ognuno sotto la riga
+«Aggiornamento 2026-11-10 (S12r2)». La prova ripetuta resta materiale da buttare: vista, schema e prompt v1
+stanno in `analysis/audit/2026-11-10-S12r2-prova-ripetuta/`, non in `R/`. Nel pacchetto entra solo ciò che §5.3
+e §5.5 chiedono al costruttore e alle misure, con i test. Corse: Mistral-Small 3.2 con lo schema v1 due volte,
+una corsa di controllo senza `repetition_penalty`, ogni modello più grande due volte, la stessa vista per tutti.
+
 ### 5.7 I modelli
 
 - Base: `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, configurazione di produzione, contesto da alzare a
@@ -351,6 +483,30 @@ curatori col tempo zero come controllo escono dal riferimento di §5.5, con la m
   non la capacità: per questo vengono dopo. La scelta dei candidati è di chi implementa, con la revisione
   fissata e la prova di ripetibilità al carattere (Gemma-4-31B non era ripetibile).
 - Un solo modello va in produzione, lo stesso per tutti gli studi.
+
+**Aggiornamento 2026-11-10 (S12r2): i due modelli più grandi [agente].** Criteri, fissati prima della scelta:
+pesi aperti con una licenza senza eccezioni d'uso; architettura che il contenitore di produzione (vLLM 0.20.2)
+carica; il modello entra in un job da 4 GPU di `poddgx02`; non è un modello che ragiona prima di rispondere,
+oppure il ragionamento si spegne; revisione fissata.
+
+| | modello | revisione | perché |
+|---|---|---|---|
+| G1 | `mistralai/Mistral-Small-4-119B-2603` | `a11f36bebf709121056b1dbcc943d1c6afbe494d` | stessa famiglia della produzione, 119 miliardi di parametri, Apache 2.0; i pesi del produttore sono in FP8 (non esiste una versione FP16); ragionamento spento (`reasoning_effort = "none"`); 2 GPU per copia |
+| G2 | `Qwen/Qwen3.5-122B-A10B` | `dc4d348443bc740c68e2d77492492c11606384d5` | un'altra famiglia, 125 miliardi di parametri in BF16, Apache 2.0; ragionamento spento (`enable_thinking = false`); 4 GPU per copia |
+
+Scartati: Mistral-Medium-3.5-128B (licenza con eccezioni, chiede una versione di vLLM più nuova, sul mini-gold
+era sotto Mistral-Small 3.2); Mistral-Large-4 e Qwen3-235B (non entrano in 4 GPU); gpt-oss-120b (modello che
+ragiona, formato di uscita proprio); i modelli Llama (chiedono un'accettazione personale della licenza: è
+un'azione del PI); DeepSeek V4 (licenza propria). Gemma-4-31B è già stato misurato in S12p: non ripetibile.
+
+Tutti i modelli ricevono la stessa vista, lo stesso schema, lo stesso prompt, `temperature = 0`, uscite
+strutturate e `VLLM_BATCH_INVARIANT=1`. La `repetition_penalty` di produzione (1,1) vale per tutti; la corsa di
+controllo senza penalità si fa con Mistral-Small 3.2. Un modello su più GPU può non essere ripetibile al
+carattere: la ripetibilità è un esito per modello, misurato con due corse, e un modello non ripetibile non
+soddisfa la regola di esito. Il runner riceve un campo generico `chat_template_kwargs` per spegnere il
+ragionamento (come `llm_extra` in S12p). I pesi dei due modelli non stanno insieme nello spazio di `/home` del
+DGX (121 GB e 250 GB contro 336 GB liberi): le corse si fanno in sequenza e i pesi si cancellano dopo, perché la
+revisione fissata li rende riscaricabili.
 
 ### 5.8 Le fasi che il piano deve coprire
 
