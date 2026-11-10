@@ -337,6 +337,11 @@ dell'agente]**:
 Che cosa si porta nel piano dalla prova: la vista che funziona, i tipi di disaccordo, la lunghezza vera delle
 uscite, il tempo per studio.
 
+**Aggiornamento 2026-11-10.** La prova è fatta e la regola di esito non è soddisfatta. Il PI ha deciso: schema
+corretto e prova ripetuta sugli stessi studi di sviluppo, anche con modelli più grandi (§5.7); i confronti dei
+curatori col tempo zero come controllo escono dal riferimento di §5.5, con la misura intera accanto (ADR-0029,
+§Aggiornamento). I cambi a §5.2, §5.3 e §5.5 si scrivono nella sessione della prova ripetuta, prima del codice.
+
 ### 5.7 I modelli
 
 - Base: `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, configurazione di produzione, contesto da alzare a

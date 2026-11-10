@@ -61,6 +61,20 @@ dello Stadio 2. Due aperture (A, poi B) prima della corsa su tutti gli studi.
 - Rischio principale: gli studi molto grandi rispetto al contesto del modello. Si misura, non si taglia.
 - Una prova piccola e da buttare precede ogni codice del lettore nel pacchetto (spec §5.6).
 
+## Aggiornamento 2026-11-10 (decisioni del PI dopo la prova S12r)
+
+La prova da buttare sui 47 studi di sviluppo non ha soddisfatto la regola di esito (spec §5.6): il lettore v0 non fa
+meglio della pipeline di oggi (`docs/findings/2026-11-09-S12r-prova-lettore-studio.md`). Il PI ha deciso («ok a
+tutto», sulle due raccomandazioni dell'agente):
+
+1. **La decisione di questo ADR resta.** Si corregge lo schema e si ripete la prova sugli stessi 47 studi, con
+   Mistral e con uno o due modelli più grandi (spec §5.7), con previsioni nuove depositate prima (sessione S12r2).
+   Il lettore non entra nel pacchetto prima di quella prova. Gli 82 studi di giudizio restano chiusi.
+2. **Il riferimento del cancello cambia.** I confronti di Expression Atlas che usano il tempo zero come controllo
+   escono dal riferimento, perché per il PI il tempo zero come controllo è sempre un errore. La regola che li
+   riconosce si scrive prima della prova, per costruzione e non per elenco. La misura sul riferimento intero si
+   riporta sempre accanto.
+
 ## Link
 
 - Spec: `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`

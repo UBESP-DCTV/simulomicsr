@@ -50,6 +50,11 @@ sources:
 
 Appena decidi questi 2 punti, la sessione è chiusa.
 
+> **Decisioni del PI (2026-11-10): «ok a tutto».** (1) Si corregge lo schema e si ripete la prova sugli stessi 47
+> studi, con il modello di oggi e con uno o due modelli più grandi. (2) I confronti dei curatori con il tempo zero
+> come controllo escono dal riferimento, con una regola scritta prima della prova e con la misura intera accanto.
+> La sessione è chiusa. La prova ripetuta è la sessione S12r2 dell'handout.
+
 **Sui tempi di calcolo.** I 12 minuti sono misurati: una corsa del modello di oggi sui 47 studi, con 4 processori grafici. Un modello più grande ha tempi diversi, e non li ho misurati.
 
 ---

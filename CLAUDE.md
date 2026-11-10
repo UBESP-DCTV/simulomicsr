@@ -75,6 +75,13 @@ uscite del modello fino all'apertura), con le stesse misure sul master S14 come 
 `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`; piano in quattro parti
 `docs/superpowers/plans/2026-11-09-lettore-studio-tabella-dei-fattori-plan.md` (+ `-HUMANE.md`).
 
+**Decisioni del PI (2026-11-10), dopo la prova S12r («ok a tutto»):** (1) ADR-0029 resta: si corregge lo schema e si
+ripete la prova sugli stessi 47 studi di sviluppo, con Mistral e con uno o due modelli più grandi, previsioni nuove
+prima (**S12r2**); il lettore non entra nel pacchetto prima di quella prova. (2) I confronti di Atlas col tempo zero
+come controllo **escono dal riferimento** del cancello, con una regola scritta prima e per costruzione; la misura sul
+riferimento intero si riporta accanto. ADR-0029 §Aggiornamento; decisioni tecniche dell'agente in S12r:
+`analysis/audit/2026-11-09-lettore-studio/68-decisioni-e-minori.md`.
+
 **Decisioni del PI che restano valide, una riga ciascuna:** gate a 3 studi · S13 corregge la varianza del
 controllo condiviso (T1) e assegna i ruoli per nome · studi doppi tolti con una regola sulle conte · LINCS dà
 il verdetto, Tahoe-100M si riporta senza verdetto, soglia 17% · nessuna correzione guarda l'esito di una
@@ -85,7 +92,7 @@ soglia di errore accettata**: ogni causa si corregge · i campioni cancellati da
 l'ordine: **S12** (Stadio 2b, il disegno: **chiusa** il 2026-11-08) → **S12p** (la prova: fatta il 2026-11-08,
 nessun modello passa) → **S12q** (il lettore dello studio: disegno approvato il 2026-11-09, piano approvato il 2026-11-10, **chiusa**;
 esecuzione scelta dal PI: un solo agente per sessione e una revisione indipendente alla fine; lo stato si tiene in `docs/superpowers/plans/2026-11-09-lettore-studio-mappa/`, aggiornato a ogni Task) → **S12r** (Piano 1: costruttore dei confronti, misure contro Atlas, misura di oggi, prova
-da buttare sui 47 studi di sviluppo; **fatta il 2026-11-10, la regola di esito non è soddisfatta: STOP, il PI decide** fra ripetere la prova con lo schema corretto e modelli più grandi, portare il lettore nel pacchetto, o fermarlo; decide anche se togliere il tempo zero dal riferimento di Atlas; il Piano 2 non è scritto) → **S12s** (Piano 2: il lettore nel pacchetto e il cancello; STOP) →
+da buttare sui 47 studi di sviluppo; **fatta il 2026-11-10, la regola di esito non è soddisfatta; chiusa** con le due decisioni del PI qui sopra; il Piano 2 non è scritto) → **S12r2** (la prova ripetuta sui 47 studi: carta e previsioni prima, schema e prompt v1, Mistral e modelli più grandi, una corsa senza `repetition_penalty`; STOP, il PI decide se si scrive il Piano 2) → **S12s** (Piano 2: il lettore nel pacchetto e il cancello; STOP) →
 S12c+S12b, S12d → **S13** (corsa intera, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16, S17. L'handout del 2026-08-21 resta per le sessioni chiuse e per i prompt di S12b, S12c, S12d, S16, S17.
 Il deliverable su disco resta A3 v16 fino a S13.
 

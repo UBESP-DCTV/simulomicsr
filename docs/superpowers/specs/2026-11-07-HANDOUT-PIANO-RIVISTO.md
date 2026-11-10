@@ -35,8 +35,9 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S12** | Stadio 2b: il disegno (ADR già scritto; lista di controllo, regola, prompt, previsioni) — **chiusa il 2026-11-08** (4 decisioni + campioni cancellati da GEO tolti in S13; campi GEO nell'ingresso) | carta + codice della regola (TDD) | ~4 h | — |
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco — **fatta il 2026-11-08: nessun modello passa** (presi 186/177/155 su 193, falsi allarmi 965/887/364 su 1.710); lettura dei falsi allarmi: 318 confronti «puliti» non confrontabili per i lettori (280 confermati); prompt v2 e codice da solo non bastano; **diagnosi: metà dei 473 difetti nasce nella scelta del confronto dello Stadio 2, tre su dieci nello Stadio 1** | DGX + 1 sessione | ~3 h + 1 notte | **S12** |
 | **S12q** | La strada dopo S12p: **il lettore dello studio e la tabella dei fattori** (ADR-0029). Disegno approvato dal PI il 2026-11-09, piano approvato il 2026-11-10. **Chiusa il 2026-11-10** | disegno + piano | fatta | **S12p** |
-| **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. **Fatta il 2026-11-10: i 5 cancelli passano, la regola di esito non è soddisfatta** (gruppi identici 14/47 per il lettore e per oggi; confronti ritrovati 10 contro 19 su 93; 24 studi non chiusi, 18 per la forma delle voci). **STOP: non chiusa finché il PI non decide** | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
-| **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r** |
+| **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. **Fatta il 2026-11-10: i 5 cancelli passano, la regola di esito non è soddisfatta** (gruppi identici 14/47 per il lettore e per oggi; confronti ritrovati 10 contro 19 su 93; 24 studi non chiusi, 18 per la forma delle voci). **Chiusa il 2026-11-10** con due decisioni del PI: prova ripetuta, tempo zero fuori dal riferimento | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
+| **S12r2** | La prova ripetuta sugli stessi 47 studi di sviluppo: schema e prompt corretti, Mistral e uno o due modelli più grandi, riferimento senza il tempo zero come controllo, previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2 | carta + codice (TDD) + DGX breve | ~1-2 sessioni | **S12r** |
+| **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r2** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
 | **S13** | Piano 3 (da scrivere dopo il cancello): corsa del lettore su tutti gli studi, chiave, varianza, ruoli, doppi, re-cluster, re-pool, deliverable v17 | calcolo | da definire | **S12s, S12c, S12d** |
@@ -47,7 +48,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S17** | Methods e limiti | scrittura | ~4 h | tutto |
 
 **Cancellate:** «S12 — il rilevatore in produzione» (handout di agosto) e «S14 seconda parte» (assorbita in
-S13: il re-cluster si fa una volta sola). **Cancelli veri:** S12r←S12q, S12s←S12r (decisione del PI),
+S13: il re-cluster si fa una volta sola). **Cancelli veri:** S12r←S12q, S12r2←S12r, S12s←S12r2 (decisione del PI),
 S13←S12s (cancello su Atlas)+S12c+S12d, S15←S13, S7c←S13.
 
 **Dal 2026-11-09 (ADR-0029):** lo Stadio 2b esce dal piano. Dove questo handout scrive «Stadio 2b» nelle sezioni
@@ -226,7 +227,7 @@ Il piano comanda. Il Task 11 chiude con STOP: il Piano 2 si scrive dopo la decis
 > Previsioni: P2 e P7 confermate; P4 (gruppi identici del lettore, 14/47 contro 65% atteso) e P6 (studi non chiusi,
 > 24 contro 4 attesi) smentite; P1, P3, P5, P8 indeterminate. Lettore v0 contro la pipeline di oggi sui 47 studi:
 > (a) 14/47 contro 14/47; (b) 10/93 contro 19/93 (−9,7 punti, IC95 −25,3, +4,3); (c) 1/5 contro 19/79. **La regola
-> di esito (spec §5.6) non è soddisfatta: decide il PI.** Cause (145 disaccordi letti tutti, audit interno): forma
+> di esito (spec §5.6) non è soddisfatta: ha deciso il PI (vedi sotto).** Cause (145 disaccordi letti tutti, audit interno): forma
 > delle voci di `assignment` 68 (18 studi non chiusi; sensibilità dichiarata dopo i numeri: 33 chiusi, (a) 20/47,
 > (b) 15/93); fattore letto dal titolo in 13 studi; fattore annidato in 4 studi (lo schema non lo sa scrivere);
 > scelte dei curatori 22 (tempo zero come controllo 10). «Livello combinato»: 0 disaccordi.
@@ -234,20 +235,82 @@ Il piano comanda. Il Task 11 chiude con STOP: il Piano 2 si scrive dopo la decis
 > `repetition_penalty` (la penalità 1,1 può disturbare la ripetizione di valori uguali nelle voci: non misurato);
 > `minItems`/`maxItems` o una forma a oggetto per le voci di `assignment`; scrivere prima della prova la regola sul
 > fattore che i curatori non scrivono per un braccio (lettura larga 93 confronti, stretta 82: oggi 18/82, lettore 8/82).
-> **Decisioni aperte del PI (2):** (1) che cosa fare del lettore: l'agente raccomanda di correggere lo schema e
-> ripetere la prova sugli stessi 47 studi, con Mistral e con uno o due modelli più grandi (spec §5.7), previsioni
-> nuove prima; (2) togliere dal riferimento i confronti di Atlas che usano il tempo zero come controllo, con una
-> regola scritta prima della prossima prova (raccomandato: sì, con la misura intera accanto).
-> **Dubbi rinviati a chi riceve la decisione:** Gemma (UBC) non risponde (5 timeout in due sessioni): una sola
+> **Decisioni del PI (2026-11-10, «ok a tutto»):** (1) si corregge lo schema e si ripete la prova sugli stessi 47
+> studi, con Mistral e con uno o due modelli più grandi (spec §5.7), previsioni nuove prima: è la sessione S12r2;
+> (2) i confronti di Atlas che usano il tempo zero come controllo escono dal riferimento, con una regola scritta
+> prima della prova, e la misura intera si riporta accanto. **La sessione è chiusa.**
+> **Dubbi rinviati a S12r2:** Gemma (UBC) non risponde (5 timeout in due sessioni): una sola
 > fonte di curazione, da dichiarare come limite; l'uscita più lunga è all'81% di `max_tokens` (16.384); il DOI di
 > GEOAgent nel piano è sbagliato (vero: 10.64898/2026.06.06.730646); gli 82 studi di giudizio restano chiusi.
-> **Il Piano 2 non è scritto.**
+> **Il Piano 2 non è scritto:** si scrive dopo S12r2, se il PI lo decide.
 
 ### Prompt
 ```
 sessione simulomicsr S12r, leggi prima la skill di progetto.
 Piano: docs/superpowers/plans/2026-11-09-lettore-studio-tabella-dei-fattori-plan.md (Parte B, Piano 1).
 Spec: docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. Branch p6-tabella-dei-fattori.
+```
+
+---
+
+# S12r2 — La prova ripetuta del lettore
+
+> **Ricevuto da S12r, da leggere per primo.** (1) **Decisioni del PI del 2026-11-10** («ok a tutto», ADR-0029
+> §Aggiornamento): correggere lo schema e ripetere la prova sugli stessi 47 studi di sviluppo, con Mistral e con uno
+> o due modelli più grandi; togliere dal riferimento i confronti di Atlas col tempo zero come controllo, con una
+> regola scritta prima, e riportare la misura intera accanto. (2) **Dalla revisione finale di S12r:** una corsa di
+> controllo senza `repetition_penalty`; `minItems`/`maxItems` o una forma a oggetto per le voci di `assignment`; la
+> regola sul fattore che i curatori non scrivono per un braccio va scritta prima (lettura larga 93 confronti,
+> stretta 82: oggi 18/82, lettore v0 8/82). (3) **Le cause da togliere** (finding di S12r §5): forma delle voci (68
+> unità, 18 studi non chiusi); fattore letto dal titolo con un livello per campione (13 studi); fattore annidato (4
+> studi, 16 unità: la spec non dice come scriverlo né come `tf_confronti()` lo confronta); base scritta senza
+> campioni (14 studi). **Per il fattore dal titolo e per la base senza campioni, prima la diagnosi di dove nasce
+> l'errore (che cosa vede il modello nella vista), poi la correzione:** un errore sistematico del modello non si
+> chiude con una frase nel prompt né con una regola che sostituisce il modello. (4) **I modelli più grandi** li
+> sceglie l'agente (spec §5.7): aperti, dentro le 8 GPU di `poddgx02`, revisione fissata, due corse identiche al
+> carattere (Gemma-4-31B non era ripetibile e chiedeva 2 GPU). (5) **Rinviati:** Gemma (UBC) non risponde (5 timeout
+> in due sessioni), una sola fonte di curazione; l'uscita più lunga era all'81% di `max_tokens` (16.384); gli 8
+> difetti minori in `analysis/audit/2026-11-09-lettore-studio/68-decisioni-e-minori.md` (il conto degli «identica»
+> con campioni di Atlas omessi serve per il cancello). (6) `container-env.txt` delle corse porta il token di
+> Hugging Face: non stamparlo e non committarlo.
+
+### Perché
+Il lettore v0 non ha fatto meglio della pipeline di oggi (gruppi identici 14/47 contro 14/47, confronti ritrovati
+10/93 contro 19/93), ma 18 dei 24 studi non chiusi cadono per la forma della risposta, e 10 dei confronti che un
+lettore senza difetti perde usano il tempo zero come controllo. La prova v0 non separa il compito dalla forma.
+
+### Che cosa si fa
+1. **Carta, prima di ogni corsa.** Aggiorna la spec (§5.2 forma delle voci e fattore annidato, §5.3 come il
+   costruttore confronta dentro un livello, §5.5 il riferimento senza tempo zero e la regola sul fattore non
+   scritto). La regola sul tempo zero riconosce il confronto per costruzione, non per elenco di studi.
+2. **Deposita** in una cartella di audit nuova `00-previsioni.md` (cancelli, previsioni con intervallo, regola di
+   esito, le due regole di lettura) e committalo da solo. Rimisura la pipeline di oggi col riferimento nuovo e con
+   quello intero: è il termine di paragone.
+3. **Codice del costruttore** solo dove la spec aggiornata lo chiede (TDD). Schema e prompt v1 restano materiale
+   da buttare nella cartella di audit.
+4. **Corse su `poddgx02`:** Mistral v1 due volte; Mistral v1 senza `repetition_penalty` (controllo); ogni modello
+   più grande due volte. Stessa vista per tutti.
+5. **Leggi tutti i disaccordi**, con la causa e chi la può togliere, come in S12r.
+6. **Finding** con «In breve», poi STOP.
+
+### Che cosa NON si fa
+Non si scrive il Piano 2. Non si aprono gli 82 studi di giudizio. Non si cambiano previsioni e regole dopo i
+numeri. Non si toccano deliverable e master. Gli stessi 47 studi servono una seconda volta: il risultato vale per
+lo sviluppo, non come giudizio, e il finding lo dice.
+
+### Come si sa che è finita
+I cancelli passano, ogni previsione ha un esito, ogni disaccordo ha una causa, la regola di esito ha un sì o un no
+per ogni modello.
+
+### La decisione che spetta a te
+Se si scrive il Piano 2 (il lettore nel pacchetto, S12s) e con quale modello.
+
+### Prompt
+```
+sessione simulomicsr S12r2, leggi prima la skill di progetto.
+Handout: docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md, sezione S12r2. Finding di partenza:
+docs/findings/2026-11-09-S12r-prova-lettore-studio.md. Spec:
+docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. Branch p6-tabella-dei-fattori.
 ```
 
 ---

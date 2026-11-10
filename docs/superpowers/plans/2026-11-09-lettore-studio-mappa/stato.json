@@ -2,15 +2,15 @@
   "aggiornato": "2026-11-10",
   "sessione": "Sessione del Piano 1 (S12r), aperta il 2026-11-10",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Il PI decide: che cosa fare del lettore, e il tempo zero nel riferimento",
+  "prossimo_passo": "Sessione nuova (S12r2): la prova ripetuta sui 47 studi di sviluppo, con lo schema corretto e con modelli più grandi",
   "piani": [
-    {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "in_corso"},
+    {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "chiuso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
     {"n": 3, "titolo": "Corsa intera e deliverable nuovo (v17)", "sessioni": "S12c con S12b, S12d, S13", "stato": "da_scrivere"},
     {"n": 4, "titolo": "Validazione del risultato", "sessioni": "S15, S7c, S7b, poi S16 e S17", "stato": "da_scrivere"}
   ],
   "fermate": [
-    {"n": 1, "dopo_piano": 1, "titolo": "Decisione del PI sul Piano 1", "stato": "in_attesa_del_pi", "esito": ""},
+    {"n": 1, "dopo_piano": 1, "titolo": "Decisione del PI sul Piano 1", "stato": "decisa", "esito": "2026-11-10: si corregge lo schema e si ripete la prova sugli stessi 47 studi, con il modello di oggi e con uno o due modelli più grandi. I confronti dei curatori con il tempo zero come controllo escono dal riferimento, con una regola scritta prima. Il Piano 2 si scrive dopo quella prova."},
     {"n": 2, "dopo_piano": 2, "titolo": "Il cancello: primo giudizio (42 studi), poi secondo giudizio (40 studi)", "stato": "da_raggiungere", "esito": ""}
   ],
   "task": [
@@ -121,6 +121,7 @@
     {"data": "2026-11-10", "che_cosa": "Task 9: ingresso della prova: testi GEO dei 47 studi di sviluppo congelati, vista v0 (1.883 campioni, 0 cancellati, massimo 37.692 token stimati), schema v0, prompt v0"},
     {"data": "2026-11-10", "che_cosa": "Passo 10 fatto: il lettore v0 chiude 23 studi su 47; partizione identica 14/47 come oggi; confronti di Atlas ritrovati 10/93 contro 19/93 di oggi (differenza -9,7 punti, IC95 da -25,3 a +4,3); con le voci malformate lette 15/93. P3 indeterminata, P4 e P6 smentite, P7 confermata. Letti tutti i 145 disaccordi."},
     {"data": "2026-11-10", "che_cosa": "Passo 11: finding scritto, concorrenti letti per intero, handout e CLAUDE.md aggiornati. La regola di esito non è soddisfatta: decide il PI"},
-    {"data": "2026-11-10", "che_cosa": "Revisione indipendente del branch fatta: nessun difetto cambia un numero del riassunto. Corretti il testo del finding (definizione dell'errore, 35 unità non errori, limiti in più) e due fragilità del pacchetto (nome di fattore riservato, studio senza classe dei gruppi). I minori rinviati stanno nel rapporto al PI."}
+    {"data": "2026-11-10", "che_cosa": "Revisione indipendente del branch fatta: nessun difetto cambia un numero del riassunto. Corretti il testo del finding (definizione dell'errore, 35 unità non errori, limiti in più) e due fragilità del pacchetto (nome di fattore riservato, studio senza classe dei gruppi). I minori rinviati stanno nel rapporto al PI."},
+    {"data": "2026-11-10", "che_cosa": "Il PI ha deciso («ok a tutto»): prova ripetuta sui 47 studi con lo schema corretto e con modelli più grandi; il tempo zero come controllo esce dal riferimento. La sessione del Piano 1 è chiusa. La sessione seguente è la prova ripetuta (S12r2)."}
   ]
 }
