@@ -66,9 +66,10 @@
 #' silenzio.
 #'
 #' @param nostra,atlas vettori con nome: GSM -> gruppo.
-#' @return lista con `classe` (`"identica"`, `"piu_fine"`: ogni nostro gruppo sta in un gruppo di Atlas,
-#'   `"piu_grossa"`, `"incrociata"`; `NA` senza campioni comuni), `ari` (indice di Rand corretto), `n_comuni`,
-#'   `solo_nostri`, `solo_atlas`.
+#' @return lista con `classe` (`"identica"`; `"identica_sui_comuni"`: uguale sui campioni comuni, ma la nostra
+#'   partizione omette campioni di Atlas (spec par. 5.5 punto 4, aggiornamento S12r2); `"piu_fine"`: ogni nostro
+#'   gruppo sta in un gruppo di Atlas; `"piu_grossa"`; `"incrociata"`; `NA` senza campioni comuni), `ari` (indice
+#'   di Rand corretto), `n_comuni`, `solo_nostri`, `solo_atlas`.
 #' @keywords internal
 tf_misura_gruppi <- function(nostra, atlas) {
   nostra <- .tf_controlla_partizione(nostra, "nostra")
@@ -83,7 +84,7 @@ tf_misura_gruppi <- function(nostra, atlas) {
   nostri_dentro <- all(tapply(y, x, function(v) length(unique(v))) == 1L)
   atlas_dentro <- all(tapply(x, y, function(v) length(unique(v))) == 1L)
   esito$classe <- if (nostri_dentro && atlas_dentro) {
-    "identica"
+    if (esito$solo_atlas == 0L) "identica" else "identica_sui_comuni"
   } else if (nostri_dentro) {
     "piu_fine"
   } else if (atlas_dentro) {
@@ -105,16 +106,96 @@ tf_misura_gruppi <- function(nostra, atlas) {
 }
 
 #' I fattori di Atlas in cui due bracci hanno livelli diversi
+#'
+#' La stessa definizione di `tf_confronti()` ([.tf_dividi_differenze()]), applicata ai fattori di Atlas: un
+#' fattore che uno dei due bracci non scrive non e' una differenza e si marca; un fattore annidato nel solo
+#' fattore che cambia non conta. `annidato = FALSE` e `non_scritto_conta = TRUE` danno le letture intera e stretta
+#' (spec par. 5.5 punto 3).
+#' @return lista con `diversi`, `non_scritti`, `annidati` (ordinati) e `solo_x`.
 #' @keywords internal
 #' @noRd
-.tf_fattori_diversi <- function(trattato, controllo, tabella) {
-  lt <- .tf_livelli_braccio(trattato, tabella); lc <- .tf_livelli_braccio(controllo, tabella)
-  diverso <- !vapply(names(lt), function(f) identical(lt[[f]], lc[[f]]), TRUE)
-  # Come in `tf_confronti()`: un fattore che uno dei due bracci non scrive non e' una differenza, si marca.
-  non_scritto <- vapply(names(lt), function(f) {
-    identical(lt[[f]], TF_NON_SCRITTO) || identical(lc[[f]], TF_NON_SCRITTO)
-  }, TRUE)
-  list(diversi = names(lt)[diverso & !non_scritto], non_scritti = names(lt)[diverso & non_scritto])
+.tf_fattori_diversi <- function(trattato, controllo, tabella, annidati = .tf_annidati(tabella$livelli),
+                                annidato = TRUE, non_scritto_conta = FALSE) {
+  parti <- .tf_dividi_differenze(.tf_livelli_braccio(trattato, tabella), .tf_livelli_braccio(controllo, tabella),
+                                 annidati, annidato = annidato, non_scritto_conta = non_scritto_conta)
+  ordina <- function(x) sort(x, method = "radix")
+  list(diversi = ordina(parti$D), non_scritti = ordina(parti$N), annidati = ordina(parti$annidati),
+       solo_x = parti$solo_x)
+}
+
+#' Classe di un valore di tempo: zero, successivo, altro
+#'
+#' `"zero"`: il valore contiene un solo numero e quel numero e' 0. `"successivo"`: un solo numero, maggiore di 0.
+#' `"altro"`: nessun numero, piu' numeri, valore vuoto o `NA` (spec par. 5.5 punto 1, aggiornamento S12r2).
+#' @keywords internal
+#' @noRd
+.tf_classe_tempo <- function(x) {
+  x <- as.character(x); x[is.na(x)] <- ""
+  numeri <- regmatches(x, gregexpr("[0-9]+([.,][0-9]+)?", x))
+  uno <- lengths(numeri) == 1L
+  valore <- rep(NA_real_, length(x))
+  valore[uno] <- as.numeric(sub(",", ".", unlist(numeri[uno]), fixed = TRUE))
+  ifelse(!uno, "altro", ifelse(valore == 0, "zero", "successivo"))
+}
+
+#' I campi di tempo di uno studio
+#'
+#' Un campo di tempo e' un fattore di Atlas, oppure una colonna non costante della tabella dei campioni di GEO,
+#' il cui nome ha «time» all'inizio di una parola (spec par. 5.5 punto 1). La regola guarda il nome, non un elenco
+#' di studi.
+#'
+#' @param atlas l'uscita di `atlas_tabella()`.
+#' @param geo lista con nome, una voce per colonna di GEO: un vettore di caratteri con nome (GSM -> valore).
+#'   `NULL` se non ci sono colonne di GEO.
+#' @return lista con nome: per ogni campo (`atlas:<fattore>`, `geo:<colonna>`) il vettore GSM -> valore.
+#' @keywords internal
+tf_campi_di_tempo <- function(atlas, geo = NULL) {
+  di_tempo <- function(nomi) grepl("(^|[^a-z])time", tolower(nomi))
+  campi <- list()
+  if (!is.null(atlas$tabella)) {
+    liv <- atlas$tabella$livelli
+    for (f in names(liv)[di_tempo(names(liv))]) {
+      campi[[paste0("atlas:", f)]] <- stats::setNames(as.character(liv[[f]]), rownames(liv))
+    }
+  }
+  if (!is.null(geo)) {
+    forma <- is.list(geo) && !is.null(names(geo)) && all(nzchar(names(geo))) && !anyDuplicated(names(geo)) &&
+      all(vapply(geo, function(v) is.atomic(v) && !is.null(names(v)) && !anyDuplicated(names(v)), TRUE))
+    if (!forma) {
+      .tf_abort("`geo` deve essere una lista con nome: per ogni colonna un vettore con nome (GSM -> valore).",
+                "ingresso_non_valido")
+    }
+    for (colonna in names(geo)[di_tempo(names(geo))]) {
+      v <- stats::setNames(as.character(geo[[colonna]]), names(geo[[colonna]]))
+      if (length(unique(v)) > 1L) campi[[paste0("geo:", colonna)]] <- v
+    }
+  }
+  campi
+}
+
+#' La marca `tempo_zero` di un confronto
+#'
+#' Vero quando, in almeno un campo di tempo, tutti i campioni di un braccio hanno un valore zero e l'altro
+#' braccio non ha campioni a zero e ne ha almeno uno a un valore successivo. La regola non guarda quale braccio
+#' i curatori chiamano riferimento: il verso si riporta a parte (spec par. 5.5 punto 1).
+#'
+#' @param trattato,controllo chr, i GSM dei due bracci.
+#' @param campi l'uscita di `tf_campi_di_tempo()`.
+#' @return lista con `tempo_zero` (logico), `verso` (`"zero_controllo"`, `"zero_trattato"`, `NA`) e `campo` (il
+#'   primo campo, in ordine di nome, che da' la marca; `NA` se nessuno).
+#' @keywords internal
+tf_tempo_zero <- function(trattato, controllo, campi) {
+  no <- list(tempo_zero = FALSE, verso = NA_character_, campo = NA_character_)
+  if (length(trattato) == 0L || length(controllo) == 0L) return(no)
+  for (campo in sort(as.character(names(campi)), method = "radix")) {
+    v <- campi[[campo]]
+    ct <- .tf_classe_tempo(unname(v[as.character(trattato)])); cc <- .tf_classe_tempo(unname(v[as.character(controllo)]))
+    tutto_zero <- function(k) all(k == "zero")
+    dopo <- function(k) !any(k == "zero") && any(k == "successivo")
+    if (tutto_zero(cc) && dopo(ct)) return(list(tempo_zero = TRUE, verso = "zero_controllo", campo = campo))
+    if (tutto_zero(ct) && dopo(cc)) return(list(tempo_zero = TRUE, verso = "zero_trattato", campo = campo))
+  }
+  no
 }
 
 #' Classifica i confronti dei curatori di Atlas rispetto alla definizione
@@ -122,32 +203,63 @@ tf_misura_gruppi <- function(nostra, atlas) {
 #' @param atlas l'uscita di `atlas_tabella()`.
 #' @param universo chr, i GSM che contano.
 #' @param n_min numero minimo di campioni per braccio dopo il taglio all'universo.
-#' @return i confronti di Atlas con i bracci tagliati all'universo e le colonne `classe`, `fattori_diversi` e
-#'   `fattori_non_scritti` (i fattori che uno dei due bracci non scrive: non contano come differenza).
-#'   `classe`: `"rispetta"` (i due gruppi differiscono in un solo fattore di Atlas), `"piu_fattori"`,
+#' @param annidato se `TRUE` (letture principale e stretta) vale la regola del fattore annidato; se `FALSE`
+#'   (lettura intera) un livello `TF_NON_APPLICABILE` e' una differenza ordinaria.
+#' @param non_scritto_conta se `TRUE` (lettura stretta) un fattore che un braccio non scrive conta come
+#'   differenza.
+#' @param campi_tempo l'uscita di `tf_campi_di_tempo()`; `NULL` se la marca `tempo_zero` non si calcola.
+#' @return i confronti di Atlas con i bracci tagliati all'universo e le colonne `classe`, `fattori_diversi`,
+#'   `fattori_non_scritti` (i fattori che uno dei due bracci non scrive: non contano come differenza, salvo
+#'   `non_scritto_conta`), `fattori_annidati` (i fattori che la regola del fattore annidato toglie dal conto),
+#'   `tempo_zero`, `tempo_zero_verso`, `tempo_zero_campo` (`NA` senza `campi_tempo`; la marca non dipende dalla
+#'   classe). `classe`: `"rispetta"` (i due gruppi differiscono in un solo fattore di Atlas), `"piu_fattori"`,
 #'   `"non_formabile"` (un braccio ha meno di `n_min` campioni nell'universo), `"nessuna_differenza"` (i due
-#'   gruppi hanno gli stessi livelli in tutti i fattori di Atlas).
+#'   gruppi hanno gli stessi livelli in tutti i fattori di Atlas), `"non_applicabile"` (la sola differenza e' un
+#'   livello `TF_NON_APPLICABILE`: per la definizione non e' un confronto).
 #' @keywords internal
-tf_classi_confronti_atlas <- function(atlas, universo, n_min = 2L) {
+tf_classi_confronti_atlas <- function(atlas, universo, n_min = 2L, annidato = TRUE, non_scritto_conta = FALSE,
+                                      campi_tempo = NULL) {
   k <- .tf_controlla_confronti(atlas$confronti, "atlas$confronti")
   universo <- as.character(universo)
   k$trattato <- lapply(k$trattato, .tf_taglia, universo = universo)
   k$controllo <- lapply(k$controllo, .tf_taglia, universo = universo)
-  classe <- character(nrow(k)); diversi <- character(nrow(k)); non_scritti <- character(nrow(k))
-  for (i in seq_len(nrow(k))) {
+  n <- nrow(k)
+  classe <- character(n); diversi <- character(n); non_scritti <- character(n); annidati_k <- character(n)
+  tz <- rep(NA, n); tz_verso <- rep(NA_character_, n); tz_campo <- rep(NA_character_, n)
+  annidati <- if (n > 0L && !is.null(atlas$tabella)) .tf_annidati(atlas$tabella$livelli) else NULL
+  for (i in seq_len(n)) {
     tr <- k$trattato[[i]]; co <- k$controllo[[i]]
+    if (!is.null(campi_tempo)) {
+      z <- tf_tempo_zero(tr, co, campi_tempo)
+      tz[i] <- z$tempo_zero; tz_verso[i] <- z$verso; tz_campo[i] <- z$campo
+    }
     if (length(tr) < n_min || length(co) < n_min) {
       classe[i] <- "non_formabile"; diversi[i] <- NA_character_; non_scritti[i] <- NA_character_
+      annidati_k[i] <- NA_character_
       next
     }
-    fd <- .tf_fattori_diversi(tr, co, atlas$tabella)
+    fd <- .tf_fattori_diversi(tr, co, atlas$tabella, annidati, annidato = annidato,
+                              non_scritto_conta = non_scritto_conta)
     d <- fd$diversi
     diversi[i] <- .tf_dettaglio(d); non_scritti[i] <- .tf_dettaglio(fd$non_scritti)
-    classe[i] <- if (length(d) == 1L) "rispetta" else if (length(d) > 1L) "piu_fattori" else "nessuna_differenza"
+    annidati_k[i] <- .tf_dettaglio(fd$annidati)
+    classe[i] <- if (length(d) > 1L) {
+      "piu_fattori"
+    } else if (length(d) == 0L) {
+      "nessuna_differenza"
+    } else if (fd$solo_x) {
+      "non_applicabile"
+    } else {
+      "rispetta"
+    }
   }
   k$classe <- classe
   k$fattori_diversi <- diversi
   k$fattori_non_scritti <- non_scritti
+  k$fattori_annidati <- annidati_k
+  k$tempo_zero <- tz
+  k$tempo_zero_verso <- tz_verso
+  k$tempo_zero_campo <- tz_campo
   k
 }
 
@@ -194,12 +306,15 @@ tf_misura_ritrovati <- function(nostri, atlas_classi, universo) {
 #' @param nostri i nostri confronti in forma comune.
 #' @param atlas l'uscita di `atlas_tabella()`.
 #' @param universo chr, i GSM che contano.
+#' @param annidato,non_scritto_conta come in `tf_classi_confronti_atlas()`: la misura (c) usa la stessa
+#'   classificazione della lettura.
 #' @return i nostri confronti non elencati, con i bracci tagliati all'universo e la colonna `giudizio`:
 #'   `"coerente"` (ogni braccio ha un solo livello in ogni fattore di Atlas e i due bracci differiscono in un
 #'   solo fattore), `"piu_fattori"`, `"braccio_misto"`, `"nessuna_differenza"`, `"fuori_atlas"` (un braccio non
-#'   ha campioni nell'universo). Errore = `piu_fattori` o `braccio_misto`.
+#'   ha campioni nell'universo), `"non_applicabile"` (la sola differenza e' un livello `TF_NON_APPLICABILE`:
+#'   non si giudica, si conta a parte). Errore = `piu_fattori` o `braccio_misto`.
 #' @keywords internal
-tf_giudica_non_elencati <- function(nostri, atlas, universo) {
+tf_giudica_non_elencati <- function(nostri, atlas, universo, annidato = TRUE, non_scritto_conta = FALSE) {
   .tf_controlla_confronti(nostri, "nostri"); .tf_controlla_confronti(atlas$confronti, "atlas$confronti")
   universo <- as.character(universo)
   # Scambio i ruoli: per ogni NOSTRO confronto cerco un confronto di Atlas con gli stessi insiemi.
@@ -208,6 +323,7 @@ tf_giudica_non_elencati <- function(nostri, atlas, universo) {
   fuori$trattato <- lapply(fuori$trattato, .tf_taglia, universo = universo)
   fuori$controllo <- lapply(fuori$controllo, .tf_taglia, universo = universo)
   giudizio <- character(nrow(fuori))
+  annidati <- if (nrow(fuori) > 0L && !is.null(atlas$tabella)) .tf_annidati(atlas$tabella$livelli) else NULL
   for (i in seq_len(nrow(fuori))) {
     tr <- fuori$trattato[[i]]; co <- fuori$controllo[[i]]
     if (length(tr) == 0L || length(co) == 0L) {
@@ -216,11 +332,15 @@ tf_giudica_non_elencati <- function(nostri, atlas, universo) {
     }
     misto <- any(lengths(.tf_livelli_braccio(tr, atlas$tabella)) > 1L) ||
       any(lengths(.tf_livelli_braccio(co, atlas$tabella)) > 1L)
-    n_diversi <- length(.tf_fattori_diversi(tr, co, atlas$tabella)$diversi)
+    fd <- .tf_fattori_diversi(tr, co, atlas$tabella, annidati, annidato = annidato,
+                              non_scritto_conta = non_scritto_conta)
+    n_diversi <- length(fd$diversi)
     giudizio[i] <- if (misto) {
       "braccio_misto"
     } else if (n_diversi > 1L) {
       "piu_fattori"
+    } else if (n_diversi == 1L && fd$solo_x) {
+      "non_applicabile"
     } else if (n_diversi == 1L) {
       "coerente"
     } else {
@@ -240,24 +360,57 @@ tf_giudica_non_elencati <- function(nostri, atlas, universo) {
 #' @param atlas l'uscita di `atlas_tabella()`.
 #' @param universo chr, i GSM che contano.
 #' @param n_min numero minimo di campioni per braccio per i confronti di Atlas.
-#' @return lista con `riga` (data.frame di una riga con i conteggi), `atlas` (i confronti di Atlas con `classe`
-#'   e `ritrovato`), `non_elencati` (i nostri confronti non elencati con `giudizio`).
+#' @param lettura la lettura del riferimento (spec par. 5.5 punto 3, aggiornamento S12r2), senza valore di
+#'   default: `"principale"` (regola del fattore annidato, tempo zero fuori dal denominatore di (b), un fattore
+#'   non scritto non conta), `"intera"` (nessuna regola del fattore annidato, tempo zero dentro: la definizione
+#'   di S12r), `"stretta"` (come la principale, ma un fattore non scritto conta come differenza).
+#' @param campi_tempo l'uscita di `tf_campi_di_tempo()`: obbligatoria per le letture principale e stretta (una
+#'   lista vuota se lo studio non ha campi di tempo). Con la lettura intera e `NULL` la marca non si calcola.
+#' @return lista con `riga` (data.frame di una riga con i conteggi), `atlas` (i confronti di Atlas con `classe`,
+#'   `tempo_zero`, `in_b` e `ritrovato`), `non_elencati` (i nostri confronti non elencati con `giudizio`). Nella
+#'   riga, `n_b_den` e' il denominatore della misura (b) secondo la lettura e `n_b_uguale` il numeratore.
 #' @keywords internal
-tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L) {
+tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L, lettura, campi_tempo = NULL) {
+  letture <- list(principale = list(annidato = TRUE, tempo_zero_fuori = TRUE, non_scritto_conta = FALSE),
+                  intera = list(annidato = FALSE, tempo_zero_fuori = FALSE, non_scritto_conta = FALSE),
+                  stretta = list(annidato = TRUE, tempo_zero_fuori = TRUE, non_scritto_conta = TRUE))
+  if (missing(lettura) || !is.character(lettura) || length(lettura) != 1L || !(lettura %in% names(letture))) {
+    .tf_abort(sprintf("`lettura` va dichiarata, una fra: %s.", paste(names(letture), collapse = ", ")),
+              "ingresso_non_valido")
+  }
+  regola <- letture[[lettura]]
+  if (regola$tempo_zero_fuori && is.null(campi_tempo)) {
+    .tf_abort(sprintf(paste0("La lettura \"%s\" toglie i confronti col tempo zero: servono i campi di tempo ",
+                             "(`tf_campi_di_tempo()`; una lista vuota se lo studio non ne ha)."), lettura),
+              "ingresso_non_valido")
+  }
   universo <- as.character(universo)
   nostra <- .tf_controlla_partizione(nostra, "nostra")
   g <- tf_misura_gruppi(nostra[names(nostra) %in% universo],
                         atlas$partizione[names(atlas$partizione) %in% universo])
-  cl <- tf_misura_ritrovati(nostri, tf_classi_confronti_atlas(atlas, universo, n_min), universo)
-  ne <- tf_giudica_non_elencati(nostri, atlas, universo)
+  cl <- tf_classi_confronti_atlas(atlas, universo, n_min, annidato = regola$annidato,
+                                  non_scritto_conta = regola$non_scritto_conta, campi_tempo = campi_tempo)
+  cl <- tf_misura_ritrovati(nostri, cl, universo)
+  ne <- tf_giudica_non_elencati(nostri, atlas, universo, annidato = regola$annidato,
+                                non_scritto_conta = regola$non_scritto_conta)
   conta <- function(x, v) as.integer(sum(x %in% v))
   rispetta <- cl$classe == "rispetta"; piu <- cl$classe == "piu_fattori"
+  zero <- cl$tempo_zero %in% TRUE
+  cl$in_b <- rispetta & !(regola$tempo_zero_fuori & zero)
+  n_zero <- function(quali) if (is.null(campi_tempo)) NA_integer_ else as.integer(sum(zero & quali))
   riga <- data.frame(
-    studio = studio, classe_gruppi = g$classe, ari = g$ari, n_universo = length(universo),
+    studio = studio, lettura = lettura, classe_gruppi = g$classe, ari = g$ari, n_universo = length(universo),
     n_comuni = g$n_comuni, solo_nostri = g$solo_nostri, solo_atlas = g$solo_atlas,
     n_atlas = nrow(cl), n_rispetta = conta(cl$classe, "rispetta"),
     n_rispetta_uguale = conta(cl$ritrovato[rispetta], "uguale"),
     n_rispetta_verso_opposto = conta(cl$ritrovato[rispetta], "verso_opposto"),
+    n_b_den = as.integer(sum(cl$in_b)), n_b_uguale = conta(cl$ritrovato[cl$in_b], "uguale"),
+    n_b_verso_opposto = conta(cl$ritrovato[cl$in_b], "verso_opposto"),
+    n_tempo_zero = n_zero(TRUE), n_tempo_zero_rispetta = n_zero(rispetta),
+    n_tempo_zero_controllo = n_zero(cl$tempo_zero_verso %in% "zero_controllo"),
+    n_tempo_zero_trattato = n_zero(cl$tempo_zero_verso %in% "zero_trattato"),
+    n_tempo_zero_formati = n_zero(cl$ritrovato %in% c("uguale", "verso_opposto")),
+    n_non_applicabile_atlas = conta(cl$classe, "non_applicabile"),
     n_piu_fattori = conta(cl$classe, "piu_fattori"),
     n_piu_fattori_formati = conta(cl$ritrovato[piu], c("uguale", "verso_opposto")),
     n_non_formabile = conta(cl$classe, "non_formabile"),
@@ -268,7 +421,8 @@ tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L
     n_coerente = conta(ne$giudizio, "coerente"), n_piu_fattori_nostri = conta(ne$giudizio, "piu_fattori"),
     n_braccio_misto = conta(ne$giudizio, "braccio_misto"),
     n_nessuna_differenza = conta(ne$giudizio, "nessuna_differenza"),
-    n_fuori_atlas = conta(ne$giudizio, "fuori_atlas"), stringsAsFactors = FALSE)
+    n_fuori_atlas = conta(ne$giudizio, "fuori_atlas"),
+    n_non_applicabile_nostri = conta(ne$giudizio, "non_applicabile"), stringsAsFactors = FALSE)
   list(riga = riga, atlas = cl, non_elencati = ne)
 }
 
@@ -282,9 +436,12 @@ tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L
 #' @param seme seme del bootstrap.
 #' @return data.frame con `misura`, `numeratore`, `denominatore`, `quota`, `ic_basso`, `ic_alto`. Numeri
 #'   principali: `a_gruppi_identici` (studi con classe `identica` su studi misurati), `b_confronti_ritrovati`
-#'   (`uguale` su confronti di classe `rispetta`), `c_errori_non_elencati` (errori su confronti giudicabili).
-#'   A parte: `verso_opposto`, `atlas_piu_fattori` (su tutti i confronti di Atlas), `atlas_piu_fattori_formati`,
-#'   `atlas_non_formabile`, `ari_mediana` (la quota e' la mediana; il denominatore e' il numero di studi).
+#'   (`uguale` sul denominatore della lettura: `n_b_uguale` su `n_b_den`), `c_errori_non_elencati` (errori su
+#'   confronti giudicabili). A parte: `a_identici_sui_comuni` (partizioni uguali sui campioni comuni che omettono
+#'   campioni di Atlas), `verso_opposto`, `atlas_piu_fattori` (su tutti i confronti di Atlas),
+#'   `atlas_piu_fattori_formati`, `atlas_non_formabile`, `atlas_tempo_zero` (confronti con la marca `tempo_zero`
+#'   su tutti i confronti di Atlas; `NA` se la marca non e' stata calcolata), `ari_mediana` (la quota e' la
+#'   mediana; il denominatore e' il numero di studi). Le righe devono venire tutte dalla stessa lettura.
 #'   Con denominatore zero la quota e' `NA`.
 #'   Uno studio con `classe_gruppi` `NA` esce dal denominatore di (a), con un avviso di classe
 #'   `simulomicsr_tf_studi_senza_classe` che lo nomina.
@@ -292,6 +449,10 @@ tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L
 tf_riassumi_misure <- function(per_studio, B = 2000L, seme = 20261109L) {
   if (!is.data.frame(per_studio) || nrow(per_studio) == 0L) {
     .tf_abort("`per_studio` deve essere un data.frame con almeno uno studio.", "ingresso_non_valido")
+  }
+  if (length(unique(per_studio$lettura)) != 1L) {
+    .tf_abort(sprintf("Le righe di `per_studio` vengono da letture diverse: %s.",
+                      .tf_elenca(unique(per_studio$lettura))), "ingresso_non_valido")
   }
   misurato <- !is.na(per_studio$classe_gruppi)
   if (any(!misurato)) {
@@ -304,9 +465,12 @@ tf_riassumi_misure <- function(per_studio, B = 2000L, seme = 20261109L) {
   rapporti <- list(
     a_gruppi_identici = list(num = as.numeric(misurato & per_studio$classe_gruppi %in% "identica"),
                              den = as.numeric(misurato)),
-    b_confronti_ritrovati = list(num = per_studio$n_rispetta_uguale, den = per_studio$n_rispetta),
+    b_confronti_ritrovati = list(num = per_studio$n_b_uguale, den = per_studio$n_b_den),
     c_errori_non_elencati = list(num = per_studio$n_errori, den = per_studio$n_giudicabili),
-    verso_opposto = list(num = per_studio$n_rispetta_verso_opposto, den = per_studio$n_rispetta),
+    a_identici_sui_comuni = list(num = as.numeric(misurato & per_studio$classe_gruppi %in% "identica_sui_comuni"),
+                                 den = as.numeric(misurato)),
+    verso_opposto = list(num = per_studio$n_b_verso_opposto, den = per_studio$n_b_den),
+    atlas_tempo_zero = list(num = per_studio$n_tempo_zero, den = per_studio$n_atlas),
     atlas_piu_fattori = list(num = per_studio$n_piu_fattori, den = per_studio$n_atlas),
     atlas_piu_fattori_formati = list(num = per_studio$n_piu_fattori_formati, den = per_studio$n_piu_fattori),
     atlas_non_formabile = list(num = per_studio$n_non_formabile, den = per_studio$n_atlas))

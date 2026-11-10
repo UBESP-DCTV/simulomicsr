@@ -24,9 +24,15 @@ Applica a ogni coppia di gruppi la definizione: i due gruppi sono uguali in
 tutti i fattori tranne uno, e uno dei due e' al livello di base di quel
 fattore. Il gruppo al livello di base e' il controllo. Un livello
 \code{TF_NON_SCRITTO} non conta come differenza: il confronto si forma e porta
-l'avviso \verb{non_scritto:<fattore>}. Dopo la definizione, \code{\link[=.tf_soggetti]{.tf_soggetti()}}
+l'avviso \verb{non_scritto:<fattore>}. Un livello \code{TF_NON_APPLICABILE} in un
+fattore annidato nel fattore che cambia non conta come differenza: il
+confronto porta l'avviso \verb{annidato:<fattore>}. Fuori da quel caso e' una
+differenza ordinaria, e una coppia che differisce solo cosi' va nel registro
+col motivo \code{non_applicabile}. Dopo la definizione, \code{\link[=.tf_soggetti]{.tf_soggetti()}}
 confronta le colonne di soggetto: il motivo \code{soggetti_disgiunti} toglie il
 confronto, gli avvisi \verb{soggetti_in_parte:<colonna>},
 \verb{soggetti_diversi:<colonna>} e \verb{soggetti_non_scritti:<colonna>} lo marcano.
+L'avviso \verb{soggetti_buco:<colonna>} dice che in un braccio la colonna e'
+scritta per alcuni campioni e non per altri.
 }
 \keyword{internal}

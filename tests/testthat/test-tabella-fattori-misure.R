@@ -89,13 +89,13 @@ test_that("due fattori che cambiano: «piu_fattori» nei confronti di Atlas e ne
 })
 test_that("tf_misura_studio: Atlas contro Atlas dà la riga perfetta, e uno studio senza nostri confronti dà zeri", {
   v <- atlas_vero(); a <- v$a; u <- a$tabella$campioni
-  m <- tf_misura_studio("GSE52778", a$partizione, a$confronti, a, u)
+  m <- tf_misura_studio("GSE52778", a$partizione, a$confronti, a, u, lettura = "intera")
   r <- m$riga
   expect_equal(nrow(r), 1L); expect_equal(r$classe_gruppi, "identica"); expect_equal(r$ari, 1)
   expect_equal(c(r$n_atlas, r$n_rispetta, r$n_rispetta_uguale, r$n_rispetta_verso_opposto), c(3L, 3L, 3L, 0L))
   expect_equal(c(r$n_nostri, r$n_non_elencati, r$n_giudicabili, r$n_errori), c(3L, 0L, 0L, 0L))
   expect_equal(m$atlas$ritrovato, rep("uguale", 3)); expect_equal(nrow(m$non_elencati), 0L)
-  vuoto <- tf_misura_studio("GSE52778", character(0), a$confronti[0, c("studio", "id", "trattato", "controllo")], a, u)
+  vuoto <- tf_misura_studio("GSE52778", character(0), a$confronti[0, c("studio", "id", "trattato", "controllo")], a, u, lettura = "intera")
   expect_true(is.na(vuoto$riga$classe_gruppi)); expect_equal(vuoto$riga$n_rispetta_uguale, 0L)
   expect_equal(vuoto$riga$n_rispetta, 3L); expect_equal(vuoto$riga$n_nostri, 0L)
 })
@@ -106,18 +106,18 @@ test_that("tf_misura_studio: i conti dei non elencati e degli errori", {
                 nostro(g("g4"), g("g1"), "c2"),                # due fattori: errore
                 nostro(g("g4"), g("g3"), "c3"),                # coerente
                 nostro(c("GSM98", "GSM99"), g("g3"), "c4"))    # fuori da Atlas
-  r <- tf_misura_studio("GSE0", a$partizione, miei, a, u)$riga
+  r <- tf_misura_studio("GSE0", a$partizione, miei, a, u, lettura = "intera")$riga
   expect_equal(c(r$n_nostri, r$n_non_elencati, r$n_giudicabili, r$n_errori), c(4L, 3L, 2L, 1L))
   expect_equal(c(r$n_coerente, r$n_piu_fattori_nostri, r$n_braccio_misto, r$n_fuori_atlas), c(1L, 1L, 0L, 1L))
   expect_equal(r$n_rispetta_uguale, 1L)
 })
 test_that("tf_riassumi_misure: numeratori, denominatori, quote e intervalli dal bootstrap sugli studi", {
   v <- atlas_vero(); a <- v$a; u <- a$tabella$campioni
-  buono <- tf_misura_studio("s1", a$partizione, a$confronti, a, u)$riga
-  vuoto <- tf_misura_studio("s2", character(0), a$confronti[0, c("studio", "id", "trattato", "controllo")], a, u)$riga
+  buono <- tf_misura_studio("s1", a$partizione, a$confronti, a, u, lettura = "intera")$riga
+  vuoto <- tf_misura_studio("s2", character(0), a$confronti[0, c("studio", "id", "trattato", "controllo")], a, u, lettura = "intera")$riga
   a2 <- atlas_2x2("g1", "g4"); g <- function(x) names(a2$partizione)[a2$partizione == x]
   misto <- tf_misura_studio("s3", stats::setNames(rep("x", 8), names(a2$partizione)),
-                            nostro(g("g2"), g("g3")), a2, a2$tabella$campioni)$riga
+                            nostro(g("g2"), g("g3")), a2, a2$tabella$campioni, lettura = "intera")$riga
   per_studio <- rbind(buono, vuoto, misto)
   # `vuoto` non ha campioni comuni: classe NA, fuori dal denominatore di (a) con un avviso (test a parte).
   tf_riassumi_misure <- function(...) suppressWarnings(simulomicsr:::tf_riassumi_misure(...),
@@ -144,8 +144,8 @@ test_that("tf_riassumi_misure: numeratori, denominatori, quote e intervalli dal 
 
 test_that("tf_riassumi_misure: uno studio senza classe dei gruppi esce dal denominatore di (a) con un avviso che lo nomina", {
   v <- atlas_vero(); a <- v$a; u <- a$tabella$campioni
-  buono <- tf_misura_studio("s1", a$partizione, a$confronti, a, u)$riga
-  vuoto <- tf_misura_studio("s2", character(0), a$confronti[0, c("studio", "id", "trattato", "controllo")], a, u)$riga
+  buono <- tf_misura_studio("s1", a$partizione, a$confronti, a, u, lettura = "intera")$riga
+  vuoto <- tf_misura_studio("s2", character(0), a$confronti[0, c("studio", "id", "trattato", "controllo")], a, u, lettura = "intera")$riga
   expect_true(is.na(vuoto$classe_gruppi))
   expect_warning(r <- tf_riassumi_misure(rbind(buono, vuoto), B = 20L, seme = 1L),
                  regexp = "s2", class = "simulomicsr_tf_studi_senza_classe")
@@ -190,4 +190,154 @@ test_that("un fattore «non scritto» in un braccio non è una differenza, e si 
   # un braccio che unisce campioni con dose e senza dose resta un braccio misto
   ne2 <- tf_giudica_non_elencati(nostro(c("GSM3", "GSM4", "GSM7", "GSM8"), c("GSM1", "GSM2")), a, u)
   expect_equal(ne2$giudizio, "braccio_misto")
+})
+
+# --- S12r2: le tre letture del riferimento (spec 5.5) -----------------------
+test_that("tf_misura_gruppi: «identica» chiede tutti i campioni di Atlas (minore M5)", {
+  atlas <- p(GSM1 = "a", GSM2 = "a", GSM3 = "b", GSM4 = "b")
+  m <- tf_misura_gruppi(p(GSM1 = "x", GSM2 = "x", GSM3 = "y"), atlas)
+  expect_equal(m$classe, "identica_sui_comuni"); expect_equal(m$solo_atlas, 1L)
+  # un nostro campione in più non è un campione di Atlas omesso
+  expect_equal(tf_misura_gruppi(p(GSM1 = "x", GSM2 = "x", GSM3 = "y", GSM4 = "y", GSM9 = "y"), atlas)$classe, "identica")
+})
+
+# Atlas finto con un fattore annidato: lo stadio vale solo per i malati.
+atlas_stadio <- function() {
+  campioni <- sprintf("GSM%d", 1:8)
+  livelli <- data.frame(malattia = rep(c("normal", "CD", "CD", "normal"), each = 2),
+                        stadio = rep(c(TF_NON_APPLICABILE, "B1", "B2", TF_NON_APPLICABILE), each = 2),
+                        sede = rep(c("ileo", "ileo", "ileo", "colon"), each = 2),
+                        row.names = campioni, stringsAsFactors = FALSE)
+  fattori <- data.frame(nome = c("malattia", "stadio", "sede"), tipo = "contesto", base = NA_character_)
+  partizione <- stats::setNames(rep(c("g1", "g2", "g3", "g4"), each = 2), campioni)
+  membri <- function(g) names(partizione)[partizione == g]
+  rif <- c("g1", "g2", "g4", "g1"); test <- c("g2", "g3", "g3", "g4")
+  confronti <- data.frame(studio = "GSE0", id = paste0(rif, "_", test), nome = NA_character_,
+                          riferimento = rif, test = test, stringsAsFactors = FALSE)
+  confronti$trattato <- lapply(test, membri); confronti$controllo <- lapply(rif, membri)
+  list(tabella = tf_tabella(campioni, livelli, fattori), partizione = partizione, confronti = confronti,
+       esclusi = data.frame(run = character(0), gruppo = character(0)))
+}
+test_that("il fattore annidato nei confronti di Atlas: con la regola non conta, senza è una differenza ordinaria", {
+  a <- atlas_stadio(); u <- names(a$partizione)
+  cl <- tf_classi_confronti_atlas(a, u)
+  expect_equal(cl$classe, c("rispetta", "rispetta", "piu_fattori", "rispetta"))
+  expect_equal(cl$fattori_diversi, c("malattia", "stadio", "malattia, sede, stadio", "sede"))
+  expect_equal(cl$fattori_annidati, c("stadio", "", "", ""))
+  senza <- tf_classi_confronti_atlas(a, u, annidato = FALSE)
+  expect_equal(senza$classe, c("piu_fattori", "rispetta", "piu_fattori", "rispetta"))
+  expect_equal(senza$fattori_diversi, c("malattia, stadio", "stadio", "malattia, sede, stadio", "sede"))
+  # (c): un nostro confronto non elencato fra malati B2 e sani dello stesso ileo è coerente con la regola
+  ne <- tf_giudica_non_elencati(nostro(c("GSM5", "GSM6"), c("GSM1", "GSM2")), a, u)
+  expect_equal(ne$giudizio, "coerente")
+  expect_equal(tf_giudica_non_elencati(nostro(c("GSM5", "GSM6"), c("GSM1", "GSM2")), a, u, annidato = FALSE)$giudizio,
+               "piu_fattori")
+})
+test_that("un confronto di Atlas che differisce solo in un livello «non applicabile» non rispetta la definizione", {
+  a <- atlas_stadio(); t <- unclass(a$tabella)
+  t$livelli$malattia <- NULL; t$fattori <- t$fattori[t$fattori$nome != "malattia", ]
+  a$tabella <- tf_tabella(t$campioni, t$livelli, t$fattori)
+  cl <- tf_classi_confronti_atlas(a, names(a$partizione))
+  expect_equal(cl$classe[1], "non_applicabile"); expect_equal(cl$fattori_diversi[1], "stadio")
+  expect_equal(tf_classi_confronti_atlas(a, names(a$partizione), annidato = FALSE)$classe[1], "rispetta")
+})
+test_that("la lettura stretta: un fattore non scritto in un braccio conta come differenza", {
+  a <- atlas_dose(); u <- names(a$partizione)
+  cl <- tf_classi_confronti_atlas(a, u, non_scritto_conta = TRUE)
+  expect_equal(cl$classe, c("piu_fattori", "rispetta", "rispetta", "piu_fattori"))
+  expect_equal(cl$fattori_diversi[c(1, 4)], c("dose, farmaco", "dose, farmaco, linea"))
+  ne <- tf_giudica_non_elencati(nostro(c("GSM5", "GSM6"), c("GSM1", "GSM2")), a, u, non_scritto_conta = TRUE)
+  expect_equal(ne$giudizio, "piu_fattori")
+})
+
+test_that(".tf_classe_tempo: un solo numero uguale a zero, un solo numero maggiore di zero, il resto", {
+  v <- c("0", "00h", "0 hour", "0 min", "day 0", "2 hour", "24hrs after treatment", "embryoid body, day 17", "0.5 h",
+         "control", "", "0 to 2 h", "pre-LVAD", NA)
+  expect_equal(.tf_classe_tempo(v), c(rep("zero", 5), rep("successivo", 4), rep("altro", 5)))
+})
+test_that("tf_tempo_zero: un braccio tutto a zero contro un braccio con un tempo successivo, in ogni verso", {
+  campo <- list(tempo = c(GSM1 = "0 hour", GSM2 = "0 hour", GSM3 = "2 hour", GSM4 = "2 hour", GSM5 = "control",
+                          GSM6 = "control", GSM7 = "4 hour"))
+  z <- function(t, c, k = campo) tf_tempo_zero(t, c, k)
+  expect_equal(z(c("GSM3", "GSM4"), c("GSM1", "GSM2")), list(tempo_zero = TRUE, verso = "zero_controllo", campo = "tempo"))
+  expect_equal(z(c("GSM1", "GSM2"), c("GSM3", "GSM4"))$verso, "zero_trattato")
+  expect_false(z(c("GSM1", "GSM2"), c("GSM5", "GSM6"))$tempo_zero)          # zero contro un valore senza numero
+  expect_false(z(c("GSM3", "GSM4"), c("GSM7"))$tempo_zero)                  # nessun braccio a zero
+  expect_false(z(c("GSM1", "GSM3"), c("GSM4", "GSM7"))$tempo_zero)          # un braccio misto non è «tutto a zero»
+  expect_false(z(c("GSM3", "GSM1"), c("GSM1", "GSM2"))$tempo_zero)          # l'altro braccio ha un campione a zero
+  expect_true(z(c("GSM3", "GSM5"), c("GSM1", "GSM2"))$tempo_zero)           # basta un campione a un tempo successivo
+  expect_false(z(c("GSM3", "GSM4"), c("GSM1", "GSM2"), list())$tempo_zero)  # nessun campo di tempo
+  expect_true(is.na(z(c("GSM3", "GSM4"), c("GSM7"))$verso))
+  # un campione senza valore nel campo non è a zero
+  expect_false(z(c("GSM3", "GSM4"), c("GSM1", "GSM99"))$tempo_zero)
+  # basta un campo su due
+  due <- c(campo, list(altro = c(GSM1 = "x", GSM2 = "x", GSM3 = "y", GSM4 = "y")))
+  expect_true(tf_tempo_zero(c("GSM3", "GSM4"), c("GSM1", "GSM2"), due[c("altro", "tempo")])$tempo_zero)
+})
+test_that("tf_campi_di_tempo: il nome ha «time» all'inizio di una parola; fattori di Atlas e colonne non costanti di GEO", {
+  a <- atlas_2x2(); t <- unclass(a$tabella)
+  names(t$livelli) <- c("Sampling Time point", "linea"); t$fattori$nome <- names(t$livelli)
+  a$tabella <- tf_tabella(t$campioni, t$livelli, t$fattori)
+  gsm <- a$tabella$campioni
+  geo <- list(timepoint = stats::setNames(rep(c("0", "2"), 4), gsm), `time-point` = stats::setNames(rep("0", 8), gsm),
+              daytime = stats::setNames(rep(c("am", "pm"), 4), gsm), duration = stats::setNames(rep(c("0", "2"), 4), gsm),
+              `differentiation time` = stats::setNames(rep(c("d1", "d2"), 4), gsm))
+  k <- tf_campi_di_tempo(a, geo)
+  expect_setequal(names(k), c("atlas:Sampling Time point", "geo:timepoint", "geo:differentiation time"))
+  expect_equal(k[["geo:timepoint"]][["GSM2"]], "2")
+  expect_equal(names(tf_campi_di_tempo(a, NULL)), "atlas:Sampling Time point")
+  expect_error(tf_campi_di_tempo(a, list(time = c("0", "2"))), class = "simulomicsr_tf_ingresso_non_valido")
+})
+
+# Atlas finto con un tempo zero usato come controllo: 0 h, veicolo a 24 h, farmaco a 24 h.
+atlas_tempo <- function() {
+  campioni <- sprintf("GSM%d", 1:6)
+  livelli <- data.frame(farmaco = rep(c("nessuno", "nessuno", "X"), each = 2),
+                        time = rep(c("0 hour", "24 hour", "24 hour"), each = 2),
+                        row.names = campioni, stringsAsFactors = FALSE)
+  fattori <- data.frame(nome = c("farmaco", "time"), tipo = "contesto", base = NA_character_)
+  partizione <- stats::setNames(rep(c("g1", "g2", "g3"), each = 2), campioni)
+  membri <- function(g) names(partizione)[partizione == g]
+  rif <- c("g1", "g2", "g1"); test <- c("g2", "g3", "g3")
+  confronti <- data.frame(studio = "GSE0", id = paste0(rif, "_", test), nome = NA_character_,
+                          riferimento = rif, test = test, stringsAsFactors = FALSE)
+  confronti$trattato <- lapply(test, membri); confronti$controllo <- lapply(rif, membri)
+  list(tabella = tf_tabella(campioni, livelli, fattori), partizione = partizione, confronti = confronti,
+       esclusi = data.frame(run = character(0), gruppo = character(0)))
+}
+test_that("la marca tempo_zero è indipendente dalla classe e decide il denominatore di (b) secondo la lettura", {
+  a <- atlas_tempo(); u <- names(a$partizione); campi <- tf_campi_di_tempo(a, NULL)
+  cl <- tf_classi_confronti_atlas(a, u, campi_tempo = campi)
+  expect_equal(cl$classe, c("rispetta", "rispetta", "piu_fattori"))
+  expect_equal(cl$tempo_zero, c(TRUE, FALSE, TRUE))
+  expect_equal(cl$tempo_zero_verso, c("zero_controllo", NA, "zero_controllo"))
+  # noi formiamo tutti e tre i confronti di Atlas
+  m <- function(lettura, ...) tf_misura_studio("GSE0", a$partizione, forma(a$confronti), a, u, lettura = lettura, ...)$riga
+  forma <- function(k) k[c("studio", "id", "trattato", "controllo")]
+  pr <- m("principale", campi_tempo = campi)
+  expect_equal(c(pr$n_rispetta, pr$n_b_den, pr$n_b_uguale, pr$n_tempo_zero, pr$n_tempo_zero_rispetta), c(2L, 1L, 1L, 2L, 1L))
+  int <- m("intera", campi_tempo = campi)
+  expect_equal(c(int$n_rispetta, int$n_b_den, int$n_b_uguale, int$n_tempo_zero), c(2L, 2L, 2L, 2L))
+  st <- m("stretta", campi_tempo = campi)
+  expect_equal(c(st$n_b_den, st$n_b_uguale), c(1L, 1L))
+  expect_equal(c(pr$lettura, int$lettura, st$lettura), c("principale", "intera", "stretta"))
+  # la lettura si dichiara sempre, e la principale e la stretta chiedono i campi di tempo
+  expect_error(tf_misura_studio("GSE0", a$partizione, forma(a$confronti), a, u), class = "simulomicsr_tf_ingresso_non_valido")
+  expect_error(m("principale"), class = "simulomicsr_tf_ingresso_non_valido")
+  expect_error(m("larga", campi_tempo = campi), class = "simulomicsr_tf_ingresso_non_valido")
+  expect_equal(m("intera")$n_b_den, 2L); expect_true(is.na(m("intera")$n_tempo_zero))
+})
+test_that("tf_riassumi_misure: la misura (b) usa il denominatore della lettura, e le identiche con campioni omessi stanno a parte", {
+  a <- atlas_tempo(); u <- names(a$partizione); campi <- tf_campi_di_tempo(a, NULL)
+  forma <- function(k) k[c("studio", "id", "trattato", "controllo")]
+  pr <- tf_misura_studio("s1", a$partizione, forma(a$confronti)[1, ], a, u, lettura = "principale", campi_tempo = campi)$riga
+  # ritroviamo solo il confronto col tempo zero: nella lettura principale non conta
+  r <- tf_riassumi_misure(pr, B = 20L, seme = 1L); riga <- function(m) r[r$misura == m, ]
+  expect_equal(c(riga("b_confronti_ritrovati")$numeratore, riga("b_confronti_ritrovati")$denominatore), c(0, 1))
+  expect_equal(c(riga("atlas_tempo_zero")$numeratore, riga("atlas_tempo_zero")$denominatore), c(2, 3))
+  omessi <- tf_misura_studio("s2", a$partizione[-1], forma(a$confronti)[0, ], a, u, lettura = "principale", campi_tempo = campi)$riga
+  expect_equal(omessi$classe_gruppi, "identica_sui_comuni")
+  r2 <- tf_riassumi_misure(rbind(pr, omessi), B = 20L, seme = 1L); riga <- function(m) r2[r2$misura == m, ]
+  expect_equal(c(riga("a_gruppi_identici")$numeratore, riga("a_gruppi_identici")$denominatore), c(1, 2))
+  expect_equal(c(riga("a_identici_sui_comuni")$numeratore, riga("a_identici_sui_comuni")$denominatore), c(1, 2))
 })

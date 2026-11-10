@@ -70,3 +70,14 @@ test_that("atlas_tabella: un fattore senza valore per alcuni run diventa «non s
   a2 <- atlas_tabella(k, rbind(s, dose, vuoto), legame_finto(unique(k$gruppi$run)))
   expect_equal(a2$tabella$livelli, a$tabella$livelli)
 })
+
+test_that("atlas_tabella: «not applicable» diventa il livello riservato, «not available» resta un livello ordinario", {
+  k <- atlas_leggi_configurazione(fx("E-GEOD-52778-configuration.xml")); s <- atlas_leggi_sdrf(fx("E-GEOD-52778.condensed-sdrf.tsv"))
+  run <- unique(k$gruppi$run)
+  stadio <- s[s$ruolo == "factor", ][seq_along(run), ]
+  stadio$run <- run; stadio$nome <- "disease staging"
+  stadio$valore <- rep(c(" Not Applicable ", "not available", "B1", "not applicable"), length.out = length(run))
+  a <- atlas_tabella(k, rbind(s, stadio), legame_finto(run))
+  liv <- a$tabella$livelli[legame_finto(run)$gsm, "disease staging"]
+  expect_equal(liv, rep(c(TF_NON_APPLICABILE, "not available", "B1", TF_NON_APPLICABILE), length.out = length(run)))
+})

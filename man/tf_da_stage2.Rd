@@ -10,7 +10,10 @@ tf_da_stage2(record)
 \item{record}{Lista: un record del master dello Stadio 2 letto con
 \code{jsonlite::fromJSON(riga, simplifyVector = FALSE)}. Usa \code{series_id},
 \code{replicate_groups} (\code{group_id}, \code{sample_ids}) e \code{comparisons}
-(\code{comparison_id}, \code{treated_group}, \code{control_group}).}
+(\code{comparison_id}, \code{treated_group}, \code{control_group}).
+Un GSM scritto piu' volte nello stesso gruppo conta una volta, con un avviso di
+classe \code{simulomicsr_tf_stage2_campione_ripetuto}. Un confronto senza
+\code{treated_group} o \code{control_group} e' un errore che nomina studio e confronto.}
 }
 \value{
 Lista con \code{partizione} (vettore chr con nome: GSM -> gruppo) e

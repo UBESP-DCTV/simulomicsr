@@ -100,8 +100,12 @@ test_that("soggetti: i valori vuoti non contano; un braccio senza valori dà un 
   expect_equal(r$confronti$esito, "confronto con avviso")
   r <- tab_stato(list(don = c(NA, NA, NA, NA)), c(don = "donatore"))
   expect_equal(r$confronti$esito, "confronto")
+  # Un buco dentro un braccio: il confronto si giudica sui valori scritti e porta un avviso (spec 5.3, S12r2).
   r <- tab_stato(list(sex = c("F", TF_NON_SCRITTO, "F", "")), c(sex = "sesso"))
-  expect_equal(r$confronti$esito, "confronto")
+  expect_equal(r$confronti$esito, "confronto con avviso")
+  expect_equal(r$confronti$avvisi[[1]], "soggetti_buco:sex")
+  r <- tab_stato(list(don = c("a", NA, "a", "b")), c(don = "donatore"))
+  expect_equal(r$confronti$avvisi[[1]], c("soggetti_diversi:don", "soggetti_buco:don"))
 })
 test_that(".tf_soggetti: la tabella della regola, riga per riga", {
   u <- c("a", "b"); p <- c("b", "c"); d <- c("c", "d")
@@ -124,4 +128,63 @@ test_that("più colonne di soggetto: tutte quelle che tolgono il confronto stann
   s <- list(sex = c("F", "F", "M", "M"), eta = c("adult", "adult", "fetal", "fetal"), don = c("a", "b", "c", "d"))
   r <- tab_stato(s, c(sex = "sesso", eta = "eta", don = "donatore"))
   expect_equal(r$registro$motivo, "soggetti_disgiunti"); expect_equal(r$registro$dettaglio, "eta, sex")
+})
+
+# --- S12r2: il livello «non applicabile» e il fattore annidato (spec 5.3) ---
+tab_annidata <- function() {
+  campioni <- sprintf("GSM%d", 1:6)
+  livelli <- data.frame(malattia = rep(c("sano", "malato", "malato"), each = 2),
+                        stadio = rep(c(TF_NON_APPLICABILE, "II", "III"), each = 2), row.names = campioni)
+  fattori <- data.frame(nome = c("malattia", "stadio"), tipo = "stato", base = c("sano", NA))
+  tf_tabella(campioni, livelli, fattori)
+}
+test_that("fattore annidato: malati di ogni stadio contro sani sono confronti sulla malattia", {
+  r <- tf_confronti(tab_annidata())
+  expect_equal(nrow(r$confronti), 2L)
+  expect_equal(r$confronti$fattore, c("malattia", "malattia"))
+  expect_equal(r$confronti$livello_base, c("sano", "sano"))
+  expect_true(all(vapply(r$confronti$controllo, identical, TRUE, c("GSM1", "GSM2"))))
+  expect_true(all(vapply(r$confronti$avvisi, identical, TRUE, "annidato:stadio")))
+  expect_equal(r$confronti$esito, rep("confronto con avviso", 2))
+  expect_setequal(vapply(r$confronti$contesto, function(k) k[["stadio"]], ""), c("II", "III"))
+  # stadio II contro stadio III: definizione ordinaria, e lo stadio non ha un livello di base
+  expect_equal(r$registro$motivo, "fattore_senza_base"); expect_equal(r$registro$dettaglio, "stadio")
+})
+test_that("«non applicabile» fuori da un fattore annidato è una differenza ordinaria, mai un trattato o una base", {
+  campioni <- sprintf("GSM%d", 1:6)
+  livelli <- data.frame(farmaco = rep(c("veicolo", "veicolo", "X"), each = 2),
+                        dose = rep(c(TF_NON_APPLICABILE, "5 uM", "5 uM"), each = 2), row.names = campioni)
+  fattori <- data.frame(nome = c("farmaco", "dose"), tipo = "perturbazione", base = c("veicolo", NA))
+  expect_false(.tf_annidati(livelli)["dose", "farmaco"])
+  r <- tf_confronti(tf_tabella(campioni, livelli, fattori))
+  expect_equal(nrow(r$confronti), 1L)
+  expect_equal(r$confronti$trattato[[1]], c("GSM5", "GSM6")); expect_equal(r$confronti$controllo[[1]], c("GSM3", "GSM4"))
+  expect_equal(r$confronti$esito, "confronto")
+  reg <- r$registro[order(r$registro$motivo), ]
+  expect_equal(reg$motivo, c("non_applicabile", "piu_di_un_fattore"))
+  expect_equal(reg$dettaglio, c("dose", "dose, farmaco"))
+  # la base non può essere «non applicabile»
+  fattori$base[2] <- TF_NON_APPLICABILE
+  expect_error(tf_tabella(campioni, livelli, fattori), class = "simulomicsr_tf_base_non_ammessa")
+})
+test_that(".tf_annidati: la proprietà si calcola dalla matrice campione per fattore", {
+  liv <- tab_annidata()$livelli
+  m <- .tf_annidati(liv)
+  expect_true(m["stadio", "malattia"]); expect_false(m["malattia", "stadio"]); expect_false(m["stadio", "stadio"])
+  # un fattore senza «non applicabile» non è annidato in niente
+  liv2 <- liv; liv2$stadio[1:2] <- "I"
+  expect_false(any(.tf_annidati(liv2)))
+  # tutti i livelli di A a «non applicabile»: A non ha un livello dei due tipi
+  liv3 <- liv; liv3$stadio <- TF_NON_APPLICABILE
+  expect_false(any(.tf_annidati(liv3)))
+  # un livello di A a cavallo
+  liv4 <- liv; liv4$stadio[3] <- TF_NON_APPLICABILE
+  expect_false(.tf_annidati(liv4)["stadio", "malattia"])
+})
+test_that("fattore annidato e fattore non scritto insieme: i due avvisi", {
+  t <- unclass(tab_annidata()); t$livelli$lotto <- c(TF_NON_SCRITTO, TF_NON_SCRITTO, "a", "a", "a", "a")
+  t$fattori <- rbind(t$fattori, data.frame(nome = "lotto", tipo = "tecnico", base = NA))
+  r <- tf_confronti(tf_tabella(t$campioni, t$livelli, t$fattori))
+  expect_equal(nrow(r$confronti), 2L)
+  expect_true(all(vapply(r$confronti$avvisi, identical, TRUE, c("non_scritto:lotto", "annidato:stadio"))))
 })

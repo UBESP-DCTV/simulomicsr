@@ -107,7 +107,8 @@ atlas_leggi_sdrf <- function(path) {
 #' run dello stesso campione si riducono al campione. Un campione in due gruppi
 #' di Atlas ferma lo studio con un errore. Un fattore che i curatori non
 #' scrivono per un run (la dose del controllo non trattato) ha il livello
-#' `TF_NON_SCRITTO`. Un run senza nessun fattore ferma lo studio.
+#' `TF_NON_SCRITTO`. Il valore "not applicable" dei curatori ha il livello
+#' `TF_NON_APPLICABILE`. Un run senza nessun fattore ferma lo studio.
 #'
 #' @param config Uscita di [atlas_leggi_configurazione()].
 #' @param sdrf Uscita di [atlas_leggi_sdrf()].
@@ -176,6 +177,9 @@ atlas_tabella <- function(config, sdrf, legame) {
       # I curatori non scrivono un fattore dove non si applica (la dose del controllo non trattato):
       # il livello e' `TF_NON_SCRITTO`, come nella tabella dei fattori del lettore.
       valore_run[is.na(valore_run)] <- TF_NON_SCRITTO
+      # «not applicable» dei curatori (a meno di maiuscole e spazi ai bordi) e' il livello riservato: lo
+      # stadio della malattia di un donatore sano. «not available» resta un livello ordinario (spec par. 5.5).
+      valore_run[tolower(trimws(valore_run)) == "not applicable"] <- TF_NON_APPLICABILE
       piu_valori <- unique(f$run[duplicated(f$run)])
       piu_valori <- intersect(piu_valori, gruppi$run)
       per_campione <- tapply(valore_run, gruppi$gsm, function(v) length(unique(v)))

@@ -16,9 +16,12 @@ tf_riassumi_misure(per_studio, B = 2000L, seme = 20261109L)
 \value{
 data.frame con \code{misura}, \code{numeratore}, \code{denominatore}, \code{quota}, \code{ic_basso}, \code{ic_alto}. Numeri
 principali: \code{a_gruppi_identici} (studi con classe \code{identica} su studi misurati), \code{b_confronti_ritrovati}
-(\code{uguale} su confronti di classe \code{rispetta}), \code{c_errori_non_elencati} (errori su confronti giudicabili).
-A parte: \code{verso_opposto}, \code{atlas_piu_fattori} (su tutti i confronti di Atlas), \code{atlas_piu_fattori_formati},
-\code{atlas_non_formabile}, \code{ari_mediana} (la quota e' la mediana; il denominatore e' il numero di studi).
+(\code{uguale} sul denominatore della lettura: \code{n_b_uguale} su \code{n_b_den}), \code{c_errori_non_elencati} (errori su
+confronti giudicabili). A parte: \code{a_identici_sui_comuni} (partizioni uguali sui campioni comuni che omettono
+campioni di Atlas), \code{verso_opposto}, \code{atlas_piu_fattori} (su tutti i confronti di Atlas),
+\code{atlas_piu_fattori_formati}, \code{atlas_non_formabile}, \code{atlas_tempo_zero} (confronti con la marca \code{tempo_zero}
+su tutti i confronti di Atlas; \code{NA} se la marca non e' stata calcolata), \code{ari_mediana} (la quota e' la
+mediana; il denominatore e' il numero di studi). Le righe devono venire tutte dalla stessa lettura.
 Con denominatore zero la quota e' \code{NA}.
 Uno studio con \code{classe_gruppi} \code{NA} esce dal denominatore di (a), con un avviso di classe
 \code{simulomicsr_tf_studi_senza_classe} che lo nomina.

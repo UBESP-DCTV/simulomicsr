@@ -9,6 +9,15 @@
 #' @keywords internal
 TF_NON_SCRITTO <- "non scritto"
 
+#' Livello di un fattore che per quel campione non si applica
+#'
+#' Lo stadio della malattia di un donatore sano, la dose di un campione non
+#' trattato. Diverso da `TF_NON_SCRITTO`: qui il testo dice (o il disegno
+#' implica) che il fattore non vale per il campione. Non e' mai un livello
+#' trattato ne' un livello di base (spec 2026-11-09 par. 5.3, aggiornamento S12r2).
+#' @keywords internal
+TF_NON_APPLICABILE <- "non applicabile"
+
 #' Tipi di fattore ammessi
 #' @keywords internal
 TF_TIPI <- c("perturbazione", "stato", "contesto", "tempo", "tecnico")
@@ -150,6 +159,11 @@ tf_tabella <- function(campioni, livelli, fattori, soggetti = NULL, tipo_soggett
     if (identical(b, TF_NON_SCRITTO)) {
       .tf_abort(sprintf("Il fattore `%s` ha per base \"%s\": un livello non scritto non puo' essere la base.",
                         fattori$nome[i], TF_NON_SCRITTO),
+                "base_non_ammessa")
+    }
+    if (identical(b, TF_NON_APPLICABILE)) {
+      .tf_abort(sprintf("Il fattore `%s` ha per base \"%s\": un livello non applicabile non puo' essere la base.",
+                        fattori$nome[i], TF_NON_APPLICABILE),
                 "base_non_ammessa")
     }
     if (!(b %in% livelli[[fattori$nome[i]]])) {

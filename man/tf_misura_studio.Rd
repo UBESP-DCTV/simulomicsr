@@ -4,7 +4,16 @@
 \alias{tf_misura_studio}
 \title{Le tre misure su uno studio, in una riga}
 \usage{
-tf_misura_studio(studio, nostra, nostri, atlas, universo, n_min = 2L)
+tf_misura_studio(
+  studio,
+  nostra,
+  nostri,
+  atlas,
+  universo,
+  n_min = 2L,
+  lettura,
+  campi_tempo = NULL
+)
 }
 \arguments{
 \item{studio}{chr, il nome dello studio.}
@@ -18,10 +27,19 @@ tf_misura_studio(studio, nostra, nostri, atlas, universo, n_min = 2L)
 \item{universo}{chr, i GSM che contano.}
 
 \item{n_min}{numero minimo di campioni per braccio per i confronti di Atlas.}
+
+\item{lettura}{la lettura del riferimento (spec par. 5.5 punto 3, aggiornamento S12r2), senza valore di
+default: \code{"principale"} (regola del fattore annidato, tempo zero fuori dal denominatore di (b), un fattore
+non scritto non conta), \code{"intera"} (nessuna regola del fattore annidato, tempo zero dentro: la definizione
+di S12r), \code{"stretta"} (come la principale, ma un fattore non scritto conta come differenza).}
+
+\item{campi_tempo}{l'uscita di \code{tf_campi_di_tempo()}: obbligatoria per le letture principale e stretta (una
+lista vuota se lo studio non ha campi di tempo). Con la lettura intera e \code{NULL} la marca non si calcola.}
 }
 \value{
-lista con \code{riga} (data.frame di una riga con i conteggi), \code{atlas} (i confronti di Atlas con \code{classe}
-e \code{ritrovato}), \code{non_elencati} (i nostri confronti non elencati con \code{giudizio}).
+lista con \code{riga} (data.frame di una riga con i conteggi), \code{atlas} (i confronti di Atlas con \code{classe},
+\code{tempo_zero}, \code{in_b} e \code{ritrovato}), \code{non_elencati} (i nostri confronti non elencati con \code{giudizio}). Nella
+riga, \code{n_b_den} e' il denominatore della misura (b) secondo la lettura e \code{n_b_uguale} il numeratore.
 }
 \description{
 Le tre misure su uno studio, in una riga

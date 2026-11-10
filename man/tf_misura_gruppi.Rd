@@ -10,9 +10,10 @@ tf_misura_gruppi(nostra, atlas)
 \item{nostra, atlas}{vettori con nome: GSM -> gruppo.}
 }
 \value{
-lista con \code{classe} (\code{"identica"}, \code{"piu_fine"}: ogni nostro gruppo sta in un gruppo di Atlas,
-\code{"piu_grossa"}, \code{"incrociata"}; \code{NA} senza campioni comuni), \code{ari} (indice di Rand corretto), \code{n_comuni},
-\code{solo_nostri}, \code{solo_atlas}.
+lista con \code{classe} (\code{"identica"}; \code{"identica_sui_comuni"}: uguale sui campioni comuni, ma la nostra
+partizione omette campioni di Atlas (spec par. 5.5 punto 4, aggiornamento S12r2); \code{"piu_fine"}: ogni nostro
+gruppo sta in un gruppo di Atlas; \code{"piu_grossa"}; \code{"incrociata"}; \code{NA} senza campioni comuni), \code{ari} (indice
+di Rand corretto), \code{n_comuni}, \code{solo_nostri}, \code{solo_atlas}.
 }
 \description{
 Le due partizioni si confrontano sui campioni comuni. I campioni non comuni si contano, non si tolgono in

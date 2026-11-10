@@ -18,6 +18,9 @@
 #'   `jsonlite::fromJSON(riga, simplifyVector = FALSE)`. Usa `series_id`,
 #'   `replicate_groups` (`group_id`, `sample_ids`) e `comparisons`
 #'   (`comparison_id`, `treated_group`, `control_group`).
+#'   Un GSM scritto piu' volte nello stesso gruppo conta una volta, con un avviso di
+#'   classe `simulomicsr_tf_stage2_campione_ripetuto`. Un confronto senza
+#'   `treated_group` o `control_group` e' un errore che nomina studio e confronto.
 #' @return Lista con `partizione` (vettore chr con nome: GSM -> gruppo) e
 #'   `confronti` (`data.frame` con `studio`, `id`, `trattato`, `controllo`;
 #'   le ultime due sono colonne-lista di GSM ordinati).
@@ -36,7 +39,16 @@ tf_da_stage2 <- function(record) {
                       .tf_elenca(unique(id_gruppi[duplicated(id_gruppi)]))),
               "stage2_record_non_valido")
   }
-  campioni <- lapply(gruppi, function(g) sort(unique(.tf_stage2_campioni(g$sample_ids))))
+  grezzi <- lapply(gruppi, function(g) .tf_stage2_campioni(g$sample_ids))
+  ripetuti <- unique(unlist(lapply(grezzi, function(x) x[duplicated(x)]), use.names = FALSE))
+  if (length(ripetuti)) {
+    # Nessun taglio silenzioso: il GSM ripetuto dentro un gruppo conta una volta e si nomina (minore M6 di S12r).
+    rlang::warn(sprintf("%s: %d campioni sono scritti piu' volte nello stesso gruppo dello Stadio 2: %s.",
+                        studio, length(ripetuti), .tf_elenca(ripetuti)),
+                class = "simulomicsr_tf_stage2_campione_ripetuto")
+  }
+  # Ordine dei byte: non dipende dal locale della macchina.
+  campioni <- lapply(grezzi, function(x) sort(unique(x), method = "radix"))
   names(campioni) <- id_gruppi
   tutti <- unlist(campioni, use.names = FALSE)
   di_gruppo <- rep(id_gruppi, lengths(campioni))
@@ -52,8 +64,15 @@ tf_da_stage2 <- function(record) {
   conf <- record$comparisons
   if (is.null(conf)) conf <- list()
   id <- vapply(conf, function(k) as.character(k$comparison_id), character(1))
-  trattato <- vapply(conf, function(k) as.character(k$treated_group), character(1))
-  controllo <- vapply(conf, function(k) as.character(k$control_group), character(1))
+  uno <- function(x) length(unlist(x)) == 1L
+  monco <- !vapply(conf, function(k) uno(k$treated_group) && uno(k$control_group), TRUE)
+  if (any(monco)) {
+    .tf_abort(sprintf("%s: %d confronti dello Stadio 2 non hanno un `treated_group` e un `control_group`: %s.",
+                      studio, sum(monco), .tf_elenca(id[monco])),
+              "stage2_record_non_valido")
+  }
+  trattato <- vapply(conf, function(k) as.character(unlist(k$treated_group)), character(1))
+  controllo <- vapply(conf, function(k) as.character(unlist(k$control_group)), character(1))
   ignoti <- setdiff(c(trattato, controllo), id_gruppi)
   if (length(ignoti)) {
     .tf_abort(sprintf("%s: i confronti dello Stadio 2 citano gruppi che non esistono: %s.",

@@ -4,7 +4,14 @@
 \alias{tf_classi_confronti_atlas}
 \title{Classifica i confronti dei curatori di Atlas rispetto alla definizione}
 \usage{
-tf_classi_confronti_atlas(atlas, universo, n_min = 2L)
+tf_classi_confronti_atlas(
+  atlas,
+  universo,
+  n_min = 2L,
+  annidato = TRUE,
+  non_scritto_conta = FALSE,
+  campi_tempo = NULL
+)
 }
 \arguments{
 \item{atlas}{l'uscita di \code{atlas_tabella()}.}
@@ -12,13 +19,24 @@ tf_classi_confronti_atlas(atlas, universo, n_min = 2L)
 \item{universo}{chr, i GSM che contano.}
 
 \item{n_min}{numero minimo di campioni per braccio dopo il taglio all'universo.}
+
+\item{annidato}{se \code{TRUE} (letture principale e stretta) vale la regola del fattore annidato; se \code{FALSE}
+(lettura intera) un livello \code{TF_NON_APPLICABILE} e' una differenza ordinaria.}
+
+\item{non_scritto_conta}{se \code{TRUE} (lettura stretta) un fattore che un braccio non scrive conta come
+differenza.}
+
+\item{campi_tempo}{l'uscita di \code{tf_campi_di_tempo()}; \code{NULL} se la marca \code{tempo_zero} non si calcola.}
 }
 \value{
-i confronti di Atlas con i bracci tagliati all'universo e le colonne \code{classe}, \code{fattori_diversi} e
-\code{fattori_non_scritti} (i fattori che uno dei due bracci non scrive: non contano come differenza).
-\code{classe}: \code{"rispetta"} (i due gruppi differiscono in un solo fattore di Atlas), \code{"piu_fattori"},
+i confronti di Atlas con i bracci tagliati all'universo e le colonne \code{classe}, \code{fattori_diversi},
+\code{fattori_non_scritti} (i fattori che uno dei due bracci non scrive: non contano come differenza, salvo
+\code{non_scritto_conta}), \code{fattori_annidati} (i fattori che la regola del fattore annidato toglie dal conto),
+\code{tempo_zero}, \code{tempo_zero_verso}, \code{tempo_zero_campo} (\code{NA} senza \code{campi_tempo}; la marca non dipende dalla
+classe). \code{classe}: \code{"rispetta"} (i due gruppi differiscono in un solo fattore di Atlas), \code{"piu_fattori"},
 \code{"non_formabile"} (un braccio ha meno di \code{n_min} campioni nell'universo), \code{"nessuna_differenza"} (i due
-gruppi hanno gli stessi livelli in tutti i fattori di Atlas).
+gruppi hanno gli stessi livelli in tutti i fattori di Atlas), \code{"non_applicabile"} (la sola differenza e' un
+livello \code{TF_NON_APPLICABILE}: per la definizione non e' un confronto).
 }
 \description{
 Classifica i confronti dei curatori di Atlas rispetto alla definizione

@@ -4,7 +4,13 @@
 \alias{tf_giudica_non_elencati}
 \title{Misura (c): i nostri confronti che Atlas non elenca, giudicati con i fattori di Atlas}
 \usage{
-tf_giudica_non_elencati(nostri, atlas, universo)
+tf_giudica_non_elencati(
+  nostri,
+  atlas,
+  universo,
+  annidato = TRUE,
+  non_scritto_conta = FALSE
+)
 }
 \arguments{
 \item{nostri}{i nostri confronti in forma comune.}
@@ -12,12 +18,16 @@ tf_giudica_non_elencati(nostri, atlas, universo)
 \item{atlas}{l'uscita di \code{atlas_tabella()}.}
 
 \item{universo}{chr, i GSM che contano.}
+
+\item{annidato, non_scritto_conta}{come in \code{tf_classi_confronti_atlas()}: la misura (c) usa la stessa
+classificazione della lettura.}
 }
 \value{
 i nostri confronti non elencati, con i bracci tagliati all'universo e la colonna \code{giudizio}:
 \code{"coerente"} (ogni braccio ha un solo livello in ogni fattore di Atlas e i due bracci differiscono in un
 solo fattore), \code{"piu_fattori"}, \code{"braccio_misto"}, \code{"nessuna_differenza"}, \code{"fuori_atlas"} (un braccio non
-ha campioni nell'universo). Errore = \code{piu_fattori} o \code{braccio_misto}.
+ha campioni nell'universo), \code{"non_applicabile"} (la sola differenza e' un livello \code{TF_NON_APPLICABILE}:
+non si giudica, si conta a parte). Errore = \code{piu_fattori} o \code{braccio_misto}.
 }
 \description{
 Un nostro confronto e' «elencato» se i suoi due insiemi, tagliati all'universo, sono quelli di un confronto di

@@ -26,3 +26,16 @@ test_that("tf_da_stage2: record senza gruppi, colonne giuste a zero righe, grupp
   expect_equal(tf_da_stage2(x)$confronti$controllo[[1]], c("GSM1", "GSM2"))     # i bracci sono ordinati
   expect_equal(tf_da_stage2(x)$confronti$id, "c1")
 })
+test_that("tf_da_stage2: un GSM ripetuto in un gruppo dà un avviso che lo nomina; l'ordine non dipende dal locale (M6)", {
+  x <- rec(); x$replicate_groups[[1]]$sample_ids <- list("GSM2", "GSM1", "GSM2")
+  expect_warning(r <- tf_da_stage2(x), "GSM2", class = "simulomicsr_tf_stage2_campione_ripetuto")
+  expect_equal(r$confronti$controllo[[1]], c("GSM1", "GSM2"))
+  x <- rec(); x$replicate_groups[[1]]$sample_ids <- list("GSMb", "GSMB", "GSMa")
+  expect_equal(names(tf_da_stage2(x)$partizione)[1:3], c("GSMB", "GSMa", "GSMb"))   # ordine dei byte
+})
+test_that("tf_da_stage2: un confronto senza un gruppo dà un errore che nomina studio e confronto (M6)", {
+  x <- rec(); x$comparisons[[1]]$control_group <- NULL
+  expect_error(tf_da_stage2(x), "GSE1.*c1", class = "simulomicsr_tf_stage2_record_non_valido")
+  x <- rec(); x$comparisons[[1]]$treated_group <- list()
+  expect_error(tf_da_stage2(x), "GSE1.*c1", class = "simulomicsr_tf_stage2_record_non_valido")
+})
