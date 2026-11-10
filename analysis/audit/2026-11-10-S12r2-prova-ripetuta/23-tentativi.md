@@ -49,3 +49,25 @@
 - Lo script verifica la deroga sul processo: `container-env.txt` deve avere `HF_HUB_OFFLINE=1` e nessuna riga
   `VLLM_BATCH_INVARIANT=` (`raccogli_deroga()` in `23-lancia.R`).
 - È l'ultimo tentativo di G2 (regola: al massimo due).
+
+## G2, secondo tentativo: FALLITO. G2 è «non misurato»
+
+- Job 478805, `poddgx02`, 18:00-18:04 (ora locale), run_id `20261110T170010Z-s12r2-lettore-v1-g2-corsa1-c27be4`,
+  `records_completed: 0`. `container-env.txt`: `HF_HUB_OFFLINE=1`, nessuna riga `VLLM_BATCH_INVARIANT=` (come
+  chiedeva la deroga). Versione di vLLM letta nel contenitore: 0.20.2.
+- **Causa letta nel log.** `ValueError: To serve at least one request with the models's max seq len (65536), (0.8 GiB
+  KV cache is needed, which is larger than the available KV cache memory (0.23 GiB). Based on the available memory,
+  the estimated maximum model length is 15840.` I pesi occupano 57,3 GiB per GPU («Model loading took 57.3 GiB
+  memory») e vLLM riserva circa 12,65 GiB per GPU per i grafi CUDA («Estimated CUDA graph memory: 12.65 GiB
+  total»): su una H100 da 80 GB, con `gpu_memory_utilization = 0,95`, restano 0,23 GiB per la cache.
+- **Che cosa vuol dire.** Su 4 GPU `Qwen/Qwen3.5-122B-A10B` in FP16 non entra con `max_model_len = 65536`, che le
+  previsioni fissano «per tutti». Questo errore non dipende dalla variabile di batch invarianza: anche il primo
+  tentativo, superato l'errore sugli strati GDN, si sarebbe fermato qui.
+- **Che cosa servirebbe.** Uno di questi cambi: 8 GPU (`tensor_parallel_size = 8`, tutto `poddgx02`), oppure
+  `max_model_len` ≤ 15.840, oppure `VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0`. Ognuno è un terzo tentativo. La
+  regola depositata ne ammette due: non si fa.
+- **Esito.** G2 è **«non misurato»**. Per la regola depositata la regola di esito per G2 è **no**. La deroga a K4
+  del secondo tentativo non ha prodotto nessun numero: nessuna misura di questa sessione è in deroga.
+- I pesi di G2 (268 GB) restano sul DGX in `…/models/HF_HOME/hub/models--Qwen--Qwen3.5-122B-A10B`: `/home/u0044`
+  occupa 426 GB su 500. Si cancellano quando il PI decide se G2 si riprova in una prova nuova.
+- File del job: `jobs/falliti/G2-corsa1-tentativo2-478805.rds`.
