@@ -2,7 +2,9 @@
 #
 # Una definizione sola: un confronto e' una coppia di gruppi uguali in tutti i
 # fattori tranne uno, con uno dei due al livello di base di quel fattore.
-# Ogni coppia di gruppi che non diventa un confronto va nel registro, col motivo.
+# I soggetti (donatore, sesso, eta', passaggio, lotto, coppia) non formano gruppi:
+# si confrontano come insiemi fra i due bracci. Ogni coppia di gruppi che non
+# diventa un confronto va nel registro, col motivo.
 
 # Ordina e incolla i nomi per la colonna `dettaglio` del registro.
 .tf_dettaglio <- function(x) paste(sort(x, method = "radix"), collapse = ", ")
@@ -20,6 +22,77 @@
 .tf_registro_vuoto <- function() {
   data.frame(gruppo_a = character(0), gruppo_b = character(0), motivo = character(0),
              dettaglio = character(0), stringsAsFactors = FALSE)
+}
+
+# I valori scritti di una colonna di soggetto: senza NA, vuoti e "non scritto".
+.tf_valori_scritti <- function(x) {
+  x <- trimws(as.character(x))
+  unique(x[!is.na(x) & nzchar(x) & x != TF_NON_SCRITTO])
+}
+
+# Eta' numerica: ogni valore contiene un solo numero e il resto del testo
+# (l'unita') e' lo stesso in tutti i valori. Restituisce i numeri, o NULL.
+# Senza il controllo sull'unita', "6 months" e "7 years" sarebbero vicini.
+.tf_eta_numerica <- function(x) {
+  modello <- "[0-9]+(\\.[0-9]+)?"
+  trovati <- regmatches(x, gregexpr(modello, x))
+  if (!all(lengths(trovati) == 1L)) return(NULL)
+  unita <- tolower(gsub("[[:space:]]+", " ", trimws(sub(modello, "", x))))
+  if (length(unique(unita)) != 1L) return(NULL)
+  as.numeric(unlist(trovati))
+}
+
+#' Confronta i soggetti dei due bracci di un confronto, come insiemi
+#'
+#' Regola (decisione 2 del PI del 2026-11-08). Si confrontano gli insiemi dei
+#' valori distinti e scritti dei due bracci.
+#'
+#' - Fattore di tipo perturbazione, ogni tipo di soggetto: insiemi in parte
+#'   comuni danno un avviso, insiemi senza valori comuni tolgono il confronto.
+#' - Fattore di tipo stato, soggetto donatore, passaggio, lotto o coppia: i
+#'   soggetti sono diversi per forza, quindi sempre e solo un avviso.
+#' - Fattore di tipo stato, soggetto sesso o eta': come per la perturbazione.
+#'
+#' L'eta' numerica (un solo numero per valore, stessa unita') si confronta per
+#' intervalli `[min, max]`: intervalli che si sovrappongono valgono "uguali".
+#' Se un solo braccio non ha valori scritti, il confronto resta e porta un avviso.
+#'
+#' @param valori_trattato,valori_controllo Valori della colonna nei due bracci.
+#' @param tipo_soggetto Tipo della colonna, in `TF_SOGGETTI`.
+#' @param tipo_fattore Tipo del fattore che cambia nel confronto.
+#' @return `"uguali"`, `"avviso_in_parte"`, `"avviso_diversi"`,
+#'   `"avviso_non_scritto"` o `"nessun_confronto"`.
+#' @keywords internal
+.tf_soggetti <- function(valori_trattato, valori_controllo, tipo_soggetto, tipo_fattore) {
+  if (!(tipo_soggetto %in% TF_SOGGETTI)) {
+    .tf_abort(sprintf("Tipo di soggetto non ammesso: \"%s\".", tipo_soggetto), "soggetto_senza_tipo")
+  }
+  if (!(tipo_fattore %in% TF_TIPI_CON_BASE)) {
+    .tf_abort(sprintf("Un confronto cambia un fattore di tipo %s, non \"%s\".",
+                      paste(TF_TIPI_CON_BASE, collapse = " o "), tipo_fattore),
+              "ingresso_non_valido")
+  }
+  t <- .tf_valori_scritti(valori_trattato)
+  k <- .tf_valori_scritti(valori_controllo)
+  if (length(t) == 0L && length(k) == 0L) return("uguali")
+  if (length(t) == 0L || length(k) == 0L) return("avviso_non_scritto")
+
+  relazione <- NULL
+  if (tipo_soggetto == "eta") {
+    numeri <- .tf_eta_numerica(c(t, k))
+    if (!is.null(numeri)) {
+      nt <- numeri[seq_along(t)]
+      nk <- numeri[length(t) + seq_along(k)]
+      relazione <- if (max(nt) < min(nk) || max(nk) < min(nt)) "disgiunti" else "uguali"
+    }
+  }
+  if (is.null(relazione)) {
+    relazione <- if (setequal(t, k)) "uguali" else if (length(intersect(t, k))) "in_parte" else "disgiunti"
+  }
+  if (relazione == "uguali") return("uguali")
+  come_donatore <- tipo_soggetto %in% c("donatore", "passaggio", "lotto", "coppia")
+  if (tipo_fattore == "stato" && come_donatore) return("avviso_diversi")
+  if (relazione == "in_parte") "avviso_in_parte" else "nessun_confronto"
 }
 
 # Giudica una coppia di gruppi (righe `a` e `b` di `gruppi`).
@@ -53,8 +126,28 @@
   trt <- if (a_base) b else a
   if (gruppi$n[trt] < n_min || gruppi$n[ctr] < n_min) return(list(motivo = "n_min", dettaglio = D))
 
+  # Passo 4b: i soggetti si confrontano come insiemi, colonna per colonna.
+  avvisi_soggetti <- character(0)
+  if (!is.null(tabella$soggetti) && ncol(tabella$soggetti) > 0L) {
+    colonne <- sort(names(tabella$soggetti), method = "radix")
+    esiti <- vapply(colonne, function(col) {
+      .tf_soggetti(tabella$soggetti[gruppi$campioni[[trt]], col],
+                   tabella$soggetti[gruppi$campioni[[ctr]], col],
+                   tabella$tipo_soggetto[[col]], fattori$tipo[i_f])
+    }, "")
+    if (any(esiti == "nessun_confronto")) {
+      return(list(motivo = "soggetti_disgiunti",
+                  dettaglio = .tf_dettaglio(colonne[esiti == "nessun_confronto"])))
+    }
+    prefisso <- c(avviso_in_parte = "soggetti_in_parte:", avviso_diversi = "soggetti_diversi:",
+                  avviso_non_scritto = "soggetti_non_scritti:")
+    con_avviso <- esiti %in% names(prefisso)
+    avvisi_soggetti <- paste0(prefisso[esiti[con_avviso]], colonne[con_avviso])
+  }
+
   # Passo 5: e' un confronto. I fattori non scritti si marcano.
   avvisi <- if (length(N)) paste0("non_scritto:", sort(N, method = "radix")) else character(0)
+  avvisi <- c(avvisi, avvisi_soggetti)
   altri <- setdiff(fattori$nome, D)
   contesto <- stats::setNames(vapply(altri, function(f) gruppi[[f]][trt], ""), altri)
   riga <- data.frame(id = paste(gruppi$gruppo[trt], gruppi$gruppo[ctr], sep = "_"),
@@ -76,7 +169,10 @@
 #' tutti i fattori tranne uno, e uno dei due e' al livello di base di quel
 #' fattore. Il gruppo al livello di base e' il controllo. Un livello
 #' `TF_NON_SCRITTO` non conta come differenza: il confronto si forma e porta
-#' l'avviso `non_scritto:<fattore>`.
+#' l'avviso `non_scritto:<fattore>`. Dopo la definizione, [.tf_soggetti()]
+#' confronta le colonne di soggetto: il motivo `soggetti_disgiunti` toglie il
+#' confronto, gli avvisi `soggetti_in_parte:<colonna>`,
+#' `soggetti_diversi:<colonna>` e `soggetti_non_scritti:<colonna>` lo marcano.
 #'
 #' @param tabella Oggetto di [tf_tabella()].
 #' @param n_min Numero minimo di campioni per braccio.
