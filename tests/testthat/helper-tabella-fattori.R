@@ -12,3 +12,8 @@ tf_finta <- function(soggetti = NULL, tipo_soggetto = NULL) {
                         base = c("veicolo", NA, NA), stringsAsFactors = FALSE)
   tf_tabella(campioni, livelli, fattori, soggetti, tipo_soggetto)
 }
+
+# Fixture di Expression Atlas (E-GEOD-52778, studio di sviluppo) e un legame run -> GSM finto ma vero
+# per questo studio: SRR1039508 e' GSM1275862 e i numeri crescono insieme.
+fx <- function(f) testthat::test_path("fixtures", "atlas", f)
+legame_finto <- function(run) data.frame(run = run, gsm = sprintf("GSM%d", 1275862L + as.integer(sub("SRR", "", run)) - 1039508L))

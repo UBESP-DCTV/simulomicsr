@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration experimentType="rnaseq_mrna_differential" r_data="1">
+    <analytics>
+        <assay_groups>
+            <assay_group id="g1" label="albuterol">
+                <assay>SRR1039522</assay>
+                <assay>SRR1039518</assay>
+                <assay>SRR1039514</assay>
+                <assay>SRR1039510</assay>
+            </assay_group>
+            <assay_group id="g2" label="albuterol and dexamethasone">
+                <assay>SRR1039515</assay>
+                <assay>SRR1039523</assay>
+                <assay>SRR1039519</assay>
+                <assay>SRR1039511</assay>
+            </assay_group>
+            <assay_group id="g3" label="dexamethasone">
+                <assay>SRR1039521</assay>
+                <assay>SRR1039509</assay>
+                <assay>SRR1039517</assay>
+                <assay>SRR1039513</assay>
+            </assay_group>
+            <assay_group id="g4" label="untreated">
+                <assay>SRR1039508</assay>
+                <assay>SRR1039520</assay>
+                <assay>SRR1039512</assay>
+                <assay>SRR1039516</assay>
+            </assay_group>
+        </assay_groups>
+        <contrasts>
+            <contrast id="g4_g1">
+                <name>'albuterol' vs 'untreated'</name>
+                <reference_assay_group>g4</reference_assay_group>
+                <test_assay_group>g1</test_assay_group>
+            </contrast>
+            <contrast id="g4_g3">
+                <name>'dexamethasone' vs 'untreated'</name>
+                <reference_assay_group>g4</reference_assay_group>
+                <test_assay_group>g3</test_assay_group>
+            </contrast>
+            <contrast id="g4_g2">
+                <name>'albuterol and dexamethasone' vs 'untreated'</name>
+                <reference_assay_group>g4</reference_assay_group>
+                <test_assay_group>g2</test_assay_group>
+            </contrast>
+        </contrasts>
+    </analytics>
+</configuration>
