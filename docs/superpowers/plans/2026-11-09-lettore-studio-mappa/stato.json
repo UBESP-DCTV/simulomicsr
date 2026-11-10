@@ -2,7 +2,7 @@
   "aggiornato": "2026-11-10",
   "sessione": "Sessione del Piano 1 (S12r), aperta il 2026-11-10",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Passo 6: scarico dei file di Atlas per i 129 studi e legame fra run (SRR) e campioni (GSM).",
+  "prossimo_passo": "Passo 7: le misure contro Expression Atlas (gruppi, confronti ritrovati, confronti non elencati).",
   "piani": [
     {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "in_corso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
@@ -37,7 +37,7 @@
     {"n": 6, "gruppo": "Il riferimento esterno: Expression Atlas",
      "titolo": "Scarico dei file e legame fra corse di sequenziamento e campioni GEO",
      "da": "I file dei 129 studi. Per gli 82 studi chiusi gli script usano solo gli identificativi.",
-     "cancelli": ["K1"], "stato": "da_fare", "commit": "", "data": "", "nota": ""},
+     "cancelli": ["K1"], "stato": "fatto", "commit": "74c7f82", "data": "2026-11-10", "nota": ""},
     {"n": 7, "gruppo": "Le misure",
      "titolo": "Le tre misure",
      "da": "(a) gruppi uguali a quelli dei curatori, (b) confronti dei curatori ritrovati, (c) confronti in più giudicati con i fattori dei curatori.",
@@ -62,7 +62,7 @@
   "cancelli": [
     {"id": "K1", "task": 6,
      "testo": "Il legame fra corse di sequenziamento e campioni GEO copre tutti i 47 studi di sviluppo. Le due fonti del legame (ENA e ARCHS4) non sono mai in disaccordo.",
-     "stato": "da_valutare", "nota": ""},
+     "stato": "passato", "nota": "6.253 run su 6.253 legati, 0 disaccordi, controllo positivo visto"},
     {"id": "K2", "task": 8,
      "testo": "Controllo positivo dello strumento: i gruppi e i confronti dei curatori, dati allo strumento al posto dei nostri, danno gruppi identici in 47 studi su 47 e ritrovano tutti i confronti che rispettano la definizione.",
      "stato": "da_valutare", "nota": ""},
@@ -110,6 +110,7 @@
     {"data": "2026-11-10", "che_cosa": "Passo 2 fatto: l'oggetto «tabella dei fattori» e i gruppi, con 11 controlli verdi."},
     {"data": "2026-11-10", "che_cosa": "Passo 3 fatto: il costruttore dei confronti dalla definizione, con il registro delle coppie non formate. 35 controlli verdi."},
     {"data": "2026-11-10", "che_cosa": "Passo 4 fatto: i soggetti si confrontano come insiemi. Due scelte dell'agente: età per intervalli solo con la stessa unità; un braccio senza valori scritti dà un avviso."},
-    {"data": "2026-11-10", "che_cosa": "Passo 5 fatto: il lettore dei file di Expression Atlas (gruppi, confronti, fattori dei curatori), con 32 controlli verdi."}
+    {"data": "2026-11-10", "che_cosa": "Passo 5 fatto: il lettore dei file di Expression Atlas (gruppi, confronti, fattori dei curatori), con 32 controlli verdi."},
+    {"data": "2026-11-10", "che_cosa": "Passo 6 fatto: file di Atlas scaricati (129 studi) e legame fra run e campioni: 6.253 run su 6.253 hanno un campione, nessun disaccordo fra le due fonti."}
   ]
 }
