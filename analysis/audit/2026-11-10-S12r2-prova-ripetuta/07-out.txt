@@ -1,0 +1,58 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 441 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+List of 5
+ $ campioni     : chr [1:6] "GSM2756550" "GSM2756552" "GSM2756551" ...
+ $ livelli      :'data.frame':	6 obs. of  1 variable:
+  ..$ disease: chr [1:6] "normal" "normal" "normal" ...
+ $ fattori      :'data.frame':	1 obs. of  3 variables:
+  ..$ nome: chr "disease"
+  ..$ tipo: chr "contesto"
+  ..$ base: chr NA
+ $ soggetti     : NULL
+ $ tipo_soggetto: NULL
+ - attr(*, "class")= chr "simulomicsr_tf_tabella"
+
+== valori speciali nei fattori di Atlas (studio, fattore, valore, campioni nell'universo) ==
+GSE103501 | stimulus | none=11 | n 29 
+GSE41586 | compound | none=3 | n 9 
+GSE41586 | dose | non scritto=3 | n 9 
+GSE56691 | compound | none=3 | n 12 
+GSE57945 | histology | not applicable=104; undetermined=3 | n 321 
+GSE60340 | treatment | non scritto=6 | n 24 
+GSE63816 | genotype | non scritto=4 | n 20 
+GSE65335 | dose | non scritto=6 | n 9 
+GSE66207 | disease staging | not applicable=13 | n 33 
+GSE69597 | clinical information | not applicable=46; not available=16 | n 166 
+GSE69597 | disease staging | not applicable=46; not available=16 | n 166 
+GSE71421 | dose | non scritto=3 | n 6 
+GSE71595 | compound | none=7 | n 14 
+GSE71595 | dose | non scritto=7 | n 14 
+
+== annidamento (studio | B | valore | A | livelli di A tutti dentro | livelli di A a cavallo) ==
+GSE41586 | dose | non scritto | compound | tutti: none | a cavallo:  | livelli senza: 1 
+GSE57945 | histology | not applicable | disease | tutti: non inflammatory bowel disease control, ulcerative colitis | a cavallo:  | livelli senza: 1 
+GSE60340 | treatment | non scritto | phenotype | tutti: aging cells, young cells | a cavallo:  | livelli senza: 4 
+GSE63816 | genotype | non scritto | disease | tutti: normal | a cavallo:  | livelli senza: 2 
+GSE65335 | dose | non scritto | compound | tutti: untreated | a cavallo:  | livelli senza: 1 
+GSE65335 | dose | non scritto | growth condition | tutti: submerged (day 8) | a cavallo: air-liquid interface (day 14) (50%) | livelli senza: 0 
+GSE66207 | disease staging | not applicable | disease | tutti: non inflammatory bowel disease control | a cavallo:  | livelli senza: 1 
+GSE69597 | clinical information | not applicable | disease | tutti: normal | a cavallo:  | livelli senza: 2 
+GSE69597 | clinical information | not applicable | disease staging | tutti: not applicable | a cavallo:  | livelli senza: 3 
+GSE69597 | clinical information | not available | disease | tutti: Leishmaniasis | a cavallo:  | livelli senza: 2 
+GSE69597 | clinical information | not available | disease staging | tutti: not available | a cavallo:  | livelli senza: 3 
+GSE69597 | disease staging | not applicable | clinical information | tutti: not applicable | a cavallo:  | livelli senza: 4 
+GSE69597 | disease staging | not applicable | disease | tutti: normal | a cavallo:  | livelli senza: 2 
+GSE69597 | disease staging | not available | clinical information | tutti: not available | a cavallo:  | livelli senza: 4 
+GSE69597 | disease staging | not available | disease | tutti: Leishmaniasis | a cavallo:  | livelli senza: 2 
+GSE71421 | dose | non scritto | compound | tutti: vehicle control | a cavallo:  | livelli senza: 1 
+GSE71595 | dose | non scritto | compound | tutti: none | a cavallo:  | livelli senza: 1 
+GSE71595 | dose | non scritto | disease | tutti:  | a cavallo: juvenile idiopathic arthritis (50%), normal (50%) | livelli senza: 0 

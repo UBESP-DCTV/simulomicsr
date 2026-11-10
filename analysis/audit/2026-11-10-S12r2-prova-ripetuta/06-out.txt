@@ -1,0 +1,36 @@
+fattori per numero di colonne di fonte: {1: 97, 2: 3}
+
+fattori per (colonne di fonte, forma delle voci):
+  1 colonne | piu valori della stessa colonna -> un livello           |   5 fattori | 5 studi
+  1 colonne | piu valori, non tutti nella colonna                     |  21 fattori | 14 studi
+  1 colonne | tutte giuste                                            |  72 fattori | - studi
+  2 colonne | tutte giuste                                            |   3 fattori | - studi
+
+dettaglio dei fattori con voci non giuste:
+   GSE112057 disease_state state 1 {'piu valori, non tutti nella colonna': 6}
+   GSE44379 treatment perturbation 1 {'piu valori, non tutti nella colonna': 2}
+   GSE44379 fraction technical 1 {'piu valori, non tutti nella colonna': 16}
+   GSE46665 disease state 1 {'piu valori della stessa colonna -> un livello': 9}
+   GSE50760 disease_state state 1 {'piu valori, non tutti nella colonna': 3}
+   GSE52194 breast_cancer_subtype state 1 {'piu valori, non tutti nella colonna': 4}
+   GSE52778 agent perturbation 1 {'piu valori, non tutti nella colonna': 14}
+   GSE52946 disease_state state 1 {'piu valori, non tutti nella colonna': 3}
+   GSE56691 time time 1 {'piu valori della stessa colonna -> un livello': 4}
+   GSE57027 construct perturbation 1 {'piu valori, non tutti nella colonna': 3}
+   GSE57116 replicate technical 1 {'piu valori, non tutti nella colonna': 14}
+   GSE57116 time time 1 {'piu valori, non tutti nella colonna': 14}
+   GSE57116 treatment perturbation 1 {'piu valori, non tutti nella colonna': 14}
+   GSE63015 time technical 1 {'piu valori, non tutti nella colonna': 6}
+   GSE63816 genotype state 1 {'piu valori, non tutti nella colonna': 22}
+   GSE63816 disease_state state 1 {'piu valori, non tutti nella colonna': 3}
+   GSE66573 disease_state state 1 {'piu valori, non tutti nella colonna': 2}
+   GSE67196 disease state 1 {'piu valori, non tutti nella colonna': 3}
+   GSE67196 tissue context 1 {'piu valori, non tutti nella colonna': 2}
+   GSE67196 sample technical 1 {'piu valori, non tutti nella colonna': 53}
+   GSE68919 exosome perturbation 1 {'piu valori della stessa colonna -> un livello': 3}
+   GSE69597 stage state 1 {'piu valori della stessa colonna -> un livello': 2, 'piu valori, non tutti nella colonna': 1, 'giusta': 2}
+   GSE71595 replicate technical 1 {'piu valori della stessa colonna -> un livello': 4}
+   GSE78936 disease state 1 {'piu valori, non tutti nella colonna': 3}
+   GSE78936 region context 1 {'piu valori, non tutti nella colonna': 3}
+
+studi con almeno un fattore con voci non giuste: 18

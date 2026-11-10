@@ -1,0 +1,93 @@
+== A. Il fattore con un livello per campione ==
+studio | n | ruolo di title | colonne con un valore per campione (ruolo) | fattori per campione (tipo; fonti; livelli)
+GSE103170 | 6 | factor | title (factor) | sample (technical; title; 6)
+GSE51261 | 9 | factor | title (factor) | replicate (technical; title; 9)
+GSE67196 | 53 | factor | title (factor) | sample (technical; title; 53)
+GSE75852 | 12 | factor | title (factor); description (replicate) | replicate (technical; description; 12)
+GSE77598 | 8 | factor | title (factor); description (uninformative) | sample (technical; title; 8)
+GSE83415 | 21 | factor | title (factor); description (uninformative) | patient (technical; title; 21)
+GSE83687 | 134 | factor | title (factor); description (uninformative) | sample (technical; title; 134)
+
+ruolo dato a `title` contro «lo studio ha un fattore per campione»:
+  title=factor         fattore per campione=False: 37 studi
+  title=factor         fattore per campione=True: 7 studi
+  title=replicate      fattore per campione=False: 3 studi
+studi con almeno un fattore per campione: 7 su 47
+
+nei 7 studi: tipo e nome del fattore per campione
+[(('technical', 'sample'), 4), (('technical', 'replicate'), 2), (('technical', 'patient'), 1)]
+
+nei 7 studi: la colonna fonte del fattore per campione ha ruolo
+[('factor', 6), ('replicate', 1)]
+
+il titolo e' fonte di un fattore che NON e' per campione (uso legittimo): 13 studi: GSE41586, GSE44379, GSE56235, GSE56691, GSE57116, GSE59781, GSE60585, GSE63015, GSE63816, GSE66573, GSE68919, GSE71289, GSE71595
+title ha ruolo `factor` ma nessun fattore lo usa come fonte: 25 studi
+title ha ruolo `factor`: 44 studi; `replicate`: 3 ; `uninformative`: 0 ; `subject`: 0 ; title costante o assente: 0
+
+studi con title=`factor`: il fattore dal titolo ripete una partizione gia' data da altre colonne?
+  GSE103170: n=6; altre colonne non costanti e non uniche: 1; fattori con fonte title: sample(technical,6 livelli)
+  GSE103501: n=29; altre colonne non costanti e non uniche: 5; fattori con fonte title: 
+  GSE112057: n=182; altre colonne non costanti e non uniche: 4; fattori con fonte title: 
+  GSE147507: n=77; altre colonne non costanti e non uniche: 10; fattori con fonte title: 
+  GSE41586: n=9; altre colonne non costanti e non uniche: 2; fattori con fonte title: replicate(technical,3 livelli)
+  GSE44379: n=16; altre colonne non costanti e non uniche: 1; fattori con fonte title: fraction(technical,8 livelli)
+  GSE46665: n=25; altre colonne non costanti e non uniche: 1; fattori con fonte title: 
+  GSE47718: n=17; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE49155: n=13; altre colonne non costanti e non uniche: 6; fattori con fonte title: 
+  GSE49608: n=32; altre colonne non costanti e non uniche: 5; fattori con fonte title: 
+  GSE50499: n=8; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE50760: n=54; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE51261: n=9; altre colonne non costanti e non uniche: 2; fattori con fonte title: replicate(technical,9 livelli)
+  GSE52778: n=14; altre colonne non costanti e non uniche: 3; fattori con fonte title: 
+  GSE53280: n=6; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE54846: n=6; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE56235: n=6; altre colonne non costanti e non uniche: 1; fattori con fonte title: genetic perturbation(perturbation,2 livelli)
+  GSE56691: n=12; altre colonne non costanti e non uniche: 2; fattori con fonte title: time(time,4 livelli)
+  GSE56787: n=38; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE57027: n=9; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE57116: n=14; altre colonne non costanti e non uniche: 2; fattori con fonte title: replicate(technical,4 livelli)
+  GSE57945: n=322; altre colonne non costanti e non uniche: 8; fattori con fonte title: 
+  GSE58326: n=6; altre colonne non costanti e non uniche: 1; fattori con fonte title: 
+  GSE58365: n=6; altre colonne non costanti e non uniche: 1; fattori con fonte title: 
+  GSE59781: n=8; altre colonne non costanti e non uniche: 0; fattori con fonte title: siRNA(perturbation,2 livelli)
+  GSE60340: n=24; altre colonne non costanti e non uniche: 4; fattori con fonte title: 
+  GSE60585: n=18; altre colonne non costanti e non uniche: 5; fattori con fonte title: replicate(technical,3 livelli)
+  GSE63015: n=6; altre colonne non costanti e non uniche: 1; fattori con fonte title: time(technical,1 livelli)
+  GSE63816: n=22; altre colonne non costanti e non uniche: 4; fattori con fonte title: genotype(state,5 livelli)
+  GSE65335: n=9; altre colonne non costanti e non uniche: 3; fattori con fonte title: 
+  GSE66207: n=33; altre colonne non costanti e non uniche: 5; fattori con fonte title: 
+  GSE66573: n=14; altre colonne non costanti e non uniche: 2; fattori con fonte title: replicate(technical,0 livelli)
+  GSE67196: n=53; altre colonne non costanti e non uniche: 2; fattori con fonte title: sample(technical,53 livelli)
+  GSE68919: n=8; altre colonne non costanti e non uniche: 2; fattori con fonte title: exosome(perturbation,3 livelli)
+  GSE69597: n=166; altre colonne non costanti e non uniche: 6; fattori con fonte title: 
+  GSE71289: n=42; altre colonne non costanti e non uniche: 4; fattori con fonte title: replicate(technical,0 livelli)
+  GSE71421: n=6; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE71595: n=14; altre colonne non costanti e non uniche: 4; fattori con fonte title: replicate(technical,4 livelli)
+  GSE75852: n=12; altre colonne non costanti e non uniche: 3; fattori con fonte title: 
+  GSE77598: n=8; altre colonne non costanti e non uniche: 2; fattori con fonte title: sample(technical,8 livelli)
+  GSE78936: n=82; altre colonne non costanti e non uniche: 2; fattori con fonte title: 
+  GSE83415: n=21; altre colonne non costanti e non uniche: 1; fattori con fonte title: patient(technical,21 livelli)
+  GSE83687: n=134; altre colonne non costanti e non uniche: 4; fattori con fonte title: sample(technical,134 livelli)
+  GSE93624: n=245; altre colonne non costanti e non uniche: 7; fattori con fonte title: 
+
+== B. La base scritta senza campioni ==
+studio | fattore (tipo) | base | la base e' fra i livelli | voci col livello di base | voci di forma giusta col livello di base | di queste, con valori presenti nella tabella | causa
+GSE112057 | disease_state (state) | control | True | 1 | 0 | 0 | forma delle voci
+GSE44379 | treatment (perturbation) | untreated | True | 1 | 0 | 0 | forma delle voci
+GSE50760 | disease_state (state) | healthy | True | 1 | 0 | 0 | forma delle voci
+GSE52194 | breast_cancer_subtype (state) | healthy | True | 1 | 0 | 0 | forma delle voci
+GSE52778 | agent (perturbation) | untreated | True | 3 | 0 | 0 | forma delle voci
+GSE52946 | disease_state (state) | healthy | True | 1 | 0 | 0 | forma delle voci
+GSE57027 | construct (perturbation) | halo | True | 1 | 0 | 0 | forma delle voci
+GSE57116 | treatment (perturbation) | untreated | True | 4 | 0 | 0 | forma delle voci
+GSE63816 | genotype (state) | control | True | 4 | 0 | 0 | forma delle voci
+GSE63816 | disease_state (state) | normal | True | 1 | 0 | 0 | forma delle voci
+GSE66573 | disease_state (state) | healthy | True | 1 | 0 | 0 | forma delle voci
+GSE67196 | disease (state) | healthy | True | 1 | 0 | 0 | forma delle voci
+GSE68919 | exosome (perturbation) | control | True | 1 | 0 | 0 | forma delle voci
+GSE78936 | disease (state) | control | True | 1 | 0 | 0 | forma delle voci
+GSE83415 | disease stage (state) | clinical remission | True | 1 | 1 | 0 | valori delle voci non presenti nella tabella
+
+fattori per causa: {'forma delle voci': 14, 'valori delle voci non presenti nella tabella': 1}
+studi per causa: {'forma delle voci': 13, 'valori delle voci non presenti nella tabella': 1}
+studi con almeno una base senza campioni: 14
