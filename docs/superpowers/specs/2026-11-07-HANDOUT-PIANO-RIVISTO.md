@@ -214,6 +214,11 @@ Il riferimento si apre solo dopo che gli output sono su disco con SHA-256.
 > `superpowers:executing-plans`, niente subagenti per i task, una revisione indipendente alla fine. (5) L'API di Gemma è andata due volte
 > in timeout: riprova nel Task 11. (6) Classe di disaccordo attesa: i curatori scrivono due agenti come un livello
 > solo («albuterol and dexamethasone»), il lettore come due fattori. Si conta a parte e si porta al PI.
+> (7) **Stato del piano:** dopo il commit di ogni Task aggiorna
+> `docs/superpowers/plans/2026-11-09-lettore-studio-mappa/stato.json`, esegui `genera.py` e committa
+> `stato.json` con `stato-del-piano.pdf` (procedura nel `README.md` della cartella). Il PI segue il lavoro su
+> quel PDF e sulla mappa stampata `mappa-per-il-PI.pdf`. Se il Task 1 scrive previsioni diverse da quelle di
+> `stato.json`, correggi `stato.json` nello stesso commit.
 
 Il piano comanda. Il Task 11 chiude con STOP: il Piano 2 si scrive dopo la decisione del PI.
 
