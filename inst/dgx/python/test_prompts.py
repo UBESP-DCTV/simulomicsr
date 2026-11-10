@@ -112,6 +112,40 @@ def test_first_difference():
     assert first_difference([1, 2], [1, 2, 9])["pos"] == 2
 
 
+def test_chat_template_kwargs():
+    """`chat_template_kwargs` di generation.json arriva al conteggio dei token e,
+    se manca, non cambia niente (S12r2: ragionamento spento dei modelli grandi)."""
+    from run_p4_vllm import chat_kwargs, prompt_token_ids
+    assert chat_kwargs({}) == {}
+    assert chat_kwargs({"chat_template_kwargs": None}) == {}
+    assert chat_kwargs({"chat_template_kwargs": {"reasoning_effort": "none"}}) == \
+        {"reasoning_effort": "none"}
+    try:
+        chat_kwargs({"chat_template_kwargs": "none"})
+        raise AssertionError("una stringa doveva essere rifiutata")
+    except TypeError:
+        pass
+    try:
+        chat_kwargs({"chat_template_kwargs": {"add_generation_prompt": False}})
+        raise AssertionError("una chiave riservata doveva essere rifiutata")
+    except ValueError:
+        pass
+
+    class Tok:
+        def __init__(self):
+            self.visti = None
+
+        def apply_chat_template(self, conv, **kw):
+            self.visti = kw
+            return [1, 2, 3]
+
+    t = Tok()
+    assert prompt_token_ids(t, [{"role": "user", "content": "x"}]) == [1, 2, 3]
+    assert t.visti == {"add_generation_prompt": True, "tokenize": True, "return_dict": False}
+    prompt_token_ids(t, [], {"enable_thinking": False})
+    assert t.visti["enable_thinking"] is False and t.visti["tokenize"] is True
+
+
 def test_gpus_per_worker():
     from run_p4_vllm import gpus_per_worker
     assert [gpus_per_worker(i, 1) for i in range(4)] == [0, 1, 2, 3]
@@ -125,5 +159,6 @@ if __name__ == "__main__":
     test_stage2b_testo_identico()
     test_count_prompt_tokens_lista_e_dizionario()
     test_gpus_per_worker()
+    test_chat_template_kwargs()
     test_first_difference()
-    print("OK -- 7/7 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")
+    print("OK -- 8/8 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")

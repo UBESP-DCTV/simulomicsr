@@ -49,7 +49,11 @@ rescue cycles. Solo per stage2.}
 modelli): \code{model_id}, \code{tokenizer_mode}, \code{config_format},
 \code{load_format}, \code{dtype}, \code{gpu_memory_utilization},
 \code{tensor_parallel_size} (GPU per worker: il runner usa 4 / tp worker),
-\code{llm_extra} (argomenti in piu' per \code{vllm.LLM()}). Cambia solo
+\code{llm_extra} (argomenti in piu' per \code{vllm.LLM()}),
+\code{chat_template_kwargs} (lista con nomi: argomenti in piu' per il
+template di chat, per esempio \code{reasoning_effort} o
+\code{enable_thinking}; il runner li passa a \code{llm.chat()} e al
+conteggio dei token). Cambia solo
 questi campi di \code{generation.json} e il \code{model_id} del manifest:
 prompt, schema e parametri di campionamento restano quelli dello stadio.
 Un campo fuori elenco ferma la costruzione.}

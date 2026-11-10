@@ -131,6 +131,11 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
     llm = LLM(**llm_kwargs)
 
     # Param opzionali (presenti solo se override del default yaml).
+    tpl_kwargs = chat_kwargs(gen)
+    if tpl_kwargs:
+        print(f"[worker {worker_id}] chat_template_kwargs: {tpl_kwargs}", flush=True)
+    # A llm.chat() si passa None quando non c'e' niente: la chiamata resta quella di prima.
+    chat_extra = {"chat_template_kwargs": tpl_kwargs} if tpl_kwargs else {}
     extra_kwargs: dict[str, Any] = {}
     if "repetition_penalty" in gen and gen["repetition_penalty"] is not None:
         extra_kwargs["repetition_penalty"] = float(gen["repetition_penalty"])
@@ -184,7 +189,7 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
             # stesso percorso di llm.chat(); oltre max_model_len - max_tokens il
             # confronto non va al modello e la regola lo scarta
             # (INGRESSO_INCOMPLETO).
-            ids_tpl = prompt_token_ids(tokenizer, conv)
+            ids_tpl = prompt_token_ids(tokenizer, conv, tpl_kwargs)
             ntok = len(ids_tpl)
             mt = int(r.get("max_tokens") or default_max_tokens)
             if ntok + mt > max_model_len:
@@ -261,7 +266,7 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
             fh.flush()
 
     if MICROBATCH is None:
-        outputs = llm.chat(messages=conversations, sampling_params=samplings)
+        outputs = llm.chat(messages=conversations, sampling_params=samplings, **chat_extra)
         _write_batch(record_ids, outputs, list(n_prompt))
     else:
         n_total = len(conversations)
@@ -269,7 +274,7 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
             j = min(i + MICROBATCH, n_total)
             t_b = time.time()
             outs = llm.chat(messages=conversations[i:j],
-                            sampling_params=samplings[i:j])
+                            sampling_params=samplings[i:j], **chat_extra)
             _write_batch(record_ids[i:j], outs, list(n_prompt[i:j]))
             print(f"[worker {worker_id}] microbatch {i+1}-{j}/{n_total} "
                   f"in {time.time()-t_b:.1f}s (cum {time.time()-t0:.1f}s)",
@@ -288,10 +293,34 @@ def gpus_per_worker(worker_id: int, tp: int) -> int | str:
     return ",".join(str(worker_id * tp + k) for k in range(tp))
 
 
-def prompt_token_ids(tok, conv) -> list:
-    """Gli id dei token del prompt secondo il template di chat del tokenizer."""
+CHAT_KWARGS_RISERVATI = ("add_generation_prompt", "continue_final_message", "tokenize",
+                         "return_dict", "tools", "chat_template")
+
+
+def chat_kwargs(gen: dict) -> dict:
+    """`chat_template_kwargs` di generation.json (opzionale): argomenti in piu' per
+    il template di chat, per esempio `reasoning_effort` (tokenizer Mistral v15+) o
+    `enable_thinking` (template di Qwen). Vanno sia a `llm.chat()` sia al conteggio
+    preventivo dei token: i due percorsi devono dare gli stessi id. Assente o null:
+    dizionario vuoto, e il comportamento e' quello di prima."""
+    kw = gen.get("chat_template_kwargs")
+    if kw is None:
+        return {}
+    if not isinstance(kw, dict):
+        raise TypeError("generation.json: `chat_template_kwargs` deve essere un oggetto, "
+                        f"non {type(kw).__name__}.")
+    riservati = sorted(set(kw) & set(CHAT_KWARGS_RISERVATI))
+    if riservati:
+        raise ValueError("generation.json: `chat_template_kwargs` non puo' contenere "
+                         f"{riservati}: li fissa il runner.")
+    return dict(kw)
+
+
+def prompt_token_ids(tok, conv, kwargs: dict | None = None) -> list:
+    """Gli id dei token del prompt secondo il template di chat del tokenizer.
+    `kwargs`: gli stessi `chat_template_kwargs` passati a `llm.chat()`."""
     ids = tok.apply_chat_template(conv, add_generation_prompt=True, tokenize=True,
-                                  return_dict=False)
+                                  return_dict=False, **(kwargs or {}))
     if hasattr(ids, "keys"):
         ids = ids["input_ids"]
     return list(ids)

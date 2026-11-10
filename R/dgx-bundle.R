@@ -32,7 +32,11 @@
 #'   modelli): \code{model_id}, \code{tokenizer_mode}, \code{config_format},
 #'   \code{load_format}, \code{dtype}, \code{gpu_memory_utilization},
 #'   \code{tensor_parallel_size} (GPU per worker: il runner usa 4 / tp worker),
-#'   \code{llm_extra} (argomenti in piu' per \code{vllm.LLM()}). Cambia solo
+#'   \code{llm_extra} (argomenti in piu' per \code{vllm.LLM()}),
+#'   \code{chat_template_kwargs} (lista con nomi: argomenti in piu' per il
+#'   template di chat, per esempio \code{reasoning_effort} o
+#'   \code{enable_thinking}; il runner li passa a \code{llm.chat()} e al
+#'   conteggio dei token). Cambia solo
 #'   questi campi di \code{generation.json} e il \code{model_id} del manifest:
 #'   prompt, schema e parametri di campionamento restano quelli dello stadio.
 #'   Un campo fuori elenco ferma la costruzione.
@@ -59,13 +63,20 @@ dgx_p4_build_bundle <- function(input_jsonl,
       class = "simulomicsr_dgx_unknown_stage"
     )
   campi_modello <- c("model_id", "tokenizer_mode", "config_format", "load_format",
-                     "dtype", "gpu_memory_utilization", "tensor_parallel_size", "llm_extra")
+                     "dtype", "gpu_memory_utilization", "tensor_parallel_size", "llm_extra",
+                     "chat_template_kwargs")
   if (!is.null(modello)) {
     ignoti <- setdiff(names(modello), campi_modello)
     if (!is.list(modello) || is.null(names(modello)) || length(ignoti) > 0L)
       cli::cli_abort(
         "modello: campi ammessi {.field {campi_modello}}, ricevuti fuori elenco {.field {ignoti}}.",
         class = "simulomicsr_dgx_modello_campo_sconosciuto"
+      )
+    ktk <- modello$chat_template_kwargs
+    if (!is.null(ktk) && (!is.list(ktk) || !length(ktk) || is.null(names(ktk)) || any(!nzchar(names(ktk)))))
+      cli::cli_abort(
+        "modello: {.field chat_template_kwargs} deve essere una lista con tutti i nomi (diventa un oggetto JSON).",
+        class = "simulomicsr_dgx_modello_campo_non_valido"
       )
   }
 

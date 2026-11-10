@@ -64,6 +64,32 @@ test_that("dgx_p4_build_bundle() stage2b: il modello si cambia, il resto della g
                      unname(tools::md5sum(fs::path(b1$bundle_dir, f))))
 })
 
+test_that("dgx_p4_build_bundle() stage2b: `chat_template_kwargs` arriva in generation.json come oggetto", {
+  td <- withr::local_tempdir()
+  ing <- .s2b_ingresso_bundle(td)
+  b0 <- dgx_p4_build_bundle(ing, stage = "stage2b", config = dgx_config(),
+                            metadata = list(slug = "s2b-k0"), bundle_dir_root = td)
+  expect_null(jsonlite::read_json(fs::path(b0$bundle_dir, "generation.json"))$chat_template_kwargs)
+  b1 <- dgx_p4_build_bundle(ing, stage = "stage2b", config = dgx_config(),
+                            metadata = list(slug = "s2b-k1"), bundle_dir_root = td,
+                            modello = list(model_id = "x/y",
+                                           chat_template_kwargs = list(reasoning_effort = "none")))
+  b2 <- dgx_p4_build_bundle(ing, stage = "stage2b", config = dgx_config(),
+                            metadata = list(slug = "s2b-k2"), bundle_dir_root = td,
+                            modello = list(model_id = "x/z",
+                                           chat_template_kwargs = list(enable_thinking = FALSE)))
+  g1 <- jsonlite::read_json(fs::path(b1$bundle_dir, "generation.json"))
+  g2 <- jsonlite::read_json(fs::path(b2$bundle_dir, "generation.json"))
+  expect_identical(g1$chat_template_kwargs, list(reasoning_effort = "none"))
+  expect_identical(g2$chat_template_kwargs, list(enable_thinking = FALSE))
+  # Una lista senza nomi diventerebbe un array JSON, che il runner rifiuta: si ferma qui.
+  expect_error(
+    dgx_p4_build_bundle(ing, stage = "stage2b", config = dgx_config(), bundle_dir_root = td,
+                        modello = list(model_id = "x", chat_template_kwargs = list("none"))),
+    class = "simulomicsr_dgx_modello_campo_non_valido"
+  )
+})
+
 test_that("dgx_p4_build_bundle(): un campo del modello sconosciuto ferma il bundle", {
   td <- withr::local_tempdir()
   expect_error(
