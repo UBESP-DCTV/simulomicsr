@@ -2,7 +2,7 @@
   "aggiornato": "2026-11-10",
   "sessione": "Sessione del Piano 1 (S12r), aperta il 2026-11-10",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Passo 5: il lettore dei file di Expression Atlas.",
+  "prossimo_passo": "Passo 6: scarico dei file di Atlas per i 129 studi e legame fra run (SRR) e campioni (GSM).",
   "piani": [
     {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "in_corso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
@@ -33,7 +33,7 @@
     {"n": 5, "gruppo": "Il riferimento esterno: Expression Atlas",
      "titolo": "Lettore dei file di Expression Atlas",
      "da": "I gruppi e i confronti dei curatori, nella stessa forma dei nostri.",
-     "cancelli": [], "stato": "da_fare", "commit": "", "data": "", "nota": ""},
+     "cancelli": [], "stato": "fatto", "commit": "5c8bb06", "data": "2026-11-10", "nota": ""},
     {"n": 6, "gruppo": "Il riferimento esterno: Expression Atlas",
      "titolo": "Scarico dei file e legame fra corse di sequenziamento e campioni GEO",
      "da": "I file dei 129 studi. Per gli 82 studi chiusi gli script usano solo gli identificativi.",
@@ -109,6 +109,7 @@
     {"data": "2026-11-10", "che_cosa": "Passo 1 fatto: 129 studi divisi in 47, 42 e 40. Cancelli e previsioni committati prima di ogni calcolo. I valori delle previsioni sono uguali a quelli di questa tabella."},
     {"data": "2026-11-10", "che_cosa": "Passo 2 fatto: l'oggetto «tabella dei fattori» e i gruppi, con 11 controlli verdi."},
     {"data": "2026-11-10", "che_cosa": "Passo 3 fatto: il costruttore dei confronti dalla definizione, con il registro delle coppie non formate. 35 controlli verdi."},
-    {"data": "2026-11-10", "che_cosa": "Passo 4 fatto: i soggetti si confrontano come insiemi. Due scelte dell'agente: età per intervalli solo con la stessa unità; un braccio senza valori scritti dà un avviso."}
+    {"data": "2026-11-10", "che_cosa": "Passo 4 fatto: i soggetti si confrontano come insiemi. Due scelte dell'agente: età per intervalli solo con la stessa unità; un braccio senza valori scritti dà un avviso."},
+    {"data": "2026-11-10", "che_cosa": "Passo 5 fatto: il lettore dei file di Expression Atlas (gruppi, confronti, fattori dei curatori), con 32 controlli verdi."}
   ]
 }
