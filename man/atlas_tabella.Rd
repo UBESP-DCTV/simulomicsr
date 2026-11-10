@@ -30,6 +30,8 @@ nessun run ha un GSM;
 \description{
 Porta i gruppi e i confronti di Atlas dai run (SRR) ai campioni (GSM). Piu'
 run dello stesso campione si riducono al campione. Un campione in due gruppi
-di Atlas ferma lo studio con un errore.
+di Atlas ferma lo studio con un errore. Un fattore che i curatori non
+scrivono per un run (la dose del controllo non trattato) ha il livello
+\code{TF_NON_SCRITTO}. Un run senza nessun fattore ferma lo studio.
 }
 \keyword{internal}

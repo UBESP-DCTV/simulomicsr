@@ -109,7 +109,12 @@ tf_misura_gruppi <- function(nostra, atlas) {
 #' @noRd
 .tf_fattori_diversi <- function(trattato, controllo, tabella) {
   lt <- .tf_livelli_braccio(trattato, tabella); lc <- .tf_livelli_braccio(controllo, tabella)
-  names(lt)[!vapply(names(lt), function(f) identical(lt[[f]], lc[[f]]), TRUE)]
+  diverso <- !vapply(names(lt), function(f) identical(lt[[f]], lc[[f]]), TRUE)
+  # Come in `tf_confronti()`: un fattore che uno dei due bracci non scrive non e' una differenza, si marca.
+  non_scritto <- vapply(names(lt), function(f) {
+    identical(lt[[f]], TF_NON_SCRITTO) || identical(lc[[f]], TF_NON_SCRITTO)
+  }, TRUE)
+  list(diversi = names(lt)[diverso & !non_scritto], non_scritti = names(lt)[diverso & non_scritto])
 }
 
 #' Classifica i confronti dei curatori di Atlas rispetto alla definizione
@@ -117,7 +122,8 @@ tf_misura_gruppi <- function(nostra, atlas) {
 #' @param atlas l'uscita di `atlas_tabella()`.
 #' @param universo chr, i GSM che contano.
 #' @param n_min numero minimo di campioni per braccio dopo il taglio all'universo.
-#' @return i confronti di Atlas con i bracci tagliati all'universo e le colonne `classe` e `fattori_diversi`.
+#' @return i confronti di Atlas con i bracci tagliati all'universo e le colonne `classe`, `fattori_diversi` e
+#'   `fattori_non_scritti` (i fattori che uno dei due bracci non scrive: non contano come differenza).
 #'   `classe`: `"rispetta"` (i due gruppi differiscono in un solo fattore di Atlas), `"piu_fattori"`,
 #'   `"non_formabile"` (un braccio ha meno di `n_min` campioni nell'universo), `"nessuna_differenza"` (i due
 #'   gruppi hanno gli stessi livelli in tutti i fattori di Atlas).
@@ -127,19 +133,21 @@ tf_classi_confronti_atlas <- function(atlas, universo, n_min = 2L) {
   universo <- as.character(universo)
   k$trattato <- lapply(k$trattato, .tf_taglia, universo = universo)
   k$controllo <- lapply(k$controllo, .tf_taglia, universo = universo)
-  classe <- character(nrow(k)); diversi <- character(nrow(k))
+  classe <- character(nrow(k)); diversi <- character(nrow(k)); non_scritti <- character(nrow(k))
   for (i in seq_len(nrow(k))) {
     tr <- k$trattato[[i]]; co <- k$controllo[[i]]
     if (length(tr) < n_min || length(co) < n_min) {
-      classe[i] <- "non_formabile"; diversi[i] <- NA_character_
+      classe[i] <- "non_formabile"; diversi[i] <- NA_character_; non_scritti[i] <- NA_character_
       next
     }
-    d <- .tf_fattori_diversi(tr, co, atlas$tabella)
-    diversi[i] <- .tf_dettaglio(d)
+    fd <- .tf_fattori_diversi(tr, co, atlas$tabella)
+    d <- fd$diversi
+    diversi[i] <- .tf_dettaglio(d); non_scritti[i] <- .tf_dettaglio(fd$non_scritti)
     classe[i] <- if (length(d) == 1L) "rispetta" else if (length(d) > 1L) "piu_fattori" else "nessuna_differenza"
   }
   k$classe <- classe
   k$fattori_diversi <- diversi
+  k$fattori_non_scritti <- non_scritti
   k
 }
 
@@ -208,7 +216,7 @@ tf_giudica_non_elencati <- function(nostri, atlas, universo) {
     }
     misto <- any(lengths(.tf_livelli_braccio(tr, atlas$tabella)) > 1L) ||
       any(lengths(.tf_livelli_braccio(co, atlas$tabella)) > 1L)
-    n_diversi <- length(.tf_fattori_diversi(tr, co, atlas$tabella))
+    n_diversi <- length(.tf_fattori_diversi(tr, co, atlas$tabella)$diversi)
     giudizio[i] <- if (misto) {
       "braccio_misto"
     } else if (n_diversi > 1L) {

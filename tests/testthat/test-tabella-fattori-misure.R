@@ -138,3 +138,42 @@ test_that("tf_riassumi_misure: numeratori, denominatori, quote e intervalli dal 
   seme_dopo <- if (exists(".Random.seed", envir = globalenv())) get(".Random.seed", envir = globalenv()) else NULL
   expect_identical(seme_prima, seme_dopo)                                            # non tocca il generatore globale
 })
+
+# Atlas finto con un fattore che i curatori non scrivono per il controllo: la dose.
+atlas_dose <- function() {
+  campioni <- sprintf("GSM%d", 1:8)
+  livelli <- data.frame(farmaco = rep(c("nessuno", "X", "X", "nessuno"), each = 2),
+                        dose = rep(c(TF_NON_SCRITTO, "5 uM", "10 uM", TF_NON_SCRITTO), each = 2),
+                        linea = rep(c("A", "A", "A", "B"), each = 2),
+                        row.names = campioni, stringsAsFactors = FALSE)
+  fattori <- data.frame(nome = c("farmaco", "dose", "linea"), tipo = "contesto", base = NA_character_)
+  partizione <- stats::setNames(rep(c("g1", "g2", "g3", "g4"), each = 2), campioni)
+  membri <- function(g) names(partizione)[partizione == g]
+  rif <- c("g1", "g2", "g4", "g4"); test <- c("g2", "g3", "g1", "g3")
+  confronti <- data.frame(studio = "GSE0", id = paste0(rif, "_", test), nome = NA_character_,
+                          riferimento = rif, test = test, stringsAsFactors = FALSE)
+  confronti$trattato <- lapply(test, membri); confronti$controllo <- lapply(rif, membri)
+  list(tabella = tf_tabella(campioni, livelli, fattori), partizione = partizione, confronti = confronti,
+       esclusi = data.frame(run = character(0), gruppo = character(0)))
+}
+test_that("un fattore «non scritto» in un braccio non è una differenza, e si scrive a parte", {
+  a <- atlas_dose(); u <- names(a$partizione)
+  cl <- tf_classi_confronti_atlas(a, u)
+  # controllo senza dose contro farmaco con dose: cambia solo il farmaco
+  expect_equal(cl$classe[1], "rispetta"); expect_equal(cl$fattori_diversi[1], "farmaco")
+  expect_equal(cl$fattori_non_scritti[1], "dose")
+  # due dosi scritte: cambia la dose
+  expect_equal(cl$classe[2], "rispetta"); expect_equal(cl$fattori_diversi[2], "dose")
+  expect_equal(cl$fattori_non_scritti[2], "")
+  # tutti e due senza dose: «non scritto» contro «non scritto» è uguale
+  expect_equal(cl$classe[3], "rispetta"); expect_equal(cl$fattori_diversi[3], "linea")
+  # farmaco e linea cambiano, la dose non scritta non si aggiunge al conto
+  expect_equal(cl$classe[4], "piu_fattori"); expect_equal(cl$fattori_diversi[4], "farmaco, linea")
+  expect_equal(cl$fattori_non_scritti[4], "dose")
+  # un nostro confronto non elencato fra controllo senza dose e farmaco a 10 uM è coerente
+  ne <- tf_giudica_non_elencati(nostro(c("GSM5", "GSM6"), c("GSM1", "GSM2")), a, u)
+  expect_equal(ne$giudizio, "coerente")
+  # un braccio che unisce campioni con dose e senza dose resta un braccio misto
+  ne2 <- tf_giudica_non_elencati(nostro(c("GSM3", "GSM4", "GSM7", "GSM8"), c("GSM1", "GSM2")), a, u)
+  expect_equal(ne2$giudizio, "braccio_misto")
+})

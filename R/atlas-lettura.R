@@ -105,7 +105,9 @@ atlas_leggi_sdrf <- function(path) {
 #'
 #' Porta i gruppi e i confronti di Atlas dai run (SRR) ai campioni (GSM). Piu'
 #' run dello stesso campione si riducono al campione. Un campione in due gruppi
-#' di Atlas ferma lo studio con un errore.
+#' di Atlas ferma lo studio con un errore. Un fattore che i curatori non
+#' scrivono per un run (la dose del controllo non trattato) ha il livello
+#' `TF_NON_SCRITTO`. Un run senza nessun fattore ferma lo studio.
 #'
 #' @param config Uscita di [atlas_leggi_configurazione()].
 #' @param sdrf Uscita di [atlas_leggi_sdrf()].
@@ -155,7 +157,15 @@ atlas_tabella <- function(config, sdrf, legame) {
   # I livelli dei fattori, run per run, poi ridotti al GSM.
   fatt <- sdrf[sdrf$ruolo == "factor", c("run", "nome", "valore"), drop = FALSE]
   fatt <- unique(fatt)
+  # Un valore vuoto vale come un valore assente.
+  fatt <- fatt[!is.na(fatt$valore) & nzchar(fatt$valore), , drop = FALSE]
   nomi_fattori <- sort(unique(fatt$nome[fatt$run %in% gruppi$run]), method = "radix")
+  # Un run senza nessun fattore non e' un caso dei curatori: l'SDRF non lo descrive, lo studio si ferma.
+  nudi <- setdiff(unique(gruppi$run), fatt$run)
+  if (length(nudi) && length(nomi_fattori)) {
+    .tf_abort(sprintf("Run di Atlas senza nessun fattore nell'SDRF: %s.", .tf_elenca(nudi)),
+              "atlas_run_senza_fattori")
+  }
   tabella <- NULL
   if (nrow(gruppi) > 0L) {
     campioni <- per_gsm$gsm
@@ -163,12 +173,9 @@ atlas_tabella <- function(config, sdrf, legame) {
     for (nome in nomi_fattori) {
       f <- fatt[fatt$nome == nome, , drop = FALSE]
       valore_run <- f$valore[match(gruppi$run, f$run)]
-      senza <- is.na(valore_run) | !nzchar(valore_run)
-      if (any(senza)) {
-        .tf_abort(sprintf("Run di Atlas senza un valore per il fattore `%s`: %s.", nome,
-                          .tf_elenca(gruppi$run[senza])),
-                  "atlas_run_senza_fattori")
-      }
+      # I curatori non scrivono un fattore dove non si applica (la dose del controllo non trattato):
+      # il livello e' `TF_NON_SCRITTO`, come nella tabella dei fattori del lettore.
+      valore_run[is.na(valore_run)] <- TF_NON_SCRITTO
       piu_valori <- unique(f$run[duplicated(f$run)])
       piu_valori <- intersect(piu_valori, gruppi$run)
       per_campione <- tapply(valore_run, gruppi$gsm, function(v) length(unique(v)))

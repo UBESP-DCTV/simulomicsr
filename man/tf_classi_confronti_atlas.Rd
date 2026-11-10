@@ -14,7 +14,8 @@ tf_classi_confronti_atlas(atlas, universo, n_min = 2L)
 \item{n_min}{numero minimo di campioni per braccio dopo il taglio all'universo.}
 }
 \value{
-i confronti di Atlas con i bracci tagliati all'universo e le colonne \code{classe} e \code{fattori_diversi}.
+i confronti di Atlas con i bracci tagliati all'universo e le colonne \code{classe}, \code{fattori_diversi} e
+\code{fattori_non_scritti} (i fattori che uno dei due bracci non scrive: non contano come differenza).
 \code{classe}: \code{"rispetta"} (i due gruppi differiscono in un solo fattore di Atlas), \code{"piu_fattori"},
 \code{"non_formabile"} (un braccio ha meno di \code{n_min} campioni nell'universo), \code{"nessuna_differenza"} (i due
 gruppi hanno gli stessi livelli in tutti i fattori di Atlas).

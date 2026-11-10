@@ -55,3 +55,18 @@ test_that("solo_id non porta etichette nemmeno in atlas_tabella", {
   k <- atlas_leggi_configurazione(fx("E-GEOD-52778-configuration.xml"), solo_id = TRUE)
   expect_false(any(grepl("albuterol|dexamethasone|untreated", unlist(k))))
 })
+test_that("atlas_tabella: un fattore senza valore per alcuni run diventa «non scritto»", {
+  k <- atlas_leggi_configurazione(fx("E-GEOD-52778-configuration.xml")); s <- atlas_leggi_sdrf(fx("E-GEOD-52778.condensed-sdrf.tsv"))
+  run_g1 <- k$gruppi$run[k$gruppi$gruppo == "g1"]
+  dose <- s[s$run %in% run_g1 & s$ruolo == "factor", ][seq_along(run_g1), ]
+  dose$run <- run_g1; dose$nome <- "dose"; dose$valore <- "1 micromolar"
+  a <- atlas_tabella(k, rbind(s, dose), legame_finto(unique(k$gruppi$run)))
+  expect_setequal(a$tabella$fattori$nome, c("dose", "treatment"))
+  g1 <- names(a$partizione)[a$partizione == "g1"]
+  expect_true(all(a$tabella$livelli[g1, "dose"] == "1 micromolar"))
+  expect_true(all(a$tabella$livelli[setdiff(names(a$partizione), g1), "dose"] == TF_NON_SCRITTO))
+  # Un valore vuoto vale come un valore assente.
+  vuoto <- dose; vuoto$run <- setdiff(k$gruppi$run, run_g1)[1]; vuoto <- vuoto[1, ]; vuoto$valore <- ""
+  a2 <- atlas_tabella(k, rbind(s, dose, vuoto), legame_finto(unique(k$gruppi$run)))
+  expect_equal(a2$tabella$livelli, a$tabella$livelli)
+})
