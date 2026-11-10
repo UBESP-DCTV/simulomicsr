@@ -2,7 +2,7 @@
   "aggiornato": "2026-11-10",
   "sessione": "Sessione del Piano 1 (S12r), aperta il 2026-11-10",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Passo 11: finding, concorrenti letti per intero, handout e CLAUDE.md; poi STOP: la regola di esito non è soddisfatta, decide il PI",
+  "prossimo_passo": "Revisione indipendente del branch; poi il PI decide: che cosa fare del lettore, e il tempo zero nel riferimento",
   "piani": [
     {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "in_corso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
@@ -10,7 +10,7 @@
     {"n": 4, "titolo": "Validazione del risultato", "sessioni": "S15, S7c, S7b, poi S16 e S17", "stato": "da_scrivere"}
   ],
   "fermate": [
-    {"n": 1, "dopo_piano": 1, "titolo": "Decisione del PI sul Piano 1", "stato": "da_raggiungere", "esito": ""},
+    {"n": 1, "dopo_piano": 1, "titolo": "Decisione del PI sul Piano 1", "stato": "in_attesa_del_pi", "esito": ""},
     {"n": 2, "dopo_piano": 2, "titolo": "Il cancello: primo giudizio (42 studi), poi secondo giudizio (40 studi)", "stato": "da_raggiungere", "esito": ""}
   ],
   "task": [
@@ -57,7 +57,7 @@
     {"n": 11, "gruppo": "Chiusura",
      "titolo": "Finding, riassunto, lavori concorrenti letti per intero",
      "da": "Il riassunto «In breve» con numeri e cause. Poi la sessione si ferma e il PI decide.",
-     "cancelli": [], "stato": "da_fare", "commit": "", "data": "", "nota": ""}
+     "cancelli": [], "stato": "fatto", "commit": "19ee5d4", "data": "2026-11-10", "nota": "finding 2026-11-09-S12r-prova-lettore-studio"}
   ],
   "cancelli": [
     {"id": "K1", "task": 6,
@@ -74,7 +74,7 @@
      "stato": "passato", "nota": "schema, prompt e variabili del job controllati prima dell invio; due corse su poddgx02"},
     {"id": "K5", "task": 0,
      "testo": "Nessuno script riceve il contenuto di uno studio di giudizio. Sui 129 studi i passi usano solo identificativi e conteggi.",
-     "stato": "da_valutare", "nota": ""}
+     "stato": "passato", "nota": "studi di giudizio: solo identificativi nei file; ingresso e uscite del modello con 47 studi di sviluppo e 0 di giudizio"}
   ],
   "previsioni": [
     {"id": "P1", "pannello": "quota", "testo": "Oggi: confronti dei curatori ritrovati (b)",
@@ -82,31 +82,31 @@
     {"id": "P2", "pannello": "quota", "testo": "Oggi: studi con gruppi identici ai curatori (a)",
      "atteso": 30, "intervallo": [15, 45], "risultato": 29.8, "ic95": [17.0, 42.6], "esito": "confermata", "nota": "14 studi su 47."},
     {"id": "P4", "pannello": "quota", "testo": "Lettore: studi con gruppi identici ai curatori (a)",
-     "atteso": 65, "intervallo": [50, 80], "risultato": null, "ic95": null, "esito": "da_misurare", "nota": ""},
+     "atteso": 65, "intervallo": [50, 80], "risultato": 29.8, "ic95": [17.0, 42.6], "esito": "smentita", "nota": "14 studi su 47, come oggi. 24 studi non chiusi."},
     {"id": "P5", "pannello": "quota", "testo": "Lettore: errori fra i confronti in più (c)",
-     "atteso": 5, "intervallo": [0, 10], "risultato": null, "ic95": null, "esito": "da_misurare", "nota": ""},
+     "atteso": 5, "intervallo": [0, 10], "risultato": 20.0, "ic95": [0.0, 100.0], "esito": "indeterminata", "nota": "1 confronto su 5 giudicabili: troppo pochi."},
     {"id": "P5", "pannello": "quota", "testo": "Oggi: errori fra i confronti in più (c)",
      "atteso": 25, "intervallo": [15, 35], "risultato": 24.1, "ic95": [10.6, 39.3], "esito": "indeterminata", "nota": "19 confronti su 79 giudicabili."},
     {"id": "P8", "pannello": "quota", "testo": "Confronti dei curatori fuori dalla definizione (solo descrittiva)",
      "atteso": 10, "intervallo": [5, 20], "risultato": 23.6, "ic95": [9.6, 38.2], "esito": "indeterminata", "nota": "29 confronti su 123, in 8 studi. In gran parte i curatori scrivono due fattori legati fra loro (malattia e stadio)."},
     {"id": "P3", "pannello": "punti", "testo": "Lettore meno oggi: confronti ritrovati (b)",
-     "atteso": 30, "intervallo": [0, null], "risultato": null, "ic95": null, "esito": "da_misurare", "nota": ""},
+     "atteso": 30, "intervallo": [0, null], "risultato": -9.7, "ic95": [-25.3, 4.3], "esito": "indeterminata", "nota": "Lettore 10 su 93, oggi 19 su 93. L'intervallo contiene lo zero, la stima è negativa."},
     {"id": "P6", "pannello": "studi", "testo": "Studi che il lettore non chiude",
-     "atteso": 4, "intervallo": [0, 7], "risultato": null, "ic95": null, "esito": "da_misurare", "nota": ""},
+     "atteso": 4, "intervallo": [0, 7], "risultato": 24, "ic95": null, "esito": "smentita", "nota": "24 su 47; in 18 la causa è la forma della risposta."},
     {"id": "P7", "pannello": "studi", "testo": "Studi con uscite identiche al carattere fra due corse",
-     "atteso": 47, "intervallo": [47, 47], "risultato": null, "ic95": null, "esito": "da_misurare", "nota": ""}
+     "atteso": 47, "intervallo": [47, 47], "risultato": 47, "ic95": null, "esito": "confermata", "nota": "47 su 47."}
   ],
   "dubbi": [
     {"testo": "L'API di Gemma (seconda fonte possibile di studi curati) è andata due volte in timeout.",
-     "dove": "si riprova nel passo 11", "stato": "aperto", "chiusura": ""},
+     "dove": "si riprova nel passo 11", "stato": "chiuso", "chiusura": "rinviato: altre tre richieste in timeout il 2026-11-10; resta una sola fonte di curazione, scritto nel finding e nell'handout"},
     {"testo": "Classe di disaccordo attesa: i curatori scrivono due agenti come un livello solo, il lettore come due fattori.",
-     "dove": "si conta a parte nel passo 10 e si porta al PI", "stato": "aperto", "chiusura": ""},
+     "dove": "si conta a parte nel passo 10 e si porta al PI", "stato": "chiuso", "chiusura": "spiegato: 0 disaccordi di questa classe; l'unico livello con due agenti è scritto dal lettore come dai curatori"},
     {"testo": "Un file già committato contiene i nomi dei tipi di fattore di Expression Atlas per tutti i 129 studi, anche quelli di giudizio.",
-     "dove": "si dichiara nelle previsioni del passo 1. Nessuno legge quei campi", "stato": "aperto", "chiusura": ""},
+     "dove": "si dichiara nelle previsioni del passo 1. Nessuno legge quei campi", "stato": "chiuso", "chiusura": "spiegato: dichiarato nelle previsioni; il cancello K5 è passato"},
     {"testo": "Oggi ritrova il 20% dei confronti dei curatori, contro il 35% atteso: la previsione è indeterminata.",
-     "dove": "si spiega nel finding del passo 11", "stato": "aperto", "chiusura": ""},
+     "dove": "si spiega nel finding del passo 11", "stato": "chiuso", "chiusura": "spiegato: oggi ritrova 16 confronti su 19 dove i gruppi sono identici e 3 su 74 altrove, perché divide i campioni in più gruppi dei curatori"},
     {"testo": "Il 24% dei confronti dei curatori cambia più di un fattore, contro il 10% atteso. Sta in 8 studi.",
-     "dove": "si legge studio per studio nel passo 10 e si spiega nel finding", "stato": "aperto", "chiusura": ""}
+     "dove": "si legge studio per studio nel passo 10 e si spiega nel finding", "stato": "chiuso", "chiusura": "spiegato: 29 confronti in 8 studi; 14 con un fattore annidato, 5 con un riferimento che non è un controllo, 3 con il tempo zero"}
   ],
   "registro": [
     {"data": "2026-11-10", "che_cosa": "Stato iniziale, scritto alla chiusura della sessione di disegno e piano (S12q). Nessun passo eseguito."},
@@ -119,6 +119,7 @@
     {"data": "2026-11-10", "che_cosa": "Passo 7 fatto: le tre misure contro Expression Atlas, con 63 controlli verdi."},
     {"data": "2026-11-10", "che_cosa": "Passo 8: misurata la pipeline di oggi contro Expression Atlas sui 47 studi di sviluppo. Lo strumento, provato con i gruppi dei curatori, dà gruppi identici in 47 studi su 47 e ritrova 93 confronti su 93. Oggi: gruppi identici in 14 studi su 47, confronti dei curatori ritrovati 19 su 93, errori fra i confronti in più 19 su 79."},
     {"data": "2026-11-10", "che_cosa": "Task 9: ingresso della prova: testi GEO dei 47 studi di sviluppo congelati, vista v0 (1.883 campioni, 0 cancellati, massimo 37.692 token stimati), schema v0, prompt v0"},
-    {"data": "2026-11-10", "che_cosa": "Passo 10 fatto: il lettore v0 chiude 23 studi su 47; partizione identica 14/47 come oggi; confronti di Atlas ritrovati 10/93 contro 19/93 di oggi (differenza -9,7 punti, IC95 da -25,3 a +4,3); con le voci malformate lette 15/93. P3 indeterminata, P4 e P6 smentite, P7 confermata. Letti tutti i 145 disaccordi."}
+    {"data": "2026-11-10", "che_cosa": "Passo 10 fatto: il lettore v0 chiude 23 studi su 47; partizione identica 14/47 come oggi; confronti di Atlas ritrovati 10/93 contro 19/93 di oggi (differenza -9,7 punti, IC95 da -25,3 a +4,3); con le voci malformate lette 15/93. P3 indeterminata, P4 e P6 smentite, P7 confermata. Letti tutti i 145 disaccordi."},
+    {"data": "2026-11-10", "che_cosa": "Passo 11: finding scritto, concorrenti letti per intero, handout e CLAUDE.md aggiornati. La regola di esito non è soddisfatta: decide il PI"}
   ]
 }
