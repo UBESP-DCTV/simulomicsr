@@ -2,7 +2,7 @@
   "aggiornato": "2026-11-10",
   "sessione": "Sessione del Piano 1 (S12r), aperta il 2026-11-10",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Passo 8: la misura di oggi (master S14) contro Atlas sui 47 studi di sviluppo, con il controllo positivo dello strumento (K2).",
+  "prossimo_passo": "Passo 9: preparare l'ingresso della prova (testo dello studio e tabella dei campioni da GEO, schema e prompt v0) per i 47 studi di sviluppo.",
   "piani": [
     {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "in_corso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
@@ -45,7 +45,7 @@
     {"n": 8, "gruppo": "Le misure",
      "titolo": "La pipeline di oggi misurata sui 47 studi di sviluppo",
      "da": "Il termine di paragone. È anche il primo numero esterno del progetto, per l'articolo.",
-     "cancelli": ["K2", "K3"], "stato": "da_fare", "commit": "", "data": "", "nota": ""},
+     "cancelli": ["K2", "K3"], "stato": "fatto", "commit": "8e82bc9", "data": "2026-11-10", "nota": "K2 e K3 passati. Un fattore che i curatori non scrivono per un campione vale «non scritto» e non conta come differenza (6 studi su 47)."},
     {"n": 9, "gruppo": "La prova da buttare",
      "titolo": "Ingresso della prova",
      "da": "I testi GEO dei 47 studi, la vista dello studio, lo schema e il prompt di prima versione.",
@@ -65,10 +65,10 @@
      "stato": "passato", "nota": "6.253 run su 6.253 legati, 0 disaccordi, controllo positivo visto"},
     {"id": "K2", "task": 8,
      "testo": "Controllo positivo dello strumento: i gruppi e i confronti dei curatori, dati allo strumento al posto dei nostri, danno gruppi identici in 47 studi su 47 e ritrovano tutti i confronti che rispettano la definizione.",
-     "stato": "da_valutare", "nota": ""},
+     "stato": "passato", "nota": "47 studi su 47 con gruppi identici, 93 confronti su 93 ritrovati"},
     {"id": "K3", "task": 8,
      "testo": "La misura della pipeline di oggi copre 47 studi su 47. Uno studio senza confronti conta zero, non esce dal conto.",
-     "stato": "da_valutare", "nota": ""},
+     "stato": "passato", "nota": "47 studi su 47 hanno un record"},
     {"id": "K4", "task": 10,
      "testo": "Il job gira su poddgx02, in modo ripetibile, con il prompt e lo schema uguali per impronta SHA-256 ai file committati.",
      "stato": "da_valutare", "nota": ""},
@@ -112,6 +112,7 @@
     {"data": "2026-11-10", "che_cosa": "Passo 4 fatto: i soggetti si confrontano come insiemi. Due scelte dell'agente: età per intervalli solo con la stessa unità; un braccio senza valori scritti dà un avviso."},
     {"data": "2026-11-10", "che_cosa": "Passo 5 fatto: il lettore dei file di Expression Atlas (gruppi, confronti, fattori dei curatori), con 32 controlli verdi."},
     {"data": "2026-11-10", "che_cosa": "Passo 6 fatto: file di Atlas scaricati (129 studi) e legame fra run e campioni: 6.253 run su 6.253 hanno un campione, nessun disaccordo fra le due fonti."},
-    {"data": "2026-11-10", "che_cosa": "Passo 7 fatto: le tre misure contro Expression Atlas, con 63 controlli verdi."}
+    {"data": "2026-11-10", "che_cosa": "Passo 7 fatto: le tre misure contro Expression Atlas, con 63 controlli verdi."},
+    {"data": "2026-11-10", "che_cosa": "Passo 8: misurata la pipeline di oggi contro Expression Atlas sui 47 studi di sviluppo. Lo strumento, provato con i gruppi dei curatori, dà gruppi identici in 47 studi su 47 e ritrova 93 confronti su 93. Oggi: gruppi identici in 14 studi su 47, confronti dei curatori ritrovati 19 su 93, errori fra i confronti in più 19 su 79."}
   ]
 }
