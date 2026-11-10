@@ -29,3 +29,14 @@ Da qui in poi le misure hanno cancelli e previsioni depositati prima del calcolo
 | `40-per-studio-oggi.csv`, `40-per-studio-oggi-secondaria.csv` | una riga per studio: variante principale (almeno 2 campioni per braccio) e secondaria (tutti i confronti) |
 | `40-misure-oggi.csv` | le misure con l'intervallo al 95% (bootstrap sugli studi, B = 2.000, seme 20261109) |
 | `40-confronti-atlas-oggi.csv`, `40-non-elencati-oggi.csv` | un confronto per riga: i confronti di Atlas con classe ed esito, i confronti di oggi che Atlas non elenca con il giudizio |
+
+### La prova da buttare (Task 9 e 10): niente di questo entra nel pacchetto
+
+| file | che cosa |
+|---|---|
+| `aiuti.R` | aiuti comuni alla prova: solo studi di sviluppo (cancello K5), solo `poddgx02` e variabili d'ambiente lette dal container (cancello K4) |
+| `50-scarica-geo-sviluppo.py`, `50-manifesto-geo.tsv` | testi GEO congelati dei 47 studi di sviluppo in `analysis/input/geo-testi-lettore-2026-11-09/`: testo dello studio (47 da GEO, 2026-11-10) e testo dei campioni (35 da GEO, 12 riusati dallo scarico di S12 del 2026-11-08, colonna `fonte`) |
+| `60-vista-v0.R`, `60-out.txt` | la vista dello studio che il modello legge: testo dello studio, colonne costanti, tabella dei campioni. 47 studi, 1.883 campioni, nessun campione cancellato, nessuna vista oltre 49.152 token stimati (massimo 37.692) |
+| `60-viste-v0.jsonl` | una riga per studio: `record_id`, `testo`, `campioni`, `colonne`, `costanti`, `tabella` (per colonna, il valore di ogni campione) |
+| `61-schema-v0.json` | lo schema della tabella dei fattori, prima versione |
+| `62-prompt-v0.md` | il messaggio di sistema, prima versione: il file entra nel prompt byte per byte, quindi non porta il marchio «PROVA DA BUTTARE» |

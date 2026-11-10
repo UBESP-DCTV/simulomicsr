@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://simulomicsr/schemas/prova/factor_table.v0.json",
+  "title": "factor_table.v0 - PROVA DA BUTTARE",
+  "description": "PROVA DA BUTTARE (S12r, ADR-0029): tabella dei fattori di uno studio, scritta dal modello dalla vista dello studio. I confronti li forma il costruttore deterministico tf_confronti(), non il modello. Schema di prima versione: non sta in inst/schemas/ e non entra nel pacchetto.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "series_id",
+    "columns",
+    "factors",
+    "not_understood"
+  ],
+  "properties": {
+    "series_id": {
+      "type": "string",
+      "description": "the GEO series accession, as written in the first line of the input"
+    },
+    "columns": {
+      "type": "array",
+      "description": "one entry for every column of the SAMPLE TABLE except gsm, with its role",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "column",
+          "role",
+          "subject_kind"
+        ],
+        "properties": {
+          "column": {
+            "type": "string",
+            "description": "column name, copied character by character from the header of the SAMPLE TABLE"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "factor",
+              "subject",
+              "replicate",
+              "uninformative"
+            ]
+          },
+          "subject_kind": {
+            "type": "string",
+            "description": "for role subject: what the column identifies; empty string for every other role",
+            "enum": [
+              "donor",
+              "sex",
+              "age",
+              "passage",
+              "batch",
+              "pair",
+              ""
+            ]
+          }
+        }
+      }
+    },
+    "factors": {
+      "type": "array",
+      "description": "one entry per factor of the design",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "type",
+          "source_columns",
+          "levels",
+          "baseline_level",
+          "baseline_evidence",
+          "assignment"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "short name of the factor"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "perturbation",
+              "state",
+              "context",
+              "time",
+              "technical"
+            ]
+          },
+          "source_columns": {
+            "type": "array",
+            "description": "the columns of the SAMPLE TABLE from which the levels of this factor are read, in a fixed order",
+            "items": {
+              "type": "string"
+            }
+          },
+          "levels": {
+            "type": "array",
+            "description": "the levels of this factor; the special level 'not stated' is not listed here",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "level",
+                "text_as_written",
+                "entity",
+                "dose",
+                "duration"
+              ],
+              "properties": {
+                "level": {
+                  "type": "string",
+                  "description": "short name of the level, unique within the factor"
+                },
+                "text_as_written": {
+                  "type": "string",
+                  "description": "the text that states this level, as written in the metadata"
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "name of the agent (perturbation) or of the disease or genotype (state); empty string for the other types; a name, never an ontology identifier"
+                },
+                "dose": {
+                  "type": "string",
+                  "description": "dose or concentration with its unit, if written; empty string otherwise"
+                },
+                "duration": {
+                  "type": "string",
+                  "description": "duration of the treatment with its unit, if written; empty string otherwise"
+                }
+              }
+            }
+          },
+          "baseline_level": {
+            "type": "string",
+            "description": "the level that is the baseline of this factor; empty string if the factor has no baseline; always empty for types context, time and technical"
+          },
+          "baseline_evidence": {
+            "type": "string",
+            "description": "quotation from the input text that supports the baseline; empty string if baseline_level is empty"
+          },
+          "assignment": {
+            "type": "array",
+            "description": "one entry for every distinct combination of values of the source columns that occurs in the SAMPLE TABLE",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "values",
+                "level"
+              ],
+              "properties": {
+                "values": {
+                  "type": "array",
+                  "description": "one value per source column, in the same order as source_columns, copied character by character from the SAMPLE TABLE; an empty cell is the empty string",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "level": {
+                  "type": "string",
+                  "description": "the level of this factor for the samples with these values: one of the names in levels, or 'not stated'"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "not_understood": {
+      "type": "array",
+      "description": "samples or values that could not be assigned; empty array if there are none",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "what",
+          "why"
+        ],
+        "properties": {
+          "what": {
+            "type": "string",
+            "description": "the samples, the column or the values that could not be assigned"
+          },
+          "why": {
+            "type": "string",
+            "description": "the reason"
+          }
+        }
+      }
+    }
+  }
+}
