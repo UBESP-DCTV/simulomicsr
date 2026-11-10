@@ -1,0 +1,217 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "https://simulomicsr/schemas/prova/factor_table.v1.json",
+ "title": "factor_table.v1 - PROVA DA BUTTARE",
+ "description": "PROVA DA BUTTARE (S12r2, ADR-0029): tabella dei fattori di uno studio, scritta dal modello dalla vista dello studio. Schema v1 secondo la spec par. 5.2, aggiornamento 2026-11-10: prima i fattori, poi i ruoli delle sole colonne che non sono fonte di un fattore; assegnazione a condizioni nominate; livelli riservati 'not stated' e 'not applicable'; valori mancanti delle colonne di soggetto. I confronti li forma il costruttore deterministico tf_confronti(), non il modello. Non sta in inst/schemas/ e non entra nel pacchetto.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "series_id",
+  "factors",
+  "other_columns",
+  "not_understood"
+ ],
+ "properties": {
+  "series_id": {
+   "type": "string",
+   "description": "the GEO series accession, as written in the first line of the input"
+  },
+  "factors": {
+   "type": "array",
+   "description": "one entry per factor of the design",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "name",
+     "type",
+     "source_columns",
+     "levels",
+     "baseline_level",
+     "baseline_evidence",
+     "assignment"
+    ],
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "short name of the factor"
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "perturbation",
+       "state",
+       "context",
+       "time",
+       "technical"
+      ],
+      "description": "perturbation: something that the experimenter applies or changes, including a culture condition that the series varies; state: a property of the donor that the experimenter does not apply; context: cell line, cell type, tissue; time; technical: a measurement variable that divides the samples into a few groups (batch, platform, kit, run, centre)"
+     },
+     "source_columns": {
+      "type": "array",
+      "description": "the columns of the SAMPLE TABLE from which the levels of this factor are read",
+      "items": {
+       "type": "string"
+      }
+     },
+     "levels": {
+      "type": "array",
+      "description": "the levels of this factor; the special levels 'not stated' and 'not applicable' are not listed here",
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "level",
+        "text_as_written",
+        "entity",
+        "dose",
+        "duration"
+       ],
+       "properties": {
+        "level": {
+         "type": "string",
+         "description": "short name of the level, unique within the factor"
+        },
+        "text_as_written": {
+         "type": "string",
+         "description": "the text that states this level, as written in the metadata"
+        },
+        "entity": {
+         "type": "string",
+         "description": "name of the agent (perturbation) or of the disease or genotype (state); empty string for the other types; a name, never an ontology identifier"
+        },
+        "dose": {
+         "type": "string",
+         "description": "dose or concentration with its unit, if written; empty string otherwise"
+        },
+        "duration": {
+         "type": "string",
+         "description": "duration of the treatment with its unit, if written; empty string otherwise"
+        }
+       }
+      }
+     },
+     "baseline_level": {
+      "type": "string",
+      "description": "the level that is the baseline of this factor; empty string if the factor has no baseline; always empty for types context, time and technical"
+     },
+     "baseline_evidence": {
+      "type": "string",
+      "description": "quotation from the input text that supports the baseline; empty string if baseline_level is empty"
+     },
+     "assignment": {
+      "type": "array",
+      "description": "the samples of each level, given by conditions on the source columns; every sample of the series meets the conditions of the entries of exactly one level",
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "when",
+        "level"
+       ],
+       "properties": {
+        "when": {
+         "type": "array",
+         "minItems": 1,
+         "description": "the conditions of this entry; a sample has the level of this entry when it meets all of them; one condition is the common case",
+         "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+           "column",
+           "value"
+          ],
+          "properties": {
+           "column": {
+            "type": "string",
+            "description": "one of the source_columns of this factor, copied character by character"
+           },
+           "value": {
+            "type": "string",
+            "description": "one distinct value of that column, copied character by character from the SAMPLE TABLE; an empty cell is the empty string"
+           }
+          }
+         }
+        },
+        "level": {
+         "type": "string",
+         "description": "the level of this factor for the samples that meet the conditions: one of the names in levels, or 'not stated', or 'not applicable'"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "other_columns": {
+   "type": "array",
+   "description": "one entry for every column of the SAMPLE TABLE, except gsm, that is not a source column of a factor",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "column",
+     "role",
+     "subject_kind",
+     "missing_values"
+    ],
+    "properties": {
+     "column": {
+      "type": "string",
+      "description": "column name, copied character by character from the header of the SAMPLE TABLE"
+     },
+     "role": {
+      "type": "string",
+      "enum": [
+       "subject",
+       "replicate",
+       "uninformative"
+      ]
+     },
+     "subject_kind": {
+      "type": "string",
+      "description": "for role subject: what the column identifies; empty string for every other role",
+      "enum": [
+       "donor",
+       "sex",
+       "age",
+       "passage",
+       "batch",
+       "pair",
+       ""
+      ]
+     },
+     "missing_values": {
+      "type": "array",
+      "description": "for role subject: the values of this column that mean that the datum is missing in this series; empty array if there are none and for every other role",
+      "items": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  "not_understood": {
+   "type": "array",
+   "description": "samples or values that could not be assigned; empty array if there are none",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "what",
+     "why"
+    ],
+    "properties": {
+     "what": {
+      "type": "string",
+      "description": "the samples, the column or the values that could not be assigned"
+     },
+     "why": {
+      "type": "string",
+      "description": "the reason"
+     }
+    }
+   }
+  }
+ }
+}
