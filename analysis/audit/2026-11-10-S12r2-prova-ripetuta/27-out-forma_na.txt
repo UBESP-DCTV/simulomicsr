@@ -1,0 +1,442 @@
+
+NOTE: Dependency discovery took 25 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 444 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+SENSIBILITA' DICHIARATA DOPO I NUMERI, modo forma_na : non e' la misura principale
+K4: uscite congelate, 44 file con le impronte di 23-uscite-sha256.txt; il file e' committato
+
+================ M ================
+K3: la prima corsa copre 47 studi su 47
+uscite identiche al carattere fra le due corse: 47 su 47
+studi chiusi dal lettore: 37 su 47; non chiusi: 10 
+studi non chiusi per esito (uno studio puo' avere piu' esiti):
+
+   oltre_contesto          troncata        non_valida       non_coperta 
+                0                 0                 0                10 
+    mappa_ambigua   livello_assente      base_assente  base_non_ammessa 
+                0                 0                 0                 0 
+   colonna_ignota livello_riservato 
+                0                 0 
+non chiusi per uno dei cinque esiti depositati: 10 ; solo per un altro esito: 0 
+  GSE147507: non_coperta: cell_line: 30 campioni, per esempio GSM4462363 || non_coperta: treatment: 20 campioni, per esempio GSM4432387 || non_coperta: ruxolitinib: 77 campioni, per esempio GSM4432378 || non_coperta: time_after_treatment: 36 campioni, per esempio GSM4432378
+  GSE46665: non_coperta: disease: 16 campioni, per esempio GSM1133661
+  GSE56787: non_coperta: disease: 14 campioni, per esempio GSM1412722 || non_coperta: cell_type: 24 campioni, per esempio GSM1412698
+  GSE57116: non_coperta: time: 4 campioni, per esempio GSM1375518
+  GSE57945: non_coperta: disease: 1 campioni, per esempio GSM1598427 || non_coperta: inflammation: 64 campioni, per esempio GSM1598427 || non_coperta: deep_ulcer: 65 campioni, per esempio GSM1598425
+  GSE60340: non_coperta: senescence_type: 12 campioni, per esempio GSM1473790 || non_coperta: treatment: 9 campioni, per esempio GSM1473770
+  GSE63816: non_coperta: disease: 6 campioni, per esempio GSM1558072 || non_coperta: zrsr2_status: 22 campioni, per esempio GSM1558056 || non_coperta: shRNA_treatment: 22 campioni, per esempio GSM1558056
+  GSE71595: non_coperta: stimulus: 14 campioni, per esempio GSM1841068
+  GSE83415: non_coperta: disease_stage: 21 campioni, per esempio GSM2202553
+  GSE83687: non_coperta: tissue: 1 campioni, per esempio GSM2212679
+note dell'adattatore (studi per nota):
+
+     base_senza_campioni      colonne_senza_ruolo  riservato_fra_i_livelli 
+                       3                        1                        1 
+ruolo_a_colonna_di_fonte   ruolo_a_colonna_ignota soggetto_valori_mancanti 
+                       4                        3                        1 
+             voci_in_piu          voci_malformate 
+                       3                        1 
+voci di assignment: 315; di forma sbagliata: 1 in 1 studi
+studi con un fattore con un livello per campione: 1; studi con una base scritta senza campioni: 3
+studi con il livello 'not applicable' assegnato: 5; con 'not stated': 1
+uscite troncate (finish_reason = length): 0; token dell'uscita: mediana 616, massimo 1929
+confronti del lettore (n_min = 2): 79 in 32 studi
+
+-- M, lettura principale --
+
+  identica incrociata non_chiuso   piu_fine 
+        33          1         10          3 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         33           47 0.7021   0.5745  0.8298
+ b_confronti_ritrovati         64           97 0.6598   0.4941  0.8095
+ c_errori_non_elencati          0            6 0.0000   0.0000  0.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso  ic_alto
+     a_gruppi_identici  0.7021 0.2979     0.4043   0.2340  0.57447
+ b_confronti_ritrovati  0.6598 0.1340     0.5258   0.3412  0.69609
+ c_errori_non_elencati  0.0000 0.2278    -0.2278  -0.3750 -0.08333
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+
+-- M, lettura intera --
+
+  identica incrociata non_chiuso   piu_fine 
+        33          1         10          3 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         33           47 0.7021   0.5745  0.8298
+ b_confronti_ritrovati         56           93 0.6022   0.4300  0.7595
+ c_errori_non_elencati          2            6 0.3333   0.0000  1.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.7021 0.2979    0.40426   0.2340  0.5745
+ b_confronti_ritrovati  0.6022 0.2043    0.39785   0.1379  0.6162
+ c_errori_non_elencati  0.3333 0.2405    0.09283  -0.3333  0.7685
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+
+-- M, lettura stretta --
+
+  identica incrociata non_chiuso   piu_fine 
+        33          1         10          3 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         33           47 0.7021   0.5745  0.8298
+ b_confronti_ritrovati         60           86 0.6977   0.5224  0.8387
+ c_errori_non_elencati          0            6 0.0000   0.0000  0.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.7021 0.2979     0.4043   0.2340  0.5745
+ b_confronti_ritrovati  0.6977 0.1395     0.5581   0.3616  0.7245
+ c_errori_non_elencati  0.0000 0.2658    -0.2658  -0.4288 -0.1156
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+
+================ M0 ================
+K3: la prima corsa copre 47 studi su 47
+studi chiusi dal lettore: 36 su 47; non chiusi: 11 
+studi non chiusi per esito (uno studio puo' avere piu' esiti):
+
+   oltre_contesto          troncata        non_valida       non_coperta 
+                0                 0                 0                10 
+    mappa_ambigua   livello_assente      base_assente  base_non_ammessa 
+                1                 0                 0                 0 
+   colonna_ignota livello_riservato 
+                0                 0 
+non chiusi per uno dei cinque esiti depositati: 11 ; solo per un altro esito: 0 
+  GSE147507: non_coperta: cell_line: 30 campioni, per esempio GSM4462363 || non_coperta: treatment: 3 campioni, per esempio GSM4462413 || non_coperta: time: 63 campioni, per esempio GSM4432378 || non_coperta: strain: 42 campioni, per esempio GSM4432378 || non_coperta: subject_status: 75 campioni, per esempio GSM4432378
+  GSE46665: non_coperta: disease: 16 campioni, per esempio GSM1133661
+  GSE49155: mappa_ambigua: cell_type: 10 campioni
+  GSE56787: non_coperta: disease: 14 campioni, per esempio GSM1412722 || non_coperta: cell_type: 24 campioni, per esempio GSM1412698
+  GSE57116: non_coperta: time: 4 campioni, per esempio GSM1375518
+  GSE57945: non_coperta: diagnosis: 1 campioni, per esempio GSM1598427 || non_coperta: deep_ulcer: 2 campioni, per esempio GSM1598425
+  GSE60340: non_coperta: treatment: 3 campioni, per esempio GSM1473784
+  GSE60585: non_coperta: molecule subtype: 18 campioni, per esempio GSM1482894
+  GSE63816: non_coperta: disease: 6 campioni, per esempio GSM1558072 || non_coperta: ZRSR2: 22 campioni, per esempio GSM1558056 || non_coperta: shRNA: 22 campioni, per esempio GSM1558056
+  GSE66207: non_coperta: disease: 12 campioni, per esempio GSM1616933 || non_coperta: disease_behavior: 12 campioni, per esempio GSM1616933
+  GSE83415: non_coperta: disease stage: 21 campioni, per esempio GSM2202553
+note dell'adattatore (studi per nota):
+
+     base_senza_campioni      colonne_senza_ruolo ruolo_a_colonna_di_fonte 
+                       3                        1                        3 
+  ruolo_a_colonna_ignota soggetto_valori_mancanti              voci_in_piu 
+                       5                        1                        5 
+voci di assignment: 275; di forma sbagliata: 0 in 0 studi
+studi con un fattore con un livello per campione: 1; studi con una base scritta senza campioni: 3
+studi con il livello 'not applicable' assegnato: 2; con 'not stated': 0
+uscite troncate (finish_reason = length): 0; token dell'uscita: mediana 648, massimo 2867
+confronti del lettore (n_min = 2): 76 in 31 studi
+
+-- M0, lettura principale --
+
+  identica incrociata non_chiuso   piu_fine 
+        32          1         11          3 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         32           47 0.6809   0.5532  0.8085
+ b_confronti_ritrovati         61           97 0.6289   0.4615  0.7766
+ c_errori_non_elencati          0            6 0.0000   0.0000  0.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso  ic_alto
+     a_gruppi_identici  0.6809 0.2979     0.3830   0.2335  0.55319
+ b_confronti_ritrovati  0.6289 0.1340     0.4948   0.3170  0.65117
+ c_errori_non_elencati  0.0000 0.2278    -0.2278  -0.3750 -0.08333
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+
+-- M0, lettura intera --
+
+  identica incrociata non_chiuso   piu_fine 
+        32          1         11          3 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         32           47 0.6809   0.5532  0.8085
+ b_confronti_ritrovati         56           93 0.6022   0.4286  0.7671
+ c_errori_non_elencati          2            6 0.3333   0.0000  1.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.6809 0.2979    0.38298   0.2335  0.5532
+ b_confronti_ritrovati  0.6022 0.2043    0.39785   0.1307  0.6083
+ c_errori_non_elencati  0.3333 0.2405    0.09283  -0.3333  0.7685
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+
+-- M0, lettura stretta --
+
+  identica incrociata non_chiuso   piu_fine 
+        32          1         11          3 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         32           47 0.6809   0.5532  0.8085
+ b_confronti_ritrovati         55           86 0.6395   0.4578  0.8000
+ c_errori_non_elencati          0            6 0.0000   0.0000  0.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.6809 0.2979     0.3830   0.2335  0.5532
+ b_confronti_ritrovati  0.6395 0.1395     0.5000   0.3064  0.6769
+ c_errori_non_elencati  0.0000 0.2658    -0.2658  -0.4288 -0.1156
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+
+================ G1 ================
+K3: la prima corsa copre 47 studi su 47
+uscite identiche al carattere fra le due corse: 4 su 47
+diverse: GSE103170, GSE103501, GSE112057, GSE147507, GSE41586, GSE44379, GSE46665, GSE47718, GSE49155, GSE49608, GSE50760, GSE51261, GSE52194, GSE52778, GSE52946, GSE53280, GSE54846, GSE56235, GSE56691, GSE56787, GSE57027, GSE57116, GSE57945, GSE58365, GSE59781, GSE60340, GSE63015, GSE63816, GSE65335, GSE66207, GSE67196, GSE67812, GSE68919, GSE69597, GSE71289, GSE71421, GSE71595, GSE75852, GSE77598, GSE78936, GSE83415, GSE83687, GSE93624 
+studi chiusi dal lettore: 31 su 47; non chiusi: 16 
+studi non chiusi per esito (uno studio puo' avere piu' esiti):
+
+   oltre_contesto          troncata        non_valida       non_coperta 
+                0                 0                 0                13 
+    mappa_ambigua   livello_assente      base_assente  base_non_ammessa 
+                3                 0                 0                 0 
+   colonna_ignota livello_riservato 
+                1                 0 
+non chiusi per uno dei cinque esiti depositati: 15 ; solo per un altro esito: 1 
+  GSE147507: non_coperta: cell_line: 30 campioni, per esempio GSM4462363 || non_coperta: treatment: 3 campioni, per esempio GSM4462413 || non_coperta: time_point: 57 campioni, per esempio GSM4462336 || non_coperta: strain: 10 campioni, per esempio GSM4432378
+  GSE46665: non_coperta: donor_condition: 16 campioni, per esempio GSM1133661
+  GSE49155: mappa_ambigua: cell_type: 10 campioni
+  GSE54846: non_coperta: knockdown: 6 campioni, per esempio GSM1325074
+  GSE57027: non_coperta: bait_expression: 3 campioni, per esempio GSM1373312
+  GSE57945: non_coperta: disease_status: 1 campioni, per esempio GSM1598427 || non_coperta: ileal_crohn_subphenotype: 104 campioni, per esempio GSM1598417 || non_coperta: inflammation_type: 1 campioni, per esempio GSM1598427 || non_coperta: deep_ulcer_presence: 3 campioni, per esempio GSM1598425
+  GSE60340: non_coperta: agent: 12 campioni, per esempio GSM1473759
+  GSE63816: non_coperta: disease_state: 6 campioni, per esempio GSM1558072 || non_coperta: genetic_perturbation: 22 campioni, per esempio GSM1558056
+  GSE66207: mappa_ambigua: disease_behavior: 20 campioni || non_coperta: disease_behavior: 12 campioni, per esempio GSM1616933
+  GSE69597: non_coperta: brucellosis_stage: 62 campioni, per esempio GSM1704409 || non_coperta: response_to_treatment: 62 campioni, per esempio GSM1704409
+  GSE71289: non_coperta: cell_type: 42 campioni, per esempio GSM1833876
+  GSE75852: mappa_ambigua: cell_line_type: 12 campioni
+  GSE78936: colonna_ignota: disease_state <- disease
+  GSE83415: non_coperta: disease_state: 21 campioni, per esempio GSM2202553
+  GSE83687: non_coperta: tissue_type: 1 campioni, per esempio GSM2212638
+  GSE93624: non_coperta: complicated_progression: 218 campioni, per esempio GSM2458832
+note dell'adattatore (studi per nota):
+
+     base_senza_campioni      colonne_senza_ruolo           fonte_costante 
+                       4                        7                        2 
+ruolo_a_colonna_di_fonte soggetto_valori_mancanti              voci_in_piu 
+                       1                        1                       11 
+voci di assignment: 337; di forma sbagliata: 0 in 0 studi
+studi con un fattore con un livello per campione: 0; studi con una base scritta senza campioni: 4
+studi con il livello 'not applicable' assegnato: 0; con 'not stated': 0
+uscite troncate (finish_reason = length): 0; token dell'uscita: mediana 591, massimo 2991
+confronti del lettore (n_min = 2): 53 in 25 studi
+
+-- G1, lettura principale --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        27          1         16          2          1 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         27           47 0.5745   0.4468  0.7021
+ b_confronti_ritrovati         32           97 0.3299   0.1961  0.5001
+ c_errori_non_elencati          7           11 0.6364   0.0000  1.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.5745 0.2979     0.2766  0.10638  0.4468
+ b_confronti_ritrovati  0.3299 0.1340     0.1959  0.05599  0.3596
+ c_errori_non_elencati  0.6364 0.2278     0.4085 -0.13851  0.7606
+ ricampioni_senza_valore
+                       0
+                       0
+                      26
+
+-- G1, lettura intera --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        27          1         16          2          1 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         27           47 0.5745   0.4468  0.7021
+ b_confronti_ritrovati         32           93 0.3441   0.2105  0.5001
+ c_errori_non_elencati          7           11 0.6364   0.0000  1.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.5745 0.2979     0.2766  0.10638  0.4468
+ b_confronti_ritrovati  0.3441 0.2043     0.1398 -0.06605  0.3334
+ c_errori_non_elencati  0.6364 0.2405     0.3959 -0.15435  0.7383
+ ricampioni_senza_valore
+                       0
+                       0
+                      26
+
+-- G1, lettura stretta --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        27          1         16          2          1 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         27           47 0.5745   0.4468  0.7021
+ b_confronti_ritrovati         27           86 0.3140   0.1724  0.5000
+ c_errori_non_elencati          7           11 0.6364   0.0000  1.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.5745 0.2979     0.2766  0.10638  0.4468
+ b_confronti_ritrovati  0.3140 0.1395     0.1744  0.02352  0.3500
+ c_errori_non_elencati  0.6364 0.2658     0.3705 -0.17672  0.7084
+ ricampioni_senza_valore
+                       0
+                       0
+                      26
+
+---------------- G1, seconda corsa (le due corse non sono identiche) ----------------
+studi chiusi dal lettore: 34 su 47; non chiusi: 13 
+studi non chiusi per esito (uno studio puo' avere piu' esiti):
+
+   oltre_contesto          troncata        non_valida       non_coperta 
+                0                 0                 0                11 
+    mappa_ambigua   livello_assente      base_assente  base_non_ammessa 
+                1                 0                 0                 0 
+   colonna_ignota livello_riservato 
+                1                 0 
+non chiusi per uno dei cinque esiti depositati: 12 ; solo per un altro esito: 1 
+  GSE147507: non_coperta: cell_line: 30 campioni, per esempio GSM4462363 || non_coperta: treatment: 3 campioni, per esempio GSM4462413 || non_coperta: host_status: 74 campioni, per esempio GSM4432378
+  GSE54846: non_coperta: knockdown: 6 campioni, per esempio GSM1325074
+  GSE56787: non_coperta: disease_state: 14 campioni, per esempio GSM1412722 || non_coperta: cell_type: 24 campioni, per esempio GSM1412698
+  GSE57027: non_coperta: bait_expression: 3 campioni, per esempio GSM1373312
+  GSE57945: non_coperta: disease_status: 1 campioni, per esempio GSM1598427 || non_coperta: ileal_inflammation_crohn: 104 campioni, per esempio GSM1598417 || non_coperta: inflammation_severity: 104 campioni, per esempio GSM1598417 || non_coperta: deep_ulcer: 106 campioni, per esempio GSM1598417
+  GSE60340: non_coperta: agent: 12 campioni, per esempio GSM1473759
+  GSE63816: non_coperta: disease_state: 6 campioni, per esempio GSM1558072 || non_coperta: genetic_perturbation: 22 campioni, per esempio GSM1558056
+  GSE66207: non_coperta: disease_state: 12 campioni, per esempio GSM1616933 || non_coperta: behavioral_phenotype: 15 campioni, per esempio GSM1616918
+  GSE69597: non_coperta: brucellosis_stage: 62 campioni, per esempio GSM1704409 || non_coperta: response_to_treatment: 62 campioni, per esempio GSM1704409
+  GSE71289: non_coperta: cell_type: 42 campioni, per esempio GSM1833876
+  GSE75852: mappa_ambigua: cell_line_type: 12 campioni
+  GSE78936: colonna_ignota: disease_state <- disease
+  GSE83687: non_coperta: inflammation_status: 130 campioni, per esempio GSM2212622
+note dell'adattatore (studi per nota):
+
+     base_senza_campioni      colonne_senza_ruolo           fonte_costante 
+                       3                        6                        2 
+ruolo_a_colonna_di_fonte soggetto_valori_mancanti              voci_in_piu 
+                       2                        1                       10 
+voci di assignment: 307; di forma sbagliata: 0 in 0 studi
+studi con un fattore con un livello per campione: 0; studi con una base scritta senza campioni: 3
+studi con il livello 'not applicable' assegnato: 0; con 'not stated': 0
+uscite troncate (finish_reason = length): 0; token dell'uscita: mediana 564, massimo 2129
+confronti del lettore (n_min = 2): 51 in 27 studi
+
+-- G1-corsa2, lettura principale --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        29          1         13          2          2 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         29           47 0.6170   0.4894  0.7447
+ b_confronti_ritrovati         31           97 0.3196   0.1927  0.4904
+ c_errori_non_elencati          5           10 0.5000   0.0000  1.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.6170 0.2979     0.3191  0.14894  0.4686
+ b_confronti_ritrovati  0.3196 0.1340     0.1856  0.05314  0.3404
+ c_errori_non_elencati  0.5000 0.2278     0.2722 -0.18750  0.7469
+ ricampioni_senza_valore
+                       0
+                       0
+                       7
+
+-- G1-corsa2, lettura intera --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        29          1         13          2          2 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         29           47 0.6170   0.4894  0.7447
+ b_confronti_ritrovati         31           93 0.3333   0.2020  0.4849
+ c_errori_non_elencati          5           10 0.5000   0.0000  1.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.6170 0.2979     0.3191  0.14894  0.4686
+ b_confronti_ritrovati  0.3333 0.2043     0.1290 -0.06733  0.3214
+ c_errori_non_elencati  0.5000 0.2405     0.2595 -0.20435  0.7357
+ ricampioni_senza_valore
+                       0
+                       0
+                       7
+
+-- G1-corsa2, lettura stretta --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        29          1         13          2          2 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         29           47 0.6170   0.4894  0.7447
+ b_confronti_ritrovati         26           86 0.3023   0.1628  0.4913
+ c_errori_non_elencati          5           10 0.5000   0.0000  1.0000
+lettore meno oggi, appaiato:
+                misura lettore   oggi differenza ic_basso ic_alto
+     a_gruppi_identici  0.6170 0.2979     0.3191  0.14894  0.4686
+ b_confronti_ritrovati  0.3023 0.1395     0.1628  0.01903  0.3333
+ c_errori_non_elencati  0.5000 0.2658     0.2342 -0.22655  0.7032
+ ricampioni_senza_valore
+                       0
+                       0
+                       7
+
+================ G2: prima corsa assente, non misurato ================
+
+================ M0 meno M, appaiato ================
+lettura principale 
+                misura     M0      M differenza ic_basso ic_alto
+     a_gruppi_identici 0.6809 0.7021   -0.02128  -0.1277 0.06383
+ b_confronti_ritrovati 0.6289 0.6598   -0.03093  -0.1808 0.10589
+ c_errori_non_elencati 0.0000 0.0000    0.00000   0.0000 0.00000
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+lettura intera 
+                misura     M0      M differenza ic_basso ic_alto
+     a_gruppi_identici 0.6809 0.7021   -0.02128  -0.1277 0.06383
+ b_confronti_ritrovati 0.6022 0.6022    0.00000  -0.1346 0.13484
+ c_errori_non_elencati 0.3333 0.3333    0.00000   0.0000 0.00000
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+lettura stretta 
+                misura     M0      M differenza ic_basso ic_alto
+     a_gruppi_identici 0.6809 0.7021   -0.02128  -0.1277 0.06383
+ b_confronti_ritrovati 0.6395 0.6977   -0.05814  -0.2111 0.06667
+ c_errori_non_elencati 0.0000 0.0000    0.00000   0.0000 0.00000
+ ricampioni_senza_valore
+                       0
+                       0
+                      84
+
+================ G1 meno M, appaiato ================
+lettura principale 
+                misura     G1      M differenza ic_basso ic_alto
+     a_gruppi_identici 0.5745 0.7021    -0.1277  -0.2553  0.0000
+ b_confronti_ritrovati 0.3299 0.6598    -0.3299  -0.5109 -0.1359
+ c_errori_non_elencati 0.6364 0.0000     0.6364   0.0000  1.0000
+ ricampioni_senza_valore
+                       0
+                       0
+                     108
+lettura intera 
+                misura     G1      M differenza ic_basso  ic_alto
+     a_gruppi_identici 0.5745 0.7021    -0.1277  -0.2553  0.00000
+ b_confronti_ritrovati 0.3441 0.6022    -0.2581  -0.4471 -0.07352
+ c_errori_non_elencati 0.6364 0.3333     0.3030  -0.3333  0.83333
+ ricampioni_senza_valore
+                       0
+                       0
+                     108
+lettura stretta 
+                misura     G1      M differenza ic_basso ic_alto
+     a_gruppi_identici 0.5745 0.7021    -0.1277  -0.2553  0.0000
+ b_confronti_ritrovati 0.3140 0.6977    -0.3837  -0.5727 -0.1842
+ c_errori_non_elencati 0.6364 0.0000     0.6364   0.0000  1.0000
+ ricampioni_senza_valore
+                       0
+                       0
+                     108
+
+FINITO (sensibilita')
