@@ -39,7 +39,7 @@ scritto oggi, fisserebbe scelte prima della misura.
 
 ## Le scelte dell'agente che non stanno nel disegno
 
-Il disegno le lascia a chi implementa. Sono qui perché tu le possa rifiutare.
+Il disegno le lascia a chi implementa. Il PI le ha accettate il 2026-11-10 insieme al piano.
 
 1. **La regola della divisione.** I 12 studi già letti vanno nello sviluppo. Gli altri 117 si dividono per il
    resto della divisione per 3 del numero GEO. Il risultato è 47, 42 e 40, non «circa 51, 39 e 39».

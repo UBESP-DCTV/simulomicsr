@@ -14,7 +14,7 @@
 
 ---
 
-## 1. Dove siamo (2026-11-09)
+## 1. Dove siamo (2026-11-10)
 
 **Branch** `p6-tabella-dei-fattori` (dal 2026-11-09, nato da `review-scientific-consistency-2026-06-10`) · **master invariato** ·
 **mai `git push`** (lo fa l'utente).
@@ -82,8 +82,8 @@ soglia di errore accettata**: ogni causa si corregge · i campioni cancellati da
 
 **Che cosa fare adesso:** **`docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md`** comanda
 l'ordine: **S12** (Stadio 2b, il disegno: **chiusa** il 2026-11-08) → **S12p** (la prova: fatta il 2026-11-08,
-nessun modello passa) → **S12q** (il lettore dello studio: disegno approvato, piano scritto il 2026-11-09, in attesa
-dell'approvazione del piano) → **S12r** (Piano 1: costruttore dei confronti, misure contro Atlas, misura di oggi, prova
+nessun modello passa) → **S12q** (il lettore dello studio: disegno approvato il 2026-11-09, piano approvato il 2026-11-10, **chiusa**;
+esecuzione scelta dal PI: un solo agente per sessione e una revisione indipendente alla fine) → **S12r** (Piano 1: costruttore dei confronti, misure contro Atlas, misura di oggi, prova
 da buttare sui 47 studi di sviluppo; STOP) → **S12s** (Piano 2: il lettore nel pacchetto e il cancello; STOP) →
 S12c+S12b, S12d → **S13** (corsa intera, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16, S17. L'handout del 2026-08-21 resta per le sessioni chiuse e per i prompt di S12b, S12c, S12d, S16, S17.
 Il deliverable su disco resta A3 v16 fino a S13.

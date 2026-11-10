@@ -3,6 +3,8 @@
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or
 > superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 > Prima di tutto carica la skill di progetto `simulomicsr-session` e leggi `CLAUDE.md`.
+> **Scelta del PI (2026-11-10):** piano approvato; esecuzione con `superpowers:executing-plans` da un solo agente in
+> una sessione nuova (S12r), senza subagenti per i task, e una revisione indipendente di tutto il branch alla fine.
 
 **Goal:** costruire gli strumenti che misurano un lettore dello studio contro la curazione umana di Expression
 Atlas, misurare con gli stessi strumenti la pipeline di oggi, e fare la prova piccola da buttare che dice al PI
