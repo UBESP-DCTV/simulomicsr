@@ -37,7 +37,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S12q** | La strada dopo S12p: **il lettore dello studio e la tabella dei fattori** (ADR-0029). Disegno approvato dal PI il 2026-11-09, piano approvato il 2026-11-10. **Chiusa il 2026-11-10** | disegno + piano | fatta | **S12p** |
 | **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. **Fatta il 2026-11-10: i 5 cancelli passano, la regola di esito non è soddisfatta** (gruppi identici 14/47 per il lettore e per oggi; confronti ritrovati 10 contro 19 su 93; 24 studi non chiusi, 18 per la forma delle voci). **Chiusa il 2026-11-10** con due decisioni del PI: prova ripetuta, tempo zero fuori dal riferimento | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
 | **S12r2** | La prova ripetuta sugli stessi 47 studi di sviluppo: schema e prompt corretti, Mistral e uno o due modelli più grandi, riferimento senza il tempo zero come controllo, previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-10: la regola di esito dà no per i tre modelli; modello deciso (Mistral-Small 3.2), Qwen non si riprova. **Chiusa il 2026-11-11** con la terza decisione del PI: prima del Piano 2 una terza prova piccola** | carta + codice (TDD) + DGX breve | ~1-2 sessioni | **S12r** |
-| **S12r3** | La terza prova piccola sugli stessi 47 studi di sviluppo: schema delle uscite generato per ogni studio, con colonne e valori a elenco chiuso e una voce per valore; solo Mistral-Small 3.2; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2 | carta + codice + DGX breve | ~1 sessione | **S12r2** |
+| **S12r3** | La terza prova piccola sugli stessi 47 studi di sviluppo: schema delle uscite generato per ogni studio, con colonne e valori a elenco chiuso e una voce per valore; solo Mistral-Small 3.2; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-11: i 5 cancelli passano; 45 studi chiusi su 47, gruppi identici 36/47, confronti ritrovati 68/95 (oggi 13/95); la regola di esito dà no per il solo punto 4 (errori di lettura del modello in 4 studi). Aspetta la decisione del PI** | carta + codice + DGX breve | ~1 sessione | **S12r2** |
 | **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r3, se il PI lo decide): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r3** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
@@ -345,6 +345,40 @@ docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. 
 ---
 
 # S12r3 — La terza prova piccola: lo schema delle uscite a elenco chiuso
+
+> **Esito (2026-11-11), finding `docs/findings/2026-11-11-S12r3-terza-prova-lettore-studio.md`.** Decisione del PI
+> prima del deposito: un fattore di contesto non ha livello di base; i confronti di Atlas in cui cambia solo
+> `cell type`, `cell line` o `organism part` escono dal riferimento per costruzione (97 → **95** confronti; la misura
+> su 97 si riporta accanto). I 5 cancelli passano. Mistral-Small 3.2 con lo schema generato per ogni studio, due
+> corse identiche al carattere 47/47: **45 studi chiusi su 47** (v1 34), **gruppi identici ad Atlas 36/47** (v1 31,
+> oggi 14), **confronti ritrovati 68/95** (v1 50, oggi 13; lettore meno oggi +57,9 punti, IC95 +40,0, +73,2), errori
+> fra i non elencati 2/33 (nessuno dei due è del lettore). I 2 non chiusi (`GSE50499`, `GSE63816`) scrivono il nome
+> di un livello in una forma che lo schema non lega; sensibilità dichiarata dopo i numeri: 47/47 chiusi, 71/95.
+> 40 disaccordi letti tutti (audit interno): non errore 21, vista o schema 6, **lettura del modello 13 in 4 studi**
+> (`GSE57945` sesso scritto come fattore; `GSE46665` sigle dei pazienti scritte come malattie; `GSE60340` colonna del
+> trattamento non vista; `GSE49155` fattore doppio), **gruppi sbagliati in 3 studi**. **Regola di esito: no**, per
+> il solo punto 4 (i punti 1, 2, 3 e 5 sì): è l'esito che l'agente aveva depositato.
+> **La sessione non è chiusa: aspetta una decisione del PI.** Piano 2 adesso, oppure prima una sessione breve che
+> cerca dove nasce ogni errore di lettura (raccomandata la seconda).
+> **Rinvii per il passo seguente (S12s, oppure la sessione sulle cause se il PI la decide):**
+> (a) **gli errori di lettura non hanno una diagnosi.** Tre dei 4 non c'erano nelle tabelle scritte con lo schema v1,
+> e le 5 unità di lettura di S12r2 (`GSE57116`, `GSE75852`) sono sparite: l'errore si sposta con la forma
+> dell'uscita. Candidate non misurate: la tupla `columns` che chiede un ruolo per ogni colonna, un fattore su una
+> sola colonna, la cella vuota come valore con un livello. Serve una corsa per ogni cambio, una cosa per volta;
+> niente correzioni al prompt per coprire uno studio e niente regole che fanno il lavoro del modello;
+> (b) **due correzioni di forma dello schema, nominate e non misurate come corsa:** i livelli presi dalle voci (via
+> l'elenco `levels` separato) e i due nomi riservati come valori ammessi di `level`;
+> (c) **la regola del riferimento per il contesto** nomina tre fattori di Atlas: `growth condition` (`GSE65335`)
+> resta nel riferimento e conta contro il lettore. Chi scrive il cancello decide prima, e per costruzione, se la
+> regola segue i nomi di Atlas o il tipo del fattore;
+> (d) la misura (c) non vede un fattore di troppo quando ogni confronto resta dentro un livello di quel fattore
+> (`GSE57945`: 18 confronti «coerenti» con gruppi sbagliati): sugli 82 studi di giudizio non basta da sola;
+> (e) `GSE147507` è identica sui 14 campioni comuni, con 10 confronti fuori dall'universo di Atlas che la prova non
+> giudica; il limite «variabile su più colonne» resta dichiarato;
+> (f) i 47 studi di sviluppo sono stati letti tre volte: ogni altra prova su di loro aumenta il rischio di
+> adattamento, e solo gli 82 studi di giudizio lo misurano;
+> (g) `renv/settings.json` è **tracciato** in questo branch: prima di un commit `git checkout -- renv/settings.json`,
+> mai `rm`.
 
 > **Ricevuto da S12r2, da leggere per primo.** (1) **Decisioni del PI:** il modello del lettore è Mistral-Small 3.2
 > (2026-11-10); Qwen3.5-122B non si riprova, pesi cancellati (2026-11-10); **prima del Piano 2 si fa una terza prova
