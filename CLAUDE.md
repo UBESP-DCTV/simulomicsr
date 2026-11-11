@@ -14,7 +14,7 @@
 
 ---
 
-## 1. Dove siamo (2026-11-10)
+## 1. Dove siamo (2026-11-11)
 
 **Branch** `p6-tabella-dei-fattori` (dal 2026-11-09, nato da `review-scientific-consistency-2026-06-10`) · **master invariato** ·
 **mai `git push`** (lo fa l'utente).
@@ -84,10 +84,12 @@ riferimento intero si riporta accanto. ADR-0029 §Aggiornamento; decisioni tecni
 `analysis/audit/2026-11-09-lettore-studio/68-decisioni-e-minori.md`.
 
 **Dopo la prova ripetuta S12r2 (2026-11-10). Decise dal PI:** il modello del lettore è Mistral-Small 3.2; Qwen3.5-122B
-non si riprova e i suoi pesi sono cancellati dal DGX. **Aperta:** se si scrive adesso il Piano 2 o se prima si fa una
-terza prova piccola sugli stessi 47 studi con lo schema delle uscite a elenco chiuso (raccomandata la terza prova:
-13 studi non chiusi contro la soglia di 7, rimedio non misurato). Il PI ha chiesto di spiegare la proposta prima di
-decidere. Finché il PI non decide, il Piano 2 non si scrive e il lettore non entra nel pacchetto.
+non si riprova e i suoi pesi sono cancellati dal DGX. **Decisa il 2026-11-11:** prima del Piano 2 si fa una **terza
+prova piccola (S12r3)** sugli stessi 47 studi, solo con Mistral-Small 3.2, con lo schema delle uscite a elenco
+chiuso. «Schema» qui è la forma JSON dell'uscita, non il disegno dello studio: un programma la genera per ogni
+studio dalla tabella dei campioni (solo colonne e valori che esistono, una voce per ogni valore); il modello decide
+ancora fattori, livelli e base. Il rimedio non è misurato e non toglie gli errori di lettura. Il Piano 2 non si
+scrive e il lettore non entra nel pacchetto prima di quella prova.
 
 **Decisioni del PI che restano valide, una riga ciascuna:** gate a 3 studi · S13 corregge la varianza del
 controllo condiviso (T1) e assegna i ruoli per nome · studi doppi tolti con una regola sulle conte · LINCS dà
@@ -99,7 +101,7 @@ soglia di errore accettata**: ogni causa si corregge · i campioni cancellati da
 l'ordine: **S12** (Stadio 2b, il disegno: **chiusa** il 2026-11-08) → **S12p** (la prova: fatta il 2026-11-08,
 nessun modello passa) → **S12q** (il lettore dello studio: disegno approvato il 2026-11-09, piano approvato il 2026-11-10, **chiusa**;
 esecuzione scelta dal PI: un solo agente per sessione e una revisione indipendente alla fine; lo stato si tiene in `docs/superpowers/plans/2026-11-09-lettore-studio-mappa/`, aggiornato a ogni Task) → **S12r** (Piano 1: costruttore dei confronti, misure contro Atlas, misura di oggi, prova
-da buttare sui 47 studi di sviluppo; **fatta il 2026-11-10, la regola di esito non è soddisfatta; chiusa** con le due decisioni del PI qui sopra; il Piano 2 non è scritto) → **S12r2** (la prova ripetuta sui 47 studi: carta e previsioni prima, schema e prompt v1, Mistral e modelli più grandi, una corsa senza `repetition_penalty`; **fatta il 2026-11-10, la regola di esito dà no per i tre modelli; non chiusa: aspetta la decisione aperta del PI qui sopra**) → **S12s** (Piano 2: il lettore nel pacchetto e il cancello; STOP) →
+da buttare sui 47 studi di sviluppo; **fatta il 2026-11-10, la regola di esito non è soddisfatta; chiusa** con le due decisioni del PI qui sopra; il Piano 2 non è scritto) → **S12r2** (la prova ripetuta sui 47 studi: carta e previsioni prima, schema e prompt v1, Mistral e modelli più grandi, una corsa senza `repetition_penalty`; **fatta il 2026-11-10, la regola di esito dà no per i tre modelli; **chiusa il 2026-11-11** con le tre decisioni del PI qui sopra) → **S12r3** (la terza prova piccola sui 47 studi: schema delle uscite a elenco chiuso, solo Mistral-Small 3.2, carta e previsioni prima; STOP: il PI decide se si scrive il Piano 2; **è la sessione seguente**) → **S12s** (Piano 2: il lettore nel pacchetto e il cancello; STOP) →
 S12c+S12b, S12d → **S13** (corsa intera, deliverable v17) → S15 (rilettura cieca) → S7c, S7b → S16, S17. L'handout del 2026-08-21 resta per le sessioni chiuse e per i prompt di S12b, S12c, S12d, S16, S17.
 Il deliverable su disco resta A3 v16 fino a S13.
 

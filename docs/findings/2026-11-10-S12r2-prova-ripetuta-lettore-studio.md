@@ -461,7 +461,9 @@ Il riassunto in testa resta come il PI lo ha letto. Dopo la lettura:
 - **Decisione 2, decisa come raccomandato:** il modello del lettore è Mistral-Small 3.2.
 - **Decisione 3, decisa come raccomandato:** Qwen 3.5 non si riprova. I pesi sono cancellati dal DGX il
   2026-11-10T18:44+01:00 (`23-tentativi.md`, ultima voce): la deviazione dalla spec §5.7 di §8 punto 9 è chiusa.
-- **Decisione 1, aperta:** il PI ha chiesto di spiegare la proposta dello schema a elenco chiuso prima di decidere.
+- **Decisione 1, decisa come raccomandato (2026-11-11):** il PI ha chiesto di spiegare la proposta dello schema a
+  elenco chiuso, poi ha deciso: prima del Piano 2 si fa la terza prova piccola sugli stessi 47 studi (sessione
+  S12r3 dell'handout). ADR-0029 §Aggiornamento 2026-11-11. La sessione S12r2 è chiusa.
 
 [^previsioni]: `analysis/audit/2026-11-10-S12r2-prova-ripetuta/00-previsioni.md`.
 [^prima]: `05-out.txt`, `06-out.txt`, `07-out.txt`, `08-out.txt` nella stessa cartella.

@@ -1,8 +1,8 @@
 {
-  "aggiornato": "2026-11-10",
-  "sessione": "Sessione della prova ripetuta (S12r2), aperta il 2026-11-10; non chiusa: aspetta una decisione del PI",
+  "aggiornato": "2026-11-11",
+  "sessione": "Sessione della prova ripetuta (S12r2), aperta il 2026-11-10; chiusa il 2026-11-11 con tre decisioni del PI. La sessione seguente è la terza prova piccola (S12r3)",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Il PI decide un punto: se scrivere adesso il Piano 2 o fare prima una terza prova piccola con lo schema delle uscite a elenco chiuso. Il modello è deciso: quello di oggi. Finché il PI non decide, il Piano 2 non si scrive.",
+  "prossimo_passo": "Terza prova piccola sugli stessi 47 studi (S12r3), solo con il modello di oggi: un programma prepara per ogni studio il modulo della risposta, con le sole colonne e i soli valori che esistono nella tabella dei campioni e una riga per ogni valore. Carta e previsioni prima delle corse. Poi il PI decide se si scrive il Piano 2.",
   "piani": [
     {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "chiuso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
@@ -107,7 +107,7 @@
      "dove": "si spiega nel finding del passo 11", "stato": "chiuso", "chiusura": "spiegato: oggi ritrova 16 confronti su 19 dove i gruppi sono identici e 3 su 74 altrove, perché divide i campioni in più gruppi dei curatori"},
     {"testo": "Il 24% dei confronti dei curatori cambia più di un fattore, contro il 10% atteso. Sta in 8 studi.",
      "dove": "si legge studio per studio nel passo 10 e si spiega nel finding", "stato": "chiuso", "chiusura": "spiegato: 29 confronti in 8 studi; 14 con un fattore annidato, 5 con un riferimento che non è un controllo, 3 con il tempo zero"},
-    {"testo": "Prova ripetuta: 13 studi non chiusi contro la soglia di 7. Il rimedio proposto (schema a elenco chiuso per ogni studio) non è misurato.", "dove": "decisione del PI: Piano 2 adesso, oppure prima una terza prova piccola", "stato": "aperto", "chiusura": ""},
+    {"testo": "Prova ripetuta: 13 studi non chiusi contro la soglia di 7. Il rimedio proposto (schema a elenco chiuso per ogni studio) non è misurato.", "dove": "decisione del PI: Piano 2 adesso, oppure prima una terza prova piccola", "stato": "chiuso", "chiusura": "deciso: prima una terza prova piccola sugli stessi 47 studi (PI, 2026-11-11); la misura passa alla sessione della terza prova (S12r3)"},
     {"testo": "Prova ripetuta: il modello più grande della stessa famiglia fa peggio e non è ripetibile.", "dove": "decisione del PI: con quale modello si va avanti", "stato": "chiuso", "chiusura": "deciso: il modello del lettore è quello di oggi, Mistral-Small 3.2 (PI, 2026-11-10)"},
     {"testo": "Prova ripetuta: il secondo modello grande non è partito in due tentativi. I suoi pesi (268 GB) stanno ancora sul DGX.", "dove": "decisione del PI: riprovare con 8 GPU, oppure no e cancellare i pesi", "stato": "chiuso", "chiusura": "deciso: non si riprova; pesi cancellati dal DGX il 2026-11-10"}
   ],
@@ -130,6 +130,7 @@
     {"data": "2026-11-10", "che_cosa": "Prova ripetuta (S12r2), corse: il modello di oggi con lo schema corretto due volte (uscite identiche in 47 studi su 47) e una volta senza penalità di ripetizione; il modello più grande della stessa famiglia due volte (identiche in 4 studi su 47); il secondo modello grande non parte in due tentativi e non è misurato."},
     {"data": "2026-11-10", "che_cosa": "Prova ripetuta (S12r2), misura: il lettore con il modello di oggi forma gli stessi gruppi dei curatori in 31 studi su 47 (oggi 14) e ritrova 50 confronti su 97 (oggi 13). 13 studi non chiudono, contro una soglia scritta prima di 7. Il modello più grande ritrova 32 confronti su 97."},
     {"data": "2026-11-10", "che_cosa": "Prova ripetuta (S12r2), chiusura: letti tutti i 63 disaccordi del lettore, ognuno con una causa. La regola di esito dà no per i tre modelli. Finding 2026-11-10-S12r2-prova-ripetuta-lettore-studio. La sessione aspetta tre decisioni del PI."},
-    {"data": "2026-11-10", "che_cosa": "Il PI ha deciso due punti su tre: il modello del lettore è quello di oggi; il secondo modello grande non si riprova e i suoi pesi sono cancellati dal DGX. Resta aperto il terzo: Piano 2 adesso, oppure prima una terza prova piccola."}
+    {"data": "2026-11-10", "che_cosa": "Il PI ha deciso due punti su tre: il modello del lettore è quello di oggi; il secondo modello grande non si riprova e i suoi pesi sono cancellati dal DGX. Resta aperto il terzo: Piano 2 adesso, oppure prima una terza prova piccola."},
+    {"data": "2026-11-11", "che_cosa": "Il PI ha deciso il terzo punto: prima del Piano 2 si fa una terza prova piccola sugli stessi 47 studi, con il modulo della risposta a elenco chiuso. La sessione della prova ripetuta (S12r2) è chiusa. La sessione seguente è la terza prova (S12r3)."}
   ]
 }

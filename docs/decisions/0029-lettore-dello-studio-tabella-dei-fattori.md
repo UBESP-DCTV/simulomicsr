@@ -75,6 +75,22 @@ tutto», sulle due raccomandazioni dell'agente):
    riconosce si scrive prima della prova, per costruzione e non per elenco. La misura sul riferimento intero si
    riporta sempre accanto.
 
+## Aggiornamento 2026-11-11 (decisioni del PI dopo la prova ripetuta S12r2)
+
+La prova ripetuta ha migliorato le misure (gruppi identici ad Atlas 31/47 contro 14/47 di oggi, confronti
+ritrovati 50/97 contro 13/97) ma la regola di esito dà no: 13 studi non chiudono contro la soglia depositata di 7
+(`docs/findings/2026-11-10-S12r2-prova-ripetuta-lettore-studio.md`). Il PI ha deciso, sulle tre raccomandazioni
+dell'agente:
+
+1. **Il modello del lettore è Mistral-Small 3.2**, quello di produzione (2026-11-10). Mistral-Small-4-119B fa
+   peggio e non è ripetibile.
+2. **Qwen3.5-122B non si riprova** e i suoi pesi sono cancellati dal DGX (2026-11-10).
+3. **Prima del Piano 2 si fa una terza prova piccola** sugli stessi 47 studi di sviluppo (sessione S12r3,
+   2026-11-11): lo schema delle uscite strutturate si genera per ogni studio dalla tabella dei campioni, con
+   colonne e valori a elenco chiuso e una voce per ogni valore distinto. Il modello decide ancora fattori, ruoli,
+   livelli e livello di base. Il lettore non entra nel pacchetto prima di quella prova. Gli 82 studi di giudizio
+   restano chiusi.
+
 ## Link
 
 - Spec: `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`

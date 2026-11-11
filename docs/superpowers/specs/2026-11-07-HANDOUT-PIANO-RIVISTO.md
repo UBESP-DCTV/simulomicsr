@@ -36,8 +36,9 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S12p** | La prova che decide: 3 modelli sui 1.903, conto cieco — **fatta il 2026-11-08: nessun modello passa** (presi 186/177/155 su 193, falsi allarmi 965/887/364 su 1.710); lettura dei falsi allarmi: 318 confronti «puliti» non confrontabili per i lettori (280 confermati); prompt v2 e codice da solo non bastano; **diagnosi: metà dei 473 difetti nasce nella scelta del confronto dello Stadio 2, tre su dieci nello Stadio 1** | DGX + 1 sessione | ~3 h + 1 notte | **S12** |
 | **S12q** | La strada dopo S12p: **il lettore dello studio e la tabella dei fattori** (ADR-0029). Disegno approvato dal PI il 2026-11-09, piano approvato il 2026-11-10. **Chiusa il 2026-11-10** | disegno + piano | fatta | **S12p** |
 | **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. **Fatta il 2026-11-10: i 5 cancelli passano, la regola di esito non è soddisfatta** (gruppi identici 14/47 per il lettore e per oggi; confronti ritrovati 10 contro 19 su 93; 24 studi non chiusi, 18 per la forma delle voci). **Chiusa il 2026-11-10** con due decisioni del PI: prova ripetuta, tempo zero fuori dal riferimento | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
-| **S12r2** | La prova ripetuta sugli stessi 47 studi di sviluppo: schema e prompt corretti, Mistral e uno o due modelli più grandi, riferimento senza il tempo zero come controllo, previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-10: la regola di esito dà no per i tre modelli; modello deciso (Mistral-Small 3.2), Qwen non si riprova; aspetta una decisione del PI (Piano 2 adesso o terza prova prima)** | carta + codice (TDD) + DGX breve | ~1-2 sessioni | **S12r** |
-| **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r2** |
+| **S12r2** | La prova ripetuta sugli stessi 47 studi di sviluppo: schema e prompt corretti, Mistral e uno o due modelli più grandi, riferimento senza il tempo zero come controllo, previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-10: la regola di esito dà no per i tre modelli; modello deciso (Mistral-Small 3.2), Qwen non si riprova. **Chiusa il 2026-11-11** con la terza decisione del PI: prima del Piano 2 una terza prova piccola** | carta + codice (TDD) + DGX breve | ~1-2 sessioni | **S12r** |
+| **S12r3** | La terza prova piccola sugli stessi 47 studi di sviluppo: schema delle uscite generato per ogni studio, con colonne e valori a elenco chiuso e una voce per valore; solo Mistral-Small 3.2; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2 | carta + codice + DGX breve | ~1 sessione | **S12r2** |
+| **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r3, se il PI lo decide): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r3** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
 | **S13** | Piano 3 (da scrivere dopo il cancello): corsa del lettore su tutti gli studi, chiave, varianza, ruoli, doppi, re-cluster, re-pool, deliverable v17 | calcolo | da definire | **S12s, S12c, S12d** |
@@ -48,7 +49,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S17** | Methods e limiti | scrittura | ~4 h | tutto |
 
 **Cancellate:** «S12 — il rilevatore in produzione» (handout di agosto) e «S14 seconda parte» (assorbita in
-S13: il re-cluster si fa una volta sola). **Cancelli veri:** S12r←S12q, S12r2←S12r, S12s←S12r2 (decisione del PI),
+S13: il re-cluster si fa una volta sola). **Cancelli veri:** S12r←S12q, S12r2←S12r, S12r3←S12r2, S12s←S12r3 (decisione del PI),
 S13←S12s (cancello su Atlas)+S12c+S12d, S15←S13, S7c←S13.
 
 **Dal 2026-11-09 (ADR-0029):** lo Stadio 2b esce dal piano. Dove questo handout scrive «Stadio 2b» nelle sezioni
@@ -287,8 +288,9 @@ Spec: docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-desig
 > (2) quale modello (raccomandato Mistral-Small 3.2); (3) Qwen3.5-122B si riprova con 8 GPU oppure no (raccomandato
 > no, e cancellare i pesi). **Il PI ha deciso (2) e (3) il 2026-11-10 come raccomandato:** il modello è
 > Mistral-Small 3.2; Qwen3.5-122B non si riprova e i suoi pesi sono cancellati dal DGX (`/home` passa a 167 GB su
-> 500). **La decisione (1) è aperta:** il PI ha chiesto di spiegare la proposta dello schema a elenco chiuso.
-> **Rinvii per la sessione che segue (terza prova o S12s, secondo la decisione), da leggere per primi:**
+> 500). **Il PI ha deciso (1) il 2026-11-11**, dopo la spiegazione della proposta: **si fa la terza prova piccola**
+> (sessione S12r3). **La sessione S12r2 è chiusa.**
+> **Rinvii per S12r3 (riscritti nella sua sezione, che fa fede):**
 > (a) lo schema a elenco chiuso **non è misurato**: colonne e valori presi dalla tabella dei campioni come elenco
 > chiuso, una voce per ogni valore distinto; misurare prima la grandezza dello schema generato sugli studi con molte
 > colonne; (b) `schema/context_senza_base`: un confronto fra due tipi cellulari o due condizioni di coltura non ha
@@ -337,6 +339,79 @@ Se si scrive il Piano 2 (il lettore nel pacchetto, S12s) e con quale modello.
 sessione simulomicsr S12r2, leggi prima la skill di progetto.
 Handout: docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md, sezione S12r2. Finding di partenza:
 docs/findings/2026-11-09-S12r-prova-lettore-studio.md. Spec:
+docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. Branch p6-tabella-dei-fattori.
+```
+
+---
+
+# S12r3 — La terza prova piccola: lo schema delle uscite a elenco chiuso
+
+> **Ricevuto da S12r2, da leggere per primo.** (1) **Decisioni del PI:** il modello del lettore è Mistral-Small 3.2
+> (2026-11-10); Qwen3.5-122B non si riprova, pesi cancellati (2026-11-10); **prima del Piano 2 si fa una terza prova
+> piccola sugli stessi 47 studi di sviluppo, con lo schema delle uscite a elenco chiuso (2026-11-11)**. In questa
+> prova non entrano modelli più grandi. (2) **Che cosa è la proposta** (finding di S12r2 §7): «schema» è la forma
+> JSON delle uscite strutturate, non il disegno dello studio. Un programma la genera per ogni studio dalla tabella
+> dei campioni: il campo della colonna ammette solo le colonne che esistono, il campo del valore solo i valori
+> distinti che esistono, e ogni valore distinto ha la sua voce. Il modello decide ancora fattori, ruoli, livelli e
+> livello di base. **Non è misurata.** Riguarda 10 dei 13 studi non chiusi di S12r2 (`valore_senza_voce` 8,
+> `colonna_non_letterale` 1, `valore_non_letterale` 1). (3) **Il rischio da misurare:** l'elenco chiuso toglie gli
+> errori di copia e di copertura, non gli errori di lettura. Un modello obbligato a coprire ogni valore può scrivere
+> un livello sbagliato (`GSE46665`: livelli solo per i valori `_T0`; `GSE56787`: tre fattori dalla sola colonna
+> `tissue`). Uno studio che prima non chiudeva e adesso chiude con gruppi sbagliati è un esito peggiore: va contato
+> a parte. (4) **Prima delle corse, senza modello:** la grandezza dello schema generato sui 47 studi (l'ingresso più
+> lungo ha 31.271 token; una colonna come il titolo ha un valore per campione) e se vLLM 0.20.2 lo compila.
+> (5) **Aperti da S12r2, non toccati dalla proposta:** `schema/context_senza_base` (`GSE65335`, `GSE75852`: un
+> confronto fra due tipi cellulari o due condizioni di coltura non ha una base per schema) è una scelta di disegno
+> del PI: porta le opzioni prima del deposito delle previsioni; `vista/sotto_serie` (`GSE147507`: la vista porta 77
+> campioni contro i 14 di Atlas): prima la diagnosi di dove nasce, poi la correzione; `schema/annidato_colonna_padre`
+> (`GSE66207`, `GSE57945`); `modello/forma_voci` (`GSE59781`, `GSE69597`: una voce con più valori); le 5 unità con
+> esito «modello» (`GSE57116`, `GSE75852`). (6) **Rinviati oltre:** la misura (c) ha 4 confronti giudicabili e sugli
+> 82 studi di giudizio va riportata col suo intervallo (S12s); Mistral-Small-4-119B non ripetibile con
+> `tensor_parallel_size` 4: la diagnosi non serve, perché il modello scelto sta su una GPU; M8-M11 di S12r restano
+> come scritti; M12 (token di Hugging Face comparso una volta in S12r) resta una scelta del PI; Gemma (UBC) non
+> risponde: una sola fonte di curazione. (7) `container-env.txt` delle corse porta il token di Hugging Face: non
+> stamparlo e non committarlo.
+
+### Perché
+Con lo schema v1 Mistral-Small 3.2 forma gli stessi gruppi dei curatori in 31 studi su 47 e ritrova 50 confronti su
+97, ma 13 studi non chiudono contro la soglia depositata di 7, e la regola di esito dà no. In 10 dei 13 il modello
+copia male un nome o salta un valore. Il rimedio proposto è nella forma dell'uscita e nessuno lo ha misurato: il
+Piano 2 apre gli 82 studi di giudizio una volta sola e non può poggiare su un rimedio non misurato.
+
+### Che cosa si fa
+1. **Carta, prima di ogni corsa.** Aggiorna la spec (§5.2): come il programma genera lo schema dalla tabella dei
+   campioni (colonne, valori distinti, una voce per valore, valori mancanti, fattore annidato, voce con più
+   valori), che cosa fa quando lo schema generato è troppo grande. Porta al PI la scelta sul fattore di contesto
+   senza base (punto 5 qui sopra).
+2. **Misura senza modello:** grandezza dello schema generato per ognuno dei 47 studi e prova di compilazione in
+   vLLM sul più grande.
+3. **Deposita** in una cartella di audit nuova `00-previsioni.md` (cancelli, previsioni con intervallo, regola di
+   esito, come si conta lo studio che chiude con gruppi sbagliati) e committalo da solo. Riproduci prima i termini
+   di paragone: pipeline di oggi 14/47 e 13/97, lettore con lo schema v1 31/47 e 50/97.
+4. **Codice:** il generatore dello schema resta materiale da buttare nella cartella di audit. Il costruttore
+   cambia solo dove la spec aggiornata lo chiede (TDD).
+5. **Corse su `poddgx02`:** Mistral-Small 3.2, configurazione di produzione, due corse, identiche al carattere.
+   Stessa vista di S12r2, salvo la correzione della vista decisa nella carta.
+6. **Leggi tutti i disaccordi**, con la causa e chi la può togliere. Per ogni studio che chiudeva male o non
+   chiudeva in S12r2, di' che cosa è cambiato.
+7. **Finding** con «In breve», poi STOP.
+
+### Che cosa NON si fa
+Non si scrive il Piano 2. Non si aprono gli 82 studi di giudizio. Non si cambiano previsioni e regole dopo i
+numeri. Non si provano altri modelli. Non si toccano deliverable e master. Gli stessi 47 studi servono una terza
+volta: il risultato vale per lo sviluppo, non come giudizio, e il finding dichiara il rischio di adattamento ai 47.
+
+### Come si sa che è finita
+I cancelli passano, ogni previsione ha un esito, ogni disaccordo ha una causa, la regola di esito ha un sì o un no.
+
+### La decisione che spetta a te
+Se si scrive il Piano 2 (il lettore nel pacchetto, S12s).
+
+### Prompt
+```
+sessione simulomicsr S12r3, leggi prima la skill di progetto.
+Handout: docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md, sezione S12r3. Finding di partenza:
+docs/findings/2026-11-10-S12r2-prova-ripetuta-lettore-studio.md. Spec:
 docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. Branch p6-tabella-dei-fattori.
 ```
 
