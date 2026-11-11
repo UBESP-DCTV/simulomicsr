@@ -252,6 +252,60 @@ completano il punto 2.
 La dose resta un attributo del livello. `max_tokens` e il contesto si fissano nelle previsioni: l'uscita v0 più
 lunga era all'81% di 16.384 token.
 
+**Aggiornamento 2026-11-11 (S12r3): lo schema delle uscite a elenco chiuso [agente], scritto prima della terza
+prova piccola.** «Schema» qui è la forma JSON dell'uscita del modello, non il disegno dello studio. Nella prova
+ripetuta 13 studi non chiudono: in 8 il modello non scrive la voce di un valore della colonna, in 3 sbaglia la
+forma, in 2 scrive una colonna o un valore che la tabella non contiene (finding
+`2026-11-10-S12r2-prova-ripetuta-lettore-studio`). Sono tre errori di trascrizione: il modello ricopia nomi e
+valori che il programma conosce già. Il rimedio toglie la trascrizione: **un programma genera lo schema per
+ogni studio dalla tabella dei campioni della vista**, e la grammatica delle uscite strutturate ammette solo ciò
+che la tabella contiene. Il modello decide ancora fattori, tipi, livelli, livello di base e il livello di ogni
+valore. I punti seguenti **sostituiscono** i punti 1 e 3 dell'aggiornamento S12r2; i punti 2, 4 e 5 restano.
+
+1. **Colonne ammesse.** Le colonne non costanti della tabella dei campioni della vista, nell'ordine della vista.
+   L'identificativo del campione e le colonne costanti non sono ammesse: non dividono i campioni.
+2. **Valori di una colonna.** I valori distinti fra i campioni dello studio, nell'ordine in cui compaiono nella
+   tabella, uguali carattere per carattere. **La cella vuota è un valore** (la stringa vuota) e ha la sua voce.
+3. **Un fattore legge una colonna.** `assignment` è `{"column": <colonna>, "values": [...]}`. Lo schema ha un
+   ramo per ogni colonna ammessa: il nome è una costante, e `values` è una **tupla a lunghezza fissa**, una voce
+   `{"value": <costante>, "level": <stringa>}` per ogni valore distinto di quella colonna, nell'ordine del
+   punto 2. Il modello sceglie la colonna e scrive un livello per ogni valore: non può omettere un valore,
+   scriverne uno che non esiste, né scrivere una voce con più valori. I motivi «non coperta», «mappa ambigua»
+   e «colonna o valore non letterale» della prova ripetuta non possono più nascere. Il livello resta una stringa
+   libera: deve essere uno dei livelli che il fattore dichiara, oppure `not stated` o `not applicable`; se non
+   lo è, lo studio si ferma con l'errore contato `livello_assente`, come prima.
+4. **Fattore annidato e valori speciali.** Un valore della colonna che appartiene ai campioni fuori dal fattore
+   (il sano nella colonna dello stadio, la cella vuota) ha la sua voce come ogni altro: il modello gli dà
+   `not applicable` (il fattore non esiste per quei campioni) oppure `not stated` (il dato manca). Le regole
+   del punto 4 dell'aggiornamento S12r2 non cambiano.
+5. **Una variabile scritta in più colonne (limite dichiarato).** Un fattore non può leggere la congiunzione di
+   due colonne. Nella prova ripetuta 97 fattori su 100 della prova v0 e tutti i fattori che chiudono leggono
+   una colonna. Quando una variabile è divisa su più colonne, ognuna valida per una parte dei campioni
+   (`GSE147507`: `treatment`, `subject status`, `time point`), il modello deve leggerla da una colonna che la
+   porta intera (lì `source_name_ch1`, 17 valori e nessuna cella vuota, oppure `title`). Se nessuna colonna la
+   porta intera, il fattore non si può scrivere: il modello lo dichiara in `not_understood` e lo studio si
+   conta a parte. Non è un errore della vista: la vista porta tutte le colonne non costanti.
+6. **Le colonne, tutte, in una tupla.** `other_columns` (lista aperta delle colonne che non sono fonte di un
+   fattore) diventa `columns`: una tupla a lunghezza fissa, una voce per ogni colonna ammessa nell'ordine della
+   vista, con il ruolo `factor` (la colonna è fonte di un fattore), `subject`, `replicate` o `uninformative`.
+   Solo una colonna di ruolo `subject` porta il tipo di soggetto e i valori che valgono «dato mancante»,
+   scelti fra i valori di quella colonna; per gli altri ruoli lo schema ammette solo la stringa vuota e la lista
+   vuota. L'adattatore controlla la coerenza: una colonna è `factor` se e solo se un fattore la legge
+   (errore contato `ruolo_incoerente` altrimenti). Due forme scartate prima di ogni corsa, senza testi di
+   studio (`analysis/audit/2026-11-11-S12r3-elenco-chiuso/12-out.txt`): con la lista aperta il modello ripete
+   le stesse colonne fino al limite dell'uscita; con i due campi liberi per ogni ruolo li riempie.
+7. **Schema grande: nessun taglio.** Lo schema di uno studio grande resta intero (massimo misurato: 222.556
+   caratteri, `GSE57945`, 322 campioni; `11-grandezza-schema.csv`). vLLM 0.20.2 compila i 47 schemi. Lo schema
+   non entra nel contesto del modello: conta solo l'uscita. Se ingresso più `max_tokens` supera il contesto, lo
+   studio non va al modello (motivo `oltre_contesto`); se l'uscita si ferma a `max_tokens`, il motivo è
+   `troncata`. Tutti e due sono studi non chiusi, contati.
+8. **Che cosa lo schema non toglie.** Gli errori di lettura: il tipo del fattore sbagliato, la base sbagliata,
+   un livello dato al valore sbagliato, il fattore letto dalla colonna sbagliata. Uno studio che prima non
+   chiudeva può ora chiudere con gruppi sbagliati: si conta a parte (previsioni depositate).
+
+La vista dello studio non cambia (v0, stesso SHA-256). Il generatore è materiale da buttare
+(`analysis/audit/2026-11-11-S12r3-elenco-chiuso/10-schema-per-studio.R`): entra nel pacchetto solo col Piano 2.
+
 ### 5.3 Dal modello al confronto (codice, deterministico)
 
 1. Applica le mappe e costruisci la matrice «campione × fattore». Ogni campione ha un livello in ogni fattore,
@@ -433,6 +487,29 @@ prima della prova ripetuta. Le regole valgono per ogni misura contro Atlas da qu
    differenza in due fattori, la misura conta due fattori diversi (1 confronto in S12r). Non si corregge con una
    regola: due fattori che dividono i campioni allo stesso modo possono essere anche un vero confondimento.
 
+**Aggiornamento 2026-11-11 (S12r3): il confronto fra due contesti esce dal riferimento [PI].** Scritto prima
+della terza prova piccola. Per il costruttore un fattore di contesto (tipo cellulare, linea cellulare, tessuto)
+non ha livello di base, quindi nessun confronto ha due contesti come bracci (§5.2 punto 3). I curatori di Atlas
+invece confrontano anche due tipi cellulari. L'agente ha portato tre opzioni (il riferimento resta; questi
+confronti escono dal riferimento; il contesto può avere una base). **Il PI ha scelto la seconda (2026-11-11):**
+la regola del costruttore resta, e una meta-analisi ha come entità un agente, una malattia o un gene.
+
+1. **La marca `solo_contesto`, per costruzione.** Un confronto di Atlas è `solo_contesto` quando la sua classe è
+   `rispetta` e il solo fattore di Atlas che cambia ha uno di questi nomi, a meno di maiuscole e spazi ai
+   bordi: `cell type`, `cell line`, `organism part` (il nome di Atlas per il tessuto). Sono i tre contesti della
+   definizione dei tipi (§5.2 punto 3). La regola guarda il nome del fattore, non un elenco di studi.
+2. **Il denominatore.** Nella lettura principale e nella stretta il denominatore della misura (b) è «classe
+   `rispetta`, `tempo_zero` falso e `solo_contesto` falso». La lettura intera non cambia. La lettura principale
+   **senza** questa regola (97 confronti sui 47 studi di sviluppo) si riporta accanto: è il termine di paragone
+   con la prova ripetuta.
+3. **Che cosa la regola non toglie (dichiarato).** Un confronto dove i curatori scrivono come altro fattore
+   ciò che per noi è un contesto, o il contrario. `biopsy site` resta: in `GSE50760` porta tumore contro
+   tessuto normale, che è uno stato. `growth condition` resta: una condizione di coltura che lo studio varia è
+   una perturbazione (§5.2, aggiornamento S12r2, punto 2). Nei 47 studi di sviluppo la marca tocca 2 confronti
+   su 97, in uno studio (`GSE75852`: cellule staminali neurali contro cellule staminali pluripotenti indotte).
+4. **Misura (c).** Un confronto nostro non elencato si giudica come prima: la marca riguarda solo i confronti
+   di Atlas.
+
 **Linea 2 — il gold del PI.** `data-raw/relevant_sample_classified.xlsx`: ruolo trattato o controllo per
 130.784 campioni di 5.367 studi. Accordo del ruolo, come misura e non come cancello, perché la definizione del
 gold («qualunque intervento esplicito») è diversa.
@@ -473,6 +550,12 @@ curatori col tempo zero come controllo escono dal riferimento di §5.5, con la m
 stanno in `analysis/audit/2026-11-10-S12r2-prova-ripetuta/`, non in `R/`. Nel pacchetto entra solo ciò che §5.3
 e §5.5 chiedono al costruttore e alle misure, con i test. Corse: Mistral-Small 3.2 con lo schema v1 due volte,
 una corsa di controllo senza `repetition_penalty`, ogni modello più grande due volte, la stessa vista per tutti.
+
+**Aggiornamento 2026-11-11 (S12r3).** La regola di esito della prova ripetuta dà no per i tre modelli. Il PI ha
+deciso una terza prova piccola sugli stessi 47 studi, solo con Mistral-Small 3.2: cambia lo schema delle uscite
+(§5.2, aggiornamento S12r3) e il riferimento perde i confronti fra due contesti (§5.5, aggiornamento S12r3).
+Vista, modello e configurazione restano quelli della prova ripetuta. È la terza lettura degli stessi 47 studi:
+il risultato vale per lo sviluppo e porta un rischio di adattamento che il finding dichiara.
 
 ### 5.7 I modelli
 

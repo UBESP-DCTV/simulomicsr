@@ -91,6 +91,18 @@ dell'agente:
    livelli e livello di base. Il lettore non entra nel pacchetto prima di quella prova. Gli 82 studi di giudizio
    restano chiusi.
 
+## Aggiornamento 2026-11-11 (decisione del PI nella terza prova piccola, S12r3)
+
+**Il confronto fra due contesti esce dal riferimento del cancello.** Per il costruttore un fattore di contesto
+(tipo cellulare, linea cellulare, tessuto) non ha livello di base. I curatori di Atlas confrontano anche due
+tipi cellulari: 2 confronti su 97 nei 47 studi di sviluppo (`GSE75852`), che il lettore non può formare con
+nessuno schema. Opzioni portate dall'agente: (1) il riferimento resta e quei confronti contano come non
+ritrovati; (2) escono dal riferimento con una regola scritta prima, per nome del fattore di Atlas (`cell type`,
+`cell line`, `organism part`), e la misura senza la regola si riporta accanto; (3) il contesto può avere una
+base quando il testo la dichiara. **Il PI ha scelto la (2)**: una meta-analisi ha come entità un agente, una
+malattia o un gene, e la (3) cambia due cose nella stessa prova. La regola vale per ogni misura contro Atlas da
+qui in avanti, cancello compreso (spec §5.5, aggiornamento S12r3).
+
 ## Link
 
 - Spec: `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`
