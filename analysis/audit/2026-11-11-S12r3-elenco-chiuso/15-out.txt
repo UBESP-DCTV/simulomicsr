@@ -1,0 +1,117 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+== Controllo positivo: Atlas contro Atlas ==
+principale: partizione identica 47 su 47; denominatore di (b) 95, ritrovati uguali 95; giudicabili fra i non elencati 0
+principale97: partizione identica 47 su 47; denominatore di (b) 97, ritrovati uguali 97; giudicabili fra i non elencati 0
+intera: partizione identica 47 su 47; denominatore di (b) 93, ritrovati uguali 93; giudicabili fra i non elencati 0
+stretta: partizione identica 47 su 47; denominatore di (b) 84, ritrovati uguali 84; giudicabili fra i non elencati 0
+
+== Il riferimento: confronti di Atlas nel denominatore di (b) ==
+  principale principale97       intera      stretta 
+          95           97           93           84 
+
+fattori di Atlas dei 47 studi che la regola chiama contesto (studi per nome):
+
+    cell line     cell type organism part 
+            2             2             3 
+
+confronti con la marca solo_contesto (lettura principale): 2 ; di questi col tempo zero: 0 
+   studio    id
+ GSE75852 g2_g4
+ GSE75852 g1_g3
+                                                                              nome
+                ' neural stem cell' vs 'induced pluripotent stem cell' in 'normal'
+ ' neural stem cell' vs 'induced pluripotent stem cell' in 'Ataxia-telangiectasia'
+ fattori_diversi tempo_zero  in_b
+       cell type      FALSE FALSE
+       cell type      FALSE FALSE
+lettura stretta, confronti con la marca: 2 
+   studio    id
+ GSE75852 g2_g4
+ GSE75852 g1_g3
+                                                                              nome
+                ' neural stem cell' vs 'induced pluripotent stem cell' in 'normal'
+ ' neural stem cell' vs 'induced pluripotent stem cell' in 'Ataxia-telangiectasia'
+ fattori_diversi tempo_zero
+       cell type      FALSE
+       cell type      FALSE
+
+fattore che cambia nei confronti del denominatore, lettura principale con la regola:
+
+             disease             compound            phenotype 
+                  47                    8                    8 
+           treatment             genotype     RNA interference 
+                   8                    7                    7 
+clinical information               infect          biopsy site 
+                   3                    3                    2 
+     disease staging     growth condition 
+                   1                    1 
+confronti `rispetta` con un fattore solo, non di contesto per la regola, il cui nome contiene cell, tissue, site, organ:
+   studio    id                                                    nome
+ GSE50760 g2_g1 'colorectal cancer metastatic in the liver' vs 'normal'
+ GSE50760 g2_g3                             'primary tumor' vs 'normal'
+ fattori_diversi
+     biopsy site
+     biopsy site
+
+== I termini di paragone, per misura ==
+principale    oggi: (a) 14/47 (b) 13/95 (c) 18/79   |   lettore v1: chiusi 34, (a) 31/47 (b) 50/95 (c) 0/4
+   lettore v1 meno oggi, appaiato:
+                misura     v1   oggi differenza ic_basso  ic_alto
+     a_gruppi_identici 0.6596 0.2979     0.3617   0.1915  0.53191
+ b_confronti_ritrovati 0.5263 0.1368     0.3895   0.2017  0.59377
+ c_errori_non_elencati 0.0000 0.2278    -0.2278  -0.3796 -0.08369
+ ricampioni_senza_valore
+                       0
+                       0
+                     227
+principale97  oggi: (a) 14/47 (b) 13/97 (c) 18/79   |   lettore v1: chiusi 34, (a) 31/47 (b) 50/97 (c) 0/4
+   lettore v1 meno oggi, appaiato:
+                misura     v1   oggi differenza ic_basso  ic_alto
+     a_gruppi_identici 0.6596 0.2979     0.3617   0.1915  0.53191
+ b_confronti_ritrovati 0.5155 0.1340     0.3814   0.1979  0.58333
+ c_errori_non_elencati 0.0000 0.2278    -0.2278  -0.3796 -0.08369
+ ricampioni_senza_valore
+                       0
+                       0
+                     227
+intera        oggi: (a) 14/47 (b) 19/93 (c) 19/79   |   lettore v1: chiusi 34, (a) 31/47 (b) 50/93 (c) 0/4
+   lettore v1 meno oggi, appaiato:
+                misura     v1   oggi differenza ic_basso  ic_alto
+     a_gruppi_identici 0.6596 0.2979     0.3617  0.19149  0.53191
+ b_confronti_ritrovati 0.5376 0.2043     0.3333  0.07208  0.56628
+ c_errori_non_elencati 0.0000 0.2405    -0.2405 -0.39313 -0.09524
+ ricampioni_senza_valore
+                       0
+                       0
+                     227
+stretta       oggi: (a) 14/47 (b) 12/84 (c) 21/79   |   lettore v1: chiusi 34, (a) 31/47 (b) 46/84 (c) 0/4
+   lettore v1 meno oggi, appaiato:
+                misura     v1   oggi differenza ic_basso ic_alto
+     a_gruppi_identici 0.6596 0.2979     0.3617   0.1915  0.5319
+ b_confronti_ritrovati 0.5476 0.1429     0.4048   0.2021  0.6182
+ c_errori_non_elencati 0.0000 0.2658    -0.2658  -0.4225 -0.1137
+ ricampioni_senza_valore
+                       0
+                       0
+                     227
+
+== Riproduzione di S12r2 (studio per studio, senza la regola del contesto) ==
+oggi, uguale a 10-per-studio-oggi.csv: principale TRUE ; intera TRUE 
+lettore v1, uguale a 24-M-per-studio.csv: principale TRUE ; intera TRUE 
+riproduzione passata: oggi 14/47 e 13/97; lettore v1 34 chiusi, 31/47, 50/97, 0/4
+
+studi dove la regola del contesto cambia il denominatore (principale meno principale97):
+   studio esce oggi_ritrovati_che_escono v1_ritrovati_che_escono
+ GSE75852    2                         0                       0
+FINITO
