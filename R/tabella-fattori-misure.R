@@ -198,6 +198,28 @@ tf_tempo_zero <- function(trattato, controllo, campi) {
   no
 }
 
+#' I nomi dei fattori di Atlas che per la definizione sono un contesto
+#'
+#' Tipo cellulare, linea cellulare e tessuto (`organism part` nel vocabolario di Atlas): i tre contesti della
+#' definizione dei tipi (spec par. 5.2 punto 3). Un fattore di contesto non ha livello di base, quindi il
+#' costruttore non forma un confronto fra due contesti (spec par. 5.5, aggiornamento S12r3; decisione del PI
+#' del 2026-11-11, ADR-0029).
+#' @keywords internal
+TF_FATTORI_CONTESTO_ATLAS <- c("cell type", "cell line", "organism part")
+
+#' Il fattore di Atlas e' un contesto?
+#'
+#' La regola guarda il nome, uguale a uno di `TF_FATTORI_CONTESTO_ATLAS` a meno di maiuscole e spazi ai bordi.
+#' Non vede un contesto che i curatori scrivono con un altro nome (per esempio `biopsy site`): quei confronti
+#' restano nel riferimento.
+#'
+#' @param nomi chr, nomi di fattori di Atlas.
+#' @return logico lungo quanto `nomi`; `NA` da' `FALSE`.
+#' @keywords internal
+tf_fattore_di_contesto <- function(nomi) {
+  tolower(trimws(as.character(nomi))) %in% TF_FATTORI_CONTESTO_ATLAS
+}
+
 #' Classifica i confronti dei curatori di Atlas rispetto alla definizione
 #'
 #' @param atlas l'uscita di `atlas_tabella()`.
@@ -212,7 +234,8 @@ tf_tempo_zero <- function(trattato, controllo, campi) {
 #'   `fattori_non_scritti` (i fattori che uno dei due bracci non scrive: non contano come differenza, salvo
 #'   `non_scritto_conta`), `fattori_annidati` (i fattori che la regola del fattore annidato toglie dal conto),
 #'   `tempo_zero`, `tempo_zero_verso`, `tempo_zero_campo` (`NA` senza `campi_tempo`; la marca non dipende dalla
-#'   classe). `classe`: `"rispetta"` (i due gruppi differiscono in un solo fattore di Atlas), `"piu_fattori"`,
+#'   classe), `solo_contesto` (la classe e' `"rispetta"` e il solo fattore che cambia e' un contesto secondo
+#'   `tf_fattore_di_contesto()`). `classe`: `"rispetta"` (i due gruppi differiscono in un solo fattore di Atlas), `"piu_fattori"`,
 #'   `"non_formabile"` (un braccio ha meno di `n_min` campioni nell'universo), `"nessuna_differenza"` (i due
 #'   gruppi hanno gli stessi livelli in tutti i fattori di Atlas), `"non_applicabile"` (la sola differenza e' un
 #'   livello `TF_NON_APPLICABILE`: per la definizione non e' un confronto).
@@ -226,6 +249,7 @@ tf_classi_confronti_atlas <- function(atlas, universo, n_min = 2L, annidato = TR
   n <- nrow(k)
   classe <- character(n); diversi <- character(n); non_scritti <- character(n); annidati_k <- character(n)
   tz <- rep(NA, n); tz_verso <- rep(NA_character_, n); tz_campo <- rep(NA_character_, n)
+  contesto <- rep(FALSE, n)
   annidati <- if (n > 0L && !is.null(atlas$tabella)) .tf_annidati(atlas$tabella$livelli) else NULL
   for (i in seq_len(n)) {
     tr <- k$trattato[[i]]; co <- k$controllo[[i]]
@@ -252,6 +276,7 @@ tf_classi_confronti_atlas <- function(atlas, universo, n_min = 2L, annidato = TR
     } else {
       "rispetta"
     }
+    contesto[i] <- classe[i] == "rispetta" && tf_fattore_di_contesto(d)
   }
   k$classe <- classe
   k$fattori_diversi <- diversi
@@ -260,6 +285,7 @@ tf_classi_confronti_atlas <- function(atlas, universo, n_min = 2L, annidato = TR
   k$tempo_zero <- tz
   k$tempo_zero_verso <- tz_verso
   k$tempo_zero_campo <- tz_campo
+  k$solo_contesto <- contesto
   k
 }
 
@@ -366,11 +392,16 @@ tf_giudica_non_elencati <- function(nostri, atlas, universo, annidato = TRUE, no
 #'   di S12r), `"stretta"` (come la principale, ma un fattore non scritto conta come differenza).
 #' @param campi_tempo l'uscita di `tf_campi_di_tempo()`: obbligatoria per le letture principale e stretta (una
 #'   lista vuota se lo studio non ha campi di tempo). Con la lettura intera e `NULL` la marca non si calcola.
+#' @param contesto_fuori se `TRUE` i confronti di Atlas con la marca `solo_contesto` escono dal denominatore
+#'   di (b) (spec par. 5.5, aggiornamento S12r3; decisione del PI del 2026-11-11). Vale per le letture principale
+#'   e stretta; con la lettura intera e' un errore. Il default `FALSE` e' la misura della prova ripetuta S12r2.
 #' @return lista con `riga` (data.frame di una riga con i conteggi), `atlas` (i confronti di Atlas con `classe`,
-#'   `tempo_zero`, `in_b` e `ritrovato`), `non_elencati` (i nostri confronti non elencati con `giudizio`). Nella
-#'   riga, `n_b_den` e' il denominatore della misura (b) secondo la lettura e `n_b_uguale` il numeratore.
+#'   `tempo_zero`, `solo_contesto`, `in_b` e `ritrovato`), `non_elencati` (i nostri confronti non elencati con `giudizio`). Nella
+#'   riga, `n_b_den` e' il denominatore della misura (b) secondo la lettura e `n_b_uguale` il numeratore;
+#'   `n_solo_contesto` conta i confronti con la marca `solo_contesto`, dentro o fuori dal denominatore.
 #' @keywords internal
-tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L, lettura, campi_tempo = NULL) {
+tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L, lettura, campi_tempo = NULL,
+                             contesto_fuori = FALSE) {
   letture <- list(principale = list(annidato = TRUE, tempo_zero_fuori = TRUE, non_scritto_conta = FALSE),
                   intera = list(annidato = FALSE, tempo_zero_fuori = FALSE, non_scritto_conta = FALSE),
                   stretta = list(annidato = TRUE, tempo_zero_fuori = TRUE, non_scritto_conta = TRUE))
@@ -384,6 +415,13 @@ tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L
                              "(`tf_campi_di_tempo()`; una lista vuota se lo studio non ne ha)."), lettura),
               "ingresso_non_valido")
   }
+  if (!is.logical(contesto_fuori) || length(contesto_fuori) != 1L || is.na(contesto_fuori)) {
+    .tf_abort("`contesto_fuori` deve essere TRUE o FALSE.", "ingresso_non_valido")
+  }
+  if (contesto_fuori && lettura == "intera") {
+    .tf_abort(paste0("La lettura \"intera\" e' la definizione di S12r: non toglie i confronti di solo contesto. ",
+                     "Usa `contesto_fuori = FALSE`."), "ingresso_non_valido")
+  }
   universo <- as.character(universo)
   nostra <- .tf_controlla_partizione(nostra, "nostra")
   g <- tf_misura_gruppi(nostra[names(nostra) %in% universo],
@@ -396,7 +434,7 @@ tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L
   conta <- function(x, v) as.integer(sum(x %in% v))
   rispetta <- cl$classe == "rispetta"; piu <- cl$classe == "piu_fattori"
   zero <- cl$tempo_zero %in% TRUE
-  cl$in_b <- rispetta & !(regola$tempo_zero_fuori & zero)
+  cl$in_b <- rispetta & !(regola$tempo_zero_fuori & zero) & !(contesto_fuori & cl$solo_contesto)
   n_zero <- function(quali) if (is.null(campi_tempo)) NA_integer_ else as.integer(sum(zero & quali))
   riga <- data.frame(
     studio = studio, lettura = lettura, classe_gruppi = g$classe, ari = g$ari, n_universo = length(universo),
@@ -406,6 +444,7 @@ tf_misura_studio <- function(studio, nostra, nostri, atlas, universo, n_min = 2L
     n_rispetta_verso_opposto = conta(cl$ritrovato[rispetta], "verso_opposto"),
     n_b_den = as.integer(sum(cl$in_b)), n_b_uguale = conta(cl$ritrovato[cl$in_b], "uguale"),
     n_b_verso_opposto = conta(cl$ritrovato[cl$in_b], "verso_opposto"),
+    n_solo_contesto = as.integer(sum(cl$solo_contesto)),
     n_tempo_zero = n_zero(TRUE), n_tempo_zero_rispetta = n_zero(rispetta),
     n_tempo_zero_controllo = n_zero(cl$tempo_zero_verso %in% "zero_controllo"),
     n_tempo_zero_trattato = n_zero(cl$tempo_zero_verso %in% "zero_trattato"),

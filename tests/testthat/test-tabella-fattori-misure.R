@@ -327,6 +327,52 @@ test_that("la marca tempo_zero è indipendente dalla classe e decide il denomina
   expect_error(m("larga", campi_tempo = campi), class = "simulomicsr_tf_ingresso_non_valido")
   expect_equal(m("intera")$n_b_den, 2L); expect_true(is.na(m("intera")$n_tempo_zero))
 })
+# Atlas finto con un fattore di contesto: g1 sano tipo A, g2 malato tipo A, g3 sano tipo B.
+atlas_contesto <- function(nome_contesto = "cell type") {
+  campioni <- sprintf("GSM%d", 1:6)
+  livelli <- data.frame(disease = rep(c("normal", "cancer", "normal"), each = 2),
+                        contesto = rep(c("A", "A", "B"), each = 2),
+                        row.names = campioni, stringsAsFactors = FALSE)
+  names(livelli)[2] <- nome_contesto
+  fattori <- data.frame(nome = c("disease", nome_contesto), tipo = "contesto", base = NA_character_)
+  partizione <- stats::setNames(rep(c("g1", "g2", "g3"), each = 2), campioni)
+  membri <- function(g) names(partizione)[partizione == g]
+  rif <- c("g1", "g1", "g2"); test <- c("g2", "g3", "g3")
+  confronti <- data.frame(studio = "GSE0", id = paste0(rif, "_", test), nome = NA_character_,
+                          riferimento = rif, test = test, stringsAsFactors = FALSE)
+  confronti$trattato <- lapply(test, membri); confronti$controllo <- lapply(rif, membri)
+  list(tabella = tf_tabella(campioni, livelli, fattori), partizione = partizione, confronti = confronti,
+       esclusi = data.frame(run = character(0), gruppo = character(0)))
+}
+test_that("tf_fattore_di_contesto: il nome del fattore di Atlas, a meno di maiuscole e spazi ai bordi", {
+  expect_equal(tf_fattore_di_contesto(c("cell type", "Cell Line", " organism part ", "biopsy site",
+                                        "growth condition", "cell type marker", NA)),
+               c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE))
+  expect_equal(tf_fattore_di_contesto(character(0)), logical(0))
+})
+test_that("la marca solo_contesto vale per il confronto che cambia solo il contesto, ed esce da (b) se chiesto", {
+  a <- atlas_contesto(); u <- names(a$partizione)
+  cl <- tf_classi_confronti_atlas(a, u)
+  expect_equal(cl$classe, c("rispetta", "rispetta", "piu_fattori"))
+  expect_equal(cl$solo_contesto, c(FALSE, TRUE, FALSE))
+  # il nome decide: "biopsy site" non è nella regola
+  expect_equal(tf_classi_confronti_atlas(atlas_contesto("biopsy site"), u)$solo_contesto, c(FALSE, FALSE, FALSE))
+  expect_equal(tf_classi_confronti_atlas(atlas_contesto("Organism Part"), u)$solo_contesto, c(FALSE, TRUE, FALSE))
+  forma <- function(k) k[c("studio", "id", "trattato", "controllo")]
+  m <- function(lettura, ...) tf_misura_studio("GSE0", a$partizione, forma(a$confronti), a, u, lettura = lettura,
+                                               campi_tempo = list(), ...)
+  # default: come nella prova ripetuta, il confronto di solo contesto resta nel denominatore
+  d <- m("principale")$riga
+  expect_equal(c(d$n_rispetta, d$n_b_den, d$n_b_uguale, d$n_solo_contesto), c(2L, 2L, 2L, 1L))
+  f <- m("principale", contesto_fuori = TRUE)
+  expect_equal(c(f$riga$n_rispetta, f$riga$n_b_den, f$riga$n_b_uguale, f$riga$n_solo_contesto), c(2L, 1L, 1L, 1L))
+  expect_equal(f$atlas$in_b, c(TRUE, FALSE, FALSE))
+  expect_equal(m("stretta", contesto_fuori = TRUE)$riga$n_b_den, 1L)
+  # la lettura intera è la definizione di S12r: non ammette la regola
+  expect_error(m("intera", contesto_fuori = TRUE), class = "simulomicsr_tf_ingresso_non_valido")
+  expect_equal(m("intera")$riga$n_b_den, 2L)
+  expect_error(m("principale", contesto_fuori = NA), class = "simulomicsr_tf_ingresso_non_valido")
+})
 test_that("tf_riassumi_misure: la misura (b) usa il denominatore della lettura, e le identiche con campioni omessi stanno a parte", {
   a <- atlas_tempo(); u <- names(a$partizione); campi <- tf_campi_di_tempo(a, NULL)
   forma <- function(k) k[c("studio", "id", "trattato", "controllo")]

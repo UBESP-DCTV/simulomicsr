@@ -12,7 +12,8 @@ tf_misura_studio(
   universo,
   n_min = 2L,
   lettura,
-  campi_tempo = NULL
+  campi_tempo = NULL,
+  contesto_fuori = FALSE
 )
 }
 \arguments{
@@ -35,11 +36,16 @@ di S12r), \code{"stretta"} (come la principale, ma un fattore non scritto conta 
 
 \item{campi_tempo}{l'uscita di \code{tf_campi_di_tempo()}: obbligatoria per le letture principale e stretta (una
 lista vuota se lo studio non ha campi di tempo). Con la lettura intera e \code{NULL} la marca non si calcola.}
+
+\item{contesto_fuori}{se \code{TRUE} i confronti di Atlas con la marca \code{solo_contesto} escono dal denominatore
+di (b) (spec par. 5.5, aggiornamento S12r3; decisione del PI del 2026-11-11). Vale per le letture principale
+e stretta; con la lettura intera e' un errore. Il default \code{FALSE} e' la misura della prova ripetuta S12r2.}
 }
 \value{
 lista con \code{riga} (data.frame di una riga con i conteggi), \code{atlas} (i confronti di Atlas con \code{classe},
-\code{tempo_zero}, \code{in_b} e \code{ritrovato}), \code{non_elencati} (i nostri confronti non elencati con \code{giudizio}). Nella
-riga, \code{n_b_den} e' il denominatore della misura (b) secondo la lettura e \code{n_b_uguale} il numeratore.
+\code{tempo_zero}, \code{solo_contesto}, \code{in_b} e \code{ritrovato}), \code{non_elencati} (i nostri confronti non elencati con \code{giudizio}). Nella
+riga, \code{n_b_den} e' il denominatore della misura (b) secondo la lettura e \code{n_b_uguale} il numeratore;
+\code{n_solo_contesto} conta i confronti con la marca \code{solo_contesto}, dentro o fuori dal denominatore.
 }
 \description{
 Le tre misure su uno studio, in una riga
