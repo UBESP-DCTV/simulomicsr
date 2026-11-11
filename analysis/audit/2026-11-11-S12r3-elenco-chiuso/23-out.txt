@@ -1,0 +1,26 @@
+23-lancia.R  PROVA DA BUTTARE
+inizio 2026-11-11T21:24:30Z, HEAD 6a00e1e, corse: M-corsa1, M-corsa2
+file committati: prompt fc33a20d8b1739c8f457be07750b415f89b0cee27c00d0396e9c0fce5fcc4f2a, generatore 8765b95d552cb0fcafca35583e74bd1342f57b9bcc0f6e8e9133cc1bbab51287, adattatore 531835f885175c4fdbf877817f1f3fd39b9d6a87647419eaab0068859f87fd6e, viste 2382a9ef97cf41d4f487078bd45e2d4c017dda104e8eb002f36881768eb6d86e
+ingresso analysis/input/S12r3-lettore-v2-ingresso.jsonl: 47 studi, 1.3 MB, SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba; schemi: uno per studio, impronte in analysis/audit/2026-11-11-S12r3-elenco-chiuso/23-schemi-sha256.csv
+mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+M-corsa1: bundle 20261111T212438Z-s12r3-lettore-v2-m-corsa1-2be4e8, prompt uguale al file committato, ingresso uguale byte per byte, 47 testi uguali alle viste, 47 schemi uguali a quelli del generatore; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+M-corsa1: inviato, slurm 490530, run_id 20261111T212438Z-s12r3-lettore-v2-m-corsa1-2be4e8, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+M-corsa1: slurm 490530 COMPLETED, durata 00:04:09, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+M-corsa1: schema per record 47/47 (dai log dei worker)
+M-corsa1: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2246 massimo 31373; token dell'uscita mediana 641 massimo 2895
+M-corsa1: [worker 0] generazione completata in 48.1s (12 record)
+M-corsa1: [worker 1] generazione completata in 73.5s (12 record)
+M-corsa1: [worker 2] generazione completata in 107.5s (12 record)
+M-corsa1: [worker 3] generazione completata in 153.9s (11 record)
+M-corsa1: uscite congelate, 10 file in 23-uscite-sha256.txt
+M-corsa2: bundle 20261111T213055Z-s12r3-lettore-v2-m-corsa2-0c27ca, prompt uguale al file committato, ingresso uguale byte per byte, 47 testi uguali alle viste, 47 schemi uguali a quelli del generatore; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+M-corsa2: inviato, slurm 490583, run_id 20261111T213055Z-s12r3-lettore-v2-m-corsa2-0c27ca, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+M-corsa2: slurm 490583 COMPLETED, durata 00:04:07, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+M-corsa2: schema per record 47/47 (dai log dei worker)
+M-corsa2: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2246 massimo 31373; token dell'uscita mediana 641 massimo 2895
+M-corsa2: [worker 0] generazione completata in 48.1s (12 record)
+M-corsa2: [worker 1] generazione completata in 73.3s (12 record)
+M-corsa2: [worker 2] generazione completata in 107.4s (12 record)
+M-corsa2: [worker 3] generazione completata in 154.0s (11 record)
+M-corsa2: uscite congelate, 20 file in 23-uscite-sha256.txt
+LANCIO FINITO 2026-11-11T21:37:10Z (M-corsa1, M-corsa2)
