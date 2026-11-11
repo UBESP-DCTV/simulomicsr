@@ -158,15 +158,19 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
 
     default_max_tokens = int(gen["max_tokens"])
 
-    def _make_sampling(max_tok: int) -> SamplingParams:
+    def _make_sampling(max_tok: int, record: dict | None = None) -> SamplingParams:
         """Build SamplingParams per request. max_tok puo' essere per-record
         (tier-based via dgx_p4_build_bundle(tiered_max_tokens=TRUE), ADR-0011)
-        o il default globale gen[max_tokens]."""
+        o il default globale gen[max_tokens]. Se il record porta il suo schema
+        (campo `schema`, S12r3) le uscite strutturate usano quello; altrimenti
+        lo schema del bundle."""
         kw = dict(extra_kwargs)
         kw["max_tokens"]  = int(max_tok)
         kw["temperature"] = float(gen["temperature"])
         if use_guided:
-            kw["structured_outputs"] = structured_params
+            suo = schema_del_record(record or {}, schema)
+            kw["structured_outputs"] = (structured_params if suo is schema
+                                        else StructuredOutputsParams(json=suo))
         return SamplingParams(**kw)
 
     # Mistral tokenizer non supporta apply_chat_template. Usiamo llm.chat()
@@ -210,9 +214,13 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
         rec_mt = r.get("max_tokens")
         if rec_mt is not None:
             n_per_record_max_tokens += 1
-            samplings.append(_make_sampling(int(rec_mt)))
+            samplings.append(_make_sampling(int(rec_mt), r))
         else:
-            samplings.append(_make_sampling(default_max_tokens))
+            samplings.append(_make_sampling(default_max_tokens, r))
+    n_schema_record = sum(1 for r in records if r.get("schema") is not None)
+    if n_schema_record > 0:
+        print(f"[worker {worker_id}] schema per record: {n_schema_record}/{len(records)} "
+              f"record portano il proprio schema", flush=True)
     if n_per_record_max_tokens > 0:
         unique_mts = sorted({s.max_tokens for s in samplings})
         print(f"[worker {worker_id}] per-record max_tokens: "
@@ -283,6 +291,23 @@ def worker_main(worker_id: int, gpu_index: int | str, bundle: dict, records: lis
     elapsed = time.time() - t0
     print(f"[worker {worker_id}] generazione completata in {elapsed:.1f}s "
           f"({len(record_ids)} record)", flush=True)
+
+
+def schema_del_record(record: dict, del_bundle: dict) -> dict:
+    """Lo schema delle uscite strutturate di un record. Se il record porta il
+    campo `schema` (un oggetto JSON Schema non vuoto) vale quello; altrimenti
+    vale lo schema del bundle (`schema.json`), come prima. Serve al lettore
+    dello studio (S12r3): lo schema e' generato per ogni studio dalla tabella
+    dei campioni. Il campo non entra nel messaggio al modello."""
+    suo = record.get("schema")
+    if suo is None:
+        return del_bundle
+    if not isinstance(suo, dict):
+        raise TypeError(f"record {record.get('record_id')!r}: `schema` deve essere un oggetto, "
+                        f"non {type(suo).__name__}.")
+    if not suo:
+        raise ValueError(f"record {record.get('record_id')!r}: `schema` e' un oggetto vuoto.")
+    return suo
 
 
 def gpus_per_worker(worker_id: int, tp: int) -> int | str:

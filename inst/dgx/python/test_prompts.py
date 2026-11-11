@@ -152,13 +152,33 @@ def test_gpus_per_worker():
     assert [gpus_per_worker(i, 2) for i in range(2)] == ["0,1", "2,3"]
 
 
+def test_schema_del_record():
+    """Lo schema delle uscite puo' stare nel record (campo `schema`, S12r3: uno
+    schema generato per ogni studio). Se manca vale lo schema del bundle. Il
+    campo non entra nel messaggio al modello."""
+    from run_p4_vllm import schema_del_record
+    del_bundle = {"type": "object", "title": "bundle"}
+    suo = {"type": "object", "title": "suo"}
+    assert schema_del_record({"record_id": "a", "testo": "x"}, del_bundle) is del_bundle
+    assert schema_del_record({"record_id": "a", "testo": "x", "schema": None}, del_bundle) is del_bundle
+    assert schema_del_record({"record_id": "a", "testo": "x", "schema": suo}, del_bundle) is suo
+    for cattivo in ("{}", [], {}, 3):
+        try:
+            schema_del_record({"record_id": "a", "schema": cattivo}, del_bundle)
+            raise AssertionError("uno schema che non e' un oggetto non vuoto doveva fermare il runner")
+        except (TypeError, ValueError):
+            pass
+    assert render_user_message_stage2b({"record_id": "a", "testo": "x", "schema": suo}) == "x"
+
+
 if __name__ == "__main__":
     test_strip_member_sample_ids()
     test_chunk_line()
     test_name_cleanup_fields_present_no_top_theme()
     test_stage2b_testo_identico()
+    test_schema_del_record()
     test_count_prompt_tokens_lista_e_dizionario()
     test_gpus_per_worker()
     test_chat_template_kwargs()
     test_first_difference()
-    print("OK -- 8/8 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")
+    print("OK -- 9/9 sanity render_user_message_stage2/name_cleanup/stage2b, conteggio token")
