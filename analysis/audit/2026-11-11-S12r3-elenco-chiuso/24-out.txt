@@ -1,0 +1,244 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v2 (cancello K2 ii): passato. Studio finto GSE0 nella forma nuova: 6 gruppi, 7 confronti, fattore annidato, valore di soggetto mancante. Motivi di non chiuso visti con un'uscita rotta apposta: oltre_contesto, troncata, non_valida, livello_assente, base_assente, base_non_ammessa, livello_riservato, ruolo_incoerente, tf_tabella
+K4: uscite congelate, 20 file con le impronte di 23-uscite-sha256.txt; il file e' committato
+K4: prompt v2, generatore, adattatore v2 e script di lancio sono quelli del commit 6a00e1e (prima del primo invio)
+K3: le due corse coprono 47 studi su 47
+uscite identiche al carattere fra le due corse: 47 su 47
+
+================ M (Mistral-Small 3.2, schema a elenco chiuso), prima corsa ================
+studi chiusi dal lettore: 45 su 47; non chiusi: 2 
+studi non chiusi per motivo (uno studio puo' avere piu' motivi):
+
+   oltre_contesto          troncata        non_valida   livello_assente 
+                0                 0                 0                 2 
+     base_assente  base_non_ammessa livello_riservato  ruolo_incoerente 
+                1                 0                 0                 0 
+       tf_tabella 
+                0 
+  GSE50499: livello_assente: mov10: control || base_assente: mov10: control
+  GSE63816: livello_assente: disease: not_applicable || livello_assente: genotype: not_applicable || livello_assente: knockdown: not_applicable
+note dell'adattatore (studi per nota):
+
+soggetto_valori_mancanti 
+                       1 
+voci di assignment (studi con l'uscita valida): 387
+studi con un fattore con un livello per campione: 1; studi con una base scritta senza campioni: 0
+studi con il livello 'not applicable' assegnato: 7; con 'not stated': 0
+uscite troncate (finish_reason = length): 0; token dell'uscita: mediana 641, massimo 2895
+confronti del lettore (n_min = 2): 125 in 38 studi
+
+-- M, misura principale --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        36          1          2          7          1 
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         36           47 0.76596   0.6383  0.8723
+ b_confronti_ritrovati         68           95 0.71579   0.5484  0.8545
+ c_errori_non_elencati          2           33 0.06061   0.0000  0.3333
+lettore (schema nuovo) meno oggi, appaiato:
+                misura   nuovo   oggi differenza ic_basso ic_alto
+     a_gruppi_identici 0.76596 0.2979     0.4681   0.3191 0.61702
+ b_confronti_ritrovati 0.71579 0.1368     0.5789   0.4000 0.73196
+ c_errori_non_elencati 0.06061 0.2278    -0.1672  -0.3131 0.08851
+ ricampioni_senza_valore
+                       0
+                       0
+                       1
+schema nuovo meno schema v1, appaiato:
+                misura   nuovo     v1 differenza ic_basso ic_alto
+     a_gruppi_identici 0.76596 0.6596    0.10638  0.00000  0.2128
+ b_confronti_ritrovati 0.71579 0.5263    0.18947  0.02596  0.3465
+ c_errori_non_elencati 0.06061 0.0000    0.06061  0.00000  0.3333
+ ricampioni_senza_valore
+                       0
+                       0
+                     227
+
+-- M, misura principale97 --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        36          1          2          7          1 
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         36           47 0.76596   0.6383  0.8723
+ b_confronti_ritrovati         68           97 0.70103   0.5377  0.8384
+ c_errori_non_elencati          2           33 0.06061   0.0000  0.3333
+lettore (schema nuovo) meno oggi, appaiato:
+                misura   nuovo   oggi differenza ic_basso ic_alto
+     a_gruppi_identici 0.76596 0.2979     0.4681   0.3191 0.61702
+ b_confronti_ritrovati 0.70103 0.1340     0.5670   0.3882 0.71560
+ c_errori_non_elencati 0.06061 0.2278    -0.1672  -0.3131 0.08851
+ ricampioni_senza_valore
+                       0
+                       0
+                       1
+schema nuovo meno schema v1, appaiato:
+                misura   nuovo     v1 differenza ic_basso ic_alto
+     a_gruppi_identici 0.76596 0.6596    0.10638  0.00000  0.2128
+ b_confronti_ritrovati 0.70103 0.5155    0.18557  0.02596  0.3407
+ c_errori_non_elencati 0.06061 0.0000    0.06061  0.00000  0.3333
+ ricampioni_senza_valore
+                       0
+                       0
+                     227
+
+-- M, misura intera --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        36          1          2          7          1 
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         36           47 0.7660  0.63830  0.8723
+ b_confronti_ritrovati         60           93 0.6452  0.48077  0.7870
+ c_errori_non_elencati         13           33 0.3939  0.05882  0.6250
+lettore (schema nuovo) meno oggi, appaiato:
+                misura  nuovo   oggi differenza ic_basso ic_alto
+     a_gruppi_identici 0.7660 0.2979     0.4681   0.3191  0.6170
+ b_confronti_ritrovati 0.6452 0.2043     0.4409   0.1749  0.6522
+ c_errori_non_elencati 0.3939 0.2405     0.1534  -0.1664  0.3717
+ ricampioni_senza_valore
+                       0
+                       0
+                       1
+schema nuovo meno schema v1, appaiato:
+                misura  nuovo     v1 differenza ic_basso ic_alto
+     a_gruppi_identici 0.7660 0.6596     0.1064  0.00000  0.2128
+ b_confronti_ritrovati 0.6452 0.5376     0.1075 -0.01370  0.2532
+ c_errori_non_elencati 0.3939 0.0000     0.3939  0.05556  0.5934
+ ricampioni_senza_valore
+                       0
+                       0
+                     227
+
+-- M, misura stretta --
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+        36          1          2          7          1 
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         36           47 0.76596   0.6383  0.8723
+ b_confronti_ritrovati         62           84 0.73810   0.5658  0.8824
+ c_errori_non_elencati          2           33 0.06061   0.0000  0.3333
+lettore (schema nuovo) meno oggi, appaiato:
+                misura   nuovo   oggi differenza ic_basso ic_alto
+     a_gruppi_identici 0.76596 0.2979     0.4681   0.3191 0.61702
+ b_confronti_ritrovati 0.73810 0.1429     0.5952   0.3970 0.75258
+ c_errori_non_elencati 0.06061 0.2658    -0.2052  -0.3624 0.04095
+ ricampioni_senza_valore
+                       0
+                       0
+                       1
+schema nuovo meno schema v1, appaiato:
+                misura   nuovo     v1 differenza ic_basso ic_alto
+     a_gruppi_identici 0.76596 0.6596    0.10638  0.00000  0.2128
+ b_confronti_ritrovati 0.73810 0.5476    0.19048  0.01298  0.3656
+ c_errori_non_elencati 0.06061 0.0000    0.06061  0.00000  0.3333
+ ricampioni_senza_valore
+                       0
+                       0
+                     227
+
+================ Stati dei 47 studi: schema v1 (S12r2, corsa 1) in riga, schema nuovo (corsa 1) in colonna ================
+            nuovo
+v1           non chiuso identica diversa
+  non chiuso          1        6       6
+  identica            1       30       0
+  diversa             0        0       3
+
+regressioni (identica con lo schema v1, ora diversa o non chiuso): 1 
+   studio stato_nuovo classe_nuovo                   motivi_nuovo b_den
+ GSE50499  non chiuso   non_chiuso livello_assente | base_assente     1
+ b_ritrovati_v1 b_ritrovati_nuovo
+              1                 0
+
+i 13 studi che non chiudevano con lo schema v1:
+    studio stato_nuovo classe_nuovo    motivi_nuovo n_gruppi_lettore
+ GSE147507    identica     identica                                4
+  GSE46665     diversa     piu_fine                               25
+  GSE56787     diversa     piu_fine                                6
+  GSE57116    identica     identica                                3
+  GSE57945     diversa     piu_fine                               14
+  GSE59781    identica     identica                                2
+  GSE60340     diversa   piu_grossa                                6
+  GSE63816  non chiuso   non_chiuso livello_assente                0
+  GSE66207    identica     identica                                4
+  GSE69597     diversa     piu_fine                                8
+  GSE71595    identica     identica                                4
+  GSE83415    identica     identica                                2
+  GSE83687     diversa     piu_fine                               25
+ n_gruppi_atlas n_confronti_lettore b_den b_ritrovati_nuovo giudicabili errori
+              4                  12     2                 2           0      0
+              3                   0     2                 0           0      0
+              5                   6     0                 0           1      1
+              3                   3     2                 2           0      0
+              7                  18     6                 0          18      0
+              2                   1     1                 1           0      0
+              8                   0     2                 0           0      0
+              4                  NA     3                 0           0      0
+              4                   3     3                 3           0      0
+              7                   7     6                 5           2      0
+              4                   2     4                 2           0      0
+              2                   1     1                 1           0      0
+              3                   6     2                 0           6      0
+
+gli altri studi con stato cambiato o non identico:
+   studio stato_v1 stato_nuovo classe_nuovo                   motivi_nuovo
+ GSE44379  diversa     diversa     piu_fine                               
+ GSE50499 identica  non chiuso   non_chiuso livello_assente | base_assente
+ GSE50760  diversa     diversa   incrociata                               
+ GSE93624  diversa     diversa     piu_fine                               
+ b_den b_ritrovati_v1 b_ritrovati_nuovo
+     1              0                 0
+     1              1                 0
+     2              0                 0
+     1              0                 0
+
+studi dove i confronti ritrovati cambiano fra schema v1 e schema nuovo (misura principale):
+    studio   stato_v1 stato_nuovo b_den b_ritrovati_v1 b_ritrovati_nuovo
+ GSE112057   identica    identica     5              0                 5
+ GSE147507 non chiuso    identica     2              0                 2
+  GSE49155   identica    identica     2              2                 0
+  GSE50499   identica  non chiuso     1              1                 0
+  GSE57116 non chiuso    identica     2              0                 2
+  GSE59781 non chiuso    identica     1              0                 1
+  GSE66207 non chiuso    identica     3              0                 3
+  GSE69597 non chiuso     diversa     6              0                 5
+  GSE71595 non chiuso    identica     4              0                 2
+  GSE83415 non chiuso    identica     1              0                 1
+
+================ Previsioni (00-previsioni.md), prima corsa, misura principale ================
+E1  studi non chiusi: 2; atteso 2, rilevanza 0-7  ->  confermata
+E2  studi non chiusi per un'uscita finita (stop) che non rispetta lo schema dello studio: 0; atteso 0, rilevanza 0-0  ->  confermata
+E3  uscite troncate (finish_reason = length): 0; atteso 0, rilevanza 0-1  ->  confermata
+E4  studi fermi per ruolo_incoerente: 0; atteso 1, rilevanza 0-2  ->  confermata
+E5  uscite identiche fra le due corse: 47; atteso 47, rilevanza 47-47  ->  confermata
+E6  (a) partizione identica: 76.6% (IC95 63.8%, 87.2%); atteso 77%, rilevanza 50.0%-100.0%  ->  confermata
+E7  schema nuovo meno schema v1, (a): +10.6 punti (IC95 +0.0, +21.3); atteso +10,6 punti, rilevanza: intervallo sopra 0  ->  indeterminata
+E8  lettore meno oggi, (b): +57.9 punti (IC95 +40.0, +73.2); atteso +52 punti, rilevanza: intervallo sopra 0  ->  confermata
+E9  schema nuovo meno schema v1, (b): +18.9 punti (IC95 +2.6, +34.7); atteso +13 punti, rilevanza: intervallo sopra 0  ->  confermata
+E10  (c) errori fra i non elencati: 6.1% (IC95 0.0%, 33.3%); atteso 5%, rilevanza 0.0%-10.0%  ->  indeterminata
+E11  dei 13 studi non chiusi con lo schema v1, quanti chiudono: 12; atteso 13, rilevanza 10-13  ->  confermata
+E12 chiede la lettura: dei 13, chiudono con partizione non identica 6 (GSE46665, GSE56787, GSE57945, GSE60340, GSE69597, GSE83687); la lettura dice quanti hanno gruppi sbagliati per una causa del lettore
+E13  regressioni: 1; atteso 1, rilevanza 0-2  ->  confermata
+E14  studi con un fattore con un livello per campione: 1; atteso 2, rilevanza 0-2  ->  confermata
+E15  studi con una base scritta senza campioni: 0; atteso 2, rilevanza 0-2  ->  confermata
+studi di E14: GSE67812 
+studi di E15:  
+
+================ Le quattro misure, prima corsa ================
+principale    (a) 36/47  (b) 68/95  (c) 2/33   | oggi (b) 13/95 | v1 (b) 50/95
+principale97  (a) 36/47  (b) 68/97  (c) 2/33   | oggi (b) 13/97 | v1 (b) 50/97
+intera        (a) 36/47  (b) 60/93  (c) 13/33   | oggi (b) 19/93 | v1 (b) 50/93
+stretta       (a) 36/47  (b) 62/84  (c) 2/33   | oggi (b) 12/84 | v1 (b) 46/84
+
+================ Regola di esito, punti 1, 2, 3 e 5, misura principale ================
+(1) corse identiche si'; (2) (b) meno oggi con IC95 sopra 0 si'; (3) meglio di oggi in (a) [+46.8 punti] e in (c) [-16.7 punti] si'; (5) non chiusi 2, al massimo 7 si'
+
+FINITO
