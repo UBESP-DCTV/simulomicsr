@@ -1,0 +1,57 @@
+[11-11 19:55:04] inizio 2026-11-11T18:55:04Z, HEAD 2c76e24; ingresso analysis/input/S12r3-prova-compilazione-ingresso.jsonl: 48 record (47 studi di sviluppo col messaggio neutro + GSE0 finto), 0.9 MB
+[11-11 19:55:08] mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+[11-11 19:55:08] bundle 20261111T185508Z-s12r3-prova-compilazione-66facd; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+[11-11 19:55:12] inviato: slurm 489276, run_id 20261111T185508Z-s12r3-prova-compilazione-66facd
+[11-11 19:55:14] job: PENDING 1
+[11-11 19:56:16] job: RUNNING 1
+[11-11 19:57:17] job: RUNNING 1
+[11-11 19:58:19] slurm 489276: COMPLETED 00:02:29 poddgx02
+[11-11 19:58:20] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261111T185508Z-s12r3-prova-compilazione-66facd
+[11-11 19:58:20] slurm 489276 COMPLETED, durata 00:02:29, nodo poddgx02
+[11-11 19:59:16] inizio 2026-11-11T18:59:16Z, HEAD 2c76e24; ingresso analysis/input/S12r3-prova-compilazione-ingresso.jsonl: 48 record (47 studi di sviluppo col messaggio neutro + GSE0 finto), 0.9 MB
+[11-11 19:59:19] mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+[11-11 19:59:21] slurm 489276: COMPLETED 00:02:29 poddgx02
+[11-11 19:59:22] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261111T185508Z-s12r3-prova-compilazione-66facd
+[11-11 19:59:22] slurm 489276 COMPLETED, durata 00:02:29, nodo poddgx02
+[11-11 19:59:26] vincolo: inviato slurm 489314, run_id 20261111T185922Z-s12r3-prova-vincolo-6ef7d9
+[11-11 19:59:27] job: PENDING 1
+[11-11 20:00:29] job: RUNNING 1
+[11-11 20:01:31] job: RUNNING 1
+[11-11 20:02:33] slurm 489314: COMPLETED 00:02:44 poddgx02
+[11-11 20:02:34] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261111T185922Z-s12r3-prova-vincolo-6ef7d9
+[11-11 20:02:34] vincolo: slurm 489314 COMPLETED, durata 00:02:44, nodo poddgx02
+[11-11 20:03:54] inizio 2026-11-11T19:03:54Z, HEAD 2c76e24; ingresso analysis/input/S12r3-prova-compilazione-ingresso.jsonl: 48 record (47 studi di sviluppo col messaggio neutro + GSE0 finto), 0.9 MB
+[11-11 20:03:58] mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+[11-11 20:03:58] bundle 20261111T190358Z-s12r3-prova-compilazione-e2044e; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+[11-11 20:04:03] inviato: slurm 489353, run_id 20261111T190358Z-s12r3-prova-compilazione-e2044e
+[11-11 20:04:04] job: PENDING 1
+[11-11 20:05:06] job: RUNNING 1
+[11-11 20:06:08] job: RUNNING 1
+[11-11 20:07:10] slurm 489353: COMPLETED 00:02:13 poddgx02
+[11-11 20:07:10] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261111T190358Z-s12r3-prova-compilazione-e2044e
+[11-11 20:07:10] slurm 489353 COMPLETED, durata 00:02:13, nodo poddgx02
+[11-11 20:07:16] vincolo: inviato slurm 489379, run_id 20261111T190711Z-s12r3-prova-vincolo-6696de
+[11-11 20:07:18] job: PENDING 1
+[11-11 20:08:19] job: RUNNING 1
+[11-11 20:09:21] slurm 489379: COMPLETED 00:01:35 poddgx02
+[11-11 20:09:22] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261111T190711Z-s12r3-prova-vincolo-6696de
+[11-11 20:09:22] vincolo: slurm 489379 COMPLETED, durata 00:01:35, nodo poddgx02
+[11-11 20:13:22] inizio 2026-11-11T19:13:22Z, HEAD 2c76e24; ingresso analysis/input/S12r3-prova-compilazione-ingresso.jsonl: 48 record (47 studi di sviluppo col messaggio neutro + GSE0 finto), 1.0 MB
+[11-11 20:13:26] mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+[11-11 20:13:26] bundle 20261111T191326Z-s12r3-prova-compilazione-4be379; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+[11-11 20:13:30] inviato: slurm 489434, run_id 20261111T191326Z-s12r3-prova-compilazione-4be379
+[11-11 20:13:32] job: RUNNING 1
+[11-11 20:14:34] job: RUNNING 1
+[11-11 20:15:35] job: RUNNING 1
+[11-11 20:16:37] slurm 489434: COMPLETED 00:02:13 poddgx02
+[11-11 20:16:38] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261111T191326Z-s12r3-prova-compilazione-4be379
+[11-11 20:16:38] slurm 489434 COMPLETED, durata 00:02:13, nodo poddgx02
+[11-11 20:16:44] vincolo: inviato slurm 489459, run_id 20261111T191639Z-s12r3-prova-vincolo-4ec9c7
+[11-11 20:16:45] job: PENDING 1
+[11-11 20:17:47] job: RUNNING 1
+[11-11 20:18:49] slurm 489459: COMPLETED 00:01:34 poddgx02
+[11-11 20:18:50] cancello K4: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 in 20261111T191639Z-s12r3-prova-vincolo-4ec9c7
+[11-11 20:18:50] vincolo: slurm 489459 COMPLETED, durata 00:01:34, nodo poddgx02
+[11-11 20:18:50] FORMA 3, compilazione: fine stop 48/48; 47 studi: JSON valido 47, series_id giusto 47, zero fattori 47, tupla columns completa e in ordine 47, colonne non soggetto pulite 47; token massimo 488
+[11-11 20:18:50] FORMA 3, GSE0: fine stop, 849 token, 3 fattori, tupla columns completa TRUE
+[11-11 20:18:50] FORMA 3, vincolo: fine stop, 461 token; colonna del fattore 'stage', voci 3 (attese 3: '', II, III); columns: disease=subject, stage=subject, agent=subject, sex=subject, title=subject
