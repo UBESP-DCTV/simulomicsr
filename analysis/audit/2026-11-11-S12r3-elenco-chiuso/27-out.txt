@@ -1,0 +1,124 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v2 (cancello K2 ii): passato. Studio finto GSE0 nella forma nuova: 6 gruppi, 7 confronti, fattore annidato, valore di soggetto mancante. Motivi di non chiuso visti con un'uscita rotta apposta: oltre_contesto, troncata, non_valida, livello_assente, base_assente, base_non_ammessa, livello_riservato, ruolo_incoerente, tf_tabella
+uscite toccate dalle due tolleranze: 2 su 47
+  GSE50499: T2 mov10: control
+  GSE63816: T1 disease: not_applicable | T1 genotype: not_applicable | T1 knockdown: not_applicable
+studi chiusi: misura 45 su 47; con le tolleranze 47 su 47
+
+-- misura principale --  (controllo positivo: senza tolleranze ridà 24-M-per-studio.csv)
+misura della prova:
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         36           47 0.76596   0.6383  0.8723
+ b_confronti_ritrovati         68           95 0.71579   0.5484  0.8545
+ c_errori_non_elencati          2           33 0.06061   0.0000  0.3333
+con le due tolleranze (sensibilita' dichiarata dopo i numeri):
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         37           47 0.78723   0.6596  0.8936
+ b_confronti_ritrovati         71           95 0.74737   0.5921  0.8784
+ c_errori_non_elencati          2           34 0.05882   0.0000  0.3000
+
+-- misura principale97 --  (controllo positivo: senza tolleranze ridà 24-M-per-studio.csv)
+misura della prova:
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         36           47 0.76596   0.6383  0.8723
+ b_confronti_ritrovati         68           97 0.70103   0.5377  0.8384
+ c_errori_non_elencati          2           33 0.06061   0.0000  0.3333
+con le due tolleranze (sensibilita' dichiarata dopo i numeri):
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         37           47 0.78723   0.6596  0.8936
+ b_confronti_ritrovati         71           97 0.73196   0.5795  0.8632
+ c_errori_non_elencati          2           34 0.05882   0.0000  0.3000
+
+-- misura intera --  (controllo positivo: senza tolleranze ridà 24-M-per-studio.csv)
+misura della prova:
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         36           47 0.7660  0.63830  0.8723
+ b_confronti_ritrovati         60           93 0.6452  0.48077  0.7870
+ c_errori_non_elencati         13           33 0.3939  0.05882  0.6250
+con le due tolleranze (sensibilita' dichiarata dopo i numeri):
+                misura numeratore denominatore  quota ic_basso ic_alto
+     a_gruppi_identici         37           47 0.7872  0.65957  0.8936
+ b_confronti_ritrovati         63           93 0.6774  0.52499  0.8152
+ c_errori_non_elencati         13           34 0.3824  0.05548  0.6000
+
+-- misura stretta --  (controllo positivo: senza tolleranze ridà 24-M-per-studio.csv)
+misura della prova:
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         36           47 0.76596   0.6383  0.8723
+ b_confronti_ritrovati         62           84 0.73810   0.5658  0.8824
+ c_errori_non_elencati          2           33 0.06061   0.0000  0.3333
+con le due tolleranze (sensibilita' dichiarata dopo i numeri):
+                misura numeratore denominatore   quota ic_basso ic_alto
+     a_gruppi_identici         37           47 0.78723   0.6596  0.8936
+ b_confronti_ritrovati         63           84 0.75000   0.5789  0.8929
+ c_errori_non_elencati          2           34 0.05882   0.0000  0.3000
+
+studi toccati, misura principale con le tolleranze:
+   studio chiuso classe_gruppi n_b_uguale n_b_den n_giudicabili n_errori
+ GSE50499   TRUE      identica          1       1             0        0
+ GSE63816   TRUE      piu_fine          2       3             1        0
+
+=== GSE50499: gruppi del lettore × gruppi di Atlas nell'universo ===
+       atlas
+lettore g1 g2
+     g1  0  3
+     g3  3  0
+ gruppo          mov10 n
+     g1        control 3
+     g2      knockdown 2
+     g3 overexpression 3
+    id fattore       trattato    base n_t n_c     esito
+ g2_g1   mov10      knockdown control   2   3 confronto
+ g3_g1   mov10 overexpression control   3   3 confronto
+registro coppie:
+
+nessuno_al_base 
+              1 
+    id                                nome in_b ritrovato
+ g2_g1 'MOV10 overexpression' vs 'control' TRUE    uguale
+    id    giudizio
+ g2_g1 fuori_atlas
+
+=== GSE63816: gruppi del lettore × gruppi di Atlas nell'universo ===
+       atlas
+lettore g1 g2 g3 g4
+     g1  0  0  0  4
+     g2  0  8  0  0
+     g3  0  0  4  0
+     g4  2  0  0  0
+     g5  2  0  0  0
+ gruppo         disease        genotype       knockdown n
+     g1         healthy non applicabile non applicabile 4
+     g2          mutant          mutant non applicabile 8
+     g3          mutant       wild_type non applicabile 4
+     g4 non applicabile non applicabile    ZRSR2_shRNA1 2
+     g5 non applicabile non applicabile    ZRSR2_shRNA2 2
+     g6 non applicabile non applicabile   control_shRNA 2
+    id   fattore     trattato          base n_t n_c                esito
+ g2_g1   disease       mutant       healthy   8   4 confronto con avviso
+ g3_g1   disease       mutant       healthy   4   4 confronto con avviso
+ g2_g3  genotype       mutant     wild_type   8   4 confronto con avviso
+ g4_g6 knockdown ZRSR2_shRNA1 control_shRNA   2   2            confronto
+ g5_g6 knockdown ZRSR2_shRNA2 control_shRNA   2   2            confronto
+registro coppie:
+
+  nessuno_al_base piu_di_un_fattore 
+                1                 9 
+    id                                                    nome in_b ritrovato
+ g4_g1              'erythroleukemia; ZRSR2 shRNA' vs 'normal' TRUE        no
+ g4_g2    'myelodysplastic syndrome; ZRSR2 mutant' vs 'normal' TRUE    uguale
+ g4_g3 'myelodysplastic syndrome; ZRSR2 wild type' vs 'normal' TRUE    uguale
+    id    giudizio
+ g2_g3    coerente
+ g4_g6 fuori_atlas
+ g5_g6 fuori_atlas

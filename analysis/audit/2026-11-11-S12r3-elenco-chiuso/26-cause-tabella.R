@@ -3,9 +3,13 @@
 # Le sottoclassi di lettura del modello e dei curatori sono quelle di S12r2 (stesso nome, stesso significato). Le
 # sottoclassi di forma di S12r2 (forma delle voci, valore senza voce, valore o colonna non letterale, condizione sulla
 # colonna padre) non esistono piu': lo schema a elenco chiuso non le ammette.
+# AGGIUNTE DOPO LA LETTURA (2026-11-11, dichiarate nel finding): due sottoclassi di schema, `livello_non_dichiarato` e
+# `riservato_altra_forma`. La bozza scritta prima delle uscite non le aveva: sono le due forme che lo schema v2 non lega
+# (il nome di un livello nelle voci e nella base non e' vincolato all'elenco `levels`). La regola dell'esito non cambia.
 RIMEDIO <- c(
   "schema/una_colonna_per_fattore" = "schema", "schema/colonna_fattore_e_soggetto" = "schema",
-  "schema/context_senza_base" = "schema", "vista/sotto_serie" = "vista", "vista/mancante_non_dichiarato" = "vista",
+  "schema/context_senza_base" = "schema", "schema/livello_non_dichiarato" = "schema",
+  "schema/riservato_altra_forma" = "schema", "vista/sotto_serie" = "vista", "vista/mancante_non_dichiarato" = "vista",
   "modello/fattore_per_campione" = "modello", "modello/fattore_doppio" = "modello", "modello/fattori_uniti" = "modello",
   "modello/fattore_non_visto" = "modello", "modello/fattore_inventato" = "modello", "modello/ruolo_soggetto" = "modello",
   "modello/tipo_fattore" = "modello", "modello/base" = "modello", "modello/livello" = "modello",
@@ -18,6 +22,8 @@ SPIEGA <- c(
   "schema/una_colonna_per_fattore" = "lo schema v2 dà a un fattore una sola colonna: la variabile è scritta in due o più colonne, ognuna valida per una parte dei campioni, e nessuna colonna la scrive per tutti",
   "schema/colonna_fattore_e_soggetto" = "per lo schema v2 una colonna letta da un fattore non può essere anche soggetto",
   "schema/context_senza_base" = "per schema un fattore di contesto non ha livello di base: il lettore non può scrivere il confronto fra due tipi cellulari, due tessuti o due condizioni di coltura",
+  "schema/livello_non_dichiarato" = "lo schema v2 non lega il nome del livello nelle voci e nella base all'elenco `levels`: un livello scritto in una voce e come base non è nell'elenco",
+  "schema/riservato_altra_forma" = "lo schema v2 non lega il nome del livello nelle voci all'elenco `levels` e ai due nomi riservati: un livello riservato è scritto in un'altra forma (`not_applicable` per «not applicable»)",
   "vista/sotto_serie" = "la vista porta i campioni di più sotto-serie con colonne diverse e molte celle vuote",
   "vista/mancante_non_dichiarato" = "la stringa «NA» di una colonna di soggetto non è dichiarata in `missing_values`: il costruttore la legge come un valore scritto",
   "modello/fattore_per_campione" = "un fattore letto dal titolo o da un identificativo, con un livello per campione",
@@ -43,5 +49,7 @@ NOMINATO <- c(
   "schema/una_colonna_per_fattore" = "la vista aggiunge una colonna unita per le variabili scritte in più colonne a celle complementari, oppure lo schema ammette più colonne per fattore con una voce per ogni combinazione che esiste",
   "schema/colonna_fattore_e_soggetto" = "lo schema ammette per una colonna il doppio ruolo fattore e soggetto",
   "schema/context_senza_base" = "nessuno: è la regola del costruttore decisa dal PI (2026-11-11); i confronti di solo contesto sono fuori dal riferimento",
+  "schema/livello_non_dichiarato" = "lo schema generato per lo studio toglie l'elenco separato dei livelli e prende i livelli dalle voci, oppure l'adattatore fa entrare senza descrizione un livello scritto in una voce e non nell'elenco (misurato con 27-sensibilita.R)",
+  "schema/riservato_altra_forma" = "lo schema generato per lo studio scrive i due nomi riservati come valori ammessi di `level` nelle voci, oppure l'adattatore legge «_» e «-» come spazio e ignora le maiuscole per i due nomi riservati (misurato con 27-sensibilita.R)",
   "vista/sotto_serie" = "la vista porta una sotto-serie per volta, con le sole colonne di quella sotto-serie",
   "vista/mancante_non_dichiarato" = "la vista scrive come cella vuota le stringhe che vogliono dire dato mancante")

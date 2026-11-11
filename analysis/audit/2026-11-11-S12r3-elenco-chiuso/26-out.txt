@@ -1,0 +1,119 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+unita' di disaccordo 40 (studio_non_chiuso 2; partizione_non_identica 9; atlas_non_ritrovato 27; lettore_errore 2), in 15 studi su 47
+prima causa per tipo di unita':
+                               
+chiave                          studio_non_chiuso partizione_non_identica
+  curatore/errore_campione                      0                       2
+  curatore/fattore_ignorato                     0                       2
+  curatore/livelli_uniti                        0                       1
+  curatore/repliche                             0                       1
+  curatore/riferimento                          0                       0
+  modello/fattore_doppio                        0                       0
+  modello/fattore_non_visto                     0                       1
+  modello/ruolo_soggetto                        0                       2
+  schema/context_senza_base                     0                       0
+  schema/livello_non_dichiarato                 1                       0
+  schema/riservato_altra_forma                  1                       0
+  strumento/fattori_ridondanti                  0                       0
+                               
+chiave                          atlas_non_ritrovato lettore_errore
+  curatore/errore_campione                        2              1
+  curatore/fattore_ignorato                       6              0
+  curatore/livelli_uniti                          1              0
+  curatore/repliche                               1              0
+  curatore/riferimento                            2              0
+  modello/fattore_doppio                          2              0
+  modello/fattore_non_visto                       0              0
+  modello/ruolo_soggetto                          8              0
+  schema/context_senza_base                       1              0
+  schema/livello_non_dichiarato                   1              0
+  schema/riservato_altra_forma                    3              0
+  strumento/fattori_ridondanti                    0              1
+esito della catena per tipo di unita':
+                         
+                          modello non_errore vista_schema
+  studio_non_chiuso             0          0            2
+  partizione_non_identica       3          6            0
+  atlas_non_ritrovato          10         13            4
+  lettore_errore                0          2            0
+unita' con una causa di lettura del modello in un punto qualsiasi della catena: 21 (in 7 studi: GSE63816, GSE46665, GSE50760, GSE57945, GSE60340, GSE49155, GSE71595)
+              lettura_modello
+esito          FALSE TRUE
+  modello          0   13
+  non_errore      14    7
+  vista_schema     5    1
+
+studi `diversa`: 9; gruppi sbagliati 3 (per lettura del modello 3, per schema 0, per vista 0); gruppi diversi, non errore 6
+confronti che il costruttore forma dagli studi con gruppi sbagliati: 18; giudicati errore dalla misura (c): 0 su 18 giudicabili
+E12  dei 13, chiudono con gruppi sbagliati (causa del lettore): 3 (GSE46665, GSE57945, GSE60340); atteso 3 (GSE46665, GSE56787, GSE147507), rilevanza 0-0  ->  smentita
+regressioni: 1 (GSE50499)
+
+che cosa e' cambiato (stato v1 -> stato nuovo), per insieme:
+                                
+                                 diversa -> diversa identica -> identica
+  13 non chiusi                                   0                    0
+  3 partizione non identica                       3                    0
+  4 soli confronti non ritrovati                  0                    4
+  senza unita' in S12r2                           0                    1
+                                
+                                 identica -> non chiuso non chiuso -> diversa
+  13 non chiusi                                       0                     6
+  3 partizione non identica                           0                     0
+  4 soli confronti non ritrovati                      0                     0
+  senza unita' in S12r2                               1                     0
+                                
+                                 non chiuso -> identica
+  13 non chiusi                                       6
+  3 partizione non identica                           0
+  4 soli confronti non ritrovati                      0
+  senza unita' in S12r2                               0
+                                
+                                 non chiuso -> non chiuso
+  13 non chiusi                                         1
+  3 partizione non identica                             0
+  4 soli confronti non ritrovati                        0
+  senza unita' in S12r2                                 0
+studi con unita' in S12r2 e senza unita' adesso: 7 (GSE147507, GSE57116, GSE59781, GSE66207, GSE83415, GSE112057, GSE75852)
+unita' di S12r2 63, unita' adesso 40
+
+attese per i 13 studi: giuste 8 su 13 (solo lo stato: 10 su 13)
+    studio    stato     gruppi     confronti stato_osservato gruppi_osservati
+ GSE147507  diversa  sbagliati                      identica                 
+  GSE46665  diversa  sbagliati                       diversa        sbagliati
+  GSE56787  diversa  sbagliati                       diversa       non_errore
+  GSE57116 identica            non_ritrovati        identica                 
+  GSE57945  diversa                                  diversa        sbagliati
+  GSE59781 identica                ritrovati        identica                 
+  GSE60340  diversa                                  diversa        sbagliati
+  GSE63816  diversa                               non chiuso                 
+  GSE66207 identica                ritrovati        identica                 
+  GSE69597  diversa non_errore                       diversa       non_errore
+  GSE71595 identica                                 identica                 
+  GSE83415 identica                                 identica                 
+  GSE83687 identica                                  diversa       non_errore
+ confronti_osservati giusta
+           ritrovati  FALSE
+       non_ritrovati   TRUE
+                      FALSE
+           ritrovati  FALSE
+       non_ritrovati   TRUE
+           ritrovati   TRUE
+       non_ritrovati   TRUE
+       non_ritrovati  FALSE
+           ritrovati   TRUE
+       non_ritrovati   TRUE
+       non_ritrovati   TRUE
+           ritrovati   TRUE
+       non_ritrovati  FALSE
+
+punto 4: unita' con una causa 40 su 40; unita' con causa del lettore 19 (vista o schema con rimedio nominato 6; lettura del modello 13, in 4 studi: GSE46665, GSE57945, GSE60340, GSE49155); studi con gruppi sbagliati per lettura del modello 3; unita' non errore con una lettura del modello in piu' 7  ->  NO
+
+scritto 26-disaccordi.md
