@@ -1,0 +1,128 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+controllo positivo dell'adattatore v2 (cancello K2 ii): passato. Studio finto GSE0 nella forma nuova: 6 gruppi, 7 confronti, fattore annidato, valore di soggetto mancante. Motivi di non chiuso visti con un'uscita rotta apposta: oltre_contesto, troncata, non_valida, livello_assente, base_assente, base_non_ammessa, livello_riservato, ruolo_incoerente, tf_tabella
+PASSA   schema di B0 = schema_studio() di S12r3, 47 studi
+PASSA   schema di B0 scritto = schema scritto in S12r3 (JSON al carattere), 47 studi
+PASSA   schema di A0 = 20-schema-v1.json, 47 studi
+PASSA   il ponte: A0A2A3A4R e RA1PP5C hanno lo stesso schema senza descrizioni, titolo e $id, 47 studi
+PASSA   RC3: il blocco `factors` dello schema e' quello di B0, 47 studi
+     forma lato          cambi schema_car_mediana schema_car_max studio_max
+        B0    B                              9755         222556   GSE57945
+        RP    B              P               9755         222556   GSE57945
+       RPa    B             Pa               9755         222556   GSE57945
+       RPb    B             Pb               9755         222556   GSE57945
+       RPc    B             Pc               9755         222556   GSE57945
+       RPd    B             Pd               9755         222556   GSE57945
+       RP5    B             P5               9755         222556   GSE57945
+        RC    B              C               7208         164634   GSE57945
+       RC3    B             C3               8146         167685   GSE57945
+       RA1    B             A1              15241         234882   GSE57945
+       RA4    B             A4               6736         115989   GSE57945
+     RA4A3    B          A4+A3               5295          60946   GSE57945
+        RR    B              R               9755         222556   GSE57945
+      RA1P    B           A1+P              15241         234882   GSE57945
+    RA1PP5    B        A1+P+P5              15241         234882   GSE57945
+   RA1PP5C    B      A1+P+P5+C              12518         176960   GSE57945
+        F1    B             F1              18562         547772   GSE57945
+        F2    B             F2              14224         426202   GSE57945
+       F12    B          F1+F2              23835         751418   GSE57945
+     B0pl1    B            pl1               9755         222556   GSE57945
+     B0pl2    B            pl2               9755         222556   GSE57945
+        A0    A                              5409           5409  GSE103170
+       A0C    A             aC               7685          63336   GSE57945
+      A0A1    A            aA1               5409           5409  GSE103170
+      A0A3    A            aA3               6115          58912   GSE57945
+      A0A2    A            aA2               4531           4531  GSE103170
+    A0A2A3    A        aA2+aA3              11550          76923   GSE57945
+  A0A2A3A4    A    aA2+aA3+aA4              16208         183495   GSE57945
+ A0A2A3A4R    A aA2+aA3+aA4+aR              16208         183495   GSE57945
+     A0pl1    A            pl1               5409           5409  GSE103170
+     A0pl2    A            pl2               5409           5409  GSE103170
+ compila_ajv
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+          47
+PASSA   ogni schema di ogni forma compila (ajv), 47 studi
+tempo degli schemi: 224 s
+       chiusi      identici     ritrovati           den   ritrovati97 
+           34            31            50            95            50 
+        den97      errori_c giudicabili_c 
+           97             0             4 
+PASSA   S12r2 corsa 1, forma A0: 34 chiusi, 31 identiche, 50/95 e 50/97
+  colonne confrontate: 39; solo nel file congelato: ; solo nello strumento: n_gruppi_lettore n_gruppi_atlas
+PASSA   S12r2 corsa 1, forma A0: tabella per studio uguale a 15-per-studio-v1.csv (4 misure x 47 studi)
+PASSA   S12r2 corsa 1, forma A0: i 13 non chiusi sono quelli di S12r2
+       chiusi      identici     ritrovati           den   ritrovati97 
+           45            36            68            95            68 
+        den97      errori_c giudicabili_c 
+           97             2            33 
+PASSA   S12r3 corsa 1, forma B0: 45 chiusi, 36 identiche, 68/95
+  colonne confrontate: 41; solo nel file congelato: ; solo nello strumento: 
+PASSA   S12r3 corsa 1, forma B0: tabella per studio uguale a 24-M-per-studio.csv (4 misure x 47 studi)
+PASSA   S12r3 corsa 1, forma B0: i 2 non chiusi sono GSE50499 e GSE63816
+PASSA   S12r3 corsa 1: traduttore + adatta_v1 = adatta_v2 (chiuso, motivi, gruppi, confronti, soggetti), 47 studi
+   studio in_B0 in_A0
+ GSE57945  TRUE FALSE
+ GSE60340  TRUE FALSE
+ GSE49155  TRUE FALSE
+ GSE46665  TRUE  TRUE
+PASSA   i predicati vedono i 4 errori di lettura nelle uscite di S12r3 (B0)
+PASSA   nelle uscite di S12r2 (A0) i predicati vedono solo GSE46665 (finding S12r3: gli altri 3 non c'erano)
+PASSA   S12r3 corsa 1, forma B0: le unita' di disaccordo sono le 40 di 26-disaccordi-M-righe.csv (tipo, studio, id): 40 unita'
+PASSA   le 13 unita' di lettura del modello di S12r3 stanno nei 4 studi dei predicati (7, 1, 2, 3)
+unita' con una lettura del modello fuori dalle 13: 8 (GSE50760 3, GSE60340 2, GSE63816 1, GSE71595 2)
+ forma   studio soggetto_costante_nei_gruppi
+    A0 GSE47718              source_name_ch1
+    A0 GSE50760              source_name_ch1
+    A0 GSE52194              source_name_ch1
+    B0 GSE50760              source_name_ch1
+    B0 GSE66573              source_name_ch1
+    B0 GSE71595              source_name_ch1
+PASSA   il conto dei soggetti costanti nei gruppi vede `source_name_ch1` in GSE50760 e GSE71595 nelle uscite di S12r3 (B0)
+firma della tabella dei fattori: uguale fra S12r2 e S12r3 in 20 studi su 47 con le due uscite valide; diversa in 27; non valutabile in 0
+            S12r3
+S12r2        diversa identica non chiuso
+  diversa          3        0          0
+  identica         0       30          1
+  non chiuso       6        6          1
+
+CANCELLO DELLO STRUMENTO: PASSA
