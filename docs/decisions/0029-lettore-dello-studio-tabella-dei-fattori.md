@@ -118,6 +118,26 @@ Mistral-Small 3.2. Non corregge il prompt per coprire uno studio e non aggiunge 
 modello. Il Piano 2 non si scrive e gli 82 studi di giudizio restano chiusi fino alla decisione che segue quella
 sessione.
 
+## Aggiornamento 2026-11-12 (decisioni del PI dopo la sessione sulle cause, S12r4)
+
+Finding: `docs/findings/2026-11-12-S12r4-cause-errori-di-lettura.md`. Su 31 forme dell'uscita, con un cambio per
+volta e sugli stessi 47 studi, la regola di diagnosi depositata dà una causa nella forma per 14 errori di lettura
+su 58, nel modello per 2, e nessuna causa per 42. Con una frase del prompt riscritta senza cambiare il senso la
+tabella dei fattori cambia in 5-9 studi su 47. Nessun cambio toglie un errore senza farne nascere un altro in un
+altro studio (24 forme su 24 fra quelle che ne tolgono almeno uno). La forma finale secondo la regola è `B0`, la
+forma di S12r3 (schema generato per ogni studio a elenco chiuso, prompt v2), senza cambi. Opzioni portate
+dall'agente per il passo seguente: (A) Piano 2 adesso con `B0`; (B) prima una sessione breve con più letture dello
+stesso studio e una regola sulla discordanza scritta prima; (C) una sessione che varia la vista; (D) un altro
+modello; (E) fermare il lettore; (F) aprire una parte degli 82 studi di giudizio solo per contare gli errori;
+(G) dichiarare gli errori come limite. **Il PI ha deciso (2026-11-12): la forma dell'uscita è `B0`, senza cambi
+(«ok»), e prima del Piano 2 si fa la (B) («va bene»).** La sessione (S12r5) legge ogni studio più volte, con frasi
+riscritte senza cambiare il senso, sugli stessi 47 studi e solo con Mistral-Small 3.2, e misura se la discordanza
+fra le letture segnala gli errori di lettura. La regola sulla discordanza si scrive prima delle corse e segnala
+soltanto: non sceglie fra le letture e non fa il lavoro del modello. Limiti noti prima della sessione (calcolo
+fatto dopo i numeri, su tre letture): la discordanza segnala 12 studi su 47, 7 con gruppi giusti; segnala 3 dei 4
+studi con un errore che costa e non `GSE57945`; non porta a zero errori. Il Piano 2 non si scrive e gli 82 studi di
+giudizio restano chiusi fino alla decisione che segue quella sessione.
+
 ## Link
 
 - Spec: `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`

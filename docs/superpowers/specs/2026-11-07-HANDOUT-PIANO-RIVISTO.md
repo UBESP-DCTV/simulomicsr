@@ -38,8 +38,9 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S12r** | Piano 1 «fondamenta e prova»: costruttore dei confronti e misure contro Expression Atlas (TDD), misura della pipeline di oggi, prova da buttare con Mistral sui 47 studi di sviluppo. **Fatta il 2026-11-10: i 5 cancelli passano, la regola di esito non è soddisfatta** (gruppi identici 14/47 per il lettore e per oggi; confronti ritrovati 10 contro 19 su 93; 24 studi non chiusi, 18 per la forma delle voci). **Chiusa il 2026-11-10** con due decisioni del PI: prova ripetuta, tempo zero fuori dal riferimento | codice (TDD) + DGX breve | ~2 sessioni | **S12q** |
 | **S12r2** | La prova ripetuta sugli stessi 47 studi di sviluppo: schema e prompt corretti, Mistral e uno o due modelli più grandi, riferimento senza il tempo zero come controllo, previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-10: la regola di esito dà no per i tre modelli; modello deciso (Mistral-Small 3.2), Qwen non si riprova. **Chiusa il 2026-11-11** con la terza decisione del PI: prima del Piano 2 una terza prova piccola** | carta + codice (TDD) + DGX breve | ~1-2 sessioni | **S12r** |
 | **S12r3** | La terza prova piccola sugli stessi 47 studi di sviluppo: schema delle uscite generato per ogni studio, con colonne e valori a elenco chiuso e una voce per valore; solo Mistral-Small 3.2; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-11: i 5 cancelli passano; 45 studi chiusi su 47, gruppi identici 36/47, confronti ritrovati 68/95 (oggi 13/95); la regola di esito dà no per il solo punto 4 (errori di lettura del modello in 4 studi). **Chiusa il 2026-11-12** con la decisione del PI: prima del Piano 2 una sessione breve sulle cause degli errori di lettura** | carta + codice + DGX breve | ~1 sessione | **S12r2** |
-| **S12r4** | Dove nasce ogni errore di lettura del lettore: stessi 47 studi di sviluppo, solo Mistral-Small 3.2, un cambio per volta fra la forma dell'uscita v1 e quella generata per ogni studio (schema e prompt), più le due correzioni di forma dello schema; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-12: i 5 cancelli passano; 31 forme, 32 corse; 58 errori di lettura in 32 studi su 47: della forma 14, del modello 2, non deciso 42; col placebo la tabella dei fattori cambia in 5-9 studi su 47; forma finale secondo la regola: quella di S12r3, senza cambi. Non chiusa: aspetta due decisioni del PI** (forma dell'uscita; che cosa si fa prima del Piano 2) | carta + codice + DGX breve | fatta | **S12r3** |
-| **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r4, se il PI lo decide): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r4** |
+| **S12r4** | Dove nasce ogni errore di lettura del lettore: stessi 47 studi di sviluppo, solo Mistral-Small 3.2, un cambio per volta fra la forma dell'uscita v1 e quella generata per ogni studio (schema e prompt), più le due correzioni di forma dello schema; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-12: i 5 cancelli passano; 31 forme, 32 corse; 58 errori di lettura in 32 studi su 47: della forma 14, del modello 2, non deciso 42; col placebo la tabella dei fattori cambia in 5-9 studi su 47; forma finale secondo la regola: quella di S12r3, senza cambi. Chiusa il 2026-11-12** con le due decisioni del PI: la forma dell'uscita è quella di S12r3 senza cambi; prima del Piano 2 la sessione S12r5 | carta + codice + DGX breve | fatta | **S12r3** |
+| **S12r5** | Più letture dello stesso studio: stessi 47 studi di sviluppo, solo Mistral-Small 3.2, forma dell'uscita `B0`, frasi del prompt riscritte senza cambiare il senso; una regola sulla discordanza fra le letture, scritta prima, che segnala soltanto; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2 | carta + codice + DGX breve | ~1 sessione | **S12r4** |
+| **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r5, se il PI lo decide): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r5** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
 | **S13** | Piano 3 (da scrivere dopo il cancello): corsa del lettore su tutti gli studi, chiave, varianza, ruoli, doppi, re-cluster, re-pool, deliverable v17 | calcolo | da definire | **S12s, S12c, S12d** |
@@ -50,7 +51,7 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S17** | Methods e limiti | scrittura | ~4 h | tutto |
 
 **Cancellate:** «S12 — il rilevatore in produzione» (handout di agosto) e «S14 seconda parte» (assorbita in
-S13: il re-cluster si fa una volta sola). **Cancelli veri:** S12r←S12q, S12r2←S12r, S12r3←S12r2, S12r4←S12r3, S12s←S12r4 (decisione del PI),
+S13: il re-cluster si fa una volta sola). **Cancelli veri:** S12r←S12q, S12r2←S12r, S12r3←S12r2, S12r4←S12r3, S12r5←S12r4, S12s←S12r5 (decisione del PI),
 S13←S12s (cancello su Atlas)+S12c+S12d, S15←S13, S7c←S13.
 
 **Dal 2026-11-09 (ADR-0029):** lo Stadio 2b esce dal piano. Dove questo handout scrive «Stadio 2b» nelle sezioni
@@ -454,7 +455,7 @@ docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. 
 
 # S12r4 — Dove nasce ogni errore di lettura del lettore
 
-> **Esito (2026-11-12): fatta, non chiusa. Aspetta due decisioni del PI.** Finding
+> **Esito (2026-11-12): fatta e chiusa con due decisioni del PI.** Finding
 > `docs/findings/2026-11-12-S12r4-cause-errori-di-lettura.md`, evidenza
 > `analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/`. I 5 cancelli passano. 31 forme dell'uscita su tutti i
 > 47 studi (32 corse su `poddgx02`, 222 minuti). Letti 58 errori di lettura in 32 studi: la regola di diagnosi dà
@@ -463,14 +464,14 @@ docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. 
 > una frase del prompt riscritta senza cambiare il senso la tabella dei fattori cambia in 5-9 studi su 47. 24
 > forme su 29 tolgono almeno un errore e tutte e 24 ne fanno nascere almeno uno in un altro studio. **Forma finale
 > secondo la regola: `B0` (quella di S12r3), senza cambi**; le due correzioni di forma (`F1`, `F2`) non entrano.
-> **Decisioni aperte:** (1) la forma dell'uscita (raccomandata `B0`); (2) che cosa si fa prima del Piano 2: sette
-> opzioni nel finding §9 (raccomandata: una sessione breve con più letture dello stesso studio e una regola sulla
-> concordanza scritta prima). **Rinviato alla sessione che il PI sceglie** (finding §10 e §11): la regola del
+> **Decisioni del PI (2026-11-12), come raccomandato:** (1) la forma dell'uscita è `B0`, senza cambi; (2) prima
+> del Piano 2 una sessione breve con più letture dello stesso studio e una regola sulla discordanza scritta
+> prima (sessione S12r5), fra le sette opzioni del finding §9. ADR-0029 §Aggiornamento 2026-11-12 (S12r4).
+> **La sessione S12r4 è chiusa. Rinvii (riscritti nella sezione S12r5, che fa fede)** (finding §10 e §11): la regola del
 > riferimento per i fattori di contesto (`growth condition`, `GSE65335`); `GSE147507` (non chiude in 15 forme su
 > 31); la misura dei confronti non elencati sugli 82 studi; la vista non è stata variata; un errore uguale in
 > tutte le forme non è letto dal metodo dei disaccordi che cambiano (esempio: `country` in `GSE69597`); la frase
-> di S12r3 «le due correzioni di forma entrano nel passo seguente» non vale più. La sezione della sessione
-> seguente si scrive dopo la decisione.
+> di S12r3 «le due correzioni di forma entrano nel passo seguente» non vale più.
 
 > **Ricevuto da S12r3, da leggere per primo.** (1) **Decisione del PI (2026-11-12):** il Piano 2 non si scrive
 > adesso; prima questa sessione breve, sugli stessi 47 studi di sviluppo e solo con Mistral-Small 3.2.
@@ -549,6 +550,88 @@ modello: che cosa si fa di quegli errori.
 sessione simulomicsr S12r4, leggi prima la skill di progetto.
 Handout: docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md, sezione S12r4. Finding di partenza:
 docs/findings/2026-11-11-S12r3-terza-prova-lettore-studio.md. Spec:
+docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. Branch p6-tabella-dei-fattori.
+```
+
+---
+
+# S12r5 — Più letture dello stesso studio: la discordanza segnala gli errori di lettura?
+
+> **Ricevuto da S12r4, da leggere per primo.** (1) **Decisioni del PI (2026-11-12):** la forma dell'uscita è `B0`
+> (schema generato per ogni studio a elenco chiuso, prompt v2), senza cambi; prima del Piano 2 questa sessione
+> breve, sugli stessi 47 studi di sviluppo e solo con Mistral-Small 3.2. (2) **La causa misurata** (finding di
+> S12r4 §5 e §9): la lettura del modello cambia con le parole. Con una frase del prompt riscritta senza cambiare
+> il senso la tabella dei fattori cambia in 5-9 studi su 47 (4 corse); due corse con le stesse parole sono uguali
+> al carattere. (3) **Il calcolo fatto dopo i numeri** (finding §7, `31-out.txt`): con `B0` e i suoi due placebo,
+> 12 studi su 47 hanno almeno una lettura diversa; 7 dei 12 hanno in `B0` gruppi identici ai curatori; dei 9
+> errori di `B0`, 5 stanno nei 12 studi e 4 negli altri 35; dei 4 errori che costano, 3 stanno in studi discordi
+> (`GSE60340`, `GSE49155`, `GSE46665`) e 1 no (`GSE57945`). In `GSE46665` le letture differiscono per un altro
+> fattore: l'errore delle sigle è in tutte. **Questo calcolo non è una misura:** tre letture, regola non scritta
+> prima, studi già letti. (4) **Che cosa la discordanza non può vedere:** un errore stabile (`GSE46665` in 31
+> forme su 31; `GSE57945` in `B0` e nei due placebo di `B0`). La sessione non porta a zero errori: lo dice prima.
+> (5) **Gli errori di `B0` da ritrovare** (`29-errori-presenti-per-forma.csv`, `27-stati.csv`): 9 in 8 studi; 4
+> che costano (`GSE46665` sigle, `GSE57945` sesso, `GSE60340` trattamento, `GSE49155` fattore doppio) e 5 che non
+> costano (`source_name_ch1` come donatore in `GSE50760`, `GSE71595`, `GSE66573`; tempo ripetuto in `GSE46665`;
+> tempo che ripete il tipo cellulare in `GSE75852`). (6) **Limiti di S12r4 che restano:** un errore uguale in
+> tutte le forme e senza unità di disaccordo non è letto (esempio: `country` come soggetto in `GSE69597`); la
+> lettura delle schede è di un solo agente; la vista non è stata variata. (7) **`B0` non chiude 2 studi**
+> (`GSE50499`, `GSE63816`): le due correzioni di forma (`F1`, `F2`) non entrano. (8) **Il rischio di
+> adattamento:** i 47 studi sono stati letti quattro volte. Questa è la quinta. I due placebo di `B0` sono già
+> stati visti: le frasi riscritte di questa sessione sono nuove e scritte prima. (9) **Due conti degli errori
+> nuovi** (depositato e per etichetta, finding §5.2): di' prima quale usi. (10) **Regole del PI in vigore:**
+> nessun errore si accetta; un errore del modello non si chiude con il prompt né con regole che sostituiscono il
+> modello; non spingere il PI a chiudere. (11) **Passano a S12s senza cambi:** la regola del riferimento per i
+> fattori di contesto (`growth condition`, `GSE65335`); `GSE147507` (10 confronti fuori dall'universo di Atlas;
+> non chiude in 15 forme su 31); la misura dei confronti non elencati sugli 82 studi col suo intervallo.
+> (12) `renv/settings.json` è tracciato: prima di un commit `git checkout --`, mai `rm`. `container-env.txt`
+> delle corse porta il token di Hugging Face: non stamparlo e non committarlo. (13) Una revisione indipendente
+> alla fine ha trovato in S12r4 un errore di lettura dell'agente: si rifà anche qui.
+
+### Perché
+Nessun pezzo della forma dell'uscita spiega gli errori di lettura: per 42 errori su 58 la regola di diagnosi non
+dà una causa, e la lettura si sposta con una frase che non dice niente di nuovo. Se la lettura sbagliata è anche
+la lettura che cambia, più letture dello stesso studio la segnalano senza che una regola faccia il lavoro del
+modello. Il calcolo fatto dopo i numeri dice «in parte». Prima del Piano 2 serve la misura, con la regola scritta
+prima.
+
+### Che cosa si fa
+1. **Carta, prima di ogni corsa.** Scrivi le frasi riscritte: quante letture per studio, quali frasi del prompt
+   di `B0` cambiano, con quale criterio una riscrittura «non cambia il senso». Le riscritture sono generali, non
+   guardano uno studio. Di' se i due placebo di S12r4 entrano o no, e perché.
+2. **Deposita** in una cartella di audit nuova `00-previsioni.md` e committalo da solo: cancelli (la corsa di
+   `B0` è identica al carattere alle uscite congelate di S12r4; lo strumento ridà i 9 errori di `B0`; copertura
+   47 su 47; ambiente), previsioni con intervallo, e la **regola sulla discordanza** scritta prima: su che cosa
+   si confrontano le letture (tabella dei fattori, gruppi, confronti), quando uno studio è «segnalato», come si
+   conta «la discordanza segnala un errore». Unità lo studio, B e seme dichiarati.
+3. **Corse su `poddgx02`:** ogni lettura su tutti i 47 studi, con la configurazione di produzione. Una corsa dura
+   circa 7 minuti su 4 GPU (misurato in S12r4); da 5 a 10 corse, circa un'ora.
+4. **Misura:** quanti studi sono segnalati; quanti dei 9 errori di `B0` e dei 4 che costano stanno in studi
+   segnalati; quanti studi segnalati hanno gruppi giusti; come cambiano questi conti col numero di letture.
+   **Leggi tutti i disaccordi che cambiano** fra le letture nuove e `B0`, con le etichette di S12r4 dove valgono.
+5. **Esito:** la regola depositata dà un sì o un no. Che cosa si fa degli studi segnalati e degli errori non
+   segnalati lo decide il PI: porta il conto e tutte le opzioni, non scegliere tu.
+6. **Revisione indipendente, finding** con «In breve», poi STOP.
+
+### Che cosa NON si fa
+Non si scrive il Piano 2. Non si aprono gli 82 studi di giudizio. Non si cambia la forma `B0`. Non si corregge il
+prompt per coprire uno studio. La regola sulla discordanza segnala soltanto: non sceglie fra le letture, non vota
+e non corregge una tabella. Non si provano altri modelli. Non si varia la vista. Non si cambiano previsioni e
+regole dopo i numeri. Non si sceglie il numero di letture perché dà il conto migliore sui 47. Non si toccano
+deliverable e master.
+
+### Come si sa che è finita
+I cancelli passano, ogni previsione ha un esito, la regola sulla discordanza ha un sì o un no, ogni disaccordo
+che cambia è letto, la revisione indipendente è chiusa.
+
+### La decisione che spetta a te
+Se si scrive il Piano 2 (il lettore nel pacchetto, S12s). Che cosa si fa degli studi che la discordanza segnala,
+e degli errori di lettura che non segnala.
+
+### Prompt
+```
+sessione simulomicsr S12r5, leggi prima la skill di progetto.
+Handout: docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md, sezione S12r5. Finding di partenza:
+docs/findings/2026-11-12-S12r4-cause-errori-di-lettura.md. Spec:
 docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. Branch p6-tabella-dei-fattori.
 ```
 
