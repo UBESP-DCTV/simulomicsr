@@ -99,7 +99,9 @@ cambio per volta fra le due forme dell'uscita (schema e prompt), più le due cor
 correzioni al prompt per coprire uno studio, niente regole che fanno il lavoro del modello. Gli 82 studi di giudizio
 restano chiusi. ADR-0029 §Aggiornamento 2026-11-12.
 
-**Dopo la sessione sulle cause S12r4 (2026-11-12): due decisioni aperte del PI, la sessione non è chiusa.** (1) Con quale
+**Dopo la sessione sulle cause S12r4 (2026-11-12): una decisione presa e una aperta, la sessione non è chiusa.** Il PI ha
+deciso il punto (2) il 2026-11-12 («va bene»): prima del Piano 2 la sessione breve con più letture dello stesso studio.
+Il punto (1), la forma dell'uscita, è aperto: il PI ha chiesto i limiti di `B0`. Le due decisioni com'erano: (1) Con quale
 forma dell'uscita si va avanti: la regola depositata dà `B0` senza cambi (raccomandata); le alternative `RPa` e `F2`
 si sceglierebbero per il numero dei confronti, e la regola lo vieta. (2) Che cosa si fa prima del Piano 2: sette
 opzioni nel finding §9; raccomandata una sessione breve che legge ogni studio più volte, con frasi riscritte senza
