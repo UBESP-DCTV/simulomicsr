@@ -13,6 +13,11 @@ DIR <- "analysis/audit/2026-11-12-S12r5-piu-letture"
 a <- commandArgs(trailingOnly = TRUE)
 F_LETT <- if (length(a)) a[[1]] else file.path(DIR, "26-letture.csv")
 SUFF <- if (length(a) >= 2L) a[[2]] else ""                    # suffisso delle uscite (per la lettura del revisore)
+# AGGIUNTO DOPO LA REVISIONE INDIPENDENTE (dichiarato dopo i numeri): terzo argomento = un CSV (errore, studio) con gli
+# errori di lettura di B0 che la revisione ha trovato e che non stanno fra i 9 depositati. Servono a due cose: un'etichetta
+# di B0 non si conta come errore NUOVO, e la regola di esito si ricalcola ACCANTO con l'insieme allargato. I 9 errori
+# depositati e l'esito depositato non cambiano. Senza il terzo argomento lo script fa i conti di prima.
+F_AGG <- if (length(a) >= 3L) a[[3]] else ""
 leggi <- function(f) utils::read.csv(file.path(DIR, f), stringsAsFactors = FALSE, check.names = FALSE)
 scrivi <- function(...) cat(sprintf(...), "\n", sep = "")
 ferma <- function(...) stop(sprintf(...), call. = FALSE)
@@ -49,6 +54,10 @@ scrivi("Dove sta l'errore (schede con causa «lettura del modello»): %s.",
 # Un errore e' nuovo se B0 non ha quell'etichetta in quello studio. Le etichette di B0 sono i 9 errori di riferimento.
 # Una lettura nuova con la chiave uguale a B0 ha la lettura di B0: nessun errore nuovo per costruzione.
 B0E <- split(ST$errore, ST$studio)
+AGG <- if (nzchar(F_AGG)) utils::read.csv(F_AGG, stringsAsFactors = FALSE, check.names = FALSE) else data.frame(errore = character(0), studio = character(0))
+if (nrow(AGG)) { stopifnot(all(startsWith(AGG$errore, paste0(AGG$studio, ":"))), !any(AGG$errore %in% ST$errore))
+  for (i in seq_len(nrow(AGG))) B0E[[AGG$studio[i]]] <- c(B0E[[AGG$studio[i]]], AGG$errore[i])
+  scrivi("\nErrori di B0 aggiunti dopo la revisione (fuori dai 9 depositati): %s.", paste(AGG$errore, collapse = " | ")) }
 RIGHE$nuove <- vapply(seq_len(nrow(RIGHE)), function(i) paste(setdiff(E[[RIGHE$scheda[i]]], B0E[[RIGHE$studio[i]]]), collapse = " ; "), "")
 RN <- RIGHE[nzchar(RIGHE$nuove), c("studio", "lettura", "scheda", "nuove")]
 utils::write.csv(RN, file.path(DIR, sprintf("27-errori-nuovi%s.csv", SUFF)), row.names = FALSE)
@@ -81,6 +90,28 @@ scrivi("Quota di studi segnalati in cui la discordanza tocca un errore di lettur
 tocca <- S[S$classe == "tocca un errore di lettura", ]
 scrivi("Fra questi %d: con un errore di B0 %d; senza errori di B0 (l'errore sta solo in letture nuove) %d; con gruppi identici ai curatori in B0 %d.",
        nrow(tocca), sum(tocca$errori_di_B0 > 0), sum(tocca$errori_di_B0 == 0), sum(tocca$stato_B0 == "identica"))
+
+# ---- accanto, dichiarato dopo i numeri: la regola di esito con gli errori di B0 aggiunti dalla revisione -------------
+# Stessa formula e stesso ricampionamento di differenza_quote() (aiuti-misura-r5.R): 47 studi, B = 2000, seme 20261112.
+# Controllo: con i soli errori depositati deve ridare i numeri di 24-out.txt (6/8, 18/39, +0,288, IC -0,091, +0,610).
+dq <- function(segn, con) { d <- function(i) mean(segn[i][con[i]]) - mean(segn[i][!con[i]])
+  set.seed(20261112L); b <- vapply(seq_len(2000L), function(k) d(sample.int(47L, replace = TRUE)), 0)
+  list(con = sum(segn & con), n_con = sum(con), senza = sum(segn & !con), n_senza = sum(!con), diff = d(seq_len(47L)),
+       ic = unname(stats::quantile(b, c(0.025, 0.975), na.rm = TRUE)), vuoti = sum(is.na(b))) }
+stopifnot(nrow(SEG) == 47L)
+q0 <- dq(SEG$segnalato, SEG$errori_di_B0 > 0)
+scrivi("\nRegola di esito, insieme depositato (controllo): %d/%d contro %d/%d, differenza %+.3f, IC95 %+.3f, %+.3f.",
+       q0$con, q0$n_con, q0$senza, q0$n_senza, q0$diff, q0$ic[1], q0$ic[2])
+if (!(q0$con == 6L && q0$n_con == 8L && q0$senza == 18L && abs(q0$diff - 0.288) < 0.001 && abs(q0$ic[1] + 0.091) < 0.001 && abs(q0$ic[2] - 0.610) < 0.001))
+  ferma("il ricalcolo della regola di esito non rida' i numeri depositati")
+if (nrow(AGG)) {
+  q1 <- dq(SEG$segnalato, SEG$errori_di_B0 > 0 | SEG$studio %in% AGG$studio)
+  scrivi("Regola di esito ACCANTO, con gli errori di B0 aggiunti (dopo i numeri): %d/%d contro %d/%d, differenza %+.3f, IC95 %+.3f, %+.3f: condizione (a) %s.",
+         q1$con, q1$n_con, q1$senza, q1$n_senza, q1$diff, q1$ic[1], q1$ic[2], if (q1$ic[1] > 0) "si'" else "no")
+  t2 <- S[S$classe == "tocca un errore di lettura", ]; conB0 <- t2$errori_di_B0 > 0 | t2$studio %in% AGG$studio
+  scrivi("Con gli errori aggiunti, fra i %d studi che toccano un errore di lettura: con un errore di B0 %d; senza errori di B0 %d.",
+         nrow(t2), sum(conB0), sum(!conB0))
+}
 
 giud <- function(v, lo, hi) if (v >= lo && v <= hi) "confermata" else "smentita"
 P <- data.frame(n = c(11L, 12L),
