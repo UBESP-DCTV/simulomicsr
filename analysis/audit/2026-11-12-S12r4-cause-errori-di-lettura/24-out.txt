@@ -1,0 +1,488 @@
+
+NOTE: Dependency discovery took 33 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+24-misura.R  PROVA DA BUTTARE
+HEAD 161a2f0; corse attese 32, congelate 32
+PASSA   cancello 4: ogni corsa copre 47 studi di sviluppo su 47 e nessun altro (32 corse)
+PASSA   le uscite congelate hanno lo SHA-256 scritto al congelamento (23-uscite-sha256/)
+PASSA   cancello 5: ogni job COMPLETED su poddgx02 con VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 (23-out.txt)
+PASSA   cancello 5: modello, revisione, temperature 0, repetition_penalty 1,1, max_model_len 65536, max_tokens 24576
+PASSA   cancello 5: il lavoratore usa lo schema del record in ogni record mandato al modello
+studi mandati al modello: 47 in 32 corse; meno di 47 in: 
+misura di 32 corse: 517 s
+PASSA   cancello 1: la prima corsa di B0 e' identica al carattere alle uscite congelate di S12r3, 47 studi su 47: 47/47; diversi: 
+       chiusi      identici     ritrovati           den   ritrovati97 
+           45            36            68            95            68 
+        den97      errori_c giudicabili_c 
+           97             2            33 
+PASSA   cancello 1: B0 rida' 45 chiusi, 36 gruppi identici, 68 confronti su 95
+PASSA   cancello 1: B0 rida' le 40 unita' di disaccordo di S12r3 e, fra quelle, le 13 di lettura del modello
+PASSA   cancello 1: la seconda corsa di B0 e' identica alla prima, 47 studi su 47: 47/47; diversi: 
+PASSA   cancello 3: i predicati vedono i 4 errori di lettura nella corsa nuova di B0
+PASSA   cancello 3: il conto dei soggetti costanti vede `source_name_ch1` in GSE50760 e GSE71595 nella corsa nuova di B0
+
+== ogni corsa: numeri e differenze dalla base (riferimento a 95 confronti; 97 accanto) ==
+     corsa base oltre_contesto fine_length valide chiusi identici ritrovati
+        B0   B0              0           0     47     45       36        68
+        RP   B0              0           0     47     44       37        64
+       RPa   B0              0           0     47     47       38        74
+       RPb   B0              0           0     47     44       37        66
+       RPc   B0              0           0     47     42       36        66
+       RPd   B0              0           0     47     44       37        64
+       RP5   B0              0           0     47     44       36        68
+        RC   B0              0           0     47     45       37        70
+       RC3   B0              0           0     47     45       36        68
+       RA1   B0              0           0     47     44       36        71
+       RA4   B0              0           1     46     41       33        64
+     RA4A3   B0              0           0     47     40       32        59
+        RR   B0              0           0     47     45       36        69
+      RA1P   B0              0           0     47     45       38        71
+    RA1PP5   B0              0           0     47     44       36        64
+   RA1PP5C   B0              0           0     47     45       37        66
+        F1   B0              0           0     47     38       32        59
+        F2   B0              0           0     47     45       35        76
+       F12   B0              0           0     47     36       32        57
+     B0pl1   B0              0           0     47     45       36        71
+     B0pl2   B0              0           0     47     42       35        69
+        A0   A0              0           0     47     34       31        50
+       A0C   A0              0           0     47     34       31        52
+      A0A1   A0              0           0     47     32       28        49
+      A0A3   A0              0           1     46     35       32        51
+      A0A2   A0              0           0     47     36       31        53
+    A0A2A3   A0              0           1     46     39       34        57
+  A0A2A3A4   A0              0           0     47     45       37        61
+ A0A2A3A4R   A0              0           0     47     45       37        66
+     A0pl1   A0              0           0     47     35       32        52
+     A0pl2   A0              0           0     47     36       32        54
+ B0-corsa2   B0              0           0     47     45       36        68
+ ritrovati97 errori_c giudicabili_c unita d_ritrovati       d_ritrovati_ic
+          68        2            33    40           0                  0 0
+          64        1            12    42          -4                -15 5
+          74        3            22    33           6                 0 18
+          66        3            10    42          -2 -16 8.02499999999986
+          66        1             5    41          -2                -16 8
+          64        1            19    42          -4            -16.025 3
+          68        1            32    39           0                 -3 3
+          70        1            17    36           2               -13 17
+          68        2            33    40           0                  0 0
+          71        1            11    36           3                -5 12
+          64        2            15    47          -4                -10 0
+          59        2            15    53          -9               -19 -1
+          69        2            25    39           1               -14 16
+          71        1            10    34           3                -4 11
+          64        3            13    45          -4                -17 7
+          66        1            18    40          -2                -15 8
+          59        4            14    55          -9                -23 3
+          76        1            18    32           8                 0 21
+          57        2             8    55         -11                -29 3
+          71        3            35    38           3                 -1 8
+          69        2            27    40           1                  0 3
+          50        0             4    61           0                  0 0
+          52        0            10    59           2                 -2 7
+          49        1             5    66          -1                 -7 5
+          51        0             4    59           1                  0 3
+          53        1             7    59           3                -5 12
+          57        1             7    52           7                -3 18
+          61        1            11    45          11                -2 26
+          66        1            18    40          16                 5 30
+          52        0             4    58           2                  0 6
+          54        0            10    56           4                 0 12
+          68        2            33    40           0                  0 0
+ uscite_uguali_alla_base firme_diverse migliorati peggiorati
+                      NA            NA         NA         NA
+                       8            21          6          9
+                      15            13          4          2
+                       8            19          5          7
+                      14            16          6          6
+                      10            15          5          4
+                      18            11          3          2
+                       0            16          5          3
+                      47             0          0          0
+                       0            21          8          5
+                      31             7          0          4
+                      27             8          0          5
+                       9            17          6          3
+                       0            21          7          5
+                       0            25          8          9
+                       0            22          7          5
+                       0            23          6         13
+                      16            15          5          3
+                       0            24          6         13
+                      15             9          4          2
+                      23             6          2          2
+                      NA            NA         NA         NA
+                       0            15          3          5
+                       0            16          2          6
+                      39             3          1          0
+                       0            18          2          5
+                       0            20          4          4
+                       0            22          7          5
+                       0            20          7          2
+                      19             8          2          1
+                      19             5          1          0
+                      47             0          0          0
+ migliorati_e_peggiorati
+                      NA
+                       0
+                       1
+                       1
+                       0
+                       0
+                       1
+                       1
+                       0
+                       1
+                       0
+                       0
+                       0
+                       0
+                       0
+                       0
+                       1
+                       1
+                       2
+                       0
+                       1
+                      NA
+                       1
+                       1
+                       0
+                       2
+                       2
+                       4
+                       5
+                       0
+                       1
+                       0
+
+== i 4 errori di lettura (predicati) e i conti generici, per corsa ==
+     corsa          cambi GSE57945 GSE60340 GSE49155 GSE46665 fattori_doppi
+        B0                    TRUE     TRUE     TRUE     TRUE             5
+        RP              P    FALSE    FALSE     TRUE     TRUE             6
+       RPa             Pa    FALSE    FALSE     TRUE     TRUE             4
+       RPb             Pb     TRUE    FALSE     TRUE     TRUE             3
+       RPc             Pc     TRUE     TRUE    FALSE     TRUE             6
+       RPd             Pd     TRUE    FALSE     TRUE     TRUE             6
+       RP5             P5     TRUE    FALSE     TRUE     TRUE             5
+        RC              C    FALSE    FALSE     TRUE     TRUE             5
+       RC3             C3     TRUE     TRUE     TRUE     TRUE             5
+       RA1             A1    FALSE    FALSE    FALSE     TRUE             5
+       RA4             A4     TRUE     TRUE     TRUE     TRUE             5
+     RA4A3          A4+A3     TRUE     TRUE     TRUE     TRUE             5
+        RR              R    FALSE     TRUE     TRUE     TRUE             5
+      RA1P           A1+P    FALSE    FALSE    FALSE     TRUE             6
+    RA1PP5        A1+P+P5    FALSE    FALSE    FALSE     TRUE             7
+   RA1PP5C      A1+P+P5+C    FALSE    FALSE    FALSE     TRUE             5
+        F1             F1    FALSE    FALSE    FALSE     TRUE             4
+        F2             F2    FALSE     TRUE     TRUE     TRUE             5
+       F12          F1+F2    FALSE    FALSE    FALSE     TRUE             4
+     B0pl1            pl1     TRUE     TRUE    FALSE     TRUE             4
+     B0pl2            pl2     TRUE    FALSE     TRUE     TRUE             5
+        A0                   FALSE    FALSE    FALSE     TRUE             3
+       A0C             aC     TRUE    FALSE    FALSE     TRUE             4
+      A0A1            aA1     TRUE    FALSE     TRUE     TRUE             4
+      A0A3            aA3    FALSE    FALSE    FALSE     TRUE             3
+      A0A2            aA2    FALSE    FALSE    FALSE     TRUE             6
+    A0A2A3        aA2+aA3    FALSE    FALSE    FALSE     TRUE             6
+  A0A2A3A4    aA2+aA3+aA4    FALSE    FALSE    FALSE     TRUE             8
+ A0A2A3A4R aA2+aA3+aA4+aR    FALSE    FALSE    FALSE     TRUE             5
+     A0pl1            pl1     TRUE    FALSE    FALSE     TRUE             4
+     A0pl2            pl2    FALSE    FALSE    FALSE     TRUE             3
+ B0-corsa2                    TRUE     TRUE     TRUE     TRUE             5
+ studi_con_soggetto_costante
+                           3
+                           8
+                           5
+                           7
+                           2
+                           2
+                           3
+                           3
+                           3
+                           4
+                           3
+                           3
+                           1
+                           5
+                           7
+                           5
+                           4
+                           3
+                           4
+                           3
+                           2
+                           3
+                           4
+                           4
+                           3
+                           5
+                           5
+                           5
+                           5
+                           3
+                           4
+                           3
+
+== esplorativo: GSE57116 e GSE75852 (le 5 unita' di lettura di S12r2), per corsa ==
+     corsa   studio      stato n_b_uguale n_b_den n_fattori fattori_doppi
+        B0 GSE57116   identica          2       2         2             0
+        B0 GSE75852   identica          2       2         3             1
+        RP GSE57116   identica          2       2         2             1
+        RP GSE75852   identica          2       2         3             1
+       RPa GSE57116   identica          2       2         2             0
+       RPa GSE75852   identica          2       2         3             1
+       RPb GSE57116   identica          2       2         2             0
+       RPb GSE75852   identica          2       2         3             1
+       RPc GSE57116   identica          2       2         2             1
+       RPc GSE75852   identica          2       2         3             1
+       RPd GSE57116   identica          2       2         2             1
+       RPd GSE75852   identica          2       2         3             1
+       RP5 GSE57116   identica          2       2         2             0
+       RP5 GSE75852   identica          2       2         3             1
+        RC GSE57116   identica          2       2         2             0
+        RC GSE75852   identica          2       2         3             1
+       RC3 GSE57116   identica          2       2         2             0
+       RC3 GSE75852   identica          2       2         3             1
+       RA1 GSE57116 non chiuso          0       2         2            NA
+       RA1 GSE75852   identica          2       2         3             1
+       RA4 GSE57116 non chiuso          0       2         2            NA
+       RA4 GSE75852   identica          2       2         3             1
+     RA4A3 GSE57116 non chiuso          0       2         2            NA
+     RA4A3 GSE75852   identica          2       2         3             1
+        RR GSE57116   identica          2       2         2             1
+        RR GSE75852   identica          2       2         3             1
+      RA1P GSE57116   identica          2       2         2             1
+      RA1P GSE75852   identica          2       2         3             1
+    RA1PP5 GSE57116   identica          2       2         2             1
+    RA1PP5 GSE75852   identica          2       2         3             1
+   RA1PP5C GSE57116 non chiuso          0       2         2            NA
+   RA1PP5C GSE75852   identica          2       2         3             1
+        F1 GSE57116   identica          2       2         2             1
+        F1 GSE75852   identica          2       2         3             1
+        F2 GSE57116   identica          2       2         2             0
+        F2 GSE75852   identica          2       2         3             1
+       F12 GSE57116   identica          2       2         2             1
+       F12 GSE75852   identica          2       2         3             1
+     B0pl1 GSE57116   identica          2       2         2             0
+     B0pl1 GSE75852   identica          2       2         3             1
+     B0pl2 GSE57116   identica          2       2         2             0
+     B0pl2 GSE75852   identica          2       2         3             1
+        A0 GSE57116 non chiuso          0       2         2            NA
+        A0 GSE75852   identica          2       2         3             1
+       A0C GSE57116 non chiuso          0       2         2            NA
+       A0C GSE75852   identica          2       2         3             1
+      A0A1 GSE57116 non chiuso          0       2         2            NA
+      A0A1 GSE75852   identica          2       2         3             1
+      A0A3 GSE57116 non chiuso          0       2         2            NA
+      A0A3 GSE75852   identica          2       2         3             1
+      A0A2 GSE57116 non chiuso          0       2         2            NA
+      A0A2 GSE75852   identica          2       2         3             1
+    A0A2A3 GSE57116 non chiuso          0       2         2            NA
+    A0A2A3 GSE75852   identica          2       2         3             1
+  A0A2A3A4 GSE57116   identica          2       2         2             1
+  A0A2A3A4 GSE75852   identica          2       2         3             1
+ A0A2A3A4R GSE57116 non chiuso          0       2         2            NA
+ A0A2A3A4R GSE75852   identica          2       2         3             1
+     A0pl1 GSE57116 non chiuso          0       2         2            NA
+     A0pl1 GSE75852   identica          2       2         3             1
+     A0pl2 GSE57116 non chiuso          0       2         2            NA
+     A0pl2 GSE75852   identica          2       2         3             1
+ B0-corsa2 GSE57116   identica          2       2         2             0
+ B0-corsa2 GSE75852   identica          2       2         3             1
+                                                            fonti
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+       state:disease state | context:cell type | time:description
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+ context:source_name_ch1 | state:disease state | time:description
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+             context:cell type | state:disease state | time:title
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+                               perturbation:treatment | time:time
+       state:disease state | context:cell type | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+       state:disease state | context:cell type | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+       state:disease state | context:cell type | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+       context:cell type | state:disease state | time:description
+                               perturbation:treatment | time:time
+   context:cell type | state:disease state | time:source_name_ch1
+          motivi
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+ livello_assente
+                
+     non_coperta
+                
+     non_coperta
+                
+                
+                
+                
+                
+                
+                
+ livello_assente
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+     non_coperta
+                
+     non_coperta
+                
+     non_coperta
+                
+     non_coperta
+                
+     non_coperta
+                
+     non_coperta
+                
+                
+                
+ livello_assente
+                
+     non_coperta
+                
+     non_coperta
+                
+                
+                
+
+== previsioni ==
+previsione 1  A0 identica al carattere a M-corsa1.jsonl di S12r2: osservato 47/47; atteso 47/47, intervallo 47  ->  confermata  [diversi: ]
+  A0 di S12r4: 34 chiusi, 31 identici, 50/95, 50/97 (S12r2: 34, 31, 50/95, 50/97)
+previsione 2  RC3: blocco `factors` identico a quello di B0 (al carattere): osservato 47/47; atteso 47/47, intervallo 47  ->  confermata  [letto come JSON: 47/47; diversi: ]
+previsione 3  il ponte: A0A2A3A4R identica al carattere a RA1PP5C: osservato 47/47; atteso 47/47, intervallo 47  ->  confermata  [diversi: ]
+previsione 4  B0pl1: studi con la firma diversa dalla base: osservato 9/47; atteso 5/47, intervallo 0-12  ->  confermata  [ricampionamento sugli studi, IC 95%: 4-14; uscite uguali al carattere 15/47; firme non valutabili 0; migliorati 4, peggiorati 2]
+previsione 4  B0pl2: studi con la firma diversa dalla base: osservato 6/47; atteso 5/47, intervallo 0-12  ->  confermata  [ricampionamento sugli studi, IC 95%: 2-11; uscite uguali al carattere 23/47; firme non valutabili 0; migliorati 3, peggiorati 3]
+previsione 4  A0pl1: studi con la firma diversa dalla base: osservato 8/47; atteso 5/47, intervallo 0-12  ->  confermata  [ricampionamento sugli studi, IC 95%: 3.975-14; uscite uguali al carattere 19/47; firme non valutabili 0; migliorati 2, peggiorati 1]
+previsione 4  A0pl2: studi con la firma diversa dalla base: osservato 5/47; atteso 5/47, intervallo 0-12  ->  confermata  [ricampionamento sugli studi, IC 95%: 1-9; uscite uguali al carattere 19/47; firme non valutabili 0; migliorati 2, peggiorati 1]
+previsione 5  i 4 errori di lettura sotto i due placebo di B0 (8 stati): osservato 6 presenti, 2 assenti, 0 non valutabili; atteso 8 presenti, intervallo 7-8  ->  smentita  [GSE49155 in B0pl1: assente; GSE60340 in B0pl2: assente]
+previsione 9a  F12: studi chiusi: osservato 36 (IC 95% 30-41); atteso 47, intervallo 46-47  ->  smentita  [non chiusi: GSE103501 GSE44379 GSE52778 GSE56691 GSE57945 GSE58365 GSE63816 GSE65335 GSE67812 GSE69597 GSE83415]
+previsione 9b  F12: confronti ritrovati meno quelli di B0: osservato -11 (57/95; IC 95% -29 3); atteso +3 (71/95), intervallo 0 - +6  ->  indeterminata
+previsione 10a  F1 chiude GSE50499: osservato si' (identica); atteso si', intervallo -  ->  confermata
+previsione 10b  F2 chiude GSE63816: osservato si' (diversa); atteso si', intervallo -  ->  confermata
+previsione 12  RA4 (senza la tupla dei valori): studi chiusi: osservato 41; atteso 39, intervallo 35-43  ->  confermata  [ricampionamento sugli studi, IC 95%: 36-45; motivi dei non chiusi: base_assente 1, livello_assente 1, mappa_ambigua 2, non_coperta 3, non_valida 1, ruolo_incoerente 1, troncata 1]
+
+== da leggere: 290 righe (corsa, studio) in 156 schede distinte (studio, firma, unita'), in 35 studi; righe con un peggioramento: 156 ==
+    studio schede
+ GSE103501      2
+ GSE112057      5
+ GSE147507     12
+  GSE41586      1
+  GSE44379      2
+  GSE46665      7
+  GSE47718      2
+  GSE49155      2
+  GSE49608      2
+  GSE50499      1
+  GSE50760      3
+  GSE52194      1
+  GSE52778      3
+  GSE53280      1
+  GSE54846      1
+  GSE56691      5
+  GSE56787      7
+  GSE57116      3
+  GSE57945     17
+  GSE58365      2
+  GSE60340     17
+  GSE60585      3
+  GSE63015      1
+  GSE63816     22
+  GSE65335      2
+  GSE66207      1
+  GSE66573      1
+  GSE67812      3
+  GSE68919      1
+  GSE69597     12
+  GSE71289      1
+  GSE71595      3
+  GSE83415      3
+  GSE83687      5
+  GSE93624      2
+oggetti salvati in /tmp/claude-1000/-home-user-simulomicsr/2676cd47-181f-464d-ad87-e31fb720e8a6/scratchpad/ogg.rds 
+
+CANCELLI: PASSANO
