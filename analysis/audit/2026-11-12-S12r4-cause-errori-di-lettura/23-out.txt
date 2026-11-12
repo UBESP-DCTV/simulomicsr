@@ -1,0 +1,333 @@
+23-lancia.R  PROVA DA BUTTARE
+inizio 2026-11-12T09:38:28Z, HEAD 161a2f0, corse: B0, B0-corsa2
+mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+B0: forma B0 (lato B, cambi: nessuno); bundle 20261112T093835Z-s12r4-b0-0f2ee2; prompt 21-prompt-B0.md SHA-256 fc33a20d8b1739c8f457be07750b415f89b0cee27c00d0396e9c0fce5fcc4f2a; ingresso analysis/input/S12r4-forme/B0.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+B0: inviato, slurm 496491, run_id 20261112T093835Z-s12r4-b0-0f2ee2, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+inizio 2026-11-12T09:38:47Z, HEAD 161a2f0, corse: A0, RC3
+mount: poddgx02.cluster.lan MONTATO poddgx02.cluster.lan MONTATO
+A0: forma A0 (lato A, cambi: nessuno); bundle 20261112T093851Z-s12r4-a0-fbc6dd; prompt 21-prompt-A0.md SHA-256 9be21089fe5b158d1b6c75ba970965fc58fc2aa09c46d7aa916f70ec7f545b1d; ingresso analysis/input/S12r4-forme/A0.jsonl SHA-256 46bfef5b12b7adfda01922d7e9b0057367ea931e8973f9554cf3517786ba6a34, 0.6 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 6af0fce62242eb633e58ba78f7731c44385a2786ef7a76e5d4bd9b8c141ae16e; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0: inviato, slurm 496497, run_id 20261112T093851Z-s12r4-a0-fbc6dd, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0: slurm 496497 COMPLETED, durata 00:03:21, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0: schema per record 47/47 (dai log dei worker)
+A0: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2144 massimo 31271; token dell'uscita mediana 616 massimo 1929
+A0: [worker 2] generazione completata in 77.2s (12 record)
+A0: [worker 0] generazione completata in 78.2s (12 record)
+A0: [worker 1] generazione completata in 85.1s (12 record)
+A0: [worker 3] generazione completata in 106.5s (11 record)
+A0: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0.txt
+RC3: forma RC3 (lato B, cambi: C3); bundle 20261112T094308Z-s12r4-rc3-42539b; prompt 21-prompt-RC3.md SHA-256 fc33a20d8b1739c8f457be07750b415f89b0cee27c00d0396e9c0fce5fcc4f2a; ingresso analysis/input/S12r4-forme/RC3.jsonl SHA-256 b21134139dadfbd1a7f43cd0e63e1a74670bd0cea352e959f84b80f0d03bf0d3, 1.1 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi aac7e4fb8de76a7ee2cad7f641c2cb31f1e04ade8e4dba2fc1fa4ee14020f1fa; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RC3: inviato, slurm 496530, run_id 20261112T094308Z-s12r4-rc3-42539b, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+B0: slurm 496491 COMPLETED, durata 00:04:10, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+B0: schema per record 47/47 (dai log dei worker)
+B0: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2246 massimo 31373; token dell'uscita mediana 641 massimo 2895
+B0: [worker 0] generazione completata in 48.2s (12 record)
+B0: [worker 1] generazione completata in 73.5s (12 record)
+B0: [worker 2] generazione completata in 107.5s (12 record)
+B0: [worker 3] generazione completata in 153.9s (11 record)
+B0: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/B0.txt
+B0-corsa2: forma B0 (lato B, cambi: nessuno); bundle 20261112T094355Z-s12r4-b0-corsa2-b7023a; prompt 21-prompt-B0.md SHA-256 fc33a20d8b1739c8f457be07750b415f89b0cee27c00d0396e9c0fce5fcc4f2a; ingresso analysis/input/S12r4-forme/B0.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+B0-corsa2: inviato, slurm 496539, run_id 20261112T094355Z-s12r4-b0-corsa2-b7023a, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+inizio 2026-11-12T09:45:34Z, HEAD 161a2f0, corse: RP, RPa, RPb, RPc, RPd, RP5, RC, RA1, RA4, RA4A3, RR, F1, F2, F12
+mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+RP: forma RP (lato B, cambi: P); bundle 20261112T094539Z-s12r4-rp-9fc166; prompt 21-prompt-RP.md SHA-256 a6be2ce981e4731cc7693b6d4162f1b835f25b036850c518248b5b79bcf79147; ingresso analysis/input/S12r4-forme/RP.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RP: inviato, slurm 496553, run_id 20261112T094539Z-s12r4-rp-9fc166, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+inizio 2026-11-12T09:45:58Z, HEAD 161a2f0, corse: B0pl1, B0pl2, A0pl1, A0pl2, A0C, A0A1, A0A3, A0A2, A0A2A3, A0A2A3A4, A0A2A3A4R, RA1PP5C, RA1PP5, RA1P
+mount: poddgx02.cluster.lan MONTATO poddgx02.cluster.lan MONTATO
+B0pl1: forma B0pl1 (lato B, cambi: pl1); bundle 20261112T094609Z-s12r4-b0pl1-94c150; prompt 21-prompt-B0pl1.md SHA-256 96de89923538c634f1d86949bd020e3a1989225fba2bbdbe9275ec45591f677f; ingresso analysis/input/S12r4-forme/B0pl1.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+B0pl1: inviato, slurm 496559, run_id 20261112T094609Z-s12r4-b0pl1-94c150, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RC3: slurm 496530 COMPLETED, durata 00:04:05, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RC3: schema per record 47/47 (dai log dei worker)
+RC3: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2246 massimo 31373; token dell'uscita mediana 641 massimo 2895
+RC3: [worker 0] generazione completata in 48.1s (12 record)
+RC3: [worker 1] generazione completata in 73.3s (12 record)
+RC3: [worker 2] generazione completata in 107.5s (12 record)
+RC3: [worker 3] generazione completata in 154.2s (11 record)
+RC3: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RC3.txt
+LANCIO FINITO 2026-11-12T09:47:24Z (A0, RC3)
+B0-corsa2: slurm 496539 COMPLETED, durata 00:04:07, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+B0-corsa2: schema per record 47/47 (dai log dei worker)
+B0-corsa2: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2246 massimo 31373; token dell'uscita mediana 641 massimo 2895
+B0-corsa2: [worker 0] generazione completata in 48.3s (12 record)
+B0-corsa2: [worker 1] generazione completata in 73.8s (12 record)
+B0-corsa2: [worker 2] generazione completata in 107.6s (12 record)
+B0-corsa2: [worker 3] generazione completata in 154.1s (11 record)
+B0-corsa2: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/B0-corsa2.txt
+LANCIO FINITO 2026-11-12T09:48:11Z (B0, B0-corsa2)
+RP: slurm 496553 COMPLETED, durata 00:06:35, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RP: schema per record 47/47 (dai log dei worker)
+RP: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2140 massimo 31267; token dell'uscita mediana 618 massimo 6029
+RP: [worker 0] generazione completata in 54.4s (12 record)
+RP: [worker 1] generazione completata in 63.4s (12 record)
+RP: [worker 2] generazione completata in 74.7s (12 record)
+RP: [worker 3] generazione completata in 304.5s (11 record)
+RP: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RP.txt
+RPa: forma RPa (lato B, cambi: Pa); bundle 20261112T095406Z-s12r4-rpa-575c2b; prompt 21-prompt-RPa.md SHA-256 0065e00b8b07c8f057536576ec2dde792a49767af5ee0425ba6f022cad92167e; ingresso analysis/input/S12r4-forme/RPa.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RPa: inviato, slurm 496624, run_id 20261112T095406Z-s12r4-rpa-575c2b, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+B0pl1: slurm 496559 COMPLETED, durata 00:06:36, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+B0pl1: schema per record 47/47 (dai log dei worker)
+B0pl1: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2247 massimo 31374; token dell'uscita mediana 618 massimo 6010
+B0pl1: [worker 0] generazione completata in 49.0s (12 record)
+B0pl1: [worker 1] generazione completata in 69.3s (12 record)
+B0pl1: [worker 2] generazione completata in 107.2s (12 record)
+B0pl1: [worker 3] generazione completata in 302.2s (11 record)
+B0pl1: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/B0pl1.txt
+B0pl2: forma B0pl2 (lato B, cambi: pl2); bundle 20261112T095538Z-s12r4-b0pl2-9d9197; prompt 21-prompt-B0pl2.md SHA-256 1d499cd5db1de0147bccf7037ce18277bb73e94eec3994a863d34a4b3f9f9ff1; ingresso analysis/input/S12r4-forme/B0pl2.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+B0pl2: inviato, slurm 496637, run_id 20261112T095538Z-s12r4-b0pl2-9d9197, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RPa: slurm 496624 COMPLETED, durata 00:04:04, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RPa: schema per record 47/47 (dai log dei worker)
+RPa: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2235 massimo 31362; token dell'uscita mediana 653 massimo 2822
+RPa: [worker 0] generazione completata in 48.9s (12 record)
+RPa: [worker 2] generazione completata in 73.1s (12 record)
+RPa: [worker 1] generazione completata in 78.3s (12 record)
+RPa: [worker 3] generazione completata in 150.9s (11 record)
+RPa: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RPa.txt
+RPb: forma RPb (lato B, cambi: Pb); bundle 20261112T095825Z-s12r4-rpb-1b83e6; prompt 21-prompt-RPb.md SHA-256 2ace4a241ea922a7d9c0344881c59b605c3f6a71791dc08844ba6f301c3a8015; ingresso analysis/input/S12r4-forme/RPb.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RPb: inviato, slurm 496662, run_id 20261112T095825Z-s12r4-rpb-1b83e6, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+B0pl2: slurm 496637 COMPLETED, durata 00:04:03, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+B0pl2: schema per record 47/47 (dai log dei worker)
+B0pl2: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2247 massimo 31374; token dell'uscita mediana 641 massimo 2837
+B0pl2: [worker 0] generazione completata in 48.9s (12 record)
+B0pl2: [worker 1] generazione completata in 72.4s (12 record)
+B0pl2: [worker 2] generazione completata in 106.7s (12 record)
+B0pl2: [worker 3] generazione completata in 151.4s (11 record)
+B0pl2: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/B0pl2.txt
+A0pl1: forma A0pl1 (lato A, cambi: pl1); bundle 20261112T095956Z-s12r4-a0pl1-02987a; prompt 21-prompt-A0pl1.md SHA-256 26137473cd38428d7d3b771a234741d5ee4b5cf5874faa357076ea565d527535; ingresso analysis/input/S12r4-forme/A0pl1.jsonl SHA-256 46bfef5b12b7adfda01922d7e9b0057367ea931e8973f9554cf3517786ba6a34, 0.6 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 6af0fce62242eb633e58ba78f7731c44385a2786ef7a76e5d4bd9b8c141ae16e; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0pl1: inviato, slurm 496675, run_id 20261112T095956Z-s12r4-a0pl1-02987a, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0pl1: slurm 496675 COMPLETED, durata 00:03:43, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0pl1: schema per record 47/47 (dai log dei worker)
+A0pl1: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2145 massimo 31272; token dell'uscita mediana 593 massimo 2416
+A0pl1: [worker 1] generazione completata in 68.5s (12 record)
+A0pl1: [worker 0] generazione completata in 76.3s (12 record)
+A0pl1: [worker 2] generazione completata in 77.2s (12 record)
+A0pl1: [worker 3] generazione completata in 129.8s (11 record)
+A0pl1: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0pl1.txt
+A0pl2: forma A0pl2 (lato A, cambi: pl2); bundle 20261112T100410Z-s12r4-a0pl2-9b9b25; prompt 21-prompt-A0pl2.md SHA-256 483da3ab7b97ce4670345cf55a28fc23df98a3bdaa865847454e0741d475d525; ingresso analysis/input/S12r4-forme/A0pl2.jsonl SHA-256 46bfef5b12b7adfda01922d7e9b0057367ea931e8973f9554cf3517786ba6a34, 0.6 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 6af0fce62242eb633e58ba78f7731c44385a2786ef7a76e5d4bd9b8c141ae16e; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0pl2: inviato, slurm 496708, run_id 20261112T100410Z-s12r4-a0pl2-9b9b25, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RPb: slurm 496662 COMPLETED, durata 00:06:54, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RPb: schema per record 47/47 (dai log dei worker)
+RPb: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2204 massimo 31331; token dell'uscita mediana 618 massimo 6367
+RPb: [worker 0] generazione completata in 49.6s (12 record)
+RPb: [worker 1] generazione completata in 68.0s (12 record)
+RPb: [worker 2] generazione completata in 80.6s (12 record)
+RPb: [worker 3] generazione completata in 318.0s (11 record)
+RPb: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RPb.txt
+RPc: forma RPc (lato B, cambi: Pc); bundle 20261112T100548Z-s12r4-rpc-2ccc1a; prompt 21-prompt-RPc.md SHA-256 5cea618f8cab4eb5cb4a201085eeae9c2122f42e94ce193f625285ad07704137; ingresso analysis/input/S12r4-forme/RPc.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RPc: inviato, slurm 496721, run_id 20261112T100548Z-s12r4-rpc-2ccc1a, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0pl2: slurm 496708 COMPLETED, durata 00:03:31, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0pl2: schema per record 47/47 (dai log dei worker)
+A0pl2: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2145 massimo 31272; token dell'uscita mediana 616 massimo 2604
+A0pl2: [worker 2] generazione completata in 78.5s (12 record)
+A0pl2: [worker 1] generazione completata in 90.1s (12 record)
+A0pl2: [worker 3] generazione completata in 110.0s (11 record)
+A0pl2: [worker 0] generazione completata in 119.1s (12 record)
+A0pl2: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0pl2.txt
+A0C: forma A0C (lato A, cambi: aC); bundle 20261112T100825Z-s12r4-a0c-44bcab; prompt 21-prompt-A0C.md SHA-256 7663f8bb296c1e97bf4eebd4a69fbe3e0d3f6d9b02511b8bd0924819f5824f40; ingresso analysis/input/S12r4-forme/A0C.jsonl SHA-256 a6b459bb358853ac8cb32b94736bb2718070dd9f6582db67fc53fa965bce0116, 0.8 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 7e2cfa7bb27363d48c705b1c0cbb45bbe0c79a1c970a16309cbc4c6599f20730; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0C: inviato, slurm 496746, run_id 20261112T100825Z-s12r4-a0c-44bcab, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0C: slurm 496746 COMPLETED, durata 00:03:06, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0C: schema per record 47/47 (dai log dei worker)
+A0C: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2167 massimo 31294; token dell'uscita mediana 679 massimo 1930
+A0C: [worker 2] generazione completata in 69.5s (12 record)
+A0C: [worker 0] generazione completata in 78.3s (12 record)
+A0C: [worker 3] generazione completata in 92.3s (11 record)
+A0C: [worker 1] generazione completata in 93.4s (12 record)
+A0C: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0C.txt
+A0A1: forma A0A1 (lato A, cambi: aA1); bundle 20261112T101239Z-s12r4-a0a1-3869da; prompt 21-prompt-A0A1.md SHA-256 43d1a769e530fb157afbc434aef223cebbd5bcd033a323277a4db74320841e16; ingresso analysis/input/S12r4-forme/A0A1.jsonl SHA-256 1624a5dbd9d3640450699ab91ee454e89d16ca7cd6433c7b3ef5c954dcab09be, 0.6 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 2e749f5019d06e29f3e00b370e17d8c2245d89944e3c96589203c449eb13c973; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0A1: inviato, slurm 496779, run_id 20261112T101239Z-s12r4-a0a1-3869da, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RPc: slurm 496721 COMPLETED, durata 00:06:38, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RPc: schema per record 47/47 (dai log dei worker)
+RPc: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2231 massimo 31358; token dell'uscita mediana 593 massimo 6006
+RPc: [worker 0] generazione completata in 48.8s (12 record)
+RPc: [worker 1] generazione completata in 64.8s (12 record)
+RPc: [worker 2] generazione completata in 114.6s (12 record)
+RPc: [worker 3] generazione completata in 301.2s (11 record)
+RPc: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RPc.txt
+RPd: forma RPd (lato B, cambi: Pd); bundle 20261112T101311Z-s12r4-rpd-996c57; prompt 21-prompt-RPd.md SHA-256 1af970900f0d7ae6a9ed9a5a1d4e2eab8d8d657c713302468f72466fccadc0cc; ingresso analysis/input/S12r4-forme/RPd.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RPd: inviato, slurm 496784, run_id 20261112T101311Z-s12r4-rpd-996c57, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0A1: slurm 496779 COMPLETED, durata 00:04:19, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0A1: schema per record 47/47 (dai log dei worker)
+A0A1: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2144 massimo 31271; token dell'uscita mediana 616 massimo 3033
+A0A1: [worker 1] generazione completata in 64.6s (12 record)
+A0A1: [worker 2] generazione completata in 79.0s (12 record)
+A0A1: [worker 0] generazione completata in 111.5s (12 record)
+A0A1: [worker 3] generazione completata in 164.3s (11 record)
+A0A1: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0A1.txt
+A0A3: forma A0A3 (lato A, cambi: aA3); bundle 20261112T101755Z-s12r4-a0a3-288450; prompt 21-prompt-A0A3.md SHA-256 9be21089fe5b158d1b6c75ba970965fc58fc2aa09c46d7aa916f70ec7f545b1d; ingresso analysis/input/S12r4-forme/A0A3.jsonl SHA-256 c948468dc4d4f576b6deca145099b8b16a8b26a7946dd4a17af0ba0e328a29dd, 0.7 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi a93deb0e00be599c3a471139976dab93988676ea201acd4f0103188c557542d5; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0A3: inviato, slurm 496825, run_id 20261112T101755Z-s12r4-a0a3-288450, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RPd: slurm 496784 COMPLETED, durata 00:06:21, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RPd: schema per record 47/47 (dai log dei worker)
+RPd: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2208 massimo 31335; token dell'uscita mediana 641 massimo 5172
+RPd: [worker 0] generazione completata in 47.1s (12 record)
+RPd: [worker 1] generazione completata in 76.9s (12 record)
+RPd: [worker 2] generazione completata in 106.0s (12 record)
+RPd: [worker 3] generazione completata in 288.4s (11 record)
+RPd: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RPd.txt
+RP5: forma RP5 (lato B, cambi: P5); bundle 20261112T102034Z-s12r4-rp5-002599; prompt 21-prompt-RP5.md SHA-256 764c7fbeb6c9266d5079ced0f9d1524f941aa754e2faf7e6a68a98588e81afb1; ingresso analysis/input/S12r4-forme/RP5.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RP5: inviato, slurm 496846, run_id 20261112T102034Z-s12r4-rp5-002599, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RP5: slurm 496846 COMPLETED, durata 00:06:07, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RP5: schema per record 47/47 (dai log dei worker)
+RP5: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2243 massimo 31370; token dell'uscita mediana 631 massimo 5444
+RP5: [worker 0] generazione completata in 48.1s (12 record)
+RP5: [worker 1] generazione completata in 71.0s (12 record)
+RP5: [worker 2] generazione completata in 106.2s (12 record)
+RP5: [worker 3] generazione completata in 275.6s (11 record)
+RP5: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RP5.txt
+RC: forma RC (lato B, cambi: C); bundle 20261112T102654Z-s12r4-rc-28db86; prompt 21-prompt-RC.md SHA-256 ce346b1a43d8ecfaea853184da8573f3a0eb69aa101e69a237ea544982accaac; ingresso analysis/input/S12r4-forme/RC.jsonl SHA-256 dc170742af97c6ababc31db6f73eaa4340d746a3551a2f130549911ad1132de2, 1.1 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 93679d460d835c63cbd76459aa6476ce85f444436ee4916c00509b313908c024; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RC: inviato, slurm 496895, run_id 20261112T102654Z-s12r4-rc-28db86, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RC: slurm 496895 COMPLETED, durata 00:06:04, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RC: schema per record 47/47 (dai log dei worker)
+RC: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2223 massimo 31350; token dell'uscita mediana 637 massimo 5330
+RC: [worker 0] generazione completata in 47.4s (12 record)
+RC: [worker 2] generazione completata in 69.6s (12 record)
+RC: [worker 1] generazione completata in 75.9s (12 record)
+RC: [worker 3] generazione completata in 270.0s (11 record)
+RC: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RC.txt
+RA1: forma RA1 (lato B, cambi: A1); bundle 20261112T103315Z-s12r4-ra1-4b35c7; prompt 21-prompt-RA1.md SHA-256 a8d1390afa47732fae60dfdc558c9d37e4ec7af42230c6c4e291dc46b14f5677; ingresso analysis/input/S12r4-forme/RA1.jsonl SHA-256 ab3ef89577e2f9dc1439fe1139897e4f15d02f8dce39af463e120021f4813d2d, 1.5 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 7dfaadbc4700ad596eb0e9f47dddb034de979e91386803a936795eb00c6549d4; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RA1: inviato, slurm 496948, run_id 20261112T103315Z-s12r4-ra1-4b35c7, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RA1: slurm 496948 COMPLETED, durata 00:06:08, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RA1: schema per record 47/47 (dai log dei worker)
+RA1: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2240 massimo 31367; token dell'uscita mediana 633 massimo 5406
+RA1: [worker 0] generazione completata in 49.9s (12 record)
+RA1: [worker 1] generazione completata in 70.6s (12 record)
+RA1: [worker 2] generazione completata in 111.1s (12 record)
+RA1: [worker 3] generazione completata in 274.5s (11 record)
+RA1: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RA1.txt
+RA4: forma RA4 (lato B, cambi: A4); bundle 20261112T103935Z-s12r4-ra4-567f56; prompt 21-prompt-RA4.md SHA-256 fc33a20d8b1739c8f457be07750b415f89b0cee27c00d0396e9c0fce5fcc4f2a; ingresso analysis/input/S12r4-forme/RA4.jsonl SHA-256 6b4a92adb6034443e6ac84048cbf09eab538961e6502869bb28c98b514b8a9d5, 0.8 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi dd525adb2ca5fbe766faabe0b3f0c27de2421dc11b641fdd4ffc86617a23fa0b; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RA4: inviato, slurm 497001, run_id 20261112T103935Z-s12r4-ra4-567f56, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0A3: slurm 496825 COMPLETED, durata 00:22:27, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0A3: schema per record 47/47 (dai log dei worker)
+A0A3: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 46, fine length 1; token contati = token di vLLM 47 su 47; token del prompt mediana 2144 massimo 31271; token dell'uscita mediana 616 massimo 24576
+A0A3: [worker 0] generazione completata in 83.6s (12 record)
+A0A3: [worker 1] generazione completata in 84.9s (12 record)
+A0A3: [worker 2] generazione completata in 89.3s (12 record)
+A0A3: [worker 3] generazione completata in 1255.1s (11 record)
+A0A3: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0A3.txt
+A0A2: forma A0A2 (lato A, cambi: aA2); bundle 20261112T104040Z-s12r4-a0a2-7ced9c; prompt 21-prompt-A0A2.md SHA-256 3ab8fbb7a2c904ce15893b15a6353270c494500095eb016617b05dc4559e4184; ingresso analysis/input/S12r4-forme/A0A2.jsonl SHA-256 24f5a55b823538ea0b88aaf7fac045c8581aea8285f14f6759874450b2d628b1, 0.5 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 46e44666bff031b5ac501b6fdb4a2510b1b077f6e6ae798fa3324fcf1d1a0bcc; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0A2: inviato, slurm 497010, run_id 20261112T104040Z-s12r4-a0a2-7ced9c, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0A2: slurm 497010 COMPLETED, durata 00:04:09, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0A2: schema per record 47/47 (dai log dei worker)
+A0A2: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2107 massimo 31234; token dell'uscita mediana 579 massimo 2980
+A0A2: [worker 0] generazione completata in 48.3s (12 record)
+A0A2: [worker 1] generazione completata in 64.7s (12 record)
+A0A2: [worker 2] generazione completata in 71.2s (12 record)
+A0A2: [worker 3] generazione completata in 156.6s (11 record)
+A0A2: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0A2.txt
+A0A2A3: forma A0A2A3 (lato A, cambi: aA2+aA3); bundle 20261112T104554Z-s12r4-a0a2a3-c6952b; prompt 21-prompt-A0A2A3.md SHA-256 3ab8fbb7a2c904ce15893b15a6353270c494500095eb016617b05dc4559e4184; ingresso analysis/input/S12r4-forme/A0A2A3.jsonl SHA-256 f8f1f31a5abee3dcdf4530687db5810f535691c7463e1e53054d2f4fc027d3a6, 1.0 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9aececd5b4fdbe4ea7dfa1eb58ac8d580242dab08e985fe24441a0134eb62eb2; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0A2A3: inviato, slurm 497051, run_id 20261112T104554Z-s12r4-a0a2a3-c6952b, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RA4: slurm 497001 COMPLETED, durata 00:22:23, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RA4: schema per record 47/47 (dai log dei worker)
+RA4: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 46, fine length 1; token contati = token di vLLM 47 su 47; token del prompt mediana 2246 massimo 31373; token dell'uscita mediana 641 massimo 24576
+RA4: [worker 0] generazione completata in 48.3s (12 record)
+RA4: [worker 1] generazione completata in 73.8s (12 record)
+RA4: [worker 2] generazione completata in 105.7s (12 record)
+RA4: [worker 3] generazione completata in 1254.0s (11 record)
+RA4: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RA4.txt
+RA4A3: forma RA4A3 (lato B, cambi: A4+A3); bundle 20261112T110221Z-s12r4-ra4a3-ef89cf; prompt 21-prompt-RA4A3.md SHA-256 fc33a20d8b1739c8f457be07750b415f89b0cee27c00d0396e9c0fce5fcc4f2a; ingresso analysis/input/S12r4-forme/RA4A3.jsonl SHA-256 b011adbbaefdaac214fc73f9699101c246a5da6d05fe9c4dabd0a2f720a98984, 0.7 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 28bfbf74d137812b3f9c884e8cfbf0801ad346ce29c7c47d5b3057fcffa5e95d; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RA4A3: inviato, slurm 497176, run_id 20261112T110221Z-s12r4-ra4a3-ef89cf, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RA4A3: slurm 497176 COMPLETED, durata 00:03:27, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RA4A3: schema per record 47/47 (dai log dei worker)
+RA4A3: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2246 massimo 31373; token dell'uscita mediana 641 massimo 2241
+RA4A3: [worker 0] generazione completata in 48.0s (12 record)
+RA4A3: [worker 1] generazione completata in 73.7s (12 record)
+RA4A3: [worker 2] generazione completata in 106.0s (12 record)
+RA4A3: [worker 3] generazione completata in 116.3s (11 record)
+RA4A3: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RA4A3.txt
+RR: forma RR (lato B, cambi: R); bundle 20261112T110641Z-s12r4-rr-d5ac4c; prompt 21-prompt-RR.md SHA-256 d1e8a823399f4f0bab327068637d1441a0a396af50dd0ddce3a6ce0be60cfade; ingresso analysis/input/S12r4-forme/RR.jsonl SHA-256 36285df303bceb3585adb153de6ce7d1537d6464b7074ce7c56cee003e8c7cba, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 9c8b3840a945482db89421e868ed43f327d5c14707d140f6e6e3e47f47e34c0a; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RR: inviato, slurm 497185, run_id 20261112T110641Z-s12r4-rr-d5ac4c, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0A2A3: slurm 497051 COMPLETED, durata 00:22:24, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0A2A3: schema per record 47/47 (dai log dei worker)
+A0A2A3: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 46, fine length 1; token contati = token di vLLM 47 su 47; token del prompt mediana 2107 massimo 31234; token dell'uscita mediana 580 massimo 24576
+A0A2A3: [worker 1] generazione completata in 65.1s (12 record)
+A0A2A3: [worker 2] generazione completata in 74.7s (12 record)
+A0A2A3: [worker 0] generazione completata in 95.0s (12 record)
+A0A2A3: [worker 3] generazione completata in 1255.4s (11 record)
+A0A2A3: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0A2A3.txt
+A0A2A3A4: forma A0A2A3A4 (lato A, cambi: aA2+aA3+aA4); bundle 20261112T110840Z-s12r4-a0a2a3a4-fb206a; prompt 21-prompt-A0A2A3A4.md SHA-256 8885021ebe562be0be4f888a776ad1141d47eacc539c9ddc93dffaa6d6897872; ingresso analysis/input/S12r4-forme/A0A2A3A4.jsonl SHA-256 c437d171b4b4092bc88aad263b4d66103540c1a4a031f5f4a113e37705f8968a, 1.4 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 2807e4d4d687a996120397b25f967c12651e7247f702e74515e8e9f28bc84bad; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0A2A3A4: inviato, slurm 497202, run_id 20261112T110840Z-s12r4-a0a2a3a4-fb206a, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RR: slurm 497185 COMPLETED, durata 00:04:01, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RR: schema per record 47/47 (dai log dei worker)
+RR: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2263 massimo 31390; token dell'uscita mediana 631 massimo 2838
+RR: [worker 0] generazione completata in 49.1s (12 record)
+RR: [worker 1] generazione completata in 77.1s (12 record)
+RR: [worker 2] generazione completata in 116.8s (12 record)
+RR: [worker 3] generazione completata in 151.6s (11 record)
+RR: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RR.txt
+F1: forma F1 (lato B, cambi: F1); bundle 20261112T111114Z-s12r4-f1-09e59d; prompt 21-prompt-F1.md SHA-256 50e75a771d1180ccbb044ce020b7e6096d9b78ca2b91c8ddb1062e11c5f411c3; ingresso analysis/input/S12r4-forme/F1.jsonl SHA-256 a79954e43be588683ab309c04c7bbef93140908da7d702498ce1f125a162dfb1, 2.6 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi c2f040feb84a832bc75acb8998d4f73fc904d287e5501ec864fcfab67a3af340; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+F1: inviato, slurm 497227, run_id 20261112T111114Z-s12r4-f1-09e59d, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0A2A3A4: slurm 497202 COMPLETED, durata 00:06:34, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0A2A3A4: schema per record 47/47 (dai log dei worker)
+A0A2A3A4: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2125 massimo 31252; token dell'uscita mediana 649 massimo 5961
+A0A2A3A4: [worker 0] generazione completata in 47.0s (12 record)
+A0A2A3A4: [worker 1] generazione completata in 72.3s (12 record)
+A0A2A3A4: [worker 2] generazione completata in 86.4s (12 record)
+A0A2A3A4: [worker 3] generazione completata in 299.1s (11 record)
+A0A2A3A4: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0A2A3A4.txt
+A0A2A3A4R: forma A0A2A3A4R (lato A, cambi: aA2+aA3+aA4+aR); bundle 20261112T111608Z-s12r4-a0a2a3a4r-626f6b; prompt 21-prompt-A0A2A3A4R.md SHA-256 dab8b99ff92e518579a68998d940f626fda9099701e866774c5456e4181afe58; ingresso analysis/input/S12r4-forme/A0A2A3A4R.jsonl SHA-256 c437d171b4b4092bc88aad263b4d66103540c1a4a031f5f4a113e37705f8968a, 1.4 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 2807e4d4d687a996120397b25f967c12651e7247f702e74515e8e9f28bc84bad; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+A0A2A3A4R: inviato, slurm 497264, run_id 20261112T111608Z-s12r4-a0a2a3a4r-626f6b, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+F1: slurm 497227 COMPLETED, durata 00:08:11, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+F1: schema per record 47/47 (dai log dei worker)
+F1: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2247 massimo 31374; token dell'uscita mediana 553 massimo 8297
+F1: [worker 0] generazione completata in 40.6s (12 record)
+F1: [worker 1] generazione completata in 59.4s (12 record)
+F1: [worker 3] generazione completata in 104.8s (11 record)
+F1: [worker 2] generazione completata in 398.9s (12 record)
+F1: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/F1.txt
+F2: forma F2 (lato B, cambi: F2); bundle 20261112T111956Z-s12r4-f2-896e50; prompt 21-prompt-F2.md SHA-256 33cdc3c5c4ffe492f85821997a090ac77d70d551d781faed5bf0812d68ea4005; ingresso analysis/input/S12r4-forme/F2.jsonl SHA-256 be1b9f0559b045350f980ed2a8921c09cc9bfcdfc371583f125162f6bceccc72, 2.0 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 32310b5f39738fb0db15e1b6dd8e704579f0871c0d567407ce4ef925f2f88409; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+F2: inviato, slurm 497297, run_id 20261112T111956Z-s12r4-f2-896e50, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+A0A2A3A4R: slurm 497264 COMPLETED, durata 00:06:23, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+A0A2A3A4R: schema per record 47/47 (dai log dei worker)
+A0A2A3A4R: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2108 massimo 31235; token dell'uscita mediana 628 massimo 5832
+A0A2A3A4R: [worker 0] generazione completata in 46.4s (12 record)
+A0A2A3A4R: [worker 2] generazione completata in 72.1s (12 record)
+A0A2A3A4R: [worker 1] generazione completata in 74.2s (12 record)
+A0A2A3A4R: [worker 3] generazione completata in 293.1s (11 record)
+A0A2A3A4R: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/A0A2A3A4R.txt
+RA1PP5C: forma RA1PP5C (lato B, cambi: A1+P+P5+C); bundle 20261112T112337Z-s12r4-ra1pp5c-6dd7a1; prompt 21-prompt-RA1PP5C.md SHA-256 dab8b99ff92e518579a68998d940f626fda9099701e866774c5456e4181afe58; ingresso analysis/input/S12r4-forme/RA1PP5C.jsonl SHA-256 fac2b033cd11e50ded36b0f3cc3efc030d68af4e61eaacf11ab1e3fbedc00f11, 1.3 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi f1581f4fd09b7c90d7844a4f8af90c09d4dd5f40dd54a4b1406d64ff340bfb1b; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RA1PP5C: inviato, slurm 497326, run_id 20261112T112337Z-s12r4-ra1pp5c-6dd7a1, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+F2: slurm 497297 COMPLETED, durata 00:04:06, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+F2: schema per record 47/47 (dai log dei worker)
+F2: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2264 massimo 31391; token dell'uscita mediana 641 massimo 2921
+F2: [worker 0] generazione completata in 48.8s (12 record)
+F2: [worker 1] generazione completata in 76.9s (12 record)
+F2: [worker 2] generazione completata in 106.7s (12 record)
+F2: [worker 3] generazione completata in 155.8s (11 record)
+F2: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/F2.txt
+F12: forma F12 (lato B, cambi: F1+F2); bundle 20261112T112434Z-s12r4-f12-246089; prompt 21-prompt-F12.md SHA-256 eed9d064a7dd8e5757ee6ee983b968a1673515baed3e47fccbb127cbbe89e53b; ingresso analysis/input/S12r4-forme/F12.jsonl SHA-256 aff64bc24dd505990ac2d9155f988222297ddf24e8f8a73331930a5690c3abb5, 3.4 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi e3b753c5359ba0eea7a1755af2e5b10c4fd673d360af25e73bd835948071f107; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+F12: inviato, slurm 497335, run_id 20261112T112434Z-s12r4-f12-246089, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RA1PP5C: slurm 497326 COMPLETED, durata 00:06:29, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RA1PP5C: schema per record 47/47 (dai log dei worker)
+RA1PP5C: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2108 massimo 31235; token dell'uscita mediana 628 massimo 5832
+RA1PP5C: [worker 0] generazione completata in 46.5s (12 record)
+RA1PP5C: [worker 2] generazione completata in 72.1s (12 record)
+RA1PP5C: [worker 1] generazione completata in 74.5s (12 record)
+RA1PP5C: [worker 3] generazione completata in 294.1s (11 record)
+RA1PP5C: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RA1PP5C.txt
+RA1PP5: forma RA1PP5 (lato B, cambi: A1+P+P5); bundle 20261112T113108Z-s12r4-ra1pp5-a48b1e; prompt 21-prompt-RA1PP5.md SHA-256 cbc09e73f3a40ecd6359ff444d79a394040c1b5153d371fb161d4572e0276a0f; ingresso analysis/input/S12r4-forme/RA1PP5.jsonl SHA-256 ab3ef89577e2f9dc1439fe1139897e4f15d02f8dce39af463e120021f4813d2d, 1.5 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 7dfaadbc4700ad596eb0e9f47dddb034de979e91386803a936795eb00c6549d4; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RA1PP5: inviato, slurm 497388, run_id 20261112T113108Z-s12r4-ra1pp5-a48b1e, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+F12: slurm 497335 COMPLETED, durata 00:08:01, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+F12: schema per record 47/47 (dai log dei worker)
+F12: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2265 massimo 31392; token dell'uscita mediana 553 massimo 8091
+F12: [worker 0] generazione completata in 40.5s (12 record)
+F12: [worker 1] generazione completata in 58.6s (12 record)
+F12: [worker 3] generazione completata in 264.8s (11 record)
+F12: [worker 2] generazione completata in 387.7s (12 record)
+F12: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/F12.txt
+LANCIO FINITO 2026-11-12T11:33:07Z (RP, RPa, RPb, RPc, RPd, RP5, RC, RA1, RA4, RA4A3, RR, F1, F2, F12)
+RA1PP5: slurm 497388 COMPLETED, durata 00:06:48, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RA1PP5: schema per record 47/47 (dai log dei worker)
+RA1PP5: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2131 massimo 31258; token dell'uscita mediana 641 massimo 6264
+RA1PP5: [worker 1] generazione completata in 70.2s (12 record)
+RA1PP5: [worker 2] generazione completata in 85.1s (12 record)
+RA1PP5: [worker 0] generazione completata in 94.1s (12 record)
+RA1PP5: [worker 3] generazione completata in 314.9s (11 record)
+RA1PP5: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RA1PP5.txt
+RA1P: forma RA1P (lato B, cambi: A1+P); bundle 20261112T113842Z-s12r4-ra1p-53ec8f; prompt 21-prompt-RA1P.md SHA-256 08c8c35d81cb0154a7adf24866b91c2270a552420aa0d92d027aab86b749f741; ingresso analysis/input/S12r4-forme/RA1P.jsonl SHA-256 ab3ef89577e2f9dc1439fe1139897e4f15d02f8dce39af463e120021f4813d2d, 1.5 MB; 47 testi uguali alle viste, 47 schemi uguali a schema_forma(), impronta degli schemi 7dfaadbc4700ad596eb0e9f47dddb034de979e91386803a936795eb00c6549d4; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+RA1P: inviato, slurm 497449, run_id 20261112T113842Z-s12r4-ra1p-53ec8f, ambiente chiesto: VLLM_BATCH_INVARIANT=1 HF_HUB_OFFLINE=1
+RA1P: slurm 497449 COMPLETED, durata 00:06:47, nodo poddgx02; container-env.txt: VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1
+RA1P: schema per record 47/47 (dai log dei worker)
+RA1P: studi 47 su 47, mandati al modello 47, oltre il contesto 0; fine stop 47, fine length 0; token contati = token di vLLM 47 su 47; token del prompt mediana 2134 massimo 31261; token dell'uscita mediana 596 massimo 6195
+RA1P: [worker 0] generazione completata in 48.9s (12 record)
+RA1P: [worker 1] generazione completata in 70.2s (12 record)
+RA1P: [worker 2] generazione completata in 74.1s (12 record)
+RA1P: [worker 3] generazione completata in 311.9s (11 record)
+RA1P: uscite congelate, 10 file in analysis/audit/2026-11-12-S12r4-cause-errori-di-lettura/23-uscite-sha256/RA1P.txt
+LANCIO FINITO 2026-11-12T11:46:14Z (B0pl1, B0pl2, A0pl1, A0pl2, A0C, A0A1, A0A3, A0A2, A0A2A3, A0A2A3A4, A0A2A3A4R, RA1PP5C, RA1PP5, RA1P)
