@@ -1,0 +1,27 @@
+13-cancello-strumento.R  PROVA DA BUTTARE
+PASSA: B0: SHA-256 dell'uscita congelata = impronta di S12r4 (5a885a428039)
+PASSA: B0: la misura di oggi rida' 24-per-studio.csv su 47 studi (stato, firma, fonti, soggetti, n_b_uguale, n_b_den, errore_di_lettura, fattori_doppi); chiusi 45, gruppi identici 36, confronti ritrovati 68/95
+PASSA: B0pl1: SHA-256 dell'uscita congelata = impronta di S12r4 (6980f23f6fc4)
+PASSA: B0pl1: la misura di oggi rida' 24-per-studio.csv su 47 studi (stato, firma, fonti, soggetti, n_b_uguale, n_b_den, errore_di_lettura, fattori_doppi); chiusi 45, gruppi identici 36, confronti ritrovati 71/95
+PASSA: B0pl2: SHA-256 dell'uscita congelata = impronta di S12r4 (fd73c62a595d)
+PASSA: B0pl2: la misura di oggi rida' 24-per-studio.csv su 47 studi (stato, firma, fonti, soggetti, n_b_uguale, n_b_den, errore_di_lettura, fattori_doppi); chiusi 42, gruppi identici 35, confronti ritrovati 69/95
+PASSA: i 9 predicati ridanno gli stati letti in S12r4: 279 su 279 (errore x corsa); discordi: 
+PASSA: in B0 i 9 errori sono presenti: 9 su 9
+  GSE46665:sigle dei pazienti come malattie: presente in 31 corse su 31, in 21 delle 21 del lato B
+  GSE57945:sesso come fattore: presente in 13 corse su 31, in 10 delle 21 del lato B
+  GSE60340:colonna del trattamento non vista: presente in 8 corse su 31, in 8 delle 21 del lato B
+  GSE49155:fattore doppio: presente in 14 corse su 31, in 13 delle 21 del lato B
+  GSE46665:tempo ripetuto come secondo fattore: presente in 8 corse su 31, in 8 delle 21 del lato B
+  GSE50760:source_name_ch1 come donatore: presente in 30 corse su 31, in 20 delle 21 del lato B
+  GSE66573:source_name_ch1 come donatore: presente in 21 corse su 31, in 16 delle 21 del lato B
+  GSE71595:source_name_ch1 come donatore: presente in 30 corse su 31, in 20 delle 21 del lato B
+  GSE75852:tempo che ripete il tipo cellulare: presente in 31 corse su 31, in 21 delle 21 del lato B
+PASSA: discordanza sulla sola firma, B0 + B0pl1 + B0pl2: 12 studi segnalati, gli stessi 12 dell'handout: GSE147507 | GSE46665 | GSE49155 | GSE56691 | GSE56787 | GSE60340 | GSE63816 | GSE65335 | GSE66573 | GSE67812 | GSE68919 | GSE83687
+PASSA: dei 12: gruppi identici ai curatori in B0 7 (attesi 7); studi con un errore di B0 4 su 8 (attesi 4); studi con un errore che costa 3 su 4 (attesi 3: non GSE57945)
+  la regola principale (firma + gruppi + confronti): 13 studi segnalati; in piu' della sola firma: GSE50499; segnalati sui soli gruppi 5, sui soli confronti 8
+PASSA: ogni studio segnalato sulla firma e' segnalato dalla regola principale
+PASSA: firma uguale e stessa chiusura -> gruppi e confronti uguali: 116 coppie di letture con la stessa firma, 0 con gruppi o confronti diversi
+  firma uguale, una lettura chiusa e una no: 3 coppie, negli studi GSE50499 | GSE83687 (la firma non vede la chiusura: per questo la regola principale usa le tre chiavi)
+GIA' VISTO (non e' un risultato): regola di esito su B0 + 2 placebo, chiave tutto: segnalati 13; fra gli studi con errore 4/8, fra gli altri 9/39, differenza +0.269, IC95 -0.160, +0.663 (ricampionamenti senza un gruppo: 0); studi che costano segnalati 3/4; esito no
+GIA' VISTO (non e' un risultato): regola di esito su B0 + 2 placebo, chiave firma: segnalati 12; fra gli studi con errore 4/8, fra gli altri 8/39, differenza +0.295, IC95 -0.122, +0.687 (ricampionamenti senza un gruppo: 0); studi che costano segnalati 3/4; esito no
+CANCELLO DELLO STRUMENTO: PASSA
