@@ -1,0 +1,251 @@
+
+NOTE: Dependency discovery took 20 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+10-letture.R: 8 letture (L1, L2, L3, L4, L5, L6, L7, L8), ognuna = B0 con una frase del prompt riscritta; resto del prompt identico al byte; campi fra apici inversi uguali; nessun cambio allo schema
+24-misura.R  PROVA DA BUTTARE
+HEAD 17f09df; letture 9: B0, L1, L2, L3, L4, L5, L6, L7, L8
+PASSA   cancello 4: ogni corsa copre 47 studi di sviluppo su 47 e nessun altro (9 corse)
+PASSA   le uscite congelate hanno lo SHA-256 scritto al congelamento (23-uscite-sha256/)
+PASSA   cancello 5: ogni job COMPLETED su poddgx02 con VLLM_BATCH_INVARIANT=1 e HF_HUB_OFFLINE=1 (23-out.txt)
+PASSA   cancello 5: modello, revisione, temperature 0, repetition_penalty 1,1, max_model_len 65536, max_tokens 24576
+PASSA   cancello 5: il lavoratore usa lo schema del record in ogni record mandato al modello
+PASSA   cancello 5: l'ingresso di ogni corsa (testi e schemi) e' lo stesso, quello di B0 (uno SHA-256 solo): 36285df303bc
+studi mandati al modello: 47 in 9 corse su 9
+misura di 9 corse: 112 s
+PASSA   cancello 1: la corsa di B0 e' identica al carattere alle uscite congelate di S12r4, 47 studi su 47: 47/47; diversi: 
+PASSA   cancello 1: B0 rida' 45 chiusi, 36 gruppi identici, 68 confronti su 95: 45 36 68 95
+PASSA   cancello 3: i 9 predicati vedono i 9 errori di lettura nella corsa di B0: 9 su 9
+PASSA   cancello 2: lo strumento rida' i numeri congelati di S12r4 (13-out.txt, prima delle corse)
+ lettura chiusi gruppi_identici ritrovati den ritrovati97 den97 errori_c
+      B0     45              36        68  95          68    97        2
+      L1     43              35        62  95          62    97        1
+      L2     42              35        68  95          68    97        2
+      L3     43              34        67  95          67    97        3
+      L4     44              35        71  95          71    97        1
+      L5     44              36        58  95          58    97        1
+      L6     43              36        70  95          70    97        2
+      L7     41              34        63  95          63    97        2
+      L8     45              36        67  95          67    97        2
+ giudicabili_c identica_al_carattere_a_B0 diversa_tutto diversa_firma
+            33                         47             0             0
+            25                         25             6             5
+             9                         23            10             9
+            34                          7            12            12
+            32                         22            10            10
+            37                         19            12            11
+            27                         21             9             8
+            27                         20            10             9
+            34                         27             8             8
+ diversa_gruppi diversa_confronti errori_di_B0_presenti
+              0                 0                     9
+              2                 4                     8
+              4                 5                     8
+              4                 6                     7
+              3                 6                     8
+              5                 6                     7
+              3                 4                     7
+              4                 6                     7
+              3                 3                     8
+PASSA   controllo delle chiavi: firma uguale e stessa chiusura -> gruppi e confronti uguali: 1316 coppie di letture con la stessa firma, 0 con gruppi o confronti diversi
+  firma uguale, una lettura chiusa e una no: 20 coppie, negli studi: GSE49608 | GSE50499 | GSE60340 | GSE83687
+
+==== LA REGOLA SULLA DISCORDANZA, 9 letture (B0, L1, L2, L3, L4, L5, L6, L7, L8), chiave firma + gruppi + confronti ====
+studi segnalati: 24 su 47 (IC95 della quota per ricampionamento degli studi: 0.383, 0.660)
+  GSE103501 | GSE112057 | GSE147507 | GSE46665 | GSE49155 | GSE49608 | GSE50499 | GSE50760 | GSE53280 | GSE56235 | GSE56691 | GSE56787 | GSE57116 | GSE57945 | GSE60340 | GSE60585 | GSE63816 | GSE65335 | GSE66573 | GSE67812 | GSE68919 | GSE69597 | GSE71289 | GSE83687
+studi con un errore di B0 segnalati: 6 su 8; non segnalati: GSE71595 | GSE75852
+studi con un errore che costa segnalati: 4 su 4; non segnalati: 
+errori di B0 in studi segnalati: 7 su 9; di quelli che costano: 4 su 4
+studi segnalati per stato in B0: gruppi identici ai curatori 15 (su 36), gruppi diversi 7 (su 9), non chiusi 2 (su 2)
+studi segnalati senza un errore di B0: 18 su 39
+                      segnalato
+errore_di_B0           FALSE TRUE
+  errore che costa         0    4
+  errore che non costa     2    2
+  nessun errore           21   18
+            segnalato
+stato_B0     FALSE TRUE
+  diversa        2    7
+  identica      21   15
+  non chiuso     0    2
+
+REGOLA DI ESITO: quota di segnalati fra gli studi con errore 6/8 = 0.750, fra gli altri 18/39 = 0.462; differenza +0.288, IC95 -0.091, +0.610 (B 2000, seme 20261112; ricampionamenti senza un gruppo 0)
+  condizione (a), l'intervallo sta tutto sopra zero: no; condizione (b), almeno 3 dei 4 studi con un errore che costa sono segnalati: si' (4 su 4)
+  ESITO DELLA REGOLA: NO
+
+==== I 9 ERRORI DI B0 NELLE 9 LETTURE (conto a livello di errore) ====
+                                       errore costa studio_segnalato
+    GSE46665:sigle dei pazienti come malattie  TRUE             TRUE
+                  GSE57945:sesso come fattore  TRUE             TRUE
+   GSE60340:colonna del trattamento non vista  TRUE             TRUE
+                      GSE49155:fattore doppio  TRUE             TRUE
+ GSE46665:tempo ripetuto come secondo fattore FALSE             TRUE
+       GSE50760:source_name_ch1 come donatore FALSE             TRUE
+       GSE66573:source_name_ch1 come donatore FALSE             TRUE
+       GSE71595:source_name_ch1 come donatore FALSE            FALSE
+  GSE75852:tempo che ripete il tipo cellulare FALSE            FALSE
+ presente_in assente_in senza_tabella_in stato_cambia
+           9          0                0        FALSE
+           9          0                0        FALSE
+           6          3                0         TRUE
+           8          1                0         TRUE
+           8          1                0         TRUE
+           9          0                0        FALSE
+           2          7                0         TRUE
+           9          0                0        FALSE
+           9          0                0        FALSE
+errori il cui stato cambia fra le letture: 4 su 9; di quelli che costano: 2 su 4; errori in uno studio segnalato con lo stato che NON cambia: GSE46665:sigle dei pazienti come malattie | GSE57945:sesso come fattore | GSE50760:source_name_ch1 come donatore
+
+==== ANDAMENTO COL NUMERO DI LETTURE (B0 + k letture nuove; media, minimo e massimo su tutti i sottoinsiemi) ====
+ letture sottoinsiemi segnalati_media segnalati_min segnalati_max
+       1            1            0.00             0             0
+       2            8            9.62             6            12
+       3           28           14.54            10            19
+       4           56           17.36            13            22
+       5           70           19.26            15            23
+       6           56           20.71            17            24
+       7           28           21.93            18            24
+       8            8           23.00            20            24
+       9            1           24.00            24            24
+ studi_con_errore_media studi_con_errore_min studi_con_errore_max
+                   0.00                    0                    0
+                   2.25                    1                    3
+                   3.29                    2                    5
+                   3.93                    2                    6
+                   4.43                    3                    6
+                   4.86                    3                    6
+                   5.25                    4                    6
+                   5.62                    5                    6
+                   6.00                    6                    6
+ studi_che_costano_media studi_che_costano_min studi_che_costano_max
+                    0.00                     0                     0
+                    1.00                     0                     2
+                    1.64                     0                     3
+                    2.11                     1                     4
+                    2.50                     1                     4
+                    2.88                     1                     4
+                    3.25                     2                     4
+                    3.62                     3                     4
+                    4.00                     4                     4
+ errori_media identici_in_B0_media identici_in_B0_min identici_in_B0_max
+         0.00                 0.00                  0                  0
+         2.38                 5.62                  3                  8
+         3.54                 8.57                  5                 13
+         4.30                10.36                  6                 14
+         4.93                11.61                  8                 15
+         5.48                12.61                  9                 15
+         6.00                13.46                 10                 15
+         6.50                14.25                 12                 15
+         7.00                15.00                 15                 15
+ ordine_fisso_segnalati ordine_fisso_studi_con_errore
+                      0                             0
+                      6                             2
+                     11                             4
+                     18                             5
+                     21                             6
+                     23                             6
+                     24                             6
+                     24                             6
+                     24                             6
+ ordine_fisso_studi_che_costano
+                              0
+                              0
+                              2
+                              3
+                              4
+                              4
+                              4
+                              4
+                              4
+
+11 letture (le 9 piu' B0pl1 e B0pl2 di S12r4, gia' visti): segnalati 24; in piu' delle 9 letture: 
+
+==== LA REGOLA CON LE ALTRE CHIAVI E A 11 LETTURE (accanto: l'esito e' quello della chiave `tutto` a 9 letture) ====
+ letture    chiave segnalati studi_con_errore studi_che_costano errori
+       9     tutto        24                6                 4      7
+       9     firma        24                6                 4      7
+       9    gruppi        10                2                 2      2
+       9 confronti        14                4                 3      4
+      11     tutto        24                6                 4      7
+      11     firma        24                6                 4      7
+      11    gruppi        10                2                 2      2
+      11 confronti        14                4                 3      4
+ errori_che_costano identici_in_B0 diversi_in_B0 non_chiusi_in_B0 senza_errore
+                  4             15             7                2           18
+                  4             15             7                2           18
+                  2              5             4                1            8
+                  3              8             5                1           10
+                  4             15             7                2           18
+                  4             15             7                2           18
+                  2              5             4                1            8
+                  3              8             5                1           10
+ quota_con_errore quota_senza differenza  ic_inf ic_sup     a     b esito
+             0.75       0.462     0.2885 -0.0906  0.610 FALSE  TRUE    no
+             0.75       0.462     0.2885 -0.0906  0.610 FALSE  TRUE    no
+             0.25       0.205     0.0449 -0.2619  0.423 FALSE FALSE    no
+             0.50       0.256     0.2436 -0.1506  0.633 FALSE  TRUE    no
+             0.75       0.462     0.2885 -0.0906  0.610 FALSE  TRUE    no
+             0.75       0.462     0.2885 -0.0906  0.610 FALSE  TRUE    no
+             0.25       0.205     0.0449 -0.2619  0.423 FALSE FALSE    no
+             0.50       0.256     0.2436 -0.1506  0.633 FALSE  TRUE    no
+
+==== DA LEGGERE ====
+coppie (studio, lettura nuova) con la chiave diversa da B0: 77, in 24 studi; schede (studio, chiave): 38; schede con una firma gia' vista in S12r4: 31
+
+==== PREVISIONI (la 11 e la 12 chiedono la lettura: 27-dopo-la-lettura.R) ====
+ n 
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ quantita                                                                     
+ studi segnalati con 9 letture                                                
+ studi con la chiave diversa da B0, per lettura: mediana fra le 8             
+ studi con un errore che costa segnalati (su 4)                               
+ errori di B0 in studi segnalati (su 9)                                       
+ studi con gruppi identici ai curatori in B0 che sono segnalati (su 36)       
+ esito della regola                                                           
+ errori che costano il cui stato cambia fra le 9 letture (su 4)               
+ GSE46665, sigle dei pazienti come malattie: letture in cui e' presente (su 9)
+ studi segnalati aggiunti in media da 5 a 9 letture                           
+ confronti ritrovati su 95, in ognuna delle 8 letture nuove                   
+ atteso                     intervallo      osservato              
+ 20                         13-23           24                     
+ 8                          5-12            10.0 (da 6 a 12)       
+ 3                          3-4             4                      
+ 6                          5-8             7                      
+ 11                         7-15            15                     
+ no (manca la condizione a) -               no (a FALSE, b TRUE)   
+ 2 (GSE60340, GSE49155)     2-3             2 (GSE60340 | GSE49155)
+ 9                          9               9                      
+ 3                          1-5             4.74                   
+ da 64 a 74                 64-74 per tutte da 58 a 71             
+ esito         accanto                                      
+ fuori         quota 0.511, IC95 0.383, 0.660               
+ dentro        sulla sola firma: mediana 9.0 (da 5 a 12)    
+ dentro        non segnalati:                               
+ dentro        studi con errore segnalati 6 su 8            
+ dentro        quota 0.417, IC95 0.265, 0.571               
+ come previsto differenza +0.288, IC95 -0.091, +0.610       
+ dentro        dei 9: 4                                     
+ dentro        letture senza:                               
+ dentro        media a 5 letture 19.26, a 9 letture 24      
+ fuori         chiusi da 41 a 45; gruppi identici da 34 a 36
+oggetti scritti in /tmp/claude-1000/-home-user-simulomicsr/f8ebf3dc-38bf-4e76-ae82-f9b1e79984bc/scratchpad/oggetti-r5.rds 
+
+24-misura.R: TUTTI I CANCELLI PASSANO
