@@ -96,7 +96,7 @@ misura_forma <- function(cx, nome) {
   stopifnot(sum(unita$tipo == "atlas_non_ritrovato") == sum(tab$n_b_den - tab$n_b_uguale), sum(unita$tipo == "lettore_errore") == sum(tab$n_errori))
   tab$n_unita <- as.integer(table(factor(unita$studio, levels = sv$gse)))
   tab$unita <- vapply(sv$gse, function(g) unisci(sort(paste(unita$tipo[unita$studio == g], unita$chiave[unita$studio == g], sep = ":")), " "), "")
-  list(lett = lett, per_studio = per_studio, misure = misure, tab = tab, unita = unita)
+  list(lett = lett, mm = mm, per_studio = per_studio, misure = misure, tab = tab, unita = unita)   # mm: le misure intere per studio (materiale di lettura)
 }
 # I tre numeri di una corsa: chiusi, gruppi identici, confronti ritrovati a 95 (e a 97).
 tre_numeri <- function(tab) c(chiusi = sum(tab$chiuso), identici = sum(tab$stato == "identica"), ritrovati = sum(tab$n_b_uguale),
