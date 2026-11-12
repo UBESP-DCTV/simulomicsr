@@ -103,6 +103,21 @@ base quando il testo la dichiara. **Il PI ha scelto la (2)**: una meta-analisi h
 malattia o un gene, e la (3) cambia due cose nella stessa prova. La regola vale per ogni misura contro Atlas da
 qui in avanti, cancello compreso (spec §5.5, aggiornamento S12r3).
 
+## Aggiornamento 2026-11-12 (decisione del PI dopo la terza prova piccola, S12r3)
+
+Finding: `docs/findings/2026-11-11-S12r3-terza-prova-lettore-studio.md`. Con lo schema delle uscite generato per
+ogni studio il lettore chiude 45 studi su 47 e ritrova 68 confronti su 95 (la pipeline di oggi 13), ma la regola di
+esito dà no per il punto 4: 13 unità di lettura del modello in 4 studi, gruppi sbagliati in 3, senza un rimedio
+nominato. In `GSE57945` e `GSE60340` il fattore sbagliato non c'era nella tabella scritta con lo schema v1, in
+`GSE49155` non faceva danno, e le 5 unità di lettura di S12r2 sono sparite: l'errore si sposta con la forma
+dell'uscita. Opzioni portate dall'agente: (1) prima una sessione breve che cerca dove nasce ogni errore di lettura;
+(2) Piano 2 adesso, con la ricerca delle cause come primo passo; (3) Piano 2 adesso, con gli errori di lettura
+dichiarati come limite; (4) fermare il lettore e tenere la pipeline di oggi. **Il PI ha scelto la (1).** La sessione
+(S12r4) cambia una cosa per volta fra le due forme dell'uscita, sugli stessi 47 studi di sviluppo e solo con
+Mistral-Small 3.2. Non corregge il prompt per coprire uno studio e non aggiunge regole che fanno il lavoro del
+modello. Il Piano 2 non si scrive e gli 82 studi di giudizio restano chiusi fino alla decisione che segue quella
+sessione.
+
 ## Link
 
 - Spec: `docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md`

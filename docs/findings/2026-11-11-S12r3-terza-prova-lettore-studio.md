@@ -526,6 +526,15 @@ Cartella: `analysis/audit/2026-11-11-S12r3-elenco-chiuso/`.
 | una corsa: 4 minuti e 9 secondi, 4 GPU | `23-out.txt` r.8 | `slurm 490530 COMPLETED, durata 00:04:09` |
 | meno di un'ora di calcolo (stima) | `23-out.txt` r.8, r.18 | durate misurate 00:04:09 e 00:04:07 |
 
+# 12. Decisioni del PI dopo il riassunto (2026-11-12)
+
+Il riassunto in testa resta come il PI lo ha letto. Dopo la lettura:
+
+- **Decisione 1, decisa come raccomandato (2026-11-12, «ok sessione breve»):** il Piano 2 non si scrive adesso.
+  Prima si fa una sessione breve che cerca dove nasce ogni errore di lettura del modello (sessione S12r4
+  dell'handout), sugli stessi 47 studi di sviluppo e solo con Mistral-Small 3.2. Le due correzioni di forma dello
+  schema (§5.6) entrano in quella sessione. ADR-0029 §Aggiornamento 2026-11-12. La sessione S12r3 è chiusa.
+
 [^previsioni]: `analysis/audit/2026-11-11-S12r3-elenco-chiuso/00-previsioni.md`.
 [^grandezza]: `analysis/audit/2026-11-11-S12r3-elenco-chiuso/11-grandezza-schema.csv`.
 [^compila]: `analysis/audit/2026-11-11-S12r3-elenco-chiuso/12-out.txt`.

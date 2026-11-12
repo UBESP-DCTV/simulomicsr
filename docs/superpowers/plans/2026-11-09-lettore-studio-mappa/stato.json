@@ -1,8 +1,8 @@
 {
-  "aggiornato": "2026-11-11",
-  "sessione": "Sessione della terza prova piccola (S12r3), aperta l'11 novembre 2026. La prova è fatta e letta. La sessione aspetta una decisione del PI: si scrive adesso il Piano 2, oppure prima si cerca dove nascono gli errori di lettura del modello",
+  "aggiornato": "2026-11-12",
+  "sessione": "La sessione della terza prova piccola (S12r3) è chiusa il 12 novembre 2026 con la decisione del PI. La sessione seguente (S12r4) cerca dove nasce ogni errore di lettura del modello",
   "branch": "p6-tabella-dei-fattori",
-  "prossimo_passo": "Decisione del PI. La terza prova dice che con il modulo della risposta a elenco chiuso il lettore ritrova 68 confronti dei curatori su 95 (la pipeline di oggi 13) e lascia senza confronti 2 studi su 47 (prima 13). Restano errori di lettura del modello in 4 studi, e in 3 di questi i gruppi sono sbagliati: la regola scritta prima dà no. L'agente raccomanda una sessione breve che cerca dove nasce ogni errore di lettura, prima di scrivere il Piano 2.",
+  "prossimo_passo": "Sessione breve sulle cause (S12r4). Sugli stessi 47 studi e con lo stesso modello, cambia una cosa per volta fra i due moduli della risposta e misura ogni cambio su tutti i 47 studi. Per ognuno dei 4 errori di lettura dice dove nasce: nel modulo della risposta, nel testo delle istruzioni, nel testo che il modello riceve, o nel modello. Misura anche le due correzioni al modulo della risposta. Poi STOP: il PI decide se si scrive il Piano 2.",
   "piani": [
     {"n": 1, "titolo": "Fondamenta e prova", "sessioni": "S12r", "stato": "chiuso"},
     {"n": 2, "titolo": "Il lettore nel pacchetto", "sessioni": "S12s", "stato": "da_scrivere"},
@@ -110,7 +110,7 @@
     {"testo": "Prova ripetuta: 13 studi non chiusi contro la soglia di 7. Il rimedio proposto (schema a elenco chiuso per ogni studio) non è misurato.", "dove": "decisione del PI: Piano 2 adesso, oppure prima una terza prova piccola", "stato": "chiuso", "chiusura": "deciso: prima una terza prova piccola sugli stessi 47 studi (PI, 2026-11-11); la misura passa alla sessione della terza prova (S12r3)"},
     {"testo": "Prova ripetuta: il modello più grande della stessa famiglia fa peggio e non è ripetibile.", "dove": "decisione del PI: con quale modello si va avanti", "stato": "chiuso", "chiusura": "deciso: il modello del lettore è quello di oggi, Mistral-Small 3.2 (PI, 2026-11-10)"},
     {"testo": "Prova ripetuta: il secondo modello grande non è partito in due tentativi. I suoi pesi (268 GB) stanno ancora sul DGX.", "dove": "decisione del PI: riprovare con 8 GPU, oppure no e cancellare i pesi", "stato": "chiuso", "chiusura": "deciso: non si riprova; pesi cancellati dal DGX il 2026-11-10"},
-    {"testo": "Terza prova: restano errori di lettura del modello in 4 studi su 47 (gruppi sbagliati in 3). Tre di questi errori non c'erano con il modulo della risposta precedente: non si sa ancora dove nascono.", "dove": "decisione del PI: Piano 2 adesso, oppure prima una sessione breve che cerca dove nasce ogni errore di lettura", "stato": "aperto", "chiusura": ""}
+    {"testo": "Terza prova: restano errori di lettura del modello in 4 studi su 47 (gruppi sbagliati in 3). Tre di questi errori non c'erano con il modulo della risposta precedente: non si sa ancora dove nascono.", "dove": "decisione del PI: Piano 2 adesso, oppure prima una sessione breve che cerca dove nasce ogni errore di lettura", "stato": "chiuso", "chiusura": "deciso: prima una sessione breve che cerca dove nasce ogni errore di lettura (PI, 2026-11-12); la ricerca passa alla sessione sulle cause (S12r4)"}
   ],
   "registro": [
     {"data": "2026-11-10", "che_cosa": "Stato iniziale, scritto alla chiusura della sessione di disegno e piano (S12q). Nessun passo eseguito."},
@@ -135,6 +135,7 @@
     {"data": "2026-11-11", "che_cosa": "Il PI ha deciso il terzo punto: prima del Piano 2 si fa una terza prova piccola sugli stessi 47 studi, con il modulo della risposta a elenco chiuso. La sessione della prova ripetuta (S12r2) è chiusa. La sessione seguente è la terza prova (S12r3)."},
     {"data": "2026-11-11", "che_cosa": "Terza prova (S12r3), prima delle corse: il PI ha deciso che i confronti dei curatori fra due tipi cellulari, due linee o due tessuti escono dal riferimento (da 97 a 95 confronti). Carta, cancelli, previsioni e regola di esito depositati prima di ogni corsa."},
     {"data": "2026-11-11", "che_cosa": "Terza prova (S12r3), misura: due corse uguali al carattere in 47 studi su 47. Il lettore chiude 45 studi su 47 (prima 34), forma gli stessi gruppi dei curatori in 36 studi su 47 (oggi 14) e ritrova 68 confronti su 95 (con il modulo precedente 50, oggi 13)."},
-    {"data": "2026-11-11", "che_cosa": "Terza prova (S12r3), lettura: letti tutti i 40 disaccordi. 21 restano anche con un lettore senza errori, 6 nascono dal modulo della risposta o dalla regola decisa, 13 sono errori di lettura del modello in 4 studi. La regola di esito dà no per una condizione su cinque. Finding 2026-11-11-S12r3-terza-prova-lettore-studio. La sessione aspetta una decisione del PI."}
+    {"data": "2026-11-11", "che_cosa": "Terza prova (S12r3), lettura: letti tutti i 40 disaccordi. 21 restano anche con un lettore senza errori, 6 nascono dal modulo della risposta o dalla regola decisa, 13 sono errori di lettura del modello in 4 studi. La regola di esito dà no per una condizione su cinque. Finding 2026-11-11-S12r3-terza-prova-lettore-studio. La sessione aspetta una decisione del PI."},
+    {"data": "2026-11-12", "che_cosa": "Il PI ha deciso: il Piano 2 non si scrive adesso. Prima una sessione breve cerca dove nasce ogni errore di lettura del modello, sugli stessi 47 studi. La sessione della terza prova (S12r3) è chiusa. La sessione seguente è quella sulle cause (S12r4)."}
   ]
 }
