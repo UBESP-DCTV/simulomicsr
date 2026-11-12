@@ -1,0 +1,909 @@
+
+NOTE: Dependency discovery took 11 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+righe da leggere 290, schede per base 172, lette 172; non lette 0; lette e non richieste 0
+firme con etichette diverse in schede diverse (unita' diverse):
+GSE58365 afac71122049 GSE83415 cc801376bca5 
+                    2                     2 
+letture per corsa 2; righe da leggere che prendono la lettura per corsa 1
+celle senza unita' e con una firma che la lettura dei disaccordi non copre, negli studi con un errore etichettato: 71 celle, 28 coppie (studio, firma), 13 studi; non lette 0
+letture senza unita' usate: 28 coppie (studio, firma)
+predicato contro lettura nei 4 studi: righe lette 69, concordi 69, discordi 0
+
+peggioramenti di lettura per un errore che la base ha gia' (effetto nuovo, errore non nuovo):
+     corsa   studio                         scheda
+       RA4 GSE49155 GSE49155|681b750dbf71|fb63be26
+     B0pl1 GSE60340 GSE60340|5ec302b13e8b|fc312b4b
+       A0C GSE47718 GSE47718|86424933d536|0cda7ff9
+      A0A2 GSE46665 GSE46665|229170476bca|7a78118c
+    A0A2A3 GSE46665 GSE46665|229170476bca|7a78118c
+  A0A2A3A4 GSE46665 GSE46665|229170476bca|7a78118c
+ A0A2A3A4R GSE46665 GSE46665|229170476bca|7a78118c
+                                     errore
+                    GSE49155:fattore doppio
+ GSE60340:colonna del trattamento non vista
+     GSE47718:source_name_ch1 come donatore
+  GSE46665:sigle dei pazienti come malattie
+  GSE46665:sigle dei pazienti come malattie
+  GSE46665:sigle dei pazienti come malattie
+  GSE46665:sigle dei pazienti come malattie
+
+== per forma: migliorati, peggiorati, errori nuovi di lettura, errori di lettura tolti ==
+     corsa base migliorati peggiorati peggiorati_lettura peggiorati_forma
+        RP   B0          6          9                  8                1
+       RPa   B0          5          3                  3                0
+       RPb   B0          6          8                  7                1
+       RPc   B0          6          6                  2                3
+       RPd   B0          5          4                  4                0
+       RP5   B0          4          3                  2                1
+        RC   B0          6          4                  2                1
+       RC3   B0          0          0                  0                0
+       RA1   B0          9          6                  2                3
+       RA4   B0          0          4                  1                3
+     RA4A3   B0          0          5                  0                5
+        RR   B0          6          3                  3                0
+      RA1P   B0          7          5                  3                1
+    RA1PP5   B0          8          9                  8                0
+   RA1PP5C   B0          7          5                  4                1
+        F1   B0          7         14                 11                3
+        F2   B0          6          4                  3                0
+       F12   B0          8         15                 10                4
+     B0pl1   B0          4          2                  2                0
+     B0pl2   B0          3          3                  1                2
+       A0C   A0          4          6                  4                1
+      A0A1   A0          3          7                  4                2
+      A0A3   A0          1          0                  0                0
+      A0A2   A0          4          7                  6                1
+    A0A2A3   A0          6          6                  6                0
+  A0A2A3A4   A0         11          9                  6                0
+ A0A2A3A4R   A0         12          7                  4                0
+     A0pl1   A0          2          1                  1                0
+     A0pl2   A0          2          1                  0                0
+ peggiorati_non_errore studi_con_errore_nuovo studi_con_errore_nuovo_stretto
+                     0                      8                              8
+                     0                      3                              3
+                     0                      7                              7
+                     1                      2                              2
+                     0                      4                              4
+                     0                      2                              2
+                     1                      2                              2
+                     0                      0                              0
+                     1                      2                              2
+                     0                      1                              0
+                     0                      0                              0
+                     0                      3                              3
+                     1                      3                              3
+                     1                      8                              8
+                     0                      4                              4
+                     0                     11                             11
+                     1                      3                              3
+                     1                     10                             10
+                     0                      2                              1
+                     0                      1                              1
+                     1                      4                              3
+                     1                      4                              4
+                     0                      0                              0
+                     0                      6                              5
+                     0                      6                              5
+                     3                      6                              5
+                     3                      4                              3
+                     0                      1                              1
+                     1                      0                              0
+ errori_di_lettura_nella_base errori_di_lettura_tolti
+                            9                       3
+                            9                       3
+                            9                       2
+                            9                       3
+                            9                       2
+                            9                       2
+                            9                       3
+                            9                       0
+                            9                       4
+                            9                       0
+                            9                       0
+                            9                       4
+                            9                       4
+                            9                       4
+                            9                       4
+                            9                       4
+                            9                       2
+                            9                       4
+                            9                       2
+                            9                       2
+                           11                       2
+                           11                       1
+                           11                       0
+                           11                       1
+                           11                       1
+                           11                       2
+                           11                       2
+                           11                       1
+                           11                       0
+
+previsione 11  studi con un errore nuovo per forma a un cambio da B0: mediana fra 13 forme: osservato 3; atteso 2, intervallo 0-5  ->  confermata  [RP 8, RPa 3, RPb 7, RPc 2, RPd 4, RP5 2, RC 2, RC3 0, RA1 2, RA4 1, RR 3, F1 11, F2 3; col conto stretto mediana 3]
+
+== la regola di diagnosi, un esito per errore ==
+                                                    errore       B0       A0
+                               GSE57945:sesso come fattore presente  assente
+                GSE60340:colonna del trattamento non vista presente  assente
+                                   GSE49155:fattore doppio presente  assente
+                 GSE46665:sigle dei pazienti come malattie presente presente
+            GSE112057:NA di gender non dichiarato mancante  assente presente
+              GSE112057:sottotipo JIA come secondo fattore  assente  assente
+ GSE147507:ceppo dei controlli scritto come non dichiarato  assente  assente
+   GSE147507:controlli senza livello (ruxolitinib, strain)  assente  assente
+                     GSE41586:due dosi unite in un livello  assente  assente
+              GSE46665:tempo ripetuto come secondo fattore presente  assente
+                    GSE47718:source_name_ch1 come donatore  assente presente
+    GSE49155:tessuto come fattore con un livello inventato  assente  assente
+                    GSE49608:source_name_ch1 come donatore  assente  assente
+              GSE50499:lo stesso fattore scritto due volte  assente  assente
+                    GSE50760:source_name_ch1 come donatore presente presente
+                 GSE50760:tessuto come contesto senza base  assente presente
+                    GSE52194:source_name_ch1 come donatore  assente presente
+                GSE52778:donatore come fattore di contesto  assente  assente
+                     GSE53280:controllo mock senza livello  assente  assente
+             GSE56691:controllo non trattato senza livello  assente  assente
+              GSE56691:tempo ripetuto come secondo fattore  assente  assente
+                           GSE56787:fattore DUX4 inventato  assente presente
+                       GSE56787:tipo di campione non letto  assente  assente
+              GSE57116:tempo ripetuto come secondo fattore  assente presente
+                          GSE57945:NA come livello di base  assente  assente
+                          GSE57945:NA scritto come Not IBD  assente  assente
+                    GSE57945:eta' come fattore di contesto  assente  assente
+         GSE57945:l2 type come secondo fattore di malattia  assente  assente
+                       GSE58365:base che non e' un livello  assente  assente
+                                 GSE58365:base non scritta  assente  assente
+                                 GSE60340:base non scritta  assente  assente
+                   GSE60340:immortali come non applicabile  assente  assente
+         GSE60340:nessun trattamento diviso in tre livelli  assente  assente
+                           GSE60340:passaggio come fattore  assente  assente
+                            GSE60585:tipo di RNA non letto  assente  assente
+                  GSE63816:MDS scritta come non dichiarata  assente presente
+                         GSE63816:genotipo ZRSR2 non letto  assente  assente
+              GSE63816:genotipo e shRNA in un fattore solo  assente  assente
+                   GSE63816:shRNA letto da source_name_ch1  assente  assente
+                                  GSE63816:shRNA non letto  assente  assente
+                    GSE63816:source_name_ch1 come donatore  assente  assente
+                    GSE65335:source_name_ch1 come donatore  assente  assente
+         GSE66207:classificazione di Montreal come fattore  assente  assente
+                    GSE66573:source_name_ch1 come donatore presente  assente
+                       GSE67812:controlli scritti come DM1  assente  assente
+                      GSE68919:controllo PBS senza livello  assente  assente
+                               GSE69597:paese come fattore  assente  assente
+                    GSE69597:source_name_ch1 come donatore  assente  assente
+             GSE69597:stadio che mescola storia e risposta  assente  assente
+                    GSE71289:source_name_ch1 come donatore  assente  assente
+                    GSE71595:source_name_ch1 come donatore presente presente
+               GSE75852:tempo che ripete il tipo cellulare presente presente
+                       GSE83415:base che non e' un livello  assente  assente
+                                 GSE83415:base non scritta  assente  assente
+                        GSE83687:ileo come non applicabile  assente  assente
+    GSE83687:sede del prelievo scritta come non dichiarata  assente  assente
+                    GSE83687:source_name_ch1 come donatore  assente  assente
+             GSE93624:base della complicazione non scritta  assente  assente
+ presente assente non_valutabile
+       13      18              0
+        8      23              0
+       14      17              0
+       31       0              0
+       12      19              0
+        8      23              0
+        4      24              3
+        2      26              3
+        1      30              0
+        8      23              0
+       22       9              0
+        2      29              0
+        4      27              0
+        4      27              0
+       30       1              0
+       21      10              0
+       12      19              0
+        3      28              0
+        4      27              0
+        6      25              0
+        8      23              0
+        6      25              0
+        2      29              0
+       22       9              0
+        2      29              0
+        1      30              0
+        2      29              0
+       10      21              0
+        2      29              0
+        1      30              0
+        3      28              0
+        4      27              0
+        2      29              0
+        3      28              0
+        1      30              0
+        7      24              0
+        9      22              0
+        7      24              0
+        5      26              0
+        2      29              0
+        5      26              0
+        2      29              0
+        1      30              0
+       21      10              0
+       18      13              0
+        1      30              0
+        2      29              0
+        1      30              0
+        3      28              0
+        1      30              0
+       30       1              0
+       31       0              0
+        1      30              0
+        1      30              0
+        2      29              0
+        1      30              0
+        1      30              0
+        1      30              0
+                                                               esito
+                                                 della forma (C, A1)
+                                   non deciso: instabile col placebo
+                                   non deciso: instabile col placebo
+                                                         del modello
+                                                     della forma (C)
+        non deciso: più cambi, nessuna prova doppia (Pb, A1, A4, P5)
+                                                    della forma (A1)
+              non deciso: più cambi, nessuna prova doppia (P, C, P5)
+                    non deciso: nessuna coppia a un cambio lo sposta
+                                   non deciso: instabile col placebo
+                                                    della forma (A1)
+                non deciso: più cambi, nessuna prova doppia (A2, A4)
+      non deciso: più cambi, nessuna prova doppia (P, Pa, Pb, C, P5)
+          non deciso: più cambi, nessuna prova doppia (A2, R, C, P5)
+                                  non deciso: una direzione sola (R)
+                                                    della forma (A1)
+                                   non deciso: instabile col placebo
+                 non deciso: più cambi, nessuna prova doppia (A4, R)
+             non deciso: più cambi, nessuna prova doppia (Pb, Pd, R)
+                                   non deciso: instabile col placebo
+                                                     della forma (P)
+             non deciso: più cambi, nessuna prova doppia (C, A1, A4)
+                    non deciso: nessuna coppia a un cambio lo sposta
+                                                    della forma (A1)
+                non deciso: più cambi, nessuna prova doppia (A2, A4)
+                    non deciso: nessuna coppia a un cambio lo sposta
+                non deciso: più cambi, nessuna prova doppia (Pd, A1)
+                                                    della forma (A1)
+                    non deciso: nessuna coppia a un cambio lo sposta
+                                 non deciso: una direzione sola (P5)
+                                   non deciso: instabile col placebo
+                                                     della forma (P)
+          non deciso: più cambi, nessuna prova doppia (A4, R, C, P5)
+                                  non deciso: una direzione sola (R)
+                 non deciso: più cambi, nessuna prova doppia (C, P5)
+                                                    della forma (A1)
+ non deciso: più cambi, nessuna prova doppia (Pa, Pb, Pd, P5, C, A4)
+                                                     della forma (P)
+ non deciso: più cambi, nessuna prova doppia (Pa, Pd, P5, C, A4, A3)
+                non deciso: più cambi, nessuna prova doppia (A2, A3)
+                                                     della forma (P)
+                 non deciso: più cambi, nessuna prova doppia (P, Pb)
+                 non deciso: più cambi, nessuna prova doppia (C, P5)
+                                   non deciso: instabile col placebo
+                                                    della forma (A1)
+                                   non deciso: instabile col placebo
+                 non deciso: più cambi, nessuna prova doppia (Pd, R)
+                                  non deciso: una direzione sola (C)
+                non deciso: più cambi, nessuna prova doppia (A2, A4)
+                                  non deciso: una direzione sola (P)
+                                 non deciso: una direzione sola (Pd)
+                                                         del modello
+                    non deciso: nessuna coppia a un cambio lo sposta
+                    non deciso: nessuna coppia a un cambio lo sposta
+                                   non deciso: instabile col placebo
+                                                    della forma (A1)
+                                 non deciso: una direzione sola (Pb)
+                    non deciso: nessuna coppia a un cambio lo sposta
+
+== le prove ==
+GSE57945:sesso come fattore
+  esito: della forma (C, A1)
+  placebo: B0 presente: pl1 presente, pl2 presente | A0 assente: pl1 presente, pl2 assente
+  toglie: P|appare con D; Pa|appare con D; C|appare con D; A1|appare con D; R|appare con D
+  mette: C|appare con D; A1|appare con D
+  doppie: C|appare con D; A1|appare con D; su coppie diverse: C|appare con D; A1|appare con D
+  coppie: RP>B0 (P, toglie: appare con D); RPa>B0 (Pa, toglie: appare con D); RC>B0 (C, toglie: appare con D); RA1>B0 (A1, toglie: appare con D); RR>B0 (R, toglie: appare con D); A0>A0C (C, mette: appare con D); A0>A0A1 (A1, mette: appare con D); RA1>B0 (A1, mette: appare con D)
+  assente in: RP RPa RC RA1 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 A0 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl2
+  non valutabile in: 
+GSE60340:colonna del trattamento non vista
+  esito: non deciso: instabile col placebo
+  placebo: B0 presente: pl1 presente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|appare con D; Pa|appare con D; Pb|appare con D; Pd|appare con D; P5|appare con D; C|appare con D; A1|appare con D
+  mette: A1|appare con D
+  doppie: A1|appare con D; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: appare con D); RPa>B0 (Pa, toglie: appare con D); RPb>B0 (Pb, toglie: appare con D); RPd>B0 (Pd, toglie: appare con D); RP5>B0 (P5, toglie: appare con D); RC>B0 (C, toglie: appare con D); RA1>B0 (A1, toglie: appare con D); RA1>B0 (A1, mette: appare con D)
+  assente in: RP RPa RPb RPd RP5 RC RA1 RA1P RA1PP5 RA1PP5C F1 F12 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE49155:fattore doppio
+  esito: non deciso: instabile col placebo
+  placebo: B0 presente: pl1 assente, pl2 presente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pc|appare con D; A1|appare con D
+  mette: A1|appare con D
+  doppie: A1|appare con D; su coppie diverse: A1|appare con D
+  coppie: RPc>B0 (Pc, toglie: appare con D); RA1>B0 (A1, toglie: appare con D); A0>A0A1 (A1, mette: appare con D); RA1>B0 (A1, mette: appare con D)
+  assente in: RPc RA1 RA1P RA1PP5 RA1PP5C F1 F12 B0pl1 A0 A0C A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE46665:sigle dei pazienti come malattie
+  esito: del modello
+  placebo: B0 presente: pl1 presente, pl2 presente | A0 presente: pl1 presente, pl2 presente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: 
+  non valutabile in: 
+GSE112057:NA di gender non dichiarato mancante
+  esito: della forma (C)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 presente: pl1 presente, pl2 presente
+  toglie: C|sparisce con D
+  mette: C|sparisce con D
+  doppie: C|sparisce con D; su coppie diverse: C|sparisce con D
+  coppie: RC>B0 (C, toglie: sparisce con D); RA1PP5C>RA1PP5 (C, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 F1 F2 F12 B0pl1 B0pl2
+  non valutabile in: 
+GSE112057:sottotipo JIA come secondo fattore
+  esito: non deciso: più cambi, nessuna prova doppia (Pb, A1, A4, P5)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pb|sparisce con D
+  mette: A1|appare con D; A4|appare con D; P5|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: RPb>B0 (Pb, toglie: sparisce con D); A0>A0A1 (A1, mette: appare con D); A0A2A3>A0A2A3A4 (A4, mette: appare con D); RA1PP5>RA1P (P5, mette: sparisce con D)
+  assente in: B0 RP RPa RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P F2 B0pl1 B0pl2 A0 A0C A0A3 A0A2 A0A2A3 A0pl1 A0pl2
+  non valutabile in: 
+GSE147507:ceppo dei controlli scritto come non dichiarato
+  esito: della forma (A1)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: A1|sparisce con D
+  mette: C|sparisce con D; P|appare con D; A1|sparisce con D
+  doppie: A1|sparisce con D; su coppie diverse: 
+  coppie: RA1>B0 (A1, toglie: sparisce con D); RA1PP5C>RA1PP5 (C, mette: sparisce con D); RA1P>RA1 (P, mette: appare con D); RA1>B0 (A1, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA4A3 RR RA1P RA1PP5 F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A2 A0pl1 A0pl2
+  non valutabile in: RA4 A0A3 A0A2A3
+GSE147507:controlli senza livello (ruxolitinib, strain)
+  esito: non deciso: più cambi, nessuna prova doppia (P, C, P5)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D
+  mette: C|appare con D; P5|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RA1PP5C>RA1PP5 (C, mette: appare con D); RA1PP5>RA1P (P5, mette: sparisce con D)
+  assente in: B0 RPa RPb RPc RPd RP5 RC RC3 RA1 RA4A3 RR RA1P RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A2 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: RA4 A0A3 A0A2A3
+GSE41586:due dosi unite in un livello
+  esito: non deciso: nessuna coppia a un cambio lo sposta
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE46665:tempo ripetuto come secondo fattore
+  esito: non deciso: instabile col placebo
+  placebo: B0 presente: pl1 assente, pl2 presente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|appare con D; Pa|appare con D; Pb|appare con D; Pc|appare con D; C|appare con D; A1|appare con D; R|appare con D
+  mette: A1|appare con D
+  doppie: A1|appare con D; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: appare con D); RPa>B0 (Pa, toglie: appare con D); RPb>B0 (Pb, toglie: appare con D); RPc>B0 (Pc, toglie: appare con D); RC>B0 (C, toglie: appare con D); RA1>B0 (A1, toglie: appare con D); RR>B0 (R, toglie: appare con D); RA1>B0 (A1, mette: appare con D)
+  assente in: RP RPa RPb RPc RC RA1 RR RA1P RA1PP5 RA1PP5C F1 F12 B0pl1 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE47718:source_name_ch1 come donatore
+  esito: della forma (A1)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 presente: pl1 presente, pl2 presente
+  toglie: P|sparisce con D; Pa|sparisce con D; Pb|sparisce con D; P5|sparisce con D; C|sparisce con D; A1|sparisce con D
+  mette: A1|sparisce con D
+  doppie: A1|sparisce con D; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RPa>B0 (Pa, toglie: sparisce con D); RPb>B0 (Pb, toglie: sparisce con D); RP5>B0 (P5, toglie: sparisce con D); RC>B0 (C, toglie: sparisce con D); RA1>B0 (A1, toglie: sparisce con D); RA1>B0 (A1, mette: sparisce con D)
+  assente in: B0 RPc RPd RC3 RA4 RA4A3 RR B0pl1 B0pl2
+  non valutabile in: 
+GSE49155:tessuto come fattore con un livello inventato
+  esito: non deciso: più cambi, nessuna prova doppia (A2, A4)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: A2|appare con D; A4|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: A0>A0A2 (A2, mette: appare con D); A0A2A3>A0A2A3A4 (A4, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE49608:source_name_ch1 come donatore
+  esito: non deciso: più cambi, nessuna prova doppia (P, Pa, Pb, C, P5)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D; Pa|sparisce con D; Pb|sparisce con D
+  mette: C|appare con D; P5|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RPa>B0 (Pa, toglie: sparisce con D); RPb>B0 (Pb, toglie: sparisce con D); RA1PP5C>RA1PP5 (C, mette: appare con D); RA1PP5>RA1P (P5, mette: sparisce con D)
+  assente in: B0 RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE50499:lo stesso fattore scritto due volte
+  esito: non deciso: più cambi, nessuna prova doppia (A2, R, C, P5)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: A2|appare con D; R|sparisce con D; C|appare con D; P5|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: A0>A0A2 (A2, mette: appare con D); A0A2A3A4>A0A2A3A4R (R, mette: sparisce con D); RA1PP5C>RA1PP5 (C, mette: appare con D); RA1PP5>RA1P (P5, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE50760:source_name_ch1 come donatore
+  esito: non deciso: una direzione sola (R)
+  placebo: B0 presente: pl1 presente, pl2 presente | A0 presente: pl1 presente, pl2 presente
+  toglie: R|appare con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RR>B0 (R, toglie: appare con D)
+  assente in: RR
+  non valutabile in: 
+GSE50760:tessuto come contesto senza base
+  esito: della forma (A1)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 presente: pl1 presente, pl2 presente
+  toglie: P|sparisce con D; Pc|sparisce con D; Pd|sparisce con D; P5|sparisce con D; C|sparisce con D; A1|sparisce con D
+  mette: A1|sparisce con D
+  doppie: A1|sparisce con D; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RPc>B0 (Pc, toglie: sparisce con D); RPd>B0 (Pd, toglie: sparisce con D); RP5>B0 (P5, toglie: sparisce con D); RC>B0 (C, toglie: sparisce con D); RA1>B0 (A1, toglie: sparisce con D); RA1>B0 (A1, mette: sparisce con D)
+  assente in: B0 RPa RPb RC3 RA4 RA4A3 RR F1 B0pl1 B0pl2
+  non valutabile in: 
+GSE52194:source_name_ch1 come donatore
+  esito: non deciso: instabile col placebo
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 presente: pl1 assente, pl2 presente
+  toglie: P|sparisce con D; Pb|sparisce con D
+  mette: C|sparisce con D; P5|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RPb>B0 (Pb, toglie: sparisce con D); A0>A0C (C, mette: sparisce con D); RA1PP5>RA1P (P5, mette: sparisce con D)
+  assente in: B0 RPa RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P F1 F2 F12 B0pl1 B0pl2 A0C A0pl1
+  non valutabile in: 
+GSE52778:donatore come fattore di contesto
+  esito: non deciso: più cambi, nessuna prova doppia (A4, R)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: A4|appare con D; R|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: A0A2A3>A0A2A3A4 (A4, mette: appare con D); A0A2A3A4>A0A2A3A4R (R, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE53280:controllo mock senza livello
+  esito: non deciso: più cambi, nessuna prova doppia (Pb, Pd, R)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pb|sparisce con D; Pd|sparisce con D; R|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RPb>B0 (Pb, toglie: sparisce con D); RPd>B0 (Pd, toglie: sparisce con D); RR>B0 (R, toglie: sparisce con D)
+  assente in: B0 RP RPa RPc RP5 RC RC3 RA1 RA4 RA4A3 RA1P RA1PP5 RA1PP5C F1 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE56691:controllo non trattato senza livello
+  esito: non deciso: instabile col placebo
+  placebo: B0 assente: pl1 assente, pl2 presente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pc|sparisce con D
+  mette: A1|appare con D
+  doppie: ; su coppie diverse: 
+  coppie: RPc>B0 (Pc, toglie: sparisce con D); A0>A0A1 (A1, mette: appare con D)
+  assente in: B0 RP RPa RPb RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C B0pl1 A0 A0C A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE56691:tempo ripetuto come secondo fattore
+  esito: della forma (P)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D
+  mette: A2|appare con D; P|sparisce con D
+  doppie: P|sparisce con D; su coppie diverse: P|sparisce con D
+  coppie: RP>B0 (P, toglie: sparisce con D); A0>A0A2 (A2, mette: appare con D); RA1P>RA1 (P, mette: sparisce con D)
+  assente in: B0 RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0pl1 A0pl2
+  non valutabile in: 
+GSE56787:fattore DUX4 inventato
+  esito: non deciso: più cambi, nessuna prova doppia (C, A1, A4)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 presente: pl1 presente, pl2 presente
+  toglie: 
+  mette: C|sparisce con D; A1|sparisce con D; A4|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: A0>A0C (C, mette: sparisce con D); A0>A0A1 (A1, mette: sparisce con D); A0A2A3>A0A2A3A4 (A4, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0C A0A1 A0A2A3A4 A0A2A3A4R
+  non valutabile in: 
+GSE56787:tipo di campione non letto
+  esito: non deciso: nessuna coppia a un cambio lo sposta
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE57116:tempo ripetuto come secondo fattore
+  esito: della forma (A1)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 presente: pl1 presente, pl2 presente
+  toglie: P|sparisce con D; Pc|sparisce con D; Pd|sparisce con D; A1|sparisce con D; A4|sparisce con D; R|sparisce con D
+  mette: A1|sparisce con D
+  doppie: A1|sparisce con D; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RPc>B0 (Pc, toglie: sparisce con D); RPd>B0 (Pd, toglie: sparisce con D); RA1>B0 (A1, toglie: sparisce con D); RA4>B0 (A4, toglie: sparisce con D); RR>B0 (R, toglie: sparisce con D); RA1>B0 (A1, mette: sparisce con D)
+  assente in: B0 RPa RPb RP5 RC RC3 F2 B0pl1 B0pl2
+  non valutabile in: 
+GSE57945:NA come livello di base
+  esito: non deciso: più cambi, nessuna prova doppia (A2, A4)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: A2|appare con D; A4|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: A0>A0A2 (A2, mette: appare con D); A0A2A3>A0A2A3A4 (A4, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE57945:NA scritto come Not IBD
+  esito: non deciso: nessuna coppia a un cambio lo sposta
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE57945:eta' come fattore di contesto
+  esito: non deciso: più cambi, nessuna prova doppia (Pd, A1)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pd|sparisce con D
+  mette: A1|appare con D
+  doppie: ; su coppie diverse: 
+  coppie: RPd>B0 (Pd, toglie: sparisce con D); A0>A0A1 (A1, mette: appare con D)
+  assente in: B0 RP RPa RPb RPc RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE57945:l2 type come secondo fattore di malattia
+  esito: della forma (A1)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D; A1|sparisce con D
+  mette: A2|appare con D; A1|sparisce con D
+  doppie: A1|sparisce con D; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RA1>B0 (A1, toglie: sparisce con D); A0>A0A2 (A2, mette: appare con D); RA1>B0 (A1, mette: sparisce con D)
+  assente in: B0 RPa RPb RPc RPd RP5 RC RC3 RA4 RA4A3 RR F1 F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0pl1 A0pl2
+  non valutabile in: 
+GSE58365:base che non e' un livello
+  esito: non deciso: nessuna coppia a un cambio lo sposta
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE58365:base non scritta
+  esito: non deciso: una direzione sola (P5)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P5|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RP5>B0 (P5, toglie: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE60340:base non scritta
+  esito: non deciso: instabile col placebo
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 presente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl2
+  non valutabile in: 
+GSE60340:immortali come non applicabile
+  esito: della forma (P)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D
+  mette: R|appare con D; C|sparisce con D; P5|appare con D; P|sparisce con D
+  doppie: P|sparisce con D; su coppie diverse: P|sparisce con D
+  coppie: RP>B0 (P, toglie: sparisce con D); A0A2A3A4>A0A2A3A4R (R, mette: appare con D); RA1PP5C>RA1PP5 (C, mette: sparisce con D); RA1PP5>RA1P (P5, mette: appare con D); RA1P>RA1 (P, mette: sparisce con D)
+  assente in: B0 RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1PP5 F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0pl1 A0pl2
+  non valutabile in: 
+GSE60340:nessun trattamento diviso in tre livelli
+  esito: non deciso: più cambi, nessuna prova doppia (A4, R, C, P5)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: A4|appare con D; R|sparisce con D; C|appare con D; P5|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: A0A2A3>A0A2A3A4 (A4, mette: appare con D); A0A2A3A4>A0A2A3A4R (R, mette: sparisce con D); RA1PP5C>RA1PP5 (C, mette: appare con D); RA1PP5>RA1P (P5, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE60340:passaggio come fattore
+  esito: non deciso: una direzione sola (R)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: R|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RR>B0 (R, toglie: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RA1P RA1PP5 RA1PP5C F1 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE60585:tipo di RNA non letto
+  esito: non deciso: più cambi, nessuna prova doppia (C, P5)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: C|appare con D; P5|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: RA1PP5C>RA1PP5 (C, mette: appare con D); RA1PP5>RA1P (P5, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE63816:MDS scritta come non dichiarata
+  esito: della forma (A1)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 presente: pl1 presente, pl2 presente
+  toglie: A1|sparisce con D
+  mette: A2|sparisce con D; P|appare con D; A1|sparisce con D
+  doppie: A1|sparisce con D; su coppie diverse: 
+  coppie: RA1>B0 (A1, toglie: sparisce con D); A0>A0A2 (A2, mette: sparisce con D); RA1P>RA1 (P, mette: appare con D); RA1>B0 (A1, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R
+  non valutabile in: 
+GSE63816:genotipo ZRSR2 non letto
+  esito: non deciso: più cambi, nessuna prova doppia (Pa, Pb, Pd, P5, C, A4)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pa|sparisce con D; Pb|sparisce con D; Pd|sparisce con D; P5|sparisce con D; C|sparisce con D; A4|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RPa>B0 (Pa, toglie: sparisce con D); RPb>B0 (Pb, toglie: sparisce con D); RPd>B0 (Pd, toglie: sparisce con D); RP5>B0 (P5, toglie: sparisce con D); RC>B0 (C, toglie: sparisce con D); RA4>B0 (A4, toglie: sparisce con D)
+  assente in: B0 RP RPc RC3 RA1 RR RA1P RA1PP5 RA1PP5C F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE63816:genotipo e shRNA in un fattore solo
+  esito: della forma (P)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D
+  mette: A3|appare con D; P|sparisce con D
+  doppie: P|sparisce con D; su coppie diverse: P|sparisce con D
+  coppie: RP>B0 (P, toglie: sparisce con D); A0A2>A0A2A3 (A3, mette: appare con D); RA1P>RA1 (P, mette: sparisce con D)
+  assente in: B0 RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0pl1 A0pl2
+  non valutabile in: 
+GSE63816:shRNA letto da source_name_ch1
+  esito: non deciso: più cambi, nessuna prova doppia (Pa, Pd, P5, C, A4, A3)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pa|sparisce con D; Pd|sparisce con D; P5|sparisce con D; C|sparisce con D; A4|sparisce con D; A3|appare con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RPa>B0 (Pa, toglie: sparisce con D); RPd>B0 (Pd, toglie: sparisce con D); RP5>B0 (P5, toglie: sparisce con D); RC>B0 (C, toglie: sparisce con D); RA4>B0 (A4, toglie: sparisce con D); RA4A3>RA4 (A3, toglie: appare con D)
+  assente in: B0 RP RPb RPc RC3 RA1 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE63816:shRNA non letto
+  esito: non deciso: più cambi, nessuna prova doppia (A2, A3)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: A2|appare con D; A3|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: A0>A0A2 (A2, mette: appare con D); A0A2>A0A2A3 (A3, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE63816:source_name_ch1 come donatore
+  esito: della forma (P)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D
+  mette: C|appare con D; R|appare con D; C|sparisce con D; P5|appare con D; P|sparisce con D
+  doppie: P|sparisce con D; su coppie diverse: P|sparisce con D
+  coppie: RP>B0 (P, toglie: sparisce con D); A0>A0C (C, mette: appare con D); A0A2A3A4>A0A2A3A4R (R, mette: appare con D); RA1PP5C>RA1PP5 (C, mette: sparisce con D); RA1PP5>RA1P (P5, mette: appare con D); RA1P>RA1 (P, mette: sparisce con D)
+  assente in: B0 RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1PP5 F1 F2 F12 B0pl1 B0pl2 A0 A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0pl1 A0pl2
+  non valutabile in: 
+GSE65335:source_name_ch1 come donatore
+  esito: non deciso: più cambi, nessuna prova doppia (P, Pb)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D; Pb|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RPb>B0 (Pb, toglie: sparisce con D)
+  assente in: B0 RPa RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE66207:classificazione di Montreal come fattore
+  esito: non deciso: più cambi, nessuna prova doppia (C, P5)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: C|appare con D; P5|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: RA1PP5C>RA1PP5 (C, mette: appare con D); RA1PP5>RA1P (P5, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE66573:source_name_ch1 come donatore
+  esito: non deciso: instabile col placebo
+  placebo: B0 presente: pl1 presente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pc|appare con D; P5|appare con D; R|appare con D
+  mette: A2|appare con D; C|appare con D
+  doppie: ; su coppie diverse: 
+  coppie: RPc>B0 (Pc, toglie: appare con D); RP5>B0 (P5, toglie: appare con D); RR>B0 (R, toglie: appare con D); A0>A0A2 (A2, mette: appare con D); A0>A0C (C, mette: appare con D)
+  assente in: RPc RP5 RR F2 B0pl2 A0 A0A1 A0A3 A0pl1 A0pl2
+  non valutabile in: 
+GSE67812:controlli scritti come DM1
+  esito: della forma (A1)
+  placebo: B0 assente: pl1 presente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D; Pa|sparisce con D; Pb|sparisce con D; Pc|sparisce con D; Pd|sparisce con D; C|sparisce con D; A1|sparisce con D; R|sparisce con D
+  mette: C|appare con D; A3|appare con D; A1|sparisce con D
+  doppie: A1|sparisce con D; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D); RPa>B0 (Pa, toglie: sparisce con D); RPb>B0 (Pb, toglie: sparisce con D); RPc>B0 (Pc, toglie: sparisce con D); RPd>B0 (Pd, toglie: sparisce con D); RC>B0 (C, toglie: sparisce con D); RA1>B0 (A1, toglie: sparisce con D); RR>B0 (R, toglie: sparisce con D); A0>A0C (C, mette: appare con D); A0A2>A0A2A3 (A3, mette: appare con D); RA1>B0 (A1, mette: sparisce con D)
+  assente in: B0 RP5 RC3 RA4 RA4A3 F2 B0pl2 A0 A0A1 A0A3 A0A2 A0pl1 A0pl2
+  non valutabile in: 
+GSE68919:controllo PBS senza livello
+  esito: non deciso: instabile col placebo
+  placebo: B0 assente: pl1 presente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE69597:paese come fattore
+  esito: non deciso: più cambi, nessuna prova doppia (Pd, R)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pd|sparisce con D; R|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RPd>B0 (Pd, toglie: sparisce con D); RR>B0 (R, toglie: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RP5 RC RC3 RA1 RA4 RA4A3 RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE69597:source_name_ch1 come donatore
+  esito: non deciso: una direzione sola (C)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: C|appare con D
+  doppie: ; su coppie diverse: 
+  coppie: A0>A0C (C, mette: appare con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE69597:stadio che mescola storia e risposta
+  esito: non deciso: più cambi, nessuna prova doppia (A2, A4)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: A2|appare con D; A4|sparisce con D
+  doppie: ; su coppie diverse: 
+  coppie: A0>A0A2 (A2, mette: appare con D); A0A2A3>A0A2A3A4 (A4, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE71289:source_name_ch1 come donatore
+  esito: non deciso: una direzione sola (P)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RP>B0 (P, toglie: sparisce con D)
+  assente in: B0 RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE71595:source_name_ch1 come donatore
+  esito: non deciso: una direzione sola (Pd)
+  placebo: B0 presente: pl1 presente, pl2 presente | A0 presente: pl1 presente, pl2 presente
+  toglie: Pd|appare con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RPd>B0 (Pd, toglie: appare con D)
+  assente in: RPd
+  non valutabile in: 
+GSE75852:tempo che ripete il tipo cellulare
+  esito: del modello
+  placebo: B0 presente: pl1 presente, pl2 presente | A0 presente: pl1 presente, pl2 presente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: 
+  non valutabile in: 
+GSE83415:base che non e' un livello
+  esito: non deciso: nessuna coppia a un cambio lo sposta
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE83415:base non scritta
+  esito: non deciso: nessuna coppia a un cambio lo sposta
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE83687:ileo come non applicabile
+  esito: non deciso: instabile col placebo
+  placebo: B0 assente: pl1 presente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: P5|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RP5>B0 (P5, toglie: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE83687:sede del prelievo scritta come non dichiarata
+  esito: della forma (A1)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: A1|sparisce con D
+  mette: P|appare con D; A1|sparisce con D
+  doppie: A1|sparisce con D; su coppie diverse: 
+  coppie: RA1>B0 (A1, toglie: sparisce con D); RA1P>RA1 (P, mette: appare con D); RA1>B0 (A1, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE83687:source_name_ch1 come donatore
+  esito: non deciso: una direzione sola (Pb)
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: Pb|sparisce con D
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: RPb>B0 (Pb, toglie: sparisce con D)
+  assente in: B0 RP RPa RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+GSE93624:base della complicazione non scritta
+  esito: non deciso: nessuna coppia a un cambio lo sposta
+  placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
+  toglie: 
+  mette: 
+  doppie: ; su coppie diverse: 
+  coppie: 
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  non valutabile in: 
+
+== esiti: la regola alla lettera e la lettura severa (dichiarata dopo i numeri) ==
+                                                  severa
+alla_lettera                                       del modello della forma
+  del modello                                                2           0
+  della forma                                                0           5
+  non deciso: instabile col placebo                          0           0
+  non deciso: nessuna coppia a un cambio lo sposta           0           0
+  non deciso: più cambi, nessuna prova doppia                0           0
+  non deciso: una direzione sola                             0           0
+                                                  severa
+alla_lettera                                       non deciso: instabile col placebo
+  del modello                                                                      0
+  della forma                                                                      2
+  non deciso: instabile col placebo                                                9
+  non deciso: nessuna coppia a un cambio lo sposta                                 0
+  non deciso: più cambi, nessuna prova doppia                                      0
+  non deciso: una direzione sola                                                   0
+                                                  severa
+alla_lettera                                       non deciso: nessuna coppia a un cambio lo sposta
+  del modello                                                                                     0
+  della forma                                                                                     0
+  non deciso: instabile col placebo                                                               0
+  non deciso: nessuna coppia a un cambio lo sposta                                                7
+  non deciso: più cambi, nessuna prova doppia                                                     0
+  non deciso: una direzione sola                                                                  0
+                                                  severa
+alla_lettera                                       non deciso: più cambi, nessuna prova doppia
+  del modello                                                                                0
+  della forma                                                                                7
+  non deciso: instabile col placebo                                                          0
+  non deciso: nessuna coppia a un cambio lo sposta                                           0
+  non deciso: più cambi, nessuna prova doppia                                               19
+  non deciso: una direzione sola                                                             0
+                                                  severa
+alla_lettera                                       non deciso: una direzione sola
+  del modello                                                                   0
+  della forma                                                                   0
+  non deciso: instabile col placebo                                             0
+  non deciso: nessuna coppia a un cambio lo sposta                              0
+  non deciso: più cambi, nessuna prova doppia                                   0
+  non deciso: una direzione sola                                                7
+errori con esito diverso nelle due letture:
+                                                    errore               esito
+                               GSE57945:sesso come fattore della forma (C, A1)
+ GSE147507:ceppo dei controlli scritto come non dichiarato    della forma (A1)
+                    GSE47718:source_name_ch1 come donatore    della forma (A1)
+                 GSE50760:tessuto come contesto senza base    della forma (A1)
+              GSE57116:tempo ripetuto come secondo fattore    della forma (A1)
+         GSE57945:l2 type come secondo fattore di malattia    della forma (A1)
+                  GSE63816:MDS scritta come non dichiarata    della forma (A1)
+                       GSE67812:controlli scritti come DM1    della forma (A1)
+    GSE83687:sede del prelievo scritta come non dichiarata    della forma (A1)
+                                                       esito_severo
+                                  non deciso: instabile col placebo
+             non deciso: più cambi, nessuna prova doppia (A1, C, P)
+ non deciso: più cambi, nessuna prova doppia (P, Pa, Pb, P5, C, A1)
+ non deciso: più cambi, nessuna prova doppia (P, Pc, Pd, P5, C, A1)
+ non deciso: più cambi, nessuna prova doppia (P, Pc, Pd, A1, A4, R)
+            non deciso: più cambi, nessuna prova doppia (P, A1, A2)
+            non deciso: più cambi, nessuna prova doppia (A1, A2, P)
+                                  non deciso: instabile col placebo
+                non deciso: più cambi, nessuna prova doppia (A1, P)
+
+previsione 6  GSE46665: esito della regola: osservato del modello; atteso del modello, intervallo -  ->  confermata
+previsione 7  GSE60340: esito della regola: osservato non deciso: instabile col placebo; atteso della forma (A1), intervallo -  ->  smentita
+previsione 7  GSE49155: esito della regola: osservato non deciso: instabile col placebo; atteso della forma (A1), intervallo -  ->  smentita
+previsione 8  i 3 errori assenti con la forma A: quanti hanno esito «della forma»: osservato 1; atteso 2, intervallo 1-3  ->  confermata
+
+== la forma finale ==
+differenze con almeno un errore «della forma»: C, A1, P 
+  C: la forma RC ha 2 studi con un errore nuovo di lettura -> NON entra: conflitto, va al PI
+  A1: la forma RA1 ha 2 studi con un errore nuovo di lettura -> NON entra: conflitto, va al PI
+  P: la forma RP ha 8 studi con un errore nuovo di lettura -> NON entra: conflitto, va al PI
+  F1: chiude il suo studio si'; studi con un errore nuovo di lettura 11 -> non entra
+  F2: chiude il suo studio si'; studi con un errore nuovo di lettura 3 -> non entra
+FORMA FINALE: B0 senza cambi (coincide con B0: non servono altre corse) 
