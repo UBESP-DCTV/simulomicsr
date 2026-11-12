@@ -1,0 +1,42 @@
+12-prova-compilazione.R  PROVA DA BUTTARE
+inizio 2026-11-12T09:22:35Z, HEAD 41d0231; 31 forme in 17 classi di schema; ingresso analysis/input/S12r4-prova-compilazione-ingresso.jsonl: 833 record (per classe: 47 studi di sviluppo col messaggio neutro + GSE0 finto + GSE0 contro), 16.4 MB
+classe B0: B0, RP, RPa, RPb, RPc, RPd, RP5, RR, B0pl1, B0pl2; schema piu' grande 222556 caratteri
+classe RC: RC; schema piu' grande 164634 caratteri
+classe RC3: RC3; schema piu' grande 167685 caratteri
+classe RA1: RA1, RA1P, RA1PP5; schema piu' grande 234882 caratteri
+classe RA4: RA4; schema piu' grande 115989 caratteri
+classe RA4A3: RA4A3; schema piu' grande 60946 caratteri
+classe RA1PP5C: RA1PP5C; schema piu' grande 176960 caratteri
+classe F1: F1; schema piu' grande 547772 caratteri
+classe F2: F2; schema piu' grande 426202 caratteri
+classe F12: F12; schema piu' grande 751418 caratteri
+classe A0: A0, A0pl1, A0pl2; schema piu' grande 5409 caratteri
+classe A0C: A0C; schema piu' grande 63336 caratteri
+classe A0A1: A0A1; schema piu' grande 5409 caratteri
+classe A0A3: A0A3; schema piu' grande 58912 caratteri
+classe A0A2: A0A2; schema piu' grande 4531 caratteri
+classe A0A2A3: A0A2A3; schema piu' grande 76923 caratteri
+classe A0A2A3A4: A0A2A3A4, A0A2A3A4R; schema piu' grande 183495 caratteri
+mount: poddgx02.cluster.lan poddgx02.cluster.lan MONTATO MONTATO
+bundle 20261112T092252Z-s12r4-prova-compilazione-5615c2; generation.json: {"model_id":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","dtype":"bfloat16","tokenizer_mode":"mistral","config_format":"mistral","load_format":"mistral","max_tokens":24576,"max_model_len":65536,"temperature":0,"gpu_memory_utilization":0.95,"tensor_parallel_size":1,"workers":4,"repetition_penalty":1.1,"microbatch":50,"llm_extra":{"revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43","tokenizer_revision":"95a6d26c4bfb886c58daf9d3f7332c857cb27b43"}}
+inviato: slurm 496365, run_id 20261112T092252Z-s12r4-prova-compilazione-5615c2
+slurm 496365 COMPLETED, durata 00:04:31, nodo poddgx02
+classe B0: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 488; GSE0 finto: fine stop, 849 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 461 token, valida TRUE
+classe RC: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 120; GSE0 finto: fine stop, 749 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 297 token, valida TRUE
+classe RC3: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 626; GSE0 finto: fine stop, 849 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 461 token, valida TRUE
+classe RA1: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 488; GSE0 finto: fine stop, 771 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 438 token, valida TRUE
+classe RA4: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 488; GSE0 finto: fine stop, 848 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 400 token, valida TRUE
+classe RA4A3: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 502; GSE0 finto: fine stop, 760 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 374 token, valida TRUE
+classe RA1PP5C: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 120; GSE0 finto: fine stop, 676 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 298 token, valida TRUE
+classe F1: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 488; GSE0 finto: fine stop, 652 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 409 token, valida TRUE
+classe F2: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 488; GSE0 finto: fine stop, 849 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 461 token, valida TRUE
+classe F12: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 488; GSE0 finto: fine stop, 652 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 409 token, valida TRUE
+classe A0: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 112; GSE0 finto: fine stop, 558 token, valida TRUE, chiuso FALSE (gruppi NA, confronti NA; motivi non_coperta); GSE0 contro: fine stop, 208 token, valida TRUE
+classe A0C: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 502; GSE0 finto: fine stop, 651 token, valida TRUE, chiuso FALSE (gruppi NA, confronti NA; motivi non_coperta); GSE0 contro: fine stop, 346 token, valida TRUE
+classe A0A1: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 112; GSE0 finto: fine stop, 702 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 273 token, valida TRUE
+classe A0A3: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 120; GSE0 finto: fine stop, 754 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 400 token, valida TRUE
+classe A0A2: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 112; GSE0 finto: fine stop, 645 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 265 token, valida TRUE
+classe A0A2A3: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 120; GSE0 finto: fine stop, 676 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 261 token, valida TRUE
+classe A0A2A3A4: uscite 49/49; neutro: stop 47, length 0, valide fra le finite 47/47, token massimo 120; GSE0 finto: fine stop, 676 token, valida TRUE, chiuso TRUE (gruppi 6, confronti 7); GSE0 contro: fine stop, 298 token, valida TRUE
+ESITO: record 833, con uscita 833; fine stop 833, di cui valide per lo schema della forma 833; fine length 0; classi con tutte le uscite 17/17
+PROVA DI COMPILAZIONE: PASSA (ogni record ha un'uscita e ogni uscita finita passa lo schema della sua forma)
