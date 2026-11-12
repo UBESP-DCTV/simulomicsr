@@ -48,8 +48,8 @@ peggioramenti di lettura per un errore che la base ha gia' (effetto nuovo, error
        RA4   B0          0          4                  1                3
      RA4A3   B0          0          5                  0                5
         RR   B0          6          3                  3                0
-      RA1P   B0          7          5                  3                1
-    RA1PP5   B0          8          9                  8                0
+      RA1P   B0          7          5                  4                1
+    RA1PP5   B0          8          9                  9                0
    RA1PP5C   B0          7          5                  4                1
         F1   B0          7         14                 11                3
         F2   B0          6          4                  3                0
@@ -78,8 +78,8 @@ peggioramenti di lettura per un errore che la base ha gia' (effetto nuovo, error
                      0                      1                              0
                      0                      0                              0
                      0                      3                              3
-                     1                      3                              3
-                     1                      8                              8
+                     0                      4                              4
+                     0                      9                              9
                      0                      4                              4
                      0                     11                             11
                      1                      3                              3
@@ -236,7 +236,7 @@ previsione 11  studi con un errore nuovo per forma a un cambio da B0: mediana fr
        18      13              0
         1      30              0
         2      29              0
-        1      30              0
+        3      28              0
         3      28              0
         1      30              0
        30       1              0
@@ -295,7 +295,7 @@ previsione 11  studi con un errore nuovo per forma a un cambio da B0: mediana fr
                                                     della forma (A1)
                                    non deciso: instabile col placebo
                  non deciso: più cambi, nessuna prova doppia (Pd, R)
-                                  non deciso: una direzione sola (C)
+                  non deciso: più cambi, nessuna prova doppia (C, P)
                 non deciso: più cambi, nessuna prova doppia (A2, A4)
                                   non deciso: una direzione sola (P)
                                  non deciso: una direzione sola (Pd)
@@ -732,13 +732,13 @@ GSE69597:paese come fattore
   assente in: B0 RP RPa RPb RPc RP5 RC RC3 RA1 RA4 RA4A3 RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0C A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
   non valutabile in: 
 GSE69597:source_name_ch1 come donatore
-  esito: non deciso: una direzione sola (C)
+  esito: non deciso: più cambi, nessuna prova doppia (C, P)
   placebo: B0 assente: pl1 assente, pl2 assente | A0 assente: pl1 assente, pl2 assente
   toglie: 
-  mette: C|appare con D
+  mette: C|appare con D; P|sparisce con D
   doppie: ; su coppie diverse: 
-  coppie: A0>A0C (C, mette: appare con D)
-  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1P RA1PP5 RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
+  coppie: A0>A0C (C, mette: appare con D); RA1PP5C>RA1PP5 (C, mette: appare con D); RA1P>RA1 (P, mette: sparisce con D)
+  assente in: B0 RP RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR RA1PP5C F1 F2 F12 B0pl1 B0pl2 A0 A0A1 A0A3 A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0pl1 A0pl2
   non valutabile in: 
 GSE69597:stadio che mescola storia e risposta
   esito: non deciso: più cambi, nessuna prova doppia (A2, A4)
@@ -862,7 +862,7 @@ alla_lettera                                       non deciso: più cambi, nessu
   della forma                                                                                7
   non deciso: instabile col placebo                                                          0
   non deciso: nessuna coppia a un cambio lo sposta                                           0
-  non deciso: più cambi, nessuna prova doppia                                               19
+  non deciso: più cambi, nessuna prova doppia                                               20
   non deciso: una direzione sola                                                             0
                                                   severa
 alla_lettera                                       non deciso: una direzione sola
@@ -871,7 +871,7 @@ alla_lettera                                       non deciso: una direzione sol
   non deciso: instabile col placebo                                             0
   non deciso: nessuna coppia a un cambio lo sposta                              0
   non deciso: più cambi, nessuna prova doppia                                   0
-  non deciso: una direzione sola                                                7
+  non deciso: una direzione sola                                                6
 errori con esito diverso nelle due letture:
                                                     errore               esito
                                GSE57945:sesso come fattore della forma (C, A1)
