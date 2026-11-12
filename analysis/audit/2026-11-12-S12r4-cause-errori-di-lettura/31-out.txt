@@ -1,0 +1,21 @@
+== B0 e i suoi due placebo ==
+studi con la firma diversa in almeno una delle tre letture: 12 su 47: GSE147507 GSE46665 GSE49155 GSE56691 GSE56787 GSE60340 GSE63816 GSE65335 GSE66573 GSE67812 GSE68919 GSE83687
+errori presenti nella base: 9 in 8 studi; che costano: 4
+  in studi con la firma diversa: GSE60340:colonna del trattamento non vista (costa si); GSE49155:fattore doppio (costa si); GSE46665:sigle dei pazienti come malattie (costa si); GSE46665:tempo ripetuto come secondo fattore (costa no); GSE66573:source_name_ch1 come donatore (costa no)
+  in studi con la firma uguale:  GSE57945:sesso come fattore (costa si); GSE50760:source_name_ch1 come donatore (costa no); GSE71595:source_name_ch1 come donatore (costa no); GSE75852:tempo che ripete il tipo cellulare (costa no)
+errori presenti in almeno una delle tre letture: 13; in studi con la firma diversa: 9
+stato nella base degli studi con la firma uguale: {'identica': 29, 'diversa': 5, 'non chiuso': 1}; con la firma diversa: {'identica': 7, 'diversa': 4, 'non chiuso': 1}
+
+== A0 e i suoi due placebo ==
+studi con la firma diversa in almeno una delle tre letture: 9 su 47: GSE147507 GSE50499 GSE52194 GSE56787 GSE57945 GSE60340 GSE63816 GSE71595 GSE83687
+errori presenti nella base: 11 in 10 studi; che costano: 4
+  in studi con la firma diversa: GSE52194:source_name_ch1 come donatore (costa no); GSE56787:fattore DUX4 inventato (costa no); GSE63816:MDS scritta come non dichiarata (costa si); GSE71595:source_name_ch1 come donatore (costa no)
+  in studi con la firma uguale:  GSE46665:sigle dei pazienti come malattie (costa si); GSE112057:NA di gender non dichiarato mancante (costa si); GSE47718:source_name_ch1 come donatore (costa no); GSE50760:source_name_ch1 come donatore (costa no); GSE50760:tessuto come contesto senza base (costa si); GSE57116:tempo ripetuto come secondo fattore (costa no); GSE75852:tempo che ripete il tipo cellulare (costa no)
+errori presenti in almeno una delle tre letture: 13; in studi con la firma diversa: 6
+stato nella base degli studi con la firma uguale: {'identica': 29, 'diversa': 3, 'non chiuso': 6}; con la firma diversa: {'non chiuso': 7, 'identica': 2}
+
+== tutte le 31 forme ==
+firme distinte per studio (numero di firme: studi): {1: 9, 2: 9, 3: 7, 4: 6, 5: 5, 6: 1, 8: 1, 9: 3, 10: 1, 14: 1, 19: 2, 22: 1, 24: 1}
+studi con una firma sola nelle 31 forme: 9; nelle 21 forme del lato B: 12
+studi con almeno un errore di lettura in almeno una forma: 32 su 47; con un errore che costa: 21; mai un errore: 15
+peggioramenti letti: 156; per causa: {'lettura del modello': 107, 'forma': 33, 'non errore': 16}; errore nuovo 107 (stretto 100); studi distinti con un errore nuovo in almeno una forma: 27
