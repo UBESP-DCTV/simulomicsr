@@ -1,0 +1,240 @@
+
+##### GSE112057 157de710bcb6 | GSE112057:sottotipo JIA come secondo fattore | RA1PP5: secondo fattore jia_subtype dalla colonna della diagnosi, base vuota, gli altri a not applicable; NA di gender dichiarato mancante; 5/5
+RA1PP5
+  disease_state[state; base «control»; disease state (diagnosis)] crohns_disease(1): Crohn's Disease ; ulcerative_colitis(1): Ulcerative Colitis ; polyarticular_jia(1): Polyarticular JIA ; oligoarticular_jia(1): Oligoarticular JIA ; systemic_jia(1): Systemic JIA ; control(1): Control
+  jia_subtype[state; base «»; disease state (diagnosis)] not applicable(3): Crohn's Disease, Ulcerative Colitis, Control ; polyarticular(1): Polyarticular JIA ; oligoarticular(1): Oligoarticular JIA ; systemic(1): Systemic JIA
+  source_name_ch1: -
+
+##### GSE112057 d62cd9d66170 | - | RP, RPa, RPc, RPd: un fattore solo (la diagnosi), come le basi
+F2 RA1P RP RP5 RPa RPc RPd RR
+  disease_state[state; base «control»; disease state (diagnosis)] crohns_disease(1): Crohn's Disease ; ulcerative_colitis(1): Ulcerative Colitis ; polyarticular_jia(1): Polyarticular JIA ; oligoarticular_jia(1): Oligoarticular JIA ; systemic_jia(1): Systemic JIA ; control(1): Control
+  source_name_ch1: -
+RA4 RA4A3
+  disease_state[state; base «control»; disease state (diagnosis)] control(1): Control ; crohn_s_disease(1): Crohn's Disease ; ulcerative_colitis(1): Ulcerative Colitis ; oligoarticular_jia(1): Oligoarticular JIA ; polyarticular_jia(1): Polyarticular JIA ; systemic_jia(1): Systemic JIA
+  source_name_ch1: -
+
+##### GSE147507 048d1931f4bf | - | RP5: ruxolitinib da description con base mock fra i livelli (71 campioni); nessun fattore strain; i controlli hanno il livello
+RP5
+  cell_line[context; base «»; cell line] NHBE(1): NHBE ; A549(1): A549 ; Calu-3(1): Calu-3 ; not applicable(1): 
+  infection[perturbation; base «mock»; treatment] mock(1): Mock treatment ; SARS-CoV-2(2): SARS-CoV-2 infected (M, SARS-CoV-2 infected (M ; RSV(2): RSV infected (MOI 15), RSV infected (MOI 2) ; IAV(2): IAV infected (MOI 5), IAV infected (MOI 3) ; HPIV3(1): HPIV3 infected (MOI 3) ; IAVdNS1(1): IAVdNS1 infected (MOI  ; IFNB(1): human IFNB treatment ( ; not applicable(1): 
+  time_after_treatment[time; base «»; time after treatment] not stated(1):  ; 24hrs(1): 24 hours ; 12hrs(1): 12 hours ; 4hrs(1): 4 hours ; 6hrs(1): 6 hours
+  ruxolitinib[perturbation; base «mock»; description] mock(71): SARS004-mock-3_S3 proc, SARS004-mock-2_S2 proc, SARS004-mock-1_S1 proc … ; Ruxolitinib(6): Time after treatment: , Time after treatment: , Time after treatment:  …
+  subject_status[state; base «healthy»; subject status] not applicable(1):  ; healthy(2): No treatment - healthy, No treatment - healthy ; COVID-19(1): No treatment; >60 year
+  source_name_ch1: uninformative/
+
+##### GSE147507 3a2c12ed5023 | - | F12: fattori di B0 piu' ruxolitinib_pre-treatment annidato (un livello, base non dichiarata, gli altri a not applicable); strain come B0; nessuna base che non e' un livello; 2/2
+F12
+  cell_line[context; base «»; cell line] NHBE(1): NHBE ; A549(1): A549 ; Calu-3(1): Calu-3 ; None(1): 
+  infection[perturbation; base «mock»; treatment] mock(1): Mock treatment ; SARS-CoV-2(2): SARS-CoV-2 infected (M, SARS-CoV-2 infected (M ; RSV(2): RSV infected (MOI 15), RSV infected (MOI 2) ; IAV(2): IAV infected (MOI 5), IAV infected (MOI 3) ; HPIV3(1): HPIV3 infected (MOI 3) ; IAVdNS1(1): IAVdNS1 infected (MOI  ; IFNB(1): human IFNB treatment ( ; None(1): 
+  strain[perturbation; base «»; strain] None(2): , NA ; USA-WA1/2020(1): USA-WA1/2020 ; A2(1): A2 ; A/Puerto Rico/8/1934 (H1N1)(1): A/Puerto Rico/8/1934 ( ; JS(1): JS ; A/Puerto Rico/8/1934 (H1N1) (dNS1)(1): A/Puerto Rico/8/1934 (
+  time_after_treatment[time; base «»; time after treatment] None(1):  ; 24 hours(1): 24 hours ; 12 hours(1): 12 hours ; 4 hours(1): 4 hours ; 6 hours(1): 6 hours
+  ruxolitinib_pre-treatment[perturbation; base «»; description] None(71): SARS004-mock-3_S3 proc, SARS004-mock-2_S2 proc, SARS004-mock-1_S1 proc … ; Ruxolitinib pre-treated(6): Time after treatment: , Time after treatment: , Time after treatment:  …
+  source_name_ch1: uninformative/
+
+##### GSE147507 3bea6a72a007 | - | RPb: ruxolitinib con base untreated fra i livelli (68 campioni); strain senza base dichiarata: i controlli non perdono il livello di un fattore con base
+RPb
+  cell_line[context; base «»; cell line] NHBE(1): NHBE ; A549(1): A549 ; Calu-3(1): Calu-3 ; not applicable(1): 
+  infection[perturbation; base «mock»; treatment] mock(1): Mock treatment ; SARS-CoV-2(2): SARS-CoV-2 infected (M, SARS-CoV-2 infected (M ; RSV(2): RSV infected (MOI 15), RSV infected (MOI 2) ; IAV(2): IAV infected (MOI 5), IAV infected (MOI 3) ; HPIV3(1): HPIV3 infected (MOI 3) ; IAVdNS1(1): IAVdNS1 infected (MOI  ; not applicable(2): human IFNB treatment (, 
+  interferon_beta[perturbation; base «untreated»; treatment] untreated(9): Mock treatment, SARS-CoV-2 infected (M, SARS-CoV-2 infected (M … ; treated(1): human IFNB treatment ( ; not applicable(1): 
+  ruxolitinib[perturbation; base «untreated»; description] untreated(68): SARS004-mock-3_S3 proc, SARS004-mock-2_S2 proc, SARS004-mock-1_S1 proc … ; treated(9): IFN_4_1 processed data, IFN_4_2 processed data, IFN_6_1 processed data …
+  time_after_treatment[time; base «»; time after treatment] not applicable(3): , 4 hours, 6 hours ; 24hrs(1): 24 hours ; 12hrs(1): 12 hours
+  strain[perturbation; base «»; strain] not applicable(2): , NA ; USA-WA1/2020(1): USA-WA1/2020 ; A2(1): A2 ; A/Puerto Rico/8/1934 (H1N1)(2): A/Puerto Rico/8/1934 (, A/Puerto Rico/8/1934 ( ; JS(1): JS
+  subject_status[state; base «healthy»; subject status] not applicable(1):  ; healthy(2): No treatment - healthy, No treatment - healthy ; covid19(1): No treatment; >60 year
+  source_name_ch1: uninformative/
+
+##### GSE147507 502bab4e7e02 | - | F1: fattori di B0 senza strain (colonna uninformative) e senza ruxolitinib; 2/2
+F1
+  cell_line[context; base «»; cell line] NHBE(1): NHBE ; A549(1): A549 ; Calu-3(1): Calu-3 ; not applicable(1): 
+  treatment[perturbation; base «mock treatment»; treatment] mock treatment(1): Mock treatment ; SARS-CoV-2(2): SARS-CoV-2 infected (M, SARS-CoV-2 infected (M ; RSV(2): RSV infected (MOI 15), RSV infected (MOI 2) ; IAV(2): IAV infected (MOI 5), IAV infected (MOI 3) ; HPIV3(1): HPIV3 infected (MOI 3) ; IAVdNS1(1): IAVdNS1 infected (MOI  ; human IFNB(1): human IFNB treatment ( ; not applicable(1): 
+  time_after_treatment[time; base «»; time after treatment] not applicable(1):  ; 24 hours(1): 24 hours ; 12 hours(1): 12 hours ; 4 hours(1): 4 hours ; 6 hours(1): 6 hours
+  subject_status[state; base «healthy»; subject status] not applicable(1):  ; healthy(2): No treatment - healthy, No treatment - healthy ; COVID-19(1): No treatment; >60 year
+  source_name_ch1: uninformative/
+
+##### GSE147507 8d790937d3bc | - | RC: ruxolitinib dal titolo e interferon_beta da source_name_ch1, base untreated fra i livelli; nessun fattore strain
+RC
+  cell_line[context; base «»; cell line] NHBE(1): NHBE ; A549(1): A549 ; Calu-3(1): Calu-3 ; not applicable(1): 
+  infection[perturbation; base «mock»; treatment] mock(1): Mock treatment ; SARS-CoV-2(2): SARS-CoV-2 infected (M, SARS-CoV-2 infected (M ; RSV(2): RSV infected (MOI 15), RSV infected (MOI 2) ; IAV(2): IAV infected (MOI 5), IAV infected (MOI 3) ; HPIV3(1): HPIV3 infected (MOI 3) ; IAVdNS1(1): IAVdNS1 infected (MOI  ; not applicable(2): human IFNB treatment (, 
+  ruxolitinib[perturbation; base «untreated»; title] untreated(74): Series1_NHBE_Mock_1, Series1_NHBE_Mock_2, Series1_NHBE_Mock_3 … ; Ruxolitinib(3): Series16_A549-ACE2_SAR, Series16_A549-ACE2_SAR, Series16_A549-ACE2_SAR
+  interferon_beta[perturbation; base «untreated»; source_name_ch1] untreated(16): Mock treated NHBE cell, SARS-CoV-2 infected NH, Mock treated A549 cell … ; IFNB(1): human IFNB treated NHB
+  time_after_treatment[time; base «»; time after treatment] not applicable(3): , 4 hours, 6 hours ; 24hrs(1): 24 hours ; 12hrs(1): 12 hours
+  subject_status[state; base «healthy»; subject status] not applicable(1):  ; healthy(2): No treatment - healthy, No treatment - healthy ; covid19(1): No treatment; >60 year
+  source_name_ch1: uninformative/
+
+##### GSE147507 9a6463f2528c | - | RPd: Ruxolitinib dal titolo, base untreated fra i livelli; nessun fattore strain
+RPd
+  cell_line[context; base «»; cell line] NHBE(1): NHBE ; A549(1): A549 ; Calu-3(1): Calu-3 ; not applicable(1): 
+  treatment[perturbation; base «mock»; treatment] mock(1): Mock treatment ; SARS-CoV-2(2): SARS-CoV-2 infected (M, SARS-CoV-2 infected (M ; RSV(2): RSV infected (MOI 15), RSV infected (MOI 2) ; IAV(2): IAV infected (MOI 5), IAV infected (MOI 3) ; HPIV3(1): HPIV3 infected (MOI 3) ; IAVdNS1(1): IAVdNS1 infected (MOI  ; IFNB(1): human IFNB treatment ( ; not applicable(1): 
+  Ruxolitinib[perturbation; base «untreated»; title] untreated(74): Series1_NHBE_Mock_1, Series1_NHBE_Mock_2, Series1_NHBE_Mock_3 … ; Ruxolitinib(3): Series16_A549-ACE2_SAR, Series16_A549-ACE2_SAR, Series16_A549-ACE2_SAR
+  time_after_treatment[time; base «»; time after treatment] not applicable(1):  ; 24hrs(1): 24 hours ; 12hrs(1): 12 hours ; 4hrs(1): 4 hours ; 6hrs(1): 6 hours
+  organism[context; base «»; cell type] human(2): primary human bronchia, Lung adenocarcinoma ; not applicable(1): 
+  status[state; base «healthy»; subject status] not applicable(1):  ; healthy(2): No treatment - healthy, No treatment - healthy ; COVID-19(1): No treatment; >60 year
+  source_name_ch1: uninformative/
+
+##### GSE147507 a8426073c24d | GSE147507:ceppo dei controlli scritto come non dichiarato | A0A2A3A4R, RA1PP5C: strain manda il valore vuoto e NA a not stated (B0 a not applicable); ruxolitinib con base mock fra i livelli; 2/2
+A0A2A3A4R RA1PP5C
+  cell_line[context; base «»; cell line] nhbe(1): NHBE ; a549(1): A549 ; calu3(1): Calu-3 ; not applicable(1): 
+  treatment[perturbation; base «mock»; treatment] mock(1): Mock treatment ; sars_cov_2(2): SARS-CoV-2 infected (M, SARS-CoV-2 infected (M ; rsv(2): RSV infected (MOI 15), RSV infected (MOI 2) ; iav(2): IAV infected (MOI 5), IAV infected (MOI 3) ; hpiv3(1): HPIV3 infected (MOI 3) ; iavdns1(1): IAVdNS1 infected (MOI  ; ifnb(1): human IFNB treatment ( ; not applicable(1): 
+  strain[perturbation; base «»; strain] not stated(2): , NA ; usa_wa1_2020(1): USA-WA1/2020 ; a2(1): A2 ; a_puerto_rico_8_1934_h1n1(1): A/Puerto Rico/8/1934 ( ; js(1): JS ; a_puerto_rico_8_1934_h1n1_dns1(1): A/Puerto Rico/8/1934 (
+  time_after_treatment[time; base «»; time after treatment] not stated(1):  ; 24hrs(1): 24 hours ; 12hrs(1): 12 hours ; 4hrs(1): 4 hours ; 6hrs(1): 6 hours
+  ruxolitinib[perturbation; base «mock»; description] mock(71): SARS004-mock-3_S3 proc, SARS004-mock-2_S2 proc, SARS004-mock-1_S1 proc … ; ruxolitinib(6): Time after treatment: , Time after treatment: , Time after treatment:  …
+  subject_status[state; base «healthy»; subject status] not applicable(1):  ; healthy(2): No treatment - healthy, No treatment - healthy ; covid19(1): No treatment; >60 year
+  source_name_ch1: uninformative/
+
+##### GSE147507 b738508cf3df | - | F2: fattori di B0 (strain a not applicable come B0); nessun fattore ruxolitinib; 2/2
+F2
+  cell_line[context; base «»; cell line] NHBE(1): NHBE ; A549(1): A549 ; Calu-3(1): Calu-3 ; None(1): 
+  treatment[perturbation; base «mock»; treatment] mock(1): Mock treatment ; SARS-CoV-2(2): SARS-CoV-2 infected (M, SARS-CoV-2 infected (M ; RSV(2): RSV infected (MOI 15), RSV infected (MOI 2) ; IAV(2): IAV infected (MOI 5), IAV infected (MOI 3) ; HPIV3(1): HPIV3 infected (MOI 3) ; IAVdNS1(1): IAVdNS1 infected (MOI  ; IFNB(1): human IFNB treatment ( ; None(1): 
+  time_after_treatment[time; base «»; time after treatment] None(1):  ; 24hrs(1): 24 hours ; 12hrs(1): 12 hours ; 4hrs(1): 4 hours ; 6hrs(1): 6 hours
+  strain[perturbation; base «»; strain] None(2): , NA ; USA-WA1/2020(1): USA-WA1/2020 ; A2(1): A2 ; A/Puerto Rico/8/1934 (H1N1)(1): A/Puerto Rico/8/1934 ( ; JS(1): JS ; A/Puerto Rico/8/1934 (H1N1) (dNS1)(1): A/Puerto Rico/8/1934 (
+  subject_status[state; base «healthy»; subject status] None(1):  ; healthy(2): No treatment - healthy, No treatment - healthy ; covid19(1): No treatment; >60 year
+  source_name_ch1: uninformative/
+
+##### GSE41586 f40e414d73e6 | - | F12: tre livelli (control, 5-Aza low, 5-Aza high), le due dosi sono separate; 2/2
+F12
+  agent[perturbation; base «control»; source_name_ch1] control(1): HT29 treated with 0 μM ; 5-Aza low(1): HT29 treated with 5 μM ; 5-Aza high(1): HT29 treated with 10 μ
+  source_name_ch1: factor/
+
+##### GSE49155 66212ce60896 | - | B0pl1, RA1, RPc: un fattore solo (pathology), patient come soggetto; nessun fattore doppio e nessun fattore del tessuto
+B0pl1 RA1 RA1P RPc
+  pathology[state; base «normal»; pathology] normal(1): Normal ; premalignant(1): Premalignant ; tumor(1): Tumor
+  source_name_ch1: uninformative/
+F12
+  pathology[state; base «Normal»; pathology] Normal(1): Normal ; Premalignant(1): Premalignant ; Tumor(1): Tumor
+  source_name_ch1: uninformative/
+
+##### GSE56691 6737f6846c7a | - | RA1: agent con due livelli (GSKJ4, untreated) e base untreated; time da source_name_ch1 e' la durata vera; il controllo ha il livello
+RA1
+  agent[perturbation; base «untreated»; treated with] GSKJ4(3): 2µM GSKJ4 for 24hr, 2µM GSKJ4 for 48hr, 2µM GSKJ4 for 72hr ; untreated(1): none (untreated contro
+  time[time; base «»; source_name_ch1] 24h(1): CUTLL1-GSKJ4_24h ; 48h(1): CUTLL1-GSKJ4_48h ; 72h(1): CUTLL1-GSKJ4_72h ; untreated(1): CUTLL1-untreated
+  source_name_ch1: factor/
+
+##### GSE56691 71f9425fc1d8 | - | RR: agent con due livelli (GSKJ4, control) e base control; time dalla colonna treated with e' la durata vera, fattori doppi 0; il controllo ha il livello
+RR
+  agent[perturbation; base «control»; treated with] GSKJ4(3): 2µM GSKJ4 for 24hr, 2µM GSKJ4 for 48hr, 2µM GSKJ4 for 72hr ; control(1): none (untreated contro
+  time[time; base «»; treated with] 24h(1): 2µM GSKJ4 for 24hr ; 48h(1): 2µM GSKJ4 for 48hr ; 72h(1): 2µM GSKJ4 for 72hr ; control(1): none (untreated contro
+  source_name_ch1: uninformative/
+
+##### GSE56691 a5c81387346a | - | RC: agent dichiara tre voci di livello con lo stesso nome GSKJ4 (una per durata) ma la partizione ha due livelli (GSKJ4 9, untreated 3), fattori doppi 0; base untreated fra i livelli
+RC
+  agent[perturbation; base «untreated»; source_name_ch1] GSKJ4(3): CUTLL1-GSKJ4_24h, CUTLL1-GSKJ4_48h, CUTLL1-GSKJ4_72h ; untreated(1): CUTLL1-untreated
+  time[time; base «»; treated with] 24h(1): 2µM GSKJ4 for 24hr ; 48h(1): 2µM GSKJ4 for 48hr ; 72h(1): 2µM GSKJ4 for 72hr ; not applicable(1): none (untreated contro
+  source_name_ch1: -
+
+##### GSE60585 0a61228ab5d1 | - | A0A2, A0A2A3, A0A2A3A4: target da treated with e fattore tecnico molecule subtype: il tipo di RNA e' letto; 4/4
+A0A2 A0A2A3
+  target[perturbation; base «control»; treated with] Integrator 11(1): si RNAs against Integr ; NELF(1): si RNAs against NELF ; control(1): si RNAs against contro
+  molecule subtype[technical; base «»; molecule subtype] polyA RNA(1): whole-cell RNA ; total RNA(1): ribosomal RNA depleted
+  source_name_ch1: uninformative/
+A0A2A3A4
+  target[perturbation; base «control»; treated with] Integrator 11(1): si RNAs against Integr ; NELF(1): si RNAs against NELF ; control(1): si RNAs against contro
+  RNA type[technical; base «»; molecule subtype] polyA RNA(1): whole-cell RNA ; total RNA(1): ribosomal RNA depleted
+  source_name_ch1: uninformative/
+
+##### GSE60585 f495bde2bb53 | - | A0A1: target da treated with e fattore tecnico protocol da molecule_ch1 (colonna equivalente): il tipo di RNA e' letto; 4/4
+A0A1
+  target[perturbation; base «control»; treated with] Integrator 11(1): si RNAs against Integr ; NELF(1): si RNAs against NELF ; control(1): si RNAs against contro
+  protocol[technical; base «»; molecule_ch1] polyA RNA(1): polyA RNA ; total RNA(1): total RNA
+  source_name_ch1: uninformative/
+
+##### GSE65335 69079952891b | - | A0C, B0pl1, B0pl2, RPd: source_name_ch1 uninformative
+A0A2A3A4R RA1PP5C RPd
+  growth_condition[perturbation; base «submerged»; growth conditions] submerged(1): submerged (day 8) ; air_liquid_interface(1): ALI (day 14)
+  treatment[perturbation; base «untreated»; treatment] untreated(1): untreated ; il13(1): IL-13 (100 ng/mL)
+  source_name_ch1: uninformative/
+A0C
+  culture_condition[perturbation; base «submerged»; growth conditions] submerged(1): submerged (day 8) ; air_liquid_interface(1): ALI (day 14)
+  interleukin_13[perturbation; base «untreated»; treatment] untreated(1): untreated ; treated(1): IL-13 (100 ng/mL)
+  source_name_ch1: uninformative/
+B0pl1 F2 RP5 RR
+  growth_condition[perturbation; base «submerged»; growth conditions] submerged(1): submerged (day 8) ; air_liquid_interface(1): ALI (day 14)
+  interleukin_13_treatment[perturbation; base «untreated»; treatment] untreated(1): untreated ; il13(1): IL-13 (100 ng/mL)
+  source_name_ch1: uninformative/
+B0pl2 RA1 RC
+  culture_condition[perturbation; base «submerged»; growth conditions] submerged(1): submerged (day 8) ; air_liquid_interface(1): ALI (day 14)
+  interleukin_13_treatment[perturbation; base «untreated»; treatment] untreated(1): untreated ; il13(1): IL-13 (100 ng/mL)
+  source_name_ch1: uninformative/
+F1
+  growth_condition[perturbation; base «submerged (day 8)»; growth conditions] submerged (day 8)(1): submerged (day 8) ; ALI (day 14)(1): ALI (day 14)
+  treatment[perturbation; base «untreated»; treatment] untreated(1): untreated ; IL-13 (100 ng/mL)(1): IL-13 (100 ng/mL)
+  source_name_ch1: uninformative/
+RA1PP5
+  growth_condition[perturbation; base «submerged»; growth conditions] submerged(1): submerged (day 8) ; ali(1): ALI (day 14)
+  treatment[perturbation; base «untreated»; treatment] untreated(1): untreated ; il13(1): IL-13 (100 ng/mL)
+  source_name_ch1: uninformative/
+
+##### GSE67812 9b69a777dcde | - | A0A1: Control al livello control; valore vuoto al livello dm1; i controlli non sono scritti come DM1
+A0A1
+  disease_state[state; base «control»; source_name_ch1] control(1): Control ; dm1(1): 
+  source_name_ch1: -
+
+##### GSE71289 11e3bc8e3f80 | - | RPa: source_name_ch1 e' la colonna del fattore cell type, non un soggetto
+F1 F12
+  genetic perturbation[perturbation; base «wild-type»; genotype] wild-type(1): wild-type ; exon 8 wt/mut(1): DISC1 exon 8 wt/mut ; exon 8 mut/mut(1): DISC1 exon 8 mut/mut ; exon 2 mut/mut(1): DISC1 exon 2 mut/mut
+  cell type[context; base «»; source_name_ch1] neural progenitor cells(1): Neural progenitor cell ; neurons(1): Neurons
+  differentiation time[time; base «»; differentiation time] day 17(1): Embryoid body, day 17 ; day 50(1): Embryoid body, day 50
+  source_name_ch1: factor/
+F2 RPa RR
+  genetic perturbation[perturbation; base «wt»; genotype] wt(1): wild-type ; exon 8 wt/mut(1): DISC1 exon 8 wt/mut ; exon 8 mut/mut(1): DISC1 exon 8 mut/mut ; exon 2 mut/mut(1): DISC1 exon 2 mut/mut
+  cell type[context; base «»; source_name_ch1] neural progenitor cells(1): Neural progenitor cell ; neurons(1): Neurons
+  differentiation time[time; base «»; differentiation time] day 17(1): Embryoid body, day 17 ; day 50(1): Embryoid body, day 50
+  source_name_ch1: factor/
+
+##### GSE71289 4e9333b2cb08 | - | A0C: source_name_ch1 uninformative
+A0A2 A0A2A3 A0A2A3A4 A0A2A3A4R A0C RA1PP5 RA1PP5C
+  genotype[state; base «wt»; genotype] wt(1): wild-type ; ex8_wm(1): DISC1 exon 8 wt/mut ; ex8_mm(1): DISC1 exon 8 mut/mut ; ex2_mm(1): DISC1 exon 2 mut/mut
+  cell_type[context; base «»; cell type] npc(1): Human iPSC-derived neu ; neuron(1): Human iPSC-derived neu
+  time[time; base «»; differentiation time] d17(1): Embryoid body, day 17 ; d50(1): Embryoid body, day 50
+  source_name_ch1: uninformative/
+RA1
+  genotype[state; base «wt»; genotype] wt(1): wild-type ; exon8_wt_mut(1): DISC1 exon 8 wt/mut ; exon8_mut_mut(1): DISC1 exon 8 mut/mut ; exon2_mut_mut(1): DISC1 exon 2 mut/mut
+  cell_type[context; base «»; cell type] neural_progenitor_cells(1): Human iPSC-derived neu ; neurons(1): Human iPSC-derived neu
+  differentiation_time[time; base «»; differentiation time] day17(1): Embryoid body, day 17 ; day50(1): Embryoid body, day 50
+  source_name_ch1: uninformative/
+
+##### GSE71595 55e560638aeb | GSE71595:source_name_ch1 come donatore | RPb: source_name_ch1 subject/donor, 4/4
+F1
+  disease[state; base «healthy control»; diagnosis] healthy control(1): Healthy control ; JIA patient(1): JIA patient
+  agent[perturbation; base «JQ1(-)»; treatment] JQ1(-)(1): JQ1(-) ; JQ1(+)(1): JQ1(+)
+  source_name_ch1: subject/donor
+RPb
+  disease[state; base «healthy»; diagnosis] healthy(1): Healthy control ; jia(1): JIA patient
+  agent[perturbation; base «untreated»; treatment] untreated(1): JQ1(-) ; jq1(1): JQ1(+)
+  source_name_ch1: subject/donor
+
+##### GSE75852 8d31afcf6443 | GSE75852:tempo che ripete il tipo cellulare | RA1: fattore time (day0, day34) dal titolo, stessa partizione del tipo cellulare; fattori doppi 1; 2/2
+RA1
+  cell_type[context; base «»; cell type] iPSC(1): induced pluripotent st ; NP(1): neural progenitor
+  disease_state[state; base «healthy»; disease state] healthy(1): Normal ; ataxia(1): Ataxia Telangiectasia
+  time[time; base «»; title] day0(6): iPSC control 1, iPSC control 2, iPSC control 3 … ; day34(6): neural progenitor cont, neural progenitor cont, neural progenitor cont …
+  source_name_ch1: uninformative/
+
+##### GSE75852 91e3fe30f0af | GSE75852:tempo che ripete il tipo cellulare | RC: fattore time (day_0, day_34) da description, stessa partizione del tipo cellulare; fattori doppi 1; 2/2
+RC
+  cell_type[context; base «»; source_name_ch1] iPSC(1): induced pluripotent st ; neural_progenitor(1): neural progenitor
+  disease_state[state; base «healthy»; disease state] healthy(1): Normal ; ataxia_telangiectasia(1): Ataxia Telangiectasia
+  time[time; base «»; description] day_0(6): C11d0_1, C11d0_2, C11d0_3 … ; day_34(6): C11d34_1, C11d34_2, C11d34_3 …
+  source_name_ch1: -
+
+##### GSE83687 8b26c083a31d | GSE83687:source_name_ch1 come donatore | RPb: source_name_ch1 (sede del prelievo) subject/donor; nessun fattore del tessuto; 2/2
+RPb
+  disease[state; base «healthy»; clinical condition] healthy(1): control ; ulcerative_colitis(1): Ulcerative Colitis ; crohns_disease(1): Crohn's disease
+  source_name_ch1: subject/donor
+
+##### GSE83687 901a50a5e9b8 | GSE83687:sede del prelievo scritta come non dichiarata | RA1: tissue da source_name_ch1, 14 valori su 14 a not stated; source_name_ch1 non e' soggetto; 2/2
+RA1
+  disease[state; base «healthy»; clinical condition] healthy(1): control ; ulcerative_colitis(1): Ulcerative Colitis ; crohns_disease(1): Crohn's disease
+  tissue[context; base «»; source_name_ch1] not stated(14): smallbowel, rectum, rightcolon …
+  source_name_ch1: factor/
+
+##### GSE83687 fa6a01ad88a4 | - | RP, RPc: source_name_ch1 uninformative; un fattore solo (malattia); 2/2
+RA1P RP RPc
+  disease[state; base «healthy»; clinical condition] healthy(1): control ; ulcerative_colitis(1): Ulcerative Colitis ; crohns_disease(1): Crohn's disease
+  source_name_ch1: uninformative/
+RA1PP5
+  disease[state; base «healthy»; clinical condition] healthy(1): control ; uc(1): Ulcerative Colitis ; cd(1): Crohn's disease
+  source_name_ch1: uninformative/
+
+##### GSE93624 4ad192714751 | - | F12: un fattore solo (disease, come B0); nessun fattore della complicazione; 1/1
+F12
+  disease[state; base «non-IBD control»; source_name_ch1] Crohn's disease(1): Crohn's disease_Ileal  ; non-IBD control(1): Non-IBD control_Ileal 
+  source_name_ch1: factor/

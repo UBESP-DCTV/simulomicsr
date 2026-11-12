@@ -1,0 +1,85 @@
+
+=== ('a', 'GSE50499', 'B0')
+   RPb F1 F12 B0pl1 A0A1 A0pl1
+      motivi: -
+      basi: -
+   B0 RP5 RC3 RA4 RA4A3 B0pl2
+      motivi: livello_assente: mov10: control || base_assente: mov10: control
+      basi: -
+
+=== ('a', 'GSE66207', 'A0')
+   A0C A0pl1 A0pl2
+      motivi: non_coperta: behavior: 13 campioni, per esempio gsm1616932
+      basi: behavior:base_vuota
+   A0 A0A1 A0A3 A0A2
+      motivi: non_coperta: disease_behavior: 13 campioni, per esempio gsm1616932
+      basi: disease_behavior:base_vuota
+
+=== ('a', 'GSE66207', 'B0')
+   RP RA1P RA1PP5C F1 F12 A0A2A3 A0A2A3A4 A0A2A3A4R
+      motivi: -
+      basi: disease_behavior:base_vuota
+   B0 RPa RPb RPc RPd RP5 RC RC3 RA1 RA4 RA4A3 RR F2 B0pl1 B0pl2
+      motivi: -
+      basi: behavior:base_vuota
+
+=== ('b2', 'GSE147507', '9f155929b5d0', ('GSE147507|9f155929b5d0|cad5119c',))
+   B0pl1
+      motivi: -
+      basi: ruxolitinib:base_vuota ; strain:base_vuota
+   RP
+      motivi: base_assente: ruxolitinib: untreated || base_assente: strain: mock
+      basi: ruxolitinib:base_senza_campioni ; strain:base_senza_campioni
+   RPc
+      motivi: ruolo_incoerente: ruolo factor e nessun fattore la legge: cell type
+      basi: ruxolitinib:base_vuota ; strain:base_vuota
+
+=== ('b2', 'GSE60585', 'fdabeb4309e2', ('GSE60585|fdabeb4309e2|510e56a5',))
+   RPb RPd RR F2
+      motivi: -
+      basi: -
+   RP
+      motivi: livello_assente: target: control || base_assente: target: control
+      basi: -
+
+=== ('b2', 'GSE67812', '0fa6d852d97e', ('GSE67812|0fa6d852d97e|bf8aee18',))
+   RP RPa RPb RPc RPd RC RA1 RR RA1P RA1PP5 RA1PP5C B0pl1 A0A2A3 A0A2A3A4 A0A2A3A4R
+      motivi: -
+      basi: disease_state:base_senza_campioni
+   F1 F12
+      motivi: base_assente: disease_state: control
+      basi: disease_state:base_senza_campioni
+
+=== ('s', 'GSE112057|c6561d760b0b|6b86998e')
+   F1
+      motivi: -
+      basi: jia_subtype:base_vuota
+   F12
+      motivi: -
+      basi: subtype:base_vuota
+
+=== ('s', 'GSE147507|9f155929b5d0|cad5119c')
+   RP
+      motivi: base_assente: ruxolitinib: untreated || base_assente: strain: mock
+      basi: ruxolitinib:base_senza_campioni ; strain:base_senza_campioni
+   RPc
+      motivi: ruolo_incoerente: ruolo factor e nessun fattore la legge: cell type
+      basi: ruxolitinib:base_vuota ; strain:base_vuota
+
+=== ('s', 'GSE56691|111d229309ad|bf8aee18')
+   RPc
+      motivi: livello_assente: agent:  || livello_assente: time:  || ruolo_incoerente: un fattore la legge e il ruolo e' source_name_ch1 (uninformative)
+      basi: agent:base_vuota
+   F2 B0pl2
+      motivi: livello_assente: agent:  || livello_assente: time: 
+      basi: agent:base_vuota
+
+=== ('s', 'GSE83687|8b4f154a1d3d|8bc8b932')
+   B0pl2
+      motivi: livello_assente: tissue: ileum
+      basi: -
+   A0A2A3A4
+      motivi: livello_assente: tissue: ileum, right_colon_inflamed
+      basi: -
+
+celle per via: {'a': 1073, 'b2': 20, 'c': 71, 's': 289} | gruppi scritti: 10

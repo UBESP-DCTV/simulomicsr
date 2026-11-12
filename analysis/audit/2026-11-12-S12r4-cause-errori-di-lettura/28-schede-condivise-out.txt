@@ -1,0 +1,126 @@
+
+=== GSE103501|3c4cd9703cc3|76a54b91 | ('forma', '')
+   F1
+      motivi: base_assente: disease: H || base_assente: treatment: medium
+      basi: condition=«» ; disease=«h» ; timepoint=«» ; treatment=«medium»
+   F12
+      motivi: base_assente: disease: H || base_assente: treatment: medium
+      basi: disease=«h» ; group=«» ; timepoint=«» ; treatment=«medium»
+
+=== GSE103501|3d36c1a7730a|e3b0c442 | ('non errore', '')
+   A0A2A3A4 RC
+      motivi: 
+      basi: disease=«healthy» ; group=«» ; timepoint=«» ; treatment=«medium»
+   RA1
+      motivi: 
+      basi: condition=«» ; disease=«healthy» ; timepoint=«» ; treatment=«medium»
+   RPc
+      motivi: 
+      basi: condition=«» ; disease=«healthy» ; time=«» ; treatment=«medium»
+
+=== GSE112057|c6561d760b0b|6b86998e | ('lettura del modello', 'GSE112057:sottotipo JIA come secondo fattore')
+   F1
+      motivi: 
+      basi: disease_state=«control» ; jia_subtype=«»
+   F12
+      motivi: 
+      basi: disease_state=«control» ; subtype=«»
+
+=== GSE147507|9f155929b5d0|cad5119c | ('lettura del modello', 'GSE147507:controlli senza livello (ruxolitinib, strain)')
+   RP
+      motivi: base_assente: Ruxolitinib: untreated || base_assente: strain: mock
+      basi: cell_line=«» ; ruxolitinib=«untreated» ; strain=«mock» ; subject_status=«healthy» ; time_point=«» ; treatment=«mock»
+   RPc
+      motivi: ruolo_incoerente: ruolo factor e nessun fattore la legge: cell type
+      basi: cell_line=«» ; ruxolitinib=«» ; strain=«» ; subject_status=«healthy» ; time_point=«» ; treatment=«mock»
+
+=== GSE147507|NA|cad5119c | ('forma', '')
+   A0A2A3 A0A3
+      motivi: troncata || non_valida: SyntaxError: Unexpected token ','
+      basi: uscita non leggibile
+   RA4
+      motivi: troncata || non_valida: SyntaxError: Invalid or unexpected token
+      basi: uscita non leggibile
+
+=== GSE47718|f8b5c776895c|e3b0c442 | ('lettura del modello', 'GSE47718:source_name_ch1 come donatore')
+   F1 F12 F2 RC RP5 RPa
+      motivi: 
+      basi: smoking_status=«nonsmoker»
+   RA1 RA1P RA1PP5 RA1PP5C RP RPb
+      motivi: 
+      basi: smoking_status=«healthy»
+
+=== GSE52194|f43f134f4b41|e3b0c442 | ('lettura del modello', 'GSE52194:source_name_ch1 come donatore')
+   RA1PP5 RA1PP5C RPb
+      motivi: 
+      basi: tumor_type=«healthy»
+   RP
+      motivi: 
+      basi: tumor_type=«normal»
+
+=== GSE56691|111d229309ad|bf8aee18 | ('lettura del modello', 'GSE56691:controllo non trattato senza livello')
+   B0pl2 F2
+      motivi: livello_assente: agent:  || livello_assente: time: 
+      basi: agent=«» ; time=«»
+   RPc
+      motivi: livello_assente: agent:  || livello_assente: time:  || ruolo_incoerente: un fattore la legge e il ruolo e' source_name_ch1 (uninformative)
+      basi: agent=«» ; time=«»
+
+=== GSE56787|3746a22f2565|359d0521 | ('non errore', '')
+   RP
+      motivi: 
+      basi: cell_type=«» ; disease=«control»
+   RPb
+      motivi: 
+      basi: cell_type=«» ; disease=«healthy»
+
+=== GSE56787|a6a543e0675f|1c9d5d53 | ('lettura del modello', 'GSE56787:tipo di campione non letto')
+   F1
+      motivi: 
+      basi: disease=«healthy»
+   F12
+      motivi: 
+      basi: disease=«control»
+
+=== GSE63816|5844942f11fb|38b8861f | ('forma', '')
+   RPc
+      motivi: livello_assente: disease: not_applicable || livello_assente: genotype: not_applicable || livello_assente: knockdown: not_applicable
+      basi: cell_type=«» ; disease=«healthy» ; genotype=«wild_type» ; knockdown=«control_shrna»
+   RR
+      motivi: livello_assente: disease: not_applicable || livello_assente: genotype: not_applicable || livello_assente: knockdown: not_applicable
+      basi: cell_context=«» ; disease=«healthy» ; genotype=«wild_type» ; knockdown=«control_shrna»
+
+=== GSE71595|e615a7130f61|105f8423 | ('non errore', 'GSE71595:source_name_ch1 come donatore')
+   A0A1 A0pl1
+      motivi: 
+      basi: agent=«vehicle» ; disease=«healthy» ; tissue=«»
+   A0A2 A0A2A3 A0A2A3A4
+      motivi: 
+      basi: disease=«healthy» ; tissue=«» ; treatment=«control»
+   A0A2A3A4R
+      motivi: 
+      basi: disease=«healthy» ; tissue=«» ; treatment=«untreated»
+   A0C
+      motivi: 
+      basi: agent=«untreated» ; disease=«healthy» ; tissue=«»
+
+=== GSE83687|8b4f154a1d3d|8bc8b932 | ('forma', '')
+   A0A2A3A4
+      motivi: livello_assente: tissue: ileum, right_colon_inflamed
+      basi: disease=«healthy» ; tissue=«»
+   B0pl2
+      motivi: livello_assente: tissue: ileum
+      basi: disease=«healthy» ; tissue=«»
+
+=== GSE93624|6fc91e170079|af8429da | ('non errore', '')
+   RA1
+      motivi: 
+      basi: complication=«non_complicated» ; disease=«healthy»
+   RA1P RA1PP5
+      motivi: 
+      basi: complication=«not progressed» ; disease=«healthy»
+   RA1PP5C
+      motivi: 
+      basi: complication progression=«not progressed» ; disease=«healthy»
+
+schede condivise da piu' corse: 55; con corse non uguali: 14
